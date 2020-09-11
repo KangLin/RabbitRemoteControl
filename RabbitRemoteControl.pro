@@ -22,7 +22,8 @@ CONFIG *= ordered
 SUBDIRS = RabbitCommon App
 
 OTHER_FILES += CMakeLists.txt \
-    *.md
+    *.md \
+    Install/*
 
 other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
               ChangeLog_zh_CN.md
