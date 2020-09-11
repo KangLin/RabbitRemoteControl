@@ -31,8 +31,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-OTHER_FILES += CMakeLists.txt \
-    *.md
+OTHER_FILES += CMakeLists.txt
 
 isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)
 isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$PWD/../../RabbitCommon

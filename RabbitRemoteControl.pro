@@ -21,6 +21,9 @@ App.depends = RabbitCommon
 CONFIG *= ordered
 SUBDIRS = RabbitCommon App
 
+OTHER_FILES += CMakeLists.txt \
+    *.md
+
 other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
               ChangeLog_zh_CN.md
 android: other.path = $$PREFIX/assets

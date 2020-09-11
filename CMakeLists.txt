@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 2.8)
 
-project(RabbitRemoteControl LANGUAGES CXX)
+project(RabbitRemoteControl)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 11)
@@ -96,37 +96,88 @@ IF(MSVC)
     add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 ENDIF(MSVC)
 
-set(SOURCE_FILES
-    main.cpp
-    mainwindow.cpp
-    )
+SET(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libs")
+if (BUILD_SHARED_LIBS)
+    add_definitions(-DBUILD_SHARED_LIBS)
+    if (CMAKE_COMPILER_IS_GNUCXX AND NOT MINGW)
+       # Just setting CMAKE_POSITION_INDEPENDENT_CODE should be enough to set
+       # -fPIC for GCC but sometimes it still doesn't get set, so make sure it
+       # does.
+       add_definitions("-fPIC")
+    endif()
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+else(BUILD_SHARED_LIBS)
+    add_definitions(-DQT_STATICPLUGIN)
+endif(BUILD_SHARED_LIBS)
 
-set(HEADER_FILES
-    mainwindow.h
-    )
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
+include(GenerateExportHeader)
+include(CheckIncludeFile)
+include(CheckIncludeFileCXX)
+include(CheckFunctionExists)
 
-set(SOURCE_UI_FILES
-    mainwindow.ui
-    )
+#CHECK_INCLUDE_FILE_CXX("string" HAVE_STRING_H)
+#check_include_file("math.h" HAVE_MATH_H)
 
-#翻译
-GENERATED_QT_TRANSLATIONS(
-    SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}
-    OUT_QRC TRANSLATIONS_QRC_FILES
-    )
-string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
-if(BUILD_TYPE STREQUAL "debug")
-    LIST(APPEND PRIVATE_DEFINITIONS DEBUG)
-    LIST(APPEND RCC_FILES
-        ${TRANSLATIONS_QRC_FILES}
-        )
+#check_function_exists("fabs" HAVE_FABS)
+
+set(BUILD_PLATFORM "${CMAKE_SYSTEM_NAME}")
+# ----------------------------------------------------------------------------
+# Detect compiler and target platform architecture
+# ----------------------------------------------------------------------------
+if(NOT ANDROID)
+    if(X86_64 OR CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(BUILD_ARCH x86_64)
+    elseif(X86 OR CMAKE_SIZEOF_VOID_P EQUAL 4)
+        set(BUILD_ARCH x86)
+    endif()
+else()
+    set(BUILD_ARCH ${CMAKE_SYSTEM_PROCESSOR})
 endif()
 
-add_executable(${PROJECT_NAME}
-    ${SOURCE_FILES}
-    ${HEADER_FILES}
-    ${SOURCE_UI_FILES}
-    ${RCC_FILES}
-    )
+if(NOT RabbitCommon_DIR)
+    set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
+    if(NOT RabbitCommon_DIR)
+        set(RabbitCommon_DIR ${CMAKE_SOURCE_DIR}/../RabbitCommon)
+    endif()
+endif()
+if(DEFINED RabbitCommon_DIR AND EXISTS ${RabbitCommon_DIR}/Src)
+    add_subdirectory(${RabbitCommon_DIR}/Src ${CMAKE_BINARY_DIR}/RabbitCommon)
+    include(${RabbitCommon_DIR}/cmake/Translations.cmake)
+else()
+    message("1. Please download RabbitCommon source code from https://github.com/KangLin/RabbitCommon")
+    message("   ag:")
+    message("       git clone https://github.com/KangLin/RabbitCommon.git")
+    message("2. Then set cmake value or environment variable RabbitCommon_DIR to download root dirctory.")
+    message("   ag:")
+    message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
+endif()
+option(BUILD_APP "Build applaction" ON)
+if(BUILD_APP)
+    add_subdirectory(App)
+endif(BUILD_APP)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_LIBRARIES})
+add_custom_target(install-runtime
+  COMMAND
+     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime 
+     -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake"
+)
+
+iF(WIN32)
+    INSTALL(FILES Install/Install.nsi DESTINATION "${CMAKE_BINARY_DIR}"
+        COMPONENT Runtime)
+endif()
+# Install other files
+set(OTHER_FILES
+    License.md
+    Authors.md
+    ChangeLog.md
+    Authors_zh_CN.md
+    ChangeLog_zh_CN.md)
+if(ANDROID)
+    INSTALL(FILES ${OTHER_FILES} DESTINATION "assets" COMPONENT Runtime)
+else()
+    INSTALL(FILES ${OTHER_FILES} DESTINATION "." COMPONENT Runtime)
+endif()
+
