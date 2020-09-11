@@ -1,1 +1,27 @@
-# RabbitRemoteControl
+# Rabbit Remote Control
+
+Author: Kang Lin(kl222@126.com)
+
+-----------------------------------------------------------------------
+
+[<img src="Resource/Image/Chinese.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
+
+## Support protocol
+- [ ] [vnc]()
+- [ ] [FreeRDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [ ] [Spice](https://www.spice-space.org/)
+
+## Depend libraries
+- [libvncserver](https://github.com/LibVNC/libvncserver)
+- [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+
+## Donation
+
+[![donation](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
+
+## Contribution
+
+- [Question](https://github.com/KangLin/RabbitRemoteControl/issues)
+- [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+
+## [License Agreement](License.md "License.md")
