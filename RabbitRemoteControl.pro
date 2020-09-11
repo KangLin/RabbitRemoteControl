@@ -23,7 +23,8 @@ SUBDIRS = RabbitCommon App
 
 OTHER_FILES += CMakeLists.txt \
     *.md \
-    Install/*
+    Install/* \
+    *.yml
 
 other.files = License.md Authors.md ChangeLog.md Authors_zh_CN.md \
               ChangeLog_zh_CN.md

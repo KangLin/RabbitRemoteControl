@@ -21,6 +21,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 isEmpty(DESTDIR): DESTDIR = $$OUT_PWD/../bin
 
+CONFIG(debug, debug|release): DEFINES *= _DEBUG
+!static: !staticlib: DEFINES *= BUILD_SHARED_LIBS
+
 SOURCES += \
     main.cpp \
     mainwindow.cpp

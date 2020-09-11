@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Rabbit Remote Control
+GenericName=Rabbit Remote Control
+Comment=Rabbit Remote Control
+Name[zh_CN]=玉兔远程控制
+GenericName[zh_CN]=玉兔远程控制
+Comment[zh_CN]=玉兔远程控制
+Icon=RabbitRemoteControl
+Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControl
+Terminal=false
+StartupNotify=true
+Categories=Application;Development;

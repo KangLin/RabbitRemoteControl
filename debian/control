@@ -1,0 +1,15 @@
+Source: rabbitremotecontrol
+Section: main
+Priority: optional
+Maintainer: Kang Lin <kl222@126.com>
+Build-Depends: debhelper (>= 6)
+Standards-Version:"v0.0.4"
+Homepage: https://github.com/KangLin/RabbitRemoteControl
+Vcs-Git: https://github.com/KangLin/RabbitRemoteControl.git
+#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/RabbitRemoteControl.git
+
+Package: rabbitremotecontrol
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Rabbit Remote Control

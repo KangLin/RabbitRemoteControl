@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+#export QT_SELECT=qt5
+
+ifdef ThirdLibs_DIR
+    PARAS += -DOpenCV_DIR=${ThirdLibs_DIR}/lib/cmake/opencv4
+    PARAS += -Dprotobuf_DIR=${ThirdLibs_DIR}/lib/cmake/protobuf
+    PARAS += -DSeetaFace_DIR=$(ThirdLibs_DIR)/lib/cmake
+    PARAS += -Dfacedetection_DIR=${ThirdLibs_DIR}/lib/cmake/facedetection
+    PARAS += -Ddlib_DIR=${ThirdLibs_DIR}/lib/cmake/dlib
+    PARAS += -Dncnn_DIR=${ThirdLibs_DIR}/lib/cmake/ncnn
+    PARAS += -DYUV_DIR=${ThirdLibs_DIR}/lib/cmake
+    PARAS += -DFFMPEG_DIR=${ThirdLibs_DIR}
+    LIB_PARAS += ${ThirdLibs_DIR}/lib
+    export PKG_CONFIG_PATH=${ThirdLibs_DIR}/lib/pkgconfig
+endif
+
+%:
+	dh $@
+
+# dh_make generated override targets
+# This is example for Cmake (See https://bugs.debian.org/641051 )
+override_dh_auto_configure:
+	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 -DRabbitCommon_DIR=${RabbitCommon_DIR} -DENABLE_DOWNLOAD=${ENABLE_DOWNLOAD} ${PARAS}
+
+override_dh_auto_build:
+	dh_auto_build -- $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`" = "0",, -j`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`)
+
+#override_dh_auto_install:
+#	cmake --build . --config Release --target install/strip
+
+override_dh_shlibdeps:
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:$(LIB_PARAS)

@@ -15,7 +15,9 @@ int main(int argc, char *argv[])
     QtAndroid::hideSplashScreen();
 #endif
     
+#ifdef _DEBUG || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_RabbitRemoteControl);
+#endif
     
     QApplication a(argc, argv);
     //a.setApplicationName("RabbitRemoteControl");
@@ -39,7 +41,9 @@ int main(int argc, char *argv[])
     w.show();
     int nRet = a.exec();
     
+#ifdef _DEBUG || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_RabbitRemoteControl);
+#endif
     
     return nRet;
 }
