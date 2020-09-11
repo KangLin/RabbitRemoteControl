@@ -34,6 +34,10 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
+RESOURCES += \
+    Resource/Resource.qrc
+WIN32: RESOURCES += Resource/App.rc
+
 OTHER_FILES += CMakeLists.txt
 
 isEmpty(RabbitCommon_DIR): RabbitCommon_DIR=$$(RabbitCommon_DIR)
@@ -59,10 +63,7 @@ isEmpty(PREFIX) {
 target.path = $$PREFIX/bin
 INSTALLS += target
 
-#install_win.files = Install/Install.nsi App/AppIcon.ico #windows install need
-#install_win.path = $$OUT_PWD
-#install_win.CONFIG += directory no_check_exist 
-#win32:  INSTALLS += install_win
-
-RESOURCES += \
-    Resource/Resource.qrc
+install_win.files = Install/Install.nsi Resource/Image/App.ico #windows install need
+install_win.path = $$OUT_PWD
+install_win.CONFIG += directory no_check_exist 
+win32:  INSTALLS += install_win

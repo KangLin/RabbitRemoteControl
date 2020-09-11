@@ -15,6 +15,10 @@ set(SOURCE_UI_FILES
     mainwindow.ui
     )
 
+if(WIN32)
+    set(RCC_FILES Resource/App.rc)
+endif()
+
 #翻译
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}
@@ -36,3 +40,7 @@ add_executable(${PROJECT_NAME}
     )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE RabbitCommon ${QT_LIBRARIES})
+
+install(FILES Resource/Image/App.ico
+    ${CMAKE_SOURCE_DIR}/Instatll/Install.nsi
+    DESTINATION .)
