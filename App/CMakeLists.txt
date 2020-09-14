@@ -32,15 +32,12 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-add_executable(${PROJECT_NAME}
-    ${SOURCE_FILES}
-    ${HEADER_FILES}
-    ${SOURCE_UI_FILES}
-    ${RCC_FILES}
-    )
-
-target_link_libraries(${PROJECT_NAME} PRIVATE RabbitCommon ${QT_LIBRARIES})
+ADD_TARGET(NAME ${PROJECT_NAME}
+    ISEXE
+    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
+    PRIVATE_LIBS RabbitCommon ${QT_LIBRARIES})
 
 install(FILES Resource/Image/App.ico
-    ${CMAKE_SOURCE_DIR}/Instatll/Install.nsi
-    DESTINATION .)
+    ${CMAKE_SOURCE_DIR}/Install/Install.nsi
+    DESTINATION .
+        COMPONENT Runtime)
