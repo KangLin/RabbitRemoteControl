@@ -133,7 +133,7 @@ deploy:
   - provider: GitHub
     #token : https://github.com/settings/tokens password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
-      secure: xgIFN2iAfgj1gsWabdHrmFXvj0rce/ZWtKUwm3aDUNfLGu+kO/q94MYD8a46AbDL
+      secure: qkX/In6jqYBm72BFWAtLVNsba7y95zev4GR+ZZNmQ1zW7mOXxk71BUxJDDzoJogK
     #artifact: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
     #draft: true
     #prerelease: true
