@@ -5,6 +5,7 @@
 #include <QDebug>
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
+#include "FrmUpdater/FrmUpdater.h"
 
 int main(int argc, char *argv[])
 {
@@ -35,6 +36,11 @@ int main(int argc, char *argv[])
     RabbitCommon::CTools::Instance()->Init();
     
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
+    
+    CFrmUpdater *pUpdate = new CFrmUpdater();
+    pUpdate->SetTitle(QImage(":/image/App"));
+    if(!pUpdate->GenerateUpdateXml()) 
+        return 0; 
     
     MainWindow w;
     w.setWindowIcon(QIcon(":/image/App"));
