@@ -17,18 +17,18 @@ int main(int argc, char *argv[])
 #endif
     
 #ifdef _DEBUG || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_RabbitRemoteControl);
+    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
 #endif
     
     QApplication a(argc, argv);
-    //a.setApplicationName("RabbitRemoteControl");
+    a.setApplicationName("RabbitRemoteControl");
     
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
     
     QTranslator tApp;
     tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
-              + QDir::separator() + a.applicationName() + "_"
+              + QDir::separator() + a.applicationName() + "App_"
               + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
     qInfo() << "Language:" << QLocale::system().name();
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     int nRet = a.exec();
     
 #ifdef _DEBUG || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_RabbitRemoteControl);
+    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
 #endif
     
     return nRet;

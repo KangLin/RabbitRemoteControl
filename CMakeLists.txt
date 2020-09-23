@@ -153,6 +153,9 @@ else()
     message("   ag:")
     message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
 endif()
+
+add_subdirectory(Src)
+
 option(BUILD_APP "Build applaction" ON)
 if(BUILD_APP)
     add_subdirectory(App)

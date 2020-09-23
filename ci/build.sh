@@ -174,7 +174,7 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     # Create update.xml
     MD5=`md5sum $SOURCE_DIR/../rabbitremotecontrol*_amd64.deb|awk '{print $1}'`
     echo "MD5:${MD5}"
-    ./bin/RabbitRemoteControl \
+    ./bin/RabbitRemoteControlApp \
         -f "`pwd`/update_linux.xml" \
         --md5 ${MD5} \
         -m "v0.3.4"
@@ -297,7 +297,7 @@ if [ "${BUILD_TARGERT}" = "windows_msvc" ]; then
         "/C/Program Files (x86)/NSIS/makensis.exe" "Install.nsi"
         MD5=`md5sum RabbitRemoteControl-Setup-*.exe|awk '{print $1}'`
         echo "MD5:${MD5}"
-        install/bin/RabbitRemoteControl.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.3.4"
+        install/bin/RabbitRemoteControlApp.exe -f "`pwd`/update_windows.xml" --md5 ${MD5} -m "v0.3.4"
         #cat update_windows.xml
     fi
 fi

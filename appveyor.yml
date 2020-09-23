@@ -110,8 +110,8 @@ build_script:
   - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build.sh
 
 artifacts:
-  - path: build_$(BUILD_TARGERT)\RabbitIm-Setup-*.exe
-    name: RabbitIm_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
+  - path: build_$(BUILD_TARGERT)\RabbitRemoteControl-Setup-*.exe
+    name: RabbitRemoteControl$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(BUILD_ARCH)_$(QT_VERSION)_$(appveyor_build_version)
     type: zip
 
 test: off

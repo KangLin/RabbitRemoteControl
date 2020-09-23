@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = RabbitRemoteControl
+TARGET = RabbitRemoteControlApp
 
 QT       += core gui
 
