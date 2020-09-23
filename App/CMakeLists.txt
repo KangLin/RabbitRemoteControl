@@ -18,6 +18,7 @@ set(SOURCE_UI_FILES
 if(WIN32)
     set(RCC_FILES Resource/App.rc)
 endif()
+LIST(APPEND RCC_FILES Resource/Resource.qrc)
 
 #翻译
 GENERATED_QT_TRANSLATIONS(
