@@ -13,20 +13,31 @@ class CFrmViewer : public QWidget
     
 public:
     explicit CFrmViewer(QWidget *parent = nullptr);
-    ~CFrmViewer();
+    virtual ~CFrmViewer() override;
+    
+Q_SIGNALS:
+    void sigMousePressEvent(QMouseEvent *event);
+    void sigMouseReleaseEvent(QMouseEvent *event);
+    void sigMouseDoubleClickEvent(QMouseEvent *event);
+    void sigMouseMoveEvent(QMouseEvent *event);
+    void sigWheelEvent(QWheelEvent *event);
+    void sigKeyPressEvent(QKeyEvent *event);
+    void sigKeyReleaseEvent(QKeyEvent *event);
     
 private:
     Ui::CFrmViewer *ui;
     
     // QWidget interface
-protected:
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void mouseDoubleClickEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-    void wheelEvent(QWheelEvent *event);
-    void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent *event);
+protected:    
+    virtual void resizeEvent(QResizeEvent *event) override;
+    
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
 };
 
 #endif // FRMVIEWER_H
