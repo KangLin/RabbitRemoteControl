@@ -36,7 +36,7 @@ endif()
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
-    PRIVATE_LIBS RabbitCommon ${QT_LIBRARIES})
+    PRIVATE_LIBS RabbitRemoteControl)
 
 install(FILES Resource/Image/App.ico
     ${CMAKE_SOURCE_DIR}/Install/Install.nsi

@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    
+    CFrmUpdater updater;
+    ui->actionUpdate_U->setIcon(updater.windowIcon());
 }
 
 MainWindow::~MainWindow()
