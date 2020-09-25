@@ -5,7 +5,6 @@ project(RabbitRemoteControl LANGUAGES CXX)
 set(SOURCE_FILES
     FrmViewer.cpp
     Connect.cpp
-    ConnectVnc.cpp
     )
 
 set(INSTALL_HEADER_FILES
@@ -14,7 +13,6 @@ set(INSTALL_HEADER_FILES
 set(HEADER_FILES
     ${INSTALL_HEADER_FILES}
     Connect.h
-    ConnectVnc.h
     )
 
 set(SOURCE_UI_FILES
@@ -29,6 +27,8 @@ find_package(RabbitVNC)
 if(RabbitVNC_FOUND)
     LIST(APPEND SRC_LIBS ${RabbitVNC_LIBRARIES})
     INSTALL_TARGETS(TARGETS ${RabbitVNC_LIBRARIES})
+    LIST(APPEND SOURCE_FILES ConnectVnc.cpp)
+    LIST(APPEND HEADER_FILES ConnectVnc.h)
 endif()
 
 #翻译
