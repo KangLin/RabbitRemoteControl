@@ -13,8 +13,8 @@ void CConnectThread::run()
 {
     try {
         CConnectVnc connect(m_pView);
-        connect.SetServer("fmpixel.f3322.net", 5902);
-        connect.SetUser(QString(), "yly075077");
+        connect.SetServer("127.0.0.1", 5900);
+        connect.SetUser(QString(), "");
         connect.Connect();
         connect.Exec();    
     } catch (rdr::EndOfStream& e) {

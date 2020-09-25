@@ -96,8 +96,6 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
 void MainWindow::on_actionOriginal_O_triggered()
 {
-    CConnectThread* pThread = new CConnectThread((CFrmViewer*)m_pView->takeWidget());
-    pThread->start();
 }
 
 void MainWindow::on_actionZoom_Z_triggered()
@@ -122,4 +120,18 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
             on_actionFull_screen_F_triggered();
         break;
     }
+}
+
+void MainWindow::on_actionConnect_C_triggered()
+{
+    CConnectThread* pThread = new CConnectThread(
+                dynamic_cast<CFrmViewer*>(m_pView->takeWidget()));
+    pThread->start();
+}
+
+void MainWindow::on_actionDisconnect_D_triggered()
+{
+    CFrmViewer* pV = dynamic_cast<CFrmViewer*>(m_pView->widget());
+    if(pV)
+        pV->slotDisconnect();
 }

@@ -40,7 +40,7 @@ private:
     void setColourMapEntries(int firstColour, int nColours, rdr::U16* rgbs) override;
     void bell() override;
     void serverCutText(const char* str, int len) override;
-    /*
+    
     void framebufferUpdateEnd() override;
     void beginRect(const rfb::Rect& r, unsigned int encoding) override;
     void endRect(const rfb::Rect& r, unsigned int encoding) override;
@@ -49,7 +49,7 @@ private:
     void copyRect(const rfb::Rect& r, int sx, int sy) override;
     void setCursor(int width, int height, const rfb::Point& hotspot,
                    void* data, void* mask) override;
-    */
+    
 private:
     network::Socket* m_pSock;
 };

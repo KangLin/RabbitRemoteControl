@@ -28,6 +28,10 @@ private slots:
     void on_actionKeep_AspectRation_K_triggered();
     void on_actionExit_E_triggered();
     
+    void on_actionConnect_C_triggered();
+    
+    void on_actionDisconnect_D_triggered();
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     

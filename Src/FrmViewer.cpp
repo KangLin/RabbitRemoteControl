@@ -147,6 +147,7 @@ void CFrmViewer::slotConnect()
 void CFrmViewer::slotDisconnect()
 {
     m_Desktop = QImage();
+    m_pConnect->Disconnect();
 }
 
 void CFrmViewer::slotSetDesktopSize(int width, int height)

@@ -11,5 +11,7 @@
         <file alias="Tools">Image/Tools.png</file>
         <file alias="Option">Image/option.png</file>
         <file alias="Exit">Image/exit.png</file>
+        <file alias="Connect">Image/lan-connect.png</file>
+        <file alias="Disconnect">Image/landisconnect.png</file>
     </qresource>
 </RCC>

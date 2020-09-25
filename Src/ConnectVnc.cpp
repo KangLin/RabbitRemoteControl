@@ -4,6 +4,7 @@
 #include "rfb/CSecurityNone.h"
 #include "rfb/CSecurityVncAuth.h"
 #include "rfb/Exception.h"
+#include <QApplication>
 
 static rfb::LogWriter vlog("ConnectVnc");
 
@@ -25,8 +26,11 @@ int CConnectVnc::Connect()
 
     try {
         setShared(GetShared());
+        setProtocol3_3(true);
+        // - Set which auth schemes we support, in order of preference
         addSecType(rfb::secTypeNone);
         addSecType(rfb::secTypeVncAuth);
+        
         cp.supportsDesktopResize = GetReDesktopSize();
         cp.supportsLocalCursor = GetUserLocalCursor();
         
@@ -40,8 +44,10 @@ int CConnectVnc::Connect()
         
         m_pSock = new network::TcpSocket(m_szIp.toStdString().c_str(), m_nPort);
         vlog.info("Connecting to %s:%d", m_szIp.toStdString().c_str(), m_nPort);
-        m_pSock->inStream().setBlockCallback(this);
+        
         setServerName(m_pSock->getPeerEndpoint());
+        m_pSock->inStream().setBlockCallback(this);
+        
         setStreams(&m_pSock->inStream(), &m_pSock->outStream());
         initialiseProtocol();
     } catch (rdr::EndOfStream& e) {
@@ -75,6 +81,11 @@ int CConnectVnc::Exec()
     emit sigDisconnect();
     
     return nRet;
+}
+
+QString CConnectVnc::GetServerName()
+{
+    return getServerName();
 }
 
 void CConnectVnc::blockCallback()
@@ -114,12 +125,12 @@ void CConnectVnc::setDesktopSize(int w, int h)
 void CConnectVnc::setColourMapEntries(int firstColour, int nColours, rdr::U16 *rgbs)
 {
     //TODO:设置调色板
-    
+    vlog.debug("setColourMapEntries");
 }
 
 void CConnectVnc::bell()
 {
-    
+    qApp->beep();
 }
 
 void CConnectVnc::serverCutText(const char *str, int len)
@@ -128,7 +139,37 @@ void CConnectVnc::serverCutText(const char *str, int len)
     emit sigServerCutText(szText);
 }
 
-QString CConnectVnc::GetServerName()
+void CConnectVnc::framebufferUpdateEnd()
 {
-    return getServerName();
+    vlog.debug("framebufferUpdateEnd");
+}
+
+void CConnectVnc::beginRect(const rfb::Rect &r, unsigned int encoding)
+{
+    vlog.debug("beginRect");
+}
+
+void CConnectVnc::endRect(const rfb::Rect &r, unsigned int encoding)
+{
+    vlog.debug("endRect");
+}
+
+void CConnectVnc::fillRect(const rfb::Rect &r, rfb::Pixel p)
+{
+    vlog.debug("fillRect");
+}
+
+void CConnectVnc::imageRect(const rfb::Rect &r, void *p)
+{
+    vlog.debug("imageRect");
+}
+
+void CConnectVnc::copyRect(const rfb::Rect &r, int sx, int sy)
+{
+    vlog.debug("copyRect");
+}
+
+void CConnectVnc::setCursor(int width, int height, const rfb::Point &hotspot, void *data, void *mask)
+{
+    vlog.debug("setCursor");
 }

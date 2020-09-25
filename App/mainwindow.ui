@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -47,6 +47,10 @@
     <property name="title">
      <string>Remote(&amp;R)</string>
     </property>
+    <addaction name="actionConnect_C"/>
+    <addaction name="actionDisconnect_D"/>
+    <addaction name="actionRecently_connected"/>
+    <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
    <addaction name="menuRemote"/>
@@ -64,6 +68,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionConnect_C"/>
+   <addaction name="actionDisconnect_D"/>
+   <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="separator"/>
    <addaction name="actionOriginal_O"/>
@@ -196,6 +203,47 @@
    </property>
    <property name="text">
     <string>Exit(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionConnect_C">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Connect</normaloff>:/image/Connect</iconset>
+   </property>
+   <property name="text">
+    <string>Connect(&amp;C)</string>
+   </property>
+   <property name="statusTip">
+    <string>Connect(C)</string>
+   </property>
+   <property name="whatsThis">
+    <string>Connect(C)</string>
+   </property>
+  </action>
+  <action name="actionRecently_connected">
+   <property name="text">
+    <string>Recently connected</string>
+   </property>
+   <property name="statusTip">
+    <string>Recently connected</string>
+   </property>
+   <property name="whatsThis">
+    <string>Recently connected</string>
+   </property>
+  </action>
+  <action name="actionDisconnect_D">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Disconnect</normaloff>:/image/Disconnect</iconset>
+   </property>
+   <property name="text">
+    <string>Disconnect(&amp;D)</string>
+   </property>
+   <property name="statusTip">
+    <string>Disconnect(D)</string>
+   </property>
+   <property name="whatsThis">
+    <string>Disconnect(D)</string>
    </property>
   </action>
  </widget>
