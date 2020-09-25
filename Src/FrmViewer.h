@@ -1,12 +1,16 @@
 #ifndef FRMVIEWER_H
 #define FRMVIEWER_H
 
+#pragma once
+
 #include <QWidget>
 #include "rabbitremotecontrol_export.h"
 
 namespace Ui {
 class CFrmViewer;
 }
+
+class CConnect;
 
 class RABBITREMOTECONTROL_EXPORT CFrmViewer : public QWidget
 {
@@ -17,16 +21,22 @@ public:
     virtual ~CFrmViewer() override;
         
     enum ADAPT_WINDOWS {
+        Auto,
         Original,        // Original desktop size, the left-top of the desktop is aligned with the left-top of the window
         OriginalCenter,  // Original desktop size, the center of the desktop is aligned with the center of the window
-        Full,            // Desktop adapt to windows
+        Zoom,            // Desktop adapt to windows
         AspectRation,    // Keep desktop aspectration adapt to windows
     };
-    void SetAdaptWindows(ADAPT_WINDOWS aw = AspectRation);
+    void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
+    void SetConnect(CConnect* c);
+    void SetClipboard(bool enable = true);
     
 public Q_SLOTS:
+    void slotConnect();
+    void slotDisconnect();
     void slotSetDesktopSize(int width, int height);
     void slotUpdateRect(const QRect& r, const QImage& image);
+    void slotServerCutText(const QString &text);
     
 Q_SIGNALS:
     void sigMousePressEvent(QMouseEvent *event);
@@ -58,6 +68,9 @@ private:
     QImage m_Desktop;
     
     ADAPT_WINDOWS m_AdaptWindows;
+    
+    CConnect* m_pConnect;
+    bool m_bClipboard;
 };
 
 #endif // FRMVIEWER_H

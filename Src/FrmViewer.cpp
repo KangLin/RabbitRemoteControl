@@ -1,10 +1,14 @@
 #include "FrmViewer.h"
+#include "Connect.h"
 #include "ui_FrmViewer.h"
 #include <QPainter>
+#include <QClipboard>
 
 CFrmViewer::CFrmViewer(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CFrmViewer)
+    ui(new Ui::CFrmViewer),
+    m_pConnect(nullptr),
+    m_bClipboard(true)
 {
     ui->setupUi(this);
     SetAdaptWindows(Original);
@@ -25,7 +29,13 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
     Q_UNUSED(event)
     if(this->isHidden())
         return;
-    if(m_Desktop.isNull()) return;
+    
+    if(m_Desktop.isNull())
+    {
+        //TODO: Test
+        QWidget::paintEvent(event);
+        return;
+    }
     
     QPainter painter(this);
     // 设置平滑模式
@@ -35,11 +45,13 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
     switch (m_AdaptWindows) {
     case Original:
         dstRect = m_Desktop.rect();
+        this->setGeometry(m_Desktop.rect());
         break;
     case OriginalCenter:
-        dstRect = m_Desktop.rect();
         dstRect.setLeft((rect().width() - m_Desktop.rect().width()) >> 1); 
-        dstRect.setTop((rect().height() - m_Desktop.rect().height()) >> 1); 
+        dstRect.setTop((rect().height() - m_Desktop.rect().height()) >> 1);
+        dstRect.setWidth(m_Desktop.width());
+        dstRect.setHeight(m_Desktop.height());
         break;
     case AspectRation:
     {
@@ -68,7 +80,9 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
         dstRect = QRectF(newL, newT, newW, newH);
         break;
     }
-    case Full:    
+    case Zoom:    
+        break;
+    case Auto:
         break;
     }
     painter.drawImage(dstRect, m_Desktop);
@@ -109,6 +123,31 @@ void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
     emit sigKeyReleaseEvent(event);
 }
 
+void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
+{
+    m_AdaptWindows = aw;
+}
+
+void CFrmViewer::SetConnect(CConnect *c)
+{
+    m_pConnect = c;
+}
+
+void CFrmViewer::SetClipboard(bool enable)
+{
+    m_bClipboard = enable;
+}
+
+void CFrmViewer::slotConnect()
+{
+    setWindowTitle(m_pConnect->GetServerName());
+}
+
+void CFrmViewer::slotDisconnect()
+{
+    m_Desktop = QImage();
+}
+
 void CFrmViewer::slotSetDesktopSize(int width, int height)
 {
     m_DesktopSize.setWidth(width);
@@ -117,7 +156,18 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
-    QPainter painter(&m_Desktop);
-    painter.drawImage(r, image);
+    if(r == m_Desktop.rect())
+        m_Desktop = image;
+    else
+    {
+        QPainter painter(&m_Desktop);
+        painter.drawImage(r, image);
+    }
     update();
+}
+
+void CFrmViewer::slotServerCutText(const QString& text)
+{
+    QClipboard *board = QApplication::clipboard();  
+    board->setText(text);  
 }

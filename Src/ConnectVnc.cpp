@@ -63,3 +63,18 @@ void CConnectVnc::setDesktopSize(int w, int h)
     emit sigSetDesktopSize(w, h);
 }
 
+void CConnectVnc::bell()
+{
+    
+}
+
+void CConnectVnc::serverCutText(const char *str, int len)
+{
+    QString szText = QString::fromLatin1(str, len);
+    emit sigServerCutText(szText);
+}
+
+QString CConnectVnc::GetServerName()
+{
+    return getServerName();
+}

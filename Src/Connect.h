@@ -1,6 +1,8 @@
 #ifndef CCONNECT_H
 #define CCONNECT_H
 
+#pragma once
+
 #include <QObject>
 #include <QPoint>
 #include "FrmViewer.h"
@@ -21,20 +23,21 @@ public:
     virtual int Disconnect();
     virtual int Exec();
 
+    virtual QString GetServerName();
+    
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnect();
     void sigSetDesktopSize(int width, int height);
     void sigSetCursor(int width, int height, const QPoint& hotspot,
                       void* data, void* mask);
-    void sigSetName(const char* name);
     void sigBell();
-    void sigServerCutText(const char* str, int len);
+    void sigServerCutText(const QString& szText);
     void slotUpdateRect(const QRect& r, const QImage& image);
     void sigError(const int nError, const QString &szError);
     
 public slots:
-    
+        
 protected:
     QString m_szIp;
     int m_nPort;

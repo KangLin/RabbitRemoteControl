@@ -49,3 +49,8 @@ int CConnect::Exec()
 {
     return 0;
 }
+
+QString CConnect::GetServerName()
+{
+    return QString();
+}
