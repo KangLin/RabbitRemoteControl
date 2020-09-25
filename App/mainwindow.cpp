@@ -88,6 +88,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     ui->actionFull_screen_F->setWhatsThis(tr("Exit full screen"));
         
     ui->toolBar->setVisible(true);
+    ui->toolBar->setAllowedAreas(Qt::NoToolBarArea);
         
     ui->statusbar->setVisible(false);
     ui->menubar->setVisible(false);

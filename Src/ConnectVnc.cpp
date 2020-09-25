@@ -59,7 +59,9 @@ int CConnectVnc::Exec()
     
     try {
         while (!m_bExit) {
-            getInStream()->check(1);
+            auto in = getInStream();
+            if(in)
+                in->check(1);
             processMsg();    
         }
     } catch (rdr::EndOfStream& e) {
