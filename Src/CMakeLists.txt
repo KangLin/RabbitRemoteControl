@@ -2,17 +2,20 @@ cmake_minimum_required(VERSION 3.5)
 
 project(RabbitRemoteControl LANGUAGES CXX)
 
-set(SOURCE_FILES
-    FrmViewer.cpp
-    Connect.cpp
-    )
-
 set(INSTALL_HEADER_FILES
-    FrmViewer.h)
+    FrmViewer.h
+    )
 
 set(HEADER_FILES
     ${INSTALL_HEADER_FILES}
     Connect.h
+    ConnectThread.h
+    )
+
+set(SOURCE_FILES
+    FrmViewer.cpp
+    Connect.cpp
+    ConnectThread.cpp
     )
 
 set(SOURCE_UI_FILES

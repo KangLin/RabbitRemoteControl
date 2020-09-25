@@ -3,12 +3,13 @@
 #include "ui_FrmViewer.h"
 #include <QPainter>
 #include <QClipboard>
+#include "ConnectThread.h"
 
 CFrmViewer::CFrmViewer(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmViewer),
-    m_pConnect(nullptr),
-    m_bClipboard(true)
+    m_bClipboard(true),
+    m_pConnect(nullptr)
 {
     ui->setupUi(this);
     SetAdaptWindows(Original);

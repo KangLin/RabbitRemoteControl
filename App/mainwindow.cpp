@@ -2,7 +2,9 @@
 #include "./ui_mainwindow.h"
 #include "FrmUpdater/FrmUpdater.h"
 #include "DlgAbout/DlgAbout.h"
+
 #include "FrmViewer.h"
+#include "ConnectThread.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,9 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionUpdate_U->setIcon(updater.windowIcon());
     
     m_pView = new QScrollArea(this);
-    m_pView->setWidget(new CFrmViewer());
+    CFrmViewer* pView = new CFrmViewer();
+    m_pView->setWidget(pView);
     this->setCentralWidget(m_pView);
-    
 }
 
 MainWindow::~MainWindow()
@@ -84,39 +86,25 @@ void MainWindow::on_actionFull_screen_F_triggered()
     ui->actionFull_screen_F->setToolTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setStatusTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setWhatsThis(tr("Exit full screen"));
-    
-    
-    Qt::WindowFlags flag = ui->toolBar->windowType();
-    ui->toolBar->setWindowFlags(  Qt::FramelessWindowHint
-                                             #ifndef WIN32
-                                             | Qt::X11BypassWindowManagerHint  //这个标志是在x11下有用,查看帮助QWidget::showFullScreen(),符合ICCCM协议的不需要这个
-                                             #endif
-                                             | Qt::Tool
-                                             | Qt::WindowStaysOnTopHint
-                                             | Qt::CustomizeWindowHint);
-    
+        
     ui->toolBar->setVisible(true);
-    ui->toolBar->setMovable(true);
-    ui->toolBar->setFloatable(true);
-    ui->toolBar->setAllowedAreas(Qt::NoToolBarArea);
-    
+        
     ui->statusbar->setVisible(false);
     ui->menubar->setVisible(false);
 }
 
 void MainWindow::on_actionOriginal_O_triggered()
 {
-    
+    CConnectThread* pThread = new CConnectThread((CFrmViewer*)m_pView->takeWidget());
+    pThread->start();
 }
 
 void MainWindow::on_actionZoom_Z_triggered()
 {
-    
 }
 
 void MainWindow::on_actionKeep_AspectRation_K_triggered()
 {
-    
 }
 
 void MainWindow::on_actionExit_E_triggered()

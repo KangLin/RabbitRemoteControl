@@ -6,9 +6,14 @@
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 #include "FrmUpdater/FrmUpdater.h"
+#include "rfb/Logger_stdio.h"
+#include "rfb/LogWriter.h"
 
 int main(int argc, char *argv[])
 {
+    rfb::initStdIOLoggers();
+    rfb::LogWriter::setLogParams("*:stderr:30");
+    
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif

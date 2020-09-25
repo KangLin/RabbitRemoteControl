@@ -68,9 +68,9 @@ private:
     QImage m_Desktop;
     
     ADAPT_WINDOWS m_AdaptWindows;
+    bool m_bClipboard;
     
     CConnect* m_pConnect;
-    bool m_bClipboard;
 };
 
 #endif // FRMVIEWER_H
