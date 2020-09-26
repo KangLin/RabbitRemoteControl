@@ -83,11 +83,6 @@ int CConnectVnc::Exec()
     return nRet;
 }
 
-QString CConnectVnc::GetServerName()
-{
-    return getServerName();
-}
-
 void CConnectVnc::blockCallback()
 {}
 

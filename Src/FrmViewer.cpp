@@ -141,13 +141,12 @@ void CFrmViewer::SetClipboard(bool enable)
 
 void CFrmViewer::slotConnect()
 {
-    setWindowTitle(m_pConnect->GetServerName());
+
 }
 
 void CFrmViewer::slotDisconnect()
 {
     m_Desktop = QImage();
-    m_pConnect->Disconnect();
 }
 
 void CFrmViewer::slotSetDesktopSize(int width, int height)

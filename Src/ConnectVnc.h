@@ -19,9 +19,7 @@ public:
     
     virtual int Connect() override;
     virtual int Exec() override;
-    
-    virtual QString GetServerName() override;
-    
+        
 signals:
     
 public slots:

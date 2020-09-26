@@ -104,14 +104,3 @@ int CConnect::Exec()
 {
     return 0;
 }
-
-QString CConnect::GetServerName()
-{
-    return m_szServerName;
-}
-
-int CConnect::SetServerName(const QString &name)
-{
-    m_szServerName = name;
-    return 0;
-}

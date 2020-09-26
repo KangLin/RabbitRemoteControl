@@ -29,9 +29,6 @@ public:
     virtual int Connect();
     virtual int Disconnect();
     virtual int Exec();
-
-    virtual QString GetServerName();
-    virtual int SetServerName(const QString &name);
     
 Q_SIGNALS:
     void sigConnected();
@@ -51,7 +48,6 @@ protected:
     int m_nPort;
     QString m_szUser;
     QString m_szPassword;
-    QString m_szServerName;
     bool m_bShared;
     bool m_bReDesktopSize;
     bool m_bUseLocalCursor;
