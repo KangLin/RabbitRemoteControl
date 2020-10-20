@@ -1,4 +1,5 @@
 #include "Connect.h"
+#include <QApplication>
 
 CConnect::CConnect(CFrmViewer *pView, QObject *parent) : QObject(parent)
 {
@@ -23,7 +24,7 @@ CConnect::CConnect(CFrmViewer *pView, QObject *parent) : QObject(parent)
     check = connect(this, SIGNAL(sigServerCutText(const QString&)),
                     pView, SLOT(slotServerCutText(const QString&)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(slotUpdateRect(const QRect&, const QImage&)),
+    check = connect(this, SIGNAL(sigUpdateRect(const QRect&, const QImage&)),
                     pView, SLOT(slotUpdateRect(const QRect&, const QImage&)));
     Q_ASSERT(check);
 }
@@ -31,9 +32,15 @@ CConnect::CConnect(CFrmViewer *pView, QObject *parent) : QObject(parent)
 CConnect::~CConnect()
 {}
 
-int CConnect::SetServer(const QString &szIp, const int nPort)
+int CConnect::SetServerName(const QString &szServerName)
 {
-    m_szIp = szIp;
+    m_szServerName = szServerName;
+    return 0;
+}
+
+int CConnect::SetServer(const QString &szHost, const int nPort)
+{
+    m_szHost = szHost;
     m_nPort = nPort;    
     return 0;
 }

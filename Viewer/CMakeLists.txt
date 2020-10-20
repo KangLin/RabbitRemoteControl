@@ -34,6 +34,15 @@ if(RabbitVNC_FOUND)
     LIST(APPEND HEADER_FILES ConnectVnc.h)
 endif()
 
+find_package(tigervnc)
+if(tigervnc_FOUND)
+    LIST(APPEND SRC_LIBS tigervnc)
+    LIST(APPEND SOURCE_FILES ConnectTigerVnc.cpp
+        FramePixelBuffer.cpp)
+    LIST(APPEND HEADER_FILES ConnectTigerVnc.h
+        FramePixelBuffer.h)
+endif()
+
 #翻译
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}

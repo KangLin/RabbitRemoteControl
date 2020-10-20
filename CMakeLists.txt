@@ -156,7 +156,7 @@ else()
     message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
 endif()
 
-add_subdirectory(Src)
+add_subdirectory(Viewer)
 
 option(BUILD_APP "Build applaction" ON)
 if(BUILD_APP)

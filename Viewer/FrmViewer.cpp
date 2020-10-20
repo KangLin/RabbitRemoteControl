@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QClipboard>
 #include "ConnectThread.h"
+#include <QDebug>
 
 CFrmViewer::CFrmViewer(QWidget *parent) :
     QWidget(parent),
@@ -11,6 +12,7 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
     m_bClipboard(true),
     m_pConnect(nullptr)
 {
+    qDebug() << "CFrmViewer thread:" << QThread::currentThreadId();
     ui->setupUi(this);
     SetAdaptWindows(Original);
 }
@@ -25,16 +27,17 @@ void CFrmViewer::resizeEvent(QResizeEvent *event)
     Q_UNUSED(event)
 }
 
-void CFrmViewer::paintEvent(QPaintEvent *event)
+void CFrmViewer::paintDesktop()
 {
-    Q_UNUSED(event)
     if(this->isHidden())
+    {
+        qDebug() << "CFrmViewer is hidden";
         return;
+    }
     
     if(m_Desktop.isNull())
     {
-        //TODO: Test
-        QWidget::paintEvent(event);
+        qDebug() << "m_Desktop.isNull";
         return;
     }
     
@@ -89,6 +92,33 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
     painter.drawImage(dstRect, m_Desktop);
 }
 
+void CFrmViewer::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event)
+    if(this->isHidden())
+    {
+        qDebug() << "CFrmViewer is hidden";
+        return;
+    }
+    if(m_Desktop.isNull())
+    {
+        //TODO: Test
+        QWidget::paintEvent(event);
+        return;
+    }
+    
+    if(rect().width() > m_DesktopSize.width()
+            && rect().height() > m_DesktopSize.height())
+        paintDesktop();
+    else
+    {
+        QPainter painter(this);
+        // 设置平滑模式
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
+        painter.drawImage(rect(), m_Desktop);
+    }
+}
+
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
     emit sigMousePressEvent(event);
@@ -141,7 +171,6 @@ void CFrmViewer::SetClipboard(bool enable)
 
 void CFrmViewer::slotConnect()
 {
-
 }
 
 void CFrmViewer::slotDisconnect()
@@ -153,11 +182,23 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
 {
     m_DesktopSize.setWidth(width);
     m_DesktopSize.setHeight(height);
+    m_Desktop = QImage(m_DesktopSize, QImage::Format_RGB32);
+    this->resize(width, height);
+}
+
+void CFrmViewer::slotSetName(const QString& szName)
+{
+    this->setWindowTitle(szName);
+    emit sigSetWindowName(szName);
 }
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
-    if(r == m_Desktop.rect())
+    qDebug() << "slotUpdateRect thread:" << QThread::currentThreadId();
+    if(m_Desktop.isNull())
+    {
+        m_Desktop = image;
+    } else if(r == m_Desktop.rect())
         m_Desktop = image;
     else
     {

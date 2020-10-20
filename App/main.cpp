@@ -6,12 +6,18 @@
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 #include "FrmUpdater/FrmUpdater.h"
-#include "rfb/Logger_stdio.h"
-#include "rfb/LogWriter.h"
+#include <rfb/LogWriter.h>
+#include <rfb/Logger_stdio.h>
 
 int main(int argc, char *argv[])
 {
-    
+    rfb::initStdIOLoggers();
+  #ifdef WIN32
+    rfb::initFileLogger("C:\\temp\\vncviewer.log");
+  #else
+    rfb::initFileLogger("/tmp/vncviewer.log");
+  #endif
+    rfb::LogWriter::setLogParams("*:stderr:100");
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -44,10 +50,7 @@ int main(int argc, char *argv[])
     pUpdate->SetTitle(QImage(":/image/App"));
     if(!pUpdate->GenerateUpdateXml()) 
         return 0; 
-    
-    rfb::initStdIOLoggers();
-    rfb::LogWriter::setLogParams("*:stderr:100");
-    
+        
     MainWindow w;
     w.setWindowIcon(QIcon(":/image/App"));
     w.show();

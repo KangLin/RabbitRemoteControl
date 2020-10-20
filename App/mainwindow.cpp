@@ -124,13 +124,15 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 
 void MainWindow::on_actionConnect_C_triggered()
 {
+    //TODO: 暂时测试用
     CConnectThread* pThread = new CConnectThread(
-                dynamic_cast<CFrmViewer*>(m_pView->takeWidget()));
+                dynamic_cast<CFrmViewer*>(m_pView->widget()));
     pThread->start();
 }
 
 void MainWindow::on_actionDisconnect_D_triggered()
 {
+    //TODO:
     CFrmViewer* pV = dynamic_cast<CFrmViewer*>(m_pView->widget());
     if(pV)
         pV->slotDisconnect();

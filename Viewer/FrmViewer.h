@@ -35,6 +35,7 @@ public Q_SLOTS:
     void slotConnect();
     void slotDisconnect();
     void slotSetDesktopSize(int width, int height);
+    void slotSetName(const QString& szName);
     void slotUpdateRect(const QRect& r, const QImage& image);
     void slotServerCutText(const QString &text);
     
@@ -47,9 +48,12 @@ Q_SIGNALS:
     void sigKeyPressEvent(QKeyEvent *event);
     void sigKeyReleaseEvent(QKeyEvent *event);
     
+    void sigSetWindowName(const QString &szName);
+    
 private:
     Ui::CFrmViewer *ui;
-    
+
+    void paintDesktop();    
     // QWidget interface
 protected:    
     virtual void resizeEvent(QResizeEvent *event) override;

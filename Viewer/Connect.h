@@ -10,14 +10,23 @@
 class CConnect : public QObject
 {
     Q_OBJECT
+
 public:
     explicit CConnect(CFrmViewer* pView = nullptr, QObject *parent = nullptr);
-    virtual ~CConnect();
+    virtual ~CConnect() override;
     
-    virtual int SetServer(const QString &szIp, const int nPort);
+    virtual int SetServer(const QString& szHost, const int nPort);
+    // 由子类解析成 IP 和 端口
+    virtual int SetServerName(const QString& serverName);
+
     virtual int SetUser(const QString &szUser, const QString &szPassword);
     virtual int SetParamter(void *pPara);
 
+    virtual int Initialize();
+    virtual int Connect();
+    virtual int Disconnect();
+    virtual int Exec();
+    
     virtual int SetShared(bool shared = true);
     virtual bool GetShared();
     virtual int SetReDesktopSize(bool re = true);
@@ -25,26 +34,24 @@ public:
     virtual int SetUseLocalCursor(bool u = true);
     virtual bool GetUserLocalCursor();
     
-    virtual int Initialize();
-    virtual int Connect();
-    virtual int Disconnect();
-    virtual int Exec();
-    
-Q_SIGNALS:
+signals:
     void sigConnected();
     void sigDisconnect();
+    
     void sigSetDesktopSize(int width, int height);
+    void sigSetName(const QString& szName);
     void sigSetCursor(int width, int height, const QPoint& hotspot,
                       void* data, void* mask);
-    void sigBell();
+    //void sigBell();
     void sigServerCutText(const QString& szText);
-    void slotUpdateRect(const QRect& r, const QImage& image);
+    void sigUpdateRect(const QRect& r, const QImage& image);
     void sigError(const int nError, const QString &szError);
     
-public slots:
+public Q_SLOTS:
         
 protected:
-    QString m_szIp;
+    QString m_szServerName;
+    QString m_szHost;
     int m_nPort;
     QString m_szUser;
     QString m_szPassword;
