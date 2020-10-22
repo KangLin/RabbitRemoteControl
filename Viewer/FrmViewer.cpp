@@ -14,6 +14,8 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
 {
     ui->setupUi(this);
     SetAdaptWindows(Original);
+    setMouseTracking(true);
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 CFrmViewer::~CFrmViewer()
@@ -129,11 +131,6 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
     emit sigMouseReleaseEvent(event);
 }
 
-void CFrmViewer::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    emit sigMouseDoubleClickEvent(event);
-}
-
 void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 {
     emit sigMouseMoveEvent(event);
@@ -146,13 +143,11 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "CFrmViewer::keyPressEvent";
     emit sigKeyPressEvent(event);
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
-    qDebug() << "CFrmViewer::keyReleaseEvent";
     emit sigKeyReleaseEvent(event);
 }
 

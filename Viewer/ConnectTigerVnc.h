@@ -50,7 +50,6 @@ signals:
 public Q_SLOTS:
     virtual void slotMousePressEvent(QMouseEvent*) override;
     virtual void slotMouseReleaseEvent(QMouseEvent*) override;
-    virtual void slotMouseDoubleClickEvent(QMouseEvent*) override;
     virtual void slotMouseMoveEvent(QMouseEvent*) override;
     virtual void slotWheelEvent(QWheelEvent*) override;
     virtual void slotKeyPressEvent(QKeyEvent*) override;

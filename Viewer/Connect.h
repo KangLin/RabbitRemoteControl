@@ -50,7 +50,6 @@ Q_SIGNALS:
 public Q_SLOTS:
     virtual void slotMousePressEvent(QMouseEvent*);
     virtual void slotMouseReleaseEvent(QMouseEvent*);
-    virtual void slotMouseDoubleClickEvent(QMouseEvent*);
     virtual void slotMouseMoveEvent(QMouseEvent*);
     virtual void slotWheelEvent(QWheelEvent*);
     virtual void slotKeyPressEvent(QKeyEvent*);

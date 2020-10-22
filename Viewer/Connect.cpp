@@ -36,10 +36,6 @@ CConnect::CConnect(CFrmViewer *pView, QObject *parent) : QObject(parent)
                     this, SLOT(slotMouseReleaseEvent(QMouseEvent*)),
                     Qt::DirectConnection);
     Q_ASSERT(check);
-    check = connect(pView, SIGNAL(sigMouseDoubleClickEvent(QMouseEvent*)),
-                    this, SLOT(slotMouseDoubleClickEvent(QMouseEvent*)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
     check = connect(pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
                     this, SLOT(slotMouseMoveEvent(QMouseEvent*)),
                     Qt::DirectConnection);
@@ -159,11 +155,6 @@ void CConnect::slotMousePressEvent(QMouseEvent*)
 void CConnect::slotMouseReleaseEvent(QMouseEvent*)
 {
     qDebug() << "CConnect::slotMouseReleaseEvent";
-}
-
-void CConnect::slotMouseDoubleClickEvent(QMouseEvent*)
-{
-    qDebug() << "CConnect::slotMouseDoubleClickEvent";
 }
 
 void CConnect::slotKeyPressEvent(QKeyEvent*)
