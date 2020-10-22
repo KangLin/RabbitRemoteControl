@@ -57,6 +57,8 @@ public Q_SLOTS:
     
 private:
     network::Socket* m_pSock;
+    
+    quint32 TranslateRfbKey(quint32 inkey,bool modifier);
 
 };
 
