@@ -157,13 +157,14 @@ void CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
 void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
 {
     vlog.debug("CConnectTigerVnc::slotMousePressEvent");
-    int mask = 0;
+    qDebug() << "CConnectTigerVnc::slotMousePressEvent:" << e;
+    unsigned char mask = 0;
     rfb::Point pos(e->x(), e->y());
-    if(e->buttons() && Qt::MouseButton::LeftButton)
+    if(e->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->buttons() && Qt::MouseButton::MiddleButton)
+    if(e->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->buttons() && Qt::MouseButton::RightButton)
+    if(e->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     this->writer()->writePointerEvent(pos, mask);
 }
@@ -181,11 +182,11 @@ void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
     vlog.debug("CConnectTigerVnc::slotMouseMoveEvent");
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
-    if(e->buttons() && Qt::MouseButton::LeftButton)
+    if(e->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->buttons() && Qt::MouseButton::MiddleButton)
+    if(e->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->buttons() && Qt::MouseButton::RightButton)
+    if(e->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     this->writer()->writePointerEvent(pos, mask);
 }
@@ -196,11 +197,11 @@ void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     
-    if(e->buttons() && Qt::MouseButton::LeftButton)
+    if(e->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->buttons() && Qt::MouseButton::MiddleButton)
+    if(e->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->buttons() && Qt::MouseButton::RightButton)
+    if(e->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     
     QPoint p = e->angleDelta();
