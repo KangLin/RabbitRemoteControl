@@ -10,8 +10,7 @@
 CFrmViewer::CFrmViewer(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmViewer),
-    m_bClipboard(true),
-    m_pConnect(nullptr)
+    m_bClipboard(true)
 {
     ui->setupUi(this);
     SetAdaptWindows(Original);
@@ -20,13 +19,6 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
 CFrmViewer::~CFrmViewer()
 {
     delete ui;
-}
-
-void CFrmViewer::SetConnect(CConnect *c)
-{
-    if(!c) return;
-    m_pConnect = c;
-    Q_ASSERT(m_pConnect != nullptr);
 }
 
 void CFrmViewer::resizeEvent(QResizeEvent *event)
@@ -131,49 +123,42 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
     qDebug() << "CFrmViewer::mousePressEvent";
     emit sigMousePressEvent(event);
-    m_pConnect->slotMousePressEvent(event);
 }
 
 void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 {
     qDebug() << "CFrmViewer::mouseReleaseEvent";
     emit sigMouseReleaseEvent(event);
-    m_pConnect->slotMouseReleaseEvent(event);
 }
 
 void CFrmViewer::mouseDoubleClickEvent(QMouseEvent *event)
 {
     qDebug() << "CFrmViewer::mouseDoubleClickEvent";
     emit sigMouseDoubleClickEvent(event);
-    m_pConnect->slotMouseDoubleClickEvent(event);
 }
 
 void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 {
     qDebug() << "CFrmViewer::mouseMoveEvent";
     emit sigMouseMoveEvent(event);
-    m_pConnect->slotMouseMoveEvent(event);
 }
 
 void CFrmViewer::wheelEvent(QWheelEvent *event)
 {
     qDebug() << "CFrmViewer::wheelEvent";
     emit sigWheelEvent(event);
-    m_pConnect->slotWheelEvent(event);
 }
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
     qDebug() << "CFrmViewer::keyPressEvent";
     emit sigKeyPressEvent(event);
-    m_pConnect->slotKeyPressEvent(event);
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
     qDebug() << "CFrmViewer::keyReleaseEvent";
     emit sigKeyReleaseEvent(event);
-    m_pConnect->slotKeyReleaseEvent(event);
 }
 
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)

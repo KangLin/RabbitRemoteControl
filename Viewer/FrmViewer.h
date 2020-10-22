@@ -10,7 +10,6 @@ namespace Ui {
 class CFrmViewer;
 }
 
-class CConnect;
 class RABBITREMOTECONTROL_EXPORT CFrmViewer : public QWidget
 {
     Q_OBJECT
@@ -28,8 +27,6 @@ public:
     };
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
     void SetClipboard(bool enable = true);
-    
-    void SetConnect(CConnect* c);
     
 public Q_SLOTS:
     void slotConnect();
@@ -73,8 +70,6 @@ private:
     
     ADAPT_WINDOWS m_AdaptWindows;
     bool m_bClipboard;
-    
-    CConnect* m_pConnect;
 };
 
 #endif // FRMVIEWER_H

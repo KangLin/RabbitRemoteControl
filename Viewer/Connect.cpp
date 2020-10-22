@@ -11,8 +11,6 @@ CConnect::CConnect(CFrmViewer *pView, QObject *parent) : QObject(parent)
     m_bUseLocalCursor = false;
     
     if(!pView) return;
-
-    m_pView->SetConnect(this);
     
     bool check = connect(this, SIGNAL(sigConnected()),
                          pView, SLOT(slotConnect()));
@@ -30,27 +28,34 @@ CConnect::CConnect(CFrmViewer *pView, QObject *parent) : QObject(parent)
                     pView, SLOT(slotUpdateRect(const QRect&, const QImage&)));
     Q_ASSERT(check);
     
-//    check = connect(pView, SIGNAL(sigMousePressEvent(QMouseEvent*)),
-//                    this, SLOT(slotMousePressEvent(QMouseEvent*)));
-//    Q_ASSERT(check);
-//    check = connect(pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*)),
-//                    this, SLOT(slotMouseReleaseEvent(QMouseEvent*)));
-//    Q_ASSERT(check);
-//    check = connect(pView, SIGNAL(sigMouseDoubleClickEvent(QMouseEvent*)),
-//                    this, SLOT(slotMouseDoubleClickEvent(QMouseEvent*)));
-//    Q_ASSERT(check);
-//    check = connect(pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
-//                    this, SLOT(slotMouseMoveEvent(QMouseEvent*)));
-//    Q_ASSERT(check);
-//    check = connect(pView, SIGNAL(sigWheelEvent(QWheelEvent*)),
-//                    this, SLOT(slotWheelEvent(QWheelEvent*)));
-//    Q_ASSERT(check);
-//    check = connect(pView, SIGNAL(sigKeyPressEvent(QKeyEvent*)),
-//                    this, SLOT(slotKeyPressEvent(QKeyEvent*)));
-//    Q_ASSERT(check);
-//    check = connect(pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
-//                    this, SLOT(slotKeyReleaseEvent(QKeyEvent*)));
-//    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigMousePressEvent(QMouseEvent*)),
+                    this, SLOT(slotMousePressEvent(QMouseEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*)),
+                    this, SLOT(slotMouseReleaseEvent(QMouseEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigMouseDoubleClickEvent(QMouseEvent*)),
+                    this, SLOT(slotMouseDoubleClickEvent(QMouseEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
+                    this, SLOT(slotMouseMoveEvent(QMouseEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigWheelEvent(QWheelEvent*)),
+                    this, SLOT(slotWheelEvent(QWheelEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigKeyPressEvent(QKeyEvent*)),
+                    this, SLOT(slotKeyPressEvent(QKeyEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
+                    this, SLOT(slotKeyReleaseEvent(QKeyEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
 }
 
 CConnect::~CConnect()
