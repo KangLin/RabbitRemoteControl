@@ -194,7 +194,13 @@ void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 {
     vlog.debug("CConnectTigerVnc::slotMouseReleaseEvent");
     int mask = 0;
-    rfb::Point pos;
+    rfb::Point pos(e->x(), e->y());
+    if(e->buttons() && Qt::MouseButton::LeftButton)
+        mask |= 0x1;
+    if(e->buttons() && Qt::MouseButton::MiddleButton)
+        mask |= 0x2;
+    if(e->buttons() && Qt::MouseButton::RightButton)
+        mask |= 0x4;
     this->writer()->writePointerEvent(pos, mask);
 }
 

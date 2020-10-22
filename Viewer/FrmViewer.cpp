@@ -121,31 +121,26 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
-    qDebug() << "CFrmViewer::mousePressEvent";
     emit sigMousePressEvent(event);
 }
 
 void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 {
-    qDebug() << "CFrmViewer::mouseReleaseEvent";
     emit sigMouseReleaseEvent(event);
 }
 
 void CFrmViewer::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    qDebug() << "CFrmViewer::mouseDoubleClickEvent";
     emit sigMouseDoubleClickEvent(event);
 }
 
 void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug() << "CFrmViewer::mouseMoveEvent";
     emit sigMouseMoveEvent(event);
 }
 
 void CFrmViewer::wheelEvent(QWheelEvent *event)
 {
-    qDebug() << "CFrmViewer::wheelEvent";
     emit sigWheelEvent(event);
 }
 
