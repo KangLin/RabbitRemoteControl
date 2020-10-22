@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionUpdate_U->setIcon(updater.windowIcon());
     
     m_pView = new QScrollArea(this);
+    m_pView->setAlignment(Qt::AlignCenter);
+    m_pView->setBackgroundRole(QPalette::Dark);
     CFrmViewer* pView = new CFrmViewer();
     m_pView->setWidget(pView);
     this->setCentralWidget(m_pView);

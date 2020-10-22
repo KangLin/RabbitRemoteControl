@@ -34,7 +34,7 @@ public:
     virtual int SetUseLocalCursor(bool u = true);
     virtual bool GetUserLocalCursor();
     
-signals:
+Q_SIGNALS:
     void sigConnected();
     void sigDisconnect();
     
@@ -48,7 +48,14 @@ signals:
     void sigError(const int nError, const QString &szError);
     
 public Q_SLOTS:
-        
+    virtual void slotMousePressEvent(QMouseEvent*);
+    virtual void slotMouseReleaseEvent(QMouseEvent*);
+    virtual void slotMouseDoubleClickEvent(QMouseEvent*);
+    virtual void slotMouseMoveEvent(QMouseEvent*);
+    virtual void slotWheelEvent(QWheelEvent*);
+    virtual void slotKeyPressEvent(QKeyEvent*);
+    virtual void slotKeyReleaseEvent(QKeyEvent*);
+    
 protected:
     QString m_szServerName;
     QString m_szHost;

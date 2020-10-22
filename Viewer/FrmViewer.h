@@ -11,7 +11,6 @@ class CFrmViewer;
 }
 
 class CConnect;
-
 class RABBITREMOTECONTROL_EXPORT CFrmViewer : public QWidget
 {
     Q_OBJECT
@@ -28,8 +27,9 @@ public:
         AspectRation,    // Keep desktop aspectration adapt to windows
     };
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
-    void SetConnect(CConnect* c);
     void SetClipboard(bool enable = true);
+    
+    void SetConnect(CConnect* c);
     
 public Q_SLOTS:
     void slotConnect();

@@ -1,10 +1,11 @@
 #include "FrmViewer.h"
-#include "Connect.h"
 #include "ui_FrmViewer.h"
 #include <QPainter>
 #include <QClipboard>
 #include "ConnectThread.h"
 #include <QDebug>
+#include <QResizeEvent>
+#include "Connect.h"
 
 CFrmViewer::CFrmViewer(QWidget *parent) :
     QWidget(parent),
@@ -12,7 +13,6 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
     m_bClipboard(true),
     m_pConnect(nullptr)
 {
-    qDebug() << "CFrmViewer thread:" << QThread::currentThreadId();
     ui->setupUi(this);
     SetAdaptWindows(Original);
 }
@@ -22,9 +22,17 @@ CFrmViewer::~CFrmViewer()
     delete ui;
 }
 
+void CFrmViewer::SetConnect(CConnect *c)
+{
+    if(!c) return;
+    m_pConnect = c;
+    Q_ASSERT(m_pConnect != nullptr);
+}
+
 void CFrmViewer::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
+    qDebug() << "CFrmViewer::resizeEvent:" << event->size();
 }
 
 void CFrmViewer::paintDesktop()
@@ -121,47 +129,56 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
+    qDebug() << "CFrmViewer::mousePressEvent";
     emit sigMousePressEvent(event);
+    m_pConnect->slotMousePressEvent(event);
 }
 
 void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 {
+    qDebug() << "CFrmViewer::mouseReleaseEvent";
     emit sigMouseReleaseEvent(event);
+    m_pConnect->slotMouseReleaseEvent(event);
 }
 
 void CFrmViewer::mouseDoubleClickEvent(QMouseEvent *event)
 {
+    qDebug() << "CFrmViewer::mouseDoubleClickEvent";
     emit sigMouseDoubleClickEvent(event);
+    m_pConnect->slotMouseDoubleClickEvent(event);
 }
 
 void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 {
+    qDebug() << "CFrmViewer::mouseMoveEvent";
     emit sigMouseMoveEvent(event);
+    m_pConnect->slotMouseMoveEvent(event);
 }
 
 void CFrmViewer::wheelEvent(QWheelEvent *event)
 {
+    qDebug() << "CFrmViewer::wheelEvent";
     emit sigWheelEvent(event);
+    m_pConnect->slotWheelEvent(event);
 }
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
+    qDebug() << "CFrmViewer::keyPressEvent";
     emit sigKeyPressEvent(event);
+    m_pConnect->slotKeyPressEvent(event);
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
+    qDebug() << "CFrmViewer::keyReleaseEvent";
     emit sigKeyReleaseEvent(event);
+    m_pConnect->slotKeyReleaseEvent(event);
 }
 
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
 {
     m_AdaptWindows = aw;
-}
-
-void CFrmViewer::SetConnect(CConnect *c)
-{
-    m_pConnect = c;
 }
 
 void CFrmViewer::SetClipboard(bool enable)
@@ -183,7 +200,17 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
     m_DesktopSize.setWidth(width);
     m_DesktopSize.setHeight(height);
     m_Desktop = QImage(m_DesktopSize, QImage::Format_RGB32);
-    this->resize(width, height);
+    resize(width, height);
+    return;
+    
+    int w = this->width();
+    int h = this->height();
+    if(this->width() < width)
+        w = width;
+    if(this->height() < height)
+        h = height;
+    if(this->width() != w || this->height() != h)
+        this->resize(w, h);
 }
 
 void CFrmViewer::slotSetName(const QString& szName)
@@ -194,7 +221,6 @@ void CFrmViewer::slotSetName(const QString& szName)
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
-    qDebug() << "slotUpdateRect thread:" << QThread::currentThreadId();
     if(m_Desktop.isNull())
     {
         m_Desktop = image;

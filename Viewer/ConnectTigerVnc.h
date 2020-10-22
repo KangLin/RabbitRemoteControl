@@ -42,13 +42,19 @@ public:
     virtual void setCursor(int width, int height, const rfb::Point& hotspot,
                               const rdr::U8* data) override;
     
-    
     virtual void getUserPasswd(bool secure, char** user, char** password) override;
     virtual bool showMsgBox(int flags, const char *title, const char *text) override;
     
 signals:
     
-public slots:
+public Q_SLOTS:
+    virtual void slotMousePressEvent(QMouseEvent*) override;
+    virtual void slotMouseReleaseEvent(QMouseEvent*) override;
+    virtual void slotMouseDoubleClickEvent(QMouseEvent*) override;
+    virtual void slotMouseMoveEvent(QMouseEvent*) override;
+    virtual void slotWheelEvent(QWheelEvent*) override;
+    virtual void slotKeyPressEvent(QKeyEvent*) override;
+    virtual void slotKeyReleaseEvent(QKeyEvent*) override;
     
 private:
     network::Socket* m_pSock;
