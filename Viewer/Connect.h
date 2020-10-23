@@ -41,7 +41,7 @@ Q_SIGNALS:
     void sigDisconnect();
     
     void sigSetDesktopSize(int width, int height);
-    void sigSetName(const QString& szName);
+    void sigSetDesktopName(const QString& szName);
     void sigSetCursor(int width, int height, const QPoint& hotspot,
                       void* data, void* mask);
     //void sigBell();

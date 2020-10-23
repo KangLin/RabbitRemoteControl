@@ -35,6 +35,7 @@ public:
     
     // CMsgHandler interface
 public:
+    virtual void setName(const char *name) override;
     virtual void framebufferUpdateEnd() override;
     virtual void dataRect(const rfb::Rect &r, int encoding) override;
     virtual void setColourMapEntries(int firstColour, int nColours, rdr::U16* rgbs) override;
@@ -58,8 +59,8 @@ public Q_SLOTS:
 private:
     network::Socket* m_pSock;
     
-    quint32 TranslateRfbKey(quint32 inkey,bool modifier);
-
+    quint32 TranslateRfbKey(quint32 inkey,bool modifier);    
+    
 };
 
 #endif // CCONNECTTIGERVNC_H

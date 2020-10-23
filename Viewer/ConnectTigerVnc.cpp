@@ -90,10 +90,10 @@ int CConnectTigerVnc::Exec()
             processMsg();
         }
     } catch (rdr::EndOfStream& e) {
-        vlog.info(e.str());
+        vlog.error("exec error: %s", e.str());
         emit sigError(-1, e.str());
     } catch (rdr::Exception& e) {
-        vlog.error(e.str());
+        vlog.error("exec error: %s", e.str());
         nRet = -1;
         emit sigError(-1, e.str());
     }
@@ -116,7 +116,7 @@ void CConnectTigerVnc::initDone()
     vlog.info("initDone");
     
     emit sigSetDesktopSize(server.width(), server.height());
-    
+    setName(server.name());
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
     //TODO: Set server pixmap format
@@ -148,6 +148,13 @@ bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text
     return true;
 }
 
+void CConnectTigerVnc::setName(const char *name)
+{
+    rfb::CConnection::setName(name);
+    QString szName = QString::fromUtf8(name);
+    emit sigSetDesktopName(szName);
+}
+
 void CConnectTigerVnc::framebufferUpdateEnd()
 {
     rfb::CConnection::framebufferUpdateEnd();
@@ -166,8 +173,7 @@ void CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
 
 void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
 {
-    vlog.debug("CConnectTigerVnc::slotMousePressEvent");
-    qDebug() << "CConnectTigerVnc::slotMousePressEvent:" << e;
+    //vlog.debug("CConnectTigerVnc::slotMousePressEvent");
     unsigned char mask = 0;
     rfb::Point pos(e->x(), e->y());
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -181,7 +187,7 @@ void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
 
 void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 {
-    vlog.debug("CConnectTigerVnc::slotMouseReleaseEvent");
+    //vlog.debug("CConnectTigerVnc::slotMouseReleaseEvent");
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     this->writer()->writePointerEvent(pos, mask);
@@ -189,7 +195,7 @@ void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 
 void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
 {
-    vlog.debug("CConnectTigerVnc::slotMouseMoveEvent");
+    //vlog.debug("CConnectTigerVnc::slotMouseMoveEvent");
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -203,7 +209,7 @@ void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
 
 void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
 {
-    vlog.debug("CConnectTigerVnc::slotWheelEvent");
+    //vlog.debug("CConnectTigerVnc::slotWheelEvent");
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     
@@ -252,7 +258,6 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 
     switch (inkey)
     {
-
         case Qt::Key_Backspace: k = XK_BackSpace; break;
         case Qt::Key_Tab: k = XK_Tab;break;
         case Qt::Key_Clear: k = XK_Clear; break;
