@@ -15,6 +15,8 @@ public:
     explicit CConnect(CFrmViewer* pView = nullptr, QObject *parent = nullptr);
     virtual ~CConnect() override;
     
+    int SetViewer(CFrmViewer* pView);
+    
     virtual int SetServer(const QString& szHost, const int nPort);
     // 由子类解析成 IP 和 端口
     virtual int SetServerName(const QString& serverName);

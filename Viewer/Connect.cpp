@@ -2,60 +2,71 @@
 #include <QApplication>
 #include <QDebug>
 
-CConnect::CConnect(CFrmViewer *pView, QObject *parent) : QObject(parent)
+CConnect::CConnect(CFrmViewer *pView, QObject *parent)
+    : QObject(parent), m_pView(nullptr)
 {
-    m_pView = pView;
     m_bExit = false;
     m_bShared = true;
     m_bReDesktopSize = true;
     m_bUseLocalCursor = false;
-    
-    if(!pView) return;
-    
-    bool check = connect(this, SIGNAL(sigConnected()),
-                         pView, SLOT(slotConnect()));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigDisconnect()),
-                    pView, SLOT(slotDisconnect()));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigSetDesktopSize(int, int)),
-                    pView, SLOT(slotSetDesktopSize(int, int)));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigServerCutText(const QString&)),
-                    pView, SLOT(slotServerCutText(const QString&)));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigUpdateRect(const QRect&, const QImage&)),
-                    pView, SLOT(slotUpdateRect(const QRect&, const QImage&)));
-    Q_ASSERT(check);
-    
-    check = connect(pView, SIGNAL(sigMousePressEvent(QMouseEvent*)),
-                    this, SLOT(slotMousePressEvent(QMouseEvent*)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*)),
-                    this, SLOT(slotMouseReleaseEvent(QMouseEvent*)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
-                    this, SLOT(slotMouseMoveEvent(QMouseEvent*)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(pView, SIGNAL(sigWheelEvent(QWheelEvent*)),
-                    this, SLOT(slotWheelEvent(QWheelEvent*)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(pView, SIGNAL(sigKeyPressEvent(QKeyEvent*)),
-                    this, SLOT(slotKeyPressEvent(QKeyEvent*)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
-                    this, SLOT(slotKeyReleaseEvent(QKeyEvent*)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
+    SetViewer(pView);
 }
 
 CConnect::~CConnect()
 {}
+
+int CConnect::SetViewer(CFrmViewer *pView)
+{
+    if(!pView) return -1;
+    
+    if(m_pView)
+    {
+        this->disconnect(m_pView);
+    }
+    
+    m_pView = pView;
+    bool check = connect(this, SIGNAL(sigConnected()),
+                         m_pView, SLOT(slotConnect()));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigDisconnect()),
+                    m_pView, SLOT(slotDisconnect()));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigSetDesktopSize(int, int)),
+                    m_pView, SLOT(slotSetDesktopSize(int, int)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigServerCutText(const QString&)),
+                    m_pView, SLOT(slotServerCutText(const QString&)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigUpdateRect(const QRect&, const QImage&)),
+                    m_pView, SLOT(slotUpdateRect(const QRect&, const QImage&)));
+    Q_ASSERT(check);
+    
+    check = connect(m_pView, SIGNAL(sigMousePressEvent(QMouseEvent*)),
+                    this, SLOT(slotMousePressEvent(QMouseEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*)),
+                    this, SLOT(slotMouseReleaseEvent(QMouseEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
+                    this, SLOT(slotMouseMoveEvent(QMouseEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(sigWheelEvent(QWheelEvent*)),
+                    this, SLOT(slotWheelEvent(QWheelEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(sigKeyPressEvent(QKeyEvent*)),
+                    this, SLOT(slotKeyPressEvent(QKeyEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
+                    this, SLOT(slotKeyReleaseEvent(QKeyEvent*)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    return 0;
+}
 
 int CConnect::SetServerName(const QString &szServerName)
 {

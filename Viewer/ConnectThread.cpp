@@ -16,10 +16,10 @@ void CConnectThread::run()
 {
     try {
         CConnectTigerVnc c(m_pView);
-        //c.SetServer("fmpixel.f3322.net", 5906);
-        //c.SetUser(QString(), "yly075077");
-        c.SetServer("127.0.0.1", 5900);
-        c.SetUser(QString(), "123456");
+        c.SetServer("fmpixel.f3322.net", 5906);
+        c.SetUser(QString(), "yly075077");
+//        c.SetServer("127.0.0.1", 5900);
+//        c.SetUser(QString(), "123456");
         rfb::CSecurity::upg = &c;
 #ifdef HAVE_GNUTLS
         rfb::CSecurityTLS::msg = &c;
