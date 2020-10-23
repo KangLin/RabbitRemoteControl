@@ -6,14 +6,17 @@
 #include <QObject>
 #include <QPoint>
 #include "FrmViewer.h"
+#include <QtPlugin>
 
-class CConnect : public QObject
+class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
 {
     Q_OBJECT
 
 public:
     explicit CConnect(CFrmViewer* pView = nullptr, QObject *parent = nullptr);
     virtual ~CConnect() override;
+
+    virtual QString GetDescription();
     
     int SetViewer(CFrmViewer* pView);
     

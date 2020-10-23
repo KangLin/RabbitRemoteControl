@@ -1,21 +1,23 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 2.8.11)
 
 project(RabbitRemoteControl LANGUAGES CXX)
 
 set(INSTALL_HEADER_FILES
     FrmViewer.h
+    Connecter.h
+    ManageConnecter.h
     )
 
 set(HEADER_FILES
     ${INSTALL_HEADER_FILES}
     Connect.h
-    ConnectThread.h
     )
 
 set(SOURCE_FILES
     FrmViewer.cpp
+    Connecter.cpp
     Connect.cpp
-    ConnectThread.cpp
+    ManageConnecter.cpp
     )
 
 set(SOURCE_UI_FILES
@@ -34,15 +36,6 @@ if(RabbitVNC_FOUND)
     LIST(APPEND HEADER_FILES ConnectVnc.h)
 endif()
 
-find_package(tigervnc)
-if(tigervnc_FOUND)
-    LIST(APPEND SRC_LIBS tigervnc)
-    LIST(APPEND SOURCE_FILES ConnectTigerVnc.cpp
-        FramePixelBuffer.cpp)
-    LIST(APPEND HEADER_FILES ConnectTigerVnc.h
-        FramePixelBuffer.h)
-endif()
-
 #翻译
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}
@@ -57,7 +50,7 @@ if(BUILD_TYPE STREQUAL "debug")
 endif()
 
 string(TOLOWER ${PROJECT_NAME} LOWER_PROJECT_NAME)
-set(INSTALL_HEADER_FILES ${INSTALL_HEADER_FILES} 
+set(INSTALL_HEADER_FILES ${INSTALL_HEADER_FILES}
     ${CMAKE_CURRENT_BINARY_DIR}/${LOWER_PROJECT_NAME}_export.h)
 
 ADD_TARGET(NAME ${PROJECT_NAME}
@@ -71,3 +64,5 @@ ADD_TARGET(NAME ${PROJECT_NAME}
 GENERATE_EXPORT_HEADER(${PROJECT_NAME})
 file(COPY ${CMAKE_CURRENT_BINARY_DIR}/${LOWER_PROJECT_NAME}_export.h
     DESTINATION ${CMAKE_BINARY_DIR})
+
+add_subdirectory(Plugins)

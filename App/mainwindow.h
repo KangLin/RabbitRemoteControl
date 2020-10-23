@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QScrollArea>
 #include <QKeyEvent>
+#include <QTabWidget>
+#include "ManageConnecter.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -36,7 +37,8 @@ protected:
     
 private:
     Ui::MainWindow *ui;
-    QScrollArea* m_pView;
     
+    QTabWidget* m_pTab;
+    CManageConnecter m_ManageConnecter;
 };
 #endif // MAINWINDOW_H

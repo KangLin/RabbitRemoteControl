@@ -6,18 +6,10 @@
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 #include "FrmUpdater/FrmUpdater.h"
-#include <rfb/LogWriter.h>
-#include <rfb/Logger_stdio.h>
 
 int main(int argc, char *argv[])
 {
-    rfb::initStdIOLoggers();
-  #ifdef WIN32
-    rfb::initFileLogger("C:\\temp\\vncviewer.log");
-  #else
-    rfb::initFileLogger("/tmp/vncviewer.log");
-  #endif
-    rfb::LogWriter::setLogParams("*:stderr:100");
+
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -25,7 +17,7 @@ int main(int argc, char *argv[])
     QtAndroid::hideSplashScreen();
 #endif
     
-#ifdef _DEBUG || !defined(BUILD_SHARED_LIBS)
+#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
 #endif
     
@@ -56,7 +48,7 @@ int main(int argc, char *argv[])
     w.show();
     int nRet = a.exec();
     
-#ifdef _DEBUG || !defined(BUILD_SHARED_LIBS)
+#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
 #endif
     

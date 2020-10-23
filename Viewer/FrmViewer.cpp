@@ -2,7 +2,6 @@
 #include "ui_FrmViewer.h"
 #include <QPainter>
 #include <QClipboard>
-#include "ConnectThread.h"
 #include <QDebug>
 #include <QResizeEvent>
 #include "Connect.h"
@@ -13,7 +12,9 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
     m_bClipboard(true)
 {
     ui->setupUi(this);
+    
     SetAdaptWindows(Original);
+    
     setMouseTracking(true);
     setFocusPolicy(Qt::StrongFocus);
 }
@@ -106,6 +107,7 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
     {
         //TODO: Test
         QWidget::paintEvent(event);
+        qDebug() << "m_Desktop.isNull";
         return;
     }
     

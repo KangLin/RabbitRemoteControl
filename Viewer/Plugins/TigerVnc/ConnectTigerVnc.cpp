@@ -26,11 +26,21 @@
 #include <QKeyEvent>
 #include <QMouseEvent>
 
+#include "rfb/Security.h"
+#ifdef HAVE_GNUTLS
+#include "rfb/CSecurityTLS.h"
+#endif
+
 static rfb::LogWriter vlog("ConnectTigerVnc");
 
 CConnectTigerVnc::CConnectTigerVnc(CFrmViewer *pView, QObject *parent)
     : CConnect(pView, parent)
-{}
+{
+    rfb::CSecurity::upg = this;
+#ifdef HAVE_GNUTLS
+    rfb::CSecurityTLS::msg = this;
+#endif
+}
 
 int CConnectTigerVnc::SetServerName(const QString &serverName)
 {
@@ -60,6 +70,10 @@ int CConnectTigerVnc::SetServerName(const QString &serverName)
 int CConnectTigerVnc::Connect()
 {
     try{
+        //TODO: 
+        SetServerName("fmpixel.f3322.net:5906");
+        SetUser(QString(), "yly075077");
+        
         m_pSock = new network::TcpSocket(m_szHost.toStdString().c_str(), m_nPort);
         vlog.info("Connected to host %s port %d",
                   m_szHost.toStdString().c_str(), m_nPort);
@@ -158,7 +172,7 @@ void CConnectTigerVnc::setName(const char *name)
 void CConnectTigerVnc::framebufferUpdateEnd()
 {
     rfb::CConnection::framebufferUpdateEnd();
-    //vlog.debug("CConnectTigerVnc::framebufferUpdateEnd");
+    vlog.debug("CConnectTigerVnc::framebufferUpdateEnd");
     const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
     emit sigUpdateRect(img.rect(), img);
 }

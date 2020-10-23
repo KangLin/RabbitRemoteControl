@@ -2,9 +2,10 @@
 #include "./ui_mainwindow.h"
 #include "FrmUpdater/FrmUpdater.h"
 #include "DlgAbout/DlgAbout.h"
+#include <QScrollArea>
 
+#include "Connecter.h"
 #include "FrmViewer.h"
-#include "ConnectThread.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,13 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
     
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());
+        
+    m_pTab = new QTabWidget(this);
+    this->setCentralWidget(m_pTab);
     
-    m_pView = new QScrollArea(this);
-    m_pView->setAlignment(Qt::AlignCenter);
-    m_pView->setBackgroundRole(QPalette::Dark);
-    CFrmViewer* pView = new CFrmViewer();
-    m_pView->setWidget(pView);
-    this->setCentralWidget(m_pView);
+    m_ManageConnecter.LoadPlugins();
 }
 
 MainWindow::~MainWindow()
@@ -126,16 +125,21 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 
 void MainWindow::on_actionConnect_C_triggered()
 {
-    //TODO: 暂时测试用
-    CConnectThread* pThread = new CConnectThread(
-                dynamic_cast<CFrmViewer*>(m_pView->widget()));
-    pThread->start();
+    CConnecter* p = m_ManageConnecter.CreateConnecter("VNC");
+    if(nullptr == p) return;
+    
+    QScrollArea* pScroll = new QScrollArea(m_pTab);
+    pScroll->setAlignment(Qt::AlignCenter);
+    pScroll->setBackgroundRole(QPalette::Dark);
+
+    CFrmViewer* pView = p->GetViewer();
+    pScroll->setWidget(pView);
+
+    m_pTab->addTab(pScroll, pView->windowTitle());
+
+    p->Connect();
 }
 
 void MainWindow::on_actionDisconnect_D_triggered()
 {
-    //TODO:
-    CFrmViewer* pV = dynamic_cast<CFrmViewer*>(m_pView->widget());
-    if(pV)
-        pV->slotDisconnect();
 }

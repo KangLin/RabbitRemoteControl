@@ -6,7 +6,6 @@
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
-#include <QObject>
 
 class CConnectTigerVnc : public CConnect,
         public rfb::CConnection,
@@ -15,31 +14,31 @@ class CConnectTigerVnc : public CConnect,
         public rfb::UserMsgBox
 {
     Q_OBJECT
-    
+
 public:
     explicit CConnectTigerVnc(CFrmViewer* pView = nullptr,
                               QObject *parent = nullptr);
-    
+            
     virtual int SetServerName(const QString& serverName) override;
     
     int Connect() override;
     int Exec() override;
     // FdInStreamBlockCallback methods
     void blockCallback() override;
-  
+
     // Callback when socket is ready (or broken)
     //static void socketEvent(FL_SOCKET fd, void *data);
-  
+
     // CConnection callback methods
     virtual void initDone() override;
-    
+
     // CMsgHandler interface
 public:
     virtual void setName(const char *name) override;
     virtual void framebufferUpdateEnd() override;
     virtual void dataRect(const rfb::Rect &r, int encoding) override;
     virtual void setColourMapEntries(int firstColour, int nColours, rdr::U16* rgbs) override;
-    virtual void bell() override;    
+    virtual void bell() override;
     virtual void setCursor(int width, int height, const rfb::Point& hotspot,
                               const rdr::U8* data) override;
     

@@ -1,6 +1,7 @@
 #include "Connect.h"
 #include <QApplication>
 #include <QDebug>
+#include <QtPlugin>
 
 CConnect::CConnect(CFrmViewer *pView, QObject *parent)
     : QObject(parent), m_pView(nullptr)
@@ -13,7 +14,9 @@ CConnect::CConnect(CFrmViewer *pView, QObject *parent)
 }
 
 CConnect::~CConnect()
-{}
+{
+    Disconnect();
+}
 
 int CConnect::SetViewer(CFrmViewer *pView)
 {
@@ -71,9 +74,15 @@ int CConnect::SetViewer(CFrmViewer *pView)
     return 0;
 }
 
+QString CConnect::GetDescription()
+{
+    return m_szServerName + "[" + m_szHost + ":" + QString::number(m_nPort) + "]";
+}
+
 int CConnect::SetServerName(const QString &szServerName)
 {
     m_szServerName = szServerName;
+    m_pView->setWindowTitle(GetDescription());
     return 0;
 }
 

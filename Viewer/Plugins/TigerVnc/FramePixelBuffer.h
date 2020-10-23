@@ -10,7 +10,7 @@ class CFramePixelBuffer : public QObject,
     Q_OBJECT
     
 public:
-    CFramePixelBuffer(int width, int height, QObject *parent = nullptr);
+    explicit CFramePixelBuffer(int width, int height, QObject *parent = nullptr);
     
     const QImage& getImage();
     
