@@ -1,4 +1,5 @@
 #include "ConnectTigerVnc.h"
+#include "DlgPassword.h"
 
 #ifndef WIN32
 #include <string.h>
@@ -31,12 +32,29 @@
 #include "rfb/CSecurityTLS.h"
 #endif
 
+#include "DlgSettings.h"
+
 static rfb::LogWriter vlog("ConnectTigerVnc");
+
+// 8 colours (1 bit per component)
+static const rfb::PixelFormat verylowColourPF(8, 3,false, true,
+                                         1, 1, 1, 2, 1, 0);
+// 64 colours (2 bits per component)
+static const rfb::PixelFormat lowColourPF(8, 6, false, true,
+                                     3, 3, 3, 4, 2, 0);
+// 256 colours (2-3 bits per component)
+static const rfb::PixelFormat mediumColourPF(8, 8, false, true,
+                                        7, 7, 3, 5, 2, 0);
+
+// RGB (4 bits per component)
+static const rfb::PixelFormat fullColourPF(32, 24, false, true,
+                                           255, 255, 255, 16, 8, 0);
 
 CConnectTigerVnc::CConnectTigerVnc(CFrmViewer *pView, QObject *parent)
     : CConnect(pView, parent)
 {
-    rfb::CSecurity::upg = this;
+    security.setUserPasswdGetter(this);
+    
 #ifdef HAVE_GNUTLS
     rfb::CSecurityTLS::msg = this;
 #endif
@@ -67,13 +85,49 @@ int CConnectTigerVnc::SetServerName(const QString &serverName)
     return 0;
 }
 
+int CConnectTigerVnc::SetParamter(void *pPara)
+{
+    if(!pPara) return -1;
+    
+    struct strPara* p = (struct strPara*)pPara;
+    
+    SetServerName(p->szServerName);
+    SetUser(p->szUser, p->szPassword);
+
+    // Set server pixmap format
+    rfb::PixelFormat pf;
+  
+    switch (p->nColorLevel) {
+    case 0:
+        pf = fullColourPF;
+        break;
+    case 1:
+        pf = mediumColourPF;
+        break;
+    case 2:
+        pf = lowColourPF;
+        break;
+    case 3:
+        pf = verylowColourPF;
+        break;
+    }
+  
+    char str[256];
+    pf.print(str, 256);
+    vlog.info(tr("Using pixel format %s").toStdString().c_str(), str);
+    setPF(pf);
+    
+    // Set Preferred Encoding
+    setPreferredEncoding(p->nEncoding);
+    setCompressLevel(p->nCompressLevel);
+    setQualityLevel(p->nQualityLevel);
+    
+    return 0;
+}
+
 int CConnectTigerVnc::Connect()
 {
-    try{
-        //TODO: 
-        SetServerName("fmpixel.f3322.net:5906");
-        SetUser(QString(), "yly075077");
-        
+    try{        
         m_pSock = new network::TcpSocket(m_szHost.toStdString().c_str(), m_nPort);
         vlog.info("Connected to host %s port %d",
                   m_szHost.toStdString().c_str(), m_nPort);
@@ -102,6 +156,7 @@ int CConnectTigerVnc::Exec()
             if(in)
                 in->check(1);
             processMsg();
+            qApp->processEvents();
         }
     } catch (rdr::EndOfStream& e) {
         vlog.error("exec error: %s", e.str());
@@ -112,7 +167,7 @@ int CConnectTigerVnc::Exec()
         emit sigError(-1, e.str());
     }
     
-    emit sigDisconnect();
+    emit sigDisconnected();
     
     return nRet;
 }
@@ -130,13 +185,12 @@ void CConnectTigerVnc::initDone()
     vlog.info("initDone");
     
     emit sigSetDesktopSize(server.width(), server.height());
-    setName(server.name());
+    QString szName = QString::fromUtf8(server.name());
+    emit sigSetDesktopName(szName);
+    
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
-    //TODO: Set server pixmap format
-    
-    //TODO: Set Preferred Encoding
-    
+
     emit sigConnected();
 }
 
@@ -152,21 +206,16 @@ void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspo
 
 void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)
 {
-    //*user = rfb::strDup(m_szUser.toStdString().c_str());
-    *password = rfb::strDup(m_szPassword.toStdString().c_str());
+    if(user)
+        *user = rfb::strDup(m_szUser.toStdString().c_str());
+    if(password)
+        *password = rfb::strDup(m_szPassword.toStdString().c_str());
 }
 
 bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text)
 {
     vlog.error("%s:%s\n", title, text);
     return true;
-}
-
-void CConnectTigerVnc::setName(const char *name)
-{
-    rfb::CConnection::setName(name);
-    QString szName = QString::fromUtf8(name);
-    emit sigSetDesktopName(szName);
 }
 
 void CConnectTigerVnc::framebufferUpdateEnd()
@@ -262,8 +311,7 @@ void CConnectTigerVnc::slotKeyReleaseEvent(QKeyEvent* e)
     if (e->modifiers() == Qt::NoModifier)
         modifier = false;
 
-    this->writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier),
-                                  0, false);
+    this->writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier), 0, false);
 }
 
 quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)

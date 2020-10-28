@@ -20,6 +20,7 @@ public:
                               QObject *parent = nullptr);
             
     virtual int SetServerName(const QString& serverName) override;
+    virtual int SetParamter(void *pPara);
     
     int Connect() override;
     int Exec() override;
@@ -34,7 +35,6 @@ public:
 
     // CMsgHandler interface
 public:
-    virtual void setName(const char *name) override;
     virtual void framebufferUpdateEnd() override;
     virtual void dataRect(const rfb::Rect &r, int encoding) override;
     virtual void setColourMapEntries(int firstColour, int nColours, rdr::U16* rgbs) override;

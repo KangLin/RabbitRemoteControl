@@ -32,13 +32,22 @@ private slots:
     void on_actionConnect_C_triggered();
     void on_actionDisconnect_D_triggered();
     
+    void slotViewTitleChanged(const QString& szName);
+    void slotConnected();
+    void slotDisconnected();
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
+    
+private:
+    CFrmViewer* GetViewer(int index);
+    CConnecter* GetConnecter(int index);
     
 private:
     Ui::MainWindow *ui;
     
     QTabWidget* m_pTab;
     CManageConnecter m_ManageConnecter;
+    QMap<int, CConnecter*> m_Connecters;
 };
 #endif // MAINWINDOW_H

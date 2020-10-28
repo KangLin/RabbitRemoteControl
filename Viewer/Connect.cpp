@@ -7,9 +7,6 @@ CConnect::CConnect(CFrmViewer *pView, QObject *parent)
     : QObject(parent), m_pView(nullptr)
 {
     m_bExit = false;
-    m_bShared = true;
-    m_bReDesktopSize = true;
-    m_bUseLocalCursor = false;
     SetViewer(pView);
 }
 
@@ -31,7 +28,7 @@ int CConnect::SetViewer(CFrmViewer *pView)
     bool check = connect(this, SIGNAL(sigConnected()),
                          m_pView, SLOT(slotConnect()));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigDisconnect()),
+    check = connect(this, SIGNAL(sigDisconnected()),
                     m_pView, SLOT(slotDisconnect()));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigSetDesktopSize(int, int)),
@@ -76,7 +73,9 @@ int CConnect::SetViewer(CFrmViewer *pView)
 
 QString CConnect::GetDescription()
 {
-    return m_szServerName + "[" + m_szHost + ":" + QString::number(m_nPort) + "]";
+    if(m_szServerName.isEmpty())
+        return m_szHost + ":" + QString::number(m_nPort);
+    return m_szServerName;
 }
 
 int CConnect::SetServerName(const QString &szServerName)
@@ -104,39 +103,6 @@ int CConnect::SetParamter(void *pPara)
 {
     Q_UNUSED(pPara)
     return 0;
-}
-
-int CConnect::SetShared(bool shared)
-{
-    m_bShared = shared;
-    return 0;
-}
-
-bool CConnect::GetShared()
-{
-    return m_bShared;
-}
-
-int CConnect::SetReDesktopSize(bool re)
-{
-    m_bReDesktopSize = re;
-    return 0;
-}
-
-bool CConnect::GetReDesktopSize()
-{
-    return m_bReDesktopSize;
-}
-
-int CConnect::SetUseLocalCursor(bool u)
-{
-    m_bUseLocalCursor = u;
-    return 0;
-}
-
-bool CConnect::GetUserLocalCursor()
-{
-    return m_bUseLocalCursor;
 }
 
 int CConnect::Initialize()

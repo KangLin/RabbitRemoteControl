@@ -19,6 +19,7 @@ public:
     virtual QString Name();
     virtual QString Description();
     
+    // Return CConnecter pointer, the owner is caller
     virtual CConnecter* CreateConnecter(const QString& szName);
     
     int LoadPlugins();

@@ -27,21 +27,15 @@ public:
     virtual int SetUser(const QString &szUser, const QString &szPassword);
     virtual int SetParamter(void *pPara);
 
+public Q_SLOTS:
     virtual int Initialize();
     virtual int Connect();
     virtual int Disconnect();
     virtual int Exec();
     
-    virtual int SetShared(bool shared = true);
-    virtual bool GetShared();
-    virtual int SetReDesktopSize(bool re = true);
-    virtual bool GetReDesktopSize();
-    virtual int SetUseLocalCursor(bool u = true);
-    virtual bool GetUserLocalCursor();
-    
 Q_SIGNALS:
     void sigConnected();
-    void sigDisconnect();
+    void sigDisconnected();
     
     void sigSetDesktopSize(int width, int height);
     void sigSetDesktopName(const QString& szName);
@@ -64,11 +58,10 @@ protected:
     QString m_szServerName;
     QString m_szHost;
     int m_nPort;
+    
     QString m_szUser;
     QString m_szPassword;
-    bool m_bShared;
-    bool m_bReDesktopSize;
-    bool m_bUseLocalCursor;
+
     CFrmViewer* m_pView;
     
     bool m_bExit;

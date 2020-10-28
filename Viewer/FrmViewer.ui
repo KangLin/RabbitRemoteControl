@@ -1,7 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>CFrmViewer</class>
  <widget class="QWidget" name="CFrmViewer">
   <property name="geometry">
@@ -13,9 +11,9 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string/>
   </property>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

@@ -3,7 +3,7 @@
 #include "FrmUpdater/FrmUpdater.h"
 #include "DlgAbout/DlgAbout.h"
 #include <QScrollArea>
-
+#include <QMessageBox>
 #include "Connecter.h"
 #include "FrmViewer.h"
 
@@ -17,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionUpdate_U->setIcon(updater.windowIcon());
         
     m_pTab = new QTabWidget(this);
+    m_pTab->setTabsClosable(true);
+    m_pTab->setUsesScrollButtons(true);
+    m_pTab->setMovable(true);
     this->setCentralWidget(m_pTab);
     
     m_ManageConnecter.LoadPlugins();
@@ -127,19 +130,95 @@ void MainWindow::on_actionConnect_C_triggered()
 {
     CConnecter* p = m_ManageConnecter.CreateConnecter("VNC");
     if(nullptr == p) return;
+
+    bool check = connect(p, SIGNAL(sigConnected()),
+                         this, SLOT(slotConnected()));
+    Q_ASSERT(check);
     
-    QScrollArea* pScroll = new QScrollArea(m_pTab);
-    pScroll->setAlignment(Qt::AlignCenter);
-    pScroll->setBackgroundRole(QPalette::Dark);
-
-    CFrmViewer* pView = p->GetViewer();
-    pScroll->setWidget(pView);
-
-    m_pTab->addTab(pScroll, pView->windowTitle());
-
-    p->Connect();
+    QDialog* pDlg = p->GetDialogSettings();
+    int nRet = pDlg->exec();
+    switch(nRet)
+    {
+    case QDialog::Rejected:
+        delete p;
+        break;
+    case QDialog::Accepted:
+        p->Connect();
+        break;
+    }
 }
 
 void MainWindow::on_actionDisconnect_D_triggered()
 {
+    auto it = m_Connecters.find(m_pTab->currentIndex());
+    if(m_Connecters.end() != it)
+        it.value()->DisConnect();
+}
+
+void MainWindow::slotConnected()
+{
+    CConnecter* p = dynamic_cast<CConnecter*>(sender());
+    if(!p) return;
+    
+    bool check = connect(p, SIGNAL(sigDisconnected()),
+                         this, SLOT(slotDisconnected()));
+    Q_ASSERT(check);
+    
+    CFrmViewer* pView = p->GetViewer();
+    QScrollArea* pScroll = new QScrollArea(m_pTab);
+    pScroll->setAlignment(Qt::AlignCenter);
+    pScroll->setBackgroundRole(QPalette::Dark);
+    pScroll->setWidget(pView);
+
+    int index = m_pTab->addTab(pScroll, pView->windowTitle());
+    m_Connecters[index] = p;
+    
+    check = connect(pView, SIGNAL(sigSetWindowName(const QString&)),
+                         this, SLOT(slotViewTitleChanged(const QString&)));
+    Q_ASSERT(check);
+    
+}
+
+void MainWindow::slotDisconnected()
+{
+    QMap<int, CConnecter*>::iterator it;
+    for(it = m_Connecters.begin(); it != m_Connecters.end(); it++)
+    {
+        if(it.value() == sender())
+        {
+            // Close view
+            m_pTab->removeTab(it.key());
+            // delete CConnecter*
+            m_Connecters.remove(it.key());
+            sender()->deleteLater();
+            break;
+        }
+    }
+}
+
+void MainWindow::slotViewTitleChanged(const QString& szName)
+{
+    Q_UNUSED(szName)
+    for(int i = 0; i < m_pTab->count(); i++)
+    {
+        CFrmViewer* pView = GetViewer(i);
+        if(pView)
+            m_pTab->setTabText(i, pView->windowTitle());
+    }
+}
+
+CFrmViewer* MainWindow::GetViewer(int index)
+{
+    QScrollArea* pScroll = dynamic_cast<QScrollArea*>(m_pTab->widget(index));
+    if(!pScroll) return nullptr;
+    
+    return dynamic_cast<CFrmViewer*>(pScroll->widget());
+}
+
+CConnecter* MainWindow::GetConnecter(int index)
+{
+    auto it = m_Connecters.find(index);
+    if(it != m_Connecters.end())
+        return it.value();
+    return nullptr;
 }
