@@ -12,13 +12,17 @@ public:
     explicit CConnectThread(CFrmViewer* pView = nullptr,
                             CConnecter* pConnecter = nullptr,
                             QObject *parent = nullptr);
-
+    virtual ~CConnectThread() override;
+    
+    bool m_bExit;
+    
 protected:
     virtual void run() override;
     
 private:
     CFrmViewer* m_pView;
     CConnecter* m_pConnecter;
+    
 };
 
 #endif // CCONNECTTHREAD_H

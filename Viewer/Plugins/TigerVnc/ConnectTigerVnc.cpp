@@ -60,6 +60,11 @@ CConnectTigerVnc::CConnectTigerVnc(CFrmViewer *pView, QObject *parent)
 #endif
 }
 
+CConnectTigerVnc::~CConnectTigerVnc()
+{
+    qDebug() << "CConnectTigerVnc::~CConnectTigerVnc()";
+}
+
 int CConnectTigerVnc::SetServerName(const QString &serverName)
 {
     m_szServerName = serverName;
@@ -126,28 +131,30 @@ int CConnectTigerVnc::Connect()
     return 0;
 }
 
-int CConnectTigerVnc::Exec()
+int CConnectTigerVnc::Disconnect()
+{
+    emit sigDisconnected();
+    return 0;
+}
+
+int CConnectTigerVnc::Process()
 {
     int nRet = 0;
     
     try {
-        while (!m_bExit) {
-            auto in = getInStream();
-            if(in)
-                in->check(1);
-            processMsg();
-            qApp->processEvents();
-        }
+        auto in = getInStream();
+        if(in)
+            in->check(1);
+        processMsg();
     } catch (rdr::EndOfStream& e) {
         vlog.error("exec error: %s", e.str());
         emit sigError(-1, e.str());
+        nRet = -1;
     } catch (rdr::Exception& e) {
         vlog.error("exec error: %s", e.str());
-        nRet = -1;
+        nRet = -2;
         emit sigError(-1, e.str());
     }
-    
-    emit sigDisconnected();
     
     return nRet;
 }

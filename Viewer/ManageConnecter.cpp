@@ -8,6 +8,11 @@
 CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent)
 {}
 
+CManageConnecter::~CManageConnecter()
+{
+    qDebug() << "CManageConnecter::~CManageConnecter()";
+}
+
 QString CManageConnecter::Name()
 {
     return this->metaObject()->className();

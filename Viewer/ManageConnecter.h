@@ -15,6 +15,7 @@ class RABBITREMOTECONTROL_EXPORT CManageConnecter : public QObject
     
 public:
     explicit CManageConnecter(QObject *parent = nullptr);
+    ~CManageConnecter();
     
     virtual QString Name();
     virtual QString Description();

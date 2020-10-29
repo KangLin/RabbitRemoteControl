@@ -13,7 +13,10 @@ class RABBITREMOTECONTROL_EXPORT CConnecter : public QObject
 public:
     explicit CConnecter(QObject *parent = nullptr);
 
-    // CFrmViewer* ower is caller. The caller must delete it, when don't use.
+    /**
+     * @brief GetViewer 
+     * @return CFrmViewer* ower is caller. The caller must delete it, when don't use.
+     */
     virtual CFrmViewer* GetViewer() = 0;
     // QDialog* ower is caller. The caller must delete it, when don't use.
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;

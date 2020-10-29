@@ -18,13 +18,15 @@ class CConnectTigerVnc : public CConnect,
 public:
     explicit CConnectTigerVnc(CFrmViewer* pView = nullptr,
                               QObject *parent = nullptr);
+    virtual ~CConnectTigerVnc() override;
     
     virtual int SetServerName(const QString& serverName) override;
     virtual int SetParamter(void *pPara) override;
     
     // Please call SetParamter before call Connect
     int Connect() override;
-    int Exec() override;
+    int Process() override;
+    int Disconnect() override;
     // FdInStreamBlockCallback methods
     void blockCallback() override;
 

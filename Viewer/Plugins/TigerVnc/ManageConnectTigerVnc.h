@@ -14,6 +14,7 @@ class CManageConnectTigerVnc : public CManageConnecter
     
 public:
     explicit CManageConnectTigerVnc(QObject *parent = nullptr);
+    virtual ~CManageConnectTigerVnc();
     
     virtual QString Name();
     virtual QString Description();

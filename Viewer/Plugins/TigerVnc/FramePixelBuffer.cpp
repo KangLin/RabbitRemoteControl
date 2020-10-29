@@ -1,4 +1,5 @@
 #include "FramePixelBuffer.h"
+#include <QDebug>
 
 CFramePixelBuffer::CFramePixelBuffer(int width, int height, QObject *parent)
     : QObject(parent),
@@ -9,6 +10,11 @@ CFramePixelBuffer::CFramePixelBuffer(int width, int height, QObject *parent)
 {
     setBuffer(width, height, m_FrameBuffer.bits(),
               m_FrameBuffer.bytesPerLine() / (getPF().bpp/8));
+}
+
+CFramePixelBuffer::~CFramePixelBuffer()
+{
+    qDebug() << "CFramePixelBuffer::~CFramePixelBuffer()";
 }
 
 const QImage& CFramePixelBuffer::getImage()

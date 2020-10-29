@@ -187,7 +187,9 @@ void MainWindow::slotDisconnected()
         if(it.value() == sender())
         {
             // Close view
+            QWidget* pScroll = m_pTab->widget(it.key());
             m_pTab->removeTab(it.key());
+            delete pScroll;
             // delete CConnecter*
             m_Connecters.remove(it.key());
             sender()->deleteLater();

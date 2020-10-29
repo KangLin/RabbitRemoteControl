@@ -1,5 +1,6 @@
 #include "ConnecterTigerVnc.h"
 #include "rfb/encodings.h"
+#include <QDebug>
 
 CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
     : CConnecter(parent),
@@ -17,7 +18,9 @@ CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
 }
 
 CConnecterTigerVnc::~CConnecterTigerVnc()
-{}
+{
+    qDebug() << "CConnecterTigerVnc::~CConnecterTigerVnc()";
+}
 
 CFrmViewer* CConnecterTigerVnc::GetViewer()
 {
@@ -26,7 +29,9 @@ CFrmViewer* CConnecterTigerVnc::GetViewer()
 
 QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 {
-    return new CDlgSettings(&m_Para);
+    CDlgSettings* p = new CDlgSettings(&m_Para);
+    p->setAttribute(Qt::WA_DeleteOnClose);
+    return p;
 }
 
 int CConnecterTigerVnc::Connect()
@@ -34,7 +39,7 @@ int CConnecterTigerVnc::Connect()
     if(nullptr == m_pThread)
     {
         m_pThread = new CConnectThread(m_pView, this);
-        bool check = connect(m_pThread, SIGNAL(destroyed()),
+        bool check = connect(this, SIGNAL(destroyed()),
                            m_pThread, SLOT(deleteLater()));
         Q_ASSERT(check);
     }
@@ -44,6 +49,7 @@ int CConnecterTigerVnc::Connect()
 
 int CConnecterTigerVnc::DisConnect()
 {
+    m_pThread->m_bExit = true;
     m_pThread->quit();
     return 0;
 }

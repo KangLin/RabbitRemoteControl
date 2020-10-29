@@ -2,6 +2,7 @@
 #include "ConnecterTigerVnc.h"
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
+#include <QDebug>
 
 static bool initlog = false;
 CManageConnectTigerVnc::CManageConnectTigerVnc(QObject *parent)
@@ -18,6 +19,11 @@ CManageConnectTigerVnc::CManageConnectTigerVnc(QObject *parent)
         rfb::LogWriter::setLogParams("*:stderr:100");
         initlog = true;
     }
+}
+
+CManageConnectTigerVnc::~CManageConnectTigerVnc()
+{
+    qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
 }
 
 QString CManageConnectTigerVnc::Name()

@@ -1,6 +1,7 @@
 #include "DlgSettings.h"
 #include "ui_DlgSettings.h"
 #include "rfb/encodings.h"
+#include <QDebug>
 
 CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     QDialog(parent),
@@ -65,6 +66,7 @@ CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
 
 CDlgSettings::~CDlgSettings()
 {
+    qDebug() << "CDlgSettings::~CDlgSettings()";
     delete ui;
 }
 

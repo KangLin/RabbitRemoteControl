@@ -29,9 +29,9 @@ public:
 
 public Q_SLOTS:
     virtual int Initialize();
-    virtual int Connect();
-    virtual int Disconnect();
-    virtual int Exec();
+    virtual int Connect() = 0;
+    virtual int Disconnect() = 0;
+    virtual int Process() = 0;
     
 Q_SIGNALS:
     void sigConnected();
@@ -63,8 +63,6 @@ protected:
     QString m_szPassword;
 
     CFrmViewer* m_pView;
-    
-    bool m_bExit;
 };
 
 #endif // CCONNECT_H

@@ -6,13 +6,12 @@
 CConnect::CConnect(CFrmViewer *pView, QObject *parent)
     : QObject(parent), m_pView(nullptr)
 {
-    m_bExit = false;
     SetViewer(pView);
 }
 
 CConnect::~CConnect()
 {
-    Disconnect();
+    qDebug() << "CConnect::~CConnect()";
 }
 
 int CConnect::SetViewer(CFrmViewer *pView)
@@ -110,23 +109,7 @@ int CConnect::Initialize()
     return 0;
 }
 
-int CConnect::Connect()
-{
-    return 0;
-}
-
-int CConnect::Disconnect()
-{
-    m_bExit = true;
-    return 0;
-}
-
-int CConnect::Exec()
-{
-    return 0;
-}
-
-void CConnect::slotWheelEvent(QWheelEvent* e)
+void CConnect::slotWheelEvent(QWheelEvent*)
 {
     qDebug() << "CConnect::slotWheelEvent";
 }

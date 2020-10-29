@@ -21,6 +21,7 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
 
 CFrmViewer::~CFrmViewer()
 {
+    qDebug() << "CFrmViewer::~CFrmViewer()";
     delete ui;
 }
 
