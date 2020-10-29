@@ -95,9 +95,11 @@ int CConnectTigerVnc::SetParamter(void *pPara)
     if(!pPara) return -1;
     
     m_pPara = (struct strPara*)pPara;
-        
+
     SetServerName(m_pPara->szServerName);
     SetUser(m_pPara->szUser, m_pPara->szPassword);
+
+    setShared(m_pPara->bShared);
     
     // Set Preferred Encoding
     setPreferredEncoding(m_pPara->nEncoding);

@@ -79,6 +79,7 @@ public:
         QString szUser;
         QString szPassword;
         
+        bool bShared;
         bool bAutoSelect;
         COLOR_LEVEL nColorLevel;
         int nEncoding;

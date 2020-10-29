@@ -10,6 +10,7 @@ CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
     m_Para.szServerName = "fmpixel.f3322.net:5906";
     m_Para.szPassword = "yly075077";
     
+    m_Para.bShared = true;
     m_Para.bAutoSelect = true;
     m_Para.nColorLevel = CConnectTigerVnc::Full;
     m_Para.nEncoding = rfb::encodingTight;

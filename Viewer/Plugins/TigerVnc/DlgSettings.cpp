@@ -15,6 +15,8 @@ CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     ui->leName->setText(m_pPara->szUser);
     ui->lePassword->setText(m_pPara->szPassword);
     
+    ui->cbShared->setChecked(m_pPara->bShared);
+    
     // Compress
     ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
 
@@ -79,6 +81,8 @@ void CDlgSettings::on_pushButton_clicked()
     m_pPara->szServerName = ui->leServer->text();
     m_pPara->szUser = ui->leName->text();
     m_pPara->szPassword = ui->lePassword->text();
+    
+    m_pPara->bShared = ui->cbShared->isChecked();
     
     // Compress
     m_pPara->bAutoSelect = ui->cbCompressAutoSelect->isChecked();
