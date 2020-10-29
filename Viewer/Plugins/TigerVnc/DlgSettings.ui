@@ -24,8 +24,8 @@
        <string>Server</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="6" column="0">
-        <spacer name="verticalSpacer_2">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -36,27 +36,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="2" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>User name:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="leName"/>
-         </item>
-        </layout>
-       </item>
-       <item row="5" column="0">
-        <widget class="QCheckBox" name="cbSave">
-         <property name="text">
-          <string>Save</string>
-         </property>
-        </widget>
        </item>
        <item row="1" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -76,18 +55,19 @@
          </item>
         </layout>
        </item>
-       <item row="0" column="0">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+       <item row="2" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>User name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leName"/>
+         </item>
+        </layout>
        </item>
        <item row="3" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -114,11 +94,42 @@
         </layout>
        </item>
        <item row="4" column="0">
-        <widget class="QCheckBox" name="cbShared">
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QCheckBox" name="cbShared">
+           <property name="text">
+            <string>Shared</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbRealTimeUpdate">
+           <property name="text">
+            <string>Real time update</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="5" column="0">
+        <widget class="QCheckBox" name="cbSave">
          <property name="text">
-          <string>Shared</string>
+          <string>Save</string>
          </property>
         </widget>
+       </item>
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

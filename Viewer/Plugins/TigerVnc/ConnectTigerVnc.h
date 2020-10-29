@@ -80,6 +80,8 @@ public:
         QString szPassword;
         
         bool bShared;
+        bool bBufferEndRefresh;
+        
         bool bAutoSelect;
         COLOR_LEVEL nColorLevel;
         int nEncoding;

@@ -224,9 +224,12 @@ bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text
 void CConnectTigerVnc::framebufferUpdateEnd()
 {
     rfb::CConnection::framebufferUpdateEnd();
-    vlog.debug("CConnectTigerVnc::framebufferUpdateEnd");
-    const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
-    emit sigUpdateRect(img.rect(), img);
+    //vlog.debug("CConnectTigerVnc::framebufferUpdateEnd");
+    if(m_pPara && m_pPara->bBufferEndRefresh)
+    {
+        const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
+        emit sigUpdateRect(img.rect(), img);
+    }
     
     // Compute new settings based on updated bandwidth values
     if (m_pPara && m_pPara->bAutoSelect)
@@ -341,6 +344,11 @@ void CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
     //vlog.debug("CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
     //           r.tl.x, r.tl.y, r.width(), r.height(), encoding);
     //TODO: 增加高性能更新图像
+    if(m_pPara && !m_pPara->bBufferEndRefresh)
+    {
+        const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
+            emit sigUpdateRect(img.rect(), img);
+    }
 }
 
 void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
