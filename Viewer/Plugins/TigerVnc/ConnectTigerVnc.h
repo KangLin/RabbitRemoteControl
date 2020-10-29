@@ -22,11 +22,14 @@ public:
     
     virtual int SetServerName(const QString& serverName) override;
     virtual int SetParamter(void *pPara) override;
-    
+
+public Q_SLOTS:
     // Please call SetParamter before call Connect
-    int Connect() override;
-    int Process() override;
-    int Disconnect() override;
+    virtual int Connect() override;
+    virtual int Process() override;
+    virtual int Disconnect() override;
+    
+public:
     // FdInStreamBlockCallback methods
     void blockCallback() override;
 

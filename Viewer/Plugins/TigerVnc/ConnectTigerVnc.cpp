@@ -133,7 +133,11 @@ int CConnectTigerVnc::Connect()
 
 int CConnectTigerVnc::Disconnect()
 {
-    emit sigDisconnected();
+    if(m_pSock)
+    {
+        m_pSock->shutdown();
+    }
+
     return 0;
 }
 

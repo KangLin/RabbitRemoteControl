@@ -32,6 +32,8 @@ private slots:
     void on_actionConnect_C_triggered();
     void on_actionDisconnect_D_triggered();
     
+    void slotTabCloseRequested(int index);
+    
     void slotViewTitleChanged(const QString& szName);
     void slotConnected();
     void slotDisconnected();

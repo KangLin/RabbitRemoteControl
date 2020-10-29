@@ -3,14 +3,14 @@
 #include "ConnecterTigerVnc.h"
 
 #include <QDebug>
-#include <QApplication>
 
 CConnectThread::CConnectThread(CFrmViewer *pView,
                                CConnecter *pConnecter,
-                               QObject *parent) : QThread(parent),
+                               QObject *parent)
+    : QThread(parent),
+    m_bExit(false),
     m_pView(pView),
-    m_pConnecter(pConnecter),
-    m_bExit(false)
+    m_pConnecter(pConnecter)
 {}
 
 CConnectThread::~CConnectThread()
@@ -29,6 +29,9 @@ void CConnectThread::run()
     check = connect(&c, SIGNAL(sigDisconnected()),
                     m_pConnecter, SIGNAL(sigDisconnected()));
     Q_ASSERT(check);
+    check = connect(m_pConnecter, SIGNAL(sigDisconnected()),
+            &c, SLOT(Disconnect()), Qt::DirectConnection);
+    Q_ASSERT(check);
     
     CConnecterTigerVnc* connecter = dynamic_cast<CConnecterTigerVnc*>(m_pConnecter);
     c.SetParamter(&connecter->m_Para);
@@ -36,7 +39,6 @@ void CConnectThread::run()
     c.Connect();
     
     while (!m_bExit) {
-        qApp->processEvents();
         int nRet = c.Process();
         if(nRet) break;
     }

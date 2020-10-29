@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_pTab->setTabsClosable(true);
     m_pTab->setUsesScrollButtons(true);
     m_pTab->setMovable(true);
+    bool check = connect(m_pTab, SIGNAL(tabCloseRequested(int)),
+                         this, SLOT(slotTabCloseRequested(int)));
+    Q_ASSERT(check);
     this->setCentralWidget(m_pTab);
     
     m_ManageConnecter.LoadPlugins();
@@ -27,6 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    foreach (auto it, m_Connecters) {
+        it->DisConnect();
+    }
     delete ui;
 }
 
@@ -150,7 +156,12 @@ void MainWindow::on_actionConnect_C_triggered()
 
 void MainWindow::on_actionDisconnect_D_triggered()
 {
-    auto it = m_Connecters.find(m_pTab->currentIndex());
+    slotTabCloseRequested(m_pTab->currentIndex());
+}
+
+void MainWindow::slotTabCloseRequested(int index)
+{
+    auto it = m_Connecters.find(index);
     if(m_Connecters.end() != it)
         it.value()->DisConnect();
 }

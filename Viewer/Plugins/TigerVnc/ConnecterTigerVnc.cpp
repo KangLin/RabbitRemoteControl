@@ -6,6 +6,10 @@ CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
     : CConnecter(parent),
       m_pThread(nullptr)
 {
+    //TODO: delete it
+    m_Para.szServerName = "fmpixel.f3322.net:5906";
+    m_Para.szPassword = "yly075077";
+    
     m_Para.bAutoSelect = true;
     m_Para.nColorLevel = CConnectTigerVnc::Full;
     m_Para.nEncoding = rfb::encodingTight;
@@ -20,6 +24,11 @@ CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
 CConnecterTigerVnc::~CConnecterTigerVnc()
 {
     qDebug() << "CConnecterTigerVnc::~CConnecterTigerVnc()";
+    if(m_pThread)
+    {
+        m_pThread->wait();
+        delete m_pThread;
+    }
 }
 
 CFrmViewer* CConnecterTigerVnc::GetViewer()
@@ -39,9 +48,6 @@ int CConnecterTigerVnc::Connect()
     if(nullptr == m_pThread)
     {
         m_pThread = new CConnectThread(m_pView, this);
-        bool check = connect(this, SIGNAL(destroyed()),
-                           m_pThread, SLOT(deleteLater()));
-        Q_ASSERT(check);
     }
     m_pThread->start();
     return 0;
@@ -49,7 +55,9 @@ int CConnecterTigerVnc::Connect()
 
 int CConnecterTigerVnc::DisConnect()
 {
+    if(!m_pThread) return -1;
+    
     m_pThread->m_bExit = true;
-    m_pThread->quit();
+    emit sigDisconnected();
     return 0;
 }

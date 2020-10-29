@@ -32,7 +32,7 @@ public Q_SLOTS:
     virtual int Connect() = 0;
     virtual int Disconnect() = 0;
     virtual int Process() = 0;
-    
+
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
