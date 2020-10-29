@@ -44,12 +44,13 @@ protected:
 private:
     CFrmViewer* GetViewer(int index);
     CConnecter* GetConnecter(int index);
+    int GetViewIndex(CFrmViewer* pView);
     
 private:
     Ui::MainWindow *ui;
     
     QTabWidget* m_pTab;
     CManageConnecter m_ManageConnecter;
-    QMap<int, CConnecter*> m_Connecters;
+    QMap<CFrmViewer*, CConnecter*> m_Connecters;
 };
 #endif // MAINWINDOW_H

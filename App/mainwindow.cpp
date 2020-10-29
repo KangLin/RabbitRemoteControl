@@ -154,18 +154,6 @@ void MainWindow::on_actionConnect_C_triggered()
     }
 }
 
-void MainWindow::on_actionDisconnect_D_triggered()
-{
-    slotTabCloseRequested(m_pTab->currentIndex());
-}
-
-void MainWindow::slotTabCloseRequested(int index)
-{
-    auto it = m_Connecters.find(index);
-    if(m_Connecters.end() != it)
-        it.value()->DisConnect();
-}
-
 void MainWindow::slotConnected()
 {
     CConnecter* p = dynamic_cast<CConnecter*>(sender());
@@ -181,29 +169,46 @@ void MainWindow::slotConnected()
     pScroll->setBackgroundRole(QPalette::Dark);
     pScroll->setWidget(pView);
 
-    int index = m_pTab->addTab(pScroll, pView->windowTitle());
-    m_Connecters[index] = p;
+    int nIndex = m_pTab->addTab(pScroll, pView->windowTitle());
+    m_pTab->setCurrentIndex(nIndex);
+    m_Connecters[pView] = p;
     
     check = connect(pView, SIGNAL(sigSetWindowName(const QString&)),
                          this, SLOT(slotViewTitleChanged(const QString&)));
     Q_ASSERT(check);
-    
+}
+
+void MainWindow::on_actionDisconnect_D_triggered()
+{
+    slotTabCloseRequested(m_pTab->currentIndex());
+}
+
+void MainWindow::slotTabCloseRequested(int index)
+{
+    CFrmViewer* pView = GetViewer(index);
+    auto it = m_Connecters.find(pView);
+    if(m_Connecters.end() != it)
+        it.value()->DisConnect();
 }
 
 void MainWindow::slotDisconnected()
 {
-    QMap<int, CConnecter*>::iterator it;
+    QMap<CFrmViewer*, CConnecter*>::iterator it;
     for(it = m_Connecters.begin(); it != m_Connecters.end(); it++)
     {
         if(it.value() == sender())
         {
             // Close view
-            QWidget* pScroll = m_pTab->widget(it.key());
-            m_pTab->removeTab(it.key());
-            delete pScroll;
+            int nIndex = GetViewIndex(it.key());
+            if(nIndex >= 0)
+            {
+                QWidget* pScroll = m_pTab->widget(nIndex);
+                m_pTab->removeTab(nIndex);
+                delete pScroll;
+            }
             // delete CConnecter*
             m_Connecters.remove(it.key());
-            sender()->deleteLater();
+            it.value()->deleteLater();
             break;
         }
     }
@@ -230,8 +235,19 @@ CFrmViewer* MainWindow::GetViewer(int index)
 
 CConnecter* MainWindow::GetConnecter(int index)
 {
-    auto it = m_Connecters.find(index);
+    auto it = m_Connecters.find(GetViewer(index));
     if(it != m_Connecters.end())
         return it.value();
     return nullptr;
+}
+
+int MainWindow::GetViewIndex(CFrmViewer *pView)
+{
+    for(int i = 0; i < m_pTab->count(); i++)
+    {
+        QScrollArea* pScroll = dynamic_cast<QScrollArea*>(m_pTab->widget(i));
+        if(pScroll->widget() == pView)
+            return i;
+    }
+    return -1;
 }
