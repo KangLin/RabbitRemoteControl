@@ -35,6 +35,7 @@ public Q_SLOTS:
     void slotSetDesktopSize(int width, int height);
     void slotSetName(const QString& szName);
     void slotUpdateRect(const QRect& r, const QImage& image);
+    void slotUpdateCursor(const QRect& r, const QImage& cursor);
     void slotServerCutText(const QString &text);
 
 Q_SIGNALS:

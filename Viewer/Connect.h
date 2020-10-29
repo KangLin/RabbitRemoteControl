@@ -39,11 +39,12 @@ Q_SIGNALS:
     
     void sigSetDesktopSize(int width, int height);
     void sigSetDesktopName(const QString& szName);
-    void sigSetCursor(int width, int height, const QPoint& hotspot,
-                      void* data, void* mask);
+    
+    void sigUpdateRect(const QRect& r, const QImage& image);
+    void sigUpdateCursor(const QRect& r, const QImage& cursor);
     //void sigBell();
     void sigServerCutText(const QString& szText);
-    void sigUpdateRect(const QRect& r, const QImage& image);
+    
     void sigError(const int nError, const QString &szError);
     
 public Q_SLOTS:

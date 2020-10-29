@@ -48,7 +48,7 @@ static const rfb::PixelFormat mediumColourPF(8, 8, false, true,
 static const rfb::PixelFormat fullColourPF(32, 24, false, true,
                                            255, 255, 255, 16, 8, 0);
 
-CConnectTigerVnc::CConnectTigerVnc(CFrmViewer *pView, QObject *parent)
+CConnectTigerVnc::CConnectTigerVnc(void *pPara, CFrmViewer *pView, QObject *parent)
     : CConnect(pView, parent),
       m_pSock(nullptr),
       m_pPara(nullptr)
@@ -58,6 +58,10 @@ CConnectTigerVnc::CConnectTigerVnc(CFrmViewer *pView, QObject *parent)
 #ifdef HAVE_GNUTLS
     rfb::CSecurityTLS::msg = this;
 #endif
+    
+    SetParamter(pPara);
+    if(!m_pPara->bLocalCursor)
+        pView->setCursor(Qt::BlankCursor);
 }
 
 CConnectTigerVnc::~CConnectTigerVnc()
@@ -100,6 +104,7 @@ int CConnectTigerVnc::SetParamter(void *pPara)
     SetUser(m_pPara->szUser, m_pPara->szPassword);
 
     setShared(m_pPara->bShared);
+    supportsLocalCursor = m_pPara->bLocalCursor;
     
     // Set Preferred Encoding
     setPreferredEncoding(m_pPara->nEncoding);
@@ -198,9 +203,27 @@ void CConnectTigerVnc::bell()
     qApp->beep();
 }
 
+void cleanMemoryFunction(void *para)
+{
+    vlog.debug("cleanMemoryFunction:%d", para);
+    delete []para;
+}
+
 void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspot, const rdr::U8 *data)
 {
-    
+    vlog.debug("CConnectTigerVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
+    QRect rect(hotspot.x, hotspot.y, width, height);
+    if ((width == 0) || (height == 0)) {
+      rdr::U8 *buffer = new rdr::U8[4];
+      memset(buffer, 0, 4);
+      QImage cursor(buffer, 1, 1, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
+      emit sigUpdateCursor(rect, cursor);
+    } else {
+      rdr::U8 *buffer = new rdr::U8[width * height * 4];
+      memcpy(buffer, data, width * height * 4);
+      QImage cursor(buffer, width, height, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
+      emit sigUpdateCursor(rect, cursor);
+    }
 }
 
 void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)

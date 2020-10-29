@@ -16,7 +16,8 @@ class CConnectTigerVnc : public CConnect,
     Q_OBJECT
 
 public:
-    explicit CConnectTigerVnc(CFrmViewer* pView = nullptr,
+    explicit CConnectTigerVnc(void * pPara,
+                              CFrmViewer* pView = nullptr,
                               QObject *parent = nullptr);
     virtual ~CConnectTigerVnc() override;
     
@@ -81,6 +82,7 @@ public:
         
         bool bShared;
         bool bBufferEndRefresh;
+        bool bLocalCursor;
         
         bool bAutoSelect;
         COLOR_LEVEL nColorLevel;

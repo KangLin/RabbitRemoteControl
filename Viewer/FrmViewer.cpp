@@ -4,6 +4,7 @@
 #include <QClipboard>
 #include <QDebug>
 #include <QResizeEvent>
+#include <QCursor>
 #include "Connect.h"
 
 CFrmViewer::CFrmViewer(QWidget *parent) :
@@ -210,6 +211,12 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
         painter.drawImage(r, image);
     }
     update();
+}
+
+void CFrmViewer::slotUpdateCursor(const QRect& r, const QImage& cursor)
+{
+    QCursor cs(QPixmap::fromImage(cursor), r.x(), r.y());
+    setCursor(cs);
 }
 
 void CFrmViewer::slotServerCutText(const QString& text)
