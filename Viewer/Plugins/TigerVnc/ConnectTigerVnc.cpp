@@ -32,8 +32,6 @@
 #include "rfb/CSecurityTLS.h"
 #endif
 
-#include "DlgSettings.h"
-
 static rfb::LogWriter vlog("ConnectTigerVnc");
 
 // 8 colours (1 bit per component)
@@ -51,7 +49,9 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true,
                                            255, 255, 255, 16, 8, 0);
 
 CConnectTigerVnc::CConnectTigerVnc(CFrmViewer *pView, QObject *parent)
-    : CConnect(pView, parent)
+    : CConnect(pView, parent),
+      m_pSock(nullptr),
+      m_pPara(nullptr)
 {
     security.setUserPasswdGetter(this);
     
@@ -89,38 +89,18 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 {
     if(!pPara) return -1;
     
-    struct strPara* p = (struct strPara*)pPara;
-    
-    SetServerName(p->szServerName);
-    SetUser(p->szUser, p->szPassword);
-
-    // Set server pixmap format
-    rfb::PixelFormat pf;
-  
-    switch (p->nColorLevel) {
-    case 0:
-        pf = fullColourPF;
-        break;
-    case 1:
-        pf = mediumColourPF;
-        break;
-    case 2:
-        pf = lowColourPF;
-        break;
-    case 3:
-        pf = verylowColourPF;
-        break;
-    }
-  
-    char str[256];
-    pf.print(str, 256);
-    vlog.info(tr("Using pixel format %s").toStdString().c_str(), str);
-    setPF(pf);
+    m_pPara = (struct strPara*)pPara;
+        
+    SetServerName(m_pPara->szServerName);
+    SetUser(m_pPara->szUser, m_pPara->szPassword);
     
     // Set Preferred Encoding
-    setPreferredEncoding(p->nEncoding);
-    setCompressLevel(p->nCompressLevel);
-    setQualityLevel(p->nQualityLevel);
+    setPreferredEncoding(m_pPara->nEncoding);
+    setCompressLevel(m_pPara->nCompressLevel);
+    setQualityLevel(m_pPara->nQualityLevel);
+
+    // Set server pixmap format
+    updatePixelFormat();
     
     return 0;
 }
@@ -182,7 +162,13 @@ void CConnectTigerVnc::setColourMapEntries(int firstColour, int nColours, rdr::U
 
 void CConnectTigerVnc::initDone()
 {
+    Q_ASSERT(m_pPara); // Please call SetParamter before call Connect
     vlog.info("initDone");
+    
+    // If using AutoSelect with old servers, start in FullColor
+    // mode. See comment in autoSelectFormatAndEncoding. 
+    if (server.beforeVersion(3, 8) && m_pPara->bAutoSelect)
+        m_pPara->nColorLevel = Full;
     
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
@@ -218,17 +204,127 @@ bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text
     return true;
 }
 
+// framebufferUpdateEnd() is called at the end of an update.
+// For each rectangle, the FdInStream will have timed the speed
+// of the connection, allowing us to select format and encoding
+// appropriately, and then request another incremental update.
 void CConnectTigerVnc::framebufferUpdateEnd()
 {
     rfb::CConnection::framebufferUpdateEnd();
     vlog.debug("CConnectTigerVnc::framebufferUpdateEnd");
     const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
     emit sigUpdateRect(img.rect(), img);
+    
+    // Compute new settings based on updated bandwidth values
+    if (m_pPara && m_pPara->bAutoSelect)
+        autoSelectFormatAndEncoding();
+}
+
+// autoSelectFormatAndEncoding() chooses the format and encoding appropriate
+// to the connection speed:
+//
+//   First we wait for at least one second of bandwidth measurement.
+//
+//   Above 16Mbps (i.e. LAN), we choose the second highest JPEG quality,
+//   which should be perceptually lossless.
+//
+//   If the bandwidth is below that, we choose a more lossy JPEG quality.
+//
+//   If the bandwidth drops below 256 Kbps, we switch to palette mode.
+//
+//   Note: The system here is fairly arbitrary and should be replaced
+//         with something more intelligent at the server end.
+//
+void CConnectTigerVnc::autoSelectFormatAndEncoding()
+{
+    int kbitsPerSecond = m_pSock->inStream().kbitsPerSecond();
+    unsigned int timeWaited = m_pSock->inStream().timeWaited();
+    bool newFullColour = m_pPara->nColorLevel == Full ? true : false;
+    int newQualityLevel = m_pPara->nQualityLevel;
+    
+    // Always use Tight
+    setPreferredEncoding(rfb::encodingTight);
+    
+    // Check that we have a decent bandwidth measurement
+    if ((kbitsPerSecond == 0) || (timeWaited < 10000))
+        return;
+    
+    // Select appropriate quality level
+    if (!m_pPara->bNoJpeg) {
+        if (kbitsPerSecond > 16000)
+            newQualityLevel = 8;
+        else
+            newQualityLevel = 6;
+        
+        if (newQualityLevel != m_pPara->nQualityLevel) {
+            vlog.info(("Throughput %d kbit/s - changing to quality %d"),
+                      kbitsPerSecond, newQualityLevel);
+            m_pPara->nQualityLevel = newQualityLevel;
+            setQualityLevel(newQualityLevel);
+        }
+    }
+    
+    if (server.beforeVersion(3, 8)) {
+        // Xvnc from TightVNC 1.2.9 sends out FramebufferUpdates with
+        // cursors "asynchronously". If this happens in the middle of a
+        // pixel format change, the server will encode the cursor with
+        // the old format, but the client will try to decode it
+        // according to the new format. This will lead to a
+        // crash. Therefore, we do not allow automatic format change for
+        // old servers.
+        return;
+    }
+    
+    // Select best color level
+    newFullColour = (kbitsPerSecond > 256);
+    if (newFullColour != (0 == m_pPara->nColorLevel)) {
+        if (newFullColour)
+            vlog.info(("Throughput %d kbit/s - full color is now enabled"),
+                      kbitsPerSecond);
+        else
+            vlog.info(("Throughput %d kbit/s - full color is now disabled"),
+                      kbitsPerSecond);
+        m_pPara->nColorLevel = newFullColour ? CConnectTigerVnc::Full : CConnectTigerVnc::Low;
+        updatePixelFormat();
+    } 
+}
+
+// requestNewUpdate() requests an update from the server, having set the
+// format and encoding appropriately.
+void CConnectTigerVnc::updatePixelFormat()
+{
+    Q_ASSERT(m_pPara);
+    
+    if(!m_pPara) return;
+    rfb::PixelFormat pf;
+    
+    switch (m_pPara->nColorLevel) {
+    case CConnectTigerVnc::Full:
+        pf = fullColourPF;
+        break;
+    case CConnectTigerVnc::Medium:
+        pf = mediumColourPF;
+        break;
+    case CConnectTigerVnc::Low:
+        pf = lowColourPF;
+        break;
+    case CConnectTigerVnc::VeryLow:
+        pf = verylowColourPF;
+        break;
+    }
+  
+    char str[256];
+    pf.print(str, 256);
+    vlog.info(tr("Using pixel format %s").toStdString().c_str(), str);
+    setPF(pf);
 }
 
 void CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
 {
+    m_pSock->inStream().startTiming();
     rfb::CConnection::dataRect(r, encoding);
+    m_pSock->inStream().stopTiming();
+    
     //vlog.debug("CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
     //           r.tl.x, r.tl.y, r.width(), r.height(), encoding);
     //TODO: 增加高性能更新图像

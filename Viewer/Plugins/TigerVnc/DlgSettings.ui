@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>397</width>
-    <height>400</height>
+    <height>406</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Server">
       <attribute name="title">
@@ -114,7 +114,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="1" column="1">
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="gpColorLevel">
          <property name="title">
           <string>Color level</string>
          </property>
@@ -181,7 +181,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="spJPEGLevel"/>
+          <widget class="QSpinBox" name="spJPEGLevel">
+           <property name="maximum">
+            <number>9</number>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QLabel" name="label_4">
@@ -193,7 +197,7 @@
         </layout>
        </item>
        <item row="1" column="0" rowspan="3">
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="gpEncodeing">
          <property name="title">
           <string>preferred Encoding</string>
          </property>

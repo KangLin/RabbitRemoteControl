@@ -18,10 +18,11 @@ class CConnectTigerVnc : public CConnect,
 public:
     explicit CConnectTigerVnc(CFrmViewer* pView = nullptr,
                               QObject *parent = nullptr);
-            
-    virtual int SetServerName(const QString& serverName) override;
-    virtual int SetParamter(void *pPara);
     
+    virtual int SetServerName(const QString& serverName) override;
+    virtual int SetParamter(void *pPara) override;
+    
+    // Please call SetParamter before call Connect
     int Connect() override;
     int Exec() override;
     // FdInStreamBlockCallback methods
@@ -58,8 +59,34 @@ public Q_SLOTS:
 private:
     network::Socket* m_pSock;
     
-    quint32 TranslateRfbKey(quint32 inkey,bool modifier);    
+    quint32 TranslateRfbKey(quint32 inkey,bool modifier);   
     
+public:
+    enum COLOR_LEVEL {
+        Full,
+        Medium,
+        Low,
+        VeryLow
+    };
+
+    struct strPara{
+        QString szServerName;
+        QString szUser;
+        QString szPassword;
+        
+        bool bAutoSelect;
+        COLOR_LEVEL nColorLevel;
+        int nEncoding;
+        bool bCompressLevel;
+        int nCompressLevel;
+        bool bNoJpeg;
+        int nQualityLevel;    
+    };
+
+private:
+    struct strPara* m_pPara;
+    void autoSelectFormatAndEncoding();
+    void updatePixelFormat();
 };
 
 #endif // CCONNECTTIGERVNC_H

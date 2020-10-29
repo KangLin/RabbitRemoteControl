@@ -5,9 +5,13 @@ CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
     : CConnecter(parent),
       m_pThread(nullptr)
 {
+    m_Para.bAutoSelect = true;
+    m_Para.nColorLevel = CConnectTigerVnc::Full;
     m_Para.nEncoding = rfb::encodingTight;
+    m_Para.bCompressLevel = true;
     m_Para.nCompressLevel = 2;
-    m_Para.nQualityLevel = -1;
+    m_Para.bNoJpeg = false;
+    m_Para.nQualityLevel = 8;
 
     m_pView = new CFrmViewer();
 }

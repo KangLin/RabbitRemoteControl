@@ -2,17 +2,21 @@
 #include "ui_DlgSettings.h"
 #include "rfb/encodings.h"
 
-CDlgSettings::CDlgSettings(strPara *pPara, QWidget *parent) :
+CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSettings),
     m_pPara(pPara)
 {
     ui->setupUi(this);
     
+    // Server
     ui->leServer->setText(m_pPara->szServerName);
     ui->leName->setText(m_pPara->szUser);
     ui->lePassword->setText(m_pPara->szPassword);
     
+    // Compress
+    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
+
     switch(m_pPara->nEncoding)
     {
     case rfb::encodingTight:
@@ -40,21 +44,22 @@ CDlgSettings::CDlgSettings(strPara *pPara, QWidget *parent) :
     
     switch(m_pPara->nColorLevel)
     {
-    case 0:
+    case CConnectTigerVnc::Full:
         ui->rbFull->setChecked(true);
         break;
-    case 1:
+    case CConnectTigerVnc::Medium:
         ui->rbMeduim->setChecked(true);
         break;
-    case 2:
+    case CConnectTigerVnc::Low:
         ui->rbLow->setChecked(true);
         break;
-    case 3:
+    case CConnectTigerVnc::VeryLow:
         ui->rbVeryLow->setChecked(true);
         break;
     }
-    
+    ui->cbCompress->setChecked(m_pPara->bCompressLevel);
     ui->spCompressLevel->setValue(m_pPara->nCompressLevel);
+    ui->cbJPEG->setChecked(!m_pPara->bNoJpeg);
     ui->spJPEGLevel->setValue(m_pPara->nQualityLevel);
 }
 
@@ -68,9 +73,13 @@ void CDlgSettings::on_pushButton_clicked()
     if(!m_pPara)
         reject();
     
+    // Server
     m_pPara->szServerName = ui->leServer->text();
     m_pPara->szUser = ui->leName->text();
     m_pPara->szPassword = ui->lePassword->text();
+    
+    // Compress
+    m_pPara->bAutoSelect = ui->cbCompressAutoSelect->isChecked();
     
     if(ui->rbTight->isChecked()) m_pPara->nEncoding = rfb::encodingTight;
     if(ui->rbRaw->isChecked()) m_pPara->nEncoding = rfb::encodingRaw;
@@ -80,12 +89,14 @@ void CDlgSettings::on_pushButton_clicked()
     if(ui->rbCopyRect->isChecked()) m_pPara->nEncoding = rfb::encodingCopyRect;
     if(ui->rbHextile->isChecked()) m_pPara->nEncoding = rfb::encodingHextile;
     
-    if(ui->rbFull->isChecked()) m_pPara->nColorLevel = 0;
-    if(ui->rbMeduim->isChecked()) m_pPara->nColorLevel = 1;
-    if(ui->rbLow->isChecked()) m_pPara->nColorLevel = 2;
-    if(ui->rbVeryLow->isChecked()) m_pPara->nColorLevel = 3;
+    if(ui->rbFull->isChecked()) m_pPara->nColorLevel = CConnectTigerVnc::Full;
+    if(ui->rbMeduim->isChecked()) m_pPara->nColorLevel = CConnectTigerVnc::Medium;
+    if(ui->rbLow->isChecked()) m_pPara->nColorLevel = CConnectTigerVnc::Low;
+    if(ui->rbVeryLow->isChecked()) m_pPara->nColorLevel = CConnectTigerVnc::VeryLow;
 
+    m_pPara->bCompressLevel = ui->cbCompress->isChecked();
     m_pPara->nCompressLevel = ui->spCompressLevel->value();
+    m_pPara->bNoJpeg = !ui->cbJPEG->isChecked();
     m_pPara->nQualityLevel = ui->spJPEGLevel->value();
     
     accept();
@@ -94,4 +105,49 @@ void CDlgSettings::on_pushButton_clicked()
 void CDlgSettings::on_pushButton_2_clicked()
 {
     reject();
+}
+
+void CDlgSettings::on_cbCompressAutoSelect_stateChanged(int arg1)
+{
+    m_pPara->bAutoSelect = arg1;
+    if(m_pPara->bAutoSelect)
+    {
+        ui->gpEncodeing->setEnabled(false);
+        ui->gpColorLevel->setEnabled(false);
+        ui->cbJPEG->setEnabled(false);
+        ui->spJPEGLevel->setEnabled(false);
+        ui->cbCompress->setEnabled(false);
+        ui->spCompressLevel->setEnabled(false);
+    } else {
+        ui->gpEncodeing->setEnabled(true);
+        ui->gpColorLevel->setEnabled(true);
+        ui->cbJPEG->setEnabled(true);
+        if(ui->cbJPEG->isChecked())
+            ui->spJPEGLevel->setEnabled(true);
+        ui->cbCompress->setEnabled(true);
+        if(ui->cbCompress->isChecked())
+            ui->spCompressLevel->setEnabled(true);
+    }
+}
+
+void CDlgSettings::on_cbCompress_stateChanged(int arg1)
+{
+    m_pPara->bCompressLevel = arg1;
+    if(m_pPara->bCompressLevel)
+    {
+        ui->spCompressLevel->setEnabled(true);
+    } else {
+        ui->spCompressLevel->setEnabled(false);
+    }
+}
+
+void CDlgSettings::on_cbJPEG_stateChanged(int arg1)
+{
+    m_pPara->bNoJpeg = !arg1;
+    if(m_pPara->bNoJpeg)
+    {
+        ui->spJPEGLevel->setEnabled(false);
+    } else {
+        ui->spJPEGLevel->setEnabled(true);
+    }
 }
