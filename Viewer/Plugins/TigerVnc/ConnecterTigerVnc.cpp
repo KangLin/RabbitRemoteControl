@@ -13,6 +13,7 @@ CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
     m_Para.bShared = true;
     m_Para.bBufferEndRefresh = true;
     m_Para.bLocalCursor = true;
+    m_Para.bClipboard = true;
     
     m_Para.bAutoSelect = true;
     m_Para.nColorLevel = CConnectTigerVnc::Full;

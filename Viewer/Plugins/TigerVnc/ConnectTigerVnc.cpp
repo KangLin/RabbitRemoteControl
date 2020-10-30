@@ -671,6 +671,8 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 
 void CConnectTigerVnc::slotClipBoardChange()
 {
+    if(!m_pPara->bClipboard) return;
+    
     if(m_bWriteClipboard) return;
 //    vlog.debug("CConnectTigerVnc::slotClipBoardChange()");
 
@@ -679,6 +681,8 @@ void CConnectTigerVnc::slotClipBoardChange()
 
 void CConnectTigerVnc::handleClipboardRequest()
 {
+    if(!m_pPara->bClipboard) return;
+    
 //    vlog.debug("CConnectTigerVnc::handleClipboardRequest");
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
@@ -704,7 +708,9 @@ void CConnectTigerVnc::handleClipboardRequest()
 
 void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 {
-//    vlog.debug("CConnectTigerVnc::handleClipboardAnnounce");
+    //    vlog.debug("CConnectTigerVnc::handleClipboardAnnounce");
+    if(!m_pPara->bClipboard) return;
+    
     if(available)
         this->requestClipboard();
 }
@@ -712,6 +718,8 @@ void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data, size_t length)
 {
 //    vlog.debug("CConnectTigerVnc::handleClipboardData");
+    if(!m_pPara->bClipboard) return;
+    
     m_bWriteClipboard = true;
     QClipboard* pClip = QApplication::clipboard();
     if(rfb::clipboardUTF8 & format) {

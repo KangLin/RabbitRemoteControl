@@ -18,6 +18,7 @@ CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     ui->cbShared->setChecked(m_pPara->bShared);
     ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
     ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
+    ui->cbClipboard->setChecked(m_pPara->bClipboard);
     
     // Compress
     ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
@@ -87,6 +88,7 @@ void CDlgSettings::on_pushButton_clicked()
     m_pPara->bShared = ui->cbShared->isChecked();
     m_pPara->bBufferEndRefresh = !ui->cbRealTimeUpdate->isChecked();
     m_pPara->bLocalCursor = ui->cbLocalCursor->isChecked();
+    m_pPara->bClipboard = ui->cbClipboard->isChecked();
     
     // Compress
     m_pPara->bAutoSelect = ui->cbCompressAutoSelect->isChecked();

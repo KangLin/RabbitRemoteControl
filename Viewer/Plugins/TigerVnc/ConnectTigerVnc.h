@@ -89,6 +89,7 @@ public:
         bool bShared;
         bool bBufferEndRefresh;
         bool bLocalCursor;
+        bool bClipboard;
         
         bool bAutoSelect;
         COLOR_LEVEL nColorLevel;
