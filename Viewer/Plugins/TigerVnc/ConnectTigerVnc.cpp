@@ -209,13 +209,13 @@ void CConnectTigerVnc::bell()
 
 void cleanMemoryFunction(void *para)
 {
-    vlog.debug("cleanMemoryFunction:%d", para);
+    //vlog.debug("cleanMemoryFunction:%d", para);
     delete []para;
 }
 
 void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspot, const rdr::U8 *data)
 {
-    vlog.debug("CConnectTigerVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
+    //vlog.debug("CConnectTigerVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
     QRect rect(hotspot.x, hotspot.y, width, height);
     if ((width == 0) || (height == 0)) {
       rdr::U8 *buffer = new rdr::U8[4];
@@ -672,14 +672,14 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 void CConnectTigerVnc::slotClipBoardChange()
 {
     if(m_bWriteClipboard) return;
-    vlog.debug("CConnectTigerVnc::slotClipBoardChange()");
+//    vlog.debug("CConnectTigerVnc::slotClipBoardChange()");
 
     announceClipboard(true);
 }
 
 void CConnectTigerVnc::handleClipboardRequest()
 {
-    vlog.debug("CConnectTigerVnc::handleClipboardRequest");
+//    vlog.debug("CConnectTigerVnc::handleClipboardRequest");
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
     
@@ -687,14 +687,14 @@ void CConnectTigerVnc::handleClipboardRequest()
 //        setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
     } else if (mimeData->hasText()) {
         QString szText = mimeData->text();
-        vlog.debug("CConnectTigerVnc::handleClipboardRequest:szText:%s",
-                   szText.toStdString().c_str());
+//        vlog.debug("CConnectTigerVnc::handleClipboardRequest:szText:%s",
+//                   szText.toStdString().c_str());
         sendClipboardData(rfb::clipboardUTF8, szText.toStdString().c_str(),
                           szText.toStdString().size());
     } else if (mimeData->hasHtml()) {
         QString szHtml = mimeData->html();
-        vlog.debug("CConnectTigerVnc::handleClipboardRequest:html:%s",
-                   szHtml.toStdString().c_str());
+//        vlog.debug("CConnectTigerVnc::handleClipboardRequest:html:%s",
+//                   szHtml.toStdString().c_str());
         sendClipboardData(rfb::clipboardHTML, mimeData->html().toStdString().c_str(),
                           mimeData->html().toStdString().size());
     } else {
@@ -704,14 +704,14 @@ void CConnectTigerVnc::handleClipboardRequest()
 
 void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 {
-    vlog.debug("CConnectTigerVnc::handleClipboardAnnounce");
+//    vlog.debug("CConnectTigerVnc::handleClipboardAnnounce");
     if(available)
         this->requestClipboard();
 }
 
 void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data, size_t length)
 {
-    vlog.debug("CConnectTigerVnc::handleClipboardData");
+//    vlog.debug("CConnectTigerVnc::handleClipboardData");
     m_bWriteClipboard = true;
     QClipboard* pClip = QApplication::clipboard();
     if(rfb::clipboardUTF8 & format) {
