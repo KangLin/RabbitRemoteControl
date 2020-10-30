@@ -30,6 +30,8 @@ public Q_SLOTS:
     virtual int Process() override;
     virtual int Disconnect() override;
     
+    virtual void slotClipBoardChange();
+    
 public:
     // FdInStreamBlockCallback methods
     void blockCallback() override;
@@ -48,6 +50,10 @@ public:
     virtual void bell() override;
     virtual void setCursor(int width, int height, const rfb::Point& hotspot,
                               const rdr::U8* data) override;
+    
+    virtual void handleClipboardRequest() override;
+    virtual void handleClipboardAnnounce(bool available) override;
+    virtual void handleClipboardData(unsigned int format, const char *data, size_t length) override;
     
     virtual void getUserPasswd(bool secure, char** user, char** password) override;
     virtual bool showMsgBox(int flags, const char *title, const char *text) override;
@@ -97,6 +103,8 @@ private:
     struct strPara* m_pPara;
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
+    
+    bool m_bWriteClipboard;
 };
 
 #endif // CCONNECTTIGERVNC_H

@@ -2,10 +2,16 @@
 #include <QApplication>
 #include <QDebug>
 #include <QtPlugin>
+#include <QClipboard>
+#include <QMimeData>
 
 CConnect::CConnect(CFrmViewer *pView, QObject *parent)
     : QObject(parent), m_pView(nullptr)
 {
+    bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
+                         this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
+    Q_ASSERT(check);
+    
     SetViewer(pView);
 }
 
@@ -36,9 +42,7 @@ int CConnect::SetViewer(CFrmViewer *pView)
     check = connect(this, SIGNAL(sigSetDesktopName(const QString&)),
                     m_pView, SLOT(slotSetName(const QString&)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigServerCutText(const QString&)),
-                    m_pView, SLOT(slotServerCutText(const QString&)));
-    Q_ASSERT(check);
+
     check = connect(this, SIGNAL(sigUpdateRect(const QRect&, const QImage&)),
                     m_pView, SLOT(slotUpdateRect(const QRect&, const QImage&)));
     Q_ASSERT(check);
@@ -70,6 +74,7 @@ int CConnect::SetViewer(CFrmViewer *pView)
                     this, SLOT(slotKeyReleaseEvent(QKeyEvent*)),
                     Qt::DirectConnection);
     Q_ASSERT(check);
+        
     return 0;
 }
 

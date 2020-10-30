@@ -32,7 +32,9 @@ public Q_SLOTS:
     virtual int Connect() = 0;
     virtual int Disconnect() = 0;
     virtual int Process() = 0;
-
+    
+    virtual void slotClipBoardChange() = 0;
+    
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
@@ -42,8 +44,6 @@ Q_SIGNALS:
     
     void sigUpdateRect(const QRect& r, const QImage& image);
     void sigUpdateCursor(const QRect& r, const QImage& cursor);
-    //void sigBell();
-    void sigServerCutText(const QString& szText);
     
     void sigError(const int nError, const QString &szError);
     
@@ -54,7 +54,7 @@ public Q_SLOTS:
     virtual void slotWheelEvent(QWheelEvent*);
     virtual void slotKeyPressEvent(QKeyEvent*);
     virtual void slotKeyReleaseEvent(QKeyEvent*);
-    
+   
 protected:
     QString m_szServerName;
     QString m_szHost;
