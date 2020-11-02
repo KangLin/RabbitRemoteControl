@@ -428,9 +428,9 @@ void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
         mask |= 0x4;
     
     QPoint p = e->angleDelta();
-    if(p.y() < 0)
-        mask |= 8;
     if(p.y() > 0)
+        mask |= 8;
+    if(p.y() < 0)
         mask |= 16;
     if(p.x() < 0)
         mask |= 32;
@@ -444,7 +444,7 @@ void CConnectTigerVnc::slotKeyPressEvent(QKeyEvent* e)
     bool modifier = true;
     if (e->modifiers() == Qt::NoModifier)
         modifier = false;
-    
+    //vlog.debug("key:%d", e->key());
     this->writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier),
                                   0, true);
 }
