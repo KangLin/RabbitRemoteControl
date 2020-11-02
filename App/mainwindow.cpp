@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_pTab->setTabsClosable(true);
     m_pTab->setUsesScrollButtons(true);
     m_pTab->setMovable(true);
+    m_pTab->setFocusPolicy(Qt::NoFocus);
     bool check = connect(m_pTab, SIGNAL(tabCloseRequested(int)),
                          this, SLOT(slotTabCloseRequested(int)));
     Q_ASSERT(check);
@@ -168,7 +169,8 @@ void MainWindow::slotConnected()
     pScroll->setAlignment(Qt::AlignCenter);
     pScroll->setBackgroundRole(QPalette::Dark);
     pScroll->setWidget(pView);
-
+    pScroll->setFocusPolicy(Qt::NoFocus);
+    
     int nIndex = m_pTab->addTab(pScroll, pView->windowTitle());
     m_pTab->setCurrentIndex(nIndex);
     m_Connecters[pView] = p;
