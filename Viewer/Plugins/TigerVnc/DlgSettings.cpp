@@ -18,6 +18,7 @@ CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     ui->cbShared->setChecked(m_pPara->bShared);
     ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
     ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
+    ui->cbResizeWindows->setChecked(m_pPara->bSupportsDesktopResize);
     ui->cbClipboard->setChecked(m_pPara->bClipboard);
     
     // Compress
@@ -88,6 +89,7 @@ void CDlgSettings::on_pushButton_clicked()
     m_pPara->bShared = ui->cbShared->isChecked();
     m_pPara->bBufferEndRefresh = !ui->cbRealTimeUpdate->isChecked();
     m_pPara->bLocalCursor = ui->cbLocalCursor->isChecked();
+    m_pPara->bSupportsDesktopResize = ui->cbResizeWindows->isChecked();
     m_pPara->bClipboard = ui->cbClipboard->isChecked();
     
     // Compress

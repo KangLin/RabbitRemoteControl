@@ -370,7 +370,7 @@ void CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
     
     //vlog.debug("CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
     //           r.tl.x, r.tl.y, r.width(), r.height(), encoding);
-    //TODO: 增加高性能更新图像
+    // 立即更新图像
     if(m_pPara && !m_pPara->bBufferEndRefresh)
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();

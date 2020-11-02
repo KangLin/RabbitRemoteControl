@@ -30,7 +30,7 @@ public Q_SLOTS:
     virtual int Process() override;
     virtual int Disconnect() override;
     
-    virtual void slotClipBoardChange();
+    virtual void slotClipBoardChange() override;
     
 public:
     // FdInStreamBlockCallback methods
@@ -85,26 +85,27 @@ public:
         QString szServerName;
         QString szUser;
         QString szPassword;
-        
+
         bool bShared;
         bool bBufferEndRefresh;
         bool bLocalCursor;
+        bool bSupportsDesktopResize;
         bool bClipboard;
-        
+
         bool bAutoSelect;
         COLOR_LEVEL nColorLevel;
         int nEncoding;
         bool bCompressLevel;
         int nCompressLevel;
         bool bNoJpeg;
-        int nQualityLevel;    
+        int nQualityLevel;
     };
 
 private:
     struct strPara* m_pPara;
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
-    
+
     bool m_bWriteClipboard;
 };
 
