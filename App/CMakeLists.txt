@@ -5,14 +5,17 @@ project(RabbitRemoteControlApp LANGUAGES CXX)
 set(SOURCE_FILES
     main.cpp
     mainwindow.cpp
+    FrmFullScreenToolBar.cpp
     )
 
 set(HEADER_FILES
     mainwindow.h
+    FrmFullScreenToolBar.h
     )
 
 set(SOURCE_UI_FILES
     mainwindow.ui
+    FrmFullScreenToolBar.ui
     )
 
 if(WIN32)

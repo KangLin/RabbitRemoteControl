@@ -10,6 +10,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class CFrmFullScreenToolBar;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -17,18 +19,18 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     virtual ~MainWindow() override;
-    
-private slots:
+
+private Q_SLOTS:
+    void on_actionExit_E_triggered();
+    void on_actionFull_screen_F_triggered();
     void on_actionAbout_A_triggered();
     void on_actionUpdate_U_triggered();
     void on_actionStatusBar_S_triggered();
     void on_actionToolBar_T_triggered();
-    void on_actionFull_screen_F_triggered();
     void on_actionOriginal_O_triggered();
     void on_actionZoom_Z_triggered();
     void on_actionKeep_AspectRation_K_triggered();
-    void on_actionExit_E_triggered();
-    
+
     void on_actionConnect_C_triggered();
     void on_actionDisconnect_D_triggered();
     
@@ -52,5 +54,6 @@ private:
     QTabWidget* m_pTab;
     CManageConnecter m_ManageConnecter;
     QMap<CFrmViewer*, CConnecter*> m_Connecters;
+    CFrmFullScreenToolBar* m_pFullScreenToolBar;
 };
 #endif // MAINWINDOW_H

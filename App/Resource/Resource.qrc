@@ -13,5 +13,6 @@
         <file alias="Exit">Image/exit.png</file>
         <file alias="Connect">Image/lan-connect.png</file>
         <file alias="Disconnect">Image/landisconnect.png</file>
+        <file alias="Nail">Image/nail.png</file>
     </qresource>
 </RCC>

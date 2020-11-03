@@ -6,16 +6,21 @@
 #include <QMessageBox>
 #include "Connecter.h"
 #include "FrmViewer.h"
+#include <QTabBar>
+#include "FrmFullScreenToolBar.h"
+#include <QScreen>
+#include <QApplication>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow),
+      m_pFullScreenToolBar(nullptr)
 {
     ui->setupUi(this);
     
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());
-        
+
     m_pTab = new QTabWidget(this);
     m_pTab->setTabsClosable(true);
     m_pTab->setUsesScrollButtons(true);
@@ -25,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
                          this, SLOT(slotTabCloseRequested(int)));
     Q_ASSERT(check);
     this->setCentralWidget(m_pTab);
-    
+
     m_ManageConnecter.LoadPlugins();
 }
 
@@ -34,6 +39,9 @@ MainWindow::~MainWindow()
     foreach (auto it, m_Connecters) {
         it->DisConnect();
     }
+    
+    if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
+    
     delete ui;
 }
 
@@ -76,33 +84,68 @@ void MainWindow::on_actionFull_screen_F_triggered()
 {
     if(this->isFullScreen())
     {
+        QTabWidget* pTab = dynamic_cast<QTabWidget*>(this->centralWidget());
+        if(pTab)
+        {
+            pTab->showNormal();
+            pTab->tabBar()->show();
+        }
         this->showNormal();
+
         ui->actionFull_screen_F->setIcon(QIcon(":/image/FullScreen"));
         ui->actionFull_screen_F->setText(tr("Full screen(&F)"));
         ui->actionFull_screen_F->setToolTip(tr("Full screen"));
         ui->actionFull_screen_F->setStatusTip(tr("Full screen"));
         ui->actionFull_screen_F->setWhatsThis(tr("Full screen"));
-        
-        ui->toolBar->setAllowedAreas(Qt::AllToolBarAreas);
+
+        ui->toolBar->setVisible(true);
+        //ui->toolBar->setAllowedAreas(Qt::AllToolBarAreas);
         ui->toolBar->setVisible(ui->actionToolBar_T->isChecked());
-        
+
         ui->statusbar->setVisible(ui->actionStatusBar_S->isChecked());
         ui->menubar->setVisible(true);
+        if(m_pFullScreenToolBar)
+        {
+            m_pFullScreenToolBar->close();
+            m_pFullScreenToolBar = nullptr;
+        }
         return;
     }
-    
+
     this->showFullScreen();
+    QTabWidget* pTab = dynamic_cast<QTabWidget*>(this->centralWidget());
+    if(pTab)
+    {
+        pTab->tabBar()->hide();
+        pTab->showFullScreen();
+    }
+
     ui->actionFull_screen_F->setIcon(QIcon(":/image/ExitFullScreen"));
     ui->actionFull_screen_F->setText(tr("Exit full screen(&E)"));
     ui->actionFull_screen_F->setToolTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setStatusTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setWhatsThis(tr("Exit full screen"));
-        
-    ui->toolBar->setVisible(true);
-    ui->toolBar->setAllowedAreas(Qt::NoToolBarArea);
-        
+
+    ui->toolBar->setVisible(false);
+    //ui->toolBar->setAllowedAreas(Qt::NoToolBarArea);
+
     ui->statusbar->setVisible(false);
     ui->menubar->setVisible(false);
+
+    if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
+    m_pFullScreenToolBar = new CFrmFullScreenToolBar(this);
+    m_pFullScreenToolBar->move((qApp->primaryScreen()->geometry().width()
+               - m_pFullScreenToolBar->frameGeometry().width()) / 2, 0);
+    bool check = connect(m_pFullScreenToolBar, SIGNAL(sigExitFullScreen()),
+                         this, SLOT(on_actionFull_screen_F_triggered()));
+    Q_ASSERT(check);
+    check = connect(m_pFullScreenToolBar, SIGNAL(sigExit()),
+                    this, SLOT(on_actionExit_E_triggered()));
+    Q_ASSERT(check);
+    check = connect(m_pFullScreenToolBar, SIGNAL(sigDisconnect()), 
+                    this, SLOT(on_actionDisconnect_D_triggered()));
+    Q_ASSERT(check);
+    m_pFullScreenToolBar->show();
 }
 
 void MainWindow::on_actionOriginal_O_triggered()
