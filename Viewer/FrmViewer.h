@@ -27,8 +27,10 @@ public:
         AspectRation,    // Keep desktop aspectration adapt to windows
     };
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
+    ADAPT_WINDOWS AdaptWindows();
+
     void SetClipboard(bool enable = true);
-    
+
 public Q_SLOTS:
     void slotConnect();
     void slotDisconnect();
@@ -54,7 +56,6 @@ private:
 
     void paintDesktop();
     
-    // QWidget interface
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;

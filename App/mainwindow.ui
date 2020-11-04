@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -158,6 +158,12 @@
    </property>
   </action>
   <action name="actionOriginal_O">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
      <normaloff>:/image/Original</normaloff>:/image/Original</iconset>
@@ -173,6 +179,9 @@
    </property>
   </action>
   <action name="actionZoom_Z">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
      <normaloff>:/image/ZoomIn</normaloff>:/image/ZoomIn</iconset>
@@ -188,6 +197,9 @@
    </property>
   </action>
   <action name="actionKeep_AspectRation_K">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
      <normaloff>:/image/AspectRatio</normaloff>:/image/AspectRatio</iconset>
@@ -197,6 +209,9 @@
    </property>
   </action>
   <action name="actionExit_E">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
      <normaloff>:/image/Exit</normaloff>:/image/Exit</iconset>

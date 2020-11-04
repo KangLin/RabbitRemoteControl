@@ -52,9 +52,9 @@ void CFrmViewer::paintDesktop()
     QRectF dstRect = rect();
     
     switch (m_AdaptWindows) {
+    case Auto:
+    case Zoom:
     case Original:
-        dstRect = m_Desktop.rect();
-        this->setGeometry(m_Desktop.rect());
         break;
     case OriginalCenter:
         dstRect.setLeft((rect().width() - m_Desktop.rect().width()) >> 1); 
@@ -89,10 +89,6 @@ void CFrmViewer::paintDesktop()
         dstRect = QRectF(newL, newT, newW, newH);
         break;
     }
-    case Zoom:    
-        break;
-    case Auto:
-        break;
     }
     painter.drawImage(dstRect, m_Desktop);
 }
@@ -113,16 +109,7 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
         return;
     }
     
-    if(rect().width() > m_DesktopSize.width()
-            && rect().height() > m_DesktopSize.height())
-        paintDesktop();
-    else
-    {
-        QPainter painter(this);
-        // 设置平滑模式
-        painter.setRenderHint(QPainter::SmoothPixmapTransform);
-        painter.drawImage(rect(), m_Desktop);
-    }
+    paintDesktop();
 }
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
@@ -158,6 +145,15 @@ void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
 {
     m_AdaptWindows = aw;
+    if(Original == m_AdaptWindows
+            || OriginalCenter == m_AdaptWindows)
+        resize(m_DesktopSize);
+    update();
+}
+
+CFrmViewer::ADAPT_WINDOWS CFrmViewer::AdaptWindows()
+{
+    return m_AdaptWindows;
 }
 
 void CFrmViewer::SetClipboard(bool enable)
@@ -179,17 +175,11 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
     m_DesktopSize.setWidth(width);
     m_DesktopSize.setHeight(height);
     m_Desktop = QImage(m_DesktopSize, QImage::Format_RGB32);
-    resize(width, height);
+    if(Original == m_AdaptWindows
+            || OriginalCenter == m_AdaptWindows)
+        resize(width, height);
+
     return;
-    
-    int w = this->width();
-    int h = this->height();
-    if(this->width() < width)
-        w = width;
-    if(this->height() < height)
-        h = height;
-    if(this->width() != w || this->height() != h)
-        this->resize(w, h);
 }
 
 void CFrmViewer::slotSetName(const QString& szName)
