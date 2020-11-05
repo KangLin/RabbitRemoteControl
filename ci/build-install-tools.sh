@@ -176,6 +176,9 @@ function function_unix()
 
     sudo apt-get update -y -qq
     sudo apt-get install debhelper fakeroot -y -qq
+    sudo apt-get install -y -qq  packaging-dev equivs \
+        libgnutls-dev libfltk1.3-dev fluid libxtst-dev \
+        libxdamage-dev libxfixes-dev libxrandr-dev
     sudo apt-get install -y -qq libdlib-dev libopencv-dev
     sudo apt-get install -y -qq libavcodec-dev libavformat-dev libavfilter-dev libavdevice-dev libavresample-dev libavutil-dev 
     sudo apt-get install -y -qq libglu1-mesa-dev \
@@ -187,7 +190,7 @@ function function_unix()
         libmysql-cil-dev libmysql-cil-dev libmysql-ocaml-dev \
         libmysql++-dev libmysqld-dev libmysqlcppconn-dev \
         libmysqlclient-dev \
-        libodbc1 
+        libodbc1
 
     if [ "$DOWNLOAD_QT" = "APT" ]; then
         sudo apt-get install -y -qq qttools5-dev qttools5-dev-tools \

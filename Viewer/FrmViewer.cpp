@@ -32,6 +32,34 @@ void CFrmViewer::resizeEvent(QResizeEvent *event)
     qDebug() << "CFrmViewer::resizeEvent:" << event->size();
 }
 
+QRectF CFrmViewer::GetAspectRationRect()
+{
+    QRectF dstRect = rect();
+    qreal newW = dstRect.width();
+    qreal newH = dstRect.height();
+    qreal newT = 0;
+    qreal newL = 0;
+    
+    qreal rateW = static_cast<qreal>(rect().width())
+            / static_cast<qreal>(m_Desktop.width());
+    qreal rateH = static_cast<qreal>(rect().height())
+            / static_cast<qreal>(m_Desktop.height());
+    if(rateW < rateH)
+    {
+        newW = m_Desktop.width() * rateW;
+        newH = m_Desktop.height() * rateW;
+        newT = (static_cast<qreal>(rect().height()) - newH)
+                / static_cast<qreal>(2);
+    } else if(rateW > rateH) {
+        newW = m_Desktop.width() * rateH;
+        newH = m_Desktop.height() * rateH;
+        newL = (static_cast<qreal>(rect().width()) - newW)
+                / static_cast<qreal>(2);
+    }
+    dstRect = QRectF(newL, newT, newW, newH);
+    return dstRect;
+}
+
 void CFrmViewer::paintDesktop()
 {
     if(this->isHidden())
@@ -64,29 +92,7 @@ void CFrmViewer::paintDesktop()
         break;
     case AspectRation:
     {
-        //m_Image = m_Image.scaled(rect().size(), Qt::KeepAspectRatio, Qt::SmoothTransformation); 
-        qreal newW = dstRect.width();
-        qreal newH = dstRect.height();
-        qreal newT = 0;
-        qreal newL = 0;
-        
-        qreal rateW = static_cast<qreal>(rect().width())
-                / static_cast<qreal>(m_Desktop.width());
-        qreal rateH = static_cast<qreal>(rect().height())
-                / static_cast<qreal>(m_Desktop.height());
-        if(rateW < rateH)
-        {
-            newW = m_Desktop.width() * rateW;
-            newH = m_Desktop.height() * rateW;
-            newT = (static_cast<qreal>(rect().height()) - newH)
-                    / static_cast<qreal>(2);
-        } else if(rateW > rateH) {
-            newW = m_Desktop.width() * rateH;
-            newH = m_Desktop.height() * rateH;
-            newL = (static_cast<qreal>(rect().width()) - newW)
-                    / static_cast<qreal>(2);
-        }
-        dstRect = QRectF(newL, newT, newW, newH);
+        dstRect = GetAspectRationRect();
         break;
     }
     }
@@ -112,24 +118,95 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
     paintDesktop();
 }
 
+int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
+{
+    //qDebug() << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
+
+    switch (m_AdaptWindows) {
+    case Auto:
+    case Original:
+    case OriginalCenter:
+        outPos = inPos;
+        return 0;
+    case Zoom:
+        outPos.setX(m_Desktop.width() * inPos.x() / width());
+        outPos.setY(m_Desktop.height() * inPos.y() / height());
+        break;
+    case AspectRation:
+        QRectF r = GetAspectRationRect();
+        if(inPos.x() < r.left()
+                || inPos.x() > r.right()
+                || inPos.y() < r.top()
+                || inPos.y() > r.bottom())
+            return -1;
+        outPos.setX(m_Desktop.width() * (inPos.x() - r.left()) / r.width());
+        outPos.setY(m_Desktop.height() * (inPos.y() - r.top()) / r.height());
+        break;
+    }
+
+    return 0; 
+}
+
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
-    emit sigMousePressEvent(event);
+    QMouseEvent e = *event;
+    QPointF pos = e.pos();
+    if(TranslationMousePoint(e.pos(), pos)) return;
+    e = QMouseEvent(event->type(),
+                    pos,
+                    event->windowPos(),
+                    event->screenPos(),
+                    event->button(),
+                    event->buttons(),
+                    event->modifiers());
+    emit sigMousePressEvent(&e);
 }
 
 void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 {
-    emit sigMouseReleaseEvent(event);
+    QMouseEvent e = *event;
+    QPointF pos = e.pos();
+    if(TranslationMousePoint(e.pos(), pos)) return;
+    e = QMouseEvent(event->type(),
+                    pos,
+                    event->windowPos(),
+                    event->screenPos(),
+                    event->button(),
+                    event->buttons(),
+                    event->modifiers());
+    emit sigMouseReleaseEvent(&e);
 }
 
 void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 {
-    emit sigMouseMoveEvent(event);
+    QMouseEvent e = *event;
+    QPointF pos = e.pos();
+    if(TranslationMousePoint(e.pos(), pos)) return;
+    e = QMouseEvent(event->type(),
+                    pos,
+                    event->windowPos(),
+                    event->screenPos(),
+                    event->button(),
+                    event->buttons(),
+                    event->modifiers());
+    emit sigMouseMoveEvent(&e);
 }
 
 void CFrmViewer::wheelEvent(QWheelEvent *event)
 {
-    emit sigWheelEvent(event);
+    QWheelEvent e = *event;
+    QPointF pos = e.pos();
+    if(TranslationMousePoint(e.pos(), pos)) return;
+    e = QWheelEvent(pos,
+                    event->globalPos(),
+                    event->pixelDelta(),
+                    event->angleDelta(),
+                    event->buttons(),
+                    event->modifiers(),
+                    event->phase(),
+                    event->inverted(),
+                    event->source());
+    emit sigWheelEvent(&e);
 }
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
@@ -147,7 +224,7 @@ void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
     m_AdaptWindows = aw;
     if(Original == m_AdaptWindows
             || OriginalCenter == m_AdaptWindows)
-        resize(m_DesktopSize);
+        resize(m_Desktop.size());
     update();
 }
 
@@ -172,9 +249,8 @@ void CFrmViewer::slotDisconnect()
 
 void CFrmViewer::slotSetDesktopSize(int width, int height)
 {
-    m_DesktopSize.setWidth(width);
-    m_DesktopSize.setHeight(height);
-    m_Desktop = QImage(m_DesktopSize, QImage::Format_RGB32);
+    m_Desktop = QImage(width, height, QImage::Format_RGB32);
+    
     if(Original == m_AdaptWindows
             || OriginalCenter == m_AdaptWindows)
         resize(width, height);

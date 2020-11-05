@@ -403,6 +403,7 @@ void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
 {
     //vlog.debug("CConnectTigerVnc::slotMouseMoveEvent");
+    //qDebug() << "slotMouseMoveEvent x:" << e->x() << ";y:" << e->y();
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     if(e->buttons() & Qt::MouseButton::LeftButton)

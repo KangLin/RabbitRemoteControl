@@ -55,6 +55,8 @@ private:
     Ui::CFrmViewer *ui;
 
     void paintDesktop();
+    int TranslationMousePoint(QPointF inPos, QPointF &outPos);
+    QRectF GetAspectRationRect();
     
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -68,7 +70,6 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 
 private:
-    QSize m_DesktopSize;
     QImage m_Desktop;
 
     ADAPT_WINDOWS m_AdaptWindows;
