@@ -14,12 +14,13 @@ class CManageConnectTigerVnc : public CManageConnecter
     
 public:
     explicit CManageConnectTigerVnc(QObject *parent = nullptr);
-    virtual ~CManageConnectTigerVnc();
+    virtual ~CManageConnectTigerVnc() override;
     
-    virtual QString Name();
-    virtual QString Description();
+    virtual QString Name() override;
+    virtual QString Description() override;
     
-    virtual CConnecter* CreateConnecter(const QString& szName);
+    virtual QString Protol() override;
+    virtual CConnecter* CreateConnecter(const QString& szProtol) override;
 };
 
 #endif // CMANAGECONNECTTIGERVNC_H

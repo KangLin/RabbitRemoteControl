@@ -86,6 +86,8 @@ public:
         QString szUser;
         QString szPassword;
 
+        bool bSave;
+        
         bool bShared;
         bool bBufferEndRefresh;
         bool bLocalCursor;

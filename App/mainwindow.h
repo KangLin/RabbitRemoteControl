@@ -44,6 +44,8 @@ private Q_SLOTS:
     void slotConnected();
     void slotDisconnected();
 
+    void on_actionOpen_O_triggered();
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 

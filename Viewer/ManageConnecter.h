@@ -15,20 +15,26 @@ class RABBITREMOTECONTROL_EXPORT CManageConnecter : public QObject
     
 public:
     explicit CManageConnecter(QObject *parent = nullptr);
-    ~CManageConnecter();
+    virtual ~CManageConnecter();
     
     virtual QString Name();
     virtual QString Description();
     
+    virtual QString Protol();
+    
     // Return CConnecter pointer, the owner is caller
-    virtual CConnecter* CreateConnecter(const QString& szName);
+    virtual CConnecter* CreateConnecter(const QString& szProtol);
+    
+    virtual CConnecter* LoadConnecter(const QString& szFile);
+    virtual int SaveConnecter(const QString& szFile, CConnecter* pConnecter);
     
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
     
 private:
     QMap<QString, CManageConnecter*> m_Plugins;
-
+    
+    qint8 m_FileVersion;
 };
 
 QT_BEGIN_NAMESPACE

@@ -28,7 +28,7 @@ CManageConnectTigerVnc::~CManageConnectTigerVnc()
 
 QString CManageConnectTigerVnc::Name()
 {
-    return "VNC";
+    return Protol();
 }
 
 QString CManageConnectTigerVnc::Description()
@@ -36,9 +36,17 @@ QString CManageConnectTigerVnc::Description()
     return "Access remote desktops such as unix/linux, windows, etc.";
 }
 
-CConnecter* CManageConnectTigerVnc::CreateConnecter(const QString &szName)
+QString CManageConnectTigerVnc::Protol()
 {
-    if(Name() == szName)
-        return new CConnecterTigerVnc(this);
+    return "VNC";
+}
+
+CConnecter* CManageConnectTigerVnc::CreateConnecter(const QString &szProtol)
+{
+    if(Protol() == szProtol)
+    {   
+        CConnecter* p = new CConnecterTigerVnc(this);
+        return p;
+    }
     return nullptr;
 }

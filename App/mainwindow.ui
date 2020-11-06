@@ -49,6 +49,7 @@
     </property>
     <addaction name="actionConnect_C"/>
     <addaction name="actionDisconnect_D"/>
+    <addaction name="actionOpen_O"/>
     <addaction name="actionRecently_connected"/>
     <addaction name="separator"/>
     <addaction name="actionExit_E"/>
@@ -68,6 +69,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOpen_O"/>
    <addaction name="actionConnect_C"/>
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
@@ -207,6 +209,12 @@
    <property name="text">
     <string>Keep AspectRation(&amp;K)</string>
    </property>
+   <property name="statusTip">
+    <string>Keep AspectRation(K)</string>
+   </property>
+   <property name="whatsThis">
+    <string>Keep AspectRation(K)</string>
+   </property>
   </action>
   <action name="actionExit_E">
    <property name="checkable">
@@ -218,6 +226,12 @@
    </property>
    <property name="text">
     <string>Exit(&amp;E)</string>
+   </property>
+   <property name="statusTip">
+    <string>Exit(E)</string>
+   </property>
+   <property name="whatsThis">
+    <string>Exit(E)</string>
    </property>
   </action>
   <action name="actionConnect_C">
@@ -259,6 +273,21 @@
    </property>
    <property name="whatsThis">
     <string>Disconnect(D)</string>
+   </property>
+  </action>
+  <action name="actionOpen_O">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Open</normaloff>:/image/Open</iconset>
+   </property>
+   <property name="text">
+    <string>Open(&amp;O)</string>
+   </property>
+   <property name="statusTip">
+    <string>Open(O)</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open(O)</string>
    </property>
   </action>
  </widget>

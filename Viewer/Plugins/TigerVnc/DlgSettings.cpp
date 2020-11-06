@@ -14,6 +14,7 @@ CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     ui->leServer->setText(m_pPara->szServerName);
     ui->leName->setText(m_pPara->szUser);
     ui->lePassword->setText(m_pPara->szPassword);
+    ui->cbSave->setChecked(m_pPara->bSave);
     
     ui->cbShared->setChecked(m_pPara->bShared);
     ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
@@ -86,6 +87,7 @@ void CDlgSettings::on_pushButton_clicked()
     m_pPara->szUser = ui->leName->text();
     m_pPara->szPassword = ui->lePassword->text();
     
+    m_pPara->bSave = ui->cbSave->isChecked();
     m_pPara->bShared = ui->cbShared->isChecked();
     m_pPara->bBufferEndRefresh = !ui->cbRealTimeUpdate->isChecked();
     m_pPara->bLocalCursor = ui->cbLocalCursor->isChecked();

@@ -6,10 +6,7 @@ CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
     : CConnecter(parent),
       m_pThread(nullptr)
 {
-    //TODO: delete it
-    m_Para.szServerName = "fmpixel.f3322.net:5906";
-    m_Para.szPassword = "yly075077";
-    
+    m_Para.bSave = true;
     m_Para.bShared = true;
     m_Para.bBufferEndRefresh = true;
     m_Para.bLocalCursor = true;
@@ -37,6 +34,23 @@ CConnecterTigerVnc::~CConnecterTigerVnc()
     }
 }
 
+QString CConnecterTigerVnc::Name()
+{
+    QString szName = m_Para.szServerName;
+    szName.replace(":", "_");
+    return Protol() + "_" + szName;
+}
+
+QString CConnecterTigerVnc::Description()
+{
+    return Protol() + ":" + m_Para.szServerName;
+}
+
+QString CConnecterTigerVnc::Protol()
+{
+    return "VNC";
+}
+
 CFrmViewer* CConnecterTigerVnc::GetViewer()
 {
     return m_pView;
@@ -44,6 +58,7 @@ CFrmViewer* CConnecterTigerVnc::GetViewer()
 
 QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 {
+    Q_UNUSED(parent)
     CDlgSettings* p = new CDlgSettings(&m_Para);
     p->setAttribute(Qt::WA_DeleteOnClose);
     return p;
@@ -65,5 +80,51 @@ int CConnecterTigerVnc::DisConnect()
     
     m_pThread->m_bExit = true;
     emit sigDisconnected();
+    return 0;
+}
+
+int CConnecterTigerVnc::Save(QDataStream & d)
+{
+    d << m_Para.szServerName
+      << m_Para.szUser
+      << m_Para.szPassword
+      << m_Para.bSave
+      << m_Para.bShared
+      << m_Para.bBufferEndRefresh
+      << m_Para.bLocalCursor
+      << m_Para.bSupportsDesktopResize
+      << m_Para.bClipboard
+      << m_Para.bAutoSelect
+      << static_cast<int>(m_Para.nColorLevel)
+      << m_Para.nEncoding
+      << m_Para.bCompressLevel
+      << m_Para.nCompressLevel
+      << m_Para.bNoJpeg
+      << m_Para.nQualityLevel
+         ;
+    return 0;
+}
+
+int CConnecterTigerVnc::Load(QDataStream &d)
+{
+    int nColorLevel = CConnectTigerVnc::Full;
+    d >> m_Para.szServerName
+           >> m_Para.szUser
+           >> m_Para.szPassword
+           >> m_Para.bSave
+           >> m_Para.bShared
+           >> m_Para.bBufferEndRefresh
+           >> m_Para.bLocalCursor
+           >> m_Para.bSupportsDesktopResize
+           >> m_Para.bClipboard
+           >> m_Para.bAutoSelect
+           >> nColorLevel
+           >> m_Para.nEncoding
+           >> m_Para.bCompressLevel
+           >> m_Para.nCompressLevel
+           >> m_Para.bNoJpeg
+           >> m_Para.nQualityLevel
+           ;
+    m_Para.nColorLevel = static_cast<CConnectTigerVnc::COLOR_LEVEL>(nColorLevel);
     return 0;
 }

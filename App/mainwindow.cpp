@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "FrmUpdater/FrmUpdater.h"
+#include "RabbitCommonDir.h"
 #include "DlgAbout/DlgAbout.h"
 
 #include "Connecter.h"
@@ -11,6 +12,7 @@
 #include <QMessageBox>
 #include <QScreen>
 #include <QApplication>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -216,6 +218,22 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
+void MainWindow::on_actionOpen_O_triggered()
+{
+    QString file = QFileDialog::getOpenFileName(this,
+                           tr("Open remote control"),
+    RabbitCommon::CDir::Instance()->GetDirUserData(),
+           tr("Rabbit Remote control File (*.rrc)"));
+    if(file.isEmpty()) return;
+    CConnecter* p = m_ManageConnecter.LoadConnecter(file);
+    if(nullptr == p) return;
+
+    bool check = connect(p, SIGNAL(sigConnected()),
+                         this, SLOT(slotConnected()));
+    Q_ASSERT(check);
+    p->Connect();
+}
+
 void MainWindow::on_actionConnect_C_triggered()
 {
     CConnecter* p = m_ManageConnecter.CreateConnecter("VNC");
@@ -233,6 +251,9 @@ void MainWindow::on_actionConnect_C_triggered()
         delete p;
         break;
     case QDialog::Accepted:
+        QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                + QDir::separator() + p->Name() + ".rrc";
+        m_ManageConnecter.SaveConnecter(szFile, p);
         p->Connect();
         break;
     }
