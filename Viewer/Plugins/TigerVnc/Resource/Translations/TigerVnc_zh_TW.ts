@@ -19,7 +19,7 @@
     <message>
         <location filename="../../DlgSettings.ui" line="24"/>
         <source>Server</source>
-        <translation>服務</translation>
+        <translation>服務器</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="45"/>

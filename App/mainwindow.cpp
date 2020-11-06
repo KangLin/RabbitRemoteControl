@@ -13,12 +13,14 @@
 #include <QScreen>
 #include <QApplication>
 #include <QFileDialog>
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
       m_pFullScreenToolBar(nullptr)
 {
+    LoadStyle();
     ui->setupUi(this);
 
     CFrmUpdater updater;
@@ -388,3 +390,56 @@ int MainWindow::GetViewIndex(CFrmViewer *pView)
     }
     return -1;
 }
+
+int MainWindow::LoadStyle()
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    QString szFile = set.value("Sink",
+                  RabbitCommon::CDir::Instance()->GetDirData()
+                  + QDir::separator()
+                  + "style" + QDir::separator()
+                  + "black.qss").toString();
+    qDebug() << "LoadStyle:" << szFile;
+    return  LoadStyle(szFile);
+}
+
+int MainWindow::LoadStyle(const QString &szFile)
+{
+    if(szFile.isEmpty())
+        qApp->setStyleSheet("");
+    else
+    {
+        QFile file(szFile);
+        if(file.open(QFile::ReadOnly))
+        {
+            QString stylesheet= file.readAll();
+            qApp->setStyleSheet(stylesheet);
+            file.close();
+        }
+        else
+        {
+            qDebug() << "file open file fail:" << szFile;                       
+        }
+    }
+    return 0;
+}
+
+void MainWindow::on_actionSink_triggered()
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    QString szFile = set.value("Sink",
+                  RabbitCommon::CDir::Instance()->GetDirData()
+                  + QDir::separator()
+                  + "style" + QDir::separator()
+                  + "black.qss").toString();
+    szFile = RabbitCommon::CDir::GetOpenFileName(this, tr("Open sink"),
+                 szFile,
+                 tr("Style files(*.qss)"));
+    if(szFile.isEmpty()) return;
+    LoadStyle(szFile);
+    
+    set.setValue("Sink", szFile);
+}
+

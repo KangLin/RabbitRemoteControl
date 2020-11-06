@@ -40,6 +40,8 @@
     <addaction name="actionZoom_Z"/>
     <addaction name="actionKeep_AspectRation_K"/>
     <addaction name="separator"/>
+    <addaction name="actionSink"/>
+    <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatusBar_S"/>
    </widget>
@@ -288,6 +290,11 @@
    </property>
    <property name="whatsThis">
     <string>Open(O)</string>
+   </property>
+  </action>
+  <action name="actionSink">
+   <property name="text">
+    <string>Sink</string>
    </property>
   </action>
  </widget>

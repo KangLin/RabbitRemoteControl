@@ -33,6 +33,8 @@ private Q_SLOTS:
     void on_actionOriginal_O_toggled(bool arg1);
     void on_actionZoom_Z_toggled(bool arg1);
     void on_actionKeep_AspectRation_K_toggled(bool arg1);
+    void on_actionOpen_O_triggered();
+    void on_actionSink_triggered();
 
     void on_actionConnect_C_triggered();
     void on_actionDisconnect_D_triggered();
@@ -43,8 +45,6 @@ private Q_SLOTS:
     void slotViewTitleChanged(const QString& szName);
     void slotConnected();
     void slotDisconnected();
-
-    void on_actionOpen_O_triggered();
     
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
@@ -55,6 +55,9 @@ private:
     CConnecter* GetConnecter(int index);
     int GetViewIndex(CFrmViewer* pView);
 
+    int LoadStyle();
+    int LoadStyle(const QString &szFile);
+    
 private:
     Ui::MainWindow *ui;
     QActionGroup* m_pGBView;

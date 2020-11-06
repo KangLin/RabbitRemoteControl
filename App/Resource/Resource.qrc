@@ -15,5 +15,6 @@
         <file alias="Disconnect">Image/landisconnect.png</file>
         <file alias="Nail">Image/nail.png</file>
         <file alias="Open">Image/Open.png</file>
+        <file alias="Skin">Image/skin.png</file>
     </qresource>
 </RCC>
