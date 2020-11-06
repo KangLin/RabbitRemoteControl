@@ -12,7 +12,6 @@
 #include <QMessageBox>
 #include <QScreen>
 #include <QApplication>
-#include <QFileDialog>
 #include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -222,9 +221,9 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 
 void MainWindow::on_actionOpen_O_triggered()
 {
-    QString file = QFileDialog::getOpenFileName(this,
-                           tr("Open remote control"),
-    RabbitCommon::CDir::Instance()->GetDirUserData(),
+    QString file = RabbitCommon::CDir::GetOpenFileName(this,
+                                  tr("Open remote control"),
+           RabbitCommon::CDir::Instance()->GetDirUserData(), 
            tr("Rabbit Remote control File (*.rrc)"));
     if(file.isEmpty()) return;
     CConnecter* p = m_ManageConnecter.LoadConnecter(file);
