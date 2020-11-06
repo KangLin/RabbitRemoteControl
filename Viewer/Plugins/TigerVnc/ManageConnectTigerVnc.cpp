@@ -3,11 +3,23 @@
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
 #include <QDebug>
+#include <QApplication>
+#include "RabbitCommonDir.h"
 
 static bool initlog = false;
 CManageConnectTigerVnc::CManageConnectTigerVnc(QObject *parent)
     : CManageConnecter(parent)
 {
+#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+    Q_INIT_RESOURCE(translations_TigerVnc);
+#endif
+
+    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
+            + "/" + Name() + "_" + QLocale::system().name() + ".qm";
+    if(!m_Translator.load(szTranslatorFile))
+        qCritical() << "Open translator file fail:" << szTranslatorFile;
+    qApp->installTranslator(&m_Translator);
+    
     if(!initlog)
     {
         rfb::initStdIOLoggers();
@@ -19,16 +31,21 @@ CManageConnectTigerVnc::CManageConnectTigerVnc(QObject *parent)
         rfb::LogWriter::setLogParams("*:stderr:100");
         initlog = true;
     }
+    
 }
 
 CManageConnectTigerVnc::~CManageConnectTigerVnc()
 {
+    qApp->removeTranslator(&m_Translator);
     qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
+#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+    Q_INIT_RESOURCE(translations_TigerVnc);
+#endif
 }
 
 QString CManageConnectTigerVnc::Name()
 {
-    return Protol();
+    return "TigerVnc";
 }
 
 QString CManageConnectTigerVnc::Description()

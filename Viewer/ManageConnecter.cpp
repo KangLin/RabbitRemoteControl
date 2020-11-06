@@ -37,7 +37,9 @@ int CManageConnecter::LoadPlugins()
     {
         CManageConnecter* p = qobject_cast<CManageConnecter*>(plugin);
         if(p)
+        {
             m_Plugins.insert(p->Protol(), p);
+        }
     }
 
     QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
@@ -70,7 +72,9 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
         if (plugin) {
             CManageConnecter* p = qobject_cast<CManageConnecter*>(plugin);
             if(p)
+            {
                 m_Plugins.insert(p->Protol(), p);
+            }
         }else{
             qDebug() << "load plugin error:" <<
                         loader.errorString().toStdString().c_str();

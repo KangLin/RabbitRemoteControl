@@ -17,6 +17,7 @@ public:
     explicit CManageConnecter(QObject *parent = nullptr);
     virtual ~CManageConnecter();
     
+    // Plugin name
     virtual QString Name();
     virtual QString Description();
     

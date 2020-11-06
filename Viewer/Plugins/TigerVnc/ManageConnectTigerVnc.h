@@ -2,6 +2,7 @@
 #define CMANAGECONNECTTIGERVNC_H
 
 #include "ManageConnecter.h"
+#include <QTranslator>
 
 class CManageConnectTigerVnc : public CManageConnecter
 {
@@ -21,6 +22,9 @@ public:
     
     virtual QString Protol() override;
     virtual CConnecter* CreateConnecter(const QString& szProtol) override;
+    
+private:
+    QTranslator m_Translator;
 };
 
 #endif // CMANAGECONNECTTIGERVNC_H

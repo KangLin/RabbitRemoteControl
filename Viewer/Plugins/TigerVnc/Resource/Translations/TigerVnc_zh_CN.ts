@@ -13,8 +13,8 @@
     <name>CDlgSettings</name>
     <message>
         <location filename="../../DlgSettings.ui" line="14"/>
-        <source>Dialog</source>
-        <translation>对话框</translation>
+        <source>Settings</source>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="24"/>
@@ -29,42 +29,42 @@
     <message>
         <location filename="../../DlgSettings.ui" line="63"/>
         <source>User name:</source>
-        <translation >用户名：</translation>
+        <translation>用户名：</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="77"/>
         <source>Password:</source>
-        <translation >密码：</translation>
+        <translation>密码：</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="101"/>
         <source>Shared</source>
-        <translation >共享</translation>
+        <translation>共享</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="108"/>
         <source>Real time update</source>
-        <translation >实时更新</translation>
+        <translation>实时更新</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="119"/>
         <source>Show local cursor</source>
-        <translation >显示本地光标</translation>
+        <translation>显示本地光标</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="126"/>
         <source>Enable clipboard</source>
-        <translation >允许剪切板</translation>
+        <translation>允许剪切板</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="137"/>
         <source>Save</source>
-        <translation >保存</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="144"/>
         <source>Support windows resize</source>
-        <translation >支持窗口大小改变</translation>
+        <translation>支持窗口大小改变</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="167"/>
@@ -79,32 +79,32 @@
     <message>
         <location filename="../../DlgSettings.ui" line="179"/>
         <source>Full</source>
-        <translation >全彩色</translation>
+        <translation>全彩色</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="186"/>
         <source>Low</source>
-        <translation >低</translation>
+        <translation>低</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="193"/>
         <source>Meduim</source>
-        <translation >中</translation>
+        <translation>中</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="200"/>
         <source>Very low</source>
-        <translation >极低</translation>
+        <translation>极低</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="222"/>
         <source>0=fast, 9=best</source>
-        <translation >0=最快, 9=最好</translation>
+        <translation>0=最快, 9=最好</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="233"/>
         <source>Enable JPEG compress</source>
-        <translation >允许JPEG压缩</translation>
+        <translation>允许JPEG压缩</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="247"/>
@@ -154,7 +154,7 @@
     <message>
         <location filename="../../DlgSettings.ui" line="314"/>
         <source>Compress level:</source>
-        <translation >压缩级别</translation>
+        <translation>压缩级别</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="321"/>

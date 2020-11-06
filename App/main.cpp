@@ -48,8 +48,10 @@ int main(int argc, char *argv[])
     w.show();
     int nRet = a.exec();
     
+    RabbitCommon::CTools::Instance()->Clean();
+    a.removeTranslator(&tApp);
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
+    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 #endif
     
     return nRet;
