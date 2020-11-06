@@ -103,7 +103,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="155"/>
-        <location filename="../../mainwindow.cpp" line="112"/>
+        <location filename="../../mainwindow.cpp" line="111"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -200,34 +200,34 @@
     <message>
         <location filename="../../mainwindow.ui" line="297"/>
         <source>Sink</source>
-        <translation type="unfinished"></translation>
+        <translation>換膚</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="112"/>
         <location filename="../../mainwindow.cpp" line="113"/>
         <location filename="../../mainwindow.cpp" line="114"/>
-        <location filename="../../mainwindow.cpp" line="115"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="140"/>
+        <location filename="../../mainwindow.cpp" line="139"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="140"/>
         <location filename="../../mainwindow.cpp" line="141"/>
         <location filename="../../mainwindow.cpp" line="142"/>
-        <location filename="../../mainwindow.cpp" line="143"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="226"/>
+        <location filename="../../mainwindow.cpp" line="225"/>
         <source>Open remote control</source>
         <translation>打開遠程控制</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="228"/>
+        <location filename="../../mainwindow.cpp" line="227"/>
         <source>Rabbit Remote control File (*.rrc)</source>
         <translation>玉兔遠程控制文件 (*.rrc)</translation>
     </message>

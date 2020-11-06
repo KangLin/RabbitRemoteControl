@@ -293,6 +293,10 @@
    </property>
   </action>
   <action name="actionSink">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Skin</normaloff>:/image/Skin</iconset>
+   </property>
    <property name="text">
     <string>Sink</string>
    </property>
