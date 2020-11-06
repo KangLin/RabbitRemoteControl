@@ -335,13 +335,14 @@ void MainWindow::slotDisconnected()
             int nIndex = GetViewIndex(it.key());
             if(nIndex >= 0)
             {
+                // Delete the scroll, the scroll will delete child widget
                 QWidget* pScroll = m_pTab->widget(nIndex);
                 m_pTab->removeTab(nIndex);
                 delete pScroll;
             }
             // delete CConnecter*
             m_Connecters.remove(it.key());
-            it.value()->deleteLater();
+            sender()->deleteLater();
             break;
         }
     }

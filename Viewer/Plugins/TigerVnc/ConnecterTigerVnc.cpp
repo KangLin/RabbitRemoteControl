@@ -79,6 +79,7 @@ int CConnecterTigerVnc::DisConnect()
     if(!m_pThread) return -1;
     
     m_pThread->m_bExit = true;
+    // Actively disconnect, without waiting for the thread to exit and then disconnect
     emit sigDisconnected();
     return 0;
 }
