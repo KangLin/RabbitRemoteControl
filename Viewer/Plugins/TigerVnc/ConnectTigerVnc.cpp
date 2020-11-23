@@ -374,13 +374,14 @@ void CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
     if(m_pPara && !m_pPara->bBufferEndRefresh)
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
-            emit sigUpdateRect(img.rect(), img);
+        emit sigUpdateRect(img.rect(), img);
     }
 }
 
 void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
 {
     //vlog.debug("CConnectTigerVnc::slotMousePressEvent");
+    if(!writer()) return;
     unsigned char mask = 0;
     rfb::Point pos(e->x(), e->y());
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -389,21 +390,24 @@ void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
         mask |= 0x2;
     if(e->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    this->writer()->writePointerEvent(pos, mask);
+    writer()->writePointerEvent(pos, mask);
 }
 
 void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 {
+    if(!writer()) return;
     //vlog.debug("CConnectTigerVnc::slotMouseReleaseEvent");
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
-    this->writer()->writePointerEvent(pos, mask);
+    
+    writer()->writePointerEvent(pos, mask);
 }
 
 void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
 {
     //vlog.debug("CConnectTigerVnc::slotMouseMoveEvent");
     //qDebug() << "slotMouseMoveEvent x:" << e->x() << ";y:" << e->y();
+    if(!writer()) return;
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -412,12 +416,13 @@ void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
         mask |= 0x2;
     if(e->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    this->writer()->writePointerEvent(pos, mask);
+    writer()->writePointerEvent(pos, mask);
 }
 
 void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
 {
     //vlog.debug("CConnectTigerVnc::slotWheelEvent");
+    if(!writer()) return;
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     
@@ -437,26 +442,29 @@ void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
         mask |= 32;
     if(p.x() > 0)
         mask |= 64;
-    this->writer()->writePointerEvent(pos, mask);
+    
+    writer()->writePointerEvent(pos, mask);
 }
 
 void CConnectTigerVnc::slotKeyPressEvent(QKeyEvent* e)
 {
+    if(!writer()) return;
     bool modifier = true;
     if (e->modifiers() == Qt::NoModifier)
         modifier = false;
     //vlog.debug("key:%d", e->key());
-    this->writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier),
+    writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier),
                                   0, true);
 }
 
 void CConnectTigerVnc::slotKeyReleaseEvent(QKeyEvent* e)
 {
+    if(!writer()) return;
     bool modifier = true;
     if (e->modifiers() == Qt::NoModifier)
         modifier = false;
 
-    this->writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier), 0, false);
+    writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier), 0, false);
 }
 
 quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
@@ -694,14 +702,22 @@ void CConnectTigerVnc::handleClipboardRequest()
         QString szText = mimeData->text();
 //        vlog.debug("CConnectTigerVnc::handleClipboardRequest:szText:%s",
 //                   szText.toStdString().c_str());
-        sendClipboardData(rfb::clipboardUTF8, szText.toStdString().c_str(),
-                          szText.toStdString().size());
+        try{
+            sendClipboardData(rfb::clipboardUTF8, szText.toStdString().c_str(),
+                              szText.toStdString().size());
+        } catch (rdr::Exception& e) {
+            vlog.error("%s", e.str());
+        }
     } else if (mimeData->hasHtml()) {
         QString szHtml = mimeData->html();
-//        vlog.debug("CConnectTigerVnc::handleClipboardRequest:html:%s",
-//                   szHtml.toStdString().c_str());
-        sendClipboardData(rfb::clipboardHTML, mimeData->html().toStdString().c_str(),
-                          mimeData->html().toStdString().size());
+        //        vlog.debug("CConnectTigerVnc::handleClipboardRequest:html:%s",
+        //                   szHtml.toStdString().c_str());
+        try{
+            sendClipboardData(rfb::clipboardHTML, mimeData->html().toStdString().c_str(),
+                              mimeData->html().toStdString().size());
+        } catch (rdr::Exception& e) {
+            vlog.error("%s", e.str());
+        }
     } else {
         vlog.debug("Cannot display data");
     }

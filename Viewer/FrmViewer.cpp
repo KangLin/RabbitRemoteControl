@@ -160,6 +160,7 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
                     event->buttons(),
                     event->modifiers());
     emit sigMousePressEvent(&e);
+    event->accept();
 }
 
 void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
@@ -175,6 +176,7 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
                     event->buttons(),
                     event->modifiers());
     emit sigMouseReleaseEvent(&e);
+    event->accept();
 }
 
 void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
@@ -190,6 +192,7 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
                     event->buttons(),
                     event->modifiers());
     emit sigMouseMoveEvent(&e);
+    event->accept();
 }
 
 void CFrmViewer::wheelEvent(QWheelEvent *event)
@@ -207,16 +210,19 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
                     event->inverted(),
                     event->source());
     emit sigWheelEvent(&e);
+    event->accept();
 }
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
     emit sigKeyPressEvent(event);
+    event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
     emit sigKeyReleaseEvent(event);
+    event->accept();
 }
 
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
