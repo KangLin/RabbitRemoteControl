@@ -42,13 +42,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS RabbitRemoteControl)
 
-# Install style files
-if(ANDROID)
-   INSTALL(DIRECTORY Resource/sink/ DESTINATION "assets/data/style" COMPONENT Runtime)
-else()
-   INSTALL(DIRECTORY Resource/sink/ DESTINATION "data/style" COMPONENT Runtime)
-endif()
-
 if(WIN32)
     install(FILES Resource/Image/App.ico
         ${CMAKE_SOURCE_DIR}/Install/Install.nsi

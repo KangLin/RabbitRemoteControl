@@ -8,6 +8,7 @@
 #include <QActionGroup>
 
 #include "ManageConnecter.h"
+#include "RabbitCommonStyle.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,8 +35,7 @@ private Q_SLOTS:
     void on_actionZoom_Z_toggled(bool arg1);
     void on_actionKeep_AspectRation_K_toggled(bool arg1);
     void on_actionOpen_O_triggered();
-    void on_actionSink_triggered();
-
+    
     void on_actionConnect_C_triggered();
     void on_actionDisconnect_D_triggered();
 
@@ -46,6 +46,9 @@ private Q_SLOTS:
     void slotConnected();
     void slotDisconnected();
     
+    void on_actionOpenStyle_O_triggered();
+    void on_actionDefaultStyle_D_triggered();
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 
@@ -54,17 +57,16 @@ private:
     CFrmViewer* GetViewer(int index);
     CConnecter* GetConnecter(int index);
     int GetViewIndex(CFrmViewer* pView);
-
-    int LoadStyle();
-    int LoadStyle(const QString &szFile);
     
 private:
     Ui::MainWindow *ui;
+    RabbitCommon::CStyle m_Style;
     QActionGroup* m_pGBView;
     QTabWidget* m_pTab;
     CManageConnecter m_ManageConnecter;
     QMap<CFrmViewer*, CConnecter*> m_Connecters;
     CFrmFullScreenToolBar* m_pFullScreenToolBar;
+    
 };
 
 #endif // MAINWINDOW_H

@@ -34,13 +34,20 @@
     <property name="title">
      <string>View(&amp;V)</string>
     </property>
+    <widget class="QMenu" name="menuSink">
+     <property name="title">
+      <string>Sink</string>
+     </property>
+     <addaction name="actionDefaultStyle_D"/>
+     <addaction name="actionOpenStyle_O"/>
+    </widget>
     <addaction name="actionFull_screen_F"/>
     <addaction name="separator"/>
     <addaction name="actionOriginal_O"/>
     <addaction name="actionZoom_Z"/>
     <addaction name="actionKeep_AspectRation_K"/>
     <addaction name="separator"/>
-    <addaction name="actionSink"/>
+    <addaction name="menuSink"/>
     <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatusBar_S"/>
@@ -292,13 +299,14 @@
     <string>Open(O)</string>
    </property>
   </action>
-  <action name="actionSink">
-   <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/image/Skin</normaloff>:/image/Skin</iconset>
-   </property>
+  <action name="actionDefaultStyle_D">
    <property name="text">
-    <string>Sink</string>
+    <string>Default(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionOpenStyle_O">
+   <property name="text">
+    <string>Open(&amp;O)</string>
    </property>
   </action>
  </widget>
