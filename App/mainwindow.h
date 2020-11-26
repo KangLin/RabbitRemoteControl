@@ -36,9 +36,9 @@ private Q_SLOTS:
     void on_actionKeep_AspectRation_K_toggled(bool arg1);
     void on_actionOpen_O_triggered();
     
-    void on_actionConnect_C_triggered();
     void on_actionDisconnect_D_triggered();
-
+    void slotConnect();
+    
     void slotCurrentChanged(int index);
     void slotTabCloseRequested(int index);
 

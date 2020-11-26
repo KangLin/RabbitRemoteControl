@@ -38,6 +38,10 @@
      <property name="title">
       <string>Sink</string>
      </property>
+     <property name="icon">
+      <iconset resource="Resource/Resource.qrc">
+       <normaloff>:/image/Skin</normaloff>:/image/Skin</iconset>
+     </property>
      <addaction name="actionDefaultStyle_D"/>
      <addaction name="actionOpenStyle_O"/>
     </widget>
@@ -56,7 +60,16 @@
     <property name="title">
      <string>Remote(&amp;R)</string>
     </property>
-    <addaction name="actionConnect_C"/>
+    <widget class="QMenu" name="menuConnect_C">
+     <property name="title">
+      <string>Connect(&amp;C)</string>
+     </property>
+     <property name="icon">
+      <iconset resource="Resource/Resource.qrc">
+       <normaloff>:/image/Connect</normaloff>:/image/Connect</iconset>
+     </property>
+    </widget>
+    <addaction name="menuConnect_C"/>
     <addaction name="actionDisconnect_D"/>
     <addaction name="actionOpen_O"/>
     <addaction name="actionRecently_connected"/>
@@ -79,7 +92,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen_O"/>
-   <addaction name="actionConnect_C"/>
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
@@ -241,21 +253,6 @@
    </property>
    <property name="whatsThis">
     <string>Exit(E)</string>
-   </property>
-  </action>
-  <action name="actionConnect_C">
-   <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/image/Connect</normaloff>:/image/Connect</iconset>
-   </property>
-   <property name="text">
-    <string>Connect(&amp;C)</string>
-   </property>
-   <property name="statusTip">
-    <string>Connect(C)</string>
-   </property>
-   <property name="whatsThis">
-    <string>Connect(C)</string>
    </property>
   </action>
   <action name="actionRecently_connected">

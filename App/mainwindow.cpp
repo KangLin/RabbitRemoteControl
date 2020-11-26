@@ -48,6 +48,14 @@ MainWindow::MainWindow(QWidget *parent)
     this->setCentralWidget(m_pTab);
 
     m_ManageConnecter.LoadPlugins();
+    
+    foreach(auto m, m_ManageConnecter.GetManageConnecter())
+    {
+        QAction* p = ui->menuConnect_C->addAction(m->Name(), this, SLOT(slotConnect()));
+        p->setToolTip(m->Description());
+        p->setStatusTip(m->Description());
+        p->setData(m->Protol());
+    }
 }
 
 MainWindow::~MainWindow()
@@ -236,9 +244,10 @@ void MainWindow::on_actionOpen_O_triggered()
     p->Connect();
 }
 
-void MainWindow::on_actionConnect_C_triggered()
+void MainWindow::slotConnect()
 {
-    CConnecter* p = m_ManageConnecter.CreateConnecter("VNC");
+    QAction* pAction = dynamic_cast<QAction*>(this->sender());
+    CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
 
     bool check = connect(p, SIGNAL(sigConnected()),
@@ -246,18 +255,23 @@ void MainWindow::on_actionConnect_C_triggered()
     Q_ASSERT(check);
     
     QDialog* pDlg = p->GetDialogSettings();
-    int nRet = pDlg->exec();
-    switch(nRet)
+    if(pDlg)
     {
-    case QDialog::Rejected:
-        delete p;
-        break;
-    case QDialog::Accepted:
-        QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                + QDir::separator() + p->Name() + ".rrc";
-        m_ManageConnecter.SaveConnecter(szFile, p);
-        p->Connect();
-        break;
+        int nRet = pDlg->exec();
+        switch(nRet)
+        {
+        case QDialog::Rejected:
+            delete p;
+            break;
+        case QDialog::Accepted:
+            QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                    + QDir::separator() + p->Protol() + "_" + p->Name() + ".rrc";
+            m_ManageConnecter.SaveConnecter(szFile, p);
+            p->Connect();
+            break;
+        }
+    } else {
+        qWarning() << "The protol[" << p->Protol() << "] don't settings dialog";
     }
 }
 

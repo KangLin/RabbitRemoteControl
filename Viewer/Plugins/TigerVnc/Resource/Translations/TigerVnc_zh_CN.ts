@@ -172,4 +172,12 @@
         <translation>取消(&amp;C)</translation>
     </message>
 </context>
+<context>
+    <name>CManageConnectTigerVnc</name>
+    <message>
+        <location filename="../../ManageConnectTigerVnc.cpp" line="53"/>
+        <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

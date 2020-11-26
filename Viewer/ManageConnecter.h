@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QDir>
 #include <QMap>
+#include <QList>
 
 #include "Connecter.h"
 
@@ -22,7 +23,7 @@ public:
     virtual QString Description();
     
     virtual QString Protol();
-    
+        
     // Return CConnecter pointer, the owner is caller
     virtual CConnecter* CreateConnecter(const QString& szProtol);
     
@@ -31,6 +32,8 @@ public:
     
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
+    
+    QList<CManageConnecter*> GetManageConnecter();
     
 private:
     QMap<QString, CManageConnecter*> m_Plugins;

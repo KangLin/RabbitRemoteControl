@@ -18,8 +18,7 @@ public:
     virtual QString Protol() override;
     
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) override;
-    virtual CFrmViewer* GetViewer() override;
-
+    
     virtual int Load(QDataStream& d) override;
     virtual int Save(QDataStream& d) override;
     
@@ -31,7 +30,6 @@ public:
     CConnectTigerVnc::strPara m_Para;
 
 private:
-    CFrmViewer *m_pView;
     CConnectThread* m_pThread;
 };
 

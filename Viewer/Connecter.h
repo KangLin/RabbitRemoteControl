@@ -18,15 +18,19 @@ public:
      */
     explicit CConnecter(QObject *parent = nullptr);
 
-    virtual QString Name();
-    virtual QString Description();
+    /**
+     * @brief Current connect name. eg: Server name or Ip 
+     * @return Current connect name.
+     */
+    virtual QString Name() = 0;
+    virtual QString Description() = 0;
     virtual QString Protol() = 0;
     
     /**
      * @brief GetViewer 
      * @return CFrmViewer* ower is caller. The caller must delete it, when don't use.
      */
-    virtual CFrmViewer* GetViewer() = 0;
+    virtual CFrmViewer* GetViewer();
     // QDialog* ower is caller. The caller must delete it, when don't use.
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 
@@ -40,6 +44,9 @@ public Q_SLOTS:
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
+    
+private:
+    CFrmViewer *m_pView;
 };
 
 #endif // CCONNECTER_H

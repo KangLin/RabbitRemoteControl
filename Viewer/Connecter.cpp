@@ -1,14 +1,10 @@
 #include "Connecter.h"
 
-CConnecter::CConnecter(QObject *parent) : QObject(parent)
+CConnecter::CConnecter(QObject *parent) : QObject(parent),
+    m_pView(new CFrmViewer())
 {}
 
-QString CConnecter::Name()
+CFrmViewer* CConnecter::GetViewer()
 {
-    return Protol();
-}
-
-QString CConnecter::Description()
-{
-    return Name();
+    return m_pView;
 }

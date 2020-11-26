@@ -20,8 +20,6 @@ CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
     m_Para.nCompressLevel = 2;
     m_Para.bNoJpeg = false;
     m_Para.nQualityLevel = 8;
-
-    m_pView = new CFrmViewer();
 }
 
 CConnecterTigerVnc::~CConnecterTigerVnc()
@@ -38,7 +36,7 @@ QString CConnecterTigerVnc::Name()
 {
     QString szName = m_Para.szServerName;
     szName.replace(":", "_");
-    return Protol() + "_" + szName;
+    return szName;
 }
 
 QString CConnecterTigerVnc::Description()
@@ -49,11 +47,6 @@ QString CConnecterTigerVnc::Description()
 QString CConnecterTigerVnc::Protol()
 {
     return "VNC";
-}
-
-CFrmViewer* CConnecterTigerVnc::GetViewer()
-{
-    return m_pView;
 }
 
 QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
@@ -68,7 +61,7 @@ int CConnecterTigerVnc::Connect()
 {
     if(nullptr == m_pThread)
     {
-        m_pThread = new CConnectThread(m_pView, this);
+        m_pThread = new CConnectThread(GetViewer(), this);
     }
     m_pThread->start();
     return 0;

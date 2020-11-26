@@ -50,7 +50,7 @@ QString CManageConnectTigerVnc::Name()
 
 QString CManageConnectTigerVnc::Description()
 {
-    return "Access remote desktops such as unix/linux, windows, etc.";
+    return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.");
 }
 
 QString CManageConnectTigerVnc::Protol()

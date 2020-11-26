@@ -84,6 +84,16 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
     return 0;
 }
 
+QList<CManageConnecter*> CManageConnecter::GetManageConnecter()
+{
+    QList<CManageConnecter*> connect;
+    foreach(auto m, m_Plugins)
+    {
+        connect.push_back(m);
+    }
+    return connect;
+}
+
 CConnecter* CManageConnecter::CreateConnecter(const QString &szProtol)
 {
     auto it = m_Plugins.find(szProtol);
