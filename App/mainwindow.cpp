@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
       m_Style(this),
+      m_pGBView(nullptr),
+      m_pTab(nullptr),
       m_pFullScreenToolBar(nullptr)
 {
     m_Style.LoadStyle();
@@ -26,21 +28,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());
-
-    m_pGBView = new QActionGroup(this);
-    if(m_pGBView) {
-        m_pGBView->addAction(ui->actionZoom_Z);
-        m_pGBView->addAction(ui->actionOriginal_O);
-        m_pGBView->addAction(ui->actionKeep_AspectRation_K);        
-    }
-
+    
     m_pTab = new QTabWidget(this);
     m_pTab->setTabsClosable(true);
     m_pTab->setUsesScrollButtons(true);
     m_pTab->setMovable(true);
     m_pTab->setFocusPolicy(Qt::NoFocus);
     bool check = connect(m_pTab, SIGNAL(tabCloseRequested(int)),
-                         this, SLOT(slotTabCloseRequested(int)));
+                    this, SLOT(slotTabCloseRequested(int)));
     Q_ASSERT(check);
     check = connect(m_pTab, SIGNAL(currentChanged(int)),
             this, SLOT(slotCurrentChanged(int)));
@@ -70,6 +65,24 @@ MainWindow::MainWindow(QWidget *parent)
     tb->setStatusTip(tr("Connect"));
     ui->toolBar->insertWidget(ui->actionDisconnect_D, tb);
     
+    m_pGBView = new QActionGroup(this);
+    if(m_pGBView) {
+        m_pGBView->addAction(ui->actionZoom_Z);
+        m_pGBView->addAction(ui->actionOriginal_O);
+        m_pGBView->addAction(ui->actionKeep_AspectRation_K);        
+    }
+    check = connect(m_pGBView, SIGNAL(triggered(QAction*)),
+                         this, SLOT(slotZoomChange(QAction*)));
+    Q_ASSERT(check);
+
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    QString t = set.value("ZoomType").toString();
+    if("Original" == t)
+        ui->actionOriginal_O->setChecked(true);
+    else if("Zoom" == t)
+        ui->actionZoom_Z->setChecked(true);
+    else if("AspectRation" == t)
+        ui->actionKeep_AspectRation_K->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -189,6 +202,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
 void MainWindow::on_actionZoom_Z_toggled(bool arg1)
 {
     if(!arg1) return;
+    if(!m_pTab) return;
     QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
     if(!pScroll)
         return;
@@ -202,7 +216,7 @@ void MainWindow::on_actionZoom_Z_toggled(bool arg1)
 void MainWindow::on_actionKeep_AspectRation_K_toggled(bool arg1)
 {
     if(!arg1) return;
-    
+    if(!m_pTab) return;
     QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
     if(!pScroll)
         return;
@@ -213,9 +227,23 @@ void MainWindow::on_actionKeep_AspectRation_K_toggled(bool arg1)
         pView->SetAdaptWindows(CFrmViewer::AspectRation);
 }
 
+void MainWindow::slotZoomChange(QAction* action)
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    QString t;
+    if(action == ui->actionOriginal_O)
+        t = "Original";
+    else if(action == ui->actionZoom_Z)
+        t = "Zoom";
+    else if(action == ui->actionKeep_AspectRation_K)
+        t = "AspectRation";
+    set.setValue("ZoomType", t);
+}
+
 void MainWindow::on_actionOriginal_O_toggled(bool arg1)
 {   
     if(!arg1) return;
+    if(!m_pTab) return;
     QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
     if(!pScroll)
         return;
