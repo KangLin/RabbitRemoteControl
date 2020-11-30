@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QMap>
 #include <QList>
+#include <QIcon>
 
 #include "Connecter.h"
 
@@ -21,7 +22,6 @@ public:
     // Plugin name
     virtual QString Name();
     virtual QString Description();
-    
     virtual QString Protol();
     virtual QIcon Icon();
     
