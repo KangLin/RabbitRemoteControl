@@ -13,6 +13,7 @@
 #include <QScreen>
 #include <QApplication>
 #include <QSettings>
+#include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -47,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->setCentralWidget(m_pTab);
 
+    // Connect menu and toolbar
     m_ManageConnecter.LoadPlugins();
     
     foreach(auto m, m_ManageConnecter.GetManageConnecter())
@@ -55,7 +57,19 @@ MainWindow::MainWindow(QWidget *parent)
         p->setToolTip(m->Description());
         p->setStatusTip(m->Description());
         p->setData(m->Protol());
+        p->setIcon(m->Icon());
     }
+    
+    QToolButton* tb = new QToolButton(ui->toolBar);
+    tb->setPopupMode(QToolButton::MenuButtonPopup);
+    //tb->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    tb->setMenu(ui->menuConnect_C);
+    tb->setIcon(QIcon(":/image/Connect"));
+    tb->setText(tr("Connect"));
+    tb->setToolTip(tr("Connect"));
+    tb->setStatusTip(tr("Connect"));
+    ui->toolBar->insertWidget(ui->actionDisconnect_D, tb);
+    
 }
 
 MainWindow::~MainWindow()
