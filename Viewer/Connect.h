@@ -21,7 +21,7 @@ public:
     int SetViewer(CFrmViewer* pView);
 
     virtual int SetServer(const QString& szHost, const int nPort);
-    // 由子类解析成 IP 和 端口
+    // 由子类解析成 IP 和 端口 (格式为：IP:[PORT])
     virtual int SetServerName(const QString& serverName);
 
     virtual int SetUser(const QString &szUser, const QString &szPassword);
