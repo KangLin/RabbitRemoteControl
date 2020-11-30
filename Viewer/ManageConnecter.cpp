@@ -31,6 +31,11 @@ QString CManageConnecter::Protol()
     return QString();
 }
 
+QIcon CManageConnecter::Icon()
+{
+    return QIcon(":/image/Connect");
+}
+
 int CManageConnecter::LoadPlugins()
 {
     foreach (QObject *plugin, QPluginLoader::staticInstances())

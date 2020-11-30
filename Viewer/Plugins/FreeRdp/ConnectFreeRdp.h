@@ -2,7 +2,7 @@
 #define CCONNECTFREERDP_H
 
 #include "Connect.h"
-#include "freerdp/freerdp.h"
+//#include "freerdp/freerdp.h"
 
 class CConnectFreeRdp : public CConnect
 {
@@ -21,9 +21,9 @@ public Q_SLOTS:
     virtual void slotClipBoardChange() override;
     
 private:
-    rdpContext* context;
-	rdpSettings* settings;
-	RDP_CLIENT_ENTRY_POINTS clientEntryPoints;
+//    rdpContext* context;
+//	rdpSettings* settings;
+//	RDP_CLIENT_ENTRY_POINTS clientEntryPoints;
 };
 
 #endif // CCONNECTFREERDP_H

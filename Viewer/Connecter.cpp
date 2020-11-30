@@ -10,3 +10,8 @@ CFrmViewer* CConnecter::GetViewer()
 {
     return m_pView;
 }
+
+QIcon CConnecter::Icon()
+{
+    return QIcon(":/image/Connect");
+}

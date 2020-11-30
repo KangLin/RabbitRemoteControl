@@ -3,9 +3,10 @@
 
 #include <QObject>
 #include <QDir>
-#include "FrmViewer.h"
 #include <QtPlugin>
 #include <QDataStream>
+#include <QIcon>
+#include "FrmViewer.h"
 
 class RABBITREMOTECONTROL_EXPORT CConnecter : public QObject
 {
@@ -25,6 +26,7 @@ public:
     virtual QString Name() = 0;
     virtual QString Description() = 0;
     virtual QString Protol() = 0;
+    virtual QIcon Icon();
     
     /**
      * @brief GetViewer 

@@ -23,7 +23,8 @@ public:
     virtual QString Description();
     
     virtual QString Protol();
-        
+    virtual QIcon Icon();
+    
     // Return CConnecter pointer, the owner is caller
     virtual CConnecter* CreateConnecter(const QString& szProtol);
     
