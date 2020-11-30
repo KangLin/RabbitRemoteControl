@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QMap>
 #include <QList>
+#include <QIcon>
 
 #include "Connecter.h"
 
@@ -21,9 +22,9 @@ public:
     // Plugin name
     virtual QString Name();
     virtual QString Description();
-    
     virtual QString Protol();
-        
+    virtual QIcon Icon();
+    
     // Return CConnecter pointer, the owner is caller
     virtual CConnecter* CreateConnecter(const QString& szProtol);
     
