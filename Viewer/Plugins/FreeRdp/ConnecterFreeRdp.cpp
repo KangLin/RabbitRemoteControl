@@ -1,5 +1,6 @@
 #include "ConnecterFreeRdp.h"
 #include <QDebug>
+#include "DlgSettings.h"
 
 CConnecterFreeRdp::CConnecterFreeRdp(QObject *parent) : CConnecter(parent),
     m_pThread(nullptr)
@@ -17,6 +18,7 @@ CConnecterFreeRdp::~CConnecterFreeRdp()
 
 QString CConnecterFreeRdp::Name()
 {
+    //TODO: set server name
     QString szName;
     szName.replace(":", "_");
     return szName;
@@ -34,7 +36,7 @@ QString CConnecterFreeRdp::Protol()
 
 QDialog *CConnecterFreeRdp::GetDialogSettings(QWidget *parent)
 {
-    return nullptr;
+    return new CDlgSettings(parent);
 }
 
 int CConnecterFreeRdp::Load(QDataStream &d)
@@ -57,7 +59,10 @@ int CConnecterFreeRdp::Connect()
     if(nullptr == m_pThread)
     {
         m_pThread = new CConnectThread(GetViewer(), this);
+    } else {
+        m_pThread->quit();
     }
+
     m_pThread->start();
     return nRet;
 }

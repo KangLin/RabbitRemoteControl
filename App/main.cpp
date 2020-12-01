@@ -6,10 +6,13 @@
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 #include "FrmUpdater/FrmUpdater.h"
+#include "log4cplus/logger.h"
+#include "log4cplus/configurator.h"
+#include "log4cplus/loggingmacros.h"
 
+using namespace log4cplus;
 int main(int argc, char *argv[])
 {
-
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -26,7 +29,14 @@ int main(int argc, char *argv[])
     
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
-    
+
+    // Init logger    
+    log4cplus::initialize();
+    QString szLogConfig = RabbitCommon::CDir::Instance()->GetDirConfig() + QDir::separator() + "log4config.conf";
+    szLogConfig = set.value("Log/ConfigFile", szLogConfig).toString();
+    log4cplus::PropertyConfigurator::doConfigure(LOG4CPLUS_TEXT(szLogConfig.toStdString().c_str()));
+         
+    // Install translator
     QTranslator tApp;
     tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
               + QDir::separator() + a.applicationName() + "App_"
@@ -38,6 +48,7 @@ int main(int argc, char *argv[])
     
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     
+    // Check update version
     CFrmUpdater *pUpdate = new CFrmUpdater();
     pUpdate->SetTitle(QImage(":/image/App"));
     if(!pUpdate->GenerateUpdateXml()) 

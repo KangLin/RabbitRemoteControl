@@ -12,20 +12,35 @@ if(NOT FreeRDP_FOUND)
     return()
 endif()
 
-SET(SRC_LIBS winpr freerdp RabbitRemoteControl)
+find_package(FreeRDP-Client)
+message("FreeRDP-Client_FOUND:${FreeRDP-Client_FOUND}")
+if(NOT FreeRDP-Client_FOUND)
+    return()
+endif()
+
+SET(SRC_LIBS freerdp-client freerdp RabbitRemoteControl)
+if(NOT WIN32)
+    LIST(APPEND SRC_LIBS winpr)
+endif()
+
 SET(SOURCE_FILES
     ManageConnectFreeRdp.cpp
     ConnectFreeRdp.cpp
     ConnecterFreeRdp.cpp
     ConnectThread.cpp
+    DlgSettings.cpp
     )
+
 SET(HEADER_FILES
     ManageConnectFreeRdp.h
     ConnectFreeRdp.h
     ConnecterFreeRdp.h
     ConnectThread.h
+    DlgSettings.h
     )
+
 SET(UI_FILES
+    DlgSettings.ui
     )
 
 #翻译
