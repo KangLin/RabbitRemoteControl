@@ -124,6 +124,11 @@ int CConnect::Initialize()
     return 0;
 }
 
+int CConnect::Clean()
+{
+    return 0;
+}
+
 void CConnect::slotWheelEvent(QWheelEvent*)
 {
     qDebug() << "CConnect::slotWheelEvent";

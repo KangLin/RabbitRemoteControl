@@ -34,14 +34,15 @@ void CConnectThread::run()
             &c, SLOT(Disconnect()), Qt::DirectConnection);
     Q_ASSERT(check);
     
-    c.Connect();
+    int nRet = c.Connect();
     
-    while (!m_bExit) {
-        int nRet = c.Process();
-        if(nRet) break;
+    while (!m_bExit && !nRet) {
+        nRet = c.Process();
     }
     
     emit m_pConnecter->sigDisconnected();
-
+    
+    c.Clean();
+    
     qDebug() << "CConnectThread::run() end";
 }

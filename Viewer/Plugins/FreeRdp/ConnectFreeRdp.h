@@ -28,8 +28,36 @@ public:
     static int Client_start(rdpContext* context);
     static int Client_stop(rdpContext* context);
     
+    /**
+     * Callback given to freerdp_connect() to process the pre-connect operations.
+     * It will fill the rdp_freerdp structure (instance) with the appropriate options to use for the
+     * connection.
+     *
+     * @param instance - pointer to the rdp_freerdp structure that contains the connection's parameters,
+     * and will be filled with the appropriate informations.
+     *
+     * @return TRUE if successful. FALSE otherwise.
+     * Can exit with error code XF_EXIT_PARSE_ARGUMENTS if there is an error in the parameters.
+     */
+    static BOOL cb_pre_connect(freerdp* instance);
+    /**
+     * Callback given to freerdp_connect() to perform post-connection operations.
+     * It will be called only if the connection was initialized properly, and will continue the
+     * initialization based on the newly created connection.
+     */
+    static BOOL cb_post_connect(freerdp* instance);
+    static void cb_post_disconnect(freerdp* instance);
+    static int cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 type);
+    
+    static void OnChannelConnectedEventHandler(void* context, ChannelConnectedEventArgs* e);
+    static void OnChannelDisconnectedEventHandler(void* context, ChannelDisconnectedEventArgs* e);
+    
+public:
+    UINT32 GetImageFormat();
+    
     // CConnect interface
 public Q_SLOTS:
+    virtual int Clean() override;
     virtual int Connect() override;
     virtual int Disconnect() override;
     virtual int Process() override;
@@ -42,8 +70,8 @@ private:
     ClientContext* m_pContext;
 	rdpSettings* m_pSettings;
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
-    
-    log4cplus::Logger logger;
+        
+    QImage m_Image;
 };
 
 #endif // CCONNECTFREERDP_H

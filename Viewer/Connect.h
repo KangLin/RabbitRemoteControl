@@ -29,6 +29,7 @@ public:
 
 public Q_SLOTS:
     virtual int Initialize();
+    virtual int Clean();
     virtual int Connect() = 0;
     virtual int Disconnect() = 0;
     virtual int Process() = 0;
