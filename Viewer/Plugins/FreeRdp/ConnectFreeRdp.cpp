@@ -211,16 +211,18 @@ BOOL CConnectFreeRdp::Client_new(freerdp *instance, rdpContext *context)
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
     
-	instance->Authenticate = client_cli_authenticate;
-	instance->GatewayAuthenticate = client_cli_gw_authenticate;
+	instance->Authenticate = cb_authenticate;
+	instance->GatewayAuthenticate = cb_authenticate;
     
-    // TODO: Is console?
-    //if(isConsole) {
+
+	/* There are is set authenticate callback, the follow is set authenticate in console.
+    instance->Authenticate = client_cli_authenticate;
+	instance->GatewayAuthenticate = client_cli_gw_authenticate;
 	instance->VerifyCertificateEx = client_cli_verify_certificate_ex;
 	instance->VerifyChangedCertificateEx = client_cli_verify_changed_certificate_ex;
 	instance->PresentGatewayMessage = client_cli_present_gateway_message;
-    //} else {
-    //}
+	//*/
+
     
 	instance->LogonErrorInfo = cb_logon_error_info;
 	/*PubSub_SubscribeTerminate(context->pubSub, xf_TerminateEventHandler);
@@ -617,4 +619,16 @@ UINT32 CConnectFreeRdp::GetImageFormat()
     
     }
     return PIXEL_FORMAT_RGBA32;
+}
+
+BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char** password, char** domain)
+{
+	if(!instance || !username || !password || !domain)
+		return FALSE;
+		
+	ClientContext* context = instance->context;
+	*username = _strdup(context->pConnect->m_szUser.toStdString.c_str());
+	*password = _strdup(context->pConnect->m_szPassword.toStdString.c_str());
+	
+	return TRUE;
 }

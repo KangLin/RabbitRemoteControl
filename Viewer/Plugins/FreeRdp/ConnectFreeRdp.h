@@ -52,6 +52,8 @@ public:
     static void OnChannelConnectedEventHandler(void* context, ChannelConnectedEventArgs* e);
     static void OnChannelDisconnectedEventHandler(void* context, ChannelDisconnectedEventArgs* e);
     
+	static BOOL cb_authenticate(freerdp* instance, char** username, char** password, char** domain);
+	
 public:
     UINT32 GetImageFormat();
     
