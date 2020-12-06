@@ -1,5 +1,3 @@
-project(FreeRdp)
-
 find_package(WinPR)
 message("WinPR_FOUND:${WinPR_FOUND}")
 if(NOT WinPR_FOUND)
@@ -17,6 +15,8 @@ message("FreeRDP-Client_FOUND:${FreeRDP-Client_FOUND}")
 if(NOT FreeRDP-Client_FOUND)
     return()
 endif()
+
+project(FreeRdp)
 
 SET(SRC_LIBS freerdp-client freerdp RabbitRemoteControl)
 if(NOT WIN32)

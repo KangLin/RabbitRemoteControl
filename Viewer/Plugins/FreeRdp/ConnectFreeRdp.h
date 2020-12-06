@@ -53,7 +53,18 @@ public:
     static void OnChannelDisconnectedEventHandler(void* context, ChannelDisconnectedEventArgs* e);
     
 	static BOOL cb_authenticate(freerdp* instance, char** username, char** password, char** domain);
-	
+	static BOOL cb_GatewayAuthenticate(freerdp* instance, char** username, char** password, char** domain);
+    static DWORD cb_verify_certificate_ex(freerdp* instance, const char* host, UINT16 port,
+                                                 const char* common_name, const char* subject,
+                                                 const char* issuer, const char* fingerprint, DWORD flags);
+    static DWORD cb_verify_changed_certificate_ex(freerdp* instance, const char* host, UINT16 port,
+                                                  const char* common_name, const char* subject,
+                                                  const char* issuer, const char* new_fingerprint,
+                                                  const char* old_subject, const char* old_issuer,
+                                                  const char* old_fingerprint, DWORD flags);
+    static BOOL cb_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
+                                           BOOL isConsentMandatory, size_t length, const WCHAR* message);
+    
 public:
     UINT32 GetImageFormat();
     

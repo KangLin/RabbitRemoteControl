@@ -39,8 +39,9 @@ CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
     } else 
         LOG4CPLUS_ERROR(g_logger, "freerdp_client_context_new fail");
     
-    //TODO:
-    this->SetServerName("172.17.0.1");
+    //TODO: Delete it
+    this->SetServerName("fmpixel.f3322.net");
+    
 }
 
 CConnectFreeRdp::~CConnectFreeRdp()
@@ -212,8 +213,10 @@ BOOL CConnectFreeRdp::Client_new(freerdp *instance, rdpContext *context)
 	instance->PostDisconnect = cb_post_disconnect;
     
 	instance->Authenticate = cb_authenticate;
-	instance->GatewayAuthenticate = cb_authenticate;
-    
+	instance->GatewayAuthenticate = cb_GatewayAuthenticate;
+    instance->VerifyCertificateEx = cb_verify_certificate_ex;
+	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;
+	instance->PresentGatewayMessage = cb_present_gateway_message;
 
 	/* There are is set authenticate callback, the follow is set authenticate in console.
     instance->Authenticate = client_cli_authenticate;
@@ -623,12 +626,58 @@ UINT32 CConnectFreeRdp::GetImageFormat()
 
 BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char** password, char** domain)
 {
-	if(!instance || !username || !password || !domain)
+    qDebug() << "CConnectFreeRdp::cb_authenticate";
+	if(!instance)
 		return FALSE;
 		
-	ClientContext* context = instance->context;
-	*username = _strdup(context->pConnect->m_szUser.toStdString.c_str());
-	*password = _strdup(context->pConnect->m_szPassword.toStdString.c_str());
+	ClientContext* context = (ClientContext*)instance->context;
+    CConnectFreeRdp* pThis = context->pConnect;
+    if(username)
+        *username = _strdup(pThis->m_szUser.toStdString().c_str());
+    if(password)
+	    *password = _strdup(pThis->m_szPassword.toStdString().c_str());
 	
 	return TRUE;
+}
+
+BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance, char **username, char **password, char **domain)
+{
+    qDebug() << "CConnectFreeRdp::cb_GatewayAuthenticate";
+	if(!instance)
+		return FALSE;
+		
+	ClientContext* context = (ClientContext*)instance->context;
+    CConnectFreeRdp* pThis = context->pConnect;
+    if(username)
+        *username = _strdup(pThis->m_szUser.toStdString().c_str());
+    if(password)
+	    *password = _strdup(pThis->m_szPassword.toStdString().c_str());
+	
+	return TRUE;
+}
+
+DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance, const char *host, UINT16 port, const char *common_name, const char *subject, const char *issuer, const char *fingerprint, DWORD flags)
+{
+    qDebug() << "CConnectFreeRdp::cb_verify_certificate_ex";
+    
+    /* return 1 to accept and store a certificate, 2 to accept
+	 * a certificate only for this session, 0 otherwise */
+    return 1;
+}
+
+DWORD CConnectFreeRdp::cb_verify_changed_certificate_ex(freerdp *instance, const char *host, UINT16 port, const char *common_name, const char *subject, const char *issuer, const char *new_fingerprint, const char *old_subject, const char *old_issuer, const char *old_fingerprint, DWORD flags)
+{
+    qDebug() << "CConnectFreeRdp::cb_verify_changed_certificate_ex";
+    
+    /* return 1 to accept and store a certificate, 2 to accept
+	 * a certificate only for this session, 0 otherwise */
+    return 1;
+}
+
+BOOL CConnectFreeRdp::cb_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
+                                                  BOOL isConsentMandatory, size_t length, const WCHAR* message)
+{
+    qDebug() << "CConnectFreeRdp::cb_present_gateway_message";
+    
+    return TRUE;
 }

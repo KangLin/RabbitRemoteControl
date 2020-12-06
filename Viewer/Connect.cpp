@@ -95,7 +95,8 @@ int CConnect::SetServerName(const QString &szServerName)
         m_szHost = szServerName.left(nPos);
         m_nPort = szServerName.right(szServerName.length() - nPos - 1).toInt();
     }
-    m_pView->setWindowTitle(GetDescription());
+
+    emit sigSetDesktopName(GetDescription());
     return 0;
 }
 

@@ -27,9 +27,10 @@ set(SOURCE_UI_FILES
 SET(RCC_FILES )
 
 SET(SRC_LIBS RabbitCommon ${QT_LIBRARIES})
-find_package(log4cplus)
+find_package(log4cplus OPTIONAL_COMPONENTS log4cplus)
 message("log4cplus:${log4cplus_FOUND}")
 if(log4cplus_FOUND)
+    #message("Found log4cplugs componts:${log4cplus_FIND_COMPONENTS}")
     LIST(APPEND SRC_LIBS log4cplus::log4cplus)
 else()
     message(FATAL_ERROR "Need log4cplus. download from https://github.com/log4cplus/log4cplus")
