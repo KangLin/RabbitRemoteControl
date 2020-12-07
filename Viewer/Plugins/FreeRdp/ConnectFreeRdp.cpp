@@ -11,8 +11,12 @@
 #include "freerdp/client/encomsp.h"
 #include "freerdp/channels/disp.h"
 #include "freerdp/channels/tsmf.h"
+#include "freerdp/locale/keyboard.h"
 
+#include "RabbitCommonTools.h"
 #include <QDebug>
+#include <QApplication>
+#include <QScreen>
 
 static log4cplus::Logger g_logger;
 
@@ -297,26 +301,14 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 
 	if (!settings->Username && !settings->CredentialsFromStdin && !settings->SmartcardLogon)
 	{
-		int rc;
-		char login_name[MAX_PATH] = { 0 };
-
-        // TODO: Get system login name
-        /*
-#ifdef HAVE_GETLOGIN_R
-		rc = getlogin_r(login_name, sizeof(login_name));
-#else
-		strncpy(login_name, getlogin(), sizeof(login_name));
-		rc = 0;
-#endif
-		if (rc == 0)
-		{
-			settings->Username = _strdup(login_name);
-
-			if (!settings->Username)
-				return FALSE;
-
-			WLog_INFO(TAG, "No user name set. - Using login name: %s", settings->Username);
-		}*/
+        // Get system login name
+        QString szUser = RabbitCommon::CTools::Instance()->GetCurrentUser();
+        if(!szUser.isEmpty())
+            settings->Username = _strdup(szUser.toStdString().c_str());
+        if (!settings->Username)
+            return FALSE;
+        
+        LOG4CPLUS_INFO(g_logger, "No user name set. - Using login name:" << settings->Username);
 	}
 
 	if (settings->AuthenticationOnly)
@@ -331,24 +323,32 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 		LOG4CPLUS_INFO(g_logger, "Authentication only. Don't connect to X.");
 	}
 
-    //TODO: Keyboard layout
+    // Keyboard layout
+#ifdef WIN32
+    freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout,
+                                 (int)GetKeyboardLayout(0) & 0x0000FFFF);
+#else
+    freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout,
+                                freerdp_keyboard_init(settings->KeyboardLayout));
+#endif
     
     // Windows(Monitor) size, beacuse the view is don't initial, so that don't set desktop, use default value.
-//    desktopWidth = pThis->m_pView->width();
-//    desktopHeight = pThis->m_pView->height();
-
-//    if(settings->DesktopWidth != desktopWidth)
-//        freerdp_settings_set_uint32(settings, FreeRDP_DesktopWidth, desktopWidth);
-//    if(settings->DesktopHeight != desktopHeight)
-//        freerdp_settings_set_uint32(settings, FreeRDP_DesktopHeight, desktopHeight);
-//    if ((settings->DesktopWidth < 64) || (settings->DesktopHeight < 64) ||
-//            (settings->DesktopWidth > 4096) || (settings->DesktopHeight > 4096))
-//    {
-//        LOG4CPLUS_ERROR(g_logger, "invalid dimensions" 
-//                        << settings->DesktopWidth
-//                        << settings->DesktopHeight);
-//        return FALSE;
-//    }
+    
+    desktopWidth = qApp->primaryScreen()->availableVirtualSize().width();
+    desktopHeight =  qApp->primaryScreen()->availableVirtualSize().height();
+    
+    if(settings->DesktopWidth != desktopWidth)
+        freerdp_settings_set_uint32(settings, FreeRDP_DesktopWidth, desktopWidth);
+    if(settings->DesktopHeight != desktopHeight)
+        freerdp_settings_set_uint32(settings, FreeRDP_DesktopHeight, desktopHeight);
+    if ((settings->DesktopWidth < 64) || (settings->DesktopHeight < 64) ||
+            (settings->DesktopWidth > 4096) || (settings->DesktopHeight > 4096))
+    {
+        LOG4CPLUS_ERROR(g_logger, "invalid dimensions" 
+                        << settings->DesktopWidth
+                        << settings->DesktopHeight);
+        return FALSE;
+    }//*/
     
 	return TRUE;
 }
@@ -631,6 +631,8 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
 	
 	ClientContext* context = (ClientContext*)instance->context;
     CConnectFreeRdp* pThis = context->pConnect;
+    
+
     
     if(username)
         *username = _strdup(pThis->m_szUser.toStdString().c_str());
