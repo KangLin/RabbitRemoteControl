@@ -12,14 +12,14 @@
 
 ## 支持协议
 - [x] [VNC](https://github.com/rfbproto/rfbproto)
-- [ ] [FreeRDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [x] [FreeRDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 
 ## 依赖库
 - [x] VNC
   + [ ] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)
-- [ ] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
 
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
