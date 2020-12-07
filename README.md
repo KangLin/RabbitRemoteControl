@@ -11,15 +11,22 @@ Author: Kang Lin(kl222@126.com)
 -----------------------------------------------------------------------
 
 ## Support protocol
-- [x] [VNC](https://github.com/rfbproto/rfbproto)
-- [x] [FreeRDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [x] [RFB](https://github.com/rfbproto/rfbproto)
+- [x] [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
+- [ ] [SSH]()
+- [ ] [TELNET]()
 
 ## Depend libraries
 - [x] VNC
-  + [ ][Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
+  + [ ] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
 - [x] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [ ] [SSH]
+  + [ ] [LIBSSH](https://www.libssh.org)
+
+### Reference
+- [ ] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
 ## Donation
 

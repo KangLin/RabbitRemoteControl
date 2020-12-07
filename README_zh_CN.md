@@ -11,15 +11,22 @@
 -----------------------------------------------------------------------
 
 ## 支持协议
-- [x] [VNC](https://github.com/rfbproto/rfbproto)
-- [x] [FreeRDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [x] [RFB](https://github.com/rfbproto/rfbproto)
+- [x] [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
+- [ ] [SSH]()
+- [ ] [TELNET]()
 
 ## 依赖库
-- [x] VNC
+- [x] [可选] RFB
   + [ ] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)
 - [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [ ] [SSH]
+  + [ ] [LIBSSH](https://www.libssh.org)
+
+### 参考
+- [ ] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！

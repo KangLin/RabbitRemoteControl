@@ -114,3 +114,5 @@ _CPack_Packages/
 #packages
 *.tar.gz
 *.zip
+
+*.swp
