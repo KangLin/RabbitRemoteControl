@@ -16,10 +16,10 @@ Author: Kang Lin(kl222@126.com)
 - [ ] [Spice](https://www.spice-space.org/)
 
 ## Depend libraries
-- VNC
-  + [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
-  + [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
-- [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [x] VNC
+  + [ ][Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
+  + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
+- [ ] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
 
 ## Donation
 
