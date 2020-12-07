@@ -47,11 +47,6 @@ CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
 CConnectFreeRdp::~CConnectFreeRdp()
 {
     qDebug() << "CConnectFreeRdp::~CConnectFreeRdp()";
-    if(m_pContext)
-    {
-        freerdp_client_context_free((rdpContext*)m_pContext);
-        m_pContext = nullptr;
-    }
 }
 
 int CConnectFreeRdp::RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints)
@@ -185,6 +180,7 @@ int CConnectFreeRdp::Clean()
         freerdp_disconnect(pContext->instance);
         freerdp_client_stop(pContext);
         freerdp_client_context_free(pContext);
+        m_pContext = nullptr;
     }
     return 0;
 }
@@ -379,7 +375,10 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
     
     // Init gdi format
 	if (!gdi_init(instance, pThis->GetImageFormat()))
-		return FALSE;
+	{
+        LOG4CPLUS_ERROR(g_logger, "gdi_init fail");
+        return FALSE;
+    }
 
     // Register cursor pointer
 //	if (!xf_register_pointer(context->graphics))
@@ -629,9 +628,12 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
     qDebug() << "CConnectFreeRdp::cb_authenticate";
 	if(!instance)
 		return FALSE;
-		
+	
 	ClientContext* context = (ClientContext*)instance->context;
     CConnectFreeRdp* pThis = context->pConnect;
+    
+
+    
     if(username)
         *username = _strdup(pThis->m_szUser.toStdString().c_str());
     if(password)
