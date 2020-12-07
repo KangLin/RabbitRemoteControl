@@ -10,6 +10,16 @@ Author: Kang Lin(kl222@126.com)
 
 -----------------------------------------------------------------------
 
+Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
+
+## Support OS
+- [x] Windows
+- [x] Unix/Linux
+- [x] Android
+- [ ] mac os
+- [ ] IPHONE
+- [ ] WINCE
+
 ## Support protocol
 - [x] [RFB](https://github.com/rfbproto/rfbproto)
 - [x] [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
