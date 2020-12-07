@@ -9,6 +9,7 @@
 #include "log4cplus/logger.h"
 #include "log4cplus/configurator.h"
 #include "log4cplus/loggingmacros.h"
+#include <log4cplus/log4cplus.h>
 
 using namespace log4cplus;
 int main(int argc, char *argv[])
@@ -35,7 +36,24 @@ int main(int argc, char *argv[])
     QString szLogConfig = RabbitCommon::CDir::Instance()->GetDirConfig() + QDir::separator() + "log4config.conf";
     szLogConfig = set.value("Log/ConfigFile", szLogConfig).toString();
     log4cplus::PropertyConfigurator::doConfigure(LOG4CPLUS_TEXT(szLogConfig.toStdString().c_str()));
-         
+
+//    //以下两行将root logger配置为ConsoleAppender和SimpleLayout
+//    log4cplus::BasicConfigurator config;
+//    config.configure();
+    
+//    //第1步：创建ConsoleAppender
+//    log4cplus::SharedAppenderPtr appender(new log4cplus::ConsoleAppender());
+ 
+//    //第2步：设置Appender的名称和输出格式（SimpleLayout）
+//    appender->setName(LOG4CPLUS_TEXT("console"));
+//    appender->setLayout(std::unique_ptr<log4cplus::Layout>(new log4cplus::SimpleLayout));
+//    log4cplus::Logger logger = log4cplus::Logger::getInstance("test");
+//    logger.setLogLevel(log4cplus::INFO_LOG_LEVEL);
+ 
+//    //第4步：为Logger实例添加ConsoleAppender
+//    logger.addAppender(appender);
+//    LOG4CPLUS_ERROR(log4cplus::Logger::getRoot(), "test..............");
+    
     // Install translator
     QTranslator tApp;
     tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()

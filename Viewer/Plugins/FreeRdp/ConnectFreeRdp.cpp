@@ -632,8 +632,6 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
 	ClientContext* context = (ClientContext*)instance->context;
     CConnectFreeRdp* pThis = context->pConnect;
     
-
-    
     if(username)
         *username = _strdup(pThis->m_szUser.toStdString().c_str());
     if(password)
