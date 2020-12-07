@@ -10,6 +10,16 @@
 
 -----------------------------------------------------------------------
 
+玉兔远程控制是一个跨平台，支持多协议的远程控制软件。
+
+## 支持操作系统
+- [x] Windows
+- [x] Unix/Linux
+- [x] Android
+- [ ] mac os
+- [ ] IPHONE
+- [ ] WINCE
+
 ## 支持协议
 - [x] [RFB](https://github.com/rfbproto/rfbproto)
 - [x] [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
