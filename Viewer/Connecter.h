@@ -7,6 +7,10 @@
 #include <QtPlugin>
 #include <QDataStream>
 
+/**
+ * @brief The CConnecter class
+ * @addtogroup API
+ */
 class RABBITREMOTECONTROL_EXPORT CConnecter : public QObject
 {
     Q_OBJECT

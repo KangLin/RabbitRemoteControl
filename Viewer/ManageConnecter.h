@@ -7,23 +7,23 @@
 #include <QList>
 #include <QIcon>
 
-#include "Connecter.h"
+#include "PluginFactory.h"
 
+/**
+ * @group API
+ */
+
+/**
+ * @brief The CManageConnecter class
+ * @addtogroup API
+ */
 class RABBITREMOTECONTROL_EXPORT CManageConnecter : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString m_szName READ Name)
-    Q_PROPERTY(QString m_szDescription READ Description)
     
 public:
     explicit CManageConnecter(QObject *parent = nullptr);
     virtual ~CManageConnecter();
-    
-    // Plugin name
-    virtual QString Name();
-    virtual QString Description();
-    virtual QString Protol();
-    virtual QIcon Icon();
     
     // Return CConnecter pointer, the owner is caller
     virtual CConnecter* CreateConnecter(const QString& szProtol);
@@ -34,17 +34,12 @@ public:
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
     
-    QList<CManageConnecter*> GetManageConnecter();
+    QList<CPluginFactory*> GetManageConnecter();
     
 private:
-    QMap<QString, CManageConnecter*> m_Plugins;
+    QMap<QString, CPluginFactory*> m_Plugins;
     
     qint8 m_FileVersion;
 };
-
-QT_BEGIN_NAMESPACE
-#define ManageConnecter_iid "KangLinStudio.Rabbit.RemoteControl.ManageConnecter"
-Q_DECLARE_INTERFACE(CManageConnecter, ManageConnecter_iid)
-QT_END_NAMESPACE
 
 #endif // CMANAGECONNECTER_H

@@ -1,26 +1,26 @@
 #ifndef CMANAGECONNECTTIGERVNC_H
 #define CMANAGECONNECTTIGERVNC_H
 
-#include "ManageConnecter.h"
+#include "PluginFactory.h"
 #include <QTranslator>
 
-class CManageConnectTigerVnc : public CManageConnecter
+class CPluginFactoryTigerVnc : public CPluginFactory
 {
     Q_OBJECT
-    Q_INTERFACES(CManageConnecter)
+    Q_INTERFACES(CPluginFactory)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID ManageConnecter_iid)
+    Q_PLUGIN_METADATA(IID CPluginFactory_iid)
 #endif
     
 public:
-    explicit CManageConnectTigerVnc(QObject *parent = nullptr);
-    virtual ~CManageConnectTigerVnc() override;
+    explicit CPluginFactoryTigerVnc(QObject *parent = nullptr);
+    virtual ~CPluginFactoryTigerVnc() override;
     
     virtual QString Name() override;
     virtual QString Description() override;
-    
     virtual QString Protol() override;
+    virtual QIcon Icon() override;
     virtual CConnecter* CreateConnecter(const QString& szProtol) override;
     
 private:
