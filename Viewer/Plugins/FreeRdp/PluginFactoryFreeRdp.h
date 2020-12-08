@@ -1,26 +1,27 @@
 #ifndef MANAGECONNECTFREERDP_H
 #define MANAGECONNECTFREERDP_H
 
-#include "ManageConnecter.h"
+#include "PluginFactory.h"
 #include <QTranslator>
 
-class CManageConnectFreeRdp : public CManageConnecter
+class CPluginFactoryFreeRdp : public CPluginFactory
 {
     Q_OBJECT
-    Q_INTERFACES(CManageConnecter)
+    Q_INTERFACES(CPluginFactory)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID ManageConnecter_iid)
+    Q_PLUGIN_METADATA(IID CPluginFactory_iid)
 #endif
     
 public:
-    explicit CManageConnectFreeRdp(QObject *parent = nullptr);
-    virtual ~CManageConnectFreeRdp() override;
+    explicit CPluginFactoryFreeRdp(QObject *parent = nullptr);
+    virtual ~CPluginFactoryFreeRdp() override;
     
     virtual QString Name() override;
     virtual QString Description() override;
-    
     virtual QString Protol() override;
+    virtual QIcon Icon() override;
+    
     virtual CConnecter* CreateConnecter(const QString& szProtol) override;
     
 private:

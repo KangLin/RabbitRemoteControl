@@ -1,11 +1,11 @@
-#include "ManageConnectFreeRdp.h"
+#include "PluginFactoryFreeRdp.h"
 #include <QDebug>
 #include <QApplication>
 #include "RabbitCommonDir.h"
 #include "ConnecterFreeRdp.h"
 
-CManageConnectFreeRdp::CManageConnectFreeRdp(QObject *parent)
-    : CManageConnecter(parent)
+CPluginFactoryFreeRdp::CPluginFactoryFreeRdp(QObject *parent)
+    : CPluginFactory(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_FreeRdp);
@@ -18,7 +18,7 @@ CManageConnectFreeRdp::CManageConnectFreeRdp(QObject *parent)
     qApp->installTranslator(&m_Translator);
 }
 
-CManageConnectFreeRdp::~CManageConnectFreeRdp()
+CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()
 {
     qApp->removeTranslator(&m_Translator);
     qDebug() << "CManageConnectFreeRdp::~CManageConnectFreeRdp()";
@@ -27,22 +27,27 @@ CManageConnectFreeRdp::~CManageConnectFreeRdp()
 #endif
 }
 
-QString CManageConnectFreeRdp::Name()
+QString CPluginFactoryFreeRdp::Name()
 {
     return "FreeRdp";
 }
 
-QString CManageConnectFreeRdp::Description()
+QString CPluginFactoryFreeRdp::Description()
 {
     return tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
 }
 
-QString CManageConnectFreeRdp::Protol()
+QString CPluginFactoryFreeRdp::Protol()
 {
     return "RDP";
 }
 
-CConnecter* CManageConnectFreeRdp::CreateConnecter(const QString &szProtol)
+QIcon CPluginFactoryFreeRdp::Icon()
+{
+    return QIcon(":/image/Connect");
+}
+
+CConnecter* CPluginFactoryFreeRdp::CreateConnecter(const QString &szProtol)
 {
     if(Protol() == szProtol)
     {   

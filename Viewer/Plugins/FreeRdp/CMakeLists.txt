@@ -34,7 +34,7 @@ elseif(WIN32)
 endif()
 
 SET(SOURCE_FILES
-    ManageConnectFreeRdp.cpp
+    PluginFactoryFreeRdp.cpp
     ConnectFreeRdp.cpp
     ConnecterFreeRdp.cpp
     ConnectThread.cpp
@@ -42,7 +42,7 @@ SET(SOURCE_FILES
     )
 
 SET(HEADER_FILES
-    ManageConnectFreeRdp.h
+    PluginFactoryFreeRdp.h
     ConnectFreeRdp.h
     ConnecterFreeRdp.h
     ConnectThread.h
