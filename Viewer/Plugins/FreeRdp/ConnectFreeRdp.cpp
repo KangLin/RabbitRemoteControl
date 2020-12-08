@@ -117,10 +117,7 @@ int CConnectFreeRdp::Process()
     rdpContext* pContext = (rdpContext*)m_pContext;
     if(!freerdp_shall_disconnect(pContext->instance))
     {
-        wMessage msg;
-        wMessageQueue* queue = freerdp_get_message_queue(pContext->instance, FREERDP_INPUT_MESSAGE_QUEUE);;
         DWORD nCount = 0;
-        //handles[nCount++] = MessageQueue_Event(queue);
         DWORD tmp = freerdp_get_event_handles(pContext, &handles[nCount],
                                               ARRAYSIZE(handles) - nCount);
         if (tmp == 0)
@@ -137,14 +134,6 @@ int CConnectFreeRdp::Process()
         if (waitStatus == WAIT_FAILED)
             return -2;
         
-        if (WaitForSingleObject(handles[0], 0) == WAIT_OBJECT_0)
-        {
-            if (MessageQueue_Peek(queue, &msg, FALSE))
-            {
-                if (msg.id == WMQ_QUIT)
-                    return 1;
-            }
-        }
         
         /* Check if a processed event called freerdp_abort_connect() and exit if true */
 		if (WaitForSingleObject(pContext->abortEvent, 0) == WAIT_OBJECT_0)
@@ -226,7 +215,6 @@ BOOL CConnectFreeRdp::Client_new(freerdp *instance, rdpContext *context)
 	instance->PresentGatewayMessage = client_cli_present_gateway_message;
 	//*/
 
-    
 	instance->LogonErrorInfo = cb_logon_error_info;
 	/*PubSub_SubscribeTerminate(context->pubSub, xf_TerminateEventHandler);
 #ifdef WITH_XRENDER
@@ -333,7 +321,7 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 #endif
     
     // Windows(Monitor) size, beacuse the view is don't initial, so that don't set desktop, use default value.
-    
+    //TODO: Move to setting dialog
     desktopWidth = qApp->primaryScreen()->availableVirtualSize().width();
     desktopHeight =  qApp->primaryScreen()->availableVirtualSize().height();
     
@@ -349,6 +337,8 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
                         << settings->DesktopHeight);
         return FALSE;
     }//*/
+    
+    pThis->m_Image = QImage(desktopWidth, desktopHeight, QImage::Format_RGB32);
     
 	return TRUE;
 }
@@ -380,7 +370,7 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
         return FALSE;
     }
 
-    // Register cursor pointer
+    // TODO: Register cursor pointer
 //	if (!xf_register_pointer(context->graphics))
 //		return FALSE;
 
@@ -402,36 +392,10 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 		palette_cache_register_callbacks(instance->update);
 	}
 
-#ifdef WITH_XRENDER
-	xfc->scaledWidth = settings->DesktopWidth;
-	xfc->scaledHeight = settings->DesktopHeight;
-	xfc->offset_x = 0;
-	xfc->offset_y = 0;
-#endif
-
-//	if (!xfc->xrenderAvailable)
-//	{
-//		if (settings->SmartSizing)
-//		{
-//			WLog_ERR(TAG, "XRender not available: disabling smart-sizing");
-//			settings->SmartSizing = FALSE;
-//		}
-
-//		if (settings->MultiTouchGestures)
-//		{
-//			WLog_ERR(TAG, "XRender not available: disabling local multi-touch gestures");
-//			settings->MultiTouchGestures = FALSE;
-//		}
-//	}
 
 //	if (settings->RemoteApplicationMode)
 //		xfc->remote_app = TRUE;
 
-//	if (!xf_create_window(xfc))
-//	{
-//		WLog_ERR(TAG, "xf_create_window failed");
-//		return FALSE;
-//	}
 
 //	if (settings->SoftwareGdi)
 //	{
@@ -606,9 +570,6 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 
 UINT32 CConnectFreeRdp::GetImageFormat()
 {
-	if (m_Image.isNull())
-		return 0;
-
     switch (m_Image.format()) {
     case QImage::Format_RGB32:
         return PIXEL_FORMAT_RGBA32;
@@ -618,7 +579,8 @@ UINT32 CConnectFreeRdp::GetImageFormat()
         return PIXEL_FORMAT_RGB16;
     case QImage::Format_Mono:
         return PIXEL_FORMAT_MONO;
-    
+    default:
+        break;
     }
     return PIXEL_FORMAT_RGBA32;
 }
