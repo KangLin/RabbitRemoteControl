@@ -16,31 +16,11 @@ CManageConnecter::~CManageConnecter()
     qDebug() << "CManageConnecter::~CManageConnecter()";
 }
 
-QString CManageConnecter::Name()
-{
-    return this->metaObject()->className();
-}
-
-QString CManageConnecter::Description()
-{
-    return Name();
-}
-
-QString CManageConnecter::Protol()
-{
-    return QString();
-}
-
-QIcon CManageConnecter::Icon()
-{
-    return QIcon(":/image/Connect");
-}
-
 int CManageConnecter::LoadPlugins()
 {
     foreach (QObject *plugin, QPluginLoader::staticInstances())
     {
-        CManageConnecter* p = qobject_cast<CManageConnecter*>(plugin);
+        CPluginFactory* p = qobject_cast<CPluginFactory*>(plugin);
         if(p)
         {
             m_Plugins.insert(p->Protol(), p);
@@ -75,7 +55,7 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
         QPluginLoader loader(szPlugins);
         QObject *plugin = loader.instance();
         if (plugin) {
-            CManageConnecter* p = qobject_cast<CManageConnecter*>(plugin);
+            CPluginFactory* p = qobject_cast<CPluginFactory*>(plugin);
             if(p)
             {
                 m_Plugins.insert(p->Protol(), p);
@@ -89,9 +69,9 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
     return 0;
 }
 
-QList<CManageConnecter*> CManageConnecter::GetManageConnecter()
+QList<CPluginFactory *> CManageConnecter::GetManageConnecter()
 {
-    QList<CManageConnecter*> connect;
+    QList<CPluginFactory*> connect;
     foreach(auto m, m_Plugins)
     {
         connect.push_back(m);
@@ -145,12 +125,12 @@ int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecte
     
     QDataStream d(&f);
     d << m_FileVersion;
-    CManageConnecter* pManage = dynamic_cast<CManageConnecter*>(pConnecter->parent());
+    CPluginFactory* pFactory = dynamic_cast<CPluginFactory*>(pConnecter->parent());
     // In the CManageConnecter derived class,
     // the CreateConnecter function constructs the derived class of CConnecter,
     // and its parent pointer must be specified as the corresponding CManageConnecter derived class
-    Q_ASSERT(pManage);
-    d << pManage->Protol();
+    Q_ASSERT(pFactory);
+    d << pFactory->Protol();
     
     pConnecter->Save(d);
     

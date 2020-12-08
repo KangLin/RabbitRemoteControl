@@ -6,6 +6,7 @@ set(INSTALL_HEADER_FILES
     FrmViewer.h
     Connecter.h
     ManageConnecter.h
+    PluginFactory.h
     )
 
 set(HEADER_FILES
@@ -18,6 +19,7 @@ set(SOURCE_FILES
     Connecter.cpp
     Connect.cpp
     ManageConnecter.cpp
+    PluginFactory.cpp
     )
 
 set(SOURCE_UI_FILES

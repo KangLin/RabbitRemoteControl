@@ -1,4 +1,4 @@
-#include "ManageConnectTigerVnc.h"
+#include "PluginFactoryTigerVnc.h"
 #include "ConnecterTigerVnc.h"
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
@@ -7,8 +7,8 @@
 #include "RabbitCommonDir.h"
 
 static bool initlog = false;
-CManageConnectTigerVnc::CManageConnectTigerVnc(QObject *parent)
-    : CManageConnecter(parent)
+CPluginFactoryTigerVnc::CPluginFactoryTigerVnc(QObject *parent)
+    : CPluginFactory(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_TigerVnc);
@@ -34,7 +34,7 @@ CManageConnectTigerVnc::CManageConnectTigerVnc(QObject *parent)
     
 }
 
-CManageConnectTigerVnc::~CManageConnectTigerVnc()
+CPluginFactoryTigerVnc::~CPluginFactoryTigerVnc()
 {
     qApp->removeTranslator(&m_Translator);
     qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
@@ -43,22 +43,22 @@ CManageConnectTigerVnc::~CManageConnectTigerVnc()
 #endif
 }
 
-QString CManageConnectTigerVnc::Name()
+QString CPluginFactoryTigerVnc::Name()
 {
     return "TigerVnc";
 }
 
-QString CManageConnectTigerVnc::Description()
+QString CPluginFactoryTigerVnc::Description()
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.");
 }
 
-QString CManageConnectTigerVnc::Protol()
+QString CPluginFactoryTigerVnc::Protol()
 {
     return "VNC";
 }
 
-CConnecter* CManageConnectTigerVnc::CreateConnecter(const QString &szProtol)
+CConnecter* CPluginFactoryTigerVnc::CreateConnecter(const QString &szProtol)
 {
     if(Protol() == szProtol)
     {   
@@ -66,4 +66,9 @@ CConnecter* CManageConnectTigerVnc::CreateConnecter(const QString &szProtol)
         return p;
     }
     return nullptr;
+}
+
+QIcon CPluginFactoryTigerVnc::Icon()
+{
+    return QIcon(":/image/Connect");
 }

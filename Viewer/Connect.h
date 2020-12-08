@@ -8,6 +8,10 @@
 #include "FrmViewer.h"
 #include <QtPlugin>
 
+/**
+ * @brief The CConnect class.
+ * @note Only used inside the plugin
+ */
 class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
 {
     Q_OBJECT

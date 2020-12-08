@@ -8,6 +8,10 @@
 #include <QIcon>
 #include "FrmViewer.h"
 
+/**
+ * @brief The CConnecter class
+ * @addtogroup API
+ */
 class RABBITREMOTECONTROL_EXPORT CConnecter : public QObject
 {
     Q_OBJECT
