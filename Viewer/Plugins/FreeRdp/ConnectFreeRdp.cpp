@@ -1,6 +1,5 @@
 #include "ConnectFreeRdp.h"
 
-#include "log4cplus/loggingmacros.h"
 #include "freerdp/client/cmdline.h"
 #include "freerdp/channels/rdpei.h"
 #include "freerdp/channels/rdpdr.h"
@@ -14,19 +13,16 @@
 #include "freerdp/locale/keyboard.h"
 
 #include "RabbitCommonTools.h"
+#include "RabbitCommonLog.h"
 #include <QDebug>
 #include <QApplication>
 #include <QScreen>
-
-static log4cplus::Logger g_logger;
 
 CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
     : CConnect(pView, parent),
       m_pContext(nullptr),
       m_pSettings(nullptr)
 {
-    g_logger = log4cplus::Logger::getInstance("FreeRdp");
-    
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
@@ -41,7 +37,7 @@ CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
         m_pContext->pConnect = this;
         m_pSettings = m_pContext->Context.settings;
     } else 
-        LOG4CPLUS_ERROR(g_logger, "freerdp_client_context_new fail");
+        LOG_MODEL_ERROR("FreeRdp", "freerdp_client_context_new fail");
     
     //TODO: Delete it
     this->SetServerName("fmpixel.f3322.net");
@@ -97,7 +93,7 @@ int CConnectFreeRdp::Connect()
 		else
 			nRet = -4;
         
-        LOG4CPLUS_ERROR(g_logger, "freerdp_connect fail:" << nRet);
+        LOG_MODEL_ERROR("FreeRdp", "freerdp_connect fail: %d", nRet);
 	}
     
     return nRet;
@@ -122,7 +118,7 @@ int CConnectFreeRdp::Process()
                                               ARRAYSIZE(handles) - nCount);
         if (tmp == 0)
         {
-            LOG4CPLUS_ERROR(g_logger, "freerdp_get_event_handles failed");
+            LOG_MODEL_ERROR("FreeRdp", "freerdp_get_event_handles failed");
             return -1;
         }
         
@@ -157,7 +153,7 @@ int CConnectFreeRdp::Process()
 //            }
             
             if (freerdp_get_last_error(pContext) == FREERDP_ERROR_SUCCESS)
-                LOG4CPLUS_ERROR(g_logger, "Failed to check FreeRDP file descriptor");
+                LOG_MODEL_ERROR("FreeRdp", "Failed to check FreeRDP file descriptor");
             
         }
     }
@@ -296,7 +292,7 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
         if (!settings->Username)
             return FALSE;
         
-        LOG4CPLUS_INFO(g_logger, "No user name set. - Using login name:" << settings->Username);
+        LOG_MODEL_ERROR("FreeRdp", "No user name set. - Using login name: %s", settings->Username);
 	}
 
 	if (settings->AuthenticationOnly)
@@ -304,11 +300,11 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 		/* Check +auth-only has a username and password. */
 		if (!settings->Password)
 		{
-			LOG4CPLUS_ERROR(g_logger, "auth-only, but no password set. Please provide one.");
+			LOG_MODEL_ERROR("FreeRdp", "auth-only, but no password set. Please provide one.");
 			return FALSE;
 		}
 
-		LOG4CPLUS_INFO(g_logger, "Authentication only. Don't connect to X.");
+		LOG_MODEL_INFO("FreeRdp", "Authentication only. Don't connect to X.");
 	}
 
     // Keyboard layout
@@ -332,9 +328,9 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
     if ((settings->DesktopWidth < 64) || (settings->DesktopHeight < 64) ||
             (settings->DesktopWidth > 4096) || (settings->DesktopHeight > 4096))
     {
-        LOG4CPLUS_ERROR(g_logger, "invalid dimensions" 
-                        << settings->DesktopWidth
-                        << settings->DesktopHeight);
+        LOG_MODEL_ERROR("FreeRdp", "invalid dimensions %d:%d" 
+                        , settings->DesktopWidth
+                        , settings->DesktopHeight);
         return FALSE;
     }//*/
     
@@ -366,7 +362,7 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
     // Init gdi format
 	if (!gdi_init(instance, pThis->GetImageFormat()))
 	{
-        LOG4CPLUS_ERROR(g_logger, "gdi_init fail");
+        LOG_MODEL_ERROR("FreeRdp", "gdi_init fail");
         return FALSE;
     }
 
@@ -469,7 +465,7 @@ int CConnectFreeRdp::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
 	//xfContext* xfc = (xfContext*)instance->context;
 	const char* str_data = freerdp_get_logon_error_info_data(data);
 	const char* str_type = freerdp_get_logon_error_info_type(type);
-	LOG4CPLUS_ERROR(g_logger, "Logon Error Info " << str_data << "[" << str_type << "]");
+	LOG_MODEL_ERROR("FreeRdp", "Logon Error Info %s [%s]", str_data, str_type);
 	//xf_rail_disable_remoteapp_mode(xfc);
 	return 1;
 }
@@ -479,21 +475,24 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
     rdpContext* pContext = (rdpContext*)context;
     if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
 	{
         if(pContext->settings->SoftwareGdi) {
+            rdpGdi* gdi = pContext->gdi;
+            gdi_graphics_pipeline_init(gdi, (RdpgfxClientContext*)e->pInterface);
+        } else
+            LOG_MODEL_ERROR("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
             
-        }
 	}
 	else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0)
 	{
@@ -501,7 +500,7 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 	}
 	else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0)
 	{
-        LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+        LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0)
 	{
@@ -509,16 +508,18 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 	}
 	else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, VIDEO_CONTROL_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
+    else
+        LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 }
 
 void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDisconnectedEventArgs *e)
@@ -526,21 +527,21 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
     rdpContext* pContext = (rdpContext*)context;
     if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
 	{
         if(pContext->settings->SoftwareGdi) {
-            
+            gdi_graphics_pipeline_uninit(pContext->gdi, (RdpgfxClientContext*)e->pInterface);    
         }
 	}
 	else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0)
 	{
@@ -548,7 +549,7 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 	}
 	else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0)
 	{
-        LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+        LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0)
 	{
@@ -556,15 +557,15 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 	}
 	else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, VIDEO_CONTROL_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG4CPLUS_INFO(g_logger, "Unimplemented: channel %s connected but we can’t use it\n" << e->name);
+		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 }
 
@@ -594,7 +595,8 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
 	ClientContext* context = (ClientContext*)instance->context;
     CConnectFreeRdp* pThis = context->pConnect;
     
-
+    //TODO: Delete it
+    pThis->SetUser("root", "yly075077");
     
     if(username)
         *username = _strdup(pThis->m_szUser.toStdString().c_str());

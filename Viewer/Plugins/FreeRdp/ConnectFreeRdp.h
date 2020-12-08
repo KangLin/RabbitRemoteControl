@@ -3,14 +3,6 @@
 
 #include "Connect.h"
 #include "freerdp/freerdp.h"
-#include "log4cplus/logger.h"
-
-class CConnectFreeRdp;
-
-struct ClientContext{
-    rdpContext Context;
-    CConnectFreeRdp* pConnect;
-};
 
 class CConnectFreeRdp : public CConnect
 {
@@ -80,6 +72,10 @@ private:
     int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
     
 private:
+    struct ClientContext{
+        rdpContext Context;
+        CConnectFreeRdp* pConnect;
+    };
     ClientContext* m_pContext;
 	rdpSettings* m_pSettings;
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
