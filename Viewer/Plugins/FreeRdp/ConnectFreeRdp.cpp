@@ -262,7 +262,7 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 	UINT32 desktopHeight = 0;
     
     if (!instance || !instance->context || !instance->settings)
-            return FALSE;
+        return FALSE;
     
 	settings = instance->settings;
 	channels = context->channels;
@@ -350,8 +350,7 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 	rdpUpdate* update;
 	rdpContext* context;
 	rdpSettings* settings;
-	ResizeWindowEventArgs e;
-    CConnectFreeRdp* pThis = (CConnectFreeRdp*)instance->context;
+    CConnectFreeRdp* pThis = ((ClientContext*)instance->context)->pConnect;
 
 	context = instance->context;
 	settings = instance->settings;
@@ -380,6 +379,7 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 //			return FALSE;
 //		}
 
+        //TODO: register update callbacks
 //		xf_gdi_register_update_callbacks(update);
 		brush_cache_register_callbacks(instance->update);
 		glyph_cache_register_callbacks(instance->update);
