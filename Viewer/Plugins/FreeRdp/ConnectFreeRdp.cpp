@@ -607,7 +607,6 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
 	
 	ClientContext* context = (ClientContext*)instance->context;
     CConnectFreeRdp* pThis = context->pThis;
-    
 
     
     if(username)
@@ -755,10 +754,12 @@ void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
 
 void CConnectFreeRdp::slotKeyPressEvent(QKeyEvent* e)
 {
-    //freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, )
+    freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
+                                         true, e->nativeScanCode());
 }
 
 void CConnectFreeRdp::slotKeyReleaseEvent(QKeyEvent* e)
 {
-    
+    freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
+                                         false, e->nativeScanCode());
 }
