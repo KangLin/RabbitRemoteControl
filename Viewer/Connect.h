@@ -7,6 +7,9 @@
 #include <QPoint>
 #include "FrmViewer.h"
 #include <QtPlugin>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QWheelEvent>
 
 /**
  * @brief The CConnect class.

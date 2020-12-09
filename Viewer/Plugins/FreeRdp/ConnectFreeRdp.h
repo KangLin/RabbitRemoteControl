@@ -71,6 +71,14 @@ public Q_SLOTS:
     virtual int Process() override;
     virtual void slotClipBoardChange() override;
     
+public Q_SLOTS:
+    virtual void slotMousePressEvent(QMouseEvent*) override;
+    virtual void slotMouseReleaseEvent(QMouseEvent*) override;
+    virtual void slotMouseMoveEvent(QMouseEvent*) override;
+    virtual void slotWheelEvent(QWheelEvent*) override;
+    virtual void slotKeyPressEvent(QKeyEvent*) override;
+    virtual void slotKeyReleaseEvent(QKeyEvent*) override;
+    
 private:
     int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
     

@@ -149,6 +149,7 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
+    
     QMouseEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;

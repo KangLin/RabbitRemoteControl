@@ -384,11 +384,11 @@ void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
     if(!writer()) return;
     unsigned char mask = 0;
     rfb::Point pos(e->x(), e->y());
-    if(e->buttons() & Qt::MouseButton::LeftButton)
+    if(e->button() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->buttons() & Qt::MouseButton::MiddleButton)
+    if(e->button() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->buttons() & Qt::MouseButton::RightButton)
+    if(e->button() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     writer()->writePointerEvent(pos, mask);
 }
