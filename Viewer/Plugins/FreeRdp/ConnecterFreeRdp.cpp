@@ -2,11 +2,14 @@
 
 #include "ConnecterFreeRdp.h"
 #include <QDebug>
-#include "DlgSettings.h"
+#include "DlgSettingsFreeRdp.h"
 
 CConnecterFreeRdp::CConnecterFreeRdp(QObject *parent) : CConnecter(parent),
     m_pThread(nullptr)
-{}
+{
+    // 在 freerdp_client_context_free 中释放
+    m_pSettings = freerdp_settings_new(0);
+}
 
 CConnecterFreeRdp::~CConnecterFreeRdp()
 {
@@ -38,7 +41,7 @@ QString CConnecterFreeRdp::Protol()
 
 QDialog *CConnecterFreeRdp::GetDialogSettings(QWidget *parent)
 {
-    return new CDlgSettings(parent);
+    return new CDlgSettingsFreeRdp(m_pSettings, parent);
 }
 
 int CConnecterFreeRdp::Load(QDataStream &d)

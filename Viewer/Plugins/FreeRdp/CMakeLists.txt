@@ -40,7 +40,7 @@ SET(SOURCE_FILES
     ConnectFreeRdp.cpp
     ConnecterFreeRdp.cpp
     ConnectThread.cpp
-    DlgSettings.cpp
+    DlgSettingsFreeRdp.cpp
     #Graphics.cpp
     ClipBoard.cpp
     )
@@ -50,13 +50,13 @@ SET(HEADER_FILES
     ConnectFreeRdp.h
     ConnecterFreeRdp.h
     ConnectThread.h
-    DlgSettings.h
+    DlgSettingsFreeRdp.h
     #Graphics.h
     ClipBoard.h
     )
 
 SET(UI_FILES
-    DlgSettings.ui
+    DlgSettingsFreeRdp.ui
     )
 
 #翻译

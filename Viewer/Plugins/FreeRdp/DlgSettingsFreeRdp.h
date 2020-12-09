@@ -4,18 +4,19 @@
 #define DLGSETTINGS_H
 
 #include <QDialog>
+#include "freerdp/freerdp.h"
 
 namespace Ui {
-class CDlgSettings;
+class CDlgSettingsFreeRdp;
 }
 
-class CDlgSettings : public QDialog
+class CDlgSettingsFreeRdp : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit CDlgSettings(QWidget *parent = nullptr);
-    ~CDlgSettings();
+    explicit CDlgSettingsFreeRdp(rdpSettings* pSettings, QWidget *parent = nullptr);
+    ~CDlgSettingsFreeRdp();
     
 private slots:
     void on_pbOk_clicked();
@@ -23,7 +24,8 @@ private slots:
     void on_pbCancle_clicked();
     
 private:
-    Ui::CDlgSettings *ui;
+    Ui::CDlgSettingsFreeRdp *ui;
+    rdpSettings* m_pSettings;
 };
 
 #endif // DLGSETTINGS_H

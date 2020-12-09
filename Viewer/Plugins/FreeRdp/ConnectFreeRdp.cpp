@@ -20,14 +20,18 @@
 #include <QApplication>
 #include <QScreen>
 
-CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
+CConnectFreeRdp::CConnectFreeRdp(rdpSettings *settings,
+                                 CFrmViewer *pView,
+                                 QObject *parent)
     : CConnect(pView, parent),
       m_pContext(nullptr)
 {
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
+    m_ClientEntryPoints.settings = settings;
     
+    SetParamter(settings);
     RdpClientEntry(&m_ClientEntryPoints);
     
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
@@ -38,9 +42,6 @@ CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
         m_pContext->pThis = this;
     } else 
         LOG_MODEL_ERROR("FreeRdp", "freerdp_client_context_new fail");
-    
-    //TODO: Delete it
-    this->SetServerName("fmpixel.f3322.net");
     
 }
 
@@ -72,15 +73,6 @@ int CConnectFreeRdp::Connect()
     rdpSettings* settings = instance->settings;
     Q_ASSERT(settings);
     if(nullptr == settings) return -1;
-
-    if(!m_szHost.isEmpty())
-        settings->ServerHostname = _strdup(m_szHost.toStdString().c_str());
-    if(m_nPort)
-        settings->ServerPort = static_cast<UINT32>(m_nPort);
-    if(!m_szUser.isEmpty())
-        settings->Username = _strdup(m_szUser.toStdString().c_str());
-    if(!m_szPassword.isEmpty())
-        settings->Password = _strdup(m_szPassword.toStdString().c_str());
     
     freerdp_client_start(&m_pContext->Context);
     
@@ -769,6 +761,13 @@ int CConnectFreeRdp::SetParamter(void *pPara)
 {
     Q_ASSERT(pPara);
     if(!pPara) return -1;
+    
+    rdpSettings* settings = (rdpSettings*)pPara;
+    
+    SetServer(settings->ServerHostname,
+              settings->ServerPort);
+    SetUser(settings->Username,
+            settings->Password);
     
     return 0;
 }

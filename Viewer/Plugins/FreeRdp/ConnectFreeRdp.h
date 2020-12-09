@@ -12,7 +12,8 @@ class CConnectFreeRdp : public CConnect
     Q_OBJECT
 
 public:
-    explicit CConnectFreeRdp(CFrmViewer* pView = nullptr,
+    explicit CConnectFreeRdp(rdpSettings* settings,
+                             CFrmViewer* pView = nullptr,
                              QObject *parent = nullptr);
     virtual ~CConnectFreeRdp() override;
     

@@ -12,9 +12,13 @@
 <context>
     <name>CDlgSettings</name>
     <message>
-        <location filename="../../DlgSettings.ui" line="14"/>
         <source>Settings</source>
-        <translation>設置</translation>
+        <translation type="vanished">設置</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="14"/>
+        <source>Setting TigerVNC</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="24"/>
@@ -173,9 +177,9 @@
     </message>
 </context>
 <context>
-    <name>CManageConnectTigerVnc</name>
+    <name>CPluginFactoryTigerVnc</name>
     <message>
-        <location filename="../../ManageConnectTigerVnc.cpp" line="53"/>
+        <location filename="../../PluginFactoryTigerVnc.cpp" line="53"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>

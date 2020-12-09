@@ -24,7 +24,7 @@ CConnectThread::~CConnectThread()
 void CConnectThread::run()
 {
     CConnecterFreeRdp* connecter = dynamic_cast<CConnecterFreeRdp*>(m_pConnecter);
-    CConnectFreeRdp c(m_pView);
+    CConnectFreeRdp c(connecter->m_pSettings, m_pView);
 
     bool check = connect(&c, SIGNAL(sigConnected()),
                          m_pConnecter, SIGNAL(sigConnected()));

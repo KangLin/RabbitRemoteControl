@@ -5,6 +5,7 @@
 
 #include "Connecter.h"
 #include "ConnectThread.h"
+#include "freerdp/freerdp.h"
 
 class CConnecterFreeRdp : public CConnecter
 {
@@ -12,6 +13,8 @@ class CConnecterFreeRdp : public CConnecter
 public:
     explicit CConnecterFreeRdp(QObject *parent = nullptr);
     virtual ~CConnecterFreeRdp() override;
+    
+    rdpSettings* m_pSettings;
     
     // CConnecter interface
 public:

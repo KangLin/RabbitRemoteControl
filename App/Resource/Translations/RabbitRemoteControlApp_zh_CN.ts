@@ -9,22 +9,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="25"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="27"/>
         <source>Nail</source>
         <translation>钉住</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="30"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="32"/>
         <source>Full</source>
         <translation>关闭全屏</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="32"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="34"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="35"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="37"/>
         <source>Disconnect</source>
         <translation>关闭边连接</translation>
     </message>
@@ -242,7 +242,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="49"/>
+        <location filename="../../main.cpp" line="39"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔远程控制</translation>
     </message>
