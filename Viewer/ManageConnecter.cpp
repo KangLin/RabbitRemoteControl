@@ -9,7 +9,9 @@
 
 CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent),
     m_FileVersion(1)  //TODO: update it if update data
-{}
+{
+    LoadPlugins();
+}
 
 CManageConnecter::~CManageConnecter()
 {

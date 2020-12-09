@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CPLUGINFACTORY_H
 #define CPLUGINFACTORY_H
 
@@ -6,7 +8,7 @@
 #include "Connecter.h"
 
 /**
- * @brief The CPluginFactory interface
+ * @brief The CPluginFactory interface, Create connecter instance
  *        be implemented by the protol plugin
  * @addtogroup API
  */

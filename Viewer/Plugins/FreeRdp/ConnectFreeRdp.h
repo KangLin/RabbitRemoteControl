@@ -60,7 +60,7 @@ public:
     
     static BOOL cb_end_paint(rdpContext* context);
     
-public:
+private:
     UINT32 GetImageFormat();
     
     // CConnect interface

@@ -43,9 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->setCentralWidget(m_pTab);
 
-    // Connect menu and toolbar
-    m_ManageConnecter.LoadPlugins();
-    
+    // Connect menu and toolbar   
     foreach(auto m, m_ManageConnecter.GetManageConnecter())
     {
         QAction* p = ui->menuConnect_C->addAction(m->Name(), this, SLOT(slotConnect()));

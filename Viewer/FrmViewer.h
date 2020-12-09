@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef FRMVIEWER_H
 #define FRMVIEWER_H
 
