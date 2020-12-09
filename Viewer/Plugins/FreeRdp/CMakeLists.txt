@@ -39,6 +39,8 @@ SET(SOURCE_FILES
     ConnecterFreeRdp.cpp
     ConnectThread.cpp
     DlgSettings.cpp
+    #Graphics.cpp
+    ClipBoard.cpp
     )
 
 SET(HEADER_FILES
@@ -47,6 +49,8 @@ SET(HEADER_FILES
     ConnecterFreeRdp.h
     ConnectThread.h
     DlgSettings.h
+    #Graphics.h
+    ClipBoard.h
     )
 
 SET(UI_FILES

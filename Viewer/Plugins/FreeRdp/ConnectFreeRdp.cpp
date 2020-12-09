@@ -34,7 +34,7 @@ CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
     {
         m_pContext = (ClientContext*)p;
         
-        m_pContext->pConnect = this;
+        m_pContext->pThis = this;
         m_pSettings = m_pContext->Context.settings;
     } else 
         LOG_MODEL_ERROR("FreeRdp", "freerdp_client_context_new fail");
@@ -257,7 +257,7 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 	rdpChannels* channels = nullptr;
 	rdpSettings* settings = nullptr;
 	rdpContext* context = instance->context;
-	CConnectFreeRdp* pThis = (CConnectFreeRdp*)((ClientContext*)instance->context)->pConnect;
+	CConnectFreeRdp* pThis = (CConnectFreeRdp*)((ClientContext*)instance->context)->pThis;
 	UINT32 desktopWidth = 0;
 	UINT32 desktopHeight = 0;
     
@@ -334,8 +334,6 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
         return FALSE;
     }//*/
     
-    pThis->m_Image = QImage(desktopWidth, desktopHeight, QImage::Format_RGB32);
-    
 	return TRUE;
 }
 
@@ -350,16 +348,23 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 	rdpUpdate* update;
 	rdpContext* context;
 	rdpSettings* settings;
-    CConnectFreeRdp* pThis = ((ClientContext*)instance->context)->pConnect;
+    CConnectFreeRdp* pThis = ((ClientContext*)instance->context)->pThis;
 
 	context = instance->context;
 	settings = instance->settings;
 	update = context->update;
 
-    //TODO:Set desktop width and height
+    Q_ASSERT(context);
+    Q_ASSERT(settings);
+    
+    pThis->m_Image = QImage(settings->DesktopWidth,
+                            settings->DesktopHeight,
+                            QImage::Format_RGB32);
     
     // Init gdi format
-	if (!gdi_init(instance, pThis->GetImageFormat()))
+	//if (!gdi_init(instance, pThis->GetImageFormat()))
+    if (!gdi_init_ex(instance, pThis->GetImageFormat(),
+                     0, pThis->m_Image.bits(), nullptr))
 	{
         LOG_MODEL_ERROR("FreeRdp", "gdi_init fail");
         return FALSE;
@@ -371,27 +376,21 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 
     // pointer_cache_register_callbacks(instance->update);
     
-	if (!settings->SoftwareGdi)
-	{
-//		if (!xf_register_graphics(context->graphics))
-//		{
-//			WLog_ERR(TAG, "failed to register graphics");
-//			return FALSE;
-//		}
+//	if (!settings->SoftwareGdi)
+//	{
+//        //pThis->m_Graphics.Registergraphics(context->graphics);
+        
+//        //TODO: register update callbacks
+//		//xf_gdi_register_update_callbacks(update);
+//		brush_cache_register_callbacks(instance->update);
+//		glyph_cache_register_callbacks(instance->update);
+//		bitmap_cache_register_callbacks(instance->update);
+//		offscreen_cache_register_callbacks(instance->update);
+//		palette_cache_register_callbacks(instance->update);
+//	}
 
-        //TODO: register update callbacks
-//		xf_gdi_register_update_callbacks(update);
-		brush_cache_register_callbacks(instance->update);
-		glyph_cache_register_callbacks(instance->update);
-		bitmap_cache_register_callbacks(instance->update);
-		offscreen_cache_register_callbacks(instance->update);
-		palette_cache_register_callbacks(instance->update);
-	}
-
-
-//	if (settings->RemoteApplicationMode)
-//		xfc->remote_app = TRUE;
-
+    
+    update->EndPaint = cb_end_paint;
 
 //	if (settings->SoftwareGdi)
 //	{
@@ -421,6 +420,9 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 //	e.width = settings->DesktopWidth;
 //	e.height = settings->DesktopHeight;
 //	PubSub_OnResizeWindow(context->pubSub, xfc, &e);
+    
+    //TODO:delete it
+    emit pThis->sigConnected();
 	return TRUE;
 }
 
@@ -473,6 +475,7 @@ int CConnectFreeRdp::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
 void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConnectedEventArgs *e)
 {
     rdpContext* pContext = (rdpContext*)context;
+    CConnectFreeRdp* pThis = ((ClientContext*)context)->pThis;
     if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
 	{
 		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
@@ -483,6 +486,7 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 	}
 	else if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
 	{
+        LOG_MODEL_INFO("FreeRdp", "Channel %s connected", e->name);
         if(pContext->settings->SoftwareGdi) {
             rdpGdi* gdi = pContext->gdi;
             gdi_graphics_pipeline_init(gdi, (RdpgfxClientContext*)e->pInterface);
@@ -496,7 +500,8 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 	}
 	else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0)
 	{
-		
+		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
+        pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface);
 	}
 	else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0)
 	{
@@ -504,7 +509,7 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 	}
 	else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0)
 	{
-		
+		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
 	}
 	else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0)
 	{
@@ -525,6 +530,8 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDisconnectedEventArgs *e)
 {
     rdpContext* pContext = (rdpContext*)context;
+    CConnectFreeRdp* pThis = ((ClientContext*)context)->pThis;
+    
     if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
 	{
 		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
@@ -535,6 +542,7 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 	}
 	else if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
 	{
+        LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
         if(pContext->settings->SoftwareGdi) {
             gdi_graphics_pipeline_uninit(pContext->gdi, (RdpgfxClientContext*)e->pInterface);    
         }
@@ -545,7 +553,8 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 	}
 	else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0)
 	{
-		
+		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
+        pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface);
 	}
 	else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0)
 	{
@@ -553,7 +562,7 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 	}
 	else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0)
 	{
-		
+		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
 	}
 	else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0)
 	{
@@ -572,18 +581,22 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 UINT32 CConnectFreeRdp::GetImageFormat()
 {
     switch (m_Image.format()) {
-    case QImage::Format_RGB32:
+#if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
+    case QImage::Format_RGBA8888:
         return PIXEL_FORMAT_RGBA32;
-    case QImage::Format_RGB888:
-        return PIXEL_FORMAT_RGB24;
+    case QImage::Format_RGBX8888:
+        return PIXEL_FORMAT_RGBX32;
+#endif
     case QImage::Format_RGB16:
         return PIXEL_FORMAT_RGB16;
-    case QImage::Format_Mono:
-        return PIXEL_FORMAT_MONO;
+    case QImage::Format_ARGB32:
+        return PIXEL_FORMAT_BGRA32;
+    case QImage::Format_RGB32:
+        return PIXEL_FORMAT_BGRA32;
     default:
         break;
     }
-    return PIXEL_FORMAT_RGBA32;
+    return 0;
 }
 
 BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char** password, char** domain)
@@ -593,10 +606,9 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
 		return FALSE;
 	
 	ClientContext* context = (ClientContext*)instance->context;
-    CConnectFreeRdp* pThis = context->pConnect;
+    CConnectFreeRdp* pThis = context->pThis;
     
-    //TODO: Delete it
-    pThis->SetUser("root", "yly075077");
+
     
     if(username)
         *username = _strdup(pThis->m_szUser.toStdString().c_str());
@@ -613,7 +625,7 @@ BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance, char **username,
 		return FALSE;
 		
 	ClientContext* context = (ClientContext*)instance->context;
-    CConnectFreeRdp* pThis = context->pConnect;
+    CConnectFreeRdp* pThis = context->pThis;
     if(username)
         *username = _strdup(pThis->m_szUser.toStdString().c_str());
     if(password)
@@ -645,5 +657,15 @@ BOOL CConnectFreeRdp::cb_present_gateway_message(freerdp* instance, UINT32 type,
 {
     qDebug() << "CConnectFreeRdp::cb_present_gateway_message";
     
+    return TRUE;
+}
+
+BOOL CConnectFreeRdp::cb_end_paint(rdpContext *context)
+{
+    //qDebug() << "CConnectFreeRdp::cb_end_paint";
+    ClientContext* pContext = (ClientContext*)context;
+    CConnectFreeRdp* pThis = pContext->pThis;
+
+    emit pThis->sigUpdateRect(pThis->m_Image.rect(), pThis->m_Image);
     return TRUE;
 }

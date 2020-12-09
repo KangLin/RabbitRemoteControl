@@ -3,6 +3,7 @@
 
 #include "Connect.h"
 #include "freerdp/freerdp.h"
+#include "ClipBoard.h"
 
 class CConnectFreeRdp : public CConnect
 {
@@ -57,6 +58,8 @@ public:
     static BOOL cb_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
                                            BOOL isConsentMandatory, size_t length, const WCHAR* message);
     
+    static BOOL cb_end_paint(rdpContext* context);
+    
 public:
     UINT32 GetImageFormat();
     
@@ -74,13 +77,16 @@ private:
 private:
     struct ClientContext{
         rdpContext Context;
-        CConnectFreeRdp* pConnect;
+        CConnectFreeRdp* pThis;
     };
     ClientContext* m_pContext;
 	rdpSettings* m_pSettings;
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
         
     QImage m_Image;
+
+    CClipBoard m_ClipBoard;
+    
 };
 
 #endif // CCONNECTFREERDP_H
