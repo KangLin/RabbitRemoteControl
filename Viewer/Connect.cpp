@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "Connect.h"
 #include <QApplication>
 #include <QDebug>

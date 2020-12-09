@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCONNECTFREERDP_H
 #define CCONNECTFREERDP_H
 
@@ -13,6 +15,8 @@ public:
     explicit CConnectFreeRdp(CFrmViewer* pView = nullptr,
                              QObject *parent = nullptr);
     virtual ~CConnectFreeRdp() override;
+    
+    int SetParamter(void *pPara);
     
     static BOOL Client_global_init();
     static void Client_global_uninit();
@@ -88,13 +92,12 @@ private:
         CConnectFreeRdp* pThis;
     };
     ClientContext* m_pContext;
-	rdpSettings* m_pSettings;
+
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
         
     QImage m_Image;
 
     CClipBoard m_ClipBoard;
-    
 };
 
 #endif // CCONNECTFREERDP_H

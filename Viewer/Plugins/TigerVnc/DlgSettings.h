@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef DLGSETTINGS_H
 #define DLGSETTINGS_H
 

@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCONNECTTHREAD_H
 #define CCONNECTTHREAD_H
 

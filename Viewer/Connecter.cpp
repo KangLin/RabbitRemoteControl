@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "Connecter.h"
 
 CConnecter::CConnecter(QObject *parent) : QObject(parent),

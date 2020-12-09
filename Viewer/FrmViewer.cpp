@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "FrmViewer.h"
 #include "ui_FrmViewer.h"
 #include <QPainter>

@@ -10,6 +10,8 @@
 
 #include <QTabBar>
 #include <QMessageBox>
+//! @author: Kang Lin(kl222@126.com)
+
 #include <QScreen>
 #include <QApplication>
 #include <QSettings>

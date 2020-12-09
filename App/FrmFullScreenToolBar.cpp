@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "FrmFullScreenToolBar.h"
 #include "ui_FrmFullScreenToolBar.h"
 #include <QStyleOption>

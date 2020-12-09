@@ -17,7 +17,8 @@
  */
 
 /**
- * @brief The CManageConnecter class
+ * @brief The CManageConnecter class, manage plugins
+ * @see   CPluginFactory CConnecter
  * @addtogroup API
  */
 class RABBITREMOTECONTROL_EXPORT CManageConnecter : public QObject

@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCONNECTERTIGERVNC_H
 #define CCONNECTERTIGERVNC_H
 

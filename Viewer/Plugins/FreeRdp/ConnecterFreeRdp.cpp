@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ConnecterFreeRdp.h"
 #include <QDebug>
 #include "DlgSettings.h"

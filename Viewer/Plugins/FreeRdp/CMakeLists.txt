@@ -1,3 +1,5 @@
+#Author: Kang Lin(kl222@126.com)
+
 find_package(WinPR)
 message("WinPR_FOUND:${WinPR_FOUND}")
 if(NOT WinPR_FOUND)

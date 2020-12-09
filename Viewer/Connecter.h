@@ -12,6 +12,7 @@
 
 /**
  * @brief The CConnecter class
+ * @see   CPluginFactory CFrmViewer CConnect
  * @addtogroup API
  */
 class RABBITREMOTECONTROL_EXPORT CConnecter : public QObject

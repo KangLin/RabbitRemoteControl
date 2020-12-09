@@ -19,7 +19,6 @@ class RABBITREMOTECONTROL_EXPORT CPluginFactory : public QObject
 public:
     explicit CPluginFactory(QObject *parent = nullptr);
 
-    // Plugin name
     virtual QString Name() = 0;
     virtual QString Description() = 0;
     virtual QString Protol() = 0;

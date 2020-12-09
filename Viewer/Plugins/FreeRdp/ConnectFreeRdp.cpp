@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ConnectFreeRdp.h"
 
 #include "freerdp/client/cmdline.h"
@@ -20,8 +22,7 @@
 
 CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
     : CConnect(pView, parent),
-      m_pContext(nullptr),
-      m_pSettings(nullptr)
+      m_pContext(nullptr)
 {
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
@@ -35,7 +36,6 @@ CConnectFreeRdp::CConnectFreeRdp(CFrmViewer *pView, QObject *parent)
         m_pContext = (ClientContext*)p;
         
         m_pContext->pThis = this;
-        m_pSettings = m_pContext->Context.settings;
     } else 
         LOG_MODEL_ERROR("FreeRdp", "freerdp_client_context_new fail");
     
@@ -68,17 +68,19 @@ int CConnectFreeRdp::Connect()
     qDebug() << "CConnectFreeRdp::Connect()";
     int nRet = 0;
     freerdp* instance = m_pContext->Context.instance;
-    Q_ASSERT(m_pSettings);
-    if(nullptr == m_pSettings) return -1;
+    
+    rdpSettings* settings = instance->settings;
+    Q_ASSERT(settings);
+    if(nullptr == settings) return -1;
 
     if(!m_szHost.isEmpty())
-        m_pSettings->ServerHostname = _strdup(m_szHost.toStdString().c_str());
+        settings->ServerHostname = _strdup(m_szHost.toStdString().c_str());
     if(m_nPort)
-        m_pSettings->ServerPort = static_cast<UINT32>(m_nPort);
+        settings->ServerPort = static_cast<UINT32>(m_nPort);
     if(!m_szUser.isEmpty())
-        m_pSettings->Username = _strdup(m_szUser.toStdString().c_str());
+        settings->Username = _strdup(m_szUser.toStdString().c_str());
     if(!m_szPassword.isEmpty())
-        m_pSettings->Password = _strdup(m_szPassword.toStdString().c_str());
+        settings->Password = _strdup(m_szPassword.toStdString().c_str());
     
     freerdp_client_start(&m_pContext->Context);
     
@@ -96,6 +98,8 @@ int CConnectFreeRdp::Connect()
         LOG_MODEL_ERROR("FreeRdp", "freerdp_connect fail: %d", nRet);
 	}
     
+    LOG_MODEL_INFO("FreeRdp", "Connect to %s:[%d]", settings->ServerHostname, settings->ServerPort);
+    emit sigConnected();
     return nRet;
 }
 
@@ -421,8 +425,6 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 //	e.height = settings->DesktopHeight;
 //	PubSub_OnResizeWindow(context->pubSub, xfc, &e);
     
-    //TODO:delete it
-    emit pThis->sigConnected();
 	return TRUE;
 }
 
@@ -607,7 +609,6 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
 	
 	ClientContext* context = (ClientContext*)instance->context;
     CConnectFreeRdp* pThis = context->pThis;
-    
 
     if(username)
         *username = _strdup(pThis->m_szUser.toStdString().c_str());
@@ -762,4 +763,12 @@ void CConnectFreeRdp::slotKeyReleaseEvent(QKeyEvent* e)
 {
     freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
                                          false, e->nativeScanCode());
+}
+
+int CConnectFreeRdp::SetParamter(void *pPara)
+{
+    Q_ASSERT(pPara);
+    if(!pPara) return -1;
+    
+    return 0;
 }

@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ClipBoard.h"
 
 CClipBoard::CClipBoard(QObject *parent) : QObject(parent)

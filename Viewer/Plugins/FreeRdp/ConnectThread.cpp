@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ConnectThread.h"
 #include "ConnectFreeRdp.h"
 #include "ConnecterFreeRdp.h"

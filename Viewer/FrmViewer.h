@@ -17,6 +17,7 @@ class CConnecter;
 /**
  * @brief The CFrmViewer class
  * @note This interface is temporarily unstable and will be modified later
+ * @see  CConnecter CConnect
  * @addtogroup API
  */
 class RABBITREMOTECONTROL_EXPORT CFrmViewer : public QWidget

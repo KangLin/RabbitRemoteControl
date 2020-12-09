@@ -16,6 +16,7 @@
 /**
  * @brief The CConnect class.
  * @note Only used inside the plugin
+ * @see  CConnecter CFrmViewer
  */
 class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
 {

@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCLIPBOARD_H
 #define CCLIPBOARD_H
 
