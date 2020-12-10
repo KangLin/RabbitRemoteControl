@@ -12,7 +12,7 @@
 
 玉兔远程控制是一个跨平台，支持多协议的远程控制软件。
 
-## 支持操作系统 ([https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
+## 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
 - [x] Unix/Linux
 - [x] Android
