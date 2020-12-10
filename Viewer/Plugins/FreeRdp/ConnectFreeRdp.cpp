@@ -746,7 +746,7 @@ void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
         flags |= PTR_FLAGS_BUTTON3;
     if(e->button() & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
-    LOG_MODEL_DEBUG("FreeRdp", "Flags: %d", flags);
+    //LOG_MODEL_DEBUG("FreeRdp", "Flags: %d", flags);
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
                                    e->x(),

@@ -21,6 +21,8 @@ private slots:
     
     void on_pbCancel_clicked();
     
+    void on_rbNative_clicked(bool checked);
+    
 private:
     Ui::CDlgSetFreeRdp *ui;
     rdpSettings* m_pSettings;

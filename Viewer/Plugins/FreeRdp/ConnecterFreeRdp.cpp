@@ -61,14 +61,23 @@ int CConnecterFreeRdp::Load(QDataStream &d)
     d >> version;
     QString val;
     d >> val;
+    freerdp_settings_set_string(m_pSettings, FreeRDP_Domain, val.toStdString().c_str());
+    d >> val;
     freerdp_settings_set_string(m_pSettings, FreeRDP_ServerHostname, val.toStdString().c_str());
-    qint32 nPort = 3389;
+    quint32 nPort = 3389;
     d >> nPort;
     m_pSettings->ServerPort = nPort;
     d >> val;
     freerdp_settings_set_string(m_pSettings, FreeRDP_Username, val.toStdString().c_str());
     d >> val;
     freerdp_settings_set_string(m_pSettings, FreeRDP_Password, val.toStdString().c_str());
+    
+    quint32 width, height, colorDepth;
+    d >> width >> height >> colorDepth;
+    m_pSettings->DesktopWidth = width;
+    m_pSettings->DesktopHeight = height;
+    m_pSettings->ColorDepth = colorDepth;
+    
     return nRet;
 }
 
@@ -77,12 +86,17 @@ int CConnecterFreeRdp::Save(QDataStream &d)
     int nRet = 0;
     
     d << Version()
+      << QString(freerdp_settings_get_string(m_pSettings, FreeRDP_Domain))
       << QString(freerdp_settings_get_string(m_pSettings, FreeRDP_ServerHostname))
-      << (qint32)m_pSettings->ServerPort
+      << (quint32)m_pSettings->ServerPort
       << QString(freerdp_settings_get_string(m_pSettings, FreeRDP_Username))
       << QString(freerdp_settings_get_string(m_pSettings, FreeRDP_Password))
+         
+      << (quint32)m_pSettings->DesktopWidth
+      << (quint32)m_pSettings->DesktopHeight
+      << (quint32)m_pSettings->ColorDepth
          ;
-
+    
     return nRet;
 }
 
