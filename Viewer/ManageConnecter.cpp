@@ -2,7 +2,7 @@
 //! @author: Kang Lin(kl222@126.com)
 
 #include "RabbitCommonDir.h"
-
+#include "RabbitCommonLog.h"
 #include <QPluginLoader>
 #include <QDebug>
 #include <QtPlugin>
@@ -105,12 +105,17 @@ CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
     d >> m_FileVersion;
     QString protol;
     d >> protol;
-    qDebug() << "protol:" << protol;
+    QString name;
+    d >> name;
+    LOG_MODEL_INFO("ManageConnecter", "protol: %s  name: %s",
+                   protol.toStdString().c_str(),
+                   name.toStdString().c_str());
     CConnecter* pConnecter = CreateConnecter(protol);
     if(pConnecter)
         pConnecter->Load(d);
     else
-        qCritical() << "Don't create connecter:" << protol;
+        LOG_MODEL_ERROR("ManageConnecter", "Don't create connecter: %s",
+                        protol.toStdString().c_str());
     f.close();
 
     return pConnecter;
@@ -119,14 +124,16 @@ CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
 int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecter)
 {
     if(!pConnecter) return -1;
-    
+
     QFile f(szFile);
     if(!f.open(QFile::WriteOnly))
     {
-        qCritical() << "Save connecter: Open file fail:" << szFile;
+        LOG_MODEL_ERROR("ManageConnecter",
+                        "Save connecter: Open file fail: %s",
+                        szFile.toStdString().c_str());
         return -1;
     }
-    
+
     QDataStream d(&f);
     d << m_FileVersion;
     CPluginFactory* pFactory = dynamic_cast<CPluginFactory*>(pConnecter->parent());
@@ -135,9 +142,9 @@ int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecte
     // and its parent pointer must be specified as the corresponding CManageConnecter derived class
     Q_ASSERT(pFactory);
     d << pFactory->Protol();
-    
+    d << pFactory->Name();
     pConnecter->Save(d);
-    
+
     f.close();
     return 0;
 }

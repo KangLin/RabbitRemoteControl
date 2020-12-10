@@ -2,17 +2,9 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
-    <name>CDlgSettingsFreeRdp</name>
+    <name>CDlgSetFreeRdp</name>
     <message>
-        <source>Setting  FreeRdp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>OK(&amp;O)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancle(&amp;C)</source>
+        <source>Set FreeRdp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -48,11 +40,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save</source>
+        <source>OK(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Support windows resize</source>
+        <source>Cancel(&amp;C)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

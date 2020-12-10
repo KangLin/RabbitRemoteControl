@@ -307,7 +307,8 @@ void MainWindow::slotConnect()
             break;
         case QDialog::Accepted:
             QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                    + QDir::separator() + p->Protol() + "_" + p->Name() + ".rrc";
+                    + QDir::separator() + p->Protol() + "_" + p->ServerName() + ".rrc";
+            szFile = szFile.replace(":", "_");
             m_ManageConnecter.SaveConnecter(szFile, p);
             p->Connect();
             break;

@@ -30,9 +30,8 @@ SET(SOURCE_FILES
     ConnectFreeRdp.cpp
     ConnecterFreeRdp.cpp
     ConnectThread.cpp
-    DlgSettingsFreeRdp.cpp
-    #Graphics.cpp
     ClipBoard.cpp
+    DlgSetFreeRdp.cpp
     )
 
 SET(HEADER_FILES
@@ -40,25 +39,24 @@ SET(HEADER_FILES
     ConnectFreeRdp.h
     ConnecterFreeRdp.h
     ConnectThread.h
-    DlgSettingsFreeRdp.h
-    #Graphics.h
     ClipBoard.h
+    DlgSetFreeRdp.h
     )
 
 SET(UI_FILES
-    DlgSettingsFreeRdp.ui
+    DlgSetFreeRdp.ui
     )
 
 #翻译
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES}
-    OUT_QRC TRANSLATIONS_QRC_FILES
+    OUT_QRC FREERDP_TRANSLATIONS_QRC_FILES
     )
 string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
 if(BUILD_TYPE STREQUAL "debug")
     LIST(APPEND PRIVATE_DEFINITIONS DEBUG)
     LIST(APPEND RCC_FILES
-        ${TRANSLATIONS_QRC_FILES}
+        ${FREERDP_TRANSLATIONS_QRC_FILES}
         )
 endif()
 

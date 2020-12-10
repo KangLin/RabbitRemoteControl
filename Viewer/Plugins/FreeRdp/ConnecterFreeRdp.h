@@ -18,9 +18,11 @@ public:
     
     // CConnecter interface
 public:
-    virtual QString Name() override;
+    virtual QString ServerName() override;
+    virtual QString Name() override; 
     virtual QString Description() override;
     virtual QString Protol() override;
+    virtual qint16 Version() override;
     
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
     virtual int Load(QDataStream &d) override;

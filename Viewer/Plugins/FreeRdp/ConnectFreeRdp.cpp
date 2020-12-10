@@ -87,10 +87,17 @@ int CConnectFreeRdp::Connect()
 		else
 			nRet = -4;
         
-        LOG_MODEL_ERROR("FreeRdp", "freerdp_connect fail: %d", nRet);
+        LOG_MODEL_ERROR("FreeRdp", "freerdp_connect connect to %s:%d fail: %d",
+                        settings->ServerHostname,
+                        settings->ServerPort,
+                        nRet);
     } else {
-        LOG_MODEL_INFO("FreeRdp", "Connect to %s:[%d]", settings->ServerHostname, settings->ServerPort);
+        LOG_MODEL_INFO("FreeRdp", "Connect to %s:%d",
+                       settings->ServerHostname,
+                       settings->ServerPort);
+        
         emit sigConnected();
+        emit sigSetDesktopName(m_szServerName);
     }
     return nRet;
 }
@@ -193,8 +200,10 @@ BOOL CConnectFreeRdp::Client_new(freerdp *instance, rdpContext *context)
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
     
-	instance->Authenticate = cb_authenticate;
-	instance->GatewayAuthenticate = cb_GatewayAuthenticate;
+    // Because settings is set. 
+	//instance->Authenticate = cb_authenticate;
+	//instance->GatewayAuthenticate = cb_GatewayAuthenticate;
+    
     instance->VerifyCertificateEx = cb_verify_certificate_ex;
 	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;
 	instance->PresentGatewayMessage = cb_present_gateway_message;
@@ -598,14 +607,13 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
     qDebug() << "CConnectFreeRdp::cb_authenticate";
 	if(!instance)
 		return FALSE;
-	
-	ClientContext* context = (ClientContext*)instance->context;
-    CConnectFreeRdp* pThis = context->pThis;
 
     if(username)
-        *username = _strdup(pThis->m_szUser.toStdString().c_str());
+        *username = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Username));
     if(password)
-	    *password = _strdup(pThis->m_szPassword.toStdString().c_str());
+	    *password = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Password));
+    if(domain)
+        *domain = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Domain));
 	
 	return TRUE;
 }
@@ -615,14 +623,14 @@ BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance, char **username,
     qDebug() << "CConnectFreeRdp::cb_GatewayAuthenticate";
 	if(!instance)
 		return FALSE;
-		
-	ClientContext* context = (ClientContext*)instance->context;
-    CConnectFreeRdp* pThis = context->pThis;
+
     if(username)
-        *username = _strdup(pThis->m_szUser.toStdString().c_str());
+        *username = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Username));
     if(password)
-	    *password = _strdup(pThis->m_szPassword.toStdString().c_str());
-	
+	    *password = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Password));
+    if(domain)
+        *domain = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Domain));
+
 	return TRUE;
 }
 
@@ -747,14 +755,27 @@ void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
 
 void CConnectFreeRdp::slotKeyPressEvent(QKeyEvent* e)
 {
+    //TODO: Key 
+#if defined (Q_OS_WIN)
     freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
                                          true, e->nativeScanCode());
+#else
+    freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
+                                         true, e->nativeVirtualKey());
+#endif
 }
 
 void CConnectFreeRdp::slotKeyReleaseEvent(QKeyEvent* e)
 {
+    //TODO: Key 
+    qDebug() << "Key:" << e->key() << e->nativeScanCode() << e->nativeVirtualKey() << e->nativeModifiers();
+#if defined (Q_OS_WIN)
     freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
                                          false, e->nativeScanCode());
+#else
+    freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
+                                         false, e->nativeVirtualKey());
+#endif
 }
 
 int CConnectFreeRdp::SetParamter(void *pPara)
@@ -764,10 +785,10 @@ int CConnectFreeRdp::SetParamter(void *pPara)
     
     rdpSettings* settings = (rdpSettings*)pPara;
     
-    SetServer(settings->ServerHostname,
-              settings->ServerPort);
     SetUser(settings->Username,
             settings->Password);
+    SetServerName(QString(settings->ServerHostname)
+                  + ":" + QString::number(settings->ServerPort));
     
     return 0;
 }

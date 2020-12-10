@@ -2,7 +2,7 @@
 
 #include "ConnecterFreeRdp.h"
 #include <QDebug>
-#include "DlgSettingsFreeRdp.h"
+#include "DlgSetFreeRdp.h"
 
 CConnecterFreeRdp::CConnecterFreeRdp(QObject *parent) : CConnecter(parent),
     m_pThread(nullptr)
@@ -21,12 +21,17 @@ CConnecterFreeRdp::~CConnecterFreeRdp()
     }
 }
 
+QString CConnecterFreeRdp::ServerName()
+{
+    QString szName = m_pSettings->ServerHostname;
+    szName += ":";
+    szName += QString::number(m_pSettings->ServerPort);
+    return szName;
+}
+
 QString CConnecterFreeRdp::Name()
 {
-    //TODO: set server name
-    QString szName;
-    szName.replace(":", "_");
-    return szName;
+    return "FreeRdp";
 }
 
 QString CConnecterFreeRdp::Description()
@@ -39,15 +44,31 @@ QString CConnecterFreeRdp::Protol()
     return "RDP";
 }
 
+qint16 CConnecterFreeRdp::Version()
+{
+    return 0;
+}
+
 QDialog *CConnecterFreeRdp::GetDialogSettings(QWidget *parent)
 {
-    return new CDlgSettingsFreeRdp(m_pSettings, parent);
+    return new CDlgSetFreeRdp(m_pSettings, parent);
 }
 
 int CConnecterFreeRdp::Load(QDataStream &d)
 {
     int nRet = 0;
-    
+    qint16 version = 0;
+    d >> version;
+    QString val;
+    d >> val;
+    freerdp_settings_set_string(m_pSettings, FreeRDP_ServerHostname, val.toStdString().c_str());
+    qint32 nPort = 3389;
+    d >> nPort;
+    m_pSettings->ServerPort = nPort;
+    d >> val;
+    freerdp_settings_set_string(m_pSettings, FreeRDP_Username, val.toStdString().c_str());
+    d >> val;
+    freerdp_settings_set_string(m_pSettings, FreeRDP_Password, val.toStdString().c_str());
     return nRet;
 }
 
@@ -55,6 +76,13 @@ int CConnecterFreeRdp::Save(QDataStream &d)
 {
     int nRet = 0;
     
+    d << Version()
+      << QString(freerdp_settings_get_string(m_pSettings, FreeRDP_ServerHostname))
+      << (qint32)m_pSettings->ServerPort
+      << QString(freerdp_settings_get_string(m_pSettings, FreeRDP_Username))
+      << QString(freerdp_settings_get_string(m_pSettings, FreeRDP_Password))
+         ;
+
     return nRet;
 }
 
