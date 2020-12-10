@@ -27,7 +27,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] [SSH]()
 - [ ] [TELNET]()
 
-## Depend libraries
+## Dependent libraries
 - [x] VNC
   + [ ] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
@@ -44,7 +44,13 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 
 ## Contribution
 
+- [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
 ## [License Agreement](License.md "License.md")
+
+Please abide by this agreement and the license agreement of [dependent library](#Dependent-libraries), and thank the author of [dependent library](#Dependent-libraries).
+
+
+

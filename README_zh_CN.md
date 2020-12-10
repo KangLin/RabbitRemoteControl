@@ -45,7 +45,10 @@
 
 ### 贡献
 
+- [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
 ### [许可协议](License.md "License.md")
+请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)的作者。
+
