@@ -25,16 +25,6 @@ if(NOT WIN32)
     LIST(APPEND SRC_LIBS winpr)
 endif()
 
-if(ANDROID)
-    SET(RDP_DEFINED ANDROID)
-elseif(UNIX)
-    SET(RDP_DEFINED UNIX)
-elseif(LINUX)
-    SET(RDP_DEFINED LINUX)
-elseif(WIN32)
-    SET(RDP_DEFINED WIN32)
-endif()
-
 SET(SOURCE_FILES
     PluginFactoryFreeRdp.cpp
     ConnectFreeRdp.cpp

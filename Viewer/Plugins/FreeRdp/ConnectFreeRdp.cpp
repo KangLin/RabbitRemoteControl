@@ -88,10 +88,10 @@ int CConnectFreeRdp::Connect()
 			nRet = -4;
         
         LOG_MODEL_ERROR("FreeRdp", "freerdp_connect fail: %d", nRet);
-	}
-    
-    LOG_MODEL_INFO("FreeRdp", "Connect to %s:[%d]", settings->ServerHostname, settings->ServerPort);
-    emit sigConnected();
+    } else {
+        LOG_MODEL_INFO("FreeRdp", "Connect to %s:[%d]", settings->ServerHostname, settings->ServerPort);
+        emit sigConnected();
+    }
     return nRet;
 }
 
@@ -262,11 +262,11 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
     
 	settings = instance->settings;
 	channels = context->channels;
-#ifdef WIN32
+#if defined (Q_OS_WIN)
     settings->OsMajorType = OSMAJORTYPE_WINDOWS;
     settings->OsMinorType = OSMINORTYPE_WINDOWS_NT;
 #endif
-#if defined(UNIX) || defined(LINUX)
+#if defined (Q_OS_LINUX) || defined (Q_OS_UNIX)
 	settings->OsMajorType = OSMAJORTYPE_UNIX;
 	settings->OsMinorType = OSMINORTYPE_NATIVE_XSERVER;
 #endif

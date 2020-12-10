@@ -12,13 +12,9 @@
 <context>
     <name>CDlgSettings</name>
     <message>
-        <source>Settings</source>
-        <translation type="vanished">设置</translation>
-    </message>
-    <message>
         <location filename="../../DlgSettings.ui" line="14"/>
         <source>Setting TigerVNC</source>
-        <translation type="unfinished"></translation>
+        <translation>设置 TigerVNC</translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="24"/>
@@ -177,18 +173,11 @@
     </message>
 </context>
 <context>
-    <name>CManageConnectTigerVnc</name>
-    <message>
-        <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation type="vanished">VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
-    </message>
-</context>
-<context>
     <name>CPluginFactoryTigerVnc</name>
     <message>
         <location filename="../../PluginFactoryTigerVnc.cpp" line="53"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation type="unfinished">VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
+        <translation>VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
     </message>
 </context>
 </TS>
