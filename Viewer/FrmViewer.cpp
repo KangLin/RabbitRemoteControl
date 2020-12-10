@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "FrmViewer.h"
 #include "ui_FrmViewer.h"
 #include <QPainter>
@@ -149,6 +151,7 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
+    
     QMouseEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;

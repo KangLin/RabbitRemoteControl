@@ -9,22 +9,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="25"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="27"/>
         <source>Nail</source>
         <translation>釘住</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="30"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="32"/>
         <source>Full</source>
         <translation>關閉全屏</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="32"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="34"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="35"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="37"/>
         <source>Disconnect</source>
         <translation>關閉邊連接</translation>
     </message>
@@ -103,7 +103,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="174"/>
-        <location filename="../../mainwindow.cpp" line="117"/>
+        <location filename="../../mainwindow.cpp" line="147"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -207,31 +207,38 @@
         <translation>換膚</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="118"/>
-        <location filename="../../mainwindow.cpp" line="119"/>
-        <location filename="../../mainwindow.cpp" line="120"/>
+        <location filename="../../mainwindow.cpp" line="63"/>
+        <location filename="../../mainwindow.cpp" line="64"/>
+        <location filename="../../mainwindow.cpp" line="65"/>
+        <source>Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="148"/>
+        <location filename="../../mainwindow.cpp" line="149"/>
+        <location filename="../../mainwindow.cpp" line="150"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="145"/>
+        <location filename="../../mainwindow.cpp" line="175"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="146"/>
-        <location filename="../../mainwindow.cpp" line="147"/>
-        <location filename="../../mainwindow.cpp" line="148"/>
+        <location filename="../../mainwindow.cpp" line="176"/>
+        <location filename="../../mainwindow.cpp" line="177"/>
+        <location filename="../../mainwindow.cpp" line="178"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="231"/>
+        <location filename="../../mainwindow.cpp" line="276"/>
         <source>Open remote control</source>
         <translation>打開遠程控制</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="233"/>
+        <location filename="../../mainwindow.cpp" line="278"/>
         <source>Rabbit Remote control File (*.rrc)</source>
         <translation>玉兔遠程控制文件 (*.rrc)</translation>
     </message>

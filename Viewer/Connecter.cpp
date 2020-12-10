@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "Connecter.h"
 
 CConnecter::CConnecter(QObject *parent) : QObject(parent),
@@ -9,4 +11,9 @@ CConnecter::CConnecter(QObject *parent) : QObject(parent),
 CFrmViewer* CConnecter::GetViewer()
 {
     return m_pView;
+}
+
+QIcon CConnecter::Icon()
+{
+    return QIcon(":/image/Connect");
 }

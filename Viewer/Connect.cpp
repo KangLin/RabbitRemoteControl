@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "Connect.h"
 #include <QApplication>
 #include <QDebug>
@@ -6,7 +8,7 @@
 #include <QMimeData>
 
 CConnect::CConnect(CFrmViewer *pView, QObject *parent)
-    : QObject(parent), m_pView(nullptr)
+    : QObject(parent), m_nPort(0), m_pView(nullptr)
 {
     bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
                          this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
@@ -88,7 +90,15 @@ QString CConnect::GetDescription()
 int CConnect::SetServerName(const QString &szServerName)
 {
     m_szServerName = szServerName;
-    m_pView->setWindowTitle(GetDescription());
+    int nPos = szServerName.indexOf(":");
+    if(-1 == nPos)
+        m_szHost = szServerName;
+    else {
+        m_szHost = szServerName.left(nPos);
+        m_nPort = szServerName.right(szServerName.length() - nPos - 1).toInt();
+    }
+
+    emit sigSetDesktopName(GetDescription());
     return 0;
 }
 
@@ -113,6 +123,11 @@ int CConnect::SetParamter(void *pPara)
 }
 
 int CConnect::Initialize()
+{
+    return 0;
+}
+
+int CConnect::Clean()
 {
     return 0;
 }

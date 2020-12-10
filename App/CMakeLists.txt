@@ -1,3 +1,5 @@
+#Author: Kang Lin(kl222@126.com)
+
 cmake_minimum_required(VERSION 3.5)
 
 project(RabbitRemoteControlApp LANGUAGES CXX)

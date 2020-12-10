@@ -12,7 +12,7 @@
 
 玉兔远程控制是一个跨平台，支持多协议的远程控制软件。
 
-## 支持操作系统
+## 支持操作系统 ([https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
 - [x] Unix/Linux
 - [x] Android
@@ -31,13 +31,12 @@
 - [x] [可选] RFB
   + [ ] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)
-- [ ] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [ ] [SSH]
   + [ ] [LIBSSH](https://www.libssh.org)
 
 ### 参考
 - [ ] [qtermwidget](https://github.com/lxqt/qtermwidget)
-
 
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！

@@ -32,11 +32,15 @@ CConnecterTigerVnc::~CConnecterTigerVnc()
     }
 }
 
-QString CConnecterTigerVnc::Name()
+QString CConnecterTigerVnc::ServerName()
 {
     QString szName = m_Para.szServerName;
-    szName.replace(":", "_");
     return szName;
+}
+
+QString CConnecterTigerVnc::Name()
+{
+    return "TigerVnc";
 }
 
 QString CConnecterTigerVnc::Description()
@@ -47,6 +51,11 @@ QString CConnecterTigerVnc::Description()
 QString CConnecterTigerVnc::Protol()
 {
     return "VNC";
+}
+
+qint16 CConnecterTigerVnc::Version()
+{
+    return 0;
 }
 
 QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
@@ -79,7 +88,8 @@ int CConnecterTigerVnc::DisConnect()
 
 int CConnecterTigerVnc::Save(QDataStream & d)
 {
-    d << m_Para.szServerName
+    d << Version()
+      << m_Para.szServerName
       << m_Para.szUser
       << m_Para.szPassword
       << m_Para.bSave
@@ -102,6 +112,8 @@ int CConnecterTigerVnc::Save(QDataStream & d)
 int CConnecterTigerVnc::Load(QDataStream &d)
 {
     int nColorLevel = CConnectTigerVnc::Full;
+    qint16 version = 0;
+    d >> version;
     d >> m_Para.szServerName
            >> m_Para.szUser
            >> m_Para.szPassword

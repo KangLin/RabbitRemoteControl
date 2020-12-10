@@ -1,14 +1,18 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCONNECTER_H
 #define CCONNECTER_H
 
 #include <QObject>
 #include <QDir>
-#include "FrmViewer.h"
 #include <QtPlugin>
 #include <QDataStream>
+#include <QIcon>
+#include "FrmViewer.h"
 
 /**
  * @brief The CConnecter class
+ * @see   CPluginFactory CFrmViewer CConnect
  * @addtogroup API
  */
 class RABBITREMOTECONTROL_EXPORT CConnecter : public QObject
@@ -23,12 +27,19 @@ public:
     explicit CConnecter(QObject *parent = nullptr);
 
     /**
-     * @brief Current connect name. eg: Server name or Ip 
-     * @return Current connect name.
+     * @brief Current connect server name. eg: Server name or Ip 
+     * @return Current connect server name.
+     */
+    virtual QString ServerName() = 0;
+    /**
+     * @brief Name, The name must same CPluginFactory::Name
+     * @return 
      */
     virtual QString Name() = 0;
     virtual QString Description() = 0;
     virtual QString Protol() = 0;
+    virtual qint16 Version() = 0;
+    virtual QIcon Icon();
     
     /**
      * @brief GetViewer 

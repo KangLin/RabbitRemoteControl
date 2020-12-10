@@ -10,6 +10,8 @@
 
 #include <QTabBar>
 #include <QMessageBox>
+//! @author: Kang Lin(kl222@126.com)
+
 #include <QScreen>
 #include <QApplication>
 #include <QSettings>
@@ -43,9 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->setCentralWidget(m_pTab);
 
-    // Connect menu and toolbar
-    m_ManageConnecter.LoadPlugins();
-    
+    // Connect menu and toolbar   
     foreach(auto m, m_ManageConnecter.GetManageConnecter())
     {
         QAction* p = ui->menuConnect_C->addAction(m->Name(), this, SLOT(slotConnect()));
@@ -307,7 +307,8 @@ void MainWindow::slotConnect()
             break;
         case QDialog::Accepted:
             QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                    + QDir::separator() + p->Protol() + "_" + p->Name() + ".rrc";
+                    + QDir::separator() + p->Protol() + "_" + p->ServerName() + ".rrc";
+            szFile = szFile.replace(":", "_");
             m_ManageConnecter.SaveConnecter(szFile, p);
             p->Connect();
             break;

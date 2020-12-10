@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "mainwindow.h"
 
 #include <QApplication>
@@ -5,11 +7,11 @@
 #include <QDebug>
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
+#include "RabbitCommonLog.h"
 #include "FrmUpdater/FrmUpdater.h"
 
 int main(int argc, char *argv[])
 {
-
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -24,20 +26,19 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setApplicationName("RabbitRemoteControl");
     
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
-                  QSettings::IniFormat);
-    
+    RabbitCommon::CTools::Instance()->Init();
+        
+    // Install translator
     QTranslator tApp;
     tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
               + QDir::separator() + a.applicationName() + "App_"
               + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
-    qInfo() << "Language:" << QLocale::system().name();
-    
-    RabbitCommon::CTools::Instance()->Init();
+    LOG_MODEL_INFO("Main", "Language: %s", QLocale::system().name().toStdString().c_str());
     
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     
+    // Check update version
     CFrmUpdater *pUpdate = new CFrmUpdater();
     pUpdate->SetTitle(QImage(":/image/App"));
     if(!pUpdate->GenerateUpdateXml()) 

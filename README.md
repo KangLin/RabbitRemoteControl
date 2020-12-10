@@ -12,7 +12,7 @@ Author: Kang Lin(kl222@126.com)
 
 Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
 
-## Support OS
+## Supported operating system ([https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
 - [x] Unix/Linux
 - [x] Android
@@ -20,7 +20,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] IPHONE
 - [ ] WINCE
 
-## Support protocol
+## Supported protocol
 - [x] [RFB](https://github.com/rfbproto/rfbproto)
 - [x] [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
@@ -31,7 +31,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [x] VNC
   + [ ] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
-- [ ] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [x] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [ ] [SSH]
   + [ ] [LIBSSH](https://www.libssh.org)
 

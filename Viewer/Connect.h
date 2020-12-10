@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+  
 #ifndef CCONNECT_H
 #define CCONNECT_H
 
@@ -7,10 +9,14 @@
 #include <QPoint>
 #include "FrmViewer.h"
 #include <QtPlugin>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QWheelEvent>
 
 /**
  * @brief The CConnect class.
  * @note Only used inside the plugin
+ * @see  CConnecter CFrmViewer
  */
 class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
 {
@@ -21,18 +27,18 @@ public:
     virtual ~CConnect() override;
 
     virtual QString GetDescription();
-    
-    int SetViewer(CFrmViewer* pView);
-    
-    virtual int SetServer(const QString& szHost, const int nPort);
-    // 由子类解析成 IP 和 端口
-    virtual int SetServerName(const QString& serverName);
 
+protected:
+    virtual int SetViewer(CFrmViewer* pView);
+    // 由子类解析成 IP 和 端口 (格式为：IP:[PORT])
+    virtual int SetServerName(const QString& serverName);
+    virtual int SetServer(const QString& szHost, const int nPort);
     virtual int SetUser(const QString &szUser, const QString &szPassword);
     virtual int SetParamter(void *pPara);
 
 public Q_SLOTS:
     virtual int Initialize();
+    virtual int Clean();
     virtual int Connect() = 0;
     virtual int Disconnect() = 0;
     virtual int Process() = 0;
@@ -67,6 +73,7 @@ protected:
     QString m_szUser;
     QString m_szPassword;
 
+private:
     CFrmViewer* m_pView;
 };
 

@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CMANAGECONNECTER_H
 #define CMANAGECONNECTER_H
 
@@ -11,10 +13,12 @@
 
 /**
  * @group API
+ * @brief Rabbit remote control API
  */
 
 /**
- * @brief The CManageConnecter class
+ * @brief The CManageConnecter class, manage plugins
+ * @see   CPluginFactory CConnecter
  * @addtogroup API
  */
 class RABBITREMOTECONTROL_EXPORT CManageConnecter : public QObject
@@ -28,14 +32,15 @@ public:
     // Return CConnecter pointer, the owner is caller
     virtual CConnecter* CreateConnecter(const QString& szProtol);
     
-    virtual CConnecter* LoadConnecter(const QString& szFile);
-    virtual int SaveConnecter(const QString& szFile, CConnecter* pConnecter);
-    
-    int LoadPlugins();
-    int FindPlugins(QDir dir, QStringList filters);
-    
     QList<CPluginFactory*> GetManageConnecter();
     
+    virtual CConnecter* LoadConnecter(const QString& szFile);
+    virtual int SaveConnecter(const QString& szFile, CConnecter* pConnecter);
+
+private:    
+    int LoadPlugins();
+    int FindPlugins(QDir dir, QStringList filters);
+
 private:
     QMap<QString, CPluginFactory*> m_Plugins;
     
