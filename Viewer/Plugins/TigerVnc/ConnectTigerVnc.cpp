@@ -411,11 +411,11 @@ void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
     if(!writer()) return;
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
-    if(e->buttons() & Qt::MouseButton::LeftButton)
+    if(e->button() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->buttons() & Qt::MouseButton::MiddleButton)
+    if(e->button() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->buttons() & Qt::MouseButton::RightButton)
+    if(e->button() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     writer()->writePointerEvent(pos, mask);
 }
@@ -468,6 +468,13 @@ void CConnectTigerVnc::slotKeyReleaseEvent(QKeyEvent* e)
     writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier), 0, false);
 }
 
+/**
+ * @brief CConnectTigerVnc::TranslateRfbKey
+ * @param inkey
+ * @param modifier
+ * @return 
+ * @see https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#keyevent
+ */
 quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 {
     quint32 k = 5000;

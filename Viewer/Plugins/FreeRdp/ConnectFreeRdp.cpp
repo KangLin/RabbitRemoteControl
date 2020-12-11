@@ -16,6 +16,8 @@
 
 #include "RabbitCommonTools.h"
 #include "RabbitCommonLog.h"
+#include "ConvertKeyCode.h"
+
 #include <QDebug>
 #include <QApplication>
 #include <QScreen>
@@ -754,13 +756,15 @@ void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
 
 void CConnectFreeRdp::slotKeyPressEvent(QKeyEvent* e)
 {
-    //TODO: Key 
+    
+    // Convert to rdp scan code freerdp/scancode.h
 #if defined (Q_OS_WIN)
     freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
                                          true, e->nativeScanCode());
 #else
     freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
-                                         true, e->nativeVirtualKey());
+                                         true,
+                                         CConvertKeyCode::QtToScanCode(e->key()));
 #endif
 }
 
@@ -773,7 +777,8 @@ void CConnectFreeRdp::slotKeyReleaseEvent(QKeyEvent* e)
                                          false, e->nativeScanCode());
 #else
     freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
-                                         false, e->nativeVirtualKey());
+                                         false,
+                                         CConvertKeyCode::QtToScanCode(e->key()));
 #endif
 }
 

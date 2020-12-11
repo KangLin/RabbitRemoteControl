@@ -27,6 +27,7 @@ SET(SOURCE_FILES
     ConnectThread.cpp
     ClipBoard.cpp
     DlgSetFreeRdp.cpp
+    ConvertKeyCode.cpp
     )
 
 SET(HEADER_FILES
@@ -36,6 +37,7 @@ SET(HEADER_FILES
     ConnectThread.h
     ClipBoard.h
     DlgSetFreeRdp.h
+    ConvertKeyCode.h
     )
 
 SET(UI_FILES
