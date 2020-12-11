@@ -2,19 +2,14 @@
 
 find_package(WinPR)
 message("WinPR_FOUND:${WinPR_FOUND}")
-if(NOT WinPR_FOUND)
-    return()
-endif()
 
 find_package(FreeRDP)
 message("FreeRDP_FOUND:${FreeRDP_FOUND}")
-if(NOT FreeRDP_FOUND)
-    return()
-endif()
 
 find_package(FreeRDP-Client)
 message("FreeRDP-Client_FOUND:${FreeRDP-Client_FOUND}")
-if(NOT FreeRDP-Client_FOUND)
+
+if(NOT (FreeRDP_FOUND AND WinPR_FOUND AND FreeRDP-Client_FOUND))
     return()
 endif()
 

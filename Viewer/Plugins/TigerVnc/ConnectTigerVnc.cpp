@@ -390,6 +390,7 @@ void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
         mask |= 0x2;
     if(e->button() & Qt::MouseButton::RightButton)
         mask |= 0x4;
+
     writer()->writePointerEvent(pos, mask);
 }
 
