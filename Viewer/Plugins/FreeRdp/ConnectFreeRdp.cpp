@@ -756,30 +756,19 @@ void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
 
 void CConnectFreeRdp::slotKeyPressEvent(QKeyEvent* e)
 {
-    
     // Convert to rdp scan code freerdp/scancode.h
-#if defined (Q_OS_WIN)
     freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
-                                         true, e->nativeScanCode());
-#else
-    freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
-                                         true,
-                                         CConvertKeyCode::QtToScanCode(e->key()));
-#endif
+                                      true,
+                                      CConvertKeyCode::QtToScanCode(e->key()));
 }
 
 void CConnectFreeRdp::slotKeyReleaseEvent(QKeyEvent* e)
 {
-    //TODO: Key 
-    qDebug() << "Key:" << e->key() << e->nativeScanCode() << e->nativeVirtualKey() << e->nativeModifiers();
-#if defined (Q_OS_WIN)
+    LOG_MODEL_DEBUG("FreeRdp", "key: %s; 0x%X; scancode:0x%X", e->text().toStdString().c_str(),
+                    e->key(), e->nativeScanCode());
     freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
-                                         false, e->nativeScanCode());
-#else
-    freerdp_input_send_keyboard_event_ex(m_pContext->Context.input,
-                                         false,
-                                         CConvertKeyCode::QtToScanCode(e->key()));
-#endif
+                                      false,
+                                      CConvertKeyCode::QtToScanCode(e->key()));
 }
 
 int CConnectFreeRdp::SetParamter(void *pPara)
