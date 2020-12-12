@@ -99,7 +99,7 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
     case Qt::Key_Space: return RDP_SCANCODE_SPACE;
         //case Qt::Key_Any: return RDP_SCANCODE_SPACE;
     case Qt::Key_Exclam: return RDP_SCANCODE_KEY_1;
-    case Qt::Key_QuoteDbl: RDP_SCANCODE_OEM_7;
+    case Qt::Key_QuoteDbl:return RDP_SCANCODE_OEM_7;
     case Qt::Key_NumberSign: return RDP_SCANCODE_KEY_3;
     case Qt::Key_Dollar: return RDP_SCANCODE_KEY_4;
     case Qt::Key_Percent: return RDP_SCANCODE_KEY_5;

@@ -44,7 +44,10 @@ void CDlgSetFreeRdp::on_pbOk_clicked()
     
     // Display
     if(ui->rbFull->isChecked())
+    {
+        freerdp_settings_set_bool(m_pSettings, FreeRDP_ToggleFullscreen, true);
         freerdp_settings_set_bool(m_pSettings, FreeRDP_Fullscreen, true);
+    }
     else
     {
         QString szSize = ui->cbDesktopSize->currentText();
