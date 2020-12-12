@@ -331,6 +331,10 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
                         , settings->DesktopWidth
                         , settings->DesktopHeight);
         return FALSE;
+    } else {
+        LOG_MODEL_INFO("FreeRdp", "Init desktop size %d*%d",
+                       settings->DesktopWidth,
+                       settings->DesktopHeight);
     }
     
 	return TRUE;
