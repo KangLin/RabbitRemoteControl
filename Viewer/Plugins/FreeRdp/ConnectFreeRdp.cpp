@@ -202,7 +202,7 @@ BOOL CConnectFreeRdp::Client_new(freerdp *instance, rdpContext *context)
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
     
-    // Because settings is set. 
+    // Because it is setted in settings.
 	//instance->Authenticate = cb_authenticate;
 	//instance->GatewayAuthenticate = cb_GatewayAuthenticate;
     
@@ -322,16 +322,8 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
     freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout,
                                 freerdp_keyboard_init(settings->KeyboardLayout));
 #endif
-    
-    // Windows(Monitor) size, beacuse the view is don't initial, so that don't set desktop, use default value.
-    //TODO: Move to setting dialog
-    desktopWidth = qApp->primaryScreen()->availableVirtualSize().width();
-    desktopHeight =  qApp->primaryScreen()->availableVirtualSize().height();
-    
-    if(settings->DesktopWidth != desktopWidth)
-        freerdp_settings_set_uint32(settings, FreeRDP_DesktopWidth, desktopWidth);
-    if(settings->DesktopHeight != desktopHeight)
-        freerdp_settings_set_uint32(settings, FreeRDP_DesktopHeight, desktopHeight);
+
+    // Check desktop size
     if ((settings->DesktopWidth < 64) || (settings->DesktopHeight < 64) ||
             (settings->DesktopWidth > 4096) || (settings->DesktopHeight > 4096))
     {
@@ -339,7 +331,7 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
                         , settings->DesktopWidth
                         , settings->DesktopHeight);
         return FALSE;
-    }//*/
+    }
     
 	return TRUE;
 }

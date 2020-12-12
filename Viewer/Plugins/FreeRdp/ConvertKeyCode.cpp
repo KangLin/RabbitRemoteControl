@@ -24,7 +24,7 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
     case Qt::Key_Tab: return RDP_SCANCODE_TAB;
     case Qt::Key_Backtab: return k;
     case Qt::Key_Backspace: return RDP_SCANCODE_BACKSPACE;
-    /*大键盘Enter对应Qt::Key_Return
+        /*大键盘Enter对应Qt::Key_Return
       小键盘Enter对应Qt::Key_Enter
     */
     case Qt::Key_Return: return RDP_SCANCODE_RETURN;
@@ -98,15 +98,15 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
         // Qt::Key_Direction_R
     case Qt::Key_Space: return RDP_SCANCODE_SPACE;
         //case Qt::Key_Any: return RDP_SCANCODE_SPACE;
-        /*    Qt::Key_Exclam
-        Qt::Key_QuoteDbl
-        Qt::Key_NumberSign
-        Qt::Key_Dollar
-        Qt::Key_Percent
-        Qt::Key_Ampersand//*/
+    case Qt::Key_Exclam: return RDP_SCANCODE_KEY_1;
+    case Qt::Key_QuoteDbl: RDP_SCANCODE_OEM_7;
+    case Qt::Key_NumberSign: return RDP_SCANCODE_KEY_3;
+    case Qt::Key_Dollar: return RDP_SCANCODE_KEY_4;
+    case Qt::Key_Percent: return RDP_SCANCODE_KEY_5;
+    case Qt::Key_Ampersand: return RDP_SCANCODE_KEY_7;
     case Qt::Key_Apostrophe: return RDP_SCANCODE_OEM_7;
-        /* Qt::Key_ParenLeft
-        Qt::Key_ParenRight//*/
+    case Qt::Key_ParenLeft: return RDP_SCANCODE_KEY_9;
+    case Qt::Key_ParenRight: return RDP_SCANCODE_KEY_0;
     case Qt::Key_Asterisk: return RDP_SCANCODE_MULTIPLY;
     case Qt::Key_Plus: return RDP_SCANCODE_ADD;
     case Qt::Key_Comma: return RDP_SCANCODE_OEM_COMMA;
@@ -125,14 +125,14 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
     case Qt::Key_8: return RDP_SCANCODE_KEY_8;
     case Qt::Key_9: return RDP_SCANCODE_KEY_9;
         
-        // case Qt::Key_Colon: return RDP_SCANCODE_KEY_COLON;
+    case Qt::Key_Colon: return RDP_SCANCODE_OEM_1;
     case Qt::Key_Semicolon: return RDP_SCANCODE_OEM_1;
-        //   Qt::Key_Less
+    case Qt::Key_Less: return RDP_SCANCODE_OEM_COMMA;
     case Qt::Key_Equal: return RDP_SCANCODE_OEM_PLUS;
-        //   Qt::Key_Greater
-    case   Qt::Key_Question: return RDP_SCANCODE_OEM_2;
-        // Qt::Key_At
-       
+    case Qt::Key_Greater: return RDP_SCANCODE_OEM_PERIOD;
+    case Qt::Key_Question: return RDP_SCANCODE_OEM_2;
+    case Qt::Key_At: return RDP_SCANCODE_KEY_2;
+        
     case Qt::Key_A: return RDP_SCANCODE_KEY_A;
     case Qt::Key_B: return RDP_SCANCODE_KEY_B;
     case Qt::Key_C: return RDP_SCANCODE_KEY_C;
@@ -162,15 +162,14 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
     case Qt::Key_BracketLeft: return RDP_SCANCODE_OEM_4;
     case Qt::Key_Backslash: return RDP_SCANCODE_OEM_5;
     case Qt::Key_BracketRight: return RDP_SCANCODE_OEM_6;
-        /*    Qt::Key_AsciiCircum
-        Qt::Key_Underscore
-        //*/
+    case Qt::Key_AsciiCircum: return RDP_SCANCODE_KEY_6;
+    case Qt::Key_Underscore: return RDP_SCANCODE_OEM_MINUS;
     case Qt::Key_QuoteLeft: return RDP_SCANCODE_OEM_3;
-        /*    Qt::Key_BraceLeft
-        Qt::Key_Bar
-        Qt::Key_BraceRight
-        Qt::Key_AsciiTilde
-        Qt::Key_nobreakspace
+    case Qt::Key_BraceLeft: return RDP_SCANCODE_OEM_4;
+    case Qt::Key_Bar: return RDP_SCANCODE_OEM_5;
+    case Qt::Key_BraceRight: return RDP_SCANCODE_OEM_6;
+    case Qt::Key_AsciiTilde: return RDP_SCANCODE_OEM_3;
+        /* Qt::Key_nobreakspace
         Qt::Key_exclamdown
         Qt::Key_cent
         Qt::Key_sterling
