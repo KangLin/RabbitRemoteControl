@@ -103,7 +103,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="174"/>
-        <location filename="../../mainwindow.cpp" line="147"/>
+        <location filename="../../mainwindow.cpp" line="146"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -210,31 +210,31 @@
         <translation>连接</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="147"/>
         <location filename="../../mainwindow.cpp" line="148"/>
         <location filename="../../mainwindow.cpp" line="149"/>
-        <location filename="../../mainwindow.cpp" line="150"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="175"/>
+        <location filename="../../mainwindow.cpp" line="178"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="176"/>
-        <location filename="../../mainwindow.cpp" line="177"/>
-        <location filename="../../mainwindow.cpp" line="178"/>
+        <location filename="../../mainwindow.cpp" line="179"/>
+        <location filename="../../mainwindow.cpp" line="180"/>
+        <location filename="../../mainwindow.cpp" line="181"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="276"/>
+        <location filename="../../mainwindow.cpp" line="279"/>
         <source>Open remote control</source>
         <translation>打开远程控制</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="278"/>
+        <location filename="../../mainwindow.cpp" line="281"/>
         <source>Rabbit Remote control File (*.rrc)</source>
         <translation>玉兔远程控制文件 (*.rrc)</translation>
     </message>

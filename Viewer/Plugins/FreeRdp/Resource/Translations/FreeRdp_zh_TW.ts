@@ -2,6 +2,17 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
+    <name>CConnectFreeRdp</name>
+    <message>
+        <source>freerdp_connect connect to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgSetFreeRdp</name>
     <message>
         <source>Set FreeRdp</source>
@@ -49,6 +60,46 @@
     </message>
     <message>
         <source>Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Domain:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote desktop size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote color depth:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8 bits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>16 bits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>24 bits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>32 bits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

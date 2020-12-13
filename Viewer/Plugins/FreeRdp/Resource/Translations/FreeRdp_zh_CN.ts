@@ -2,6 +2,17 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CConnectFreeRdp</name>
+    <message>
+        <source>freerdp_connect connect to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgSetFreeRdp</name>
     <message>
         <source>Set FreeRdp</source>
@@ -50,6 +61,46 @@
     <message>
         <source>Port:</source>
         <translation>端口:</translation>
+    </message>
+    <message>
+        <source>Domain:</source>
+        <translation>域名:</translation>
+    </message>
+    <message>
+        <source>Display</source>
+        <translation>显示</translation>
+    </message>
+    <message>
+        <source>Select size:</source>
+        <translation>选择尺寸：</translation>
+    </message>
+    <message>
+        <source>Full screen</source>
+        <translation>全屏</translation>
+    </message>
+    <message>
+        <source>Remote color depth:</source>
+        <translation>远程颜色深度：</translation>
+    </message>
+    <message>
+        <source>8 bits</source>
+        <translation>8 位</translation>
+    </message>
+    <message>
+        <source>16 bits</source>
+        <translation>16 位</translation>
+    </message>
+    <message>
+        <source>24 bits</source>
+        <translation>24 位</translation>
+    </message>
+    <message>
+        <source>32 bits</source>
+        <translation>32 位</translation>
+    </message>
+    <message>
+        <source>Remote desktop size:</source>
+        <translation type="unfinished">远程桌面尺寸：</translation>
     </message>
 </context>
 <context>

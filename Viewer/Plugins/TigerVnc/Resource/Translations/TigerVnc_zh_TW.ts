@@ -4,7 +4,7 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="361"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="365"/>
         <source>Using pixel format %s</source>
         <translation>使用像素格式 %s</translation>
     </message>
