@@ -21,8 +21,8 @@
 - [ ] WINCE
 
 ## 支持协议
-- [x] [RFB](https://github.com/rfbproto/rfbproto)
-- [x] [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [x] VNC(虚拟网络控制台): [RFB](https://github.com/rfbproto/rfbproto)
+- [x] 远程桌面协议: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 - [ ] [SSH]()
 - [ ] [TELNET]()

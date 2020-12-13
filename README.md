@@ -21,8 +21,8 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] WINCE
 
 ## Supported protocol
-- [x] [RFB](https://github.com/rfbproto/rfbproto)
-- [x] [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [x] VNC(Virtual network console): [RFB](https://github.com/rfbproto/rfbproto)
+- [x] Remote desktop protocol: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 - [ ] [SSH]()
 - [ ] [TELNET]()
