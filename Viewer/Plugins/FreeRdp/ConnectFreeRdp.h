@@ -7,6 +7,7 @@
 #include "freerdp/freerdp.h"
 #include "ClipBoard.h"
 #include "ConnecterFreeRdp.h"
+#include "Cursor.h"
 
 class CConnectFreeRdp : public CConnect
 {
@@ -65,6 +66,8 @@ public:
     
     static BOOL cb_end_paint(rdpContext* context);
     
+    static UINT32 GetImageFormat(QImage::Format format);
+    
 private:
     UINT32 GetImageFormat();
     
@@ -99,6 +102,7 @@ private:
     QImage m_Image;
 
     CClipBoard m_ClipBoard;
+    CCursor m_Cursor;
 };
 
 #endif // CCONNECTFREERDP_H

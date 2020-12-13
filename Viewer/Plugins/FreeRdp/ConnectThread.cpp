@@ -24,7 +24,7 @@ CConnectThread::~CConnectThread()
 void CConnectThread::run()
 {
     CConnecterFreeRdp* connecter = dynamic_cast<CConnecterFreeRdp*>(m_pConnecter);
-    CConnectFreeRdp c( connecter);
+    CConnectFreeRdp c(connecter);
 
     int nRet = c.Connect();
     

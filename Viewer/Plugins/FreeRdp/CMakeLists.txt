@@ -28,6 +28,7 @@ SET(SOURCE_FILES
     ClipBoard.cpp
     DlgSetFreeRdp.cpp
     ConvertKeyCode.cpp
+    Cursor.cpp
     )
 
 SET(HEADER_FILES
@@ -38,6 +39,7 @@ SET(HEADER_FILES
     ClipBoard.h
     DlgSetFreeRdp.h
     ConvertKeyCode.h
+    Cursor.h
     )
 
 SET(UI_FILES

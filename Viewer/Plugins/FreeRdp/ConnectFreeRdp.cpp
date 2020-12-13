@@ -271,7 +271,8 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
     { 
         return FALSE;
     }
-
+    
+    settings = instance->settings;
 	channels = context->channels;
 #if defined (Q_OS_WIN)
     settings->OsMajorType = OSMAJORTYPE_WINDOWS;
@@ -364,6 +365,7 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 
     Q_ASSERT(context);
     Q_ASSERT(settings);
+    Q_ASSERT(pThis);
     
     pThis->m_Image = QImage(settings->DesktopWidth,
                             settings->DesktopHeight,
@@ -379,8 +381,8 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
     }
 
     // TODO: Register cursor pointer
-//	if (!xf_register_pointer(context->graphics))
-//		return FALSE;
+    if(pThis->m_Cursor.RegisterPointer(context->graphics))
+    	return FALSE;
 
     // pointer_cache_register_callbacks(instance->update);
     
@@ -397,7 +399,6 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 //		palette_cache_register_callbacks(instance->update);
 //	}
 
-    
     update->EndPaint = cb_end_paint;
 
 //	if (settings->SoftwareGdi)
@@ -584,9 +585,9 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 	}
 }
 
-UINT32 CConnectFreeRdp::GetImageFormat()
+UINT32 CConnectFreeRdp::GetImageFormat(QImage::Format format)
 {
-    switch (m_Image.format()) {
+    switch (format) {
 #if (QT_VERSION >= QT_VERSION_CHECK(5,2,0))
     case QImage::Format_RGBA8888:
         return PIXEL_FORMAT_RGBA32;
@@ -603,6 +604,11 @@ UINT32 CConnectFreeRdp::GetImageFormat()
         break;
     }
     return 0;
+}
+
+UINT32 CConnectFreeRdp::GetImageFormat()
+{
+    return GetImageFormat(m_Image.format());
 }
 
 BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char** password, char** domain)

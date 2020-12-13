@@ -13,7 +13,7 @@ CConvertKeyCode::CConvertKeyCode()
  * @see [MS-RDPBCGR]: Remote Desktop Protocol: Basic Connectivity and Graphics
  *       Remoting 
  *           2.2.8.1.1.3.1.1.1
- *       https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c?redirectedfrom=MSDN
+ *       https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/7acaec9f-c8a6-4ee9-87d6-d9b89cf56489
  */
 UINT32 CConvertKeyCode::QtToScanCode(int key)
 {
