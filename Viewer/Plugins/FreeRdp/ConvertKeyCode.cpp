@@ -24,11 +24,8 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
     case Qt::Key_Tab: return RDP_SCANCODE_TAB;
     case Qt::Key_Backtab: return k;
     case Qt::Key_Backspace: return RDP_SCANCODE_BACKSPACE;
-        /*大键盘Enter对应Qt::Key_Return
-      小键盘Enter对应Qt::Key_Enter
-    */
-    case Qt::Key_Return: return RDP_SCANCODE_RETURN;
-    case Qt::Key_Enter: return RDP_SCANCODE_RETURN;
+    case Qt::Key_Return: return RDP_SCANCODE_RETURN; //大键盘Enter对应Qt::Key_Return
+    case Qt::Key_Enter: return RDP_SCANCODE_RETURN; //小键盘Enter对应Qt::Key_Enter
     case Qt::Key_Insert: return RDP_SCANCODE_INSERT;
     case Qt::Key_Delete: return RDP_SCANCODE_DELETE;
     case Qt::Key_Pause: return RDP_SCANCODE_PAUSE;
@@ -113,7 +110,7 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
     case Qt::Key_Minus: return RDP_SCANCODE_OEM_MINUS;
     case Qt::Key_Period: return RDP_SCANCODE_OEM_PERIOD;
     case Qt::Key_Slash: return RDP_SCANCODE_OEM_2;
-        
+
     case Qt::Key_0: return RDP_SCANCODE_KEY_0;
     case Qt::Key_1: return RDP_SCANCODE_KEY_1;
     case Qt::Key_2: return RDP_SCANCODE_KEY_2;
