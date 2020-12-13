@@ -201,25 +201,7 @@
           <string>Remote desktop size:</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QRadioButton" name="rbFull">
-            <property name="text">
-             <string>Remote full screen</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_10">
-            <item>
-             <widget class="QRadioButton" name="rbNative">
-              <property name="text">
-               <string>Use native screen size</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="2" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_9">
             <item>
              <widget class="QRadioButton" name="rbSelect">
@@ -230,6 +212,17 @@
             </item>
             <item>
              <widget class="QComboBox" name="cbDesktopSize"/>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QRadioButton" name="rbFullScreen">
+              <property name="text">
+               <string>Full screen</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

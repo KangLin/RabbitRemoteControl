@@ -18,10 +18,11 @@ public:
     
 private slots:
     void on_pbOk_clicked();
-    
     void on_pbCancel_clicked();
+    void on_rbFullScreen_clicked(bool checked);
     
-    void on_rbNative_clicked(bool checked);
+private:
+    int InsertDesktopSize(int width, int height);
     
 private:
     Ui::CDlgSetFreeRdp *ui;

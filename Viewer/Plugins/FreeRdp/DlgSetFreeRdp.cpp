@@ -43,24 +43,15 @@ void CDlgSetFreeRdp::on_pbOk_clicked()
                                 ui->lePassword->text().toStdString().c_str());
     
     // Display
-    if(ui->rbFull->isChecked())
+    QString szSize = ui->cbDesktopSize->currentText();
+    int index = szSize.indexOf("×");
+    if(-1 < index)
     {
-        freerdp_settings_set_bool(m_pSettings, FreeRDP_ToggleFullscreen, true);
-        freerdp_settings_set_bool(m_pSettings, FreeRDP_Fullscreen, true);
+        int width = szSize.left(index).toInt();
+        int height = szSize.right(szSize.length() - index - 1).toInt();
+        m_pSettings->DesktopWidth = width;
+        m_pSettings->DesktopHeight = height;
     }
-    else
-    {
-        QString szSize = ui->cbDesktopSize->currentText();
-        int index = szSize.indexOf("×");
-        if(-1 < index)
-        {
-            int width = szSize.left(index).toInt();
-            int height = szSize.right(szSize.length() - index - 1).toInt();
-            m_pSettings->DesktopWidth = width;
-            m_pSettings->DesktopHeight = height;
-        }
-    }
-    
     m_pSettings->ColorDepth = ui->cbColorDepth->currentData().toInt();
     
     accept();
@@ -88,22 +79,17 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
     int width = pScreen->availableGeometry().width();
     int height = pScreen->availableGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
-    if(ui->cbDesktopSize->findText(curSize) == -1)
-        ui->cbDesktopSize->addItem(curSize);
-    if(freerdp_settings_get_bool(m_pSettings, FreeRDP_Fullscreen))
-        ui->rbFull->setChecked(true);
-    else if(width == m_pSettings->DesktopWidth
+    InsertDesktopSize(width, height);
+    if(width == m_pSettings->DesktopWidth
             && height == m_pSettings->DesktopHeight)
     {
-        ui->rbNative->setChecked(true);
+        ui->rbFullScreen->setChecked(true);
         ui->cbDesktopSize->setCurrentText(curSize);
-    } else
-    {
+    } else {
         ui->rbSelect->setChecked(true);
+        InsertDesktopSize(m_pSettings->DesktopWidth, m_pSettings->DesktopHeight);
         curSize = QString::number(m_pSettings->DesktopWidth)
                 + "×" + QString::number(m_pSettings->DesktopHeight);
-        if(-1 == ui->cbDesktopSize->findText(curSize))
-            ui->cbDesktopSize->addItem(curSize);
         ui->cbDesktopSize->setCurrentText(curSize);
     }
     
@@ -112,7 +98,7 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
         ui->cbColorDepth->setCurrentIndex(nIndex);
 }
 
-void CDlgSetFreeRdp::on_rbNative_clicked(bool checked)
+void CDlgSetFreeRdp::on_rbFullScreen_clicked(bool checked)
 {
     if(!checked) return;
     QScreen* pScreen = QApplication::primaryScreen();
@@ -122,4 +108,31 @@ void CDlgSetFreeRdp::on_rbNative_clicked(bool checked)
     if(ui->cbDesktopSize->findText(curSize) == -1)
         ui->cbDesktopSize->addItem(curSize);
     ui->cbDesktopSize->setCurrentText(curSize);
+}
+
+int CDlgSetFreeRdp::InsertDesktopSize(int width, int height)
+{
+    QString curSize = QString::number(width) + "×" + QString::number(height);
+    if(ui->cbDesktopSize->findText(curSize) > -1)
+        return 0;
+    
+    for(int i = 0; i < ui->cbDesktopSize->count(); i++)
+    {
+        QString curText = ui->cbDesktopSize->itemText(i);
+        int nIndex = curText.indexOf("×");
+        if(-1 < nIndex)
+        {
+            int w = curText.left(nIndex).toInt();
+            if(w > width)
+            {
+                ui->cbDesktopSize->insertItem(i, curSize);
+                return 0;
+            }
+        }
+    }
+    
+    if(ui->cbDesktopSize->findText(curSize) == -1)
+        ui->cbDesktopSize->addItem(curSize);
+    
+    return 0;
 }
