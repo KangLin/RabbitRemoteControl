@@ -102,6 +102,10 @@
         <source>Remote desktop size:</source>
         <translation type="unfinished">远程桌面尺寸：</translation>
     </message>
+    <message>
+        <source>Use all local monitors for remote sessions</source>
+        <translation>将本地所有监视器用于远程会话</translation>
+    </message>
 </context>
 <context>
     <name>CPluginFactoryFreeRdp</name>

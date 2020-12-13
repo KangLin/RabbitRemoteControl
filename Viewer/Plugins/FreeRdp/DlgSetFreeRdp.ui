@@ -201,6 +201,17 @@
           <string>Remote desktop size:</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QRadioButton" name="rbFullScreen">
+              <property name="text">
+               <string>Full screen</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
           <item row="1" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_9">
             <item>
@@ -215,16 +226,12 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_10">
-            <item>
-             <widget class="QRadioButton" name="rbFullScreen">
-              <property name="text">
-               <string>Full screen</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="cbAllMonitor">
+            <property name="text">
+             <string>Use all local monitors for remote sessions</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

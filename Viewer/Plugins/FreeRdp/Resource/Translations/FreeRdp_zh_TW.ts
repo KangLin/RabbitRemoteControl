@@ -102,6 +102,10 @@
         <source>32 bits</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use all my monitors for remote sessions</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CPluginFactoryFreeRdp</name>

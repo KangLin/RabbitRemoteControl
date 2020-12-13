@@ -266,14 +266,12 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 	rdpChannels* channels = nullptr;
 	rdpSettings* settings = nullptr;
 	rdpContext* context = instance->context;
-	CConnectFreeRdp* pThis = (CConnectFreeRdp*)((ClientContext*)instance->context)->pThis;
-	UINT32 desktopWidth = 0;
-	UINT32 desktopHeight = 0;
     
     if (!instance || !instance->context || !instance->settings)
+    { 
         return FALSE;
-    
-	settings = instance->settings;
+    }
+
 	channels = context->channels;
 #if defined (Q_OS_WIN)
     settings->OsMajorType = OSMAJORTYPE_WINDOWS;
@@ -326,6 +324,11 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 #endif
 
     // Check desktop size
+#if defined (Q_OS_WIN)
+    /* FIXME: desktopWidth has a limitation that it should be divisible by 4,
+	 *        otherwise the screen will crash when connecting to an XP desktop.*/
+	settings->DesktopWidth = (settings->DesktopWidth + 3) & (~3);
+#endif
     if ((settings->DesktopWidth < 64) || (settings->DesktopHeight < 64) ||
             (settings->DesktopWidth > 4096) || (settings->DesktopHeight > 4096))
     {

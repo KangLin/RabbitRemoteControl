@@ -52,6 +52,11 @@ void CDlgSetFreeRdp::on_pbOk_clicked()
         m_pSettings->DesktopWidth = width;
         m_pSettings->DesktopHeight = height;
     }
+    if(ui->cbAllMonitor->isChecked())
+    {
+        //TODO: complete it
+        m_pSettings->MonitorCount = QApplication::screens().length();
+    }
     m_pSettings->ColorDepth = ui->cbColorDepth->currentData().toInt();
     
     accept();
@@ -92,7 +97,8 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
                 + "×" + QString::number(m_pSettings->DesktopHeight);
         ui->cbDesktopSize->setCurrentText(curSize);
     }
-    
+    if(m_pSettings->MonitorCount > 1)
+        ui->cbAllMonitor->setChecked(true);
     int nIndex = ui->cbColorDepth->findData(m_pSettings->ColorDepth);
     if(-1 != nIndex)
         ui->cbColorDepth->setCurrentIndex(nIndex);
