@@ -57,8 +57,8 @@ Q_SIGNALS:
     void sigKeyPressEvent(QKeyEvent *event);
     void sigKeyReleaseEvent(QKeyEvent *event);
     
-    // Notify main windows
-    void sigSetWindowName(const QString &szName);
+    // Use CConnecter::sigServerName
+    void sigServerName(const QString &szName);
     
 private:
     Ui::CFrmViewer *ui;

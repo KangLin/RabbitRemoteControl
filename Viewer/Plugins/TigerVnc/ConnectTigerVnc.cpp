@@ -198,7 +198,7 @@ void CConnectTigerVnc::initDone()
     
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
-    emit sigSetDesktopName(szName);
+    emit sigServerName(szName);
     
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));

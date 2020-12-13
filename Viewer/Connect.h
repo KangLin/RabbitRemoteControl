@@ -51,7 +51,7 @@ Q_SIGNALS:
     void sigDisconnected();
     
     void sigSetDesktopSize(int width, int height);
-    void sigSetDesktopName(const QString& szName);
+    void sigServerName(const QString& szName);
     
     void sigUpdateRect(const QRect& r, const QImage& image);
     void sigUpdateCursor(const QRect& r, const QImage& cursor);

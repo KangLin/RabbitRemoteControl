@@ -1,4 +1,4 @@
-//! @author: Kang Lin(kl222@126.com)
+﻿//! @author: Kang Lin(kl222@126.com)
 
 #ifndef CCONNECTER_H
 #define CCONNECTER_H
@@ -60,8 +60,8 @@ Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
     
-    void sigSetDesktopName(const QString& szName);
-    
+    void sigServerName(const QString& szName);
+
     void sigError(const int nError, const QString &szError);
     void sigInformation(const QString& szInfo);
     

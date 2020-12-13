@@ -351,7 +351,7 @@ void MainWindow::slotConnected()
     m_pTab->setCurrentIndex(nIndex);
     m_Connecters[pView] = p;
     
-    check = connect(pView, SIGNAL(sigSetWindowName(const QString&)),
+    check = connect(p, SIGNAL(sigServerName(const QString&)),
                          this, SLOT(slotViewTitleChanged(const QString&)));
     Q_ASSERT(check);
 }

@@ -270,7 +270,7 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
 void CFrmViewer::slotSetName(const QString& szName)
 {
     this->setWindowTitle(szName);
-    emit sigSetWindowName(szName);
+    emit sigServerName(szName);
 }
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)

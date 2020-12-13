@@ -39,8 +39,8 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     check = connect(pConnecter, SIGNAL(sigDisconnected()),
             this, SLOT(Disconnect()), Qt::DirectConnection);
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigSetDesktopName(const QString&)),
-                    pConnecter, SIGNAL(sigSetDesktopName(const QString&)));
+    check = connect(this, SIGNAL(sigServerName(const QString&)),
+                    pConnecter, SIGNAL(sigServerName(const QString&)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigError(const int, const QString&)),
                     pConnecter, SIGNAL(sigError(const int, const QString&)));
@@ -71,7 +71,7 @@ int CConnect::SetViewer(CFrmViewer *pView)
     check = connect(this, SIGNAL(sigSetDesktopSize(int, int)),
                     m_pView, SLOT(slotSetDesktopSize(int, int)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigSetDesktopName(const QString&)),
+    check = connect(this, SIGNAL(sigServerName(const QString&)),
                     m_pView, SLOT(slotSetName(const QString&)));
     Q_ASSERT(check);
 
@@ -128,7 +128,7 @@ int CConnect::SetServerName(const QString &szServerName)
         m_nPort = szServerName.right(szServerName.length() - nPos - 1).toInt();
     }
 
-    emit sigSetDesktopName(GetDescription());
+    emit sigServerName(GetDescription());
     return 0;
 }
 

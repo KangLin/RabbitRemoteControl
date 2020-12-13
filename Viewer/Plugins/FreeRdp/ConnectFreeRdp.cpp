@@ -101,7 +101,7 @@ int CConnectFreeRdp::Connect()
                        settings->ServerPort);
         
         emit sigConnected();
-        emit sigSetDesktopName(m_szServerName);
+        emit sigServerName(m_szServerName);
     }
     return nRet;
 }
