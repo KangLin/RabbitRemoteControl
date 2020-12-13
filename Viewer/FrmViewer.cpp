@@ -15,7 +15,7 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
     m_bClipboard(true)
 {
     ui->setupUi(this);
-    
+
     SetAdaptWindows(Original);
     
     setMouseTracking(true);

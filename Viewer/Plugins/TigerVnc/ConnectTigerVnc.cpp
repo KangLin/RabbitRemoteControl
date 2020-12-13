@@ -1,4 +1,5 @@
 #include "ConnectTigerVnc.h"
+#include "ConnecterTigerVnc.h"
 #include "DlgPassword.h"
 
 #ifndef WIN32
@@ -51,8 +52,8 @@ static const rfb::PixelFormat mediumColourPF(8, 8, false, true,
 static const rfb::PixelFormat fullColourPF(32, 24, false, true,
                                            255, 255, 255, 16, 8, 0);
 
-CConnectTigerVnc::CConnectTigerVnc(void *pPara, CFrmViewer *pView, QObject *parent)
-    : CConnect(pView, parent),
+CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *parent)
+    : CConnect(pConnecter, parent),
       m_pSock(nullptr),
       m_pPara(nullptr),
       m_bWriteClipboard(false)
@@ -63,9 +64,12 @@ CConnectTigerVnc::CConnectTigerVnc(void *pPara, CFrmViewer *pView, QObject *pare
     rfb::CSecurityTLS::msg = this;
 #endif
     
-    SetParamter(pPara);
-    if(!m_pPara->bLocalCursor)
-        pView->setCursor(Qt::BlankCursor);
+    SetParamter(&pConnecter->m_Para);
+    if(!m_pPara->bLocalCursor && pConnecter && pConnecter->GetViewer())
+    {
+        CFrmViewer* pViewer = pConnecter->GetViewer();
+        pViewer->setCursor(Qt::BlankCursor);
+    }
 }
 
 CConnectTigerVnc::~CConnectTigerVnc()

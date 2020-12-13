@@ -7,14 +7,16 @@
 #include <QClipboard>
 #include <QMimeData>
 
-CConnect::CConnect(CFrmViewer *pView, QObject *parent)
+CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
     : QObject(parent), m_nPort(0), m_pView(nullptr)
 {
+    Q_ASSERT(pConnecter);
     bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
                          this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
     Q_ASSERT(check);
     
-    SetViewer(pView);
+    SetViewer(pConnecter->GetViewer());
+    SetConnecter(pConnecter);
 }
 
 CConnect::~CConnect()
@@ -22,8 +24,36 @@ CConnect::~CConnect()
     qDebug() << "CConnect::~CConnect()";
 }
 
+int CConnect::SetConnecter(CConnecter* pConnecter)
+{
+    Q_ASSERT(pConnecter);
+    if(!pConnecter) return -1;
+    
+    bool check = connect(this, SIGNAL(sigConnected()),
+                         pConnecter, SIGNAL(sigConnected()));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigDisconnected()),
+                    pConnecter, SIGNAL(sigDisconnected()));
+    Q_ASSUME(check);
+    //NOTO: Prevent recursion when writing plugins
+    check = connect(pConnecter, SIGNAL(sigDisconnected()),
+            this, SLOT(Disconnect()), Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigSetDesktopName(const QString&)),
+                    pConnecter, SIGNAL(sigSetDesktopName(const QString&)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigError(const int, const QString&)),
+                    pConnecter, SIGNAL(sigError(const int, const QString&)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigInformation(const QString&)),
+                    pConnecter, SIGNAL(sigInformation(const QString&)));
+    Q_ASSERT(check);
+    return 0;
+}
+
 int CConnect::SetViewer(CFrmViewer *pView)
 {
+    Q_ASSERT(pView);
     if(!pView) return -1;
     
     if(m_pView)

@@ -22,19 +22,7 @@ CConnectThread::~CConnectThread()
 void CConnectThread::run()
 {
     CConnecterTigerVnc* connecter = dynamic_cast<CConnecterTigerVnc*>(m_pConnecter);
-    CConnectTigerVnc c(&connecter->m_Para, m_pView);
-
-    bool check = connect(&c, SIGNAL(sigConnected()),
-                         m_pConnecter, SIGNAL(sigConnected()));
-    Q_ASSERT(check);
-    check = connect(&c, SIGNAL(sigDisconnected()),
-                    m_pConnecter, SIGNAL(sigDisconnected()));
-    Q_ASSERT(check);
-    check = connect(m_pConnecter, SIGNAL(sigDisconnected()),
-            &c, SLOT(Disconnect()), Qt::DirectConnection);
-    Q_ASSERT(check);
-    
-    //c.SetParamter(&connecter->m_Para);
+    CConnectTigerVnc c(connecter);
     
     c.Connect();
     

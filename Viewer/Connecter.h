@@ -60,6 +60,11 @@ Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
     
+    void sigSetDesktopName(const QString& szName);
+    
+    void sigError(const int nError, const QString &szError);
+    void sigInformation(const QString& szInfo);
+    
 private:
     CFrmViewer *m_pView;
 };

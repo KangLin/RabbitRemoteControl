@@ -141,8 +141,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
             pTab->showNormal();
             pTab->tabBar()->show();
         }
-        this->showNormal();
-
+        
         ui->actionFull_screen_F->setIcon(QIcon(":/image/FullScreen"));
         ui->actionFull_screen_F->setText(tr("Full screen(&F)"));
         ui->actionFull_screen_F->setToolTip(tr("Full screen"));
@@ -160,9 +159,13 @@ void MainWindow::on_actionFull_screen_F_triggered()
             m_pFullScreenToolBar->close();
             m_pFullScreenToolBar = nullptr;
         }
+        
+        this->showNormal();      
+        this->activateWindow();
         return;
     }
 
+    //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
     QTabWidget* pTab = dynamic_cast<QTabWidget*>(this->centralWidget());
     if(pTab)

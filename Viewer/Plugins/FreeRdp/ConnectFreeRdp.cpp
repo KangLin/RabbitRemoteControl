@@ -22,18 +22,18 @@
 #include <QApplication>
 #include <QScreen>
 
-CConnectFreeRdp::CConnectFreeRdp(rdpSettings *settings,
-                                 CFrmViewer *pView,
+CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
                                  QObject *parent)
-    : CConnect(pView, parent),
+    : CConnect(pConnecter, parent),
       m_pContext(nullptr)
 {
+    Q_ASSERT(pConnecter);
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
-    m_ClientEntryPoints.settings = settings;
+    m_ClientEntryPoints.settings = pConnecter->m_pSettings;
     
-    SetParamter(settings);
+    SetParamter(pConnecter->m_pSettings);
     RdpClientEntry(&m_ClientEntryPoints);
     
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
@@ -88,11 +88,13 @@ int CConnectFreeRdp::Connect()
 			nRet = -3;
 		else
 			nRet = -4;
-        
-        LOG_MODEL_ERROR("FreeRdp", "freerdp_connect connect to %s:%d fail: %d",
-                        settings->ServerHostname,
-                        settings->ServerPort,
-                        nRet);
+        QString szErr = tr("freerdp_connect connect to ");
+        szErr += settings->ServerHostname;
+        szErr += ":";
+        szErr += QString::number(settings->ServerPort);
+        szErr += tr(" fail");
+        LOG_MODEL_ERROR("FreeRdp", szErr.toStdString().c_str());
+        emit sigError(nRet, szErr.toStdString().c_str());
     } else {
         LOG_MODEL_INFO("FreeRdp", "Connect to %s:%d",
                        settings->ServerHostname,

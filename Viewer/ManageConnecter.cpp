@@ -94,6 +94,7 @@ CConnecter* CManageConnecter::CreateConnecter(const QString &szProtol)
 
 CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
 {
+    CConnecter* pConnecter = nullptr;
     QFile f(szFile);
     if(!f.open(QFile::ReadOnly))
     {
@@ -101,21 +102,26 @@ CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
         return nullptr;
     }
     
-    QDataStream d(&f);
-    d >> m_FileVersion;
-    QString protol;
-    d >> protol;
-    QString name;
-    d >> name;
-    LOG_MODEL_INFO("ManageConnecter", "protol: %s  name: %s",
-                   protol.toStdString().c_str(),
-                   name.toStdString().c_str());
-    CConnecter* pConnecter = CreateConnecter(protol);
-    if(pConnecter)
-        pConnecter->Load(d);
-    else
-        LOG_MODEL_ERROR("ManageConnecter", "Don't create connecter: %s",
-                        protol.toStdString().c_str());
+    try{
+        QDataStream d(&f);
+        d >> m_FileVersion;
+        QString protol;
+        d >> protol;
+        QString name;
+        d >> name;
+        LOG_MODEL_INFO("ManageConnecter", "protol: %s  name: %s",
+                       protol.toStdString().c_str(),
+                       name.toStdString().c_str());
+        pConnecter = CreateConnecter(protol);
+        if(pConnecter)
+            pConnecter->Load(d);
+        else
+            LOG_MODEL_ERROR("ManageConnecter", "Don't create connecter: %s",
+                            protol.toStdString().c_str());
+    } catch(...) {
+        LOG_MODEL_ERROR("ManageConnecter", "Load connecter exception");
+    }
+
     f.close();
 
     return pConnecter;

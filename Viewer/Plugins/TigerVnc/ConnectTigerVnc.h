@@ -4,11 +4,13 @@
 #define CCONNECTTIGERVNC_H
 
 #include "Connect.h"
+
 #include "network/TcpSocket.h"
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
 
+class CConnecterTigerVnc;
 class CConnectTigerVnc : public CConnect,
         public rfb::CConnection,
         public rdr::FdInStreamBlockCallback,
@@ -18,8 +20,7 @@ class CConnectTigerVnc : public CConnect,
     Q_OBJECT
 
 public:
-    explicit CConnectTigerVnc(void * pPara,
-                              CFrmViewer* pView = nullptr,
+    explicit CConnectTigerVnc(CConnecterTigerVnc* pConnecter = nullptr,
                               QObject *parent = nullptr);
     virtual ~CConnectTigerVnc() override;
     

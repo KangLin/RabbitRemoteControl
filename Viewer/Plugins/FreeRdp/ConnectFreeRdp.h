@@ -6,14 +6,14 @@
 #include "Connect.h"
 #include "freerdp/freerdp.h"
 #include "ClipBoard.h"
+#include "ConnecterFreeRdp.h"
 
 class CConnectFreeRdp : public CConnect
 {
     Q_OBJECT
 
 public:
-    explicit CConnectFreeRdp(rdpSettings* settings,
-                             CFrmViewer* pView = nullptr,
+    explicit CConnectFreeRdp(CConnecterFreeRdp* pConnecter = nullptr,
                              QObject *parent = nullptr);
     virtual ~CConnectFreeRdp() override;
     

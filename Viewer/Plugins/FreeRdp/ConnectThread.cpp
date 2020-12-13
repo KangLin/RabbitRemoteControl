@@ -24,18 +24,8 @@ CConnectThread::~CConnectThread()
 void CConnectThread::run()
 {
     CConnecterFreeRdp* connecter = dynamic_cast<CConnecterFreeRdp*>(m_pConnecter);
-    CConnectFreeRdp c(connecter->m_pSettings, m_pView);
+    CConnectFreeRdp c( connecter);
 
-    bool check = connect(&c, SIGNAL(sigConnected()),
-                         m_pConnecter, SIGNAL(sigConnected()));
-    Q_ASSERT(check);
-    check = connect(&c, SIGNAL(sigDisconnected()),
-                    m_pConnecter, SIGNAL(sigDisconnected()));
-    Q_ASSERT(check);
-    check = connect(m_pConnecter, SIGNAL(sigDisconnected()),
-            &c, SLOT(Disconnect()), Qt::DirectConnection);
-    Q_ASSERT(check);
-    
     int nRet = c.Connect();
     
     while (!m_bExit && !nRet) {

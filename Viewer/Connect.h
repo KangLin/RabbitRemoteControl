@@ -7,11 +7,11 @@
 
 #include <QObject>
 #include <QPoint>
-#include "FrmViewer.h"
 #include <QtPlugin>
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QWheelEvent>
+#include "Connecter.h"
 
 /**
  * @brief The CConnect class.
@@ -23,12 +23,13 @@ class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
     Q_OBJECT
 
 public:
-    explicit CConnect(CFrmViewer* pView = nullptr, QObject *parent = nullptr);
+    explicit CConnect(CConnecter* pConnecter = nullptr, QObject *parent = nullptr);
     virtual ~CConnect() override;
 
     virtual QString GetDescription();
 
 protected:
+    virtual int SetConnecter(CConnecter* pConnecter);
     virtual int SetViewer(CFrmViewer* pView);
     // 由子类解析成 IP 和 端口 (格式为：IP:[PORT])
     virtual int SetServerName(const QString& serverName);
@@ -56,7 +57,8 @@ Q_SIGNALS:
     void sigUpdateCursor(const QRect& r, const QImage& cursor);
     
     void sigError(const int nError, const QString &szError);
-    
+    void sigInformation(const QString& szInfo);
+
 public Q_SLOTS:
     virtual void slotMousePressEvent(QMouseEvent*);
     virtual void slotMouseReleaseEvent(QMouseEvent*);
