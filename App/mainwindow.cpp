@@ -286,6 +286,13 @@ void MainWindow::on_actionOpen_O_triggered()
     bool check = connect(p, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
     Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigError(const int, const QString &)),
+                    this, SLOT(slotError(const int, const QString&)));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigInformation(const QString&)),
+                    this, SLOT(slotInformation(const QString&)));
+    Q_ASSERT(check);
+    
     p->Connect();
 }
 
@@ -297,6 +304,12 @@ void MainWindow::slotConnect()
 
     bool check = connect(p, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigError(const int, const QString &)),
+                    this, SLOT(slotError(const int, const QString&)));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigInformation(const QString&)),
+                    this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
     
     QDialog* pDlg = p->GetDialogSettings();
@@ -410,6 +423,16 @@ void MainWindow::slotDisconnected()
             break;
         }
     }
+}
+
+void MainWindow::slotError(const int nError, const QString &szInfo)
+{
+    this->statusBar()->showMessage(szInfo);
+}
+
+void MainWindow::slotInformation(const QString& szInfo)
+{
+    this->statusBar()->showMessage(szInfo);
 }
 
 void MainWindow::slotViewTitleChanged(const QString& szName)

@@ -89,19 +89,22 @@ int CConnectFreeRdp::Connect()
 		else
 			nRet = -4;
         QString szErr = tr("freerdp_connect connect to ");
-        szErr += settings->ServerHostname;
+        szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
         szErr += ":";
-        szErr += QString::number(settings->ServerPort);
+        szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
         szErr += tr(" fail");
         LOG_MODEL_ERROR("FreeRdp", szErr.toStdString().c_str());
         emit sigError(nRet, szErr.toStdString().c_str());
     } else {
-        LOG_MODEL_INFO("FreeRdp", "Connect to %s:%d",
-                       settings->ServerHostname,
-                       settings->ServerPort);
-        
         emit sigConnected();
         emit sigServerName(m_szServerName);
+
+        QString szInfo = tr("Connect to ");
+        szInfo += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+        szInfo += ":";
+        szInfo += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+        LOG_MODEL_INFO("FreeRdp", szInfo.toStdString().c_str());
+        emit sigInformation(szInfo);
     }
     return nRet;
 }
@@ -325,13 +328,15 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 #endif
 
     // Check desktop size
+    UINT32 width = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
+    UINT32 height = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
 #if defined (Q_OS_WIN)
     /* FIXME: desktopWidth has a limitation that it should be divisible by 4,
 	 *        otherwise the screen will crash when connecting to an XP desktop.*/
-	settings->DesktopWidth = (settings->DesktopWidth + 3) & (~3);
+	freerdp_settings_set_uint32(settings, FreeRDP_DesktopWidth, (width + 3) & (~3));
 #endif
-    if ((settings->DesktopWidth < 64) || (settings->DesktopHeight < 64) ||
-            (settings->DesktopWidth > 4096) || (settings->DesktopHeight > 4096))
+    if ((width < 64) || (height < 64) ||
+            (width > 4096) || (height > 4096))
     {
         LOG_MODEL_ERROR("FreeRdp", "invalid dimensions %d:%d" 
                         , settings->DesktopWidth
@@ -367,12 +372,13 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
     Q_ASSERT(settings);
     Q_ASSERT(pThis);
     
-    pThis->m_Image = QImage(settings->DesktopWidth,
-                            settings->DesktopHeight,
+    int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
+    int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
+    pThis->m_Image = QImage(desktopWidth,
+                            desktopHeight,
                             QImage::Format_RGB32);
     
     // Init gdi format
-	//if (!gdi_init(instance, pThis->GetImageFormat()))
     if (!gdi_init_ex(instance, pThis->GetImageFormat(),
                      0, pThis->m_Image.bits(), nullptr))
 	{
@@ -471,11 +477,15 @@ void CConnectFreeRdp::cb_post_disconnect(freerdp* instance)
 
 int CConnectFreeRdp::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 type)
 {
-	//xfContext* xfc = (xfContext*)instance->context;
+	CConnectFreeRdp* pThis = ((ClientContext*)instance->context)->pThis;
 	const char* str_data = freerdp_get_logon_error_info_data(data);
 	const char* str_type = freerdp_get_logon_error_info_type(type);
-	LOG_MODEL_ERROR("FreeRdp", "Logon Error Info %s [%s]", str_data, str_type);
-	//xf_rail_disable_remoteapp_mode(xfc);
+    QString szErr = tr("Logon error info [");
+    szErr += str_type;
+    szErr += "] ";
+    szErr += str_data;
+	LOG_MODEL_ERROR("FreeRdp", szErr.toStdString().c_str());
+	emit pThis->sigError(type, szErr);
 	return 1;
 }
 

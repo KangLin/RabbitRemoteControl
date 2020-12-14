@@ -48,6 +48,8 @@ private Q_SLOTS:
     void slotViewTitleChanged(const QString& szName);
     void slotConnected();
     void slotDisconnected();
+    void slotError(const int nError, const QString &szInfo);
+    void slotInformation(const QString& szInfo);
     
     void on_actionOpenStyle_O_triggered();
     void on_actionDefaultStyle_D_triggered();
