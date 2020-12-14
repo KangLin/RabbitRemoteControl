@@ -2,13 +2,14 @@
 #define CCURSOR_H
 
 #include <QObject>
-#include "freerdp/graphics.h"
+#include "freerdp/freerdp.h"
 
+class CConnectFreeRdp;
 class CCursor : public QObject
 {
     Q_OBJECT
 public:
-    explicit CCursor(QObject *parent = nullptr);
+    explicit CCursor(CConnectFreeRdp *parent = nullptr);
     
     int RegisterPointer(rdpGraphics* graphics);
     struct _Pointer{
@@ -22,6 +23,9 @@ public:
     static BOOL cb_Pointer_SetNull(rdpContext* context);
     static BOOL cb_Pointer_SetDefault(rdpContext* context);
     static BOOL cb_Pointer_SetPosition(rdpContext* context, UINT32 x, UINT32 y);
+    
+private:
+    CConnectFreeRdp* m_pConnect;
 };
 
 #endif // CCURSOR_H

@@ -2,7 +2,8 @@
 #include <QImage>
 #include "ConnectFreeRdp.h"
 
-CCursor::CCursor(QObject *parent) : QObject(parent)
+CCursor::CCursor(CConnectFreeRdp *parent) : QObject(parent),
+    m_pConnect(parent)
 {
 }
 
@@ -37,12 +38,16 @@ BOOL CCursor::cb_Pointer_New(rdpContext *context, rdpPointer *pointer)
      */
     /*
     freerdp_image_copy_from_pointer_data(cursor.bits(),
-                              CConnectFreeRdp::GetImageFormat(cursor.format()),
-                                      0,
-                              0, 0, cursor.width(), cursor.height(),
-                              pointer->xorMaskData, pointer->lengthXorMask, pointer->andMaskData,
-                pointer->lengthAndMask, pointer->xorBpp, cursor.colorCount());
-                //*/
+                               CConnectFreeRdp::GetImageFormat(cursor.format()),
+                               0,
+                               0, 0, cursor.width(), cursor.height(),
+                               pointer->xorMaskData,
+                               pointer->lengthXorMask,
+                               pointer->andMaskData,
+                               pointer->lengthAndMask,
+                               pointer->xorBpp,
+                               &context->gdi->palette);
+    //*/
     return TRUE;
 }
 

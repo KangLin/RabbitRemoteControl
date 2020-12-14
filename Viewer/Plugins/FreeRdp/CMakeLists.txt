@@ -25,10 +25,10 @@ SET(SOURCE_FILES
     ConnectFreeRdp.cpp
     ConnecterFreeRdp.cpp
     ConnectThread.cpp
-    ClipBoard.cpp
     DlgSetFreeRdp.cpp
     ConvertKeyCode.cpp
     Cursor.cpp
+    ClipboardFreeRdp.cpp
     )
 
 SET(HEADER_FILES
@@ -36,10 +36,10 @@ SET(HEADER_FILES
     ConnectFreeRdp.h
     ConnecterFreeRdp.h
     ConnectThread.h
-    ClipBoard.h
     DlgSetFreeRdp.h
     ConvertKeyCode.h
     Cursor.h
+    ClipboardFreeRdp.h
     )
 
 SET(UI_FILES

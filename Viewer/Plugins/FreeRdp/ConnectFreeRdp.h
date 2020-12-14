@@ -5,7 +5,7 @@
 
 #include "Connect.h"
 #include "freerdp/freerdp.h"
-#include "ClipBoard.h"
+#include "ClipboardFreeRdp.h"
 #include "ConnecterFreeRdp.h"
 #include "Cursor.h"
 
@@ -101,7 +101,7 @@ private:
         
     QImage m_Image;
 
-    CClipBoard m_ClipBoard;
+    CClipboardFreeRdp m_ClipBoard;
     CCursor m_Cursor;
 };
 

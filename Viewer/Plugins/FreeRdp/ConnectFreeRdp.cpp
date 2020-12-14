@@ -25,7 +25,8 @@
 CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
                                  QObject *parent)
     : CConnect(pConnecter, parent),
-      m_pContext(nullptr)
+      m_pContext(nullptr),
+      m_Cursor(this)
 {
     Q_ASSERT(pConnecter);
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
@@ -282,7 +283,7 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
     settings->OsMajorType = OSMAJORTYPE_WINDOWS;
     settings->OsMinorType = OSMINORTYPE_WINDOWS_NT;
 #endif
-#if defined (Q_OS_LINUX) || defined (Q_OS_UNIX)
+#if defined (Q_OS_UNIX)
 	settings->OsMajorType = OSMAJORTYPE_UNIX;
 	settings->OsMinorType = OSMINORTYPE_NATIVE_XSERVER;
 #endif
@@ -388,8 +389,8 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
     }
 
     // TODO: Register cursor pointer
-    if(pThis->m_Cursor.RegisterPointer(context->graphics))
-    	return FALSE;
+//    if(pThis->m_Cursor.RegisterPointer(context->graphics))
+//    	return FALSE;
 
     // pointer_cache_register_callbacks(instance->update);
     
@@ -423,6 +424,7 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
 //	update->SetKeyboardIndicators = xf_keyboard_set_indicators;
 //	update->SetKeyboardImeStatus = xf_keyboard_set_ime_status;
 
+    //TODO: clipboard
 //	if (!(xfc->clipboard = xf_clipboard_new(xfc)))
 //		return FALSE;
 
