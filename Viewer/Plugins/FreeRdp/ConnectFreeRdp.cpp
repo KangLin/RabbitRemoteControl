@@ -140,7 +140,6 @@ int CConnectFreeRdp::Process()
         if (waitStatus == WAIT_FAILED)
             return -2;
         
-        
         /* Check if a processed event called freerdp_abort_connect() and exit if true */
 		if (WaitForSingleObject(pContext->abortEvent, 0) == WAIT_OBJECT_0)
 			/* Session disconnected by local user action */
@@ -149,22 +148,24 @@ int CConnectFreeRdp::Process()
         if (!freerdp_check_event_handles(pContext))
         {
             nRet = -4;
-            //TODO: add reconnect
-//            if (client_auto_reconnect_ex(pContext, NULL))
-//                continue;
-//            else
-//            {
-//                /*
-//                         * Indicate an unsuccessful connection attempt if reconnect
-//                         * did not succeed and no other error was specified.
-//                         */
-//                if (freerdp_error_info(pContext->instance) == 0)
-//                    exit_code = XF_EXIT_CONN_FAILED;
-//            }
-            
-            if (freerdp_get_last_error(pContext) == FREERDP_ERROR_SUCCESS)
-                LOG_MODEL_ERROR("FreeRdp", "Failed to check FreeRDP file descriptor");
-            
+            // Reconnect
+            if(pContext->settings->AutoReconnectionEnabled)
+            {
+                if (client_auto_reconnect_ex(pContext->instance, NULL))
+                    return 0;
+                else
+                {
+                 /*
+                 * Indicate an unsuccessful connection attempt if reconnect
+                 * did not succeed and no other error was specified.
+                 */
+                    if (freerdp_error_info(pContext->instance) == 0)
+                        nRet = -5;
+                }
+                
+                if (freerdp_get_last_error(pContext) == FREERDP_ERROR_SUCCESS)
+                    LOG_MODEL_ERROR("FreeRdp", "Failed to check FreeRDP file descriptor");
+            }
         }
     }
 
