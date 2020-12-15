@@ -5,6 +5,7 @@
 #include <QMimeData>
 #include <QtDebug>
 
+extern const char* CF_STANDARD_STRINGS[CF_MAX];
 static const char* mime_text[] = { "text/plain",  "text/plain;charset=utf-8",
 	                               "UTF8_STRING", "COMPOUND_TEXT",
 	                               "TEXT",        "STRING" };
@@ -63,6 +64,7 @@ CClipboardFreeRdp::CClipboardFreeRdp(QObject *parent) : QObject(parent)
 int CClipboardFreeRdp::Init(CliprdrClientContext *cliprdr)
 {
     cliprdr->custom = this;
+    // See: [MS_RDPECLIP] 1.3.2.1
     cliprdr->MonitorReady = cb_cliprdr_monitor_ready;
 	cliprdr->ServerCapabilities = cb_cliprdr_server_capabilities;
 	cliprdr->ServerFormatList = cb_cliprdr_server_format_list;
@@ -107,63 +109,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_monitor_ready(CliprdrClientContext *context, 
     }
     
     // Send client formats
-	CLIPRDR_FORMAT* formats = nullptr;
-	CLIPRDR_FORMAT_LIST formatList = { 0 };
-    UINT32 numFormats = 0;
-    QClipboard *clipboard = QApplication::clipboard();
-    const QMimeData* pData = clipboard->mimeData();
-    auto clipFormats = pData->formats();
-    numFormats = clipFormats.size();
-    
-    qDebug() << "clipFormats:" << clipFormats;
-    if(clipFormats.isEmpty())
-    {
-        LOG_MODEL_INFO("FreeRdp", "Client clipboard don't support any formats");
-        return -2;
-    }
-        
-    for(UINT32 i = 0; i < numFormats; i++)
-    {
-        CLIPRDR_FORMAT format = {0, NULL};
-        if("text/plain" == clipFormats.at(i)) {
-            format.formatId = CF_TEXT;
-            format.formatName = _strdup("text/plain");
-        } else if("TEXT" == clipFormats.at(i)) {
-            format.formatId = CF_TEXT;
-            format.formatName = _strdup("TEXT");
-        } else if("STRING" == clipFormats.at(i)) {
-            format.formatId = CF_TEXT;
-            format.formatName = _strdup("STRING");
-        }else if("text/html" == clipFormats.at(i)) {
-            format.formatId = CB_FORMAT_HTML;
-            format.formatName = _strdup("text/html");
-        } else if("image/png" == clipFormats.at(i)) {
-            format.formatId = CB_FORMAT_PNG;
-            format.formatName = _strdup("image/png");
-        } else if("image/jpeg" == clipFormats.at(i)) {
-            format.formatId = CB_FORMAT_JPEG;
-            format.formatName = _strdup("image/jpeg");
-        } else if("image/gif" == clipFormats.at(i)) {
-            format.formatId = CB_FORMAT_GIF;
-            format.formatName = _strdup("image/gif");
-        } else if("image/bmp" == clipFormats.at(i)) {
-            format.formatId = CF_DIB;
-            format.formatName = _strdup("image/bmp");
-        }
-        if(nullptr == formats)
-            formats = (CLIPRDR_FORMAT*)calloc(i + 1, sizeof(CLIPRDR_FORMAT));
-        else 
-            formats = (CLIPRDR_FORMAT*)realloc(formats, (i + 1) * sizeof(CLIPRDR_FORMAT));
-        formats[i+1] = format;
-    }
-    formatList.msgFlags = CB_RESPONSE_OK;
-	formatList.numFormats = numFormats;
-	formatList.formats = formats;
-	formatList.msgType = CB_FORMAT_LIST;
-	nRet = context->ClientFormatList(context, &formatList);
-	free(formats);
-    
-    return nRet;
+    return SendClientFormatList(context);
 }
 
 UINT CClipboardFreeRdp::cb_cliprdr_server_capabilities(CliprdrClientContext* context,
@@ -260,3 +206,59 @@ UINT CClipboardFreeRdp::cb_cliprdr_send_data_response(CliprdrClientContext* cont
 	return context->ClientFormatDataResponse(context, &response);
 }
 
+UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
+{
+    int nRet = CHANNEL_RC_OK;
+    CLIPRDR_FORMAT* pFormats = nullptr;
+	CLIPRDR_FORMAT_LIST formatList = { 0 };
+    UINT32 numFormats = 0;
+
+    QClipboard *clipboard = QApplication::clipboard();
+    const QMimeData* pData = clipboard->mimeData();
+    auto clipFormats = pData->formats();
+    qDebug() << "Clipboard formats:" << clipFormats;
+    for(UINT32 i = 0; i < clipFormats.size(); i++)
+    {
+        CLIPRDR_FORMAT format = {0, NULL};
+        if("text/plain" == clipFormats.at(i)) {
+            format.formatId = CF_TEXT;
+            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
+        } else if("TEXT" == clipFormats.at(i)) {
+            format.formatId = CF_TEXT;
+            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
+        } else if("STRING" == clipFormats.at(i)) {
+            format.formatId = CF_TEXT;
+            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
+        }else if("text/html" == clipFormats.at(i)) {
+            format.formatId = CB_FORMAT_HTML;
+            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
+        } else if("image/png" == clipFormats.at(i)) {
+            format.formatId = CB_FORMAT_PNG;
+            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
+        } else if("image/jpeg" == clipFormats.at(i)) {
+            format.formatId = CB_FORMAT_JPEG;
+            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
+        } else if("image/gif" == clipFormats.at(i)) {
+            format.formatId = CB_FORMAT_GIF;
+            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
+        } else if("image/bmp" == clipFormats.at(i)) {
+            format.formatId = CF_DIB;
+            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
+        } else
+            continue;
+        if(nullptr == pFormats)
+            pFormats = (CLIPRDR_FORMAT*)calloc(++numFormats, sizeof(CLIPRDR_FORMAT));
+        else 
+            pFormats = (CLIPRDR_FORMAT*)realloc(pFormats, ++numFormats * sizeof(CLIPRDR_FORMAT));
+        pFormats[i+1] = format;
+    }
+    LOG_MODEL_DEBUG("FreeRdp", "formats: %d", numFormats);
+    formatList.msgFlags = CB_RESPONSE_OK;
+	formatList.numFormats = numFormats;
+	formatList.formats = pFormats;
+	formatList.msgType = CB_FORMAT_LIST;
+	nRet = context->ClientFormatList(context, &formatList);
+    if(pFormats)
+        free(pFormats);
+    return nRet;
+}

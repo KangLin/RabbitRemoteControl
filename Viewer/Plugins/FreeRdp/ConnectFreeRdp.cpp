@@ -662,7 +662,7 @@ DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance, const char *h
     
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
-    return 1;
+    return 2;
 }
 
 DWORD CConnectFreeRdp::cb_verify_changed_certificate_ex(freerdp *instance, const char *host, UINT16 port, const char *common_name, const char *subject, const char *issuer, const char *new_fingerprint, const char *old_subject, const char *old_issuer, const char *old_fingerprint, DWORD flags)
@@ -671,7 +671,7 @@ DWORD CConnectFreeRdp::cb_verify_changed_certificate_ex(freerdp *instance, const
     
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
-    return 1;
+    return 2;
 }
 
 BOOL CConnectFreeRdp::cb_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDisplayMandatory,

@@ -35,6 +35,9 @@ public:
                       const CLIPRDR_FILE_CONTENTS_REQUEST* fileContentsRequest);
     
     static UINT cb_cliprdr_send_data_response(CliprdrClientContext *context, BYTE* data, int size);
+    
+    static UINT SendClientFormatList(CliprdrClientContext *context);
+
 signals:
     
 };
