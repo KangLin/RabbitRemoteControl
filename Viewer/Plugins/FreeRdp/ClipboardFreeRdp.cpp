@@ -181,10 +181,27 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_request(CliprdrClientConte
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_data_request");
     int nRet = CHANNEL_RC_OK;
     UINT32 formatId = formatDataRequest->requestedFormatId;
-    //CLIPRDR_FORMAT* format = cliprdr_
-    //TODO: format invalie
-    cb_cliprdr_send_data_response(context, NULL, 0);
-    
+    LOG_MODEL_DEBUG("FreeRdp", "server format date request: %d", formatId);
+    QClipboard *clipboard = QApplication::clipboard();
+    switch(formatId)
+    {
+    case CF_TEXT:
+    {
+        QString szData = clipboard->text();
+        std::string d = szData.toStdString();
+        cb_cliprdr_send_data_response(context, (BYTE*)d.c_str(), d.length());
+        break;
+    }
+    case CB_FORMAT_HTML:
+    case CB_FORMAT_PNG:
+    case CB_FORMAT_JPEG:
+    case CB_FORMAT_GIF:
+    case CF_DIB:
+    default:
+        // format invalie
+        cb_cliprdr_send_data_response(context, NULL, 0);
+    }
+
     return nRet;
 }
 
