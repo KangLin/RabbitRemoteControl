@@ -276,9 +276,9 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 void MainWindow::on_actionOpen_O_triggered()
 {
     QString file = RabbitCommon::CDir::GetOpenFileName(this,
-                                  tr("Open remote control"),
+                                  tr("Open rabbit remote control file"),
            RabbitCommon::CDir::Instance()->GetDirUserData(), 
-           tr("Rabbit Remote control File (*.rrc)"));
+           tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
     if(file.isEmpty()) return;
     CConnecter* p = m_ManageConnecter.LoadConnecter(file);
     if(nullptr == p) return;

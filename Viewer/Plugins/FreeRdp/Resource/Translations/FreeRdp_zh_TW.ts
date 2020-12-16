@@ -11,6 +11,14 @@
         <source> fail</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Connect to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logon error info [</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CDlgSetFreeRdp</name>
@@ -103,7 +111,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use all my monitors for remote sessions</source>
+        <source>Use all local monitors for remote sessions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

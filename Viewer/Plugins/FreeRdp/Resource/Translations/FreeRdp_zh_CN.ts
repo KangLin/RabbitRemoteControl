@@ -5,11 +5,19 @@
     <name>CConnectFreeRdp</name>
     <message>
         <source>freerdp_connect connect to </source>
-        <translation type="unfinished"></translation>
+        <translation>连接到 </translation>
     </message>
     <message>
         <source> fail</source>
-        <translation type="unfinished"></translation>
+        <translation>失败</translation>
+    </message>
+    <message>
+        <source>Connect to </source>
+        <translation>连接到 </translation>
+    </message>
+    <message>
+        <source>Logon error info [</source>
+        <translation>登录错误信息</translation>
     </message>
 </context>
 <context>
@@ -100,7 +108,7 @@
     </message>
     <message>
         <source>Remote desktop size:</source>
-        <translation type="unfinished">远程桌面尺寸：</translation>
+        <translation>远程桌面尺寸：</translation>
     </message>
     <message>
         <source>Use all local monitors for remote sessions</source>

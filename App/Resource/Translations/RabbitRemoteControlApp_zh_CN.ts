@@ -230,13 +230,13 @@
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="279"/>
-        <source>Open remote control</source>
-        <translation>打开远程控制</translation>
+        <source>Open rabbit remote control file</source>
+        <translation>打开玉兔远程控制文件</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="281"/>
-        <source>Rabbit Remote control File (*.rrc)</source>
-        <translation>玉兔远程控制文件 (*.rrc)</translation>
+        <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
+        <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
 </context>
 <context>

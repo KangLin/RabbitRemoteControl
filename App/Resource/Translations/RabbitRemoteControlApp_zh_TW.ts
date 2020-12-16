@@ -163,10 +163,6 @@
         <translation>連接(&amp;C)</translation>
     </message>
     <message>
-        <source>Connect(C)</source>
-        <translation type="vanished">連接</translation>
-    </message>
-    <message>
         <location filename="../../mainwindow.ui" line="260"/>
         <location filename="../../mainwindow.ui" line="263"/>
         <location filename="../../mainwindow.ui" line="266"/>
@@ -211,7 +207,7 @@
         <location filename="../../mainwindow.cpp" line="64"/>
         <location filename="../../mainwindow.cpp" line="65"/>
         <source>Connect</source>
-        <translation type="unfinished"></translation>
+        <translation>連接</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="147"/>
@@ -234,13 +230,17 @@
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="279"/>
-        <source>Open remote control</source>
-        <translation>打開遠程控制</translation>
+        <source>Open rabbit remote control file</source>
+        <translation>打開玉兔遠程控制文件</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="281"/>
-        <source>Rabbit Remote control File (*.rrc)</source>
-        <translation>玉兔遠程控制文件 (*.rrc)</translation>
+        <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
+        <translation>玉兔遠程控制文件 (*.rrc);;所有文件(*.*)</translation>
+    </message>
+    <message>
+        <source>Open remote control</source>
+        <translation type="vanished">打開遠程控制</translation>
     </message>
 </context>
 <context>
