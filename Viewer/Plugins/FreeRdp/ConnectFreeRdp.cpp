@@ -188,6 +188,7 @@ int CConnectFreeRdp::Clean()
 
 void CConnectFreeRdp::slotClipBoardChange()
 {
+    m_ClipBoard.slotClipBoardChange();
 }
 
 BOOL CConnectFreeRdp::Client_global_init()

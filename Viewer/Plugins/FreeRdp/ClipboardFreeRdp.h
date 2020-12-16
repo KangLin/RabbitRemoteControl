@@ -38,8 +38,11 @@ public:
     
     static UINT SendClientFormatList(CliprdrClientContext *context);
 
-signals:
+public Q_SLOTS:
+    virtual void slotClipBoardChange();
     
+private:
+    CliprdrClientContext* m_pClipboard;
 };
 
 #endif // CCLIPBOARDFREERDP_H

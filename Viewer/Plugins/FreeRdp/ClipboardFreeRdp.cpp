@@ -58,11 +58,13 @@ static BOOL mime_is_html(const char* mime)
 	return FALSE;
 }
 
-CClipboardFreeRdp::CClipboardFreeRdp(QObject *parent) : QObject(parent)
+CClipboardFreeRdp::CClipboardFreeRdp(QObject *parent) : QObject(parent),
+    m_pClipboard(nullptr)
 {}
 
 int CClipboardFreeRdp::Init(CliprdrClientContext *cliprdr)
 {
+    m_pClipboard = cliprdr;
     cliprdr->custom = this;
     // See: [MS_RDPECLIP] 1.3.2.1
     cliprdr->MonitorReady = cb_cliprdr_monitor_ready;
@@ -78,7 +80,14 @@ int CClipboardFreeRdp::Init(CliprdrClientContext *cliprdr)
 int CClipboardFreeRdp::UnInit(CliprdrClientContext *cliprdr)
 {
     cliprdr->custom = nullptr;
+    m_pClipboard = nullptr;
     return 0;
+}
+
+void CClipboardFreeRdp::slotClipBoardChange()
+{
+    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::slotClipBoardChange");
+    SendClientFormatList(m_pClipboard);
 }
 
 UINT CClipboardFreeRdp::cb_cliprdr_monitor_ready(CliprdrClientContext *context, const CLIPRDR_MONITOR_READY *monitorReady)
@@ -213,6 +222,9 @@ UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
 	CLIPRDR_FORMAT_LIST formatList = { 0 };
     UINT32 numFormats = 0;
 
+    Q_ASSERT(context);
+    if(!context) return nRet;
+    
     QClipboard *clipboard = QApplication::clipboard();
     const QMimeData* pData = clipboard->mimeData();
     auto clipFormats = pData->formats();
@@ -247,10 +259,10 @@ UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
         } else
             continue;
         if(nullptr == pFormats)
-            pFormats = (CLIPRDR_FORMAT*)calloc(++numFormats, sizeof(CLIPRDR_FORMAT));
+            pFormats = (CLIPRDR_FORMAT*)calloc(numFormats + 1, sizeof(CLIPRDR_FORMAT));
         else 
-            pFormats = (CLIPRDR_FORMAT*)realloc(pFormats, ++numFormats * sizeof(CLIPRDR_FORMAT));
-        pFormats[i+1] = format;
+            pFormats = (CLIPRDR_FORMAT*)realloc(pFormats, (numFormats + 1) * sizeof(CLIPRDR_FORMAT));
+        pFormats[numFormats++] = format;
     }
     LOG_MODEL_DEBUG("FreeRdp", "formats: %d", numFormats);
     formatList.msgFlags = CB_RESPONSE_OK;
