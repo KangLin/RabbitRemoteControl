@@ -7,7 +7,7 @@
 #include "freerdp/freerdp.h"
 #include "ClipboardFreeRdp.h"
 #include "ConnecterFreeRdp.h"
-#include "Cursor.h"
+#include "CursorFreeRdp.h"
 
 class CConnectFreeRdp : public CConnect
 {
@@ -102,7 +102,8 @@ private:
     QImage m_Image;
 
     CClipboardFreeRdp m_ClipBoard;
-    CCursor m_Cursor;
+    CCursorFreeRdp m_Cursor;
+    friend CCursorFreeRdp;
 };
 
 #endif // CCONNECTFREERDP_H

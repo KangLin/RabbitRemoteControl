@@ -389,12 +389,10 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
         return FALSE;
     }
 
-    // TODO: Register cursor pointer
-//    if(pThis->m_Cursor.RegisterPointer(context->graphics))
-//    	return FALSE;
+    // Register cursor pointer
+    if(pThis->m_Cursor.RegisterPointer(context->graphics))
+    	return FALSE;
 
-    // pointer_cache_register_callbacks(instance->update);
-    
 //	if (!settings->SoftwareGdi)
 //	{
 //        //pThis->m_Graphics.Registergraphics(context->graphics);

@@ -4,6 +4,8 @@
 #include <QApplication>
 #include <QMimeData>
 #include <QtDebug>
+#include <QImage>
+#include <QBuffer>
 
 extern const char* CF_STANDARD_STRINGS[CF_MAX];
 static const char* mime_text[] = { "text/plain",  "text/plain;charset=utf-8",
@@ -158,7 +160,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
 	{
 		CLIPRDR_FORMAT* format = &formatList->formats[i];
         //TODO: Delete it
-        LOG_MODEL_DEBUG("FreeRdp", "FormatId: %d; name: %s",
+        LOG_MODEL_DEBUG("FreeRdp", "cb_cliprdr_server_format_list FormatId: %d; name: %s",
                         format->formatId,
                         format->formatName);
         //TODO: Set clipboard format
@@ -167,11 +169,10 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
 }
 
 UINT CClipboardFreeRdp::cb_cliprdr_server_format_list_response(CliprdrClientContext* context,
-                                      const CLIPRDR_FORMAT_LIST_RESPONSE* formatListResponse)
+                                      const CLIPRDR_FORMAT_LIST_RESPONSE* pformatListResponse)
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response");
     int nRet = CHANNEL_RC_OK;
-    
     return nRet;
 }
 
@@ -187,16 +188,36 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_request(CliprdrClientConte
     {
     case CF_TEXT:
     {
-        QString szData = clipboard->text();
-        std::string d = szData.toStdString();
-        cb_cliprdr_send_data_response(context, (BYTE*)d.c_str(), d.length());
+        if(clipboard->mimeData()->hasText())
+        {
+            QString szData = clipboard->text();
+            std::string d = szData.toStdString();
+            cb_cliprdr_send_data_response(context, (BYTE*)d.c_str(), d.length());
+        }
         break;
     }
     case CB_FORMAT_HTML:
+        if(clipboard->mimeData()->hasHtml())
+        {
+            QString szData = clipboard->mimeData()->html();
+            std::string d = szData.toStdString();
+            cb_cliprdr_send_data_response(context, (BYTE*)d.c_str(), d.length());
+        }
+        break;
     case CB_FORMAT_PNG:
     case CB_FORMAT_JPEG:
     case CB_FORMAT_GIF:
     case CF_DIB:
+        if(clipboard->mimeData()->hasImage())
+        {
+            QImage img = clipboard->image();
+            QByteArray d;
+            QBuffer buffer(&d);
+            buffer.open(QIODevice::WriteOnly);
+            img.save(&buffer, "BMP");
+            buffer.close();
+            cb_cliprdr_send_data_response(context, (BYTE*)d.data(), d.length());
+        }
     default:
         // format invalie
         cb_cliprdr_send_data_response(context, NULL, 0);
@@ -232,62 +253,51 @@ UINT CClipboardFreeRdp::cb_cliprdr_send_data_response(CliprdrClientContext* cont
 	return context->ClientFormatDataResponse(context, &response);
 }
 
+// See: https://docs.microsoft.com/en-us/windows/win32/dataxchg/clipboard-formats
 UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
 {
     int nRet = CHANNEL_RC_OK;
-    CLIPRDR_FORMAT* pFormats = nullptr;
+    CLIPRDR_FORMAT* pFormats = new CLIPRDR_FORMAT[10];
 	CLIPRDR_FORMAT_LIST formatList = { 0 };
     UINT32 numFormats = 0;
 
-    Q_ASSERT(context);
     if(!context) return nRet;
     
     QClipboard *clipboard = QApplication::clipboard();
     const QMimeData* pData = clipboard->mimeData();
     auto clipFormats = pData->formats();
     qDebug() << "Clipboard formats:" << clipFormats;
-    for(UINT32 i = 0; i < clipFormats.size(); i++)
+    
+    if(pData->hasImage())
     {
-        CLIPRDR_FORMAT format = {0, NULL};
-        if("text/plain" == clipFormats.at(i)) {
-            format.formatId = CF_TEXT;
-            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
-        } else if("TEXT" == clipFormats.at(i)) {
-            format.formatId = CF_TEXT;
-            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
-        } else if("STRING" == clipFormats.at(i)) {
-            format.formatId = CF_TEXT;
-            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
-        }else if("text/html" == clipFormats.at(i)) {
-            format.formatId = CB_FORMAT_HTML;
-            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
-        } else if("image/png" == clipFormats.at(i)) {
-            format.formatId = CB_FORMAT_PNG;
-            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
-        } else if("image/jpeg" == clipFormats.at(i)) {
-            format.formatId = CB_FORMAT_JPEG;
-            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
-        } else if("image/gif" == clipFormats.at(i)) {
-            format.formatId = CB_FORMAT_GIF;
-            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
-        } else if("image/bmp" == clipFormats.at(i)) {
-            format.formatId = CF_DIB;
-            format.formatName = _strdup(clipFormats.at(i).toStdString().c_str());
-        } else
-            continue;
-        if(nullptr == pFormats)
-            pFormats = (CLIPRDR_FORMAT*)calloc(numFormats + 1, sizeof(CLIPRDR_FORMAT));
-        else 
-            pFormats = (CLIPRDR_FORMAT*)realloc(pFormats, (numFormats + 1) * sizeof(CLIPRDR_FORMAT));
-        pFormats[numFormats++] = format;
+        pFormats[numFormats].formatId = CF_DIB;
+        pFormats[numFormats].formatName = _strdup("image/bmp");
+        numFormats++;
     }
-    LOG_MODEL_DEBUG("FreeRdp", "formats: %d", numFormats);
+    if(pData->hasHtml())
+    {
+        pFormats[numFormats].formatId = CB_FORMAT_HTML;
+        pFormats[numFormats].formatName = _strdup("text/html");
+        numFormats++;
+    }
+    if(pData->hasText())
+    {
+        pFormats[numFormats].formatId = CF_TEXT;
+        pFormats[numFormats].formatName = _strdup("text/plain");
+        numFormats++;
+    }
+    
+    LOG_MODEL_DEBUG("FreeRdp", "SendClientFormatList formats: %d", numFormats);
     formatList.msgFlags = CB_RESPONSE_OK;
 	formatList.numFormats = numFormats;
 	formatList.formats = pFormats;
 	formatList.msgType = CB_FORMAT_LIST;
 	nRet = context->ClientFormatList(context, &formatList);
     if(pFormats)
+    {
+        for(int i = 0; i < numFormats; i++)
+            free(pFormats[i].formatName);
         free(pFormats);
+    }
     return nRet;
 }

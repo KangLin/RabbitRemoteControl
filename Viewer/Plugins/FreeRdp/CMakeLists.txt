@@ -27,7 +27,7 @@ SET(SOURCE_FILES
     ConnectThread.cpp
     DlgSetFreeRdp.cpp
     ConvertKeyCode.cpp
-    Cursor.cpp
+    CursorFreeRdp.cpp
     ClipboardFreeRdp.cpp
     )
 
@@ -38,7 +38,7 @@ SET(HEADER_FILES
     ConnectThread.h
     DlgSetFreeRdp.h
     ConvertKeyCode.h
-    Cursor.h
+    CursorFreeRdp.h
     ClipboardFreeRdp.h
     )
 

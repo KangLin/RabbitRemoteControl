@@ -290,7 +290,12 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 
 void CFrmViewer::slotUpdateCursor(const QRect& r, const QImage& cursor)
 {
-    QCursor cs(QPixmap::fromImage(cursor), r.x(), r.y());
+    QCursor cs;
+    if(!cursor.isNull())
+    {
+        cs = QCursor(QPixmap::fromImage(cursor), r.x(), r.y());
+    }
+    
     setCursor(cs);
 }
 
