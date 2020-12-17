@@ -12,8 +12,8 @@ class CClipboardFreeRdp : public QObject
 public:
     explicit CClipboardFreeRdp(QObject *parent = nullptr);
     
-    int Init(CliprdrClientContext *cliprdr);
-    int UnInit(CliprdrClientContext* cliprdr);
+    int Init(CliprdrClientContext *context);
+    int UnInit(CliprdrClientContext* context);
     
     static UINT cb_cliprdr_monitor_ready(CliprdrClientContext* context,
                                      const CLIPRDR_MONITOR_READY* monitorReady);
@@ -43,6 +43,12 @@ public Q_SLOTS:
     
 private:
     CliprdrClientContext* m_pClipboard;
+    struct _FORMAT
+    {
+        UINT32 id;
+        std::string name;
+    };
+    std::vector<_FORMAT> m_ServerClipboardFormats;
 };
 
 #endif // CCLIPBOARDFREERDP_H

@@ -20,6 +20,7 @@ public:
     virtual QString Description() override;
     virtual QString Protol() override;
     virtual qint16 Version() override;
+    
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) override;
     
     virtual int Load(QDataStream& d) override;

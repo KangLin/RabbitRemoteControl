@@ -7,81 +7,28 @@
 #include <QImage>
 #include <QBuffer>
 
-extern const char* CF_STANDARD_STRINGS[CF_MAX];
-static const char* mime_text[] = { "text/plain",  "text/plain;charset=utf-8",
-	                               "UTF8_STRING", "COMPOUND_TEXT",
-	                               "TEXT",        "STRING" };
-
-static const char* mime_image[] = {
-	"image/png",       "image/bmp",   "image/x-bmp",        "image/x-MS-bmp",
-	"image/x-icon",    "image/x-ico", "image/x-win-bitmap", "image/vmd.microsoft.icon",
-	"application/ico", "image/ico",   "image/icon",         "image/jpeg",
-	"image/tiff"
-};
-
-static const char* mime_html[] = { "text/html" };
-
-static BOOL mime_is_text(const char* mime)
-{
-	size_t x;
-
-	for (x = 0; x < ARRAYSIZE(mime_text); x++)
-	{
-		if (strcmp(mime, mime_text[x]) == 0)
-			return TRUE;
-	}
-
-	return FALSE;
-}
-
-static BOOL mime_is_image(const char* mime)
-{
-	size_t x;
-
-	for (x = 0; x < ARRAYSIZE(mime_image); x++)
-	{
-		if (strcmp(mime, mime_image[x]) == 0)
-			return TRUE;
-	}
-
-	return FALSE;
-}
-
-static BOOL mime_is_html(const char* mime)
-{
-	size_t x;
-
-	for (x = 0; x < ARRAYSIZE(mime_html); x++)
-	{
-		if (strcmp(mime, mime_html[x]) == 0)
-			return TRUE;
-	}
-
-	return FALSE;
-}
-
 CClipboardFreeRdp::CClipboardFreeRdp(QObject *parent) : QObject(parent),
     m_pClipboard(nullptr)
 {}
 
-int CClipboardFreeRdp::Init(CliprdrClientContext *cliprdr)
+int CClipboardFreeRdp::Init(CliprdrClientContext *context)
 {
-    m_pClipboard = cliprdr;
-    cliprdr->custom = this;
-    // See: [MS_RDPECLIP] 1.3.2.1
-    cliprdr->MonitorReady = cb_cliprdr_monitor_ready;
-	cliprdr->ServerCapabilities = cb_cliprdr_server_capabilities;
-	cliprdr->ServerFormatList = cb_cliprdr_server_format_list;
-	cliprdr->ServerFormatListResponse = cb_cliprdr_server_format_list_response;
-	cliprdr->ServerFormatDataRequest = cb_cliprdr_server_format_data_request;
-	cliprdr->ServerFormatDataResponse = cb_cliprdr_server_format_data_response;
-	cliprdr->ServerFileContentsRequest = cb_cliprdr_server_file_contents_request;
+    m_pClipboard = context;
+    context->custom = this;
+    // See: [MS_RDPECLIP] 1.3.2.1 Initialization Sequence
+    context->MonitorReady = cb_cliprdr_monitor_ready;
+	context->ServerCapabilities = cb_cliprdr_server_capabilities;
+	context->ServerFormatList = cb_cliprdr_server_format_list;
+	context->ServerFormatListResponse = cb_cliprdr_server_format_list_response;
+	context->ServerFormatDataRequest = cb_cliprdr_server_format_data_request;
+	context->ServerFormatDataResponse = cb_cliprdr_server_format_data_response;
+	context->ServerFileContentsRequest = cb_cliprdr_server_file_contents_request;
     return 0;
 }
 
-int CClipboardFreeRdp::UnInit(CliprdrClientContext *cliprdr)
+int CClipboardFreeRdp::UnInit(CliprdrClientContext *context)
 {
-    cliprdr->custom = nullptr;
+    context->custom = nullptr;
     m_pClipboard = nullptr;
     return 0;
 }
@@ -156,14 +103,20 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list");
     int nRet = CHANNEL_RC_OK;
+    CClipboardFreeRdp* pClip = (CClipboardFreeRdp*)context->custom;
     for (UINT32 i = 0; i < formatList->numFormats; i++)
 	{
-		CLIPRDR_FORMAT* format = &formatList->formats[i];
+		CLIPRDR_FORMAT* pFormat = &formatList->formats[i];
         //TODO: Delete it
         LOG_MODEL_DEBUG("FreeRdp", "cb_cliprdr_server_format_list FormatId: %d; name: %s",
-                        format->formatId,
-                        format->formatName);
-        //TODO: Set clipboard format
+                        pFormat->formatId,
+                        pFormat->formatName);
+        //Set clipboard format
+        _FORMAT format;
+        format.id = pFormat->formatId;
+        format.name = pFormat->formatName;
+        
+        pClip->m_ServerClipboardFormats.push_back(format);
 	}
     return nRet;
 }
@@ -253,6 +206,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_send_data_response(CliprdrClientContext* cont
 	return context->ClientFormatDataResponse(context, &response);
 }
 
+// See: [MS_RDPECLIP] 1.3.2.2 Data Transfer Sequences
 // See: https://docs.microsoft.com/en-us/windows/win32/dataxchg/clipboard-formats
 UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
 {

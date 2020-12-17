@@ -46,7 +46,7 @@ QString CPluginFactoryFreeRdp::Protol()
 
 QIcon CPluginFactoryFreeRdp::Icon()
 {
-    return QIcon(":/image/Connect");
+    return QIcon(":/image/Windows");
 }
 
 CConnecter* CPluginFactoryFreeRdp::CreateConnecter(const QString &szProtol)
