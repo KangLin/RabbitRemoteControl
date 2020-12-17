@@ -9,7 +9,7 @@
     </message>
     <message>
         <source> fail</source>
-        <translation>失败</translation>
+        <translation> 失败</translation>
     </message>
     <message>
         <source>Connect to </source>

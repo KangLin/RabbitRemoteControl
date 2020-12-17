@@ -5,121 +5,121 @@
     <name>CConnectFreeRdp</name>
     <message>
         <source>freerdp_connect connect to </source>
-        <translation type="unfinished"></translation>
+        <translation>連接到 </translation>
     </message>
     <message>
         <source> fail</source>
-        <translation type="unfinished"></translation>
+        <translation> 失敗</translation>
     </message>
     <message>
         <source>Connect to </source>
-        <translation type="unfinished"></translation>
+        <translation>連接到 </translation>
     </message>
     <message>
         <source>Logon error info [</source>
-        <translation type="unfinished"></translation>
+        <translation>登錄錯誤信息</translation>
     </message>
 </context>
 <context>
     <name>CDlgSetFreeRdp</name>
     <message>
         <source>Set FreeRdp</source>
-        <translation type="unfinished"></translation>
+        <translation>設置 FreeRdp</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>服務器</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>服務器:</translation>
     </message>
     <message>
         <source>User name:</source>
-        <translation type="unfinished"></translation>
+        <translation>用戶名:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼:</translation>
     </message>
     <message>
         <source>Shared</source>
-        <translation type="unfinished"></translation>
+        <translation>共享</translation>
     </message>
     <message>
         <source>Real time update</source>
-        <translation type="unfinished"></translation>
+        <translation>實時更新</translation>
     </message>
     <message>
         <source>Show local cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示本地光標</translation>
     </message>
     <message>
         <source>Enable clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>允許剪切板</translation>
     </message>
     <message>
         <source>OK(&amp;O)</source>
-        <translation type="unfinished"></translation>
+        <translation>確定(&amp;O)</translation>
     </message>
     <message>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished"></translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>端口:</translation>
     </message>
     <message>
         <source>Domain:</source>
-        <translation type="unfinished"></translation>
+        <translation>域名:</translation>
     </message>
     <message>
         <source>Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remote desktop size:</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示</translation>
     </message>
     <message>
         <source>Select size:</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇尺寸：</translation>
     </message>
     <message>
         <source>Full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>全屏</translation>
     </message>
     <message>
         <source>Remote color depth:</source>
-        <translation type="unfinished"></translation>
+        <translation>遠程顏色深度：</translation>
     </message>
     <message>
         <source>8 bits</source>
-        <translation type="unfinished"></translation>
+        <translation>8 位</translation>
     </message>
     <message>
         <source>16 bits</source>
-        <translation type="unfinished"></translation>
+        <translation>16 位</translation>
     </message>
     <message>
         <source>24 bits</source>
-        <translation type="unfinished"></translation>
+        <translation>24 位</translation>
     </message>
     <message>
         <source>32 bits</source>
-        <translation type="unfinished"></translation>
+        <translation>32 位</translation>
+    </message>
+    <message>
+        <source>Remote desktop size:</source>
+        <translation>遠程桌面尺寸：</translation>
     </message>
     <message>
         <source>Use all local monitors for remote sessions</source>
-        <translation type="unfinished"></translation>
+        <translation>將本地所有監視器用於遠程會話</translation>
     </message>
 </context>
 <context>
     <name>CPluginFactoryFreeRdp</name>
     <message>
         <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
     </message>
 </context>
 </TS>
