@@ -1,10 +1,17 @@
 #include "MimeData.h"
 #include "RabbitCommonLog.h"
+#include <QDebug>
+#include <QEventLoop>
 
 CMimeData::CMimeData(CliprdrClientContext *pContext)
     : QMimeData(),
       m_pContext(pContext)
 {
+}
+
+CMimeData::~CMimeData()
+{
+    qDebug() << "CMimeData::~CMimeData()";
 }
 
 int CMimeData::AddFormat(int id, const QString &name)
@@ -29,7 +36,7 @@ int CMimeData::AddFormat(int id, const QString &name)
     }   
     
     m_Fomats.insert(id, name);
-    
+
     return nRet;
 }
 
@@ -46,8 +53,9 @@ bool CMimeData::hasFormat(const QString &mimetype) const
 
 QStringList CMimeData::formats() const
 {
-    QStringList reList;
+    QStringList reList;    
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
+
     for(auto it = m_Fomats.begin(); it != m_Fomats.end(); it++)
     {
         if(it.value().isEmpty())
@@ -71,18 +79,35 @@ QStringList CMimeData::formats() const
             case CB_FORMAT_HTML:
                 reList << "text/html";
                 break;
+            default:
+                continue;
             }
         }
         else
             reList << it.value(); 
     }
+    qDebug() << reList;
+    
     return reList << QMimeData::formats();
 }
 
 QVariant CMimeData::retrieveData(const QString &mimetype, QVariant::Type preferredType) const
 {
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s", mimetype.toStdString().c_str());
-    //TODO: add wait response event
-    //m_Loop.exec();
+    
+    // add wait response event
+    QEventLoop loop;
+    connect(this, SIGNAL(sigContinue()), &loop, SLOT(quit()));
+    loop.exec();
+    return m_Data;
     return QMimeData::retrieveData(mimetype, preferredType);
+}
+
+int CMimeData::SetData(char *data, int len)
+{
+    int nRet = 0;
+    QByteArray d(data, len);
+    m_Data.setRawData(data, len);
+    emit sigContinue();
+    return nRet;
 }

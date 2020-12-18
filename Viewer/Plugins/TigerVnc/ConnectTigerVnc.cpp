@@ -693,8 +693,9 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 void CConnectTigerVnc::slotClipBoardChange()
 {
     if(!m_pPara->bClipboard) return;
+    QClipboard* pClip = QApplication::clipboard();
+    if(pClip->ownsClipboard()) return;
     
-    if(m_bWriteClipboard) return;
 //    vlog.debug("CConnectTigerVnc::slotClipBoardChange()");
 
     announceClipboard(true);
@@ -749,7 +750,6 @@ void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data
 //    vlog.debug("CConnectTigerVnc::handleClipboardData");
     if(!m_pPara->bClipboard) return;
     
-    m_bWriteClipboard = true;
     QClipboard* pClip = QApplication::clipboard();
     if(rfb::clipboardUTF8 & format) {
         pClip->setText(QString::fromUtf8(data));
@@ -760,5 +760,4 @@ void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data
     } else {
         vlog.debug("Don't implement");
     }
-    m_bWriteClipboard = false;
 }

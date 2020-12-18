@@ -3,7 +3,7 @@
 
 #include <QMimeData>
 #include <QMap>
-#include <QEventLoop>
+
 #include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
 
@@ -12,10 +12,13 @@ class CMimeData : public QMimeData
     Q_OBJECT
 public:
     explicit CMimeData(CliprdrClientContext* pContext);
+    virtual ~CMimeData();
     
     int AddFormat(int id, const QString& name);
-
+    int SetData(char* data, int len);
+    
 signals:
+    void sigContinue();
     
 public:
     virtual bool hasFormat(const QString &mimetype) const;
@@ -27,7 +30,8 @@ protected:
 private:
     CliprdrClientContext* m_pContext;
     QMap<int, QString> m_Fomats;
-    QEventLoop m_Loop;
+    QByteArray m_Data;
+    
 };
 
 #endif // CMIMEDATA_H
