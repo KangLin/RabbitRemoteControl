@@ -8,7 +8,8 @@
 #include <QBuffer>
 
 CClipboardFreeRdp::CClipboardFreeRdp(QObject *parent) : QObject(parent),
-    m_pClipboard(nullptr)
+    m_pClipboard(nullptr),
+    m_pMimeData(nullptr)
 {}
 
 int CClipboardFreeRdp::Init(CliprdrClientContext *context)
@@ -103,7 +104,14 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list");
     int nRet = CHANNEL_RC_OK;
-    CClipboardFreeRdp* pClip = (CClipboardFreeRdp*)context->custom;
+    CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
+    
+    if(formatList->numFormats > 0)
+    {   
+        pThis->m_pMimeData = new CMimeData(context);
+        if(!pThis->m_pMimeData) return nRet;
+    }
+    
     for (UINT32 i = 0; i < formatList->numFormats; i++)
 	{
 		CLIPRDR_FORMAT* pFormat = &formatList->formats[i];
@@ -112,12 +120,10 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
                         pFormat->formatId,
                         pFormat->formatName);
         //Set clipboard format
-        _FORMAT format;
-        format.id = pFormat->formatId;
-        format.name = pFormat->formatName;
-        
-        pClip->m_ServerClipboardFormats.push_back(format);
+        pThis->m_pMimeData->AddFormat(pFormat->formatId, pFormat->formatName);
 	}
+    QClipboard* pClipboard = QApplication::clipboard();
+    pClipboard->setMimeData(pThis->m_pMimeData);
     return nRet;
 }
 
@@ -218,6 +224,11 @@ UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
     if(!context) return nRet;
     
     QClipboard *clipboard = QApplication::clipboard();
+    if(clipboard->ownsClipboard())
+    {
+        LOG_MODEL_DEBUG("FreeRdp", "ownsClipboard");
+        return nRet;
+    }
     const QMimeData* pData = clipboard->mimeData();
     auto clipFormats = pData->formats();
     qDebug() << "Clipboard formats:" << clipFormats;

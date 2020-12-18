@@ -5,6 +5,7 @@
 #include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
 #include "freerdp/client/rdpgfx.h"
+#include "MimeData.h"
 
 class CClipboardFreeRdp : public QObject
 {
@@ -43,12 +44,7 @@ public Q_SLOTS:
     
 private:
     CliprdrClientContext* m_pClipboard;
-    struct _FORMAT
-    {
-        UINT32 id;
-        std::string name;
-    };
-    std::vector<_FORMAT> m_ServerClipboardFormats;
+    CMimeData* m_pMimeData;
 };
 
 #endif // CCLIPBOARDFREERDP_H
