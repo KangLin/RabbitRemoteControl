@@ -9,10 +9,22 @@ Author: Kang Lin(kl222@126.com)
 - [![Build status](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
 - [Change log](ChangeLog.md)
 -----------------------------------------------------------------------
+### Origin of this software
+As a software engineer, you often need to use remote control software in your daily work.
+Initially, the WINDOWS operating system in the local area network used the remote desktop that WINDOWS comes with.
+To develop linxu later, you can only use VNC. There are many open source remote control solutions on LINUX system,
+but there are few open source solutions under WINDOWS.
+Later, you need to remotely control the host on the internal network from the public network.
+All the original plans in the local area network failed. Choose TEAMVIWER.
+Recently, TEAMVIWER not only needs to collect private information, but also pay.
+Because I did not pay, it restricted my use. There is no alternative.
+So I decided to write an open source remote control software myself.
+**Able to access any system through any network on any system anywhere**.  
+This software has just started to develop. Interested friends are welcome to participate.
 
-Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
+### Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
 
-## Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
+#### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
 - [x] Unix/Linux
 - [x] Android
@@ -20,14 +32,14 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] IPHONE
 - [ ] WINCE
 
-## Supported protocol
+#### Supported protocol
 - [x] VNC(Virtual network console): [RFB](https://github.com/rfbproto/rfbproto)
 - [x] Remote desktop protocol: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 - [ ] [SSH]()
 - [ ] [TELNET]()
 
-## Dependent libraries
+#### Dependent libraries
 - [x] VNC
   + [ ] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
@@ -35,22 +47,19 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] [SSH]
   + [ ] [LIBSSH](https://www.libssh.org)
 
-### Reference
+##### Reference
 - [ ] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
-## Donation
+### Donation
 
 [![donation](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
 
-## Contribution
+### Contribution
 
 - [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
-## [License Agreement](License.md "License.md")
+### [License Agreement](License.md "License.md")
 
 Please abide by this agreement and the license agreement of [dependent library](#Dependent-libraries), and thank the author of [dependent library](#Dependent-libraries).
-
-
-
