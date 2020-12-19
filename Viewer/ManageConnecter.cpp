@@ -1,6 +1,6 @@
-#include "ManageConnecter.h"
 //! @author: Kang Lin(kl222@126.com)
 
+#include "ManageConnecter.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 #include <QPluginLoader>

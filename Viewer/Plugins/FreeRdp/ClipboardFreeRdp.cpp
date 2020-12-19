@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ClipboardFreeRdp.h"
 #include "RabbitCommonLog.h"
 #include <QClipboard>

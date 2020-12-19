@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ConnectTigerVnc.h"
 #include "ConnecterTigerVnc.h"
 #include "DlgPassword.h"

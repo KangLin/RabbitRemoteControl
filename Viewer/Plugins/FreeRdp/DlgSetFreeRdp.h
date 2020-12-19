@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef DLGSETFREERDP_H
 #define DLGSETFREERDP_H
 

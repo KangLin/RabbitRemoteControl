@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ConnecterTigerVnc.h"
 #include "rfb/encodings.h"
 #include <QDebug>

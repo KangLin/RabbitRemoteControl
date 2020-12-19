@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "PluginFactoryTigerVnc.h"
 #include "ConnecterTigerVnc.h"
 #include <rfb/LogWriter.h>

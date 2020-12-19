@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCURSOR_H
 #define CCURSOR_H
 

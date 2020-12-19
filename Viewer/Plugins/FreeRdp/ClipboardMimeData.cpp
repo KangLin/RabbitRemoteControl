@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ClipboardMimeData.h"
 #include "RabbitCommonLog.h"
 #include "ClipboardFreeRdp.h"

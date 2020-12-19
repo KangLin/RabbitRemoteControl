@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCONVERTKEYCODE_H
 #define CCONVERTKEYCODE_H
 

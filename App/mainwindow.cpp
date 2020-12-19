@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "FrmUpdater/FrmUpdater.h"
@@ -10,8 +12,6 @@
 
 #include <QTabBar>
 #include <QMessageBox>
-//! @author: Kang Lin(kl222@126.com)
-
 #include <QScreen>
 #include <QApplication>
 #include <QSettings>

@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+//! 
 #include <QImage>
 #include "ConnectFreeRdp.h"
 #include "RabbitCommonLog.h"
