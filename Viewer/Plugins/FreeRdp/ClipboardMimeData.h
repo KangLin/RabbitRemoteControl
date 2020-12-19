@@ -7,12 +7,12 @@
 #include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
 
-class CMimeData : public QMimeData
+class CClipboardMimeData : public QMimeData
 {
     Q_OBJECT
 public:
-    explicit CMimeData(CliprdrClientContext* pContext);
-    virtual ~CMimeData();
+    explicit CClipboardMimeData(CliprdrClientContext* pContext);
+    virtual ~CClipboardMimeData();
     
     int AddFormat(int id, const QString& name);
     int SetData(const char *data, int len);

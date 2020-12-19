@@ -5,7 +5,7 @@
 #include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
 #include "freerdp/client/rdpgfx.h"
-#include "MimeData.h"
+#include "ClipboardMimeData.h"
 
 class CConnectFreeRdp;
 class CClipboardFreeRdp : public QObject
@@ -48,7 +48,7 @@ public Q_SLOTS:
 private:
     CConnectFreeRdp* m_pConnect;
     CliprdrClientContext* m_pClipboard;
-    CMimeData* m_pMimeData;
+    CClipboardMimeData* m_pMimeData;
 };
 
 #endif // CCLIPBOARDFREERDP_H

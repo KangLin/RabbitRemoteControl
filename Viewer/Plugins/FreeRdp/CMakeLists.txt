@@ -29,7 +29,7 @@ SET(SOURCE_FILES
     ConvertKeyCode.cpp
     CursorFreeRdp.cpp
     ClipboardFreeRdp.cpp
-    MimeData.cpp
+    ClipboardMimeData.cpp
     )
 
 SET(HEADER_FILES
@@ -41,7 +41,7 @@ SET(HEADER_FILES
     ConvertKeyCode.h
     CursorFreeRdp.h
     ClipboardFreeRdp.h
-    MimeData.h
+    ClipboardMimeData.h
     )
 
 SET(UI_FILES

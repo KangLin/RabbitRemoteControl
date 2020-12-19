@@ -116,7 +116,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
     
     if(formatList->numFormats > 0)
     {   
-        pThis->m_pMimeData = new CMimeData(context);
+        pThis->m_pMimeData = new CClipboardMimeData(context);
         if(!pThis->m_pMimeData) return nRet;
     }
     

@@ -1,22 +1,22 @@
-#include "MimeData.h"
+#include "ClipboardMimeData.h"
 #include "RabbitCommonLog.h"
 #include "ClipboardFreeRdp.h"
 #include <QDebug>
 #include <QEventLoop>
 
-CMimeData::CMimeData(CliprdrClientContext *pContext)
+CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     : QMimeData(),
       m_pContext(pContext)
 {
 }
 
-CMimeData::~CMimeData()
+CClipboardMimeData::~CClipboardMimeData()
 {
     qDebug() << "CMimeData::~CMimeData()";
     emit sigContinue();
 }
 
-int CMimeData::AddFormat(int id, const QString &name)
+int CClipboardMimeData::AddFormat(int id, const QString &name)
 {
     int nRet = 0;
     if(!name.isEmpty())
@@ -98,7 +98,7 @@ int CMimeData::AddFormat(int id, const QString &name)
     return nRet;
 }
 
-bool CMimeData::hasFormat(const QString &mimetype) const
+bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 {
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::hasFormat: %s", mimetype.toStdString().c_str());
     foreach(auto f, m_Fomats)
@@ -109,7 +109,7 @@ bool CMimeData::hasFormat(const QString &mimetype) const
     return QMimeData::hasFormat(mimetype);
 }
 
-QStringList CMimeData::formats() const
+QStringList CClipboardMimeData::formats() const
 {
     QStringList reList;    
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
@@ -149,7 +149,7 @@ QStringList CMimeData::formats() const
     return reList << QMimeData::formats();
 }
 
-QVariant CMimeData::retrieveData(const QString &mimetype, QVariant::Type preferredType) const
+QVariant CClipboardMimeData::retrieveData(const QString &mimetype, QVariant::Type preferredType) const
 {
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s", mimetype.toStdString().c_str());
     if(!m_Data.isNull())
@@ -188,7 +188,7 @@ QVariant CMimeData::retrieveData(const QString &mimetype, QVariant::Type preferr
     //return QMimeData::retrieveData(mimetype, preferredType);
 }
 
-int CMimeData::SetData(const char *data, int len)
+int CClipboardMimeData::SetData(const char *data, int len)
 {
     int nRet = 0;
     QByteArray d(data, len);
