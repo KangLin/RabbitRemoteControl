@@ -750,13 +750,15 @@ void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data
 //    vlog.debug("CConnectTigerVnc::handleClipboardData");
     if(!m_pPara->bClipboard) return;
     
-    QClipboard* pClip = QApplication::clipboard();
     if(rfb::clipboardUTF8 & format) {
-        pClip->setText(QString::fromUtf8(data));
+        QMimeData* pData = new QMimeData();
+        pData->setText(QString::fromUtf8(data));
+        emit sigSetClipboard(pData);
     } else if(rfb::clipboardHTML & format) {
         QMimeData* pData = new QMimeData();
         pData->setHtml(data);
-        pClip->setMimeData(pData);
+        emit sigSetClipboard(pData);
+        //pClip->setMimeData(pData);
     } else {
         vlog.debug("Don't implement");
     }

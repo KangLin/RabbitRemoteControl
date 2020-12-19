@@ -12,6 +12,7 @@
 #include <QKeyEvent>
 #include <QWheelEvent>
 #include "Connecter.h"
+#include <QMimeData>
 
 /**
  * @brief The CConnect class.
@@ -55,6 +56,7 @@ Q_SIGNALS:
     
     void sigUpdateRect(const QRect& r, const QImage& image);
     void sigUpdateCursor(const QRect& r, const QImage& cursor);
+    void sigSetClipboard(QMimeData* data);
     
     void sigError(const int nError, const QString &szError);
     void sigInformation(const QString& szInfo);

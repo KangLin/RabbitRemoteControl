@@ -8,6 +8,7 @@
 #include <QtPlugin>
 #include <QDataStream>
 #include <QIcon>
+#include <QMimeData>
 #include "FrmViewer.h"
 
 /**
@@ -55,6 +56,7 @@ public:
 public Q_SLOTS:
     virtual int Connect() = 0;
     virtual int DisConnect() = 0;
+    virtual void slotSetClipboard(QMimeData *data);
     
 Q_SIGNALS:
     void sigConnected();

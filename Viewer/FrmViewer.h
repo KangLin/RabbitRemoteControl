@@ -47,7 +47,6 @@ public Q_SLOTS:
     void slotSetName(const QString& szName);
     void slotUpdateRect(const QRect& r, const QImage& image);
     void slotUpdateCursor(const QRect& r, const QImage& cursor);
-    void slotServerCutText(const QString &text);
 
 Q_SIGNALS:
     void sigMousePressEvent(QMouseEvent *event);

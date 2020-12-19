@@ -1,6 +1,8 @@
 //! @author: Kang Lin(kl222@126.com)
 
 #include "Connecter.h"
+#include <QClipboard>
+#include <QApplication>
 
 CConnecter::CConnecter(QObject *parent) : QObject(parent),
     m_pView(new CFrmViewer())
@@ -16,4 +18,10 @@ CFrmViewer* CConnecter::GetViewer()
 QIcon CConnecter::Icon()
 {
     return QIcon(":/image/Connect");
+}
+
+void CConnecter::slotSetClipboard(QMimeData* data)
+{
+    QClipboard* pClipboard = QApplication::clipboard();
+    pClipboard->setMimeData(data);
 }

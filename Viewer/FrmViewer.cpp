@@ -298,9 +298,3 @@ void CFrmViewer::slotUpdateCursor(const QRect& r, const QImage& cursor)
     
     setCursor(cs);
 }
-
-void CFrmViewer::slotServerCutText(const QString& text)
-{
-    QClipboard *board = QApplication::clipboard();  
-    board->setText(text);  
-}

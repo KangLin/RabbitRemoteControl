@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QtPlugin>
 #include <QClipboard>
-#include <QMimeData>
 
 CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
     : QObject(parent), m_nPort(0), m_pView(nullptr)
@@ -47,6 +46,9 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigInformation(const QString&)),
                     pConnecter, SIGNAL(sigInformation(const QString&)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigSetClipboard(QMimeData*)),
+                    pConnecter, SLOT(slotSetClipboard(QMimeData*)));
     Q_ASSERT(check);
     return 0;
 }
