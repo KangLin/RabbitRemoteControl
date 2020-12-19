@@ -14,7 +14,7 @@ As a software engineer, you often need to use remote control software in your da
 Initially, the WINDOWS operating system in the local area network used the remote desktop that WINDOWS comes with.
 To develop linxu later, you can only use VNC. There are many open source remote control solutions on LINUX system,
 but there are few open source solutions under WINDOWS.
-Later, you need to remotely control the host on the internal network from the public network.
+Later, you need to remotely control the host on the internal network through the public network.
 All the original plans in the local area network failed. Choose TEAMVIWER.
 Recently, TEAMVIWER not only needs to collect private information, but also pay.
 Because I did not pay, it restricted my use. There is no alternative.
@@ -22,7 +22,9 @@ So I decided to write an open source remote control software myself.
 **Able to access any system through any network on any system anywhere**.  
 This software has just started to develop. Interested friends are welcome to participate.
 
-### Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
+### Introduction
+Rabbit Remote Control is a cross-platform, multi-protocol remote control software.  
+**Able to access any system through any network on any system anywhere**. 
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
