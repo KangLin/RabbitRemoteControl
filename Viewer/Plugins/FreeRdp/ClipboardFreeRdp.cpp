@@ -6,11 +6,19 @@
 #include <QtDebug>
 #include <QImage>
 #include <QBuffer>
+#include "ConnectFreeRdp.h"
 
-CClipboardFreeRdp::CClipboardFreeRdp(QObject *parent) : QObject(parent),
+CClipboardFreeRdp::CClipboardFreeRdp(CConnectFreeRdp *parent) : QObject(parent),
+    m_pConnect(parent),
     m_pClipboard(nullptr),
     m_pMimeData(nullptr)
 {}
+
+CClipboardFreeRdp::~CClipboardFreeRdp()
+{
+    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::~CClipboardFreeRdp()");
+    QApplication::clipboard()->clear();
+}
 
 int CClipboardFreeRdp::Init(CliprdrClientContext *context)
 {
@@ -122,8 +130,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
         //Set clipboard format
         pThis->m_pMimeData->AddFormat(pFormat->formatId, pFormat->formatName);
 	}
-    QClipboard* pClipboard = QApplication::clipboard();
-    pClipboard->setMimeData(pThis->m_pMimeData);
+    emit pThis->m_pConnect->sigSetClipboard(pThis->m_pMimeData);
     return nRet;
 }
 
@@ -190,7 +197,12 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_response(CliprdrClientCont
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_data_response");
     int nRet = CHANNEL_RC_OK;
+    CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
+    if(!pThis->m_pMimeData)
+        return nRet;
     
+    pThis->m_pMimeData->SetData((const char*)formatDataResponse->requestedFormatData,
+                                formatDataResponse->dataLen);
     return nRet;
 }
 
@@ -265,4 +277,18 @@ UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
         free(pFormats);
     }
     return nRet;
+}
+
+UINT CClipboardFreeRdp::SendDataRequest(CliprdrClientContext* context, UINT32 formatId)
+{
+	UINT rc = CHANNEL_RC_OK;
+	CLIPRDR_FORMAT_DATA_REQUEST formatDataRequest;
+
+	if (!context || !context->ClientFormatDataRequest)
+		return ERROR_INTERNAL_ERROR;
+
+	formatDataRequest.requestedFormatId = formatId;
+	rc = context->ClientFormatDataRequest(context, &formatDataRequest);
+
+	return rc;
 }

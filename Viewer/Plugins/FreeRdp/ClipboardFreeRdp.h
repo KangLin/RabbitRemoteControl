@@ -7,11 +7,13 @@
 #include "freerdp/client/rdpgfx.h"
 #include "MimeData.h"
 
+class CConnectFreeRdp;
 class CClipboardFreeRdp : public QObject
 {
     Q_OBJECT
 public:
-    explicit CClipboardFreeRdp(QObject *parent = nullptr);
+    explicit CClipboardFreeRdp(CConnectFreeRdp *parent = nullptr);
+    virtual ~CClipboardFreeRdp();
     
     int Init(CliprdrClientContext *context);
     int UnInit(CliprdrClientContext* context);
@@ -38,11 +40,13 @@ public:
     static UINT cb_cliprdr_send_data_response(CliprdrClientContext *context, BYTE* data, int size);
     
     static UINT SendClientFormatList(CliprdrClientContext *context);
-
+    static UINT SendDataRequest(CliprdrClientContext* context, UINT32 formatId);
+    
 public Q_SLOTS:
     virtual void slotClipBoardChange();
     
 private:
+    CConnectFreeRdp* m_pConnect;
     CliprdrClientContext* m_pClipboard;
     CMimeData* m_pMimeData;
 };

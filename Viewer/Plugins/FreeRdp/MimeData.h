@@ -15,7 +15,7 @@ public:
     virtual ~CMimeData();
     
     int AddFormat(int id, const QString& name);
-    int SetData(char* data, int len);
+    int SetData(const char *data, int len);
     
 signals:
     void sigContinue();

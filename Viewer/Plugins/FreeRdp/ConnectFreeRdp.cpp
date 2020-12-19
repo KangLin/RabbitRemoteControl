@@ -26,6 +26,7 @@ CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
                                  QObject *parent)
     : CConnect(pConnecter, parent),
       m_pContext(nullptr),
+      m_ClipBoard(this),
       m_Cursor(this)
 {
     Q_ASSERT(pConnecter);
