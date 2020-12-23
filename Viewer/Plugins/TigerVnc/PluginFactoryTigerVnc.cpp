@@ -52,7 +52,8 @@ QString CPluginFactoryTigerVnc::Name()
 
 QString CPluginFactoryTigerVnc::Description()
 {
-    return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.");
+    return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
+            + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
 }
 
 QString CPluginFactoryTigerVnc::Protol()

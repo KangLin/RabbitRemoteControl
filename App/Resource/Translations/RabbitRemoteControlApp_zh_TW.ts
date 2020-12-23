@@ -239,6 +239,17 @@
         <translation>玉兔遠程控制文件 (*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="296"/>
+        <location filename="../../mainwindow.cpp" line="333"/>
+        <source>Connecting to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="373"/>
+        <source>Connected to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Open remote control</source>
         <translation type="vanished">打開遠程控制</translation>
     </message>

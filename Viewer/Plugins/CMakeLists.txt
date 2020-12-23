@@ -2,3 +2,4 @@
 
 add_subdirectory(TigerVnc)
 add_subdirectory(FreeRdp)
+add_subdirectory(LibVnc)
