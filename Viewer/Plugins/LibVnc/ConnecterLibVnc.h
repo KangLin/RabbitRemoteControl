@@ -2,11 +2,13 @@
 #define CCONNECTERLIBVNC_H
 
 #include "Connect.h"
+#include "ConnectThreadLibVnc.h"
 
 class CConnecterLibVnc : public CConnecter
 {
 public:
     CConnecterLibVnc(QObject *parent = nullptr);
+    virtual ~CConnecterLibVnc() override;
     
     // CConnecter interface
 public:
@@ -23,6 +25,9 @@ public slots:
     virtual int Connect() override;
     virtual int DisConnect() override;
     virtual void slotSetClipboard(QMimeData *data) override;
+    
+private:
+    CConnectThreadLibVnc* m_pThread;
 };
 
 #endif // CCONNECTERLIBVNC_H

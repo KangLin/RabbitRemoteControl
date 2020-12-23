@@ -1,9 +1,9 @@
 # Author: Kang Lin(kl222@126.com)
 
-find_path(LIBVNC_INCLUDE_DIR NAMES rfbclient.h rfb.h
+find_path(LIBVNC_INCLUDE_DIR NAMES rfb/rfbclient.h
     HINTS ${LIBVNC_DIR}
     PATHS ENV LIBVNC_DIR
-    PATH_SUFFIXES include/rfb
+    PATH_SUFFIXES include
     )
 message("LIBVNC_INCLUDE_DIR:${LIBVNC_INCLUDE_DIR}")
 find_library(LIBVNC_LIB NAMES vncclient
@@ -23,20 +23,29 @@ message("libvnc found: TRUE")
 project(LibVnc)
 
 list(APPEND LIBVNC_LIB RabbitRemoteControl)
+IF(WIN32)
+    list(APPEND LIBVNC_LIB ws2_32)
+ENDIF()
 message("LIBVNC_LIB:${LIBVNC_LIB}")
 
 SET(SOURCE_FILES
     PluginFactoryLibVnc.cpp
     ConnecterLibVnc.cpp
+    ConnectThreadLibVnc.cpp
+    ConnectLibVnc.cpp
+    DlgSettingsLibVnc.cpp
     )
 
 SET(HEADER_FILES
     PluginFactoryLibVnc.h
     ConnecterLibVnc.h
+    ConnectThreadLibVnc.h
+    ConnectLibVnc.h
+    DlgSettingsLibVnc.h
     )
 
 SET(UI_FILES
-    
+    DlgSettingsLibVnc.ui
     )
 
 #翻译
