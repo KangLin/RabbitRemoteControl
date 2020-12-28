@@ -2,9 +2,9 @@
 #define CCONNECTLIBVNC_H
 
 #include "Connect.h"
-#include "ConnecterLibVnc.h"
 #include "rfb/rfbclient.h"
 
+class CConnecterLibVnc;
 class CConnectLibVnc : public CConnect
 {
     Q_OBJECT
@@ -30,6 +30,40 @@ public slots:
 
 private:
     rfbClient* m_pClient;
+    
+public:
+    enum COLOR_LEVEL {
+        Full,
+        Medium,
+        Low,
+        VeryLow
+    };
+    struct strPara{
+        QString szServerName;
+        QString szUser;
+        QString szPassword;
+
+        bool bSave;
+        
+        bool bShared;
+        bool bBufferEndRefresh;
+        bool bLocalCursor;
+        bool bSupportsDesktopResize;
+        bool bClipboard;
+
+        bool bAutoSelect;
+        COLOR_LEVEL nColorLevel;
+        int nEncoding;
+        bool bCompressLevel;
+        int nCompressLevel;
+        bool bNoJpeg;
+        int nQualityLevel;
+    };
+private:    
+    strPara* m_pPara;
+    
+protected:
+    virtual int SetParamter(void *pPara) override;
 };
 
 #endif // CCONNECTLIBVNC_H

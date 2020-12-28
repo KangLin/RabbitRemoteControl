@@ -28,6 +28,19 @@ IF(WIN32)
 ENDIF()
 message("LIBVNC_LIB:${LIBVNC_LIB}")
 
+find_package(ZLIB)
+if(ZLIB_FOUND) 
+    list(APPEND LIBVNC_INCLUDE_DIR ${ZLIB_INCLUDE_DIRS})
+    list(APPEND LIBVNC_LIB ${ZLIB_LIBRARIES})
+else()
+    message("Please set ZLIB_ROOT variable")
+endif()
+
+find_package(OPENSSL)
+if(OPENSSL_FOUND)
+    list(APPEND LIBVNC_LIB ${OPENSSL_CRYPTO_LIBRARIES} ${OPENSSL_LIBRARIES})
+endif()
+
 SET(SOURCE_FILES
     PluginFactoryLibVnc.cpp
     ConnecterLibVnc.cpp

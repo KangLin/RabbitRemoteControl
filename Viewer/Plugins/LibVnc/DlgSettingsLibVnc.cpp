@@ -79,8 +79,8 @@ CDlgSettingsLibVnc::~CDlgSettingsLibVnc()
 
 void CDlgSettingsLibVnc::on_pushButton_clicked()
 {
-//    if(!m_pPara)
-//        reject();
+    if(!m_pPara)
+        reject();
     
 //    // Server
 //    m_pPara->szServerName = ui->leServer->text();

@@ -1,8 +1,8 @@
 #ifndef CCONNECTERLIBVNC_H
 #define CCONNECTERLIBVNC_H
 
-#include "Connect.h"
 #include "ConnectThreadLibVnc.h"
+#include "ConnectLibVnc.h"
 
 class CConnecterLibVnc : public CConnecter
 {
@@ -28,6 +28,9 @@ public slots:
     
 private:
     CConnectThreadLibVnc* m_pThread;
+    
+    CConnectLibVnc::strPara m_Para;
+    friend CConnectLibVnc;
 };
 
 #endif // CCONNECTERLIBVNC_H

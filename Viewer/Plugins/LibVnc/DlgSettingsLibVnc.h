@@ -30,6 +30,7 @@ private slots:
     
 private:
     Ui::CDlgSettingsLibVnc *ui;
+    CConnectLibVnc::strPara* m_pPara;
 };
 
 #endif // DLGSETTINGS_H
