@@ -283,7 +283,7 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
     else
     {
         QPainter painter(&m_Desktop);
-        painter.drawImage(r, image);
+        painter.drawImage(r, image, r);
     }
     update();
 }

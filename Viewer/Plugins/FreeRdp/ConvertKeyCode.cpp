@@ -108,7 +108,7 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
     case Qt::Key_ParenRight: return RDP_SCANCODE_KEY_0;
     case Qt::Key_Asterisk: return RDP_SCANCODE_MULTIPLY;
     case Qt::Key_Plus: return RDP_SCANCODE_ADD;
-    case Qt::Key_Comma: return RDP_SCANCODE_OEM_COMMA;
+    case Qt::Key_Comma: return RDP_SCANCODE_OEM_COMMA;    // ,
     case Qt::Key_Minus: return RDP_SCANCODE_OEM_MINUS;
     case Qt::Key_Period: return RDP_SCANCODE_OEM_PERIOD;
     case Qt::Key_Slash: return RDP_SCANCODE_OEM_2;

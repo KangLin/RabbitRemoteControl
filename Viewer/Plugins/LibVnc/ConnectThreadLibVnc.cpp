@@ -28,7 +28,7 @@ void CConnectThreadLibVnc::run()
     nRet = c.Initialize();
     if(nRet) return;
 
-    c.Connect();
+    if(c.Connect()) return;
 
     while (!m_bExit) {
         int nRet = c.Process();

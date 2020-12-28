@@ -330,7 +330,8 @@ void MainWindow::slotConnect()
                     + p->ServerName().replace(":", "_")
                     + ".rrc";
             m_ManageConnecter.SaveConnecter(szFile, p);
-            slotInformation(tr("Connecting to ") + p->ServerName());
+            if(!p->ServerName().isEmpty())
+                slotInformation(tr("Connecting to ") + p->ServerName());
             p->Connect();
             break;
         }

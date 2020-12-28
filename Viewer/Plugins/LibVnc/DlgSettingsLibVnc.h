@@ -4,7 +4,7 @@
 #define DLGSETTINGS_H
 
 #include <QDialog>
-#include "ConnectLibVnc.h"
+#include "ConnecterLibVnc.h"
 
 namespace Ui {
 class CDlgSettingsLibVnc;

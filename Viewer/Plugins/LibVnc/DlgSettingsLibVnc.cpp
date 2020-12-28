@@ -6,15 +6,17 @@
 
 CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgSettingsLibVnc)
+    ui(new Ui::CDlgSettingsLibVnc),
+    m_pPara(&pConnecter->m_Para)
 {
     ui->setupUi(this);
     
     // Server
-//    ui->leServer->setText(m_pPara->szServerName);
-//    ui->leName->setText(m_pPara->szUser);
-//    ui->lePassword->setText(m_pPara->szPassword);
-//    ui->cbSave->setChecked(m_pPara->bSave);
+    ui->leHost->setText(m_pPara->szHost);
+    ui->spPort->setValue(m_pPara->nPort);
+    ui->leName->setText(m_pPara->szUser);
+    ui->lePassword->setText(m_pPara->szPassword);
+    ui->cbSave->setChecked(m_pPara->bSave);
     
 //    ui->cbShared->setChecked(m_pPara->bShared);
 //    ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
@@ -82,10 +84,11 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     if(!m_pPara)
         reject();
     
-//    // Server
-//    m_pPara->szServerName = ui->leServer->text();
-//    m_pPara->szUser = ui->leName->text();
-//    m_pPara->szPassword = ui->lePassword->text();
+    // Server
+    m_pPara->szHost = ui->leHost->text();
+    m_pPara->nPort = ui->spPort->value();
+    m_pPara->szUser = ui->leName->text();
+    m_pPara->szPassword = ui->lePassword->text();
     
 //    m_pPara->bSave = ui->cbSave->isChecked();
 //    m_pPara->bShared = ui->cbShared->isChecked();

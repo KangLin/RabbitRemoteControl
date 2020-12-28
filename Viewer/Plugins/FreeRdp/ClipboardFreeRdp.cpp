@@ -19,7 +19,9 @@ CClipboardFreeRdp::CClipboardFreeRdp(CConnectFreeRdp *parent) : QObject(parent),
 CClipboardFreeRdp::~CClipboardFreeRdp()
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::~CClipboardFreeRdp()");
-    QApplication::clipboard()->clear();
+    QClipboard* pClipboard = QApplication::clipboard();
+    if(pClipboard)
+        pClipboard->clear();
 }
 
 int CClipboardFreeRdp::Init(CliprdrClientContext *context)

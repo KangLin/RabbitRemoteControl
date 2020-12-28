@@ -14,13 +14,14 @@ public:
     virtual ~CConnectLibVnc() override;
     
     static rfbBool cb_resize(rfbClient* client);
-    static void cb_update (rfbClient *cl, int x, int y, int w, int h);
-    static void cb_kbd_leds(rfbClient* cl, int value, int pad);
-    static void cb_text_chat(rfbClient* cl, int value, char *text);
-    static void cb_got_selection(rfbClient *cl, const char *text, int len);
+    static void cb_update (rfbClient *client, int x, int y, int w, int h);
+    static void cb_kbd_leds(rfbClient* client, int value, int pad);
+    static void cb_text_chat(rfbClient* client, int value, char *text);
+    static void cb_got_selection(rfbClient *client, const char *text, int len);
     static rfbCredential* cb_get_credential(rfbClient* cl, int credentialType);
+    static char* cb_get_password(rfbClient* client);
     
-public slots:
+public Q_SLOTS:
     virtual int Connect() override;
     virtual int Disconnect() override;
     virtual int Process() override;
@@ -28,8 +29,19 @@ public slots:
     virtual int Initialize() override;
     virtual int Clean() override;
 
+    virtual void slotMousePressEvent(QMouseEvent* e);
+    virtual void slotMouseReleaseEvent(QMouseEvent* e);
+    virtual void slotMouseMoveEvent(QMouseEvent* e);
+    virtual void slotWheelEvent(QWheelEvent* e);
+    virtual void slotKeyPressEvent(QKeyEvent* e);
+    virtual void slotKeyReleaseEvent(QKeyEvent* e);
+
+private:
+    int OnSize();
+    
 private:
     rfbClient* m_pClient;
+    QImage m_Image;
     
 public:
     enum COLOR_LEVEL {
@@ -39,7 +51,8 @@ public:
         VeryLow
     };
     struct strPara{
-        QString szServerName;
+        QString szHost;
+        qint16 nPort;
         QString szUser;
         QString szPassword;
 
@@ -61,9 +74,9 @@ public:
     };
 private:    
     strPara* m_pPara;
-    
+
 protected:
-    virtual int SetParamter(void *pPara) override;
+    virtual int SetParamter(void *) override;
 };
 
 #endif // CCONNECTLIBVNC_H

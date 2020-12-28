@@ -4,6 +4,7 @@
 #include "ConnectThreadLibVnc.h"
 #include "ConnectLibVnc.h"
 
+class CDlgSettingsLibVnc;
 class CConnecterLibVnc : public CConnecter
 {
 public:
@@ -31,6 +32,7 @@ private:
     
     CConnectLibVnc::strPara m_Para;
     friend CConnectLibVnc;
+    friend CDlgSettingsLibVnc;
 };
 
 #endif // CCONNECTERLIBVNC_H

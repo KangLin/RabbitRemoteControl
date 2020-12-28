@@ -38,7 +38,7 @@
 
 #### 依赖库
 - [x] [可选] RFB
-  + [ ] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
+  + [x] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)
 - [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [ ] [SSH]

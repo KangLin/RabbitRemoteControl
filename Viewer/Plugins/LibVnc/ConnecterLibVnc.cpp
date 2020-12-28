@@ -19,8 +19,7 @@ CConnecterLibVnc::~CConnecterLibVnc()
 
 QString CConnecterLibVnc::ServerName()
 {
-    //TODO: add server name
-    return QString();
+    return m_Para.szHost + ":" + QString::number(m_Para.nPort);
 }
 
 QString CConnecterLibVnc::Name()
@@ -30,7 +29,7 @@ QString CConnecterLibVnc::Name()
 
 QString CConnecterLibVnc::Description()
 {
-    return Protol() + ":";
+    return Protol() + ":" + ServerName();
 }
 
 QString CConnecterLibVnc::Protol()
@@ -51,14 +50,25 @@ QDialog *CConnecterLibVnc::GetDialogSettings(QWidget *parent)
 int CConnecterLibVnc::Load(QDataStream &d)
 {
     int nRet = 0;
-    
+    qint16 version = 0;
+    d >> version;
+    d >> m_Para.szHost
+      >> m_Para.nPort
+      >> m_Para.szUser
+      >> m_Para.szPassword
+      ;
     return nRet;
 }
 
 int CConnecterLibVnc::Save(QDataStream &d)
 {
     int nRet = 0;
-    
+    d << Version()
+      << m_Para.szHost
+      << m_Para.nPort
+      << m_Para.szUser
+      << m_Para.szPassword
+      ;
     return nRet;
 }
 

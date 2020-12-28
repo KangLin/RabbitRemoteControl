@@ -514,7 +514,8 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
         case Qt::Key_Plus: k = XK_plus; break;  //+
         case Qt::Key_Enter: k = XK_Return; break;   //
         case Qt::Key_Equal: k = XK_equal; break;    //=
-
+        case Qt::Key_Comma: return XK_comma; //,
+        
         case Qt::Key_Colon: k = XK_colon;break;
         case Qt::Key_Semicolon: k = XK_semicolon; break;
         case Qt::Key_Greater: k = XK_greater; break;

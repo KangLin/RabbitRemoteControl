@@ -1,6 +1,6 @@
 # Rabbit Remote Control
 
-Author: Kang Lin(kl222@126.com)
+Author: Kang Lin (kl222@126.com)
 
 -----------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 
 #### Dependent libraries
 - [x] VNC
-  + [ ] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
+  + [x] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
 - [x] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [ ] [SSH]
