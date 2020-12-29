@@ -15,12 +15,7 @@ static void rfbQtClientLog(const char *format, ...)
     if(!rfbEnableClientLogging)
         return;
     
-    va_start(args, format);
-    
-    time(&log_clock);
-    strftime(buf, 255, "%d/%m/%Y %X ", localtime(&log_clock));
-    QString szMsg = buf;
-    
+    va_start(args, format);    
     nRet = vsnprintf(buf, LOG_BUFFER_LENGTH, format, args);
     va_end(args);
     if(nRet < 0 || nRet >= LOG_BUFFER_LENGTH)
@@ -30,9 +25,7 @@ static void rfbQtClientLog(const char *format, ...)
                         nRet, LOG_BUFFER_LENGTH, nRet - LOG_BUFFER_LENGTH);
         buf[LOG_BUFFER_LENGTH - 1] = 0;
     }
-    szMsg += buf;
-    
-    qDebug() << szMsg;
+    LOG_MODEL_DEBUG("LibVncServer", buf);
 }
 
 CConnectLibVnc::CConnectLibVnc(CConnecterLibVnc *pConnecter, QObject *parent)
@@ -40,7 +33,9 @@ CConnectLibVnc::CConnectLibVnc(CConnecterLibVnc *pConnecter, QObject *parent)
       m_pClient(nullptr),
       m_pPara(&pConnecter->m_Para)
 {
+#ifdef _DEBUG
     rfbClientLog = rfbQtClientLog;
+#endif
 }
 
 CConnectLibVnc::~CConnectLibVnc()
