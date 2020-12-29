@@ -255,12 +255,12 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
                                          int width, int height,
                                          int bytesPerPixel)
 {
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
-                    xhot, yhot, width, height, bytesPerPixel);
+    /*LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
+                    xhot, yhot, width, height, bytesPerPixel);//*/
     CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
     QRect rect(xhot, yhot, width, height);
     if ((width == 0) || (height == 0)) {
-        LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape width or height is zero");
+        //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape width or height is zero");
         uchar *buffer = new uchar[4];
         memset(buffer, 0, 4);
         QImage cursor(buffer, 1, 1, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
@@ -276,13 +276,13 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
 void CConnectLibVnc::slotMousePressEvent(QMouseEvent* e)
 {
     if(!m_pClient) return;
-    //vlog.debug("CConnectLibVnc::slotMousePressEvent");
+    //qDebug() << "CConnectLibVnc::slotMousePressEvent" << e->button() << e->buttons();
     unsigned char mask = 0;
-    if(e->button() & Qt::MouseButton::LeftButton)
+    if(e->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->button() & Qt::MouseButton::MiddleButton)
+    if(e->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->button() & Qt::MouseButton::RightButton)
+    if(e->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
 
     SendPointerEvent(m_pClient, e->x(), e->y(), mask);
@@ -291,22 +291,20 @@ void CConnectLibVnc::slotMousePressEvent(QMouseEvent* e)
 void CConnectLibVnc::slotMouseReleaseEvent(QMouseEvent* e)
 {
     if(!m_pClient) return;
-    //vlog.debug("CConnectLibVnc::slotMouseReleaseEvent");
     int mask = 0;
     SendPointerEvent(m_pClient, e->x(), e->y(), mask);
 }
 
 void CConnectLibVnc::slotMouseMoveEvent(QMouseEvent* e)
 {
-    //vlog.debug("CConnectLibVnc::slotMouseMoveEvent");
-    //qDebug() << "slotMouseMoveEvent x:" << e->x() << ";y:" << e->y();
+    //qDebug() << "CConnectLibVnc::slotMouseMoveEvent" << e->button() << e->buttons();
     if(!m_pClient) return;
     int mask = 0;
-    if(e->button() & Qt::MouseButton::LeftButton)
+    if(e->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->button() & Qt::MouseButton::MiddleButton)
+    if(e->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->button() & Qt::MouseButton::RightButton)
+    if(e->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     SendPointerEvent(m_pClient, e->x(), e->y(), mask);
 }
