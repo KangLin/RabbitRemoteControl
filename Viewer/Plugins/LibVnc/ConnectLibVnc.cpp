@@ -268,6 +268,11 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
 {
     /*LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
                     xhot, yhot, width, height, bytesPerPixel);//*/
+    if(!client->rcSource)
+    {
+        LOG_MODEL_DEBUG("LibVnc", "client->rcSource is null");
+        return;
+    }
     CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
     QRect rect(xhot, yhot, width, height);
     if ((width == 0) || (height == 0)) {
@@ -282,6 +287,22 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
             QImage cursor(width, height, QImage::Format_ARGB32);
             uchar *buffer = cursor.bits();
             memcpy(buffer, client->rcSource, width * height * 4);
+            uchar* pMask = client->rcMask;
+            if(pMask)
+            {
+                for(int y = 0; y < height; y++)
+                {
+                    uchar* pDest = buffer;
+                    uchar* pSrc = buffer;
+                    for(int w = 0; w < width; w++)
+                    {
+                        if(!*pMask++)
+                            *pDest = 0;
+                        pDest += 4;
+                        pSrc += 4;
+                    }
+                }
+            }
             emit pThis->sigUpdateCursor(rect, cursor);
             break;
         }

@@ -25,9 +25,9 @@ int main(int argc, char *argv[])
     
     QApplication a(argc, argv);
     a.setApplicationName("RabbitRemoteControl");
-    
+
     RabbitCommon::CTools::Instance()->Init();
-        
+
     // Install translator
     QTranslator tApp;
     tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
