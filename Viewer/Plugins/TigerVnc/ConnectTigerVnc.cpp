@@ -213,25 +213,19 @@ void CConnectTigerVnc::bell()
     qApp->beep();
 }
 
-void cleanMemoryFunction(void *para)
-{
-    //vlog.debug("cleanMemoryFunction:%d", para);
-    delete []para;
-}
-
 void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspot, const rdr::U8 *data)
 {
     //vlog.debug("CConnectTigerVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
     QRect rect(hotspot.x, hotspot.y, width, height);
     if ((width == 0) || (height == 0)) {
-      rdr::U8 *buffer = new rdr::U8[4];
+      QImage cursor(1, 1, QImage::Format_ARGB32);
+      rdr::U8 *buffer = cursor.bits();
       memset(buffer, 0, 4);
-      QImage cursor(buffer, 1, 1, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
       emit sigUpdateCursor(rect, cursor);
     } else {
-      rdr::U8 *buffer = new rdr::U8[width * height * 4];
+      QImage cursor(width, height, QImage::Format_ARGB32);
+      rdr::U8 *buffer = cursor.bits();
       memcpy(buffer, data, width * height * 4);
-      QImage cursor(buffer, width, height, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
       emit sigUpdateCursor(rect, cursor);
     }
 }

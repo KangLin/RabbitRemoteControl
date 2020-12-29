@@ -255,16 +255,10 @@ int CConnectLibVnc::OnSize()
 
 rfbBool CConnectLibVnc::cb_cursor_pos(rfbClient *client, int x, int y)
 {
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
+    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
     rfbBool bRet = true;
     
     return bRet;
-}
-
-void cleanMemoryFunction(void *para)
-{
-    //vlog.debug("cleanMemoryFunction:%d", para);
-    delete []para;
 }
 
 void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
@@ -277,16 +271,23 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
     CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
     QRect rect(xhot, yhot, width, height);
     if ((width == 0) || (height == 0)) {
-        //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape width or height is zero");
-        uchar *buffer = new uchar[4];
+        QImage cursor(1, 1, QImage::Format_ARGB32);
+        uchar* buffer = cursor.bits();
         memset(buffer, 0, 4);
-        QImage cursor(buffer, 1, 1, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
         emit pThis->sigUpdateCursor(rect, cursor);
     } else {
-        uchar *buffer = new uchar[width * height * 4];
-        memcpy(buffer, client->rcSource, width * height * 4);
-        QImage cursor(buffer, width, height, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
-        emit pThis->sigUpdateCursor(rect, cursor);
+        switch (client->format.bitsPerPixel) {
+        case 32:
+        {
+            QImage cursor(width, height, QImage::Format_ARGB32);
+            uchar *buffer = cursor.bits();
+            memcpy(buffer, client->rcSource, width * height * 4);
+            emit pThis->sigUpdateCursor(rect, cursor);
+            break;
+        }
+        default:
+            break;
+        }
     }
 }
 
