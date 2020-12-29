@@ -18,9 +18,9 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
     ui->lePassword->setText(m_pPara->szPassword);
     ui->cbSave->setChecked(m_pPara->bSave);
     
-//    ui->cbShared->setChecked(m_pPara->bShared);
+    ui->cbShared->setChecked(m_pPara->bShared);
 //    ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
-//    ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
+    ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
 //    ui->cbResizeWindows->setChecked(m_pPara->bSupportsDesktopResize);
 //    ui->cbClipboard->setChecked(m_pPara->bClipboard);
     
@@ -91,9 +91,9 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     m_pPara->szPassword = ui->lePassword->text();
     
 //    m_pPara->bSave = ui->cbSave->isChecked();
-//    m_pPara->bShared = ui->cbShared->isChecked();
+    m_pPara->bShared = ui->cbShared->isChecked();
 //    m_pPara->bBufferEndRefresh = !ui->cbRealTimeUpdate->isChecked();
-//    m_pPara->bLocalCursor = ui->cbLocalCursor->isChecked();
+    m_pPara->bLocalCursor = ui->cbLocalCursor->isChecked();
 //    m_pPara->bSupportsDesktopResize = ui->cbResizeWindows->isChecked();
 //    m_pPara->bClipboard = ui->cbClipboard->isChecked();
     

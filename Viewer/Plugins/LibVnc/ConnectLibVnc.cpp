@@ -2,6 +2,8 @@
 #include "ConnecterLibVnc.h"
 #include "RabbitCommonLog.h"
 #include <QDebug>
+#include <QApplication>
+#include <QImage>
 
 const char* gThis = "This pointer";
 #define LOG_BUFFER_LENGTH 1024
@@ -36,6 +38,11 @@ CConnectLibVnc::CConnectLibVnc(CConnecterLibVnc *pConnecter, QObject *parent)
 #ifdef _DEBUG
     rfbClientLog = rfbQtClientLog;
 #endif
+    if(!m_pPara->bLocalCursor && pConnecter && pConnecter->GetViewer())
+    {
+        CFrmViewer* pViewer = pConnecter->GetViewer();
+        pViewer->setCursor(Qt::BlankCursor);
+    }
 }
 
 CConnectLibVnc::~CConnectLibVnc()
@@ -72,10 +79,13 @@ int CConnectLibVnc::Initialize()
     m_pClient->canHandleNewFBSize = true;
     m_pClient->GotFrameBufferUpdate = cb_update;
     m_pClient->HandleKeyboardLedState = cb_kbd_leds;
+    m_pClient->Bell = cb_bell;
     m_pClient->HandleTextChat = cb_text_chat;
     m_pClient->GotXCutText = cb_got_selection;
     m_pClient->GetCredential = cb_get_credential;
     m_pClient->GetPassword = cb_get_password;
+    m_pClient->HandleCursorPos = cb_cursor_pos;
+    m_pClient->GotCursorShape = cb_got_cursor_shape;
     rfbClientSetClientData(m_pClient, (void*)gThis, this);
 
     return nRet;
@@ -120,17 +130,19 @@ int CConnectLibVnc::Process()
 }
 
 void CConnectLibVnc::slotClipBoardChange()
-{
-}
+{}
 
 int CConnectLibVnc::SetParamter(void*)
 {
     int nRet = 0;
     Q_ASSERT(m_pClient);
+
     // Set server ip and port
     m_pClient->serverHost = strdup(m_pPara->szHost.toStdString().c_str());
     m_pClient->serverPort = m_pPara->nPort;
     
+    m_pClient->appData.shareDesktop = m_pPara->bShared;
+    m_pClient->appData.useRemoteCursor = m_pPara->bLocalCursor;
     return nRet;
 }
 
@@ -157,6 +169,11 @@ void CConnectLibVnc::cb_got_selection(rfbClient *client, const char *text, int l
 void CConnectLibVnc::cb_kbd_leds(rfbClient *client, int value, int pad)
 {
     LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_kbd_leds");
+}
+
+void CConnectLibVnc::cb_bell(struct _rfbClient *client)
+{
+    qApp->beep();
 }
 
 void CConnectLibVnc::cb_text_chat(rfbClient *client, int value, char *text)
@@ -193,7 +210,7 @@ rfbCredential* CConnectLibVnc::cb_get_credential(rfbClient *cl, int credentialTy
 
 char* CConnectLibVnc::cb_get_password(rfbClient *client)
 {
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_get_password");
+    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_get_password");
     CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
     return strdup(pThis->m_pPara->szPassword.toStdString().c_str());
 }
@@ -217,6 +234,43 @@ int CConnectLibVnc::OnSize()
 	m_pClient->format.blueMax = 255;
 	SetFormatAndEncodings(m_pClient);
     return nRet;
+}
+
+rfbBool CConnectLibVnc::cb_cursor_pos(rfbClient *client, int x, int y)
+{
+    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
+    rfbBool bRet = true;
+    
+    return bRet;
+}
+
+void cleanMemoryFunction(void *para)
+{
+    //vlog.debug("cleanMemoryFunction:%d", para);
+    delete []para;
+}
+
+void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
+                                         int xhot, int yhot,
+                                         int width, int height,
+                                         int bytesPerPixel)
+{
+    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
+                    xhot, yhot, width, height, bytesPerPixel);
+    CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
+    QRect rect(xhot, yhot, width, height);
+    if ((width == 0) || (height == 0)) {
+        LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape width or height is zero");
+        uchar *buffer = new uchar[4];
+        memset(buffer, 0, 4);
+        QImage cursor(buffer, 1, 1, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
+        emit pThis->sigUpdateCursor(rect, cursor);
+    } else {
+        uchar *buffer = new uchar[width * height * 4];
+        memcpy(buffer, client->rcSource, width * height * 4);
+        QImage cursor(buffer, width, height, QImage::Format_ARGB32, cleanMemoryFunction, buffer);
+        emit pThis->sigUpdateCursor(rect, cursor);
+    }
 }
 
 void CConnectLibVnc::slotMousePressEvent(QMouseEvent* e)

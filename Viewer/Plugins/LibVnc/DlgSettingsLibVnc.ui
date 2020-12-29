@@ -126,7 +126,7 @@
          <item>
           <widget class="QCheckBox" name="cbLocalCursor">
            <property name="text">
-            <string>Show local cursor</string>
+            <string>Use local cursor</string>
            </property>
           </widget>
          </item>

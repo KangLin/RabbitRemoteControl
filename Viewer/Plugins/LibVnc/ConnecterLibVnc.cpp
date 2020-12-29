@@ -5,6 +5,9 @@
 CConnecterLibVnc::CConnecterLibVnc(QObject *parent) : CConnecter(parent),
     m_pThread(nullptr)
 {
+    m_Para.nPort = 5900;
+    m_Para.bShared = true;
+    m_Para.bLocalCursor = false;
 }
 
 CConnecterLibVnc::~CConnecterLibVnc()
@@ -56,6 +59,8 @@ int CConnecterLibVnc::Load(QDataStream &d)
       >> m_Para.nPort
       >> m_Para.szUser
       >> m_Para.szPassword
+      >> m_Para.bShared
+      >> m_Para.bLocalCursor
       ;
     return nRet;
 }
@@ -68,6 +73,8 @@ int CConnecterLibVnc::Save(QDataStream &d)
       << m_Para.nPort
       << m_Para.szUser
       << m_Para.szPassword
+      << m_Para.bShared
+      << m_Para.bLocalCursor
       ;
     return nRet;
 }
