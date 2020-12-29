@@ -4,27 +4,20 @@ Author: Kang Lin (kl222@126.com)
 
 -----------------------------------------------------------------------
 
-- [<img src="Resource/Image/Chinese.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
-- [![Build Status](https://travis-ci.org/KangLin/RabbitRemoteControl.svg?branch=master)](https://travis-ci.org/KangLin/RabbitRemoteControl)
-- [![Build status](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+- Language
+  - [<img src="Resource/Image/Chinese.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
+- Build status
+  - [![Build Status](https://travis-ci.org/KangLin/RabbitRemoteControl.svg?branch=master)](https://travis-ci.org/KangLin/RabbitRemoteControl)
+  - [![Build status](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+  - [![Build status](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
 - [Change log](ChangeLog.md)
+
 -----------------------------------------------------------------------
-### Origin of this software
-As a software engineer, you often need to use remote control software in your daily work.
-Initially, the WINDOWS operating system in the local area network used the remote desktop that WINDOWS comes with.
-To develop linxu later, you can only use VNC. There are many open source remote control solutions on LINUX system,
-but there are few open source solutions under WINDOWS.
-Later, you need to remotely control the host on the internal network through the public network.
-All the original plans in the local area network failed. Choose TEAMVIWER.
-Recently, TEAMVIWER not only needs to collect private information, but also pay.
-Because I did not pay, it restricted my use. There is no alternative.
-So I decided to write an open source remote control software myself.
-**Able to access any system through any network on any system anywhere**.  
-This software has just started to develop. Interested friends are welcome to participate.
 
 ### Introduction
-Rabbit Remote Control is a cross-platform, multi-protocol remote control software.  
-**Able to access any system through any network on any system anywhere**. 
+Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
+
+**Allows you to use any device and system anywhere and remotely manage any device and system in any way**. 
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -33,6 +26,10 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] mac os
 - [ ] IPHONE
 - [ ] WINCE
+
+I have no device so I did not compile and test. Please test by yourself if you have device.
+
+If you want to donate the developed device for me, please contact: (email: kl222@126.com)
 
 #### Supported protocol
 - [x] VNC(Virtual network console): [RFB](https://github.com/rfbproto/rfbproto)
@@ -53,7 +50,11 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
 ### Donation
+If this software is useful to you, or you like it, please donate and support the author. Thank you!
 
+[![donation](https://github.com/KangLin/RabbitCommon/blob/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/blob/master/Src/Resource/image/Contribute.png "donation") 
+
+If it cannot be displayed, please open:
 [![donation](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
 
 ### Contribution

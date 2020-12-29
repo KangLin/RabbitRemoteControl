@@ -25,7 +25,7 @@ fi
 export RabbitCommon_DIR=$RabbitCommon_DIR
 export QT_ROOT=$QT_ROOT
 export PATH=$QT_ROOT/bin:$PATH
-export LD_LIBRARY_PATH=$QT_ROOT/lib/i386-linux-gnu:$QT_ROOT/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
 export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
 fakeroot debian/rules binary
 #dpkg-buildpackage -us -uc -b

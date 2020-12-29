@@ -1,0 +1,37 @@
+name: CMake ubuntu
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [Ubuntu-20.04, Ubuntu-18.04]
+   
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: git clone RabbitCommon
+      working-directory: ${{runner.workspace}}
+      run: git clone https://github.com/KangLin/RabbitCommon.git
+      
+    - name: apt helper action
+      # You may pin to the exact commit or the version.
+      # uses: ryankurte/action-apt@7356b2f8b9c6f8043a3d0ab3b991701dc817b759
+      uses: ryankurte/action-apt@v0.2.0
+      with:
+        # architectures to pass to dpkg --add-architecture
+        #architectures: # optional
+        # apt packages to install
+        packages: freerdp2-dev libvncserver-dev libssh-dev liblog4cplus-dev debhelper fakeroot qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev
+
+    - name: build_debpackage.sh
+      run: ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
+      env:
+        RabbitCommon_DIR: ${{runner.workspace}}/RabbitCommon

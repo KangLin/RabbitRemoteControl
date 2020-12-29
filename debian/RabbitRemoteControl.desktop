@@ -10,4 +10,4 @@ Icon=RabbitRemoteControl
 Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControl
 Terminal=false
 StartupNotify=true
-Categories=Application;Development;
+Categories=Application;Development;Tools

@@ -241,10 +241,10 @@ if [ -n "$GENERATORS" ]; then
              -DCMAKE_BUILD_TYPE=Release 
              -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5"
         cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
-		 -DCMAKE_INSTALL_PREFIX=`pwd`/install \
-		 -DCMAKE_VERBOSE_MAKEFILE=ON \
-		 -DCMAKE_BUILD_TYPE=Release \
-		 -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
+		   -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+		   -DCMAKE_VERBOSE_MAKEFILE=ON \
+		   -DCMAKE_BUILD_TYPE=Release \
+		   -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
 
         cmake --build . --config Release -- ${RABBIT_MAKE_JOB_PARA}
         cmake --build . --config Release --target install-runtime

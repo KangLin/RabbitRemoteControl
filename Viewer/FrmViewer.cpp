@@ -203,15 +203,16 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
     QWheelEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
+
     e = QWheelEvent(pos,
-                    event->globalPos(),
+                    event->globalPosF(),
                     event->pixelDelta(),
                     event->angleDelta(),
+                    0,
+                    Qt::Horizontal,
                     event->buttons(),
-                    event->modifiers(),
-                    event->phase(),
-                    event->inverted(),
-                    event->source());
+                    event->modifiers()
+                    );
     emit sigWheelEvent(&e);
     event->accept();
 }

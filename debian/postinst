@@ -30,6 +30,7 @@ case "$1" in
             ln -s /opt/RabbitRemoteControl/share/pixmaps/RabbitRemoteControl.png /usr/share/pixmaps/RabbitRemoteControl.png
         fi
         echo "/opt/RabbitRemoteControl/lib" > /etc/ld.so.conf.d/RabbitRemoteControl.conf
+        echo "/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu" > /etc/ld.so.conf.d/RabbitRemoteControl.conf
         echo "/opt/RabbitRemoteControl/bin" >> /etc/ld.so.conf.d/RabbitRemoteControl.conf
         export QT_VERSION_DIR=
         if [ -n "${QT_VERSION_DIR}" ]; then

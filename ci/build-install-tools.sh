@@ -179,7 +179,7 @@ function function_unix()
     sudo apt-get install -y -qq  packaging-dev equivs \
         libgnutls-dev libfltk1.3-dev fluid libxtst-dev \
         libxdamage-dev libxfixes-dev libxrandr-dev
-    sudo apt-get install -y -qq libdlib-dev libopencv-dev
+    sudo apt-get install -y -qq libvncserver-dev freerdp2-dev libssh-dev
     sudo apt-get install -y -qq libavcodec-dev libavformat-dev libavfilter-dev libavdevice-dev libavresample-dev libavutil-dev 
     sudo apt-get install -y -qq libglu1-mesa-dev \
         libxkbcommon-x11-dev \

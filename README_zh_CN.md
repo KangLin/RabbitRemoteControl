@@ -4,21 +4,19 @@
 
 -----------------------------------------------------------------------
 
-- [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
-- [![编译状态](https://travis-ci.org/KangLin/RabbitRemoteControl.svg?branch=master)](https://travis-ci.org/KangLin/RabbitRemoteControl)
-- [![Build status](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+- 语言
+  - [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
+- 编译状态
+  - [![编译状态](https://travis-ci.org/KangLin/RabbitRemoteControl.svg?branch=master)](https://travis-ci.org/KangLin/RabbitRemoteControl)
+  - [![编译状态](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+  - [![编译状态](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
+- [修改日志](ChangeLog.md)
 
 -----------------------------------------------------------------------
-### 本软件的由来
-做为一个软件工程师，在日常工作中，经常需要使用远程控制软件。最初在局域网中的 WINDOWS 操作系统
-使用 WINDOWS 自带的远程桌面。后来要开发 linxu ，就只能使用 VNC。在LINUX系统上的开源远程控制
-方案比较多，但是 WINDOWS 下的就很少有开源方案。后来，需要通过公网远程控制内网的主机。原来的在局域网
-的方案全部失效。选用了 TEAMVIWER。最近，TEAMVIWER 不仅需要收集隐私信息，还要付费。因为我没有付费，
-限制了我使用。没有替代的方案。所以决定自己写一个开源的远程控制软件。**能够在任何地方任意系统上通过任意网络访问任意系统**。  
-本软件才刚开始开发。欢迎有兴趣的朋友参与。
-
 ### 简介
-玉兔远程控制是一个跨平台，支持多协议的远程控制软件。**能够在任意系统上通过任意网络访问任意系统**。
+玉兔远程控制是一个跨平台，支持多协议的远程控制软件。
+
+能让你在**任何地方**使用**任何设备和系统**通过**任意方式**远程管理**任意设备和系统**。
 
 #### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -27,6 +25,10 @@
 - [ ] mac os
 - [ ] IPHONE
 - [ ] WINCE
+
+本人没有设备所以没有做编译与测试。请有设备的朋友自行测试。
+
+如果你想为本人捐赠开发设备，请联系：(QQ：16614119)
 
 #### 支持协议
 - [x] VNC(虚拟网络控制台): [RFB](https://github.com/rfbproto/rfbproto)
@@ -49,7 +51,9 @@
 
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
- 
+[![捐赠](https://github.com/KangLin/RabbitCommon/blob/master/Src/Resource/image/Contribute.png "捐赠")](https://github.com/KangLin/RabbitCommon/blob/master/Src/Resource/image/Contribute.png "捐赠") 
+
+如果不能显示，请打开：
 [![捐赠](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠") 
 
 ### 贡献
