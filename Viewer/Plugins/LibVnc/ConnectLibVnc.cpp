@@ -101,6 +101,7 @@ int CConnectLibVnc::Connect()
     LOG_MODEL_INFO("LibVnc", szInfo.toStdString().c_str());
     
     emit sigConnected();
+    emit sigServerName(m_szServerName);
     return nRet;
 }
 

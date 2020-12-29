@@ -326,7 +326,7 @@ void MainWindow::slotConnect()
             QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
                     + QDir::separator()
                     + p->Protol()
-                    + "_"
+                    + "_" + p->Name() + "_"
                     + p->ServerName().replace(":", "_")
                     + ".rrc";
             m_ManageConnecter.SaveConnecter(szFile, p);
@@ -368,7 +368,7 @@ void MainWindow::slotConnected()
     m_Connecters[pView] = p;
     
     check = connect(p, SIGNAL(sigServerName(const QString&)),
-                         this, SLOT(slotViewTitleChanged(const QString&)));
+                    this, SLOT(slotViewTitleChanged(const QString&)));
     Q_ASSERT(check);
     
     slotInformation(tr("Connected to ") + p->ServerName());
