@@ -25,7 +25,6 @@ public:
 public slots:
     virtual int Connect() override;
     virtual int DisConnect() override;
-    virtual void slotSetClipboard(QMimeData *data) override;
     
 private:
     CConnectThreadLibVnc* m_pThread;

@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QApplication>
 #include <QImage>
+#include <QClipboard>
 
 const char* gThis = "This pointer";
 #define LOG_BUFFER_LENGTH 1024
@@ -130,7 +131,18 @@ int CConnectLibVnc::Process()
 }
 
 void CConnectLibVnc::slotClipBoardChange()
-{}
+{
+    if(!m_pPara->bClipboard) return;
+    QClipboard* pClipboard = QApplication::clipboard();
+    if(pClipboard)
+    {
+        QString szText = pClipboard->text();
+        if(!szText.isEmpty())
+            SendClientCutText(m_pClient,
+                              (char*)szText.toStdString().c_str(),
+                              szText.toStdString().length());
+    }
+}
 
 int CConnectLibVnc::SetParamter(void*)
 {
@@ -163,7 +175,12 @@ void CConnectLibVnc::cb_update(rfbClient *client, int x, int y, int w, int h)
 
 void CConnectLibVnc::cb_got_selection(rfbClient *client, const char *text, int len)
 {
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_selection");
+    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_selection:%s", text);
+    CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
+    if(!pThis->m_pPara->bClipboard) return;
+    QClipboard* pClipboard = QApplication::clipboard();
+    if(pClipboard)
+        pClipboard->setText(text);
 }
 
 void CConnectLibVnc::cb_kbd_leds(rfbClient *client, int value, int pad)
