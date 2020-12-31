@@ -29,4 +29,4 @@ override_dh_auto_build:
 #	cmake --build . --config Release --target install/strip
 
 override_dh_shlibdeps:
-	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:-l`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)

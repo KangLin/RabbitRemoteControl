@@ -9,13 +9,15 @@
       + Inputs events
         - Key board
         - Mouse
-      + Clipboard
+      + Clipboard(Text)
     - Rdp
       + Display
         - Screen
+        - Curson
       + Inputs event
         - mouse
         - Key board
+      + Clipboard
 
        
     
