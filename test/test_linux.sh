@@ -8,11 +8,6 @@ if [ -n "$1" ]; then
 	PROJECT_NAME=$1
 fi
 
-if [ ! -f ~/.config/autostart/${PROJECT_NAME}.desktop ]; then
-    echo "There are not ~/.config/autostart/autostart/${PROJECT_NAME}.desktop"
-    EXIT_CODE=$[EXIT_CODE+1]
-fi
-
 if [ ! -f /opt/${PROJECT_NAME}/share/applications/${PROJECT_NAME}.desktop ]; then
 	echo "There are not /opt/share/applications/${PROJECT_NAME}.desktop"
 	EXIT_CODE=$[EXIT_CODE+1]

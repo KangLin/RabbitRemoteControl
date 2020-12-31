@@ -41,9 +41,11 @@ int main(int argc, char *argv[])
     // Check update version
     CFrmUpdater *pUpdate = new CFrmUpdater();
     pUpdate->SetTitle(QImage(":/image/App"));
-    if(!pUpdate->GenerateUpdateXml()) 
-        return 0; 
-        
+    if(pUpdate->GenerateUpdateXml())
+        LOG_MODEL_ERROR("main", "GenerateUpdateXml fail");
+    else    
+        return 0;
+
     MainWindow w;
     w.setWindowIcon(QIcon(":/image/App"));
     w.show();

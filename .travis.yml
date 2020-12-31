@@ -44,12 +44,9 @@ before_install:
   - sudo Xvfb :99 -ac &
   - export DISPLAY=:99.0
   - mkdir ${SOURCE_DIR}/Tools
-  - export VERSION="0.0.10"
+  - export VERSION="v0.0.1"
   
 install:
-  - cd ${SOURCE_DIR}
-  - git clone https://github.com/KangLin/RabbitCommon.git
-  - export RabbitCommon_DIR="`pwd`/RabbitCommon"
   - bash ${SOURCE_DIR}/ci/build-install-tools.sh #> /dev/null
 
 before_script:

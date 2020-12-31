@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v1.0.0.{build}'
+version: 'v0.0.1.{build}'
 
 cache:
   - Package
@@ -100,8 +100,6 @@ install:
 before_build:
   - cd %APPVEYOR_BUILD_FOLDER%
   - git submodule update --init --recursive
-  - git clone https://github.com/KangLin/RabbitCommon.git
-  - set RabbitCommon_DIR=%APPVEYOR_BUILD_FOLDER%/RabbitCommon
   - cd %APPVEYOR_BUILD_FOLDER%
   - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build-install-tools-windows.sh
 

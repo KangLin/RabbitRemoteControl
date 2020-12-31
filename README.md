@@ -52,9 +52,11 @@ If you want to donate the developed device for me, please contact: (email: kl222
 ### Donation
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
 
-[![donation](https://github.com/KangLin/RabbitCommon/blob/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/blob/master/Src/Resource/image/Contribute.png "donation") 
+[![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation") 
 
 If it cannot be displayed, please open:
+https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
+
 [![donation](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
 
 ### Contribution

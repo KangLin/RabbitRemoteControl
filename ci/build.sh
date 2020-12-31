@@ -8,6 +8,8 @@ fi
 TOOLS_DIR=${SOURCE_DIR}/Tools
 ThirdLibs_DIR=${TOOLS_DIR}/ThirdLibs
 
+cd ${SOURCE_DIR}
+git clone https://github.com/KangLin/RabbitCommon.git
 export RabbitCommon_DIR="${SOURCE_DIR}/RabbitCommon"
 if [ -f ${ThirdLibs_DIR}/change_prefix.sh ]; then
     cd ${ThirdLibs_DIR}
@@ -126,15 +128,19 @@ esac
 
 export PKG_CONFIG_PATH=${ThirdLibs_DIR}/lib/pkgconfig:${PKG_CONFIG_PATH}
 if [ -n "$appveyor_build_version" -a -z "$VERSION" ]; then
-    export VERSION="v1.0.0"
+    export VERSION="v0.0.1"
 fi
 if [ -z "$VERSION" ]; then
-    export VERSION="v1.0.0"
+    export VERSION="v0.0.1"
 fi
 
 export UPLOADTOOL_BODY="Release RabbitRemoteControl ${VERSION}.<br> The change see [ChangeLog.md](ChangeLog.md)"
 #export UPLOADTOOL_PR_BODY=
 if [ "${BUILD_TARGERT}" = "unix" ]; then
+   sudo apt-get install -y -qq xvfb xpra
+   sudo Xvfb :99 -ac &
+   export DISPLAY=:99.0
+
     cd $SOURCE_DIR
     if [ "${DOWNLOAD_QT}" != "TRUE" -a "${DOWNLOAD_QT}" != "APT" ]; then
         sed -i "s/export QT_VERSION_DIR=.*/export QT_VERSION_DIR=${QT_VERSION_DIR}/g" ${SOURCE_DIR}/debian/postinst
@@ -148,43 +154,43 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
     echo "test ......"
     ./test/test_linux.sh
 
-    URL_LINUXDEPLOYQT=https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
-    wget -c -nv ${URL_LINUXDEPLOYQT} -O linuxdeployqt.AppImage
-    chmod a+x linuxdeployqt.AppImage
+#    URL_LINUXDEPLOYQT=https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+#    wget -c -nv ${URL_LINUXDEPLOYQT} -O linuxdeployqt.AppImage
+#    chmod a+x linuxdeployqt.AppImage
 
-    #因为上面 dpgk 已安装好了，所以不需要设置下面的环境变量
-    #export LD_LIBRARY_PATH=`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/bin:`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:${QT_ROOT}/bin:${QT_ROOT}/lib:$LD_LIBRARY_PATH
-    export LD_LIBRARY_PATH=${ThirdLibs_DIR}:${LD_LIBRARY_PATH}/lib:${LD_LIBRARY_PATH}/bin
-    cd debian/rabbitremotecontrol/opt/RabbitRemoteControl
-    ../linuxdeployqt.AppImage share/applications/*.desktop \
-        -qmake=${QT_ROOT}/bin/qmake -appimage -no-copy-copyright-files -verbose
+#    #因为上面 dpgk 已安装好了，所以不需要设置下面的环境变量
+#    #export LD_LIBRARY_PATH=`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/bin:`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:${QT_ROOT}/bin:${QT_ROOT}/lib:$LD_LIBRARY_PATH
+#    export LD_LIBRARY_PATH=${ThirdLibs_DIR}:${LD_LIBRARY_PATH}/lib:${LD_LIBRARY_PATH}/bin
+#    cd debian/rabbitremotecontrol/opt/RabbitRemoteControl
+#    ${SOURCE_DIR}/linuxdeployqt.AppImage share/applications/*.desktop \
+#        -qmake=${QT_ROOT}/bin/qmake -appimage -no-copy-copyright-files -verbose
 
-    # Create appimage install package
+#    # Create appimage install package
     
-    cp $SOURCE_DIR/Install/install.sh .
-    cp $RabbitCommon_DIR/Install/install1.sh .
-    ln -s RabbitRemoteControl-${VERSION}-x86_64.AppImage RabbitRemoteControl-x86_64.AppImage
-    tar -czf RabbitRemoteControl_${VERSION}.tar.gz \
-        RabbitRemoteControl-${VERSION}-x86_64.AppImage \
-        RabbitRemoteControl-x86_64.AppImage \
-        share \
-        install.sh \
-        install1.sh
+#    cp $SOURCE_DIR/Install/install.sh .
+#    cp $RabbitCommon_DIR/Install/install1.sh .
+#    ln -s RabbitRemoteControl-${VERSION}-x86_64.AppImage RabbitRemoteControl-x86_64.AppImage
+#    tar -czf RabbitRemoteControl_${VERSION}.tar.gz \
+#        RabbitRemoteControl-${VERSION}-x86_64.AppImage \
+#        RabbitRemoteControl-x86_64.AppImage \
+#        share \
+#        install.sh \
+#        install1.sh
 
     # Create update.xml
     MD5=`md5sum $SOURCE_DIR/../rabbitremotecontrol*_amd64.deb|awk '{print $1}'`
     echo "MD5:${MD5}"
-    ./bin/RabbitRemoteControlApp \
+    ./debian/rabbitremotecontrol/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
         -f "`pwd`/update_linux.xml" \
         --md5 ${MD5} \
         -m "v0.3.4"
 
-    MD5=`md5sum RabbitRemoteControl_${VERSION}.tar.gz|awk '{print $1}'`
-    ./RabbitRemoteControl-x86_64.AppImage \
-        -f "`pwd`/update_linux_appimage.xml" \
-        --md5 ${MD5} \
-        --url "https://github.com/KangLin/RabbitRemoteControl/releases/download/${VERSION}/RabbitRemoteControl${VERSION}.tar.gz" \
-        -m "v0.3.4" 
+#    MD5=`md5sum RabbitRemoteControl_${VERSION}.tar.gz|awk '{print $1}'`
+#    ./RabbitRemoteControl-x86_64.AppImage \
+#        -f "`pwd`/update_linux_appimage.xml" \
+#        --md5 ${MD5} \
+#        --url "https://github.com/KangLin/RabbitRemoteControl/releases/download/${VERSION}/RabbitRemoteControl${VERSION}.tar.gz" \
+#        -m "v0.3.4" 
 
     if [ "$TRAVIS_TAG" != "" \
          -a "$DOWNLOAD_QT" = "APT" \
@@ -192,95 +198,61 @@ if [ "${BUILD_TARGERT}" = "unix" ]; then
         wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
         chmod u+x upload.sh
         ./upload.sh $SOURCE_DIR/../rabbitremotecontrol_*_amd64.deb 
-        ./upload.sh update_linux.xml update_linux_appimage.xml
-        ./upload.sh RabbitRemoteControl_${VERSION}.tar.gz
+        ./upload.sh update_linux.xml #update_linux_appimage.xml
+        #./upload.sh RabbitRemoteControl_${VERSION}.tar.gz
     fi
     exit 0
 fi
 
-if [ -n "$GENERATORS" ]; then
-    if [ -n "${STATIC}" ]; then
-        CONFIG_PARA="-DBUILD_SHARED_LIBS=${STATIC}"
+if [ -n "${STATIC}" ]; then
+    CONFIG_PARA="-DBUILD_SHARED_LIBS=${STATIC}"
+fi
+
+CONFIG_PARA="${CONFIG_PARA} -DTHIRD_LIBRARY_PATH=$ThirdLibs_DIR"
+
+if [ "${BUILD_TARGERT}" = "android" ]; then
+    if [ -n "${ANDROID_ARM_NEON}" ]; then
+        CONFIG_PARA="${CONFIG_PARA} -DANDROID_ARM_NEON=${ANDROID_ARM_NEON}"
     fi
-    
-    CONFIG_PARA="${CONFIG_PARA} -DTHIRD_LIBRARY_PATH=$ThirdLibs_DIR"
-    
-    if [ "${BUILD_TARGERT}" = "android" ]; then
-        if [ -n "${ANDROID_ARM_NEON}" ]; then
-            CONFIG_PARA="${CONFIG_PARA} -DANDROID_ARM_NEON=${ANDROID_ARM_NEON}"
-        fi
-        if [ -d "$ThirdLibs_DIR" ]; then
-            CONFIG_PARA="${CONFIG_PARA} -DOPENSSL_ROOT_DIR=$ThirdLibs_DIR"
-        fi
-        cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
-            -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
-            -DCMAKE_VERBOSE_MAKEFILE=ON \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
-            -DQt5Core_DIR=${QT_ROOT}/lib/cmake/Qt5Core \
-            -DQt5Gui_DIR=${QT_ROOT}/lib/cmake/Qt5Gui \
-            -DQt5Widgets_DIR=${QT_ROOT}/lib/cmake/Qt5Widgets \
-            -DQt5Xml_DIR=${QT_ROOT}/lib/cmake/Qt5Xml \
-            -DQt5Sql_DIR=${QT_ROOT}/lib/cmake/Qt5Sql \
-            -DQt5Network_DIR=${QT_ROOT}/lib/cmake/Qt5Network \
-            -DQt5Multimedia_DIR=${QT_ROOT}/lib/cmake/Qt5Multimedia \
-            -DQt5LinguistTools_DIR=${QT_ROOT}/lib/cmake/Qt5LinguistTools \
-            -DQt5AndroidExtras_DIR=${QT_ROOT}/lib/cmake/Qt5AndroidExtras \
-            -DANDROID_PLATFORM=${ANDROID_API} \
-            -DANDROID_ABI="${BUILD_ARCH}" \
-            -DCMAKE_MAKE_PROGRAM=make \
-            -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake 
-
-        cmake --build . --config MinSizeRel -- ${RABBIT_MAKE_JOB_PARA}
-        cmake --build . --config MinSizeRel --target install-runtime -- ${RABBIT_MAKE_JOB_PARA}
-
-    else
-        echo "cmake -G\"${GENERATORS}\" ${SOURCE_DIR} ${CONFIG_PARA} 
-             -DCMAKE_INSTALL_PREFIX=`pwd`/install 
-             -DCMAKE_VERBOSE_MAKEFILE=ON 
-             -DCMAKE_BUILD_TYPE=Release 
-             -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5"
-        cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
-		   -DCMAKE_INSTALL_PREFIX=`pwd`/install \
-		   -DCMAKE_VERBOSE_MAKEFILE=ON \
-		   -DCMAKE_BUILD_TYPE=Release \
-		   -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
-
-        cmake --build . --config Release -- ${RABBIT_MAKE_JOB_PARA}
-        cmake --build . --config Release --target install-runtime
+    if [ -d "$ThirdLibs_DIR" ]; then
+        CONFIG_PARA="${CONFIG_PARA} -DOPENSSL_ROOT_DIR=$ThirdLibs_DIR"
     fi
-	 
+    cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
+        -DCMAKE_VERBOSE_MAKEFILE=ON \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
+        -DQt5Core_DIR=${QT_ROOT}/lib/cmake/Qt5Core \
+        -DQt5Gui_DIR=${QT_ROOT}/lib/cmake/Qt5Gui \
+        -DQt5Widgets_DIR=${QT_ROOT}/lib/cmake/Qt5Widgets \
+        -DQt5Xml_DIR=${QT_ROOT}/lib/cmake/Qt5Xml \
+        -DQt5Sql_DIR=${QT_ROOT}/lib/cmake/Qt5Sql \
+        -DQt5Network_DIR=${QT_ROOT}/lib/cmake/Qt5Network \
+        -DQt5Multimedia_DIR=${QT_ROOT}/lib/cmake/Qt5Multimedia \
+        -DQt5LinguistTools_DIR=${QT_ROOT}/lib/cmake/Qt5LinguistTools \
+        -DQt5AndroidExtras_DIR=${QT_ROOT}/lib/cmake/Qt5AndroidExtras \
+        -DANDROID_PLATFORM=${ANDROID_API} \
+        -DANDROID_ABI="${BUILD_ARCH}" \
+        -DCMAKE_MAKE_PROGRAM=make \
+        -DCMAKE_TOOLCHAIN_FILE=${ANDROID_NDK}/build/cmake/android.toolchain.cmake 
+    
+    cmake --build . --config MinSizeRel -- ${RABBIT_MAKE_JOB_PARA}
+    cmake --build . --config MinSizeRel --target install-runtime -- ${RABBIT_MAKE_JOB_PARA}
+    
 else
-
-    if [ "ON" = "${STATIC}" ]; then
-        CONFIG_PARA="CONFIG*=static"
-    fi
+    echo "cmake -G\"${GENERATORS}\" ${SOURCE_DIR} ${CONFIG_PARA} 
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install 
+        -DCMAKE_VERBOSE_MAKEFILE=ON 
+        -DCMAKE_BUILD_TYPE=Release 
+        -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5"
+    cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+        -DCMAKE_VERBOSE_MAKEFILE=ON \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
     
-    CONFIG_PARA="${CONFIG_PARA} THIRD_LIBRARY_PATH=$ThirdLibs_DIR"
-    
-    if [ "${BUILD_TARGERT}" = "android" ]; then
-        if [ -d "$ThirdLibs_DIR" ]; then
-            CONFIG_PARA="${CONFIG_PARA} OPENSSL_ROOT_DIR=$ThirdLibs_DIR"
-        fi
-        echo "${QT_ROOT}/bin/qmake ${SOURCE_DIR} CONFIG+=release ${CONFIG_PARA} ANDROID_ABIS=$BUILD_ARCH"
-        if version_ge $QT_VERSION_DIR 5.14 ; then
-            ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
-                "CONFIG+=release" ${CONFIG_PARA} ANDROID_ABIS="$BUILD_ARCH"
-        else
-            ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
-                "CONFIG+=release" ${CONFIG_PARA}
-        fi
-        $MAKE
-        $MAKE install INSTALL_ROOT=`pwd`/android-build
-    else
-        ${QT_ROOT}/bin/qmake ${SOURCE_DIR} \
-                "CONFIG+=release" ${CONFIG_PARA}\
-                PREFIX=`pwd`/install
-
-        $MAKE
-        echo "$MAKE install ...."
-        $MAKE install
-    fi
+    cmake --build . --config Release -- ${RABBIT_MAKE_JOB_PARA}
+    cmake --build . --config Release --target install-runtime
 fi
 
 # Install package

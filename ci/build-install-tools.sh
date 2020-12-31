@@ -176,9 +176,6 @@ function function_unix()
 
     sudo apt-get update -y -qq
     sudo apt-get install debhelper fakeroot -y -qq
-    sudo apt-get install -y -qq  packaging-dev equivs \
-        libgnutls-dev libfltk1.3-dev fluid libxtst-dev \
-        libxdamage-dev libxfixes-dev libxrandr-dev
     sudo apt-get install -y -qq libvncserver-dev freerdp2-dev libssh-dev
     sudo apt-get install -y -qq libavcodec-dev libavformat-dev libavfilter-dev libavdevice-dev libavresample-dev libavutil-dev 
     sudo apt-get install -y -qq libglu1-mesa-dev \
@@ -186,11 +183,7 @@ function function_unix()
         libpulse-mainloop-glib0 \
         libgstreamer1.0-dev \
         libgstreamer-plugins-base1.0-dev \
-        gstreamer1.0-pulseaudio \
-        libmysql-cil-dev libmysql-cil-dev libmysql-ocaml-dev \
-        libmysql++-dev libmysqld-dev libmysqlcppconn-dev \
-        libmysqlclient-dev \
-        libodbc1
+        gstreamer1.0-pulseaudio
 
     if [ "$DOWNLOAD_QT" = "APT" ]; then
         sudo apt-get install -y -qq qttools5-dev qttools5-dev-tools \

@@ -22,6 +22,10 @@ if [ ! -d "$RabbitCommon_DIR" ]; then
         exit -2
 fi
 
+if [ -z "${BUILD_TYPE}" ]; then
+    BUILD_TYPE=Release
+fi
+
 export RabbitCommon_DIR=$RabbitCommon_DIR
 export QT_ROOT=$QT_ROOT
 export PATH=$QT_ROOT/bin:$PATH
