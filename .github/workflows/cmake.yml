@@ -1,10 +1,6 @@
 name: CMake
 
 on: [push]
-
-env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Release
   
 jobs:
   use_install_qt:
@@ -13,12 +9,17 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
-   
+        BUILD_TYPE: [Release, Debug]
     runs-on: ${{ matrix.os }}
 
+    env:
+      BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
+  
     steps:
     - uses: actions/checkout@v2
-
+      with:
+        fetch-depth: 0
+        
     - name: git clone RabbitCommon
       working-directory: ${{runner.workspace}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -83,7 +84,7 @@ jobs:
       # Note the current convention is to use the -S and -B options here to specify source 
       # and build directories, but this is only available with CMake 3.13 and higher.  
       # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/build/install
       env:
         RabbitCommon_DIR: ${{runner.workspace}}/RabbitCommon
       
@@ -91,7 +92,17 @@ jobs:
       working-directory: ${{runner.workspace}}/build
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
+      run: |
+        cmake --build . --config $BUILD_TYPE 
+        cmake --build . --config $BUILD_TYPE --target install-runtime
+      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+
+    - name: Build
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build . --config $BUILD_TYPE
+      if: ${{ matrix.BUILD_TYPE != 'Release' }}
 
     - name: Test
       working-directory: ${{runner.workspace}}/build

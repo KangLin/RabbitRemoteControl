@@ -1,7 +1,6 @@
 //! @author: Kang Lin(kl222@126.com)
 //! 
 #include "ConvertKeyCode.h"
-#include <QKeyEvent>
 
 CConvertKeyCode::CConvertKeyCode()
 {
@@ -17,7 +16,7 @@ CConvertKeyCode::CConvertKeyCode()
  *           2.2.8.1.1.3.1.1.1
  *       https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/7acaec9f-c8a6-4ee9-87d6-d9b89cf56489
  */
-UINT32 CConvertKeyCode::QtToScanCode(int key)
+UINT32 CConvertKeyCode::QtToScanCode(int key, QKeyEvent* e)
 {
     UINT32 k = RDP_SCANCODE_UNKNOWN;
     switch (key)
@@ -97,21 +96,31 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
         // Qt::Key_Direction_R
     case Qt::Key_Space: return RDP_SCANCODE_SPACE;
         //case Qt::Key_Any: return RDP_SCANCODE_SPACE;
-    case Qt::Key_Exclam: return RDP_SCANCODE_KEY_1;
-    case Qt::Key_QuoteDbl:return RDP_SCANCODE_OEM_7;
-    case Qt::Key_NumberSign: return RDP_SCANCODE_KEY_3;
-    case Qt::Key_Dollar: return RDP_SCANCODE_KEY_4;
-    case Qt::Key_Percent: return RDP_SCANCODE_KEY_5;
-    case Qt::Key_Ampersand: return RDP_SCANCODE_KEY_7;
-    case Qt::Key_Apostrophe: return RDP_SCANCODE_OEM_7;
-    case Qt::Key_ParenLeft: return RDP_SCANCODE_KEY_9;
-    case Qt::Key_ParenRight: return RDP_SCANCODE_KEY_0;
-    case Qt::Key_Asterisk: return RDP_SCANCODE_MULTIPLY;
-    case Qt::Key_Plus: return RDP_SCANCODE_ADD;
+    case Qt::Key_Exclam: return RDP_SCANCODE_KEY_1;       // !
+    case Qt::Key_QuoteDbl:return RDP_SCANCODE_OEM_7;      // "
+    case Qt::Key_NumberSign: return RDP_SCANCODE_KEY_3;   // #
+    case Qt::Key_Dollar: return RDP_SCANCODE_KEY_4;       // $
+    case Qt::Key_Percent: return RDP_SCANCODE_KEY_5;      // %
+    case Qt::Key_Ampersand: return RDP_SCANCODE_KEY_7;    // &
+    case Qt::Key_Apostrophe: return RDP_SCANCODE_OEM_7;   // '
+    case Qt::Key_ParenLeft: return RDP_SCANCODE_KEY_9;    // (
+    case Qt::Key_ParenRight: return RDP_SCANCODE_KEY_0;   // )
+    case Qt::Key_Asterisk:                                // *
+    {
+        if(e->modifiers() & Qt::ShiftModifier)
+            return RDP_SCANCODE_KEY_8;
+        return RDP_SCANCODE_MULTIPLY;  
+    }
+    case Qt::Key_Plus:                                    // +
+    {
+        if(e->modifiers() & Qt::ShiftModifier)
+            return RDP_SCANCODE_OEM_PLUS;
+        return RDP_SCANCODE_ADD;
+    }
     case Qt::Key_Comma: return RDP_SCANCODE_OEM_COMMA;    // ,
-    case Qt::Key_Minus: return RDP_SCANCODE_OEM_MINUS;
-    case Qt::Key_Period: return RDP_SCANCODE_OEM_PERIOD;
-    case Qt::Key_Slash: return RDP_SCANCODE_OEM_2;
+    case Qt::Key_Minus: return RDP_SCANCODE_OEM_MINUS;    // -
+    case Qt::Key_Period: return RDP_SCANCODE_OEM_PERIOD;  // .
+    case Qt::Key_Slash: return RDP_SCANCODE_OEM_2;        // '/'
 
     case Qt::Key_0: return RDP_SCANCODE_KEY_0;
     case Qt::Key_1: return RDP_SCANCODE_KEY_1;
@@ -124,13 +133,13 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
     case Qt::Key_8: return RDP_SCANCODE_KEY_8;
     case Qt::Key_9: return RDP_SCANCODE_KEY_9;
         
-    case Qt::Key_Colon: return RDP_SCANCODE_OEM_1;
-    case Qt::Key_Semicolon: return RDP_SCANCODE_OEM_1;
-    case Qt::Key_Less: return RDP_SCANCODE_OEM_COMMA;
-    case Qt::Key_Equal: return RDP_SCANCODE_OEM_PLUS;
-    case Qt::Key_Greater: return RDP_SCANCODE_OEM_PERIOD;
-    case Qt::Key_Question: return RDP_SCANCODE_OEM_2;
-    case Qt::Key_At: return RDP_SCANCODE_KEY_2;
+    case Qt::Key_Colon: return RDP_SCANCODE_OEM_1;        // :
+    case Qt::Key_Semicolon: return RDP_SCANCODE_OEM_1;    // ;
+    case Qt::Key_Less: return RDP_SCANCODE_OEM_COMMA;     // <
+    case Qt::Key_Equal: return RDP_SCANCODE_OEM_PLUS;     // =
+    case Qt::Key_Greater: return RDP_SCANCODE_OEM_PERIOD; // >
+    case Qt::Key_Question: return RDP_SCANCODE_OEM_2;     // ?
+    case Qt::Key_At: return RDP_SCANCODE_KEY_2;           // @
         
     case Qt::Key_A: return RDP_SCANCODE_KEY_A;
     case Qt::Key_B: return RDP_SCANCODE_KEY_B;
@@ -498,9 +507,6 @@ UINT32 CConvertKeyCode::QtToScanCode(int key)
         Qt::Key_Cancel
         //*/
         //case Qt::Key_Clear: k = XK_Clear; break;
-        
-        
-        
     }
     return k;
 }

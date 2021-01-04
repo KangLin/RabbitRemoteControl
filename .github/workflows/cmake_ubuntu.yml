@@ -14,10 +14,16 @@ jobs:
         BUILD_TYPE: [Release, Debug]
 
     runs-on: ${{ matrix.os }}
-
+    env:
+      BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
+    - run: git describe --tags
+    
     - name: git clone RabbitCommon
       working-directory: ${{runner.workspace}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -80,22 +86,21 @@ jobs:
         # If try to update latest release.
         update_latest_release: true # optional, default is false
     
-  build_script:
-    strategy:
-      matrix:
-        os: [Ubuntu-20.04, Ubuntu-18.04]
+#  build_script:
+#    strategy:
+#      matrix:
+#        os: [Ubuntu-20.04, Ubuntu-18.04]
  
-    runs-on: ${{ matrix.os }}
+#    runs-on: ${{ matrix.os }}
 
-    steps:
-    - uses: actions/checkout@v2
+#    steps:
+#    - uses: actions/checkout@v2
 
-    - name: script
-      run: |
-        /bin/bash ./ci/build-install-tools.sh
-        /bin/bash ./ci/build.sh
-      env:
-        BUILD_TARGERT: "unix"
-        DOWNLOAD_QT: "APT"
-        GENERATORS: "Unix Makefiles"
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#    - name: script
+#      run: |
+#        /bin/bash ./ci/build-install-tools.sh
+#        /bin/bash ./ci/build.sh
+#      env:
+#        BUILD_TARGERT: "unix"
+#        DOWNLOAD_QT: "APT"
+#        GENERATORS: "Unix Makefiles"

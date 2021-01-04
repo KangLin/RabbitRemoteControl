@@ -4,13 +4,14 @@
 #define CCONVERTKEYCODE_H
 
 #include "freerdp/scancode.h"
+#include <QKeyEvent>
 
 class CConvertKeyCode
 {
 public:
     CConvertKeyCode();
     
-    static UINT32 QtToScanCode(int key);
+    static UINT32 QtToScanCode(int key, QKeyEvent *e);
 };
 
 #endif // CCONVERTKEYCODE_H

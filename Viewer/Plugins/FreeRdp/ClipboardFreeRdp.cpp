@@ -20,7 +20,7 @@ CClipboardFreeRdp::~CClipboardFreeRdp()
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::~CClipboardFreeRdp()");
     QClipboard* pClipboard = QApplication::clipboard();
-    if(pClipboard)
+    if(pClipboard && pClipboard->ownsClipboard())
         pClipboard->clear();
 }
 
@@ -154,6 +154,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_request(CliprdrClientConte
     UINT32 formatId = formatDataRequest->requestedFormatId;
     LOG_MODEL_DEBUG("FreeRdp", "server format date request: %d", formatId);
     QClipboard *clipboard = QApplication::clipboard();
+    //if(!clipboard->ownsClipboard()) return nRet;
     switch(formatId)
     {
     case CF_TEXT:
