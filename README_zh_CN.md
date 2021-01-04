@@ -26,7 +26,7 @@
 - [ ] IPHONE
 - [ ] WINCE
 
-本人没有设备所以没有做编译与测试。请有设备的朋友自行测试。
+本人没有设备，所以没有做编译与测试。请有设备的朋友自行测试。欢迎有兴趣，有能力的朋友参与项目的开发。
 
 如果你想为本人捐赠开发设备，请联系：(QQ：16614119)
 
@@ -38,7 +38,15 @@
 - [ ] [TELNET]()
 - [ ] 自定义的 P2P 协议
 
-#### 依赖库
+#### 依赖
+##### 工具
+- [x] [Qt](qt.io)
+- [x] c compiler
+  + gcc
+  + MSVC
+- [cmake](https://cmake.org/)
+
+##### 依赖库
 - [x] [可选] RFB
   + [x] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)

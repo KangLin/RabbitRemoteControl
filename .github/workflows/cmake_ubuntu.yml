@@ -3,8 +3,6 @@ name: CMake ubuntu
 on: [push]
 
 env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
-  BUILD_TYPE: Release
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
 jobs:
@@ -12,7 +10,9 @@ jobs:
     strategy:
       matrix:
         os: [Ubuntu-20.04, Ubuntu-18.04]
-   
+        # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+        BUILD_TYPE: [Release, Debug]
+
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -76,7 +76,7 @@ jobs:
         # With verbose: true, be verbose.
         verbose: true # optional, default is false
         # Set custom tag name.
-        #tag_name: # optional, default is 
+        tag_name: v0.0.1 # optional, default is 
         # If try to update latest release.
         update_latest_release: true # optional, default is false
     

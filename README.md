@@ -28,6 +28,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] WINCE
 
 I have no device so I did not compile and test. Please test by yourself if you have device.
+Interested and capable friends are welcome to participate in the development of the project.
 
 If you want to donate the developed device for me, please contact: (email: kl222@126.com)
 
@@ -38,7 +39,15 @@ If you want to donate the developed device for me, please contact: (email: kl222
 - [ ] [SSH]()
 - [ ] [TELNET]()
 
-#### Dependent libraries
+#### Dependent
+##### Tools
+- [x] [Qt](qt.io)
+- [x] c compiler
+  + gcc
+  + MSVC
+- [cmake](https://cmake.org/)
+
+##### Dependent libraries
 - [x] VNC
   + [x] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
