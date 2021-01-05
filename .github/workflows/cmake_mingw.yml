@@ -1,0 +1,53 @@
+name: CMake mingw
+
+on: [push]
+
+jobs:
+  build:
+    name: build
+  
+    strategy:
+      matrix:
+        os: [windows-latest]
+        BUILD_TYPE: [Release, Debug]
+
+    runs-on: ${{ matrix.os }}
+    env:
+      # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+      BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+    
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: git clone RabbitCommon
+      working-directory: ${{runner.workspace}}
+      run: git clone https://github.com/KangLin/RabbitCommon.git
+
+    - name: pacman
+      shell: cmd
+      # mingw-w64-i686-gcc mingw-w64-i686-qt5
+      run: |
+        set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
+        pacman -Syu
+        pacman -S --noconfirm mingw-w64-x86_64-gcc 
+        pacman -S --noconfirm mingw-w64-x86_64-qt5 
+        pacman -S --noconfirm mingw-w64-x86_64-libvncserver
+
+    - name: CMake
+      shell: cmd
+      working-directory: ${{runner.workspace}}/build
+      # Note the current convention is to use the -S and -B options here to specify source 
+      # and build directories, but this is only available with CMake 3.13 and higher.  
+      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
+      run: |
+        set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
+        cmake -E make_directory ${{runner.workspace}}/build
+        cmake ${{github.workspace}} -G"MinGW Makefiles" -DQt5_DIR=${{env.Qt5_Dir}}\lib\cmake\Qt5 -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/build/install -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}/cmake/platforms/toolchain-mingw.cmake
+        cmake --build . --config ${{matrix.BUILD_TYPE}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install-runtime 
+      env:
+        RabbitCommon_DIR: ${{runner.workspace}}/RabbitCommon
+        MSYSTEM: MINGW64
+        BUILD_ARCH: x64

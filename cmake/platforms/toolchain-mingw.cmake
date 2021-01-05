@@ -12,7 +12,11 @@ SET(CMAKE_SYSTEM_NAME Windows)
 if("$ENV{RABBIT_BUILD_CROSS_HOST}")
     set(COMPILER_PREFIX "$ENV{RABBIT_BUILD_CROSS_HOST}")
 else("$ENV{RABBIT_BUILD_CROSS_HOST}")
-    set(COMPILER_PREFIX "x86_64-w64-mingw32")
+    if("$ENV{BUILD_ARCH}" STREQUAL "x64")
+        set(COMPILER_PREFIX "x86_64-w64-mingw32")
+    else()
+        set(COMPILER_PREFIX "i686-w64-mingw32")
+    endif()
 endif("$ENV{RABBIT_BUILD_CROSS_HOST}")
 
 # which compilers to use for C and C++

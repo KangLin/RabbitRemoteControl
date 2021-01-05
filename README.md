@@ -72,6 +72,43 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
+### Help us
+
+If you're wondering how could you help, fear not, there are plenty of ways:
+
+Some of them are:
+
+* Spread the good word about RabbitRemoteControl to make it more popular :smile:
+* Have an opinion? Make sure to voice it in the [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions) that need it :wink:
+* Fixing easy [Issues](https://github.com/KangLin/RabbitRemoteControl/issues) or [Issues](https://github.com/KangLin/RabbitRemoteControl/issues) that need help. Make sure to read
+  [Contributing] first though :wink:
+* [Testing] and [reporting bugs]
+* [Translating, it's easy]
+* [Reviewing and testing pull requests] – you don't need to be able to code to
+  do that :wink:
+* Distribute this program to various operating systems
+  - linux
+    + Ubuntu, Debian
+    + Redhat
+    + openSUSE
+    + FreeBSD
+    + CentOS
+    + Arch Linux
+  - Unix
+  - Windows 10 mall
+  - Android
+* Take a task from our Roadmap below
+
+
+### Roadmap
+
+At the current development stage of this project, there are many functions that have not been completed:
+
+The next steps are:
+
+- [Unsupport protocol](#Supported-protocol)
+- FIX bug: [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
+
 ### [License Agreement](License.md "License.md")
 
 Please abide by this agreement and the license agreement of [dependent library](#Dependent-libraries), and thank the author of [dependent library](#Dependent-libraries).
