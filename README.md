@@ -7,8 +7,6 @@ Author: Kang Lin (kl222@126.com)
 - Language
   - [<img src="Resource/Image/Chinese.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
 - Build status
-  - [![Build Status](https://travis-ci.org/KangLin/RabbitRemoteControl.svg?branch=master)](https://travis-ci.org/KangLin/RabbitRemoteControl)
-  - [![Build status](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
   - [![Build status](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
 - [Change log](ChangeLog.md)
 
