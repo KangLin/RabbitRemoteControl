@@ -21,8 +21,6 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-
-    - run: git describe --tags
     
     - name: git clone RabbitCommon
       working-directory: ${{runner.workspace}}
@@ -72,7 +70,7 @@ jobs:
         # If you need to overwrite existing files, add overwrite: true to the with.
         #overwrite: # optional, default is false
         # The resultant deployment is a draft Release that only repository collaborators can see. This gives you an opportunity to examine and edit the draft release.
-        draft: true # optional, default is true
+        draft: false # optional, default is true
         # The resultant deployment is a Prerelease. This gives you an opportunity to examine and edit the prerelease.
         prerelease: true # optional, default is false
         # With tags: true, your Releases deployment will trigger if and only if the build is a tagged build.
