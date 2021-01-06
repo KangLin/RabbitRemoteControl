@@ -52,9 +52,7 @@ If you want to donate the developed device for me, please contact: (email: kl222
 - [x] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [ ] [SSH]
   + [ ] [LIBSSH](https://www.libssh.org)
-
-##### Reference
-- [ ] [qtermwidget](https://github.com/lxqt/qtermwidget)
+- [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
 ### Donation
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
@@ -72,19 +70,18 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
-### Help us
-
 If you're wondering how could you help, fear not, there are plenty of ways:
 
 Some of them are:
 
-* Spread the good word about RabbitRemoteControl to make it more popular :smile:
+* [Donation](#Donation) - Provide funds and devices for this project :smile:
+* Spread the good word about [RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl) to make it more popular :smile:
 * Have an opinion? Make sure to voice it in the [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions) that need it :wink:
 * Fixing easy [Issues](https://github.com/KangLin/RabbitRemoteControl/issues) or [Issues](https://github.com/KangLin/RabbitRemoteControl/issues) that need help. Make sure to read
-  [Contributing] first though :wink:
-* [Testing] and [reporting bugs]
-* [Translating, it's easy]
-* [Reviewing and testing pull requests] – you don't need to be able to code to
+  [Contributing](#Contribution) first though :wink:
+* Testing and [reporting bugs](https://github.com/KangLin/RabbitRemoteControl/issues)
+* Translating, it's easy :smile:
+* Reviewing and testing pull requests – you don't need to be able to code to
   do that :wink:
 * Distribute this program to various operating systems
   - linux
@@ -97,17 +94,7 @@ Some of them are:
   - Unix
   - Windows 10 mall
   - Android
-* Take a task from our Roadmap below
-
-
-### Roadmap
-
-At the current development stage of this project, there are many functions that have not been completed:
-
-The next steps are:
-
-- [Unsupport protocol](#Supported-protocol)
-- FIX bug: [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
+* Be finished [unsupport protocols](#Supported-protocol)
 
 ### [License Agreement](License.md "License.md")
 

@@ -51,9 +51,7 @@
 - [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [ ] [SSH]
   + [ ] [LIBSSH](https://www.libssh.org)
-
-##### 参考
-- [ ] [qtermwidget](https://github.com/lxqt/qtermwidget)
+- [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
@@ -69,6 +67,28 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+
+如果您想知道如何提供帮助，不要害怕，有很多方法：
+
+* [捐赠](#捐赠) - 为本项目提供资金与设备支持 :smile:
+* 向你周围的人传播有关[玉兔远程控件](https://github.com/KangLin/RabbitRemoteControl)的好话，使其更受欢迎 :smile:
+* 有意见吗？ 请务必在[讨论区](https://github.com/KangLin/RabbitRemoteControl/discussions)中发声，说明你的需求，帮助我们改进。 :wink:
+* 帮助解决 BUG 与功能[Issues](https://github.com/KangLin/RabbitRemoteControl/issues) 。请确保先阅读过[贡献](#贡献)中的内容。 :wink:
+* 测试并报告 [BUG](https://github.com/KangLin/RabbitRemoteControl/issues)
+* 翻译，它很容易 :smile:
+* 审核和测试 pull requests – 你不需要编写代码 :wink:
+* 帮助我完成分发到常用的操作系统
+  - linux
+    + Ubuntu, Debian
+    + Redhat
+    + openSUSE
+    + FreeBSD
+    + CentOS
+    + Arch Linux
+  - Unix
+  - Windows 10 mall
+  - Android
+* 完成还未支持的协议
 
 ### [许可协议](License.md "License.md")
 请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)的作者。
