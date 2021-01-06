@@ -18,7 +18,7 @@ QT_END_NAMESPACE
 
 class CFrmFullScreenToolBar;
 
-class MainWindow : public QMainWindow
+class MainWindow : public QMainWindow, CManageConnecter::Handle
 {
     Q_OBJECT
 
@@ -68,10 +68,13 @@ private:
     RabbitCommon::CStyle m_Style;
     QActionGroup* m_pGBView;
     QTabWidget* m_pTab;
-    CManageConnecter m_ManageConnecter;
     QMap<CFrmViewer*, CConnecter*> m_Connecters;
     CFrmFullScreenToolBar* m_pFullScreenToolBar;
-    
+
+public:
+    virtual int onProcess(const QString &id, CPluginFactory *pFactory) override;
+private:
+    CManageConnecter m_ManageConnecter;
 };
 
 #endif // MAINWINDOW_H

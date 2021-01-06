@@ -45,15 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->setCentralWidget(m_pTab);
 
-    // Connect menu and toolbar   
-    foreach(auto m, m_ManageConnecter.GetManageConnecter())
-    {
-        QAction* p = ui->menuConnect_C->addAction(m->Name(), this, SLOT(slotConnect()));
-        p->setToolTip(m->Description());
-        p->setStatusTip(m->Description());
-        p->setData(m->Protol());
-        p->setIcon(m->Icon());
-    }
+    m_ManageConnecter.EnumPlugins(this);
     
     QToolButton* tb = new QToolButton(ui->toolBar);
     tb->setPopupMode(QToolButton::MenuButtonPopup);
@@ -432,6 +424,7 @@ void MainWindow::slotDisconnected()
 
 void MainWindow::slotError(const int nError, const QString &szInfo)
 {
+    Q_UNUSED(nError);
     this->statusBar()->showMessage(szInfo);
 }
 
@@ -491,4 +484,17 @@ void MainWindow::on_actionOpenStyle_O_triggered()
 void MainWindow::on_actionDefaultStyle_D_triggered()
 {
     m_Style.SetDefaultStyle();
+}
+
+int MainWindow::onProcess(const QString &id, CPluginFactory *pFactory)
+{
+    Q_UNUSED(id);
+    // Connect menu and toolbar
+    QAction* p = ui->menuConnect_C->addAction(pFactory->Name(), this, SLOT(slotConnect()));
+    p->setToolTip(pFactory->Description());
+    p->setStatusTip(pFactory->Description());
+    p->setData(id);
+    p->setIcon(pFactory->Icon());
+
+    return 0;
 }

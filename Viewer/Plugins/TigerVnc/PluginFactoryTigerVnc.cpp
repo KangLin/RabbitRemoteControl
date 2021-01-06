@@ -58,12 +58,12 @@ QString CPluginFactoryTigerVnc::Description()
 
 QString CPluginFactoryTigerVnc::Protol()
 {
-    return "VNC";
+    return "RFB";
 }
 
 CConnecter* CPluginFactoryTigerVnc::CreateConnecter(const QString &szProtol)
 {
-    if(Protol() == szProtol)
+    if(Id() == szProtol)
     {   
         CConnecter* p = new CConnecterTigerVnc(this);
         return p;

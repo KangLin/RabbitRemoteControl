@@ -10,7 +10,7 @@
 #include <QFile>
 
 CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent),
-    m_FileVersion(1)  //TODO: update it if update data
+    m_FileVersion(0)  //TODO: update it if update data
 {
     LoadPlugins();
 }
@@ -27,7 +27,7 @@ int CManageConnecter::LoadPlugins()
         CPluginFactory* p = qobject_cast<CPluginFactory*>(plugin);
         if(p)
         {
-            m_Plugins.insert(p->Protol(), p);
+            m_Plugins.insert(p->Id(), p);
         }
     }
 
@@ -62,33 +62,23 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
             CPluginFactory* p = qobject_cast<CPluginFactory*>(plugin);
             if(p)
             {
-                m_Plugins.insert(p->Protol(), p);
+                m_Plugins.insert(p->Id(), p);
             }
         }else{
-            qDebug() << "load plugin error:" <<
-                        loader.errorString().toStdString().c_str();
+            QString szMsg;
+            szMsg = "load plugin error: " + loader.errorString();
+            LOG_MODEL_ERROR("ManageConnecter", szMsg.toStdString().c_str());
         }
     }
 
     return 0;
 }
 
-QList<CPluginFactory *> CManageConnecter::GetManageConnecter()
+CConnecter* CManageConnecter::CreateConnecter(const QString& id)
 {
-    QList<CPluginFactory*> connect;
-    foreach(auto m, m_Plugins)
-    {
-        connect.push_back(m);
-    }
-    return connect;
-}
-
-CConnecter* CManageConnecter::CreateConnecter(const QString &szProtol)
-{
-    auto it = m_Plugins.find(szProtol);
+    auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
-        return it.value()->CreateConnecter(szProtol);
-    
+        return it.value()->CreateConnecter(id);
     return nullptr;
 }
 
@@ -98,13 +88,16 @@ CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
     QFile f(szFile);
     if(!f.open(QFile::ReadOnly))
     {
-        qCritical() << "Load connecter: Open file fail:" << szFile;
+        LOG_MODEL_ERROR("ManageConnecter", "Load connecter: Open file fail: %s",
+                        szFile.toStdString().c_str());
         return nullptr;
     }
     
     try{
         QDataStream d(&f);
         d >> m_FileVersion;
+        QString id;
+        d >> id;
         QString protol;
         d >> protol;
         QString name;
@@ -112,7 +105,7 @@ CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
         LOG_MODEL_INFO("ManageConnecter", "protol: %s  name: %s",
                        protol.toStdString().c_str(),
                        name.toStdString().c_str());
-        pConnecter = CreateConnecter(protol);
+        pConnecter = CreateConnecter(id);
         if(pConnecter)
             pConnecter->Load(d);
         else
@@ -147,10 +140,29 @@ int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecte
     // the CreateConnecter function constructs the derived class of CConnecter,
     // and its parent pointer must be specified as the corresponding CManageConnecter derived class
     Q_ASSERT(pFactory);
-    d << pFactory->Protol();
-    d << pFactory->Name();
+    d << pFactory->Id()
+      << pFactory->Protol()
+      << pFactory->Name();
     pConnecter->Save(d);
 
     f.close();
     return 0;
+}
+
+int CManageConnecter::EnumPlugins(Handle *handle)
+{
+    int nRet = 0;
+    QMap<QString, CPluginFactory*>::iterator it;
+    for(it = m_Plugins.begin(); it != m_Plugins.end(); it++)
+    {
+        if(handle->m_bIgnoreReturn)
+            handle->onProcess(it.key(), it.value());
+        else
+        {
+            nRet = handle->onProcess(it.key(), it.value());
+            if(nRet)
+                return nRet;
+        }
+    }
+    return nRet;
 }

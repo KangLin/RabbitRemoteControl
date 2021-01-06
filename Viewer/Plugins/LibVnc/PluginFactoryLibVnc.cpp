@@ -49,7 +49,7 @@ QIcon CPluginFactoryLibVnc::Icon()
 
 CConnecter *CPluginFactoryLibVnc::CreateConnecter(const QString &szProtol)
 {
-    if(Protol() == szProtol)
+    if(Id() == szProtol)
     {   
         CConnecter* p = new CConnecterLibVnc(this);
         return p;

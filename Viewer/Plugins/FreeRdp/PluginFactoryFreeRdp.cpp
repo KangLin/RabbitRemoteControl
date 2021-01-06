@@ -51,7 +51,7 @@ QIcon CPluginFactoryFreeRdp::Icon()
 
 CConnecter* CPluginFactoryFreeRdp::CreateConnecter(const QString &szProtol)
 {
-    if(Protol() == szProtol)
+    if(Id() == szProtol)
     {   
         CConnecter* p = new CConnecterFreeRdp(this);
         return p;

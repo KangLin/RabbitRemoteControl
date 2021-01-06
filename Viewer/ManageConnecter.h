@@ -6,7 +6,6 @@
 #include <QObject>
 #include <QDir>
 #include <QMap>
-#include <QList>
 #include <QIcon>
 
 #include "PluginFactory.h"
@@ -30,12 +29,18 @@ public:
     virtual ~CManageConnecter();
     
     // Return CConnecter pointer, the owner is caller
-    virtual CConnecter* CreateConnecter(const QString& szProtol);
-    
-    QList<CPluginFactory*> GetManageConnecter();
+    virtual CConnecter* CreateConnecter(const QString &id);
     
     virtual CConnecter* LoadConnecter(const QString& szFile);
     virtual int SaveConnecter(const QString& szFile, CConnecter* pConnecter);
+
+    class Handle{
+    public:
+        Handle(): m_bIgnoreReturn(false){}
+        virtual int onProcess(const QString& id, CPluginFactory* pFactory) = 0;
+        int m_bIgnoreReturn;
+    };
+    virtual int EnumPlugins(Handle* handle);
 
 private:    
     int LoadPlugins();

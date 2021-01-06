@@ -52,7 +52,7 @@ QString CConnecterTigerVnc::Description()
 
 QString CConnecterTigerVnc::Protol()
 {
-    return "VNC";
+    return "RFB";
 }
 
 qint16 CConnecterTigerVnc::Version()
