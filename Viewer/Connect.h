@@ -27,8 +27,6 @@ public:
     explicit CConnect(CConnecter* pConnecter = nullptr, QObject *parent = nullptr);
     virtual ~CConnect() override;
 
-    virtual QString GetDescription();
-
 protected:
     virtual int SetConnecter(CConnecter* pConnecter);
     virtual int SetViewer(CFrmViewer* pView);
@@ -52,6 +50,7 @@ Q_SIGNALS:
     void sigDisconnected();
     
     void sigSetDesktopSize(int width, int height);
+    // Don't use it directly, please use SetServerName
     void sigServerName(const QString& szName);
     
     void sigUpdateRect(const QRect& r, const QImage& image);

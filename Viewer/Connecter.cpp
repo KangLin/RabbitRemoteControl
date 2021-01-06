@@ -26,3 +26,14 @@ void CConnecter::slotSetClipboard(QMimeData* data)
     QClipboard* pClipboard = QApplication::clipboard();
     pClipboard->setMimeData(data);
 }
+
+void CConnecter::slotSetServerName(const QString& szName)
+{
+    m_szServerName = szName;
+    emit sigServerName(m_szServerName);
+}
+
+QString CConnecter::GetServerName()
+{
+    return m_szServerName;
+}

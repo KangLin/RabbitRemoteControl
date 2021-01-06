@@ -101,13 +101,11 @@ int CConnectLibVnc::Connect()
         return -2;
     }
     
-    m_szServerName = m_pClient->desktopName;
-    
-    QString szInfo = "Connect to " + GetDescription();
+    QString szInfo = QString("Connect to ") + m_pClient->desktopName;
     LOG_MODEL_INFO("LibVnc", szInfo.toStdString().c_str());
     
     emit sigConnected();
-    emit sigServerName(m_szServerName);
+    SetServerName(m_pClient->desktopName);
     return nRet;
 }
 

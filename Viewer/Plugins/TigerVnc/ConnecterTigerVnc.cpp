@@ -34,10 +34,13 @@ CConnecterTigerVnc::~CConnecterTigerVnc()
     }
 }
 
-QString CConnecterTigerVnc::ServerName()
+QString CConnecterTigerVnc::GetServerName()
 {
-    QString szName = m_Para.szServerName;
-    return szName;
+    if(m_szServerName.isEmpty())
+    {
+        return m_Para.szServerName;
+    }
+    return m_szServerName;
 }
 
 QString CConnecterTigerVnc::Name()

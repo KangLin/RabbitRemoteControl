@@ -99,7 +99,7 @@ int CConnectFreeRdp::Connect()
         emit sigError(nRet, szErr.toStdString().c_str());
     } else {
         emit sigConnected();
-        emit sigServerName(m_szServerName);
+        SetServerName(settings->ServerHostname);
 
         QString szInfo = tr("Connect to ");
         szInfo += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);

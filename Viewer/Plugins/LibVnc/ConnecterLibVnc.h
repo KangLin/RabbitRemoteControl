@@ -13,7 +13,7 @@ public:
     
     // CConnecter interface
 public:
-    virtual QString ServerName() override;
+    virtual QString GetServerName() override;
     virtual QString Name() override;
     virtual QString Description() override;
     virtual QString Protol() override;

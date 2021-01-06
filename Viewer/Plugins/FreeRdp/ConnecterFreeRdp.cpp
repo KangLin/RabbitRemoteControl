@@ -21,12 +21,14 @@ CConnecterFreeRdp::~CConnecterFreeRdp()
     }
 }
 
-QString CConnecterFreeRdp::ServerName()
+QString CConnecterFreeRdp::GetServerName()
 {
-    QString szName = m_pSettings->ServerHostname;
-    szName += ":";
-    szName += QString::number(m_pSettings->ServerPort);
-    return szName;
+    if(m_szServerName.isEmpty())
+    {
+        return m_pSettings->ServerHostname + QString(":")
+                + QString::number(m_pSettings->ServerPort);
+    }
+    return m_szServerName;
 }
 
 QString CConnecterFreeRdp::Name()
@@ -36,7 +38,7 @@ QString CConnecterFreeRdp::Name()
 
 QString CConnecterFreeRdp::Description()
 {
-    return Protol() + ":";
+    return tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
 }
 
 QString CConnecterFreeRdp::Protol()

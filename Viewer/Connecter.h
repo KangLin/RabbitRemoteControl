@@ -30,11 +30,6 @@ public:
     explicit CConnecter(CPluginFactory *parent = nullptr);
 
     /**
-     * @brief Current connect server name. eg: Server name or Ip 
-     * @return Current connect server name.
-     */
-    virtual QString ServerName() = 0;
-    /**
      * @brief Name, The name must same CPluginFactory::Name
      * @return 
      */
@@ -44,6 +39,11 @@ public:
     virtual qint16 Version() = 0;
     virtual QIcon Icon();
     
+    /**
+     * @brief Current connect server name. eg: Server name or Ip:Port 
+     * @return Current connect server name.
+     */
+    virtual QString GetServerName();
     /**
      * @brief GetViewer 
      * @return CFrmViewer* ower is caller. The caller must delete it, when don't use.
@@ -59,11 +59,12 @@ public Q_SLOTS:
     virtual int Connect() = 0;
     virtual int DisConnect() = 0;
     virtual void slotSetClipboard(QMimeData *data);
+    virtual void slotSetServerName(const QString &szName);
     
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
-    
+    // Please use slotSetServerName, when is useed in plugin
     void sigServerName(const QString& szName);
 
     void sigError(const int nError, const QString &szError);
@@ -71,6 +72,9 @@ Q_SIGNALS:
     
 private:
     CFrmViewer *m_pView;
+
+protected:
+    QString m_szServerName;
 };
 
 #endif // CCONNECTER_H

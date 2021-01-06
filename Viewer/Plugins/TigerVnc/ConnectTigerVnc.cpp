@@ -82,6 +82,8 @@ CConnectTigerVnc::~CConnectTigerVnc()
 int CConnectTigerVnc::SetServerName(const QString &serverName)
 {
     m_szServerName = serverName;
+    CConnect::SetServerName(m_szServerName);
+    
     try{
 #ifndef WIN32
         if (strchr(serverName.toStdString().c_str(), '/') != NULL) {
@@ -101,6 +103,7 @@ int CConnectTigerVnc::SetServerName(const QString &serverName)
         emit sigError(-1, e.str());
         return -100;
     }
+
     return 0;
 }
 
@@ -135,8 +138,7 @@ int CConnectTigerVnc::Connect()
                   m_szHost.toStdString().c_str(), m_nPort);
         // See callback below
         m_pSock->inStream().setBlockCallback(this);
-      
-        setServerName(m_szServerName.toStdString().c_str());
+
         setStreams(&m_pSock->inStream(), &m_pSock->outStream());
       
         initialiseProtocol();
@@ -200,7 +202,8 @@ void CConnectTigerVnc::initDone()
     
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
-    emit sigServerName(szName);
+    setServerName(m_szServerName.toStdString().c_str());
+    SetServerName(szName);
     
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));

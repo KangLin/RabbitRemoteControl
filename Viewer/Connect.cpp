@@ -39,7 +39,7 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
             this, SLOT(Disconnect()), Qt::DirectConnection);
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigServerName(const QString&)),
-                    pConnecter, SIGNAL(sigServerName(const QString&)));
+                    pConnecter, SLOT(slotSetServerName(const QString&)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigError(const int, const QString&)),
                     pConnecter, SIGNAL(sigError(const int, const QString&)));
@@ -112,16 +112,10 @@ int CConnect::SetViewer(CFrmViewer *pView)
     return 0;
 }
 
-QString CConnect::GetDescription()
-{
-    if(m_szServerName.isEmpty())
-        return m_szHost + ":" + QString::number(m_nPort);
-    return m_szServerName;
-}
-
 int CConnect::SetServerName(const QString &szServerName)
 {
     m_szServerName = szServerName;
+    //TODO: add ipv6
     int nPos = szServerName.indexOf(":");
     if(-1 == nPos)
         m_szHost = szServerName;
@@ -130,7 +124,7 @@ int CConnect::SetServerName(const QString &szServerName)
         m_nPort = szServerName.right(szServerName.length() - nPos - 1).toInt();
     }
 
-    emit sigServerName(GetDescription());
+    emit sigServerName(m_szServerName);
     return 0;
 }
 

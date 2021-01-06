@@ -285,7 +285,7 @@ void MainWindow::on_actionOpen_O_triggered()
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
     
-    slotInformation(tr("Connecting to ") + p->ServerName());
+    slotInformation(tr("Connecting to ") + p->GetServerName());
     p->Connect();
 }
 
@@ -319,11 +319,12 @@ void MainWindow::slotConnect()
                     + QDir::separator()
                     + p->Protol()
                     + "_" + p->Name() + "_"
-                    + p->ServerName().replace(":", "_")
+                    + p->GetServerName().replace(":", "_")
                     + ".rrc";
             m_ManageConnecter.SaveConnecter(szFile, p);
-            if(!p->ServerName().isEmpty())
-                slotInformation(tr("Connecting to ") + p->ServerName());
+            if(!p->GetServerName().isEmpty())
+                slotInformation(tr("Connecting to ") + p->GetServerName());
+
             p->Connect();
             break;
         }
@@ -363,7 +364,7 @@ void MainWindow::slotConnected()
                     this, SLOT(slotViewTitleChanged(const QString&)));
     Q_ASSERT(check);
     
-    slotInformation(tr("Connected to ") + p->ServerName());
+    slotInformation(tr("Connected to ") + p->GetServerName());
 }
 
 void MainWindow::on_actionDisconnect_D_triggered()

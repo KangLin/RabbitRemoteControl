@@ -15,7 +15,7 @@ public:
     explicit CConnecterTigerVnc(CPluginFactory *parent = nullptr);
     virtual ~CConnecterTigerVnc() override;
 
-    virtual QString ServerName() override;
+    virtual QString GetServerName() override;
     virtual QString Name() override; 
     virtual QString Description() override;
     virtual QString Protol() override;

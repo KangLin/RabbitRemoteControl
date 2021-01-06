@@ -20,9 +20,13 @@ CConnecterLibVnc::~CConnecterLibVnc()
     }
 }
 
-QString CConnecterLibVnc::ServerName()
+QString CConnecterLibVnc::GetServerName()
 {
-    return m_Para.szHost + ":" + QString::number(m_Para.nPort);
+    if(m_szServerName.isEmpty())
+    {
+        return m_Para.szHost + ":" + QString::number(m_Para.nPort);
+    }
+    return m_szServerName;
 }
 
 QString CConnecterLibVnc::Name()
@@ -32,7 +36,7 @@ QString CConnecterLibVnc::Name()
 
 QString CConnecterLibVnc::Description()
 {
-    return Protol() + ":" + ServerName();
+    return Protol() + ":" + GetServerName();
 }
 
 QString CConnecterLibVnc::Protol()
