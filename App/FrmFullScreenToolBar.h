@@ -30,6 +30,7 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void slotTimeOut();
+    void slotNail();
     
 protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;

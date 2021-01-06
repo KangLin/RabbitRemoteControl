@@ -2,8 +2,10 @@
 
 #include "FrmFullScreenToolBar.h"
 #include "ui_FrmFullScreenToolBar.h"
+#include "RabbitCommonDir.h"
 #include <QStyleOption>
 #include <QVBoxLayout>
+#include <QSettings>
 
 CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent) :
     QWidget(parent,
@@ -24,9 +26,11 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     
-    m_pNail = m_ToolBar.addAction(QIcon(":/image/Nail"), tr("Nail"));
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    
+    m_pNail = m_ToolBar.addAction(QIcon(":/image/Nail"), tr("Nail"), this, SLOT(slotNail()));
     m_pNail->setCheckable(true);
-    m_pNail->setChecked(true);
+    m_pNail->setChecked(set.value("FullScreen/Nail", true).toBool());
     m_ToolBar.addSeparator();
     m_ToolBar.addAction(QIcon(":/image/ExitFullScreen"),
                         tr("Full"), this, SIGNAL(sigExitFullScreen()));
@@ -41,8 +45,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
                          this, SLOT(slotTimeOut()));
     Q_ASSERT(check);
     
-    if(!m_pNail->isChecked())
-        m_Timer.start(m_TimeOut);
+    m_Timer.start(m_TimeOut);
     
     ReSize();
 }
@@ -94,19 +97,27 @@ void CFrmFullScreenToolBar::slotTimeOut()
     resize(width(), 5);
 }
 
+void CFrmFullScreenToolBar::slotNail()
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    set.setValue("FullScreen/Nail", m_pNail->isChecked());
+}
+
 void CFrmFullScreenToolBar::enterEvent(QEvent *event)
 {
+    Q_UNUSED(event);
     m_Timer.stop();
     if(m_isHide)
     {
         m_ToolBar.show();
         ReSize();
         m_isHide = false;
-    }    
+    }
 }
 
 void CFrmFullScreenToolBar::leaveEvent(QEvent *event)
 {
+    Q_UNUSED(event);
     if(m_pNail->isChecked()) return;
     m_Timer.stop();
     m_Timer.start(m_TimeOut);
