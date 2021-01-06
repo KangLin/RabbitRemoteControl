@@ -11,6 +11,8 @@
 #include <QMimeData>
 #include "FrmViewer.h"
 
+class CPluginFactory;
+
 /**
  * @brief The CConnecter class
  * @see   CPluginFactory CFrmViewer CConnect
@@ -23,9 +25,9 @@ class RABBITREMOTECONTROL_EXPORT CConnecter : public QObject
 public:
     /**
      * @brief CConnecter
-     * @param parent: The parent pointer must be specified as the corresponding CManageConnecter derived class
+     * @param parent: The parent pointer must be specified as the corresponding CPluginFactory derived class
      */
-    explicit CConnecter(QObject *parent = nullptr);
+    explicit CConnecter(CPluginFactory *parent = nullptr);
 
     /**
      * @brief Current connect server name. eg: Server name or Ip 

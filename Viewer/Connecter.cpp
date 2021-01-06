@@ -3,8 +3,9 @@
 #include "Connecter.h"
 #include <QClipboard>
 #include <QApplication>
+#include "PluginFactory.h"
 
-CConnecter::CConnecter(QObject *parent) : QObject(parent),
+CConnecter::CConnecter(CPluginFactory *parent) : QObject(parent),
     m_pView(new CFrmViewer())
 {
     m_pView->setAttribute(Qt::WA_DeleteOnClose);

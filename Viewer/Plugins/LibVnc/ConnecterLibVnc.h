@@ -8,7 +8,7 @@ class CDlgSettingsLibVnc;
 class CConnecterLibVnc : public CConnecter
 {
 public:
-    CConnecterLibVnc(QObject *parent = nullptr);
+    CConnecterLibVnc(CPluginFactory *parent = nullptr);
     virtual ~CConnecterLibVnc() override;
     
     // CConnecter interface

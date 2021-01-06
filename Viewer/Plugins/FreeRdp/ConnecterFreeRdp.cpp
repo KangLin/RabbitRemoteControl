@@ -4,7 +4,7 @@
 #include <QDebug>
 #include "DlgSetFreeRdp.h"
 
-CConnecterFreeRdp::CConnecterFreeRdp(QObject *parent) : CConnecter(parent),
+CConnecterFreeRdp::CConnecterFreeRdp(CPluginFactory *parent) : CConnecter(parent),
     m_pThread(nullptr)
 {
     // 在 freerdp_client_context_free 中释放

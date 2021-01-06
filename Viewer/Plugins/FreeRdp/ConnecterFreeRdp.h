@@ -11,7 +11,7 @@ class CConnecterFreeRdp : public CConnecter
 {
     Q_OBJECT
 public:
-    explicit CConnecterFreeRdp(QObject *parent = nullptr);
+    explicit CConnecterFreeRdp(CPluginFactory *parent = nullptr);
     virtual ~CConnecterFreeRdp() override;
     
     rdpSettings* m_pSettings;

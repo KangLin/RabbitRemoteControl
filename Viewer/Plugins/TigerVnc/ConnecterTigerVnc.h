@@ -12,7 +12,7 @@ class CConnecterTigerVnc : public CConnecter
     Q_OBJECT
 
 public:
-    explicit CConnecterTigerVnc(QObject *parent = nullptr);
+    explicit CConnecterTigerVnc(CPluginFactory *parent = nullptr);
     virtual ~CConnecterTigerVnc() override;
 
     virtual QString ServerName() override;

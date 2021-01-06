@@ -138,7 +138,7 @@ int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecte
     CPluginFactory* pFactory = dynamic_cast<CPluginFactory*>(pConnecter->parent());
     // In the CManageConnecter derived class,
     // the CreateConnecter function constructs the derived class of CConnecter,
-    // and its parent pointer must be specified as the corresponding CManageConnecter derived class
+    // and its parent pointer must be specified as the corresponding CPluginFactory derived class
     Q_ASSERT(pFactory);
     d << pFactory->Id()
       << pFactory->Protol()

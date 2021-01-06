@@ -4,7 +4,7 @@
 #include "rfb/encodings.h"
 #include <QDebug>
 
-CConnecterTigerVnc::CConnecterTigerVnc(QObject *parent)
+CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
     : CConnecter(parent),
       m_pThread(nullptr)
 {
