@@ -94,7 +94,7 @@ Some of them are:
   - Unix
   - Windows 10 mall
   - Android
-* Be finished [unsupport protocols](#Supported-protocol)
+* Be finished [unsupported protocols](#Supported-protocol)
 
 ### [License Agreement](License.md "License.md")
 
