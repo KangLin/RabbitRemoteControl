@@ -62,8 +62,6 @@ If this software is useful to you, or you like it, please donate and support the
 If it cannot be displayed, please open:
 https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
 
-[![donation](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
-
 ### Contribution
 
 - [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
