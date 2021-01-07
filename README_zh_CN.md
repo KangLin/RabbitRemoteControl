@@ -1,9 +1,11 @@
-# 玉兔远程控制
+# [<img src="App/Resource/Image/App.png"/> 玉兔远程控制](https://github.com/KangLin/RabbitRemoteControl)
 
 作者: 康林 (kl222@126.com)
 
 -----------------------------------------------------------------------
 
+- 项目位置： https://github.com/KangLin/RabbitRemoteControl
+- [项目主页](https://kanglin.github.io/RabbitRemoteControl/)
 - 语言
   - [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
 - 编译状态

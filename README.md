@@ -1,8 +1,10 @@
-# Rabbit Remote Control
+# [<img src="App/Resource/Image/App.png"/> Rabbit Remote Control](https://github.com/KangLin/RabbitRemoteControl)
 
 Author: Kang Lin (kl222@126.com)
 
 -----------------------------------------------------------------------
+- Project position: https://github.com/KangLin/RabbitRemoteControl
+- [Project home](https://kanglin.github.io/RabbitRemoteControl/)
 
 - Language
   - [<img src="Resource/Image/Chinese.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
