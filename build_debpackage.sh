@@ -31,6 +31,6 @@ export QT_ROOT=$QT_ROOT
 export PATH=$QT_ROOT/bin:$PATH
 export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
 export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
-fakeroot debian/rules binary
-#dpkg-buildpackage -us -uc -b
+#fakeroot debian/rules binary
+dpkg-buildpackage -us -uc -b  #The -us -uc tell it there is no need to GPG sign the package
 
