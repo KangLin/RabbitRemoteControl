@@ -77,6 +77,9 @@ int CConnect::SetViewer(CFrmViewer *pView)
     check = connect(this, SIGNAL(sigUpdateCursor(const QRect&, const QImage&)),
                     m_pView, SLOT(slotUpdateCursor(const QRect&, const QImage&)));
     Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigUpdateCursor(const QCursor&)),
+                    m_pView, SLOT(slotUpdateCursor(const QCursor&)));
+    Q_ASSERT(check);
     
     check = connect(m_pView, SIGNAL(sigMousePressEvent(QMouseEvent*)),
                     this, SLOT(slotMousePressEvent(QMouseEvent*)),

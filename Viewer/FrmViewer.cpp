@@ -284,3 +284,8 @@ void CFrmViewer::slotUpdateCursor(const QRect& r, const QImage& cursor)
     
     setCursor(cs);
 }
+
+void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
+{
+    setCursor(cursor);
+}

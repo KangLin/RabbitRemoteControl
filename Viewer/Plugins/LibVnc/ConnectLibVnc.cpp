@@ -39,10 +39,9 @@ CConnectLibVnc::CConnectLibVnc(CConnecterLibVnc *pConnecter, QObject *parent)
 #ifdef _DEBUG
     rfbClientLog = rfbQtClientLog;
 #endif
-    if(!m_pPara->bLocalCursor && pConnecter && pConnecter->GetViewer())
+    if(!m_pPara->bLocalCursor)
     {
-        CFrmViewer* pViewer = pConnecter->GetViewer();
-        pViewer->setCursor(Qt::BlankCursor);
+        emit sigUpdateCursor(QCursor(Qt::BlankCursor));
     }
 }
 

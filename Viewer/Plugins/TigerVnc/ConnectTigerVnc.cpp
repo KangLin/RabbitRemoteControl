@@ -67,10 +67,9 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
 #endif
     
     SetParamter(&pConnecter->m_Para);
-    if(!m_pPara->bLocalCursor && pConnecter && pConnecter->GetViewer())
+    if(!m_pPara->bLocalCursor)
     {
-        CFrmViewer* pViewer = pConnecter->GetViewer();
-        pViewer->setCursor(Qt::BlankCursor);
+        emit sigUpdateCursor(QCursor(Qt::BlankCursor));
     }
 }
 
