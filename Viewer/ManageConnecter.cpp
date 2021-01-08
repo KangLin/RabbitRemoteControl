@@ -8,6 +8,7 @@
 #include <QtPlugin>
 #include <QDataStream>
 #include <QFile>
+#include <QCoreApplication>
 
 CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent),
     m_FileVersion(0)  //TODO: update it if update data
@@ -54,6 +55,8 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
 #endif
     }
     QStringList files = dir.entryList(filters, QDir::Files);
+    if(!files.isEmpty())
+        qApp->addLibraryPath(dir.absolutePath());
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
         QPluginLoader loader(szPlugins);
