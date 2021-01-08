@@ -77,7 +77,6 @@ BOOL CCursorFreeRdp::onNew(rdpContext *context, rdpPointer *pointer)
 {
     return TRUE;
     BOOL bRet = TRUE;
-    m_Rect = QRect(pointer->xPos, pointer->yPos, pointer->width, pointer->height);
     QImage cursor(pointer->width, pointer->height, QImage::Format_ARGB32);
     /**
      * Drawing Monochrome Pointers:
@@ -99,7 +98,8 @@ BOOL CCursorFreeRdp::onNew(rdpContext *context, rdpPointer *pointer)
     if(bRet)
     {
         m_Cursor = cursor;
-        emit m_pConnect->sigUpdateCursor(m_Rect, m_Cursor);
+        emit m_pConnect->sigUpdateCursor(QCursor(QPixmap::fromImage(m_Cursor),
+                                                 pointer->xPos, pointer->yPos));
     }
     return bRet;
 }
@@ -110,7 +110,6 @@ void CCursorFreeRdp::onFree(rdpContext* context, rdpPointer* pointer)
 BOOL CCursorFreeRdp::onSet(rdpContext *context, const rdpPointer *pointer)
 {
     BOOL bRet = TRUE;
-    m_Rect = QRect(pointer->xPos, pointer->yPos, pointer->width, pointer->height);
     QImage cursor(pointer->width, pointer->height, QImage::Format_ARGB32);
     /**
      * Drawing Monochrome Pointers:
@@ -132,7 +131,8 @@ BOOL CCursorFreeRdp::onSet(rdpContext *context, const rdpPointer *pointer)
     if(bRet)
     {
         m_Cursor = cursor;
-        emit m_pConnect->sigUpdateCursor(m_Rect, m_Cursor);
+        emit m_pConnect->sigUpdateCursor(QCursor(QPixmap::fromImage(m_Cursor),
+                                                 pointer->xPos, pointer->yPos));
     }
     return bRet;
 }
@@ -140,20 +140,20 @@ BOOL CCursorFreeRdp::onSet(rdpContext *context, const rdpPointer *pointer)
 BOOL CCursorFreeRdp::onSetDefault(rdpContext *context)
 {
     m_Cursor = QImage();
-    emit m_pConnect->sigUpdateCursor(m_Rect, m_Cursor);
+    emit m_pConnect->sigUpdateCursor(QCursor());
     return TRUE;
 }
 
 BOOL CCursorFreeRdp::onSetNull(rdpContext *context)
 {
     m_Cursor = QImage();
-    emit m_pConnect->sigUpdateCursor(m_Rect, m_Cursor);
+    emit m_pConnect->sigUpdateCursor(QCursor(Qt::BlankCursor));
     return TRUE;
 }
 
 BOOL CCursorFreeRdp::onSetPosition(rdpContext *context, UINT32 x, UINT32 y)
 {
-    m_Rect.moveTo(x, y);
-    emit m_pConnect->sigUpdateCursor(m_Rect, m_Cursor);
+    emit m_pConnect->sigUpdateCursor(QCursor(QPixmap::fromImage(m_Cursor),
+                                                                   x, y));
     return TRUE;
 }

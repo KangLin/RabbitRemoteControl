@@ -39,7 +39,6 @@ private:
     CConnectFreeRdp* m_pConnect;
     
     QImage m_Cursor;
-    QRect m_Rect;
 };
 
 #endif // CCURSOR_H

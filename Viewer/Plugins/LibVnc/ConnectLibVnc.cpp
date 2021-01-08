@@ -271,12 +271,11 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
         return;
     }
     CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
-    QRect rect(xhot, yhot, width, height);
     if ((width == 0) || (height == 0)) {
         QImage cursor(1, 1, QImage::Format_ARGB32);
         uchar* buffer = cursor.bits();
         memset(buffer, 0, 4);
-        emit pThis->sigUpdateCursor(rect, cursor);
+        emit pThis->sigUpdateCursor(QCursor(QPixmap::fromImage(cursor), xhot, yhot));
     } else {
         switch (client->format.bitsPerPixel) {
         case 32:
@@ -300,7 +299,7 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
                     }
                 }
             }
-            emit pThis->sigUpdateCursor(rect, cursor);
+            emit pThis->sigUpdateCursor(QCursor(QPixmap::fromImage(cursor), xhot, yhot));
             break;
         }
         default:

@@ -218,17 +218,16 @@ void CConnectTigerVnc::bell()
 void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspot, const rdr::U8 *data)
 {
     //vlog.debug("CConnectTigerVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
-    QRect rect(hotspot.x, hotspot.y, width, height);
     if ((width == 0) || (height == 0)) {
-      QImage cursor(1, 1, QImage::Format_ARGB32);
-      rdr::U8 *buffer = cursor.bits();
-      memset(buffer, 0, 4);
-      emit sigUpdateCursor(rect, cursor);
+        QImage cursor(1, 1, QImage::Format_ARGB32);
+        rdr::U8 *buffer = cursor.bits();
+        memset(buffer, 0, 4);
+        emit sigUpdateCursor(QCursor(QPixmap::fromImage(cursor), hotspot.x, hotspot.y));
     } else {
-      QImage cursor(width, height, QImage::Format_ARGB32);
-      rdr::U8 *buffer = cursor.bits();
-      memcpy(buffer, data, width * height * 4);
-      emit sigUpdateCursor(rect, cursor);
+        QImage cursor(width, height, QImage::Format_ARGB32);
+        rdr::U8 *buffer = cursor.bits();
+        memcpy(buffer, data, width * height * 4);
+        emit sigUpdateCursor(QCursor(QPixmap::fromImage(cursor), hotspot.x, hotspot.y));
     }
 }
 
