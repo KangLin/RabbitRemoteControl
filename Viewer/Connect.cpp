@@ -64,13 +64,7 @@ int CConnect::SetViewer(CFrmViewer *pView)
     }
     
     m_pView = pView;
-    bool check = connect(this, SIGNAL(sigConnected()),
-                         m_pView, SLOT(slotConnect()));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigDisconnected()),
-                    m_pView, SLOT(slotDisconnect()));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigSetDesktopSize(int, int)),
+    bool check = connect(this, SIGNAL(sigSetDesktopSize(int, int)),
                     m_pView, SLOT(slotSetDesktopSize(int, int)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigServerName(const QString&)),

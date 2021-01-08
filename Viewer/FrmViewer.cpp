@@ -11,8 +11,7 @@
 
 CFrmViewer::CFrmViewer(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CFrmViewer),
-    m_bClipboard(true)
+    ui(new Ui::CFrmViewer)
 {
     ui->setupUi(this);
 
@@ -241,20 +240,6 @@ void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
 CFrmViewer::ADAPT_WINDOWS CFrmViewer::AdaptWindows()
 {
     return m_AdaptWindows;
-}
-
-void CFrmViewer::SetClipboard(bool enable)
-{
-    m_bClipboard = enable;
-}
-
-void CFrmViewer::slotConnect()
-{
-}
-
-void CFrmViewer::slotDisconnect()
-{
-    m_Desktop = QImage();
 }
 
 void CFrmViewer::slotSetDesktopSize(int width, int height)

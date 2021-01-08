@@ -38,11 +38,7 @@ public:
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
     ADAPT_WINDOWS AdaptWindows();
 
-    void SetClipboard(bool enable = true);
-
 public Q_SLOTS:
-    void slotConnect();
-    void slotDisconnect();
     void slotSetDesktopSize(int width, int height);
     void slotSetName(const QString& szName);
     void slotUpdateRect(const QRect& r, const QImage& image);
@@ -81,7 +77,6 @@ private:
     QImage m_Desktop;
 
     ADAPT_WINDOWS m_AdaptWindows;
-    bool m_bClipboard;
 };
 
 #endif // FRMVIEWER_H
