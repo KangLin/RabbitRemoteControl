@@ -29,22 +29,22 @@ CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()
 #endif
 }
 
-QString CPluginFactoryFreeRdp::Name()
+const QString CPluginFactoryFreeRdp::Name() const
 {
     return "FreeRdp";
 }
 
-QString CPluginFactoryFreeRdp::Description()
+const QString CPluginFactoryFreeRdp::Description() const
 {
     return tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
 }
 
-QString CPluginFactoryFreeRdp::Protol()
+const QString CPluginFactoryFreeRdp::Protol() const
 {
     return "RDP";
 }
 
-QIcon CPluginFactoryFreeRdp::Icon()
+const QIcon CPluginFactoryFreeRdp::Icon() const
 {
     return QIcon(":/image/Windows");
 }

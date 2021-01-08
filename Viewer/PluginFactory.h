@@ -19,11 +19,11 @@ class RABBITREMOTECONTROL_EXPORT CPluginFactory : public QObject
 public:
     explicit CPluginFactory(QObject *parent = nullptr);
 
-    virtual QString Id();
-    virtual QString Protol() = 0;
-    virtual QString Name() = 0;
-    virtual QString Description() = 0;
-    virtual QIcon Icon();
+    virtual const QString Id() const;
+    virtual const QString Protol() const = 0;
+    virtual const QString Name() const = 0;
+    virtual const QString Description() const = 0;
+    virtual const QIcon Icon() const;
     
     // Return CConnecter pointer, the owner is caller
     virtual CConnecter* CreateConnecter(const QString& szProtol) = 0;

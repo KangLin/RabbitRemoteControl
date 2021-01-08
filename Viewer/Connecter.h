@@ -27,17 +27,17 @@ public:
      * @brief CConnecter
      * @param parent: The parent pointer must be specified as the corresponding CPluginFactory derived class
      */
-    explicit CConnecter(CPluginFactory *parent = nullptr);
+    explicit CConnecter(CPluginFactory *parent);
 
     /**
      * @brief Name, The name must same CPluginFactory::Name
      * @return 
      */
-    virtual QString Name() = 0;
-    virtual QString Description() = 0;
-    virtual QString Protol() = 0;
+    virtual const QString Name() const;
+    virtual const QString Description() const;
+    virtual const QString Protol() const;
     virtual qint16 Version() = 0;
-    virtual QIcon Icon();
+    virtual const QIcon Icon() const;
     
     /**
      * @brief Current connect server name. eg: Server name or Ip:Port 
@@ -52,6 +52,7 @@ public:
     // QDialog* ower is caller. The caller must delete it, when don't use.
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 
+    const CPluginFactory* GetPluginFactory() const;
     virtual int Load(QDataStream& d) = 0;
     virtual int Save(QDataStream& d) = 0;
     
@@ -72,7 +73,8 @@ Q_SIGNALS:
     
 private:
     CFrmViewer *m_pView;
-
+    const CPluginFactory* m_pPluginFactory;
+    
 protected:
     QString m_szServerName;
 };

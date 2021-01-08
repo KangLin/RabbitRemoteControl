@@ -6,7 +6,8 @@
 #include "PluginFactory.h"
 
 CConnecter::CConnecter(CPluginFactory *parent) : QObject(parent),
-    m_pView(new CFrmViewer())
+    m_pView(new CFrmViewer()),
+    m_pPluginFactory(parent)
 {
     m_pView->setAttribute(Qt::WA_DeleteOnClose);
 }
@@ -16,9 +17,24 @@ CFrmViewer* CConnecter::GetViewer()
     return m_pView;
 }
 
-QIcon CConnecter::Icon()
+const QString CConnecter::Name() const
 {
-    return QIcon(":/image/Connect");
+    return m_pPluginFactory->Name();
+}
+
+const QString CConnecter::Description() const
+{
+    return m_pPluginFactory->Description();
+}
+
+const QString CConnecter::Protol() const
+{
+    return m_pPluginFactory->Protol();
+}
+
+const QIcon CConnecter::Icon() const
+{
+    return m_pPluginFactory->Icon();
 }
 
 void CConnecter::slotSetClipboard(QMimeData* data)
@@ -36,4 +52,9 @@ void CConnecter::slotSetServerName(const QString& szName)
 QString CConnecter::GetServerName()
 {
     return m_szServerName;
+}
+
+const CPluginFactory* CConnecter::GetPluginFactory() const
+{
+    return m_pPluginFactory;
 }

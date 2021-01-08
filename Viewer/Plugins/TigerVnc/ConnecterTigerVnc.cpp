@@ -43,21 +43,6 @@ QString CConnecterTigerVnc::GetServerName()
     return m_szServerName;
 }
 
-QString CConnecterTigerVnc::Name()
-{
-    return "TigerVnc";
-}
-
-QString CConnecterTigerVnc::Description()
-{
-    return Protol() + ":" + m_Para.szServerName;
-}
-
-QString CConnecterTigerVnc::Protol()
-{
-    return "RFB";
-}
-
 qint16 CConnecterTigerVnc::Version()
 {
     return 0;
@@ -136,6 +121,7 @@ int CConnecterTigerVnc::Load(QDataStream &d)
            >> m_Para.bNoJpeg
            >> m_Para.nQualityLevel
            ;
+    //TODO: if version
     m_Para.nColorLevel = static_cast<CConnectTigerVnc::COLOR_LEVEL>(nColorLevel);
     return 0;
 }

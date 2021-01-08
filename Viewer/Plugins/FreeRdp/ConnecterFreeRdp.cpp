@@ -31,21 +31,6 @@ QString CConnecterFreeRdp::GetServerName()
     return m_szServerName;
 }
 
-QString CConnecterFreeRdp::Name()
-{
-    return "FreeRdp";
-}
-
-QString CConnecterFreeRdp::Description()
-{
-    return tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
-}
-
-QString CConnecterFreeRdp::Protol()
-{
-    return "RDP";
-}
-
 qint16 CConnecterFreeRdp::Version()
 {
     return 0;
@@ -79,7 +64,7 @@ int CConnecterFreeRdp::Load(QDataStream &d)
     m_pSettings->DesktopWidth = width;
     m_pSettings->DesktopHeight = height;
     m_pSettings->ColorDepth = colorDepth;
-    
+    //TODO: if version
     return nRet;
 }
 

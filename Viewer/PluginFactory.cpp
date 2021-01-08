@@ -6,12 +6,12 @@ CPluginFactory::CPluginFactory(QObject *parent) : QObject(parent)
 {
 }
 
-QString CPluginFactory::Id()
+const QString CPluginFactory::Id() const
 {
     return Protol() + ":" + Name();
 }
 
-QIcon CPluginFactory::Icon()
+const QIcon CPluginFactory::Icon() const
 {
     return QIcon(":/image/Connect");
 }

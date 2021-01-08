@@ -19,10 +19,10 @@ public:
     explicit CPluginFactoryTigerVnc(QObject *parent = nullptr);
     virtual ~CPluginFactoryTigerVnc() override;
     
-    virtual QString Name() override;
-    virtual QString Description() override;
-    virtual QString Protol() override;
-    virtual QIcon Icon() override;
+    virtual const QString Name() const override;
+    virtual const QString Description() const override;
+    virtual const QString Protol() const override;
+    virtual const QIcon Icon() const override;
     virtual CConnecter* CreateConnecter(const QString& szProtol) override;
     
 private:

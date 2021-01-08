@@ -26,23 +26,23 @@ CPluginFactoryLibVnc::~CPluginFactoryLibVnc()
 #endif
 }
 
-QString CPluginFactoryLibVnc::Name()
+const QString CPluginFactoryLibVnc::Name() const
 {
     return tr("LibVnc");
 }
 
-QString CPluginFactoryLibVnc::Description()
+const QString CPluginFactoryLibVnc::Description() const
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
             + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
 }
 
-QString CPluginFactoryLibVnc::Protol()
+const QString CPluginFactoryLibVnc::Protol() const
 {
     return "RFB";
 }
 
-QIcon CPluginFactoryLibVnc::Icon()
+const QIcon CPluginFactoryLibVnc::Icon() const
 {
     return QIcon(":/image/Connect");
 }

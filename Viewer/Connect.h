@@ -15,7 +15,7 @@
 #include <QMimeData>
 
 /**
- * @brief The CConnect class.
+ * @brief The CConnect class. It is finished connect in backgroup thread.
  * @note Only used inside the plugin
  * @see  CConnecter CFrmViewer
  */

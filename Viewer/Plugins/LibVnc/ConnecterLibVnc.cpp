@@ -29,21 +29,6 @@ QString CConnecterLibVnc::GetServerName()
     return m_szServerName;
 }
 
-QString CConnecterLibVnc::Name()
-{
-    return "LibVnc";
-}
-
-QString CConnecterLibVnc::Description()
-{
-    return Protol() + ":" + GetServerName();
-}
-
-QString CConnecterLibVnc::Protol()
-{
-    return "RFB";
-}
-
 qint16 CConnecterLibVnc::Version()
 {
     return 0;
@@ -66,6 +51,7 @@ int CConnecterLibVnc::Load(QDataStream &d)
       >> m_Para.bShared
       >> m_Para.bLocalCursor
       ;
+    //TODO: if version
     return nRet;
 }
 

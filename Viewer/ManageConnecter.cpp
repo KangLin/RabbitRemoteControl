@@ -135,7 +135,7 @@ int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecte
 
     QDataStream d(&f);
     d << m_FileVersion;
-    CPluginFactory* pFactory = dynamic_cast<CPluginFactory*>(pConnecter->parent());
+    const CPluginFactory* pFactory = pConnecter->GetPluginFactory();
     // In the CManageConnecter derived class,
     // the CreateConnecter function constructs the derived class of CConnecter,
     // and its parent pointer must be specified as the corresponding CPluginFactory derived class
