@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
     LOG_MODEL_INFO("Main", "Language: %s", QLocale::system().name().toStdString().c_str());
     
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
+    a.setOrganizationName(QObject::tr("Kang Lin studio"));
     
     // Check update version
     CFrmUpdater *pUpdate = new CFrmUpdater();
