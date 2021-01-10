@@ -9,6 +9,7 @@ set(INSTALL_HEADER_FILES
     Connecter.h
     ManageConnecter.h
     PluginFactory.h
+    ConnecterBackThread.h
     )
 
 set(HEADER_FILES
@@ -22,6 +23,7 @@ set(SOURCE_FILES
     Connect.cpp
     ManageConnecter.cpp
     PluginFactory.cpp
+    ConnecterBackThread.cpp
     )
 
 set(SOURCE_UI_FILES

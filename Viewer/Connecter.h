@@ -29,10 +29,6 @@ public:
      */
     explicit CConnecter(CPluginFactory *parent);
 
-    /**
-     * @brief Name, The name must same CPluginFactory::Name
-     * @return 
-     */
     virtual const QString Name() const;
     virtual const QString Description() const;
     virtual const QString Protol() const;
