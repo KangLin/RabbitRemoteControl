@@ -210,7 +210,10 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
                     0,
                     Qt::Horizontal,
                     event->buttons(),
-                    event->modifiers()
+                    event->modifiers(),
+                    event->phase(),
+                    event->source(),
+                    event->inverted()
                     );
     emit sigWheelEvent(&e);
     event->accept();
