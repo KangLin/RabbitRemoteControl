@@ -4,10 +4,10 @@
 #define CCONNECTERFREERDP_H
 
 #include "Connecter.h"
-#include "ConnectThread.h"
+#include "ConnecterPlugins.h"
 #include "freerdp/freerdp.h"
 
-class CConnecterFreeRdp : public CConnecter
+class CConnecterFreeRdp : public CConnecterPlugins
 {
     Q_OBJECT
 public:
@@ -24,13 +24,8 @@ public:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
     virtual int Load(QDataStream &d) override;
     virtual int Save(QDataStream &d) override;
-    
-public Q_SLOTS:
-    virtual int Connect() override;
-    virtual int DisConnect() override;
-    
-private:
-    CConnectThread* m_pThread;
+
+    virtual CConnect *InstanceConnect() override;
 };
 
 #endif // CCONNECTERFREERDP_H

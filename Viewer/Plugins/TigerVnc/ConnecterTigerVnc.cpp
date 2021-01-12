@@ -5,8 +5,7 @@
 #include <QDebug>
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
-    : CConnecter(parent),
-      m_pThread(nullptr)
+    : CConnecterPlugins(parent)
 {
     m_Para.bSave = true;
     m_Para.bShared = true;
@@ -27,11 +26,6 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
 CConnecterTigerVnc::~CConnecterTigerVnc()
 {
     qDebug() << "CConnecterTigerVnc::~CConnecterTigerVnc()";
-    if(m_pThread)
-    {
-        m_pThread->wait();
-        delete m_pThread;
-    }
 }
 
 QString CConnecterTigerVnc::GetServerName()
@@ -54,26 +48,6 @@ QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
     CDlgSettings* p = new CDlgSettings(&m_Para);
     p->setAttribute(Qt::WA_DeleteOnClose);
     return p;
-}
-
-int CConnecterTigerVnc::Connect()
-{
-    if(nullptr == m_pThread)
-    {
-        m_pThread = new CConnectThread(GetViewer(), this);
-    }
-    m_pThread->start();
-    return 0;
-}
-
-int CConnecterTigerVnc::DisConnect()
-{
-    if(!m_pThread) return -1;
-    
-    m_pThread->m_bExit = true;
-    // Actively disconnect, without waiting for the thread to exit and then disconnect
-    emit sigDisconnected();
-    return 0;
 }
 
 int CConnecterTigerVnc::Save(QDataStream & d)
@@ -124,4 +98,9 @@ int CConnecterTigerVnc::Load(QDataStream &d)
     //TODO: if version
     m_Para.nColorLevel = static_cast<CConnectTigerVnc::COLOR_LEVEL>(nColorLevel);
     return 0;
+}
+
+CConnect* CConnecterTigerVnc::InstanceConnect()
+{
+    return new CConnectTigerVnc(this);
 }

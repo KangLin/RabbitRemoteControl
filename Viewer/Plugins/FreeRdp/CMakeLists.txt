@@ -24,7 +24,6 @@ SET(SOURCE_FILES
     PluginFactoryFreeRdp.cpp
     ConnectFreeRdp.cpp
     ConnecterFreeRdp.cpp
-    ConnectThread.cpp
     DlgSetFreeRdp.cpp
     ConvertKeyCode.cpp
     CursorFreeRdp.cpp
@@ -36,7 +35,6 @@ SET(HEADER_FILES
     PluginFactoryFreeRdp.h
     ConnectFreeRdp.h
     ConnecterFreeRdp.h
-    ConnectThread.h
     DlgSetFreeRdp.h
     ConvertKeyCode.h
     CursorFreeRdp.h

@@ -20,7 +20,7 @@ class CConnectTigerVnc : public CConnect,
     Q_OBJECT
 
 public:
-    explicit CConnectTigerVnc(CConnecterTigerVnc* pConnecter = nullptr,
+    explicit CConnectTigerVnc(CConnecterTigerVnc* pConnecter,
                               QObject *parent = nullptr);
     virtual ~CConnectTigerVnc() override;
     

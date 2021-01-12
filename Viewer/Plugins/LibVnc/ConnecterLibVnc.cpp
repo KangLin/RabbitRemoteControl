@@ -2,8 +2,7 @@
 #include "DlgSettingsLibVnc.h"
 #include <QDebug>
 
-CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecter(parent),
-    m_pThread(nullptr)
+CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecterPlugins(parent)
 {
     m_Para.nPort = 5900;
     m_Para.bShared = true;
@@ -13,11 +12,6 @@ CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecter(parent),
 CConnecterLibVnc::~CConnecterLibVnc()
 {
     qDebug() << "CConnecterLibVnc::~CConnecterLibVnc()";
-    if(m_pThread)
-    {
-        m_pThread->wait();
-        delete m_pThread;
-    }
 }
 
 QString CConnecterLibVnc::GetServerName()
@@ -69,24 +63,7 @@ int CConnecterLibVnc::Save(QDataStream &d)
     return nRet;
 }
 
-int CConnecterLibVnc::Connect()
+CConnect* CConnecterLibVnc::InstanceConnect()
 {
-    int nRet = 0;
-    if(nullptr == m_pThread)
-    {
-        m_pThread = new CConnectThreadLibVnc(GetViewer(), this);
-    }
-    m_pThread->start();
-    return nRet;
-}
-
-int CConnecterLibVnc::DisConnect()
-{
-    //qDebug() << "CConnecterLibVnc::DisConnect()";
-    if(!m_pThread) return -1;
-    
-    m_pThread->m_bExit = true;
-    // Actively disconnect, without waiting for the thread to exit and then disconnect
-    emit sigDisconnected();
-    return 0;
+    return new CConnectLibVnc(this);
 }

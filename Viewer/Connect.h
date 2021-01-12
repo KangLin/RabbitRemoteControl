@@ -15,16 +15,17 @@
 #include <QMimeData>
 
 /**
- * @brief The CConnect class. It is finished connect in backgroup thread.
- * @note Only used inside the plugin
+ * @brief The CConnect class. It is finished connect in background thread.
+ * @note The interface only is implemented by plugin
  * @see  CConnecter CFrmViewer
+ * @addtogroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit CConnect(CConnecter* pConnecter = nullptr, QObject *parent = nullptr);
+    explicit CConnect(CConnecter* pConnecter, QObject *parent = nullptr);
     virtual ~CConnect() override;
 
 protected:
@@ -41,6 +42,12 @@ public Q_SLOTS:
     virtual int Clean();
     virtual int Connect() = 0;
     virtual int Disconnect() = 0;
+    /**
+     * @brief Process
+     * @return 0: continue
+     *         1: exit
+     *       < 0: error
+     */
     virtual int Process() = 0;
     
     virtual void slotClipBoardChange() = 0;

@@ -1,11 +1,12 @@
 //! @author: Kang Lin(kl222@126.com)
 
 #include "ConnecterFreeRdp.h"
+#include "ConnectFreeRdp.h"
 #include <QDebug>
 #include "DlgSetFreeRdp.h"
 
-CConnecterFreeRdp::CConnecterFreeRdp(CPluginFactory *parent) : CConnecter(parent),
-    m_pThread(nullptr)
+CConnecterFreeRdp::CConnecterFreeRdp(CPluginFactory *parent)
+    : CConnecterPlugins(parent)
 {
     // 在 freerdp_client_context_free 中释放
     m_pSettings = freerdp_settings_new(0);
@@ -14,11 +15,6 @@ CConnecterFreeRdp::CConnecterFreeRdp(CPluginFactory *parent) : CConnecter(parent
 CConnecterFreeRdp::~CConnecterFreeRdp()
 {
     qDebug() << "CConnecterFreeRdp::~CConnecterFreeRdp()";
-    if(m_pThread)
-    {
-        m_pThread->wait();
-        delete m_pThread;
-    }
 }
 
 QString CConnecterFreeRdp::GetServerName()
@@ -87,27 +83,7 @@ int CConnecterFreeRdp::Save(QDataStream &d)
     return nRet;
 }
 
-int CConnecterFreeRdp::Connect()
+CConnect *CConnecterFreeRdp::InstanceConnect()
 {
-    int nRet = 0;
-    if(nullptr == m_pThread)
-    {
-        m_pThread = new CConnectThread(GetViewer(), this);
-    } else {
-        m_pThread->quit();
-    }
-
-    m_pThread->start();
-    return nRet;
-}
-
-int CConnecterFreeRdp::DisConnect()
-{
-    int nRet = 0;
-    if(!m_pThread) return -1;
-    
-    m_pThread->m_bExit = true;
-    // Actively disconnect, without waiting for the thread to exit and then disconnect
-    emit sigDisconnected();
-    return nRet;
+    return new CConnectFreeRdp(this);
 }

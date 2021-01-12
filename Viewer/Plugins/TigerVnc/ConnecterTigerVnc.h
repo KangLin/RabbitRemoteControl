@@ -3,16 +3,16 @@
 #ifndef CCONNECTERTIGERVNC_H
 #define CCONNECTERTIGERVNC_H
 
-#include "ConnectThread.h"
+#include "ConnecterPlugins.h"
 #include "FrmViewer.h"
 #include "DlgSettings.h"
 
-class CConnecterTigerVnc : public CConnecter
+class CConnecterTigerVnc : public CConnecterPlugins
 {
     Q_OBJECT
 
 public:
-    explicit CConnecterTigerVnc(CPluginFactory *parent = nullptr);
+    explicit CConnecterTigerVnc(CPluginFactory *parent);
     virtual ~CConnecterTigerVnc() override;
 
     virtual QString GetServerName() override;
@@ -22,16 +22,11 @@ public:
     
     virtual int Load(QDataStream& d) override;
     virtual int Save(QDataStream& d) override;
-    
-public Q_SLOTS:
-    virtual int Connect() override;
-    virtual int DisConnect() override;
 
+    virtual CConnect* InstanceConnect() override;
+    
 public:
     CConnectTigerVnc::strPara m_Para;
-
-private:
-    CConnectThread* m_pThread;
 };
 
 #endif // CCONNECTERTIGERVNC_H

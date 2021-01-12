@@ -1,14 +1,15 @@
 #ifndef CCONNECTERLIBVNC_H
 #define CCONNECTERLIBVNC_H
 
-#include "ConnectThreadLibVnc.h"
+//#include "ConnectThreadLibVnc.h"
+#include "ConnecterPlugins.h"
 #include "ConnectLibVnc.h"
 
 class CDlgSettingsLibVnc;
-class CConnecterLibVnc : public CConnecter
+class CConnecterLibVnc : public CConnecterPlugins
 {
 public:
-    CConnecterLibVnc(CPluginFactory *parent = nullptr);
+    CConnecterLibVnc(CPluginFactory *parent);
     virtual ~CConnecterLibVnc() override;
     
     // CConnecter interface
@@ -18,14 +19,9 @@ public:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
     virtual int Load(QDataStream &d) override;
     virtual int Save(QDataStream &d) override;
+    virtual CConnect* InstanceConnect() override;
     
-public slots:
-    virtual int Connect() override;
-    virtual int DisConnect() override;
-    
-private:
-    CConnectThreadLibVnc* m_pThread;
-    
+private:   
     CConnectLibVnc::strPara m_Para;
     friend CConnectLibVnc;
     friend CDlgSettingsLibVnc;

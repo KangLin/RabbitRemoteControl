@@ -13,7 +13,6 @@ SET(SOURCE_FILES
     ConnectTigerVnc.cpp
     FramePixelBuffer.cpp
     ConnecterTigerVnc.cpp
-    ConnectThread.cpp
     PluginFactoryTigerVnc.cpp
     DlgSettings.cpp
     )
@@ -21,7 +20,6 @@ SET(HEADER_FILES
     ConnectTigerVnc.h
     FramePixelBuffer.h
     ConnecterTigerVnc.h
-    ConnectThread.h
     PluginFactoryTigerVnc.h
     DlgSettings.h
     )

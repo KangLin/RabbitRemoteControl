@@ -44,7 +44,6 @@ endif()
 SET(SOURCE_FILES
     PluginFactoryLibVnc.cpp
     ConnecterLibVnc.cpp
-    ConnectThreadLibVnc.cpp
     ConnectLibVnc.cpp
     DlgSettingsLibVnc.cpp
     )
@@ -52,7 +51,6 @@ SET(SOURCE_FILES
 SET(HEADER_FILES
     PluginFactoryLibVnc.h
     ConnecterLibVnc.h
-    ConnectThreadLibVnc.h
     ConnectLibVnc.h
     DlgSettingsLibVnc.h
     )
