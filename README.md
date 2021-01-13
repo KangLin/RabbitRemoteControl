@@ -84,7 +84,7 @@ Some of them are:
 * Reviewing and testing pull requests – you don't need to be able to code to
   do that :wink:
 * Distribute this program to various operating systems
-  - linux
+  - Linux
     + Ubuntu, Debian
     + Redhat
     + openSUSE

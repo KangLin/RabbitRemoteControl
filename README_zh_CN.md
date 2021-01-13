@@ -10,7 +10,7 @@
   - [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
 - 编译状态
   - [![编译状态](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
-- [修改日志](ChangeLog.md)
+- [修改日志](ChangeLog_zh_CN.md)
 
 -----------------------------------------------------------------------
 ### 简介
@@ -79,7 +79,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 * 翻译，它很容易 :smile:
 * 审核和测试 pull requests – 你不需要编写代码 :wink:
 * 帮助我完成分发到常用的操作系统
-  - linux
+  - Linux
     + Ubuntu, Debian
     + Redhat
     + openSUSE
