@@ -8,15 +8,18 @@ if [ -n "$1" ]; then
     SOURCE_DIR=$1
 fi
 TOOLS_DIR=${SOURCE_DIR}/Tools
-if [ -n "$2" ]
+if [ -n "$2" ]; then
     TOOLS_DIR=$2
 fi
 ThirdLibs_DIR=${TOOLS_DIR}/ThirdLibs
-if [ -n "$3" ]
+if [ -n "$3" ]; then
     ThirdLibs_DIR=$3
 fi
+if [ ! -d "$ThirdLibs_DIR" ]; then
+    mkdir -p $ThirdLibs_DIR
+fi
 ThirdLibs_SOURCE_DIR=${TOOLS_DIR}/ThirdLibsSrc
-if [ -n "$4" ]
+if [ -n "$4" ]; then
     ThirdLibs_SOURCE_DIR=$4
 fi
 if [ ! -d "$ThirdLibs_SOURCE_DIR" ]; then
@@ -42,8 +45,6 @@ if [ "$MAKE_JOB_PARA" = "-j1" ];then
     MAKE_JOB_PARA=""
 fi
 
-QT_ROOT=${Qt5_dir}
-
 cd ${SOURCE_DIR}
 
 mkdir -p build
@@ -56,20 +57,10 @@ if [ "${BUILD_TARGERT}" = "android" ]; then
     if [ -d "$ThirdLibs_DIR" ]; then
         CONFIG_PARA="${CONFIG_PARA} -DOPENSSL_ROOT_DIR=$ThirdLibs_DIR"
     fi
-    cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
+    cmake -G"Unix Makefiles" ${SOURCE_DIR} ${CONFIG_PARA} \
         -DCMAKE_INSTALL_PREFIX=`pwd`/android-build \
         -DCMAKE_VERBOSE_MAKEFILE=ON \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
-        -DQt5Core_DIR=${QT_ROOT}/lib/cmake/Qt5Core \
-        -DQt5Gui_DIR=${QT_ROOT}/lib/cmake/Qt5Gui \
-        -DQt5Widgets_DIR=${QT_ROOT}/lib/cmake/Qt5Widgets \
-        -DQt5Xml_DIR=${QT_ROOT}/lib/cmake/Qt5Xml \
-        -DQt5Sql_DIR=${QT_ROOT}/lib/cmake/Qt5Sql \
-        -DQt5Network_DIR=${QT_ROOT}/lib/cmake/Qt5Network \
-        -DQt5Multimedia_DIR=${QT_ROOT}/lib/cmake/Qt5Multimedia \
-        -DQt5LinguistTools_DIR=${QT_ROOT}/lib/cmake/Qt5LinguistTools \
-        -DQt5AndroidExtras_DIR=${QT_ROOT}/lib/cmake/Qt5AndroidExtras \
+        -DCMAKE_BUILD_TYPE=Release 
         -DANDROID_PLATFORM=${ANDROID_API} \
         -DANDROID_ABI="${BUILD_ARCH}" \
         -DCMAKE_MAKE_PROGRAM=make \
@@ -79,16 +70,14 @@ if [ "${BUILD_TARGERT}" = "android" ]; then
     cmake --build . --config MinSizeRel --target install-runtime -- ${MAKE_JOB_PARA}
     
 else
-    echo "cmake -G\"${GENERATORS}\" ${SOURCE_DIR} ${CONFIG_PARA} 
+    echo "cmake ${SOURCE_DIR} ${CONFIG_PARA} 
         -DCMAKE_INSTALL_PREFIX=`pwd`/install 
         -DCMAKE_VERBOSE_MAKEFILE=ON 
-        -DCMAKE_BUILD_TYPE=Release 
-        -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5"
-    cmake -G"${GENERATORS}" ${SOURCE_DIR} ${CONFIG_PARA} \
+        -DCMAKE_BUILD_TYPE=Release "
+    cmake ${SOURCE_DIR} ${CONFIG_PARA} \
         -DCMAKE_INSTALL_PREFIX=`pwd`/install \
         -DCMAKE_VERBOSE_MAKEFILE=ON \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5
+        -DCMAKE_BUILD_TYPE=Release 
     
     cmake --build . --config Release -- ${MAKE_JOB_PARA}
     cmake --build . --config Release --target install-runtime
