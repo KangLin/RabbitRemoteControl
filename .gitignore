@@ -96,6 +96,7 @@ PlatformSpecifics/Windows/*.rc
 [Rr]elease/
 [Mm]in[Ss]ize[Rr]el/
 [Rr]el[Ww]ith[Dd]eb[Ii]nfo/
+build*/
 
 # Visual Studio - Browsing Database File
 *.sdf

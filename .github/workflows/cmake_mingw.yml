@@ -31,10 +31,13 @@ jobs:
       run: |
         set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
         pacman -Syu
-        pacman -S --noconfirm mingw-w64-x86_64-cmake mingw-w64-x86_64-make
-        pacman -S --noconfirm mingw-w64-x86_64-gcc
-        pacman -S --noconfirm mingw-w64-x86_64-qt5
-        pacman -S --noconfirm mingw-w64-x86_64-libvncserver mingw-w64-x86_64-cyrus-sasl 
+        pacman -S --noconfirm mingw-w64-x86_64-cmake ^
+             mingw-w64-i686-nsis ^
+             mingw-w64-x86_64-make ^
+             mingw-w64-x86_64-gcc ^
+             mingw-w64-x86_64-qt5 ^
+             mingw-w64-x86_64-libvncserver ^
+             mingw-w64-x86_64-cyrus-sasl 
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{runner.workspace}}/build
@@ -62,3 +65,55 @@ jobs:
         Qt5_Dir: C:\msys64\mingw64
         MSYSTEM: MINGW64
         BUILD_ARCH: x64
+
+    - name: Package
+      working-directory: ${{runner.workspace}}/build
+      shell: cmd
+      run: |
+        set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
+        nsis Install.nsi
+        install/bin/RabbitRemoteControlApp.exe -f "%CD%/update_windows.xml" -pf RabbitRemoteControl-Setup-v0.0.1.exe -m "v0.0.1"
+
+    - name: Update artifact
+      uses: actions/upload-artifact@v2
+      with:
+          name: RabbitRemoteControl-Setup-v0.0.1.exe
+          path: |
+            RabbitRemoteControl-Setup-*.exe
+            update_windows.xml
+
+    #- name: Release
+    #  uses: fnkr/github-action-ghr@v1
+    #  if: startsWith(github.ref, 'refs/tags/')
+    #  env:
+    #    GHR_COMPRESS: xz
+    #    GHR_PATH: ${{github.workspace}}/rabbitremotecontrol_*.deb
+    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload To Github Release
+      # You may pin to the exact commit or the version.
+      # uses: xresloader/upload-to-github-release@3ad14478ee4fb9bd65e84c6d496a7d6862892f43
+      uses: xresloader/upload-to-github-release@v1.2.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        # The files or file patterns to upload. You can upload multiple files by split them by semicolon. You can use the glob pattern to find the files.
+        file: ${{github.workspace}}/RabbitRemoteControl-Setup-*.exe # default is 
+        # The files or file patterns to delete before uploading new files. You can delete multiple files by split them by semicolon. You can use the glob pattern to find the files.
+        #delete_file: # optional, default is 
+        # If you need to overwrite existing files, add overwrite: true to the with.
+        #overwrite: # optional, default is false
+        # The resultant deployment is a draft Release that only repository collaborators can see. This gives you an opportunity to examine and edit the draft release.
+        draft: false # optional, default is true
+        # The resultant deployment is a Prerelease. This gives you an opportunity to examine and edit the prerelease.
+        prerelease: true # optional, default is false
+        # With tags: true, your Releases deployment will trigger if and only if the build is a tagged build.
+        tags: true # optional, default is false
+        # Only work on these branches(splited by semicolon), set to nothing to accept all branches.
+        branches: master # optional, default is 
+        # With verbose: true, be verbose.
+        verbose: true # optional, default is false
+        # Set custom tag name.
+        tag_name: v0.0.1 # optional, default is 
+        # If try to update latest release.
+        update_latest_release: true # optional, default is false
