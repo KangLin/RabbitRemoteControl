@@ -79,6 +79,6 @@ else
         -DCMAKE_VERBOSE_MAKEFILE=ON \
         -DCMAKE_BUILD_TYPE=Release 
     
-    cmake --build . --config Release -- ${MAKE_JOB_PARA}
+    cmake --build . --config Release #-- ${MAKE_JOB_PARA}
     cmake --build . --config Release --target install-runtime
 fi
