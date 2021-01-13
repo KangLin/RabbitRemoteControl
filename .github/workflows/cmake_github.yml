@@ -59,4 +59,4 @@ jobs:
     - name: Build
       working-directory: ${{github.workspace}}
       shell: bash
-      run: ./ci/build_github_action.sh ${{github.workspace}} #${{runner.workspace}}/Tools ${{runner.workspace}}/ThirdLibs ${{runner.workspace}}/ThirdLibsSrc
+      run: ./ci/build_github_action.sh #${{github.workspace}} ${{runner.workspace}}/Tools ${{runner.workspace}}/ThirdLibs ${{runner.workspace}}/ThirdLibsSrc
