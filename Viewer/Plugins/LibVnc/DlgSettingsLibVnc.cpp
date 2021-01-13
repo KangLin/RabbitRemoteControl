@@ -9,6 +9,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
     ui(new Ui::CDlgSettingsLibVnc),
     m_pPara(&pConnecter->m_Para)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     
     // Server

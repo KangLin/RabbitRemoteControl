@@ -10,6 +10,7 @@ CDlgSetFreeRdp::CDlgSetFreeRdp(rdpSettings *pSettings, QWidget *parent) :
     ui(new Ui::CDlgSetFreeRdp),
     m_pSettings(pSettings)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
 
     ui->cbDesktopSize->addItem("640×480");

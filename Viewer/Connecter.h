@@ -28,7 +28,8 @@ public:
      * @param parent: The parent pointer must be specified as the corresponding CPluginFactory derived class
      */
     explicit CConnecter(CPluginFactory *parent);
-
+    virtual ~CConnecter();
+    
     virtual const QString Name() const;
     virtual const QString Description() const;
     virtual const QString Protol() const;
@@ -42,10 +43,15 @@ public:
     virtual QString GetServerName();
     /**
      * @brief GetViewer 
-     * @return CFrmViewer* ower is caller. The caller must delete it, when don't use.
+     * @return CFrmViewer*: the ownership is the instance of the class
      */
     virtual CFrmViewer* GetViewer();
-    // QDialog* ower is caller. The caller must delete it, when don't use.
+    /**
+     * @brief GetDialogSettings
+     * @param parent: the parent windows of the dialog of return
+     * @return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
+     *         The ownership is caller.
+     */
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 
     const CPluginFactory* GetPluginFactory() const;

@@ -9,7 +9,12 @@ CConnecter::CConnecter(CPluginFactory *parent) : QObject(parent),
     m_pView(new CFrmViewer()),
     m_pPluginFactory(parent)
 {
-    m_pView->setAttribute(Qt::WA_DeleteOnClose);
+}
+
+CConnecter::~CConnecter()
+{
+    if(m_pView)
+        delete m_pView;
 }
 
 CFrmViewer* CConnecter::GetViewer()

@@ -285,8 +285,29 @@ void MainWindow::on_actionOpen_O_triggered()
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
     
-    slotInformation(tr("Connecting to ") + p->GetServerName());
-    p->Connect();
+    QDialog* pDlg = p->GetDialogSettings();
+    if(pDlg)
+    {
+        int nRet = pDlg->exec();
+        switch(nRet)
+        {
+        case QDialog::Rejected:
+            delete p;
+            break;
+        case QDialog::Accepted:
+            
+            if(!p->GetServerName().isEmpty())
+                slotInformation(tr("Connecting to ") + p->GetServerName());
+
+            p->Connect();
+            break;
+        }
+    } else {
+        qWarning() << "The protol[" << p->Protol() << "] don't settings dialog";
+    }
+
+//    slotInformation(tr("Connecting to ") + p->GetServerName());
+//    p->Connect();
 }
 
 void MainWindow::slotConnect()
@@ -410,8 +431,10 @@ void MainWindow::slotDisconnected()
             int nIndex = GetViewIndex(it.key());
             if(nIndex >= 0)
             {
-                // Delete the scroll, the scroll will delete child widget
-                QWidget* pScroll = m_pTab->widget(nIndex);
+                // Delete the scroll, the scroll will is not delete child widget,
+                // the child widget will delete by CConnecter
+                QScrollArea* pScroll = dynamic_cast<QScrollArea*>(m_pTab->widget(nIndex));
+                pScroll->takeWidget();
                 m_pTab->removeTab(nIndex);
                 delete pScroll;
             }

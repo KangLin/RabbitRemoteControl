@@ -10,6 +10,7 @@ CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     ui(new Ui::CDlgSettings),
     m_pPara(pPara)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     
     // Server

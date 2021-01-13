@@ -16,6 +16,7 @@ CConnecterPlugins::~CConnecterPlugins()
         m_pThread->wait();
         delete m_pThread;
     }
+    qDebug() << this << this->metaObject()->className();
 }
 
 int CConnecterPlugins::OnRun()

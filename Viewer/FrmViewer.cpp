@@ -13,6 +13,7 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmViewer)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
 
     SetAdaptWindows(Original);

@@ -46,7 +46,6 @@ QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 {
     Q_UNUSED(parent)
     CDlgSettings* p = new CDlgSettings(&m_Para);
-    p->setAttribute(Qt::WA_DeleteOnClose);
     return p;
 }
 
