@@ -48,7 +48,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
 
 if(WIN32)
     install(FILES Resource/Image/App.ico
-        ${CMAKE_SOURCE_DIR}/Install/Install.nsi
         DESTINATION .
             COMPONENT Runtime)
 endif()
