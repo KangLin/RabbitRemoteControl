@@ -31,13 +31,13 @@ jobs:
       run: |
         set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
         pacman -Syu
-        pacman -S --noconfirm mingw-w64-x86_64-cmake ^
-             mingw-w64-i686-nsis ^
-             mingw-w64-x86_64-make ^
-             mingw-w64-x86_64-gcc ^
-             mingw-w64-x86_64-qt5 ^
-             mingw-w64-x86_64-libvncserver ^
-             mingw-w64-x86_64-cyrus-sasl 
+        pacman -S --noconfirm mingw-w64-x86_64-cmake 
+        pacman -S --noconfirm mingw-w64-i686-nsis
+        pacman -S --noconfirm mingw-w64-x86_64-make
+        pacman -S --noconfirm mingw-w64-x86_64-gcc
+        pacman -S --noconfirm mingw-w64-x86_64-qt5
+        pacman -S --noconfirm mingw-w64-x86_64-libvncserver
+        pacman -S --noconfirm mingw-w64-x86_64-cyrus-sasl 
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{runner.workspace}}/build
