@@ -118,7 +118,7 @@ int CConnectLibVnc::Disconnect()
 int CConnectLibVnc::Process()
 {
     int nRet = 0;
-    nRet = WaitForMessage(m_pClient, 500); /* useful for timeout to be no more than 10 msec per second (=10000/framerate usec) */
+    nRet = WaitForMessage(m_pClient, 500);
     if (nRet < 0)
         return nRet;
     else

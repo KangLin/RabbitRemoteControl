@@ -70,6 +70,7 @@ int CConnecterPlugins::DisConnect()
     int nRet = 0;
     m_bExit = true;
     nRet = OnDisConnect();
+    
     return nRet;
 }
 
@@ -80,5 +81,6 @@ int CConnecterPlugins::OnConnect()
 
 int CConnecterPlugins::OnDisConnect()
 {
+    emit sigDisconnected();
     return 0;
 }

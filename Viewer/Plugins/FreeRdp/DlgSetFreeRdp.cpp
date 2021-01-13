@@ -16,7 +16,7 @@ CDlgSetFreeRdp::CDlgSetFreeRdp(rdpSettings *pSettings, QWidget *parent) :
     ui->cbDesktopSize->addItem("640×480");
     ui->cbDesktopSize->addItem("800×600");
     ui->cbDesktopSize->addItem("1280×720");
-        
+
     ui->cbColorDepth->addItem(tr("8 bits"), 8);
     ui->cbColorDepth->addItem(tr("16 bits"), 16);
     ui->cbColorDepth->addItem(tr("24 bits"), 24);

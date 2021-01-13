@@ -44,6 +44,7 @@ int CConnecterLibVnc::Load(QDataStream &d)
       >> m_Para.szPassword
       >> m_Para.bShared
       >> m_Para.bLocalCursor
+      >> m_Para.bClipboard
       ;
     //TODO: if version
     return nRet;
@@ -59,6 +60,7 @@ int CConnecterLibVnc::Save(QDataStream &d)
       << m_Para.szPassword
       << m_Para.bShared
       << m_Para.bLocalCursor
+      << m_Para.bClipboard
       ;
     return nRet;
 }
