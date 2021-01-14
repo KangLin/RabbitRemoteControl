@@ -285,29 +285,29 @@ void MainWindow::on_actionOpen_O_triggered()
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
     
-    QDialog* pDlg = p->GetDialogSettings();
-    if(pDlg)
-    {
-        int nRet = pDlg->exec();
-        switch(nRet)
-        {
-        case QDialog::Rejected:
-            delete p;
-            break;
-        case QDialog::Accepted:
+//    QDialog* pDlg = p->GetDialogSettings();
+//    if(pDlg)
+//    {
+//        int nRet = pDlg->exec();
+//        switch(nRet)
+//        {
+//        case QDialog::Rejected:
+//            delete p;
+//            break;
+//        case QDialog::Accepted:
             
-            if(!p->GetServerName().isEmpty())
-                slotInformation(tr("Connecting to ") + p->GetServerName());
+//            if(!p->GetServerName().isEmpty())
+//                slotInformation(tr("Connecting to ") + p->GetServerName());
 
-            p->Connect();
-            break;
-        }
-    } else {
-        qWarning() << "The protol[" << p->Protol() << "] don't settings dialog";
-    }
+//            p->Connect();
+//            break;
+//        }
+//    } else {
+//        qWarning() << "The protol[" << p->Protol() << "] don't settings dialog";
+//    }
 
-//    slotInformation(tr("Connecting to ") + p->GetServerName());
-//    p->Connect();
+    slotInformation(tr("Connecting to ") + p->GetServerName());
+    p->Connect();
 }
 
 void MainWindow::slotConnect()

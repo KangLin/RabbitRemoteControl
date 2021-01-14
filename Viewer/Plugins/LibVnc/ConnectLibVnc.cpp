@@ -592,8 +592,9 @@ void CConnectLibVnc::slotKeyPressEvent(QKeyEvent* e)
     bool shiftModifier = false;
     if (e->modifiers() & Qt::ShiftModifier)
         shiftModifier = true;
-    
-    SendKeyEvent(m_pClient, TranslateRfbKey(e->key(), shiftModifier), TRUE);
+    uint32_t key = TranslateRfbKey(e->key(), shiftModifier);
+    if(key)
+        SendKeyEvent(m_pClient, key, TRUE);
 }
 
 void CConnectLibVnc::slotKeyReleaseEvent(QKeyEvent* e)
@@ -602,6 +603,7 @@ void CConnectLibVnc::slotKeyReleaseEvent(QKeyEvent* e)
     bool shiftModifier = false;
     if (e->modifiers() & Qt::ShiftModifier)
         shiftModifier = true;
-
-    SendKeyEvent(m_pClient, TranslateRfbKey(e->key(), shiftModifier), FALSE);
+    uint32_t key = TranslateRfbKey(e->key(), shiftModifier);
+    if(key)
+        SendKeyEvent(m_pClient, key, FALSE);
 }

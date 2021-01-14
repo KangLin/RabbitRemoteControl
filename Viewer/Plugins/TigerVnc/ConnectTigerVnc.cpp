@@ -455,8 +455,9 @@ void CConnectTigerVnc::slotKeyPressEvent(QKeyEvent* e)
     if (e->modifiers() == Qt::NoModifier)
         modifier = false;
     //vlog.debug("key:%d", e->key());
-    writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier),
-                                  0, true);
+    uint32_t key = TranslateRfbKey(e->key(), modifier);
+    if(key)
+        writer()->writeKeyEvent(key, 0, true);
 }
 
 void CConnectTigerVnc::slotKeyReleaseEvent(QKeyEvent* e)
@@ -465,8 +466,9 @@ void CConnectTigerVnc::slotKeyReleaseEvent(QKeyEvent* e)
     bool modifier = true;
     if (e->modifiers() == Qt::NoModifier)
         modifier = false;
-
-    writer()->writeKeyEvent(TranslateRfbKey(e->key(), modifier), 0, false);
+    uint32_t key = TranslateRfbKey(e->key(), modifier);
+    if(key)
+        writer()->writeKeyEvent(key, 0, false);
 }
 
 /**
