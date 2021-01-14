@@ -10,7 +10,6 @@
 #include "FrmViewer.h"
 #include "FrmFullScreenToolBar.h"
 
-#include <QTabBar>
 #include <QMessageBox>
 #include <QScreen>
 #include <QApplication>
@@ -22,29 +21,26 @@ MainWindow::MainWindow(QWidget *parent)
       ui(new Ui::MainWindow),
       m_Style(this),
       m_pGBView(nullptr),
-      m_pTab(nullptr),
+      m_pView(nullptr),
       m_pFullScreenToolBar(nullptr)
 {
+    bool check = false;
     m_Style.LoadStyle();
     ui->setupUi(this);
 
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());
     
-    m_pTab = new QTabWidget(this);
-    m_pTab->setTabsClosable(true);
-    m_pTab->setUsesScrollButtons(true);
-    m_pTab->setMovable(true);
-    m_pTab->setFocusPolicy(Qt::NoFocus);
-    bool check = connect(m_pTab, SIGNAL(tabCloseRequested(int)),
-                    this, SLOT(slotTabCloseRequested(int)));
-    Q_ASSERT(check);
-    check = connect(m_pTab, SIGNAL(currentChanged(int)),
-            this, SLOT(slotCurrentChanged(int)));
-    Q_ASSERT(check);
-
-    this->setCentralWidget(m_pTab);
-
+    //TODO: Change view
+    m_pView = new CViewTable(this);
+    if(m_pView)
+    {
+        check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
+                        this, SLOT(slotCloseView(const QWidget*)));
+        Q_ASSERT(check);
+        this->setCentralWidget(m_pView);
+    }
+    
     m_ManageConnecter.EnumPlugins(this);
     
     QToolButton* tb = new QToolButton(ui->toolBar);
@@ -79,9 +75,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    foreach (auto it, m_Connecters)
-        it->DisConnect();
-        
+    qDebug() << "MainWindow::~MainWindow()";
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
     if(m_pGBView) delete m_pGBView;
     
@@ -125,15 +119,14 @@ void MainWindow::on_actionToolBar_T_triggered()
 
 void MainWindow::on_actionFull_screen_F_triggered()
 {
+    CView* pTab = dynamic_cast<CView*>(this->centralWidget());
+    if(pTab)
+    {
+        pTab->SetFullScreen(!isFullScreen());
+    }
+    
     if(this->isFullScreen())
     {
-        QTabWidget* pTab = dynamic_cast<QTabWidget*>(this->centralWidget());
-        if(pTab)
-        {
-            pTab->showNormal();
-            pTab->tabBar()->show();
-        }
-        
         ui->actionFull_screen_F->setIcon(QIcon(":/image/FullScreen"));
         ui->actionFull_screen_F->setText(tr("Full screen(&F)"));
         ui->actionFull_screen_F->setToolTip(tr("Full screen"));
@@ -159,13 +152,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
-    QTabWidget* pTab = dynamic_cast<QTabWidget*>(this->centralWidget());
-    if(pTab)
-    {
-        pTab->tabBar()->hide();
-        pTab->showFullScreen();
-    }
-
+   
     ui->actionFull_screen_F->setIcon(QIcon(":/image/ExitFullScreen"));
     ui->actionFull_screen_F->setText(tr("Exit full screen(&E)"));
     ui->actionFull_screen_F->setToolTip(tr("Exit full screen"));
@@ -196,30 +183,30 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
 void MainWindow::on_actionZoom_Z_toggled(bool arg1)
 {
-    if(!arg1) return;
-    if(!m_pTab) return;
-    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
-    if(!pScroll)
-        return;
-    pScroll->setWidgetResizable(true);
+//    if(!arg1) return;
+//    if(!m_pTab) return;
+//    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
+//    if(!pScroll)
+//        return;
+//    pScroll->setWidgetResizable(true);
     
-    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
-    if(pView)
-        pView->SetAdaptWindows(CFrmViewer::Zoom);
+//    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
+//    if(pView)
+//        pView->SetAdaptWindows(CFrmViewer::Zoom);
 }
 
 void MainWindow::on_actionKeep_AspectRation_K_toggled(bool arg1)
 {
-    if(!arg1) return;
-    if(!m_pTab) return;
-    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
-    if(!pScroll)
-        return;
-    pScroll->setWidgetResizable(true);
+//    if(!arg1) return;
+//    if(!m_pTab) return;
+//    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
+//    if(!pScroll)
+//        return;
+//    pScroll->setWidgetResizable(true);
     
-    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
-    if(pView)
-        pView->SetAdaptWindows(CFrmViewer::AspectRation);
+//    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
+//    if(pView)
+//        pView->SetAdaptWindows(CFrmViewer::AspectRation);
 }
 
 void MainWindow::slotZoomChange(QAction* action)
@@ -237,16 +224,16 @@ void MainWindow::slotZoomChange(QAction* action)
 
 void MainWindow::on_actionOriginal_O_toggled(bool arg1)
 {   
-    if(!arg1) return;
-    if(!m_pTab) return;
-    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
-    if(!pScroll)
-        return;
-    pScroll->setWidgetResizable(false);
+//    if(!arg1) return;
+//    if(!m_pTab) return;
+//    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
+//    if(!pScroll)
+//        return;
+//    pScroll->setWidgetResizable(false);
 
-    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
-    if(pView)
-        pView->SetAdaptWindows(CFrmViewer::Original);
+//    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
+//    if(pView)
+//        pView->SetAdaptWindows(CFrmViewer::Original);
 }
 
 void MainWindow::on_actionExit_E_triggered()
@@ -312,6 +299,11 @@ void MainWindow::on_actionOpen_O_triggered()
 
 void MainWindow::slotConnect()
 {
+    if(nullptr == m_pView)
+    {
+        Q_ASSERT(false);
+        return;
+    }
     QAction* pAction = dynamic_cast<QAction*>(this->sender());
     CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
@@ -358,90 +350,53 @@ void MainWindow::slotConnected()
 {
     CConnecter* p = dynamic_cast<CConnecter*>(sender());
     if(!p) return;
-    
+
     bool check = connect(p, SIGNAL(sigDisconnected()),
                          this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    
-    CFrmViewer* pView = p->GetViewer();
-    QScrollArea* pScroll = new QScrollArea(m_pTab);
-    pScroll->setAlignment(Qt::AlignCenter);
-    pScroll->setBackgroundRole(QPalette::Dark);
-    pScroll->setWidget(pView);
-    pScroll->setFocusPolicy(Qt::NoFocus);
-    if(ui->actionZoom_Z->isChecked()) {
-        pScroll->setWidgetResizable(true);
-        pView->SetAdaptWindows(CFrmViewer::Zoom);
-    } else if(ui->actionKeep_AspectRation_K->isChecked()) {
-        pScroll->setWidgetResizable(true);
-        pView->SetAdaptWindows(CFrmViewer::AspectRation);
-    }
-
-    int nIndex = m_pTab->addTab(pScroll, pView->windowTitle());
-    m_pTab->setCurrentIndex(nIndex);
-    m_Connecters[pView] = p;
-    
     check = connect(p, SIGNAL(sigServerName(const QString&)),
-                    this, SLOT(slotViewTitleChanged(const QString&)));
+                         this, SLOT(slotUpdateServerName(const QString&)));
     Q_ASSERT(check);
-    
+
+    if(m_pView)
+    {
+        m_pView->AddView(p->GetViewer());
+    }
+    m_Connecters.push_back(p);
+
     slotInformation(tr("Connected to ") + p->GetServerName());
+}
+
+void MainWindow::slotCloseView(const QWidget* pView)
+{
+    if(!pView) return;
+    foreach(auto c, m_Connecters)
+    {
+        if(c->GetViewer() == pView)
+            c->DisConnect();
+    }
 }
 
 void MainWindow::on_actionDisconnect_D_triggered()
 {
-    slotTabCloseRequested(m_pTab->currentIndex());
-}
-
-void MainWindow::slotCurrentChanged(int index)
-{
-    CFrmViewer* pView = GetViewer(index);
-    if(!pView) return;
-    switch (pView->AdaptWindows()) {
-    case CFrmViewer::Auto:
-    case CFrmViewer::OriginalCenter:
-    case CFrmViewer::Original:
-        ui->actionOriginal_O->setChecked(true);
-        break;
-    case CFrmViewer::Zoom:
-        ui->actionZoom_Z->setChecked(true);
-        break;
-    case CFrmViewer::AspectRation:
-        ui->actionKeep_AspectRation_K->setChecked(true);
-        break;
-    }
-}
-
-void MainWindow::slotTabCloseRequested(int index)
-{
-    CFrmViewer* pView = GetViewer(index);
-    auto it = m_Connecters.find(pView);
-    if(m_Connecters.end() != it)
-        it.value()->DisConnect();
+    if(!m_pView) return;
+    
+    QWidget* pView = m_pView->GetCurrentView();
+    slotCloseView(pView);    
 }
 
 void MainWindow::slotDisconnected()
 {
-    QMap<CFrmViewer*, CConnecter*>::iterator it;
-    for(it = m_Connecters.begin(); it != m_Connecters.end(); it++)
+    CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
+    foreach(auto c, m_Connecters)
     {
-        if(it.value() == sender())
+        if(c == pConnecter)
         {
-            // Close view
-            int nIndex = GetViewIndex(it.key());
-            if(nIndex >= 0)
-            {
-                // Delete the scroll, the scroll will is not delete child widget,
-                // the child widget will delete by CConnecter
-                QScrollArea* pScroll = dynamic_cast<QScrollArea*>(m_pTab->widget(nIndex));
-                pScroll->takeWidget();
-                m_pTab->removeTab(nIndex);
-                delete pScroll;
-            }
-            // delete CConnecter*
-            m_Connecters.remove(it.key());
-            sender()->deleteLater();
-            break;
+            m_pView->RemoveView(c->GetViewer());
+            //TODO: c->deleteLater();
+            delete c;
+            m_Connecters.removeAll(c);
+            return;
         }
     }
 }
@@ -457,47 +412,11 @@ void MainWindow::slotInformation(const QString& szInfo)
     this->statusBar()->showMessage(szInfo);
 }
 
-void MainWindow::slotViewTitleChanged(const QString& szName)
+void MainWindow::slotUpdateServerName(const QString& szName)
 {
-    Q_UNUSED(szName)
-    for(int i = 0; i < m_pTab->count(); i++)
-    {
-        CFrmViewer* pView = GetViewer(i);
-        if(pView)
-            m_pTab->setTabText(i, pView->windowTitle());
-    }
-}
-
-QScrollArea* MainWindow::GetScrollArea(int index)
-{
-    return dynamic_cast<QScrollArea*>(m_pTab->widget(index));
-}
-
-CFrmViewer* MainWindow::GetViewer(int index)
-{
-    QScrollArea* pScroll = GetScrollArea(index);
-    if(!pScroll) return nullptr;
-    
-    return dynamic_cast<CFrmViewer*>(pScroll->widget());
-}
-
-CConnecter* MainWindow::GetConnecter(int index)
-{
-    auto it = m_Connecters.find(GetViewer(index));
-    if(it != m_Connecters.end())
-        return it.value();
-    return nullptr;
-}
-
-int MainWindow::GetViewIndex(CFrmViewer *pView)
-{
-    for(int i = 0; i < m_pTab->count(); i++)
-    {
-        QScrollArea* pScroll = dynamic_cast<QScrollArea*>(m_pTab->widget(i));
-        if(pScroll->widget() == pView)
-            return i;
-    }
-    return -1;
+    CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
+    if(!pConnecter) return;
+    m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName);
 }
 
 void MainWindow::on_actionOpenStyle_O_triggered()
@@ -521,4 +440,11 @@ int MainWindow::onProcess(const QString &id, CPluginFactory *pFactory)
     p->setIcon(pFactory->Icon());
 
     return 0;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    qDebug() << "MainWindow::closeEvent()";
+    foreach (auto it, m_Connecters)
+        it->DisConnect();
 }

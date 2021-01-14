@@ -123,6 +123,7 @@ int CConnectLibVnc::Process()
         return nRet;
     else
         nRet = 0;
+    //TODO: 这里阻塞
     if(!HandleRFBServerMessage(m_pClient))
         return -1;
     

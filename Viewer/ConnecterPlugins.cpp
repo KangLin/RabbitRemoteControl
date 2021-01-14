@@ -38,7 +38,7 @@ int CConnecterPlugins::OnRun()
             // 0 : continue
             // 1: exit
             // < 0: error
-            nRet = pConnect->Process();            
+            nRet = pConnect->Process();
             if(nRet) break;
         }  catch (...) {
             LOG_MODEL_ERROR("ConnecterBackThread", "process fail:%d", nRet);
@@ -50,7 +50,7 @@ int CConnecterPlugins::OnRun()
 
     pConnect->Clean();
     delete pConnect;
-    qDebug() << "CConnectThreadLibVnc::run() end";
+    qDebug() << "CConnecterPlugins::OnRun() end";
     return nRet;
 }
 

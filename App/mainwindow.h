@@ -9,6 +9,7 @@
 #include <QTabWidget>
 #include <QActionGroup>
 
+#include "ViewTable.h"
 #include "ManageConnecter.h"
 #include "RabbitCommonStyle.h"
 
@@ -40,35 +41,28 @@ private Q_SLOTS:
     void on_actionOpen_O_triggered();
     
     void on_actionDisconnect_D_triggered();
+    void slotCloseView(const QWidget* pView);
     void slotConnect();
-    
-    void slotCurrentChanged(int index);
-    void slotTabCloseRequested(int index);
 
-    void slotViewTitleChanged(const QString& szName);
     void slotConnected();
     void slotDisconnected();
     void slotError(const int nError, const QString &szInfo);
     void slotInformation(const QString& szInfo);
+    void slotUpdateServerName(const QString& szName);
     
     void on_actionOpenStyle_O_triggered();
     void on_actionDefaultStyle_D_triggered();
     
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
-
-private:
-    QScrollArea* GetScrollArea(int index);
-    CFrmViewer* GetViewer(int index);
-    CConnecter* GetConnecter(int index);
-    int GetViewIndex(CFrmViewer* pView);
+    virtual void closeEvent(QCloseEvent *event) override;
     
 private:
     Ui::MainWindow *ui;
     RabbitCommon::CStyle m_Style;
     QActionGroup* m_pGBView;
-    QTabWidget* m_pTab;
-    QMap<CFrmViewer*, CConnecter*> m_Connecters;
+    CView* m_pView;
+    QVector<CConnecter*> m_Connecters;
     CFrmFullScreenToolBar* m_pFullScreenToolBar;
 
 public:

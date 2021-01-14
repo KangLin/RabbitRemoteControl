@@ -1,0 +1,44 @@
+//! @author: Kang Lin(kl222@126.com)
+
+#ifndef CVIEWTABLE_H
+#define CVIEWTABLE_H
+
+#include <QTabWidget>
+#include <QScrollArea>
+#include "View.h"
+
+/**
+ * @brief The CViewTable class
+ */
+class CViewTable : public CView
+{
+    Q_OBJECT
+    
+public:
+    explicit CViewTable(QWidget *parent = nullptr);
+    virtual ~CViewTable();
+    
+    // CView interface
+    virtual int AddView(QWidget *pView) override;
+    virtual int RemoveView(QWidget *pView) override;
+    virtual QWidget *GetCurrentView() override;
+    virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle) override;
+    virtual int SetFullScreen(bool bFull) override;
+    
+private Q_SLOTS:
+    void slotCurrentChanged(int index);
+    void slotTabCloseRequested(int index);
+
+private:
+    QTabWidget* m_pTab;
+    
+    QScrollArea* GetScrollArea(int index);
+    QWidget* GetViewer(int index);
+    int GetViewIndex(QWidget* pView);
+    
+    // QWidget interface
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+};
+
+#endif // CVIEWTABLE_H

@@ -8,11 +8,15 @@ set(SOURCE_FILES
     main.cpp
     mainwindow.cpp
     FrmFullScreenToolBar.cpp
+    ViewTable.cpp
+    View.cpp
     )
 
 set(HEADER_FILES
     mainwindow.h
     FrmFullScreenToolBar.h
+    ViewTable.h
+    View.h
     )
 
 set(SOURCE_UI_FILES
