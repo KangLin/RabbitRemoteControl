@@ -1,29 +1,29 @@
 # Author: Kang Lin(kl222@126.com)
 
-find_package(LibVncClient)
-if(LibVncClient_FOUND)
-    set(LIBVNC_LIB LibVncClient)
+find_package(vncclient)
+if(vncclient_FOUND)
+    set(LIBVNC_LIB vncclient)
 else()
     find_path(LIBVNC_INCLUDE_DIR NAMES rfb/rfbclient.h
-        HINTS ${LibVncClient_DIR}
-        PATHS ENV LibVncClient_DIR
+        HINTS ${vncclient_DIR}
+        PATHS ENV vncclient_DIR
         PATH_SUFFIXES include
         )
     message("LIBVNC_INCLUDE_DIR:${LIBVNC_INCLUDE_DIR}")
     find_library(LIBVNC_LIB NAMES vncclient
-        HINTS ${LibVncClient_DIR}
-        PATHS ENV LibVncClient_DIR
+        HINTS ${vncclient_DIR}
+        PATHS ENV vncclient_DIR
         PATH_SUFFIXES lib
         )
     message("LIBVNC_LIB:${LIBVNC_LIB}")
     if(NOT (LIBVNC_INCLUDE_DIR AND LIBVNC_LIB))
-        message("Install libvnc and set LibVncClient_DIR variable to install root directory")
+        message("Install libvnc and set vncclient_DIR variable to install root directory")
         return()
     endif()
     
-    mark_as_advanced(LibVncClient_DIR)
+    mark_as_advanced(vncclient_DIR)
 endif()
-message("libvnc found: TRUE")
+message("libvnc found: ${LIBVNC_LIB}")
 
 project(LibVnc)
 
@@ -77,9 +77,17 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
-    ISPLUGIN
-    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
-    PRIVATE_LIBS ${LIBVNC_LIB}
-    PRIVATE_INCLUDE_DIRS ${LIBVNC_INCLUDE_DIR}
-    )
+if(LIBVNC_INCLUDE_DIR_FOUND)
+    ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+        ISPLUGIN
+        SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
+        PRIVATE_LIBS ${LIBVNC_LIB}
+        PRIVATE_INCLUDE_DIRS ${LIBVNC_INCLUDE_DIR}
+        )
+else()
+    ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+        ISPLUGIN
+        SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
+        PRIVATE_LIBS ${LIBVNC_LIB}
+        )
+endif()
