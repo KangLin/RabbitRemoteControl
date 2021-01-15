@@ -1,23 +1,28 @@
 # Author: Kang Lin(kl222@126.com)
 
-find_path(LIBVNC_INCLUDE_DIR NAMES rfb/rfbclient.h
-    HINTS ${LIBVNC_DIR}
-    PATHS ENV LIBVNC_DIR
-    PATH_SUFFIXES include
-    )
-message("LIBVNC_INCLUDE_DIR:${LIBVNC_INCLUDE_DIR}")
-find_library(LIBVNC_LIB NAMES vncclient
-    HINTS ${LIBVNC_DIR}
-    PATHS ENV LIBVNC_DIR
-    PATH_SUFFIXES lib
-    )
-message("LIBVNC_LIB:${LIBVNC_LIB}")
-if(NOT (LIBVNC_INCLUDE_DIR AND LIBVNC_LIB))
-    message("Install libvnc and set LIBVNC_DIR variable to install root directory")
-	return()
+find_package(LibVncClient)
+if(LibVncClient_FOUND)
+    set(LIBVNC_LIB LibVncClient)
+else()
+    find_path(LIBVNC_INCLUDE_DIR NAMES rfb/rfbclient.h
+        HINTS ${LibVncClient_DIR}
+        PATHS ENV LibVncClient_DIR
+        PATH_SUFFIXES include
+        )
+    message("LIBVNC_INCLUDE_DIR:${LIBVNC_INCLUDE_DIR}")
+    find_library(LIBVNC_LIB NAMES vncclient
+        HINTS ${LibVncClient_DIR}
+        PATHS ENV LibVncClient_DIR
+        PATH_SUFFIXES lib
+        )
+    message("LIBVNC_LIB:${LIBVNC_LIB}")
+    if(NOT (LIBVNC_INCLUDE_DIR AND LIBVNC_LIB))
+        message("Install libvnc and set LibVncClient_DIR variable to install root directory")
+        return()
+    endif()
+    
+    mark_as_advanced(LibVncClient_DIR)
 endif()
-
-mark_as_advanced(LIBVNC_DIR)
 message("libvnc found: TRUE")
 
 project(LibVnc)
