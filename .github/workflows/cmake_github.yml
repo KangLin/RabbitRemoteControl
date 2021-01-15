@@ -1,4 +1,4 @@
-name: CMake github bash
+name: CMake github bash script
 
 on: [push]
   
