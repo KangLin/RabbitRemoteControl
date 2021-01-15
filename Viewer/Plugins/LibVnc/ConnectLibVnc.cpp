@@ -121,16 +121,17 @@ int CConnectLibVnc::Disconnect()
 int CConnectLibVnc::Process()
 {
     int nRet = 0;
+
     nRet = WaitForMessage(m_pClient, 500);
     if (nRet < 0)
         return nRet;
-    else
-        nRet = 0;
-    //TODO: 这里阻塞
-    if(!HandleRFBServerMessage(m_pClient))
-        return -1;
-    
-    return nRet;
+
+    if(nRet)
+    {
+        if(!HandleRFBServerMessage(m_pClient))
+            return -1;
+    }
+    return 0;
 }
 
 void CConnectLibVnc::slotClipBoardChange()
@@ -158,6 +159,7 @@ int CConnectLibVnc::SetParamter(void*)
     
     m_pClient->appData.shareDesktop = m_pPara->bShared;
     m_pClient->appData.useRemoteCursor = m_pPara->bLocalCursor;
+    
     return nRet;
 }
 
