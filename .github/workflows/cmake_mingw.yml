@@ -94,8 +94,8 @@ jobs:
       with:
         # The files or file patterns to upload. You can upload multiple files by split them by semicolon. You can use the glob pattern to find the files.
         file: |
-          ${{runner.workspace}}\build\RabbitRemoteControl-Setup-*.exe
-          ${{runner.workspace}}\build\update_windows.xml
+          ${{runner.workspace}}/build/RabbitRemoteControl-Setup-*.exe
+          ${{runner.workspace}}/build/update_windows.xml
         # The files or file patterns to delete before uploading new files. You can delete multiple files by split them by semicolon. You can use the glob pattern to find the files.
         #delete_file: # optional, default is 
         # If you need to overwrite existing files, add overwrite: true to the with.
