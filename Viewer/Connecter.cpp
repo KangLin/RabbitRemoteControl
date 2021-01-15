@@ -4,6 +4,8 @@
 #include <QClipboard>
 #include <QApplication>
 #include "PluginFactory.h"
+#include "RabbitCommonDir.h"
+#include "RabbitCommonLog.h"
 
 CConnecter::CConnecter(CPluginFactory *parent) : QObject(parent),
     m_pView(new CFrmViewer()),
@@ -17,7 +19,7 @@ CConnecter::~CConnecter()
         delete m_pView;
 }
 
-CFrmViewer* CConnecter::GetViewer()
+QWidget *CConnecter::GetViewer()
 {
     return m_pView;
 }
@@ -62,4 +64,18 @@ QString CConnecter::GetServerName()
 const CPluginFactory* CConnecter::GetPluginFactory() const
 {
     return m_pPluginFactory;
+}
+
+int CConnecter::OpenDialogSettings(QWidget *parent)
+{
+    int nRet = -1;
+    QDialog* pDlg = GetDialogSettings(parent);
+    if(pDlg)
+    {
+        pDlg->setAttribute(Qt::WA_DeleteOnClose);
+        nRet = pDlg->exec();
+    } else {
+        LOG_MODEL_ERROR("CConnecter",  "The protol[%s] don't settings dialog", Protol().toStdString().c_str());
+    }
+    return nRet;
 }

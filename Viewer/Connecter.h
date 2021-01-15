@@ -7,6 +7,7 @@
 #include <QDir>
 #include <QtPlugin>
 #include <QDataStream>
+#include <QDialog>
 #include <QIcon>
 #include <QMimeData>
 #include "FrmViewer.h"
@@ -45,14 +46,16 @@ public:
      * @brief GetViewer 
      * @return CFrmViewer*: the ownership is the instance of the class
      */
-    virtual CFrmViewer* GetViewer();
+    virtual QWidget* GetViewer();
     /**
-     * @brief GetDialogSettings
-     * @param parent: the parent windows of the dialog of return
-     * @return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
-     *         The ownership is caller.
+     * @brief Open settings dialog
+     * @param parent
+     * @return DialogCode
+     *   QDialog::Accepted
+     *   QDialog::Rejected
+     *   -1: error
      */
-    virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
+    virtual int OpenDialogSettings(QWidget* parent = nullptr);
 
     const CPluginFactory* GetPluginFactory() const;
     virtual int Load(QDataStream& d) = 0;
@@ -79,6 +82,14 @@ private:
     
 protected:
     QString m_szServerName;
+    
+    /**
+     * @brief GetDialogSettings
+     * @param parent: the parent windows of the dialog of return
+     * @return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
+     *         The ownership is caller.
+     */
+    virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 };
 
 #endif // CCONNECTER_H

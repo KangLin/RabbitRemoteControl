@@ -13,8 +13,9 @@ CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
     bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
                          this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
     Q_ASSERT(check);
-    
-    SetViewer(pConnecter->GetViewer());
+    CFrmViewer* pView = dynamic_cast<CFrmViewer*>(pConnecter->GetViewer());
+    if(pView)
+        SetViewer(pView);
     SetConnecter(pConnecter);
 }
 

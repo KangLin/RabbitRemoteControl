@@ -272,27 +272,20 @@ void MainWindow::on_actionOpen_O_triggered()
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
     
-//    QDialog* pDlg = p->GetDialogSettings();
-//    if(pDlg)
+//    int nRet = p->OpenDialogSettings(this);
+//    switch(nRet)
 //    {
-//        int nRet = pDlg->exec();
-//        switch(nRet)
-//        {
-//        case QDialog::Rejected:
-//            delete p;
-//            break;
-//        case QDialog::Accepted:
-            
-//            if(!p->GetServerName().isEmpty())
-//                slotInformation(tr("Connecting to ") + p->GetServerName());
-
-//            p->Connect();
-//            break;
-//        }
-//    } else {
-//        qWarning() << "The protol[" << p->Protol() << "] don't settings dialog";
+//    case QDialog::Rejected:
+//        delete p;
+//        break;
+//    case QDialog::Accepted:
+//        if(!p->GetServerName().isEmpty())
+//            slotInformation(tr("Connecting to ") + p->GetServerName());
+        
+//        p->Connect();
+//        break;
 //    }
-
+    
     slotInformation(tr("Connecting to ") + p->GetServerName());
     p->Connect();
 }
@@ -318,31 +311,26 @@ void MainWindow::slotConnect()
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
     
-    QDialog* pDlg = p->GetDialogSettings();
-    if(pDlg)
+    int nRet = p->OpenDialogSettings(this);
+    switch(nRet)
     {
-        int nRet = pDlg->exec();
-        switch(nRet)
-        {
-        case QDialog::Rejected:
-            delete p;
-            break;
-        case QDialog::Accepted:
-            QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                    + QDir::separator()
-                    + p->Protol()
-                    + "_" + p->Name() + "_"
-                    + p->GetServerName().replace(":", "_")
-                    + ".rrc";
-            m_ManageConnecter.SaveConnecter(szFile, p);
-            if(!p->GetServerName().isEmpty())
-                slotInformation(tr("Connecting to ") + p->GetServerName());
-
-            p->Connect();
-            break;
-        }
-    } else {
-        qWarning() << "The protol[" << p->Protol() << "] don't settings dialog";
+    case QDialog::Rejected:
+        delete p;
+        break;
+    case QDialog::Accepted:
+        QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                + QDir::separator()
+                + p->Protol()
+                + "_" + p->Name() + "_"
+                + p->GetServerName().replace(":", "_")
+                + ".rrc";
+        m_ManageConnecter.SaveConnecter(szFile, p);
+        if(!p->GetServerName().isEmpty())
+            slotInformation(tr("Connecting to ") + p->GetServerName());
+        
+        p->Connect();
+        break;
+        
     }
 }
 
