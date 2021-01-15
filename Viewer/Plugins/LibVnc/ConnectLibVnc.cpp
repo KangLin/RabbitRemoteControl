@@ -105,6 +105,9 @@ int CConnectLibVnc::Connect()
     
     emit sigConnected();
     SetServerName(m_pClient->desktopName);
+
+    emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
+    
     return nRet;
 }
 

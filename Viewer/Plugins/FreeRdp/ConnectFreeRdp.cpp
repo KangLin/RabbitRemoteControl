@@ -378,6 +378,9 @@ BOOL CConnectFreeRdp::cb_post_connect(freerdp* instance)
     
     int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
     int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
+
+    emit pThis->sigSetDesktopSize(desktopWidth, desktopHeight);
+    
     pThis->m_Image = QImage(desktopWidth,
                             desktopHeight,
                             QImage::Format_RGB32);
@@ -694,6 +697,7 @@ BOOL CConnectFreeRdp::cb_end_paint(rdpContext *context)
 
 void CConnectFreeRdp::slotWheelEvent(QWheelEvent* e)
 {
+    if(!m_pContext) return;
     UINT16 flags = 0;
    
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -730,6 +734,7 @@ void CConnectFreeRdp::slotWheelEvent(QWheelEvent* e)
 
 void CConnectFreeRdp::slotMouseMoveEvent(QMouseEvent* e)
 {
+    if(!m_pContext) return;
     UINT16 flags = PTR_FLAGS_MOVE;
     if(e->button() & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
@@ -745,6 +750,7 @@ void CConnectFreeRdp::slotMouseMoveEvent(QMouseEvent* e)
 
 void CConnectFreeRdp::slotMousePressEvent(QMouseEvent* e)
 {
+    if(!m_pContext) return;
     UINT16 flags = PTR_FLAGS_DOWN;
     if(e->button() & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
@@ -760,6 +766,7 @@ void CConnectFreeRdp::slotMousePressEvent(QMouseEvent* e)
 
 void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
 {
+    if(!m_pContext) return;
     UINT16 flags = 0;
     if(e->button() & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
@@ -776,6 +783,7 @@ void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
 
 void CConnectFreeRdp::slotKeyPressEvent(QKeyEvent* e)
 {
+    if(!m_pContext) return;
     /*
     LOG_MODEL_DEBUG("FreeRdp", "press key: %s; 0x%X; scancode:0x%X",
                     e->text().toStdString().c_str(),
@@ -788,6 +796,7 @@ void CConnectFreeRdp::slotKeyPressEvent(QKeyEvent* e)
 
 void CConnectFreeRdp::slotKeyReleaseEvent(QKeyEvent* e)
 {
+    if(!m_pContext) return;
     /*
     LOG_MODEL_DEBUG("FreeRdp", "key: %s; 0x%X; scancode:0x%X",
                     e->text().toStdString().c_str(),

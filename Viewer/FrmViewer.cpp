@@ -31,7 +31,7 @@ CFrmViewer::~CFrmViewer()
 void CFrmViewer::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
-    qDebug() << "CFrmViewer::resizeEvent:" << event->size();
+    //qDebug() << "CFrmViewer::resizeEvent:" << event->size();
 }
 
 QRectF CFrmViewer::GetAspectRationRect()
@@ -151,7 +151,6 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
-    
     QMouseEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;

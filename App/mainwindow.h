@@ -3,7 +3,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QScrollArea>
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QTabWidget>
@@ -34,10 +33,12 @@ private Q_SLOTS:
     void on_actionUpdate_U_triggered();
     void on_actionStatusBar_S_triggered();
     void on_actionToolBar_T_triggered();
+    
     void on_actionOriginal_O_toggled(bool arg1);
     void on_actionZoom_Z_toggled(bool arg1);
     void on_actionKeep_AspectRation_K_toggled(bool arg1);
     void slotZoomChange(QAction *action);
+    void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
     void on_actionOpen_O_triggered();
     
     void on_actionDisconnect_D_triggered();

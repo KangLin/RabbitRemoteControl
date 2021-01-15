@@ -38,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
         check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
                         this, SLOT(slotCloseView(const QWidget*)));
         Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)),
+                        this, SLOT(slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)));
+        Q_ASSERT(check);
         this->setCentralWidget(m_pView);
     }
     
@@ -183,30 +186,23 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
 void MainWindow::on_actionZoom_Z_toggled(bool arg1)
 {
-//    if(!arg1) return;
-//    if(!m_pTab) return;
-//    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
-//    if(!pScroll)
-//        return;
-//    pScroll->setWidgetResizable(true);
-    
-//    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
-//    if(pView)
-//        pView->SetAdaptWindows(CFrmViewer::Zoom);
+    if(!arg1) return;
+    if(!m_pView) return;
+    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
 }
 
 void MainWindow::on_actionKeep_AspectRation_K_toggled(bool arg1)
 {
-//    if(!arg1) return;
-//    if(!m_pTab) return;
-//    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
-//    if(!pScroll)
-//        return;
-//    pScroll->setWidgetResizable(true);
-    
-//    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
-//    if(pView)
-//        pView->SetAdaptWindows(CFrmViewer::AspectRation);
+    if(!arg1) return;
+    if(!m_pView) return;
+    m_pView->SetAdaptWindows(CFrmViewer::AspectRation);
+}
+
+void MainWindow::on_actionOriginal_O_toggled(bool arg1)
+{
+    if(!arg1) return;
+    if(!m_pView) return;
+    m_pView->SetAdaptWindows(CFrmViewer::Original);
 }
 
 void MainWindow::slotZoomChange(QAction* action)
@@ -222,18 +218,19 @@ void MainWindow::slotZoomChange(QAction* action)
     set.setValue("ZoomType", t);
 }
 
-void MainWindow::on_actionOriginal_O_toggled(bool arg1)
-{   
-//    if(!arg1) return;
-//    if(!m_pTab) return;
-//    QScrollArea* pScroll = GetScrollArea(m_pTab->currentIndex());
-//    if(!pScroll)
-//        return;
-//    pScroll->setWidgetResizable(false);
-
-//    CFrmViewer* pView = GetViewer(m_pTab->currentIndex());
-//    if(pView)
-//        pView->SetAdaptWindows(CFrmViewer::Original);
+void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
+{
+    switch (aw) {
+    case CFrmViewer::Original:
+        ui->actionOriginal_O->setChecked(true);
+        break;
+    case CFrmViewer::Zoom:
+        ui->actionZoom_Z->setChecked(true);
+        break;
+    case CFrmViewer::AspectRation:
+        ui->actionKeep_AspectRation_K->setChecked(true);
+        break;
+    }
 }
 
 void MainWindow::on_actionExit_E_triggered()
@@ -353,8 +350,16 @@ int MainWindow::Connect(CConnecter* p)
         slotInformation(tr("Connecting to ") + p->GetServerName());
     if(m_pView)
     {
+        CFrmViewer::ADAPT_WINDOWS aw;
+        if(ui->actionOriginal_O->isChecked())
+            aw = CFrmViewer::Original;
+        else if(ui->actionZoom_Z->isChecked())
+            aw = CFrmViewer::Zoom;
+        else if(ui->actionKeep_AspectRation_K->isChecked())
+            aw = CFrmViewer::AspectRation;
+        m_pView->SetAdaptWindows(aw, p->GetViewer());
         m_pView->AddView(p->GetViewer());
-        m_pView->SetWidowsTitle(p->GetViewer(), p->GetServerName());
+        m_pView->SetWidowsTitle(p->GetViewer(), p->GetServerName()); 
     }
     m_Connecters.push_back(p);
     p->Connect();

@@ -29,21 +29,18 @@ CViewTable::~CViewTable()
 
 void CViewTable::slotCurrentChanged(int index)
 {
-//    CFrmViewer* pView = GetViewer(index);
-//    if(!pView) return;
-//    switch (pView->AdaptWindows()) {
-//    case CFrmViewer::Auto:
-//    case CFrmViewer::OriginalCenter:
-//    case CFrmViewer::Original:
-//        ui->actionOriginal_O->setChecked(true);
-//        break;
-//    case CFrmViewer::Zoom:
-//        ui->actionZoom_Z->setChecked(true);
-//        break;
-//    case CFrmViewer::AspectRation:
-//        ui->actionKeep_AspectRation_K->setChecked(true);
-//        break;
-//    }
+    CFrmViewer* pView = qobject_cast<CFrmViewer*>(GetViewer(index));
+    if(pView)
+    {
+        QScrollArea* pScroll = GetScrollArea(index);
+        if(pScroll)
+        {   if(CFrmViewer::Original == pView->AdaptWindows())
+                pScroll->setWidgetResizable(false);
+            else
+                pScroll->setWidgetResizable(true);
+        }
+        emit sigAdaptWindows(pView->AdaptWindows());
+    }
 }
 
 void CViewTable::slotTabCloseRequested(int index)
@@ -63,14 +60,6 @@ int CViewTable::AddView(QWidget *pView)
     pScroll->setBackgroundRole(QPalette::Dark);
     pScroll->setFocusPolicy(Qt::NoFocus);
     pScroll->setWidgetResizable(true);
-//    if(ui->actionZoom_Z->isChecked()) {
-//        pScroll->setWidgetResizable(true);
-//        pView->SetAdaptWindows(CFrmViewer::Zoom);
-//    } else if(ui->actionKeep_AspectRation_K->isChecked()) {
-//        pScroll->setWidgetResizable(true);
-//        pView->SetAdaptWindows(CFrmViewer::AspectRation);
-//    }
-
     int nIndex = m_pTab->addTab(pScroll, pView->windowTitle());
     m_pTab->setCurrentIndex(nIndex);
     return 0;
@@ -91,7 +80,7 @@ int CViewTable::RemoveView(QWidget *pView)
 
 QWidget* CViewTable::GetCurrentView()
 {
-    QScrollArea* pScroll = dynamic_cast<QScrollArea*>(m_pTab->currentWidget());
+    QScrollArea* pScroll = qobject_cast<QScrollArea*>(m_pTab->currentWidget());
     return pScroll->widget();
 }
 
@@ -117,9 +106,37 @@ int CViewTable::SetFullScreen(bool bFull)
     return 0;
 }
 
+void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
+{
+    int nIndex = m_pTab->currentIndex();
+    CFrmViewer* pView = nullptr;
+    if(p)
+    {
+        pView = qobject_cast<CFrmViewer*>(p);
+        if(!pView) return;
+    } else {
+        pView = qobject_cast<CFrmViewer*>(GetViewer(nIndex));
+    }
+    if(pView)
+        pView->SetAdaptWindows(aw);
+    
+    nIndex = GetViewIndex(p);
+    if(-1 == nIndex)
+        nIndex = m_pTab->currentIndex();
+    QScrollArea* pScroll = GetScrollArea(nIndex);
+    if(pScroll)
+    {   if(CFrmViewer::Original == aw)
+            pScroll->setWidgetResizable(false);
+        else
+            pScroll->setWidgetResizable(true);
+    }
+}
+
 QScrollArea* CViewTable::GetScrollArea(int index)
 {
-    return dynamic_cast<QScrollArea*>(m_pTab->widget(index));
+    if(index < 0 || index >= m_pTab->count())
+        return nullptr;
+    return qobject_cast<QScrollArea*>(m_pTab->widget(index));
 }
 
 QWidget *CViewTable::GetViewer(int index)
@@ -127,7 +144,7 @@ QWidget *CViewTable::GetViewer(int index)
     QScrollArea* pScroll = GetScrollArea(index);
     if(!pScroll) return nullptr;
     
-    return dynamic_cast<CFrmViewer*>(pScroll->widget());
+    return qobject_cast<CFrmViewer*>(pScroll->widget());
 }
 
 int CViewTable::GetViewIndex(QWidget *pView)

@@ -24,7 +24,8 @@ public:
     virtual QWidget *GetCurrentView() override;
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle) override;
     virtual int SetFullScreen(bool bFull) override;
-    
+    virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Original, QWidget* pView = nullptr) override;
+
 private Q_SLOTS:
     void slotCurrentChanged(int index);
     void slotTabCloseRequested(int index);
