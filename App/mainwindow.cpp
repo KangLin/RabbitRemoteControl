@@ -279,15 +279,11 @@ void MainWindow::on_actionOpen_O_triggered()
 //        delete p;
 //        break;
 //    case QDialog::Accepted:
-//        if(!p->GetServerName().isEmpty())
-//            slotInformation(tr("Connecting to ") + p->GetServerName());
-        
-//        p->Connect();
+//        Connect(p);
 //        break;
 //    }
     
-    slotInformation(tr("Connecting to ") + p->GetServerName());
-    p->Connect();
+    Connect(p);
 }
 
 void MainWindow::slotConnect()
@@ -325,12 +321,8 @@ void MainWindow::slotConnect()
                 + p->GetServerName().replace(":", "_")
                 + ".rrc";
         m_ManageConnecter.SaveConnecter(szFile, p);
-        if(!p->GetServerName().isEmpty())
-            slotInformation(tr("Connecting to ") + p->GetServerName());
-        
-        p->Connect();
+        Connect(p);
         break;
-        
     }
 }
 
@@ -346,13 +338,27 @@ void MainWindow::slotConnected()
                          this, SLOT(slotUpdateServerName(const QString&)));
     Q_ASSERT(check);
 
+//    if(m_pView)
+//    {
+//        m_pView->AddView(p->GetViewer());
+//    }
+//    m_Connecters.push_back(p);
+
+    slotInformation(tr("Connected to ") + p->GetServerName());
+}
+
+int MainWindow::Connect(CConnecter* p)
+{
+    if(!p->GetServerName().isEmpty())
+        slotInformation(tr("Connecting to ") + p->GetServerName());
     if(m_pView)
     {
         m_pView->AddView(p->GetViewer());
+        m_pView->SetWidowsTitle(p->GetViewer(), p->GetServerName());
     }
     m_Connecters.push_back(p);
-
-    slotInformation(tr("Connected to ") + p->GetServerName());
+    p->Connect();
+    return 0;
 }
 
 void MainWindow::slotCloseView(const QWidget* pView)
@@ -432,6 +438,7 @@ int MainWindow::onProcess(const QString &id, CPluginFactory *pFactory)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    Q_UNUSED(event);
     qDebug() << "MainWindow::closeEvent()";
     foreach (auto it, m_Connecters)
         it->DisConnect();

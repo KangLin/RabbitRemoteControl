@@ -69,6 +69,9 @@ public:
     virtual int onProcess(const QString &id, CPluginFactory *pFactory) override;
 private:
     CManageConnecter m_ManageConnecter;
+    
+private:
+    int Connect(CConnecter* pConnecter);
 };
 
 #endif // MAINWINDOW_H
