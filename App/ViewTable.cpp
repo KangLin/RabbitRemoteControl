@@ -108,7 +108,18 @@ int CViewTable::SetFullScreen(bool bFull)
 
 void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
 {
-    int nIndex = m_pTab->currentIndex();
+    int nIndex = GetViewIndex(p);
+    if(-1 == nIndex)
+        nIndex = m_pTab->currentIndex();
+    QScrollArea* pScroll = GetScrollArea(nIndex);
+    if(pScroll)
+    {   if(CFrmViewer::Original == aw)
+            pScroll->setWidgetResizable(false);
+        else
+            pScroll->setWidgetResizable(true);
+    }
+    
+    nIndex = m_pTab->currentIndex();
     CFrmViewer* pView = nullptr;
     if(p)
     {
@@ -119,17 +130,6 @@ void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
     }
     if(pView)
         pView->SetAdaptWindows(aw);
-    
-    nIndex = GetViewIndex(p);
-    if(-1 == nIndex)
-        nIndex = m_pTab->currentIndex();
-    QScrollArea* pScroll = GetScrollArea(nIndex);
-    if(pScroll)
-    {   if(CFrmViewer::Original == aw)
-            pScroll->setWidgetResizable(false);
-        else
-            pScroll->setWidgetResizable(true);
-    }
 }
 
 QScrollArea* CViewTable::GetScrollArea(int index)
