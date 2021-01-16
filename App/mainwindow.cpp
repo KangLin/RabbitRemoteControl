@@ -328,13 +328,6 @@ void MainWindow::slotConnected()
     CConnecter* p = dynamic_cast<CConnecter*>(sender());
     if(!p) return;
 
-    bool check = connect(p, SIGNAL(sigDisconnected()),
-                         this, SLOT(slotDisconnected()));
-    Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigServerName(const QString&)),
-                         this, SLOT(slotUpdateServerName(const QString&)));
-    Q_ASSERT(check);
-
 //    if(m_pView)
 //    {
 //        m_pView->AddView(p->GetViewer());
@@ -361,8 +354,17 @@ int MainWindow::Connect(CConnecter* p)
         m_pView->AddView(p->GetViewer());
         m_pView->SetWidowsTitle(p->GetViewer(), p->GetServerName()); 
     }
+    
     m_Connecters.push_back(p);
+    bool check = connect(p, SIGNAL(sigDisconnected()),
+                         this, SLOT(slotDisconnected()));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigServerName(const QString&)),
+                         this, SLOT(slotUpdateServerName(const QString&)));
+    Q_ASSERT(check);
+    
     p->Connect();
+    
     return 0;
 }
 

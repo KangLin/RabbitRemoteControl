@@ -22,29 +22,33 @@ CConnecterPlugins::~CConnecterPlugins()
 int CConnecterPlugins::OnRun()
 {
     //LOG_MODEL_DEBUG("CConnecterBackThread", "Current thread: 0x%X", QThread::currentThreadId());
-    int nRet = 0;
+    int nRet = -1;
     CConnect* pConnect = InstanceConnect();
-    if(nullptr == pConnect) return -1;
     
-    nRet = pConnect->Initialize();
-    if(nRet) return nRet;
-
-    nRet = pConnect->Connect();
-    if(nRet)
-        return nRet;
-
-    while (!m_bExit) {
-        try {
-            // 0 : continue
-            // 1: exit
-            // < 0: error
-            nRet = pConnect->Process();
-            if(nRet) break;
-        }  catch (...) {
-            LOG_MODEL_ERROR("ConnecterBackThread", "process fail:%d", nRet);
-            break;
+    do{
+        CConnect* pConnect = InstanceConnect();
+        if(nullptr == pConnect) break;
+        
+        nRet = pConnect->Initialize();
+        if(nRet) break;
+        
+        nRet = pConnect->Connect();
+        if(nRet) break;
+        
+        while (!m_bExit) {
+            try {
+                // 0 : continue
+                // 1: exit
+                // < 0: error
+                nRet = pConnect->Process();
+                if(nRet) break;
+            }  catch (...) {
+                LOG_MODEL_ERROR("ConnecterBackThread", "process fail:%d", nRet);
+                break;
+            }
         }
-    }
+        
+    }while (0);
 
     emit sigDisconnected();
 
