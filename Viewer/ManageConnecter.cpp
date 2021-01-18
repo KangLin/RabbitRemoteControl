@@ -56,7 +56,8 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
     }
     QStringList files = dir.entryList(filters, QDir::Files);
     if(!files.isEmpty())
-        qApp->addLibraryPath(dir.absolutePath());
+        QCoreApplication::addLibraryPath(QDir::cleanPath(dir.absolutePath()));
+        
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
         QPluginLoader loader(szPlugins);

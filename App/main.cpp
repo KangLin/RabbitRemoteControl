@@ -12,6 +12,8 @@
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::addLibraryPath(QDir::cleanPath(RabbitCommon::CDir::Instance()->GetDirPlugins()));
+    
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -22,7 +24,7 @@ int main(int argc, char *argv[])
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
 #endif
-    
+
     QApplication a(argc, argv);
     a.setApplicationName("RabbitRemoteControl");
     a.setApplicationVersion(BUILD_VERSION);
@@ -48,8 +50,6 @@ int main(int argc, char *argv[])
     else    
         return 0;
 
-    a.addLibraryPath(RabbitCommon::CDir::Instance()->GetDirPlugins());
-    
     MainWindow w;
     w.setWindowIcon(QIcon(":/image/App"));
     w.show();
