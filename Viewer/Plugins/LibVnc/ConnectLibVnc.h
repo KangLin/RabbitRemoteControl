@@ -32,12 +32,12 @@ public Q_SLOTS:
     virtual int Initialize() override;
     virtual int Clean() override;
 
-    virtual void slotMousePressEvent(QMouseEvent* e);
-    virtual void slotMouseReleaseEvent(QMouseEvent* e);
-    virtual void slotMouseMoveEvent(QMouseEvent* e);
-    virtual void slotWheelEvent(QWheelEvent* e);
-    virtual void slotKeyPressEvent(QKeyEvent* e);
-    virtual void slotKeyReleaseEvent(QKeyEvent* e);
+    virtual void slotMousePressEvent(QMouseEvent* e) override;
+    virtual void slotMouseReleaseEvent(QMouseEvent* e) override;
+    virtual void slotMouseMoveEvent(QMouseEvent* e) override;
+    virtual void slotWheelEvent(QWheelEvent* e) override;
+    virtual void slotKeyPressEvent(QKeyEvent* e) override;
+    virtual void slotKeyReleaseEvent(QKeyEvent* e) override;
 
 private:
     int OnSize();
