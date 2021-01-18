@@ -138,7 +138,7 @@ int CConnectFreeRdp::Process()
         
         handles[nCount++] = pContext->abortEvent;
                 
-        DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, INFINITE);
+        DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
         if (waitStatus == WAIT_FAILED)
             return -2;
         
