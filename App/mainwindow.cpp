@@ -235,7 +235,7 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 
 void MainWindow::on_actionExit_E_triggered()
 {
-    qApp->exit();
+    close();
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
@@ -269,18 +269,25 @@ void MainWindow::on_actionOpen_O_triggered()
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
     
-//    int nRet = p->OpenDialogSettings(this);
-//    switch(nRet)
-//    {
-//    case QDialog::Rejected:
-//        delete p;
-//        break;
-//    case QDialog::Accepted:
-//        Connect(p);
-//        break;
-//    }
+    int nRet = p->OpenDialogSettings(this);
+    switch(nRet)
+    {
+    case QDialog::Rejected:
+        delete p;
+        break;
+    case QDialog::Accepted:
+        QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                + QDir::separator()
+                + p->Protol()
+                + "_" + p->Name() + "_"
+                + p->GetServerName().replace(":", "_")
+                + ".rrc";
+        m_ManageConnecter.SaveConnecter(szFile, p);
+        Connect(p);
+        break;
+    }
     
-    Connect(p);
+//    Connect(p);
 }
 
 void MainWindow::slotConnect()

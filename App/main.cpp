@@ -12,8 +12,6 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::addLibraryPath(QDir::cleanPath(RabbitCommon::CDir::Instance()->GetDirPlugins()));
-    
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -41,7 +39,8 @@ int main(int argc, char *argv[])
     
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     a.setOrganizationName(QObject::tr("Kang Lin studio"));
-    
+    QCoreApplication::addLibraryPath(QDir::cleanPath(RabbitCommon::CDir::Instance()->GetDirPlugins()));
+
     // Check update version
     CFrmUpdater *pUpdate = new CFrmUpdater();
     pUpdate->SetTitle(QImage(":/image/App"));
