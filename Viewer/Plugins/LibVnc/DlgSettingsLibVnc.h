@@ -25,7 +25,6 @@ private slots:
     void on_cbCompressAutoSelect_stateChanged(int arg1);
 
     void on_cbCompress_stateChanged(int arg1);
-    
     void on_cbJPEG_stateChanged(int arg1);
     
 private:

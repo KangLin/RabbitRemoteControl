@@ -49,10 +49,10 @@ private:
     
 public:
     enum COLOR_LEVEL {
-        Full,
-        Medium,
-        Low,
-        VeryLow
+        Full = 32,
+        Medium = 16,
+        Low = 8,
+        VeryLow = 0
     };
     class strPara : public CParamter {
     public:
@@ -67,9 +67,10 @@ public:
         bool bAutoSelect;
         COLOR_LEVEL nColorLevel;
         int nEncoding;
+
         bool bCompressLevel;
         int nCompressLevel;
-        bool bNoJpeg;
+        bool bJpeg;
         int nQualityLevel;
     };
 private:    

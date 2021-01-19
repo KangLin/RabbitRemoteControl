@@ -9,6 +9,11 @@ CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecterPlugins(p
     m_Para.bShared = true;
     m_Para.bLocalCursor = true;
     m_Para.bClipboard = true;
+    
+    m_Para.bCompressLevel = true;
+    m_Para.nCompressLevel = 3;
+    m_Para.nQualityLevel = 5;
+    m_Para.bJpeg = false;
 }
 
 CConnecterLibVnc::~CConnecterLibVnc()
@@ -38,6 +43,11 @@ int CConnecterLibVnc::Load(QDataStream &d)
       >> m_Para.bShared
       >> m_Para.bLocalCursor
       >> m_Para.bClipboard
+      
+      >> m_Para.bCompressLevel
+      >> m_Para.nCompressLevel
+      >> m_Para.bJpeg
+      >> m_Para.nQualityLevel
       ;
     //TODO: if version
     return nRet;
@@ -54,6 +64,11 @@ int CConnecterLibVnc::Save(QDataStream &d)
       << m_Para.bShared
       << m_Para.bLocalCursor
       << m_Para.bClipboard
+         
+      << m_Para.bCompressLevel
+      << m_Para.nCompressLevel
+      << m_Para.bJpeg
+      << m_Para.nQualityLevel
       ;
     return nRet;
 }

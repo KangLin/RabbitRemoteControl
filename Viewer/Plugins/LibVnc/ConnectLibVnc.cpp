@@ -160,6 +160,11 @@ int CConnectLibVnc::SetParamter(void*)
     
     m_pClient->appData.shareDesktop = m_pPara->bShared;
     m_pClient->appData.useRemoteCursor = m_pPara->bLocalCursor;
+
+    m_pClient->appData.nColours = m_pPara->nColorLevel;
+    m_pClient->appData.enableJPEG = m_pPara->bJpeg;
+    m_pClient->appData.qualityLevel = m_pPara->nQualityLevel;
+    m_pClient->appData.compressLevel = m_pPara->nCompressLevel;
     
     return nRet;
 }

@@ -53,25 +53,27 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
 //        break;
 //    }
     
-//    switch(m_pPara->nColorLevel)
-//    {
-//    case CConnectTigerVnc::Full:
-//        ui->rbFull->setChecked(true);
-//        break;
-//    case CConnectTigerVnc::Medium:
-//        ui->rbMeduim->setChecked(true);
-//        break;
-//    case CConnectTigerVnc::Low:
-//        ui->rbLow->setChecked(true);
-//        break;
-//    case CConnectTigerVnc::VeryLow:
-//        ui->rbVeryLow->setChecked(true);
-//        break;
-//    }
-//    ui->cbCompress->setChecked(m_pPara->bCompressLevel);
-//    ui->spCompressLevel->setValue(m_pPara->nCompressLevel);
-//    ui->cbJPEG->setChecked(!m_pPara->bNoJpeg);
-//    ui->spJPEGLevel->setValue(m_pPara->nQualityLevel);
+    switch(m_pPara->nColorLevel)
+    {
+    case CConnectLibVnc::Full:
+        ui->rbFull->setChecked(true);
+        break;
+    case CConnectLibVnc::Medium:
+        ui->rbMeduim->setChecked(true);
+        break;
+    case CConnectLibVnc::Low:
+        ui->rbLow->setChecked(true);
+        break;
+    case CConnectLibVnc::VeryLow:
+        ui->rbVeryLow->setChecked(true);
+        break;
+    }
+    ui->cbCompress->setChecked(m_pPara->bCompressLevel);
+    ui->spCompressLevel->setEnabled(m_pPara->bCompressLevel);
+    ui->spCompressLevel->setValue(m_pPara->nCompressLevel);
+    ui->spJPEGLevel->setEnabled(m_pPara->bJpeg);
+    ui->cbJPEG->setChecked(m_pPara->bJpeg);
+    ui->spJPEGLevel->setValue(m_pPara->nQualityLevel);
 }
 
 CDlgSettingsLibVnc::~CDlgSettingsLibVnc()
@@ -109,15 +111,15 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
 //    if(ui->rbCopyRect->isChecked()) m_pPara->nEncoding = rfb::encodingCopyRect;
 //    if(ui->rbHextile->isChecked()) m_pPara->nEncoding = rfb::encodingHextile;
     
-//    if(ui->rbFull->isChecked()) m_pPara->nColorLevel = CConnectTigerVnc::Full;
-//    if(ui->rbMeduim->isChecked()) m_pPara->nColorLevel = CConnectTigerVnc::Medium;
-//    if(ui->rbLow->isChecked()) m_pPara->nColorLevel = CConnectTigerVnc::Low;
-//    if(ui->rbVeryLow->isChecked()) m_pPara->nColorLevel = CConnectTigerVnc::VeryLow;
+    if(ui->rbFull->isChecked()) m_pPara->nColorLevel = CConnectLibVnc::Full;
+    if(ui->rbMeduim->isChecked()) m_pPara->nColorLevel = CConnectLibVnc::Medium;
+    if(ui->rbLow->isChecked()) m_pPara->nColorLevel = CConnectLibVnc::Low;
+    if(ui->rbVeryLow->isChecked()) m_pPara->nColorLevel = CConnectLibVnc::VeryLow;
 
-//    m_pPara->bCompressLevel = ui->cbCompress->isChecked();
-//    m_pPara->nCompressLevel = ui->spCompressLevel->value();
-//    m_pPara->bNoJpeg = !ui->cbJPEG->isChecked();
-//    m_pPara->nQualityLevel = ui->spJPEGLevel->value();
+    m_pPara->bCompressLevel = ui->cbCompress->isChecked();
+    m_pPara->nCompressLevel = ui->spCompressLevel->value();
+    m_pPara->bJpeg = !ui->cbJPEG->isChecked();
+    m_pPara->nQualityLevel = ui->spJPEGLevel->value();
     
     accept();
 }
@@ -152,22 +154,12 @@ void CDlgSettingsLibVnc::on_cbCompressAutoSelect_stateChanged(int arg1)
 
 void CDlgSettingsLibVnc::on_cbCompress_stateChanged(int arg1)
 {
-//    m_pPara->bCompressLevel = arg1;
-//    if(m_pPara->bCompressLevel)
-//    {
-//        ui->spCompressLevel->setEnabled(true);
-//    } else {
-//        ui->spCompressLevel->setEnabled(false);
-//    }
+    m_pPara->bCompressLevel = arg1;
+    ui->spCompressLevel->setEnabled(arg1);
 }
 
 void CDlgSettingsLibVnc::on_cbJPEG_stateChanged(int arg1)
 {
-//    m_pPara->bNoJpeg = !arg1;
-//    if(m_pPara->bNoJpeg)
-//    {
-//        ui->spJPEGLevel->setEnabled(false);
-//    } else {
-//        ui->spJPEGLevel->setEnabled(true);
-//    }
+    m_pPara->bJpeg = arg1;
+    ui->spJPEGLevel->setEnabled(m_pPara->bJpeg);
 }
