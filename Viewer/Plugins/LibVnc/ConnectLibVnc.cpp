@@ -125,12 +125,13 @@ int CConnectLibVnc::Process()
     nRet = WaitForMessage(m_pClient, 500);
     if (nRet < 0)
         return nRet;
-
+    
     if(nRet)
     {
         if(!HandleRFBServerMessage(m_pClient))
             return -1;
     }
+    
     return 0;
 }
 

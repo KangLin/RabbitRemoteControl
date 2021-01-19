@@ -4,23 +4,16 @@
 
 CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecterPlugins(parent)
 {
+    m_pParamter = &m_Para;
     m_Para.nPort = 5900;
     m_Para.bShared = true;
-    m_Para.bLocalCursor = false;
+    m_Para.bLocalCursor = true;
+    m_Para.bClipboard = true;
 }
 
 CConnecterLibVnc::~CConnecterLibVnc()
 {
     qDebug() << "CConnecterLibVnc::~CConnecterLibVnc()";
-}
-
-QString CConnecterLibVnc::GetServerName()
-{
-    if(m_szServerName.isEmpty())
-    {
-        return m_Para.szHost + ":" + QString::number(m_Para.nPort);
-    }
-    return m_szServerName;
 }
 
 qint16 CConnecterLibVnc::Version()

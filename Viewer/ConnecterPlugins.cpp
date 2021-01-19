@@ -6,7 +6,8 @@
 CConnecterPlugins::CConnecterPlugins(CPluginFactory *parent)
     : CConnecter(parent),
       m_bExit(false),
-      m_pThread(nullptr)
+      m_pThread(nullptr),
+      m_pParamter(nullptr)
 {}
 
 CConnecterPlugins::~CConnecterPlugins()
@@ -16,6 +17,7 @@ CConnecterPlugins::~CConnecterPlugins()
         m_pThread->wait();
         delete m_pThread;
     }
+
     qDebug() << this << this->metaObject()->className();
 }
 
@@ -87,4 +89,11 @@ int CConnecterPlugins::OnDisConnect()
 {
     emit sigDisconnected();
     return 0;
+}
+
+QString CConnecterPlugins::GetServerName()
+{
+    if(m_szServerName.isEmpty() && m_pParamter)
+        m_szServerName = m_pParamter->szHost + ":" + QString::number(m_pParamter->nPort);
+    return CConnecter::GetServerName();
 }

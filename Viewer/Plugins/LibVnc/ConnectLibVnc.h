@@ -3,6 +3,7 @@
 
 #include "Connect.h"
 #include "rfb/rfbclient.h"
+#include "Paramter.h"
 
 class CConnecterLibVnc;
 class CConnectLibVnc : public CConnect
@@ -53,12 +54,8 @@ public:
         Low,
         VeryLow
     };
-    struct strPara{
-        QString szHost;
-        qint16 nPort;
-        QString szUser;
-        QString szPassword;
-
+    class strPara : public CParamter {
+    public:
         bool bSave;
         
         bool bShared;

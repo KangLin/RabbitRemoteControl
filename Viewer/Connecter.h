@@ -82,7 +82,7 @@ private:
     
 protected:
     QString m_szServerName;
-    
+   
     /**
      * @brief GetDialogSettings
      * @param parent: the parent windows of the dialog of return

@@ -23,7 +23,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
 //    ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
     ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
 //    ui->cbResizeWindows->setChecked(m_pPara->bSupportsDesktopResize);
-//    ui->cbClipboard->setChecked(m_pPara->bClipboard);
+    ui->cbClipboard->setChecked(m_pPara->bClipboard);
     
     // Compress
 //    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
