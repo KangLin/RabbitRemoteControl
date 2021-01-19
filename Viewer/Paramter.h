@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class CParamter : public QObject
+class RABBITREMOTECONTROL_EXPORT CParamter : public QObject
 {
     Q_OBJECT
 
