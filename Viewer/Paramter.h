@@ -1,6 +1,7 @@
 #ifndef CPARAMTER_H
 #define CPARAMTER_H
 
+#include "rabbitremotecontrol_export.h"
 #include <QObject>
 
 class RABBITREMOTECONTROL_EXPORT CParamter : public QObject
