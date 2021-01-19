@@ -27,10 +27,10 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - [ ] IPHONE
 - [ ] WINCE
 
-I have no device so I did not compile and test. Please test by yourself if you have device.
+I have no devices so I did not compile and test. Please test by yourself if you have devices.
 Interested and capable friends are welcome to participate in the development of the project.
 
-If you want to donate the developed device for me, please contact: (email: kl222@126.com)
+If you want to donate the developed devices for me, please contact: (email: kl222@126.com)
 
 #### Supported protocol
 - [x] VNC(Virtual network console): [RFB](https://github.com/rfbproto/rfbproto)
