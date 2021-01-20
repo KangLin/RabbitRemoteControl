@@ -5,7 +5,7 @@
 
 #include "ConnecterPlugins.h"
 #include "FrmViewer.h"
-#include "DlgSettings.h"
+#include "DlgSettingsTigerVnc.h"
 
 class CConnecterTigerVnc : public CConnecterPlugins
 {

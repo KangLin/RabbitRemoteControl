@@ -7,16 +7,16 @@
 #include "ConnectTigerVnc.h"
 
 namespace Ui {
-class CDlgSettings;
+class CDlgSettingsTigerVnc;
 }
 
-class CDlgSettings : public QDialog
+class CDlgSettingsTigerVnc : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent = nullptr);
-    virtual ~CDlgSettings();
+    explicit CDlgSettingsTigerVnc(CConnectTigerVnc::strPara *pPara, QWidget *parent = nullptr);
+    virtual ~CDlgSettingsTigerVnc();
     
 private slots:
     void on_pushButton_clicked();
@@ -29,7 +29,7 @@ private slots:
     void on_cbJPEG_stateChanged(int arg1);
     
 private:
-    Ui::CDlgSettings *ui;
+    Ui::CDlgSettingsTigerVnc *ui;
     CConnectTigerVnc::strPara* m_pPara;
 };
 

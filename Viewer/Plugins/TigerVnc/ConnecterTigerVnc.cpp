@@ -46,7 +46,7 @@ qint16 CConnecterTigerVnc::Version()
 QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 {
     Q_UNUSED(parent)
-    CDlgSettings* p = new CDlgSettings(&m_Para);
+    CDlgSettingsTigerVnc* p = new CDlgSettingsTigerVnc(&m_Para);
     return p;
 }
 

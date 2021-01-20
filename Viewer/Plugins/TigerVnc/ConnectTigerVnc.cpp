@@ -2,7 +2,6 @@
 
 #include "ConnectTigerVnc.h"
 #include "ConnecterTigerVnc.h"
-#include "DlgPassword.h"
 
 #ifndef WIN32
 #include <string.h>

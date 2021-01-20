@@ -1,13 +1,13 @@
 //! @author: Kang Lin(kl222@126.com)
 
-#include "DlgSettings.h"
-#include "ui_DlgSettings.h"
+#include "DlgSettingsTigerVnc.h"
+#include "ui_DlgSettingsTigerVnc.h"
 #include "rfb/encodings.h"
 #include <QDebug>
 
-CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
+CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgSettings),
+    ui(new Ui::CDlgSettingsTigerVnc),
     m_pPara(pPara)
 {
     setAttribute(Qt::WA_DeleteOnClose);
@@ -75,13 +75,13 @@ CDlgSettings::CDlgSettings(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     ui->spJPEGLevel->setValue(m_pPara->nQualityLevel);
 }
 
-CDlgSettings::~CDlgSettings()
+CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()
 {
-    qDebug() << "CDlgSettings::~CDlgSettings()";
+    qDebug() << "CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()";
     delete ui;
 }
 
-void CDlgSettings::on_pushButton_clicked()
+void CDlgSettingsTigerVnc::on_pushButton_clicked()
 {
     if(!m_pPara)
         reject();
@@ -123,12 +123,12 @@ void CDlgSettings::on_pushButton_clicked()
     accept();
 }
 
-void CDlgSettings::on_pushButton_2_clicked()
+void CDlgSettingsTigerVnc::on_pushButton_2_clicked()
 {
     reject();
 }
 
-void CDlgSettings::on_cbCompressAutoSelect_stateChanged(int arg1)
+void CDlgSettingsTigerVnc::on_cbCompressAutoSelect_stateChanged(int arg1)
 {
     m_pPara->bAutoSelect = arg1;
     if(m_pPara->bAutoSelect)
@@ -151,7 +151,7 @@ void CDlgSettings::on_cbCompressAutoSelect_stateChanged(int arg1)
     }
 }
 
-void CDlgSettings::on_cbCompress_stateChanged(int arg1)
+void CDlgSettingsTigerVnc::on_cbCompress_stateChanged(int arg1)
 {
     m_pPara->bCompressLevel = arg1;
     if(m_pPara->bCompressLevel)
@@ -162,7 +162,7 @@ void CDlgSettings::on_cbCompress_stateChanged(int arg1)
     }
 }
 
-void CDlgSettings::on_cbJPEG_stateChanged(int arg1)
+void CDlgSettingsTigerVnc::on_cbJPEG_stateChanged(int arg1)
 {
     m_pPara->bNoJpeg = !arg1;
     if(m_pPara->bNoJpeg)
