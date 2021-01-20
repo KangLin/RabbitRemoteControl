@@ -17,6 +17,7 @@ jobs:
           - os: macos-latest
             triplet: x64-osx
         BUILD_TYPE: [Release, Debug]
+        qt_version: [5.12.9, 5.6.2]
     runs-on: ${{ matrix.os }}
 
     env:
@@ -62,7 +63,7 @@ jobs:
         # Directory to install Qt
         dir: ${{runner.workspace}}/qt # optional
         # Version of Qt to install
-        version: 5.12.9 # optional, default is 5.15.2
+        version: ${{matrix.qt_version}} # optional, default is 5.15.2
         # Host platform
         #host: linux # optional
         # Target platform for build
