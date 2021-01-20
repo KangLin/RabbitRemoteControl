@@ -383,6 +383,7 @@ void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
 {
     //vlog.debug("CConnectTigerVnc::slotMousePressEvent");
     if(!writer()) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     unsigned char mask = 0;
     rfb::Point pos(e->x(), e->y());
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -398,6 +399,7 @@ void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
 void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 {
     if(!writer()) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     //vlog.debug("CConnectTigerVnc::slotMouseReleaseEvent");
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
@@ -410,6 +412,7 @@ void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
     //vlog.debug("CConnectTigerVnc::slotMouseMoveEvent");
     //qDebug() << "slotMouseMoveEvent x:" << e->x() << ";y:" << e->y();
     if(!writer()) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -425,6 +428,7 @@ void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
 {
     //vlog.debug("CConnectTigerVnc::slotWheelEvent");
     if(!writer()) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     
@@ -451,6 +455,7 @@ void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
 void CConnectTigerVnc::slotKeyPressEvent(QKeyEvent* e)
 {
     if(!writer()) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     bool modifier = true;
     if (e->modifiers() == Qt::NoModifier)
         modifier = false;
@@ -462,6 +467,7 @@ void CConnectTigerVnc::slotKeyPressEvent(QKeyEvent* e)
 
 void CConnectTigerVnc::slotKeyReleaseEvent(QKeyEvent* e)
 {
+    if(m_pPara && m_pPara->bOnlyView) return;
     if(!writer()) return;
     bool modifier = true;
     if (e->modifiers() == Qt::NoModifier)

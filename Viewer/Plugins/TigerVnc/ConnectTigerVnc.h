@@ -4,7 +4,7 @@
 #define CCONNECTTIGERVNC_H
 
 #include "Connect.h"
-
+#include "Paramter.h"
 #include "network/TcpSocket.h"
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"
@@ -84,19 +84,14 @@ public:
         VeryLow
     };
 
-    struct strPara{
+    class strPara : public CParamter{
+    public:
         QString szServerName;
-        QString szUser;
-        QString szPassword;
-
-        bool bSave;
         
         bool bShared;
         bool bBufferEndRefresh;
-        bool bLocalCursor;
         bool bSupportsDesktopResize;
-        bool bClipboard;
-
+        
         bool bAutoSelect;
         COLOR_LEVEL nColorLevel;
         int nEncoding;
