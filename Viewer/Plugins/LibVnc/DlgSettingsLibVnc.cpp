@@ -20,6 +20,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
     ui->cbSave->setChecked(m_pPara->bSave);
     
     ui->cbShared->setChecked(m_pPara->bShared);
+    ui->cbOnlyView->setChecked(m_pPara->bOnlyView);
 //    ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
     ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
 //    ui->cbResizeWindows->setChecked(m_pPara->bSupportsDesktopResize);
@@ -53,21 +54,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
 //        break;
 //    }
     
-    switch(m_pPara->nColorLevel)
-    {
-    case CConnectLibVnc::Full:
-        ui->rbFull->setChecked(true);
-        break;
-    case CConnectLibVnc::Medium:
-        ui->rbMeduim->setChecked(true);
-        break;
-    case CConnectLibVnc::Low:
-        ui->rbLow->setChecked(true);
-        break;
-    case CConnectLibVnc::VeryLow:
-        ui->rbVeryLow->setChecked(true);
-        break;
-    }
+   
     ui->cbCompress->setChecked(m_pPara->bCompressLevel);
     ui->spCompressLevel->setEnabled(m_pPara->bCompressLevel);
     ui->spCompressLevel->setValue(m_pPara->nCompressLevel);
@@ -95,6 +82,7 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     
 //    m_pPara->bSave = ui->cbSave->isChecked();
     m_pPara->bShared = ui->cbShared->isChecked();
+    m_pPara->bOnlyView = ui->cbOnlyView->isChecked();
 //    m_pPara->bBufferEndRefresh = !ui->cbRealTimeUpdate->isChecked();
     m_pPara->bLocalCursor = ui->cbLocalCursor->isChecked();
 //    m_pPara->bSupportsDesktopResize = ui->cbResizeWindows->isChecked();
@@ -111,10 +99,6 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
 //    if(ui->rbCopyRect->isChecked()) m_pPara->nEncoding = rfb::encodingCopyRect;
 //    if(ui->rbHextile->isChecked()) m_pPara->nEncoding = rfb::encodingHextile;
     
-    if(ui->rbFull->isChecked()) m_pPara->nColorLevel = CConnectLibVnc::Full;
-    if(ui->rbMeduim->isChecked()) m_pPara->nColorLevel = CConnectLibVnc::Medium;
-    if(ui->rbLow->isChecked()) m_pPara->nColorLevel = CConnectLibVnc::Low;
-    if(ui->rbVeryLow->isChecked()) m_pPara->nColorLevel = CConnectLibVnc::VeryLow;
 
     m_pPara->bCompressLevel = ui->cbCompress->isChecked();
     m_pPara->nCompressLevel = ui->spCompressLevel->value();

@@ -159,6 +159,7 @@ int CConnectLibVnc::SetParamter(void*)
     m_pClient->serverPort = m_pPara->nPort;
     
     m_pClient->appData.shareDesktop = m_pPara->bShared;
+    m_pClient->appData.viewOnly = m_pPara->bOnlyView;
     m_pClient->appData.useRemoteCursor = m_pPara->bLocalCursor;
 
     m_pClient->appData.nColours = m_pPara->nColorLevel;
@@ -325,6 +326,7 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
 void CConnectLibVnc::slotMousePressEvent(QMouseEvent* e)
 {
     if(!m_pClient) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     //qDebug() << "CConnectLibVnc::slotMousePressEvent" << e->button() << e->buttons();
     unsigned char mask = 0;
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -340,6 +342,7 @@ void CConnectLibVnc::slotMousePressEvent(QMouseEvent* e)
 void CConnectLibVnc::slotMouseReleaseEvent(QMouseEvent* e)
 {
     if(!m_pClient) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
     SendPointerEvent(m_pClient, e->x(), e->y(), mask);
 }
@@ -348,6 +351,7 @@ void CConnectLibVnc::slotMouseMoveEvent(QMouseEvent* e)
 {
     //qDebug() << "CConnectLibVnc::slotMouseMoveEvent" << e->button() << e->buttons();
     if(!m_pClient) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
     if(e->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
@@ -362,6 +366,7 @@ void CConnectLibVnc::slotWheelEvent(QWheelEvent* e)
 {
     //vlog.debug("CConnectLibVnc::slotWheelEvent");
     if(!m_pClient) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
     
     if(e->buttons() & Qt::MouseButton::LeftButton)
@@ -601,6 +606,7 @@ uint32_t TranslateRfbKey(quint32 inkey, bool shiftModifier)
 void CConnectLibVnc::slotKeyPressEvent(QKeyEvent* e)
 {
     if(!m_pClient) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     bool shiftModifier = false;
     if (e->modifiers() & Qt::ShiftModifier)
         shiftModifier = true;
@@ -612,6 +618,7 @@ void CConnectLibVnc::slotKeyPressEvent(QKeyEvent* e)
 void CConnectLibVnc::slotKeyReleaseEvent(QKeyEvent* e)
 {
     if(!m_pClient) return;
+    if(m_pPara && m_pPara->bOnlyView) return;
     bool shiftModifier = false;
     if (e->modifiers() & Qt::ShiftModifier)
         shiftModifier = true;

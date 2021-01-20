@@ -59,6 +59,7 @@ public:
         bool bSave;
         
         bool bShared;
+        bool bOnlyView;
         bool bBufferEndRefresh;
         bool bLocalCursor;
         bool bSupportsDesktopResize;

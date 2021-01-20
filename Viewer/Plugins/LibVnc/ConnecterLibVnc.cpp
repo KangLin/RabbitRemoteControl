@@ -7,6 +7,7 @@ CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecterPlugins(p
     m_pParamter = &m_Para;
     m_Para.nPort = 5900;
     m_Para.bShared = true;
+    m_Para.bOnlyView = false;
     m_Para.bLocalCursor = true;
     m_Para.bClipboard = true;
     
@@ -41,6 +42,7 @@ int CConnecterLibVnc::Load(QDataStream &d)
       >> m_Para.szUser
       >> m_Para.szPassword
       >> m_Para.bShared
+      >> m_Para.bOnlyView
       >> m_Para.bLocalCursor
       >> m_Para.bClipboard
       
@@ -62,6 +64,7 @@ int CConnecterLibVnc::Save(QDataStream &d)
       << m_Para.szUser
       << m_Para.szPassword
       << m_Para.bShared
+      << m_Para.bOnlyView
       << m_Para.bLocalCursor
       << m_Para.bClipboard
          
