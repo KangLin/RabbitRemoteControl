@@ -161,11 +161,49 @@ int CConnectLibVnc::SetParamter(void*)
     m_pClient->appData.shareDesktop = m_pPara->bShared;
     m_pClient->appData.viewOnly = m_pPara->bOnlyView;
     m_pClient->appData.useRemoteCursor = m_pPara->bLocalCursor;
-
-    m_pClient->appData.nColours = m_pPara->nColorLevel;
+    
+    //Qt is support QImage::Format_RGB32, so we use default format QImage::Format_RGB32 in OnSize()
+//    m_pClient->appData.requestedDepth = m_pPara->nColorLevel;
+//    m_pClient->format.depth = m_pPara->nColorLevel;
+//    switch (m_pClient->format.depth) {
+//	case 8:
+//		m_pClient->format.depth = 8;
+//		m_pClient->format.bitsPerPixel = 8;
+//		m_pClient->format.blueMax = 3;
+//		m_pClient->format.blueShift = 6;
+//		m_pClient->format.greenMax = 7;
+//		m_pClient->format.greenShift = 3;
+//		m_pClient->format.redMax = 7;
+//		m_pClient->format.redShift = 0;
+//		break;
+//	case 16:
+//		m_pClient->format.depth = 15;
+//		m_pClient->format.bitsPerPixel = 16;
+//		m_pClient->format.redShift = 11;
+//		m_pClient->format.greenShift = 6;
+//		m_pClient->format.blueShift = 1;
+//		m_pClient->format.redMax = 31;
+//		m_pClient->format.greenMax = 31;
+//		m_pClient->format.blueMax = 31;
+//		break;
+//	case 32:
+//	default:
+//		m_pClient->format.depth = 24;
+//		m_pClient->format.bitsPerPixel = 32;
+//		m_pClient->format.blueShift = 0;
+//		m_pClient->format.redShift = 16;
+//		m_pClient->format.greenShift = 8;
+//		m_pClient->format.blueMax = 0xff;
+//		m_pClient->format.redMax = 0xff;
+//		m_pClient->format.greenMax = 0xff;
+//		break;
+//	}
+    
     m_pClient->appData.enableJPEG = m_pPara->bJpeg;
-    m_pClient->appData.qualityLevel = m_pPara->nQualityLevel;
-    m_pClient->appData.compressLevel = m_pPara->nCompressLevel;
+    if(m_pClient->appData.enableJPEG)
+        m_pClient->appData.qualityLevel = m_pPara->nQualityLevel;
+    if(m_pPara->bCompressLevel)
+        m_pClient->appData.compressLevel = m_pPara->nCompressLevel;
     
     return nRet;
 }

@@ -48,27 +48,10 @@ private:
     QImage m_Image;
     
 public:
-    enum COLOR_LEVEL {
-        Full = 32,
-        Medium = 16,
-        Low = 8,
-        VeryLow = 0
-    };
     class strPara : public CParamter {
     public:
-        bool bSave;
-        
         bool bShared;
-        bool bOnlyView;
-        bool bBufferEndRefresh;
-        bool bLocalCursor;
-        bool bSupportsDesktopResize;
-        bool bClipboard;
-
-        bool bAutoSelect;
-        COLOR_LEVEL nColorLevel;
-        int nEncoding;
-
+        
         bool bCompressLevel;
         int nCompressLevel;
         bool bJpeg;

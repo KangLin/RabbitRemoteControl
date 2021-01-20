@@ -13,8 +13,8 @@ CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecterPlugins(p
     
     m_Para.bCompressLevel = true;
     m_Para.nCompressLevel = 3;
+    m_Para.bJpeg = true;
     m_Para.nQualityLevel = 5;
-    m_Para.bJpeg = false;
 }
 
 CConnecterLibVnc::~CConnecterLibVnc()
@@ -32,20 +32,10 @@ QDialog *CConnecterLibVnc::GetDialogSettings(QWidget *parent)
     return new CDlgSettingsLibVnc(this, parent);
 }
 
-int CConnecterLibVnc::Load(QDataStream &d)
+int CConnecterLibVnc::OnLoad(QDataStream &d)
 {
     int nRet = 0;
-    qint16 version = 0;
-    d >> version;
-    d >> m_Para.szHost
-      >> m_Para.nPort
-      >> m_Para.szUser
-      >> m_Para.szPassword
-      >> m_Para.bShared
-      >> m_Para.bOnlyView
-      >> m_Para.bLocalCursor
-      >> m_Para.bClipboard
-      
+    d >> m_Para.bShared
       >> m_Para.bCompressLevel
       >> m_Para.nCompressLevel
       >> m_Para.bJpeg
@@ -55,19 +45,10 @@ int CConnecterLibVnc::Load(QDataStream &d)
     return nRet;
 }
 
-int CConnecterLibVnc::Save(QDataStream &d)
+int CConnecterLibVnc::OnSave(QDataStream &d)
 {
     int nRet = 0;
-    d << Version()
-      << m_Para.szHost
-      << m_Para.nPort
-      << m_Para.szUser
-      << m_Para.szPassword
-      << m_Para.bShared
-      << m_Para.bOnlyView
-      << m_Para.bLocalCursor
-      << m_Para.bClipboard
-         
+    d << m_Para.bShared
       << m_Para.bCompressLevel
       << m_Para.nCompressLevel
       << m_Para.bJpeg

@@ -29,18 +29,23 @@ public:
     virtual CConnect* InstanceConnect() = 0;
     
     virtual QString GetServerName() override;
+    virtual int Load(QDataStream &d) override;
+    virtual int Save(QDataStream &d) override;
     
 public Q_SLOTS:
     int Connect();
     int DisConnect();
 
+protected:
     virtual int OnConnect();
     virtual int OnDisConnect();
-    
+    virtual int OnLoad(QDataStream& d);
+    virtual int OnSave(QDataStream& d);
+
 private:
     bool m_bExit;
     CConnectThread* m_pThread;
-    
+
 protected:
     CParamter* m_pParamter;
 };

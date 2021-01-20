@@ -2,124 +2,113 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
-    <name>CConnectFreeRdp</name>
+    <name>CDlgSettingsLibVnc</name>
     <message>
-        <source>freerdp_connect connect to </source>
-        <translation>連接到 </translation>
+        <location filename="../../DlgSettingsLibVnc.ui" line="14"/>
+        <source>Setting LibVnc</source>
+        <translation>設置 LibVnc</translation>
     </message>
     <message>
-        <source> fail</source>
-        <translation> 失敗</translation>
-    </message>
-    <message>
-        <source>Connect to </source>
-        <translation>連接到 </translation>
-    </message>
-    <message>
-        <source>Logon error info [</source>
-        <translation>登錄錯誤信息</translation>
-    </message>
-</context>
-<context>
-    <name>CDlgSetFreeRdp</name>
-    <message>
-        <source>Set FreeRdp</source>
-        <translation>設置 FreeRdp</translation>
-    </message>
-    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="24"/>
         <source>Server</source>
-        <translation>服務器</translation>
+        <translation>服務</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="46"/>
         <source>Server:</source>
-        <translation>服務器:</translation>
+        <translation>服務器：</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="147"/>
+        <source>Save password</source>
+        <translation>保存密碼</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="32"/>
         <source>User name:</source>
-        <translation>用戶名:</translation>
+        <translation>用戶名：</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="94"/>
+        <source>Only view</source>
+        <translation>僅查看</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="123"/>
         <source>Password:</source>
-        <translation>密碼:</translation>
+        <translation>密碼：</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="87"/>
         <source>Shared</source>
         <translation>共享</translation>
     </message>
     <message>
-        <source>Real time update</source>
-        <translation>實時更新</translation>
+        <location filename="../../DlgSettingsLibVnc.ui" line="105"/>
+        <source>Use local cursor</source>
+        <translation>用本地光標</translation>
     </message>
     <message>
-        <source>Show local cursor</source>
-        <translation>顯示本地光標</translation>
-    </message>
-    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="112"/>
         <source>Enable clipboard</source>
         <translation>允許剪切板</translation>
     </message>
+   
     <message>
-        <source>OK(&amp;O)</source>
+        <location filename="../../DlgSettingsLibVnc.ui" line="157"/>
+        <source>Compress</source>
+        <translation>壓縮</translation>
+    </message>
+    
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="182"/>
+        <source>0=fast, 9=best</source>
+        <translation>0=最快，9=最好</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="193"/>
+        <source>Enable JPEG compress</source>
+        <translation>允許 JPEG 壓縮</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="207"/>
+        <source>0=Worst, 9=best</source>
+        <translation>0=最差,9=最好</translation>
+    </message>
+    
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="163"/>
+        <source>Compress level:</source>
+        <translation>壓縮級別：</translation>
+    </message>
+   
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="248"/>
+        <source>Ok(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <source>Cancel(&amp;C)</source>
+        <location filename="../../DlgSettingsLibVnc.ui" line="255"/>
+        <source>Cancle(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation>端口:</translation>
-    </message>
-    <message>
-        <source>Domain:</source>
-        <translation>域名:</translation>
-    </message>
-    <message>
-        <source>Display</source>
-        <translation>顯示</translation>
-    </message>
-    <message>
-        <source>Select size:</source>
-        <translation>選擇尺寸：</translation>
-    </message>
-    <message>
-        <source>Full screen</source>
-        <translation>全屏</translation>
-    </message>
-    <message>
-        <source>Remote color depth:</source>
-        <translation>遠程顏色深度：</translation>
-    </message>
-    <message>
-        <source>8 bits</source>
-        <translation>8 位</translation>
-    </message>
-    <message>
-        <source>16 bits</source>
-        <translation>16 位</translation>
-    </message>
-    <message>
-        <source>24 bits</source>
-        <translation>24 位</translation>
-    </message>
-    <message>
-        <source>32 bits</source>
-        <translation>32 位</translation>
-    </message>
-    <message>
-        <source>Remote desktop size:</source>
-        <translation>遠程桌面尺寸：</translation>
-    </message>
-    <message>
-        <source>Use all local monitors for remote sessions</source>
-        <translation>將本地所有監視器用於遠程會話</translation>
     </message>
 </context>
 <context>
-    <name>CPluginFactoryFreeRdp</name>
+    <name>CPluginFactoryLibVnc</name>
     <message>
-        <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation>RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
+        <location filename="../../PluginFactoryLibVnc.cpp" line="31"/>
+        <source>LibVnc</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../PluginFactoryLibVnc.cpp" line="36"/>
+        <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
+        <translation>VNC（虛擬網絡控制臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFactoryLibVnc.cpp" line="37"/>
+        <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
+        <translation>VNC 是壹個使用 RFB（遠程幀緩存)協議的程序集</translation>
     </message>
 </context>
 </TS>

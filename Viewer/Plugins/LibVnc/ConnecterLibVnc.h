@@ -16,8 +16,8 @@ public:
 public:
     virtual qint16 Version() override;
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
-    virtual int Load(QDataStream &d) override;
-    virtual int Save(QDataStream &d) override;
+    virtual int OnLoad(QDataStream& d) override;
+    virtual int OnSave(QDataStream& d) override;
     virtual CConnect* InstanceConnect() override;
 
 private:

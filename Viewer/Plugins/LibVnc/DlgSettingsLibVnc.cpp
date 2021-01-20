@@ -17,7 +17,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
     ui->spPort->setValue(m_pPara->nPort);
     ui->leName->setText(m_pPara->szUser);
     ui->lePassword->setText(m_pPara->szPassword);
-    ui->cbSave->setChecked(m_pPara->bSave);
+    ui->cbSavePassword->setChecked(m_pPara->bSavePassword);
     
     ui->cbShared->setChecked(m_pPara->bShared);
     ui->cbOnlyView->setChecked(m_pPara->bOnlyView);
@@ -53,8 +53,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
 //        ui->rbHextile->setChecked(true);
 //        break;
 //    }
-    
-   
+
     ui->cbCompress->setChecked(m_pPara->bCompressLevel);
     ui->spCompressLevel->setEnabled(m_pPara->bCompressLevel);
     ui->spCompressLevel->setValue(m_pPara->nCompressLevel);
@@ -79,14 +78,15 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     m_pPara->nPort = ui->spPort->value();
     m_pPara->szUser = ui->leName->text();
     m_pPara->szPassword = ui->lePassword->text();
-    
+    m_pPara->bSavePassword = ui->cbSavePassword->isChecked();
+
 //    m_pPara->bSave = ui->cbSave->isChecked();
     m_pPara->bShared = ui->cbShared->isChecked();
     m_pPara->bOnlyView = ui->cbOnlyView->isChecked();
 //    m_pPara->bBufferEndRefresh = !ui->cbRealTimeUpdate->isChecked();
     m_pPara->bLocalCursor = ui->cbLocalCursor->isChecked();
 //    m_pPara->bSupportsDesktopResize = ui->cbResizeWindows->isChecked();
-//    m_pPara->bClipboard = ui->cbClipboard->isChecked();
+    m_pPara->bClipboard = ui->cbClipboard->isChecked();
     
 //    // Compress
 //    m_pPara->bAutoSelect = ui->cbCompressAutoSelect->isChecked();
@@ -102,7 +102,7 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
 
     m_pPara->bCompressLevel = ui->cbCompress->isChecked();
     m_pPara->nCompressLevel = ui->spCompressLevel->value();
-    m_pPara->bJpeg = !ui->cbJPEG->isChecked();
+    m_pPara->bJpeg = ui->cbJPEG->isChecked();
     m_pPara->nQualityLevel = ui->spJPEGLevel->value();
     
     accept();

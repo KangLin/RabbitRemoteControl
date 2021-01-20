@@ -97,3 +97,59 @@ QString CConnecterPlugins::GetServerName()
         m_szServerName = m_pParamter->szHost + ":" + QString::number(m_pParamter->nPort);
     return CConnecter::GetServerName();
 }
+
+
+int CConnecterPlugins::Load(QDataStream &d)
+{
+    int nRet = 0;
+    Q_ASSERT(m_pParamter);
+    qint16 version = 0;
+    d >> version;
+    d >> m_pParamter->szHost
+      >> m_pParamter->nPort
+      >> m_pParamter->szUser
+      >> m_pParamter->bSavePassword;
+    
+    if(m_pParamter->bSavePassword)
+        d >> m_pParamter->szPassword;
+    
+    d >> m_pParamter->bOnlyView
+      >> m_pParamter->bLocalCursor
+      >> m_pParamter->bClipboard;
+    
+    nRet = OnLoad(d);
+    return nRet;
+}
+
+int CConnecterPlugins::Save(QDataStream &d)
+{
+    int nRet = 0;
+    Q_ASSERT(m_pParamter);
+    d << Version()
+      << m_pParamter->szHost
+      << m_pParamter->nPort
+      << m_pParamter->szUser
+      << m_pParamter->bSavePassword;
+    
+    if(m_pParamter->bSavePassword)
+        d << m_pParamter->szPassword;
+    
+    d << m_pParamter->bOnlyView
+      << m_pParamter->bLocalCursor
+      << m_pParamter->bClipboard;
+    
+    nRet = OnSave(d);
+    return nRet;
+}
+
+int CConnecterPlugins::OnLoad(QDataStream& d)
+{
+    Q_UNUSED(d);
+    return 0;
+}
+
+int CConnecterPlugins::OnSave(QDataStream& d)
+{
+    Q_UNUSED(d);
+    return 0;
+}

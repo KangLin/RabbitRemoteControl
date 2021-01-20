@@ -441,7 +441,7 @@ int MainWindow::onProcess(const QString &id, CPluginFactory *pFactory)
 {
     Q_UNUSED(id);
     // Connect menu and toolbar
-    QAction* p = ui->menuConnect_C->addAction(pFactory->Name(), this, SLOT(slotConnect()));
+    QAction* p = ui->menuConnect_C->addAction(pFactory->Protol() + ": " + pFactory->Name(), this, SLOT(slotConnect()));
     p->setToolTip(pFactory->Description());
     p->setStatusTip(pFactory->Description());
     p->setData(id);

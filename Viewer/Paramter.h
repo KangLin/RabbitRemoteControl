@@ -16,7 +16,11 @@ public:
     
     QString szUser;
     QString szPassword;
-
+    bool bSavePassword;
+    
+    bool bOnlyView;
+    bool bLocalCursor;
+    bool bClipboard;
 };
 
 #endif // CPARAMTER_H
