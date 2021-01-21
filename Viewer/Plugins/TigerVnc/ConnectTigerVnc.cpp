@@ -165,8 +165,13 @@ int CConnectTigerVnc::Process()
     try {
         auto in = getInStream();
         if(in)
-            in->check(1);
-        processMsg();
+        {
+            size_t nRet = in->check(1, 1, false);
+            if(nRet > 0)
+                processMsg();
+            else if(nRet == 0)
+                QThread::msleep(500);
+        }
     } catch (rdr::EndOfStream& e) {
         vlog.error("exec error: %s", e.str());
         emit sigError(-1, e.str());
