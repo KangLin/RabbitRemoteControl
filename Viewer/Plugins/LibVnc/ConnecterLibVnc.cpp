@@ -7,10 +7,7 @@ CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecterPlugins(p
     m_pParamter = &m_Para;
     m_Para.nPort = 5900;
     m_Para.bShared = true;
-    m_Para.bOnlyView = false;
-    m_Para.bLocalCursor = true;
-    m_Para.bClipboard = true;
-    
+
     m_Para.bCompressLevel = true;
     m_Para.nCompressLevel = 3;
     m_Para.bJpeg = true;

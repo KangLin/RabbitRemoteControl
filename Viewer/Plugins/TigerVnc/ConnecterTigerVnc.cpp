@@ -9,11 +9,8 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
 {
     m_pParamter = &m_Para;
     m_Para.nPort = 5900;
-    m_Para.bSavePassword = false;
     m_Para.bShared = true;
-    m_Para.bBufferEndRefresh = true;
-    m_Para.bLocalCursor = true;
-    m_Para.bClipboard = true;
+    m_Para.bBufferEndRefresh = false;
     m_Para.bSupportsDesktopResize = true;
     
     m_Para.bAutoSelect = true;

@@ -135,7 +135,7 @@
          <item row="0" column="0">
           <widget class="QCheckBox" name="cbSave">
            <property name="text">
-            <string>Save</string>
+            <string>Save password</string>
            </property>
           </widget>
          </item>
