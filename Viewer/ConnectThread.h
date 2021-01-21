@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCONNECTTHREAD_H
 #define CCONNECTTHREAD_H
 
@@ -7,6 +9,7 @@
 /**
  * @brief The CConnectThread class
  * @see CConnecterPlugins
+ * @note The class only is used by CConnecterPlugins
  */
 class CConnectThread : public QThread
 {

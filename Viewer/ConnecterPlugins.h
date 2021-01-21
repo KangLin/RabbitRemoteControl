@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #ifndef CCONNECTERBACKTHREAD_H
 #define CCONNECTERBACKTHREAD_H
 

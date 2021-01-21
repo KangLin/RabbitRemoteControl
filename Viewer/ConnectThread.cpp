@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ConnectThread.h"
 
 CConnectThread::CConnectThread(CConnecterPlugins *pConnect) : QThread(pConnect),

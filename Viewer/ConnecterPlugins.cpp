@@ -1,3 +1,5 @@
+//! @author: Kang Lin(kl222@126.com)
+
 #include "ConnecterPlugins.h"
 #include <QDebug>
 #include "ConnectThread.h"
