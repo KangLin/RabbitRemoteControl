@@ -44,15 +44,15 @@
     </message>
     <message>
         <source>Shared</source>
-        <translation>共享</translation>
+        <translation type="vanished">共享</translation>
     </message>
     <message>
         <source>Real time update</source>
-        <translation>實時更新</translation>
+        <translation type="vanished">實時更新</translation>
     </message>
     <message>
         <source>Show local cursor</source>
-        <translation>顯示本地光標</translation>
+        <translation type="vanished">顯示本地光標</translation>
     </message>
     <message>
         <source>Enable clipboard</source>
@@ -113,6 +113,14 @@
     <message>
         <source>Use all local monitors for remote sessions</source>
         <translation>將本地所有監視器用於遠程會話</translation>
+    </message>
+    <message>
+        <source>Save password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only View</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
