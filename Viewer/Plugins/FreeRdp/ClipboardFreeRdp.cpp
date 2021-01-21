@@ -24,10 +24,11 @@ CClipboardFreeRdp::~CClipboardFreeRdp()
         pClipboard->clear();
 }
 
-int CClipboardFreeRdp::Init(CliprdrClientContext *context)
+int CClipboardFreeRdp::Init(CliprdrClientContext *context, bool bEnable)
 {
     m_pClipboard = context;
     context->custom = this;
+    if(!bEnable) return 0;
     // See: [MS_RDPECLIP] 1.3.2.1 Initialization Sequence
     context->MonitorReady = cb_cliprdr_monitor_ready;
 	context->ServerCapabilities = cb_cliprdr_server_capabilities;
@@ -39,7 +40,7 @@ int CClipboardFreeRdp::Init(CliprdrClientContext *context)
     return 0;
 }
 
-int CClipboardFreeRdp::UnInit(CliprdrClientContext *context)
+int CClipboardFreeRdp::UnInit(CliprdrClientContext *context, bool bEnable)
 {
     context->custom = nullptr;
     m_pClipboard = nullptr;

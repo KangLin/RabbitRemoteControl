@@ -5,7 +5,7 @@
 #include <QApplication>
 #include <QScreen>
 
-CDlgSetFreeRdp::CDlgSetFreeRdp(rdpSettings *pSettings, QWidget *parent) :
+CDlgSetFreeRdp::CDlgSetFreeRdp(CConnecterFreeRdp::CParamterFreeRdp *pSettings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSetFreeRdp),
     m_pSettings(pSettings)
@@ -31,19 +31,17 @@ CDlgSetFreeRdp::~CDlgSetFreeRdp()
 void CDlgSetFreeRdp::on_pbOk_clicked()
 {
     // Server
-    freerdp_settings_set_string(m_pSettings,
+    m_pSettings->szHost = ui->leServer->text();
+    m_pSettings->nPort = ui->spPort->value();
+    m_pSettings->szUser = ui->leName->text();
+    m_pSettings->szPassword = ui->lePassword->text();
+    freerdp_settings_set_string(m_pSettings->pSettings,
                                 FreeRDP_Domain,
                                 ui->leDomain->text().toStdString().c_str());
-    freerdp_settings_set_string(m_pSettings,
-                                FreeRDP_ServerHostname,
-                                ui->leServer->text().toStdString().c_str());
-    m_pSettings->ServerPort = ui->spPort->value();
-    freerdp_settings_set_string(m_pSettings,
-                                FreeRDP_Username,
-                                ui->leName->text().toStdString().c_str());
-    freerdp_settings_set_string(m_pSettings,
-                                FreeRDP_Password,
-                                ui->lePassword->text().toStdString().c_str());
+
+    m_pSettings->bSavePassword = ui->cbSavePassword->isChecked();
+    m_pSettings->bOnlyView = ui->cbOnlyView->isChecked();
+    m_pSettings->bClipboard = ui->cbClipboard->isChecked();
     
     // Display
     QString szSize = ui->cbDesktopSize->currentText();
@@ -52,15 +50,15 @@ void CDlgSetFreeRdp::on_pbOk_clicked()
     {
         int width = szSize.left(index).toInt();
         int height = szSize.right(szSize.length() - index - 1).toInt();
-        m_pSettings->DesktopWidth = width;
-        m_pSettings->DesktopHeight = height;
+        m_pSettings->pSettings->DesktopWidth = width;
+        m_pSettings->pSettings->DesktopHeight = height;
     }
     if(ui->cbAllMonitor->isChecked())
     {
         //TODO: complete it
-        m_pSettings->MonitorCount = QApplication::screens().length();
+        m_pSettings->pSettings->MonitorCount = QApplication::screens().length();
     }
-    m_pSettings->ColorDepth = ui->cbColorDepth->currentData().toInt();
+    m_pSettings->pSettings->ColorDepth = ui->cbColorDepth->currentData().toInt();
     
     accept();
 }
@@ -76,11 +74,15 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
     Q_ASSERT(m_pSettings);
 
     // Server
-    ui->leDomain->setText(freerdp_settings_get_string(m_pSettings, FreeRDP_Domain));
-    ui->leServer->setText(freerdp_settings_get_string(m_pSettings, FreeRDP_ServerHostname));
-    ui->spPort->setValue(m_pSettings->ServerPort);
-    ui->leName->setText(freerdp_settings_get_string(m_pSettings, FreeRDP_Username));
-    ui->lePassword->setText(freerdp_settings_get_string(m_pSettings, FreeRDP_Password));
+    ui->leDomain->setText(freerdp_settings_get_string(m_pSettings->pSettings, FreeRDP_Domain));
+    ui->leServer->setText(m_pSettings->szHost);
+    ui->spPort->setValue(m_pSettings->nPort);
+    ui->leName->setText(m_pSettings->szUser);
+    ui->lePassword->setText(m_pSettings->szPassword);
+    
+    ui->cbSavePassword->setChecked(m_pSettings->bSavePassword);
+    ui->cbOnlyView->setChecked(m_pSettings->bOnlyView);
+    ui->cbClipboard->setChecked(m_pSettings->bClipboard);
     
     // Display
     QScreen* pScreen = QApplication::primaryScreen();
@@ -88,21 +90,22 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
     int height = pScreen->availableGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
     InsertDesktopSize(width, height);
-    if(width == m_pSettings->DesktopWidth
-            && height == m_pSettings->DesktopHeight)
+    if(width == m_pSettings->pSettings->DesktopWidth
+            && height == m_pSettings->pSettings->DesktopHeight)
     {
         ui->rbFullScreen->setChecked(true);
         ui->cbDesktopSize->setCurrentText(curSize);
     } else {
         ui->rbSelect->setChecked(true);
-        InsertDesktopSize(m_pSettings->DesktopWidth, m_pSettings->DesktopHeight);
-        curSize = QString::number(m_pSettings->DesktopWidth)
-                + "×" + QString::number(m_pSettings->DesktopHeight);
+        InsertDesktopSize(m_pSettings->pSettings->DesktopWidth,
+                          m_pSettings->pSettings->DesktopHeight);
+        curSize = QString::number(m_pSettings->pSettings->DesktopWidth)
+                + "×" + QString::number(m_pSettings->pSettings->DesktopHeight);
         ui->cbDesktopSize->setCurrentText(curSize);
     }
-    if(m_pSettings->MonitorCount > 1)
+    if(m_pSettings->pSettings->MonitorCount > 1)
         ui->cbAllMonitor->setChecked(true);
-    int nIndex = ui->cbColorDepth->findData(m_pSettings->ColorDepth);
+    int nIndex = ui->cbColorDepth->findData(m_pSettings->pSettings->ColorDepth);
     if(-1 != nIndex)
         ui->cbColorDepth->setCurrentIndex(nIndex);
 }

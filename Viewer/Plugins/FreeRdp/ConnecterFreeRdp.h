@@ -14,16 +14,19 @@ public:
     explicit CConnecterFreeRdp(CPluginFactory *parent = nullptr);
     virtual ~CConnecterFreeRdp() override;
     
-    rdpSettings* m_pSettings;
-    
-    // CConnecter interface
+    class CParamterFreeRdp: public CParamter
+    {
+    public:
+        rdpSettings* pSettings;
+    };
+    CParamterFreeRdp m_ParamterFreeRdp;
+
 public:
-    virtual QString GetServerName() override;
     virtual qint16 Version() override;
     
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
-    virtual int Load(QDataStream &d) override;
-    virtual int Save(QDataStream &d) override;
+    virtual int OnLoad(QDataStream &d) override;
+    virtual int OnSave(QDataStream &d) override;
 
     virtual CConnect *InstanceConnect() override;
 };

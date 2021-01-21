@@ -72,16 +72,16 @@
        <item row="5" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
-          <widget class="QCheckBox" name="cbShared">
+          <widget class="QCheckBox" name="cbSavePassword">
            <property name="text">
-            <string>Shared</string>
+            <string>Save password</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="cbRealTimeUpdate">
+          <widget class="QCheckBox" name="cbOnlyView">
            <property name="text">
-            <string>Real time update</string>
+            <string>Only View</string>
            </property>
           </widget>
          </item>
@@ -113,13 +113,6 @@
        </item>
        <item row="6" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QCheckBox" name="cbLocalCursor">
-           <property name="text">
-            <string>Show local cursor</string>
-           </property>
-          </widget>
-         </item>
          <item>
           <widget class="QCheckBox" name="cbClipboard">
            <property name="text">
@@ -277,9 +270,8 @@
   <tabstop>spPort</tabstop>
   <tabstop>leName</tabstop>
   <tabstop>lePassword</tabstop>
-  <tabstop>cbShared</tabstop>
-  <tabstop>cbRealTimeUpdate</tabstop>
-  <tabstop>cbLocalCursor</tabstop>
+  <tabstop>cbSavePassword</tabstop>
+  <tabstop>cbOnlyView</tabstop>
   <tabstop>cbClipboard</tabstop>
   <tabstop>pbOk</tabstop>
   <tabstop>pbCancel</tabstop>

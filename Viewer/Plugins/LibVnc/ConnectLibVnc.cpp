@@ -137,12 +137,12 @@ int CConnectLibVnc::Process()
 
 void CConnectLibVnc::slotClipBoardChange()
 {
-    if(!m_pPara->bClipboard) return;
+    if(m_pPara && !m_pPara->bClipboard) return;
     QClipboard* pClipboard = QApplication::clipboard();
     if(pClipboard)
     {
         QString szText = pClipboard->text();
-        if(!szText.isEmpty())
+        if(!szText.isEmpty() && m_pClient)
             SendClientCutText(m_pClient,
                               (char*)szText.toStdString().c_str(),
                               szText.toStdString().length());

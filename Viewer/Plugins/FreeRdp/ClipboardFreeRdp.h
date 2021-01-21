@@ -17,8 +17,8 @@ public:
     explicit CClipboardFreeRdp(CConnectFreeRdp *parent = nullptr);
     virtual ~CClipboardFreeRdp();
     
-    int Init(CliprdrClientContext *context);
-    int UnInit(CliprdrClientContext* context);
+    int Init(CliprdrClientContext *context, bool bEnable);
+    int UnInit(CliprdrClientContext* context, bool bEnable);
     
     static UINT cb_cliprdr_monitor_ready(CliprdrClientContext* context,
                                      const CLIPRDR_MONITOR_READY* monitorReady);
