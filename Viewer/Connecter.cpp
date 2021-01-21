@@ -8,20 +8,12 @@
 #include "RabbitCommonLog.h"
 
 CConnecter::CConnecter(CPluginFactory *parent) : QObject(parent),
-    m_pView(new CFrmViewer()),
     m_pPluginFactory(parent)
 {
 }
 
 CConnecter::~CConnecter()
 {
-    if(m_pView)
-        delete m_pView;
-}
-
-QWidget *CConnecter::GetViewer()
-{
-    return m_pView;
 }
 
 const QString CConnecter::Name() const

@@ -53,13 +53,11 @@
         <source>Enable clipboard</source>
         <translation>允許剪切板</translation>
     </message>
-   
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="157"/>
         <source>Compress</source>
         <translation>壓縮</translation>
     </message>
-    
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="182"/>
         <source>0=fast, 9=best</source>
@@ -75,13 +73,11 @@
         <source>0=Worst, 9=best</source>
         <translation>0=最差,9=最好</translation>
     </message>
-    
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="163"/>
         <source>Compress level:</source>
         <translation>壓縮級別：</translation>
     </message>
-   
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="248"/>
         <source>Ok(&amp;O)</source>

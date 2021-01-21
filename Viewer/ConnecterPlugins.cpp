@@ -9,6 +9,7 @@ CConnecterPlugins::CConnecterPlugins(CPluginFactory *parent)
     : CConnecter(parent),
       m_bExit(false),
       m_pThread(nullptr),
+      m_pView(new CFrmViewer()),
       m_pParamter(nullptr)
 {}
 
@@ -20,7 +21,15 @@ CConnecterPlugins::~CConnecterPlugins()
         delete m_pThread;
     }
 
+    if(m_pView)
+        delete m_pView;
+    
     qDebug() << this << this->metaObject()->className();
+}
+
+QWidget *CConnecterPlugins::GetViewer()
+{
+    return m_pView;
 }
 
 int CConnecterPlugins::OnRun()

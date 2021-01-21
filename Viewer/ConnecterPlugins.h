@@ -30,6 +30,7 @@ public:
     // Instance connect
     virtual CConnect* InstanceConnect() = 0;
     
+    virtual QWidget* GetViewer() override;
     virtual QString GetServerName() override;
     virtual int Load(QDataStream &d) override;
     virtual int Save(QDataStream &d) override;
@@ -47,6 +48,7 @@ protected:
 private:
     bool m_bExit;
     CConnectThread* m_pThread;
+    CFrmViewer *m_pView;
 
 protected:
     CParamter* m_pParamter;

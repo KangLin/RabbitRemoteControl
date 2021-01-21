@@ -46,7 +46,7 @@ public:
      * @brief GetViewer 
      * @return CFrmViewer*: the ownership is the instance of the class
      */
-    virtual QWidget* GetViewer();
+    virtual QWidget* GetViewer() = 0;
     /**
      * @brief Open settings dialog
      * @param parent
@@ -77,7 +77,6 @@ Q_SIGNALS:
     void sigInformation(const QString& szInfo);
     
 private:
-    CFrmViewer *m_pView;
     const CPluginFactory* m_pPluginFactory;
     
 protected:
