@@ -266,6 +266,7 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>leDomain</tabstop>
   <tabstop>leServer</tabstop>
   <tabstop>spPort</tabstop>
   <tabstop>leName</tabstop>
@@ -275,6 +276,11 @@
   <tabstop>cbClipboard</tabstop>
   <tabstop>pbOk</tabstop>
   <tabstop>pbCancel</tabstop>
+  <tabstop>rbFullScreen</tabstop>
+  <tabstop>rbSelect</tabstop>
+  <tabstop>cbDesktopSize</tabstop>
+  <tabstop>cbAllMonitor</tabstop>
+  <tabstop>cbColorDepth</tabstop>
   <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources/>

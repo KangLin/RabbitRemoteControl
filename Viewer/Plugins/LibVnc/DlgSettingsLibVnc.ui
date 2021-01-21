@@ -260,6 +260,24 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>leHost</tabstop>
+  <tabstop>spPort</tabstop>
+  <tabstop>leName</tabstop>
+  <tabstop>lePassword</tabstop>
+  <tabstop>cbShared</tabstop>
+  <tabstop>cbOnlyView</tabstop>
+  <tabstop>cbLocalCursor</tabstop>
+  <tabstop>cbClipboard</tabstop>
+  <tabstop>cbSavePassword</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>cbCompress</tabstop>
+  <tabstop>spCompressLevel</tabstop>
+  <tabstop>cbJPEG</tabstop>
+  <tabstop>spJPEGLevel</tabstop>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

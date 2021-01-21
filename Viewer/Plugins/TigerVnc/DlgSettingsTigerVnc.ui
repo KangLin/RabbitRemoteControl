@@ -366,6 +366,37 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>leServer</tabstop>
+  <tabstop>leName</tabstop>
+  <tabstop>lePassword</tabstop>
+  <tabstop>cbShared</tabstop>
+  <tabstop>cbRealTimeUpdate</tabstop>
+  <tabstop>cbLocalCursor</tabstop>
+  <tabstop>cbClipboard</tabstop>
+  <tabstop>cbSave</tabstop>
+  <tabstop>cbResizeWindows</tabstop>
+  <tabstop>cbOnlyView</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>cbCompressAutoSelect</tabstop>
+  <tabstop>rbTight</tabstop>
+  <tabstop>rbZRLE</tabstop>
+  <tabstop>rbHextile</tabstop>
+  <tabstop>rbCoRRE</tabstop>
+  <tabstop>rbRRE</tabstop>
+  <tabstop>rbCopyRect</tabstop>
+  <tabstop>rbRaw</tabstop>
+  <tabstop>rbFull</tabstop>
+  <tabstop>rbMeduim</tabstop>
+  <tabstop>rbLow</tabstop>
+  <tabstop>rbVeryLow</tabstop>
+  <tabstop>cbCompress</tabstop>
+  <tabstop>spCompressLevel</tabstop>
+  <tabstop>cbJPEG</tabstop>
+  <tabstop>spJPEGLevel</tabstop>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
