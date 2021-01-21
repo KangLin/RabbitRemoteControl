@@ -31,6 +31,10 @@ private slots:
 private:
     Ui::CDlgSettingsTigerVnc *ui;
     CConnectTigerVnc::strPara* m_pPara;
+    
+    // QWidget interface
+protected:
+    virtual void showEvent(QShowEvent *event) override;
 };
 
 #endif // DLGSETTINGS_H

@@ -12,67 +12,6 @@ CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CConnectTigerVnc::strPara *pPara, QWi
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
-    
-    // Server
-    ui->leServer->setText(m_pPara->szServerName);
-    ui->leName->setText(m_pPara->szUser);
-    ui->lePassword->setText(m_pPara->szPassword);
-    ui->cbSave->setChecked(m_pPara->bSavePassword);
-    ui->cbOnlyView->setChecked(m_pPara->bOnlyView);
-    
-    ui->cbShared->setChecked(m_pPara->bShared);
-    ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
-    ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
-    ui->cbResizeWindows->setChecked(m_pPara->bSupportsDesktopResize);
-    ui->cbClipboard->setChecked(m_pPara->bClipboard);
-    
-    // Compress
-    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
-
-    switch(m_pPara->nEncoding)
-    {
-    case rfb::encodingTight:
-        ui->rbTight->setChecked(true);
-        break;
-    case rfb::encodingRaw:
-        ui->rbRaw->setChecked(true);
-        break;
-    case rfb::encodingRRE:
-        ui->rbRRE->setChecked(true);
-        break;
-    case rfb::encodingZRLE:
-        ui->rbZRLE->setChecked(true);
-        break;
-    case rfb::encodingCoRRE:
-        ui->rbCoRRE->setChecked(true);
-        break;
-    case rfb::encodingCopyRect:
-        ui->rbCopyRect->setChecked(true);
-        break;
-    case rfb::encodingHextile:
-        ui->rbHextile->setChecked(true);
-        break;
-    }
-    
-    switch(m_pPara->nColorLevel)
-    {
-    case CConnectTigerVnc::Full:
-        ui->rbFull->setChecked(true);
-        break;
-    case CConnectTigerVnc::Medium:
-        ui->rbMeduim->setChecked(true);
-        break;
-    case CConnectTigerVnc::Low:
-        ui->rbLow->setChecked(true);
-        break;
-    case CConnectTigerVnc::VeryLow:
-        ui->rbVeryLow->setChecked(true);
-        break;
-    }
-    ui->cbCompress->setChecked(m_pPara->bCompressLevel);
-    ui->spCompressLevel->setValue(m_pPara->nCompressLevel);
-    ui->cbJPEG->setChecked(!m_pPara->bNoJpeg);
-    ui->spJPEGLevel->setValue(m_pPara->nQualityLevel);
 }
 
 CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()
@@ -87,7 +26,8 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         reject();
     
     // Server
-    m_pPara->szServerName = ui->leServer->text();
+    m_pPara->szHost = ui->leServer->text();
+    m_pPara->nPort = ui->spPort->value();
     m_pPara->szUser = ui->leName->text();
     m_pPara->szPassword = ui->lePassword->text();
     
@@ -154,21 +94,91 @@ void CDlgSettingsTigerVnc::on_cbCompressAutoSelect_stateChanged(int arg1)
 void CDlgSettingsTigerVnc::on_cbCompress_stateChanged(int arg1)
 {
     m_pPara->bCompressLevel = arg1;
-    if(m_pPara->bCompressLevel)
-    {
-        ui->spCompressLevel->setEnabled(true);
-    } else {
-        ui->spCompressLevel->setEnabled(false);
-    }
+    
+    ui->spCompressLevel->setEnabled(m_pPara->bCompressLevel);
 }
 
 void CDlgSettingsTigerVnc::on_cbJPEG_stateChanged(int arg1)
 {
     m_pPara->bNoJpeg = !arg1;
-    if(m_pPara->bNoJpeg)
+    
+    ui->spJPEGLevel->setEnabled(!m_pPara->bNoJpeg);
+}
+
+
+void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
+{
+    Q_UNUSED(event);
+    
+    // Server
+    ui->leServer->setText(m_pPara->szHost);
+    ui->spPort->setValue(m_pPara->nPort);
+    ui->leName->setText(m_pPara->szUser);
+    ui->lePassword->setText(m_pPara->szPassword);
+    ui->cbSave->setChecked(m_pPara->bSavePassword);
+    ui->cbOnlyView->setChecked(m_pPara->bOnlyView);
+    
+    ui->cbShared->setChecked(m_pPara->bShared);
+    ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
+    ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
+    ui->cbResizeWindows->setChecked(m_pPara->bSupportsDesktopResize);
+    ui->cbClipboard->setChecked(m_pPara->bClipboard);
+    
+    // Compress
+    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
+        
+    switch(m_pPara->nEncoding)
     {
+    case rfb::encodingTight:
+        ui->rbTight->setChecked(true);
+        break;
+    case rfb::encodingRaw:
+        ui->rbRaw->setChecked(true);
+        break;
+    case rfb::encodingRRE:
+        ui->rbRRE->setChecked(true);
+        break;
+    case rfb::encodingZRLE:
+        ui->rbZRLE->setChecked(true);
+        break;
+    case rfb::encodingCoRRE:
+        ui->rbCoRRE->setChecked(true);
+        break;
+    case rfb::encodingCopyRect:
+        ui->rbCopyRect->setChecked(true);
+        break;
+    case rfb::encodingHextile:
+        ui->rbHextile->setChecked(true);
+        break;
+    }
+    
+    switch(m_pPara->nColorLevel)
+    {
+    case CConnectTigerVnc::Full:
+        ui->rbFull->setChecked(true);
+        break;
+    case CConnectTigerVnc::Medium:
+        ui->rbMeduim->setChecked(true);
+        break;
+    case CConnectTigerVnc::Low:
+        ui->rbLow->setChecked(true);
+        break;
+    case CConnectTigerVnc::VeryLow:
+        ui->rbVeryLow->setChecked(true);
+        break;
+    }
+    
+    ui->cbCompress->setChecked(m_pPara->bCompressLevel);
+    ui->spCompressLevel->setValue(m_pPara->nCompressLevel);
+    ui->cbJPEG->setChecked(!m_pPara->bNoJpeg);
+    ui->spJPEGLevel->setValue(m_pPara->nQualityLevel);
+    
+    if(m_pPara->bAutoSelect)
+    {
+        ui->spCompressLevel->setEnabled(false);
         ui->spJPEGLevel->setEnabled(false);
-    } else {
-        ui->spJPEGLevel->setEnabled(true);
+    } else {    
+        ui->spCompressLevel->setEnabled(m_pPara->bCompressLevel);
+        ui->spJPEGLevel->setEnabled(!m_pPara->bNoJpeg);
     }
 }

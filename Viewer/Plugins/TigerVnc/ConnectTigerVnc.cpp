@@ -109,10 +109,7 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 {
     if(!pPara) return -1;
     
-    m_pPara = (struct strPara*)pPara;
-
-    SetServerName(m_pPara->szServerName);
-    SetUser(m_pPara->szUser, m_pPara->szPassword);
+    m_pPara = (strPara*)pPara;
 
     setShared(m_pPara->bShared);
     supportsLocalCursor = m_pPara->bLocalCursor;
@@ -131,7 +128,7 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 int CConnectTigerVnc::Connect()
 {
     try{        
-        m_pSock = new network::TcpSocket(m_szHost.toStdString().c_str(), m_nPort);
+        m_pSock = new network::TcpSocket(m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
         vlog.info("Connected to host %s port %d",
                   m_szHost.toStdString().c_str(), m_nPort);
         // See callback below
@@ -238,9 +235,9 @@ void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspo
 void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)
 {
     if(user)
-        *user = rfb::strDup(m_szUser.toStdString().c_str());
+        *user = rfb::strDup(m_pPara->szUser.toStdString().c_str());
     if(password)
-        *password = rfb::strDup(m_szPassword.toStdString().c_str());
+        *password = rfb::strDup(m_pPara->szPassword.toStdString().c_str());
 }
 
 bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text)

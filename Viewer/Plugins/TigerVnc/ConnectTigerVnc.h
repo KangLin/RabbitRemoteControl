@@ -102,7 +102,7 @@ public:
     };
 
 private:
-    struct strPara* m_pPara;
+    strPara* m_pPara;
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
 

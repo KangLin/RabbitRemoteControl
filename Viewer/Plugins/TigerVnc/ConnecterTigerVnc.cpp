@@ -8,6 +8,7 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
     : CConnecterPlugins(parent)
 {
     m_pParamter = &m_Para;
+    m_Para.nPort = 5900;
     m_Para.bSavePassword = false;
     m_Para.bShared = true;
     m_Para.bBufferEndRefresh = true;
@@ -29,15 +30,6 @@ CConnecterTigerVnc::~CConnecterTigerVnc()
     qDebug() << "CConnecterTigerVnc::~CConnecterTigerVnc()";
 }
 
-QString CConnecterTigerVnc::GetServerName()
-{
-    if(m_szServerName.isEmpty())
-    {
-        return m_Para.szServerName;
-    }
-    return m_szServerName;
-}
-
 qint16 CConnecterTigerVnc::Version()
 {
     return 0;
@@ -53,7 +45,6 @@ QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 int CConnecterTigerVnc::OnSave(QDataStream & d)
 {
     d << Version()
-      << m_Para.szServerName
       << m_Para.bShared
       << m_Para.bBufferEndRefresh
       << m_Para.bSupportsDesktopResize
@@ -73,8 +64,7 @@ int CConnecterTigerVnc::OnLoad(QDataStream &d)
     int nColorLevel = CConnectTigerVnc::Full;
     qint16 version = 0;
     d >> version;
-    d >> m_Para.szServerName
-           >> m_Para.bShared
+    d >> m_Para.bShared
            >> m_Para.bBufferEndRefresh
            >> m_Para.bSupportsDesktopResize
            >> m_Para.bAutoSelect
