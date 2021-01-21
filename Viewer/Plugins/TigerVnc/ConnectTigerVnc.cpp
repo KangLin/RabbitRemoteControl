@@ -77,34 +77,6 @@ CConnectTigerVnc::~CConnectTigerVnc()
     qDebug() << "CConnectTigerVnc::~CConnectTigerVnc()";
 }
 
-int CConnectTigerVnc::SetServerName(const QString &serverName)
-{
-    m_szServerName = serverName;
-    CConnect::SetServerName(m_szServerName);
-    
-    try{
-#ifndef WIN32
-        if (strchr(serverName.toStdString().c_str(), '/') != NULL) {
-            m_pSock = new network::UnixSocket(serverName.toStdString().c_str());
-            m_szHost = m_pSock->getPeerAddress();
-            vlog.info(("Connected to socket %s"), m_szHost.toStdString().c_str());
-        } else
-#endif
-        {
-            char* serverHost;
-            rfb::getHostAndPort(serverName.toStdString().c_str(),
-                                &serverHost, &m_nPort);
-            m_szHost = serverHost;        
-        }
-    } catch (rdr::Exception& e) {
-        vlog.error("%s", e.str());
-        emit sigError(-1, e.str());
-        return -100;
-    }
-
-    return 0;
-}
-
 int CConnectTigerVnc::SetParamter(void *pPara)
 {
     if(!pPara) return -1;
@@ -130,7 +102,7 @@ int CConnectTigerVnc::Connect()
     try{        
         m_pSock = new network::TcpSocket(m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
         vlog.info("Connected to host %s port %d",
-                  m_szHost.toStdString().c_str(), m_nPort);
+                  m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
         // See callback below
         m_pSock->inStream().setBlockCallback(this);
 
@@ -202,8 +174,9 @@ void CConnectTigerVnc::initDone()
     
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
-    setServerName(m_szServerName.toStdString().c_str());
-    SetServerName(szName);
+    //TODO: ?
+    //setServerName(m_szServerName.toStdString().c_str());
+    emit sigServerName(szName);
     
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));

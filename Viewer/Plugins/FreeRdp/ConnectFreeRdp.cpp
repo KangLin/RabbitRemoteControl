@@ -100,7 +100,8 @@ int CConnectFreeRdp::Connect()
         emit sigError(nRet, szErr.toStdString().c_str());
     } else {
         emit sigConnected();
-        SetServerName(settings->ServerHostname);
+        //TODO: set server name
+        emit sigServerName(settings->ServerHostname);
 
         QString szInfo = tr("Connect to ");
         szInfo += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
@@ -815,7 +816,7 @@ int CConnectFreeRdp::SetParamter(void *pPara)
                                 FreeRDP_Password,
                                 pSettings->szPassword.toStdString().c_str());
     
-    SetServerName(QString(pSettings->szHost)
+    emit sigServerName(QString(pSettings->szHost)
                   + ":" + QString::number(pSettings->nPort));
     
     return 0;

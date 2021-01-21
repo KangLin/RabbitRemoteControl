@@ -31,10 +31,6 @@ public:
 protected:
     virtual int SetConnecter(CConnecter* pConnecter);
     virtual int SetViewer(CFrmViewer* pView);
-    // 由子类解析成 IP 和 端口 (格式为：IP:[PORT])
-    virtual int SetServerName(const QString& serverName);
-    virtual int SetServer(const QString& szHost, const int nPort);
-    virtual int SetUser(const QString &szUser, const QString &szPassword);
     virtual int SetParamter(void *pPara);
 
 public Q_SLOTS:
@@ -57,7 +53,6 @@ Q_SIGNALS:
     void sigDisconnected();
     
     void sigSetDesktopSize(int width, int height);
-    // Don't use it directly, please use SetServerName
     void sigServerName(const QString& szName);
     
     void sigUpdateRect(const QRect& r, const QImage& image);
@@ -74,14 +69,6 @@ public Q_SLOTS:
     virtual void slotWheelEvent(QWheelEvent*);
     virtual void slotKeyPressEvent(QKeyEvent*);
     virtual void slotKeyReleaseEvent(QKeyEvent*);
-   
-protected:
-    QString m_szServerName;
-    QString m_szHost;
-    int m_nPort;
-    
-    QString m_szUser;
-    QString m_szPassword;
 
 private:
     CFrmViewer* m_pView;

@@ -7,7 +7,7 @@
 #include <QClipboard>
 
 CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
-    : QObject(parent), m_nPort(0), m_pView(nullptr)
+    : QObject(parent), m_pView(nullptr)
 {
     Q_ASSERT(pConnecter);
     bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
@@ -104,36 +104,6 @@ int CConnect::SetViewer(CFrmViewer *pView)
                     Qt::DirectConnection);
     Q_ASSERT(check);
         
-    return 0;
-}
-
-int CConnect::SetServerName(const QString &szServerName)
-{
-    m_szServerName = szServerName;
-    //TODO: add ipv6
-    int nPos = szServerName.indexOf(":");
-    if(-1 == nPos)
-        m_szHost = szServerName;
-    else {
-        m_szHost = szServerName.left(nPos);
-        m_nPort = szServerName.right(szServerName.length() - nPos - 1).toInt();
-    }
-
-    emit sigServerName(m_szServerName);
-    return 0;
-}
-
-int CConnect::SetServer(const QString &szHost, const int nPort)
-{
-    m_szHost = szHost;
-    m_nPort = nPort;    
-    return 0;
-}
-
-int CConnect::SetUser(const QString &szUser, const QString &szPassword)
-{
-    m_szUser = szUser;
-    m_szPassword = szPassword;
     return 0;
 }
 

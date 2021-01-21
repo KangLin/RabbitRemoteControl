@@ -24,7 +24,6 @@ public:
                               QObject *parent = nullptr);
     virtual ~CConnectTigerVnc() override;
     
-    virtual int SetServerName(const QString& serverName) override;
     virtual int SetParamter(void *pPara) override;
 
 public Q_SLOTS:

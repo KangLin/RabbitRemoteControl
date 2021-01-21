@@ -104,7 +104,7 @@ int CConnectLibVnc::Connect()
     LOG_MODEL_INFO("LibVnc", szInfo.toStdString().c_str());
     
     emit sigConnected();
-    SetServerName(m_pClient->desktopName);
+    emit sigServerName(m_pClient->desktopName);
 
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     
