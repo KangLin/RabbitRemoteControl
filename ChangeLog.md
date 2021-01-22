@@ -1,3 +1,8 @@
+- v0.0.2
+  + Modify plugins interface
+  + Modify ci
+  + Add terminal
+  
 - v0.0.1
   + Gui
     - Screen zoom
