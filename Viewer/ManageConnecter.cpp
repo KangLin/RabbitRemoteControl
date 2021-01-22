@@ -54,9 +54,25 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
         filters << "*.so";
 #endif
     }
+    
+    QString szCurrentPath = QDir::currentPath();
     QStringList files = dir.entryList(filters, QDir::Files);
     if(!files.isEmpty())
-        QCoreApplication::addLibraryPath(QDir::cleanPath(dir.absolutePath()));
+    {
+        //This method is invalid
+        //QCoreApplication::addLibraryPath(QDir::cleanPath(dir.absolutePath()));
+        
+        
+        QDir::setCurrent(QDir::cleanPath(QDir::cleanPath(dir.absolutePath())));
+        
+        // This method is valid
+//#if defined(Q_OS_WINDOWS)
+//        QString szPath = QString::fromLocal8Bit(qgetenv("PATH"));
+//        szPath += ";";
+//        szPath += QDir::cleanPath(QDir::cleanPath(dir.absolutePath()));
+//        qputenv("PATH", szPath.toLatin1());
+//#endif
+    }
         
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
@@ -74,6 +90,8 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
             LOG_MODEL_ERROR("ManageConnecter", szMsg.toStdString().c_str());
         }
     }
+    
+    QDir::setCurrent(szCurrentPath);
 
     return 0;
 }
