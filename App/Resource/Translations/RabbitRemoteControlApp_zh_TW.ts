@@ -229,22 +229,22 @@
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="267"/>
+        <location filename="../../mainwindow.cpp" line="271"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控制文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="269"/>
+        <location filename="../../mainwindow.cpp" line="273"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控制文件 (*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="362"/>
+        <location filename="../../mainwindow.cpp" line="366"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="356"/>
+        <location filename="../../mainwindow.cpp" line="360"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>

@@ -224,25 +224,29 @@ void MainWindow::slotZoomChange(QAction* action)
 
 void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 {
+    QString t = "Disable";
     m_pGBView->setEnabled(true);
     switch (aw) {
     case CFrmViewer::Auto:
     case CFrmViewer::Original:
         ui->actionOriginal_O->setChecked(true);
+        t = "Original";
         break;
     case CFrmViewer::Zoom:
         ui->actionZoom_Z->setChecked(true);
+        t = "Original";
         break;
     case CFrmViewer::AspectRation:
         ui->actionKeep_AspectRation_K->setChecked(true);
+        t = "AspectRation";
         break;
     case CFrmViewer::Disable:
-        m_pGBView->setEnabled(false);
-        
-        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
-        set.setValue("View/ZoomType", "Disable");
+        m_pGBView->setEnabled(false);   
         break;
     }
+    
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    set.setValue("View/ZoomType", t);
 }
 
 void MainWindow::on_actionExit_E_triggered()
