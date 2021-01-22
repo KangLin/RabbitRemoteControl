@@ -17,6 +17,14 @@ public:
     virtual qint16 Version() override;
     virtual int Load(QDataStream &d) override;
     virtual int Save(QDataStream &d) override;
+    /**
+     * @brief Open settings dialog
+     * @param parent
+     * @return DialogCode
+     *   QDialog::Accepted
+     *   QDialog::Rejected
+     *   -1: error
+     */
     virtual int OpenDialogSettings(QWidget* parent = nullptr) override;
     
 public slots:
@@ -30,7 +38,7 @@ protected:
     virtual int SetParamter();
     
 private:
-    QTermWidget m_Console;
+    QTermWidget* m_pConsole;
 };
 
 #endif // CCONNECTERTERMINAL_H

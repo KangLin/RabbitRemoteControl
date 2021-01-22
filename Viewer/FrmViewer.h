@@ -28,6 +28,7 @@ public:
     virtual ~CFrmViewer() override;
 
     enum ADAPT_WINDOWS {
+        Disable,         // Disable adapt windows
         Auto,
         Original,        // Original desktop size, the left-top of the desktop is aligned with the left-top of the window
         OriginalCenter,  // Original desktop size, the center of the desktop is aligned with the center of the window

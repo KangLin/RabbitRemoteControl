@@ -67,13 +67,17 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
 
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
-    QString t = set.value("ZoomType").toString();
+    QString t = set.value("View/ZoomType", "Disable").toString();
     if("Original" == t)
         ui->actionOriginal_O->setChecked(true);
     else if("Zoom" == t)
         ui->actionZoom_Z->setChecked(true);
     else if("AspectRation" == t)
         ui->actionKeep_AspectRation_K->setChecked(true);
+    else if("Disable" == t)
+    {
+        m_pGBView->setEnabled(false);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -208,19 +212,21 @@ void MainWindow::on_actionOriginal_O_toggled(bool arg1)
 void MainWindow::slotZoomChange(QAction* action)
 {
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
-    QString t;
+    QString t = "Disable";
     if(action == ui->actionOriginal_O)
         t = "Original";
     else if(action == ui->actionZoom_Z)
         t = "Zoom";
     else if(action == ui->actionKeep_AspectRation_K)
         t = "AspectRation";
-    set.setValue("ZoomType", t);
+    set.setValue("View/ZoomType", t);
 }
 
 void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 {
+    m_pGBView->setEnabled(true);
     switch (aw) {
+    case CFrmViewer::Auto:
     case CFrmViewer::Original:
         ui->actionOriginal_O->setChecked(true);
         break;
@@ -229,6 +235,12 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
         break;
     case CFrmViewer::AspectRation:
         ui->actionKeep_AspectRation_K->setChecked(true);
+        break;
+    case CFrmViewer::Disable:
+        m_pGBView->setEnabled(false);
+        
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+        set.setValue("View/ZoomType", "Disable");
         break;
     }
 }
@@ -350,7 +362,7 @@ int MainWindow::Connect(CConnecter* p)
         slotInformation(tr("Connecting to ") + p->GetServerName());
     if(m_pView)
     {
-        CFrmViewer::ADAPT_WINDOWS aw;
+        CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Disable;
         if(ui->actionOriginal_O->isChecked())
             aw = CFrmViewer::Original;
         else if(ui->actionZoom_Z->isChecked())

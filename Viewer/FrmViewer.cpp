@@ -82,6 +82,7 @@ void CFrmViewer::paintDesktop()
     QRectF dstRect = rect();
     
     switch (m_AdaptWindows) {
+    case Disable:
     case Auto:
     case Zoom:
     case Original:
@@ -97,6 +98,8 @@ void CFrmViewer::paintDesktop()
         dstRect = GetAspectRationRect();
         break;
     }
+    default:
+        break;
     }
     painter.drawImage(dstRect, m_Desktop);
 }

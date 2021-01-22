@@ -3,22 +3,30 @@
 
 #include <QDialog>
 #include <QApplication>
+#include <QDebug>
 
 CConnecterTerminal::CConnecterTerminal(CPluginFactory *parent)
     : CConnecter(parent)
 {
+    m_pConsole = new QTermWidget();
     bool check = false;
-    check = connect(&m_Console, SIGNAL(titleChanged()),
+    check = connect(m_pConsole, SIGNAL(titleChanged()),
                     this, SLOT(slotTerminalTitleChanged()));
+    Q_ASSERT(check);
+    check = connect(m_pConsole, SIGNAL(finished()),
+                    this, SLOT(DisConnect()));
     Q_ASSERT(check);
 }
 
 CConnecterTerminal::~CConnecterTerminal()
-{}
+{
+    qDebug() << "CConnecterTerminal::~CConnecterTerminal()";
+    if(m_pConsole) delete m_pConsole;
+}
 
 QWidget* CConnecterTerminal::GetViewer()
 {
-    return &m_Console;
+    return m_pConsole;
 }
 
 qint16 CConnecterTerminal::Version()
@@ -29,6 +37,7 @@ qint16 CConnecterTerminal::Version()
 int CConnecterTerminal::OpenDialogSettings(QWidget *parent)
 {
     int nRet = -1;
+    return QDialog::Accepted;
     QDialog* p = GetDialogSettings(parent);
     if(p)
     {
@@ -62,12 +71,18 @@ int CConnecterTerminal::Connect()
     
     nRet = SetParamter();
     
+    emit sigConnected();
+    
     return nRet;
 }
 
 int CConnecterTerminal::DisConnect()
 {
     int nRet = 0;
+    
+    if(m_pConsole) m_pConsole->close();
+    
+    emit sigDisconnected();
     
     return nRet;
 }
@@ -86,15 +101,16 @@ int CConnecterTerminal::SetParamter()
 #endif
     font.setPointSize(12);
 
-    m_Console.setTerminalFont(font);
+    m_pConsole->setTerminalFont(font);
 
-   // console->setColorScheme(COLOR_SCHEME_BLACK_ON_LIGHT_YELLOW);
-    m_Console.setScrollBarPosition(QTermWidget::ScrollBarRight);
+    //m_pConsole->setColorScheme(COLOR_SCHEME_BLACK_ON_LIGHT_YELLOW);
+    m_pConsole->setScrollBarPosition(QTermWidget::ScrollBarRight);
     
     return nRet;
 }
 
 void CConnecterTerminal::slotTerminalTitleChanged()
 {
-    slotSetServerName(m_Console.title());
+    m_pConsole->setWindowTitle(m_pConsole->title());
+    slotSetServerName(m_pConsole->title());
 }

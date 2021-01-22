@@ -40,7 +40,8 @@ void CViewTable::slotCurrentChanged(int index)
                 pScroll->setWidgetResizable(true);
         }
         emit sigAdaptWindows(pView->AdaptWindows());
-    }
+    } else // is terminal windows
+        emit sigAdaptWindows(CFrmViewer::Disable);
 }
 
 void CViewTable::slotTabCloseRequested(int index)
@@ -95,6 +96,7 @@ void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle)
 int CViewTable::SetFullScreen(bool bFull)
 {
     if(!m_pTab) return -1;
+    //TODO: add configure whether is hide tab Bar?
     if(bFull)
     {
         m_pTab->tabBar()->hide();
@@ -108,26 +110,26 @@ int CViewTable::SetFullScreen(bool bFull)
 
 void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
 {
+    CFrmViewer* pView = nullptr;
+    if(p)
+    {
+        pView = qobject_cast<CFrmViewer*>(p);
+    } else {
+        pView = qobject_cast<CFrmViewer*>(GetViewer(m_pTab->currentIndex()));
+    }
+    
     int nIndex = GetViewIndex(p);
     if(-1 == nIndex)
         nIndex = m_pTab->currentIndex();
     QScrollArea* pScroll = GetScrollArea(nIndex);
+    // The follow order don't change
     if(pScroll)
-    {   if(CFrmViewer::Original == aw)
+    {   if(CFrmViewer::Original == aw && pView)
             pScroll->setWidgetResizable(false);
         else
             pScroll->setWidgetResizable(true);
     }
     
-    nIndex = m_pTab->currentIndex();
-    CFrmViewer* pView = nullptr;
-    if(p)
-    {
-        pView = qobject_cast<CFrmViewer*>(p);
-        if(!pView) return;
-    } else {
-        pView = qobject_cast<CFrmViewer*>(GetViewer(nIndex));
-    }
     if(pView)
         pView->SetAdaptWindows(aw);
 }
@@ -144,7 +146,7 @@ QWidget *CViewTable::GetViewer(int index)
     QScrollArea* pScroll = GetScrollArea(index);
     if(!pScroll) return nullptr;
     
-    return qobject_cast<CFrmViewer*>(pScroll->widget());
+    return pScroll->widget();
 }
 
 int CViewTable::GetViewIndex(QWidget *pView)

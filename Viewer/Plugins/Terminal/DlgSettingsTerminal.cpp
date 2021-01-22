@@ -1,5 +1,6 @@
 #include "DlgSettingsTerminal.h"
 #include "ui_DlgSettingsTerminal.h"
+#include <QDebug>
 
 CDlgSettingsTerminal::CDlgSettingsTerminal(QWidget *parent) :
     QDialog(parent),
@@ -10,6 +11,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(QWidget *parent) :
 
 CDlgSettingsTerminal::~CDlgSettingsTerminal()
 {
+    qDebug() << "CDlgSettingsTerminal::~CDlgSettingsTerminal()";
     delete ui;
 }
 
