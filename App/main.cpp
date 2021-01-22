@@ -5,6 +5,8 @@
 #include <QApplication>
 #include <QSettings>
 #include <QDebug>
+#include <QtGlobal>
+
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
@@ -38,9 +40,8 @@ int main(int argc, char *argv[])
     LOG_MODEL_INFO("Main", "Language: %s", QLocale::system().name().toStdString().c_str());
     
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
-    a.setOrganizationName(QObject::tr("Kang Lin studio"));
-    QCoreApplication::addLibraryPath(QDir::cleanPath(RabbitCommon::CDir::Instance()->GetDirPlugins()));
-
+    a.setOrganizationName(QObject::tr("Kang Lin studio"));   
+    
     // Check update version
     CFrmUpdater *pUpdate = new CFrmUpdater();
     pUpdate->SetTitle(QImage(":/image/App"));
