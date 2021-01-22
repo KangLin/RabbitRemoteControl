@@ -22,7 +22,7 @@ SET(HEADER_FILES
     )
 
 SET(UI_FILES
-    
+    DlgSettingsTerminal.ui
     )
 
 #翻译

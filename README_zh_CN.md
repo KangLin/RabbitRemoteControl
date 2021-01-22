@@ -35,8 +35,9 @@
 - [x] 远程桌面协议: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 - [ ] [SSH]()
-- [ ] [TELNET]()
+- [x] [TELNET]()
 - [ ] 自定义的 P2P 协议
+- [x] 终端
 
 #### 依赖
 ##### 工具

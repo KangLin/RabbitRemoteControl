@@ -1,5 +1,6 @@
 #include "ConnecterTerminal.h"
 #include "DlgSettingsTerminal.h"
+#include "RabbitCommonLog.h"
 
 #include <QDialog>
 #include <QApplication>
@@ -8,7 +9,7 @@
 CConnecterTerminal::CConnecterTerminal(CPluginFactory *parent)
     : CConnecter(parent)
 {
-    m_pConsole = new QTermWidget();
+    m_pConsole = new QTermWidget(0);
     bool check = false;
     check = connect(m_pConsole, SIGNAL(titleChanged()),
                     this, SLOT(slotTerminalTitleChanged()));
@@ -70,8 +71,14 @@ int CConnecterTerminal::Connect()
     int nRet = 0;
     
     nRet = SetParamter();
+
+    if(m_pConsole)
+        m_pConsole->startShellProgram();
     
     emit sigConnected();
+
+    if(m_pConsole)
+        emit sigServerName("Terminal");
     
     return nRet;
 }
@@ -79,7 +86,7 @@ int CConnecterTerminal::Connect()
 int CConnecterTerminal::DisConnect()
 {
     int nRet = 0;
-    
+
     if(m_pConsole) m_pConsole->close();
     
     emit sigDisconnected();
@@ -105,7 +112,9 @@ int CConnecterTerminal::SetParamter()
 
     //m_pConsole->setColorScheme(COLOR_SCHEME_BLACK_ON_LIGHT_YELLOW);
     m_pConsole->setScrollBarPosition(QTermWidget::ScrollBarRight);
-    
+
+    //m_pConsole->setMotionAfterPasting(1);
+    //m_pConsole->disableBracketedPasteMode(true);
     return nRet;
 }
 

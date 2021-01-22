@@ -37,7 +37,9 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 - [x] Remote desktop protocol: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 - [ ] [SSH]()
-- [ ] [TELNET]()
+- [x] [TELNET]()
+- [x] Terminal
+- [ ] Custom p2p protocol
 
 #### Dependent
 ##### Tools

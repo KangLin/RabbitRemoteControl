@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
                          this, SLOT(slotZoomChange(QAction*)));
     Q_ASSERT(check);
 
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
     QString t = set.value("View/ZoomType", "Disable").toString();
     if("Original" == t)
         ui->actionOriginal_O->setChecked(true);
@@ -211,7 +211,7 @@ void MainWindow::on_actionOriginal_O_toggled(bool arg1)
 
 void MainWindow::slotZoomChange(QAction* action)
 {
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
     QString t = "Disable";
     if(action == ui->actionOriginal_O)
         t = "Original";
@@ -245,7 +245,7 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
         break;
     }
     
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
     set.setValue("View/ZoomType", t);
 }
 
