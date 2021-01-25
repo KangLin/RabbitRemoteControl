@@ -38,7 +38,6 @@ qint16 CConnecterTerminal::Version()
 int CConnecterTerminal::OpenDialogSettings(QWidget *parent)
 {
     int nRet = -1;
-    return QDialog::Accepted;
     QDialog* p = GetDialogSettings(parent);
     if(p)
     {
@@ -49,7 +48,7 @@ int CConnecterTerminal::OpenDialogSettings(QWidget *parent)
 
 QDialog* CConnecterTerminal::GetDialogSettings(QWidget *parent)
 {
-    return new CDlgSettingsTerminal(parent);
+    return new CDlgSettingsTerminal(&m_Para, parent);
 }
 
 int CConnecterTerminal::Load(QDataStream &d)
@@ -97,21 +96,11 @@ int CConnecterTerminal::DisConnect()
 int CConnecterTerminal::SetParamter()
 {
     int nRet = 0;
-    
-    QFont font = QApplication::font();
-#ifdef Q_OS_MACOS
-    font.setFamily(QStringLiteral("Monaco"));
-#elif defined(Q_WS_QWS)
-    font.setFamily(QStringLiteral("fixed"));
-#else
-    font.setFamily(QStringLiteral("Monospace"));
-#endif
-    font.setPointSize(12);
 
-    m_pConsole->setTerminalFont(font);
-
-    //m_pConsole->setColorScheme(COLOR_SCHEME_BLACK_ON_LIGHT_YELLOW);
-    m_pConsole->setScrollBarPosition(QTermWidget::ScrollBarRight);
+    m_pConsole->setTerminalFont(m_Para.font);
+    m_pConsole->setKeyboardCursorShape(m_Para.cursorShape);
+    m_pConsole->setColorScheme(m_Para.colorScheme);
+    m_pConsole->setScrollBarPosition(m_Para.scrollBarPosition);
 
     //m_pConsole->setMotionAfterPasting(1);
     //m_pConsole->disableBracketedPasteMode(true);

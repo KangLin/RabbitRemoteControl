@@ -1,12 +1,19 @@
 #include "DlgSettingsTerminal.h"
 #include "ui_DlgSettingsTerminal.h"
-#include <QDebug>
+#include "RabbitCommonLog.h"
+#include "FrmTerminalAppearanceSettings.h"
 
-CDlgSettingsTerminal::CDlgSettingsTerminal(QWidget *parent) :
+#include <QDebug>
+#include <qtermwidget.h>
+
+CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalAppearance *pPara, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgSettingsTerminal)
+    ui(new Ui::CDlgSettingsTerminal),
+    m_pPara(pPara)
 {
     ui->setupUi(this);
+        
+    ui->tabWidget->addTab(new CFrmTerminalAppearanceSettings(m_pPara, this), tr("Appearance"));
 }
 
 CDlgSettingsTerminal::~CDlgSettingsTerminal()
@@ -15,12 +22,12 @@ CDlgSettingsTerminal::~CDlgSettingsTerminal()
     delete ui;
 }
 
-void CDlgSettingsTerminal::on_pushButton_clicked()
+void CDlgSettingsTerminal::on_pbOk_clicked()
 {
     this->accept();
 }
 
-void CDlgSettingsTerminal::on_pushButton_2_clicked()
+void CDlgSettingsTerminal::on_pbCancle_clicked()
 {
-    this->reject();
+    this->reject();    
 }

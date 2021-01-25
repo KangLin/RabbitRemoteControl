@@ -13,16 +13,21 @@ SET(SOURCE_FILES
     PluginFactoryTerminal.cpp
     ConnecterTerminal.cpp
     DlgSettingsTerminal.cpp
+    FrmTerminalAppearanceSettings.cpp
+    ParameterTerminalAppearance.cpp
     )
 
 SET(HEADER_FILES
     PluginFactoryTerminal.h
     ConnecterTerminal.h
     DlgSettingsTerminal.h
+    FrmTerminalAppearanceSettings.h
+    ParameterTerminalAppearance.h
     )
 
 SET(UI_FILES
     DlgSettingsTerminal.ui
+    FrmTerminalAppearanceSettings.ui
     )
 
 #翻译

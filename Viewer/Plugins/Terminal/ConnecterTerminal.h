@@ -3,6 +3,7 @@
 
 #include "Connecter.h"
 #include "qtermwidget.h"
+#include "ParameterTerminalAppearance.h"
 
 class CConnecterTerminal : public CConnecter
 {
@@ -39,6 +40,8 @@ protected:
     
 private:
     QTermWidget* m_pConsole;
+    
+    CParameterTerminalAppearance m_Para;
 };
 
 #endif // CCONNECTERTERMINAL_H
