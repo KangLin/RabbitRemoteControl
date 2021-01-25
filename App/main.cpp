@@ -25,10 +25,14 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
 #endif
 
+    QApplication::setApplicationVersion(BUILD_VERSION);
+    QApplication::setApplicationName("RabbitRemoteControl");
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    QApplication::setDesktopFileName(QLatin1String("RabbitRemoteControl.desktop"));
+#endif
+
     QApplication a(argc, argv);
-    a.setApplicationName("RabbitRemoteControl");
-    a.setApplicationVersion(BUILD_VERSION);
-    
+
     RabbitCommon::CTools::Instance()->Init();
 
     // Install translator
@@ -38,9 +42,9 @@ int main(int argc, char *argv[])
               + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
     LOG_MODEL_INFO("Main", "Language: %s", QLocale::system().name().toStdString().c_str());
-    
+
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
-    a.setOrganizationName(QObject::tr("Kang Lin studio"));   
+    a.setOrganizationName(QObject::tr("Kang Lin studio"));
     
     // Check update version
     CFrmUpdater *pUpdate = new CFrmUpdater();
