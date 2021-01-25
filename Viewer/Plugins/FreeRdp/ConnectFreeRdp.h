@@ -96,7 +96,7 @@ private:
         CConnectFreeRdp* pThis;
     };
     ClientContext* m_pContext;
-    CConnecterFreeRdp::CParamterFreeRdp* m_pParamter;
+    CConnecterFreeRdp::CParameterFreeRdp* m_pParamter;
     
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
         

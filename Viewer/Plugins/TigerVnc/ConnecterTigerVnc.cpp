@@ -7,7 +7,7 @@
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
     : CConnecterPlugins(parent)
 {
-    m_pParamter = &m_Para;
+    m_pParameter = &m_Para;
     m_Para.nPort = 5900;
     m_Para.bShared = true;
     m_Para.bBufferEndRefresh = false;

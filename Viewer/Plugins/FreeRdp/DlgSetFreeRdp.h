@@ -16,7 +16,7 @@ class CDlgSetFreeRdp : public QDialog
     Q_OBJECT
     
 public:
-    explicit CDlgSetFreeRdp(CConnecterFreeRdp::CParamterFreeRdp* pSettings, QWidget *parent = nullptr);
+    explicit CDlgSetFreeRdp(CConnecterFreeRdp::CParameterFreeRdp* pSettings, QWidget *parent = nullptr);
     ~CDlgSetFreeRdp();
     
 private slots:
@@ -29,7 +29,7 @@ private:
     
 private:
     Ui::CDlgSetFreeRdp *ui;
-    CConnecterFreeRdp::CParamterFreeRdp* m_pSettings;
+    CConnecterFreeRdp::CParameterFreeRdp* m_pSettings;
     
     // QWidget interface
 protected:

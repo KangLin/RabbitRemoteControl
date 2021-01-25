@@ -7,15 +7,15 @@
 #include <QObject>
 
 /**
- * @brief The CParamter class
+ * @brief The CParameter class
  * @note The interface only is implemented by plugin
  */
-class RABBITREMOTECONTROL_EXPORT CParamter : public QObject
+class RABBITREMOTECONTROL_EXPORT CParameter : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit CParamter(QObject *parent = nullptr);
+    explicit CParameter(QObject *parent = nullptr);
 
     QString szHost;
     qint16 nPort;

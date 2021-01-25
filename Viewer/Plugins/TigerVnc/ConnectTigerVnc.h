@@ -4,7 +4,7 @@
 #define CCONNECTTIGERVNC_H
 
 #include "Connect.h"
-#include "Paramter.h"
+#include "Parameter.h"
 #include "network/TcpSocket.h"
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"
@@ -83,7 +83,7 @@ public:
         VeryLow
     };
 
-    class strPara : public CParamter{
+    class strPara : public CParameter{
     public:
         QString szServerName;
         

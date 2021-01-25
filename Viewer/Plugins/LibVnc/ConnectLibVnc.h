@@ -3,7 +3,7 @@
 
 #include "Connect.h"
 #include "rfb/rfbclient.h"
-#include "Paramter.h"
+#include "Parameter.h"
 
 class CConnecterLibVnc;
 class CConnectLibVnc : public CConnect
@@ -48,7 +48,7 @@ private:
     QImage m_Image;
     
 public:
-    class strPara : public CParamter {
+    class strPara : public CParameter {
     public:
         bool bShared;
         

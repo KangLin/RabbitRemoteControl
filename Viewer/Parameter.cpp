@@ -1,8 +1,8 @@
 //! @author: Kang Lin(kl222@126.com)
 
-#include "Paramter.h"
+#include "Parameter.h"
 
-CParamter::CParamter(QObject *parent) : QObject(parent),
+CParameter::CParameter(QObject *parent) : QObject(parent),
     bSavePassword(false),
     bOnlyView(false),
     bLocalCursor(true),

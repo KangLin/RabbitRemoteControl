@@ -4,7 +4,7 @@
 #define CCONNECTERBACKTHREAD_H
 
 #include "Connect.h"
-#include "Paramter.h"
+#include "Parameter.h"
 
 class CConnectThread;
 
@@ -51,7 +51,7 @@ private:
     CFrmViewer *m_pView;
 
 protected:
-    CParamter* m_pParamter;
+    CParameter* m_pParameter;
 };
 
 #endif // CCONNECTERBACKTHREAD_H

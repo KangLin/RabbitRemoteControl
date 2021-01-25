@@ -256,12 +256,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="42"/>
+        <location filename="../../main.cpp" line="46"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔遠程控制</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="43"/>
+        <location filename="../../main.cpp" line="47"/>
         <source>Kang Lin studio</source>
         <translation type="unfinished"></translation>
     </message>

@@ -26,7 +26,7 @@ CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
                                  QObject *parent)
     : CConnect(pConnecter, parent),
       m_pContext(nullptr),
-      m_pParamter(&pConnecter->m_ParamterFreeRdp),
+      m_pParamter(&pConnecter->m_ParameterFreeRdp),
       m_ClipBoard(this),
       m_Cursor(this)
 {
@@ -34,9 +34,9 @@ CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
-    m_ClientEntryPoints.settings = pConnecter->m_ParamterFreeRdp.pSettings;
+    m_ClientEntryPoints.settings = pConnecter->m_ParameterFreeRdp.pSettings;
     
-    SetParamter(&pConnecter->m_ParamterFreeRdp);
+    SetParamter(&pConnecter->m_ParameterFreeRdp);
     RdpClientEntry(&m_ClientEntryPoints);
     
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
@@ -802,7 +802,7 @@ int CConnectFreeRdp::SetParamter(void *pPara)
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     
-    CConnecterFreeRdp::CParamterFreeRdp* pSettings = (CConnecterFreeRdp::CParamterFreeRdp*)(pPara);
+    CConnecterFreeRdp::CParameterFreeRdp* pSettings = (CConnecterFreeRdp::CParameterFreeRdp*)(pPara);
     rdpSettings* settings = pSettings->pSettings;
     
     freerdp_settings_set_string(settings,

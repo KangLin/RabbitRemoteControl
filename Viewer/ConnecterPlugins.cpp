@@ -10,7 +10,7 @@ CConnecterPlugins::CConnecterPlugins(CPluginFactory *parent)
       m_bExit(false),
       m_pThread(nullptr),
       m_pView(new CFrmViewer()),
-      m_pParamter(nullptr)
+      m_pParameter(nullptr)
 {}
 
 CConnecterPlugins::~CConnecterPlugins()
@@ -104,8 +104,8 @@ int CConnecterPlugins::OnDisConnect()
 
 QString CConnecterPlugins::GetServerName()
 {
-    if(m_szServerName.isEmpty() && m_pParamter)
-        m_szServerName = m_pParamter->szHost + ":" + QString::number(m_pParamter->nPort);
+    if(m_szServerName.isEmpty() && m_pParameter)
+        m_szServerName = m_pParameter->szHost + ":" + QString::number(m_pParameter->nPort);
     return CConnecter::GetServerName();
 }
 
@@ -113,20 +113,20 @@ QString CConnecterPlugins::GetServerName()
 int CConnecterPlugins::Load(QDataStream &d)
 {
     int nRet = 0;
-    Q_ASSERT(m_pParamter);
+    Q_ASSERT(m_pParameter);
     qint16 version = 0;
     d >> version;
-    d >> m_pParamter->szHost
-      >> m_pParamter->nPort
-      >> m_pParamter->szUser
-      >> m_pParamter->bSavePassword;
+    d >> m_pParameter->szHost
+      >> m_pParameter->nPort
+      >> m_pParameter->szUser
+      >> m_pParameter->bSavePassword;
     
-    if(m_pParamter->bSavePassword)
-        d >> m_pParamter->szPassword;
+    if(m_pParameter->bSavePassword)
+        d >> m_pParameter->szPassword;
     
-    d >> m_pParamter->bOnlyView
-      >> m_pParamter->bLocalCursor
-      >> m_pParamter->bClipboard;
+    d >> m_pParameter->bOnlyView
+      >> m_pParameter->bLocalCursor
+      >> m_pParameter->bClipboard;
     
     nRet = OnLoad(d);
     return nRet;
@@ -135,19 +135,19 @@ int CConnecterPlugins::Load(QDataStream &d)
 int CConnecterPlugins::Save(QDataStream &d)
 {
     int nRet = 0;
-    Q_ASSERT(m_pParamter);
+    Q_ASSERT(m_pParameter);
     d << Version()
-      << m_pParamter->szHost
-      << m_pParamter->nPort
-      << m_pParamter->szUser
-      << m_pParamter->bSavePassword;
+      << m_pParameter->szHost
+      << m_pParameter->nPort
+      << m_pParameter->szUser
+      << m_pParameter->bSavePassword;
     
-    if(m_pParamter->bSavePassword)
-        d << m_pParamter->szPassword;
+    if(m_pParameter->bSavePassword)
+        d << m_pParameter->szPassword;
     
-    d << m_pParamter->bOnlyView
-      << m_pParamter->bLocalCursor
-      << m_pParamter->bClipboard;
+    d << m_pParameter->bOnlyView
+      << m_pParameter->bLocalCursor
+      << m_pParameter->bClipboard;
     
     nRet = OnSave(d);
     return nRet;

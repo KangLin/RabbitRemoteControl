@@ -5,7 +5,7 @@
 #include <QApplication>
 #include <QScreen>
 
-CDlgSetFreeRdp::CDlgSetFreeRdp(CConnecterFreeRdp::CParamterFreeRdp *pSettings, QWidget *parent) :
+CDlgSetFreeRdp::CDlgSetFreeRdp(CConnecterFreeRdp::CParameterFreeRdp *pSettings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSetFreeRdp),
     m_pSettings(pSettings)

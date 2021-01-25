@@ -14,12 +14,12 @@ public:
     explicit CConnecterFreeRdp(CPluginFactory *parent = nullptr);
     virtual ~CConnecterFreeRdp() override;
     
-    class CParamterFreeRdp: public CParamter
+    class CParameterFreeRdp: public CParameter
     {
     public:
         rdpSettings* pSettings;
     };
-    CParamterFreeRdp m_ParamterFreeRdp;
+    CParameterFreeRdp m_ParameterFreeRdp;
 
 public:
     virtual qint16 Version() override;
