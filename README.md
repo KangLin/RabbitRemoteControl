@@ -17,7 +17,7 @@ Author: Kang Lin (kl222@126.com)
 ### Introduction
 Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
 
-**Allows you to use any device and system anywhere and remotely manage any device and system in any way**. 
+**Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
