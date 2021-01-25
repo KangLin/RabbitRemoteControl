@@ -81,8 +81,11 @@ int CViewTable::RemoveView(QWidget *pView)
 
 QWidget* CViewTable::GetCurrentView()
 {
+    if(nullptr == m_pTab->currentWidget()) return nullptr;
     QScrollArea* pScroll = qobject_cast<QScrollArea*>(m_pTab->currentWidget());
-    return pScroll->widget();
+    if(pScroll)
+        return pScroll->widget();
+    return nullptr;
 }
 
 void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle)
