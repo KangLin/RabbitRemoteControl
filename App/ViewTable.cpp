@@ -3,6 +3,7 @@
 #include "ViewTable.h"
 #include <QResizeEvent>
 #include <QTabBar>
+#include <QDebug>
 
 CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab(nullptr)
@@ -29,6 +30,7 @@ CViewTable::~CViewTable()
 
 void CViewTable::slotCurrentChanged(int index)
 {
+    qDebug() << "CViewTable::slotCurrentChanged";
     CFrmViewScroll* pView = qobject_cast<CFrmViewScroll*>(GetViewer(index));
     if(pView)
     {

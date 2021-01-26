@@ -12,7 +12,6 @@
 #include <QMessageBox>
 #include <QScreen>
 #include <QApplication>
-#include <QSettings>
 #include <QToolButton>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -59,24 +58,10 @@ MainWindow::MainWindow(QWidget *parent)
     if(m_pGBView) {
         m_pGBView->addAction(ui->actionZoom_Z);
         m_pGBView->addAction(ui->actionOriginal_O);
-        m_pGBView->addAction(ui->actionKeep_AspectRation_K);        
-    }
-    check = connect(m_pGBView, SIGNAL(triggered(QAction*)),
-                         this, SLOT(slotZoomChange(QAction*)));
-    Q_ASSERT(check);
-
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
-    QString t = set.value("View/ZoomType", "Disable").toString();
-    if("Original" == t)
-        ui->actionOriginal_O->setChecked(true);
-    else if("Zoom" == t)
-        ui->actionZoom_Z->setChecked(true);
-    else if("AspectRation" == t)
-        ui->actionKeep_AspectRation_K->setChecked(true);
-    else if("Disable" == t)
-    {
+        m_pGBView->addAction(ui->actionKeep_AspectRation_K);
         m_pGBView->setEnabled(false);
     }
+    ui->actionZoom_Z->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -208,19 +193,6 @@ void MainWindow::on_actionOriginal_O_toggled(bool arg1)
     m_pView->SetAdaptWindows(Original);
 }
 
-void MainWindow::slotZoomChange(QAction* action)
-{
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
-    QString t = "Disable";
-    if(action == ui->actionOriginal_O)
-        t = "Original";
-    else if(action == ui->actionZoom_Z)
-        t = "Zoom";
-    else if(action == ui->actionKeep_AspectRation_K)
-        t = "AspectRation";
-    set.setValue("View/ZoomType", t);
-}
-
 void MainWindow::slotAdaptWindows(const ADAPT_WINDOWS aw)
 {
     QString t = "Disable";
@@ -243,9 +215,6 @@ void MainWindow::slotAdaptWindows(const ADAPT_WINDOWS aw)
         m_pGBView->setEnabled(false);   
         break;
     }
-    
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
-    set.setValue("View/ZoomType", t);
 }
 
 void MainWindow::on_actionExit_E_triggered()
@@ -365,7 +334,7 @@ int MainWindow::Connect(CConnecter* p)
         slotInformation(tr("Connecting to ") + p->GetServerName());
     if(m_pView)
     {
-        ADAPT_WINDOWS aw = Disable;
+        ADAPT_WINDOWS aw = Zoom;
         if(ui->actionOriginal_O->isChecked())
             aw = Original;
         else if(ui->actionZoom_Z->isChecked())
