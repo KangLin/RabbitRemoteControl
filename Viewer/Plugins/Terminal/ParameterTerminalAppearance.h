@@ -14,6 +14,8 @@ public:
     QString colorScheme;
     Konsole::Emulation::KeyboardCursorShape cursorShape;
     QTermWidget::ScrollBarPosition scrollBarPosition;
+    int termTransparency;
+    bool flowControl;
 };
 
 #endif // CPARAMETERTERMINALAPPEARANCE_H

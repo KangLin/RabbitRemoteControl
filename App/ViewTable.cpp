@@ -46,22 +46,31 @@ void CViewTable::slotCurrentChanged(int index)
 
 void CViewTable::slotTabCloseRequested(int index)
 {
-    QScrollArea* pScroll = GetScrollArea(index);
-    if(!pScroll) return;
-    QWidget* pView = pScroll->takeWidget();
-    delete pScroll;
+    QWidget* pView = GetViewer(index);
+    if(!pView) return;
+    QScrollArea* pScroll = qobject_cast<QScrollArea*>(pView);
+    if(pScroll)
+    {
+        pView = pScroll->takeWidget();
+        delete pScroll;
+    }
     emit sigCloseView(pView);
 }
 
 int CViewTable::AddView(QWidget *pView)
 {
-    QScrollArea* pScroll = new QScrollArea(m_pTab);
-    pScroll->setWidget(pView);
-    pScroll->setAlignment(Qt::AlignCenter);
-    pScroll->setBackgroundRole(QPalette::Dark);
-    pScroll->setFocusPolicy(Qt::NoFocus);
-    pScroll->setWidgetResizable(true);
-    int nIndex = m_pTab->addTab(pScroll, pView->windowTitle());
+    int nIndex = -1;
+    if(qobject_cast<CFrmViewer*>(pView))
+    {
+        QScrollArea* pScroll = new QScrollArea(m_pTab);
+        pScroll->setWidget(pView);
+        pScroll->setAlignment(Qt::AlignCenter);
+        pScroll->setBackgroundRole(QPalette::Dark);
+        pScroll->setFocusPolicy(Qt::NoFocus);
+        pScroll->setWidgetResizable(true);
+        nIndex = m_pTab->addTab(pScroll, pView->windowTitle());
+    } else
+        nIndex = m_pTab->addTab(pView, pView->windowTitle());
     m_pTab->setCurrentIndex(nIndex);
     return 0;
 }
@@ -71,9 +80,11 @@ int CViewTable::RemoveView(QWidget *pView)
     int nIndex = GetViewIndex(pView);
     if(-1  == nIndex) return 0;
     QScrollArea* pScroll = GetScrollArea(nIndex);
-    if(!pScroll) return 0;
-    // the clild windows is deleted by CConnecter
-    pScroll->takeWidget();
+    if(pScroll)
+    {
+        // the clild windows is deleted by CConnecter
+        pScroll->takeWidget();
+    }
     m_pTab->removeTab(nIndex);
     delete pScroll;
     return 0;
@@ -81,11 +92,11 @@ int CViewTable::RemoveView(QWidget *pView)
 
 QWidget* CViewTable::GetCurrentView()
 {
-    if(nullptr == m_pTab->currentWidget()) return nullptr;
-    QScrollArea* pScroll = qobject_cast<QScrollArea*>(m_pTab->currentWidget());
+    QWidget* pView = m_pTab->currentWidget();
+    QScrollArea* pScroll = qobject_cast<QScrollArea*>(pView);
     if(pScroll)
         return pScroll->widget();
-    return nullptr;
+    return pView;
 }
 
 void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle)
@@ -146,10 +157,13 @@ QScrollArea* CViewTable::GetScrollArea(int index)
 
 QWidget *CViewTable::GetViewer(int index)
 {
-    QScrollArea* pScroll = GetScrollArea(index);
-    if(!pScroll) return nullptr;
+    if(index < 0 || index >= m_pTab->count())
+        return nullptr;
     
-    return pScroll->widget();
+    QScrollArea* pScroll = GetScrollArea(index);
+    if(pScroll)
+        return pScroll->widget();
+    return m_pTab->widget(index);
 }
 
 int CViewTable::GetViewIndex(QWidget *pView)

@@ -28,15 +28,21 @@ public:
      */
     virtual int OpenDialogSettings(QWidget* parent = nullptr) override;
     
-public slots:
+public Q_SLOTS:
     virtual int Connect() override;
     virtual int DisConnect() override;
 
+private Q_SLOTS:
     void slotTerminalTitleChanged();
     
 protected:
-    virtual QDialog *GetDialogSettings(QWidget *parent) override;
+    virtual QDialog* GetDialogSettings(QWidget *parent) override;
     virtual int SetParamter();
+
+    virtual int OnConnect();
+    virtual int OnDisConnect();
+    virtual int OnLoad(QDataStream& d);
+    virtual int OnSave(QDataStream& d);
     
 private:
     QTermWidget* m_pConsole;

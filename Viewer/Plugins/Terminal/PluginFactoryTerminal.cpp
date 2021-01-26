@@ -40,7 +40,7 @@ const QString CPluginFactoryTerminal::Name() const
 
 const QString CPluginFactoryTerminal::Description() const
 {
-    return tr("Terminal");
+    return tr("Terminal: native(shell) and remote(telnet, etc) terminal");
 }
 
 CConnecter *CPluginFactoryTerminal::CreateConnecter(const QString &szProtol)

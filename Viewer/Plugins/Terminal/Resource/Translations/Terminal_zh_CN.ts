@@ -53,6 +53,21 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmTerminalAppearanceSettings.ui" line="95"/>
+        <source>TerminalTransparency:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.ui" line="102"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.ui" line="111"/>
+        <source>Flow Control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="22"/>
         <source>Font:</source>
         <translation>字体：</translation>
@@ -63,17 +78,17 @@
         <translation>光标形状：</translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="24"/>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="26"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="25"/>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="27"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="26"/>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="28"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
@@ -82,9 +97,13 @@
     <name>CPluginFactoryTerminal</name>
     <message>
         <location filename="../../PluginFactoryTerminal.cpp" line="38"/>
-        <location filename="../../PluginFactoryTerminal.cpp" line="43"/>
         <source>Terminal</source>
         <translation>终端</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFactoryTerminal.cpp" line="43"/>
+        <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

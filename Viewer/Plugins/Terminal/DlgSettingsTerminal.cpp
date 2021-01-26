@@ -1,7 +1,6 @@
 #include "DlgSettingsTerminal.h"
 #include "ui_DlgSettingsTerminal.h"
 #include "RabbitCommonLog.h"
-#include "FrmTerminalAppearanceSettings.h"
 
 #include <QDebug>
 #include <qtermwidget.h>
@@ -12,8 +11,9 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalAppearance *pPara, 
     m_pPara(pPara)
 {
     ui->setupUi(this);
-        
-    ui->tabWidget->addTab(new CFrmTerminalAppearanceSettings(m_pPara, this), tr("Appearance"));
+
+    m_pFrmTerminalAppearanceSettings = new CFrmTerminalAppearanceSettings(m_pPara, this);
+    ui->tabWidget->addTab(m_pFrmTerminalAppearanceSettings, tr("Appearance"));
 }
 
 CDlgSettingsTerminal::~CDlgSettingsTerminal()
@@ -24,6 +24,8 @@ CDlgSettingsTerminal::~CDlgSettingsTerminal()
 
 void CDlgSettingsTerminal::on_pbOk_clicked()
 {
+    if(m_pFrmTerminalAppearanceSettings)
+        m_pFrmTerminalAppearanceSettings->AcceptSettings();
     this->accept();
 }
 
