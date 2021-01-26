@@ -1,4 +1,4 @@
-//! @author: Kang Lin(kl222@126.com)
+//! @author: Kang Lin (kl222@126.com)
   
 #ifndef CCONNECT_H
 #define CCONNECT_H
