@@ -35,7 +35,8 @@ public:
     virtual QString GetServerName() override;
     virtual int Load(QDataStream &d) override;
     virtual int Save(QDataStream &d) override;
-    
+    virtual int OpenDialogSettings(QWidget *parent) override;
+
 public Q_SLOTS:
     int Connect();
     int DisConnect();
@@ -45,6 +46,13 @@ protected:
     virtual int OnDisConnect();
     virtual int OnLoad(QDataStream& d);
     virtual int OnSave(QDataStream& d);
+    /**
+     * @brief GetDialogSettings
+     * @param parent: the parent windows of the dialog of return
+     * @return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
+     *         The ownership is caller.
+     */
+    virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 
 private:
     bool m_bExit;

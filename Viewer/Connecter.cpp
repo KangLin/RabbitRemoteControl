@@ -58,16 +58,3 @@ const CPluginFactory* CConnecter::GetPluginFactory() const
     return m_pPluginFactory;
 }
 
-int CConnecter::OpenDialogSettings(QWidget *parent)
-{
-    int nRet = -1;
-    QDialog* pDlg = GetDialogSettings(parent);
-    if(pDlg)
-    {
-        pDlg->setAttribute(Qt::WA_DeleteOnClose);
-        nRet = pDlg->exec();
-    } else {
-        LOG_MODEL_ERROR("CConnecter",  "The protol[%s] don't settings dialog", Protol().toStdString().c_str());
-    }
-    return nRet;
-}

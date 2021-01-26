@@ -55,7 +55,7 @@ public:
      *   QDialog::Rejected
      *   -1: error
      */
-    virtual int OpenDialogSettings(QWidget* parent = nullptr);
+    virtual int OpenDialogSettings(QWidget* parent = nullptr) = 0;
 
     const CPluginFactory* GetPluginFactory() const;
     virtual int Load(QDataStream& d) = 0;
@@ -81,14 +81,6 @@ private:
     
 protected:
     QString m_szServerName;
-   
-    /**
-     * @brief GetDialogSettings
-     * @param parent: the parent windows of the dialog of return
-     * @return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
-     *         The ownership is caller.
-     */
-    virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 };
 
 #endif // CCONNECTER_H

@@ -36,7 +36,7 @@ private Q_SLOTS:
     void slotTerminalTitleChanged();
     
 protected:
-    virtual QDialog* GetDialogSettings(QWidget *parent) override;
+    virtual QDialog* GetDialogSettings(QWidget *parent);
     virtual int SetParamter();
 
     virtual int OnConnect();
