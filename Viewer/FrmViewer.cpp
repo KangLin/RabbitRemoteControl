@@ -243,7 +243,7 @@ void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
     update();
 }
 
-CFrmViewer::ADAPT_WINDOWS CFrmViewer::AdaptWindows()
+ADAPT_WINDOWS CFrmViewer::AdaptWindows()
 {
     return m_AdaptWindows;
 }

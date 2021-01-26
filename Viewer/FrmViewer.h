@@ -8,16 +8,25 @@
 #include <QWidget>
 #include "rabbitremotecontrol_export.h"
 
+enum ADAPT_WINDOWS {
+    Disable,         // Disable adapt windows
+    Auto,
+    Original,        // Original desktop size, the left-top of the desktop is aligned with the left-top of the window
+    OriginalCenter,  // Original desktop size, the center of the desktop is aligned with the center of the window
+    Zoom,            // Desktop adapt to windows
+    AspectRation,    // Keep desktop aspectration adapt to windows
+};
+
+class CConnecter;
+
 namespace Ui {
 class CFrmViewer;
 }
 
-class CConnecter;
-
 /**
  * @brief The CFrmViewer class
  * @see  CConnecter CConnect
- * @addtogroup API
+ * @addtogroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CFrmViewer : public QWidget
 {
@@ -27,14 +36,6 @@ public:
     explicit CFrmViewer(QWidget *parent = nullptr);
     virtual ~CFrmViewer() override;
 
-    enum ADAPT_WINDOWS {
-        Disable,         // Disable adapt windows
-        Auto,
-        Original,        // Original desktop size, the left-top of the desktop is aligned with the left-top of the window
-        OriginalCenter,  // Original desktop size, the center of the desktop is aligned with the center of the window
-        Zoom,            // Desktop adapt to windows
-        AspectRation,    // Keep desktop aspectration adapt to windows
-    };
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
     ADAPT_WINDOWS AdaptWindows();
 

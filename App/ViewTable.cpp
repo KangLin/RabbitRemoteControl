@@ -1,4 +1,4 @@
-//! @author: Kang Lin(kl222@126.com)
+//! @author: Kang Lin (kl222@126.com)
 
 #include "ViewTable.h"
 #include <QResizeEvent>
@@ -29,48 +29,25 @@ CViewTable::~CViewTable()
 
 void CViewTable::slotCurrentChanged(int index)
 {
-    CFrmViewer* pView = qobject_cast<CFrmViewer*>(GetViewer(index));
+    CFrmViewScroll* pView = qobject_cast<CFrmViewScroll*>(GetViewer(index));
     if(pView)
     {
-        QScrollArea* pScroll = GetScrollArea(index);
-        if(pScroll)
-        {   if(CFrmViewer::Original == pView->AdaptWindows())
-                pScroll->setWidgetResizable(false);
-            else
-                pScroll->setWidgetResizable(true);
-        }
         emit sigAdaptWindows(pView->AdaptWindows());
     } else // is terminal windows
-        emit sigAdaptWindows(CFrmViewer::Disable);
+        emit sigAdaptWindows(Disable);
 }
 
 void CViewTable::slotTabCloseRequested(int index)
 {
     QWidget* pView = GetViewer(index);
-    if(!pView) return;
-    QScrollArea* pScroll = qobject_cast<QScrollArea*>(pView);
-    if(pScroll)
-    {
-        pView = pScroll->takeWidget();
-        delete pScroll;
-    }
-    emit sigCloseView(pView);
+    if(pView)
+        emit sigCloseView(pView);
 }
 
 int CViewTable::AddView(QWidget *pView)
 {
     int nIndex = -1;
-    if(qobject_cast<CFrmViewer*>(pView))
-    {
-        QScrollArea* pScroll = new QScrollArea(m_pTab);
-        pScroll->setWidget(pView);
-        pScroll->setAlignment(Qt::AlignCenter);
-        pScroll->setBackgroundRole(QPalette::Dark);
-        pScroll->setFocusPolicy(Qt::NoFocus);
-        pScroll->setWidgetResizable(true);
-        nIndex = m_pTab->addTab(pScroll, pView->windowTitle());
-    } else
-        nIndex = m_pTab->addTab(pView, pView->windowTitle());
+    nIndex = m_pTab->addTab(pView, pView->windowTitle());
     m_pTab->setCurrentIndex(nIndex);
     return 0;
 }
@@ -79,23 +56,13 @@ int CViewTable::RemoveView(QWidget *pView)
 {
     int nIndex = GetViewIndex(pView);
     if(-1  == nIndex) return 0;
-    QScrollArea* pScroll = GetScrollArea(nIndex);
-    if(pScroll)
-    {
-        // the clild windows is deleted by CConnecter
-        pScroll->takeWidget();
-    }
     m_pTab->removeTab(nIndex);
-    delete pScroll;
     return 0;
 }
 
 QWidget* CViewTable::GetCurrentView()
 {
     QWidget* pView = m_pTab->currentWidget();
-    QScrollArea* pScroll = qobject_cast<QScrollArea*>(pView);
-    if(pScroll)
-        return pScroll->widget();
     return pView;
 }
 
@@ -122,37 +89,18 @@ int CViewTable::SetFullScreen(bool bFull)
     return 0;
 }
 
-void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
+void CViewTable::SetAdaptWindows(ADAPT_WINDOWS aw, QWidget* p)
 {
-    CFrmViewer* pView = nullptr;
+    CFrmViewScroll* pView = nullptr;
     if(p)
     {
-        pView = qobject_cast<CFrmViewer*>(p);
+        pView = qobject_cast<CFrmViewScroll*>(p);
     } else {
-        pView = qobject_cast<CFrmViewer*>(GetViewer(m_pTab->currentIndex()));
+        pView = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
     }
-    
-    int nIndex = GetViewIndex(p);
-    if(-1 == nIndex)
-        nIndex = m_pTab->currentIndex();
-    QScrollArea* pScroll = GetScrollArea(nIndex);
-    // The follow order don't change
-    if(pScroll)
-    {   if(CFrmViewer::Original == aw && pView)
-            pScroll->setWidgetResizable(false);
-        else
-            pScroll->setWidgetResizable(true);
-    }
-    
+
     if(pView)
         pView->SetAdaptWindows(aw);
-}
-
-QScrollArea* CViewTable::GetScrollArea(int index)
-{
-    if(index < 0 || index >= m_pTab->count())
-        return nullptr;
-    return qobject_cast<QScrollArea*>(m_pTab->widget(index));
 }
 
 QWidget *CViewTable::GetViewer(int index)
@@ -160,9 +108,6 @@ QWidget *CViewTable::GetViewer(int index)
     if(index < 0 || index >= m_pTab->count())
         return nullptr;
     
-    QScrollArea* pScroll = GetScrollArea(index);
-    if(pScroll)
-        return pScroll->widget();
     return m_pTab->widget(index);
 }
 

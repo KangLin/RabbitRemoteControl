@@ -13,6 +13,7 @@
 #include <QWheelEvent>
 #include "Connecter.h"
 #include <QMimeData>
+#include "FrmViewer.h"
 
 /**
  * @brief The CConnect class. It is finished connect in background thread.

@@ -4,7 +4,6 @@
 #define CCONNECTERTIGERVNC_H
 
 #include "ConnecterPlugins.h"
-#include "FrmViewer.h"
 #include "DlgSettingsTigerVnc.h"
 
 class CConnecterTigerVnc : public CConnecterPlugins

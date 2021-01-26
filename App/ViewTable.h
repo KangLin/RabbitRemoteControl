@@ -1,4 +1,4 @@
-//! @author: Kang Lin(kl222@126.com)
+//! @author: Kang Lin (kl222@126.com)
 
 #ifndef CVIEWTABLE_H
 #define CVIEWTABLE_H
@@ -24,7 +24,7 @@ public:
     virtual QWidget *GetCurrentView() override;
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle) override;
     virtual int SetFullScreen(bool bFull) override;
-    virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Original, QWidget* pView = nullptr) override;
+    virtual void SetAdaptWindows(ADAPT_WINDOWS aw = Original, QWidget* pView = nullptr) override;
 
 private Q_SLOTS:
     void slotCurrentChanged(int index);
@@ -32,8 +32,7 @@ private Q_SLOTS:
 
 private:
     QTabWidget* m_pTab;
-    
-    QScrollArea* GetScrollArea(int index);
+
     QWidget* GetViewer(int index);
     int GetViewIndex(QWidget* pView);
     

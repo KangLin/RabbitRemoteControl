@@ -10,7 +10,7 @@
 #include <QDialog>
 #include <QIcon>
 #include <QMimeData>
-#include "FrmViewer.h"
+#include "rabbitremotecontrol_export.h"
 
 class CPluginFactory;
 
