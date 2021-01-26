@@ -8,7 +8,7 @@
  * @brief The CFrmViewScroll class
  * @addtogroup API
  */
-class CFrmViewScroll : public QScrollArea
+class RABBITREMOTECONTROL_EXPORT CFrmViewScroll : public QScrollArea
 {
     Q_OBJECT
 public:
