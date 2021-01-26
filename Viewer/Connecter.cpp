@@ -57,4 +57,3 @@ const CPluginFactory* CConnecter::GetPluginFactory() const
 {
     return m_pPluginFactory;
 }
-

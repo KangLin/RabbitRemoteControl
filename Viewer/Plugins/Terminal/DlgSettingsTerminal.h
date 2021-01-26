@@ -23,7 +23,7 @@ private slots:
     
 private:
     Ui::CDlgSettingsTerminal *ui;
-    CParameterTerminalAppearance *m_pPara;
+    CParameterTerminalAppearance* m_pPara;
     CFrmTerminalAppearanceSettings* m_pFrmTerminalAppearanceSettings;
 };
 

@@ -9,7 +9,7 @@
 /**
  * @brief The CParameter class
  * @note The interface only is implemented by plugin
- * @addtogroup API
+ * @addtogroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CParameter : public QObject
 {
