@@ -36,7 +36,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 - [x] VNC(Virtual network console): [RFB](https://github.com/rfbproto/rfbproto)
 - [x] Remote desktop protocol: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
-- [ ] [SSH]()
+- [x] [SSH]()
 - [x] [TELNET]()
 - [x] Terminal
 - [ ] Custom p2p protocol
@@ -54,8 +54,8 @@ If you want to donate the developed devices for me, please contact: (email: kl22
   + [x] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
 - [x] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
-- [ ] [SSH]
-  + [ ] [LIBSSH](https://www.libssh.org)
+- [x] [SSH]
+  + [x] [LIBSSH](https://www.libssh.org)
 - [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
 ### Donation

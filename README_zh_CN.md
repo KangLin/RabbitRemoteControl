@@ -34,7 +34,7 @@
 - [x] VNC(虚拟网络控制台): [RFB](https://github.com/rfbproto/rfbproto)
 - [x] 远程桌面协议: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
-- [ ] [SSH]()
+- [x] [SSH]()
 - [x] [TELNET]()
 - [ ] 自定义的 P2P 协议
 - [x] 终端
@@ -52,8 +52,8 @@
   + [x] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
   + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)
 - [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
-- [ ] [SSH]
-  + [ ] [LIBSSH](https://www.libssh.org)
+- [x] [SSH]
+  + [x] [LIBSSH](https://www.libssh.org)
 - [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
 ### 捐赠

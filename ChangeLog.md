@@ -2,6 +2,7 @@
   + Modify plugins interface
   + Modify ci
   + Add terminal
+  + Add telnet
   
 - v0.0.1
   + Gui

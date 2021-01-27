@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Set appearance</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -92,7 +92,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>TerminalTransparency:</string>
+        <string>Terminal Transparency:</string>
        </property>
       </widget>
      </item>

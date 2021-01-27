@@ -1,23 +1,22 @@
-#ifndef CPLUGINFACTORYTELNET_H
-#define CPLUGINFACTORYTELNET_H
+#ifndef CPLUGINFACTORYLIBSSH_H
+#define CPLUGINFACTORYLIBSSH_H
 
 #include "PluginFactory.h"
 #include <QTranslator>
 
-class CPluginFactoryTelnet : public CPluginFactory
+class CPluginFactoryLibSSH : public CPluginFactory
 {
     Q_OBJECT
-public:
-    explicit CPluginFactoryTelnet(QObject *parent = nullptr);
-    virtual ~CPluginFactoryTelnet();
-    
     Q_INTERFACES(CPluginFactory)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPluginFactory_iid)
 #endif
+    
+public:
+    explicit CPluginFactoryLibSSH();
+    virtual ~CPluginFactoryLibSSH();
 
-    // CPluginFactory interface
 public:
     virtual const QString Protol() const override;
     virtual const QString Name() const override;
@@ -27,7 +26,6 @@ public:
     
 private:
     QTranslator m_Translator;
-    
 };
 
-#endif // CPLUGINFACTORYTELNET_H
+#endif // CPLUGINFACTORYLIBSSH_H

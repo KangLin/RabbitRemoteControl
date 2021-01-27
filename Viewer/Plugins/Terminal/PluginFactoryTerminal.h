@@ -14,7 +14,7 @@ class CPluginFactoryTerminal : public CPluginFactory
 #endif
     
 public:
-    explicit CPluginFactoryTerminal();
+    explicit CPluginFactoryTerminal(QObject *parent = nullptr);
     virtual ~CPluginFactoryTerminal();
     
     virtual const QString Protol() const override;

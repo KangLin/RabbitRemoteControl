@@ -5,63 +5,83 @@
     <name>CFrmTerminalAppearanceSettings</name>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="14"/>
-        <source>Form</source>
+        <source>Set appearance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="22"/>
         <source>Font:</source>
-        <translation type="unfinished"></translation>
+        <translation>字体：</translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="44"/>
         <source>Display font</source>
-        <translation type="unfinished"></translation>
+        <translation>显示字体</translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="53"/>
         <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>颜色方案：</translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="67"/>
         <source>Cursor shape:</source>
-        <translation type="unfinished"></translation>
+        <translation>光标形状：</translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="81"/>
         <source>Scroll bar positioin:</source>
-        <translation type="unfinished"></translation>
+        <translation>滚动条位置：</translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="95"/>
-        <source>TerminalTransparency:</source>
-        <translation type="unfinished"></translation>
+        <source>Terminal Transparency:</source>
+        <translation>透明度：</translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="102"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.ui" line="114"/>
+        <location filename="../../FrmTerminalAppearanceSettings.ui" line="116"/>
+        <source>Background Image:</source>
+        <translation>背景图像：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.ui" line="126"/>
+        <source>Brower(&amp;B)</source>
+        <translation>浏览(&amp;B)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.ui" line="135"/>
         <source>Flow Control</source>
-        <translation type="unfinished"></translation>
+        <translation>流量控制</translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="26"/>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="66"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>无</translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="27"/>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="67"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>左</translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="28"/>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="68"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>右</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="128"/>
+        <source>Backgroup image</source>
+        <translation>背景图像</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="129"/>
+        <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
+        <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
 </context>
 </TS>

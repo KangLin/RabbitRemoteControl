@@ -5,6 +5,45 @@
 #include <QDebug>
 #include "qtermwidget.h"
 
+#include "RabbitCommonDir.h"
+#include "RabbitCommonLog.h"
+
+#include <QCoreApplication>
+#include <QLocale>
+#include <QDebug>
+#include <QTranslator>
+
+class CRabbitRemoteControlTerminal
+{
+public:
+    CRabbitRemoteControlTerminal()
+    {
+    #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+        Q_INIT_RESOURCE(translations_RabbitRemoteControlTerminal);
+    #endif
+    
+        QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
+                + QDir::separator() + "RabbitRemoteControlTerminal_" + QLocale::system().name() + ".qm";
+        if(!m_Translator.load(szTranslatorFile))
+            qCritical() << "Open translator file fail:" << szTranslatorFile;
+        qApp->installTranslator(&m_Translator);
+    };
+    
+    ~CRabbitRemoteControlTerminal()
+    {
+        qApp->removeTranslator(&m_Translator);
+        qDebug() << "CRabbitRemoteControlTerminal::~CRabbitRemoteControlTerminal()";
+    #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+        Q_INIT_RESOURCE(translations_RabbitRemoteControlTerminal);
+    #endif
+    };
+    
+private:
+    QTranslator m_Translator;
+};
+
+const CRabbitRemoteControlTerminal g_CRabbitRemoteControlTerminal;
+
 CFrmTerminalAppearanceSettings::CFrmTerminalAppearanceSettings(CParameterTerminalAppearance *pPara, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmTerminalAppearanceSettings),

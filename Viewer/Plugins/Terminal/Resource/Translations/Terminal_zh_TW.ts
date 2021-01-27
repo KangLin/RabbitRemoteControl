@@ -25,35 +25,16 @@
     </message>
 </context>
 <context>
-    <name>CFrmTerminalAppearanceSettings</name>
-    <message>
-        <source>Display font</source>
-        <translation type="vanished">顯示字體</translation>
-    </message>
-    <message>
-        <source>Color scheme:</source>
-        <translation type="vanished">顏色方案：</translation>
-    </message>
-    <message>
-        <source>Font:</source>
-        <translation type="vanished">字體：</translation>
-    </message>
-    <message>
-        <source>Cursor shape:</source>
-        <translation type="vanished">光標形狀：</translation>
-    </message>
-</context>
-<context>
     <name>CPluginFactoryTerminal</name>
     <message>
-        <location filename="../../PluginFactoryTerminal.cpp" line="38"/>
+        <location filename="../../PluginFactoryTerminal.cpp" line="39"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../PluginFactoryTerminal.cpp" line="43"/>
+        <location filename="../../PluginFactoryTerminal.cpp" line="44"/>
         <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>終端：本地(shell)和遠程(telnet、等)終端</translation>
     </message>
 </context>
 </TS>

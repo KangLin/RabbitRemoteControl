@@ -6,7 +6,8 @@
 #include <QLocale>
 #include <QDebug>
 
-CPluginFactoryTerminal::CPluginFactoryTerminal()
+CPluginFactoryTerminal::CPluginFactoryTerminal(QObject *parent)
+    : CPluginFactory(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_Terminal);

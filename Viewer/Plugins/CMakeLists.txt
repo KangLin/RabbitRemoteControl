@@ -64,3 +64,4 @@ file(COPY ${CMAKE_CURRENT_BINARY_DIR}/${LOWER_PROJECT_NAME}_export.h
 
 add_subdirectory(Terminal)
 add_subdirectory(Telnet)
+add_subdirectory(LibSSH)

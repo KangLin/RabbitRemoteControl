@@ -7,7 +7,8 @@
 #include <QLocale>
 #include <QDebug>
 
-CPluginFactoryTelnet::CPluginFactoryTelnet()
+CPluginFactoryTelnet::CPluginFactoryTelnet(QObject *parent)
+    : CPluginFactory(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_Telnet);
@@ -23,7 +24,7 @@ CPluginFactoryTelnet::CPluginFactoryTelnet()
 CPluginFactoryTelnet::~CPluginFactoryTelnet()
 {
     qApp->removeTranslator(&m_Translator);
-    qDebug() << "CPluginFactoryTerminal::~CPluginFactoryTerminal()";
+    qDebug() << "CPluginFactoryTelnet::~CPluginFactoryTelnet()";
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_Telnet);
 #endif
