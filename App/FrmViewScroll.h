@@ -15,8 +15,8 @@ public:
     explicit CFrmViewScroll(CFrmViewer* pView, QWidget *parent = nullptr);
     virtual ~CFrmViewScroll();
     
-    void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
-    ADAPT_WINDOWS AdaptWindows();
+    void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Original);
+    CFrmViewer::ADAPT_WINDOWS AdaptWindows();
 
     CFrmViewer* GetViewer();
 };

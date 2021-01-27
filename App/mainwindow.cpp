@@ -36,8 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
         check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
                         this, SLOT(slotCloseView(const QWidget*)));
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigAdaptWindows(const ADAPT_WINDOWS)),
-                        this, SLOT(slotAdaptWindows(const ADAPT_WINDOWS)));
+        check = connect(m_pView, SIGNAL(sigAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)),
+                        this, SLOT(slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)));
         Q_ASSERT(check);
         this->setCentralWidget(m_pView);
     }
@@ -176,42 +176,42 @@ void MainWindow::on_actionZoom_Z_toggled(bool arg1)
 {
     if(!arg1) return;
     if(!m_pView) return;
-    m_pView->SetAdaptWindows(Zoom);
+    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
 }
 
 void MainWindow::on_actionKeep_AspectRation_K_toggled(bool arg1)
 {
     if(!arg1) return;
     if(!m_pView) return;
-    m_pView->SetAdaptWindows(AspectRation);
+    m_pView->SetAdaptWindows(CFrmViewer::AspectRation);
 }
 
 void MainWindow::on_actionOriginal_O_toggled(bool arg1)
 {
     if(!arg1) return;
     if(!m_pView) return;
-    m_pView->SetAdaptWindows(Original);
+    m_pView->SetAdaptWindows(CFrmViewer::Original);
 }
 
-void MainWindow::slotAdaptWindows(const ADAPT_WINDOWS aw)
+void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 {
     QString t = "Disable";
     m_pGBView->setEnabled(true);
     switch (aw) {
-    case Auto:
-    case Original:
+    case CFrmViewer::Auto:
+    case CFrmViewer::Original:
         ui->actionOriginal_O->setChecked(true);
         t = "Original";
         break;
-    case Zoom:
+    case CFrmViewer::Zoom:
         ui->actionZoom_Z->setChecked(true);
         t = "Original";
         break;
-    case AspectRation:
+    case CFrmViewer::AspectRation:
         ui->actionKeep_AspectRation_K->setChecked(true);
         t = "AspectRation";
         break;
-    case Disable:
+    case CFrmViewer::Disable:
         m_pGBView->setEnabled(false);   
         break;
     }
@@ -334,13 +334,13 @@ int MainWindow::Connect(CConnecter* p)
         slotInformation(tr("Connecting to ") + p->GetServerName());
     if(m_pView)
     {
-        ADAPT_WINDOWS aw = Zoom;
+        CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Zoom;
         if(ui->actionOriginal_O->isChecked())
-            aw = Original;
+            aw = CFrmViewer::Original;
         else if(ui->actionZoom_Z->isChecked())
-            aw = Zoom;
+            aw = CFrmViewer::Zoom;
         else if(ui->actionKeep_AspectRation_K->isChecked())
-            aw = AspectRation;
+            aw = CFrmViewer::AspectRation;
         m_pView->SetAdaptWindows(aw, p->GetViewer());
         m_pView->AddView(p->GetViewer());
         m_pView->SetWidowsTitle(p->GetViewer(), p->GetServerName()); 

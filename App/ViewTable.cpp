@@ -41,7 +41,7 @@ void CViewTable::slotCurrentChanged(int index)
     {
         emit sigAdaptWindows(pView->AdaptWindows());
     } else // is terminal windows
-        emit sigAdaptWindows(Disable);
+        emit sigAdaptWindows(CFrmViewer::Disable);
 }
 
 void CViewTable::slotTabCloseRequested(int index)
@@ -111,7 +111,7 @@ int CViewTable::SetFullScreen(bool bFull)
     return 0;
 }
 
-void CViewTable::SetAdaptWindows(ADAPT_WINDOWS aw, QWidget* p)
+void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
 {
     CFrmViewer* pView = nullptr;
     if(p)
