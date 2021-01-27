@@ -31,5 +31,5 @@ void CDlgSettingsTerminal::on_pbOk_clicked()
 
 void CDlgSettingsTerminal::on_pbCancle_clicked()
 {
-    this->reject();    
+    this->reject();
 }

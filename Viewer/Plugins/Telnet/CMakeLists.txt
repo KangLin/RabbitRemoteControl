@@ -6,13 +6,20 @@ list(APPEND lib_telnet RabbitRemoteControlTerminal)
 
 SET(SOURCE_FILES
     PluginFactoryTelnet.cpp
+    ConnecterTelnet.cpp
+    ParameterTelnet.cpp
+    DlgSettingsTelnet.cpp
     )
 
 SET(HEADER_FILES
+    ConnecterTelnet.h
+    ParameterTelnet.h
     PluginFactoryTelnet.h
+    DlgSettingsTelnet.h
     )
 
 SET(UI_FILES
+    DlgSettingsTelnet.ui
     )
 
 #翻译

@@ -1,6 +1,7 @@
 #include "FrmTerminalAppearanceSettings.h"
 #include "ui_FrmTerminalAppearanceSettings.h"
 #include "RabbitCommonLog.h"
+#include "RabbitCommonDir.h"
 #include <QDebug>
 #include "qtermwidget.h"
 
@@ -46,6 +47,7 @@ CFrmTerminalAppearanceSettings::CFrmTerminalAppearanceSettings(CParameterTermina
 
     ui->spTerminalTransparecy->setValue(pPara->termTransparency);
     ui->cbFlowControl->setChecked(m_pPara->flowControl);
+    ui->leImage->setText(m_pPara->backgroupImage);
 }
 
 CFrmTerminalAppearanceSettings::~CFrmTerminalAppearanceSettings()
@@ -77,5 +79,15 @@ int CFrmTerminalAppearanceSettings::AcceptSettings()
     m_pPara->scrollBarPosition = static_cast<QTermWidget::ScrollBarPosition>(ui->cbScrollBarPositioin->currentData().toInt());
     m_pPara->termTransparency = ui->spTerminalTransparecy->value();
     m_pPara->flowControl = ui->cbFlowControl->isChecked();
+    m_pPara->backgroupImage = ui->leImage->text();
     return 0;
+}
+
+void CFrmTerminalAppearanceSettings::on_pbBrower_clicked()
+{
+    QString file = RabbitCommon::CDir::Instance()->GetOpenFileName(this,
+                                               tr("Backgroup image"), QString(),
+                tr("Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)"));
+    if(!file.isEmpty())
+        ui->leImage->setText(file);
 }

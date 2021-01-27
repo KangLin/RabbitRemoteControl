@@ -1,7 +1,7 @@
 #include "PluginFactoryTelnet.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
-#include "ConnecterPluginsTerminal.h"
+#include "ConnecterTelnet.h"
 
 #include <QCoreApplication>
 #include <QLocale>
@@ -53,7 +53,7 @@ CConnecter *CPluginFactoryTelnet::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
-        CConnecter* p = nullptr;// new CConnecterTerminal(this);
+        CConnecter* p = new CConnecterTelnet(this);
         return p;
     }
     return nullptr;

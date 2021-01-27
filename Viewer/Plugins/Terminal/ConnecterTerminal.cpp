@@ -8,7 +8,7 @@ CConnecterTerminal::CConnecterTerminal(CPluginFactory *parent)
     if(m_pPara)
     {
         m_pPara->font = m_pConsole->getTerminalFont();
-        m_pPara->colorScheme = "GreenOnBlack";
+        m_pPara->colorScheme = "Linux"; // "GreenOnBlack";
         m_pPara->scrollBarPosition = QTermWidget::NoScrollBar;
     }
 }

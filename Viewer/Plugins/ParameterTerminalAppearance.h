@@ -7,6 +7,8 @@
 
 class CParameterTerminalAppearance : public CParameter
 {
+    Q_OBJECT
+    
 public:
     CParameterTerminalAppearance();
     
@@ -16,6 +18,7 @@ public:
     QTermWidget::ScrollBarPosition scrollBarPosition;
     int termTransparency;
     bool flowControl;
+    QString backgroupImage;
 };
 
 #endif // CPARAMETERTERMINALAPPEARANCE_H

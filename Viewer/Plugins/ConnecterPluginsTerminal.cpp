@@ -75,6 +75,8 @@ int CConnecterPluginsTerminal::Load(QDataStream &d)
     d >> scrollBarPosition;
     pPara->scrollBarPosition = static_cast<QTermWidget::ScrollBarPosition>(scrollBarPosition);
     
+    d >> pPara->backgroupImage;
+    
     nRet = OnLoad(d);
     return nRet;
 }
@@ -102,6 +104,7 @@ int CConnecterPluginsTerminal::Save(QDataStream &d)
       << pPara->flowControl
       << (int)pPara->cursorShape
       << (int)pPara->scrollBarPosition
+      << pPara->backgroupImage
          ;
     
     nRet = OnSave(d);
@@ -122,7 +125,7 @@ int CConnecterPluginsTerminal::Connect()
     emit sigConnected();
 
     if(m_pConsole)
-        emit sigServerName("Terminal");
+        emit sigServerName(Name());
     
     return nRet;
 }
@@ -154,6 +157,7 @@ int CConnecterPluginsTerminal::SetParamter()
     m_pConsole->setScrollBarPosition(pPara->scrollBarPosition);
 
     m_pConsole->setTerminalOpacity(1.0 - pPara->termTransparency / 100.0);
+    m_pConsole->setTerminalBackgroundImage(pPara->backgroupImage);
     
     //m_pConsole->setMotionAfterPasting(1);
     //m_pConsole->disableBracketedPasteMode(true);
