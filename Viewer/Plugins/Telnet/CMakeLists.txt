@@ -1,23 +1,18 @@
 # Author: Kang Lin(kl222@126.com)
 
-project(Terminal)
+project(Telnet)
 
-set(lib_terminal RabbitRemoteControlTerminal)
+list(APPEND lib_telnet RabbitRemoteControlTerminal)
 
 SET(SOURCE_FILES
-    PluginFactoryTerminal.cpp
-    DlgSettingsTerminal.cpp
-    ConnecterTerminal.cpp
+    PluginFactoryTelnet.cpp
     )
 
 SET(HEADER_FILES
-    PluginFactoryTerminal.h
-    DlgSettingsTerminal.h
-    ConnecterTerminal.h
+    PluginFactoryTelnet.h
     )
 
 SET(UI_FILES
-    DlgSettingsTerminal.ui
     )
 
 #翻译
@@ -36,5 +31,5 @@ endif()
 ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
-    PRIVATE_LIBS ${lib_terminal}
+    PRIVATE_LIBS ${lib_telnet}
     )

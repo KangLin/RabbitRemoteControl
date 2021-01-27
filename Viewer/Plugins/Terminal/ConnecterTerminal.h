@@ -1,53 +1,22 @@
 #ifndef CCONNECTERTERMINAL_H
 #define CCONNECTERTERMINAL_H
 
-#include "Connecter.h"
-#include "qtermwidget.h"
-#include "ParameterTerminalAppearance.h"
+#include "ConnecterPluginsTerminal.h"
 
-class CConnecterTerminal : public CConnecter
+class CConnecterTerminal : public CConnecterPluginsTerminal
 {
     Q_OBJECT
 public:
     explicit CConnecterTerminal(CPluginFactory *parent);
     virtual ~CConnecterTerminal();
     
-    // CConnecter interface
-public:
-    QWidget* GetViewer() override;
-    virtual qint16 Version() override;
-    virtual int Load(QDataStream &d) override;
-    virtual int Save(QDataStream &d) override;
-    /**
-     * @brief Open settings dialog
-     * @param parent
-     * @return DialogCode
-     *   QDialog::Accepted
-     *   QDialog::Rejected
-     *   -1: error
-     */
-    virtual int OpenDialogSettings(QWidget* parent = nullptr) override;
-    
-public Q_SLOTS:
-    virtual int Connect() override;
-    virtual int DisConnect() override;
-
-private Q_SLOTS:
-    void slotTerminalTitleChanged();
-    
+    // CConnecterPluginsTerminal interface
 protected:
-    virtual QDialog* GetDialogSettings(QWidget *parent);
-    virtual int SetParamter();
-
-    virtual int OnConnect();
-    virtual int OnDisConnect();
-    virtual int OnLoad(QDataStream& d);
-    virtual int OnSave(QDataStream& d);
+    virtual QDialog *GetDialogSettings(QWidget *parent) override;
+    CParameterTerminalAppearance* GetPara() override;
     
 private:
-    QTermWidget* m_pConsole;
-    
-    CParameterTerminalAppearance m_Para;
+    CParameterTerminalAppearance* m_pPara;
 };
 
 #endif // CCONNECTERTERMINAL_H
