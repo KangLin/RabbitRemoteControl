@@ -27,3 +27,17 @@ CParameterTerminalAppearance* CConnecterTerminal::GetPara()
 {
     return m_pPara;
 }
+
+int CConnecterTerminal::OnConnect()
+{
+    if(m_pConsole)
+        m_pConsole->startShellProgram();
+
+    return 0;    
+}
+
+int CConnecterTerminal::OnDisConnect()
+{
+    if(m_pConsole) m_pConsole->close();
+    return 0;
+}

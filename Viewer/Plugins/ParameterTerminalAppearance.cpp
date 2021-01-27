@@ -2,6 +2,7 @@
 
 CParameterTerminalAppearance::CParameterTerminalAppearance()
 {
+    colorScheme = "GreenOnBlack";
     cursorShape = Konsole::Emulation::KeyboardCursorShape::BlockCursor;
     scrollBarPosition = QTermWidget::NoScrollBar;
     termTransparency = 0;

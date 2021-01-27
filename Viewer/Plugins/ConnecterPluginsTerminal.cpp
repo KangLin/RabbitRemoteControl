@@ -51,12 +51,11 @@ int CConnecterPluginsTerminal::Load(QDataStream &d)
     CParameterTerminalAppearance* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
-    
+
     qint16 version = 0;
-    d >> version;
-    d >> *pPara
-      ;
-    
+    d >> version
+      >> *pPara;
+
     nRet = OnLoad(d);
     return nRet;
 }
@@ -82,15 +81,12 @@ int CConnecterPluginsTerminal::Connect()
     
     nRet = SetParamter();
 
-    if(m_pConsole)
-        m_pConsole->startShellProgram();
-    
     nRet = OnConnect();
     
     emit sigConnected();
 
     if(m_pConsole)
-        emit sigServerName(Name());
+        emit sigServerName(GetServerName());
     
     return nRet;
 }
@@ -99,8 +95,6 @@ int CConnecterPluginsTerminal::DisConnect()
 {
     int nRet = 0;
 
-    if(m_pConsole) m_pConsole->close();
-    
     nRet = OnDisConnect();
     
     emit sigDisconnected();
@@ -153,4 +147,17 @@ int CConnecterPluginsTerminal::OnLoad(QDataStream& d)
 int CConnecterPluginsTerminal::OnSave(QDataStream& d)
 {
     return 0;
+}
+
+QString CConnecterPluginsTerminal::GetServerName()
+{
+    CParameterTerminalAppearance* pPara = GetPara();
+    if(m_szServerName.isEmpty())
+    {
+        if(pPara && !pPara->szHost.isEmpty())
+            m_szServerName = pPara->szHost + ":" + QString::number(pPara->nPort);
+        else
+            return Name();
+    }
+    return CConnecter::GetServerName();
 }

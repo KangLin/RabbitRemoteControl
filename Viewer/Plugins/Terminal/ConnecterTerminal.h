@@ -14,6 +14,8 @@ public:
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
     CParameterTerminalAppearance* GetPara() override;
+    virtual int OnConnect() override;
+    virtual int OnDisConnect() override;
     
 private:
     CParameterTerminalAppearance* m_pPara;

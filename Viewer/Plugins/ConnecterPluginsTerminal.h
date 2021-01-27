@@ -11,7 +11,7 @@ class CConnecterPluginsTerminal : public CConnecter
 public:
     explicit CConnecterPluginsTerminal(CPluginFactory *parent);
     virtual ~CConnecterPluginsTerminal();
-    
+
     // CConnecter interface
 public:
     QWidget* GetViewer() override;
@@ -27,14 +27,15 @@ public:
      *   -1: error
      */
     virtual int OpenDialogSettings(QWidget* parent = nullptr) override;
-    
+    virtual QString GetServerName() override;
+
 public Q_SLOTS:
     virtual int Connect() override;
     virtual int DisConnect() override;
 
 private Q_SLOTS:
     void slotTerminalTitleChanged();
-    
+
 protected:
     virtual QDialog* GetDialogSettings(QWidget *parent) = 0;
     virtual int SetParamter();

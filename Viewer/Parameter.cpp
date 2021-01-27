@@ -3,6 +3,7 @@
 #include "Parameter.h"
 
 CParameter::CParameter(QObject *parent) : QObject(parent),
+    nPort(0),
     bSavePassword(false),
     bOnlyView(false),
     bLocalCursor(true),
