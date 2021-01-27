@@ -44,6 +44,11 @@ const QString CPluginFactoryTelnet::Description() const
     return tr("Telnet: net terminal");
 }
 
+const QIcon CPluginFactoryTelnet::Icon() const
+{
+    return QIcon(":/image/Console");
+}
+
 CConnecter *CPluginFactoryTelnet::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)

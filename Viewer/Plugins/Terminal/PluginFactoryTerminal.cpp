@@ -43,6 +43,11 @@ const QString CPluginFactoryTerminal::Description() const
     return tr("Terminal: native(shell) and remote(telnet, etc) terminal");
 }
 
+const QIcon CPluginFactoryTerminal::Icon() const
+{
+    return QIcon(":/image/Console");
+}
+
 CConnecter *CPluginFactoryTerminal::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
