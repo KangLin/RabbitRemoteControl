@@ -117,12 +117,13 @@ void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
     if(p)
     {
         pView = qobject_cast<CFrmViewer*>(p);
+        if(pView)
+            pView->SetAdaptWindows(aw);
     } else {
-        pView = qobject_cast<CFrmViewer*>(GetViewer(m_pTab->currentIndex()));
+        CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+        if(pScroll)
+            pScroll->SetAdaptWindows(aw);
     }
-
-    if(pView)
-        pView->SetAdaptWindows(aw);
 }
 
 QWidget *CViewTable::GetViewer(int index)
