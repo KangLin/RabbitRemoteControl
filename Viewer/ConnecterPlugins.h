@@ -5,7 +5,7 @@
 
 #include "Connect.h"
 #include "Parameter.h"
-#include "FrmViewScroll.h"
+#include "FrmViewer.h"
 
 class CConnectThread;
 
@@ -57,7 +57,7 @@ protected:
 private:
     bool m_bExit;
     CConnectThread* m_pThread;
-    CFrmViewScroll *m_pView;
+    CFrmViewer *m_pView;
 
 protected:
     CParameter* m_pParameter;

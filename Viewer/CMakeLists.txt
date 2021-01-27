@@ -11,7 +11,6 @@ set(INSTALL_HEADER_FILES
     PluginFactory.h
     ConnecterPlugins.h
     Parameter.h
-    FrmViewScroll.h
     )
 
 set(HEADER_FILES
@@ -29,7 +28,6 @@ set(SOURCE_FILES
     ConnecterPlugins.cpp
     ConnectThread.cpp
     Parameter.cpp
-    FrmViewScroll.cpp
     )
 
 set(SOURCE_UI_FILES

@@ -1,6 +1,6 @@
 //! @author: Kang Lin (kl222@126.com)
 
-#include "FrmViewScroll.h"
+#include "FrmViewer.h"
 #include "Connect.h"
 #include <QApplication>
 #include <QDebug>
@@ -14,12 +14,7 @@ CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
     bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
                          this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
     Q_ASSERT(check);
-    CFrmViewer* pView = nullptr;
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(pConnecter->GetViewer());
-    if(pScroll)
-        pView = qobject_cast<CFrmViewer*>(pScroll->GetViewer());
-    else
-        pView = qobject_cast<CFrmViewer*>(pConnecter->GetViewer());
+    CFrmViewer* pView = qobject_cast<CFrmViewer*>(pConnecter->GetViewer());
     if(pView)
         SetViewer(pView);
     SetConnecter(pConnecter);

@@ -8,20 +8,17 @@
  * @brief The CFrmViewScroll class
  * @addtogroup API
  */
-class RABBITREMOTECONTROL_EXPORT CFrmViewScroll : public QScrollArea
+class CFrmViewScroll : public QScrollArea
 {
     Q_OBJECT
 public:
-    explicit CFrmViewScroll(QWidget *parent = nullptr);
+    explicit CFrmViewScroll(CFrmViewer* pView, QWidget *parent = nullptr);
+    virtual ~CFrmViewScroll();
     
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
     ADAPT_WINDOWS AdaptWindows();
-    
-    CFrmViewer* GetViewer();
 
-private:
-    CFrmViewer* m_pView;
-    
+    CFrmViewer* GetViewer();
 };
 
 #endif // CFRMVIEWSCROLL_H

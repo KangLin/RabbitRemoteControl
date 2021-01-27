@@ -10,6 +10,7 @@ set(SOURCE_FILES
     FrmFullScreenToolBar.cpp
     ViewTable.cpp
     View.cpp
+    FrmViewScroll.cpp
     )
 
 set(HEADER_FILES
@@ -17,6 +18,7 @@ set(HEADER_FILES
     FrmFullScreenToolBar.h
     ViewTable.h
     View.h
+    FrmViewScroll.h
     )
 
 set(SOURCE_UI_FILES

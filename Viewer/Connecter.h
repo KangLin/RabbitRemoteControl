@@ -44,7 +44,7 @@ public:
     virtual QString GetServerName();
     /**
      * @brief GetViewer 
-     * @return CFrmViewer*: the ownership is the instance of the class
+     * @return CFrmViewer*: the ownership is a instance of this class
      */
     virtual QWidget* GetViewer() = 0;
     /**

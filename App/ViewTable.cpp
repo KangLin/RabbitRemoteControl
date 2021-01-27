@@ -24,6 +24,11 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
 
 CViewTable::~CViewTable()
 {
+    for(int i = 0; i < m_pTab->count(); i++)
+    {
+        CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(i));
+        if(pScroll) delete pScroll;
+    }
     if(m_pTab)
         delete m_pTab;
 }
@@ -42,22 +47,37 @@ void CViewTable::slotCurrentChanged(int index)
 void CViewTable::slotTabCloseRequested(int index)
 {
     QWidget* pView = GetViewer(index);
-    if(pView)
+    if(!pView) return;
+    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(pView);
+    if(pScroll)
+        emit sigCloseView(pScroll->GetViewer());
+    else
         emit sigCloseView(pView);
 }
 
 int CViewTable::AddView(QWidget *pView)
 {
     int nIndex = -1;
-    nIndex = m_pTab->addTab(pView, pView->windowTitle());
+
+    CFrmViewer* p = qobject_cast<CFrmViewer*>(pView);
+    if(p)
+    {
+        CFrmViewScroll* pScroll = new CFrmViewScroll(p, m_pTab);
+        if(pScroll)
+            nIndex = m_pTab->addTab(pScroll, p->windowTitle());
+    } else
+        nIndex = m_pTab->addTab(pView, pView->windowTitle());
     m_pTab->setCurrentIndex(nIndex);
+
     return 0;
 }
 
 int CViewTable::RemoveView(QWidget *pView)
 {
     int nIndex = GetViewIndex(pView);
-    if(-1  == nIndex) return 0;
+    if(-1 == nIndex) return 0;
+    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(nIndex));
+    if(pScroll) delete pScroll;
     m_pTab->removeTab(nIndex);
     return 0;
 }
@@ -93,12 +113,12 @@ int CViewTable::SetFullScreen(bool bFull)
 
 void CViewTable::SetAdaptWindows(ADAPT_WINDOWS aw, QWidget* p)
 {
-    CFrmViewScroll* pView = nullptr;
+    CFrmViewer* pView = nullptr;
     if(p)
     {
-        pView = qobject_cast<CFrmViewScroll*>(p);
+        pView = qobject_cast<CFrmViewer*>(p);
     } else {
-        pView = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+        pView = qobject_cast<CFrmViewer*>(GetViewer(m_pTab->currentIndex()));
     }
 
     if(pView)
@@ -117,8 +137,13 @@ int CViewTable::GetViewIndex(QWidget *pView)
 {
     for(int i = 0; i < m_pTab->count(); i++)
     {
+        QWidget* p = GetViewer(i);
         if(GetViewer(i) == pView)
             return i;
+        CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(p);
+        if(pScroll)
+            if(pScroll->GetViewer() == pView)
+                return i;
     }
     return -1;
 }

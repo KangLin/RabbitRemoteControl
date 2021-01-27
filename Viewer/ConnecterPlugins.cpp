@@ -9,7 +9,7 @@ CConnecterPlugins::CConnecterPlugins(CPluginFactory *parent)
     : CConnecter(parent),
       m_bExit(false),
       m_pThread(nullptr),
-      m_pView(new CFrmViewScroll()),
+      m_pView(new CFrmViewer()),
       m_pParameter(nullptr)
 {}
 
