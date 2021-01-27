@@ -15,7 +15,11 @@ CConnecterTerminal::CConnecterTerminal(CPluginFactory *parent)
 
 CConnecterTerminal::~CConnecterTerminal()
 {
-    if(m_pPara) delete m_pPara;
+    if(m_pPara)
+    {
+        delete m_pPara;
+        m_pPara = nullptr;
+    }
 }
 
 QDialog *CConnecterTerminal::GetDialogSettings(QWidget *parent)

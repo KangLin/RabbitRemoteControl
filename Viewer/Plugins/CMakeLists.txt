@@ -15,17 +15,19 @@ project(RabbitRemoteControlTerminal LANGUAGES CXX)
 set(INSTALL_HEADER_FILES
     ConnecterPluginsTerminal.h
     FrmTerminalAppearanceSettings.h
-    ParameterTerminalAppearance.h  
+    ParameterTerminalAppearance.h
     )
 
 set(HEADER_FILES
     ${INSTALL_HEADER_FILES}
+    ConnectThreadTerminal.h
     )
 
 set(SOURCE_FILES
     ConnecterPluginsTerminal.cpp
     FrmTerminalAppearanceSettings.cpp
     ParameterTerminalAppearance.cpp
+    ConnectThreadTerminal.cpp
     )
 
 set(SOURCE_UI_FILES

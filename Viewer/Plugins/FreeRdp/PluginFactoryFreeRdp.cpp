@@ -23,7 +23,7 @@ CPluginFactoryFreeRdp::CPluginFactoryFreeRdp(QObject *parent)
 CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()
 {
     qApp->removeTranslator(&m_Translator);
-    qDebug() << "CManageConnectFreeRdp::~CManageConnectFreeRdp()";
+    qDebug() << "CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()";
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_FreeRdp);
 #endif

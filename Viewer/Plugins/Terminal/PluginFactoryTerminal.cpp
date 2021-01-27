@@ -22,8 +22,8 @@ CPluginFactoryTerminal::CPluginFactoryTerminal(QObject *parent)
 
 CPluginFactoryTerminal::~CPluginFactoryTerminal()
 {
-    qApp->removeTranslator(&m_Translator);
     qDebug() << "CPluginFactoryTerminal::~CPluginFactoryTerminal()";
+    qApp->removeTranslator(&m_Translator);
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_Terminal);
 #endif

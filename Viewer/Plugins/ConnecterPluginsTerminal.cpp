@@ -1,12 +1,18 @@
 #include "ConnecterPluginsTerminal.h"
 #include "RabbitCommonLog.h"
+#include "Connect.h"
+#include "ConnectThreadTerminal.h"
 
 #include <QDialog>
 #include <QApplication>
 #include <QDebug>
 
 CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginFactory *parent)
-    : CConnecter(parent)
+    : CConnecter(parent),
+      m_pConsole(nullptr),
+      m_pThread(nullptr),
+      m_bThread(false),
+      m_bExit(false)
 {
     m_pConsole = new QTermWidget(0);
     bool check = false;
@@ -21,7 +27,19 @@ CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginFactory *parent)
 CConnecterPluginsTerminal::~CConnecterPluginsTerminal()
 {
     qDebug() << "CConnecterPluginsTerminal::~CConnecterPluginsTerminal()";
-    if(m_pConsole) delete m_pConsole;
+    
+    if(m_pThread)
+    {
+        m_pThread->wait();
+        delete m_pThread;
+        m_pThread = nullptr;
+    }
+    
+    if(m_pConsole)
+    {
+        delete m_pConsole;
+        m_pConsole = nullptr;
+    }
 }
 
 QWidget* CConnecterPluginsTerminal::GetViewer()
@@ -78,9 +96,16 @@ int CConnecterPluginsTerminal::Save(QDataStream &d)
 int CConnecterPluginsTerminal::Connect()
 {
     int nRet = 0;
-    
+
     nRet = SetParamter();
 
+    if(m_bThread)
+    {
+        m_pThread = new CConnectThreadTerminal(this);
+        if(m_pThread)
+            m_pThread->start();
+    }
+    
     nRet = OnConnect();
     
     emit sigConnected();
@@ -95,10 +120,12 @@ int CConnecterPluginsTerminal::DisConnect()
 {
     int nRet = 0;
 
+    if(m_bThread)
+        m_bExit = true;
+    
     nRet = OnDisConnect();
     
     emit sigDisconnected();
-    
     return nRet;
 }
 
@@ -160,4 +187,48 @@ QString CConnecterPluginsTerminal::GetServerName()
             return Name();
     }
     return CConnecter::GetServerName();
+}
+
+CConnect* CConnecterPluginsTerminal::InstanceConnect()
+{
+    return nullptr;
+}
+
+int CConnecterPluginsTerminal::OnRun()
+{
+    //LOG_MODEL_DEBUG("CConnecterBackThread", "Current thread: 0x%X", QThread::currentThreadId());
+    int nRet = -1;
+    CConnect* pConnect = InstanceConnect();
+    
+    do{
+        CConnect* pConnect = InstanceConnect();
+        if(nullptr == pConnect) break;
+        
+        nRet = pConnect->Initialize();
+        if(nRet) break;
+        
+        nRet = pConnect->Connect();
+        if(nRet) break;
+        
+        while (!m_bExit) {
+            try {
+                // 0 : continue
+                // 1: exit
+                // < 0: error
+                nRet = pConnect->Process();
+                if(nRet) break;
+            }  catch (...) {
+                LOG_MODEL_ERROR("ConnecterBackThread", "process fail:%d", nRet);
+                break;
+            }
+        }
+        
+    }while (0);
+
+    emit sigDisconnected();
+
+    pConnect->Clean();
+    delete pConnect;
+    qDebug() << "CConnecterPlugins::OnRun() end";
+    return nRet;
 }

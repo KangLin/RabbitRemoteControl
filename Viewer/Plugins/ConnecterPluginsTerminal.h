@@ -1,10 +1,12 @@
 #ifndef CCONNECTERPLUGINSTERMINAL_H
 #define CCONNECTERPLUGINSTERMINAL_H
 
+#include "ConnectThread.h"
 #include "Connecter.h"
 #include "qtermwidget.h"
 #include "ParameterTerminalAppearance.h"
 
+class CConnectThreadTerminal;
 class CConnecterPluginsTerminal : public CConnecter
 {
     Q_OBJECT
@@ -12,8 +14,10 @@ public:
     explicit CConnecterPluginsTerminal(CPluginFactory *parent);
     virtual ~CConnecterPluginsTerminal();
 
-    // CConnecter interface
-public:
+    // Instance connect
+    virtual CConnect* InstanceConnect();
+    int OnRun();
+    
     QWidget* GetViewer() override;
     virtual qint16 Version() override;
     virtual int Load(QDataStream &d) override;
@@ -48,6 +52,9 @@ protected:
     virtual CParameterTerminalAppearance* GetPara() = 0;
     
     QTermWidget* m_pConsole;
+    CConnectThreadTerminal* m_pThread;
+    bool m_bThread;
+    bool m_bExit;
 };
 
 #endif // CCONNECTERPLUGINSTERMINAL_H
