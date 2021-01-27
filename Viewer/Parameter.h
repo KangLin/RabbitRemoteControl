@@ -5,6 +5,7 @@
 
 #include "rabbitremotecontrol_export.h"
 #include <QObject>
+#include <QDataStream>
 
 /**
  * @brief The CParameter class
@@ -29,5 +30,8 @@ public:
     bool bLocalCursor;
     bool bClipboard;
 };
+
+QDataStream &operator<<(QDataStream &, const CParameter &);
+QDataStream &operator>>(QDataStream &, CParameter &);
 
 #endif // CPARAMTER_H

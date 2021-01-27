@@ -21,4 +21,7 @@ public:
     QString backgroupImage;
 };
 
+QDataStream &operator<<(QDataStream &, const CParameterTerminalAppearance &);
+QDataStream &operator>>(QDataStream &, CParameterTerminalAppearance &);
+
 #endif // CPARAMETERTERMINALAPPEARANCE_H

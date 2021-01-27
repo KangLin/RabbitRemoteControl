@@ -54,28 +54,8 @@ int CConnecterPluginsTerminal::Load(QDataStream &d)
     
     qint16 version = 0;
     d >> version;
-    d >> pPara->szHost
-      >> pPara->nPort
-      >> pPara->szUser
-      >> pPara->bSavePassword;
-    
-    if(pPara->bSavePassword)
-        d >> pPara->szPassword;
-    
-    d >> pPara->font
-      >> pPara->colorScheme
-      >> pPara->termTransparency
-      >> pPara->flowControl
+    d >> *pPara
       ;
-    
-    int cursorShape = 0;
-    d >> cursorShape;
-    pPara->cursorShape = static_cast<Konsole::Emulation::KeyboardCursorShape>(cursorShape);
-    int scrollBarPosition = 0;
-    d >> scrollBarPosition;
-    pPara->scrollBarPosition = static_cast<QTermWidget::ScrollBarPosition>(scrollBarPosition);
-    
-    d >> pPara->backgroupImage;
     
     nRet = OnLoad(d);
     return nRet;
@@ -90,22 +70,7 @@ int CConnecterPluginsTerminal::Save(QDataStream &d)
     if(!pPara) return -1;
     
     d << Version()
-      << pPara->szHost
-      << pPara->nPort
-      << pPara->szUser
-      << pPara->bSavePassword;
-    
-    if(pPara->bSavePassword)
-        d << pPara->szPassword;
-    
-    d << pPara->font
-      << pPara->colorScheme
-      << pPara->termTransparency
-      << pPara->flowControl
-      << (int)pPara->cursorShape
-      << (int)pPara->scrollBarPosition
-      << pPara->backgroupImage
-         ;
+      << *pPara;
     
     nRet = OnSave(d);
     return nRet;
