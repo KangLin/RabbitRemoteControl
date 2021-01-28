@@ -236,21 +236,17 @@
     <message>
         <location filename="../../mainwindow.cpp" line="241"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
-        <translation>玉兔遠程控制文件 (*.rrc);;所有文件(*.*)</translation>
+        <translation>玉兔遠程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="334"/>
         <source>Connecting to </source>
-        <translation type="unfinished"></translation>
+        <translation>正在連接 </translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="328"/>
         <source>Connected to </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open remote control</source>
-        <translation type="vanished">打開遠程控制</translation>
+        <translation>連接到 </translation>
     </message>
 </context>
 <context>
@@ -263,7 +259,7 @@
     <message>
         <location filename="../../main.cpp" line="47"/>
         <source>Kang Lin studio</source>
-        <translation type="unfinished"></translation>
+        <translation>康林工作室</translation>
     </message>
 </context>
 </TS>

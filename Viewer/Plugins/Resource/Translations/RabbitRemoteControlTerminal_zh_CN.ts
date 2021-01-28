@@ -6,7 +6,7 @@
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="14"/>
         <source>Set appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>设置显示</translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="22"/>
@@ -57,6 +57,21 @@
         <location filename="../../FrmTerminalAppearanceSettings.ui" line="135"/>
         <source>Flow Control</source>
         <translation>流量控制</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="57"/>
+        <source>BlockCursor</source>
+        <translation>方块光标</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="58"/>
+        <source>UnderlineCursor</source>
+        <translation>下划线光标</translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="59"/>
+        <source>IBeamCursor</source>
+        <translation>I 形光标</translation>
     </message>
     <message>
         <location filename="../../FrmTerminalAppearanceSettings.cpp" line="66"/>

@@ -53,7 +53,7 @@
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="46"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>端口：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="109"/>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="138"/>
         <source>Save password</source>
-        <translation type="unfinished"></translation>
+        <translation>保存密碼</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="154"/>

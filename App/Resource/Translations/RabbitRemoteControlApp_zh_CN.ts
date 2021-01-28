@@ -259,7 +259,7 @@
     <message>
         <location filename="../../main.cpp" line="47"/>
         <source>Kang Lin studio</source>
-        <translation type="unfinished"></translation>
+        <translation>康林工作室</translation>
     </message>
 </context>
 </TS>

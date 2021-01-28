@@ -6,12 +6,12 @@
     <message>
         <location filename="../../PluginFactoryLibSSH.cpp" line="38"/>
         <source>LibSSH</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../PluginFactoryLibSSH.cpp" line="43"/>
         <source>SSH: you can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH： 妳能用安全傳輸隧道遠程執行程序、傳輸文件；管理公共鍵等……</translation>
     </message>
 </context>
 </TS>

@@ -5,7 +5,7 @@
     <name>CDlgSettingsTelnet</name>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="14"/>
-        <source>Dialog</source>
+        <source>Set telnet parameter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

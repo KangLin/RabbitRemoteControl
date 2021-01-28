@@ -44,15 +44,15 @@
     </message>
     <message>
         <source>Shared</source>
-        <translation type="vanished">共享</translation>
+        <translation>共享</translation>
     </message>
     <message>
         <source>Real time update</source>
-        <translation type="vanished">實時更新</translation>
+        <translation>實時更新</translation>
     </message>
     <message>
         <source>Show local cursor</source>
-        <translation type="vanished">顯示本地光標</translation>
+        <translation>顯示本地光標</translation>
     </message>
     <message>
         <source>Enable clipboard</source>
@@ -116,11 +116,11 @@
     </message>
     <message>
         <source>Save password</source>
-        <translation type="unfinished"></translation>
+        <translation>保存密碼</translation>
     </message>
     <message>
         <source>Only View</source>
-        <translation type="unfinished"></translation>
+        <translation>僅查看</translation>
     </message>
 </context>
 <context>

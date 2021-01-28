@@ -54,9 +54,9 @@ CFrmTerminalAppearanceSettings::CFrmTerminalAppearanceSettings(CParameterTermina
     Q_ASSERT(pPara);
     if(!pPara) return;
 
-    ui->cbCursorShape->addItem("BlockCursor", (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
-    ui->cbCursorShape->addItem("UnderlineCursor", (int)Konsole::Emulation::KeyboardCursorShape::UnderlineCursor);
-    ui->cbCursorShape->addItem("IBeamCursor", (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
+    ui->cbCursorShape->addItem(tr("BlockCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
+    ui->cbCursorShape->addItem(tr("UnderlineCursor"), (int)Konsole::Emulation::KeyboardCursorShape::UnderlineCursor);
+    ui->cbCursorShape->addItem(tr("IBeamCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
     ui->cbCursorShape->setCurrentIndex((int)pPara->cursorShape);
     
     ui->cbColorScheme->addItems(QTermWidget::availableColorSchemes());
