@@ -51,8 +51,7 @@ CConnecter *CPluginFactoryLibVnc::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
-        CConnecter* p = new CConnecterLibVnc(this);
-        return p;
+        return new CConnecterLibVnc(this);
     }
     return nullptr;
 }

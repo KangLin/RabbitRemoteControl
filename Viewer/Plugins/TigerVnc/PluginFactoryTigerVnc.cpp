@@ -65,8 +65,7 @@ CConnecter* CPluginFactoryTigerVnc::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
-        CConnecter* p = new CConnecterTigerVnc(this);
-        return p;
+        return new CConnecterTigerVnc(this);
     }
     return nullptr;
 }

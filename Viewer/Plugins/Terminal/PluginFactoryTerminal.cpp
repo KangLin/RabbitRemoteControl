@@ -53,8 +53,7 @@ CConnecter *CPluginFactoryTerminal::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
-        CConnecter* p = new CConnecterTerminal(this);
-        return p;
+        return new CConnecterTerminal(this);
     }
     return nullptr;
 }

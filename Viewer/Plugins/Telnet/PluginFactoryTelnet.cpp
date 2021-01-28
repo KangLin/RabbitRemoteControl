@@ -54,8 +54,7 @@ CConnecter *CPluginFactoryTelnet::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
-        CConnecter* p = new CConnecterTelnet(this);
-        return p;
+        return new CConnecterTelnet(this);
     }
     return nullptr;
 }

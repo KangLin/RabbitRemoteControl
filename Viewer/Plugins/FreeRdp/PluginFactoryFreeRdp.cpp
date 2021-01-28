@@ -53,8 +53,7 @@ CConnecter* CPluginFactoryFreeRdp::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
-        CConnecter* p = new CConnecterFreeRdp(this);
-        return p;
+        return new CConnecterFreeRdp(this);
     }
     return nullptr;
 }
