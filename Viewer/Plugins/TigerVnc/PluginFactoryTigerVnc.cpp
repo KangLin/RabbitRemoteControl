@@ -17,7 +17,7 @@ CPluginFactoryTigerVnc::CPluginFactoryTigerVnc(QObject *parent)
 #endif
 
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/" + Name() + "_" + QLocale::system().name() + ".qm";
+            + "/TigerVnc_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
         qCritical() << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);
@@ -47,7 +47,7 @@ CPluginFactoryTigerVnc::~CPluginFactoryTigerVnc()
 
 const QString CPluginFactoryTigerVnc::Name() const
 {
-    return "TigerVnc";
+    return tr("TigerVnc");
 }
 
 const QString CPluginFactoryTigerVnc::Description() const

@@ -43,18 +43,6 @@
         <translation>密码:</translation>
     </message>
     <message>
-        <source>Shared</source>
-        <translation>共享</translation>
-    </message>
-    <message>
-        <source>Real time update</source>
-        <translation>实时更新</translation>
-    </message>
-    <message>
-        <source>Show local cursor</source>
-        <translation>显示本地光标</translation>
-    </message>
-    <message>
         <source>Enable clipboard</source>
         <translation>允许剪切板</translation>
     </message>

@@ -10,6 +10,7 @@ class CConnecterTelnet : public CConnecterPluginsTerminal
     Q_OBJECT
 public:
     explicit CConnecterTelnet(CPluginFactory *parent);
+    virtual ~CConnecterTelnet();
     
     // CConnecterPluginsTerminal interface
 protected:
@@ -24,6 +25,7 @@ protected:
 protected Q_SLOTS:
     void slotSendData(const char *data, int size);
     void slotReadyRead();
+    void slotError(QAbstractSocket::SocketError err);
     
 private:
     CParameterTelnet* m_pPara;

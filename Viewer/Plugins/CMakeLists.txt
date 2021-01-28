@@ -16,6 +16,7 @@ set(INSTALL_HEADER_FILES
     ConnecterPluginsTerminal.h
     FrmTerminalAppearanceSettings.h
     ParameterTerminalAppearance.h
+    FrmTermWidget.h
     )
 
 set(HEADER_FILES
@@ -28,6 +29,7 @@ set(SOURCE_FILES
     FrmTerminalAppearanceSettings.cpp
     ParameterTerminalAppearance.cpp
     ConnectThreadTerminal.cpp
+    FrmTermWidget.cpp
     )
 
 set(SOURCE_UI_FILES

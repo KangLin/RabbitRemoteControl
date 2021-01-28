@@ -45,15 +45,21 @@ int CConnecterPlugins::OnRun()
         nRet = pConnect->Initialize();
         if(nRet) break;
         
+        /**
+          nRet < 0 : error
+          nRet = 0 : emit sigConnected
+          nRet = 1 : emit sigConnected in CConnect
+          */
         nRet = pConnect->Connect();
-        if(nRet) break;
-        
+        if(nRet < 0) break;
+        if(0 == nRet) emit sigConnected();
+
         while (!m_bExit) {
             try {
                 // 0 : continue
                 // 1: exit
                 // < 0: error
-                nRet = pConnect->Process();
+                int nRet = pConnect->Process();
                 if(nRet) break;
             }  catch (...) {
                 LOG_MODEL_ERROR("ConnecterBackThread", "process fail:%d", nRet);

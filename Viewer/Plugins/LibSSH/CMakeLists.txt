@@ -7,17 +7,26 @@ endif()
 
 project(LibSSH)
 
-set(lib_ssh RabbitRemoteControlTerminal)
+set(lib_ssh RabbitRemoteControlTerminal ssh)
 
 SET(SOURCE_FILES
     PluginFactoryLibSSH.cpp
+    ConnecterSSH.cpp
+    DlgSettingsSSH.cpp
+    ParameterSSH.cpp
+    ConnectSSH.cpp
     )
 
 SET(HEADER_FILES
     PluginFactoryLibSSH.h
+    ConnecterSSH.h
+    DlgSettingsSSH.h
+    ParameterSSH.h
+    ConnectSSH.h
     )
 
 SET(UI_FILES
+    DlgSettingsSSH.ui
     )
 
 #翻译

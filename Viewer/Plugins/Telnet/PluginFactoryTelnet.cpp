@@ -15,7 +15,7 @@ CPluginFactoryTelnet::CPluginFactoryTelnet(QObject *parent)
 #endif
 
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/" + Name() + "_" + QLocale::system().name() + ".qm";
+            + "/Telnet_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
         qCritical() << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);
@@ -37,7 +37,7 @@ const QString CPluginFactoryTelnet::Protol() const
 
 const QString CPluginFactoryTelnet::Name() const
 {
-    return "Telnet";
+    return tr("Telnet");
 }
 
 const QString CPluginFactoryTelnet::Description() const

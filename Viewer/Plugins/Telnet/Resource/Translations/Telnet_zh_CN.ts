@@ -42,6 +42,11 @@
 <context>
     <name>CPluginFactoryTelnet</name>
     <message>
+        <location filename="../../PluginFactoryTelnet.cpp" line="40"/>
+        <source>Telnet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../PluginFactoryTelnet.cpp" line="45"/>
         <source>Telnet: net terminal</source>
         <translation>Telnet: 网络终端</translation>

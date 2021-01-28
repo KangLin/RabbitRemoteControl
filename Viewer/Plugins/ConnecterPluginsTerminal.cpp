@@ -14,7 +14,9 @@ CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginFactory *parent)
       m_bThread(false),
       m_bExit(false)
 {
-    m_pConsole = new QTermWidget(0);
+    m_pConsole = new CFrmTermWidget();
+    m_pConsole->setAutoClose(true);
+    
     bool check = false;
     check = connect(m_pConsole, SIGNAL(titleChanged()),
                     this, SLOT(slotTerminalTitleChanged()));
@@ -30,6 +32,7 @@ CConnecterPluginsTerminal::~CConnecterPluginsTerminal()
     
     if(m_pThread)
     {
+        m_bExit = true;
         m_pThread->wait();
         delete m_pThread;
         m_pThread = nullptr;
@@ -58,6 +61,7 @@ int CConnecterPluginsTerminal::OpenDialogSettings(QWidget *parent)
     QDialog* p = GetDialogSettings(parent);
     if(p)
     {
+        p->setAttribute(Qt::WA_DeleteOnClose);
         return p->exec();
     }
     return nRet;
@@ -107,9 +111,11 @@ int CConnecterPluginsTerminal::Connect()
     }
     
     nRet = OnConnect();
+    if(nRet < 0)
+        emit sigDisconnected();
+    else if(0 == nRet)
+        emit sigConnected();
     
-    emit sigConnected();
-
     if(m_pConsole)
         emit sigServerName(GetServerName());
     
@@ -207,15 +213,21 @@ int CConnecterPluginsTerminal::OnRun()
         nRet = pConnect->Initialize();
         if(nRet) break;
         
+        /**
+          nRet < 0 : error
+          nRet = 0 : emit sigConnected
+          nRet = 1 : emit sigConnected in CConnect
+          */
         nRet = pConnect->Connect();
-        if(nRet) break;
+        if(nRet < 0) break;
+        if(0 == nRet) emit sigConnected();
         
         while (!m_bExit) {
             try {
                 // 0 : continue
                 // 1: exit
                 // < 0: error
-                nRet = pConnect->Process();
+                int nRet = pConnect->Process();
                 if(nRet) break;
             }  catch (...) {
                 LOG_MODEL_ERROR("ConnecterBackThread", "process fail:%d", nRet);

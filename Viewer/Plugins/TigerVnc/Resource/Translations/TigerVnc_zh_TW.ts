@@ -4,7 +4,7 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="336"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="342"/>
         <source>Using pixel format %s</source>
         <translation>使用像素格式 %s</translation>
     </message>
@@ -188,6 +188,11 @@
 </context>
 <context>
     <name>CPluginFactoryTigerVnc</name>
+    <message>
+        <location filename="../../PluginFactoryTigerVnc.cpp" line="50"/>
+        <source>TigerVnc</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../../PluginFactoryTigerVnc.cpp" line="55"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>

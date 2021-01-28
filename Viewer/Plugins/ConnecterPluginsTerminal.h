@@ -3,7 +3,7 @@
 
 #include "ConnectThread.h"
 #include "Connecter.h"
-#include "qtermwidget.h"
+#include "FrmTermWidget.h"
 #include "ParameterTerminalAppearance.h"
 
 class CConnectThreadTerminal;
@@ -14,8 +14,6 @@ public:
     explicit CConnecterPluginsTerminal(CPluginFactory *parent);
     virtual ~CConnecterPluginsTerminal();
 
-    // Instance connect
-    virtual CConnect* InstanceConnect();
     int OnRun();
     
     QWidget* GetViewer() override;
@@ -44,6 +42,14 @@ protected:
     virtual QDialog* GetDialogSettings(QWidget *parent) = 0;
     virtual int SetParamter();
 
+    // Instance connect
+    virtual CConnect* InstanceConnect();
+    /**
+     * @brief OnConnect
+     * @return 0: emit sigConnected()
+     *        <0: emit sigDisconnected();
+     *        >0: don't things
+     */
     virtual int OnConnect();
     virtual int OnDisConnect();
     virtual int OnLoad(QDataStream& d);
@@ -51,7 +57,7 @@ protected:
     
     virtual CParameterTerminalAppearance* GetPara() = 0;
     
-    QTermWidget* m_pConsole;
+    CFrmTermWidget* m_pConsole;
     CConnectThreadTerminal* m_pThread;
     bool m_bThread;
     bool m_bExit;

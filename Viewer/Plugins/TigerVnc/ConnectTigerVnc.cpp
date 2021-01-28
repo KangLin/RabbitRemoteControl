@@ -97,6 +97,12 @@ int CConnectTigerVnc::SetParamter(void *pPara)
     return 0;
 }
 
+/**
+  return:
+    < 0 : error
+    = 0 : emit sigConnected
+    = 1 : emit sigConnected in a instance of this CConnecterTigerVnc
+*/
 int CConnectTigerVnc::Connect()
 {
     try{        
@@ -107,14 +113,14 @@ int CConnectTigerVnc::Connect()
         m_pSock->inStream().setBlockCallback(this);
 
         setStreams(&m_pSock->inStream(), &m_pSock->outStream());
-      
+
         initialiseProtocol();
     } catch (rdr::Exception& e) {
         vlog.error("%s", e.str());
         emit sigError(-1, e.str());
         return -1;
     }
-    return 0;
+    return 1;
 }
 
 int CConnectTigerVnc::Disconnect()

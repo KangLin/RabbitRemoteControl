@@ -2,5 +2,5 @@
 
 CParameterTelnet::CParameterTelnet()
 {
-    
+    nPort = 23;
 }

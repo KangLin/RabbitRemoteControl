@@ -14,7 +14,7 @@ CPluginFactoryTerminal::CPluginFactoryTerminal(QObject *parent)
 #endif
 
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/" + Name() + "_" + QLocale::system().name() + ".qm";
+            + "/Terminal_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
         qCritical() << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);

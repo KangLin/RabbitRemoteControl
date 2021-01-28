@@ -27,6 +27,11 @@ public:
     explicit CConnecterPlugins(CPluginFactory *parent = nullptr);
     virtual ~CConnecterPlugins();
     
+    /**
+     * @brief OnRun
+     * @return >=0 成功
+     *         < 0 错误
+     */
     virtual int OnRun();
     // Instance connect
     virtual CConnect* InstanceConnect() = 0;

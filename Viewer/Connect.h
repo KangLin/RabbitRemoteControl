@@ -37,6 +37,13 @@ protected:
 public Q_SLOTS:
     virtual int Initialize();
     virtual int Clean();
+    /**
+     * @brief Connect
+     * @return 
+     *     < 0 : error
+     *     = 0 : emit sigConnected
+     *     = 1 : emit sigConnected in CConnect
+     */
     virtual int Connect() = 0;
     virtual int Disconnect() = 0;
     /**

@@ -1,5 +1,6 @@
 #include "ConnecterTelnet.h"
 #include "DlgSettingsTelnet.h"
+#include "RabbitCommonLog.h"
 
 #include <unistd.h>
 
@@ -17,6 +18,9 @@ CConnecterTelnet::CConnecterTelnet(CPluginFactory *parent)
         m_pPara->scrollBarPosition = QTermWidget::NoScrollBar;
     }
 }
+
+CConnecterTelnet::~CConnecterTelnet()
+{}
 
 QDialog *CConnecterTelnet::GetDialogSettings(QWidget *parent)
 {
@@ -50,8 +54,14 @@ int CConnecterTelnet::OnConnect()
                     this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
     
-    connect(m_pSocket, SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(atError()));
-
+    check = connect(m_pSocket, SIGNAL(error(QAbstractSocket::SocketError)),
+                    this, SLOT(slotError(QAbstractSocket::SocketError)));
+    Q_ASSERT(check);
+    
+    check = connect(m_pSocket, SIGNAL(disconnected()),
+                    this, SLOT(DisConnect()));
+    Q_ASSERT(check);
+    
     // Here we start an empty pty.
     m_pConsole->startTerminalTeletype();
 
@@ -66,7 +76,8 @@ int CConnecterTelnet::OnDisConnect()
     
     if(m_pSocket)
     {
-        m_pSocket->close();
+        if(m_pSocket->state() == QTcpSocket::ConnectedState)
+            m_pSocket->close();
         delete m_pSocket;
         m_pSocket = nullptr;
     }
@@ -98,6 +109,19 @@ void CConnecterTelnet::slotReadyRead()
     if(m_pSocket && m_pConsole)
     {
         QByteArray data = m_pSocket->readAll();
-        write(m_pConsole->getPtySlaveFd(), data.data(), data.size());
+        if(!data.isEmpty())
+            write(m_pConsole->getPtySlaveFd(), data.data(), data.size());
     }
+}
+
+void CConnecterTelnet::slotError(QAbstractSocket::SocketError err)
+{
+    QString szErr;
+    if(!m_pSocket) return;
+    szErr = m_pSocket->errorString();
+    emit sigError(err, szErr);
+    LOG_MODEL_ERROR("ConnecterTelnet", "error: %d; %s", err, szErr.toStdString().c_str());
+    if(err == QTcpSocket::ConnectionRefusedError
+            || err == QTcpSocket::HostNotFoundError)
+        DisConnect();
 }

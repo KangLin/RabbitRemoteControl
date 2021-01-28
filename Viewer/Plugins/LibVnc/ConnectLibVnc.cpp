@@ -91,9 +91,14 @@ int CConnectLibVnc::Initialize()
     return nRet;
 }
 
+/**
+  nRet < 0 : error
+  nRet = 0 : emit sigConnected
+  nRet = 1 : emit sigConnected in CConnect
+  */
 int CConnectLibVnc::Connect()
 {
-    int nRet = 0;
+    int nRet = 1;
     if(!rfbInitClient(m_pClient, nullptr, nullptr)) {
         LOG_MODEL_ERROR("LibVnc", "rfbInitClient fail");
         emit sigError(-1, "Connect fail");

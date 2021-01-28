@@ -11,7 +11,7 @@ CPluginFactoryLibVnc::CPluginFactoryLibVnc(QObject *parent) : CPluginFactory(par
 #endif
 
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/" + Name() + "_" + QLocale::system().name() + ".qm";
+            + "/LibVnc_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
         qCritical() << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);
