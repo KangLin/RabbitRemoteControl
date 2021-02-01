@@ -397,7 +397,7 @@ int CConnectSSH::Authenticate(ssh_session session)
                 break;
             }
        
-        /*
+        /*TODO: add pubkey from file
        
             char buffer[128] = {0};
             char *p = NULL;

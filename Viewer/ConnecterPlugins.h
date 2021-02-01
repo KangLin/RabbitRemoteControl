@@ -43,8 +43,8 @@ public:
     virtual int OpenDialogSettings(QWidget *parent) override;
 
 public Q_SLOTS:
-    int Connect();
-    int DisConnect();
+    virtual int Connect() override;
+    virtual int DisConnect() override;
 
 protected:
     virtual int OnConnect();
