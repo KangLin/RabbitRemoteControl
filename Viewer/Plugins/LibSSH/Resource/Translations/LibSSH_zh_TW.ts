@@ -2,6 +2,52 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
+    <name>CConnectSSH</name>
+    <message>
+        <location filename="../../ConnectSSH.cpp" line="297"/>
+        <source>Host key for server changed : server&apos;s one is now :
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectSSH.cpp" line="299"/>
+        <source>For security reason, connection will be stopped
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectSSH.cpp" line="303"/>
+        <source>The host key for this server was not found but an other type of key exists.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectSSH.cpp" line="304"/>
+        <source>An attacker might change the default server key to confuse your clientinto thinking the key does not exist
+We advise you to rerun the client with -d or -r for more safety.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectSSH.cpp" line="310"/>
+        <source>Could not find known host file. If you accept the host key here,
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectSSH.cpp" line="311"/>
+        <source>the file will be automatically created.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectSSH.cpp" line="314"/>
+        <source>The server is unknown. This new key will be written on disk for further usage.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgSettingsSSH</name>
     <message>
         <location filename="../../DlgSettingsSSH.ui" line="14"/>

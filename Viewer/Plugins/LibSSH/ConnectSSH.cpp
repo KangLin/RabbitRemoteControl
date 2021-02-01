@@ -4,6 +4,7 @@
 CConnectSSH::CConnectSSH(CConnecterSSH *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
       m_pConnecter(pConnecter),
+      m_pPara(nullptr),
       m_pSession(nullptr),
       m_pChannel(nullptr),
       m_pEvent(nullptr),
@@ -22,23 +23,23 @@ int CConnectSSH::SetParamter(void *pPara)
     
     if(m_pPara->szHost.isEmpty())
     {
-        LOG_MODEL_ERROR("ConnectSSH", "The host isn't setting");
+        LOG_MODEL_ERROR("LibSSH",  "The host isn't setting");
         emit sigError(-1, "The host isn't setting");
     }
     else if (ssh_options_set(m_pSession, SSH_OPTIONS_HOST,
                              m_pPara->szHost.toStdString().c_str()) < 0) {
-        LOG_MODEL_ERROR("ConnectSSH", "The host set is fail");
+        LOG_MODEL_ERROR("LibSSH",  "The host set is fail");
         emit sigError(-2, "The host set is fail");
         return -2;
     }
     
     if(m_pPara->szUser.isEmpty())
     {
-        LOG_MODEL_ERROR("ConnectSSH", "The user isn't setting");
+        LOG_MODEL_ERROR("LibSSH",  "The user isn't setting");
         emit sigError(-3, "The user isn't setting");
     } else if (ssh_options_set(m_pSession, SSH_OPTIONS_USER,
                                m_pPara->szUser.toStdString().c_str()) < 0) {
-        LOG_MODEL_ERROR("ConnectSSH", "The user set fail");
+        LOG_MODEL_ERROR("LibSSH",  "The user set fail");
         emit sigError(-3, "The user set fail");
         return -3;
     }
@@ -59,9 +60,7 @@ int CConnectSSH::Initialize()
         m_pCb->userdata = this;
         m_pCb->auth_function = cbAuthCallback;
     }
-
     ssh_callbacks_init(m_pCb);
-
     nRet = ssh_set_callbacks(m_pSession, m_pCb);
     if(nRet) return nRet;
     
@@ -73,6 +72,31 @@ int CConnectSSH::Initialize()
 int CConnectSSH::Clean()
 {
     int nRet = 0;
+    
+    if(m_pEvent)
+    {
+        if(connector_in)
+        {
+            ssh_event_remove_connector(m_pEvent, connector_in);
+            ssh_connector_free(connector_in);
+        }
+        if(connector_out)
+        {
+            ssh_event_remove_connector(m_pEvent, connector_out);
+            ssh_connector_free(connector_out);
+        }
+        if(connector_err)
+        {
+            ssh_event_remove_connector(m_pEvent, connector_err);
+            ssh_connector_free(connector_err);
+        }
+        
+        ssh_event_free(m_pEvent);
+    }
+    
+    if(m_pChannel)
+        ssh_channel_free(m_pChannel);
+    
     if(m_pSession)
     {
         ssh_disconnect(m_pSession);
@@ -86,37 +110,43 @@ int CConnectSSH::Connect()
 {
     int nRet = 0;
     if (ssh_connect(m_pSession)) {
-        LOG_MODEL_ERROR("ConnectSSH", "Connection failed : %s\n", ssh_get_error(m_pSession));
+        LOG_MODEL_ERROR("LibSSH",  "Connection failed : %s\n", ssh_get_error(m_pSession));
         return -1;
     }
 
-    /*
-    int state = verify_knownhost(m_pSession);
+    int state = VerifyKnownhost(m_pSession);
     if (state != 0) {
-        return -1;
-    }
-    //*/
-    
-    nRet = ssh_userauth_none(m_pSession, NULL);
-    if(nRet)
-    {
-        LOG_MODEL_ERROR("ConnectSSH", "User auth fail: %d", nRet);
         return -2;
     }
+
+    ssh_userauth_none(m_pSession, NULL);
     char* banner = ssh_get_issue_banner(m_pSession);
     if (banner) {
-        LOG_MODEL_ERROR("ConnectSSH", "%s\n", banner);
+        LOG_MODEL_ERROR("LibSSH",  "%s\n", banner);
         free(banner);
     }
-    
-//    int auth = authenticate_console(m_pSession);
-//    if (auth != SSH_AUTH_SUCCESS) {
-//        return -1;
-//    }
-    
+
+    int auth = Authenticate(m_pSession);
+    if (auth != SSH_AUTH_SUCCESS) {
+        return -1;
+    }
+
     m_pChannel = ssh_channel_new(m_pSession);
     if (m_pChannel == NULL) {
-        LOG_MODEL_ERROR("ConnectSSH", "Don't create channel");
+        LOG_MODEL_ERROR("LibSSH",  "Don't create channel: %s",
+                        ssh_get_error(m_pSession));
+        return -1;
+    }
+
+    if (ssh_channel_open_session(m_pChannel)) {
+        LOG_MODEL_ERROR("LibSSH", "Error opening channel : %s\n", ssh_get_error(m_pSession));
+        return -1;
+    }
+    
+    ssh_channel_request_pty(m_pChannel);
+    
+    if (ssh_channel_request_shell(m_pChannel)) {
+        LOG_MODEL_ERROR("LibSSH", "Requesting shell : %s\n", ssh_get_error(m_pSession));
         return -1;
     }
     
@@ -165,28 +195,7 @@ int CConnectSSH::Connect()
 int CConnectSSH::Disconnect()
 {
     int nRet = 0;
-    
-    if(m_pEvent)
-    {
-        if(connector_in)
-        {
-            ssh_event_remove_connector(m_pEvent, connector_in);
-            ssh_connector_free(connector_in);
-        }
-        if(connector_out)
-        {
-            ssh_event_remove_connector(m_pEvent, connector_out);
-            ssh_connector_free(connector_out);
-        }
-        if(connector_err)
-        {
-            ssh_event_remove_connector(m_pEvent, connector_err);
-            ssh_connector_free(connector_err);
-        }
         
-        ssh_event_free(m_pEvent);
-    }
-    
     return nRet;
 }
 
@@ -195,19 +204,16 @@ int CConnectSSH::Process()
     int nRet = -1;
     
     if (ssh_channel_is_open(m_pChannel)) {
-//        if (signal_delayed) {
-//            sizechanged();
-//        }
         nRet = ssh_event_dopoll(m_pEvent, 500);
         if (nRet == SSH_ERROR) {
-            LOG_MODEL_ERROR("ConnectSSH", "Error in ssh_event_dopoll()\n");
+            LOG_MODEL_ERROR("LibSSH",  "Error in ssh_event_dopoll()\n");
             nRet = -1;
         } else if(nRet == SSH_EOF)
             nRet = 1;
         else if(SSH_AGAIN == nRet || SSH_OK == nRet)
             nRet = 0;
     } else
-        LOG_MODEL_ERROR("ConnectSSH", "ssh channel isn't open");
+        LOG_MODEL_ERROR("LibSSH",  "ssh channel isn't open");
 
     return nRet;
 }
@@ -224,7 +230,7 @@ int CConnectSSH::cbAuthCallback(const char *prompt,
                          void *userdata)
 {
     CConnectSSH* pThis = (CConnectSSH*)userdata;
-    LOG_MODEL_DEBUG("ConnectSSH", "prompt:%s\n; echo: %d; verify: %d", prompt, echo, verify);
+    LOG_MODEL_ERROR("LibSSH", "prompt:%s\n; echo: %d; verify: %d", prompt, echo, verify);
     return pThis->GetPassword(prompt, buf, len, echo, verify);
 }
 
@@ -245,4 +251,214 @@ int CConnectSSH::GetPassword(const char *prompt,
         memcpy(buf, m_pPara->szPassword.toStdString().c_str(), length);
 
     return nRet;
+}
+
+int CConnectSSH::VerifyKnownhost(ssh_session session)
+{
+    enum ssh_known_hosts_e state = SSH_KNOWN_HOSTS_UNKNOWN;
+    char buf[10];
+    unsigned char *hash = NULL;
+    size_t hlen = 0;
+    ssh_key srv_pubkey = nullptr;
+    int rc = 0;
+    QString szFinger;
+    QString szErr;
+    
+    rc = ssh_get_server_publickey(session, &srv_pubkey);
+    if (rc < 0) {
+        LOG_MODEL_ERROR("LibSSH", "ssh_get_server_publickey fail");
+        return -1;
+    }
+
+    rc = ssh_get_publickey_hash(srv_pubkey,
+                                SSH_PUBLICKEY_HASH_SHA256,
+                                &hash,
+                                &hlen);
+    ssh_key_free(srv_pubkey);
+    if (rc < 0) {
+        LOG_MODEL_ERROR("LibSSH", "ssh_get_publickey_hash fail");
+        return -1;
+    }
+
+    char *fingerprint = NULL;
+    fingerprint = ssh_get_fingerprint_hash(SSH_PUBLICKEY_HASH_SHA256,
+                                           hash,
+                                           hlen);
+    ssh_clean_pubkey_hash(&hash);
+    if (fingerprint) {
+        szFinger = fingerprint;
+        if(fingerprint) free(fingerprint);
+    }
+
+    state = ssh_session_is_known_server(session);
+
+    switch(state) {
+    case SSH_KNOWN_HOSTS_CHANGED:
+        szErr = tr("Host key for server changed : server's one is now :\n");
+        szErr += szFinger + "\n";
+        szErr += tr("For security reason, connection will be stopped\n");
+        LOG_MODEL_ERROR("LibSSH", szErr.toStdString().c_str());
+        return -1;
+    case SSH_KNOWN_HOSTS_OTHER:
+        szErr = tr("The host key for this server was not found but an other type of key exists.\n");
+        szErr += tr("An attacker might change the default server key to confuse your client"
+                "into thinking the key does not exist\n"
+                "We advise you to rerun the client with -d or -r for more safety.\n");
+        LOG_MODEL_ERROR("LibSSH", szErr.toStdString().c_str());
+        return -1;
+    case SSH_KNOWN_HOSTS_NOT_FOUND:
+        szErr = tr("Could not find known host file. If you accept the host key here,\n");
+        szErr += tr("the file will be automatically created.\n");
+        LOG_MODEL_ERROR("LibSSH", szErr.toStdString().c_str());
+    case SSH_SERVER_NOT_KNOWN:
+        szErr = tr("The server is unknown. This new key will be written on disk for further usage.\n");
+        szErr += szFinger;
+        LOG_MODEL_DEBUG("LibSSH", szErr.toStdString().c_str());
+
+        rc = ssh_session_update_known_hosts(session);
+        if (rc != SSH_OK) {
+            LOG_MODEL_ERROR("LibSSH", "error %s\n", strerror(errno));
+            return -1;
+        }
+        
+//        ssh_print_hash(SSH_PUBLICKEY_HASH_SHA256, hash, hlen);
+
+//        if (fgets(buf, sizeof(buf), stdin) == NULL) {
+//            ssh_clean_pubkey_hash(&hash);
+//            return -1;
+//        }
+//        if(strncasecmp(buf,"yes",3)!=0){
+//            ssh_clean_pubkey_hash(&hash);
+//            return -1;
+//        }
+//        fprintf(stderr,"This new key will be written on disk for further usage. do you agree ?\n");
+//        if (fgets(buf, sizeof(buf), stdin) == NULL) {
+//            ssh_clean_pubkey_hash(&hash);
+//            return -1;
+//        }
+//        if(strncasecmp(buf,"yes",3)==0){
+//            rc = ssh_session_update_known_hosts(session);
+//            if (rc != SSH_OK) {
+//                ssh_clean_pubkey_hash(&hash);
+//                fprintf(stderr, "error %s\n", strerror(errno));
+//                return -1;
+//            }
+//        }
+
+        break;
+    case SSH_KNOWN_HOSTS_ERROR:
+        LOG_MODEL_ERROR("libSSH", "%s",ssh_get_error(session));
+        return -1;
+    case SSH_KNOWN_HOSTS_OK:
+        break; /* ok */
+    }
+
+    return 0;
+}
+
+void CConnectSSH::error(ssh_session session)
+{
+    LOG_MODEL_ERROR("LibSSH", "Authentication failed: %s\n", 
+                    ssh_get_error(session));
+}
+
+int CConnectSSH::Authenticate(ssh_session session)
+{
+    int rc = SSH_AUTH_SUCCESS;
+    int method = SSH_AUTH_METHOD_UNKNOWN;
+    char password[128] = {0};
+    char *banner = nullptr;
+
+    // Try to authenticate
+    rc = ssh_userauth_none(session, NULL);
+    if (rc == SSH_AUTH_ERROR) {
+        error(session);
+        return rc;
+    }
+
+    method = ssh_userauth_list(session, NULL);
+    while (rc != SSH_AUTH_SUCCESS) {
+        if (method & SSH_AUTH_METHOD_GSSAPI_MIC){
+            rc = ssh_userauth_gssapi(session);
+            if(rc == SSH_AUTH_ERROR) {
+                error(session);
+                return rc;
+            } else if (rc == SSH_AUTH_SUCCESS) {
+                break;
+            }
+        }
+        // Try to authenticate with public key first
+        if (method & SSH_AUTH_METHOD_PUBLICKEY) {
+            rc = ssh_userauth_publickey_auto(session, NULL, NULL);
+            if (rc == SSH_AUTH_ERROR) {
+                error(session);
+                return rc;
+            } else if (rc == SSH_AUTH_SUCCESS) {
+                break;
+            }
+       
+        /*
+       
+            char buffer[128] = {0};
+            char *p = NULL;
+
+            printf("Automatic pubkey failed. "
+                   "Do you want to try a specific key? (y/n)\n");
+            if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+                break;
+            }
+            if ((buffer[0]=='Y') || (buffer[0]=='y')) {
+                printf("private key filename: ");
+
+                if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+                    return SSH_AUTH_ERROR;
+                }
+
+                buffer[sizeof(buffer) - 1] = '\0';
+                if ((p = strchr(buffer, '\n'))) {
+                    *p = '\0';
+                }
+
+                //rc = auth_keyfile(session, buffer);
+
+                if(rc == SSH_AUTH_SUCCESS) {
+                    break;
+                }
+                fprintf(stderr, "failed with key\n");
+            }//*/
+        }
+
+        // Try to authenticate with keyboard interactive";
+        if (method & SSH_AUTH_METHOD_INTERACTIVE) {
+            //rc = authenticate_kbdint(session, NULL);
+            if (rc == SSH_AUTH_ERROR) {
+                error(session);
+                return rc;
+            } else if (rc == SSH_AUTH_SUCCESS) {
+                break;
+            }
+        }
+
+        // Try to authenticate with password
+        if (method & SSH_AUTH_METHOD_PASSWORD) {
+            memcpy(password, m_pPara->szPassword.toStdString().c_str(),
+                   m_pPara->szPassword.toStdString().length());
+            rc = ssh_userauth_password(session, NULL, password);
+            if (rc == SSH_AUTH_ERROR) {
+                error(session);
+                return rc;
+            } else if (rc == SSH_AUTH_SUCCESS) {
+                break;
+            }
+        }
+        memset(password, 0, sizeof(password));
+    }
+
+    banner = ssh_get_issue_banner(session);
+    if (banner) {
+        LOG_MODEL_INFO("LibSSH", "%s\n",banner);
+        SSH_STRING_FREE_CHAR(banner);
+    }
+
+    return rc;
 }

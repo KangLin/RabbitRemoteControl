@@ -46,6 +46,9 @@ private:
                     size_t len,
                     int echo,
                     int verify);
+    int VerifyKnownhost(ssh_session session);
+    int Authenticate(ssh_session session);
+    void error(ssh_session session);
 };
 
 #endif // CCONNECTSSH_H
