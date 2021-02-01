@@ -17,7 +17,7 @@ jobs:
           - os: macos-latest
             triplet: x64-osx
         BUILD_TYPE: [Release, Debug]
-        qt_version: [5.12.9, 5.6.2]
+        qt_version: [5.12.9]
     runs-on: ${{ matrix.os }}
 
     env:
@@ -38,8 +38,9 @@ jobs:
         vcpkgGitCommitId: b60f003ccf5fe8613d029f49f835c8929a66eb61
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'freerdp log4cplus'
+        vcpkgArguments: 'openssl libssh freerdp'
       if: ${{ matrix.os != 'ubuntu-latest' }}
+      
     - name: git clone RabbitCommon
       working-directory: ${{runner.workspace}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -90,7 +91,6 @@ jobs:
         #py7zrversion: # optional, default is ==0.11.0
         # Any extra arguments to append to the back
         #extra: # optional
-    
 
     - name: Build with CMake
       uses: lukka/run-cmake@main
