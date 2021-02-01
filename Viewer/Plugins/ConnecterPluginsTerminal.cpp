@@ -153,6 +153,8 @@ int CConnecterPluginsTerminal::SetParamter()
     
     //m_pConsole->setMotionAfterPasting(1);
     //m_pConsole->disableBracketedPasteMode(true);
+    
+    m_pConsole->setKeyBindings(pPara->szKeyBindings);
     return nRet;
 }
 

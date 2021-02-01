@@ -7,6 +7,9 @@ CParameterTerminalAppearance::CParameterTerminalAppearance()
     scrollBarPosition = QTermWidget::NoScrollBar;
     termTransparency = 0;
     flowControl = true;
+#if defined (Q_OS_LINUX)
+    szKeyBindings = "linux";
+#endif
 }
 
 QDataStream &operator<<(QDataStream &data, const CParameterTerminalAppearance &para)

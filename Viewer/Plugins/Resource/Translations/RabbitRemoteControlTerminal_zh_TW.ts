@@ -54,7 +54,12 @@
         <translation>瀏覽(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.ui" line="135"/>
+        <location filename="../../FrmTerminalAppearanceSettings.ui" line="137"/>
+        <source>Key binding:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmTerminalAppearanceSettings.ui" line="149"/>
         <source>Flow Control</source>
         <translation>流量控制</translation>
     </message>
@@ -89,12 +94,12 @@
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="128"/>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="131"/>
         <source>Backgroup image</source>
         <translation>背景圖像</translation>
     </message>
     <message>
-        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="129"/>
+        <location filename="../../FrmTerminalAppearanceSettings.cpp" line="132"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
         <translation>圖像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>

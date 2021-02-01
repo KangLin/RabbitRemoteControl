@@ -4,44 +4,44 @@
 <context>
     <name>CConnectSSH</name>
     <message>
-        <location filename="../../ConnectSSH.cpp" line="297"/>
+        <location filename="../../ConnectSSH.cpp" line="303"/>
         <source>Host key for server changed : server&apos;s one is now :
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectSSH.cpp" line="299"/>
+        <location filename="../../ConnectSSH.cpp" line="305"/>
         <source>For security reason, connection will be stopped
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectSSH.cpp" line="303"/>
+        <location filename="../../ConnectSSH.cpp" line="309"/>
         <source>The host key for this server was not found but an other type of key exists.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectSSH.cpp" line="304"/>
+        <location filename="../../ConnectSSH.cpp" line="310"/>
         <source>An attacker might change the default server key to confuse your clientinto thinking the key does not exist
 We advise you to rerun the client with -d or -r for more safety.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectSSH.cpp" line="310"/>
+        <location filename="../../ConnectSSH.cpp" line="316"/>
         <source>Could not find known host file. If you accept the host key here,
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectSSH.cpp" line="311"/>
+        <location filename="../../ConnectSSH.cpp" line="317"/>
         <source>the file will be automatically created.
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectSSH.cpp" line="314"/>
+        <location filename="../../ConnectSSH.cpp" line="320"/>
         <source>The server is unknown. This new key will be written on disk for further usage.
 </source>
         <translation type="unfinished"></translation>

@@ -144,7 +144,13 @@ int CConnectSSH::Connect()
     }
     
     ssh_channel_request_pty(m_pChannel);
-    
+
+    CFrmTermWidget* pView = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
+    if(pView)
+    {
+        LOG_MODEL_DEBUG("LibSSH", "row:%d; col:%d", pView->screenLinesCount(), pView->screenColumnsCount());
+        ssh_channel_change_pty_size(m_pChannel, pView->screenColumnsCount(), pView->screenLinesCount());
+    }
     if (ssh_channel_request_shell(m_pChannel)) {
         LOG_MODEL_ERROR("LibSSH", "Requesting shell : %s\n", ssh_get_error(m_pSession));
         return -1;

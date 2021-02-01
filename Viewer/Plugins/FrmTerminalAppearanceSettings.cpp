@@ -68,7 +68,9 @@ CFrmTerminalAppearanceSettings::CFrmTerminalAppearanceSettings(CParameterTermina
     ui->cbScrollBarPositioin->addItem(tr("Right"), QTermWidget::ScrollBarRight);
     ui->cbScrollBarPositioin->setCurrentIndex(pPara->scrollBarPosition);
 
-    qDebug() << QTermWidget::availableKeyBindings();
+    //qDebug() << "KeyBindings" << QTermWidget::availableKeyBindings();
+    ui->cbKeyBinding->addItems(QTermWidget::availableKeyBindings());
+    ui->cbKeyBinding->setCurrentText(pPara->szKeyBindings);
 
 //    QFont font = QApplication::font();
 //#ifdef Q_OS_MACOS
@@ -119,6 +121,7 @@ int CFrmTerminalAppearanceSettings::AcceptSettings()
     m_pPara->termTransparency = ui->spTerminalTransparecy->value();
     m_pPara->flowControl = ui->cbFlowControl->isChecked();
     m_pPara->backgroupImage = ui->leImage->text();
+    m_pPara->szKeyBindings = ui->cbKeyBinding->currentText();
     return 0;
 }
 
