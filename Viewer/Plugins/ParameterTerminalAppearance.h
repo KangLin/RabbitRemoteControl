@@ -19,7 +19,8 @@ public:
     int termTransparency;
     bool flowControl;
     QString backgroupImage;
-    QString szKeyBindings;    
+    QString szKeyBindings;
+    QString textCodec;
 };
 
 QDataStream &operator<<(QDataStream &, const CParameterTerminalAppearance &);

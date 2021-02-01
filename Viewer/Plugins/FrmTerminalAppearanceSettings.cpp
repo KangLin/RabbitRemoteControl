@@ -72,6 +72,12 @@ CFrmTerminalAppearanceSettings::CFrmTerminalAppearanceSettings(CParameterTermina
     ui->cbKeyBinding->addItems(QTermWidget::availableKeyBindings());
     ui->cbKeyBinding->setCurrentText(pPara->szKeyBindings);
 
+    foreach(auto c, QTextCodec::availableCodecs())
+    {
+        ui->cbTextCodecs->addItem(QString(c));
+    }
+    ui->cbTextCodecs->setCurrentText(pPara->textCodec);
+    
 //    QFont font = QApplication::font();
 //#ifdef Q_OS_MACOS
 //    font.setFamily(QStringLiteral("Monaco"));
@@ -122,6 +128,7 @@ int CFrmTerminalAppearanceSettings::AcceptSettings()
     m_pPara->flowControl = ui->cbFlowControl->isChecked();
     m_pPara->backgroupImage = ui->leImage->text();
     m_pPara->szKeyBindings = ui->cbKeyBinding->currentText();
+    m_pPara->textCodec = ui->cbTextCodecs->currentText();
     return 0;
 }
 

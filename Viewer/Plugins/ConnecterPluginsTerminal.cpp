@@ -6,6 +6,7 @@
 #include <QDialog>
 #include <QApplication>
 #include <QDebug>
+#include <QTextCodec>
 
 CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginFactory *parent)
     : CConnecter(parent),
@@ -155,6 +156,7 @@ int CConnecterPluginsTerminal::SetParamter()
     //m_pConsole->disableBracketedPasteMode(true);
     
     m_pConsole->setKeyBindings(pPara->szKeyBindings);
+    m_pConsole->setTextCodec(QTextCodec::codecForName(pPara->textCodec.toStdString().c_str()));
     return nRet;
 }
 

@@ -10,6 +10,7 @@ CParameterTerminalAppearance::CParameterTerminalAppearance()
 #if defined (Q_OS_LINUX)
     szKeyBindings = "linux";
 #endif
+    textCodec = "UTF-8";
 }
 
 QDataStream &operator<<(QDataStream &data, const CParameterTerminalAppearance &para)
