@@ -2,7 +2,6 @@
 #include "ui_FrmParameterTerminalAppearanceSettings.h"
 #include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
-#include <QDebug>
 #include "qtermwidget.h"
 
 #include "RabbitCommonDir.h"
@@ -12,6 +11,7 @@
 #include <QLocale>
 #include <QDebug>
 #include <QTranslator>
+#include <QFont>
 
 class CRabbitRemoteControlTerminal
 {
@@ -54,6 +54,16 @@ CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings
     Q_ASSERT(pPara);
     if(!pPara) return;
 
+    QFont f = pPara->font;
+    ui->spFontSize->setValue(f.pointSize());
+    ui->lbFont->setFont(f);
+    
+    ui->fontComboBox->setFontFilters(QFontComboBox::MonospacedFonts
+                                     | QFontComboBox::NonScalableFonts
+                                     | QFontComboBox::ScalableFonts);
+    ui->fontComboBox->setCurrentFont(f);
+    ui->fontComboBox->setEditable(false);
+    
     ui->cbCursorShape->addItem(tr("BlockCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
     ui->cbCursorShape->addItem(tr("UnderlineCursor"), (int)Konsole::Emulation::KeyboardCursorShape::UnderlineCursor);
     ui->cbCursorShape->addItem(tr("IBeamCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
@@ -67,20 +77,6 @@ CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings
     ui->cbScrollBarPositioin->addItem(tr("Left"), QTermWidget::ScrollBarLeft);
     ui->cbScrollBarPositioin->addItem(tr("Right"), QTermWidget::ScrollBarRight);
     ui->cbScrollBarPositioin->setCurrentIndex(pPara->scrollBarPosition);
-
-//    QFont font = QApplication::font();
-//#ifdef Q_OS_MACOS
-//    font.setFamily(QStringLiteral("Monaco"));
-//#elif defined(Q_WS_QWS)
-//    font.setFamily(QStringLiteral("fixed"));
-//#else
-//    font.setFamily(QStringLiteral("Monospace"));
-//#endif
-//    font.setPointSize(12);
-
-    QFont f = pPara->font;
-    ui->spFontSize->setValue(f.pointSize());
-    ui->lbFont->setFont(f);
 
     ui->spTerminalTransparecy->setValue(pPara->termTransparency);
     ui->cbFlowControl->setChecked(m_pPara->flowControl);

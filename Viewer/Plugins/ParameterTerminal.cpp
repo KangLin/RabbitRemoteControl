@@ -1,7 +1,20 @@
 #include "ParameterTerminal.h"
+#include <QApplication>
+#include <QDebug>
 
 CParameterTerminal::CParameterTerminal()
 {
+    font = QApplication::font();
+#ifdef Q_OS_MACOS
+    font.setFamily(QStringLiteral("Monaco"));
+#elif defined(Q_WS_QWS)
+    font.setFamily(QStringLiteral("fixed"));
+#else
+    font.setFamily(QStringLiteral("Monospace"));
+#endif
+    font.setStyleHint(QFont::TypeWriter);
+    font.setPointSize(12);
+    
     colorScheme = "GreenOnBlack";
     cursorShape = Konsole::Emulation::KeyboardCursorShape::BlockCursor;
     scrollBarPosition = QTermWidget::NoScrollBar;

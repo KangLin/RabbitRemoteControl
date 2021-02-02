@@ -13,7 +13,6 @@ CConnecterTelnet::CConnecterTelnet(CPluginFactory *parent)
     if(m_pPara)
     {
         m_pPara->nPort = 23;
-        m_pPara->font = m_pConsole->getTerminalFont();
         m_pPara->colorScheme = "Linux";
         m_pPara->scrollBarPosition = QTermWidget::NoScrollBar;
     }
