@@ -37,10 +37,6 @@
         <translation>用户名：</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation type="vanished">保存</translation>
-    </message>
-    <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="145"/>
         <source>Support windows resize</source>
         <translation>支持窗口大小改变</translation>
@@ -191,7 +187,7 @@
     <message>
         <location filename="../../PluginFactoryTigerVnc.cpp" line="50"/>
         <source>TigerVnc</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../PluginFactoryTigerVnc.cpp" line="55"/>

@@ -6,7 +6,7 @@
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="14"/>
         <source>Set telnet parameter</source>
-        <translation type="unfinished"></translation>
+        <translation>设置 TELNET 参数</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="21"/>
@@ -44,7 +44,7 @@
     <message>
         <location filename="../../PluginFactoryTelnet.cpp" line="40"/>
         <source>Telnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../PluginFactoryTelnet.cpp" line="45"/>
