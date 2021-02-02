@@ -17,11 +17,13 @@ CParameterTerminal::CParameterTerminal()
     
     colorScheme = "GreenOnBlack";
     cursorShape = Konsole::Emulation::KeyboardCursorShape::BlockCursor;
-    scrollBarPosition = QTermWidget::NoScrollBar;
+    scrollBarPosition = QTermWidget::ScrollBarRight;
     termTransparency = 0;
     flowControl = true;
 #if defined (Q_OS_LINUX)
     szKeyBindings = "linux";
+#else
+    szKeyBindings = "default";
 #endif
     textCodec = "UTF-8";
 }

@@ -93,6 +93,7 @@ void CFrmParameterTerminalAppearanceSettings::on_fontComboBox_currentFontChanged
     QFont font = f;
     font.setPointSize(ui->spFontSize->value());
     ui->lbFont->setFont(font);
+    ui->lbFont->setText(tr("Example: Display font"));
 }
 
 void CFrmParameterTerminalAppearanceSettings::on_spFontSize_valueChanged(int size)
@@ -100,6 +101,7 @@ void CFrmParameterTerminalAppearanceSettings::on_spFontSize_valueChanged(int siz
     QFont font = ui->fontComboBox->currentFont();
     font.setPointSize(size);
     ui->lbFont->setFont(font);
+    ui->lbFont->setText(tr("Example: Display font"));
 }
 
 int CFrmParameterTerminalAppearanceSettings::AcceptSettings()

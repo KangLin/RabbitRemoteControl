@@ -5,11 +5,6 @@ CConnecterTerminal::CConnecterTerminal(CPluginFactory *parent)
     : CConnecterPluginsTerminal(parent)
 {
     m_pPara = new CParameterTerminal();
-    if(m_pPara)
-    {
-        m_pPara->colorScheme = "Linux"; // "GreenOnBlack";
-        m_pPara->scrollBarPosition = QTermWidget::NoScrollBar;
-    }
 }
 
 CConnecterTerminal::~CConnecterTerminal()
