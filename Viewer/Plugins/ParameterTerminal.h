@@ -4,8 +4,9 @@
 #include "Parameter.h"
 #include "qtermwidget.h"
 #include <QFont>
+#include "rabbitremotecontrolterminal_export.h"
 
-class CParameterTerminal : public CParameter
+class RABBITREMOTECONTROLTERMINAL_EXPORT CParameterTerminal : public CParameter
 {
     Q_OBJECT
     

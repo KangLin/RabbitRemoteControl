@@ -5,9 +5,10 @@
 #include "Connecter.h"
 #include "FrmTermWidget.h"
 #include "ParameterTerminal.h"
+#include "rabbitremotecontrolterminal_export.h"
 
 class CConnectThreadTerminal;
-class CConnecterPluginsTerminal : public CConnecter
+class RABBITREMOTECONTROLTERMINAL_EXPORT CConnecterPluginsTerminal : public CConnecter
 {
     Q_OBJECT
 public:
