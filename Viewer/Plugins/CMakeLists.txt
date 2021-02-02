@@ -14,7 +14,7 @@ project(RabbitRemoteControlTerminal LANGUAGES CXX)
 
 set(INSTALL_HEADER_FILES
     ConnecterPluginsTerminal.h
-    FrmTerminalAppearanceSettings.h
+    FrmParameterTerminalAppearanceSettings.h
     FrmParameterTerminalBehavior.h
     ParameterTerminal.h
     FrmTermWidget.h
@@ -27,7 +27,7 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
     ConnecterPluginsTerminal.cpp
-    FrmTerminalAppearanceSettings.cpp
+    FrmParameterTerminalAppearanceSettings.cpp
     FrmParameterTerminalBehavior.cpp
     ParameterTerminal.cpp
     ConnectThreadTerminal.cpp
@@ -35,7 +35,7 @@ set(SOURCE_FILES
     )
 
 set(SOURCE_UI_FILES
-    FrmTerminalAppearanceSettings.ui
+    FrmParameterTerminalAppearanceSettings.ui
     FrmParameterTerminalBehavior.ui
     )
 

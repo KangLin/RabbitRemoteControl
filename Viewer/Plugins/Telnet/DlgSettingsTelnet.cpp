@@ -11,8 +11,15 @@ CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTerminal *pPara, QWidget *paren
     ui->leHost->setText(m_pPara->szHost);
     ui->spPort->setValue(m_pPara->nPort);
     
-    m_pFrmTerminalAppearanceSettings = new CFrmTerminalAppearanceSettings(m_pPara, this);
-    ui->tabWidget->addTab(m_pFrmTerminalAppearanceSettings, tr("Appearance"));
+    m_pFrmParaAppearance =
+            new CFrmParameterTerminalAppearanceSettings(m_pPara, this);
+    if(m_pFrmParaAppearance)
+        ui->tabWidget->addTab(m_pFrmParaAppearance,
+                              m_pFrmParaAppearance->windowTitle());
+
+    m_pFrmParaBehavior = new CFrmParameterTerminalBehavior(m_pPara, this);
+    if(m_pFrmParaBehavior)
+        ui->tabWidget->addTab(m_pFrmParaBehavior, m_pFrmParaBehavior->windowTitle());
 }
 
 CDlgSettingsTelnet::~CDlgSettingsTelnet()
@@ -25,8 +32,10 @@ void CDlgSettingsTelnet::on_pbOK_clicked()
     m_pPara->szHost = ui->leHost->text();
     m_pPara->nPort = ui->spPort->value();
     
-    if(m_pFrmTerminalAppearanceSettings)
-        m_pFrmTerminalAppearanceSettings->AcceptSettings();
+    if(m_pFrmParaAppearance)
+        m_pFrmParaAppearance->AcceptSettings();
+    if(m_pFrmParaBehavior)
+        m_pFrmParaBehavior->AcceptSettings();
     this->accept();
 }
 

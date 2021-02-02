@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CFrmTerminalAppearanceSettings</class>
- <widget class="QWidget" name="CFrmTerminalAppearanceSettings">
+ <class>CFrmParameterTerminalAppearanceSettings</class>
+ <widget class="QWidget" name="CFrmParameterTerminalAppearanceSettings">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Set appearance</string>
+   <string>Appearance</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="3" column="0">
@@ -91,7 +91,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="leImage"/>
+      <widget class="QLineEdit" name="leImage">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbBrower">
@@ -192,7 +199,7 @@
      <item>
       <widget class="QSpinBox" name="spTerminalTransparecy">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>

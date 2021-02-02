@@ -5,16 +5,16 @@
 #include "ParameterTerminal.h"
 
 namespace Ui {
-class CFrmTerminalAppearanceSettings;
+class CFrmParameterTerminalAppearanceSettings;
 }
 
-class CFrmTerminalAppearanceSettings : public QWidget
+class CFrmParameterTerminalAppearanceSettings : public QWidget
 {
     Q_OBJECT
     
 public:
-    explicit CFrmTerminalAppearanceSettings(CParameterTerminal* pPara, QWidget *parent = nullptr);
-    virtual ~CFrmTerminalAppearanceSettings() override;
+    explicit CFrmParameterTerminalAppearanceSettings(CParameterTerminal* pPara, QWidget *parent = nullptr);
+    virtual ~CFrmParameterTerminalAppearanceSettings() override;
 
     int AcceptSettings();
 
@@ -25,7 +25,7 @@ private slots:
     void on_pbBrower_clicked();
     
 private:
-    Ui::CFrmTerminalAppearanceSettings *ui;
+    Ui::CFrmParameterTerminalAppearanceSettings *ui;
     CParameterTerminal *m_pPara;
 
 };

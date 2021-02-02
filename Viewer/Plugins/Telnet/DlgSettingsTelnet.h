@@ -3,7 +3,8 @@
 
 #include <QDialog>
 #include "ParameterTerminal.h"
-#include "FrmTerminalAppearanceSettings.h"
+#include "FrmParameterTerminalAppearanceSettings.h"
+#include "FrmParameterTerminalBehavior.h"
 
 namespace Ui {
 class CDlgSettingsTelnet;
@@ -25,7 +26,8 @@ private:
     Ui::CDlgSettingsTelnet *ui;
     
     CParameterTerminal* m_pPara;
-    CFrmTerminalAppearanceSettings* m_pFrmTerminalAppearanceSettings;
+    CFrmParameterTerminalAppearanceSettings* m_pFrmParaAppearance;
+    CFrmParameterTerminalBehavior* m_pFrmParaBehavior;
 };
 
 #endif // DLGSETTINGSTELNET_H

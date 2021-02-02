@@ -3,7 +3,8 @@
 
 #include <QDialog>
 #include "ConnecterSSH.h"
-#include "FrmTerminalAppearanceSettings.h"
+#include "FrmParameterTerminalAppearanceSettings.h"
+#include "FrmParameterTerminalBehavior.h"
 #include "ParameterSSH.h"
 
 namespace Ui {
@@ -27,7 +28,8 @@ private:
     Ui::CDlgSettingsSSH *ui;
     CConnecterSSH* m_pConnecter;
     CParameterSSH* m_pPara;
-    CFrmTerminalAppearanceSettings* m_pFrmTerminalAppearanceSettings;
+    CFrmParameterTerminalAppearanceSettings* m_pFrmParaAppearance;
+    CFrmParameterTerminalBehavior* m_pFrmParaBehavior;
 };
 
 #endif // DLGSETTINGSSSH_H

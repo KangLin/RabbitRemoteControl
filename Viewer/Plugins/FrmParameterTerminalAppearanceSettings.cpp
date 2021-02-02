@@ -1,5 +1,5 @@
-#include "FrmTerminalAppearanceSettings.h"
-#include "ui_FrmTerminalAppearanceSettings.h"
+#include "FrmParameterTerminalAppearanceSettings.h"
+#include "ui_FrmParameterTerminalAppearanceSettings.h"
 #include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 #include <QDebug>
@@ -44,9 +44,9 @@ private:
 
 const CRabbitRemoteControlTerminal g_CRabbitRemoteControlTerminal;
 
-CFrmTerminalAppearanceSettings::CFrmTerminalAppearanceSettings(CParameterTerminal *pPara, QWidget *parent) :
+CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings(CParameterTerminal *pPara, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CFrmTerminalAppearanceSettings),
+    ui(new Ui::CFrmParameterTerminalAppearanceSettings),
     m_pPara(pPara)
 {
     ui->setupUi(this);
@@ -87,26 +87,26 @@ CFrmTerminalAppearanceSettings::CFrmTerminalAppearanceSettings(CParameterTermina
     ui->leImage->setText(m_pPara->backgroupImage);
 }
 
-CFrmTerminalAppearanceSettings::~CFrmTerminalAppearanceSettings()
+CFrmParameterTerminalAppearanceSettings::~CFrmParameterTerminalAppearanceSettings()
 {
     delete ui;
 }
 
-void CFrmTerminalAppearanceSettings::on_fontComboBox_currentFontChanged(const QFont &f)
+void CFrmParameterTerminalAppearanceSettings::on_fontComboBox_currentFontChanged(const QFont &f)
 {
     QFont font = f;
     font.setPointSize(ui->spFontSize->value());
     ui->lbFont->setFont(font);
 }
 
-void CFrmTerminalAppearanceSettings::on_spFontSize_valueChanged(int size)
+void CFrmParameterTerminalAppearanceSettings::on_spFontSize_valueChanged(int size)
 {
     QFont font = ui->fontComboBox->currentFont();
     font.setPointSize(size);
     ui->lbFont->setFont(font);
 }
 
-int CFrmTerminalAppearanceSettings::AcceptSettings()
+int CFrmParameterTerminalAppearanceSettings::AcceptSettings()
 {
     if(!m_pPara) return -1;
     m_pPara->font = ui->fontComboBox->currentFont();
@@ -120,7 +120,7 @@ int CFrmTerminalAppearanceSettings::AcceptSettings()
     return 0;
 }
 
-void CFrmTerminalAppearanceSettings::on_pbBrower_clicked()
+void CFrmParameterTerminalAppearanceSettings::on_pbBrower_clicked()
 {
     QString file = RabbitCommon::CDir::Instance()->GetOpenFileName(this,
                                                tr("Backgroup image"), QString(),

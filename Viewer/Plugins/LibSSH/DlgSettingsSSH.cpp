@@ -15,8 +15,14 @@ CDlgSettingsSSH::CDlgSettingsSSH(CParameterSSH *pPara, QWidget *parent) :
     ui->leUser->setText(m_pPara->szUser);
     ui->lePassword->setText(m_pPara->szPassword);
     
-    m_pFrmTerminalAppearanceSettings = new CFrmTerminalAppearanceSettings(m_pPara, this);
-    ui->tabWidget->addTab(m_pFrmTerminalAppearanceSettings, tr("Appearance"));
+    m_pFrmParaAppearance =
+            new CFrmParameterTerminalAppearanceSettings(m_pPara, this);
+    if(m_pFrmParaAppearance)
+        ui->tabWidget->addTab(m_pFrmParaAppearance,
+                              m_pFrmParaAppearance->windowTitle());
+    m_pFrmParaBehavior = new CFrmParameterTerminalBehavior(m_pPara, this);
+    if(m_pFrmParaBehavior)
+        ui->tabWidget->addTab(m_pFrmParaBehavior, m_pFrmParaBehavior->windowTitle());
 }
 
 CDlgSettingsSSH::~CDlgSettingsSSH()
@@ -32,8 +38,11 @@ void CDlgSettingsSSH::on_pbOK_clicked()
     m_pPara->szUser = ui->leUser->text();
     m_pPara->szPassword = ui->lePassword->text();
     
-    if(m_pFrmTerminalAppearanceSettings)
-        m_pFrmTerminalAppearanceSettings->AcceptSettings();
+    if(m_pFrmParaAppearance)
+        m_pFrmParaAppearance->AcceptSettings();
+    if(m_pFrmParaBehavior)
+        m_pFrmParaBehavior->AcceptSettings();
+    
     accept();
 }
 
