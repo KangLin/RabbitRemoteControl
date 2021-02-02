@@ -95,9 +95,8 @@ We advise you to rerun the client with -d or -r for more safety.
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsSSH.cpp" line="19"/>
         <source>Appearance</source>
-        <translation>顯示</translation>
+        <translation type="vanished">顯示</translation>
     </message>
 </context>
 <context>

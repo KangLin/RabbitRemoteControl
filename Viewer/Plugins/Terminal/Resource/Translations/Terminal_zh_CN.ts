@@ -9,9 +9,8 @@
         <translation>终端设置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="16"/>
         <source>Appearance</source>
-        <translation>显示</translation>
+        <translation type="vanished">显示</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="35"/>

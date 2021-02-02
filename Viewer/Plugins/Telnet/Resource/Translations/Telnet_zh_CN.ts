@@ -34,9 +34,8 @@
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.cpp" line="15"/>
         <source>Appearance</source>
-        <translation>显示</translation>
+        <translation type="vanished">显示</translation>
     </message>
 </context>
 <context>

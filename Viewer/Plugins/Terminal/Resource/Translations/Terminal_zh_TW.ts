@@ -9,9 +9,8 @@
         <translation>終端設置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTerminal.cpp" line="16"/>
         <source>Appearance</source>
-        <translation>顯示</translation>
+        <translation type="vanished">顯示</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTerminal.ui" line="35"/>
