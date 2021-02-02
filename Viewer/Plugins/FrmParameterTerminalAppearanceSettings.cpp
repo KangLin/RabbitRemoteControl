@@ -64,6 +64,8 @@ CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings
     ui->fontComboBox->setCurrentFont(f);
     ui->fontComboBox->setEditable(false);
     
+    ui->cbShowResize->setChecked(pPara->sizeHint);
+    
     ui->cbCursorShape->addItem(tr("BlockCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
     ui->cbCursorShape->addItem(tr("UnderlineCursor"), (int)Konsole::Emulation::KeyboardCursorShape::UnderlineCursor);
     ui->cbCursorShape->addItem(tr("IBeamCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
@@ -109,12 +111,14 @@ int CFrmParameterTerminalAppearanceSettings::AcceptSettings()
     if(!m_pPara) return -1;
     m_pPara->font = ui->fontComboBox->currentFont();
     m_pPara->font.setPointSize(ui->spFontSize->value());
+    m_pPara->sizeHint = ui->cbShowResize->isChecked();
     m_pPara->colorScheme = ui->cbColorScheme->currentText();
     m_pPara->cursorShape = static_cast<Konsole::Emulation::KeyboardCursorShape>(ui->cbCursorShape->currentData().toInt());
     m_pPara->scrollBarPosition = static_cast<QTermWidget::ScrollBarPosition>(ui->cbScrollBarPositioin->currentData().toInt());
     m_pPara->termTransparency = ui->spTerminalTransparecy->value();
     m_pPara->flowControl = ui->cbFlowControl->isChecked();
     m_pPara->backgroupImage = ui->leImage->text();
+    
     return 0;
 }
 

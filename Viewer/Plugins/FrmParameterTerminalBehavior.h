@@ -17,7 +17,7 @@ public:
     explicit CFrmParameterTerminalBehavior(CParameterTerminal* pPara, QWidget *parent = nullptr);
     virtual ~CFrmParameterTerminalBehavior();
     int AcceptSettings();
-    
+
 private:
     Ui::CFrmParameterTerminalBehavior *ui;
     CParameterTerminal *m_pPara;

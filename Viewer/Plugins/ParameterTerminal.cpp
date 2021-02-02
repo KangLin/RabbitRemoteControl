@@ -15,6 +15,7 @@ CParameterTerminal::CParameterTerminal()
     font.setStyleHint(QFont::TypeWriter);
     font.setPointSize(12);
     
+    sizeHint = true;
     colorScheme = "GreenOnBlack";
     cursorShape = Konsole::Emulation::KeyboardCursorShape::BlockCursor;
     scrollBarPosition = QTermWidget::ScrollBarRight;
@@ -26,6 +27,7 @@ CParameterTerminal::CParameterTerminal()
     szKeyBindings = "default";
 #endif
     textCodec = "UTF-8";
+    historySize = 1000;
 }
 
 QDataStream &operator<<(QDataStream &data, const CParameterTerminal &para)
@@ -41,6 +43,11 @@ QDataStream &operator<<(QDataStream &data, const CParameterTerminal &para)
     data << (int)para.cursorShape
          << (int)para.scrollBarPosition
          ;
+    
+    data << para.szKeyBindings
+         << para.textCodec
+         << para.historySize
+            ;
     return data;
 }
 
@@ -58,5 +65,11 @@ QDataStream &operator>>(QDataStream &data, CParameterTerminal &para)
     data >> cursorShape >> scrollBarPosition;
     para.cursorShape = (Konsole::Emulation::KeyboardCursorShape)cursorShape;
     para.scrollBarPosition = (QTermWidget::ScrollBarPosition)scrollBarPosition;
+    
+    data >> para.szKeyBindings
+         >> para.textCodec
+         >> para.historySize
+         ;
+    
     return data;
 }

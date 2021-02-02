@@ -14,6 +14,7 @@ public:
     CParameterTerminal();
     
     QFont font;
+    bool sizeHint;
     QString colorScheme;
     Konsole::Emulation::KeyboardCursorShape cursorShape;
     QTermWidget::ScrollBarPosition scrollBarPosition;
@@ -23,6 +24,7 @@ public:
     bool flowControl;
     QString szKeyBindings;
     QString textCodec;
+    int historySize;
 };
 
 QDataStream &operator<<(QDataStream &, const CParameterTerminal &);

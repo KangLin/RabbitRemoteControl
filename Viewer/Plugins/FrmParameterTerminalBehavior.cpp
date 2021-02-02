@@ -17,7 +17,16 @@ CFrmParameterTerminalBehavior::CFrmParameterTerminalBehavior(CParameterTerminal 
         ui->cbTextCodecs->addItem(QString(c));
     }
     ui->cbTextCodecs->setCurrentText(pPara->textCodec);
-    
+    if(0 > m_pPara->historySize)
+    {
+        ui->cbHistoryUnlimited->setChecked(true);
+        ui->sbHistorySize->setValue(1000);
+    }
+    else
+    {
+        ui->cbHistorySize->setChecked(true);
+        ui->sbHistorySize->setValue(pPara->historySize);
+    }
 }
 
 CFrmParameterTerminalBehavior::~CFrmParameterTerminalBehavior()
@@ -31,6 +40,10 @@ int CFrmParameterTerminalBehavior::AcceptSettings()
 
     m_pPara->szKeyBindings = ui->cbKeyBinding->currentText();
     m_pPara->textCodec = ui->cbTextCodecs->currentText();
+    if(ui->cbHistoryUnlimited->isChecked())
+        m_pPara->historySize = -1;
+    else    
+        m_pPara->historySize = ui->sbHistorySize->value();
     
     return 0;
 }

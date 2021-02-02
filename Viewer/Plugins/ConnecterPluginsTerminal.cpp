@@ -144,6 +144,7 @@ int CConnecterPluginsTerminal::SetParamter()
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     
+    m_pConsole->setTerminalSizeHint(pPara->sizeHint);
     m_pConsole->setTerminalFont(pPara->font);
     m_pConsole->setKeyboardCursorShape(pPara->cursorShape);
     m_pConsole->setColorScheme(pPara->colorScheme);
@@ -157,6 +158,7 @@ int CConnecterPluginsTerminal::SetParamter()
     
     m_pConsole->setKeyBindings(pPara->szKeyBindings);
     m_pConsole->setTextCodec(QTextCodec::codecForName(pPara->textCodec.toStdString().c_str()));
+    m_pConsole->setHistorySize(pPara->historySize);
     return nRet;
 }
 
