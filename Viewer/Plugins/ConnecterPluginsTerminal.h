@@ -4,7 +4,7 @@
 #include "ConnectThread.h"
 #include "Connecter.h"
 #include "FrmTermWidget.h"
-#include "ParameterTerminalAppearance.h"
+#include "ParameterTerminal.h"
 
 class CConnectThreadTerminal;
 class CConnecterPluginsTerminal : public CConnecter
@@ -55,7 +55,7 @@ protected:
     virtual int OnLoad(QDataStream& d);
     virtual int OnSave(QDataStream& d);
     
-    virtual CParameterTerminalAppearance* GetPara() = 0;
+    virtual CParameterTerminal* GetPara() = 0;
     
     CFrmTermWidget* m_pConsole;
     CConnectThreadTerminal* m_pThread;

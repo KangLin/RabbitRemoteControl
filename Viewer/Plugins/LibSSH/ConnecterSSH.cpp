@@ -29,7 +29,7 @@ QDialog *CConnecterSSH::GetDialogSettings(QWidget *parent)
     return new CDlgSettingsSSH(m_pPara, parent);
 }
 
-CParameterTerminalAppearance *CConnecterSSH::GetPara()
+CParameterTerminal *CConnecterSSH::GetPara()
 {
     return m_pPara;
 }

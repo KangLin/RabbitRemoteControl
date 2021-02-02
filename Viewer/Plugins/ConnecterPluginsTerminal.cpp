@@ -71,7 +71,7 @@ int CConnecterPluginsTerminal::OpenDialogSettings(QWidget *parent)
 int CConnecterPluginsTerminal::Load(QDataStream &d)
 {
     int nRet = 0;
-    CParameterTerminalAppearance* pPara = GetPara();
+    CParameterTerminal* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
 
@@ -87,7 +87,7 @@ int CConnecterPluginsTerminal::Save(QDataStream &d)
 {
     int nRet = 0;
     
-    CParameterTerminalAppearance* pPara = GetPara();
+    CParameterTerminal* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     
@@ -140,7 +140,7 @@ int CConnecterPluginsTerminal::SetParamter()
 {
     int nRet = 0;
 
-    CParameterTerminalAppearance* pPara = GetPara();
+    CParameterTerminal* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     
@@ -188,7 +188,7 @@ int CConnecterPluginsTerminal::OnSave(QDataStream& d)
 
 QString CConnecterPluginsTerminal::GetServerName()
 {
-    CParameterTerminalAppearance* pPara = GetPara();
+    CParameterTerminal* pPara = GetPara();
     if(m_szServerName.isEmpty())
     {
         if(pPara && !pPara->szHost.isEmpty())

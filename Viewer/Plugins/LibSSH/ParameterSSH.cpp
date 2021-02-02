@@ -1,5 +1,5 @@
 #include "ParameterSSH.h"
 
-CParameterSSH::CParameterSSH() : CParameterTerminalAppearance()
+CParameterSSH::CParameterSSH() : CParameterTerminal()
 {
 }

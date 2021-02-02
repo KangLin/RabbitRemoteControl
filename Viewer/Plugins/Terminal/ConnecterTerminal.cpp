@@ -4,7 +4,7 @@
 CConnecterTerminal::CConnecterTerminal(CPluginFactory *parent) 
     : CConnecterPluginsTerminal(parent)
 {
-    m_pPara = new CParameterTerminalAppearance();
+    m_pPara = new CParameterTerminal();
     if(m_pPara)
     {
         m_pPara->font = m_pConsole->getTerminalFont();
@@ -27,7 +27,7 @@ QDialog *CConnecterTerminal::GetDialogSettings(QWidget *parent)
     return new CDlgSettingsTerminal(m_pPara, parent);
 }
 
-CParameterTerminalAppearance* CConnecterTerminal::GetPara()
+CParameterTerminal* CConnecterTerminal::GetPara()
 {
     return m_pPara;
 }

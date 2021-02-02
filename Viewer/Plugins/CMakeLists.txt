@@ -15,7 +15,8 @@ project(RabbitRemoteControlTerminal LANGUAGES CXX)
 set(INSTALL_HEADER_FILES
     ConnecterPluginsTerminal.h
     FrmTerminalAppearanceSettings.h
-    ParameterTerminalAppearance.h
+    FrmParameterTerminalBehavior.h
+    ParameterTerminal.h
     FrmTermWidget.h
     )
 
@@ -27,13 +28,15 @@ set(HEADER_FILES
 set(SOURCE_FILES
     ConnecterPluginsTerminal.cpp
     FrmTerminalAppearanceSettings.cpp
-    ParameterTerminalAppearance.cpp
+    FrmParameterTerminalBehavior.cpp
+    ParameterTerminal.cpp
     ConnectThreadTerminal.cpp
     FrmTermWidget.cpp
     )
 
 set(SOURCE_UI_FILES
     FrmTerminalAppearanceSettings.ui
+    FrmParameterTerminalBehavior.ui
     )
 
 SET(SRC_LIBS RabbitCommon qtermwidget5 RabbitRemoteControl ${QT_LIBRARIES})

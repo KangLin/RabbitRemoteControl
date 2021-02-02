@@ -1,9 +1,9 @@
 #ifndef CPARAMETERSSH_H
 #define CPARAMETERSSH_H
 
-#include "ParameterTerminalAppearance.h"
+#include "ParameterTerminal.h"
 
-class CParameterSSH : public CParameterTerminalAppearance
+class CParameterSSH : public CParameterTerminal
 {
     Q_OBJECT
 public:

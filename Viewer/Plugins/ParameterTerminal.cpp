@@ -1,6 +1,6 @@
-#include "ParameterTerminalAppearance.h"
+#include "ParameterTerminal.h"
 
-CParameterTerminalAppearance::CParameterTerminalAppearance()
+CParameterTerminal::CParameterTerminal()
 {
     colorScheme = "GreenOnBlack";
     cursorShape = Konsole::Emulation::KeyboardCursorShape::BlockCursor;
@@ -13,7 +13,7 @@ CParameterTerminalAppearance::CParameterTerminalAppearance()
     textCodec = "UTF-8";
 }
 
-QDataStream &operator<<(QDataStream &data, const CParameterTerminalAppearance &para)
+QDataStream &operator<<(QDataStream &data, const CParameterTerminal &para)
 {
     data << (CParameter&)para
          << para.font
@@ -29,7 +29,7 @@ QDataStream &operator<<(QDataStream &data, const CParameterTerminalAppearance &p
     return data;
 }
 
-QDataStream &operator>>(QDataStream &data, CParameterTerminalAppearance &para)
+QDataStream &operator>>(QDataStream &data, CParameterTerminal &para)
 {
     data >> (CParameter&)para
          >> para.font

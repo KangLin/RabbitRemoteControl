@@ -1,7 +1,7 @@
 #include "DlgSettingsTelnet.h"
 #include "ui_DlgSettingsTelnet.h"
 
-CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTerminalAppearance *pPara, QWidget *parent) :
+CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTerminal *pPara, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSettingsTelnet),
     m_pPara(pPara)

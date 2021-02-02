@@ -2,7 +2,7 @@
 #define DLGSETTINGSTELNET_H
 
 #include <QDialog>
-#include "ParameterTerminalAppearance.h"
+#include "ParameterTerminal.h"
 #include "FrmTerminalAppearanceSettings.h"
 
 namespace Ui {
@@ -14,7 +14,7 @@ class CDlgSettingsTelnet : public QDialog
     Q_OBJECT
     
 public:
-    explicit CDlgSettingsTelnet(CParameterTerminalAppearance *pPara, QWidget *parent = nullptr);
+    explicit CDlgSettingsTelnet(CParameterTerminal *pPara, QWidget *parent = nullptr);
     ~CDlgSettingsTelnet();
     
 private slots:
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::CDlgSettingsTelnet *ui;
     
-    CParameterTerminalAppearance* m_pPara;
+    CParameterTerminal* m_pPara;
     CFrmTerminalAppearanceSettings* m_pFrmTerminalAppearanceSettings;
 };
 

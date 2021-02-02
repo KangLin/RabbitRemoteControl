@@ -17,7 +17,7 @@ public:
     
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
-    virtual CParameterTerminalAppearance *GetPara() override;
+    virtual CParameterTerminal *GetPara() override;
     
 private:
     CParameterSSH* m_pPara;

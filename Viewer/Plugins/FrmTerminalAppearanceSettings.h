@@ -2,7 +2,7 @@
 #define FRMTERMINALAPPEARANCESETTINGS_H
 
 #include <QWidget>
-#include "ParameterTerminalAppearance.h"
+#include "ParameterTerminal.h"
 
 namespace Ui {
 class CFrmTerminalAppearanceSettings;
@@ -13,7 +13,7 @@ class CFrmTerminalAppearanceSettings : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmTerminalAppearanceSettings(CParameterTerminalAppearance* pPara, QWidget *parent = nullptr);
+    explicit CFrmTerminalAppearanceSettings(CParameterTerminal* pPara, QWidget *parent = nullptr);
     virtual ~CFrmTerminalAppearanceSettings() override;
 
     int AcceptSettings();
@@ -26,7 +26,7 @@ private slots:
     
 private:
     Ui::CFrmTerminalAppearanceSettings *ui;
-    CParameterTerminalAppearance *m_pPara;
+    CParameterTerminal *m_pPara;
 
 };
 

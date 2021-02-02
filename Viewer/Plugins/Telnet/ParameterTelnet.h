@@ -1,9 +1,9 @@
 #ifndef CPARAMETERTELNET_H
 #define CPARAMETERTELNET_H
 
-#include "ParameterTerminalAppearance.h"
+#include "ParameterTerminal.h"
 
-class CParameterTelnet : public CParameterTerminalAppearance
+class CParameterTelnet : public CParameterTerminal
 {
     Q_OBJECT
     

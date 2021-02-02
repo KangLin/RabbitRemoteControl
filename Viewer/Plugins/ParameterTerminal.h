@@ -5,25 +5,26 @@
 #include "qtermwidget.h"
 #include <QFont>
 
-class CParameterTerminalAppearance : public CParameter
+class CParameterTerminal : public CParameter
 {
     Q_OBJECT
     
 public:
-    CParameterTerminalAppearance();
+    CParameterTerminal();
     
     QFont font;
     QString colorScheme;
     Konsole::Emulation::KeyboardCursorShape cursorShape;
     QTermWidget::ScrollBarPosition scrollBarPosition;
     int termTransparency;
-    bool flowControl;
     QString backgroupImage;
+
+    bool flowControl;
     QString szKeyBindings;
     QString textCodec;
 };
 
-QDataStream &operator<<(QDataStream &, const CParameterTerminalAppearance &);
-QDataStream &operator>>(QDataStream &, CParameterTerminalAppearance &);
+QDataStream &operator<<(QDataStream &, const CParameterTerminal &);
+QDataStream &operator>>(QDataStream &, CParameterTerminal &);
 
 #endif // CPARAMETERTERMINALAPPEARANCE_H

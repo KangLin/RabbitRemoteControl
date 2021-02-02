@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <qtermwidget.h>
 
-CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminalAppearance *pPara, QWidget *parent) :
+CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminal *pPara, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSettingsTerminal),
     m_pPara(pPara)
