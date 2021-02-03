@@ -3,6 +3,7 @@
   + Modify ci
   + Add terminal
   + Add telnet
+  + Add SSH
   
 - v0.0.1
   + Gui
