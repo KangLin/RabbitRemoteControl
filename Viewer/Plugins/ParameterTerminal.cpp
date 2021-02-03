@@ -15,12 +15,13 @@ CParameterTerminal::CParameterTerminal()
     font.setStyleHint(QFont::TypeWriter);
     font.setPointSize(12);
     
-    sizeHint = true;
+    sizeHint = false;
     colorScheme = "GreenOnBlack";
     cursorShape = Konsole::Emulation::KeyboardCursorShape::BlockCursor;
     scrollBarPosition = QTermWidget::ScrollBarRight;
     termTransparency = 0;
-    flowControl = true;
+    flowControl = false;
+    flowControlWarning = false;
 #if defined (Q_OS_LINUX)
     szKeyBindings = "linux";
 #else
@@ -37,6 +38,7 @@ QDataStream &operator<<(QDataStream &data, const CParameterTerminal &para)
          << para.colorScheme
          << para.termTransparency
          << para.flowControl
+         << para.flowControlWarning
          << para.backgroupImage
             ;
     
@@ -58,6 +60,7 @@ QDataStream &operator>>(QDataStream &data, CParameterTerminal &para)
          >> para.colorScheme
          >> para.termTransparency
          >> para.flowControl
+         >> para.flowControlWarning
          >> para.backgroupImage
          ;
     

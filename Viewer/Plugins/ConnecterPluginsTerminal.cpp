@@ -25,6 +25,9 @@ CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginFactory *parent)
     check = connect(m_pConsole, SIGNAL(finished()),
                     this, SLOT(DisConnect()));
     Q_ASSERT(check);
+    check = connect(m_pConsole, SIGNAL(sigZoomReset()),
+                    this, SLOT(slotZoomReset()));
+    Q_ASSERT(check);
 }
 
 CConnecterPluginsTerminal::~CConnecterPluginsTerminal()
@@ -149,6 +152,8 @@ int CConnecterPluginsTerminal::SetParamter()
     m_pConsole->setKeyboardCursorShape(pPara->cursorShape);
     m_pConsole->setColorScheme(pPara->colorScheme);
     m_pConsole->setScrollBarPosition(pPara->scrollBarPosition);
+    m_pConsole->setFlowControlEnabled(pPara->flowControl);
+    m_pConsole->setFlowControlWarningEnabled(pPara->flowControlWarning);
 
     m_pConsole->setTerminalOpacity(1.0 - pPara->termTransparency / 100.0);
     m_pConsole->setTerminalBackgroundImage(pPara->backgroupImage);
@@ -159,6 +164,12 @@ int CConnecterPluginsTerminal::SetParamter()
     m_pConsole->setKeyBindings(pPara->szKeyBindings);
     m_pConsole->setTextCodec(QTextCodec::codecForName(pPara->textCodec.toStdString().c_str()));
     m_pConsole->setHistorySize(pPara->historySize);
+    
+//    m_pConsole->setMonitorActivity(false);
+//    m_pConsole->setMonitorSilence(false);
+//    m_pConsole->setBlinkingCursor(true);
+//    m_pConsole->setBidiEnabled(true);
+//    m_pConsole->disableBracketedPasteMode(true);
     return nRet;
 }
 
@@ -166,6 +177,12 @@ void CConnecterPluginsTerminal::slotTerminalTitleChanged()
 {
     m_pConsole->setWindowTitle(m_pConsole->title());
     slotSetServerName(m_pConsole->title());
+}
+
+void CConnecterPluginsTerminal::slotZoomReset()
+{
+    if(m_pConsole)
+        m_pConsole->setTerminalFont(GetPara()->font);
 }
 
 int CConnecterPluginsTerminal::OnConnect()

@@ -1,5 +1,6 @@
 #include "ConnectSSH.h"
 #include "RabbitCommonLog.h"
+#include <QDebug>
 
 CConnectSSH::CConnectSSH(CConnecterSSH *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
@@ -63,7 +64,7 @@ int CConnectSSH::Initialize()
     ssh_callbacks_init(m_pCb);
     nRet = ssh_set_callbacks(m_pSession, m_pCb);
     if(nRet) return nRet;
-    
+
     nRet = SetParamter(m_pPara);
 
     return nRet;
@@ -72,7 +73,7 @@ int CConnectSSH::Initialize()
 int CConnectSSH::Clean()
 {
     int nRet = 0;
-    
+
     if(m_pEvent)
     {
         if(connector_in)
@@ -93,10 +94,10 @@ int CConnectSSH::Clean()
         
         ssh_event_free(m_pEvent);
     }
-    
+
     if(m_pChannel)
         ssh_channel_free(m_pChannel);
-    
+
     if(m_pSession)
     {
         ssh_disconnect(m_pSession);
@@ -109,6 +110,18 @@ int CConnectSSH::Clean()
 int CConnectSSH::Connect()
 {
     int nRet = 0;
+
+    CFrmTermWidget* pConsole = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
+    if(!pConsole) return -4;
+
+    //pConsole->startTerminalTeletype();
+//    bool check = pConsole->connect(pConsole, SIGNAL(sendData(const char *,int)),
+//                      this, SLOT(slotSendData(const char *,int)));
+//    Q_ASSERT(check);
+//    check = pConsole->connect(pConsole, SIGNAL(receivedData(const QString &)),
+//                              this, SLOT(slotReceivedData(const QString &)));
+//    Q_ASSERT(check);
+
     if (ssh_connect(m_pSession)) {
         LOG_MODEL_ERROR("LibSSH",  "Connection failed : %s\n", ssh_get_error(m_pSession));
         return -1;
@@ -142,7 +155,7 @@ int CConnectSSH::Connect()
         LOG_MODEL_ERROR("LibSSH", "Error opening channel : %s\n", ssh_get_error(m_pSession));
         return -1;
     }
-    
+
     ssh_channel_request_pty(m_pChannel);
 
     CFrmTermWidget* pView = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
@@ -155,18 +168,16 @@ int CConnectSSH::Connect()
         LOG_MODEL_ERROR("LibSSH", "Requesting shell : %s\n", ssh_get_error(m_pSession));
         return -1;
     }
-    
+
     m_pEvent = ssh_event_new();
-    
+
     /* stdin */
     connector_in = ssh_connector_new(m_pSession);
     if(connector_in && m_pChannel && m_pEvent)
     {
-        nRet = ssh_connector_set_out_channel(connector_in, m_pChannel, SSH_CONNECTOR_STDINOUT);
+        nRet = ssh_connector_set_out_channel(connector_in, m_pChannel, SSH_CONNECTOR_STDOUT);
         if(nRet) return -2;
-        CFrmTermWidget* pView = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
-        if(!pView) return -4;
-        ssh_connector_set_in_fd(connector_in, pView->getPtySlaveFd());
+        ssh_connector_set_in_fd(connector_in, pConsole->getPtySlaveFd());
         nRet = ssh_event_add_connector(m_pEvent, connector_in);
         if(nRet) return -3;
     }
@@ -175,15 +186,13 @@ int CConnectSSH::Connect()
     connector_out = ssh_connector_new(m_pSession);
     if(connector_out && m_pChannel && m_pEvent)
     {
-        CFrmTermWidget* pView = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
-        if(!pView) return -4;
-        ssh_connector_set_out_fd(connector_out, pView->getPtySlaveFd());
         nRet = ssh_connector_set_in_channel(connector_out, m_pChannel, SSH_CONNECTOR_STDINOUT);
         if(nRet) return -4;
+       ssh_connector_set_out_fd(connector_out, pConsole->getPtySlaveFd());
         nRet = ssh_event_add_connector(m_pEvent, connector_out);
         if(nRet) return -5;
     }
-    
+
     /* stderr */
     connector_err = ssh_connector_new(m_pSession);
     if(connector_err && m_pChannel && m_pEvent)
@@ -467,4 +476,20 @@ int CConnectSSH::Authenticate(ssh_session session)
     }
 
     return rc;
+}
+
+void CConnectSSH::slotSendData(const char *buf,int len)
+{
+    CFrmTermWidget* pConsole = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
+    if(!pConsole) return;
+    
+    for(int i = 0; i < len; i++)
+        qDebug() << buf[i];
+    
+    write(pConsole->getPtySlaveFd(), buf, len);
+}
+
+void CConnectSSH::slotReceivedData(const QString &text)
+{
+    LOG_MODEL_DEBUG("LibSSH", "Receive data: %s", text.toStdString().c_str());
 }

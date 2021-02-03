@@ -23,6 +23,8 @@ public slots:
     virtual int Disconnect() override;
     virtual int Process() override;
     virtual void slotClipBoardChange() override;
+    void slotSendData(const char *,int);
+    void slotReceivedData(const QString &text);
     
 private:
     CConnecterSSH* m_pConnecter;

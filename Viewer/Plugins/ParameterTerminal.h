@@ -14,7 +14,7 @@ public:
     CParameterTerminal();
     
     QFont font;
-    bool sizeHint;
+    bool sizeHint;       // show size when windows resize
     QString colorScheme;
     Konsole::Emulation::KeyboardCursorShape cursorShape;
     QTermWidget::ScrollBarPosition scrollBarPosition;
@@ -22,6 +22,8 @@ public:
     QString backgroupImage;
 
     bool flowControl;
+    bool flowControlWarning;
+    
     QString szKeyBindings;
     QString textCodec;
     int historySize;

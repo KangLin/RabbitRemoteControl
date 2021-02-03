@@ -10,6 +10,14 @@ class CFrmTermWidget : public QTermWidget
 public:
     explicit CFrmTermWidget(QWidget * parent = nullptr);
     virtual ~CFrmTermWidget();
+    
+Q_SIGNALS:
+    void sigZoomReset();
+    
+private Q_SLOTS:
+    void slotCustomContextMenuCall(const QPoint & pos);
+    void slotActivateUrl(const QUrl& url, bool fromContextMenu);
+    
 };
 
 #endif // CFRMTERMWIDGET_H

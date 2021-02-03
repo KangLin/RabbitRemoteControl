@@ -38,7 +38,8 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void slotTerminalTitleChanged();
-
+    void slotZoomReset();
+    
 protected:
     virtual QDialog* GetDialogSettings(QWidget *parent) = 0;
     virtual int SetParamter();

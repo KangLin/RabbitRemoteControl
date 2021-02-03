@@ -205,7 +205,7 @@
      <item>
       <widget class="QCheckBox" name="cbShowResize">
        <property name="text">
-        <string>Show resize</string>
+        <string>Show terminal size when resize</string>
        </property>
       </widget>
      </item>
