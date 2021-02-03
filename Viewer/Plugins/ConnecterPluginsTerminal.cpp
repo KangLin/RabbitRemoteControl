@@ -154,13 +154,12 @@ int CConnecterPluginsTerminal::SetParamter()
     m_pConsole->setScrollBarPosition(pPara->scrollBarPosition);
     m_pConsole->setFlowControlEnabled(pPara->flowControl);
     m_pConsole->setFlowControlWarningEnabled(pPara->flowControlWarning);
-
+    m_pConsole->setMotionAfterPasting(pPara->motionAfterPasting);
+    m_pConsole->disableBracketedPasteMode(pPara->disableBracketedPasteMode);
+    m_pConsole->setBidiEnabled(pPara->biDirectional);
     m_pConsole->setTerminalOpacity(1.0 - pPara->termTransparency / 100.0);
     m_pConsole->setTerminalBackgroundImage(pPara->backgroupImage);
-    
-    //m_pConsole->setMotionAfterPasting(1);
-    //m_pConsole->disableBracketedPasteMode(true);
-    
+        
     m_pConsole->setKeyBindings(pPara->szKeyBindings);
     m_pConsole->setTextCodec(QTextCodec::codecForName(pPara->textCodec.toStdString().c_str()));
     m_pConsole->setHistorySize(pPara->historySize);
@@ -168,8 +167,8 @@ int CConnecterPluginsTerminal::SetParamter()
 //    m_pConsole->setMonitorActivity(false);
 //    m_pConsole->setMonitorSilence(false);
 //    m_pConsole->setBlinkingCursor(true);
-//    m_pConsole->setBidiEnabled(true);
-//    m_pConsole->disableBracketedPasteMode(true);
+    
+
     return nRet;
 }
 

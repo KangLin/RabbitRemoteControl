@@ -24,6 +24,9 @@ public:
     bool flowControl;
     bool flowControlWarning;
     
+    bool motionAfterPasting;
+    bool disableBracketedPasteMode;
+    bool biDirectional;
     QString szKeyBindings;
     QString textCodec;
     int historySize;

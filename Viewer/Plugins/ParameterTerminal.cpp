@@ -22,6 +22,10 @@ CParameterTerminal::CParameterTerminal()
     termTransparency = 0;
     flowControl = false;
     flowControlWarning = false;
+    motionAfterPasting = false;
+    disableBracketedPasteMode = false;
+    biDirectional = true;
+    
 #if defined (Q_OS_LINUX)
     szKeyBindings = "linux";
 #else
@@ -39,6 +43,9 @@ QDataStream &operator<<(QDataStream &data, const CParameterTerminal &para)
          << para.termTransparency
          << para.flowControl
          << para.flowControlWarning
+         << para.motionAfterPasting
+         << para.biDirectional
+         << para.disableBracketedPasteMode
          << para.backgroupImage
             ;
     
@@ -61,6 +68,9 @@ QDataStream &operator>>(QDataStream &data, CParameterTerminal &para)
          >> para.termTransparency
          >> para.flowControl
          >> para.flowControlWarning
+         >> para.motionAfterPasting
+         >> para.disableBracketedPasteMode
+         >> para.biDirectional
          >> para.backgroupImage
          ;
     

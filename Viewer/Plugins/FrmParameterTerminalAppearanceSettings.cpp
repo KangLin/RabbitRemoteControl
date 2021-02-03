@@ -82,6 +82,7 @@ CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings
 
     ui->spTerminalTransparecy->setValue(pPara->termTransparency);
     ui->cbFlowControl->setChecked(m_pPara->flowControl);
+    ui->cbBiDirectional->setChecked(m_pPara->biDirectional);
     ui->leImage->setText(m_pPara->backgroupImage);
 }
 
@@ -118,7 +119,7 @@ int CFrmParameterTerminalAppearanceSettings::AcceptSettings()
     m_pPara->termTransparency = ui->spTerminalTransparecy->value();
     m_pPara->flowControl = ui->cbFlowControl->isChecked();
     m_pPara->backgroupImage = ui->leImage->text();
-    
+    m_pPara->biDirectional = ui->cbBiDirectional->isChecked();
     return 0;
 }
 
