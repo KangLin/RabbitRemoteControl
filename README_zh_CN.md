@@ -1,4 +1,4 @@
-# <img src="App/Resource/Image/App.png" width="48" height="48" alt="玉兔远程控制" title="玉兔远程控制"/>[玉兔远程控制](https://github.com/KangLin/RabbitRemoteControl)
+# <img src="App/Resource/Image/App.png" width="48" height="48" />[玉兔远程控制](https://github.com/KangLin/RabbitRemoteControl)
 
 作者: 康林 (kl222@126.com)
 
@@ -38,6 +38,18 @@
 - [x] [TELNET]()
 - [ ] 自定义的 P2P 协议
 - [x] 终端
+
+
+|        |Windows           |Unix/linux        |Android           |MAC               |IPHONE            |WINCE             |
+|--------|------------------|------------------|------------------|------------------|------------------|------------------|
+|vnc     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
+|RDP     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
+|Spice   |                  |                  |                  |                  |                  |                  |
+|SSH     |                  |:heavy_check_mark:|                  |                  |                  |                  |
+|Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
+|TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
+|P2P     |                  |                  |                  |                  |                  |                  |
+
 
 #### 依赖
 ##### 工具

@@ -1,4 +1,4 @@
-# <img src="App/Resource/Image/App.png" width="48" height="48" alt="Rabbit Remote Control" title="Rabbit Remote Control" />[Rabbit Remote Control](https://github.com/KangLin/RabbitRemoteControl)
+# <img src="App/Resource/Image/App.png" width="48" height="48" />[Rabbit Remote Control](https://github.com/KangLin/RabbitRemoteControl)
 
 Author: Kang Lin (kl222@126.com)
 
@@ -7,7 +7,7 @@ Author: Kang Lin (kl222@126.com)
 - [Project home](https://kanglin.github.io/RabbitRemoteControl/)
 
 - Language
-  - [<img src="Resource/Image/Chinese.png" alt="Chinese" title="Chinese" width="16" height="16"/>Chinese](README_zh_CN.md)
+  - [:cn: Chinese](README_zh_CN.md)
 - Build status
   - [![Build status](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
 - [Change log](ChangeLog.md)
@@ -40,6 +40,18 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 - [x] [TELNET]()
 - [x] Terminal
 - [ ] Custom p2p protocol
+
+
+|        |Windows           |Unix/linux        |Android           |MAC               |IPHONE            |WINCE             |
+|--------|------------------|------------------|------------------|------------------|------------------|------------------|
+|vnc     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
+|RDP     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
+|Spice   |                  |                  |                  |                  |                  |                  |
+|SSH     |                  |:heavy_check_mark:|                  |                  |                  |                  |
+|Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
+|TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
+|P2P     |                  |                  |                  |                  |                  |                  |
+
 
 #### Dependent
 ##### Tools
