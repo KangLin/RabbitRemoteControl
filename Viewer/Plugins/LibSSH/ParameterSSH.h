@@ -6,8 +6,11 @@
 class CParameterSSH : public CParameterTerminal
 {
     Q_OBJECT
+
 public:
     CParameterSSH();
+
+    QString captrueFile;
 };
 
 #endif // CPARAMETERSSH_H

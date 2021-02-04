@@ -34,6 +34,7 @@ private:
     ssh_channel m_pChannel;
     ssh_event m_pEvent;
     ssh_connector connector_in, connector_out, connector_err;
+    ssh_pcap_file m_pPcapFile;
     
     struct ssh_callbacks_struct *m_pCb;
     

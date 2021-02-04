@@ -21,8 +21,8 @@ public:
     
 private slots:
     void on_pbOK_clicked();
-    
     void on_pbCancle_clicked();
+    void on_pbCapFileBrower_clicked();
     
 private:
     Ui::CDlgSettingsSSH *ui;

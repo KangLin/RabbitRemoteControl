@@ -11,7 +11,8 @@ CConnectSSH::CConnectSSH(CConnecterSSH *pConnecter, QObject *parent)
       m_pEvent(nullptr),
       connector_in(nullptr),
       connector_out(nullptr),
-      connector_err(nullptr)
+      connector_err(nullptr),
+      m_pPcapFile(nullptr)
 {
     m_pPara = pConnecter->m_pPara;
 }
@@ -19,9 +20,9 @@ CConnectSSH::CConnectSSH(CConnecterSSH *pConnecter, QObject *parent)
 int CConnectSSH::SetParamter(void *pPara)
 {
     int nRet = 0;
-    
+
     Q_UNUSED(pPara);
-    
+
     if(m_pPara->szHost.isEmpty())
     {
         LOG_MODEL_ERROR("LibSSH",  "The host isn't setting");
@@ -33,7 +34,7 @@ int CConnectSSH::SetParamter(void *pPara)
         emit sigError(-2, "The host set is fail");
         return -2;
     }
-    
+
     if(m_pPara->szUser.isEmpty())
     {
         LOG_MODEL_ERROR("LibSSH",  "The user isn't setting");
@@ -44,7 +45,26 @@ int CConnectSSH::SetParamter(void *pPara)
         emit sigError(-3, "The user set fail");
         return -3;
     }
-    
+
+    if(!m_pPara->captrueFile.isEmpty())
+    {
+        m_pPcapFile = ssh_pcap_file_new();
+        if (m_pPcapFile == NULL) {
+            return -4;
+        }
+        
+        if (ssh_pcap_file_open(m_pPcapFile,
+                               m_pPara->captrueFile.toStdString().c_str())
+                == SSH_ERROR) {
+            LOG_MODEL_ERROR("LibSSH", "Error opening pcap file: %s\n",
+                            m_pPara->captrueFile.toStdString().c_str());
+            ssh_pcap_file_free(m_pPcapFile);
+            m_pPcapFile = NULL;
+            return -5;
+        }
+        ssh_set_pcap_file(m_pSession, m_pPcapFile);
+    }
+
     return nRet;
 }
 
@@ -104,6 +124,13 @@ int CConnectSSH::Clean()
         ssh_free(m_pSession);
         ssh_finalize();
     }
+    
+    if(m_pPcapFile)
+    {
+        ssh_pcap_file_free(m_pPcapFile);
+        m_pPcapFile = nullptr;
+    }
+    
     return nRet;
 }
 
@@ -157,13 +184,9 @@ int CConnectSSH::Connect()
     }
 
     ssh_channel_request_pty(m_pChannel);
+    ssh_channel_change_pty_size(m_pChannel, pConsole->screenColumnsCount(), pConsole->screenLinesCount());
+    LOG_MODEL_DEBUG("LibSSH", "row:%d; col:%d", pConsole->screenLinesCount(), pConsole->screenColumnsCount());
 
-    CFrmTermWidget* pView = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
-    if(pView)
-    {
-        LOG_MODEL_DEBUG("LibSSH", "row:%d; col:%d", pView->screenLinesCount(), pView->screenColumnsCount());
-        ssh_channel_change_pty_size(m_pChannel, pView->screenColumnsCount(), pView->screenLinesCount());
-    }
     if (ssh_channel_request_shell(m_pChannel)) {
         LOG_MODEL_ERROR("LibSSH", "Requesting shell : %s\n", ssh_get_error(m_pSession));
         return -1;
