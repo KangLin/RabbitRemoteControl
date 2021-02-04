@@ -21,13 +21,22 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     env:
-      BUILD_TYPE: ${{ matrix.BUILD_TYPE }}
+      BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      SOURCE_DIR:  ${{github.workspace}}/source
+      TOOSL_DIR:    ${{github.workspace}}/tools
+      INSTALL_DIR: ${{github.workspace}}/install
   
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
     
+    - name: make_directory
+      run: |
+        cmake -E make_directory ${{env.SOURCE_DIR}}
+        cmake -E make_directory ${{env.TOOSL_DIR}}
+        cmake -E make_directory ${{env.INSTALL_DIR}}
+      
     - name: run-vcpkg
       # You may pin to the exact commit or the version.
       # uses: lukka/run-vcpkg@a1b6a0046a28c09f4bcc8caa9eecec9a8e512152
@@ -35,26 +44,29 @@ jobs:
       with:
         # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
         #setupOnly: # optional
-        vcpkgGitCommitId: b60f003ccf5fe8613d029f49f835c8929a66eb61
+        vcpkgGitURL: https://github.com/KangLin/vcpkg.git
+        vcpkgGitCommitId: 37b05428f33d148ad849f5c4e4e84ac33d60299a
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'openssl libssh freerdp'
-      if: ${{ matrix.os != 'ubuntu-latest' }}
-      
+        vcpkgArguments: 'openssl libssh ffmpeg opencv freerdp'
+
+    - name: git clone libvncserver
+      working-directory: ${{env.SOURCE_DIR}}
+      run: git clone https://github.com/KangLin/libvncserver.git 
+          
+#    - name: Build libvncserver with CMake
+#      uses: lukka/run-cmake@main
+#      with:
+#        useVcpkgToolchainFile: true
+#        cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
+#        cmakeListsTxtPath: ${{env.SOURCE_DIR}}/libvncserver
+#        buildDirectory: ${{ runner.workspace }}/build/libvncserver
+#        cmakeBuildType: ${{ matrix.BUILD_TYPE }}
+#        cmakeAppendedArgs: -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+        
     - name: git clone RabbitCommon
       working-directory: ${{runner.workspace}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
-      
-    - name: apt helper action
-      # You may pin to the exact commit or the version.
-      # uses: ryankurte/action-apt@7356b2f8b9c6f8043a3d0ab3b991701dc817b759
-      uses: ryankurte/action-apt@v0.2.0
-      with:
-        # architectures to pass to dpkg --add-architecture
-        #architectures: # optional
-        # apt packages to install
-        packages: libvncserver-dev freerdp2-dev libssh-dev liblog4cplus-dev
-      if: ${{ matrix.os == 'ubuntu-latest' }}
       
     - name: Install Qt
       # You may pin to the exact commit or the version.
@@ -62,7 +74,7 @@ jobs:
       uses: jurplel/install-qt-action@v2.11.1
       with:
         # Directory to install Qt
-        dir: ${{runner.workspace}}/qt # optional
+        dir: ${{env.TOOSL_DIR}}/qt # optional
         # Version of Qt to install
         version: ${{matrix.qt_version}} # optional, default is 5.15.2
         # Host platform
@@ -96,46 +108,6 @@ jobs:
       uses: lukka/run-cmake@main
       with:
         useVcpkgToolchainFile: true
-        buildDirectory: ${{ runner.workspace }}/build
+        buildDirectory: ${{ runner.workspace }}/build/RabbitRemoteControl
         cmakeBuildType: ${{ matrix.BUILD_TYPE }}
-        cmakeAppendedArgs: -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/install
-          
-#    - name: Create Build Environment
-#      # Some projects don't allow in-source building, so create a separate build directory
-#      # We'll use this as our working directory for all subsequent commands
-#      run: cmake -E make_directory ${{runner.workspace}}/build
-
-#    - name: Configure CMake
-#      # Use a bash shell so we can use the same syntax for environment variable
-#      # access regardless of the host operating system
-#      shell: bash
-#      working-directory: ${{runner.workspace}}/build
-#      # Note the current convention is to use the -S and -B options here to specify source 
-#      # and build directories, but this is only available with CMake 3.13 and higher.  
-#      # The CMake binaries on the Github Actions machines are (as of this writing) 3.12
-#      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/build/install -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
-#      env:
-#        RabbitCommon_DIR: ${{runner.workspace}}/RabbitCommon
-      
-#    - name: Build
-#      working-directory: ${{runner.workspace}}/build
-#      shell: bash
-#      # Execute the build.  You can specify a specific target with "--target <NAME>"
-#      run: |
-#        cmake --build . --config $BUILD_TYPE 
-#        cmake --build . --config $BUILD_TYPE --target install-runtime
-#      if: ${{ matrix.BUILD_TYPE == 'Release' }}
-
-#    - name: Build
-#      working-directory: ${{runner.workspace}}/build
-#      shell: bash
-#      # Execute the build.  You can specify a specific target with "--target <NAME>"
-#      run: cmake --build . --config $BUILD_TYPE
-#      if: ${{ matrix.BUILD_TYPE != 'Release' }}
-
-#    - name: Test
-#      working-directory: ${{runner.workspace}}/build
-#      shell: bash
-#      # Execute tests defined by the CMake configuration.  
-#      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-#      run: ctest -C $BUILD_TYPE
+        cmakeAppendedArgs: -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/RabbitRemoteControl/install -DCMAKE_PRIFEX_PATH=${{ env.INSTALL_DIR }}
