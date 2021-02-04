@@ -43,8 +43,7 @@ SetCompressor lzma
 ; Finish page
 !define MUI_FINISHPAGE_RUN "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
 !define MUI_FINISHPAGE_SHOWREADME
-;!define MUI_FINISHPAGE_SHOWREADME_Function AutoBoot
-;!define MUI_FINISHPAGE_SHOWREADME_TEXT "Start from boot"
+!define MUI_FINISHPAGE_SHOWREADME_Function OpenReadme
 !insertmacro MUI_PAGE_FINISH
 ; Uninstaller pages
 !insertmacro MUI_UNPAGE_INSTFILES
@@ -185,9 +184,9 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SEC01} "$(LANG_PRODUCT_NAME)"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
-;Function AutoBoot
-;    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\Run" "${PRODUCT_NAME}" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
-;FunctionEnd
+Function OpenReadme
+    ExecShell "open" "https://github.com/KangLin/RabbitRemoteControl/" 
+FunctionEnd
 
 Function un.onUninstSuccess
   ;HideWindow
