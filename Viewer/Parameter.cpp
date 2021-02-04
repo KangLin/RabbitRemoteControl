@@ -7,7 +7,7 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
     bSavePassword(false),
     bOnlyView(false),
     bLocalCursor(true),
-    bClipboard(true)
+    bClipboard(false)
 {}
 
 QDataStream &operator<<(QDataStream &data, const CParameter &para)
