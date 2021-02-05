@@ -114,15 +114,30 @@ jobs:
         # Any extra arguments to append to the back
         #extra: # optional
 
-     - name: build
-       working-directory: ${{runner.workspace}}
-       run: |
-         cmake -E make_directory build
-         cd build
-         cmake .. -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/install -DCMAKE_PRIFEX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
-         cmake --build . --config ${{ matrix.BUILD_TYPE }}
-         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+    - name: build RabbitRemoteControl
+      working-directory: ${{runner.workspace}}
+      run: |
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/install -DCMAKE_PRIFEX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
+    - name: Package
+      working-directory: ${{runner.workspace}}/build
+      shell: cmd
+      run: |
+        makensis ${{runner.workspace}}/build/Install.nsi
+        ${{runner.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "%CD%/update_windows.xml" -pf RabbitRemoteControl-Setup-v0.0.1.exe -m "v0.0.1"
+      if: ${{ matrix.os == 'windows-latest' }}
+      
+    - name: update 
+      uses: actions/upload-artifact@v2
+      with:
+        name: rabbitremotecontrol_${{ matrix.os }}
+        path: ${{runner.workspace}}/build/RabbitRemoteControl-Setup-*.exe
+      if: ${{ matrix.os == 'windows-latest' }}
+      
 #    - name: Build with CMake
 #      uses: lukka/run-cmake@main
 #      with:

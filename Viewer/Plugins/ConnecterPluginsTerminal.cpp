@@ -146,8 +146,11 @@ int CConnecterPluginsTerminal::SetParamter()
     CParameterTerminal* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
-    
+#if QTERMWIDGET_VERSION >= QT_VERSION_CHECK(0, 9, 0)
     m_pConsole->setTerminalSizeHint(pPara->sizeHint);
+    m_pConsole->setBidiEnabled(pPara->biDirectional);
+    m_pConsole->disableBracketedPasteMode(pPara->disableBracketedPasteMode);
+#endif
     m_pConsole->setTerminalFont(pPara->font);
     m_pConsole->setKeyboardCursorShape(pPara->cursorShape);
     m_pConsole->setColorScheme(pPara->colorScheme);
@@ -155,8 +158,6 @@ int CConnecterPluginsTerminal::SetParamter()
     m_pConsole->setFlowControlEnabled(pPara->flowControl);
     m_pConsole->setFlowControlWarningEnabled(pPara->flowControlWarning);
     m_pConsole->setMotionAfterPasting(pPara->motionAfterPasting);
-    m_pConsole->disableBracketedPasteMode(pPara->disableBracketedPasteMode);
-    m_pConsole->setBidiEnabled(pPara->biDirectional);
     m_pConsole->setTerminalOpacity(1.0 - pPara->termTransparency / 100.0);
     m_pConsole->setTerminalBackgroundImage(pPara->backgroupImage);
         
