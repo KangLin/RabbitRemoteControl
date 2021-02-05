@@ -23,7 +23,7 @@ jobs:
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
       SOURCE_DIR:  ${{github.workspace}}/source
-      TOOSL_DIR:    ${{github.workspace}}/tools
+      TOOSL_DIR:   ${{github.workspace}}/tools
       INSTALL_DIR: ${{github.workspace}}/install
   
     steps:
@@ -53,16 +53,26 @@ jobs:
     - name: git clone libvncserver
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/libvncserver.git 
-          
-#    - name: Build libvncserver with CMake
-#      uses: lukka/run-cmake@main
-#      with:
-#        useVcpkgToolchainFile: true
-#        cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
-#        cmakeListsTxtPath: ${{env.SOURCE_DIR}}/libvncserver
-#        buildDirectory: ${{ runner.workspace }}/build/libvncserver
-#        cmakeBuildType: ${{ matrix.BUILD_TYPE }}
-#        cmakeAppendedArgs: -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+
+    - name: build libvncserver 
+      working-directory: ${{env.SOURCE_DIR}}/libvncserver
+      run: |
+        cd ${{env.SOURCE_DIR}}/libvncserver
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        
+#     - name: Build libvncserver with CMake
+#       uses: lukka/run-cmake@main
+#       with:
+#         useVcpkgToolchainFile: true
+#         cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
+#         cmakeListsTxtPath: ${{env.SOURCE_DIR}}/libvncserver
+#         buildDirectory: ${{ runner.workspace }}/build/libvncserver
+#         cmakeBuildType: ${{ matrix.BUILD_TYPE }}
+#         cmakeAppendedArgs: -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
         
     - name: git clone RabbitCommon
       working-directory: ${{runner.workspace}}
@@ -104,10 +114,19 @@ jobs:
         # Any extra arguments to append to the back
         #extra: # optional
 
-    - name: Build with CMake
-      uses: lukka/run-cmake@main
-      with:
-        useVcpkgToolchainFile: true
-        buildDirectory: ${{ runner.workspace }}/build/RabbitRemoteControl
-        cmakeBuildType: ${{ matrix.BUILD_TYPE }}
-        cmakeAppendedArgs: -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/RabbitRemoteControl/install -DCMAKE_PRIFEX_PATH=${{ env.INSTALL_DIR }}
+     - name: build
+       working-directory: ${{runner.workspace}}
+       run: |
+         cmake -E make_directory build
+         cd build
+         cmake .. -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/install -DCMAKE_PRIFEX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+         cmake --build . --config ${{ matrix.BUILD_TYPE }}
+         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+
+#    - name: Build with CMake
+#      uses: lukka/run-cmake@main
+#      with:
+#        useVcpkgToolchainFile: true
+#        buildDirectory: ${{ runner.workspace }}/build/RabbitRemoteControl
+#        cmakeBuildType: ${{ matrix.BUILD_TYPE }}
+#        cmakeAppendedArgs: -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/RabbitRemoteControl/install -DCMAKE_PRIFEX_PATH=${{ env.INSTALL_DIR }}
