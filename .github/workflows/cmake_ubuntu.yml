@@ -35,13 +35,26 @@ jobs:
         packages: freerdp2-dev libvncserver-dev libssh-dev liblog4cplus-dev debhelper fakeroot qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev
 
     - name: build_debpackage.sh
-      run: ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
+      working-directory: ${{github.workspace}}
       env:
         RabbitCommon_DIR: ${{runner.workspace}}/RabbitCommon
-    
-    - name: copy deb file
-      run: cp ../rabbitremotecontrol_*.deb .
+      run: |
+        ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
+        cp ../rabbitremotecontrol_*.deb .
+#        sudo apt-get install -y -qq xvfb xpra
+#        sudo Xvfb :99 -ac &
+#        export DISPLAY=:99.0        
+#        debian/rabbitremotecontrol/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" -pf rabbitremotecontrol_0.0.1_amd64.deb -m "v0.0.1"
       
+#    - name: copy deb file
+#      run: |
+#        cp ../rabbitremotecontrol_*.deb .
+#        sudo dpkg -i rabbitremotecontrol_0.0.1_amd64.deb
+#        sudo apt-get install -y -qq xvfb xpra
+#        sudo Xvfb :99 -ac &
+#        export DISPLAY=:99.0
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" -pf rabbitremotecontrol_0.0.1_amd64.deb -m "v0.0.1"
+        
     - name: update 
       uses: actions/upload-artifact@v2
       with:
@@ -64,7 +77,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         # The files or file patterns to upload. You can upload multiple files by split them by semicolon. You can use the glob pattern to find the files.
-        file: ${{github.workspace}}/rabbitremotecontrol_*.deb # default is 
+        file: ${{github.workspace}}/rabbitremotecontrol_*.deb;${{github.workspace}}/update_*.xml # default is 
         # The files or file patterns to delete before uploading new files. You can delete multiple files by split them by semicolon. You can use the glob pattern to find the files.
         #delete_file: # optional, default is 
         # If you need to overwrite existing files, add overwrite: true to the with.
@@ -83,22 +96,4 @@ jobs:
         tag_name: v0.0.1 # optional, default is 
         # If try to update latest release.
         update_latest_release: true # optional, default is false
-    
-#  build_script:
-#    strategy:
-#      matrix:
-#        os: [Ubuntu-20.04, Ubuntu-18.04]
- 
-#    runs-on: ${{ matrix.os }}
-
-#    steps:
-#    - uses: actions/checkout@v2
-
-#    - name: script
-#      run: |
-#        /bin/bash ./ci/build-install-tools.sh
-#        /bin/bash ./ci/build.sh
-#      env:
-#        BUILD_TARGERT: "unix"
-#        DOWNLOAD_QT: "APT"
-#        GENERATORS: "Unix Makefiles"
+      if: ${{ matrix.BUILD_TYPE == 'Release' }}

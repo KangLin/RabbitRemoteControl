@@ -47,7 +47,7 @@ jobs:
       working-directory: ${{runner.workspace}}/build
       run: |
         set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
-        cmake ${{github.workspace}} -G"MinGW Makefiles" -DQt5_DIR=${{env.Qt5_Dir}}\lib\cmake\Qt5 -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}\build\install -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}\cmake\platforms\toolchain-mingw.cmake
+        cmake ${{github.workspace}} -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DQt5_DIR=${{env.Qt5_Dir}}\lib\cmake\Qt5 -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}\build\install -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}\cmake\platforms\toolchain-mingw.cmake
       env:
         RabbitCommon_DIR: ${{runner.workspace}}\RabbitCommon
         Qt5_Dir: C:\msys64\mingw64
