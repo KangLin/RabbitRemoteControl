@@ -20,9 +20,13 @@ else()
         message("Install libvnc and set vncclient_DIR variable to install root directory")
         return()
     endif()
-    
+
     mark_as_advanced(vncclient_DIR)
+    if(LIBVNC_INCLUDE_DIR)
+        set(INCLUDE_DIR ${LIBVNC_INCLUDE_DIR})
+    endif()
 endif()
+message("vncclient: ${vncclient_FOUND}")
 message("libvnc found: ${LIBVNC_LIB}")
 
 project(LibVnc)
@@ -34,8 +38,8 @@ ENDIF()
 message("LIBVNC_LIB:${LIBVNC_LIB}")
 
 find_package(ZLIB)
-if(ZLIB_FOUND) 
-    list(APPEND LIBVNC_INCLUDE_DIR ${ZLIB_INCLUDE_DIRS})
+if(ZLIB_FOUND)
+    list(APPEND INCLUDE_DIR ${ZLIB_INCLUDE_DIRS})
     list(APPEND LIBVNC_LIB ${ZLIB_LIBRARIES})
 else()
     message("Please set ZLIB_ROOT variable")
@@ -77,17 +81,18 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-if(LIBVNC_INCLUDE_DIR-NOTFOUND)
+message("INCLUDE_DIR:${INCLUDE_DIR}")
+if(INCLUDE_DIR)
     ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${LIBVNC_LIB}
+        PRIVATE_INCLUDE_DIRS ${INCLUDE_DIR}
         )
 else()
     ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${LIBVNC_LIB}
-        PRIVATE_INCLUDE_DIRS ${LIBVNC_INCLUDE_DIR}
         )
 endif()
