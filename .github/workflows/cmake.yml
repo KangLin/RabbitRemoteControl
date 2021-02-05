@@ -76,13 +76,6 @@ jobs:
       working-directory: ${{runner.workspace}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
 
-    - name: Cache Qt
-      id: cache-qt
-      uses: actions/cache@v1
-      with:
-        path: ${{env.TOOSL_DIR}}/qt
-        key: ${{ runner.os }}-QtCache
-        
     - name: Install Qt
       # You may pin to the exact commit or the version.
       # uses: jurplel/install-qt-action@a962fb91949c8e846a3e4a944d50e7ef5cc3a28a
@@ -118,16 +111,22 @@ jobs:
         #py7zrversion: # optional, default is ==0.11.0
         # Any extra arguments to append to the back
         #extra: # optional
+
+    - name: Cache Qt
+      id: cache-qt
+      uses: actions/cache@v1
+      with:
+        path: ${{env.TOOSL_DIR}}/qt
+        key: ${{ runner.os }}-QtCache
         
     - name: build RabbitRemoteControl
       working-directory: ${{runner.workspace}}/build
       env:
         RabbitCommon_DIR: ${{runner.workspace}}/RabbitCommon
       run: |
-        cmake -E make_directory ${{runner.workspace}}/build
-#        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/install -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
-#        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ runner.workspace }}/build/install -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
     - name: Package
       working-directory: ${{runner.workspace}}/build
