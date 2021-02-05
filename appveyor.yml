@@ -1,0 +1,113 @@
+#TODO: Change version
+version: 'v0.0.1.{build}'
+
+cache:
+  - Package
+  
+environment:
+  STOREPASS:
+    secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=
+  QT_USER:
+    secure: EoBPaPuJ6u9UDYpQWjKhUg==
+  QT_PASSWORD:
+    secure: ejAYGgB+3sBispRxUSr0xw==
+
+  matrix:
+  ##### msvc 2015 ########
+  - BUILD_TARGERT: windows_msvc
+    GENERATORS: "Visual Studio 14 2015"
+    TOOLCHAIN_VERSION: 14
+    QT_ROOT: C:\Qt\5.6\msvc2015
+    BUILD_ARCH: x86
+    DOWNLOAD_THIRDLIBS_URL: https://github.com/KangLin/RabbitThirdLibrary/releases/download/v0.3.3/windows_msvc14_x86_Release_qt5.9.9_v0.3.3.zip
+
+#  - BUILD_TARGERT: windows_msvc
+#    GENERATORS: "Visual Studio 14 2015 Win64"
+#    TOOLCHAIN_VERSION: 14
+#    QT_ROOT: C:\Qt\5.6\msvc2015_64
+#    BUILD_ARCH: x64
+#    DOWNLOAD_THIRDLIBS_URL: https://github.com/KangLin/RabbitThirdLibrary/releases/download/v0.3.3/windows_msvc14_x64_Release_qt5.10.1_v0.3.3.zip
+
+matrix:
+  fast_finish: false
+
+init:
+  - set varch=%BUILD_ARCH%
+  - if "%BUILD_ARCH%" == "x64" set varch=amd64
+  - if "%BUILD_TARGERT%" == "windows_msvc" if %TOOLCHAIN_VERSION% LSS 15 (call "C:\Program Files (x86)\Microsoft Visual Studio %TOOLCHAIN_VERSION%.0\VC\vcvarsall.bat" %varch%) else (call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %varch%)  
+  - echo NUMBER_OF_PROCESSORS=%NUMBER_OF_PROCESSORS%
+  - echo PROCESSOR_IDENTIFIER=%PROCESSOR_IDENTIFIER%
+  - if NOT "%QT_ROOT%" == "NO" for /f "delims=" %%i in ('%QT_ROOT%/bin/qmake -query QT_VERSION') do (set QT_VERSION=%%i) 
+  - echo QT_ROOT=%QT_ROOT%
+  - echo QT_VERSION=%QT_VERSION%
+  #- if "%BUILD_TARGERT%" == "windows_mingw" set MSYSTEM=MINGW32  #设置编译系统为MINGW32
+  - del C:\msys64\usr\bin\link.exe
+    
+install:
+before_build:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - mkdir install_thr_dir
+  - set INSTALL_DIR=%APPVEYOR_BUILD_FOLDER%/install_thr_dir
+  - git submodule update --init --recursive
+  - set VCPKG_DIR=%APPVEYOR_BUILD_FOLDER%/vcpkg
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - git clone https://github.com/KangLin/vcpkg.git
+  - cd vcpkg
+  - bootstrap-vcpkg.bat 
+  - vcpkg --triplet=%BUILD_ARCH%-windows install openssl freerdp libssh
+
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - git clone https://github.com/KangLin/libvncserver.git 
+  - cd libvncserver
+  - cmake -E make_directory build
+  - cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
+  
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - git clone https://github.com/KangLin/RabbitCommon.git
+  - set RabbitCommon_DIR=%APPVEYOR_BUILD_FOLDER%/RabbitCommon
+  - mkdir build
+  - cd build
+  - cmake .. -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%cd%/install -DCMAKE_PREFIX_PATH=%INSTALL_DIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install-runtime
+  #- "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
+
+artifacts:
+  #- path: %APPVEYOR_BUILD_FOLDER%\build\RabbitRemoteControl-Setup-*.exe
+  #  name: RabbitRemoteControl_$(appveyor_build_version)
+  #  type: zip
+
+test: off
+
+#See: https://www.appveyor.com/docs/deployment/github/
+deploy:
+  #provider: FTP 
+  #protocol: sftp 
+  #host: frs.sourceforge.net 
+  #username: kl222,rabbitim
+  #密码用这个加密 https://ci.appveyor.com/tools/encrypt
+  #password:
+  #  secure: 2WEtOQrdty3V3g0aEVvS3Q==
+  #folder: pfs  #link pfs to /home/frs/project/r/ra/rabbitim
+  #draft: false
+  #active_mode: false
+  #on:
+    #branch: master
+
+  - provider: GitHub
+    #token : https://github.com/settings/tokens password encrypt: https://ci.appveyor.com/tools/encrypt
+    auth_token:
+      secure: qkX/In6jqYBm72BFWAtLVNsba7y95zev4GR+ZZNmQ1zW7mOXxk71BUxJDDzoJogK
+    #artifact: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
+    #draft: true
+    #prerelease: true
+    force_update: true
+    on:
+      BUILD_TARGERT: windows_msvc
+      TOOLCHAIN_VERSION: 14
+      QT_VERSION: 5.6.3
+      BUILD_ARCH: x86
+      appveyor_repo_tag: true        # deploy on tag push only
