@@ -15,7 +15,14 @@ class CFrmViewer;
 }
 
 /**
- * @brief The CFrmViewer class
+ * @brief 
+ * A widget which displays output image from a CConnect
+ * and sends input keypresses and mouse activity
+ * to the CConnect.
+ *
+ * When the viewer receives new output from the CConnect,
+ * it will update the display by calling slotUpdateRect().
+ *
  * @see  CConnecter CConnect
  * @addtogroup PLUGIN_API
  */
