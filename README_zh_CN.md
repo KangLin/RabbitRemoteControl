@@ -104,6 +104,8 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
   - Android
 * 完成还未支持的协议
 
+### 下载: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
+
 ### [许可协议](License.md "License.md")
 请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)的作者。
 

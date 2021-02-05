@@ -110,6 +110,8 @@ Some of them are:
   - Android
 * Be finished [unsupported protocols](#Supported-protocol)
 
+### Download: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
+
 ### [License Agreement](License.md "License.md")
 
 Please abide by this agreement and the license agreement of [dependent library](#Dependent-libraries), and thank the author of [dependent library](#Dependent-libraries).
