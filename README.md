@@ -54,23 +54,6 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |P2P     |                  |                  |                  |                  |                  |                  |
 
 
-#### Dependent
-##### Tools
-- [x] [Qt](qt.io)
-- [x] c compiler
-  + gcc
-  + MSVC
-- [cmake](https://cmake.org/)
-
-##### Dependent libraries
-- [x] VNC
-  + [x] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
-  + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
-- [x] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
-- [x] [SSH]
-  + [x] [LIBSSH](https://www.libssh.org)
-- [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
-
 ### Donation
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
 
@@ -113,6 +96,46 @@ Some of them are:
 
 ### Download: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
+### Road map
+- [x] Support common existing remote control protocols
+  - [x] Client
+    - [x] Client frame
+    - [x] Specific protocol support, see: [Supported protocol](#Supported-protocol)
+  - [ ] Server
+    - [ ] Server framework
+    - [ ] Specific protocol support, see: [Supported protocol](#Supported-protocol)
+- [ ] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
+
+At present, the development of common remote control protocol client has been completed,
+and it has preliminary practical functions.
+It is necessary for small partners to try it out, find BUG,
+and put forward suggestions that can be more convenient to use in practical applications.
+
+For terminal remote control, because qtermwidget only supports LINUX/UNIX, it needs to support other platforms.
+
+The next level of work is to solve point-to-point remote control,
+which is also a feature of this project.
+See requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7 
+
+### Development
+#### Dependent
+##### Tools
+- [x] [Qt](qt.io)
+- [x] c compiler
+  + gcc
+  + MSVC
+- [cmake](https://cmake.org/)
+
+##### Dependent libraries
+- [x] VNC
+  + [x] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
+  + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
+- [x] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [x] [SSH]
+  + [x] [LIBSSH](https://www.libssh.org)
+- [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
+
 ### [License Agreement](License.md "License.md")
 
-Please abide by this agreement and the license agreement of [dependent library](#Dependent-libraries), and thank the author of [dependent library](#Dependent-libraries).
+Please abide by this agreement and the license agreement of [dependent library](#Dependent-libraries),
+and thank the author of [dependent library](#Dependent-libraries).

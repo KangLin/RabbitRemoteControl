@@ -1,9 +1,9 @@
 #TODO: Change version
-version: 'v0.0.1.{build}'
+version: 'v0.0.2.{build}'
 
 cache:
-  - Package
-  
+  #- other_source
+
 environment:
   STOREPASS:
     secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=
@@ -37,46 +37,54 @@ init:
   - if "%BUILD_TARGERT%" == "windows_msvc" if %TOOLCHAIN_VERSION% LSS 15 (call "C:\Program Files (x86)\Microsoft Visual Studio %TOOLCHAIN_VERSION%.0\VC\vcvarsall.bat" %varch%) else (call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %varch%)  
   - echo NUMBER_OF_PROCESSORS=%NUMBER_OF_PROCESSORS%
   - echo PROCESSOR_IDENTIFIER=%PROCESSOR_IDENTIFIER%
-  - if NOT "%QT_ROOT%" == "NO" for /f "delims=" %%i in ('%QT_ROOT%/bin/qmake -query QT_VERSION') do (set QT_VERSION=%%i) 
+  - if NOT "%QT_ROOT%" == "NO" for /f "delims=" %%i in ('%QT_ROOT%/bin/qmake -query QT_VERSION') do (set QT_VERSION=%%i)
   - echo QT_ROOT=%QT_ROOT%
   - echo QT_VERSION=%QT_VERSION%
   #- if "%BUILD_TARGERT%" == "windows_mingw" set MSYSTEM=MINGW32  #设置编译系统为MINGW32
   - del C:\msys64\usr\bin\link.exe
-    
+
 install:
-before_build:
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - mkdir install_thr_dir
-  - set INSTALL_DIR=%APPVEYOR_BUILD_FOLDER%/install_thr_dir
   - git submodule update --init --recursive
-  - set VCPKG_DIR=%APPVEYOR_BUILD_FOLDER%/vcpkg
-  - cd %APPVEYOR_BUILD_FOLDER%
+
+before_build:
+  - cd %APPVEYOR_BUILD_FOLDER%/..
+  - mkdir other_source
+  - set OTHER_SOURCE=%APPVEYOR_BUILD_FOLDER%/../other_source
+  - cd %OTHER_SOURCE%
+  - mkdir install_dir
+  - set INSTALL_DIR=%OTHER_SOURCE%/install_dir
+
+  - cd %OTHER_SOURCE%
   - git clone https://github.com/KangLin/vcpkg.git
   - cd vcpkg
-  - bootstrap-vcpkg.bat 
+  - set VCPKG_DIR=%CD%
+  - bootstrap-vcpkg.bat
   - vcpkg --triplet=%BUILD_ARCH%-windows install openssl freerdp libssh
 
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - git clone https://github.com/KangLin/libvncserver.git 
+  - cd %OTHER_SOURCE%
+  - git clone https://github.com/KangLin/libvncserver.git
   - cd libvncserver
-  - cmake -E make_directory build
+  - call cmake -E make_directory build
   - cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
-  
-  - cd %APPVEYOR_BUILD_FOLDER%
+
+  - cd %OTHER_SOURCE%
   - git clone https://github.com/KangLin/RabbitCommon.git
-  - set RabbitCommon_DIR=%APPVEYOR_BUILD_FOLDER%/RabbitCommon
+  - set RabbitCommon_DIR=%CD%/RabbitCommon
+
+build_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
   - cmake .. -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%cd%/install -DCMAKE_PREFIX_PATH=%INSTALL_DIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
-  #- "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
+  - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
 
 artifacts:
-  #- path: %APPVEYOR_BUILD_FOLDER%\build\RabbitRemoteControl-Setup-*.exe
+  - path: build\RabbitRemoteControl-Setup-*.exe
   #  name: RabbitRemoteControl_$(appveyor_build_version)
   #  type: zip
 
@@ -104,7 +112,7 @@ deploy:
     #artifact: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
     #draft: true
     #prerelease: true
-    force_update: true
+    force_update: false
     on:
       BUILD_TARGERT: windows_msvc
       TOOLCHAIN_VERSION: 14

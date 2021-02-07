@@ -1,11 +1,11 @@
 name: CMake
 
 on: [push]
-  
+
 jobs:
   use_install_qt:
     name: use install qt ${{ matrix.os }}-${{ matrix.BUILD_TYPE }}
-  
+
     strategy:
       matrix:
         os: [ windows-latest ]
@@ -13,6 +13,8 @@ jobs:
         include:
           - os: windows-latest
             triplet: x64-windows
+          - os: windows-latest
+            triplet: x86-windows
           #- os: ubuntu-latest
           #  triplet: x64-linux
           #- os: macos-latest
@@ -66,13 +68,6 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
 
-    - name: Cache Qt
-      id: cache-qt
-      uses: actions/cache@v1
-      with:
-        path: ${{env.TOOSL_DIR}}/qt
-        key: ${{ runner.os }}-Qt-${{matrix.qt_version}}-Cache
-        
     - name: Install Qt
       # You may pin to the exact commit or the version.
       # uses: jurplel/install-qt-action@a962fb91949c8e846a3e4a944d50e7ef5cc3a28a
@@ -95,7 +90,7 @@ jobs:
         # Force a Qt mirror in case the default is not working
         #mirror: # optional
         # Whether or not to actually download Qt
-        cached: ${{ steps.cache-qt.outputs.cache-hit }} # optional, default is false
+        cached: false # optional, default is false
         # Whether or not to automatically run setup-python to find a valid python version.
         setup-python: false # optional, default is true
         # Qt tools to download--specify comma-separated argument lists which are themselves separated by spaces: <tool_name>,<tool_version>,<tool_arch>
@@ -108,7 +103,7 @@ jobs:
         #py7zrversion: # optional, default is ==0.11.0
         # Any extra arguments to append to the back
         #extra: # optional
-        
+
     - name: build RabbitRemoteControl
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -117,48 +112,50 @@ jobs:
         cd ${{github.workspace}}/build
         cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
     - name: Package
       working-directory: ${{github.workspace}}/build
       shell: cmd
       run: |
         makensis ${{github.workspace}}/build/Install.nsi
-        ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "${{github.workspace}}/build/update_windows.xml" -pf RabbitRemoteControl-Setup-v0.0.1.exe -m "v0.0.1"
-      if: ${{ matrix.os == 'windows-latest' }}
+        ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "${{github.workspace}}/build/update_windows.xml" -pf RabbitRemoteControl-Setup-"v0.0.2".exe -m "v0.0.1"
+      if: ${{ matrix.os == 'windows-latest' &&  matrix.BUILD_TYPE == 'Release' }}
 
     - name: update 
       uses: actions/upload-artifact@v2
       with:
         name: rabbitremotecontrol_${{ matrix.os }}
-        path: ${{github.workspace}}/build/RabbitRemoteControl-Setup-*.exe
-      if: ${{ matrix.os == 'windows-latest' }}
-     
-    - name: Upload To Github Release
-      # You may pin to the exact commit or the version.
-      # uses: xresloader/upload-to-github-release@3ad14478ee4fb9bd65e84c6d496a7d6862892f43
-      uses: xresloader/upload-to-github-release@v1.2.2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        # The files or file patterns to upload. You can upload multiple files by split them by semicolon. You can use the glob pattern to find the files.
-        file: ${{github.workspace}}/build/RabbitRemoteControl-Setup-*.exe;${{github.workspace}}/build/update_*.xml # default is 
-        # The files or file patterns to delete before uploading new files. You can delete multiple files by split them by semicolon. You can use the glob pattern to find the files.
-        #delete_file: # optional, default is 
-        # If you need to overwrite existing files, add overwrite: true to the with.
-        #overwrite: # optional, default is false
-        # The resultant deployment is a draft Release that only repository collaborators can see. This gives you an opportunity to examine and edit the draft release.
-        draft: false # optional, default is true
-        # The resultant deployment is a Prerelease. This gives you an opportunity to examine and edit the prerelease.
-        prerelease: true # optional, default is false
-        # With tags: true, your Releases deployment will trigger if and only if the build is a tagged build.
-        tags: true # optional, default is false
-        # Only work on these branches(splited by semicolon), set to nothing to accept all branches.
-        branches: master # optional, default is 
-        # With verbose: true, be verbose.
-        verbose: true # optional, default is false
-        # Set custom tag name.
-        tag_name: v0.0.1 # optional, default is 
-        # If try to update latest release.
-        update_latest_release: true # optional, default is false
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        path: |
+          ${{github.workspace}}/build/RabbitRemoteControl-Setup-*.exe
+          ${{github.workspace}}/build/update_*.xml
+      if: ${{ matrix.os == 'windows-latest' &&  matrix.BUILD_TYPE == 'Release' }}
+
+#    - name: Upload To Github Release
+#      # You may pin to the exact commit or the version.
+#      # uses: xresloader/upload-to-github-release@3ad14478ee4fb9bd65e84c6d496a7d6862892f43
+#      uses: xresloader/upload-to-github-release@v1.2.2
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      with:
+#        # The files or file patterns to upload. You can upload multiple files by split them by semicolon. You can use the glob pattern to find the files.
+#        file: ${{github.workspace}}/build/RabbitRemoteControl-Setup-*.exe #;${{github.workspace}}/build/update_*.xml # default is 
+#        # The files or file patterns to delete before uploading new files. You can delete multiple files by split them by semicolon. You can use the glob pattern to find the files.
+#        #delete_file: # optional, default is 
+#        # If you need to overwrite existing files, add overwrite: true to the with.
+#        #overwrite: # optional, default is false
+#        # The resultant deployment is a draft Release that only repository collaborators can see. This gives you an opportunity to examine and edit the draft release.
+#        draft: false # optional, default is true
+#        # The resultant deployment is a Prerelease. This gives you an opportunity to examine and edit the prerelease.
+#        prerelease: true # optional, default is false
+#        # With tags: true, your Releases deployment will trigger if and only if the build is a tagged build.
+#        tags: true # optional, default is false
+#        # Only work on these branches(splited by semicolon), set to nothing to accept all branches.
+#        branches: master # optional, default is 
+#        # With verbose: true, be verbose.
+#        verbose: true # optional, default is false
+#        # Set custom tag name.
+#        tag_name: v0.0.1 # optional, default is 
+#        # If try to update latest release.
+#        update_latest_release: true # optional, default is false
+#      if: ${{ matrix.BUILD_TYPE == 'Release' }}

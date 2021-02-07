@@ -35,10 +35,10 @@
 - [x] VNC(虚拟网络控制台): [RFB](https://github.com/rfbproto/rfbproto)
 - [x] 远程桌面协议: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
+- [x] 终端
 - [x] [SSH]()
 - [x] [TELNET]()
 - [ ] 自定义的 P2P 协议
-- [x] 终端
 
 
 |        |Windows           |Unix/linux        |Android           |MAC               |IPHONE            |WINCE             |
@@ -47,27 +47,10 @@
 |RDP     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
 |Spice   |                  |                  |                  |                  |                  |                  |
 |SSH     |                  |:heavy_check_mark:|                  |                  |                  |                  |
-|Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
+|终端     |                  |:heavy_check_mark:|                  |                  |                  |                  |
 |TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
 |P2P     |                  |                  |                  |                  |                  |                  |
 
-
-#### 依赖
-##### 工具
-- [x] [Qt](qt.io)
-- [x] c compiler
-  + gcc
-  + MSVC
-- [cmake](https://cmake.org/)
-
-##### 依赖库
-- [x] [可选] RFB
-  + [x] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
-  + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)
-- [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
-- [x] [SSH]
-  + [x] [LIBSSH](https://www.libssh.org)
-- [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
 
 ### 捐赠
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
@@ -107,6 +90,39 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 ### 下载: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
+### 线路图
+- [x] 支持常见已有远程控制协议
+  - [x] 客户端
+    - [x] 客户端框架
+    - [x] 具体协议支持，详见：[支持协议](#支持协议)
+  - [ ] 服务器
+    - [ ] 服务器框架
+    - [ ] 具体协议支持，详见：[支持协议](#支持协议)
+- [ ] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+
+当前已经完成常见远程控制协议客户端的开发，已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。
+终端类远程控制，因为 qtermwidget 仅支持 LINUX/UNIX ，所以需要让其支持其它平台。
+
+下一级段的工作是解决点对点远程控制，也是本项目的特点。详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+
+### 开发
+#### 依赖
+##### 工具
+- [x] [Qt](qt.io)
+- [x] c compiler
+  + gcc
+  + MSVC
+- [cmake](https://cmake.org/)
+
+##### 依赖库
+- [x] [可选] RFB
+  + [x] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
+  + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)
+- [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [x] [SSH]
+  + [x] [LIBSSH](https://www.libssh.org)
+- [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
+
+
 ### [许可协议](License.md "License.md")
 请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)的作者。
-
