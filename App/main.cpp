@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     // Install translator
     QTranslator tApp;
     tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
-              + QDir::separator() + a.applicationName() + "App_"
+              + QDir::separator() + "RabbitRemoteControlApp_"
               + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
     LOG_MODEL_INFO("Main", "Language: %s", QLocale::system().name().toStdString().c_str());

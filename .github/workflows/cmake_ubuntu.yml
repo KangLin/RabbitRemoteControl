@@ -44,7 +44,7 @@ jobs:
 #        sudo apt-get install -y -qq xvfb xpra
 #        sudo Xvfb :99 -ac &
 #        export DISPLAY=:99.0        
-#        debian/rabbitremotecontrol/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" -pf rabbitremotecontrol_0.0.2_amd64_${{matrix.os}}.deb -m "v0.0.2"
+#        debian/rabbitremotecontrol/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.2_amd64_${{matrix.os}}.deb -m "v0.0.2"
       
 #    - name: copy deb file
 #      run: |
@@ -53,7 +53,7 @@ jobs:
 #        sudo apt-get install -y -qq xvfb xpra
 #        sudo Xvfb :99 -ac &
 #        export DISPLAY=:99.0
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" -pf rabbitremotecontrol_0.0.2_amd64_${{matrix.os}}.deb -m "v0.0.2"
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.1_amd64_${{matrix.os}}.deb -m "v0.0.2"
         
     - name: update 
       uses: actions/upload-artifact@v2
@@ -93,7 +93,7 @@ jobs:
         # With verbose: true, be verbose.
         verbose: true # optional, default is false
         # Set custom tag name.
-        tag_name: 'v0.0.2'
+        #tag_name: 'v0.0.2'
         # If try to update latest release.
-        update_latest_release: true # optional, default is false
+        #update_latest_release: true # optional, default is false
       if: ${{ matrix.BUILD_TYPE == 'Release' }}

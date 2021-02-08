@@ -96,6 +96,12 @@ Some of them are:
 
 ### Download: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
+- Windows: Supported WINDOWS 7 and later version
+  [RabbitRemoteControl-Setup-v0.0.2.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.2/RabbitRemoteControl-Setup-v0.0.2.exe)
+- Ubuntu:
+  + Ubuntu 20.04: [rabbitremotecontrol_0.0.2_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.2/rabbitremotecontrol_0.0.2_amd64_Ubuntu-20.04.deb)
+  + Ubuntu 18.04: [rabbitremotecontrol_0.0.2_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.2/rabbitremotecontrol_0.0.2_amd64_Ubuntu-18.04.deb)
+
 ### Road map
 - [x] Support common existing remote control protocols
   - [x] Client
@@ -127,13 +133,14 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 - [cmake](https://cmake.org/)
 
 ##### Dependent libraries
+- [x] [MUST] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] VNC
-  + [x] [Optional] [libvncserver](https://github.com/LibVNC/libvncserver)
-  + [x] [Optional] [TigerVnc](https://github.com/KangLin/tigervnc)
-- [x] [Optional] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
-- [x] [SSH]
-  + [x] [LIBSSH](https://www.libssh.org)
-- [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
+  + [x] [Optional] libvncserver: https://github.com/LibVNC/libvncserver
+  + [x] [Optional] TigerVnc: https://github.com/KangLin/tigervnc
+- [x] [Optional] FreeRDP: https://github.com/FreeRDP/FreeRDP
+- [x] [Optional] [SSH]
+  + [x] LIBSSH: https://www.libssh.org
+- [x] [Optional] qtermwidget: https://github.com/lxqt/qtermwidget
 
 ### [License Agreement](License.md "License.md")
 

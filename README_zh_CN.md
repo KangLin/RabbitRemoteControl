@@ -90,6 +90,12 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 ### 下载: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
+- Windows: 支持 WINDOWS 7 及以后版本
+  [RabbitRemoteControl-Setup-v0.0.2.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.2/RabbitRemoteControl-Setup-v0.0.2.exe)
+- Ubuntu:
+  + Ubuntu 20.04: [rabbitremotecontrol_0.0.2_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.2/rabbitremotecontrol_0.0.2_amd64_Ubuntu-20.04.deb)
+  + Ubuntu 18.04: [rabbitremotecontrol_0.0.2_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.2/rabbitremotecontrol_0.0.2_amd64_Ubuntu-18.04.deb)
+
 ### 线路图
 - [x] 支持常见已有远程控制协议
   - [x] 客户端
@@ -115,13 +121,14 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [cmake](https://cmake.org/)
 
 ##### 依赖库
+- [x] [必选] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] [可选] RFB
-  + [x] [可选] [libvncserver](https://github.com/LibVNC/libvncserver)
-  + [x] [可选] [TigerVnc](https://github.com/KangLin/tigervnc)
-- [x] [可选] [FreeRDP](https://github.com/FreeRDP/FreeRDP)
-- [x] [SSH]
-  + [x] [LIBSSH](https://www.libssh.org)
-- [x] [qtermwidget](https://github.com/lxqt/qtermwidget)
+  + [x] [可选] libvncserver: https://github.com/LibVNC/libvncserver
+  + [x] [可选] TigerVnc: https://github.com/KangLin/tigervnc
+- [x] [可选] FreeRDP: https://github.com/FreeRDP/FreeRDP
+- [x] [可选] [SSH]
+  + [x] LIBSSH: https://www.libssh.org
+- [x] [可选] qtermwidget: https://github.com/lxqt/qtermwidget
 
 
 ### [许可协议](License.md "License.md")
