@@ -35,17 +35,20 @@ sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/bu
 sed -i "s/^version: '.*{build}'/version: '${VERSION}.{build}'/g" ${SOURCE_DIR}/appveyor.yml
 sed -i "s/BUILD_VERSION:.*/BUILD_VERSION: \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
 #sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/.travis.yml
-sed -i "s/tag_name=.*/tag_name=\"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/cmake_ubuntu.yml
-sed -i "s/tag_name=.*/tag_name=\"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/cmake_mingw.yml
-sed -i "s/tag_name=.*/tag_name=\"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/cmake.yml
-sed -i "s/RabbitRemoteControl-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+.exe/RabbitRemoteControl-Setup-\"${VERSION}\".exe/g" ${SOURCE_DIR}/.github/workflows/cmake.yml
+sed -i "s/tag_name:.*/tag_name: '${VERSION}'/g" ${SOURCE_DIR}/.github/workflows/cmake_ubuntu.yml
+sed -i "s/tag_name:.*/tag_name: '${VERSION}'/g" ${SOURCE_DIR}/.github/workflows/cmake_mingw.yml
+sed -i "s/tag_name:.*/tag_name: '${VERSION}'/g" ${SOURCE_DIR}/.github/workflows/cmake.yml
 
+sed -i "s/RabbitRemoteControl-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+.exe/RabbitRemoteControl-Setup-${VERSION}.exe/g" ${SOURCE_DIR}/.github/workflows/cmake.yml
+sed -i "s/-m \"v[0-9]\+\.[0-9]\+\.[0-9]\+\"/-m \"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/cmake.yml
+sed -i "s/-m \"v[0-9]\+\.[0-9]\+\.[0-9]\+\"/-m \"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/cmake_ubuntu.yml
 sed -i "s/^\Standards-Version:.*/\Standards-Version:\"${VERSION}\"/g" ${SOURCE_DIR}/debian/control
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
 sed -i "s/rabbitremotecontrol (.*)/rabbitremotecontrol (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/debian/changelog
 sed -i "s/Version=.*/Version=${DEBIAN_VERSION}/g" ${SOURCE_DIR}/debian/RabbitRemoteControl.desktop
 sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 #sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
+sed -i "s/rabbitremotecontrol_[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/cmake_ubuntu.yml
 
 MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
 #sed -i "s/android:versionCode=.*android/android:versionCode=\"${MAJOR_VERSION}\" android/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
