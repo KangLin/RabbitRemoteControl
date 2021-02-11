@@ -6,6 +6,9 @@
 #include <QSettings>
 #include <QDebug>
 #include <QtGlobal>
+#if defined(Q_OS_ANDROID)
+    #include <QtAndroid>
+#endif
 
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"

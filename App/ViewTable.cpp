@@ -82,12 +82,6 @@ int CViewTable::RemoveView(QWidget *pView)
     return 0;
 }
 
-QWidget* CViewTable::GetCurrentView()
-{
-    QWidget* pView = m_pTab->currentWidget();
-    return pView;
-}
-
 void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle)
 {
     if(!pView) return;
@@ -139,7 +133,7 @@ int CViewTable::GetViewIndex(QWidget *pView)
     for(int i = 0; i < m_pTab->count(); i++)
     {
         QWidget* p = GetViewer(i);
-        if(GetViewer(i) == pView)
+        if(p == pView)
             return i;
         CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(p);
         if(pScroll)
@@ -147,6 +141,17 @@ int CViewTable::GetViewIndex(QWidget *pView)
                 return i;
     }
     return -1;
+}
+
+// @note The return QWidget* must is same as CConnecter::GetViewer()
+QWidget* CViewTable::GetCurrentView()
+{
+    QWidget* pView = m_pTab->currentWidget();
+    if(!pView) return pView;
+    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(pView);
+    if(pScroll)
+        return pScroll->GetViewer();
+    return pView;
 }
 
 void CViewTable::resizeEvent(QResizeEvent *event)
