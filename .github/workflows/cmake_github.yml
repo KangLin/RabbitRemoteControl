@@ -4,11 +4,11 @@ on: [push]
   
 jobs:
   use_install_qt:
-    name: use install qt
+    name: use install qt script
   
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest] #macos-latest, 
+        os: [windows-latest] #, ubuntu-latest, macos-latest]
         BUILD_TYPE: [Release, Debug]
         qt_version: [5.12.9]
     runs-on: ${{ matrix.os }}
@@ -43,7 +43,7 @@ jobs:
         # Force a Qt mirror in case the default is not working
         #mirror: # optional
         # Whether or not to actually download Qt
-        #cached: # optional, default is false
+        cached: false # optional, default is false
         # Whether or not to automatically run setup-python to find a valid python version.
         setup-python: false # optional, default is true
         # Qt tools to download--specify comma-separated argument lists which are themselves separated by spaces: <tool_name>,<tool_version>,<tool_arch>

@@ -8,17 +8,16 @@ jobs:
 
     strategy:
       matrix:
-        os: [ windows-latest ]
-        # macos-latest, ubuntu-latest]
+        os: [windows-latest, ubuntu-latest, macos-latest]
         include:
           - os: windows-latest
             triplet: x64-windows
           - os: windows-latest
             triplet: x86-windows
-          #- os: ubuntu-latest
-          #  triplet: x64-linux
-          #- os: macos-latest
-          #  triplet: x64-osx
+          - os: ubuntu-latest
+            triplet: x64-linux
+          - os: macos-latest
+            triplet: x64-osx
         BUILD_TYPE: [Release, Debug]
         qt_version: [5.12.9]
     runs-on: ${{ matrix.os }}
@@ -40,6 +39,15 @@ jobs:
         cmake -E make_directory ${{env.TOOSL_DIR}}
         cmake -E make_directory ${{env.INSTALL_DIR}}
 
+    - name: apt helper action in ubuntu
+      uses: ryankurte/action-apt@v0.2.0
+      with:
+        # architectures to pass to dpkg --add-architecture
+        #architectures: # optional
+        # apt packages to install
+        packages: build-essential
+      if: ${{ matrix.os == 'ubuntu-latest' }}
+      
     - name: run-vcpkg
       # You may pin to the exact commit or the version.
       # uses: lukka/run-vcpkg@a1b6a0046a28c09f4bcc8caa9eecec9a8e512152
@@ -47,8 +55,8 @@ jobs:
       with:
         # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
         #setupOnly: # optional
-        vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-        vcpkgGitCommitId: 37b05428f33d148ad849f5c4e4e84ac33d60299a
+        #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
+        vcpkgGitCommitId: 6f42659cb943345f13b325b679e72473b304137b
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
         vcpkgArguments: 'openssl libssh freerdp'
