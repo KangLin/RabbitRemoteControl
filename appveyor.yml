@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v0.0.2.{build}'
+version: 'v0.0.3.{build}'
 
 cache:
   #- other_source
@@ -83,13 +83,13 @@ build_script:
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
   - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
-  #- call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.2.exe -m "v0.0.2"
+  #- call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.3.exe -m "v0.0.3"
 
 artifacts:
   - path: build\RabbitRemoteControl-Setup-*.exe
   - path: build\update_windows.xml
   - path: build\install\.
-    name: RabbitRemoteControl_v0.0.2
+    name: RabbitRemoteControl_v0.0.3
     type: zip
 
 test: off

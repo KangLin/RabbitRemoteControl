@@ -119,7 +119,7 @@ jobs:
       shell: cmd
       run: |
         makensis ${{github.workspace}}/build/Install.nsi
-        ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "${{github.workspace}}/build/update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.2.exe -m "v0.0.2"
+        ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "${{github.workspace}}/build/update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.3.exe -m "v0.0.3"
       if: ${{ matrix.os == 'windows-latest' &&  matrix.BUILD_TYPE == 'Release' }}
 
     - name: update 
@@ -155,7 +155,7 @@ jobs:
 #        # With verbose: true, be verbose.
 #        verbose: true # optional, default is false
 #        # Set custom tag name.
-#        tag_name: 'v0.0.2'
+#        tag_name: 'v0.0.3'
 #        # If try to update latest release.
 #        update_latest_release: true # optional, default is false
 #      if: ${{ matrix.BUILD_TYPE == 'Release' }}
