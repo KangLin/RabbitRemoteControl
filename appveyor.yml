@@ -88,8 +88,9 @@ build_script:
 artifacts:
   - path: build\RabbitRemoteControl-Setup-*.exe
   - path: build\update_windows.xml
-  #  name: RabbitRemoteControl_$(appveyor_build_version)
-  #  type: zip
+  - path: build\install\.
+    name: RabbitRemoteControl_v0.0.2
+    type: zip
 
 test: off
 
