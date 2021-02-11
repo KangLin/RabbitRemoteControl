@@ -252,12 +252,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="46"/>
+        <location filename="../../main.cpp" line="49"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔遠程控制</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="47"/>
+        <location filename="../../main.cpp" line="50"/>
         <source>Kang Lin studio</source>
         <translation>康林工作室</translation>
     </message>

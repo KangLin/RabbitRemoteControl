@@ -16,7 +16,15 @@ CDlgSetFreeRdp::CDlgSetFreeRdp(CConnecterFreeRdp::CParameterFreeRdp *pSettings, 
     ui->cbDesktopSize->addItem("640×480");
     ui->cbDesktopSize->addItem("800×600");
     ui->cbDesktopSize->addItem("1280×720");
-
+    
+    QScreen* pScreen = QApplication::primaryScreen();
+    int width = pScreen->availableGeometry().width();
+    int height = pScreen->availableGeometry().height();
+    QString curSize = QString::number(width) + "×" + QString::number(height);
+    ui->rbFullScreen->setText(tr("Full screen") + ": " + curSize);
+    if(ui->cbDesktopSize->findText(curSize) == -1)
+        ui->cbDesktopSize->addItem(curSize);
+    
     ui->cbColorDepth->addItem(tr("8 bits"), 8);
     ui->cbColorDepth->addItem(tr("16 bits"), 16);
     ui->cbColorDepth->addItem(tr("24 bits"), 24);
@@ -117,6 +125,7 @@ void CDlgSetFreeRdp::on_rbFullScreen_clicked(bool checked)
     int width = pScreen->availableGeometry().width();
     int height = pScreen->availableGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
+    //ui->rbFullScreen->setText(tr("Full screen") + ": " + curSize);
     if(ui->cbDesktopSize->findText(curSize) == -1)
         ui->cbDesktopSize->addItem(curSize);
     ui->cbDesktopSize->setCurrentText(curSize);

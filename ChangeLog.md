@@ -1,3 +1,6 @@
+- v0.0.3
+  + Fix some bugs
+  
 - v0.0.2
   + Modify plugins interface
   + Modify ci
