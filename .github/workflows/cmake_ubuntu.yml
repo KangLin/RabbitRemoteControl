@@ -93,7 +93,7 @@ jobs:
         # With verbose: true, be verbose.
         verbose: true # optional, default is false
         # Set custom tag name.
-        #tag_name: 'v0.0.2'
+        tag_name: 'v0.0.2'
         # If try to update latest release.
         #update_latest_release: true # optional, default is false
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
