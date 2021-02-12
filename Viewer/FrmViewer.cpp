@@ -203,9 +203,13 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 void CFrmViewer::wheelEvent(QWheelEvent *event)
 {
     QWheelEvent e = *event;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    QPointF pos = e.position();
+    if(TranslationMousePoint(e.position(), pos)) return;
+#else
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
-
+#endif
     e = QWheelEvent(pos,
                     event->globalPosF(),
                     event->pixelDelta(),
