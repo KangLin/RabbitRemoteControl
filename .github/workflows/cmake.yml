@@ -8,14 +8,14 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest, macos-latest]
         include:
           - os: windows-latest
             triplet: x64-windows
           - os: windows-latest
             triplet: x86-windows
-          - os: ubuntu-latest
-            triplet: x64-linux
+          #- os: ubuntu-latest
+          #  triplet: x64-linux
           - os: macos-latest
             triplet: x64-osx
         BUILD_TYPE: [Release, Debug]
@@ -127,7 +127,7 @@ jobs:
       shell: cmd
       run: |
         makensis ${{github.workspace}}/build/Install.nsi
-        ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "${{github.workspace}}/build/update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.3.exe -m "v0.0.3"
+        ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "${{github.workspace}}/build/update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.4.exe -m "v0.0.4"
       if: ${{ matrix.os == 'windows-latest' &&  matrix.BUILD_TYPE == 'Release' }}
 
     - name: update 
@@ -163,7 +163,7 @@ jobs:
 #        # With verbose: true, be verbose.
 #        verbose: true # optional, default is false
 #        # Set custom tag name.
-#        tag_name: 'v0.0.3'
+#        tag_name: 'v0.0.4'
 #        # If try to update latest release.
 #        update_latest_release: true # optional, default is false
 #      if: ${{ matrix.BUILD_TYPE == 'Release' }}

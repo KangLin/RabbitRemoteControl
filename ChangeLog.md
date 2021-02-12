@@ -1,3 +1,7 @@
+- v0.0.4
+  + Modify ci
+  + Add send ctl+alt+del
+  
 - v0.0.3
   + Fix some bugs
   

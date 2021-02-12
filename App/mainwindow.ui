@@ -310,7 +310,7 @@
   </action>
   <action name="actionSend_ctl_alt_del">
    <property name="text">
-    <string>Send ctl+alt+del</string>
+    <string>Send Ctl+Alt+Del</string>
    </property>
   </action>
  </widget>

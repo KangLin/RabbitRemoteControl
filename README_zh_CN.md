@@ -91,10 +91,11 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 ### 下载: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
 - Windows: 支持 WINDOWS 7 及以后版本
-  [RabbitRemoteControl-Setup-v0.0.3.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.3/RabbitRemoteControl-Setup-v0.0.3.exe)
+  安装包：[RabbitRemoteControl-Setup-v0.0.4.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.4/RabbitRemoteControl-Setup-v0.0.4.exe)
+  绿色版本：[RabbitRemoteControl_v0.0.4.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.4/RabbitRemoteControl_v0.0.4.zip)
 - Ubuntu:
-  + Ubuntu 20.04: [rabbitremotecontrol_0.0.3_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.3/rabbitremotecontrol_0.0.3_amd64_Ubuntu-20.04.deb)
-  + Ubuntu 18.04: [rabbitremotecontrol_0.0.3_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.3/rabbitremotecontrol_0.0.3_amd64_Ubuntu-18.04.deb)
+  + Ubuntu 20.04: [rabbitremotecontrol_0.0.4_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.4/rabbitremotecontrol_0.0.4_amd64_Ubuntu-20.04.deb)
+  + Ubuntu 18.04: [rabbitremotecontrol_0.0.4_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.4/rabbitremotecontrol_0.0.4_amd64_Ubuntu-18.04.deb)
 
 ### 线路图
 - [x] 支持常见已有远程控制协议
@@ -132,4 +133,4 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 
 ### [许可协议](License.md "License.md")
-请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)的作者。
+请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。
