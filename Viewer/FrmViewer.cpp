@@ -238,6 +238,23 @@ void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
     event->accept();
 }
 
+void CFrmViewer::slotSystemCombination()
+{
+    // Send ctl+alt+del
+    QKeyEvent keyCtl(QKeyEvent::KeyPress, Qt::Key_Control, Qt::NoModifier);
+    emit sigKeyPressEvent(&keyCtl);
+    QKeyEvent keyAlt(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::NoModifier);
+    emit sigKeyPressEvent(&keyAlt);
+    QKeyEvent keyDel(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier);
+    emit sigKeyPressEvent(&keyDel);
+    keyCtl = QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Control, Qt::NoModifier);
+    emit sigKeyPressEvent(&keyCtl);
+    keyAlt = QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Alt, Qt::NoModifier);
+    emit sigKeyPressEvent(&keyAlt);
+    keyDel = QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Delete, Qt::NoModifier);
+    emit sigKeyPressEvent(&keyDel);
+}
+
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
 {
     m_AdaptWindows = aw;

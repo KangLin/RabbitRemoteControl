@@ -30,6 +30,8 @@ private Q_SLOTS:
     void slotCurrentChanged(int index);
     void slotTabCloseRequested(int index);
 
+    virtual void slotSystemCombination();
+    
 private:
     QTabWidget* m_pTab;
 

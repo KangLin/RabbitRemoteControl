@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -55,6 +55,8 @@
     <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatusBar_S"/>
+    <addaction name="separator"/>
+    <addaction name="actionSend_ctl_alt_del"/>
    </widget>
    <widget class="QMenu" name="menuRemote">
     <property name="title">
@@ -304,6 +306,11 @@
   <action name="actionOpenStyle_O">
    <property name="text">
     <string>Open(&amp;O)</string>
+   </property>
+  </action>
+  <action name="actionSend_ctl_alt_del">
+   <property name="text">
+    <string>Send ctl+alt+del</string>
    </property>
   </action>
  </widget>

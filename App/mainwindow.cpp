@@ -441,3 +441,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
     foreach (auto it, m_Connecters)
         it->DisConnect();
 }
+
+void MainWindow::on_actionSend_ctl_alt_del_triggered()
+{
+    if(m_pView)
+        m_pView->slotSystemCombination();
+}

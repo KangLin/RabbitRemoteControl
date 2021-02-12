@@ -55,6 +55,15 @@ void CViewTable::slotTabCloseRequested(int index)
         emit sigCloseView(pView);
 }
 
+void CViewTable::slotSystemCombination()
+{
+    QWidget* pView = GetCurrentView();
+    if(!pView) return;
+    CFrmViewer* pFrmViewer = qobject_cast<CFrmViewer*>(pView);
+    if(pFrmViewer)
+        pFrmViewer->slotSystemCombination();
+}
+
 int CViewTable::AddView(QWidget *pView)
 {
     int nIndex = -1;

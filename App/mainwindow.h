@@ -53,6 +53,8 @@ private Q_SLOTS:
     void on_actionOpenStyle_O_triggered();
     void on_actionDefaultStyle_D_triggered();
     
+    void on_actionSend_ctl_alt_del_triggered();
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
