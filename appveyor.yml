@@ -2,7 +2,7 @@
 version: 'v0.0.4.{build}'
 
 cache:
-  #- other_source
+  - ..\other_source
 
 environment:
   STOREPASS:
@@ -11,18 +11,22 @@ environment:
     secure: EoBPaPuJ6u9UDYpQWjKhUg==
   QT_PASSWORD:
     secure: ejAYGgB+3sBispRxUSr0xw==
-
+  APPVEYOR_RDP_PASSWORD:
+    secure: PUmp7039ro52579dlxAk59tjpeeyiFbdWvHfLCkjF5c=
+    
   matrix:
   ##### msvc 2015 ########   
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     GENERATORS: "Visual Studio 15 2017"
     TOOLCHAIN_VERSION: 15
+    VCPKG_PLATFORM_TOOLSET: v141
     QT_ROOT: C:\Qt\5.12\msvc2017
     BUILD_ARCH: x86
 
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATORS: "Visual Studio 14 2015"
     TOOLCHAIN_VERSION: 14
+    VCPKG_PLATFORM_TOOLSET: v140
     QT_ROOT: C:\Qt\5.6\msvc2015
     BUILD_ARCH: x86
 
@@ -35,6 +39,7 @@ matrix:
   fast_finish: false
 
 init:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - set varch=%BUILD_ARCH%
   - if "%BUILD_ARCH%" == "x64" set varch=amd64
   - if %TOOLCHAIN_VERSION% LSS 15 (call "C:\Program Files (x86)\Microsoft Visual Studio %TOOLCHAIN_VERSION%.0\VC\vcvarsall.bat" %varch%) else (call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %varch%)  
@@ -49,32 +54,39 @@ install:
   - git submodule update --init --recursive
 
 before_build:
-  - cd %APPVEYOR_BUILD_FOLDER%/..
-  - mkdir other_source
-  - set OTHER_SOURCE=%APPVEYOR_BUILD_FOLDER%/../other_source
+  - set OTHER_SOURCE="%APPVEYOR_BUILD_FOLDER%/../other_source"
+  - set INSTALL_DIR="%OTHER_SOURCE%/install_dir"
+  - set VCPKG_DIR="%OTHER_SOURCE%/vcpkg"
+  - if not exist "%OTHER_SOURCE%" ( mkdir %OTHER_SOURCE% )
   - cd %OTHER_SOURCE%
-  - mkdir install_dir
-  - set INSTALL_DIR=%OTHER_SOURCE%/install_dir
+  - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
+  - cd %OTHER_SOURCE%
+
+  - cmd: |
+      if not exist "%OTHER_SOURCE%\vcpkg" ( ^
+          git clone "https://github.com/KangLin/vcpkg.git" ^
+          cd vcpkg & bootstrap-vcpkg.bat ^
+          vcpkg --triplet %BUILD_ARCH%-windows install openssl freerdp libssh ^
+          )
+
+  - cd "%OTHER_SOURCE%"
+  - cmd: |
+      if not exist libvncserver (
+          git clone "https://github.com/KangLin/libvncserver.git"
+          cd libvncserver
+          cmake -E make_directory build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
+          cmake --build . --config Release
+          cmake --build . --config Release --target install
+      )
 
   - cd %OTHER_SOURCE%
-  - git clone https://github.com/KangLin/vcpkg.git
-  - cd vcpkg
-  - set VCPKG_DIR=%CD%
-  - bootstrap-vcpkg.bat
-  - vcpkg --triplet=%BUILD_ARCH%-windows install openssl freerdp libssh
-
-  - cd %OTHER_SOURCE%
-  - git clone https://github.com/KangLin/libvncserver.git
-  - cd libvncserver
-  - call cmake -E make_directory build
-  - cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
-  - cmake --build . --config Release
-  - cmake --build . --config Release --target install
-
-  - cd %OTHER_SOURCE%
-  - git clone https://github.com/KangLin/RabbitCommon.git
-  - set RabbitCommon_DIR=%CD%/RabbitCommon
+  - set RabbitCommon_DIR="%OTHER_SOURCE%/RabbitCommon"
+  - |
+      if not exist RabbitCommon (
+          git clone "https://github.com/KangLin/RabbitCommon.git"
+      )
 
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
