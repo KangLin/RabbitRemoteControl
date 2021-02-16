@@ -54,44 +54,36 @@ install:
   - git submodule update --init --recursive
 
 before_build:
-  - set OTHER_SOURCE="%APPVEYOR_BUILD_FOLDER%/../other_source"
-  - set INSTALL_DIR="%OTHER_SOURCE%/install_dir"
-  - set VCPKG_DIR="%OTHER_SOURCE%/vcpkg"
-  - if not exist "%OTHER_SOURCE%" ( mkdir %OTHER_SOURCE% )
+  - set OTHER_SOURCE=%APPVEYOR_BUILD_FOLDER%/../other_source
+  - set INSTALL_DIR=%OTHER_SOURCE%/install_dir
+  - set VCPKG_DIR=%OTHER_SOURCE%/vcpkg
+  - if not exist "%OTHER_SOURCE%" ( mkdir "%OTHER_SOURCE%" )
   - cd %OTHER_SOURCE%
   - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
   - cd %OTHER_SOURCE%
-  - cmd: >-
-      if not exist vcpkg ( ^
-          git clone "https://github.com/KangLin/vcpkg.git" ^
-          cd vcpkg & bootstrap-vcpkg.bat ^
-          vcpkg --triplet %BUILD_ARCH%-windows install openssl freerdp libssh ^
-      )
-      
+  - if not exist vcpkg (git clone "https://github.com/KangLin/vcpkg.git")
+  - cd vcpkg
+  - bootstrap-vcpkg.bat
+  - vcpkg --triplet %BUILD_ARCH%-windows install openssl freerdp libssh
+
   - cd "%OTHER_SOURCE%"
-  - cmd: >-
-      if not exist libvncserver (
-          git clone "https://github.com/KangLin/libvncserver.git"
-          cd libvncserver
-          cmake -E make_directory build
-          cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
-          cmake --build . --config Release
-          cmake --build . --config Release --target install
-      )
+  - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")
+  - cd libvncserver
+  - cmake -E make_directory build
+  - cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
 
-  - cd %OTHER_SOURCE%
-  - set RabbitCommon_DIR="%OTHER_SOURCE%/RabbitCommon"
-  - cmd: >-
-      if not exist RabbitCommon (
-          git clone "https://github.com/KangLin/RabbitCommon.git"
-      )
-
+  - cd "%OTHER_SOURCE%"
+  - if not exist RabbitCommon (git clone "https://github.com/KangLin/RabbitCommon.git")
+  - set RabbitCommon_DIR=%OTHER_SOURCE%/RabbitCommon
+  
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake .. -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%cd%/install -DCMAKE_PREFIX_PATH=%INSTALL_DIR% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
+  - cmake .. -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
   - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
