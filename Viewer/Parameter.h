@@ -20,7 +20,7 @@ public:
     explicit CParameter(QObject *parent = nullptr);
 
     QString szHost;
-    qint16 nPort;
+    quint16 nPort;
     
     QString szUser;
     QString szPassword;
