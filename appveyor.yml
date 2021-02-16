@@ -39,7 +39,7 @@ matrix:
   fast_finish: false
 
 init:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - set varch=%BUILD_ARCH%
   - if "%BUILD_ARCH%" == "x64" set varch=amd64
   - if %TOOLCHAIN_VERSION% LSS 15 (call "C:\Program Files (x86)\Microsoft Visual Studio %TOOLCHAIN_VERSION%.0\VC\vcvarsall.bat" %varch%) else (call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" %varch%)  
@@ -61,16 +61,15 @@ before_build:
   - cd %OTHER_SOURCE%
   - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
   - cd %OTHER_SOURCE%
-
-  - cmd: |
-      if not exist "%OTHER_SOURCE%\vcpkg" ( ^
+  - cmd: >-
+      if not exist vcpkg ( ^
           git clone "https://github.com/KangLin/vcpkg.git" ^
           cd vcpkg & bootstrap-vcpkg.bat ^
           vcpkg --triplet %BUILD_ARCH%-windows install openssl freerdp libssh ^
-          )
-
+      )
+      
   - cd "%OTHER_SOURCE%"
-  - cmd: |
+  - cmd: >-
       if not exist libvncserver (
           git clone "https://github.com/KangLin/libvncserver.git"
           cd libvncserver
@@ -83,7 +82,7 @@ before_build:
 
   - cd %OTHER_SOURCE%
   - set RabbitCommon_DIR="%OTHER_SOURCE%/RabbitCommon"
-  - |
+  - cmd: >-
       if not exist RabbitCommon (
           git clone "https://github.com/KangLin/RabbitCommon.git"
       )
