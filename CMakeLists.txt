@@ -76,6 +76,7 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
 endif()
 get_filename_component(QT_INSTALL_DIR "${Qt${QT_VERSION_MAJOR}_DIR}/../../.." ABSOLUTE)
 message("QT_INSTALL_DIR:${QT_INSTALL_DIR}")
+message("QT_LIBRARIES:${QT_LIBRARIES}")
 
 #打开 qt 编译工具
 SET(CMAKE_AUTOUIC ON)

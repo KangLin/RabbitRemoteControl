@@ -67,7 +67,7 @@ before_build:
   - vcpkg --triplet %BUILD_ARCH%-windows install openssl freerdp libssh
 
   - cd "%OTHER_SOURCE%"
-  - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")
+  - if not exist libvncserver (git clone -b LibVNCServer-0.9.13 "https://github.com/KangLin/libvncserver.git")
   - cd libvncserver
   - cmake -E make_directory build
   - cd build

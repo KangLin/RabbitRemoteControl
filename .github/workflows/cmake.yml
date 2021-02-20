@@ -64,7 +64,7 @@ jobs:
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        git clone https://github.com/KangLin/libvncserver.git 
+        git clone -b LibVNCServer-0.9.13 https://github.com/KangLin/libvncserver.git 
         cd ${{env.SOURCE_DIR}}/libvncserver
         cmake -E make_directory build
         cd build
