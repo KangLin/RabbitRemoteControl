@@ -77,6 +77,7 @@ void MainWindow::on_actionAbout_A_triggered()
 {
     CDlgAbout about(this);
     about.m_AppIcon = QImage(":/image/App");
+    about.m_szCopyrightStartTime = "2020";
     if(about.isHidden())
 #if defined (Q_OS_ANDROID)
         about.showMaximized();
