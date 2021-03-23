@@ -147,3 +147,18 @@ void CDlgSettingsLibVnc::on_cbJPEG_stateChanged(int arg1)
     m_pPara->bJpeg = arg1;
     ui->spJPEGLevel->setEnabled(m_pPara->bJpeg);
 }
+
+void CDlgSettingsLibVnc::on_pbShow_clicked()
+{
+    switch(ui->lePassword->echoMode())
+    {
+    case QLineEdit::Password:
+        ui->lePassword->setEchoMode(QLineEdit::Normal);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOff"));
+        break;
+    case QLineEdit::Normal:
+        ui->lePassword->setEchoMode(QLineEdit::Password);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOn"));
+        break;
+    }
+}

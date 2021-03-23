@@ -92,6 +92,23 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="pbShow">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../../../App/Resource/Resource.qrc">
+             <normaloff>:/image/EyeOn</normaloff>:/image/EyeOn</iconset>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item row="3" column="0" colspan="2">
@@ -398,6 +415,8 @@
   <tabstop>spJPEGLevel</tabstop>
   <tabstop>tabWidget</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../../../App/Resource/Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

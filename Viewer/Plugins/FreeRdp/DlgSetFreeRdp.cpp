@@ -157,3 +157,18 @@ int CDlgSetFreeRdp::InsertDesktopSize(int width, int height)
     
     return 0;
 }
+
+void CDlgSetFreeRdp::on_pbShow_clicked()
+{
+    switch(ui->lePassword->echoMode())
+    {
+    case QLineEdit::Password:
+        ui->lePassword->setEchoMode(QLineEdit::Normal);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOff"));
+        break;
+    case QLineEdit::Normal:
+        ui->lePassword->setEchoMode(QLineEdit::Password);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOn"));
+        break;
+    }
+}

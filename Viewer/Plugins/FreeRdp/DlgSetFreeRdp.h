@@ -24,6 +24,8 @@ private slots:
     void on_pbCancel_clicked();
     void on_rbFullScreen_clicked(bool checked);
     
+    void on_pbShow_clicked();
+    
 private:
     int InsertDesktopSize(int width, int height);
     

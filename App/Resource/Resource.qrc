@@ -18,7 +18,9 @@
         <file alias="Skin">Image/skin.png</file>
         <file alias="Console">Image/Console.png</file>
         <file alias="SSH">Image/ssh.png</file>
-        <file>Image/remote.png</file>
+        <file alias="Remote">Image/remote.png</file>
         <file alias="Windows">Image/windows.png</file>
+        <file alias="EyeOff">Image/EyeOff.png</file>
+        <file alias="EyeOn">Image/EyeOpen.png</file>
     </qresource>
 </RCC>

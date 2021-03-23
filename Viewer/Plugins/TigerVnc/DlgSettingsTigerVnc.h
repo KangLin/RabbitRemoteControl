@@ -28,6 +28,8 @@ private slots:
     
     void on_cbJPEG_stateChanged(int arg1);
     
+    void on_pbShow_clicked();
+    
 private:
     Ui::CDlgSettingsTigerVnc *ui;
     CConnectTigerVnc::strPara* m_pPara;

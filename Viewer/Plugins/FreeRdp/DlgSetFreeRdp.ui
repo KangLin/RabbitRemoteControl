@@ -109,6 +109,17 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="pbShow">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../../../App/Resource/Resource.qrc">
+             <normaloff>:/image/EyeOn</normaloff>:/image/EyeOn</iconset>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item row="6" column="0">
@@ -283,6 +294,8 @@
   <tabstop>cbColorDepth</tabstop>
   <tabstop>tabWidget</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../../../App/Resource/Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

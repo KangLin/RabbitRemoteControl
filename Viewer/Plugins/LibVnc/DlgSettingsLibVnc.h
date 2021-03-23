@@ -27,6 +27,8 @@ private slots:
     void on_cbCompress_stateChanged(int arg1);
     void on_cbJPEG_stateChanged(int arg1);
     
+    void on_pbShow_clicked();
+    
 private:
     Ui::CDlgSettingsLibVnc *ui;
     CConnectLibVnc::strPara* m_pPara;

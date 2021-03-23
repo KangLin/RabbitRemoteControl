@@ -182,3 +182,18 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
         ui->spJPEGLevel->setEnabled(!m_pPara->bNoJpeg);
     }
 }
+
+void CDlgSettingsTigerVnc::on_pbShow_clicked()
+{
+    switch(ui->lePassword->echoMode())
+    {
+    case QLineEdit::Password:
+        ui->lePassword->setEchoMode(QLineEdit::Normal);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOff"));
+        break;
+    case QLineEdit::Normal:
+        ui->lePassword->setEchoMode(QLineEdit::Password);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOn"));
+        break;
+    }
+}
