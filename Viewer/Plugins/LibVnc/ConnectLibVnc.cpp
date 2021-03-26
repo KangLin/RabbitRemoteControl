@@ -297,7 +297,8 @@ int CConnectLibVnc::OnSize()
     
 	m_pClient->frameBuffer = m_Image.bits();
 
-	m_pClient->format.bitsPerPixel = m_Image.depth();
+    m_pClient->format.bitsPerPixel = 32;
+	m_pClient->format.depth = m_Image.depth();
 	m_pClient->format.redShift = 16;
 	m_pClient->format.greenShift = 8;
 	m_pClient->format.blueShift = 0;
@@ -321,7 +322,8 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
                                          int width, int height,
                                          int bytesPerPixel)
 {
-    /*LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
+    /*
+    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
                     xhot, yhot, width, height, bytesPerPixel);//*/
     if(!client->rcSource)
     {
@@ -335,8 +337,8 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
         memset(buffer, 0, 4);
         emit pThis->sigUpdateCursor(QCursor(QPixmap::fromImage(cursor), xhot, yhot));
     } else {
-        switch (client->format.bitsPerPixel) {
-        case 32:
+        switch (bytesPerPixel) {
+        case 4:
         {
             QImage cursor(width, height, QImage::Format_ARGB32);
             uchar *buffer = cursor.bits();
@@ -344,16 +346,23 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
             uchar* pMask = client->rcMask;
             if(pMask)
             {
+                uchar* pDest = buffer;
                 for(int y = 0; y < height; y++)
                 {
-                    uchar* pDest = buffer;
-                    uchar* pSrc = buffer;
                     for(int w = 0; w < width; w++)
                     {
-                        if(!*pMask++)
-                            *pDest = 0;
+                        if(*pMask++)
+                        {
+                            //NOTE: Do not manipulate the memory,
+                            //      because the host byte order may be different
+                            QColor c = cursor.pixel(w, y);
+                            c.setAlpha(0xff);
+                            cursor.setPixelColor(w,y,c);
+                        }
+                        else
+                            *((uint32_t*)pDest) = 0;
+                        
                         pDest += 4;
-                        pSrc += 4;
                     }
                 }
             }
