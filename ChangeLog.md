@@ -1,3 +1,8 @@
+- v0.0.5
+  + FIX: LibVnc cursor bug
+  + Support Qt6
+  + FIX: Port range bug
+
 - v0.0.4
   + Modify ci
   + Add send ctl+alt+del
