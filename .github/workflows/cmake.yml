@@ -12,14 +12,14 @@ jobs:
         include:
           - os: windows-latest
             triplet: x64-windows
-          - os: windows-latest
-            triplet: x86-windows
+          #- os: windows-latest
+          #  triplet: x86-windows
           #- os: ubuntu-latest
           #  triplet: x64-linux
           - os: macos-latest
             triplet: x64-osx
         BUILD_TYPE: [Release, Debug]
-        qt_version: [5.12.9]
+        qt_version: [5.12.10]
     runs-on: ${{ matrix.os }}
 
     env:
@@ -88,23 +88,23 @@ jobs:
         # Host platform
         #host: linux # optional
         # Target platform for build
-        target: desktop # optional, default is desktop
+        #target: desktop # optional, default is desktop
         # Architecture for Windows/Android
         #arch: # optional
         # Whether or not to install Qt dependencies on Linux
-        install-deps: true # optional, default is true
+        #install-deps: true # optional, default is true
         # Additional Qt modules to install
         modules: none # optional
         # Force a Qt mirror in case the default is not working
         #mirror: # optional
         # Whether or not to actually download Qt
-        cached: false # optional, default is false
+        #cached: false # optional, default is false
         # Whether or not to automatically run setup-python to find a valid python version.
-        setup-python: false # optional, default is true
+        #setup-python: false # optional, default is true
         # Qt tools to download--specify comma-separated argument lists which are themselves separated by spaces: <tool_name>,<tool_version>,<tool_arch>
         #tools: # optional
         # Whether or not to actually install Qt or just the tools from the tools argument
-        tools-only: false # optional, default is false
+        #tools-only: false # optional, default is false
         # Version of aqtinstall to use in case of issues
         #aqtversion: # optional, default is ==0.10.0
         # Version of py7zr to use in case of issues
