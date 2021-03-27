@@ -61,7 +61,8 @@ jobs:
       with:
           name: rabbitremotecontrol_${{ matrix.os }}
           path: rabbitremotecontrol_*.deb
-
+      if: ${{ matrix.BUILD_TYPE == 'Release' }} 
+     
     #- name: Release
     #  uses: fnkr/github-action-ghr@v1
     #  if: startsWith(github.ref, 'refs/tags/')
@@ -97,4 +98,4 @@ jobs:
         tag_name: 'v0.0.5'
         # If try to update latest release.
         #update_latest_release: true # optional, default is false
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }} 
