@@ -32,7 +32,7 @@
 如果你想为本人捐赠开发设备，请联系：(QQ：16614119)
 
 #### 支持协议
-- [x] VNC(虚拟网络控制台): [RFB](https://github.com/rfbproto/rfbproto)
+- [x] VNC（虚拟网络计算）: [RFB("remote framebuffer")](https://github.com/rfbproto/rfbproto)
 - [x] 远程桌面协议: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 - [x] 终端

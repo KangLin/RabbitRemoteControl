@@ -34,7 +34,7 @@ Interested and capable friends are welcome to participate in the development of 
 If you want to donate the developed devices for me, please contact: (email: kl222@126.com)
 
 #### Supported protocol
-- [x] VNC(Virtual network console): [RFB](https://github.com/rfbproto/rfbproto)
+- [x] VNC (Virtual Network Computing): [RFB("remote framebuffer")](https://github.com/rfbproto/rfbproto)
 - [x] Remote desktop protocol: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 - [x] [SSH]()
