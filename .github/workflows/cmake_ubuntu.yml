@@ -40,21 +40,21 @@ jobs:
         RabbitCommon_DIR: ${{runner.workspace}}/RabbitCommon
       run: |
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
-        cp ../rabbitremotecontrol_0.0.4_amd64.deb rabbitremotecontrol_0.0.4_amd64_${{matrix.os}}.deb
+        cp ../rabbitremotecontrol_0.0.5_amd64.deb rabbitremotecontrol_0.0.5_amd64_${{matrix.os}}.deb
 #        sudo apt-get install -y -qq xvfb xpra
 #        sudo Xvfb :99 -ac &
 #        export DISPLAY=:99.0
-#        sudo dpkg -i ../rabbitremotecontrol_0.0.4_amd64.deb
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.4_amd64_${{matrix.os}}.deb -m "v0.0.4"
+#        sudo dpkg -i ../rabbitremotecontrol_0.0.5_amd64.deb
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.5_amd64_${{matrix.os}}.deb -m "v0.0.5"
       
 #    - name: copy deb file
 #      run: |
 #        cp ../rabbitremotecontrol_*.deb .
-#        sudo dpkg -i rabbitremotecontrol_0.0.4_amd64.deb
+#        sudo dpkg -i rabbitremotecontrol_0.0.5_amd64.deb
 #        sudo apt-get install -y -qq xvfb xpra
 #        sudo Xvfb :99 -ac &
 #        export DISPLAY=:99.0
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.4_amd64_${{matrix.os}}.deb -m "v0.0.4"
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.5_amd64_${{matrix.os}}.deb -m "v0.0.5"
         
     - name: update 
       uses: actions/upload-artifact@v2
@@ -94,7 +94,7 @@ jobs:
         # With verbose: true, be verbose.
         verbose: true # optional, default is false
         # Set custom tag name.
-        tag_name: 'v0.0.4'
+        tag_name: 'v0.0.5'
         # If try to update latest release.
         #update_latest_release: true # optional, default is false
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
