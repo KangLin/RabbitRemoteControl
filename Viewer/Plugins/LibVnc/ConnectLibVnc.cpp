@@ -215,7 +215,7 @@ int CConnectLibVnc::SetParamter(void*)
 
 rfbBool CConnectLibVnc::cb_resize(rfbClient* client)
 {
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_resize");
+    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_resize");
     CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
     if(pThis->OnSize()) return FALSE;
     return TRUE;
