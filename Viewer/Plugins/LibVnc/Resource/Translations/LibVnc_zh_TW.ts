@@ -19,7 +19,7 @@
         <translation>服務器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="147"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="158"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
@@ -54,37 +54,37 @@
         <translation>允許剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="157"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="168"/>
         <source>Compress</source>
         <translation>壓縮</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="182"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="193"/>
         <source>0=fast, 9=best</source>
         <translation>0=最快，9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="193"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="204"/>
         <source>Enable JPEG compress</source>
         <translation>允許 JPEG 壓縮</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="207"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="218"/>
         <source>0=Worst, 9=best</source>
         <translation>0=最差,9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="163"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="174"/>
         <source>Compress level:</source>
         <translation>壓縮級別：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="248"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="259"/>
         <source>Ok(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="255"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="266"/>
         <source>Cancle(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>

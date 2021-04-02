@@ -103,7 +103,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="176"/>
-        <location filename="../../mainwindow.cpp" line="122"/>
+        <location filename="../../mainwindow.cpp" line="123"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -159,8 +159,8 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="313"/>
-        <source>Send ctl+alt+del</source>
-        <translation>发送 ctl+alt+del</translation>
+        <source>Send Ctl+Alt+Del</source>
+        <translation>发送 Ctl+Alt+Del</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="67"/>
@@ -215,41 +215,41 @@
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="123"/>
         <location filename="../../mainwindow.cpp" line="124"/>
         <location filename="../../mainwindow.cpp" line="125"/>
+        <location filename="../../mainwindow.cpp" line="126"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="148"/>
+        <location filename="../../mainwindow.cpp" line="149"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="149"/>
         <location filename="../../mainwindow.cpp" line="150"/>
         <location filename="../../mainwindow.cpp" line="151"/>
+        <location filename="../../mainwindow.cpp" line="152"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="239"/>
+        <location filename="../../mainwindow.cpp" line="240"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="241"/>
+        <location filename="../../mainwindow.cpp" line="242"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="334"/>
+        <location filename="../../mainwindow.cpp" line="335"/>
         <source>Connecting to </source>
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="328"/>
+        <location filename="../../mainwindow.cpp" line="329"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
