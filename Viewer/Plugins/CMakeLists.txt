@@ -1,7 +1,12 @@
 # Author: Kang Lin (kl222@126.com)
 
 add_subdirectory(TigerVnc)
-add_subdirectory(FreeRdp)
+
+option(BUILD_FREERDP "Build freerdp plugin" OFF)
+if(BUILD_FREERDP)
+    add_subdirectory(FreeRdp)
+endif()
+
 add_subdirectory(LibVnc)
 
 
