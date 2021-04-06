@@ -5,6 +5,10 @@
 #include "ConnectThread.h"
 #include "RabbitCommonLog.h"
 
+#ifdef BUILD_QUIWidget
+    #include "QUIWidget/QUIWidget.h"
+#endif
+
 CConnecterPlugins::CConnecterPlugins(CPluginFactory *parent)
     : CConnecter(parent),
       m_bExit(false),
@@ -176,11 +180,21 @@ int CConnecterPlugins::OnSave(QDataStream& d)
 int CConnecterPlugins::OpenDialogSettings(QWidget *parent)
 {
     int nRet = -1;
-    QDialog* pDlg = GetDialogSettings(parent);
-    if(pDlg)
+    QDialog* p = GetDialogSettings(parent);
+    if(p)
     {
-        pDlg->setAttribute(Qt::WA_DeleteOnClose);
-        nRet = pDlg->exec();
+#ifdef BUILD_QUIWidget
+        QUIWidget* quiwidget = new QUIWidget();
+        quiwidget->setMainWidget(p);
+        bool check = connect(p, SIGNAL(accepted()), quiwidget, SLOT(accept()));
+        Q_ASSERT(check);
+        check = connect(p, SIGNAL(rejected()), quiwidget, SLOT(reject()));
+        Q_ASSERT(check);
+        p = quiwidget;
+#endif
+        
+        p->setAttribute(Qt::WA_DeleteOnClose);
+        nRet = p->exec();
     } else {
         LOG_MODEL_ERROR("CConnecter",  "The protol[%s] don't settings dialog", Protol().toStdString().c_str());
     }

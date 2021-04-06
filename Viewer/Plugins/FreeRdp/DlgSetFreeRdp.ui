@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Set FreeRdp</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../../App/Resource/Resource.qrc">
+    <normaloff>:/image/App</normaloff>:/image/App</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_4">

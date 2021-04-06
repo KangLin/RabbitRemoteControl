@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Setting LibVnc</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../../App/Resource/Resource.qrc">
+    <normaloff>:/image/App</normaloff>:/image/App</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
