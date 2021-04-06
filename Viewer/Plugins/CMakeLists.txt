@@ -2,7 +2,7 @@
 
 add_subdirectory(TigerVnc)
 
-option(BUILD_FREERDP "Build freerdp plugin" OFF)
+option(BUILD_FREERDP "Build freerdp plugin" ON)
 if(BUILD_FREERDP)
     add_subdirectory(FreeRdp)
 endif()
