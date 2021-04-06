@@ -5,6 +5,9 @@
 #include "FrmUpdater/FrmUpdater.h"
 #include "RabbitCommonDir.h"
 #include "DlgAbout/DlgAbout.h"
+#ifdef BUILD_QUIWidget
+    #include "QUIWidget/QUIWidget.h"
+#endif
 
 #include "Connecter.h"
 #include "FrmFullScreenToolBar.h"
@@ -75,14 +78,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionAbout_A_triggered()
 {
-    CDlgAbout about(this);
-    about.m_AppIcon = QImage(":/image/App");
-    about.m_szCopyrightStartTime = "2020";
-    if(about.isHidden())
-#if defined (Q_OS_ANDROID)
-        about.showMaximized();
+    CDlgAbout *about = new CDlgAbout(this);
+    about->m_AppIcon = QImage(":/image/App");
+    about->m_szCopyrightStartTime = "2020";
+    if(about->isHidden())
+    {
+#ifdef BUILD_QUIWidget
+    QUIWidget quiwidget;
+    quiwidget.setMainWidget(about);
+    #if defined (Q_OS_ANDROID)
+        quiwidget.showMaximized();
+    #endif
+        quiwidget.exec();
+#else
+    #if defined (Q_OS_ANDROID)
+        about->showMaximized();
+    #endif
+        about->exec();
 #endif
-        about.exec();    
+    }
 }
 
 void MainWindow::on_actionUpdate_U_triggered()
@@ -90,11 +104,21 @@ void MainWindow::on_actionUpdate_U_triggered()
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
     m_pfrmUpdater->SetTitle(QImage(":/image/App"));
     m_pfrmUpdater->SetInstallAutoStartup();
-#if defined (Q_OS_ANDROID)
-    m_pfrmUpdater->showMaximized();
+#ifdef BUILD_QUIWidget
+    QUIWidget* pQuiwidget = new QUIWidget(nullptr, true);
+    pQuiwidget->setMainWidget(m_pfrmUpdater);
+    #if defined (Q_OS_ANDROID)
+        pQuiwidget->showMaximized();
+    #else
+        pQuiwidget->show();
+    #endif 
 #else
-    m_pfrmUpdater->show();
-#endif   
+    #if defined (Q_OS_ANDROID)
+        m_pfrmUpdater->showMaximized();
+    #else
+        m_pfrmUpdater->show();
+    #endif 
+#endif
 }
 
 void MainWindow::on_actionStatusBar_S_triggered()

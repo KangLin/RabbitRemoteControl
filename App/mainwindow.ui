@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Rabbit Remote Control</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="Resource/Resource.qrc">
+    <normaloff>:/image/App</normaloff>:/image/App</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

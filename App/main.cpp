@@ -14,6 +14,9 @@
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 #include "FrmUpdater/FrmUpdater.h"
+#ifdef BUILD_QUIWidget
+    #include "QUIWidget/QUIWidget.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -57,10 +60,25 @@ int main(int argc, char *argv[])
     else    
         return 0;
 
-    MainWindow w;
-    w.setWindowIcon(QIcon(":/image/App"));
-    w.show();
+    MainWindow* w = new MainWindow();
+    //w->setWindowIcon(QIcon(":/image/App"));
+    //w->setWindowTitle(a.applicationDisplayName());
+    
+#ifdef BUILD_QUIWidget
+    QUIWidget* quiwidget = new QUIWidget(nullptr, true);
+    //quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
+    //quiwidget.setTitle(a.applicationDisplayName());
+    quiwidget->setMainWidget(w);
+    quiwidget->show();
+#else
+    w->show();
+#endif
+    
     int nRet = a.exec();
+    
+#ifndef BUILD_QUIWidget
+    delete w;
+#endif
     
     RabbitCommon::CTools::Instance()->Clean();
     a.removeTranslator(&tApp);
