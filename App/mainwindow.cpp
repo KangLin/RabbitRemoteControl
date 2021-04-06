@@ -86,6 +86,7 @@ void MainWindow::on_actionAbout_A_triggered()
 #ifdef BUILD_QUIWidget
     QUIWidget quiwidget;
     quiwidget.setMainWidget(about);
+    quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
     #if defined (Q_OS_ANDROID)
         quiwidget.showMaximized();
     #endif
