@@ -66,6 +66,12 @@ int main(int argc, char *argv[])
     
 #ifdef BUILD_QUIWidget
     QUIWidget* quiwidget = new QUIWidget(nullptr, true);
+    bool check = quiwidget->connect(w, SIGNAL(sigFullScreen()),
+                                    SLOT(showFullScreen()));
+    Q_ASSERT(check);
+    check = quiwidget->connect(w, SIGNAL(sigShowNormal()),
+                               SLOT(showNormal()));
+    Q_ASSERT(check);
     //quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
     //quiwidget.setTitle(a.applicationDisplayName());
     quiwidget->setMainWidget(w);

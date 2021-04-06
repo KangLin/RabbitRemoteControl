@@ -26,6 +26,10 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     virtual ~MainWindow() override;
 
+Q_SIGNALS:
+    void sigFullScreen();
+    void sigShowNormal();
+    
 private Q_SLOTS:
     void on_actionExit_E_triggered();
     void on_actionFull_screen_F_triggered();

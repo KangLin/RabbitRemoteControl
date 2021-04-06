@@ -162,11 +162,14 @@ void MainWindow::on_actionFull_screen_F_triggered()
             m_pFullScreenToolBar = nullptr;
         }
         
-        this->showNormal();      
+        emit sigShowNormal();
+        this->showNormal();
         this->activateWindow();
+        
         return;
     }
 
+    emit sigFullScreen();
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
    
