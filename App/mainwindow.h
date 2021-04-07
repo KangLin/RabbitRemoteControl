@@ -10,7 +10,6 @@
 
 #include "ViewTable.h"
 #include "ManageConnecter.h"
-#include "RabbitCommonStyle.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -65,7 +64,6 @@ protected:
     
 private:
     Ui::MainWindow *ui;
-    RabbitCommon::CStyle m_Style;
     QActionGroup* m_pGBView;
     CView* m_pView;
     QVector<CConnecter*> m_Connecters;

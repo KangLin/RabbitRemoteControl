@@ -4,6 +4,7 @@
 #include "./ui_mainwindow.h"
 #include "FrmUpdater/FrmUpdater.h"
 #include "RabbitCommonDir.h"
+#include "RabbitCommonStyle.h"
 #include "DlgAbout/DlgAbout.h"
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
@@ -20,7 +21,6 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
-      m_Style(this),
       m_pGBView(nullptr),
       m_pView(nullptr),
       m_pFullScreenToolBar(nullptr),
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     bool check = false;
     setFocusPolicy(Qt::NoFocus);
-    m_Style.LoadStyle();
+    RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
 
     CFrmUpdater updater;
@@ -446,12 +446,12 @@ void MainWindow::slotUpdateServerName(const QString& szName)
 
 void MainWindow::on_actionOpenStyle_O_triggered()
 {
-    m_Style.slotStyle();
+    RabbitCommon::CStyle::Instance()->slotStyle();
 }
 
 void MainWindow::on_actionDefaultStyle_D_triggered()
 {
-    m_Style.SetDefaultStyle();
+    RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
 }
 
 int MainWindow::onProcess(const QString &id, CPluginFactory *pFactory)
