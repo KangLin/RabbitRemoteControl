@@ -6,6 +6,9 @@ CPluginFactory::CPluginFactory(QObject *parent) : QObject(parent)
 {
 }
 
+CPluginFactory::~CPluginFactory()
+{}
+
 const QString CPluginFactory::Id() const
 {
     return Protol() + ":" + Name();
