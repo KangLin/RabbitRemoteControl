@@ -183,6 +183,7 @@ int CConnecterPlugins::OpenDialogSettings(QWidget *parent)
     QDialog* p = GetDialogSettings(parent);
     if(p)
     {
+        p->setWindowIcon(this->Icon());
 #ifdef BUILD_QUIWidget
         QUIWidget* quiwidget = new QUIWidget();
         quiwidget->setMainWidget(p);

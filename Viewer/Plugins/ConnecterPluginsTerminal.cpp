@@ -8,6 +8,10 @@
 #include <QDebug>
 #include <QTextCodec>
 
+#ifdef BUILD_QUIWidget
+    #include "QUIWidget/QUIWidget.h"
+#endif
+
 CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginFactory *parent)
     : CConnecter(parent),
       m_pConsole(nullptr),
@@ -65,6 +69,16 @@ int CConnecterPluginsTerminal::OpenDialogSettings(QWidget *parent)
     QDialog* p = GetDialogSettings(parent);
     if(p)
     {
+        p->setWindowIcon(this->Icon());
+#ifdef BUILD_QUIWidget
+        QUIWidget* quiwidget = new QUIWidget();
+        quiwidget->setMainWidget(p);
+        bool check = connect(p, SIGNAL(accepted()), quiwidget, SLOT(accept()));
+        Q_ASSERT(check);
+        check = connect(p, SIGNAL(rejected()), quiwidget, SLOT(reject()));
+        Q_ASSERT(check);
+        p = quiwidget;
+#endif
         p->setAttribute(Qt::WA_DeleteOnClose);
         return p->exec();
     }
