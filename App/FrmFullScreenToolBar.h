@@ -39,7 +39,7 @@ protected:
     virtual void leaveEvent(QEvent *event) override;
     
 private:
-    int ReSize();
+    int ReToolBarSize();
     
 private:
     Ui::CFrmFullScreenToolBar *ui;

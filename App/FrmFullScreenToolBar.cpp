@@ -47,11 +47,12 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     
     m_Timer.start(m_TimeOut);
     
-    ReSize();
+    ReToolBarSize();
 }
 
 CFrmFullScreenToolBar::~CFrmFullScreenToolBar()
 {
+    m_Timer.stop();
     delete ui;
 }
 
@@ -69,7 +70,7 @@ void CFrmFullScreenToolBar::mousePressEvent(QMouseEvent *event)
     m_Pos = event->pos();
 }
 
-int CFrmFullScreenToolBar::ReSize()
+int CFrmFullScreenToolBar::ReToolBarSize()
 {
     int marginW = style()->pixelMetric(
                 QStyle::PM_FocusFrameHMargin) << 1;
@@ -110,7 +111,7 @@ void CFrmFullScreenToolBar::enterEvent(QEvent *event)
     if(m_isHide)
     {
         m_ToolBar.show();
-        ReSize();
+        ReToolBarSize();
         m_isHide = false;
     }
 }
