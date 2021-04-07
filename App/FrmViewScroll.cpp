@@ -1,13 +1,15 @@
 #include "FrmViewScroll.h"
 #include <QDebug>
+#include <QGuiApplication>
 
 CFrmViewScroll::CFrmViewScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
 {
+    //BUG: 滚动条接收TAB键调整，导致视图接收不到TAB键
+    setFocusPolicy(Qt::NoFocus);
     if(pView)
         setWidget(pView);
     setAlignment(Qt::AlignCenter);
-    setBackgroundRole(QPalette::Dark);
-    setFocusPolicy(Qt::NoFocus);
+    //setBackgroundRole(QPalette::Dark);
     setWidgetResizable(true);
 }
 

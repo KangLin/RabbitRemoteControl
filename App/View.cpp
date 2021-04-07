@@ -4,4 +4,5 @@
 
 CView::CView(QWidget *parent) : QWidget(parent)
 {
+    setFocusPolicy(Qt::NoFocus);
 }

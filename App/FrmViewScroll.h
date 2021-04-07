@@ -6,6 +6,9 @@
 
 /**
  * @brief The CFrmViewScroll class
+ *        This class is only used for GUI views.
+ *        Not used in the terminal view,
+ *        the terminal view comes with a scroll bar 
  * @addtogroup API
  */
 class CFrmViewScroll : public QScrollArea

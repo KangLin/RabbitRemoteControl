@@ -19,7 +19,8 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
     SetAdaptWindows(Original);
     
     setMouseTracking(true);
-    setFocusPolicy(Qt::StrongFocus);
+    setFocusPolicy(Qt::WheelFocus);
+    setFocus();
 }
 
 CFrmViewer::~CFrmViewer()
@@ -262,6 +263,7 @@ void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
             || OriginalCenter == m_AdaptWindows)
         resize(m_Desktop.size());
     update();
+    //setFocus();
 }
 
 CFrmViewer::ADAPT_WINDOWS CFrmViewer::AdaptWindows()
