@@ -193,7 +193,6 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_pFullScreenToolBar = new CFrmFullScreenToolBar(this);
     m_pFullScreenToolBar->move((qApp->primaryScreen()->geometry().width()
                - m_pFullScreenToolBar->frameGeometry().width()) / 2, 0);
-    //BUG:用了QUIWidget后，需要点两次才会响应。不用QUIWidget,则正常
     bool check = connect(m_pFullScreenToolBar, SIGNAL(sigExitFullScreen()),
                          this, SLOT(on_actionFull_screen_F_triggered()));
     Q_ASSERT(check);
