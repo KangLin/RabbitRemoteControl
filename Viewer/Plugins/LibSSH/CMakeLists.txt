@@ -4,12 +4,12 @@ find_package(libssh)
 if(libssh_FOUND)
     set(libssh_LIB ssh)
 else()
-    find_path(libssh_INCLUDE_DIR NAMES libssh
+    find_path(libssh_INCLUDE_DIR NAMES libssh.h libssh_version.h
         HINTS ${libssh_DIR}
         PATHS ENV libssh_DIR
-        PATH_SUFFIXES include
+        PATH_SUFFIXES include include/libssh
         )
-    message("libssh_INCLUDE_DIR:${LIBVNC_INCLUDE_DIR}")
+    message("libssh_INCLUDE_DIR:${libssh_INCLUDE_DIR}")
     find_library(libssh_LIB NAMES ssh
         HINTS ${libssh_DIR}
         PATHS ENV libssh_DIR

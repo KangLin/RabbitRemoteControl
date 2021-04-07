@@ -209,6 +209,9 @@ int CConnectSSH::Connect()
     connector_out = ssh_connector_new(m_pSession);
     if(connector_out && m_pChannel && m_pEvent)
     {
+#ifndef SSH_CONNECTOR_STDINOUT
+#define SSH_CONNECTOR_STDINOUT SSH_CONNECTOR_STDOUT
+#endif
         nRet = ssh_connector_set_in_channel(connector_out, m_pChannel, SSH_CONNECTOR_STDINOUT);
         if(nRet) return -4;
        ssh_connector_set_out_fd(connector_out, pConsole->getPtySlaveFd());
@@ -293,6 +296,7 @@ int CConnectSSH::GetPassword(const char *prompt,
 
 int CConnectSSH::VerifyKnownhost(ssh_session session)
 {
+    /*TODO:
     enum ssh_known_hosts_e state = SSH_KNOWN_HOSTS_UNKNOWN;
     char buf[10];
     unsigned char *hash = NULL;
@@ -388,9 +392,9 @@ int CConnectSSH::VerifyKnownhost(ssh_session session)
         LOG_MODEL_ERROR("libSSH", "%s",ssh_get_error(session));
         return -1;
     case SSH_KNOWN_HOSTS_OK:
-        break; /* ok */
+        break; // ok 
     }
-
+    //*/
     return 0;
 }
 
@@ -495,7 +499,8 @@ int CConnectSSH::Authenticate(ssh_session session)
     banner = ssh_get_issue_banner(session);
     if (banner) {
         LOG_MODEL_INFO("LibSSH", "%s\n",banner);
-        SSH_STRING_FREE_CHAR(banner);
+        /* TODO:
+        SSH_STRING_FREE_CHAR(banner); //*/
     }
 
     return rc;
