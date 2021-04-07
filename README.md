@@ -4,7 +4,7 @@ Author: Kang Lin (kl222@126.com)
 
 -----------------------------------------------------------------------
 - Project position: https://github.com/KangLin/RabbitRemoteControl
-- [Project home](https://kanglin.github.io/RabbitRemoteControl/)
+- Project home: https://kanglin.github.io/RabbitRemoteControl/
 
 - Language
   - [:cn: Chinese](README_zh_CN.md)

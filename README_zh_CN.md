@@ -4,8 +4,8 @@
 
 -----------------------------------------------------------------------
 
-- 项目位置： https://github.com/KangLin/RabbitRemoteControl
-- [项目主页](https://kanglin.github.io/RabbitRemoteControl/)
+- 项目位置: https://github.com/KangLin/RabbitRemoteControl
+- 项目主页: https://kanglin.github.io/RabbitRemoteControl/
 - 语言
   - [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
 - 编译状态
