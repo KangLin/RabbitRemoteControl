@@ -141,6 +141,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 - [x] [Optional] FreeRDP: https://github.com/FreeRDP/FreeRDP
 - [x] [Optional] [SSH]
   + [x] LIBSSH: https://www.libssh.org
+  + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
 - [x] [Optional] qtermwidget: https://github.com/lxqt/qtermwidget
 
 ### [License Agreement](License.md "License.md")

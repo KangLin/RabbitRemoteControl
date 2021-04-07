@@ -129,6 +129,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [x] [可选] FreeRDP: https://github.com/FreeRDP/FreeRDP
 - [x] [可选] [SSH]
   + [x] LIBSSH: https://www.libssh.org
+  + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
 - [x] [可选] qtermwidget: https://github.com/lxqt/qtermwidget
 
 
