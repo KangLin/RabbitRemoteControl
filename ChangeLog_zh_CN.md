@@ -1,3 +1,6 @@
+- v0.0.7
+  + 用更新后的 RabbitCommon::CStyle 改变样式
+  
 - v0.0.6
   + 用QUIWidget修改界面，它能自定义窗口标题栏样式
   
