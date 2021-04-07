@@ -23,7 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
       m_Style(this),
       m_pGBView(nullptr),
       m_pView(nullptr),
-      m_pFullScreenToolBar(nullptr)
+      m_pFullScreenToolBar(nullptr),
+      m_bFullScreen(isFullScreen())
 {
     bool check = false;
     setFocusPolicy(Qt::NoFocus);
@@ -140,11 +141,12 @@ void MainWindow::on_actionFull_screen_F_triggered()
     CView* pTab = dynamic_cast<CView*>(this->centralWidget());
     if(pTab)
     {
-        pTab->SetFullScreen(!isFullScreen());
+        pTab->SetFullScreen(m_bFullScreen);
     }
     
-    if(this->isFullScreen())
+    if(m_bFullScreen)
     {
+        m_bFullScreen = false;
         ui->actionFull_screen_F->setIcon(QIcon(":/image/FullScreen"));
         ui->actionFull_screen_F->setText(tr("Full screen(&F)"));
         ui->actionFull_screen_F->setToolTip(tr("Full screen"));
@@ -170,6 +172,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
         return;
     }
 
+    m_bFullScreen = true;
     emit sigFullScreen();
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();

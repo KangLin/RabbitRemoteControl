@@ -70,6 +70,7 @@ private:
     CView* m_pView;
     QVector<CConnecter*> m_Connecters;
     CFrmFullScreenToolBar* m_pFullScreenToolBar;
+    bool m_bFullScreen;
 
 public:
     virtual int onProcess(const QString &id, CPluginFactory *pFactory) override;
