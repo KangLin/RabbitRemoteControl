@@ -97,11 +97,11 @@ Some of them are:
 ### Download: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
 - Windows: Supported WINDOWS 7 and later version
-  + Install package: [RabbitRemoteControl-Setup-v0.0.5.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.5/RabbitRemoteControl-Setup-v0.0.5.exe)
-  + No need to install package: [RabbitRemoteControl_v0.0.5.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.5/RabbitRemoteControl_v0.0.5.zip)
+  + Install package: [RabbitRemoteControl-Setup-v0.0.6.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.6/RabbitRemoteControl-Setup-v0.0.6.exe)
+  + No need to install package: [RabbitRemoteControl_v0.0.6.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.6/RabbitRemoteControl_v0.0.6.zip)
 - Ubuntu:
-  + Ubuntu 20.04: [rabbitremotecontrol_0.0.5_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.5/rabbitremotecontrol_0.0.5_amd64_Ubuntu-20.04.deb)
-  + Ubuntu 18.04: [rabbitremotecontrol_0.0.5_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.5/rabbitremotecontrol_0.0.5_amd64_Ubuntu-18.04.deb)
+  + Ubuntu 20.04: [rabbitremotecontrol_0.0.6_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.6/rabbitremotecontrol_0.0.6_amd64_Ubuntu-20.04.deb)
+  + Ubuntu 18.04: [rabbitremotecontrol_0.0.6_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.6/rabbitremotecontrol_0.0.6_amd64_Ubuntu-18.04.deb)
 
 ### Road map
 - [x] Support common existing remote control protocols
