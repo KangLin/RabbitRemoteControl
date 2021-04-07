@@ -117,3 +117,4 @@ _CPack_Packages/
 *.zip
 
 *.swp
+*.*~

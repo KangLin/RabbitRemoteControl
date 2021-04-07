@@ -1,5 +1,5 @@
 #TODO: Change version
-version: 'v0.0.6.{build}'
+version: "v0..{build}"
 
 cache:
   - ..\other_source
@@ -87,7 +87,7 @@ build_script:
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
   - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
-  - call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.6.exe -m "v0.0.6"
+  - call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.7.exe -m "v0.0.7"
 
 artifacts:
   - path: build\RabbitRemoteControl-Setup-*.exe
@@ -95,7 +95,7 @@ artifacts:
   - path: build\update_windows.xml
   
   - path: build\install\
-    name: RabbitRemoteControl_v0.0.6
+    name: RabbitRemoteControl_v0.0.7
     type: zip
 
 test: off
@@ -116,7 +116,8 @@ deploy:
     #branch: master
 
   - provider: GitHub
-    #token : https://github.com/settings/tokens password encrypt: https://ci.appveyor.com/tools/encrypt
+    # token : https://github.com/settings/tokens
+    # password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
       secure: 9do9yUjK8IrlU7jqUHUSPkTDADxzqBSa2GxJ0b0mqo9U2gaAkDFgsiDTvjPgCcnV
     #artifact:
