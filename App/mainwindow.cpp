@@ -141,7 +141,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     CView* pTab = dynamic_cast<CView*>(this->centralWidget());
     if(pTab)
     {
-        pTab->SetFullScreen(m_bFullScreen);
+        pTab->SetFullScreen(!m_bFullScreen);
     }
     
     if(m_bFullScreen)
