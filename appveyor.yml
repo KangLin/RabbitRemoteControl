@@ -78,7 +78,7 @@ before_build:
   - cmake --build . --config Release --target install
 
   - cd "%OTHER_SOURCE%"
-  - if exit RabbitCommon (rmdir /s /q RabbitCommon)
+  - if exist RabbitCommon (rmdir /s /q "RabbitCommon")
   - if not exist RabbitCommon (git clone "https://github.com/KangLin/RabbitCommon.git")
   - set RabbitCommon_DIR=%OTHER_SOURCE%/RabbitCommon
   
