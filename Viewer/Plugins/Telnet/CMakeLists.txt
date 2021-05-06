@@ -2,7 +2,12 @@
 
 project(Telnet)
 
-list(APPEND lib_telnet RabbitRemoteControlTerminal)
+find_package(libtelnet)
+if(NOT libtelnet_FOUND)
+    return()
+endif()
+
+list(APPEND lib_telnet libtelnet RabbitRemoteControlTerminal)
 
 SET(SOURCE_FILES
     PluginFactoryTelnet.cpp

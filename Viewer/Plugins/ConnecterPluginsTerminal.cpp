@@ -1,5 +1,4 @@
 #include "ConnecterPluginsTerminal.h"
-#include "RabbitCommonLog.h"
 #include "Connect.h"
 #include "ConnectThreadTerminal.h"
 
@@ -11,6 +10,8 @@
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
+
+#include "RabbitCommonLog.h"
 
 CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginFactory *parent)
     : CConnecter(parent),
@@ -239,7 +240,7 @@ CConnect* CConnecterPluginsTerminal::InstanceConnect()
 
 int CConnecterPluginsTerminal::OnRun()
 {
-    //LOG_MODEL_DEBUG("CConnecterBackThread", "Current thread: 0x%X", QThread::currentThreadId());
+    //LOG_MODEL_DEBUG("CConnecterPluginsTerminal", "Current thread: 0x%X", QThread::currentThreadId());
     int nRet = -1;
     CConnect* pConnect = InstanceConnect();
     
@@ -267,7 +268,7 @@ int CConnecterPluginsTerminal::OnRun()
                 int nRet = pConnect->Process();
                 if(nRet) break;
             }  catch (...) {
-                LOG_MODEL_ERROR("ConnecterBackThread", "process fail:%d", nRet);
+                LOG_MODEL_ERROR("CConnecterPluginsTerminal", "process fail:%d", nRet);
                 break;
             }
         }
@@ -278,6 +279,6 @@ int CConnecterPluginsTerminal::OnRun()
 
     pConnect->Clean();
     delete pConnect;
-    qDebug() << "CConnecterPlugins::OnRun() end";
+    qDebug() << "CConnecterPluginsTerminal::OnRun() end";
     return nRet;
 }

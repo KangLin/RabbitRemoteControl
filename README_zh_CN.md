@@ -37,7 +37,7 @@
 - [ ] [Spice](https://www.spice-space.org/)
 - [x] 终端
 - [x] [SSH]()
-- [x] [TELNET]()
+- [x] [TELNET](http://www.faqs.org/rfcs/rfc855.html)
 - [ ] 自定义的 P2P 协议
 
 
@@ -115,6 +115,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 ### 开发
 #### 依赖
 ##### 工具
+
 - [x] [Qt](qt.io)
 - [x] c compiler
   + gcc
@@ -122,6 +123,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [cmake](https://cmake.org/)
 
 ##### 依赖库
+
 - [x] [必选] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] [可选] RFB
   + [x] [可选] libvncserver: https://github.com/LibVNC/libvncserver
@@ -131,7 +133,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
   + [x] LIBSSH: https://www.libssh.org
   + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
 - [x] [可选] qtermwidget: https://github.com/lxqt/qtermwidget
-
+- [x] [可选] libtelnet: https://github.com/seanmiddleditch/libtelnet
 
 ### [许可协议](License.md "License.md")
 请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。

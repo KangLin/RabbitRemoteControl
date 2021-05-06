@@ -38,7 +38,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 - [x] Remote desktop protocol: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice](https://www.spice-space.org/)
 - [x] [SSH]()
-- [x] [TELNET]()
+- [x] [TELNET](http://www.faqs.org/rfcs/rfc855.html)
 - [x] Terminal
 - [ ] Custom p2p protocol
 
@@ -143,6 +143,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
   + [x] LIBSSH: https://www.libssh.org
   + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
 - [x] [Optional] qtermwidget: https://github.com/lxqt/qtermwidget
+- [x] [Optional] libtelnet: https://github.com/seanmiddleditch/libtelnet
 
 ### [License Agreement](License.md "License.md")
 
