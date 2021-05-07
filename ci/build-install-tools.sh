@@ -176,7 +176,7 @@ function function_unix()
 
     sudo apt-get update -y -qq
     sudo apt-get install debhelper fakeroot -y -qq
-    sudo apt-get install -y -qq libvncserver-dev freerdp2-dev libssh-dev
+    sudo apt-get install -y -qq libvncserver-dev freerdp2-dev libssh-dev libtelnet-dev
     sudo apt-get install -y -qq libavcodec-dev libavformat-dev libavfilter-dev libavdevice-dev libavresample-dev libavutil-dev 
     sudo apt-get install -y -qq libglu1-mesa-dev \
         libxkbcommon-x11-dev \

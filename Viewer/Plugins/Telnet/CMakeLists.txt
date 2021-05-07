@@ -2,12 +2,32 @@
 
 project(Telnet)
 
-find_package(libtelnet)
-if(NOT libtelnet_FOUND)
-    return()
-endif()
+set(_telnet_libs RabbitRemoteControlTerminal)
 
-list(APPEND lib_telnet libtelnet RabbitRemoteControlTerminal)
+find_package(libtelnet)
+if(libtelnet_FOUND)
+    list(APPEND _telnet_libs libtelnet)
+else()
+    find_path(libtelnetIncludeDir NAMES libtelnet.h
+        HINTS ${libtelnet_DIR}
+        PATHS ENV llibtelnet_DIR
+        PATH_SUFFIXES include
+        )
+    find_library(libtelnet_lib NAMES telnet
+        HINTS ${libtelnet_DIR}
+        PATHS ENV libtelnet_DIR
+        PATH_SUFFIXES lib
+        )
+    if(NOT (libtelnetIncludeDir AND libtelnet_lib))
+        message("Install libssh and set libtelnet_DIR variable to install root directory")
+        return()
+    endif()
+
+    list(APPEND _telnet_libs ${libtelnet_lib})
+    set(_libtelnet_include_dir ${libtelnetIncludeDir})
+    mark_as_advanced(libssh_DIR)
+endif()
+message("libtelnet:${_telnet_libs}")
 
 SET(SOURCE_FILES
     PluginFactoryTelnet.cpp
@@ -40,8 +60,17 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
-    ISPLUGIN
-    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
-    PRIVATE_LIBS ${lib_telnet}
-    )
+if(_libtelnet_include_dir)
+    ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+        ISPLUGIN
+        SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
+        PRIVATE_LIBS ${_telnet_libs}
+        PRIVATE_INCLUDE_DIRS ${_libtelnet_include_dir}
+        )
+else()
+    ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+        ISPLUGIN
+        SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
+        PRIVATE_LIBS ${_telnet_libs}
+        )
+endif()

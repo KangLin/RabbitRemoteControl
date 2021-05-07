@@ -1,50 +1,50 @@
 # Author: Kang Lin(kl222@126.com)
 
+project(LibVnc)
+
+set(_libvncLibs RabbitRemoteControl)
+
 find_package(vncclient)
 if(vncclient_FOUND)
-    set(LIBVNC_LIB vncclient)
+    list(APPEND _libvncLibs vncclient)
+    message("vncclient: ${vncclient_FOUND}")
 else()
-    find_path(LIBVNC_INCLUDE_DIR NAMES rfb/rfbclient.h
+    find_path(LibvncIncludeDir NAMES rfb/rfbclient.h
         HINTS ${vncclient_DIR}
         PATHS ENV vncclient_DIR
         PATH_SUFFIXES include
         )
-    message("LIBVNC_INCLUDE_DIR:${LIBVNC_INCLUDE_DIR}")
-    find_library(LIBVNC_LIB NAMES vncclient
+    message("LibvncIncludeDir:${LibvncIncludeDir}")
+    find_library(libvncLibs NAMES vncclient
         HINTS ${vncclient_DIR}
         PATHS ENV vncclient_DIR
         PATH_SUFFIXES lib
         )
-    message("LIBVNC_LIB:${LIBVNC_LIB}")
-    if(NOT (LIBVNC_INCLUDE_DIR AND LIBVNC_LIB))
+    if(NOT (LibvncIncludeDir AND libvncLibs))
         message("Install libvnc and set vncclient_DIR variable to install root directory")
         return()
     endif()
-    set(_LIBVNC_INCLUDE_DIR ${LIBVNC_INCLUDE_DIR})
+    set(_LibvncIncludeDir ${LibvncIncludeDir})
+    list(APPEND _libvncLibs ${libvncLibs})
     mark_as_advanced(vncclient_DIR)
+    message("libvnc found: ${_libvncLibs}")
 endif()
-message("vncclient: ${vncclient_FOUND}")
-message("libvnc found: ${LIBVNC_LIB}")
 
-project(LibVnc)
-
-list(APPEND LIBVNC_LIB RabbitRemoteControl)
 IF(WIN32)
-    list(APPEND LIBVNC_LIB ws2_32)
+    list(APPEND _libvncLibs ws2_32)
 ENDIF()
-message("LIBVNC_LIB:${LIBVNC_LIB}")
-message("LIBVNC_INCLUDE_DIR:${_LIBVNC_INCLUDE_DIR}")
+
 find_package(ZLIB)
 if(ZLIB_FOUND)
-    list(APPEND _LIBVNC_INCLUDE_DIR ${ZLIB_INCLUDE_DIRS})
-    list(APPEND LIBVNC_LIB ${ZLIB_LIBRARIES})
+    list(APPEND _LibvncIncludeDir ${ZLIB_INCLUDE_DIRS})
+    list(APPEND _libvncLibs ${ZLIB_LIBRARIES})
 else()
     message("Please set ZLIB_ROOT variable")
 endif()
 
 find_package(OpenSSL)
 if(OpenSSL_FOUND)
-    list(APPEND LIBVNC_LIB OpenSSL::SSL OpenSSL::Crypto)
+    list(APPEND _libvncLibs OpenSSL::SSL OpenSSL::Crypto)
 endif()
 
 SET(SOURCE_FILES
@@ -78,18 +78,17 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-message("LIBVNC_INCLUDE_DIR:${_LIBVNC_INCLUDE_DIR}")
-if(_LIBVNC_INCLUDE_DIR)
+if(_LibvncIncludeDir)
     ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
-        PRIVATE_LIBS ${LIBVNC_LIB}
-        PRIVATE_INCLUDE_DIRS ${_LIBVNC_INCLUDE_DIR}
+        PRIVATE_LIBS ${_libvncLibs}
+        PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
         )
 else()
     ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
-        PRIVATE_LIBS ${LIBVNC_LIB}
+        PRIVATE_LIBS ${_libvncLibs}
         )
 endif()
