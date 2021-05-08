@@ -3,7 +3,8 @@
   
 - v0.0.6
   + UI: Use QUIWidget to modify the interface,
-        it can customize the style of the window title bar   
+        it can customize the style of the window title bar
+        
 - v0.0.5
   + FIX: LibVnc cursor bug
   + Support Qt6
