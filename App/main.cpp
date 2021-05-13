@@ -6,6 +6,7 @@
 #include <QSettings>
 #include <QDebug>
 #include <QtGlobal>
+#include <QSharedPointer>
 #if defined(Q_OS_ANDROID)
     #include <QtAndroid>
 #endif
@@ -53,7 +54,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName(QObject::tr("Kang Lin studio"));
     
     // Check update version
-    CFrmUpdater *pUpdate = new CFrmUpdater();
+    QSharedPointer<CFrmUpdater> pUpdate(new CFrmUpdater());
     pUpdate->SetTitle(QImage(":/image/App"));
     if(pUpdate->GenerateUpdateXml())
         LOG_MODEL_ERROR("main", "GenerateUpdateXml fail");
@@ -65,7 +66,7 @@ int main(int argc, char *argv[])
     //w->setWindowTitle(a.applicationDisplayName());
     
 #ifdef BUILD_QUIWidget
-    QUIWidget* quiwidget = new QUIWidget(nullptr, true);
+    QSharedPointer<QUIWidget> quiwidget(new QUIWidget(nullptr, true));
     bool check = quiwidget->connect(w, SIGNAL(sigFullScreen()),
                                     SLOT(showFullScreen()));
     Q_ASSERT(check);
@@ -81,11 +82,10 @@ int main(int argc, char *argv[])
 #endif
     
     int nRet = a.exec();
-    
 #ifndef BUILD_QUIWidget
     delete w;
 #endif
-    
+
     RabbitCommon::CTools::Instance()->Clean();
     a.removeTranslator(&tApp);
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
