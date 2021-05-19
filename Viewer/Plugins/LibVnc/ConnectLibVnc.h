@@ -4,6 +4,7 @@
 #include "Connect.h"
 #include "rfb/rfbclient.h"
 #include "Parameter.h"
+#include <QTcpSocket>
 
 class CConnecterLibVnc;
 class CConnectLibVnc : public CConnect
@@ -42,7 +43,8 @@ public Q_SLOTS:
 
 private:
     int OnSize();
-    
+    bool InitClient();
+
 private:
     rfbClient* m_pClient;
     QImage m_Image;
@@ -59,6 +61,7 @@ public:
     };
 private:    
     strPara* m_pPara;
+    QTcpSocket m_tcpSocket;
 
 protected:
     virtual int SetParamter(void *) override;

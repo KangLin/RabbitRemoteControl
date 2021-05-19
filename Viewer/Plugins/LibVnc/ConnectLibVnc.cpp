@@ -50,10 +50,61 @@ CConnectLibVnc::~CConnectLibVnc()
     qDebug() << "CConnectLibVnc::~CConnectLibVnc()";
 }
 
+bool CConnectLibVnc::InitClient()
+{
+    // Set sock
+    m_tcpSocket.connectToHost(m_pClient->serverHost, m_pClient->serverPort);
+    if (!m_tcpSocket.waitForConnected(3000))
+        return FALSE;
+    m_pClient->sock = m_tcpSocket.socketDescriptor();
+
+    if (!InitialiseRFBConnection(m_pClient))
+      return FALSE;
+
+    m_pClient->width=m_pClient->si.framebufferWidth;
+    m_pClient->height=m_pClient->si.framebufferHeight;
+    if (!m_pClient->MallocFrameBuffer(m_pClient))
+      return FALSE;
+
+    if (!SetFormatAndEncodings(m_pClient))
+      return FALSE;
+
+    if (m_pClient->updateRect.x < 0) {
+      m_pClient->updateRect.x = m_pClient->updateRect.y = 0;
+      m_pClient->updateRect.w = m_pClient->width;
+      m_pClient->updateRect.h = m_pClient->height;
+    }
+
+    if (m_pClient->appData.scaleSetting>1)
+    {
+        if (!SendScaleSetting(m_pClient, m_pClient->appData.scaleSetting))
+            return FALSE;
+        if (!SendFramebufferUpdateRequest(m_pClient,
+                    m_pClient->updateRect.x / m_pClient->appData.scaleSetting,
+                    m_pClient->updateRect.y / m_pClient->appData.scaleSetting,
+                    m_pClient->updateRect.w / m_pClient->appData.scaleSetting,
+                    m_pClient->updateRect.h / m_pClient->appData.scaleSetting,
+                    FALSE))
+            return FALSE;
+    }
+    else
+    {
+        if (!SendFramebufferUpdateRequest(m_pClient,
+                    m_pClient->updateRect.x, m_pClient->updateRect.y,
+                    m_pClient->updateRect.w, m_pClient->updateRect.h,
+                    FALSE))
+        return FALSE;
+    }
+    return TRUE;
+}
+
 int CConnectLibVnc::Clean()
 {
     if(m_pClient)
     {
+        m_tcpSocket.close();
+        m_pClient->sock = RFB_INVALID_SOCKET;
+
         rfbClientCleanup(m_pClient);
         m_pClient = nullptr;
     }
@@ -99,7 +150,8 @@ int CConnectLibVnc::Initialize()
 int CConnectLibVnc::Connect()
 {
     int nRet = 1;
-    if(!rfbInitClient(m_pClient, nullptr, nullptr)) {
+//    if(!rfbInitClient(m_pClient, nullptr, nullptr)) {
+    if(!InitClient()) {
         LOG_MODEL_ERROR("LibVnc", "rfbInitClient fail");
         emit sigError(-1, "Connect fail");
         return -2;
