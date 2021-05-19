@@ -29,6 +29,18 @@ public:
     bool bOnlyView;
     bool bLocalCursor;
     bool bClipboard;
+    
+    enum class emProxy {
+        No,
+        SocksV4,
+        SocksV5,
+        User = 100
+    };
+    emProxy eProxyType;
+    QString szProxyHost;
+    quint16 nProxyPort;
+    QString szProxyUser;
+    QString szProxyPassword;
 };
 
 QDataStream &operator<<(QDataStream &, const CParameter &);

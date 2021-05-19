@@ -7,7 +7,9 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
     bSavePassword(false),
     bOnlyView(false),
     bLocalCursor(true),
-    bClipboard(false)
+    bClipboard(false),
+    eProxyType(emProxy::No),
+    nProxyPort(0)
 {}
 
 QDataStream &operator<<(QDataStream &data, const CParameter &para)
@@ -23,6 +25,12 @@ QDataStream &operator<<(QDataStream &data, const CParameter &para)
     data << para.bOnlyView
          << para.bLocalCursor
          << para.bClipboard
+            
+         << (uchar)para.eProxyType
+         << para.szProxyHost
+         << para.nProxyPort
+         << para.szProxyUser
+         << para.szProxyPassword
             ;
     return data;
 }
@@ -41,5 +49,15 @@ QDataStream &operator>>(QDataStream &data, CParameter &para)
             >> para.bLocalCursor
             >> para.bClipboard
             ;
+    
+    uchar proxyType = 0;
+    data >> proxyType;
+    para.eProxyType = (CParameter::emProxy) proxyType;
+    data >> para.szProxyHost
+            >> para.nProxyPort
+            >> para.szProxyUser
+            >> para.szProxyPassword
+            ;
+    
     return data;
 }

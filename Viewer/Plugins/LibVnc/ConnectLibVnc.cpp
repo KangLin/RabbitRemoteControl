@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QImage>
 #include <QClipboard>
+#include <QNetworkProxy>
 
 const char* gThis = "This pointer";
 #define LOG_BUFFER_LENGTH 1024
@@ -53,10 +54,32 @@ CConnectLibVnc::~CConnectLibVnc()
 bool CConnectLibVnc::InitClient()
 {
     // Set sock
-    m_tcpSocket.connectToHost(m_pClient->serverHost, m_pClient->serverPort);
-    if (!m_tcpSocket.waitForConnected(3000))
-        return FALSE;
-    m_pClient->sock = m_tcpSocket.socketDescriptor();
+    switch(m_pPara->eProxyType)
+    {
+    case CParameter::emProxy::No:
+        if(!rfbInitClient(m_pClient, nullptr, nullptr))
+            return FALSE;
+        break;
+    case CParameter::emProxy::SocksV4:
+        break;
+    case CParameter::emProxy::SocksV5:
+    {
+        QNetworkProxy proxy;
+        proxy.setType(QNetworkProxy::Socks5Proxy);
+        proxy.setHostName(m_pPara->szProxyHost);
+        proxy.setPort(m_pPara->nProxyPort);
+        proxy.setUser(m_pPara->szProxyUser);
+        proxy.setPassword(m_pPara->szProxyPassword);
+        m_tcpSocket.setProxy(proxy);
+        m_tcpSocket.connectToHost(m_pClient->serverHost, m_pClient->serverPort);
+        if (!m_tcpSocket.waitForConnected(3000))
+            return FALSE;
+        m_pClient->sock = m_tcpSocket.socketDescriptor();
+        break;
+    }
+    default:
+        break;
+    }
 
     if (!InitialiseRFBConnection(m_pClient))
       return FALSE;
@@ -150,7 +173,7 @@ int CConnectLibVnc::Initialize()
 int CConnectLibVnc::Connect()
 {
     int nRet = 1;
-//    if(!rfbInitClient(m_pClient, nullptr, nullptr)) {
+
     if(!InitClient()) {
         LOG_MODEL_ERROR("LibVnc", "rfbInitClient fail");
         emit sigError(-1, "Connect fail");
