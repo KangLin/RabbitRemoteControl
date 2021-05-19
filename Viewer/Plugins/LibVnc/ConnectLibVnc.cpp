@@ -14,8 +14,7 @@ static void rfbQtClientLog(const char *format, ...)
     int nRet = 0;
     va_list args;
     char buf[LOG_BUFFER_LENGTH];
-    time_t log_clock;
-    
+     
     if(!rfbEnableClientLogging)
         return;
     
@@ -56,10 +55,6 @@ bool CConnectLibVnc::InitClient()
     // Set sock
     switch(m_pPara->eProxyType)
     {
-    case CParameter::emProxy::No:
-        if(!rfbInitClient(m_pClient, nullptr, nullptr))
-            return FALSE;
-        break;
     case CParameter::emProxy::SocksV4:
         break;
     case CParameter::emProxy::SocksV5:
@@ -77,6 +72,13 @@ bool CConnectLibVnc::InitClient()
         m_pClient->sock = m_tcpSocket.socketDescriptor();
         break;
     }
+    case (CParameter::emProxy) CConnectLibVnc::strPara::emVncProxy::UltraVncRepeater:
+        m_pClient->destHost = strdup(m_pPara->szProxyHost.toStdString().c_str());
+        m_pClient->destPort = m_pPara->nProxyPort;
+    case CParameter::emProxy::No:
+        if(!rfbInitClient(m_pClient, nullptr, nullptr))
+            return FALSE;
+        break;
     default:
         break;
     }

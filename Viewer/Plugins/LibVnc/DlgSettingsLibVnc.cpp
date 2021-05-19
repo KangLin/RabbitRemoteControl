@@ -60,6 +60,27 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
     ui->spJPEGLevel->setEnabled(m_pPara->bJpeg);
     ui->cbJPEG->setChecked(m_pPara->bJpeg);
     ui->spJPEGLevel->setValue(m_pPara->nQualityLevel);
+    
+    // Proxy
+    switch(m_pPara->eProxyType)
+    {
+    case CParameter::emProxy::No:
+        ui->rbProxyNo->setChecked(true);
+        break;
+    case CParameter::emProxy::SocksV4:
+    case CParameter::emProxy::SocksV5:
+        ui->rbProxySocks->setChecked(true);
+        break;
+    case (CParameter::emProxy) CConnectLibVnc::strPara::emVncProxy::UltraVncRepeater:
+        ui->rbProxyUltraVncRepeater->setChecked(true);
+        break;
+    default:
+        break;
+    }
+    ui->leProxyServer->setText(m_pPara->szProxyHost);
+    ui->spProxyPort->setValue(m_pPara->nProxyPort);
+    ui->leProxyUser->setText(m_pPara->szProxyUser);
+    ui->leProxyPassword->setText(m_pPara->szProxyPassword);
 }
 
 CDlgSettingsLibVnc::~CDlgSettingsLibVnc()
@@ -104,6 +125,17 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     m_pPara->nCompressLevel = ui->spCompressLevel->value();
     m_pPara->bJpeg = ui->cbJPEG->isChecked();
     m_pPara->nQualityLevel = ui->spJPEGLevel->value();
+    
+    if(ui->rbProxyNo->isChecked())
+        m_pPara->eProxyType = CParameter::emProxy::No;
+    if(ui->rbProxySocks->isChecked())
+        m_pPara->eProxyType = CParameter::emProxy::SocksV5;
+    if(ui->rbProxyUltraVncRepeater->isChecked())
+        m_pPara->eProxyType = (CParameter::emProxy) CConnectLibVnc::strPara::emVncProxy::UltraVncRepeater;
+    m_pPara->szProxyHost = ui->leProxyServer->text();
+    m_pPara->nProxyPort = ui->spProxyPort->value();
+    m_pPara->szProxyUser = ui->leProxyUser->text();
+    m_pPara->szProxyPassword = ui->leProxyPassword->text();
     
     accept();
 }

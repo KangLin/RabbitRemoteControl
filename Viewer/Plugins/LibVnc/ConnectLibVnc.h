@@ -58,6 +58,10 @@ public:
         int nCompressLevel;
         bool bJpeg;
         int nQualityLevel;
+        
+        enum class emVncProxy {
+            UltraVncRepeater = (int) emProxy::User + 1
+        }; 
     };
 private:    
     strPara* m_pPara;
