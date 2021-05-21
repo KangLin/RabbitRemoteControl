@@ -69,6 +69,7 @@ bool CConnectLibVnc::InitClient()
         m_tcpSocket.connectToHost(m_pClient->serverHost, m_pClient->serverPort);
         if (!m_tcpSocket.waitForConnected(3000))
             return FALSE;
+        //TODO: The is fail
         m_pClient->sock = m_tcpSocket.socketDescriptor();
         break;
     }
