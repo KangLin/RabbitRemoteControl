@@ -32,12 +32,12 @@
 如果你想为本人捐赠开发设备，请联系：(QQ：16614119)
 
 #### 支持协议
-- [x] VNC（虚拟网络计算）: [RFB("remote framebuffer")](https://github.com/rfbproto/rfbproto)
-- [x] 远程桌面协议: [RDP](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
-- [ ] [Spice](https://www.spice-space.org/)
+- [x] VNC（虚拟网络计算）: [RFB("remote framebuffer"): https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
+- [x] 远程桌面协议: [RDP: https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [ ] [Spice: https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] 终端
 - [x] [SSH]()
-- [x] [TELNET](http://www.faqs.org/rfcs/rfc855.html)
+- [x] [TELNET: http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
 - [ ] 自定义的 P2P 协议
 
 
@@ -47,7 +47,7 @@
 |RDP     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
 |Spice   |                  |                  |                  |                  |                  |                  |
 |SSH     |                  |:heavy_check_mark:|                  |                  |                  |                  |
-|终端     |                  |:heavy_check_mark:|                  |                  |                  |                  |
+|Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
 |TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
 |P2P     |                  |                  |                  |                  |                  |                  |
 
