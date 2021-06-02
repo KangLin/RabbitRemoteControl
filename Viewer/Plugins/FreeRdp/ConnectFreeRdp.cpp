@@ -299,7 +299,8 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
 #endif
         
     // Subscribe channel event
-	PubSub_SubscribeChannelConnected(instance->context->pubSub, OnChannelConnectedEventHandler);
+    PubSub_SubscribeChannelConnected(instance->context->pubSub,
+                                     OnChannelConnectedEventHandler);
 	PubSub_SubscribeChannelDisconnected(instance->context->pubSub,
 	                                    OnChannelDisconnectedEventHandler);
 
