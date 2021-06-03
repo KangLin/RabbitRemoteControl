@@ -15,8 +15,22 @@ CDlgSetFreeRdp::CDlgSetFreeRdp(CConnecterFreeRdp::CParameterFreeRdp *pSettings, 
 
     ui->cbDesktopSize->addItem("640×480");
     ui->cbDesktopSize->addItem("800×600");
+    ui->cbDesktopSize->addItem("1024×600");
+    ui->cbDesktopSize->addItem("1024×768");
+    ui->cbDesktopSize->addItem("1280×1024");
+    ui->cbDesktopSize->addItem("1280×854");
     ui->cbDesktopSize->addItem("1280×720");
-    
+    ui->cbDesktopSize->addItem("1280×960");
+    ui->cbDesktopSize->addItem("1366×768");
+    ui->cbDesktopSize->addItem("1400×1050");
+    ui->cbDesktopSize->addItem("1440×900");
+    ui->cbDesktopSize->addItem("1600×900");
+    ui->cbDesktopSize->addItem("1600×1024");
+    ui->cbDesktopSize->addItem("1600×1200");
+    ui->cbDesktopSize->addItem("1680×1050");
+    ui->cbDesktopSize->addItem("1920×1080");
+    ui->cbDesktopSize->addItem("1920×1200");
+
     QScreen* pScreen = QApplication::primaryScreen();
     int width = pScreen->availableGeometry().width();
     int height = pScreen->availableGeometry().height();
