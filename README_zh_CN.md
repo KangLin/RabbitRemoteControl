@@ -7,7 +7,7 @@
 - 项目位置: https://github.com/KangLin/RabbitRemoteControl
 - 项目主页: https://kanglin.github.io/RabbitRemoteControl/
 - 语言
-  - [<img src="Resource/Image/English.png" alt="英语" title="英语" width="16" height="16" />英语](README.md)
+  - [:us: 英语](README.md)
 - 编译状态
   - [![编译状态](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
   - [![编译状态](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
