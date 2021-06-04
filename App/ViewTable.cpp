@@ -102,15 +102,19 @@ void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle)
 int CViewTable::SetFullScreen(bool bFull)
 {
     if(!m_pTab) return -1;
-    //TODO: add configure whether is hide tab Bar?
+    ShowTabBar(!bFull);
     if(bFull)
     {
-        m_pTab->tabBar()->hide();
         m_pTab->showFullScreen();
     } else {
         m_pTab->showNormal();
-        m_pTab->tabBar()->show();
     }
+    return 0;
+}
+
+int CViewTable::ShowTabBar(bool bShow)
+{
+    m_pTab->tabBar()->setVisible(bShow);
     return 0;
 }
 

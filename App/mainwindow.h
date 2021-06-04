@@ -32,10 +32,16 @@ Q_SIGNALS:
 private Q_SLOTS:
     void on_actionExit_E_triggered();
     void on_actionFull_screen_F_triggered();
+    
     void on_actionAbout_A_triggered();
     void on_actionUpdate_U_triggered();
     void on_actionStatusBar_S_triggered();
     void on_actionToolBar_T_triggered();
+    
+    void on_actionOpenStyle_O_triggered();
+    void on_actionDefaultStyle_D_triggered();
+
+    void on_actionSend_ctl_alt_del_triggered();
     
     void on_actionOriginal_O_toggled(bool arg1);
     void on_actionZoom_Z_toggled(bool arg1);
@@ -53,10 +59,8 @@ private Q_SLOTS:
     void slotInformation(const QString& szInfo);
     void slotUpdateServerName(const QString& szName);
     
-    void on_actionOpenStyle_O_triggered();
-    void on_actionDefaultStyle_D_triggered();
-    
-    void on_actionSend_ctl_alt_del_triggered();
+    void on_actionShow_TabBar_B_triggered();
+    void slotShowTabBar(bool bShow);
     
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;

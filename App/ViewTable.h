@@ -26,6 +26,7 @@ public:
     virtual int SetFullScreen(bool bFull) override;
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Original, QWidget* pView = nullptr) override;
 
+    int ShowTabBar(bool bShow);
 private Q_SLOTS:
     void slotCurrentChanged(int index);
     void slotTabCloseRequested(int index);

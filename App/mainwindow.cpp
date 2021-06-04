@@ -202,6 +202,14 @@ void MainWindow::on_actionFull_screen_F_triggered()
     check = connect(m_pFullScreenToolBar, SIGNAL(sigDisconnect()), 
                     this, SLOT(on_actionDisconnect_D_triggered()));
     Q_ASSERT(check);
+    
+    CViewTable* p = dynamic_cast<CViewTable*>(pTab);
+    if(p)
+    {
+        check = connect(m_pFullScreenToolBar, SIGNAL(sigShowTabBar(bool)),
+                        SLOT(slotShowTabBar(bool)));
+        Q_ASSERT(check);
+    }
     m_pFullScreenToolBar->show();
 }
 
@@ -479,4 +487,16 @@ void MainWindow::on_actionSend_ctl_alt_del_triggered()
 {
     if(m_pView)
         m_pView->slotSystemCombination();
+}
+
+void MainWindow::on_actionShow_TabBar_B_triggered()
+{
+    slotShowTabBar(ui->actionShow_TabBar_B->isChecked());
+}
+
+void MainWindow::slotShowTabBar(bool bShow)
+{
+    CViewTable* p = dynamic_cast<CViewTable*>(m_pView);
+    if(p)
+        p->ShowTabBar(bShow);
 }

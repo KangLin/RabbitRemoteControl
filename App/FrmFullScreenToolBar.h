@@ -27,10 +27,12 @@ Q_SIGNALS:
     void sigExitFullScreen();
     void sigExit();
     void sigDisconnect();
+    void sigShowTabBar(bool check);
 
 private Q_SLOTS:
     void slotTimeOut();
     void slotNail();
+    void slotShowTabBar();
     
 protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
@@ -51,6 +53,8 @@ private:
     QTimer m_Timer;
     int m_TimeOut;
     bool m_isHide;
+    
+    QAction* m_pShowTabBar;
 };
 
 #endif // FRMFULLSCREENTOOLBAR_H

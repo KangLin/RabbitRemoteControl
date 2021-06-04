@@ -22,5 +22,6 @@
         <file alias="Windows">Image/windows.png</file>
         <file alias="EyeOff">Image/EyeOff.png</file>
         <file alias="EyeOn">Image/EyeOpen.png</file>
+        <file alias="TabBar">Image/tabbar-hold.svg</file>
     </qresource>
 </RCC>

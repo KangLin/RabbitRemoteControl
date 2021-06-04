@@ -28,7 +28,8 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
     
-    m_pNail = m_ToolBar.addAction(QIcon(":/image/Nail"), tr("Nail"), this, SLOT(slotNail()));
+    m_pNail = m_ToolBar.addAction(QIcon(":/image/Nail"), tr("Nail"),
+                                  this, SLOT(slotNail()));
     m_pNail->setCheckable(true);
     m_pNail->setChecked(set.value("FullScreen/Nail", true).toBool());
     m_ToolBar.addSeparator();
@@ -39,6 +40,9 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     m_ToolBar.addSeparator();
     m_ToolBar.addAction(QIcon(":/image/Disconnect"),
                         tr("Disconnect"), this, SIGNAL(sigDisconnect()));
+    m_pShowTabBar = m_ToolBar.addAction(QIcon(":/image/TabBar"), tr("TabBar"),
+                                        this, SLOT(slotShowTabBar()));
+    m_pShowTabBar->setCheckable(true);
     m_ToolBar.show();
     
     bool check = connect(&m_Timer, SIGNAL(timeout()),
@@ -96,6 +100,11 @@ void CFrmFullScreenToolBar::slotTimeOut()
     m_Timer.stop();
     m_ToolBar.hide();
     resize(width(), 5);
+}
+
+void CFrmFullScreenToolBar::slotShowTabBar()
+{
+    emit sigShowTabBar(m_pShowTabBar->isChecked());
 }
 
 void CFrmFullScreenToolBar::slotNail()

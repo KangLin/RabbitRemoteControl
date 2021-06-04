@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -54,6 +54,8 @@
     <addaction name="actionOriginal_O"/>
     <addaction name="actionZoom_Z"/>
     <addaction name="actionKeep_AspectRation_K"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_TabBar_B"/>
     <addaction name="separator"/>
     <addaction name="menuSink"/>
     <addaction name="separator"/>
@@ -101,6 +103,7 @@
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
+   <addaction name="actionShow_TabBar_B"/>
    <addaction name="separator"/>
    <addaction name="actionOriginal_O"/>
    <addaction name="actionZoom_Z"/>
@@ -317,8 +320,24 @@
     <string>Send Ctl+Alt+Del</string>
    </property>
   </action>
+  <action name="actionShow_TabBar_B">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/TabBar</normaloff>:/image/TabBar</iconset>
+   </property>
+   <property name="text">
+    <string>Show TabBar(&amp;B)</string>
+   </property>
+  </action>
  </widget>
  <resources>
+  <include location="Resource/Resource.qrc"/>
   <include location="Resource/Resource.qrc"/>
  </resources>
  <connections/>

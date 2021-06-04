@@ -41,6 +41,9 @@ public:
     quint16 nProxyPort;
     QString szProxyUser;
     QString szProxyPassword;
+    
+Q_SIGNALS:
+    void sigUpdate();
 };
 
 QDataStream &operator<<(QDataStream &, const CParameter &);
