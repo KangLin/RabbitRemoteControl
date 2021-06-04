@@ -32,17 +32,27 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
                                   this, SLOT(slotNail()));
     m_pNail->setCheckable(true);
     m_pNail->setChecked(set.value("FullScreen/Nail", true).toBool());
+    m_pNail->setToolTip(tr("Nail"));
+    m_pNail->setStatusTip(tr("Nail"));
     m_ToolBar.addSeparator();
-    m_ToolBar.addAction(QIcon(":/image/ExitFullScreen"),
+    QAction* pFull = m_ToolBar.addAction(QIcon(":/image/ExitFullScreen"),
                         tr("Full"), this, SIGNAL(sigExitFullScreen()));
-    m_ToolBar.addAction(QIcon(":/image/Exit"),
+    pFull->setToolTip(tr("Full"));
+    pFull->setStatusTip(tr("Full"));
+    QAction* pExit = m_ToolBar.addAction(QIcon(":/image/Exit"),
                         tr("Exit"), this, SIGNAL(sigExit()));
+    pExit->setToolTip(tr("Exit"));
+    pExit->setStatusTip(tr("Exit"));
     m_ToolBar.addSeparator();
-    m_ToolBar.addAction(QIcon(":/image/Disconnect"),
+    QAction* pDisconnect = m_ToolBar.addAction(QIcon(":/image/Disconnect"),
                         tr("Disconnect"), this, SIGNAL(sigDisconnect()));
+    pDisconnect->setToolTip(tr("Disconnect"));
+    pDisconnect->setStatusTip(tr("Disconnect"));
     m_pShowTabBar = m_ToolBar.addAction(QIcon(":/image/TabBar"), tr("TabBar"),
                                         this, SLOT(slotShowTabBar()));
     m_pShowTabBar->setCheckable(true);
+    m_pShowTabBar->setStatusTip(tr("Tab bar"));
+    m_pShowTabBar->setToolTip(tr("Tab bar"));
     m_ToolBar.show();
     
     bool check = connect(&m_Timer, SIGNAL(timeout()),
