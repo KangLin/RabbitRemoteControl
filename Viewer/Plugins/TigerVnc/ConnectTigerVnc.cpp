@@ -210,7 +210,7 @@ void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspo
 void CConnectTigerVnc::setCursorPos(const rfb::Point &pos)
 {
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::setCursorPos: x[%d]:y[%d]", pos.x, pos.y);
-    //emit sigUpdateCursor(QCursor())
+    emit sigUpdateCursorPosition(QPoint(pos.x, pos.y));
 }
 
 void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)

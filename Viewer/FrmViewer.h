@@ -50,6 +50,7 @@ public Q_SLOTS:
     void slotSetName(const QString& szName);
     void slotUpdateRect(const QRect& r, const QImage& image);
     void slotUpdateCursor(const QCursor& cursor);
+    void slotUpdateCursorPosition(const QPoint& pos);
     void slotSystemCombination();
     
 Q_SIGNALS:

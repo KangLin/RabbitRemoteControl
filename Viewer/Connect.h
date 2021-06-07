@@ -65,6 +65,7 @@ Q_SIGNALS:
     
     void sigUpdateRect(const QRect& r, const QImage& image);
     void sigUpdateCursor(const QCursor& cursor);
+    void sigUpdateCursorPosition(const QPoint& pos);
     void sigSetClipboard(QMimeData* data);
     
     void sigError(const int nError, const QString &szError);

@@ -307,3 +307,8 @@ void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
 {
     setCursor(cursor);
 }
+
+void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
+{
+    cursor().setPos(pos);
+}
