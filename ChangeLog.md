@@ -1,6 +1,7 @@
 - v0.0.8
   + FIX tab view show bug when full screen
   + Add proxy
+  + Update tigervnc library
 
 - v0.0.7
   + Use update RabbitCommon::CStyle to change style

@@ -13,7 +13,6 @@
 class CConnecterTigerVnc;
 class CConnectTigerVnc : public CConnect,
         public rfb::CConnection,
-        public rdr::FdInStreamBlockCallback,
         public rfb::UserPasswdGetter,
         public rfb::UserMsgBox
 {
@@ -35,9 +34,6 @@ public Q_SLOTS:
     virtual void slotClipBoardChange() override;
     
 public:
-    // FdInStreamBlockCallback methods
-    void blockCallback() override;
-
     // Callback when socket is ready (or broken)
     //static void socketEvent(FL_SOCKET fd, void *data);
 
@@ -47,12 +43,12 @@ public:
     // CMsgHandler interface
 public:
     virtual void framebufferUpdateEnd() override;
-    virtual void dataRect(const rfb::Rect &r, int encoding) override;
+    virtual bool dataRect(const rfb::Rect &r, int encoding) override;
     virtual void setColourMapEntries(int firstColour, int nColours, rdr::U16* rgbs) override;
     virtual void bell() override;
     virtual void setCursor(int width, int height, const rfb::Point& hotspot,
                               const rdr::U8* data) override;
-    
+    virtual void setCursorPos(const rfb::Point &pos) override;
     virtual void handleClipboardRequest() override;
     virtual void handleClipboardAnnounce(bool available) override;
     virtual void handleClipboardData(unsigned int format, const char *data, size_t length) override;

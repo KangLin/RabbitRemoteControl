@@ -37,6 +37,8 @@
 #include "rfb/CSecurityTLS.h"
 #endif
 
+#include "RabbitCommonLog.h"
+
 static rfb::LogWriter vlog("ConnectTigerVnc");
 
 // 8 colours (1 bit per component)
@@ -105,13 +107,11 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 */
 int CConnectTigerVnc::Connect()
 {
-    try{        
+    try{
         m_pSock = new network::TcpSocket(m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
         vlog.info("Connected to host %s port %d",
                   m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
-        // See callback below
-        m_pSock->inStream().setBlockCallback(this);
-
+       
         setStreams(&m_pSock->inStream(), &m_pSock->outStream());
 
         initialiseProtocol();
@@ -141,8 +141,7 @@ int CConnectTigerVnc::Process()
         auto in = getInStream();
         if(in)
         {
-            size_t nRet = in->check(1, 1, false);
-            if(nRet > 0)
+            if(in->hasData(1))
                 processMsg();
             else if(nRet == 0)
                 QThread::msleep(500);
@@ -159,9 +158,6 @@ int CConnectTigerVnc::Process()
     
     return nRet;
 }
-
-void CConnectTigerVnc::blockCallback()
-{}
 
 void CConnectTigerVnc::setColourMapEntries(int firstColour, int nColours, rdr::U16 *rgbs)
 {
@@ -209,6 +205,12 @@ void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspo
         memcpy(buffer, data, width * height * 4);
         emit sigUpdateCursor(QCursor(QPixmap::fromImage(cursor), hotspot.x, hotspot.y));
     }
+}
+
+void CConnectTigerVnc::setCursorPos(const rfb::Point &pos)
+{
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::setCursorPos: x[%d]:y[%d]", pos.x, pos.y);
+    //emit sigUpdateCursor(QCursor())
 }
 
 void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)
@@ -261,56 +263,50 @@ void CConnectTigerVnc::framebufferUpdateEnd()
 //
 void CConnectTigerVnc::autoSelectFormatAndEncoding()
 {
-    int kbitsPerSecond = m_pSock->inStream().kbitsPerSecond();
-    unsigned int timeWaited = m_pSock->inStream().timeWaited();
-    bool newFullColour = m_pPara->nColorLevel == Full ? true : false;
-    int newQualityLevel = m_pPara->nQualityLevel;
+//    bool newFullColour = m_pPara->nColorLevel == Full ? true : false;
+//    int newQualityLevel = m_pPara->nQualityLevel;
     
-    // Always use Tight
-    setPreferredEncoding(rfb::encodingTight);
+//    // Always use Tight
+//    setPreferredEncoding(rfb::encodingTight);
     
-    // Check that we have a decent bandwidth measurement
-    if ((kbitsPerSecond == 0) || (timeWaited < 10000))
-        return;
-    
-    // Select appropriate quality level
-    if (!m_pPara->bNoJpeg) {
-        if (kbitsPerSecond > 16000)
-            newQualityLevel = 8;
-        else
-            newQualityLevel = 6;
+//    // Select appropriate quality level
+//    if (!m_pPara->bNoJpeg) {
+//        if (kbitsPerSecond > 16000)
+//            newQualityLevel = 8;
+//        else
+//            newQualityLevel = 6;
         
-        if (newQualityLevel != m_pPara->nQualityLevel) {
-            vlog.info(("Throughput %d kbit/s - changing to quality %d"),
-                      kbitsPerSecond, newQualityLevel);
-            m_pPara->nQualityLevel = newQualityLevel;
-            setQualityLevel(newQualityLevel);
-        }
-    }
+//        if (newQualityLevel != m_pPara->nQualityLevel) {
+//            vlog.info(("Throughput %d kbit/s - changing to quality %d"),
+//                      kbitsPerSecond, newQualityLevel);
+//            m_pPara->nQualityLevel = newQualityLevel;
+//            setQualityLevel(newQualityLevel);
+//        }
+//    }
     
-    if (server.beforeVersion(3, 8)) {
-        // Xvnc from TightVNC 1.2.9 sends out FramebufferUpdates with
-        // cursors "asynchronously". If this happens in the middle of a
-        // pixel format change, the server will encode the cursor with
-        // the old format, but the client will try to decode it
-        // according to the new format. This will lead to a
-        // crash. Therefore, we do not allow automatic format change for
-        // old servers.
-        return;
-    }
+//    if (server.beforeVersion(3, 8)) {
+//        // Xvnc from TightVNC 1.2.9 sends out FramebufferUpdates with
+//        // cursors "asynchronously". If this happens in the middle of a
+//        // pixel format change, the server will encode the cursor with
+//        // the old format, but the client will try to decode it
+//        // according to the new format. This will lead to a
+//        // crash. Therefore, we do not allow automatic format change for
+//        // old servers.
+//        return;
+//    }
     
-    // Select best color level
-    newFullColour = (kbitsPerSecond > 256);
-    if (newFullColour != (0 == m_pPara->nColorLevel)) {
-        if (newFullColour)
-            vlog.info(("Throughput %d kbit/s - full color is now enabled"),
-                      kbitsPerSecond);
-        else
-            vlog.info(("Throughput %d kbit/s - full color is now disabled"),
-                      kbitsPerSecond);
-        m_pPara->nColorLevel = newFullColour ? CConnectTigerVnc::Full : CConnectTigerVnc::Low;
-        updatePixelFormat();
-    } 
+//    // Select best color level
+//    newFullColour = (kbitsPerSecond > 256);
+//    if (newFullColour != (0 == m_pPara->nColorLevel)) {
+//        if (newFullColour)
+//            vlog.info(("Throughput %d kbit/s - full color is now enabled"),
+//                      kbitsPerSecond);
+//        else
+//            vlog.info(("Throughput %d kbit/s - full color is now disabled"),
+//                      kbitsPerSecond);
+//        m_pPara->nColorLevel = newFullColour ? CConnectTigerVnc::Full : CConnectTigerVnc::Low;
+//        updatePixelFormat();
+//    } 
 }
 
 // requestNewUpdate() requests an update from the server, having set the
@@ -343,12 +339,11 @@ void CConnectTigerVnc::updatePixelFormat()
     setPF(pf);
 }
 
-void CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
+bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
 {
-    m_pSock->inStream().startTiming();
-    rfb::CConnection::dataRect(r, encoding);
-    m_pSock->inStream().stopTiming();
-    
+    if(!rfb::CConnection::dataRect(r, encoding))
+        return false;
+   
     //vlog.debug("CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
     //           r.tl.x, r.tl.y, r.width(), r.height(), encoding);
     // 立即更新图像
@@ -357,6 +352,7 @@ void CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
         emit sigUpdateRect(img.rect(), img);
     }
+    return true;
 }
 
 void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)

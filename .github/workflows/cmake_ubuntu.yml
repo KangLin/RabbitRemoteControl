@@ -16,6 +16,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      SOURCE_DIR:  ${{github.workspace}}/source
+      TOOSL_DIR:   ${{github.workspace}}/tools
+      INSTALL_DIR: ${{github.workspace}}/install
       
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +26,7 @@ jobs:
         fetch-depth: 0
     
     - name: git clone RabbitCommon
-      working-directory: ${{runner.workspace}}
+      working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
       
     - name: apt helper action
@@ -32,12 +35,24 @@ jobs:
         # architectures to pass to dpkg --add-architecture
         #architectures: # optional
         # apt packages to install
-        packages: freerdp2-dev libvncserver-dev libssh-dev liblog4cplus-dev debhelper fakeroot qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev
+        packages: freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev liblog4cplus-dev debhelper fakeroot qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev
 
+    - name build tigervnc
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        git clone https://github.com/KangLin/tigervnc.git 
+        cd ${{env.SOURCE_DIR}}/tigervnc
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+      
     - name: build_debpackage.sh
       working-directory: ${{github.workspace}}
       env:
-        RabbitCommon_DIR: ${{runner.workspace}}/RabbitCommon
+        RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
+        tigervnc_DIR: ${{ env.INSTALL_DIR }}/lib/cmake
       run: |
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol_0.0.7_amd64.deb rabbitremotecontrol_0.0.7_amd64_${{matrix.os}}.deb

@@ -66,7 +66,7 @@ before_build:
   - if not exist vcpkg (git clone "https://github.com/KangLin/vcpkg.git")
   - cd vcpkg
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install openssl freerdp libssh
+  - vcpkg --triplet %BUILD_ARCH%-windows install openssl freerdp libssh pixman
 
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone -b LibVNCServer-0.9.13 "https://github.com/KangLin/libvncserver.git")
@@ -77,6 +77,15 @@ before_build:
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
 
+  - cd "%OTHER_SOURCE%"
+  - if not exist tigervnc (git clone https://github.com/KangLin/tigervnc.git)
+  - cd tigervnc
+  - cmake -E make_directory build
+  - cd build
+  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
+  
   - cd "%OTHER_SOURCE%"
   - if exist RabbitCommon (rmdir /s /q "RabbitCommon")
   - if not exist RabbitCommon (git clone "https://github.com/KangLin/RabbitCommon.git")
