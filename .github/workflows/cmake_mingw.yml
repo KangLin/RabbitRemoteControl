@@ -12,74 +12,71 @@ jobs:
         # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
 
+    defaults:
+      run:
+        shell: msys2 {0}
+        
     runs-on: ${{ matrix.os }}
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      SOURCE_DIR:  ${{github.workspace}}/source
+      TOOSL_DIR:   ${{github.workspace}}/tools
+      INSTALL_DIR: ${{github.workspace}}/install
 
     steps:
     - uses: actions/checkout@v2
       #with:
         #fetch-depth: 0
 
-    - name: git clone RabbitCommon
-      working-directory: ${{runner.workspace}}
-      run: git clone https://github.com/KangLin/RabbitCommon.git
-
-    - name: pacman
-      shell: cmd
-      # mingw-w64-i686-gcc mingw-w64-i686-qt5
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        path-type: strict
+        shell: msys2 {0}
+        install: >-
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-nsis
+            mingw-w64-x86_64-make
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-qt5
+            mingw-w64-x86_64-zlib
+            mingw-w64-x86_64-libvncserver
+            mingw-w64-x86_64-cyrus-sasl
+            mingw-w64-x86_64-pixman
+            mingw-w64-x86_64-openjpeg 
+            
+    - name: make_directory
       run: |
-        set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
-        pacman -Syu
-        pacman -S --noconfirm mingw-w64-x86_64-cmake
-        pacman -S --noconfirm mingw-w64-x86_64-nsis
-        pacman -S --noconfirm mingw-w64-x86_64-make
-        pacman -S --noconfirm mingw-w64-x86_64-gcc
-        pacman -S --noconfirm mingw-w64-x86_64-qt5
-        pacman -S --noconfirm mingw-w64-x86_64-libvncserver
-        pacman -S --noconfirm mingw-w64-x86_64-cyrus-sasl
-
+        cmake -E make_directory ${{env.SOURCE_DIR}}
+        cmake -E make_directory ${{env.TOOSL_DIR}}
+        cmake -E make_directory ${{env.INSTALL_DIR}}
+        
+    - name: git clone RabbitCommon
+      working-directory: ${{env.SOURCE_DIR}}
+      run: git clone https://github.com/KangLin/RabbitCommon.git
+    
+    - name: build tigervnc
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        git clone https://github.com/KangLin/tigervnc.git 
+        cd ${{env.SOURCE_DIR}}/tigervnc
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+          
     - name: Create Build Environment
       run: cmake -E make_directory ${{runner.workspace}}/build
 
-    - name: Configure CMake
-      shell: cmd
-      working-directory: ${{runner.workspace}}/build
-      run: |
-        set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
-        cmake ${{github.workspace}} -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DQt5_DIR=${{env.Qt5_Dir}}\lib\cmake\Qt5 -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}\build\install -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}\cmake\platforms\toolchain-mingw.cmake
+    - name: build RabbitRemoteControl
       env:
-        RabbitCommon_DIR: ${{runner.workspace}}\RabbitCommon
+        RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         Qt5_Dir: C:\msys64\mingw64
-        MSYSTEM: MINGW64
-        BUILD_ARCH: x64
-
-    - name: Build
-      working-directory: ${{runner.workspace}}/build
-      shell: cmd
       run: |
-        cmake --build . --config $BUILD_TYPE
-        cmake --build . --config $BUILD_TYPE --target install-runtime
-        cp c:/msys64/mingw64/bin/*.dll ${{runner.workspace}}\build\install\bin
-      env:
-        RabbitCommon_DIR: ${{runner.workspace}}\RabbitCommon
-        Qt5_Dir: C:\msys64\mingw64
-        MSYSTEM: MINGW64
-        BUILD_ARCH: x64
-
-    - name: Package
-      working-directory: ${{runner.workspace}}/build
-      shell: cmd
-      run: |
-        set PATH=C:\msys64\mingw64\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
-        makensis ${{runner.workspace}}/build/Install.nsi
-        ${{runner.workspace}}/build//install/bin/RabbitRemoteControlApp.exe -f "%CD%/update_windows.xml" -pf RabbitRemoteControl-Setup-v0.0.1.exe -m "v0.0.1"
-
-    - name: Update artifact
-      uses: actions/upload-artifact@v2
-      with:
-          name: RabbitRemoteControl-Setup-v0.0.1.exe
-          path: |
-            ${{runner.workspace}}/build/RabbitRemoteControl-Setup-*.exe
-            ${{runner.workspace}}/build/update_windows.xml
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        cmake -E make_directory ${{github.workspace}}/build
+        cd ${{github.workspace}}/build
+        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -Dtigervnc_DIR=${{ github.workspace }}/build/install/lib/cmake  -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install

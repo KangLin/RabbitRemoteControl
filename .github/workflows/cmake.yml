@@ -56,10 +56,10 @@ jobs:
         # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
         #setupOnly: # optional
         #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-        vcpkgGitCommitId: 6f42659cb943345f13b325b679e72473b304137b
+        vcpkgGitCommitId: b2544fd780b2e9a05d903314cbbd37268ba43d81
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'openssl libssh freerdp'
+        vcpkgArguments: 'zlib openssl libssh freerdp pixman libjpeg-turbo libdatachannel'
 
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
@@ -72,6 +72,17 @@ jobs:
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
+    - name: build tigervnc
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        git clone https://github.com/KangLin/tigervnc.git 
+        cd ${{env.SOURCE_DIR}}/tigervnc
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+    
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -118,7 +129,7 @@ jobs:
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
-        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -Dtigervnc_DIR=${{ github.workspace }}/build/install/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 

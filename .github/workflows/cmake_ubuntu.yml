@@ -25,6 +25,12 @@ jobs:
       with:
         fetch-depth: 0
     
+    - name: make_directory
+      run: |
+        cmake -E make_directory ${{env.SOURCE_DIR}}
+        cmake -E make_directory ${{env.TOOSL_DIR}}
+        cmake -E make_directory ${{env.INSTALL_DIR}}
+        
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -35,16 +41,16 @@ jobs:
         # architectures to pass to dpkg --add-architecture
         #architectures: # optional
         # apt packages to install
-        packages: freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev liblog4cplus-dev debhelper fakeroot qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev
+        packages: freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev liblog4cplus-dev debhelper fakeroot qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxcb1-dev
 
-    - name build tigervnc
+    - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
       run: |
         git clone https://github.com/KangLin/tigervnc.git 
         cd ${{env.SOURCE_DIR}}/tigervnc
         cmake -E make_directory build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
       
