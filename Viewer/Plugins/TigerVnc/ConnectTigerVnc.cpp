@@ -189,7 +189,6 @@ void CConnectTigerVnc::slotConnected()
     m_pInStream = new CQSocketInStream(m_pSock);
     m_pOutStream = new CQSocketOutStream(m_pSock);
     setStreams(m_pInStream, m_pOutStream);
-    emit sigConnected();
 }
 
 void CConnectTigerVnc::slotDisConnected()
@@ -200,7 +199,7 @@ void CConnectTigerVnc::slotDisConnected()
 void CConnectTigerVnc::slotReadyRead()
 {
     vlog.debug("CConnectTigerVnc::slotReadyRead");
-    int nRet = 0;
+
     try {
         auto in = getInStream();
         if(in)
@@ -216,10 +215,8 @@ void CConnectTigerVnc::slotReadyRead()
     } catch (rdr::EndOfStream& e) {
         vlog.error("exec error: %s", e.str());
         emit sigError(-1, e.str());
-        nRet = -1;
     } catch (rdr::Exception& e) {
         vlog.error("exec error: %s", e.str());
-        nRet = -2;
         emit sigError(-1, e.str());
     }
 }

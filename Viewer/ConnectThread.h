@@ -10,6 +10,7 @@
  * @brief The CConnectThread class
  * @see CConnecterPlugins
  * @note The class only is used by CConnecterPlugins
+ * @addtogroup PLUGIN_API
  */
 class CConnectThread : public QThread
 {
