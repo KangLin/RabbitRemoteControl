@@ -14,7 +14,7 @@ bool CQSocketOutStream::flushBuffer()
     if (0 == n)
       return false;
     
-    if( -1 == n)
+    if(-1 == n)
         throw std::runtime_error(m_pSocket->errorString().toStdString().c_str());
   
     sentUpTo += n;

@@ -194,6 +194,7 @@ void CConnectTigerVnc::slotConnected()
 
 void CConnectTigerVnc::slotDisConnected()
 {
+    emit sigDisconnected();
 }
 
 void CConnectTigerVnc::slotReadyRead()
@@ -226,9 +227,7 @@ void CConnectTigerVnc::slotReadyRead()
 int CConnectTigerVnc::Process()
 {
     int nRet = 0;
-    
-    m_Loop.exec();
-    
+        
     return nRet;
 }
 

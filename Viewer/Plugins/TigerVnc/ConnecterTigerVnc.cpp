@@ -39,10 +39,9 @@ int CConnecterTigerVnc::Connect()
     m_pConnect = InstanceConnect();
     
     do{
-        CConnect* pConnect = InstanceConnect();
-        if(nullptr == pConnect) break;
+        if(nullptr == m_pConnect) break;
         
-        nRet = pConnect->Initialize();
+        nRet = m_pConnect->Initialize();
         if(nRet) break;
         
         /**
@@ -50,7 +49,7 @@ int CConnecterTigerVnc::Connect()
           nRet = 0 : emit sigConnected
           nRet = 1 : emit sigConnected in CConnect
           */
-        nRet = pConnect->Connect();
+        nRet = m_pConnect->Connect();
         if(nRet < 0) break;
         
         

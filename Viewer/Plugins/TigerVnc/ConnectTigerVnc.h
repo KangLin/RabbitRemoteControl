@@ -112,7 +112,6 @@ private:
     void updatePixelFormat();
 
     bool m_bWriteClipboard;
-    QEventLoop m_Loop;
 };
 
 #endif // CCONNECTTIGERVNC_H
