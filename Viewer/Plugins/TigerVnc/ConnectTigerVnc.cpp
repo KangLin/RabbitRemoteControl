@@ -31,6 +31,7 @@
 #include <QThread>
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <QNetworkProxy>
 
 #include "rfb/Security.h"
 #ifdef HAVE_GNUTLS
@@ -123,6 +124,29 @@ int CConnectTigerVnc::Connect()
         check = connect(m_pSock, SIGNAL(readyRead()),
                         this, SLOT(slotReadyRead()));
         Q_ASSERT(check);
+        
+        // Set sock
+        switch(m_pPara->eProxyType)
+        {
+        case CParameter::emProxy::SocksV4:
+            break;
+        case CParameter::emProxy::SocksV5:
+        {
+            QNetworkProxy proxy;
+            proxy.setType(QNetworkProxy::Socks5Proxy);
+            proxy.setHostName(m_pPara->szProxyHost);
+            proxy.setPort(m_pPara->nProxyPort);
+            proxy.setUser(m_pPara->szProxyUser);
+            proxy.setPassword(m_pPara->szProxyPassword);
+            m_pSock->setProxy(proxy);
+            break;
+        }
+        case CParameter::emProxy::No:
+            break;
+        default:
+            break;
+        }
+        
         m_pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
         
         initialiseProtocol();

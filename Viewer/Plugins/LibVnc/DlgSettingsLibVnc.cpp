@@ -126,6 +126,7 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     m_pPara->bJpeg = ui->cbJPEG->isChecked();
     m_pPara->nQualityLevel = ui->spJPEGLevel->value();
     
+    // Proxy
     if(ui->rbProxyNo->isChecked())
         m_pPara->eProxyType = CParameter::emProxy::No;
     if(ui->rbProxySocks->isChecked())

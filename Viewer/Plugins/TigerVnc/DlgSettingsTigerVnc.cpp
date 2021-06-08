@@ -60,6 +60,16 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
     m_pPara->bNoJpeg = !ui->cbJPEG->isChecked();
     m_pPara->nQualityLevel = ui->spJPEGLevel->value();
     
+    // Proxy
+    if(ui->rbProxyNo->isChecked())
+        m_pPara->eProxyType = CParameter::emProxy::No;
+    if(ui->rbProxySocks->isChecked())
+        m_pPara->eProxyType = CParameter::emProxy::SocksV5;
+    m_pPara->szProxyHost = ui->leProxyServer->text();
+    m_pPara->nProxyPort = ui->spProxyPort->value();
+    m_pPara->szProxyUser = ui->leProxyUser->text();
+    m_pPara->szProxyPassword = ui->leProxyPassword->text();
+    
     accept();
 }
 
@@ -181,6 +191,24 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
         ui->spCompressLevel->setEnabled(m_pPara->bCompressLevel);
         ui->spJPEGLevel->setEnabled(!m_pPara->bNoJpeg);
     }
+    
+    // Proxy
+    switch(m_pPara->eProxyType)
+    {
+    case CParameter::emProxy::No:
+        ui->rbProxyNo->setChecked(true);
+        break;
+    case CParameter::emProxy::SocksV4:
+    case CParameter::emProxy::SocksV5:
+        ui->rbProxySocks->setChecked(true);
+        break;
+    default:
+        break;
+    }
+    ui->leProxyServer->setText(m_pPara->szProxyHost);
+    ui->spProxyPort->setValue(m_pPara->nProxyPort);
+    ui->leProxyUser->setText(m_pPara->szProxyUser);
+    ui->leProxyPassword->setText(m_pPara->szProxyPassword);
 }
 
 void CDlgSettingsTigerVnc::on_pbShow_clicked()
