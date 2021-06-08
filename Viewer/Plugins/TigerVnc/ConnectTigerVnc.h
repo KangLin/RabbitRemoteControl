@@ -9,6 +9,9 @@
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
+#include "QSocketInStream.h"
+#include "QSocketOutStream.h"
+#include <QEventLoop>
 
 class CConnecterTigerVnc;
 class CConnectTigerVnc : public CConnect,
@@ -31,6 +34,9 @@ public Q_SLOTS:
     virtual int Process() override;
     virtual int Disconnect() override;
     
+    virtual void slotConnected();
+    virtual void slotDisConnected();
+    virtual void slotReadyRead();
     virtual void slotClipBoardChange() override;
     
 public:
@@ -67,7 +73,11 @@ public Q_SLOTS:
     virtual void slotKeyReleaseEvent(QKeyEvent*) override;
     
 private:
-    network::Socket* m_pSock;
+    //network::Socket* m_pSock;
+
+    QTcpSocket* m_pSock;
+    CQSocketInStream* m_pInStream;
+    CQSocketOutStream* m_pOutStream;
     
     quint32 TranslateRfbKey(quint32 inkey,bool modifier);   
     
@@ -102,6 +112,7 @@ private:
     void updatePixelFormat();
 
     bool m_bWriteClipboard;
+    QEventLoop m_Loop;
 };
 
 #endif // CCONNECTTIGERVNC_H

@@ -15,6 +15,8 @@ SET(SOURCE_FILES
     ConnecterTigerVnc.cpp
     PluginFactoryTigerVnc.cpp
     DlgSettingsTigerVnc.cpp
+    QSocketInStream.cpp
+    QSocketOutStream.cpp
     )
 SET(HEADER_FILES
     ConnectTigerVnc.h
@@ -22,6 +24,8 @@ SET(HEADER_FILES
     ConnecterTigerVnc.h
     PluginFactoryTigerVnc.h
     DlgSettingsTigerVnc.h
+    QSocketInStream.h
+    QSocketOutStream.h
     )
 SET(UI_FILES
     DlgSettingsTigerVnc.ui

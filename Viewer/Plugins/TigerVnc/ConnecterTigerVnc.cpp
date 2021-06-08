@@ -5,7 +5,8 @@
 #include <QDebug>
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
-    : CConnecterPlugins(parent)
+    : CConnecterPlugins(parent),
+      m_pConnect(nullptr)
 {
     m_pParameter = &m_Para;
     m_Para.nPort = 5900;
@@ -29,6 +30,45 @@ CConnecterTigerVnc::~CConnecterTigerVnc()
 
 qint16 CConnecterTigerVnc::Version()
 {
+    return 0;
+}
+
+int CConnecterTigerVnc::Connect()
+{
+    int nRet = -1;
+    m_pConnect = InstanceConnect();
+    
+    do{
+        CConnect* pConnect = InstanceConnect();
+        if(nullptr == pConnect) break;
+        
+        nRet = pConnect->Initialize();
+        if(nRet) break;
+        
+        /**
+          nRet < 0 : error
+          nRet = 0 : emit sigConnected
+          nRet = 1 : emit sigConnected in CConnect
+          */
+        nRet = pConnect->Connect();
+        if(nRet < 0) break;
+        
+        
+    }while (0);
+
+    return nRet;    
+}
+
+int CConnecterTigerVnc::DisConnect()
+{
+    emit sigDisconnected();
+    if(m_pConnect)
+    {
+        m_pConnect->Disconnect();
+        m_pConnect->Clean();
+        delete m_pConnect;
+        m_pConnect = nullptr;
+    }
     return 0;
 }
 

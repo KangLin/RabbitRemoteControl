@@ -58,6 +58,8 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true,
 CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
       m_pSock(nullptr),
+      m_pInStream(nullptr),
+      m_pOutStream(nullptr),
       m_pPara(nullptr),
       m_bWriteClipboard(false)
 {
@@ -108,12 +110,21 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 int CConnectTigerVnc::Connect()
 {
     try{
-        m_pSock = new network::TcpSocket(m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
-        vlog.info("Connected to host %s port %d",
-                  m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
-       
-        setStreams(&m_pSock->inStream(), &m_pSock->outStream());
-
+        m_pSock = new QTcpSocket(this);
+        if(!m_pSock) return -1;
+        
+        bool check = false;
+        check = connect(m_pSock, SIGNAL(connected()),
+                        this, SLOT(slotConnected()));
+        Q_ASSERT(check);
+        check = connect(m_pSock, SIGNAL(disconnected()),
+                        this, SLOT(slotDisConnected()));
+        Q_ASSERT(check);
+        check = connect(m_pSock, SIGNAL(readyRead()),
+                        this, SLOT(slotReadyRead()));
+        Q_ASSERT(check);
+        m_pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
+        
         initialiseProtocol();
     } catch (rdr::Exception& e) {
         vlog.error("%s", e.str());
@@ -125,26 +136,57 @@ int CConnectTigerVnc::Connect()
 
 int CConnectTigerVnc::Disconnect()
 {
+    if(m_pInStream)
+    {
+        delete m_pInStream;
+        m_pInStream = nullptr;
+    }
+    
+    if(m_pOutStream)
+    {
+        delete m_pOutStream;
+        m_pOutStream = nullptr;
+    }
+    
     if(m_pSock)
     {
-        m_pSock->shutdown();
+        m_pSock->close();
+        delete m_pSock;
+        m_pSock = nullptr;
     }
 
     return 0;
 }
 
-int CConnectTigerVnc::Process()
+void CConnectTigerVnc::slotConnected()
 {
+    vlog.info("Connected to host %s port %d",
+              m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
+    m_pInStream = new CQSocketInStream(m_pSock);
+    m_pOutStream = new CQSocketOutStream(m_pSock);
+    setStreams(m_pInStream, m_pOutStream);
+    emit sigConnected();
+}
+
+void CConnectTigerVnc::slotDisConnected()
+{
+}
+
+void CConnectTigerVnc::slotReadyRead()
+{
+    vlog.debug("CConnectTigerVnc::slotReadyRead");
     int nRet = 0;
-    
     try {
         auto in = getInStream();
         if(in)
         {
             if(in->hasData(1))
-                processMsg();
-            else if(nRet == 0)
-                QThread::msleep(500);
+            {
+                if(processMsg())
+                    vlog.debug("processMsg is ok");
+                else
+                    vlog.debug("processMsg() is fail");
+            }
         }
     } catch (rdr::EndOfStream& e) {
         vlog.error("exec error: %s", e.str());
@@ -155,6 +197,13 @@ int CConnectTigerVnc::Process()
         nRet = -2;
         emit sigError(-1, e.str());
     }
+}
+
+int CConnectTigerVnc::Process()
+{
+    int nRet = 0;
+    
+    m_Loop.exec();
     
     return nRet;
 }
