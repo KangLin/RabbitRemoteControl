@@ -15,7 +15,8 @@
 class CPluginFactory;
 
 /**
- * @brief The CConnecter class
+ * @brief The CConnecter class.
+ * @note  The class is a interface used by Use UI
  * @see   CPluginFactory CFrmViewer CConnect
  * @addtogroup API
  */
