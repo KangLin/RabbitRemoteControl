@@ -200,9 +200,9 @@ void CConnectTigerVnc::slotDisConnected()
 void CConnectTigerVnc::slotReadyRead()
 {
     //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotReadyRead");
-    int nRet = 0;
     try {
-        processMsg();
+        while(processMsg())
+            ;
     } catch (rdr::EndOfStream& e) {
         LOG_MODEL_ERROR("TigerVnc", "exec error: %s", e.str());
         emit sigError(-1, e.str());
