@@ -47,14 +47,13 @@ int CConnecterTigerVnc::Connect()
 int CConnecterTigerVnc::DisConnect()
 {
     LOG_MODEL_DEBUG("TigerVnc", "CConnecterTigerVnc::DisConnect()");
-    emit sigDisconnected();
     if(m_pConnect)
     {
         m_pConnect->Disconnect();
-        m_pConnect->Clean();
         delete m_pConnect;
         m_pConnect = nullptr;
     }
+    emit sigDisconnected();
     return 0;
 }
 

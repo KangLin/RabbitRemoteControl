@@ -56,11 +56,16 @@ static const rfb::PixelFormat mediumColourPF(8, 8, false, true,
 static const rfb::PixelFormat fullColourPF(32, 24, false, true,
                                            255, 255, 255, 16, 8, 0);
 
+// Time new bandwidth estimates are weighted against (in ms)
+static const unsigned bpsEstimateWindow = 1000;
+
 CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
       m_pSock(nullptr),
       m_pInStream(nullptr),
       m_pOutStream(nullptr),
+      m_bpsEstimate(20000000),
+      m_updateCount(0),
       m_pPara(nullptr),
       m_bWriteClipboard(false)
 {
@@ -203,7 +208,7 @@ void CConnectTigerVnc::slotDisConnected()
 
 void CConnectTigerVnc::slotReadyRead()
 {
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotReadyRead");
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotReadyRead");
     int nRet = 0;
     try {
         auto in = getInStream();
@@ -236,7 +241,7 @@ void CConnectTigerVnc::setColourMapEntries(int firstColour, int nColours, rdr::U
 void CConnectTigerVnc::initDone()
 {
     Q_ASSERT(m_pPara); // Please call SetParamter before call Connect
-    vlog.info("initDone");
+    LOG_MODEL_DEBUG("TigerVnc", "initDone");
     
     // If using AutoSelect with old servers, start in FullColor
     // mode. See comment in autoSelectFormatAndEncoding. 
@@ -262,7 +267,7 @@ void CConnectTigerVnc::bell()
 
 void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspot, const rdr::U8 *data)
 {
-    //vlog.debug("CConnectTigerVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
     if ((width == 0) || (height == 0)) {
         QImage cursor(1, 1, QImage::Format_ARGB32);
         rdr::U8 *buffer = cursor.bits();
@@ -292,8 +297,21 @@ void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)
 
 bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text)
 {
-    vlog.error("%s:%s\n", title, text);
+    LOG_MODEL_ERROR("TigerVnc","%s:%s\n", title, text);
     return true;
+}
+
+// framebufferUpdateStart() is called at the beginning of an update.
+// Here we try to send out a new framebuffer update request so that the
+// next update can be sent out in parallel with us decoding the current
+// one.
+void CConnectTigerVnc::framebufferUpdateStart()
+{
+  CConnection::framebufferUpdateStart();
+
+  // For bandwidth estimate
+  gettimeofday(&updateStartTime, NULL);
+  m_updateStartPos = m_pInStream->pos();
 }
 
 // framebufferUpdateEnd() is called at the end of an update.
@@ -302,8 +320,31 @@ bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text
 // appropriately, and then request another incremental update.
 void CConnectTigerVnc::framebufferUpdateEnd()
 {
+    unsigned long long elapsed, bps, weight;
+    struct timeval now;
+    
     rfb::CConnection::framebufferUpdateEnd();
     //vlog.debug("CConnectTigerVnc::framebufferUpdateEnd");
+    
+    m_updateCount++;
+  
+    // Calculate bandwidth everything managed to maintain during this update
+    gettimeofday(&now, NULL);
+    elapsed = (now.tv_sec - updateStartTime.tv_sec) * 1000000;
+    elapsed += now.tv_usec - updateStartTime.tv_usec;
+    if (elapsed == 0)
+      elapsed = 1;
+    bps = (unsigned long long)(m_pInStream->pos() -
+                               m_updateStartPos) * 8 *
+                              1000000 / elapsed;
+    // Allow this update to influence things more the longer it took, to a
+    // maximum of 20% of the new value.
+    weight = elapsed * 1000 / bpsEstimateWindow;
+    if (weight > 200000)
+      weight = 200000;
+    m_bpsEstimate = ((m_bpsEstimate * (1000000 - weight)) +
+                   (bps * weight)) / 1000000;
+    
     if(m_pPara && m_pPara->bBufferEndRefresh)
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
@@ -332,50 +373,50 @@ void CConnectTigerVnc::framebufferUpdateEnd()
 //
 void CConnectTigerVnc::autoSelectFormatAndEncoding()
 {
-//    bool newFullColour = m_pPara->nColorLevel == Full ? true : false;
-//    int newQualityLevel = m_pPara->nQualityLevel;
+    bool newFullColour = m_pPara->nColorLevel == Full ? true : false;
+    int newQualityLevel = m_pPara->nQualityLevel;
     
-//    // Always use Tight
-//    setPreferredEncoding(rfb::encodingTight);
+    // Always use Tight
+    setPreferredEncoding(rfb::encodingTight);
     
-//    // Select appropriate quality level
-//    if (!m_pPara->bNoJpeg) {
-//        if (kbitsPerSecond > 16000)
-//            newQualityLevel = 8;
-//        else
-//            newQualityLevel = 6;
+    // Select appropriate quality level
+    if (!m_pPara->bNoJpeg) {
+        if (m_bpsEstimate > 16000)
+            newQualityLevel = 8;
+        else
+            newQualityLevel = 6;
         
-//        if (newQualityLevel != m_pPara->nQualityLevel) {
-//            vlog.info(("Throughput %d kbit/s - changing to quality %d"),
-//                      kbitsPerSecond, newQualityLevel);
-//            m_pPara->nQualityLevel = newQualityLevel;
-//            setQualityLevel(newQualityLevel);
-//        }
-//    }
+        if (newQualityLevel != m_pPara->nQualityLevel) {
+            vlog.info("Throughput %d kbit/s - changing to quality %d",
+                      (int)(m_bpsEstimate/1000), newQualityLevel);
+            m_pPara->nQualityLevel = newQualityLevel;
+            setQualityLevel(newQualityLevel);
+        }
+    }
     
-//    if (server.beforeVersion(3, 8)) {
-//        // Xvnc from TightVNC 1.2.9 sends out FramebufferUpdates with
-//        // cursors "asynchronously". If this happens in the middle of a
-//        // pixel format change, the server will encode the cursor with
-//        // the old format, but the client will try to decode it
-//        // according to the new format. This will lead to a
-//        // crash. Therefore, we do not allow automatic format change for
-//        // old servers.
-//        return;
-//    }
+    if (server.beforeVersion(3, 8)) {
+        // Xvnc from TightVNC 1.2.9 sends out FramebufferUpdates with
+        // cursors "asynchronously". If this happens in the middle of a
+        // pixel format change, the server will encode the cursor with
+        // the old format, but the client will try to decode it
+        // according to the new format. This will lead to a
+        // crash. Therefore, we do not allow automatic format change for
+        // old servers.
+        return;
+    }
     
-//    // Select best color level
-//    newFullColour = (kbitsPerSecond > 256);
-//    if (newFullColour != (0 == m_pPara->nColorLevel)) {
-//        if (newFullColour)
-//            vlog.info(("Throughput %d kbit/s - full color is now enabled"),
-//                      kbitsPerSecond);
-//        else
-//            vlog.info(("Throughput %d kbit/s - full color is now disabled"),
-//                      kbitsPerSecond);
-//        m_pPara->nColorLevel = newFullColour ? CConnectTigerVnc::Full : CConnectTigerVnc::Low;
-//        updatePixelFormat();
-//    } 
+    // Select best color level
+    newFullColour = (m_bpsEstimate > 256);
+    if (newFullColour != (0 == m_pPara->nColorLevel)) {
+        if (newFullColour)
+            vlog.info(("Throughput %d kbit/s - full color is now enabled"),
+                      (int)m_bpsEstimate / 1000);
+        else
+            vlog.info(("Throughput %d kbit/s - full color is now disabled"),
+                      (int)m_bpsEstimate / 1000);
+        m_pPara->nColorLevel = newFullColour ? CConnectTigerVnc::Full : CConnectTigerVnc::Low;
+        updatePixelFormat();
+    } 
 }
 
 // requestNewUpdate() requests an update from the server, having set the
@@ -413,8 +454,8 @@ bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
     if(!rfb::CConnection::dataRect(r, encoding))
         return false;
    
-    //vlog.debug("CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
-    //           r.tl.x, r.tl.y, r.width(), r.height(), encoding);
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
+               r.tl.x, r.tl.y, r.width(), r.height(), encoding);
     // 立即更新图像
     if(m_pPara && !m_pPara->bBufferEndRefresh)
     {
@@ -426,7 +467,7 @@ bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
 
 void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
 {
-    //vlog.debug("CConnectTigerVnc::slotMousePressEvent");
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMousePressEvent");
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
     unsigned char mask = 0;
@@ -445,7 +486,7 @@ void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
-    //vlog.debug("CConnectTigerVnc::slotMouseReleaseEvent");
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseReleaseEvent");
     int mask = 0;
     rfb::Point pos(e->x(), e->y());
     
@@ -454,7 +495,7 @@ void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 
 void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
 {
-    //vlog.debug("CConnectTigerVnc::slotMouseMoveEvent");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseMoveEvent");
     //qDebug() << "slotMouseMoveEvent x:" << e->x() << ";y:" << e->y();
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
@@ -471,7 +512,7 @@ void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
 
 void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
 {
-    //vlog.debug("CConnectTigerVnc::slotWheelEvent");
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotWheelEvent");
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
@@ -504,7 +545,7 @@ void CConnectTigerVnc::slotKeyPressEvent(QKeyEvent* e)
     bool modifier = true;
     if (e->modifiers() == Qt::NoModifier)
         modifier = false;
-    //vlog.debug("key:%d", e->key());
+    //LOG_MODEL_DEBUG("TigerVnc", "key:%d", e->key());
     uint32_t key = TranslateRfbKey(e->key(), modifier);
     if(key)
         writer()->writeKeyEvent(key, 0, true);
@@ -747,7 +788,7 @@ void CConnectTigerVnc::slotClipBoardChange()
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     
-//    vlog.debug("CConnectTigerVnc::slotClipBoardChange()");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotClipBoardChange()");
 
     announceClipboard(true);
 }
@@ -756,7 +797,7 @@ void CConnectTigerVnc::handleClipboardRequest()
 {
     if(!m_pPara->bClipboard) return;
     
-//    vlog.debug("CConnectTigerVnc::handleClipboardRequest");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardRequest");
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
     
@@ -764,8 +805,9 @@ void CConnectTigerVnc::handleClipboardRequest()
 //        setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
     } else if (mimeData->hasText()) {
         QString szText = mimeData->text();
-//        vlog.debug("CConnectTigerVnc::handleClipboardRequest:szText:%s",
-//                   szText.toStdString().c_str());
+        LOG_MODEL_DEBUG("TigerVnc",
+                        "CConnectTigerVnc::handleClipboardRequest:szText:%s",
+                        szText.toStdString().c_str());
         try{
             sendClipboardData(rfb::clipboardUTF8, szText.toStdString().c_str(),
                               szText.toStdString().size());
@@ -774,8 +816,9 @@ void CConnectTigerVnc::handleClipboardRequest()
         }
     } else if (mimeData->hasHtml()) {
         QString szHtml = mimeData->html();
-        //        vlog.debug("CConnectTigerVnc::handleClipboardRequest:html:%s",
-        //                   szHtml.toStdString().c_str());
+        LOG_MODEL_DEBUG("TigerVnc",
+                        "CConnectTigerVnc::handleClipboardRequest:html:%s",
+                        szHtml.toStdString().c_str());
         try{
             sendClipboardData(rfb::clipboardHTML, mimeData->html().toStdString().c_str(),
                               mimeData->html().toStdString().size());
@@ -789,7 +832,7 @@ void CConnectTigerVnc::handleClipboardRequest()
 
 void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 {
-    //    vlog.debug("CConnectTigerVnc::handleClipboardAnnounce");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardAnnounce");
     if(!m_pPara->bClipboard) return;
     
     if(available)
@@ -798,7 +841,7 @@ void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 
 void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data, size_t length)
 {
-//    vlog.debug("CConnectTigerVnc::handleClipboardData");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardData");
     if(!m_pPara->bClipboard) return;
     
     if(rfb::clipboardUTF8 & format) {

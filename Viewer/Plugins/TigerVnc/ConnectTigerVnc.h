@@ -48,6 +48,7 @@ public:
 
     // CMsgHandler interface
 public:
+    virtual void framebufferUpdateStart() override;
     virtual void framebufferUpdateEnd() override;
     virtual bool dataRect(const rfb::Rect &r, int encoding) override;
     virtual void setColourMapEntries(int firstColour, int nColours, rdr::U16* rgbs) override;
@@ -73,11 +74,14 @@ public Q_SLOTS:
     virtual void slotKeyReleaseEvent(QKeyEvent*) override;
     
 private:
-    //network::Socket* m_pSock;
-
     QTcpSocket* m_pSock;
     CQSocketInStream* m_pInStream;
     CQSocketOutStream* m_pOutStream;
+    
+    unsigned long long m_bpsEstimate;
+    unsigned m_updateCount;
+    struct timeval updateStartTime;
+    size_t m_updateStartPos;
     
     quint32 TranslateRfbKey(quint32 inkey,bool modifier);   
     
