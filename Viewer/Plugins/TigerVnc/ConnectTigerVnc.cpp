@@ -77,6 +77,8 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
 CConnectTigerVnc::~CConnectTigerVnc()
 {
     qDebug() << "CConnectTigerVnc::~CConnectTigerVnc()";
+    if(m_pSock)
+        delete m_pSock;
 }
 
 int CConnectTigerVnc::SetParamter(void *pPara)
