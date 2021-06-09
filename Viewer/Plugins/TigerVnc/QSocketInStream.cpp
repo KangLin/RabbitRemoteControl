@@ -1,5 +1,5 @@
 #include "QSocketInStream.h"
-#include <exception>
+#include <stdexcept>
 
 CQSocketInStream::CQSocketInStream(QTcpSocket *pSocket)
     : rdr::BufferedInStream(),
@@ -17,7 +17,7 @@ bool CQSocketInStream::fillBuffer(size_t maxSize)
       return false;
 
     if(-1 == n)
-        throw std::runtime_error(m_pSocket->errorString().toStdString().c_str());
+        throw std::runtime_error(m_pSocket->errorString().toStdString());
 
     end += n;
 

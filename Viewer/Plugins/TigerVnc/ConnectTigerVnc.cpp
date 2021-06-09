@@ -40,8 +40,6 @@
 
 #include "RabbitCommonLog.h"
 
-static rfb::LogWriter vlog("ConnectTigerVnc");
-
 // 8 colours (1 bit per component)
 static const rfb::PixelFormat verylowColourPF(8, 3,false, true,
                                          1, 1, 1, 2, 1, 0);
@@ -155,11 +153,9 @@ int CConnectTigerVnc::Connect()
         
         m_pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
         
-        initialiseProtocol();
-        
         return 0;
     } catch (rdr::Exception& e) {
-        vlog.error("%s", e.str());
+        LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
         emit sigError(-1, e.str());
         return -1;
     }
@@ -197,6 +193,7 @@ void CConnectTigerVnc::slotConnected()
     m_pInStream = new CQSocketInStream(m_pSock);
     m_pOutStream = new CQSocketOutStream(m_pSock);
     setStreams(m_pInStream, m_pOutStream);
+    initialiseProtocol();
 }
 
 void CConnectTigerVnc::slotDisConnected()
@@ -218,10 +215,10 @@ void CConnectTigerVnc::slotReadyRead()
                 processMsg();
         }
     } catch (rdr::EndOfStream& e) {
-        vlog.error("exec error: %s", e.str());
+        LOG_MODEL_ERROR("TigerVnc", "exec error: %s", e.str());
         emit sigError(-1, e.str());
     } catch (rdr::Exception& e) {
-        vlog.error("exec error: %s", e.str());
+        LOG_MODEL_ERROR("TigerVnc", "exec error: %s", e.str());
         emit sigError(-1, e.str());
     }
 }
@@ -235,7 +232,7 @@ int CConnectTigerVnc::Process()
 
 void CConnectTigerVnc::setColourMapEntries(int firstColour, int nColours, rdr::U16 *rgbs)
 {
-    vlog.error("Invalid SetColourMapEntries from server!");
+    LOG_MODEL_ERROR("TigerVnc", "Invalid SetColourMapEntries from server!");
 }
 
 void CConnectTigerVnc::initDone()
@@ -324,7 +321,7 @@ void CConnectTigerVnc::framebufferUpdateEnd()
     struct timeval now;
     
     rfb::CConnection::framebufferUpdateEnd();
-    //vlog.debug("CConnectTigerVnc::framebufferUpdateEnd");
+    //LOG_MODEL_ERROR("TigerVnc", "CConnectTigerVnc::framebufferUpdateEnd");
     
     m_updateCount++;
   
@@ -387,7 +384,7 @@ void CConnectTigerVnc::autoSelectFormatAndEncoding()
             newQualityLevel = 6;
         
         if (newQualityLevel != m_pPara->nQualityLevel) {
-            vlog.info("Throughput %d kbit/s - changing to quality %d",
+            LOG_MODEL_INFO("TigerVnc", "Throughput %d kbit/s - changing to quality %d",
                       (int)(m_bpsEstimate/1000), newQualityLevel);
             m_pPara->nQualityLevel = newQualityLevel;
             setQualityLevel(newQualityLevel);
@@ -409,10 +406,10 @@ void CConnectTigerVnc::autoSelectFormatAndEncoding()
     newFullColour = (m_bpsEstimate > 256);
     if (newFullColour != (0 == m_pPara->nColorLevel)) {
         if (newFullColour)
-            vlog.info(("Throughput %d kbit/s - full color is now enabled"),
+            LOG_MODEL_INFO("TigerVnc", ("Throughput %d kbit/s - full color is now enabled"),
                       (int)m_bpsEstimate / 1000);
         else
-            vlog.info(("Throughput %d kbit/s - full color is now disabled"),
+            LOG_MODEL_INFO("TigerVnc", ("Throughput %d kbit/s - full color is now disabled"),
                       (int)m_bpsEstimate / 1000);
         m_pPara->nColorLevel = newFullColour ? CConnectTigerVnc::Full : CConnectTigerVnc::Low;
         updatePixelFormat();
@@ -445,7 +442,7 @@ void CConnectTigerVnc::updatePixelFormat()
   
     char str[256];
     pf.print(str, 256);
-    vlog.info(tr("Using pixel format %s").toStdString().c_str(), str);
+    LOG_MODEL_INFO("TigerVnc", "Using pixel format %s", str);
     setPF(pf);
 }
 
@@ -454,8 +451,8 @@ bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
     if(!rfb::CConnection::dataRect(r, encoding))
         return false;
    
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
-               r.tl.x, r.tl.y, r.width(), r.height(), encoding);
+//    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
+//               r.tl.x, r.tl.y, r.width(), r.height(), encoding);
     // 立即更新图像
     if(m_pPara && !m_pPara->bBufferEndRefresh)
     {
@@ -495,7 +492,7 @@ void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
 
 void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
 {
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseMoveEvent");
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseMoveEvent");
     //qDebug() << "slotMouseMoveEvent x:" << e->x() << ";y:" << e->y();
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
@@ -812,7 +809,7 @@ void CConnectTigerVnc::handleClipboardRequest()
             sendClipboardData(rfb::clipboardUTF8, szText.toStdString().c_str(),
                               szText.toStdString().size());
         } catch (rdr::Exception& e) {
-            vlog.error("%s", e.str());
+            LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
         }
     } else if (mimeData->hasHtml()) {
         QString szHtml = mimeData->html();
@@ -823,10 +820,10 @@ void CConnectTigerVnc::handleClipboardRequest()
             sendClipboardData(rfb::clipboardHTML, mimeData->html().toStdString().c_str(),
                               mimeData->html().toStdString().size());
         } catch (rdr::Exception& e) {
-            vlog.error("%s", e.str());
+            LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
         }
     } else {
-        vlog.debug("Cannot display data");
+        LOG_MODEL_DEBUG("TigerVnc", "Cannot display data");
     }
 }
 
@@ -854,6 +851,6 @@ void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data
         emit sigSetClipboard(pData);
         //pClip->setMimeData(pData);
     } else {
-        vlog.debug("Don't implement");
+        LOG_MODEL_DEBUG("TigerVnc", "Don't implement");
     }
 }

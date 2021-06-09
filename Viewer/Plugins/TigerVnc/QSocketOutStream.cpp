@@ -1,5 +1,5 @@
 #include "QSocketOutStream.h"
-#include <exception>
+#include <stdexcept>
 
 CQSocketOutStream::CQSocketOutStream(QTcpSocket *pSocket)
     : rdr::BufferedOutStream(),
@@ -15,7 +15,7 @@ bool CQSocketOutStream::flushBuffer()
       return false;
     
     if(-1 == n)
-        throw std::runtime_error(m_pSocket->errorString().toStdString().c_str());
+        throw std::runtime_error(m_pSocket->errorString().toStdString());
   
     sentUpTo += n;
   
