@@ -9,7 +9,7 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
     bLocalCursor(true),
     bClipboard(false),
     eProxyType(emProxy::No),
-    nProxyPort(0)
+    nProxyPort(1080)
 {}
 
 QDataStream &operator<<(QDataStream &data, const CParameter &para)

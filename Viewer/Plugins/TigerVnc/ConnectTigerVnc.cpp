@@ -111,6 +111,7 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 int CConnectTigerVnc::Connect()
 {
     try{
+        Q_ASSERT(!m_pSock);
         m_pSock = new QTcpSocket(this);
         if(!m_pSock) return -1;
         
@@ -150,12 +151,14 @@ int CConnectTigerVnc::Connect()
         m_pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
         
         initialiseProtocol();
+        
+        return 0;
     } catch (rdr::Exception& e) {
         vlog.error("%s", e.str());
         emit sigError(-1, e.str());
         return -1;
     }
-    return 1;
+    return 0;
 }
 
 int CConnectTigerVnc::Disconnect()
@@ -184,7 +187,7 @@ int CConnectTigerVnc::Disconnect()
 
 void CConnectTigerVnc::slotConnected()
 {
-    vlog.info("Connected to host %s port %d",
+    LOG_MODEL_INFO("TigerVnc", "Connected to host %s port %d",
               m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
     m_pInStream = new CQSocketInStream(m_pSock);
     m_pOutStream = new CQSocketOutStream(m_pSock);
@@ -194,24 +197,21 @@ void CConnectTigerVnc::slotConnected()
 
 void CConnectTigerVnc::slotDisConnected()
 {
+    LOG_MODEL_INFO("TigerVnc", "slotDisConnected to host %s port %d",
+                   m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
     emit sigDisconnected();
 }
 
 void CConnectTigerVnc::slotReadyRead()
 {
-    vlog.debug("CConnectTigerVnc::slotReadyRead");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotReadyRead");
     int nRet = 0;
     try {
         auto in = getInStream();
         if(in)
         {
             if(in->hasData(1))
-            {
-                if(processMsg())
-                    vlog.debug("processMsg is ok");
-                else
-                    vlog.debug("processMsg() is fail");
-            }
+                processMsg();
         }
     } catch (rdr::EndOfStream& e) {
         vlog.error("exec error: %s", e.str());

@@ -3,6 +3,7 @@
 #include "ConnecterTigerVnc.h"
 #include "rfb/encodings.h"
 #include <QDebug>
+#include "RabbitCommonLog.h"
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
     : CConnecterPlugins(parent),
@@ -35,31 +36,17 @@ qint16 CConnecterTigerVnc::Version()
 
 int CConnecterTigerVnc::Connect()
 {
+    LOG_MODEL_DEBUG("TigerVnc", "CConnecterTigerVnc::Connect()");
     int nRet = -1;
     m_pConnect = InstanceConnect();
-    
-    do{
-        if(nullptr == m_pConnect) break;
-        
-        nRet = m_pConnect->Initialize();
-        if(nRet) break;
-        
-        /**
-          nRet < 0 : error
-          nRet = 0 : emit sigConnected
-          nRet = 1 : emit sigConnected in CConnect
-          */
-        nRet = m_pConnect->Connect();
-        if(nRet < 0) break;
-        
-        
-    }while (0);
-
+    if(nullptr == m_pConnect) return nRet;
+    nRet = m_pConnect->Connect();
     return nRet;    
 }
 
 int CConnecterTigerVnc::DisConnect()
 {
+    LOG_MODEL_DEBUG("TigerVnc", "CConnecterTigerVnc::DisConnect()");
     emit sigDisconnected();
     if(m_pConnect)
     {
