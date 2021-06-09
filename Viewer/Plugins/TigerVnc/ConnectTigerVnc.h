@@ -40,10 +40,7 @@ public Q_SLOTS:
     virtual void slotClipBoardChange() override;
     
 public:
-    // Callback when socket is ready (or broken)
-    //static void socketEvent(FL_SOCKET fd, void *data);
-
-    // CConnection callback methods
+    // rfb::CConnection callback methods
     virtual void initDone() override;
 
     // CMsgHandler interface

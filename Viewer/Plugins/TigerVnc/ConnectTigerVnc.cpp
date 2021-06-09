@@ -41,18 +41,14 @@
 #include "RabbitCommonLog.h"
 
 // 8 colours (1 bit per component)
-static const rfb::PixelFormat verylowColourPF(8, 3,false, true,
-                                         1, 1, 1, 2, 1, 0);
+static const rfb::PixelFormat verylowColourPF(8, 3,false, true, 1, 1, 1, 2, 1, 0);
 // 64 colours (2 bits per component)
-static const rfb::PixelFormat lowColourPF(8, 6, false, true,
-                                     3, 3, 3, 4, 2, 0);
+static const rfb::PixelFormat lowColourPF(8, 6, false, true, 3, 3, 3, 4, 2, 0);
 // 256 colours (2-3 bits per component)
-static const rfb::PixelFormat mediumColourPF(8, 8, false, true,
-                                        7, 7, 3, 5, 2, 0);
+static const rfb::PixelFormat mediumColourPF(8, 8, false, true, 7, 7, 3, 5, 2, 0);
 
 // RGB (4 bits per component)
-static const rfb::PixelFormat fullColourPF(32, 24, false, true,
-                                           255, 255, 255, 16, 8, 0);
+static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 16, 8, 0);
 
 // Time new bandwidth estimates are weighted against (in ms)
 static const unsigned bpsEstimateWindow = 1000;
@@ -105,12 +101,6 @@ int CConnectTigerVnc::SetParamter(void *pPara)
     return 0;
 }
 
-/**
-  return:
-    < 0 : error
-    = 0 : emit sigConnected
-    = 1 : emit sigConnected in a instance of this CConnecterTigerVnc
-*/
 int CConnectTigerVnc::Connect()
 {
     try{
@@ -208,12 +198,7 @@ void CConnectTigerVnc::slotReadyRead()
     //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotReadyRead");
     int nRet = 0;
     try {
-        auto in = getInStream();
-        if(in)
-        {
-            if(in->hasData(1))
-                processMsg();
-        }
+        processMsg();
     } catch (rdr::EndOfStream& e) {
         LOG_MODEL_ERROR("TigerVnc", "exec error: %s", e.str());
         emit sigError(-1, e.str());
