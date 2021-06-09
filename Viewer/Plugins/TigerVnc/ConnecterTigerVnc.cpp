@@ -53,7 +53,6 @@ int CConnecterTigerVnc::DisConnect()
         delete m_pConnect;
         m_pConnect = nullptr;
     }
-    emit sigDisconnected();
     return 0;
 }
 

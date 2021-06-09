@@ -103,10 +103,15 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 
 int CConnectTigerVnc::Connect()
 {
+    int nRet = 0;
     try{
         Q_ASSERT(!m_pSock);
         m_pSock = new QTcpSocket(this);
-        if(!m_pSock) return -1;
+        m_pInStream = new CQSocketInStream(m_pSock);
+        m_pOutStream = new CQSocketOutStream(m_pSock);
+        
+        if(!m_pSock || !m_pInStream || !m_pOutStream)
+            return -1;
         
         bool check = false;
         check = connect(m_pSock, SIGNAL(connected()),
@@ -147,9 +152,9 @@ int CConnectTigerVnc::Connect()
     } catch (rdr::Exception& e) {
         LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
         emit sigError(-1, e.str());
-        return -1;
+        nRet = -2;
     }
-    return 0;
+    return nRet;
 }
 
 int CConnectTigerVnc::Disconnect()
@@ -180,8 +185,7 @@ void CConnectTigerVnc::slotConnected()
 {
     LOG_MODEL_INFO("TigerVnc", "Connected to host %s port %d",
               m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
-    m_pInStream = new CQSocketInStream(m_pSock);
-    m_pOutStream = new CQSocketOutStream(m_pSock);
+
     setStreams(m_pInStream, m_pOutStream);
     initialiseProtocol();
 }
@@ -210,14 +214,7 @@ void CConnectTigerVnc::slotReadyRead()
 
 int CConnectTigerVnc::Process()
 {
-    int nRet = 0;
-        
-    return nRet;
-}
-
-void CConnectTigerVnc::setColourMapEntries(int firstColour, int nColours, rdr::U16 *rgbs)
-{
-    LOG_MODEL_ERROR("TigerVnc", "Invalid SetColourMapEntries from server!");
+    return 0;
 }
 
 void CConnectTigerVnc::initDone()
@@ -228,18 +225,25 @@ void CConnectTigerVnc::initDone()
     // If using AutoSelect with old servers, start in FullColor
     // mode. See comment in autoSelectFormatAndEncoding. 
     if (server.beforeVersion(3, 8) && m_pPara->bAutoSelect)
+    {
         m_pPara->nColorLevel = Full;
+        updatePixelFormat();
+    }
     
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
-    //TODO: ?
-    //setServerName(m_szServerName.toStdString().c_str());
+
     emit sigServerName(szName);
-    
+        
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
 
     emit sigConnected();
+}
+
+void CConnectTigerVnc::setColourMapEntries(int firstColour, int nColours, rdr::U16 *rgbs)
+{
+    LOG_MODEL_ERROR("TigerVnc", "Invalid SetColourMapEntries from server!");
 }
 
 void CConnectTigerVnc::bell()
