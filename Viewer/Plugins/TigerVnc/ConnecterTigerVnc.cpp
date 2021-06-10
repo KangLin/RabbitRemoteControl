@@ -27,6 +27,11 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
 CConnecterTigerVnc::~CConnecterTigerVnc()
 {
     qDebug() << "CConnecterTigerVnc::~CConnecterTigerVnc()";
+    if(m_pConnect)
+    {
+        m_pConnect->deleteLater();
+        m_pConnect = nullptr;
+    }
 }
 
 qint16 CConnecterTigerVnc::Version()
@@ -49,9 +54,7 @@ int CConnecterTigerVnc::DisConnect()
     LOG_MODEL_DEBUG("TigerVnc", "CConnecterTigerVnc::DisConnect()");
     if(m_pConnect)
     {
-        m_pConnect->Disconnect();
-        delete m_pConnect;
-        m_pConnect = nullptr;
+        emit sigDisconnected();
     }
     return 0;
 }
