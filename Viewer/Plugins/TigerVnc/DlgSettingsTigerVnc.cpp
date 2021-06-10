@@ -65,7 +65,8 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         m_pPara->eProxyType = CParameter::emProxy::No;
     if(ui->rbProxySocks->isChecked())
         m_pPara->eProxyType = CParameter::emProxy::SocksV5;
-    
+    if(ui->rbHttp->isChecked())
+        m_pPara->eProxyType = CParameter::emProxy::Http;
     m_pPara->szProxyHost = ui->leProxyServer->text();
     m_pPara->nProxyPort = ui->spProxyPort->value();
     m_pPara->szProxyUser = ui->leProxyUser->text();
@@ -202,6 +203,9 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     case CParameter::emProxy::SocksV4:
     case CParameter::emProxy::SocksV5:
         ui->rbProxySocks->setChecked(true);
+        break;
+    case CParameter::emProxy::Http:
+        ui->rbHttp->setChecked(true);
         break;
     default:
         break;

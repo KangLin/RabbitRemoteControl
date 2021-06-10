@@ -127,19 +127,9 @@ int CConnecterPlugins::Load(QDataStream &d)
     int nRet = 0;
     Q_ASSERT(m_pParameter);
     qint16 version = 0;
-    d >> version;
-    d >> m_pParameter->szHost
-      >> m_pParameter->nPort
-      >> m_pParameter->szUser
-      >> m_pParameter->bSavePassword;
-    
-    if(m_pParameter->bSavePassword)
-        d >> m_pParameter->szPassword;
-    
-    d >> m_pParameter->bOnlyView
-      >> m_pParameter->bLocalCursor
-      >> m_pParameter->bClipboard;
-    
+    d >> version 
+            >> *m_pParameter;
+
     nRet = OnLoad(d);
     return nRet;
 }
@@ -149,17 +139,7 @@ int CConnecterPlugins::Save(QDataStream &d)
     int nRet = 0;
     Q_ASSERT(m_pParameter);
     d << Version()
-      << m_pParameter->szHost
-      << m_pParameter->nPort
-      << m_pParameter->szUser
-      << m_pParameter->bSavePassword;
-    
-    if(m_pParameter->bSavePassword)
-        d << m_pParameter->szPassword;
-    
-    d << m_pParameter->bOnlyView
-      << m_pParameter->bLocalCursor
-      << m_pParameter->bClipboard;
+      << *m_pParameter;
     
     nRet = OnSave(d);
     return nRet;
