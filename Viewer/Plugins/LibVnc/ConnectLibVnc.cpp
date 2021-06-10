@@ -129,7 +129,7 @@ int CConnectLibVnc::Clean()
     if(m_pClient)
     {
         m_tcpSocket.close();
-        m_pClient->sock = RFB_INVALID_SOCKET;
+        m_pClient->sock = -1; //RFB_INVALID_SOCKET;
 
         rfbClientCleanup(m_pClient);
         m_pClient = nullptr;
