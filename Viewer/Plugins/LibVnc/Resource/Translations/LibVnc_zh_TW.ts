@@ -9,82 +9,110 @@
         <translation>設置 LibVnc</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="24"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="28"/>
         <source>Server</source>
         <translation>服務</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="46"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="50"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="278"/>
         <source>Server:</source>
         <translation>服務器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="158"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="162"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="32"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="36"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="306"/>
         <source>User name:</source>
         <translation>用戶名：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="94"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="98"/>
         <source>Only view</source>
         <translation>僅查看</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="123"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="127"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="320"/>
         <source>Password:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="87"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="91"/>
         <source>Shared</source>
         <translation>共享</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="105"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="109"/>
         <source>Use local cursor</source>
         <translation>用本地光標</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="112"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="116"/>
         <source>Enable clipboard</source>
         <translation>允許剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="168"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="172"/>
         <source>Compress</source>
         <translation>壓縮</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="193"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="197"/>
         <source>0=fast, 9=best</source>
         <translation>0=最快，9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="204"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="208"/>
         <source>Enable JPEG compress</source>
         <translation>允許 JPEG 壓縮</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="218"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="222"/>
         <source>0=Worst, 9=best</source>
         <translation>0=最差,9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="174"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="178"/>
         <source>Compress level:</source>
         <translation>壓縮級別：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="259"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="245"/>
+        <source>Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="253"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="260"/>
+        <source>Socks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="267"/>
+        <source>UltraVNC repeater</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="288"/>
+        <source>Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="364"/>
         <source>Ok(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="266"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="371"/>
         <source>Cancle(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
