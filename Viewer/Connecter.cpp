@@ -19,7 +19,7 @@ CConnecter::~CConnecter()
 const QString CConnecter::Id()
 {
     return Protol() + "_" + m_pPluginFactory->Name()
-            + "_" + GetServerName().replace(":", "_");
+            + "_" + ServerName().replace(":", "_");
 }
 
 const QString CConnecter::Name()
@@ -31,7 +31,7 @@ const QString CConnecter::Description()
 {
     return tr("Name:") + Name() + " "
             + tr("Protol:") + Protol() + " "
-            + tr("Server name:") + GetServerName() + " "
+            + tr("Server name:") + ServerName() + " "
             + m_pPluginFactory->Description();
 }
 
@@ -57,7 +57,7 @@ void CConnecter::slotSetServerName(const QString& szName)
     emit sigServerName(m_szServerName);
 }
 
-QString CConnecter::GetServerName()
+QString CConnecter::ServerName()
 {
     return m_szServerName;
 }

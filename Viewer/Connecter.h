@@ -43,7 +43,7 @@ public:
      * @brief Current connect server name. eg: Server name or Ip:Port 
      * @return Current connect server name.
      */
-    virtual QString GetServerName();
+    virtual QString ServerName();
     /**
      * @brief GetViewer 
      * @return CFrmViewer*: the ownership is a instance of this class

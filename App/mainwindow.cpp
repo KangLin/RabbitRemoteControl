@@ -346,13 +346,13 @@ void MainWindow::slotConnected()
 //    }
 //    m_Connecters.push_back(p);
 
-    slotInformation(tr("Connected to ") + p->GetServerName());
+    slotInformation(tr("Connected to ") + p->ServerName());
 }
 
 int MainWindow::Connect(CConnecter* p)
 {
-    if(!p->GetServerName().isEmpty())
-        slotInformation(tr("Connecting to ") + p->GetServerName());
+    if(!p->ServerName().isEmpty())
+        slotInformation(tr("Connecting to ") + p->ServerName());
     if(m_pView)
     {
         CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Zoom;
@@ -364,7 +364,7 @@ int MainWindow::Connect(CConnecter* p)
             aw = CFrmViewer::AspectRation;
         m_pView->SetAdaptWindows(aw, p->GetViewer());
         m_pView->AddView(p->GetViewer());
-        m_pView->SetWidowsTitle(p->GetViewer(), p->GetServerName()); 
+        m_pView->SetWidowsTitle(p->GetViewer(), p->ServerName()); 
     }
     
     m_Connecters.push_back(p);

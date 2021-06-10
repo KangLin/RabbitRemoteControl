@@ -136,7 +136,7 @@ int CConnecterPluginsTerminal::Connect()
         emit sigConnected();
     
     if(m_pConsole)
-        emit sigServerName(GetServerName());
+        emit sigServerName(ServerName());
     
     return nRet;
 }
@@ -220,7 +220,7 @@ int CConnecterPluginsTerminal::OnSave(QDataStream& d)
     return 0;
 }
 
-QString CConnecterPluginsTerminal::GetServerName()
+QString CConnecterPluginsTerminal::ServerName()
 {
     CParameterTerminal* pPara = GetPara();
     if(m_szServerName.isEmpty())
@@ -230,7 +230,7 @@ QString CConnecterPluginsTerminal::GetServerName()
         else
             return Name();
     }
-    return CConnecter::GetServerName();
+    return CConnecter::ServerName();
 }
 
 CConnect* CConnecterPluginsTerminal::InstanceConnect()

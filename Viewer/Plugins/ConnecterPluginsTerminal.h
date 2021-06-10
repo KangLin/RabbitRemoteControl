@@ -30,7 +30,7 @@ public:
      *   -1: error
      */
     virtual int OpenDialogSettings(QWidget* parent = nullptr) override;
-    virtual QString GetServerName() override;
+    virtual QString ServerName() override;
 
 public Q_SLOTS:
     virtual int Connect() override;

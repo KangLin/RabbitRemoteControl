@@ -37,7 +37,7 @@ public:
     virtual CConnect* InstanceConnect() = 0;
     
     virtual QWidget* GetViewer() override;
-    virtual QString GetServerName() override;
+    virtual QString ServerName() override;
     virtual int Load(QDataStream &d) override;
     virtual int Save(QDataStream &d) override;
     virtual int OpenDialogSettings(QWidget *parent) override;
