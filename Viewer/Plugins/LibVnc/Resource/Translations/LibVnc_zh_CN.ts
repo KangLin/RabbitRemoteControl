@@ -84,27 +84,27 @@
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="245"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>代理</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="253"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="260"/>
         <source>Socks</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="267"/>
         <source>UltraVNC repeater</source>
-        <translation type="unfinished"></translation>
+        <translation>UltraVNC 中继</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="288"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>端口：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="364"/>

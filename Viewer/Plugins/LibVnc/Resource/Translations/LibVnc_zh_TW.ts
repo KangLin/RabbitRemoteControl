@@ -84,27 +84,27 @@
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="245"/>
         <source>Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>代理</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="253"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>無</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="260"/>
         <source>Socks</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="267"/>
         <source>UltraVNC repeater</source>
-        <translation type="unfinished"></translation>
+        <translation>UltraVNC 中繼</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="288"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>端口：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="364"/>
@@ -127,12 +127,12 @@
     <message>
         <location filename="../../PluginFactoryLibVnc.cpp" line="36"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation>VNC（虛擬網絡控制臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
+        <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
         <location filename="../../PluginFactoryLibVnc.cpp" line="37"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
-        <translation>VNC 是壹個使用 RFB（遠程幀緩存)協議的程序集</translation>
+        <translation>VNC 是一個使用 RFB（遠程幀緩存)協議的程序集</translation>
     </message>
 </context>
 </TS>
