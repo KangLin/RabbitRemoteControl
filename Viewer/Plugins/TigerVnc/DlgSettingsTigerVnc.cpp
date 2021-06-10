@@ -65,6 +65,7 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         m_pPara->eProxyType = CParameter::emProxy::No;
     if(ui->rbProxySocks->isChecked())
         m_pPara->eProxyType = CParameter::emProxy::SocksV5;
+    
     m_pPara->szProxyHost = ui->leProxyServer->text();
     m_pPara->nProxyPort = ui->spProxyPort->value();
     m_pPara->szProxyUser = ui->leProxyUser->text();

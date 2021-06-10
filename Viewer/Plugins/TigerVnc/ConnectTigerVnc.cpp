@@ -109,10 +109,10 @@ int CConnectTigerVnc::Connect()
         m_pSock = new QTcpSocket(this);
         m_pInStream = new CQSocketInStream(m_pSock);
         m_pOutStream = new CQSocketOutStream(m_pSock);
-        
+
         if(!m_pSock || !m_pInStream || !m_pOutStream)
             return -1;
-        
+
         bool check = false;
         check = connect(m_pSock, SIGNAL(connected()),
                         this, SLOT(slotConnected()));
@@ -123,29 +123,36 @@ int CConnectTigerVnc::Connect()
         check = connect(m_pSock, SIGNAL(readyRead()),
                         this, SLOT(slotReadyRead()));
         Q_ASSERT(check);
-        
+
+        QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
         switch(m_pPara->eProxyType)
         {
         case CParameter::emProxy::SocksV4:
             break;
         case CParameter::emProxy::SocksV5:
-        {
-            QNetworkProxy proxy;
-            proxy.setType(QNetworkProxy::Socks5Proxy);
-            proxy.setHostName(m_pPara->szProxyHost);
-            proxy.setPort(m_pPara->nProxyPort);
-            proxy.setUser(m_pPara->szProxyUser);
-            proxy.setPassword(m_pPara->szProxyPassword);
-            m_pSock->setProxy(proxy);
+            type = QNetworkProxy::Socks5Proxy;
             break;
-        }
+        case CParameter::emProxy::Http:
+            type = QNetworkProxy::HttpProxy;
+            break;
         case CParameter::emProxy::No:
             break;
         default:
             break;
         }
-        
+
+        if(QNetworkProxy::NoProxy != type)
+        {
+            QNetworkProxy proxy;
+            proxy.setType(type);
+            proxy.setHostName(m_pPara->szProxyHost);
+            proxy.setPort(m_pPara->nProxyPort);
+            proxy.setUser(m_pPara->szProxyUser);
+            proxy.setPassword(m_pPara->szProxyPassword);
+            m_pSock->setProxy(proxy);
+        }
+
         m_pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
         
         return 0;

@@ -34,6 +34,7 @@ public:
         No,
         SocksV4,
         SocksV5,
+        Http,
         User = 100
     };
     emProxy eProxyType;

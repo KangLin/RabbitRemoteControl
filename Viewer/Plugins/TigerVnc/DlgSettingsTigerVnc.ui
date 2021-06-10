@@ -21,7 +21,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Server">
       <attribute name="title">
@@ -236,7 +236,14 @@
          <item>
           <widget class="QRadioButton" name="rbProxySocks">
            <property name="text">
-            <string>Socks</string>
+            <string>Socks5</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbHttp">
+           <property name="text">
+            <string>Http</string>
            </property>
           </widget>
          </item>
