@@ -274,16 +274,8 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-void MainWindow::on_actionOpen_O_triggered()
+int MainWindow::SetConnect(CConnecter *p)
 {
-    QString file = RabbitCommon::CDir::GetOpenFileName(this,
-                                  tr("Open rabbit remote control file"),
-           RabbitCommon::CDir::Instance()->GetDirUserData(), 
-           tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
-    if(file.isEmpty()) return;
-    CConnecter* p = m_ManageConnecter.LoadConnecter(file);
-    if(nullptr == p) return;
-
     bool check = connect(p, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
     Q_ASSERT(check);
@@ -303,14 +295,27 @@ void MainWindow::on_actionOpen_O_triggered()
     case QDialog::Accepted:
         QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
                 + QDir::separator()
-                + p->Protol()
-                + "_" + p->Name() + "_"
-                + p->GetServerName().replace(":", "_")
+                + p->Id()
                 + ".rrc";
         m_ManageConnecter.SaveConnecter(szFile, p);
         Connect(p);
         break;
     }
+    return 0;
+}
+
+void MainWindow::on_actionOpen_O_triggered()
+{
+    QString file = RabbitCommon::CDir::GetOpenFileName(this,
+                     tr("Open rabbit remote control file"),
+                     RabbitCommon::CDir::Instance()->GetDirUserData(), 
+                     tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
+    if(file.isEmpty()) return;
+    
+    CConnecter* p = m_ManageConnecter.LoadConnecter(file);
+    if(nullptr == p) return;
+
+    SetConnect(p);
     
 //    Connect(p);
 }
@@ -323,36 +328,11 @@ void MainWindow::slotConnect()
         return;
     }
     QAction* pAction = dynamic_cast<QAction*>(this->sender());
+    
     CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
 
-    bool check = connect(p, SIGNAL(sigConnected()),
-                         this, SLOT(slotConnected()));
-    Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigError(const int, const QString &)),
-                    this, SLOT(slotError(const int, const QString&)));
-    Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigInformation(const QString&)),
-                    this, SLOT(slotInformation(const QString&)));
-    Q_ASSERT(check);
-    
-    int nRet = p->OpenDialogSettings(this);
-    switch(nRet)
-    {
-    case QDialog::Rejected:
-        delete p;
-        break;
-    case QDialog::Accepted:
-        QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                + QDir::separator()
-                + p->Protol()
-                + "_" + p->Name() + "_"
-                + p->GetServerName().replace(":", "_")
-                + ".rrc";
-        m_ManageConnecter.SaveConnecter(szFile, p);
-        Connect(p);
-        break;
-    }
+    SetConnect(p);
 }
 
 void MainWindow::slotConnected()

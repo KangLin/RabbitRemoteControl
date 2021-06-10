@@ -16,14 +16,23 @@ CConnecter::~CConnecter()
 {
 }
 
-const QString CConnecter::Name() const
+const QString CConnecter::Id()
+{
+    return Protol() + "_" + m_pPluginFactory->Name()
+            + "_" + GetServerName().replace(":", "_");
+}
+
+const QString CConnecter::Name()
 {
     return m_pPluginFactory->Name();
 }
 
-const QString CConnecter::Description() const
+const QString CConnecter::Description()
 {
-    return m_pPluginFactory->Description();
+    return tr("Name:") + Name() + " "
+            + tr("Protol:") + Protol() + " "
+            + tr("Server name:") + GetServerName() + " "
+            + m_pPluginFactory->Description();
 }
 
 const QString CConnecter::Protol() const

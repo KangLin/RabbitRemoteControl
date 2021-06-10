@@ -32,8 +32,9 @@ public:
     explicit CConnecter(CPluginFactory *parent);
     virtual ~CConnecter();
     
-    virtual const QString Name() const;
-    virtual const QString Description() const;
+    virtual const QString Id();
+    virtual const QString Name();
+    virtual const QString Description();
     virtual const QString Protol() const;
     virtual qint16 Version() = 0;
     virtual const QIcon Icon() const;

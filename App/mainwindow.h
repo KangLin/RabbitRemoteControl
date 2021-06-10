@@ -47,10 +47,11 @@ private Q_SLOTS:
     void on_actionZoom_Z_toggled(bool arg1);
     void on_actionKeep_AspectRation_K_toggled(bool arg1);
     void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
-    void on_actionOpen_O_triggered();
     
     void on_actionDisconnect_D_triggered();
     void slotCloseView(const QWidget* pView);
+    
+    void on_actionOpen_O_triggered();
     void slotConnect();
 
     void slotConnected();
@@ -65,6 +66,7 @@ private Q_SLOTS:
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
+    int SetConnect(CConnecter* p);
     
 private:
     Ui::MainWindow *ui;
