@@ -31,6 +31,13 @@ MainWindow::MainWindow(QWidget *parent)
     RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
 
+    m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
+    check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
+                    this, SLOT(slotRecentFileTriggered(const QString&)));
+    Q_ASSERT(check);
+
+    ui->actionRecently_connected->setMenu(m_pRecentMenu);
+
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());
     
@@ -274,7 +281,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-int MainWindow::SetConnect(CConnecter *p)
+int MainWindow::SetConnect(CConnecter *p, bool set)
 {
     bool check = connect(p, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
@@ -286,22 +293,39 @@ int MainWindow::SetConnect(CConnecter *p)
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
     
-    int nRet = p->OpenDialogSettings(this);
-    switch(nRet)
+    QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+            + QDir::separator()
+            + p->Id()
+            + ".rrc";
+    
+    if(set)
     {
-    case QDialog::Rejected:
-        delete p;
-        break;
-    case QDialog::Accepted:
-        QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                + QDir::separator()
-                + p->Id()
-                + ".rrc";
-        m_ManageConnecter.SaveConnecter(szFile, p);
-        Connect(p);
-        break;
+        int nRet = p->OpenDialogSettings(this);
+        switch(nRet)
+        {
+        case QDialog::Rejected:
+            delete p;
+            return 0;
+        case QDialog::Accepted:    
+            break;
+        }
     }
+
+    int nRet = m_ManageConnecter.SaveConnecter(szFile, p);
+    if(0 == nRet)
+        m_pRecentMenu->addRecentFile(szFile, p->Name());
+
+    Connect(p);
+    
     return 0;
+}
+
+void MainWindow::slotRecentFileTriggered(const QString& szFile)
+{
+    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
+    if(nullptr == p) return;
+
+    SetConnect(p, false);
 }
 
 void MainWindow::on_actionOpen_O_triggered()
@@ -315,9 +339,8 @@ void MainWindow::on_actionOpen_O_triggered()
     CConnecter* p = m_ManageConnecter.LoadConnecter(file);
     if(nullptr == p) return;
 
-    SetConnect(p);
-    
-//    Connect(p);
+    //TODO: Add option: ShowDialog
+    SetConnect(p, true);
 }
 
 void MainWindow::slotConnect()
@@ -332,7 +355,7 @@ void MainWindow::slotConnect()
     CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
 
-    SetConnect(p);
+    SetConnect(p, true);
 }
 
 void MainWindow::slotConnected()

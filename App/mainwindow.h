@@ -10,6 +10,7 @@
 
 #include "ViewTable.h"
 #include "ManageConnecter.h"
+#include "RabbitRecentMenu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -51,6 +52,7 @@ private Q_SLOTS:
     void on_actionDisconnect_D_triggered();
     void slotCloseView(const QWidget* pView);
     
+    void slotRecentFileTriggered(const QString& szFile);
     void on_actionOpen_O_triggered();
     void slotConnect();
 
@@ -62,15 +64,16 @@ private Q_SLOTS:
     
     void on_actionShow_TabBar_B_triggered();
     void slotShowTabBar(bool bShow);
-    
+
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
-    int SetConnect(CConnecter* p);
+    int SetConnect(CConnecter* p, bool set);
     
 private:
     Ui::MainWindow *ui;
     QActionGroup* m_pGBView;
+    RabbitCommon::CRecentMenu* m_pRecentMenu;
     CView* m_pView;
     QVector<CConnecter*> m_Connecters;
     CFrmFullScreenToolBar* m_pFullScreenToolBar;

@@ -2,6 +2,7 @@
   + 修复全屏时 Tab 错误
   + 增加代理
   + 更新 TigerVnc 库
+  + 增加最近打开菜单
   
 - v0.0.7
   + 用更新后的 RabbitCommon::CStyle 改变样式
