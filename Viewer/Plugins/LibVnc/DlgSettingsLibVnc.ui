@@ -28,21 +28,31 @@
        <string>Server</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5">
-       <item row="1" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_12">
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="label_10">
            <property name="text">
-            <string>User name:</string>
+            <string>Name:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="leName"/>
+          <widget class="QLineEdit" name="leName">
+           <property name="toolTip">
+            <string>Connecter name</string>
+           </property>
+           <property name="statusTip">
+            <string>Connecter name</string>
+           </property>
+           <property name="whatsThis">
+            <string>Connecter name</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
-       <item row="0" column="0">
+       <item row="1" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QLabel" name="label">
@@ -70,56 +80,21 @@
          </item>
         </layout>
        </item>
-       <item row="6" column="0">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+       <item row="2" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>User name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leUserName"/>
+         </item>
+        </layout>
        </item>
        <item row="3" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item>
-          <widget class="QCheckBox" name="cbShared">
-           <property name="text">
-            <string>Shared</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="cbOnlyView">
-           <property name="text">
-            <string>Only view</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="4" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QCheckBox" name="cbLocalCursor">
-           <property name="text">
-            <string>Use local cursor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="cbClipboard">
-           <property name="text">
-            <string>Enable clipboard</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QLabel" name="label_3">
@@ -154,7 +129,43 @@
          </item>
         </layout>
        </item>
+       <item row="4" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QCheckBox" name="cbShared">
+           <property name="text">
+            <string>Shared</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbOnlyView">
+           <property name="text">
+            <string>Only view</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
        <item row="5" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QCheckBox" name="cbLocalCursor">
+           <property name="text">
+            <string>Use local cursor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbClipboard">
+           <property name="text">
+            <string>Enable clipboard</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="6" column="0">
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
           <widget class="QCheckBox" name="cbSavePassword">
@@ -164,6 +175,19 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="7" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -379,7 +403,7 @@
  <tabstops>
   <tabstop>leHost</tabstop>
   <tabstop>spPort</tabstop>
-  <tabstop>leName</tabstop>
+  <tabstop>leUserName</tabstop>
   <tabstop>lePassword</tabstop>
   <tabstop>cbShared</tabstop>
   <tabstop>cbOnlyView</tabstop>
@@ -395,6 +419,7 @@
   <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources>
+  <include location="../../../App/Resource/Resource.qrc"/>
   <include location="../../../App/Resource/Resource.qrc"/>
  </resources>
  <connections/>

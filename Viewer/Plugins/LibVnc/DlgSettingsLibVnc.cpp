@@ -13,9 +13,10 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
     ui->setupUi(this);
     
     // Server
+    ui->leName->setText(m_pPara->szName);
     ui->leHost->setText(m_pPara->szHost);
     ui->spPort->setValue(m_pPara->nPort);
-    ui->leName->setText(m_pPara->szUser);
+    ui->leUserName->setText(m_pPara->szUser);
     ui->lePassword->setText(m_pPara->szPassword);
     ui->cbSavePassword->setChecked(m_pPara->bSavePassword);
     
@@ -95,9 +96,10 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
         reject();
     
     // Server
+    m_pPara->szName = ui->leName->text();
     m_pPara->szHost = ui->leHost->text();
     m_pPara->nPort = ui->spPort->value();
-    m_pPara->szUser = ui->leName->text();
+    m_pPara->szUser = ui->leUserName->text();
     m_pPara->szPassword = ui->lePassword->text();
     m_pPara->bSavePassword = ui->cbSavePassword->isChecked();
 
