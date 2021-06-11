@@ -8,6 +8,7 @@ CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTerminal *pPara, QWidget *paren
 {
     ui->setupUi(this);
     
+    ui->leName->setText(m_pPara->szName);
     ui->leHost->setText(m_pPara->szHost);
     ui->spPort->setValue(m_pPara->nPort);
     
@@ -29,6 +30,7 @@ CDlgSettingsTelnet::~CDlgSettingsTelnet()
 
 void CDlgSettingsTelnet::on_pbOK_clicked()
 {
+    m_pPara->szName = ui->leHost->text();
     m_pPara->szHost = ui->leHost->text();
     m_pPara->nPort = ui->spPort->value();
     
