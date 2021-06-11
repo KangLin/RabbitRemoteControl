@@ -33,14 +33,14 @@ Interested and capable friends are welcome to participate in the development of 
 
 If you want to donate the developed devices for me, please contact: (email: kl222@126.com)
 
-#### Supported protocol
+#### Supported protocols
+##### Remote control protocols
 - [x] VNC (Virtual Network Computing): [RFB("remote framebuffer"): https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
 - [x] Remote desktop protocol: [RDP: https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] [Spice: https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] [SSH]()
 - [x] [TELNET: http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
 - [x] Terminal
-- [ ] Custom p2p protocol
 
 
 |        |Windows           |Unix/linux        |Android           |MAC               |IPHONE            |WINCE             |
@@ -53,6 +53,18 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
 |P2P     |                  |                  |                  |                  |                  |                  |
 
+##### Network protocols
+- [ ] Custom p2p protocol
+- Proxy
+  + [x] socks
+  + [ ] http
+  + [ ] Custom p2p proxy protocol
+
+|             | Proxy            | P2P              |
+|-------------|------------------|------------------|
+|TigerVnc     |:heavy_check_mark:|                  |
+|LibVNC       |                  |                  |
+|FreeRDP      |                  |                  |
 
 ### Donation
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
@@ -92,7 +104,7 @@ Some of them are:
   - Unix
   - Windows 10 mall
   - Android
-* Be finished [unsupported protocols](#Supported-protocol)
+* Be finished [unsupported protocols](#Supported-protocols)
 
 ### Download: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
@@ -107,10 +119,10 @@ Some of them are:
 - [x] Support common existing remote control protocols
   - [x] Client
     - [x] Client frame
-    - [x] Specific protocol support, see: [Supported protocol](#Supported-protocol)
+    - [x] Specific protocol support, see: [Supported protocol](#Supported-protocols)
   - [ ] Server
     - [ ] Server framework
-    - [ ] Specific protocol support, see: [Supported protocol](#Supported-protocol)
+    - [ ] Specific protocol support, see: [Supported protocol](#Supported-protocols)
 - [ ] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
 At present, the development of common remote control protocol client has been completed,
