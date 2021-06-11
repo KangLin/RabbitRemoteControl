@@ -11,6 +11,7 @@ CDlgSettingsSSH::CDlgSettingsSSH(CParameterSSH *pPara, QWidget *parent) :
     ui->setupUi(this);
     
     Q_ASSERT(m_pPara);
+    ui->leName->setText(m_pPara->szName);
     ui->leHost->setText(m_pPara->szHost);
     ui->sbPort->setValue(m_pPara->nPort);
     ui->cbSavePassword->setChecked(m_pPara->bSavePassword);
@@ -36,6 +37,7 @@ CDlgSettingsSSH::~CDlgSettingsSSH()
 
 void CDlgSettingsSSH::on_pbOK_clicked()
 {
+    m_pPara->szName = ui->leName->text();
     m_pPara->szHost = ui->leHost->text();
     m_pPara->nPort = ui->sbPort->value();
     m_pPara->bSavePassword = ui->cbSavePassword->isChecked();
