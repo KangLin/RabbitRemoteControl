@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>CConnectFreeRdp</name>
     <message>
@@ -109,6 +109,14 @@
     <message>
         <source>Only View</source>
         <translation>僅查看</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
+        <source>Connecter name</source>
+        <translation>連接名稱</translation>
     </message>
 </context>
 <context>

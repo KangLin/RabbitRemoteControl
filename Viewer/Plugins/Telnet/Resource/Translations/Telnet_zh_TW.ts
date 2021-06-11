@@ -14,22 +14,34 @@
         <translation>服務器</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="29"/>
+        <source>Name:</source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
         <location filename="../../DlgSettingsTelnet.ui" line="36"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="39"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="42"/>
+        <source>Connecter name</source>
+        <translation>連接名稱</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTelnet.ui" line="53"/>
         <source>Server:</source>
         <translation>服務器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="46"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="63"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="80"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="111"/>
         <source>OK(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTelnet.ui" line="87"/>
+        <location filename="../../DlgSettingsTelnet.ui" line="118"/>
         <source>Cancle(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>

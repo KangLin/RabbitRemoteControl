@@ -110,6 +110,14 @@
         <source>Only View</source>
         <translation>仅查看</translation>
     </message>
+    <message>
+        <source>Name:</source>
+        <translation>名称：</translation>
+    </message>
+    <message>
+        <source>Connecter name</source>
+        <translation>连接名称</translation>
+    </message>
 </context>
 <context>
     <name>CPluginFactoryFreeRdp</name>
