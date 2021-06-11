@@ -127,62 +127,64 @@
         <translation>全屏(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="186"/>
-        <location filename="../../mainwindow.ui" line="189"/>
-        <source>Full screen(F)</source>
-        <translation>全屏(F)</translation>
+        <location filename="../../mainwindow.ui" line="347"/>
+        <location filename="../../mainwindow.ui" line="350"/>
+        <location filename="../../mainwindow.ui" line="353"/>
+        <source>Show TabBar</source>
+        <translation>顯示標簽條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="204"/>
+        <location filename="../../mainwindow.ui" line="210"/>
         <source>Original size(&amp;O)</source>
         <translation>原始大小(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="207"/>
-        <location filename="../../mainwindow.ui" line="210"/>
+        <location filename="../../mainwindow.ui" line="213"/>
+        <location filename="../../mainwindow.ui" line="216"/>
         <source>Original(O)</source>
         <translation>原始大小(O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="222"/>
+        <location filename="../../mainwindow.ui" line="228"/>
         <source>Zoom(&amp;Z)</source>
         <translation>縮放(&amp;Z)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="225"/>
-        <location filename="../../mainwindow.ui" line="228"/>
+        <location filename="../../mainwindow.ui" line="231"/>
+        <location filename="../../mainwindow.ui" line="234"/>
         <source>Zoom(Z)</source>
         <translation>縮放(Z)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="240"/>
+        <location filename="../../mainwindow.ui" line="246"/>
         <source>Keep AspectRation(&amp;K)</source>
         <translation>保持寬高比(&amp;K)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="243"/>
-        <location filename="../../mainwindow.ui" line="246"/>
+        <location filename="../../mainwindow.ui" line="249"/>
+        <location filename="../../mainwindow.ui" line="252"/>
         <source>Keep AspectRation(K)</source>
         <translation>保持縱橫比縮放</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="258"/>
+        <location filename="../../mainwindow.ui" line="264"/>
         <source>Exit(&amp;E)</source>
         <translation>退出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="261"/>
-        <location filename="../../mainwindow.ui" line="264"/>
+        <location filename="../../mainwindow.ui" line="267"/>
+        <location filename="../../mainwindow.ui" line="270"/>
         <source>Exit(E)</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="320"/>
+        <location filename="../../mainwindow.ui" line="326"/>
         <source>Send Ctl+Alt+Del</source>
         <translation>發送 Ctl+Alt+Del</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="335"/>
+        <location filename="../../mainwindow.ui" line="341"/>
+        <location filename="../../mainwindow.ui" line="344"/>
         <source>Show TabBar(&amp;B)</source>
         <translation>顯示標簽條(&amp;B)</translation>
     </message>
@@ -192,37 +194,37 @@
         <translation>連接(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="269"/>
-        <location filename="../../mainwindow.ui" line="272"/>
         <location filename="../../mainwindow.ui" line="275"/>
+        <location filename="../../mainwindow.ui" line="278"/>
+        <location filename="../../mainwindow.ui" line="281"/>
         <source>Recently connected</source>
         <translation>最近連接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="284"/>
+        <location filename="../../mainwindow.ui" line="290"/>
         <source>Disconnect(&amp;D)</source>
         <translation>斷開連接(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="287"/>
-        <location filename="../../mainwindow.ui" line="290"/>
+        <location filename="../../mainwindow.ui" line="293"/>
+        <location filename="../../mainwindow.ui" line="296"/>
         <source>Disconnect(D)</source>
         <translation>關閉連接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="299"/>
-        <location filename="../../mainwindow.ui" line="315"/>
+        <location filename="../../mainwindow.ui" line="305"/>
+        <location filename="../../mainwindow.ui" line="321"/>
         <source>Open(&amp;O)</source>
         <translation>打開(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="302"/>
-        <location filename="../../mainwindow.ui" line="305"/>
+        <location filename="../../mainwindow.ui" line="308"/>
+        <location filename="../../mainwindow.ui" line="311"/>
         <source>Open(O)</source>
         <translation>打開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="310"/>
+        <location filename="../../mainwindow.ui" line="316"/>
         <source>Default(&amp;D)</source>
         <translation>默認(&amp;D)</translation>
     </message>
@@ -239,6 +241,10 @@
         <translation>連接</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="186"/>
+        <location filename="../../mainwindow.ui" line="189"/>
+        <location filename="../../mainwindow.ui" line="192"/>
+        <location filename="../../mainwindow.ui" line="195"/>
         <location filename="../../mainwindow.cpp" line="159"/>
         <location filename="../../mainwindow.cpp" line="160"/>
         <location filename="../../mainwindow.cpp" line="161"/>

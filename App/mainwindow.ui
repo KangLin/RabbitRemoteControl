@@ -182,11 +182,17 @@
    <property name="text">
     <string>Full screen(&amp;F)</string>
    </property>
+   <property name="iconText">
+    <string>Full screen</string>
+   </property>
+   <property name="toolTip">
+    <string>Full screen</string>
+   </property>
    <property name="statusTip">
-    <string>Full screen(F)</string>
+    <string>Full screen</string>
    </property>
    <property name="whatsThis">
-    <string>Full screen(F)</string>
+    <string>Full screen</string>
    </property>
   </action>
   <action name="actionOriginal_O">
@@ -333,6 +339,18 @@
    </property>
    <property name="text">
     <string>Show TabBar(&amp;B)</string>
+   </property>
+   <property name="iconText">
+    <string>Show TabBar(&amp;B)</string>
+   </property>
+   <property name="toolTip">
+    <string>Show TabBar</string>
+   </property>
+   <property name="statusTip">
+    <string>Show TabBar</string>
+   </property>
+   <property name="whatsThis">
+    <string>Show TabBar</string>
    </property>
   </action>
  </widget>
