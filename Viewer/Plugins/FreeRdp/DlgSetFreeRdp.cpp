@@ -53,9 +53,10 @@ CDlgSetFreeRdp::~CDlgSetFreeRdp()
 void CDlgSetFreeRdp::on_pbOk_clicked()
 {
     // Server
+    m_pSettings->szName = ui->leName->text();
     m_pSettings->szHost = ui->leServer->text();
     m_pSettings->nPort = ui->spPort->value();
-    m_pSettings->szUser = ui->leName->text();
+    m_pSettings->szUser = ui->leUserName->text();
     m_pSettings->szPassword = ui->lePassword->text();
     freerdp_settings_set_string(m_pSettings->pSettings,
                                 FreeRDP_Domain,
@@ -96,16 +97,17 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
     Q_ASSERT(m_pSettings);
 
     // Server
+    ui->leName->setText(m_pSettings->szName);
     ui->leDomain->setText(freerdp_settings_get_string(m_pSettings->pSettings, FreeRDP_Domain));
     ui->leServer->setText(m_pSettings->szHost);
     ui->spPort->setValue(m_pSettings->nPort);
-    ui->leName->setText(m_pSettings->szUser);
+    ui->leUserName->setText(m_pSettings->szUser);
     ui->lePassword->setText(m_pSettings->szPassword);
-    
+
     ui->cbSavePassword->setChecked(m_pSettings->bSavePassword);
     ui->cbOnlyView->setChecked(m_pSettings->bOnlyView);
     ui->cbClipboard->setChecked(m_pSettings->bClipboard);
-    
+
     // Display
     QScreen* pScreen = QApplication::primaryScreen();
     int width = pScreen->availableGeometry().width();
