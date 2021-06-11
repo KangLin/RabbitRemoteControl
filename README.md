@@ -58,7 +58,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 - Proxy
   + [x] socks
   + [ ] http
-  + [ ] Custom p2p proxy protocol
+  + [ ] Custom p2p proxy protocol: [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
 |             | Proxy            | P2P              |
 |-------------|------------------|------------------|

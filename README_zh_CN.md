@@ -55,7 +55,7 @@
 - 代理
   + [x] socks
   + [ ] http
-  + [ ] 自定义的 P2P 代理协议
+  + [ ] 自定义的 P2P 代理协议： [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
 |             | 代理              | P2P              |
 |-------------|------------------|------------------|
