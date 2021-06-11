@@ -136,7 +136,7 @@ int CConnecterPluginsTerminal::Connect()
         emit sigConnected();
     
     if(m_pConsole)
-        emit sigServerName(ServerName());
+        emit sigUpdateName(ServerName());
     
     return nRet;
 }
@@ -228,7 +228,7 @@ QString CConnecterPluginsTerminal::ServerName()
         if(pPara && !pPara->szHost.isEmpty())
             m_szServerName = pPara->szHost + ":" + QString::number(pPara->nPort);
         else
-            return Name();
+            return CConnecter::Name();
     }
     return CConnecter::ServerName();
 }

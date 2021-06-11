@@ -346,13 +346,13 @@ void MainWindow::slotConnected()
 //    }
 //    m_Connecters.push_back(p);
 
-    slotInformation(tr("Connected to ") + p->ServerName());
+    slotInformation(tr("Connected to ") + p->Name());
 }
 
 int MainWindow::Connect(CConnecter* p)
 {
-    if(!p->ServerName().isEmpty())
-        slotInformation(tr("Connecting to ") + p->ServerName());
+    if(!p->Name().isEmpty())
+        slotInformation(tr("Connecting to ") + p->Name());
     if(m_pView)
     {
         CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Zoom;
@@ -364,14 +364,14 @@ int MainWindow::Connect(CConnecter* p)
             aw = CFrmViewer::AspectRation;
         m_pView->SetAdaptWindows(aw, p->GetViewer());
         m_pView->AddView(p->GetViewer());
-        m_pView->SetWidowsTitle(p->GetViewer(), p->ServerName()); 
+        m_pView->SetWidowsTitle(p->GetViewer(), p->Name()); 
     }
     
     m_Connecters.push_back(p);
     bool check = connect(p, SIGNAL(sigDisconnected()),
                          this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigServerName(const QString&)),
+    check = connect(p, SIGNAL(sigUpdateName(const QString&)),
                          this, SLOT(slotUpdateServerName(const QString&)));
     Q_ASSERT(check);
     

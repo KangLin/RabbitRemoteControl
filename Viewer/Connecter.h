@@ -72,8 +72,8 @@ public Q_SLOTS:
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
-    // Please use slotSetServerName, when is useed in plugin
-    void sigServerName(const QString& szName);
+    /// @note Please use slotSetServerName, when is useed in plugin
+    void sigUpdateName(const QString& szName);
 
     void sigError(const int nError, const QString &szError);
     void sigInformation(const QString& szInfo);

@@ -54,7 +54,7 @@ void CConnecter::slotSetClipboard(QMimeData* data)
 void CConnecter::slotSetServerName(const QString& szName)
 {
     m_szServerName = szName;
-    emit sigServerName(m_szServerName);
+    emit sigUpdateName(m_szServerName);
 }
 
 QString CConnecter::ServerName()

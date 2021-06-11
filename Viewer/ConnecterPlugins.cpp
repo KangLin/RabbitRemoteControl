@@ -31,6 +31,13 @@ CConnecterPlugins::~CConnecterPlugins()
     qDebug() << this << this->metaObject()->className();
 }
 
+const QString CConnecterPlugins::Name()
+{
+    if(m_pParameter && !m_pParameter->szName.isEmpty())
+        return m_pParameter->szName;
+    return ServerName();
+}
+
 QWidget *CConnecterPlugins::GetViewer()
 {
     return m_pView;
@@ -115,12 +122,15 @@ int CConnecterPlugins::OnDisConnect()
 QString CConnecterPlugins::ServerName()
 {
     if(m_szServerName.isEmpty())
+    {
         if(m_pParameter && !m_pParameter->szHost.isEmpty())
             m_szServerName = m_pParameter->szHost + ":"
                     + QString::number(m_pParameter->nPort);
+        else
+            return CConnecter::Name();
+    }
     return CConnecter::ServerName();
 }
-
 
 int CConnecterPlugins::Load(QDataStream &d)
 {

@@ -14,7 +14,8 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
 
 QDataStream &operator<<(QDataStream &data, const CParameter &para)
 {
-    data << para.szHost
+    data << para.szName
+         << para.szHost
          << para.nPort
          << para.szUser
          << para.bSavePassword;
@@ -37,7 +38,8 @@ QDataStream &operator<<(QDataStream &data, const CParameter &para)
 
 QDataStream &operator>>(QDataStream &data, CParameter &para)
 {
-    data >> para.szHost
+    data >> para.szName
+            >> para.szHost
             >> para.nPort
             >> para.szUser
             >> para.bSavePassword

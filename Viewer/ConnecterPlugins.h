@@ -36,6 +36,7 @@ public:
     // Instance connect
     virtual CConnect* InstanceConnect() = 0;
     
+    virtual const QString Name();
     virtual QWidget* GetViewer() override;
     virtual QString ServerName() override;
     virtual int Load(QDataStream &d) override;

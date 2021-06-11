@@ -431,8 +431,8 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
                     {
                         if(*pMask++)
                         {
-                            //NOTE: Do not manipulate the memory,
-                            //      because the host byte order may be different
+                            // NOTE: Do not manipulate the memory,
+                            //       because the host byte order may be different
                             QColor c = cursor.pixel(w, y);
                             c.setAlpha(0xff);
                             cursor.setPixelColor(w,y,c);

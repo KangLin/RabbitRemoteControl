@@ -19,6 +19,8 @@ class RABBITREMOTECONTROL_EXPORT CParameter : public QObject
 public:
     explicit CParameter(QObject *parent = nullptr);
 
+    QString szName;
+    
     QString szHost;
     quint16 nPort;
     

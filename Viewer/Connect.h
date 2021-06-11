@@ -53,21 +53,21 @@ public Q_SLOTS:
      *       < 0: error
      */
     virtual int Process() = 0;
-    
+
     virtual void slotClipBoardChange() = 0;
-    
+
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
-    
+
     void sigSetDesktopSize(int width, int height);
     void sigServerName(const QString& szName);
-    
+
     void sigUpdateRect(const QRect& r, const QImage& image);
     void sigUpdateCursor(const QCursor& cursor);
     void sigUpdateCursorPosition(const QPoint& pos);
     void sigSetClipboard(QMimeData* data);
-    
+
     void sigError(const int nError, const QString &szError);
     void sigInformation(const QString& szInfo);
 
