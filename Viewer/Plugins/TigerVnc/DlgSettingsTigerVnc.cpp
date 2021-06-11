@@ -26,9 +26,10 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         reject();
     
     // Server
+    m_pPara->szName = ui->leName->text();
     m_pPara->szHost = ui->leServer->text();
     m_pPara->nPort = ui->spPort->value();
-    m_pPara->szUser = ui->leName->text();
+    m_pPara->szUser = ui->leUserName->text();
     m_pPara->szPassword = ui->lePassword->text();
     
     m_pPara->bOnlyView = ui->cbOnlyView->isChecked();
@@ -123,9 +124,10 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     Q_UNUSED(event);
     
     // Server
+    ui->leName->setText(m_pPara->szName);
     ui->leServer->setText(m_pPara->szHost);
     ui->spPort->setValue(m_pPara->nPort);
-    ui->leName->setText(m_pPara->szUser);
+    ui->leUserName->setText(m_pPara->szUser);
     ui->lePassword->setText(m_pPara->szPassword);
     ui->cbSave->setChecked(m_pPara->bSavePassword);
     ui->cbOnlyView->setChecked(m_pPara->bOnlyView);
