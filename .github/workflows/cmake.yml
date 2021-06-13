@@ -4,22 +4,31 @@ on: [push]
 
 jobs:
   use_install_qt:
-    name: use install qt ${{ matrix.os }}-${{ matrix.BUILD_TYPE }}
+    name: use install qt ${{ matrix.os }}-${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{ matrix.CMAKE_GENERATOR_PLATFORM }}-${{ matrix.BUILD_TYPE }}
 
     strategy:
       matrix:
-        os: [windows-latest, macos-latest]
-        include:
-          - os: windows-latest
-            triplet: x64-windows
-          #- os: windows-latest
-          #  triplet: x86-windows
-          #- os: ubuntu-latest
-          #  triplet: x64-linux
-          - os: macos-latest
-            triplet: x64-osx
+        os: [windows-latest] #, macos-latest]
+        triplet: [x86-windows, x64-windows]
+        #VCPKG_PLATFORM_TOOLSET: [v142, v141, v140]
+        #CMAKE_GENERATOR: [Visual Studio 16 2019, Visual Studio 15 2017, Visual Studio 14 2015]
+        #CMAKE_GENERATOR_PLATFORM: [win32, x64]
         BUILD_TYPE: [Release, Debug]
         qt_version: [5.12.10]
+        #include:
+        #  - os: windows-latest
+        #    triplet: x64-windows
+            #CMAKE_GENERATOR_PLATFORM: x64
+            #VCPKG_PLATFORM_TOOLSET: v142
+        #  - os: windows-latest
+        #    triplet: x86-windows
+            #CMAKE_GENERATOR_PLATFORM: win32
+            #VCPKG_PLATFORM_TOOLSET: v141
+          #- os: ubuntu-latest
+          #  triplet: x64-linux
+          #- os: macos-latest
+          #  triplet: x64-osx
+        
     runs-on: ${{ matrix.os }}
 
     env:
@@ -64,7 +73,7 @@ jobs:
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        git clone -b LibVNCServer-0.9.13 https://github.com/KangLin/libvncserver.git 
+        git clone https://github.com/KangLin/libvncserver.git 
         cd ${{env.SOURCE_DIR}}/libvncserver
         cmake -E make_directory build
         cd build
@@ -129,7 +138,7 @@ jobs:
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
-        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -Dtigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install  -Dvncclient_DIR="${{ env.INSTALL_DIR }}/lib/cmake/LibVncServer" -Dtigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
