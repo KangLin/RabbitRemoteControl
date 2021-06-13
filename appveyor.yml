@@ -1,8 +1,8 @@
 #TODO: Change version
 version: "v0.0.7.{build}"
 
-cache:
-  - ..\other_source
+#cache:
+#  - ..\other_source
 # Clean cached
 # https://www.appveyor.com/docs/build-cache/#cleaning-up-cache
 
