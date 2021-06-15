@@ -3,6 +3,8 @@
 #ifndef CMANAGECONNECTER_H
 #define CMANAGECONNECTER_H
 
+#pragma once
+
 #include <QObject>
 #include <QDir>
 #include <QMap>

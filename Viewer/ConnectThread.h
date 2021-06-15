@@ -3,6 +3,8 @@
 #ifndef CCONNECTTHREAD_H
 #define CCONNECTTHREAD_H
 
+#pragma once
+
 #include <QThread>
 #include "ConnecterPlugins.h"
 

@@ -3,6 +3,8 @@
 #ifndef CCONNECTERBACKTHREAD_H
 #define CCONNECTERBACKTHREAD_H
 
+#pragma once
+
 #include "Connect.h"
 #include "Parameter.h"
 #include "FrmViewer.h"
@@ -29,8 +31,8 @@ public:
     
     /**
      * @brief OnRun
-     * @return >=0 成功
-     *         < 0 错误
+     * @return >=0 Success
+     *         < 0 fail
      */
     virtual int OnRun();
     // Instance connect

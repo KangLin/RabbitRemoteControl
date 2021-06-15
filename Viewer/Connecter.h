@@ -3,6 +3,8 @@
 #ifndef CCONNECTER_H
 #define CCONNECTER_H
 
+#pragma once
+
 #include <QObject>
 #include <QDir>
 #include <QtPlugin>

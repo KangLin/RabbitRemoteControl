@@ -3,12 +3,14 @@
 #ifndef CPARAMTER_H
 #define CPARAMTER_H
 
+#pragma once
+
 #include "rabbitremotecontrol_export.h"
 #include <QObject>
 #include <QDataStream>
 
 /**
- * @brief The CParameter class
+ * @brief The CParameter class, It contains basic parameters.
  * @note The interface only is implemented by plugin
  * @addtogroup PLUGIN_API
  */

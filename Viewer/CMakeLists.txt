@@ -89,7 +89,7 @@ if(LibDataChannel_FOUND)
         Ice/IceSignalWebSocket.h)
 endif()
 
-#翻译
+# Translations
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}
     OUT_QRC TRANSLATIONS_QRC_FILES

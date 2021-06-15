@@ -61,7 +61,7 @@ Q_SIGNALS:
     void sigKeyPressEvent(QKeyEvent *event);
     void sigKeyReleaseEvent(QKeyEvent *event);
     
-    // Use CConnecter::sigServerName
+    // Please use CConnecter::sigServerName
     void sigServerName(const QString &szName);
     
 private:

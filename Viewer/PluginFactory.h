@@ -3,6 +3,8 @@
 #ifndef CPLUGINFACTORY_H
 #define CPLUGINFACTORY_H
 
+#pragma once
+
 #include <QIcon>
 #include <QObject>
 #include "Connecter.h"
