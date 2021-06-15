@@ -7,7 +7,7 @@ Author: Kang Lin (kl222@126.com)
 - Project home: https://kanglin.github.io/RabbitRemoteControl/
 
 - Language
-  - [:cn: Chinese](README_zh_CN.md)
+  - [:cn: 中文](README_zh_CN.md)
 - Build status
   - [![Build status](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
   - [![Build status](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
@@ -119,6 +119,8 @@ Some of them are:
 - [x] Support common existing remote control protocols
   - [x] Client
     - [x] Client frame
+      - [x] Remote desktop
+      - [x] Terminal（Linux implemented，but it is has a smae BUG）
     - [x] Specific protocol support, see: [Supported protocol](#Supported-protocols)
   - [ ] Server
     - [ ] Server framework

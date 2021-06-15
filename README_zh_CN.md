@@ -7,7 +7,7 @@
 - 项目位置: https://github.com/KangLin/RabbitRemoteControl
 - 项目主页: https://kanglin.github.io/RabbitRemoteControl/
 - 语言
-  - [:us: 英语](README.md)
+  - [:us: English](README.md)
 - 编译状态
   - [![编译状态](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
   - [![编译状态](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
@@ -113,6 +113,8 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [x] 支持常见已有远程控制协议
   - [x] 客户端
     - [x] 客户端框架
+      - [x] 远程桌面
+      - [x] 控制终端（Linux下实现，但有BUG）
     - [x] 具体协议支持，详见：[支持协议](#支持协议)
   - [ ] 服务器
     - [ ] 服务器框架
