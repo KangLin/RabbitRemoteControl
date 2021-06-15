@@ -1,9 +1,9 @@
-#Author: Kang Lin(kl222@126.com)
+# Author: Kang Lin(kl222@126.com)
 
 cmake_minimum_required(VERSION 2.8.11)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
@@ -51,6 +51,44 @@ if(RabbitVNC_FOUND)
     LIST(APPEND HEADER_FILES ConnectVnc.h)
 endif()
 
+set(_LibDataChannel_DIR ${LibDataChannel_DIR})
+find_package(LibDataChannel)
+if(LibDataChannel_FOUND)
+    list(APPEND SRC_LIBS LibDatachannel::datachannel)
+else()
+    find_path(_LibDataChannel_INCLUDE_DIRS
+        NAMES "rtc/rtc.hpp"
+        HINTS ${_LibDataChannel_DIR}
+        PATHS ${_LibDataChannel_DIR}
+        PATH_SUFFIXES include
+        )
+    find_library(_LibDataChannel_LIB
+        NAMES datachannel
+        HINTS ${_LibDataChannel_DIR}
+        PATHS ${_LibDataChannel_DIR}
+        PATH_SUFFIXES lib
+        )
+    if(_LibDataChannel_LIB)
+        list(APPEND SRC_LIBS ${_LibDataChannel_LIB})
+    endif()
+    if(_LibDataChannel_INCLUDE_DIRS AND _LibDataChannel_LIB)
+        set(LibDataChannel_FOUND TRUE)
+        message("libdatachannel: ${_LibDataChannel_LIB}")
+    endif()
+endif()
+if(LibDataChannel_FOUND)
+    LIST(APPEND SOURCE_FILES
+        Ice/DataChannelIce.cpp
+        #Ice/DataChannelIceChannel.cpp
+        Ice/IceSignal.cpp
+        Ice/IceSignalWebSocket.cpp)
+    LIST(APPEND HEADER_FILES
+        Ice/DataChannelIce.h
+        #Ice/DataChannelIceChannel.h
+        Ice/IceSignal.h
+        Ice/IceSignalWebSocket.h)
+endif()
+
 #翻译
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}
@@ -71,6 +109,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+        ${_LibDataChannel_INCLUDE_DIRS}
     INSTALL_HEADER_FILES ${INSTALL_HEADER_FILES}
     LIBS ${SRC_LIBS}
     VERSION ${BUILD_VERSION})

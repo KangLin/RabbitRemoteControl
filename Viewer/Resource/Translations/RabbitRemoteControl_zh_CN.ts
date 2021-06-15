@@ -16,4 +16,15 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>CDataChannelIce</name>
+    <message>
+        <source>Signal disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Signal error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
