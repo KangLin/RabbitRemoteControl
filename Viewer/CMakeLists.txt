@@ -56,6 +56,7 @@ if(WITH_ICE)
     set(_LibDataChannel_DIR ${LibDataChannel_DIR})
     find_package(LibDataChannel)
     if(LibDataChannel_FOUND)
+        find_package(Threads)
         list(APPEND SRC_LIBS LibDatachannel::datachannel)
     else()
         find_path(_LibDataChannel_INCLUDE_DIRS
@@ -83,12 +84,14 @@ if(WITH_ICE)
             Ice/DataChannelIce.cpp
             #Ice/DataChannelIceChannel.cpp
             Ice/IceSignal.cpp
-            Ice/IceSignalWebSocket.cpp)
+            #Ice/IceSignalWebSocket.cpp
+            )
         LIST(APPEND HEADER_FILES
             Ice/DataChannelIce.h
             #Ice/DataChannelIceChannel.h
             Ice/IceSignal.h
-            Ice/IceSignalWebSocket.h)
+            #Ice/IceSignalWebSocket.h
+            )
     endif()
 endif()
 
