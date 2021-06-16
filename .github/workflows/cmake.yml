@@ -65,7 +65,7 @@ jobs:
         # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
         #setupOnly: # optional
         #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-        vcpkgGitCommitId: b2544fd780b2e9a05d903314cbbd37268ba43d81
+        vcpkgGitCommitId: a75f7848b69a9090c5a86fed98c7e25eb80752fa
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
         vcpkgArguments: 'zlib openssl libssh freerdp pixman libjpeg-turbo libdatachannel'

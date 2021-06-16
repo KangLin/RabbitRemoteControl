@@ -2,7 +2,7 @@
 version: "v0.0.7.{build}"
 
 cache:
-  - ..\other_source
+  #- ..\other_source
 # Clean cached
 # https://www.appveyor.com/docs/build-cache/#cleaning-up-cache
 
@@ -17,7 +17,7 @@ environment:
     secure: PUmp7039ro52579dlxAk59tjpeeyiFbdWvHfLCkjF5c=
     
   matrix:
-  ##### msvc 2015 ########   
+  ##### msvc 2015 ########    
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     GENERATORS: "Visual Studio 15 2017"
     TOOLCHAIN_VERSION: 15
@@ -32,10 +32,11 @@ environment:
     QT_ROOT: C:\Qt\5.6\msvc2015
     BUILD_ARCH: x86
 
-#  - GENERATORS: "Visual Studio 14 2015 Win64"
-#    TOOLCHAIN_VERSION: 14
-#    QT_ROOT: C:\Qt\5.6\msvc2015_64
-#    BUILD_ARCH: x64
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    GENERATORS: "Visual Studio 14 2015 Win64"
+    TOOLCHAIN_VERSION: 14
+    QT_ROOT: C:\Qt\5.6\msvc2015_64
+    BUILD_ARCH: x64
 
 matrix:
   fast_finish: false
@@ -56,6 +57,7 @@ install:
   - git submodule update --init --recursive
 
 before_build:
+  #- set VCPKG_DIR=C:\Tools\vcpkg
   - set OTHER_SOURCE=%APPVEYOR_BUILD_FOLDER%/../other_source
   - set INSTALL_DIR=%OTHER_SOURCE%/install_dir
   - set VCPKG_DIR=%OTHER_SOURCE%/vcpkg
@@ -63,8 +65,8 @@ before_build:
   - cd %OTHER_SOURCE%
   - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
   - cd %OTHER_SOURCE%
-  - if not exist vcpkg (git clone "https://github.com/KangLin/vcpkg.git")
-  - cd vcpkg
+  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 2021.05.12 2021.05.12 )
+  - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
   - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl freerdp libssh pixman libjpeg-turbo libdatachannel
 
