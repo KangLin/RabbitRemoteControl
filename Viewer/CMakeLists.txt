@@ -84,15 +84,21 @@ if(WITH_ICE)
             Ice/DataChannelIce.cpp
             #Ice/DataChannelIceChannel.cpp
             Ice/IceSignal.cpp
-            #Ice/IceSignalWebSocket.cpp
             )
         LIST(APPEND HEADER_FILES
             Ice/DataChannelIce.h
             #Ice/DataChannelIceChannel.h
             Ice/IceSignal.h
-            #Ice/IceSignalWebSocket.h
             )
     endif()
+    
+    find_package(nlohmann_json)
+    if(nlohmann_json_FOUND)
+        list(APPEND _PROXY_LIBS nlohmann_json::nlohmann_json)
+        list(APPEND HEADER_FILES IceSignalWebSocket.h)
+        list(APPEND SOURCE_FILES IceSignalWebSocket.cpp)
+    endif()
+    
 endif()
 
 # Translations

@@ -2,7 +2,7 @@
 version: "v0.0.7.{build}"
 
 cache:
-  #- ..\other_source
+  - ..\other_source
 # Clean cached
 # https://www.appveyor.com/docs/build-cache/#cleaning-up-cache
 
