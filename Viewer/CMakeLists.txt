@@ -51,42 +51,45 @@ if(RabbitVNC_FOUND)
     LIST(APPEND HEADER_FILES ConnectVnc.h)
 endif()
 
-set(_LibDataChannel_DIR ${LibDataChannel_DIR})
-find_package(LibDataChannel)
-if(LibDataChannel_FOUND)
-    list(APPEND SRC_LIBS LibDatachannel::datachannel)
-else()
-    find_path(_LibDataChannel_INCLUDE_DIRS
-        NAMES "rtc/rtc.hpp"
-        HINTS ${_LibDataChannel_DIR}
-        PATHS ${_LibDataChannel_DIR}
-        PATH_SUFFIXES include
-        )
-    find_library(_LibDataChannel_LIB
-        NAMES datachannel
-        HINTS ${_LibDataChannel_DIR}
-        PATHS ${_LibDataChannel_DIR}
-        PATH_SUFFIXES lib
-        )
-    if(_LibDataChannel_LIB)
-        list(APPEND SRC_LIBS ${_LibDataChannel_LIB})
+option(WITH_ICE "Use ice" OFF)
+if(WITH_ICE)
+    set(_LibDataChannel_DIR ${LibDataChannel_DIR})
+    find_package(LibDataChannel)
+    if(LibDataChannel_FOUND)
+        list(APPEND SRC_LIBS LibDatachannel::datachannel)
+    else()
+        find_path(_LibDataChannel_INCLUDE_DIRS
+            NAMES "rtc/rtc.hpp"
+            HINTS ${_LibDataChannel_DIR}
+            PATHS ${_LibDataChannel_DIR}
+            PATH_SUFFIXES include
+            )
+        find_library(_LibDataChannel_LIB
+            NAMES datachannel
+            HINTS ${_LibDataChannel_DIR}
+            PATHS ${_LibDataChannel_DIR}
+            PATH_SUFFIXES lib
+            )
+        if(_LibDataChannel_LIB)
+            list(APPEND SRC_LIBS ${_LibDataChannel_LIB})
+        endif()
+        if(_LibDataChannel_INCLUDE_DIRS AND _LibDataChannel_LIB)
+            set(LibDataChannel_FOUND TRUE)
+            message("libdatachannel: ${_LibDataChannel_LIB}")
+        endif()
     endif()
-    if(_LibDataChannel_INCLUDE_DIRS AND _LibDataChannel_LIB)
-        set(LibDataChannel_FOUND TRUE)
-        message("libdatachannel: ${_LibDataChannel_LIB}")
+    if(LibDataChannel_FOUND)
+        LIST(APPEND SOURCE_FILES
+            Ice/DataChannelIce.cpp
+            #Ice/DataChannelIceChannel.cpp
+            Ice/IceSignal.cpp
+            Ice/IceSignalWebSocket.cpp)
+        LIST(APPEND HEADER_FILES
+            Ice/DataChannelIce.h
+            #Ice/DataChannelIceChannel.h
+            Ice/IceSignal.h
+            Ice/IceSignalWebSocket.h)
     endif()
-endif()
-if(LibDataChannel_FOUND)
-    LIST(APPEND SOURCE_FILES
-        Ice/DataChannelIce.cpp
-        #Ice/DataChannelIceChannel.cpp
-        Ice/IceSignal.cpp
-        Ice/IceSignalWebSocket.cpp)
-    LIST(APPEND HEADER_FILES
-        Ice/DataChannelIce.h
-        #Ice/DataChannelIceChannel.h
-        Ice/IceSignal.h
-        Ice/IceSignalWebSocket.h)
 endif()
 
 # Translations
