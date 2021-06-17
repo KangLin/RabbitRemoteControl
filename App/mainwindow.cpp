@@ -306,7 +306,11 @@ int MainWindow::SetConnect(CConnecter *p, bool set)
         case QDialog::Rejected:
             delete p;
             return 0;
-        case QDialog::Accepted:    
+        case QDialog::Accepted:
+            szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                        + QDir::separator()
+                        + p->Id()
+                        + ".rrc";
             break;
         }
     }
