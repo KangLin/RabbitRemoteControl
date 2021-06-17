@@ -1,5 +1,5 @@
 ## Compile on Linux
-Author Kang Lin(kl222@126.com)
+Author Kang Lin (kl222@126.com)
 
 ### Environment
 #### Operating system 
@@ -34,11 +34,11 @@ The previous version does not have enough support for cmake.
   
         ~$ sudo apt install sudo apt install qtcreator
   
-- git
+- git: [http://www.git-scm.com/](http://www.git-scm.com/)
 
         ~$ sudo apt install git
         
-- cmake
+- cmake: [http://www.cmake.org/](http://www.cmake.org/)
 
         ~$ sudo apt install cmake
         
@@ -86,7 +86,8 @@ The previous version does not have enough support for cmake.
                  https://github.com/libssh2/libssh2
 - [Optional] qtermwidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [Optional] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
-    
+- [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+
 #### RabbitCommon
 This library is placed in the same level directory as the project by default.
 If it is not in the same level directory, you must specify the CMake parameters:
@@ -130,14 +131,15 @@ If it is not in the same level directory, you must specify the CMake parameters:
       ~$ sudo apt install libvncserver-dev
 
 - Compile from source code
-  + Source code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
+  + Source code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
+  It is recommended to use patches: https://github.com/KangLin/libvncserver
   + Specify CMake parameters: -Dvncclient_DIR=[libvncserver installation path]/lib/cmake/LibVncServer
 
 #### TigerVnc
 The official is just an application and does not support libraries.
-See:https://github.com/TigerVNC/tigervnc/issues/1123  
+See: https://github.com/TigerVNC/tigervnc/issues/1123  
 So I made changes on the official basis.
-Source code location::https://github.com/KangLin/tigervnc  
+Source code location: https://github.com/KangLin/tigervnc  
 Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
     ~$ sudo apt install libpixman-1-dev
@@ -147,6 +149,24 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
     ~/tigervnc$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
     ~/tigervnc$ cmake --build . --target install
     
+#### libdatachannel
+- Use vcpkg
+
+      ~/vcpkg$ vcpkg install libdatachannel
+      
+- Compile from source code
+  + Source code location: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+  + Compile see: [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
+  + Specify CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
+
+        ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
+        ~$ cd libdatachannel
+        ~/libdatachannel$ git submodule update --init --recursive
+        ~/libdatachannel$ mkdir build
+        ~/libdatachannel$ cd build
+        ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/libdatachannel/build$ cmake --build . --target install
+
 #### qtermwidget
 - Use system build-in development library
 
@@ -160,6 +180,10 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 - Use system build-in development library
 
       ~$ sudo apt install libssh-dev 
+
+- Use vcpkg
+      
+      vcpkg install libssh
 
 - Compile from source code
   + Source code location: [https://www.libssh.org](https://www.libssh.org)
@@ -179,6 +203,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
   + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR2
   + tigervnc_DIR: [TigerVNC installation path]/lib/cmake
   + vncclient_DIR: [libvncserver installation path]/lib/cmake/LibVncServer
+  + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
   + qtermwidget5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   

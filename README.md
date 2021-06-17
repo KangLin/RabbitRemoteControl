@@ -18,6 +18,7 @@ Author: Kang Lin (kl222@126.com)
 - [Development](#Development)
   + [Build](#Build)
     - [Linux](docs/BuildLinux.md)
+    - [Windows](docs/BuildWindows.md)
 - [Change log](ChangeLog.md)
 - [License Agreement](#License-Agreement)
 
@@ -173,9 +174,11 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 - [x] [Optional] qtermwidget: https://github.com/lxqt/qtermwidget
 - [x] [Optional] libtelnet: https://github.com/seanmiddleditch/libtelnet
 - [ ] [Optional] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+- [x] [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 
 #### Build
-- [linux](docs/BuildLinux.md)
+- [Linux](docs/BuildLinux.md)
+- [Windows](docs/BuildWindows.md)
 
 ### [License Agreement](License.md "License.md")
 

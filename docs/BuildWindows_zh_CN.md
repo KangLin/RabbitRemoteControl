@@ -1,15 +1,10 @@
-## 在 Linux 上编译
+## 在 Windows 上编译
 作者：康林 (kl222@126.com)
 
 ### 环境
 #### 操作系统
 
-    ~$ lsb_release -a
-    No LSB modules are available.
-    Distributor ID:	Ubuntu
-    Description:	Ubuntu 20.04.2 LTS
-    Release:	20.04
-    Codename:	focal
+    Windows 10
 
 #### QtCreator
 版本：v4.15.0。建议使用 v4.15.0 以后版本，以前版本对 cmake 支持不够。
@@ -17,59 +12,34 @@
 ### 工具
 
 - 编译器
-  + gcc/g++
-  
-        ~$ sudo apt install g++ gcc
-        
+  + Visual Studio
+    * 主页
+      - https://visualstudio.microsoft.com/vs/
+      - http://msdn.microsoft.com/zh-cn/vstudio 
+      - https://visualstudio.microsoft.com/zh-hans/downloads/
+    * 版本：
+      - Visual Studio 2013
+      - Visual Studio 2015
+      - Visual Studio 2017
+      - Visual Studio 2019
+    * Visual Studio 各版本密钥：https://blog.csdn.net/kl222/article/details/84939135
+    * 当前使用版本：vs 2017
+    
+- Windows sdk: https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
+    根据你的操作系统安装相应的 SDK。 CDB必须要安装，QT调试需要。
+- Windows Driver Kit: https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
+   
 - Qt
-  + 系统自带：
-  
-        ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
-        
   + Qt官方发行版本： https://download.qt.io/official_releases/qt/  
     当前使用版本: Qt5.12.11
   + IDE: qtcreator。建议使用 v4.15.0 以后版本，以前版本对 cmake 支持不够。
-  
-        ~$ sudo apt install sudo apt install qtcreator
-  
-- git: [http://www.git-scm.com/](http://www.git-scm.com/)
 
-        ~$ sudo apt install git
-        
+- git: [http://www.git-scm.com/](http://www.git-scm.com/)  
+  [git设置](http://blog.csdn.net/kl222/article/details/32903495)
+  
 - cmake: [http://www.cmake.org/](http://www.cmake.org/)
 
-        ~$ sudo apt install cmake
-        
-- automake、autoconf、make
-
-        ~$ sudo apt install automake autoconf make
-
 ### 编译
-
-    # 安装依赖库
-    ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
-    ~$ sudo apt install debhelper fakeroot
-    # 安装 Qt
-    ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
-    # 安装 X 开发库
-    ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
-    ~$ sudo apt install libutf8proc-dev libpam0g-dev #编译 qtermwidget 需要
-    # 编译 TigerVNC
-    ~$ sudo apt install libpixman-1-dev
-    ~$ git clone https://github.com/KangLin/tigervnc.git
-    ~$ cd tigervnc
-    ~$ mkdir build
-    ~/tigervnc/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/tigervnc/build$ cmake --build . --target install
-    ~/tigervnc/build$ cd ~
-    ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
-    ~$ git clone https://github.com/KangLin/RabbitCommon.git
-    ~$ cd RabbitRemoteControl
-    ~/RabbitRemoteControl$ mkdir build
-    ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake
-    ~/RabbitRemoteControl/build$ cmake --build . --target install
-    
 
 ### 依赖库
 
@@ -90,21 +60,17 @@
 此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
 -DRabbitCommon_DIR=[RabbitCommon 安装目录]
 
-    ~$ git clone https://github.com/KangLin/RabbitCommon.git
+    git clone https://github.com/KangLin/RabbitCommon.git
     
-#### FreeRDP
-- 使用系统预编译开发库
-
-      ~$ sudo apt install freerdp2-dev
-    
+#### FreeRDP   
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
   + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
   
-        ~$ git clone https://github.com/microsoft/vcpkg.git
-        ~$ cd vcpkg
-        ~/vcpkg$ ./bootstrap-vcpkg.sh
-        ~/vcpkg$ vcpkg install freerdp
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        bootstrap-vcpkg.bat
+        vcpkg install freerdp
 
 - 从源码编译
   + 源码位置：https://github.com/FreeRDP/FreeRDP
@@ -115,65 +81,63 @@
     - -DFreeRDP_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP2
     - -DWinPR_DIR=[freerdp 安装目录]/lib/cmake/WinPR2
 
-          ~$ git clone https://github.com/FreeRDP/FreeRDP.git
-          ~$ cd FreeRDP
-          ~/FreeRDP$ mkdir build
-          ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-          ~/FreeRDP/build$ cmake --build . --target install
+          git clone https://github.com/FreeRDP/FreeRDP.git
+          cd FreeRDP
+          mkdir build
+          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
+          cmake --build . --target install
           
 #### libvncserver
-- 使用系统预编译开发库
-
-      ~$ sudo apt install libvncserver-dev
-
 - 从源码编译
-  + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
+  + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
+  建议使用补丁: https://github.com/KangLin/libvncserver
   + 指定 CMake 参数：-Dvncclient_DIR=[libvncserver 安装目录]/lib/cmake/LibVncServer
+
+        cd vcpkg
+        vcpkg install zlib openssl libjpeg-turbo 
+        git clone https://github.com/KangLin/libvncserver.git
+        cd libvncserver
+        mkdir build
+        cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --target install
 
 #### TigerVnc
 官方只是个应用程序，不支持库。详见：https://github.com/TigerVNC/tigervnc/issues/1123  
 所以本人在官方基础上做了修改。源码位置：https://github.com/KangLin/tigervnc  
 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
 
-    ~$ sudo apt install libpixman-1-dev
-    ~$ git clone https://github.com/KangLin/tigervnc.git
-    ~$ cd tigervnc
-    ~/tigervnc$ mkdir build
-    ~/tigervnc$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/tigervnc$ cmake --build . --target install
+    cd vcpkg
+    vcpkg install zlib openssl pixman libjpeg-turbo
+    git clone https://github.com/KangLin/tigervnc.git
+    cd tigervnc
+    mkdir build
+    cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+    cmake --build . --target install
     
 #### libdatachannel
 - 使用 vcpkg
 
-      ~/vcpkg$ vcpkg install libdatachannel
+      vcpkg install libdatachannel
       
 - 从源码编译
   + 源码位置： [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
   + 编译详见： [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
   + 指定 CMake 参数: -DLibDataChannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
 
-        ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
-        ~$ cd libdatachannel
-        ~/libdatachannel$ git submodule update --init --recursive
-        ~/libdatachannel$ mkdir build
-        ~/libdatachannel$ cd build
-        ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-        ~/libdatachannel/build$ cmake --build . --target install
+        git clone https://github.com/paullouisageneau/libdatachannel.git
+        cd libdatachannel
+        git submodule update --init --recursive
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        cmake --build . --target install
 
-#### qtermwidget
-- 使用系统预编译开发库
-
-      ~$ sudo apt install libqtermwidget5-0-dev
-      
+#### qtermwidget(暂不支持 Windows）     
 - 从源码编译
   + 源码位置： [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
   + 指定 CMake 参数：-Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
 
 #### libssh
-- 使用系统预编译开发库
-
-      ~$ sudo apt install libssh-dev 
-
 - 使用 vcpkg
 
       vcpkg install libssh
@@ -186,7 +150,7 @@
 - 项目位置：[https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - 下载源码
 
-      ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+      git clone https://github.com/KangLin/RabbitRemoteControl.git
 
 - 设置 CMake 参数
   + RabbitCommon_DIR: RabbitCommon 源码位置
@@ -207,10 +171,11 @@
 
   + 命令行编译
   
-          ~$ cd RabbitRemoteControl
-          ~/RabbitRemoteControl$ mkdir build
-          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install 
-          ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
+          cd RabbitRemoteControl
+          mkdir build
+          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+          cmake --build . --target install-runtime
+          makensis Install.nsi  ;打包
 
   + IDE(QtCreator) 编译
     - 打开项目: 菜单->文件->打开文件或项目，选择项目根目录中的 CMakeLists.txt 

@@ -18,7 +18,8 @@
 - [修改日志](ChangeLog_zh_CN.md)
 - [开发](#开发)
   + [编译](#编译)
-    - [linux](docs/BuildLinux_zh_CN.md)
+    - [Linux](docs/BuildLinux_zh_CN.md)
+    - [Windows](docs/BuildWindows_zh_CN.md)
 - [许可协议](#许可协议)
 
 -----------------------------------------------------------------------
@@ -164,9 +165,11 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [x] [可选] qtermwidget: https://github.com/lxqt/qtermwidget
 - [x] [可选] libtelnet: https://github.com/seanmiddleditch/libtelnet
 - [ ] [可选] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+- [x] [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 
 #### 编译
-- [linux](docs/BuildLinux_zh_CN.md)
+- [Linux](docs/BuildLinux_zh_CN.md)
+- [Windows](docs/BuildWindows_zh_CN.md)
 
 ### [许可协议](License.md "License.md")
 请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。
