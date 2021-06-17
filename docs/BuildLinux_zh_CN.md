@@ -26,7 +26,7 @@
   
         ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
         
-  + Qt官方发行版本： https://download.qt.io/official_releases/qt/
+  + Qt官方发行版本： https://download.qt.io/official_releases/qt/  
     当前使用版本: Qt5.12.11
   + IDE: qtcreator。建议使用 v4.15.0 以后版本，以前版本对 cmake 支持不够。
   
@@ -54,7 +54,7 @@
     # 安装 X 开发库
     ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
     ~$ sudo apt install libutf8proc-dev libpam0g-dev #编译 qtermwidget 需要
-     # 编译 TigerVNC
+    # 编译 TigerVNC
     ~$ sudo apt install libpixman-1-dev
     ~$ git clone https://github.com/KangLin/tigervnc.git
     ~$ cd tigervnc
@@ -97,7 +97,7 @@
       ~$ sudo apt install freerdp2-dev
     
 - 使用 vcpkg
-  + 源码位置: https://github.com/FreeRDP/FreeRDP
+  + 源码位置: https://github.com/microsoft/vcpkg/
   + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
   
         ~$ git clone https://github.com/microsoft/vcpkg.git

@@ -11,7 +11,15 @@
 - 编译状态
   - [![编译状态](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
   - [![编译状态](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+- [简介](#简介)
+- [捐赠](#捐赠)
+- [贡献](#贡献)
+- [下载](#下载)
 - [修改日志](ChangeLog_zh_CN.md)
+- [开发](#开发)
+  + [编译](#编译)
+    - [linux](docs/BuildLinux_zh_CN.md)
+- [许可协议](#许可协议)
 
 -----------------------------------------------------------------------
 ### 简介
@@ -39,6 +47,8 @@
 - [x] 终端
 - [x] [SSH]()
 - [x] [TELNET: http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
+- [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+
   
 |        |Windows           |Unix/linux        |Android           |MAC               |IPHONE            |WINCE             |
 |--------|------------------|------------------|------------------|------------------|------------------|------------------|
@@ -48,6 +58,7 @@
 |SSH     |                  |:heavy_check_mark:|                  |                  |                  |                  |
 |Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
 |TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
+|Scrcpy  |                  |                  |                  |                  |                  |                  |
 
 
 ##### 网络协议
@@ -100,7 +111,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
   - Android
 * 完成还未支持的协议
 
-### 下载: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
+### 下载
+
+发行版本：[https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
 - Windows: 支持 WINDOWS 7 及以后版本
   + 安装包：[RabbitRemoteControl-Setup-v0.0.7.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.7/RabbitRemoteControl-Setup-v0.0.7.exe)
@@ -130,11 +143,13 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 #### 依赖
 ##### 工具
 
-- [x] [Qt](qt.io)
-- [x] c compiler
-  + gcc
+- [Qt](qt.io)
+- C/C++ compiler
+  + gcc/g++
   + MSVC
 - [cmake](https://cmake.org/)
+- automake、autoconf、make
+- git
 
 ##### 依赖库
 
@@ -148,6 +163,10 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
   + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
 - [x] [可选] qtermwidget: https://github.com/lxqt/qtermwidget
 - [x] [可选] libtelnet: https://github.com/seanmiddleditch/libtelnet
+- [ ] [可选] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+
+#### 编译
+- [linux](docs/BuildLinux_zh_CN.md)
 
 ### [许可协议](License.md "License.md")
 请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。

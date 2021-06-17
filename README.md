@@ -11,7 +11,15 @@ Author: Kang Lin (kl222@126.com)
 - Build status
   - [![Build status](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
   - [![Build status](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+- [Introduction](#Introduction)
+- [Donation](#Donation)
+- [Contribution](#Contribution)
+- [Download](#Download)
+- [Development](#Development)
+  + [Build](#Build)
+    - [Linux](docs/BuildLinux.md)
 - [Change log](ChangeLog.md)
+- [License Agreement](#License-Agreement)
 
 -----------------------------------------------------------------------
 
@@ -41,6 +49,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 - [x] [SSH]()
 - [x] [TELNET: http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
 - [x] Terminal
+- [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 
 
 |        |Windows           |Unix/linux        |Android           |MAC               |IPHONE            |WINCE             |
@@ -52,6 +61,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
 |TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
 |P2P     |                  |                  |                  |                  |                  |                  |
+|Scrcpy  |                  |                  |                  |                  |                  |                  |
 
 ##### Network protocols
 - [ ] Custom p2p protocol
@@ -106,7 +116,9 @@ Some of them are:
   - Android
 * Be finished [unsupported protocols](#Supported-protocols)
 
-### Download: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
+### Download
+
+Release: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
 
 - Windows: Supported WINDOWS 7 and later version
   + Install package: [RabbitRemoteControl-Setup-v0.0.7.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.7/RabbitRemoteControl-Setup-v0.0.7.exe)
@@ -141,11 +153,13 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 ### Development
 #### Dependent
 ##### Tools
-- [x] [Qt](qt.io)
-- [x] c compiler
-  + gcc
+- [Qt](qt.io)
+- C/C++ compiler
+  + gcc/g++
   + MSVC
 - [cmake](https://cmake.org/)
+- automake、autoconf、make
+- git
 
 ##### Dependent libraries
 - [x] [MUST] RabbitCommon：https://github.com/KangLin/RabbitCommon
@@ -158,6 +172,10 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
   + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
 - [x] [Optional] qtermwidget: https://github.com/lxqt/qtermwidget
 - [x] [Optional] libtelnet: https://github.com/seanmiddleditch/libtelnet
+- [ ] [Optional] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+
+#### Build
+- [linux](docs/BuildLinux.md)
 
 ### [License Agreement](License.md "License.md")
 
