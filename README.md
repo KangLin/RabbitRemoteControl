@@ -17,8 +17,8 @@ Author: Kang Lin (kl222@126.com)
 - [Download](#Download)
 - [Development](#Development)
   + [Build](#Build)
-    - [Linux](docs/BuildLinux.md)
-    - [Windows](docs/BuildWindows.md)
+    - [Linux](docs/Compile/BuildLinux.md)
+    - [Windows](docs/Compile/BuildWindows.md)
 - [Change log](ChangeLog.md)
 - [License Agreement](#License-Agreement)
 
@@ -177,8 +177,8 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 - [x] [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 
 #### Build
-- [Linux](docs/BuildLinux.md)
-- [Windows](docs/BuildWindows.md)
+- [Linux](docs/Compile/BuildLinux.md)
+- [Windows](docs/Compile/BuildWindows.md)
 
 ### [License Agreement](License.md "License.md")
 
