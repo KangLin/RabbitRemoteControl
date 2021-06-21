@@ -68,7 +68,7 @@ before_build:
   - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 2021.05.12 2021.05.12 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libssh pixman libjpeg-turbo libpng freerdp libdatachannel
+  - vcpkg --triplet %BUILD_ARCH%-windows install zlib libssh pixman libjpeg-turbo freerdp libdatachannel
 
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")

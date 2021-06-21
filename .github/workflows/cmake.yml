@@ -68,7 +68,7 @@ jobs:
         vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'zlib openssl libssh freerdp pixman libjpeg-turbo libdatachannel'
+        vcpkgArguments: 'zlib libssh pixman libjpeg-turbo freerdp libdatachannel'
 
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
