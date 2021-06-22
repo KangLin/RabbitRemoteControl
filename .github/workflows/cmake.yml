@@ -8,26 +8,19 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest] #, macos-latest]
-        triplet: [x86-windows] #, x64-windows]
         #VCPKG_PLATFORM_TOOLSET: [v142, v141, v140]
         #CMAKE_GENERATOR: [Visual Studio 16 2019, Visual Studio 15 2017, Visual Studio 14 2015]
         #CMAKE_GENERATOR_PLATFORM: [win32, x64]
         BUILD_TYPE: [Release, Debug]
-        qt_version: [5.12.10]
-        #include:
-        #  - os: windows-latest
-        #    triplet: x64-windows
-            #CMAKE_GENERATOR_PLATFORM: x64
-            #VCPKG_PLATFORM_TOOLSET: v142
-        #  - os: windows-latest
-        #    triplet: x86-windows
-            #CMAKE_GENERATOR_PLATFORM: win32
-            #VCPKG_PLATFORM_TOOLSET: v141
-          #- os: ubuntu-latest
-          #  triplet: x64-linux
-          #- os: macos-latest
-          #  triplet: x64-osx
+        include 
+          - os: windows-latest
+            triplet: x64-windows
+            qt_version: 5.12.10
+            qt_arch: win64_msvc2017_64
+          - os: windows-latest
+            triplet: x32-windows
+            qt_version: 5.12.10
+            qt_arch: win32_msvc2017
         
     runs-on: ${{ matrix.os }}
 
@@ -47,15 +40,6 @@ jobs:
         cmake -E make_directory ${{env.SOURCE_DIR}}
         cmake -E make_directory ${{env.TOOSL_DIR}}
         cmake -E make_directory ${{env.INSTALL_DIR}}
-
-    - name: apt helper action in ubuntu
-      uses: ryankurte/action-apt@v0.2.0
-      with:
-        # architectures to pass to dpkg --add-architecture
-        #architectures: # optional
-        # apt packages to install
-        packages: build-essential
-      if: ${{ matrix.os == 'ubuntu-latest' }}
       
     - name: run-vcpkg
       # You may pin to the exact commit or the version.
@@ -110,7 +94,7 @@ jobs:
         # Target platform for build
         #target: desktop # optional, default is desktop
         # Architecture for Windows/Android
-        #arch: # optional
+        arch: ${{matrix.qt_arch}} # optional
         # Whether or not to install Qt dependencies on Linux
         #install-deps: true # optional, default is true
         # Additional Qt modules to install
