@@ -116,8 +116,11 @@
     
 #### libdatachannel
 - 使用 vcpkg
+  + 源码位置: https://github.com/microsoft/vcpkg/
+  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 
-      vcpkg install libdatachannel
+        cd vcpkg
+        vcpkg install libdatachannel
       
 - 从源码编译
   + 源码位置： [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
@@ -139,8 +142,11 @@
 
 #### libssh
 - 使用 vcpkg
+  + 源码位置: https://github.com/microsoft/vcpkg/
+  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 
-      vcpkg install libssh
+        cd vcpkg
+        vcpkg install libssh
 
 - 从源码编译
   + 源码位置： [https://www.libssh.org](https://www.libssh.org)
@@ -163,6 +169,7 @@
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
   + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
+  + CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
   
 - 编译
   + 安装目标
@@ -178,6 +185,7 @@
           makensis Install.nsi  ;打包
 
   + IDE (QtCreator) 编译
+    - 设置 vcpkg: 选项->Kits->Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     - 打开项目: 菜单->文件->打开文件或项目，选择项目根目录中的 CMakeLists.txt 
     - 配置：点左侧工具栏上的 项目->编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5

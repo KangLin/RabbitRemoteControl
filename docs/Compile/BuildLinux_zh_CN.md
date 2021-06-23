@@ -144,8 +144,12 @@
     
 #### libdatachannel
 - 使用 vcpkg
+  + 源码位置: https://github.com/microsoft/vcpkg/
+  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 
-      ~/vcpkg$ vcpkg install libdatachannel
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ vcpkg install libdatachannel
       
 - 从源码编译
   + 源码位置： [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
@@ -175,8 +179,12 @@
       ~$ sudo apt install libssh-dev 
 
 - 使用 vcpkg
+  + 源码位置: https://github.com/microsoft/vcpkg/
+  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 
-      vcpkg install libssh
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ vcpkg install libssh
 
 - 从源码编译
   + 源码位置： [https://www.libssh.org](https://www.libssh.org)
@@ -200,19 +208,31 @@
   + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   
+- 如果使用 vcpkg，增加下面参数
+  + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+  
 - 编译
   + 安装目标
     - install-runtime: 只安装运行库和程序
     - install: 安装所有库（运行库与开发库）和程序
 
   + 命令行编译
-  
-          ~$ cd RabbitRemoteControl
-          ~/RabbitRemoteControl$ mkdir build
-          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install 
-          ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
+     - 不用 vcpkg
+     
+           ~$ cd RabbitRemoteControl
+           ~/RabbitRemoteControl$ mkdir build
+           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install 
+           ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
+
+     - 使用 vcpkg
+     
+           ~$ cd RabbitRemoteControl
+           ~/RabbitRemoteControl$ mkdir build
+           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+           ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
   + IDE(QtCreator) 编译
     - 打开项目: 菜单->文件->打开文件或项目，选择项目根目录中的 CMakeLists.txt 
     - 配置：点左侧工具栏上的 项目->编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
+    - 如果用 vcpkg: 选项->Kits->Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake

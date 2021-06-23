@@ -151,8 +151,13 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
     
 #### libdatachannel
 - Use vcpkg
+  + Source code location: https://github.com/microsoft/vcpkg/
+  + Specify CMake parameters:
+    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
-      ~/vcpkg$ vcpkg install libdatachannel
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ vcpkg install libdatachannel
       
 - Compile from source code
   + Source code location: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
@@ -182,8 +187,13 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
       ~$ sudo apt install libssh-dev 
 
 - Use vcpkg
-      
-      vcpkg install libssh
+  + Source code location: https://github.com/microsoft/vcpkg/
+  + Specify CMake parameters:
+    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ vcpkg install libssh
 
 - Compile from source code
   + Source code location: [https://www.libssh.org](https://www.libssh.org)
@@ -207,19 +217,31 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
   + qtermwidget5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   
+- If use vcpkg, please set cmake parameters:
+  + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+  
 - Compile
   + Install target
     - install-runtime: Only install runtime libraries and program
     - install: Install runtime and development libraries and program
 
   + Compile in command line
-  
+    - Not use vcpkg
+    
           ~$ cd RabbitRemoteControl
           ~/RabbitRemoteControl$ mkdir build
-          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install 
+          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
           ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
+
+    -  If use vcpkg
+
+           ~$ cd RabbitRemoteControl
+           ~/RabbitRemoteControl$ mkdir build
+           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+           ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
   + Used by IDE(QtCreator)
     - Open project: Menu->File->Open File or project, Select CMakeLists.txt of the project
     - Configure：Click Project->Build&Run on the toolbar on the left to configure CMake parameters
     - Compile and run: Click "Start Debugging of startup project" on the left toolbar or press the shortcut key F5
+    - If use vcpkg: Options->Kits->Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake

@@ -120,8 +120,11 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
 #### libdatachannel
 - Use vcpkg
+  + Source code location: https://github.com/microsoft/vcpkg/
+  + Specify CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
-      vcpkg install libdatachannel
+        cd vcpkg
+        vcpkg install libdatachannel
 
 - Compile from sorce code
   + Source code location:  [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
@@ -143,8 +146,11 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
 #### libssh
 - Use vcpkg
+  + Source code location: https://github.com/microsoft/vcpkg/
+  + Specify CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
-      vcpkg install libssh
+        cd vcpkg
+        vcpkg install libssh
 
 - Compile from sorce code
   + Source code location:  [https://www.libssh.org](https://www.libssh.org)
@@ -167,6 +173,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
   + qtermwidget5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
+  + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
 - Compile
   + Install target
@@ -182,6 +189,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
           makensis Install.nsi  ;Package
 
   + Used by IDE (QtCreator)
+    - Set vcpkg: Menu->Options->Kits->Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     - Open project: Menu->File->Open File or project, Select CMakeLists.txt of the project
     - Configure：Click Project->Build&Run on the toolbar on the left to configure CMake parameters
     - Compile and run: Click "Start Debugging of startup project" on the left toolbar or press the shortcut key F5
