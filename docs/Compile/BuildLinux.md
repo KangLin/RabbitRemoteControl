@@ -1,4 +1,4 @@
-## Compile on Linux
+## Compilation on Linux
 Author Kang Lin (kl222@126.com)
 
 ### Environment
@@ -12,13 +12,14 @@ Author Kang Lin (kl222@126.com)
     Codename:	focal
 
 #### QtCreator
-Version: v4.15.0. It is recommended to use the version later than v4.15.0.
-The previous version does not have enough support for cmake.
+Version: v4.15.0. \
+It is recommended to use version v4.15.0 or later. \
+Prior versions don't have CMake support.
 
 ### Tools
 
 - Compiler
-  + gcc/g++
+  + GCC/g++
   
         ~$ sudo apt install g++ gcc
         
@@ -27,28 +28,28 @@ The previous version does not have enough support for cmake.
   
         ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
         
-  + Qt office release: https://download.qt.io/official_releases/qt/  
-    Current version: Qt5.12.11
-  + IDE: QtCreator. It is recommended to use the version later than v4.15.0.
-  The previous version does not have enough support for cmake.
-  
+  + Qt (official release): https://download.qt.io/official_releases/qt/  
+    Current version: Qt 5.12.11
+  + IDE: Qt Creator. It is recommended to use version v4.15.0 or later. \
+  Prior versions don't have CMake support.
+
         ~$ sudo apt install sudo apt install qtcreator
   
-- git: [http://www.git-scm.com/](http://www.git-scm.com/)
+- Git: [http://www.git-scm.com/](http://www.git-scm.com/)
 
         ~$ sudo apt install git
         
-- cmake: [http://www.cmake.org/](http://www.cmake.org/)
+- CMake: [http://www.cmake.org/](http://www.cmake.org/)
 
         ~$ sudo apt install cmake
         
-- automake、autoconf、make
+- automake, autoconf, make
 
         ~$ sudo apt install automake autoconf make
 
-### Compile
+### Compilation
 
-    # Install dependent libraries
+    # Install library dependencies
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     ~$ sudo apt install debhelper fakeroot
     # Install Qt
@@ -73,35 +74,35 @@ The previous version does not have enough support for cmake.
     ~/RabbitRemoteControl/build$ cmake --build . --target install
     
 
-### Dependent libraries
+### Library dependencies
 
 - [Must] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
 - [Optional] RFB
   + [Optional] libvncserver: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + [Optional] TigerVnc: https://github.com/KangLin/tigervnc
+  + [Optional] TigerVNC: https://github.com/KangLin/tigervnc
 - [Optional] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
-- [Optional] SSH
-  + LIBSSH: [https://www.libssh.org](https://www.libssh.org)
-  + LIBSSH2: https://www.libssh2.org/
+- [Optional] [SSH]
+  + libssh: [https://www.libssh.org](https://www.libssh.org)
+  + libssh2: https://www.libssh2.org/
                  https://github.com/libssh2/libssh2
 - [Optional] qtermwidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [Optional] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 
 #### RabbitCommon
-This library is placed in the same level directory as the project by default.
-If it is not in the same level directory, you must specify the CMake parameters:
+This library is placed in the same directory level as the project by default.
+If not, you must specify the CMake parameters:
 -DRabbitCommon_DIR=[RabbitCommon installation path]
 
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
     
 #### FreeRDP
-- Use system build-in development library
+- Use the system-packaged development library
 
       ~$ sudo apt install freerdp2-dev
     
 - Use vcpkg
-  + Source code location: https://github.com/microsoft/vcpkg/
+  + Source-code location: https://github.com/microsoft/vcpkg/
   + Specify CMake parameters:
     -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   
@@ -111,7 +112,7 @@ If it is not in the same level directory, you must specify the CMake parameters:
         ~/vcpkg$ vcpkg install freerdp
 
 - Compile from source code
-  + Source code location: https://github.com/FreeRDP/FreeRDP
+  + Source-code location: https://github.com/FreeRDP/FreeRDP
   + See: https://github.com/FreeRDP/FreeRDP/wiki/Compilation
   + Specify CMake parameters:
     - -DBUILD_FREERDP=ON
@@ -126,19 +127,19 @@ If it is not in the same level directory, you must specify the CMake parameters:
           ~/FreeRDP/build$ cmake --build . --target install
           
 #### libvncserver
-- Use system build-in development library
+- Use the system-packaged development library
 
       ~$ sudo apt install libvncserver-dev
 
 - Compile from source code
-  + Source code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
-  It is recommended to use patches: https://github.com/KangLin/libvncserver
+  + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
+  It is recommended to use the patches from: https://github.com/KangLin/libvncserver
   + Specify CMake parameters: -Dvncclient_DIR=[libvncserver installation path]/lib/cmake/LibVncServer
 
 #### TigerVnc
-The official is just an application and does not support libraries.
+The official program does not support libraries.
 See: https://github.com/TigerVNC/tigervnc/issues/1123  
-So I made changes on the official basis.
+The KangLin fork has support.
 Source code location: https://github.com/KangLin/tigervnc  
 Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
@@ -161,7 +162,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
       
 - Compile from source code
   + Source code location: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
-  + Compile see: [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
+  + Compilation: [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
   + Specify CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
 
         ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
@@ -173,7 +174,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
         ~/libdatachannel/build$ cmake --build . --target install
 
 #### qtermwidget
-- Use system build-in development library
+- Use the system-packaged development library
 
       ~$ sudo apt install libqtermwidget5-0-dev
       
@@ -182,7 +183,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
   + Specify CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
 #### libssh
-- Use system build-in development library
+- Use the system-packaged development library
 
       ~$ sudo apt install libssh-dev 
 
@@ -196,7 +197,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
         ~/vcpkg$ vcpkg install libssh
 
 - Compile from source code
-  + Source code location: [https://www.libssh.org](https://www.libssh.org)
+  + Source-code location: [https://www.libssh.org](https://www.libssh.org)
   + Specify CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 
 ### Compile this project
@@ -222,12 +223,13 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
   
 - Compile
   + Install target
-    - install-runtime: Only install runtime libraries and program
-    - install: Install runtime and development libraries and program
+    - install-runtime: Only install runtime libraries and the program
+    - install: Install runtime and development libraries and the program
 
-  + Compile in command line
+
+  + Compile from the command-line
     - Not use vcpkg
-    
+
           ~$ cd RabbitRemoteControl
           ~/RabbitRemoteControl$ mkdir build
           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
@@ -241,7 +243,8 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
            ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
   + Used by IDE(QtCreator)
-    - Open project: Menu->File->Open File or project, Select CMakeLists.txt of the project
-    - Configure：Click Project->Build&Run on the toolbar on the left to configure CMake parameters
-    - Compile and run: Click "Start Debugging of startup project" on the left toolbar or press the shortcut key F5
-    - If use vcpkg: Options->Kits->Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    - Open project: Menu→ File→ Open File or project, Select the CMakeLists.txt of the project
+    - Configure: Click Project→ "Build & Run" in the toolbar on the left to configure CMake parameters
+    - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
+    - If use vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
