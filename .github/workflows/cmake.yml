@@ -12,7 +12,7 @@ jobs:
         #CMAKE_GENERATOR: [Visual Studio 16 2019, Visual Studio 15 2017, Visual Studio 14 2015]
         #CMAKE_GENERATOR_PLATFORM: [win32, x64]
         BUILD_TYPE: [Release, Debug]
-        include 
+        include:
           - os: windows-latest
             triplet: x64-windows
             qt_version: 5.12.10
