@@ -82,8 +82,7 @@ Q_SIGNALS:
     
 private:
     const CPluginFactory* m_pPluginFactory;
-    
-protected:
+
     QString m_szServerName;
 };
 

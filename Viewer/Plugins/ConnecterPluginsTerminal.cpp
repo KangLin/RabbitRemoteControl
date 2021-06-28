@@ -223,10 +223,10 @@ int CConnecterPluginsTerminal::OnSave(QDataStream& d)
 QString CConnecterPluginsTerminal::ServerName()
 {
     CParameterTerminal* pPara = GetPara();
-    if(m_szServerName.isEmpty())
+    if(CConnecter::ServerName().isEmpty())
     {
         if(pPara && !pPara->szHost.isEmpty())
-            m_szServerName = pPara->szHost + ":" + QString::number(pPara->nPort);
+            return pPara->szHost + ":" + QString::number(pPara->nPort);
         else
             return CConnecter::Name();
     }

@@ -343,7 +343,6 @@ void MainWindow::on_actionOpen_O_triggered()
     CConnecter* p = m_ManageConnecter.LoadConnecter(file);
     if(nullptr == p) return;
 
-    //TODO: Add option: ShowDialog
     SetConnect(p, true);
 }
 

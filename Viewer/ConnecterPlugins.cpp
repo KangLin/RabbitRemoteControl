@@ -121,10 +121,10 @@ int CConnecterPlugins::OnDisConnect()
 
 QString CConnecterPlugins::ServerName()
 {
-    if(m_szServerName.isEmpty())
+    if(CConnecter::ServerName().isEmpty())
     {
         if(m_pParameter && !m_pParameter->szHost.isEmpty())
-            m_szServerName = m_pParameter->szHost + ":"
+            return m_pParameter->szHost + ":"
                     + QString::number(m_pParameter->nPort);
         else
             return CConnecter::Name();
