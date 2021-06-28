@@ -11,7 +11,7 @@ Author Kang Lin (kl222@126.com)
     Release:	20.04
     Codename:	focal
 
-#### QtCreator
+#### Qt Creator
 Version: v4.15.0. \
 It is recommended to use version v4.15.0 or later. \
 Prior versions don't have CMake support.
@@ -136,7 +136,7 @@ If not, you must specify the CMake parameters:
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
   + Specify CMake parameters: -Dvncclient_DIR=[libvncserver installation path]/lib/cmake/LibVncServer
 
-#### TigerVnc
+#### TigerVNC
 The official program does not support libraries.
 See: https://github.com/TigerVNC/tigervnc/issues/1123  
 The KangLin fork has support.
@@ -152,7 +152,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
     
 #### libdatachannel
 - Use vcpkg
-  + Source code location: https://github.com/microsoft/vcpkg/
+  + Source-code location: https://github.com/microsoft/vcpkg/
   + Specify CMake parameters:
     -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
@@ -161,7 +161,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
         ~/vcpkg$ vcpkg install libdatachannel
       
 - Compile from source code
-  + Source code location: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+  + Source-code location: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
   + Compilation: [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
   + Specify CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
 
@@ -179,7 +179,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
       ~$ sudo apt install libqtermwidget5-0-dev
       
 - Compile from source code
-  + Source code location: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
+  + Source-code location: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
   + Specify CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
 #### libssh
@@ -188,7 +188,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
       ~$ sudo apt install libssh-dev 
 
 - Use vcpkg
-  + Source code location: https://github.com/microsoft/vcpkg/
+  + Source-code location: https://github.com/microsoft/vcpkg/
   + Specify CMake parameters:
     -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
@@ -221,7 +221,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 - If use vcpkg, please set cmake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   
-- Compile
+- Compilation
   + Install target
     - install-runtime: Only install runtime libraries and the program
     - install: Install runtime and development libraries and the program
