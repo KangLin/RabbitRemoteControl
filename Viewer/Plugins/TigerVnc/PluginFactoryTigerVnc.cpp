@@ -22,7 +22,7 @@ CPluginFactoryTigerVnc::CPluginFactoryTigerVnc(QObject *parent)
         qCritical() << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);
     
-    rfb::SecurityClient::setDefaults();
+    //rfb::SecurityClient::setDefaults();
     if(!initlog)
     {
         rfb::initStdIOLoggers();
