@@ -60,8 +60,7 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
       m_pOutStream(nullptr),
       m_bpsEstimate(20000000),
       m_updateCount(0),
-      m_pPara(nullptr),
-      m_bWriteClipboard(false)
+      m_pPara(nullptr)
 {
     security.setUserPasswdGetter(this);
     
@@ -777,18 +776,17 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 
 void CConnectTigerVnc::slotClipBoardChange()
 {
-    if(!m_pPara->bClipboard) return;
+    if(!m_pPara->bClipboard && !getOutStream()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotClipBoardChange()");
-
     announceClipboard(true);
 }
 
 void CConnectTigerVnc::handleClipboardRequest()
 {
-    if(!m_pPara->bClipboard) return;
+    if(!m_pPara->bClipboard && !getOutStream()) return;
     
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardRequest");
     const QClipboard *clipboard = QApplication::clipboard();
@@ -826,7 +824,7 @@ void CConnectTigerVnc::handleClipboardRequest()
 void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 {
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardAnnounce");
-    if(!m_pPara->bClipboard) return;
+    if(!m_pPara->bClipboard && !getOutStream()) return;
     
     if(available)
         this->requestClipboard();

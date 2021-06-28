@@ -112,7 +112,6 @@ private:
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
 
-    bool m_bWriteClipboard;
 };
 
 #endif // CCONNECTTIGERVNC_H

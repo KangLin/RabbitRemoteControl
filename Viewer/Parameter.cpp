@@ -7,7 +7,7 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
     bSavePassword(false),
     bOnlyView(false),
     bLocalCursor(true),
-    bClipboard(false),
+    bClipboard(true),
     eProxyType(emProxy::No),
     nProxyPort(1080)
 {}
