@@ -26,11 +26,11 @@ Prior versions don't have CMake support.
       - Visual Studio 2019
     * Visual Studio Key：https://blog.csdn.net/kl222/article/details/84939135
     * Current version：VS 2017
-    
+
 - Windows SDK: https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
     Install the SDK that corresponds to your operating system. (CDB must be installed, and Qt debugging is required.)
 - Windows Driver Kit: https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
-   
+
 - Qt
   + Qt (official release): https://download.qt.io/official_releases/qt/  
     Current version: Qt 5.12.11
