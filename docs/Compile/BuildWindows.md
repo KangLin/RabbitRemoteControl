@@ -36,7 +36,6 @@ Prior versions don't have CMake support.
     Current version: Qt 5.12.11
   + IDE: Qt Creator. It is recommended to use version v4.15.0 or later. \
   Prior versions don't have CMake support.
-    
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
 
 - CMake: [https://www.cmake.org/](https://cmake.org/)
