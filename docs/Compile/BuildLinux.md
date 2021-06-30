@@ -8,8 +8,8 @@ Author Kang Lin (kl222@126.com)
     No LSB modules are available.
     Distributor ID:	Ubuntu
     Description:	Ubuntu 20.04.2 LTS
-    Release:	20.04
-    Codename:	focal
+    Release:	    20.04
+    Codename:	    Focal Fossa
 
 #### Qt Creator
 Version: v4.15.0. \
@@ -35,11 +35,11 @@ Prior versions don't have CMake support.
 
         ~$ sudo apt install sudo apt install qtcreator
   
-- Git: [http://www.git-scm.com/](http://www.git-scm.com/)
+- Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
         ~$ sudo apt install git
         
-- CMake: [http://www.cmake.org/](http://www.cmake.org/)
+- CMake: [https://cmake.org](https://cmake.org/)
 
         ~$ sudo apt install cmake
         
@@ -82,10 +82,10 @@ Prior versions don't have CMake support.
   + [Optional] TigerVNC: https://github.com/KangLin/tigervnc
 - [Optional] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [Optional] [SSH]
-  + libssh: [https://www.libssh.org](https://www.libssh.org)
-  + libssh2: https://www.libssh2.org/
-                 https://github.com/libssh2/libssh2
-- [Optional] qtermwidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
+  + libssh: [https://www.libssh.org](https://www.libssh.org/)
+  + libssh2: [https://www.libssh2.org](https://www.libssh2.org/)
+                 [https://github.com/libssh2/libssh2](https://github.com/libssh2/libssh2/)
+- [Optional] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [Optional] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 
@@ -113,7 +113,7 @@ If not, you must specify the CMake parameters:
 
 - Compile from source code
   + Source-code location: https://github.com/FreeRDP/FreeRDP
-  + See: https://github.com/FreeRDP/FreeRDP/wiki/Compilation
+  + Compilation instructions: https://github.com/FreeRDP/FreeRDP/wiki/Compilation
   + Specify CMake parameters:
     - -DBUILD_FREERDP=ON
     - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client2
@@ -140,7 +140,7 @@ If not, you must specify the CMake parameters:
 The official program does not support libraries.
 See: https://github.com/TigerVNC/tigervnc/issues/1123  
 The KangLin fork has support.
-Source code location: https://github.com/KangLin/tigervnc  
+Source-code location: https://github.com/KangLin/tigervnc  
 Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
     ~$ sudo apt install libpixman-1-dev
@@ -202,7 +202,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
 ### Compile this project
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
-- Download source code:
+- Download the source code:
 
       ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
 
@@ -212,13 +212,13 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
   + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp installation path]/lib/cmake/FreeRDP-Client2
-  + tigervnc_DIR: [TigerVNC installation path]/lib/cmake
+  + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
   + vncclient_DIR: [libvncserver installation path]/lib/cmake/LibVncServer
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
-  + qtermwidget5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
+  + QTermWidget_5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   
-- If use vcpkg, please set cmake parameters:
+- If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   
 - Compilation
@@ -228,23 +228,23 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
 
   + Compile from the command-line
-    - Not use vcpkg
+    - Not using vcpkg
 
           ~$ cd RabbitRemoteControl
           ~/RabbitRemoteControl$ mkdir build
           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
           ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
-    -  If use vcpkg
+    -  If using vcpkg
 
            ~$ cd RabbitRemoteControl
            ~/RabbitRemoteControl$ mkdir build
            ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
            ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
-  + Used by IDE(QtCreator)
+  + Using an IDE (QtCreator)
     - Open project: Menu→ File→ Open File or project, Select the CMakeLists.txt of the project
     - Configure: Click Project→ "Build & Run" in the toolbar on the left to configure CMake parameters
     - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
-    - If use vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    - If using vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
