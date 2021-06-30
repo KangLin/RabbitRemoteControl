@@ -1,11 +1,11 @@
 # Author: Kang Lin(kl222@126.com)
 
-project(LibVnc)
+project(LibVNCServer)
 
 set(_libvncLibs RabbitRemoteControl)
 
 find_package(LibVNCServer)
-if(vncclient_FOUND)
+if(LibVNCServer_FOUND)
     list(APPEND _libvncLibs LibVNCServer::vncclient)
     message("LibVNCServer: ${LibVNCServer_FOUND}")
 else()
@@ -48,16 +48,16 @@ if(OpenSSL_FOUND)
 endif()
 
 SET(SOURCE_FILES
-    PluginFactoryLibVnc.cpp
-    ConnecterLibVnc.cpp
-    ConnectLibVnc.cpp
+    PluginFactoryLibVNCServer.cpp
+    ConnecterLibVNCServer.cpp
+    ConnectLibVNCServer.cpp
     DlgSettingsLibVnc.cpp
     )
 
 SET(HEADER_FILES
-    PluginFactoryLibVnc.h
-    ConnecterLibVnc.h
-    ConnectLibVnc.h
+    PluginFactoryLibVNCServer.h
+    ConnecterLibVNCServer.h
+    ConnectLibVNCServer.h
     DlgSettingsLibVnc.h
     )
 
@@ -68,7 +68,7 @@ SET(UI_FILES
 # Translations
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES}
-    OUT_QRC FREERDP_TRANSLATIONS_QRC_FILES
+    OUT_QRC ${PROJECT_NAME}_TRANSLATIONS_QRC_FILES
     )
 if(CMAKE_BUILD_TYPE)
     string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
@@ -76,7 +76,7 @@ endif()
 if(BUILD_TYPE STREQUAL "debug")
     LIST(APPEND PRIVATE_DEFINITIONS DEBUG)
     LIST(APPEND RCC_FILES
-        ${FREERDP_TRANSLATIONS_QRC_FILES}
+        ${${PROJECT_NAME}_TRANSLATIONS_QRC_FILES}
         )
 endif()
 

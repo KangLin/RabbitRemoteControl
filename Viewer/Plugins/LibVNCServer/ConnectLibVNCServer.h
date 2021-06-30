@@ -6,14 +6,14 @@
 #include "Parameter.h"
 #include <QTcpSocket>
 
-class CConnecterLibVnc;
-class CConnectLibVnc : public CConnect
+class CConnecterLibVNCServer;
+class CConnectLibVNCServer : public CConnect
 {
     Q_OBJECT
 
 public:
-    explicit CConnectLibVnc(CConnecterLibVnc* pConnecter = nullptr, QObject *parent = nullptr);
-    virtual ~CConnectLibVnc() override;
+    explicit CConnectLibVNCServer(CConnecterLibVNCServer* pConnecter = nullptr, QObject *parent = nullptr);
+    virtual ~CConnectLibVNCServer() override;
     
     static rfbBool cb_resize(rfbClient* client);
     static void cb_update (rfbClient *client, int x, int y, int w, int h);

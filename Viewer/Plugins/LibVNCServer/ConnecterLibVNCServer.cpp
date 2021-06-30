@@ -1,8 +1,8 @@
-#include "ConnecterLibVnc.h"
+#include "ConnecterLibVNCServer.h"
 #include "DlgSettingsLibVnc.h"
 #include <QDebug>
 
-CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecterPlugins(parent)
+CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginFactory *parent) : CConnecterPlugins(parent)
 {
     m_pParameter = &m_Para;
     m_Para.nPort = 5900;
@@ -15,22 +15,22 @@ CConnecterLibVnc::CConnecterLibVnc(CPluginFactory *parent) : CConnecterPlugins(p
     m_Para.nQualityLevel = 5;
 }
 
-CConnecterLibVnc::~CConnecterLibVnc()
+CConnecterLibVNCServer::~CConnecterLibVNCServer()
 {
-    qDebug() << "CConnecterLibVnc::~CConnecterLibVnc()";
+    qDebug() << "CConnecterLibVNCServer::~CConnecterLibVNCServer()";
 }
 
-qint16 CConnecterLibVnc::Version()
+qint16 CConnecterLibVNCServer::Version()
 {
     return 0;
 }
 
-QDialog *CConnecterLibVnc::GetDialogSettings(QWidget *parent)
+QDialog *CConnecterLibVNCServer::GetDialogSettings(QWidget *parent)
 {
     return new CDlgSettingsLibVnc(this, parent);
 }
 
-int CConnecterLibVnc::OnLoad(QDataStream &d)
+int CConnecterLibVNCServer::OnLoad(QDataStream &d)
 {
     int nRet = 0;
     d >> m_Para.bShared
@@ -43,7 +43,7 @@ int CConnecterLibVnc::OnLoad(QDataStream &d)
     return nRet;
 }
 
-int CConnecterLibVnc::OnSave(QDataStream &d)
+int CConnecterLibVNCServer::OnSave(QDataStream &d)
 {
     int nRet = 0;
     d << m_Para.bShared
@@ -55,7 +55,7 @@ int CConnecterLibVnc::OnSave(QDataStream &d)
     return nRet;
 }
 
-CConnect* CConnecterLibVnc::InstanceConnect()
+CConnect* CConnecterLibVNCServer::InstanceConnect()
 {
-    return new CConnectLibVnc(this);
+    return new CConnectLibVNCServer(this);
 }

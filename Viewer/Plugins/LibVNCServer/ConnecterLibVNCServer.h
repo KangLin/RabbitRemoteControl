@@ -2,14 +2,14 @@
 #define CCONNECTERLIBVNC_H
 
 #include "ConnecterPlugins.h"
-#include "ConnectLibVnc.h"
+#include "ConnectLibVNCServer.h"
 
 class CDlgSettingsLibVnc;
-class CConnecterLibVnc : public CConnecterPlugins
+class CConnecterLibVNCServer : public CConnecterPlugins
 {
 public:
-    explicit CConnecterLibVnc(CPluginFactory *parent);
-    virtual ~CConnecterLibVnc() override;
+    explicit CConnecterLibVNCServer(CPluginFactory *parent);
+    virtual ~CConnecterLibVNCServer() override;
 
 public:
     virtual qint16 Version() override;
@@ -21,9 +21,9 @@ protected:
     virtual CConnect* InstanceConnect() override;
     
 private:
-    CConnectLibVnc::strPara m_Para;
+    CConnectLibVNCServer::strPara m_Para;
     
-    friend CConnectLibVnc;
+    friend CConnectLibVNCServer;
     friend CDlgSettingsLibVnc;
 };
 

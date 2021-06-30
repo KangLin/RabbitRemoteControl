@@ -4,7 +4,7 @@
 #include "PluginFactory.h"
 #include <QTranslator>
 
-class CPluginFactoryLibVnc : public CPluginFactory
+class CPluginFactoryLibVNCServer : public CPluginFactory
 {
     Q_OBJECT
     Q_INTERFACES(CPluginFactory)
@@ -14,8 +14,8 @@ class CPluginFactoryLibVnc : public CPluginFactory
 #endif
     
 public:
-    CPluginFactoryLibVnc(QObject *parent = nullptr);
-    virtual ~CPluginFactoryLibVnc() override;
+    CPluginFactoryLibVNCServer(QObject *parent = nullptr);
+    virtual ~CPluginFactoryLibVNCServer() override;
     
     // CPluginFactory interface
 public:

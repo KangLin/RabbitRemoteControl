@@ -1,5 +1,6 @@
 # author: Kang Lin <kl222@126.com>
 
+# Desktop
 add_subdirectory(TigerVnc)
 
 option(BUILD_FREERDP "Build freerdp plugin" OFF)
@@ -7,14 +8,15 @@ if(BUILD_FREERDP)
     add_subdirectory(FreeRdp)
 endif()
 
-add_subdirectory(LibVnc)
-
+add_subdirectory(LibVNCServer)
 
 find_package(qtermwidget5)
 if(NOT qtermwidget5_FOUND)
     return()
 endif()
 
+
+# Terminal
 project(RabbitRemoteControlTerminal LANGUAGES CXX)
 
 set(INSTALL_HEADER_FILES

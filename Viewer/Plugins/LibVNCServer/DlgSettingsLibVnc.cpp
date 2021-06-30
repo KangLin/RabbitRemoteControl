@@ -4,7 +4,7 @@
 #include "ui_DlgSettingsLibVnc.h"
 #include <QDebug>
 
-CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *parent) :
+CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSettingsLibVnc),
     m_pPara(&pConnecter->m_Para)
@@ -72,7 +72,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *pa
     case CParameter::emProxy::SocksV5:
         ui->rbProxySocks->setChecked(true);
         break;
-    case (CParameter::emProxy) CConnectLibVnc::strPara::emVncProxy::UltraVncRepeater:
+    case (CParameter::emProxy) CConnectLibVNCServer::strPara::emVncProxy::UltraVncRepeater:
         ui->rbProxyUltraVncRepeater->setChecked(true);
         break;
     default:
@@ -134,7 +134,7 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     if(ui->rbProxySocks->isChecked())
         m_pPara->eProxyType = CParameter::emProxy::SocksV5;
     if(ui->rbProxyUltraVncRepeater->isChecked())
-        m_pPara->eProxyType = (CParameter::emProxy) CConnectLibVnc::strPara::emVncProxy::UltraVncRepeater;
+        m_pPara->eProxyType = (CParameter::emProxy) CConnectLibVNCServer::strPara::emVncProxy::UltraVncRepeater;
     m_pPara->szProxyHost = ui->leProxyServer->text();
     m_pPara->nProxyPort = ui->spProxyPort->value();
     m_pPara->szProxyUser = ui->leProxyUser->text();

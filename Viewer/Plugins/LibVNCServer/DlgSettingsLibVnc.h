@@ -4,7 +4,7 @@
 #define DLGSETTINGS_H
 
 #include <QDialog>
-#include "ConnecterLibVnc.h"
+#include "ConnecterLibVNCServer.h"
 
 namespace Ui {
 class CDlgSettingsLibVnc;
@@ -15,7 +15,7 @@ class CDlgSettingsLibVnc : public QDialog
     Q_OBJECT
     
 public:
-    explicit CDlgSettingsLibVnc(CConnecterLibVnc *pConnecter, QWidget *parent = nullptr);
+    explicit CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidget *parent = nullptr);
     virtual ~CDlgSettingsLibVnc();
     
 private slots:
@@ -31,7 +31,7 @@ private slots:
     
 private:
     Ui::CDlgSettingsLibVnc *ui;
-    CConnectLibVnc::strPara* m_pPara;
+    CConnectLibVNCServer::strPara* m_pPara;
 };
 
 #endif // DLGSETTINGS_H

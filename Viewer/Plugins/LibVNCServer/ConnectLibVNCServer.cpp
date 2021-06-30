@@ -1,5 +1,5 @@
-#include "ConnectLibVnc.h"
-#include "ConnecterLibVnc.h"
+#include "ConnectLibVNCServer.h"
+#include "ConnecterLibVNCServer.h"
 #include "RabbitCommonLog.h"
 #include <QDebug>
 #include <QApplication>
@@ -28,10 +28,10 @@ static void rfbQtClientLog(const char *format, ...)
                         nRet, LOG_BUFFER_LENGTH, nRet - LOG_BUFFER_LENGTH);
         buf[LOG_BUFFER_LENGTH - 1] = 0;
     }
-    LOG_MODEL_DEBUG("LibVncServer", buf);
+    LOG_MODEL_DEBUG("LibVNCServer", buf);
 }
 
-CConnectLibVnc::CConnectLibVnc(CConnecterLibVnc *pConnecter, QObject *parent)
+CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
       m_pClient(nullptr),
       m_pPara(&pConnecter->m_Para)
@@ -45,12 +45,12 @@ CConnectLibVnc::CConnectLibVnc(CConnecterLibVnc *pConnecter, QObject *parent)
     }
 }
 
-CConnectLibVnc::~CConnectLibVnc()
+CConnectLibVNCServer::~CConnectLibVNCServer()
 {
-    qDebug() << "CConnectLibVnc::~CConnectLibVnc()";
+    qDebug() << "CConnectLibVNCServer::~CConnectLibVNCServer()";
 }
 
-bool CConnectLibVnc::InitClient()
+bool CConnectLibVNCServer::InitClient()
 {
     // Set sock
     switch(m_pPara->eProxyType)
@@ -73,7 +73,7 @@ bool CConnectLibVnc::InitClient()
         m_pClient->sock = m_tcpSocket.socketDescriptor();
         break;
     }
-    case (CParameter::emProxy) CConnectLibVnc::strPara::emVncProxy::UltraVncRepeater:
+    case (CParameter::emProxy) CConnectLibVNCServer::strPara::emVncProxy::UltraVncRepeater:
         m_pClient->destHost = strdup(m_pPara->szProxyHost.toStdString().c_str());
         m_pClient->destPort = m_pPara->nProxyPort;
     case CParameter::emProxy::No:
@@ -124,7 +124,7 @@ bool CConnectLibVnc::InitClient()
     return TRUE;
 }
 
-int CConnectLibVnc::Clean()
+int CConnectLibVNCServer::Clean()
 {
     if(m_pClient)
     {
@@ -137,7 +137,7 @@ int CConnectLibVnc::Clean()
     return 0;
 }
 
-int CConnectLibVnc::Initialize()
+int CConnectLibVNCServer::Initialize()
 {
     int nRet = 0;
     
@@ -146,7 +146,7 @@ int CConnectLibVnc::Initialize()
     m_pClient = rfbGetClient(8,3,4);
     if(!m_pClient)
     {
-        LOG_MODEL_ERROR("LibVnc", "rfbGetClient fail");
+        LOG_MODEL_ERROR("LibVNCServer", "rfbGetClient fail");
         return -1;
     }
     
@@ -173,18 +173,18 @@ int CConnectLibVnc::Initialize()
   nRet = 0 : emit sigConnected
   nRet = 1 : emit sigConnected in CConnect
   */
-int CConnectLibVnc::Connect()
+int CConnectLibVNCServer::Connect()
 {
     int nRet = 1;
 
     if(!InitClient()) {
-        LOG_MODEL_ERROR("LibVnc", "rfbInitClient fail");
+        LOG_MODEL_ERROR("LibVNCServer", "rfbInitClient fail");
         emit sigError(-1, "Connect fail");
         return -2;
     }
     
     QString szInfo = QString("Connect to ") + m_pClient->desktopName;
-    LOG_MODEL_INFO("LibVnc", szInfo.toStdString().c_str());
+    LOG_MODEL_ERROR("LibVNCServer", szInfo.toStdString().c_str());
     
     emit sigConnected();
     emit sigServerName(m_pClient->desktopName);
@@ -194,14 +194,14 @@ int CConnectLibVnc::Connect()
     return nRet;
 }
 
-int CConnectLibVnc::Disconnect()
+int CConnectLibVNCServer::Disconnect()
 {
     int nRet = 0;
     
     return nRet;
 }
 
-int CConnectLibVnc::Process()
+int CConnectLibVNCServer::Process()
 {
     int nRet = 0;
 
@@ -218,7 +218,7 @@ int CConnectLibVnc::Process()
     return 0;
 }
 
-void CConnectLibVnc::slotClipBoardChange()
+void CConnectLibVNCServer::slotClipBoardChange()
 {
     if(m_pPara && !m_pPara->bClipboard) return;
     QClipboard* pClipboard = QApplication::clipboard();
@@ -232,7 +232,7 @@ void CConnectLibVnc::slotClipBoardChange()
     }
 }
 
-int CConnectLibVnc::SetParamter(void*)
+int CConnectLibVNCServer::SetParamter(void*)
 {
     int nRet = 0;
     Q_ASSERT(m_pClient);
@@ -291,50 +291,50 @@ int CConnectLibVnc::SetParamter(void*)
     return nRet;
 }
 
-rfbBool CConnectLibVnc::cb_resize(rfbClient* client)
+rfbBool CConnectLibVNCServer::cb_resize(rfbClient* client)
 {
-    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_resize");
-    CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
+    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_resize");
+    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if(pThis->OnSize()) return FALSE;
     return TRUE;
 }
 
-void CConnectLibVnc::cb_update(rfbClient *client, int x, int y, int w, int h)
+void CConnectLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int h)
 {
-    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
-    CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
+    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
+    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     emit pThis->sigUpdateRect(QRect(x, y, w, h), pThis->m_Image);
 }
 
-void CConnectLibVnc::cb_got_selection(rfbClient *client, const char *text, int len)
+void CConnectLibVNCServer::cb_got_selection(rfbClient *client, const char *text, int len)
 {
-    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_selection:%s", text);
-    CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
+    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_got_selection:%s", text);
+    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if(!pThis->m_pPara->bClipboard) return;
     QClipboard* pClipboard = QApplication::clipboard();
     if(pClipboard)
         pClipboard->setText(text);
 }
 
-void CConnectLibVnc::cb_kbd_leds(rfbClient *client, int value, int pad)
+void CConnectLibVNCServer::cb_kbd_leds(rfbClient *client, int value, int pad)
 {
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_kbd_leds");
+    LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_kbd_leds");
 }
 
-void CConnectLibVnc::cb_bell(struct _rfbClient *client)
+void CConnectLibVNCServer::cb_bell(struct _rfbClient *client)
 {
     qApp->beep();
 }
 
-void CConnectLibVnc::cb_text_chat(rfbClient *client, int value, char *text)
+void CConnectLibVNCServer::cb_text_chat(rfbClient *client, int value, char *text)
 {
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_text_chat");
+    LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_text_chat");
 }
 
-rfbCredential* CConnectLibVnc::cb_get_credential(rfbClient *cl, int credentialType)
+rfbCredential* CConnectLibVNCServer::cb_get_credential(rfbClient *cl, int credentialType)
 {
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_get_credential");
-    CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(cl, (void*)gThis);
+    LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_get_credential");
+    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(cl, (void*)gThis);
     rfbCredential *c = (rfbCredential*)malloc(sizeof(rfbCredential));
     c->userCredential.username = (char*)malloc(RFB_BUF_SIZE);
     memset(c->userCredential.username, 0, RFB_BUF_SIZE);
@@ -342,11 +342,11 @@ rfbCredential* CConnectLibVnc::cb_get_credential(rfbClient *cl, int credentialTy
     memset(c->userCredential.password, 0, RFB_BUF_SIZE);
 
     if(credentialType != rfbCredentialTypeUser) {
-        LOG_MODEL_ERROR("LibVnc", "something else than username and password required for authentication\n");
+        LOG_MODEL_ERROR("LibVNCServer", "something else than username and password required for authentication\n");
         return NULL;
     }
 
-    LOG_MODEL_INFO("LibVnc", "username and password required for authentication!\n");
+    LOG_MODEL_ERROR("LibVNCServer", "username and password required for authentication!\n");
 
     memcpy(c->userCredential.username,
            pThis->m_pPara->szUser.toStdString().c_str(),
@@ -358,14 +358,14 @@ rfbCredential* CConnectLibVnc::cb_get_credential(rfbClient *cl, int credentialTy
     return c;
 }
 
-char* CConnectLibVnc::cb_get_password(rfbClient *client)
+char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
 {
-    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_get_password");
-    CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
+    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_get_password");
+    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     return strdup(pThis->m_pPara->szPassword.toStdString().c_str());
 }
 
-int CConnectLibVnc::OnSize()
+int CConnectLibVNCServer::OnSize()
 {
     int nRet = 0;
     int nWidth = m_pClient->width;
@@ -387,28 +387,28 @@ int CConnectLibVnc::OnSize()
     return nRet;
 }
 
-rfbBool CConnectLibVnc::cb_cursor_pos(rfbClient *client, int x, int y)
+rfbBool CConnectLibVNCServer::cb_cursor_pos(rfbClient *client, int x, int y)
 {
-    //LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
+    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
     rfbBool bRet = true;
     
     return bRet;
 }
 
-void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
+void CConnectLibVNCServer::cb_got_cursor_shape(rfbClient *client,
                                          int xhot, int yhot,
                                          int width, int height,
                                          int bytesPerPixel)
 {
     /*
-    LOG_MODEL_DEBUG("LibVnc", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
+    LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
                     xhot, yhot, width, height, bytesPerPixel);//*/
     if(!client->rcSource)
     {
-        LOG_MODEL_DEBUG("LibVnc", "client->rcSource is null");
+        LOG_MODEL_ERROR("LibVNCServer", "client->rcSource is null");
         return;
     }
-    CConnectLibVnc* pThis = (CConnectLibVnc*)rfbClientGetClientData(client, (void*)gThis);
+    CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if ((width == 0) || (height == 0)) {
         QImage cursor(1, 1, QImage::Format_ARGB32);
         uchar* buffer = cursor.bits();
@@ -453,7 +453,7 @@ void CConnectLibVnc::cb_got_cursor_shape(rfbClient *client,
     }
 }
 
-void CConnectLibVnc::slotMousePressEvent(QMouseEvent* e)
+void CConnectLibVNCServer::slotMousePressEvent(QMouseEvent* e)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->bOnlyView) return;
@@ -469,7 +469,7 @@ void CConnectLibVnc::slotMousePressEvent(QMouseEvent* e)
     SendPointerEvent(m_pClient, e->x(), e->y(), mask);
 }
 
-void CConnectLibVnc::slotMouseReleaseEvent(QMouseEvent* e)
+void CConnectLibVNCServer::slotMouseReleaseEvent(QMouseEvent* e)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->bOnlyView) return;
@@ -477,7 +477,7 @@ void CConnectLibVnc::slotMouseReleaseEvent(QMouseEvent* e)
     SendPointerEvent(m_pClient, e->x(), e->y(), mask);
 }
 
-void CConnectLibVnc::slotMouseMoveEvent(QMouseEvent* e)
+void CConnectLibVNCServer::slotMouseMoveEvent(QMouseEvent* e)
 {
     //qDebug() << "CConnectLibVnc::slotMouseMoveEvent" << e->button() << e->buttons();
     if(!m_pClient) return;
@@ -492,7 +492,7 @@ void CConnectLibVnc::slotMouseMoveEvent(QMouseEvent* e)
     SendPointerEvent(m_pClient, e->x(), e->y(), mask);
 }
 
-void CConnectLibVnc::slotWheelEvent(QWheelEvent* e)
+void CConnectLibVNCServer::slotWheelEvent(QWheelEvent* e)
 {
     //vlog.debug("CConnectLibVnc::slotWheelEvent");
     if(!m_pClient) return;
@@ -733,7 +733,7 @@ uint32_t TranslateRfbKey(quint32 inkey, bool shiftModifier)
     return k;
 }
 
-void CConnectLibVnc::slotKeyPressEvent(QKeyEvent* e)
+void CConnectLibVNCServer::slotKeyPressEvent(QKeyEvent* e)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->bOnlyView) return;
@@ -745,7 +745,7 @@ void CConnectLibVnc::slotKeyPressEvent(QKeyEvent* e)
         SendKeyEvent(m_pClient, key, TRUE);
 }
 
-void CConnectLibVnc::slotKeyReleaseEvent(QKeyEvent* e)
+void CConnectLibVNCServer::slotKeyReleaseEvent(QKeyEvent* e)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->bOnlyView) return;
