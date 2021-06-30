@@ -26,7 +26,7 @@ CPluginFactoryTelnet::~CPluginFactoryTelnet()
     qDebug() << "CPluginFactoryTelnet::~CPluginFactoryTelnet()";
     qApp->removeTranslator(&m_Translator);    
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_Telnet);
+    Q_CLEANUP_RESOURCE(translations_Telnet);
 #endif
 }
 
