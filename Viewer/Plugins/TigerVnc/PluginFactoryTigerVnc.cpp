@@ -42,7 +42,7 @@ CPluginFactoryTigerVnc::~CPluginFactoryTigerVnc()
     qApp->removeTranslator(&m_Translator);
     qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_TigerVnc);
+    Q_CLEANUP_RESOURCE(translations_TigerVnc);
 #endif
 }
 
