@@ -4,29 +4,29 @@ project(LibVnc)
 
 set(_libvncLibs RabbitRemoteControl)
 
-find_package(libvncclient)
+find_package(LibVNCServer)
 if(vncclient_FOUND)
-    list(APPEND _libvncLibs vncclient)
-    message("vncclient: ${vncclient_FOUND}")
+    list(APPEND _libvncLibs LibVNCServer::vncclient)
+    message("LibVNCServer: ${LibVNCServer_FOUND}")
 else()
     find_path(LibvncIncludeDir NAMES rfb/rfbclient.h
-        HINTS ${vncclient_DIR}
-        PATHS ENV vncclient_DIR
+        HINTS ${LibVNCServer_DIR}
+        PATHS ENV LibVNCServer_DIR
         PATH_SUFFIXES include
         )
     message("LibvncIncludeDir:${LibvncIncludeDir}")
     find_library(libvncLibs NAMES vncclient
-        HINTS ${vncclient_DIR}
-        PATHS ENV vncclient_DIR
+        HINTS ${LibVNCServer_DIR}
+        PATHS ENV LibVNCServer_DIR
         PATH_SUFFIXES lib
         )
     if(NOT (LibvncIncludeDir AND libvncLibs))
-        message("Install libvnc and set vncclient_DIR variable to install root directory")
+        message("Install libvnc and set LibVNCServer_DIR variable to install root directory")
         return()
     endif()
     set(_LibvncIncludeDir ${LibvncIncludeDir})
     list(APPEND _libvncLibs ${libvncLibs})
-    mark_as_advanced(vncclient_DIR)
+    mark_as_advanced(LibVNCServer_DIR)
     message("libvnc found: ${_libvncLibs}")
 endif()
 

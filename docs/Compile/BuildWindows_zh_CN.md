@@ -45,7 +45,7 @@
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
 - [可选] RFB
-  + [可选] libvncserver: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
+  + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [可选] TigerVnc: https://github.com/KangLin/tigervnc
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [可选] SSH
@@ -87,11 +87,11 @@
           cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
           cmake --build . --target install
           
-#### libVNCServer
+#### LibVNCServer
 - 从源码编译
   + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   建议使用补丁: https://github.com/KangLin/libvncserver
-  + 指定 CMake 参数：-Dlibvncclient_DIR=[libvncserver 安装目录]/lib/cmake/LibVNCServer
+  + 指定 CMake 参数：-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
 
         cd vcpkg
         vcpkg install zlib openssl libjpeg-turbo 
@@ -165,7 +165,7 @@
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
-  + libvncclient_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
+  + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
   + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh

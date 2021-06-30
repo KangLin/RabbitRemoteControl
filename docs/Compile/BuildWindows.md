@@ -47,7 +47,7 @@ Prior versions don't have CMake support.
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
 - [OPTIONAL] RFB
-  + [OPTIONAL] libvncserver: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
+  + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [OPTIONAL] TigerVNC: https://github.com/KangLin/tigervnc
 - [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [OPTIONAL] SSH
@@ -91,11 +91,11 @@ If not, you must specify the CMake parameters:
           cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
           cmake --build . --target install
 
-#### libvncserver
+#### LibVNCServer
 - Compile from sorce code
   + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
-  + Specify CMake parameters: -Dlibvncclient_DIR=[libvncserver installation path]/lib/cmake/LibVNCServer
+  + Specify CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
 
         cd vcpkg
         vcpkg install zlib openssl libjpeg-turbo
@@ -171,7 +171,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
   + FreeRDP_DIR: [FreeRDP installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [FreeFRP installation path]/lib/cmake/FreeRDP-Client2
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
-  + libvncclient_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
+  + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
   + QTermWidget_5_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
