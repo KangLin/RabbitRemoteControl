@@ -1,5 +1,5 @@
 ## 在 Linux 上编译
-作者：康林 (kl222@126.com)
+作者：康林 <kl222@126.com>
 
 ### 环境
 #### 操作系统
@@ -11,13 +11,13 @@
     Release:	20.04
     Codename:	focal
 
-#### QtCreator
-版本：v4.15.0。建议使用 v4.15.0 以后版本，以前版本对 cmake 支持不够。
+#### Qt Creator
+版本：v4.15.0。建议使用 v4.15.0 及以后版本，以前版本对 cmake 支持不够。
 
 ### 工具
 
 - 编译器
-  + gcc/g++
+  + GCC/G++
   
         ~$ sudo apt install g++ gcc
         
@@ -32,15 +32,15 @@
   
         ~$ sudo apt install sudo apt install qtcreator
   
-- git: [http://www.git-scm.com/](http://www.git-scm.com/)
+- GIT: [http://www.git-scm.com](http://www.git-scm.com)
 
         ~$ sudo apt install git
         
-- cmake: [http://www.cmake.org/](http://www.cmake.org/)
+- CMAKE: [http://www.cmake.org](http://www.cmake.org)
 
         ~$ sudo apt install cmake
         
-- automake、autoconf、make
+- AutoMake、AutoConf、make
 
         ~$ sudo apt install automake autoconf make
 
@@ -80,8 +80,9 @@
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [可选] SSH
   + LIBSSH: [https://www.libssh.org](https://www.libssh.org)
-  + LIBSSH2: https://www.libssh2.org/
-                 https://github.com/libssh2/libssh2
+  + LIBSSH2:
+    - https://www.libssh2.org/
+    - https://github.com/libssh2/libssh2
 - [可选] qtermwidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [可选] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
@@ -121,16 +122,16 @@
           ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
           ~/FreeRDP/build$ cmake --build . --target install
           
-#### libvncserver
+#### libVNCServer
 - 使用系统预编译开发库
 
       ~$ sudo apt install libvncserver-dev
 
 - 从源码编译
   + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + 指定 CMake 参数：-Dvncclient_DIR=[libvncserver 安装目录]/lib/cmake/LibVncServer
+  + 指定 CMake 参数：-Dlibvncclient_DIR=[libvncserver 安装目录]/lib/cmake/LibVNCServer
 
-#### TigerVnc
+#### TigerVNC
 官方只是个应用程序，不支持库。详见：https://github.com/TigerVNC/tigervnc/issues/1123  
 所以本人在官方基础上做了修改。源码位置：https://github.com/KangLin/tigervnc  
 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
@@ -203,7 +204,7 @@
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
-  + vncclient_DIR: [libvncserver 安装目录]/lib/cmake/LibVncServer
+  + libvncclient_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
   + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
@@ -231,7 +232,7 @@
            ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
            ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
-  + IDE(QtCreator) 编译
+  + IDE(Qt Creator) 编译
     - 打开项目: 菜单->文件->打开文件或项目，选择项目根目录中的 CMakeLists.txt 
     - 配置：点左侧工具栏上的 项目->编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5

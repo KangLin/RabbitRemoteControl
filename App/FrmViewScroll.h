@@ -1,3 +1,5 @@
+//! @author: Kang Lin <kl222@126.com>
+
 #ifndef CFRMVIEWSCROLL_H
 #define CFRMVIEWSCROLL_H
 

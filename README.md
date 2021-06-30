@@ -1,6 +1,6 @@
 # <img src="App/Resource/Image/App.png" width="48" height="48" />[Rabbit Remote Control](https://github.com/KangLin/RabbitRemoteControl)
 
-Author: Kang Lin (kl222@126.com)
+author: Kang Lin <kl222@126.com>
 
 -----------------------------------------------------------------------
 - Project position: https://github.com/KangLin/RabbitRemoteControl

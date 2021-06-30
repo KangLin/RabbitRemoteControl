@@ -1,4 +1,4 @@
-# Author: Kang Lin (kl222@126.com)
+# author: Kang Lin <kl222@126.com>
 
 add_subdirectory(TigerVnc)
 

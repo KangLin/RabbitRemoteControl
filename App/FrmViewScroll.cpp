@@ -1,3 +1,5 @@
+//! @author: Kang Lin <kl222@126.com>
+
 #include "FrmViewScroll.h"
 #include <QDebug>
 #include <QGuiApplication>

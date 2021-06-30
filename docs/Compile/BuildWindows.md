@@ -1,5 +1,6 @@
 ## Compilation on Windows
-Author: Kang Lin (kl222@126.com)
+Author: Kang Lin <kl222@126.com>  
+Translator: Allan Nordhøy <epost@anotheragency.no>
 
 ### Environment
 #### Operating system 
@@ -44,18 +45,19 @@ Prior versions don't have CMake support.
 
 ### Library dependencies
 
-- [Must] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
-- [Optional] RFB
-  + [Optional] libvncserver: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + [Optional] TigerVNC: https://github.com/KangLin/tigervnc
-- [Optional] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
-- [Optional] SSH
+- [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+- [OPTIONAL] RFB
+  + [OPTIONAL] libvncserver: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
+  + [OPTIONAL] TigerVNC: https://github.com/KangLin/tigervnc
+- [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [OPTIONAL] SSH
   + libssh: [https://www.libssh.org](https://www.libssh.org)
-  + libssh2: https://www.libssh2.org/
-                 https://github.com/libssh2/libssh2
-- [Optional] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
-- [Optional] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
-- [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+  + libssh2: 
+    - https://www.libssh2.org/  
+    - https://github.com/libssh2/libssh2
+- [OPTIONAL] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
+- [OPTIONAL] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
+- [OPTIONAL] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 
 #### RabbitCommon
 This library is placed in the same directory level as the project by default.
@@ -93,7 +95,7 @@ If not, you must specify the CMake parameters:
 - Compile from sorce code
   + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
-  + Specify CMake parameters: -Dvncclient_DIR=[libvncserver installation path]/lib/cmake/LibVncServer
+  + Specify CMake parameters: -Dlibvncclient_DIR=[libvncserver installation path]/lib/cmake/LibVNCServer
 
         cd vcpkg
         vcpkg install zlib openssl libjpeg-turbo
@@ -169,7 +171,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
   + FreeRDP_DIR: [FreeRDP installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [FreeFRP installation path]/lib/cmake/FreeRDP-Client2
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
-  + vncclient_DIR: [libvncserver installation path]/lib/cmake/LibVncServer
+  + libvncclient_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
   + QTermWidget_5_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh

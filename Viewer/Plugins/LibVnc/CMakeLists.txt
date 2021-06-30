@@ -4,7 +4,7 @@ project(LibVnc)
 
 set(_libvncLibs RabbitRemoteControl)
 
-find_package(vncclient)
+find_package(libvncclient)
 if(vncclient_FOUND)
     list(APPEND _libvncLibs vncclient)
     message("vncclient: ${vncclient_FOUND}")

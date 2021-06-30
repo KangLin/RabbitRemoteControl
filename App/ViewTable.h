@@ -1,4 +1,4 @@
-//! @author: Kang Lin (kl222@126.com)
+//! @author: Kang Lin <kl222@126.com>
 
 #ifndef CVIEWTABLE_H
 #define CVIEWTABLE_H
