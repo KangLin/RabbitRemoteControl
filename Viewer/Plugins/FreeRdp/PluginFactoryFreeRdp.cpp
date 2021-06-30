@@ -25,7 +25,7 @@ CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()
     qApp->removeTranslator(&m_Translator);
     qDebug() << "CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()";
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_FreeRdp);
+    Q_CLEANUP_RESOURCE(translations_FreeRdp);
 #endif
 }
 
