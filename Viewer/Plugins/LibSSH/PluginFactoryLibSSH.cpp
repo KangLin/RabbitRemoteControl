@@ -25,7 +25,7 @@ CPluginFactoryLibSSH::~CPluginFactoryLibSSH()
     qApp->removeTranslator(&m_Translator);
     qDebug() << "CPluginFactoryLibSSH::~CPluginFactoryLibSSH()";
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_LibSSH);
+    Q_CLEANUP_RESOURCE(translations_LibSSH);
 #endif
 }
 
