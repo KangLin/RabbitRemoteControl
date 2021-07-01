@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef CMANAGECONNECTER_H
 #define CMANAGECONNECTER_H
@@ -13,14 +13,26 @@
 #include "PluginFactory.h"
 
 /**
- * @group API
- * @brief Rabbit remote control API
+ * \~english \defgroup LIBAPI Library
+ * \brief Library
+ * \~chinese \defgroup LIBAPI 库
+ * \brief 库
  */
 
 /**
- * @brief The CManageConnecter class, manage plugins
- * @see   CPluginFactory CConnecter
- * @addtogroup API
+ * \~english \defgroup API Application interface
+ * \brief Application interface
+ * \~chinese \defgroup API 应用程序接口
+ * \brief 应用程序接口
+ * \~ \ingroup LIBAPI
+ */
+
+/**
+ * \~english \brief manage plugins
+ * \~chinese \brief 管理插件
+ * \~
+ * \see   CPluginFactory CConnecter
+ * \ingroup API
  */
 class RABBITREMOTECONTROL_EXPORT CManageConnecter : public QObject
 {

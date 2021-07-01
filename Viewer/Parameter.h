@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef CPARAMTER_H
 #define CPARAMTER_H
@@ -10,9 +10,16 @@
 #include <QDataStream>
 
 /**
+ * @~english
  * @brief The CParameter class, It contains basic parameters.
  * @note The interface only is implemented by plugin
- * @addtogroup PLUGIN_API
+ * 
+ * @~chinese
+ * @brief 它包含基本参数
+ * @note 此接口仅由插件派生实现
+ * 
+ * @~
+ * @ingroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CParameter : public QObject
 {

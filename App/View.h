@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef CVIEW_H
 #define CVIEW_H
@@ -7,9 +7,13 @@
 #include "Connecter.h"
 #include "FrmViewScroll.h"
 
+/** @defgroup ViewApi The view API
+ */
+
 /**
  * @brief The CView class
  * @note The parameters and return QWidget* is same as CConnecter::GetViewer()
+ * @ingroup ViewApi
  */
 class CView : public QWidget
 {

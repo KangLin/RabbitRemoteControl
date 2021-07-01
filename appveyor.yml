@@ -97,7 +97,7 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -Dvncclient_DIR="%INSTALL_DIR%/lib/cmake/LibVncServer" -Dtigervnc_DIR=""%INSTALL_DIR%"/lib/cmake" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR=""%INSTALL_DIR%"/lib/cmake" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
   - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi

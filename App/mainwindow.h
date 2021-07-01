@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H

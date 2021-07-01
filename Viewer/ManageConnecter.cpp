@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #include "ManageConnecter.h"
 #include "RabbitCommonDir.h"
@@ -11,7 +11,7 @@
 #include <QCoreApplication>
 
 CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent),
-    m_FileVersion(0)  //TODO: update it if update data
+    m_FileVersion(0)  //TODO: update version it if update data
 {
     LoadPlugins();
 }
@@ -61,8 +61,7 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
     {
         //This method is invalid
         //QCoreApplication::addLibraryPath(QDir::cleanPath(dir.absolutePath()));
-        
-        
+
         QDir::setCurrent(QDir::cleanPath(QDir::cleanPath(dir.absolutePath())));
         
         // This method is valid

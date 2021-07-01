@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef CCONNECTTHREAD_H
 #define CCONNECTTHREAD_H
@@ -9,10 +9,12 @@
 #include "ConnecterPlugins.h"
 
 /**
- * @brief The CConnectThread class
- * @see CConnecterPlugins
- * @note The class only is used by CConnecterPlugins
- * @addtogroup PLUGIN_API
+ * \~chinese 此类仅用于 CConnecterPlugins
+ * \~english The class only is used by CConnecterPlugins
+ * 
+ * \~
+ * \see CConnecterPlugins
+ * \ingroup PLUGIN_API
  */
 class CConnectThread : public QThread
 {

@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef CCLIPBOARDFREERDP_H
 #define CCLIPBOARDFREERDP_H

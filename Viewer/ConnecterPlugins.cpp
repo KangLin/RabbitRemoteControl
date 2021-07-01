@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #include "ConnecterPlugins.h"
 #include <QDebug>
@@ -56,7 +56,7 @@ int CConnecterPlugins::OnRun()
         nRet = pConnect->Initialize();
         if(nRet) break;
         
-        /**
+        /*
           nRet < 0 : error
           nRet = 0 : emit sigConnected
           nRet = 1 : emit sigConnected in CConnect

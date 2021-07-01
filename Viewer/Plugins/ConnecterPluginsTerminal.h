@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CCONNECTERPLUGINSTERMINAL_H
 #define CCONNECTERPLUGINSTERMINAL_H
 

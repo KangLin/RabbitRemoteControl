@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 //! 
 #include "DlgSetFreeRdp.h"
 #include "ui_DlgSetFreeRdp.h"

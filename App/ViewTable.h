@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef CVIEWTABLE_H
 #define CVIEWTABLE_H
@@ -9,6 +9,7 @@
 
 /**
  * @brief The CViewTable class
+ * @ingroup ViewApi
  */
 class CViewTable : public CView
 {

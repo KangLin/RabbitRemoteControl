@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef CFRMVIEWSCROLL_H
 #define CFRMVIEWSCROLL_H
@@ -11,7 +11,7 @@
  *        This class is only used for GUI views.
  *        Not used in the terminal view,
  *        the terminal view comes with a scroll bar 
- * @addtogroup API
+ * @ingroup ViewApi
  */
 class CFrmViewScroll : public QScrollArea
 {

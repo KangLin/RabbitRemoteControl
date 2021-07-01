@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
   
 #ifndef CCONNECT_H
 #define CCONNECT_H
@@ -19,7 +19,7 @@
  * @brief The CConnect class. It is finished connect in background thread.
  * @note The interface only is implemented by plugin
  * @see  CConnecter CFrmViewer
- * @addtogroup PLUGIN_API
+ * @ingroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
 {

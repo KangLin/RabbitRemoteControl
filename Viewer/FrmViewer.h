@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef FRMVIEWER_H
 #define FRMVIEWER_H
@@ -15,16 +15,23 @@ class CFrmViewer;
 }
 
 /**
- * @brief 
+ * \~english
+ * \brief 
  * A widget which displays output image from a CConnect
  * and sends input keypresses and mouse activity
  * to the CConnect.
  *
  * When the viewer receives new output from the CConnect,
  * it will update the display by calling slotUpdateRect().
- *
- * @see  CConnecter CConnect
- * @addtogroup PLUGIN_API
+ * 
+ * \~chinese
+ * \brief 
+ * 用于显示从 CConnect 输出的图像，和向 CConnect 发送键盘、鼠标事件。
+ * 当新的输出图像从 CConnect 输出时，它调用 slotUpdateRect() 更新显示。
+ * 
+ *\~
+ * \see  CConnecter CConnect
+ * \ingroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CFrmViewer : public QWidget
 {
@@ -35,12 +42,17 @@ public:
     virtual ~CFrmViewer() override;
 
     enum ADAPT_WINDOWS {
-        Disable,         // Disable adapt windows
+        Disable,         ///< \~english Disable adapt windows
+                         ///< \~chinese 禁用适配窗口
         Auto,
-        Original,        // Original desktop size, the left-top of the desktop is aligned with the left-top of the window
-        OriginalCenter,  // Original desktop size, the center of the desktop is aligned with the center of the window
-        Zoom,            // Desktop adapt to windows
-        AspectRation,    // Keep desktop aspectration adapt to windows
+        Original,        ///< \~english Original desktop size, the left-top of the desktop is aligned with the left-top of the window
+                         ///< \~chinese 原始桌面大小，桌面的左上点与窗口的左上点对齐
+        OriginalCenter,  ///< \~english Original desktop size, the center of the desktop is aligned with the center of the window
+                         ///< \~chinese 原始桌面大小，桌面中心点与窗口中心点对齐
+        Zoom,            ///< \~english Desktop adapt to windows
+                         ///< \~chinese 桌面缩放到窗口大小
+        AspectRation,    ///< \~english Keep desktop aspectration adapt to windows
+                         ///< \~chinese 保持长宽比缩放到窗口大小
     };
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
     ADAPT_WINDOWS AdaptWindows();

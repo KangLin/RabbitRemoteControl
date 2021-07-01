@@ -118,3 +118,5 @@ _CPack_Packages/
 
 *.swp
 *.*~
+
+doxygen/

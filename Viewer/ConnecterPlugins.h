@@ -1,4 +1,4 @@
-//! @author: Kang Lin <kl222@126.com>
+// Author: Kang Lin <kl222@126.com>
 
 #ifndef CCONNECTERBACKTHREAD_H
 #define CCONNECTERBACKTHREAD_H
@@ -12,15 +12,17 @@
 class CConnectThread;
 
 /**
- * @group PLUGIN_API
- * @brief The plugin API
- */
-
-/**
- * @brief The CConnecterPlugins class. it is implement a background connect thread.
- * @note The interface only is implemented by plugin
- * @see CConnectThread
- * @addtogroup PLUGIN_API
+ * \~chinese 
+ * \brief 它实现一个远程桌面后台线程处理连接
+ * \note 此接口仅由插件实现
+ * 
+ * \~english
+ * \brief it is implement a background connect thread of the remote desktop.
+ * \note The interface only is implemented by plugin
+ * 
+ * \~
+ * \see CConnectThread
+ * \ingroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CConnecterPlugins : public CConnecter
 {
@@ -30,9 +32,8 @@ public:
     virtual ~CConnecterPlugins();
     
     /**
-     * @brief OnRun
-     * @return >=0 Success
-     *         < 0 fail
+     * \return \li >=0 Success
+     *         \li < 0 fail
      */
     virtual int OnRun();
     // Instance connect
@@ -55,9 +56,15 @@ protected:
     virtual int OnLoad(QDataStream& d);
     virtual int OnSave(QDataStream& d);
     /**
-     * @brief GetDialogSettings
-     * @param parent: the parent windows of the dialog of return
-     * @return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
+     * \~chinese 得到设置对话框
+     * \param parent: 返回窗口的父窗口
+     * \return QDialog*: 插件实现时，此对话框必须设置属性 Qt::WA_DeleteOnClose，
+     *                   它的所有者是调用者
+     * 
+     * \~english
+     * \brief GetDialogSettings
+     * \param parent: the parent windows of the dialog of return
+     * \return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
      *         The ownership is caller.
      */
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
