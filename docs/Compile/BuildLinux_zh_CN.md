@@ -9,15 +9,15 @@
     Distributor ID:	Ubuntu
     Description:	Ubuntu 20.04.2 LTS
     Release:	20.04
-    Codename:	focal
+    Codename:	Focal Fossa
 
-#### QtCreator
-版本：v4.15.0。建议使用 v4.15.0 以后版本，以前版本对 cmake 支持不够。
+#### Qt Creator
+版本：v4.15.0。建议使用 v4.15.0 以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
 - 编译器
-  + gcc/g++
+  + GCC/g++
   
         ~$ sudo apt install g++ gcc
         
@@ -26,21 +26,21 @@
   
         ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
         
-  + Qt官方发行版本： https://download.qt.io/official_releases/qt/  
-    当前使用版本: Qt5.12.11
-  + IDE: qtcreator。建议使用 v4.15.0 以后版本，以前版本对 cmake 支持不够。
+  + Qt 官方发行版本： https://download.qt.io/official_releases/qt/  
+    当前使用版本: Qt 5.12.11
+  + IDE: Qt Creator。建议使用 v4.15.0 以后版本，以前版本对 CMake 支持不够。
   
         ~$ sudo apt install sudo apt install qtcreator
   
-- git: [http://www.git-scm.com/](http://www.git-scm.com/)
+- Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
         ~$ sudo apt install git
         
-- cmake: [http://www.cmake.org/](http://www.cmake.org/)
+- CMake: [https://cmake.org](https://cmake.org/)
 
         ~$ sudo apt install cmake
         
-- automake、autoconf、make
+- Automake, Autoconf, Make
 
         ~$ sudo apt install automake autoconf make
 
@@ -75,14 +75,14 @@
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
 - [可选] RFB
-  + [可选] libvncserver: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + [可选] TigerVnc: https://github.com/KangLin/tigervnc
+  + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
+  + [可选] TigerVNC: https://github.com/KangLin/tigervnc
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [可选] SSH
-  + LIBSSH: [https://www.libssh.org](https://www.libssh.org)
-  + LIBSSH2: https://www.libssh2.org/
-                 https://github.com/libssh2/libssh2
-- [可选] qtermwidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
+  + libssh: [https://www.libssh.org](https://www.libssh.org/)
+  + libssh2: [https://www.libssh2.org](https://www.libssh2.org/)
+                 [https://github.com/libssh2/libssh2](https://github.com/libssh2/libssh2/)
+- [可选] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [可选] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 
@@ -121,16 +121,16 @@
           ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
           ~/FreeRDP/build$ cmake --build . --target install
           
-#### libvncserver
+#### LibVNCServer
 - 使用系统预编译开发库
 
       ~$ sudo apt install libvncserver-dev
 
 - 从源码编译
   + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + 指定 CMake 参数：-Dvncclient_DIR=[libvncserver 安装目录]/lib/cmake/LibVncServer
+  + 指定 CMake 参数：-Dvncclient_DIR=[libvncserver 安装目录]/lib/cmake/libvncserver
 
-#### TigerVnc
+#### TigerVNC
 官方只是个应用程序，不支持库。详见：https://github.com/TigerVNC/tigervnc/issues/1123  
 所以本人在官方基础上做了修改。源码位置：https://github.com/KangLin/tigervnc  
 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
@@ -164,7 +164,7 @@
         ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         ~/libdatachannel/build$ cmake --build . --target install
 
-#### qtermwidget
+#### QTermWidget
 - 使用系统预编译开发库
 
       ~$ sudo apt install libqtermwidget5-0-dev
@@ -202,10 +202,10 @@
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
-  + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
-  + vncclient_DIR: [libvncserver 安装目录]/lib/cmake/LibVncServer
+  + TigerVNC_DIR: [TigerVNC 安装目录]/lib/cmake
+  + vncclient_DIR: [libvncserver 安装目录]/lib/cmake/libvncserver
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
-  + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
+  + QTermWidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   
 - 如果使用 vcpkg，增加下面参数
@@ -231,8 +231,8 @@
            ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
            ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
-  + IDE(QtCreator) 编译
-    - 打开项目: 菜单->文件->打开文件或项目，选择项目根目录中的 CMakeLists.txt 
-    - 配置：点左侧工具栏上的 项目->编译与运行，配置 CMake 参数
-    - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
-    - 如果用 vcpkg: 选项->Kits->Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+  + IDE (Qt Creator) 编译
+    - 打开项目: 菜单→文件→打开文件或项目，选择项目根目录中的 CMakeLists.txt 
+    - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
+    - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 (F5)
+    - 如果用 vcpkg: 选项→Kits→CMake Configuration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
