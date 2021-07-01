@@ -61,7 +61,7 @@ jobs:
         cd ${{env.SOURCE_DIR}}/libvncserver
         cmake -E make_directory build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 

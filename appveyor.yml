@@ -68,14 +68,14 @@ before_build:
   - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 2021.05.12 2021.05.12 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib libssh pixman libjpeg-turbo freerdp libdatachannel
+  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo libssh pixman libjpeg-turbo freerdp libdatachannel
 
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")
   - cd libvncserver
   - cmake -E make_directory build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
 
