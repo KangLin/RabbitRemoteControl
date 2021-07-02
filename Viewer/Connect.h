@@ -16,10 +16,17 @@
 #include "FrmViewer.h"
 
 /**
- * @brief The CConnect class. It is finished connect in background thread.
- * @note The interface only is implemented by plugin
- * @see  CConnecter CFrmViewer
- * @ingroup PLUGIN_API
+ * \~chinese
+ * \brief 具体连接接口
+ * \note 这个接口仅由插件实现
+ * 
+ * \~english
+ * \brief Connect interface
+ * \note The interface only is implemented by plugin
+ * 
+ * \~
+ * \see  CConnecter CFrmViewer
+ * \ingroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
 {
@@ -40,17 +47,18 @@ public Q_SLOTS:
     /**
      * @brief Connect
      * @return 
-     *     < 0 : error
-     *     = 0 : emit sigConnected
-     *     = 1 : emit sigConnected in CConnect
+     *     \li < 0 : error
+     *     \li = 0 : emit sigConnected
+     *     \li = 1 : emit sigConnected in CConnect
      */
     virtual int Connect() = 0;
     virtual int Disconnect() = 0;
     /**
      * @brief Process
-     * @return 0: continue
-     *         1: exit
-     *       < 0: error
+     * @return 
+     *       \li 0: continue
+     *       \li 1: exit
+     *       \li < 0: error
      */
     virtual int Process() = 0;
 

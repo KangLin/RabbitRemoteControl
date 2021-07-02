@@ -7,7 +7,20 @@
 #include "Connecter.h"
 #include "FrmViewScroll.h"
 
-/** @defgroup ViewApi The view API
+/** 
+ *  \~english \defgroup Programe Rabbit remote control programe
+ *  \brief Rabbit remote control programe
+ *  
+ *  \~chinese \defgroup Programe 玉兔远程控制程序
+ *  \brief 玉兔远程控制程序
+ *  
+ *  \~english \defgroup ViewApi The view API
+ *  The view API
+ *  \~chinese \defgroup ViewApi 视图应用接口
+ *  视图应用接口
+ *  
+ *  \~
+ *  \ingroup Programe
  */
 
 /**

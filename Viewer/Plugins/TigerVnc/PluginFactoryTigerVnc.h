@@ -9,11 +9,14 @@
 class CPluginFactoryTigerVnc : public CPluginFactory
 {
     Q_OBJECT
+    
+    /// ![Qt plugin interface]
     Q_INTERFACES(CPluginFactory)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPluginFactory_iid)
 #endif
+    /// ![Qt plugin interface]
     
 public:
     explicit CPluginFactoryTigerVnc(QObject *parent = nullptr);

@@ -14,7 +14,6 @@
  * 
  * \~
  * \see CConnecterPlugins
- * \ingroup PLUGIN_API
  */
 class CConnectThread : public QThread
 {

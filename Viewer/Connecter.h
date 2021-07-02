@@ -17,7 +17,7 @@
 class CPluginFactory;
 
 /**
- * \~chinese 描述连接接口。
+ * \~chinese 描述连接应用接口。
  * \note 此类是用户接使用接口，由插件实现
  * 
  * \~english
@@ -40,11 +40,16 @@ public:
     explicit CConnecter(CPluginFactory *parent);
     virtual ~CConnecter();
     
+    /// Connecter id
     virtual const QString Id();
+    /// Connecter name
     virtual const QString Name();
+    /// Connecter description
     virtual const QString Description();
+    /// Connecter protol
     virtual const QString Protol() const;
     virtual qint16 Version() = 0;
+    /// Connecter Icon
     virtual const QIcon Icon() const;
     
     /**
@@ -87,12 +92,34 @@ public:
     virtual int OpenDialogSettings(QWidget* parent = nullptr) = 0;
 
     const CPluginFactory* GetPluginFactory() const;
+    /**
+     * \~chinese \brief 从文件中加载参数
+     * \~english \brief Load parameters from file
+     */
     virtual int Load(QDataStream& d) = 0;
+    /**
+     * \~chinese 保存参数到文件中
+     * \~english Save parameters to file
+     */
     virtual int Save(QDataStream& d) = 0;
     
 public Q_SLOTS:
+    /**
+     * \~chinese \brief 开始连接
+     * \note 由用户调用，插件不能直接调用此函数
+     * \~english \brief Start connect
+     * \note Call by user, The plugin don't call it
+     */
     virtual int Connect() = 0;
+    /**
+     * \~chinese \brief 关闭连接
+     * \note 由用户调用，插件不能直接调用此函数
+     * \~english \brief Close connect
+     * \note Call by user, The plugin don't call it
+     */
     virtual int DisConnect() = 0;
+    
+    // Follow slot only is used by plugin
     virtual void slotSetClipboard(QMimeData *data);
     virtual void slotSetServerName(const QString &szName);
     

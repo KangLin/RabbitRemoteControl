@@ -11,11 +11,11 @@
 
 /**
  * @~english
- * @brief The CParameter class, It contains basic parameters.
+ * @brief The parameter interface. It contains basic parameters.
  * @note The interface only is implemented by plugin
  * 
  * @~chinese
- * @brief 它包含基本参数
+ * @brief 参数接口。它包含基本参数
  * @note 此接口仅由插件派生实现
  * 
  * @~

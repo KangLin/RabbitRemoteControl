@@ -205,7 +205,12 @@ option(BUILD_DOCS "Generating API documentation" ON)
 if(BUILD_DOCS)
     find_package(Doxygen)
     if(DOXYGEN_FOUND)
+        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Doxygen)
         foreach(OUTPUT_LANGUAGE English Chinese)
+            set(MAIN_README "README.md")
+            if(OUTPUT_LANGUAGE STREQUAL "Chinese")
+                set(MAIN_README "README_zh_CN.md")
+            endif()            
             configure_file(${CMAKE_SOURCE_DIR}/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} @ONLY)
             add_custom_target(doc_${OUTPUT_LANGUAGE} ALL
                 ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} &> doxygen.log

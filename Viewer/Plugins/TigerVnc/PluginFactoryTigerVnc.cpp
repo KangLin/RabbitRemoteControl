@@ -12,6 +12,9 @@ static bool initlog = false;
 CPluginFactoryTigerVnc::CPluginFactoryTigerVnc(QObject *parent)
     : CPluginFactory(parent)
 {
+    //! [Initialize resorce]
+    
+    // Load translator resource
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_TigerVnc);
 #endif
@@ -34,16 +37,18 @@ CPluginFactoryTigerVnc::CPluginFactoryTigerVnc(QObject *parent)
         rfb::LogWriter::setLogParams("*:stderr:100");
         initlog = true;
     }
-    
+    //! [Initialize resorce]
 }
 
 CPluginFactoryTigerVnc::~CPluginFactoryTigerVnc()
 {
+    //! [Clean resource]
     qApp->removeTranslator(&m_Translator);
     qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_CLEANUP_RESOURCE(translations_TigerVnc);
 #endif
+    //! [Clean resource]
 }
 
 const QString CPluginFactoryTigerVnc::Name() const

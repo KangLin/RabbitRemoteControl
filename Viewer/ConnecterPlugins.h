@@ -22,7 +22,6 @@ class CConnectThread;
  * 
  * \~
  * \see CConnectThread
- * \ingroup PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CConnecterPlugins : public CConnecter
 {
@@ -36,7 +35,8 @@ public:
      *         \li < 0 fail
      */
     virtual int OnRun();
-    // Instance connect
+    /// \~chinese 实例化 CConnect 对象
+    /// \~english Instance connect
     virtual CConnect* InstanceConnect() = 0;
     
     virtual const QString Name();
