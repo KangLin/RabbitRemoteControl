@@ -254,5 +254,5 @@ Source-code location: https://github.com/KangLin/tigervnc
     - Open project: Menu→ File→ Open File or project, Select the CMakeLists.txt of the project
     - Configure: Click Project→ "Build & Run" in the toolbar on the left to configure CMake parameters
     - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
-    - If using vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    - If using vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 

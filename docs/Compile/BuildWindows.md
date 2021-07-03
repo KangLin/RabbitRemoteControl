@@ -199,7 +199,7 @@ Source-code location: https://github.com/KangLin/tigervnc
           makensis Install.nsi  ;Package
 
   + Using an IDE (Qt Creator)
-    - Set vcpkg: Menu→Options→Kits→Cmake Configuration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    - Set vcpkg: Menu→Options→Kits→Cmake Configuration: add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     - Open project: Menu→File→Open File or project, Select the CMakeLists.txt of the project
     - Configure: Click Project→"Build & Run" in the toolbar on the left to configure CMake parameters
     - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
