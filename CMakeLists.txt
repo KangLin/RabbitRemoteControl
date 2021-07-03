@@ -20,7 +20,7 @@ if(POLICY CMP0020)
     cmake_policy(SET CMP0020 NEW)
 endif()
 
-SET(BUILD_VERSION "v0.0.7")
+SET(BUILD_VERSION "v0.0.8")
 # Find Git Version Patch
 IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     if(NOT GIT)
@@ -218,5 +218,8 @@ if(BUILD_DOCS)
                 COMMENT "Generating API documentation with Doxygen" VERBATIM
                 )
         endforeach()
+        install(DIRECTORY ${CMAKE_BINARY_DIR}/Doxygen/
+            DESTINATION ${CMAKE_INSTALL_DOCDIR}/${OUTPUT_LANGUAGE}
+                COMPONENT Runtime)
     endif(DOXYGEN_FOUND)
 endif(BUILD_DOCS)

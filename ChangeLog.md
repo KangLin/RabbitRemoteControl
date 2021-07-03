@@ -5,8 +5,8 @@
   + Update tigervnc library
   + Add recent open menu
   + Modify documents
-    - Add build documents
-    - Add doxygen to generate documentation
+    - Use Doxygen to generate development documentation
+    - Add doxygen to generate develop documentation
 
 - v0.0.7
   + Use update RabbitCommon::CStyle to change style

@@ -193,7 +193,7 @@
           makensis Install.nsi  ;打包
 
   + IDE (Qt Creator) 编译
-    - 设置 vcpkg: 选项→Kits→Cmake Configureration: add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    - 设置 vcpkg: 选项→Kits→Cmake Configureration: 增加 CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     - 打开项目: 菜单→文件→打开文件或项目，选择项目根目录中的 CMakeLists.txt 
     - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5

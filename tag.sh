@@ -33,13 +33,16 @@ sed -i "s/^\SET(BUILD_VERSION.*/\SET(BUILD_VERSION \"${VERSION}\")/g" ${SOURCE_D
 sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
 sed -i "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml
-#sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/.travis.yml
+sed -i "s/-m \"v[0-9]\+\.[0-9]\+\.[0-9]\+\"/-m \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
+sed -i "s/RabbitRemoteControl-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl-Setup-${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
+sed -i "s/RabbitRemoteControl_v[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
 sed -i "s/tag_name:.*/tag_name: '${VERSION}'/g" ${SOURCE_DIR}/.github/workflows/cmake_ubuntu.yml
 sed -i "s/tag_name:.*/tag_name: '${VERSION}'/g" ${SOURCE_DIR}/.github/workflows/cmake_mingw.yml
 sed -i "s/tag_name:.*/tag_name: '${VERSION}'/g" ${SOURCE_DIR}/.github/workflows/cmake.yml
 sed -i "s/RabbitRemoteControl-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+.exe/RabbitRemoteControl-Setup-${VERSION}.exe/g" ${SOURCE_DIR}/.github/workflows/cmake.yml
 sed -i "s/-m \"v[0-9]\+\.[0-9]\+\.[0-9]\+\"/-m \"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/cmake.yml
 sed -i "s/-m \"v[0-9]\+\.[0-9]\+\.[0-9]\+\"/-m \"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/cmake_ubuntu.yml
+sed -i "s/PROJECT_NUMBER.*v[0-9]\+\.[0-9]\+\.[0-9]\+/PROJECT_NUMBER = ${VERSION}/g" ${SOURCE_DIR}/Doxyfile.in
 
 sed -i "s/^\Standards-Version:.*/\Standards-Version:\"${VERSION}\"/g" ${SOURCE_DIR}/debian/control
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
@@ -55,9 +58,9 @@ MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
 if [ -n "$1" ]; then
     git add .
     git commit -m "Release $1"
-    git push
+    #git push
     git tag -d $1
     git tag -a $1 -m "Release $1"
-    git push origin :refs/tags/$1
+    #git push origin :refs/tags/$1
     git push origin $1
 fi

@@ -3,6 +3,9 @@
   + 增加代理
   + 更新 TigerVnc 库
   + 增加最近打开菜单
+  + 增加文档
+    - 增加编译文档
+    - 用 Doxygen 生成开发文档
   
 - v0.0.7
   + 用更新后的 RabbitCommon::CStyle 改变样式
