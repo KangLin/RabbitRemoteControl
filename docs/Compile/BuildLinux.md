@@ -48,6 +48,10 @@ Prior versions don't have CMake support.
 
         ~$ sudo apt install automake autoconf make
 
+- Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
+
+- Package tools: debhelper、 fakeroot
+
 ### Compilation
 
     # Install library dependencies

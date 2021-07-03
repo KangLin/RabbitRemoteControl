@@ -41,6 +41,8 @@ Prior versions don't have CMake support.
 
 - CMake: [https://www.cmake.org/](https://cmake.org/)
 
+- Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
+
 ### Compilation
 
 ### Library dependencies

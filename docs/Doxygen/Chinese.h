@@ -7,22 +7,22 @@
 \brief 玉兔远程控制库
 
 
-\defgroup LIBAPI_VIEWER 控制者库
-\brief 控制者库
+\defgroup LIBAPI_VIEWER 控制端库
+\brief 控制端库
 \details 类关系：
 \image html docs/Image/ViewerPlugAPI.svg
 \ingroup LIBAPI
 
 
-\defgroup VIEWER_API 控制者应用程序接口
-\brief 控制者应用程序接口
+\defgroup VIEWER_API 控制端应用程序接口
+\brief 控制端应用程序接口
 \ingroup LIBAPI_VIEWER
 
 
 \~chinese
-\defgroup VIEWER_PLUGIN_API 控制者插件接口
+\defgroup VIEWER_PLUGIN_API 控制端插件接口
 \ingroup LIBAPI_VIEWER
-\brief 控制者插件接口.
+\brief 控制端插件接口.
 \details
 写一个插件：
 - 实现 CPluginFactory 。例如：\ref CPluginFactoryTigerVnc 

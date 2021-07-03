@@ -1,3 +1,7 @@
+- v0.0.9
+  + Add server
+  + Add Peer to peer
+  
 - v0.0.8
   + FIX tab view show bug when full screen
   + Add proxy

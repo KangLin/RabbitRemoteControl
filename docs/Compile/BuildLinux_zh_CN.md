@@ -45,6 +45,10 @@
 
         ~$ sudo apt install automake autoconf make
 
+- Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
+
+- 打包工具: debhelper、 fakeroot
+
 ### 编译
 
     # 安装依赖库
