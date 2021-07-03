@@ -19,7 +19,7 @@
  * @note 此接口仅由插件派生实现
  * 
  * @~
- * @ingroup PLUGIN_API
+ * @ingroup VIEWER_PLUGIN_API
  */
 class RABBITREMOTECONTROL_EXPORT CParameter : public QObject
 {
