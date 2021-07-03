@@ -6,7 +6,7 @@
 #pragma once
 
 #include <QThread>
-#include "ConnecterPlugins.h"
+#include "ConnecterDesktop.h"
 
 /**
  * \~chinese 此类仅用于 CConnecterPlugins
@@ -19,13 +19,13 @@ class CConnectThread : public QThread
 {
     Q_OBJECT
 public:
-    CConnectThread(CConnecterPlugins* pConnect);
+    CConnectThread(CConnecterDesktop* pConnect);
     
 protected:
     virtual void run() override;
     
 private:
-    CConnecterPlugins* m_pConnecter;
+    CConnecterDesktop* m_pConnecter;
 };
 
 #endif // CCONNECTTHREAD_H

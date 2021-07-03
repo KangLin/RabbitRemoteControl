@@ -14,7 +14,7 @@ set(INSTALL_HEADER_FILES
     Connecter.h
     ManageConnecter.h
     PluginFactory.h
-    ConnecterPlugins.h
+    ConnecterDesktop.h
     Parameter.h 
     )
 
@@ -30,7 +30,7 @@ set(SOURCE_FILES
     Connect.cpp
     ManageConnecter.cpp
     PluginFactory.cpp
-    ConnecterPlugins.cpp
+    ConnecterDesktop.cpp
     ConnectThread.cpp
     Parameter.cpp  
     )

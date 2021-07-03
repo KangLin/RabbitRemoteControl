@@ -79,7 +79,7 @@
 \note 此类是用户接使用接口，由插件实现
 \details 
 已经提供以下类型的基本实现：
-1. 桌面类连接： \ref CConnecterPlugins
+1. 桌面类连接： \ref CConnecterDesktop
 2. 控制台类连接：\ref CConnecterPluginsTerminal
 
 \fn CConnecter::CConnecter(CPluginFactory *parent) 
@@ -119,6 +119,25 @@
 \brief 关闭连接
 \note 由用户调用，插件不能直接调用此函数。
       插件断开连接后，触发信号 sigDisconnected()
+
+      
+\class CConnecterDesktop
+\brief 它实现一个远程桌面后台线程处理连接
+\details
+  1. 实现 \ref InstanceConnect() ，生成连接对象
+  2. 实现 \ref GetDialogSettings() ，得到参数对话框
+\note 此接口仅由插件实现
+\see CConnectThread
+
+\fn CConnect* CConnecterDesktop::InstanceConnect()
+\brief 新建 CConnect 对象。它的所有者是调用者，如果调用者不再使用它，必须释放它。
+
+\fn QDialog* CConnecterDesktop::GetDialogSettings(QWidget* parent = nullptr)
+\brief 得到设置对话框
+\param parent: 返回窗口的父窗口
+\return QDialog*: 插件实现时，此对话框必须设置属性 Qt::WA_DeleteOnClose，
+                  它的所有者是调用者
+
 
 \class CFrmViewer
 \~chinese

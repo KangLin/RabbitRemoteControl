@@ -3,10 +3,10 @@
 #ifndef CCONNECTERTIGERVNC_H
 #define CCONNECTERTIGERVNC_H
 
-#include "ConnecterPlugins.h"
+#include "ConnecterDesktop.h"
 #include "DlgSettingsTigerVnc.h"
 
-class CConnecterTigerVnc : public CConnecterPlugins
+class CConnecterTigerVnc : public CConnecterDesktop
 {
     Q_OBJECT
 

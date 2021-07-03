@@ -12,31 +12,28 @@
 class CConnectThread;
 
 /**
- * \~chinese 
- * \brief 它实现一个远程桌面后台线程处理连接
- * \note 此接口仅由插件实现
- * 
  * \~english
  * \brief it is implement a background connect thread of the remote desktop.
  * \note The interface only is implemented by plugin
- * 
- * \~
+ * \details 
+ *   1. Implement \ref InstanceConnect()
+ *   2. Implement \ref GetDialogSettings
  * \see CConnectThread
  */
-class RABBITREMOTECONTROL_EXPORT CConnecterPlugins : public CConnecter
+class RABBITREMOTECONTROL_EXPORT CConnecterDesktop : public CConnecter
 {
     Q_OBJECT
 public:
-    explicit CConnecterPlugins(CPluginFactory *parent = nullptr);
-    virtual ~CConnecterPlugins();
+    explicit CConnecterDesktop(CPluginFactory *parent = nullptr);
+    virtual ~CConnecterDesktop();
     
     /**
      * \return \li >=0 Success
      *         \li < 0 fail
      */
     virtual int OnRun();
-    /// \~chinese 实例化 CConnect 对象
-    /// \~english Instance connect
+    /// \~english New connect. the ownership is caller.
+    ///  if don't use, the caller must delete it.
     virtual CConnect* InstanceConnect() = 0;
     
     virtual const QString Name();
@@ -56,10 +53,7 @@ protected:
     virtual int OnLoad(QDataStream& d);
     virtual int OnSave(QDataStream& d);
     /**
-     * \~chinese 得到设置对话框
-     * \param parent: 返回窗口的父窗口
-     * \return QDialog*: 插件实现时，此对话框必须设置属性 Qt::WA_DeleteOnClose，
-     *                   它的所有者是调用者
+     * \~chinese
      * 
      * \~english
      * \brief GetDialogSettings

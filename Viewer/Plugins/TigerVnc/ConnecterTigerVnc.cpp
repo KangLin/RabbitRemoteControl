@@ -6,7 +6,7 @@
 #include "RabbitCommonLog.h"
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginFactory *parent)
-    : CConnecterPlugins(parent),
+    : CConnecterDesktop(parent),
       m_pConnect(nullptr)
 {
     m_pParameter = &m_Para;

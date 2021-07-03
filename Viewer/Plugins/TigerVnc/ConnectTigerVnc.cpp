@@ -776,7 +776,7 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 
 void CConnectTigerVnc::slotClipBoardChange()
 {
-    if(!m_pPara->bClipboard && !getOutStream()) return;
+    if(!m_pPara->bClipboard || !getOutStream()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     
@@ -786,7 +786,7 @@ void CConnectTigerVnc::slotClipBoardChange()
 
 void CConnectTigerVnc::handleClipboardRequest()
 {
-    if(!m_pPara->bClipboard && !getOutStream()) return;
+    if(!m_pPara->bClipboard || !getOutStream()) return;
     
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardRequest");
     const QClipboard *clipboard = QApplication::clipboard();
@@ -824,7 +824,7 @@ void CConnectTigerVnc::handleClipboardRequest()
 void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 {
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardAnnounce");
-    if(!m_pPara->bClipboard && !getOutStream()) return;
+    if(!m_pPara->bClipboard || !getOutStream()) return;
     
     if(available)
         this->requestClipboard();

@@ -1,6 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnecterPlugins.h"
+#include "ConnecterDesktop.h"
 #include <QDebug>
 #include "ConnectThread.h"
 #include "RabbitCommonLog.h"
@@ -9,7 +9,7 @@
     #include "QUIWidget/QUIWidget.h"
 #endif
 
-CConnecterPlugins::CConnecterPlugins(CPluginFactory *parent)
+CConnecterDesktop::CConnecterDesktop(CPluginFactory *parent)
     : CConnecter(parent),
       m_bExit(false),
       m_pThread(nullptr),
@@ -17,7 +17,7 @@ CConnecterPlugins::CConnecterPlugins(CPluginFactory *parent)
       m_pParameter(nullptr)
 {}
 
-CConnecterPlugins::~CConnecterPlugins()
+CConnecterDesktop::~CConnecterDesktop()
 {
     if(m_pThread)
     {
@@ -31,19 +31,19 @@ CConnecterPlugins::~CConnecterPlugins()
     qDebug() << this << this->metaObject()->className();
 }
 
-const QString CConnecterPlugins::Name()
+const QString CConnecterDesktop::Name()
 {
     if(m_pParameter && !m_pParameter->szName.isEmpty())
         return m_pParameter->szName;
     return ServerName();
 }
 
-QWidget *CConnecterPlugins::GetViewer()
+QWidget *CConnecterDesktop::GetViewer()
 {
     return m_pView;
 }
 
-int CConnecterPlugins::OnRun()
+int CConnecterDesktop::OnRun()
 {
     //LOG_MODEL_DEBUG("CConnecterBackThread", "Current thread: 0x%X", QThread::currentThreadId());
     int nRet = -1;
@@ -88,7 +88,7 @@ int CConnecterPlugins::OnRun()
     return nRet;
 }
 
-int CConnecterPlugins::Connect()
+int CConnecterDesktop::Connect()
 {
     int nRet = 0;
     m_pThread = new CConnectThread(this);
@@ -99,7 +99,7 @@ int CConnecterPlugins::Connect()
     return nRet;
 }
 
-int CConnecterPlugins::DisConnect()
+int CConnecterDesktop::DisConnect()
 {
     int nRet = 0;
     m_bExit = true;
@@ -108,18 +108,18 @@ int CConnecterPlugins::DisConnect()
     return nRet;
 }
 
-int CConnecterPlugins::OnConnect()
+int CConnecterDesktop::OnConnect()
 {
     return 0;
 }
 
-int CConnecterPlugins::OnDisConnect()
+int CConnecterDesktop::OnDisConnect()
 {
     emit sigDisconnected();
     return 0;
 }
 
-QString CConnecterPlugins::ServerName()
+QString CConnecterDesktop::ServerName()
 {
     if(CConnecter::ServerName().isEmpty())
     {
@@ -132,7 +132,7 @@ QString CConnecterPlugins::ServerName()
     return CConnecter::ServerName();
 }
 
-int CConnecterPlugins::Load(QDataStream &d)
+int CConnecterDesktop::Load(QDataStream &d)
 {
     int nRet = 0;
     Q_ASSERT(m_pParameter);
@@ -144,7 +144,7 @@ int CConnecterPlugins::Load(QDataStream &d)
     return nRet;
 }
 
-int CConnecterPlugins::Save(QDataStream &d)
+int CConnecterDesktop::Save(QDataStream &d)
 {
     int nRet = 0;
     Q_ASSERT(m_pParameter);
@@ -155,19 +155,19 @@ int CConnecterPlugins::Save(QDataStream &d)
     return nRet;
 }
 
-int CConnecterPlugins::OnLoad(QDataStream& d)
+int CConnecterDesktop::OnLoad(QDataStream& d)
 {
     Q_UNUSED(d);
     return 0;
 }
 
-int CConnecterPlugins::OnSave(QDataStream& d)
+int CConnecterDesktop::OnSave(QDataStream& d)
 {
     Q_UNUSED(d);
     return 0;
 }
 
-int CConnecterPlugins::OpenDialogSettings(QWidget *parent)
+int CConnecterDesktop::OpenDialogSettings(QWidget *parent)
 {
     int nRet = -1;
     QDialog* p = GetDialogSettings(parent);

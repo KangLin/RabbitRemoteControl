@@ -20,6 +20,9 @@ class CPluginFactory;
  * \~english
  * \brief Connecter interface
  * \note  The class is a interface used by Use UI
+ * \details Basic implementations of the following types have been provided:
+ * 1. Desktop type: \ref CConnecterDesktop
+ * 2. Termianal type: \ref CConnecterPluginsTerminal
  * 
  * \~
  * \see   CPluginFactory CFrmViewer CConnect

@@ -2,7 +2,7 @@
 
 #include "ConnectThread.h"
 
-CConnectThread::CConnectThread(CConnecterPlugins *pConnect) : QThread(pConnect),
+CConnectThread::CConnectThread(CConnecterDesktop *pConnect) : QThread(pConnect),
     m_pConnecter(pConnect)
 {}
 

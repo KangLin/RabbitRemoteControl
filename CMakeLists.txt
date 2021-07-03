@@ -213,7 +213,7 @@ if(BUILD_DOCS)
             endif()            
             configure_file(${CMAKE_SOURCE_DIR}/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} @ONLY)
             add_custom_target(doc_${OUTPUT_LANGUAGE} ALL
-                ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} &> doxygen.log
+                ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} # &> doxygen.log
                 WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                 COMMENT "Generating API documentation with Doxygen" VERBATIM
                 )
