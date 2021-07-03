@@ -44,7 +44,7 @@ Prior versions don't have CMake support.
 
         ~$ sudo apt install cmake
         
-- automake, autoconf, make
+- Automake, Autoconf, Make
 
         ~$ sudo apt install automake autoconf make
 
@@ -74,7 +74,6 @@ Prior versions don't have CMake support.
     ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake
     ~/RabbitRemoteControl/build$ cmake --build . --target install
     
-
 ### Library dependencies
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)

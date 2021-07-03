@@ -41,7 +41,7 @@
 
         ~$ sudo apt install cmake
         
-- AutoMake、AutoConf、make
+- AutoMake、AutoConf、Make
 
         ~$ sudo apt install automake autoconf make
 

@@ -141,7 +141,7 @@
         cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         cmake --build . --target install
 
-  + 指定 CMake 参数: -DLibDataChannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
+  + 指定 CMake 参数: -Dlibdatachannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
 
 #### QTermWidget (暂不支持 Windows）     
 - 从源码编译
@@ -174,7 +174,7 @@
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
-  + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
+  + libdatachannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
   + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   + CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake

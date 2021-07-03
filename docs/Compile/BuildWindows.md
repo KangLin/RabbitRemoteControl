@@ -147,7 +147,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         cmake --build . --target install
 
-  + Specify the CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
+  + Specify the CMake parameters: -Dlibdatachannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
 
 #### qtermwidget (Not currently supported on Windows)
 - Compile from source code
@@ -180,7 +180,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + FreeRDP-Client_DIR: [FreeFRP installation path]/lib/cmake/FreeRDP-Client2
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
-  + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
+  + libdatachannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
   + QTermWidget_5_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
