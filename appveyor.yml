@@ -25,18 +25,19 @@ environment:
     QT_ROOT: C:\Qt\5.12\msvc2017
     BUILD_ARCH: x86
 
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    GENERATORS: "Visual Studio 15 2017 Win64"
+    TOOLCHAIN_VERSION: 15
+    VCPKG_PLATFORM_TOOLSET: v141
+    QT_ROOT: C:\Qt\5.12\msvc2017_64
+    BUILD_ARCH: x64
+    
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATORS: "Visual Studio 14 2015"
     TOOLCHAIN_VERSION: 14
-    VCPKG_PLATFORM_TOOLSET: v140
+    #VCPKG_PLATFORM_TOOLSET: v140
     QT_ROOT: C:\Qt\5.6\msvc2015
     BUILD_ARCH: x86
-
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-    GENERATORS: "Visual Studio 14 2015 Win64"
-    TOOLCHAIN_VERSION: 14
-    QT_ROOT: C:\Qt\5.6\msvc2015_64
-    BUILD_ARCH: x64
 
 matrix:
   fast_finish: false
@@ -68,7 +69,7 @@ before_build:
   - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b b361c2eefa3966cb7cec45275aff32e90430aaa6 b361c2eefa3966cb7cec45275aff32e90430aaa6 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo libssh pixman libjpeg-turbo freerdp libdatachannel
+  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel
 
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")

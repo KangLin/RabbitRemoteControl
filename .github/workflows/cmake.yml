@@ -18,7 +18,7 @@ jobs:
             qt_version: 5.12.10
             qt_arch: win64_msvc2017_64
           - os: windows-latest
-            triplet: x32-windows
+            triplet: x86-windows
             qt_version: 5.12.10
             qt_arch: win32_msvc2017
         
@@ -42,9 +42,7 @@ jobs:
         cmake -E make_directory ${{env.INSTALL_DIR}}
       
     - name: run-vcpkg
-      # You may pin to the exact commit or the version.
-      # uses: lukka/run-vcpkg@a1b6a0046a28c09f4bcc8caa9eecec9a8e512152
-      uses: lukka/run-vcpkg@v6.1
+      uses: lukka/run-vcpkg@v7.4
       with:
         # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
         #setupOnly: # optional
@@ -52,7 +50,7 @@ jobs:
         vcpkgGitCommitId: b361c2eefa3966cb7cec45275aff32e90430aaa6
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'zlib libssh pixman libjpeg-turbo freerdp libdatachannel'
+        vcpkgArguments: 'zlib lzo openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel'
 
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
