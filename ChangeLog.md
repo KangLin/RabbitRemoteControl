@@ -1,8 +1,12 @@
 - v0.0.8
   + FIX tab view show bug when full screen
   + Add proxy
+    - tigervnc proxy
   + Update tigervnc library
   + Add recent open menu
+  + Modify documents
+    - Add build documents
+    - Add doxygen to generate documentation
 
 - v0.0.7
   + Use update RabbitCommon::CStyle to change style

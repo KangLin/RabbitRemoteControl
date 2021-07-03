@@ -1,13 +1,16 @@
 Authors:
 
-- KangLin(kl222@126.com)
+- Kang Lin <kl222@126.com>
+- Allan Nordhøy <epost@anotheragency.no>
+- Other: See: https://github.com/KangLin/RabbitRemoteControl/graphs/contributors
 
 # Tools
 - [Qt (LGPL v2.1)](http://qt.io/)  
 - [x] c compiler
-  + gcc
+  + GCC/G++
   + MSVC
 - [cmake](https://cmake.org/)
+- Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
 # The third project:
 - [x] [MUST] RabbitCommon：https://github.com/KangLin/RabbitCommon
@@ -20,3 +23,5 @@ Authors:
   + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
 - [x] [Optional] qtermwidget: https://github.com/lxqt/qtermwidget
 - [x] [Optional] libtelnet: https://github.com/seanmiddleditch/libtelnet
+- [ ] [Optional] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+- [x] [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
