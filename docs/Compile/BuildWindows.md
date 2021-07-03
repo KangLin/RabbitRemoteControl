@@ -69,34 +69,35 @@ If not, you must specify the CMake parameters:
 #### FreeRDP
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  + Specify CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-
+  
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
         bootstrap-vcpkg.bat
         vcpkg install freerdp
 
+  + Specify the CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
 - Compile from source code
   + Source-code location: https://github.com/FreeRDP/FreeRDP
   + Compilation instructions: https://github.com/FreeRDP/FreeRDP/wiki/Compilation
-  + Specify CMake parameters: 
-    - -DBUILD_FREERDP=ON
-    - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client2
-    - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP2
-    - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR2
-
+ 
           git clone https://github.com/FreeRDP/FreeRDP.git
           cd FreeRDP
           mkdir build
           cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
           cmake --build . --target install
 
+  + Specify the CMake parameters: 
+    - -DBUILD_FREERDP=ON
+    - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client2
+    - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP2
+    - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR2
+  
 #### LibVNCServer
 - Compile from sorce code
   + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
-  + Specify CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
-
+  
         cd vcpkg
         vcpkg install zlib openssl libjpeg-turbo
         git clone https://github.com/KangLin/libvncserver.git
@@ -105,12 +106,15 @@ If not, you must specify the CMake parameters:
         cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --target install
 
+  + Specify the CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
+  
 #### TigerVNC
+- Compile from source code
+
 The official program does not support libraries.  
 See: https://github.com/TigerVNC/tigervnc/issues/1123  
 The Kanglin fork has support.  
 Source-code location: https://github.com/KangLin/tigervnc  
-Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
     cd vcpkg
     vcpkg install zlib openssl pixman libjpeg-turbo
@@ -120,19 +124,21 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
     cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --target install
 
+- Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
+
 #### libdatachannel
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  + Specify CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-
+  
         cd vcpkg
         vcpkg install libdatachannel
+
+  + Specify the CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
 - Compile from source code
   + Source-code location:  [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
   + Compilation instructions: [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
-  + Specify CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
-
+ 
         git clone https://github.com/paullouisageneau/libdatachannel.git
         cd libdatachannel
         git submodule update --init --recursive
@@ -141,22 +147,24 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
         cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         cmake --build . --target install
 
+  + Specify the CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
+
 #### qtermwidget (Not currently supported on Windows)
 - Compile from source code
   + Source-code location:  [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
-  + Specify CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
+  + Specify the CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
 #### libssh
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  + Specify CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-
+  
         cd vcpkg
         vcpkg install libssh
 
+  + Specify the CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 - Compile from source code
   + Source code location:  [https://www.libssh.org](https://www.libssh.org)
-  + Specify CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
+  + Specify the CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 
 ### Compile this project
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
@@ -164,7 +172,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
       git clone https://github.com/KangLin/RabbitRemoteControl.git
 
-- CMake parameters:
+- The CMake parameters:
   + RabbitCommon_DIR: RabbitCommon source-code location
   + BUILD_FREERDP：If compiling FreeRDP
   + WinPR_DIR: [FreeRDP installation path]/lib/cmake/WinPR2

@@ -105,29 +105,31 @@ If not, you must specify the CMake parameters:
     
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  + Specify CMake parameters:
-    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   
         ~$ git clone https://github.com/microsoft/vcpkg.git
         ~$ cd vcpkg
         ~/vcpkg$ ./bootstrap-vcpkg.sh
         ~/vcpkg$ vcpkg install freerdp
 
+  + Specify the CMake parameters:
+  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
 - Compile from source code
   + Source-code location: https://github.com/FreeRDP/FreeRDP
   + Compilation instructions: https://github.com/FreeRDP/FreeRDP/wiki/Compilation
-  + Specify CMake parameters:
-    - -DBUILD_FREERDP=ON
-    - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client2
-    - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP2
-    - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR2
-
+  
           ~$ git clone https://github.com/FreeRDP/FreeRDP.git
           ~$ cd FreeRDP
           ~/FreeRDP$ mkdir build
           ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
           ~/FreeRDP/build$ cmake --build . --target install
           
+  + Specify the CMake parameters:
+    - -DBUILD_FREERDP=ON
+    - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client2
+    - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP2
+    - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR2
+  
 #### LibVNCServer
 - Use the system-packaged development library
 
@@ -139,11 +141,12 @@ If not, you must specify the CMake parameters:
   + Specify CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
 
 #### TigerVNC
+- Compile from source code
+
 The official program does not support libraries.
 See: https://github.com/TigerVNC/tigervnc/issues/1123  
 The KangLin fork has support.
 Source-code location: https://github.com/KangLin/tigervnc  
-Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
     ~$ sudo apt install libpixman-1-dev
     ~$ git clone https://github.com/KangLin/tigervnc.git
@@ -152,21 +155,23 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
     ~/tigervnc$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
     ~/tigervnc$ cmake --build . --target install
     
+- Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
+
 #### libdatachannel
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  + Specify CMake parameters:
-    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
         ~$ git clone https://github.com/microsoft/vcpkg.git
         ~$ cd vcpkg
         ~/vcpkg$ vcpkg install libdatachannel
       
+  + Specify the CMake parameters:
+  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+  
 - Compile from source code
   + Source-code location: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
   + Compilation: [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
-  + Specify CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
-
+  
         ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
         ~$ cd libdatachannel
         ~/libdatachannel$ git submodule update --init --recursive
@@ -175,6 +180,8 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
         ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         ~/libdatachannel/build$ cmake --build . --target install
 
+  + Specify the CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
+
 #### qtermwidget
 - Use the system-packaged development library
 
@@ -182,7 +189,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
       
 - Compile from source code
   + Source-code location: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
-  + Specify CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
+  + Specify the CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
 #### libssh
 - Use the system-packaged development library
@@ -191,16 +198,17 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
-  + Specify CMake parameters:
-    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-
+ 
         ~$ git clone https://github.com/microsoft/vcpkg.git
         ~$ cd vcpkg
         ~/vcpkg$ vcpkg install libssh
 
+  + Specify the CMake parameters:
+  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
 - Compile from source code
   + Source-code location: [https://www.libssh.org](https://www.libssh.org)
-  + Specify CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
+  + Specify the CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 
 ### Compile this project
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
@@ -208,7 +216,7 @@ Specify CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
 
       ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
 
-- CMake parameters:
+- The CMake parameters:
   + RabbitCommon_DIR: RabbitCommon source code location
   + BUILD_FREERDP：If compile FreeRDP
   + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR2

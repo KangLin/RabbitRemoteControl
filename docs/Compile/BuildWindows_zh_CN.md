@@ -4,10 +4,11 @@
 ### 环境
 #### 操作系统
 
-    Windows 10 版本 20H2(19042.985)
+    Windows 10 版本 20H2 (19042.985)
 
 #### Qt Creator
-版本：v4.15.0。建议使用 v4.15.0 以后版本，以前版本对 cmake 支持不够。
+
+版本：v4.15.0。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -23,21 +24,21 @@
       - Visual Studio 2017
       - Visual Studio 2019
     * Visual Studio 各版本密钥：https://blog.csdn.net/kl222/article/details/84939135
-    * 当前使用版本：vs 2017
+    * 当前使用版本：VS 2017
     
-- Windows sdk: https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
+- Windows SDK：https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
     根据你的操作系统安装相应的 SDK。 CDB必须要安装，QT调试需要。
-- Windows Driver Kit: https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
+- Windows Driver Kit：https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
    
 - Qt
-  + Qt官方发行版本： https://download.qt.io/official_releases/qt/  
-    当前使用版本: Qt5.12.11
-  + IDE: Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 cmake 支持不够。
+  + Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
+    当前使用版本：Qt 5.12.11
+  + IDE：Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
 
-- git: [http://www.git-scm.com/](http://www.git-scm.com/)  
-  [git设置](http://blog.csdn.net/kl222/article/details/32903495)
+- Git: [https://www.git-scm.com/](https://www.git-scm.com/)
+  [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
   
-- cmake: [http://www.cmake.org/](http://www.cmake.org/)
+- CMake: [https://www.cmake.org/](https://cmake.org/)
 
 ### 编译
 
@@ -46,13 +47,14 @@
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
 - [可选] RFB
   + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + [可选] TigerVnc: https://github.com/KangLin/tigervnc
+  + [可选] TigerVNC: https://github.com/KangLin/tigervnc
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [可选] SSH
-  + LIBSSH: [https://www.libssh.org](https://www.libssh.org)
-  + LIBSSH2: https://www.libssh2.org/
-                 https://github.com/libssh2/libssh2
-- [可选] qtermwidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
+  + libssh: libssh: [https://www.libssh.org](https://www.libssh.org)
+  + libssh2:
+    - [https://www.libssh2.org](libssh2: https://www.libssh2.org/)
+    - [https://github.com/libssh2/libssh2](https://github.com/libssh2/libssh2/)
+- [可选] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [可选] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 
@@ -65,21 +67,16 @@
 #### FreeRDP   
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
-  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
   
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
         bootstrap-vcpkg.bat
         vcpkg install freerdp
 
+  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 - 从源码编译
   + 源码位置：https://github.com/FreeRDP/FreeRDP
   + 编译详见：https://github.com/FreeRDP/FreeRDP/wiki/Compilation
-  + 指定 CMake 参数：
-    - -DBUILD_FREERDP=ON
-    - -DWinPR_DIR=[freerdp 安装目录]/lib/cmake/WinPR2
-    - -DFreeRDP_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP2
-    - -DFreeRDP-Client_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP-Client2
 
           git clone https://github.com/FreeRDP/FreeRDP.git
           cd FreeRDP
@@ -87,12 +84,17 @@
           cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
           cmake --build . --target install
           
+  + 指定 CMake 参数：
+    - -DBUILD_FREERDP=ON
+    - -DWinPR_DIR=[freerdp 安装目录]/lib/cmake/WinPR2
+    - -DFreeRDP_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP2
+    - -DFreeRDP-Client_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP-Client2
+  
 #### LibVNCServer
 - 从源码编译
   + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   建议使用补丁: https://github.com/KangLin/libvncserver
-  + 指定 CMake 参数：-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
-
+  
         cd vcpkg
         vcpkg install zlib openssl libjpeg-turbo 
         git clone https://github.com/KangLin/libvncserver.git
@@ -100,11 +102,14 @@
         mkdir build
         cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --target install
-
+  
+  + 指定 CMake 参数：-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
+  
 #### TigerVNC
+- 从源码编译
+
 官方只是个应用程序，不支持库。详见：https://github.com/TigerVNC/tigervnc/issues/1123  
 所以本人在官方基础上做了修改。源码位置：https://github.com/KangLin/tigervnc  
-指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
 
     cd vcpkg
     vcpkg install zlib openssl pixman libjpeg-turbo
@@ -114,19 +119,20 @@
     cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --target install
     
+- 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
+  
 #### libdatachannel
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
-  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-
+  
         cd vcpkg
         vcpkg install libdatachannel
-      
+        
+  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 - 从源码编译
   + 源码位置： [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
   + 编译详见： [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
-  + 指定 CMake 参数: -DLibDataChannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
-
+  
         git clone https://github.com/paullouisageneau/libdatachannel.git
         cd libdatachannel
         git submodule update --init --recursive
@@ -135,21 +141,23 @@
         cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         cmake --build . --target install
 
-#### qtermwidget(暂不支持 Windows）     
+  + 指定 CMake 参数: -DLibDataChannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
+
+#### QTermWidget (暂不支持 Windows）     
 - 从源码编译
   + 源码位置： [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
-  + 指定 CMake 参数：-Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
+  + 指定 CMake 参数：-Dqtermwidget_5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
 
 #### libssh
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
-  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-
+  
         cd vcpkg
         vcpkg install libssh
 
+  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 - 从源码编译
-  + 源码位置： [https://www.libssh.org](https://www.libssh.org)
+  + 源码位置：[https://www.libssh.org](https://www.libssh.org)
   + 指定 CMake 参数：-Dlibssh_DIR=[libssh 安装目录]/lib/cmake/libssh
 
 ### 编译本项目
@@ -159,7 +167,7 @@
       git clone https://github.com/KangLin/RabbitRemoteControl.git
 
 - CMake 参数
-  + RabbitCommon_DIR: RabbitCommon 源码位置
+  + RabbitCommon_DIR：RabbitCommon 源码位置
   + BUILD_FREERDP：是否编译 FreeRDP
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
@@ -185,7 +193,7 @@
           makensis Install.nsi  ;打包
 
   + IDE (Qt Creator) 编译
-    - 设置 vcpkg: 选项->Kits->Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-    - 打开项目: 菜单->文件->打开文件或项目，选择项目根目录中的 CMakeLists.txt 
-    - 配置：点左侧工具栏上的 项目->编译与运行，配置 CMake 参数
+    - 设置 vcpkg: 选项→Kits→Cmake Configureration: add MAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    - 打开项目: 菜单→文件→打开文件或项目，选择项目根目录中的 CMakeLists.txt 
+    - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
