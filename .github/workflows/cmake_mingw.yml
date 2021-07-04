@@ -33,7 +33,6 @@ jobs:
         msystem: MINGW64
         update: true
         path-type: strict
-        shell: msys2 {0}
         install: >-
             mingw-w64-x86_64-cmake
             mingw-w64-x86_64-nsis
@@ -44,7 +43,7 @@ jobs:
             mingw-w64-x86_64-libvncserver
             mingw-w64-x86_64-cyrus-sasl
             mingw-w64-x86_64-pixman
-            mingw-w64-x86_64-openjpeg 
+            mingw-w64-x86_64-openjpeg
             
     - name: make_directory
       run: |
@@ -58,12 +57,14 @@ jobs:
     
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
+      env:
+        MSYSTEM: MINGW64
       run: |
         git clone https://github.com/KangLin/tigervnc.git 
         cd ${{env.SOURCE_DIR}}/tigervnc
         cmake -E make_directory build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           
@@ -73,10 +74,11 @@ jobs:
     - name: build RabbitRemoteControl
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
-        Qt5_Dir: C:\msys64\mingw64
+        #Qt5_Dir: C:\msys64\mingw64
+        MSYSTEM: MINGW64
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
-        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -Dtigervnc_DIR=${{ github.workspace }}/build/install/lib/cmake  -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }}
+        cmake -G"MinGW Makefiles" ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -Dtigervnc_DIR=${{ github.workspace }}/build/install/lib/cmake  -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install

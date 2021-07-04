@@ -8,19 +8,22 @@ jobs:
 
     strategy:
       matrix:
-        #VCPKG_PLATFORM_TOOLSET: [v142, v141, v140]
-        #CMAKE_GENERATOR: [Visual Studio 16 2019, Visual Studio 15 2017, Visual Studio 14 2015]
-        #CMAKE_GENERATOR_PLATFORM: [win32, x64]
         BUILD_TYPE: [Release, Debug]
+        os: [windows-2019, windows-2016]
         include:
-          - os: windows-latest
+          - os: windows-2019
             triplet: x64-windows
-            qt_version: 5.12.10
-            qt_arch: win64_msvc2017_64
-          - os: windows-latest
+            qt_version: 5.15.2
+            qt_arch: win64_msvc2019_64
+            GENERATORS: "Visual Studio 16 2019"
+            CMAKE_GENERATOR_PLATFORM: x64
+            
+          - os: windows-2016
             triplet: x86-windows
             qt_version: 5.12.10
             qt_arch: win32_msvc2017
+            GENERATORS: "Visual Studio 15 2017"
+            CMAKE_GENERATOR_PLATFORM: Win32
         
     runs-on: ${{ matrix.os }}
 
@@ -59,7 +62,7 @@ jobs:
         cd ${{env.SOURCE_DIR}}/libvncserver
         cmake -E make_directory build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
@@ -70,7 +73,7 @@ jobs:
         cd ${{env.SOURCE_DIR}}/tigervnc
         cmake -E make_directory build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
     
@@ -96,7 +99,7 @@ jobs:
         # Whether or not to install Qt dependencies on Linux
         #install-deps: true # optional, default is true
         # Additional Qt modules to install
-        modules: none # optional
+        modules: ${{matrix.qt_modules}} # optional
         # Force a Qt mirror in case the default is not working
         #mirror: # optional
         # Whether or not to actually download Qt
@@ -120,7 +123,7 @@ jobs:
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
-        cmake ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install  -DLibVNCServer_DIR="${{ env.INSTALL_DIR }}/lib/cmake/LibVNCServer" -Dtigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake ${{github.workspace}} -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DLibVNCServer_DIR="${{ env.INSTALL_DIR }}/lib/cmake/LibVNCServer" -Dtigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
