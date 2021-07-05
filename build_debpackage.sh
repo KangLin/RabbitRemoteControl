@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -n "$1" -a -z "$QT_ROOT" ]; then
-	QT_ROOT=$1
+	export QT_ROOT=$1
 fi
 
 if [ ! -f /usr/bin/qmake -a -z "$QT_ROOT" ]; then
@@ -10,11 +10,11 @@ if [ ! -f /usr/bin/qmake -a -z "$QT_ROOT" ]; then
 fi
 
 if [ -n "$2" -a -z "$RabbitCommon_DIR" ]; then
-	RabbitCommon_DIR=$2
+	export RabbitCommon_DIR=$2
 fi
 
 if [ -z "$RabbitCommon_DIR" ]; then
-	RabbitCommon_DIR=`pwd`/../RabbitCommon
+	export RabbitCommon_DIR=`pwd`/../RabbitCommon
 fi
 
 if [ ! -d "$RabbitCommon_DIR" ]; then
@@ -23,11 +23,9 @@ if [ ! -d "$RabbitCommon_DIR" ]; then
 fi
 
 if [ -z "${BUILD_TYPE}" ]; then
-    BUILD_TYPE=Release
+    export BUILD_TYPE=Release
 fi
 
-export RabbitCommon_DIR=$RabbitCommon_DIR
-export QT_ROOT=$QT_ROOT
 export PATH=$QT_ROOT/bin:$PATH
 export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
 export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
