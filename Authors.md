@@ -1,6 +1,8 @@
 Authors:
 
 - Kang Lin <kl222@126.com>
+
+Contributors:
 - Allan Nordhøy <epost@anotheragency.no>
 - Other: See: https://github.com/KangLin/RabbitRemoteControl/graphs/contributors
 

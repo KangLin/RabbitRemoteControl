@@ -1,6 +1,8 @@
 作者:
 
 - 康林 <kl222@126.com>
+
+贡献者：
 - Allan Nordhøy <epost@anotheragency.no>
 - 所有贡献者，详见: https://github.com/KangLin/RabbitRemoteControl/graphs/contributors
 
