@@ -53,30 +53,36 @@ jobs:
         cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-      
+    
+    - name: build libdatachannel
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        git clone https://github.com/paullouisageneau/libdatachannel.git
+        cd libdatachannel
+        git submodule update --init --recursive
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        
     - name: build_debpackage.sh
       working-directory: ${{github.workspace}}
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         tigervnc_DIR: ${{ env.INSTALL_DIR }}/lib/cmake
+        LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/share/cmake/libdatachannel
       run: |
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol_0.0.8_amd64.deb rabbitremotecontrol_0.0.8_amd64_${{matrix.os}}.deb
+        
+#    - name: update xml file
 #        sudo apt-get install -y -qq xvfb xpra
 #        sudo Xvfb :99 -ac &
 #        export DISPLAY=:99.0
 #        sudo dpkg -i ../rabbitremotecontrol_0.0.8_amd64.deb
 #        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.8_amd64_${{matrix.os}}.deb -m "v0.0.8"
       
-#    - name: copy deb file
-#      run: |
-#        cp ../rabbitremotecontrol_*.deb .
-#        sudo dpkg -i rabbitremotecontrol_0.0.8_amd64.deb
-#        sudo apt-get install -y -qq xvfb xpra
-#        sudo Xvfb :99 -ac &
-#        export DISPLAY=:99.0
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.8_amd64_${{matrix.os}}.deb -m "v0.0.8"
-        
     - name: update 
       uses: actions/upload-artifact@v2
       with:

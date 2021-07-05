@@ -22,7 +22,7 @@ if [ ! -d "$RabbitCommon_DIR" ]; then
         exit -2
 fi
 
-if [ -z "${BUILD_TYPE}" ]; then
+if [ -z "$BUILD_TYPE" ]; then
     export BUILD_TYPE=Release
 fi
 

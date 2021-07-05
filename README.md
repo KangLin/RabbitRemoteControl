@@ -10,7 +10,7 @@ author: Kang Lin <kl222@126.com>
   - [:cn: 中文](README_zh_CN.md)
 - Build status
   - [![Build status](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
-  - [![Build status](https://ci.appveyor.com/api/projects/status/jai7jf3xr2vb44q8?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+  - [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
 - [Introduction](#Introduction)
 - [Donation](#Donation)
 - [Contribution](#Contribution)

@@ -28,23 +28,42 @@ jobs:
       #with:
         #fetch-depth: 0
 
-    - uses: msys2/setup-msys2@v2
-      with:
-        msystem: MINGW64
-        update: true
-        path-type: strict
-        install: >-
-            mingw-w64-x86_64-cmake
-            mingw-w64-x86_64-nsis
-            mingw-w64-x86_64-make
-            mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-qt5
-            mingw-w64-x86_64-zlib
-            mingw-w64-x86_64-libvncserver
-            mingw-w64-x86_64-cyrus-sasl
-            mingw-w64-x86_64-pixman
-            mingw-w64-x86_64-openjpeg
+#    - uses: msys2/setup-msys2@v2
+#      with:
+#        msystem: MINGW64
+#        update: true
+#        path-type: strict
+#        install: >-
+#            mingw-w64-x86_64-cmake
+#            mingw-w64-x86_64-nsis
+#            mingw-w64-x86_64-make
+#            mingw-w64-x86_64-gcc
+#            mingw-w64-x86_64-qt5
+#            mingw-w64-x86_64-zlib
+#            mingw-w64-x86_64-libvncserver
+#            mingw-w64-x86_64-cyrus-sasl
+#            mingw-w64-x86_64-pixman
+#            mingw-w64-x86_64-openjpeg
             
+    - name: pacman
+      env:
+        PATH: C:\msys64\usr\bin
+      run: | 
+        C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-cmake
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-nsis
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-make
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-gcc
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-qt5
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-zlib
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-libvncserver
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-cyrus-sasl
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-pixman
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-openjpeg
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-libpng
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-i686-nasm
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-openh264 
+        C:\msys64\usr\bin\pacman -S --noconfirm git base-devel
+
     - name: make_directory
       run: |
         cmake -E make_directory ${{env.SOURCE_DIR}}
@@ -54,31 +73,76 @@ jobs:
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
-    
+        
+#    - name: build freerdp
+#      working-directory: ${{env.SOURCE_DIR}}
+#      env:
+#        MSYSTEM: MINGW64
+#        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+#      run: |
+#        git clone https://github.com/FreeRDP/FreeRDP.git
+#        cd FreeRDP
+#        git submodule update --init --recursive
+#        git checkout -b  2.3.2  2.3.2
+#        cmake -E make_directory build
+#        cd build
+#        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+#        cmake --build . --config ${{matrix.BUILD_TYPE}}
+#        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
       env:
         MSYSTEM: MINGW64
+        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
         git clone https://github.com/KangLin/tigervnc.git 
-        cd ${{env.SOURCE_DIR}}/tigervnc
+        cd tigervnc
         cmake -E make_directory build
         cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{runner.workspace}}/build
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+        cmake --build . --config ${{matrix.BUILD_TYPE}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 
+    - name: build libdatachannel
+      working-directory: ${{env.SOURCE_DIR}}
+      env:
+        MSYSTEM: MINGW64
+        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+      run: |
+        git clone https://github.com/paullouisageneau/libdatachannel.git
+        cd libdatachannel
+        git submodule update --init --recursive
+        cmake -E make_directory build
+        cd build
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
+        cmake --build . --config ${{matrix.BUILD_TYPE}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+
+    - name: build qxmpp
+      working-directory: ${{env.SOURCE_DIR}}
+      env:
+        MSYSTEM: MINGW64
+        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+      run: |
+        git clone -b v1.4.0 "https://github.com/qxmpp-project/qxmpp.git"
+        cd qxmpp
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        
     - name: build RabbitRemoteControl
+      working-directory: ${{github.workspace}}
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         #Qt5_Dir: C:\msys64\mingw64
         MSYSTEM: MINGW64
+        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        cmake -E make_directory ${{github.workspace}}/build
-        cd ${{github.workspace}}/build
-        cmake -G"MinGW Makefiles" ${{github.workspace}} -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -Dtigervnc_DIR=${{ github.workspace }}/build/install/lib/cmake  -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }}
+        cmake -E make_directory build
+        cd build
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -Dtigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
