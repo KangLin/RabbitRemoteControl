@@ -176,6 +176,19 @@
 
   + 指定 CMake 参数: -DLibDataChannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
 
+#### QXmpp
+- 从源码编译
+  + 源码位置： [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
+  
+        ~$ git clone https://github.com/qxmpp-project/qxmpp.git
+        ~$ cd qxmpp
+        ~/qxmpp$ mkdir build
+        ~/qxmpp$ cd build
+        ~/qxmpp/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qxmpp/build$ cmake --build . --target install
+
+  + 指定 CMake 参数: -DQXmpp_DIR=[libdatachannel 安装目录]/lib/cmake/qxmpp
+  
 #### QTermWidget
 - 使用系统预编译开发库
 
@@ -218,6 +231,7 @@
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
+  + QXmpp_DIR=[libdatachannel 安装目录]/lib/cmake/qxmpp
   + QTermWidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   

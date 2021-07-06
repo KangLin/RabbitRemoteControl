@@ -185,6 +185,19 @@ Source-code location: https://github.com/KangLin/tigervnc
 
   + Specify the CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
 
+#### QXmpp
+- Compile from source code
+  + Source-code location: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
+  
+        ~$ git clone https://github.com/qxmpp-project/qxmpp.git
+        ~$ cd qxmpp
+        ~/qxmpp$ mkdir build
+        ~/qxmpp$ cd build
+        ~/qxmpp/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qxmpp/build$ cmake --build . --target install
+
+  + Specify the CMake parameters: -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
+
 #### qtermwidget
 - Use the system-packaged development library
 
@@ -228,6 +241,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
+  + QXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
   + QTermWidget_5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   
