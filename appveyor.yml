@@ -69,7 +69,7 @@ before_build:
   - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b b361c2eefa3966cb7cec45275aff32e90430aaa6 b361c2eefa3966cb7cec45275aff32e90430aaa6 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo openssl libssh libpng log4cxx pixman libjpeg-turbo freerdp libdatachannel
+  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp libdatachannel
 
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")
@@ -86,6 +86,24 @@ before_build:
   - cmake -E make_directory build
   - cd build
   - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
+  
+  - cd "%OTHER_SOURCE%"
+  - if not exist Log4Qt (git clone -b v1.5.1 https://github.com/MEONMedical/Log4Qt.git)
+  - cd Log4Qt
+  - cmake -E make_directory build
+  - cd build
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
+  
+  - cd "%OTHER_SOURCE%"
+  - if not exist qxmpp (git clone https://github.com/qxmpp-project/qxmpp.git)
+  - cd qxmpp
+  - cmake -E make_directory build
+  - cd build
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
   
