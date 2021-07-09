@@ -60,6 +60,7 @@ Prior versions don't have CMake support.
 - [OPTIONAL] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [OPTIONAL] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [OPTIONAL] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+- [OPTIONAL] QtService: https://github.com/KangLin/qt-solutions/
 
 #### RabbitCommon
 This library is placed in the same directory level as the project by default.
@@ -181,6 +182,19 @@ Source-code location: https://github.com/KangLin/tigervnc
   + Source code location:  [https://www.libssh.org](https://www.libssh.org)
   + Specify the CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 
+#### QtService
+- Compile from source code
+  + Source-code location: https://github.com/KangLin/qt-solutions/
+  
+        ~$ git clone https://github.com/KangLin/qt-solutions.git
+        ~$ cd qt-solutions
+        ~/qt-solutions$ mkdir build
+        ~/qt-solutions$ cd build
+        ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qt-solutions/build$ cmake --build . --target install
+        
+  + Specify the CMake parameters: -DQtService_DIR=[libssh installation path]/lib/cmake/QtService
+
 ### Compile this project
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - Download the source code:
@@ -199,6 +213,9 @@ Source-code location: https://github.com/KangLin/tigervnc
   + QXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
   + QTermWidget_5_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
+  + QtService_DIR: [libssh installation path]/lib/cmake/QtService
+  
+- If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
 - Compile

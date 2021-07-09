@@ -59,6 +59,7 @@
 - [可选] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [可选] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+- [可选] QtService: https://github.com/KangLin/qt-solutions/
 
 #### 玉兔公共库
 此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
@@ -175,6 +176,19 @@
   + 源码位置：[https://www.libssh.org](https://www.libssh.org)
   + 指定 CMake 参数：-Dlibssh_DIR=[libssh 安装目录]/lib/cmake/libssh
 
+#### QtService
+- 从源码编译
+  + 源码位置：: https://github.com/KangLin/qt-solutions/
+  
+        ~$ git clone https://github.com/KangLin/qt-solutions.git
+        ~$ cd qt-solutions
+        ~/qt-solutions$ mkdir build
+        ~/qt-solutions$ cd build
+        ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qt-solutions/build$ cmake --build . --target install
+        
+  + 指定 CMake 参数: -DQtService_DIR=[libssh 安装目录]/lib/cmake/QtService
+
 ### 编译本项目
 - 项目位置：[https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - 下载源码
@@ -193,6 +207,9 @@
   + QXmpp_DIR=[libdatachannel 安装目录]/lib/cmake/qxmpp
   + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
+  + QtService_DIR: [libssh 安装目录]/lib/cmake/QtService
+  
+- 如果使用 vcpkg，增加下面参数
   + CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
   
 - 编译

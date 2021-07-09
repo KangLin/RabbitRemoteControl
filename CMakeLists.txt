@@ -156,7 +156,10 @@ else()
 endif()
 
 add_subdirectory(Viewer)
-
+option(BUILD_Service "Build Service" OFF)
+if(BUILD_Service)
+    add_subdirectory(Service)
+endif()
 option(BUILD_APP "Build applaction" ON)
 if(BUILD_APP)
     add_subdirectory(App)

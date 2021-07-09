@@ -58,7 +58,7 @@ jobs:
         C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-libvncserver
         C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-cyrus-sasl
         C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-pixman
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-openjpeg
+        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-openjpeg mingw-w64-i686-libjpeg-turbo 
         C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-libpng
         C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-i686-nasm
         C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-openh264 
