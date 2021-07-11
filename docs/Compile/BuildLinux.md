@@ -93,6 +93,7 @@ Prior versions don't have CMake support.
 - [OPTIONAL] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [OPTIONAL] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [OPTIONAL] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+- [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [OPTIONAL] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
 
 #### RabbitCommon
@@ -194,7 +195,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~$ cd qxmpp
         ~/qxmpp$ mkdir build
         ~/qxmpp$ cd build
-        ~/qxmpp/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qxmpp/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
         ~/qxmpp/build$ cmake --build . --target install
 
   + Specify the CMake parameters: -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp

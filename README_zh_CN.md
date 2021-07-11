@@ -67,7 +67,7 @@
 - [x] 代理
   + [x] socks
   + [ ] http
-  + [ ] 自定义的 P2P 代理协议： [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
+  + [x] 自定义的 P2P 代理协议： [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
 |             | 代理              | P2P              |
 |-------------|------------------|------------------|
@@ -166,6 +166,8 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [x] [可选] libtelnet: https://github.com/seanmiddleditch/libtelnet
 - [ ] [可选] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [x] [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+- [x] [可选] QXmpp: https://github.com/qxmpp-project/qxmpp
+- [x] [可选] QtService: https://github.com/KangLin/qt-solutions/
 
 #### 编译
 - [Linux](docs/Compile/BuildLinux_zh_CN.md)

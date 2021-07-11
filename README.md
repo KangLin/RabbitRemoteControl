@@ -69,7 +69,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 - [x] Proxy
   + [x] socks
   + [ ] http
-  + [ ] Custom p2p proxy protocol: [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
+  + [x] Custom p2p proxy protocol: [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
 |             | Proxy            | P2P              |
 |-------------|------------------|------------------|
@@ -175,6 +175,8 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 - [x] [Optional] libtelnet: https://github.com/seanmiddleditch/libtelnet
 - [ ] [Optional] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [x] [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+- [x] [OPTIONAL] QXmpp: https://github.com/qxmpp-project/qxmpp
+- [x] [Optional] QtService: https://github.com/KangLin/qt-solutions/
 
 #### Build
 - [Linux](docs/Compile/BuildLinux.md)
