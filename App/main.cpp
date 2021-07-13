@@ -21,6 +21,7 @@
 
 int main(int argc, char *argv[])
 {
+    int nRet = 0;
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -61,27 +62,34 @@ int main(int argc, char *argv[])
     else    
         return 0;
 
-    MainWindow* w = new MainWindow();
-    //w->setWindowIcon(QIcon(":/image/App"));
-    //w->setWindowTitle(a.applicationDisplayName());
-    
+    try {
+        MainWindow* w = new MainWindow();
+        //w->setWindowIcon(QIcon(":/image/App"));
+        //w->setWindowTitle(a.applicationDisplayName());
+        
 #ifdef BUILD_QUIWidget
-    QSharedPointer<QUIWidget> quiwidget(new QUIWidget(nullptr, true));
-    bool check = quiwidget->connect(w, SIGNAL(sigFullScreen()),
-                                    SLOT(showFullScreen()));
-    Q_ASSERT(check);
-    check = quiwidget->connect(w, SIGNAL(sigShowNormal()),
-                               SLOT(showNormal()));
-    Q_ASSERT(check);
-    //quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
-    //quiwidget.setTitle(a.applicationDisplayName());
-    quiwidget->setMainWidget(w);
-    quiwidget->show();
+        QSharedPointer<QUIWidget> quiwidget(new QUIWidget(nullptr, true));
+        bool check = quiwidget->connect(w, SIGNAL(sigFullScreen()),
+                                        SLOT(showFullScreen()));
+        Q_ASSERT(check);
+        check = quiwidget->connect(w, SIGNAL(sigShowNormal()),
+                                   SLOT(showNormal()));
+        Q_ASSERT(check);
+        //quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
+        //quiwidget.setTitle(a.applicationDisplayName());
+        quiwidget->setMainWidget(w);
+        quiwidget->show();
 #else
-    w->show();
+        w->show();
 #endif
-    
-    int nRet = a.exec();
+
+        nRet = a.exec();
+    } catch (std::exception &e) {
+        LOG_MODEL_ERROR("main", "exception: %s", e.what());
+    } catch(...) {
+        LOG_MODEL_ERROR("main", "exception");
+    }
+
 #ifndef BUILD_QUIWidget
     delete w;
 #endif
