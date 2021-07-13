@@ -213,17 +213,17 @@
 <context>
     <name>CPluginFactoryTigerVnc</name>
     <message>
-        <location filename="../../PluginFactoryTigerVnc.cpp" line="51"/>
-        <source>TigerVnc</source>
-        <translation></translation>
+        <location filename="../../PluginFactoryTigerVnc.cpp" line="56"/>
+        <source>TigerVNC</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFactoryTigerVnc.cpp" line="56"/>
+        <location filename="../../PluginFactoryTigerVnc.cpp" line="61"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginFactoryTigerVnc.cpp" line="57"/>
+        <location filename="../../PluginFactoryTigerVnc.cpp" line="62"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一個使用RFB(遠程幀緩存)協議的程序。</translation>
     </message>

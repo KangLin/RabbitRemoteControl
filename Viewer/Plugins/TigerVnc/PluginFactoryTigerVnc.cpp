@@ -53,7 +53,7 @@ CPluginFactoryTigerVnc::~CPluginFactoryTigerVnc()
 
 const QString CPluginFactoryTigerVnc::Name() const
 {
-    return tr("TigerVnc");
+    return tr("TigerVNC");
 }
 
 const QString CPluginFactoryTigerVnc::Description() const

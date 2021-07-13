@@ -156,7 +156,7 @@ else()
 endif()
 
 add_subdirectory(Viewer)
-option(BUILD_Service "Build Service" OFF)
+option(BUILD_Service "Build Service" ON)
 if(BUILD_Service)
     add_subdirectory(Service)
 endif()
