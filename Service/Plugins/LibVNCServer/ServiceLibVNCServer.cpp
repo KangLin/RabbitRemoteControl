@@ -1,6 +1,6 @@
 #include "ServiceLibVNCServer.h"
 #include "RabbitCommonLog.h"
-
+#include "RabbitCommonTools.h"
 #include <rfb/keysym.h>
 #include <QScreen>
 #include <QApplication>
@@ -12,7 +12,7 @@ CServiceLibVNCServer::CServiceLibVNCServer(QObject *parent) : CService(parent)
 
 bool CServiceLibVNCServer::Enable()
 {
-    return true;
+    return false;
 }
 
 static rfbBool checkPassword(struct _rfbClientRec* cl,const char* encryptedPassWord,int len)
@@ -30,7 +30,6 @@ static void doptr(int buttonMask,int x,int y,rfbClientPtr cl)
 {
     LOG_MODEL_DEBUG("Service LibVNCServer", "Mouse: button:%d;x:%d;y:%d",
                     buttonMask, x, y);
-    
 }
 
 static enum rfbNewClientAction newclient(rfbClientPtr cl)
@@ -58,9 +57,9 @@ int CServiceLibVNCServer::OnInit()
     m_rfbScreen = rfbGetScreen(0, nullptr, w, h, 8, 3, bpp);
     if(!m_rfbScreen)
         return -1;
-    char buf[255];
-    gethostname(buf, sizeof(buf));
-    m_rfbScreen->desktopName = strdup(buf);
+    QString name = RabbitCommon::CTools::GetHostName()
+            + "@" + RabbitCommon::CTools::GetCurrentUser();
+    m_rfbScreen->desktopName = strdup(name.toStdString().c_str());
     m_rfbScreen->frameBuffer = (char*)malloc(w * h * bpp);
     m_rfbScreen->alwaysShared = TRUE;
     m_rfbScreen->ptrAddEvent = doptr;

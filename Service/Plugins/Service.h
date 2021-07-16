@@ -21,6 +21,10 @@ protected Q_SLOTS:
 protected:
     virtual int OnInit();
     virtual int OnClean();
+    /// \return
+    /// \li -1: error
+    /// \li  0: Success
+    /// \li >0: Stop call slotProcess
     virtual int OnProcess();
 };
 

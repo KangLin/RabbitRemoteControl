@@ -12,10 +12,12 @@ SET(SRC_LIBS tigervnc RabbitRemoteControlService)
 SET(SOURCE_FILES
     PluginServiceTigerVNC.cpp
     ServiceTigerVNC.cpp
+    QSocket.cpp
     )
 SET(HEADER_FILES
     PluginServiceTigerVNC.h
-    ServiceTigerVNC.h 
+    ServiceTigerVNC.h
+    QSocket.h
     )
 SET(UI_FILES
     )

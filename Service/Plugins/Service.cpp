@@ -36,8 +36,9 @@ int CService::OnClean()
 void CService::slotProcess()
 {
     int nRet = OnProcess();
-    if(nRet) return;
-    QTimer::singleShot(0, this, SLOT(slotProcess()));
+    if(nRet < 0) return;
+    if(0 == nRet)
+        QTimer::singleShot(0, this, SLOT(slotProcess()));
 }
 
 int CService::OnProcess()
