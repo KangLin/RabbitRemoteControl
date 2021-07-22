@@ -12,12 +12,18 @@ SET(SRC_LIBS tigervnc RabbitRemoteControlService)
 SET(SOURCE_FILES
     PluginServiceTigerVNC.cpp
     ServiceTigerVNC.cpp
-    QSocket.cpp
+    Connection.cpp
+    DataChannel.cpp
+    ${CMAKE_SOURCE_DIR}/Viewer/Plugins/TigerVnc/QSocketOutStream.h
+    ${CMAKE_SOURCE_DIR}/Viewer/Plugins/TigerVnc/QSocketInStream.h
     )
 SET(HEADER_FILES
     PluginServiceTigerVNC.h
     ServiceTigerVNC.h
-    QSocket.h
+    Connection.h
+    DataChannel.h
+    ${CMAKE_SOURCE_DIR}/Viewer/Plugins/TigerVnc/QSocketOutStream.cpp
+    ${CMAKE_SOURCE_DIR}/Viewer/Plugins/TigerVnc/QSocketInStream.cpp
     )
 SET(UI_FILES
     )
@@ -41,4 +47,6 @@ ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${SRC_LIBS}
+    PRIVATE_INCLUDE_DIRS
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
     )

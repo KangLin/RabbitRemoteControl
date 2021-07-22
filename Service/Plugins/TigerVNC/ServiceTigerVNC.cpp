@@ -3,9 +3,15 @@
 #include <unistd.h>
 #include "RabbitCommonTools.h"
 #include "network/Socket.h"
+#include <QHostAddress>
+#include <QTcpSocket>
 
 CServiceTigerVNC::CServiceTigerVNC(QObject *parent) : CService(parent)
 {
+    bool check = false;
+    check = connect(&m_Lister, SIGNAL(newConnection()),
+                    this, SLOT(slotNewConnection()));
+    Q_ASSERT(check);
 }
 
 bool CServiceTigerVNC::Enable()
@@ -15,15 +21,6 @@ bool CServiceTigerVNC::Enable()
 
 int CServiceTigerVNC::OnInit()
 {
-    QString name = RabbitCommon::CTools::GetHostName()
-            + "@" + RabbitCommon::CTools::GetCurrentUser();
-    m_Server = QSharedPointer<rfb::VNCServerST>(
-                new rfb::VNCServerST(name.toStdString().c_str(), this));
-    if(!m_Server)
-    {
-        LOG_MODEL_ERROR("ServiceTigerVNC", "new rfb::VNCServerST");
-        return -1;
-    }
     //TODO: Use parameters
     if(!m_Lister.listen(QHostAddress::Any, 5900))
     {
@@ -42,22 +39,19 @@ int CServiceTigerVNC::OnClean()
 
 int CServiceTigerVNC::OnProcess()
 {
-    //LOG_MODEL_DEBUG("ServiceTigerVNC", "Process ...");
-    // Client list could have been changed.
-    
-    std::list<network::Socket*> sockets;
-    m_Server->getSockets(&sockets);
+    LOG_MODEL_DEBUG("ServiceTigerVNC", "Process ...");
+    return 1;
+}
 
-    // Nothing more to do if there are no client connections.
-    if (sockets.empty())
-      return 0;
-
-    // Process events on existing VNC connections
-    for (i = sockets.begin(); i != sockets.end(); i++) {
-      
-        server.processSocketReadEvent(*i);
-      
-        server.processSocketWriteEvent(*i);
-    }
-    return 0;
+void CServiceTigerVNC::slotNewConnection()
+{
+    if(!m_Lister.hasPendingConnections())
+        return;
+    QTcpSocket* pSocket = m_Lister.nextPendingConnection();
+    if(!pSocket) return;
+    LOG_MODEL_INFO("ServiceTigerVNC", "New connection: %s:%d",
+                   pSocket->peerAddress().toString().toStdString().c_str(),
+                   pSocket->peerPort());
+    QSharedPointer<CConnection> c(new CConnection(pSocket));
+    m_lstConnection.push_back(c);
 }

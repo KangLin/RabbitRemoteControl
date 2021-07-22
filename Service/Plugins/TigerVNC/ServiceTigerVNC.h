@@ -1,13 +1,14 @@
 #ifndef CSERVICETIGERVNC_H
 #define CSERVICETIGERVNC_H
 
-#include "Service.h"
-#include "rfb/SDesktop.h"
-#include "rfb/VNCServerST.h"
+#pragma once
+
 #include <QSharedPointer>
 #include <QTcpServer>
+#include "Connection.h"
+#include "Service.h"
 
-class CServiceTigerVNC : public CService, rfb::SDesktop
+class CServiceTigerVNC : public CService//, rfb::SDesktop
 {
     Q_OBJECT
 public:
@@ -20,9 +21,12 @@ protected:
     virtual int OnInit() override;
     virtual int OnClean() override;
     
+private Q_SLOTS:
+    void slotNewConnection();
+
 private:
-    QSharedPointer<rfb::VNCServerST> m_Server;
     QTcpServer m_Lister;
+    QList<QSharedPointer<CConnection> > m_lstConnection;
 };
 
 #endif // CSERVICETIGERVNC_H
