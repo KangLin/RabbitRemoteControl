@@ -6,6 +6,10 @@
 
 class CServiceThread;
 
+///
+/// \~english
+/// \brief The service plugin interface
+///
 class CPluginService : public QObject
 {
     Q_OBJECT
