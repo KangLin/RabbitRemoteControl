@@ -156,6 +156,7 @@ else()
 endif()
 
 add_subdirectory(Viewer)
+add_subdirectory(Plugins)
 option(BUILD_Service "Build Service" ON)
 if(BUILD_Service)
     add_subdirectory(Service)
