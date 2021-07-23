@@ -29,7 +29,7 @@ project(LibSSH)
 list(APPEND libssh_LIB Terminal)
 
 SET(SOURCE_FILES
-    PluginFactoryLibSSH.cpp
+    PluginLibSSH.cpp
     ConnecterSSH.cpp
     DlgSettingsSSH.cpp
     ParameterSSH.cpp
@@ -37,7 +37,7 @@ SET(SOURCE_FILES
     )
 
 SET(HEADER_FILES
-    PluginFactoryLibSSH.h
+    PluginLibSSH.h
     ConnecterSSH.h
     DlgSettingsSSH.h
     ParameterSSH.h

@@ -1,4 +1,4 @@
-#include "PluginFactoryLibSSH.h"
+#include "PluginLibSSH.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 #include "ConnecterSSH.h"
@@ -7,7 +7,7 @@
 #include <QLocale>
 #include <QDebug>
 
-CPluginFactoryLibSSH::CPluginFactoryLibSSH()
+CPluginLibSSH::CPluginLibSSH()
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_LibSSH);
@@ -20,7 +20,7 @@ CPluginFactoryLibSSH::CPluginFactoryLibSSH()
     qApp->installTranslator(&m_Translator);
 }
 
-CPluginFactoryLibSSH::~CPluginFactoryLibSSH()
+CPluginLibSSH::~CPluginLibSSH()
 {
     qApp->removeTranslator(&m_Translator);
     qDebug() << "CPluginFactoryLibSSH::~CPluginFactoryLibSSH()";
@@ -29,27 +29,27 @@ CPluginFactoryLibSSH::~CPluginFactoryLibSSH()
 #endif
 }
 
-const QString CPluginFactoryLibSSH::Protol() const
+const QString CPluginLibSSH::Protol() const
 {
     return "SSH";
 }
 
-const QString CPluginFactoryLibSSH::Name() const
+const QString CPluginLibSSH::Name() const
 {
     return tr("LibSSH");
 }
 
-const QString CPluginFactoryLibSSH::Description() const
+const QString CPluginLibSSH::Description() const
 {
     return tr("SSH: you can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...");
 }
 
-const QIcon CPluginFactoryLibSSH::Icon() const
+const QIcon CPluginLibSSH::Icon() const
 {
     return QIcon(":/image/SSH");
 }
 
-CConnecter *CPluginFactoryLibSSH::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginLibSSH::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
         return new CConnecterSSH(this);

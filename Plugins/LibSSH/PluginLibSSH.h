@@ -1,21 +1,23 @@
-#ifndef CPLUGINFACTORYLIBSSH_H
-#define CPLUGINFACTORYLIBSSH_H
+#ifndef CPLUGINLIBSSH_H_KL_2021_07_23
+#define CPLUGINLIBSSH_H_KL_2021_07_23
 
-#include "PluginFactory.h"
+#pragma once
+
+#include "Plugin.h"
 #include <QTranslator>
 
-class CPluginFactoryLibSSH : public CPluginFactory
+class CPluginLibSSH : public CPlugin
 {
     Q_OBJECT
-    Q_INTERFACES(CPluginFactory)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
     
 public:
-    explicit CPluginFactoryLibSSH();
-    virtual ~CPluginFactoryLibSSH();
+    explicit CPluginLibSSH();
+    virtual ~CPluginLibSSH();
 
 public:
     virtual const QString Protol() const override;
@@ -28,4 +30,4 @@ private:
     QTranslator m_Translator;
 };
 
-#endif // CPLUGINFACTORYLIBSSH_H
+#endif // CPLUGINLIBSSH_H_KL_2021_07_23
