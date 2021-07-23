@@ -1,31 +1,37 @@
+# Author: Kang Lin(kl222@126.com)
 
-project(RabbitRemoteControlService LANGUAGES CXX)
+cmake_minimum_required(VERSION 2.8.11)
 
-set(INSTALL_HEADER_FILES
-    PluginService.h
-    ServiceManager.h
-    )
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
+
+project(Server LANGUAGES CXX)
 
 set(HEADER_FILES
-    ${INSTALL_HEADER_FILES}
-    Service.h
-    ServiceThread.h    
     )
 
 set(SOURCE_FILES
-    PluginService.cpp
-    ServiceManager.cpp
-    Service.cpp
-    ServiceThread.cpp
+    main.cpp
     )
 
 set(SOURCE_UI_FILES
+
     )
 
 SET(RCC_FILES )
 
-SET(SRC_LIBS RabbitCommon ${QT_LIBRARIES} QtService)
+SET(SRC_LIBS RabbitCommon ${QT_LIBRARIES})
 
+find_package(QtService)
+if(NOT QtService_FOUND)
+    return()
+endif()
+message("QtServeice is found")
+
+list(APPEND SRC_LIBS Service)
+    
 # Translations
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}
@@ -42,13 +48,11 @@ if(BUILD_TYPE STREQUAL "debug")
 endif()
 
 ADD_TARGET(NAME ${PROJECT_NAME}
+    ISEXE
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-    INSTALL_HEADER_FILES ${INSTALL_HEADER_FILES}
     LIBS ${SRC_LIBS}
     VERSION ${BUILD_VERSION})
 
-add_subdirectory(TigerVNC)
-add_subdirectory(LibVNCServer)
