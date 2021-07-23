@@ -35,7 +35,7 @@ set(SOURCE_UI_FILES
     FrmParameterTerminalBehavior.ui
     )
 
-SET(SRC_LIBS RabbitCommon qtermwidget5 RabbitRemoteControl ${QT_LIBRARIES})
+SET(SRC_LIBS RabbitCommon qtermwidget5 Viewer ${QT_LIBRARIES})
 # Translations
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}

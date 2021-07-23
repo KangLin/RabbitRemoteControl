@@ -2,7 +2,7 @@
 
 project(LibVNCServer)
 
-set(_libvncLibs RabbitRemoteControl)
+set(_libvncLibs Viewer)
 
 find_package(LibVNCServer)
 if(LibVNCServer_FOUND)

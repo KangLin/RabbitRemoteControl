@@ -15,7 +15,7 @@ endif()
 
 project(FreeRdp)
 
-SET(SRC_LIBS freerdp-client freerdp RabbitRemoteControl)
+SET(SRC_LIBS freerdp-client freerdp Viewer)
 if(NOT WIN32)
     LIST(APPEND SRC_LIBS winpr)
 endif()

@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
-project(RabbitRemoteControl LANGUAGES CXX)
+project(Viewer LANGUAGES CXX)
 
 set(INSTALL_HEADER_FILES
     FrmViewer.h

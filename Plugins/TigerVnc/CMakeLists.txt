@@ -8,7 +8,7 @@ if(NOT tigervnc_FOUND)
     return()
 endif()
 
-SET(SRC_LIBS tigervnc RabbitRemoteControl)
+SET(SRC_LIBS tigervnc Viewer)
 SET(SOURCE_FILES
     ConnectTigerVnc.cpp
     FramePixelBuffer.cpp

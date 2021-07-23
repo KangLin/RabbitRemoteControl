@@ -9,7 +9,7 @@
 #include <QDir>
 #include <QMap>
 #include <QIcon>
-
+#include <QTranslator>
 #include "PluginFactory.h"
 
 /**
@@ -51,6 +51,8 @@ private:
     QMap<QString, CPluginFactory*> m_Plugins;
     
     qint8 m_FileVersion;
+
+    QTranslator m_Translator;
 };
 
 #endif // CMANAGECONNECTER_H

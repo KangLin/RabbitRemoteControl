@@ -5,15 +5,15 @@
     <name>CConnecter</name>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>名稱：</translation>
     </message>
     <message>
         <source>Protol:</source>
-        <translation type="unfinished"></translation>
+        <translation>協議：</translation>
     </message>
     <message>
         <source>Server name:</source>
-        <translation type="unfinished"></translation>
+        <translation>服務名：</translation>
     </message>
 </context>
 </TS>
