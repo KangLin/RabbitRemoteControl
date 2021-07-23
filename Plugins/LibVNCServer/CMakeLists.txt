@@ -31,14 +31,14 @@ else()
 endif()
 
 SET(SOURCE_FILES
-    PluginFactoryLibVNCServer.cpp
+    PluginLibVNCServer.cpp
     ConnecterLibVNCServer.cpp
     ConnectLibVNCServer.cpp
     DlgSettingsLibVnc.cpp
     )
 
 SET(HEADER_FILES
-    PluginFactoryLibVNCServer.h
+    PluginLibVNCServer.h
     ConnecterLibVNCServer.h
     ConnectLibVNCServer.h
     DlgSettingsLibVnc.h

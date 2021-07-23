@@ -1,10 +1,10 @@
-#ifndef CPLUGINFACTORYLIBVNC_H
-#define CPLUGINFACTORYLIBVNC_H
+#ifndef CPluginLibVNCServer_H_KL_2021_07_23
+#define CPluginLibVNCServer_H_KL_2021_07_23
 
 #include "Plugin.h"
 #include <QTranslator>
 
-class CPluginFactoryLibVNCServer : public CPlugin
+class CPluginLibVNCServer : public CPlugin
 {
     Q_OBJECT
     Q_INTERFACES(CPlugin)
@@ -14,8 +14,8 @@ class CPluginFactoryLibVNCServer : public CPlugin
 #endif
     
 public:
-    CPluginFactoryLibVNCServer(QObject *parent = nullptr);
-    virtual ~CPluginFactoryLibVNCServer() override;
+    CPluginLibVNCServer(QObject *parent = nullptr);
+    virtual ~CPluginLibVNCServer() override;
     
     // CPluginFactory interface
 public:
@@ -29,4 +29,4 @@ private:
     QTranslator m_Translator;
 };
 
-#endif // CPLUGINFACTORYLIBVNC_H
+#endif // CPluginLibVNCServer_H_KL_2021_07_23
