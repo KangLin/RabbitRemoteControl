@@ -1,15 +1,17 @@
-#ifndef CPLUGINFACTORYTELNET_H
-#define CPLUGINFACTORYTELNET_H
+#ifndef CPLUGINTELNET_H_KL_2021_07_23
+#define CPLUGINTELNET_H_KL_2021_07_23
+
+#pragma once
 
 #include "Plugin.h"
 #include <QTranslator>
 
-class CPluginFactoryTelnet : public CPlugin
+class CPluginTelnet : public CPlugin
 {
     Q_OBJECT
 public:
-    explicit CPluginFactoryTelnet(QObject *parent = nullptr);
-    virtual ~CPluginFactoryTelnet();
+    explicit CPluginTelnet(QObject *parent = nullptr);
+    virtual ~CPluginTelnet();
     
     Q_INTERFACES(CPlugin)
 
@@ -30,4 +32,4 @@ private:
     
 };
 
-#endif // CPLUGINFACTORYTELNET_H
+#endif // CPLUGINTELNET_H_KL_2021_07_23

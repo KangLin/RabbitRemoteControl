@@ -30,7 +30,7 @@ endif()
 message("libtelnet:${_telnet_libs}")
 
 SET(SOURCE_FILES
-    PluginFactoryTelnet.cpp
+    PluginTelnet.cpp
     ConnecterTelnet.cpp
     ParameterTelnet.cpp
     DlgSettingsTelnet.cpp
@@ -39,7 +39,7 @@ SET(SOURCE_FILES
 SET(HEADER_FILES
     ConnecterTelnet.h
     ParameterTelnet.h
-    PluginFactoryTelnet.h
+    PluginTelnet.h
     DlgSettingsTelnet.h
     )
 

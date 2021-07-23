@@ -1,4 +1,4 @@
-#include "PluginFactoryTelnet.h"
+#include "PluginTelnet.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 #include "ConnecterTelnet.h"
@@ -7,7 +7,7 @@
 #include <QLocale>
 #include <QDebug>
 
-CPluginFactoryTelnet::CPluginFactoryTelnet(QObject *parent)
+CPluginTelnet::CPluginTelnet(QObject *parent)
     : CPlugin(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
@@ -21,7 +21,7 @@ CPluginFactoryTelnet::CPluginFactoryTelnet(QObject *parent)
     qApp->installTranslator(&m_Translator);
 }
 
-CPluginFactoryTelnet::~CPluginFactoryTelnet()
+CPluginTelnet::~CPluginTelnet()
 {
     qDebug() << "CPluginFactoryTelnet::~CPluginFactoryTelnet()";
     qApp->removeTranslator(&m_Translator);    
@@ -30,27 +30,27 @@ CPluginFactoryTelnet::~CPluginFactoryTelnet()
 #endif
 }
 
-const QString CPluginFactoryTelnet::Protol() const
+const QString CPluginTelnet::Protol() const
 {
     return "Telnet";
 }
 
-const QString CPluginFactoryTelnet::Name() const
+const QString CPluginTelnet::Name() const
 {
     return tr("Telnet");
 }
 
-const QString CPluginFactoryTelnet::Description() const
+const QString CPluginTelnet::Description() const
 {
     return tr("Telnet: net terminal");
 }
 
-const QIcon CPluginFactoryTelnet::Icon() const
+const QIcon CPluginTelnet::Icon() const
 {
     return QIcon(":/image/Console");
 }
 
-CConnecter *CPluginFactoryTelnet::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginTelnet::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
