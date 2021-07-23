@@ -2,12 +2,6 @@
 
 project(PluginServiceTigerVnc)
 
-find_package(tigervnc)
-message("tigervnc_FOUND:${tigervnc_FOUND}")
-if(NOT tigervnc_FOUND)
-    return()
-endif()
-
 if(NOT TARGET Service)
     return()
 endif()

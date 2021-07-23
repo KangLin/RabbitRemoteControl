@@ -2,12 +2,6 @@
 
 project(TigerVnc)
 
-find_package(tigervnc)
-message("tigervnc_FOUND:${tigervnc_FOUND}")
-if(NOT tigervnc_FOUND)
-    return()
-endif()
-
 SET(SRC_LIBS tigervnc Viewer)
 SET(SOURCE_FILES
     ConnectTigerVnc.cpp
@@ -46,7 +40,7 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${SRC_LIBS}
