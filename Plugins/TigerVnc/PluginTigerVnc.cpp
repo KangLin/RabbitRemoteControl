@@ -1,6 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "PluginFactoryTigerVnc.h"
+#include "PluginTigerVnc.h"
 #include "ConnecterTigerVnc.h"
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
@@ -9,7 +9,7 @@
 #include "RabbitCommonDir.h"
 
 static bool initlog = false;
-CPluginFactoryTigerVnc::CPluginFactoryTigerVnc(QObject *parent)
+CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     : CPlugin(parent)
 {
     //! [Initialize resorce]
@@ -40,7 +40,7 @@ CPluginFactoryTigerVnc::CPluginFactoryTigerVnc(QObject *parent)
     //! [Initialize resorce]
 }
 
-CPluginFactoryTigerVnc::~CPluginFactoryTigerVnc()
+CPluginTigerVnc::~CPluginTigerVnc()
 {
     //! [Clean resource]
     qApp->removeTranslator(&m_Translator);
@@ -51,23 +51,23 @@ CPluginFactoryTigerVnc::~CPluginFactoryTigerVnc()
     //! [Clean resource]
 }
 
-const QString CPluginFactoryTigerVnc::Name() const
+const QString CPluginTigerVnc::Name() const
 {
     return tr("TigerVNC");
 }
 
-const QString CPluginFactoryTigerVnc::Description() const
+const QString CPluginTigerVnc::Description() const
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
             + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
 }
 
-const QString CPluginFactoryTigerVnc::Protol() const
+const QString CPluginTigerVnc::Protol() const
 {
     return "RFB";
 }
 
-CConnecter* CPluginFactoryTigerVnc::CreateConnecter(const QString &szProtol)
+CConnecter* CPluginTigerVnc::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
@@ -76,7 +76,7 @@ CConnecter* CPluginFactoryTigerVnc::CreateConnecter(const QString &szProtol)
     return nullptr;
 }
 
-const QIcon CPluginFactoryTigerVnc::Icon() const
+const QIcon CPluginTigerVnc::Icon() const
 {
     return QIcon(":/image/Connect");
 }

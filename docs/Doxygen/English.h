@@ -22,13 +22,13 @@
   Write a plugin:
 - Implement CPlugin. For example: \ref CPluginTigerVnc
   - Implement the Qt interface in the class declaration:
-    \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.h Qt plugin interface
+    \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.h Qt plugin interface
   - Initialize the operation in the constructor. For example: initializing resources, loading translation resources, etc.
-    \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.cpp Initialize resorce
+    \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp Initialize resorce
   - Release resources in the destructor.
-     \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.cpp Clean resource
+     \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp Clean resource
   - Implement properties and functions
-     \include Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.cpp
+     \include Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp
 - Implement \ref CConnecter. For example: \ref CConnecterTigerVnc
   - Implement remote desktop, which can be derived from \ref CConnecterPlugins
   - Implement remote console, which can be derived from \ref CConnecterPluginsTerminal

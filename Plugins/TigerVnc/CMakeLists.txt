@@ -13,7 +13,7 @@ SET(SOURCE_FILES
     ConnectTigerVnc.cpp
     FramePixelBuffer.cpp
     ConnecterTigerVnc.cpp
-    PluginFactoryTigerVnc.cpp
+    PluginTigerVnc.cpp
     DlgSettingsTigerVnc.cpp
     QSocketInStream.cpp
     QSocketOutStream.cpp
@@ -22,7 +22,7 @@ SET(HEADER_FILES
     ConnectTigerVnc.h
     FramePixelBuffer.h
     ConnecterTigerVnc.h
-    PluginFactoryTigerVnc.h
+    PluginTigerVnc.h
     DlgSettingsTigerVnc.h
     QSocketInStream.h
     QSocketOutStream.h

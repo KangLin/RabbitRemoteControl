@@ -1,12 +1,14 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CMANAGECONNECTTIGERVNC_H
-#define CMANAGECONNECTTIGERVNC_H
+#ifndef CPLUGINTIGERVNC_H_KL_2021_07_23
+#define CPLUGINTIGERVNC_H_KL_2021_07_23
+
+#pragma once
 
 #include "Plugin.h"
 #include <QTranslator>
 
-class CPluginFactoryTigerVnc : public CPlugin
+class CPluginTigerVnc : public CPlugin
 {
     Q_OBJECT
     
@@ -19,8 +21,8 @@ class CPluginFactoryTigerVnc : public CPlugin
     /// ![Qt plugin interface]
     
 public:
-    explicit CPluginFactoryTigerVnc(QObject *parent = nullptr);
-    virtual ~CPluginFactoryTigerVnc() override;
+    explicit CPluginTigerVnc(QObject *parent = nullptr);
+    virtual ~CPluginTigerVnc() override;
     
     virtual const QString Name() const override;
     virtual const QString Description() const override;
@@ -32,4 +34,4 @@ private:
     QTranslator m_Translator;
 };
 
-#endif // CMANAGECONNECTTIGERVNC_H
+#endif // CPLUGINTIGERVNC_H_KL_2021_07_23
