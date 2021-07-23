@@ -147,6 +147,18 @@ jobs:
         cmake --build . --config ${{matrix.BUILD_TYPE}}
         cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         
+    - name: build QtService
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        git clone "https://github.com/KangLin/qt-solutions.git"
+        cd qt-solutions/qtservice
+        cmake -E make_directory build
+        cd build
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+
+
     - name: build RabbitRemoteControl
       working-directory: ${{github.workspace}}
       env:
@@ -157,6 +169,6 @@ jobs:
       run: |
         cmake -E make_directory build
         cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake -DLog4Qt_DIR=/lib/cmake/Log4Qt -Dtigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake -DLog4Qt_DIR=/lib/cmake/Log4Qt -Dtigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install

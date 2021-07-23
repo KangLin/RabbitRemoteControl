@@ -65,6 +65,20 @@ jobs:
         cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+    
+    - name: build QtService
+      working-directory: ${{env.SOURCE_DIR}}
+      env:
+        QT_ROOT: /usr/lib/`uname -m`-linux-gnu/qt5
+      run: |
+        git clone https://github.com/KangLin/qt-solutions.git
+        cd qt-solutions/qtservice
+        git submodule update --init --recursive
+        cmake -E make_directory build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         
     - name: build_debpackage.sh
       working-directory: ${{github.workspace}}

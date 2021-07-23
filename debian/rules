@@ -18,6 +18,9 @@ ifdef tigervnc_DIR
     PARAS += -Dtigervnc_DIR=${tigervnc_DIR}
 endif
 
+ifdef QtService_DIR
+    PARAS += -DQtService_DIR=${QtService_DIR}
+endif
 
 %:
 	dh $@

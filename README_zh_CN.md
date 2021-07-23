@@ -130,9 +130,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
       - [x] 远程桌面
       - [x] 控制终端（Linux下实现，但有BUG）
     - [x] 具体协议支持，详见：[支持协议](#支持协议)
-  - [ ] 服务器
-    - [ ] 服务器框架
-    - [ ] 具体协议支持，详见：[支持协议](#支持协议)
+  - [x] 服务器
+    - [x] 服务器框架
+    - [x] 具体协议支持，详见：[支持协议](#支持协议)
 - [ ] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
 当前已经完成常见远程控制协议客户端的开发，已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。

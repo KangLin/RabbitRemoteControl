@@ -108,6 +108,15 @@ before_build:
   - cmake --build . --config Release --target install
   
   - cd "%OTHER_SOURCE%"
+  - if not exist qt-solutions (git clone https://github.com/KangLin/qt-solutions.git)
+  - cd qt-solutions/qtservice
+  - cmake -E make_directory build
+  - cd build
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
+  
+  - cd "%OTHER_SOURCE%"
   - if exist RabbitCommon (rmdir /s /q "RabbitCommon")
   - if not exist RabbitCommon (git clone "https://github.com/KangLin/RabbitCommon.git")
   - set RabbitCommon_DIR=%OTHER_SOURCE%/RabbitCommon
@@ -116,7 +125,7 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR=""%INSTALL_DIR%"/lib/cmake" -DLog4Qt_DIR="%INSTALL_DIR%/lib/cmake/Log4Qt" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR=""%INSTALL_DIR%"/lib/cmake" -DLog4Qt_DIR="%INSTALL_DIR%/lib/cmake/Log4Qt" -DQXmpp_DIR="%INSTALL_DIR%/lib/cmake/qxmpp" -DQtService_DIR="%INSTALL_DIR%/lib/cmake/qtservice" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
   - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
