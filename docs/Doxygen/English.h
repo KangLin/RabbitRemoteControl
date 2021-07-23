@@ -20,7 +20,7 @@
 \brief Viewer plugin interfaces.
 \details
   Write a plugin:
-- Implement CPluginFactory. For example: \ref CPluginFactoryTigerVnc
+- Implement CPlugin. For example: \ref CPluginTigerVnc
   - Implement the Qt interface in the class declaration:
     \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.h Qt plugin interface
   - Initialize the operation in the constructor. For example: initializing resources, loading translation resources, etc.

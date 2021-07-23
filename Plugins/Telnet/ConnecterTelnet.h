@@ -9,7 +9,7 @@ class CConnecterTelnet : public CConnecterPluginsTerminal
 {
     Q_OBJECT
 public:
-    explicit CConnecterTelnet(CPluginFactory *parent);
+    explicit CConnecterTelnet(CPlugin *parent);
     virtual ~CConnecterTelnet();
     
     // CConnecterPluginsTerminal interface

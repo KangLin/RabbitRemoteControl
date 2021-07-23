@@ -4,7 +4,7 @@
 
 #include <unistd.h>
 
-CConnecterTelnet::CConnecterTelnet(CPluginFactory *parent)
+CConnecterTelnet::CConnecterTelnet(CPlugin *parent)
     : CConnecterPluginsTerminal(parent),
       m_pPara(nullptr),
       m_pSocket(nullptr)

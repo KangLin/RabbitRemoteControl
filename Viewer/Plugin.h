@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPLUGINFACTORY_H
-#define CPLUGINFACTORY_H
+#ifndef CPLUGIN_H_KL_2021_07_23
+#define CPLUGIN_H_KL_2021_07_23
 
 #pragma once
 
@@ -16,7 +16,7 @@
  * \ingroup VIEWER_PLUGIN_API
  * \see CConnecter
  */
-class VIEWER_EXPORT CPluginFactory : public QObject
+class VIEWER_EXPORT CPlugin : public QObject
 {
     Q_OBJECT
 
@@ -31,7 +31,7 @@ public:
      * \~
      * \param parent
      */
-    explicit CPluginFactory(QObject *parent = nullptr);
+    explicit CPlugin(QObject *parent = nullptr);
     /**
      * \~english
      * \brief When the derived class is implemented,
@@ -41,7 +41,7 @@ public:
      * \~
      * \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.cpp Clean resource
      */
-    virtual ~CPluginFactory();
+    virtual ~CPlugin();
 
     /// \~english ID. Default: Protol() + ":" + Name()
     virtual const QString Id() const;
@@ -68,8 +68,8 @@ public:
 };
 
 QT_BEGIN_NAMESPACE
-#define CPluginFactory_iid "KangLinStudio.Rabbit.RemoteControl.CPluginFactory"
-Q_DECLARE_INTERFACE(CPluginFactory, CPluginFactory_iid)
+#define CPlugin_iid "KangLinStudio.Rabbit.RemoteControl.CPlugin"
+Q_DECLARE_INTERFACE(CPlugin, CPlugin_iid)
 QT_END_NAMESPACE
 
-#endif // CPLUGINFACTORY_H
+#endif // CPLUGIN_H_KL_2021_07_23

@@ -9,7 +9,7 @@
     #include "QUIWidget/QUIWidget.h"
 #endif
 
-CConnecterDesktop::CConnecterDesktop(CPluginFactory *parent)
+CConnecterDesktop::CConnecterDesktop(CPlugin *parent)
     : CConnecter(parent),
       m_bExit(false),
       m_pThread(nullptr),

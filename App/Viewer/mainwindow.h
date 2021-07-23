@@ -80,7 +80,7 @@ private:
     bool m_bFullScreen;
 
 public:
-    virtual int onProcess(const QString &id, CPluginFactory *pFactory) override;
+    virtual int onProcess(const QString &id, CPlugin *pFactory) override;
 private:
     CManageConnecter m_ManageConnecter;
     

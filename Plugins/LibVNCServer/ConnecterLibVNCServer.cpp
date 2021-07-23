@@ -2,7 +2,7 @@
 #include "DlgSettingsLibVnc.h"
 #include <QDebug>
 
-CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginFactory *parent) : CConnecterDesktop(parent)
+CConnecterLibVNCServer::CConnecterLibVNCServer(CPlugin *parent) : CConnecterDesktop(parent)
 {
     m_pParameter = &m_Para;
     m_Para.nPort = 5900;

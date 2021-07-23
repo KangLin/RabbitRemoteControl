@@ -10,7 +10,7 @@
 #include <QMap>
 #include <QIcon>
 #include <QTranslator>
-#include "PluginFactory.h"
+#include "Plugin.h"
 
 /**
  * \~english \brief manage plugins and connecter
@@ -38,7 +38,7 @@ public:
     class Handle{
     public:
         Handle(): m_bIgnoreReturn(false){}
-        virtual int onProcess(const QString& id, CPluginFactory* pFactory) = 0;
+        virtual int onProcess(const QString& id, CPlugin* pFactory) = 0;
         int m_bIgnoreReturn;
     };
     virtual int EnumPlugins(Handle* handle);
@@ -48,7 +48,7 @@ private:
     int FindPlugins(QDir dir, QStringList filters);
 
 private:
-    QMap<QString, CPluginFactory*> m_Plugins;
+    QMap<QString, CPlugin*> m_Plugins;
     
     qint8 m_FileVersion;
 

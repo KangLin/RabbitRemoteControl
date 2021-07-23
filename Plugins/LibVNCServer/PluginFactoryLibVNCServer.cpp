@@ -4,7 +4,7 @@
 #include "QApplication"
 #include <QDebug>
 
-CPluginFactoryLibVNCServer::CPluginFactoryLibVNCServer(QObject *parent) : CPluginFactory(parent)
+CPluginFactoryLibVNCServer::CPluginFactoryLibVNCServer(QObject *parent) : CPlugin(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_LibVNCServer);

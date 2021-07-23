@@ -13,7 +13,7 @@ class TERMINAL_EXPORT CConnecterPluginsTerminal : public CConnecter
 {
     Q_OBJECT
 public:
-    explicit CConnecterPluginsTerminal(CPluginFactory *parent);
+    explicit CConnecterPluginsTerminal(CPlugin *parent);
     virtual ~CConnecterPluginsTerminal();
 
     int OnRun();

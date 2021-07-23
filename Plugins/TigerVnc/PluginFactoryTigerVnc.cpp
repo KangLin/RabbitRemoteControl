@@ -10,7 +10,7 @@
 
 static bool initlog = false;
 CPluginFactoryTigerVnc::CPluginFactoryTigerVnc(QObject *parent)
-    : CPluginFactory(parent)
+    : CPlugin(parent)
 {
     //! [Initialize resorce]
     

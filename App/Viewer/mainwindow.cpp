@@ -468,7 +468,7 @@ void MainWindow::on_actionDefaultStyle_D_triggered()
     RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
 }
 
-int MainWindow::onProcess(const QString &id, CPluginFactory *pFactory)
+int MainWindow::onProcess(const QString &id, CPlugin *pFactory)
 {
     Q_UNUSED(id);
     // Connect menu and toolbar

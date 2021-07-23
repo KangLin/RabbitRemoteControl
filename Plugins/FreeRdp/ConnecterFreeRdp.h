@@ -11,7 +11,7 @@ class CConnecterFreeRdp : public CConnecterDesktop
 {
     Q_OBJECT
 public:
-    explicit CConnecterFreeRdp(CPluginFactory *parent = nullptr);
+    explicit CConnecterFreeRdp(CPlugin *parent = nullptr);
     virtual ~CConnecterFreeRdp() override;
     
     class CParameterFreeRdp: public CParameter

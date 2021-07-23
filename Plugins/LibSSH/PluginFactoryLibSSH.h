@@ -10,7 +10,7 @@ class CPluginFactoryLibSSH : public CPluginFactory
     Q_INTERFACES(CPluginFactory)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginFactory_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
     
 public:

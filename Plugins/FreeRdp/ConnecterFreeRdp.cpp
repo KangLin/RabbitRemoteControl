@@ -5,7 +5,7 @@
 #include <QDebug>
 #include "DlgSetFreeRdp.h"
 
-CConnecterFreeRdp::CConnecterFreeRdp(CPluginFactory *parent)
+CConnecterFreeRdp::CConnecterFreeRdp(CPlugin *parent)
     : CConnecterDesktop(parent)
 {
     m_pParameter = &m_ParameterFreeRdp;

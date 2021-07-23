@@ -13,7 +13,7 @@ set(INSTALL_HEADER_FILES
     FrmViewer.h
     Connecter.h
     ManageConnecter.h
-    PluginFactory.h
+    Plugin.h
     ConnecterDesktop.h
     Parameter.h 
     )
@@ -29,7 +29,7 @@ set(SOURCE_FILES
     Connecter.cpp
     Connect.cpp
     ManageConnecter.cpp
-    PluginFactory.cpp
+    Plugin.cpp
     ConnecterDesktop.cpp
     ConnectThread.cpp
     Parameter.cpp  

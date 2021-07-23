@@ -8,7 +8,7 @@ class CDlgSettingsLibVnc;
 class CConnecterLibVNCServer : public CConnecterDesktop
 {
 public:
-    explicit CConnecterLibVNCServer(CPluginFactory *parent);
+    explicit CConnecterLibVNCServer(CPlugin *parent);
     virtual ~CConnecterLibVNCServer() override;
 
 public:

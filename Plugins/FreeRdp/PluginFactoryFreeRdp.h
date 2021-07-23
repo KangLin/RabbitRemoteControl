@@ -3,16 +3,16 @@
 #ifndef MANAGECONNECTFREERDP_H
 #define MANAGECONNECTFREERDP_H
 
-#include "PluginFactory.h"
+#include "Plugin.h"
 #include <QTranslator>
 
-class CPluginFactoryFreeRdp : public CPluginFactory
+class CPluginFactoryFreeRdp : public CPlugin
 {
     Q_OBJECT
-    Q_INTERFACES(CPluginFactory)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginFactory_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
     
 public:

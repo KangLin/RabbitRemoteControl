@@ -25,7 +25,7 @@
 \brief 控制端插件接口.
 \details
 写一个插件：
-- 实现 CPluginFactory 。例如：\ref CPluginFactoryTigerVnc 
+- 实现 CPlugin 。例如：\ref CPluginTigerVnc 
   - 在类声明中实现Qt接口:
     \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.h Qt plugin interface
   - 在构造函数中初始化操作。例如：初始化资源，加载翻译资源等
@@ -55,18 +55,18 @@
 保存参数到文件
 
 
-\class CPluginFactory
+\class CPlugin
 \brief 控制者插件接口。建立 CConnecter 实例，它由协议插件实现。
 
-\fn CPluginFactory::CPluginFactory(QObject *parent)
+\fn CPlugin::CPlugin(QObject *parent)
 \brief 初始化操作。例如：初始化资源，加载翻译资源等，例如：
 \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.cpp Initialize resorce
 \note  派生类必须实现它.
 
-\fn CPluginFactory::~CPluginFactory()
+\fn CPlugin::~CPlugin()
 \brief 派生类实现它，用于释放资源。例如：
 
-\fn CConnecter* CPluginFactory::CreateConnecter(const QString& szProtol)
+\fn CConnecter* CPlugin::CreateConnecter(const QString& szProtol)
 \brief 新建 CConnecter 实例。仅由 CManageConnecter 调用
 \return 返回 CConnecter 指针, 它的所有者是调用者。
 \note 此函数新建一个堆栈对象指针，
@@ -82,8 +82,8 @@
 1. 桌面类连接： \ref CConnecterDesktop
 2. 控制台类连接：\ref CConnecterPluginsTerminal
 
-\fn CConnecter::CConnecter(CPluginFactory *parent) 
-\param parent: 此指针必须是相应的 CPluginFactory 派生类的实例指针
+\fn CConnecter::CConnecter(CPlugin *parent) 
+\param parent: 此指针必须是相应的 CPlugin 派生类的实例指针
 
 \fn QString CConnecter::ServerName()
 * \brief 当前连接名。例如：服务名或 IP:端口

@@ -3,18 +3,18 @@
 #ifndef CMANAGECONNECTTIGERVNC_H
 #define CMANAGECONNECTTIGERVNC_H
 
-#include "PluginFactory.h"
+#include "Plugin.h"
 #include <QTranslator>
 
-class CPluginFactoryTigerVnc : public CPluginFactory
+class CPluginFactoryTigerVnc : public CPlugin
 {
     Q_OBJECT
     
     /// ![Qt plugin interface]
-    Q_INTERFACES(CPluginFactory)
+    Q_INTERFACES(CPlugin)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginFactory_iid)
+    Q_PLUGIN_METADATA(IID CPlugin_iid)
 #endif
     /// ![Qt plugin interface]
     

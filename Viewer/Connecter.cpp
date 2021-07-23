@@ -3,11 +3,11 @@
 #include "Connecter.h"
 #include <QClipboard>
 #include <QApplication>
-#include "PluginFactory.h"
+#include "Plugin.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 
-CConnecter::CConnecter(CPluginFactory *parent) : QObject(parent),
+CConnecter::CConnecter(CPlugin *parent) : QObject(parent),
     m_pPluginFactory(parent)
 {
 }
@@ -62,7 +62,7 @@ QString CConnecter::ServerName()
     return m_szServerName;
 }
 
-const CPluginFactory* CConnecter::GetPluginFactory() const
+const CPlugin* CConnecter::GetPluginFactory() const
 {
     return m_pPluginFactory;
 }
