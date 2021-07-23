@@ -14,7 +14,7 @@
 #include <QMimeData>
 #include "viewer_export.h"
 
-class CPlugin;
+class CPluginViewer;
 
 /** 
  * \~english
@@ -36,7 +36,7 @@ public:
     /**
      * \~english \param parent: The parent pointer must be specified as the corresponding CPluginFactory derived class
      */
-    explicit CConnecter(CPlugin *parent);
+    explicit CConnecter(CPluginViewer *parent);
     virtual ~CConnecter();
     
     virtual const QString Id();
@@ -69,7 +69,7 @@ public:
      */
     virtual int OpenDialogSettings(QWidget* parent = nullptr) = 0;
 
-    const CPlugin* GetPluginFactory() const;
+    const CPluginViewer* GetPluginFactory() const;
     
     /**
      * \~english \brief Load parameters from file
@@ -109,7 +109,7 @@ Q_SIGNALS:
     void sigInformation(const QString& szInfo);
     
 private:
-    const CPlugin* m_pPluginFactory;
+    const CPluginViewer* m_pPluginFactory;
 
     QString m_szServerName;
 };

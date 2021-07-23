@@ -5,7 +5,7 @@
 #include <QDebug>
 #include "RabbitCommonLog.h"
 
-CConnecterTigerVnc::CConnecterTigerVnc(CPlugin *parent)
+CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
     : CConnecterDesktop(parent),
       m_pConnect(nullptr)
 {

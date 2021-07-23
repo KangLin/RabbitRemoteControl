@@ -40,7 +40,7 @@ int CManageConnecter::LoadPlugins()
 {
     foreach (QObject *plugin, QPluginLoader::staticInstances())
     {
-        CPlugin* p = qobject_cast<CPlugin*>(plugin);
+        CPluginViewer* p = qobject_cast<CPluginViewer*>(plugin);
         if(p)
         {
             m_Plugins.insert(p->Id(), p);
@@ -93,7 +93,7 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
         QPluginLoader loader(szPlugins);
         QObject *plugin = loader.instance();
         if (plugin) {
-            CPlugin* p = qobject_cast<CPlugin*>(plugin);
+            CPluginViewer* p = qobject_cast<CPluginViewer*>(plugin);
             if(p)
             {
                 m_Plugins.insert(p->Id(), p);
@@ -171,7 +171,7 @@ int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecte
 
     QDataStream d(&f);
     d << m_FileVersion;
-    const CPlugin* pFactory = pConnecter->GetPluginFactory();
+    const CPluginViewer* pFactory = pConnecter->GetPluginFactory();
     // In the CManageConnecter derived class,
     // the CreateConnecter function constructs the derived class of CConnecter,
     // and its parent pointer must be specified as the corresponding CPluginFactory derived class
@@ -188,7 +188,7 @@ int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecte
 int CManageConnecter::EnumPlugins(Handle *handle)
 {
     int nRet = 0;
-    QMap<QString, CPlugin*>::iterator it;
+    QMap<QString, CPluginViewer*>::iterator it;
     for(it = m_Plugins.begin(); it != m_Plugins.end(); it++)
     {
         if(handle->m_bIgnoreReturn)

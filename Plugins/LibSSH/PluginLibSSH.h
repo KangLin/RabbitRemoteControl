@@ -3,16 +3,16 @@
 
 #pragma once
 
-#include "Plugin.h"
+#include "PluginViewer.h"
 #include <QTranslator>
 
-class CPluginLibSSH : public CPlugin
+class CPluginLibSSH : public CPluginViewer
 {
     Q_OBJECT
-    Q_INTERFACES(CPlugin)
+    Q_INTERFACES(CPluginViewer)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPlugin_iid)
+    Q_PLUGIN_METADATA(IID CPluginViewer_iid)
 #endif
     
 public:

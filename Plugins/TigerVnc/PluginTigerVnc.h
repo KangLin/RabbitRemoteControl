@@ -5,18 +5,18 @@
 
 #pragma once
 
-#include "Plugin.h"
+#include "PluginViewer.h"
 #include <QTranslator>
 
-class CPluginTigerVnc : public CPlugin
+class CPluginTigerVnc : public CPluginViewer
 {
     Q_OBJECT
     
     /// ![Qt plugin interface]
-    Q_INTERFACES(CPlugin)
+    Q_INTERFACES(CPluginViewer)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPlugin_iid)
+    Q_PLUGIN_METADATA(IID CPluginViewer_iid)
 #endif
     /// ![Qt plugin interface]
     

@@ -7,7 +7,7 @@ class CConnecterTerminal : public CConnecterPluginsTerminal
 {
     Q_OBJECT
 public:
-    explicit CConnecterTerminal(CPlugin *parent);
+    explicit CConnecterTerminal(CPluginViewer *parent);
     virtual ~CConnecterTerminal();
     
     // CConnecterPluginsTerminal interface

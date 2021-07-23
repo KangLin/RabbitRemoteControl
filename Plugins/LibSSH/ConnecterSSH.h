@@ -10,7 +10,7 @@ class CConnecterSSH : public CConnecterPluginsTerminal
     Q_OBJECT
 
 public:
-    explicit CConnecterSSH(CPlugin *parent);
+    explicit CConnecterSSH(CPluginViewer *parent);
     virtual ~CConnecterSSH();
 
     virtual CConnect *InstanceConnect() override;

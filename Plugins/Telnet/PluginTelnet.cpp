@@ -8,7 +8,7 @@
 #include <QDebug>
 
 CPluginTelnet::CPluginTelnet(QObject *parent)
-    : CPlugin(parent)
+    : CPluginViewer(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_Telnet);

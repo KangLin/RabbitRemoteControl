@@ -2,7 +2,7 @@
 #include "DlgSettingsSSH.h"
 #include "ConnectSSH.h"
 
-CConnecterSSH::CConnecterSSH(CPlugin *parent)
+CConnecterSSH::CConnecterSSH(CPluginViewer *parent)
     : CConnecterPluginsTerminal(parent),
       m_pPara(new CParameterSSH())
 {

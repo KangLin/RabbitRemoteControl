@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPLUGIN_H_KL_2021_07_23
-#define CPLUGIN_H_KL_2021_07_23
+#ifndef CPLUGINVIEWER_H_KL_2021_07_23
+#define CPLUGINVIEWER_H_KL_2021_07_23
 
 #pragma once
 
@@ -16,7 +16,7 @@
  * \ingroup VIEWER_PLUGIN_API
  * \see CConnecter
  */
-class VIEWER_EXPORT CPlugin : public QObject
+class VIEWER_EXPORT CPluginViewer : public QObject
 {
     Q_OBJECT
 
@@ -31,7 +31,7 @@ public:
      * \~
      * \param parent
      */
-    explicit CPlugin(QObject *parent = nullptr);
+    explicit CPluginViewer(QObject *parent = nullptr);
     /**
      * \~english
      * \brief When the derived class is implemented,
@@ -41,7 +41,7 @@ public:
      * \~
      * \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.cpp Clean resource
      */
-    virtual ~CPlugin();
+    virtual ~CPluginViewer();
 
     /// \~english ID. Default: Protol() + ":" + Name()
     virtual const QString Id() const;
@@ -68,8 +68,8 @@ public:
 };
 
 QT_BEGIN_NAMESPACE
-#define CPlugin_iid "KangLinStudio.Rabbit.RemoteControl.CPlugin"
-Q_DECLARE_INTERFACE(CPlugin, CPlugin_iid)
+#define CPluginViewer_iid "KangLinStudio.Rabbit.RemoteControl.CPluginViewer"
+Q_DECLARE_INTERFACE(CPluginViewer, CPluginViewer_iid)
 QT_END_NAMESPACE
 
-#endif // CPLUGIN_H_KL_2021_07_23
+#endif // CPLUGINVIEWER_H_KL_2021_07_23

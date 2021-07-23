@@ -24,7 +24,7 @@ class VIEWER_EXPORT CConnecterDesktop : public CConnecter
 {
     Q_OBJECT
 public:
-    explicit CConnecterDesktop(CPlugin *parent = nullptr);
+    explicit CConnecterDesktop(CPluginViewer *parent = nullptr);
     virtual ~CConnecterDesktop();
     
     /**

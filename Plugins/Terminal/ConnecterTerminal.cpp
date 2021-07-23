@@ -1,7 +1,7 @@
 #include "ConnecterTerminal.h"
 #include "DlgSettingsTerminal.h"
 
-CConnecterTerminal::CConnecterTerminal(CPlugin *parent) 
+CConnecterTerminal::CConnecterTerminal(CPluginViewer *parent) 
     : CConnecterPluginsTerminal(parent)
 {
     m_pPara = new CParameterTerminal();

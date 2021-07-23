@@ -13,7 +13,7 @@
 
 #include "RabbitCommonLog.h"
 
-CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPlugin *parent)
+CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginViewer *parent)
     : CConnecter(parent),
       m_pConsole(nullptr),
       m_pThread(nullptr),

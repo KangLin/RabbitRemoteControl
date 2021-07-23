@@ -1,16 +1,16 @@
 #ifndef CPluginLibVNCServer_H_KL_2021_07_23
 #define CPluginLibVNCServer_H_KL_2021_07_23
 
-#include "Plugin.h"
+#include "PluginViewer.h"
 #include <QTranslator>
 
-class CPluginLibVNCServer : public CPlugin
+class CPluginLibVNCServer : public CPluginViewer
 {
     Q_OBJECT
-    Q_INTERFACES(CPlugin)
+    Q_INTERFACES(CPluginViewer)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPlugin_iid)
+    Q_PLUGIN_METADATA(IID CPluginViewer_iid)
 #endif
     
 public:
