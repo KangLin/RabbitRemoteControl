@@ -21,15 +21,16 @@
 \details
   Write a plugin:
 - The format of the generated plug-in target name is: PluginViewer${PROJECT_NAME}
+  \include Plugins/TigerVnc/Viewer/CMakeLists.txt
 - Implement CPlugin. For example: \ref CPluginTigerVnc
   - Implement the Qt interface in the class declaration:
-    \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.h Qt plugin interface
+    \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.h Qt plugin interface
   - Initialize the operation in the constructor. For example: initializing resources, loading translation resources, etc.
-    \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp Initialize resorce
+    \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
   - Release resources in the destructor.
-     \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp Clean resource
+     \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Clean resource
   - Implement properties and functions
-     \include Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp
+     \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
 - Implement \ref CConnecter. For example: \ref CConnecterTigerVnc
   - Implement remote desktop, which can be derived from \ref CConnecterPlugins
   - Implement remote console, which can be derived from \ref CConnecterPluginsTerminal

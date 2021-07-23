@@ -26,15 +26,16 @@
 \details
 写一个插件：
 - 生成插件目标名称格式为： PluginViewer${PROJECT_NAME}
+    \include Plugins/TigerVnc/Viewer/CMakeLists.txt
 - 实现 CPlugin 。例如：\ref CPluginTigerVnc 
   - 在类声明中实现Qt接口:
-    \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.h Qt plugin interface
+    \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.h Qt plugin interface
   - 在构造函数中初始化操作。例如：初始化资源，加载翻译资源等
-    \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp Initialize resorce
+    \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
   - 在析构函数中释放资源。
-    \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp Clean resource
+    \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Clean resource
   - 实现属性、函数
-    \include Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp
+    \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
 - 实现 \ref CConnecter 。例如： \ref CConnecterTigerVnc
   - 实现远程桌面，可以从 \ref CConnecterPlugins 派生
   - 实现远程控制台，可以从 \ref CConnecterPluginsTerminal 派生
@@ -61,7 +62,7 @@
 
 \fn CPlugin::CPlugin(QObject *parent)
 \brief 初始化操作。例如：初始化资源，加载翻译资源等，例如：
-\snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.cpp Initialize resorce
+\snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
 \note  派生类必须实现它.
 
 \fn CPlugin::~CPlugin()
