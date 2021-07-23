@@ -1,6 +1,6 @@
 #include "DataChannel.h"
-#include "Viewer/Plugins/TigerVnc/QSocketInStream.h"
-#include "Viewer/Plugins/TigerVnc/QSocketOutStream.h"
+#include "../Viewer/QSocketInStream.h"
+#include "../Viewer/QSocketOutStream.h"
 
 CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
     : QIODevice(parent),

@@ -1,6 +1,6 @@
 #include "Connection.h"
-#include "Viewer/Plugins/TigerVnc/QSocketInStream.h"
-#include "Viewer/Plugins/TigerVnc/QSocketOutStream.h"
+#include "../Viewer/QSocketInStream.h"
+#include "../Viewer/QSocketOutStream.h"
 #include "RabbitCommonLog.h"
 #include "rfb/SSecurityVncAuth.h"
 #include "RabbitCommonTools.h"

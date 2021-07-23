@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(PluginServiceTigerVnc)
+project(TigerVnc)
 
 find_package(tigervnc)
 message("tigervnc_FOUND:${tigervnc_FOUND}")
@@ -8,24 +8,27 @@ if(NOT tigervnc_FOUND)
     return()
 endif()
 
-SET(SRC_LIBS tigervnc RabbitRemoteControlService)
+SET(SRC_LIBS tigervnc Viewer)
 SET(SOURCE_FILES
-    PluginServiceTigerVNC.cpp
-    ServiceTigerVNC.cpp
-    Connection.cpp
-    DataChannel.cpp
-    ${CMAKE_SOURCE_DIR}/Viewer/Plugins/TigerVnc/QSocketOutStream.h
-    ${CMAKE_SOURCE_DIR}/Viewer/Plugins/TigerVnc/QSocketInStream.h
+    ConnectTigerVnc.cpp
+    FramePixelBuffer.cpp
+    ConnecterTigerVnc.cpp
+    PluginTigerVnc.cpp
+    DlgSettingsTigerVnc.cpp
+    QSocketInStream.cpp
+    QSocketOutStream.cpp
     )
 SET(HEADER_FILES
-    PluginServiceTigerVNC.h
-    ServiceTigerVNC.h
-    Connection.h
-    DataChannel.h
-    ${CMAKE_SOURCE_DIR}/Viewer/Plugins/TigerVnc/QSocketOutStream.cpp
-    ${CMAKE_SOURCE_DIR}/Viewer/Plugins/TigerVnc/QSocketInStream.cpp
+    ConnectTigerVnc.h
+    FramePixelBuffer.h
+    ConnecterTigerVnc.h
+    PluginTigerVnc.h
+    DlgSettingsTigerVnc.h
+    QSocketInStream.h
+    QSocketOutStream.h
     )
 SET(UI_FILES
+    DlgSettingsTigerVnc.ui
     )
 
 # Translations
@@ -47,6 +50,4 @@ ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${SRC_LIBS}
-    PRIVATE_INCLUDE_DIRS
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
     )
