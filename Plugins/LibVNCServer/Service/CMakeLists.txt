@@ -28,7 +28,11 @@ else()
     message("libvnc found: ${libvncLibs}")
 endif()
 
-list(APPEND SRC_LIBS RabbitRemoteControlService)
+if(NOT TARGET Service)
+    return()
+endif()
+
+list(APPEND SRC_LIBS Service)
 SET(SOURCE_FILES
     PluginServiceLibVNCServer.cpp
     ServiceLibVNCServer.cpp
