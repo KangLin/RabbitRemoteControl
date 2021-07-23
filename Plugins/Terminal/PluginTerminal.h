@@ -1,10 +1,10 @@
-#ifndef CPLUGINFACTORYTERMINAL_H
-#define CPLUGINFACTORYTERMINAL_H
+#ifndef CPLUGINTERMINAL_H_KL_2021_07_23
+#define CPLUGINTERMINAL_H_KL_2021_07_23
 
 #include "Plugin.h"
 #include <QTranslator>
 
-class CPluginFactoryTerminal : public CPlugin
+class CPluginTerminal : public CPlugin
 {
     Q_OBJECT
     Q_INTERFACES(CPlugin)
@@ -14,8 +14,8 @@ class CPluginFactoryTerminal : public CPlugin
 #endif
     
 public:
-    explicit CPluginFactoryTerminal(QObject *parent = nullptr);
-    virtual ~CPluginFactoryTerminal();
+    explicit CPluginTerminal(QObject *parent = nullptr);
+    virtual ~CPluginTerminal();
     
     virtual const QString Protol() const override;
     virtual const QString Name() const override;
@@ -27,4 +27,4 @@ private:
     QTranslator m_Translator;
 };
 
-#endif // CPLUGINFACTORYTERMINAL_H
+#endif // CPLUGINTERMINAL_H_KL_2021_07_23

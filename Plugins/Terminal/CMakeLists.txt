@@ -5,13 +5,13 @@ project(PluginViewerTerminal)
 set(lib_terminal Terminal)
 
 SET(SOURCE_FILES
-    PluginFactoryTerminal.cpp
+    PluginTerminal.cpp
     DlgSettingsTerminal.cpp
     ConnecterTerminal.cpp
     )
 
 SET(HEADER_FILES
-    PluginFactoryTerminal.h
+    PluginTerminal.h
     DlgSettingsTerminal.h
     ConnecterTerminal.h
     )

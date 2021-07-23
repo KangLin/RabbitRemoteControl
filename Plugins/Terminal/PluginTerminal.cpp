@@ -1,4 +1,4 @@
-#include "PluginFactoryTerminal.h"
+#include "PluginTerminal.h"
 #include "RabbitCommonDir.h"
 #include "ConnecterTerminal.h"
 
@@ -6,7 +6,7 @@
 #include <QLocale>
 #include <QDebug>
 
-CPluginFactoryTerminal::CPluginFactoryTerminal(QObject *parent)
+CPluginTerminal::CPluginTerminal(QObject *parent)
     : CPlugin(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
@@ -20,7 +20,7 @@ CPluginFactoryTerminal::CPluginFactoryTerminal(QObject *parent)
     qApp->installTranslator(&m_Translator);
 }
 
-CPluginFactoryTerminal::~CPluginFactoryTerminal()
+CPluginTerminal::~CPluginTerminal()
 {
     qDebug() << "CPluginFactoryTerminal::~CPluginFactoryTerminal()";
     qApp->removeTranslator(&m_Translator);
@@ -29,27 +29,27 @@ CPluginFactoryTerminal::~CPluginFactoryTerminal()
 #endif
 }
 
-const QString CPluginFactoryTerminal::Protol() const
+const QString CPluginTerminal::Protol() const
 {
     return "Terminal";
 }
 
-const QString CPluginFactoryTerminal::Name() const
+const QString CPluginTerminal::Name() const
 {
     return tr("Terminal");
 }
 
-const QString CPluginFactoryTerminal::Description() const
+const QString CPluginTerminal::Description() const
 {
     return tr("Terminal: native(shell) and remote(telnet, etc) terminal");
 }
 
-const QIcon CPluginFactoryTerminal::Icon() const
+const QIcon CPluginTerminal::Icon() const
 {
     return QIcon(":/image/Console");
 }
 
-CConnecter *CPluginFactoryTerminal::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginTerminal::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
