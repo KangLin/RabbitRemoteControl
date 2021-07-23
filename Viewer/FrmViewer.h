@@ -6,7 +6,7 @@
 #pragma once
 
 #include <QWidget>
-#include "rabbitremotecontrol_export.h"
+#include "viewer_export.h"
 
 class CConnecter;
 
@@ -28,7 +28,7 @@ class CFrmViewer;
  * \see  CConnecter CConnect
  * \ingroup VIEWER_PLUGIN_API
  */
-class RABBITREMOTECONTROL_EXPORT CFrmViewer : public QWidget
+class VIEWER_EXPORT CFrmViewer : public QWidget
 {
     Q_OBJECT
 

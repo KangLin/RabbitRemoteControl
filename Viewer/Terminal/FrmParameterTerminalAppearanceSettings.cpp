@@ -13,28 +13,28 @@
 #include <QTranslator>
 #include <QFont>
 
-class CRabbitRemoteControlTerminal
+class CTerminal
 {
 public:
-    CRabbitRemoteControlTerminal()
+    CTerminal()
     {
     #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-        Q_INIT_RESOURCE(translations_RabbitRemoteControlTerminal);
+        Q_INIT_RESOURCE(translations_Terminal);
     #endif
     
         QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-                + QDir::separator() + "RabbitRemoteControlTerminal_" + QLocale::system().name() + ".qm";
+                + QDir::separator() + "Terminal_" + QLocale::system().name() + ".qm";
         if(!m_Translator.load(szTranslatorFile))
             qCritical() << "Open translator file fail:" << szTranslatorFile;
         qApp->installTranslator(&m_Translator);
     };
     
-    ~CRabbitRemoteControlTerminal()
+    ~CTerminal()
     {
         qApp->removeTranslator(&m_Translator);
-        qDebug() << "CRabbitRemoteControlTerminal::~CRabbitRemoteControlTerminal()";
+        qDebug() << "CTerminal::~CTerminal()";
     #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-        Q_INIT_RESOURCE(translations_RabbitRemoteControlTerminal);
+        Q_INIT_RESOURCE(translations_Terminal);
     #endif
     };
     
@@ -42,7 +42,7 @@ private:
     QTranslator m_Translator;
 };
 
-const CRabbitRemoteControlTerminal g_CRabbitRemoteControlTerminal;
+const CTerminal g_CTerminal;
 
 CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings(CParameterTerminal *pPara, QWidget *parent) :
     QWidget(parent),

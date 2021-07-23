@@ -26,7 +26,7 @@ endif()
 
 project(LibSSH)
 
-list(APPEND libssh_LIB RabbitRemoteControlTerminal)
+list(APPEND libssh_LIB Terminal)
 
 SET(SOURCE_FILES
     PluginFactoryLibSSH.cpp

@@ -10,11 +10,11 @@ CPluginFactoryTerminal::CPluginFactoryTerminal(QObject *parent)
     : CPluginFactory(parent)
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_Terminal);
+    Q_INIT_RESOURCE(translations_PluginViewerTerminal);
 #endif
 
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/Terminal_" + QLocale::system().name() + ".qm";
+            + "/PluginViewerTerminal_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
         qCritical() << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);
@@ -25,7 +25,7 @@ CPluginFactoryTerminal::~CPluginFactoryTerminal()
     qDebug() << "CPluginFactoryTerminal::~CPluginFactoryTerminal()";
     qApp->removeTranslator(&m_Translator);
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_Terminal);
+    Q_CLEANUP_RESOURCE(translations_PluginViewerTerminal);
 #endif
 }
 

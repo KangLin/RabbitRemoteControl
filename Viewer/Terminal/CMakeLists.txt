@@ -6,7 +6,7 @@ if(NOT qtermwidget5_FOUND)
 endif()
 
 # Terminal
-project(RabbitRemoteControlTerminal LANGUAGES CXX)
+project(Terminal LANGUAGES CXX)
 
 set(INSTALL_HEADER_FILES
     ConnecterPluginsTerminal.h

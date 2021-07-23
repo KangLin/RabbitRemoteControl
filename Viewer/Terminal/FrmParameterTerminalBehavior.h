@@ -3,13 +3,12 @@
 
 #include <QWidget>
 #include "ParameterTerminal.h"
-#include "rabbitremotecontrolterminal_export.h"
 
 namespace Ui {
 class CFrmParameterTerminalBehavior;
 }
 
-class RABBITREMOTECONTROLTERMINAL_EXPORT CFrmParameterTerminalBehavior : public QWidget
+class TERMINAL_EXPORT CFrmParameterTerminalBehavior : public QWidget
 {
     Q_OBJECT
     

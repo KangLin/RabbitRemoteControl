@@ -28,7 +28,7 @@
  * \see  CConnecter CFrmViewer
  * \ingroup VIEWER_PLUGIN_API
  */
-class RABBITREMOTECONTROL_EXPORT CConnect : public QObject
+class VIEWER_EXPORT CConnect : public QObject
 {
     Q_OBJECT
 

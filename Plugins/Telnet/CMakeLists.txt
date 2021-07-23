@@ -2,7 +2,7 @@
 
 project(Telnet)
 
-set(_telnet_libs RabbitRemoteControlTerminal)
+set(_telnet_libs Terminal)
 
 find_package(libtelnet)
 if(libtelnet_FOUND)

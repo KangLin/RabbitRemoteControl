@@ -20,7 +20,7 @@ class CConnectThread;
  *   2. Implement \ref GetDialogSettings
  * \see CConnectThread
  */
-class RABBITREMOTECONTROL_EXPORT CConnecterDesktop : public CConnecter
+class VIEWER_EXPORT CConnecterDesktop : public CConnecter
 {
     Q_OBJECT
 public:

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "rabbitremotecontrol_export.h"
+#include "viewer_export.h"
 #include <QObject>
 #include <QDataStream>
 
@@ -21,7 +21,7 @@
  * @~
  * @ingroup VIEWER_PLUGIN_API
  */
-class RABBITREMOTECONTROL_EXPORT CParameter : public QObject
+class VIEWER_EXPORT CParameter : public QObject
 {
     Q_OBJECT
 

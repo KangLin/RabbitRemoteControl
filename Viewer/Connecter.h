@@ -12,7 +12,7 @@
 #include <QDialog>
 #include <QIcon>
 #include <QMimeData>
-#include "rabbitremotecontrol_export.h"
+#include "viewer_export.h"
 
 class CPluginFactory;
 
@@ -28,7 +28,7 @@ class CPluginFactory;
  * \see   CPluginFactory CFrmViewer CConnect
  * \ingroup VIEWER_API VIEWER_PLUGIN_API
  */
-class RABBITREMOTECONTROL_EXPORT CConnecter : public QObject
+class VIEWER_EXPORT CConnecter : public QObject
 {
     Q_OBJECT
     

@@ -1,8 +1,8 @@
 # Author: Kang Lin(kl222@126.com)
 
-project(Terminal)
+project(PluginViewerTerminal)
 
-set(lib_terminal RabbitRemoteControlTerminal)
+set(lib_terminal Terminal)
 
 SET(SOURCE_FILES
     PluginFactoryTerminal.cpp

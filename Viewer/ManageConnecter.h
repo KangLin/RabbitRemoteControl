@@ -18,7 +18,7 @@
  * \see   CPluginFactory CConnecter
  * \ingroup VIEWER_API
  */
-class RABBITREMOTECONTROL_EXPORT CManageConnecter : public QObject
+class VIEWER_EXPORT CManageConnecter : public QObject
 {
     Q_OBJECT
     
