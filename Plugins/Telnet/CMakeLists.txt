@@ -63,14 +63,14 @@ if(BUILD_TYPE STREQUAL "debug")
 endif()
 
 if(_libtelnet_include_dir)
-    ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+    ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
         PRIVATE_INCLUDE_DIRS ${_libtelnet_include_dir}
         )
 else()
-    ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+    ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}

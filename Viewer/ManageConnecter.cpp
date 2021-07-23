@@ -50,9 +50,9 @@ int CManageConnecter::LoadPlugins()
     QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
     QStringList filters;
 #if defined (Q_OS_WINDOWS)
-        filters << "*.dll";
+        filters << "*PluginViewer*.dll";
 #else
-        filters << "*.so";
+        filters << "*PluginViewer*.so";
 #endif
     return FindPlugins(szPath, filters);
 }
@@ -64,9 +64,9 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
     if(filters.isEmpty())
     {
 #if defined (Q_OS_WINDOWS)
-        filters << "*.dll";
+        filters << "*PluginViewer*.dll";
 #else
-        filters << "*.so";
+        filters << "*PluginViewer*.so";
 #endif
     }
     

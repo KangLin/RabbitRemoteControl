@@ -20,6 +20,7 @@
 \brief Viewer plugin interfaces.
 \details
   Write a plugin:
+- The format of the generated plug-in target name is: PluginViewer${PROJECT_NAME}
 - Implement CPlugin. For example: \ref CPluginTigerVnc
   - Implement the Qt interface in the class declaration:
     \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.h Qt plugin interface

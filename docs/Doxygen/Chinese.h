@@ -25,6 +25,7 @@
 \brief 控制端插件接口.
 \details
 写一个插件：
+- 生成插件目标名称格式为： PluginViewer${PROJECT_NAME}
 - 实现 CPlugin 。例如：\ref CPluginTigerVnc 
   - 在类声明中实现Qt接口:
     \snippet Viewer/Plugins/TigerVnc/PluginTigerVnc.h Qt plugin interface
