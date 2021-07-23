@@ -1,12 +1,14 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef MANAGECONNECTFREERDP_H
-#define MANAGECONNECTFREERDP_H
+#ifndef CPluginFreeRdp_H_KL_2021_07_23
+#define CPluginFreeRdp_H_KL_2021_07_23
+
+#pragma once
 
 #include "Plugin.h"
 #include <QTranslator>
 
-class CPluginFactoryFreeRdp : public CPlugin
+class CPluginFreeRdp : public CPlugin
 {
     Q_OBJECT
     Q_INTERFACES(CPlugin)
@@ -16,8 +18,8 @@ class CPluginFactoryFreeRdp : public CPlugin
 #endif
     
 public:
-    explicit CPluginFactoryFreeRdp(QObject *parent = nullptr);
-    virtual ~CPluginFactoryFreeRdp() override;
+    explicit CPluginFreeRdp(QObject *parent = nullptr);
+    virtual ~CPluginFreeRdp() override;
     
     virtual const QString Name() const override;
     virtual const QString Description() const override;
@@ -30,4 +32,4 @@ private:
     QTranslator m_Translator;
 };
 
-#endif // MANAGECONNECTFREERDP_H
+#endif // CPluginFreeRdp_H_KL_2021_07_23

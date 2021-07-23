@@ -21,7 +21,7 @@ if(NOT WIN32)
 endif()
 
 SET(SOURCE_FILES
-    PluginFactoryFreeRdp.cpp
+    PluginFreeRdp.cpp
     ConnectFreeRdp.cpp
     ConnecterFreeRdp.cpp
     DlgSetFreeRdp.cpp
@@ -32,7 +32,7 @@ SET(SOURCE_FILES
     )
 
 SET(HEADER_FILES
-    PluginFactoryFreeRdp.h
+    PluginFreeRdp.h
     ConnectFreeRdp.h
     ConnecterFreeRdp.h
     DlgSetFreeRdp.h
