@@ -4,17 +4,17 @@
 <context>
     <name>CPluginServiceLibVNCServer</name>
     <message>
-        <location filename="../../PluginServiceLibVNCServer.cpp" line="38"/>
+        <location filename="../../PluginServiceLibVNCServer.cpp" line="39"/>
         <source>LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceLibVNCServer.cpp" line="43"/>
+        <location filename="../../PluginServiceLibVNCServer.cpp" line="44"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceLibVNCServer.cpp" line="44"/>
+        <location filename="../../PluginServiceLibVNCServer.cpp" line="45"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>

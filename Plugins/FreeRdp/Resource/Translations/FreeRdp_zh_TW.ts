@@ -123,7 +123,14 @@
     <name>CPluginFactoryFreeRdp</name>
     <message>
         <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation>RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
+        <translation type="vanished">RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
+    </message>
+</context>
+<context>
+    <name>CPluginFreeRdp</name>
+    <message>
+        <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
+        <translation type="unfinished">RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
     </message>
 </context>
 </TS>

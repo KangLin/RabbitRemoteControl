@@ -53,14 +53,21 @@
 <context>
     <name>CPluginFactoryTelnet</name>
     <message>
-        <location filename="../../PluginFactoryTelnet.cpp" line="40"/>
+        <source>Telnet: net terminal</source>
+        <translation type="vanished">Telnet: 网络终端</translation>
+    </message>
+</context>
+<context>
+    <name>CPluginTelnet</name>
+    <message>
+        <location filename="../../PluginTelnet.cpp" line="40"/>
         <source>Telnet</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFactoryTelnet.cpp" line="45"/>
+        <location filename="../../PluginTelnet.cpp" line="45"/>
         <source>Telnet: net terminal</source>
-        <translation>Telnet: 网络终端</translation>
+        <translation type="unfinished">Telnet: 网络终端</translation>
     </message>
 </context>
 </TS>

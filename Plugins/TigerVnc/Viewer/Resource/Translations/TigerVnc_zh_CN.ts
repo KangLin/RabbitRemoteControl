@@ -213,19 +213,30 @@
 <context>
     <name>CPluginFactoryTigerVnc</name>
     <message>
-        <location filename="../../PluginFactoryTigerVnc.cpp" line="56"/>
+        <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
+        <translation type="vanished">VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
+    </message>
+    <message>
+        <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
+        <translation type="vanished">VNC 是一个使用RFB(远程帧缓存)协议的程序。</translation>
+    </message>
+</context>
+<context>
+    <name>CPluginTigerVnc</name>
+    <message>
+        <location filename="../../PluginTigerVnc.cpp" line="56"/>
         <source>TigerVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFactoryTigerVnc.cpp" line="61"/>
+        <location filename="../../PluginTigerVnc.cpp" line="61"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation>VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
+        <translation type="unfinished">VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginFactoryTigerVnc.cpp" line="62"/>
+        <location filename="../../PluginTigerVnc.cpp" line="62"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
-        <translation>VNC 是一个使用RFB(远程帧缓存)协议的程序。</translation>
+        <translation type="unfinished">VNC 是一个使用RFB(远程帧缓存)协议的程序。</translation>
     </message>
 </context>
 </TS>

@@ -132,19 +132,12 @@
 <context>
     <name>CPluginFactoryLibVNCServer</name>
     <message>
-        <location filename="../../PluginFactoryLibVNCServer.cpp" line="31"/>
-        <source>LibVNCServer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../PluginFactoryLibVNCServer.cpp" line="36"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation type="unfinished">VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
+        <translation type="obsolete">VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginFactoryLibVNCServer.cpp" line="37"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
-        <translation type="unfinished">VNC 是一个使用 RFB（远程帧缓存)协议的程序集</translation>
+        <translation type="obsolete">VNC 是一个使用 RFB（远程帧缓存)协议的程序集</translation>
     </message>
 </context>
 <context>
@@ -156,6 +149,24 @@
     <message>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="vanished">VNC 是一个使用 RFB（远程帧缓存)协议的程序集</translation>
+    </message>
+</context>
+<context>
+    <name>CPluginLibVNCServer</name>
+    <message>
+        <location filename="../../PluginLibVNCServer.cpp" line="31"/>
+        <source>LibVNCServer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginLibVNCServer.cpp" line="36"/>
+        <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
+        <translation type="unfinished">VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
+    </message>
+    <message>
+        <location filename="../../PluginLibVNCServer.cpp" line="37"/>
+        <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
+        <translation type="unfinished">VNC 是一个使用 RFB（远程帧缓存)协议的程序集</translation>
     </message>
 </context>
 </TS>
