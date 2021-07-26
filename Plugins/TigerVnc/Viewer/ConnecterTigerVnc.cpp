@@ -39,26 +39,6 @@ qint16 CConnecterTigerVnc::Version()
     return 0;
 }
 
-int CConnecterTigerVnc::Connect()
-{
-    LOG_MODEL_DEBUG("TigerVnc", "CConnecterTigerVnc::Connect()");
-    int nRet = -1;
-    m_pConnect = InstanceConnect();
-    if(nullptr == m_pConnect) return nRet;
-    nRet = m_pConnect->Connect();
-    return nRet;    
-}
-
-int CConnecterTigerVnc::DisConnect()
-{
-    LOG_MODEL_DEBUG("TigerVnc", "CConnecterTigerVnc::DisConnect()");
-    if(m_pConnect)
-    {
-        emit sigDisconnected();
-    }
-    return 0;
-}
-
 QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 {
     Q_UNUSED(parent)

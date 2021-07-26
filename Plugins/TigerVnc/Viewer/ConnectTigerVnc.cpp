@@ -102,7 +102,7 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 
 int CConnectTigerVnc::Connect()
 {
-    int nRet = 0;
+    int nRet = 1;
     try{
         Q_ASSERT(!m_pSock);
         m_pSock = new QTcpSocket(this);
@@ -154,7 +154,7 @@ int CConnectTigerVnc::Connect()
 
         m_pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
         
-        return 0;
+        return 1;
     } catch (rdr::Exception& e) {
         LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
         emit sigError(-1, e.str());
@@ -209,6 +209,7 @@ void CConnectTigerVnc::slotReadyRead()
     try {
         while(processMsg())
             ;
+        return;
     } catch (rdr::EndOfStream& e) {
         LOG_MODEL_ERROR("TigerVnc", "exec error: %s", e.str());
         emit sigError(-1, e.str());
@@ -216,6 +217,18 @@ void CConnectTigerVnc::slotReadyRead()
         LOG_MODEL_ERROR("TigerVnc", "exec error: %s", e.str());
         emit sigError(-1, e.str());
     }
+    emit sigDisconnected();
+}
+
+void CConnectTigerVnc::slotError(QAbstractSocket::SocketError socketError)
+{
+    emit sigError(socketError, "");
+    emit sigDisconnected();
+}
+
+void CConnectTigerVnc::slotTimeOut()
+{
+    return;
 }
 
 int CConnectTigerVnc::Process()

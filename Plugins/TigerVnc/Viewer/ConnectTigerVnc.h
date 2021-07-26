@@ -33,11 +33,14 @@ public Q_SLOTS:
     virtual int Connect() override;
     virtual int Process() override;
     virtual int Disconnect() override;
+    virtual void slotTimeOut() override;
     
     virtual void slotConnected();
     virtual void slotDisConnected();
     virtual void slotReadyRead();
     virtual void slotClipBoardChange() override;
+    
+    void slotError(QAbstractSocket::SocketError socketError);
     
 public:
     // rfb::CConnection callback methods

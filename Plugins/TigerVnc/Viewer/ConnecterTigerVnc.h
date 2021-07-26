@@ -15,10 +15,7 @@ public:
     virtual ~CConnecterTigerVnc() override;
 
     virtual qint16 Version() override;
-    
-    virtual int Connect() override;
-    virtual int DisConnect() override;
-    
+
 protected:
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) override;
     
