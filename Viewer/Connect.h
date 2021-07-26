@@ -44,6 +44,7 @@ protected:
 public Q_SLOTS:
     virtual int Initialize();
     virtual int Clean();
+    
     /**
      * @brief Connect
      * @return 
@@ -56,14 +57,16 @@ public Q_SLOTS:
     /**
      * @brief Process
      * @return 
-     *       \li 0: continue
-     *       \li 1: exit
+     *       \li > 0: continue, Interval call time (msec)
      *       \li < 0: error
      */
     virtual int Process() = 0;
 
     virtual void slotClipBoardChange() = 0;
 
+private Q_SLOTS:
+    virtual void slotTimeOut();
+    
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();

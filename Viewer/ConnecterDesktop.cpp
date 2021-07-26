@@ -11,7 +11,6 @@
 
 CConnecterDesktop::CConnecterDesktop(CPluginViewer *parent)
     : CConnecter(parent),
-      m_bExit(false),
       m_pThread(nullptr),
       m_pView(new CFrmViewer()),
       m_pParameter(nullptr)
@@ -19,16 +18,11 @@ CConnecterDesktop::CConnecterDesktop(CPluginViewer *parent)
 
 CConnecterDesktop::~CConnecterDesktop()
 {
-    if(m_pThread)
-    {
-        m_pThread->wait();
-        delete m_pThread;
-    }
-
     if(m_pView)
         delete m_pView;
     
-    qDebug() << this << this->metaObject()->className();
+    LOG_MODEL_DEBUG("CConnecterDesktop", "CConnecterDesktop::~CConnecterDesktop");
+    //qDebug() << this << this->metaObject()->className();
 }
 
 const QString CConnecterDesktop::Name()
@@ -43,80 +37,31 @@ QWidget *CConnecterDesktop::GetViewer()
     return m_pView;
 }
 
-int CConnecterDesktop::OnRun()
-{
-    //LOG_MODEL_DEBUG("CConnecterBackThread", "Current thread: 0x%X", QThread::currentThreadId());
-    int nRet = -1;
-    CConnect* pConnect = InstanceConnect();
-    
-    do{
-        CConnect* pConnect = InstanceConnect();
-        if(nullptr == pConnect) break;
-        
-        nRet = pConnect->Initialize();
-        if(nRet) break;
-        
-        /*
-          nRet < 0 : error
-          nRet = 0 : emit sigConnected
-          nRet = 1 : emit sigConnected in CConnect
-          */
-        nRet = pConnect->Connect();
-        if(nRet < 0) break;
-        if(0 == nRet) emit sigConnected();
-
-        while (!m_bExit) {
-            try {
-                // 0 : continue
-                // 1: exit
-                // < 0: error
-                int nRet = pConnect->Process();
-                if(nRet) break;
-            }  catch (...) {
-                LOG_MODEL_ERROR("ConnecterBackThread", "process fail:%d", nRet);
-                break;
-            }
-        }
-        
-    }while (0);
-
-    emit sigDisconnected();
-
-    pConnect->Clean();
-    delete pConnect;
-    qDebug() << "CConnecterPlugins::OnRun() end";
-    return nRet;
-}
-
 int CConnecterDesktop::Connect()
 {
     int nRet = 0;
     m_pThread = new CConnectThread(this);
-    if(m_pThread)
-        m_pThread->start();
+    if(!m_pThread)
+        return -1;
+    bool check = false;
+    check = connect(m_pThread, SIGNAL(finished()),
+                    this, SIGNAL(sigDisconnected()));
+    Q_ASSERT(check);
+    check = connect(m_pThread, SIGNAL(finished()),
+                    m_pThread, SLOT(deleteLater()));
+    Q_ASSERT(check);
     
-    nRet = OnConnect();
+    m_pThread->start();
+    
     return nRet;
 }
 
 int CConnecterDesktop::DisConnect()
 {
     int nRet = 0;
-    m_bExit = true;
-    nRet = OnDisConnect();
-    
+    if(m_pThread)
+        m_pThread->quit();
     return nRet;
-}
-
-int CConnecterDesktop::OnConnect()
-{
-    return 0;
-}
-
-int CConnecterDesktop::OnDisConnect()
-{
-    emit sigDisconnected();
-    return 0;
 }
 
 QString CConnecterDesktop::ServerName()

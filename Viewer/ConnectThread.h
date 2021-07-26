@@ -20,10 +20,11 @@ class CConnectThread : public QThread
     Q_OBJECT
 public:
     CConnectThread(CConnecterDesktop* pConnect);
+    virtual ~CConnectThread();
     
 protected:
     virtual void run() override;
-    
+
 private:
     CConnecterDesktop* m_pConnecter;
 };

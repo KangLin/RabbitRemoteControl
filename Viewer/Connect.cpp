@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <QtPlugin>
 #include <QClipboard>
+#include <QTimer>
+#include "RabbitCommonLog.h"
 
 CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
     : QObject(parent), m_pView(nullptr)
@@ -25,6 +27,27 @@ CConnect::~CConnect()
     qDebug() << "CConnect::~CConnect()";
 }
 
+void CConnect::slotTimeOut()
+{
+    try {
+        // >= 0 : continue
+        // < 0: error
+        int nTime = Process();
+        if(nTime >= 0)
+        {
+            QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
+            return;
+        }
+    } catch(std::exception e) {
+        LOG_MODEL_ERROR("CConnect", "process fail:%s", e.what());
+        emit sigError(-1, e.what());
+    }  catch (...) {
+        LOG_MODEL_ERROR("CConnect", "process fail");
+        emit sigError(-2, "");
+    }
+    emit sigDisconnected();
+}
+
 int CConnect::SetConnecter(CConnecter* pConnecter)
 {
     Q_ASSERT(pConnecter);
@@ -36,10 +59,6 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     check = connect(this, SIGNAL(sigDisconnected()),
                     pConnecter, SIGNAL(sigDisconnected()));
     Q_ASSUME(check);
-    //NOTO: Prevent recursion when writing plugins
-    check = connect(pConnecter, SIGNAL(sigDisconnected()),
-            this, SLOT(Disconnect()), Qt::DirectConnection);
-    Q_ASSERT(check);
     check = connect(this, SIGNAL(sigServerName(const QString&)),
                     pConnecter, SLOT(slotSetServerName(const QString&)));
     Q_ASSERT(check);

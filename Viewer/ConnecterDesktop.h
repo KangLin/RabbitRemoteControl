@@ -27,11 +27,6 @@ public:
     explicit CConnecterDesktop(CPluginViewer *parent = nullptr);
     virtual ~CConnecterDesktop();
     
-    /**
-     * \return \li >=0 Success
-     *         \li < 0 fail
-     */
-    virtual int OnRun();
     /// \~english New connect. the ownership is caller.
     ///  if don't use, the caller must delete it.
     virtual CConnect* InstanceConnect() = 0;
@@ -48,8 +43,6 @@ public Q_SLOTS:
     virtual int DisConnect() override;
 
 protected:
-    virtual int OnConnect();
-    virtual int OnDisConnect();
     virtual int OnLoad(QDataStream& d);
     virtual int OnSave(QDataStream& d);
     /**
@@ -64,7 +57,6 @@ protected:
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 
 private:
-    bool m_bExit;
     CConnectThread* m_pThread;
     CFrmViewer *m_pView;
 
