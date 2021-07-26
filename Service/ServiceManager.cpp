@@ -3,6 +3,7 @@
 #include "RabbitCommonDir.h"
 #include "Service.h"
 #include <QPluginLoader>
+#include "PluginService.h"
 
 CServiceManager::CServiceManager(int argc, char **argv, const QString &name)
     : QtService<QCoreApplication>(argc, argv, name)

@@ -4,11 +4,12 @@
 #pragma once
 
 #include "QtService/QtService"
-#include "PluginService.h"
 #include <QMap>
 #include <QDir>
+#include "service_export.h"
 
-class CServiceManager : public QtService<QCoreApplication>
+class CPluginService;
+class SERVICE_EXPORT CServiceManager : public QtService<QCoreApplication>
 {
 public:
     CServiceManager(int argc, char **argv, const QString &name = "Rabbit Remote control service");
