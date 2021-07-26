@@ -121,16 +121,19 @@ int CConnectFreeRdp::Connect()
 int CConnectFreeRdp::Disconnect()
 {
     int nRet = 0;
-    freerdp_abort_connect(m_pContext->Context.instance);
+    if(m_pContext)
+        freerdp_abort_connect(m_pContext->Context.instance);
     return nRet;
 }
 
 int CConnectFreeRdp::Process()
 {
-    int nRet = 0;
+    int nRet = 500;
     HANDLE handles[64];
     rdpContext* pContext = (rdpContext*)m_pContext;
-    if(!freerdp_shall_disconnect(pContext->instance))
+    if(freerdp_shall_disconnect(pContext->instance))
+        return -1;
+    else
     {
         DWORD nCount = 0;
         DWORD tmp = freerdp_get_event_handles(pContext, &handles[nCount],
@@ -138,30 +141,30 @@ int CConnectFreeRdp::Process()
         if (tmp == 0)
         {
             LOG_MODEL_ERROR("FreeRdp", "freerdp_get_event_handles failed");
-            return -1;
+            return -2;
         }
         
         nCount += tmp;
         
         handles[nCount++] = pContext->abortEvent;
                 
-        DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
+        DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 0);
         if (waitStatus == WAIT_FAILED)
-            return -2;
+            return -3;
         
         /* Check if a processed event called freerdp_abort_connect() and exit if true */
 		if (WaitForSingleObject(pContext->abortEvent, 0) == WAIT_OBJECT_0)
 			/* Session disconnected by local user action */
-            return 1;
+            return -4;
         
         if (!freerdp_check_event_handles(pContext))
         {
-            nRet = -4;
+            nRet = -5;
             // Reconnect
             if(pContext->settings->AutoReconnectionEnabled)
             {
                 if (client_auto_reconnect_ex(pContext->instance, NULL))
-                    return 0;
+                    return 1000;
                 else
                 {
                  /*
@@ -169,7 +172,7 @@ int CConnectFreeRdp::Process()
                  * did not succeed and no other error was specified.
                  */
                     if (freerdp_error_info(pContext->instance) == 0)
-                        nRet = -5;
+                        nRet = -6;
                 }
                 
                 if (freerdp_get_last_error(pContext) == FREERDP_ERROR_SUCCESS)
