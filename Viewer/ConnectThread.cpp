@@ -5,7 +5,7 @@
 #include <QTimer>
 #include "RabbitCommonLog.h"
 
-CConnectThread::CConnectThread(CConnecterDesktop *pConnect) : QThread(pConnect),
+CConnectThread::CConnectThread(CConnecterDesktop *pConnect) : QThread(),
     m_pConnecter(pConnect)
 {}
 
@@ -37,7 +37,7 @@ void CConnectThread::run()
     pConnect->Disconnect();
     pConnect->Clean();
 
-    delete pConnect;
+    pConnect->deleteLater();
 
     LOG_MODEL_DEBUG("CConnectThread", "Run end");
 }
