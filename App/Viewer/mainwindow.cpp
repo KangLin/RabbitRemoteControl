@@ -353,8 +353,7 @@ void MainWindow::slotConnect()
         Q_ASSERT(false);
         return;
     }
-    QAction* pAction = dynamic_cast<QAction*>(this->sender());
-    
+    QAction* pAction = dynamic_cast<QAction*>(this->sender());    
     CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
 
@@ -398,7 +397,7 @@ int MainWindow::Connect(CConnecter* p)
                          this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigUpdateName(const QString&)),
-                         this, SLOT(slotUpdateServerName(const QString&)));
+                    this, SLOT(slotUpdateServerName(const QString&)));
     Q_ASSERT(check);
     
     p->Connect();
@@ -432,9 +431,9 @@ void MainWindow::slotDisconnected()
         if(c == pConnecter)
         {
             m_pView->RemoveView(c->GetViewer());
-            //TODO: c->deleteLater();
-            delete c;
             m_Connecters.removeAll(c);
+            c->deleteLater();
+            //delete c;
             return;
         }
     }
@@ -472,7 +471,9 @@ int MainWindow::onProcess(const QString &id, CPluginViewer *pFactory)
 {
     Q_UNUSED(id);
     // Connect menu and toolbar
-    QAction* p = ui->menuConnect_C->addAction(pFactory->Protol() + ": " + pFactory->Name(), this, SLOT(slotConnect()));
+    QAction* p = ui->menuConnect_C->addAction(pFactory->Protol()
+                                              + ": " + pFactory->Name(),
+                                              this, SLOT(slotConnect()));
     p->setToolTip(pFactory->Description());
     p->setStatusTip(pFactory->Description());
     p->setData(id);

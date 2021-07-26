@@ -9,10 +9,6 @@
         <translation>终端设置</translation>
     </message>
     <message>
-        <source>Appearance</source>
-        <translation type="vanished">显示</translation>
-    </message>
-    <message>
         <location filename="../../DlgSettingsTerminal.ui" line="35"/>
         <source>OK(&amp;O)</source>
         <translation>确定(&amp;O)</translation>

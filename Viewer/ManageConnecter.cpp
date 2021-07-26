@@ -43,7 +43,11 @@ int CManageConnecter::LoadPlugins()
         CPluginViewer* p = qobject_cast<CPluginViewer*>(plugin);
         if(p)
         {
-            m_Plugins.insert(p->Id(), p);
+            if(m_Plugins.find(p->Id()) == m_Plugins.end())
+                m_Plugins.insert(p->Id(), p);
+            else
+                LOG_MODEL_ERROR("ManageConnecter", "The plugin [%s] is exist.",
+                                p->Name().toStdString().c_str());
         }
     }
 
@@ -96,7 +100,11 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
             CPluginViewer* p = qobject_cast<CPluginViewer*>(plugin);
             if(p)
             {
-                m_Plugins.insert(p->Id(), p);
+                if(m_Plugins.find(p->Id()) == m_Plugins.end())
+                    m_Plugins.insert(p->Id(), p);
+                else
+                    LOG_MODEL_ERROR("ManageConnecter", "The plugin [%s] is exist.",
+                                    p->Name().toStdString().c_str());
             }
         }else{
             QString szMsg;
