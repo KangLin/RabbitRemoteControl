@@ -1,6 +1,5 @@
 #include "ServiceTigerVNC.h"
 #include "RabbitCommonLog.h"
-#include <unistd.h>
 #include "RabbitCommonTools.h"
 #include "network/Socket.h"
 #include <QHostAddress>

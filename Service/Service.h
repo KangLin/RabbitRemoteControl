@@ -4,8 +4,9 @@
 #pragma once
 
 #include <QObject>
+#include "service_export.h"
 
-class CService : public QObject
+class SERVICE_EXPORT CService : public QObject
 {
     Q_OBJECT
 public:
