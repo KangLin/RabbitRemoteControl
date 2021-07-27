@@ -25,13 +25,12 @@ public:
     explicit CConnectTigerVnc(CConnecterTigerVnc* pConnecter,
                               QObject *parent = nullptr);
     virtual ~CConnectTigerVnc() override;
-    
+
     virtual int SetParamter(void *pPara) override;
 
 public Q_SLOTS:
     // Please call SetParamter before call Connect
     virtual int Connect() override;
-    virtual int Process() override;
     virtual int Disconnect() override;
     virtual void slotTimeOut() override;
     
@@ -59,12 +58,10 @@ public:
     virtual void handleClipboardRequest() override;
     virtual void handleClipboardAnnounce(bool available) override;
     virtual void handleClipboardData(unsigned int format, const char *data, size_t length) override;
-    
+
     virtual void getUserPasswd(bool secure, char** user, char** password) override;
     virtual bool showMsgBox(int flags, const char *title, const char *text) override;
-    
-signals:
-    
+
 public Q_SLOTS:
     virtual void slotMousePressEvent(QMouseEvent*) override;
     virtual void slotMouseReleaseEvent(QMouseEvent*) override;
@@ -72,19 +69,19 @@ public Q_SLOTS:
     virtual void slotWheelEvent(QWheelEvent*) override;
     virtual void slotKeyPressEvent(QKeyEvent*) override;
     virtual void slotKeyReleaseEvent(QKeyEvent*) override;
-    
+
 private:
     QTcpSocket* m_pSock;
     CQSocketInStream* m_pInStream;
     CQSocketOutStream* m_pOutStream;
-    
+
     unsigned long long m_bpsEstimate;
     unsigned m_updateCount;
     struct timeval updateStartTime;
     size_t m_updateStartPos;
-    
+
     quint32 TranslateRfbKey(quint32 inkey,bool modifier);   
-    
+
 public:
     enum COLOR_LEVEL {
         Full,
@@ -96,11 +93,11 @@ public:
     class strPara : public CParameter{
     public:
         QString szServerName;
-        
+
         bool bShared;
         bool bBufferEndRefresh;
         bool bSupportsDesktopResize;
-        
+
         bool bAutoSelect;
         COLOR_LEVEL nColorLevel;
         int nEncoding;

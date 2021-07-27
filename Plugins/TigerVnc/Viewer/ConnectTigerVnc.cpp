@@ -231,15 +231,10 @@ void CConnectTigerVnc::slotTimeOut()
     return;
 }
 
-int CConnectTigerVnc::Process()
-{
-    return 0;
-}
-
 void CConnectTigerVnc::initDone()
 {
     Q_ASSERT(m_pPara); // Please call SetParamter before call Connect
-    LOG_MODEL_DEBUG("TigerVnc", "initDone");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::initDone()");
     
     // If using AutoSelect with old servers, start in FullColor
     // mode. See comment in autoSelectFormatAndEncoding. 
