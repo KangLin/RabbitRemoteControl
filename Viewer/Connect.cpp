@@ -27,11 +27,16 @@ CConnect::~CConnect()
     qDebug() << "CConnect::~CConnect()";
 }
 
+int CConnect::Process()
+{
+    return 0;
+}
+
 void CConnect::slotTimeOut()
 {
     try {
         // >= 0 : continue
-        // < 0: error
+        // <  0: error
         int nTime = Process();
         if(nTime >= 0)
         {

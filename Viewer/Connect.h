@@ -46,8 +46,7 @@ public Q_SLOTS:
     virtual int Clean();
     
     /**
-     * @brief Connect
-     * @return 
+     * \return 
      *     \li < 0 : error
      *     \li = 0 : emit sigConnected
      *     \li = 1 : emit sigConnected in CConnect
@@ -55,16 +54,19 @@ public Q_SLOTS:
     virtual int Connect() = 0;
     virtual int Disconnect() = 0;
     /**
-     * @brief Process
-     * @return 
-     *       \li > 0: continue, Interval call time (msec)
-     *       \li < 0: error
+     * \return 
+     *       \li >= 0: continue, Interval call time (msec)
+     *       \li <  0: error
+     * \see slotTimeOut()
      */
-    virtual int Process() = 0;
+    virtual int Process();
 
     virtual void slotClipBoardChange() = 0;
 
-private Q_SLOTS:
+protected Q_SLOTS:
+    ///
+    /// \brief Timing start Process()
+    ///
     virtual void slotTimeOut();
     
 Q_SIGNALS:
