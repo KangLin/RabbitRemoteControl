@@ -23,7 +23,7 @@ static void rfbQtClientLog(const char *format, ...)
     va_end(args);
     if(nRet < 0 || nRet >= LOG_BUFFER_LENGTH)
     {
-        LOG_MODEL_ERROR("Global",
+        LOG_MODEL_ERROR("LibVNCServer",
                         "vsprintf buf is short, %d > %d. Truncated it:%d",
                         nRet, LOG_BUFFER_LENGTH, nRet - LOG_BUFFER_LENGTH);
         buf[LOG_BUFFER_LENGTH - 1] = 0;
@@ -78,22 +78,34 @@ bool CConnectLibVNCServer::InitClient()
         m_pClient->destPort = m_pPara->nProxyPort;
     case CParameter::emProxy::No:
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
+        {
+            LOG_MODEL_ERROR("LibVNCServer", "rfbInitClient fail");
             return FALSE;
+        }
         break;
     default:
         break;
     }
 
     if (!InitialiseRFBConnection(m_pClient))
-      return FALSE;
+    {
+        LOG_MODEL_ERROR("LibVNCServer", "InitialiseRFBConnection fail");
+        return FALSE;
+    }
 
     m_pClient->width=m_pClient->si.framebufferWidth;
     m_pClient->height=m_pClient->si.framebufferHeight;
     if (!m_pClient->MallocFrameBuffer(m_pClient))
-      return FALSE;
+    {
+        LOG_MODEL_ERROR("LibVNCServer", "m_pClient->MallocFrameBuffer fail");
+        return FALSE;
+    }
 
     if (!SetFormatAndEncodings(m_pClient))
-      return FALSE;
+    {
+        LOG_MODEL_ERROR("LibVNCServer", "SetFormatAndEncodings fail");
+        return FALSE;
+    }
 
     if (m_pClient->updateRect.x < 0) {
       m_pClient->updateRect.x = m_pClient->updateRect.y = 0;
@@ -104,14 +116,20 @@ bool CConnectLibVNCServer::InitClient()
     if (m_pClient->appData.scaleSetting>1)
     {
         if (!SendScaleSetting(m_pClient, m_pClient->appData.scaleSetting))
+        {
+            LOG_MODEL_ERROR("LibVNCServer", "SendScaleSetting fail");
             return FALSE;
+        }
         if (!SendFramebufferUpdateRequest(m_pClient,
                     m_pClient->updateRect.x / m_pClient->appData.scaleSetting,
                     m_pClient->updateRect.y / m_pClient->appData.scaleSetting,
                     m_pClient->updateRect.w / m_pClient->appData.scaleSetting,
                     m_pClient->updateRect.h / m_pClient->appData.scaleSetting,
                     FALSE))
+        {
+            LOG_MODEL_ERROR("LibVNCServer", "SendFramebufferUpdateRequest fail");
             return FALSE;
+        }
     }
     else
     {
@@ -119,7 +137,10 @@ bool CConnectLibVNCServer::InitClient()
                     m_pClient->updateRect.x, m_pClient->updateRect.y,
                     m_pClient->updateRect.w, m_pClient->updateRect.h,
                     FALSE))
-        return FALSE;
+        {
+            LOG_MODEL_ERROR("LibVNCServer", "SendFramebufferUpdateRequest fail");
+            return FALSE;
+        }
     }
     return TRUE;
 }
@@ -175,8 +196,6 @@ int CConnectLibVNCServer::Initialize()
   */
 int CConnectLibVNCServer::Connect()
 {
-    int nRet = 1;
-
     if(!InitClient()) {
         LOG_MODEL_ERROR("LibVNCServer", "rfbInitClient fail");
         emit sigError(-1, "Connect fail");
@@ -191,7 +210,7 @@ int CConnectLibVNCServer::Connect()
 
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     
-    return nRet;
+    return 1;
 }
 
 int CConnectLibVNCServer::Disconnect()
@@ -204,18 +223,16 @@ int CConnectLibVNCServer::Disconnect()
 int CConnectLibVNCServer::Process()
 {
     int nRet = 0;
-
-    nRet = WaitForMessage(m_pClient, 500);
+    LOG_MODEL_DEBUG("CConnectLibVNCServer", "CConnectLibVNCServer::Process()");
+    nRet = WaitForMessage(m_pClient, 0);
     if (nRet < 0)
         return nRet;
     
-    if(nRet)
-    {
+    if(nRet > 0)
         if(!HandleRFBServerMessage(m_pClient))
             return -1;
-    }
     
-    return 0;
+    return 500;
 }
 
 void CConnectLibVNCServer::slotClipBoardChange()
