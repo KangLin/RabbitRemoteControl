@@ -124,10 +124,11 @@
 
       
 \class CConnecterDesktop
-\brief 它实现一个远程桌面后台线程处理连接
+\brief 它实现一个远程桌面后台线程处理一个远程桌面连接
 \details
   1. 实现 \ref InstanceConnect() ，生成连接对象
   2. 实现 \ref GetDialogSettings() ，得到参数对话框
+  3. 实现 \ref OnLoad(QDataStream& d) 和 \ref OnSave(QDataStream& d)
 \note 此接口仅由插件实现
 \see CConnectThread
 

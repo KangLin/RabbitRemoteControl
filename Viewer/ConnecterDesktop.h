@@ -18,6 +18,7 @@ class CConnectThread;
  * \details 
  *   1. Implement \ref InstanceConnect()
  *   2. Implement \ref GetDialogSettings
+ *   3. Implement \ref OnLoad(QDataStream& d) and \ref OnSave(QDataStream& d)
  * \see CConnectThread
  */
 class VIEWER_EXPORT CConnecterDesktop : public CConnecter
@@ -46,8 +47,6 @@ protected:
     virtual int OnLoad(QDataStream& d);
     virtual int OnSave(QDataStream& d);
     /**
-     * \~chinese
-     * 
      * \~english
      * \brief GetDialogSettings
      * \param parent: the parent windows of the dialog of return
