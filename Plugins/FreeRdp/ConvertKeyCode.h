@@ -11,7 +11,7 @@ class CConvertKeyCode
 public:
     CConvertKeyCode();
     
-    static UINT32 QtToScanCode(int key, QKeyEvent *e);
+    static UINT32 QtToScanCode(int key, Qt::KeyboardModifiers modifiers);
 };
 
 #endif // CCONVERTKEYCODE_H

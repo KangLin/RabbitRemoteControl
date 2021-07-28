@@ -8,6 +8,7 @@
 #include <QResizeEvent>
 #include <QCursor>
 #include "Connect.h"
+#include "RabbitCommonLog.h"
 
 CFrmViewer::CFrmViewer(QWidget *parent) :
     QWidget(parent),
@@ -229,31 +230,27 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
-    emit sigKeyPressEvent(event);
+    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    emit sigKeyPressEvent(event->key(), event->modifiers());
     event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
-    emit sigKeyReleaseEvent(event);
+    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    emit sigKeyReleaseEvent(event->key(), event->modifiers());
     event->accept();
 }
 
 void CFrmViewer::slotSystemCombination()
 {
     // Send ctl+alt+del
-    QKeyEvent keyCtl(QKeyEvent::KeyPress, Qt::Key_Control, Qt::NoModifier);
-    emit sigKeyPressEvent(&keyCtl);
-    QKeyEvent keyAlt(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::NoModifier);
-    emit sigKeyPressEvent(&keyAlt);
-    QKeyEvent keyDel(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier);
-    emit sigKeyPressEvent(&keyDel);
-    keyCtl = QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Control, Qt::NoModifier);
-    emit sigKeyPressEvent(&keyCtl);
-    keyAlt = QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Alt, Qt::NoModifier);
-    emit sigKeyPressEvent(&keyAlt);
-    keyDel = QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Delete, Qt::NoModifier);
-    emit sigKeyPressEvent(&keyDel);
+    emit sigKeyPressEvent(Qt::Key_Control, Qt::NoModifier);
+    emit sigKeyPressEvent(Qt::Key_Alt, Qt::NoModifier);
+    emit sigKeyPressEvent(Qt::Key_Delete, Qt::NoModifier);
+    emit sigKeyPressEvent(Qt::Key_Control, Qt::NoModifier);
+    emit sigKeyPressEvent(Qt::Key_Alt, Qt::NoModifier);
+    emit sigKeyPressEvent(Qt::Key_Delete, Qt::NoModifier);
 }
 
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)

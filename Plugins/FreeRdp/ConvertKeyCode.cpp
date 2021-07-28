@@ -16,7 +16,7 @@ CConvertKeyCode::CConvertKeyCode()
  *           2.2.8.1.1.3.1.1.1
  *       https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/7acaec9f-c8a6-4ee9-87d6-d9b89cf56489
  */
-UINT32 CConvertKeyCode::QtToScanCode(int key, QKeyEvent* e)
+UINT32 CConvertKeyCode::QtToScanCode(int key, Qt::KeyboardModifiers modifiers)
 {
     UINT32 k = RDP_SCANCODE_UNKNOWN;
     switch (key)
@@ -107,13 +107,13 @@ UINT32 CConvertKeyCode::QtToScanCode(int key, QKeyEvent* e)
     case Qt::Key_ParenRight: return RDP_SCANCODE_KEY_0;   // )
     case Qt::Key_Asterisk:                                // *
     {
-        if(e->modifiers() & Qt::ShiftModifier)
+        if(modifiers & Qt::ShiftModifier)
             return RDP_SCANCODE_KEY_8;
         return RDP_SCANCODE_MULTIPLY;  
     }
     case Qt::Key_Plus:                                    // +
     {
-        if(e->modifiers() & Qt::ShiftModifier)
+        if(modifiers & Qt::ShiftModifier)
             return RDP_SCANCODE_OEM_PLUS;
         return RDP_SCANCODE_ADD;
     }

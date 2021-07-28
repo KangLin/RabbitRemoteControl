@@ -89,8 +89,8 @@ public Q_SLOTS:
     virtual void slotMouseReleaseEvent(QMouseEvent*);
     virtual void slotMouseMoveEvent(QMouseEvent*);
     virtual void slotWheelEvent(QWheelEvent*);
-    virtual void slotKeyPressEvent(QKeyEvent*);
-    virtual void slotKeyReleaseEvent(QKeyEvent*);
+    virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers);
+    virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers);
 
 private:
     CFrmViewer* m_pView;

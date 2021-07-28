@@ -779,31 +779,23 @@ void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
                                    e->y());
 }
 
-void CConnectFreeRdp::slotKeyPressEvent(QKeyEvent* e)
+void CConnectFreeRdp::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->bOnlyView) return;
-    /*
-    LOG_MODEL_DEBUG("FreeRdp", "press key: %s; 0x%X; scancode:0x%X",
-                    e->text().toStdString().c_str(),
-                    e->key(), e->nativeScanCode()); //*/
     // Convert to rdp scan code freerdp/scancode.h
-    UINT32 key = CConvertKeyCode::QtToScanCode(e->key(), e);
+    UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, true, key);
+        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, true, k);
 }
 
-void CConnectFreeRdp::slotKeyReleaseEvent(QKeyEvent* e)
+void CConnectFreeRdp::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->bOnlyView) return;
-    /*
-    LOG_MODEL_DEBUG("FreeRdp", "key: %s; 0x%X; scancode:0x%X",
-                    e->text().toStdString().c_str(),
-                    e->key(), e->nativeScanCode()); //*/
-    UINT32 key = CConvertKeyCode::QtToScanCode(e->key(), e);
+    UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, key);
+        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, k);
 }
 
 int CConnectFreeRdp::SetParamter(void *pPara)

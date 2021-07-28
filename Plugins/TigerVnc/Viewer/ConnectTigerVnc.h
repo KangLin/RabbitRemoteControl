@@ -67,8 +67,8 @@ public Q_SLOTS:
     virtual void slotMouseReleaseEvent(QMouseEvent*) override;
     virtual void slotMouseMoveEvent(QMouseEvent*) override;
     virtual void slotWheelEvent(QWheelEvent*) override;
-    virtual void slotKeyPressEvent(QKeyEvent*) override;
-    virtual void slotKeyReleaseEvent(QKeyEvent*) override;
+    virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
+    virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
 
 private:
     QTcpSocket* m_pSock;

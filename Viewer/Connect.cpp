@@ -9,6 +9,8 @@
 #include <QTimer>
 #include "RabbitCommonLog.h"
 
+int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>();
+
 CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
     : QObject(parent), m_pView(nullptr)
 {
@@ -108,28 +110,22 @@ int CConnect::SetViewer(CFrmViewer *pView)
     Q_ASSERT(check);
     
     check = connect(m_pView, SIGNAL(sigMousePressEvent(QMouseEvent*)),
-                    this, SLOT(slotMousePressEvent(QMouseEvent*)),
-                    Qt::BlockingQueuedConnection);
+                    this, SLOT(slotMousePressEvent(QMouseEvent*)));
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*)),
-                    this, SLOT(slotMouseReleaseEvent(QMouseEvent*)),
-                    Qt::BlockingQueuedConnection);
+                    this, SLOT(slotMouseReleaseEvent(QMouseEvent*)));
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
-                    this, SLOT(slotMouseMoveEvent(QMouseEvent*)),
-                    Qt::BlockingQueuedConnection);
+                    this, SLOT(slotMouseMoveEvent(QMouseEvent*)));
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigWheelEvent(QWheelEvent*)),
-                    this, SLOT(slotWheelEvent(QWheelEvent*)),
-                    Qt::BlockingQueuedConnection);
+                    this, SLOT(slotWheelEvent(QWheelEvent*)));
     Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigKeyPressEvent(QKeyEvent*)),
-                    this, SLOT(slotKeyPressEvent(QKeyEvent*)),
-                    Qt::BlockingQueuedConnection);
+    check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
+                    this, SLOT(slotKeyPressEvent(int, Qt::KeyboardModifiers)));
     Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
-                    this, SLOT(slotKeyReleaseEvent(QKeyEvent*)),
-                    Qt::BlockingQueuedConnection);
+    check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(int, Qt::KeyboardModifiers)),
+                    this, SLOT(slotKeyReleaseEvent(int, Qt::KeyboardModifiers)));
     Q_ASSERT(check);
         
     return 0;
@@ -171,12 +167,12 @@ void CConnect::slotMouseReleaseEvent(QMouseEvent*)
     qDebug() << "CConnect::slotMouseReleaseEvent";
 }
 
-void CConnect::slotKeyPressEvent(QKeyEvent*)
+void CConnect::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     qDebug() << "CConnect::slotKeyPressEvent";
 }
 
-void CConnect::slotKeyReleaseEvent(QKeyEvent*)
+void CConnect::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     qDebug() << "CConnect::slotKeyReleaseEvent";
 }

@@ -38,8 +38,8 @@ public Q_SLOTS:
     virtual void slotMouseReleaseEvent(QMouseEvent* e) override;
     virtual void slotMouseMoveEvent(QMouseEvent* e) override;
     virtual void slotWheelEvent(QWheelEvent* e) override;
-    virtual void slotKeyPressEvent(QKeyEvent* e) override;
-    virtual void slotKeyReleaseEvent(QKeyEvent* e) override;
+    virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
+    virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
 
 private:
     int OnSize();

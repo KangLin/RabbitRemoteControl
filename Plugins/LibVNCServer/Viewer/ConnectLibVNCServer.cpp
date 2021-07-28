@@ -750,26 +750,26 @@ uint32_t TranslateRfbKey(quint32 inkey, bool shiftModifier)
     return k;
 }
 
-void CConnectLibVNCServer::slotKeyPressEvent(QKeyEvent* e)
+void CConnectLibVNCServer::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->bOnlyView) return;
     bool shiftModifier = false;
-    if (e->modifiers() & Qt::ShiftModifier)
+    if (modifiers & Qt::ShiftModifier)
         shiftModifier = true;
-    uint32_t key = TranslateRfbKey(e->key(), shiftModifier);
+    uint32_t k = TranslateRfbKey(key, shiftModifier);
     if(key)
-        SendKeyEvent(m_pClient, key, TRUE);
+        SendKeyEvent(m_pClient, k, TRUE);
 }
 
-void CConnectLibVNCServer::slotKeyReleaseEvent(QKeyEvent* e)
+void CConnectLibVNCServer::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->bOnlyView) return;
     bool shiftModifier = false;
-    if (e->modifiers() & Qt::ShiftModifier)
+    if (modifiers & Qt::ShiftModifier)
         shiftModifier = true;
-    uint32_t key = TranslateRfbKey(e->key(), shiftModifier);
+    uint32_t k = TranslateRfbKey(key, shiftModifier);
     if(key)
-        SendKeyEvent(m_pClient, key, FALSE);
+        SendKeyEvent(m_pClient, k, FALSE);
 }
