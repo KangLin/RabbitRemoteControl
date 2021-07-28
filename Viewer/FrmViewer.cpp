@@ -159,14 +159,7 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
     QMouseEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
-    e = QMouseEvent(event->type(),
-                    pos,
-                    event->windowPos(),
-                    event->screenPos(),
-                    event->button(),
-                    event->buttons(),
-                    event->modifiers());
-    emit sigMousePressEvent(&e);
+    emit sigMousePressEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
@@ -175,14 +168,7 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
     QMouseEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
-    e = QMouseEvent(event->type(),
-                    pos,
-                    event->windowPos(),
-                    event->screenPos(),
-                    event->button(),
-                    event->buttons(),
-                    event->modifiers());
-    emit sigMouseReleaseEvent(&e);
+    emit sigMouseReleaseEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
@@ -191,14 +177,7 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
     QMouseEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
-    e = QMouseEvent(event->type(),
-                    pos,
-                    event->windowPos(),
-                    event->screenPos(),
-                    event->button(),
-                    event->buttons(),
-                    event->modifiers());
-    emit sigMouseMoveEvent(&e);
+    emit sigMouseMoveEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
@@ -212,19 +191,7 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
 #endif
-    e = QWheelEvent(pos,
-                    event->globalPosF(),
-                    event->pixelDelta(),
-                    event->angleDelta(),
-                    0,
-                    Qt::Horizontal,
-                    event->buttons(),
-                    event->modifiers()/*,
-                    event->phase(),
-                    event->source(),
-                    event->inverted()*/
-                    );
-    emit sigWheelEvent(&e);
+    emit sigWheelEvent(event->buttons(), QPoint(pos.x(), pos.y()), event->angleDelta());
     event->accept();
 }
 

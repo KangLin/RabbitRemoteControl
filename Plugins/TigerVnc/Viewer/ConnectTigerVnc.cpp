@@ -465,77 +465,82 @@ bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
     return true;
 }
 
-void CConnectTigerVnc::slotMousePressEvent(QMouseEvent* e)
+void CConnectTigerVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMousePressEvent");
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMousePressEvent buttons:%d;x:%d;y:%d", buttons, pos.x(), pos.y());
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
     unsigned char mask = 0;
-    rfb::Point pos(e->x(), e->y());
-    if(e->buttons() & Qt::MouseButton::LeftButton)
+    rfb::Point p(pos.x(), pos.y());
+    if(buttons & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->buttons() & Qt::MouseButton::MiddleButton)
+    if(buttons & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->buttons() & Qt::MouseButton::RightButton)
+    if(buttons & Qt::MouseButton::RightButton)
         mask |= 0x4;
 
-    writer()->writePointerEvent(pos, mask);
+    writer()->writePointerEvent(p, mask);
 }
 
-void CConnectTigerVnc::slotMouseReleaseEvent(QMouseEvent* e)
+void CConnectTigerVnc::slotMouseReleaseEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseReleaseEvent");
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseReleaseEvent buttons:%d;x:%d;y:%d", buttons, pos.x(), pos.y());
     int mask = 0;
-    rfb::Point pos(e->x(), e->y());
+    rfb::Point p(pos.x(), pos.y());
+    if(buttons & Qt::MouseButton::LeftButton)
+        mask |= 0x1;
+    if(buttons & Qt::MouseButton::MiddleButton)
+        mask |= 0x2;
+    if(buttons & Qt::MouseButton::RightButton)
+        mask |= 0x4;
     
-    writer()->writePointerEvent(pos, mask);
+    writer()->writePointerEvent(p, mask);
 }
 
-void CConnectTigerVnc::slotMouseMoveEvent(QMouseEvent* e)
+void CConnectTigerVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseMoveEvent");
-    //qDebug() << "slotMouseMoveEvent x:" << e->x() << ";y:" << e->y();
+    //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseReleaseEvent buttons:%d;x:%d;y:%d", buttons, pos.x(), pos.y());
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
-    rfb::Point pos(e->x(), e->y());
-    if(e->buttons() & Qt::MouseButton::LeftButton)
+    rfb::Point p(pos.x(), pos.y());
+    if(buttons & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->buttons() & Qt::MouseButton::MiddleButton)
+    if(buttons & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->buttons() & Qt::MouseButton::RightButton)
+    if(buttons & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    writer()->writePointerEvent(pos, mask);
+    writer()->writePointerEvent(p, mask);
 }
 
-void CConnectTigerVnc::slotWheelEvent(QWheelEvent* e)
+void CConnectTigerVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
     //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotWheelEvent");
     if(!writer()) return;
     if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
-    rfb::Point pos(e->x(), e->y());
+    rfb::Point p(pos.x(), pos.y());
     
-    if(e->buttons() & Qt::MouseButton::LeftButton)
+    if(buttons & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(e->buttons() & Qt::MouseButton::MiddleButton)
+    if(buttons & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(e->buttons() & Qt::MouseButton::RightButton)
+    if(buttons & Qt::MouseButton::RightButton)
         mask |= 0x4;
     
-    QPoint p = e->angleDelta();
-    if(p.y() > 0)
+    QPoint d = angleDelta;
+    if(d.y() > 0)
         mask |= 8;
-    if(p.y() < 0)
+    if(d.y() < 0)
         mask |= 16;
-    if(p.x() < 0)
+    if(d.x() < 0)
         mask |= 32;
-    if(p.x() > 0)
+    if(d.x() > 0)
         mask |= 64;
     
-    writer()->writePointerEvent(pos, mask);
+    writer()->writePointerEvent(p, mask);
 }
 
 void CConnectTigerVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)

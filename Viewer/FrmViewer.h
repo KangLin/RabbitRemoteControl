@@ -56,10 +56,10 @@ public Q_SLOTS:
     void slotSystemCombination();
     
 Q_SIGNALS:
-    void sigMousePressEvent(QMouseEvent *event);
-    void sigMouseReleaseEvent(QMouseEvent *event);
-    void sigMouseMoveEvent(QMouseEvent *event);
-    void sigWheelEvent(QWheelEvent *event);
+    void sigMousePressEvent(Qt::MouseButtons, QPoint);
+    void sigMouseReleaseEvent(Qt::MouseButtons, QPoint);
+    void sigMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos);
+    void sigWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta);
     void sigKeyPressEvent(int key, Qt::KeyboardModifiers modify);
     void sigKeyReleaseEvent(int key, Qt::KeyboardModifiers modify);
     

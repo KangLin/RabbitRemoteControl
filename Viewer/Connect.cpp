@@ -10,6 +10,7 @@
 #include "RabbitCommonLog.h"
 
 int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>();
+int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>();
 
 CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
     : QObject(parent), m_pView(nullptr)
@@ -109,17 +110,17 @@ int CConnect::SetViewer(CFrmViewer *pView)
                     m_pView, SLOT(slotUpdateCursorPosition(const QPoint&)));
     Q_ASSERT(check);
     
-    check = connect(m_pView, SIGNAL(sigMousePressEvent(QMouseEvent*)),
-                    this, SLOT(slotMousePressEvent(QMouseEvent*)));
+    check = connect(m_pView, SIGNAL(sigMousePressEvent(Qt::MouseButtons, QPoint)),
+                    this, SLOT(slotMousePressEvent(Qt::MouseButtons, QPoint)));
     Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*)),
-                    this, SLOT(slotMouseReleaseEvent(QMouseEvent*)));
+    check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(Qt::MouseButtons, QPoint)),
+                    this, SLOT(slotMouseReleaseEvent(Qt::MouseButtons, QPoint)));
     Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
-                    this, SLOT(slotMouseMoveEvent(QMouseEvent*)));
+    check = connect(m_pView, SIGNAL(sigMouseMoveEvent(Qt::MouseButtons, QPoint)),
+                    this, SLOT(slotMouseMoveEvent(Qt::MouseButtons, QPoint)));
     Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigWheelEvent(QWheelEvent*)),
-                    this, SLOT(slotWheelEvent(QWheelEvent*)));
+    check = connect(m_pView, SIGNAL(sigWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
+                    this, SLOT(slotWheelEvent(Qt::MouseButtons, QPoint, QPoint)));
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
                     this, SLOT(slotKeyPressEvent(int, Qt::KeyboardModifiers)));
@@ -147,22 +148,22 @@ int CConnect::Clean()
     return 0;
 }
 
-void CConnect::slotWheelEvent(QWheelEvent*)
+void CConnect::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
     qDebug() << "CConnect::slotWheelEvent";
 }
 
-void CConnect::slotMouseMoveEvent(QMouseEvent*)
+void CConnect::slotMouseMoveEvent(Qt::MouseButtons, QPoint)
 {
     qDebug() << "CConnect::slotMouseMoveEvent";
 }
 
-void CConnect::slotMousePressEvent(QMouseEvent*)
+void CConnect::slotMousePressEvent(Qt::MouseButtons, QPoint)
 {
     qDebug() << "CConnect::slotMousePressEvent";
 }
 
-void CConnect::slotMouseReleaseEvent(QMouseEvent*)
+void CConnect::slotMouseReleaseEvent(Qt::MouseButtons, QPoint)
 {
     qDebug() << "CConnect::slotMouseReleaseEvent";
 }

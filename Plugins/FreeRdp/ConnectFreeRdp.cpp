@@ -689,20 +689,20 @@ BOOL CConnectFreeRdp::cb_end_paint(rdpContext *context)
     return TRUE;
 }
 
-void CConnectFreeRdp::slotWheelEvent(QWheelEvent* e)
+void CConnectFreeRdp::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->bOnlyView) return;
     UINT16 flags = 0;
    
-    if(e->buttons() & Qt::MouseButton::LeftButton)
+    if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
-    if(e->buttons() & Qt::MouseButton::RightButton)
+    if(buttons & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
-    if(e->buttons() & Qt::MouseButton::MiddleButton)
+    if(buttons & Qt::MouseButton::MiddleButton)
         flags |= PTR_FLAGS_BUTTON3;
     
-    QPoint p = e->angleDelta();
+    QPoint p = angleDelta;
     if(p.y() > 0)
     {
         flags |= PTR_FLAGS_WHEEL | p.y();
@@ -723,60 +723,60 @@ void CConnectFreeRdp::slotWheelEvent(QWheelEvent* e)
     
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
-                                   e->x(),
-                                   e->y());
+                                   pos.x(),
+                                   pos.y());
 }
 
-void CConnectFreeRdp::slotMouseMoveEvent(QMouseEvent* e)
+void CConnectFreeRdp::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->bOnlyView) return;
     UINT16 flags = PTR_FLAGS_MOVE;
-    if(e->button() & Qt::MouseButton::LeftButton)
+    if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
-    if(e->button() & Qt::MouseButton::RightButton)
+    if(buttons & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
-    if(e->button() & Qt::MouseButton::MiddleButton)
+    if(buttons & Qt::MouseButton::MiddleButton)
         flags |= PTR_FLAGS_BUTTON3;
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
-                                   e->x(),
-                                   e->y());
+                                   pos.x(),
+                                   pos.y());
 }
 
-void CConnectFreeRdp::slotMousePressEvent(QMouseEvent* e)
+void CConnectFreeRdp::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->bOnlyView) return;
     UINT16 flags = PTR_FLAGS_DOWN;
-    if(e->button() & Qt::MouseButton::LeftButton)
+    if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
-    if(e->button() & Qt::MouseButton::RightButton)
+    if(buttons & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
-    if(e->button() & Qt::MouseButton::MiddleButton)
+    if(buttons & Qt::MouseButton::MiddleButton)
         flags |= PTR_FLAGS_BUTTON3;
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
-                                   e->x(),
-                                   e->y());
+                                   pos.x(),
+                                   pos.y());
 }
 
-void CConnectFreeRdp::slotMouseReleaseEvent(QMouseEvent* e)
+void CConnectFreeRdp::slotMouseReleaseEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->bOnlyView) return;
     UINT16 flags = 0;
-    if(e->button() & Qt::MouseButton::LeftButton)
+    if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
-    if(e->button() & Qt::MouseButton::MiddleButton)
+    if(buttons & Qt::MouseButton::MiddleButton)
         flags |= PTR_FLAGS_BUTTON3;
-    if(e->button() & Qt::MouseButton::RightButton)
+    if(buttons & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
     //LOG_MODEL_DEBUG("FreeRdp", "Flags: %d", flags);
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
-                                   e->x(),
-                                   e->y());
+                                   pos.x(),
+                                   pos.y());
 }
 
 void CConnectFreeRdp::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
