@@ -693,8 +693,8 @@ void CConnectFreeRdp::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
 {
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->bOnlyView) return;
-    UINT16 flags = 0;
    
+    UINT16 flags = 0;
     if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
     if(buttons & Qt::MouseButton::RightButton)
@@ -761,18 +761,18 @@ void CConnectFreeRdp::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
                                    pos.y());
 }
 
-void CConnectFreeRdp::slotMouseReleaseEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectFreeRdp::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->bOnlyView) return;
     UINT16 flags = 0;
-    if(buttons & Qt::MouseButton::LeftButton)
+    if(button & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
-    if(buttons & Qt::MouseButton::MiddleButton)
+    if(button & Qt::MouseButton::MiddleButton)
         flags |= PTR_FLAGS_BUTTON3;
-    if(buttons & Qt::MouseButton::RightButton)
+    if(button & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
-    //LOG_MODEL_DEBUG("FreeRdp", "Flags: %d", flags);
+    LOG_MODEL_DEBUG("FreeRdp", "Flags: %d", flags);
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
                                    pos.x(),

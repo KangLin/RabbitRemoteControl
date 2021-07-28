@@ -57,7 +57,7 @@ public Q_SLOTS:
     
 Q_SIGNALS:
     void sigMousePressEvent(Qt::MouseButtons, QPoint);
-    void sigMouseReleaseEvent(Qt::MouseButtons, QPoint);
+    void sigMouseReleaseEvent(Qt::MouseButton, QPoint);
     void sigMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos);
     void sigWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta);
     void sigKeyPressEvent(int key, Qt::KeyboardModifiers modify);

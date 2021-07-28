@@ -486,16 +486,16 @@ void CConnectLibVNCServer::slotMousePressEvent(Qt::MouseButtons buttons, QPoint 
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
-void CConnectLibVNCServer::slotMouseReleaseEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectLibVNCServer::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
-    if(buttons & Qt::MouseButton::LeftButton)
+    if(button & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(buttons & Qt::MouseButton::MiddleButton)
+    if(button & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(buttons & Qt::MouseButton::RightButton)
+    if(button & Qt::MouseButton::RightButton)
         mask |= 0x4;
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }

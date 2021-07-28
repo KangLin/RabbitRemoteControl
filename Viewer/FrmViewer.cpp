@@ -159,6 +159,7 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
     QMouseEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
+    //qDebug() << "CFrmViewer::mousePressEvent" << event->button() << event->buttons();
     emit sigMousePressEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -168,7 +169,8 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
     QMouseEvent e = *event;
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
-    emit sigMouseReleaseEvent(event->buttons(), QPoint(pos.x(), pos.y()));
+    //qDebug() << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons();
+    emit sigMouseReleaseEvent(event->button(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
 

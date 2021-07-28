@@ -86,7 +86,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     virtual void slotMousePressEvent(Qt::MouseButtons, QPoint);
-    virtual void slotMouseReleaseEvent(Qt::MouseButtons, QPoint);
+    virtual void slotMouseReleaseEvent(Qt::MouseButton, QPoint);
     virtual void slotMouseMoveEvent(Qt::MouseButtons, QPoint);
     virtual void slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta);
     virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers);

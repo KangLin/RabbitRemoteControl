@@ -113,8 +113,8 @@ int CConnect::SetViewer(CFrmViewer *pView)
     check = connect(m_pView, SIGNAL(sigMousePressEvent(Qt::MouseButtons, QPoint)),
                     this, SLOT(slotMousePressEvent(Qt::MouseButtons, QPoint)));
     Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(Qt::MouseButtons, QPoint)),
-                    this, SLOT(slotMouseReleaseEvent(Qt::MouseButtons, QPoint)));
+    check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(Qt::MouseButton, QPoint)),
+                    this, SLOT(slotMouseReleaseEvent(Qt::MouseButton, QPoint)));
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigMouseMoveEvent(Qt::MouseButtons, QPoint)),
                     this, SLOT(slotMouseMoveEvent(Qt::MouseButtons, QPoint)));
@@ -163,7 +163,7 @@ void CConnect::slotMousePressEvent(Qt::MouseButtons, QPoint)
     qDebug() << "CConnect::slotMousePressEvent";
 }
 
-void CConnect::slotMouseReleaseEvent(Qt::MouseButtons, QPoint)
+void CConnect::slotMouseReleaseEvent(Qt::MouseButton, QPoint)
 {
     qDebug() << "CConnect::slotMouseReleaseEvent";
 }
