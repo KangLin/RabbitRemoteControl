@@ -109,27 +109,27 @@ int CConnect::SetViewer(CFrmViewer *pView)
     
     check = connect(m_pView, SIGNAL(sigMousePressEvent(QMouseEvent*)),
                     this, SLOT(slotMousePressEvent(QMouseEvent*)),
-                    Qt::DirectConnection);
+                    Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*)),
                     this, SLOT(slotMouseReleaseEvent(QMouseEvent*)),
-                    Qt::DirectConnection);
+                    Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
                     this, SLOT(slotMouseMoveEvent(QMouseEvent*)),
-                    Qt::DirectConnection);
+                    Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigWheelEvent(QWheelEvent*)),
                     this, SLOT(slotWheelEvent(QWheelEvent*)),
-                    Qt::DirectConnection);
+                    Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigKeyPressEvent(QKeyEvent*)),
                     this, SLOT(slotKeyPressEvent(QKeyEvent*)),
-                    Qt::DirectConnection);
+                    Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
                     this, SLOT(slotKeyReleaseEvent(QKeyEvent*)),
-                    Qt::DirectConnection);
+                    Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
         
     return 0;
