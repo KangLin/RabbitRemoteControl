@@ -38,10 +38,9 @@ Prior versions don't have CMake support.
   + IDE: Qt Creator. It is recommended to use version v4.15.0 or later. \
   Prior versions don't have CMake support.
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
-
 - CMake: [https://www.cmake.org/](https://cmake.org/)
-
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
+- Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
 
 ### Compilation
 
@@ -204,17 +203,20 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 - The CMake parameters:
   + RabbitCommon_DIR: RabbitCommon source-code location
-  + BUILD_FREERDP：If compiling FreeRDP
+  + BUILD_DOCS: Build docmenets. the default is ON
+  + BUILD_FREERDP：If compile FreeRDP. the default is OFF
+  + BUILD_QUIWidget: Use frameless widget as main widget. the default is ON
+  + BUILD_SHARED_LIBS: Compile shared libraries. the default is ON
   + WinPR_DIR: [FreeRDP installation path]/lib/cmake/WinPR2
   + FreeRDP_DIR: [FreeRDP installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [FreeFRP installation path]/lib/cmake/FreeRDP-Client2
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
-  + QXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
+  + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
   + QTermWidget_5_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
-  + QtService_DIR: [libssh installation path]/lib/cmake/QtService
+  + QtService_DIR: [QtService installation path]/lib/cmake/QtService
   
 - If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
@@ -228,7 +230,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+          cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
           cmake --build . --target install-runtime
           makensis Install.nsi  ;Package
 

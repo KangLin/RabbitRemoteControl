@@ -29,9 +29,10 @@
         
   + Qt 官方发行版本： https://download.qt.io/official_releases/qt/  
     当前使用版本: Qt 5.12.11
-  + IDE: Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
+
+- [可选] IDE: Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
   
-        ~$ sudo apt install sudo apt install qtcreator
+      ~$ sudo apt install sudo apt install qtcreator
   
 - GIT: [http://www.git-scm.com](http://www.git-scm.com)
 
@@ -67,14 +68,31 @@
     ~/tigervnc/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
     ~/tigervnc/build$ cmake --build . --target install
     ~/tigervnc/build$ cd ~
+    ~$ sudo apt install libqxmpp-dev
+    # 编译 libdatachannel
+    ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
+    ~$ cd libdatachannel
+    ~/libdatachannel$ git submodule update --init --recursive
+    ~/libdatachannel$ mkdir build
+    ~/libdatachannel$ cd build
+    ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/libdatachannel/build$ cmake --build . --target install
+    ~/libdatachannel/build$ cd ~
+    # 编译 QtService
+    ~$ git clone https://github.com/KangLin/qt-solutions.git
+    ~$ cd qt-solutions/qtservice
+    ~/qt-solutions/qtservice$ mkdir build
+    ~/qt-solutions/qtservice$ cd build
+    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/qt-solutions/qtservice/build$ cmake --build . --target install
+    ~/qt-solutions/qtservice/build$ cd ~
     ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
-    
 
 ### 依赖库
 
@@ -239,26 +257,29 @@
 
 - CMake 参数
   + RabbitCommon_DIR: RabbitCommon 源码位置
-  + BUILD_FREERDP：是否编译 FreeRDP
+  + BUILD_DOCS: 编译文档。默认为 ON
+  + BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF
+  + BUILD_QUIWidget: 用无边框窗口做为主窗口。默认为 ON
+  + BUILD_SHARED_LIBS: 编译动态库。默认为 ON
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
-  + QXmpp_DIR=[libdatachannel 安装目录]/lib/cmake/qxmpp
+  + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
   + QTermWidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
-  + QtService_DIR: [libssh 安装目录]/lib/cmake/QtService
+  + QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
   
 - 如果使用 vcpkg，增加下面参数
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   
+- 安装目标
+  + install-runtime: 只安装运行库和程序
+  + install: 安装所有库（运行库与开发库）和程序
+  
 - 编译
-  + 安装目标
-    - install-runtime: 只安装运行库和程序
-    - install: 安装所有库（运行库与开发库）和程序
-
   + 命令行编译
      - 不用 vcpkg
      
@@ -271,7 +292,7 @@
      
            ~$ cd RabbitRemoteControl
            ~/RabbitRemoteControl$ mkdir build
-           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
            ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
   + IDE(Qt Creator) 编译
@@ -279,3 +300,12 @@
     - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
     - 如果用 vcpkg: 选项→Kits→Cmake Configureration: 增加 CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
+  + 使用脚本 build_debpackage.sh
+    - 设置[编译本项目](#编译本项目) → CMake 参数为环境变量。例如：
+  
+          export tigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
+        
+    - 使用脚本 build_debpackage.sh
+
+          ./build_debpackage.sh $QT_ROOT $RabbitCommon_DIR

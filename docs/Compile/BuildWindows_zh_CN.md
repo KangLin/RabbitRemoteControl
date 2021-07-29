@@ -34,13 +34,11 @@
   + Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
     当前使用版本：Qt 5.12.11
   + IDE：Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
-
-- Git: [https://www.git-scm.com/](https://www.git-scm.com/)
+- Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
-  
 - CMake: [https://www.cmake.org/](https://cmake.org/)
-
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
+- Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
 
 ### 编译
 
@@ -198,17 +196,20 @@
 
 - CMake 参数
   + RabbitCommon_DIR：RabbitCommon 源码位置
-  + BUILD_FREERDP：是否编译 FreeRDP
+  + BUILD_DOCS: 编译文档。默认为 ON
+  + BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF
+  + BUILD_QUIWidget: 用无边框窗口做为主窗口。默认为 ON
+  + BUILD_SHARED_LIBS: 编译动态库。默认为 ON
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
-  + QXmpp_DIR=[libdatachannel 安装目录]/lib/cmake/qxmpp
+  + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
   + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
-  + QtService_DIR: [libssh 安装目录]/lib/cmake/QtService
+  + QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
   
 - 如果使用 vcpkg，增加下面参数
   + CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
@@ -222,7 +223,7 @@
   
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
           cmake --build . --target install-runtime
           makensis Install.nsi  ;打包
 

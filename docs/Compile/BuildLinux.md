@@ -31,27 +31,30 @@ Prior versions don't have CMake support.
         
   + Qt (official release): https://download.qt.io/official_releases/qt/  
     Current version: Qt 5.12.11
-  + IDE: Qt Creator. It is recommended to use version v4.15.0 or later. \
+
+- [OPTIONAL] IDE: Qt Creator. It is recommended to use version v4.15.0 or later. \
   Prior versions don't have CMake support.
 
-        ~$ sudo apt install sudo apt install qtcreator
+      ~$ sudo apt install sudo apt install qtcreator
   
 - Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
-        ~$ sudo apt install git
+      ~$ sudo apt install git
         
 - CMake: [https://cmake.org](https://cmake.org/)
 
-        ~$ sudo apt install cmake
+      ~$ sudo apt install cmake
         
 - Automake, Autoconf, Make
 
-        ~$ sudo apt install automake autoconf make
+      ~$ sudo apt install automake autoconf make
 
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 
 - Package tools: debhelper、 fakeroot
 
+      ~$ sudo apt install debhelper fakeroot
+       
 ### Compilation
 
     # Install library dependencies
@@ -70,12 +73,30 @@ Prior versions don't have CMake support.
     ~/tigervnc/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
     ~/tigervnc/build$ cmake --build . --target install
     ~/tigervnc/build$ cd ~
+    ~$ sudo apt install libqxmpp-dev
+    # Compile libdatachannel
+    ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
+    ~$ cd libdatachannel
+    ~/libdatachannel$ git submodule update --init --recursive
+    ~/libdatachannel$ mkdir build
+    ~/libdatachannel$ cd build
+    ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/libdatachannel/build$ cmake --build . --target install
+    ~/libdatachannel/build$ cd ~
+    # Compile QtService
+    ~$ git clone https://github.com/KangLin/qt-solutions.git
+    ~$ cd qt-solutions/qtservice
+    ~/qt-solutions/qtservice$ mkdir build
+    ~/qt-solutions/qtservice$ cd build
+    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/qt-solutions/qtservice/build$ cmake --build . --target install
+    ~/qt-solutions/qtservice/build$ cd ~
     ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
     
 ### Library dependencies
@@ -171,7 +192,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~/vcpkg$ vcpkg install libdatachannel
       
   + Specify the CMake parameters:
-  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   
 - Compile from source code
   + Source-code location: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
@@ -239,7 +260,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         ~/qt-solutions/build$ cmake --build . --target install
   
-  + Specify the CMake parameters: -DQtService_DIR=[libssh installation path]/lib/cmake/QtService
+  + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
   
 ### Compile this project
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
@@ -249,26 +270,29 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 - The CMake parameters:
   + RabbitCommon_DIR: RabbitCommon source code location
-  + BUILD_FREERDP：If compile FreeRDP
+  + BUILD_DOCS: Build docmenets. the default is ON
+  + BUILD_FREERDP：If compile FreeRDP. the default is OFF
+  + BUILD_QUIWidget: Use frameless widget as main widget. the default is ON
+  + BUILD_SHARED_LIBS: Compile shared libraries. the default is ON
   + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp installation path]/lib/cmake/FreeRDP-Client2
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
-  + QXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
+  + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
   + QTermWidget_5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
-  + QtService_DIR:[libssh installation path]/lib/cmake/QtService
+  + QtService_DIR:[QtService installation path]/lib/cmake/QtService
   
 - If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
+- Install target
+  + install-runtime: Only install runtime libraries and the program
+  + install: Install runtime and development libraries and the program
+  
 - Compilation
-  + Install target
-    - install-runtime: Only install runtime libraries and the program
-    - install: Install runtime and development libraries and the program
-
   + Compile from the command-line
     - Not using vcpkg
 
@@ -281,7 +305,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
            ~$ cd RabbitRemoteControl
            ~/RabbitRemoteControl$ mkdir build
-           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
            ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
 
   + Using an IDE (Qt Creator)
@@ -290,3 +314,12 @@ Source-code location: https://github.com/KangLin/tigervnc
     - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
     - If using vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
+
+  + Use script build_debpackage.sh
+    - Set [Compile this project](#Compile-this-project) → The CMake parameters as environment variable. eg:
+  
+          export tigervnc_DIR=[TigerVNC installation path]/lib/cmake
+        
+    - Use build_debpackage.sh
+
+          ./build_debpackage.sh $QT_ROOT $RabbitCommon_DIR
