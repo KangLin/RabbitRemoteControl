@@ -17,17 +17,17 @@ set -e
 # for details, see https://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
-
+INSTALL_ROOT=/opt/RabbitRemoteControl
 case "$1" in
     configure)
         if [ ! -f /usr/share/applications/RabbitRemoteControl.desktop ]; then
-            ln -s /opt/RabbitRemoteControl/share/applications/RabbitRemoteControl.desktop /usr/share/applications/RabbitRemoteControl.desktop
+            ln -s $INSTALL_ROOT/share/applications/RabbitRemoteControl.desktop /usr/share/applications/RabbitRemoteControl.desktop
         fi
         if [ ! -f /usr/share/pixmaps/RabbitRemoteControl.png ]; then
             if [ ! -d /usr/share/pixmaps ]; then
                 mkdir -p /usr/share/pixmaps
             fi
-            ln -s /opt/RabbitRemoteControl/share/pixmaps/RabbitRemoteControl.png /usr/share/pixmaps/RabbitRemoteControl.png
+            ln -s $INSTALL_ROOT/share/pixmaps/RabbitRemoteControl.png /usr/share/pixmaps/RabbitRemoteControl.png
         fi
         echo "/opt/RabbitRemoteControl/lib" > /etc/ld.so.conf.d/RabbitRemoteControl.conf
         echo "/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu" >> /etc/ld.so.conf.d/RabbitRemoteControl.conf
