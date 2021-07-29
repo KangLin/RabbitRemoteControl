@@ -9,8 +9,10 @@
 #include <QTimer>
 #include "RabbitCommonLog.h"
 
-int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>();
-int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>();
+int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>("KeyboardModifiers");
+int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
+Q_DECLARE_METATYPE(Qt::MouseButton)
+int g_QtMouseButton = qRegisterMetaType<Qt::MouseButton>("MouseButton");
 
 CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
     : QObject(parent), m_pView(nullptr)
