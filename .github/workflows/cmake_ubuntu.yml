@@ -92,17 +92,21 @@ jobs:
         cp ../rabbitremotecontrol* .
         
 #    - name: update xml file
+#      run: |
 #        sudo apt-get install -y -qq xvfb xpra
 #        sudo Xvfb :99 -ac &
 #        export DISPLAY=:99.0
 #        sudo dpkg -i ../rabbitremotecontrol_0.0.8_amd64.deb
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_0.0.8_amd64_${{matrix.os}}.deb -m "v0.0.8"
-      
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_${{ matrix.os }}.zip -m "v0.0.8"
+#      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+
     - name: update 
       uses: actions/upload-artifact@v2
       with:
           name: rabbitremotecontrol_${{ matrix.os }}
-          path: rabbitremotecontrol*
+          path: |
+            rabbitremotecontrol*
+            update_linux.xml
       if: ${{ matrix.BUILD_TYPE == 'Release' }} 
      
     #- name: Release

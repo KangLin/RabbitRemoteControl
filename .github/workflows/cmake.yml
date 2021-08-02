@@ -175,7 +175,7 @@ jobs:
         path: |
           ${{github.workspace}}/build/RabbitRemoteControl-Setup-*.exe
           ${{github.workspace}}/build/update_*.xml
-      if: ${{ matrix.os == 'windows-latest' &&  matrix.BUILD_TYPE == 'Release' }}
+      if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
 #    - name: Upload To Github Release
 #      # You may pin to the exact commit or the version.
