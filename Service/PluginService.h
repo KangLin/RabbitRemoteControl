@@ -7,8 +7,13 @@
 class CServiceThread;
 
 ///
+/// \~chinese 服务插件接口。默认为每个插件启动一个线程进行处理。
+/// 
 /// \~english
-/// \brief The service plugin interface
+/// \brief The service plugin interface. The default start a thread.
+/// 
+/// \~
+/// \ingroup LIBAPI_SERVICE
 ///
 class SERVICE_EXPORT CPluginService : public QObject
 {
@@ -31,6 +36,7 @@ public:
     virtual void Stop();
 
 protected:
+    /// New service
     virtual CService* NewService() = 0;
 
 private:

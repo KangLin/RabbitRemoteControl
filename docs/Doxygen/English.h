@@ -4,11 +4,16 @@
 \defgroup LIBAPI Rabbit remote control library
 \brief Rabbit remote control library
 
+\defgroup LIBAPI_SERVICE Service library
+\brief Service library
+\details Class relationship
+\image html docs/Image/PluginServiceAPI.svg
+\ingroup LIBAPI
 
 \defgroup LIBAPI_VIEWER Viewer library
 \brief Viewer library
 \details Class relationship
-\image html docs/Image/ViewerPlugAPI.svg
+\image html docs/Image/PluginViewerAPI.svg
 \ingroup LIBAPI
 
 \defgroup VIEWER_API Viewer application interface
@@ -32,7 +37,7 @@
   - Implement properties and functions
      \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
 - Implement \ref CConnecter. For example: \ref CConnecterTigerVnc
-  - Implement remote desktop, which can be derived from \ref CConnecterPlugins
+  - Implement remote desktop, which can be derived from \ref CConnecterDesktop
   - Implement remote console, which can be derived from \ref CConnecterPluginsTerminal
   - If the above two cannot meet your needs, you  can be derived from \ref CConnecter
 -Implement a specific connection, derived from \ref CConnect. For example: \ref CConnectTigerVnc 

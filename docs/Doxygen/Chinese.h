@@ -7,10 +7,17 @@
 \brief 玉兔远程控制库
 
 
+\defgroup LIBAPI_SERVICE 服务端库
+\brief 服务端库
+\details 类关系：
+\image html docs/Image/PluginServiceAPI.svg
+\ingroup LIBAPI
+
+
 \defgroup LIBAPI_VIEWER 控制端库
 \brief 控制端库
 \details 类关系：
-\image html docs/Image/ViewerPlugAPI.svg
+\image html docs/Image/PluginViewerAPI.svg
 \ingroup LIBAPI
 
 
@@ -36,7 +43,7 @@
   - 实现属性、函数
     \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
 - 实现 \ref CConnecter 。例如： \ref CConnecterTigerVnc
-  - 实现远程桌面，可以从 \ref CConnecterPlugins 派生
+  - 实现远程桌面，可以从 \ref CConnecterDesktop 派生
   - 实现远程控制台，可以从 \ref CConnecterPluginsTerminal 派生
   - 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生
 - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectTigerVnc

@@ -9,6 +9,16 @@
 #include "service_export.h"
 
 class CPluginService;
+
+///
+/// \~chinese 管理服务插件
+/// 
+/// \~english
+/// \brief Manage service plugin
+///
+/// \~
+/// \ingroup LIBAPI_SERVICE
+///
 class SERVICE_EXPORT CServiceManager : public QtService<QCoreApplication>
 {
 public:
