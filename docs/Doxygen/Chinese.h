@@ -19,7 +19,6 @@
 \ingroup LIBAPI_VIEWER
 
 
-\~chinese
 \defgroup VIEWER_PLUGIN_API 控制端插件接口
 \ingroup LIBAPI_VIEWER
 \brief 控制端插件接口.

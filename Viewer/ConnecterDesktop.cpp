@@ -70,7 +70,7 @@ QString CConnecterDesktop::ServerName()
     {
         if(m_pParameter && !m_pParameter->szHost.isEmpty())
             return m_pParameter->szHost + ":"
-                    + QString::number(m_pParameter->nPort);
+                   + QString::number(m_pParameter->nPort);
         else
             return CConnecter::Name();
     }
@@ -83,7 +83,7 @@ int CConnecterDesktop::Load(QDataStream &d)
     Q_ASSERT(m_pParameter);
     qint16 version = 0;
     d >> version 
-            >> *m_pParameter;
+      >> *m_pParameter;
 
     nRet = OnLoad(d);
     return nRet;

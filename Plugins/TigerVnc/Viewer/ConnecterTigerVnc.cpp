@@ -69,16 +69,16 @@ int CConnecterTigerVnc::OnLoad(QDataStream &d)
     qint16 version = 0;
     d >> version;
     d >> m_Para.bShared
-           >> m_Para.bBufferEndRefresh
-           >> m_Para.bSupportsDesktopResize
-           >> m_Para.bAutoSelect
-           >> nColorLevel
-           >> m_Para.nEncoding
-           >> m_Para.bCompressLevel
-           >> m_Para.nCompressLevel
-           >> m_Para.bNoJpeg
-           >> m_Para.nQualityLevel
-           ;
+      >> m_Para.bBufferEndRefresh
+      >> m_Para.bSupportsDesktopResize
+      >> m_Para.bAutoSelect
+      >> nColorLevel
+      >> m_Para.nEncoding
+      >> m_Para.bCompressLevel
+      >> m_Para.nCompressLevel
+      >> m_Para.bNoJpeg
+      >> m_Para.nQualityLevel
+         ;
     //TODO: if version
     m_Para.nColorLevel = static_cast<CConnectTigerVnc::COLOR_LEVEL>(nColorLevel);
     return 0;
@@ -87,4 +87,16 @@ int CConnecterTigerVnc::OnLoad(QDataStream &d)
 CConnect* CConnecterTigerVnc::InstanceConnect()
 {
     return new CConnectTigerVnc(this);
+}
+
+int CConnecterTigerVnc::Connect()
+{
+    emit sigConnect(this);
+    return 0;
+}
+
+int CConnecterTigerVnc::DisConnect()
+{
+    emit sigDisconnect(this);
+    return 0;
 }

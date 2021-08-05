@@ -38,6 +38,15 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
         initlog = true;
     }
     //! [Initialize resorce]
+    
+    m_pThread = new CPluginThread();
+    if(m_pThread)
+    {
+        bool check = connect(m_pThread, SIGNAL(finished()),
+                           m_pThread, SLOT(deleteLater()));
+        Q_ASSERT(check);
+        m_pThread->start();
+    }
 }
 
 CPluginTigerVnc::~CPluginTigerVnc()
@@ -70,8 +79,18 @@ const QString CPluginTigerVnc::Protol() const
 CConnecter* CPluginTigerVnc::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
-    {   
-        return new CConnecterTigerVnc(this);
+    {
+        CConnecterTigerVnc* pConnecter = new CConnecterTigerVnc(this);
+        if(pConnecter && m_pThread)
+        {
+            bool check = connect(pConnecter, SIGNAL(sigConnect(CConnecter*)),
+                           m_pThread, SIGNAL(sigConnect(CConnecter*)));
+            Q_ASSERT(check);
+            check = connect(pConnecter, SIGNAL(sigDisconnect(CConnecter*)),
+                         m_pThread, SIGNAL(sigDisconnect(CConnecter*)));
+            Q_ASSERT(check);
+        }
+        return pConnecter;
     }
     return nullptr;
 }

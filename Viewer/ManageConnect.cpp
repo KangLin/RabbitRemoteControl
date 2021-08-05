@@ -1,0 +1,48 @@
+#include "ManageConnect.h"
+#include "RabbitCommonLog.h"
+#include "ConnecterDesktop.h"
+
+CManageConnect::CManageConnect(QObject *parent) : QObject(parent)
+{
+}
+
+CManageConnect::~CManageConnect()
+{
+    foreach(auto pConnect, m_Connects)
+    {
+        pConnect->Disconnect();
+        pConnect->Clean();
+        pConnect->deleteLater();
+    }
+}
+
+void CManageConnect::slotConnect(CConnecter *pConnecter)
+{
+    LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::slotConnect()");
+    CConnect* pConnect = dynamic_cast<CConnecterDesktop*>(pConnecter)->InstanceConnect();
+    if(!pConnect) return;
+    int nRet = pConnect->Initialize();
+    if(nRet) return;
+
+    /*
+      nRet < 0 : error
+      nRet = 0 : emit sigConnected
+      nRet = 1 : emit sigConnected in CConnect
+      */
+    nRet = pConnect->Connect();
+    if(nRet < 0) return;
+    if(0 == nRet) emit pConnect->sigConnected();
+
+    m_Connects.insert(pConnecter, pConnect);
+}
+
+void CManageConnect::slotDisconnect(CConnecter *pConnecter)
+{
+    auto it = m_Connects.find(pConnecter);
+    if(m_Connects.end() == it) return;
+    CConnect* pConnect = it.value();
+    pConnect->Disconnect();
+    pConnect->Clean();
+    pConnect->deleteLater();
+    m_Connects.remove(pConnecter);
+}

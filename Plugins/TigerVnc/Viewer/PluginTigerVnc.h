@@ -7,6 +7,7 @@
 
 #include "PluginViewer.h"
 #include <QTranslator>
+#include "PluginThread.h"
 
 class CPluginTigerVnc : public CPluginViewer
 {
@@ -32,6 +33,7 @@ public:
     
 private:
     QTranslator m_Translator;
+    CPluginThread* m_pThread;
 };
 
 #endif // CPLUGINTIGERVNC_H_KL_2021_07_23

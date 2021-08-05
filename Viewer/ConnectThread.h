@@ -8,13 +8,15 @@
 #include <QThread>
 #include "ConnecterDesktop.h"
 
-/**
- * \~chinese 此类仅用于 CConnecterPlugins
- * \~english The class only is used by CConnecterPlugins
- * 
- * \~
- * \see CConnecterPlugins
- */
+///
+/// \~chinese 此类仅用于 CConnecterDesktop
+///   一个线程一个连接
+/// \~english The class only is used by CConnecterDesktop
+///   One thread one connect
+///
+/// \~
+/// \see CConnecterDesktop
+///
 class CConnectThread : public QThread
 {
     Q_OBJECT
@@ -25,7 +27,7 @@ public:
 protected:
     virtual void run() override;
 
-private:
+protected:
     CConnecterDesktop* m_pConnecter;
 };
 
