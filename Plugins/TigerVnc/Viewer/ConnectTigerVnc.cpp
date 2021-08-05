@@ -488,15 +488,7 @@ void CConnectTigerVnc::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
     if(m_pPara && m_pPara->bOnlyView) return;
     int mask = 0;
     rfb::Point p(pos.x(), pos.y());
-    if(button & Qt::MouseButton::LeftButton)
-        mask |= 0x1;
-    if(button & Qt::MouseButton::MiddleButton)
-        mask |= 0x2;
-    if(button & Qt::MouseButton::RightButton)
-        mask |= 0x4;
-
     //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseReleaseEvent buttons:%d;mask:%d;x:%d;y:%d", button, mask, pos.x(), pos.y());
-    
     writer()->writePointerEvent(p, mask);
 }
 
