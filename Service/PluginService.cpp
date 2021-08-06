@@ -5,14 +5,12 @@
 
 CPluginService::CPluginService(QObject *parent)
     : QObject(parent),
-    m_pService(nullptr),
     m_pThread(nullptr)
 {
 }
 
 CPluginService::~CPluginService()
 {
-    Stop();
 }
 
 const QString CPluginService::Id() const

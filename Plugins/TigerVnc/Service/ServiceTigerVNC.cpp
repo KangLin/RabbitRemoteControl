@@ -4,6 +4,8 @@
 #include "network/Socket.h"
 #include <QHostAddress>
 #include <QTcpSocket>
+#include "ParameterServiceTigerVNC.h"
+#include "Connection.h"
 
 CServiceTigerVNC::CServiceTigerVNC(QObject *parent) : CService(parent)
 {
@@ -11,6 +13,8 @@ CServiceTigerVNC::CServiceTigerVNC(QObject *parent) : CService(parent)
     check = connect(&m_Lister, SIGNAL(newConnection()),
                     this, SLOT(slotNewConnection()));
     Q_ASSERT(check);
+    
+    m_pPara = new CParameterServiceTigerVNC(this);
 }
 
 bool CServiceTigerVNC::Enable()
@@ -20,14 +24,18 @@ bool CServiceTigerVNC::Enable()
 
 int CServiceTigerVNC::OnInit()
 {
-    //TODO: Use parameters
-    if(!m_Lister.listen(QHostAddress::Any, 5900))
+    if(!GetParameters())
+        Q_ASSERT(false);
+    
+    if(!m_Lister.listen(QHostAddress::Any, GetParameters()->getPort()))
     {
-        LOG_MODEL_ERROR("ServiceTigerVNC", "Lister fail:%s",
+        LOG_MODEL_ERROR("ServiceTigerVNC", "Lister fail: Port [%d]; %s",
+                        GetParameters()->getPort(),
                         m_Lister.errorString().toStdString().c_str());
         return -2;
     }
-        
+    
+    LOG_MODEL_INFO("ServiceTigerVNC", "Lister at: %d", GetParameters()->getPort());
     return 0;
 }
 
@@ -51,6 +59,7 @@ void CServiceTigerVNC::slotNewConnection()
     LOG_MODEL_INFO("ServiceTigerVNC", "New connection: %s:%d",
                    pSocket->peerAddress().toString().toStdString().c_str(),
                    pSocket->peerPort());
-    QSharedPointer<CConnection> c(new CConnection(pSocket));
+    QSharedPointer<CConnection> c(new CConnection(pSocket,
+              dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
     m_lstConnection.push_back(c);
 }

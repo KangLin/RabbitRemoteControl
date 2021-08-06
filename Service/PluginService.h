@@ -40,7 +40,6 @@ protected:
     virtual CService* NewService() = 0;
 
 private:
-    CService* m_pService;
     CServiceThread* m_pThread;
     friend CServiceThread;
 };

@@ -24,18 +24,21 @@ static void setfile()
 }
 bool g_setfile = false;
 
-CConnection::CConnection(QTcpSocket *pSocket) : QObject(), rfb::SConnection()
+CConnection::CConnection(QTcpSocket *pSocket, CParameterServiceTigerVNC *pPara)
+    : QObject(), rfb::SConnection()
 {
     m_pSocket = pSocket;
+    m_pPara = pPara;
     setStreams(new CQSocketInStream(pSocket), new CQSocketOutStream(pSocket));
     if(!g_setfile) 
     {
         g_setfile = true;
         setfile();
     }
-    char* pPass = new char[9];
-    strcpy(pPass, "123456");
-    rfb::PlainPasswd password(pPass);
+    
+    char* pass = new char[128];
+    strcpy(pass, pPara->getPassword().toStdString().c_str());
+    rfb::PlainPasswd password(pass);
     rfb::ObfuscatedPasswd oPassword(password);
     rfb::SSecurityVncAuth::vncAuthPasswd.setParam(oPassword.buf, oPassword.length);
     

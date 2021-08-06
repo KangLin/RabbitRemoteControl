@@ -7,6 +7,7 @@ if(NOT TARGET Service)
 endif()
 SET(SRC_LIBS tigervnc Service)
 SET(SOURCE_FILES
+    ParameterServiceTigerVNC.cpp
     PluginServiceTigerVNC.cpp
     ServiceTigerVNC.cpp
     Connection.cpp
@@ -15,6 +16,7 @@ SET(SOURCE_FILES
     ../Viewer/QSocketInStream.h
     )
 SET(HEADER_FILES
+    ParameterServiceTigerVNC.h
     PluginServiceTigerVNC.h
     ServiceTigerVNC.h
     Connection.h

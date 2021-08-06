@@ -5,9 +5,9 @@
 
 #include <QSharedPointer>
 #include <QTcpServer>
-#include "Connection.h"
 #include "Service.h"
 
+class CConnection;
 class CServiceTigerVNC : public CService//, rfb::SDesktop
 {
     Q_OBJECT

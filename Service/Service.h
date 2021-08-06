@@ -3,8 +3,10 @@
 
 #pragma once
 
-#include <QObject>
+#include <QSharedPointer>
+#include <QDataStream>
 #include "service_export.h"
+#include "ParameterService.h"
 
 ///
 /// \~chinese 服务接口。由具体的协议实现。
@@ -20,10 +22,13 @@ class SERVICE_EXPORT CService : public QObject
     Q_OBJECT
 public:
     explicit CService(QObject *parent = nullptr);
+    virtual ~CService();
     
     virtual bool Enable();
     virtual int Init();
     virtual int Clean();
+
+    CParameterService* GetParameters();
     
 protected Q_SLOTS:
     virtual void slotProcess();
@@ -36,6 +41,11 @@ protected:
     /// \li  0: Success
     /// \li >0: Stop call slotProcess
     virtual int OnProcess();
+    
+    virtual int OnLoad(QDataStream& d);
+    virtual int OnSave(QDataStream& d);
+    
+    CParameterService* m_pPara;
 };
 
 #endif // CSERVICE_H_KL_2021_07_13

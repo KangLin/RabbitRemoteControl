@@ -4,13 +4,15 @@
 #include "rfb/SConnection.h"
 #include <QObject>
 #include <QTcpSocket>
+#include "ServiceTigerVNC.h"
+#include "ParameterServiceTigerVNC.h"
 
 class CConnection : public QObject, rfb::SConnection
 {
     Q_OBJECT
     
 public:
-    explicit CConnection(QTcpSocket* pSocket);
+    explicit CConnection(QTcpSocket* pSocket, CParameterServiceTigerVNC* pPara);
     virtual ~CConnection();
 
     // SConnection interface
@@ -32,7 +34,7 @@ private Q_SLOTS:
     
 private:
     QTcpSocket* m_pSocket;
-    
+    CParameterServiceTigerVNC* m_pPara;    
 };
 
 #endif // CCONNECTION_H

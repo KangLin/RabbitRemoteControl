@@ -13,7 +13,8 @@ set(INSTALL_HEADER_FILES
 set(HEADER_FILES
     ${INSTALL_HEADER_FILES}
     Service.h
-    ServiceThread.h    
+    ServiceThread.h
+    ParameterService.h
     )
 
 set(SOURCE_FILES
@@ -21,6 +22,7 @@ set(SOURCE_FILES
     ServiceManager.cpp
     Service.cpp
     ServiceThread.cpp
+    ParameterService.cpp
     )
 
 set(SOURCE_UI_FILES

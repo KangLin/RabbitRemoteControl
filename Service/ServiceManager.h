@@ -28,7 +28,7 @@ public:
 protected:
     virtual void start() override;
     virtual void stop() override;
-    
+
 private:    
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
