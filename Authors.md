@@ -27,3 +27,5 @@ Contributors:
 - [x] [Optional] libtelnet: https://github.com/seanmiddleditch/libtelnet
 - [ ] [Optional] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [x] [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+- [x] [OPTIONAL] QXmpp: https://github.com/qxmpp-project/qxmpp
+- [x] [Optional] QtService: https://github.com/KangLin/qt-solutions/

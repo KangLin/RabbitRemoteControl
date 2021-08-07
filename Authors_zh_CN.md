@@ -29,3 +29,5 @@
 - [x] [可选] libtelnet: https://github.com/seanmiddleditch/libtelnet
 - [ ] [可选] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [x] [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+- [x] [可选] QXmpp: https://github.com/qxmpp-project/qxmpp
+- [x] [可选] QtService: https://github.com/KangLin/qt-solutions/
