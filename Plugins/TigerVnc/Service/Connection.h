@@ -3,7 +3,7 @@
 
 #include "rfb/SConnection.h"
 #include <QObject>
-#include <QTcpSocket>
+#include "DataChannel.h"
 #include "ServiceTigerVNC.h"
 #include "ParameterServiceTigerVNC.h"
 
@@ -33,7 +33,7 @@ private Q_SLOTS:
     void slotReadyRead();
     
 private:
-    QTcpSocket* m_pSocket;
+    CDataChannel m_DataChannel;
     CParameterServiceTigerVNC* m_pPara;    
 };
 

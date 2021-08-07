@@ -25,11 +25,11 @@ static void setfile()
 bool g_setfile = false;
 
 CConnection::CConnection(QTcpSocket *pSocket, CParameterServiceTigerVNC *pPara)
-    : QObject(), rfb::SConnection()
+    : QObject(), rfb::SConnection(),
+      m_DataChannel(pSocket)
 {
-    m_pSocket = pSocket;
     m_pPara = pPara;
-    setStreams(new CQSocketInStream(pSocket), new CQSocketOutStream(pSocket));
+    setStreams(m_DataChannel.InStream(), m_DataChannel.OutStream());
     if(!g_setfile) 
     {
         g_setfile = true;
@@ -45,7 +45,7 @@ CConnection::CConnection(QTcpSocket *pSocket, CParameterServiceTigerVNC *pPara)
     client.setDimensions(640, 480);
     initialiseProtocol();
     
-    bool check = connect(m_pSocket, SIGNAL(readyRead()),
+    bool check = connect(&m_DataChannel, SIGNAL(readyRead()),
                          this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
 }
@@ -56,8 +56,6 @@ CConnection::~CConnection()
         delete this->getInStream();
     if(getOutStream())
         delete getOutStream();
-    if(m_pSocket)
-        m_pSocket->deleteLater();
 }
 
 void CConnection::setDesktopSize(int fb_width, int fb_height, const rfb::ScreenSet &layout)

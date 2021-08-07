@@ -35,10 +35,14 @@ rdr::OutStream* CDataChannel::OutStream()
 
 qint64 CDataChannel::readData(char *data, qint64 maxlen)
 {
-    return 0;
+    if(m_pSocket)
+        return m_pSocket->read(data, maxlen);
+    return -1;
 }
 
 qint64 CDataChannel::writeData(const char *data, qint64 len)
 {
-    return 0;
+    if(m_pSocket)
+        return m_pSocket->write(data, len);
+    return -1;
 }
