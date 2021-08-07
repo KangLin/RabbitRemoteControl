@@ -5,7 +5,6 @@
 
 #include <QSharedPointer>
 #include <QDataStream>
-#include "service_export.h"
 #include "ParameterService.h"
 
 ///

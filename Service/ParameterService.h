@@ -2,8 +2,9 @@
 #define CPARAMETERSERVICE_H
 
 #include <QDataStream>
+#include "service_export.h"
 
-class CParameterService : public QObject
+class SERVICE_EXPORT CParameterService : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(quint16 Port READ getPort WRITE setPort NOTIFY PortChanged)
