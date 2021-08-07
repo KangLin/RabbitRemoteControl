@@ -59,5 +59,5 @@ const QString CPluginServiceTigerVNC::Description() const
 
 CService *CPluginServiceTigerVNC::NewService()
 {
-    return new CServiceTigerVNC();
+    return new CServiceTigerVNC(this);
 }

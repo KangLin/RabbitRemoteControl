@@ -47,5 +47,5 @@ const QString CPluginServiceLibVNCServer::Description() const
 
 CService *CPluginServiceLibVNCServer::NewService()
 {
-    return new CServiceLibVNCServer();
+    return new CServiceLibVNCServer(this);
 }

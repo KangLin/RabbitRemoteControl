@@ -15,7 +15,7 @@ CPluginService::~CPluginService()
 
 const QString CPluginService::Id() const
 {
-    return Protol() + ":" + Name();
+    return Protol() + "_" + Name();
 }
 
 const QIcon CPluginService::Icon() const

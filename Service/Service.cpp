@@ -1,9 +1,13 @@
 #include "Service.h"
 #include <QTimer>
+#include <QSettings>
 #include "RabbitCommonLog.h"
+#include "RabbitCommonDir.h"
+#include "PluginService.h"
 
-CService::CService(QObject *parent) : QObject(parent),
-    m_pPara(nullptr)
+CService::CService(CPluginService *plugin) : QObject(),
+    m_pPara(nullptr),
+    m_pPlugin(plugin)
 {
 }
 
@@ -19,9 +23,22 @@ bool CService::Enable()
 
 int CService::Init()
 {
+    int nRet = 0;
+    if(GetParameters())
+    {
+        QString szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
+        QSettings set(szFile, QSettings::IniFormat);
+        szFile = set.value("Configure/File" + m_pPlugin->Id(),
+                           RabbitCommon::CDir::Instance()->GetDirUserConfig()
+                           + QDir::separator()
+                           + m_pPlugin->Id()
+                           + ".rrs").toString();
+        LOG_MODEL_DEBUG("Service", "Configure file: %s", szFile.toStdString().c_str());
+        nRet = GetParameters()->OnLoad(szFile);
+    }
     OnInit();
     QTimer::singleShot(0, this, SLOT(slotProcess()));
-    return 0;
+    return nRet;
 }
 
 int CService::OnInit()
@@ -31,6 +48,21 @@ int CService::OnInit()
 
 int CService::Clean()
 {
+    int nRet = 0;
+
+    //TODO: save parameter to file
+//    if(GetParameters())
+//    {
+//        QString szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
+//        QSettings set(szFile, QSettings::IniFormat);
+//        szFile = set.value("Configure/File" + m_pPlugin->Id(),
+//                           RabbitCommon::CDir::Instance()->GetDirUserConfig()
+//                           + QDir::separator()
+//                           + m_pPlugin->Id()
+//                           + ".rrs").toString();
+//        nRet = GetParameters()->OnSave(szFile);
+//    }
+    
     OnClean();
 
     if(m_pPara)
@@ -38,7 +70,7 @@ int CService::Clean()
         m_pPara->deleteLater();
         m_pPara = nullptr;
     }
-    return 0;
+    return nRet;
 }
 
 int CService::OnClean()
@@ -55,16 +87,6 @@ void CService::slotProcess()
 }
 
 int CService::OnProcess()
-{
-    return 0;
-}
-
-int CService::OnLoad(QDataStream &d)
-{
-    return 0;
-}
-
-int CService::OnSave(QDataStream &d)
 {
     return 0;
 }

@@ -22,7 +22,7 @@ public:
     explicit CPluginService(QObject *parent = nullptr);
     virtual ~CPluginService();
     
-    /// \~english ID. Default: Protol() + ":" + Name()
+    /// \~english ID. Default: Protol() + "_" + Name()
     virtual const QString Id() const;
     /// \~english Plugin protol
     virtual const QString Protol() const = 0;

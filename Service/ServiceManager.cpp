@@ -5,9 +5,10 @@
 #include <QPluginLoader>
 #include "PluginService.h"
 
-CServiceManager::CServiceManager(int argc, char **argv, const QString &name)
+CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
     : QtService<QCoreApplication>(argc, argv, name)
 {
+    application()->setApplicationName(appName);
     LoadPlugins();
 }
 

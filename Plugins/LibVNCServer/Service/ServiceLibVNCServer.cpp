@@ -6,7 +6,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 
-CServiceLibVNCServer::CServiceLibVNCServer(QObject *parent) : CService(parent)
+CServiceLibVNCServer::CServiceLibVNCServer(CPluginService *plugin) : CService(plugin)
 {
 }
 

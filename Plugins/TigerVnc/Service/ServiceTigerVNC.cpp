@@ -7,7 +7,7 @@
 #include "ParameterServiceTigerVNC.h"
 #include "Connection.h"
 
-CServiceTigerVNC::CServiceTigerVNC(QObject *parent) : CService(parent)
+CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
 {
     bool check = false;
     check = connect(&m_Lister, SIGNAL(newConnection()),
@@ -19,7 +19,7 @@ CServiceTigerVNC::CServiceTigerVNC(QObject *parent) : CService(parent)
 
 bool CServiceTigerVNC::Enable()
 {
-    return true;
+    return GetParameters()->getEnable();
 }
 
 int CServiceTigerVNC::OnInit()

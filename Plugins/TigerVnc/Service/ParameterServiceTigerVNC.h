@@ -15,6 +15,8 @@ public:
 public:
     virtual int OnLoad(QDataStream &d) override;
     virtual int OnSave(QDataStream &d) override;
+    virtual int OnLoad(const QString& szFile = QString());
+    virtual int OnSave(const QString& szFile = QString());
     
     const QString &getPassword() const;
     void setPassword(const QString &newPassword);

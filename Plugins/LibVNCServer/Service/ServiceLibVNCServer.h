@@ -8,7 +8,7 @@ class CServiceLibVNCServer : public CService
 {
     Q_OBJECT
 public:
-    explicit CServiceLibVNCServer(QObject *parent = nullptr);
+    explicit CServiceLibVNCServer(CPluginService *plugin);
 
     bool Enable();
 

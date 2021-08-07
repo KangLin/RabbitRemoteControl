@@ -7,6 +7,8 @@
 #include <QDataStream>
 #include "ParameterService.h"
 
+class CPluginService;
+
 ///
 /// \~chinese 服务接口。由具体的协议实现。
 /// 
@@ -20,7 +22,7 @@ class SERVICE_EXPORT CService : public QObject
 {
     Q_OBJECT
 public:
-    explicit CService(QObject *parent = nullptr);
+    explicit CService(CPluginService *plugin);
     virtual ~CService();
     
     virtual bool Enable();
@@ -28,7 +30,7 @@ public:
     virtual int Clean();
 
     CParameterService* GetParameters();
-    
+
 protected Q_SLOTS:
     virtual void slotProcess();
 
@@ -40,11 +42,9 @@ protected:
     /// \li  0: Success
     /// \li >0: Stop call slotProcess
     virtual int OnProcess();
-    
-    virtual int OnLoad(QDataStream& d);
-    virtual int OnSave(QDataStream& d);
-    
+
     CParameterService* m_pPara;
+    CPluginService* m_pPlugin;
 };
 
 #endif // CSERVICE_H_KL_2021_07_13
