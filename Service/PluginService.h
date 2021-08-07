@@ -5,6 +5,7 @@
 #include "Service.h"
 
 class CServiceThread;
+class CServiceManager;
 
 ///
 /// \~chinese 服务插件接口。默认为每个插件启动一个线程进行处理。
@@ -42,6 +43,7 @@ protected:
 private:
     CServiceThread* m_pThread;
     friend CServiceThread;
+    friend CServiceManager;
 };
 
 QT_BEGIN_NAMESPACE

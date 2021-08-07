@@ -33,7 +33,7 @@ int CService::Init()
                            + QDir::separator()
                            + m_pPlugin->Id()
                            + ".rrs").toString();
-        LOG_MODEL_DEBUG("Service", "Configure file: %s", szFile.toStdString().c_str());
+        LOG_MODEL_INFO("Service", "Configure file: %s", szFile.toStdString().c_str());
         nRet = GetParameters()->OnLoad(szFile);
     }
     OnInit();
@@ -49,19 +49,6 @@ int CService::OnInit()
 int CService::Clean()
 {
     int nRet = 0;
-
-    //TODO: save parameter to file
-//    if(GetParameters())
-//    {
-//        QString szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
-//        QSettings set(szFile, QSettings::IniFormat);
-//        szFile = set.value("Configure/File" + m_pPlugin->Id(),
-//                           RabbitCommon::CDir::Instance()->GetDirUserConfig()
-//                           + QDir::separator()
-//                           + m_pPlugin->Id()
-//                           + ".rrs").toString();
-//        nRet = GetParameters()->OnSave(szFile);
-//    }
     
     OnClean();
 
@@ -94,4 +81,27 @@ int CService::OnProcess()
 CParameterService* CService::GetParameters()
 {
     return m_pPara;
+}
+
+int CService::SaveConfigure(const QString &szDir)
+{
+    int nRet = 0;
+    if(GetParameters())
+    {
+        QString szFile;
+        if(szDir.isEmpty())
+        {
+            szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
+            QSettings set(szFile, QSettings::IniFormat);
+            szFile = set.value("Configure/File" + m_pPlugin->Id(),
+                               RabbitCommon::CDir::Instance()->GetDirUserConfig()
+                               + QDir::separator()
+                               + m_pPlugin->Id()
+                               + ".rrs").toString();
+        } else {
+            szFile = szDir + QDir::separator() + m_pPlugin->Id() + ".rrs";
+        }
+        nRet = GetParameters()->OnSave(szFile);
+    }
+    return nRet;
 }

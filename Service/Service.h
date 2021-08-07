@@ -30,6 +30,8 @@ public:
     virtual int Clean();
 
     CParameterService* GetParameters();
+    
+    virtual int SaveConfigure(const QString& szDir = QString());
 
 protected Q_SLOTS:
     virtual void slotProcess();
