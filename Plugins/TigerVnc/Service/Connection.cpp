@@ -5,6 +5,7 @@
 #include "rfb/SSecurityVncAuth.h"
 #include "RabbitCommonTools.h"
 #include <fstream>
+#include "InputDevice.h"
 
 static void setfile()
 {
@@ -106,11 +107,22 @@ void CConnection::clientInit(bool shared)
 void CConnection::keyEvent(rdr::U32 keysym, rdr::U32 keycode, bool down)
 {
     LOG_MODEL_DEBUG("Connection", "keysym:%d;keycode:%d;down:%d", keysym, keycode, down);
+    CInputDevice device;
+    device.KeyEvent(keysym, keycode, down);
 }
 
 void CConnection::pointerEvent(const rfb::Point &pos, int buttonMask)
 {
     //LOG_MODEL_DEBUG("Connection", "pos:%d,%d;button:%d", pos.x, pos.y, buttonMask);
+    Qt::MouseButtons button;
+    if(buttonMask & 0x1)
+        button |= Qt::MouseButton::LeftButton;
+    if(buttonMask & 0x2)
+        button |= Qt::MouseButton::MiddleButton;
+    if(buttonMask & 0x4)
+        button |= Qt::MouseButton::RightButton;
+    CInputDevice device;
+    device.MouseEvent(button, QPoint(pos.x, pos.y));
 }
 
 void CConnection::clientCutText(const char *str)

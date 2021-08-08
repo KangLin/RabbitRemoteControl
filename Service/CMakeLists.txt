@@ -8,6 +8,7 @@ project(Service LANGUAGES CXX)
 set(INSTALL_HEADER_FILES
     PluginService.h
     ServiceManager.h
+    InputDevice.h
     )
 
 set(HEADER_FILES
@@ -24,6 +25,13 @@ set(SOURCE_FILES
     ServiceThread.cpp
     ParameterService.cpp
     )
+
+if(WIN32)
+    list(APPEND SOURCE_FILES InputDeviceWindows.cpp)
+else()
+    list(APPEND SOURCE_FILES InputDevice.cpp)
+endif()
+    
 
 set(SOURCE_UI_FILES
     )
