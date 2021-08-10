@@ -1,5 +1,6 @@
 #include "ParameterServiceTigerVNC.h"
 #include <QSettings>
+#include "RabbitCommonLog.h"
 
 CParameterServiceTigerVNC::CParameterServiceTigerVNC(QObject *parent)
     : CParameterService(parent)
@@ -25,7 +26,7 @@ int CParameterServiceTigerVNC::OnLoad(const QString& szFile)
 {
     int nRet = CParameterService::OnLoad(szFile);
     QSettings set(szFile, QSettings::IniFormat);
-    set.setValue("TigerVNC/Password", m_szPassword);
+    m_szPassword = set.value("TigerVNC/Password", m_szPassword).toString();
     return nRet;
 }
 
@@ -33,7 +34,7 @@ int CParameterServiceTigerVNC::OnSave(const QString& szFile)
 {
     int nRet = CParameterService::OnSave(szFile);
     QSettings set(szFile, QSettings::IniFormat);
-    m_szPassword = set.value("TigerVNC/Password", m_szPassword).toString();
+    set.setValue("TigerVNC/Password", m_szPassword);
     return nRet;
 }
 

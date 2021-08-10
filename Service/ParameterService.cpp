@@ -23,16 +23,16 @@ int CParameterService::OnSave(QDataStream &d)
 int CParameterService::OnLoad(const QString& szFile)
 {
     QSettings set(szFile, QSettings::IniFormat);
-    set.setValue("Port", m_nPort);
-    set.setValue("Enable", m_bEnable);
+    m_nPort = set.value("Port", m_nPort).toUInt();
+    m_bEnable = set.value("Enable", m_bEnable).toBool();
     return 0;
 }
 
 int CParameterService::OnSave(const QString& szFile)
 {
     QSettings set(szFile, QSettings::IniFormat);
-    m_nPort = set.value("Port", m_nPort).toUInt();
-    m_bEnable = set.value("Enable", m_bEnable).toBool();
+    set.setValue("Port", m_nPort);
+    set.setValue("Enable", m_bEnable);
     return 0;
 }
 

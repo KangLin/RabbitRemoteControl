@@ -107,22 +107,29 @@ void CConnection::clientInit(bool shared)
 void CConnection::keyEvent(rdr::U32 keysym, rdr::U32 keycode, bool down)
 {
     LOG_MODEL_DEBUG("Connection", "keysym:%d;keycode:%d;down:%d", keysym, keycode, down);
-    CInputDevice device;
-    device.KeyEvent(keysym, keycode, down);
+    m_InputDevice.KeyEvent(keysym, keycode, down);
 }
 
 void CConnection::pointerEvent(const rfb::Point &pos, int buttonMask)
 {
     //LOG_MODEL_DEBUG("Connection", "pos:%d,%d;button:%d", pos.x, pos.y, buttonMask);
-    Qt::MouseButtons button;
+    CInputDevice::MouseButtons button;
     if(buttonMask & 0x1)
-        button |= Qt::MouseButton::LeftButton;
+        button |= CInputDevice::LeftButton;
     if(buttonMask & 0x2)
-        button |= Qt::MouseButton::MiddleButton;
+        button |= CInputDevice::MouseButton::MiddleButton;
     if(buttonMask & 0x4)
-        button |= Qt::MouseButton::RightButton;
-    CInputDevice device;
-    device.MouseEvent(button, QPoint(pos.x, pos.y));
+        button |= CInputDevice::MouseButton::RightButton;
+    if(buttonMask & 0x8)
+        button |= CInputDevice::MouseButton::UWheelButton;
+    if(buttonMask & 0x10)
+        button |= CInputDevice::MouseButton::DWheelButton;
+    if(buttonMask & 0x20)
+        button |= CInputDevice::MouseButton::LWheelButton;
+    if(buttonMask & 0x40)
+        button |= CInputDevice::MouseButton::RWheelButton;
+    
+    m_InputDevice.MouseEvent(button, QPoint(pos.x, pos.y));
 }
 
 void CConnection::clientCutText(const char *str)

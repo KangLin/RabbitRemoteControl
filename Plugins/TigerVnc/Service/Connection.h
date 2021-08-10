@@ -6,6 +6,7 @@
 #include "DataChannel.h"
 #include "ServiceTigerVNC.h"
 #include "ParameterServiceTigerVNC.h"
+#include "InputDevice.h"
 
 class CConnection : public QObject, rfb::SConnection
 {
@@ -34,7 +35,8 @@ private Q_SLOTS:
     
 private:
     CDataChannel m_DataChannel;
-    CParameterServiceTigerVNC* m_pPara;    
+    CParameterServiceTigerVNC* m_pPara;
+    CInputDevice m_InputDevice;
 };
 
 #endif // CCONNECTION_H
