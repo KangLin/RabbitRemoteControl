@@ -47,7 +47,7 @@ SET(RCC_FILES )
 
 SET(SRC_LIBS RabbitCommon ${QT_LIBRARIES})
 
-option(WITH_ICE "Use ice" ON)
+option(WITH_ICE "Use ice" OFF)
 if(WITH_ICE)
     set(_LibDataChannel_DIR ${LibDataChannel_DIR})
     find_package(libdatachannel)
