@@ -20,7 +20,9 @@ set(SOURCE_UI_FILES
 
     )
 
-SET(RCC_FILES )
+if(WIN32)
+    set(RCC_FILES Resource/App.rc)
+endif()
 
 SET(SRC_LIBS RabbitCommon ${QT_LIBRARIES})
 
