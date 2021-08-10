@@ -34,3 +34,8 @@ int CScreen::VirtualHeight()
 {
     return GetSystemMetrics(SM_CYVIRTUALSCREEN);
 }
+
+int CScreen::VisibleMonitorCount()
+{
+    return GetSystemMetrics(SM_CMONITORS);
+}

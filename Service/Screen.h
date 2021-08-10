@@ -17,6 +17,11 @@ public:
     int VirtualLeft();
     int VirtualWidth();
     int VirtualHeight();
+    
+    // Windows contain both visible and invisible pseudo-monitors
+    // that are associated with mirroring drivers.
+    // The function returns only visible monitor count.
+    int VisibleMonitorCount();
 };
 
 #endif // CSCREEN_H
