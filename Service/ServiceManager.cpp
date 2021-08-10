@@ -13,7 +13,8 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
     application()->setApplicationName(appName);
 
     LoadPlugins();
-    
+   
+    //TODO: add default parameters 
     QCommandLineOption oConfigFile("export",
                                    "export default parameters to files in directory",
                                    "directory",
@@ -23,19 +24,23 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
     parser.addVersionOption();
     parser.addOption(oConfigFile);
     parser.parse(application()->arguments());
-    QString szDir = parser.value(oConfigFile);
-    if(!szDir.isEmpty())
+    bool bExport = parser.isSet(oConfigFile);
+    if(bExport)
     {
-        foreach(auto p, m_Plugins)
+        QString szDir = parser.value(oConfigFile);
+        if(!szDir.isEmpty())
         {
-            if(p)
+            foreach(auto p, m_Plugins)
             {
-               CService* pService = p->NewService();
-               if(pService)
-                   pService->SaveConfigure(szDir);
+                if(p)
+                {
+                    CService* pService = p->NewService();
+                    if(pService)
+                        pService->SaveConfigure(szDir);
+                }
             }
+            application()->quit();
         }
-        application()->quit();
     }
 }
 

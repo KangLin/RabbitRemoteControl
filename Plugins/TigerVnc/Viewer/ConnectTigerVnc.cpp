@@ -525,13 +525,13 @@ void CConnectTigerVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoi
     
     QPoint d = angleDelta;
     if(d.y() > 0)
-        mask |= 8;
+        mask |= 0x8;
     if(d.y() < 0)
-        mask |= 16;
+        mask |= 0x10;
     if(d.x() < 0)
-        mask |= 32;
+        mask |= 0x20;
     if(d.x() > 0)
-        mask |= 64;
+        mask |= 0x40;
     
     writer()->writePointerEvent(p, mask);
 }

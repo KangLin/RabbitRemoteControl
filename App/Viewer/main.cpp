@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
     else    
         return 0;
 
+    MainWindow* w = new MainWindow();
     try {
-        MainWindow* w = new MainWindow();
         //w->setWindowIcon(QIcon(":/image/App"));
         //w->setWindowTitle(a.applicationDisplayName());
         
