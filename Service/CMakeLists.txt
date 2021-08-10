@@ -9,6 +9,7 @@ set(INSTALL_HEADER_FILES
     PluginService.h
     ServiceManager.h
     InputDevice.h
+    Screen.h
     )
 
 set(HEADER_FILES
@@ -27,7 +28,9 @@ set(SOURCE_FILES
     )
 
 if(WIN32)
-    list(APPEND SOURCE_FILES InputDeviceWindows.cpp)
+    list(APPEND SOURCE_FILES
+        InputDeviceWindows.cpp
+        ScreenWindows.cpp)
 else()
     list(APPEND SOURCE_FILES InputDevice.cpp)
 endif()

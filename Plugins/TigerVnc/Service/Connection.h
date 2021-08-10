@@ -7,13 +7,14 @@
 #include "ServiceTigerVNC.h"
 #include "ParameterServiceTigerVNC.h"
 #include "InputDevice.h"
+#include "Screen.h"
 
 class CConnection : public QObject, rfb::SConnection
 {
     Q_OBJECT
     
 public:
-    explicit CConnection(QTcpSocket* pSocket, CParameterServiceTigerVNC* pPara);
+    explicit CConnection(QTcpSocket* pSocket, CScreen* pScreen, CParameterServiceTigerVNC* pPara);
     virtual ~CConnection();
 
     // SConnection interface

@@ -6,6 +6,9 @@
 #include "RabbitCommonTools.h"
 #include <fstream>
 #include "InputDevice.h"
+#include <QScreen>
+#include <QApplication>
+#include "Screen.h"
 
 static void setfile()
 {
@@ -25,7 +28,7 @@ static void setfile()
 }
 bool g_setfile = false;
 
-CConnection::CConnection(QTcpSocket *pSocket, CParameterServiceTigerVNC *pPara)
+CConnection::CConnection(QTcpSocket *pSocket, CScreen *pScreen, CParameterServiceTigerVNC *pPara)
     : QObject(), rfb::SConnection(),
       m_DataChannel(pSocket)
 {
@@ -42,8 +45,8 @@ CConnection::CConnection(QTcpSocket *pSocket, CParameterServiceTigerVNC *pPara)
     rfb::PlainPasswd password(pass);
     rfb::ObfuscatedPasswd oPassword(password);
     rfb::SSecurityVncAuth::vncAuthPasswd.setParam(oPassword.buf, oPassword.length);
-    
-    client.setDimensions(640, 480);
+
+    client.setDimensions(pScreen->Width(), pScreen->Height());
     initialiseProtocol();
     
     bool check = connect(&m_DataChannel, SIGNAL(readyRead()),

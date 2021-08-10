@@ -6,6 +6,7 @@
 #include <QTcpSocket>
 #include "ParameterServiceTigerVNC.h"
 #include "Connection.h"
+#include "PluginService.h"
 
 CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
 {
@@ -60,6 +61,7 @@ void CServiceTigerVNC::slotNewConnection()
                    pSocket->peerAddress().toString().toStdString().c_str(),
                    pSocket->peerPort());
     QSharedPointer<CConnection> c(new CConnection(pSocket,
+                                                  m_pPlugin->GetScreen(),
               dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
     m_lstConnection.push_back(c);
 }
