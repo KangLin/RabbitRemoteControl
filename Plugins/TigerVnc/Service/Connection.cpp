@@ -45,8 +45,11 @@ CConnection::CConnection(QTcpSocket *pSocket, CScreen *pScreen, CParameterServic
     rfb::PlainPasswd password(pass);
     rfb::ObfuscatedPasswd oPassword(password);
     rfb::SSecurityVncAuth::vncAuthPasswd.setParam(oPassword.buf, oPassword.length);
-
-    client.setDimensions(pScreen->Width(), pScreen->Height());
+    
+    if(pScreen)
+        client.setDimensions(pScreen->Width(), pScreen->Height());
+    else
+        client.setDimensions(640, 480);
     initialiseProtocol();
     
     bool check = connect(&m_DataChannel, SIGNAL(readyRead()),
