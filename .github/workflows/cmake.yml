@@ -164,8 +164,8 @@ jobs:
       working-directory: ${{github.workspace}}/build
       shell: cmd
       run: |
-        copy install\plugins\*crypto*.dll install\bin
-        copy install\plugins\*ssl*.dll install\bin
+        move /Y install\plugins\*crypto*.dll install\bin
+        move /Y install\plugins\*ssl*.dll install\bin
         makensis ${{github.workspace}}/build/Install.nsi
         ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "${{github.workspace}}/build/update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.8.exe -m "v0.0.8"
       if: ${{ matrix.os == 'windows-latest' &&  matrix.BUILD_TYPE == 'Release' }}
