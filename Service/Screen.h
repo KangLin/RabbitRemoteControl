@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "service_export.h"
+#include <QImage>
 
 class SERVICE_EXPORT CScreen : public QObject
 {
@@ -22,6 +23,8 @@ public:
     // that are associated with mirroring drivers.
     // The function returns only visible monitor count.
     int VisibleMonitorCount();
+    
+    virtual QImage GetDesktop();
 };
 
 #endif // CSCREEN_H

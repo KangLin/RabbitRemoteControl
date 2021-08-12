@@ -8,10 +8,10 @@
 #include <QCommandLineParser>
 
 CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
-    : QtService<QCoreApplication>(argc, argv, name)
+    : QtService<QApplication>(argc, argv, name)
 {
     application()->setApplicationName(appName);
-
+    
     LoadPlugins();
    
     //TODO: add default parameters 
