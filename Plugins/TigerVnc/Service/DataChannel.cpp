@@ -14,6 +14,15 @@ CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
     check = connect(m_pSocket, SIGNAL(readyRead()),
             this, SIGNAL(readyRead()));
     Q_ASSERT(check);
+    check = connect(m_pSocket, SIGNAL(connected()),
+                    this, SIGNAL(sigConnected()));
+    Q_ASSERT(check);
+    check = connect(m_pSocket, SIGNAL(disconnected()),
+                    this, SIGNAL(sigDisconnected()));
+    Q_ASSERT(check);
+    check = connect(m_pSocket, SIGNAL(error(QAbstractSocket::SocketError)),
+                    this, SLOT(slotError(QAbstractSocket::SocketError)));
+    Q_ASSERT(check);
 }
 
 CDataChannel::~CDataChannel()
@@ -45,4 +54,12 @@ qint64 CDataChannel::writeData(const char *data, qint64 len)
     if(m_pSocket)
         return m_pSocket->write(data, len);
     return -1;
+}
+
+void CDataChannel::slotError(QAbstractSocket::SocketError e)
+{
+    QString szError;
+    if(m_pSocket)
+        szError = m_pSocket->errorString();
+    emit sigError(e, szError);
 }

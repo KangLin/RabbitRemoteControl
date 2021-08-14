@@ -10,6 +10,8 @@
 
 class CDataChannel : public QIODevice
 {
+    Q_OBJECT
+    
 public:
     explicit CDataChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
     virtual ~CDataChannel();
@@ -17,6 +19,14 @@ public:
     rdr::InStream* InStream();
     rdr::OutStream* OutStream();
     
+Q_SIGNALS:
+    void sigConnected();
+    void sigDisconnected();
+    void sigError(int nRet, QString szErr);
+
+private Q_SLOTS:
+    void slotError(QAbstractSocket::SocketError e);
+
 private:
     QTcpSocket* m_pSocket;
     rdr::InStream* m_pInStream;

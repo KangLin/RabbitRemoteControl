@@ -106,9 +106,9 @@ int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
 //    }
 
     QRect primaryDisplay(0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
-    LOG_MODEL_DEBUG("InputDevice", "primary screen:%d,%d;pos:%d,%d",
-                    primaryDisplay.width(), primaryDisplay.height(),
-                    pos.x(), pos.y());
+//    LOG_MODEL_DEBUG("InputDevice", "primary screen:%d,%d;pos:%d,%d",
+//                    primaryDisplay.width(), primaryDisplay.height(),
+//                    pos.x(), pos.y());
     if (primaryDisplay.contains(pos)) {
         LOG_MODEL_DEBUG("InputDevice", "In primary screen");
         // mouse_event wants coordinates specified as a proportion of the

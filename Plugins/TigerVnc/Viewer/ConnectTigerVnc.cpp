@@ -211,10 +211,10 @@ void CConnectTigerVnc::slotReadyRead()
             ;
         return;
     } catch (rdr::EndOfStream& e) {
-        LOG_MODEL_ERROR("TigerVnc", "exec error: %s", e.str());
+        LOG_MODEL_ERROR("TigerVnc", "processMsg error: %s", e.str());
         emit sigError(-1, e.str());
     } catch (rdr::Exception& e) {
-        LOG_MODEL_ERROR("TigerVnc", "exec error: %s", e.str());
+        LOG_MODEL_ERROR("TigerVnc", "processMsg error: %s", e.str());
         emit sigError(-1, e.str());
     }
     emit sigDisconnected();

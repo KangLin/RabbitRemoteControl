@@ -60,8 +60,16 @@ void CServiceTigerVNC::slotNewConnection()
     LOG_MODEL_INFO("ServiceTigerVNC", "New connection: %s:%d",
                    pSocket->peerAddress().toString().toStdString().c_str(),
                    pSocket->peerPort());
-    QSharedPointer<CConnection> c(new CConnection(pSocket,
-                                                  m_pPlugin->GetScreen(),
-              dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
-    m_lstConnection.push_back(c);
+    try {
+        QSharedPointer<CConnection> c(new CConnection(pSocket,
+                                                      m_pPlugin->GetScreen(),
+                  dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
+        m_lstConnection.push_back(c);
+        //TODO: Add CConnection disconnect and error
+    }  catch (std::exception e) {
+        LOG_MODEL_ERROR("ServiceTigerVNC", e.what());
+    }  catch(...) {
+        LOG_MODEL_ERROR("ServiceTigerVNC", "New connection exception");
+    }
+    
 }
