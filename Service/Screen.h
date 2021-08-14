@@ -25,6 +25,9 @@ public:
     int VisibleMonitorCount();
     
     virtual QImage GetDesktop();
+    
+Q_SIGNALS:
+    void sigUpdate(QImage screen);
 };
 
 #endif // CSCREEN_H

@@ -2,6 +2,8 @@
 #define CCONNECTION_H
 
 #include "rfb/SConnection.h"
+#include "rfb/EncodeManager.h"
+#include "rfb/UpdateTracker.h"
 #include <QObject>
 #include "DataChannel.h"
 #include "ServiceTigerVNC.h"
@@ -24,20 +26,46 @@ public:
 
     // SMsgHandler interface
     virtual void clientInit(bool shared) override;
-    virtual void setDesktopSize(int fb_width, int fb_height, const rfb::ScreenSet &layout) override;
+    virtual void setDesktopSize(int fb_width, int fb_height, const rfb::ScreenSet &layout) override;   
+    virtual void setPixelFormat(const rfb::PixelFormat &pf) override;
+    virtual void framebufferUpdateRequest(const rfb::Rect &r, bool incremental) override;    
+    virtual void fence(rdr::U32 flags, unsigned len, const char data[]) override;
+    virtual void enableContinuousUpdates(bool enable, int x, int y, int w, int h) override;
     
     // InputHandler interface
     virtual void keyEvent(rdr::U32 keysym, rdr::U32 keycode, bool down) override;
     virtual void pointerEvent(const rfb::Point& pos, int buttonMask) override;
     virtual void clientCutText(const char* str) override;
 
+private:
+    rfb::PixelFormat GetPixelFormatFromQImage(QImage& img);
+    QSharedPointer<rfb::PixelBuffer> GetBufferFromQImage(QImage &img);
+    void writeNoDataUpdate();
+    void writeDataUpdate(QImage img);
+    
 private Q_SLOTS:
     void slotReadyRead();
-    
+    void slotDisconnected();
+    void slotScreenUpdate(QImage);
+
 private:
     CDataChannel m_DataChannel;
     CParameterServiceTigerVNC* m_pPara;
     CInputDevice m_InputDevice;
+    CScreen* m_pScreen;
+    
+    bool inProcessMessages;
+    
+    bool pendingSyncFence, syncFence;
+    rdr::U32 fenceFlags;
+    unsigned fenceDataLen;
+    char *fenceData;
+    
+    rfb::EncodeManager m_EncodeManager;
+    rfb::SimpleUpdateTracker m_Updates;
+    rfb::Region requested;
+    bool continuousUpdates;
+    rfb::Region cuRegion;
 };
 
 #endif // CCONNECTION_H
