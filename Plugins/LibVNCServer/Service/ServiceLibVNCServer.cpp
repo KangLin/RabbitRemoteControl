@@ -5,19 +5,21 @@
 #include <QScreen>
 #include <QApplication>
 #include <QDesktopWidget>
+#include "ParameterServiceLibVNC.h"
+#include "Screen.h"
 
 CServiceLibVNCServer::CServiceLibVNCServer(CPluginService *plugin) : CService(plugin)
 {
+    m_pPara = new CParameterServiceLibVNC(this);
 }
 
-bool CServiceLibVNCServer::Enable()
-{
-    return false;
-}
-
-static rfbBool checkPassword(struct _rfbClientRec* cl,const char* encryptedPassWord,int len)
+static rfbBool checkPassword(struct _rfbClientRec* cl,
+                             const char* encryptedPassWord, int len)
 {
     LOG_MODEL_DEBUG("Service LibVNCServer", "Password:%s", encryptedPassWord);
+    CServiceLibVNCServer* pThis = reinterpret_cast<CServiceLibVNCServer*>(cl->screen->screenData);
+    if(pThis->GetParameters()->getPassword() == encryptedPassWord)
+        return true;
     return false;
 }
 
@@ -42,24 +44,23 @@ static enum rfbNewClientAction newclient(rfbClientPtr cl)
 
 int CServiceLibVNCServer::OnInit()
 {
-    //LOG_MODEL_DEBUG("CServiceLibVNCServer", "CServiceLibVNCServer Init ......");
-    QScreen* pScreen = QApplication::primaryScreen();
+    LOG_MODEL_DEBUG("CServiceLibVNCServer", "CServiceLibVNCServer Init ......");
 
     int w = 640;
     int h = 480;
     int bpp = 4;
     
-    if(pScreen)
-    {
-        w = pScreen->geometry().width();
-        h = pScreen->geometry().height();
-    }
+    CScreen screen;
+    w = screen.Width();
+    h = screen.Height();
+
     m_rfbScreen = rfbGetScreen(0, nullptr, w, h, 8, 3, bpp);
     if(!m_rfbScreen)
         return -1;
     QString name = RabbitCommon::CTools::GetHostName()
             + "@" + RabbitCommon::CTools::GetCurrentUser();
     m_rfbScreen->desktopName = strdup(name.toStdString().c_str());
+    m_rfbScreen->port = GetParameters()->getPort();
     m_rfbScreen->frameBuffer = (char*)malloc(w * h * bpp);
     m_rfbScreen->alwaysShared = TRUE;
     m_rfbScreen->ptrAddEvent = doptr;
@@ -69,6 +70,8 @@ int CServiceLibVNCServer::OnInit()
 //    m_rfbScreen->httpDir = "../webclients";
 //    m_rfbScreen->httpEnableProxyConnect = TRUE;
         
+    m_rfbScreen->screenData = this;
+    
     /* initialize the server */
     rfbInitServer(m_rfbScreen);
     return 0;

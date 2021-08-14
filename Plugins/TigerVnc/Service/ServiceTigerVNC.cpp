@@ -18,11 +18,6 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
     m_pPara = new CParameterServiceTigerVNC(this);
 }
 
-bool CServiceTigerVNC::Enable()
-{
-    return GetParameters()->getEnable();
-}
-
 int CServiceTigerVNC::OnInit()
 {
     if(!GetParameters())

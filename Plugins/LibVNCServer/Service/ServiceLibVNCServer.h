@@ -10,8 +10,6 @@ class CServiceLibVNCServer : public CService
 public:
     explicit CServiceLibVNCServer(CPluginService *plugin);
 
-    bool Enable();
-
 private:
     int OnInit() override;
     virtual int OnClean() override;

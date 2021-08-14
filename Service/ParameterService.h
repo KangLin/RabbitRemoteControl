@@ -9,12 +9,11 @@ class SERVICE_EXPORT CParameterService : public QObject
     Q_OBJECT
     Q_PROPERTY(quint16 Port READ getPort WRITE setPort NOTIFY PortChanged)
     Q_PROPERTY(bool Enable READ getEnable WRITE setEnable NOTIFY EnableChanged)
+    Q_PROPERTY(QString Password READ getPassword WRITE setPassword NOTIFY PasswordChanged)
     
 public:
     explicit CParameterService(QObject *parent = nullptr);
-    
-    virtual int OnLoad(QDataStream& d);
-    virtual int OnSave(QDataStream& d);
+
     virtual int OnLoad(const QString& szFile = QString());
     virtual int OnSave(const QString& szFile = QString());
     
@@ -24,15 +23,18 @@ public:
     bool getEnable() const;
     void setEnable(bool newEnable);
     
-signals:
-    void PortChanged();
+    const QString &getPassword() const;
+    void setPassword(const QString &newPassword);
     
+signals:
+    void PortChanged();   
     void EnableChanged();
+    void PasswordChanged();
     
 private:
     quint16 m_nPort;
     bool m_bEnable;
-    
+    QString m_szPassword;
 };
 
 #endif // CPARAMETERSERVICE_H

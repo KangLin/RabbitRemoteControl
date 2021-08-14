@@ -89,7 +89,7 @@ CConnection::CConnection(QTcpSocket *pSocket, CScreen *pScreen,
 CConnection::~CConnection()
 {
     if(getInStream())
-        delete this->getInStream();
+        delete getInStream();
     if(getOutStream())
         delete getOutStream();
 }
@@ -130,7 +130,7 @@ void CConnection::slotReadyRead()
         if(writer())
         {
             QImage img = m_pScreen->GetDesktop();
-            // Mark the entire display as "dirty"
+            //TODO: Delete it!!! Mark the entire display as "dirty"
             m_Updates.add_changed(rfb::Rect(0, 0, img.width(), img.height()));
             slotScreenUpdate(img);
         }
@@ -197,8 +197,8 @@ void CConnection::setDesktopSize(int fb_width, int fb_height, const rfb::ScreenS
     LOG_MODEL_DEBUG("Connection", "setDesktopSize: %d:%d", fb_width, fb_height);
 
     //TODO: Add set server desktop size
-    
-    writer()->writeDesktopSize(rfb::reasonClient, rfb::resultSuccess);
+    if(writer())
+        writer()->writeDesktopSize(rfb::reasonClient, rfb::resultSuccess);
 }
 
 void CConnection::setPixelFormat(const rfb::PixelFormat &pf)
@@ -361,9 +361,7 @@ rfb::PixelFormat CConnection::GetPixelFormatFromQImage(QImage &img)
         switch(img.format()){
         case QImage::Format_ARGB32:
         {
-            rfb::PixelFormat pf(32, 24, false, true,
-                                255, 255, 255, 16, 8, 0);
-            return pf;
+            break;
         }
         default:
             LOG_MODEL_ERROR("Connection", "Don't support format:%d, must set QImage::Format_ARGB32", img.format());
@@ -380,10 +378,13 @@ QSharedPointer<rfb::PixelBuffer> CConnection::GetBufferFromQImage(QImage &img)
     if(img.isNull())
         return nullptr;
     
+    rfb::PixelFormat pf = GetPixelFormatFromQImage(img);
     QSharedPointer<rfb::PixelBuffer> pb(
-                new rfb::FullFramePixelBuffer(GetPixelFormatFromQImage(img),
-                                              img.width(), img.height(),
-                                              img.bits(), img.bytesPerLine()));
+                new rfb::FullFramePixelBuffer(pf,
+                                              img.width(),
+                                              img.height(),
+                                              img.bits(),
+                                              img.bytesPerLine() / (pf.bpp / 8)));
     return pb;
 }
 

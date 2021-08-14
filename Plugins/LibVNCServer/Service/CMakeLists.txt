@@ -36,10 +36,12 @@ list(APPEND SRC_LIBS Service)
 SET(SOURCE_FILES
     PluginServiceLibVNCServer.cpp
     ServiceLibVNCServer.cpp
+    ParameterServiceLibVNC.cpp
     )
 SET(HEADER_FILES
     PluginServiceLibVNCServer.h
     ServiceLibVNCServer.h
+    ParameterServiceLibVNC.h
     )
 SET(UI_FILES
     )

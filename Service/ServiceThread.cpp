@@ -15,17 +15,15 @@ void CServiceThread::run()
         LOG_MODEL_ERROR("ServiceThread", "GetService fail");
         return;
     }
-    
-    if(!pService->Enable())
-    {
-        LOG_MODEL_INFO("ServiceThread", "The service [%s] is disable",
-                       m_pPlugin->Name().toStdString().c_str());
-        return;
-    }
-    pService->Init();
+            
+    int nRet = pService->Init();
+    if(nRet) return;
     
     exec();
     
+    LOG_MODEL_INFO("ServiceThread", "The service [%s] is stop",
+                   m_pPlugin->Name().toStdString().c_str());
+
     pService->Clean();
     pService->deleteLater();
 }

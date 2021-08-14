@@ -18,7 +18,9 @@ CService::~CService()
 
 bool CService::Enable()
 {
-    return true;
+    if(GetParameters())
+        return GetParameters()->getEnable();
+    return false;
 }
 
 int CService::Init()
@@ -36,8 +38,20 @@ int CService::Init()
         LOG_MODEL_INFO("Service", "Configure file: %s", szFile.toStdString().c_str());
         nRet = GetParameters()->OnLoad(szFile);
     }
-    OnInit();
-    QTimer::singleShot(0, this, SLOT(slotProcess()));
+    
+    if(!Enable())
+    {
+        LOG_MODEL_INFO("ServiceThread", "The service [%s] is disable",
+                       m_pPlugin->Name().toStdString().c_str());
+        return -1;
+    } else
+        LOG_MODEL_INFO("ServiceThread", "The service [%s] is start",
+                       m_pPlugin->Name().toStdString().c_str());
+    
+    nRet = OnInit();
+    if(0 == nRet)
+        QTimer::singleShot(0, this, SLOT(slotProcess()));
+
     return nRet;
 }
 

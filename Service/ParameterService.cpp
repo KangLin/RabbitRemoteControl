@@ -4,20 +4,7 @@
 CParameterService::CParameterService(QObject *parent) : QObject(parent),
     m_nPort(0),
     m_bEnable(true)
-{}
-
-int CParameterService::OnLoad(QDataStream &d)
 {
-    d >> m_nPort;
-    d >> m_bEnable;
-    return 0;
-}
-
-int CParameterService::OnSave(QDataStream &d)
-{
-    d << m_nPort;
-    d << m_bEnable;
-    return 0;
 }
 
 int CParameterService::OnLoad(const QString& szFile)
@@ -25,6 +12,7 @@ int CParameterService::OnLoad(const QString& szFile)
     QSettings set(szFile, QSettings::IniFormat);
     m_nPort = set.value("Port", m_nPort).toUInt();
     m_bEnable = set.value("Enable", m_bEnable).toBool();
+    m_szPassword = set.value("Password", m_szPassword).toString();
     return 0;
 }
 
@@ -33,6 +21,7 @@ int CParameterService::OnSave(const QString& szFile)
     QSettings set(szFile, QSettings::IniFormat);
     set.setValue("Port", m_nPort);
     set.setValue("Enable", m_bEnable);
+    set.setValue("Password", m_szPassword);
     return 0;
 }
 
@@ -60,4 +49,17 @@ void CParameterService::setEnable(bool newEnable)
         return;
     m_bEnable = newEnable;
     emit EnableChanged();
+}
+
+const QString &CParameterService::getPassword() const
+{
+    return m_szPassword;
+}
+
+void CParameterService::setPassword(const QString &newPassword)
+{
+    if (m_szPassword == newPassword)
+        return;
+    m_szPassword = newPassword;
+    emit PasswordChanged();
 }

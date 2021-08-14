@@ -13,7 +13,6 @@ class CServiceTigerVNC : public CService//, rfb::SDesktop
     Q_OBJECT
 public:
     explicit CServiceTigerVNC(CPluginService *plugin);
-    bool Enable();    
 
     // CService interface
 protected:

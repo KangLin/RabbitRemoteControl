@@ -24,8 +24,9 @@ class SERVICE_EXPORT CService : public QObject
 public:
     explicit CService(CPluginService *plugin);
     virtual ~CService();
-    
+
     virtual bool Enable();
+    
     virtual int Init();
     virtual int Clean();
 
