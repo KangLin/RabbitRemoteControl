@@ -37,8 +37,6 @@ public:
     virtual void Start();
     virtual void Stop();
 
-    CScreen* GetScreen();
-
 protected:
     /// New service
     virtual CService* NewService() = 0;
@@ -47,8 +45,6 @@ private:
     CServiceThread* m_pThread;
     friend CServiceThread;
     friend CServiceManager;
-    
-    CScreen m_Screen;
 };
 
 QT_BEGIN_NAMESPACE

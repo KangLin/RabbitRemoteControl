@@ -50,9 +50,9 @@ int CServiceLibVNCServer::OnInit()
     int h = 480;
     int bpp = 4;
     
-    CScreen screen;
-    w = screen.Width();
-    h = screen.Height();
+    CScreen* screen = CScreen::Instance();
+    w = screen->Width();
+    h = screen->Height();
 
     m_rfbScreen = rfbGetScreen(0, nullptr, w, h, 8, 3, bpp);
     if(!m_rfbScreen)

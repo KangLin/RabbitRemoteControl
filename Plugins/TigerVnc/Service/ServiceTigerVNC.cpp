@@ -57,7 +57,6 @@ void CServiceTigerVNC::slotNewConnection()
                    pSocket->peerPort());
     try {
         QSharedPointer<CConnection> c(new CConnection(pSocket,
-                                                      m_pPlugin->GetScreen(),
                   dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
         m_lstConnection.push_back(c);
         //TODO: Add CConnection disconnect and error

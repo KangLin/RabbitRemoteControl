@@ -42,8 +42,3 @@ void CPluginService::Stop()
         m_pThread = nullptr;
     }
 }
-
-CScreen* CPluginService::GetScreen()
-{
-    return &m_Screen;
-}

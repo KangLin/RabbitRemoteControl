@@ -16,7 +16,7 @@ class CConnection : public QObject, rfb::SConnection
     Q_OBJECT
     
 public:
-    explicit CConnection(QTcpSocket* pSocket, CScreen* pScreen, CParameterServiceTigerVNC* pPara);
+    explicit CConnection(QTcpSocket* pSocket, CParameterServiceTigerVNC* pPara);
     virtual ~CConnection();
 
     // SConnection interface
@@ -38,7 +38,6 @@ public:
     virtual void clientCutText(const char* str) override;
 
 private:
-    rfb::PixelFormat GetPixelFormatFromQImage(QImage& img);
     QSharedPointer<rfb::PixelBuffer> GetBufferFromQImage(QImage &img);
     void writeNoDataUpdate();
     void writeDataUpdate(QImage img);
@@ -52,20 +51,23 @@ private:
     CDataChannel m_DataChannel;
     CParameterServiceTigerVNC* m_pPara;
     CInputDevice m_InputDevice;
-    CScreen* m_pScreen;
     
+    rfb::PixelFormat m_PixelFormat;
+
     bool inProcessMessages;
     
     bool pendingSyncFence, syncFence;
     rdr::U32 fenceFlags;
     unsigned fenceDataLen;
     char *fenceData;
-    
+
     rfb::EncodeManager m_EncodeManager;
     rfb::SimpleUpdateTracker m_Updates;
     rfb::Region requested;
     bool continuousUpdates;
     rfb::Region cuRegion;
+    
+    
 };
 
 #endif // CCONNECTION_H

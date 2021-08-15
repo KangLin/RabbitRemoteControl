@@ -31,11 +31,11 @@ static void setfile()
 }
 bool g_setfile = false;
 
-CConnection::CConnection(QTcpSocket *pSocket, CScreen *pScreen,
+CConnection::CConnection(QTcpSocket *pSocket,
                          CParameterServiceTigerVNC *pPara)
     : QObject(), rfb::SConnection(),
       m_DataChannel(pSocket),
-      m_pScreen(pScreen),
+      m_PixelFormat(32, 24, false, true, 255, 255, 255, 16, 8, 0),
       inProcessMessages(false),
       pendingSyncFence(false),
       syncFence(false),
@@ -60,17 +60,11 @@ CConnection::CConnection(QTcpSocket *pSocket, CScreen *pScreen,
     rfb::ObfuscatedPasswd oPassword(password);
     rfb::SSecurityVncAuth::vncAuthPasswd.setParam(oPassword.buf, oPassword.length);
     
-    if(pScreen)
-    {
-        check = connect(m_pScreen, SIGNAL(sigUpdate(QImage)),
-                        this, SLOT(slotScreenUpdate(QImage)));
-        Q_ASSERT(check);
-        client.setDimensions(pScreen->Width(), pScreen->Height());
-    }
-    else
-        client.setDimensions(640, 480);
-    
-    
+    check = connect(CScreen::Instance(), SIGNAL(sigUpdate(QImage)),
+                    this, SLOT(slotScreenUpdate(QImage)));
+    Q_ASSERT(check);
+    client.setDimensions(CScreen::Instance()->Width(), CScreen::Instance()->Height());
+
     check = connect(&m_DataChannel, SIGNAL(readyRead()),
                          this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
@@ -129,9 +123,7 @@ void CConnection::slotReadyRead()
         // higher priority to user actions such as keyboard and pointer events.
         if(writer())
         {
-            QImage img = m_pScreen->GetDesktop();
-            //TODO: Delete it!!! Mark the entire display as "dirty"
-            m_Updates.add_changed(rfb::Rect(0, 0, img.width(), img.height()));
+            QImage img = CScreen::Instance()->GetScreen();
             slotScreenUpdate(img);
         }
     } catch (rdr::Exception e) {
@@ -167,23 +159,17 @@ void CConnection::authSuccess()
     //TODO: add client.setLEDState
     // client.setLEDState
     
-    QImage screen;
-    if(m_pScreen)
-    {
-        screen = m_pScreen->GetDesktop();
-        if(!screen.isNull())
-        {
-            client.setDimensions(screen.width(), screen.height());
-            client.setPF(GetPixelFormatFromQImage(screen));
-            char buffer[256];
-            client.pf().print(buffer, 256);
-            LOG_MODEL_INFO("Connection", "Set server pixel format:%s; width:%d, height:%d",
-                           buffer, screen.width(), screen.height());
-        }
-    }
-    
+    int w = CScreen::Instance()->Width();
+    int h = CScreen::Instance()->Height();
+    client.setDimensions(w, h);
+    client.setPF(m_PixelFormat);
+    char buffer[256];
+    client.pf().print(buffer, 256);
+    LOG_MODEL_INFO("Connection", "Set server pixel format:%s; width:%d, height:%d",
+                   buffer, w, h);
+
     // Mark the entire display as "dirty"
-    m_Updates.add_changed(rfb::Rect(0, 0, screen.width(), screen.height()));
+    m_Updates.add_changed(rfb::Rect(0, 0, w, w));
 }
 
 void CConnection::clientInit(bool shared)
@@ -209,6 +195,7 @@ void CConnection::setPixelFormat(const rfb::PixelFormat &pf)
     LOG_MODEL_DEBUG("CConnection", "Set pixel format: %s", buffer);
     
     //TODO: add setCursor();
+
 }
 
 void CConnection::framebufferUpdateRequest(const rfb::Rect &r, bool incremental)
@@ -355,36 +342,19 @@ void CConnection::clientCutText(const char *str)
     LOG_MODEL_DEBUG("Connection", "cut text:%s", str);
 }
 
-rfb::PixelFormat CConnection::GetPixelFormatFromQImage(QImage &img)
-{
-    if(!img.isNull())
-        switch(img.format()){
-        case QImage::Format_ARGB32:
-        {
-            break;
-        }
-        default:
-            LOG_MODEL_ERROR("Connection", "Don't support format:%d, must set QImage::Format_ARGB32", img.format());
-            break;
-        }
-    
-    rfb::PixelFormat pf(32, 24, false, true,
-                        255, 255, 255, 16, 8, 0);
-    return pf;
-}
 
 QSharedPointer<rfb::PixelBuffer> CConnection::GetBufferFromQImage(QImage &img)
 {
     if(img.isNull())
         return nullptr;
-    
-    rfb::PixelFormat pf = GetPixelFormatFromQImage(img);
+
     QSharedPointer<rfb::PixelBuffer> pb(
-                new rfb::FullFramePixelBuffer(pf,
+                new rfb::FullFramePixelBuffer(m_PixelFormat,
                                               img.width(),
                                               img.height(),
                                               img.bits(),
-                                              img.bytesPerLine() / (pf.bpp / 8)));
+                                              img.bytesPerLine()
+                                              / (m_PixelFormat.bpp / 8)));
     return pb;
 }
 
@@ -405,19 +375,30 @@ void CConnection::writeDataUpdate(QImage img)
     rfb::UpdateInfo ui;
     const rfb::RenderedCursor *cursor = nullptr;
     
+    // See what the client has requested (if anything)
+    if (continuousUpdates)
+      req = cuRegion.union_(requested);
+    else
+      req = requested;
+  
+    if (req.is_empty())
+      return;
+    
     if(img.isNull())
         return;
-    
-    //m_Updates.add_changed(rfb::Region(rfb::Rect(0, 0, m_pScreen->Width(), m_pScreen->Height())));
+
+    // Get the lists of updates. Prior to exporting the data to the `ui' object,
+    // getUpdateInfo() will normalize the `updates' object such way that its
+    // `changed' and `copied' regions would not intersect.
     m_Updates.getUpdateInfo(&ui, req);
 
-    rfb::PixelBuffer* pBuffer = GetBufferFromQImage(img).get();
-    m_EncodeManager.writeUpdate(ui, pBuffer, cursor);
+    QSharedPointer<rfb::PixelBuffer> buffer = GetBufferFromQImage(img);
+    m_EncodeManager.writeUpdate(ui, buffer.get(), cursor);
+
 }
 
 void CConnection::slotScreenUpdate(QImage img)
 {
-    
     LOG_MODEL_DEBUG("Connection", "Update screen");
     if(img.isNull())
     {

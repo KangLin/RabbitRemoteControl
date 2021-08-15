@@ -28,6 +28,8 @@ set(SOURCE_FILES
     )
 
 if(WIN32)
+    list(APPEND HEADER_FILES
+        ScreenWindows.h)
     list(APPEND SOURCE_FILES
         InputDeviceWindows.cpp
         ScreenWindows.cpp)

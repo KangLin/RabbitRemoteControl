@@ -9,25 +9,42 @@ class SERVICE_EXPORT CScreen : public QObject
 {
     Q_OBJECT
 public:
-    CScreen(QObject* parent = nullptr);
+    CScreen(QObject* parent = nullptr) : QObject(parent),
+        m_Format(QImage::Format_Invalid)
+    {}
     
-    int Width();
-    int Height();
+    static CScreen* Instance();
+
+    virtual int Width() = 0;
+    virtual int Height() = 0;
     
-    int VirtualTop();
-    int VirtualLeft();
-    int VirtualWidth();
-    int VirtualHeight();
+    virtual int VirtualTop() = 0;
+    virtual int VirtualLeft() = 0;
+    virtual int VirtualWidth() = 0;
+    virtual int VirtualHeight() = 0;
     
     // Windows contain both visible and invisible pseudo-monitors
     // that are associated with mirroring drivers.
     // The function returns only visible monitor count.
-    int VisibleMonitorCount();
+    virtual int VisibleMonitorCount() = 0;
     
-    virtual QImage GetDesktop();
-    
+    virtual QImage GetScreen(int index = 0) = 0;
+    virtual QImage::Format GetFormat(int index = 0)
+    {
+        return m_Format;
+    }
+    virtual int SetFormat(QImage::Format f = QImage::Format_ARGB32)
+    {
+        m_Format = f;
+        return 0;
+    }
+
 Q_SIGNALS:
     void sigUpdate(QImage screen);
+    
+protected:
+    QImage m_Screen;
+    QImage::Format m_Format;
 };
 
 #endif // CSCREEN_H
