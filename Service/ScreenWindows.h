@@ -15,10 +15,11 @@ public:
     virtual int VirtualWidth() override;
     virtual int VirtualHeight() override;
     virtual int VisibleMonitorCount() override;
-    virtual QImage::Format GetFormat(int index = 0) override;
+
     virtual QImage GetScreen(int index = 0) override;
     virtual int SetFormat(QImage::Format f = QImage::Format_ARGB32) override;
-    
+    virtual QImage::Format GetFormat(int index = 0) override;
+
 private:
     int GetImage(bool bBuffer);
 };

@@ -11,6 +11,7 @@ CScreen* CScreen::Instance()
 
 CScreenWindows::CScreenWindows(QObject *parent) : CScreen(parent)
 {
+    m_Format = QImage::Format_ARGB32;
 }
 
 int CScreenWindows::Width()
@@ -58,12 +59,13 @@ int CScreenWindows::VisibleMonitorCount()
 
 QImage::Format CScreenWindows::GetFormat(int index)
 {
-    if(QImage::Format_Invalid == m_Format)
-    {
-        GetImage(false);
-        m_Format = m_Screen.format();
-    }
     return m_Format;
+}
+
+int CScreenWindows::SetFormat(QImage::Format f)
+{
+    m_Format = f;
+    return 0;
 }
 
 QImage CScreenWindows::GetScreen(int index)
@@ -76,12 +78,6 @@ QImage CScreenWindows::GetScreen(int index)
     if(m_Screen.format() != m_Format && QImage::Format_Invalid != m_Format)
         m_Screen = m_Screen.convertToFormat(m_Format);
     return m_Screen;
-}
-
-int CScreenWindows::SetFormat(QImage::Format f)
-{    
-    m_Format = f;
-    return 0;
 }
 
 int CScreenWindows::GetImage(bool bBuffer)
@@ -156,71 +152,6 @@ int CScreenWindows::GetImage(bool bBuffer)
         bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
         bi.bmiHeader.biBitCount = 0;
         
-        // Get image format
-        if (!::GetDIBits(memDc, bitmap, 0, ScreenHeight, NULL, (BITMAPINFO*)&bi, DIB_RGB_COLORS))
-        {
-            LOG_MODEL_ERROR("Screen",
-                            "unable to determine device pixel format: %d",
-                            GetLastError());
-            break;
-        }
-        //        if (!::GetDIBits(memDc, bitmap, 0, ScreenHeight, NULL, (BITMAPINFO*)&bi, DIB_RGB_COLORS))
-        //        {
-        //            LOG_MODEL_ERROR("Screen",
-        //                            "unable to determine pixel shifts/palette: %d",
-        //                            GetLastError());
-        //            break;
-        //        }
-        
-        if(bi.bmiHeader.biBitCount > 8)
-        {
-            switch(bi.bmiHeader.biCompression)
-            {
-            case BI_RGB:
-                // Default RGB layout
-                switch (bi.bmiHeader.biBitCount) {
-                case 16:
-                    // RGB 555 - High Colour
-                    LOG_MODEL_INFO("Screen", "16-bit High Colour");
-                    m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB555);
-                    break;
-                case 24:
-                    LOG_MODEL_INFO("Screen", "24-bit High Colour");
-                    m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB888);
-                    break; 
-                case 32:
-                    // RGB 888 - True Colour
-                    LOG_MODEL_INFO("Screen", "32-bit High Colour");
-                    m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_ARGB32);
-                    break; 
-                default:
-                    LOG_MODEL_ERROR("Screen","bits per pixel %u not supported", bi.bmiHeader.biBitCount);
-                    break;
-                };
-                break;
-            case BI_BITFIELDS:
-                // Default RGB layout
-                switch (bi.bmiHeader.biBitCount) {
-                case 16:
-                    // RGB 555 - High Colour
-                    LOG_MODEL_INFO("Screen", "16-bit High Colour");
-                    m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB555);
-                    break;
-                case 32:
-                    // RGB 888 - True Colour
-                    LOG_MODEL_INFO("Screen", "32-bit High Colour");
-                    m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_ARGB32);
-                    break; 
-                default:
-                    LOG_MODEL_ERROR("Screen","bits per pixel %u not supported", bi.bmiHeader.biBitCount);
-                    break;
-                };
-                break;
-            }
-        } else {
-            LOG_MODEL_ERROR("Screen", "bi.bmiHeader.biBitCount < 8");
-        }
-        
         if(bBuffer)
         {
             bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
@@ -234,6 +165,10 @@ int CScreenWindows::GetImage(bool bBuffer)
             bi.bmiHeader.biYPelsPerMeter = 0;
             bi.bmiHeader.biClrUsed = 0;
             bi.bmiHeader.biClrImportant = 0;
+
+            if(m_Screen.isNull() || m_Screen.format() != QImage::Format_ARGB32)
+                m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_ARGB32);
+
             // Get image
             if (!::GetDIBits(memDc, bitmap, 0, ScreenHeight,
                              m_Screen.bits(), (BITMAPINFO*)&bi, DIB_RGB_COLORS))
@@ -245,9 +180,76 @@ int CScreenWindows::GetImage(bool bBuffer)
             }
             
             m_Screen = m_Screen.mirrored();
+            nRet = 0;
+        } else {
+            // Get image format
+            if (!::GetDIBits(memDc, bitmap, 0, ScreenHeight, NULL, (BITMAPINFO*)&bi, DIB_RGB_COLORS))
+            {
+                LOG_MODEL_ERROR("Screen",
+                                "unable to determine device pixel format: %d",
+                                GetLastError());
+                break;
+            }
+            //        if (!::GetDIBits(memDc, bitmap, 0, ScreenHeight, NULL, (BITMAPINFO*)&bi, DIB_RGB_COLORS))
+            //        {
+            //            LOG_MODEL_ERROR("Screen",
+            //                            "unable to determine pixel shifts/palette: %d",
+            //                            GetLastError());
+            //            break;
+            //        }
+            
+            if(bi.bmiHeader.biBitCount > 8)
+            {
+                switch(bi.bmiHeader.biCompression)
+                {
+                case BI_RGB:
+                    // Default RGB layout
+                    switch (bi.bmiHeader.biBitCount) {
+                    case 16:
+                        // RGB 555 - High Colour
+                        LOG_MODEL_INFO("Screen", "16-bit High Colour");
+                        m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB555);
+                        break;
+                    case 24:
+                        LOG_MODEL_INFO("Screen", "24-bit High Colour");
+                        m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB888);
+                        break; 
+                    case 32:
+                        // RGB 888 - True Colour
+                        LOG_MODEL_INFO("Screen", "32-bit High Colour");
+                        m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_ARGB32);
+                        break; 
+                    default:
+                        LOG_MODEL_ERROR("Screen","bits per pixel %u not supported", bi.bmiHeader.biBitCount);
+                        break;
+                    };
+                    break;
+                case BI_BITFIELDS:
+                    // Default RGB layout
+                    switch (bi.bmiHeader.biBitCount) {
+                    case 16:
+                        // RGB 555 - High Colour
+                        LOG_MODEL_INFO("Screen", "16-bit High Colour");
+                        m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB555);
+                        break;
+                    case 32:
+                        // RGB 888 - True Colour
+                        LOG_MODEL_INFO("Screen", "32-bit High Colour");
+                        m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_ARGB32);
+                        break; 
+                    default:
+                        LOG_MODEL_ERROR("Screen","bits per pixel %u not supported", bi.bmiHeader.biBitCount);
+                        break;
+                    };
+                    break;
+                }
+                
+                nRet = 0;
+            } else {
+                LOG_MODEL_ERROR("Screen", "bi.bmiHeader.biBitCount < 8");
+            }
         }
         
-        nRet = 0;
     } while(0);
     
     DeleteObject(bitmap);
