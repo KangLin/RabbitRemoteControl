@@ -10,7 +10,8 @@ class SERVICE_EXPORT CScreen : public QObject
     Q_OBJECT
 public:
     CScreen(QObject* parent = nullptr) : QObject(parent),
-        m_Format(QImage::Format_Invalid)
+        m_Format(QImage::Format_Invalid),
+        m_bCursor(true)
     {}
     
     static CScreen* Instance();
@@ -38,6 +39,9 @@ public:
         m_Format = f;
         return 0;
     }
+    
+    bool HasCursor();
+    void SetHasCursor(bool bHas){m_bCursor = bHas;}
 
 Q_SIGNALS:
     void sigUpdate(QImage screen);
@@ -45,6 +49,7 @@ Q_SIGNALS:
 protected:
     QImage m_Screen;
     QImage::Format m_Format;
+    bool m_bCursor;
 };
 
 #endif // CSCREEN_H

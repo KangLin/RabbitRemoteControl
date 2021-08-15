@@ -138,11 +138,14 @@ int CScreenWindows::GetImage(bool bBuffer)
             break;
         }
         
-        //        //添加鼠标到图片里
-        //        POINT l_pt;
-        //        ::GetCursorPos(&l_pt);
-        //        HCURSOR l_hCursor = ::GetCursor();
-        //        ::DrawIcon(memDc, l_pt.x, l_pt.y, l_hCursor); 
+        if(m_bCursor)
+        {
+            //TODO: There is a bug
+            POINT point;
+            ::GetCursorPos(&point);
+            HCURSOR hCursor = ::GetCursor();
+            ::DrawIcon(memDc, point.x, point.y, hCursor); 
+        }
         
         //SelectObject(memDc, oldBitmap);
         
