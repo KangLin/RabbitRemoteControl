@@ -11,6 +11,7 @@ CPluginService::CPluginService(QObject *parent)
 
 CPluginService::~CPluginService()
 {
+    LOG_MODEL_DEBUG("CPluginService", "CPluginService::~CPluginService");
 }
 
 const QString CPluginService::Id() const

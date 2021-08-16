@@ -9,10 +9,11 @@ class CServiceThread : public QThread
     Q_OBJECT
 public:
     explicit CServiceThread(CPluginService* pPlugin, QObject *parent = nullptr);
+    virtual ~CServiceThread();
 
 protected:
     virtual void run() override;
-    
+
 private:
     CPluginService* m_pPlugin;
 };

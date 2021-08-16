@@ -1,6 +1,7 @@
 #include "DataChannel.h"
 #include "../Viewer/QSocketInStream.h"
 #include "../Viewer/QSocketOutStream.h"
+#include "RabbitCommonLog.h"
 
 CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
     : QIODevice(parent),
@@ -27,6 +28,7 @@ CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
 
 CDataChannel::~CDataChannel()
 {
+    LOG_MODEL_DEBUG("CDataChannel", "CDataChannel::~CDataChannel");
     if(m_pInStream) delete m_pInStream;
     if(m_pOutStream) delete m_pOutStream;
     if(m_pSocket) m_pSocket->deleteLater();

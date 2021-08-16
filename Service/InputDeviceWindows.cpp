@@ -5,7 +5,11 @@
 
 CInputDevice::CInputDevice(QObject *parent) : QObject(parent)
 {
-    
+}
+
+CInputDevice::~CInputDevice()
+{
+    LOG_MODEL_DEBUG("CInputDevice", "CInputDevice::~CInputDevice");
 }
 
 int CInputDevice::KeyEvent(quint32 keysym, quint32 keycode, bool down)

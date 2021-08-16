@@ -71,21 +71,21 @@ CConnection::CConnection(QTcpSocket *pSocket,
     check = connect(&m_DataChannel, SIGNAL(sigDisconnected()),
                          this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    //TODO: Add datachannel error
+    check = connect(&m_DataChannel, SIGNAL(sigError(int, QString)),
+                    this, SLOT(slotError(int, QString)));
+    Q_ASSERT(check);
     
     try{
         initialiseProtocol();
     } catch(rdr::Exception& e) {
         LOG_MODEL_ERROR("Connection", "initialistProtocol() fail");
+        emit sigError(-1, "initialistProtocol() fail");
     }
 }
 
 CConnection::~CConnection()
 {
-    if(getInStream())
-        delete getInStream();
-    if(getOutStream())
-        delete getOutStream();
+    LOG_MODEL_DEBUG("CConnection", "CConnection::~CConnection");
 }
 
 void CConnection::slotReadyRead()
@@ -128,10 +128,13 @@ void CConnection::slotReadyRead()
         }
     } catch (rdr::Exception e) {
         LOG_MODEL_ERROR("CConnection", "Exception:%s", e.str());
+        emit sigError(-1, QString("processMsg exception:") + e.str());
     } catch (std::exception e) {
         LOG_MODEL_ERROR("CConnection", "std Exception:%s", e.what());
+        emit sigError(-1, QString("std Exception:") + e.what());
     } catch (...) {
         LOG_MODEL_ERROR("CConnection", "exception");
+        emit sigError(-1, QString("Exception:"));
     }
 }
 
@@ -139,6 +142,12 @@ void CConnection::slotDisconnected()
 {
     //TODO: close and clean
     LOG_MODEL_DEBUG("Connection", "The connect disconnect");
+    emit sigDisconnected();
+}
+
+void CConnection::slotError(int nErr, QString szErr)
+{
+    emit sigError(nErr, szErr);
 }
 
 void CConnection::queryConnection(const char *userName)

@@ -1,10 +1,16 @@
 #include "ParameterService.h"
 #include <QSettings>
+#include "RabbitCommonLog.h"
 
 CParameterService::CParameterService(QObject *parent) : QObject(parent),
     m_nPort(0),
     m_bEnable(true)
 {
+}
+
+CParameterService::~CParameterService()
+{
+    LOG_MODEL_DEBUG("CParameterService", "CParameterService::~CParameterService");
 }
 
 int CParameterService::OnLoad(const QString& szFile)

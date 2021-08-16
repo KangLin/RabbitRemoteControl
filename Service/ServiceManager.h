@@ -23,7 +23,8 @@ class CPluginService;
 class SERVICE_EXPORT CServiceManager : public QtService<QApplication>
 {
 public:
-    CServiceManager(int argc, char **argv, const QString& appName, const QString &name = "Rabbit Remote control service");
+    explicit CServiceManager(int argc, char **argv, const QString& appName, const QString &name = "Rabbit Remote control service");
+    virtual ~CServiceManager();
     
     // QtServiceBase interface
 protected:

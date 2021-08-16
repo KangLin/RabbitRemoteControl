@@ -38,13 +38,12 @@ protected Q_SLOTS:
     virtual void slotProcess();
 
 protected:
-    virtual int OnInit();
-    virtual int OnClean();
+    virtual int OnInit() = 0;
+    virtual int OnClean() = 0;
     /// \return
-    /// \li -1: error
-    /// \li  0: Success
-    /// \li >0: Stop call slotProcess
-    virtual int OnProcess();
+    /// \li < 0: error or stop
+    /// \li >=0: Call interval 
+    virtual int OnProcess() = 0;
 
     CParameterService* m_pPara;
     CPluginService* m_pPlugin;

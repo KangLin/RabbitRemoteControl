@@ -18,6 +18,11 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
     m_pPara = new CParameterServiceTigerVNC(this);
 }
 
+CServiceTigerVNC::~CServiceTigerVNC()
+{
+    LOG_MODEL_DEBUG("CServiceTigerVNC", "CServiceTigerVNC::~CServiceTigerVNC");
+}
+
 int CServiceTigerVNC::OnInit()
 {
     if(!GetParameters())
@@ -37,13 +42,14 @@ int CServiceTigerVNC::OnInit()
 
 int CServiceTigerVNC::OnClean()
 {
+    m_lstConnection.clear();
     return 0;
 }
 
 int CServiceTigerVNC::OnProcess()
 {
     LOG_MODEL_DEBUG("ServiceTigerVNC", "Process ...");
-    return 1;
+    return -1;
 }
 
 void CServiceTigerVNC::slotNewConnection()
@@ -59,11 +65,30 @@ void CServiceTigerVNC::slotNewConnection()
         QSharedPointer<CConnection> c(new CConnection(pSocket,
                   dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
         m_lstConnection.push_back(c);
-        //TODO: Add CConnection disconnect and error
+        bool check = connect(c.data(), SIGNAL(sigDisconnected()),
+                             this, SLOT(slotDisconnected()));
+        Q_ASSERT(check);
+        check = connect(c.data(), SIGNAL(sigError(int, QString)),
+                        this, SLOT(slotError(int, QString)));
+        Q_ASSERT(check);
     }  catch (std::exception e) {
         LOG_MODEL_ERROR("ServiceTigerVNC", e.what());
     }  catch(...) {
         LOG_MODEL_ERROR("ServiceTigerVNC", "New connection exception");
     }
-    
+}
+
+void CServiceTigerVNC::slotDisconnected()
+{
+    CConnection* pConnect = dynamic_cast<CConnection*>(sender());
+    foreach(auto c, m_lstConnection)
+    {
+        if(c == pConnect)
+            m_lstConnection.removeOne(c);
+    }
+}
+
+void CServiceTigerVNC::slotError(int nErr, QString szErr)
+{
+    slotDisconnected();
 }

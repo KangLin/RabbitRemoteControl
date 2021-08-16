@@ -55,11 +55,6 @@ int CService::Init()
     return nRet;
 }
 
-int CService::OnInit()
-{
-    return 0;
-}
-
 int CService::Clean()
 {
     int nRet = 0;
@@ -74,22 +69,19 @@ int CService::Clean()
     return nRet;
 }
 
-int CService::OnClean()
-{
-    return 0;
-}
-
 void CService::slotProcess()
 {
-    int nRet = OnProcess();
+    int nRet = 0;
+    try{
+        nRet = OnProcess();
+    } catch (std::exception& e) {
+        LOG_MODEL_ERROR("CService", "OnProcess excption:%s", e.what());
+    } catch (...) {
+        LOG_MODEL_ERROR("CService", "OnProcess excption");
+    }
+    
     if(nRet < 0) return;
-    if(0 == nRet)
-        QTimer::singleShot(0, this, SLOT(slotProcess()));
-}
-
-int CService::OnProcess()
-{
-    return 0;
+    QTimer::singleShot(nRet, this, SLOT(slotProcess()));
 }
 
 CParameterService* CService::GetParameters()

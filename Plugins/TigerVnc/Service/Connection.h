@@ -37,6 +37,10 @@ public:
     virtual void pointerEvent(const rfb::Point& pos, int buttonMask) override;
     virtual void clientCutText(const char* str) override;
 
+Q_SIGNALS:
+    void sigDisconnected();
+    void sigError(int nErr, QString szErr);
+
 private:
     QSharedPointer<rfb::PixelBuffer> GetBufferFromQImage(QImage &img);
     void writeNoDataUpdate();
@@ -45,6 +49,7 @@ private:
 private Q_SLOTS:
     void slotReadyRead();
     void slotDisconnected();
+    void slotError(int nRet, QString szErr);
     void slotScreenUpdate(QImage);
 
 private:
@@ -66,8 +71,7 @@ private:
     rfb::Region requested;
     bool continuousUpdates;
     rfb::Region cuRegion;
-    
-    
+
 };
 
 #endif // CCONNECTION_H

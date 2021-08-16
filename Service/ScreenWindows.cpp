@@ -14,6 +14,11 @@ CScreenWindows::CScreenWindows(QObject *parent) : CScreen(parent)
     m_Format = QImage::Format_ARGB32;
 }
 
+CScreenWindows::~CScreenWindows()
+{
+    LOG_MODEL_DEBUG("CScreenWindows", "CScreenWindows::~CScreenWindows");
+}
+
 int CScreenWindows::Width()
 {
     if(m_Screen.isNull())

@@ -7,6 +7,7 @@ class CScreenWindows : public CScreen
 {
 public:
     explicit CScreenWindows(QObject *parent = nullptr);
+    virtual ~CScreenWindows();
     
     virtual int Width() override;
     virtual int Height() override;

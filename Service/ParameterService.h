@@ -13,7 +13,8 @@ class SERVICE_EXPORT CParameterService : public QObject
     
 public:
     explicit CParameterService(QObject *parent = nullptr);
-
+    virtual ~CParameterService();
+    
     virtual int OnLoad(const QString& szFile = QString());
     virtual int OnSave(const QString& szFile = QString());
     

@@ -12,6 +12,7 @@ class SERVICE_EXPORT CInputDevice : public QObject
 
 public:
     explicit CInputDevice(QObject *parent = nullptr);
+    virtual ~CInputDevice();
     
     enum MouseButton
     {

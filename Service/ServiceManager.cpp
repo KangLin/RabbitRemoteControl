@@ -44,6 +44,11 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
     }
 }
 
+CServiceManager::~CServiceManager()
+{
+    LOG_MODEL_DEBUG("CServiceManager", "CServiceManager::~CServiceManager");
+}
+
 void CServiceManager::start()
 {
     LOG_MODEL_DEBUG("Service", "Start ...");

@@ -7,9 +7,9 @@ class CParameterServiceTigerVNC : public CParameterService
 {
     Q_OBJECT
     
-    
 public:
     explicit CParameterServiceTigerVNC(QObject *parent = nullptr);
+    virtual ~CParameterServiceTigerVNC();
     
     // CParameterService interface
 public:

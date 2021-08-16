@@ -7,6 +7,11 @@ CServiceThread::CServiceThread(CPluginService *pPlugin, QObject *parent)
 {   
 }
 
+CServiceThread::~CServiceThread()
+{
+    LOG_MODEL_DEBUG("CServiceThread", "CServiceThread::~CServiceThread()");
+}
+
 void CServiceThread::run()
 {
     CService* pService = m_pPlugin->NewService();
@@ -15,9 +20,17 @@ void CServiceThread::run()
         LOG_MODEL_ERROR("ServiceThread", "GetService fail");
         return;
     }
-            
+    
+    LOG_MODEL_INFO("ServiceThread", "The service [%s] is start",
+                   m_pPlugin->Name().toStdString().c_str());
+    
     int nRet = pService->Init();
-    if(nRet) return;
+    if(nRet)
+    {
+        LOG_MODEL_ERROR("ServiceThread", "The service [%s] initial fail",
+                       m_pPlugin->Name().toStdString().c_str());
+        return;
+    }
     
     exec();
     

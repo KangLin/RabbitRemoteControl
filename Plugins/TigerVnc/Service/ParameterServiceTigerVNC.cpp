@@ -8,6 +8,11 @@ CParameterServiceTigerVNC::CParameterServiceTigerVNC(QObject *parent)
     setPort(5900);
 }
 
+CParameterServiceTigerVNC::~CParameterServiceTigerVNC()
+{
+    LOG_MODEL_DEBUG("CParameterServiceTigerVNC", "CParameterServiceTigerVNC::~CParameterServiceTigerVNC");
+}
+
 int CParameterServiceTigerVNC::OnLoad(const QString& szFile)
 {
     int nRet = CParameterService::OnLoad(szFile);
