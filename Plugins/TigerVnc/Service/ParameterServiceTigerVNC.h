@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CPARAMETERSERVICETIGERVNC_H
 #define CPARAMETERSERVICETIGERVNC_H
 

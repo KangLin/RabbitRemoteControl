@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CPLUGINSERVICETIGERVNC_H
 #define CPLUGINSERVICETIGERVNC_H
 

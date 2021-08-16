@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CDATACHANNEL_H
 #define CDATACHANNEL_H
 

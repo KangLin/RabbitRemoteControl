@@ -1,6 +1,8 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "Connection.h"
-#include "../Viewer/QSocketInStream.h"
-#include "../Viewer/QSocketOutStream.h"
+#include "QSocketInStream.h"
+#include "QSocketOutStream.h"
 #include "RabbitCommonLog.h"
 #include "rfb/SSecurityVncAuth.h"
 #include "rfb/SMsgWriter.h"

@@ -9,8 +9,8 @@ SET(SOURCE_FILES
     ConnecterTigerVnc.cpp
     PluginTigerVnc.cpp
     DlgSettingsTigerVnc.cpp
-    QSocketInStream.cpp
-    QSocketOutStream.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.cpp
     )
 SET(HEADER_FILES
     ConnectTigerVnc.h
@@ -18,8 +18,8 @@ SET(HEADER_FILES
     ConnecterTigerVnc.h
     PluginTigerVnc.h
     DlgSettingsTigerVnc.h
-    QSocketInStream.h
-    QSocketOutStream.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.h
     )
 SET(UI_FILES
     DlgSettingsTigerVnc.ui
@@ -44,4 +44,5 @@ ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${SRC_LIBS}
+    PRIVATE_INCLUDE_DIRS $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
     )

@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CQSOCKETINSTREAM_H
 #define CQSOCKETINSTREAM_H
 

@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CCONNECTION_H
 #define CCONNECTION_H
 

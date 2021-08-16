@@ -11,18 +11,18 @@ SET(SOURCE_FILES
     PluginServiceTigerVNC.cpp
     ServiceTigerVNC.cpp
     Connection.cpp
-    DataChannel.cpp
-    ../Viewer/QSocketOutStream.h
-    ../Viewer/QSocketInStream.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../DataChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.h
     )
 SET(HEADER_FILES
     ParameterServiceTigerVNC.h
     PluginServiceTigerVNC.h
     ServiceTigerVNC.h
     Connection.h
-    DataChannel.h
-    ../Viewer/QSocketOutStream.cpp
-    ../Viewer/QSocketInStream.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../DataChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.cpp
     )
 SET(UI_FILES
     )
@@ -46,6 +46,5 @@ ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${SRC_LIBS}
-    PRIVATE_INCLUDE_DIRS
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
+    PRIVATE_INCLUDE_DIRS $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
     )

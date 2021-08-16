@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "PluginServiceTigerVNC.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"

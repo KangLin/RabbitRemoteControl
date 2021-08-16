@@ -1,6 +1,8 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "DataChannel.h"
-#include "../Viewer/QSocketInStream.h"
-#include "../Viewer/QSocketOutStream.h"
+#include "QSocketInStream.h"
+#include "QSocketOutStream.h"
 #include "RabbitCommonLog.h"
 
 CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
