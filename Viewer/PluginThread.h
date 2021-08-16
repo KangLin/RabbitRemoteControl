@@ -8,7 +8,7 @@
 
 //!
 //! \~chinese
-//! \brief 一个线程多个连接
+//! \brief 一个线程处理多个连接
 //!
 //! \~english
 //! One thread handles multiple connections

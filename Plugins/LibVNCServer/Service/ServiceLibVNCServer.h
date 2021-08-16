@@ -9,7 +9,8 @@ class CServiceLibVNCServer : public CService
     Q_OBJECT
 public:
     explicit CServiceLibVNCServer(CPluginService *plugin);
-
+    virtual ~CServiceLibVNCServer();
+    
 private:
     int OnInit() override;
     virtual int OnClean() override;

@@ -52,6 +52,32 @@ CConnectLibVNCServer::~CConnectLibVNCServer()
 
 bool CConnectLibVNCServer::InitClient()
 {
+    if(m_pClient) Q_ASSERT(!m_pClient);
+    
+    m_pClient = rfbGetClient(8,3,4);
+    if(!m_pClient)
+    {
+        LOG_MODEL_ERROR("LibVNCServer", "rfbGetClient fail");
+        return false;
+    }
+    
+    SetParamter(m_pPara);
+    
+    // Set callback function
+    m_pClient->MallocFrameBuffer = cb_resize;
+    m_pClient->GotFrameBufferUpdate = cb_update;
+    m_pClient->HandleKeyboardLedState = cb_kbd_leds;
+    m_pClient->Bell = cb_bell;
+    m_pClient->HandleTextChat = cb_text_chat;
+    m_pClient->GotXCutText = cb_got_selection;
+    m_pClient->GetCredential = cb_get_credential;
+    m_pClient->GetPassword = cb_get_password;
+    m_pClient->HandleCursorPos = cb_cursor_pos;
+    m_pClient->GotCursorShape = cb_got_cursor_shape;
+    
+    m_pClient->canHandleNewFBSize = true;
+    rfbClientSetClientData(m_pClient, (void*)gThis, this);
+    
     // Set sock
     switch(m_pPara->eProxyType)
     {
@@ -93,8 +119,8 @@ bool CConnectLibVNCServer::InitClient()
         return FALSE;
     }
 
-    m_pClient->width=m_pClient->si.framebufferWidth;
-    m_pClient->height=m_pClient->si.framebufferHeight;
+    m_pClient->width = m_pClient->si.framebufferWidth;
+    m_pClient->height = m_pClient->si.framebufferHeight;
     if (!m_pClient->MallocFrameBuffer(m_pClient))
     {
         LOG_MODEL_ERROR("LibVNCServer", "m_pClient->MallocFrameBuffer fail");
@@ -145,7 +171,31 @@ bool CConnectLibVNCServer::InitClient()
     return TRUE;
 }
 
-int CConnectLibVNCServer::Clean()
+/**
+  nRet < 0 : error
+  nRet = 0 : emit sigConnected
+  nRet = 1 : emit sigConnected in CConnect
+  */
+int CConnectLibVNCServer::OnInit()
+{
+    if(!InitClient()) {
+        LOG_MODEL_ERROR("LibVNCServer", "rfbInitClient fail");
+        emit sigError(-1, "Connect fail");
+        return -2;
+    }
+
+    emit sigConnected();
+    emit sigServerName(m_pClient->desktopName);
+    emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
+    
+    QString szInfo = QString("Connect to ") + m_pClient->desktopName;
+    LOG_MODEL_INFO("LibVNCServer", szInfo.toStdString().c_str());
+    emit sigInformation(szInfo);
+ 
+    return 1;
+}
+
+int CConnectLibVNCServer::OnClean()
 {
     if(m_pClient)
     {
@@ -158,69 +208,7 @@ int CConnectLibVNCServer::Clean()
     return 0;
 }
 
-int CConnectLibVNCServer::Initialize()
-{
-    int nRet = 0;
-    
-    if(m_pClient) Q_ASSERT(!m_pClient);
-    
-    m_pClient = rfbGetClient(8,3,4);
-    if(!m_pClient)
-    {
-        LOG_MODEL_ERROR("LibVNCServer", "rfbGetClient fail");
-        return -1;
-    }
-    
-    SetParamter(m_pPara);
-    
-    m_pClient->MallocFrameBuffer = cb_resize;
-    m_pClient->canHandleNewFBSize = true;
-    m_pClient->GotFrameBufferUpdate = cb_update;
-    m_pClient->HandleKeyboardLedState = cb_kbd_leds;
-    m_pClient->Bell = cb_bell;
-    m_pClient->HandleTextChat = cb_text_chat;
-    m_pClient->GotXCutText = cb_got_selection;
-    m_pClient->GetCredential = cb_get_credential;
-    m_pClient->GetPassword = cb_get_password;
-    m_pClient->HandleCursorPos = cb_cursor_pos;
-    m_pClient->GotCursorShape = cb_got_cursor_shape;
-    rfbClientSetClientData(m_pClient, (void*)gThis, this);
-
-    return nRet;
-}
-
-/**
-  nRet < 0 : error
-  nRet = 0 : emit sigConnected
-  nRet = 1 : emit sigConnected in CConnect
-  */
-int CConnectLibVNCServer::Connect()
-{
-    if(!InitClient()) {
-        LOG_MODEL_ERROR("LibVNCServer", "rfbInitClient fail");
-        emit sigError(-1, "Connect fail");
-        return -2;
-    }
-    
-    QString szInfo = QString("Connect to ") + m_pClient->desktopName;
-    LOG_MODEL_ERROR("LibVNCServer", szInfo.toStdString().c_str());
-    
-    emit sigConnected();
-    emit sigServerName(m_pClient->desktopName);
-
-    emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
-    
-    return 1;
-}
-
-int CConnectLibVNCServer::Disconnect()
-{
-    int nRet = 0;
-    
-    return nRet;
-}
-
-int CConnectLibVNCServer::Process()
+int CConnectLibVNCServer::OnProcess()
 {
     int nRet = 0;
     LOG_MODEL_DEBUG("CConnectLibVNCServer", "CConnectLibVNCServer::Process()");

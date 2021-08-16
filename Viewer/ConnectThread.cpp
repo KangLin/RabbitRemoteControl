@@ -1,8 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectThread.h"
-#include <QDebug>
-#include <QTimer>
 #include "RabbitCommonLog.h"
 
 CConnectThread::CConnectThread(CConnecterDesktop *pConnect) : QThread(),
@@ -11,15 +9,14 @@ CConnectThread::CConnectThread(CConnecterDesktop *pConnect) : QThread(),
 
 CConnectThread::~CConnectThread()
 {
-    qDebug() << "CConnectThread::~CConnectThread";
+    LOG_MODEL_DEBUG("CConnectThread", "CConnectThread::~CConnectThread");
 }
 
 void CConnectThread::run()
 {
+    int nRet = 0;
     CConnect* pConnect = m_pConnecter->InstanceConnect();
     if(!pConnect) return;
-    int nRet = pConnect->Initialize();
-    if(nRet) return;
 
     /*
       nRet < 0 : error
@@ -29,13 +26,10 @@ void CConnectThread::run()
     nRet = pConnect->Connect();
     if(nRet < 0) return;
     if(0 == nRet) emit m_pConnecter->sigConnected();
-    
-    QTimer::singleShot(0, pConnect, SLOT(slotTimeOut()));
 
     exec();
 
     pConnect->Disconnect();
-    pConnect->Clean();
 
     pConnect->deleteLater();
 

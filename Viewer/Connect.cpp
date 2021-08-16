@@ -32,17 +32,12 @@ CConnect::~CConnect()
     qDebug() << "CConnect::~CConnect()";
 }
 
-int CConnect::Process()
-{
-    return 0;
-}
-
 void CConnect::slotTimeOut()
 {
     try {
         // >= 0 : continue
-        // <  0: error
-        int nTime = Process();
+        // <  0: error or stop
+        int nTime = OnProcess();
         if(nTime >= 0)
         {
             QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
@@ -55,6 +50,8 @@ void CConnect::slotTimeOut()
         LOG_MODEL_ERROR("CConnect", "process fail");
         emit sigError(-2, "");
     }
+    
+    // Error or stop, must notify user disconnect it
     emit sigDisconnected();
 }
 
@@ -140,14 +137,23 @@ int CConnect::SetParamter(void *pPara)
     return 0;
 }
 
-int CConnect::Initialize()
+int CConnect::Connect()
 {
-    return 0;
+    int nRet = 0;
+    nRet = OnInit();
+    if(nRet < 0) return nRet;
+
+    QTimer::singleShot(0, this, SLOT(slotTimeOut()));
+    return nRet;
 }
 
-int CConnect::Clean()
+int CConnect::Disconnect()
 {
-    return 0;
+    int nRet = 0;
+    nRet = OnClean();
+    if(nRet) return nRet;
+    
+    return nRet;
 }
 
 void CConnect::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)

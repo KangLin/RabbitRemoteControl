@@ -73,10 +73,6 @@ private:
     
     // CConnect interface
 public Q_SLOTS:
-    virtual int Clean() override;
-    virtual int Connect() override;
-    virtual int Disconnect() override;
-    virtual int Process() override;
     virtual void slotClipBoardChange() override;
     
 public Q_SLOTS:
@@ -89,6 +85,10 @@ public Q_SLOTS:
     
 private:
     int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
+    
+    virtual int OnInit() override;
+    virtual int OnClean() override;
+    virtual int OnProcess() override;
     
 private:
     struct ClientContext{

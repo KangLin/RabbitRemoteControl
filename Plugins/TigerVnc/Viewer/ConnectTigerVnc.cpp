@@ -100,7 +100,7 @@ int CConnectTigerVnc::SetParamter(void *pPara)
     return 0;
 }
 
-int CConnectTigerVnc::Connect()
+int CConnectTigerVnc::OnInit()
 {
     int nRet = 1;
     try{
@@ -163,7 +163,7 @@ int CConnectTigerVnc::Connect()
     return nRet;
 }
 
-int CConnectTigerVnc::Disconnect()
+int CConnectTigerVnc::OnClean()
 {
     if(m_pInStream)
     {
@@ -185,6 +185,16 @@ int CConnectTigerVnc::Disconnect()
     }
 
     return 0;
+}
+
+int CConnectTigerVnc::OnProcess()
+{
+    return 0;
+}
+
+void CConnectTigerVnc::slotTimeOut()
+{
+    return;
 }
 
 void CConnectTigerVnc::slotConnected()
@@ -224,11 +234,6 @@ void CConnectTigerVnc::slotError(QAbstractSocket::SocketError socketError)
 {
     emit sigError(socketError, "");
     emit sigDisconnected();
-}
-
-void CConnectTigerVnc::slotTimeOut()
-{
-    return;
 }
 
 void CConnectTigerVnc::initDone()

@@ -28,16 +28,15 @@ public:
     explicit CConnecterDesktop(CPluginViewer *parent = nullptr);
     virtual ~CConnecterDesktop();
     
-    /// \~english New connect. the ownership is caller.
-    ///  if don't use, the caller must delete it.
-    virtual CConnect* InstanceConnect() = 0;
-    
     virtual const QString Name();
     virtual QWidget* GetViewer() override;
     virtual QString ServerName() override;
     virtual int Load(QDataStream &d) override;
     virtual int Save(QDataStream &d) override;
-    virtual int OpenDialogSettings(QWidget *parent) override;
+    
+    /// \~english New connect. the ownership is caller.
+    ///  if don't use, the caller must delete it.
+    virtual CConnect* InstanceConnect() = 0;
 
 public Q_SLOTS:
     virtual int Connect() override;
@@ -46,14 +45,6 @@ public Q_SLOTS:
 protected:
     virtual int OnLoad(QDataStream& d);
     virtual int OnSave(QDataStream& d);
-    /**
-     * \~english
-     * \brief GetDialogSettings
-     * \param parent: the parent windows of the dialog of return
-     * \return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
-     *         The ownership is caller.
-     */
-    virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 
 private:
     CConnectThread* m_pThread;

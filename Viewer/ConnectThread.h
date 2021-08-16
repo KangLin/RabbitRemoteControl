@@ -10,9 +10,9 @@
 
 ///
 /// \~chinese 此类仅用于 CConnecterDesktop
-///   一个线程一个连接
+///   一个线程只处理一个连接
 /// \~english The class only is used by CConnecterDesktop
-///   One thread one connect
+///   One thread only handles one connect
 ///
 /// \~
 /// \see CConnecterDesktop

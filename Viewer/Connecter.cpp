@@ -6,6 +6,9 @@
 #include "PluginViewer.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
+#ifdef BUILD_QUIWidget
+    #include "QUIWidget/QUIWidget.h"
+#endif
 
 CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
     m_pPluginFactory(parent)
@@ -65,4 +68,29 @@ QString CConnecter::ServerName()
 const CPluginViewer* CConnecter::GetPluginFactory() const
 {
     return m_pPluginFactory;
+}
+
+int CConnecter::OpenDialogSettings(QWidget *parent)
+{
+    int nRet = -1;
+    QDialog* p = GetDialogSettings(parent);
+    if(p)
+    {
+        p->setWindowIcon(this->Icon());
+#ifdef BUILD_QUIWidget
+        QUIWidget* quiwidget = new QUIWidget();
+        quiwidget->setMainWidget(p);
+        bool check = connect(p, SIGNAL(accepted()), quiwidget, SLOT(accept()));
+        Q_ASSERT(check);
+        check = connect(p, SIGNAL(rejected()), quiwidget, SLOT(reject()));
+        Q_ASSERT(check);
+        p = quiwidget;
+#endif
+        
+        p->setAttribute(Qt::WA_DeleteOnClose);
+        nRet = p->exec();
+    } else {
+        LOG_MODEL_ERROR("CConnecter",  "The protol[%s] don't settings dialog", Protol().toStdString().c_str());
+    }
+    return nRet;
 }

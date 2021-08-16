@@ -74,7 +74,7 @@ int CConnectFreeRdp::RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints)
   nRet = 0 : emit sigConnected
   nRet = 1 : emit sigConnected in CConnect
   */
-int CConnectFreeRdp::Connect()
+int CConnectFreeRdp::OnInit()
 {
     qDebug() << "CConnectFreeRdp::Connect()";
     int nRet = 1;
@@ -118,15 +118,23 @@ int CConnectFreeRdp::Connect()
     return nRet;
 }
 
-int CConnectFreeRdp::Disconnect()
+int CConnectFreeRdp::OnClean()
 {
     int nRet = 0;
     if(m_pContext)
+    {
         freerdp_abort_connect(m_pContext->Context.instance);
+        rdpContext* pContext = (rdpContext*)m_pContext;
+        freerdp_disconnect(pContext->instance);
+        freerdp_client_stop(pContext);
+        freerdp_client_context_free(pContext);
+        m_pContext = nullptr;
+    }
+
     return nRet;
 }
 
-int CConnectFreeRdp::Process()
+int CConnectFreeRdp::OnProcess()
 {
     int nRet = 500;
     HANDLE handles[64];
@@ -182,19 +190,6 @@ int CConnectFreeRdp::Process()
     }
 
     return nRet;
-}
-
-int CConnectFreeRdp::Clean()
-{
-    if(m_pContext)
-    {
-        rdpContext* pContext = (rdpContext*)m_pContext;
-        freerdp_disconnect(pContext->instance);
-        freerdp_client_stop(pContext);
-        freerdp_client_context_free(pContext);
-        m_pContext = nullptr;
-    }
-    return 0;
 }
 
 void CConnectFreeRdp::slotClipBoardChange()

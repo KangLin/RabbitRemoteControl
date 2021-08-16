@@ -29,11 +29,6 @@ public:
     virtual int SetParamter(void *pPara) override;
 
 public Q_SLOTS:
-    // Please call SetParamter before call Connect
-    virtual int Connect() override;
-    virtual int Disconnect() override;
-    virtual void slotTimeOut() override;
-
     virtual void slotConnected();
     virtual void slotDisConnected();
     virtual void slotReadyRead();
@@ -70,6 +65,16 @@ public Q_SLOTS:
     virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
     virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
 
+    
+    // CConnect interface
+protected:
+    // Please call SetParamter before call Connect
+    virtual int OnInit() override;
+    virtual int OnClean() override;
+    virtual int OnProcess() override; // It is not used
+protected Q_SLOTS:
+    virtual void slotTimeOut() override;
+    
 private:
     QTcpSocket* m_pSock;
     CQSocketInStream* m_pInStream;
@@ -111,7 +116,6 @@ private:
     strPara* m_pPara;
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
-
 };
 
 #endif // CCONNECTTIGERVNC_H

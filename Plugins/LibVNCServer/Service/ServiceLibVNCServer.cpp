@@ -13,6 +13,11 @@ CServiceLibVNCServer::CServiceLibVNCServer(CPluginService *plugin) : CService(pl
     m_pPara = new CParameterServiceLibVNC(this);
 }
 
+CServiceLibVNCServer::~CServiceLibVNCServer()
+{
+    LOG_MODEL_DEBUG("Service LibVNCServer", "CServiceLibVNCServer::~CServiceLibVNCServer()");
+}
+
 static rfbBool checkPassword(struct _rfbClientRec* cl,
                              const char* encryptedPassWord, int len)
 {

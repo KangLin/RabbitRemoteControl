@@ -36,36 +36,44 @@ public:
     explicit CConnect(CConnecter* pConnecter, QObject *parent = nullptr);
     virtual ~CConnect() override;
 
-protected:
-    virtual int SetConnecter(CConnecter* pConnecter);
-    virtual int SetViewer(CFrmViewer* pView);
-    virtual int SetParamter(void *pPara);
-
-public Q_SLOTS:
-    virtual int Initialize();
-    virtual int Clean();
-    
+public Q_SLOTS:   
     /**
      * \return 
      *     \li < 0 : error
      *     \li = 0 : emit sigConnected
      *     \li = 1 : emit sigConnected in CConnect
      */
-    virtual int Connect() = 0;
-    virtual int Disconnect() = 0;
+    virtual int Connect();
+    virtual int Disconnect();
+
+    virtual void slotClipBoardChange() = 0;
+    
+protected:
+    virtual int SetConnecter(CConnecter* pConnecter);
+    virtual int SetViewer(CFrmViewer* pView);
+    virtual int SetParamter(void *pPara);
+
+    /**
+     * \return 
+     *     \li < 0 : error
+     *     \li = 0 : emit sigConnected
+     *     \li = 1 : emit sigConnected in CConnect
+     * \see Connect()
+     */
+    virtual int OnInit() = 0;
+    virtual int OnClean() = 0;
     /**
      * \return 
      *       \li >= 0: continue, Interval call time (msec)
-     *       \li <  0: error
+     *       \li <  0: error or stop
      * \see slotTimeOut()
      */
-    virtual int Process();
-
-    virtual void slotClipBoardChange() = 0;
+    virtual int OnProcess() = 0;
 
 protected Q_SLOTS:
     ///
-    /// \brief Timing start Process()
+    /// \brief Timing start OnProcess(), it is main process in thread.
+    /// If the CConnect is not main process, must override it.
     ///
     virtual void slotTimeOut();
     

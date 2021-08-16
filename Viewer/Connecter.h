@@ -15,6 +15,7 @@
 #include "viewer_export.h"
 
 class CPluginViewer;
+class CConnect;
 
 /** 
  * \~english
@@ -67,7 +68,7 @@ public:
      *   \li QDialog::Rejected
      *   \li -1: error
      */
-    virtual int OpenDialogSettings(QWidget* parent = nullptr) = 0;
+    virtual int OpenDialogSettings(QWidget* parent = nullptr);
 
     const CPluginViewer* GetPluginFactory() const;
     
@@ -108,6 +109,16 @@ Q_SIGNALS:
     void sigError(const int nError, const QString &szError);
     void sigInformation(const QString& szInfo);
     
+protected:
+    /**
+     * \~english
+     * \brief GetDialogSettings
+     * \param parent: the parent windows of the dialog of return
+     * \return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
+     *         The ownership is caller.
+     */
+    virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
+
 private:
     const CPluginViewer* m_pPluginFactory;
 

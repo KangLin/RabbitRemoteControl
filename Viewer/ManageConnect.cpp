@@ -11,18 +11,16 @@ CManageConnect::~CManageConnect()
     foreach(auto pConnect, m_Connects)
     {
         pConnect->Disconnect();
-        pConnect->Clean();
         pConnect->deleteLater();
     }
 }
 
 void CManageConnect::slotConnect(CConnecter *pConnecter)
 {
+    int nRet = 0;
     LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::slotConnect()");
     CConnect* pConnect = dynamic_cast<CConnecterDesktop*>(pConnecter)->InstanceConnect();
     if(!pConnect) return;
-    int nRet = pConnect->Initialize();
-    if(nRet) return;
 
     /*
       nRet < 0 : error
@@ -42,7 +40,6 @@ void CManageConnect::slotDisconnect(CConnecter *pConnecter)
     if(m_Connects.end() == it) return;
     CConnect* pConnect = it.value();
     pConnect->Disconnect();
-    pConnect->Clean();
     pConnect->deleteLater();
     m_Connects.remove(pConnecter);
 }
