@@ -14,25 +14,18 @@ class TERMINAL_EXPORT CConnecterPluginsTerminal : public CConnecter
     Q_OBJECT
 public:
     explicit CConnecterPluginsTerminal(CPluginViewer *parent);
-    virtual ~CConnecterPluginsTerminal();
-
-    int OnRun();
+    virtual ~CConnecterPluginsTerminal() override;
     
     QWidget* GetViewer() override;
     virtual qint16 Version() override;
     virtual int Load(QDataStream &d) override;
     virtual int Save(QDataStream &d) override;
-    /**
-     * @brief Open settings dialog
-     * @param parent
-     * @return DialogCode
-     *   QDialog::Accepted
-     *   QDialog::Rejected
-     *   -1: error
-     */
-    virtual int OpenDialogSettings(QWidget* parent = nullptr) override;
+    
     virtual QString ServerName() override;
 
+    // Instance connect
+    virtual CConnect* InstanceConnect();
+    
 public Q_SLOTS:
     virtual int Connect() override;
     virtual int DisConnect() override;
@@ -42,11 +35,8 @@ private Q_SLOTS:
     void slotZoomReset();
     
 protected:
-    virtual QDialog* GetDialogSettings(QWidget *parent) = 0;
     virtual int SetParamter();
 
-    // Instance connect
-    virtual CConnect* InstanceConnect();
     /**
      * @brief OnConnect
      * @return 0: emit sigConnected()

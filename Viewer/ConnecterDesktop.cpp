@@ -41,12 +41,9 @@ int CConnecterDesktop::Connect()
         return -1;
     bool check = false;
     check = connect(m_pThread, SIGNAL(finished()),
-                    this, SIGNAL(sigDisconnected()));
-    Q_ASSERT(check);
-    check = connect(m_pThread, SIGNAL(finished()),
                     m_pThread, SLOT(deleteLater()));
     Q_ASSERT(check);
-    
+
     m_pThread->start();
     
     return nRet;
@@ -56,7 +53,10 @@ int CConnecterDesktop::DisConnect()
 {
     int nRet = 0;
     if(m_pThread)
+    {
         m_pThread->quit();
+        m_pThread = nullptr;
+    }
     return nRet;
 }
 

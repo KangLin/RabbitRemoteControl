@@ -29,6 +29,7 @@ void CConnectThread::run()
 
     exec();
 
+    emit m_pConnecter->sigDisconnected();
     pConnect->Disconnect();
 
     pConnect->deleteLater();

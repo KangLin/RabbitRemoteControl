@@ -90,54 +90,13 @@ int CConnectSSH::Initialize()
     return nRet;
 }
 
-int CConnectSSH::Clean()
+int CConnectSSH::OnInit()
 {
     int nRet = 0;
 
-    if(m_pEvent)
-    {
-        if(connector_in)
-        {
-            ssh_event_remove_connector(m_pEvent, connector_in);
-            ssh_connector_free(connector_in);
-        }
-        if(connector_out)
-        {
-            ssh_event_remove_connector(m_pEvent, connector_out);
-            ssh_connector_free(connector_out);
-        }
-        if(connector_err)
-        {
-            ssh_event_remove_connector(m_pEvent, connector_err);
-            ssh_connector_free(connector_err);
-        }
-        
-        ssh_event_free(m_pEvent);
-    }
-
-    if(m_pChannel)
-        ssh_channel_free(m_pChannel);
-
-    if(m_pSession)
-    {
-        ssh_disconnect(m_pSession);
-        ssh_free(m_pSession);
-        ssh_finalize();
-    }
+    nRet = Initialize();
+    if(nRet) return nRet;
     
-    if(m_pPcapFile)
-    {
-        ssh_pcap_file_free(m_pPcapFile);
-        m_pPcapFile = nullptr;
-    }
-    
-    return nRet;
-}
-
-int CConnectSSH::Connect()
-{
-    int nRet = 0;
-
     CFrmTermWidget* pConsole = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
     if(!pConsole) return -4;
 
@@ -233,14 +192,51 @@ int CConnectSSH::Connect()
     return nRet;
 }
 
-int CConnectSSH::Disconnect()
+int CConnectSSH::OnClean()
 {
     int nRet = 0;
+
+    if(m_pEvent)
+    {
+        if(connector_in)
+        {
+            ssh_event_remove_connector(m_pEvent, connector_in);
+            ssh_connector_free(connector_in);
+        }
+        if(connector_out)
+        {
+            ssh_event_remove_connector(m_pEvent, connector_out);
+            ssh_connector_free(connector_out);
+        }
+        if(connector_err)
+        {
+            ssh_event_remove_connector(m_pEvent, connector_err);
+            ssh_connector_free(connector_err);
+        }
         
+        ssh_event_free(m_pEvent);
+    }
+
+    if(m_pChannel)
+        ssh_channel_free(m_pChannel);
+
+    if(m_pSession)
+    {
+        ssh_disconnect(m_pSession);
+        ssh_free(m_pSession);
+        ssh_finalize();
+    }
+    
+    if(m_pPcapFile)
+    {
+        ssh_pcap_file_free(m_pPcapFile);
+        m_pPcapFile = nullptr;
+    }
+    
     return nRet;
 }
 
-int CConnectSSH::Process()
+int CConnectSSH::OnProcess()
 {
     int nRet = -1;
     

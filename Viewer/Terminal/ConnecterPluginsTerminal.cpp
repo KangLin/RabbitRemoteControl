@@ -28,7 +28,7 @@ CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginViewer *parent)
                     this, SLOT(slotTerminalTitleChanged()));
     Q_ASSERT(check);
     check = connect(m_pConsole, SIGNAL(finished()),
-                    this, SLOT(DisConnect()));
+                    this, SIGNAL(sigDisconnected()));
     Q_ASSERT(check);
     check = connect(m_pConsole, SIGNAL(sigZoomReset()),
                     this, SLOT(slotZoomReset()));
@@ -39,17 +39,9 @@ CConnecterPluginsTerminal::~CConnecterPluginsTerminal()
 {
     qDebug() << "CConnecterPluginsTerminal::~CConnecterPluginsTerminal()";
     
-    if(m_pThread)
-    {
-        m_bExit = true;
-        m_pThread->wait();
-        delete m_pThread;
-        m_pThread = nullptr;
-    }
-    
     if(m_pConsole)
     {
-        delete m_pConsole;
+        m_pConsole->deleteLater();
         m_pConsole = nullptr;
     }
 }
@@ -62,28 +54,6 @@ QWidget* CConnecterPluginsTerminal::GetViewer()
 qint16 CConnecterPluginsTerminal::Version()
 {
     return 0;
-}
-
-int CConnecterPluginsTerminal::OpenDialogSettings(QWidget *parent)
-{
-    int nRet = -1;
-    QDialog* p = GetDialogSettings(parent);
-    if(p)
-    {
-        p->setWindowIcon(this->Icon());
-#ifdef BUILD_QUIWidget
-        QUIWidget* quiwidget = new QUIWidget();
-        quiwidget->setMainWidget(p);
-        bool check = connect(p, SIGNAL(accepted()), quiwidget, SLOT(accept()));
-        Q_ASSERT(check);
-        check = connect(p, SIGNAL(rejected()), quiwidget, SLOT(reject()));
-        Q_ASSERT(check);
-        p = quiwidget;
-#endif
-        p->setAttribute(Qt::WA_DeleteOnClose);
-        return p->exec();
-    }
-    return nRet;
 }
 
 int CConnecterPluginsTerminal::Load(QDataStream &d)
@@ -125,8 +95,12 @@ int CConnecterPluginsTerminal::Connect()
     if(m_bThread)
     {
         m_pThread = new CConnectThreadTerminal(this);
+        bool check = connect(m_pThread, SIGNAL(finished()),
+                        m_pThread, SLOT(deleteLater()));
+        Q_ASSERT(check);
         if(m_pThread)
             m_pThread->start();
+        return 0;
     }
     
     nRet = OnConnect();
@@ -145,11 +119,11 @@ int CConnecterPluginsTerminal::DisConnect()
 {
     int nRet = 0;
 
-    if(m_bThread)
-        m_bExit = true;
-    
-    nRet = OnDisConnect();
-    
+    if(m_bThread && m_pThread)
+    {
+        m_pThread->quit();
+    } else
+        nRet = OnDisConnect();
     emit sigDisconnected();
     return nRet;
 }
@@ -236,49 +210,4 @@ QString CConnecterPluginsTerminal::ServerName()
 CConnect* CConnecterPluginsTerminal::InstanceConnect()
 {
     return nullptr;
-}
-
-int CConnecterPluginsTerminal::OnRun()
-{
-    //LOG_MODEL_DEBUG("CConnecterPluginsTerminal", "Current thread: 0x%X", QThread::currentThreadId());
-    int nRet = -1;
-    CConnect* pConnect = InstanceConnect();
-    
-    do{
-        CConnect* pConnect = InstanceConnect();
-        if(nullptr == pConnect) break;
-        
-        nRet = pConnect->Initialize();
-        if(nRet) break;
-        
-        /**
-          nRet < 0 : error
-          nRet = 0 : emit sigConnected
-          nRet = 1 : emit sigConnected in CConnect
-          */
-        nRet = pConnect->Connect();
-        if(nRet < 0) break;
-        if(0 == nRet) emit sigConnected();
-        
-        while (!m_bExit) {
-            try {
-                // 0 : continue
-                // 1: exit
-                // < 0: error
-                int nRet = pConnect->Process();
-                if(nRet) break;
-            }  catch (...) {
-                LOG_MODEL_ERROR("CConnecterPluginsTerminal", "process fail:%d", nRet);
-                break;
-            }
-        }
-        
-    }while (0);
-
-    emit sigDisconnected();
-
-    pConnect->Clean();
-    delete pConnect;
-    qDebug() << "CConnecterPluginsTerminal::OnRun() end";
-    return nRet;
 }

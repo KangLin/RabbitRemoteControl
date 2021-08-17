@@ -17,11 +17,10 @@ protected:
     virtual int SetParamter(void *pPara) override;
     
 public slots:
-    virtual int Initialize() override;
-    virtual int Clean() override;
-    virtual int Connect() override;
-    virtual int Disconnect() override;
-    virtual int Process() override;
+    virtual int Initialize();
+    virtual int OnClean() override;
+    virtual int OnInit() override;
+    virtual int OnProcess() override;
     virtual void slotClipBoardChange() override;
     void slotSendData(const char *,int);
     void slotReceivedData(const QString &text);

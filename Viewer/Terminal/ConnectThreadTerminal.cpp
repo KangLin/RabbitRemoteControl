@@ -1,6 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectThreadTerminal.h"
+#include "RabbitCommonLog.h"
 
 CConnectThreadTerminal::CConnectThreadTerminal(CConnecterPluginsTerminal *pConnecter)
     : QThread(),
@@ -9,6 +10,24 @@ CConnectThreadTerminal::CConnectThreadTerminal(CConnecterPluginsTerminal *pConne
 
 void CConnectThreadTerminal::run()
 {
-    if(m_pConnecter)
-        m_pConnecter->OnRun();
+    int nRet = 0;
+    CConnect* pConnect = m_pConnecter->InstanceConnect();
+    if(!pConnect) return;
+
+    /*
+      nRet < 0 : error
+      nRet = 0 : emit sigConnected
+      nRet = 1 : emit sigConnected in CConnect
+      */
+    nRet = pConnect->Connect();
+    if(nRet < 0) return;
+    if(0 == nRet) emit m_pConnecter->sigConnected();
+
+    exec();
+
+    pConnect->Disconnect();
+
+    pConnect->deleteLater();
+
+    LOG_MODEL_DEBUG("CConnectThread", "Run end");
 }

@@ -22,7 +22,7 @@ class CConnectThread : public QThread
     Q_OBJECT
 public:
     CConnectThread(CConnecterDesktop* pConnect);
-    virtual ~CConnectThread();
+    virtual ~CConnectThread() override;
     
 protected:
     virtual void run() override;
