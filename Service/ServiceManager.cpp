@@ -6,26 +6,29 @@
 #include "PluginService.h"
 #include <QCommandLineOption>
 #include <QCommandLineParser>
+#include <QDebug>
 
 CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
     : QtService<QApplication>(argc, argv, name)
 {
     application()->setApplicationName(appName);
-    
+
     LoadPlugins();
-   
-    //TODO: add default parameters 
-    QCommandLineOption oConfigFile("export",
-                                   "export default parameters to files in directory",
+
+    QCommandLineParser parser;
+    //add default parameters 
+    QCommandLineOption oConfigFile(QStringList() << "s" << "save",
+                                   "Save default parameters to files in <directory>",
                                    "directory",
                                    RabbitCommon::CDir::Instance()->GetDirUserConfig());
-    QCommandLineParser parser;
-    parser.addHelpOption();
-    parser.addVersionOption();
+
     parser.addOption(oConfigFile);
-    parser.parse(application()->arguments());
-    bool bExport = parser.isSet(oConfigFile);
-    if(bExport)
+    QStringList paras;
+    for(int n = 0; n < argc; n++)
+        paras << argv[n];
+    parser.parse(paras);
+    bool bSave = parser.isSet(oConfigFile);
+    if(bSave)
     {
         QString szDir = parser.value(oConfigFile);
         if(!szDir.isEmpty())
