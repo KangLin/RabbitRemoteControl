@@ -36,7 +36,10 @@ int CService::Init()
                            + m_pPlugin->Id()
                            + ".rrs").toString();
         LOG_MODEL_INFO("Service", "Configure file: %s", szFile.toStdString().c_str());
-        nRet = GetParameters()->OnLoad(szFile);
+        QDir d;
+        if(d.exists(szFile)){
+            nRet = GetParameters()->OnLoad(szFile);
+        }
     }
     
     if(!Enable())
