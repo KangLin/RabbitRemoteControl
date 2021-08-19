@@ -105,7 +105,7 @@ int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
     
     // - Has the pointer moved since the last event?
     if (m_LastPostion != pos)
-        move_to(display, pos.x(), pos.y());
+        XWarpPointer (display, root, root, 0,0,0,0, pos.x(), pos.y());
     
     // Check the left button on change state
     if((m_LastButtons & LeftButton) != (LeftButton & buttons))
