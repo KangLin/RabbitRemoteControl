@@ -34,7 +34,11 @@ if(WIN32)
         InputDeviceWindows.cpp
         ScreenWindows.cpp)
 else()
-    list(APPEND SOURCE_FILES InputDevice.cpp)
+    list(APPEND HEADER_FILES
+        ScreenXLib.h)
+    list(APPEND SOURCE_FILES
+        InputDevice.cpp
+        ScreenXLib.cpp)
 endif()
     
 
