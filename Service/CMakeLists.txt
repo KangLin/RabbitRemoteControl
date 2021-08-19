@@ -10,6 +10,7 @@ set(INSTALL_HEADER_FILES
     ServiceManager.h
     InputDevice.h
     Screen.h
+    Disply.h
     )
 
 set(HEADER_FILES

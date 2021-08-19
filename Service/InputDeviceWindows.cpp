@@ -21,20 +21,20 @@ int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
 {
     // - We are specifying absolute coordinates
     DWORD flags = MOUSEEVENTF_ABSOLUTE;
-  
+    
     // - Has the pointer moved since the last event?
     if (m_LastPostion != pos)
-      flags |= MOUSEEVENTF_MOVE;
-  
+        flags |= MOUSEEVENTF_MOVE;
+    
     // - If the system swaps left and right mouse buttons then we must
     //   swap them here to negate the effect, so that we do the actual
     //   action we mean to do
     if (::GetSystemMetrics(SM_SWAPBUTTON)) {
-      buttons = (buttons & ~(LeftButton | RightButton));
-      if (buttons & LeftButton) buttons |= LeftButton;
-      if (buttons & RightButton) buttons |= RightButton;
+        buttons = (buttons & ~(LeftButton | RightButton));
+        if (buttons & LeftButton) buttons |= LeftButton;
+        if (buttons & RightButton) buttons |= RightButton;
     }
-  
+    
     // Check the left button on change state
     if((m_LastButtons & LeftButton) != (LeftButton & buttons))
     {
@@ -52,7 +52,7 @@ int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
         else
             flags |= MOUSEEVENTF_MIDDLEUP;
     }
-  
+    
     // Check the right button on chanage state
     if((m_LastButtons & RightButton) != (RightButton & buttons))
     {
@@ -84,35 +84,35 @@ int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
         flags |= MOUSEEVENTF_HWHEEL;
         mouseWheelValue = -120;
     }
-
+    
     m_LastPostion = pos;
     m_LastButtons = buttons;
-
-//    // Normilize pointer position
-//    UINT16 desktopWidth = GetSystemMetrics(SM_CXSCREEN);
-//    UINT16 desktopHeight = GetSystemMetrics(SM_CYSCREEN);
-//    int fbOffsetX = GetSystemMetrics(SM_XVIRTUALSCREEN);
-//    int fbOffsetY = GetSystemMetrics(SM_YVIRTUALSCREEN);
-//    INT32 x = (INT32)((pos.x() + fbOffsetX) * 65535 / (desktopWidth - 1));
-//    INT32 y = (INT32)((pos.y() + fbOffsetY)* 65535 / (desktopHeight - 1));
-
-//    INPUT input;
-//    memset(&input, 0, sizeof(INPUT));
-//    input.type = INPUT_MOUSE;
-//    input.mi.dwFlags = flags;
-//    input.mi.dx = x;
-//    input.mi.dy = y;
-//    input.mi.mouseData = mouseWheelValue;
-//    if(1 != SendInput(1, &input, sizeof(INPUT)))
-//    {
-//        LOG_MODEL_ERROR("InputDevice", "SendInput fail: %d", GetLastError());
-//        return -1;
-//    }
-
+    
+    //    // Normilize pointer position
+    //    UINT16 desktopWidth = GetSystemMetrics(SM_CXSCREEN);
+    //    UINT16 desktopHeight = GetSystemMetrics(SM_CYSCREEN);
+    //    int fbOffsetX = GetSystemMetrics(SM_XVIRTUALSCREEN);
+    //    int fbOffsetY = GetSystemMetrics(SM_YVIRTUALSCREEN);
+    //    INT32 x = (INT32)((pos.x() + fbOffsetX) * 65535 / (desktopWidth - 1));
+    //    INT32 y = (INT32)((pos.y() + fbOffsetY)* 65535 / (desktopHeight - 1));
+    
+    //    INPUT input;
+    //    memset(&input, 0, sizeof(INPUT));
+    //    input.type = INPUT_MOUSE;
+    //    input.mi.dwFlags = flags;
+    //    input.mi.dx = x;
+    //    input.mi.dy = y;
+    //    input.mi.mouseData = mouseWheelValue;
+    //    if(1 != SendInput(1, &input, sizeof(INPUT)))
+    //    {
+    //        LOG_MODEL_ERROR("InputDevice", "SendInput fail: %d", GetLastError());
+    //        return -1;
+    //    }
+    
     QRect primaryDisplay(0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
-//    LOG_MODEL_DEBUG("InputDevice", "primary screen:%d,%d;pos:%d,%d",
-//                    primaryDisplay.width(), primaryDisplay.height(),
-//                    pos.x(), pos.y());
+    //    LOG_MODEL_DEBUG("InputDevice", "primary screen:%d,%d;pos:%d,%d",
+    //                    primaryDisplay.width(), primaryDisplay.height(),
+    //                    pos.x(), pos.y());
     if (primaryDisplay.contains(pos)) {
         LOG_MODEL_DEBUG("InputDevice", "In primary screen");
         // mouse_event wants coordinates specified as a proportion of the
@@ -138,8 +138,8 @@ int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
         if (SendInput(1, &evt, sizeof(evt)) != 1)
         {
             LOG_MODEL_ERROR("InputDevice", "SendInput fail: %d", GetLastError());
-          return -1;
-      }
+            return -1;
+        }
     }
     return 0;
 }

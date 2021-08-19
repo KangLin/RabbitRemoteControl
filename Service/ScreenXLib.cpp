@@ -3,11 +3,34 @@
 #include <X11/Xlib.h>
 #include <stdexcept>
 
+// xlib documents: https://www.x.org/releases/current/doc/libX11/libX11/libX11.html
+// X documents: https://www.x.org/releases/current/doc/index.html
+// X Window System Concepts: https://www.x.org/wiki/guide/concepts/
+//  https://www.x.org
+
 CScreen* CScreen::Instance()
 {
     static CScreen* p = nullptr;
     if(!p)
     {
+        Display* dpy = NULL;
+        dpy = XOpenDisplay(NULL);/* Connect to a local display */
+        if(dpy)
+        {
+            if (strstr(ServerVendor(dpy), "X.Org")) {
+                int vendrel = VendorRelease(dpy);
+                
+                QString version("X.Org version: ");
+                version += QString::number(vendrel / 10000000);
+                version += "." + QString::number((vendrel /   100000) % 100),
+                version += "." + QString::number((vendrel /     1000) % 100);
+                if (vendrel % 1000) {
+                    version += "." + QString::number(vendrel % 1000);
+                }
+                LOG_MODEL_DEBUG("CScreenXLib", version.toStdString().c_str());
+                XCloseDisplay(dpy);
+            }
+        }
         p = new CScreenXLib();
     }
     return p;

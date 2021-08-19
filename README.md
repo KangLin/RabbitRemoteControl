@@ -12,7 +12,7 @@ Author: Kang Lin <kl222@126.com>
   - [![Build status](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
   - [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
 - [Introduction](#Introduction)
-- [Donation](#Donation)
+- [Sponsorship and Donations](#Sponsorship-and-Donations)
 - [Contribution](#Contribution)
 - [Download](#Download)
 - [Development](#Development)
@@ -77,7 +77,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
-### Donation
+### Sponsorship and Donations
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
 
 [![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation") 
