@@ -1,8 +1,8 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "DataChannel.h"
-#include "QSocketInStream.h"
-#include "QSocketOutStream.h"
+#include "InStreamDataChannel.h"
+#include "OutStreamDataChannel.h"
 #include "RabbitCommonLog.h"
 
 CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
@@ -11,17 +11,18 @@ CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
 {
     Q_ASSERT(m_pSocket);
 
+    m_pInStream = new CInStreamDataChannel(this);
+    m_pOutStream = new COutStreamDataChannel(this);
+
     bool check = false;
-    m_pInStream = new CQSocketInStream(m_pSocket);
-    m_pOutStream = new CQSocketOutStream(m_pSocket);
     check = connect(m_pSocket, SIGNAL(readyRead()),
             this, SIGNAL(readyRead()));
     Q_ASSERT(check);
     check = connect(m_pSocket, SIGNAL(connected()),
-                    this, SIGNAL(sigConnected()));
+                    this, SLOT(slotConnected()));
     Q_ASSERT(check);
     check = connect(m_pSocket, SIGNAL(disconnected()),
-                    this, SIGNAL(sigDisconnected()));
+                    this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
     check = connect(m_pSocket, SIGNAL(error(QAbstractSocket::SocketError)),
                     this, SLOT(slotError(QAbstractSocket::SocketError)));
@@ -31,6 +32,7 @@ CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
 CDataChannel::~CDataChannel()
 {
     LOG_MODEL_DEBUG("CDataChannel", "CDataChannel::~CDataChannel");
+    if(isOpen()) close();
     if(m_pInStream) delete m_pInStream;
     if(m_pOutStream) delete m_pOutStream;
     if(m_pSocket) m_pSocket->deleteLater();
@@ -58,6 +60,22 @@ qint64 CDataChannel::writeData(const char *data, qint64 len)
     if(m_pSocket)
         return m_pSocket->write(data, len);
     return -1;
+}
+
+void CDataChannel::slotConnected()
+{
+    if(!open(QIODevice::ReadWrite))
+    {
+        LOG_MODEL_ERROR("CDataChannel", "Open data channel fail");
+        return;
+    }
+    emit sigConnected();
+}
+
+void CDataChannel::slotDisconnected()
+{
+    close();
+    emit sigDisconnected();
 }
 
 void CDataChannel::slotError(QAbstractSocket::SocketError e)

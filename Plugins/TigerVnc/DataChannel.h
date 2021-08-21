@@ -33,6 +33,8 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError e);
+    void slotConnected();
+    void slotDisconnected();
 
 private:
     QTcpSocket* m_pSocket;

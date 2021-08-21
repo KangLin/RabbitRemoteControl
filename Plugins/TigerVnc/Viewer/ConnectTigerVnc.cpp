@@ -204,7 +204,14 @@ void CConnectTigerVnc::slotReadyRead()
     } catch (rdr::Exception& e) {
         LOG_MODEL_ERROR("TigerVnc", "processMsg error: %s", e.str());
         emit sigError(-1, e.str());
+    } catch (std::exception &e) {
+        LOG_MODEL_ERROR("TigerVnc", "processMsg error: %s", e.what());
+        emit sigError(-1, e.what());
+    } catch(...) {
+        LOG_MODEL_ERROR("TigerVnc", "processMsg error");
+        emit sigError(-1);
     }
+
     emit sigDisconnected();
 }
 
@@ -217,7 +224,8 @@ void CConnectTigerVnc::slotError(int nErr, QString szErr)
 void CConnectTigerVnc::initDone()
 {
     Q_ASSERT(m_pPara); // Please call SetParamter before call Connect
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::initDone()");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::initDone():name:%s;width:%d;height:%d",
+                    server.name(), server.width(), server.height());
     
     // If using AutoSelect with old servers, start in FullColor
     // mode. See comment in autoSelectFormatAndEncoding. 

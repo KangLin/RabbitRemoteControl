@@ -89,7 +89,7 @@ Q_SIGNALS:
     void sigUpdateCursorPosition(const QPoint& pos);
     void sigSetClipboard(QMimeData* data);
 
-    void sigError(const int nError, const QString &szError);
+    void sigError(const int nError, const QString &szError = QString());
     void sigInformation(const QString& szInfo);
 
 public Q_SLOTS:

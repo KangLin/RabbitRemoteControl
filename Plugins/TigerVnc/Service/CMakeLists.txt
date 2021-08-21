@@ -12,8 +12,10 @@ SET(SOURCE_FILES
     ServiceTigerVNC.cpp
     Connection.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../DataChannel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamDataChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamDataChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.cpp
     )
 SET(HEADER_FILES
     ParameterServiceTigerVNC.h
@@ -21,8 +23,10 @@ SET(HEADER_FILES
     ServiceTigerVNC.h
     Connection.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../DataChannel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamDataChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamDataChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.h
     )
 SET(UI_FILES
     )
