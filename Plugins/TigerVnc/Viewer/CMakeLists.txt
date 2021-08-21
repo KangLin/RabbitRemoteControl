@@ -9,6 +9,7 @@ SET(SOURCE_FILES
     ConnecterTigerVnc.cpp
     PluginTigerVnc.cpp
     DlgSettingsTigerVnc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../DataChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.cpp
     )
@@ -18,6 +19,7 @@ SET(HEADER_FILES
     ConnecterTigerVnc.h
     PluginTigerVnc.h
     DlgSettingsTigerVnc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../DataChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.h
     )

@@ -47,56 +47,6 @@ SET(RCC_FILES )
 
 SET(SRC_LIBS RabbitCommon ${QT_LIBRARIES})
 
-option(WITH_ICE "Use ice" OFF)
-if(WITH_ICE)
-    set(_LibDataChannel_DIR ${LibDataChannel_DIR})
-    find_package(libdatachannel)
-    if(libdatachannel_FOUND)
-        find_package(Threads)
-        list(APPEND SRC_LIBS LibDatachannel::datachannel)
-    else()
-        find_path(_LibDataChannel_INCLUDE_DIRS
-            NAMES "rtc/rtc.hpp"
-            HINTS ${_LibDataChannel_DIR}
-            PATHS ${_LibDataChannel_DIR}
-            PATH_SUFFIXES include
-            )
-        find_library(_LibDataChannel_LIB
-            NAMES datachannel
-            HINTS ${_LibDataChannel_DIR}
-            PATHS ${_LibDataChannel_DIR}
-            PATH_SUFFIXES lib
-            )
-        if(_LibDataChannel_LIB)
-            list(APPEND SRC_LIBS ${_LibDataChannel_LIB})
-        endif()
-        if(_LibDataChannel_INCLUDE_DIRS AND _LibDataChannel_LIB)
-            set(libdatachannel_FOUND TRUE)
-            message("libdatachannel: ${_LibDataChannel_LIB}")
-        endif()
-    endif()
-    if(libdatachannel_FOUND)
-        LIST(APPEND SOURCE_FILES
-            Ice/DataChannelIce.cpp
-            #Ice/DataChannelIceChannel.cpp
-            Ice/IceSignal.cpp
-            )
-        LIST(APPEND HEADER_FILES
-            Ice/DataChannelIce.h
-            #Ice/DataChannelIceChannel.h
-            Ice/IceSignal.h
-            )
-    endif()
-    
-    find_package(nlohmann_json)
-    if(nlohmann_json_FOUND)
-        list(APPEND _PROXY_LIBS nlohmann_json::nlohmann_json)
-        list(APPEND HEADER_FILES IceSignalWebSocket.h)
-        list(APPEND SOURCE_FILES IceSignalWebSocket.cpp)
-    endif()
-    
-endif()
-
 # Translations
 GENERATED_QT_TRANSLATIONS(
     SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}
@@ -117,7 +67,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-        ${_LibDataChannel_INCLUDE_DIRS}
     INSTALL_HEADER_FILES ${INSTALL_HEADER_FILES}
     LIBS ${SRC_LIBS}
     VERSION ${BUILD_VERSION})

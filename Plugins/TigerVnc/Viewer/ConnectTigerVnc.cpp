@@ -55,9 +55,6 @@ static const unsigned bpsEstimateWindow = 1000;
 
 CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
-      m_pSock(nullptr),
-      m_pInStream(nullptr),
-      m_pOutStream(nullptr),
       m_bpsEstimate(20000000),
       m_updateCount(0),
       m_pPara(nullptr)
@@ -104,25 +101,24 @@ int CConnectTigerVnc::OnInit()
 {
     int nRet = 1;
     try{
-        Q_ASSERT(!m_pSock);
-        m_pSock = new QTcpSocket(this);
-        m_pInStream = new CQSocketInStream(m_pSock);
-        m_pOutStream = new CQSocketOutStream(m_pSock);
-
-        if(!m_pSock || !m_pInStream || !m_pOutStream)
+        QTcpSocket* pSock = new QTcpSocket(this);
+        if(!pSock)
             return -1;
+        m_DataChannel = QSharedPointer<CDataChannel>(new CDataChannel(pSock));
 
         bool check = false;
-        check = connect(m_pSock, SIGNAL(connected()),
+        check = connect(m_DataChannel.data(), SIGNAL(sigConnected()),
                         this, SLOT(slotConnected()));
         Q_ASSERT(check);
-        check = connect(m_pSock, SIGNAL(disconnected()),
+        check = connect(m_DataChannel.data(), SIGNAL(sigDisconnected()),
                         this, SLOT(slotDisConnected()));
         Q_ASSERT(check);
-        check = connect(m_pSock, SIGNAL(readyRead()),
+        check = connect(m_DataChannel.data(), SIGNAL(readyRead()),
                         this, SLOT(slotReadyRead()));
         Q_ASSERT(check);
-
+        check = connect(m_DataChannel.data(), SIGNAL(sigError(int, QString)),
+                         this, SLOT(slotError(int, QString)));
+        Q_ASSERT(check);
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
         switch(m_pPara->eProxyType)
@@ -149,10 +145,10 @@ int CConnectTigerVnc::OnInit()
             proxy.setPort(m_pPara->nProxyPort);
             proxy.setUser(m_pPara->szProxyUser);
             proxy.setPassword(m_pPara->szProxyPassword);
-            m_pSock->setProxy(proxy);
+            pSock->setProxy(proxy);
         }
 
-        m_pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
+        pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
         
         return 1;
     } catch (rdr::Exception& e) {
@@ -165,25 +161,7 @@ int CConnectTigerVnc::OnInit()
 
 int CConnectTigerVnc::OnClean()
 {
-    if(m_pInStream)
-    {
-        delete m_pInStream;
-        m_pInStream = nullptr;
-    }
-    
-    if(m_pOutStream)
-    {
-        delete m_pOutStream;
-        m_pOutStream = nullptr;
-    }
-    
-    if(m_pSock)
-    {
-        m_pSock->close();
-        delete m_pSock;
-        m_pSock = nullptr;
-    }
-
+    emit sigDisconnected();
     return 0;
 }
 
@@ -202,7 +180,7 @@ void CConnectTigerVnc::slotConnected()
     LOG_MODEL_INFO("TigerVnc", "Connected to host %s port %d",
               m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
 
-    setStreams(m_pInStream, m_pOutStream);
+    setStreams(m_DataChannel->InStream(), m_DataChannel->OutStream());
     initialiseProtocol();
 }
 
@@ -230,9 +208,9 @@ void CConnectTigerVnc::slotReadyRead()
     emit sigDisconnected();
 }
 
-void CConnectTigerVnc::slotError(QAbstractSocket::SocketError socketError)
+void CConnectTigerVnc::slotError(int nErr, QString szErr)
 {
-    emit sigError(socketError, "");
+    emit sigError(nErr, szErr);
     emit sigDisconnected();
 }
 
@@ -316,7 +294,7 @@ void CConnectTigerVnc::framebufferUpdateStart()
 
   // For bandwidth estimate
   gettimeofday(&updateStartTime, NULL);
-  m_updateStartPos = m_pInStream->pos();
+  m_updateStartPos = m_DataChannel->InStream()->pos();
 }
 
 // framebufferUpdateEnd() is called at the end of an update.
@@ -339,7 +317,7 @@ void CConnectTigerVnc::framebufferUpdateEnd()
     elapsed += now.tv_usec - updateStartTime.tv_usec;
     if (elapsed == 0)
       elapsed = 1;
-    bps = (unsigned long long)(m_pInStream->pos() -
+    bps = (unsigned long long)(m_DataChannel->InStream()->pos() -
                                m_updateStartPos) * 8 *
                               1000000 / elapsed;
     // Allow this update to influence things more the longer it took, to a

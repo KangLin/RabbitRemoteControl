@@ -15,6 +15,11 @@ class CDataChannel : public QIODevice
     Q_OBJECT
     
 public:
+    ///
+    /// \brief CDataChannel
+    /// \param pSocket: The Owner is the instance of this class.
+    /// \param parent
+    ///
     explicit CDataChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
     virtual ~CDataChannel();
     
@@ -24,7 +29,7 @@ public:
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
-    void sigError(int nRet, QString szErr);
+    void sigError(int nErr, QString szErr);
 
 private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError e);

@@ -11,6 +11,7 @@
 #include "rfb/UserMsgBox.h"
 #include "QSocketInStream.h"
 #include "QSocketOutStream.h"
+#include "DataChannel.h"
 #include <QEventLoop>
 
 class CConnecterTigerVnc;
@@ -34,7 +35,7 @@ public Q_SLOTS:
     virtual void slotReadyRead();
     virtual void slotClipBoardChange() override;
 
-    void slotError(QAbstractSocket::SocketError socketError);
+    void slotError(int nErr, QString szErr);
 
 public:
     // rfb::CConnection callback methods
@@ -76,9 +77,7 @@ protected Q_SLOTS:
     virtual void slotTimeOut() override;
     
 private:
-    QTcpSocket* m_pSock;
-    CQSocketInStream* m_pInStream;
-    CQSocketOutStream* m_pOutStream;
+    QSharedPointer<CDataChannel> m_DataChannel;
 
     unsigned long long m_bpsEstimate;
     unsigned m_updateCount;
