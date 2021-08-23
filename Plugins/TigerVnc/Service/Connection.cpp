@@ -33,10 +33,10 @@ static void setfile()
 }
 bool g_setfile = false;
 
-CConnection::CConnection(QTcpSocket *pSocket,
+CConnection::CConnection(QSharedPointer<CChannel> channel,
                          CParameterServiceTigerVNC *pPara)
     : QObject(), rfb::SConnection(),
-      m_DataChannel(pSocket),
+      m_DataChannel(channel),
       m_PixelFormat(32, 24, false, true, 255, 255, 255, 16, 8, 0),
       inProcessMessages(false),
       pendingSyncFence(false),
@@ -49,15 +49,9 @@ CConnection::CConnection(QTcpSocket *pSocket,
 {
     bool check = false;
     m_pPara = pPara;
-    setStreams(m_DataChannel.InStream(), m_DataChannel.OutStream());
-    if(!m_DataChannel.isOpen())
-    {
-        if(m_DataChannel.open(QIODevice::ReadWrite))
-        {
-            LOG_MODEL_ERROR("CDataChannel", "Open data channel fail");
-            throw std::runtime_error("Open data channel fail");
-        }
-    }
+
+    setStreams(m_DataChannel->InStream(), m_DataChannel->OutStream());
+    
     if(!g_setfile) 
     {
         g_setfile = true;
@@ -75,13 +69,13 @@ CConnection::CConnection(QTcpSocket *pSocket,
     Q_ASSERT(check);
     client.setDimensions(CScreen::Instance()->Width(), CScreen::Instance()->Height());
 
-    check = connect(&m_DataChannel, SIGNAL(readyRead()),
+    check = connect(m_DataChannel.data(), SIGNAL(readyRead()),
                          this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
-    check = connect(&m_DataChannel, SIGNAL(sigDisconnected()),
+    check = connect(m_DataChannel.data(), SIGNAL(sigDisconnected()),
                          this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    check = connect(&m_DataChannel, SIGNAL(sigError(int, QString)),
+    check = connect(m_DataChannel.data(), SIGNAL(sigError(int, QString)),
                     this, SLOT(slotError(int, QString)));
     Q_ASSERT(check);
     

@@ -64,7 +64,14 @@ void CServiceTigerVNC::slotNewConnection()
                    pSocket->peerAddress().toString().toStdString().c_str(),
                    pSocket->peerPort());
     try {
-        QSharedPointer<CConnection> c(new CConnection(pSocket,
+        QSharedPointer<CChannel> channel(new CChannel(pSocket));
+        if(!channel->isOpen())
+            if(!channel->open(QIODevice::ReadWrite))
+            {
+                LOG_MODEL_ERROR("ServiceTigerVNC", "Don't open channel");
+                throw std::runtime_error("Don't open channel");
+            }
+        QSharedPointer<CConnection> c(new CConnection(channel,
                   dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
         m_lstConnection.push_back(c);
         bool check = connect(c.data(), SIGNAL(sigDisconnected()),

@@ -18,7 +18,7 @@ class CConnection : public QObject, rfb::SConnection
     Q_OBJECT
     
 public:
-    explicit CConnection(QTcpSocket* pSocket, CParameterServiceTigerVNC* pPara);
+    explicit CConnection(QSharedPointer<CChannel> channel, CParameterServiceTigerVNC* pPara);
     virtual ~CConnection();
 
     // SConnection interface
@@ -55,7 +55,7 @@ private Q_SLOTS:
     void slotScreenUpdate(QImage);
 
 private:
-    CChannel m_DataChannel;
+    QSharedPointer<CChannel> m_DataChannel;
     CParameterServiceTigerVNC* m_pPara;
     CInputDevice m_InputDevice;
     
