@@ -71,11 +71,12 @@ bool CChannel::isSequential() const
 
 void CChannel::slotConnected()
 {
-    if(!open(QIODevice::ReadWrite))
-    {
-        LOG_MODEL_ERROR("CDataChannel", "Open data channel fail");
-        return;
-    }
+    if(!isOpen())
+        if(!open(QIODevice::ReadWrite))
+        {
+            LOG_MODEL_ERROR("CDataChannel", "Open data channel fail");
+            return;
+        }
     emit sigConnected();
 }
 

@@ -50,6 +50,14 @@ CConnection::CConnection(QTcpSocket *pSocket,
     bool check = false;
     m_pPara = pPara;
     setStreams(m_DataChannel.InStream(), m_DataChannel.OutStream());
+    if(!m_DataChannel.isOpen())
+    {
+        if(m_DataChannel.open(QIODevice::ReadWrite))
+        {
+            LOG_MODEL_ERROR("CDataChannel", "Open data channel fail");
+            throw std::runtime_error("Open data channel fail");
+        }
+    }
     if(!g_setfile) 
     {
         g_setfile = true;
