@@ -45,6 +45,7 @@ private:
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
     virtual qint64 writeData(const char *data, qint64 len) override;
+    virtual bool isSequential() const override;
 };
 
 #endif // CDATACHANNEL_H

@@ -104,8 +104,9 @@ int CConnectTigerVnc::OnInit()
         QTcpSocket* pSock = new QTcpSocket(this);
         if(!pSock)
             return -1;
-        m_DataChannel = QSharedPointer<CDataChannel>(new CDataChannel(pSock));
 
+        m_DataChannel = QSharedPointer<CDataChannel>(new CDataChannel(pSock));
+        
         bool check = false;
         check = connect(m_DataChannel.data(), SIGNAL(sigConnected()),
                         this, SLOT(slotConnected()));
@@ -119,6 +120,7 @@ int CConnectTigerVnc::OnInit()
         check = connect(m_DataChannel.data(), SIGNAL(sigError(int, QString)),
                          this, SLOT(slotError(int, QString)));
         Q_ASSERT(check);
+        
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
         switch(m_pPara->eProxyType)

@@ -3,6 +3,8 @@
 #include "DataChannel.h"
 #include "InStreamDataChannel.h"
 #include "OutStreamDataChannel.h"
+#include "QSocketInStream.h"
+#include "QSocketOutStream.h"
 #include "RabbitCommonLog.h"
 
 CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
@@ -62,6 +64,11 @@ qint64 CDataChannel::writeData(const char *data, qint64 len)
     return -1;
 }
 
+bool CDataChannel::isSequential() const
+{
+    return true;
+}
+
 void CDataChannel::slotConnected()
 {
     if(!open(QIODevice::ReadWrite))
@@ -74,8 +81,8 @@ void CDataChannel::slotConnected()
 
 void CDataChannel::slotDisconnected()
 {
-    close();
     emit sigDisconnected();
+    close();
 }
 
 void CDataChannel::slotError(QAbstractSocket::SocketError e)
