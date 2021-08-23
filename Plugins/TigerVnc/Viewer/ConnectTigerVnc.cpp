@@ -105,7 +105,7 @@ int CConnectTigerVnc::OnInit()
         if(!pSock)
             return -1;
 
-        m_DataChannel = QSharedPointer<CDataChannel>(new CDataChannel(pSock));
+        m_DataChannel = QSharedPointer<CChannel>(new CChannel(pSock));
         
         bool check = false;
         check = connect(m_DataChannel.data(), SIGNAL(sigConnected()),

@@ -11,7 +11,7 @@ SET(SOURCE_FILES
     PluginServiceTigerVNC.cpp
     ServiceTigerVNC.cpp
     Connection.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../DataChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamDataChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamDataChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.cpp
@@ -22,7 +22,7 @@ SET(HEADER_FILES
     PluginServiceTigerVNC.h
     ServiceTigerVNC.h
     Connection.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../DataChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamDataChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamDataChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.h

@@ -1,7 +1,7 @@
 #include "InStreamDataChannel.h"
 #include "RabbitCommonLog.h"
 
-CInStreamDataChannel::CInStreamDataChannel(CDataChannel* pDataChannel)
+CInStreamDataChannel::CInStreamDataChannel(CChannel* pDataChannel)
     : rdr::BufferedInStream(),
       m_pDataChannel(pDataChannel)
 {

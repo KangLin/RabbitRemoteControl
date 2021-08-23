@@ -2,17 +2,17 @@
 #define COUTSTREAMDATACHANNEL_H
 
 #include "rdr/BufferedOutStream.h"
-#include "DataChannel.h"
+#include "Channel.h"
 
 class COutStreamDataChannel : public rdr::BufferedOutStream
 {
 public:
-    COutStreamDataChannel(CDataChannel* pDataChannel);
+    COutStreamDataChannel(CChannel* pDataChannel);
     
 private:
     // rdr::BufferedOutStream interface
     virtual bool flushBuffer() override;
-    CDataChannel* m_pDataChannel;
+    CChannel* m_pDataChannel;
 };
 
 #endif // COUTSTREAMDATACHANNEL_H

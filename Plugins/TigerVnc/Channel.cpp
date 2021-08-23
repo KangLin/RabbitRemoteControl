@@ -1,13 +1,13 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "DataChannel.h"
+#include "Channel.h"
 #include "InStreamDataChannel.h"
 #include "OutStreamDataChannel.h"
 #include "QSocketInStream.h"
 #include "QSocketOutStream.h"
 #include "RabbitCommonLog.h"
 
-CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
+CChannel::CChannel(QTcpSocket *pSocket, QObject *parent)
     : QIODevice(parent),
       m_pSocket(pSocket)
 {
@@ -31,7 +31,7 @@ CDataChannel::CDataChannel(QTcpSocket *pSocket, QObject *parent)
     Q_ASSERT(check);
 }
 
-CDataChannel::~CDataChannel()
+CChannel::~CChannel()
 {
     LOG_MODEL_DEBUG("CDataChannel", "CDataChannel::~CDataChannel");
     if(isOpen()) close();
@@ -40,36 +40,36 @@ CDataChannel::~CDataChannel()
     if(m_pSocket) m_pSocket->deleteLater();
 }
 
-rdr::InStream* CDataChannel::InStream()
+rdr::InStream* CChannel::InStream()
 {
     return m_pInStream;
 }
 
-rdr::OutStream* CDataChannel::OutStream()
+rdr::OutStream* CChannel::OutStream()
 {
     return m_pOutStream;
 }
 
-qint64 CDataChannel::readData(char *data, qint64 maxlen)
+qint64 CChannel::readData(char *data, qint64 maxlen)
 {
     if(m_pSocket)
         return m_pSocket->read(data, maxlen);
     return -1;
 }
 
-qint64 CDataChannel::writeData(const char *data, qint64 len)
+qint64 CChannel::writeData(const char *data, qint64 len)
 {
     if(m_pSocket)
         return m_pSocket->write(data, len);
     return -1;
 }
 
-bool CDataChannel::isSequential() const
+bool CChannel::isSequential() const
 {
     return true;
 }
 
-void CDataChannel::slotConnected()
+void CChannel::slotConnected()
 {
     if(!open(QIODevice::ReadWrite))
     {
@@ -79,13 +79,13 @@ void CDataChannel::slotConnected()
     emit sigConnected();
 }
 
-void CDataChannel::slotDisconnected()
+void CChannel::slotDisconnected()
 {
     emit sigDisconnected();
     close();
 }
 
-void CDataChannel::slotError(QAbstractSocket::SocketError e)
+void CChannel::slotError(QAbstractSocket::SocketError e)
 {
     QString szError;
     if(m_pSocket)

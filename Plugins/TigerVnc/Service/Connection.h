@@ -7,7 +7,7 @@
 #include "rfb/EncodeManager.h"
 #include "rfb/UpdateTracker.h"
 #include <QObject>
-#include "DataChannel.h"
+#include "Channel.h"
 #include "ServiceTigerVNC.h"
 #include "ParameterServiceTigerVNC.h"
 #include "InputDevice.h"
@@ -55,7 +55,7 @@ private Q_SLOTS:
     void slotScreenUpdate(QImage);
 
 private:
-    CDataChannel m_DataChannel;
+    CChannel m_DataChannel;
     CParameterServiceTigerVNC* m_pPara;
     CInputDevice m_InputDevice;
     

@@ -10,7 +10,7 @@
 #include "rdr/InStream.h"
 #include "rdr/OutStream.h"
 
-class CDataChannel : public QIODevice
+class CChannel : public QIODevice
 {
     Q_OBJECT
     
@@ -20,8 +20,8 @@ public:
     /// \param pSocket: The Owner is the instance of this class.
     /// \param parent
     ///
-    explicit CDataChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
-    virtual ~CDataChannel();
+    explicit CChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
+    virtual ~CChannel();
     
     rdr::InStream* InStream();
     rdr::OutStream* OutStream();

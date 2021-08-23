@@ -11,7 +11,7 @@
 #include "rfb/UserMsgBox.h"
 #include "QSocketInStream.h"
 #include "QSocketOutStream.h"
-#include "DataChannel.h"
+#include "Channel.h"
 #include <QEventLoop>
 
 class CConnecterTigerVnc;
@@ -77,7 +77,7 @@ protected Q_SLOTS:
     virtual void slotTimeOut() override;
     
 private:
-    QSharedPointer<CDataChannel> m_DataChannel;
+    QSharedPointer<CChannel> m_DataChannel;
 
     unsigned long long m_bpsEstimate;
     unsigned m_updateCount;

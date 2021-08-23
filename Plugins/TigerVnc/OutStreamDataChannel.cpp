@@ -1,7 +1,7 @@
 #include "OutStreamDataChannel.h"
 #include "RabbitCommonLog.h"
 
-COutStreamDataChannel::COutStreamDataChannel(CDataChannel* pDataChannel)
+COutStreamDataChannel::COutStreamDataChannel(CChannel* pDataChannel)
     : rdr::BufferedOutStream(),
       m_pDataChannel(pDataChannel)
 {

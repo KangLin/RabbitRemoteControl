@@ -2,18 +2,18 @@
 #define CINSTREAMDATACHANNEL_H
 
 #include "rdr/BufferedInStream.h"
-#include "DataChannel.h"
+#include "Channel.h"
 
 class CInStreamDataChannel : public rdr::BufferedInStream
 {
 public:
-    CInStreamDataChannel(CDataChannel* pDataChannel);
+    CInStreamDataChannel(CChannel* pDataChannel);
     
 private:
     // rdr::BufferedInStream interface
     virtual bool fillBuffer(size_t maxSize) override;
     
-    CDataChannel* m_pDataChannel;
+    CChannel* m_pDataChannel;
 };
 
 #endif // CINSTREAMDATACHANNEL_H
