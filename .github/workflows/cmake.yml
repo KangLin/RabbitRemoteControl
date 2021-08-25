@@ -53,8 +53,20 @@ jobs:
         vcpkgGitCommitId: 7dbc05515b44bf54d2a42b4da9d1e1f910868b86
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp libdatachannel'
+        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp' # libdatachannel'
 
+    - name: build libdatachannel
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        git clone https://github.com/paullouisageneau/libdatachannel.git
+        cd libdatachannel
+        git submodule update --init --recursive
+        cmake -E make_directory build
+        cd build
+        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
       run: |
@@ -156,7 +168,7 @@ jobs:
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
-        cmake ${{github.workspace}} -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DLog4Qt_DIR=/lib/cmake/Log4Qt -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake ${{github.workspace}} -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DLog4Qt_DIR=/lib/cmake/Log4Qt -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
