@@ -136,6 +136,7 @@ private:
     
 #ifdef USE_ICE
     QSharedPointer<CIceSignal> m_Signal;
+    int IceInit();
 private Q_SLOTS:
     void slotSignalConnected();
     void slotSignalDisconnected();

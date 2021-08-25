@@ -107,19 +107,9 @@ int CConnectTigerVnc::OnInit()
     int nRet = 0;
     if(m_pPara->bIce)
     {
-        m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
-        bool check = false;
-        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
-                        this, SLOT(slotSignalConnected()));
-        Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
-                        this, SLOT(slotSignalDisconnected()));
-        Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
-                        this, SLOT(slotSignalError(int, const QString&)));
-        Q_ASSERT(check);
-        m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
-                       m_pPara->szSignalUser, m_pPara->szSignalPassword);
+#ifdef USE_ICE
+        IceInit();
+#endif
     }
     else
         nRet = SocketInit();
@@ -127,6 +117,23 @@ int CConnectTigerVnc::OnInit()
 }
 
 #ifdef USE_ICE
+void CConnectTigerVnc::IceInit()
+{
+    m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
+    bool check = false;
+    check = connect(m_Signal.data(), SIGNAL(sigConnected()),
+                    this, SLOT(slotSignalConnected()));
+    Q_ASSERT(check);
+    check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
+                    this, SLOT(slotSignalDisconnected()));
+    Q_ASSERT(check);
+    check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
+                    this, SLOT(slotSignalError(int, const QString&)));
+    Q_ASSERT(check);
+    m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
+                   m_pPara->szSignalUser, m_pPara->szSignalPassword);
+}
+
 void CConnectTigerVnc::slotSignalConnected()
 {
     int nRet = 0;
