@@ -1,8 +1,8 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "Channel.h"
-#include "InStreamDataChannel.h"
-#include "OutStreamDataChannel.h"
+#include "InStreamChannel.h"
+#include "OutStreamChannel.h"
 #include "QSocketInStream.h"
 #include "QSocketOutStream.h"
 #include "RabbitCommonLog.h"
@@ -13,8 +13,8 @@ CChannel::CChannel(QTcpSocket *pSocket, QObject *parent)
 {
     Q_ASSERT(m_pSocket);
 
-    m_pInStream = new CInStreamDataChannel(this);
-    m_pOutStream = new COutStreamDataChannel(this);
+    m_pInStream = new CInStreamChannel(this);
+    m_pOutStream = new COutStreamChannel(this);
 
     bool check = false;
     check = connect(m_pSocket, SIGNAL(readyRead()),

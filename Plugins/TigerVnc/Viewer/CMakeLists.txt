@@ -10,8 +10,8 @@ SET(SOURCE_FILES
     PluginTigerVnc.cpp
     DlgSettingsTigerVnc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamDataChannel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamDataChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.cpp
     )
@@ -22,8 +22,8 @@ SET(HEADER_FILES
     PluginTigerVnc.h
     DlgSettingsTigerVnc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamDataChannel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamDataChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.h
     )
@@ -33,7 +33,7 @@ SET(UI_FILES
 
 find_package(libdatachannel)
 if(libdatachannel_FOUND)
-    list(APPEND SRC_LIBS LibDatachannel::datachannel)
+    list(APPEND SRC_LIBS LibDatachannel::LibDataChannel)
     list(APPEND SOURCE_FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/DataChannelIce.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignal.cpp)

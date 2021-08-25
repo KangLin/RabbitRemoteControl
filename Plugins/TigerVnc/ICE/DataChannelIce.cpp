@@ -8,11 +8,11 @@
 
 #define DEFAULT_MAX_MESSAGE_SIZE 0xFFFF
 
-CDataChannelIce::CDataChannelIce(QObject* parent) : CDataChannel(nullptr, parent)
+CDataChannelIce::CDataChannelIce(QObject* parent) : CChannel(nullptr, parent)
 {}
 
 CDataChannelIce::CDataChannelIce(QSharedPointer<CIceSignal> signal, QObject *parent)
-    : CDataChannel(nullptr, parent),
+    : CChannel(nullptr, parent),
       m_Signal(signal)
 {
     SetSignal(signal);

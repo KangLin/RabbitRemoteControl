@@ -1,13 +1,13 @@
-#include "OutStreamDataChannel.h"
+#include "OutStreamChannel.h"
 #include "RabbitCommonLog.h"
 
-COutStreamDataChannel::COutStreamDataChannel(CChannel* pDataChannel)
+COutStreamChannel::COutStreamChannel(CChannel* pDataChannel)
     : rdr::BufferedOutStream(),
       m_pDataChannel(pDataChannel)
 {
 }
 
-bool COutStreamDataChannel::flushBuffer()
+bool COutStreamChannel::flushBuffer()
 {
     Q_ASSERT(m_pDataChannel);
     qint64 n = m_pDataChannel->write((const char*)sentUpTo, ptr - sentUpTo);

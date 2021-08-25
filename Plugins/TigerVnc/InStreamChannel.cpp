@@ -1,13 +1,13 @@
-#include "InStreamDataChannel.h"
+#include "InStreamChannel.h"
 #include "RabbitCommonLog.h"
 
-CInStreamDataChannel::CInStreamDataChannel(CChannel* pDataChannel)
+CInStreamChannel::CInStreamChannel(CChannel* pDataChannel)
     : rdr::BufferedInStream(),
       m_pDataChannel(pDataChannel)
 {
 }
 
-bool CInStreamDataChannel::fillBuffer(size_t maxSize)
+bool CInStreamChannel::fillBuffer(size_t maxSize)
 {
     Q_ASSERT(m_pDataChannel);
     if(!m_pDataChannel) return false;

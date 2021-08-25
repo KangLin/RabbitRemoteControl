@@ -4,10 +4,10 @@
 #include "rdr/BufferedInStream.h"
 #include "Channel.h"
 
-class CInStreamDataChannel : public rdr::BufferedInStream
+class CInStreamChannel : public rdr::BufferedInStream
 {
 public:
-    CInStreamDataChannel(CChannel* pDataChannel);
+    CInStreamChannel(CChannel* pDataChannel);
     
 private:
     // rdr::BufferedInStream interface

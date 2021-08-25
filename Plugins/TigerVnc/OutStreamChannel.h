@@ -4,10 +4,10 @@
 #include "rdr/BufferedOutStream.h"
 #include "Channel.h"
 
-class COutStreamDataChannel : public rdr::BufferedOutStream
+class COutStreamChannel : public rdr::BufferedOutStream
 {
 public:
-    COutStreamDataChannel(CChannel* pDataChannel);
+    COutStreamChannel(CChannel* pDataChannel);
     
 private:
     // rdr::BufferedOutStream interface

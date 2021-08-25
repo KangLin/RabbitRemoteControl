@@ -7,12 +7,12 @@
 
 #include "rtc/rtc.hpp"
 #include "IceSignal.h"
-#include "DataChannel.h"
+#include "Channel.h"
 #include <memory>
 #include <QMutex>
 #include <QSharedPointer>
 
-class CDataChannelIce : public CDataChannel
+class CDataChannelIce : public CChannel
 {
     Q_OBJECT
 
