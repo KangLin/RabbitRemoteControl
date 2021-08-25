@@ -30,13 +30,13 @@ CIceSignalQxmpp::CIceSignalQxmpp(QObject *parent)
     Q_ASSERT(check);
 }
 
-int CIceSignalQxmpp::Open(const std::string &szServer, quint16 nPort, const std::string &user, const std::string &password)
+int CIceSignalQxmpp::Open(const QString &szServer, quint16 nPort, const QString &user, const QString &password)
 {
     QXmppConfiguration conf;
-    conf.setHost(szServer.c_str());
+    conf.setHost(szServer);
     conf.setPort(nPort);
-    conf.setJid(user.c_str());
-    conf.setPassword(password.c_str());
+    conf.setJid(user);
+    conf.setPassword(password);
     /*
     conf.setUser(QXmppUtils::jidToUser(user.c_str()));
     conf.setDomain(QXmppUtils::jidToDomain(user.c_str()));

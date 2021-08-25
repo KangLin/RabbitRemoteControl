@@ -16,9 +16,9 @@ public:
     explicit CIceSignal(QObject *parent = nullptr);
     virtual ~CIceSignal();
 
-    virtual int Open(const std::string& szServer, quint16 nPort,
-                     const std::string& user = std::string(),
-                     const std::string& password = std::string()) = 0;
+    virtual int Open(const QString& szServer, quint16 nPort,
+                     const QString& user = QString(),
+                     const QString& password = QString()) = 0;
 
     virtual int Close() = 0;
     virtual bool IsOpen() = 0;

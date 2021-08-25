@@ -40,6 +40,11 @@
 
 #include "RabbitCommonLog.h"
 
+#ifdef USE_ICE
+    #include "ICE/DataChannelIce.h"
+    #include "ICE/IceSignalQxmpp.h"
+#endif
+
 // 8 colours (1 bit per component)
 static const rfb::PixelFormat verylowColourPF(8, 3,false, true, 1, 1, 1, 2, 1, 0);
 // 64 colours (2 bits per component)
@@ -99,27 +104,63 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 
 int CConnectTigerVnc::OnInit()
 {
+    int nRet = 0;
+    if(m_pPara->bIce)
+    {
+        m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
+        bool check = false;
+        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
+                        this, SLOT(slotSignalConnected()));
+        Q_ASSERT(check);
+        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
+                        this, SLOT(slotSignalDisconnected()));
+        Q_ASSERT(check);
+        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
+                        this, SLOT(slotSignalError(int, const QString&)));
+        Q_ASSERT(check);
+        m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
+                       m_pPara->szSignalUser, m_pPara->szSignalPassword);
+    }
+    else
+        nRet = SocketInit();
+    return nRet;
+}
+
+#ifdef USE_ICE
+void CConnectTigerVnc::slotSignalConnected()
+{
+    int nRet = 0;
+
+    auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
+    rtc::Configuration config;
+    
+    channel->SetConfigure(config);
+    return;
+}
+
+void CConnectTigerVnc::slotSignalDisconnected()
+{
+    
+}
+
+void CConnectTigerVnc::slotSignalError(int nErr, const QString& szErr)
+{
+    
+}
+#endif
+
+int CConnectTigerVnc::SocketInit()
+{
     int nRet = 1;
     try{
+        
         QTcpSocket* pSock = new QTcpSocket(this);
         if(!pSock)
             return -1;
-
+        
         m_DataChannel = QSharedPointer<CChannel>(new CChannel(pSock));
         
-        bool check = false;
-        check = connect(m_DataChannel.data(), SIGNAL(sigConnected()),
-                        this, SLOT(slotConnected()));
-        Q_ASSERT(check);
-        check = connect(m_DataChannel.data(), SIGNAL(sigDisconnected()),
-                        this, SLOT(slotDisConnected()));
-        Q_ASSERT(check);
-        check = connect(m_DataChannel.data(), SIGNAL(readyRead()),
-                        this, SLOT(slotReadyRead()));
-        Q_ASSERT(check);
-        check = connect(m_DataChannel.data(), SIGNAL(sigError(int, const QString&)),
-                         this, SLOT(slotError(int, const QString&)));
-        Q_ASSERT(check);
+        SetChannelConnect(m_DataChannel);
         
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
@@ -138,7 +179,7 @@ int CConnectTigerVnc::OnInit()
         default:
             break;
         }
-
+        
         if(QNetworkProxy::NoProxy != type)
         {
             QNetworkProxy proxy;
@@ -149,9 +190,9 @@ int CConnectTigerVnc::OnInit()
             proxy.setPassword(m_pPara->szProxyPassword);
             pSock->setProxy(proxy);
         }
-
-        pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
         
+        pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
+
         return 1;
     } catch (rdr::Exception& e) {
         LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
@@ -159,6 +200,24 @@ int CConnectTigerVnc::OnInit()
         nRet = -2;
     }
     return nRet;
+}
+
+int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channl)
+{
+    bool check = false;
+    check = connect(channl.data(), SIGNAL(sigConnected()),
+                    this, SLOT(slotConnected()));
+    Q_ASSERT(check);
+    check = connect(channl.data(), SIGNAL(sigDisconnected()),
+                    this, SLOT(slotDisConnected()));
+    Q_ASSERT(check);
+    check = connect(channl.data(), SIGNAL(readyRead()),
+                    this, SLOT(slotReadyRead()));
+    Q_ASSERT(check);
+    check = connect(channl.data(), SIGNAL(sigError(int, const QString&)),
+                    this, SLOT(slotError(int, const QString&)));
+    Q_ASSERT(check);
+    return 0;
 }
 
 int CConnectTigerVnc::OnClean()

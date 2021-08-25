@@ -14,6 +14,10 @@
 #include "Channel.h"
 #include <QEventLoop>
 
+#ifdef USE_ICE
+    #include "ICE/IceSignal.h"
+#endif
+
 class CConnecterTigerVnc;
 class CConnectTigerVnc : public CConnect,
         public rfb::CConnection,
@@ -126,6 +130,17 @@ private:
     strPara* m_pPara;
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
+    
+    int SocketInit();
+    int SetChannelConnect(QSharedPointer<CChannel> channl);
+    
+#ifdef USE_ICE
+    QSharedPointer<CIceSignal> m_Signal;
+private Q_SLOTS:
+    void slotSignalConnected();
+    void slotSignalDisconnected();
+    void slotSignalError(int nErr, const QString& szErr);
+#endif
 };
 
 #endif // CCONNECTTIGERVNC_H

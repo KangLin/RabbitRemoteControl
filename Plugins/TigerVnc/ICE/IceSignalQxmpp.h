@@ -14,10 +14,10 @@ class CIceSignalQxmpp : public CIceSignal
 public:
     explicit CIceSignalQxmpp(QObject *parent = nullptr);
 
-    virtual int Open(const std::string &szServer,
+    virtual int Open(const QString &szServer,
                      quint16 nPort,
-                     const std::string &user,
-                     const std::string &password) override;
+                     const QString &user = QString(),
+                     const QString &password = QString()) override;
     virtual int Close() override;
     virtual bool IsOpen() override;
     virtual int SendDescription(const QString &toUser,
