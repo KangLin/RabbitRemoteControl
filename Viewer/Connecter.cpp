@@ -22,7 +22,7 @@ CConnecter::~CConnecter()
 const QString CConnecter::Id()
 {
     return Protol() + "_" + m_pPluginFactory->Name()
-            + "_" + ServerName().replace(":", "_");
+            + "_" + ServerName().replace(QRegExp("[@:/#%!^&*]"), "_");
 }
 
 const QString CConnecter::Name()

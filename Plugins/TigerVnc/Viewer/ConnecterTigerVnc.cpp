@@ -22,6 +22,10 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
     m_Para.nCompressLevel = 2;
     m_Para.bNoJpeg = false;
     m_Para.nQualityLevel = 8;
+    
+    m_Para.bIce = false;
+    m_Para.nSignalPort = 5222;
+    m_Para.nStunPort = m_Para.nTurnPort = 3748;
 }
 
 CConnecterTigerVnc::~CConnecterTigerVnc()
@@ -37,6 +41,25 @@ CConnecterTigerVnc::~CConnecterTigerVnc()
 qint16 CConnecterTigerVnc::Version()
 {
     return 0;
+}
+
+QString CConnecterTigerVnc::ServerName()
+{
+    if(CConnecter::ServerName().isEmpty())
+    {
+        if(m_Para.bIce)
+        {
+            if(!m_Para.szSignalUser.isEmpty())
+                return m_Para.szSignalUser;
+        }
+        else {
+            if(!m_pParameter->szHost.isEmpty())
+                return m_pParameter->szHost + ":"
+               + QString::number(m_pParameter->nPort);
+        }
+        return CConnecter::Name();
+    }
+    return CConnecter::ServerName();
 }
 
 QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
@@ -59,6 +82,17 @@ int CConnecterTigerVnc::OnSave(QDataStream & d)
       << m_Para.nCompressLevel
       << m_Para.bNoJpeg
       << m_Para.nQualityLevel
+      << m_Para.bIce
+      << m_Para.szSignalServer
+      << m_Para.nSignalPort
+      << m_Para.szSignalUser
+      << m_Para.szSignalPassword
+      << m_Para.szStunServer
+      << m_Para.nStunPort
+      << m_Para.szTurnServer
+      << m_Para.nTurnPort
+      << m_Para.szTurnUser
+      << m_Para.szTurnPassword
          ;
     return 0;
 }
@@ -69,16 +103,27 @@ int CConnecterTigerVnc::OnLoad(QDataStream &d)
     qint16 version = 0;
     d >> version;
     d >> m_Para.bShared
-      >> m_Para.bBufferEndRefresh
-      >> m_Para.bSupportsDesktopResize
-      >> m_Para.bAutoSelect
-      >> nColorLevel
-      >> m_Para.nEncoding
-      >> m_Para.bCompressLevel
-      >> m_Para.nCompressLevel
-      >> m_Para.bNoJpeg
-      >> m_Para.nQualityLevel
-         ;
+            >> m_Para.bBufferEndRefresh
+            >> m_Para.bSupportsDesktopResize
+            >> m_Para.bAutoSelect
+            >> nColorLevel
+            >> m_Para.nEncoding
+            >> m_Para.bCompressLevel
+            >> m_Para.nCompressLevel
+            >> m_Para.bNoJpeg
+            >> m_Para.nQualityLevel
+            >> m_Para.bIce
+            >> m_Para.szSignalServer
+            >> m_Para.nSignalPort
+            >> m_Para.szSignalUser
+            >> m_Para.szSignalPassword
+            >> m_Para.szStunServer
+            >> m_Para.nStunPort
+            >> m_Para.szTurnServer
+            >> m_Para.nTurnPort
+            >> m_Para.szTurnUser
+            >> m_Para.szTurnPassword
+            ;
     //TODO: if version
     m_Para.nColorLevel = static_cast<CConnectTigerVnc::COLOR_LEVEL>(nColorLevel);
     return 0;

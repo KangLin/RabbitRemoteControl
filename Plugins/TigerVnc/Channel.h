@@ -29,7 +29,7 @@ public:
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
-    void sigError(int nErr, QString szErr);
+    void sigError(int nErr, const QString& szErr);
 
 private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError e);

@@ -40,6 +40,22 @@ if(libdatachannel_FOUND)
     list(APPEND HEADER_FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/DataChannelIce.h
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignal.h)
+    
+    find_package(QXmpp)
+    if(QXmpp_FOUND)
+        find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network Xml)
+        list(APPEND SRC_LIBS QXmpp::QXmpp)
+        list(APPEND SOURCE_FILES
+            ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQXmppIq.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQXmppManager.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQxmpp.cpp
+            )
+        list(APPEND HEADER_FILES
+            ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQXmppIq.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQXmppManager.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQxmpp.h
+            )
+    endif()
 endif()
 
 # Translations

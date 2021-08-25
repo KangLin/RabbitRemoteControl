@@ -117,8 +117,8 @@ int CConnectTigerVnc::OnInit()
         check = connect(m_DataChannel.data(), SIGNAL(readyRead()),
                         this, SLOT(slotReadyRead()));
         Q_ASSERT(check);
-        check = connect(m_DataChannel.data(), SIGNAL(sigError(int, QString)),
-                         this, SLOT(slotError(int, QString)));
+        check = connect(m_DataChannel.data(), SIGNAL(sigError(int, const QString&)),
+                         this, SLOT(slotError(int, const QString&)));
         Q_ASSERT(check);
         
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
@@ -217,7 +217,7 @@ void CConnectTigerVnc::slotReadyRead()
     emit sigDisconnected();
 }
 
-void CConnectTigerVnc::slotError(int nErr, QString szErr)
+void CConnectTigerVnc::slotError(int nErr, const QString& szErr)
 {
     emit sigError(nErr, szErr);
     emit sigDisconnected();

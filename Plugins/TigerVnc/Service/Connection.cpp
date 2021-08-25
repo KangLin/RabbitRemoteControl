@@ -17,7 +17,7 @@
 
 static void setfile()
 {
-    char* file = "/home/build-RabbitRemoteControl-Desktop_Qt_5_12_11_GCC_64bit-Debug/password";
+    const char* file = "/home/build-RabbitRemoteControl-Desktop_Qt_5_12_11_GCC_64bit-Debug/password";
     char* pPass = new char[9];
     strcpy(pPass, "123456");
     rfb::PlainPasswd password(pPass);
@@ -75,8 +75,8 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
     check = connect(m_DataChannel.data(), SIGNAL(sigDisconnected()),
                          this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    check = connect(m_DataChannel.data(), SIGNAL(sigError(int, QString)),
-                    this, SLOT(slotError(int, QString)));
+    check = connect(m_DataChannel.data(), SIGNAL(sigError(int, const QString&)),
+                    this, SLOT(slotError(int, const QString&)));
     Q_ASSERT(check);
     
     try{
@@ -149,7 +149,7 @@ void CConnection::slotDisconnected()
     emit sigDisconnected();
 }
 
-void CConnection::slotError(int nErr, QString szErr)
+void CConnection::slotError(int nErr, const QString& szErr)
 {
     emit sigError(nErr, szErr);
 }

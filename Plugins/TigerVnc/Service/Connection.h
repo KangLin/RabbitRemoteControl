@@ -41,7 +41,7 @@ public:
 
 Q_SIGNALS:
     void sigDisconnected();
-    void sigError(int nErr, QString szErr);
+    void sigError(int nErr, const QString& szErr);
 
 private:
     QSharedPointer<rfb::PixelBuffer> GetBufferFromQImage(QImage &img);
@@ -51,7 +51,7 @@ private:
 private Q_SLOTS:
     void slotReadyRead();
     void slotDisconnected();
-    void slotError(int nRet, QString szErr);
+    void slotError(int nRet, const QString &szErr);
     void slotScreenUpdate(QImage);
 
 private:

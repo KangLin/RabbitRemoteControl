@@ -30,6 +30,8 @@ private slots:
     
     void on_pbShow_clicked();
     
+    void on_gpIce_clicked(bool checked);
+    
 private:
     Ui::CDlgSettingsTigerVnc *ui;
     CConnectTigerVnc::strPara* m_pPara;

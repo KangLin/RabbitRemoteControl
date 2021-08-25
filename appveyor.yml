@@ -109,7 +109,7 @@ before_build:
   - cmake --build . --config Release --target install
   
   - cd "%OTHER_SOURCE%"
-  - if not exist qxmpp (git clone https://github.com/qxmpp-project/qxmpp.git)
+  - if not exist qxmpp (git clone -b v1.4.0 https://github.com/qxmpp-project/qxmpp.git)
   - cd qxmpp
   - cmake -E make_directory build
   - cd build

@@ -26,9 +26,26 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         reject();
     
     // Server
+    if(ui->gpIce->isChecked())
+    {
+        m_pPara->bIce = true;
+        m_pPara->szSignalServer = ui->leServer->text();
+        m_pPara->nSignalPort = ui->spPort->value();
+        m_pPara->szSignalUser = ui->leSignalUser->text();
+        m_pPara->szSignalPassword = ui->leSignalPassword->text();
+        m_pPara->szStunServer = ui->leStunServer->text();
+        m_pPara->nStunPort = ui->spStunPort->value();
+        m_pPara->szTurnServer = ui->leTurnServer->text();
+        m_pPara->nTurnPort = ui->spTurnPort->value();
+        m_pPara->szTurnUser = ui->leTurnServer->text();
+        m_pPara->szTurnPassword = ui->leTurnPassword->text();
+    } else {
+        m_pPara->bIce = false;
+        m_pPara->szHost = ui->leServer->text();
+        m_pPara->nPort = ui->spPort->value();
+    }
+    
     m_pPara->szName = ui->leName->text();
-    m_pPara->szHost = ui->leServer->text();
-    m_pPara->nPort = ui->spPort->value();
     m_pPara->szUser = ui->leUserName->text();
     m_pPara->szPassword = ui->lePassword->text();
     
@@ -124,9 +141,28 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     Q_UNUSED(event);
     
     // Server
+    if(m_pPara->bIce)
+    {
+        ui->gpIce->setChecked(true);
+        ui->lbServer->setText(tr("Signal server:"));
+        ui->leServer->setText(m_pPara->szSignalServer);
+        ui->spPort->setValue(m_pPara->nSignalPort);
+    } else {
+        ui->gpIce->setChecked(false);
+        ui->lbServer->setText(tr("Server:"));
+        ui->leServer->setText(m_pPara->szHost);
+        ui->spPort->setValue(m_pPara->nPort);
+    }
+    ui->leSignalUser->setText(m_pPara->szSignalUser);
+    ui->leSignalPassword->setText(m_pPara->szSignalPassword);
+    ui->leStunServer->setText(m_pPara->szStunServer);
+    ui->spStunPort->setValue(m_pPara->nStunPort);
+    ui->leTurnServer->setText(m_pPara->szTurnServer);
+    ui->spTurnPort->setValue(m_pPara->nTurnPort);
+    ui->leTurnUser->setText(m_pPara->szTurnUser);
+    ui->leTurnPassword->setText(m_pPara->szTurnPassword);
+    
     ui->leName->setText(m_pPara->szName);
-    ui->leServer->setText(m_pPara->szHost);
-    ui->spPort->setValue(m_pPara->nPort);
     ui->leUserName->setText(m_pPara->szUser);
     ui->lePassword->setText(m_pPara->szPassword);
     ui->cbSave->setChecked(m_pPara->bSavePassword);
@@ -232,3 +268,20 @@ void CDlgSettingsTigerVnc::on_pbShow_clicked()
         break;
     }
 }
+
+void CDlgSettingsTigerVnc::on_gpIce_clicked(bool checked)
+{
+    if(checked)
+    {
+        ui->lbServer->setText(tr("Signal server:"));
+        ui->leServer->setText(m_pPara->szSignalServer);
+        ui->spPort->setValue(m_pPara->nSignalPort);
+    }
+    else
+    {
+        ui->lbServer->setText(tr("Server:"));
+        ui->leServer->setText(m_pPara->szHost);
+        ui->spPort->setValue(m_pPara->nPort);
+    }
+}
+

@@ -15,6 +15,7 @@ public:
     virtual ~CConnecterTigerVnc() override;
 
     virtual qint16 Version() override;
+    virtual QString ServerName() override;
 
 protected:
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) override;

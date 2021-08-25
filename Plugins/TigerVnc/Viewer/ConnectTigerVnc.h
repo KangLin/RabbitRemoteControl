@@ -35,7 +35,7 @@ public Q_SLOTS:
     virtual void slotReadyRead();
     virtual void slotClipBoardChange() override;
 
-    void slotError(int nErr, QString szErr);
+    void slotError(int nErr, const QString &szErr);
 
 public:
     // rfb::CConnection callback methods
@@ -109,6 +109,17 @@ public:
         int nCompressLevel;
         bool bNoJpeg;
         int nQualityLevel;
+        
+        bool bIce;
+        QString szSignalServer;
+        quint16 nSignalPort;
+        QString szSignalUser, szSignalPassword;
+        QString szStunServer;
+        quint16 nStunPort;
+        QString szTurnServer;
+        quint16 nTurnPort;
+        QString szTurnUser, szTurnPassword;
+        
     };
 
 private:
