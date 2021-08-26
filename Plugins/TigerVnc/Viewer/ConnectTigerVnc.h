@@ -14,7 +14,7 @@
 #include "Channel.h"
 #include <QEventLoop>
 
-#ifdef USE_ICE
+#ifdef HAVE_ICE
     #include "ICE/IceSignal.h"
 #endif
 
@@ -134,7 +134,7 @@ private:
     int SocketInit();
     int SetChannelConnect(QSharedPointer<CChannel> channl);
     
-#ifdef USE_ICE
+#ifdef HAVE_ICE
     QSharedPointer<CIceSignal> m_Signal;
     int IceInit();
 private Q_SLOTS:

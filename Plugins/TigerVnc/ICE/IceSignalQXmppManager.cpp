@@ -36,7 +36,9 @@ bool CIceSignalQXmppManager::handleStanza(const QDomElement &element)
     iq.parse(element);
     if(iq.type() != QXmppIq::Set)
     {
-        LOG_MODEL_ERROR("CIceSignalQXmppManager", "The package is error");
+        LOG_MODEL_ERROR("CIceSignalQXmppManager",
+                        "The package is error:type:%d",
+                        iq.type());
         QXmppIq ack;
         ack.setId(iq.id());
         ack.setTo(iq.from());

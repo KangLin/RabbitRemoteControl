@@ -88,6 +88,12 @@ int CServiceTigerVNC::OnInit()
 
 int CServiceTigerVNC::OnClean()
 {
+#ifdef HAVE_ICE
+    if(m_Signal)
+    {
+        m_Signal->Close();
+    }
+#endif
     m_lstConnection.clear();
     return 0;
 }

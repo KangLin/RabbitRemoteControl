@@ -41,7 +41,7 @@
 
 #include "RabbitCommonLog.h"
 
-#ifdef USE_ICE
+#ifdef HAVE_ICE
     #include "ICE/DataChannelIce.h"
     #include "ICE/IceSignalQxmpp.h"
 #endif
@@ -110,7 +110,7 @@ int CConnectTigerVnc::OnInit()
     int nRet = 0;
     if(m_pPara->bIce)
     {
-#ifdef USE_ICE
+#ifdef HAVE_ICE
         IceInit();
 #endif
     }
@@ -119,27 +119,37 @@ int CConnectTigerVnc::OnInit()
     return nRet;
 }
 
-#ifdef USE_ICE
+#ifdef HAVE_ICE
 int CConnectTigerVnc::IceInit()
 {
     if(m_Signal) return -1;
+#ifdef HAVE_QXMPP
     m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
-    bool check = false;
-    check = connect(m_Signal.data(), SIGNAL(sigConnected()),
-                    this, SLOT(slotSignalConnected()));
-    Q_ASSERT(check);
-    check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
-                    this, SLOT(slotSignalDisconnected()));
-    Q_ASSERT(check);
-    check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
-                    this, SLOT(slotSignalError(int, const QString&)));
-    Q_ASSERT(check);
-    return m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
-                   m_pPara->szSignalUser, m_pPara->szSignalPassword);
+#endif
+    if(m_Signal) 
+    {
+        bool check = false;
+        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
+                        this, SLOT(slotSignalConnected()));
+        Q_ASSERT(check);
+        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
+                        this, SLOT(slotSignalDisconnected()));
+        Q_ASSERT(check);
+        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
+                        this, SLOT(slotSignalError(int, const QString&)));
+        Q_ASSERT(check);
+        return m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
+                              m_pPara->szSignalUser, m_pPara->szSignalPassword);
+    }
+    return 0;
 }
 
 void CConnectTigerVnc::slotSignalConnected()
 {
+    LOG_MODEL_INFO("CConnectTigerVnc", "Connected to signal server:%s:%d; user:%s",
+                   m_pPara->szSignalServer.toStdString().c_str(),
+                   m_pPara->nSignalPort,
+                   m_pPara->szSignalUser.toStdString().c_str());
     auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
     if(!channel) return;
     
@@ -177,6 +187,7 @@ void CConnectTigerVnc::slotSignalError(int nErr, const QString& szErr)
 {
     LOG_MODEL_ERROR("CConnectTigerVnc", "Signal error:%d; %s",
                     nErr, szErr.toStdString().c_str());
+    //emit sigError(nErr, szErr);
 }
 #endif
 
@@ -260,6 +271,9 @@ int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channl)
 
 int CConnectTigerVnc::OnClean()
 {
+#ifdef HAVE_ICE
+    if(m_Signal) m_Signal->Close();
+#endif
     emit sigDisconnected();
     return 0;
 }

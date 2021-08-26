@@ -29,7 +29,7 @@ SET(UI_FILES
 
 find_package(libdatachannel)
 if(libdatachannel_FOUND)
-    list(APPEND TIGERVNC_DEFINITIONS USE_ICE)
+    list(APPEND TIGERVNC_DEFINITIONS HAVE_ICE)
     list(APPEND SRC_LIBS LibDatachannel::LibDataChannel)
     list(APPEND SOURCE_FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/DataChannelIce.cpp
@@ -40,6 +40,7 @@ if(libdatachannel_FOUND)
     
     find_package(QXmpp)
     if(QXmpp_FOUND)
+        list(APPEND TIGERVNC_DEFINITIONS HAVE_QXMPP)
         find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network Xml)
         list(APPEND SRC_LIBS QXmpp::QXmpp)
         list(APPEND SOURCE_FILES
