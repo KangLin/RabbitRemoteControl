@@ -9,6 +9,10 @@
 #include <QTcpServer>
 #include "Service.h"
 
+#ifdef HAVE_ICE
+    #include "ICE/IceSignal.h"
+#endif
+
 class CConnection;
 class CServiceTigerVNC : public CService//, rfb::SDesktop
 {
@@ -27,10 +31,25 @@ private Q_SLOTS:
     void slotNewConnection();
     void slotDisconnected();
     void slotError(int nErr, QString szErr);
-
+    
 private:
     QTcpServer m_Lister;
     QList<QSharedPointer<CConnection> > m_lstConnection;
+    
+#ifdef HAVE_ICE
+private Q_SLOTS:
+    void slotSignalConnected();
+    void slotSignalDisConnected();
+    void slotSignalError(int nErr, const QString& szErr);
+    void slotSignalOffer(const QString& fromUser,
+                  const QString& toUser,
+                  const QString& channelId,
+                  const QString& type,
+                  const QString& sdp);
+    
+private:
+    QSharedPointer<CIceSignal> m_Signal;
+#endif
 };
 
 #endif // CSERVICETIGERVNC_H

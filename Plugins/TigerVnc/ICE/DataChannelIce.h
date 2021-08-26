@@ -24,7 +24,16 @@ public:
     //! @note These properties must be set before calling Open
     int SetConfigure(const rtc::Configuration& config);
     //! @note The above properties must be set before calling Open
-    virtual bool open(const QString& user, const QString& peer, const QString& id, bool bData);
+    virtual bool open(const QString& user,
+                      const QString& peer,
+                      const QString& id,
+                      bool bData);
+    //! @note Used by service
+    virtual bool open(const QString& fromUser,
+                      const QString& toUser,
+                      const QString& channelId,
+                      const QString& type,
+                      const QString& sdp);
     virtual void close();
 
     QString GetUser();
@@ -42,8 +51,6 @@ private Q_SLOTS:
                                             const QString& mid,
                                             const QString& sdp);
     virtual void slotSignalError(int error, const QString& szError);
-
-public Q_SLOTS:
     virtual void slotSignalReceiverDescription(const QString& fromUser,
                                                const QString& toUser,
                                                const QString& channelId,

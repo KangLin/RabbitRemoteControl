@@ -190,6 +190,8 @@ int CDataChannelIce::CreateDataChannel(bool bData)
         m_Signal->SendCandiate(m_szPeerUser, m_szChannelId, candidate);
     });
     m_peerConnection->onDataChannel([this](std::shared_ptr<rtc::DataChannel> dc) {
+        LOG_MODEL_ERROR("DataChannel", "Open data channel:%s",
+                        dc->label().c_str());
         if(dc->label().c_str() != GetChannelId())
         {
             LOG_MODEL_ERROR("DataChannel", "Channel label diffent: %s; %s",
@@ -218,6 +220,16 @@ bool CDataChannelIce::open(const QString &user, const QString &peer,
     int nRet = CreateDataChannel(bData);
     if(nRet) return nRet;
     return QIODevice::open(QIODevice::ReadWrite);
+}
+
+bool CDataChannelIce::open(const QString &fromUser, const QString &toUser,
+                           const QString &channelId, const QString &type,
+                           const QString &sdp)
+{
+    if(!open(toUser, fromUser, channelId, false))
+        return false;
+    slotSignalReceiverDescription(fromUser, toUser, channelId, type, sdp);
+    return true;
 }
 
 void CDataChannelIce::close()

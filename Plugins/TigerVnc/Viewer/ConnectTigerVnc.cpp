@@ -122,6 +122,7 @@ int CConnectTigerVnc::OnInit()
 #ifdef USE_ICE
 int CConnectTigerVnc::IceInit()
 {
+    if(m_Signal) return -1;
     m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
     bool check = false;
     check = connect(m_Signal.data(), SIGNAL(sigConnected()),
@@ -133,16 +134,17 @@ int CConnectTigerVnc::IceInit()
     check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotSignalError(int, const QString&)));
     Q_ASSERT(check);
-    m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
+    return m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
                    m_pPara->szSignalUser, m_pPara->szSignalPassword);
-    return 0;            
 }
 
 void CConnectTigerVnc::slotSignalConnected()
 {
-    int nRet = 0;
-
     auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
+    if(!channel) return;
+    
+    SetChannelConnect(channel);
+    
     rtc::Configuration config;
     rtc::IceServer stun(m_pPara->szStunServer.toStdString().c_str(),
                         m_pPara->nStunPort);
@@ -157,9 +159,9 @@ void CConnectTigerVnc::slotSignalConnected()
     static qint64 id = 0;
     static QMutex mutex;
     QMutexLocker locker(&mutex);
-    nRet = channel->open(m_pPara->szSignalUser, m_pPara->szPeerUser,
+    bool bRet = channel->open(m_pPara->szSignalUser, m_pPara->szPeerUser,
                          QString::number(id++), true);
-    if(nRet)
+    if(!bRet)
     {
         emit sigError(-1, "Open channel fail");
     }

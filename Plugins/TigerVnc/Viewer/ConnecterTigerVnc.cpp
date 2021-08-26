@@ -87,6 +87,7 @@ int CConnecterTigerVnc::OnSave(QDataStream & d)
       << m_Para.nSignalPort
       << m_Para.szSignalUser
       << m_Para.szSignalPassword
+      << m_Para.szPeerUser
       << m_Para.szStunServer
       << m_Para.nStunPort
       << m_Para.szTurnServer
@@ -117,6 +118,7 @@ int CConnecterTigerVnc::OnLoad(QDataStream &d)
             >> m_Para.nSignalPort
             >> m_Para.szSignalUser
             >> m_Para.szSignalPassword
+            >> m_Para.szPeerUser
             >> m_Para.szStunServer
             >> m_Para.nStunPort
             >> m_Para.szTurnServer

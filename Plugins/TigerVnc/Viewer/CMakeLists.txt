@@ -12,8 +12,6 @@ SET(SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.cpp
     )
 SET(HEADER_FILES
     ConnectTigerVnc.h
@@ -24,8 +22,6 @@ SET(HEADER_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketInStream.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../QSocketOutStream.h
     )
 SET(UI_FILES
     DlgSettingsTigerVnc.ui
