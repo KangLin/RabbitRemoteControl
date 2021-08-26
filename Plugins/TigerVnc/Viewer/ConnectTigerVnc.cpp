@@ -32,6 +32,7 @@
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QNetworkProxy>
+#include <QMutex>
 
 #include "rfb/Security.h"
 #ifdef HAVE_GNUTLS
@@ -79,6 +80,8 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
 
 CConnectTigerVnc::~CConnectTigerVnc()
 {
+    if(m_DataChannel)
+        m_DataChannel->close();
     qDebug() << "CConnectTigerVnc::~CConnectTigerVnc()";
 }
 
@@ -141,8 +144,25 @@ void CConnectTigerVnc::slotSignalConnected()
 
     auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
     rtc::Configuration config;
-    
+    rtc::IceServer stun(m_pPara->szStunServer.toStdString().c_str(),
+                        m_pPara->nStunPort);
+    rtc::IceServer turn(m_pPara->szTurnServer.toStdString().c_str(),
+                        m_pPara->nTurnPort,
+                        m_pPara->szTurnUser.toStdString().c_str(),
+                        m_pPara->szTurnPassword.toStdString().c_str());
+    config.iceServers.push_back(stun);
+    config.iceServers.push_back(turn);
     channel->SetConfigure(config);
+    
+    static qint64 id = 0;
+    static QMutex mutex;
+    QMutexLocker locker(&mutex);
+    nRet = channel->open(m_pPara->szSignalUser, m_pPara->szPeerUser,
+                         QString::number(id++), true);
+    if(nRet)
+    {
+        emit sigError(-1, "Open channel fail");
+    }
     return;
 }
 
@@ -153,7 +173,8 @@ void CConnectTigerVnc::slotSignalDisconnected()
 
 void CConnectTigerVnc::slotSignalError(int nErr, const QString& szErr)
 {
-    
+    LOG_MODEL_ERROR("CConnectTigerVnc", "Signal error:%d; %s",
+                    nErr, szErr.toStdString().c_str());
 }
 #endif
 
@@ -166,10 +187,17 @@ int CConnectTigerVnc::SocketInit()
         if(!pSock)
             return -1;
         
-        m_DataChannel = QSharedPointer<CChannel>(new CChannel(pSock));
+        m_DataChannel = QSharedPointer<CChannel>(new CChannel());
+        if(!m_DataChannel) return -2;
         
         SetChannelConnect(m_DataChannel);
-        
+
+        if(!m_DataChannel->open(pSock, QIODevice::ReadWrite))
+        {
+            LOG_MODEL_ERROR("CConnectTigerVnc", "Open channel fail");
+            return -3;
+        }
+
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
         switch(m_pPara->eProxyType)

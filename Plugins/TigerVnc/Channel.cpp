@@ -7,34 +7,18 @@
 #include "QSocketOutStream.h"
 #include "RabbitCommonLog.h"
 
-CChannel::CChannel(QTcpSocket *pSocket, QObject *parent)
+CChannel::CChannel(QObject *parent)
     : QIODevice(parent),
-      m_pSocket(pSocket)
+      m_pSocket(nullptr)
 {
-    Q_ASSERT(m_pSocket);
-
     m_pInStream = new CInStreamChannel(this);
     m_pOutStream = new COutStreamChannel(this);
-
-    bool check = false;
-    check = connect(m_pSocket, SIGNAL(readyRead()),
-            this, SIGNAL(readyRead()));
-    Q_ASSERT(check);
-    check = connect(m_pSocket, SIGNAL(connected()),
-                    this, SLOT(slotConnected()));
-    Q_ASSERT(check);
-    check = connect(m_pSocket, SIGNAL(disconnected()),
-                    this, SLOT(slotDisconnected()));
-    Q_ASSERT(check);
-    check = connect(m_pSocket, SIGNAL(error(QAbstractSocket::SocketError)),
-                    this, SLOT(slotError(QAbstractSocket::SocketError)));
-    Q_ASSERT(check);
 }
 
 CChannel::~CChannel()
 {
     LOG_MODEL_DEBUG("CDataChannel", "CDataChannel::~CDataChannel");
-    if(isOpen()) close();
+//    if(isOpen()) close();
     if(m_pInStream) delete m_pInStream;
     if(m_pOutStream) delete m_pOutStream;
     if(m_pSocket) m_pSocket->deleteLater();
@@ -71,19 +55,20 @@ bool CChannel::isSequential() const
 
 void CChannel::slotConnected()
 {
-    if(!isOpen())
-        if(!open(QIODevice::ReadWrite))
-        {
-            LOG_MODEL_ERROR("CDataChannel", "Open data channel fail");
-            return;
-        }
+//    if(!isOpen())
+//        if(!open(QIODevice::ReadWrite))
+//        {
+//            LOG_MODEL_ERROR("CDataChannel", "Open data channel fail");
+//            return;
+//        }
     emit sigConnected();
 }
 
 void CChannel::slotDisconnected()
 {
     emit sigDisconnected();
-    close();
+//    if(!isOpen())
+//        close();
 }
 
 void CChannel::slotError(QAbstractSocket::SocketError e)
@@ -92,4 +77,32 @@ void CChannel::slotError(QAbstractSocket::SocketError e)
     if(m_pSocket)
         szError = m_pSocket->errorString();
     emit sigError(e, szError);
+}
+
+void CChannel::close()
+{
+    if(m_pSocket)
+        m_pSocket->close();
+    QIODevice::close();
+}
+
+bool CChannel::open(QTcpSocket *pSocket, OpenMode mode)
+{
+    Q_ASSERT(pSocket);
+    if(m_pSocket) m_pSocket->deleteLater();
+    m_pSocket = pSocket;
+    bool check = false;
+    check = connect(m_pSocket, SIGNAL(readyRead()),
+            this, SIGNAL(readyRead()));
+    Q_ASSERT(check);
+    check = connect(m_pSocket, SIGNAL(connected()),
+                    this, SLOT(slotConnected()));
+    Q_ASSERT(check);
+    check = connect(m_pSocket, SIGNAL(disconnected()),
+                    this, SLOT(slotDisconnected()));
+    Q_ASSERT(check);
+    check = connect(m_pSocket, SIGNAL(error(QAbstractSocket::SocketError)),
+                    this, SLOT(slotError(QAbstractSocket::SocketError)));
+    Q_ASSERT(check);
+    return QIODevice::open(mode);
 }

@@ -8,11 +8,11 @@
 
 #define DEFAULT_MAX_MESSAGE_SIZE 0xFFFF
 
-CDataChannelIce::CDataChannelIce(QObject* parent) : CChannel(nullptr, parent)
+CDataChannelIce::CDataChannelIce(QObject* parent) : CChannel(parent)
 {}
 
 CDataChannelIce::CDataChannelIce(QSharedPointer<CIceSignal> signal, QObject *parent)
-    : CChannel(nullptr, parent),
+    : CChannel(parent),
       m_Signal(signal)
 {
     SetSignal(signal);
@@ -104,7 +104,7 @@ int CDataChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str(),
                         m_dataChannel->label().c_str());
-        if(QIODevice::open(QIODevice::ReadWrite))
+        if(!isOpen() && QIODevice::open(QIODevice::ReadWrite))
             emit sigConnected();
         else
             LOG_MODEL_ERROR("DataChannel", "Open Device fail:user:%s;peer:%s;channelId:%d",
@@ -209,13 +209,15 @@ int CDataChannelIce::CreateDataChannel(bool bData)
     return 0;
 }
 
-int CDataChannelIce::open(const QString &user, const QString &peer,
+bool CDataChannelIce::open(const QString &user, const QString &peer,
                           const QString &id, bool bData)
 {
     m_szPeerUser = peer;
     m_szUser = user;
     m_szChannelId = id;
-    return CreateDataChannel(bData);
+    int nRet = CreateDataChannel(bData);
+    if(nRet) return nRet;
+    return QIODevice::open(QIODevice::ReadWrite);
 }
 
 void CDataChannelIce::close()
@@ -235,7 +237,7 @@ void CDataChannelIce::close()
         m_peerConnection.reset();
     }
 
-    QIODevice::close();
+    CChannel::close();
     return;
 }
 

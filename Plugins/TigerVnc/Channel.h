@@ -15,13 +15,12 @@ class CChannel : public QIODevice
     Q_OBJECT
     
 public:
-    ///
-    /// \brief CDataChannel
-    /// \param pSocket: The Owner is the instance of this class.
-    /// \param parent
-    ///
-    explicit CChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
+    explicit CChannel(QObject *parent = nullptr);
     virtual ~CChannel();
+    
+    /// \param pSocket: The Owner is the instance of this class.
+    virtual bool open(QTcpSocket* pSocket, OpenMode mode);
+    virtual void close() override;
     
     rdr::InStream* InStream();
     rdr::OutStream* OutStream();

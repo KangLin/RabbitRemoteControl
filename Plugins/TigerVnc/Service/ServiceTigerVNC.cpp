@@ -64,9 +64,9 @@ void CServiceTigerVNC::slotNewConnection()
                    pSocket->peerAddress().toString().toStdString().c_str(),
                    pSocket->peerPort());
     try {
-        QSharedPointer<CChannel> channel(new CChannel(pSocket));
+        QSharedPointer<CChannel> channel(new CChannel());
         if(!channel->isOpen())
-            if(!channel->open(QIODevice::ReadWrite))
+            if(!channel->open(pSocket, QIODevice::ReadWrite))
             {
                 LOG_MODEL_ERROR("ServiceTigerVNC", "Don't open channel");
                 throw std::runtime_error("Don't open channel");
@@ -93,7 +93,9 @@ void CServiceTigerVNC::slotDisconnected()
     foreach(auto c, m_lstConnection)
     {
         if(c == pConnect)
+        {
             m_lstConnection.removeOne(c);
+        }
     }
 }
 

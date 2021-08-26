@@ -24,7 +24,7 @@ public:
     //! @note These properties must be set before calling Open
     int SetConfigure(const rtc::Configuration& config);
     //! @note The above properties must be set before calling Open
-    virtual int open(const QString& user, const QString& peer, const QString& id, bool bData);
+    virtual bool open(const QString& user, const QString& peer, const QString& id, bool bData);
     virtual void close();
 
     QString GetUser();

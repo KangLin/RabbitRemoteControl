@@ -117,7 +117,7 @@ public:
         bool bIce;
         QString szSignalServer;
         quint16 nSignalPort;
-        QString szSignalUser, szSignalPassword;
+        QString szSignalUser, szSignalPassword, szPeerUser;
         QString szStunServer;
         quint16 nStunPort;
         QString szTurnServer;
