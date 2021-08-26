@@ -2,10 +2,14 @@
 
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#ifdef HAVE_UPDATE
 #include "FrmUpdater/FrmUpdater.h"
+#endif
 #include "RabbitCommonDir.h"
 #include "RabbitCommonStyle.h"
+#ifdef HAVE_ABOUT
 #include "DlgAbout/DlgAbout.h"
+#endif
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
@@ -37,10 +41,10 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
 
     ui->actionRecently_connected->setMenu(m_pRecentMenu);
-
+#ifdef HAVE_UPDATE
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());
-    
+#endif
     //TODO: Change view
     m_pView = new CViewTable(this);
     if(m_pView)
@@ -87,15 +91,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionAbout_A_triggered()
 {
+#ifdef HAVE_ABOUT
     CDlgAbout *about = new CDlgAbout(this);
     about->m_AppIcon = QImage(":/image/App");
     about->m_szCopyrightStartTime = "2020";
     if(about->isHidden())
     {
 #ifdef BUILD_QUIWidget
-    QUIWidget quiwidget;
-    quiwidget.setMainWidget(about);
-    quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
+        QUIWidget quiwidget;
+        quiwidget.setMainWidget(about);
+        quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
     #if defined (Q_OS_ANDROID)
         quiwidget.showMaximized();
     #endif
@@ -107,27 +112,30 @@ void MainWindow::on_actionAbout_A_triggered()
         about->exec();
 #endif
     }
+#endif
 }
 
 void MainWindow::on_actionUpdate_U_triggered()
 {
+#ifdef HAVE_UPDATE
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
     m_pfrmUpdater->SetTitle(QImage(":/image/App"));
     m_pfrmUpdater->SetInstallAutoStartup();
 #ifdef BUILD_QUIWidget
     QUIWidget* pQuiwidget = new QUIWidget(nullptr, true);
     pQuiwidget->setMainWidget(m_pfrmUpdater);
-    #if defined (Q_OS_ANDROID)
-        pQuiwidget->showMaximized();
-    #else
-        pQuiwidget->show();
-    #endif 
+#if defined (Q_OS_ANDROID)
+    pQuiwidget->showMaximized();
 #else
-    #if defined (Q_OS_ANDROID)
-        m_pfrmUpdater->showMaximized();
-    #else
-        m_pfrmUpdater->show();
-    #endif 
+    pQuiwidget->show();
+#endif 
+#else
+#if defined (Q_OS_ANDROID)
+    m_pfrmUpdater->showMaximized();
+#else
+    m_pfrmUpdater->show();
+#endif 
+#endif
 #endif
 }
 

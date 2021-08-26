@@ -14,7 +14,9 @@
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
+#ifdef HAVE_UPDATE
 #include "FrmUpdater/FrmUpdater.h"
+#endif
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
@@ -54,6 +56,7 @@ int main(int argc, char *argv[])
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     a.setOrganizationName(QObject::tr("Kang Lin studio"));
     
+#ifdef HAVE_UPDATE
     // Check update version
     QSharedPointer<CFrmUpdater> pUpdate(new CFrmUpdater());
     pUpdate->SetTitle(QImage(":/image/App"));
@@ -61,7 +64,8 @@ int main(int argc, char *argv[])
         LOG_MODEL_ERROR("main", "GenerateUpdateXml fail");
     else    
         return 0;
-
+#endif
+    
     MainWindow* w = new MainWindow();
     try {
         //w->setWindowIcon(QIcon(":/image/App"));
