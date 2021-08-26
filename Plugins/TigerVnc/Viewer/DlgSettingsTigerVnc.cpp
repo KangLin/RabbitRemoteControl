@@ -33,6 +33,7 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         m_pPara->nSignalPort = ui->spPort->value();
         m_pPara->szSignalUser = ui->leSignalUser->text();
         m_pPara->szSignalPassword = ui->leSignalPassword->text();
+        m_pPara->szPeerUser = ui->lePeerUser->text();
         m_pPara->szStunServer = ui->leStunServer->text();
         m_pPara->nStunPort = ui->spStunPort->value();
         m_pPara->szTurnServer = ui->leTurnServer->text();
@@ -155,6 +156,7 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     }
     ui->leSignalUser->setText(m_pPara->szSignalUser);
     ui->leSignalPassword->setText(m_pPara->szSignalPassword);
+    ui->lePeerUser->setText(m_pPara->szPeerUser);
     ui->leStunServer->setText(m_pPara->szStunServer);
     ui->spStunPort->setValue(m_pPara->nStunPort);
     ui->leTurnServer->setText(m_pPara->szTurnServer);

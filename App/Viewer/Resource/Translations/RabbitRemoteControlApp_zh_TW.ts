@@ -122,7 +122,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="183"/>
-        <location filename="../../mainwindow.cpp" line="158"/>
+        <location filename="../../mainwindow.cpp" line="166"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -234,9 +234,9 @@
         <translation>換膚</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="64"/>
-        <location filename="../../mainwindow.cpp" line="65"/>
-        <location filename="../../mainwindow.cpp" line="66"/>
+        <location filename="../../mainwindow.cpp" line="68"/>
+        <location filename="../../mainwindow.cpp" line="69"/>
+        <location filename="../../mainwindow.cpp" line="70"/>
         <source>Connect</source>
         <translation>連接</translation>
     </message>
@@ -245,41 +245,41 @@
         <location filename="../../mainwindow.ui" line="189"/>
         <location filename="../../mainwindow.ui" line="192"/>
         <location filename="../../mainwindow.ui" line="195"/>
-        <location filename="../../mainwindow.cpp" line="159"/>
-        <location filename="../../mainwindow.cpp" line="160"/>
-        <location filename="../../mainwindow.cpp" line="161"/>
+        <location filename="../../mainwindow.cpp" line="167"/>
+        <location filename="../../mainwindow.cpp" line="168"/>
+        <location filename="../../mainwindow.cpp" line="169"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="188"/>
+        <location filename="../../mainwindow.cpp" line="196"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="189"/>
-        <location filename="../../mainwindow.cpp" line="190"/>
-        <location filename="../../mainwindow.cpp" line="191"/>
+        <location filename="../../mainwindow.cpp" line="197"/>
+        <location filename="../../mainwindow.cpp" line="198"/>
+        <location filename="../../mainwindow.cpp" line="199"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="338"/>
+        <location filename="../../mainwindow.cpp" line="346"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="340"/>
+        <location filename="../../mainwindow.cpp" line="348"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="380"/>
+        <location filename="../../mainwindow.cpp" line="388"/>
         <source>Connecting to </source>
         <translation>正在連接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="374"/>
+        <location filename="../../mainwindow.cpp" line="382"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
@@ -287,12 +287,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="54"/>
+        <location filename="../../main.cpp" line="56"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔遠程控製</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="55"/>
+        <location filename="../../main.cpp" line="57"/>
         <source>Kang Lin studio</source>
         <translation>康林工作室</translation>
     </message>
