@@ -117,7 +117,7 @@ int CConnectTigerVnc::OnInit()
 }
 
 #ifdef USE_ICE
-void CConnectTigerVnc::IceInit()
+int CConnectTigerVnc::IceInit()
 {
     m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
     bool check = false;
@@ -132,6 +132,7 @@ void CConnectTigerVnc::IceInit()
     Q_ASSERT(check);
     m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
                    m_pPara->szSignalUser, m_pPara->szSignalPassword);
+    return 0;            
 }
 
 void CConnectTigerVnc::slotSignalConnected()
