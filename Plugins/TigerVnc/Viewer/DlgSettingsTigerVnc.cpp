@@ -12,6 +12,12 @@ CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CConnectTigerVnc::strPara *pPara, QWi
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
+    
+#ifdef HAVE_ICE
+    ui->gpIce->setEnabled(true);
+#else
+    ui->gpIce->setEnabled(false);
+#endif
 }
 
 CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()
