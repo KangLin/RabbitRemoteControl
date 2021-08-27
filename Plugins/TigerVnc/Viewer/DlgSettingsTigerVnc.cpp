@@ -14,9 +14,9 @@ CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CConnectTigerVnc::strPara *pPara, QWi
     ui->setupUi(this);
     
 #ifdef HAVE_ICE
-    ui->gpIce->setEnabled(true);
+    ui->gpIce->show();
 #else
-    ui->gpIce->setEnabled(false);
+    ui->gpIce->hide();
 #endif
 }
 
