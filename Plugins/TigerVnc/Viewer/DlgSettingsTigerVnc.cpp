@@ -44,7 +44,7 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         m_pPara->nStunPort = ui->spStunPort->value();
         m_pPara->szTurnServer = ui->leTurnServer->text();
         m_pPara->nTurnPort = ui->spTurnPort->value();
-        m_pPara->szTurnUser = ui->leTurnServer->text();
+        m_pPara->szTurnUser = ui->leTurnUser->text();
         m_pPara->szTurnPassword = ui->leTurnPassword->text();
     } else {
         m_pPara->bIce = false;
