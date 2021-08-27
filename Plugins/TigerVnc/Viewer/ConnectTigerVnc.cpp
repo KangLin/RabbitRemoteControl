@@ -152,7 +152,7 @@ void CConnectTigerVnc::slotSignalConnected()
                    m_pPara->szSignalUser.toStdString().c_str());
     auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
     if(!channel) return;
-    
+    m_DataChannel = channel;
     SetChannelConnect(channel);
     
     rtc::Configuration config;
@@ -166,11 +166,7 @@ void CConnectTigerVnc::slotSignalConnected()
     config.iceServers.push_back(turn);
     channel->SetConfigure(config);
     
-    static qint64 id = 0;
-    static QMutex mutex;
-    QMutexLocker locker(&mutex);
-    bool bRet = channel->open(m_pPara->szSignalUser, m_pPara->szPeerUser,
-                         QString::number(id++), true);
+    bool bRet = channel->open(m_pPara->szSignalUser, m_pPara->szPeerUser, true);
     if(!bRet)
     {
         emit sigError(-1, "Open channel fail");

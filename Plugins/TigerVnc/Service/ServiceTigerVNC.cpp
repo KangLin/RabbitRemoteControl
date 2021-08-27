@@ -131,6 +131,7 @@ void CServiceTigerVNC::slotNewConnection()
         check = connect(c.data(), SIGNAL(sigError(int, QString)),
                         this, SLOT(slotError(int, QString)));
         Q_ASSERT(check);
+        // Because the socket is connected, so emit sigConnected()
         emit channel->sigConnected();
     }  catch (std::exception e) {
         LOG_MODEL_ERROR("ServiceTigerVNC", e.what());

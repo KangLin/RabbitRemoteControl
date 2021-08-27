@@ -17,7 +17,7 @@ CChannel::CChannel(QObject *parent)
 
 CChannel::~CChannel()
 {
-    LOG_MODEL_DEBUG("CDataChannel", "CDataChannel::~CDataChannel");
+    LOG_MODEL_DEBUG("CChannel", "CChannel::~CChannel");
 //    if(isOpen()) close();
     if(m_pInStream) delete m_pInStream;
     if(m_pOutStream) delete m_pOutStream;

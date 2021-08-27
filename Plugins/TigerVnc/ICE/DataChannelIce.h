@@ -23,12 +23,16 @@ public:
 
     //! @note These properties must be set before calling Open
     int SetConfigure(const rtc::Configuration& config);
-    //! @note The above properties must be set before calling Open
+    
+    //! Open channel
+    //! @note Must call SetConfigure set the service properties before calling it
+    //!        Called by client
     virtual bool open(const QString& user,
                       const QString& peer,
-                      const QString& id,
-                      bool bData);
-    //! @note Used by service
+                      bool bData = true);
+    //! Open channel
+    //! @note Must call SetConfigure set the service properties before calling it
+    //! @note Called by service
     virtual bool open(const QString& fromUser,
                       const QString& toUser,
                       const QString& channelId,
@@ -39,7 +43,7 @@ public:
     QString GetUser();
     QString GetPeerUser();
     QString GetChannelId();
-
+    
     virtual int SetDataChannel(std::shared_ptr<rtc::DataChannel>);
 
 private Q_SLOTS:
@@ -62,7 +66,8 @@ protected:
 
     virtual int SetSignal(QSharedPointer<CIceSignal> signal);
     virtual int CreateDataChannel(bool bData);
-
+    QString GenerateID(const QString& lable = QString());
+    
     QSharedPointer<CIceSignal> m_Signal;
     QString m_szUser;
     QString m_szPeerUser;

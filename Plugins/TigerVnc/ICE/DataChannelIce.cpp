@@ -199,7 +199,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
                             dc->label().c_str());
             return;
         }
-        
+
         SetDataChannel(dc);
         if(!isOpen() && QIODevice::open(QIODevice::ReadWrite))
             emit sigConnected();
@@ -213,12 +213,12 @@ int CDataChannelIce::CreateDataChannel(bool bData)
     return 0;
 }
 
-bool CDataChannelIce::open(const QString &user, const QString &peer,
-                          const QString &id, bool bData)
+bool CDataChannelIce::open(const QString &user, const QString &peer, bool bData)
 {
     m_szPeerUser = peer;
     m_szUser = user;
-    m_szChannelId = id;
+    if(bData)
+        m_szChannelId = GenerateID(peer + "_");
     int nRet = CreateDataChannel(bData);
     if(nRet) return nRet;
     return QIODevice::open(QIODevice::ReadWrite);
@@ -228,7 +228,8 @@ bool CDataChannelIce::open(const QString &fromUser, const QString &toUser,
                            const QString &channelId, const QString &type,
                            const QString &sdp)
 {
-    if(!open(toUser, fromUser, channelId, false))
+    m_szChannelId = channelId;
+    if(!open(toUser, fromUser, false))
         return false;
     slotSignalReceiverDescription(fromUser, toUser, channelId, type, sdp);
     return true;
@@ -381,4 +382,14 @@ void CDataChannelIce::slotSignalReceiverDescription(const QString& fromUser,
 void CDataChannelIce::slotSignalError(int error, const QString& szError)
 {
     emit sigError(error, tr("Signal error: %1").arg(szError));
+}
+
+QString CDataChannelIce::GenerateID(const QString &lable)
+{
+    static qint64 id = 0;
+    static QMutex mutex;
+    QMutexLocker locker(&mutex);
+    QString szId = lable;
+    szId += QString::number(id++);
+    return szId;
 }
