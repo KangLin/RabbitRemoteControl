@@ -159,9 +159,10 @@ void CServiceTigerVNC::slotSignalConnected()
     CParameterServiceTigerVNC* p =
             dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
     if(!p) return;
-    LOG_MODEL_INFO("ServiceTigerVNC", "Connected to signal server: %s:%d",
+    LOG_MODEL_INFO("ServiceTigerVNC", "Connected to signal server: %s:%d; user:%s",
                    p->getSignalServer().toStdString().c_str(),
-                   p->getSignalPort());
+                   p->getSignalPort(),
+                   p->getSignalUser().toStdString().c_str());
 }
 
 void CServiceTigerVNC::slotSignalDisConnected()
