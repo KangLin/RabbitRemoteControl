@@ -88,6 +88,7 @@ int CServiceTigerVNC::OnInit()
 
 int CServiceTigerVNC::OnClean()
 {
+    m_Lister.close();
 #ifdef HAVE_ICE
     if(m_Signal)
     {
@@ -195,13 +196,28 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
                        fromUser.toStdString().c_str(),
                        toUser.toStdString().c_str(),
                        channelId.toStdString().c_str());
+        CParameterServiceTigerVNC* p =
+                dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
+        if(!p) return;
         QSharedPointer<CDataChannelIce> channel(new CDataChannelIce(m_Signal));
         if(!channel->isOpen())
+        {
+            rtc::IceServer stun(p->getStunServer().toStdString().c_str(),
+                                p->getStunPort());
+            rtc::IceServer turn(p->getTurnServer().toStdString().c_str(),
+                                p->getTurnPort(),
+                                p->getTurnUser().toStdString().c_str(),
+                                p->getTurnPassword().toStdString().c_str());
+            rtc::Configuration config;
+            config.iceServers.push_back(stun);
+            config.iceServers.push_back(turn);
+            channel->SetConfigure(config);
             if(!channel->open(fromUser, toUser, channelId, type, sdp))
             {
                 LOG_MODEL_ERROR("ServiceTigerVNC", "Don't open channel");
                 throw std::runtime_error("Don't open channel");
             }
+        }
         QSharedPointer<CConnection> c(new CConnection(channel,
                   dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
         m_lstConnection.push_back(c);
@@ -217,5 +233,5 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
         LOG_MODEL_ERROR("ServiceTigerVNC", "New connection exception");
     }
 }
-#endif
+#endif //HAVE_ICE
  
