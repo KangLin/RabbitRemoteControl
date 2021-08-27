@@ -104,10 +104,8 @@ int CDataChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str(),
                         m_dataChannel->label().c_str());
-        if(isOpen())
-            emit sigConnected();
-        else
-            Q_ASSERT(false);
+        
+        emit sigConnected();
     });
 
     dc->onClosed([this]() {
@@ -116,7 +114,7 @@ int CDataChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str(),
                         m_dataChannel->label().c_str());
-        emit this->sigDisconnected();
+        emit sigDisconnected();
     });
 
     dc->onError([this](std::string error){
@@ -170,7 +168,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
     m_peerConnection->onLocalDescription(
                 [this](rtc::Description description) {
         //LOG_MODEL_DEBUG("CDataChannelIce", "The thread id: 0x%X", QThread::currentThreadId());
-        //*
+        /*
         LOG_MODEL_DEBUG("DataChannel", "user:%s; peer:%s; channel:%s; onLocalDescription: %s",
                         GetUser().toStdString().c_str(),
                         GetPeerUser().toStdString().c_str(),
@@ -184,7 +182,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
     m_peerConnection->onLocalCandidate(
                 [this](rtc::Candidate candidate){
         //LOG_MODEL_DEBUG("CDataChannelIce", "The thread id: 0x%X", QThread::currentThreadId());
-        //*
+        /*
         LOG_MODEL_DEBUG("DataChannel", "user:%s; peer:%s; channel:%s; onLocalCandidate: %s, mid: %s",
                         GetUser().toStdString().c_str(),
                         GetPeerUser().toStdString().c_str(),
@@ -197,7 +195,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
         m_Signal->SendCandiate(m_szPeerUser, m_szChannelId, candidate);
     });
     m_peerConnection->onDataChannel([this](std::shared_ptr<rtc::DataChannel> dc) {
-        LOG_MODEL_ERROR("DataChannel", "Open data channel:%s",
+        LOG_MODEL_INFO("DataChannel", "Open data channel:%s",
                         dc->label().c_str());
         if(dc->label().c_str() != GetChannelId())
         {
@@ -209,10 +207,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
 
         SetDataChannel(dc);
         
-        if(isOpen())
-            emit sigConnected();
-        else
-            Q_ASSERT(false);
+        emit sigConnected();
     });
 
     if(bData)
@@ -395,7 +390,7 @@ void CDataChannelIce::slotSignalReceiverDescription(const QString& fromUser,
 
 void CDataChannelIce::slotSignalError(int error, const QString& szError)
 {
-    emit sigError(error, tr("Signal error: %1").arg(szError));
+    //emit sigError(error, tr("Signal error: %1").arg(szError));
 }
 
 QString CDataChannelIce::GenerateID(const QString &lable)

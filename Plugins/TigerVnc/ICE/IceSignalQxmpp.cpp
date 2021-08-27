@@ -152,6 +152,20 @@ int CIceSignalQxmpp::Read(char *buf, int nLen)
 
 void CIceSignalQxmpp::slotError(QXmppClient::Error e)
 {
-    LOG_MODEL_ERROR("CIceSignalQxmpp", "Error:%d", e);
-    emit sigError(e, "");
+    QString szError;
+    switch (e) {
+    case QXmppClient::Error::SocketError:
+        szError = tr("Socket error");
+        break;
+    case QXmppClient::Error::KeepAliveError:
+        szError = tr("Keep alive error");
+        break;
+    case QXmppClient::Error::XmppStreamError:
+        szError = tr("xmpp stream error");
+        break;
+    default:
+        break;
+    }
+    LOG_MODEL_ERROR("CIceSignalQxmpp", "Error:%d;%s", e, szError.toStdString().c_str());
+    emit sigError(e, szError);
 }

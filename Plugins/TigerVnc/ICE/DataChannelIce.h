@@ -45,8 +45,6 @@ public:
     QString GetUser();
     QString GetPeerUser();
     QString GetChannelId();
-    
-    virtual int SetDataChannel(std::shared_ptr<rtc::DataChannel>);
 
 private Q_SLOTS:
     virtual void slotSignalConnected();
@@ -67,6 +65,7 @@ protected:
     CDataChannelIce(QObject *parent = nullptr);
 
     virtual int SetSignal(QSharedPointer<CIceSignal> signal);
+    virtual int SetDataChannel(std::shared_ptr<rtc::DataChannel>);   
     virtual int CreateDataChannel(bool bData);
     QString GenerateID(const QString& lable = QString());
     

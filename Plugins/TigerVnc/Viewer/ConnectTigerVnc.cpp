@@ -175,8 +175,7 @@ void CConnectTigerVnc::slotSignalConnected()
 }
 
 void CConnectTigerVnc::slotSignalDisconnected()
-{
-    
+{   
 }
 
 void CConnectTigerVnc::slotSignalError(int nErr, const QString& szErr)
