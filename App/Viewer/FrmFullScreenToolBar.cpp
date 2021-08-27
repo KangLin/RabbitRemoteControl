@@ -39,22 +39,23 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
                         tr("Full"), this, SIGNAL(sigExitFullScreen()));
     pFull->setToolTip(tr("Full"));
     pFull->setStatusTip(tr("Full"));
-    QAction* pExit = m_ToolBar.addAction(QIcon(":/image/Exit"),
-                        tr("Exit"), this, SIGNAL(sigExit()));
-    pExit->setToolTip(tr("Exit"));
-    pExit->setStatusTip(tr("Exit"));
-    m_ToolBar.addSeparator();
-    QAction* pDisconnect = m_ToolBar.addAction(QIcon(":/image/Disconnect"),
-                        tr("Disconnect"), this, SIGNAL(sigDisconnect()));
-    pDisconnect->setToolTip(tr("Disconnect"));
-    pDisconnect->setStatusTip(tr("Disconnect"));
     m_pShowTabBar = m_ToolBar.addAction(QIcon(":/image/TabBar"), tr("TabBar"),
                                         this, SLOT(slotShowTabBar()));
     m_pShowTabBar->setCheckable(true);
     m_pShowTabBar->setStatusTip(tr("Tab bar"));
     m_pShowTabBar->setToolTip(tr("Tab bar"));
-    m_ToolBar.show();
+    QAction* pDisconnect = m_ToolBar.addAction(QIcon(":/image/Disconnect"),
+                        tr("Disconnect"), this, SIGNAL(sigDisconnect()));
+    pDisconnect->setToolTip(tr("Disconnect"));
+    pDisconnect->setStatusTip(tr("Disconnect"));
+    m_ToolBar.addSeparator();
+    QAction* pExit = m_ToolBar.addAction(QIcon(":/image/Exit"),
+                        tr("Exit"), this, SIGNAL(sigExit()));
+    pExit->setToolTip(tr("Exit"));
+    pExit->setStatusTip(tr("Exit"));
     
+    m_ToolBar.show();
+
     bool check = connect(&m_Timer, SIGNAL(timeout()),
                          this, SLOT(slotTimeOut()));
     Q_ASSERT(check);
