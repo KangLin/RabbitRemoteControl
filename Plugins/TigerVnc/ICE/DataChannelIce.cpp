@@ -199,8 +199,10 @@ int CDataChannelIce::CreateDataChannel(bool bData)
                             dc->label().c_str());
             return;
         }
-
+        
         SetDataChannel(dc);
+        if(!isOpen() && QIODevice::open(QIODevice::ReadWrite))
+            emit sigConnected();
     });
 
     if(bData)
