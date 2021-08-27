@@ -99,22 +99,19 @@ int CDataChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
     m_dataChannel = dc;
 
     dc->onOpen([this]() {
-        LOG_MODEL_DEBUG("DataChannel", "Open data channel user:%s;peer:%s;channelId:%s:lable:%s",
+        LOG_MODEL_INFO("DataChannel", "Open data channel user:%s;peer:%s;channelId:%s:lable:%s",
                         GetUser().toStdString().c_str(),
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str(),
                         m_dataChannel->label().c_str());
-        if(!isOpen() && QIODevice::open(QIODevice::ReadWrite))
+        if(isOpen())
             emit sigConnected();
         else
-            LOG_MODEL_ERROR("DataChannel", "Open Device fail:user:%s;peer:%s;channelId:%d",
-                            GetUser().toStdString().c_str(),
-                            GetPeerUser().toStdString().c_str(),
-                            GetChannelId().toStdString().c_str());
+            Q_ASSERT(false);
     });
 
     dc->onClosed([this]() {
-        LOG_MODEL_DEBUG("DataChannel", "Close data channel: user:%s;peer:%s;channelId:%s:lable:%s",
+        LOG_MODEL_INFO("DataChannel", "Close data channel: user:%s;peer:%s;channelId:%s:lable:%s",
                         GetUser().toStdString().c_str(),
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str(),
@@ -152,18 +149,28 @@ int CDataChannelIce::CreateDataChannel(bool bData)
         LOG_MODEL_ERROR("DataChannel", "Peer connect don't open");
         return -1;
     }
-    m_peerConnection->onStateChange([](rtc::PeerConnection::State state) {
+    m_peerConnection->onStateChange([this](rtc::PeerConnection::State state) {
         LOG_MODEL_DEBUG("DataChannel", "PeerConnection State: %d", state);
+        switch (state) {
+        case rtc::PeerConnection::State::Failed:
+            emit sigError(-1, "peer connection state is fail");
+            break;
+        case rtc::PeerConnection::State::Closed:
+            emit sigDisconnected();
+            break;
+        default:
+            break;
+        }
     });
     m_peerConnection->onGatheringStateChange(
                 [](rtc::PeerConnection::GatheringState state) {
         Q_UNUSED(state)
-        //LOG_MODEL_DEBUG("DataChannel", "Gathering status: %d", state);
+        LOG_MODEL_DEBUG("DataChannel", "Gathering status: %d", state);
     });
     m_peerConnection->onLocalDescription(
                 [this](rtc::Description description) {
         //LOG_MODEL_DEBUG("CDataChannelIce", "The thread id: 0x%X", QThread::currentThreadId());
-        /*
+        //*
         LOG_MODEL_DEBUG("DataChannel", "user:%s; peer:%s; channel:%s; onLocalDescription: %s",
                         GetUser().toStdString().c_str(),
                         GetPeerUser().toStdString().c_str(),
@@ -177,7 +184,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
     m_peerConnection->onLocalCandidate(
                 [this](rtc::Candidate candidate){
         //LOG_MODEL_DEBUG("CDataChannelIce", "The thread id: 0x%X", QThread::currentThreadId());
-        /*
+        //*
         LOG_MODEL_DEBUG("DataChannel", "user:%s; peer:%s; channel:%s; onLocalCandidate: %s, mid: %s",
                         GetUser().toStdString().c_str(),
                         GetPeerUser().toStdString().c_str(),
@@ -201,8 +208,11 @@ int CDataChannelIce::CreateDataChannel(bool bData)
         }
 
         SetDataChannel(dc);
-        if(!isOpen() && QIODevice::open(QIODevice::ReadWrite))
+        
+        if(isOpen())
             emit sigConnected();
+        else
+            Q_ASSERT(false);
     });
 
     if(bData)
@@ -215,13 +225,17 @@ int CDataChannelIce::CreateDataChannel(bool bData)
 
 bool CDataChannelIce::open(const QString &user, const QString &peer, bool bData)
 {
+    bool bRet = false;
+    bRet = QIODevice::open(QIODevice::ReadWrite);
+    if(!bRet) return false;
+    
     m_szPeerUser = peer;
     m_szUser = user;
     if(bData)
         m_szChannelId = GenerateID(peer + "_");
     int nRet = CreateDataChannel(bData);
-    if(nRet) return nRet;
-    return QIODevice::open(QIODevice::ReadWrite);
+    if(nRet) return false;
+    return true;
 }
 
 bool CDataChannelIce::open(const QString &fromUser, const QString &toUser,

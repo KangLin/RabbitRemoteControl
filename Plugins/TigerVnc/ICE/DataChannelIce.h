@@ -25,11 +25,13 @@ public:
     int SetConfigure(const rtc::Configuration& config);
     
     //! Open channel
+    //! @param bData: true: open data channel
+    //!              false: don't open data channel
     //! @note Must call SetConfigure set the service properties before calling it
     //!        Called by client
     virtual bool open(const QString& user,
                       const QString& peer,
-                      bool bData = true);
+                      bool bData);
     //! Open channel
     //! @note Must call SetConfigure set the service properties before calling it
     //! @note Called by service
