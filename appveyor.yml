@@ -78,8 +78,7 @@ before_build:
   - cmake -E make_directory build
   - cd build
   - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  - cmake --build . --config Release
-  - cmake --build . --config Release --target install
+  - if NOT "%TOOLCHAIN_VERSION%" == "14" (cmake --build . --config Release --target install)
   
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")
