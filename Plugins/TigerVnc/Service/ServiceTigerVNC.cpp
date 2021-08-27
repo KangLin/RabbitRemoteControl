@@ -193,7 +193,7 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
                                        const QString& sdp)
 {
     try {
-        LOG_MODEL_INFO("ServiceTigerVNC", "New connection: from:%s; to:%d; channelId:%s",
+        LOG_MODEL_INFO("ServiceTigerVNC", "New connection: from:%s; to:%s; channelId:%s",
                        fromUser.toStdString().c_str(),
                        toUser.toStdString().c_str(),
                        channelId.toStdString().c_str());
