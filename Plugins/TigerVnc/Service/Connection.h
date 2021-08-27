@@ -49,6 +49,7 @@ private:
     void writeDataUpdate(QImage img);
     
 private Q_SLOTS:
+    void slotConnected();
     void slotReadyRead();
     void slotDisconnected();
     void slotError(int nRet, const QString &szErr);

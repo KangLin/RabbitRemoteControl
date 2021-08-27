@@ -69,6 +69,9 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
     Q_ASSERT(check);
     client.setDimensions(CScreen::Instance()->Width(), CScreen::Instance()->Height());
 
+    check = connect(m_DataChannel.data(), SIGNAL(sigConnected()),
+                    this, SLOT(slotConnected()));
+    Q_ASSERT(check);
     check = connect(m_DataChannel.data(), SIGNAL(readyRead()),
                          this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
@@ -78,18 +81,32 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
     check = connect(m_DataChannel.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotError(int, const QString&)));
     Q_ASSERT(check);
-    
-    try{
-        initialiseProtocol();
-    } catch(rdr::Exception& e) {
-        LOG_MODEL_ERROR("Connection", "initialistProtocol() fail");
-        emit sigError(-1, "initialistProtocol() fail");
-    }
 }
 
 CConnection::~CConnection()
 {
     LOG_MODEL_DEBUG("CConnection", "CConnection::~CConnection");
+}
+
+void CConnection::slotConnected()
+{
+    try{
+        initialiseProtocol();
+    } catch(rdr::Exception& e) {
+        std::string szErr ("initialistProtocol() fail:");
+        szErr += e.str();
+        LOG_MODEL_ERROR("Connection", szErr.c_str());
+        emit sigError(-1, szErr.c_str());
+    } catch(std::exception& e) {
+        std::string szErr ("initialistProtocol() fail:");
+        szErr += e.what();
+        LOG_MODEL_ERROR("Connection", szErr.c_str());
+        emit sigError(-1, szErr.c_str());
+    } catch(...) {
+        std::string szErr ("initialistProtocol() fail.");
+        LOG_MODEL_ERROR("Connection", szErr.c_str());
+        emit sigError(-1, szErr.c_str());
+    }
 }
 
 void CConnection::slotReadyRead()
@@ -354,7 +371,6 @@ void CConnection::clientCutText(const char *str)
 {
     LOG_MODEL_DEBUG("Connection", "cut text:%s", str);
 }
-
 
 QSharedPointer<rfb::PixelBuffer> CConnection::GetBufferFromQImage(QImage &img)
 {
