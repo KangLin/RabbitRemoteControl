@@ -68,7 +68,7 @@ private Q_SLOTS:
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
-    int SetConnect(CConnecter* p, bool set);
+    int Connect(CConnecter* p, bool set);
     
 private:
     Ui::MainWindow *ui;
@@ -83,9 +83,6 @@ public:
     virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
 private:
     CManageConnecter m_ManageConnecter;
-    
-private:
-    int Connect(CConnecter* pConnecter);
 };
 
 #endif // MAINWINDOW_H

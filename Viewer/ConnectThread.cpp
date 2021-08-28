@@ -24,7 +24,11 @@ void CConnectThread::run()
       nRet = 1 : emit sigConnected in CConnect
       */
     nRet = pConnect->Connect();
-    if(nRet < 0) return;
+    if(nRet < 0)
+    {
+        emit m_pConnecter->sigDisconnected();
+        return;
+    }
     if(0 == nRet) emit m_pConnecter->sigConnected();
 
     exec();
