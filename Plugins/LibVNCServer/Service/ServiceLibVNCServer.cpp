@@ -93,7 +93,6 @@ int CServiceLibVNCServer::OnClean()
 int CServiceLibVNCServer::OnProcess()
 {
     //LOG_MODEL_DEBUG("CServiceLibVNCServer", "Process...");
-    int i;
     if(rfbIsActive(m_rfbScreen))
         rfbProcessEvents(m_rfbScreen, 100000);
     return 0;
