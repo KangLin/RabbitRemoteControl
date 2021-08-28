@@ -32,12 +32,12 @@ environment:
     QT_ROOT: C:\Qt\5.12\msvc2017_64
     BUILD_ARCH: x64
     
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-    GENERATORS: "Visual Studio 14 2015"
-    TOOLCHAIN_VERSION: 14
-    VCPKG_PLATFORM_TOOLSET: v140
-    QT_ROOT: C:\Qt\5.6\msvc2015
-    BUILD_ARCH: x86
+#  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+#    GENERATORS: "Visual Studio 14 2015"
+#    TOOLCHAIN_VERSION: 14
+#    VCPKG_PLATFORM_TOOLSET: v140
+#    QT_ROOT: C:\Qt\5.6\msvc2015
+#    BUILD_ARCH: x86
 
 matrix:
   fast_finish: false
@@ -78,7 +78,8 @@ before_build:
   - cmake -E make_directory build
   - cd build
   - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  - if NOT "%TOOLCHAIN_VERSION%" == "14" (cmake --build . --config Release --target install)
+  - cmake --build . --config Release --target install
+  #- if NOT "%TOOLCHAIN_VERSION%" == "14" (cmake --build . --config Release --target install)
   
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")
