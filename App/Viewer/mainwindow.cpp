@@ -21,6 +21,7 @@
 #include <QScreen>
 #include <QApplication>
 #include <QToolButton>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),

@@ -161,7 +161,7 @@ endif()
 
 add_subdirectory(Viewer)
 add_subdirectory(Service)
-add_subdirectory(Plugins ${CMAKE_BINARY_DIR}/build_Plugins)
+add_subdirectory(Plugins ${CMAKE_BINARY_DIR}/build_plugins)
 option(BUILD_APP "Build applaction" ON)
 if(BUILD_APP)
     add_subdirectory(App)
