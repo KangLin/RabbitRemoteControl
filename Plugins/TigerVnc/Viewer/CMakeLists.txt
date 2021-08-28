@@ -3,6 +3,10 @@
 project(TigerVnc)
 set(CMAKE_CXX_STANDARD 17)
 SET(SRC_LIBS tigervnc Viewer)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network)
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    list(APPEND SRC_LIBS Qt${QT_VERSION_MAJOR}::Network)
+endif()
 SET(SOURCE_FILES
     ConnectTigerVnc.cpp
     FramePixelBuffer.cpp
