@@ -206,8 +206,6 @@ int CDataChannelIce::CreateDataChannel(bool bData)
         }
 
         SetDataChannel(dc);
-        
-        emit sigConnected();
     });
 
     if(bData)

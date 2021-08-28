@@ -172,9 +172,10 @@ void CServiceTigerVNC::slotSignalDisConnected()
     CParameterServiceTigerVNC* p =
             dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
     if(!p) return;
-    LOG_MODEL_INFO("ServiceTigerVNC", "Disconnect signal server: %s:%d",
+    LOG_MODEL_INFO("ServiceTigerVNC", "Disconnect signal server: %s:%d; user:%s",
                    p->getSignalServer().toStdString().c_str(),
-                   p->getSignalPort());
+                   p->getSignalPort(),
+                   p->getSignalUser().toStdString().c_str());
 }
 
 void CServiceTigerVNC::slotSignalError(int nErr, const QString& szErr)
@@ -182,9 +183,10 @@ void CServiceTigerVNC::slotSignalError(int nErr, const QString& szErr)
     CParameterServiceTigerVNC* p =
             dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
     if(!p) return;
-    LOG_MODEL_ERROR("ServiceTigerVNC", "signal: %s:%d; error: %d: %s",
+    LOG_MODEL_ERROR("ServiceTigerVNC", "signal: %s:%d; user:%s; error: %d: %s",
                     p->getSignalServer().toStdString().c_str(),
                     p->getSignalPort(),
+                    p->getSignalUser().toStdString().c_str(),
                     nErr, szErr.toStdString().c_str());
 }
 
@@ -195,7 +197,8 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
                                        const QString& sdp)
 {
     try {
-        LOG_MODEL_INFO("ServiceTigerVNC", "New connection: from:%s; to:%s; channelId:%s",
+        LOG_MODEL_INFO("ServiceTigerVNC",
+                       "New connection: from:%s; to:%s; channelId:%s",
                        fromUser.toStdString().c_str(),
                        toUser.toStdString().c_str(),
                        channelId.toStdString().c_str());
@@ -222,7 +225,7 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
             }
         }
         QSharedPointer<CConnection> c(new CConnection(channel,
-                  dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
+              dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
         m_lstConnection.push_back(c);
         bool check = connect(c.data(), SIGNAL(sigDisconnected()),
                              this, SLOT(slotDisconnected()));
