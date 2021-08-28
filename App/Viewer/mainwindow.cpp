@@ -290,16 +290,58 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-int MainWindow::SetConnect(CConnecter *p, bool set)
+void MainWindow::slotRecentFileTriggered(const QString& szFile)
+{
+    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
+    if(nullptr == p) return;
+
+    Connect(p, false);
+}
+
+void MainWindow::on_actionOpen_O_triggered()
+{
+    QString file = RabbitCommon::CDir::GetOpenFileName(this,
+                     tr("Open rabbit remote control file"),
+                     RabbitCommon::CDir::Instance()->GetDirUserData(), 
+                     tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
+    if(file.isEmpty()) return;
+    
+    CConnecter* p = m_ManageConnecter.LoadConnecter(file);
+    if(nullptr == p) return;
+
+    Connect(p, true);
+}
+
+void MainWindow::slotConnect()
+{
+    if(nullptr == m_pView)
+    {
+        Q_ASSERT(false);
+        return;
+    }
+    QAction* pAction = dynamic_cast<QAction*>(this->sender());    
+    CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
+    if(nullptr == p) return;
+
+    Connect(p, true);
+}
+
+int MainWindow::Connect(CConnecter *p, bool set)
 {
     bool check = connect(p, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigDisconnected()),
+                             this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigError(const int, const QString &)),
                     this, SLOT(slotError(const int, const QString&)));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigInformation(const QString&)),
                     this, SLOT(slotInformation(const QString&)));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigUpdateName(const QString&)),
+                    this, SLOT(slotUpdateServerName(const QString&)));
     Q_ASSERT(check);
     
     QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
@@ -328,63 +370,6 @@ int MainWindow::SetConnect(CConnecter *p, bool set)
     if(0 == nRet)
         m_pRecentMenu->addRecentFile(szFile, p->Name());
 
-    Connect(p);
-    
-    return 0;
-}
-
-void MainWindow::slotRecentFileTriggered(const QString& szFile)
-{
-    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
-    if(nullptr == p) return;
-
-    SetConnect(p, false);
-}
-
-void MainWindow::on_actionOpen_O_triggered()
-{
-    QString file = RabbitCommon::CDir::GetOpenFileName(this,
-                     tr("Open rabbit remote control file"),
-                     RabbitCommon::CDir::Instance()->GetDirUserData(), 
-                     tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
-    if(file.isEmpty()) return;
-    
-    CConnecter* p = m_ManageConnecter.LoadConnecter(file);
-    if(nullptr == p) return;
-
-    SetConnect(p, true);
-}
-
-void MainWindow::slotConnect()
-{
-    if(nullptr == m_pView)
-    {
-        Q_ASSERT(false);
-        return;
-    }
-    QAction* pAction = dynamic_cast<QAction*>(this->sender());    
-    CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
-    if(nullptr == p) return;
-
-    SetConnect(p, true);
-}
-
-void MainWindow::slotConnected()
-{
-    CConnecter* p = dynamic_cast<CConnecter*>(sender());
-    if(!p) return;
-
-//    if(m_pView)
-//    {
-//        m_pView->AddView(p->GetViewer());
-//    }
-//    m_Connecters.push_back(p);
-
-    slotInformation(tr("Connected to ") + p->Name());
-}
-
-int MainWindow::Connect(CConnecter* p)
-{
     if(!p->Name().isEmpty())
         slotInformation(tr("Connecting to ") + p->Name());
     if(m_pView)
@@ -402,16 +387,24 @@ int MainWindow::Connect(CConnecter* p)
     }
     
     m_Connecters.push_back(p);
-    bool check = connect(p, SIGNAL(sigDisconnected()),
-                         this, SLOT(slotDisconnected()));
-    Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigUpdateName(const QString&)),
-                    this, SLOT(slotUpdateServerName(const QString&)));
-    Q_ASSERT(check);
     
     p->Connect();
     
     return 0;
+}
+
+void MainWindow::slotConnected()
+{
+    CConnecter* p = dynamic_cast<CConnecter*>(sender());
+    if(!p) return;
+
+//    if(m_pView)
+//    {
+//        m_pView->AddView(p->GetViewer());
+//    }
+//    m_Connecters.push_back(p);
+
+    slotInformation(tr("Connected to ") + p->Name());
 }
 
 void MainWindow::slotCloseView(const QWidget* pView)
