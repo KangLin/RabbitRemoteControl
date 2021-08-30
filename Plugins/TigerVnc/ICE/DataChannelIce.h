@@ -61,7 +61,7 @@ private Q_SLOTS:
                                                const QString& type,
                                                const QString& sdp);
 
-protected:
+private:
     CDataChannelIce(QObject *parent = nullptr);
 
     virtual int SetSignal(QSharedPointer<CIceSignal> signal);
