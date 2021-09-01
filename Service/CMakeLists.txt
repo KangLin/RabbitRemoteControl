@@ -5,6 +5,8 @@ endif()
 
 project(Service LANGUAGES CXX)
 
+set(SRC_LIBS RabbitCommon QtService)
+
 set(INSTALL_HEADER_FILES
     PluginService.h
     ServiceManager.h
@@ -35,15 +37,30 @@ if(WIN32)
     list(APPEND SOURCE_FILES
         InputDeviceWindows.cpp
         ScreenWindows.cpp)
-else()
-    list(APPEND HEADER_FILES
-        ScreenXLib.h
-        InputDeviceX11.h)
-    list(APPEND SOURCE_FILES
-        ScreenXLib.cpp
-        InputDeviceX11.cpp)
+elseif(UNIX AND NOT APPLE AND NOT ANDROID)
+    find_package(X11)
+    if(X11_FOUND AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
+        list(APPEND SRC_LIBS X11::X11)
+        list(APPEND HEADER_FILES
+            ScreenXLib.h
+            InputDeviceX11.h
+            )
+        list(APPEND SOURCE_FILES
+            ScreenXLib.cpp
+            InputDeviceX11.cpp)
+    endif()
+    if(X11_XTest_FOUND)
+        LIST(APPEND PRIVATE_DEFINITIONS HAVE_XTEST)
+        list(APPEND SRC_LIBS ${X11_XTest_LIB})
+    else()
+        message("Please install xorg-dev:
+            Ubuntu:
+            $ sudo apt-get install xorg-dev
+            
+            CentOS:
+            $ sudo yum install xorg-x11*")
+    endif()
 endif()
-    
 
 set(SOURCE_UI_FILES
     )
@@ -54,7 +71,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network)
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     list(APPEND QT_LIBRARIES Qt${QT_VERSION_MAJOR}::Network)
 endif()
-SET(SRC_LIBS RabbitCommon QtService ${QT_LIBRARIES})
+list(APPEND SRC_LIBS ${QT_LIBRARIES})
 INSTALL_TARGETS(TARGETS QtService)
 
 # Translations
@@ -79,4 +96,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     INSTALL_HEADER_FILES ${INSTALL_HEADER_FILES}
     LIBS ${SRC_LIBS}
-    VERSION ${BUILD_VERSION})
+    VERSION ${BUILD_VERSION}
+    PRIVATE_DEFINITIONS ${PRIVATE_DEFINITIONS}
+    )

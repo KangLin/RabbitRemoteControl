@@ -4,12 +4,10 @@
 #pragma once
 #include "service_export.h"
 #include <QPoint>
-#include <QObject>
+#include <QSharedPointer>
 
-class SERVICE_EXPORT CInputDevice : public QObject
+class SERVICE_EXPORT CInputDevice
 {
-    Q_OBJECT
-
 public:
     static QSharedPointer<CInputDevice> GenerateObject();
     
@@ -32,7 +30,7 @@ protected:
     MouseButtons m_LastButtons;
     QPoint m_LastPostion;
 
-    explicit CInputDevice(QObject *parent = nullptr){}
+    explicit CInputDevice(){}
 };
 
 #endif // CINPUTDEVICE_H

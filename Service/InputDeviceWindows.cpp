@@ -9,7 +9,7 @@ QSharedPointer<CInputDevice> CInputDevice::GenerateObject()
     return QSharedPointer<CInputDevice>(new CInputDeviceWindows());
 }
 
-CInputDeviceWindows::CInputDeviceWindows(QObject *parent) : CInputDevice(parent)
+CInputDeviceWindows::CInputDeviceWindows() : CInputDevice()
 {
 }
 

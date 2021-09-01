@@ -5,9 +5,8 @@
 
 class CInputDeviceWindows : public CInputDevice
 {
-    Q_OBJECT
 public:
-    explicit CInputDeviceWindows(QObject *parent = nullptr);
+    explicit CInputDeviceWindows();
     virtual ~CInputDeviceWindows();
     
     virtual int KeyEvent(quint32 keysym, quint32 keycode, bool down = true);

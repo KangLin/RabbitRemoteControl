@@ -5,9 +5,9 @@
 
 #pragma once
 
+#include "Service.h"
 #include <QSharedPointer>
 #include <QTcpServer>
-#include "Service.h"
 
 #ifdef HAVE_ICE
     #include "ICE/IceSignal.h"

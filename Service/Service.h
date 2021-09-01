@@ -3,9 +3,8 @@
 
 #pragma once
 
-#include <QSharedPointer>
-#include <QDataStream>
 #include "ParameterService.h"
+#include <QSharedPointer>
 
 class CPluginService;
 

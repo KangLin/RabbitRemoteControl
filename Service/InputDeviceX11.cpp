@@ -1,15 +1,19 @@
-#include "InputDeviceX11.h"
 #include "RabbitCommonLog.h"
+#include <X11/X.h>
 #include <X11/Xlib.h>
-#include <QSharedPointer>
+#include <X11/Xutil.h>
+#ifdef HAVE_XTEST
+#include <X11/extensions/XTest.h>
+#endif
+#include "InputDeviceX11.h"
 
 QSharedPointer<CInputDevice> CInputDevice::GenerateObject()
 {
-    return QSharedPointer<CInputDevice>(new CInputDeviceX11(),
-                                        &QObject::deleteLater);
+    return QSharedPointer<CInputDevice>(new CInputDeviceX11());
 }
 
-CInputDeviceX11::CInputDeviceX11(QObject *parent) : CInputDevice(parent)
+CInputDeviceX11::CInputDeviceX11() : CInputDevice(),
+    rawKeyboard(false)
 {
 }
 
@@ -18,15 +22,53 @@ CInputDeviceX11::~CInputDeviceX11()
     LOG_MODEL_DEBUG("CInputDeviceX11", "CInputDeviceX11::~CInputDeviceX11()");
 }
 
+#ifdef HAVE_XTEST
+KeyCode CInputDeviceX11::XkbKeysymToKeycode(Display* dpy, KeySym keysym) {
+  XkbDescPtr xkb;
+  XkbStateRec state;
+  unsigned int mods;
+  unsigned keycode;
+
+  xkb = XkbGetMap(dpy, XkbAllComponentsMask, XkbUseCoreKbd);
+  if (!xkb)
+    return 0;
+
+  XkbGetState(dpy, XkbUseCoreKbd, &state);
+  // XkbStateFieldFromRec() doesn't work properly because
+  // state.lookup_mods isn't properly updated, so we do this manually
+  mods = XkbBuildCoreState(XkbStateMods(&state), state.group);
+
+  for (keycode = xkb->min_key_code;
+       keycode <= xkb->max_key_code;
+       keycode++) {
+    KeySym cursym;
+    unsigned int out_mods;
+    XkbTranslateKeyCode(xkb, keycode, mods, &out_mods, &cursym);
+    if (cursym == keysym)
+      break;
+  }
+
+  if (keycode > xkb->max_key_code)
+    keycode = 0;
+
+  XkbFreeKeyboard(xkb, XkbAllComponentsMask, True);
+
+  // Shift+Tab is usually ISO_Left_Tab, but RFB hides this fact. Do
+  // another attempt if we failed the initial lookup
+  if ((keycode == 0) && (keysym == XK_Tab) && (mods & ShiftMask))
+    return XkbKeysymToKeycode(dpy, XK_ISO_Left_Tab);
+
+  return keycode;
+}
+#endif
+
 int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
 {
     int nRet = 0;
-#ifdef HAVE_XTEST
+
     int keycode = 0;
     
-    if (!haveXtest)
-        return -1;
-    
+#ifdef HAVE_XTEST
     Display  *display = XOpenDisplay(NULL);
     do {
     // Use scan code if provided and mapping exists
@@ -44,7 +86,7 @@ int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
     }
     
     if (!keycode) {
-        vlog.error("Could not map key event to X11 key code");
+        LOG_MODEL_ERROR("CInputDeviceX11", "Could not map key event to X11 key code");
         nRet = -2;
         break;
     }
@@ -54,12 +96,13 @@ int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
     else
         pressedKeys.erase(keysym);
     
-    vlog.debug("%d %s", keycode, down ? "down" : "up");
+    LOG_MODEL_DEBUG("CInputDeviceX11", "%d %s", keycode, down ? "down" : "up");
     
     XTestFakeKeyEvent(display, keycode, down, CurrentTime);
     } while(0);
     XCloseDisplay(display);
 #endif
+    
     return 0;
 }
 

@@ -1,7 +1,7 @@
 #ifndef CPARAMETERSERVICE_H
 #define CPARAMETERSERVICE_H
 
-#include <QDataStream>
+#include <QObject>
 #include "service_export.h"
 
 class SERVICE_EXPORT CParameterService : public QObject
