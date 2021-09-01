@@ -269,6 +269,7 @@ int CConnectTigerVnc::OnClean()
 #ifdef HAVE_ICE
     if(m_Signal) m_Signal->Close();
 #endif
+    close();
     emit sigDisconnected();
     return 0;
 }

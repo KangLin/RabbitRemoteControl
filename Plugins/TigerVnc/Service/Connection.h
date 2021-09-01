@@ -13,7 +13,7 @@
 #include "InputDevice.h"
 #include "Screen.h"
 
-class CConnection : public QObject, rfb::SConnection
+class CConnection : public QObject, public rfb::SConnection
 {
     Q_OBJECT
     
@@ -58,7 +58,7 @@ private Q_SLOTS:
 private:
     QSharedPointer<CChannel> m_DataChannel;
     CParameterServiceTigerVNC* m_pPara;
-    CInputDevice m_InputDevice;
+    QSharedPointer<CInputDevice> m_InputDevice;
     
     rfb::PixelFormat m_PixelFormat;
 

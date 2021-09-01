@@ -30,16 +30,18 @@ set(SOURCE_FILES
 
 if(WIN32)
     list(APPEND HEADER_FILES
-        ScreenWindows.h)
+        ScreenWindows.h
+        InputDeviceWindows.h)
     list(APPEND SOURCE_FILES
         InputDeviceWindows.cpp
         ScreenWindows.cpp)
 else()
     list(APPEND HEADER_FILES
-        ScreenXLib.h)
+        ScreenXLib.h
+        InputDeviceX11.h)
     list(APPEND SOURCE_FILES
-        InputDevice.cpp
-        ScreenXLib.cpp)
+        ScreenXLib.cpp
+        InputDeviceX11.cpp)
 endif()
     
 

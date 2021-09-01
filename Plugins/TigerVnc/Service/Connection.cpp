@@ -37,6 +37,7 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
                          CParameterServiceTigerVNC *pPara)
     : QObject(), rfb::SConnection(),
       m_DataChannel(channel),
+      m_pPara(pPara),
       m_PixelFormat(32, 24, false, true, 255, 255, 255, 16, 8, 0),
       inProcessMessages(false),
       pendingSyncFence(false),
@@ -48,7 +49,6 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
       continuousUpdates(false)
 {
     bool check = false;
-    m_pPara = pPara;
 
     setStreams(m_DataChannel->InStream(), m_DataChannel->OutStream());
     
@@ -81,6 +81,8 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
     check = connect(m_DataChannel.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotError(int, const QString&)));
     Q_ASSERT(check);
+    
+    m_InputDevice = CInputDevice::GenerateObject();
 }
 
 CConnection::~CConnection()
@@ -161,7 +163,6 @@ void CConnection::slotReadyRead()
 
 void CConnection::slotDisconnected()
 {
-    //TODO: close and clean
     LOG_MODEL_DEBUG("Connection", "The connect disconnect");
     emit sigDisconnected();
 }
@@ -342,7 +343,8 @@ void CConnection::enableContinuousUpdates(bool enable, int x, int y, int w, int 
 void CConnection::keyEvent(rdr::U32 keysym, rdr::U32 keycode, bool down)
 {
     LOG_MODEL_DEBUG("Connection", "keysym:%d;keycode:%d;down:%d", keysym, keycode, down);
-    m_InputDevice.KeyEvent(keysym, keycode, down);
+    if(m_InputDevice)
+        m_InputDevice->KeyEvent(keysym, keycode, down);
 }
 
 void CConnection::pointerEvent(const rfb::Point &pos, int buttonMask)
@@ -364,7 +366,8 @@ void CConnection::pointerEvent(const rfb::Point &pos, int buttonMask)
     if(buttonMask & 0x40)
         button |= CInputDevice::MouseButton::RWheelButton;
     
-    m_InputDevice.MouseEvent(button, QPoint(pos.x, pos.y));
+    if(m_InputDevice)
+        m_InputDevice->MouseEvent(button, QPoint(pos.x, pos.y));
 }
 
 void CConnection::clientCutText(const char *str)

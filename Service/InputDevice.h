@@ -11,8 +11,7 @@ class SERVICE_EXPORT CInputDevice : public QObject
     Q_OBJECT
 
 public:
-    explicit CInputDevice(QObject *parent = nullptr);
-    virtual ~CInputDevice();
+    static QSharedPointer<CInputDevice> GenerateObject();
     
     enum MouseButton
     {
@@ -25,14 +24,15 @@ public:
         DWheelButton = 0x40
     };
     Q_DECLARE_FLAGS(MouseButtons, MouseButton)
-    virtual int KeyEvent(quint32 keysym, quint32 keycode, bool down = true);
-    virtual int MouseEvent(MouseButtons buttons, QPoint pos);
-    virtual int MouseEvent(MouseButtons buttons, int x, int y);
+    virtual int KeyEvent(quint32 keysym, quint32 keycode, bool down = true) = 0;
+    virtual int MouseEvent(MouseButtons buttons, QPoint pos) = 0;
+    virtual int MouseEvent(MouseButtons buttons, int x, int y) = 0;
     
-private:
+protected:
     MouseButtons m_LastButtons;
     QPoint m_LastPostion;
-    
+
+    explicit CInputDevice(QObject *parent = nullptr){}
 };
 
 #endif // CINPUTDEVICE_H

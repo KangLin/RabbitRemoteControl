@@ -26,7 +26,8 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
 
 #if defined(HAVE_ICE)
     #if defined(HAVE_QXMPP)
-    m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp(this));
+    m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp(this),
+                                          &QObject::deleteLater);
     #endif
     if(m_Signal)
     {
@@ -115,7 +116,7 @@ void CServiceTigerVNC::slotNewConnection()
                    pSocket->peerAddress().toString().toStdString().c_str(),
                    pSocket->peerPort());
     try {
-        QSharedPointer<CChannel> channel(new CChannel());
+        QSharedPointer<CChannel> channel(new CChannel(), &QObject::deleteLater);
         if(!channel->isOpen())
             if(!channel->open(pSocket, QIODevice::ReadWrite))
             {
@@ -123,7 +124,8 @@ void CServiceTigerVNC::slotNewConnection()
                 throw std::runtime_error("Don't open channel");
             }
         QSharedPointer<CConnection> c(new CConnection(channel,
-                  dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
+                  dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())),
+                                      &QObject::deleteLater);
         m_lstConnection.push_back(c);
         bool check = connect(c.data(), SIGNAL(sigDisconnected()),
                              this, SLOT(slotDisconnected()));
@@ -143,11 +145,10 @@ void CServiceTigerVNC::slotNewConnection()
 void CServiceTigerVNC::slotDisconnected()
 {
     CConnection* pConnect = dynamic_cast<CConnection*>(sender());
+    pConnect->close(tr("Exit").toStdString().c_str());
     foreach(auto c, m_lstConnection)
-    {
         if(c == pConnect)
             m_lstConnection.removeOne(c);
-    }
 }
 
 void CServiceTigerVNC::slotError(int nErr, QString szErr)
@@ -205,7 +206,8 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
         CParameterServiceTigerVNC* p =
                 dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
         if(!p) return;
-        QSharedPointer<CDataChannelIce> channel(new CDataChannelIce(m_Signal));
+        QSharedPointer<CDataChannelIce> channel(new CDataChannelIce(m_Signal),
+                                                &QObject::deleteLater);
         if(!channel->isOpen())
         {
             rtc::IceServer stun(p->getStunServer().toStdString().c_str(),
@@ -225,7 +227,8 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
             }
         }
         QSharedPointer<CConnection> c(new CConnection(channel,
-              dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())));
+              dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())),
+                                       &QObject::deleteLater);
         m_lstConnection.push_back(c);
         bool check = connect(c.data(), SIGNAL(sigDisconnected()),
                              this, SLOT(slotDisconnected()));

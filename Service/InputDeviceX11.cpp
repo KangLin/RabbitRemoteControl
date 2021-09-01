@@ -1,24 +1,70 @@
-#include "InputDevice.h"
+#include "InputDeviceX11.h"
 #include "RabbitCommonLog.h"
 #include <X11/Xlib.h>
+#include <QSharedPointer>
 
-CInputDevice::CInputDevice(QObject *parent) : QObject(parent)
+QSharedPointer<CInputDevice> CInputDevice::GenerateObject()
+{
+    return QSharedPointer<CInputDevice>(new CInputDeviceX11(),
+                                        &QObject::deleteLater);
+}
+
+CInputDeviceX11::CInputDeviceX11(QObject *parent) : CInputDevice(parent)
 {
 }
 
-CInputDevice::~CInputDevice()
+CInputDeviceX11::~CInputDeviceX11()
 {
-    LOG_MODEL_DEBUG("InputDevcie", "CInputDevice::~CInputDevice()");
+    LOG_MODEL_DEBUG("CInputDeviceX11", "CInputDeviceX11::~CInputDeviceX11()");
 }
 
-int CInputDevice::KeyEvent(quint32 keysym, quint32 keycode, bool down)
+int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
 {
+    int nRet = 0;
+#ifdef HAVE_XTEST
+    int keycode = 0;
+    
+    if (!haveXtest)
+        return -1;
+    
+    Display  *display = XOpenDisplay(NULL);
+    do {
+    // Use scan code if provided and mapping exists
+    if (codeMap && rawKeyboard && xtcode < codeMapLen)
+        keycode = codeMap[xtcode];
+    
+    if (!keycode) {
+        if (pressedKeys.find(keysym) != pressedKeys.end())
+            keycode = pressedKeys[keysym];
+        else {
+            // XKeysymToKeycode() doesn't respect state, so we have to use
+            // something slightly more complex
+            keycode = XkbKeysymToKeycode(display, keysym);
+        }
+    }
+    
+    if (!keycode) {
+        vlog.error("Could not map key event to X11 key code");
+        nRet = -2;
+        break;
+    }
+    
+    if (down)
+        pressedKeys[keysym] = keycode;
+    else
+        pressedKeys.erase(keysym);
+    
+    vlog.debug("%d %s", keycode, down ? "down" : "up");
+    
+    XTestFakeKeyEvent(display, keycode, down, CurrentTime);
+    } while(0);
+    XCloseDisplay(display);
+#endif
     return 0;
 }
 
 // Simulate mouse click
-void
-click (Display *display, int button, bool press)
+void click(Display *display, int button, bool press)
 {
     // Create and setting up the event
     XEvent event;
@@ -50,8 +96,7 @@ click (Display *display, int button, bool press)
 }
 
 // Get mouse coordinates
-void
-coords (Display *display, int *x, int *y)
+void coords (Display *display, int *x, int *y)
 {
     XEvent event;
     XQueryPointer (display, DefaultRootWindow (display),
@@ -64,8 +109,7 @@ coords (Display *display, int *x, int *y)
 }
 
 // Move mouse pointer (relative)
-void
-move (Display *display, int x, int y)
+void move (Display *display, int x, int y)
 {
     XWarpPointer (display, None, None, 0,0,0,0, x, y);
     XFlush (display);
@@ -73,8 +117,7 @@ move (Display *display, int x, int y)
 }
 
 // Move mouse pointer (absolute)
-void
-move_to (Display *display, int x, int y)
+void move_to (Display *display, int x, int y)
 {
     int cur_x, cur_y;
     coords (display, &cur_x, &cur_y);
@@ -93,7 +136,7 @@ move_to (Display *display, int x, int y)
 //  XQueryColor (display, DefaultColormap(display, DefaultScreen (display)), color);
 //}
 
-int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
+int CInputDeviceX11::MouseEvent(MouseButtons buttons, QPoint pos)
 {
     Display *display = XOpenDisplay(NULL);
     if(display == NULL)
@@ -138,7 +181,7 @@ int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
     return 0;
 }
 
-int CInputDevice::MouseEvent(MouseButtons buttons, int x, int y)
+int CInputDeviceX11::MouseEvent(MouseButtons buttons, int x, int y)
 {
     return MouseEvent(buttons, QPoint(x, y));
 }

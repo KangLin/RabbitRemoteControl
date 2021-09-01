@@ -1,23 +1,29 @@
-#include "InputDevice.h"
+#include "InputDeviceWindows.h"
 #include <Windows.h>
 #include "RabbitCommonLog.h"
 #include <QRect>
+#include <QSharedPointer>
 
-CInputDevice::CInputDevice(QObject *parent) : QObject(parent)
+QSharedPointer<CInputDevice> CInputDevice::GenerateObject()
+{
+    return QSharedPointer<CInputDevice>(new CInputDeviceWindows());
+}
+
+CInputDeviceWindows::CInputDeviceWindows(QObject *parent) : CInputDevice(parent)
 {
 }
 
-CInputDevice::~CInputDevice()
+CInputDeviceWindows::~CInputDeviceWindows()
 {
-    LOG_MODEL_DEBUG("CInputDevice", "CInputDevice::~CInputDevice");
+    LOG_MODEL_DEBUG("CInputDeviceX11", "CInputDeviceX11::~CInputDeviceX11");
 }
 
-int CInputDevice::KeyEvent(quint32 keysym, quint32 keycode, bool down)
+int CInputDeviceWindows::KeyEvent(quint32 keysym, quint32 keycode, bool down)
 {
     return 0;
 }
 
-int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
+int CInputDeviceWindows::MouseEvent(MouseButtons buttons, QPoint pos)
 {
     // - We are specifying absolute coordinates
     DWORD flags = MOUSEEVENTF_ABSOLUTE;
@@ -144,7 +150,7 @@ int CInputDevice::MouseEvent(MouseButtons buttons, QPoint pos)
     return 0;
 }
 
-int CInputDevice::MouseEvent(MouseButtons buttons, int x, int y)
+int CInputDeviceWindows::MouseEvent(MouseButtons buttons, int x, int y)
 {
     return MouseEvent(buttons, QPoint(x, y));
 }
