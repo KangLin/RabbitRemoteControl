@@ -43,6 +43,8 @@
 
 #ifdef HAVE_ICE
     #include "ICE/DataChannelIce.h"
+#endif
+#ifdef HAVE_QXMPP
     #include "ICE/IceSignalQxmpp.h"
 #endif
 

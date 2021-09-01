@@ -12,7 +12,10 @@
 
 #ifdef HAVE_QXMPP
     #include "ICE/IceSignalQxmpp.h"
-    #include "ICE/DataChannelIce.h"
+    
+#endif
+#ifdef HAVE_ICE
+#include "ICE/DataChannelIce.h"
 #endif
 
 CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)

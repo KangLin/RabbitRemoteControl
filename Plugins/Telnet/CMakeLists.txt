@@ -3,6 +3,10 @@
 project(Telnet)
 
 set(_telnet_libs Terminal)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network)
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    list(APPEND _telnet_libs Qt${QT_VERSION_MAJOR}::Network)
+endif()
 
 find_package(libtelnet)
 if(libtelnet_FOUND)
