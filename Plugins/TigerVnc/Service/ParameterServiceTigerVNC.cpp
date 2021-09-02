@@ -22,17 +22,17 @@ int CParameterServiceTigerVNC::OnLoad(const QString& szFile)
 {
     int nRet = CParameterService::OnLoad(szFile);
     QSettings set(szFile, QSettings::IniFormat);
-    m_bIce = set.value("ICE", m_bIce).toBool();
-    m_szSignalServer = set.value("Signal/Server", m_szSignalServer).toString();
-    m_nSignalPort = set.value("Signal/Port", m_nSignalPort).toUInt();
-    m_szSignalUser = set.value("Signal/User", m_szSignalUser).toString();
-    m_szSignalPassword = set.value("Signal/Password", m_szSignalPassword).toString();
-    m_szStunServer = set.value("STUN/Server", m_szTurnServer).toString();
-    m_nStunPort = set.value("STUN/Port", m_nStunPort).toUInt();
-    m_szTurnServer = set.value("TURN/Server", m_szTurnServer).toString();
-    m_nTurnPort = set.value("TURN/Port", m_nTurnPort).toUInt();
-    m_szTurnUser = set.value("TURN/User", m_szTurnUser).toString();
-    m_szTurnPassword = set.value("TURN/Password", m_szTurnPassword).toString();
+    m_bIce = set.value("ICE/Enable", m_bIce).toBool();
+    m_szSignalServer = set.value("ICE/Signal/Server", m_szSignalServer).toString();
+    m_nSignalPort = set.value("ICE/Signal/Port", m_nSignalPort).toUInt();
+    m_szSignalUser = set.value("ICE/Signal/User", m_szSignalUser).toString();
+    m_szSignalPassword = set.value("ICE/Signal/Password", m_szSignalPassword).toString();
+    m_szStunServer = set.value("ICE/STUN/Server", m_szTurnServer).toString();
+    m_nStunPort = set.value("ICE/STUN/Port", m_nStunPort).toUInt();
+    m_szTurnServer = set.value("ICE/TURN/Server", m_szTurnServer).toString();
+    m_nTurnPort = set.value("ICE/TURN/Port", m_nTurnPort).toUInt();
+    m_szTurnUser = set.value("ICE/TURN/User", m_szTurnUser).toString();
+    m_szTurnPassword = set.value("ICE/TURN/Password", m_szTurnPassword).toString();
     return nRet;
 }
 
@@ -40,17 +40,17 @@ int CParameterServiceTigerVNC::OnSave(const QString& szFile)
 {
     int nRet = CParameterService::OnSave(szFile);
     QSettings set(szFile, QSettings::IniFormat);
-    set.setValue("ICE", m_bIce);
-    set.setValue("Signal/Server", m_szSignalServer);
-    set.setValue("Signal/Port", m_nSignalPort);
-    set.setValue("Signal/User", m_szSignalUser);
-    set.setValue("Signal/Password", m_szSignalPassword);
-    set.setValue("STUN/Server", m_szStunServer);
-    set.setValue("STUN/Port", m_nStunPort);
-    set.setValue("TURN/Server", m_szTurnServer);
-    set.setValue("TURN/Port", m_nTurnPort);
-    set.setValue("TURN/User", m_szTurnUser);
-    set.setValue("TURN/Password", m_szTurnPassword);
+    set.setValue("ICE/Enable", m_bIce);
+    set.setValue("ICE/Signal/Server", m_szSignalServer);
+    set.setValue("ICE/Signal/Port", m_nSignalPort);
+    set.setValue("ICE/Signal/User", m_szSignalUser);
+    set.setValue("ICE/Signal/Password", m_szSignalPassword);
+    set.setValue("ICE/STUN/Server", m_szStunServer);
+    set.setValue("ICE/STUN/Port", m_nStunPort);
+    set.setValue("ICE/TURN/Server", m_szTurnServer);
+    set.setValue("ICE/TURN/Port", m_nTurnPort);
+    set.setValue("ICE/TURN/User", m_szTurnUser);
+    set.setValue("ICE/TURN/Password", m_szTurnPassword);
     return nRet;
 }
 
