@@ -66,7 +66,7 @@ before_build:
   - cd %OTHER_SOURCE%
   - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
   - cd %OTHER_SOURCE%
-  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 21935b744dc411e0fb1926618fdfb18c67d4b188 21935b744dc411e0fb1926618fdfb18c67d4b188 )
+  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 7734e8b89d6d511a95ac27f8d8eed913535b592d 7734e8b89d6d511a95ac27f8d8eed913535b592d )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
   - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp #libdatachannel
