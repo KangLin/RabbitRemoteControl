@@ -5,7 +5,8 @@ endif()
 
 project(Service LANGUAGES CXX)
 
-set(SRC_LIBS RabbitCommon QtService)
+set(SRC_LIBS QtService RabbitCommon)
+set(SRC_PRIVATE_LIBS)
 
 set(INSTALL_HEADER_FILES
     PluginService.h
@@ -40,7 +41,7 @@ if(WIN32)
 elseif(UNIX AND NOT APPLE AND NOT ANDROID)
     find_package(X11)
     if(X11_FOUND AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
-        list(APPEND SRC_LIBS X11::X11)
+        list(APPEND SRC_PRIVATE_LIBS X11::X11)
         list(APPEND HEADER_FILES
             ScreenXLib.h
             InputDeviceX11.h
@@ -51,7 +52,7 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROID)
     endif()
     if(X11_XTest_FOUND)
         LIST(APPEND PRIVATE_DEFINITIONS HAVE_XTEST)
-        list(APPEND SRC_LIBS ${X11_XTest_LIB})
+        list(APPEND SRC_PRIVATE_LIBS ${X11_XTest_LIB})
     else()
         message("Please install xorg-dev:
             Ubuntu:
@@ -96,6 +97,9 @@ ADD_TARGET(NAME ${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     INSTALL_HEADER_FILES ${INSTALL_HEADER_FILES}
     LIBS ${SRC_LIBS}
+    PRIVATE_LIBS ${SRC_PRIVATE_LIBS}
     VERSION ${BUILD_VERSION}
     PRIVATE_DEFINITIONS ${PRIVATE_DEFINITIONS}
+    INSTALL_EXPORT_NAME ${PROJECT_NAME}Targets
+    INSTALL_NAMESPACE RabbitRemoteControl
     )
