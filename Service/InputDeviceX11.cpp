@@ -84,7 +84,7 @@ int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
             keycode = XkbKeysymToKeycode(display, keysym);
         }
     }
-    
+
     if (!keycode) {
         LOG_MODEL_ERROR("CInputDeviceX11", "Could not map key event to X11 key code");
         nRet = -2;
@@ -109,6 +109,9 @@ int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
 // Simulate mouse click
 void click(Display *display, int button, bool press)
 {
+#ifdef HAVE_XTEST
+    XTestFakeButtonEvent(display, button, press, CurrentTime);
+#else
     // Create and setting up the event
     XEvent event;
     memset (&event, 0, sizeof (event));
@@ -136,6 +139,7 @@ void click(Display *display, int button, bool press)
         XFlush (display);    
     }
     XFlush (display);
+#endif
 }
 
 // Get mouse coordinates
@@ -191,7 +195,14 @@ int CInputDeviceX11::MouseEvent(MouseButtons buttons, QPoint pos)
     
     // - Has the pointer moved since the last event?
     if (m_LastPostion != pos)
-        XWarpPointer (display, root, root, 0,0,0,0, pos.x(), pos.y());
+#ifdef HAVE_XTEST
+        XTestFakeMotionEvent(display, DefaultScreen(display),
+                             pos.x(),
+                             pos.y(),
+                             CurrentTime);
+#else
+        XWarpPointer (display, root, root, 0, 0, 0, 0, pos.x(), pos.y());
+#endif
     
     // Check the left button on change state
     if((m_LastButtons & LeftButton) != (LeftButton & buttons))
@@ -219,7 +230,7 @@ int CInputDeviceX11::MouseEvent(MouseButtons buttons, QPoint pos)
         else
             click(display, Button3, false);
     }
-    
+    m_LastButtons = buttons;
     XCloseDisplay(display);
     return 0;
 }

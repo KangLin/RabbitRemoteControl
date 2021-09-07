@@ -231,9 +231,10 @@ void CConnection::setPixelFormat(const rfb::PixelFormat &pf)
 
 void CConnection::framebufferUpdateRequest(const rfb::Rect &r, bool incremental)
 {
+    /*
     LOG_MODEL_DEBUG("Connection", "framebufferUpdateRequest:incremental: %d; %d,%d,%d,%d",
                     incremental, r.tl.x, r.tl.y,
-                    r.br.x, r.br.y);
+                    r.br.x, r.br.y);//*/
     if (!accessCheck(AccessView)) return;
     
     SConnection::framebufferUpdateRequest(r, incremental);
@@ -431,7 +432,7 @@ void CConnection::writeDataUpdate(QImage img)
 
 void CConnection::slotScreenUpdate(QImage img)
 {
-    LOG_MODEL_DEBUG("Connection", "Update screen");
+    //LOG_MODEL_DEBUG("Connection", "Update screen");
     if(img.isNull())
     {
         LOG_MODEL_ERROR("Connection", "Image is null");
