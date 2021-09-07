@@ -673,7 +673,7 @@ void CConnectTigerVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifi
  */
 quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 {
-    quint32 k = 0;
+    quint32 k = 5000;
     
     switch (inkey)
     {
