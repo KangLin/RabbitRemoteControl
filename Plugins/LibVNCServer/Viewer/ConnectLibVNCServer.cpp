@@ -537,46 +537,71 @@ void CConnectLibVNCServer::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, 
  * @return 
  * @see https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#keyevent
  */
-uint32_t TranslateRfbKey(quint32 inkey, bool shiftModifier)
+uint32_t TranslateRfbKey(quint32 inkey, bool modifier)
 {
-    uint32_t k = 0;
+    quint32 k = 0;
     
     switch (inkey)
     {
     case Qt::Key_Backspace: k = XK_BackSpace; break;
-    case Qt::Key_Tab: k = XK_Tab;break;
-    case Qt::Key_Enter: k = XK_Return; break;
+    case Qt::Key_Tab: k = XK_Tab; break;
+    case Qt::Key_Clear: k = XK_Clear; break;
     case Qt::Key_Return: k = XK_Return; break;
-    case Qt::Key_Escape: k = XK_Escape; break;
     case Qt::Key_Pause: k = XK_Pause; break;
+    case Qt::Key_Escape: k = XK_Escape; break;
     case Qt::Key_Space: k = XK_space; break;
     case Qt::Key_Delete: k = XK_Delete; break;
     case Qt::Key_Period: k = XK_period; break;
-    case Qt::Key_Clear: k = XK_Clear; break;
+    
+    /* International & multi-key character composition */
+    case Qt::Key_Multi_key: k = XK_Multi_key; break;
+    case Qt::Key_SingleCandidate: k = XK_SingleCandidate; break;
+    case Qt::Key_MultipleCandidate: k = XK_MultipleCandidate; break;	 
+    case Qt::Key_PreviousCandidate: k = XK_PreviousCandidate; break;
+
+    /* Japanese keyboard support */
+    case Qt::Key_Kanji: k = XK_Kanji; break;
+    case Qt::Key_Muhenkan: k = XK_Muhenkan; break;
+    case Qt::Key_Henkan: k = XK_Henkan; break;
+    case Qt::Key_Romaji: k = XK_Romaji; break;	 
+    case Qt::Key_Hiragana: k = XK_Hiragana; break;
+    case Qt::Key_Katakana: k = XK_Katakana; break;	 
+    case Qt::Key_Hiragana_Katakana:	k = XK_Hiragana_Katakana;break;
+    case Qt::Key_Zenkaku: k = XK_Zenkaku; break;
+    case Qt::Key_Hankaku: k = XK_Hankaku; break;
+    case Qt::Key_Zenkaku_Hankaku: k = XK_Zenkaku_Hankaku; break;
+    case Qt::Key_Touroku: k = XK_Touroku; break;
+    case Qt::Key_Massyo: k = XK_Massyo; break;
+    case Qt::Key_Kana_Lock: k = XK_Kana_Lock; break;
+    case Qt::Key_Kana_Shift: k = XK_Kana_Shift; break;
+    case Qt::Key_Eisu_Shift: k = XK_Eisu_Shift; break;
+    case Qt::Key_Eisu_toggle: k = XK_Eisu_toggle; break;
         
     //special keyboard char
-    case Qt::Key_Exclam: k = XK_exclam;break; //!
-    case Qt::Key_QuoteDbl: k = XK_quotedbl;break; //?
-    case Qt::Key_NumberSign: k = XK_numbersign;break; //#
-    case Qt::Key_Percent: k = XK_percent;break; //%
-    case Qt::Key_Dollar: k = XK_dollar;break;   //$
-    case Qt::Key_Ampersand: k = XK_ampersand;break; //&
-    case Qt::Key_Apostrophe: k = XK_apostrophe;break;//!
-    case Qt::Key_ParenLeft: k = XK_parenleft;break;
-    case Qt::Key_ParenRight: k = XK_parenright;break;
+    case Qt::Key_Exclam: k = XK_exclam; break; //!
+    case Qt::Key_QuoteDbl: k = XK_quotedbl; break; //"
+    case Qt::Key_NumberSign: k = XK_numbersign; break; //#
+    case Qt::Key_Percent: k = XK_percent; break; //%
+    case Qt::Key_Dollar: k = XK_dollar; break;   //$
+    case Qt::Key_Ampersand: k = XK_ampersand; break; //&
+    case Qt::Key_Apostrophe: k = XK_apostrophe; break;//!
+    case Qt::Key_ParenLeft: k = XK_parenleft; break; // (
+    case Qt::Key_ParenRight: k = XK_parenright; break; // )
         
-    case Qt::Key_Slash: k = XK_slash; break;    ///
+    case Qt::Key_Slash: k = XK_slash; break;    // /
     case Qt::Key_Asterisk: k = XK_asterisk; break;  //*
     case Qt::Key_Minus: k = XK_minus; break;    //-
     case Qt::Key_Plus: k = XK_plus; break;  //+
-    case Qt::Key_Comma: return XK_comma; //,
+    case Qt::Key_Enter: k = XK_Return; break;   //
     case Qt::Key_Equal: k = XK_equal; break;    //=
+    case Qt::Key_Comma: return XK_comma; //,
         
-    case Qt::Key_Colon: k = XK_colon;break;
-    case Qt::Key_Semicolon: k = XK_semicolon; break;
-    case Qt::Key_Greater: k = XK_greater; break;
-    case Qt::Key_Question: k = XK_question; break;
-    case Qt::Key_At: k = XK_at; break;
+    case Qt::Key_Colon: k = XK_colon;break; // :
+    case Qt::Key_Semicolon: k = XK_semicolon; break; //;
+    case Qt::Key_Less: k = XK_less; break; // <
+    case Qt::Key_Greater: k = XK_greater; break; // >
+    case Qt::Key_Question: k = XK_question; break; //?
+    case Qt::Key_At: k = XK_at; break; //@
         
     case Qt::Key_BracketLeft: k = XK_bracketleft; break;
     case Qt::Key_Backslash: k = XK_backslash;break;
@@ -614,6 +639,25 @@ uint32_t TranslateRfbKey(quint32 inkey, bool shiftModifier)
     case Qt::Key_End: k = XK_End; break;
     case Qt::Key_PageUp: k = XK_Page_Up; break;
     case Qt::Key_PageDown: k = XK_Page_Down; break;
+    case Qt::Key_MediaPrevious: k = XK_Prior; break;
+    case Qt::Key_MediaNext: k = XK_Next; break;
+    case Qt::Key_MediaPlay: k = XK_Begin; break;
+
+    /* Misc Functions */
+    case Qt::Key_Select: k = XK_Select; break;
+    case Qt::Key_Printer: k = XK_Print; break;
+    case Qt::Key_Execute: k = XK_Execute; break;
+    case Qt::Key_Undo: k = XK_Undo; break;
+    case Qt::Key_Redo: k = XK_Redo; break;
+    case Qt::Key_Menu: k = XK_Menu;break;
+    case Qt::Key_Find: k = XK_Find; break;
+    case Qt::Key_Exit:	 
+    case Qt::Key_Cancel:
+    case Qt::Key_Stop:
+        k = XK_Cancel;
+        break;
+    case Qt::Key_Mode_switch: k = XK_Mode_switch; break;
+        
     case Qt::Key_F1: k = XK_F1; break;
     case Qt::Key_F2: k = XK_F2; break;
     case Qt::Key_F3: k = XK_F3; break;
@@ -649,9 +693,11 @@ uint32_t TranslateRfbKey(quint32 inkey, bool shiftModifier)
     case Qt::Key_F33: k = XK_F33; break;
     case Qt::Key_F34: k = XK_F34; break;
     case Qt::Key_F35: k = XK_F35; break;
+
     case Qt::Key_NumLock: k = XK_Num_Lock; break;
     case Qt::Key_CapsLock: k = XK_Caps_Lock; break;
     case Qt::Key_ScrollLock: k = XK_Scroll_Lock; break;
+        
     case Qt::Key_Shift: k = XK_Shift_R; break; //k = XK_Shift_L; break;
     case Qt::Key_Control: k = XK_Control_R; break;// k = XK_Control_L; break;
     case Qt::Key_Alt: k = XK_Alt_R; break;//k = XK_Alt_L; break;
@@ -659,8 +705,7 @@ uint32_t TranslateRfbKey(quint32 inkey, bool shiftModifier)
         
     case Qt::Key_Super_L: k = XK_Super_L; break;		/* left "windows" key */
     case Qt::Key_Super_R: k = XK_Super_R; break;		/* right "windows" key */
-        
-    case Qt::Key_Mode_switch: k = XK_Mode_switch; break;
+
     case Qt::Key_Help: k = XK_Help; break;
     case Qt::Key_Print: k = XK_Print; break;
     case Qt::Key_SysReq: k = XK_Sys_Req; break;
@@ -676,68 +721,72 @@ uint32_t TranslateRfbKey(quint32 inkey, bool shiftModifier)
     case Qt::Key_9: k = XK_9;break;
     }
     
-    if (!shiftModifier)
+    if (k == 5000)
     {
-        switch (inkey)
+        
+        if (!modifier)
         {
-        case Qt::Key_A: k = XK_a;break;
-        case Qt::Key_B: k = XK_b;break;
-        case Qt::Key_C: k = XK_c;break;
-        case Qt::Key_D: k = XK_d;break;
-        case Qt::Key_E: k = XK_e;break;
-        case Qt::Key_F: k = XK_f;break;
-        case Qt::Key_G: k = XK_g;break;
-        case Qt::Key_H: k = XK_h;break;
-        case Qt::Key_I: k = XK_i;break;
-        case Qt::Key_J: k = XK_j;break;
-        case Qt::Key_K: k = XK_k;break;
-        case Qt::Key_L: k = XK_l;break;
-        case Qt::Key_M: k = XK_m;break;
-        case Qt::Key_N: k = XK_n;break;
-        case Qt::Key_O: k = XK_o;break;
-        case Qt::Key_P: k = XK_p;break;
-        case Qt::Key_Q: k = XK_q;break;
-        case Qt::Key_R: k = XK_r;break;
-        case Qt::Key_S: k = XK_s;break;
-        case Qt::Key_T: k = XK_t;break;
-        case Qt::Key_U: k = XK_u;break;
-        case Qt::Key_V: k = XK_v;break;
-        case Qt::Key_W: k = XK_w;break;
-        case Qt::Key_X: k = XK_x;break;
-        case Qt::Key_Y: k = XK_y;break;
-        case Qt::Key_Z: k = XK_z;break;
+            switch (inkey)
+            {
+            case Qt::Key_A: k = XK_a;break;
+            case Qt::Key_B: k = XK_b;break;
+            case Qt::Key_C: k = XK_c;break;
+            case Qt::Key_D: k = XK_d;break;
+            case Qt::Key_E: k = XK_e;break;
+            case Qt::Key_F: k = XK_f;break;
+            case Qt::Key_G: k = XK_g;break;
+            case Qt::Key_H: k = XK_h;break;
+            case Qt::Key_I: k = XK_i;break;
+            case Qt::Key_J: k = XK_j;break;
+            case Qt::Key_K: k = XK_k;break;
+            case Qt::Key_L: k = XK_l;break;
+            case Qt::Key_M: k = XK_m;break;
+            case Qt::Key_N: k = XK_n;break;
+            case Qt::Key_O: k = XK_o;break;
+            case Qt::Key_P: k = XK_p;break;
+            case Qt::Key_Q: k = XK_q;break;
+            case Qt::Key_R: k = XK_r;break;
+            case Qt::Key_S: k = XK_s;break;
+            case Qt::Key_T: k = XK_t;break;
+            case Qt::Key_U: k = XK_u;break;
+            case Qt::Key_V: k = XK_v;break;
+            case Qt::Key_W: k = XK_w;break;
+            case Qt::Key_X: k = XK_x;break;
+            case Qt::Key_Y: k = XK_y;break;
+            case Qt::Key_Z: k = XK_z;break;
+            }
         }
-    }
-    else
-    {
-        switch (inkey)
+        else
         {
-        case Qt::Key_A: k = XK_A;break;
-        case Qt::Key_B: k = XK_B;break;
-        case Qt::Key_C: k = XK_C;break;
-        case Qt::Key_D: k = XK_D;break;
-        case Qt::Key_E: k = XK_E;break;
-        case Qt::Key_F: k = XK_F;break;
-        case Qt::Key_G: k = XK_G;break;
-        case Qt::Key_H: k = XK_H;break;
-        case Qt::Key_I: k = XK_I;break;
-        case Qt::Key_J: k = XK_J;break;
-        case Qt::Key_K: k = XK_K;break;
-        case Qt::Key_L: k = XK_L;break;
-        case Qt::Key_M: k = XK_M;break;
-        case Qt::Key_N: k = XK_N;break;
-        case Qt::Key_O: k = XK_O;break;
-        case Qt::Key_P: k = XK_P;break;
-        case Qt::Key_Q: k = XK_Q;break;
-        case Qt::Key_R: k = XK_R;break;
-        case Qt::Key_S: k = XK_S;break;
-        case Qt::Key_T: k = XK_T;break;
-        case Qt::Key_U: k = XK_U;break;
-        case Qt::Key_V: k = XK_V;break;
-        case Qt::Key_W: k = XK_W;break;
-        case Qt::Key_X: k = XK_X;break;
-        case Qt::Key_Y: k = XK_Y;break;
-        case Qt::Key_Z: k = XK_Z;break;
+            switch (inkey)
+            {
+            case Qt::Key_A: k = XK_A;break;
+            case Qt::Key_B: k = XK_B;break;
+            case Qt::Key_C: k = XK_C;break;
+            case Qt::Key_D: k = XK_D;break;
+            case Qt::Key_E: k = XK_E;break;
+            case Qt::Key_F: k = XK_F;break;
+            case Qt::Key_G: k = XK_G;break;
+            case Qt::Key_H: k = XK_H;break;
+            case Qt::Key_I: k = XK_I;break;
+            case Qt::Key_J: k = XK_J;break;
+            case Qt::Key_K: k = XK_K;break;
+            case Qt::Key_L: k = XK_L;break;
+            case Qt::Key_M: k = XK_M;break;
+            case Qt::Key_N: k = XK_N;break;
+            case Qt::Key_O: k = XK_O;break;
+            case Qt::Key_P: k = XK_P;break;
+            case Qt::Key_Q: k = XK_Q;break;
+            case Qt::Key_R: k = XK_R;break;
+            case Qt::Key_S: k = XK_S;break;
+            case Qt::Key_T: k = XK_T;break;
+            case Qt::Key_U: k = XK_U;break;
+            case Qt::Key_V: k = XK_V;break;
+            case Qt::Key_W: k = XK_W;break;
+            case Qt::Key_X: k = XK_X;break;
+            case Qt::Key_Y: k = XK_Y;break;
+            case Qt::Key_Z: k = XK_Z;break;
+            }
         }
     }
     
