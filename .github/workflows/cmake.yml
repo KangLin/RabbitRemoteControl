@@ -50,22 +50,22 @@ jobs:
         # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
         #setupOnly: # optional
         #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-        vcpkgGitCommitId: 7734e8b89d6d511a95ac27f8d8eed913535b592d
+        vcpkgGitCommitId: 6a8dea1ace99554907a73f85dedc166db6d4be3b
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp' # libdatachannel'
+        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp libdatachannel'
 
-    - name: build libdatachannel
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-        git clone https://github.com/paullouisageneau/libdatachannel.git
-        cd libdatachannel
-        git submodule update --init --recursive
-        cmake -E make_directory build
-        cd build
-        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+#    - name: build libdatachannel
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        git clone https://github.com/paullouisageneau/libdatachannel.git
+#        cd libdatachannel
+#        git submodule update --init --recursive
+#        cmake -E make_directory build
+#        cd build
+#        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+#        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+#        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
