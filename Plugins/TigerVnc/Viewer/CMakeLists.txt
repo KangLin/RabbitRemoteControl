@@ -31,10 +31,16 @@ SET(UI_FILES
     DlgSettingsTigerVnc.ui
     )
 
-find_package(libdatachannel)
-if(libdatachannel_FOUND)
+find_package(LibDataChannel)
+if(LibDataChannel_FOUND)
     list(APPEND TIGERVNC_DEFINITIONS HAVE_ICE)
-    list(APPEND SRC_LIBS LibDatachannel::LibDataChannel)
+    if (TARGET LibDataChannel::LibDataChannel)
+        list(APPEND SRC_LIBS LibDataChannel::LibDataChannel)
+    elseif (TARGET LibDatachannel::datachannel)
+        list(APPEND SRC_LIBS LibDatachannel::datachannel)
+    else()
+        list(APPEND SRC_LIBS LibDataChannel::datachannel)
+    endif()
     list(APPEND SOURCE_FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/DataChannelIce.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignal.cpp)
