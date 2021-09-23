@@ -96,7 +96,7 @@ Prior versions don't have CMake support.
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
     
 ### Library dependencies
@@ -181,7 +181,7 @@ Source-code location: https://github.com/KangLin/tigervnc
     ~/tigervnc$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
     ~/tigervnc$ cmake --build . --target install
     
-- Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
+- Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 
 #### libdatachannel
 - Use vcpkg
@@ -277,7 +277,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp installation path]/lib/cmake/FreeRDP-Client2
-  + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
+  + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
   + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
@@ -318,7 +318,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + Use script build_debpackage.sh
     - Set [Compile this project](#Compile-this-project) → The CMake parameters as environment variable. eg:
   
-          export tigervnc_DIR=[TigerVNC installation path]/lib/cmake
+          export tigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
         
     - Use build_debpackage.sh
 

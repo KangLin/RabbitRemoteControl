@@ -91,7 +91,7 @@
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
 
 ### 依赖库
@@ -171,7 +171,7 @@
     ~/tigervnc$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
     ~/tigervnc$ cmake --build . --target install
     
-- 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
+- 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
 
 #### libdatachannel
 - 使用 vcpkg
@@ -264,7 +264,7 @@
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
-  + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
+  + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
@@ -304,7 +304,7 @@
   + 使用脚本 build_debpackage.sh
     - 设置[编译本项目](#编译本项目) → CMake 参数为环境变量。例如：
   
-          export tigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
+          export tigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
         
     - 使用脚本 build_debpackage.sh
 

@@ -121,7 +121,7 @@
     cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --target install
     
-- 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake
+- 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
   
 #### libdatachannel
 - 使用 vcpkg
@@ -203,7 +203,7 @@
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
-  + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake
+  + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp

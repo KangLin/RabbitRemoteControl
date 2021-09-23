@@ -127,7 +127,7 @@ Source-code location: https://github.com/KangLin/tigervnc
     cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --target install
 
-- Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake
+- Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 
 #### libdatachannel
 - Use vcpkg
@@ -210,7 +210,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + WinPR_DIR: [FreeRDP installation path]/lib/cmake/WinPR2
   + FreeRDP_DIR: [FreeRDP installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [FreeFRP installation path]/lib/cmake/FreeRDP-Client2
-  + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake
+  + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
   + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
