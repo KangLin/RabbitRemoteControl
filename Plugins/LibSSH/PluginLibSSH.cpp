@@ -3,30 +3,15 @@
 #include "RabbitCommonLog.h"
 #include "ConnecterSSH.h"
 
-#include <QCoreApplication>
-#include <QLocale>
 #include <QDebug>
 
 CPluginLibSSH::CPluginLibSSH()
 {
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_LibSSH);
-#endif
-
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/LibSSH_" + QLocale::system().name() + ".qm";
-    if(!m_Translator.load(szTranslatorFile))
-        qCritical() << "Open translator file fail:" << szTranslatorFile;
-    qApp->installTranslator(&m_Translator);
 }
 
 CPluginLibSSH::~CPluginLibSSH()
 {
-    qApp->removeTranslator(&m_Translator);
     qDebug() << "CPluginFactoryLibSSH::~CPluginFactoryLibSSH()";
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_LibSSH);
-#endif
 }
 
 const QString CPluginLibSSH::Protol() const

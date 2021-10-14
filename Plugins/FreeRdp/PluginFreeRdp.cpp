@@ -9,24 +9,11 @@
 CPluginFreeRdp::CPluginFreeRdp(QObject *parent)
     : CPluginViewer(parent)
 {
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_FreeRdp);
-#endif
-
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/FreeRdp_" + QLocale::system().name() + ".qm";
-    if(!m_Translator.load(szTranslatorFile))
-        qCritical() << "Open translator file fail:" << szTranslatorFile;
-    qApp->installTranslator(&m_Translator);
 }
 
 CPluginFreeRdp::~CPluginFreeRdp()
 {
-    qApp->removeTranslator(&m_Translator);
     qDebug() << "CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()";
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_FreeRdp);
-#endif
 }
 
 const QString CPluginFreeRdp::Name() const

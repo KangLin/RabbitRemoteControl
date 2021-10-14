@@ -6,7 +6,6 @@
 #pragma once
 
 #include "PluginViewer.h"
-#include <QTranslator>
 
 class CPluginFreeRdp : public CPluginViewer
 {

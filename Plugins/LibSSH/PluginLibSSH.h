@@ -25,9 +25,6 @@ public:
     virtual const QString Description() const override;
     virtual const QIcon Icon() const override;
     virtual CConnecter *CreateConnecter(const QString &szProtol) override;
-    
-private:
-    QTranslator m_Translator;
 };
 
 #endif // CPLUGINLIBSSH_H_KL_2021_07_23

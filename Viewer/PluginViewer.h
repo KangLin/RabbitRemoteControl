@@ -8,6 +8,7 @@
 #include <QIcon>
 #include <QObject>
 #include "Connecter.h"
+#include <QTranslator>
 
 /**
  * \~english \brief The plugin interface. Create CConnecter instance
@@ -65,6 +66,12 @@ public:
      * 
      */
     virtual CConnecter* CreateConnecter(const QString& szProtol) = 0;
+    
+private:
+    QTranslator m_Translator;
+    int InitTranslator();
+    
+    friend class CManageConnecter;
 };
 
 QT_BEGIN_NAMESPACE

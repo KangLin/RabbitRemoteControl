@@ -1,6 +1,6 @@
 # Author: Kang Lin(kl222@126.com)
 
-project(PluginViewerTerminal)
+project(Terminal)
 
 set(lib_terminal Terminal)
 
@@ -35,7 +35,7 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${lib_terminal}

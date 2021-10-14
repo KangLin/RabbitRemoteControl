@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(TigerVnc)
+project(TigerVNC)
 set(CMAKE_CXX_STANDARD 17)
 SET(SRC_LIBS tigervnc Viewer)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network)

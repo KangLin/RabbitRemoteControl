@@ -101,7 +101,10 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
             if(p)
             {
                 if(m_Plugins.find(p->Id()) == m_Plugins.end())
+                {   
                     m_Plugins.insert(p->Id(), p);
+                    p->InitTranslator();
+                }
                 else
                     LOG_MODEL_ERROR("ManageConnecter", "The plugin [%s] is exist.",
                                     p->Name().toStdString().c_str());

@@ -3,31 +3,16 @@
 #include "RabbitCommonLog.h"
 #include "ConnecterTelnet.h"
 
-#include <QCoreApplication>
-#include <QLocale>
 #include <QDebug>
 
 CPluginTelnet::CPluginTelnet(QObject *parent)
     : CPluginViewer(parent)
 {
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_Telnet);
-#endif
-
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/Telnet_" + QLocale::system().name() + ".qm";
-    if(!m_Translator.load(szTranslatorFile))
-        qCritical() << "Open translator file fail:" << szTranslatorFile;
-    qApp->installTranslator(&m_Translator);
 }
 
 CPluginTelnet::~CPluginTelnet()
 {
     qDebug() << "CPluginFactoryTelnet::~CPluginFactoryTelnet()";
-    qApp->removeTranslator(&m_Translator);    
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_Telnet);
-#endif
 }
 
 const QString CPluginTelnet::Protol() const

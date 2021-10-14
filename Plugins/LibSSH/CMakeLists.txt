@@ -1,6 +1,6 @@
 # Author: Kang Lin(kl222@126.com)
 
-find_package(libssh)
+find_package(libSSH)
 if(libssh_FOUND)
     set(libssh_LIB ssh)
 else()

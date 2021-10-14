@@ -1,29 +1,16 @@
 #include "PluginLibVNCServer.h"
 #include "RabbitCommonDir.h"
 #include "ConnecterLibVNCServer.h"
-#include "QApplication"
+
 #include <QDebug>
 
 CPluginLibVNCServer::CPluginLibVNCServer(QObject *parent) : CPluginViewer(parent)
 {
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_LibVNCServer);
-#endif
-
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/LibVNCServer_" + QLocale::system().name() + ".qm";
-    if(!m_Translator.load(szTranslatorFile))
-        qCritical() << "Open translator file fail:" << szTranslatorFile;
-    qApp->installTranslator(&m_Translator);
 }
 
 CPluginLibVNCServer::~CPluginLibVNCServer()
 {
-    qApp->removeTranslator(&m_Translator);
     qDebug() << "CPluginFactoryLibVNCServer::~CPluginFactoryLibVNCServer()";
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_LibVNCServer);
-#endif
 }
 
 const QString CPluginLibVNCServer::Name() const

@@ -32,7 +32,6 @@ public:
     virtual CConnecter* CreateConnecter(const QString& szProtol) override;
     
 private:
-    QTranslator m_Translator;
     CPluginThread* m_pThread;
 };
 
