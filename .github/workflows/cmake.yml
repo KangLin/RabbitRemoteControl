@@ -52,6 +52,10 @@ jobs:
         #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
         vcpkgGitCommitId: 9d892ff9270f2d2fe3b8e490471f0a7dfa78981e
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+        # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
+        # compute its hash and append this to the computed cache's key.
+        appendedCacheKey:  ${{ hashFiles( env.VCPKGRESPONSEFILE ) }}
+        additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
         vcpkgTriplet: '${{ matrix.triplet }}'
         vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp' # libdatachannel'
 
