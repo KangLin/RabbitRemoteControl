@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(PluginServiceTigerVnc)
+project(TigerVNC)
 set(CMAKE_CXX_STANDARD 17)
 
 if(NOT TARGET Service)
@@ -78,7 +78,7 @@ if(BUILD_TYPE STREQUAL "debug")
         )
 endif()
 
-ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${SRC_LIBS}

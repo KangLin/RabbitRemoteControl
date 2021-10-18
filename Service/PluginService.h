@@ -2,6 +2,8 @@
 #define CPLUGINSERVICE_H
 
 #include <QObject>
+#include <QTranslator>
+
 #include "Service.h"
 #include "Screen.h"
 
@@ -45,6 +47,9 @@ private:
     CServiceThread* m_pThread;
     friend CServiceThread;
     friend CServiceManager;
+
+    QTranslator m_Translator;
+    int InitTranslator();
 };
 
 QT_BEGIN_NAMESPACE

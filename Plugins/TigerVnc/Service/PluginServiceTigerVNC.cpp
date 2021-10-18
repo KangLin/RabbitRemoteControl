@@ -11,17 +11,6 @@
 
 CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent) : CPluginService(parent)
 {
-    // Load translator resource
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_PluginServiceTigerVnc);
-#endif
-
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/PluginServiceTigerVnc_" + QLocale::system().name() + ".qm";
-    if(!m_Translator.load(szTranslatorFile))
-        qCritical() << "Open translator file fail:" << szTranslatorFile;
-    qApp->installTranslator(&m_Translator);
-    
     //rfb::SecurityClient::setDefaults();
     
     rfb::initStdIOLoggers();
@@ -36,11 +25,7 @@ CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent) : CPluginService
 
 CPluginServiceTigerVNC::~CPluginServiceTigerVNC()
 {
-    qApp->removeTranslator(&m_Translator);
-    qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_PluginServiceTigerVnc);
-#endif
+   qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
 }
 
 const QString CPluginServiceTigerVNC::Protol() const

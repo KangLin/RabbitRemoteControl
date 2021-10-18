@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(PluginServiceLibVNCServer)
+project(LibVNCServer)
 
 find_package(LibVNCServer)
 if(LibVNCServer_FOUND)
@@ -62,14 +62,14 @@ if(BUILD_TYPE STREQUAL "debug")
 endif()
 
 if(_LibvncIncludeDir)
-    ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+    ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${SRC_LIBS}
         PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
         )
 else()
-    ADD_PLUGIN_TARGET(NAME ${PROJECT_NAME}
+    ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${SRC_LIBS}

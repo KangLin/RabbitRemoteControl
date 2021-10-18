@@ -25,9 +25,6 @@ public:
     
 protected:
     virtual CService *NewService() override;
-    
-private:
-    QTranslator m_Translator;
 };
 
 #endif // CPLUGINSERVICELIBVNCSERVER_H
