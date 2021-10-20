@@ -31,19 +31,14 @@ if(WIN32)
 endif()
 LIST(APPEND RCC_FILES Resource/Resource.qrc)
 
-# Translations
-GENERATED_QT_TRANSLATIONS(
-    SOURCES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES}
-    OUT_QRC TRANSLATIONS_QRC_FILES
-    )
+if(NOT DEFINED CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release")
+endif(NOT DEFINED CMAKE_BUILD_TYPE)
 if(CMAKE_BUILD_TYPE)
     string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
 endif()
 if(BUILD_TYPE STREQUAL "debug")
-    LIST(APPEND PRIVATE_DEFINITIONS DEBUG)
-    LIST(APPEND RCC_FILES
-        ${TRANSLATIONS_QRC_FILES}
-        )
+    LIST(APPEND PRIVATE_DEFINITIONS DEBUG _DEBUG)
 endif()
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
