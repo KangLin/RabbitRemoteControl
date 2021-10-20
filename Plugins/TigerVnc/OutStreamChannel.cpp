@@ -1,5 +1,6 @@
 #include "OutStreamChannel.h"
 #include "RabbitCommonLog.h"
+#include <stdexcept>
 
 COutStreamChannel::COutStreamChannel(CChannel* pDataChannel)
     : rdr::BufferedOutStream(),
