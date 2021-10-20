@@ -10,7 +10,7 @@
   - [:us: English](README.md)
 - 编译状态
   - [![编译状态](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
-  - [![编译状态](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+  - [![编译状态](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)  
 - [简介](#简介)
 - [捐赠](#捐赠)
 - [贡献](#贡献)
@@ -21,6 +21,15 @@
     - [Linux](docs/Compile/BuildLinux_zh_CN.md)
     - [Windows](docs/Compile/BuildWindows_zh_CN.md)
 - [许可协议](#许可协议)
+
+-----------------------------------------------------------------------
+### Github actions
+
+|     | master 分支 | develop 分支 |
+|:---:|:-----------:|:------------:|
+|Linux|[![Linux 编译状态](https://github.com/kanglin/rabbitim/workflows/cmake_ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitim/actions)|[![Linux 编译状态](https://github.com/kanglin/rabbitim/workflows/cmake_ubuntu.yml/badge.svg?branch=Develop)](https://github.com/kanglin/rabbitim/actions)
+|Windows当前分支|[![Windows 编译状态](https://github.com/kanglin/rabbitim/workflows/cmake_windows.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitim/actions)|[![Windows 编译状态](https://github.com/kanglin/rabbitim/workflows/cmake_windows.yml/badge.svg?branch=Develop)](https://github.com/kanglin/rabbitim/actions)
+|Android|[![Android 编译状态](https://github.com/kanglin/rabbitim/workflows/cmake_android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitim/actions)|[![Android 编译状态](https://github.com/kanglin/rabbitim/workflows/cmake_android.yml/badge.svg?branch=Develop)](https://github.com/kanglin/rabbitim/actions)
 
 -----------------------------------------------------------------------
 ### 简介
