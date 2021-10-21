@@ -6,6 +6,7 @@
 #include <QLocale>
 #include <QDebug>
 #include <QApplication>
+#include <QDir>
 
 CPluginViewer::CPluginViewer(QObject *parent) : QObject(parent)
 {
@@ -19,7 +20,7 @@ CPluginViewer::~CPluginViewer()
 int CPluginViewer::InitTranslator()
 {
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/" + Name() + "_" + QLocale::system().name() + ".qm";
+            + QDir::separator() + Name() + "_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
     {
         LOG_MODEL_ERROR("CPluginViewer", "Open translator file fail:",

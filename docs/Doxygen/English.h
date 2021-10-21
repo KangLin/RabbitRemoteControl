@@ -26,6 +26,7 @@
 \details
   Write a plugin:
 - The format of the generated plug-in target name is: PluginViewer${PROJECT_NAME}
+  Note: The PROJECT_NAME is same as translation file(.ts) name.
   \include Plugins/TigerVnc/Viewer/CMakeLists.txt
 - Implement CPlugin. For example: \ref CPluginTigerVnc
   - Implement the Qt interface in the class declaration:
@@ -35,6 +36,7 @@
   - Release resources in the destructor.
      \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Clean resource
   - Implement properties and functions
+    - Plugin name: it muse is same as translation file(.ts) name \ref CPluginTigerVnc::Name() 
      \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
 - Implement \ref CConnecter. For example: \ref CConnecterTigerVnc
   - Implement remote desktop, which can be derived from \ref CConnecterDesktop
