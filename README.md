@@ -8,9 +8,7 @@ Author: Kang Lin <kl222@126.com>
 
 - Language
   - [:cn: 中文](README_zh_CN.md)
-- Build status
-  - [![Build status](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)](https://github.com/KangLin/RabbitRemoteControl/workflows/CMake/badge.svg)
-  - [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+- [Build status](#Build-status)
 - [Introduction](#Introduction)
 - [Sponsorship and Donations](#Sponsorship-and-Donations)
 - [Contribution](#Contribution)
@@ -23,6 +21,18 @@ Author: Kang Lin <kl222@126.com>
 - [License Agreement](#License-Agreement)
 
 -----------------------------------------------------------------------
+### Build status
+
+- [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+  
+#### Github actions
+
+|     | master  | develop  |
+|:---:|:-----------:|:------------:|
+|Linux|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Windows|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_windows.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_windows.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+
 
 ### Introduction
 Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
