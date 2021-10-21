@@ -193,7 +193,7 @@ jobs:
         cd ${{github.workspace}}/build
         cmake ${{github.workspace}} -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DLog4Qt_DIR=/lib/cmake/Log4Qt -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp -DLibDataChannel_DIR=${{env.INSTALL_DIR}}/share/cmake/LibDataChannel -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
 
     - name: Package
       working-directory: ${{github.workspace}}/build
@@ -201,6 +201,9 @@ jobs:
       run: |
         move /Y install\plugins\*crypto*.dll install\bin
         move /Y install\plugins\*ssl*.dll install\bin
+        move /Y ${{env.INSTALL_DIR}}/bin\*.dll install\bin
+        move /Y ${{env.INSTALL_DIR}}/lib\*.dll install\bin
+        move /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         makensis ${{github.workspace}}/build/Install.nsi
         ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe -f "${{github.workspace}}/build/update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.8.exe -m "v0.0.8"
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
