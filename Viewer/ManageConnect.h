@@ -4,10 +4,12 @@
 #include <QObject>
 #include "Connect.h"
 
-///
-/// \brief Manage connects. only by used CConnecterThread
-/// \see CConnecterThread
-/// 
+/**
+ * \~chinese 管理连接。此类仅用于 CConnecterThread
+ * \~english Manage connects. only by used CConnecterThread
+ * \~
+ * \see CConnecterThread
+ */ 
 class CManageConnect : public QObject
 {
     Q_OBJECT

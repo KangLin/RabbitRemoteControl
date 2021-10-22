@@ -18,10 +18,13 @@
 /**
  * \~chinese
  * \brief 具体连接接口
+ * 它默认启动一个定时器来模拟事件循环。详见 Connect()
  * \note 这个接口仅由插件实现
  * 
  * \~english
- * \brief Connect interface
+ * \brief Connect interface.
+ *  It starts a timer by default to simulate the event loop.
+ *  See Connect() for details 
  * \note The interface only is implemented by plugin
  * 
  * \~
@@ -38,10 +41,14 @@ public:
 
 public Q_SLOTS:   
     /**
+     * \~chinese 默认开始定时器
+     * \~english Default start timer.
+     * \~
      * \return 
      *     \li < 0 : error
      *     \li = 0 : emit sigConnected
      *     \li = 1 : emit sigConnected in CConnect
+     * \see OnProcess slotTimeOut
      */
     virtual int Connect();
     virtual int Disconnect();
@@ -54,6 +61,9 @@ protected:
     virtual int SetParamter(void *pPara);
 
     /**
+     * \~chinese 具体的插件实现连接初始化
+     * \~english Specific plug-in realizes connection initialization
+     * \~
      * \return 
      *     \li < 0 : error
      *     \li = 0 : emit sigConnected
@@ -63,6 +73,9 @@ protected:
     virtual int OnInit() = 0;
     virtual int OnClean() = 0;
     /**
+     * \~chinese 插件连接的具体操作处理
+     * \~english Specific operation processing of plug-in connection
+     * \~
      * \return 
      *       \li >= 0: continue, Interval call time (msec)
      *       \li <  0: error or stop

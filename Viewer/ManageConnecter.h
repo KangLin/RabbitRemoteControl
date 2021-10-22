@@ -45,9 +45,22 @@ public:
     /// \~english Save parameters to file
     virtual int SaveConnecter(const QString& szFile, CConnecter* pConnecter);
 
+    /**
+     * \~chinese
+     * \brief 处理连接者。用于客户端得到连接者信号
+     * 
+     * \~english
+     * \brief The Handle CConnecter class
+     */
     class Handle{
     public:
         Handle(): m_bIgnoreReturn(false){}
+        /**
+         * @brief Process plugins
+         * @param id: plugin id
+         * @param pFactory: CPluginViewer pointer
+         * @return 
+         */
         virtual int onProcess(const QString& id, CPluginViewer* pFactory) = 0;
         int m_bIgnoreReturn;
     };
