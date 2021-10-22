@@ -31,16 +31,6 @@ if(WIN32)
 endif()
 LIST(APPEND RCC_FILES Resource/Resource.qrc)
 
-if(NOT DEFINED CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release")
-endif(NOT DEFINED CMAKE_BUILD_TYPE)
-if(CMAKE_BUILD_TYPE)
-    string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
-endif()
-if(BUILD_TYPE STREQUAL "debug")
-    LIST(APPEND PRIVATE_DEFINITIONS DEBUG _DEBUG)
-endif()
-
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
 # They need to be set before the find_package(Qt5 ...) call.

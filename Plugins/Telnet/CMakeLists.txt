@@ -51,16 +51,6 @@ SET(UI_FILES
     DlgSettingsTelnet.ui
     )
 
-if(NOT DEFINED CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release")
-endif(NOT DEFINED CMAKE_BUILD_TYPE)
-if(CMAKE_BUILD_TYPE)
-    string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
-endif()
-if(BUILD_TYPE STREQUAL "debug")
-    LIST(APPEND PRIVATE_DEFINITIONS DEBUG _DEBUG)
-endif()
-
 if(_libtelnet_include_dir)
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
