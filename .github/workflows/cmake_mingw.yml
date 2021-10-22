@@ -132,6 +132,9 @@ jobs:
         
     - name: build QtService
       working-directory: ${{env.SOURCE_DIR}}
+      env:
+        MSYSTEM: MINGW64
+        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
         git clone "https://github.com/KangLin/qt-solutions.git"
         cd qt-solutions/qtservice
