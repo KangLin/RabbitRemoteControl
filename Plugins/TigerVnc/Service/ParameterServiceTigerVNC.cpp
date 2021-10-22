@@ -51,6 +51,7 @@ int CParameterServiceTigerVNC::OnSave(const QString& szFile)
     set.setValue("ICE/TURN/Port", m_nTurnPort);
     set.setValue("ICE/TURN/User", m_szTurnUser);
     set.setValue("ICE/TURN/Password", m_szTurnPassword);
+    set.sync();
     return nRet;
 }
 
