@@ -57,21 +57,6 @@ jobs:
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
-        
-    - name: build freerdp
-      working-directory: ${{env.SOURCE_DIR}}
-      env:
-        MSYSTEM: MINGW64
-        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
-      run: |
-        git clone -b 2.4.1 https://github.com/FreeRDP/FreeRDP.git
-        cd FreeRDP
-        git submodule update --init --recursive
-        cmake -E make_directory build
-        cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
@@ -87,6 +72,21 @@ jobs:
         cmake --build . --config ${{matrix.BUILD_TYPE}}
         cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 
+    - name: build freerdp
+      working-directory: ${{env.SOURCE_DIR}}
+      env:
+        MSYSTEM: MINGW64
+        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+      run: |
+        git clone -b 2.4.1 https://github.com/FreeRDP/FreeRDP.git
+        cd FreeRDP
+        git submodule update --init --recursive
+        cmake -E make_directory build
+        cd build
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        
     - name: build libdatachannel
       working-directory: ${{env.SOURCE_DIR}}
       env:
