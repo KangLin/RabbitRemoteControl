@@ -57,7 +57,7 @@ jobs:
     - name: build libdatachannel
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        git clone https://github.com/paullouisageneau/libdatachannel.git
+        git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
         cd libdatachannel
         git submodule update --init --recursive
         cmake -E make_directory build

@@ -39,10 +39,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     env:
-      BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
       SOURCE_DIR:  ${{github.workspace}}/source
       TOOSL_DIR:   ${{github.workspace}}/tools
       INSTALL_DIR: ${{github.workspace}}/install
+      VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
+      CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
 
     steps:
     - uses: actions/checkout@v2
@@ -68,20 +69,19 @@ jobs:
         appendedCacheKey:  ${{ hashFiles( env.VCPKGRESPONSEFILE ) }}
         additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
         vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp libdatachannel'
+        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp' # libdatachannel'
 
-#    - name: build libdatachannel
-#      working-directory: ${{env.SOURCE_DIR}}
-#      run: |
-#        git clone https://github.com/paullouisageneau/libdatachannel.git
-#        cd libdatachannel
-#        git submodule update --init --recursive
-#        git checkout -b v0.14.3 v0.14.3
-#        cmake -E make_directory build
-#        cd build
-#        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-#        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+    - name: build libdatachannel
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        git clone v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
+        cd libdatachannel
+        git submodule update --init --recursive
+        cmake -E make_directory build
+        cd build
+        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+        cmake --build . --config ${{ matrix.BUILD_TYPE }}
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
@@ -191,7 +191,7 @@ jobs:
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
-        cmake ${{github.workspace}} -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DLog4Qt_DIR=/lib/cmake/Log4Qt -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake -DCMAKE_PREFIX_PATH=${{ env.INSTALL_DIR }} -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp -DLibDataChannel_DIR=${{env.INSTALL_DIR}}/share/cmake/LibDataChannel -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+        cmake ${{github.workspace}} -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DBUILD_FREERDP=ON -DLog4Qt_DIR=/lib/cmake/Log4Qt -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp -DLibDataChannel_DIR=${{env.INSTALL_DIR}}/share/cmake/LibDataChannel -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         
     - name: Package
