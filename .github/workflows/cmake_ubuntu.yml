@@ -50,7 +50,9 @@ jobs:
         cd ${{env.SOURCE_DIR}}/tigervnc
         cmake -E make_directory build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+            -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+            -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
     
@@ -76,7 +78,10 @@ jobs:
         git submodule update --init --recursive
         cmake -E make_directory build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+            -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+            -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 \
+            -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         
