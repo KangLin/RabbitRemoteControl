@@ -257,9 +257,9 @@
 
 - CMake 参数
   + RabbitCommon_DIR: RabbitCommon 源码位置
-  + BUILD_DOCS: 编译文档。默认为 ON
+  + BUILD_DOCS: 编译文档。默认为 OFF
   + BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF
-  + BUILD_QUIWidget: 用无边框窗口做为主窗口。默认为 ON
+  + BUILD_QUIWidget: 用无边框窗口做为主窗口。默认为 OFF
   + BUILD_SHARED_LIBS: 编译动态库。默认为 ON
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2

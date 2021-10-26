@@ -270,9 +270,9 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 - The CMake parameters:
   + RabbitCommon_DIR: RabbitCommon source code location
-  + BUILD_DOCS: Build docmenets. the default is ON
+  + BUILD_DOCS: Build docmenets. the default is OFF
   + BUILD_FREERDP：If compile FreeRDP. the default is OFF
-  + BUILD_QUIWidget: Use frameless widget as main widget. the default is ON
+  + BUILD_QUIWidget: Use frameless widget as main widget. the default is OFF
   + BUILD_SHARED_LIBS: Compile shared libraries. the default is ON
   + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp installation path]/lib/cmake/FreeRDP2
