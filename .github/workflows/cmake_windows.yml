@@ -17,7 +17,7 @@ jobs:
 #            VCPKG_PLATFORM_TOOLSET: v142
 #            qt_version: 6.2.0
 #            qt_arch: win64_msvc2019_64
-#            GENERATORS: "Visual Studio 16 2019"
+#            CMAKE_GENERATOR: "Visual Studio 16 2019"
 #            CMAKE_GENERATOR_PLATFORM: x64
             
           - os: windows-2019
@@ -25,7 +25,7 @@ jobs:
             VCPKG_PLATFORM_TOOLSET: v142
             qt_version: 5.15.2
             qt_arch: win64_msvc2019_64
-            GENERATORS: "Visual Studio 16 2019"
+            CMAKE_GENERATOR: "Visual Studio 16 2019"
             CMAKE_GENERATOR_PLATFORM: x64
             
           - os: windows-2016
@@ -33,7 +33,7 @@ jobs:
             VCPKG_PLATFORM_TOOLSET: v141
             qt_version: 5.12.11
             qt_arch: win32_msvc2017
-            GENERATORS: "Visual Studio 15 2017"
+            CMAKE_GENERATOR: "Visual Studio 15 2017"
             CMAKE_GENERATOR_PLATFORM: Win32
         
     runs-on: ${{ matrix.os }}
@@ -44,6 +44,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/install
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
+      CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
     
     defaults:
       run:
@@ -83,7 +84,7 @@ jobs:
 #        git submodule update --init --recursive
 #        cmake -E make_directory build
 #        cd build
-#        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+#        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #        cmake --build . --config ${{ matrix.BUILD_TYPE }}
 #        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         
@@ -94,7 +95,7 @@ jobs:
         cd ${{env.SOURCE_DIR}}/libvncserver
         cmake -E make_directory build
         cd build
-        cmake .. -G"${{matrix.GENERATORS}}" ^
+        cmake .. ^
             -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
             -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF ^
             -DBUILD_EXAMPLES=OFF ^
@@ -110,7 +111,10 @@ jobs:
         cd ${{env.SOURCE_DIR}}/tigervnc
         cmake -E make_directory build
         cd build
-        cmake .. -G"${{matrix.GENERATORS}}" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
+            -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
+            -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
+            -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
     
@@ -168,7 +172,7 @@ jobs:
         cd Log4Qt
         cmake -E make_directory build
         cd build
-        cmake .. -G"${{matrix.GENERATORS}}" ^
+        cmake .. ^
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
@@ -182,7 +186,7 @@ jobs:
         cd qxmpp
         cmake -E make_directory build
         cd build
-        cmake .. -G"${{matrix.GENERATORS}}" ^
+        cmake .. ^
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF ^
             -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
@@ -197,7 +201,7 @@ jobs:
         cd qt-solutions/qtservice
         cmake -E make_directory build
         cd build
-        cmake .. -G"${{matrix.GENERATORS}}" ^
+        cmake .. ^
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
@@ -210,7 +214,7 @@ jobs:
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
-        cmake ${{github.workspace}} -G"${{matrix.GENERATORS}}" ^
+        cmake ${{github.workspace}} ^
             -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DBUILD_FREERDP=ON ^
@@ -219,7 +223,7 @@ jobs:
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
             -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
-            -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake  #-DLibDataChannel_DIR=${{env.INSTALL_DIR}}/share/cmake/LibDataChannel
+            -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         
     - name: Package

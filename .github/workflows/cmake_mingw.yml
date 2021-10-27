@@ -32,21 +32,22 @@ jobs:
       env:
         PATH: C:\msys64\usr\bin
       run: | 
-        C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-cmake
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-nsis
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-make
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-gcc
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-qt5
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-zlib
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-libvncserver
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-cyrus-sasl
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-pixman
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-openjpeg mingw-w64-i686-libjpeg-turbo 
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-libpng
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-i686-nasm
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-openh264 
-        C:\msys64\usr\bin\pacman -S --noconfirm mingw-w64-x86_64-qxmpp
-        C:\msys64\usr\bin\pacman -S --noconfirm git base-devel
+        C:\msys64\usr\bin\pacman.exe -S --noconfirm mingw-w64-x86_64-cmake ^
+            mingw-w64-x86_64-make ^
+            mingw-w64-x86_64-nsis ^
+            mingw-w64-x86_64-gcc ^
+            mingw-w64-x86_64-qt5 ^
+            mingw-w64-x86_64-zlib ^
+            mingw-w64-x86_64-libvncserver ^
+            mingw-w64-x86_64-cyrus-sasl ^
+            mingw-w64-x86_64-pixman ^
+            mingw-w64-x86_64-openjpeg ^
+            mingw-w64-x86_64-libjpeg-turbo ^
+            mingw-w64-x86_64-libpng ^
+            mingw-w64-x86_64-yasm ^
+            mingw-w64-x86_64-openh264 ^
+            mingw-w64-x86_64-qxmpp ^
+            git base-devel
 
     - name: make_directory
       run: |
@@ -83,7 +84,8 @@ jobs:
         git submodule update --init --recursive
         cmake -E make_directory build
         cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
         cmake --build . --config ${{matrix.BUILD_TYPE}}
         cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         
@@ -98,7 +100,9 @@ jobs:
         git submodule update --init --recursive
         cmake -E make_directory build
         cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
+            -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
         cmake --build . --config ${{matrix.BUILD_TYPE}}
         cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 
@@ -112,7 +116,8 @@ jobs:
         cd Log4Qt
         cmake -E make_directory build
         cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
         cmake --build . --config ${{matrix.BUILD_TYPE}}
         cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         
@@ -140,10 +145,10 @@ jobs:
         cd qt-solutions/qtservice
         cmake -E make_directory build
         cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
         cmake --build . --config ${{matrix.BUILD_TYPE}}
         cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-
 
     - name: build RabbitRemoteControl
       working-directory: ${{github.workspace}}
@@ -155,6 +160,14 @@ jobs:
       run: |
         cmake -E make_directory build
         cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install -DBUILD_FREERDP=ON -DLog4Qt_DIR=/lib/cmake/Log4Qt -Dtigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService
+        cmake .. -G"MinGW Makefiles" ^
+            -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+            -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
+            -DBUILD_FREERDP=ON ^
+            -DLog4Qt_DIR=/lib/cmake/Log4Qt ^
+            -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
+            -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel ^
+            -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
+            -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
