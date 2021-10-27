@@ -221,7 +221,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
   + Specify the CMake parameters: -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
 
-#### qtermwidget
+#### QTermWidget
 - Use the system-packaged development library
 
       ~$ sudo apt install libqtermwidget5-0-dev
@@ -281,7 +281,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
   + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
-  + QTermWidget_5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
+  + qtermwidget5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   + QtService_DIR:[QtService installation path]/lib/cmake/QtService
   

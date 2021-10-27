@@ -268,7 +268,7 @@
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
-  + QTermWidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
+  + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   + QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
   

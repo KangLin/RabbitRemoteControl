@@ -161,7 +161,7 @@
 #### QTermWidget (暂不支持 Windows）     
 - 从源码编译
   + 源码位置： [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
-  + 指定 CMake 参数：-Dqtermwidget_5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
+  + 指定 CMake 参数：-Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
 
 #### libssh
 - 使用 vcpkg
@@ -207,7 +207,7 @@
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
-  + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
+  + qtermwidget5_DIR: [QTermWidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   + QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
   

@@ -167,13 +167,13 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 - [x] [必选] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] [可选] RFB
-  + [x] [可选] libvncserver: https://github.com/LibVNC/libvncserver
-  + [x] [可选] TigerVnc: https://github.com/KangLin/tigervnc
+  + [x] [可选] LibVNCServer: https://github.com/LibVNC/libvncserver
+  + [x] [可选] TigerVNC: https://github.com/KangLin/tigervnc
 - [x] [可选] FreeRDP: https://github.com/FreeRDP/FreeRDP
 - [x] [可选] [SSH]
   + [x] LIBSSH: https://www.libssh.org
   + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
-- [x] [可选] qtermwidget: https://github.com/lxqt/qtermwidget
+- [x] [可选] QTermWidget: https://github.com/lxqt/qtermwidget
 - [x] [可选] libtelnet: https://github.com/seanmiddleditch/libtelnet
 - [ ] [可选] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [x] [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
