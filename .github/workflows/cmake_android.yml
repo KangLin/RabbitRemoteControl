@@ -79,6 +79,7 @@ jobs:
         cmake -E make_directory build
         cd build
         cmake .. \
+            -DOPENSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
             -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
