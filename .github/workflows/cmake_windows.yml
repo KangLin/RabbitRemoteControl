@@ -76,7 +76,7 @@ jobs:
         # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
         #setupOnly: # optional
         #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-        vcpkgGitCommitId: 699c8779f1b0feb4ed3564716d1ed31f69663ea6
+        vcpkgGitCommitId: 1cea69e191974b8e917360633eaff8f1d87a9a1e
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
         # compute its hash and append this to the computed cache's key.
