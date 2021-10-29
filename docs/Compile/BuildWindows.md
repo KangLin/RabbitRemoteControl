@@ -8,8 +8,8 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
     Windows 10, version 20H2 (19042.985)
 
 #### QtCreator
-Version: v4.15.0. \
-It is recommended to use version v4.15.0 or later. \
+Version: v5.0.2. \
+It is recommended to use version v5.0.2 or later. \
 Prior versions don't have CMake support.
 
 ### Tools

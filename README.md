@@ -3,8 +3,10 @@
 Author: Kang Lin <kl222@126.com>
 
 -----------------------------------------------------------------------
-- Project position: https://github.com/KangLin/RabbitRemoteControl
 - Project home: https://kanglin.github.io/RabbitRemoteControl/
+- Project position:
+  - Main repository: https://github.com/KangLin/RabbitRemoteControl
+  - Mirror repository: https://gitlab.com/kl222/RabbitRemoteControl
 
 - Language
   - [:cn: 中文](README_zh_CN.md)

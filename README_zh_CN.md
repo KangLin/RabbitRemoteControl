@@ -5,7 +5,9 @@
 -----------------------------------------------------------------------
 
 - 项目位置: https://github.com/KangLin/RabbitRemoteControl
-- 项目主页: https://kanglin.github.io/RabbitRemoteControl/
+- 项目主页:
+  + 主库：https://kanglin.github.io/RabbitRemoteControl/
+  + 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
 - 语言
   - [:us: English](README.md)
 - [编译状态](#编译状态)
