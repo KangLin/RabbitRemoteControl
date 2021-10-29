@@ -22,6 +22,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/source
       TOOSL_DIR:   ${{github.workspace}}/tools
       INSTALL_DIR: ${{github.workspace}}/install
+      RabbitRemoteControl_VERION: 0.0.8
 
     steps:
     - uses: actions/checkout@v2
@@ -54,6 +55,14 @@ jobs:
         cmake -E make_directory ${{env.SOURCE_DIR}}
         cmake -E make_directory ${{env.TOOSL_DIR}}
         cmake -E make_directory ${{env.INSTALL_DIR}}
+    
+    - name: Cache installed
+      uses: actions/cache@v2
+      id: cache-installed
+      with:
+        path: |
+          ${{env.INSTALL_DIR}}
+        key: cache-installed-mingw
         
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
@@ -65,13 +74,15 @@ jobs:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        git clone https://github.com/KangLin/tigervnc.git 
-        cd tigervnc
-        cmake -E make_directory build
-        cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-        cmake --build . --config ${{matrix.BUILD_TYPE}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/tigervnc (
+            git clone https://github.com/KangLin/tigervnc.git 
+            cd tigervnc
+            cmake -E make_directory build
+            cd build
+            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
 
     - name: build freerdp
       working-directory: ${{env.SOURCE_DIR}}
@@ -79,15 +90,17 @@ jobs:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        git clone -b 2.4.1 https://github.com/FreeRDP/FreeRDP.git
-        cd FreeRDP
-        git submodule update --init --recursive
-        cmake -E make_directory build
-        cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 (
+            git clone -b 2.4.1 https://github.com/FreeRDP/FreeRDP.git
+            cd FreeRDP
+            git submodule update --init --recursive
+            cmake -E make_directory build
+            cd build
+            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
         
     - name: build libdatachannel
       working-directory: ${{env.SOURCE_DIR}}
@@ -95,16 +108,18 @@ jobs:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
-        cd libdatachannel
-        git submodule update --init --recursive
-        cmake -E make_directory build
-        cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
-            -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
-        cmake --build . --config ${{matrix.BUILD_TYPE}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/LibDataChannel (
+            git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
+            cd libdatachannel
+            git submodule update --init --recursive
+            cmake -E make_directory build
+            cd build
+            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
+                -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
 
     - name: build log4qt
       working-directory: ${{env.SOURCE_DIR}}
@@ -112,14 +127,16 @@ jobs:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        git clone -b v1.5.1 "https://github.com/MEONMedical/Log4Qt.git"
-        cd Log4Qt
-        cmake -E make_directory build
-        cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt (
+            git clone -b v1.5.1 "https://github.com/MEONMedical/Log4Qt.git"
+            cd Log4Qt
+            cmake -E make_directory build
+            cd build
+            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
         
 #    - name: build qxmpp
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -141,14 +158,16 @@ jobs:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        git clone "https://github.com/KangLin/qt-solutions.git"
-        cd qt-solutions/qtservice
-        cmake -E make_directory build
-        cd build
-        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-            -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/QtService (
+            git clone "https://github.com/KangLin/qt-solutions.git"
+            cd qt-solutions/qtservice
+            cmake -E make_directory build
+            cd build
+            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
 
     - name: build RabbitRemoteControl
       working-directory: ${{github.workspace}}
@@ -171,3 +190,28 @@ jobs:
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
+
+    - name: Package
+      working-directory: ${{github.workspace}}/build
+      run: |
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
+        copy /Y install\plugins\*crypto*.dll install\bin
+        copy /Y install\plugins\*ssl*.dll install\bin
+        copy /Y ${{env.INSTALL_DIR}}/bin\*.dll install\bin
+        copy /Y ${{env.INSTALL_DIR}}/lib\*.dll install\bin
+        copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
+        makensis ${{github.workspace}}/build/Install.nsi
+        ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe ^
+            -f "${{github.workspace}}/build/update_windows.xml" ^
+            --pf RabbitRemoteControl-Setup-${{env.RabbitRemoteControl_VERION}}.exe ^
+            -m "${{env.RabbitRemoteControl_VERION}}"
+      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+
+    - name: update 
+      uses: actions/upload-artifact@v2
+      with:
+        name: rabbitremotecontrol_${{ matrix.os }}
+        path: |
+          ${{github.workspace}}/build/RabbitRemoteControl-Setup-*.exe
+          ${{github.workspace}}/build/update_*.xml
+      if: ${{ matrix.BUILD_TYPE == 'Release' }}
