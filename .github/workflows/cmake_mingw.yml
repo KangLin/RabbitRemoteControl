@@ -84,14 +84,14 @@ jobs:
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
 
-    - name: build freerdp
+    - name: build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}
       env:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
         IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 (
-            git clone -b 2.4.1 https://github.com/FreeRDP/FreeRDP.git
+            git clone -b 2.0.0-rc4 https://github.com/FreeRDP/FreeRDP.git
             cd FreeRDP
             git submodule update --init --recursive
             cmake -E make_directory build
@@ -101,7 +101,7 @@ jobs:
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
-        
+
     - name: build libdatachannel
       working-directory: ${{env.SOURCE_DIR}}
       env:
@@ -195,10 +195,10 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: |
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
-        copy /Y install\plugins\*crypto*.dll install\bin
-        copy /Y install\plugins\*ssl*.dll install\bin
-        copy /Y ${{env.INSTALL_DIR}}/bin\*.dll install\bin
-        copy /Y ${{env.INSTALL_DIR}}/lib\*.dll install\bin
+        move /Y install\plugins\*crypto*.dll install\bin
+        move /Y install\plugins\*ssl*.dll install\bin
+        copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
+        copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         makensis ${{github.workspace}}/build/Install.nsi
         ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe ^

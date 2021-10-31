@@ -46,6 +46,7 @@ jobs:
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
       RabbitRemoteControl_VERION: 0.0.8
+      VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
     
     defaults:
       run:
@@ -76,14 +77,14 @@ jobs:
         # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
         #setupOnly: # optional
         #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-        vcpkgGitCommitId: 1cea69e191974b8e917360633eaff8f1d87a9a1e
-        vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+        vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+        vcpkgDirectory: ${{runner.workspace}}/vcpkg/
         # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
         # compute its hash and append this to the computed cache's key.
-        appendedCacheKey:  ${{ hashFiles( env.VCPKGRESPONSEFILE ) }}
-        additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
-        vcpkgTriplet: '${{ matrix.triplet }}'
-        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp libdatachannel'
+        appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
+        #additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
+        vcpkgTriplet: '${{matrix.triplet}}'
+        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo libdatachannel'
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -93,10 +94,28 @@ jobs:
 #        git submodule update --init --recursive
 #        cmake -E make_directory build
 #        cd build
-#        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+#        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
+#            -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} ^
+#            -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #        cmake --build . --config ${{ matrix.BUILD_TYPE }}
 #        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-        
+
+    - name: Build FreeRDP
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 (
+            git clone -b 2.0.0-rc4 https://github.com/FreeRDP/FreeRDP.git
+            cd FreeRDP
+            git submodule update --init --recursive
+            cmake -E make_directory build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
+
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
       run: |
@@ -249,10 +268,10 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: |
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
-        copy /Y install\plugins\*crypto*.dll install\bin
-        copy /Y install\plugins\*ssl*.dll install\bin
-        copy /Y ${{env.INSTALL_DIR}}/bin\*.dll install\bin
-        copy /Y ${{env.INSTALL_DIR}}/lib\*.dll install\bin
+        move /Y install\plugins\*crypto*.dll install\bin
+        move /Y install\plugins\*ssl*.dll install\bin
+        copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
+        copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         makensis ${{github.workspace}}/build/Install.nsi
         ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe ^
