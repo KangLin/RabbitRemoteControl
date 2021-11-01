@@ -10,7 +10,7 @@
   + 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
 - 语言
   - [:us: English](README.md)
-- [编译状态](#编译状态)
+- [状态](#状态)
 - [简介](#简介)
 - [捐赠](#捐赠)
 - [贡献](#贡献)
@@ -23,9 +23,15 @@
 - [许可协议](#许可协议)
 
 -----------------------------------------------------------------------
-### 编译状态
+### 状态
 
-- [![编译状态](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)  
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/stars)
+[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/forks)
+[![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
+[![Current release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![All releases downloads](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total)](https://github.com/KangLin/RabbitRemoteControl/releases)
+
+[![编译状态](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)  
 
 #### Github actions
 

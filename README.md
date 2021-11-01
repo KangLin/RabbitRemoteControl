@@ -10,7 +10,7 @@ Author: Kang Lin <kl222@126.com>
 
 - Language
   - [:cn: 中文](README_zh_CN.md)
-- [Build status](#Build-status)
+- [Status](#Status)
 - [Introduction](#Introduction)
 - [Sponsorship and Donations](#Sponsorship-and-Donations)
 - [Contribution](#Contribution)
@@ -23,7 +23,13 @@ Author: Kang Lin <kl222@126.com>
 - [License Agreement](#License-Agreement)
 
 -----------------------------------------------------------------------
-### Build status
+### Status
+
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/stars)
+[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/forks)
+[![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
+[![Current release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![All releases downloads](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total)](https://github.com/KangLin/RabbitRemoteControl/releases)
 
 - [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
   
