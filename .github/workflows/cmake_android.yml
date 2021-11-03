@@ -50,7 +50,7 @@ jobs:
       uses: actions/cache@v1  # not v2!
       with:
         path: ${{env.TOOSL_DIR}}/qt
-        key: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}
+        key: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-2021-11-03
         
     - name: Install Qt
       # You may pin to the exact commit or the version.
@@ -142,7 +142,7 @@ jobs:
             cmake -E make_directory build
             cd build
             cmake .. \
-                -DOPENSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
+                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                 -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
