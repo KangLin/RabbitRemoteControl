@@ -47,6 +47,7 @@ jobs:
       CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
       RabbitRemoteControl_VERION: 0.0.8
       VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
+      qt_modules: QWebEngine
     
     defaults:
       run:
@@ -179,7 +180,7 @@ jobs:
         # Whether or not to install Qt dependencies on Linux
         #install-deps: true # optional, default is true
         # Additional Qt modules to install
-        modules: ${{matrix.qt_modules}} # optional
+        modules: ${{env.qt_modules}} # optional
         # Force a Qt mirror in case the default is not working
         #mirror: # optional
         # Whether or not to actually download Qt
