@@ -55,6 +55,8 @@
     # 安装依赖库
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     ~$ sudo apt install debhelper fakeroot
+    # RabbitCommon 依赖
+    ~$ sudo apt install libcmark-dev
     # 安装 Qt
     ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
     # 安装 X 开发库
@@ -97,6 +99,7 @@
 ### 依赖库
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+  - [可选] [cmark](https://github.com/commonmark/cmark): 玉兔公共库依赖
 - [可选] RFB
   + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [可选] TigerVNC: https://github.com/KangLin/tigervnc
@@ -117,6 +120,34 @@
 -DRabbitCommon_DIR=[RabbitCommon 安装目录]
 
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
+    
+#### cmark
+玉兔公共库依赖
+- 使用系统预编译开发库
+
+      ~$ sudo apt install libcmark-dev
+    
+- 使用 vcpkg
+  + 源码位置: https://github.com/microsoft/vcpkg/
+  
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ ./bootstrap-vcpkg.sh
+        ~/vcpkg$ vcpkg install cmark
+
+  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+  
+- 从源码编译
+  + 源码位置：https://github.com/commonmark/cmark
+  
+        ~$ git clone https://github.com/commonmark/cmark
+        ~$ cd cmark
+        ~/cmark$ mkdir build
+        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/cmark/build$ cmake --build . --target install
+          
+  + 指定 CMake 参数：
+    - -Dcmark_DIR=[cmark 安装目录]
     
 #### FreeRDP
 - 使用系统预编译开发库

@@ -41,7 +41,7 @@ jobs:
         # architectures to pass to dpkg --add-architecture
         #architectures: # optional
         # apt packages to install
-        packages: cmake build-essential liblog4cxx-dev freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
+        packages: cmake build-essential libcmark-dev liblog4cxx-dev freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
 
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}

@@ -48,6 +48,7 @@ jobs:
             mingw-w64-x86_64-yasm ^
             mingw-w64-x86_64-openh264 ^
             mingw-w64-x86_64-qxmpp ^
+            mingw-w64-x86_64-cmark ^
             git base-devel
 
     - name: make_directory

@@ -60,6 +60,8 @@ Prior versions don't have CMake support.
     # Install library dependencies
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     ~$ sudo apt install debhelper fakeroot
+    # RabbitCommon dependencies
+    ~$ sudo apt install libcmark-dev
     # Install Qt
     ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
     # Install X development libraries
@@ -102,6 +104,7 @@ Prior versions don't have CMake support.
 ### Library dependencies
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+  - [OPTIONAL] [cmark](https://github.com/commonmark/cmark): RabbitCommon dependencies
 - [OPTIONAL] RFB
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [OPTIONAL] TigerVNC: https://github.com/KangLin/tigervnc
@@ -124,6 +127,35 @@ If not, you must specify the CMake parameters:
 
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
     
+#### cmark
+This library is dependencies by RabbitCommon. to support Markdown syntax.
+- Use the system-packaged development library
+
+      ~$ sudo apt install libcmark-dev
+    
+- Use vcpkg
+  + Source-code location: https://github.com/microsoft/vcpkg/
+  
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ ./bootstrap-vcpkg.sh
+        ~/vcpkg$ vcpkg install cmark
+
+  + Specify the CMake parameters:
+  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
+- Compile from source code
+  + Source-code location: https://github.com/commonmark/cmark
+  
+        ~$ git clone https://github.com/commonmark/cmark
+        ~$ cd cmark
+        ~/cmark$ mkdir build
+        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/cmark/build$ cmake --build . --target install
+          
+  + Specify the CMake parameters:
+    - -Dcmark_DIR=[cmark installation path]
+
 #### FreeRDP
 - Use the system-packaged development library
 
