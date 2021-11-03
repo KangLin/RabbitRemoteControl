@@ -38,7 +38,7 @@ jobs:
 
     - uses: snickerbockers/submodules-init@v4
 
-    - name: make_directory
+    - name: make directory
       run: |
         cmake -E make_directory ${{env.SOURCE_DIR}}
         cmake -E make_directory ${{env.TOOSL_DIR}}

@@ -41,8 +41,31 @@ jobs:
         # architectures to pass to dpkg --add-architecture
         #architectures: # optional
         # apt packages to install
-        packages: cmake build-essential libcmark-dev liblog4cxx-dev freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
+        packages: cmake build-essential liblog4cxx-dev freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
 
+    - name: Cache installed
+      uses: actions/cache@v2
+      id: cache-installed
+      with:
+        path: |
+          ${{env.INSTALL_DIR}}
+        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
+    
+    - name: build cmark
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/cmark ]; then
+            git clone https://github.com/commonmark/cmark.git
+            cd ${{env.SOURCE_DIR}}/cmark
+            cmake -E make_directory build
+            cd build
+            cmake .. -DCMARK_TESTS=OFF \
+                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        fi
+        
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
       run: |
@@ -92,6 +115,7 @@ jobs:
         tigervnc_DIR: ${{ env.INSTALL_DIR }}/lib/cmake
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/share/cmake/libdatachannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/share/cmake/QtService
+        cmark_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/cmark
       run: |
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol* .
