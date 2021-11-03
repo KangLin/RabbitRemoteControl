@@ -5,6 +5,7 @@
 #include "freerdp/client/cmdline.h"
 #include "freerdp/client/encomsp.h"
 #include "freerdp/gdi/gfx.h"
+#include "freerdp/settings.h"
 #include "freerdp/locale/keyboard.h"
 #include "freerdp/channels/rdpgfx.h"
 #include "freerdp/channels/cliprdr.h"
