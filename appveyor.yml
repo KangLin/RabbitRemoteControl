@@ -69,7 +69,7 @@ before_build:
   - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 699c8779f1b0feb4ed3564716d1ed31f69663ea6 699c8779f1b0feb4ed3564716d1ed31f69663ea6 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp #libdatachannel
+  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo openssl cmark libssh log4cxx libpng pixman libjpeg-turbo freerdp #libdatachannel
   
   - cd "%OTHER_SOURCE%"
   - if not exist libdatachannel (git clone https://github.com/paullouisageneau/libdatachannel.git)
