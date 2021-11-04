@@ -50,22 +50,7 @@ jobs:
         path: |
           ${{env.INSTALL_DIR}}
         key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
-    
-    - name: build cmark
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/cmark ]; then
-            git clone https://github.com/commonmark/cmark.git
-            cd ${{env.SOURCE_DIR}}/cmark
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMARK_TESTS=OFF \
-                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-        fi
-        
+            
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
       run: |
@@ -115,7 +100,6 @@ jobs:
         tigervnc_DIR: ${{ env.INSTALL_DIR }}/lib/cmake
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/share/cmake/libdatachannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/share/cmake/QtService
-        cmark_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/cmark
       run: |
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol* .
