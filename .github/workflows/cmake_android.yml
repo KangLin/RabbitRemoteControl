@@ -30,7 +30,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/install
       RabbitRemoteControl_VERION: 0.0.8
       VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
-      qt_modules: QWebEngine
+      qt_modules: qtwebengine
 
     steps:
     - uses: actions/checkout@v2
@@ -238,6 +238,9 @@ jobs:
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
         cmake ${{github.workspace}} \
+            -DCMARK_SHARED=OFF \
+            -DCMARK_TESTS=OFF \
+            -DCMARK_STATIC=ON \
             -DBUILD_FREERDP=ON \
             -DLog4Qt_DIR=${{env.INSTALL_DIR}}/lib/cmake/Log4Qt \
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
