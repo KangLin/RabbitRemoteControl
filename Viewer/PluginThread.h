@@ -6,16 +6,12 @@
 #include "ConnectThread.h"
 #include "Connecter.h"
 
-//!
-//! \~chinese
-//! \brief 一个线程处理多个连接
-//!
-//! \~english
-//! One thread handles multiple connections
-//! 
-//! \~ 
-//! \see CManageConnect
-//! 
+/*!
+ * \~chinese 一个线程处理多个连接者 CConnecter
+ * \~english One thread handles multiple CConnecter
+ * \~
+ * \see CManageConnect CConnecter
+ */
 class VIEWER_EXPORT CPluginThread : public CConnectThread
 {
     Q_OBJECT

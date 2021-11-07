@@ -1,8 +1,8 @@
-## Authors:
+## Authors
 
 - Kang Lin <kl222@126.com>
 
-## Contributors:
+## Contributors
 - Allan Nordhøy <epost@anotheragency.no>
 - Other: See: https://github.com/KangLin/RabbitRemoteControl/graphs/contributors
 
@@ -14,7 +14,7 @@
 - [cmake](https://cmake.org/)
 - Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
-## The third project:
+## The third project
 - [x] [MUST] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] VNC
   + [x] [Optional] libvncserver: https://github.com/LibVNC/libvncserver

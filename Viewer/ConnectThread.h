@@ -8,15 +8,13 @@
 #include <QThread>
 #include "ConnecterDesktop.h"
 
-///
-/// \~chinese 此类仅用于 CConnecterDesktop
-///   一个线程只处理一个连接
-/// \~english The class only is used by CConnecterDesktop
-///   One thread only handles one connect
-///
-/// \~
-/// \see CConnecterDesktop
-///
+/*!
+ * \~chinese 此类仅用于 CConnecterDesktop 。 一个线程只处理一个连接
+ * \~english The class only is used by CConnecterDesktop.
+ *            One thread only handles one connect
+ * \~
+ * \see CConnecterDesktop CConnect run()
+ */
 class CConnectThread : public QThread
 {
     Q_OBJECT

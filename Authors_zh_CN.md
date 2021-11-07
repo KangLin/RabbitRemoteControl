@@ -1,8 +1,8 @@
-## 作者:
+## 作者
 
 - 康林 <kl222@126.com>
 
-## 贡献者：
+## 贡献者
 - Allan Nordhøy <epost@anotheragency.no>
 - 所有贡献者，详见: [https://github.com/KangLin/RabbitRemoteControl/graphs/contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
@@ -15,7 +15,7 @@
 - [cmake](https://cmake.org/)
 - Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
-## 第三方库：
+## 第三方库
 
 - [x] [必选] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] [可选] RFB

@@ -15,20 +15,33 @@
 #include <QMimeData>
 #include "FrmViewer.h"
 
-/**
+/*!
  * \~chinese
- * \brief 具体连接接口
- * 它默认启动一个定时器来模拟事件循环。详见 Connect()
- * \note 这个接口仅由插件实现
+ * \brief 具体连接接口。
+ *     它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。
+ *     详见： Connect() slotTimeOut() OnProcess() 。
+ *     当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。
+ * \note 这个接口仅由插件实现。 \n
+ *     具体的插件需要实现下面接口：
+ *     - OnInit()
+ *     - OnClean()
+ *     - OnProcess()
+ *     - slotClipBoardChange()
  * 
  * \~english
  * \brief Connect interface.
- *  It starts a timer by default to simulate the event loop.
- *  See Connect() for details 
- * \note The interface only is implemented by plugin
- * 
+ *      It starts a timer by default to start a non-Qt event loop (that is, normal loop processing) .
+ *      See Connect(), slotTimeOut(), OnProcess() for details.
+ *      Of course, it still supports Qt events (the signal-slot mechanism of QObject).
+ * \note The interface only is implemented by plug-in. \n
+ *      The plug-in needs to implement the following interface. 
+ *     - OnInit()
+ *     - OnClean()
+ *     - OnProcess()
+ *     - slotClipBoardChange()
+ *
  * \~
- * \see  CConnecter CFrmViewer
+ * \see CConnecterDesktop CConnecter CFrmViewer
  * \ingroup VIEWER_PLUGIN_API
  */
 class VIEWER_EXPORT CConnect : public QObject
@@ -40,7 +53,7 @@ public:
     virtual ~CConnect() override;
 
 public Q_SLOTS:   
-    /**
+    /*!
      * \~chinese 默认开始定时器
      * \~english Default start timer.
      * \~
@@ -53,6 +66,10 @@ public Q_SLOTS:
     virtual int Connect();
     virtual int Disconnect();
 
+    /*!
+     * \~chinese 当剪切板发生改变时调用
+     * \~english Be called whe the clip board change
+     */
     virtual void slotClipBoardChange() = 0;
     
 protected:
@@ -60,7 +77,7 @@ protected:
     virtual int SetViewer(CFrmViewer* pView);
     virtual int SetParamter(void *pPara);
 
-    /**
+    /*!
      * \~chinese 具体的插件实现连接初始化
      * \~english Specific plug-in realizes connection initialization
      * \~
@@ -71,8 +88,14 @@ protected:
      * \see Connect()
      */
     virtual int OnInit() = 0;
+    /*!
+     * \~chinese 清理
+     * \~english Clean
+     * \~
+     * \see Disconnect()
+     */
     virtual int OnClean() = 0;
-    /**
+    /*!
      * \~chinese 插件连接的具体操作处理
      * \~english Specific operation processing of plug-in connection
      * \~
@@ -84,10 +107,15 @@ protected:
     virtual int OnProcess() = 0;
 
 protected Q_SLOTS:
-    ///
-    /// \brief Timing start OnProcess(), it is main process in thread.
-    /// If the CConnect is not main process, must override it.
-    ///
+    /*!
+     * \~chinese 一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。
+     *   如果 CConnect 没有一个非 Qt 事件循环（就是普通的循环处理），必须重载它。
+     *   参见 CConnectTigerVnc::slotTimeOut()
+     * \~english a non-Qt event loop (that is, normal loop processing)，
+     *   It call OnProcess(), and start timer.
+     *   If CConnect don not have a non-Qt event loop, must override it.
+     *   see CConnectTigerVnc::slotTimeOut()
+     */
     virtual void slotTimeOut();
     
 Q_SIGNALS:

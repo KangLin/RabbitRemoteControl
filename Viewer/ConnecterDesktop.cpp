@@ -55,6 +55,7 @@ int CConnecterDesktop::DisConnect()
     if(m_pThread)
     {
         m_pThread->quit();
+        //Don't delete m_pThread, See CConnecterDesktop::Connect()
         m_pThread = nullptr;
     }
     return nRet;

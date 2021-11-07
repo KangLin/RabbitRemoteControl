@@ -13,6 +13,11 @@ CPluginThread::~CPluginThread()
     LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::~CConnecterThread()");
 }
 
+/*!
+ * \brief One thread handles multiple CConnecter.
+ *        Register sigConnect and sigDisconnect, then enter event loop.
+ *        
+ */
 void CPluginThread::run()
 {
     LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::run()");

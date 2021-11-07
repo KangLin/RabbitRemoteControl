@@ -17,7 +17,7 @@
 class CPluginViewer;
 class CConnect;
 
-/** 
+/*!
  * \~chinese
  * \brief 描述连接应用接口。
  * \note 此类是用户接使用接口，由插件实现
@@ -42,9 +42,12 @@ class VIEWER_EXPORT CConnecter : public QObject
     Q_OBJECT
     
 public:
-    /**
-     * \~chinese \param parent: 此指针必须是相应的 CPluginViewer 派生类的实例指针
-     * \~english \param parent: The parent pointer must be specified as the corresponding CPluginViewer derived class
+    /*!
+     * \~chinese
+     * \param parent: 此指针必须是相应的 CPluginViewer 派生类的实例指针
+     * \~english
+     * \param parent: The parent pointer must be specified as
+     *        the corresponding CPluginViewer derived class
      */
     explicit CConnecter(CPluginViewer *parent);
     virtual ~CConnecter();
@@ -56,7 +59,7 @@ public:
     virtual qint16 Version() = 0;
     virtual const QIcon Icon() const;
     
-    /**
+    /*!
      * \~chinese
      * \brief 当前连接名。例如：服务名或 IP:端口
      * \return 返回服务名
@@ -66,7 +69,7 @@ public:
      * \return Current connect server name.
      */
     virtual QString ServerName();
-    /**
+    /*!
      * \~chinese
      * \brief 得到显示视图
      * \return CFrmViewer*: 视图指针。它的所有者是本类的实例
@@ -76,7 +79,7 @@ public:
      * \return CFrmViewer*: the ownership is a instance of this class
      */
     virtual QWidget* GetViewer() = 0;
-    /**
+    /*!
      * \~chinese
      * \brief 打开设置对话框
      * \param parent
@@ -97,12 +100,12 @@ public:
 
     const CPluginViewer* GetPluginFactory() const;
     
-    /**
+    /*!
      * \~chinese \brief 从文件中加载参数
      * \~english \brief Load parameters from file
      */
     virtual int Load(QDataStream& d) = 0;
-    /**
+    /*!
      * \~chinese \brief 保存参数到文件中
      * \~english Save parameters to file
      */
@@ -121,7 +124,7 @@ public Q_SLOTS:
      *       When plugin is connected, it emit sigConnected()
      */
     virtual int Connect() = 0;
-    /**
+    /*!
      * \~chinese
      * \brief 关闭连接
      * \note 由用户调用，插件不能直接调用此函数。
@@ -151,7 +154,7 @@ Q_SIGNALS:
     void sigInformation(const QString& szInfo);
     
 protected:
-    /**
+    /*!
      * \~chinese
      * \brief 得到设置对话框
      * \param parent: 返回窗口的父窗口

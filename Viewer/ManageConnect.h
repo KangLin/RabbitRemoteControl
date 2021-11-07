@@ -5,10 +5,10 @@
 #include "Connect.h"
 
 /**
- * \~chinese 管理连接。此类仅用于 CConnecterThread
- * \~english Manage connects. only by used CConnecterThread
+ * \~chinese 管理连接。此类仅用于 CPluginThread
+ * \~english Manage CConnecter. only by used CPluginThread
  * \~
- * \see CConnecterThread
+ * \see CPluginThread CConnecter
  */ 
 class CManageConnect : public QObject
 {

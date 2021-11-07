@@ -281,6 +281,9 @@ int CConnectTigerVnc::OnProcess()
     return 0;
 }
 
+/*!
+ * \brief a non-Qt event loop (that is, normal loop processing)
+ */
 void CConnectTigerVnc::slotTimeOut()
 {
     return;
