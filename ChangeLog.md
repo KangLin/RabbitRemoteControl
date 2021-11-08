@@ -41,6 +41,7 @@
 + Add terminal
 + Add telnet
 + Add SSH
++ RDP
 
 ### v0.0.1
 + Gui

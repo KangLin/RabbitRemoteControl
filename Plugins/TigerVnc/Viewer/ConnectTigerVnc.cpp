@@ -153,7 +153,11 @@ void CConnectTigerVnc::slotSignalConnected()
                    m_pPara->nSignalPort,
                    m_pPara->szSignalUser.toStdString().c_str());
     auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
-    if(!channel) return;
+    if(!channel)
+    {
+        LOG_MODEL_ERROR("CConnectTigerVnc", "new CDataChannelIce fail");
+        return;
+    }
     m_DataChannel = channel;
     SetChannelConnect(channel);
     
@@ -282,7 +286,8 @@ int CConnectTigerVnc::OnProcess()
 }
 
 /*!
- * \brief a non-Qt event loop (that is, normal loop processing)
+ * \brief a non-Qt event loop (that is, normal loop processing).
+ * There are not use non-Qt event loop. only use Qt event loop.
  */
 void CConnectTigerVnc::slotTimeOut()
 {

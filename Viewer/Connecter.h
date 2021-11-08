@@ -86,7 +86,7 @@ public:
      * \return DialogCode
      *   \li QDialog::Accepted: 接收
      *   \li QDialog::Rejected: 拒绝
-     *    \li -1: 错误
+     *   \li -1: 错误
      *    
      * \~english
      * \brief Open settings dialog

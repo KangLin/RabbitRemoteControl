@@ -29,7 +29,7 @@ private slots:
     void on_cbJPEG_stateChanged(int arg1);
     
     void on_pbShow_clicked();
-    
+        
     void on_gpIce_clicked(bool checked);
     
 private:

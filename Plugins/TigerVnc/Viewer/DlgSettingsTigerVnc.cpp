@@ -4,6 +4,11 @@
 #include "ui_DlgSettingsTigerVnc.h"
 #include "rfb/encodings.h"
 #include <QDebug>
+#include <QMessageBox>
+
+#ifdef HAVE_QXMPP
+    #include "QXmppUtils.h"
+#endif
 
 CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CConnectTigerVnc::strPara *pPara, QWidget *parent) :
     QDialog(parent),
@@ -26,6 +31,16 @@ CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()
     delete ui;
 }
 
+#ifdef HAVE_QXMPP
+QString jidToDomain(const QString &jid)
+{
+    auto v = QXmppUtils::jidToBareJid(jid).split("@");
+    if(v.size() < 2)
+        return QString();
+    return v.last();
+}
+#endif
+
 void CDlgSettingsTigerVnc::on_pushButton_clicked()
 {
     if(!m_pPara)
@@ -35,11 +50,37 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
     if(ui->gpIce->isChecked())
     {
         m_pPara->bIce = true;
-        m_pPara->szSignalServer = ui->leServer->text();
-        m_pPara->nSignalPort = ui->spPort->value();
+        m_pPara->szSignalServer = ui->leIceSignalServer->text();
+        m_pPara->nSignalPort = ui->spSignalPort->value();
         m_pPara->szSignalUser = ui->leSignalUser->text();
         m_pPara->szSignalPassword = ui->leSignalPassword->text();
         m_pPara->szPeerUser = ui->lePeerUser->text();
+#ifdef HAVE_QXMPP
+        if(ui->leDomain->text().isEmpty()
+                && jidToDomain(m_pPara->szSignalUser).isEmpty())
+        {
+            QMessageBox::critical(this, tr("Error"), tr("Please set domain"));
+            return;
+        }
+        if(jidToDomain(m_pPara->szSignalUser).isEmpty()
+                && !ui->leDomain->text().isEmpty())
+        {
+            m_pPara->szSignalUser += "@" + ui->leDomain->text();
+        }
+        if(QXmppUtils::jidToResource(m_pPara->szSignalUser).isEmpty())
+        {
+            m_pPara->szSignalUser += "/" + QXmppUtils::jidToUser(m_pPara->szSignalUser);
+        }
+        if(jidToDomain(m_pPara->szPeerUser).isEmpty()
+                && !ui->leDomain->text().isEmpty())
+        {
+            m_pPara->szPeerUser += "@" + ui->leDomain->text();
+        }
+        if(QXmppUtils::jidToResource(m_pPara->szPeerUser).isEmpty())
+        {
+            m_pPara->szPeerUser += "/" + QXmppUtils::jidToUser(m_pPara->szPeerUser);
+        }
+#endif
         m_pPara->szStunServer = ui->leStunServer->text();
         m_pPara->nStunPort = ui->spStunPort->value();
         m_pPara->szTurnServer = ui->leTurnServer->text();
@@ -48,10 +89,10 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         m_pPara->szTurnPassword = ui->leTurnPassword->text();
     } else {
         m_pPara->bIce = false;
-        m_pPara->szHost = ui->leServer->text();
-        m_pPara->nPort = ui->spPort->value();
     }
     
+    m_pPara->szHost = ui->leServer->text();
+    m_pPara->nPort = ui->spPort->value();
     m_pPara->szName = ui->leName->text();
     m_pPara->szUser = ui->leUserName->text();
     m_pPara->szPassword = ui->lePassword->text();
@@ -151,16 +192,19 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     if(m_pPara->bIce)
     {
         ui->gpIce->setChecked(true);
-        ui->lbServer->setText(tr("Signal server:"));
-        ui->leServer->setText(m_pPara->szSignalServer);
-        ui->spPort->setValue(m_pPara->nSignalPort);
+        ui->leServer->setEnabled(false);
+        ui->spPort->setEnabled(false);
     } else {
         ui->gpIce->setChecked(false);
-        ui->lbServer->setText(tr("Server:"));
-        ui->leServer->setText(m_pPara->szHost);
-        ui->spPort->setValue(m_pPara->nPort);
     }
+    ui->leServer->setText(m_pPara->szHost);
+    ui->spPort->setValue(m_pPara->nPort);
+    ui->leIceSignalServer->setText(m_pPara->szSignalServer);
+    ui->spSignalPort->setValue(m_pPara->nSignalPort);
     ui->leSignalUser->setText(m_pPara->szSignalUser);
+#ifdef HAVE_QXMPP
+    ui->leDomain->setText(jidToDomain(m_pPara->szSignalUser));
+#endif
     ui->leSignalPassword->setText(m_pPara->szSignalPassword);
     ui->lePeerUser->setText(m_pPara->szPeerUser);
     ui->leStunServer->setText(m_pPara->szStunServer);
@@ -279,17 +323,6 @@ void CDlgSettingsTigerVnc::on_pbShow_clicked()
 
 void CDlgSettingsTigerVnc::on_gpIce_clicked(bool checked)
 {
-    if(checked)
-    {
-        ui->lbServer->setText(tr("Signal server:"));
-        ui->leServer->setText(m_pPara->szSignalServer);
-        ui->spPort->setValue(m_pPara->nSignalPort);
-    }
-    else
-    {
-        ui->lbServer->setText(tr("Server:"));
-        ui->leServer->setText(m_pPara->szHost);
-        ui->spPort->setValue(m_pPara->nPort);
-    }
+    ui->leServer->setEnabled(!checked);
+    ui->spPort->setEnabled(!checked);
 }
-

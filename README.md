@@ -156,10 +156,12 @@ Release: [https://github.com/KangLin/RabbitRemoteControl/releases](https://githu
       - [x] Remote desktop
       - [x] Terminal（Linux implemented，but it is has a smae BUG）
     - [x] Specific protocol support, see: [Supported protocol](#Supported-protocols)
+    - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
   - [x] Server
     - [x] Server framework
     - [x] Specific protocol support, see: [Supported protocol](#Supported-protocols)
-- [ ] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
+    - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
+- [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
 At present, the development of common remote control protocol client has been completed,
 and it has preliminary practical functions.

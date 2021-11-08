@@ -8,6 +8,10 @@
 
 #include "rtc/rtc.hpp"
 
+/*!
+ * \brief The ICE signal
+ * \details The signal is base on [libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+ */
 class CIceSignal : public QObject
 {
     Q_OBJECT
