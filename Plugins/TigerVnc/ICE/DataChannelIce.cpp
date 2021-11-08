@@ -6,8 +6,6 @@
 #include <QDebug>
 #include <QThread>
 
-#define DEFAULT_MAX_MESSAGE_SIZE 0xFFFF
-
 CDataChannelIce::CDataChannelIce(QObject* parent) : CChannel(parent)
 {}
 
@@ -293,6 +291,7 @@ void CDataChannelIce::close()
     return;
 }
 
+#define DEFAULT_MAX_MESSAGE_SIZE 0x7FFF
 qint64 CDataChannelIce::writeData(const char *data, qint64 len)
 {
     if(!m_dataChannel)
@@ -319,18 +318,27 @@ qint64 CDataChannelIce::writeData(const char *data, qint64 len)
     bool bSend = false;
 
     if(0 == len)
+    {
         LOG_MODEL_WARNING("CDataChannelIce", "WriteData len is zero");
-
-    quint64 n = len;
+        return 0;
+    }
+    size_t n = len;
     while(n > DEFAULT_MAX_MESSAGE_SIZE)
     {
         bSend = m_dataChannel->send((const std::byte*)data, DEFAULT_MAX_MESSAGE_SIZE);
-        if(!bSend) return -1;
+        if(!bSend)
+        {
+            LOG_MODEL_ERROR("CDataChannelIce", "Send fail. len:%d;n:%d", len, n);
+            return -1;
+        }
         n -= DEFAULT_MAX_MESSAGE_SIZE;
     }
-    bSend = m_dataChannel->send((const std::byte*)data, n);
-    if(bSend) return len;
-
+    if(n > 0)
+    {
+        bSend = m_dataChannel->send((const std::byte*)data, n);
+        if(bSend) return len;
+    }
+    LOG_MODEL_ERROR("CDataChannelIce", "Send fail. Len:%d; n:0X%X", len, n);
     return -1;
 }
 
