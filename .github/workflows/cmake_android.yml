@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        BUILD_TYPE: [Release, Debug]
+        BUILD_TYPE: [Release] #, Debug]
         ANDROID_ABI: [armeabi-v7a, x86]
         ANDROID_PLATFORM: [android-28]
         os: [Ubuntu-18.04]

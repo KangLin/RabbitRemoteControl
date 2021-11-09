@@ -41,7 +41,7 @@ jobs:
         # architectures to pass to dpkg --add-architecture
         #architectures: # optional
         # apt packages to install
-        packages: cmake build-essential liblog4cxx-dev freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev qtwebengine5-dev
+        packages: cmake build-essential freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev qtwebengine5-dev
 
     - name: Cache installed
       uses: actions/cache@v2
@@ -54,52 +54,81 @@ jobs:
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        git clone https://github.com/KangLin/tigervnc.git 
-        cd ${{env.SOURCE_DIR}}/tigervnc
-        cmake -E make_directory build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-            -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-            -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
+            git clone https://github.com/KangLin/tigervnc.git 
+            cd ${{env.SOURCE_DIR}}/tigervnc
+            cmake -E make_directory build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        fi
     
     - name: build libdatachannel
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
-        cd libdatachannel
-        git submodule update --init --recursive
-        cmake -E make_directory build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/libdatachannel ]; then
+            git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
+            cd libdatachannel
+            git submodule update --init --recursive
+            cmake -E make_directory build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        fi
+
+    - name: build log4qt
+      working-directory: ${{env.SOURCE_DIR}}
+      env:
+        QT_ROOT: /usr/lib/`uname -m`-linux-gnu/qt5
+      run: |
+        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt ]; then
+            git clone -b v1.5.1 "https://github.com/MEONMedical/Log4Qt.git"
+            cd Log4Qt
+            cmake -E make_directory build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
+                -DQt5Core_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Core \
+                -DQt5Network_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Network \
+                -DQt5Concurrent_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Concurrent \
+                -DQt5Test_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Test \
+                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
+                -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        fi
     
     - name: build QtService
       working-directory: ${{env.SOURCE_DIR}}
       env:
         QT_ROOT: /usr/lib/`uname -m`-linux-gnu/qt5
       run: |
-        git clone https://github.com/KangLin/qt-solutions.git
-        cd qt-solutions/qtservice
-        git submodule update --init --recursive
-        cmake -E make_directory build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-            -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-            -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 \
-            -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5
-        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/QtService ]; then
+            git clone https://github.com/KangLin/qt-solutions.git
+            cd qt-solutions/qtservice
+            git submodule update --init --recursive
+            cmake -E make_directory build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 \
+                -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5
+            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+        fi
         
     - name: build_debpackage.sh
       working-directory: ${{github.workspace}}
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
-        tigervnc_DIR: ${{ env.INSTALL_DIR }}/lib/cmake
-        LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/share/cmake/libdatachannel
-        QtService_DIR: ${{ env.INSTALL_DIR }}/share/cmake/QtService
+        tigervnc_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/tigervnc
+        LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
+        QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
+        Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
       run: |
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol* .

@@ -55,7 +55,7 @@ public:
     /// \~english Plugin protol
     virtual const QString Protol() const = 0;
     /// \~chinese 插件名，这个名一定要与翻译文件(.ts)名相同
-    /// \~english Plugin name, The name is same as translation file name
+    /// \~english Plugin name, The name is same as translation file(.ts) name
     virtual const QString Name() const = 0;
     /// \~english Plugin description
     virtual const QString Description() const = 0;

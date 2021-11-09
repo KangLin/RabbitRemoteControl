@@ -426,7 +426,7 @@ void CConnection::writeDataUpdate(QImage img)
     m_Updates.getUpdateInfo(&ui, req);
 
     QSharedPointer<rfb::PixelBuffer> buffer = GetBufferFromQImage(img);
-    m_EncodeManager.writeUpdate(ui, buffer.get(), cursor);
+    m_EncodeManager.writeUpdate(ui, buffer.data(), cursor);
 
 }
 
