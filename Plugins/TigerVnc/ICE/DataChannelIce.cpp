@@ -57,13 +57,13 @@ int CDataChannelIce::SetSignal(QSharedPointer<CIceSignal> signal)
     m_Signal = signal;
     if(m_Signal)
     {
-        check = connect(m_Signal.get(), SIGNAL(sigConnected()),
+        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
                         this, SLOT(slotSignalConnected()));
         Q_ASSERT(check);
-        check = connect(m_Signal.get(), SIGNAL(sigDisconnected()),
+        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
                         this, SLOT(slotSignalDisconnected()));
         Q_ASSERT(check);
-        check = connect(m_Signal.get(),
+        check = connect(m_Signal.data(),
                         SIGNAL(sigDescription(const QString&,
                                               const QString&,
                                               const QString&,
@@ -76,7 +76,7 @@ int CDataChannelIce::SetSignal(QSharedPointer<CIceSignal> signal)
                                                            const QString&,
                                                            const QString&)));
         Q_ASSERT(check);
-        check = connect(m_Signal.get(),
+        check = connect(m_Signal.data(),
                         SIGNAL(sigCandiate(const QString&,
                                            const QString&,
                                            const QString&,
@@ -89,7 +89,7 @@ int CDataChannelIce::SetSignal(QSharedPointer<CIceSignal> signal)
                                                         const QString&,
                                                         const QString&)));
         Q_ASSERT(check);
-        check = connect(m_Signal.get(), SIGNAL(sigError(int, const QString&)),
+        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
                         this, SLOT(slotSignalError(int, const QString&)));
         Q_ASSERT(check);
     }
