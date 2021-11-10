@@ -59,11 +59,15 @@ if(_LibvncIncludeDir)
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_libvncLibs}
         PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
+        INSTALL_DIR plugins/Viewer
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
         )
 else()
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_libvncLibs}
+        INSTALL_DIR plugins/Viewer
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
         )
 endif()

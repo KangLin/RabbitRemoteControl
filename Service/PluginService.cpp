@@ -23,7 +23,7 @@ CPluginService::~CPluginService()
 
 int CPluginService::InitTranslator()
 {
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
+    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirPluginsTranslation("plugins/Service")
             + "/" + Name() + "_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
     {

@@ -54,7 +54,8 @@ int CManageConnecter::LoadPlugins()
         }
     }
 
-    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
+    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins()
+            + QDir::separator() + "Viewer";
     QStringList filters;
 #if defined (Q_OS_WINDOWS)
         filters << "*PluginViewer*.dll";
@@ -116,6 +117,12 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
             QString szMsg;
             szMsg = "load plugin error: " + loader.errorString();
             LOG_MODEL_ERROR("ManageConnecter", szMsg.toStdString().c_str());
+        }
+        
+        foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+            QDir pluginDir = dir;
+            if(pluginDir.cd(fileName))
+                FindPlugins(pluginDir, filters);
         }
     }
     

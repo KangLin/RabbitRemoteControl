@@ -81,7 +81,8 @@ int CServiceManager::LoadPlugins()
         }
     }
 
-    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
+    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins()
+            + QDir::separator() + "Service";
     QStringList filters;
 #if defined (Q_OS_WINDOWS)
         filters << "*PluginService*.dll";
@@ -130,6 +131,7 @@ int CServiceManager::FindPlugins(QDir dir, QStringList filters)
             if(p)
             {
                 m_Plugins.insert(p->Id(), p);
+                p->InitTranslator();
 //                LOG_MODEL_DEBUG("CServiceManager", "Load plugin:%s;%s",
 //                                p->Id().toStdString().c_str(),
 //                                p->Description().toStdString().c_str());
@@ -138,6 +140,12 @@ int CServiceManager::FindPlugins(QDir dir, QStringList filters)
             QString szMsg;
             szMsg = "load plugin error: " + loader.errorString();
             LOG_MODEL_ERROR("ManageConnecter", szMsg.toStdString().c_str());
+        }
+        
+        foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+            QDir pluginDir = dir;
+            if(pluginDir.cd(fileName))
+                FindPlugins(pluginDir, filters);
         }
     }
 

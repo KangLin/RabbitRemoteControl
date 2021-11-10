@@ -19,7 +19,7 @@ CPluginViewer::~CPluginViewer()
 
 int CPluginViewer::InitTranslator()
 {
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
+    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirPluginsTranslation("plugins/Viewer")
             + QDir::separator() + Name() + "_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
     {

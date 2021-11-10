@@ -52,11 +52,15 @@ if(_LibvncIncludeDir)
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${SRC_LIBS}
         PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
+        INSTALL_DIR plugins/Service
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Service
         )
 else()
     ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${SRC_LIBS}
+        INSTALL_DIR plugins/Service
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Service
         )
 endif()

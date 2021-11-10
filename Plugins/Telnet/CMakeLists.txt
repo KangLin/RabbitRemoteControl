@@ -57,11 +57,15 @@ if(_libtelnet_include_dir)
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
         PRIVATE_INCLUDE_DIRS ${_libtelnet_include_dir}
+        INSTALL_DIR plugins/Viewer
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
         )
 else()
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
+        INSTALL_DIR plugins/Viewer
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
         )
 endif()

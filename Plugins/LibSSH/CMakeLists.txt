@@ -54,11 +54,15 @@ if(libssh_INCLUDE_DIR)
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${libssh_LIB}
         PRIVATE_INCLUDE_DIRS ${libssh_INCLUDE_DIR}
+        INSTALL_DIR plugins/Viewer
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
         )
 else()
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${libssh_LIB}
+        INSTALL_DIR plugins/Viewer
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
         )
 endif()

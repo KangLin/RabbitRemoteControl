@@ -24,4 +24,6 @@ ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${lib_terminal}
+    INSTALL_DIR plugins/Viewer
+    OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
     )
