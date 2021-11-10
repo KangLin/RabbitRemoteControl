@@ -47,6 +47,9 @@ if(LibDataChannel_FOUND)
     list(APPEND HEADER_FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/DataChannelIce.h
         ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignal.h)
+    if(UNIX)
+        install_targets(TARGETS LibDataChannel::datachannel)
+    endif()
     
     find_package(QXmpp)
     if(QXmpp_FOUND)
