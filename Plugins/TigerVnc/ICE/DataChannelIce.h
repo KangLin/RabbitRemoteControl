@@ -24,7 +24,7 @@ public:
     //! @note These properties must be set before calling Open
     int SetConfigure(const rtc::Configuration& config);
     
-    //! Open channel
+    //! Open channel. Used for active callers
     //! @param bData: true: open data channel
     //!              false: don't open data channel
     //! @note Must call SetConfigure set the service properties before calling it
@@ -32,7 +32,7 @@ public:
     virtual bool open(const QString& user,
                       const QString& peer,
                       bool bData);
-    //! Open channel
+    //! Open channel. For passive receivers
     //! @note Must call SetConfigure set the service properties before calling it
     //! @note Called by service
     virtual bool open(const QString& fromUser,
