@@ -21,6 +21,11 @@ const QString CPluginTerminal::Protol() const
 
 const QString CPluginTerminal::Name() const
 {
+    return "Terminal";
+}
+
+const QString CPluginTerminal::DisplayName() const
+{
     return tr("Terminal");
 }
 

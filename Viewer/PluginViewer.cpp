@@ -36,6 +36,11 @@ const QString CPluginViewer::Id() const
     return Protol() + ":" + Name();
 }
 
+const QString CPluginViewer::DisplayName() const
+{
+    return Name();
+}
+
 const QIcon CPluginViewer::Icon() const
 {
     return QIcon(":/image/Connect");

@@ -95,7 +95,7 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
 //        qputenv("PATH", szPath.toLatin1());
 //#endif
     }
-        
+
     foreach (fileName, files) {
         QString szPlugins = dir.absoluteFilePath(fileName);
         QPluginLoader loader(szPlugins);

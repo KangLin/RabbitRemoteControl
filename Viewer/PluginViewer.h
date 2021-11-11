@@ -54,9 +54,13 @@ public:
     virtual const QString Id() const;
     /// \~english Plugin protol
     virtual const QString Protol() const = 0;
-    /// \~chinese 插件名，这个名一定要与翻译文件(.ts)名相同
-    /// \~english Plugin name, The name is same as translation file(.ts) name
+    /// \~chinese 插件名，这个名一定要与翻译文件(${PROJECT_NAME}_*.ts)名相同，
+    ///           一般与工程名(${PROJECT_NAME})相同。
+    /// \~english Plugin name, The name is same as translation file(.ts) name.
+    ///           It is same as ${PROJECT_NAME}
     virtual const QString Name() const = 0;
+    /// The plugin display name
+    virtual const QString DisplayName() const;
     /// \~english Plugin description
     virtual const QString Description() const = 0;
     virtual const QIcon Icon() const;
