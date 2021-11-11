@@ -322,7 +322,7 @@ qint64 CDataChannelIce::writeData(const char *data, qint64 len)
         LOG_MODEL_WARNING("CDataChannelIce", "WriteData len is zero");
         return 0;
     }
-    size_t n = len;
+    qint64 n = len;
     while(n > DEFAULT_MAX_MESSAGE_SIZE)
     {
         bSend = m_dataChannel->send((const std::byte*)data, DEFAULT_MAX_MESSAGE_SIZE);
