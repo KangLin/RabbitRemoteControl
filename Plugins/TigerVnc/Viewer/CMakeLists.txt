@@ -56,6 +56,7 @@ if(LibDataChannel_FOUND)
         list(APPEND TIGERVNC_DEFINITIONS HAVE_QXMPP)
         find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network Xml)
         list(APPEND SRC_LIBS QXmpp::QXmpp)
+        install_targets(TARGETS QXmpp::QXmpp)
         list(APPEND SOURCE_FILES
             ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQXmppIq.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQXmppManager.cpp
