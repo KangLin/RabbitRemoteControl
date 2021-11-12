@@ -12,9 +12,9 @@
 
 -----------------------------------------------------------------------
 
-- 项目位置: https://github.com/KangLin/RabbitRemoteControl
-- 项目主页:
-  + 主库：https://kanglin.github.io/RabbitRemoteControl/
+- 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/)
+- 项目位置:
+  + 主库：https://github.com/KangLin/RabbitRemoteControl
   + 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
 - 语言
   - [:us: English](README.md)
@@ -84,7 +84,8 @@
 
 
 ##### 网络协议
-- [ ] 自定义的 P2P 协议
+
+- [x] 自定义的 P2P 协议
 - [x] 代理
   + [x] socks
   + [ ] http
@@ -92,12 +93,12 @@
 
 |             | 代理              | P2P              |
 |-------------|------------------|------------------|
-|TigerVnc     |:heavy_check_mark:|                  |
+|TigerVnc     |:heavy_check_mark:|:heavy_check_mark:|
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
-
 ### 捐赠
+
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
 
 [![捐赠](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠")](https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠") 

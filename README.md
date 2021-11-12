@@ -12,7 +12,7 @@ Author: Kang Lin <kl222@126.com>
 
 -----------------------------------------------------------------------
 
-- Project home: https://kanglin.github.io/RabbitRemoteControl/
+- Project home: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/)
 - Project position:
   - Main repository: https://github.com/KangLin/RabbitRemoteControl
   - Mirror repository: https://gitlab.com/kl222/RabbitRemoteControl
@@ -82,11 +82,10 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |SSH     |                  |:heavy_check_mark:|                  |                  |                  |                  |
 |Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
 |TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
-|P2P     |                  |                  |                  |                  |                  |                  |
 |Scrcpy  |                  |                  |                  |                  |                  |                  |
 
 ##### Network protocols
-- [ ] Custom p2p protocol
+- [x] Custom p2p protocol
 - [x] Proxy
   + [x] socks
   + [ ] http
@@ -94,7 +93,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 |             | Proxy            | P2P              |
 |-------------|------------------|------------------|
-|TigerVnc     |:heavy_check_mark:|                  |
+|TigerVnc     |:heavy_check_mark:|:heavy_check_mark:|
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
