@@ -1,10 +1,15 @@
+# https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
+
 [Desktop Entry]
 Type=Application
 Icon=RabbitRemoteControl
+TryExec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
 Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
+Path=/opt/RabbitRemoteControl
 Terminal=false
 StartupNotify=true
-Categories=Application;Development;Tools
+Categories=Network;Tools;Utility;P2P
+MimeType=application/rrc
 
 Name=Rabbit Remote Control
 GenericName=Rabbit Remote Control
