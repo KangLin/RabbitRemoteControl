@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        BUILD_TYPE: [Release] #, Debug]
+        BUILD_TYPE: [Release, MinSizeRel] #, Debug]
         ANDROID_ABI: [armeabi-v7a, x86]
         ANDROID_PLATFORM: [android-28]
         os: [Ubuntu-18.04]
@@ -129,7 +129,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
 
     - name: build FreeRDP
@@ -150,7 +150,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         fi
         
     - name: build tigervnc
@@ -170,7 +170,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
 
     - name: build log4qt
@@ -196,7 +196,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         fi
         
     - name: build qxmpp
@@ -224,7 +224,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         fi
 
     - name: git clone RabbitCommon

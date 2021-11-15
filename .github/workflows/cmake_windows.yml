@@ -99,7 +99,7 @@ jobs:
 #            -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} ^
 #            -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+#        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
 
 #    - name: Build FreeRDP
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -114,7 +114,7 @@ jobs:
 #                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
 #                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
 #        )
 
     - name: Build libvncserver
@@ -132,7 +132,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         )
 
     - name: build tigervnc
@@ -148,7 +148,7 @@ jobs:
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         )
     
     - name: git clone RabbitCommon
@@ -211,7 +211,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         )
 
     - name: build qxmpp
@@ -228,7 +228,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         )
     
     - name: build QtService
@@ -244,7 +244,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         )
         
     - name: build RabbitRemoteControl

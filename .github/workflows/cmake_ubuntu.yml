@@ -96,7 +96,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                 -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         fi
     
     - name: build QtService
@@ -115,7 +115,7 @@ jobs:
                 -DQT_DIR=$QT_ROOT/lib/cmake/Qt5 \
                 -DQt5_DIR=$QT_ROOT/lib/cmake/Qt5
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
         
     - name: build_debpackage.sh

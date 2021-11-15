@@ -22,7 +22,9 @@ case "$1" in
     configure)
         mkdir -p $INSTALL_ROOT/log
         chmod 777 $INSTALL_ROOT/log
-        ln -s $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
+        if [ ! -d $INSTALL_ROOT/bin/log ]; then
+            ln -s $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
+        fi
         if [ ! -f /usr/share/applications/RabbitRemoteControl.desktop ]; then
             ln -s $INSTALL_ROOT/share/applications/RabbitRemoteControl.desktop /usr/share/applications/RabbitRemoteControl.desktop
         fi
@@ -43,7 +45,7 @@ case "$1" in
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
-        rm -fr $INSTALL_ROOT/log
+        rm -fr $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         rm -fr /usr/share/applications/RabbitRemoteControl.desktop
         rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
         rm -fr /usr/share/pixmaps/RabbitRemoteControl.png
