@@ -1,4 +1,4 @@
-name: CMake mingw
+name: mingw 
 
 on: [push]
 

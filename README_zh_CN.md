@@ -39,9 +39,9 @@
 
 |     | master 分支 | develop 分支 |
 |:---:|:-----------:|:------------:|
-|Linux|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Windows|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_windows.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_windows.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Android|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Linux|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Windows|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Android|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 
 -----------------------------------------------------------------------
 ### 简介

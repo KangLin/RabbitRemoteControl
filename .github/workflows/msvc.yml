@@ -1,4 +1,4 @@
-name: CMake windows
+name: msvc
 
 on: [push]
 

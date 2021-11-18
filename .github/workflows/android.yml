@@ -1,4 +1,4 @@
-name: CMake android
+name: android
 
 on: [push]
 

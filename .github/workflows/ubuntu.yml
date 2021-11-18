@@ -1,4 +1,4 @@
-name: CMake ubuntu
+name: ubuntu
 
 on: [push]
 

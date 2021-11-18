@@ -40,9 +40,9 @@ Author: Kang Lin <kl222@126.com>
 
 |     | master  | develop  |
 |:---:|:-----------:|:------------:|
-|Linux|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Windows|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_windows.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_windows.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/cmake_android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Linux|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Windows|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 
 
 ### Introduction
