@@ -138,9 +138,19 @@ int CConnectFreeRdp::OnClean()
     return nRet;
 }
 
+/*!
+ * \~chinese 插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。
+ * \~english Specific operation processing of plug-in connection.
+ *           Because of it is a non-Qt event loop, so wait in here.
+ * \~
+ * \return 
+ *       \li = 0: continue
+ *       \li < 0: error or stop
+ * \see slotTimeOut()
+ */
 int CConnectFreeRdp::OnProcess()
 {
-    int nRet = 500;
+    int nRet = 0;
     HANDLE handles[64];
     rdpContext* pContext = (rdpContext*)m_pContext;
     if(freerdp_shall_disconnect(pContext->instance))
@@ -160,7 +170,7 @@ int CConnectFreeRdp::OnProcess()
         
         handles[nCount++] = pContext->abortEvent;
                 
-        DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 0);
+        DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
         if (waitStatus == WAIT_FAILED)
             return -3;
         

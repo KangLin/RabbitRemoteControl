@@ -280,6 +280,11 @@ int CConnectTigerVnc::OnClean()
     return 0;
 }
 
+/*!
+ * \brief a non-Qt event loop (that is, normal loop processing).
+ * There are not use non-Qt event loop. only use Qt event loop.
+ * It is not used.
+ */
 int CConnectTigerVnc::OnProcess()
 {
     return 0;

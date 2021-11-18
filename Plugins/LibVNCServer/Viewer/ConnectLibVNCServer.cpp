@@ -208,11 +208,21 @@ int CConnectLibVNCServer::OnClean()
     return 0;
 }
 
+/*!
+ * \~chinese 插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。
+ * \~english Specific operation processing of plug-in connection.
+ *           Because of it is a non-Qt event loop, so wait in here.
+ * \~
+ * \return 
+ *       \li = 0: continue
+ *       \li < 0: error or stop
+ * \see slotTimeOut()
+ */
 int CConnectLibVNCServer::OnProcess()
 {
     int nRet = 0;
     LOG_MODEL_DEBUG("CConnectLibVNCServer", "CConnectLibVNCServer::Process()");
-    nRet = WaitForMessage(m_pClient, 0);
+    nRet = WaitForMessage(m_pClient, 500);
     if (nRet < 0)
         return nRet;
     
@@ -220,7 +230,7 @@ int CConnectLibVNCServer::OnProcess()
         if(!HandleRFBServerMessage(m_pClient))
             return -1;
     
-    return 500;
+    return 0;
 }
 
 void CConnectLibVNCServer::slotClipBoardChange()
