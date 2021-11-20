@@ -12,17 +12,15 @@ Author: Kang Lin <kl222@126.com>
 
 -----------------------------------------------------------------------
 
-- Project home: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/)
-- Project position:
-  - Main repository: https://github.com/KangLin/RabbitRemoteControl
-  - Mirror repository: https://gitlab.com/kl222/RabbitRemoteControl
+[:cn: 中文](README_zh_CN.md)
 
-- Language
-  - [:cn: 中文](README_zh_CN.md)
-- [Status](#Status)
+-----------------------------------------------------------------------
+
 - [Introduction](#Introduction)
+- [Build status](#Build-status)
 - [Sponsorship and Donations](#Sponsorship-and-Donations)
 - [Contribution](#Contribution)
+- [Road map](#Road-map)
 - [Download](#Download)
 - [Development](#Development)
   + [Build](#Build)
@@ -32,23 +30,23 @@ Author: Kang Lin <kl222@126.com>
 - [License Agreement](#License-Agreement)
 
 -----------------------------------------------------------------------
-### Status
-
-- [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
-  
-#### Github actions
-
-|     | master  | develop  |
-|:---:|:-----------:|:------------:|
-|Linux|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Windows|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-
 
 ### Introduction
 Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
+
+#### Screenshot
+
+|Main window|Recent list menu|Connect|
+|--|--|--|
+|![Main window](docs/Image/Screenslot/MainWindows.png)|![Recent list menu](docs/Image/Screenslot/RecentMenu.png)|![Connect](docs/Image/Screenslot/Connect.png)|
+
+#### Project repository position
+- Project home: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/)
+- Project position:
+  - Main repository: https://github.com/KangLin/RabbitRemoteControl
+  - Mirror repository: https://gitlab.com/kl222/RabbitRemoteControl
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -86,6 +84,9 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 ##### Network protocols
 - [x] Custom p2p protocol
+  + ICE
+  + STUN
+  + TURN
 - [x] Proxy
   + [x] socks
   + [ ] http
@@ -96,6 +97,18 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |TigerVnc     |:heavy_check_mark:|:heavy_check_mark:|
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
+
+### Build status
+
+- [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+  
+#### Github actions
+
+|     | master  | develop  |
+|:---:|:-----------:|:------------:|
+|Linux|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Windows|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 
 ### Sponsorship and Donations
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
@@ -109,13 +122,14 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 - [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
-- [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+- [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): Thank contributors
 
 If you're wondering how could you help, fear not, there are plenty of ways:
 
 Some of them are:
 
 * [Donation](#Donation) - Provide funds and devices for this project :smile:
+  + The project is need ICE servers and signal servers
 * Spread the good word about [RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl) to make it more popular :smile:
 * Have an opinion? Make sure to voice it in the [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions) that need it :wink:
 * Fixing easy [Issues](https://github.com/KangLin/RabbitRemoteControl/issues) or [Issues](https://github.com/KangLin/RabbitRemoteControl/issues) that need help. Make sure to read
@@ -137,17 +151,6 @@ Some of them are:
   - Android
 * Be finished [unsupported protocols](#Supported-protocols)
 
-### Download
-
-Release: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
-
-- Windows: Supported WINDOWS 7 and later version
-  + Install package: [RabbitRemoteControl-Setup-v0.0.8.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/RabbitRemoteControl-Setup-v0.0.8.exe)
-  + No need to install package: [RabbitRemoteControl_v0.0.8.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/RabbitRemoteControl_v0.0.8.zip)
-- Ubuntu:
-  + Ubuntu 20.04: [rabbitremotecontrol_0.0.8_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/rabbitremotecontrol_0.0.8_amd64_Ubuntu-20.04.deb)
-  + Ubuntu 18.04: [rabbitremotecontrol_0.0.8_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/rabbitremotecontrol_0.0.8_amd64_Ubuntu-18.04.deb)
-
 ### Road map
 - [x] Support common existing remote control protocols
   - [x] Client
@@ -162,6 +165,17 @@ Release: [https://github.com/KangLin/RabbitRemoteControl/releases](https://githu
     - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
+|            |       Client     |    Server        |        P2P        |
+|------------|------------------|------------------|------------------|
+|TigerVNC    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|LibVNCServer|:heavy_check_mark:|:heavy_check_mark:|                  |
+|RDP         |:heavy_check_mark:|                  |                  |
+|Spice       |                  |                  |                  |
+|SSH         |:heavy_check_mark:|                  |                  |
+|Terminal    |:heavy_check_mark:|                  |                  |
+|TELNET      |:heavy_check_mark:|                  |                  |
+|Scrcpy      |                  |                  |                  |
+
 At present, the development of common remote control protocol client has been completed,
 and it has preliminary practical functions.
 It is necessary for small partners to try it out, find BUG,
@@ -173,6 +187,17 @@ The next level of work is to solve point-to-point remote control,
 which is also a feature of this project.
 See requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7 
 
+### Download
+
+Release: [https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
+
+- Windows: Supported WINDOWS 7 and later version
+  + Install package: [RabbitRemoteControl-Setup-v0.0.8.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/RabbitRemoteControl-Setup-v0.0.8.exe)
+  + No need to install package: [RabbitRemoteControl_v0.0.8.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/RabbitRemoteControl_v0.0.8.zip)
+- Ubuntu:
+  + Ubuntu 20.04: [rabbitremotecontrol_0.0.8_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/rabbitremotecontrol_0.0.8_amd64_Ubuntu-20.04.deb)
+  + Ubuntu 18.04: [rabbitremotecontrol_0.0.8_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/rabbitremotecontrol_0.0.8_amd64_Ubuntu-18.04.deb)
+
 ### Development
 #### Dependent
 ##### Tools
@@ -181,7 +206,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
   + gcc/g++
   + MSVC
 - [CMake](https://cmake.org/)
-- Automake、Autoconf、Make
+- Automake、 Autoconf、 Make
 - Git
 
 ##### Dependent libraries

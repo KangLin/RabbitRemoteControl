@@ -12,16 +12,15 @@
 
 -----------------------------------------------------------------------
 
-- 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/)
-- 项目位置:
-  + 主库：https://github.com/KangLin/RabbitRemoteControl
-  + 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
-- 语言
-  - [:us: English](README.md)
-- [状态](#状态)
+[:us: English](README.md)
+
+-----------------------------------------------------------------------
+
 - [简介](#简介)
+- [编译状态](#编译状态)
 - [捐赠](#捐赠)
 - [贡献](#贡献)
+- [线路图](#线路图)
 - [下载](#下载)
 - [修改日志](ChangeLog_zh_CN.md)
 - [开发](#开发)
@@ -31,23 +30,23 @@
 - [许可协议](#许可协议)
 
 -----------------------------------------------------------------------
-### 状态
-
-[![编译状态](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)  
-
-#### Github actions
-
-|     | master 分支 | develop 分支 |
-|:---:|:-----------:|:------------:|
-|Linux|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Windows|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Android|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-
------------------------------------------------------------------------
 ### 简介
+
 玉兔远程控制是一个跨平台，支持多协议的远程控制软件。
 
 能让你在**任何地方**使用**任何设备和系统**通过**任意方式**远程管理**任意设备和系统**。
+
+#### 截屏
+
+|主窗口|最近列表窗口|连接窗口|
+|--|--|--|
+|![主窗口](docs/Image/Screenslot/MainWindows.png)|![最近列表窗口](docs/Image/Screenslot/RecentMenu.png)|![连接窗口](docs/Image/Screenslot/Connect.png)|
+
+#### 项目位置
+- 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/)
+- 项目位置:
+  + 主库：https://github.com/KangLin/RabbitRemoteControl
+  + 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
 
 #### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -86,6 +85,9 @@
 ##### 网络协议
 
 - [x] 自定义的 P2P 协议
+  + ICE
+  + STUN
+  + TURN
 - [x] 代理
   + [x] socks
   + [ ] http
@@ -96,6 +98,20 @@
 |TigerVnc     |:heavy_check_mark:|:heavy_check_mark:|
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
+
+
+### 编译状态
+
+[![编译状态](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)  
+
+#### Github actions
+
+|     | master 分支 | develop 分支 |
+|:---:|:-----------:|:------------:|
+|Linux|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Windows|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Android|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+
 
 ### 捐赠
 
@@ -110,11 +126,12 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 - [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
-- [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+- [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): 感谢贡献者
 
 如果您想知道如何提供帮助，不要害怕，有很多方法：
 
 * [捐赠](#捐赠) - 为本项目提供资金与设备支持 :smile:
+  - 本项目需要 TURN 服务器和信令服务器
 * 向你周围的人传播有关[玉兔远程控件](https://github.com/KangLin/RabbitRemoteControl)的好话，使其更受欢迎 :smile:
 * 有意见吗？ 请务必在[讨论区](https://github.com/KangLin/RabbitRemoteControl/discussions)中发声，说明你的需求，帮助我们改进。 :wink:
 * 帮助解决 BUG 与功能[Issues](https://github.com/KangLin/RabbitRemoteControl/issues) 。请确保先阅读过[贡献](#贡献)中的内容。 :wink:
@@ -132,18 +149,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
   - Unix
   - Windows 10 mall
   - Android
-* 完成还未支持的协议
-
-### 下载
-
-发行版本：[https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
-
-- Windows: 支持 WINDOWS 7 及以后版本
-  + 安装包：[RabbitRemoteControl-Setup-v0.0.8.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/RabbitRemoteControl-Setup-v0.0.8.exe)
-  + 绿色版本：[RabbitRemoteControl_v0.0.8.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/RabbitRemoteControl_v0.0.8.zip)
-- Ubuntu:
-  + Ubuntu 20.04: [rabbitremotecontrol_0.0.8_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/rabbitremotecontrol_0.0.8_amd64_Ubuntu-20.04.deb)
-  + Ubuntu 18.04: [rabbitremotecontrol_0.0.8_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/rabbitremotecontrol_0.0.8_amd64_Ubuntu-18.04.deb)
+* 完成还未支持的[协议](支持协议)
 
 ### 线路图
 - [x] 支持常见已有远程控制协议
@@ -159,10 +165,32 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
     - [x] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [x] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
+|            |       客户端      |      服务器端     |        P2P        |
+|------------|------------------|------------------|------------------|
+|TigerVNC    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|LibVNCServer|:heavy_check_mark:|:heavy_check_mark:|                  |
+|RDP         |:heavy_check_mark:|                  |                  |
+|Spice       |                  |                  |                  |
+|SSH         |:heavy_check_mark:|                  |                  |
+|Terminal    |:heavy_check_mark:|                  |                  |
+|TELNET      |:heavy_check_mark:|                  |                  |
+|Scrcpy      |                  |                  |                  |
+
 当前已经完成常见远程控制协议客户端的开发，已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。
 终端类远程控制，因为 qtermwidget 仅支持 LINUX/UNIX ，所以需要让其支持其它平台。
 
 下一级段的工作是解决点对点远程控制，也是本项目的特点。详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+
+### 下载
+
+发行版本：[https://github.com/KangLin/RabbitRemoteControl/releases](https://github.com/KangLin/RabbitRemoteControl/releases)
+
+- Windows: 支持 WINDOWS 7 及以后版本
+  + 安装包：[RabbitRemoteControl-Setup-v0.0.8.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/RabbitRemoteControl-Setup-v0.0.8.exe)
+  + 绿色版本：[RabbitRemoteControl_v0.0.8.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/RabbitRemoteControl_v0.0.8.zip)
+- Ubuntu:
+  + Ubuntu 20.04: [rabbitremotecontrol_0.0.8_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/rabbitremotecontrol_0.0.8_amd64_Ubuntu-20.04.deb)
+  + Ubuntu 18.04: [rabbitremotecontrol_0.0.8_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.8/rabbitremotecontrol_0.0.8_amd64_Ubuntu-18.04.deb)
 
 ### 开发
 #### 依赖
@@ -172,9 +200,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - C/C++ compiler
   + gcc/g++
   + MSVC
-- [cmake](https://cmake.org/)
-- automake、autoconf、make
-- git
+- [CMake](https://cmake.org/)
+- Automake、 Autoconf、 Make
+- Git
 
 ##### 依赖库
 
