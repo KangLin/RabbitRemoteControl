@@ -129,7 +129,7 @@ If you're wondering how could you help, fear not, there are plenty of ways:
 Some of them are:
 
 * [Donation](#Donation) - Provide funds and devices for this project :smile:
-  + The project is need ICE servers and signal servers
+  + The project is need server with public IP
 * Spread the good word about [RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl) to make it more popular :smile:
 * Have an opinion? Make sure to voice it in the [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions) that need it :wink:
 * Fixing easy [Issues](https://github.com/KangLin/RabbitRemoteControl/issues) or [Issues](https://github.com/KangLin/RabbitRemoteControl/issues) that need help. Make sure to read

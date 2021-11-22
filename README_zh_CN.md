@@ -131,7 +131,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 如果您想知道如何提供帮助，不要害怕，有很多方法：
 
 * [捐赠](#捐赠) - 为本项目提供资金与设备支持 :smile:
-  - 本项目需要 TURN 服务器和信令服务器
+  - 本项目需要具有公网 IP 的服务器
 * 向你周围的人传播有关[玉兔远程控件](https://github.com/KangLin/RabbitRemoteControl)的好话，使其更受欢迎 :smile:
 * 有意见吗？ 请务必在[讨论区](https://github.com/KangLin/RabbitRemoteControl/discussions)中发声，说明你的需求，帮助我们改进。 :wink:
 * 帮助解决 BUG 与功能[Issues](https://github.com/KangLin/RabbitRemoteControl/issues) 。请确保先阅读过[贡献](#贡献)中的内容。 :wink:
