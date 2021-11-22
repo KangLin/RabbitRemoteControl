@@ -132,46 +132,46 @@ jobs:
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
 
-    - name: build FreeRDP
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
-            git clone -b 2.0.0-rc4 https://github.com/FreeRDP/FreeRDP.git
-            cd FreeRDP
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
-        fi
+#    - name: build FreeRDP
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
+#            git clone -b 2.0.0-rc4 https://github.com/FreeRDP/FreeRDP.git
+#            cd FreeRDP
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. \
+#                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#        fi
         
-    - name: build tigervnc
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
-            git clone https://github.com/KangLin/tigervnc.git 
-            cd ${{env.SOURCE_DIR}}/tigervnc
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
-                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
-        fi
+#    - name: build tigervnc
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
+#            git clone https://github.com/KangLin/tigervnc.git 
+#            cd ${{env.SOURCE_DIR}}/tigervnc
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. \
+#                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
+#                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+#                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
+#            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+#        fi
 
     - name: build log4qt
       working-directory: ${{env.SOURCE_DIR}}

@@ -85,7 +85,7 @@ jobs:
         appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         #additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
         vcpkgTriplet: '${{matrix.triplet}}'
-        vcpkgArguments: 'zlib lzo openssl libssh log4cxx libpng pixman libjpeg-turbo freerdp libdatachannel'
+        vcpkgArguments: 'zlib lzo openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel'
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
