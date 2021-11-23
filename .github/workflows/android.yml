@@ -234,6 +234,7 @@ jobs:
     - name: build RabbitRemoteControl
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
+        QT_ROOT: ${{env.Qt5_Dir}}
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
@@ -251,14 +252,26 @@ jobs:
             -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
             -DQt5Core_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Core \
             -DQt5Gui_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Gui \
-            -DQt5Test_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Test \
+            -DQt5Widgets_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Widgets \
             -DQt5Xml_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Xml \
+            -DQt5Sql_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Sql \
+            -DQt5Positioning_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Positioning \
             -DQt5Network_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Network \
+            -DQt5Multimedia_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Multimedia \
+            -DQt5LinguistTools_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5LinguistTools \
+            -DQt5Qml_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Qml \
+            -DQt5Quick_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Quick \
+            -DQt5QuickWidgets_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5QuickWidgets \
+            -DQt5AndroidExtras_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5AndroidExtras \
+            -DQt5Concurrent_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Concurrent \
+            -DQt5Test_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Test \
+            -DQt5WebEngineWidgets_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5WebEngineWidgets \
             -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
             -DCMAKE_PREFIX_PATH="${{env.QT_ROOT}}:${{env.INSTALL_DIR}}" \
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
             -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-            -DANDROID_ABI=${{matrix.ANDROID_ABI}}
+            -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+            -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target APK
