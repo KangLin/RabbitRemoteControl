@@ -4,6 +4,7 @@ Author: Kang Lin <kl222@126.com>
 
 -----------------------------------------------------------------------
 
+[![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/stars)
 [![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/forks)
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
@@ -121,6 +122,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 ### Contribution
 
 - [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
+- [![Join the chat at https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): Thank contributors
 

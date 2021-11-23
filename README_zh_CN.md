@@ -4,6 +4,7 @@
 
 -----------------------------------------------------------------------
 
+[![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/stars)
 [![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/forks)
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
@@ -125,6 +126,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 ### 贡献
 
 - [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
+- [![加入聊天 https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 - [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): 感谢贡献者
 

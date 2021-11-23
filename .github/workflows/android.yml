@@ -247,6 +247,7 @@ jobs:
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake \
             -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+            -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
             -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
             -DQt5Core_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Core \
             -DQt5Gui_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Gui \
