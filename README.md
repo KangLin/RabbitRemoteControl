@@ -113,7 +113,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 ### Sponsorship and Donations
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
 
-[![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation") 
+[![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation") [![Join the chat at https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
 If it cannot be displayed, please open:
 https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
