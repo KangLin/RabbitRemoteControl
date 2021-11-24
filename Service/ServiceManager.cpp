@@ -12,7 +12,7 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
     : QtService<QApplication>(argc, argv, name)
 {
     application()->setApplicationName(appName);
-
+    
     LoadPlugins();
 
     QCommandLineParser parser;

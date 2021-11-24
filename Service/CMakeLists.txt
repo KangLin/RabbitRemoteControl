@@ -14,6 +14,7 @@ set(INSTALL_HEADER_FILES
     InputDevice.h
     Screen.h
     Desktop.h
+    DesktopWindows.h
     )
 
 set(HEADER_FILES
@@ -29,7 +30,6 @@ set(SOURCE_FILES
     Service.cpp
     ServiceThread.cpp
     ParameterService.cpp
-    Desktop.cpp
     )
 
 if(WIN32)
@@ -38,7 +38,8 @@ if(WIN32)
         InputDeviceWindows.h)
     list(APPEND SOURCE_FILES
         InputDeviceWindows.cpp
-        ScreenWindows.cpp)
+        ScreenWindows.cpp
+        DesktopWindows.cpp)
 elseif(UNIX AND NOT APPLE AND NOT ANDROID)
     find_package(X11)
     if(X11_FOUND AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
