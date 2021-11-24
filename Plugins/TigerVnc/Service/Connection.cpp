@@ -14,6 +14,7 @@
 #include <QScreen>
 #include <QApplication>
 #include "Screen.h"
+#include "Desktop.h"
 
 static void setfile()
 {
@@ -146,7 +147,8 @@ void CConnection::slotReadyRead()
         // higher priority to user actions such as keyboard and pointer events.
         if(writer())
         {
-            QImage img = CScreen::Instance()->GetScreen();
+            //QImage img = CScreen::Instance()->GetScreen();
+            QImage img = CDesktop::Instance()->GetDesktop();
             slotScreenUpdate(img);
         }
     } catch (rdr::Exception e) {

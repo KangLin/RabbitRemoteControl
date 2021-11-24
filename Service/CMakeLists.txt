@@ -13,7 +13,7 @@ set(INSTALL_HEADER_FILES
     ServiceManager.h
     InputDevice.h
     Screen.h
-    Disply.h
+    Desktop.h
     )
 
 set(HEADER_FILES
@@ -29,6 +29,7 @@ set(SOURCE_FILES
     Service.cpp
     ServiceThread.cpp
     ParameterService.cpp
+    Desktop.cpp
     )
 
 if(WIN32)

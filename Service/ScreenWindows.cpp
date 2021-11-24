@@ -1,3 +1,36 @@
+// 双屏/多显示器截屏: https://blog.csdn.net/problc/article/details/7063324
+// 获取屏幕的分辨率(多屏幕或者单屏幕): https://blog.csdn.net/yousss/article/details/98848775
+/*
+ * Windows中接入多个显示器时，可设置为复制和扩展屏。
+ * 1、设置为复制屏幕时，多个显示器的分辨率是一样的，位置为0~分辨率值
+ * 2、设置为扩展屏幕时，显示器之间的关系比较复杂些。首先Windows系统会识别一个主显示器，
+ * 这个可以在屏幕分辨率中更改。多个显示器之间的位置关系也可以再屏幕分辨率中更改。
+ * 其中主显示器的位置为(0,0)到(width,height)，其他显示器位置由与主显示器的位置关系决定，
+ * 在主显示器左上，则为负数，用0减去长宽；在右下，则由主显示器的分辨率加上长宽。
+ * 其中驱动或用mouse_event处理时也是一样，主显示器为0~65535，
+ * 其他显示器根据主显示器的相对位置确定。
+ * 
+ * -----------------------------------------------------------------------------
+ * |                                       Virtural Screen                     |
+ * |   ------------                                                            |
+ * |   |          |                                                            |
+ * |   |  Screen1 |     (0,0)                                                  |
+ * |   |          |    /                                                       |
+ * |   ------------   /                                                        |
+ * |   ------------  ------------                                              |
+ * |   |          |  |          |                                              |
+ * |   |  Screen2 |  |  Primary |                                              |
+ * |   |          |  |  Screen3 |                                              |
+ * |   ------------  ------------                                              |
+ * |                                                                           |
+ * |                                                                           |
+ * |                                                                           |
+ * |                                                                           |
+ * |                                                                           |
+ * |                                                                           |
+ * -----------------------------------------------------------------------------
+ */
+
 #include "ScreenWindows.h"
 #include <Windows.h>
 #include "RabbitCommonLog.h"
@@ -91,15 +124,14 @@ int CScreenWindows::GetImage(bool bBuffer)
     
     if(!m_Screen.isNull() && !bBuffer)
         return 0;
-    
-    HWND hwnd = NULL;
+
     HDC dc = NULL;
     HDC memDc = NULL;
     HBITMAP bitmap = NULL;
-    
+
     do{
-        //hwnd = GetDesktopWindow();
-        dc = GetDC(hwnd);
+        //dc = = CreateDC( _T("DISPLAY"),NULL,NULL,NULL ); // Primary screen
+        dc = GetDC(GetDesktopWindow()); // Multi-screen
         if(NULL == dc)
         {
             LOG_MODEL_ERROR("Screen",
@@ -117,8 +149,8 @@ int CScreenWindows::GetImage(bool bBuffer)
             break;
         }
         
-        int ScreenWidth = GetDeviceCaps(dc, HORZRES);
-        int ScreenHeight = GetDeviceCaps(dc, VERTRES);
+        int ScreenWidth = GetDeviceCaps(dc, HORZRES);  // pixel
+        int ScreenHeight = GetDeviceCaps(dc, VERTRES); // pixel
         bitmap = CreateCompatibleBitmap(dc, ScreenWidth, ScreenHeight);
         if(NULL == bitmap)
         {

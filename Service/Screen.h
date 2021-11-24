@@ -5,6 +5,9 @@
 #include "service_export.h"
 #include <QImage>
 
+/*!
+ * \brief The CScreen class. The descript a screen.
+ */
 class SERVICE_EXPORT CScreen : public QObject
 {
     Q_OBJECT
