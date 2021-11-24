@@ -14,7 +14,6 @@ set(INSTALL_HEADER_FILES
     InputDevice.h
     Screen.h
     Desktop.h
-    DesktopWindows.h
     )
 
 set(HEADER_FILES
@@ -35,7 +34,8 @@ set(SOURCE_FILES
 if(WIN32)
     list(APPEND HEADER_FILES
         ScreenWindows.h
-        InputDeviceWindows.h)
+        InputDeviceWindows.h
+        DesktopWindows.h)
     list(APPEND SOURCE_FILES
         InputDeviceWindows.cpp
         ScreenWindows.cpp
@@ -47,10 +47,12 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROID)
         list(APPEND HEADER_FILES
             ScreenXLib.h
             InputDeviceX11.h
+            DesktopXLib.h
             )
         list(APPEND SOURCE_FILES
             ScreenXLib.cpp
-            InputDeviceX11.cpp)
+            InputDeviceX11.cpp
+            DesktopXLib.cpp)
     endif()
     if(X11_XTest_FOUND)
         LIST(APPEND PRIVATE_DEFINITIONS HAVE_XTEST)
