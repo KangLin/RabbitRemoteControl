@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "ServiceThread.h"
 #include "RabbitCommonLog.h"
 
@@ -27,7 +29,7 @@ void CServiceThread::run()
     int nRet = pService->Init();
     if(nRet)
     {
-        LOG_MODEL_ERROR("ServiceThread", "The service [%s] initial fail",
+        LOG_MODEL_WARNING("ServiceThread", "The service [%s] initial fail",
                        m_pPlugin->Name().toStdString().c_str());
         return;
     }

@@ -13,6 +13,7 @@ set(INSTALL_HEADER_FILES
     ServiceManager.h
     InputDevice.h
     Screen.h
+    Display.h
     Desktop.h
     )
 
@@ -33,37 +34,42 @@ set(SOURCE_FILES
 
 if(WIN32)
     list(APPEND HEADER_FILES
+        DesktopWindows.h
         ScreenWindows.h
         InputDeviceWindows.h
-        DesktopWindows.h)
+        )
     list(APPEND SOURCE_FILES
+        DesktopWindows.cpp
         InputDeviceWindows.cpp
         ScreenWindows.cpp
-        DesktopWindows.cpp)
+        )
 elseif(UNIX AND NOT APPLE AND NOT ANDROID)
     find_package(X11)
     if(X11_FOUND AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
-        list(APPEND SRC_PRIVATE_LIBS X11::X11)
+        list(APPEND SRC_LIBS X11::X11)
         list(APPEND HEADER_FILES
             ScreenXLib.h
             InputDeviceXLib.h
+            DisplayXLib.h
             DesktopXLib.h
             )
         list(APPEND SOURCE_FILES
             ScreenXLib.cpp
+            DisplayXLib.cpp
             InputDeviceXLib.cpp
-            DesktopXLib.cpp)
+            DesktopXLib.cpp
+            )
     endif()
     if(X11_XTest_FOUND)
         LIST(APPEND PRIVATE_DEFINITIONS HAVE_XTEST)
         list(APPEND SRC_PRIVATE_LIBS ${X11_XTest_LIB})
     else()
-        message("Please install xorg-dev:
-            Ubuntu:
-            $ sudo apt-get install xorg-dev
+        message("Please install xorg-dev:\n"
+            "Ubuntu:\n"
+            "$ sudo apt-get install xorg-dev\n"
             
-            CentOS:
-            $ sudo yum install xorg-x11*")
+            "CentOS:\n"
+            "$ sudo yum install xorg-x11*\n")
     endif()
 endif()
 

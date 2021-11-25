@@ -1,5 +1,6 @@
 #include "DesktopXLib.h"
 #include "ScreenXLib.h"
+#include "Display.h"
 
 CDesktopXLib::CDesktopXLib(QObject *parent) : CDesktop(parent)
 {
@@ -14,15 +15,20 @@ CDesktop* CDesktop::Instance()
 
 int CDesktopXLib::Width()
 {
-    return CScreen::Instance()->Width();
+    return CDisplay::Instance()->Width();
 }
 
 int CDesktopXLib::Height()
 {
-    return CScreen::Instance()->Height();
+    return CDisplay::Instance()->Height();
 }
 
-QImage CDesktopXLib::GetDesktop(int width, int height, int x, int y)
+QImage CDesktopXLib::GetDesktop()
 {
-    return CScreen::Instance()->GetScreen();
+    return CDisplay::Instance()->GetDisplay();
+}
+
+QImage CDesktopXLib::GetDesktop(int x, int y, int width, int height)
+{
+    return CDisplay::Instance()->GetDisplay();
 }

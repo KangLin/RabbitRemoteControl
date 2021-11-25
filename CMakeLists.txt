@@ -159,6 +159,10 @@ option(BUILD_APP "Build applaction" ON)
 if(BUILD_APP)
     add_subdirectory(App)
 endif(BUILD_APP)
+option(BUILD_EXAMPLE "Build example" OFF)
+if(BUILD_EXAMPLE)
+    add_subdirectory(Example)
+endif()
 
 # Create install runtime target
 add_custom_target(install-runtime

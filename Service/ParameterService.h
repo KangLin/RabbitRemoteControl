@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CPARAMETERSERVICE_H
 #define CPARAMETERSERVICE_H
 

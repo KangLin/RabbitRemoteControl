@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CSERVICETHREAD_H
 #define CSERVICETHREAD_H
 

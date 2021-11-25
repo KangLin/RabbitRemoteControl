@@ -1,7 +1,10 @@
-#ifndef CINPUTDEVICEX11_H
-#define CINPUTDEVICEX11_H
+#ifndef CINPUTDEVICEXLIB_H
+#define CINPUTDEVICEXLIB_H
 
+#pragma once
 #include "InputDevice.h"
+// Author: Kang Lin <kl222@126.com>
+
 #include <X11/XKBlib.h>
 
 class CInputDeviceXLib : public CInputDevice
@@ -26,4 +29,4 @@ private:
     bool rawKeyboard;
 };
 
-#endif // CINPUTDEVICEX11_H
+#endif // CINPUTDEVICEXLIB_H

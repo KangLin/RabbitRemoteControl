@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CSERVICEMANAGER_H
 #define CSERVICEMANAGER_H
 

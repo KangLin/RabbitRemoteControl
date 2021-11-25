@@ -6,7 +6,10 @@
 #include "rfb/SConnection.h"
 #include "rfb/EncodeManager.h"
 #include "rfb/UpdateTracker.h"
-#include <QObject>
+
+#include <QImage>
+#include <QRect>
+
 #include "Channel.h"
 #include "ServiceTigerVNC.h"
 #include "ParameterServiceTigerVNC.h"
@@ -46,14 +49,14 @@ Q_SIGNALS:
 private:
     QSharedPointer<rfb::PixelBuffer> GetBufferFromQImage(QImage &img);
     void writeNoDataUpdate();
-    void writeDataUpdate(QImage img);
+    void writeDataUpdate(QImage img, QRect rect);
     
 private Q_SLOTS:
     void slotConnected();
     void slotReadyRead();
     void slotDisconnected();
     void slotError(int nRet, const QString &szErr);
-    void slotScreenUpdate(QImage);
+    void slotDesktopUpdate(QImage img, QRect rect);
 
 private:
     QSharedPointer<CChannel> m_DataChannel;

@@ -1,6 +1,7 @@
 #ifndef CINPUTDEVICEWINDOWS_H
 #define CINPUTDEVICEWINDOWS_H
 
+#pragma once
 #include "InputDevice.h"
 
 class CInputDeviceWindows : public CInputDevice

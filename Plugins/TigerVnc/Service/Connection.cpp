@@ -13,7 +13,6 @@
 #include "InputDevice.h"
 #include <QScreen>
 #include <QApplication>
-#include "Screen.h"
 #include "Desktop.h"
 
 static void setfile()
@@ -65,10 +64,10 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
     rfb::ObfuscatedPasswd oPassword(password);
     rfb::SSecurityVncAuth::vncAuthPasswd.setParam(oPassword.buf, oPassword.length);
     
-    check = connect(CScreen::Instance(), SIGNAL(sigUpdate(QImage)),
-                    this, SLOT(slotScreenUpdate(QImage)));
+    check = connect(CDesktop::Instance(), SIGNAL(sigUpdate(QImage, QRect)),
+                    this, SLOT(slotDesktopUpdate(QImage, QRect)));
     Q_ASSERT(check);
-    client.setDimensions(CScreen::Instance()->Width(), CScreen::Instance()->Height());
+    client.setDimensions(CDesktop::Instance()->Width(), CDesktop::Instance()->Height());
 
     check = connect(m_DataChannel.data(), SIGNAL(sigConnected()),
                     this, SLOT(slotConnected()));
@@ -148,8 +147,9 @@ void CConnection::slotReadyRead()
         if(writer())
         {
             //QImage img = CScreen::Instance()->GetScreen();
+            //QImage img = CDisplay::Instance()->GetDisplay();
             QImage img = CDesktop::Instance()->GetDesktop();
-            slotScreenUpdate(img);
+            slotDesktopUpdate(img, img.rect());
         }
     } catch (rdr::Exception e) {
         LOG_MODEL_ERROR("CConnection", "Exception:%s", e.str());
@@ -192,8 +192,8 @@ void CConnection::authSuccess()
     //TODO: add client.setLEDState
     // client.setLEDState
     
-    int w = CScreen::Instance()->Width();
-    int h = CScreen::Instance()->Height();
+    int w = CDesktop::Instance()->Width();
+    int h = CDesktop::Instance()->Height();
     client.setDimensions(w, h);
     client.setPF(m_PixelFormat);
     char buffer[256];
@@ -404,7 +404,7 @@ void CConnection::writeNoDataUpdate()
   //requested.clear();
 }
 
-void CConnection::writeDataUpdate(QImage img)
+void CConnection::writeDataUpdate(QImage img, QRect rect)
 {
     rfb::Region req;
     rfb::UpdateInfo ui;
@@ -432,7 +432,7 @@ void CConnection::writeDataUpdate(QImage img)
 
 }
 
-void CConnection::slotScreenUpdate(QImage img)
+void CConnection::slotDesktopUpdate(QImage img, QRect rect)
 {
     //LOG_MODEL_DEBUG("Connection", "Update screen");
     if(img.isNull())
@@ -441,5 +441,5 @@ void CConnection::slotScreenUpdate(QImage img)
         return;
     }
     
-    writeDataUpdate(img);
+    writeDataUpdate(img, rect);
 }

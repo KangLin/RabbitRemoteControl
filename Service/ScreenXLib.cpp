@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "ScreenXLib.h"
 #include "RabbitCommonLog.h"
 #include <X11/Xlib.h>
@@ -189,7 +191,7 @@ QImage CScreenXLib::GetScreen(int index)
                      m_pImage, 0, 0);
         
         /* Get the Image of the root window */
-//        img = XGetImage(dsp, desktop, 0, 0, screen_width, screen_height, ~0, ZPixmap);
+//        img = XGetImage(dsp, desktop, 0, 0, screen_width, screen_height, AllPlanes, ZPixmap);
 //        m_Screen = QImage((uchar*)img->data,
 //                          img->width, img->height,
 //                          GetFormat(img),

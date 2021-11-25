@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CINPUTDEVICE_H
 #define CINPUTDEVICE_H
 

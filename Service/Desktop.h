@@ -19,13 +19,11 @@ public:
     
     virtual int Width() = 0;
     virtual int Height() = 0;
-
-    virtual QImage GetDesktop(int width = -1, int height = -1,
-                              int x = 0, int y = 0) = 0;
+    virtual QImage GetDesktop() = 0;
+    virtual QImage GetDesktop(int x, int y, int width, int height) = 0;
     
 Q_SIGNALS:
-    void sigUpdate(QImage &desktop, QRect rect);
-
+    void sigUpdate(QImage desktop, QRect rect);
 };
 
 #endif // CDESKTOP_H

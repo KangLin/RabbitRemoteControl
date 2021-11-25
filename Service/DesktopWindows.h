@@ -1,6 +1,7 @@
 #ifndef CDESKTOPWINDOWS_H
 #define CDESKTOPWINDOWS_H
 
+#pragma once
 #include "Desktop.h"
 
 class CDesktopWindows : public CDesktop
@@ -12,13 +13,15 @@ public:
     
     virtual int Width() override;
     virtual int Height() override;
-    virtual QImage GetDesktop(int width, int height, int x, int y) override;
+    virtual QImage GetDesktop() override;
+    virtual QImage GetDesktop(int x, int y, int width, int height) override;
     
 private:
     HDC m_DC;
-    HDC m_MemDc;
-    HBITMAP m_Bitmap;
+    HDC m_MemDC;
+    HBITMAP m_Bitmap, m_DesktopBitmap;
     int m_Width, m_Height;
+    QImage m_Desktop;
     
     HDC GetDesktopDC();
 };

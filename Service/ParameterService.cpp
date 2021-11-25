@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "ParameterService.h"
 #include <QSettings>
 #include "RabbitCommonLog.h"

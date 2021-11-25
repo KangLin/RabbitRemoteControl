@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "RabbitCommonLog.h"
 #include <X11/X.h>
 #include <X11/Xlib.h>

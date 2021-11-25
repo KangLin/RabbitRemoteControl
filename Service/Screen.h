@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CSCREEN_H
 #define CSCREEN_H
 
@@ -14,7 +16,8 @@ class SERVICE_EXPORT CScreen : public QObject
 public:
     CScreen(QObject* parent = nullptr) : QObject(parent),
         m_Format(QImage::Format_Invalid),
-        m_bCursor(true)
+        m_bCursor(true),
+        m_nNumber(-1)
     {}
     
     static CScreen* Instance();
@@ -53,6 +56,7 @@ protected:
     QImage m_Screen;
     QImage::Format m_Format;
     bool m_bCursor;
+    int m_nNumber;
 };
 
 #endif // CSCREEN_H

@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CPLUGINSERVICE_H
 #define CPLUGINSERVICE_H
 
