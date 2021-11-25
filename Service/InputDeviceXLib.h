@@ -4,11 +4,11 @@
 #include "InputDevice.h"
 #include <X11/XKBlib.h>
 
-class CInputDeviceX11 : public CInputDevice
+class CInputDeviceXLib : public CInputDevice
 {
 public:
-    explicit CInputDeviceX11();
-    virtual ~CInputDeviceX11();
+    explicit CInputDeviceXLib();
+    virtual ~CInputDeviceXLib();
     
     virtual int KeyEvent(quint32 keysym, quint32 keycode, bool down = true);
     virtual int MouseEvent(MouseButtons buttons, QPoint pos);

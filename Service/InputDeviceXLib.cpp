@@ -5,25 +5,25 @@
 #ifdef HAVE_XTEST
 #include <X11/extensions/XTest.h>
 #endif
-#include "InputDeviceX11.h"
+#include "InputDeviceXLib.h"
 
 QSharedPointer<CInputDevice> CInputDevice::GenerateObject()
 {
-    return QSharedPointer<CInputDevice>(new CInputDeviceX11());
+    return QSharedPointer<CInputDevice>(new CInputDeviceXLib());
 }
 
-CInputDeviceX11::CInputDeviceX11() : CInputDevice(),
+CInputDeviceXLib::CInputDeviceXLib() : CInputDevice(),
     rawKeyboard(false)
 {
 }
 
-CInputDeviceX11::~CInputDeviceX11()
+CInputDeviceXLib::~CInputDeviceXLib()
 {
-    LOG_MODEL_DEBUG("CInputDeviceX11", "CInputDeviceX11::~CInputDeviceX11()");
+    LOG_MODEL_DEBUG("CInputDeviceXLib", "CInputDeviceXLib::~CInputDeviceXLib()");
 }
 
 #ifdef HAVE_XTEST
-KeyCode CInputDeviceX11::XkbKeysymToKeycode(Display* dpy, KeySym keysym) {
+KeyCode CInputDeviceXLib::XkbKeysymToKeycode(Display* dpy, KeySym keysym) {
   XkbDescPtr xkb;
   XkbStateRec state;
   unsigned int mods;
@@ -62,7 +62,7 @@ KeyCode CInputDeviceX11::XkbKeysymToKeycode(Display* dpy, KeySym keysym) {
 }
 #endif
 
-int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
+int CInputDeviceXLib::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
 {
     int nRet = 0;
 
@@ -86,7 +86,7 @@ int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
     }
 
     if (!keycode) {
-        LOG_MODEL_ERROR("CInputDeviceX11", "Could not map key event to X11 key code");
+        LOG_MODEL_ERROR("CInputDeviceXLib", "Could not map key event to X11 key code");
         nRet = -2;
         break;
     }
@@ -96,7 +96,7 @@ int CInputDeviceX11::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
     else
         pressedKeys.erase(keysym);
     
-    LOG_MODEL_DEBUG("CInputDeviceX11", "%d %s", keycode, down ? "down" : "up");
+    LOG_MODEL_DEBUG("CInputDeviceXLib", "%d %s", keycode, down ? "down" : "up");
     
     XTestFakeKeyEvent(display, keycode, down, CurrentTime);
     } while(0);
@@ -183,7 +183,7 @@ void move_to (Display *display, int x, int y)
 //  XQueryColor (display, DefaultColormap(display, DefaultScreen (display)), color);
 //}
 
-int CInputDeviceX11::MouseEvent(MouseButtons buttons, QPoint pos)
+int CInputDeviceXLib::MouseEvent(MouseButtons buttons, QPoint pos)
 {
     Display *display = XOpenDisplay(NULL);
     if(display == NULL)
@@ -235,7 +235,7 @@ int CInputDeviceX11::MouseEvent(MouseButtons buttons, QPoint pos)
     return 0;
 }
 
-int CInputDeviceX11::MouseEvent(MouseButtons buttons, int x, int y)
+int CInputDeviceXLib::MouseEvent(MouseButtons buttons, int x, int y)
 {
     return MouseEvent(buttons, QPoint(x, y));
 }

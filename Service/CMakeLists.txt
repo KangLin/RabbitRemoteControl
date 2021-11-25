@@ -46,12 +46,12 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROID)
         list(APPEND SRC_PRIVATE_LIBS X11::X11)
         list(APPEND HEADER_FILES
             ScreenXLib.h
-            InputDeviceX11.h
+            InputDeviceXLib.h
             DesktopXLib.h
             )
         list(APPEND SOURCE_FILES
             ScreenXLib.cpp
-            InputDeviceX11.cpp
+            InputDeviceXLib.cpp
             DesktopXLib.cpp)
     endif()
     if(X11_XTest_FOUND)
