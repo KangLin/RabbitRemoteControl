@@ -1,5 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
+// 参考： https://github.com/KangLin/Documents/blob/master/os/Keyboard.md
+
 #include "RabbitCommonLog.h"
 #include <X11/X.h>
 #include <X11/Xlib.h>
