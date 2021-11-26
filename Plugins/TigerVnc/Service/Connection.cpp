@@ -146,8 +146,6 @@ void CConnection::slotReadyRead()
         // higher priority to user actions such as keyboard and pointer events.
         if(writer())
         {
-            //QImage img = CScreen::Instance()->GetScreen();
-            //QImage img = CDisplay::Instance()->GetDisplay();
             QImage img = CDesktop::Instance()->GetDesktop();
             slotDesktopUpdate(img, img.rect());
         }

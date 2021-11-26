@@ -70,7 +70,7 @@ int CDesktopWindows::Height()
 QImage CDesktopWindows::GetDesktop()
 {
     do{
-        if(!BitBlt(m_MemDC, 0, 0, Width(), Height(), m_DC, x, y, SRCCOPY))
+        if(!BitBlt(m_MemDC, 0, 0, Width(), Height(), m_DC, 0, 0, SRCCOPY))
         {
             LOG_MODEL_ERROR("Screen",
                             "BitBlt fail: %d",
@@ -87,8 +87,8 @@ QImage CDesktopWindows::GetDesktop()
         bi.bmiHeader.biBitCount = 0;
         
         bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-        bi.bmiHeader.biWidth = m_Width;
-        bi.bmiHeader.biHeight = m_Height;
+        bi.bmiHeader.biWidth = Width();
+        bi.bmiHeader.biHeight = Height();
         bi.bmiHeader.biPlanes = 1;
         bi.bmiHeader.biBitCount = 32;
         bi.bmiHeader.biCompression = BI_RGB;
