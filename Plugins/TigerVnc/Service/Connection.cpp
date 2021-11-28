@@ -36,7 +36,7 @@ bool g_setfile = false;
 CConnection::CConnection(QSharedPointer<CChannel> channel,
                          CParameterServiceTigerVNC *pPara)
     : QObject(), rfb::SConnection(),
-      m_DataChannel(channel),
+      m_Channel(channel),
       m_pPara(pPara),
       m_PixelFormat(32, 24, false, true, 255, 255, 255, 16, 8, 0),
       inProcessMessages(false),
@@ -50,35 +50,16 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
 {
     bool check = false;
 
-    setStreams(m_DataChannel->InStream(), m_DataChannel->OutStream());
-    
-    if(!g_setfile) 
-    {
-        g_setfile = true;
-        setfile();
-    }
-    
-    char* pass = new char[128];
-    strcpy(pass, pPara->getPassword().toStdString().c_str());
-    rfb::PlainPasswd password(pass);
-    rfb::ObfuscatedPasswd oPassword(password);
-    rfb::SSecurityVncAuth::vncAuthPasswd.setParam(oPassword.buf, oPassword.length);
-    
-    check = connect(CDesktop::Instance(), SIGNAL(sigUpdate(QImage, QRect)),
-                    this, SLOT(slotDesktopUpdate(QImage, QRect)));
-    Q_ASSERT(check);
-    client.setDimensions(CDesktop::Instance()->Width(), CDesktop::Instance()->Height());
-
-    check = connect(m_DataChannel.data(), SIGNAL(sigConnected()),
+    check = connect(m_Channel.data(), SIGNAL(sigConnected()),
                     this, SLOT(slotConnected()));
     Q_ASSERT(check);
-    check = connect(m_DataChannel.data(), SIGNAL(readyRead()),
+    check = connect(m_Channel.data(), SIGNAL(readyRead()),
                          this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
-    check = connect(m_DataChannel.data(), SIGNAL(sigDisconnected()),
+    check = connect(m_Channel.data(), SIGNAL(sigDisconnected()),
                          this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    check = connect(m_DataChannel.data(), SIGNAL(sigError(int, const QString&)),
+    check = connect(m_Channel.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotError(int, const QString&)));
     Q_ASSERT(check);
     
@@ -93,6 +74,16 @@ CConnection::~CConnection()
 void CConnection::slotConnected()
 {
     try{
+        setStreams(m_Channel->InStream(), m_Channel->OutStream());
+        
+        char* pass = new char[128];
+        strcpy(pass, m_pPara->getPassword().toStdString().c_str());
+        rfb::PlainPasswd password(pass);
+        rfb::ObfuscatedPasswd oPassword(password);
+        rfb::SSecurityVncAuth::vncAuthPasswd.setParam(oPassword.buf, oPassword.length);
+        
+        client.setDimensions(CDesktop::Instance()->Width(), CDesktop::Instance()->Height());
+        
         initialiseProtocol();
     } catch(rdr::Exception& e) {
         std::string szErr ("initialistProtocol() fail:");
@@ -113,7 +104,7 @@ void CConnection::slotConnected()
 
 void CConnection::slotReadyRead()
 {
-    //LOG_MODEL_DEBUG("Connection", "CConnection::slotReadyRead()");
+    LOG_MODEL_DEBUG("Connection", "CConnection::slotReadyRead()");
     if (state() == RFBSTATE_CLOSING) return;
     try {
         inProcessMessages = true;
@@ -207,6 +198,10 @@ void CConnection::clientInit(bool shared)
 {
     LOG_MODEL_DEBUG("Connection", "clientInit shared:%d", shared);
     SConnection::clientInit(shared);
+    
+    bool check = connect(CDesktop::Instance(), SIGNAL(sigUpdate(QImage, QRect)),
+                    this, SLOT(slotDesktopUpdate(QImage, QRect)));
+    Q_ASSERT(check);
 }
 
 void CConnection::setDesktopSize(int fb_width, int fb_height, const rfb::ScreenSet &layout)
@@ -214,6 +209,7 @@ void CConnection::setDesktopSize(int fb_width, int fb_height, const rfb::ScreenS
     LOG_MODEL_DEBUG("Connection", "setDesktopSize: %d:%d", fb_width, fb_height);
 
     //TODO: Add set server desktop size
+    
     if(writer())
         writer()->writeDesktopSize(rfb::reasonClient, rfb::resultSuccess);
 }
@@ -338,7 +334,6 @@ void CConnection::enableContinuousUpdates(bool enable, int x, int y, int w, int 
     } else {
       writer()->writeEndOfContinuousUpdates();
     }
-    
 }
 
 void CConnection::keyEvent(rdr::U32 keysym, rdr::U32 keycode, bool down)
@@ -408,6 +403,8 @@ void CConnection::writeDataUpdate(QImage img, QRect rect)
     rfb::UpdateInfo ui;
     const rfb::RenderedCursor *cursor = nullptr;
     
+    if(!writer()) return;
+
     // See what the client has requested (if anything)
     if (continuousUpdates)
       req = cuRegion.union_(requested);
@@ -433,7 +430,7 @@ void CConnection::writeDataUpdate(QImage img, QRect rect)
 void CConnection::slotDesktopUpdate(QImage img, QRect rect)
 {
     //LOG_MODEL_DEBUG("Connection", "Update screen");
-    if(img.isNull())
+    if(img.isNull() || !writer())
     {
         LOG_MODEL_ERROR("Connection", "Image is null");
         return;

@@ -59,7 +59,7 @@ private Q_SLOTS:
     void slotDesktopUpdate(QImage img, QRect rect);
 
 private:
-    QSharedPointer<CChannel> m_DataChannel;
+    QSharedPointer<CChannel> m_Channel;
     CParameterServiceTigerVNC* m_pPara;
     QSharedPointer<CInputDevice> m_InputDevice;
     
