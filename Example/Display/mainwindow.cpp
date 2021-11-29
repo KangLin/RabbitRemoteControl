@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "Display.h"
-#include "Screen.h"
+#include "Desktop.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,7 +16,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pbCapture_clicked()
 {
-    //QImage img = CDisplay::Instance()->GetDisplay();
-    QImage img = CScreen::Instance()->GetScreen();
+    QImage img = CDesktop::Instance()->GetDesktop(); //0,0, CDesktop::Instance()->Width(), CDesktop::Instance()->Height());
+    //QImage img = CScreen::Instance()->GetScreen();
     ui->lbImage->setPixmap(QPixmap::fromImage(img));
 }
