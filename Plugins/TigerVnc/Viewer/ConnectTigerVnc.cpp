@@ -61,8 +61,11 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 1
 // Time new bandwidth estimates are weighted against (in ms)
 static const unsigned bpsEstimateWindow = 1000;
 
+/* 因为此事件循环为Qt事件循环，不会被阻塞。
+ * 并具 Socket 不能在不同的线程中调用，所以这里 bDirectConnection 设置成 false
+ */
 CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *parent)
-    : CConnect(pConnecter, parent),
+    : CConnect(pConnecter, parent, false),
       m_bpsEstimate(20000000),
       m_updateCount(0),
       m_pPara(nullptr)
@@ -107,13 +110,18 @@ int CConnectTigerVnc::SetParamter(void *pPara)
     return 0;
 }
 
+/* \return 
+ *     \li < 0 : error
+ *     \li = 0 : emit sigConnected by caller
+ *     \li = 1 : emit sigConnected in CConnect
+ */    
 int CConnectTigerVnc::OnInit()
 {
     int nRet = 0;
     if(m_pPara->bIce)
     {
 #ifdef HAVE_ICE
-        IceInit();
+        nRet = IceInit();
 #endif
     }
     else
@@ -128,22 +136,26 @@ int CConnectTigerVnc::IceInit()
 #ifdef HAVE_QXMPP
     m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
 #endif
-    if(m_Signal) 
+    if(!m_Signal)
     {
-        bool check = false;
-        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
-                        this, SLOT(slotSignalConnected()));
-        Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
-                        this, SLOT(slotSignalDisconnected()));
-        Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
-                        this, SLOT(slotSignalError(int, const QString&)));
-        Q_ASSERT(check);
-        return m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
-                              m_pPara->szSignalUser, m_pPara->szSignalPassword);
+        LOG_MODEL_ERROR("CConnectTigerVnc", "The m_Signal is null");
+        return -1;
     }
-    return 0;
+    
+    bool check = false;
+    check = connect(m_Signal.data(), SIGNAL(sigConnected()),
+                    this, SLOT(slotSignalConnected()));
+    Q_ASSERT(check);
+    check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
+                    this, SLOT(slotSignalDisconnected()));
+    Q_ASSERT(check);
+    check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
+                    this, SLOT(slotSignalError(int, const QString&)));
+    Q_ASSERT(check);
+    return m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
+                          m_pPara->szSignalUser, m_pPara->szSignalPassword);
+    
+    return 1;
 }
 
 void CConnectTigerVnc::slotSignalConnected()
@@ -204,13 +216,13 @@ int CConnectTigerVnc::SocketInit()
         m_DataChannel = QSharedPointer<CChannel>(new CChannel());
         if(!m_DataChannel) return -2;
         
-        SetChannelConnect(m_DataChannel);
-        
         if(!m_DataChannel->open(pSock, QIODevice::ReadWrite))
         {
             LOG_MODEL_ERROR("CConnectTigerVnc", "Open channel fail");
             return -3;
         }
+        
+        SetChannelConnect(m_DataChannel);
         
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
@@ -246,8 +258,8 @@ int CConnectTigerVnc::SocketInit()
         return 1;
     } catch (rdr::Exception& e) {
         LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
-        emit sigError(-1, e.str());
-        nRet = -2;
+        emit sigError(-4, e.str());
+        nRet = -4;
     }
     return nRet;
 }
@@ -276,6 +288,7 @@ int CConnectTigerVnc::OnClean()
     if(m_Signal) m_Signal->Close();
 #endif
     close();
+    m_DataChannel->close();
     emit sigDisconnected();
     return 0;
 }
@@ -335,7 +348,7 @@ void CConnectTigerVnc::slotReadyRead()
         LOG_MODEL_ERROR("TigerVnc", "processMsg error");
         emit sigError(-1);
     }
-    
+    return;
     emit sigDisconnected();
 }
 

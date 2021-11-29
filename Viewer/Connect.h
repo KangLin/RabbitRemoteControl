@@ -49,7 +49,23 @@ class VIEWER_EXPORT CConnect : public QObject
     Q_OBJECT
 
 public:
-    explicit CConnect(CConnecter* pConnecter, QObject *parent = nullptr);
+    /*!
+     * \~chinese
+     * \param pConnecter
+     * \param parent
+     * \param bDirectConnection:
+     *        \li true: 当可能会阻塞事件循环时
+     *        \li false: 当一个非阻塞事件循环时
+     * \~english
+     * \param pConnecter
+     * \param parent
+     * \param bDirectConnection:
+     *        \li true: when connect is non-Qt event and it can block event loop
+     *        \li false: The connect is Qt event and it isn't block event loop
+     */
+    explicit CConnect(CConnecter* pConnecter,
+                      QObject *parent = nullptr,
+                      bool bDirectConnection = true);
     virtual ~CConnect() override;
 
 public Q_SLOTS:   
@@ -59,7 +75,7 @@ public Q_SLOTS:
      * \~
      * \return 
      *     \li < 0 : error
-     *     \li = 0 : emit sigConnected
+     *     \li = 0 : emit sigConnected by caller
      *     \li = 1 : emit sigConnected in CConnect
      * \see OnProcess slotTimeOut
      */
@@ -74,7 +90,7 @@ public Q_SLOTS:
     
 protected:
     virtual int SetConnecter(CConnecter* pConnecter);
-    virtual int SetViewer(CFrmViewer* pView);
+    virtual int SetViewer(CFrmViewer* pView, bool bDirectConnection);
     virtual int SetParamter(void *pPara);
 
     /*!
@@ -83,7 +99,7 @@ protected:
      * \~
      * \return 
      *     \li < 0 : error
-     *     \li = 0 : emit sigConnected
+     *     \li = 0 : emit sigConnected by caller
      *     \li = 1 : emit sigConnected in CConnect
      * \see Connect()
      */

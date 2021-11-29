@@ -54,6 +54,11 @@ CPluginTigerVnc::~CPluginTigerVnc()
 {
     //! [Clean resource]
     qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
+    
+    if(m_pThread)
+        m_pThread->quit(); // The don't deleteLater().
+                           // because of it is connected finished signal
+    
     /*
     qApp->removeTranslator(&m_Translator);
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)

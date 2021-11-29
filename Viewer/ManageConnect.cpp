@@ -24,7 +24,7 @@ void CManageConnect::slotConnect(CConnecter *pConnecter)
 
     /*
       nRet < 0 : error
-      nRet = 0 : emit sigConnected
+      nRet = 0 : emit sigConnected by caller
       nRet = 1 : emit sigConnected in CConnect
       */
     nRet = pConnect->Connect();

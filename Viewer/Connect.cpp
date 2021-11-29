@@ -14,16 +14,22 @@ int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
 Q_DECLARE_METATYPE(Qt::MouseButton)
 int g_QtMouseButton = qRegisterMetaType<Qt::MouseButton>("MouseButton");
 
-CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
+CConnect::CConnect(CConnecter *pConnecter, QObject *parent, bool bDirectConnection)
     : QObject(parent), m_pView(nullptr)
 {
     Q_ASSERT(pConnecter);
-    bool check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
-                         this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
+    
+    bool check = false;
+    if(bDirectConnection)
+        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
+                        this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
+    else
+        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
+                        this, SLOT(slotClipBoardChange()));
     Q_ASSERT(check);
     CFrmViewer* pView = qobject_cast<CFrmViewer*>(pConnecter->GetViewer());
     if(pView)
-        SetViewer(pView);
+        SetViewer(pView, bDirectConnection);
     SetConnecter(pConnecter);
 }
 
@@ -81,7 +87,7 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     return 0;
 }
 
-int CConnect::SetViewer(CFrmViewer *pView)
+int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
 {
     Q_ASSERT(pView);
     if(!pView) return -1;
@@ -108,34 +114,61 @@ int CConnect::SetViewer(CFrmViewer *pView)
     check = connect(this, SIGNAL(sigUpdateCursorPosition(const QPoint&)),
                     m_pView, SLOT(slotUpdateCursorPosition(const QPoint&)));
     Q_ASSERT(check);
+ 
+    if(bDirectConnection)
+    {
+        /* \~chinese 因为连接可能是在另一个线程中的非Qt事件处理，
+         *           它可能会阻塞线程，那会导致键盘、鼠标事件延迟，
+         *           所以这里用 Qt::DirectConnection
+         * \~english Because the connection may be a non-Qt event processing in another thread,
+         *           it may block the thread, which will cause the keyboard and mouse events to be delayed.
+         *           So here use Qt::DirectConnection 
+         */
+        check = connect(m_pView, SIGNAL(sigMousePressEvent(Qt::MouseButtons, QPoint)),
+                        this, SLOT(slotMousePressEvent(Qt::MouseButtons, QPoint)),
+                        Qt::DirectConnection);
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(Qt::MouseButton, QPoint)),
+                        this, SLOT(slotMouseReleaseEvent(Qt::MouseButton, QPoint)),
+                        Qt::DirectConnection);
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigMouseMoveEvent(Qt::MouseButtons, QPoint)),
+                        this, SLOT(slotMouseMoveEvent(Qt::MouseButtons, QPoint)),
+                        Qt::DirectConnection);
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
+                        this, SLOT(slotWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
+                        Qt::DirectConnection);
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
+                        this, SLOT(slotKeyPressEvent(int, Qt::KeyboardModifiers)),
+                        Qt::DirectConnection);
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(int, Qt::KeyboardModifiers)),
+                        this, SLOT(slotKeyReleaseEvent(int, Qt::KeyboardModifiers)),
+                        Qt::DirectConnection);
+        Q_ASSERT(check);
+    } else {
+        check = connect(m_pView, SIGNAL(sigMousePressEvent(Qt::MouseButtons, QPoint)),
+                        this, SLOT(slotMousePressEvent(Qt::MouseButtons, QPoint)));
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(Qt::MouseButton, QPoint)),
+                        this, SLOT(slotMouseReleaseEvent(Qt::MouseButton, QPoint)));
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigMouseMoveEvent(Qt::MouseButtons, QPoint)),
+                        this, SLOT(slotMouseMoveEvent(Qt::MouseButtons, QPoint)));
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
+                        this, SLOT(slotWheelEvent(Qt::MouseButtons, QPoint, QPoint)));
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
+                        this, SLOT(slotKeyPressEvent(int, Qt::KeyboardModifiers)));
+        Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(int, Qt::KeyboardModifiers)),
+                        this, SLOT(slotKeyReleaseEvent(int, Qt::KeyboardModifiers)));
+        Q_ASSERT(check);
+    }
     
-    // 因为连接可能是在另一个线程中的非Qt事件处理，它可能会阻塞线程，那会导致键盘、鼠标事件延迟，
-    // 所以这里用 Qt::DirectConnection
-    check = connect(m_pView, SIGNAL(sigMousePressEvent(Qt::MouseButtons, QPoint)),
-                    this, SLOT(slotMousePressEvent(Qt::MouseButtons, QPoint)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(Qt::MouseButton, QPoint)),
-                    this, SLOT(slotMouseReleaseEvent(Qt::MouseButton, QPoint)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigMouseMoveEvent(Qt::MouseButtons, QPoint)),
-                    this, SLOT(slotMouseMoveEvent(Qt::MouseButtons, QPoint)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
-                    this, SLOT(slotWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
-                    this, SLOT(slotKeyPressEvent(int, Qt::KeyboardModifiers)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-    check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(int, Qt::KeyboardModifiers)),
-                    this, SLOT(slotKeyReleaseEvent(int, Qt::KeyboardModifiers)),
-                    Qt::DirectConnection);
-    Q_ASSERT(check);
-        
     return 0;
 }
 
