@@ -180,6 +180,7 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
     QPointF pos = e.pos();
     if(TranslationMousePoint(e.pos(), pos)) return;
     emit sigMouseMoveEvent(event->buttons(), QPoint(pos.x(), pos.y()));
+    emit sigMouseMoveEvent(event);
     event->accept();
 }
 

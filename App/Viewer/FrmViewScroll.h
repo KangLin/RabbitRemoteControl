@@ -5,6 +5,7 @@
 
 #include "FrmViewer.h"
 #include <QScrollArea>
+#include <QMouseEvent>
 
 /**
  * @brief The CFrmViewScroll class
@@ -24,6 +25,9 @@ public:
     CFrmViewer::ADAPT_WINDOWS AdaptWindows();
 
     CFrmViewer* GetViewer();
+    
+private Q_SLOTS:
+    void slotMouseMoveEvent(QMouseEvent *event);
 };
 
 #endif // CFRMVIEWSCROLL_H
