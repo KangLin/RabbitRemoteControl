@@ -121,9 +121,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 ### Contribution
 
-- [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
-- [![Join the chat at https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
+- [![Join the chat at https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+- [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): Thank contributors
 
 If you're wondering how could you help, fear not, there are plenty of ways:
