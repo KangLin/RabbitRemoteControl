@@ -271,6 +271,8 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
     case CFrmViewer::Disable:
         m_pGBView->setEnabled(false);   
         break;
+    default:
+        break;
     }
 }
 
