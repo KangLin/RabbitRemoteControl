@@ -8,6 +8,7 @@
 + Add Peer to peer
 + Refactor frame
 + Add github actions
++ App: Add viwer automation adjust scroll bar by mouse move
 
 ### v0.0.8
 + FIX tab view show bug when full screen
