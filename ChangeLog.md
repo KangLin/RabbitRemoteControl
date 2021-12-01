@@ -9,6 +9,7 @@
 + Refactor frame
 + Add github actions
 + App: Add viwer automation adjust scroll bar by mouse move
++ Fix some bug
 
 ### v0.0.8
 + FIX tab view show bug when full screen
