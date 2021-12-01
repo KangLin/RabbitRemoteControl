@@ -1,5 +1,5 @@
 #TODO: Change version
-version: "v0.0.8.{build}"
+version: "v0.0.9.{build}"
 
 cache:
   - ..\other_source
@@ -142,15 +142,15 @@ build_script:
   - move /Y install\plugins\*crypto*.dll install\bin
   - move /Y install\plugins\*ssl*.dll install\bin
   - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
-  #- call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.8.exe -m "v0.0.8"
+  #- call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl-Setup-v0.0.9.exe -m "v0.0.9"
 
 artifacts:
-  - path: build\RabbitRemoteControl-Setup-*.exe
+  #- path: build\RabbitRemoteControl-Setup-*.exe
   
-  - path: build\update_windows.xml
+  #- path: build\update_windows.xml
   
   - path: build\install\
-    name: RabbitRemoteControl_v0.0.8
+    name: RabbitRemoteControl_v0.0.9
     type: zip
 
 test: off

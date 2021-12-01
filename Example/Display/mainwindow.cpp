@@ -16,7 +16,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pbCapture_clicked()
 {
-    QImage img = CDesktop::Instance()->GetDesktop(); //0,0, CDesktop::Instance()->Width(), CDesktop::Instance()->Height());
-    //QImage img = CScreen::Instance()->GetScreen();
+    QImage img = CDesktop::Instance()->GetDesktop();
     ui->lbImage->setPixmap(QPixmap::fromImage(img));
 }

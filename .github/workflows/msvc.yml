@@ -39,13 +39,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     
     env:
-      SOURCE_DIR:  ${{github.workspace}}/source
-      TOOSL_DIR:   ${{github.workspace}}/tools
-      INSTALL_DIR: ${{github.workspace}}/install
+      SOURCE_DIR:  ${{github.workspace}}\source
+      TOOSL_DIR:   ${{github.workspace}}\tools
+      INSTALL_DIR: ${{github.workspace}}\install
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
-      RabbitRemoteControl_VERION: 0.0.8
+      RabbitRemoteControl_VERION: 0.0.9
       VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
       qt_modules: qtwebengine
     
@@ -63,7 +63,7 @@ jobs:
         cmake -E make_directory ${{env.SOURCE_DIR}}
         cmake -E make_directory ${{env.TOOSL_DIR}}
         cmake -E make_directory ${{env.INSTALL_DIR}}
-
+    
     - name: Cache installed
       uses: actions/cache@v2
       id: cache-installed
@@ -71,7 +71,7 @@ jobs:
         path: |
           ${{env.INSTALL_DIR}}
         key: cache-installed-${{matrix.os}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}
-    
+      
     - name: run-vcpkg
       uses: lukka/run-vcpkg@v7.4
       with:
@@ -90,21 +90,23 @@ jobs:
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
 #      run: |
-#        git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
-#        cd libdatachannel
-#        git submodule update --init --recursive
-#        cmake -E make_directory build
-#        cd build
-#        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
+#        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibDataChannel (
+#          git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
+#          cd libdatachannel
+#          git submodule update --init --recursive
+#          cmake -E make_directory build
+#          cd build
+#          cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
 #            -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} ^
 #            -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-#        cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+#          cmake --build . --config ${{ matrix.BUILD_TYPE }}
+#          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+#        )
 
 #    - name: Build FreeRDP
 #      working-directory: ${{env.SOURCE_DIR}}
 #      run: |
-#        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 (
+#        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
 #            git clone -b 2.0.0-rc4 https://github.com/FreeRDP/FreeRDP.git
 #            cd FreeRDP
 #            git submodule update --init --recursive
@@ -114,15 +116,16 @@ jobs:
 #                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
 #                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #        )
 
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer (
-            git clone https://github.com/KangLin/libvncserver.git 
-            cd ${{env.SOURCE_DIR}}/libvncserver
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
+            git clone https://github.com/LibVNC/libvncserver.git
+            cd libvncserver
+            git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
             cd build
             cmake .. ^
@@ -132,15 +135,15 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         )
 
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/tigervnc (
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
             git clone https://github.com/KangLin/tigervnc.git 
-            cd ${{env.SOURCE_DIR}}/tigervnc
+            cd tigervnc
             cmake -E make_directory build
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
@@ -148,7 +151,7 @@ jobs:
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         )
     
     - name: git clone RabbitCommon
@@ -165,7 +168,7 @@ jobs:
     - name: Install Qt
       # You may pin to the exact commit or the version.
       # uses: jurplel/install-qt-action@a962fb91949c8e846a3e4a944d50e7ef5cc3a28a
-      uses: jurplel/install-qt-action@v2.11.1
+      uses: jurplel/install-qt-action@v2.14.0
       with:
         # Directory to install Qt
         dir: ${{env.TOOSL_DIR}}/qt # optional
@@ -201,7 +204,7 @@ jobs:
     - name: build log4qt
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt (
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\Log4Qt (
             git clone -b v1.5.1 https://github.com/MEONMedical/Log4Qt.git
             cd Log4Qt
             cmake -E make_directory build
@@ -211,14 +214,14 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
 
     - name: build qxmpp
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/qxmpp (
-            git clone https://github.com/KangLin/qxmpp.git
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\qxmpp (
+            git clone -b v1.4.0 "https://github.com/qxmpp-project/qxmpp.git"
             cd qxmpp
             cmake -E make_directory build
             cd build
@@ -228,13 +231,13 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
     
     - name: build QtService
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/QtService (
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\QtService (
             git clone "https://github.com/KangLin/qt-solutions.git"
             cd qt-solutions/qtservice
             cmake -E make_directory build
@@ -244,7 +247,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
         
     - name: build RabbitRemoteControl
@@ -269,7 +272,8 @@ jobs:
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
         
     - name: Package
-      working-directory: ${{github.workspace}}/build
+      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+      working-directory: ${{github.workspace}}\build
       run: |
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
         move /Y install\plugins\*crypto*.dll install\bin
@@ -277,49 +281,31 @@ jobs:
         copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
         copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
-        makensis ${{github.workspace}}/build/Install.nsi
-        ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe ^
-            -f "${{github.workspace}}/build/update_windows.xml" ^
+        7z a RabbitRemoteControl_v${{env.RabbitRemoteControl_VERION}}.zip .\install\*
+        makensis Install.nsi
+        ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
+            -f "update_windows.xml" ^
             --pf RabbitRemoteControl-Setup-v${{env.RabbitRemoteControl_VERION}}.exe ^
             -m "v${{env.RabbitRemoteControl_VERION}}"
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
     - name: update 
       uses: actions/upload-artifact@v2
       with:
         name: rabbitremotecontrol_${{ matrix.os }}
         path: |
-          ${{github.workspace}}/build/RabbitRemoteControl-Setup-v${{env.RabbitRemoteControl_VERION}}.exe
-          ${{github.workspace}}/build/update_windows.xml
+          ${{github.workspace}}\build\RabbitRemoteControl_v${{env.RabbitRemoteControl_VERION}}.zip
+          ${{github.workspace}}\build\RabbitRemoteControl-Setup-v${{env.RabbitRemoteControl_VERION}}.exe
+          ${{github.workspace}}\build\update_windows.xml
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
             
     - name: Upload To Github Release
-      # You may pin to the exact commit or the version.
-      # uses: xresloader/upload-to-github-release@3ad14478ee4fb9bd65e84c6d496a7d6862892f43
-      uses: xresloader/upload-to-github-release@v1.2.2
+      if: ${{ matrix.BUILD_TYPE == 'Release' && '5.12.11' == matrix.qt_version && startsWith(github.ref, 'refs/tags/') }}
+      uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        # The files or file patterns to upload. You can upload multiple files by split them by semicolon. You can use the glob pattern to find the files.
-        file: |
-          ${{github.workspace}}/build/RabbitRemoteControl-Setup-v${{env.RabbitRemoteControl_VERION}}.exe
-          ${{github.workspace}}/build/update_windows.xml
-        # The files or file patterns to delete before uploading new files. You can delete multiple files by split them by semicolon. You can use the glob pattern to find the files.
-        #delete_file: # optional, default is 
-        # If you need to overwrite existing files, add overwrite: true to the with.
-        overwrite: true # optional, default is false
-        # The resultant deployment is a draft Release that only repository collaborators can see. This gives you an opportunity to examine and edit the draft release.
-        draft: false # optional, default is true
-        # The resultant deployment is a Prerelease. This gives you an opportunity to examine and edit the prerelease.
-        prerelease: true # optional, default is false
-        # With tags: true, your Releases deployment will trigger if and only if the build is a tagged build.
-        tags: true # optional, default is false
-        # Only work on these branches(splited by semicolon), set to nothing to accept all branches.
-        branches: master # optional, default is 
-        # With verbose: true, be verbose.
-        verbose: true # optional, default is false
-        # Set custom tag name.
-        #tag_name: v${{env.RabbitRemoteControl_VERION}}
-        # If try to update latest release.
-        update_latest_release: true # optional, default is false
-      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }} 
+        prerelease: true
+        files: |
+          ${{github.workspace}}\build\RabbitRemoteControl_v${{env.RabbitRemoteControl_VERION}}.zip
+          ${{github.workspace}}\build\RabbitRemoteControl-Setup-v${{env.RabbitRemoteControl_VERION}}.exe
+          ${{github.workspace}}\build\update_windows.xml

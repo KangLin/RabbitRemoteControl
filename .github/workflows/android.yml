@@ -28,7 +28,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/source
       TOOSL_DIR:   ${{github.workspace}}/tools
       INSTALL_DIR: ${{github.workspace}}/install
-      RabbitRemoteControl_VERION: 0.0.8
+      RabbitRemoteControl_VERION: 0.0.9
       VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
       qt_modules: qtwebengine
 
@@ -55,7 +55,7 @@ jobs:
     - name: Install Qt
       # You may pin to the exact commit or the version.
       # uses: jurplel/install-qt-action@a962fb91949c8e846a3e4a944d50e7ef5cc3a28a
-      uses: jurplel/install-qt-action@v2.11.1
+      uses: jurplel/install-qt-action@v2.14.0
       with:
         # Directory to install Qt
         dir: ${{env.TOOSL_DIR}}/qt # optional
@@ -115,8 +115,9 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: |
         if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
-            git clone https://github.com/KangLin/libvncserver.git 
-            cd ${{env.SOURCE_DIR}}/libvncserver
+            git clone https://github.com/LibVNC/libvncserver.git
+            cd libvncserver
+            git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
             cd build
             cmake .. \
@@ -129,7 +130,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         fi
 
 #    - name: build FreeRDP
@@ -150,7 +151,7 @@ jobs:
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #        fi
         
 #    - name: build tigervnc
@@ -170,7 +171,7 @@ jobs:
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
 #            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 #        fi
 
     - name: build log4qt
@@ -196,7 +197,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         fi
         
     - name: build qxmpp
@@ -224,7 +225,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         fi
 
     - name: git clone RabbitCommon
@@ -288,7 +289,7 @@ jobs:
 #    - name: Upload To Github Release
 #      # You may pin to the exact commit or the version.
 #      # uses: xresloader/upload-to-github-release@3ad14478ee4fb9bd65e84c6d496a7d6862892f43
-#      uses: xresloader/upload-to-github-release@v1.2.2
+#      uses: xresloader/upload-to-github-release@v1.3.2
 #      env:
 #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      with:

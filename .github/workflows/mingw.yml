@@ -19,10 +19,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
-      SOURCE_DIR:  ${{github.workspace}}/source
-      TOOSL_DIR:   ${{github.workspace}}/tools
-      INSTALL_DIR: ${{github.workspace}}/install
-      RabbitRemoteControl_VERION: 0.0.8
+      SOURCE_DIR:  ${{github.workspace}}\source
+      TOOSL_DIR:   ${{github.workspace}}\tools
+      INSTALL_DIR: ${{github.workspace}}\install
+      RabbitRemoteControl_VERION: 0.0.9
 
     steps:
     - uses: actions/checkout@v2
@@ -76,14 +76,14 @@ jobs:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/tigervnc (
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
             git clone https://github.com/KangLin/tigervnc.git 
             cd tigervnc
             cmake -E make_directory build
             cd build
             cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
 
     - name: build libdatachannel
@@ -92,7 +92,7 @@ jobs:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/LibDataChannel (
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibDataChannel (
             git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
             cd libdatachannel
             git submodule update --init --recursive
@@ -102,7 +102,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
 
     - name: build log4qt
@@ -111,7 +111,7 @@ jobs:
         MSYSTEM: MINGW64
         PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
       run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt (
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\Log4Qt (
             git clone -b v1.5.1 "https://github.com/MEONMedical/Log4Qt.git"
             cd Log4Qt
             cmake -E make_directory build
@@ -119,7 +119,7 @@ jobs:
             cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
         
 #    - name: build qxmpp
@@ -128,13 +128,19 @@ jobs:
 #        MSYSTEM: MINGW64
 #        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
 #      run: |
-#        git clone -b v1.4.0 "https://github.com/qxmpp-project/qxmpp.git"
-#        cd qxmpp
-#        cmake -E make_directory build
-#        cd build
-#        cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
-#        cmake --build . --config ${{matrix.BUILD_TYPE}}
-#        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\qxmpp (
+#            git clone -b v1.4.0 "https://github.com/qxmpp-project/qxmpp.git"
+#            cd qxmpp
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. ^
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+#                -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF ^
+#                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#        )
         
     - name: build QtService
       working-directory: ${{env.SOURCE_DIR}}
@@ -150,7 +156,7 @@ jobs:
             cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
 
     - name: build RabbitRemoteControl

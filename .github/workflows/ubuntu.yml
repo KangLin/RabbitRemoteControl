@@ -13,13 +13,13 @@ jobs:
         # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{matrix.os}}
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
       SOURCE_DIR:  ${{github.workspace}}/source
       TOOSL_DIR:   ${{github.workspace}}/tools
       INSTALL_DIR: ${{github.workspace}}/install
-      RabbitRemoteControl_VERION: 0.0.8
+      RabbitRemoteControl_VERION: 0.0.9
       
     steps:
     - uses: actions/checkout@v2
@@ -64,7 +64,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         fi
     
     - name: build libdatachannel
@@ -78,7 +78,7 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         fi
 
     - name: build log4qt
@@ -97,7 +97,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                 -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         fi
     
     - name: build QtService
@@ -116,7 +116,7 @@ jobs:
                 -DQT_DIR=$QT_ROOT/lib/cmake/Qt5 \
                 -DQt5_DIR=$QT_ROOT/lib/cmake/Qt5
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         fi
         
     - name: build_debpackage.sh
@@ -129,7 +129,7 @@ jobs:
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
       run: |
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
-        cp ../rabbitremotecontrol* .
+        cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{matrix.os}}.deb
         
 #    - name: update xml file
 #      working-directory: ${{github.workspace}}
@@ -138,8 +138,8 @@ jobs:
 #        sudo Xvfb :99 -ac &
 #        export DISPLAY=:99.0
 #        echo "Install rabbit remote control ..."
-#        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64.deb
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64.deb -m "v${{env.RabbitRemoteControl_VERION}}"
+#        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{ matrix.os }}.deb
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{ matrix.os }}.deb -m "v${{env.RabbitRemoteControl_VERION}}"
 #      if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
     - name: update 
@@ -148,7 +148,6 @@ jobs:
           name: rabbitremotecontrol_${{ matrix.os }}
           path: |
             rabbitremotecontrol_*.deb
-            update_linux.xml
       if: ${{ matrix.BUILD_TYPE == 'Release' }} 
      
     #- name: Release
@@ -161,25 +160,25 @@ jobs:
 
     - name: Upload to Github Release
       uses: meeDamian/github-release@2.0
+      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }} 
       with:
           tag: v${{env.RabbitRemoteControl_VERION}}
           token: ${{ secrets.GITHUB_TOKEN }}
-          name: |
-            Release rabbit remote control version: v${{env.RabbitRemoteControl_VERION}}
+          #name: |
+          #  Release rabbit remote control version: v${{env.RabbitRemoteControl_VERION}}
           body: |
-            Change log: [:us: English](ChangeLog.md)、 [:cn: 中文](ChangeLog_zh_CN.md)
-          allow_override: false
+             [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
+          allow_override: true
           prerelease: true
-          draft: true
+          draft: false
           gzip: false
           files: |
             ${{github.workspace}}/rabbitremotecontrol_*.deb
-            ${{github.workspace}}/update_linux.xml
-            
+
 #    - name: Upload To Github Release
 #      # You may pin to the exact commit or the version.
 #      # uses: xresloader/upload-to-github-release@3ad14478ee4fb9bd65e84c6d496a7d6862892f43
-#      uses: xresloader/upload-to-github-release@v1.2.2
+#      uses: xresloader/upload-to-github-release@v1.3.2
 #      env:
 #        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      with:

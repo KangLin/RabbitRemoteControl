@@ -1,14 +1,24 @@
 # author: Kang Lin <kl222@126.com>
 
 # Desktop
-add_subdirectory(TigerVnc)
+option(BUILD_TigerVNC "Build TigerVnc plugin" ON)
+if(BUILD_TigerVNC)
+    add_subdirectory(TigerVnc)
+endif()
 
 option(BUILD_FREERDP "Build freerdp plugin" OFF)
 if(BUILD_FREERDP)
     add_subdirectory(FreeRdp)
 endif()
 
-add_subdirectory(LibVNCServer)
+if(MSVC)
+    option(BUILD_LibVNCServer "Build LibVNCServer plugin" OFF)
+else()
+    option(BUILD_LibVNCServer "Build LibVNCServer plugin" ON)
+endif()
+if(BUILD_LibVNCServer)
+    add_subdirectory(LibVNCServer)
+endif()
 
 find_package(qtermwidget5)
 if(qtermwidget5_FOUND)

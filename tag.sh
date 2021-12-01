@@ -32,10 +32,10 @@ sed -i "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g"
 sed -i "s/^\SET(BUILD_VERSION.*/\SET(BUILD_VERSION \"${VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
-sed -i "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml
-sed -i "s/-m \"v[0-9]\+\.[0-9]\+\.[0-9]\+\"/-m \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
-sed -i "s/RabbitRemoteControl-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl-Setup-${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
-sed -i "s/RabbitRemoteControl_v[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
+#sed -i "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml
+#sed -i "s/-m \"v[0-9]\+\.[0-9]\+\.[0-9]\+\"/-m \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
+#sed -i "s/RabbitRemoteControl-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl-Setup-${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
+#sed -i "s/RabbitRemoteControl_v[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
 #sed -i "s/PROJECT_NUMBER.*v[0-9]\+\.[0-9]\+\.[0-9]\+/PROJECT_NUMBER = ${VERSION}/g" ${SOURCE_DIR}/Doxyfile.in
 
 sed -i "s/^\Standards-Version:.*/\Standards-Version:\"${VERSION}\"/g" ${SOURCE_DIR}/debian/control
@@ -44,9 +44,10 @@ sed -i "s/rabbitremotecontrol (.*)/rabbitremotecontrol (${DEBIAN_VERSION})/g" ${
 sed -i "s/Version=.*/Version=${DEBIAN_VERSION}/g" ${SOURCE_DIR}/debian/RabbitRemoteControl.desktop
 sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 #sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
-sed -i "s/RabbitRemoteControl_VERION:.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/RabbitRemoteControl_VERION: \"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
-sed -i "s/RabbitRemoteControl_VERION:.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/RabbitRemoteControl_VERION: \"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
-sed -i "s/RabbitRemoteControl_VERION:.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/RabbitRemoteControl_VERION: \"${VERSION}\"/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
+sed -i "s/RabbitRemoteControl_VERION:.*/RabbitRemoteControl_VERION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
+sed -i "s/RabbitRemoteControl_VERION:.*/RabbitRemoteControl_VERION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
+sed -i "s/RabbitRemoteControl_VERION:.*/RabbitRemoteControl_VERION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml
+sed -i "s/RabbitRemoteControl_VERION:.*/RabbitRemoteControl_VERION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/android.yml
 
 MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
 #sed -i "s/android:versionCode=.*android/android:versionCode=\"${MAJOR_VERSION}\" android/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
@@ -54,7 +55,7 @@ MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
 if [ -n "$1" ]; then
     git add .
     git commit -m "Release $1"
-    #git push
+    git push
     git tag -d $1
     git tag -a $1 -m "Release $1"
     #git push origin :refs/tags/$1
