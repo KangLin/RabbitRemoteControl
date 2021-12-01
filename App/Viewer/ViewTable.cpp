@@ -73,7 +73,10 @@ int CViewTable::AddView(QWidget *pView)
     {
         CFrmViewScroll* pScroll = new CFrmViewScroll(p, m_pTab);
         if(pScroll)
+        {
+            pScroll->SetAdaptWindows(p->AdaptWindows());
             nIndex = m_pTab->addTab(pScroll, p->windowTitle());
+        }
     } else
         nIndex = m_pTab->addTab(pView, pView->windowTitle());
     m_pTab->setCurrentIndex(nIndex);

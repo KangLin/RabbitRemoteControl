@@ -226,8 +226,8 @@ void CFrmViewer::slotSystemCombination()
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
 {
     m_AdaptWindows = aw;
-    if(Original == m_AdaptWindows
-            || OriginalCenter == m_AdaptWindows)
+    if(!m_Desktop.isNull()
+            && (Original == m_AdaptWindows || OriginalCenter == m_AdaptWindows)) 
         resize(m_Desktop.size());
     update();
     //setFocus();
