@@ -89,8 +89,9 @@ int CViewTable::RemoveView(QWidget *pView)
     int nIndex = GetViewIndex(pView);
     if(-1 == nIndex) return 0;
     CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(nIndex));
-    if(pScroll) delete pScroll;
+    // Note: The following order cannot be changed
     m_pTab->removeTab(nIndex);
+    if(pScroll) delete pScroll;
     return 0;
 }
 
