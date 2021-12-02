@@ -225,6 +225,8 @@ void CFrmViewer::slotSystemCombination()
 
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
 {
+    if(m_AdaptWindows == aw)
+        return;
     m_AdaptWindows = aw;
     if(!m_Desktop.isNull()
             && (Original == m_AdaptWindows || OriginalCenter == m_AdaptWindows)) 
