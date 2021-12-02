@@ -22,7 +22,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\source
       TOOSL_DIR:   ${{github.workspace}}\tools
       INSTALL_DIR: ${{github.workspace}}\install
-      RabbitRemoteControl_VERION: 0.0.9
+      RabbitRemoteControl_VERION: v0.0.9
 
     steps:
     - uses: actions/checkout@v2
@@ -196,8 +196,8 @@ jobs:
         makensis ${{github.workspace}}/build/Install.nsi
         ${{github.workspace}}/build/install/bin/RabbitRemoteControlApp.exe ^
             -f "${{github.workspace}}/build/update_windows.xml" ^
-            --pf RabbitRemoteControl-Setup-v${{env.RabbitRemoteControl_VERION}}.exe ^
-            -m "v${{env.RabbitRemoteControl_VERION}}"
+            --pf RabbitRemoteControl-Setup-${{env.RabbitRemoteControl_VERION}}.exe ^
+            -m "${{env.RabbitRemoteControl_VERION}}"
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
     - name: update 
@@ -205,6 +205,5 @@ jobs:
       with:
         name: rabbitremotecontrol_${{ matrix.os }}
         path: |
-          ${{github.workspace}}/build/RabbitRemoteControl-Setup-v${{env.RabbitRemoteControl_VERION}}.exe
-          ${{github.workspace}}/build/update_*.xml
+          ${{github.workspace}}/build/RabbitRemoteControl-Setup-${{env.RabbitRemoteControl_VERION}}.exe
       if: ${{ matrix.BUILD_TYPE == 'Release' }}

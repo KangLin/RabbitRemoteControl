@@ -149,31 +149,27 @@ jobs:
           path: |
             rabbitremotecontrol_*.deb
       if: ${{ matrix.BUILD_TYPE == 'Release' }} 
-     
-    #- name: Release
-    #  uses: fnkr/github-action-ghr@v1
-    #  if: startsWith(github.ref, 'refs/tags/')
-    #  env:
-    #    GHR_COMPRESS: xz
-    #    GHR_PATH: ${{github.workspace}}/rabbitremotecontrol_*.deb
-    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload to Github Release
-      uses: meeDamian/github-release@2.0
-      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }} 
+    - name: Upload To Github Release
+      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          tag: v${{env.RabbitRemoteControl_VERION}}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          #name: |
-          #  Release rabbit remote control version: v${{env.RabbitRemoteControl_VERION}}
-          body: |
-             [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
-          allow_override: true
-          prerelease: true
-          draft: false
-          gzip: false
-          files: |
+        prerelease: true
+        body: |
+           [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
+        files: |
             ${{github.workspace}}/rabbitremotecontrol_*.deb
+
+#- name: Release
+#  uses: fnkr/github-action-ghr@v1
+#  if: startsWith(github.ref, 'refs/tags/')
+#  env:
+#    GHR_COMPRESS: xz
+#    GHR_PATH: ${{github.workspace}}/rabbitremotecontrol_*.deb
+#    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 #    - name: Upload To Github Release
 #      # You may pin to the exact commit or the version.
