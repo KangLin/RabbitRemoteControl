@@ -262,7 +262,7 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
         break;
     case CFrmViewer::Zoom:
         ui->actionZoom_Z->setChecked(true);
-        t = "Original";
+        t = "Zoom";
         break;
     case CFrmViewer::AspectRation:
         ui->actionKeep_AspectRation_K->setChecked(true);

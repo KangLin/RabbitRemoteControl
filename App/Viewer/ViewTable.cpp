@@ -35,7 +35,7 @@ CViewTable::~CViewTable()
 
 void CViewTable::slotCurrentChanged(int index)
 {
-    qDebug() << "CViewTable::slotCurrentChanged";
+    //qDebug() << "CViewTable::slotCurrentChanged";
     CFrmViewScroll* pView = qobject_cast<CFrmViewScroll*>(GetViewer(index));
     if(pView)
     {
