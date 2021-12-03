@@ -52,19 +52,24 @@ CDesktop* CDesktop::Instance()
 
 HDC CDesktopWindows::GetDesktopDC()
 {
-    //m_DC = CreateDC(_T("DISPLAY"),NULL,NULL,NULL ); // Primary screen
+    // The following methods can all get the desktop
+    //m_DC = CreateDCA("DISPLAY",NULL,NULL,NULL ); // Primary screen
+    //m_DC = GetWindowDC(NULL);
     m_DC = GetDC(GetDesktopWindow()); // Multi-screen;
+
     return m_DC;
 }
 
 int CDesktopWindows::Width()
 {
-    return GetDeviceCaps(m_DC, HORZRES);  // pixel
+    return GetSystemMetrics(SM_CXVIRTUALSCREEN);
+    //return GetDeviceCaps(m_DC, HORZRES); // Primary screen pixel
 }
 
 int CDesktopWindows::Height()
 {
-    return GetDeviceCaps(m_DC, VERTRES);  // pixel
+    return GetSystemMetrics(SM_CYVIRTUALSCREEN);
+    //return GetDeviceCaps(m_DC, VERTRES); // Primary screen pixel
 }
 
 QImage CDesktopWindows::GetDesktop()
