@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CINPUTDEVICEWINDOWS_H
 #define CINPUTDEVICEWINDOWS_H
 

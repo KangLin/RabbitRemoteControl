@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CDESKTOPWINDOWS_H
 #define CDESKTOPWINDOWS_H
 

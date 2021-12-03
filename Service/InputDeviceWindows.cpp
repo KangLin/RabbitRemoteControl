@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "InputDeviceWindows.h"
 #include <Windows.h>
 #include "RabbitCommonLog.h"

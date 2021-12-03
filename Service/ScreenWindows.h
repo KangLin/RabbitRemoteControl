@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CSCREENWINDOWS_H
 #define CSCREENWINDOWS_H
 

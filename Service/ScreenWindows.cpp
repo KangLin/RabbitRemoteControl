@@ -1,3 +1,4 @@
+// Author: Kang Lin <kl222@126.com>
 // 双屏/多显示器截屏: https://blog.csdn.net/problc/article/details/7063324
 // 获取屏幕的分辨率(多屏幕或者单屏幕): https://blog.csdn.net/yousss/article/details/98848775
 /*
