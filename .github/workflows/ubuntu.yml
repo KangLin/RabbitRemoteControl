@@ -16,9 +16,9 @@ jobs:
     runs-on: ${{matrix.os}}
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
-      SOURCE_DIR:  ${{github.workspace}}/source
-      TOOSL_DIR:   ${{github.workspace}}/tools
-      INSTALL_DIR: ${{github.workspace}}/install
+      SOURCE_DIR:  ${{github.workspace}}/3th_2021_12_04/source
+      TOOSL_DIR:   ${{github.workspace}}/3th_2021_12_04/tools
+      INSTALL_DIR: ${{github.workspace}}/3th_2021_12_04/install
       RabbitRemoteControl_VERION: 0.0.9
       
     steps:
@@ -113,8 +113,8 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DQT_DIR=$QT_ROOT/lib/cmake/Qt5 \
-                -DQt5_DIR=$QT_ROOT/lib/cmake/Qt5
+                -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
+                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         fi
