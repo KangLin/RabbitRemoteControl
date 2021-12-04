@@ -195,7 +195,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
 + Current version:
   - Windows: Supported WINDOWS 7 and later version
-    + Install package: [RabbitRemoteControl-Setup-v0.0.9.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.9/RabbitRemoteControl-Setup-v0.0.9.exe)
+    + Install package: [RabbitRemoteControl_setup_v0.0.9.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.9/RabbitRemoteControl_setup_v0.0.9.exe)
     + No need to install package: [RabbitRemoteControl_v0.0.9.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.9/RabbitRemoteControl_v0.0.9.zip)
   - Ubuntu:
     + Ubuntu 20.04: [rabbitremotecontrol_0.0.9_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.9/rabbitremotecontrol_0.0.9_amd64_Ubuntu-20.04.deb)
