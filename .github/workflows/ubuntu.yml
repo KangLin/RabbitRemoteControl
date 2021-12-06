@@ -51,7 +51,7 @@ jobs:
         path: |
           ${{env.INSTALL_DIR}}
         key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
-            
+
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
       run: |
