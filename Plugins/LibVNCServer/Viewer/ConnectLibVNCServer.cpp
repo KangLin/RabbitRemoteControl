@@ -75,7 +75,7 @@ bool CConnectLibVNCServer::InitClient()
     m_pClient->HandleCursorPos = cb_cursor_pos;
     m_pClient->GotCursorShape = cb_got_cursor_shape;
     
-    m_pClient->canHandleNewFBSize = true;
+    m_pClient->canHandleNewFBSize = TRUE;
     rfbClientSetClientData(m_pClient, (void*)gThis, this);
     
     // Set sock
@@ -113,61 +113,6 @@ bool CConnectLibVNCServer::InitClient()
         break;
     }
 
-    if (!InitialiseRFBConnection(m_pClient))
-    {
-        LOG_MODEL_ERROR("LibVNCServer", "InitialiseRFBConnection fail");
-        return FALSE;
-    }
-
-    m_pClient->width = m_pClient->si.framebufferWidth;
-    m_pClient->height = m_pClient->si.framebufferHeight;
-    if (!m_pClient->MallocFrameBuffer(m_pClient))
-    {
-        LOG_MODEL_ERROR("LibVNCServer", "m_pClient->MallocFrameBuffer fail");
-        return FALSE;
-    }
-
-    if (!SetFormatAndEncodings(m_pClient))
-    {
-        LOG_MODEL_ERROR("LibVNCServer", "SetFormatAndEncodings fail");
-        return FALSE;
-    }
-
-    if (m_pClient->updateRect.x < 0) {
-      m_pClient->updateRect.x = m_pClient->updateRect.y = 0;
-      m_pClient->updateRect.w = m_pClient->width;
-      m_pClient->updateRect.h = m_pClient->height;
-    }
-
-    if (m_pClient->appData.scaleSetting>1)
-    {
-        if (!SendScaleSetting(m_pClient, m_pClient->appData.scaleSetting))
-        {
-            LOG_MODEL_ERROR("LibVNCServer", "SendScaleSetting fail");
-            return FALSE;
-        }
-        if (!SendFramebufferUpdateRequest(m_pClient,
-                    m_pClient->updateRect.x / m_pClient->appData.scaleSetting,
-                    m_pClient->updateRect.y / m_pClient->appData.scaleSetting,
-                    m_pClient->updateRect.w / m_pClient->appData.scaleSetting,
-                    m_pClient->updateRect.h / m_pClient->appData.scaleSetting,
-                    FALSE))
-        {
-            LOG_MODEL_ERROR("LibVNCServer", "SendFramebufferUpdateRequest fail");
-            return FALSE;
-        }
-    }
-    else
-    {
-        if (!SendFramebufferUpdateRequest(m_pClient,
-                    m_pClient->updateRect.x, m_pClient->updateRect.y,
-                    m_pClient->updateRect.w, m_pClient->updateRect.h,
-                    FALSE))
-        {
-            LOG_MODEL_ERROR("LibVNCServer", "SendFramebufferUpdateRequest fail");
-            return FALSE;
-        }
-    }
     return TRUE;
 }
 
@@ -252,6 +197,7 @@ int CConnectLibVNCServer::SetParamter(void*)
     int nRet = 0;
     Q_ASSERT(m_pClient);
 
+    m_pClient->programName = strdup(qApp->applicationName().toStdString().c_str());
     // Set server ip and port
     m_pClient->serverHost = strdup(m_pPara->GetHost().toStdString().c_str());
     m_pClient->serverPort = m_pPara->GetPort();
