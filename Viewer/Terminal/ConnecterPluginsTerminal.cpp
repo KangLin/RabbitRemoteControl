@@ -6,6 +6,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QTextCodec>
+#include <QSettings>
 
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
@@ -56,22 +57,22 @@ qint16 CConnecterPluginsTerminal::Version()
     return 0;
 }
 
-int CConnecterPluginsTerminal::Load(QDataStream &d)
+int CConnecterPluginsTerminal::Load(const QString &szFile)
 {
     int nRet = 0;
     CParameterTerminal* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
 
+    QSettings set(szFile, QSettings::IniFormat);
     qint16 version = 0;
-    d >> version
-      >> *pPara;
+    pPara->OnLoad(szFile);
 
-    nRet = OnLoad(d);
+    nRet = OnLoad(szFile);
     return nRet;
 }
 
-int CConnecterPluginsTerminal::Save(QDataStream &d)
+int CConnecterPluginsTerminal::Save(const QString &szFile)
 {
     int nRet = 0;
     
@@ -79,10 +80,8 @@ int CConnecterPluginsTerminal::Save(QDataStream &d)
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     
-    d << Version()
-      << *pPara;
-    
-    nRet = OnSave(d);
+    pPara->OnSave(szFile);
+    nRet = OnSave(szFile);
     return nRet;
 }
 
@@ -184,12 +183,12 @@ int CConnecterPluginsTerminal::OnDisConnect()
     return 0;
 }
 
-int CConnecterPluginsTerminal::OnLoad(QDataStream& d)
+int CConnecterPluginsTerminal::OnLoad(const QString &szFile)
 {
     return 0;
 }
 
-int CConnecterPluginsTerminal::OnSave(QDataStream& d)
+int CConnecterPluginsTerminal::OnSave(const QString &szFile)
 {
     return 0;
 }
@@ -199,8 +198,8 @@ QString CConnecterPluginsTerminal::ServerName()
     CParameterTerminal* pPara = GetPara();
     if(CConnecter::ServerName().isEmpty())
     {
-        if(pPara && !pPara->szHost.isEmpty())
-            return pPara->szHost + ":" + QString::number(pPara->nPort);
+        if(pPara && !pPara->GetHost().isEmpty())
+            return pPara->GetHost() + ":" + QString::number(pPara->GetPort());
         else
             return CConnecter::Name();
     }

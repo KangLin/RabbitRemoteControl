@@ -12,6 +12,7 @@
 #include <QDialog>
 #include <QIcon>
 #include <QMimeData>
+#include <QSettings>
 #include "viewer_export.h"
 
 class CPluginViewer;
@@ -104,12 +105,12 @@ public:
      * \~chinese \brief 从文件中加载参数
      * \~english \brief Load parameters from file
      */
-    virtual int Load(QDataStream& d) = 0;
+    virtual int Load(QSettings &set) = 0;
     /*!
      * \~chinese \brief 保存参数到文件中
      * \~english Save parameters to file
      */
-    virtual int Save(QDataStream& d) = 0;
+    virtual int Save(QSettings &set) = 0;
     
 public Q_SLOTS:
     /**

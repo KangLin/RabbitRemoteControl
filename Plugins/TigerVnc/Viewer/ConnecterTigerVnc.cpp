@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnecterTigerVnc.h"
-#include "rfb/encodings.h"
 #include <QDebug>
 #include "RabbitCommonLog.h"
 
@@ -10,22 +9,6 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
       m_pConnect(nullptr)
 {
     m_pParameter = &m_Para;
-    m_Para.nPort = 5900;
-    m_Para.bShared = true;
-    m_Para.bBufferEndRefresh = false;
-    m_Para.bSupportsDesktopResize = true;
-    
-    m_Para.bAutoSelect = true;
-    m_Para.nColorLevel = CConnectTigerVnc::Full;
-    m_Para.nEncoding = rfb::encodingTight;
-    m_Para.bCompressLevel = true;
-    m_Para.nCompressLevel = 2;
-    m_Para.bNoJpeg = false;
-    m_Para.nQualityLevel = 8;
-    
-    m_Para.bIce = false;
-    m_Para.nSignalPort = 5222;
-    m_Para.nStunPort = m_Para.nTurnPort = 3748;
 }
 
 CConnecterTigerVnc::~CConnecterTigerVnc()
@@ -47,15 +30,15 @@ QString CConnecterTigerVnc::ServerName()
 {
     if(CConnecter::ServerName().isEmpty())
     {
-        if(m_Para.bIce)
+        if(m_Para.GetIce())
         {
-            if(!m_Para.szSignalUser.isEmpty())
-                return m_Para.szSignalUser;
+            if(!m_Para.GetSignalUser().isEmpty())
+                return m_Para.GetSignalUser();
         }
         else {
-            if(!m_pParameter->szHost.isEmpty())
-                return m_pParameter->szHost + ":"
-               + QString::number(m_pParameter->nPort);
+            if(!m_pParameter->GetHost().isEmpty())
+                return m_pParameter->GetHost() + ":"
+               + QString::number(m_pParameter->GetPort());
         }
         return CConnecter::Name();
     }
@@ -69,66 +52,14 @@ QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
     return p;
 }
 
-int CConnecterTigerVnc::OnSave(QDataStream & d)
+int CConnecterTigerVnc::OnSave(QSettings &set)
 {
-    d << Version()
-      << m_Para.bShared
-      << m_Para.bBufferEndRefresh
-      << m_Para.bSupportsDesktopResize
-      << m_Para.bAutoSelect
-      << static_cast<int>(m_Para.nColorLevel)
-      << m_Para.nEncoding
-      << m_Para.bCompressLevel
-      << m_Para.nCompressLevel
-      << m_Para.bNoJpeg
-      << m_Para.nQualityLevel
-      << m_Para.bIce
-      << m_Para.szSignalServer
-      << m_Para.nSignalPort
-      << m_Para.szSignalUser
-      << m_Para.szSignalPassword
-      << m_Para.szPeerUser
-      << m_Para.szStunServer
-      << m_Para.nStunPort
-      << m_Para.szTurnServer
-      << m_Para.nTurnPort
-      << m_Para.szTurnUser
-      << m_Para.szTurnPassword
-         ;
-    return 0;
+    return m_Para.OnSave(set);
 }
 
-int CConnecterTigerVnc::OnLoad(QDataStream &d)
+int CConnecterTigerVnc::OnLoad(QSettings &set)
 {
-    int nColorLevel = CConnectTigerVnc::Full;
-    qint16 version = 0;
-    d >> version;
-    d >> m_Para.bShared
-            >> m_Para.bBufferEndRefresh
-            >> m_Para.bSupportsDesktopResize
-            >> m_Para.bAutoSelect
-            >> nColorLevel
-            >> m_Para.nEncoding
-            >> m_Para.bCompressLevel
-            >> m_Para.nCompressLevel
-            >> m_Para.bNoJpeg
-            >> m_Para.nQualityLevel
-            >> m_Para.bIce
-            >> m_Para.szSignalServer
-            >> m_Para.nSignalPort
-            >> m_Para.szSignalUser
-            >> m_Para.szSignalPassword
-            >> m_Para.szPeerUser
-            >> m_Para.szStunServer
-            >> m_Para.nStunPort
-            >> m_Para.szTurnServer
-            >> m_Para.nTurnPort
-            >> m_Para.szTurnUser
-            >> m_Para.szTurnPassword
-            ;
-    //TODO: if version
-    m_Para.nColorLevel = static_cast<CConnectTigerVnc::COLOR_LEVEL>(nColorLevel);
-    return 0;
+    return m_Para.OnLoad(set);
 }
 
 CConnect* CConnecterTigerVnc::InstanceConnect()

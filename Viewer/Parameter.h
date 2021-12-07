@@ -8,6 +8,7 @@
 #include "viewer_export.h"
 #include <QObject>
 #include <QDataStream>
+#include <QSettings>
 
 /**
  * @~english
@@ -24,22 +25,53 @@
 class VIEWER_EXPORT CParameter : public QObject
 {
     Q_OBJECT
-
+    Q_PROPERTY(QString Name READ GetName WRITE SetName)
+    Q_PROPERTY(QString Host READ GetHost WRITE SetHost)
+    Q_PROPERTY(qint16 Port READ GetPort WRITE SetPort)
+    Q_PROPERTY(QString User READ GetUser WRITE SetUser)
+    Q_PROPERTY(QString Password READ GetPassword WRITE SetPassword)
+    Q_PROPERTY(bool SavePassword READ GetSavePassword WRITE SetSavePassword)
+    Q_PROPERTY(bool OnlyView READ GetOnlyView WRITE SetOnlyView)
+    Q_PROPERTY(bool LocalCursor READ GetLocalCursor WRITE SetLocalCursor)
+    Q_PROPERTY(bool Clipboard READ GetClipboard WRITE SetClipboard)
+    Q_PROPERTY(emProxy ProxyType READ GetProxyType WRITE SetProxyType)
+    Q_PROPERTY(QString ProxyHost READ GetProxyHost WRITE SetProxyHost)
+    Q_PROPERTY(qint16 ProxyPort READ GetProxyPort WRITE SetProxyPort)
+    Q_PROPERTY(QString ProxyUser READ GetProxyUser WRITE SetProxyUser)
+    Q_PROPERTY(QString ProxyPassword READ GetProxyPassword WRITE SetProxyPassword)
+    
 public:
     explicit CParameter(QObject *parent = nullptr);
 
-    QString szName;
+    virtual int OnLoad(QSettings &set);
+    virtual int OnSave(QSettings &set);
     
-    QString szHost;
-    quint16 nPort;
+    const QString GetName() const;
+    void SetName(const QString& name);
     
-    QString szUser;
-    QString szPassword;
-    bool bSavePassword;
+    const QString GetHost() const;
+    void SetHost(const QString& szHost);
     
-    bool bOnlyView;
-    bool bLocalCursor;
-    bool bClipboard;
+    const quint16 GetPort() const;
+    void SetPort(quint16 port);
+    
+    const QString GetUser() const;
+    void SetUser(const QString &user);
+    
+    const QString GetPassword() const;
+    void SetPassword(const QString& password);
+    
+    const bool GetSavePassword() const;
+    void SetSavePassword(bool save);
+
+    const bool GetOnlyView() const;
+    void SetOnlyView(bool only);
+    
+    const bool GetLocalCursor() const;
+    void SetLocalCursor(bool cursor);
+    
+    const bool GetClipboard() const;
+    void SetClipboard(bool c);
     
     enum class emProxy {
         No,
@@ -48,17 +80,39 @@ public:
         Http,
         User = 100
     };
-    emProxy eProxyType;
-    QString szProxyHost;
-    quint16 nProxyPort;
-    QString szProxyUser;
-    QString szProxyPassword;
+    
+    const emProxy GetProxyType() const;
+    void SetProxyType(emProxy type);
+    const QString GetProxyHost() const;
+    void SetProxyHost(const QString& host);
+    const quint16 GetProxyPort() const;
+    void SetProxyPort(quint16 port);
+    const QString GetProxyUser() const;
+    void SetProxyUser(const QString& user);
+    const QString GetProxyPassword() const;
+    void SetProxyPassword(const QString& password);
     
 Q_SIGNALS:
     void sigUpdate();
+        
+private:
+    QString m_szName;
+    QString m_szHost;
+    quint16 m_nPort;
+    
+    QString m_szUser;
+    QString m_szPassword;
+    bool m_bSavePassword;
+    
+    bool m_bOnlyView;
+    bool m_bLocalCursor;
+    bool m_bClipboard;
+    
+    emProxy m_eProxyType;
+    QString m_szProxyHost;
+    quint16 m_nProxyPort;
+    QString m_szProxyUser;
+    QString m_szProxyPassword;
 };
-
-QDataStream &operator<<(QDataStream &, const CParameter &);
-QDataStream &operator>>(QDataStream &, CParameter &);
 
 #endif // CPARAMTER_H

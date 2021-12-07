@@ -13,6 +13,9 @@ class TERMINAL_EXPORT CParameterTerminal : public CParameter
 public:
     CParameterTerminal();
     
+    virtual int OnLoad(const QString& szFile) override;
+    virtual int OnSave(const QString& szFile) override;
+
     QFont font;
     bool sizeHint;       // show size when windows resize
     QString colorScheme;
@@ -31,8 +34,5 @@ public:
     QString textCodec;
     int historySize;
 };
-
-QDataStream &operator<<(QDataStream &, const CParameterTerminal &);
-QDataStream &operator>>(QDataStream &, CParameterTerminal &);
 
 #endif // CPARAMETERTERMINALAPPEARANCE_H

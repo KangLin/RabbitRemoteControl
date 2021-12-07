@@ -5,7 +5,7 @@
 #include <QApplication>
 #include <QScreen>
 
-CDlgSetFreeRdp::CDlgSetFreeRdp(CConnecterFreeRdp::CParameterFreeRdp *pSettings, QWidget *parent) :
+CDlgSetFreeRdp::CDlgSetFreeRdp(CParameterFreeRdp *pSettings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSetFreeRdp),
     m_pSettings(pSettings)
@@ -53,18 +53,18 @@ CDlgSetFreeRdp::~CDlgSetFreeRdp()
 void CDlgSetFreeRdp::on_pbOk_clicked()
 {
     // Server
-    m_pSettings->szName = ui->leName->text();
-    m_pSettings->szHost = ui->leServer->text();
-    m_pSettings->nPort = ui->spPort->value();
-    m_pSettings->szUser = ui->leUserName->text();
-    m_pSettings->szPassword = ui->lePassword->text();
-    freerdp_settings_set_string(m_pSettings->pSettings,
+    m_pSettings->SetName(ui->leName->text());
+    m_pSettings->SetHost(ui->leServer->text());
+    m_pSettings->SetPort(ui->spPort->value());
+    m_pSettings->SetUser(ui->leUserName->text());
+    m_pSettings->SetPassword(ui->lePassword->text());
+    freerdp_settings_set_string(m_pSettings->m_pSettings,
                                 FreeRDP_Domain,
                                 ui->leDomain->text().toStdString().c_str());
 
-    m_pSettings->bSavePassword = ui->cbSavePassword->isChecked();
-    m_pSettings->bOnlyView = ui->cbOnlyView->isChecked();
-    m_pSettings->bClipboard = ui->cbClipboard->isChecked();
+    m_pSettings->SetSavePassword(ui->cbSavePassword->isChecked());
+    m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
+    m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
     
     // Display
     QString szSize = ui->cbDesktopSize->currentText();
@@ -73,16 +73,19 @@ void CDlgSetFreeRdp::on_pbOk_clicked()
     {
         int width = szSize.left(index).toInt();
         int height = szSize.right(szSize.length() - index - 1).toInt();
-        m_pSettings->pSettings->DesktopWidth = width;
-        m_pSettings->pSettings->DesktopHeight = height;
+        freerdp_settings_set_uint32(m_pSettings->m_pSettings,
+                                    FreeRDP_DesktopWidth, width);
+        freerdp_settings_set_uint32(m_pSettings->m_pSettings,
+                                    FreeRDP_DesktopHeight, height);
     }
     if(ui->cbAllMonitor->isChecked())
     {
         //TODO: complete it
-        m_pSettings->pSettings->MonitorCount = QApplication::screens().length();
+        m_pSettings->m_pSettings->MonitorCount = QApplication::screens().length();
     }
-    m_pSettings->pSettings->ColorDepth = ui->cbColorDepth->currentData().toInt();
-    
+    freerdp_settings_set_uint32(m_pSettings->m_pSettings, FreeRDP_ColorDepth,
+                               ui->cbColorDepth->currentData().toInt());
+    m_pSettings->SetReconnectInterval(ui->sbReconnect->value());
     accept();
 }
 
@@ -97,16 +100,17 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
     Q_ASSERT(m_pSettings);
 
     // Server
-    ui->leName->setText(m_pSettings->szName);
-    ui->leDomain->setText(freerdp_settings_get_string(m_pSettings->pSettings, FreeRDP_Domain));
-    ui->leServer->setText(m_pSettings->szHost);
-    ui->spPort->setValue(m_pSettings->nPort);
-    ui->leUserName->setText(m_pSettings->szUser);
-    ui->lePassword->setText(m_pSettings->szPassword);
+    ui->leName->setText(m_pSettings->GetName());
+    ui->leDomain->setText(freerdp_settings_get_string(m_pSettings->m_pSettings,
+                                                      FreeRDP_Domain));
+    ui->leServer->setText(m_pSettings->GetHost());
+    ui->spPort->setValue(m_pSettings->GetPort());
+    ui->leUserName->setText(m_pSettings->GetUser());
+    ui->lePassword->setText(m_pSettings->GetPassword());
 
-    ui->cbSavePassword->setChecked(m_pSettings->bSavePassword);
-    ui->cbOnlyView->setChecked(m_pSettings->bOnlyView);
-    ui->cbClipboard->setChecked(m_pSettings->bClipboard);
+    ui->cbSavePassword->setChecked(m_pSettings->GetSavePassword());
+    ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
+    ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
 
     // Display
     QScreen* pScreen = QApplication::primaryScreen();
@@ -114,24 +118,31 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
     int height = pScreen->availableGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
     InsertDesktopSize(width, height);
-    if(width == m_pSettings->pSettings->DesktopWidth
-            && height == m_pSettings->pSettings->DesktopHeight)
+    UINT32 desktopWidth = 0, desktopHeight = 0;
+    desktopWidth = freerdp_settings_get_uint32(m_pSettings->m_pSettings,
+                                               FreeRDP_DesktopWidth);
+    desktopHeight = freerdp_settings_get_uint32(m_pSettings->m_pSettings,
+                                                FreeRDP_DesktopHeight);
+    if(width == desktopWidth && height == desktopHeight)
     {
         ui->rbFullScreen->setChecked(true);
         ui->cbDesktopSize->setCurrentText(curSize);
     } else {
         ui->rbSelect->setChecked(true);
-        InsertDesktopSize(m_pSettings->pSettings->DesktopWidth,
-                          m_pSettings->pSettings->DesktopHeight);
-        curSize = QString::number(m_pSettings->pSettings->DesktopWidth)
-                + "×" + QString::number(m_pSettings->pSettings->DesktopHeight);
+        InsertDesktopSize(desktopWidth, desktopHeight);
+        curSize = QString::number(desktopWidth) 
+                + "×" + QString::number(desktopHeight);
         ui->cbDesktopSize->setCurrentText(curSize);
     }
-    if(m_pSettings->pSettings->MonitorCount > 1)
+    if(m_pSettings->m_pSettings->MonitorCount > 1)
         ui->cbAllMonitor->setChecked(true);
-    int nIndex = ui->cbColorDepth->findData(m_pSettings->pSettings->ColorDepth);
+    int nIndex = ui->cbColorDepth->findData(
+                freerdp_settings_get_uint32(m_pSettings->m_pSettings,
+                                            FreeRDP_ColorDepth));
     if(-1 != nIndex)
         ui->cbColorDepth->setCurrentIndex(nIndex);
+    
+    ui->sbReconnect->setValue(m_pSettings->GetReconnectInterval());
 }
 
 void CDlgSetFreeRdp::on_rbFullScreen_clicked(bool checked)

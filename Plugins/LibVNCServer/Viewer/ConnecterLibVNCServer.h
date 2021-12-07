@@ -16,12 +16,12 @@ public:
 
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
-    virtual int OnLoad(QDataStream& d) override;
-    virtual int OnSave(QDataStream& d) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
     virtual CConnect* InstanceConnect() override;
     
 private:
-    CConnectLibVNCServer::strPara m_Para;
+    CParameterLibVNCServer m_Para;
     
     friend CConnectLibVNCServer;
     friend CDlgSettingsLibVnc;

@@ -8,6 +8,7 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
     list(APPEND SRC_LIBS Qt${QT_VERSION_MAJOR}::Network)
 endif()
 SET(SOURCE_FILES
+    ParameterTigerVnc.cpp
     ConnectTigerVnc.cpp
     FramePixelBuffer.cpp
     ConnecterTigerVnc.cpp
@@ -18,6 +19,7 @@ SET(SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
     )
 SET(HEADER_FILES
+    ParameterTigerVnc.h
     ConnectTigerVnc.h
     FramePixelBuffer.h
     ConnecterTigerVnc.h

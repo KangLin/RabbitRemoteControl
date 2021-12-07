@@ -13,19 +13,19 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
     ui->setupUi(this);
     
     // Server
-    ui->leName->setText(m_pPara->szName);
-    ui->leHost->setText(m_pPara->szHost);
-    ui->spPort->setValue(m_pPara->nPort);
-    ui->leUserName->setText(m_pPara->szUser);
-    ui->lePassword->setText(m_pPara->szPassword);
-    ui->cbSavePassword->setChecked(m_pPara->bSavePassword);
+    ui->leName->setText(m_pPara->GetName());
+    ui->leHost->setText(m_pPara->GetHost());
+    ui->spPort->setValue(m_pPara->GetPort());
+    ui->leUserName->setText(m_pPara->GetUser());
+    ui->lePassword->setText(m_pPara->GetPassword());
+    ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
     
-    ui->cbShared->setChecked(m_pPara->bShared);
-    ui->cbOnlyView->setChecked(m_pPara->bOnlyView);
-//    ui->cbRealTimeUpdate->setChecked(!m_pPara->bBufferEndRefresh);
-    ui->cbLocalCursor->setChecked(m_pPara->bLocalCursor);
-//    ui->cbResizeWindows->setChecked(m_pPara->bSupportsDesktopResize);
-    ui->cbClipboard->setChecked(m_pPara->bClipboard);
+    ui->cbShared->setChecked(m_pPara->GetShared());
+    ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
+//    ui->cbRealTimeUpdate->setChecked(!m_pPara->GetBufferEndRefresh());
+    ui->cbLocalCursor->setChecked(m_pPara->GetLocalCursor());
+//    ui->cbResizeWindows->setChecked(m_pPara->GetSupportsDesktopResize());
+    ui->cbClipboard->setChecked(m_pPara->GetClipboard());
     
     // Compress
 //    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
@@ -55,15 +55,15 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
 //        break;
 //    }
 
-    ui->cbCompress->setChecked(m_pPara->bCompressLevel);
-    ui->spCompressLevel->setEnabled(m_pPara->bCompressLevel);
-    ui->spCompressLevel->setValue(m_pPara->nCompressLevel);
-    ui->spJPEGLevel->setEnabled(m_pPara->bJpeg);
-    ui->cbJPEG->setChecked(m_pPara->bJpeg);
-    ui->spJPEGLevel->setValue(m_pPara->nQualityLevel);
+    ui->cbCompress->setChecked(m_pPara->GetEnableCompressLevel());
+    ui->spCompressLevel->setEnabled(m_pPara->GetEnableCompressLevel());
+    ui->spCompressLevel->setValue(m_pPara->GetCompressLevel());
+    ui->spJPEGLevel->setEnabled(m_pPara->GetJpeg());
+    ui->cbJPEG->setChecked(m_pPara->GetJpeg());
+    ui->spJPEGLevel->setValue(m_pPara->GetQualityLevel());
     
     // Proxy
-    switch(m_pPara->eProxyType)
+    switch(m_pPara->GetProxyType())
     {
     case CParameter::emProxy::No:
         ui->rbProxyNo->setChecked(true);
@@ -72,16 +72,16 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
     case CParameter::emProxy::SocksV5:
         ui->rbProxySocks->setChecked(true);
         break;
-    case (CParameter::emProxy) CConnectLibVNCServer::strPara::emVncProxy::UltraVncRepeater:
+    case (CParameter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
         ui->rbProxyUltraVncRepeater->setChecked(true);
         break;
     default:
         break;
     }
-    ui->leProxyServer->setText(m_pPara->szProxyHost);
-    ui->spProxyPort->setValue(m_pPara->nProxyPort);
-    ui->leProxyUser->setText(m_pPara->szProxyUser);
-    ui->leProxyPassword->setText(m_pPara->szProxyPassword);
+    ui->leProxyServer->setText(m_pPara->GetProxyHost());
+    ui->spProxyPort->setValue(m_pPara->GetProxyPort());
+    ui->leProxyUser->setText(m_pPara->GetProxyUser());
+    ui->leProxyPassword->setText(m_pPara->GetProxyPassword());
 }
 
 CDlgSettingsLibVnc::~CDlgSettingsLibVnc()
@@ -96,20 +96,20 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
         reject();
     
     // Server
-    m_pPara->szName = ui->leName->text();
-    m_pPara->szHost = ui->leHost->text();
-    m_pPara->nPort = ui->spPort->value();
-    m_pPara->szUser = ui->leUserName->text();
-    m_pPara->szPassword = ui->lePassword->text();
-    m_pPara->bSavePassword = ui->cbSavePassword->isChecked();
+    m_pPara->SetName(ui->leName->text());
+    m_pPara->SetHost(ui->leHost->text());
+    m_pPara->SetPort(ui->spPort->value());
+    m_pPara->SetUser(ui->leUserName->text());
+    m_pPara->SetPassword(ui->lePassword->text());
+    m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
 
 //    m_pPara->bSave = ui->cbSave->isChecked();
-    m_pPara->bShared = ui->cbShared->isChecked();
-    m_pPara->bOnlyView = ui->cbOnlyView->isChecked();
+    m_pPara->SetShared(ui->cbShared->isChecked());
+    m_pPara->SetOnlyView(ui->cbOnlyView->isChecked());
 //    m_pPara->bBufferEndRefresh = !ui->cbRealTimeUpdate->isChecked();
-    m_pPara->bLocalCursor = ui->cbLocalCursor->isChecked();
+    m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
 //    m_pPara->bSupportsDesktopResize = ui->cbResizeWindows->isChecked();
-    m_pPara->bClipboard = ui->cbClipboard->isChecked();
+    m_pPara->SetClipboard(ui->cbClipboard->isChecked());
     
 //    // Compress
 //    m_pPara->bAutoSelect = ui->cbCompressAutoSelect->isChecked();
@@ -123,22 +123,22 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
 //    if(ui->rbHextile->isChecked()) m_pPara->nEncoding = rfb::encodingHextile;
     
 
-    m_pPara->bCompressLevel = ui->cbCompress->isChecked();
-    m_pPara->nCompressLevel = ui->spCompressLevel->value();
-    m_pPara->bJpeg = ui->cbJPEG->isChecked();
-    m_pPara->nQualityLevel = ui->spJPEGLevel->value();
+    m_pPara->SetEnableCompressLevel(ui->cbCompress->isChecked());
+    m_pPara->SetCompressLevel(ui->spCompressLevel->value());
+    m_pPara->SetJpeg(ui->cbJPEG->isChecked());
+    m_pPara->SetQualityLevel(ui->spJPEGLevel->value());
     
     // Proxy
     if(ui->rbProxyNo->isChecked())
-        m_pPara->eProxyType = CParameter::emProxy::No;
+        m_pPara->SetProxyType(CParameter::emProxy::No);
     if(ui->rbProxySocks->isChecked())
-        m_pPara->eProxyType = CParameter::emProxy::SocksV5;
+        m_pPara->SetProxyType(CParameter::emProxy::SocksV5);
     if(ui->rbProxyUltraVncRepeater->isChecked())
-        m_pPara->eProxyType = (CParameter::emProxy) CConnectLibVNCServer::strPara::emVncProxy::UltraVncRepeater;
-    m_pPara->szProxyHost = ui->leProxyServer->text();
-    m_pPara->nProxyPort = ui->spProxyPort->value();
-    m_pPara->szProxyUser = ui->leProxyUser->text();
-    m_pPara->szProxyPassword = ui->leProxyPassword->text();
+        m_pPara->SetProxyType( (CParameter::emProxy)CParameterLibVNCServer::emVncProxy::UltraVncRepeater);
+    m_pPara->SetProxyHost(ui->leProxyServer->text());
+    m_pPara->SetProxyPort(ui->spProxyPort->value());
+    m_pPara->SetProxyUser(ui->leProxyUser->text());
+    m_pPara->SetProxyPassword(ui->leProxyPassword->text());
     
     accept();
 }
@@ -148,39 +148,16 @@ void CDlgSettingsLibVnc::on_pushButton_2_clicked()
     reject();
 }
 
-void CDlgSettingsLibVnc::on_cbCompressAutoSelect_stateChanged(int arg1)
-{
-//    m_pPara->bAutoSelect = arg1;
-//    if(m_pPara->bAutoSelect)
-//    {
-//        ui->gpEncodeing->setEnabled(false);
-//        ui->gpColorLevel->setEnabled(false);
-//        ui->cbJPEG->setEnabled(false);
-//        ui->spJPEGLevel->setEnabled(false);
-//        ui->cbCompress->setEnabled(false);
-//        ui->spCompressLevel->setEnabled(false);
-//    } else {
-//        ui->gpEncodeing->setEnabled(true);
-//        ui->gpColorLevel->setEnabled(true);
-//        ui->cbJPEG->setEnabled(true);
-//        if(ui->cbJPEG->isChecked())
-//            ui->spJPEGLevel->setEnabled(true);
-//        ui->cbCompress->setEnabled(true);
-//        if(ui->cbCompress->isChecked())
-//            ui->spCompressLevel->setEnabled(true);
-//    }
-}
-
 void CDlgSettingsLibVnc::on_cbCompress_stateChanged(int arg1)
 {
-    m_pPara->bCompressLevel = arg1;
+    m_pPara->SetEnableCompressLevel(arg1);
     ui->spCompressLevel->setEnabled(arg1);
 }
 
 void CDlgSettingsLibVnc::on_cbJPEG_stateChanged(int arg1)
 {
-    m_pPara->bJpeg = arg1;
-    ui->spJPEGLevel->setEnabled(m_pPara->bJpeg);
+    m_pPara->SetJpeg(arg1);
+    ui->spJPEGLevel->setEnabled(m_pPara->GetJpeg());
 }
 
 void CDlgSettingsLibVnc::on_pbShow_clicked()

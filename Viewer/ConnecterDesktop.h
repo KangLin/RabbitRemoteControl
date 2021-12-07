@@ -58,8 +58,8 @@ public:
     virtual const QString Name();
     virtual QWidget* GetViewer() override;
     virtual QString ServerName() override;
-    virtual int Load(QDataStream &d) override;
-    virtual int Save(QDataStream &d) override;
+    virtual int Load(QSettings &set) override;
+    virtual int Save(QSettings &set) override;
     
     /*!
      * \~chinese
@@ -86,12 +86,12 @@ protected:
      * \~chinese \brief 加载参数
      * \~english \brief Load parameters
      */
-    virtual int OnLoad(QDataStream& d);
+    virtual int OnLoad(QSettings &set);
     /*!
      * \~chinese \brief 保存参数
      * \~english Save parameters
      */
-    virtual int OnSave(QDataStream& d);
+    virtual int OnSave(QSettings &set);
 
 private:
     CConnectThread* m_pThread;

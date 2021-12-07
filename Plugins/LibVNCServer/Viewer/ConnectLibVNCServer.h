@@ -3,8 +3,8 @@
 
 #include "Connect.h"
 #include "rfb/rfbclient.h"
-#include "Parameter.h"
 #include <QTcpSocket>
+#include "ParameterLibVNCServer.h"
 
 class CConnecterLibVNCServer;
 class CConnectLibVNCServer : public CConnect
@@ -46,23 +46,9 @@ private:
 private:
     rfbClient* m_pClient;
     QImage m_Image;
-    
-public:
-    class strPara : public CParameter {
-    public:
-        bool bShared;
-        
-        bool bCompressLevel;
-        int nCompressLevel;
-        bool bJpeg;
-        int nQualityLevel;
-        
-        enum class emVncProxy {
-            UltraVncRepeater = (int) emProxy::User + 1
-        }; 
-    };
+
 private:    
-    strPara* m_pPara;
+    CParameterLibVNCServer* m_pPara;
     QTcpSocket m_tcpSocket;
 
 protected:

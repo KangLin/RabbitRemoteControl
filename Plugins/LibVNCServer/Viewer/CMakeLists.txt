@@ -36,6 +36,7 @@ else()
 endif()
 
 SET(SOURCE_FILES
+    ParameterLibVNCServer.cpp
     PluginLibVNCServer.cpp
     ConnecterLibVNCServer.cpp
     ConnectLibVNCServer.cpp
@@ -43,6 +44,7 @@ SET(SOURCE_FILES
     )
 
 SET(HEADER_FILES
+    ParameterLibVNCServer.h
     PluginLibVNCServer.h
     ConnecterLibVNCServer.h
     ConnectLibVNCServer.h

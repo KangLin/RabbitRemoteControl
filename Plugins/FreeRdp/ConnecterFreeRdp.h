@@ -6,6 +6,7 @@
 #include "Connecter.h"
 #include "ConnecterDesktop.h"
 #include "freerdp/freerdp.h"
+#include "ParameterFreeRdp.h"
 
 class CConnecterFreeRdp : public CConnecterDesktop
 {
@@ -14,11 +15,6 @@ public:
     explicit CConnecterFreeRdp(CPluginViewer *parent = nullptr);
     virtual ~CConnecterFreeRdp() override;
     
-    class CParameterFreeRdp: public CParameter
-    {
-    public:
-        rdpSettings* pSettings;
-    };
     CParameterFreeRdp m_ParameterFreeRdp;
 
 public:
@@ -26,8 +22,8 @@ public:
     
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
-    virtual int OnLoad(QDataStream &d) override;
-    virtual int OnSave(QDataStream &d) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
 
     virtual CConnect *InstanceConnect() override;
 };

@@ -5,6 +5,7 @@
 
 #include <QDialog>
 #include "ConnectTigerVnc.h"
+#include "ParameterTigerVnc.h"
 
 namespace Ui {
 class CDlgSettingsTigerVnc;
@@ -15,7 +16,7 @@ class CDlgSettingsTigerVnc : public QDialog
     Q_OBJECT
     
 public:
-    explicit CDlgSettingsTigerVnc(CConnectTigerVnc::strPara *pPara, QWidget *parent = nullptr);
+    explicit CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *parent = nullptr);
     virtual ~CDlgSettingsTigerVnc();
     
 private slots:
@@ -34,7 +35,7 @@ private slots:
     
 private:
     Ui::CDlgSettingsTigerVnc *ui;
-    CConnectTigerVnc::strPara* m_pPara;
+    CParameterTigerVnc* m_pPara;
     
     // QWidget interface
 protected:

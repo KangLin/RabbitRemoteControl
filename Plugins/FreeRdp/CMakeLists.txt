@@ -21,6 +21,7 @@ if(NOT WIN32)
 endif()
 
 SET(SOURCE_FILES
+    ParameterFreeRdp.cpp
     PluginFreeRdp.cpp
     ConnectFreeRdp.cpp
     ConnecterFreeRdp.cpp
@@ -32,6 +33,7 @@ SET(SOURCE_FILES
     )
 
 SET(HEADER_FILES
+    ParameterFreeRdp.h
     PluginFreeRdp.h
     ConnectFreeRdp.h
     ConnecterFreeRdp.h

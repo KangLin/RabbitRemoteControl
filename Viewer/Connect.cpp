@@ -20,10 +20,10 @@ CConnect::CConnect(CConnecter *pConnecter, QObject *parent, bool bDirectConnecti
     Q_ASSERT(pConnecter);
     
     bool check = false;
-    if(bDirectConnection)
-        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
-                        this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
-    else
+//    if(bDirectConnection)
+//        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
+//                        this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
+//    else
         check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
                         this, SLOT(slotClipBoardChange()));
     Q_ASSERT(check);

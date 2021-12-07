@@ -1,6 +1,7 @@
 #include "ParameterTerminal.h"
 #include <QApplication>
 #include <QDebug>
+#include <QSettings>
 
 CParameterTerminal::CParameterTerminal()
 {
@@ -33,6 +34,20 @@ CParameterTerminal::CParameterTerminal()
 #endif
     textCodec = "UTF-8";
     historySize = 1000;
+}
+
+int CParameterTerminal::OnLoad(const QString &szFile)
+{
+    QSettings set(szFile, QSettings::IniFormat);
+    font = set.value("Terminal/Font");
+    return 0;
+}
+
+int CParameterTerminal::OnSave(const QString &szFile)
+{
+    QSettings set(szFile, QSettings::IniFormat);
+    set.setValue("Terminal/Font", font);
+    return 0;
 }
 
 QDataStream &operator<<(QDataStream &data, const CParameterTerminal &para)

@@ -5,6 +5,7 @@
 
 #include "ConnecterDesktop.h"
 #include "DlgSettingsTigerVnc.h"
+#include "ParameterTigerVnc.h"
 
 class CConnecterTigerVnc : public CConnecterDesktop
 {
@@ -20,13 +21,13 @@ public:
 protected:
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) override;
 
-    virtual int OnLoad(QDataStream& d) override;
-    virtual int OnSave(QDataStream& d) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
 
     virtual CConnect* InstanceConnect() override;
 
 public:
-    CConnectTigerVnc::strPara m_Para;
+    CParameterTigerVnc m_Para;
     CConnect* m_pConnect;
 
 public Q_SLOTS:

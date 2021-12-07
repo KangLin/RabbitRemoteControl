@@ -8,9 +8,9 @@ CDlgSettingsTelnet::CDlgSettingsTelnet(CParameterTerminal *pPara, QWidget *paren
 {
     ui->setupUi(this);
     
-    ui->leName->setText(m_pPara->szName);
-    ui->leHost->setText(m_pPara->szHost);
-    ui->spPort->setValue(m_pPara->nPort);
+    ui->leName->setText(m_pPara->GetName());
+    ui->leHost->setText(m_pPara->GetHost());
+    ui->spPort->setValue(m_pPara->GetPort());
     
     m_pFrmParaAppearance =
             new CFrmParameterTerminalAppearanceSettings(m_pPara, this);
@@ -30,9 +30,9 @@ CDlgSettingsTelnet::~CDlgSettingsTelnet()
 
 void CDlgSettingsTelnet::on_pbOK_clicked()
 {
-    m_pPara->szName = ui->leHost->text();
-    m_pPara->szHost = ui->leHost->text();
-    m_pPara->nPort = ui->spPort->value();
+    m_pPara->GetName() = ui->leHost->text();
+    m_pPara->GetHost() = ui->leHost->text();
+    m_pPara->GetPort() = ui->spPort->value();
     
     if(m_pFrmParaAppearance)
         m_pFrmParaAppearance->AcceptSettings();

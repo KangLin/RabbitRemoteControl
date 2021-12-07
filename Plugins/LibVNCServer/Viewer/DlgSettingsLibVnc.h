@@ -21,8 +21,6 @@ public:
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
-    
-    void on_cbCompressAutoSelect_stateChanged(int arg1);
 
     void on_cbCompress_stateChanged(int arg1);
     void on_cbJPEG_stateChanged(int arg1);
@@ -31,7 +29,7 @@ private slots:
     
 private:
     Ui::CDlgSettingsLibVnc *ui;
-    CConnectLibVNCServer::strPara* m_pPara;
+    CParameterLibVNCServer* m_pPara;
 };
 
 #endif // DLGSETTINGS_H

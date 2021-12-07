@@ -23,8 +23,8 @@ CConnecterDesktop::~CConnecterDesktop()
 
 const QString CConnecterDesktop::Name()
 {
-    if(m_pParameter && !m_pParameter->szName.isEmpty())
-        return m_pParameter->szName;
+    if(m_pParameter && !m_pParameter->GetName().isEmpty())
+        return m_pParameter->GetName();
     return ServerName();
 }
 
@@ -65,46 +65,41 @@ QString CConnecterDesktop::ServerName()
 {
     if(CConnecter::ServerName().isEmpty())
     {
-        if(m_pParameter && !m_pParameter->szHost.isEmpty())
-            return m_pParameter->szHost + ":"
-                   + QString::number(m_pParameter->nPort);
+        if(m_pParameter && !m_pParameter->GetHost().isEmpty())
+            return m_pParameter->GetHost() + ":"
+                   + QString::number(m_pParameter->GetPort());
         else
             return CConnecter::Name();
     }
     return CConnecter::ServerName();
 }
 
-int CConnecterDesktop::Load(QDataStream &d)
+int CConnecterDesktop::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pParameter);
-    qint16 version = 0;
-    d >> version 
-      >> *m_pParameter;
-
-    nRet = OnLoad(d);
-    return nRet;
-}
-
-int CConnecterDesktop::Save(QDataStream &d)
-{
-    int nRet = 0;
-    Q_ASSERT(m_pParameter);
-    d << Version()
-      << *m_pParameter;
     
-    nRet = OnSave(d);
+    nRet = OnLoad(set);
     return nRet;
 }
 
-int CConnecterDesktop::OnLoad(QDataStream& d)
+int CConnecterDesktop::Save(QSettings &set)
 {
-    Q_UNUSED(d);
+    int nRet = 0;
+    Q_ASSERT(m_pParameter);
+   
+    nRet = OnSave(set);
+    return nRet;
+}
+
+int CConnecterDesktop::OnLoad(QSettings &set)
+{
+    Q_UNUSED(set);
     return 0;
 }
 
-int CConnecterDesktop::OnSave(QDataStream& d)
+int CConnecterDesktop::OnSave(QSettings &set)
 {
-    Q_UNUSED(d);
+    Q_UNUSED(set);
     return 0;
 }

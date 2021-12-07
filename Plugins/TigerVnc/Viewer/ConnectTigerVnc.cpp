@@ -77,7 +77,7 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
 #endif
     
     SetParamter(&pConnecter->m_Para);
-    if(!m_pPara->bLocalCursor)
+    if(!m_pPara->GetLocalCursor())
     {
         emit sigUpdateCursor(QCursor(Qt::BlankCursor));
     }
@@ -94,15 +94,15 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 {
     if(!pPara) return -1;
     
-    m_pPara = (strPara*)pPara;
+    m_pPara = (CParameterTigerVnc*)pPara;
     
-    setShared(m_pPara->bShared);
-    supportsLocalCursor = m_pPara->bLocalCursor;
+    setShared(m_pPara->GetShared());
+    supportsLocalCursor = m_pPara->GetLocalCursor();
     
     // Set Preferred Encoding
-    setPreferredEncoding(m_pPara->nEncoding);
-    setCompressLevel(m_pPara->nCompressLevel);
-    setQualityLevel(m_pPara->nQualityLevel);
+    setPreferredEncoding(m_pPara->GetEncoding());
+    setCompressLevel(m_pPara->GetCompressLevel());
+    setQualityLevel(m_pPara->GetQualityLevel());
     
     // Set server pixmap format
     updatePixelFormat();
@@ -118,7 +118,7 @@ int CConnectTigerVnc::SetParamter(void *pPara)
 int CConnectTigerVnc::OnInit()
 {
     int nRet = 0;
-    if(m_pPara->bIce)
+    if(m_pPara->GetIce())
     {
 #ifdef HAVE_ICE
         nRet = IceInit();
@@ -152,8 +152,8 @@ int CConnectTigerVnc::IceInit()
     check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotSignalError(int, const QString&)));
     Q_ASSERT(check);
-    return m_Signal->Open(m_pPara->szSignalServer, m_pPara->nSignalPort,
-                          m_pPara->szSignalUser, m_pPara->szSignalPassword);
+    return m_Signal->Open(m_pPara->GetSignalServer(), m_pPara->GetSignalPort(),
+                          m_pPara->GetSignalUser(), m_pPara->GetSignalPassword());
     
     return 1;
 }
@@ -161,9 +161,9 @@ int CConnectTigerVnc::IceInit()
 void CConnectTigerVnc::slotSignalConnected()
 {
     LOG_MODEL_INFO("CConnectTigerVnc", "Connected to signal server:%s:%d; user:%s",
-                   m_pPara->szSignalServer.toStdString().c_str(),
-                   m_pPara->nSignalPort,
-                   m_pPara->szSignalUser.toStdString().c_str());
+                   m_pPara->GetSignalServer().toStdString().c_str(),
+                   m_pPara->GetSignalPort(),
+                   m_pPara->GetSignalUser().toStdString().c_str());
     auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
     if(!channel)
     {
@@ -174,17 +174,18 @@ void CConnectTigerVnc::slotSignalConnected()
     SetChannelConnect(channel);
     
     rtc::Configuration config;
-    rtc::IceServer stun(m_pPara->szStunServer.toStdString().c_str(),
-                        m_pPara->nStunPort);
-    rtc::IceServer turn(m_pPara->szTurnServer.toStdString().c_str(),
-                        m_pPara->nTurnPort,
-                        m_pPara->szTurnUser.toStdString().c_str(),
-                        m_pPara->szTurnPassword.toStdString().c_str());
+    rtc::IceServer stun(m_pPara->GetStunServer().toStdString().c_str(),
+                        m_pPara->GetStunPort());
+    rtc::IceServer turn(m_pPara->GetTurnServer().toStdString().c_str(),
+                        m_pPara->GetTurnPort(),
+                        m_pPara->GetTurnUser().toStdString().c_str(),
+                        m_pPara->GetTurnPassword().toStdString().c_str());
     config.iceServers.push_back(stun);
     config.iceServers.push_back(turn);
     channel->SetConfigure(config);
     
-    bool bRet = channel->open(m_pPara->szSignalUser, m_pPara->szPeerUser, true);
+    bool bRet = channel->open(m_pPara->GetSignalUser(),
+                              m_pPara->GetPeerUser(), true);
     if(!bRet)
     {
         emit sigError(-1, "Open channel fail");
@@ -226,7 +227,7 @@ int CConnectTigerVnc::SocketInit()
         
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
-        switch(m_pPara->eProxyType)
+        switch(m_pPara->GetProxyType())
         {
         case CParameter::emProxy::SocksV4:
             break;
@@ -246,14 +247,14 @@ int CConnectTigerVnc::SocketInit()
         {
             QNetworkProxy proxy;
             proxy.setType(type);
-            proxy.setHostName(m_pPara->szProxyHost);
-            proxy.setPort(m_pPara->nProxyPort);
-            proxy.setUser(m_pPara->szProxyUser);
-            proxy.setPassword(m_pPara->szProxyPassword);
+            proxy.setHostName(m_pPara->GetProxyHost());
+            proxy.setPort(m_pPara->GetProxyPort());
+            proxy.setUser(m_pPara->GetProxyUser());
+            proxy.setPassword(m_pPara->GetProxyPassword());
             pSock->setProxy(proxy);
         }
         
-        pSock->connectToHost(m_pPara->szHost, m_pPara->nPort);
+        pSock->connectToHost(m_pPara->GetHost(), m_pPara->GetPort());
         
         return 1;
     } catch (rdr::Exception& e) {
@@ -288,7 +289,8 @@ int CConnectTigerVnc::OnClean()
     if(m_Signal) m_Signal->Close();
 #endif
     close();
-    m_DataChannel->close();
+    if(m_DataChannel)
+        m_DataChannel->close();
     emit sigDisconnected();
     return 0;
 }
@@ -315,7 +317,7 @@ void CConnectTigerVnc::slotTimeOut()
 void CConnectTigerVnc::slotConnected()
 {
     LOG_MODEL_INFO("TigerVnc", "Connected to host %s port %d",
-                   m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
+                   m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
     
     setStreams(m_DataChannel->InStream(), m_DataChannel->OutStream());
     initialiseProtocol();
@@ -324,7 +326,7 @@ void CConnectTigerVnc::slotConnected()
 void CConnectTigerVnc::slotDisConnected()
 {
     LOG_MODEL_INFO("TigerVnc", "slotDisConnected to host %s port %d",
-                   m_pPara->szHost.toStdString().c_str(), m_pPara->nPort);
+                   m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
     emit sigDisconnected();
 }
 
@@ -366,9 +368,9 @@ void CConnectTigerVnc::initDone()
     
     // If using AutoSelect with old servers, start in FullColor
     // mode. See comment in autoSelectFormatAndEncoding. 
-    if (server.beforeVersion(3, 8) && m_pPara->bAutoSelect)
+    if (server.beforeVersion(3, 8) && m_pPara->GetAutoSelect())
     {
-        m_pPara->nColorLevel = Full;
+        m_pPara->SetColorLevel(CParameterTigerVnc::Full);
         updatePixelFormat();
     }
     
@@ -418,9 +420,9 @@ void CConnectTigerVnc::setCursorPos(const rfb::Point &pos)
 void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)
 {
     if(user)
-        *user = rfb::strDup(m_pPara->szUser.toStdString().c_str());
+        *user = rfb::strDup(m_pPara->GetUser().toStdString().c_str());
     if(password)
-        *password = rfb::strDup(m_pPara->szPassword.toStdString().c_str());
+        *password = rfb::strDup(m_pPara->GetPassword().toStdString().c_str());
 }
 
 bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text)
@@ -473,14 +475,14 @@ void CConnectTigerVnc::framebufferUpdateEnd()
     m_bpsEstimate = ((m_bpsEstimate * (1000000 - weight)) +
                      (bps * weight)) / 1000000;
     
-    if(m_pPara && m_pPara->bBufferEndRefresh)
+    if(m_pPara && m_pPara->GetBufferEndRefresh())
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
         emit sigUpdateRect(img.rect(), img);
     }
     
     // Compute new settings based on updated bandwidth values
-    if (m_pPara && m_pPara->bAutoSelect)
+    if (m_pPara && m_pPara->GetAutoSelect())
         autoSelectFormatAndEncoding();
 }
 
@@ -501,23 +503,23 @@ void CConnectTigerVnc::framebufferUpdateEnd()
 //
 void CConnectTigerVnc::autoSelectFormatAndEncoding()
 {
-    bool newFullColour = m_pPara->nColorLevel == Full ? true : false;
-    int newQualityLevel = m_pPara->nQualityLevel;
+    bool newFullColour = m_pPara->GetColorLevel() == CParameterTigerVnc::Full ? true : false;
+    int newQualityLevel = m_pPara->GetQualityLevel();
     
     // Always use Tight
     setPreferredEncoding(rfb::encodingTight);
     
     // Select appropriate quality level
-    if (!m_pPara->bNoJpeg) {
+    if (!m_pPara->GetNoJpeg()) {
         if (m_bpsEstimate > 16000)
             newQualityLevel = 8;
         else
             newQualityLevel = 6;
         
-        if (newQualityLevel != m_pPara->nQualityLevel) {
+        if (newQualityLevel != m_pPara->GetQualityLevel()) {
             LOG_MODEL_INFO("TigerVnc", "Throughput %d kbit/s - changing to quality %d",
                            (int)(m_bpsEstimate/1000), newQualityLevel);
-            m_pPara->nQualityLevel = newQualityLevel;
+            m_pPara->SetQualityLevel(newQualityLevel);
             setQualityLevel(newQualityLevel);
         }
     }
@@ -535,14 +537,14 @@ void CConnectTigerVnc::autoSelectFormatAndEncoding()
     
     // Select best color level
     newFullColour = (m_bpsEstimate > 256);
-    if (newFullColour != (0 == m_pPara->nColorLevel)) {
+    if (newFullColour != (0 == m_pPara->GetColorLevel())) {
         if (newFullColour)
             LOG_MODEL_INFO("TigerVnc", ("Throughput %d kbit/s - full color is now enabled"),
                            (int)m_bpsEstimate / 1000);
         else
             LOG_MODEL_INFO("TigerVnc", ("Throughput %d kbit/s - full color is now disabled"),
                            (int)m_bpsEstimate / 1000);
-        m_pPara->nColorLevel = newFullColour ? CConnectTigerVnc::Full : CConnectTigerVnc::Low;
+        m_pPara->SetColorLevel(newFullColour ? CParameterTigerVnc::Full : CParameterTigerVnc::Low);
         updatePixelFormat();
     } 
 }
@@ -556,17 +558,17 @@ void CConnectTigerVnc::updatePixelFormat()
     if(!m_pPara) return;
     rfb::PixelFormat pf;
     
-    switch (m_pPara->nColorLevel) {
-    case CConnectTigerVnc::Full:
+    switch (m_pPara->GetColorLevel()) {
+    case CParameterTigerVnc::Full:
         pf = fullColourPF;
         break;
-    case CConnectTigerVnc::Medium:
+    case CParameterTigerVnc::Medium:
         pf = mediumColourPF;
         break;
-    case CConnectTigerVnc::Low:
+    case CParameterTigerVnc::Low:
         pf = lowColourPF;
         break;
-    case CConnectTigerVnc::VeryLow:
+    case CParameterTigerVnc::VeryLow:
         pf = verylowColourPF;
         break;
     }
@@ -585,7 +587,7 @@ bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
     //    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
     //               r.tl.x, r.tl.y, r.width(), r.height(), encoding);
     // 立即更新图像
-    if(m_pPara && !m_pPara->bBufferEndRefresh)
+    if(m_pPara && !m_pPara->GetBufferEndRefresh())
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
         emit sigUpdateRect(img.rect(), img);
@@ -596,7 +598,7 @@ bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
 void CConnectTigerVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!writer()) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     unsigned char mask = 0;
     rfb::Point p(pos.x(), pos.y());
     if(buttons & Qt::MouseButton::LeftButton)
@@ -613,7 +615,7 @@ void CConnectTigerVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 void CConnectTigerVnc::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
     if(!writer()) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
     rfb::Point p(pos.x(), pos.y());
     //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseReleaseEvent buttons:%d;mask:%d;x:%d;y:%d", button, mask, pos.x(), pos.y());
@@ -624,7 +626,7 @@ void CConnectTigerVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotMouseReleaseEvent buttons:%d;x:%d;y:%d", buttons, pos.x(), pos.y());
     if(!writer()) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
     rfb::Point p(pos.x(), pos.y());
     if(buttons & Qt::MouseButton::LeftButton)
@@ -640,7 +642,7 @@ void CConnectTigerVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoi
 {
     //LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotWheelEvent");
     if(!writer()) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
     rfb::Point p(pos.x(), pos.y());
     
@@ -667,7 +669,7 @@ void CConnectTigerVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoi
 void CConnectTigerVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!writer()) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     bool modifier = true;
     if (modifiers == Qt::NoModifier)
         modifier = false;
@@ -679,7 +681,7 @@ void CConnectTigerVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifier
 
 void CConnectTigerVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     if(!writer()) return;
     bool modifier = true;
     if (modifiers == Qt::NoModifier)
@@ -957,7 +959,7 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 
 void CConnectTigerVnc::slotClipBoardChange()
 {
-    if(!m_pPara->bClipboard || !getOutStream()) return;
+    if(!m_pPara->GetClipboard() || !getOutStream()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     
@@ -967,7 +969,7 @@ void CConnectTigerVnc::slotClipBoardChange()
 
 void CConnectTigerVnc::handleClipboardRequest()
 {
-    if(!m_pPara->bClipboard || !getOutStream()) return;
+    if(!m_pPara->GetClipboard() || !getOutStream()) return;
     
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardRequest");
     const QClipboard *clipboard = QApplication::clipboard();
@@ -1005,7 +1007,7 @@ void CConnectTigerVnc::handleClipboardRequest()
 void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 {
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardAnnounce");
-    if(!m_pPara->bClipboard || !getOutStream()) return;
+    if(!m_pPara->GetClipboard() || !getOutStream()) return;
     
     if(available)
         this->requestClipboard();
@@ -1014,7 +1016,7 @@ void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data, size_t length)
 {
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::handleClipboardData");
-    if(!m_pPara->bClipboard) return;
+    if(!m_pPara->GetClipboard()) return;
     
     if(rfb::clipboardUTF8 & format) {
         QMimeData* pData = new QMimeData();

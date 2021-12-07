@@ -12,6 +12,8 @@
 #include "QSocketInStream.h"
 #include "QSocketOutStream.h"
 #include "Channel.h"
+#include "ParameterTigerVnc.h"
+
 #include <QEventLoop>
 
 #ifdef HAVE_ICE
@@ -90,44 +92,8 @@ private:
 
     quint32 TranslateRfbKey(quint32 inkey,bool modifier);   
 
-public:
-    enum COLOR_LEVEL {
-        Full,
-        Medium,
-        Low,
-        VeryLow
-    };
-
-    class strPara : public CParameter{
-    public:
-        QString szServerName;
-
-        bool bShared;
-        bool bBufferEndRefresh;
-        bool bSupportsDesktopResize;
-
-        bool bAutoSelect;
-        COLOR_LEVEL nColorLevel;
-        int nEncoding;
-        bool bCompressLevel;
-        int nCompressLevel;
-        bool bNoJpeg;
-        int nQualityLevel;
-        
-        bool bIce;
-        QString szSignalServer;
-        quint16 nSignalPort;
-        QString szSignalUser, szSignalPassword, szPeerUser;
-        QString szStunServer;
-        quint16 nStunPort;
-        QString szTurnServer;
-        quint16 nTurnPort;
-        QString szTurnUser, szTurnPassword;
-        
-    };
-
 private:
-    strPara* m_pPara;
+    CParameterTigerVnc* m_pPara;
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
     

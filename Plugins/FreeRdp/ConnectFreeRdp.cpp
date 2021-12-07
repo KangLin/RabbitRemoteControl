@@ -38,7 +38,7 @@ CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
-    m_ClientEntryPoints.settings = pConnecter->m_ParameterFreeRdp.pSettings;
+    m_ClientEntryPoints.settings = pConnecter->m_ParameterFreeRdp.m_pSettings;
     
     SetParamter(&pConnecter->m_ParameterFreeRdp);
     RdpClientEntry(&m_ClientEntryPoints);
@@ -144,8 +144,8 @@ int CConnectFreeRdp::OnClean()
  *           Because of it is a non-Qt event loop, so wait in here.
  * \~
  * \return 
- *       \li = 0: continue
- *       \li < 0: error or stop
+ *       \li >= 0: continue, Interval call time (msec)
+ *       \li  < 0: error or stop
  * \see slotTimeOut()
  */
 int CConnectFreeRdp::OnProcess()
@@ -186,7 +186,7 @@ int CConnectFreeRdp::OnProcess()
             if(pContext->settings->AutoReconnectionEnabled)
             {
                 if (client_auto_reconnect_ex(pContext->instance, NULL))
-                    return 1000;
+                    return m_pParamter->GetReconnectInterval() * 1000;
                 else
                 {
                  /*
@@ -208,7 +208,7 @@ int CConnectFreeRdp::OnProcess()
 
 void CConnectFreeRdp::slotClipBoardChange()
 {
-    if(m_pParamter->bClipboard)
+    if(m_pParamter->GetClipboard())
         m_ClipBoard.slotClipBoardChange();
 }
 
@@ -513,7 +513,7 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
     {
 		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
-                                pThis->m_pParamter->bClipboard);
+                                pThis->m_pParamter->GetClipboard());
 	}/* else  if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
     {
         LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
@@ -567,7 +567,7 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 	{
 		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
-                                  pThis->m_pParamter->bClipboard);
+                                  pThis->m_pParamter->GetClipboard());
 	}/*
     else if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
     {
@@ -700,7 +700,7 @@ BOOL CConnectFreeRdp::cb_end_paint(rdpContext *context)
 void CConnectFreeRdp::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->bOnlyView) return;
+    if(m_pParamter && m_pParamter->GetOnlyView()) return;
    
     UINT16 flags = 0;
     if(buttons & Qt::MouseButton::LeftButton)
@@ -738,7 +738,7 @@ void CConnectFreeRdp::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
 void CConnectFreeRdp::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->bOnlyView) return;
+    if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
     if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
@@ -755,7 +755,7 @@ void CConnectFreeRdp::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 void CConnectFreeRdp::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->bOnlyView) return;
+    if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_DOWN;
     if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
@@ -772,7 +772,7 @@ void CConnectFreeRdp::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 void CConnectFreeRdp::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->bOnlyView) return;
+    if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT16 flags = 0;
     if(button & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
@@ -790,7 +790,7 @@ void CConnectFreeRdp::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 void CConnectFreeRdp::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->bOnlyView) return;
+    if(m_pParamter && m_pParamter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
@@ -800,7 +800,7 @@ void CConnectFreeRdp::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers
 void CConnectFreeRdp::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->bOnlyView) return;
+    if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
         freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, k);
@@ -811,22 +811,22 @@ int CConnectFreeRdp::SetParamter(void *pPara)
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     
-    CConnecterFreeRdp::CParameterFreeRdp* pSettings = (CConnecterFreeRdp::CParameterFreeRdp*)(pPara);
-    rdpSettings* settings = pSettings->pSettings;
+    CParameterFreeRdp* pSettings = (CParameterFreeRdp*)(pPara);
+    rdpSettings* settings = pSettings->m_pSettings;
     
     freerdp_settings_set_string(settings,
                                 FreeRDP_ServerHostname,
-                                pSettings->szHost.toStdString().c_str());
-    settings->ServerPort = pSettings->nPort;
+                                pSettings->GetHost().toStdString().c_str());
+    settings->ServerPort = pSettings->GetPort();
     freerdp_settings_set_string(settings,
                                 FreeRDP_Username,
-                                pSettings->szUser.toStdString().c_str());
+                                pSettings->GetUser().toStdString().c_str());
     freerdp_settings_set_string(settings,
                                 FreeRDP_Password,
-                                pSettings->szPassword.toStdString().c_str());
+                                pSettings->GetPassword().toStdString().c_str());
     
-    emit sigServerName(QString(pSettings->szHost)
-                  + ":" + QString::number(pSettings->nPort));
-    
+    emit sigServerName(QString(pSettings->GetHost())
+                  + ":" + QString::number(pSettings->GetPort()));
+
     return 0;
 }

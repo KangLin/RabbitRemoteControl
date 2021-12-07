@@ -5,14 +5,6 @@
 CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginViewer *parent) : CConnecterDesktop(parent)
 {
     m_pParameter = &m_Para;
-    m_Para.nPort = 5900;
-    m_Para.bShared = true;
-    
-    m_Para.bClipboard = true;
-    m_Para.bCompressLevel = true;
-    m_Para.nCompressLevel = 3;
-    m_Para.bJpeg = true;
-    m_Para.nQualityLevel = 5;
 }
 
 CConnecterLibVNCServer::~CConnecterLibVNCServer()
@@ -30,29 +22,14 @@ QDialog *CConnecterLibVNCServer::GetDialogSettings(QWidget *parent)
     return new CDlgSettingsLibVnc(this, parent);
 }
 
-int CConnecterLibVNCServer::OnLoad(QDataStream &d)
+int CConnecterLibVNCServer::OnLoad(QSettings &set)
 {
-    int nRet = 0;
-    d >> m_Para.bShared
-      >> m_Para.bCompressLevel
-      >> m_Para.nCompressLevel
-      >> m_Para.bJpeg
-      >> m_Para.nQualityLevel
-      ;
-    //TODO: if version
-    return nRet;
+    return m_Para.OnLoad(set);
 }
 
-int CConnecterLibVNCServer::OnSave(QDataStream &d)
+int CConnecterLibVNCServer::OnSave(QSettings &set)
 {
-    int nRet = 0;
-    d << m_Para.bShared
-      << m_Para.bCompressLevel
-      << m_Para.nCompressLevel
-      << m_Para.bJpeg
-      << m_Para.nQualityLevel
-      ;
-    return nRet;
+    return m_Para.OnSave(set);
 }
 
 CConnect* CConnecterLibVNCServer::InstanceConnect()

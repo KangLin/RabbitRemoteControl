@@ -39,7 +39,7 @@ CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, Q
 #ifdef _DEBUG
     rfbClientLog = rfbQtClientLog;
 #endif
-    if(!m_pPara->bLocalCursor)
+    if(!m_pPara->GetLocalCursor())
     {
         emit sigUpdateCursor(QCursor(Qt::BlankCursor));
     }
@@ -79,7 +79,7 @@ bool CConnectLibVNCServer::InitClient()
     rfbClientSetClientData(m_pClient, (void*)gThis, this);
     
     // Set sock
-    switch(m_pPara->eProxyType)
+    switch(m_pPara->GetProxyType())
     {
     case CParameter::emProxy::SocksV4:
         break;
@@ -87,10 +87,10 @@ bool CConnectLibVNCServer::InitClient()
     {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
-        proxy.setHostName(m_pPara->szProxyHost);
-        proxy.setPort(m_pPara->nProxyPort);
-        proxy.setUser(m_pPara->szProxyUser);
-        proxy.setPassword(m_pPara->szProxyPassword);
+        proxy.setHostName(m_pPara->GetProxyHost());
+        proxy.setPort(m_pPara->GetProxyPort());
+        proxy.setUser(m_pPara->GetProxyUser());
+        proxy.setPassword(m_pPara->GetProxyPassword());
         m_tcpSocket.setProxy(proxy);
         m_tcpSocket.connectToHost(m_pClient->serverHost, m_pClient->serverPort);
         if (!m_tcpSocket.waitForConnected(3000))
@@ -99,9 +99,9 @@ bool CConnectLibVNCServer::InitClient()
         m_pClient->sock = m_tcpSocket.socketDescriptor();
         break;
     }
-    case (CParameter::emProxy) CConnectLibVNCServer::strPara::emVncProxy::UltraVncRepeater:
-        m_pClient->destHost = strdup(m_pPara->szProxyHost.toStdString().c_str());
-        m_pClient->destPort = m_pPara->nProxyPort;
+    case (CParameter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
+        m_pClient->destHost = strdup(m_pPara->GetProxyHost().toStdString().c_str());
+        m_pClient->destPort = m_pPara->GetProxyPort();
     case CParameter::emProxy::No:
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
@@ -214,7 +214,7 @@ int CConnectLibVNCServer::OnClean()
  *           Because of it is a non-Qt event loop, so wait in here.
  * \~
  * \return 
- *       \li = 0: continue
+ *       \li >= 0: continue, Interval call time (msec)
  *       \li < 0: error or stop
  * \see slotTimeOut()
  */
@@ -235,7 +235,7 @@ int CConnectLibVNCServer::OnProcess()
 
 void CConnectLibVNCServer::slotClipBoardChange()
 {
-    if(m_pPara && !m_pPara->bClipboard) return;
+    if(m_pPara && !m_pPara->GetClipboard()) return;
     QClipboard* pClipboard = QApplication::clipboard();
     if(pClipboard)
     {
@@ -253,12 +253,12 @@ int CConnectLibVNCServer::SetParamter(void*)
     Q_ASSERT(m_pClient);
 
     // Set server ip and port
-    m_pClient->serverHost = strdup(m_pPara->szHost.toStdString().c_str());
-    m_pClient->serverPort = m_pPara->nPort;
+    m_pClient->serverHost = strdup(m_pPara->GetHost().toStdString().c_str());
+    m_pClient->serverPort = m_pPara->GetPort();
     
-    m_pClient->appData.shareDesktop = m_pPara->bShared;
-    m_pClient->appData.viewOnly = m_pPara->bOnlyView;
-    m_pClient->appData.useRemoteCursor = m_pPara->bLocalCursor;
+    m_pClient->appData.shareDesktop = m_pPara->GetShared();
+    m_pClient->appData.viewOnly = m_pPara->GetOnlyView();
+    m_pClient->appData.useRemoteCursor = m_pPara->GetLocalCursor();
     
     //Qt is support QImage::Format_RGB32, so we use default format QImage::Format_RGB32 in OnSize()
 //    m_pClient->appData.requestedDepth = m_pPara->nColorLevel;
@@ -297,11 +297,11 @@ int CConnectLibVNCServer::SetParamter(void*)
 //		break;
 //	}
     
-    m_pClient->appData.enableJPEG = m_pPara->bJpeg;
+    m_pClient->appData.enableJPEG = m_pPara->GetJpeg();
     if(m_pClient->appData.enableJPEG)
-        m_pClient->appData.qualityLevel = m_pPara->nQualityLevel;
-    if(m_pPara->bCompressLevel)
-        m_pClient->appData.compressLevel = m_pPara->nCompressLevel;
+        m_pClient->appData.qualityLevel = m_pPara->GetQualityLevel();
+    if(m_pPara->GetEnableCompressLevel())
+        m_pClient->appData.compressLevel = m_pPara->GetCompressLevel();
     
     return nRet;
 }
@@ -325,7 +325,7 @@ void CConnectLibVNCServer::cb_got_selection(rfbClient *client, const char *text,
 {
     //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_got_selection:%s", text);
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
-    if(!pThis->m_pPara->bClipboard) return;
+    if(!pThis->m_pPara->GetClipboard()) return;
     QClipboard* pClipboard = QApplication::clipboard();
     if(pClipboard)
         pClipboard->setText(text);
@@ -364,11 +364,11 @@ rfbCredential* CConnectLibVNCServer::cb_get_credential(rfbClient *cl, int creden
     LOG_MODEL_ERROR("LibVNCServer", "username and password required for authentication!\n");
 
     memcpy(c->userCredential.username,
-           pThis->m_pPara->szUser.toStdString().c_str(),
-           pThis->m_pPara->szUser.toStdString().length());
+           pThis->m_pPara->GetUser().toStdString().c_str(),
+           pThis->m_pPara->GetUser().toStdString().length());
     memcpy(c->userCredential.password,
-           pThis->m_pPara->szPassword.toStdString().c_str(),
-           pThis->m_pPara->szPassword.toStdString().length());
+           pThis->m_pPara->GetPassword().toStdString().c_str(),
+           pThis->m_pPara->GetPassword().toStdString().length());
 
     return c;
 }
@@ -377,7 +377,7 @@ char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
 {
     //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_get_password");
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
-    return strdup(pThis->m_pPara->szPassword.toStdString().c_str());
+    return strdup(pThis->m_pPara->GetPassword().toStdString().c_str());
 }
 
 int CConnectLibVNCServer::OnSize()
@@ -471,7 +471,7 @@ void CConnectLibVNCServer::cb_got_cursor_shape(rfbClient *client,
 void CConnectLibVNCServer::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!m_pClient) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     //qDebug() << "CConnectLibVnc::slotMousePressEvent" << e->button() << e->buttons();
     unsigned char mask = 0;
     if(buttons & Qt::MouseButton::LeftButton)
@@ -487,7 +487,7 @@ void CConnectLibVNCServer::slotMousePressEvent(Qt::MouseButtons buttons, QPoint 
 void CConnectLibVNCServer::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
     if(!m_pClient) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
     if(button & Qt::MouseButton::LeftButton)
         mask |= 0x1;
@@ -502,7 +502,7 @@ void CConnectLibVNCServer::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint p
 {
     //qDebug() << "CConnectLibVnc::slotMouseMoveEvent" << e->button() << e->buttons();
     if(!m_pClient) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
     if(buttons & Qt::MouseButton::LeftButton)
         mask |= 0x1;
@@ -517,7 +517,7 @@ void CConnectLibVNCServer::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, 
 {
     //vlog.debug("CConnectLibVnc::slotWheelEvent");
     if(!m_pClient) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
     
     if(buttons & Qt::MouseButton::LeftButton)
@@ -806,7 +806,7 @@ uint32_t TranslateRfbKey(quint32 inkey, bool modifier)
 void CConnectLibVNCServer::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!m_pClient) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     bool shiftModifier = false;
     if (modifiers & Qt::ShiftModifier)
         shiftModifier = true;
@@ -818,7 +818,7 @@ void CConnectLibVNCServer::slotKeyPressEvent(int key, Qt::KeyboardModifiers modi
 void CConnectLibVNCServer::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!m_pClient) return;
-    if(m_pPara && m_pPara->bOnlyView) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
     bool shiftModifier = false;
     if (modifiers & Qt::ShiftModifier)
         shiftModifier = true;

@@ -9,9 +9,10 @@
 #include <QDataStream>
 #include <QFile>
 #include <QCoreApplication>
+#include <QSettings>
 
 CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent),
-    m_FileVersion(0)  //TODO: update version it if update data
+    m_FileVersion(1)  //TODO: update version it if update data
 {
 #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
     Q_INIT_RESOURCE(translations_Viewer);
@@ -142,37 +143,22 @@ CConnecter* CManageConnecter::CreateConnecter(const QString& id)
 CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
 {
     CConnecter* pConnecter = nullptr;
-    QFile f(szFile);
-    if(!f.open(QFile::ReadOnly))
-    {
-        LOG_MODEL_ERROR("ManageConnecter", "Load connecter: Open file fail: %s",
-                        szFile.toStdString().c_str());
-        return nullptr;
-    }
+   
+    QSettings set(szFile, QSettings::IniFormat);
+    m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
+    QString id = set.value("Manage/ID").toString();
+    QString protol = set.value("Manage/Protol").toString();
+    QString name = set.value("Manage/Name").toString();
     
-    try{
-        QDataStream d(&f);
-        d >> m_FileVersion;
-        QString id;
-        d >> id;
-        QString protol;
-        d >> protol;
-        QString name;
-        d >> name;
-        LOG_MODEL_INFO("ManageConnecter", "protol: %s  name: %s",
-                       protol.toStdString().c_str(),
-                       name.toStdString().c_str());
-        pConnecter = CreateConnecter(id);
-        if(pConnecter)
-            pConnecter->Load(d);
-        else
-            LOG_MODEL_ERROR("ManageConnecter", "Don't create connecter: %s",
-                            protol.toStdString().c_str());
-    } catch(...) {
-        LOG_MODEL_ERROR("ManageConnecter", "Load connecter exception");
-    }
-
-    f.close();
+    LOG_MODEL_INFO("ManageConnecter", "protol: %s  name: %s",
+                   protol.toStdString().c_str(),
+                   name.toStdString().c_str());
+    pConnecter = CreateConnecter(id);
+    if(pConnecter)
+        pConnecter->Load(set);
+    else
+        LOG_MODEL_ERROR("ManageConnecter", "Don't create connecter: %s",
+                        protol.toStdString().c_str());
 
     return pConnecter;
 }
@@ -181,28 +167,20 @@ int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecte
 {
     if(!pConnecter) return -1;
 
-    QFile f(szFile);
-    if(!f.open(QFile::WriteOnly))
-    {
-        LOG_MODEL_ERROR("ManageConnecter",
-                        "Save connecter: Open file fail: %s",
-                        szFile.toStdString().c_str());
-        return -1;
-    }
-
-    QDataStream d(&f);
-    d << m_FileVersion;
+    QSettings set(szFile, QSettings::IniFormat);
+    
     const CPluginViewer* pFactory = pConnecter->GetPluginFactory();
     // In the CManageConnecter derived class,
     // the CreateConnecter function constructs the derived class of CConnecter,
     // and its parent pointer must be specified as the corresponding CPluginFactory derived class
     Q_ASSERT(pFactory);
-    d << pFactory->Id()
-      << pFactory->Protol()
-      << pFactory->Name();
-    pConnecter->Save(d);
+    
+    set.setValue("Manage/FileVersion", m_FileVersion);
+    set.setValue("Manage/ID", pFactory->Id());
+    set.setValue("Manage/Protol", pFactory->Protol());
+    set.setValue("Manage/Name", pFactory->Name());
+    pConnecter->Save(set);
 
-    f.close();
     return 0;
 }
 
