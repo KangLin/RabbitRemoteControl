@@ -9,7 +9,7 @@ class CParameterSSH : public CParameterTerminal
 
 public:
     CParameterSSH();
-
+    
     QString captrueFile;
 };
 

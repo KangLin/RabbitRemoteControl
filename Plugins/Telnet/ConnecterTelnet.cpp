@@ -12,7 +12,7 @@ CConnecterTelnet::CConnecterTelnet(CPluginViewer *parent)
     m_pPara = new CParameterTelnet();
     if(m_pPara)
     {
-        m_pPara->nPort = 23;
+        m_pPara->SetPort(23);
     }
 }
 
@@ -62,7 +62,7 @@ int CConnecterTelnet::OnConnect()
     // Here we start an empty pty.
     m_pConsole->startTerminalTeletype();
 
-    m_pSocket->connectToHost(m_pPara->szHost, m_pPara->nPort);
+    m_pSocket->connectToHost(m_pPara->GetHost(), m_pPara->GetPort());
     
     return nRet; 
 }
@@ -81,14 +81,14 @@ int CConnecterTelnet::OnDisConnect()
     return nRet;
 }
 
-int CConnecterTelnet::OnLoad(QDataStream &d)
+int CConnecterTelnet::OnLoad(QSettings &set)
 {
     int nRet = 0;
     
     return nRet;
 }
 
-int CConnecterTelnet::OnSave(QDataStream &d)
+int CConnecterTelnet::OnSave(QSettings &set)
 {
     int nRet = 0;
     

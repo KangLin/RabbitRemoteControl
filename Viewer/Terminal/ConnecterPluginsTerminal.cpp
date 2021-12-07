@@ -57,22 +57,21 @@ qint16 CConnecterPluginsTerminal::Version()
     return 0;
 }
 
-int CConnecterPluginsTerminal::Load(const QString &szFile)
+int CConnecterPluginsTerminal::Load(QSettings &set)
 {
     int nRet = 0;
     CParameterTerminal* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
 
-    QSettings set(szFile, QSettings::IniFormat);
     qint16 version = 0;
-    pPara->OnLoad(szFile);
+    pPara->OnLoad(set);
 
-    nRet = OnLoad(szFile);
+    nRet = OnLoad(set);
     return nRet;
 }
 
-int CConnecterPluginsTerminal::Save(const QString &szFile)
+int CConnecterPluginsTerminal::Save(QSettings &set)
 {
     int nRet = 0;
     
@@ -80,8 +79,8 @@ int CConnecterPluginsTerminal::Save(const QString &szFile)
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     
-    pPara->OnSave(szFile);
-    nRet = OnSave(szFile);
+    pPara->OnSave(set);
+    nRet = OnSave(set);
     return nRet;
 }
 
@@ -135,23 +134,23 @@ int CConnecterPluginsTerminal::SetParamter()
     Q_ASSERT(pPara);
     if(!pPara) return -1;
 #if QTERMWIDGET_VERSION >= QT_VERSION_CHECK(0, 9, 0)
-    m_pConsole->setTerminalSizeHint(pPara->sizeHint);
-    m_pConsole->setBidiEnabled(pPara->biDirectional);
-    m_pConsole->disableBracketedPasteMode(pPara->disableBracketedPasteMode);
+    m_pConsole->setTerminalSizeHint(pPara->GetSizeHint());
+    m_pConsole->setBidiEnabled(pPara->GetDirectional());
+    m_pConsole->disableBracketedPasteMode(pPara->GetDisableBracketedPasteMode());
 #endif
-    m_pConsole->setTerminalFont(pPara->font);
-    m_pConsole->setKeyboardCursorShape(pPara->cursorShape);
-    m_pConsole->setColorScheme(pPara->colorScheme);
-    m_pConsole->setScrollBarPosition(pPara->scrollBarPosition);
-    m_pConsole->setFlowControlEnabled(pPara->flowControl);
-    m_pConsole->setFlowControlWarningEnabled(pPara->flowControlWarning);
-    m_pConsole->setMotionAfterPasting(pPara->motionAfterPasting);
-    m_pConsole->setTerminalOpacity(1.0 - pPara->termTransparency / 100.0);
-    m_pConsole->setTerminalBackgroundImage(pPara->backgroupImage);
+    m_pConsole->setTerminalFont(pPara->GetFont());
+    m_pConsole->setKeyboardCursorShape(pPara->GetCursorShape());
+    m_pConsole->setColorScheme(pPara->GetColorScheme());
+    m_pConsole->setScrollBarPosition(pPara->GetScrollBarPosition());
+    m_pConsole->setFlowControlEnabled(pPara->GetFlowControl());
+    m_pConsole->setFlowControlWarningEnabled(pPara->GetFlowControlWarning());
+    m_pConsole->setMotionAfterPasting(pPara->GetMotionAfterPasting());
+    m_pConsole->setTerminalOpacity(1.0 - pPara->GetTransparency() / 100.0);
+    m_pConsole->setTerminalBackgroundImage(pPara->GetBackgroupImage());
         
-    m_pConsole->setKeyBindings(pPara->szKeyBindings);
-    m_pConsole->setTextCodec(QTextCodec::codecForName(pPara->textCodec.toStdString().c_str()));
-    m_pConsole->setHistorySize(pPara->historySize);
+    m_pConsole->setKeyBindings(pPara->GetKeyBindings());
+    m_pConsole->setTextCodec(QTextCodec::codecForName(pPara->GetTextCodec().toStdString().c_str()));
+    m_pConsole->setHistorySize(pPara->GetHistorySize());
     
 //    m_pConsole->setMonitorActivity(false);
 //    m_pConsole->setMonitorSilence(false);
@@ -170,7 +169,7 @@ void CConnecterPluginsTerminal::slotTerminalTitleChanged()
 void CConnecterPluginsTerminal::slotZoomReset()
 {
     if(m_pConsole)
-        m_pConsole->setTerminalFont(GetPara()->font);
+        m_pConsole->setTerminalFont(GetPara()->GetFont());
 }
 
 int CConnecterPluginsTerminal::OnConnect()
@@ -183,12 +182,12 @@ int CConnecterPluginsTerminal::OnDisConnect()
     return 0;
 }
 
-int CConnecterPluginsTerminal::OnLoad(const QString &szFile)
+int CConnecterPluginsTerminal::OnLoad(QSettings &set)
 {
     return 0;
 }
 
-int CConnecterPluginsTerminal::OnSave(const QString &szFile)
+int CConnecterPluginsTerminal::OnSave(QSettings &set)
 {
     return 0;
 }

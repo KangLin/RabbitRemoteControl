@@ -9,7 +9,7 @@ CConnecterSSH::CConnecterSSH(CPluginViewer *parent)
     m_bThread = true;
     if(m_pPara)
     {
-        m_pPara->nPort = 22;
+        m_pPara->SetPort(22);
     }
 }
 

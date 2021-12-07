@@ -11,12 +11,12 @@ CDlgSettingsSSH::CDlgSettingsSSH(CParameterSSH *pPara, QWidget *parent) :
     ui->setupUi(this);
     
     Q_ASSERT(m_pPara);
-    ui->leName->setText(m_pPara->szName);
-    ui->leHost->setText(m_pPara->szHost);
-    ui->sbPort->setValue(m_pPara->nPort);
-    ui->cbSavePassword->setChecked(m_pPara->bSavePassword);
-    ui->leUser->setText(m_pPara->szUser);
-    ui->lePassword->setText(m_pPara->szPassword);
+    ui->leName->setText(m_pPara->GetName());
+    ui->leHost->setText(m_pPara->GetHost());
+    ui->sbPort->setValue(m_pPara->GetPort());
+    ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
+    ui->leUser->setText(m_pPara->GetUser());
+    ui->lePassword->setText(m_pPara->GetPassword());
     
     ui->leCapFile->setText(m_pPara->captrueFile);
     
@@ -37,12 +37,12 @@ CDlgSettingsSSH::~CDlgSettingsSSH()
 
 void CDlgSettingsSSH::on_pbOK_clicked()
 {
-    m_pPara->szName = ui->leName->text();
-    m_pPara->szHost = ui->leHost->text();
-    m_pPara->nPort = ui->sbPort->value();
-    m_pPara->bSavePassword = ui->cbSavePassword->isChecked();
-    m_pPara->szUser = ui->leUser->text();
-    m_pPara->szPassword = ui->lePassword->text();
+    m_pPara->SetName(ui->leName->text());
+    m_pPara->SetHost(ui->leHost->text());
+    m_pPara->SetPort(ui->sbPort->value());
+    m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
+    m_pPara->SetUser(ui->leUser->text());
+    m_pPara->SetPassword(ui->lePassword->text());
     
     m_pPara->captrueFile = ui->leCapFile->text();
     

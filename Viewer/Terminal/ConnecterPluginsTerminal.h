@@ -18,8 +18,8 @@ public:
     
     QWidget* GetViewer() override;
     virtual qint16 Version() override;
-    virtual int Load(const QString& szFile) override;
-    virtual int Save(const QString &szFile) override;
+    virtual int Load(QSettings &set) override;
+    virtual int Save(QSettings &set) override;
     
     virtual QString ServerName() override;
 
@@ -45,8 +45,8 @@ protected:
      */
     virtual int OnConnect();
     virtual int OnDisConnect();
-    virtual int OnLoad(const QString& szFile);
-    virtual int OnSave(const QString& szFile);
+    virtual int OnLoad(QSettings &set);
+    virtual int OnSave(QSettings &set);
     
     virtual CParameterTerminal* GetPara() = 0;
     

@@ -3,3 +3,4 @@
 CParameterSSH::CParameterSSH() : CParameterTerminal()
 {
 }
+

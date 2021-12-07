@@ -19,8 +19,8 @@ protected:
     virtual int SetParamter() override;
     virtual int OnConnect() override;
     virtual int OnDisConnect() override;
-    virtual int OnLoad(QDataStream &d) override;
-    virtual int OnSave(QDataStream &d) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
     
 protected Q_SLOTS:
     void slotSendData(const char *data, int size);

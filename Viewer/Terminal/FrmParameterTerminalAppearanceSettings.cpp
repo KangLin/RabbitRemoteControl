@@ -54,7 +54,7 @@ CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings
     Q_ASSERT(pPara);
     if(!pPara) return;
 
-    QFont f = pPara->font;
+    QFont f = pPara->GetFont();
     ui->spFontSize->setValue(f.pointSize());
     ui->lbFont->setFont(f);
     
@@ -64,26 +64,26 @@ CFrmParameterTerminalAppearanceSettings::CFrmParameterTerminalAppearanceSettings
     ui->fontComboBox->setCurrentFont(f);
     ui->fontComboBox->setEditable(false);
     
-    ui->cbShowResize->setChecked(pPara->sizeHint);
+    ui->cbShowResize->setChecked(pPara->GetSizeHint());
     
     ui->cbCursorShape->addItem(tr("BlockCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
     ui->cbCursorShape->addItem(tr("UnderlineCursor"), (int)Konsole::Emulation::KeyboardCursorShape::UnderlineCursor);
     ui->cbCursorShape->addItem(tr("IBeamCursor"), (int)Konsole::Emulation::KeyboardCursorShape::BlockCursor);
-    ui->cbCursorShape->setCurrentIndex((int)pPara->cursorShape);
+    ui->cbCursorShape->setCurrentIndex((int)pPara->GetCursorShape());
     
     ui->cbColorScheme->addItems(QTermWidget::availableColorSchemes());
-    if(!m_pPara->colorScheme.isEmpty())
-        ui->cbColorScheme->setCurrentText(pPara->colorScheme);
+    if(!m_pPara->GetColorScheme().isEmpty())
+        ui->cbColorScheme->setCurrentText(pPara->GetColorScheme());
     
     ui->cbScrollBarPositioin->addItem(tr("No"), QTermWidget::NoScrollBar);
     ui->cbScrollBarPositioin->addItem(tr("Left"), QTermWidget::ScrollBarLeft);
     ui->cbScrollBarPositioin->addItem(tr("Right"), QTermWidget::ScrollBarRight);
-    ui->cbScrollBarPositioin->setCurrentIndex(pPara->scrollBarPosition);
+    ui->cbScrollBarPositioin->setCurrentIndex(pPara->GetScrollBarPosition());
 
-    ui->spTerminalTransparecy->setValue(pPara->termTransparency);
-    ui->cbFlowControl->setChecked(m_pPara->flowControl);
-    ui->cbBiDirectional->setChecked(m_pPara->biDirectional);
-    ui->leImage->setText(m_pPara->backgroupImage);
+    ui->spTerminalTransparecy->setValue(pPara->GetTransparency());
+    ui->cbFlowControl->setChecked(m_pPara->GetFlowControl());
+    ui->cbBiDirectional->setChecked(m_pPara->GetDirectional());
+    ui->leImage->setText(m_pPara->GetBackgroupImage());
 }
 
 CFrmParameterTerminalAppearanceSettings::~CFrmParameterTerminalAppearanceSettings()
@@ -110,16 +110,18 @@ void CFrmParameterTerminalAppearanceSettings::on_spFontSize_valueChanged(int siz
 int CFrmParameterTerminalAppearanceSettings::AcceptSettings()
 {
     if(!m_pPara) return -1;
-    m_pPara->font = ui->fontComboBox->currentFont();
-    m_pPara->font.setPointSize(ui->spFontSize->value());
-    m_pPara->sizeHint = ui->cbShowResize->isChecked();
-    m_pPara->colorScheme = ui->cbColorScheme->currentText();
-    m_pPara->cursorShape = static_cast<Konsole::Emulation::KeyboardCursorShape>(ui->cbCursorShape->currentData().toInt());
-    m_pPara->scrollBarPosition = static_cast<QTermWidget::ScrollBarPosition>(ui->cbScrollBarPositioin->currentData().toInt());
-    m_pPara->termTransparency = ui->spTerminalTransparecy->value();
-    m_pPara->flowControl = ui->cbFlowControl->isChecked();
-    m_pPara->backgroupImage = ui->leImage->text();
-    m_pPara->biDirectional = ui->cbBiDirectional->isChecked();
+    m_pPara->SetFont(ui->fontComboBox->currentFont());
+    QFont font = m_pPara->GetFont();
+    font.setPointSize(ui->spFontSize->value());
+    m_pPara->SetFont(font);
+    m_pPara->SetSizeHint(ui->cbShowResize->isChecked());
+    m_pPara->SetColorScheme(ui->cbColorScheme->currentText());
+    m_pPara->SetCursorShape(static_cast<Konsole::Emulation::KeyboardCursorShape>(ui->cbCursorShape->currentData().toInt()));
+    m_pPara->SetScrollBarPosition(static_cast<QTermWidget::ScrollBarPosition>(ui->cbScrollBarPositioin->currentData().toInt()));
+    m_pPara->SetTransparency(ui->spTerminalTransparecy->value());
+    m_pPara->SetFlowControl(ui->cbFlowControl->isChecked());
+    m_pPara->SetBackgroupImage(ui->leImage->text());
+    m_pPara->SetDirectional(ui->cbBiDirectional->isChecked());
     return 0;
 }
 

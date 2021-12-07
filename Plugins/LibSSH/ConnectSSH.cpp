@@ -23,24 +23,24 @@ int CConnectSSH::SetParamter(void *pPara)
 
     Q_UNUSED(pPara);
 
-    if(m_pPara->szHost.isEmpty())
+    if(m_pPara->GetHost().isEmpty())
     {
         LOG_MODEL_ERROR("LibSSH",  "The host isn't setting");
         emit sigError(-1, "The host isn't setting");
     }
     else if (ssh_options_set(m_pSession, SSH_OPTIONS_HOST,
-                             m_pPara->szHost.toStdString().c_str()) < 0) {
+                             m_pPara->GetHost().toStdString().c_str()) < 0) {
         LOG_MODEL_ERROR("LibSSH",  "The host set is fail");
         emit sigError(-2, "The host set is fail");
         return -2;
     }
 
-    if(m_pPara->szUser.isEmpty())
+    if(m_pPara->GetUser().isEmpty())
     {
         LOG_MODEL_ERROR("LibSSH",  "The user isn't setting");
         emit sigError(-3, "The user isn't setting");
     } else if (ssh_options_set(m_pSession, SSH_OPTIONS_USER,
-                               m_pPara->szUser.toStdString().c_str()) < 0) {
+                               m_pPara->GetUser().toStdString().c_str()) < 0) {
         LOG_MODEL_ERROR("LibSSH",  "The user set fail");
         emit sigError(-3, "The user set fail");
         return -3;
@@ -282,10 +282,10 @@ int CConnectSSH::GetPassword(const char *prompt,
     
     int nRet = 0;
     int length = len;
-    if(len > m_pPara->szPassword.toStdString().length())
-        length = m_pPara->szPassword.toStdString().length();
+    if(len > m_pPara->GetPassword().toStdString().length())
+        length = m_pPara->GetPassword().toStdString().length();
     if(1 == verify)
-        memcpy(buf, m_pPara->szPassword.toStdString().c_str(), length);
+        memcpy(buf, m_pPara->GetPassword().toStdString().c_str(), length);
 
     return nRet;
 }
@@ -479,8 +479,8 @@ int CConnectSSH::Authenticate(ssh_session session)
 
         // Try to authenticate with password
         if (method & SSH_AUTH_METHOD_PASSWORD) {
-            memcpy(password, m_pPara->szPassword.toStdString().c_str(),
-                   m_pPara->szPassword.toStdString().length());
+            memcpy(password, m_pPara->GetPassword().toStdString().c_str(),
+                   m_pPara->GetPassword().toStdString().length());
             rc = ssh_userauth_password(session, NULL, password);
             if (rc == SSH_AUTH_ERROR) {
                 error(session);

@@ -30,9 +30,9 @@ CDlgSettingsTelnet::~CDlgSettingsTelnet()
 
 void CDlgSettingsTelnet::on_pbOK_clicked()
 {
-    m_pPara->GetName() = ui->leHost->text();
-    m_pPara->GetHost() = ui->leHost->text();
-    m_pPara->GetPort() = ui->spPort->value();
+    m_pPara->SetName(ui->leHost->text());
+    m_pPara->SetHost(ui->leHost->text());
+    m_pPara->SetPort(ui->spPort->value());
     
     if(m_pFrmParaAppearance)
         m_pFrmParaAppearance->AcceptSettings();
