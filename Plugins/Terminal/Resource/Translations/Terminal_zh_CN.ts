@@ -20,27 +20,16 @@
     </message>
 </context>
 <context>
-    <name>CPluginFactoryTerminal</name>
-    <message>
-        <source>Terminal</source>
-        <translation type="vanished">终端</translation>
-    </message>
-    <message>
-        <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
-        <translation type="vanished">终端：本地(shell)和远程(telnet、等)终端</translation>
-    </message>
-</context>
-<context>
     <name>CPluginTerminal</name>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="39"/>
+        <location filename="../../PluginTerminal.cpp" line="29"/>
         <source>Terminal</source>
-        <translation type="unfinished">终端</translation>
+        <translation>终端</translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="44"/>
+        <location filename="../../PluginTerminal.cpp" line="34"/>
         <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
-        <translation type="unfinished">终端：本地(shell)和远程(telnet、等)终端</translation>
+        <translation>终端：本地(shell)和远程(telnet、等)终端</translation>
     </message>
 </context>
 </TS>

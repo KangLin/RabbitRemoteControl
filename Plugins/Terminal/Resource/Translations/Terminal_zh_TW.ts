@@ -9,10 +9,6 @@
         <translation>終端設置</translation>
     </message>
     <message>
-        <source>Appearance</source>
-        <translation type="vanished">顯示</translation>
-    </message>
-    <message>
         <location filename="../../DlgSettingsTerminal.ui" line="35"/>
         <source>OK(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
@@ -24,27 +20,16 @@
     </message>
 </context>
 <context>
-    <name>CPluginFactoryTerminal</name>
-    <message>
-        <source>Terminal</source>
-        <translation type="vanished">終端</translation>
-    </message>
-    <message>
-        <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
-        <translation type="vanished">終端：本地(shell)和遠程(telnet、等)終端</translation>
-    </message>
-</context>
-<context>
     <name>CPluginTerminal</name>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="39"/>
+        <location filename="../../PluginTerminal.cpp" line="29"/>
         <source>Terminal</source>
-        <translation type="unfinished">終端</translation>
+        <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="44"/>
+        <location filename="../../PluginTerminal.cpp" line="34"/>
         <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
-        <translation type="unfinished">終端：本地(shell)和遠程(telnet、等)終端</translation>
+        <translation>終端：本地(shell)和遠程(telnet、等)終端</translation>
     </message>
 </context>
 </TS>

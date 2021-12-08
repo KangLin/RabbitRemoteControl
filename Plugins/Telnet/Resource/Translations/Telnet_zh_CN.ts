@@ -45,29 +45,18 @@
         <source>Cancle(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
-    <message>
-        <source>Appearance</source>
-        <translation type="vanished">显示</translation>
-    </message>
-</context>
-<context>
-    <name>CPluginFactoryTelnet</name>
-    <message>
-        <source>Telnet: net terminal</source>
-        <translation type="vanished">Telnet: 网络终端</translation>
-    </message>
 </context>
 <context>
     <name>CPluginTelnet</name>
     <message>
-        <location filename="../../PluginTelnet.cpp" line="40"/>
+        <location filename="../../PluginTelnet.cpp" line="25"/>
         <source>Telnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginTelnet.cpp" line="45"/>
+        <location filename="../../PluginTelnet.cpp" line="30"/>
         <source>Telnet: net terminal</source>
-        <translation type="unfinished">Telnet: 网络终端</translation>
+        <translation>Telnet: 网络终端</translation>
     </message>
 </context>
 </TS>

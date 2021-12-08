@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>CConnectFreeRdp</name>
     <message>
         <source>freerdp_connect connect to </source>
-        <translation>連接到 </translation>
+        <translation>连接到 </translation>
     </message>
     <message>
         <source> fail</source>
-        <translation> 失敗</translation>
+        <translation> 失败</translation>
     </message>
     <message>
         <source>Connect to </source>
-        <translation>連接到 </translation>
+        <translation>连接到 </translation>
     </message>
     <message>
         <source>Logon error info [</source>
-        <translation>登錄錯誤信息</translation>
+        <translation>登录错误信息</translation>
     </message>
 </context>
 <context>
     <name>CDlgSetFreeRdp</name>
     <message>
         <source>Set FreeRdp</source>
-        <translation>設置 FreeRdp</translation>
+        <translation>设置 FreeRdp</translation>
     </message>
     <message>
         <source>Server</source>
-        <translation>服務器</translation>
+        <translation>服务器</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation>服務器:</translation>
+        <translation>服务器:</translation>
     </message>
     <message>
         <source>User name:</source>
-        <translation>用戶名:</translation>
+        <translation>用户名:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>密碼:</translation>
+        <translation>密码:</translation>
     </message>
     <message>
         <source>Enable clipboard</source>
-        <translation>允許剪切板</translation>
+        <translation>允许剪切板</translation>
     </message>
     <message>
         <source>OK(&amp;O)</source>
-        <translation>確定(&amp;O)</translation>
+        <translation>确定(&amp;O)</translation>
     </message>
     <message>
         <source>Cancel(&amp;C)</source>
@@ -64,11 +64,11 @@
     </message>
     <message>
         <source>Display</source>
-        <translation>顯示</translation>
+        <translation>显示</translation>
     </message>
     <message>
         <source>Select size:</source>
-        <translation>選擇尺寸：</translation>
+        <translation>选择尺寸：</translation>
     </message>
     <message>
         <source>Full screen</source>
@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Remote color depth:</source>
-        <translation>遠程顏色深度：</translation>
+        <translation>远程颜色深度：</translation>
     </message>
     <message>
         <source>8 bits</source>
@@ -96,41 +96,46 @@
     </message>
     <message>
         <source>Remote desktop size:</source>
-        <translation>遠程桌面尺寸：</translation>
+        <translation>远程桌面尺寸：</translation>
     </message>
     <message>
         <source>Use all local monitors for remote sessions</source>
-        <translation>將本地所有監視器用於遠程會話</translation>
+        <translation>将本地所有监视器用于远程会话</translation>
     </message>
     <message>
         <source>Save password</source>
-        <translation>保存密碼</translation>
+        <translation>保存密码</translation>
     </message>
     <message>
         <source>Only View</source>
-        <translation>僅查看</translation>
+        <translation>仅查看</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>名稱：</translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <source>Connecter name</source>
-        <translation>連接名稱</translation>
+        <translation>连接名称</translation>
     </message>
-</context>
-<context>
-    <name>CPluginFactoryFreeRdp</name>
     <message>
-        <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation type="vanished">RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
+        <source>Reconnect interval:</source>
+        <translation>重连间隔：</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect interval&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t 重连&lt;/p&gt;&lt;p&gt;&amp;gt;0: 重连间隔&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reconnect interval</source>
+        <translation>重连间隔</translation>
     </message>
 </context>
 <context>
     <name>CPluginFreeRdp</name>
     <message>
         <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation type="unfinished">RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
+        <translation>RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
     </message>
 </context>
 </TS>

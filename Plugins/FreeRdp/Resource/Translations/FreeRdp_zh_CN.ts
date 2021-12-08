@@ -118,19 +118,24 @@
         <source>Connecter name</source>
         <translation>连接名称</translation>
     </message>
-</context>
-<context>
-    <name>CPluginFactoryFreeRdp</name>
     <message>
-        <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation type="vanished">RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
+        <source>Reconnect interval:</source>
+        <translation>重连间隔：</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect interval&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t 重连&lt;/p&gt;&lt;p&gt;&amp;gt;0: 重连间隔&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Reconnect interval</source>
+        <translation>重连间隔</translation>
     </message>
 </context>
 <context>
     <name>CPluginFreeRdp</name>
     <message>
         <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
-        <translation type="unfinished">RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
+        <translation>RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
     </message>
 </context>
 </TS>

@@ -6,29 +6,29 @@
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="14"/>
         <source>Set telnet parameter</source>
-        <translation>設置 TELNET 參數</translation>
+        <translation>设置 TELNET 参数</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="21"/>
         <source>Server</source>
-        <translation>服務器</translation>
+        <translation>服务器</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="29"/>
         <source>Name:</source>
-        <translation>名稱：</translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="36"/>
         <location filename="../../DlgSettingsTelnet.ui" line="39"/>
         <location filename="../../DlgSettingsTelnet.ui" line="42"/>
         <source>Connecter name</source>
-        <translation>連接名稱</translation>
+        <translation>连接名称</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="53"/>
         <source>Server:</source>
-        <translation>服務器：</translation>
+        <translation>服务器：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="63"/>
@@ -38,36 +38,25 @@
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="111"/>
         <source>OK(&amp;O)</source>
-        <translation>確定(&amp;O)</translation>
+        <translation>确定(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTelnet.ui" line="118"/>
         <source>Cancle(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
-    <message>
-        <source>Appearance</source>
-        <translation type="vanished">顯示</translation>
-    </message>
-</context>
-<context>
-    <name>CPluginFactoryTelnet</name>
-    <message>
-        <source>Telnet: net terminal</source>
-        <translation type="vanished">Telnet: 網絡終端</translation>
-    </message>
 </context>
 <context>
     <name>CPluginTelnet</name>
     <message>
-        <location filename="../../PluginTelnet.cpp" line="40"/>
+        <location filename="../../PluginTelnet.cpp" line="25"/>
         <source>Telnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginTelnet.cpp" line="45"/>
+        <location filename="../../PluginTelnet.cpp" line="30"/>
         <source>Telnet: net terminal</source>
-        <translation type="unfinished">Telnet: 網絡終端</translation>
+        <translation>Telnet: 网络终端</translation>
     </message>
 </context>
 </TS>

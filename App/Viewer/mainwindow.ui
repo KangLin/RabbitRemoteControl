@@ -227,14 +227,17 @@
    <property name="text">
     <string>Zoom to window(&amp;Z)</string>
    </property>
+   <property name="iconText">
+    <string>Zoom to window</string>
+   </property>
    <property name="toolTip">
     <string>Zoom to windows</string>
    </property>
    <property name="statusTip">
-    <string>Zoom(Z)</string>
+    <string>Zoom to windows</string>
    </property>
    <property name="whatsThis">
-    <string>Zoom(Z)</string>
+    <string>Zoom to windows</string>
    </property>
   </action>
   <action name="actionKeep_aspect_ration_to_windows_K">

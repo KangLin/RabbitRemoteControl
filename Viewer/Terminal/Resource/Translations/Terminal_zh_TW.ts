@@ -101,12 +101,12 @@
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="129"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="131"/>
         <source>Backgroup image</source>
         <translation>背景圖像</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="130"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="132"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
         <translation>圖像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
