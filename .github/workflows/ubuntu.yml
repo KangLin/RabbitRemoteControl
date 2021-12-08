@@ -131,18 +131,18 @@ jobs:
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{matrix.os}}.deb
         
-    - name: update xml file
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
-      working-directory: ${{github.workspace}}
-      run: |
-        #sudo apt update -y -qq
-        #sudo apt-get install -y -qq xvfb xpra
-        sudo Xvfb :999 -ac &
-        export DISPLAY=:999.0
-        echo "Install rabbit remote control ......"
-        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{ matrix.os }}.deb
-        echo "Update update_linux.xml ......"
-        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{ matrix.os }}.deb -m "v${{env.RabbitRemoteControl_VERION}}"
+#    - name: update xml file
+#      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+#      working-directory: ${{github.workspace}}
+#      run: |
+#        #sudo apt update -y -qq
+#        #sudo apt-get install -y -qq xvfb xpra
+#        sudo Xvfb :999 -ac &
+#        export DISPLAY=:999.0
+#        echo "Install rabbit remote control ......"
+#        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{ matrix.os }}.deb
+#        echo "Update update_linux.xml ......"
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{ matrix.os }}.deb -m "v${{env.RabbitRemoteControl_VERION}}"
 
     - name: update 
       uses: actions/upload-artifact@v2

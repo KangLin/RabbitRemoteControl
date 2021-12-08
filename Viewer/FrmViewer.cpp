@@ -95,7 +95,7 @@ void CFrmViewer::paintDesktop()
         dstRect.setWidth(m_Desktop.width());
         dstRect.setHeight(m_Desktop.height());
         break;
-    case AspectRation:
+    case KeepAspectRationToWindow:
     {
         dstRect = GetAspectRationRect();
         break;
@@ -139,7 +139,7 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
         outPos.setX(m_Desktop.width() * inPos.x() / width());
         outPos.setY(m_Desktop.height() * inPos.y() / height());
         break;
-    case AspectRation:
+    case KeepAspectRationToWindow:
         QRectF r = GetAspectRationRect();
         if(inPos.x() < r.left()
                 || inPos.x() > r.right()

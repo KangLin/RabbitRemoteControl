@@ -75,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent)
     if(m_pGBView) {
         m_pGBView->addAction(ui->actionZoomToWindow_Z);
         m_pGBView->addAction(ui->actionOriginal_O);
-        m_pGBView->addAction(ui->actionKeep_AspectRation_K);
+        m_pGBView->addAction(ui->actionKeep_aspect_ration_to_windows_K);
         m_pGBView->setEnabled(false);
     }
     ui->actionZoomToWindow_Z->setChecked(true);
@@ -236,11 +236,11 @@ void MainWindow::on_actionZoomToWindow_Z_toggled(bool arg1)
     m_pView->SetAdaptWindows(CFrmViewer::ZoomToWindow);
 }
 
-void MainWindow::on_actionKeep_AspectRation_K_toggled(bool arg1)
+void MainWindow::on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1)
 {
     if(!arg1) return;
     if(!m_pView) return;
-    m_pView->SetAdaptWindows(CFrmViewer::AspectRation);
+    m_pView->SetAdaptWindows(CFrmViewer::KeepAspectRationToWindow);
 }
 
 void MainWindow::on_actionOriginal_O_toggled(bool arg1)
@@ -264,8 +264,8 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
         ui->actionZoomToWindow_Z->setChecked(true);
         t = "Zoom";
         break;
-    case CFrmViewer::AspectRation:
-        ui->actionKeep_AspectRation_K->setChecked(true);
+    case CFrmViewer::KeepAspectRationToWindow:
+        ui->actionKeep_aspect_ration_to_windows_K->setChecked(true);
         t = "AspectRation";
         break;
     case CFrmViewer::Disable:
@@ -381,8 +381,8 @@ int MainWindow::Connect(CConnecter *p, bool set)
             aw = CFrmViewer::Original;
         else if(ui->actionZoomToWindow_Z->isChecked())
             aw = CFrmViewer::ZoomToWindow;
-        else if(ui->actionKeep_AspectRation_K->isChecked())
-            aw = CFrmViewer::AspectRation;
+        else if(ui->actionKeep_aspect_ration_to_windows_K->isChecked())
+            aw = CFrmViewer::KeepAspectRationToWindow;
         m_pView->SetAdaptWindows(aw, p->GetViewer());
         m_pView->AddView(p->GetViewer());
         m_pView->SetWidowsTitle(p->GetViewer(), p->Name()); 

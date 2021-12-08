@@ -53,7 +53,7 @@
     <addaction name="separator"/>
     <addaction name="actionOriginal_O"/>
     <addaction name="actionZoomToWindow_Z"/>
-    <addaction name="actionKeep_AspectRation_K"/>
+    <addaction name="actionKeep_aspect_ration_to_windows_K"/>
     <addaction name="separator"/>
     <addaction name="actionShow_TabBar_B"/>
     <addaction name="separator"/>
@@ -107,7 +107,7 @@
    <addaction name="separator"/>
    <addaction name="actionOriginal_O"/>
    <addaction name="actionZoomToWindow_Z"/>
-   <addaction name="actionKeep_AspectRation_K"/>
+   <addaction name="actionKeep_aspect_ration_to_windows_K"/>
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
   </widget>
@@ -237,7 +237,7 @@
     <string>Zoom(Z)</string>
    </property>
   </action>
-  <action name="actionKeep_AspectRation_K">
+  <action name="actionKeep_aspect_ration_to_windows_K">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -246,7 +246,10 @@
      <normaloff>:/image/AspectRatio</normaloff>:/image/AspectRatio</iconset>
    </property>
    <property name="text">
-    <string>Keep AspectRation(&amp;K)</string>
+    <string>Keep aspect ration to window(&amp;K)</string>
+   </property>
+   <property name="toolTip">
+    <string>Keep aspect ration to window</string>
    </property>
    <property name="statusTip">
     <string>Keep AspectRation(K)</string>
