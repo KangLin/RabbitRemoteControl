@@ -73,12 +73,12 @@ MainWindow::MainWindow(QWidget *parent)
     
     m_pGBView = new QActionGroup(this);
     if(m_pGBView) {
-        m_pGBView->addAction(ui->actionZoom_Z);
+        m_pGBView->addAction(ui->actionZoomToWindow_Z);
         m_pGBView->addAction(ui->actionOriginal_O);
         m_pGBView->addAction(ui->actionKeep_AspectRation_K);
         m_pGBView->setEnabled(false);
     }
-    ui->actionZoom_Z->setChecked(true);
+    ui->actionZoomToWindow_Z->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -229,11 +229,11 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_pFullScreenToolBar->show();
 }
 
-void MainWindow::on_actionZoom_Z_toggled(bool arg1)
+void MainWindow::on_actionZoomToWindow_Z_toggled(bool arg1)
 {
     if(!arg1) return;
     if(!m_pView) return;
-    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+    m_pView->SetAdaptWindows(CFrmViewer::ZoomToWindow);
 }
 
 void MainWindow::on_actionKeep_AspectRation_K_toggled(bool arg1)
@@ -260,8 +260,8 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
         ui->actionOriginal_O->setChecked(true);
         t = "Original";
         break;
-    case CFrmViewer::Zoom:
-        ui->actionZoom_Z->setChecked(true);
+    case CFrmViewer::ZoomToWindow:
+        ui->actionZoomToWindow_Z->setChecked(true);
         t = "Zoom";
         break;
     case CFrmViewer::AspectRation:
@@ -376,11 +376,11 @@ int MainWindow::Connect(CConnecter *p, bool set)
         slotInformation(tr("Connecting to ") + p->Name());
     if(m_pView)
     {
-        CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Zoom;
+        CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::ZoomToWindow;
         if(ui->actionOriginal_O->isChecked())
             aw = CFrmViewer::Original;
-        else if(ui->actionZoom_Z->isChecked())
-            aw = CFrmViewer::Zoom;
+        else if(ui->actionZoomToWindow_Z->isChecked())
+            aw = CFrmViewer::ZoomToWindow;
         else if(ui->actionKeep_AspectRation_K->isChecked())
             aw = CFrmViewer::AspectRation;
         m_pView->SetAdaptWindows(aw, p->GetViewer());

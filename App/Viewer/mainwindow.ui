@@ -52,7 +52,7 @@
     <addaction name="actionFull_screen_F"/>
     <addaction name="separator"/>
     <addaction name="actionOriginal_O"/>
-    <addaction name="actionZoom_Z"/>
+    <addaction name="actionZoomToWindow_Z"/>
     <addaction name="actionKeep_AspectRation_K"/>
     <addaction name="separator"/>
     <addaction name="actionShow_TabBar_B"/>
@@ -106,7 +106,7 @@
    <addaction name="actionShow_TabBar_B"/>
    <addaction name="separator"/>
    <addaction name="actionOriginal_O"/>
-   <addaction name="actionZoom_Z"/>
+   <addaction name="actionZoomToWindow_Z"/>
    <addaction name="actionKeep_AspectRation_K"/>
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
@@ -216,7 +216,7 @@
     <string>Original(O)</string>
    </property>
   </action>
-  <action name="actionZoom_Z">
+  <action name="actionZoomToWindow_Z">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -225,7 +225,10 @@
      <normaloff>:/image/ZoomIn</normaloff>:/image/ZoomIn</iconset>
    </property>
    <property name="text">
-    <string>Zoom(&amp;Z)</string>
+    <string>Zoom to window(&amp;Z)</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom to windows</string>
    </property>
    <property name="statusTip">
     <string>Zoom(Z)</string>
@@ -355,7 +358,6 @@
   </action>
  </widget>
  <resources>
-  <include location="Resource/Resource.qrc"/>
   <include location="Resource/Resource.qrc"/>
  </resources>
  <connections/>

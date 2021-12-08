@@ -86,7 +86,7 @@ void CFrmViewer::paintDesktop()
     switch (m_AdaptWindows) {
     case Disable:
     case Auto:
-    case Zoom:
+    case ZoomToWindow:
     case Original:
         break;
     case OriginalCenter:
@@ -135,7 +135,7 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
     case OriginalCenter:
         outPos = inPos;
         return 0;
-    case Zoom:
+    case ZoomToWindow:
         outPos.setX(m_Desktop.width() * inPos.x() / width());
         outPos.setY(m_Desktop.height() * inPos.y() / height());
         break;

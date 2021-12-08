@@ -53,7 +53,7 @@ public:
                          ///< \~chinese 原始桌面大小，桌面的左上点与窗口的左上点对齐
         OriginalCenter,  ///< \~english Original desktop size, the center of the desktop is aligned with the center of the window
                          ///< \~chinese 原始桌面大小，桌面中心点与窗口中心点对齐
-        Zoom,            ///< \~english Desktop adapt to windows
+        ZoomToWindow,    ///< \~english Desktop adapt to windows
                          ///< \~chinese 桌面缩放到窗口大小
         AspectRation,    ///< \~english Keep desktop aspectration adapt to windows
                          ///< \~chinese 保持长宽比缩放到窗口大小

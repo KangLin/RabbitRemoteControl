@@ -45,7 +45,7 @@ private Q_SLOTS:
     void on_actionSend_ctl_alt_del_triggered();
     
     void on_actionOriginal_O_toggled(bool arg1);
-    void on_actionZoom_Z_toggled(bool arg1);
+    void on_actionZoomToWindow_Z_toggled(bool arg1);
     void on_actionKeep_AspectRation_K_toggled(bool arg1);
     void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
     
