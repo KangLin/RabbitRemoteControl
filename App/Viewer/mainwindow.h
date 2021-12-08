@@ -45,6 +45,8 @@ private Q_SLOTS:
     void on_actionSend_ctl_alt_del_triggered();
     
     void on_actionOriginal_O_toggled(bool arg1);
+    void on_actionZoom_In_triggered();
+    void on_actionZoom_Out_triggered();
     void on_actionZoomToWindow_Z_toggled(bool arg1);
     void on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1);
     void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
@@ -64,7 +66,7 @@ private Q_SLOTS:
     
     void on_actionShow_TabBar_B_triggered();
     void slotShowTabBar(bool bShow);
-
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;

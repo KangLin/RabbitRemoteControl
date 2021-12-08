@@ -17,7 +17,8 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
 
-    SetAdaptWindows(Original);
+    SetAdaptWindows(ZoomToWindow);
+    SetZoomFactor(1);
     
     setMouseTracking(true);
     setFocusPolicy(Qt::WheelFocus);
@@ -133,8 +134,6 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
     case Auto:
     case Original:
     case OriginalCenter:
-        outPos = inPos;
-        return 0;
     case ZoomToWindow:
         outPos.setX(m_Desktop.width() * inPos.x() / width());
         outPos.setY(m_Desktop.height() * inPos.y() / height());
@@ -223,19 +222,49 @@ void CFrmViewer::slotSystemCombination()
     emit sigKeyPressEvent(Qt::Key_Delete, Qt::NoModifier);
 }
 
+double CFrmViewer::GetZoomFactor() const
+{
+    return m_dbZoomFactor;
+}
+
+int CFrmViewer::SetZoomFactor(double newZoomFactor)
+{
+    if(newZoomFactor < 0) return -1;
+    if (qFuzzyCompare(m_dbZoomFactor, newZoomFactor))
+        return 0;
+    m_dbZoomFactor = newZoomFactor;
+    return 0;
+}
+
+int CFrmViewer::ReSize(int width, int height)
+{
+    int w = width * GetZoomFactor();
+    int h = height * GetZoomFactor();
+    resize(w, h);
+    return 0;
+}
+
 void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
 {
-    if(m_AdaptWindows == aw)
-        return;
     m_AdaptWindows = aw;
-    if(!m_Desktop.isNull()
-            && (Original == m_AdaptWindows || OriginalCenter == m_AdaptWindows)) 
-        resize(m_Desktop.size());
+    if(!m_Desktop.isNull())
+    {
+        switch (m_AdaptWindows) {
+        case Original:
+        case OriginalCenter:
+            SetZoomFactor(1);
+        case Zoom:
+            ReSize(m_Desktop.width(), m_Desktop.height());
+            break;
+        default:
+            break;
+        }
+    }   
     update();
     //setFocus();
 }
 
-CFrmViewer::ADAPT_WINDOWS CFrmViewer::AdaptWindows()
+CFrmViewer::ADAPT_WINDOWS CFrmViewer::GetAdaptWindows()
 {
     return m_AdaptWindows;
 }
@@ -245,8 +274,9 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
     m_Desktop = QImage(width, height, QImage::Format_RGB32);
     
     if(Original == m_AdaptWindows
-            || OriginalCenter == m_AdaptWindows)
-        resize(width, height);
+            || OriginalCenter == m_AdaptWindows
+            || Zoom == m_AdaptWindows)
+        ReSize(width, height);
 
     return;
 }
@@ -280,4 +310,18 @@ void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
 void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
 {
     cursor().setPos(pos);
+}
+
+int CFrmViewer::Load(QSettings &set)
+{
+    SetZoomFactor(set.value("Viewer/ZoomFactor", GetZoomFactor()).toDouble());
+    SetAdaptWindows(static_cast<ADAPT_WINDOWS>(set.value("Viewer/Adapt", GetAdaptWindows()).toInt()));
+    return 0;
+}
+
+int CFrmViewer::Save(QSettings &set)
+{
+    set.setValue("Viewer/ZoomFactor", GetZoomFactor());
+    set.setValue("Viewer/Adapt", GetAdaptWindows());
+    return 0;
 }

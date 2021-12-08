@@ -43,7 +43,7 @@ public:
     
     /// \~chinese 保存参数到文件
     /// \~english Save parameters to file
-    virtual int SaveConnecter(const QString& szFile, CConnecter* pConnecter);
+    virtual int SaveConnecter(QString szFile, CConnecter* pConnecter);
 
     /**
      * \~chinese

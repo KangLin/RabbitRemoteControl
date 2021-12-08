@@ -99,17 +99,19 @@ public:
      */
     virtual int OpenDialogSettings(QWidget* parent = nullptr);
 
-    const CPluginViewer* GetPluginFactory() const;
+    const CPluginViewer* GetPluginViewer() const;
     
     /*!
      * \~chinese \brief 从文件中加载参数
      * \~english \brief Load parameters from file
      */
+    virtual int Load(QString szFile = QString());
     virtual int Load(QSettings &set) = 0;
     /*!
      * \~chinese \brief 保存参数到文件中
      * \~english Save parameters to file
      */
+    virtual int Save(QString szFile = QString());
     virtual int Save(QSettings &set) = 0;
     
 public Q_SLOTS:
@@ -171,9 +173,9 @@ protected:
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 
 private:
-    const CPluginViewer* m_pPluginFactory;
-
+    const CPluginViewer* m_pPluginViewer;
     QString m_szServerName;
+    QString m_szFile;
 };
 
 #endif // CCONNECTER_H

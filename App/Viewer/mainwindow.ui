@@ -51,9 +51,11 @@
     </widget>
     <addaction name="actionFull_screen_F"/>
     <addaction name="separator"/>
-    <addaction name="actionOriginal_O"/>
     <addaction name="actionZoomToWindow_Z"/>
     <addaction name="actionKeep_aspect_ration_to_windows_K"/>
+    <addaction name="actionOriginal_O"/>
+    <addaction name="actionZoom_In"/>
+    <addaction name="actionZoom_Out"/>
     <addaction name="separator"/>
     <addaction name="actionShow_TabBar_B"/>
     <addaction name="separator"/>
@@ -105,9 +107,11 @@
    <addaction name="actionFull_screen_F"/>
    <addaction name="actionShow_TabBar_B"/>
    <addaction name="separator"/>
-   <addaction name="actionOriginal_O"/>
    <addaction name="actionZoomToWindow_Z"/>
    <addaction name="actionKeep_aspect_ration_to_windows_K"/>
+   <addaction name="actionOriginal_O"/>
+   <addaction name="actionZoom_In"/>
+   <addaction name="actionZoom_Out"/>
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
   </widget>
@@ -222,7 +226,7 @@
    </property>
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/image/ZoomIn</normaloff>:/image/ZoomIn</iconset>
+     <normaloff>:/image/Zoom</normaloff>:/image/Zoom</iconset>
    </property>
    <property name="text">
     <string>Zoom to window(&amp;Z)</string>
@@ -360,6 +364,42 @@
    </property>
    <property name="whatsThis">
     <string>Show TabBar</string>
+   </property>
+  </action>
+  <action name="actionZoom_In">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/ZoomIn</normaloff>:/image/ZoomIn</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+   <property name="statusTip">
+    <string>Zoom In</string>
+   </property>
+   <property name="whatsThis">
+    <string>Zoom In</string>
+   </property>
+  </action>
+  <action name="actionZoom_Out">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/ZoomOut</normaloff>:/image/ZoomOut</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+   <property name="statusTip">
+    <string>Zoom Out</string>
+   </property>
+   <property name="whatsThis">
+    <string>Zoom Out</string>
    </property>
   </action>
  </widget>

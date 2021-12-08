@@ -74,8 +74,10 @@ MainWindow::MainWindow(QWidget *parent)
     m_pGBView = new QActionGroup(this);
     if(m_pGBView) {
         m_pGBView->addAction(ui->actionZoomToWindow_Z);
-        m_pGBView->addAction(ui->actionOriginal_O);
         m_pGBView->addAction(ui->actionKeep_aspect_ration_to_windows_K);
+        m_pGBView->addAction(ui->actionOriginal_O);
+        m_pGBView->addAction(ui->actionZoom_In);
+        m_pGBView->addAction(ui->actionZoom_Out);
         m_pGBView->setEnabled(false);
     }
     ui->actionZoomToWindow_Z->setChecked(true);
@@ -250,6 +252,20 @@ void MainWindow::on_actionOriginal_O_toggled(bool arg1)
     m_pView->SetAdaptWindows(CFrmViewer::Original);
 }
 
+void MainWindow::on_actionZoom_In_triggered()
+{
+    if(!m_pView) return;
+    m_pView->slotZoomIn();
+    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+}
+
+void MainWindow::on_actionZoom_Out_triggered()
+{
+    if(!m_pView) return;
+    m_pView->slotZoomOut();
+    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+}
+
 void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 {
     QString t = "Disable";
@@ -267,6 +283,9 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
     case CFrmViewer::KeepAspectRationToWindow:
         ui->actionKeep_aspect_ration_to_windows_K->setChecked(true);
         t = "AspectRation";
+        break;
+    case CFrmViewer::Zoom:
+        ui->actionZoom_Out->setChecked(true);
         break;
     case CFrmViewer::Disable:
         m_pGBView->setEnabled(false);   
@@ -345,12 +364,7 @@ int MainWindow::Connect(CConnecter *p, bool set)
     check = connect(p, SIGNAL(sigUpdateName(const QString&)),
                     this, SLOT(slotUpdateServerName(const QString&)));
     Q_ASSERT(check);
-    
-    QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-            + QDir::separator()
-            + p->Id()
-            + ".rrc";
-    
+        
     if(set)
     {
         int nRet = p->OpenDialogSettings(this);
@@ -360,14 +374,15 @@ int MainWindow::Connect(CConnecter *p, bool set)
             delete p;
             return 0;
         case QDialog::Accepted:
-            szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                        + QDir::separator()
-                        + p->Id()
-                        + ".rrc";
             break;
         }
     }
 
+    QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+            + QDir::separator()
+            + p->Id()
+            + ".rrc";
+    
     int nRet = m_ManageConnecter.SaveConnecter(szFile, p);
     if(0 == nRet)
         m_pRecentMenu->addRecentFile(szFile, p->Name());
@@ -376,14 +391,7 @@ int MainWindow::Connect(CConnecter *p, bool set)
         slotInformation(tr("Connecting to ") + p->Name());
     if(m_pView)
     {
-        CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::ZoomToWindow;
-        if(ui->actionOriginal_O->isChecked())
-            aw = CFrmViewer::Original;
-        else if(ui->actionZoomToWindow_Z->isChecked())
-            aw = CFrmViewer::ZoomToWindow;
-        else if(ui->actionKeep_aspect_ration_to_windows_K->isChecked())
-            aw = CFrmViewer::KeepAspectRationToWindow;
-        m_pView->SetAdaptWindows(aw, p->GetViewer());
+        m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
         m_pView->AddView(p->GetViewer());
         m_pView->SetWidowsTitle(p->GetViewer(), p->Name()); 
     }
@@ -415,7 +423,11 @@ void MainWindow::slotCloseView(const QWidget* pView)
     foreach(auto c, m_Connecters)
     {
         if(c->GetViewer() == pView)
+        {
+            //TODO: Whether to save the setting
+            c->Save();
             c->DisConnect();
+        }
     }
 }
 

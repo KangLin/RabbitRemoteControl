@@ -163,23 +163,26 @@ CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
     return pConnecter;
 }
 
-int CManageConnecter::SaveConnecter(const QString &szFile, CConnecter *pConnecter)
+int CManageConnecter::SaveConnecter(QString szFile, CConnecter *pConnecter)
 {
     if(!pConnecter) return -1;
 
+    if(szFile.isEmpty())
+        szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                + QDir::separator()
+                + pConnecter->Id()
+                + ".rrc";
+
     QSettings set(szFile, QSettings::IniFormat);
     
-    const CPluginViewer* pFactory = pConnecter->GetPluginFactory();
-    // In the CManageConnecter derived class,
-    // the CreateConnecter function constructs the derived class of CConnecter,
-    // and its parent pointer must be specified as the corresponding CPluginFactory derived class
+    const CPluginViewer* pFactory = pConnecter->GetPluginViewer();
     Q_ASSERT(pFactory);
     
     set.setValue("Manage/FileVersion", m_FileVersion);
     set.setValue("Manage/ID", pFactory->Id());
     set.setValue("Manage/Protol", pFactory->Protol());
     set.setValue("Manage/Name", pFactory->Name());
-    pConnecter->Save(set);
+    pConnecter->Save(szFile);
 
     return 0;
 }

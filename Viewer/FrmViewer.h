@@ -6,6 +6,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QSettings>
 #include "viewer_export.h"
 
 class CConnecter;
@@ -36,6 +37,7 @@ class CFrmViewer;
 class VIEWER_EXPORT CFrmViewer : public QWidget
 {
     Q_OBJECT
+    Q_PROPERTY(double ZoomFactor READ GetZoomFactor WRITE SetZoomFactor)
 
 public:
     explicit CFrmViewer(QWidget *parent = nullptr);
@@ -53,13 +55,28 @@ public:
                                      ///< \~chinese 原始桌面大小，桌面的左上点与窗口的左上点对齐
         OriginalCenter,              ///< \~english Original desktop size, the center of the desktop is aligned with the center of the window
                                      ///< \~chinese 原始桌面大小，桌面中心点与窗口中心点对齐
+        Zoom,                        ///< \~english zoom windows = destop size * factor
+                                     ///< \~chinese 缩放窗口大小等于桌面大小 * 系数
         ZoomToWindow,                ///< \~english Desktop adapt to windows
-                                     ///< \~chinese 桌面缩放到窗口大小
+                                     ///< \~chinese 桌面缩放到窗口大小，窗口是固定的
         KeepAspectRationToWindow,    ///< \~english Keep desktop aspectration adapt to windows
-                                     ///< \~chinese 保持长宽比缩放到窗口大小
+                                     ///< \~chinese 保持长宽比缩放到窗口大小,窗口是固定的
     };
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
-    ADAPT_WINDOWS AdaptWindows();
+    ADAPT_WINDOWS GetAdaptWindows();
+    
+    /*!
+     * \~chinese 调整缩放系数。
+     *  调整完成后需要调用 SetAdaptWindows(FrmViewer::Zoom) 缩放窗口大小。
+     * \~english Adjust the zoom factor. After the adjustment is completed,
+     *  you need to call SetAdaptWindows(FrmViewer::Zoom) to zoom the window size. 
+     * \return 
+     */
+    double GetZoomFactor() const;
+    int SetZoomFactor(double newZoomFactor);
+    
+    virtual int Load(QSettings &set);
+    virtual int Save(QSettings &set);
 
 public Q_SLOTS:
     void slotSetDesktopSize(int width, int height);
@@ -80,14 +97,7 @@ Q_SIGNALS:
     
     // Please use CConnecter::sigServerName
     void sigServerName(const QString &szName);
-    
-private:
-    Ui::CFrmViewer *ui;
 
-    void paintDesktop();
-    int TranslationMousePoint(QPointF inPos, QPointF &outPos);
-    QRectF GetAspectRationRect();
-    
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
@@ -100,9 +110,16 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 
 private:
+    Ui::CFrmViewer *ui;
     QImage m_Desktop;
 
     ADAPT_WINDOWS m_AdaptWindows;
+    double m_dbZoomFactor;
+    
+    int ReSize(int width, int height);
+    void paintDesktop();
+    int TranslationMousePoint(QPointF inPos, QPointF &outPos);
+    QRectF GetAspectRationRect();
 };
 
 #endif // FRMVIEWER_H

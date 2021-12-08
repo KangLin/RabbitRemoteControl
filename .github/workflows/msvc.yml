@@ -41,7 +41,7 @@ jobs:
     env:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
-      INSTALL_DIR: ${{github.workspace}}\.cache\install
+      INSTALL_DIR: ${{github.workspace}}\.cache\install_msvc
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
@@ -263,6 +263,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DBUILD_FREERDP=ON ^
+            -DBUILD_LibVNCServer=OFF ^
             -DLog4Qt_DIR=${{env.INSTALL_DIR}}/lib/cmake/Log4Qt ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^

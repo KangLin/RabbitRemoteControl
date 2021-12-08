@@ -34,7 +34,7 @@ void CFrmViewScroll::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
 {
     CFrmViewer* pView = qobject_cast<CFrmViewer*>(widget());
     if(!pView) return;
-    if(CFrmViewer::Original == aw)
+    if(CFrmViewer::Original == aw || CFrmViewer::Zoom == aw)
     {
         if(widgetResizable())
             setWidgetResizable(false);
@@ -50,7 +50,7 @@ CFrmViewer::ADAPT_WINDOWS CFrmViewScroll::AdaptWindows()
 {
     CFrmViewer* pView = qobject_cast<CFrmViewer*>(widget());
     if(pView)
-        return pView->AdaptWindows();
+        return pView->GetAdaptWindows();
     return CFrmViewer::Auto;
 }
 

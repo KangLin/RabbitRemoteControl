@@ -78,8 +78,9 @@ int CConnecterDesktop::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pParameter);
-    
     nRet = OnLoad(set);
+    if(m_pView)
+        m_pView->Load(set);
     return nRet;
 }
 
@@ -87,8 +88,10 @@ int CConnecterDesktop::Save(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pParameter);
-   
+
     nRet = OnSave(set);
+    if(m_pView)
+        m_pView->Save(set);
     return nRet;
 }
 

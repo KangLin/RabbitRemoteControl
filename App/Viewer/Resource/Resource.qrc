@@ -4,8 +4,6 @@
         <file alias="FullScreen">Image/Fullscreen.png</file>
         <file alias="ExitFullScreen">Image/Exitfullscreen.png</file>
         <file alias="AspectRatio">Image/aspect-ratio.png</file>
-        <file alias="ZoomOut">Image/ZoomOut.png</file>
-        <file alias="ZoomIn">Image/ZoomIn.png</file>
         <file alias="Original">Image/original.png</file>
         <file alias="Wait">Image/wait.png</file>
         <file alias="Tools">Image/Tools.png</file>
@@ -23,5 +21,8 @@
         <file alias="EyeOff">Image/EyeOff.png</file>
         <file alias="EyeOn">Image/EyeOpen.png</file>
         <file alias="TabBar">Image/tabbar-hold.svg</file>
+        <file alias="Zoom">Image/Zoom.png</file>
+        <file alias="ZoomIn">Image/zoomin.svg</file>
+        <file alias="ZoomOut">Image/zoomout.svg</file>
     </qresource>
 </RCC>

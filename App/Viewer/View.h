@@ -44,11 +44,13 @@ public:
     //The QWidget* pView must is same as CConnecter::GetViewer()
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle) = 0;
     //The QWidget* pView must is same as CConnecter::GetViewer()
-    virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Original, QWidget* pView = nullptr) = 0;
-    
+    virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) = 0;
+        
 public Q_SLOTS:
     virtual void slotSystemCombination() = 0;
-    
+    virtual void slotZoomIn() = 0;
+    virtual void slotZoomOut() = 0;
+
 Q_SIGNALS:
     // @note The QWidget* pView must is same as CConnecter::GetViewer()
     void sigCloseView(const QWidget* pView);

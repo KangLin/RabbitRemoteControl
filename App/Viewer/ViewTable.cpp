@@ -74,7 +74,7 @@ int CViewTable::AddView(QWidget *pView)
         CFrmViewScroll* pScroll = new CFrmViewScroll(p, m_pTab);
         if(pScroll)
         {
-            pScroll->SetAdaptWindows(p->AdaptWindows());
+            pScroll->SetAdaptWindows(p->GetAdaptWindows());
             nIndex = m_pTab->addTab(pScroll, p->windowTitle());
         }
     } else
@@ -129,12 +129,35 @@ void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
     {
         pView = qobject_cast<CFrmViewer*>(p);
         if(pView)
-            pView->SetAdaptWindows(aw);
+        {
+            if(CFrmViewer::Auto == aw)
+                pView->SetAdaptWindows(pView->GetAdaptWindows());
+            else
+                pView->SetAdaptWindows(aw);
+        }
     } else {
         CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
         if(pScroll)
             pScroll->SetAdaptWindows(aw);
     }
+}
+
+void CViewTable::slotZoomIn()
+{
+    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    if(!pScroll) return;
+    CFrmViewer* pView = pScroll->GetViewer();
+    if(!pView) return;
+    pView->SetZoomFactor(pView->GetZoomFactor() + 0.1);
+}
+
+void CViewTable::slotZoomOut()
+{
+    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    if(!pScroll) return;
+    CFrmViewer* pView = pScroll->GetViewer();
+    if(!pView) return;
+    pView->SetZoomFactor(pView->GetZoomFactor() - 0.1);
 }
 
 QWidget *CViewTable::GetViewer(int index)

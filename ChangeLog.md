@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.0.10
++ Add zoom view
++ FIX: libvncserver initial bug
++ Reface viewer paramters
+
 ### v0.0.9
 + Add server
   - RFB
