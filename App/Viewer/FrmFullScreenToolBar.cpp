@@ -23,6 +23,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     m_TimeOut(3000),
     m_isHide(false)
 {
+    bool check = false;
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     
@@ -39,6 +40,31 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
                         tr("Full"), this, SIGNAL(sigExitFullScreen()));
     pFull->setToolTip(tr("Full"));
     pFull->setStatusTip(tr("Full"));
+    
+    m_ToolBar.addSeparator();
+    QAction* pZoomToWindow = m_ToolBar.addAction(QIcon(":/image/ZoomToWindow"),
+       tr("Zoom to windows"), m_pMain, SLOT(on_actionZoomToWindow_Z_triggered()));
+    m_pMain->m_pGBView->addAction(pZoomToWindow);
+    QAction* pZoomOrigin = m_ToolBar.addAction(QIcon(":/image/Original"),
+                    tr("Origin"), m_pMain, SLOT(on_actionOriginal_O_triggered()));
+    m_pMain->m_pGBView->addAction(pZoomOrigin);
+    QAction* pZoomIn = m_ToolBar.addAction(QIcon(":/image/ZoomIn"),
+                    tr("Zoom In"), m_pMain, SLOT(on_actionZoom_In_triggered()));
+    m_pMain->m_pGBView->addAction(pZoomIn);
+//    QSpinBox* psbZoomFactor = new QSpinBox(&m_ToolBar);
+//    psbZoomFactor->setRange(0, 9999999);
+//    psbZoomFactor->setValue(100);
+//    psbZoomFactor->setSuffix("%");
+//    psbZoomFactor->setEnabled(false);
+//    check = connect(psbZoomFactor, SIGNAL(valueChanged(int)),
+//                    m_pMain, SLOT(slotZoomFactor(int)));
+//    Q_ASSERT(check);
+//    m_ToolBar.addWidget(psbZoomFactor);
+    QAction* pZoomOut = m_ToolBar.addAction(QIcon(":/image/ZoomOut"),
+                  tr("Zoom Out"), m_pMain, SLOT(on_actionZoom_Out_triggered()));
+    m_pMain->m_pGBView->addAction(pZoomOut);
+
+    m_ToolBar.addSeparator();
     m_pShowTabBar = m_ToolBar.addAction(QIcon(":/image/TabBar"), tr("TabBar"),
                                         this, SLOT(slotShowTabBar()));
     m_pShowTabBar->setCheckable(true);
@@ -56,8 +82,8 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     
     m_ToolBar.show();
 
-    bool check = connect(&m_Timer, SIGNAL(timeout()),
-                         this, SLOT(slotTimeOut()));
+    check = connect(&m_Timer, SIGNAL(timeout()),
+                    this, SLOT(slotTimeOut()));
     Q_ASSERT(check);
     
     m_Timer.start(m_TimeOut);

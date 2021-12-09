@@ -249,9 +249,8 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_pFullScreenToolBar->show();
 }
 
-void MainWindow::on_actionZoomToWindow_Z_toggled(bool arg1)
+void MainWindow::on_actionZoomToWindow_Z_triggered()
 {
-    if(!arg1) return;
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::ZoomToWindow);
 }
@@ -263,9 +262,8 @@ void MainWindow::on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1)
     m_pView->SetAdaptWindows(CFrmViewer::KeepAspectRationToWindow);
 }
 
-void MainWindow::on_actionOriginal_O_toggled(bool arg1)
+void MainWindow::on_actionOriginal_O_triggered()
 {
-    if(!arg1) return;
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::Original);
     if(m_psbZoomFactor)
