@@ -13,8 +13,8 @@ class TERMINAL_EXPORT CParameterTerminal : public CParameter
 public:
     CParameterTerminal();
     
-    virtual int OnLoad(QSettings &set) override;
-    virtual int OnSave(QSettings &set) override;
+    virtual int Load(QSettings &set) override;
+    virtual int Save(QSettings &set) override;
 
     const QFont &GetFont() const;
     void SetFont(const QFont &newFont);

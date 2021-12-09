@@ -64,7 +64,7 @@ int CConnecterTerminal::Load(QSettings &set)
     CParameter* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
-    pPara->OnLoad(set);
+    pPara->Load(set);
     return nRet;
 }
 
@@ -75,7 +75,7 @@ int CConnecterTerminal::Save(QSettings &set)
     CParameter* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
-    pPara->OnSave(set);
+    pPara->Save(set);
     return nRet;
 }
 

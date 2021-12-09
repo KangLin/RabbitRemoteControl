@@ -36,7 +36,7 @@ CParameterTerminal::CParameterTerminal()
     m_nHistorySize = 1000;
 }
 
-int CParameterTerminal::OnLoad(QSettings &set)
+int CParameterTerminal::Load(QSettings &set)
 {
     m_Font.fromString(set.value("Terminal/Font", m_Font.toString()).toString());
     SetSizeHint(set.value("Terminal/SizeHint", GetSizeHint()).toBool());
@@ -61,10 +61,10 @@ int CParameterTerminal::OnLoad(QSettings &set)
     m_szKeyBindings = set.value("Terminal/KeyBindings", m_szKeyBindings).toString();
     m_szTextCodec = set.value("Terminal/TextCodec", m_szTextCodec).toString();
     m_nHistorySize = set.value("Terminal/HistorySize", m_nHistorySize).toInt();
-    return CParameter::OnLoad(set);
+    return CParameter::Load(set);
 }
 
-int CParameterTerminal::OnSave(QSettings &set)
+int CParameterTerminal::Save(QSettings &set)
 {
     set.setValue("Terminal/Font", m_Font.toString());
     set.setValue("Terminal/SizeHint", GetSizeHint());
@@ -82,7 +82,7 @@ int CParameterTerminal::OnSave(QSettings &set)
     set.setValue("Terminal/KeyBindings", m_szKeyBindings);
     set.setValue("Terminal/TextCodec", m_szTextCodec);
     set.setValue("Terminal/HistorySize", m_nHistorySize);
-    return CParameter::OnSave(set);
+    return CParameter::Save(set);
 }
 
 int CParameterTerminal::GetHistorySize() const

@@ -80,7 +80,7 @@ int CConnecterDesktop::Load(QSettings &set)
     if(m_pView)
         m_pView->Load(set);
     if(GetPara())
-        GetPara()->OnLoad(set);
+        GetPara()->Load(set);
     return nRet;
 }
 
@@ -92,6 +92,6 @@ int CConnecterDesktop::Save(QSettings &set)
     if(m_pView)
         m_pView->Save(set);
     if(GetPara())
-        GetPara()->OnSave(set);
+        GetPara()->Save(set);
     return nRet;
 }

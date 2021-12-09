@@ -168,7 +168,7 @@ void CParameter::SetProxyPassword(const QString &password)
     m_szProxyPassword = password;
 }
 
-int CParameter::OnLoad(QSettings &set)
+int CParameter::Load(QSettings &set)
 {
     SetName(set.value("Name", GetName()).toString());
     SetHost(set.value("Host", GetHost()).toString());
@@ -192,7 +192,7 @@ int CParameter::OnLoad(QSettings &set)
     return 0;
 }
 
-int CParameter::OnSave(QSettings &set)
+int CParameter::Save(QSettings &set)
 {
     set.setValue("Name", GetName());
     set.setValue("Host", GetHost());

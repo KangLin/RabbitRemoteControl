@@ -5,9 +5,9 @@ CParameterFreeRdp::CParameterFreeRdp(QObject *parent) : CParameter(parent),
     m_nReconnectInterval(5)
 {}
 
-int CParameterFreeRdp::OnLoad(QSettings &set)
+int CParameterFreeRdp::Load(QSettings &set)
 {
-    CParameter::OnLoad(set);
+    CParameter::Load(set);
     QString szDomain = set.value("FreeRDP/Domain").toString();
     freerdp_settings_set_string(
                 m_pSettings, FreeRDP_Domain, szDomain.toStdString().c_str());
@@ -27,9 +27,9 @@ int CParameterFreeRdp::OnLoad(QSettings &set)
     return 0;    
 }
 
-int CParameterFreeRdp::OnSave(QSettings &set)
+int CParameterFreeRdp::Save(QSettings &set)
 {
-    CParameter::OnSave(set);
+    CParameter::Save(set);
     set.setValue("FreeRDP/Domain", freerdp_settings_get_string(
                      m_pSettings, FreeRDP_Domain));
     set.setValue("FreeRDP/Width", freerdp_settings_get_uint32(

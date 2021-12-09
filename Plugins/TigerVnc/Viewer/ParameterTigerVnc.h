@@ -10,8 +10,8 @@ public:
     explicit CParameterTigerVnc(QObject *parent = nullptr);
     
 public:
-    virtual int OnLoad(QSettings &set) override;
-    virtual int OnSave(QSettings &set) override;
+    virtual int Load(QSettings &set) override;
+    virtual int Save(QSettings &set) override;
     
     enum COLOR_LEVEL {
         Full,

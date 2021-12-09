@@ -43,8 +43,8 @@ class VIEWER_EXPORT CParameter : public QObject
 public:
     explicit CParameter(QObject *parent = nullptr);
 
-    virtual int OnLoad(QSettings &set);
-    virtual int OnSave(QSettings &set);
+    virtual int Load(QSettings &set);
+    virtual int Save(QSettings &set);
     
     const QString GetName() const;
     void SetName(const QString& name);
