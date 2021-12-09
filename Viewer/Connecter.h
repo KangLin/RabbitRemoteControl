@@ -17,7 +17,8 @@
 
 class CPluginViewer;
 class CConnect;
-
+class CParameter;
+        
 /*!
  * \~chinese
  * \brief 描述连接应用接口。
@@ -106,37 +107,44 @@ public:
      * \~english \brief Load parameters from file
      */
     virtual int Load(QString szFile = QString());
-    virtual int Load(QSettings &set) = 0;
+    
     /*!
      * \~chinese \brief 保存参数到文件中
+     * \param szFile: 文件名。当为空时，使用上次使用过的文件。
      * \~english Save parameters to file
+     * \param szFile: When it is empty, the file used last time is used.
      */
     virtual int Save(QString szFile = QString());
-    virtual int Save(QSettings &set) = 0;
     
 public Q_SLOTS:
     /**
      * \~chinese
      * \brief 开始连接
-     * \note 由用户调用，插件不能直接调用此函数。
+     * \note 仅由用户调用，插件不能直接调用此函数。
      *       插件连接好后，触发信号 sigConnected()
      *       
      * \~english
      * \brief Start connect
-     * \note Call by user, The plugin don't call it. 
+     * \note Only call by user, The plugin don't call it. 
      *       When plugin is connected, it emit sigConnected()
+     *       
+     * \~
+     * \see sigConnected()
      */
     virtual int Connect() = 0;
     /*!
      * \~chinese
      * \brief 关闭连接
-     * \note 由用户调用，插件不能直接调用此函数。
+     * \note 仅由用户调用，插件不能直接调用此函数。
      *       插件断开连接后，触发信号 sigDisconnected()
      *       
      * \~english
      * \brief Close connect
-     * \note Call by user, The plugin don't call it.
+     * \note Only call by user, The plugin don't call it.
      *       When plugin is disconnected, it emit sigDisconnected()
+     * 
+     * \~
+     * \see sigDisconnected()
      */
     virtual int DisConnect() = 0;
     
@@ -146,16 +154,26 @@ public Q_SLOTS:
     virtual void slotSetServerName(const QString &szName);
     
 Q_SIGNALS:
+    /*!
+     * \~chinese 连接成功信号。仅由插件触发
+     * \~english Successful connection signal. Only triggered by plugins
+     */
     void sigConnected();
+    /*!
+     * \~chinese 断开连接成功信号。仅由插件触发
+     * \~english Successful disconnection signal. Only triggered by plugins
+     */
     void sigDisconnected();
 
-    /// \~chinese \note 在插件中使用时，请使用 slotSetServerName
-    /// \~english \note Please use slotSetServerName, when is useed in plugin
+    /*!
+     * \~chinese \note 仅在插件中使用时，请使用 slotSetServerName
+     * \~english \note When only used in the plug-in, please use slotSetServerName
+     */
     void sigUpdateName(const QString& szName);
 
     void sigError(const int nError, const QString &szError);
     void sigInformation(const QString& szInfo);
-    
+
 protected:
     /*!
      * \~chinese
@@ -171,6 +189,12 @@ protected:
      *         The ownership is caller.
      */
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
+
+    virtual int Load(QSettings &set) = 0;
+    virtual int Save(QSettings &set) = 0;
+    
+    virtual CParameter* GetPara();
+    CParameter* m_pParameter;
 
 private:
     const CPluginViewer* m_pPluginViewer;

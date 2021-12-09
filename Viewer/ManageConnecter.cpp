@@ -146,16 +146,16 @@ CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
    
     QSettings set(szFile, QSettings::IniFormat);
     m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
-    QString id = set.value("Manage/ID").toString();
-    QString protol = set.value("Manage/Protol").toString();
-    QString name = set.value("Manage/Name").toString();
+    QString id = set.value("Plugin/ID").toString();
+    QString protol = set.value("Plugin/Protol").toString();
+    QString name = set.value("Plugin/Name").toString();
     
     LOG_MODEL_INFO("ManageConnecter", "protol: %s  name: %s",
                    protol.toStdString().c_str(),
                    name.toStdString().c_str());
     pConnecter = CreateConnecter(id);
     if(pConnecter)
-        pConnecter->Load(set);
+        pConnecter->Load(szFile);
     else
         LOG_MODEL_ERROR("ManageConnecter", "Don't create connecter: %s",
                         protol.toStdString().c_str());
@@ -175,13 +175,13 @@ int CManageConnecter::SaveConnecter(QString szFile, CConnecter *pConnecter)
 
     QSettings set(szFile, QSettings::IniFormat);
     
-    const CPluginViewer* pFactory = pConnecter->GetPluginViewer();
-    Q_ASSERT(pFactory);
+    const CPluginViewer* pPluginViewer = pConnecter->GetPluginViewer();
+    Q_ASSERT(pPluginViewer);
     
     set.setValue("Manage/FileVersion", m_FileVersion);
-    set.setValue("Manage/ID", pFactory->Id());
-    set.setValue("Manage/Protol", pFactory->Protol());
-    set.setValue("Manage/Name", pFactory->Name());
+    set.setValue("Plugin/ID", pPluginViewer->Id());
+    set.setValue("Plugin/Protol", pPluginViewer->Protol());
+    set.setValue("Plugin/Name", pPluginViewer->Name());
     pConnecter->Save(szFile);
 
     return 0;

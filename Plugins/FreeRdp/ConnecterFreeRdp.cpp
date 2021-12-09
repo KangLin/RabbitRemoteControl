@@ -29,16 +29,6 @@ QDialog *CConnecterFreeRdp::GetDialogSettings(QWidget *parent)
     return new CDlgSetFreeRdp(&m_ParameterFreeRdp, parent);
 }
 
-int CConnecterFreeRdp::OnLoad(QSettings &set)
-{
-    return m_ParameterFreeRdp.OnLoad(set);
-}
-
-int CConnecterFreeRdp::OnSave(QSettings &set)
-{
-    return m_ParameterFreeRdp.OnSave(set);
-}
-
 CConnect *CConnecterFreeRdp::InstanceConnect()
 {
     return new CConnectFreeRdp(this);

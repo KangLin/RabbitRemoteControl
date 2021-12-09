@@ -21,11 +21,6 @@ QDialog *CConnecterTerminal::GetDialogSettings(QWidget *parent)
     return new CDlgSettingsTerminal(m_pPara, parent);
 }
 
-CParameterTerminal* CConnecterTerminal::GetPara()
-{
-    return m_pPara;
-}
-
 int CConnecterTerminal::OnConnect()
 {
     if(m_pConsole)

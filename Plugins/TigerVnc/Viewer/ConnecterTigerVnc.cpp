@@ -52,16 +52,6 @@ QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
     return p;
 }
 
-int CConnecterTigerVnc::OnSave(QSettings &set)
-{
-    return m_Para.OnSave(set);
-}
-
-int CConnecterTigerVnc::OnLoad(QSettings &set)
-{
-    return m_Para.OnLoad(set);
-}
-
 CConnect* CConnecterTigerVnc::InstanceConnect()
 {
     return new CConnectTigerVnc(this);

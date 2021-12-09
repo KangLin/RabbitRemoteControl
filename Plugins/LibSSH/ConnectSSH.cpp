@@ -14,7 +14,7 @@ CConnectSSH::CConnectSSH(CConnecterSSH *pConnecter, QObject *parent)
       connector_err(nullptr),
       m_pPcapFile(nullptr)
 {
-    m_pPara = pConnecter->m_pPara;
+    m_pPara = dynamic_cast<CParameterSSH*>(pConnecter->m_pPara);
 }
 
 int CConnectSSH::SetParamter(void *pPara)

@@ -45,15 +45,14 @@ protected:
      */
     virtual int OnConnect();
     virtual int OnDisConnect();
-    virtual int OnLoad(QSettings &set);
-    virtual int OnSave(QSettings &set);
     
-    virtual CParameterTerminal* GetPara() = 0;
+    virtual CParameterTerminal* GetPara();
     
     CFrmTermWidget* m_pConsole;
     CConnectThreadTerminal* m_pThread;
     bool m_bThread;
     bool m_bExit;
+    CParameterTerminal* m_pPara;
 };
 
 #endif // CCONNECTERPLUGINSTERMINAL_H

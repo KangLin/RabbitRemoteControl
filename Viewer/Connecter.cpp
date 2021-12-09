@@ -11,7 +11,8 @@
 #endif
 
 CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
-    m_pPluginViewer(parent)
+    m_pPluginViewer(parent),
+    m_pParameter(nullptr)
 {
 }
 
@@ -101,6 +102,11 @@ int CConnecter::Load(QString szFile)
         szFile = m_szFile;
     else
         m_szFile = szFile;
+    if(szFile.isEmpty())
+    {
+        LOG_MODEL_ERROR("CConnecter", "The load file is empty");
+        return -1;
+    }
     QSettings set(szFile, QSettings::IniFormat);
     return Load(set);
 }
@@ -111,6 +117,16 @@ int CConnecter::Save(QString szFile)
         szFile = m_szFile;
     else
         m_szFile = szFile;
+    if(szFile.isEmpty())
+    {
+        LOG_MODEL_ERROR("CConnecter", "The save file is empty");
+        return -1;
+    }
     QSettings set(szFile, QSettings::IniFormat);
     return Save(set);
+}
+
+CParameter* CConnecter::GetPara()
+{
+    return m_pParameter;
 }

@@ -6,7 +6,6 @@
 
 CConnecterTelnet::CConnecterTelnet(CPluginViewer *parent)
     : CConnecterPluginsTerminal(parent),
-      m_pPara(nullptr),
       m_pSocket(nullptr)
 {
     m_pPara = new CParameterTelnet();
@@ -22,11 +21,6 @@ CConnecterTelnet::~CConnecterTelnet()
 QDialog *CConnecterTelnet::GetDialogSettings(QWidget *parent)
 {
     return new CDlgSettingsTelnet(m_pPara, parent);
-}
-
-CParameterTerminal *CConnecterTelnet::GetPara()
-{
-    return m_pPara;
 }
 
 int CConnecterTelnet::SetParamter()
@@ -78,20 +72,6 @@ int CConnecterTelnet::OnDisConnect()
         delete m_pSocket;
         m_pSocket = nullptr;
     }
-    return nRet;
-}
-
-int CConnecterTelnet::OnLoad(QSettings &set)
-{
-    int nRet = 0;
-    
-    return nRet;
-}
-
-int CConnecterTelnet::OnSave(QSettings &set)
-{
-    int nRet = 0;
-    
     return nRet;
 }
 

@@ -8,8 +8,7 @@
 CConnecterDesktop::CConnecterDesktop(CPluginViewer *parent)
     : CConnecter(parent),
       m_pThread(nullptr),
-      m_pView(new CFrmViewer()),
-      m_pParameter(nullptr)
+      m_pView(new CFrmViewer())
 {}
 
 CConnecterDesktop::~CConnecterDesktop()
@@ -78,9 +77,10 @@ int CConnecterDesktop::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pParameter);
-    nRet = OnLoad(set);
     if(m_pView)
         m_pView->Load(set);
+    if(GetPara())
+        GetPara()->OnLoad(set);
     return nRet;
 }
 
@@ -89,20 +89,9 @@ int CConnecterDesktop::Save(QSettings &set)
     int nRet = 0;
     Q_ASSERT(m_pParameter);
 
-    nRet = OnSave(set);
     if(m_pView)
         m_pView->Save(set);
+    if(GetPara())
+        GetPara()->OnSave(set);
     return nRet;
-}
-
-int CConnecterDesktop::OnLoad(QSettings &set)
-{
-    Q_UNUSED(set);
-    return 0;
-}
-
-int CConnecterDesktop::OnSave(QSettings &set)
-{
-    Q_UNUSED(set);
-    return 0;
 }

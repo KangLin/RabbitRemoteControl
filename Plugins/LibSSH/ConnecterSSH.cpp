@@ -3,9 +3,9 @@
 #include "ConnectSSH.h"
 
 CConnecterSSH::CConnecterSSH(CPluginViewer *parent)
-    : CConnecterPluginsTerminal(parent),
-      m_pPara(new CParameterSSH())
-{
+    : CConnecterPluginsTerminal(parent)
+{    
+    m_pPara = new CParameterSSH();
     m_bThread = true;
     if(m_pPara)
     {
@@ -23,10 +23,6 @@ CConnect *CConnecterSSH::InstanceConnect()
 
 QDialog *CConnecterSSH::GetDialogSettings(QWidget *parent)
 {
-    return new CDlgSettingsSSH(m_pPara, parent);
-}
-
-CParameterTerminal *CConnecterSSH::GetPara()
-{
-    return m_pPara;
+    CParameterSSH* pPara = dynamic_cast<CParameterSSH*>(GetPara());
+    return new CDlgSettingsSSH(pPara, parent);
 }

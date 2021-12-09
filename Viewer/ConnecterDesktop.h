@@ -24,8 +24,8 @@ class CConnectThread;
  *      具体的插件需要实现下面接口：
  *         1. 实现 InstanceConnect() ，生成连接对象
  *         2. 实现 GetDialogSettings() ，得到参数对话框
- *         3. 实现 OnLoad(QDataStream& d) ，加载参数
- *         4. 实现 OnSave(QDataStream& d) ，保存参数
+ *         3. 实现 Load(QSettings& set) ，加载参数
+ *         4. 实现 Save(QSettings& set) ，保存参数
  *   
  * 
  * \~english
@@ -42,8 +42,8 @@ class CConnectThread;
  *     The specific plug-in needs to implement the following interface. 
  *         1. Implement InstanceConnect()
  *         2. Implement GetDialogSettings
- *         3. Implement OnLoad(QDataStream& d)
- *         4. Implement OnSave(QDataStream& d)
+ *         3. Implement Load(QSettings& set)
+ *         4. Implement Save(QSettings& set)
  *
  * \~  
  * \see CConnect CConnectThread CConnecter
@@ -58,7 +58,15 @@ public:
     virtual const QString Name();
     virtual QWidget* GetViewer() override;
     virtual QString ServerName() override;
+    /*!
+     * \~chinese \brief 加载参数
+     * \~english \brief Load parameters
+     */
     virtual int Load(QSettings &set) override;
+    /*!
+     * \~chinese \brief 保存参数
+     * \~english Save parameters
+     */
     virtual int Save(QSettings &set) override;
     
     /*!
@@ -81,24 +89,11 @@ public Q_SLOTS:
     virtual int Connect() override;
     virtual int DisConnect() override;
 
-protected:
-    /*!
-     * \~chinese \brief 加载参数
-     * \~english \brief Load parameters
-     */
-    virtual int OnLoad(QSettings &set);
-    /*!
-     * \~chinese \brief 保存参数
-     * \~english Save parameters
-     */
-    virtual int OnSave(QSettings &set);
-
 private:
     CConnectThread* m_pThread;
     CFrmViewer *m_pView;
 
 protected:
-    CParameter* m_pParameter;
 };
 
 #endif // CCONNECTERBACKTHREAD_H

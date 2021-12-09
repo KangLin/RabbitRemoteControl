@@ -22,16 +22,6 @@ QDialog *CConnecterLibVNCServer::GetDialogSettings(QWidget *parent)
     return new CDlgSettingsLibVnc(this, parent);
 }
 
-int CConnecterLibVNCServer::OnLoad(QSettings &set)
-{
-    return m_Para.OnLoad(set);
-}
-
-int CConnecterLibVNCServer::OnSave(QSettings &set)
-{
-    return m_Para.OnSave(set);
-}
-
 CConnect* CConnecterLibVNCServer::InstanceConnect()
 {
     return new CConnectLibVNCServer(this);

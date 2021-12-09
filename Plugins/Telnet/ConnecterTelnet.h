@@ -15,12 +15,9 @@ public:
     // CConnecterPluginsTerminal interface
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
-    virtual CParameterTerminal *GetPara() override;
     virtual int SetParamter() override;
     virtual int OnConnect() override;
     virtual int OnDisConnect() override;
-    virtual int OnLoad(QSettings &set) override;
-    virtual int OnSave(QSettings &set) override;
     
 protected Q_SLOTS:
     void slotSendData(const char *data, int size);
@@ -28,7 +25,6 @@ protected Q_SLOTS:
     void slotError(QAbstractSocket::SocketError err);
     
 private:
-    CParameterTelnet* m_pPara;
     QTcpSocket* m_pSocket;
 };
 

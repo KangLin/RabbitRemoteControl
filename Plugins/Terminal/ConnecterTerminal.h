@@ -13,12 +13,8 @@ public:
     // CConnecterPluginsTerminal interface
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
-    CParameterTerminal* GetPara() override;
     virtual int OnConnect() override;
     virtual int OnDisConnect() override;
-    
-private:
-    CParameterTerminal* m_pPara;
 };
 
 #endif // CCONNECTERTERMINAL_H

@@ -16,8 +16,6 @@ public:
 
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
-    virtual int OnLoad(QSettings &set) override;
-    virtual int OnSave(QSettings &set) override;
     virtual CConnect* InstanceConnect() override;
     
 private:

@@ -19,7 +19,8 @@ CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginViewer *parent)
       m_pConsole(nullptr),
       m_pThread(nullptr),
       m_bThread(false),
-      m_bExit(false)
+      m_bExit(false),
+      m_pPara(nullptr)
 {
     m_pConsole = new CFrmTermWidget();
     m_pConsole->setAutoClose(true);
@@ -60,14 +61,10 @@ qint16 CConnecterPluginsTerminal::Version()
 int CConnecterPluginsTerminal::Load(QSettings &set)
 {
     int nRet = 0;
-    CParameterTerminal* pPara = GetPara();
+    CParameter* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
-
-    qint16 version = 0;
     pPara->OnLoad(set);
-
-    nRet = OnLoad(set);
     return nRet;
 }
 
@@ -75,12 +72,10 @@ int CConnecterPluginsTerminal::Save(QSettings &set)
 {
     int nRet = 0;
     
-    CParameterTerminal* pPara = GetPara();
+    CParameter* pPara = GetPara();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
-    
     pPara->OnSave(set);
-    nRet = OnSave(set);
     return nRet;
 }
 
@@ -130,7 +125,7 @@ int CConnecterPluginsTerminal::SetParamter()
 {
     int nRet = 0;
 
-    CParameterTerminal* pPara = GetPara();
+    CParameterTerminal* pPara = dynamic_cast<CParameterTerminal*>(GetPara());
     Q_ASSERT(pPara);
     if(!pPara) return -1;
 #if QTERMWIDGET_VERSION >= QT_VERSION_CHECK(0, 9, 0)
@@ -168,8 +163,10 @@ void CConnecterPluginsTerminal::slotTerminalTitleChanged()
 
 void CConnecterPluginsTerminal::slotZoomReset()
 {
-    if(m_pConsole)
-        m_pConsole->setTerminalFont(GetPara()->GetFont());
+    if(!m_pConsole) return;
+    CParameterTerminal* pPara = dynamic_cast<CParameterTerminal*>(GetPara());
+    if(!pPara) return;
+    m_pConsole->setTerminalFont(pPara->GetFont());
 }
 
 int CConnecterPluginsTerminal::OnConnect()
@@ -182,19 +179,9 @@ int CConnecterPluginsTerminal::OnDisConnect()
     return 0;
 }
 
-int CConnecterPluginsTerminal::OnLoad(QSettings &set)
-{
-    return 0;
-}
-
-int CConnecterPluginsTerminal::OnSave(QSettings &set)
-{
-    return 0;
-}
-
 QString CConnecterPluginsTerminal::ServerName()
 {
-    CParameterTerminal* pPara = GetPara();
+    CParameter* pPara = GetPara();
     if(CConnecter::ServerName().isEmpty())
     {
         if(pPara && !pPara->GetHost().isEmpty())
@@ -208,4 +195,9 @@ QString CConnecterPluginsTerminal::ServerName()
 CConnect* CConnecterPluginsTerminal::InstanceConnect()
 {
     return nullptr;
+}
+
+CParameterTerminal* CConnecterPluginsTerminal::GetPara()
+{
+    return m_pPara;
 }

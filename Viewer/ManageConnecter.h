@@ -27,14 +27,18 @@ public:
     explicit CManageConnecter(QObject *parent = nullptr);
     virtual ~CManageConnecter();
     
-    /* \~chinese \brief 新建 CConnecter 指针，所有者是调用者。
-               <b>当不在使用时，调用者必须释放指针</b>。
-       \~english New CConnecter pointer, the owner is caller.
-               <b>The caller must delete it, when isn't need it</b>.
-    */
+    /*!
+     * \~chinese
+     * \brief 新建 CConnecter 指针，所有者是调用者。
+     *        <b>当不在使用时，调用者必须释放指针</b>。
+     * \param id 插件 ID
+     * \~english New CConnecter pointer, the owner is caller.
+     *           <b>The caller must delete it, when isn't need it</b>.
+     * \param id Plugin ID
+     */
     virtual CConnecter* CreateConnecter(const QString &id);
     
-    /* \~chinese \brief 从文件中新建 CConnecter 指针，所有者是调用者。
+    /*! \~chinese \brief 从文件中新建 CConnecter 指针，所有者是调用者。
      *          <b>当不再使用时，调用者必须负责删除此指针</b>
      * \~english New CConnecter pointer from file, the owner is caller.
      *          <b>The caller must delete it, when isn't need it</b>.

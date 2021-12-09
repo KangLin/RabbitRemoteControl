@@ -314,21 +314,29 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 void MainWindow::slotRecentFileTriggered(const QString& szFile)
 {
     CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
-    if(nullptr == p) return;
+    if(nullptr == p)
+    {
+        slotInformation(tr("Load file fail: ") + szFile);
+        return;
+    }
 
     Connect(p, false);
 }
 
 void MainWindow::on_actionOpen_O_triggered()
 {
-    QString file = RabbitCommon::CDir::GetOpenFileName(this,
+    QString szFile = RabbitCommon::CDir::GetOpenFileName(this,
                      tr("Open rabbit remote control file"),
                      RabbitCommon::CDir::Instance()->GetDirUserData(), 
                      tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
-    if(file.isEmpty()) return;
-    
-    CConnecter* p = m_ManageConnecter.LoadConnecter(file);
-    if(nullptr == p) return;
+    if(szFile.isEmpty()) return;
+
+    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
+    if(nullptr == p)
+    {
+        slotInformation(tr("Load file fail: ") + szFile);
+        return;
+    }
 
     Connect(p, true);
 }
