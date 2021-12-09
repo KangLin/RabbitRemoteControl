@@ -226,7 +226,7 @@
    </property>
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/image/Zoom</normaloff>:/image/Zoom</iconset>
+     <normaloff>:/image/ZoomToWindow</normaloff>:/image/ZoomToWindow</iconset>
    </property>
    <property name="text">
     <string>Zoom to window(&amp;Z)</string>

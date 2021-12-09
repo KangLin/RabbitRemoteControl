@@ -7,6 +7,8 @@
 #include <QKeyEvent>
 #include <QTabWidget>
 #include <QActionGroup>
+#include <QToolButton>
+#include <QSpinBox>
 
 #include "ViewTable.h"
 #include "ManageConnecter.h"
@@ -47,6 +49,7 @@ private Q_SLOTS:
     void on_actionOriginal_O_toggled(bool arg1);
     void on_actionZoom_In_triggered();
     void on_actionZoom_Out_triggered();
+    void slotZoomFactor(int v);
     void on_actionZoomToWindow_Z_toggled(bool arg1);
     void on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1);
     void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
@@ -75,6 +78,8 @@ protected:
 private:
     Ui::MainWindow *ui;
     QActionGroup* m_pGBView;
+    //QToolButton* m_ptbZoom;
+    QSpinBox* m_psbZoomFactor;
     RabbitCommon::CRecentMenu* m_pRecentMenu;
     CView* m_pView;
     QVector<CConnecter*> m_Connecters;

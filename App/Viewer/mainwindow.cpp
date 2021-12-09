@@ -20,7 +20,6 @@
 #include <QMessageBox>
 #include <QScreen>
 #include <QApplication>
-#include <QToolButton>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -61,15 +60,34 @@ MainWindow::MainWindow(QWidget *parent)
     
     m_ManageConnecter.EnumPlugins(this);
     
-    QToolButton* tb = new QToolButton(ui->toolBar);
-    tb->setPopupMode(QToolButton::MenuButtonPopup);
+    QToolButton* tbConnect = new QToolButton(ui->toolBar);
+    tbConnect->setPopupMode(QToolButton::MenuButtonPopup);
     //tb->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    tb->setMenu(ui->menuConnect_C);
-    tb->setIcon(QIcon(":/image/Connect"));
-    tb->setText(tr("Connect"));
-    tb->setToolTip(tr("Connect"));
-    tb->setStatusTip(tr("Connect"));
-    ui->toolBar->insertWidget(ui->actionDisconnect_D, tb);
+    tbConnect->setMenu(ui->menuConnect_C);
+    tbConnect->setIcon(QIcon(":/image/Connect"));
+    tbConnect->setText(tr("Connect"));
+    tbConnect->setToolTip(tr("Connect"));
+    tbConnect->setStatusTip(tr("Connect"));
+    ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
+    
+//    m_ptbZoom = new QToolButton(ui->toolBar);
+//    m_ptbZoom->setPopupMode(QToolButton::MenuButtonPopup);
+//    m_ptbZoom->setMenu(ui->menuZoom);
+//    m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
+//    m_ptbZoom->setText(tr("Zoom"));
+//    m_ptbZoom->setStatusTip(tr("Zoom"));
+//    m_ptbZoom->setToolTip(tr("Zoom"));
+//    m_ptbZoom->setEnabled(false);
+//    ui->toolBar->insertWidget(ui->actionOriginal_O, m_ptbZoom);
+    m_psbZoomFactor = new QSpinBox(ui->toolBar);
+    m_psbZoomFactor->setRange(0, 9999999);
+    m_psbZoomFactor->setValue(100);
+    m_psbZoomFactor->setSuffix("%");
+    m_psbZoomFactor->setEnabled(false);
+    check = connect(m_psbZoomFactor, SIGNAL(valueChanged(int)),
+                    this, SLOT(slotZoomFactor(int)));
+    Q_ASSERT(check);
+    ui->toolBar->insertWidget(ui->actionZoom_Out, m_psbZoomFactor);
     
     m_pGBView = new QActionGroup(this);
     if(m_pGBView) {
@@ -250,12 +268,16 @@ void MainWindow::on_actionOriginal_O_toggled(bool arg1)
     if(!arg1) return;
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::Original);
+    if(m_psbZoomFactor)
+        m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
 }
 
 void MainWindow::on_actionZoom_In_triggered()
 {
     if(!m_pView) return;
     m_pView->slotZoomIn();
+    if(m_psbZoomFactor)
+        m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     m_pView->SetAdaptWindows(CFrmViewer::Zoom);
 }
 
@@ -263,13 +285,26 @@ void MainWindow::on_actionZoom_Out_triggered()
 {
     if(!m_pView) return;
     m_pView->slotZoomOut();
+    if(m_psbZoomFactor)
+        m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
+    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+}
+
+void MainWindow::slotZoomFactor(int v)
+{
+    m_pView->slotZoomFactor(((double)v) / 100);
     m_pView->SetAdaptWindows(CFrmViewer::Zoom);
 }
 
 void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 {
     QString t = "Disable";
+    if(!m_pGBView || !m_pView || !m_psbZoomFactor)
+        return;
     m_pGBView->setEnabled(true);
+    //m_ptbZoom->setEnabled(true);
+    m_psbZoomFactor->setEnabled(true);
+    m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     switch (aw) {
     case CFrmViewer::Auto:
     case CFrmViewer::Original:
@@ -288,7 +323,9 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
         ui->actionZoom_Out->setChecked(true);
         break;
     case CFrmViewer::Disable:
-        m_pGBView->setEnabled(false);   
+        m_pGBView->setEnabled(false);
+        //m_ptbZoom->setEnabled(false);
+        m_psbZoomFactor->setEnabled(false);
         break;
     default:
         break;

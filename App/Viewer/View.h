@@ -45,11 +45,14 @@ public:
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle) = 0;
     //The QWidget* pView must is same as CConnecter::GetViewer()
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) = 0;
-        
+    
+    virtual double GetZoomFactor() = 0;
+    
 public Q_SLOTS:
     virtual void slotSystemCombination() = 0;
     virtual void slotZoomIn() = 0;
     virtual void slotZoomOut() = 0;
+    virtual void slotZoomFactor(double v) = 0;
 
 Q_SIGNALS:
     // @note The QWidget* pView must is same as CConnecter::GetViewer()

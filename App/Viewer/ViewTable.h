@@ -26,9 +26,10 @@ public:
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle) override;
     virtual int SetFullScreen(bool bFull) override;
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) override;
-    
 
     int ShowTabBar(bool bShow);
+    virtual double GetZoomFactor() override;
+    
 private Q_SLOTS:
     void slotCurrentChanged(int index);
     void slotTabCloseRequested(int index);
@@ -37,7 +38,8 @@ private Q_SLOTS:
 
     virtual void slotZoomIn() override;
     virtual void slotZoomOut() override;
-
+    virtual void slotZoomFactor(double v) override;
+    
 private:
     QTabWidget* m_pTab;
 
