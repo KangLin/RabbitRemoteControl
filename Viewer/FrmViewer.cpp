@@ -134,11 +134,18 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
     case Auto:
     case Original:
     case OriginalCenter:
+        outPos = inPos;
+        break;
+    case Zoom:
+        outPos.setX(inPos.x() / GetZoomFactor());
+        outPos.setY(inPos.y() / GetZoomFactor());
+        break;
     case ZoomToWindow:
         outPos.setX(m_Desktop.width() * inPos.x() / width());
         outPos.setY(m_Desktop.height() * inPos.y() / height());
         break;
     case KeepAspectRationToWindow:
+    {
         QRectF r = GetAspectRationRect();
         if(inPos.x() < r.left()
                 || inPos.x() > r.right()
@@ -147,6 +154,9 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
             return -1;
         outPos.setX(m_Desktop.width() * (inPos.x() - r.left()) / r.width());
         outPos.setY(m_Desktop.height() * (inPos.y() - r.top()) / r.height());
+        break;
+    }
+    default:
         break;
     }
 
