@@ -32,12 +32,12 @@ environment:
     QT_ROOT: C:\Qt\5.12\msvc2017_64
     BUILD_ARCH: x64
     
-#  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-#    GENERATORS: "Visual Studio 14 2015"
-#    TOOLCHAIN_VERSION: 14
-#    VCPKG_PLATFORM_TOOLSET: v140
-#    QT_ROOT: C:\Qt\5.6\msvc2015
-#    BUILD_ARCH: x86
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    GENERATORS: "Visual Studio 14 2015"
+    TOOLCHAIN_VERSION: 14
+    VCPKG_PLATFORM_TOOLSET: v140
+    QT_ROOT: C:\Qt\5.6\msvc2015
+    BUILD_ARCH: x86
 
 matrix:
   fast_finish: false
@@ -66,21 +66,21 @@ before_build:
   - cd %OTHER_SOURCE%
   - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
   - cd %OTHER_SOURCE%
-  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 699c8779f1b0feb4ed3564716d1ed31f69663ea6 699c8779f1b0feb4ed3564716d1ed31f69663ea6 )
+  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo openssl cmark libssh log4cxx libpng pixman libjpeg-turbo freerdp #libdatachannel
+  - vcpkg --triplet %BUILD_ARCH%-windows install zlib lzo openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel
   
-  - cd "%OTHER_SOURCE%"
-  - if not exist libdatachannel (git clone https://github.com/paullouisageneau/libdatachannel.git)
-  - cd libdatachannel
-  - git submodule update --init --recursive
-  - git checkout -b v0.14.3 v0.14.3
-  - cmake -E make_directory build
-  - cd build
-  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  - cmake --build . --config Release --target install
-  #- if NOT "%TOOLCHAIN_VERSION%" == "14" (cmake --build . --config Release --target install)
+#  - cd "%OTHER_SOURCE%"
+#  - if not exist libdatachannel (git clone https://github.com/paullouisageneau/libdatachannel.git)
+#  - cd libdatachannel
+#  - git submodule update --init --recursive
+#  - git checkout -b v0.14.3 v0.14.3
+# - cmake -E make_directory build
+#  - cd build
+#  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+#  - cmake --build . --config Release --target install
+#  #- if NOT "%TOOLCHAIN_VERSION%" == "14" (cmake --build . --config Release --target install)
   
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")
@@ -136,7 +136,7 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -DLibDataChannel_DIR="%INSTALL_DIR%/share/cmake/LibDataChannel" -Dtigervnc_DIR="%INSTALL_DIR%/lib/cmake" -DLog4Qt_DIR="%INSTALL_DIR%/lib/cmake/Log4Qt" -DQXmpp_DIR="%INSTALL_DIR%/lib/cmake/qxmpp" -DQtService_DIR="%INSTALL_DIR%/lib/cmake/qtservice" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR="%INSTALL_DIR%/lib/cmake" -DLog4Qt_DIR="%INSTALL_DIR%/lib/cmake/Log4Qt" -DQXmpp_DIR="%INSTALL_DIR%/lib/cmake/qxmpp" -DQtService_DIR="%INSTALL_DIR%/lib/cmake/qtservice" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON ;-DLibDataChannel_DIR="%INSTALL_DIR%/share/cmake/LibDataChannel"
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
   - move /Y install\plugins\*crypto*.dll install\bin
@@ -156,7 +156,7 @@ artifacts:
 test: off
 
 #See: https://www.appveyor.com/docs/deployment/github/
-deploy:
+#deploy:
   #provider: FTP 
   #protocol: sftp 
   #host: frs.sourceforge.net 
@@ -170,17 +170,17 @@ deploy:
   #on:
     #branch: master
 
-  - provider: GitHub
-    # token : https://github.com/settings/tokens
-    # password encrypt: https://ci.appveyor.com/tools/encrypt
-    auth_token:
-      secure: 9do9yUjK8IrlU7jqUHUSPkTDADxzqBSa2GxJ0b0mqo9U2gaAkDFgsiDTvjPgCcnV
-    #artifact:
-    #draft: true
-    #prerelease: true
-    force_update: false
-    on:
-      TOOLCHAIN_VERSION: 15
-      #QT_VERSION: 5.6.3
-      BUILD_ARCH: x86
-      appveyor_repo_tag: true        # deploy on tag push only
+#  - provider: GitHub
+#    # token : https://github.com/settings/tokens
+#    # password encrypt: https://ci.appveyor.com/tools/encrypt
+#    auth_token:
+#      secure: 9do9yUjK8IrlU7jqUHUSPkTDADxzqBSa2GxJ0b0mqo9U2gaAkDFgsiDTvjPgCcnV
+#    #artifact:
+#    #draft: true
+#    #prerelease: true
+#    force_update: false
+#    on:
+#      TOOLCHAIN_VERSION: 15
+#      #QT_VERSION: 5.6.3
+#      BUILD_ARCH: x86
+#      appveyor_repo_tag: true        # deploy on tag push only
