@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCONNECTERPLUGINSTERMINAL_H
-#define CCONNECTERPLUGINSTERMINAL_H
+#ifndef CCONNECTERTERMINAL_H_KL_2021_12_09
+#define CCONNECTERTERMINAL_H_KL_2021_12_09
 
 #include "ConnectThread.h"
 #include "Connecter.h"
@@ -9,12 +9,12 @@
 #include "ParameterTerminal.h"
 
 class CConnectThreadTerminal;
-class TERMINAL_EXPORT CConnecterPluginsTerminal : public CConnecter
+class TERMINAL_EXPORT CConnecterTerminal : public CConnecter
 {
     Q_OBJECT
 public:
-    explicit CConnecterPluginsTerminal(CPluginViewer *parent);
-    virtual ~CConnecterPluginsTerminal() override;
+    explicit CConnecterTerminal(CPluginViewer *parent);
+    virtual ~CConnecterTerminal() override;
     
     QWidget* GetViewer() override;
     virtual qint16 Version() override;
@@ -55,4 +55,4 @@ protected:
     CParameterTerminal* m_pPara;
 };
 
-#endif // CCONNECTERPLUGINSTERMINAL_H
+#endif // CCONNECTERTERMINAL_H_KL_2021_12_09

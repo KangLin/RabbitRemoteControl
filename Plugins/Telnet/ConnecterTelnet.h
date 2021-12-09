@@ -1,18 +1,18 @@
 #ifndef CCONNECTERTELNET_H
 #define CCONNECTERTELNET_H
 
-#include "ConnecterPluginsTerminal.h"
+#include "ConnecterTerminal.h"
 #include "ParameterTelnet.h"
 #include <QTcpSocket>
 
-class CConnecterTelnet : public CConnecterPluginsTerminal
+class CConnecterTelnet : public CConnecterTerminal
 {
     Q_OBJECT
 public:
     explicit CConnecterTelnet(CPluginViewer *parent);
     virtual ~CConnecterTelnet();
     
-    // CConnecterPluginsTerminal interface
+    // CConnecterTerminal interface
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
     virtual int SetParamter() override;

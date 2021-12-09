@@ -1,4 +1,4 @@
-#include "ConnecterPluginsTerminal.h"
+#include "ConnecterTerminal.h"
 #include "Connect.h"
 #include "ConnectThreadTerminal.h"
 
@@ -14,7 +14,7 @@
 
 #include "RabbitCommonLog.h"
 
-CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginViewer *parent)
+CConnecterTerminal::CConnecterTerminal(CPluginViewer *parent)
     : CConnecter(parent),
       m_pConsole(nullptr),
       m_pThread(nullptr),
@@ -37,9 +37,9 @@ CConnecterPluginsTerminal::CConnecterPluginsTerminal(CPluginViewer *parent)
     Q_ASSERT(check);
 }
 
-CConnecterPluginsTerminal::~CConnecterPluginsTerminal()
+CConnecterTerminal::~CConnecterTerminal()
 {
-    qDebug() << "CConnecterPluginsTerminal::~CConnecterPluginsTerminal()";
+    qDebug() << "CConnecterTerminal::~CConnecterTerminal()";
     
     if(m_pConsole)
     {
@@ -48,17 +48,17 @@ CConnecterPluginsTerminal::~CConnecterPluginsTerminal()
     }
 }
 
-QWidget* CConnecterPluginsTerminal::GetViewer()
+QWidget* CConnecterTerminal::GetViewer()
 {
     return m_pConsole;
 }
 
-qint16 CConnecterPluginsTerminal::Version()
+qint16 CConnecterTerminal::Version()
 {
     return 0;
 }
 
-int CConnecterPluginsTerminal::Load(QSettings &set)
+int CConnecterTerminal::Load(QSettings &set)
 {
     int nRet = 0;
     CParameter* pPara = GetPara();
@@ -68,7 +68,7 @@ int CConnecterPluginsTerminal::Load(QSettings &set)
     return nRet;
 }
 
-int CConnecterPluginsTerminal::Save(QSettings &set)
+int CConnecterTerminal::Save(QSettings &set)
 {
     int nRet = 0;
     
@@ -79,7 +79,7 @@ int CConnecterPluginsTerminal::Save(QSettings &set)
     return nRet;
 }
 
-int CConnecterPluginsTerminal::Connect()
+int CConnecterTerminal::Connect()
 {
     int nRet = 0;
 
@@ -108,7 +108,7 @@ int CConnecterPluginsTerminal::Connect()
     return nRet;
 }
 
-int CConnecterPluginsTerminal::DisConnect()
+int CConnecterTerminal::DisConnect()
 {
     int nRet = 0;
 
@@ -121,7 +121,7 @@ int CConnecterPluginsTerminal::DisConnect()
     return nRet;
 }
 
-int CConnecterPluginsTerminal::SetParamter()
+int CConnecterTerminal::SetParamter()
 {
     int nRet = 0;
 
@@ -155,13 +155,13 @@ int CConnecterPluginsTerminal::SetParamter()
     return nRet;
 }
 
-void CConnecterPluginsTerminal::slotTerminalTitleChanged()
+void CConnecterTerminal::slotTerminalTitleChanged()
 {
     m_pConsole->setWindowTitle(m_pConsole->title());
     slotSetServerName(m_pConsole->title());
 }
 
-void CConnecterPluginsTerminal::slotZoomReset()
+void CConnecterTerminal::slotZoomReset()
 {
     if(!m_pConsole) return;
     CParameterTerminal* pPara = dynamic_cast<CParameterTerminal*>(GetPara());
@@ -169,17 +169,17 @@ void CConnecterPluginsTerminal::slotZoomReset()
     m_pConsole->setTerminalFont(pPara->GetFont());
 }
 
-int CConnecterPluginsTerminal::OnConnect()
+int CConnecterTerminal::OnConnect()
 {
     return 0;
 }
 
-int CConnecterPluginsTerminal::OnDisConnect()
+int CConnecterTerminal::OnDisConnect()
 {
     return 0;
 }
 
-QString CConnecterPluginsTerminal::ServerName()
+QString CConnecterTerminal::ServerName()
 {
     CParameter* pPara = GetPara();
     if(CConnecter::ServerName().isEmpty())
@@ -192,12 +192,12 @@ QString CConnecterPluginsTerminal::ServerName()
     return CConnecter::ServerName();
 }
 
-CConnect* CConnecterPluginsTerminal::InstanceConnect()
+CConnect* CConnecterTerminal::InstanceConnect()
 {
     return nullptr;
 }
 
-CParameterTerminal* CConnecterPluginsTerminal::GetPara()
+CParameterTerminal* CConnecterTerminal::GetPara()
 {
     return m_pPara;
 }

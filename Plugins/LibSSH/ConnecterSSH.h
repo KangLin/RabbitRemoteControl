@@ -1,11 +1,11 @@
 #ifndef CCONNECTERSSH_H
 #define CCONNECTERSSH_H
 
-#include "ConnecterPluginsTerminal.h"
+#include "ConnecterTerminal.h"
 #include "ParameterSSH.h"
 
 class CConnectSSH;
-class CConnecterSSH : public CConnecterPluginsTerminal
+class CConnecterSSH : public CConnecterTerminal
 {
     Q_OBJECT
 

@@ -1,6 +1,6 @@
 #include "PluginTerminal.h"
 #include "RabbitCommonDir.h"
-#include "ConnecterTerminal.h"
+#include "ConnecterPluginTerminal.h"
 
 #include <QDebug>
 
@@ -43,7 +43,7 @@ CConnecter *CPluginTerminal::CreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {   
-        return new CConnecterTerminal(this);
+        return new CConnecterPluginTerminal(this);
     }
     return nullptr;
 }

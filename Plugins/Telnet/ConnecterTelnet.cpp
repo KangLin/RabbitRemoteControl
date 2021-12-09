@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 CConnecterTelnet::CConnecterTelnet(CPluginViewer *parent)
-    : CConnecterPluginsTerminal(parent),
+    : CConnecterTerminal(parent),
       m_pSocket(nullptr)
 {
     m_pPara = new CParameterTelnet();
@@ -25,7 +25,7 @@ QDialog *CConnecterTelnet::GetDialogSettings(QWidget *parent)
 
 int CConnecterTelnet::SetParamter()
 {
-    return CConnecterPluginsTerminal::SetParamter();
+    return CConnecterTerminal::SetParamter();
 }
 
 int CConnecterTelnet::OnConnect()

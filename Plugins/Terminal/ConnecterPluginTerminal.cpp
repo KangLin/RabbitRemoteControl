@@ -1,13 +1,13 @@
-#include "ConnecterTerminal.h"
+#include "ConnecterPluginTerminal.h"
 #include "DlgSettingsTerminal.h"
 
-CConnecterTerminal::CConnecterTerminal(CPluginViewer *parent) 
-    : CConnecterPluginsTerminal(parent)
+CConnecterPluginTerminal::CConnecterPluginTerminal(CPluginViewer *parent) 
+    : CConnecterTerminal(parent)
 {
     m_pPara = new CParameterTerminal();
 }
 
-CConnecterTerminal::~CConnecterTerminal()
+CConnecterPluginTerminal::~CConnecterPluginTerminal()
 {
     if(m_pPara)
     {
@@ -16,12 +16,12 @@ CConnecterTerminal::~CConnecterTerminal()
     }
 }
 
-QDialog *CConnecterTerminal::GetDialogSettings(QWidget *parent)
+QDialog *CConnecterPluginTerminal::GetDialogSettings(QWidget *parent)
 {
     return new CDlgSettingsTerminal(m_pPara, parent);
 }
 
-int CConnecterTerminal::OnConnect()
+int CConnecterPluginTerminal::OnConnect()
 {
     if(m_pConsole)
         m_pConsole->startShellProgram();
@@ -29,7 +29,7 @@ int CConnecterTerminal::OnConnect()
     return 0;    
 }
 
-int CConnecterTerminal::OnDisConnect()
+int CConnecterPluginTerminal::OnDisConnect()
 {
     if(m_pConsole) m_pConsole->close();
     return 0;

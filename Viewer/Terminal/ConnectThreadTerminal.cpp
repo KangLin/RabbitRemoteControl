@@ -3,7 +3,7 @@
 #include "ConnectThreadTerminal.h"
 #include "RabbitCommonLog.h"
 
-CConnectThreadTerminal::CConnectThreadTerminal(CConnecterPluginsTerminal *pConnecter)
+CConnectThreadTerminal::CConnectThreadTerminal(CConnecterTerminal *pConnecter)
     : QThread(),
       m_pConnecter(pConnecter)
 {}

@@ -3,7 +3,7 @@
 #include "ConnectSSH.h"
 
 CConnecterSSH::CConnecterSSH(CPluginViewer *parent)
-    : CConnecterPluginsTerminal(parent)
+    : CConnecterTerminal(parent)
 {    
     m_pPara = new CParameterSSH();
     m_bThread = true;

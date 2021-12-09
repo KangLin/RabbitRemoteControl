@@ -9,7 +9,7 @@ endif()
 project(Terminal LANGUAGES CXX)
 
 set(INSTALL_HEADER_FILES
-    ConnecterPluginsTerminal.h
+    ConnecterTerminal.h
     FrmParameterTerminalAppearanceSettings.h
     FrmParameterTerminalBehavior.h
     ParameterTerminal.h
@@ -22,7 +22,7 @@ set(HEADER_FILES
     )
 
 set(SOURCE_FILES
-    ConnecterPluginsTerminal.cpp
+    ConnecterTerminal.cpp
     FrmParameterTerminalAppearanceSettings.cpp
     FrmParameterTerminalBehavior.cpp
     ParameterTerminal.cpp

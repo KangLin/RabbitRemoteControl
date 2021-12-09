@@ -4,17 +4,17 @@
 #define CCONNECTTHREADTERMINAL_H
 
 #include <QThread>
-#include "ConnecterPluginsTerminal.h"
+#include "ConnecterTerminal.h"
 
 class CConnectThreadTerminal : public QThread
 {
     Q_OBJECT
 public:
-    CConnectThreadTerminal(CConnecterPluginsTerminal* pConnecter);
+    CConnectThreadTerminal(CConnecterTerminal* pConnecter);
 protected:
     virtual void run() override;
 private:
-    CConnecterPluginsTerminal* m_pConnecter;
+    CConnecterTerminal* m_pConnecter;
 };
 
 #endif // CCONNECTTHREADTERMINAL_H

@@ -1,16 +1,16 @@
 #ifndef CCONNECTERTERMINAL_H
 #define CCONNECTERTERMINAL_H
 
-#include "ConnecterPluginsTerminal.h"
+#include "ConnecterTerminal.h"
 
-class CConnecterTerminal : public CConnecterPluginsTerminal
+class CConnecterPluginTerminal : public CConnecterTerminal
 {
     Q_OBJECT
 public:
-    explicit CConnecterTerminal(CPluginViewer *parent);
-    virtual ~CConnecterTerminal() override;
+    explicit CConnecterPluginTerminal(CPluginViewer *parent);
+    virtual ~CConnecterPluginTerminal() override;
     
-    // CConnecterPluginsTerminal interface
+    // CConnecterTerminal interface
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
     virtual int OnConnect() override;
