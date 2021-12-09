@@ -172,6 +172,11 @@ Q_SIGNALS:
     void sigUpdateName(const QString& szName);
 
     void sigError(const int nError, const QString &szError);
+    /*!
+     * \brief Show infomation in main windows 
+     * \param szInfo
+     * \see MainWindow::slotInformation()
+     */
     void sigInformation(const QString& szInfo);
 
 protected:

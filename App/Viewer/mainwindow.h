@@ -64,6 +64,11 @@ private Q_SLOTS:
     void slotConnected();
     void slotDisconnected();
     void slotError(const int nError, const QString &szInfo);
+    /*!
+     * \brief Show information
+     * \param szInfo
+     * \see CConnecter::sigInformation()
+     */
     void slotInformation(const QString& szInfo);
     void slotUpdateServerName(const QString& szName);
     
