@@ -10,6 +10,8 @@
     #include "QXmppUtils.h"
 #endif
 
+#undef SetPort
+
 CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSettingsTigerVnc),
