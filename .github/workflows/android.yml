@@ -101,7 +101,7 @@ jobs:
         appendedCacheKey: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         additionalCachedPaths: $VCPKG_ROOT/installed
         vcpkgTriplet: '${{ matrix.VCPKG_TARGET_TRIPLET }}'
-        vcpkgArguments: 'zlib lzo openssl libssh libpng libjpeg-turbo libdatachannel'
+        vcpkgArguments: 'zlib openssl libssh libpng libjpeg-turbo libdatachannel'
 
     - name: Cache installed
       uses: actions/cache@v2
@@ -115,9 +115,9 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: |
         if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
-            git clone https://github.com/LibVNC/libvncserver.git
+            git clone https://github.com/KangLin/libvncserver.git
             cd libvncserver
-            git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
+            #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
             cd build
             cmake .. \

@@ -85,7 +85,7 @@ jobs:
         appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         #additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
         vcpkgTriplet: '${{matrix.triplet}}'
-        vcpkgArguments: 'zlib lzo openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel'
+        vcpkgArguments: 'zlib openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel'
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -123,9 +123,9 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: |
         IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
-            git clone https://github.com/LibVNC/libvncserver.git
+            git clone https://github.com/KangLin/libvncserver.git
             cd libvncserver
-            git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
+            ;git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
             cd build
             cmake .. ^
