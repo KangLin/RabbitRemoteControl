@@ -325,13 +325,13 @@ void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
 int CFrmViewer::Load(QSettings &set)
 {
     SetZoomFactor(set.value("Viewer/ZoomFactor", GetZoomFactor()).toDouble());
-    SetAdaptWindows(static_cast<ADAPT_WINDOWS>(set.value("Viewer/Adapt", GetAdaptWindows()).toInt()));
+    SetAdaptWindows(static_cast<ADAPT_WINDOWS>(set.value("Viewer/AdaptType", GetAdaptWindows()).toInt()));
     return 0;
 }
 
 int CFrmViewer::Save(QSettings &set)
 {
     set.setValue("Viewer/ZoomFactor", GetZoomFactor());
-    set.setValue("Viewer/Adapt", GetAdaptWindows());
+    set.setValue("Viewer/AdaptType", GetAdaptWindows());
     return 0;
 }

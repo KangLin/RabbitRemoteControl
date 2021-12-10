@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -50,7 +50,6 @@
      <addaction name="actionOpenStyle_O"/>
     </widget>
     <addaction name="actionFull_screen_F"/>
-    <addaction name="separator"/>
     <addaction name="actionZoomToWindow_Z"/>
     <addaction name="actionKeep_aspect_ration_to_windows_K"/>
     <addaction name="actionOriginal_O"/>
@@ -104,9 +103,9 @@
    <addaction name="actionOpen_O"/>
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
-   <addaction name="actionFull_screen_F"/>
    <addaction name="actionShow_TabBar_B"/>
    <addaction name="separator"/>
+   <addaction name="actionFull_screen_F"/>
    <addaction name="actionZoomToWindow_Z"/>
    <addaction name="actionKeep_aspect_ration_to_windows_K"/>
    <addaction name="actionOriginal_O"/>

@@ -77,6 +77,7 @@ int CConnecterDesktop::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pParameter);
+    Q_ASSERT(m_pView);
     if(m_pView)
         m_pView->Load(set);
     if(GetPara())

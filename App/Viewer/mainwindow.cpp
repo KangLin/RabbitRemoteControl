@@ -302,7 +302,6 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
     m_pGBView->setEnabled(true);
     //m_ptbZoom->setEnabled(true);
     m_psbZoomFactor->setEnabled(true);
-    m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     switch (aw) {
     case CFrmViewer::Auto:
     case CFrmViewer::Original:
