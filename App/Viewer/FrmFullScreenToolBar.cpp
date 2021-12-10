@@ -6,6 +6,9 @@
 #include <QStyleOption>
 #include <QVBoxLayout>
 #include <QSettings>
+#include <QScreen>
+#include <QApplication>
+#include <QDesktopWidget>
 
 CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent) :
     QWidget(parent,
@@ -123,12 +126,16 @@ int CFrmFullScreenToolBar::ReToolBarSize()
     
     resize(marginW + cm.left() + cm.right() + size.width(),
            marginH + cm.top() + cm.bottom() + size.height());
-
+    
+    if(frameGeometry().top() > m_pMain->frameGeometry().height() >> 1)
+        move(frameGeometry().left(),
+             m_pMain->frameGeometry().height() - frameGeometry().height());
     return 0;    
 }
 
 void CFrmFullScreenToolBar::slotTimeOut()
 {
+    int area = 5;
     if(m_isHide) return;
     
     if(m_pNail->isChecked()) return;
@@ -136,18 +143,13 @@ void CFrmFullScreenToolBar::slotTimeOut()
     m_isHide = true;
     m_Timer.stop();
     m_ToolBar.hide();
-    resize(width(), 5);
-}
+    resize(width(), area);
 
-void CFrmFullScreenToolBar::slotShowTabBar()
-{
-    emit sigShowTabBar(m_pShowTabBar->isChecked());
-}
-
-void CFrmFullScreenToolBar::slotNail()
-{
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
-    set.setValue("FullScreen/Nail", m_pNail->isChecked());
+    int h = m_pMain->frameGeometry().height() >> 1;
+    if(frameGeometry().top() < h)
+        move(frameGeometry().left(), 0);
+    else
+        move(frameGeometry().left(),  m_pMain->frameGeometry().height() - area);
 }
 
 void CFrmFullScreenToolBar::enterEvent(QEvent *event)
@@ -168,4 +170,15 @@ void CFrmFullScreenToolBar::leaveEvent(QEvent *event)
     if(m_pNail->isChecked()) return;
     m_Timer.stop();
     m_Timer.start(m_TimeOut);
+}
+
+void CFrmFullScreenToolBar::slotShowTabBar()
+{
+    emit sigShowTabBar(m_pShowTabBar->isChecked());
+}
+
+void CFrmFullScreenToolBar::slotNail()
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
+    set.setValue("FullScreen/Nail", m_pNail->isChecked());
 }
