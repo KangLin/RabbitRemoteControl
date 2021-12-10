@@ -52,7 +52,7 @@ SetCompressor lzma
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "SimpChinese"
 
-LangString LANG_PRODUCT_NAME ${LANG_ENGLISH} "RabbitRemoteControl"
+LangString LANG_PRODUCT_NAME ${LANG_ENGLISH} "Rabbit Remote Control"
 LangString LANG_PRODUCT_NAME ${LANG_SIMPCHINESE} "玉兔远程控制"
 
 LangString LANG_UNINSTALL_CONFIRM ${LANG_ENGLISH} "Thank you very much! $(^Name) has been successfully removed."
@@ -156,12 +156,12 @@ Section "${PRODUCT_NAME}" SEC01
 SectionEnd
 
 Section -AdditionalIcons
-  CreateDirectory "$SMPROGRAMS\${LANG_PRODUCT_NAME}"
-  CreateShortCut "$SMPROGRAMS\${LANG_PRODUCT_NAME}\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
-  CreateShortCut "$SMPROGRAMS\${LANG_PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\uninst.exe"
+  CreateDirectory "$SMPROGRAMS\$(LANG_PRODUCT_NAME)"
+  CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
+  CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\Uninstall.lnk" "$INSTDIR\uninst.exe"
 
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
-  CreateShortCut "$SMPROGRAMS\${LANG_PRODUCT_NAME}\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
+  CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
     
   CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
 SectionEnd
@@ -201,7 +201,7 @@ FunctionEnd
 
 Section Uninstall
   ;SetShellVarContext all
-  RMDir /r "$SMPROGRAMS\${LANG_PRODUCT_NAME}"
+  RMDir /r "$SMPROGRAMS\$(LANG_PRODUCT_NAME)"
   SetOutPath "$SMPROGRAMS"
   Delete "$DESKTOP\$(LANG_PRODUCT_NAME).lnk"
   RMDIR /r "$INSTDIR"
