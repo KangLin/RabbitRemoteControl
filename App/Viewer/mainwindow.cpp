@@ -564,3 +564,14 @@ void MainWindow::slotShowTabBar(bool bShow)
     if(p)
         p->ShowTabBar(bShow);
 }
+
+void MainWindow::on_actionSlot_screen_triggered()
+{
+    if(!m_pView) return;
+    QString szFile = RabbitCommon::CDir::GetSaveFileName(this,
+                                          tr("Open save screenslot file"),
+                              RabbitCommon::CDir::Instance()->GetDirUserImage(), 
+                                  tr("PNG(*.png);;JEPG(*.jpg);;All files(*.*)"));
+    if(szFile.isEmpty()) return;
+    m_pView->Screenslot(szFile);
+}

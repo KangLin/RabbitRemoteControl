@@ -28,7 +28,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
-      RabbitRemoteControl_VERSION: v0.0.9
+      RabbitRemoteControl_VERSION: v0.0.93
       VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
       qt_modules: qtwebengine
 
@@ -318,5 +318,5 @@ jobs:
         body: |
            [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
         files: |
-            ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${RabbitRemoteControl_VERSION}.apk
+            ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk
             ${{env.INSTALL_DIR}}/update_android.xml

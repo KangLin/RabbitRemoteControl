@@ -58,12 +58,13 @@
     <addaction name="separator"/>
     <addaction name="actionShow_TabBar_B"/>
     <addaction name="separator"/>
+    <addaction name="actionSlot_screen"/>
+    <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="menuSink"/>
     <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatusBar_S"/>
     <addaction name="separator"/>
-    <addaction name="actionSend_ctl_alt_del"/>
    </widget>
    <widget class="QMenu" name="menuRemote">
     <property name="title">
@@ -104,6 +105,7 @@
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
    <addaction name="actionShow_TabBar_B"/>
+   <addaction name="actionSlot_screen"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="actionZoomToWindow_Z"/>
@@ -399,6 +401,15 @@
    </property>
    <property name="whatsThis">
     <string>Zoom Out</string>
+   </property>
+  </action>
+  <action name="actionSlot_screen">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Screenslot</normaloff>:/image/Screenslot</iconset>
+   </property>
+   <property name="text">
+    <string>Screenshot </string>
    </property>
   </action>
  </widget>

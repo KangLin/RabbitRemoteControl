@@ -335,3 +335,13 @@ int CFrmViewer::Save(QSettings &set)
     set.setValue("Viewer/AdaptType", GetAdaptWindows());
     return 0;
 }
+
+QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
+{
+    int width = w, height = h;
+    if(-1 == w)
+        width = m_Desktop.width();
+    if(-1 == w)
+        height = m_Desktop.height();
+    return m_Desktop.copy(x, y, width, height);
+}

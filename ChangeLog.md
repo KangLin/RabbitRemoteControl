@@ -4,6 +4,7 @@
 + Add zoom view
 + FIX: libvncserver initial bug
 + Reface viewer paramters
++ Add screenslot
 
 ### v0.0.9
 + Add server
