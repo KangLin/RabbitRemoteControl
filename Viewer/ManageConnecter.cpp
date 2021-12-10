@@ -55,8 +55,11 @@ int CManageConnecter::LoadPlugins()
         }
     }
 
-    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins()
-            + QDir::separator() + "Viewer";
+    QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins();
+#if !defined (Q_OS_ANDROID)
+    szPath = szPath + QDir::separator() + "Viewer";
+#endif
+
     QStringList filters;
 #if defined (Q_OS_WINDOWS)
         filters << "*PluginViewer*.dll";
