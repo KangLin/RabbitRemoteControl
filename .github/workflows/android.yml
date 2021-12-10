@@ -292,19 +292,19 @@ jobs:
         cp ${{github.workspace}}/Update/update_android.xml .
         MD5=`md5sum ${APK_FILE} | awk '{print $1}'`
         echo "MD5:${MD5}"
-        sed -i "s/<VERSION>.*</<VERSION>${RabbitIm_VERSION}</g" update_android.xml
+        sed -i "s/<VERSION>.*</<VERSION>${RabbitRemoteControl_VERSION}</g" update_android.xml
         sed -i "s/<INFO>.*</<INFO>Release rabbit remote control ${RabbitRemoteControl_VERSION}</g" update_android.xml
         sed -i "s/<TIME>.*</<TIME>`date`</g" update_android.xml
         sed -i "s/<ARCHITECTURE>.*</<ARCHITECTURE>${BUILD_ARCH}</g" update_android.xml
         sed -i "s/<MD5SUM>.*</<MD5SUM>${MD5}</g" update_android.xml
-        sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/RabbitIm/releases/download/${RabbitRemoteControl_VERSION}/${APK_NAME}<:g" update_android.xml
+        sed -i "s:<URL>.*<:<URL>https\://github.com/KangLin/RabbitRemoteControl/releases/download/${RabbitRemoteControl_VERSION}/${APK_NAME}<:g" update_android.xml
         sed -i "s/<MIN_UPDATE_VERSION>.*</<MIN_UPDATE_VERSION>${RabbitRemoteControl_VERSION}</g" update_android.xml
     
     - name: update 
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
       uses: actions/upload-artifact@v2
       with:
-        name: rabbitreim_android_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}
+        name: RabbitRemoteControl_Android_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}
         path: |
           ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk
 
