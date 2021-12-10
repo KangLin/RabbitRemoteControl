@@ -1,6 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "Parameter.h"
+#include "RabbitCommonEncrypt.h"
 
 CParameter::CParameter(QObject *parent) : QObject(parent),
     m_nPort(0),
@@ -175,9 +176,14 @@ int CParameter::Load(QSettings &set)
     SetPort(set.value("Port", GetPort()).toUInt());
     
     SetUser(set.value("User", GetUser()).toString());
-    SetPassword(set.value("Password", GetPassword()).toString());
     SetSavePassword(set.value("SavePassword", GetSavePassword()).toBool());
-    
+    if(GetSavePassword())
+    {
+        QString password;
+        RabbitCommon::CEncrypt e;
+        if(!e.Dencode(set.value("Password").toByteArray(), password))
+            SetPassword(password);
+    }
     SetOnlyView(set.value("OnlyView", GetOnlyView()).toBool());
     SetLocalCursor(set.value("LocalCursor", GetLocalCursor()).toBool());
     SetClipboard(set.value("Clipboard", GetClipboard()).toBool());
@@ -199,9 +205,16 @@ int CParameter::Save(QSettings &set)
     set.setValue("Port", GetPort());
     
     set.setValue("User", GetUser());
-    set.setValue("Password", GetPassword());
     set.setValue("SavePassword", GetSavePassword());
-    
+    if(GetSavePassword())
+    {
+        QByteArray encryptPassword;
+        RabbitCommon::CEncrypt e;
+        e.Encode(GetPassword(), encryptPassword);
+        set.setValue("Password", encryptPassword);
+    }
+    else
+        set.remove("Password");
     set.setValue("OnlyView", GetOnlyView());
     set.setValue("LocalCursor", GetLocalCursor());
     set.setValue("Clipboard", GetClipboard());
