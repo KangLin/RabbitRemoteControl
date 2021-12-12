@@ -9,14 +9,13 @@
 #include "freerdp/locale/keyboard.h"
 #include "freerdp/channels/rdpgfx.h"
 #include "freerdp/channels/cliprdr.h"
-/*
+
+#undef PEN_FLAG_INVERTED
 #include "freerdp/channels/rdpei.h"
 #include "freerdp/channels/rdpdr.h"
 #include "freerdp/channels/disp.h"
 #include "freerdp/channels/tsmf.h"
 #include "freerdp/channels/rdpsnd.h"
-*/
-
 
 #include "RabbitCommonTools.h"
 #include "RabbitCommonLog.h"
@@ -514,7 +513,7 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParamter->GetClipboard());
-	}/* else  if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
+	} else  if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
     {
         LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
     }
@@ -548,7 +547,6 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 	}
     else
         LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
-        */
 }
 
 void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDisconnectedEventArgs *e)
