@@ -299,10 +299,7 @@ void CFrmViewer::slotSetName(const QString& szName)
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
-    if(m_Desktop.isNull())
-    {
-        m_Desktop = image;
-    } else if(r == m_Desktop.rect())
+    if(m_Desktop.isNull() || m_Desktop.rect() == r)
         m_Desktop = image;
     else
     {

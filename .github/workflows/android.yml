@@ -309,7 +309,7 @@ jobs:
           ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk
 
     - name: Upload To Github Release
-      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
+      if: ${{matrix.ANDROID_ABI=='armeabi-v7a' && matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
