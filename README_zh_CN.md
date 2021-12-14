@@ -192,7 +192,20 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
     + 绿色版本：[RabbitRemoteControl_v0.0.10.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.10/RabbitRemoteControl_windows_v0.0.10.zip)
   - Ubuntu:
     + Ubuntu 20.04: [rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.10/rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb)
+
+          sudo apt install rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb
+          
+          # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
+          # sudo dpkg -i rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb
+          # sudo apt-get install -f # 安装依赖
+
     + Ubuntu 18.04: [rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.10/rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb)
+
+          sudo apt install rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb
+          
+          # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
+          # sudo dpkg -i rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb
+          # sudo apt-get install -f # 安装依赖
 
 ### 开发
 #### 依赖
