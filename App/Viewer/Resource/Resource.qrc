@@ -25,5 +25,8 @@
         <file alias="ZoomIn">Image/zoomin.svg</file>
         <file alias="ZoomOut">Image/zoomout.svg</file>
         <file alias="Zoom">Image/zoom.svg</file>
+        <file alias="Cut">Image/Cut.png</file>
+        <file alias="RecordScreen">Image/RecordScreen.png</file>
+        <file alias="Screenslot">Image/Screenslot.png</file>
     </qresource>
 </RCC>

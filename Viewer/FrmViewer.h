@@ -48,19 +48,19 @@ public:
      * \~english The ADAPT_WINDOWS enum
      */
     enum ADAPT_WINDOWS {
-        Disable,                     ///< \~english Disable adapt windows
-                                     ///< \~chinese 禁用适配窗口
-        Auto,
-        Original,                    ///< \~english Original desktop size, the left-top of the desktop is aligned with the left-top of the window
-                                     ///< \~chinese 原始桌面大小，桌面的左上点与窗口的左上点对齐
-        OriginalCenter,              ///< \~english Original desktop size, the center of the desktop is aligned with the center of the window
-                                     ///< \~chinese 原始桌面大小，桌面中心点与窗口中心点对齐
-        Zoom,                        ///< \~english zoom windows = destop size * factor
-                                     ///< \~chinese 缩放窗口大小等于桌面大小 * 系数
-        ZoomToWindow,                ///< \~english Desktop adapt to windows
-                                     ///< \~chinese 桌面缩放到窗口大小，窗口是固定的
-        KeepAspectRationToWindow,    ///< \~english Keep desktop aspectration adapt to windows
-                                     ///< \~chinese 保持长宽比缩放到窗口大小,窗口是固定的
+        Disable = 0,                  ///< \~english Disable adapt windows
+                                      ///< \~chinese 禁用适配窗口
+        Auto = 1,
+        Original = 2,                 ///< \~english Original desktop size, the left-top of the desktop is aligned with the left-top of the window
+                                      ///< \~chinese 原始桌面大小，桌面的左上点与窗口的左上点对齐
+        OriginalCenter = 3,           ///< \~english Original desktop size, the center of the desktop is aligned with the center of the window
+                                      ///< \~chinese 原始桌面大小，桌面中心点与窗口中心点对齐
+        Zoom = 4,                     ///< \~english zoom windows = destop size * factor
+                                      ///< \~chinese 缩放窗口大小等于桌面大小 * 系数
+        ZoomToWindow = 5,             ///< \~english Desktop adapt to windows
+                                      ///< \~chinese 桌面缩放到窗口大小，窗口是固定的
+        KeepAspectRationToWindow = 6, ///< \~english Keep desktop aspectration adapt to windows
+                                      ///< \~chinese 保持长宽比缩放到窗口大小,窗口是固定的
     };
     void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
     ADAPT_WINDOWS GetAdaptWindows();
@@ -77,6 +77,8 @@ public:
     
     virtual int Load(QSettings &set);
     virtual int Save(QSettings &set);
+    
+    virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
 
 public Q_SLOTS:
     void slotSetDesktopSize(int width, int height);

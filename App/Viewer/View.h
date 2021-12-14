@@ -47,7 +47,8 @@ public:
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) = 0;
     
     virtual double GetZoomFactor() = 0;
-    
+    virtual int Screenslot(const QString& szFile) = 0;
+
 public Q_SLOTS:
     virtual void slotSystemCombination() = 0;
     virtual void slotZoomIn() = 0;

@@ -9,14 +9,13 @@
 #include "freerdp/locale/keyboard.h"
 #include "freerdp/channels/rdpgfx.h"
 #include "freerdp/channels/cliprdr.h"
-/*
+
+#undef PEN_FLAG_INVERTED
 #include "freerdp/channels/rdpei.h"
 #include "freerdp/channels/rdpdr.h"
 #include "freerdp/channels/disp.h"
 #include "freerdp/channels/tsmf.h"
 #include "freerdp/channels/rdpsnd.h"
-*/
-
 
 #include "RabbitCommonTools.h"
 #include "RabbitCommonLog.h"
@@ -514,41 +513,40 @@ void CConnectFreeRdp::OnChannelConnectedEventHandler(void *context, ChannelConne
 		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParamter->GetClipboard());
-	}/* else  if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
+	} else  if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
     {
-        LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+        LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
     }
 	else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else  if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0)
 	{
-        LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+        LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "channel %s connected", e->name);
 	}
 	else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, VIDEO_CONTROL_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
     else
-        LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
-        */
+        LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 }
 
 void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDisconnectedEventArgs *e)
@@ -568,39 +566,39 @@ void CConnectFreeRdp::OnChannelDisconnectedEventHandler(void *context, ChannelDi
 		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParamter->GetClipboard());
-	}/*
+	}
     else if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0)
     {
-        LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+        LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0)
 	{
-        LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+        LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "channel %s connected", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "channel %s connected", e->name);
 	}
 	else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, VIDEO_CONTROL_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 	}
 	else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0)
 	{
-		LOG_MODEL_INFO("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
-	}*/
+		LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
+	}
 }
 
 UINT32 CConnectFreeRdp::GetImageFormat(QImage::Format format)
@@ -641,7 +639,6 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
 	    *password = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Password));
     if(domain)
         *domain = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Domain));
-	
 	return TRUE;
 }
 

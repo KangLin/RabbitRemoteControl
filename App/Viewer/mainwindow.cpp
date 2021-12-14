@@ -302,7 +302,6 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
     m_pGBView->setEnabled(true);
     //m_ptbZoom->setEnabled(true);
     m_psbZoomFactor->setEnabled(true);
-    m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     switch (aw) {
     case CFrmViewer::Auto:
     case CFrmViewer::Original:
@@ -564,4 +563,15 @@ void MainWindow::slotShowTabBar(bool bShow)
     CViewTable* p = dynamic_cast<CViewTable*>(m_pView);
     if(p)
         p->ShowTabBar(bShow);
+}
+
+void MainWindow::on_actionSlot_screen_triggered()
+{
+    if(!m_pView) return;
+    QString szFile = RabbitCommon::CDir::GetSaveFileName(this,
+                                          tr("Open save screenslot file"),
+                              RabbitCommon::CDir::Instance()->GetDirUserImage(), 
+                                  tr("PNG(*.png);;JEPG(*.jpg);;All files(*.*)"));
+    if(szFile.isEmpty()) return;
+    m_pView->Screenslot(szFile);
 }

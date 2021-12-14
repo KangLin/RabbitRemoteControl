@@ -299,10 +299,7 @@ void CFrmViewer::slotSetName(const QString& szName)
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
-    if(m_Desktop.isNull())
-    {
-        m_Desktop = image;
-    } else if(r == m_Desktop.rect())
+    if(m_Desktop.isNull() || m_Desktop.rect() == r)
         m_Desktop = image;
     else
     {
@@ -325,13 +322,23 @@ void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
 int CFrmViewer::Load(QSettings &set)
 {
     SetZoomFactor(set.value("Viewer/ZoomFactor", GetZoomFactor()).toDouble());
-    SetAdaptWindows(static_cast<ADAPT_WINDOWS>(set.value("Viewer/Adapt", GetAdaptWindows()).toInt()));
+    SetAdaptWindows(static_cast<ADAPT_WINDOWS>(set.value("Viewer/AdaptType", GetAdaptWindows()).toInt()));
     return 0;
 }
 
 int CFrmViewer::Save(QSettings &set)
 {
     set.setValue("Viewer/ZoomFactor", GetZoomFactor());
-    set.setValue("Viewer/Adapt", GetAdaptWindows());
+    set.setValue("Viewer/AdaptType", GetAdaptWindows());
     return 0;
+}
+
+QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
+{
+    int width = w, height = h;
+    if(-1 == w)
+        width = m_Desktop.width();
+    if(-1 == w)
+        height = m_Desktop.height();
+    return m_Desktop.copy(x, y, width, height);
 }

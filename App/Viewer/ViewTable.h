@@ -28,6 +28,7 @@ public:
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) override;
 
     int ShowTabBar(bool bShow);
+    virtual int Screenslot(const QString& szFile) override;
     virtual double GetZoomFactor() override;
     
 private Q_SLOTS:

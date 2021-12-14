@@ -19,7 +19,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu
-      RabbitRemoteControl_VERION: 0.0.9
+      RabbitRemoteControl_VERSION: 0.0.10
       
     steps:
     - uses: actions/checkout@v2
@@ -129,7 +129,7 @@ jobs:
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
       run: |
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
-        cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{matrix.os}}.deb
+        cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
         
 #    - name: update xml file
 #      if: ${{ matrix.BUILD_TYPE == 'Release' }}
@@ -140,9 +140,9 @@ jobs:
 #        sudo Xvfb :999 -ac &
 #        export DISPLAY=:999.0
 #        echo "Install rabbit remote control ......"
-#        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{ matrix.os }}.deb
+#        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb
 #        echo "Update update_linux.xml ......"
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERION}}_amd64_${{ matrix.os }}.deb -m "v${{env.RabbitRemoteControl_VERION}}"
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb -m "v${{env.RabbitRemoteControl_VERSION}}"
 
     - name: update 
       uses: actions/upload-artifact@v2
@@ -197,7 +197,7 @@ jobs:
 #        # With verbose: true, be verbose.
 #        verbose: true # optional, default is false
 #        # Set custom tag name.
-#        #tag_name: 'v${{env.RabbitRemoteControl_VERION}}'
+#        #tag_name: 'v${{env.RabbitRemoteControl_VERSION}}'
 #        # If try to update latest release.
 #        #update_latest_release: true # optional, default is false
 #      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }} 
