@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
       m_bFullScreen(isFullScreen())
 {
     bool check = false;
-    setFocusPolicy(Qt::NoFocus);
+
     RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
 
@@ -49,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_pView = new CViewTable(this);
     if(m_pView)
     {
+        m_pView->setFocusPolicy(Qt::NoFocus);
         check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
                         this, SLOT(slotCloseView(const QWidget*)));
         Q_ASSERT(check);
@@ -61,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ManageConnecter.EnumPlugins(this);
     
     QToolButton* tbConnect = new QToolButton(ui->toolBar);
+    tbConnect->setFocusPolicy(Qt::NoFocus);
     tbConnect->setPopupMode(QToolButton::MenuButtonPopup);
     //tb->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     tbConnect->setMenu(ui->menuConnect_C);
@@ -84,6 +86,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_psbZoomFactor->setValue(100);
     m_psbZoomFactor->setSuffix("%");
     m_psbZoomFactor->setEnabled(false);
+    m_psbZoomFactor->setFocusPolicy(Qt::NoFocus);
     check = connect(m_psbZoomFactor, SIGNAL(valueChanged(int)),
                     this, SLOT(slotZoomFactor(int)));
     Q_ASSERT(check);
@@ -99,6 +102,8 @@ MainWindow::MainWindow(QWidget *parent)
         m_pGBView->setEnabled(false);
     }
     ui->actionZoomToWindow_Z->setChecked(true);
+    
+    setFocusPolicy(Qt::NoFocus);
 }
 
 MainWindow::~MainWindow()

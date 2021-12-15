@@ -8,6 +8,8 @@
 CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab(nullptr)
 {
+    setFocusPolicy(Qt::NoFocus);
+
     m_pTab = new QTabWidget(this);
     m_pTab->setTabsClosable(true);
     m_pTab->setUsesScrollButtons(true);
@@ -75,6 +77,7 @@ int CViewTable::AddView(QWidget *pView)
         if(pScroll)
         {
             pScroll->SetAdaptWindows(p->GetAdaptWindows());
+            pScroll->setFocusPolicy(Qt::NoFocus);
             nIndex = m_pTab->addTab(pScroll, p->windowTitle());
         }
     } else
