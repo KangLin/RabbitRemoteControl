@@ -10,7 +10,7 @@
     </message>
     <message>
         <source>Signal error: %1</source>
-        <translation>信令错误：%1</translation>
+        <translation type="vanished">信令错误：%1</translation>
     </message>
 </context>
 <context>
@@ -272,12 +272,12 @@
         <translation>信令服务器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="62"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="64"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="62"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="64"/>
         <source>Please set domain</source>
         <translation>请设置域名</translation>
     </message>

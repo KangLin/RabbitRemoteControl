@@ -79,12 +79,12 @@
 <context>
     <name>CPluginLibSSH</name>
     <message>
-        <location filename="../../PluginLibSSH.cpp" line="39"/>
+        <location filename="../../PluginLibSSH.cpp" line="24"/>
         <source>LibSSH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibSSH.cpp" line="44"/>
+        <location filename="../../PluginLibSSH.cpp" line="29"/>
         <source>SSH: you can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...</source>
         <translation type="unfinished">SSH： 你能用安全传输隧道远程执行程序、传输文件；管理公共键等……</translation>
     </message>
