@@ -6,6 +6,7 @@
 #include <QImage>
 #include <QClipboard>
 #include <QNetworkProxy>
+#include <QInputDialog>
 
 const char* gThis = "This pointer";
 #define LOG_BUFFER_LENGTH 1024
@@ -323,7 +324,18 @@ char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
 {
     //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_get_password");
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
-    return strdup(pThis->m_pPara->GetPassword().toStdString().c_str());
+    QString szPassword = pThis->m_pPara->GetPassword();
+    if(szPassword.isEmpty())
+    {
+        szPassword = QInputDialog::getText(nullptr,
+                                           tr("Input password"),
+                                           tr("Password"),
+                                           QLineEdit::Password);
+        if(szPassword.isEmpty())
+            return nullptr;
+        return strdup(szPassword.toStdString().c_str());
+    }
+    return strdup(szPassword.toStdString().c_str());
 }
 
 int CConnectLibVNCServer::OnSize()

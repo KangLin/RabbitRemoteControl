@@ -6,6 +6,7 @@
 + 修复 freerdp 编译错误
 + 增加连接时提示密码输入框
   - TigerVNC
+  - LibNVCServer
 
 ### v0.0.10
 + 增加缩放视图

@@ -6,6 +6,7 @@
 + FIX freerdp compile error
 + Add input password dialog when is connecting
   - TigerVNC
+  - LibNVCServer
   
 ### v0.0.10
 + Add zoom view
