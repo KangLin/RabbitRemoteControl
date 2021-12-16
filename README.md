@@ -5,15 +5,14 @@ Author: Kang Lin <kl222@126.com>
 -----------------------------------------------------------------------
 
 [![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/stars)
-[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/forks)
-[![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
 [![Current release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![All releases downloads](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total)](https://github.com/KangLin/RabbitRemoteControl/releases)
-
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/KangLin/RabbitRemoteControl.svg)](https://starchart.cc/KangLin/RabbitRemoteControl)
+[![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl)
+[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl)
+[![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
+[![platform](https://img.shields.io/badge/platform-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
 
 -----------------------------------------------------------------------
 
@@ -46,6 +45,10 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 |Main window|Recent list menu|Connect|
 |--|--|--|
 |![Main window](docs/Image/Screenslot/MainWindows.png)|![Recent list menu](docs/Image/Screenslot/RecentMenu.png)|![Connect](docs/Image/Screenslot/Connect.png)|
+
+#### Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/KangLin/RabbitRemoteControl.svg)](https://starchart.cc/KangLin/RabbitRemoteControl)
 
 #### Project repository position
 - Project home: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/)
@@ -204,7 +207,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
   - Ubuntu:
     + Ubuntu 20.04: [rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.10/rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb)
           
-          sudo apt install rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
           # sudo dpkg -i rabbitremotecontrol_0.0.10_amd64_Ubuntu-20.04.deb
@@ -212,7 +215,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
           
     + Ubuntu 18.04: [rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.10/rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb)
 
-          sudo apt install rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
           # sudo dpkg -i rabbitremotecontrol_0.0.10_amd64_Ubuntu-18.04.deb
