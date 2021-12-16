@@ -1,5 +1,12 @@
 ## Change Log
 
+### v0.0.11
++ FIX main window focus bug
++ Add other translates
++ FIX freerdp compile error
++ Add input password dialog when is connecting
+  - TigerVNC
+  
 ### v0.0.10
 + Add zoom view
 + FIX: libvncserver initial bug

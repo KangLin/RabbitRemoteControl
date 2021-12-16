@@ -2,6 +2,7 @@
 
 #include "Parameter.h"
 #include "RabbitCommonEncrypt.h"
+#include "RabbitCommonTools.h"
 
 CParameter::CParameter(QObject *parent) : QObject(parent),
     m_nPort(0),
@@ -11,7 +12,9 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
     m_bClipboard(true),
     m_eProxyType(emProxy::No),
     m_nProxyPort(1080)
-{}
+{
+    SetUser(RabbitCommon::CTools::GetCurrentUser());
+}
 
 const QString CParameter::GetName() const
 {
