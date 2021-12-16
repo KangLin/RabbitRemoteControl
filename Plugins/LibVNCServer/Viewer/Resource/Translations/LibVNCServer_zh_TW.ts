@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<TS version="2.1" language="zh_TW">
+<context>
+    <name>CConnectLibVNCServer</name>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="331"/>
+        <source>Input password</source>
+        <translation>输入密码</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="332"/>
+        <source>Password</source>
+        <translation>密码</translation>
+    </message>
+</context>
 <context>
     <name>CDlgSettingsLibVnc</name>
     <message>

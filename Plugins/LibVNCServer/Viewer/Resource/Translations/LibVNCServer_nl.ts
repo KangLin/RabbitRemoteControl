@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="nl_NL">
 <context>
+    <name>CConnectLibVNCServer</name>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="331"/>
+        <source>Input password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="332"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgSettingsLibVnc</name>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="14"/>

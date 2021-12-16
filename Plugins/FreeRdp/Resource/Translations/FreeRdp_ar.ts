@@ -4,23 +4,33 @@
 <context>
     <name>CConnectFreeRdp</name>
     <message>
-        <location filename="../../ConnectFreeRdp.cpp" line="102"/>
+        <location filename="../../ConnectFreeRdp.cpp" line="103"/>
         <source>freerdp_connect connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRdp.cpp" line="106"/>
+        <location filename="../../ConnectFreeRdp.cpp" line="107"/>
         <source> fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRdp.cpp" line="114"/>
+        <location filename="../../ConnectFreeRdp.cpp" line="115"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRdp.cpp" line="489"/>
+        <location filename="../../ConnectFreeRdp.cpp" line="490"/>
         <source>Logon error info [</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRdp.cpp" line="645"/>
+        <source>Input password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRdp.cpp" line="646"/>
+        <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

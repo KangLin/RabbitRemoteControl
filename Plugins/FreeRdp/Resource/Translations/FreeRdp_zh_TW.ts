@@ -19,6 +19,14 @@
         <source>Logon error info [</source>
         <translation>登录错误信息</translation>
     </message>
+    <message>
+        <source>Input password</source>
+        <translation>输入密码</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密码</translation>
+    </message>
 </context>
 <context>
     <name>CDlgSetFreeRdp</name>
