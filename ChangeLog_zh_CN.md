@@ -7,6 +7,7 @@
 + 增加连接时提示密码输入框
   - TigerVNC
   - LibNVCServer
+  - FreeRDP
 
 ### v0.0.10
 + 增加缩放视图

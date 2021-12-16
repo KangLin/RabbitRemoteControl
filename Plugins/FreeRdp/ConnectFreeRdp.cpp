@@ -24,6 +24,7 @@
 #include <QDebug>
 #include <QApplication>
 #include <QScreen>
+#include <QInputDialog>
 
 CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
                                  QObject *parent)
@@ -636,7 +637,19 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
     if(username)
         *username = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Username));
     if(password)
-	    *password = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Password));
+    {
+        std::string szPassword = freerdp_settings_get_string(instance->settings, FreeRDP_Password);
+        if(szPassword.empty())
+        {
+            szPassword = QInputDialog::getText(nullptr,
+                                               tr("Input password"),
+                                               tr("Password"),
+                                               QLineEdit::Password).toStdString();
+            if(szPassword.empty())
+                return FALSE;
+        }
+	    *password = _strdup(szPassword.c_str());
+    }
     if(domain)
         *domain = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Domain));
 	return TRUE;

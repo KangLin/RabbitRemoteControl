@@ -7,7 +7,8 @@
 + Add input password dialog when is connecting
   - TigerVNC
   - LibNVCServer
-  
+  - FreeRDP
+
 ### v0.0.10
 + Add zoom view
 + FIX: libvncserver initial bug
