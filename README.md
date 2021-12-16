@@ -11,6 +11,10 @@ Author: Kang Lin <kl222@126.com>
 [![Current release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![All releases downloads](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total)](https://github.com/KangLin/RabbitRemoteControl/releases)
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/KangLin/RabbitRemoteControl.svg)](https://starchart.cc/KangLin/RabbitRemoteControl)
+
 -----------------------------------------------------------------------
 
 [:cn: 中文](README_zh_CN.md)
