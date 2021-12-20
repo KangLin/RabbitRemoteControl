@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -108,6 +108,7 @@
    <addaction name="actionSlot_screen"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
+   <addaction name="separator"/>
    <addaction name="actionZoomToWindow_Z"/>
    <addaction name="actionKeep_aspect_ration_to_windows_K"/>
    <addaction name="actionOriginal_O"/>
@@ -215,10 +216,10 @@
     <string>Original size(&amp;O)</string>
    </property>
    <property name="statusTip">
-    <string>Original(O)</string>
+    <string>Original size(O)</string>
    </property>
    <property name="whatsThis">
-    <string>Original(O)</string>
+    <string>Original size(O)</string>
    </property>
   </action>
   <action name="actionZoomToWindow_Z">
@@ -236,13 +237,13 @@
     <string>Zoom to window</string>
    </property>
    <property name="toolTip">
-    <string>Zoom to windows</string>
+    <string>Zoom to window</string>
    </property>
    <property name="statusTip">
-    <string>Zoom to windows</string>
+    <string>Zoom to window</string>
    </property>
    <property name="whatsThis">
-    <string>Zoom to windows</string>
+    <string>Zoom to window</string>
    </property>
   </action>
   <action name="actionKeep_aspect_ration_to_windows_K">
@@ -256,14 +257,17 @@
    <property name="text">
     <string>Keep aspect ration to window(&amp;K)</string>
    </property>
+   <property name="iconText">
+    <string>Keep aspect ration to window</string>
+   </property>
    <property name="toolTip">
     <string>Keep aspect ration to window</string>
    </property>
    <property name="statusTip">
-    <string>Keep AspectRation(K)</string>
+    <string>Keep aspect ration to window</string>
    </property>
    <property name="whatsThis">
-    <string>Keep AspectRation(K)</string>
+    <string>Keep aspect ration to window</string>
    </property>
   </action>
   <action name="actionExit_E">
