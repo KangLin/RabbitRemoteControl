@@ -66,7 +66,7 @@ before_build:
   - cd %OTHER_SOURCE%
   - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
   - cd %OTHER_SOURCE%
-  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60 )
+  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 50fd3d9957195575849a49fa591e645f1d8e7156 50fd3d9957195575849a49fa591e645f1d8e7156 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
   - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel
@@ -96,7 +96,7 @@ before_build:
   - cd tigervnc
   - cmake -E make_directory build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
   
@@ -145,7 +145,7 @@ build_script:
   #- call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl_setup_v0.0.9.exe -m "v0.0.9"
 
 artifacts:
-  #- path: build\RabbitRemoteControl_setup_*.exe
+  - path: build\RabbitRemoteControl_setup_*.exe
   
   #- path: build\update_windows.xml
   
