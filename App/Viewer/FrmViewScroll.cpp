@@ -4,10 +4,10 @@
 
 #include <QGuiApplication>
 #include <QScrollBar>
+#include "RabbitCommonLog.h"
 
 CFrmViewScroll::CFrmViewScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
 {
-    //BUG: 滚动条接收 TAB 键调整，导致视图接收不到 TAB 键
     setFocusPolicy(Qt::NoFocus);
     if(pView)
     {
@@ -20,7 +20,7 @@ CFrmViewScroll::CFrmViewScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea
     }
     setAlignment(Qt::AlignCenter);
     //setBackgroundRole(QPalette::Dark);
-    setWidgetResizable(true);
+    setWidgetResizable(false);
 }
 
 CFrmViewScroll::~CFrmViewScroll()

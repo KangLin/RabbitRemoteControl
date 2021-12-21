@@ -3,7 +3,9 @@
 #include "ViewTable.h"
 #include <QResizeEvent>
 #include <QTabBar>
+#include <QStyleOption>
 #include <QDebug>
+#include "RabbitCommonLog.h"
 
 CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab(nullptr)
@@ -251,4 +253,28 @@ void CViewTable::resizeEvent(QResizeEvent *event)
         return;
     m_pTab->move(0, 0);
     m_pTab->resize(event->size());
+}
+
+QSize CViewTable::GetDesktopSize()
+{
+    QSize s;
+    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    if(!pScroll) return s;
+    CFrmViewer* pView = pScroll->GetViewer();
+    if(!pView) return s;
+    s = pView->GetDesktopSize();
+//    int marginW = pView->style()->pixelMetric(
+//                QStyle::PM_FocusFrameHMargin) << 1;
+//    int marginH = pView->style()->pixelMetric(
+//                QStyle::PM_FocusFrameVMargin) << 1;
+//    QMargins cm = pView->contentsMargins();
+//    s.setWidth(marginW + cm.left() + cm.right() + s.width());
+//    s.setHeight(marginH + cm.top() + cm.bottom() + s.height());
+//    pView->resize(s);
+    pScroll->resize(pView->frameSize());
+//    QStyleOptionTabWidgetFrame option;
+//    s = m_pTab->style()->sizeFromContents(QStyle::CT_TabWidget, &option, s);
+    m_pTab->resize(pScroll->frameSize());
+    resize(m_pTab->frameSize());
+    return frameSize();
 }

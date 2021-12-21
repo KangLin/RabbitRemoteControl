@@ -7,6 +7,7 @@
 #endif
 #include "RabbitCommonDir.h"
 #include "RabbitCommonStyle.h"
+#include "RabbitCommonLog.h"
 #ifdef HAVE_ABOUT
 #include "DlgAbout/DlgAbout.h"
 #endif
@@ -104,6 +105,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionZoomToWindow_Z->setChecked(true);
     
     setFocusPolicy(Qt::NoFocus);
+    
+    //TODO: modify the bug
+    ui->actionZoom_window_to_remote_desktop->setVisible(false);
 }
 
 MainWindow::~MainWindow()
@@ -254,6 +258,19 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_pFullScreenToolBar->show();
 }
 
+void MainWindow::on_actionZoom_window_to_remote_desktop_triggered()
+{
+    LOG_MODEL_DEBUG("MainWindow", "main window:%d,%d", 
+                    frameGeometry().width(),
+                    frameGeometry().height());
+    if(!m_pView) return;
+    QSize s = m_pView->GetDesktopSize();
+    LOG_MODEL_DEBUG("MainWindow", "size:%d,%d", 
+                    s.width(),
+                    s.height());
+    resize(s);
+}
+
 void MainWindow::on_actionZoomToWindow_Z_triggered()
 {
     if(!m_pView) return;
@@ -267,8 +284,14 @@ void MainWindow::on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1)
     m_pView->SetAdaptWindows(CFrmViewer::KeepAspectRationToWindow);
 }
 
+void MainWindow::on_actionOriginal_O_changed()
+{
+    ui->actionZoom_window_to_remote_desktop->setEnabled(ui->actionOriginal_O->isChecked());
+}
+
 void MainWindow::on_actionOriginal_O_triggered()
 {
+    qDebug() << "on_actionOriginal_O_triggered()";
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::Original);
     if(m_psbZoomFactor)

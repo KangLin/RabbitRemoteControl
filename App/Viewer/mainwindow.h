@@ -46,6 +46,8 @@ private Q_SLOTS:
 
     void on_actionSend_ctl_alt_del_triggered();
     
+    void on_actionZoom_window_to_remote_desktop_triggered();
+    void on_actionOriginal_O_changed();
     void on_actionOriginal_O_triggered();
     void on_actionZoom_In_triggered();
     void on_actionZoom_Out_triggered();

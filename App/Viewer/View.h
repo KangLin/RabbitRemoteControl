@@ -48,6 +48,7 @@ public:
     
     virtual double GetZoomFactor() = 0;
     virtual int Screenslot(const QString& szFile) = 0;
+    virtual QSize GetDesktopSize() = 0;
 
 public Q_SLOTS:
     virtual void slotSystemCombination() = 0;

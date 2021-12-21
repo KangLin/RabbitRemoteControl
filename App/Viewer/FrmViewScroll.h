@@ -23,9 +23,9 @@ public:
     
     void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Original);
     CFrmViewer::ADAPT_WINDOWS AdaptWindows();
-
-    CFrmViewer* GetViewer();
     
+    CFrmViewer* GetViewer();
+
 private Q_SLOTS:
     void slotMouseMoveEvent(QMouseEvent *event);
 };

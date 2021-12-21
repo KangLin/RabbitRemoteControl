@@ -50,6 +50,7 @@
      <addaction name="actionOpenStyle_O"/>
     </widget>
     <addaction name="actionFull_screen_F"/>
+    <addaction name="actionZoom_window_to_remote_desktop"/>
     <addaction name="actionZoomToWindow_Z"/>
     <addaction name="actionKeep_aspect_ration_to_windows_K"/>
     <addaction name="actionOriginal_O"/>
@@ -109,6 +110,7 @@
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="separator"/>
+   <addaction name="actionZoom_window_to_remote_desktop"/>
    <addaction name="actionZoomToWindow_Z"/>
    <addaction name="actionKeep_aspect_ration_to_windows_K"/>
    <addaction name="actionOriginal_O"/>
@@ -414,6 +416,21 @@
    </property>
    <property name="text">
     <string>Screenshot </string>
+   </property>
+  </action>
+  <action name="actionZoom_window_to_remote_desktop">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/ZoomWindowToRemoteDesktop</normaloff>:/image/ZoomWindowToRemoteDesktop</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom window to remote desktop</string>
+   </property>
+   <property name="statusTip">
+    <string>Zoom window to remote desktop</string>
+   </property>
+   <property name="whatsThis">
+    <string>Zoom window to remote desktop</string>
    </property>
   </action>
  </widget>

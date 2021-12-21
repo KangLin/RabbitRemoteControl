@@ -30,6 +30,7 @@ public:
     int ShowTabBar(bool bShow);
     virtual int Screenslot(const QString& szFile) override;
     virtual double GetZoomFactor() override;
+    virtual QSize GetDesktopSize() override;
     
 private Q_SLOTS:
     void slotCurrentChanged(int index);

@@ -74,7 +74,8 @@ public:
      */
     double GetZoomFactor() const;
     int SetZoomFactor(double newZoomFactor);
-    
+    QSize GetDesktopSize();
+
     virtual int Load(QSettings &set);
     virtual int Save(QSettings &set);
     

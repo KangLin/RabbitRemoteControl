@@ -232,6 +232,11 @@ void CFrmViewer::slotSystemCombination()
     emit sigKeyPressEvent(Qt::Key_Delete, Qt::NoModifier);
 }
 
+QSize CFrmViewer::GetDesktopSize()
+{
+    return m_Desktop.size();
+}
+
 double CFrmViewer::GetZoomFactor() const
 {
     return m_dbZoomFactor;
