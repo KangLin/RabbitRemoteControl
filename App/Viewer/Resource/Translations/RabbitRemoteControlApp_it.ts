@@ -283,16 +283,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="418"/>
-        <location filename="../../mainwindow.ui" line="421"/>
-        <location filename="../../mainwindow.ui" line="424"/>
+        <location filename="../../mainwindow.ui" line="433"/>
+        <location filename="../../mainwindow.ui" line="436"/>
+        <location filename="../../mainwindow.ui" line="439"/>
+        <location filename="../../mainwindow.ui" line="442"/>
         <source>Screenshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="433"/>
-        <location filename="../../mainwindow.ui" line="436"/>
-        <location filename="../../mainwindow.ui" line="439"/>
+        <location filename="../../mainwindow.ui" line="418"/>
+        <location filename="../../mainwindow.ui" line="421"/>
+        <location filename="../../mainwindow.ui" line="424"/>
         <source>Zoom window to remote desktop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -342,13 +343,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="600"/>
-        <source>Open save screenslot file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="602"/>
-        <source>PNG(*.png);;JEPG(*.jpg);;All files(*.*)</source>
+        <location filename="../../mainwindow.cpp" line="612"/>
+        <source>Save screenslot to </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

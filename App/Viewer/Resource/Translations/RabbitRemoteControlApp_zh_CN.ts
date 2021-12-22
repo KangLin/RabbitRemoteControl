@@ -200,16 +200,17 @@
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="418"/>
-        <location filename="../../mainwindow.ui" line="421"/>
-        <location filename="../../mainwindow.ui" line="424"/>
+        <location filename="../../mainwindow.ui" line="433"/>
+        <location filename="../../mainwindow.ui" line="436"/>
+        <location filename="../../mainwindow.ui" line="439"/>
+        <location filename="../../mainwindow.ui" line="442"/>
         <source>Screenshot</source>
         <translation>截屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="433"/>
-        <location filename="../../mainwindow.ui" line="436"/>
-        <location filename="../../mainwindow.ui" line="439"/>
+        <location filename="../../mainwindow.ui" line="418"/>
+        <location filename="../../mainwindow.ui" line="421"/>
+        <location filename="../../mainwindow.ui" line="424"/>
         <source>Zoom window to remote desktop</source>
         <translation>缩放窗口到远程桌面大小</translation>
     </message>
@@ -342,14 +343,9 @@
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="600"/>
-        <source>Open save screenslot file</source>
-        <translation>打开保存截屏文件：</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="602"/>
-        <source>PNG(*.png);;JEPG(*.jpg);;All files(*.*)</source>
-        <translation>PNG(*.png);;JEPG(*.jpg);;所有文件(*.*)</translation>
+        <location filename="../../mainwindow.cpp" line="612"/>
+        <source>Save screenslot to </source>
+        <translation>保存截屏到 </translation>
     </message>
 </context>
 <context>

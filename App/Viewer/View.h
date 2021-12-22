@@ -34,20 +34,25 @@ class CView : public QWidget
 public:
     explicit CView(QWidget *parent = nullptr);
     
-    // QWidget* pView must is same as CConnecter::GetViewer()
+    /// QWidget* pView must is same as CConnecter::GetViewer()
     virtual int AddView(QWidget* pView) = 0;
-    // QWidget* pView must is same as CConnecter::GetViewer()
+    /// QWidget* pView must is same as CConnecter::GetViewer()
     virtual int RemoveView(QWidget* pView) = 0;
-    // @note The return QWidget* must is same as CConnecter::GetViewer()
+    /// @note The return QWidget* must is same as CConnecter::GetViewer()
     virtual QWidget* GetCurrentView() = 0;
     virtual int SetFullScreen(bool bFull) = 0;
-    //The QWidget* pView must is same as CConnecter::GetViewer()
+    /// The QWidget* pView must is same as CConnecter::GetViewer()
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle) = 0;
-    //The QWidget* pView must is same as CConnecter::GetViewer()
+    /// The QWidget* pView must is same as CConnecter::GetViewer()
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) = 0;
     
     virtual double GetZoomFactor() = 0;
-    virtual int Screenslot(const QString& szFile) = 0;
+    /*!
+     * \param szFile: save file
+     * \param bRemoteDesktop: slot remote desktop
+     * \return 
+     */
+    virtual int Screenslot(const QString& szFile, bool bRemoteDesktop = true) = 0;
     virtual QSize GetDesktopSize() = 0;
 
 public Q_SLOTS:

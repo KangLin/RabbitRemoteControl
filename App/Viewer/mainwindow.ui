@@ -59,7 +59,7 @@
     <addaction name="separator"/>
     <addaction name="actionShow_TabBar_B"/>
     <addaction name="separator"/>
-    <addaction name="actionSlot_screen"/>
+    <addaction name="actionScreenshot"/>
     <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="menuSink"/>
     <addaction name="separator"/>
@@ -106,7 +106,7 @@
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
    <addaction name="actionShow_TabBar_B"/>
-   <addaction name="actionSlot_screen"/>
+   <addaction name="actionScreenshot"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="separator"/>
@@ -409,21 +409,6 @@
     <string>Zoom Out</string>
    </property>
   </action>
-  <action name="actionSlot_screen">
-   <property name="icon">
-    <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/image/Screenslot</normaloff>:/image/Screenslot</iconset>
-   </property>
-   <property name="text">
-    <string>Screenshot</string>
-   </property>
-   <property name="statusTip">
-    <string>Screenshot</string>
-   </property>
-   <property name="whatsThis">
-    <string>Screenshot</string>
-   </property>
-  </action>
   <action name="actionZoom_window_to_remote_desktop">
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
@@ -437,6 +422,24 @@
    </property>
    <property name="whatsThis">
     <string>Zoom window to remote desktop</string>
+   </property>
+  </action>
+  <action name="actionScreenshot">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Screenshot</normaloff>:/image/Screenshot</iconset>
+   </property>
+   <property name="text">
+    <string>Screenshot</string>
+   </property>
+   <property name="toolTip">
+    <string>Screenshot</string>
+   </property>
+   <property name="statusTip">
+    <string>Screenshot</string>
+   </property>
+   <property name="whatsThis">
+    <string>Screenshot</string>
    </property>
   </action>
  </widget>

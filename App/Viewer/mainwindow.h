@@ -13,6 +13,7 @@
 #include "ViewTable.h"
 #include "ManageConnecter.h"
 #include "RabbitRecentMenu.h"
+#include "ParameterApp.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -76,9 +77,9 @@ private Q_SLOTS:
     
     void on_actionShow_TabBar_B_triggered();
     void slotShowTabBar(bool bShow);
-    
-    void on_actionSlot_screen_triggered();
-    
+
+    void on_actionScreenslot_triggered();
+
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
@@ -100,6 +101,7 @@ public:
     virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
 private:
     CManageConnecter m_ManageConnecter;
+    CParameterApp m_Parameter;
 };
 
 #endif // MAINWINDOW_H

@@ -593,13 +593,22 @@ void MainWindow::slotShowTabBar(bool bShow)
         p->ShowTabBar(bShow);
 }
 
-void MainWindow::on_actionSlot_screen_triggered()
+void MainWindow::on_actionScreenslot_triggered()
 {
-    if(!m_pView) return;
+    if(!m_pView || !m_pView->GetCurrentView()) return;
+    /*
     QString szFile = RabbitCommon::CDir::GetSaveFileName(this,
                                           tr("Open save screenslot file"),
                               RabbitCommon::CDir::Instance()->GetDirUserImage(), 
-                                  tr("PNG(*.png);;JEPG(*.jpg);;All files(*.*)"));
+                             tr("PNG(*.png);;JEPG(*.jpg);;All files(*.*)"));//*/
+    QString szFile = RabbitCommon::CDir::Instance()->GetDirUserImage()
+            + QDir::separator()
+            + "ScreenSlot_"
+            + QDateTime::currentDateTime().toLocalTime().toString("yyyy_MM_dd_hh_mm_ss_zzz")
+            + ".png";
     if(szFile.isEmpty()) return;
-    m_pView->Screenslot(szFile);
+    int nRet = m_pView->Screenslot(szFile, m_Parameter.GetScreenSlot());
+    if(0 == nRet)
+        slotInformation(tr("Save screenslot to ") + szFile);
+    return ;
 }

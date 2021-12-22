@@ -27,7 +27,7 @@
         <file alias="Zoom">Image/zoom.svg</file>
         <file alias="Cut">Image/Cut.png</file>
         <file alias="RecordScreen">Image/RecordScreen.png</file>
-        <file alias="Screenslot">Image/Screenslot.png</file>
+        <file alias="Screenshot">Image/Screenshot.png</file>
         <file alias="ZoomWindowToRemoteDesktop">Image/ZoomWindowToRemoteDesktop.svg</file>
     </qresource>
 </RCC>

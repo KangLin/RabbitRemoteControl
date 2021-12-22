@@ -11,6 +11,7 @@ set(SOURCE_FILES
     ViewTable.cpp
     View.cpp
     FrmViewScroll.cpp
+    ParameterApp.cpp
     )
 
 set(HEADER_FILES
@@ -19,6 +20,7 @@ set(HEADER_FILES
     ViewTable.h
     View.h
     FrmViewScroll.h
+    ParameterApp.h
     )
 
 set(SOURCE_UI_FILES

@@ -127,12 +127,19 @@ int CViewTable::ShowTabBar(bool bShow)
     return 0;
 }
 
-int CViewTable::Screenslot(const QString &szFile)
+int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
 {
     CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
     if(!pScroll) return -1;
     CFrmViewer* pView = pScroll->GetViewer();
-    if(!pView) return -1;
+    if(!pView) return -2;
+    if(bRemoteDesktop)
+    {
+        QImage img = pView->GrabImage();
+        if(img.save(szFile))
+            return 0;
+        return -3;
+    }
 //    int x = 0;
 //    int y = 0;
 //    int w = pScroll->rect().width();
@@ -151,10 +158,8 @@ int CViewTable::Screenslot(const QString &szFile)
 //        y = p.y();
 //        break;
 //    }
-    QImage img = pView->GrabImage();
-    if(img.save(szFile))
-        return 0;
-    return -2;
+
+    return -4;
 }
 
 void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
