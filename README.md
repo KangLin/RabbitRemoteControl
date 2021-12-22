@@ -5,12 +5,14 @@ Author: Kang Lin <kl222@126.com>
 -----------------------------------------------------------------------
 
 [![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Current release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![All releases downloads](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/)
+[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/)
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
+[![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![All releases downloads](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Contributors](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=Contributors)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl)
-[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl)
 [![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
 [![platform](https://img.shields.io/badge/platform-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
 
