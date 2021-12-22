@@ -140,6 +140,13 @@ int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
             return 0;
         return -3;
     }
+    
+    if(pScroll->grab().toImage().save(szFile))
+    {
+        return 0;
+    }
+    return -4;
+    
 //    int x = 0;
 //    int y = 0;
 //    int w = pScroll->rect().width();
@@ -159,7 +166,7 @@ int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
 //        break;
 //    }
 
-    return -4;
+//    return -4;
 }
 
 void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)

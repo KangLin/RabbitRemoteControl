@@ -69,13 +69,13 @@ void CFrmViewer::paintDesktop()
 {
     if(this->isHidden())
     {
-        qDebug() << "CFrmViewer is hidden";
+        LOG_MODEL_DEBUG("CFrmViewer", "CFrmViewer is hidden");
         return;
     }
     
     if(m_Desktop.isNull())
     {
-        qDebug() << "m_Desktop.isNull";
+        LOG_MODEL_DEBUG("CFrmViewer", "m_Desktop.isNull");
         return;
     }
     

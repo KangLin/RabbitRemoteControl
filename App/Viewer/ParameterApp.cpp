@@ -2,7 +2,7 @@
 
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bReceiveShortCut(false),
-    m_bScreenSlot(true)
+    m_bScreenSlot(false)
 {
 }
 

@@ -593,7 +593,7 @@ void MainWindow::slotShowTabBar(bool bShow)
         p->ShowTabBar(bShow);
 }
 
-void MainWindow::on_actionScreenslot_triggered()
+void MainWindow::on_actionScreenshot_triggered()
 {
     if(!m_pView || !m_pView->GetCurrentView()) return;
     /*
@@ -603,7 +603,7 @@ void MainWindow::on_actionScreenslot_triggered()
                              tr("PNG(*.png);;JEPG(*.jpg);;All files(*.*)"));//*/
     QString szFile = RabbitCommon::CDir::Instance()->GetDirUserImage()
             + QDir::separator()
-            + "ScreenSlot_"
+            + "RabbitRemoteControl_ScreenSlot_"
             + QDateTime::currentDateTime().toLocalTime().toString("yyyy_MM_dd_hh_mm_ss_zzz")
             + ".png";
     if(szFile.isEmpty()) return;
