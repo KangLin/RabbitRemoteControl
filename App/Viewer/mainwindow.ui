@@ -415,7 +415,13 @@
      <normaloff>:/image/Screenslot</normaloff>:/image/Screenslot</iconset>
    </property>
    <property name="text">
-    <string>Screenshot </string>
+    <string>Screenshot</string>
+   </property>
+   <property name="statusTip">
+    <string>Screenshot</string>
+   </property>
+   <property name="whatsThis">
+    <string>Screenshot</string>
    </property>
   </action>
   <action name="actionZoom_window_to_remote_desktop">
