@@ -64,7 +64,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
     
     - name: build libdatachannel
@@ -78,7 +78,7 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
 
     - name: build log4qt
@@ -97,7 +97,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                 -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         fi
     
     - name: build QtService
@@ -116,7 +116,7 @@ jobs:
                 -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
                 -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
         
     - name: build_debpackage.sh
