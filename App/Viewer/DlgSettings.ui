@@ -11,11 +11,22 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Settings</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Resource/Resource.qrc">
+    <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
+     <property name="windowTitle">
+      <string>Settings</string>
+     </property>
+     <property name="windowIcon">
+      <iconset resource="Resource/Resource.qrc">
+       <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -115,6 +126,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resource/Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
