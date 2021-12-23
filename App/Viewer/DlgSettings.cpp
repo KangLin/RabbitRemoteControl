@@ -20,6 +20,8 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
         ui->rbShotScreenOpenFolder->setChecked(true);
         break;    
     }
+    
+    ui->cbReciverShortCut->setChecked(m_pParameters->GetReceiveShortCut());
 }
 
 CDlgSettings::~CDlgSettings()
@@ -40,6 +42,7 @@ void CDlgSettings::on_pbOk_clicked()
     if(ui->rbShotScreenOpenFolder->isChecked())
         m_pParameters->SetScreenShotEndAction(CParameterApp::OpenFolder);
     
+    m_pParameters->SetReceiveShortCut(ui->cbReciverShortCut->isChecked());
     accept();
 }
 

@@ -90,6 +90,19 @@
         </item>
        </layout>
       </widget>
+      <widget class="QCheckBox" name="cbReciverShortCut">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>341</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Main windows receiver short cut key</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </item>

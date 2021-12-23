@@ -3,7 +3,7 @@
 #include "RabbitCommonDir.h"
 
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
-    m_bScreenShot(false),
+    m_bScreenShot(true),
     m_ScreenShotEndAction(NoAction),
     m_bReceiveShortCut(false)
 {

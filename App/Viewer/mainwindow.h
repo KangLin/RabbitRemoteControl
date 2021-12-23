@@ -81,6 +81,8 @@ private Q_SLOTS:
     void on_actionScreenshot_triggered();
     void on_actionSettings_triggered();
     
+    void slotShortCut();
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
