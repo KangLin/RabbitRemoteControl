@@ -650,12 +650,12 @@ void MainWindow::slotShortCut()
 {
     if(m_Parameter.GetReceiveShortCut())
     {
-        ui->actionFull_screen_F->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_F));
-        ui->actionScreenshot->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_S));
-        ui->actionZoom_In->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Plus));
-        ui->actionZoom_Out->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Minus));
-        ui->actionOriginal_O->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
-        ui->actionZoomToWindow_Z->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_W));
+        ui->actionFull_screen_F->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_F));
+        ui->actionScreenshot->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_S));
+        ui->actionZoom_In->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_Plus));
+        ui->actionZoom_Out->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_Minus));
+        ui->actionOriginal_O->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_O));
+        ui->actionZoomToWindow_Z->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_W));
     } else {
         ui->actionFull_screen_F->setShortcut(QKeySequence());
         ui->actionScreenshot->setShortcut(QKeySequence());
