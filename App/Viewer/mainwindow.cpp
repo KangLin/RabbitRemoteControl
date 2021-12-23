@@ -38,11 +38,6 @@ MainWindow::MainWindow(QWidget *parent)
     RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
 
-    check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
-                    this, SLOT(slotShortCut()));
-    Q_ASSERT(check);
-    m_Parameter.Load();
-
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotRecentFileTriggered(const QString&)));
@@ -117,6 +112,12 @@ MainWindow::MainWindow(QWidget *parent)
     
     //TODO: modify the bug
     ui->actionZoom_window_to_remote_desktop->setVisible(false);
+    
+    check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
+                    this, SLOT(slotShortCut()));
+    Q_ASSERT(check);
+    m_Parameter.Load();
+    slotShortCut();
 }
 
 MainWindow::~MainWindow()
@@ -650,6 +651,7 @@ void MainWindow::slotShortCut()
 {
     if(m_Parameter.GetReceiveShortCut())
     {
+        setFocusPolicy(Qt::WheelFocus);
         ui->actionFull_screen_F->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_F));
         ui->actionScreenshot->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_S));
         ui->actionZoom_In->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_Plus));
@@ -657,6 +659,7 @@ void MainWindow::slotShortCut()
         ui->actionOriginal_O->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_O));
         ui->actionZoomToWindow_Z->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_W));
     } else {
+        setFocusPolicy(Qt::NoFocus);
         ui->actionFull_screen_F->setShortcut(QKeySequence());
         ui->actionScreenshot->setShortcut(QKeySequence());
         ui->actionZoom_In->setShortcut(QKeySequence());

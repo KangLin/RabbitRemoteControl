@@ -87,6 +87,11 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
     int Connect(CConnecter* p, bool set);
+
+public:
+    virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
+private:
+    CManageConnecter m_ManageConnecter;
     
 private:
     Ui::MainWindow *ui;
@@ -99,11 +104,8 @@ private:
     CFrmFullScreenToolBar* m_pFullScreenToolBar;
     bool m_bFullScreen;
     friend CFrmFullScreenToolBar;
-
+    
 public:
-    virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
-private:
-    CManageConnecter m_ManageConnecter;
     CParameterApp m_Parameter;
 };
 
