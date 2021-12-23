@@ -79,7 +79,8 @@ private Q_SLOTS:
     void slotShowTabBar(bool bShow);
 
     void on_actionScreenshot_triggered();
-
+    void on_actionSettings_triggered();
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;

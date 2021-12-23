@@ -12,6 +12,7 @@ set(SOURCE_FILES
     View.cpp
     FrmViewScroll.cpp
     ParameterApp.cpp
+    DlgSettings.cpp
     )
 
 set(HEADER_FILES
@@ -21,11 +22,13 @@ set(HEADER_FILES
     View.h
     FrmViewScroll.h
     ParameterApp.h
+    DlgSettings.h
     )
 
 set(SOURCE_UI_FILES
     mainwindow.ui
     FrmFullScreenToolBar.ui
+    DlgSettings.ui
     )
 
 if(WIN32)

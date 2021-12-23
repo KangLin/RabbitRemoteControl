@@ -6,28 +6,44 @@
 class CParameterApp : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool ReceiveShortCut READ GetReceiveShortCut WRITE SetReceiveShortCut NOTIFY sigReceiveShortCutChanged)
-    Q_PROPERTY(bool ScreenSlot READ GetScreenSlot WRITE SetScreenSlot NOTIFY sigScreenSlotChanged)
 
 public:
     explicit CParameterApp(QObject *parent = nullptr);
     
+    virtual int Load();
+    virtual int Save();
+    
+public:
+    bool GetScreenShot() const;
+    void SetScreenShot(bool newScreenShot);
+Q_SIGNALS:
+    void sigScreenShotChanged();    
+private:
+    bool m_bScreenShot;
+    Q_PROPERTY(bool ScreenShot READ GetScreenShot WRITE SetScreenShot NOTIFY sigScreenShotChanged)
+
+public:
+    enum ScreenShotEndAction {
+        NoAction,
+        OpenFolder,
+        OpenFile
+    };
+    ScreenShotEndAction GetScreenShotEndAction() const;
+    void SetScreenShotEndAction(ScreenShotEndAction newScreenShotEndAction);    
+Q_SIGNALS:
+    void sigScreenShotEndActionChanged();
+private:
+    ScreenShotEndAction m_ScreenShotEndAction;
+    Q_PROPERTY(ScreenShotEndAction ScreenShotEndAction READ GetScreenShotEndAction WRITE SetScreenShotEndAction NOTIFY sigScreenShotEndActionChanged)
+    
+public:    
     bool GetReceiveShortCut() const;
     void SetReceiveShortCut(bool newReceiveShortCut);
-    
-    bool GetSlotScreen() const;
-    void SetSlotScreen(bool newSlotScreen);
-    
-    bool GetScreenSlot() const;
-    void SetScreenSlot(bool newScreenSlot);
-    
-signals:
-    void sigReceiveShortCutChanged();
-    void sigScreenSlotChanged();
-    
+Q_SIGNALS:
+    void sigReceiveShortCutChanged();  
 private:
     bool m_bReceiveShortCut;
-    bool m_bScreenSlot;
+    Q_PROPERTY(bool ReceiveShortCut READ GetReceiveShortCut WRITE SetReceiveShortCut NOTIFY sigReceiveShortCutChanged)
 };
 
 #endif // CPARAMETERAPP_H

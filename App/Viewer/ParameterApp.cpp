@@ -1,9 +1,33 @@
 #include "ParameterApp.h"
+#include <QSettings>
+#include "RabbitCommonDir.h"
 
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
-    m_bReceiveShortCut(false),
-    m_bScreenSlot(false)
+    m_bScreenShot(false),
+    m_ScreenShotEndAction(NoAction),
+    m_bReceiveShortCut(false)
 {
+}
+
+int CParameterApp::Load()
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    SetScreenShot(set.value("ShotScreen/IsShotScreen", GetScreenShot()).toBool());
+    SetScreenShotEndAction(static_cast<ScreenShotEndAction>(set.value("ShotScreen/Action", GetScreenShotEndAction()).toInt()));
+    
+    SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt", GetReceiveShortCut()).toBool());
+    return 0;
+}
+
+int CParameterApp::Save()
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    set.setValue("ShotScreen/IsShotScreen", GetScreenShot());
+    set.setValue("ShotScreen/Action", GetScreenShotEndAction());
+    set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
+    return 0;
 }
 
 bool CParameterApp::GetReceiveShortCut() const
@@ -19,15 +43,28 @@ void CParameterApp::SetReceiveShortCut(bool newReceiveShortCut)
     emit sigReceiveShortCutChanged();
 }
 
-bool CParameterApp::GetScreenSlot() const
+bool CParameterApp::GetScreenShot() const
 {
-    return m_bScreenSlot;
+    return m_bScreenShot;
 }
 
-void CParameterApp::SetScreenSlot(bool newScreenSlot)
+void CParameterApp::SetScreenShot(bool newScreenShot)
 {
-    if (m_bScreenSlot == newScreenSlot)
+    if (m_bScreenShot == newScreenShot)
         return;
-    m_bScreenSlot = newScreenSlot;
-    emit sigScreenSlotChanged();
+    m_bScreenShot = newScreenShot;
+    emit sigScreenShotChanged();
+}
+
+CParameterApp::ScreenShotEndAction CParameterApp::GetScreenShotEndAction() const
+{
+    return m_ScreenShotEndAction;
+}
+
+void CParameterApp::SetScreenShotEndAction(ScreenShotEndAction newScreenShotEndAction)
+{
+    if (m_ScreenShotEndAction == newScreenShotEndAction)
+        return;
+    m_ScreenShotEndAction = newScreenShotEndAction;
+    emit sigScreenShotEndActionChanged();
 }

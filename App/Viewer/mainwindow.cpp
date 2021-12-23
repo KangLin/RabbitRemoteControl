@@ -17,11 +17,13 @@
 
 #include "Connecter.h"
 #include "FrmFullScreenToolBar.h"
+#include "DlgSettings.h"
 
 #include <QMessageBox>
 #include <QScreen>
 #include <QApplication>
 #include <QDebug>
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -36,16 +38,20 @@ MainWindow::MainWindow(QWidget *parent)
     RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
 
+    m_Parameter.Load();
+
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotRecentFileTriggered(const QString&)));
     Q_ASSERT(check);
 
     ui->actionRecently_connected->setMenu(m_pRecentMenu);
+
 #ifdef HAVE_UPDATE
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());
 #endif
+
     //TODO: Change view
     m_pView = new CViewTable(this);
     if(m_pView)
@@ -607,8 +613,32 @@ void MainWindow::on_actionScreenshot_triggered()
             + QDateTime::currentDateTime().toLocalTime().toString("yyyy_MM_dd_hh_mm_ss_zzz")
             + ".png";
     if(szFile.isEmpty()) return;
-    int nRet = m_pView->Screenslot(szFile, m_Parameter.GetScreenSlot());
+    int nRet = m_pView->Screenslot(szFile, m_Parameter.GetScreenShot());
     if(0 == nRet)
+    {
         slotInformation(tr("Save screenslot to ") + szFile);
+        switch (m_Parameter.GetScreenShotEndAction()) {
+        case CParameterApp::OpenFile:
+            QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
+            break;
+        case CParameterApp::OpenFolder:
+        {
+            QFileInfo f(szFile);
+            QString path = f.absolutePath();
+            QUrl url = QUrl::fromLocalFile(path);
+            QDesktopServices::openUrl(url);
+            break;
+        }
+        default:
+            break;
+        }
+    }
     return ;
+}
+
+void MainWindow::on_actionSettings_triggered()
+{
+    CDlgSettings set(&m_Parameter, this);
+    if(CDlgSettings::Accepted == set.exec())
+        m_Parameter.Save();
 }

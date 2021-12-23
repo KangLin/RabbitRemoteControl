@@ -63,6 +63,8 @@
     <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="menuSink"/>
     <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatusBar_S"/>
     <addaction name="separator"/>
@@ -440,6 +442,21 @@
    </property>
    <property name="whatsThis">
     <string>Screenshot</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+   <property name="statusTip">
+    <string>Settings</string>
+   </property>
+   <property name="whatsThis">
+    <string>Settings</string>
    </property>
   </action>
  </widget>
