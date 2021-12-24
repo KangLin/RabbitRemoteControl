@@ -1,5 +1,6 @@
 #include "DlgSettings.h"
 #include "ui_DlgSettings.h"
+#include "mainwindow.h"
 
 CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     QDialog(parent),
@@ -7,7 +8,7 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     m_pParameters(pPara)
 {
     ui->setupUi(this);
-    
+        
     ui->cbShotRemoteDesktop->setChecked(m_pParameters->GetScreenShot());
     switch (m_pParameters->GetScreenShotEndAction()) {
     case CParameterApp::NoAction:
@@ -38,6 +39,8 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
         ui->rbEast->setChecked(true);
         break;
     }
+    
+    ui->sbRecentMenuMaxCount->setValue(m_pParameters->GetRecentMenuMaxCount());
 }
 
 CDlgSettings::~CDlgSettings()
@@ -65,6 +68,8 @@ void CDlgSettings::on_pbOk_clicked()
     if(ui->rbSouth->isChecked()) m_pParameters->SetTabPosition(QTabWidget::South);
     if(ui->rbEast->isChecked()) m_pParameters->SetTabPosition(QTabWidget::East);
     if(ui->rbWest->isChecked()) m_pParameters->SetTabPosition(QTabWidget::West);
+    
+    m_pParameters->SetRecentMenuMaxCount(ui->sbRecentMenuMaxCount->value());
     
     accept();
 }

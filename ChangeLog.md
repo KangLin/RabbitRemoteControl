@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.12
++ Add settings
+
 ### v0.0.11
 + FIX main window focus bug
 + Add other translates

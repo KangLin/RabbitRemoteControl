@@ -48,6 +48,9 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotRecentFileTriggered(const QString&)));
     Q_ASSERT(check);
+    check = connect(&m_Parameter, SIGNAL(sigRecentMenuMaxCountChanged(int)),
+                    m_pRecentMenu, SLOT(setMaxCount(int)));
+    Q_ASSERT(check);
 
     ui->actionRecently_connected->setMenu(m_pRecentMenu);
 

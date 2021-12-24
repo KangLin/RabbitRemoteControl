@@ -7,7 +7,8 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_ScreenShotEndAction(NoAction),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
-    m_TabPosition(QTabWidget::North)
+    m_TabPosition(QTabWidget::North),
+    m_nRecentMenuMaxCount(10)
 {
 }
 
@@ -21,6 +22,8 @@ int CParameterApp::Load()
     SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt", GetReceiveShortCut()).toBool());
     SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable", GetSaveMainWindowStatus()).toBool());
     SetTabPosition(static_cast<QTabWidget::TabPosition>(set.value("MainWindow/Tab/Position", GetTabPosition()).toInt()));
+    
+    SetRecentMenuMaxCount(set.value("MainWindow/Recent/Max", GetRecentMenuMaxCount()).toInt());
     return 0;
 }
 
@@ -33,6 +36,7 @@ int CParameterApp::Save()
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
     set.setValue("MainWindow/Tab/Position", GetTabPosition());
+    set.setValue("MainWindow/Recent/Max", GetRecentMenuMaxCount());
     return 0;
 }
 
@@ -73,6 +77,19 @@ void CParameterApp::SetTabPosition(const QTabWidget::TabPosition &newTabPosition
         return;
     m_TabPosition = newTabPosition;
     emit sigTabPositionChanged();
+}
+
+int CParameterApp::GetRecentMenuMaxCount() const
+{
+    return m_nRecentMenuMaxCount;
+}
+
+void CParameterApp::SetRecentMenuMaxCount(int newRecentMenuMaxCount)
+{
+    if (m_nRecentMenuMaxCount == newRecentMenuMaxCount)
+        return;
+    m_nRecentMenuMaxCount = newRecentMenuMaxCount;
+    emit sigRecentMenuMaxCountChanged(m_nRecentMenuMaxCount);
 }
 
 bool CParameterApp::GetScreenShot() const

@@ -15,7 +15,12 @@
         <translation>普通</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="125"/>
+        <location filename="../../DlgSettings.ui" line="107"/>
+        <source>Recent open file max count:</source>
+        <translation>最近打開文件最大數</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="143"/>
         <source>Main window receiver short cut key</source>
         <translation>主窗口接收快捷鍵</translation>
     </message>
@@ -45,47 +50,47 @@
         <translation>打開文件</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="119"/>
+        <location filename="../../DlgSettings.ui" line="137"/>
         <source>Main window</source>
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="132"/>
+        <location filename="../../DlgSettings.ui" line="150"/>
         <source>Save main window status</source>
         <translation>保存主窗口狀態</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="139"/>
+        <location filename="../../DlgSettings.ui" line="157"/>
         <source>Tab position</source>
         <translation>標簽位置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="151"/>
+        <location filename="../../DlgSettings.ui" line="169"/>
         <source>North</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="164"/>
+        <location filename="../../DlgSettings.ui" line="182"/>
         <source>South</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="177"/>
+        <location filename="../../DlgSettings.ui" line="195"/>
         <source>West</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="190"/>
+        <location filename="../../DlgSettings.ui" line="208"/>
         <source>East</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="232"/>
+        <location filename="../../DlgSettings.ui" line="250"/>
         <source>Ok(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="239"/>
+        <location filename="../../DlgSettings.ui" line="257"/>
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
     </message>
@@ -176,9 +181,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="54"/>
-        <location filename="../../mainwindow.cpp" line="91"/>
-        <location filename="../../mainwindow.cpp" line="92"/>
-        <location filename="../../mainwindow.cpp" line="93"/>
+        <location filename="../../mainwindow.cpp" line="94"/>
+        <location filename="../../mainwindow.cpp" line="95"/>
+        <location filename="../../mainwindow.cpp" line="96"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
@@ -219,7 +224,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="224"/>
-        <location filename="../../mainwindow.cpp" line="227"/>
+        <location filename="../../mainwindow.cpp" line="230"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -427,9 +432,9 @@
         <translation>換膚</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="81"/>
-        <location filename="../../mainwindow.cpp" line="82"/>
-        <location filename="../../mainwindow.cpp" line="83"/>
+        <location filename="../../mainwindow.cpp" line="84"/>
+        <location filename="../../mainwindow.cpp" line="85"/>
+        <location filename="../../mainwindow.cpp" line="86"/>
         <source>Connect</source>
         <translation>連接</translation>
     </message>
@@ -438,52 +443,52 @@
         <location filename="../../mainwindow.ui" line="230"/>
         <location filename="../../mainwindow.ui" line="233"/>
         <location filename="../../mainwindow.ui" line="236"/>
-        <location filename="../../mainwindow.cpp" line="228"/>
-        <location filename="../../mainwindow.cpp" line="229"/>
-        <location filename="../../mainwindow.cpp" line="230"/>
+        <location filename="../../mainwindow.cpp" line="231"/>
+        <location filename="../../mainwindow.cpp" line="232"/>
+        <location filename="../../mainwindow.cpp" line="233"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="257"/>
+        <location filename="../../mainwindow.cpp" line="260"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="258"/>
-        <location filename="../../mainwindow.cpp" line="259"/>
-        <location filename="../../mainwindow.cpp" line="260"/>
+        <location filename="../../mainwindow.cpp" line="261"/>
+        <location filename="../../mainwindow.cpp" line="262"/>
+        <location filename="../../mainwindow.cpp" line="263"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="434"/>
-        <location filename="../../mainwindow.cpp" line="452"/>
+        <location filename="../../mainwindow.cpp" line="437"/>
+        <location filename="../../mainwindow.cpp" line="455"/>
         <source>Load file fail: </source>
         <translation>加載文件失敗：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="444"/>
+        <location filename="../../mainwindow.cpp" line="447"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="446"/>
+        <location filename="../../mainwindow.cpp" line="449"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="514"/>
+        <location filename="../../mainwindow.cpp" line="517"/>
         <source>Connecting to </source>
         <translation>正在連接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="540"/>
+        <location filename="../../mainwindow.cpp" line="543"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="677"/>
+        <location filename="../../mainwindow.cpp" line="680"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>

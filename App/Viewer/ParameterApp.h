@@ -65,6 +65,15 @@ Q_SIGNALS:
 private:    
     QTabWidget::TabPosition m_TabPosition;
     Q_PROPERTY(QTabWidget::TabPosition TabPosition READ GetTabPosition WRITE SetTabPosition NOTIFY sigTabPositionChanged)
+    
+public:
+    int GetRecentMenuMaxCount() const;
+    void SetRecentMenuMaxCount(int newRecentMenuMaxCount);
+Q_SIGNALS:
+    void sigRecentMenuMaxCountChanged(int);
+private:
+    int m_nRecentMenuMaxCount;
+    Q_PROPERTY(int RecentMenuMaxCount READ GetRecentMenuMaxCount WRITE SetRecentMenuMaxCount NOTIFY sigRecentMenuMaxCountChanged)
 };
 
 #endif // CPARAMETERAPP_H
