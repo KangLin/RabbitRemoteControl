@@ -6,7 +6,8 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bScreenShot(true),
     m_ScreenShotEndAction(NoAction),
     m_bReceiveShortCut(false),
-    m_bSaveMainWindowStatus(true)
+    m_bSaveMainWindowStatus(true),
+    m_TabPosition(QTabWidget::North)
 {
 }
 
@@ -19,6 +20,7 @@ int CParameterApp::Load()
     
     SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt", GetReceiveShortCut()).toBool());
     SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable", GetSaveMainWindowStatus()).toBool());
+    SetTabPosition(static_cast<QTabWidget::TabPosition>(set.value("MainWindow/Tab/Position", GetTabPosition()).toInt()));
     return 0;
 }
 
@@ -30,6 +32,7 @@ int CParameterApp::Save()
     set.setValue("ShotScreen/Action", GetScreenShotEndAction());
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
+    set.setValue("MainWindow/Tab/Position", GetTabPosition());
     return 0;
 }
 
@@ -57,6 +60,19 @@ void CParameterApp::SetSaveMainWindowStatus(bool newSaveMainWindowStatus)
         return;
     m_bSaveMainWindowStatus = newSaveMainWindowStatus;
     emit sigSaveMainWindowStatusChanged();
+}
+
+const QTabWidget::TabPosition &CParameterApp::GetTabPosition() const
+{
+    return m_TabPosition;
+}
+
+void CParameterApp::SetTabPosition(const QTabWidget::TabPosition &newTabPosition)
+{
+    if (m_TabPosition == newTabPosition)
+        return;
+    m_TabPosition = newTabPosition;
+    emit sigTabPositionChanged();
 }
 
 bool CParameterApp::GetScreenShot() const

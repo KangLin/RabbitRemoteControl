@@ -23,6 +23,21 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     
     ui->cbReciverShortCut->setChecked(m_pParameters->GetReceiveShortCut());
     ui->cbSaveMainWindowStatus->setChecked(m_pParameters->GetSaveMainWindowStatus());
+    
+    switch (m_pParameters->GetTabPosition()) {
+    case QTabWidget::North:
+        ui->rbNorth->setChecked(true);
+        break;
+    case QTabWidget::South:
+        ui->rbSouth->setChecked(true);
+        break;
+    case QTabWidget::West:
+        ui->rbWest->setChecked(true);
+        break;
+    case QTabWidget::East:
+        ui->rbEast->setChecked(true);
+        break;
+    }
 }
 
 CDlgSettings::~CDlgSettings()
@@ -45,6 +60,12 @@ void CDlgSettings::on_pbOk_clicked()
     
     m_pParameters->SetReceiveShortCut(ui->cbReciverShortCut->isChecked());
     m_pParameters->SetSaveMainWindowStatus(ui->cbSaveMainWindowStatus->isChecked());
+    
+    if(ui->rbNorth->isChecked()) m_pParameters->SetTabPosition(QTabWidget::North);
+    if(ui->rbSouth->isChecked()) m_pParameters->SetTabPosition(QTabWidget::South);
+    if(ui->rbEast->isChecked()) m_pParameters->SetTabPosition(QTabWidget::East);
+    if(ui->rbWest->isChecked()) m_pParameters->SetTabPosition(QTabWidget::West);
+    
     accept();
 }
 

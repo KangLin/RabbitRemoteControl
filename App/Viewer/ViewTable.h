@@ -35,6 +35,8 @@ public:
 private Q_SLOTS:
     void slotCurrentChanged(int index);
     void slotTabCloseRequested(int index);
+    
+    void slotTabPositionChanged();
 
     virtual void slotSystemCombination() override;
 

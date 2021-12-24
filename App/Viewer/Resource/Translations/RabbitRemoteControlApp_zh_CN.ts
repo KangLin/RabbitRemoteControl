@@ -15,51 +15,77 @@
         <translation>普通</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="41"/>
+        <location filename="../../DlgSettings.ui" line="125"/>
         <source>Main window receiver short cut key</source>
-        <translation type="unfinished"></translation>
+        <translation>主窗口接收快捷键</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="48"/>
+        <location filename="../../DlgSettings.ui" line="41"/>
         <source>Shot screen</source>
         <translation>截屏</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="60"/>
+        <location filename="../../DlgSettings.ui" line="53"/>
         <source>Shot remote desktop</source>
         <translation>截取远程桌面</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="69"/>
+        <location filename="../../DlgSettings.ui" line="66"/>
         <source>No action</source>
         <translation>无动作</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="79"/>
+        <location filename="../../DlgSettings.ui" line="82"/>
         <source>Open folder</source>
         <translation>打开文件夹</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="86"/>
+        <location filename="../../DlgSettings.ui" line="95"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="98"/>
+        <location filename="../../DlgSettings.ui" line="119"/>
+        <source>Main window</source>
+        <translation>主窗口</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="132"/>
         <source>Save main window status</source>
-        <translation type="unfinished"></translation>
+        <translation>保存主窗口状态</translation>
     </message>
     <message>
-        <source>Main windows receiver short cut key</source>
-        <translation type="vanished">主窗口接收快捷键</translation>
+        <location filename="../../DlgSettings.ui" line="139"/>
+        <source>Tab position</source>
+        <translation>标签位置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="137"/>
+        <location filename="../../DlgSettings.ui" line="151"/>
+        <source>North</source>
+        <translation>上</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="164"/>
+        <source>South</source>
+        <translation>下</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="177"/>
+        <source>West</source>
+        <translation>左</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="190"/>
+        <source>East</source>
+        <translation>右</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="232"/>
         <source>Ok(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="144"/>
+        <location filename="../../DlgSettings.ui" line="239"/>
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
     </message>

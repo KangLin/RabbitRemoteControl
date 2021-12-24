@@ -2,6 +2,7 @@
 #define CPARAMETERAPP_H
 
 #include <QObject>
+#include <QTabWidget>
 
 class CParameterApp : public QObject
 {
@@ -48,11 +49,22 @@ private:
 public:
     bool GetSaveMainWindowStatus() const;
     void SetSaveMainWindowStatus(bool newSaveMainWindowStatus);
+
 Q_SIGNALS:
     void sigSaveMainWindowStatusChanged();
+    
 private:
     bool m_bSaveMainWindowStatus;
     Q_PROPERTY(bool SaveMainWindowStatus READ GetSaveMainWindowStatus WRITE SetSaveMainWindowStatus NOTIFY sigSaveMainWindowStatusChanged)
+    
+public:
+    const QTabWidget::TabPosition &GetTabPosition() const;
+    void SetTabPosition(const QTabWidget::TabPosition &newTabPosition);
+Q_SIGNALS:
+    void sigTabPositionChanged();
+private:    
+    QTabWidget::TabPosition m_TabPosition;
+    Q_PROPERTY(QTabWidget::TabPosition TabPosition READ GetTabPosition WRITE SetTabPosition NOTIFY sigTabPositionChanged)
 };
 
 #endif // CPARAMETERAPP_H

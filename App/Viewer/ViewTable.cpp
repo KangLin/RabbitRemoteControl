@@ -6,10 +6,12 @@
 #include <QStyleOption>
 #include <QDebug>
 #include "RabbitCommonLog.h"
+#include "mainwindow.h"
 
 CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab(nullptr)
 {
+    bool check = false;
     setFocusPolicy(Qt::NoFocus);
 
     m_pTab = new QTabWidget(this);
@@ -17,8 +19,19 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab->setUsesScrollButtons(true);
     m_pTab->setMovable(true);
     m_pTab->setFocusPolicy(Qt::NoFocus);
+    if(this->parent())
+    {
+        MainWindow* p = dynamic_cast<MainWindow*>(this->parent());
+        if(p)
+        {
+            m_pTab->setTabPosition(p->m_Parameter.GetTabPosition());
+            check = connect(&p->m_Parameter, SIGNAL(sigTabPositionChanged()),
+                            this, SLOT(slotTabPositionChanged()));
+            Q_ASSERT(check);
+        }
+    }
     
-    bool check = connect(m_pTab, SIGNAL(tabCloseRequested(int)),
+    check = connect(m_pTab, SIGNAL(tabCloseRequested(int)),
                     this, SLOT(slotTabCloseRequested(int)));
     Q_ASSERT(check);
     check = connect(m_pTab, SIGNAL(currentChanged(int)),
@@ -57,6 +70,13 @@ void CViewTable::slotTabCloseRequested(int index)
         emit sigCloseView(pScroll->GetViewer());
     else
         emit sigCloseView(pView);
+}
+
+void CViewTable::slotTabPositionChanged()
+{
+    MainWindow* p = dynamic_cast<MainWindow*>(parent());
+    if(!p || !m_pTab) return;
+    m_pTab->setTabPosition(p->m_Parameter.GetTabPosition());
 }
 
 void CViewTable::slotSystemCombination()

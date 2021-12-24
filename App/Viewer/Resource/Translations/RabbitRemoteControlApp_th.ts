@@ -15,47 +15,77 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="41"/>
+        <location filename="../../DlgSettings.ui" line="125"/>
         <source>Main window receiver short cut key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="48"/>
+        <location filename="../../DlgSettings.ui" line="41"/>
         <source>Shot screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="60"/>
+        <location filename="../../DlgSettings.ui" line="53"/>
         <source>Shot remote desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="69"/>
+        <location filename="../../DlgSettings.ui" line="66"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="79"/>
+        <location filename="../../DlgSettings.ui" line="82"/>
         <source>Open folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="86"/>
+        <location filename="../../DlgSettings.ui" line="95"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="98"/>
+        <location filename="../../DlgSettings.ui" line="119"/>
+        <source>Main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="132"/>
         <source>Save main window status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="137"/>
+        <location filename="../../DlgSettings.ui" line="139"/>
+        <source>Tab position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="151"/>
+        <source>North</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="164"/>
+        <source>South</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="177"/>
+        <source>West</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="190"/>
+        <source>East</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="232"/>
         <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="144"/>
+        <location filename="../../DlgSettings.ui" line="239"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
