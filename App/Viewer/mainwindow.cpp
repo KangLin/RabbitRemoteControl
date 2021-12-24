@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     QToolButton* tbConnect = new QToolButton(ui->toolBar);
     tbConnect->setFocusPolicy(Qt::NoFocus);
-    tbConnect->setPopupMode(QToolButton::MenuButtonPopup);
+    tbConnect->setPopupMode(QToolButton::InstantPopup);
     //tbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     tbConnect->setMenu(ui->menuConnect_C);
     tbConnect->setIcon(QIcon(":/image/Connect"));
@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
     
     m_ptbZoom = new QToolButton(ui->toolBar);
-    m_ptbZoom->setPopupMode(QToolButton::MenuButtonPopup);
+    m_ptbZoom->setPopupMode(QToolButton::InstantPopup);
     //m_ptbZoom->setToolButtonStyle(Qt::ToolButtonFollowStyle);
     m_ptbZoom->setMenu(ui->menuZoom);
     m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
