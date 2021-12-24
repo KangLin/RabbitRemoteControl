@@ -96,7 +96,7 @@ private:
 private:
     Ui::MainWindow *ui;
     QActionGroup* m_pGBView;
-    //QToolButton* m_ptbZoom;
+    QToolButton* m_ptbZoom;
     QSpinBox* m_psbZoomFactor;
     RabbitCommon::CRecentMenu* m_pRecentMenu;
     CView* m_pView;

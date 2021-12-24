@@ -24,11 +24,15 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDesktopServices>
+#include <QWidgetAction>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
       m_pGBView(nullptr),
+      m_ptbZoom(nullptr),
+      m_psbZoomFactor(nullptr),
+      m_pRecentMenu(nullptr),
       m_pView(nullptr),
       m_pFullScreenToolBar(nullptr),
       m_bFullScreen(isFullScreen())
@@ -69,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
     QToolButton* tbConnect = new QToolButton(ui->toolBar);
     tbConnect->setFocusPolicy(Qt::NoFocus);
     tbConnect->setPopupMode(QToolButton::MenuButtonPopup);
-    //tb->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    //tbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     tbConnect->setMenu(ui->menuConnect_C);
     tbConnect->setIcon(QIcon(":/image/Connect"));
     tbConnect->setText(tr("Connect"));
@@ -77,15 +81,17 @@ MainWindow::MainWindow(QWidget *parent)
     tbConnect->setStatusTip(tr("Connect"));
     ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
     
-//    m_ptbZoom = new QToolButton(ui->toolBar);
-//    m_ptbZoom->setPopupMode(QToolButton::MenuButtonPopup);
-//    m_ptbZoom->setMenu(ui->menuZoom);
-//    m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
-//    m_ptbZoom->setText(tr("Zoom"));
-//    m_ptbZoom->setStatusTip(tr("Zoom"));
-//    m_ptbZoom->setToolTip(tr("Zoom"));
-//    m_ptbZoom->setEnabled(false);
-//    ui->toolBar->insertWidget(ui->actionOriginal_O, m_ptbZoom);
+    m_ptbZoom = new QToolButton(ui->toolBar);
+    m_ptbZoom->setPopupMode(QToolButton::MenuButtonPopup);
+    //m_ptbZoom->setToolButtonStyle(Qt::ToolButtonFollowStyle);
+    m_ptbZoom->setMenu(ui->menuZoom);
+    m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
+    m_ptbZoom->setText(tr("Zoom"));
+    m_ptbZoom->setStatusTip(tr("Zoom"));
+    m_ptbZoom->setToolTip(tr("Zoom"));
+    m_ptbZoom->setEnabled(false);
+    ui->toolBar->insertWidget(ui->actionFull_screen_F, m_ptbZoom);
+
     m_psbZoomFactor = new QSpinBox(ui->toolBar);
     m_psbZoomFactor->setRange(0, 9999999);
     m_psbZoomFactor->setValue(100);
@@ -95,7 +101,9 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(m_psbZoomFactor, SIGNAL(valueChanged(int)),
                     this, SLOT(slotZoomFactor(int)));
     Q_ASSERT(check);
-    ui->toolBar->insertWidget(ui->actionZoom_Out, m_psbZoomFactor);
+    QWidgetAction* pFactor = new QWidgetAction(ui->menuZoom);
+    pFactor->setDefaultWidget(m_psbZoomFactor);
+    ui->menuZoom->insertAction(ui->actionZoom_Out, pFactor);
     
     m_pGBView = new QActionGroup(this);
     if(m_pGBView) {
@@ -285,6 +293,8 @@ void MainWindow::on_actionZoomToWindow_Z_triggered()
 {
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::ZoomToWindow);
+    if(m_ptbZoom)
+        m_ptbZoom->setIcon(ui->actionZoomToWindow_Z->icon());
 }
 
 void MainWindow::on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1)
@@ -292,6 +302,8 @@ void MainWindow::on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1)
     if(!arg1) return;
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::KeepAspectRationToWindow);
+    if(m_ptbZoom)
+        m_ptbZoom->setIcon(ui->actionKeep_aspect_ration_to_windows_K->icon());
 }
 
 void MainWindow::on_actionOriginal_O_changed()
@@ -306,6 +318,8 @@ void MainWindow::on_actionOriginal_O_triggered()
     m_pView->SetAdaptWindows(CFrmViewer::Original);
     if(m_psbZoomFactor)
         m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
+    if(m_ptbZoom)
+        m_ptbZoom->setIcon(ui->actionOriginal_O->icon());
 }
 
 void MainWindow::on_actionZoom_In_triggered()
@@ -315,6 +329,8 @@ void MainWindow::on_actionZoom_In_triggered()
     if(m_psbZoomFactor)
         m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+    if(m_ptbZoom)
+        m_ptbZoom->setIcon(ui->actionZoom_In->icon());
 }
 
 void MainWindow::on_actionZoom_Out_triggered()
@@ -324,6 +340,8 @@ void MainWindow::on_actionZoom_Out_triggered()
     if(m_psbZoomFactor)
         m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+    if(m_ptbZoom)
+        m_ptbZoom->setIcon(ui->actionZoom_Out->icon());
 }
 
 void MainWindow::slotZoomFactor(int v)
@@ -334,33 +352,45 @@ void MainWindow::slotZoomFactor(int v)
 
 void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 {
-    QString t = "Disable";
-    if(!m_pGBView || !m_pView || !m_psbZoomFactor)
+    if(!m_pView)
         return;
-    m_pGBView->setEnabled(true);
-    //m_ptbZoom->setEnabled(true);
-    m_psbZoomFactor->setEnabled(true);
+    if(m_pGBView)
+        m_pGBView->setEnabled(true);
+    if(m_ptbZoom)
+        m_ptbZoom->setEnabled(true);
+    if(m_psbZoomFactor)
+        m_psbZoomFactor->setEnabled(true);
     switch (aw) {
     case CFrmViewer::Auto:
     case CFrmViewer::Original:
         ui->actionOriginal_O->setChecked(true);
-        t = "Original";
+        if(m_ptbZoom)
+            m_ptbZoom->setIcon(ui->actionOriginal_O->icon());
         break;
     case CFrmViewer::ZoomToWindow:
         ui->actionZoomToWindow_Z->setChecked(true);
-        t = "Zoom";
+        if(m_ptbZoom)
+            m_ptbZoom->setIcon(ui->actionZoomToWindow_Z->icon());
         break;
     case CFrmViewer::KeepAspectRationToWindow:
         ui->actionKeep_aspect_ration_to_windows_K->setChecked(true);
-        t = "AspectRation";
+        if(m_ptbZoom)
+            m_ptbZoom->setIcon(ui->actionKeep_aspect_ration_to_windows_K->icon());
         break;
     case CFrmViewer::Zoom:
         ui->actionZoom_Out->setChecked(true);
+        if(m_ptbZoom)
+            m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
         break;
     case CFrmViewer::Disable:
-        m_pGBView->setEnabled(false);
-        //m_ptbZoom->setEnabled(false);
-        m_psbZoomFactor->setEnabled(false);
+        if(m_ptbZoom)
+            m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
+        if(m_pGBView)
+            m_pGBView->setEnabled(false);
+        if(m_ptbZoom)
+            m_ptbZoom->setEnabled(false);
+        if(m_psbZoomFactor)
+            m_psbZoomFactor->setEnabled(false);
         break;
     default:
         break;
@@ -652,6 +682,10 @@ void MainWindow::slotShortCut()
     if(m_Parameter.GetReceiveShortCut())
     {
         setFocusPolicy(Qt::WheelFocus);
+        if(m_psbZoomFactor)
+            m_psbZoomFactor->setFocusPolicy(Qt::WheelFocus);
+        if(m_ptbZoom)
+            m_ptbZoom->setFocusPolicy(Qt::WheelFocus);
         ui->actionFull_screen_F->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_F));
         ui->actionScreenshot->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_S));
         ui->actionZoom_In->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_Plus));
@@ -660,6 +694,10 @@ void MainWindow::slotShortCut()
         ui->actionZoomToWindow_Z->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_W));
     } else {
         setFocusPolicy(Qt::NoFocus);
+        if(m_psbZoomFactor)
+            m_psbZoomFactor->setFocusPolicy(Qt::NoFocus);
+        if(m_ptbZoom)
+            m_ptbZoom->setFocusPolicy(Qt::NoFocus);
         ui->actionFull_screen_F->setShortcut(QKeySequence());
         ui->actionScreenshot->setShortcut(QKeySequence());
         ui->actionZoom_In->setShortcut(QKeySequence());

@@ -49,13 +49,28 @@
      <addaction name="actionDefaultStyle_D"/>
      <addaction name="actionOpenStyle_O"/>
     </widget>
+    <widget class="QMenu" name="menuZoom">
+     <property name="title">
+      <string>Zoom</string>
+     </property>
+     <property name="icon">
+      <iconset resource="Resource/Resource.qrc">
+       <normaloff>:/image/Zoom</normaloff>:/image/Zoom</iconset>
+     </property>
+     <addaction name="actionZoom_window_to_remote_desktop"/>
+     <addaction name="actionZoomToWindow_Z"/>
+     <addaction name="actionKeep_aspect_ration_to_windows_K"/>
+     <addaction name="actionOriginal_O"/>
+     <addaction name="actionZoom_In"/>
+     <addaction name="actionZoom_Out"/>
+    </widget>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string>在这里输入</string>
+     </property>
+    </widget>
     <addaction name="actionFull_screen_F"/>
-    <addaction name="actionZoom_window_to_remote_desktop"/>
-    <addaction name="actionZoomToWindow_Z"/>
-    <addaction name="actionKeep_aspect_ration_to_windows_K"/>
-    <addaction name="actionOriginal_O"/>
-    <addaction name="actionZoom_In"/>
-    <addaction name="actionZoom_Out"/>
+    <addaction name="menuZoom"/>
     <addaction name="separator"/>
     <addaction name="actionShow_TabBar_B"/>
     <addaction name="separator"/>
@@ -68,6 +83,7 @@
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatusBar_S"/>
     <addaction name="separator"/>
+    <addaction name="menu"/>
    </widget>
    <widget class="QMenu" name="menuRemote">
     <property name="title">
@@ -112,12 +128,6 @@
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="separator"/>
-   <addaction name="actionZoom_window_to_remote_desktop"/>
-   <addaction name="actionZoomToWindow_Z"/>
-   <addaction name="actionKeep_aspect_ration_to_windows_K"/>
-   <addaction name="actionOriginal_O"/>
-   <addaction name="actionZoom_In"/>
-   <addaction name="actionZoom_Out"/>
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
   </widget>
@@ -286,19 +296,19 @@
      <normaloff>:/image/AspectRatio</normaloff>:/image/AspectRatio</iconset>
    </property>
    <property name="text">
-    <string>Keep aspect ration to window(&amp;K)</string>
+    <string>Keep aspect ration zoom to window(&amp;K)</string>
    </property>
    <property name="iconText">
-    <string>Keep aspect ration to window</string>
+    <string>Keep aspect ration zoom to window</string>
    </property>
    <property name="toolTip">
-    <string>Keep aspect ration to window</string>
+    <string>Keep aspect ration zoom to window</string>
    </property>
    <property name="statusTip">
-    <string>Keep aspect ration to window</string>
+    <string>Keep aspect ration zoom to window</string>
    </property>
    <property name="whatsThis">
-    <string>Keep aspect ration to window</string>
+    <string>Keep aspect ration zoom to window</string>
    </property>
   </action>
   <action name="actionExit_E">
