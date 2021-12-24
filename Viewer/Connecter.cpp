@@ -9,6 +9,7 @@
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
+#include "Parameter.h"
 
 CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
     m_pPluginViewer(parent),
@@ -22,8 +23,11 @@ CConnecter::~CConnecter()
 
 const QString CConnecter::Id()
 {
-    return Protol() + "_" + m_pPluginViewer->Name()
-            + "_" + ServerName().replace(QRegExp("[@:/#%!^&*]"), "_");
+    QString szId = Protol() + "_" + m_pPluginViewer->Name();
+    if(GetPara())
+        szId += "_" + GetPara()->GetHost() + QString::number(GetPara()->GetPort());
+    szId = szId.replace(QRegExp("[@:/#%!^&*]"), "_");
+    return szId;
 }
 
 const QString CConnecter::Name()

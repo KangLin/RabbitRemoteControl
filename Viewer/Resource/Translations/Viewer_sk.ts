@@ -4,17 +4,17 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="36"/>
+        <location filename="../../Connecter.cpp" line="40"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="37"/>
+        <location filename="../../Connecter.cpp" line="41"/>
         <source>Protol:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="38"/>
+        <location filename="../../Connecter.cpp" line="42"/>
         <source>Server name:</source>
         <translation type="unfinished"></translation>
     </message>
