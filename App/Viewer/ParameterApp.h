@@ -38,12 +38,21 @@ private:
     
 public:    
     bool GetReceiveShortCut() const;
-    void SetReceiveShortCut(bool newReceiveShortCut);
+    void SetReceiveShortCut(bool newReceiveShortCut);   
 Q_SIGNALS:
     void sigReceiveShortCutChanged();  
 private:
     bool m_bReceiveShortCut;
     Q_PROPERTY(bool ReceiveShortCut READ GetReceiveShortCut WRITE SetReceiveShortCut NOTIFY sigReceiveShortCutChanged)
+    
+public:
+    bool GetSaveMainWindowStatus() const;
+    void SetSaveMainWindowStatus(bool newSaveMainWindowStatus);
+Q_SIGNALS:
+    void sigSaveMainWindowStatusChanged();
+private:
+    bool m_bSaveMainWindowStatus;
+    Q_PROPERTY(bool SaveMainWindowStatus READ GetSaveMainWindowStatus WRITE SetSaveMainWindowStatus NOTIFY sigSaveMainWindowStatusChanged)
 };
 
 #endif // CPARAMETERAPP_H

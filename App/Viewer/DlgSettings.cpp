@@ -22,6 +22,7 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     }
     
     ui->cbReciverShortCut->setChecked(m_pParameters->GetReceiveShortCut());
+    ui->cbSaveMainWindowStatus->setChecked(m_pParameters->GetSaveMainWindowStatus());
 }
 
 CDlgSettings::~CDlgSettings()
@@ -43,6 +44,7 @@ void CDlgSettings::on_pbOk_clicked()
         m_pParameters->SetScreenShotEndAction(CParameterApp::OpenFolder);
     
     m_pParameters->SetReceiveShortCut(ui->cbReciverShortCut->isChecked());
+    m_pParameters->SetSaveMainWindowStatus(ui->cbSaveMainWindowStatus->isChecked());
     accept();
 }
 

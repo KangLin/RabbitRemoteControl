@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent)
     RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
 
+    addToolBar(Qt::LeftToolBarArea, ui->toolBar);
+    
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotRecentFileTriggered(const QString&)));
@@ -126,6 +128,17 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
     m_Parameter.Load();
     slotShortCut();
+    
+    if(m_Parameter.GetSaveMainWindowStatus())
+    {
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
+        QByteArray geometry = set.value("MainWindow/Status/Geometry").toByteArray();
+        if(!geometry.isEmpty())
+            restoreGeometry(geometry);
+        QByteArray state = set.value("MainWindow/Status/State").toByteArray();
+        if(!state.isEmpty())
+            restoreState(state);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -613,6 +626,17 @@ void MainWindow::closeEvent(QCloseEvent *event)
     qDebug() << "MainWindow::closeEvent()";
     foreach (auto it, m_Connecters)
         it->DisConnect();
+    
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);    
+    if(m_Parameter.GetSaveMainWindowStatus())
+    {
+        set.setValue("MainWindow/Status/Geometry", saveGeometry());
+        set.setValue("MainWindow/Status/State", saveState());
+    } else {
+        set.remove("MainWindow/Status/Geometry");
+        set.remove("MainWindow/Status/State");
+    }
 }
 
 void MainWindow::on_actionSend_ctl_alt_del_triggered()

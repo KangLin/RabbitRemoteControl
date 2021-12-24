@@ -15,42 +15,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="47"/>
+        <location filename="../../DlgSettings.ui" line="41"/>
+        <source>Main window receiver short cut key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="48"/>
         <source>Shot screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="59"/>
+        <location filename="../../DlgSettings.ui" line="60"/>
         <source>Shot remote desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="68"/>
+        <location filename="../../DlgSettings.ui" line="69"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="78"/>
+        <location filename="../../DlgSettings.ui" line="79"/>
         <source>Open folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="85"/>
+        <location filename="../../DlgSettings.ui" line="86"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="103"/>
-        <source>Main windows receiver short cut key</source>
+        <location filename="../../DlgSettings.ui" line="98"/>
+        <source>Save main window status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="127"/>
+        <location filename="../../DlgSettings.ui" line="137"/>
         <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="134"/>
+        <location filename="../../DlgSettings.ui" line="144"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -146,9 +151,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="54"/>
-        <location filename="../../mainwindow.cpp" line="89"/>
-        <location filename="../../mainwindow.cpp" line="90"/>
         <location filename="../../mainwindow.cpp" line="91"/>
+        <location filename="../../mainwindow.cpp" line="92"/>
+        <location filename="../../mainwindow.cpp" line="93"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
@@ -271,7 +276,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="224"/>
-        <location filename="../../mainwindow.cpp" line="214"/>
+        <location filename="../../mainwindow.cpp" line="227"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -280,9 +285,9 @@
         <location filename="../../mainwindow.ui" line="230"/>
         <location filename="../../mainwindow.ui" line="233"/>
         <location filename="../../mainwindow.ui" line="236"/>
-        <location filename="../../mainwindow.cpp" line="215"/>
-        <location filename="../../mainwindow.cpp" line="216"/>
-        <location filename="../../mainwindow.cpp" line="217"/>
+        <location filename="../../mainwindow.cpp" line="228"/>
+        <location filename="../../mainwindow.cpp" line="229"/>
+        <location filename="../../mainwindow.cpp" line="230"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -403,52 +408,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="79"/>
-        <location filename="../../mainwindow.cpp" line="80"/>
         <location filename="../../mainwindow.cpp" line="81"/>
+        <location filename="../../mainwindow.cpp" line="82"/>
+        <location filename="../../mainwindow.cpp" line="83"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="244"/>
+        <location filename="../../mainwindow.cpp" line="257"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="245"/>
-        <location filename="../../mainwindow.cpp" line="246"/>
-        <location filename="../../mainwindow.cpp" line="247"/>
+        <location filename="../../mainwindow.cpp" line="258"/>
+        <location filename="../../mainwindow.cpp" line="259"/>
+        <location filename="../../mainwindow.cpp" line="260"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="421"/>
-        <location filename="../../mainwindow.cpp" line="439"/>
+        <location filename="../../mainwindow.cpp" line="434"/>
+        <location filename="../../mainwindow.cpp" line="452"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="431"/>
+        <location filename="../../mainwindow.cpp" line="444"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="433"/>
+        <location filename="../../mainwindow.cpp" line="446"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="501"/>
+        <location filename="../../mainwindow.cpp" line="514"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="527"/>
+        <location filename="../../mainwindow.cpp" line="540"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="653"/>
+        <location filename="../../mainwindow.cpp" line="677"/>
         <source>Save screenslot to </source>
         <translation type="unfinished"></translation>
     </message>

@@ -5,7 +5,8 @@
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bScreenShot(true),
     m_ScreenShotEndAction(NoAction),
-    m_bReceiveShortCut(false)
+    m_bReceiveShortCut(false),
+    m_bSaveMainWindowStatus(true)
 {
 }
 
@@ -17,6 +18,7 @@ int CParameterApp::Load()
     SetScreenShotEndAction(static_cast<ScreenShotEndAction>(set.value("ShotScreen/Action", GetScreenShotEndAction()).toInt()));
     
     SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt", GetReceiveShortCut()).toBool());
+    SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable", GetSaveMainWindowStatus()).toBool());
     return 0;
 }
 
@@ -27,6 +29,7 @@ int CParameterApp::Save()
     set.setValue("ShotScreen/IsShotScreen", GetScreenShot());
     set.setValue("ShotScreen/Action", GetScreenShotEndAction());
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
+    set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
     return 0;
 }
 
@@ -41,6 +44,19 @@ void CParameterApp::SetReceiveShortCut(bool newReceiveShortCut)
         return;
     m_bReceiveShortCut = newReceiveShortCut;
     emit sigReceiveShortCutChanged();
+}
+
+bool CParameterApp::GetSaveMainWindowStatus() const
+{
+    return m_bSaveMainWindowStatus;
+}
+
+void CParameterApp::SetSaveMainWindowStatus(bool newSaveMainWindowStatus)
+{
+    if (m_bSaveMainWindowStatus == newSaveMainWindowStatus)
+        return;
+    m_bSaveMainWindowStatus = newSaveMainWindowStatus;
+    emit sigSaveMainWindowStatusChanged();
 }
 
 bool CParameterApp::GetScreenShot() const
