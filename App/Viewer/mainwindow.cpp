@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
 
-    addToolBar(Qt::LeftToolBarArea, ui->toolBar);
+    //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),

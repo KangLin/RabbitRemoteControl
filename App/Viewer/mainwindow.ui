@@ -123,11 +123,11 @@
    <addaction name="actionOpen_O"/>
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
-   <addaction name="actionShow_TabBar_B"/>
-   <addaction name="actionScreenshot"/>
-   <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="separator"/>
+   <addaction name="actionShow_TabBar_B"/>
+   <addaction name="actionScreenshot"/>
+   <addaction name="actionSettings"/>
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
   </widget>
