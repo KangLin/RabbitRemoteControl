@@ -424,16 +424,16 @@ void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)
         *user = rfb::strDup(m_pPara->GetUser().toStdString().c_str());
     if(password)
         *password = rfb::strDup(m_pPara->GetPassword().toStdString().c_str());
-    if(m_pPara->GetPassword().isEmpty())
-    {
-        QString szPassword = QInputDialog::getText(nullptr,
-                                                   tr("Input password"),
-                                                   tr("Password"),
-                                                   QLineEdit::Password);
-        if(szPassword.isEmpty())
-            return;
-        *password = rfb::strDup(szPassword.toStdString().c_str());
-    }
+//    if(m_pPara->GetPassword().isEmpty())
+//    {
+//        QString szPassword = QInputDialog::getText(nullptr,
+//                                                   tr("Input password"),
+//                                                   tr("Password"),
+//                                                   QLineEdit::Password);
+//        if(szPassword.isEmpty())
+//            return;
+//        *password = rfb::strDup(szPassword.toStdString().c_str());
+//    }
 }
 
 bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text)

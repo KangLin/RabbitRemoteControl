@@ -16,7 +16,8 @@ set(INSTALL_HEADER_FILES
     ManageConnect.h
     PluginViewer.h
     ConnecterDesktop.h
-    Parameter.h 
+    Parameter.h
+    ManagePassword.h
     )
 
 set(HEADER_FILES
@@ -24,6 +25,7 @@ set(HEADER_FILES
     Connect.h
     ConnectThread.h
     PluginThread.h
+    DlgInputPassword.h
     )
 
 set(SOURCE_FILES
@@ -36,11 +38,14 @@ set(SOURCE_FILES
     ConnecterDesktop.cpp
     ConnectThread.cpp
     PluginThread.cpp
-    Parameter.cpp  
+    Parameter.cpp
+    ManagePassword.cpp
+    DlgInputPassword.cpp
     )
 
 set(SOURCE_UI_FILES
     FrmViewer.ui
+    DlgInputPassword.ui
     )
 
 SET(RCC_FILES )

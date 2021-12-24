@@ -118,6 +118,20 @@
         </layout>
        </item>
        <item row="2" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Private encrypt key:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leEncryptKey"/>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="0">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

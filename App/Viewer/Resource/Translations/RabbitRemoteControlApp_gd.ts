@@ -20,7 +20,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="143"/>
+        <location filename="../../DlgSettings.ui" line="157"/>
         <source>Main window receiver short cut key</source>
         <translation type="unfinished"></translation>
     </message>
@@ -50,47 +50,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="137"/>
+        <location filename="../../DlgSettings.ui" line="125"/>
+        <source>Private encrypt key:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="151"/>
         <source>Main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="150"/>
+        <location filename="../../DlgSettings.ui" line="164"/>
         <source>Save main window status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="157"/>
+        <location filename="../../DlgSettings.ui" line="171"/>
         <source>Tab position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="169"/>
+        <location filename="../../DlgSettings.ui" line="183"/>
         <source>North</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="182"/>
+        <location filename="../../DlgSettings.ui" line="196"/>
         <source>South</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="195"/>
+        <location filename="../../DlgSettings.ui" line="209"/>
         <source>West</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="208"/>
+        <location filename="../../DlgSettings.ui" line="222"/>
         <source>East</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="250"/>
+        <location filename="../../DlgSettings.ui" line="264"/>
         <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="257"/>
+        <location filename="../../DlgSettings.ui" line="271"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>

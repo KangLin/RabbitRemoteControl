@@ -1,6 +1,9 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "DlgSettings.h"
 #include "ui_DlgSettings.h"
 #include "mainwindow.h"
+#include "ManagePassword.h"
 
 CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     QDialog(parent),
@@ -41,6 +44,8 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     }
     
     ui->sbRecentMenuMaxCount->setValue(m_pParameters->GetRecentMenuMaxCount());
+    
+    ui->leEncryptKey->setText(CManagePassword::Instance()->GetPassword());
 }
 
 CDlgSettings::~CDlgSettings()
@@ -70,6 +75,8 @@ void CDlgSettings::on_pbOk_clicked()
     if(ui->rbWest->isChecked()) m_pParameters->SetTabPosition(QTabWidget::West);
     
     m_pParameters->SetRecentMenuMaxCount(ui->sbRecentMenuMaxCount->value());
+    
+    CManagePassword::Instance()->SetPassword(ui->leEncryptKey->text());
     
     accept();
 }

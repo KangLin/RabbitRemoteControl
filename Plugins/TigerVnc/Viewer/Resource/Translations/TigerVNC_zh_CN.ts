@@ -4,14 +4,12 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="430"/>
         <source>Input password</source>
-        <translation>输入密码</translation>
+        <translation type="vanished">输入密码</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="431"/>
         <source>Password</source>
-        <translation>密码</translation>
+        <translation type="vanished">密码</translation>
     </message>
 </context>
 <context>
@@ -298,19 +296,16 @@
 <context>
     <name>CIceSignalQxmpp</name>
     <message>
-        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="158"/>
         <source>Socket error</source>
-        <translation>Socket 错误</translation>
+        <translation type="vanished">Socket 错误</translation>
     </message>
     <message>
-        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="161"/>
         <source>Keep alive error</source>
-        <translation>保活错误</translation>
+        <translation type="vanished">保活错误</translation>
     </message>
     <message>
-        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="164"/>
         <source>xmpp stream error</source>
-        <translation>xmpp 流错误</translation>
+        <translation type="vanished">xmpp 流错误</translation>
     </message>
 </context>
 <context>

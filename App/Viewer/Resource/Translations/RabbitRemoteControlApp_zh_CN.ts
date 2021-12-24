@@ -17,10 +17,10 @@
     <message>
         <location filename="../../DlgSettings.ui" line="107"/>
         <source>Recent open file max count:</source>
-        <translation>最近打开文件最大数</translation>
+        <translation>最近打开文件最大数：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="143"/>
+        <location filename="../../DlgSettings.ui" line="157"/>
         <source>Main window receiver short cut key</source>
         <translation>主窗口接收快捷键</translation>
     </message>
@@ -50,47 +50,52 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="137"/>
+        <location filename="../../DlgSettings.ui" line="125"/>
+        <source>Private encrypt key:</source>
+        <translation>私有加密键：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="151"/>
         <source>Main window</source>
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="150"/>
+        <location filename="../../DlgSettings.ui" line="164"/>
         <source>Save main window status</source>
         <translation>保存主窗口状态</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="157"/>
+        <location filename="../../DlgSettings.ui" line="171"/>
         <source>Tab position</source>
         <translation>标签位置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="169"/>
+        <location filename="../../DlgSettings.ui" line="183"/>
         <source>North</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="182"/>
+        <location filename="../../DlgSettings.ui" line="196"/>
         <source>South</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="195"/>
+        <location filename="../../DlgSettings.ui" line="209"/>
         <source>West</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="208"/>
+        <location filename="../../DlgSettings.ui" line="222"/>
         <source>East</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="250"/>
+        <location filename="../../DlgSettings.ui" line="264"/>
         <source>Ok(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="257"/>
+        <location filename="../../DlgSettings.ui" line="271"/>
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
     </message>

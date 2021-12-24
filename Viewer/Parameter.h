@@ -13,11 +13,11 @@
 /**
  * @~english
  * @brief The parameter interface. It contains basic parameters.
- * @note The interface only is implemented by plugin
+ * @note The interface only is implemented and used by plugin
  * 
  * @~chinese
  * @brief 参数接口。它包含基本参数
- * @note 此接口仅由插件派生实现
+ * @note 此接口仅由插件派生实现和使用
  * 
  * @~
  * @ingroup VIEWER_PLUGIN_API
@@ -94,7 +94,12 @@ public:
     
 Q_SIGNALS:
     void sigUpdate();
-        
+
+protected:
+    QByteArray PasswordSum(const std::string &password);
+    int LoadPassword(const QString &szTitle, const QString &szKey, QString &password, QSettings &set);
+    int SavePassword(const QString &szKey, const QString &password, QSettings &set);
+
 private:
     QString m_szName;
     QString m_szHost;

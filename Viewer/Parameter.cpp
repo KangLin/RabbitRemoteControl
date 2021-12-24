@@ -3,6 +3,11 @@
 #include "Parameter.h"
 #include "RabbitCommonEncrypt.h"
 #include "RabbitCommonTools.h"
+#include "RabbitCommonLog.h"
+#include "ManagePassword.h"
+#include "DlgInputPassword.h"
+#include <QCryptographicHash>
+#include <QMessageBox>
 
 CParameter::CParameter(QObject *parent) : QObject(parent),
     m_nPort(0),
@@ -177,15 +182,13 @@ int CParameter::Load(QSettings &set)
     SetName(set.value("Name", GetName()).toString());
     SetHost(set.value("Host", GetHost()).toString());
     SetPort(set.value("Port", GetPort()).toUInt());
-    
     SetUser(set.value("User", GetUser()).toString());
     SetSavePassword(set.value("SavePassword", GetSavePassword()).toBool());
     if(GetSavePassword())
     {
-        QString password;
-        RabbitCommon::CEncrypt e;
-        if(!e.Dencode(set.value("Password").toByteArray(), password))
-            SetPassword(password);
+        QString szPassword;
+        if(!LoadPassword(tr("Password"), "Password", szPassword, set))
+            SetPassword(szPassword);
     }
     SetOnlyView(set.value("OnlyView", GetOnlyView()).toBool());
     SetLocalCursor(set.value("LocalCursor", GetLocalCursor()).toBool());
@@ -196,7 +199,13 @@ int CParameter::Load(QSettings &set)
     SetProxyHost(set.value("Proxy/Host", GetProxyHost()).toString());
     SetProxyPort(set.value("Proxy/Port", GetProxyPort()).toUInt());
     SetProxyUser(set.value("Proxy/User", GetProxyUser()).toString());
-    SetProxyPassword(set.value("Proxy/Password", GetProxyPassword()).toString());
+    
+    if(GetSavePassword())
+    {
+        QString szPassword;
+        if(!LoadPassword(tr("Proxy password"), "Proxy/Password", szPassword, set))
+            SetProxyPassword(szPassword);
+    }
     
     return 0;
 }
@@ -210,12 +219,7 @@ int CParameter::Save(QSettings &set)
     set.setValue("User", GetUser());
     set.setValue("SavePassword", GetSavePassword());
     if(GetSavePassword())
-    {
-        QByteArray encryptPassword;
-        RabbitCommon::CEncrypt e;
-        e.Encode(GetPassword(), encryptPassword);
-        set.setValue("Password", encryptPassword);
-    }
+        SavePassword("Password", GetPassword(), set);
     else
         set.remove("Password");
     set.setValue("OnlyView", GetOnlyView());
@@ -226,7 +230,71 @@ int CParameter::Save(QSettings &set)
     set.setValue("Proxy/Host", GetProxyHost());
     set.setValue("Proxy/Port", GetProxyPort());
     set.setValue("Proxy/User", GetProxyUser());
-    set.setValue("Proxy/Password", GetProxyPassword());
+    if(GetSavePassword())
+        SavePassword("Proxy/Password", GetProxyPassword(), set);
+    else
+        set.remove("Proxy/Password");
+    return 0;
+}
+
+QByteArray CParameter::PasswordSum(const std::string &password)
+{
+    QCryptographicHash sum(QCryptographicHash::Md5);
+    sum.addData(password.c_str(), password.length());
+    std::string pw = "RabbitRemoteControl";
+    sum.addData(pw.c_str(), pw.length());
+    std::string key =
+       CManagePassword::Instance()->GetPassword().toStdString().c_str(); 
+    if(!key.empty())
+        sum.addData(key.c_str(), key.length());
+    return sum.result();
+}
+
+int CParameter::LoadPassword(const QString &szTitle, const QString &szKey, QString &password, QSettings &set)
+{
+    QByteArray sum = set.value(szKey + "_sum").toByteArray();
+    QByteArray pwByte = set.value(szKey).toByteArray();
+    RabbitCommon::CEncrypt e;
     
+    std::string pw =
+            CManagePassword::Instance()->GetPassword().toStdString().c_str();
+    if(!pw.empty())
+    {
+        e.SetPassword(pw.c_str());
+        if(!e.Dencode(pwByte, password)
+                && PasswordSum(password.toStdString()) == sum)
+            return 0;
+    }
+    if(!e.Dencode(pwByte, password)
+            && PasswordSum(password.toStdString()) == sum)
+        return 0;
+    
+    LOG_MODEL_DEBUG("CParameter", "Password don't dencode");
+    CDlgInputPassword d(szTitle);
+    if(QDialog::Accepted != d.exec())
+    {
+        SetSavePassword(false);
+        return -1;
+    }
+
+    CDlgInputPassword::InputType t;
+    int nRet = d.GetValue(t, password);
+    if(nRet) return nRet;
+    if(CDlgInputPassword::InputType::Password == t)
+        return 0;
+    CManagePassword::Instance()->SetPassword(password);
+    return LoadPassword(szTitle, szKey, password, set);
+}
+
+int CParameter::SavePassword(const QString &szKey, const QString &password, QSettings &set)
+{
+    QByteArray encryptPassword;
+    RabbitCommon::CEncrypt e;
+    std::string pw = CManagePassword::Instance()->GetPassword().toStdString();
+    if(!pw.empty())
+        e.SetPassword(pw.c_str());
+    e.Encode(GetPassword(), encryptPassword);
+    set.setValue(szKey, encryptPassword);
+    set.setValue(szKey + "_sum", PasswordSum(GetPassword().toStdString()));  
     return 0;
 }
