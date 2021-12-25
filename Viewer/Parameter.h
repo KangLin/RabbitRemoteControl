@@ -46,6 +46,13 @@ public:
     virtual int Load(QSettings &set);
     virtual int Save(QSettings &set);
     
+    /*!
+     * \brief Check whether the parameters are complete
+     *  to decide whether to open the parameter dialog 
+     * \return 
+     */
+    virtual bool GetComplete();
+    
     const QString GetName() const;
     void SetName(const QString& name);
     
@@ -98,9 +105,10 @@ Q_SIGNALS:
 protected:
     QByteArray PasswordSum(const std::string &password);
     int LoadPassword(const QString &szTitle, const QString &szKey, QString &password, QSettings &set);
-    int SavePassword(const QString &szKey, const QString &password, QSettings &set);
+    int SavePassword(const QString &szKey, const QString &password, QSettings &set, bool bSave = false);
 
 private:
+    bool m_bComplete;
     QString m_szName;
     QString m_szHost;
     quint16 m_nPort;

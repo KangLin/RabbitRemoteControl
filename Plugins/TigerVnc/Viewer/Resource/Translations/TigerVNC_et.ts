@@ -279,6 +279,19 @@
     </message>
 </context>
 <context>
+    <name>CParameterTigerVnc</name>
+    <message>
+        <location filename="../../ParameterTigerVnc.cpp" line="52"/>
+        <source>Ice signal password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterTigerVnc.cpp" line="65"/>
+        <source>Ice turn password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CPluginTigerVnc</name>
     <message>
         <location filename="../../PluginTigerVnc.cpp" line="72"/>

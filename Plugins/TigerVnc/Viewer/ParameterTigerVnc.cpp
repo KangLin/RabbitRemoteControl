@@ -24,6 +24,8 @@ CParameterTigerVnc::CParameterTigerVnc(QObject *parent) : CParameter(parent)
 
 int CParameterTigerVnc::Load(QSettings &set)
 {
+    int nRet = CParameter::Load(set);
+
     SetShared(set.value("TigerVNC/Shared", GetShared()).toBool());
     SetBufferEndRefresh(set.value("TigerVNC/BufferEndRefresh",
                                   GetBufferEndRefresh()).toBool());
@@ -44,21 +46,33 @@ int CParameterTigerVnc::Load(QSettings &set)
                               GetSignalServer()).toString());
     SetSignalPort(set.value("ICE/Signal/Port", GetSignalPort()).toUInt());
     SetSignalUser(set.value("ICE/Signal/User", GetSignalUser()).toString());
-    SetSignalPassword(set.value("ICE/Signal/password",
-                                GetSignalPassword()).toString());
+    if(GetSavePassword())
+    {
+        QString szPassword;
+        if(!LoadPassword(tr("Ice signal password"), "ICE/Signal/password",
+                         szPassword, set))
+            SetSignalPassword(szPassword);
+    }
     SetPeerUser(set.value("ICE/Peer/User", GetPeerUser()).toString());
     SetStunServer(set.value("ICE/Stun/Server", GetStunServer()).toString());
     SetStunPort(set.value("ICE/Stun/Port", GetStunPort()).toUInt());
     SetTurnServer(set.value("ICE/Turn/Server", GetTurnServer()).toString());
     SetTurnPort(set.value("ICE/Turn/Port", GetTurnPort()).toUInt());
     SetTurnUser(set.value("ICE/Turn/User", GetTurnUser()).toString());
-    SetTurnPassword(set.value("ICE/Turn/password",
-                              GetTurnPassword()).toString());
-    return CParameter::Load(set);
+    if(GetSavePassword())
+    {
+        QString szPassword;
+        if(!LoadPassword(tr("Ice turn password"), "ICE/Turn/password",
+                         szPassword, set))
+            SetTurnPassword(szPassword);
+    }
+
+    return nRet;
 }
 
 int CParameterTigerVnc::Save(QSettings &set)
 {
+    int nRet = CParameter::Save(set);
     set.setValue("TigerVNC/Shared", GetShared());
     set.setValue("TigerVNC/BufferEndRefresh", GetBufferEndRefresh());
     set.setValue("TigerVNC/SupportsDesktopResize", GetSupportsDesktopResize());
@@ -73,15 +87,15 @@ int CParameterTigerVnc::Save(QSettings &set)
     set.setValue("ICE/Signal/Server", GetSignalServer());
     set.setValue("ICE/Signal/Port", GetSignalPort());
     set.setValue("ICE/Signal/User", GetSignalUser());
-    set.setValue("ICE/Signal/password", GetSignalPassword());
+    SavePassword("ICE/Signal/password", GetSignalPassword(), set);
     set.setValue("ICE/Peer/User", GetPeerUser());
     set.setValue("ICE/Stun/Server", GetStunServer());
     set.setValue("ICE/Stun/Port", GetStunPort());
     set.setValue("ICE/Turn/Server", GetTurnServer());
     set.setValue("ICE/Turn/Port", GetTurnPort());
     set.setValue("ICE/Turn/User", GetTurnUser());
-    set.setValue("ICE/Turn/password", GetTurnPassword());
-    return CParameter::Save(set);
+    SavePassword("ICE/Turn/password", GetTurnPassword(), set);
+    return nRet;
 }
 
 bool CParameterTigerVnc::GetShared() const

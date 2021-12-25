@@ -11,7 +11,7 @@
 
 CParameter::CParameter(QObject *parent) : QObject(parent),
     m_nPort(0),
-    m_bSavePassword(false),
+    m_bSavePassword(CManagePassword::Instance()->GetSavePassword()),
     m_bOnlyView(false),
     m_bLocalCursor(true),
     m_bClipboard(true),
@@ -19,6 +19,12 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
     m_nProxyPort(1080)
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
+}
+
+bool CParameter::GetComplete()
+{
+    if(GetSavePassword()) return true;
+    return false;
 }
 
 const QString CParameter::GetName() const
@@ -215,13 +221,8 @@ int CParameter::Save(QSettings &set)
     set.setValue("Name", GetName());
     set.setValue("Host", GetHost());
     set.setValue("Port", GetPort());
-    
     set.setValue("User", GetUser());
-    set.setValue("SavePassword", GetSavePassword());
-    if(GetSavePassword())
-        SavePassword("Password", GetPassword(), set);
-    else
-        set.remove("Password");
+    SavePassword("Password", GetPassword(), set, true);
     set.setValue("OnlyView", GetOnlyView());
     set.setValue("LocalCursor", GetLocalCursor());
     set.setValue("Clipboard", GetClipboard());
@@ -230,10 +231,8 @@ int CParameter::Save(QSettings &set)
     set.setValue("Proxy/Host", GetProxyHost());
     set.setValue("Proxy/Port", GetProxyPort());
     set.setValue("Proxy/User", GetProxyUser());
-    if(GetSavePassword())
-        SavePassword("Proxy/Password", GetProxyPassword(), set);
-    else
-        set.remove("Proxy/Password");
+    SavePassword("Proxy/Password", GetProxyPassword(), set);
+    
     return 0;
 }
 
@@ -286,8 +285,19 @@ int CParameter::LoadPassword(const QString &szTitle, const QString &szKey, QStri
     return LoadPassword(szTitle, szKey, password, set);
 }
 
-int CParameter::SavePassword(const QString &szKey, const QString &password, QSettings &set)
+int CParameter::SavePassword(const QString &szKey, const QString &password, QSettings &set, bool bSave)
 {
+    if(CManagePassword::Instance()->GetSavePassword())
+        SetSavePassword(true);
+    if(bSave)
+        set.setValue("SavePassword", GetSavePassword());
+    if(!GetSavePassword())
+    {
+        set.remove(szKey);
+        set.remove(szKey + "_sum");
+        return 0;
+    }
+
     QByteArray encryptPassword;
     RabbitCommon::CEncrypt e;
     std::string pw = CManagePassword::Instance()->GetPassword().toStdString();

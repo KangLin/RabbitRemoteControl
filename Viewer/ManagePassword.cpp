@@ -2,7 +2,8 @@
 
 #include "ManagePassword.h"
 
-CManagePassword::CManagePassword(QObject *parent) : QObject(parent)
+CManagePassword::CManagePassword(QObject *parent) : QObject(parent),
+    m_bSavePassword(false)
 {}
 
 CManagePassword* CManagePassword::Instance()
@@ -24,4 +25,17 @@ void CManagePassword::SetPassword(const QString &newPassword)
         return;
     m_szPassword = newPassword;
     emit PasswordChanged();
+}
+
+const bool &CManagePassword::GetSavePassword() const
+{
+    return m_bSavePassword;
+}
+
+void CManagePassword::SetSavePassword(bool NewAutoSavePassword)
+{
+    if (m_bSavePassword == NewAutoSavePassword)
+        return;
+    m_bSavePassword = NewAutoSavePassword;
+    emit sigSavePasswordChanged(m_bSavePassword);
 }

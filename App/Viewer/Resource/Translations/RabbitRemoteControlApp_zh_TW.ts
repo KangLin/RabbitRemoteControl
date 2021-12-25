@@ -193,11 +193,6 @@
         <translation>縮放</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="69"/>
-        <source>在這裏輸入</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../mainwindow.ui" line="90"/>
         <source>Remote(&amp;R)</source>
         <translation>遠程(&amp;R)</translation>
@@ -328,6 +323,11 @@
         <location filename="../../mainwindow.ui" line="505"/>
         <source>Zoom window to remote desktop</source>
         <translation>縮放窗口到遠程桌面大小</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="69"/>
+        <source>在这里输入</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="143"/>

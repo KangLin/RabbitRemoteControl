@@ -14,6 +14,7 @@
  *            One thread only handles one connect
  * \~
  * \see CConnecterDesktop CConnect run()
+ * \ingroup LIBAPI_THREAD
  */
 class CConnectThread : public QThread
 {

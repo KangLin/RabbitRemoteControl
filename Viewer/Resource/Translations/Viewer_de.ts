@@ -62,12 +62,12 @@
 <context>
     <name>CParameter</name>
     <message>
-        <location filename="../../Parameter.cpp" line="190"/>
+        <location filename="../../Parameter.cpp" line="196"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Parameter.cpp" line="206"/>
+        <location filename="../../Parameter.cpp" line="212"/>
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>

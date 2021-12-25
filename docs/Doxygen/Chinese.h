@@ -53,4 +53,8 @@
     - 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生
   - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectTigerVnc
 
+\defgroup LIBAPI_THREAD
+\ingroup LIBAPI_VIEWER
+\brief 线程模型
+
 */

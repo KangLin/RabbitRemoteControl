@@ -47,4 +47,8 @@
     - If the above two cannot meet your needs, you  can be derived from \ref CConnecter
   -Implement a specific connection, derived from \ref CConnect. For example: \ref CConnectTigerVnc 
 
+\defgroup LIBAPI_THREAD
+\ingroup LIBAPI_VIEWER
+\brief Thread module
+
 */

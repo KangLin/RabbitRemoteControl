@@ -2,17 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>CConnectTigerVnc</name>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">输入密码</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation type="vanished">密码</translation>
-    </message>
-</context>
-<context>
     <name>CDataChannelIce</name>
     <message>
         <location filename="../../../ICE/DataChannelIce.cpp" line="376"/>
@@ -294,18 +283,16 @@
     </message>
 </context>
 <context>
-    <name>CIceSignalQxmpp</name>
+    <name>CParameterTigerVnc</name>
     <message>
-        <source>Socket error</source>
-        <translation type="vanished">Socket 错误</translation>
+        <location filename="../../ParameterTigerVnc.cpp" line="52"/>
+        <source>Ice signal password</source>
+        <translation>Ice 信令密码</translation>
     </message>
     <message>
-        <source>Keep alive error</source>
-        <translation type="vanished">保活错误</translation>
-    </message>
-    <message>
-        <source>xmpp stream error</source>
-        <translation type="vanished">xmpp 流错误</translation>
+        <location filename="../../ParameterTigerVnc.cpp" line="65"/>
+        <source>Ice turn password</source>
+        <translation>Turn 服务器密码</translation>
     </message>
 </context>
 <context>

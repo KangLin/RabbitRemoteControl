@@ -35,9 +35,13 @@ QWidget *CConnecterDesktop::GetViewer()
 int CConnecterDesktop::Connect()
 {
     int nRet = 0;
+    // Check whether the parameters are complete
+    if(GetPara() && !GetPara()->GetComplete())
+       if(QDialog::Rejected == OpenDialogSettings())
+           return -1;
     m_pThread = new CConnectThread(this);
     if(!m_pThread)
-        return -1;
+        return -2;
     bool check = false;
     check = connect(m_pThread, SIGNAL(finished()),
                     m_pThread, SLOT(deleteLater()));

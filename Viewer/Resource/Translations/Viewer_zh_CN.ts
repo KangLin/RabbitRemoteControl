@@ -55,7 +55,7 @@
     </message>
     <message>
         <source>Proxy password</source>
-        <translation type="unfinished">代理密码</translation>
+        <translation>代理密码</translation>
     </message>
 </context>
 </TS>
