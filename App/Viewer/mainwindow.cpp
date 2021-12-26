@@ -559,7 +559,7 @@ void MainWindow::slotCloseView(const QWidget* pView)
         if(c->GetViewer() == pView)
         {
             //TODO: Whether to save the setting
-            c->Save();
+            emit c->sigUpdateParamters(c);
             c->DisConnect();
         }
     }
