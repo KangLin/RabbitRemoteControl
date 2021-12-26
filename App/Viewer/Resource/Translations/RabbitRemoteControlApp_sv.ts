@@ -20,7 +20,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="157"/>
+        <location filename="../../DlgSettings.ui" line="188"/>
         <source>Main window receiver short cut key</source>
         <translation type="unfinished"></translation>
     </message>
@@ -50,52 +50,82 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="125"/>
-        <source>Private encrypt key:</source>
+        <location filename="../../DlgSettings.ui" line="123"/>
+        <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="151"/>
-        <source>Main window</source>
+        <location filename="../../DlgSettings.ui" line="136"/>
+        <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="164"/>
-        <source>Save main window status</source>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="143"/>
+        <source>Prompt type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="129"/>
+        <source>Always</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="152"/>
+        <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettings.ui" line="171"/>
+        <source>Save password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="182"/>
+        <source>Main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="195"/>
+        <source>Save main window status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="202"/>
         <source>Tab position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="183"/>
+        <location filename="../../DlgSettings.ui" line="214"/>
         <source>North</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="196"/>
+        <location filename="../../DlgSettings.ui" line="227"/>
         <source>South</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="209"/>
+        <location filename="../../DlgSettings.ui" line="240"/>
         <source>West</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="222"/>
+        <location filename="../../DlgSettings.ui" line="253"/>
         <source>East</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="264"/>
+        <location filename="../../DlgSettings.ui" line="295"/>
         <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="271"/>
+        <location filename="../../DlgSettings.ui" line="302"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>

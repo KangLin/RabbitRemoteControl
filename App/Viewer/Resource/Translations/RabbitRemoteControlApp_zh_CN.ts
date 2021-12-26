@@ -20,7 +20,7 @@
         <translation>最近打开文件最大数：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="157"/>
+        <location filename="../../DlgSettings.ui" line="188"/>
         <source>Main window receiver short cut key</source>
         <translation>主窗口接收快捷键</translation>
     </message>
@@ -50,52 +50,82 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="125"/>
-        <source>Private encrypt key:</source>
-        <translation>私有加密键：</translation>
+        <location filename="../../DlgSettings.ui" line="123"/>
+        <source>Password</source>
+        <translation>加密</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="151"/>
+        <location filename="../../DlgSettings.ui" line="136"/>
+        <source>First</source>
+        <translation>一次</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="164"/>
+        <source>No</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="143"/>
+        <source>Prompt type:</source>
+        <translation>提示类型：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="129"/>
+        <source>Always</source>
+        <translation>总是</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="152"/>
+        <source>Encrypt key:</source>
+        <translation>加密键：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="171"/>
+        <source>Save password</source>
+        <translation>保存密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="182"/>
         <source>Main window</source>
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="164"/>
+        <location filename="../../DlgSettings.ui" line="195"/>
         <source>Save main window status</source>
         <translation>保存主窗口状态</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="171"/>
+        <location filename="../../DlgSettings.ui" line="202"/>
         <source>Tab position</source>
         <translation>标签位置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="183"/>
+        <location filename="../../DlgSettings.ui" line="214"/>
         <source>North</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="196"/>
+        <location filename="../../DlgSettings.ui" line="227"/>
         <source>South</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="209"/>
+        <location filename="../../DlgSettings.ui" line="240"/>
         <source>West</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="222"/>
+        <location filename="../../DlgSettings.ui" line="253"/>
         <source>East</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="264"/>
+        <location filename="../../DlgSettings.ui" line="295"/>
         <source>Ok(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="271"/>
+        <location filename="../../DlgSettings.ui" line="302"/>
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
     </message>

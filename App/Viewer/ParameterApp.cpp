@@ -1,6 +1,7 @@
 #include "ParameterApp.h"
 #include <QSettings>
 #include "RabbitCommonDir.h"
+#include "ManagePassword.h"
 
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bScreenShot(true),
@@ -16,14 +17,17 @@ int CParameterApp::Load()
 {
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
+    CManagePassword::Instance()->Load(set);
+    
     SetScreenShot(set.value("ShotScreen/IsShotScreen", GetScreenShot()).toBool());
     SetScreenShotEndAction(static_cast<ScreenShotEndAction>(set.value("ShotScreen/Action", GetScreenShotEndAction()).toInt()));
     
     SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt", GetReceiveShortCut()).toBool());
     SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable", GetSaveMainWindowStatus()).toBool());
     SetTabPosition(static_cast<QTabWidget::TabPosition>(set.value("MainWindow/Tab/Position", GetTabPosition()).toInt()));
-    
+
     SetRecentMenuMaxCount(set.value("MainWindow/Recent/Max", GetRecentMenuMaxCount()).toInt());
+
     return 0;
 }
 
@@ -31,6 +35,8 @@ int CParameterApp::Save()
 {
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
+    CManagePassword::Instance()->Save(set);
+
     set.setValue("ShotScreen/IsShotScreen", GetScreenShot());
     set.setValue("ShotScreen/Action", GetScreenShotEndAction());
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());

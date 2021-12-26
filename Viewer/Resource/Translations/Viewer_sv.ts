@@ -71,5 +71,10 @@
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../Parameter.cpp" line="313"/>
+        <source>Input encrypt key</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

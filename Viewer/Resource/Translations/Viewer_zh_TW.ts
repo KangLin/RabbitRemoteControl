@@ -61,5 +61,9 @@
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Input encrypt key</source>
+        <translation type="unfinished">輸入加密碼鍵</translation>
+    </message>
 </context>
 </TS>

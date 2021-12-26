@@ -7,7 +7,7 @@
 #include "ManagePassword.h"
 #include "DlgInputPassword.h"
 #include <QCryptographicHash>
-#include <QMessageBox>
+#include <QInputDialog>
 
 CParameter::CParameter(QObject *parent) : QObject(parent),
     m_nPort(0),
@@ -243,7 +243,7 @@ QByteArray CParameter::PasswordSum(const std::string &password)
     std::string pw = "RabbitRemoteControl";
     sum.addData(pw.c_str(), pw.length());
     std::string key =
-       CManagePassword::Instance()->GetPassword().toStdString().c_str(); 
+       CManagePassword::Instance()->GetEncryptKey().toStdString().c_str(); 
     if(!key.empty())
         sum.addData(key.c_str(), key.length());
     return sum.result();
@@ -256,7 +256,7 @@ int CParameter::LoadPassword(const QString &szTitle, const QString &szKey, QStri
     RabbitCommon::CEncrypt e;
     
     std::string pw =
-            CManagePassword::Instance()->GetPassword().toStdString().c_str();
+            CManagePassword::Instance()->GetEncryptKey().toStdString().c_str();
     if(!pw.empty())
     {
         e.SetPassword(pw.c_str());
@@ -281,7 +281,7 @@ int CParameter::LoadPassword(const QString &szTitle, const QString &szKey, QStri
     if(nRet) return nRet;
     if(CDlgInputPassword::InputType::Password == t)
         return 0;
-    CManagePassword::Instance()->SetPassword(password);
+    CManagePassword::Instance()->SetEncryptKey(password);
     return LoadPassword(szTitle, szKey, password, set);
 }
 
@@ -298,8 +298,26 @@ int CParameter::SavePassword(const QString &szKey, const QString &password, QSet
 
     QByteArray encryptPassword;
     RabbitCommon::CEncrypt e;
-    std::string pw = CManagePassword::Instance()->GetPassword().toStdString();
-    if(!pw.empty())
+    std::string pw = CManagePassword::Instance()->GetEncryptKey().toStdString();
+    if(pw.empty())
+    {
+        switch (CManagePassword::Instance()->GetPromptType()) {
+        case CManagePassword::PromptType::First:
+            if(CManagePassword::Instance()->GetPromptCount() >= 1)
+                break;
+            CManagePassword::Instance()->SetPromptCount(
+                        CManagePassword::Instance()->GetPromptCount() + 1);
+        case CManagePassword::PromptType::Always:
+        {
+            QString szKey = QInputDialog::getText(nullptr,
+                           tr("Input encrypt key"), tr("Input encrypt key"));
+            CManagePassword::Instance()->SetEncryptKey(szKey);
+            break;
+        }
+        case CManagePassword::PromptType::No:
+            break;
+        }
+    } else
         e.SetPassword(pw.c_str());
     e.Encode(GetPassword(), encryptPassword);
     set.setValue(szKey, encryptPassword);

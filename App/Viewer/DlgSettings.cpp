@@ -45,7 +45,19 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     
     ui->sbRecentMenuMaxCount->setValue(m_pParameters->GetRecentMenuMaxCount());
     
-    ui->leEncryptKey->setText(CManagePassword::Instance()->GetPassword());
+    ui->leEncryptKey->setText(CManagePassword::Instance()->GetEncryptKey());
+    ui->cbSavePassword->setChecked(CManagePassword::Instance()->GetSavePassword());
+    switch (CManagePassword::Instance()->GetPromptType()) {
+    case CManagePassword::PromptType::Always:
+        ui->rbPromptAlways->setChecked(true);
+        break;
+    case CManagePassword::PromptType::First:
+        ui->rbPromptFirst->setChecked(true);
+        break;
+    case CManagePassword::PromptType::No:
+        ui->rbPromptNo->setChecked(true);
+        break;
+    }
 }
 
 CDlgSettings::~CDlgSettings()
@@ -76,7 +88,14 @@ void CDlgSettings::on_pbOk_clicked()
     
     m_pParameters->SetRecentMenuMaxCount(ui->sbRecentMenuMaxCount->value());
     
-    CManagePassword::Instance()->SetPassword(ui->leEncryptKey->text());
+    CManagePassword::Instance()->SetEncryptKey(ui->leEncryptKey->text());
+    CManagePassword::Instance()->SetSavePassword(ui->cbSavePassword->isChecked());
+    if(ui->rbPromptAlways->isChecked())
+        CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::Always);
+    if(ui->rbPromptFirst->isChecked())
+        CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::First);
+    if(ui->rbPromptNo->isChecked())
+        CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::No);
     
     accept();
 }

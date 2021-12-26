@@ -57,5 +57,9 @@
         <source>Proxy password</source>
         <translation>代理密码</translation>
     </message>
+    <message>
+        <source>Input encrypt key</source>
+        <translation type="unfinished">输入加密码键</translation>
+    </message>
 </context>
 </TS>
