@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -64,11 +64,6 @@
      <addaction name="actionZoom_In"/>
      <addaction name="actionZoom_Out"/>
     </widget>
-    <widget class="QMenu" name="menu">
-     <property name="title">
-      <string>在这里输入</string>
-     </property>
-    </widget>
     <addaction name="actionFull_screen_F"/>
     <addaction name="menuZoom"/>
     <addaction name="separator"/>
@@ -83,7 +78,6 @@
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatusBar_S"/>
     <addaction name="separator"/>
-    <addaction name="menu"/>
    </widget>
    <widget class="QMenu" name="menuRemote">
     <property name="title">
@@ -336,6 +330,10 @@
    </property>
   </action>
   <action name="actionRecently_connected">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/RecentMenu</normaloff>:/image/RecentMenu</iconset>
+   </property>
    <property name="text">
     <string>Recently connected</string>
    </property>

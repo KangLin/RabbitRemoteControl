@@ -51,9 +51,17 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(&m_Parameter, SIGNAL(sigRecentMenuMaxCountChanged(int)),
                     m_pRecentMenu, SLOT(setMaxCount(int)));
     Q_ASSERT(check);
-
     ui->actionRecently_connected->setMenu(m_pRecentMenu);
-
+    QToolButton* tbRecent = new QToolButton(ui->toolBar);
+    tbRecent->setFocusPolicy(Qt::NoFocus);
+    tbRecent->setPopupMode(QToolButton::InstantPopup);
+    tbRecent->setMenu(m_pRecentMenu);
+    tbRecent->setIcon(ui->actionRecently_connected->icon());
+    tbRecent->setText(ui->actionRecently_connected->text());
+    tbRecent->setToolTip(ui->actionRecently_connected->toolTip());
+    tbRecent->setStatusTip(ui->actionRecently_connected->statusTip());
+    ui->toolBar->insertWidget(ui->actionOpen_O, tbRecent);
+    
 #ifdef HAVE_UPDATE
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());

@@ -30,5 +30,6 @@
         <file>Image/Screenshot.png</file>
         <file alias="ZoomWindowToRemoteDesktop">Image/ZoomWindowToRemoteDesktop.svg</file>
         <file alias="Screenshot">Image/camera.svg</file>
+        <file alias="RecentMenu">Image/RecentMenu.svg</file>
     </qresource>
 </RCC>
