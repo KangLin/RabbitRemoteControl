@@ -12,8 +12,8 @@
 #include "Parameter.h"
 
 CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
-    m_pPluginViewer(parent),
-    m_pParameter(nullptr)
+    m_pParameter(nullptr),
+    m_pPluginViewer(parent)
 {
 }
 
@@ -70,11 +70,6 @@ QString CConnecter::ServerName()
     return m_szServerName;
 }
 
-const CPluginViewer* CConnecter::GetPluginViewer() const
-{
-    return m_pPluginViewer;
-}
-
 int CConnecter::OpenDialogSettings(QWidget *parent)
 {
     int nRet = -1;
@@ -102,10 +97,7 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
 
 int CConnecter::Load(QString szFile)
 {
-    if(szFile.isEmpty())
-        szFile = m_szFile;
-    else
-        m_szFile = szFile;
+    Q_ASSERT(!szFile.isEmpty());
     if(szFile.isEmpty())
     {
         LOG_MODEL_ERROR("CConnecter", "The load file is empty");
@@ -117,15 +109,12 @@ int CConnecter::Load(QString szFile)
 
 int CConnecter::Save(QString szFile)
 {
-    if(szFile.isEmpty())
-        szFile = m_szFile;
-    else
-        m_szFile = szFile;
+    Q_ASSERT(!szFile.isEmpty());
     if(szFile.isEmpty())
     {
-        LOG_MODEL_ERROR("CConnecter", "The save file is empty");
+        LOG_MODEL_ERROR("CConnecter", "The load file is empty");
         return -1;
-    }
+    }    
     QSettings set(szFile, QSettings::IniFormat);
     return Save(set);
 }

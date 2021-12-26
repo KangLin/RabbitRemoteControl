@@ -139,7 +139,13 @@ CConnecter* CManageConnecter::CreateConnecter(const QString& id)
 {
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
-        return it.value()->CreateConnecter(id);
+    {
+        auto pConnecter = it.value()->CreateConnecter(id);
+        bool check = connect(pConnecter, SIGNAL(sigUpdateParamters(CConnecter*)),
+                             this, SLOT(slotUpdateParameters(CConnecter*)));
+        Q_ASSERT(check);
+        return pConnecter;
+    }
     return nullptr;
 }
 
@@ -178,7 +184,7 @@ int CManageConnecter::SaveConnecter(QString szFile, CConnecter *pConnecter)
 
     QSettings set(szFile, QSettings::IniFormat);
     
-    const CPluginViewer* pPluginViewer = pConnecter->GetPluginViewer();
+    const CPluginViewer* pPluginViewer = pConnecter->m_pPluginViewer;
     Q_ASSERT(pPluginViewer);
     
     set.setValue("Manage/FileVersion", m_FileVersion);
@@ -188,6 +194,11 @@ int CManageConnecter::SaveConnecter(QString szFile, CConnecter *pConnecter)
     pConnecter->Save(szFile);
 
     return 0;
+}
+
+void CManageConnecter::slotUpdateParameters(CConnecter* pConnecter)
+{
+    SaveConnecter(QString(), pConnecter);
 }
 
 int CManageConnecter::EnumPlugins(Handle *handle)

@@ -51,7 +51,7 @@ public:
      *  to decide whether to open the parameter dialog 
      * \return 
      */
-    virtual bool GetComplete();
+    virtual bool GetCheckCompleted();
     
     const QString GetName() const;
     void SetName(const QString& name);

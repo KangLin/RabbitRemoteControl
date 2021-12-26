@@ -13,6 +13,13 @@ public:
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
     
+    /*!
+     * \brief Check whether the parameters are complete
+     *  to decide whether to open the parameter dialog 
+     * \return 
+     */
+    virtual bool GetCheckCompleted();
+    
     enum COLOR_LEVEL {
         Full,
         Medium,

@@ -60,9 +60,12 @@ CConnect* CConnecterTigerVnc::InstanceConnect()
 int CConnecterTigerVnc::Connect()
 {
     // Check whether the parameters are complete
-    if(GetPara() && !GetPara()->GetComplete())
-       if(QDialog::Rejected == OpenDialogSettings())
+    if(GetPara() && !GetPara()->GetCheckCompleted())
+    {
+        if(QDialog::Rejected == OpenDialogSettings())
            return -1;
+        emit sigUpdateParamters(this);
+    }
     emit sigConnect(this);
     return 0;
 }

@@ -18,7 +18,8 @@
 class CPluginViewer;
 class CConnect;
 class CParameter;
-        
+class CManageConnecter;
+
 /*!
  * \~chinese
  * \brief 描述连接应用接口。
@@ -99,8 +100,6 @@ public:
      *   \li -1: error
      */
     virtual int OpenDialogSettings(QWidget* parent = nullptr);
-
-    const CPluginViewer* GetPluginViewer() const;
     
     /*!
      * \~chinese \brief 从文件中加载参数
@@ -179,6 +178,8 @@ Q_SIGNALS:
      */
     void sigInformation(const QString& szInfo);
 
+    void sigUpdateParamters(CConnecter* pConnecter);
+
 protected:
     /*!
      * \~chinese
@@ -197,14 +198,14 @@ protected:
 
     virtual int Load(QSettings &set) = 0;
     virtual int Save(QSettings &set) = 0;
-    
+
     virtual CParameter* GetPara();
     CParameter* m_pParameter;
 
 private:
     const CPluginViewer* m_pPluginViewer;
+    friend CManageConnecter;
     QString m_szServerName;
-    QString m_szFile;
 };
 
 #endif // CCONNECTER_H

@@ -21,7 +21,7 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
     SetUser(RabbitCommon::CTools::GetCurrentUser());
 }
 
-bool CParameter::GetComplete()
+bool CParameter::GetCheckCompleted()
 {
     if(GetSavePassword()) return true;
     return false;
@@ -287,8 +287,6 @@ int CParameter::LoadPassword(const QString &szTitle, const QString &szKey, QStri
 
 int CParameter::SavePassword(const QString &szKey, const QString &password, QSettings &set, bool bSave)
 {
-    if(CManagePassword::Instance()->GetSavePassword())
-        SetSavePassword(true);
     if(bSave)
         set.setValue("SavePassword", GetSavePassword());
     if(!GetSavePassword())

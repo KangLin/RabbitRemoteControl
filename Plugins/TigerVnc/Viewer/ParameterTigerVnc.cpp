@@ -98,6 +98,24 @@ int CParameterTigerVnc::Save(QSettings &set)
     return nRet;
 }
 
+bool CParameterTigerVnc::GetCheckCompleted()
+{
+    bool r = CParameter::GetCheckCompleted();
+    if(!r) return r;
+    if(GetIce())
+    {
+        if(GetSignalServer().isEmpty() || GetSignalPort() <= 0
+                || GetSignalUser().isEmpty()
+                || GetStunServer().isEmpty() || GetStunPort() <= 0)
+            return false;
+        return true;
+    }
+    
+    if(GetHost().isEmpty() || GetPort() <= 0)
+        return false;
+    return true;
+}
+
 bool CParameterTigerVnc::GetShared() const
 {
     return m_bShared;

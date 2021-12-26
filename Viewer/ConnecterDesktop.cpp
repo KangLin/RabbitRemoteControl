@@ -4,6 +4,7 @@
 #include <QDebug>
 #include "ConnectThread.h"
 #include "RabbitCommonLog.h"
+#include "RabbitCommonDir.h"
 
 CConnecterDesktop::CConnecterDesktop(CPluginViewer *parent)
     : CConnecter(parent),
@@ -36,9 +37,12 @@ int CConnecterDesktop::Connect()
 {
     int nRet = 0;
     // Check whether the parameters are complete
-    if(GetPara() && !GetPara()->GetComplete())
-       if(QDialog::Rejected == OpenDialogSettings())
+    if(GetPara() && !GetPara()->GetCheckCompleted())
+    {
+        if(QDialog::Rejected == OpenDialogSettings())
            return -1;
+        emit sigUpdateParamters(this);
+    }
     m_pThread = new CConnectThread(this);
     if(!m_pThread)
         return -2;
@@ -83,9 +87,14 @@ int CConnecterDesktop::Load(QSettings &set)
     Q_ASSERT(m_pParameter);
     Q_ASSERT(m_pView);
     if(m_pView)
-        m_pView->Load(set);
+    {   
+        nRet = m_pView->Load(set);
+        if(nRet) return nRet;
+    }
+    
     if(GetPara())
-        GetPara()->Load(set);
+        nRet = GetPara()->Load(set);
+        
     return nRet;
 }
 
@@ -93,9 +102,11 @@ int CConnecterDesktop::Save(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pParameter);
-
     if(m_pView)
-        m_pView->Save(set);
+    {
+        nRet = m_pView->Save(set);
+        if(nRet) return nRet;
+    }
     if(GetPara())
         GetPara()->Save(set);
     return nRet;
