@@ -20,7 +20,7 @@
         <translation>最近打开文件最大数：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="188"/>
+        <location filename="../../DlgSettings.ui" line="221"/>
         <source>Main window receiver short cut key</source>
         <translation>主窗口接收快捷键</translation>
     </message>
@@ -55,77 +55,82 @@
         <translation>加密</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="136"/>
+        <location filename="../../DlgSettings.ui" line="177"/>
         <source>First</source>
         <translation>一次</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="164"/>
+        <location filename="../../DlgSettings.ui" line="170"/>
         <source>No</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="143"/>
+        <location filename="../../DlgSettings.ui" line="161"/>
         <source>Prompt type:</source>
         <translation>提示类型：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="129"/>
+        <location filename="../../DlgSettings.ui" line="184"/>
         <source>Always</source>
         <translation>总是</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="152"/>
+        <location filename="../../DlgSettings.ui" line="131"/>
         <source>Encrypt key:</source>
         <translation>加密键：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="171"/>
+        <location filename="../../DlgSettings.ui" line="195"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="182"/>
+        <location filename="../../DlgSettings.ui" line="202"/>
+        <source>Enable view password</source>
+        <translation>允许查看密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettings.ui" line="215"/>
         <source>Main window</source>
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="195"/>
+        <location filename="../../DlgSettings.ui" line="228"/>
         <source>Save main window status</source>
         <translation>保存主窗口状态</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="202"/>
+        <location filename="../../DlgSettings.ui" line="235"/>
         <source>Tab position</source>
         <translation>标签位置</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="214"/>
+        <location filename="../../DlgSettings.ui" line="247"/>
         <source>North</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="227"/>
+        <location filename="../../DlgSettings.ui" line="260"/>
         <source>South</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="240"/>
+        <location filename="../../DlgSettings.ui" line="273"/>
         <source>West</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="253"/>
+        <location filename="../../DlgSettings.ui" line="286"/>
         <source>East</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="295"/>
+        <location filename="../../DlgSettings.ui" line="328"/>
         <source>Ok(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettings.ui" line="302"/>
+        <location filename="../../DlgSettings.ui" line="335"/>
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
     </message>

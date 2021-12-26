@@ -1,5 +1,12 @@
 ## Change Log
 
+### v0.0.13
++ Modify UI
+  - Add clone connect
+  - Add favorite function
++ Update manage password
+  - Add enable view password
+  
 ### v0.0.12
 + Add settings
 + Optimize saving password 

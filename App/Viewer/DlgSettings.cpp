@@ -47,6 +47,8 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     
     ui->leEncryptKey->setText(CManagePassword::Instance()->GetEncryptKey());
     ui->cbSavePassword->setChecked(CManagePassword::Instance()->GetSavePassword());
+    ui->cbEnableViewPassword->setChecked(CManagePassword::Instance()->GetViewPassowrd());
+    ui->pbEncryptKey->setEnabled(ui->cbEnableViewPassword->isChecked());
     switch (CManagePassword::Instance()->GetPromptType()) {
     case CManagePassword::PromptType::Always:
         ui->rbPromptAlways->setChecked(true);
@@ -90,6 +92,7 @@ void CDlgSettings::on_pbOk_clicked()
     
     CManagePassword::Instance()->SetEncryptKey(ui->leEncryptKey->text());
     CManagePassword::Instance()->SetSavePassword(ui->cbSavePassword->isChecked());
+    CManagePassword::Instance()->SetViewPassowrd(ui->cbEnableViewPassword->isChecked());
     if(ui->rbPromptAlways->isChecked())
         CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::Always);
     if(ui->rbPromptFirst->isChecked())
@@ -103,4 +106,24 @@ void CDlgSettings::on_pbOk_clicked()
 void CDlgSettings::on_pbNo_clicked()
 {
     reject();
+}
+
+void CDlgSettings::on_cbEnableViewPassword_clicked(bool checked)
+{
+    ui->pbEncryptKey->setEnabled(checked);
+}
+
+void CDlgSettings::on_pbEncryptKey_clicked()
+{
+    switch(ui->leEncryptKey->echoMode())
+    {
+    case QLineEdit::Password:
+        ui->leEncryptKey->setEchoMode(QLineEdit::Normal);
+        ui->pbEncryptKey->setIcon(QIcon(":/image/EyeOff"));
+        break;
+    case QLineEdit::Normal:
+        ui->leEncryptKey->setEchoMode(QLineEdit::Password);
+        ui->pbEncryptKey->setIcon(QIcon(":/image/EyeOn"));
+        break;
+    }
 }

@@ -5,7 +5,8 @@
 CManagePassword::CManagePassword(QObject *parent) : QObject(parent),
     m_bSavePassword(false),
     m_PromptType(PromptType::First),
-    m_nPromptCount(0)
+    m_nPromptCount(0),
+    m_bViewPassowrd(false)
 {}
 
 CManagePassword* CManagePassword::Instance()
@@ -23,6 +24,7 @@ int CManagePassword::Load(QSettings &set)
                               static_cast<int>(GetPromptType())).toInt()
                               ));
     SetSavePassword(set.value("Manage/Password/Save", GetSavePassword()).toBool());
+    SetViewPassowrd(set.value("Manage/Password/View", GetViewPassowrd()).toBool());
     return 0;
 }
 
@@ -31,6 +33,7 @@ int CManagePassword::Save(QSettings &set)
     set.setValue("Manage/Password/Prompty/Type",
                  static_cast<int>(GetPromptType()));
     set.setValue("Manage/Password/Save", GetSavePassword());
+    set.setValue("Manage/Password/View", GetViewPassowrd());
     return 0;
 }
 
@@ -84,4 +87,17 @@ void CManagePassword::SetPromptCount(int NewPromptCount)
         return;
     m_nPromptCount = NewPromptCount;
     emit sigPromptCountChanged(m_nPromptCount);
+}
+
+bool CManagePassword::GetViewPassowrd() const
+{
+    return m_bViewPassowrd;
+}
+
+void CManagePassword::SetViewPassowrd(bool NewViewPassowrd)
+{
+    if (m_bViewPassowrd == NewViewPassowrd)
+        return;
+    m_bViewPassowrd = NewViewPassowrd;
+    emit sigViewPassowrdChanged(m_bViewPassowrd);
 }

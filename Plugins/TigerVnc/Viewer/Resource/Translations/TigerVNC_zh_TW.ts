@@ -272,12 +272,12 @@
         <translation>信令服務器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="64"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="65"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="64"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="65"/>
         <source>Please set domain</source>
         <translation>請設置域名</translation>
     </message>

@@ -65,6 +65,16 @@ Q_SIGNALS:
 private:
     int m_nPromptCount;
     Q_PROPERTY(int PromptCount READ GetPromptCount WRITE SetPromptCount NOTIFY sigPromptCountChanged)
+    
+    
+public:
+    bool GetViewPassowrd() const;
+    void SetViewPassowrd(bool NewViewPassowrd);
+Q_SIGNALS:
+    void sigViewPassowrdChanged(bool ViewPassowrd);
+private:
+    bool m_bViewPassowrd;
+    Q_PROPERTY(bool ViewPassowrd READ GetViewPassowrd WRITE SetViewPassowrd NOTIFY sigViewPassowrdChanged)
 };
 
 #endif // CMANAGEPASSWORD_H

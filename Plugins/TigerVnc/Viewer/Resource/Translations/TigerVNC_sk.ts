@@ -268,12 +268,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="64"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="65"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="64"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="65"/>
         <source>Please set domain</source>
         <translation type="unfinished"></translation>
     </message>

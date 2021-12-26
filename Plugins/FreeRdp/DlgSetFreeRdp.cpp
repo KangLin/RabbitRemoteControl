@@ -4,6 +4,7 @@
 #include "ui_DlgSetFreeRdp.h"
 #include <QApplication>
 #include <QScreen>
+#include "ManagePassword.h"
 
 CDlgSetFreeRdp::CDlgSetFreeRdp(CParameterFreeRdp *pSettings, QWidget *parent) :
     QDialog(parent),
@@ -107,6 +108,7 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
     ui->spPort->setValue(m_pSettings->GetPort());
     ui->leUserName->setText(m_pSettings->GetUser());
     ui->lePassword->setText(m_pSettings->GetPassword());
+    ui->pbShow->setEnabled(CManagePassword::Instance()->GetViewPassowrd());
 
     ui->cbSavePassword->setChecked(m_pSettings->GetSavePassword());
     ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
