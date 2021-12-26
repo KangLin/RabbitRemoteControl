@@ -802,7 +802,7 @@ void MainWindow::on_actionCurrent_connect_parameters_triggered()
     }
 }
 
-void MainWindow::on_actionFavorites_triggered()
+void MainWindow::on_actionAdd_to_favorite_triggered()
 {
     
 }

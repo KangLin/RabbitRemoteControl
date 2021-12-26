@@ -97,7 +97,7 @@
     <addaction name="actionClone"/>
     <addaction name="actionRecently_connected"/>
     <addaction name="separator"/>
-    <addaction name="actionAdd_favorite"/>
+    <addaction name="actionAdd_to_favorite"/>
     <addaction name="actionFavorites"/>
     <addaction name="separator"/>
     <addaction name="actionCurrent_connect_parameters"/>
@@ -591,19 +591,22 @@
     <string>Favorites</string>
    </property>
   </action>
-  <action name="actionAdd_favorite">
+  <action name="actionAdd_to_favorite">
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
      <normaloff>:/image/AddFavorites</normaloff>:/image/AddFavorites</iconset>
    </property>
    <property name="text">
-    <string>Add favorite</string>
+    <string>Add to favorite</string>
+   </property>
+   <property name="toolTip">
+    <string>Add to favorite</string>
    </property>
    <property name="statusTip">
-    <string>Add favorite</string>
+    <string>Add to favorite</string>
    </property>
    <property name="whatsThis">
-    <string>Add favorite</string>
+    <string>Add to favorite</string>
    </property>
   </action>
  </widget>

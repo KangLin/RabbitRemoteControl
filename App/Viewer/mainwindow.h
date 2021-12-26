@@ -84,8 +84,8 @@ private Q_SLOTS:
     void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
 
-    void on_actionFavorites_triggered();
-    void on_actionClone_triggered();
+    void on_actionClone_triggered();  
+    void on_actionAdd_to_favorite_triggered();
     
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
