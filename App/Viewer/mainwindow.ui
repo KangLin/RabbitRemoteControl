@@ -73,8 +73,6 @@
     <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="menuSink"/>
     <addaction name="separator"/>
-    <addaction name="actionCurrent_connect_parameters"/>
-    <addaction name="actionSettings"/>
     <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatusBar_S"/>
@@ -96,7 +94,14 @@
     <addaction name="menuConnect_C"/>
     <addaction name="actionDisconnect_D"/>
     <addaction name="actionOpen_O"/>
+    <addaction name="actionClone"/>
     <addaction name="actionRecently_connected"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd_favorite"/>
+    <addaction name="actionFavorites"/>
+    <addaction name="separator"/>
+    <addaction name="actionCurrent_connect_parameters"/>
+    <addaction name="actionSettings"/>
     <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
@@ -554,6 +559,51 @@
    </property>
    <property name="whatsThis">
     <string>Current connect parameters</string>
+   </property>
+  </action>
+  <action name="actionClone">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Clone</normaloff>:/image/Clone</iconset>
+   </property>
+   <property name="text">
+    <string>Clone current connect</string>
+   </property>
+   <property name="statusTip">
+    <string>Clone current connect</string>
+   </property>
+   <property name="whatsThis">
+    <string>Clone current connect</string>
+   </property>
+  </action>
+  <action name="actionFavorites">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Favorites</normaloff>:/image/Favorites</iconset>
+   </property>
+   <property name="text">
+    <string>Favorites</string>
+   </property>
+   <property name="statusTip">
+    <string>Favorites</string>
+   </property>
+   <property name="whatsThis">
+    <string>Favorites</string>
+   </property>
+  </action>
+  <action name="actionAdd_favorite">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/AddFavorites</normaloff>:/image/AddFavorites</iconset>
+   </property>
+   <property name="text">
+    <string>Add favorite</string>
+   </property>
+   <property name="statusTip">
+    <string>Add favorite</string>
+   </property>
+   <property name="whatsThis">
+    <string>Add favorite</string>
    </property>
   </action>
  </widget>

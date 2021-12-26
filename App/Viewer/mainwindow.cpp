@@ -437,16 +437,24 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-void MainWindow::slotRecentFileTriggered(const QString& szFile)
+void MainWindow::on_actionClone_triggered()
 {
-    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
-    if(nullptr == p)
+    if(!m_pView) return;
+    QWidget* p = m_pView->GetCurrentView();
+    foreach(auto c, m_Connecters)
     {
-        slotInformation(tr("Load file fail: ") + szFile);
-        return;
+        if(c->GetViewer() == p)
+        {
+            auto it = m_ConfigureFiles.find(c);
+            if(m_ConfigureFiles.end() == it)
+                return;
+            QString szFile = it.value();
+            auto pConnecter = m_ManageConnecter.LoadConnecter(szFile);
+            if(!pConnecter) return;
+            Connect(pConnecter, false, szFile);
+            return;
+        }
     }
-
-    Connect(p, false);
 }
 
 void MainWindow::on_actionOpen_O_triggered()
@@ -463,8 +471,20 @@ void MainWindow::on_actionOpen_O_triggered()
         slotInformation(tr("Load file fail: ") + szFile);
         return;
     }
+    
+    Connect(p, true, szFile);
+}
 
-    Connect(p, true);
+void MainWindow::slotRecentFileTriggered(const QString& szFile)
+{
+    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
+    if(nullptr == p)
+    {
+        slotInformation(tr("Load file fail: ") + szFile);
+        return;
+    }
+    
+    Connect(p, false, szFile);
 }
 
 void MainWindow::slotConnect()
@@ -478,11 +498,24 @@ void MainWindow::slotConnect()
     CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
 
-    Connect(p, true);
+    QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+            + QDir::separator()
+            + p->Id()
+            + ".rrc";
+    
+    Connect(p, true, szFile);
 }
 
-int MainWindow::Connect(CConnecter *p, bool set)
+/*!
+ * \brief Connect
+ * \param p: CConnecter instance pointer
+ * \param set: whether OpenDialogSettings 
+ * \param szFile: Configure file
+ * \return 
+ */
+int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
 {
+    Q_ASSERT(p);
     bool check = connect(p, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
     Q_ASSERT(check);
@@ -498,6 +531,9 @@ int MainWindow::Connect(CConnecter *p, bool set)
     check = connect(p, SIGNAL(sigUpdateName(const QString&)),
                     this, SLOT(slotUpdateServerName(const QString&)));
     Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigUpdateParamters(CConnecter*)),
+                         this, SLOT(slotUpdateParameters(CConnecter*)));
+    Q_ASSERT(check);
         
     if(set)
     {
@@ -512,11 +548,8 @@ int MainWindow::Connect(CConnecter *p, bool set)
         }
     }
 
-    QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-            + QDir::separator()
-            + p->Id()
-            + ".rrc";
-    
+    Q_ASSERT(!szFile.isEmpty());
+    m_ConfigureFiles[p] = szFile;
     int nRet = m_ManageConnecter.SaveConnecter(szFile, p);
     if(0 == nRet)
         m_pRecentMenu->addRecentFile(szFile, p->Name());
@@ -582,6 +615,7 @@ void MainWindow::slotDisconnected()
         {
             m_pView->RemoveView(c->GetViewer());
             m_Connecters.removeAll(c);
+            m_ConfigureFiles.remove(c);
             c->deleteLater();
             return;
         }
@@ -604,6 +638,14 @@ void MainWindow::slotUpdateServerName(const QString& szName)
     CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
     if(!pConnecter) return;
     m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName);
+}
+
+void MainWindow::slotUpdateParameters(CConnecter* pConnecter)
+{
+    auto it = m_ConfigureFiles.find(pConnecter);
+    if(m_ConfigureFiles.end() == it)
+        return;
+    m_ManageConnecter.SaveConnecter(it.value(), pConnecter);
 }
 
 void MainWindow::on_actionOpenStyle_O_triggered()
@@ -752,7 +794,15 @@ void MainWindow::on_actionCurrent_connect_parameters_triggered()
         {
             int nRet = c->OpenDialogSettings(this);
             if(QDialog::Accepted == nRet)
+            {
                 emit c->sigUpdateParamters(c);
+                return;
+            }
         }
     }
+}
+
+void MainWindow::on_actionFavorites_triggered()
+{
+    
 }

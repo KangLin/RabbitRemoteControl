@@ -60,6 +60,7 @@ private Q_SLOTS:
     void on_actionDisconnect_D_triggered();
     void slotCloseView(const QWidget* pView);
     
+    void slotUpdateParameters(CConnecter* pConnecter);
     void slotRecentFileTriggered(const QString& szFile);
     void on_actionOpen_O_triggered();
     void slotConnect();
@@ -83,16 +84,20 @@ private Q_SLOTS:
     void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
 
+    void on_actionFavorites_triggered();
+    void on_actionClone_triggered();
+    
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
-    int Connect(CConnecter* p, bool set);
+    int Connect(CConnecter* p, bool set, QString szFile);
 
 public:
     virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
 private:
     CManageConnecter m_ManageConnecter;
-    
+    QMap<CConnecter*, QString> m_ConfigureFiles;
+
 private:
     Ui::MainWindow *ui;
     QActionGroup* m_pGBView;

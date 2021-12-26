@@ -32,5 +32,8 @@
         <file alias="Screenshot">Image/camera.svg</file>
         <file alias="RecentMenu">Image/RecentMenu.svg</file>
         <file alias="Parameters">Image/Parameters.svg</file>
+        <file alias="Clone">Image/Clone.svg</file>
+        <file alias="Favorites">Image/Favorites.svg</file>
+        <file alias="AddFavorites">Image/AddFavorite.svg</file>
     </qresource>
 </RCC>

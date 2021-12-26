@@ -73,8 +73,6 @@ public:
 private:    
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
-private Q_SLOTS:
-    void slotUpdateParameters(CConnecter* pConnecter);
     
 private:
     QMap<QString, CPluginViewer*> m_Plugins;

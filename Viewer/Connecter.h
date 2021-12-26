@@ -178,6 +178,10 @@ Q_SIGNALS:
      */
     void sigInformation(const QString& szInfo);
 
+    /*!
+     * \brief Update parameters, notify application to save or show it.
+     * \param pConnecter
+     */
     void sigUpdateParamters(CConnecter* pConnecter);
 
 protected:

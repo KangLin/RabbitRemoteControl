@@ -140,11 +140,7 @@ CConnecter* CManageConnecter::CreateConnecter(const QString& id)
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
     {
-        auto pConnecter = it.value()->CreateConnecter(id);
-        bool check = connect(pConnecter, SIGNAL(sigUpdateParamters(CConnecter*)),
-                             this, SLOT(slotUpdateParameters(CConnecter*)));
-        Q_ASSERT(check);
-        return pConnecter;
+        return it.value()->CreateConnecter(id);
     }
     return nullptr;
 }
@@ -194,11 +190,6 @@ int CManageConnecter::SaveConnecter(QString szFile, CConnecter *pConnecter)
     pConnecter->Save(szFile);
 
     return 0;
-}
-
-void CManageConnecter::slotUpdateParameters(CConnecter* pConnecter)
-{
-    SaveConnecter(QString(), pConnecter);
 }
 
 int CManageConnecter::EnumPlugins(Handle *handle)
