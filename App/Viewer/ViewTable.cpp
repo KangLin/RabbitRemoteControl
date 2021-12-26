@@ -5,6 +5,7 @@
 #include <QTabBar>
 #include <QStyleOption>
 #include <QDebug>
+#include <QScrollBar>
 #include "RabbitCommonLog.h"
 #include "mainwindow.h"
 
@@ -161,32 +162,19 @@ int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
         return -3;
     }
     
-    if(pScroll->grab().toImage().save(szFile))
+    int w = pScroll->size().width();
+    int h = pScroll->size().height();
+    QScrollBar* pHBar = pScroll->horizontalScrollBar();
+    QScrollBar* pVBar = pScroll->verticalScrollBar();
+    if(pHBar && pHBar->isVisible()) h -= pHBar->height();
+    if(pVBar && pVBar->isVisible()) w -= pVBar->width();
+    QPixmap pixmap(QSize(w, h));
+    pScroll->render(&pixmap);
+    if(pixmap.toImage().save(szFile))
     {
         return 0;
     }
     return -4;
-    
-//    int x = 0;
-//    int y = 0;
-//    int w = pScroll->rect().width();
-//    int h = pScroll->rect().height();
-//    switch (pView->GetAdaptWindows()) {
-//    case CFrmViewer::ZoomToWindow:
-//    case CFrmViewer::KeepAspectRationToWindow:
-//        w = -1;
-//        h = -1;
-//        break;
-//    default:
-//        QPoint p = pScroll->rect().topLeft();
-//        p = pScroll->mapToGlobal(p);
-//        p = pView->mapFromGlobal(p);
-//        x = p.x();
-//        y = p.y();
-//        break;
-//    }
-
-//    return -4;
 }
 
 void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)

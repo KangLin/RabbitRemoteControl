@@ -4,6 +4,7 @@
 + Add settings
 + Optimize saving password 
 + Optimize main windows、toolbar
++ FIX: shot screen window
 
 ### v0.0.11
 + FIX main window focus bug
