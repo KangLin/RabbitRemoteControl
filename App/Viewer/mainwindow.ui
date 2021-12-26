@@ -73,6 +73,7 @@
     <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="menuSink"/>
     <addaction name="separator"/>
+    <addaction name="actionCurrent_connect_parameters"/>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
@@ -121,6 +122,7 @@
    <addaction name="separator"/>
    <addaction name="actionShow_TabBar_B"/>
    <addaction name="actionScreenshot"/>
+   <addaction name="actionCurrent_connect_parameters"/>
    <addaction name="actionSettings"/>
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
@@ -534,6 +536,24 @@
    </property>
    <property name="whatsThis">
     <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionCurrent_connect_parameters">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/image/Parameters</normaloff>:/image/Parameters</iconset>
+   </property>
+   <property name="text">
+    <string>Current connect parameters</string>
+   </property>
+   <property name="toolTip">
+    <string>Current connect parameters</string>
+   </property>
+   <property name="statusTip">
+    <string>Current connect parameters</string>
+   </property>
+   <property name="whatsThis">
+    <string>Current connect parameters</string>
    </property>
   </action>
  </widget>

@@ -80,9 +80,9 @@ private Q_SLOTS:
 
     void on_actionScreenshot_triggered();
     void on_actionSettings_triggered();
-    
+    void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
-    
+
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;

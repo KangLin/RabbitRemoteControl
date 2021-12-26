@@ -741,3 +741,18 @@ void MainWindow::slotShortCut()
         ui->actionZoomToWindow_Z->setShortcut(QKeySequence());
     }
 }
+
+void MainWindow::on_actionCurrent_connect_parameters_triggered()
+{
+    if(!m_pView) return;
+    QWidget* p = m_pView->GetCurrentView();
+    foreach(auto c, m_Connecters)
+    {
+        if(c->GetViewer() == p)
+        {
+            int nRet = c->OpenDialogSettings(this);
+            if(QDialog::Accepted == nRet)
+                emit c->sigUpdateParamters(c);
+        }
+    }
+}
