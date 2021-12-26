@@ -2,6 +2,8 @@
 
 ### v0.0.12
 + Add settings
++ Optimize saving password 
++ Optimize main windows、toolbar
 
 ### v0.0.11
 + FIX main window focus bug
