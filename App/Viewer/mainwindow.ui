@@ -577,6 +577,9 @@
    </property>
   </action>
   <action name="actionFavorites">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
      <normaloff>:/image/Favorites</normaloff>:/image/Favorites</iconset>

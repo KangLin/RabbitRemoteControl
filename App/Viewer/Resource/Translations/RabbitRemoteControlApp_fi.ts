@@ -136,6 +136,14 @@
     </message>
 </context>
 <context>
+    <name>CDockWdgFavorite</name>
+    <message>
+        <location filename="../../DockWdgFavorite.ui" line="14"/>
+        <source>Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CFrmFullScreenToolBar</name>
     <message>
         <location filename="../../FrmFullScreenToolBar.ui" line="16"/>
@@ -226,9 +234,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="54"/>
-        <location filename="../../mainwindow.cpp" line="102"/>
-        <location filename="../../mainwindow.cpp" line="103"/>
         <location filename="../../mainwindow.cpp" line="104"/>
+        <location filename="../../mainwindow.cpp" line="105"/>
+        <location filename="../../mainwindow.cpp" line="106"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
@@ -346,7 +354,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="225"/>
-        <location filename="../../mainwindow.cpp" line="238"/>
+        <location filename="../../mainwindow.cpp" line="255"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -355,9 +363,9 @@
         <location filename="../../mainwindow.ui" line="231"/>
         <location filename="../../mainwindow.ui" line="234"/>
         <location filename="../../mainwindow.ui" line="237"/>
-        <location filename="../../mainwindow.cpp" line="239"/>
-        <location filename="../../mainwindow.cpp" line="240"/>
-        <location filename="../../mainwindow.cpp" line="241"/>
+        <location filename="../../mainwindow.cpp" line="256"/>
+        <location filename="../../mainwindow.cpp" line="257"/>
+        <location filename="../../mainwindow.cpp" line="258"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -486,17 +494,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="585"/>
         <location filename="../../mainwindow.ui" line="588"/>
         <location filename="../../mainwindow.ui" line="591"/>
+        <location filename="../../mainwindow.ui" line="594"/>
         <source>Favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="600"/>
         <location filename="../../mainwindow.ui" line="603"/>
         <location filename="../../mainwindow.ui" line="606"/>
         <location filename="../../mainwindow.ui" line="609"/>
+        <location filename="../../mainwindow.ui" line="612"/>
         <source>Add to favorite</source>
         <translation type="unfinished"></translation>
     </message>
@@ -508,52 +516,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="92"/>
-        <location filename="../../mainwindow.cpp" line="93"/>
         <location filename="../../mainwindow.cpp" line="94"/>
+        <location filename="../../mainwindow.cpp" line="95"/>
+        <location filename="../../mainwindow.cpp" line="96"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="268"/>
+        <location filename="../../mainwindow.cpp" line="285"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="269"/>
-        <location filename="../../mainwindow.cpp" line="270"/>
-        <location filename="../../mainwindow.cpp" line="271"/>
+        <location filename="../../mainwindow.cpp" line="286"/>
+        <location filename="../../mainwindow.cpp" line="287"/>
+        <location filename="../../mainwindow.cpp" line="288"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="471"/>
-        <location filename="../../mainwindow.cpp" line="483"/>
+        <location filename="../../mainwindow.cpp" line="488"/>
+        <location filename="../../mainwindow.cpp" line="500"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="463"/>
+        <location filename="../../mainwindow.cpp" line="480"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="465"/>
+        <location filename="../../mainwindow.cpp" line="482"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="558"/>
+        <location filename="../../mainwindow.cpp" line="575"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="584"/>
+        <location filename="../../mainwindow.cpp" line="601"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="730"/>
+        <location filename="../../mainwindow.cpp" line="747"/>
         <source>Save screenslot to </source>
         <translation type="unfinished"></translation>
     </message>

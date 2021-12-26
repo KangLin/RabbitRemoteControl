@@ -29,13 +29,14 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
+      m_pView(nullptr),
       m_pGBView(nullptr),
       m_ptbZoom(nullptr),
       m_psbZoomFactor(nullptr),
-      m_pRecentMenu(nullptr),
-      m_pView(nullptr),
       m_pFullScreenToolBar(nullptr),
-      m_bFullScreen(isFullScreen())
+      m_bFullScreen(isFullScreen()),
+      m_pRecentMenu(nullptr),
+      m_pDockWdgFavorite(nullptr)
 {
     bool check = false;
 
@@ -139,7 +140,21 @@ MainWindow::MainWindow(QWidget *parent)
     Q_ASSERT(check);
     m_Parameter.Load();
     slotShortCut();
-    
+
+    m_pDockWdgFavorite = new CDockWdgFavorite(this);
+    if(m_pDockWdgFavorite)
+    {
+        m_pDockWdgFavorite->hide();
+        ui->actionFavorites->setChecked(false);
+        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockWdgFavorite);
+        check = connect(m_pDockWdgFavorite, SIGNAL(visibilityChanged(bool)),
+                     this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
+        Q_ASSERT(check);
+        check = connect(m_pDockWdgFavorite, SIGNAL(sigConnect(const QString&)),
+                        this, SLOT(slotRecentFileTriggered(const QString&)));
+        Q_ASSERT(check);
+    }
+
     if(m_Parameter.GetSaveMainWindowStatus())
     {
         QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
@@ -437,6 +452,14 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
+void MainWindow::slotUpdateParameters(CConnecter* pConnecter)
+{
+    auto it = m_ConfigureFiles.find(pConnecter);
+    if(m_ConfigureFiles.end() == it)
+        return;
+    m_ManageConnecter.SaveConnecter(it.value(), pConnecter);
+}
+
 void MainWindow::on_actionClone_triggered()
 {
     if(!m_pView) return;
@@ -640,14 +663,6 @@ void MainWindow::slotUpdateServerName(const QString& szName)
     m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName);
 }
 
-void MainWindow::slotUpdateParameters(CConnecter* pConnecter)
-{
-    auto it = m_ConfigureFiles.find(pConnecter);
-    if(m_ConfigureFiles.end() == it)
-        return;
-    m_ManageConnecter.SaveConnecter(it.value(), pConnecter);
-}
-
 void MainWindow::on_actionOpenStyle_O_triggered()
 {
     RabbitCommon::CStyle::Instance()->slotStyle();
@@ -804,5 +819,32 @@ void MainWindow::on_actionCurrent_connect_parameters_triggered()
 
 void MainWindow::on_actionAdd_to_favorite_triggered()
 {
+    if(!m_pView) return;
+    QWidget* p = m_pView->GetCurrentView();
+    foreach(auto c, m_Connecters)
+    {
+        if(c->GetViewer() == p)
+        {
+            auto it = m_ConfigureFiles.find(c);
+            if(m_ConfigureFiles.end() == it)
+                return;
+            m_pDockWdgFavorite->AddFavorite(c->Name(), it.value(), QString());
+        }
+    }
+}
+
+void MainWindow::on_actionFavorites_triggered()
+{
+    if(!m_pDockWdgFavorite)
+        return;
     
+    if(ui->actionFavorites->isChecked())
+        m_pDockWdgFavorite->show();
+    else
+        m_pDockWdgFavorite->hide();
+}
+
+void MainWindow::slotDockWidgetFavoriteVisibilityChanged(bool visib)
+{
+    ui->actionFavorites->setChecked(visib);
 }
