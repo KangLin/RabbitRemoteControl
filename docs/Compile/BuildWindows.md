@@ -193,7 +193,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
         cmake --build . --target install
 
-  + Specify the CMake parameters: -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
+  + Specify the CMake parameters: -DQXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
   
 #### QTermWidget (Not currently supported on Windows)
 - Compile from source code
@@ -223,7 +223,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         ~/qt-solutions/build$ cmake --build . --target install
         
-  + Specify the CMake parameters: -DQtService_DIR=[libssh installation path]/lib/cmake/QtService
+  + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
 
 ### Compile this project
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)

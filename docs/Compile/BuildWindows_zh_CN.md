@@ -185,7 +185,7 @@
         cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
         cmake --build . --target install
 
-  + 指定 CMake 参数: -DQXmpp_DIR=[libdatachannel 安装目录]/lib/cmake/qxmpp
+  + 指定 CMake 参数: -DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
   
 #### QTermWidget (暂不支持 Windows）     
 - 从源码编译
@@ -215,7 +215,7 @@
         ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
         ~/qt-solutions/build$ cmake --build . --target install
         
-  + 指定 CMake 参数: -DQtService_DIR=[libssh 安装目录]/lib/cmake/QtService
+  + 指定 CMake 参数: -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
 
 ### 编译本项目
 - 项目位置：[https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
