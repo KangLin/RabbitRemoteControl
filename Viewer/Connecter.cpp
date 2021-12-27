@@ -25,7 +25,7 @@ const QString CConnecter::Id()
 {
     QString szId = Protol() + "_" + m_pPluginViewer->Name();
     if(GetPara())
-        szId += "_" + GetPara()->GetHost() + QString::number(GetPara()->GetPort());
+        szId += "_" + GetPara()->GetHost() + "_" + QString::number(GetPara()->GetPort());
     szId = szId.replace(QRegExp("[@:/#%!^&*]"), "_");
     return szId;
 }
