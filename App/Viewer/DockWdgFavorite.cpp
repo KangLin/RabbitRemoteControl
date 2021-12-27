@@ -14,19 +14,26 @@ CDockWdgFavorite::CDockWdgFavorite(QWidget *parent) :
     ui(new Ui::CDockWdgFavorite)
 {
     ui->setupUi(this);
-
+    
     m_szSaveFile = RabbitCommon::CDir::Instance()->GetDirUserData()
             + QDir::separator() + "Favorite.ini";
-    ui->tvFavorite->header()->hide();
-    ui->tvFavorite->setEditTriggers(QTreeView::NoEditTriggers);
-    ui->tvFavorite->setContextMenuPolicy(Qt::CustomContextMenu);
-    bool check = connect(ui->tvFavorite,
-                          SIGNAL(customContextMenuRequested(const QPoint &)),
-                          this, SLOT(slotCustomContextMenu(const QPoint &)));
-    Q_ASSERT(check);
     
-    m_pModel = new QStandardItemModel(ui->tvFavorite);
-    ui->tvFavorite->setModel(m_pModel);
+    m_pView = new CFavoriteView(this);
+    this->setWidget(m_pView);
+    m_pModel = new QStandardItemModel(m_pView);
+    m_pView->setModel(m_pModel);
+    
+    m_pView->setContextMenuPolicy(Qt::CustomContextMenu);
+    bool check = connect(m_pView,
+                         SIGNAL(customContextMenuRequested(const QPoint &)),
+                         this, SLOT(slotCustomContextMenu(const QPoint &)));
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(clicked(const QModelIndex&)),
+                    this, SLOT(slotFavrtieClicked(const QModelIndex&)));
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(doubleClicked(const QModelIndex&)),
+                    this, SLOT(slotFavortiedoubleClicked(const QModelIndex&)));
+    Q_ASSERT(check);
     
     QSettings set(m_szSaveFile, QSettings::IniFormat);
     int nRootCount = 0;
@@ -151,11 +158,11 @@ int CDockWdgFavorite::AddFavorite(const QString& szName, const QString &szFile, 
     return 0;
 }
 
-void CDockWdgFavorite::on_tvFavorite_clicked(const QModelIndex &index)
+void CDockWdgFavorite::slotFavrtieClicked(const QModelIndex &index)
 {
 }
 
-void CDockWdgFavorite::on_tvFavorite_doubleClicked(const QModelIndex &index)
+void CDockWdgFavorite::slotFavortiedoubleClicked(const QModelIndex &index)
 {
     auto item = m_pModel->itemFromIndex(index);
     if(!item) return;
@@ -166,27 +173,28 @@ void CDockWdgFavorite::on_tvFavorite_doubleClicked(const QModelIndex &index)
 
 void CDockWdgFavorite::slotCustomContextMenu(const QPoint &pos)
 {
-    QMenu menu(this);
+    if(!m_pView) return;
+    QMenu menu(m_pView);
     menu.addAction(tr("Connect"), this, SLOT(slotConnect()));
     menu.addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
     menu.addSeparator();
     menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
     menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
-    menu.exec(ui->tvFavorite->mapToGlobal(pos));
+    menu.exec(m_pView->mapToGlobal(pos));
 }
 
 void CDockWdgFavorite::slotConnect()
 {
-    auto lstIndex = ui->tvFavorite->selectionModel()->selectedIndexes();
+    auto lstIndex = m_pView->selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
     {
-        on_tvFavorite_doubleClicked(index);
+        slotFavortiedoubleClicked(index);
     }
 }
 
 void CDockWdgFavorite::slotOpenConnect()
 {
-    auto lstIndex = ui->tvFavorite->selectionModel()->selectedIndexes();
+    auto lstIndex = m_pView->selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
     {
         auto item = m_pModel->itemFromIndex(index);
@@ -198,7 +206,7 @@ void CDockWdgFavorite::slotOpenConnect()
 
 void CDockWdgFavorite::slotDelete()
 {
-    auto lstIndex = ui->tvFavorite->selectionModel()->selectedIndexes();
+    auto lstIndex = m_pView->selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
         m_pModel->removeRow(index.row());
 }
@@ -213,7 +221,7 @@ void CDockWdgFavorite::slotNewGroup()
         QMessageBox::critical(this, tr("Error"), tr("The group [%1] is existed").arg(szGroup));
         return;
     }
-        
+    
     QStandardItem* pItem = new QStandardItem(szGroup);
     m_pModel->appendRow(pItem);
 }

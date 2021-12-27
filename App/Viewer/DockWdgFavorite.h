@@ -3,6 +3,7 @@
 
 #include <QDockWidget>
 #include <QStandardItemModel>
+#include "FavoriteView.h"
 
 namespace Ui {
 class CDockWdgFavorite;
@@ -22,8 +23,8 @@ Q_SIGNALS:
     void sigConnect(const QString &szFile, bool bOpenSettings);
 
 private slots:
-    void on_tvFavorite_clicked(const QModelIndex &index);
-    void on_tvFavorite_doubleClicked(const QModelIndex &index);
+    void slotFavrtieClicked(const QModelIndex &index);
+    void slotFavortiedoubleClicked(const QModelIndex &index);
     void slotCustomContextMenu(const QPoint &pos);
     void slotConnect();
     void slotOpenConnect();
@@ -35,8 +36,10 @@ private:
 
 private:
     Ui::CDockWdgFavorite *ui;
+    CFavoriteView* m_pView;
     QStandardItemModel* m_pModel;
     QString m_szSaveFile;
+
 };
 
 #endif // DOCKWDGFAVORITE_H

@@ -14,6 +14,8 @@ set(SOURCE_FILES
     ParameterApp.cpp
     DlgSettings.cpp
     DockWdgFavorite.cpp
+    FavoriteView.cpp
+    FavoriteMimeData.cpp
     )
 
 set(HEADER_FILES
@@ -25,6 +27,8 @@ set(HEADER_FILES
     ParameterApp.h
     DlgSettings.h
     DockWdgFavorite.h
+    FavoriteView.h
+    FavoriteMimeData.h
     )
 
 set(SOURCE_UI_FILES
