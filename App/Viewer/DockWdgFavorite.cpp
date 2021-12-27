@@ -4,6 +4,10 @@
 #include "RabbitCommonDir.h"
 #include <QStandardItem>
 #include <QSettings>
+#include <QMenu>
+#include <QAction>
+#include <QInputDialog>
+#include <QMessageBox>
 
 CDockWdgFavorite::CDockWdgFavorite(QWidget *parent) :
     QDockWidget(parent),
@@ -15,6 +19,11 @@ CDockWdgFavorite::CDockWdgFavorite(QWidget *parent) :
             + QDir::separator() + "Favorite.ini";
     ui->tvFavorite->header()->hide();
     ui->tvFavorite->setEditTriggers(QTreeView::NoEditTriggers);
+    ui->tvFavorite->setContextMenuPolicy(Qt::CustomContextMenu);
+    bool check = connect(ui->tvFavorite,
+                          SIGNAL(customContextMenuRequested(const QPoint &)),
+                          this, SLOT(slotCustomContextMenu(const QPoint &)));
+    Q_ASSERT(check);
     
     m_pModel = new QStandardItemModel(ui->tvFavorite);
     ui->tvFavorite->setModel(m_pModel);
@@ -144,13 +153,67 @@ int CDockWdgFavorite::AddFavorite(const QString& szName, const QString &szFile, 
 
 void CDockWdgFavorite::on_tvFavorite_clicked(const QModelIndex &index)
 {
-    auto item = m_pModel->itemFromIndex(index);
-    if(!item) return;
-    QString szFile = item->data().toString();
-    if(!szFile.isEmpty())
-        emit sigConnect(szFile);
 }
 
 void CDockWdgFavorite::on_tvFavorite_doubleClicked(const QModelIndex &index)
 {
+    auto item = m_pModel->itemFromIndex(index);
+    if(!item) return;
+    QString szFile = item->data().toString();
+    if(!szFile.isEmpty())
+        emit sigConnect(szFile, false);
+}
+
+void CDockWdgFavorite::slotCustomContextMenu(const QPoint &pos)
+{
+    QMenu menu(this);
+    menu.addAction(tr("Connect"), this, SLOT(slotConnect()));
+    menu.addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
+    menu.addSeparator();
+    menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
+    menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
+    menu.exec(ui->tvFavorite->mapToGlobal(pos));
+}
+
+void CDockWdgFavorite::slotConnect()
+{
+    auto lstIndex = ui->tvFavorite->selectionModel()->selectedIndexes();
+    foreach(auto index, lstIndex)
+    {
+        on_tvFavorite_doubleClicked(index);
+    }
+}
+
+void CDockWdgFavorite::slotOpenConnect()
+{
+    auto lstIndex = ui->tvFavorite->selectionModel()->selectedIndexes();
+    foreach(auto index, lstIndex)
+    {
+        auto item = m_pModel->itemFromIndex(index);
+        QString szFile = item->data().toString();
+        if(!szFile.isEmpty())
+            emit sigConnect(szFile, true);
+    }
+}
+
+void CDockWdgFavorite::slotDelete()
+{
+    auto lstIndex = ui->tvFavorite->selectionModel()->selectedIndexes();
+    foreach(auto index, lstIndex)
+        m_pModel->removeRow(index.row());
+}
+
+void CDockWdgFavorite::slotNewGroup()
+{
+    QString szGroup = QInputDialog::getText(this, tr("Input"), tr("Input group name"));    
+    if(szGroup.isEmpty()) return;
+    auto lstItem = m_pModel->findItems(szGroup);
+    if(!lstItem.isEmpty())
+    {
+        QMessageBox::critical(this, tr("Error"), tr("The group [%1] is existed").arg(szGroup));
+        return;
+    }
+        
+    QStandardItem* pItem = new QStandardItem(szGroup);
+    m_pModel->appendRow(pItem);
 }

@@ -50,7 +50,7 @@ private Q_SLOTS:
     void slotUpdateParameters(CConnecter* pConnecter);
     void on_actionClone_triggered();
     void on_actionOpen_O_triggered();
-    void slotOpenFileTriggered(const QString& szFile);
+    void slotOpenFileTriggered(const QString& szFile, bool bOpenSettings = false);
     void slotConnect();
     void slotConnected();
 private:

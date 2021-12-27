@@ -150,8 +150,8 @@ MainWindow::MainWindow(QWidget *parent)
         check = connect(m_pDockWdgFavorite, SIGNAL(visibilityChanged(bool)),
                      this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
         Q_ASSERT(check);
-        check = connect(m_pDockWdgFavorite, SIGNAL(sigConnect(const QString&)),
-                        this, SLOT(slotOpenFileTriggered(const QString&)));
+        check = connect(m_pDockWdgFavorite, SIGNAL(sigConnect(const QString&, bool)),
+                        this, SLOT(slotOpenFileTriggered(const QString&, bool)));
         Q_ASSERT(check);
     }
 
@@ -480,7 +480,7 @@ void MainWindow::on_actionClone_triggered()
     }
 }
 
-void MainWindow::slotOpenFileTriggered(const QString& szFile)
+void MainWindow::slotOpenFileTriggered(const QString& szFile, bool bOpenSettings)
 {
     CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
     if(nullptr == p)
@@ -489,7 +489,7 @@ void MainWindow::slotOpenFileTriggered(const QString& szFile)
         return;
     }
     
-    Connect(p, false, szFile);
+    Connect(p, bOpenSettings, szFile);
 }
 
 void MainWindow::on_actionOpen_O_triggered()
