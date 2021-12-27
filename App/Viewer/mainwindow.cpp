@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
-                    this, SLOT(slotRecentFileTriggered(const QString&)));
+                    this, SLOT(slotOpenFileTriggered(const QString&)));
     Q_ASSERT(check);
     check = connect(&m_Parameter, SIGNAL(sigRecentMenuMaxCountChanged(int)),
                     m_pRecentMenu, SLOT(setMaxCount(int)));
@@ -151,7 +151,7 @@ MainWindow::MainWindow(QWidget *parent)
                      this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
         Q_ASSERT(check);
         check = connect(m_pDockWdgFavorite, SIGNAL(sigConnect(const QString&)),
-                        this, SLOT(slotRecentFileTriggered(const QString&)));
+                        this, SLOT(slotOpenFileTriggered(const QString&)));
         Q_ASSERT(check);
     }
 
@@ -480,6 +480,18 @@ void MainWindow::on_actionClone_triggered()
     }
 }
 
+void MainWindow::slotOpenFileTriggered(const QString& szFile)
+{
+    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
+    if(nullptr == p)
+    {
+        slotInformation(tr("Load file fail: ") + szFile);
+        return;
+    }
+    
+    Connect(p, false, szFile);
+}
+
 void MainWindow::on_actionOpen_O_triggered()
 {
     QString szFile = RabbitCommon::CDir::GetOpenFileName(this,
@@ -494,20 +506,8 @@ void MainWindow::on_actionOpen_O_triggered()
         slotInformation(tr("Load file fail: ") + szFile);
         return;
     }
-    
-    Connect(p, true, szFile);
-}
 
-void MainWindow::slotRecentFileTriggered(const QString& szFile)
-{
-    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
-    if(nullptr == p)
-    {
-        slotInformation(tr("Load file fail: ") + szFile);
-        return;
-    }
-    
-    Connect(p, false, szFile);
+    Connect(p, true);
 }
 
 void MainWindow::slotConnect()
@@ -520,13 +520,8 @@ void MainWindow::slotConnect()
     QAction* pAction = dynamic_cast<QAction*>(this->sender());    
     CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
-
-    QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-            + QDir::separator()
-            + p->Id()
-            + ".rrc";
     
-    Connect(p, true, szFile);
+    Connect(p, true);
 }
 
 /*!
@@ -538,6 +533,7 @@ void MainWindow::slotConnect()
  */
 int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
 {
+    bool bSave = false; //whether is save configure file
     Q_ASSERT(p);
     bool check = connect(p, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
@@ -567,13 +563,21 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
             delete p;
             return 0;
         case QDialog::Accepted:
+            bSave = true;
             break;
         }
     }
 
-    Q_ASSERT(!szFile.isEmpty());
+    if(szFile.isEmpty())
+        szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                    + QDir::separator()
+                    + p->Id()
+                    + ".rrc";
     m_ConfigureFiles[p] = szFile;
-    int nRet = m_ManageConnecter.SaveConnecter(szFile, p);
+    
+    int nRet = 0;
+    if(bSave)
+        nRet = m_ManageConnecter.SaveConnecter(szFile, p);
     if(0 == nRet)
         m_pRecentMenu->addRecentFile(szFile, p->Name());
 

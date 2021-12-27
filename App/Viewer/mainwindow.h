@@ -36,7 +36,6 @@ Q_SIGNALS:
     
 private Q_SLOTS:
     void on_actionExit_E_triggered();
-    
     void on_actionAbout_A_triggered();
     void on_actionUpdate_U_triggered();
     void on_actionStatusBar_S_triggered();
@@ -46,17 +45,30 @@ private Q_SLOTS:
     void on_actionDefaultStyle_D_triggered();
 
     void on_actionSend_ctl_alt_del_triggered();
-        
-    void on_actionDisconnect_D_triggered();
-    void slotCloseView(const QWidget* pView);
-    
-    void slotUpdateParameters(CConnecter* pConnecter);
-    void on_actionOpen_O_triggered();
-    void slotConnect();
 
+    ///////// Connect ///////// 
+    void slotUpdateParameters(CConnecter* pConnecter);
+    void on_actionClone_triggered();
+    void on_actionOpen_O_triggered();
+    void slotOpenFileTriggered(const QString& szFile);
+    void slotConnect();
     void slotConnected();
+private:
+    int Connect(CConnecter* p, bool set, QString szFile = QString());
+public:
+    virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
+private:
+    CManageConnecter m_ManageConnecter;
+    QMap<CConnecter*, QString> m_ConfigureFiles;
+    QVector<CConnecter*> m_Connecters;
+    
+    ///////// Disconnect /////////
+private Q_SLOTS:
+    void on_actionDisconnect_D_triggered();
+    void slotCloseView(const QWidget* pView);    
     void slotDisconnected();
     void slotError(const int nError, const QString &szInfo);
+    
     /*!
      * \brief Show information
      * \param szInfo
@@ -72,25 +84,25 @@ private Q_SLOTS:
     void on_actionSettings_triggered();
     void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
-    void on_actionClone_triggered();
-        
+
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
-    int Connect(CConnecter* p, bool set, QString szFile);
 
-public:
-    virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
-private:
-    CManageConnecter m_ManageConnecter;
-    QMap<CConnecter*, QString> m_ConfigureFiles;
-
+    ///////// UI ///////// 
 private:
     Ui::MainWindow *ui;
     CView* m_pView;
-    QVector<CConnecter*> m_Connecters;
     QActionGroup* m_pGBView;
-
+    
+    ///////// Full screen ///////// 
+private:
+    CFrmFullScreenToolBar* m_pFullScreenToolBar;
+    bool m_bFullScreen;
+    friend CFrmFullScreenToolBar;
+private Q_SLOTS:
+    void on_actionFull_screen_F_triggered();
+    
     ///////// Zoom ///////// 
 private:
     QToolButton* m_ptbZoom;
@@ -106,19 +118,9 @@ private Q_SLOTS:
     void on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1);
     void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
     
-    ///////// Full screen ///////// 
-private:
-    CFrmFullScreenToolBar* m_pFullScreenToolBar;
-    bool m_bFullScreen;
-    friend CFrmFullScreenToolBar;
-private Q_SLOTS:
-    void on_actionFull_screen_F_triggered();
-    
     ///////// Recent open ///////// 
 private:
     RabbitCommon::CRecentMenu* m_pRecentMenu;
-private Q_SLOTS:
-    void slotRecentFileTriggered(const QString& szFile);
     
     ///////// Favorite //////////
 private:

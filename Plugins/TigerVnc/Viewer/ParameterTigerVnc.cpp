@@ -100,18 +100,16 @@ int CParameterTigerVnc::Save(QSettings &set)
 
 bool CParameterTigerVnc::GetCheckCompleted()
 {
-    bool r = CParameter::GetCheckCompleted();
-    if(!r) return r;
     if(GetIce())
     {
         if(GetSignalServer().isEmpty() || GetSignalPort() <= 0
-                || GetSignalUser().isEmpty()
+                || GetSignalUser().isEmpty() || GetSignalPassword().isEmpty()
                 || GetStunServer().isEmpty() || GetStunPort() <= 0)
             return false;
         return true;
     }
     
-    if(GetHost().isEmpty() || GetPort() <= 0)
+    if(GetHost().isEmpty() || GetPort() <= 0 || GetPassword().isEmpty())
         return false;
     return true;
 }
