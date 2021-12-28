@@ -54,16 +54,12 @@
         <translation>密碼</translation>
     </message>
     <message>
-        <source>Proxy/Password</source>
-        <translation type="vanished">代理/密碼</translation>
-    </message>
-    <message>
         <source>Proxy password</source>
-        <translation type="unfinished"></translation>
+        <translation>代理密碼</translation>
     </message>
     <message>
         <source>Input encrypt key</source>
-        <translation type="unfinished">輸入加密碼鍵</translation>
+        <translation>輸入加密碼鍵</translation>
     </message>
 </context>
 </TS>

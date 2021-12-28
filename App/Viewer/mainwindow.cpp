@@ -45,10 +45,31 @@ MainWindow::MainWindow(QWidget *parent)
     bool check = false;
 
     RabbitCommon::CStyle::Instance()->LoadStyle();
-    ui->setupUi(this);
 
+    ui->setupUi(this);
+    
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     setAcceptDrops(true);
+    
+    m_pFavoriteDockWidget = new QDockWidget(this);
+    if(m_pFavoriteDockWidget)
+    {
+        m_pFavoriteView = new CFavoriteView(m_pFavoriteDockWidget);
+        if(m_pFavoriteView)
+        {
+            check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
+                            this, SLOT(slotOpenFile(const QString&, bool)));
+            Q_ASSERT(check);
+            m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
+        }
+        m_pFavoriteDockWidget->setWindowTitle(tr("Favorite"));
+        m_pFavoriteDockWidget->hide();
+        ui->actionFavorites->setChecked(false);
+        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pFavoriteDockWidget);
+        check = connect(m_pFavoriteDockWidget, SIGNAL(visibilityChanged(bool)),
+                        this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
+        Q_ASSERT(check);
+    }
     
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
@@ -139,26 +160,6 @@ MainWindow::MainWindow(QWidget *parent)
     
     //TODO: modify the bug
     ui->actionZoom_window_to_remote_desktop->setVisible(false);
-
-    m_pFavoriteDockWidget = new QDockWidget(this);
-    if(m_pFavoriteDockWidget)
-    {
-        m_pFavoriteView = new CFavoriteView(m_pFavoriteDockWidget);
-        if(m_pFavoriteView)
-        {
-            check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
-                            this, SLOT(slotOpenFile(const QString&, bool)));
-            Q_ASSERT(check);
-            m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
-        }
-        m_pFavoriteDockWidget->setWindowTitle(tr("Favorite"));
-        m_pFavoriteDockWidget->hide();
-        ui->actionFavorites->setChecked(false);
-        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pFavoriteDockWidget);
-        check = connect(m_pFavoriteDockWidget, SIGNAL(visibilityChanged(bool)),
-                        this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
-        Q_ASSERT(check);
-    }
 
     check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
                     this, SLOT(slotShortCut()));
@@ -461,6 +462,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
             on_actionFull_screen_F_triggered();
         break;
     }
+    QMainWindow::keyReleaseEvent(event);
 }
 
 void MainWindow::slotUpdateParameters(CConnecter* pConnecter)
@@ -724,6 +726,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         set.remove("MainWindow/Status/Geometry");
         set.remove("MainWindow/Status/State");
     }
+    QMainWindow::closeEvent(event);
 }
 
 void MainWindow::on_actionSend_ctl_alt_del_triggered()

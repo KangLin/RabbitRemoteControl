@@ -59,7 +59,7 @@
     </message>
     <message>
         <source>Input encrypt key</source>
-        <translation type="unfinished">输入加密码键</translation>
+        <translation>输入加密码键</translation>
     </message>
 </context>
 </TS>

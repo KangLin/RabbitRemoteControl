@@ -136,10 +136,45 @@
     </message>
 </context>
 <context>
-    <name>CDockWdgFavorite</name>
+    <name>CFavoriteView</name>
     <message>
-        <location filename="../../DockWdgFavorite.ui" line="14"/>
-        <source>Favorite</source>
+        <location filename="../../FavoriteView.cpp" line="191"/>
+        <source>Connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FavoriteView.cpp" line="192"/>
+        <source>Open settings and connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FavoriteView.cpp" line="194"/>
+        <source>New group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FavoriteView.cpp" line="195"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FavoriteView.cpp" line="229"/>
+        <source>Input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FavoriteView.cpp" line="229"/>
+        <source>Input group name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FavoriteView.cpp" line="234"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FavoriteView.cpp" line="234"/>
+        <source>The group [%1] is existed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -234,9 +269,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="54"/>
-        <location filename="../../mainwindow.cpp" line="103"/>
-        <location filename="../../mainwindow.cpp" line="104"/>
-        <location filename="../../mainwindow.cpp" line="105"/>
+        <location filename="../../mainwindow.cpp" line="129"/>
+        <location filename="../../mainwindow.cpp" line="130"/>
+        <location filename="../../mainwindow.cpp" line="131"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
@@ -354,7 +389,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="225"/>
-        <location filename="../../mainwindow.cpp" line="253"/>
+        <location filename="../../mainwindow.cpp" line="265"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -363,9 +398,9 @@
         <location filename="../../mainwindow.ui" line="231"/>
         <location filename="../../mainwindow.ui" line="234"/>
         <location filename="../../mainwindow.ui" line="237"/>
-        <location filename="../../mainwindow.cpp" line="254"/>
-        <location filename="../../mainwindow.cpp" line="255"/>
-        <location filename="../../mainwindow.cpp" line="256"/>
+        <location filename="../../mainwindow.cpp" line="266"/>
+        <location filename="../../mainwindow.cpp" line="267"/>
+        <location filename="../../mainwindow.cpp" line="268"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -516,52 +551,57 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="93"/>
-        <location filename="../../mainwindow.cpp" line="94"/>
-        <location filename="../../mainwindow.cpp" line="95"/>
+        <location filename="../../mainwindow.cpp" line="119"/>
+        <location filename="../../mainwindow.cpp" line="120"/>
+        <location filename="../../mainwindow.cpp" line="121"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="283"/>
+        <location filename="../../mainwindow.cpp" line="65"/>
+        <source>Favorite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="295"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="284"/>
-        <location filename="../../mainwindow.cpp" line="285"/>
-        <location filename="../../mainwindow.cpp" line="286"/>
+        <location filename="../../mainwindow.cpp" line="296"/>
+        <location filename="../../mainwindow.cpp" line="297"/>
+        <location filename="../../mainwindow.cpp" line="298"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="488"/>
-        <location filename="../../mainwindow.cpp" line="506"/>
+        <location filename="../../mainwindow.cpp" line="502"/>
+        <location filename="../../mainwindow.cpp" line="520"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="498"/>
+        <location filename="../../mainwindow.cpp" line="512"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="500"/>
+        <location filename="../../mainwindow.cpp" line="514"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="585"/>
+        <location filename="../../mainwindow.cpp" line="602"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="611"/>
+        <location filename="../../mainwindow.cpp" line="628"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="749"/>
+        <location filename="../../mainwindow.cpp" line="767"/>
         <source>Save screenslot to </source>
         <translation type="unfinished"></translation>
     </message>

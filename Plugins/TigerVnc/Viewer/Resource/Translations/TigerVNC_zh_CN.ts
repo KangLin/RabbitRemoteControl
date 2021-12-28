@@ -10,7 +10,7 @@
     </message>
     <message>
         <source>Signal error: %1</source>
-        <translation type="vanished">信令错误：%1</translation>
+        <translation>信令错误：%1</translation>
     </message>
 </context>
 <context>
