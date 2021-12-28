@@ -9,12 +9,13 @@
 #include <QActionGroup>
 #include <QToolButton>
 #include <QSpinBox>
+#include <QDockWidget>
 
 #include "ViewTable.h"
 #include "ManageConnecter.h"
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
-#include "DockWdgFavorite.h"
+#include "FavoriteView.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -124,7 +125,8 @@ private:
     
     ///////// Favorite //////////
 private:
-    CDockWdgFavorite* m_pDockWdgFavorite;
+    QDockWidget* m_pFavoriteDockWidget;
+    CFavoriteView* m_pFavoriteView;
 private Q_SLOTS:
     void on_actionAdd_to_favorite_triggered();
     void slotDockWidgetFavoriteVisibilityChanged(bool visible);

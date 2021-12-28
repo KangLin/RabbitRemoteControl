@@ -34,12 +34,13 @@ MainWindow::MainWindow(QWidget *parent)
       ui(new Ui::MainWindow),
       m_pView(nullptr),
       m_pGBView(nullptr),
-      m_ptbZoom(nullptr),
-      m_psbZoomFactor(nullptr),
       m_pFullScreenToolBar(nullptr),
       m_bFullScreen(isFullScreen()),
+      m_ptbZoom(nullptr),
+      m_psbZoomFactor(nullptr),
       m_pRecentMenu(nullptr),
-      m_pDockWdgFavorite(nullptr)
+      m_pFavoriteDockWidget(nullptr),
+      m_pFavoriteView(nullptr)
 {
     bool check = false;
 
@@ -145,20 +146,44 @@ MainWindow::MainWindow(QWidget *parent)
     m_Parameter.Load();
     slotShortCut();
 
-    m_pDockWdgFavorite = new CDockWdgFavorite(this);
-    if(m_pDockWdgFavorite)
+    m_pFavoriteView = new CFavoriteView(this);
+    if(m_pFavoriteView)
     {
-        m_pDockWdgFavorite->hide();
-        ui->actionFavorites->setChecked(false);
-        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockWdgFavorite);
-        check = connect(m_pDockWdgFavorite, SIGNAL(visibilityChanged(bool)),
-                     this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
-        Q_ASSERT(check);
-        check = connect(m_pDockWdgFavorite, SIGNAL(sigConnect(const QString&, bool)),
+        check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
                         this, SLOT(slotOpenFile(const QString&, bool)));
         Q_ASSERT(check);
-    }
 
+        m_pFavoriteDockWidget = new QDockWidget(this);
+        if(m_pFavoriteDockWidget)
+        {
+<<<<<<< Updated upstream
+=======
+            check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
+                            this, SLOT(slotOpenFile(const QString&, bool)));
+            Q_ASSERT(check);
+>>>>>>> Stashed changes
+            m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
+            
+            m_pFavoriteDockWidget->setWindowTitle(tr("Favrite"));
+            m_pFavoriteDockWidget->hide();
+            ui->actionFavorites->setChecked(false);
+            addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pFavoriteDockWidget);
+            check = connect(m_pFavoriteDockWidget, SIGNAL(visibilityChanged(bool)),
+                            this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
+            Q_ASSERT(check);
+        }
+<<<<<<< Updated upstream
+=======
+        m_pFavoriteDockWidget->setWindowTitle(tr("Favorite"));
+        m_pFavoriteDockWidget->hide();
+        ui->actionFavorites->setChecked(false);
+        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pFavoriteDockWidget);
+        check = connect(m_pFavoriteDockWidget, SIGNAL(visibilityChanged(bool)),
+                        this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
+        Q_ASSERT(check);
+>>>>>>> Stashed changes
+    }
+    
     if(m_Parameter.GetSaveMainWindowStatus())
     {
         QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
@@ -831,7 +856,7 @@ void MainWindow::on_actionCurrent_connect_parameters_triggered()
 
 void MainWindow::on_actionAdd_to_favorite_triggered()
 {
-    if(!m_pView) return;
+    if(!m_pView || !m_pFavoriteView) return;
     QWidget* p = m_pView->GetCurrentView();
     foreach(auto c, m_Connecters)
     {
@@ -840,20 +865,20 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
             auto it = m_ConfigureFiles.find(c);
             if(m_ConfigureFiles.end() == it)
                 return;
-            m_pDockWdgFavorite->AddFavorite(c->Name(), it.value(), QString());
+            m_pFavoriteView->AddFavorite(c->Name(), it.value(), QString());
         }
     }
 }
 
 void MainWindow::on_actionFavorites_triggered()
 {
-    if(!m_pDockWdgFavorite)
+    if(!m_pFavoriteDockWidget)
         return;
     
     if(ui->actionFavorites->isChecked())
-        m_pDockWdgFavorite->show();
+        m_pFavoriteDockWidget->show();
     else
-        m_pDockWdgFavorite->hide();
+        m_pFavoriteDockWidget->hide();
 }
 
 void MainWindow::slotDockWidgetFavoriteVisibilityChanged(bool visib)

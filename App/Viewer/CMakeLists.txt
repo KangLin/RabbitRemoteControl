@@ -13,7 +13,6 @@ set(SOURCE_FILES
     FrmViewScroll.cpp
     ParameterApp.cpp
     DlgSettings.cpp
-    DockWdgFavorite.cpp
     FavoriteView.cpp
     FavoriteMimeData.cpp
     )
@@ -26,7 +25,6 @@ set(HEADER_FILES
     FrmViewScroll.h
     ParameterApp.h
     DlgSettings.h
-    DockWdgFavorite.h
     FavoriteView.h
     FavoriteMimeData.h
     )
@@ -35,7 +33,6 @@ set(SOURCE_UI_FILES
     mainwindow.ui
     FrmFullScreenToolBar.ui
     DlgSettings.ui
-    DockWdgFavorite.ui
     )
 
 if(WIN32)

@@ -9,7 +9,13 @@ class CFavoriteView : public QTreeView
     Q_OBJECT
 public:
     explicit CFavoriteView(QWidget *parent = nullptr);
+    virtual ~CFavoriteView();
+    
+    int AddFavorite(const QString& szName, const QString &szFile, QString szGroup);
 
+Q_SIGNALS:
+    void sigConnect(const QString &szFile, bool bOpenSettings);
+    
     // QWidget interface
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
@@ -18,11 +24,24 @@ protected:
 
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
+    
+private slots:
+    void slotFavrtieClicked(const QModelIndex &index);
+    void slotFavortiedoubleClicked(const QModelIndex &index);
+    void slotCustomContextMenu(const QPoint &pos);
+    void slotConnect();
+    void slotOpenConnect();
+    void slotDelete();
+    void slotNewGroup();
 
 private:
+    QStandardItemModel* m_pModel;
+    QString m_szSaveFile;
+    
     QPoint m_DragStartPosition;
     
     QStandardItem* NewItem(const QModelIndex &index);
+    int Save();
 };
 
 #endif // CFAVORITEVIEW_H
