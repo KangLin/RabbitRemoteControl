@@ -87,6 +87,7 @@ int CDockWdgFavorite::Save()
     for(int rootIndex = 0; rootIndex < m_pModel->rowCount(); rootIndex++)
     {
         auto rootItem = m_pModel->item(rootIndex);
+        if(!rootItem) continue;
         if(rootItem->hasChildren())
         {
             int nCount = 0;
@@ -95,6 +96,7 @@ int CDockWdgFavorite::Save()
             for(int childIndex = 0; childIndex < rootItem->rowCount(); childIndex++)
             {
                 auto childItem = rootItem->child(childIndex);
+                if(!childItem) continue;
                 set.setValue(szGroup + "/Name_" + QString::number(nCount), childItem->text());
                 set.setValue(szGroup + "/File_" + QString::number(nCount), childItem->data());
                 nCount++;
