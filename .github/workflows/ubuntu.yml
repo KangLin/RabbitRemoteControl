@@ -19,7 +19,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu
-      RabbitRemoteControl_VERSION: 0.0.12
+      RabbitRemoteControl_VERSION: 0.0.13
       
     steps:
     - uses: actions/checkout@v2
