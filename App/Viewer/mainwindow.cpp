@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
             Q_ASSERT(check);
             m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
         }
+        m_pFavoriteDockWidget->setObjectName("Favorite"); // See: saveState help document
         m_pFavoriteDockWidget->setWindowTitle(tr("Favorite"));
         m_pFavoriteDockWidget->hide();
         ui->actionFavorites->setChecked(false);
