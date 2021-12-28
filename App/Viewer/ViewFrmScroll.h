@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CFRMVIEWSCROLL_H
-#define CFRMVIEWSCROLL_H
+#ifndef CVIEWFRMSCROLL_H
+#define CVIEWFRMSCROLL_H
 
 #include "FrmViewer.h"
 #include <QScrollArea>
@@ -14,12 +14,12 @@
  *        the terminal view comes with a scroll bar 
  * @ingroup ViewApi
  */
-class CFrmViewScroll : public QScrollArea
+class CViewFrmScroll : public QScrollArea
 {
     Q_OBJECT
 public:
-    explicit CFrmViewScroll(CFrmViewer* pView, QWidget *parent = nullptr);
-    virtual ~CFrmViewScroll();
+    explicit CViewFrmScroll(CFrmViewer* pView, QWidget *parent = nullptr);
+    virtual ~CViewFrmScroll();
     
     void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Original);
     CFrmViewer::ADAPT_WINDOWS AdaptWindows();
@@ -30,4 +30,4 @@ private Q_SLOTS:
     void slotMouseMoveEvent(QMouseEvent *event);
 };
 
-#endif // CFRMVIEWSCROLL_H
+#endif // CVIEWFRMSCROLL_H

@@ -10,7 +10,7 @@ set(SOURCE_FILES
     FrmFullScreenToolBar.cpp
     ViewTable.cpp
     View.cpp
-    FrmViewScroll.cpp
+    ViewFrmScroll.cpp
     ParameterApp.cpp
     DlgSettings.cpp
     FavoriteView.cpp
@@ -22,7 +22,7 @@ set(HEADER_FILES
     FrmFullScreenToolBar.h
     ViewTable.h
     View.h
-    FrmViewScroll.h
+    ViewFrmScroll.h
     ParameterApp.h
     DlgSettings.h
     FavoriteView.h

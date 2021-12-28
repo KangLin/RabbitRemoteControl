@@ -1,12 +1,12 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "FrmViewScroll.h"
+#include "ViewFrmScroll.h"
 
 #include <QGuiApplication>
 #include <QScrollBar>
 #include "RabbitCommonLog.h"
 
-CFrmViewScroll::CFrmViewScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
+CViewFrmScroll::CViewFrmScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
 {
     setFocusPolicy(Qt::NoFocus);
     if(pView)
@@ -23,14 +23,14 @@ CFrmViewScroll::CFrmViewScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea
     setWidgetResizable(false);
 }
 
-CFrmViewScroll::~CFrmViewScroll()
+CViewFrmScroll::~CViewFrmScroll()
 {
     //qDebug() << "CFrmViewScroll::~CFrmViewScroll()";
     QWidget* pView = takeWidget();
     Q_UNUSED(pView);
 }
 
-void CFrmViewScroll::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
+void CViewFrmScroll::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
 {
     CFrmViewer* pView = qobject_cast<CFrmViewer*>(widget());
     if(!pView) return;
@@ -46,7 +46,7 @@ void CFrmViewScroll::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
     return;
 }
 
-CFrmViewer::ADAPT_WINDOWS CFrmViewScroll::AdaptWindows()
+CFrmViewer::ADAPT_WINDOWS CViewFrmScroll::AdaptWindows()
 {
     CFrmViewer* pView = qobject_cast<CFrmViewer*>(widget());
     if(pView)
@@ -54,12 +54,12 @@ CFrmViewer::ADAPT_WINDOWS CFrmViewScroll::AdaptWindows()
     return CFrmViewer::Auto;
 }
 
-CFrmViewer* CFrmViewScroll::GetViewer()
+CFrmViewer* CViewFrmScroll::GetViewer()
 {
     return qobject_cast<CFrmViewer*>(widget());
 }
 
-void CFrmViewScroll::slotMouseMoveEvent(QMouseEvent *event)
+void CViewFrmScroll::slotMouseMoveEvent(QMouseEvent *event)
 {
     int area = 10;
     CFrmViewer* pFrmView = qobject_cast<CFrmViewer*>(sender());

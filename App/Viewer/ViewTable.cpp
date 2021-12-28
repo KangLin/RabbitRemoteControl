@@ -44,7 +44,7 @@ CViewTable::~CViewTable()
 {
     for(int i = 0; i < m_pTab->count(); i++)
     {
-        CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(i));
+        CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(i));
         if(pScroll) delete pScroll;
     }
     if(m_pTab)
@@ -54,7 +54,7 @@ CViewTable::~CViewTable()
 void CViewTable::slotCurrentChanged(int index)
 {
     //qDebug() << "CViewTable::slotCurrentChanged";
-    CFrmViewScroll* pView = qobject_cast<CFrmViewScroll*>(GetViewer(index));
+    CViewFrmScroll* pView = qobject_cast<CViewFrmScroll*>(GetViewer(index));
     if(pView)
     {
         emit sigAdaptWindows(pView->AdaptWindows());
@@ -66,7 +66,7 @@ void CViewTable::slotTabCloseRequested(int index)
 {
     QWidget* pView = GetViewer(index);
     if(!pView) return;
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(pView);
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(pView);
     if(pScroll)
         emit sigCloseView(pScroll->GetViewer());
     else
@@ -96,7 +96,7 @@ int CViewTable::AddView(QWidget *pView)
     CFrmViewer* p = qobject_cast<CFrmViewer*>(pView);
     if(p)
     {
-        CFrmViewScroll* pScroll = new CFrmViewScroll(p, m_pTab);
+        CViewFrmScroll* pScroll = new CViewFrmScroll(p, m_pTab);
         if(pScroll)
         {
             pScroll->SetAdaptWindows(p->GetAdaptWindows());
@@ -114,7 +114,7 @@ int CViewTable::RemoveView(QWidget *pView)
 {
     int nIndex = GetViewIndex(pView);
     if(-1 == nIndex) return 0;
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(nIndex));
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(nIndex));
     // Note: The following order cannot be changed
     m_pTab->removeTab(nIndex);
     if(pScroll) delete pScroll;
@@ -150,7 +150,7 @@ int CViewTable::ShowTabBar(bool bShow)
 
 int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
 {
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
     if(!pScroll) return -1;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return -2;
@@ -191,7 +191,7 @@ void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
                 pView->SetAdaptWindows(aw);
         }
     } else {
-        CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+        CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
         if(pScroll)
             pScroll->SetAdaptWindows(aw);
     }
@@ -199,7 +199,7 @@ void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
 
 double CViewTable::GetZoomFactor()
 {
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
     if(!pScroll) return -1;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return -1;
@@ -208,7 +208,7 @@ double CViewTable::GetZoomFactor()
 
 void CViewTable::slotZoomFactor(double v)
 {
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
     if(!pScroll) return;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return;
@@ -217,7 +217,7 @@ void CViewTable::slotZoomFactor(double v)
 
 void CViewTable::slotZoomIn()
 {
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
     if(!pScroll) return;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return;
@@ -226,7 +226,7 @@ void CViewTable::slotZoomIn()
 
 void CViewTable::slotZoomOut()
 {
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
     if(!pScroll) return;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return;
@@ -248,7 +248,7 @@ int CViewTable::GetViewIndex(QWidget *pView)
         QWidget* p = GetViewer(i);
         if(p == pView)
             return i;
-        CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(p);
+        CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(p);
         if(pScroll)
             if(pScroll->GetViewer() == pView)
                 return i;
@@ -261,7 +261,7 @@ QWidget* CViewTable::GetCurrentView()
 {
     QWidget* pView = m_pTab->currentWidget();
     if(!pView) return pView;
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(pView);
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(pView);
     if(pScroll)
         return pScroll->GetViewer();
     return pView;
@@ -278,7 +278,7 @@ void CViewTable::resizeEvent(QResizeEvent *event)
 QSize CViewTable::GetDesktopSize()
 {
     QSize s;
-    CFrmViewScroll* pScroll = qobject_cast<CFrmViewScroll*>(GetViewer(m_pTab->currentIndex()));
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
     if(!pScroll) return s;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return s;

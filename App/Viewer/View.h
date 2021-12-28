@@ -5,7 +5,7 @@
 
 #include <QWidget>
 #include "Connecter.h"
-#include "FrmViewScroll.h"
+#include "ViewFrmScroll.h"
 
 /** 
  *  \~english \defgroup Programe Rabbit remote control programe
