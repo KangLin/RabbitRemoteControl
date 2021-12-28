@@ -50,7 +50,7 @@ private Q_SLOTS:
     void slotUpdateParameters(CConnecter* pConnecter);
     void on_actionClone_triggered();
     void on_actionOpen_O_triggered();
-    void slotOpenFileTriggered(const QString& szFile, bool bOpenSettings = false);
+    void slotOpenFile(const QString& szFile, bool bOpenSettings = false);
     void slotConnect();
     void slotConnected();
 private:
@@ -132,6 +132,14 @@ private Q_SLOTS:
     
 public:
     CParameterApp m_Parameter;
+
+    ///////// Drop //////////
+protected:
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override;
+    virtual void dropEvent(QDropEvent *event) override;
+private:
+    QPoint m_DragStartPosition;
 };
 
 #endif // MAINWINDOW_H

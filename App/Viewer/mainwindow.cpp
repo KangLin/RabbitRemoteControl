@@ -25,6 +25,9 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QWidgetAction>
+#include <QMouseEvent>
+#include <QDrag>
+#include <QMimeData>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -44,10 +47,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
+    setAcceptDrops(true);
     
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
-                    this, SLOT(slotOpenFileTriggered(const QString&)));
+                    this, SLOT(slotOpenFile(const QString&)));
     Q_ASSERT(check);
     check = connect(&m_Parameter, SIGNAL(sigRecentMenuMaxCountChanged(int)),
                     m_pRecentMenu, SLOT(setMaxCount(int)));
@@ -151,7 +155,7 @@ MainWindow::MainWindow(QWidget *parent)
                      this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
         Q_ASSERT(check);
         check = connect(m_pDockWdgFavorite, SIGNAL(sigConnect(const QString&, bool)),
-                        this, SLOT(slotOpenFileTriggered(const QString&, bool)));
+                        this, SLOT(slotOpenFile(const QString&, bool)));
         Q_ASSERT(check);
     }
 
@@ -480,8 +484,9 @@ void MainWindow::on_actionClone_triggered()
     }
 }
 
-void MainWindow::slotOpenFileTriggered(const QString& szFile, bool bOpenSettings)
+void MainWindow::slotOpenFile(const QString& szFile, bool bOpenSettings)
 {
+    if(szFile.isEmpty()) return;
     CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
     if(nullptr == p)
     {
@@ -854,4 +859,33 @@ void MainWindow::on_actionFavorites_triggered()
 void MainWindow::slotDockWidgetFavoriteVisibilityChanged(bool visib)
 {
     ui->actionFavorites->setChecked(visib);
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    LOG_MODEL_DEBUG("MainWindow", "dragEnterEvent");
+    
+    if(event->mimeData()->hasUrls())
+    {
+        qWarning() << event->mimeData()->urls();
+        event->acceptProposedAction();
+    }
+}
+
+void MainWindow::dragMoveEvent(QDragMoveEvent *event)
+{
+    //LOG_MODEL_DEBUG("MainWindow", "dragMoveEvent");
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    LOG_MODEL_DEBUG("MainWindow", "dropEvent");
+    if(!event->mimeData()->hasUrls())
+        return;
+    auto urls = event->mimeData()->urls();
+    foreach(auto url, urls)
+    {
+        if(url.isLocalFile())
+            slotOpenFile(url.toLocalFile());
+    }
 }

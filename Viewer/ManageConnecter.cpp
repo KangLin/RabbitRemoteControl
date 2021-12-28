@@ -148,7 +148,8 @@ CConnecter* CManageConnecter::CreateConnecter(const QString& id)
 CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
 {
     CConnecter* pConnecter = nullptr;
-   
+    if(szFile.isEmpty()) return nullptr;
+
     QSettings set(szFile, QSettings::IniFormat);
     m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
     QString id = set.value("Plugin/ID").toString();

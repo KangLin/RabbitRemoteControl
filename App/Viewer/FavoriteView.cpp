@@ -91,19 +91,23 @@ void CFavoriteView::mousePressEvent(QMouseEvent *event)
 void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
 {
     LOG_MODEL_DEBUG("CFavoriteView", "mouseMoveEvent");
-    if (!(event->buttons() & Qt::LeftButton))
-        return;
-    if ((event->pos() - m_DragStartPosition).manhattanLength()
-            < QApplication::startDragDistance())
-        return;
-    LOG_MODEL_DEBUG("CFavoriteView", "mouseMoveEvent drag");
-    QDrag *drag = new QDrag(this);
-    CFavoriteMimeData *pData = new CFavoriteMimeData();
-    pData->m_Items = this->selectionModel()->selectedIndexes();
-    drag->setMimeData(pData);
-
-    Qt::DropAction dropAction = Qt::MoveAction;
-    if(event->modifiers() & Qt::ControlModifier)
-        dropAction = Qt::CopyAction;
-    drag->exec(dropAction);
+    do{
+        if (!(event->buttons() & Qt::LeftButton))
+            break;
+        if ((event->pos() - m_DragStartPosition).manhattanLength()
+                < QApplication::startDragDistance())
+            break;
+        LOG_MODEL_DEBUG("CFavoriteView", "mouseMoveEvent drag");
+        QDrag *drag = new QDrag(this);
+        CFavoriteMimeData *pData = new CFavoriteMimeData();
+        pData->m_Items = this->selectionModel()->selectedIndexes();
+        drag->setMimeData(pData);
+        
+        Qt::DropAction dropAction = Qt::MoveAction;
+        if(event->modifiers() & Qt::ControlModifier)
+            dropAction = Qt::CopyAction;
+        drag->exec(dropAction);
+    } while (false);
+    
+    QTreeView::mouseMoveEvent(event);
 }
