@@ -527,8 +527,11 @@ void MainWindow::slotConnect()
 /*!
  * \brief Connect
  * \param p: CConnecter instance pointer
- * \param set: whether OpenDialogSettings 
- * \param szFile: Configure file
+ * \param set: whether open settings dialog.
+ *            true: open settings dialog and save configure file
+ *            false: don't open settings dialog
+ * \param szFile: Configure file.
+ *            if is empty. the use default configure file.
  * \return 
  */
 int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
