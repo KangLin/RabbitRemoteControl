@@ -139,41 +139,18 @@ MainWindow::MainWindow(QWidget *parent)
     
     //TODO: modify the bug
     ui->actionZoom_window_to_remote_desktop->setVisible(false);
-    
-    check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
-                    this, SLOT(slotShortCut()));
-    Q_ASSERT(check);
-    m_Parameter.Load();
-    slotShortCut();
 
-    m_pFavoriteView = new CFavoriteView(this);
-    if(m_pFavoriteView)
+    m_pFavoriteDockWidget = new QDockWidget(this);
+    if(m_pFavoriteDockWidget)
     {
-        check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
-                        this, SLOT(slotOpenFile(const QString&, bool)));
-        Q_ASSERT(check);
-
-        m_pFavoriteDockWidget = new QDockWidget(this);
-        if(m_pFavoriteDockWidget)
+        m_pFavoriteView = new CFavoriteView(m_pFavoriteDockWidget);
+        if(m_pFavoriteView)
         {
-<<<<<<< Updated upstream
-=======
             check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
->>>>>>> Stashed changes
             m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
-            
-            m_pFavoriteDockWidget->setWindowTitle(tr("Favrite"));
-            m_pFavoriteDockWidget->hide();
-            ui->actionFavorites->setChecked(false);
-            addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pFavoriteDockWidget);
-            check = connect(m_pFavoriteDockWidget, SIGNAL(visibilityChanged(bool)),
-                            this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
-            Q_ASSERT(check);
         }
-<<<<<<< Updated upstream
-=======
         m_pFavoriteDockWidget->setWindowTitle(tr("Favorite"));
         m_pFavoriteDockWidget->hide();
         ui->actionFavorites->setChecked(false);
@@ -181,8 +158,13 @@ MainWindow::MainWindow(QWidget *parent)
         check = connect(m_pFavoriteDockWidget, SIGNAL(visibilityChanged(bool)),
                         this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
         Q_ASSERT(check);
->>>>>>> Stashed changes
     }
+
+    check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
+                    this, SLOT(slotShortCut()));
+    Q_ASSERT(check);
+    m_Parameter.Load();
+    slotShortCut();
     
     if(m_Parameter.GetSaveMainWindowStatus())
     {
@@ -865,7 +847,7 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
             auto it = m_ConfigureFiles.find(c);
             if(m_ConfigureFiles.end() == it)
                 return;
-            m_pFavoriteView->AddFavorite(c->Name(), it.value(), QString());
+            m_pFavoriteView->AddFavorite(c->Name(), it.value());
         }
     }
 }

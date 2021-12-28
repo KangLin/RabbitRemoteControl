@@ -11,7 +11,7 @@ public:
     explicit CFavoriteView(QWidget *parent = nullptr);
     virtual ~CFavoriteView();
     
-    int AddFavorite(const QString& szName, const QString &szFile, QString szGroup);
+    int AddFavorite(const QString& szName, const QString &szFile);
 
 Q_SIGNALS:
     void sigConnect(const QString &szFile, bool bOpenSettings);

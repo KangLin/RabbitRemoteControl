@@ -121,11 +121,13 @@ int CFavoriteView::Save()
     return nRet;
 }
 
-int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile, QString szGroup)
+int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
 {
     if(!m_pModel) return -1;
     QStandardItem* pItem = nullptr;
-    if(szGroup.isEmpty())
+    QString szGroup;
+    auto indexs = selectionModel()->selectedIndexes();
+    if(indexs.isEmpty())
     {
         auto it = m_pModel->findItems(szName, Qt::MatchFixedString);
         if(it.isEmpty())
@@ -140,11 +142,12 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile, QSt
                     break;
             }
             if(it.end() != i)
-                return 0;
+                return 1;
             pItem = new QStandardItem(szName);
             m_pModel->appendRow(pItem);
         }
     } else {
+        szGroup = m_pModel->itemFromIndex(indexs[0])->text();
         auto lstGroup = m_pModel->findItems(szGroup, Qt::MatchFixedString);
         if(lstGroup.isEmpty())
         {
@@ -153,11 +156,12 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile, QSt
             pItem = new QStandardItem(szName);
             pGroup->appendRow(pItem);
         } else {
+            if(lstGroup[0]->data().isValid()) return 2;
             for(int i = 0; i < lstGroup[0]->rowCount(); i++)
             {
                 auto item = lstGroup[0]->child(i);
-                if(item->text() == szName && item->data() == szFile)
-                    return 0;
+                if(item->text() == szName)
+                    return -3;
             }
             pItem = new QStandardItem(szName);
             lstGroup[0]->appendRow(pItem);
@@ -217,7 +221,7 @@ void CFavoriteView::slotDelete()
 {
     auto lstIndex = selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
-        m_pModel->removeRow(index.row());
+        m_pModel->removeRow(index.row(), index.parent());
 }
 
 void CFavoriteView::slotNewGroup()
