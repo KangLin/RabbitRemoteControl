@@ -136,7 +136,7 @@
     </message>
     <message>
         <location filename="../../DlgSetFreeRdp.ui" line="276"/>
-        <location filename="../../DlgSetFreeRdp.cpp" line="38"/>
+        <location filename="../../DlgSetFreeRdp.cpp" line="39"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -156,22 +156,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.cpp" line="42"/>
+        <location filename="../../DlgSetFreeRdp.cpp" line="43"/>
         <source>8 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.cpp" line="43"/>
+        <location filename="../../DlgSetFreeRdp.cpp" line="44"/>
         <source>16 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.cpp" line="44"/>
+        <location filename="../../DlgSetFreeRdp.cpp" line="45"/>
         <source>24 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.cpp" line="45"/>
+        <location filename="../../DlgSetFreeRdp.cpp" line="46"/>
         <source>32 bits</source>
         <translation type="unfinished"></translation>
     </message>
@@ -180,6 +180,11 @@
     <name>CPluginFreeRdp</name>
     <message>
         <location filename="../../PluginFreeRdp.cpp" line="26"/>
+        <source>Free Remote desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRdp.cpp" line="31"/>
         <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
         <translation type="unfinished"></translation>
     </message>

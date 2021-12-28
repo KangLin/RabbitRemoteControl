@@ -145,5 +145,9 @@
         <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
         <translation>RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
     </message>
+    <message>
+        <source>Free Remote desktop</source>
+        <translation>自由远程桌面</translation>
+    </message>
 </context>
 </TS>
