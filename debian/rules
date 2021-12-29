@@ -49,6 +49,9 @@ override_dh_auto_configure:
         -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
         -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
         -DRabbitCommon_DIR=${RabbitCommon_DIR} \
+        -DCMARK_SHARED:BOOL=ON \
+        -DCMARK_TESTS:BOOL=OFF \
+        -DCMARK_STATIC=OFF \
         ${PARAS}
 
 override_dh_auto_build:
