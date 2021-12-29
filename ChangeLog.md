@@ -2,6 +2,7 @@
 
 ### v0.0.14
 + Add system tray icon
++ Fix same bug
 
 ### v0.0.13
 + Modify UI
