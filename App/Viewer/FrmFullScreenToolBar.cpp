@@ -68,6 +68,10 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     m_pMain->m_pGBView->addAction(pZoomOut);
 
     m_ToolBar.addSeparator();
+    m_ToolBar.addAction(QIcon(":/image/Screenshot"), tr("ScreenShot"),
+                        m_pMain, SLOT(on_actionScreenshot_triggered()));
+    m_ToolBar.addAction(QIcon(":/image/AddFavorites"), tr("Add to favorite"),
+                        m_pMain, SLOT(on_actionAdd_to_favorite_triggered()));
     m_pShowTabBar = m_ToolBar.addAction(QIcon(":/image/TabBar"), tr("TabBar"),
                                         this, SLOT(slotShowTabBar()));
     m_pShowTabBar->setCheckable(true);

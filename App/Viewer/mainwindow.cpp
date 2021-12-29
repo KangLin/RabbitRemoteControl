@@ -131,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ptbZoom->setStatusTip(tr("Zoom"));
     m_ptbZoom->setToolTip(tr("Zoom"));
     m_ptbZoom->setEnabled(false);
-    ui->toolBar->insertWidget(ui->actionFull_screen_F, m_ptbZoom);
+    ui->toolBar->insertWidget(ui->actionShow_TabBar_B, m_ptbZoom);
 
     m_psbZoomFactor = new QSpinBox(ui->toolBar);
     m_psbZoomFactor->setRange(0, 9999999);

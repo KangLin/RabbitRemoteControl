@@ -167,7 +167,7 @@ int CConnectLibVNCServer::OnClean()
 int CConnectLibVNCServer::OnProcess()
 {
     int nRet = 0;
-    LOG_MODEL_DEBUG("CConnectLibVNCServer", "CConnectLibVNCServer::Process()");
+    //LOG_MODEL_DEBUG("CConnectLibVNCServer", "CConnectLibVNCServer::Process()");
     nRet = WaitForMessage(m_pClient, 500);
     if (nRet < 0)
         return nRet;
