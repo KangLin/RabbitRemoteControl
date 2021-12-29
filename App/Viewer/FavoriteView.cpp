@@ -97,7 +97,9 @@ int CFavoriteView::Save()
     {
         auto rootItem = m_pModel->item(rootIndex);
         if(!rootItem) continue;
-        if(rootItem->hasChildren())
+        QString text = rootItem->text();
+        QVariant data = rootItem->data();
+        if(rootItem->hasChildren() || rootItem->data().isNull())
         {
             int nCount = 0;
             QString szGroup = rootItem->text();
@@ -148,7 +150,9 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
             m_pModel->appendRow(pItem);
         }
     } else {
-        szGroup = m_pModel->itemFromIndex(indexs[0])->text();
+        auto itemGroup = m_pModel->itemFromIndex(indexs[0]);
+        if(itemGroup->data().isValid()) return 2;
+        szGroup = itemGroup->text();
         auto lstGroup = m_pModel->findItems(szGroup, Qt::MatchFixedString);
         if(lstGroup.isEmpty())
         {
@@ -272,26 +276,27 @@ void CFavoriteView::dropEvent(QDropEvent *event)
     if(index.isValid())
     {
         auto item = pModel->itemFromIndex(index);
-        foreach(auto index, pData->m_Items)
+        if(item->data().isNull())
         {
-            LOG_MODEL_DEBUG("CFavoriteView", "dropEvent: %s",
-                            item->text().toStdString().c_str());
-            if(item->data().isNull())
+            foreach(auto i, pData->m_Items)
             {
-                auto newItem = NewItem(index);
+                LOG_MODEL_DEBUG("CFavoriteView", "dropEvent: %s",
+                                item->text().toStdString().c_str());
+                
+                auto newItem = NewItem(i);
                 item->appendRow(newItem);
                 if(event->dropAction() == Qt::MoveAction)
-                    pModel->removeRow(index.row(), index.parent());
-            } else
-                LOG_MODEL_WARNING("CFavoriteView", "Don't group node. the data:%s",
-                                  item->data().toString().toStdString().c_str());
-        }
+                    pModel->removeRow(i.row(), i.parent());
+            } 
+        } else
+            LOG_MODEL_WARNING("CFavoriteView", "Don't group node. the data:%s",
+                              item->data().toString().toStdString().c_str());
     }else{
-        foreach(auto index, pData->m_Items)
+        foreach(auto i, pData->m_Items)
         {
-            pModel->appendRow(NewItem(index));
+            pModel->appendRow(NewItem(i));
             if(event->dropAction() == Qt::MoveAction)
-                pModel->removeRow(index.row(), index.parent());
+                pModel->removeRow(i.row(), i.parent());
         }
     }
 
