@@ -1,2 +1,6 @@
-add_subdirectory(Viewer)
-add_subdirectory(Service)
+if(BUILD_VIEWER)
+    add_subdirectory(Viewer)
+endif(BUILD_VIEWER)
+if(BUILD_SERVICE)
+    add_subdirectory(Service)
+endif(BUILD_SERVICE)

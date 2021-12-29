@@ -1,2 +1,6 @@
+if(BUILD_VIEWER)
 add_subdirectory(Viewer)
-add_subdirectory(Service)
+endif()
+if(BUILD_SERVICE)
+    add_subdirectory(Service)
+endif(BUILD_SERVICE)
