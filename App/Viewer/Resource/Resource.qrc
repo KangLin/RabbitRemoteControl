@@ -35,5 +35,6 @@
         <file alias="Clone">Image/Clone.svg</file>
         <file alias="Favorites">Image/Favorites.svg</file>
         <file alias="AddFavorites">Image/AddFavorite.svg</file>
+        <file alias="Group">Image/Group.svg</file>
     </qresource>
 </RCC>

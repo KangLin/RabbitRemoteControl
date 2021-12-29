@@ -4,42 +4,42 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="191"/>
+        <location filename="../../FavoriteView.cpp" line="196"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="192"/>
+        <location filename="../../FavoriteView.cpp" line="197"/>
         <source>Open settings and connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="194"/>
+        <location filename="../../FavoriteView.cpp" line="200"/>
         <source>New group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="195"/>
+        <location filename="../../FavoriteView.cpp" line="201"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="229"/>
+        <location filename="../../FavoriteView.cpp" line="235"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="229"/>
+        <location filename="../../FavoriteView.cpp" line="235"/>
         <source>Input group name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="234"/>
+        <location filename="../../FavoriteView.cpp" line="240"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="234"/>
+        <location filename="../../FavoriteView.cpp" line="240"/>
         <source>The group [%1] is existed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -135,143 +135,143 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="41"/>
+        <location filename="../../ParameterDlgSettings.ui" line="282"/>
         <source>Shot screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="53"/>
-        <source>Shot remote desktop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterDlgSettings.ui" line="66"/>
+        <location filename="../../ParameterDlgSettings.ui" line="307"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="82"/>
+        <location filename="../../ParameterDlgSettings.ui" line="323"/>
         <source>Open folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="95"/>
+        <location filename="../../ParameterDlgSettings.ui" line="336"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="107"/>
+        <location filename="../../ParameterDlgSettings.ui" line="147"/>
         <source>Recent open file max count:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="123"/>
+        <location filename="../../ParameterDlgSettings.ui" line="41"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="131"/>
+        <location filename="../../ParameterDlgSettings.ui" line="49"/>
         <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="161"/>
+        <location filename="../../ParameterDlgSettings.ui" line="79"/>
         <source>Prompt type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="170"/>
-        <location filename="../../ParameterDlgSettings.ui" line="302"/>
+        <location filename="../../ParameterDlgSettings.ui" line="88"/>
+        <location filename="../../ParameterDlgSettings.ui" line="251"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="177"/>
+        <location filename="../../ParameterDlgSettings.ui" line="95"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="184"/>
+        <location filename="../../ParameterDlgSettings.ui" line="102"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="195"/>
+        <location filename="../../ParameterDlgSettings.ui" line="113"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="202"/>
+        <location filename="../../ParameterDlgSettings.ui" line="120"/>
         <source>Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="215"/>
+        <location filename="../../ParameterDlgSettings.ui" line="164"/>
         <source>Main window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="221"/>
+        <location filename="../../ParameterDlgSettings.ui" line="170"/>
         <source>Main window receiver short cut key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="228"/>
+        <location filename="../../ParameterDlgSettings.ui" line="177"/>
         <source>Save main window status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="235"/>
+        <location filename="../../ParameterDlgSettings.ui" line="184"/>
         <source>Tab position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="247"/>
+        <location filename="../../ParameterDlgSettings.ui" line="196"/>
         <source>North</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="260"/>
+        <location filename="../../ParameterDlgSettings.ui" line="209"/>
         <source>South</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="273"/>
+        <location filename="../../ParameterDlgSettings.ui" line="222"/>
         <source>West</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="286"/>
+        <location filename="../../ParameterDlgSettings.ui" line="235"/>
         <source>East</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="296"/>
+        <location filename="../../ParameterDlgSettings.ui" line="245"/>
         <source>System tray icon context menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="309"/>
+        <location filename="../../ParameterDlgSettings.ui" line="258"/>
         <source>Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="316"/>
+        <location filename="../../ParameterDlgSettings.ui" line="265"/>
         <source>Recent open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="323"/>
+        <location filename="../../ParameterDlgSettings.ui" line="272"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="365"/>
+        <location filename="../../ParameterDlgSettings.ui" line="294"/>
+        <source>Select shot remote desktop, otherwise shot window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="378"/>
         <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="372"/>
+        <location filename="../../ParameterDlgSettings.ui" line="385"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>

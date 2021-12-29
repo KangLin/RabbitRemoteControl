@@ -63,6 +63,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
     {
         QString szGroup = set.value("Group_" + QString::number(g)).toString();
         QStandardItem* pGroup = new QStandardItem(szGroup);
+        pGroup->setIcon(QIcon(":/image/Group"));
         m_pModel->appendRow(pGroup);
         int n = set.value(szGroup + "/" + "count").toInt();
         for(int i = 0; i < n; i++)
@@ -187,9 +188,14 @@ void CFavoriteView::slotFavortiedoubleClicked(const QModelIndex &index)
 
 void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
 {
+    auto index = indexAt(pos);
     QMenu menu(this);
-    menu.addAction(tr("Connect"), this, SLOT(slotConnect()));
-    menu.addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
+    auto item = m_pModel->itemFromIndex(index);
+    if(item && item->data().isValid())
+    {
+        menu.addAction(tr("Connect"), this, SLOT(slotConnect()));
+        menu.addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
+    }
     menu.addSeparator();
     menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
     menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
@@ -235,8 +241,9 @@ void CFavoriteView::slotNewGroup()
         return;
     }
 
-    QStandardItem* pItem = new QStandardItem(szGroup);
-    m_pModel->appendRow(pItem);
+    QStandardItem* pGroup = new QStandardItem(szGroup);
+    pGroup->setIcon(QIcon(":/image/Group"));
+    m_pModel->appendRow(pGroup);
 }
 
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)

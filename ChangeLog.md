@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.14
++ Add system tray icon
+
 ### v0.0.13
 + Modify UI
   - Add clone connect
