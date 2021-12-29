@@ -17,7 +17,7 @@
 
 #include "Connecter.h"
 #include "FrmFullScreenToolBar.h"
-#include "DlgSettings.h"
+#include "ParameterDlgSettings.h"
 
 #include <QMessageBox>
 #include <QScreen>
@@ -792,8 +792,8 @@ void MainWindow::on_actionScreenshot_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    CDlgSettings set(&m_Parameter, this);
-    if(CDlgSettings::Accepted == set.exec())
+    CParameterDlgSettings set(&m_Parameter, this);
+    if(CParameterDlgSettings::Accepted == set.exec())
         m_Parameter.Save();
 }
 

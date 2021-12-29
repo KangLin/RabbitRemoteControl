@@ -1,13 +1,13 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "DlgSettings.h"
-#include "ui_DlgSettings.h"
+#include "ParameterDlgSettings.h"
+#include "ui_ParameterDlgSettings.h"
 #include "mainwindow.h"
 #include "ManagePassword.h"
 
-CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
+CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgSettings),
+    ui(new Ui::CParameterDlgSettings),
     m_pParameters(pPara)
 {
     ui->setupUi(this);
@@ -77,12 +77,12 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
     }
 }
 
-CDlgSettings::~CDlgSettings()
+CParameterDlgSettings::~CParameterDlgSettings()
 {
     delete ui;
 }
 
-void CDlgSettings::on_pbOk_clicked()
+void CParameterDlgSettings::on_pbOk_clicked()
 {
     if(!m_pParameters) return;
     
@@ -127,17 +127,17 @@ void CDlgSettings::on_pbOk_clicked()
     accept();
 }
 
-void CDlgSettings::on_pbNo_clicked()
+void CParameterDlgSettings::on_pbNo_clicked()
 {
     reject();
 }
 
-void CDlgSettings::on_cbEnableViewPassword_clicked(bool checked)
+void CParameterDlgSettings::on_cbEnableViewPassword_clicked(bool checked)
 {
     ui->pbEncryptKey->setEnabled(checked);
 }
 
-void CDlgSettings::on_pbEncryptKey_clicked()
+void CParameterDlgSettings::on_pbEncryptKey_clicked()
 {
     switch(ui->leEncryptKey->echoMode())
     {

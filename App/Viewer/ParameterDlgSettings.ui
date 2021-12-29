@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CDlgSettings</class>
- <widget class="QDialog" name="CDlgSettings">
+ <class>CParameterDlgSettings</class>
+ <widget class="QDialog" name="CParameterDlgSettings">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -2,161 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>CDlgSettings</name>
-    <message>
-        <location filename="../../DlgSettings.ui" line="14"/>
-        <location filename="../../DlgSettings.ui" line="24"/>
-        <source>Settings</source>
-        <translation>设置</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="35"/>
-        <source>General</source>
-        <translation>普通</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="107"/>
-        <source>Recent open file max count:</source>
-        <translation>最近打开文件最大数：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="221"/>
-        <source>Main window receiver short cut key</source>
-        <translation>主窗口接收快捷键</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="41"/>
-        <source>Shot screen</source>
-        <translation>截屏</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="53"/>
-        <source>Shot remote desktop</source>
-        <translation>截取远程桌面</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="66"/>
-        <source>No action</source>
-        <translation>无动作</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="82"/>
-        <source>Open folder</source>
-        <translation>打开文件夹</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="95"/>
-        <source>Open file</source>
-        <translation>打开文件</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="123"/>
-        <source>Password</source>
-        <translation>加密</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="177"/>
-        <source>First</source>
-        <translation>一次</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="170"/>
-        <location filename="../../DlgSettings.ui" line="302"/>
-        <source>No</source>
-        <translation>无</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="161"/>
-        <source>Prompt type:</source>
-        <translation>提示类型：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="184"/>
-        <source>Always</source>
-        <translation>总是</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="131"/>
-        <source>Encrypt key:</source>
-        <translation>加密键：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="195"/>
-        <source>Save password</source>
-        <translation>保存密码</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="202"/>
-        <source>Enable view password</source>
-        <translation>允许查看密码</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="215"/>
-        <source>Main window</source>
-        <translation>主窗口</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="228"/>
-        <source>Save main window status</source>
-        <translation>保存主窗口状态</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="235"/>
-        <source>Tab position</source>
-        <translation>标签位置</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="247"/>
-        <source>North</source>
-        <translation>上</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="260"/>
-        <source>South</source>
-        <translation>下</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="273"/>
-        <source>West</source>
-        <translation>左</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="286"/>
-        <source>East</source>
-        <translation>右</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="296"/>
-        <source>System tray icon context menu</source>
-        <translation>系统托盘图标右键菜单</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="309"/>
-        <source>Remote</source>
-        <translation>远程菜单</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="316"/>
-        <source>Recent open</source>
-        <translation>最近打开菜单</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="323"/>
-        <source>Favorite</source>
-        <translation>收藏夹</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="365"/>
-        <source>Ok(&amp;O)</source>
-        <translation>确定(&amp;O)</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettings.ui" line="372"/>
-        <source>No(&amp;N)</source>
-        <translation>取消(&amp;N)</translation>
-    </message>
-</context>
-<context>
     <name>CFavoriteView</name>
     <message>
         <location filename="../../FavoriteView.cpp" line="191"/>
@@ -274,6 +119,161 @@
         <location filename="../../FrmFullScreenToolBar.cpp" line="79"/>
         <source>Tab bar</source>
         <translation>标签条</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterDlgSettings</name>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="14"/>
+        <location filename="../../ParameterDlgSettings.ui" line="24"/>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="35"/>
+        <source>General</source>
+        <translation>普通</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="41"/>
+        <source>Shot screen</source>
+        <translation>截屏</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="53"/>
+        <source>Shot remote desktop</source>
+        <translation>截取远程桌面</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="66"/>
+        <source>No action</source>
+        <translation>无动作</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="82"/>
+        <source>Open folder</source>
+        <translation>打开文件夹</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="95"/>
+        <source>Open file</source>
+        <translation>打开文件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="107"/>
+        <source>Recent open file max count:</source>
+        <translation>最近打开文件最大数：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="123"/>
+        <source>Password</source>
+        <translation>加密</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="131"/>
+        <source>Encrypt key:</source>
+        <translation>加密键：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="161"/>
+        <source>Prompt type:</source>
+        <translation>提示类型：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="170"/>
+        <location filename="../../ParameterDlgSettings.ui" line="302"/>
+        <source>No</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="177"/>
+        <source>First</source>
+        <translation>一次</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="184"/>
+        <source>Always</source>
+        <translation>总是</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="195"/>
+        <source>Save password</source>
+        <translation>保存密码</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="202"/>
+        <source>Enable view password</source>
+        <translation>允许查看密码</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="215"/>
+        <source>Main window</source>
+        <translation>主窗口</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="221"/>
+        <source>Main window receiver short cut key</source>
+        <translation>主窗口接收快捷键</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="228"/>
+        <source>Save main window status</source>
+        <translation>保存主窗口状态</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="235"/>
+        <source>Tab position</source>
+        <translation>标签位置</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="247"/>
+        <source>North</source>
+        <translation>上</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="260"/>
+        <source>South</source>
+        <translation>下</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="273"/>
+        <source>West</source>
+        <translation>左</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="286"/>
+        <source>East</source>
+        <translation>右</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="296"/>
+        <source>System tray icon context menu</source>
+        <translation>系统托盘图标右键菜单</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="309"/>
+        <source>Remote</source>
+        <translation>远程菜单</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="316"/>
+        <source>Recent open</source>
+        <translation>最近打开菜单</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="323"/>
+        <source>Favorite</source>
+        <translation>收藏夹</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="365"/>
+        <source>Ok(&amp;O)</source>
+        <translation>确定(&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="372"/>
+        <source>No(&amp;N)</source>
+        <translation>取消(&amp;N)</translation>
     </message>
 </context>
 <context>

@@ -5,16 +5,16 @@
 #include "ParameterApp.h"
 
 namespace Ui {
-class CDlgSettings;
+class CParameterDlgSettings;
 }
 
-class CDlgSettings : public QDialog
+class CParameterDlgSettings : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit CDlgSettings(CParameterApp* pPara, QWidget *parent = nullptr);
-    virtual ~CDlgSettings();
+    explicit CParameterDlgSettings(CParameterApp* pPara, QWidget *parent = nullptr);
+    virtual ~CParameterDlgSettings();
     
 private slots:    
     void on_pbOk_clicked();
@@ -25,7 +25,7 @@ private slots:
     void on_pbEncryptKey_clicked();
     
 private:
-    Ui::CDlgSettings *ui;
+    Ui::CParameterDlgSettings *ui;
     
     CParameterApp* m_pParameters;
 };

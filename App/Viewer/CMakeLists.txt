@@ -12,7 +12,7 @@ set(SOURCE_FILES
     View.cpp
     ViewFrmScroll.cpp
     ParameterApp.cpp
-    DlgSettings.cpp
+    ParameterDlgSettings.cpp
     FavoriteView.cpp
     FavoriteMimeData.cpp
     )
@@ -24,7 +24,7 @@ set(HEADER_FILES
     View.h
     ViewFrmScroll.h
     ParameterApp.h
-    DlgSettings.h
+   ParameterDlgSettings.h
     FavoriteView.h
     FavoriteMimeData.h
     )
@@ -32,7 +32,7 @@ set(HEADER_FILES
 set(SOURCE_UI_FILES
     mainwindow.ui
     FrmFullScreenToolBar.ui
-    DlgSettings.ui
+    ParameterDlgSettings.ui
     )
 
 if(WIN32)
