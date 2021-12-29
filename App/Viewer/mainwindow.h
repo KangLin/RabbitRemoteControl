@@ -145,10 +145,10 @@ private:
     QPoint m_DragStartPosition;
 
 private Q_SLOTS:
-    void slotShowWindow(QSystemTrayIcon::ActivationReason reason);
+    void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
 private:
-    QSystemTrayIcon m_TrayIcon;
+    QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };
 
 #endif // MAINWINDOW_H

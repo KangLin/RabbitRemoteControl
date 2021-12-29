@@ -136,49 +136,6 @@
     </message>
 </context>
 <context>
-    <name>CFavoriteView</name>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="191"/>
-        <source>Connect</source>
-        <translation type="unfinished">連接</translation>
-    </message>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="192"/>
-        <source>Open settings and connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="194"/>
-        <source>New group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="195"/>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="229"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="229"/>
-        <source>Input group name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="234"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FavoriteView.cpp" line="234"/>
-        <source>The group [%1] is existed</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CFrmFullScreenToolBar</name>
     <message>
         <location filename="../../FrmFullScreenToolBar.ui" line="16"/>
@@ -264,9 +221,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="54"/>
-        <location filename="../../mainwindow.cpp" line="130"/>
-        <location filename="../../mainwindow.cpp" line="131"/>
-        <location filename="../../mainwindow.cpp" line="132"/>
+        <location filename="../../mainwindow.cpp" line="102"/>
+        <location filename="../../mainwindow.cpp" line="103"/>
+        <location filename="../../mainwindow.cpp" line="104"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
@@ -302,7 +259,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="225"/>
-        <location filename="../../mainwindow.cpp" line="266"/>
+        <location filename="../../mainwindow.cpp" line="238"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -411,17 +368,17 @@
         <translation>克隆當前連接</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="585"/>
         <location filename="../../mainwindow.ui" line="588"/>
         <location filename="../../mainwindow.ui" line="591"/>
-        <location filename="../../mainwindow.ui" line="594"/>
         <source>Favorites</source>
         <translation>收藏夾</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="600"/>
         <location filename="../../mainwindow.ui" line="603"/>
         <location filename="../../mainwindow.ui" line="606"/>
         <location filename="../../mainwindow.ui" line="609"/>
-        <location filename="../../mainwindow.ui" line="612"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夾</translation>
     </message>
@@ -540,9 +497,9 @@
         <translation>換膚</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="120"/>
-        <location filename="../../mainwindow.cpp" line="121"/>
-        <location filename="../../mainwindow.cpp" line="122"/>
+        <location filename="../../mainwindow.cpp" line="92"/>
+        <location filename="../../mainwindow.cpp" line="93"/>
+        <location filename="../../mainwindow.cpp" line="94"/>
         <source>Connect</source>
         <translation>連接</translation>
     </message>
@@ -551,57 +508,52 @@
         <location filename="../../mainwindow.ui" line="231"/>
         <location filename="../../mainwindow.ui" line="234"/>
         <location filename="../../mainwindow.ui" line="237"/>
-        <location filename="../../mainwindow.cpp" line="267"/>
-        <location filename="../../mainwindow.cpp" line="268"/>
-        <location filename="../../mainwindow.cpp" line="269"/>
+        <location filename="../../mainwindow.cpp" line="239"/>
+        <location filename="../../mainwindow.cpp" line="240"/>
+        <location filename="../../mainwindow.cpp" line="241"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="66"/>
-        <source>Favorite</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="296"/>
+        <location filename="../../mainwindow.cpp" line="268"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="297"/>
-        <location filename="../../mainwindow.cpp" line="298"/>
-        <location filename="../../mainwindow.cpp" line="299"/>
+        <location filename="../../mainwindow.cpp" line="269"/>
+        <location filename="../../mainwindow.cpp" line="270"/>
+        <location filename="../../mainwindow.cpp" line="271"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="503"/>
-        <location filename="../../mainwindow.cpp" line="521"/>
+        <location filename="../../mainwindow.cpp" line="471"/>
+        <location filename="../../mainwindow.cpp" line="483"/>
         <source>Load file fail: </source>
         <translation>加載文件失敗：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="513"/>
+        <location filename="../../mainwindow.cpp" line="463"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="515"/>
+        <location filename="../../mainwindow.cpp" line="465"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="603"/>
+        <location filename="../../mainwindow.cpp" line="558"/>
         <source>Connecting to </source>
         <translation>正在連接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="629"/>
+        <location filename="../../mainwindow.cpp" line="584"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="768"/>
+        <location filename="../../mainwindow.cpp" line="730"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>

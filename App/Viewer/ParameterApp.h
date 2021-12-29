@@ -49,10 +49,8 @@ private:
 public:
     bool GetSaveMainWindowStatus() const;
     void SetSaveMainWindowStatus(bool newSaveMainWindowStatus);
-
 Q_SIGNALS:
     void sigSaveMainWindowStatusChanged();
-    
 private:
     bool m_bSaveMainWindowStatus;
     Q_PROPERTY(bool SaveMainWindowStatus READ GetSaveMainWindowStatus WRITE SetSaveMainWindowStatus NOTIFY sigSaveMainWindowStatusChanged)

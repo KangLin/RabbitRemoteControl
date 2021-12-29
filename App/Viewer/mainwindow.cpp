@@ -62,7 +62,8 @@ MainWindow::MainWindow(QWidget *parent)
             Q_ASSERT(check);
             m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
         }
-        m_pFavoriteDockWidget->setObjectName("dckFavorite"); // See: saveState help document
+        // Must set ObjectName then restore it. See: saveState help document
+        m_pFavoriteDockWidget->setObjectName("dckFavorite");
         m_pFavoriteDockWidget->setWindowTitle(tr("Favorite"));
         m_pFavoriteDockWidget->hide();
         ui->actionFavorites->setChecked(false);
@@ -71,24 +72,6 @@ MainWindow::MainWindow(QWidget *parent)
                         this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
         Q_ASSERT(check);
     }
-
-    if(QSystemTrayIcon::isSystemTrayAvailable())
-    {
-        check = connect(&m_TrayIcon,
-                        SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                        this,
-                        SLOT(slotShowWindow(QSystemTrayIcon::ActivationReason)));
-        Q_ASSERT(check);
-        check = connect(&m_Parameter, SIGNAL(sigSystemTrayIconTypeChanged()),
-                        this,
-                        SLOT(slotSystemTrayIconTypeChanged()));
-        Q_ASSERT(check);
-        m_TrayIcon.setIcon(this->windowIcon());
-        m_TrayIcon.setToolTip(windowTitle() + " - "
-                              + qApp->applicationDisplayName());
-        m_TrayIcon.show();
-    } else
-        LOG_MODEL_WARNING("MainWindow", "System tray is not available");
     
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
@@ -182,6 +165,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
                     this, SLOT(slotShortCut()));
+    Q_ASSERT(check);
+    check = connect(&m_Parameter, SIGNAL(sigSystemTrayIconTypeChanged()),
+                    this,
+                    SLOT(slotSystemTrayIconTypeChanged()));
     Q_ASSERT(check);
     m_Parameter.Load();
     slotShortCut();
@@ -919,31 +906,53 @@ void MainWindow::dropEvent(QDropEvent *event)
     }
 }
 
-void MainWindow::slotShowWindow(QSystemTrayIcon::ActivationReason reason)
+void MainWindow::slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
-//    Q_UNUSED(reason)
-//#if defined(Q_OS_ANDROID)
-//    showMaximized();
-//#else
-//    showNormal();
-//#endif    
+    Q_UNUSED(reason)
+#if defined(Q_OS_ANDROID)
+    showMaximized();
+#else
+    switch(reason)
+    {
+    case QSystemTrayIcon::Trigger:
+    {
+        showNormal();
+        activateWindow();
+        break;
+    }
+    default:
+        break;
+    }
+#endif
 }
 
 void MainWindow::slotSystemTrayIconTypeChanged()
 {
+    m_TrayIcon = QSharedPointer<QSystemTrayIcon>(new QSystemTrayIcon(this));
+    if(QSystemTrayIcon::isSystemTrayAvailable())
+    {
+        bool check = connect(m_TrayIcon.data(),
+                        SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                        this,
+          SLOT(slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
+        Q_ASSERT(check);
+        m_TrayIcon->setIcon(this->windowIcon());
+        m_TrayIcon->setToolTip(windowTitle());
+        m_TrayIcon->show();
+    } else
+        LOG_MODEL_WARNING("MainWindow", "System tray is not available");
+    
     switch (m_Parameter.GetSystemTrayIconMenuType())
     {
     case CParameterApp::SystemTrayIconMenuType::Remote:
-        m_TrayIcon.setContextMenu(ui->menuRemote);
-        m_TrayIcon.show();
+        m_TrayIcon->setContextMenu(ui->menuRemote);
         break;
     case CParameterApp::SystemTrayIconMenuType::RecentOpen:
-        m_TrayIcon.setContextMenu(m_pRecentMenu);
-        m_TrayIcon.show();
+        m_TrayIcon->setContextMenu(m_pRecentMenu);
         break;
     case CParameterApp::SystemTrayIconMenuType::Favorite:
-    default:
-        m_TrayIcon.hide();
+    case CParameterApp::SystemTrayIconMenuType::No:
+        m_TrayIcon->hide();
         break;
     }   
 }

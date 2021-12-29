@@ -293,7 +293,7 @@
        <item row="3" column="0">
         <widget class="QGroupBox" name="groupBox_4">
          <property name="title">
-          <string>System tray icon</string>
+          <string>System tray icon context menu</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">

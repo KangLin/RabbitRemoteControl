@@ -4,7 +4,7 @@
 #include "ManagePassword.h"
 
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
-    m_bScreenShot(true),
+    m_bScreenShot(false),
     m_ScreenShotEndAction(NoAction),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
