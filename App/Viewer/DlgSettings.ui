@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>403</width>
-    <height>343</height>
+    <height>394</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
        <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="General">
       <attribute name="title">
@@ -214,7 +214,7 @@
       <attribute name="title">
        <string>Main window</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_5">
+      <layout class="QGridLayout" name="gridLayout_7">
        <item row="0" column="0">
         <widget class="QCheckBox" name="cbReciverShortCut">
          <property name="text">
@@ -291,6 +291,43 @@
         </widget>
        </item>
        <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>System tray icon</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="rbSystemTrayIconNo">
+            <property name="text">
+             <string>No</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="rbSystemTrayIconRemote">
+            <property name="text">
+             <string>Remote</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QRadioButton" name="rbSystemTrayIconRecentOpen">
+            <property name="text">
+             <string>Recent open</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QRadioButton" name="rbSystemTrayIconFavorite">
+            <property name="text">
+             <string>Favorite</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="4" column="0">
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

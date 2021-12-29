@@ -71,6 +71,24 @@ MainWindow::MainWindow(QWidget *parent)
                         this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
         Q_ASSERT(check);
     }
+
+    if(QSystemTrayIcon::isSystemTrayAvailable())
+    {
+        check = connect(&m_TrayIcon,
+                        SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                        this,
+                        SLOT(slotShowWindow(QSystemTrayIcon::ActivationReason)));
+        Q_ASSERT(check);
+        check = connect(&m_Parameter, SIGNAL(sigSystemTrayIconTypeChanged()),
+                        this,
+                        SLOT(slotSystemTrayIconTypeChanged()));
+        Q_ASSERT(check);
+        m_TrayIcon.setIcon(this->windowIcon());
+        m_TrayIcon.setToolTip(windowTitle() + " - "
+                              + qApp->applicationDisplayName());
+        m_TrayIcon.show();
+    } else
+        LOG_MODEL_WARNING("MainWindow", "System tray is not available");
     
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
@@ -899,4 +917,33 @@ void MainWindow::dropEvent(QDropEvent *event)
         if(url.isLocalFile())
             slotOpenFile(url.toLocalFile());
     }
+}
+
+void MainWindow::slotShowWindow(QSystemTrayIcon::ActivationReason reason)
+{
+//    Q_UNUSED(reason)
+//#if defined(Q_OS_ANDROID)
+//    showMaximized();
+//#else
+//    showNormal();
+//#endif    
+}
+
+void MainWindow::slotSystemTrayIconTypeChanged()
+{
+    switch (m_Parameter.GetSystemTrayIconMenuType())
+    {
+    case CParameterApp::SystemTrayIconMenuType::Remote:
+        m_TrayIcon.setContextMenu(ui->menuRemote);
+        m_TrayIcon.show();
+        break;
+    case CParameterApp::SystemTrayIconMenuType::RecentOpen:
+        m_TrayIcon.setContextMenu(m_pRecentMenu);
+        m_TrayIcon.show();
+        break;
+    case CParameterApp::SystemTrayIconMenuType::Favorite:
+    default:
+        m_TrayIcon.hide();
+        break;
+    }   
 }

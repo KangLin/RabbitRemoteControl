@@ -74,6 +74,23 @@ Q_SIGNALS:
 private:
     int m_nRecentMenuMaxCount;
     Q_PROPERTY(int RecentMenuMaxCount READ GetRecentMenuMaxCount WRITE SetRecentMenuMaxCount NOTIFY sigRecentMenuMaxCountChanged)
+
+public:
+    enum class SystemTrayIconMenuType
+    {
+        No,
+        RecentOpen,
+        Favorite,
+        Remote
+    };
+    Q_ENUM(SystemTrayIconMenuType)
+    SystemTrayIconMenuType GetSystemTrayIconMenuType() const;
+    void SetSystemTrayIconMenuType(SystemTrayIconMenuType newSystemTrayIconType);
+Q_SIGNALS:
+    void sigSystemTrayIconTypeChanged();
+private:
+    SystemTrayIconMenuType m_SystemTrayIconType;
+    Q_PROPERTY(SystemTrayIconMenuType SystemTrayIconMenuType READ GetSystemTrayIconMenuType WRITE SetSystemTrayIconMenuType NOTIFY sigSystemTrayIconTypeChanged)
 };
 
 #endif // CPARAMETERAPP_H

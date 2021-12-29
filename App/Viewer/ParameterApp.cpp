@@ -9,7 +9,8 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
     m_TabPosition(QTabWidget::North),
-    m_nRecentMenuMaxCount(10)
+    m_nRecentMenuMaxCount(10),
+    m_SystemTrayIconType(SystemTrayIconMenuType::Remote)
 {
 }
 
@@ -19,15 +20,26 @@ int CParameterApp::Load()
                   QSettings::IniFormat);
     CManagePassword::Instance()->Load(set);
     
-    SetScreenShot(set.value("ShotScreen/IsShotScreen", GetScreenShot()).toBool());
-    SetScreenShotEndAction(static_cast<ScreenShotEndAction>(set.value("ShotScreen/Action", GetScreenShotEndAction()).toInt()));
+    SetScreenShot(set.value("ShotScreen/IsShotScreen",
+                            GetScreenShot()).toBool());
+    SetScreenShotEndAction(static_cast<ScreenShotEndAction>(
+                               set.value("ShotScreen/Action",
+                                         GetScreenShotEndAction()).toInt()));
     
-    SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt", GetReceiveShortCut()).toBool());
-    SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable", GetSaveMainWindowStatus()).toBool());
-    SetTabPosition(static_cast<QTabWidget::TabPosition>(set.value("MainWindow/Tab/Position", GetTabPosition()).toInt()));
+    SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt",
+                                 GetReceiveShortCut()).toBool());
+    SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable",
+                                      GetSaveMainWindowStatus()).toBool());
+    SetTabPosition(static_cast<QTabWidget::TabPosition>(
+                       set.value("MainWindow/Tab/Position",
+                                 GetTabPosition()).toInt()));
 
-    SetRecentMenuMaxCount(set.value("MainWindow/Recent/Max", GetRecentMenuMaxCount()).toInt());
+    SetRecentMenuMaxCount(set.value("MainWindow/Recent/Max",
+                                    GetRecentMenuMaxCount()).toInt());
 
+    SetSystemTrayIconMenuType(static_cast<SystemTrayIconMenuType>(
+                              set.value("MainWindow/SystemTrayIcon/MenuType",
+                          static_cast<int>(GetSystemTrayIconMenuType())).toInt()));
     return 0;
 }
 
@@ -43,6 +55,8 @@ int CParameterApp::Save()
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
     set.setValue("MainWindow/Tab/Position", GetTabPosition());
     set.setValue("MainWindow/Recent/Max", GetRecentMenuMaxCount());
+    set.setValue("MainWindow/SystemTrayIcon/MenuType",
+                 static_cast<int>(GetSystemTrayIconMenuType()));
     return 0;
 }
 
@@ -96,6 +110,17 @@ void CParameterApp::SetRecentMenuMaxCount(int newRecentMenuMaxCount)
         return;
     m_nRecentMenuMaxCount = newRecentMenuMaxCount;
     emit sigRecentMenuMaxCountChanged(m_nRecentMenuMaxCount);
+}
+
+CParameterApp::SystemTrayIconMenuType CParameterApp::GetSystemTrayIconMenuType() const
+{
+    return m_SystemTrayIconType;
+}
+
+void CParameterApp::SetSystemTrayIconMenuType(SystemTrayIconMenuType newSystemTrayIconType)
+{
+    m_SystemTrayIconType = newSystemTrayIconType;
+    emit sigSystemTrayIconTypeChanged();
 }
 
 bool CParameterApp::GetScreenShot() const

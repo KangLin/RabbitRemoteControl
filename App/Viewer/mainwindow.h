@@ -10,6 +10,7 @@
 #include <QToolButton>
 #include <QSpinBox>
 #include <QDockWidget>
+#include <QSystemTrayIcon>
 
 #include "ViewTable.h"
 #include "ManageConnecter.h"
@@ -142,6 +143,12 @@ protected:
     virtual void dropEvent(QDropEvent *event) override;
 private:
     QPoint m_DragStartPosition;
+
+private Q_SLOTS:
+    void slotShowWindow(QSystemTrayIcon::ActivationReason reason);
+    void slotSystemTrayIconTypeChanged();
+private:
+    QSystemTrayIcon m_TrayIcon;
 };
 
 #endif // MAINWINDOW_H

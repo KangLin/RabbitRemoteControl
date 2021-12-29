@@ -60,6 +60,21 @@ CDlgSettings::CDlgSettings(CParameterApp *pPara, QWidget *parent) :
         ui->rbPromptNo->setChecked(true);
         break;
     }
+    
+    switch (m_pParameters->GetSystemTrayIconMenuType()) {
+    case CParameterApp::SystemTrayIconMenuType::No:
+        ui->rbSystemTrayIconNo->setChecked(true);
+        break;
+    case CParameterApp::SystemTrayIconMenuType::RecentOpen:
+        ui->rbSystemTrayIconRecentOpen->setChecked(true);
+        break;
+    case CParameterApp::SystemTrayIconMenuType::Remote:
+        ui->rbSystemTrayIconRemote->setChecked(true);
+        break;
+    case CParameterApp::SystemTrayIconMenuType::Favorite:
+        ui->rbSystemTrayIconFavorite->setChecked(true);
+        break;
+    }
 }
 
 CDlgSettings::~CDlgSettings()
@@ -99,6 +114,15 @@ void CDlgSettings::on_pbOk_clicked()
         CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::First);
     if(ui->rbPromptNo->isChecked())
         CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::No);
+    
+    if(ui->rbSystemTrayIconNo->isChecked())
+        m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::No);
+    if(ui->rbSystemTrayIconRecentOpen->isChecked())
+        m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::RecentOpen);
+    if(ui->rbSystemTrayIconRemote->isChecked())
+        m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Remote);
+    if(ui->rbSystemTrayIconFavorite->isChecked())
+        m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Favorite);
     
     accept();
 }
