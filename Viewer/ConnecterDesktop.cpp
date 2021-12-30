@@ -21,13 +21,6 @@ CConnecterDesktop::~CConnecterDesktop()
     //qDebug() << this << this->metaObject()->className();
 }
 
-const QString CConnecterDesktop::Name()
-{
-    if(m_pParameter && !m_pParameter->GetName().isEmpty())
-        return m_pParameter->GetName();
-    return ServerName();
-}
-
 QWidget *CConnecterDesktop::GetViewer()
 {
     return m_pView;
@@ -72,9 +65,9 @@ QString CConnecterDesktop::ServerName()
 {
     if(CConnecter::ServerName().isEmpty())
     {
-        if(m_pParameter && !m_pParameter->GetHost().isEmpty())
-            return m_pParameter->GetHost() + ":"
-                   + QString::number(m_pParameter->GetPort());
+        if(GetPara() && !GetPara()->GetHost().isEmpty())
+            return GetPara()->GetHost() + ":"
+                   + QString::number(GetPara()->GetPort());
         else
             return CConnecter::Name();
     }
@@ -84,7 +77,7 @@ QString CConnecterDesktop::ServerName()
 int CConnecterDesktop::Load(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(m_pParameter);
+    Q_ASSERT(GetPara());
     Q_ASSERT(m_pView);
     if(m_pView)
     {   
@@ -101,7 +94,7 @@ int CConnecterDesktop::Load(QSettings &set)
 int CConnecterDesktop::Save(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(m_pParameter);
+    Q_ASSERT(GetPara());
     if(m_pView)
     {
         nRet = m_pView->Save(set);

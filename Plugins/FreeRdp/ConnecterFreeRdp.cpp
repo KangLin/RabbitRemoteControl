@@ -8,10 +8,10 @@
 CConnecterFreeRdp::CConnecterFreeRdp(CPluginViewer *parent)
     : CConnecterDesktop(parent)
 {
-    m_pParameter = &m_ParameterFreeRdp;
+    SetPara(&m_ParameterFreeRdp);
     // 在 freerdp_client_context_free 中释放
     m_ParameterFreeRdp.m_pSettings = freerdp_settings_new(0);
-    m_pParameter->SetPort(3389);
+    GetPara()->SetPort(3389);
 }
 
 CConnecterFreeRdp::~CConnecterFreeRdp()

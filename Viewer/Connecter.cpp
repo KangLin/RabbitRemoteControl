@@ -32,7 +32,9 @@ const QString CConnecter::Id()
 
 const QString CConnecter::Name()
 {
-    return m_pPluginViewer->Name();
+    if(GetPara() && !GetPara()->GetName().isEmpty())
+        return GetPara()->GetName();
+    return ServerName();
 }
 
 const QString CConnecter::Description()
@@ -122,4 +124,10 @@ int CConnecter::Save(QString szFile)
 CParameter* CConnecter::GetPara()
 {
     return m_pParameter;
+}
+
+int CConnecter::SetPara(CParameter *p)
+{
+    m_pParameter = p;
+    return 0;
 }

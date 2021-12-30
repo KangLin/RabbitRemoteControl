@@ -54,8 +54,7 @@ class VIEWER_EXPORT CConnecterDesktop : public CConnecter
 public:
     explicit CConnecterDesktop(CPluginViewer *parent = nullptr);
     virtual ~CConnecterDesktop();
-    
-    virtual const QString Name();
+
     virtual QWidget* GetViewer() override;
     virtual QString ServerName() override;
     /*!

@@ -8,7 +8,7 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
     : CConnecterDesktop(parent),
       m_pConnect(nullptr)
 {
-    m_pParameter = &m_Para;
+    SetPara(&m_Para);
 }
 
 CConnecterTigerVnc::~CConnecterTigerVnc()
@@ -36,9 +36,9 @@ QString CConnecterTigerVnc::ServerName()
                 return m_Para.GetSignalUser();
         }
         else {
-            if(!m_pParameter->GetHost().isEmpty())
-                return m_pParameter->GetHost() + ":"
-               + QString::number(m_pParameter->GetPort());
+            if(!GetPara()->GetHost().isEmpty())
+                return GetPara()->GetHost() + ":"
+               + QString::number(GetPara()->GetPort());
         }
         return CConnecter::Name();
     }

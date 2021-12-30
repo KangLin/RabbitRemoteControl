@@ -179,7 +179,7 @@ Q_SIGNALS:
     void sigInformation(const QString& szInfo);
 
     /*!
-     * \brief Update parameters, notify application to save or show it.
+     * \brief Update parameters, notify application to save or show parameters.
      * \param pConnecter
      */
     void sigUpdateParamters(CConnecter* pConnecter);
@@ -197,6 +197,9 @@ protected:
      * \param parent: the parent windows of the dialog of return
      * \return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
      *         The ownership is caller.
+     *         
+     * \~
+     * \see OpenDialogSettings
      */
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
 
@@ -204,12 +207,13 @@ protected:
     virtual int Save(QSettings &set) = 0;
 
     virtual CParameter* GetPara();
-    CParameter* m_pParameter;
+    virtual int SetPara(CParameter* p);
 
 private:
     const CPluginViewer* m_pPluginViewer;
     friend CManageConnecter;
     QString m_szServerName;
+    CParameter* m_pParameter;
 };
 
 #endif // CCONNECTER_H
