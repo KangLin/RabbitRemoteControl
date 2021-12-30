@@ -103,7 +103,7 @@ int CConnecterTerminal::Connect()
         emit sigConnected();
     
     if(m_pConsole)
-        emit sigUpdateName(ServerName());
+        emit sigUpdateServerName(ServerName());
     
     return nRet;
 }
@@ -181,14 +181,14 @@ int CConnecterTerminal::OnDisConnect()
 
 QString CConnecterTerminal::ServerName()
 {
-    CParameter* pPara = GetParameter();
-    if(CConnecter::ServerName().isEmpty())
-    {
-        if(pPara && !pPara->GetHost().isEmpty())
-            return pPara->GetHost() + ":" + QString::number(pPara->GetPort());
-        else
-            return CConnecter::Name();
-    }
+    if(GetParameter())
+        if(!GetParameter()->GetShowServerName()
+                || CConnecter::ServerName().isEmpty())
+        {
+            if(!GetParameter()->GetHost().isEmpty())
+                return GetParameter()->GetHost() + ":"
+                        + QString::number(GetParameter()->GetPort());
+        }
     return CConnecter::ServerName();
 }
 

@@ -27,7 +27,7 @@
       <attribute name="title">
        <string>Server</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_5">
+      <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_12">
          <item>
@@ -166,11 +166,18 @@
         </layout>
        </item>
        <item row="6" column="0">
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_13">
+         <item>
           <widget class="QCheckBox" name="cbSavePassword">
            <property name="text">
             <string>Save password</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbShowServerName">
+           <property name="text">
+            <string>Show server name</string>
            </property>
           </widget>
          </item>
@@ -419,6 +426,7 @@
   <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources>
+  <include location="../../../App/Viewer/Resource/Resource.qrc"/>
   <include location="../../../App/Viewer/Resource/Resource.qrc"/>
  </resources>
  <connections/>

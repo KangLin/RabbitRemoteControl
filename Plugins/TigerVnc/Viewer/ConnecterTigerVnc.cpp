@@ -42,7 +42,6 @@ QString CConnecterTigerVnc::ServerName()
                 return GetParameter()->GetHost() + ":"
                + QString::number(GetParameter()->GetPort());
         }
-        return CConnecter::Name();
     }
     return CConnecter::ServerName();
 }

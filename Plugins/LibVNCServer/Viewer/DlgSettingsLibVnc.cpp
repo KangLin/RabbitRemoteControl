@@ -21,6 +21,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
     ui->lePassword->setText(m_pPara->GetPassword());
     ui->pbShow->setEnabled(CManagePassword::Instance()->GetViewPassowrd());
     ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
+    ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
     
     ui->cbShared->setChecked(m_pPara->GetShared());
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
@@ -104,7 +105,8 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     m_pPara->SetUser(ui->leUserName->text());
     m_pPara->SetPassword(ui->lePassword->text());
     m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
-
+    m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
+    
 //    m_pPara->bSave = ui->cbSave->isChecked();
     m_pPara->SetShared(ui->cbShared->isChecked());
     m_pPara->SetOnlyView(ui->cbOnlyView->isChecked());

@@ -200,6 +200,7 @@ void CParameter::SetProxyPassword(const QString &password)
 int CParameter::Load(QSettings &set)
 {
     SetName(set.value("Name", GetName()).toString());
+    SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
     SetHost(set.value("Host", GetHost()).toString());
     SetPort(set.value("Port", GetPort()).toUInt());
     SetUser(set.value("User", GetUser()).toString());
@@ -233,6 +234,7 @@ int CParameter::Load(QSettings &set)
 int CParameter::Save(QSettings &set)
 {
     set.setValue("Name", GetName());
+    set.setValue("ShowServerName", GetShowServerName());
     set.setValue("Host", GetHost());
     set.setValue("Port", GetPort());
     set.setValue("User", GetUser());

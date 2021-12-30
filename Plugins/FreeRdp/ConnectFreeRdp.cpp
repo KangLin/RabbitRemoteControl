@@ -678,7 +678,8 @@ DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance, const char *h
 
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRdp* pThis = ((ClientContext*)pContext)->pThis;
-    emit pThis->sigServerName(common_name);
+    if(common_name)
+        emit pThis->sigServerName(common_name);
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
     return 2;
@@ -839,8 +840,5 @@ int CConnectFreeRdp::SetParamter(void *pPara)
                                 FreeRDP_Password,
                                 pSettings->GetPassword().toStdString().c_str());
     
-//    emit sigServerName(QString(pSettings->GetHost())
-//                  + ":" + QString::number(pSettings->GetPort()));
-
     return 0;
 }
