@@ -23,16 +23,6 @@
         <source>Logon error info [</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../ConnectFreeRdp.cpp" line="645"/>
-        <source>Input password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ConnectFreeRdp.cpp" line="646"/>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CDlgSetFreeRdp</name>
@@ -57,101 +47,106 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="67"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="239"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="74"/>
-        <location filename="../../DlgSetFreeRdp.ui" line="77"/>
-        <location filename="../../DlgSetFreeRdp.ui" line="80"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="246"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="249"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="252"/>
         <source>Connecter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="91"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="134"/>
         <source>Domain:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="105"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="194"/>
         <source>Server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="119"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="208"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="137"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="102"/>
         <source>User name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="151"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="67"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="186"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="116"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="193"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="123"/>
         <source>Only View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="204"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="148"/>
         <source>Enable clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="217"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="161"/>
         <source>Reconnect interval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="230"/>
-        <location filename="../../DlgSetFreeRdp.ui" line="236"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="174"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="180"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect interval&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="233"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="177"/>
         <source>Reconnect interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="262"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="261"/>
+        <source>Show server name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRdp.ui" line="269"/>
         <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="268"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="275"/>
         <source>Remote desktop size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="276"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="283"/>
         <location filename="../../DlgSetFreeRdp.cpp" line="39"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="287"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="294"/>
         <source>Select size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="299"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="306"/>
         <source>Use all local monitors for remote sessions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRdp.ui" line="311"/>
+        <location filename="../../DlgSetFreeRdp.ui" line="318"/>
         <source>Remote color depth:</source>
         <translation type="unfinished"></translation>
     </message>

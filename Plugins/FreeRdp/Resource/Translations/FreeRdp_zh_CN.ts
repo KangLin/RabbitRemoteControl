@@ -138,6 +138,10 @@
         <source>Reconnect interval</source>
         <translation>重连间隔</translation>
     </message>
+    <message>
+        <source>Show server name</source>
+        <translation>显示服务器名</translation>
+    </message>
 </context>
 <context>
     <name>CPluginFreeRdp</name>

@@ -15,6 +15,10 @@
         <source>Server name:</source>
         <translation>服务名：</translation>
     </message>
+    <message>
+        <source>Set </source>
+        <translation>设置</translation>
+    </message>
 </context>
 <context>
     <name>CDlgInputPassword</name>
