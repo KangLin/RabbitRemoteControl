@@ -66,6 +66,7 @@ void CDlgSetFreeRdp::on_pbOk_clicked()
     m_pSettings->SetSavePassword(ui->cbSavePassword->isChecked());
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
+    m_pSettings->SetShowServerName(ui->cbShowServerName->isChecked());
     
     // Display
     QString szSize = ui->cbDesktopSize->currentText();
@@ -113,6 +114,7 @@ void CDlgSetFreeRdp::showEvent(QShowEvent *event)
     ui->cbSavePassword->setChecked(m_pSettings->GetSavePassword());
     ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
     ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
+    ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
 
     // Display
     QScreen* pScreen = QApplication::primaryScreen();

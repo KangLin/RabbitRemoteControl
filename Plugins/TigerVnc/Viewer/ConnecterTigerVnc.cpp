@@ -28,7 +28,9 @@ qint16 CConnecterTigerVnc::Version()
 
 QString CConnecterTigerVnc::ServerName()
 {
-    if(CConnecter::ServerName().isEmpty())
+    if(GetParameter())
+        if(!GetParameter()->GetShowServerName()
+                || CConnecter::ServerName().isEmpty())
     {
         if(m_Para.GetIce())
         {

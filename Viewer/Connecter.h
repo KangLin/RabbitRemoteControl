@@ -165,10 +165,10 @@ Q_SIGNALS:
     void sigDisconnected();
 
     /*!
-     * \~chinese \note 仅在插件中使用时，请使用 slotSetServerName
-     * \~english \note When only used in the plug-in, please use slotSetServerName
+     * \~chinese \note 仅在本类中使用时。插件请使用 slotSetServerName
+     * \~english \note When only used in the class. Please use slotSetServerName for plug-in
      */
-    void sigUpdateName(const QString& szName);
+    void sigUpdateServerName(const QString& szName);
 
     void sigError(const int nError, const QString &szError);
     /*!
@@ -208,6 +208,9 @@ protected:
 
     virtual CParameter* GetParameter();
     virtual int SetParameter(CParameter* p);
+
+private Q_SLOTS:
+    void slotShowServerName();
 
 private:
     const CPluginViewer* m_pPluginViewer;

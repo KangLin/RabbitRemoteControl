@@ -570,7 +570,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     check = connect(p, SIGNAL(sigInformation(const QString&)),
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigUpdateName(const QString&)),
+    check = connect(p, SIGNAL(sigUpdateServerName(const QString&)),
                     this, SLOT(slotUpdateServerName(const QString&)));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigUpdateParamters(CConnecter*)),

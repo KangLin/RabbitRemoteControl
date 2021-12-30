@@ -111,6 +111,7 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
     m_pPara->SetSupportsDesktopResize(ui->cbResizeWindows->isChecked());
     m_pPara->SetClipboard(ui->cbClipboard->isChecked());
+    m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
     
     // Compress
     m_pPara->SetAutoSelect(ui->cbCompressAutoSelect->isChecked());
@@ -227,7 +228,8 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     ui->pbShow->setEnabled(CManagePassword::Instance()->GetViewPassowrd());
     ui->cbSave->setChecked(m_pPara->GetSavePassword());
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
-    
+    ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
+
     ui->cbShared->setChecked(m_pPara->GetShared());
     ui->cbRealTimeUpdate->setChecked(!m_pPara->GetBufferEndRefresh());
     ui->cbLocalCursor->setChecked(m_pPara->GetLocalCursor());

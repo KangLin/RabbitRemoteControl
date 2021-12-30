@@ -10,6 +10,7 @@
 #include <QInputDialog>
 
 CParameter::CParameter(QObject *parent) : QObject(parent),
+    m_bShowServerName(true),
     m_nPort(0),
     m_bSavePassword(CManagePassword::Instance()->GetSavePassword()),
     m_bOnlyView(false),
@@ -37,6 +38,19 @@ void CParameter::SetName(const QString& name)
     if(m_szName == name)
         return;
     m_szName = name;
+}
+
+bool CParameter::GetShowServerName() const
+{
+    return m_bShowServerName;
+}
+
+void CParameter::SetShowServerName(bool NewShowServerName)
+{
+    if (m_bShowServerName == NewShowServerName)
+        return;
+    m_bShowServerName = NewShowServerName;
+    emit sigShowServerNameChanged();
 }
 
 void CParameter::SetHost(const QString& host)

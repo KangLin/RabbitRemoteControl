@@ -121,6 +121,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen_O"/>
+   <addaction name="actionClone"/>
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>

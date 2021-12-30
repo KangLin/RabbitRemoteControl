@@ -26,6 +26,7 @@ class VIEWER_EXPORT CParameter : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName)
+    Q_PROPERTY(bool ShowServerName READ GetShowServerName WRITE SetShowServerName NOTIFY sigShowServerNameChanged)
     Q_PROPERTY(QString Host READ GetHost WRITE SetHost)
     Q_PROPERTY(qint16 Port READ GetPort WRITE SetPort)
     Q_PROPERTY(QString User READ GetUser WRITE SetUser)
@@ -55,6 +56,9 @@ public:
     
     const QString GetName() const;
     void SetName(const QString& name);
+    
+    bool GetShowServerName() const;
+    void SetShowServerName(bool NewShowServerName);
     
     const QString GetHost() const;
     void SetHost(const QString& szHost);
@@ -98,18 +102,19 @@ public:
     void SetProxyUser(const QString& user);
     const QString GetProxyPassword() const;
     void SetProxyPassword(const QString& password);
-    
+        
 Q_SIGNALS:
     void sigUpdate();
-
+    void sigShowServerNameChanged();
+    
 protected:
     QByteArray PasswordSum(const std::string &password);
     int LoadPassword(const QString &szTitle, const QString &szKey, QString &password, QSettings &set);
     int SavePassword(const QString &szKey, const QString &password, QSettings &set, bool bSave = false);
 
 private:
-    bool m_bComplete;
     QString m_szName;
+    bool m_bShowServerName;
     QString m_szHost;
     quint16 m_nPort;
     
@@ -125,7 +130,7 @@ private:
     QString m_szProxyHost;
     quint16 m_nProxyPort;
     QString m_szProxyUser;
-    QString m_szProxyPassword;
+    QString m_szProxyPassword;    
 };
 
 #endif // CPARAMTER_H

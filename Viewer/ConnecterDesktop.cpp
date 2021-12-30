@@ -68,14 +68,14 @@ int CConnecterDesktop::DisConnect()
 
 QString CConnecterDesktop::ServerName()
 {
-    if(CConnecter::ServerName().isEmpty())
-    {
-        if(GetParameter() && !GetParameter()->GetHost().isEmpty())
-            return GetParameter()->GetHost() + ":"
-                   + QString::number(GetParameter()->GetPort());
-        else
-            return CConnecter::Name();
-    }
+    if(GetParameter())
+        if(!GetParameter()->GetShowServerName()
+                || CConnecter::ServerName().isEmpty())
+        {
+            if(!GetParameter()->GetHost().isEmpty())
+                return GetParameter()->GetHost() + ":"
+                        + QString::number(GetParameter()->GetPort());
+        }
     return CConnecter::ServerName();
 }
 
