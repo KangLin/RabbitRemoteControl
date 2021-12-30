@@ -110,7 +110,7 @@ int CConnectFreeRdp::OnInit()
     } else {
         emit sigConnected();
         //TODO: set server name
-        emit sigServerName(settings->ServerHostname);
+        //emit sigServerName(settings->ServerHostname);
 
         QString szInfo = tr("Connect to ");
         szInfo += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
@@ -492,7 +492,8 @@ int CConnectFreeRdp::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
     szErr += "] ";
     szErr += str_data;
 	LOG_MODEL_ERROR("FreeRdp", szErr.toStdString().c_str());
-	emit pThis->sigError(type, szErr);
+	emit pThis->sigInformation(szErr);
+    emit pThis->sigError(type, szErr);
 	return 1;
 }
 
@@ -639,15 +640,15 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char**
     if(password)
     {
         std::string szPassword = freerdp_settings_get_string(instance->settings, FreeRDP_Password);
-        if(szPassword.empty())
-        {
-            szPassword = QInputDialog::getText(nullptr,
-                                               tr("Input password"),
-                                               tr("Password"),
-                                               QLineEdit::Password).toStdString();
-            if(szPassword.empty())
-                return FALSE;
-        }
+//        if(szPassword.empty())
+//        {
+//            szPassword = QInputDialog::getText(nullptr,
+//                                               tr("Input password"),
+//                                               tr("Password"),
+//                                               QLineEdit::Password).toStdString();
+//            if(szPassword.empty())
+//                return FALSE;
+//        }
 	    *password = _strdup(szPassword.c_str());
     }
     if(domain)
@@ -674,7 +675,10 @@ BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance, char **username,
 DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance, const char *host, UINT16 port, const char *common_name, const char *subject, const char *issuer, const char *fingerprint, DWORD flags)
 {
     qDebug() << "CConnectFreeRdp::cb_verify_certificate_ex";
-    
+
+    rdpContext* pContext = (rdpContext*)instance->context;
+    CConnectFreeRdp* pThis = ((ClientContext*)pContext)->pThis;
+    emit pThis->sigServerName(common_name);
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
     return 2;
@@ -835,8 +839,8 @@ int CConnectFreeRdp::SetParamter(void *pPara)
                                 FreeRDP_Password,
                                 pSettings->GetPassword().toStdString().c_str());
     
-    emit sigServerName(QString(pSettings->GetHost())
-                  + ":" + QString::number(pSettings->GetPort()));
+//    emit sigServerName(QString(pSettings->GetHost())
+//                  + ":" + QString::number(pSettings->GetPort()));
 
     return 0;
 }
