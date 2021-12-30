@@ -23,6 +23,6 @@ CConnect *CConnecterSSH::InstanceConnect()
 
 QDialog *CConnecterSSH::GetDialogSettings(QWidget *parent)
 {
-    CParameterSSH* pPara = dynamic_cast<CParameterSSH*>(GetPara());
+    CParameterSSH* pPara = dynamic_cast<CParameterSSH*>(GetParameter());
     return new CDlgSettingsSSH(pPara, parent);
 }

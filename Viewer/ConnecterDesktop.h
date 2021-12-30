@@ -78,6 +78,8 @@ public:
      */
     virtual CConnect* InstanceConnect() = 0;
 
+    virtual CParameter* GetParameter() override;
+
 public Q_SLOTS:
     /*!
      * \~chinese 启动一个后台线程，并建立 CConnect 实例

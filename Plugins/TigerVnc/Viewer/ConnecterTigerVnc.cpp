@@ -8,7 +8,7 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
     : CConnecterDesktop(parent),
       m_pConnect(nullptr)
 {
-    SetPara(&m_Para);
+    SetParameter(&m_Para);
 }
 
 CConnecterTigerVnc::~CConnecterTigerVnc()
@@ -36,9 +36,9 @@ QString CConnecterTigerVnc::ServerName()
                 return m_Para.GetSignalUser();
         }
         else {
-            if(!GetPara()->GetHost().isEmpty())
-                return GetPara()->GetHost() + ":"
-               + QString::number(GetPara()->GetPort());
+            if(!GetParameter()->GetHost().isEmpty())
+                return GetParameter()->GetHost() + ":"
+               + QString::number(GetParameter()->GetPort());
         }
         return CConnecter::Name();
     }
@@ -60,7 +60,7 @@ CConnect* CConnecterTigerVnc::InstanceConnect()
 int CConnecterTigerVnc::Connect()
 {
     // Check whether the parameters are complete
-    if(GetPara() && !GetPara()->GetCheckCompleted())
+    if(GetParameter() && !GetParameter()->GetCheckCompleted())
     {
         if(QDialog::Rejected == OpenDialogSettings())
            return -1;

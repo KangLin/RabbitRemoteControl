@@ -61,7 +61,7 @@ qint16 CConnecterTerminal::Version()
 int CConnecterTerminal::Load(QSettings &set)
 {
     int nRet = 0;
-    CParameter* pPara = GetPara();
+    CParameter* pPara = GetParameter();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     pPara->Load(set);
@@ -72,7 +72,7 @@ int CConnecterTerminal::Save(QSettings &set)
 {
     int nRet = 0;
     
-    CParameter* pPara = GetPara();
+    CParameter* pPara = GetParameter();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
     pPara->Save(set);
@@ -125,7 +125,7 @@ int CConnecterTerminal::SetParamter()
 {
     int nRet = 0;
 
-    CParameterTerminal* pPara = dynamic_cast<CParameterTerminal*>(GetPara());
+    CParameterTerminal* pPara = dynamic_cast<CParameterTerminal*>(GetParameter());
     Q_ASSERT(pPara);
     if(!pPara) return -1;
 #if QTERMWIDGET_VERSION >= QT_VERSION_CHECK(0, 9, 0)
@@ -164,7 +164,7 @@ void CConnecterTerminal::slotTerminalTitleChanged()
 void CConnecterTerminal::slotZoomReset()
 {
     if(!m_pConsole) return;
-    CParameterTerminal* pPara = dynamic_cast<CParameterTerminal*>(GetPara());
+    CParameterTerminal* pPara = dynamic_cast<CParameterTerminal*>(GetParameter());
     if(!pPara) return;
     m_pConsole->setTerminalFont(pPara->GetFont());
 }
@@ -181,7 +181,7 @@ int CConnecterTerminal::OnDisConnect()
 
 QString CConnecterTerminal::ServerName()
 {
-    CParameter* pPara = GetPara();
+    CParameter* pPara = GetParameter();
     if(CConnecter::ServerName().isEmpty())
     {
         if(pPara && !pPara->GetHost().isEmpty())
@@ -197,7 +197,7 @@ CConnect* CConnecterTerminal::InstanceConnect()
     return nullptr;
 }
 
-CParameterTerminal* CConnecterTerminal::GetPara()
+CParameterTerminal* CConnecterTerminal::GetParameter()
 {
     return m_pPara;
 }

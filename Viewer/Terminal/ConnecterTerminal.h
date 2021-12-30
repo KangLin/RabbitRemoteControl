@@ -46,7 +46,7 @@ protected:
     virtual int OnConnect();
     virtual int OnDisConnect();
     
-    virtual CParameterTerminal* GetPara();
+    virtual CParameterTerminal* GetParameter();
     
     CFrmTermWidget* m_pConsole;
     CConnectThreadTerminal* m_pThread;

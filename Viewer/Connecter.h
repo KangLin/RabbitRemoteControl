@@ -206,13 +206,15 @@ protected:
     virtual int Load(QSettings &set) = 0;
     virtual int Save(QSettings &set) = 0;
 
-    virtual CParameter* GetPara();
-    virtual int SetPara(CParameter* p);
+    virtual CParameter* GetParameter();
+    virtual int SetParameter(CParameter* p);
 
 private:
     const CPluginViewer* m_pPluginViewer;
     friend CManageConnecter;
     QString m_szServerName;
+    
+    // The owner is a derived class of this class
     CParameter* m_pParameter;
 };
 

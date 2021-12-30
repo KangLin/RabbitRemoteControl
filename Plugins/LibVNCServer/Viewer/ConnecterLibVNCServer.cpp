@@ -4,7 +4,7 @@
 
 CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginViewer *parent) : CConnecterDesktop(parent)
 {
-    SetPara(&m_Para);
+    SetParameter(&m_Para);
 }
 
 CConnecterLibVNCServer::~CConnecterLibVNCServer()

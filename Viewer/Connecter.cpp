@@ -12,8 +12,8 @@
 #include "Parameter.h"
 
 CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
-    m_pParameter(nullptr),
-    m_pPluginViewer(parent)
+    m_pPluginViewer(parent),
+    m_pParameter(nullptr)
 {
 }
 
@@ -24,16 +24,17 @@ CConnecter::~CConnecter()
 const QString CConnecter::Id()
 {
     QString szId = Protol() + "_" + m_pPluginViewer->Name();
-    if(GetPara())
-        szId += "_" + GetPara()->GetHost() + "_" + QString::number(GetPara()->GetPort());
+    if(GetParameter())
+        szId += "_" + GetParameter()->GetHost()
+                + "_" + QString::number(GetParameter()->GetPort());
     szId = szId.replace(QRegExp("[@:/#%!^&*]"), "_");
     return szId;
 }
 
 const QString CConnecter::Name()
 {
-    if(GetPara() && !GetPara()->GetName().isEmpty())
-        return GetPara()->GetName();
+    if(GetParameter() && !GetParameter()->GetName().isEmpty())
+        return GetParameter()->GetName();
     return ServerName();
 }
 
@@ -121,12 +122,12 @@ int CConnecter::Save(QString szFile)
     return Save(set);
 }
 
-CParameter* CConnecter::GetPara()
+CParameter* CConnecter::GetParameter()
 {
     return m_pParameter;
 }
 
-int CConnecter::SetPara(CParameter *p)
+int CConnecter::SetParameter(CParameter *p)
 {
     m_pParameter = p;
     return 0;

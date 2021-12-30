@@ -26,11 +26,16 @@ QWidget *CConnecterDesktop::GetViewer()
     return m_pView;
 }
 
+CParameter* CConnecterDesktop::GetParameter()
+{
+    return CConnecter::GetParameter();
+}
+
 int CConnecterDesktop::Connect()
 {
     int nRet = 0;
     // Check whether the parameters are complete
-    if(GetPara() && !GetPara()->GetCheckCompleted())
+    if(GetParameter() && !GetParameter()->GetCheckCompleted())
     {
         if(QDialog::Rejected == OpenDialogSettings())
            return -1;
@@ -65,9 +70,9 @@ QString CConnecterDesktop::ServerName()
 {
     if(CConnecter::ServerName().isEmpty())
     {
-        if(GetPara() && !GetPara()->GetHost().isEmpty())
-            return GetPara()->GetHost() + ":"
-                   + QString::number(GetPara()->GetPort());
+        if(GetParameter() && !GetParameter()->GetHost().isEmpty())
+            return GetParameter()->GetHost() + ":"
+                   + QString::number(GetParameter()->GetPort());
         else
             return CConnecter::Name();
     }
@@ -77,7 +82,7 @@ QString CConnecterDesktop::ServerName()
 int CConnecterDesktop::Load(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(GetPara());
+    Q_ASSERT(GetParameter());
     Q_ASSERT(m_pView);
     if(m_pView)
     {   
@@ -85,8 +90,8 @@ int CConnecterDesktop::Load(QSettings &set)
         if(nRet) return nRet;
     }
     
-    if(GetPara())
-        nRet = GetPara()->Load(set);
+    if(GetParameter())
+        nRet = GetParameter()->Load(set);
         
     return nRet;
 }
@@ -94,13 +99,13 @@ int CConnecterDesktop::Load(QSettings &set)
 int CConnecterDesktop::Save(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(GetPara());
+    Q_ASSERT(GetParameter());
     if(m_pView)
     {
         nRet = m_pView->Save(set);
         if(nRet) return nRet;
     }
-    if(GetPara())
-        GetPara()->Save(set);
+    if(GetParameter())
+        GetParameter()->Save(set);
     return nRet;
 }
