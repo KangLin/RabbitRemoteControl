@@ -41,7 +41,7 @@
  *     - slotClipBoardChange()
  *
  * \~
- * \see CConnecterDesktop CConnecter CFrmViewer
+ * \see CConnecterDesktop CFrmViewer
  * \ingroup VIEWER_PLUGIN_API
  */
 class VIEWER_EXPORT CConnect : public QObject

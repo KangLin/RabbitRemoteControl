@@ -37,7 +37,7 @@ class CManageConnecter;
  *   2. Termianal type: \ref CConnecterTerminal
  * 
  * \~
- * \see   CPluginViewer CFrmViewer CConnect
+ * \see   CPluginViewer CFrmViewer
  * \ingroup VIEWER_API VIEWER_PLUGIN_API
  */
 class VIEWER_EXPORT CConnecter : public QObject
