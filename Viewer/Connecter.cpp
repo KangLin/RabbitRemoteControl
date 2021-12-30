@@ -80,6 +80,7 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
     if(p)
     {
         p->setWindowIcon(this->Icon());
+        p->setWindowTitle(tr("Set ") + m_pPluginViewer->DisplayName());
 #ifdef BUILD_QUIWidget
         QUIWidget* quiwidget = new QUIWidget();
         quiwidget->setMainWidget(p);
