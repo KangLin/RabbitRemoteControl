@@ -202,7 +202,8 @@ void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
     }
     menu.addSeparator();
     menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
-    menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
+    if(item && item->data().isValid())
+        menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
     menu.exec(mapToGlobal(pos));
 }
 
