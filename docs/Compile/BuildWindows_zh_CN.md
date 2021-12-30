@@ -42,6 +42,8 @@
 
 ### 编译
 
+参见：[编译集成](../../.github/workflows/msvc.yml)
+
 ### 依赖库
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)

@@ -96,6 +96,8 @@
     ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
 
+参见：[编译集成](../../.github/workflows/ubuntu.yml)
+
 ### 依赖库
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)

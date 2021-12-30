@@ -44,6 +44,8 @@ Prior versions don't have CMake support.
 
 ### Compilation
 
+See: [Compile integration](../../.github/workflows/msvc.yml)
+
 ### Library dependencies
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
