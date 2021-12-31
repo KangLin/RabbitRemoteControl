@@ -5,7 +5,7 @@
 #include "RabbitCommonLog.h"
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
-    : CConnecterDesktop(parent)
+    : CConnecterDesktopThread(parent)
 {
     SetParameter(&m_Para);
 }

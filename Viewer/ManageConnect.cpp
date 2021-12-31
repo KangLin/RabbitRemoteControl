@@ -1,6 +1,6 @@
 #include "ManageConnect.h"
 #include "RabbitCommonLog.h"
-#include "ConnecterDesktop.h"
+#include "ConnecterDesktopThread.h"
 
 CManageConnect::CManageConnect(QObject *parent) : QObject(parent)
 {
@@ -19,7 +19,7 @@ void CManageConnect::slotConnect(CConnecter *pConnecter)
 {
     int nRet = 0;
     LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::slotConnect()");
-    CConnect* pConnect = dynamic_cast<CConnecterDesktop*>(pConnecter)->InstanceConnect();
+    CConnect* pConnect = dynamic_cast<CConnecterDesktopThread*>(pConnecter)->InstanceConnect();
     if(!pConnect) return;
 
     /*

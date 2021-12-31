@@ -15,7 +15,7 @@ set(INSTALL_HEADER_FILES
     ManageConnecter.h
     ManageConnect.h
     PluginViewer.h
-    ConnecterDesktop.h
+    ConnecterDesktopThread.h
     Parameter.h
     ManagePassword.h
     )
@@ -35,7 +35,7 @@ set(SOURCE_FILES
     ManageConnecter.cpp
     ManageConnect.cpp
     PluginViewer.cpp
-    ConnecterDesktop.cpp
+    ConnecterDesktopThread.cpp
     ConnectThread.cpp
     PluginThread.cpp
     Parameter.cpp

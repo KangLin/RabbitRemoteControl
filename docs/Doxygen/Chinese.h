@@ -48,7 +48,7 @@
       - 插件名：必须与翻译资源文件名(.ts)相同 \ref CPluginTigerVnc::Name() 
       \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
   - 实现 \ref CConnecter 。例如： \ref CConnecterTigerVnc
-    - 实现远程桌面，可以从 \ref CConnecterDesktop 派生
+    - 实现远程桌面，可以从 \ref CConnecterDesktopThread 派生
     - 实现远程控制台，可以从 \ref CConnecterTerminal 派生
     - 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生
   - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectTigerVnc

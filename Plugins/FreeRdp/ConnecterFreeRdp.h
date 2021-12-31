@@ -4,11 +4,11 @@
 #define CCONNECTERFREERDP_H
 
 #include "Connecter.h"
-#include "ConnecterDesktop.h"
+#include "ConnecterDesktopThread.h"
 #include "freerdp/freerdp.h"
 #include "ParameterFreeRdp.h"
 
-class CConnecterFreeRdp : public CConnecterDesktop
+class CConnecterFreeRdp : public CConnecterDesktopThread
 {
     Q_OBJECT
 public:

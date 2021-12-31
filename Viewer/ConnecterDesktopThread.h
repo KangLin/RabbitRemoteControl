@@ -48,12 +48,12 @@ class CConnectThread;
  * \~  
  * \see CConnect CConnectThread CConnecter
  */
-class VIEWER_EXPORT CConnecterDesktop : public CConnecter
+class VIEWER_EXPORT CConnecterDesktopThread : public CConnecter
 {
     Q_OBJECT
 public:
-    explicit CConnecterDesktop(CPluginViewer *parent = nullptr);
-    virtual ~CConnecterDesktop();
+    explicit CConnecterDesktopThread(CPluginViewer *parent = nullptr);
+    virtual ~CConnecterDesktopThread();
 
     virtual QWidget* GetViewer() override;
 

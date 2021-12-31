@@ -26,14 +26,14 @@ class CManageConnecter;
  * \note 此类是用户接使用接口，由插件实现
  * \details 
  *  已经提供以下类型的基本实现：
- *  1. 桌面类连接： \ref CConnecterDesktop
+ *  1. 桌面类连接： \ref CConnecterDesktopThread
  *  2. 控制台类连接：\ref CConnecterTerminal
  *  
  * \~english
  * \brief Connecter interface
  * \note  The class is a interface used by Use UI
  * \details Basic implementations of the following types have been provided:
- *   1. Desktop type: \ref CConnecterDesktop
+ *   1. Desktop type: \ref CConnecterDesktopThread
  *   2. Termianal type: \ref CConnecterTerminal
  * 
  * \~

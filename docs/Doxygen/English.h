@@ -42,7 +42,7 @@
       - Plugin name: it muse is same as translation file(.ts) name \ref CPluginTigerVnc::Name() 
         \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
   - Implement \ref CConnecter. For example: \ref CConnecterTigerVnc
-    - Implement remote desktop, which can be derived from \ref CConnecterDesktop
+    - Implement remote desktop, which can be derived from \ref CConnecterDesktopThread
     - Implement remote console, which can be derived from \ref CConnecterTerminal
     - If the above two cannot meet your needs, you  can be derived from \ref CConnecter
   -Implement a specific connection, derived from \ref CConnect. For example: \ref CConnectTigerVnc 

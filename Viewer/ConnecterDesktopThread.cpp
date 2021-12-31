@@ -1,37 +1,37 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnecterDesktop.h"
+#include "ConnecterDesktopThread.h"
 #include <QDebug>
 #include "ConnectThread.h"
 #include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 
-CConnecterDesktop::CConnecterDesktop(CPluginViewer *parent)
+CConnecterDesktopThread::CConnecterDesktopThread(CPluginViewer *parent)
     : CConnecter(parent),
       m_pThread(nullptr),
       m_pView(new CFrmViewer())
 {}
 
-CConnecterDesktop::~CConnecterDesktop()
+CConnecterDesktopThread::~CConnecterDesktopThread()
 {
     if(m_pView)
         delete m_pView;
     
-    LOG_MODEL_DEBUG("CConnecterDesktop", "CConnecterDesktop::~CConnecterDesktop");
+    LOG_MODEL_DEBUG("CConnecterDesktopThread", "CConnecterDesktopThread::~CConnecterDesktopThread");
     //qDebug() << this << this->metaObject()->className();
 }
 
-QWidget *CConnecterDesktop::GetViewer()
+QWidget *CConnecterDesktopThread::GetViewer()
 {
     return m_pView;
 }
 
-CParameter* CConnecterDesktop::GetParameter()
+CParameter* CConnecterDesktopThread::GetParameter()
 {
     return CConnecter::GetParameter();
 }
 
-int CConnecterDesktop::Connect()
+int CConnecterDesktopThread::Connect()
 {
     int nRet = 0;
     // Check whether the parameters are complete
@@ -54,19 +54,19 @@ int CConnecterDesktop::Connect()
     return nRet;
 }
 
-int CConnecterDesktop::DisConnect()
+int CConnecterDesktopThread::DisConnect()
 {
     int nRet = 0;
     if(m_pThread)
     {
         m_pThread->quit();
-        //Don't delete m_pThread, See CConnecterDesktop::Connect()
+        //Don't delete m_pThread, See CConnecterDesktopThread::Connect()
         m_pThread = nullptr;
     }
     return nRet;
 }
 
-QString CConnecterDesktop::ServerName()
+QString CConnecterDesktopThread::ServerName()
 {
     if(GetParameter())
         if(!GetParameter()->GetShowServerName()
@@ -79,7 +79,7 @@ QString CConnecterDesktop::ServerName()
     return CConnecter::ServerName();
 }
 
-int CConnecterDesktop::Load(QSettings &set)
+int CConnecterDesktopThread::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());
@@ -96,7 +96,7 @@ int CConnecterDesktop::Load(QSettings &set)
     return nRet;
 }
 
-int CConnecterDesktop::Save(QSettings &set)
+int CConnecterDesktopThread::Save(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());

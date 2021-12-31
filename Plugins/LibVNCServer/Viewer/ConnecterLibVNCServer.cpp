@@ -2,7 +2,7 @@
 #include "DlgSettingsLibVnc.h"
 #include <QDebug>
 
-CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginViewer *parent) : CConnecterDesktop(parent)
+CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginViewer *parent) : CConnecterDesktopThread(parent)
 {
     SetParameter(&m_Para);
 }

@@ -1,11 +1,11 @@
 #ifndef CCONNECTERLIBVNC_H
 #define CCONNECTERLIBVNC_H
 
-#include "ConnecterDesktop.h"
+#include "ConnecterDesktopThread.h"
 #include "ConnectLibVNCServer.h"
 
 class CDlgSettingsLibVnc;
-class CConnecterLibVNCServer : public CConnecterDesktop
+class CConnecterLibVNCServer : public CConnecterDesktopThread
 {
 public:
     explicit CConnecterLibVNCServer(CPluginViewer *parent);

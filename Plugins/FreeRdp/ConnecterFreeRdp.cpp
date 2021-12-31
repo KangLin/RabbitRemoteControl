@@ -6,7 +6,7 @@
 #include "DlgSetFreeRdp.h"
 
 CConnecterFreeRdp::CConnecterFreeRdp(CPluginViewer *parent)
-    : CConnecterDesktop(parent)
+    : CConnecterDesktopThread(parent)
 {
     SetParameter(&m_ParameterFreeRdp);
     // 在 freerdp_client_context_free 中释放
