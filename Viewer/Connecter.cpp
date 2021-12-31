@@ -138,8 +138,8 @@ int CConnecter::SetParameter(CParameter *p)
     if(m_pParameter)
     {
         bool check = false;
-        check = connect(m_pParameter, SIGNAL(sigNameChanged(const QString&)),
-                        this, SIGNAL(sigUpdateName(const QString&)));
+        check = connect(m_pParameter, SIGNAL(sigNameChanged()),
+                        this, SLOT(slotUpdateName()));
         Q_ASSERT(check);
         check = connect(m_pParameter, SIGNAL(sigShowServerNameChanged()),
                         this, SLOT(slotShowServerName()));
@@ -150,5 +150,10 @@ int CConnecter::SetParameter(CParameter *p)
 
 void CConnecter::slotShowServerName()
 {
-    emit sigUpdateName(ServerName());
+    emit sigUpdateName(Name());
+}
+
+void CConnecter::slotUpdateName()
+{
+    emit sigUpdateName(Name());
 }

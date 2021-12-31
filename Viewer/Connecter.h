@@ -61,17 +61,7 @@ public:
     virtual const QString Protol() const;
     virtual qint16 Version() = 0;
     virtual const QIcon Icon() const;
-    
-    /*!
-     * \~chinese
-     * \brief 当前连接名。例如：服务名或 IP:端口
-     * \return 返回服务名
-     * 
-     * \~english
-     * \brief Current connect server name. eg: Server name or Ip:Port 
-     * \return Current connect server name.
-     */
-    virtual QString ServerName();
+
     /*!
      * \~chinese
      * \brief 得到显示视图
@@ -163,13 +153,11 @@ Q_SIGNALS:
      * \~english Successful disconnection signal. Only triggered by plugins
      */
     void sigDisconnected();
-
     /*!
-     * \~chinese \note 仅在本类中使用时。插件请使用 slotSetServerName
-     * \~english \note When only used in the class. Please use slotSetServerName for plug-in
+     * \~chinese \note 名称更新。此信号仅由本类触发
+     * \~english \note The name is changed. This signal is only triggered by this class 
      */
     void sigUpdateName(const QString& szName);
-
     void sigError(const int nError, const QString &szError);
     /*!
      * \brief Show infomation in main windows 
@@ -209,8 +197,20 @@ protected:
     virtual CParameter* GetParameter();
     virtual int SetParameter(CParameter* p);
 
+    /*!
+     * \~chinese
+     * \brief 当前连接名。例如：服务名或 IP:端口
+     * \return 返回服务名
+     * 
+     * \~english
+     * \brief Current connect server name. eg: Server name or Ip:Port 
+     * \return Current connect server name.
+     */
+    virtual QString ServerName();
+
 private Q_SLOTS:
     void slotShowServerName();
+    void slotUpdateName();
 
 private:
     const CPluginViewer* m_pPluginViewer;

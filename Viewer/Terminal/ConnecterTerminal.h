@@ -20,8 +20,6 @@ public:
     virtual qint16 Version() override;
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
-    
-    virtual QString ServerName() override;
 
     // Instance connect
     virtual CConnect* InstanceConnect();
@@ -35,6 +33,7 @@ private Q_SLOTS:
     void slotZoomReset();
     
 protected:
+    virtual QString ServerName() override;
     virtual int SetParamter();
 
     /**

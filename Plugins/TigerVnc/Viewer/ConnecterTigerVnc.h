@@ -14,15 +14,13 @@ class CConnecterTigerVnc : public CConnecterDesktop
 public:
     explicit CConnecterTigerVnc(CPluginViewer *parent);
     virtual ~CConnecterTigerVnc() override;
-
     virtual qint16 Version() override;
-    virtual QString ServerName() override;
 
 protected:
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) override;
-
     virtual CConnect* InstanceConnect() override;
-
+    virtual QString ServerName() override;
+    
 public:
     CParameterTigerVnc m_Para;
     CConnect* m_pConnect;

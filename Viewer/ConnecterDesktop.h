@@ -56,7 +56,7 @@ public:
     virtual ~CConnecterDesktop();
 
     virtual QWidget* GetViewer() override;
-    virtual QString ServerName() override;
+
     /*!
      * \~chinese \brief 加载参数
      * \~english \brief Load parameters
@@ -90,11 +90,12 @@ public Q_SLOTS:
     virtual int Connect() override;
     virtual int DisConnect() override;
 
+protected:
+    virtual QString ServerName() override;
+    
 private:
     CConnectThread* m_pThread;
     CFrmViewer *m_pView;
-
-protected:
 };
 
 #endif // CCONNECTERBACKTHREAD_H
