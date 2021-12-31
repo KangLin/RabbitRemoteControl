@@ -77,7 +77,7 @@ private Q_SLOTS:
      * \see CConnecter::sigInformation()
      */
     void slotInformation(const QString& szInfo);
-    void slotUpdateServerName(const QString& szName);
+    void slotUpdateName(const QString& szName);
     
     void on_actionShow_TabBar_B_triggered();
     void slotShowTabBar(bool bShow);

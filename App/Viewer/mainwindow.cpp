@@ -570,8 +570,8 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     check = connect(p, SIGNAL(sigInformation(const QString&)),
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigUpdateServerName(const QString&)),
-                    this, SLOT(slotUpdateServerName(const QString&)));
+    check = connect(p, SIGNAL(sigUpdateName(const QString&)),
+                    this, SLOT(slotUpdateName(const QString&)));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigUpdateParamters(CConnecter*)),
                          this, SLOT(slotUpdateParameters(CConnecter*)));
@@ -683,7 +683,7 @@ void MainWindow::slotInformation(const QString& szInfo)
     this->statusBar()->showMessage(szInfo);
 }
 
-void MainWindow::slotUpdateServerName(const QString& szName)
+void MainWindow::slotUpdateName(const QString& szName)
 {
     CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
     if(!pConnecter) return;

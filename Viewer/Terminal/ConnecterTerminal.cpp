@@ -103,7 +103,7 @@ int CConnecterTerminal::Connect()
         emit sigConnected();
     
     if(m_pConsole)
-        emit sigUpdateServerName(ServerName());
+        emit sigUpdateName(Name());
     
     return nRet;
 }

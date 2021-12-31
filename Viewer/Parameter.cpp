@@ -38,6 +38,7 @@ void CParameter::SetName(const QString& name)
     if(m_szName == name)
         return;
     m_szName = name;
+    emit sigNameChanged(m_szName);
 }
 
 bool CParameter::GetShowServerName() const

@@ -168,7 +168,7 @@ Q_SIGNALS:
      * \~chinese \note 仅在本类中使用时。插件请使用 slotSetServerName
      * \~english \note When only used in the class. Please use slotSetServerName for plug-in
      */
-    void sigUpdateServerName(const QString& szName);
+    void sigUpdateName(const QString& szName);
 
     void sigError(const int nError, const QString &szError);
     /*!
