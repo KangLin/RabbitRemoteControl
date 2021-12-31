@@ -30,24 +30,38 @@ CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
                                  QObject *parent)
     : CConnect(pConnecter, parent),
       m_pContext(nullptr),
-      m_pParamter(&pConnecter->m_ParameterFreeRdp),
+      m_pParamter(nullptr),
       m_ClipBoard(this),
       m_Cursor(this)
 {
     Q_ASSERT(pConnecter);
+    m_pParamter = dynamic_cast<CParameterFreeRdp*>(pConnecter->GetParameter());
+    Q_ASSERT(m_pParamter);
+    
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
-    m_ClientEntryPoints.settings = pConnecter->m_ParameterFreeRdp.m_pSettings;
+    m_ClientEntryPoints.settings = m_pParamter->m_pSettings;
+        
+    rdpSettings* settings = m_pParamter->m_pSettings;
     
-    SetParamter(&pConnecter->m_ParameterFreeRdp);
+    freerdp_settings_set_string(settings,
+                                FreeRDP_ServerHostname,
+                                m_pParamter->GetHost().toStdString().c_str());
+    settings->ServerPort = m_pParamter->GetPort();
+    freerdp_settings_set_string(settings,
+                                FreeRDP_Username,
+                                m_pParamter->GetUser().toStdString().c_str());
+    freerdp_settings_set_string(settings,
+                                FreeRDP_Password,
+                                m_pParamter->GetPassword().toStdString().c_str());
+
     RdpClientEntry(&m_ClientEntryPoints);
     
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
 	if(p)
     {
         m_pContext = (ClientContext*)p;
-        
         m_pContext->pThis = this;
     } else 
         LOG_MODEL_ERROR("FreeRdp", "freerdp_client_context_new fail");
@@ -109,8 +123,6 @@ int CConnectFreeRdp::OnInit()
         emit sigError(nRet, szErr.toStdString().c_str());
     } else {
         emit sigConnected();
-        //TODO: set server name
-        //emit sigServerName(settings->ServerHostname);
 
         QString szInfo = tr("Connect to ");
         szInfo += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
@@ -134,7 +146,6 @@ int CConnectFreeRdp::OnClean()
         freerdp_client_context_free(pContext);
         m_pContext = nullptr;
     }
-
     return nRet;
 }
 
@@ -685,7 +696,12 @@ DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance, const char *h
     return 2;
 }
 
-DWORD CConnectFreeRdp::cb_verify_changed_certificate_ex(freerdp *instance, const char *host, UINT16 port, const char *common_name, const char *subject, const char *issuer, const char *new_fingerprint, const char *old_subject, const char *old_issuer, const char *old_fingerprint, DWORD flags)
+DWORD CConnectFreeRdp::cb_verify_changed_certificate_ex(freerdp *instance,
+                      const char *host, UINT16 port,
+                      const char *common_name, const char *subject,
+                      const char *issuer, const char *new_fingerprint,
+                      const char *old_subject, const char *old_issuer,
+                      const char *old_fingerprint, DWORD flags)
 {
     qDebug() << "CConnectFreeRdp::cb_verify_changed_certificate_ex";
     
@@ -819,26 +835,4 @@ void CConnectFreeRdp::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifie
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
         freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, k);
-}
-
-int CConnectFreeRdp::SetParamter(void *pPara)
-{
-    Q_ASSERT(pPara);
-    if(!pPara) return -1;
-    
-    CParameterFreeRdp* pSettings = (CParameterFreeRdp*)(pPara);
-    rdpSettings* settings = pSettings->m_pSettings;
-    
-    freerdp_settings_set_string(settings,
-                                FreeRDP_ServerHostname,
-                                pSettings->GetHost().toStdString().c_str());
-    settings->ServerPort = pSettings->GetPort();
-    freerdp_settings_set_string(settings,
-                                FreeRDP_Username,
-                                pSettings->GetUser().toStdString().c_str());
-    freerdp_settings_set_string(settings,
-                                FreeRDP_Password,
-                                pSettings->GetPassword().toStdString().c_str());
-    
-    return 0;
 }

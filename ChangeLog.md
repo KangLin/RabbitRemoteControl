@@ -1,5 +1,12 @@
 ## Change Log
 
+### v0.0.15
++ Refactor CConneter paramters interface
++ Modify documents
++ Fix same bug
+  - Fix CConneter::Name CConneter::ServerName bug
+  - Fix favorite bug
+
 ### v0.0.14
 + Add system tray icon
 + Fix same bug

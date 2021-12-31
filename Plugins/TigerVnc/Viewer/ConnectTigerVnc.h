@@ -33,8 +33,6 @@ public:
                               QObject *parent = nullptr);
     virtual ~CConnectTigerVnc() override;
 
-    virtual int SetParamter(void *pPara) override;
-
 public Q_SLOTS:
     virtual void slotConnected();
     virtual void slotDisConnected();

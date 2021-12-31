@@ -77,25 +77,8 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
     rfb::CSecurityTLS::msg = this;
 #endif
     
-    SetParamter(&pConnecter->m_Para);
-    if(!m_pPara->GetLocalCursor())
-    {
-        emit sigUpdateCursor(QCursor(Qt::BlankCursor));
-    }
-}
-
-CConnectTigerVnc::~CConnectTigerVnc()
-{
-    if(m_DataChannel)
-        m_DataChannel->close();
-    qDebug() << "CConnectTigerVnc::~CConnectTigerVnc()";
-}
-
-int CConnectTigerVnc::SetParamter(void *pPara)
-{
-    if(!pPara) return -1;
-    
-    m_pPara = (CParameterTigerVnc*)pPara;
+    m_pPara = dynamic_cast<CParameterTigerVnc*>(pConnecter->GetParameter());
+    Q_ASSERT(m_pPara);
     
     setShared(m_pPara->GetShared());
     supportsLocalCursor = m_pPara->GetLocalCursor();
@@ -108,7 +91,17 @@ int CConnectTigerVnc::SetParamter(void *pPara)
     // Set server pixmap format
     updatePixelFormat();
     
-    return 0;
+    if(!m_pPara->GetLocalCursor())
+    {
+        emit sigUpdateCursor(QCursor(Qt::BlankCursor));
+    }
+}
+
+CConnectTigerVnc::~CConnectTigerVnc()
+{
+    if(m_DataChannel)
+        m_DataChannel->close();
+    qDebug() << "CConnectTigerVnc::~CConnectTigerVnc()";
 }
 
 /* \return 
@@ -363,7 +356,7 @@ void CConnectTigerVnc::slotError(int nErr, const QString& szErr)
 
 void CConnectTigerVnc::initDone()
 {
-    Q_ASSERT(m_pPara); // Please call SetParamter before call Connect
+    Q_ASSERT(m_pPara);
     LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::initDone():name:%s;width:%d;height:%d",
                     server.name(), server.width(), server.height());
     

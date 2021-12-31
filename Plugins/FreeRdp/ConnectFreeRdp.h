@@ -17,9 +17,7 @@ public:
     explicit CConnectFreeRdp(CConnecterFreeRdp* pConnecter = nullptr,
                              QObject *parent = nullptr);
     virtual ~CConnectFreeRdp() override;
-    
-    int SetParamter(void *pPara);
-    
+
     static BOOL Client_global_init();
     static void Client_global_uninit();
     static BOOL Client_new(freerdp* instance, rdpContext* context);

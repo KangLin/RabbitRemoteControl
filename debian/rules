@@ -38,6 +38,14 @@ ifdef INSTALL_DIR
     LIB_PARAS += ${INSTALL_DIR}/lib
 endif
 
+ifdef BUILD_DOCS
+    LIB_PARAS += -DBUILD_DOCS=${BUILD_DOCS}
+endif
+
+ifdef BUILD_TERMINAL
+    LIB_PARAS += -DBUILD_TERMINAL=${BUILD_TERMINAL}
+endif
+
 %:
 	dh $@
 
@@ -45,20 +53,20 @@ endif
 # This is example for Cmake (See https://bugs.debian.org/641051 )
 override_dh_auto_configure:
 	dh_auto_configure -- -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
-        -DBUILD_FREERDP=ON \
-        -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
-        -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
-        -DRabbitCommon_DIR=${RabbitCommon_DIR} \
-        -DCMARK_SHARED:BOOL=ON \
-        -DCMARK_TESTS:BOOL=OFF \
-        -DCMARK_STATIC=OFF \
-        ${PARAS}
+            -DBUILD_FREERDP=ON \
+            -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
+            -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
+            -DRabbitCommon_DIR=${RabbitCommon_DIR} \
+            -DCMARK_SHARED:BOOL=ON \
+            -DCMARK_TESTS:BOOL=OFF \
+            -DCMARK_STATIC=OFF \
+            ${PARAS}
 
 override_dh_auto_build:
 	dh_auto_build -- $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`" = "0",, -j`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`)
 
 override_dh_auto_install:
-	 dh_auto_install -- install-runtime $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`" = "0",, -j`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`)
+	dh_auto_install -- install-runtime $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`" = "0",, -j`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`)
 
 override_dh_shlibdeps:
 	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)

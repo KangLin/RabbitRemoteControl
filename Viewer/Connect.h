@@ -91,7 +91,6 @@ public Q_SLOTS:
 protected:
     virtual int SetConnecter(CConnecter* pConnecter);
     virtual int SetViewer(CFrmViewer* pView, bool bDirectConnection);
-    virtual int SetParamter(void *pPara);
 
     /*!
      * \~chinese 具体的插件实现连接初始化

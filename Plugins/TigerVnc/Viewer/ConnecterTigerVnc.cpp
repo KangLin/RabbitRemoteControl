@@ -5,8 +5,7 @@
 #include "RabbitCommonLog.h"
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
-    : CConnecterDesktop(parent),
-      m_pConnect(nullptr)
+    : CConnecterDesktop(parent)
 {
     SetParameter(&m_Para);
 }
@@ -14,11 +13,6 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
 CConnecterTigerVnc::~CConnecterTigerVnc()
 {
     qDebug() << "CConnecterTigerVnc::~CConnecterTigerVnc()";
-    if(m_pConnect)
-    {
-        m_pConnect->deleteLater();
-        m_pConnect = nullptr;
-    }
 }
 
 qint16 CConnecterTigerVnc::Version()

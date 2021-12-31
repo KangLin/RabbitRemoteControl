@@ -50,9 +50,6 @@ private:
 private:    
     CParameterLibVNCServer* m_pPara;
     QTcpSocket m_tcpSocket;
-
-protected:
-    virtual int SetParamter(void *) override;
 };
 
 #endif // CCONNECTLIBVNC_H

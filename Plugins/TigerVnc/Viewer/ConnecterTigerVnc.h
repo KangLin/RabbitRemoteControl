@@ -20,10 +20,6 @@ protected:
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) override;
     virtual CConnect* InstanceConnect() override;
     virtual QString ServerName() override;
-    
-public:
-    CParameterTigerVnc m_Para;
-    CConnect* m_pConnect;
 
 public Q_SLOTS:
     virtual int Connect() override;
@@ -32,6 +28,9 @@ public Q_SLOTS:
 Q_SIGNALS:
     void sigConnect(CConnecter*);
     void sigDisconnect(CConnecter*);
+    
+private:
+    CParameterTigerVnc m_Para;
 };
 
 #endif // CCONNECTERTIGERVNC_H

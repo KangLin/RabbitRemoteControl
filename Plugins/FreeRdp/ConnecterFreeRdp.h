@@ -14,8 +14,6 @@ class CConnecterFreeRdp : public CConnecterDesktop
 public:
     explicit CConnecterFreeRdp(CPluginViewer *parent = nullptr);
     virtual ~CConnecterFreeRdp() override;
-    
-    CParameterFreeRdp m_ParameterFreeRdp;
 
 public:
     virtual qint16 Version() override;
@@ -24,6 +22,9 @@ protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
 
     virtual CConnect *InstanceConnect() override;
+    
+private:
+    CParameterFreeRdp m_ParameterFreeRdp;
 };
 
 #endif // CCONNECTERFREERDP_H

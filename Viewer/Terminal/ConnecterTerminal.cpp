@@ -125,7 +125,7 @@ int CConnecterTerminal::SetParamter()
 {
     int nRet = 0;
 
-    CParameterTerminal* pPara = dynamic_cast<CParameterTerminal*>(GetParameter());
+    CParameterTerminal* pPara = GetParameter();
     Q_ASSERT(pPara);
     if(!pPara) return -1;
 #if QTERMWIDGET_VERSION >= QT_VERSION_CHECK(0, 9, 0)
@@ -150,7 +150,6 @@ int CConnecterTerminal::SetParamter()
 //    m_pConsole->setMonitorActivity(false);
 //    m_pConsole->setMonitorSilence(false);
 //    m_pConsole->setBlinkingCursor(true);
-    
 
     return nRet;
 }

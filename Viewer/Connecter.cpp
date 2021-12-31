@@ -130,18 +130,18 @@ CParameter* CConnecter::GetParameter()
 
 int CConnecter::SetParameter(CParameter *p)
 {
-    if(m_pParameter)
-        m_pParameter->disconnect(this);
+    if(GetParameter())
+        GetParameter()->disconnect(this);
 
     m_pParameter = p;
 
-    if(m_pParameter)
+    if(GetParameter())
     {
         bool check = false;
-        check = connect(m_pParameter, SIGNAL(sigNameChanged()),
+        check = connect(GetParameter(), SIGNAL(sigNameChanged()),
                         this, SLOT(slotUpdateName()));
         Q_ASSERT(check);
-        check = connect(m_pParameter, SIGNAL(sigShowServerNameChanged()),
+        check = connect(GetParameter(), SIGNAL(sigShowServerNameChanged()),
                         this, SLOT(slotShowServerName()));
         Q_ASSERT(check);   
     }

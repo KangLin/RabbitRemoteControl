@@ -172,12 +172,6 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
     return 0;
 }
 
-int CConnect::SetParamter(void *pPara)
-{
-    Q_UNUSED(pPara)
-    return 0;
-}
-
 int CConnect::Connect()
 {
     int nRet = 0;
