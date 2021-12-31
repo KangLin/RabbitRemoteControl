@@ -151,25 +151,34 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
         }
     } else {
         auto itemGroup = m_pModel->itemFromIndex(indexs[0]);
-        if(itemGroup->data().isValid()) return 2;
-        szGroup = itemGroup->text();
-        auto lstGroup = m_pModel->findItems(szGroup, Qt::MatchFixedString);
-        if(lstGroup.isEmpty())
+        if(itemGroup->data().isValid())
         {
-            QStandardItem* pGroup = new QStandardItem(szGroup);
-            m_pModel->appendRow(pGroup);
-            pItem = new QStandardItem(szName);
-            pGroup->appendRow(pItem);
-        } else {
-            if(lstGroup[0]->data().isValid()) return 2;
-            for(int i = 0; i < lstGroup[0]->rowCount(); i++)
+            auto it = m_pModel->findItems(szName, Qt::MatchFixedString);
+            if(it.isEmpty())
             {
-                auto item = lstGroup[0]->child(i);
-                if(item->text() == szName)
-                    return -3;
+                pItem = new QStandardItem(szName);
+                m_pModel->appendRow(pItem);
             }
-            pItem = new QStandardItem(szName);
-            lstGroup[0]->appendRow(pItem);
+        } else {
+            szGroup = itemGroup->text();
+            auto lstGroup = m_pModel->findItems(szGroup, Qt::MatchFixedString);
+            if(lstGroup.isEmpty())
+            {
+                QStandardItem* pGroup = new QStandardItem(szGroup);
+                m_pModel->appendRow(pGroup);
+                pItem = new QStandardItem(szName);
+                pGroup->appendRow(pItem);
+            } else {
+                if(lstGroup[0]->data().isValid()) return 2;
+                for(int i = 0; i < lstGroup[0]->rowCount(); i++)
+                {
+                    auto item = lstGroup[0]->child(i);
+                    if(item->text() == szName)
+                        return -3;
+                }
+                pItem = new QStandardItem(szName);
+                lstGroup[0]->appendRow(pItem);
+            }
         }
     }
     if(pItem)
