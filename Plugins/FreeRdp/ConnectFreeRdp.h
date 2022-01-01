@@ -66,6 +66,9 @@ public:
     
     static UINT32 GetImageFormat(QImage::Format format);
     
+Q_SIGNALS:
+    void sigGetUserPassword(char** user, char** password, char** domain);
+
 private:
     UINT32 GetImageFormat();
     
@@ -83,7 +86,8 @@ public Q_SLOTS:
     
 private:
     int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
-    
+   
+    // CConnect interface
     virtual int OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;

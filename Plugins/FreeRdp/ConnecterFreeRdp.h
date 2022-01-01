@@ -23,6 +23,9 @@ protected:
 
     virtual CConnect *InstanceConnect() override;
     
+private Q_SLOTS:
+    void slotGetUserPassword(char** user, char** password, char** domain);
+
 private:
     CParameterFreeRdp m_ParameterFreeRdp;
 };

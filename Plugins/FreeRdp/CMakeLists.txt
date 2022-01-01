@@ -30,6 +30,7 @@ SET(SOURCE_FILES
     CursorFreeRdp.cpp
     ClipboardFreeRdp.cpp
     ClipboardMimeData.cpp
+    DlgGetUserPassword.cpp
     )
 
 SET(HEADER_FILES
@@ -42,10 +43,12 @@ SET(HEADER_FILES
     CursorFreeRdp.h
     ClipboardFreeRdp.h
     ClipboardMimeData.h
+    DlgGetUserPassword.h
     )
 
 SET(UI_FILES
     DlgSetFreeRdp.ui
+    DlgGetUserPassword.ui
     )
 
 ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}

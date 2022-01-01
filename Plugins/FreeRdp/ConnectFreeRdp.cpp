@@ -200,10 +200,10 @@ int CConnectFreeRdp::OnProcess()
                     return m_pParamter->GetReconnectInterval() * 1000;
                 else
                 {
-                 /*
-                 * Indicate an unsuccessful connection attempt if reconnect
-                 * did not succeed and no other error was specified.
-                 */
+                    /*
+                     * Indicate an unsuccessful connection attempt if reconnect
+                     * did not succeed and no other error was specified.
+                     */
                     if (freerdp_error_info(pContext->instance) == 0)
                         nRet = -6;
                 }
@@ -243,7 +243,7 @@ BOOL CConnectFreeRdp::Client_new(freerdp *instance, rdpContext *context)
 	instance->PostDisconnect = cb_post_disconnect;
     
     // Because it is setted in settings.
-	//instance->Authenticate = cb_authenticate;
+	instance->Authenticate = cb_authenticate;
 	//instance->GatewayAuthenticate = cb_GatewayAuthenticate;
     
     instance->VerifyCertificateEx = cb_verify_certificate_ex;
@@ -640,31 +640,19 @@ UINT32 CConnectFreeRdp::GetImageFormat()
     return GetImageFormat(m_Image.format());
 }
 
-BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username, char** password, char** domain)
+BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username,
+                                      char** password, char** domain)
 {
     qDebug() << "CConnectFreeRdp::cb_authenticate";
 	if(!instance)
 		return FALSE;
-
-    if(username)
-        *username = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Username));
-    if(password)
+    rdpContext* pContext = (rdpContext*)instance->context;
+    CConnectFreeRdp* pThis = ((ClientContext*)pContext)->pThis;
+    if(username || password)
     {
-        std::string szPassword = freerdp_settings_get_string(instance->settings, FreeRDP_Password);
-//        if(szPassword.empty())
-//        {
-//            szPassword = QInputDialog::getText(nullptr,
-//                                               tr("Input password"),
-//                                               tr("Password"),
-//                                               QLineEdit::Password).toStdString();
-//            if(szPassword.empty())
-//                return FALSE;
-//        }
-	    *password = _strdup(szPassword.c_str());
+        emit pThis->sigGetUserPassword(username, password, domain);
     }
-    if(domain)
-        *domain = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Domain));
-	return TRUE;
+    return TRUE;
 }
 
 BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance, char **username, char **password, char **domain)
@@ -683,7 +671,10 @@ BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance, char **username,
 	return TRUE;
 }
 
-DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance, const char *host, UINT16 port, const char *common_name, const char *subject, const char *issuer, const char *fingerprint, DWORD flags)
+DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance,
+                       const char *host, UINT16 port,
+                       const char *common_name, const char *subject,
+                       const char *issuer, const char *fingerprint, DWORD flags)
 {
     qDebug() << "CConnectFreeRdp::cb_verify_certificate_ex";
 

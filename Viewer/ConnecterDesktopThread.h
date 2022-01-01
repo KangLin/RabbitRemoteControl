@@ -58,17 +58,6 @@ public:
     virtual QWidget* GetViewer() override;
 
     /*!
-     * \~chinese \brief 加载参数
-     * \~english \brief Load parameters
-     */
-    virtual int Load(QSettings &set) override;
-    /*!
-     * \~chinese \brief 保存参数
-     * \~english Save parameters
-     */
-    virtual int Save(QSettings &set) override;
-    
-    /*!
      * \~chinese
      * 新建 CConnect 对象。它的所有者是调用者，
      * 如果调用者不再使用它，调用者必须负责释放它。
@@ -89,8 +78,19 @@ public Q_SLOTS:
      */
     virtual int Connect() override;
     virtual int DisConnect() override;
-
+    
 protected:
+    /*!
+     * \~chinese \brief 加载参数
+     * \~english \brief Load parameters
+     */
+    virtual int Load(QSettings &set) override;
+    /*!
+     * \~chinese \brief 保存参数
+     * \~english Save parameters
+     */
+    virtual int Save(QSettings &set) override;
+
     virtual QString ServerName() override;
     
 private:

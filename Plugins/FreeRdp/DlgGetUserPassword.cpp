@@ -1,0 +1,76 @@
+#include "DlgGetUserPassword.h"
+#include "ui_DlgGetUserPassword.h"
+
+CDlgGetUserPassword::CDlgGetUserPassword(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::CDlgGetUserPassword)
+{
+    ui->setupUi(this);
+}
+
+CDlgGetUserPassword::~CDlgGetUserPassword()
+{
+    delete ui;
+}
+
+const QString &CDlgGetUserPassword::GetDomain() const
+{
+    return m_Domain;
+}
+
+void CDlgGetUserPassword::SetDomain(const QString &NewDomain)
+{
+    m_Domain = NewDomain;
+}
+
+const QString &CDlgGetUserPassword::GetUser() const
+{
+    return m_User;
+}
+
+void CDlgGetUserPassword::SetUser(const QString &NewUser)
+{
+    m_User = NewUser;
+}
+
+const QString &CDlgGetUserPassword::GetPassword() const
+{
+    return m_Password;
+}
+
+void CDlgGetUserPassword::SetPassword(const QString &NewPassword)
+{
+    m_Password = NewPassword;
+}
+
+bool CDlgGetUserPassword::GetSavePassword() const
+{
+    return m_SavePassword;
+}
+
+void CDlgGetUserPassword::SetSavePassword(bool NewSave)
+{
+    m_SavePassword = NewSave;
+}
+
+void CDlgGetUserPassword::showEvent(QShowEvent *event)
+{
+    ui->leDomain->setText(GetDomain());
+    ui->leUser->setText(GetUser());
+    ui->lePassword->setText(GetPassword());
+    ui->cbSavePassword->setChecked(GetSavePassword());
+}
+
+void CDlgGetUserPassword::on_pbOK_clicked()
+{
+    SetDomain(ui->leDomain->text());
+    SetUser(ui->leUser->text());
+    SetPassword(ui->lePassword->text());
+    SetSavePassword(ui->cbSavePassword->isChecked());            
+    accept();
+}
+
+void CDlgGetUserPassword::on_pbCancel_clicked()
+{
+    reject();
+}

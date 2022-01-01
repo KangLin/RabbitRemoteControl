@@ -104,7 +104,6 @@ public:
     void SetProxyPassword(const QString& password);
         
 Q_SIGNALS:
-    void sigUpdate();
     void sigNameChanged(const QString &name = QString());
     void sigShowServerNameChanged();
     
