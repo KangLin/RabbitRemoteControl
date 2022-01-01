@@ -5,7 +5,7 @@
 #include "RabbitCommonLog.h"
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
-    : CConnecterDesktopThread(parent)
+    : CConnecterDesktop(parent)
 {
     SetParameter(&m_Para);
 }
@@ -50,23 +50,4 @@ QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 CConnect* CConnecterTigerVnc::InstanceConnect()
 {
     return new CConnectTigerVnc(this);
-}
-
-int CConnecterTigerVnc::Connect()
-{
-    // Check whether the parameters are complete
-    if(GetParameter() && !GetParameter()->GetCheckCompleted())
-    {
-        if(QDialog::Rejected == OpenDialogSettings())
-           return -1;
-        emit sigUpdateParamters(this);
-    }
-    emit sigConnect(this);
-    return 0;
-}
-
-int CConnecterTigerVnc::DisConnect()
-{
-    emit sigDisconnect(this);
-    return 0;
 }

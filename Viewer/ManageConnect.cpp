@@ -15,11 +15,11 @@ CManageConnect::~CManageConnect()
     }
 }
 
-void CManageConnect::slotConnect(CConnecter *pConnecter)
+void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
 {
     int nRet = 0;
     LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::slotConnect()");
-    CConnect* pConnect = dynamic_cast<CConnecterDesktopThread*>(pConnecter)->InstanceConnect();
+    CConnect* pConnect = pConnecter->InstanceConnect();
     if(!pConnect) return;
 
     /*
@@ -34,7 +34,7 @@ void CManageConnect::slotConnect(CConnecter *pConnecter)
     m_Connects.insert(pConnecter, pConnect);
 }
 
-void CManageConnect::slotDisconnect(CConnecter *pConnecter)
+void CManageConnect::slotDisconnect(CConnecterDesktop *pConnecter)
 {
     auto it = m_Connects.find(pConnecter);
     if(m_Connects.end() == it) return;

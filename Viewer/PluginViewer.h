@@ -9,6 +9,7 @@
 #include <QObject>
 #include "Connecter.h"
 #include <QTranslator>
+#include "PluginThread.h"
 
 /**
  * \~chinese \brief 控制者插件接口。建立 CConnecter 实例，它由协议插件实现。
@@ -91,6 +92,8 @@ private:
     int InitTranslator();
     
     friend class CManageConnecter;
+    
+    CPluginThread* m_pThread;
 };
 
 QT_BEGIN_NAMESPACE

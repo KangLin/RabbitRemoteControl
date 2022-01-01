@@ -37,7 +37,7 @@ class CManageConnecter;
  * \details Basic implementations of the following types have been provided:
  *   1. Desktop type:
  *     1.1 One thread handles one connection: \ref CConnecterDesktopThread
- *     1.2 One thread handles multiple connections:
+ *     1.2 One thread handles multiple connections: \ref CConnecterDesktop
  *   2. Termianal type: \ref CConnecterTerminal
  * 
  * \~

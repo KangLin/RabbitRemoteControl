@@ -29,7 +29,7 @@ class CConnectThread;
  *   
  * 
  * \~english
- * \brief it is implement a background connect thread of the remote desktop.
+ * \brief It implements a remote desktop background thread to handle a remote desktop connection.
  * \details 
  *     Principle: Start a background thread (CConnectThread) in Connect() .
  *     Call InstanceConnect() in the thread to instantiate CConnect,

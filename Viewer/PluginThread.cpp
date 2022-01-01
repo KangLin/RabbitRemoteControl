@@ -4,7 +4,7 @@
 #include "ManageConnect.h"
 
 CPluginThread::CPluginThread()
-    : CConnectThread(nullptr)
+    : QThread()
 {
 }
 
@@ -23,11 +23,11 @@ void CPluginThread::run()
     LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::run()");
     CManageConnect mc;
     bool check = false;
-    check = connect(this, SIGNAL(sigConnect(CConnecter*)),
-                    &mc, SLOT(slotConnect(CConnecter*)));
+    check = connect(this, SIGNAL(sigConnect(CConnecterDesktop*)),
+                    &mc, SLOT(slotConnect(CConnecterDesktop*)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigDisconnect(CConnecter*)),
-                    &mc, SLOT(slotDisconnect(CConnecter*)));
+    check = connect(this, SIGNAL(sigDisconnect(CConnecterDesktop*)),
+                    &mc, SLOT(slotDisconnect(CConnecterDesktop*)));
     Q_ASSERT(check);
     
     exec();

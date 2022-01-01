@@ -2,13 +2,13 @@
 #define CMANAGECONNECT_H
 
 #include <QObject>
-#include "Connect.h"
+#include "ConnecterDesktop.h"
 
 /**
  * \~chinese 管理连接。此类仅用于 CPluginThread
  * \~english Manage CConnecter. only used by CPluginThread
  * \~
- * \see CPluginThread CConnecter
+ * \see CPluginThread CPluginViewerThread CConnecterDesktop
  */ 
 class CManageConnect : public QObject
 {
@@ -18,11 +18,11 @@ public:
     virtual ~CManageConnect();
 
 public Q_SLOTS:
-    void slotConnect(CConnecter* pConnecter);
-    void slotDisconnect(CConnecter* pConnecter);
+    void slotConnect(CConnecterDesktop *pConnecter);
+    void slotDisconnect(CConnecterDesktop* pConnecter);
     
 private:
-    QMap<CConnecter*, CConnect*> m_Connects;    
+    QMap<CConnecterDesktop*, CConnect*> m_Connects;    
 };
 
 #endif // CMANAGECONNECT_H

@@ -10,7 +10,7 @@
 
 static bool initlog = false;
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
-    : CPluginViewer(parent)
+    : CPluginViewerThread(parent)
 {
     //! [Initialize resorce]
     
@@ -39,25 +39,12 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
         initlog = true;
     }
     //! [Initialize resorce]
-    
-    m_pThread = new CPluginThread();
-    if(m_pThread)
-    {
-        bool check = connect(m_pThread, SIGNAL(finished()),
-                           m_pThread, SLOT(deleteLater()));
-        Q_ASSERT(check);
-        m_pThread->start();
-    }
 }
 
 CPluginTigerVnc::~CPluginTigerVnc()
 {
     //! [Clean resource]
     qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
-    
-    if(m_pThread)
-        m_pThread->quit(); // The don't deleteLater().
-                           // because of it is connected finished signal
     
     /*
     qApp->removeTranslator(&m_Translator);
@@ -83,21 +70,11 @@ const QString CPluginTigerVnc::Protol() const
     return "RFB";
 }
 
-CConnecter* CPluginTigerVnc::CreateConnecter(const QString &szProtol)
+CConnecterDesktop *CPluginTigerVnc::OnCreateConnecter(const QString &szProtol)
 {
     if(Id() == szProtol)
     {
-        CConnecterTigerVnc* pConnecter = new CConnecterTigerVnc(this);
-        if(pConnecter && m_pThread)
-        {
-            bool check = connect(pConnecter, SIGNAL(sigConnect(CConnecter*)),
-                           m_pThread, SIGNAL(sigConnect(CConnecter*)));
-            Q_ASSERT(check);
-            check = connect(pConnecter, SIGNAL(sigDisconnect(CConnecter*)),
-                         m_pThread, SIGNAL(sigDisconnect(CConnecter*)));
-            Q_ASSERT(check);
-        }
-        return pConnecter;
+        return new CConnecterTigerVnc(this);
     }
     return nullptr;
 }
