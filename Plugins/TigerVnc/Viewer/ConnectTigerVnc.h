@@ -61,6 +61,8 @@ public:
 
     virtual void getUserPasswd(bool secure, char** user, char** password) override;
     virtual bool showMsgBox(int flags, const char *title, const char *text) override;
+Q_SIGNALS:
+    void sigGetUserPassword(char** user, char** password);
 
 public Q_SLOTS:
     virtual void slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos) override;

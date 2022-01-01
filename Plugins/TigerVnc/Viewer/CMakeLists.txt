@@ -14,6 +14,7 @@ SET(SOURCE_FILES
     ConnecterTigerVnc.cpp
     PluginTigerVnc.cpp
     DlgSettingsTigerVnc.cpp
+    DlgGetUserPassword.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
@@ -25,12 +26,14 @@ SET(HEADER_FILES
     ConnecterTigerVnc.h
     PluginTigerVnc.h
     DlgSettingsTigerVnc.h
+    DlgGetUserPassword.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
     )
 SET(UI_FILES
     DlgSettingsTigerVnc.ui
+    DlgGetUserPassword.ui
     )
 
 find_package(LibDataChannel)

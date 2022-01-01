@@ -3,6 +3,7 @@
 #include "ConnecterTigerVnc.h"
 #include <QDebug>
 #include "RabbitCommonLog.h"
+#include "DlgGetUserPassword.h"
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
     : CConnecterDesktop(parent)
@@ -49,5 +50,39 @@ QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 
 CConnect* CConnecterTigerVnc::InstanceConnect()
 {
-    return new CConnectTigerVnc(this);
+    CConnectTigerVnc* p = new CConnectTigerVnc(this);
+    bool check = false;
+    check = connect(p, SIGNAL(sigGetUserPassword(char**, char**)),
+                    SLOT(slotGetUserPassword(char**, char**)),
+                    Qt::BlockingQueuedConnection);
+    Q_ASSERT(check);
+    return p;
+}
+
+void CConnecterTigerVnc::slotGetUserPassword(char** user, char** password)
+{
+    CParameterTigerVnc* p = qobject_cast<CParameterTigerVnc*>(GetParameter());
+    
+    CDlgGetUserPassword dlg;
+    dlg.SetUser(p->GetUser());
+    dlg.SetPassword(p->GetPassword());
+    dlg.SetSavePassword(p->GetSavePassword());
+    if(QDialog::Rejected == dlg.exec())
+    {
+        *password = _strdup("");
+        return;
+    }
+    
+    if(user)
+        *user = _strdup(dlg.GetUser().toStdString().c_str());
+    if(password)
+        *password = _strdup(dlg.GetPassword().toStdString().c_str());
+    
+    p->SetUser(dlg.GetUser());
+    p->SetPassword(dlg.GetPassword());
+    p->SetSavePassword(dlg.GetSavePassword());
+    if(dlg.GetSavePassword())
+    {
+        emit sigUpdateParamters(this);
+    }
 }

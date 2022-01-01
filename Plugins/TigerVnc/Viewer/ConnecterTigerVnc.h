@@ -21,6 +21,9 @@ protected:
     virtual CConnect* InstanceConnect() override;
     virtual QString ServerName() override;
     
+private Q_SLOTS:
+    void slotGetUserPassword(char** user, char** password);
+    
 private:
     CParameterTigerVnc m_Para;
 };
