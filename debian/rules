@@ -34,16 +34,16 @@ ifdef Log4Qt_DIR
     PARAS += -DLog4Qt_DIR=${Log4Qt_DIR}
 endif
 
-ifdef INSTALL_DIR
-    LIB_PARAS += ${INSTALL_DIR}/lib
-endif
-
 ifdef BUILD_DOCS
-    LIB_PARAS += -DBUILD_DOCS=${BUILD_DOCS}
+    PARAS += -DBUILD_DOCS=${BUILD_DOCS}
 endif
 
 ifdef BUILD_TERMINAL
-    LIB_PARAS += -DBUILD_TERMINAL=${BUILD_TERMINAL}
+    PARAS += -DBUILD_TERMINAL=${BUILD_TERMINAL}
+endif
+
+ifdef INSTALL_DIR
+    LIB_PARAS += ${INSTALL_DIR}/lib
 endif
 
 %:

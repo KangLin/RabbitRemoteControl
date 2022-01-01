@@ -31,8 +31,8 @@
 - [修改日志](ChangeLog_zh_CN.md)
 - [开发](#开发)
   + [编译](#编译)
-    - [Linux](docs/Compile/BuildLinux_zh_CN.md)
-    - [Windows](docs/Compile/BuildWindows_zh_CN.md)
+    - [Linux](docs/Compile/Linux_zh_CN.md)
+    - [Windows](docs/Compile/Windows_zh_CN.md)
 - [许可协议](#许可协议)
 
 -----------------------------------------------------------------------
@@ -242,8 +242,8 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [x] [可选] QtService: https://github.com/KangLin/qt-solutions/
 
 #### 编译
-- [Linux](docs/Compile/BuildLinux_zh_CN.md)
-- [Windows](docs/Compile/BuildWindows_zh_CN.md)
+- [Linux](docs/Compile/Linux_zh_CN.md)
+- [Windows](docs/Compile/Windows_zh_CN.md)
 
 ### [许可协议](License.md "License.md")
 请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。

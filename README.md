@@ -30,8 +30,8 @@ Author: Kang Lin <kl222@126.com>
 - [Download](#Download)
 - [Development](#Development)
   + [Build](#Build)
-    - [Linux](docs/Compile/BuildLinux.md)
-    - [Windows](docs/Compile/BuildWindows.md)
+    - [Linux](docs/Compile/Linux.md)
+    - [Windows](docs/Compile/Windows.md)
 - [Change log](ChangeLog.md)
 - [License Agreement](#License-Agreement)
 
@@ -251,8 +251,8 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 - [x] [Optional] QtService: https://github.com/KangLin/qt-solutions/
 
 #### Build
-- [Linux](docs/Compile/BuildLinux.md)
-- [Windows](docs/Compile/BuildWindows.md)
+- [Linux](docs/Compile/Linux.md)
+- [Windows](docs/Compile/Windows.md)
 
 ### [License Agreement](License.md "License.md")
 
