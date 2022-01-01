@@ -4,6 +4,7 @@
 #include <QDebug>
 #include "RabbitCommonLog.h"
 #include "DlgGetUserPassword.h"
+#include <QMessageBox>
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
     : CConnecterDesktop(parent)
@@ -85,4 +86,9 @@ void CConnecterTigerVnc::slotGetUserPassword(char** user, char** password)
     {
         emit sigUpdateParamters(this);
     }
+}
+
+void CConnecterTigerVnc::slotShowMessage(const QString& title, const QString& text, bool* reture)
+{
+    QMessageBox::information(GetViewer(), title, text);
 }
