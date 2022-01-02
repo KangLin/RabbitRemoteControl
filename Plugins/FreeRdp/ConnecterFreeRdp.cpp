@@ -51,7 +51,7 @@ void CConnecterFreeRdp::slotGetUserPassword(char** user, char** password, char**
     CParameterFreeRdp* p = qobject_cast<CParameterFreeRdp*>(GetParameter());
     if(!p) return;
     
-    CDlgGetUserPassword dlg;
+    CDlgGetUserPassword dlg(GetViewer());
     if(user && *user)
         dlg.SetUser(*user);
     if(password && *password)

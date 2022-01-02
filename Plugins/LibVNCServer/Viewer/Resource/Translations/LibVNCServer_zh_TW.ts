@@ -6,7 +6,7 @@
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="14"/>
         <source>Input password</source>
-        <translation >輸入密碼</translation>
+        <translation>輸入密碼</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="52"/>

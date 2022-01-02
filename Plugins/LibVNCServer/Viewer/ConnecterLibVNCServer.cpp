@@ -39,7 +39,7 @@ void CConnecterLibVNCServer::slotGetUserPassword(char** user, char** password)
 {
     CParameterLibVNCServer* p = qobject_cast<CParameterLibVNCServer*>(GetParameter());
     
-    CDlgGetUserPassword dlg;
+    CDlgGetUserPassword dlg(GetViewer());
     dlg.SetUser(p->GetUser());
     dlg.SetPassword(p->GetPassword());
     dlg.SetSavePassword(p->GetSavePassword());
