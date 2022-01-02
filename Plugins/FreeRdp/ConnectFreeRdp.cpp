@@ -685,7 +685,7 @@ DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance,
     
     QString title(tr("Verify certificate"));
     QString message;
-    message += tr("Host: %1; Port: %2 \n").arg(host).arg(QString::number(port));
+    message += tr("Host: %1; Port: %2").arg(host).arg(QString::number(port)) + "\n";
     message += tr("Common name: ") + common_name + "\n";
     message += tr("Subject: ") + subject + "\n";
     message += tr("Issuer: ") + issuer + "\n";
@@ -722,7 +722,7 @@ DWORD CConnectFreeRdp::cb_verify_changed_certificate_ex(freerdp *instance,
     
     QString title(tr("Verify changed certificate"));
     QString message;
-    message += tr("Host: %1; Port: %2 \n").arg(host).arg(QString::number(port));
+    message += tr("Host: %1; Port: %2").arg(host).arg(QString::number(port)) + "\n";
     message += tr("Common name: ") + common_name + "\n";
     message += tr("New subject: ") + subject + "\n";
     message += tr("New issuer: ") + issuer + "\n";

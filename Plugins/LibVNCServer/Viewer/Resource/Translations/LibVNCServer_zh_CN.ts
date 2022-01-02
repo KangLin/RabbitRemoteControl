@@ -2,16 +2,36 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>CConnectLibVNCServer</name>
+    <name>CDlgGetUserPassword</name>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="331"/>
+        <location filename="../../DlgGetUserPassword.ui" line="14"/>
         <source>Input password</source>
-        <translation>输入密码</translation>
+        <translation >输入密码</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="332"/>
-        <source>Password</source>
-        <translation>密码</translation>
+        <location filename="../../DlgGetUserPassword.ui" line="52"/>
+        <source>User:</source>
+        <translation>用户名：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPassword.ui" line="66"/>
+        <source>Password:</source>
+        <translation>密码：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPassword.ui" line="82"/>
+        <source>Save password</source>
+        <translation>保存密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPassword.ui" line="134"/>
+        <source>OK(&amp;O)</source>
+        <translation>确定(&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPassword.ui" line="141"/>
+        <source>Cancel(&amp;C)</source>
+        <translation>取消(&amp;C)</translation>
     </message>
 </context>
 <context>
@@ -28,7 +48,7 @@
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="60"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="302"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="309"/>
         <source>Server:</source>
         <translation>服务器：</translation>
     </message>
@@ -39,7 +59,7 @@
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="88"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="330"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="337"/>
         <source>User name:</source>
         <translation>用户名：</translation>
     </message>
@@ -50,7 +70,7 @@
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="102"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="344"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="351"/>
         <source>Password:</source>
         <translation>密码：</translation>
     </message>
@@ -82,62 +102,67 @@
         <translation>允许剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="196"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="180"/>
+        <source>Show server name</source>
+        <translation>显示服务名</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="203"/>
         <source>Compress</source>
         <translation>压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="221"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="228"/>
         <source>0=fast, 9=best</source>
         <translation>0=最快，9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="232"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="239"/>
         <source>Enable JPEG compress</source>
         <translation>允许 JPEG 压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="246"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="253"/>
         <source>0=Worst, 9=best</source>
         <translation>0=最差,9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="202"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="209"/>
         <source>Compress level:</source>
         <translation>压缩级别：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="269"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="276"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="277"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="284"/>
         <source>No</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="284"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="291"/>
         <source>Socks</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="291"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="298"/>
         <source>UltraVNC repeater</source>
         <translation>UltraVNC 中继</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="312"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="319"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="388"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="395"/>
         <source>Ok(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="395"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="402"/>
         <source>Cancle(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>

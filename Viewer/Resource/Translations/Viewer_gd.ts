@@ -67,17 +67,17 @@
 <context>
     <name>CParameter</name>
     <message>
-        <location filename="../../Parameter.cpp" line="210"/>
+        <location filename="../../Parameter.cpp" line="212"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Parameter.cpp" line="226"/>
+        <location filename="../../Parameter.cpp" line="228"/>
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Parameter.cpp" line="327"/>
+        <location filename="../../Parameter.cpp" line="330"/>
         <source>Input encrypt key</source>
         <translation type="unfinished"></translation>
     </message>

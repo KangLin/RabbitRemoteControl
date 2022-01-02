@@ -20,12 +20,87 @@
         <translation>登錄錯誤信息</translation>
     </message>
     <message>
+        <source>Verify certificate</source>
+        <translation>驗證證書</translation>
+    </message>
+    <message>
+        <source>Common name: </source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
+        <source>Subject: </source>
+        <translation>主題：</translation>
+    </message>
+    <message>
+        <source>Issuer: </source>
+        <translation>發行者：</translation>
+    </message>
+    <message>
+        <source>Fingerprint: </source>
+        <translation>指紋：</translation>
+    </message>
+    <message>
+        <source>Verify changed certificate</source>
+        <translation>驗證證書改變</translation>
+    </message>
+    <message>
+        <source>New subject: </source>
+        <translation>新的主題：</translation>
+    </message>
+    <message>
+        <source>New issuer: </source>
+        <translation>新的發行者：</translation>
+    </message>
+    <message>
+        <source>New fingerprint: </source>
+        <translation>新的指紋：</translation>
+    </message>
+    <message>
+        <source>Old subject: </source>
+        <translation>舊的主題：</translation>
+    </message>
+    <message>
+        <source>Old issuer: </source>
+        <translation>舊的發行者：</translation>
+    </message>
+    <message>
+        <source>Old fingerprint: </source>
+        <translation>舊的指紋：</translation>
+    </message>
+    <message>
+        <source>Host: %1; Port: %2</source>
+        <translation>主機：%1; 端口： %2</translation>
+    </message>
+</context>
+<context>
+    <name>CDlgGetUserPassword</name>
+    <message>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>
     <message>
-        <source>Password</source>
-        <translation>密碼</translation>
+        <source>Domain:</source>
+        <translation>域名:</translation>
+    </message>
+    <message>
+        <source>User:</source>
+        <translation>用戶：</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>密碼:</translation>
+    </message>
+    <message>
+        <source>Save password</source>
+        <translation>保存密碼</translation>
+    </message>
+    <message>
+        <source>OK(&amp;O)</source>
+        <translation>確定(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Cancel(&amp;C)</source>
+        <translation>取消(&amp;C)</translation>
     </message>
 </context>
 <context>
