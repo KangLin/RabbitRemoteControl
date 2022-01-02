@@ -13,19 +13,7 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     : CPluginViewerThread(parent)
 {
     //! [Initialize resorce]
-    
-    // Load translator resource
-    /*
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_TigerVnc);
-#endif
 
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/TigerVnc_" + QLocale::system().name() + ".qm";
-    if(!m_Translator.load(szTranslatorFile))
-        qCritical() << "Open translator file fail:" << szTranslatorFile;
-    qApp->installTranslator(&m_Translator);//*/
-    
     //rfb::SecurityClient::setDefaults();
     if(!initlog)
     {
@@ -45,12 +33,6 @@ CPluginTigerVnc::~CPluginTigerVnc()
 {
     //! [Clean resource]
     qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
-    
-    /*
-    qApp->removeTranslator(&m_Translator);
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_TigerVnc);
-#endif//*/
     //! [Clean resource]
 }
 

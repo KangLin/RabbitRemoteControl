@@ -31,23 +31,33 @@
   - The format of the generated plug-in target name is: PluginViewer${PROJECT_NAME}
     Note: The PROJECT_NAME is same as translation file(.ts) name.
     \include Plugins/TigerVnc/Viewer/CMakeLists.txt
-  - Implement CPlugin. For example: \ref CPluginTigerVnc
-    - Implement the Qt interface in the class declaration:
-      \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.h Qt plugin interface
-    - Initialize the operation in the constructor. For example: initializing resources, loading translation resources, etc.
-      \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
-    - Release resources in the destructor.
-      \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Clean resource
-    - Implement properties and functions
-      - Plugin name: it muse is same as translation file(.ts) name \ref CPluginTigerVnc::Name() 
-        \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
-  - Implement \ref CConnecter. For example: \ref CConnecterTigerVnc
+  - Implement CPluginViewer. 
+    + A background thread handles a connection. The connection may be blocked.
+      E.g. FreeRDP
+      - Derive from CPluginViewer. For example: CPluginFreeRdp 
+        + Implement the Qt interface in the class declaration:
+          \snippet Plugins/FreeRdp/PluginFreeRdp.h Qt plugin interface
+    + One background thread handles multiple connections.
+      The connection is non-blocking. E.g. TigerVNC 
+      - Derive from CPluginViewerThread. For example: CPluginTigerVnc
+        + Implement the Qt interface in the class declaration:
+          \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.h Qt plugin interface
+        + Initialize the operation in the constructor.
+          For example: initializing resources, loading translation resources, etc.
+          \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
+        + Release resources in the destructor.
+        + Implement properties and functions
+          - Plugin name: it muse is same as translation file(.ts) name. Eg: CPluginTigerVnc::Name() 
+             \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
+  - Implement \ref CConnecter. 
     - Implement remote desktop
-      - Implements a remote desktop background thread to handle a remote desktop connection, which can be derived from \ref CConnecterDesktopThread
-      - Implements a background thread to handle multiple remote desktop connections, which can be derived from \ref CConnecterDesktop
-    - Implement remote console, which can be derived from \ref CConnecterTerminal
-    - If the above two cannot meet your needs, you  can be derived from \ref CConnecter
-  - Implement a specific connection, derived from \ref CConnect. For example: \ref CConnectTigerVnc 
+      - Implements a remote desktop background thread to handle
+        a remote desktop connection, which can be derived from CConnecterDesktopThread. Eg: CConnecterFreeRdp
+      - Implements a background thread to handle multiple remote desktop connections,
+        which can be derived from CConnecterDesktop. Eg: CConnecterTigerVnc
+    - Implement remote console, which can be derived from CConnecterTerminal
+    - If the above two cannot meet your needs, you  can be derived from CConnecter
+  - Implement a specific connection, derived from CConnect. For example: CConnectTigerVnc 
 
 \defgroup LIBAPI_THREAD Thread module
 \ingroup LIBAPI_VIEWER

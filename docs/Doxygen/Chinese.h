@@ -37,22 +37,27 @@
   - 生成插件目标名称格式为： PluginViewer${PROJECT_NAME}
     注意：工程名必须与翻译资源文件名(.ts)相同
     \include Plugins/TigerVnc/Viewer/CMakeLists.txt
-  - 实现 CPlugin 。例如：\ref CPluginTigerVnc 
-    - 在类声明中实现Qt接口:
-    \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.h Qt plugin interface
-    - 在构造函数中初始化操作。例如：初始化资源等
-    \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
-    - 在析构函数中释放资源。
-    \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Clean resource
-    - 实现属性、函数
-      - 插件名：必须与翻译资源文件名(.ts)相同 \ref CPluginTigerVnc::Name() 
-      \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
-  - 实现 \ref CConnecter 。例如： \ref CConnecterTigerVnc
-    - 实现远程桌面
-      - 实现一个后台线程处理一个远程连接，可以从 \ref CConnecterDesktopThread 派生
-      - 实现一个后台线程处理多个远程连接，可以从 \ref CConnecterDesktop 派生
-    - 实现远程控制台，可以从 \ref CConnecterTerminal 派生
-    - 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生
+  - 实现 CPluginViewer
+    + 一个后台线程处理一个连接。连接可能是阻塞的。例如： FreeRDP
+      - 从 CPluginViewer 派生插件。例如： CPluginFreeRdp
+        + 在类声明中实现Qt接口:
+          \snippet Plugins/FreeRdp/PluginFreeRdp.h Qt plugin interface
+    + 一个后台线程处理多个连接。连接是非阻塞的。 例如 TigerVNC
+      - 从  CPluginViewerThread 派生插件。例如：\ref CPluginTigerVnc 
+        + 在类声明中实现Qt接口:
+          \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.h Qt plugin interface
+        + 在构造函数中初始化操作。例如：初始化资源等
+          \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
+        + 在析构函数中释放资源。
+        + 实现属性、函数
+          - 插件名：必须与翻译资源文件名(.ts)相同。 例如  \ref CPluginTigerVnc::Name() 
+            \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
+  - 实现 \ref CConnecter 。
+    + 实现远程桌面
+      - 实现一个后台线程处理一个远程连接，连接是阻塞的。可以从 \ref CConnecterDesktopThread 派生。例如： CConnecterFreeRdp
+      - 实现一个后台线程处理多个远程连接，连接是非阻塞的。可以从 \ref CConnecterDesktop 派生。例如： \ref CConnecterTigerVnc
+    + 实现远程控制台，可以从 \ref CConnecterTerminal 派生
+    + 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生
   - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectTigerVnc
 
 \defgroup LIBAPI_THREAD 线程模型

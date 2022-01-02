@@ -10,11 +10,14 @@
 class CPluginFreeRdp : public CPluginViewer
 {
     Q_OBJECT
+    
+    /// ![Qt plugin interface]
     Q_INTERFACES(CPluginViewer)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPluginViewer_iid)
 #endif
+    /// ![Qt plugin interface]
     
 public:
     explicit CPluginFreeRdp(QObject *parent = nullptr);
