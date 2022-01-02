@@ -318,10 +318,10 @@ char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
     QString szPassword = pThis->m_pPara->GetPassword();
     if(szPassword.isEmpty())
     {
-        szPassword = QInputDialog::getText(nullptr,
-                                           tr("Input password"),
-                                           tr("Password"),
-                                           QLineEdit::Password);
+        char* user = nullptr;
+        char* password = nullptr;
+        emit pThis->sigGetUserPassword(&user, &password);
+        szPassword = password;
         if(szPassword.isEmpty())
             return nullptr;
         return strdup(szPassword.toStdString().c_str());

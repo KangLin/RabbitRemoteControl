@@ -7,6 +7,7 @@
 class CDlgSettingsLibVnc;
 class CConnecterLibVNCServer : public CConnecterDesktopThread
 {
+    Q_OBJECT
 public:
     explicit CConnecterLibVNCServer(CPluginViewer *parent);
     virtual ~CConnecterLibVNCServer() override;
@@ -17,6 +18,9 @@ public:
 protected:
     virtual QDialog *GetDialogSettings(QWidget *parent) override;
     virtual CConnect* InstanceConnect() override;
+    
+private Q_SLOTS:
+    void slotGetUserPassword(char** user, char** password);
     
 private:
     CParameterLibVNCServer m_Para;

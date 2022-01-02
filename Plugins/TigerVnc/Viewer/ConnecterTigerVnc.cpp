@@ -70,7 +70,7 @@ void CConnecterTigerVnc::slotGetUserPassword(char** user, char** password)
     dlg.SetSavePassword(p->GetSavePassword());
     if(QDialog::Rejected == dlg.exec())
     {
-        *password = _strdup("");
+        *password = rfb::strDup("");
         return;
     }
     
