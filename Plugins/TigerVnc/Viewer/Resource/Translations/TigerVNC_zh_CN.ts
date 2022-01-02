@@ -42,7 +42,7 @@
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="150"/>
         <source>TextLabel</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="35"/>

@@ -129,12 +129,11 @@ jobs:
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
       run: |
         if [ ${{matrix.BUILD_TYPE}} == 'Release' ]; then
-            export BUILD_DOCS=ON
             export BUILD_TERMINAL=OFF
         fi
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
-        
+
 #    - name: update xml file
 #      if: ${{ matrix.BUILD_TYPE == 'Release' }}
 #      working-directory: ${{github.workspace}}

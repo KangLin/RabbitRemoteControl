@@ -224,6 +224,9 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
           # sudo apt-get install -f # Install dependencies
 
 ### Development
+
+[Doxyen documentation](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
+
 #### Dependent
 ##### Tools
 - [Qt](qt.io)

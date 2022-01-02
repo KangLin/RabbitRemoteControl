@@ -213,6 +213,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
           # sudo apt-get install -f # 安装依赖
 
 ### 开发
+
+[Doxygen 文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
+
 #### 依赖
 ##### 工具
 
