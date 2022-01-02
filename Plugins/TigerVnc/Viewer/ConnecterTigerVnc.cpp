@@ -75,9 +75,9 @@ void CConnecterTigerVnc::slotGetUserPassword(char** user, char** password)
     }
     
     if(user)
-        *user = _strdup(dlg.GetUser().toStdString().c_str());
+        *user = rfb::strDup(dlg.GetUser().toStdString().c_str());
     if(password)
-        *password = _strdup(dlg.GetPassword().toStdString().c_str());
+        *password = rfb::strDup(dlg.GetPassword().toStdString().c_str());
     
     p->SetUser(dlg.GetUser());
     p->SetPassword(dlg.GetPassword());
