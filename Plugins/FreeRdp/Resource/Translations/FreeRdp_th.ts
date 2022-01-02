@@ -92,6 +92,14 @@
     </message>
 </context>
 <context>
+    <name>CConnecterFreeRdp</name>
+    <message>
+        <location filename="../../ConnecterFreeRdp.cpp" line="55"/>
+        <source>Set password for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgGetUserPassword</name>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="14"/>
@@ -99,32 +107,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="52"/>
+        <location filename="../../DlgGetUserPassword.ui" line="50"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPassword.ui" line="59"/>
         <source>Domain:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="66"/>
+        <location filename="../../DlgGetUserPassword.ui" line="73"/>
         <source>User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="80"/>
+        <location filename="../../DlgGetUserPassword.ui" line="87"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="96"/>
+        <location filename="../../DlgGetUserPassword.ui" line="103"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="148"/>
+        <location filename="../../DlgGetUserPassword.ui" line="155"/>
         <source>OK(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="155"/>
+        <location filename="../../DlgGetUserPassword.ui" line="162"/>
         <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>

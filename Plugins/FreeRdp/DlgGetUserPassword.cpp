@@ -59,6 +59,7 @@ void CDlgGetUserPassword::showEvent(QShowEvent *event)
     ui->leUser->setText(GetUser());
     ui->lePassword->setText(GetPassword());
     ui->cbSavePassword->setChecked(GetSavePassword());
+    ui->lbText->setText(GetText());
 }
 
 void CDlgGetUserPassword::on_pbOK_clicked()
@@ -66,11 +67,21 @@ void CDlgGetUserPassword::on_pbOK_clicked()
     SetDomain(ui->leDomain->text());
     SetUser(ui->leUser->text());
     SetPassword(ui->lePassword->text());
-    SetSavePassword(ui->cbSavePassword->isChecked());            
+    SetSavePassword(ui->cbSavePassword->isChecked());          
     accept();
 }
 
 void CDlgGetUserPassword::on_pbCancel_clicked()
 {
     reject();
+}
+
+const QString &CDlgGetUserPassword::GetText() const
+{
+    return m_Text;
+}
+
+void CDlgGetUserPassword::SetText(const QString &newText)
+{
+    m_Text = newText;
 }

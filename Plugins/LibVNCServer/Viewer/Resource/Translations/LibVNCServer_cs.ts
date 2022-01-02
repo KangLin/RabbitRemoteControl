@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="cs_CZ">
 <context>
+    <name>CConnecterLibVNCServer</name>
+    <message>
+        <location filename="../../ConnecterLibVNCServer.cpp" line="43"/>
+        <source>Set password for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgGetUserPassword</name>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="14"/>
@@ -9,28 +17,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="52"/>
+        <location filename="../../DlgGetUserPassword.ui" line="39"/>
         <source>User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="66"/>
+        <location filename="../../DlgGetUserPassword.ui" line="53"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="82"/>
+        <location filename="../../DlgGetUserPassword.ui" line="69"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="134"/>
+        <location filename="../../DlgGetUserPassword.ui" line="108"/>
         <source>OK(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="141"/>
+        <location filename="../../DlgGetUserPassword.ui" line="115"/>
         <source>Cancel(&amp;C)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPassword.ui" line="150"/>
+        <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

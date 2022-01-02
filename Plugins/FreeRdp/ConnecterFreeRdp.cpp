@@ -52,6 +52,7 @@ void CConnecterFreeRdp::slotGetUserPassword(char** user, char** password, char**
     if(!p) return;
     
     CDlgGetUserPassword dlg(GetViewer());
+    dlg.SetText(tr("Set password for %1").arg(Name()));
     if(user && *user)
         dlg.SetUser(*user);
     if(password && *password)
@@ -59,6 +60,7 @@ void CConnecterFreeRdp::slotGetUserPassword(char** user, char** password, char**
     if(domain && *domain)
         dlg.SetDomain(*domain);
     dlg.SetSavePassword(p->GetSavePassword());
+    
     if(QDialog::Rejected == dlg.exec())
         return;
     

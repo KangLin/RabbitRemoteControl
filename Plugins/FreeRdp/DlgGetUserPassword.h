@@ -26,6 +26,9 @@ public:
     bool GetSavePassword() const;
     void SetSavePassword(bool NewSave);
     
+    const QString &GetText() const;
+    void SetText(const QString &newText);
+    
 private slots:
     void on_pbOK_clicked();
     
@@ -34,6 +37,7 @@ private slots:
 private:
     Ui::CDlgGetUserPassword *ui;
     
+    QString m_Text;
     QString m_Domain;
     QString m_User;
     QString m_Password;

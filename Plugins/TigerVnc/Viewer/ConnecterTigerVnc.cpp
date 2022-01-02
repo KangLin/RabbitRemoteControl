@@ -65,6 +65,7 @@ void CConnecterTigerVnc::slotGetUserPassword(char** user, char** password)
     CParameterTigerVnc* p = qobject_cast<CParameterTigerVnc*>(GetParameter());
     
     CDlgGetUserPassword dlg(GetViewer());
+    dlg.SetText(tr("Set password for %1").arg(Name()));
     dlg.SetUser(p->GetUser());
     dlg.SetPassword(p->GetPassword());
     dlg.SetSavePassword(p->GetSavePassword());

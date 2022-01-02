@@ -73,6 +73,13 @@
     </message>
 </context>
 <context>
+    <name>CConnecterFreeRdp</name>
+    <message>
+        <source>Set password for %1</source>
+        <translation>為 %1 設置密碼</translation>
+    </message>
+</context>
+<context>
     <name>CDlgGetUserPassword</name>
     <message>
         <source>Input password</source>
@@ -101,6 +108,10 @@
     <message>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation></translation>
     </message>
 </context>
 <context>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>403</width>
+    <width>407</width>
     <height>394</height>
    </rect>
   </property>
@@ -28,7 +28,7 @@
        <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="General">
       <attribute name="title">

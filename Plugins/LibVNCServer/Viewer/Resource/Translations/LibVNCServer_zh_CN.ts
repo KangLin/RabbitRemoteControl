@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CConnecterLibVNCServer</name>
+    <message>
+        <location filename="../../ConnecterLibVNCServer.cpp" line="43"/>
+        <source>Set password for %1</source>
+        <translation>为 %1 设置密码</translation>
+    </message>
+</context>
+<context>
     <name>CDlgGetUserPassword</name>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="14"/>
@@ -9,29 +17,34 @@
         <translation>输入密码</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="52"/>
+        <location filename="../../DlgGetUserPassword.ui" line="39"/>
         <source>User:</source>
         <translation>用户名：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="66"/>
+        <location filename="../../DlgGetUserPassword.ui" line="53"/>
         <source>Password:</source>
         <translation>密码：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="82"/>
+        <location filename="../../DlgGetUserPassword.ui" line="69"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="134"/>
+        <location filename="../../DlgGetUserPassword.ui" line="108"/>
         <source>OK(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="141"/>
+        <location filename="../../DlgGetUserPassword.ui" line="115"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPassword.ui" line="150"/>
+        <source>TextLabel</source>
+        <translation></translation>
     </message>
 </context>
 <context>
