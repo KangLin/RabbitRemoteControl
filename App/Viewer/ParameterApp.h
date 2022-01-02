@@ -89,6 +89,15 @@ Q_SIGNALS:
 private:
     SystemTrayIconMenuType m_SystemTrayIconType;
     Q_PROPERTY(SystemTrayIconMenuType SystemTrayIconMenuType READ GetSystemTrayIconMenuType WRITE SetSystemTrayIconMenuType NOTIFY sigSystemTrayIconTypeChanged)
+    
+public:
+    bool GetOpenLasterClose() const;
+    void SetOpenLasterClose(bool newOpenLasterClose);
+Q_SIGNALS:
+    void sigOpenLasterCloseChanged(bool bOpenLasterClose);
+private:
+    bool m_bOpenLasterClose;
+    Q_PROPERTY(bool bOpenLasterClose READ GetOpenLasterClose WRITE SetOpenLasterClose NOTIFY sigOpenLasterCloseChanged)
 };
 
 #endif // CPARAMETERAPP_H

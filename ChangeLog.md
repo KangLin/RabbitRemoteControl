@@ -8,6 +8,7 @@
 + Modify documents
 + Add input password when is connecting
 + Add show message dialog in connect
++ Add resume the connections when it was last closed at startup
 + Fix same bug
   - Fix CConneter::Name CConneter::ServerName bug
   - Fix favorite bug

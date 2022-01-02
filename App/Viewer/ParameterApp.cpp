@@ -10,7 +10,8 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bSaveMainWindowStatus(true),
     m_TabPosition(QTabWidget::North),
     m_nRecentMenuMaxCount(10),
-    m_SystemTrayIconType(SystemTrayIconMenuType::Remote)
+    m_SystemTrayIconType(SystemTrayIconMenuType::Remote),
+    m_bOpenLasterClose(false)
 {
 }
 
@@ -40,6 +41,8 @@ int CParameterApp::Load()
     SetSystemTrayIconMenuType(static_cast<SystemTrayIconMenuType>(
                               set.value("MainWindow/SystemTrayIcon/MenuType",
                           static_cast<int>(GetSystemTrayIconMenuType())).toInt()));
+    SetOpenLasterClose(set.value("MainWindow/OpenLasterClose",
+                                  GetOpenLasterClose()).toBool());
     return 0;
 }
 
@@ -57,6 +60,7 @@ int CParameterApp::Save()
     set.setValue("MainWindow/Recent/Max", GetRecentMenuMaxCount());
     set.setValue("MainWindow/SystemTrayIcon/MenuType",
                  static_cast<int>(GetSystemTrayIconMenuType()));
+    set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     return 0;
 }
 
@@ -121,6 +125,19 @@ void CParameterApp::SetSystemTrayIconMenuType(SystemTrayIconMenuType newSystemTr
 {
     m_SystemTrayIconType = newSystemTrayIconType;
     emit sigSystemTrayIconTypeChanged();
+}
+
+bool CParameterApp::GetOpenLasterClose() const
+{
+    return m_bOpenLasterClose;
+}
+
+void CParameterApp::SetOpenLasterClose(bool newOpenLasterClose)
+{
+    if (m_bOpenLasterClose == newOpenLasterClose)
+        return;
+    m_bOpenLasterClose = newOpenLasterClose;
+    emit sigOpenLasterCloseChanged(m_bOpenLasterClose);
 }
 
 bool CParameterApp::GetScreenShot() const

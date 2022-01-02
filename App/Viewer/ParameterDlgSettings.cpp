@@ -27,6 +27,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
     
     ui->cbReciverShortCut->setChecked(m_pParameters->GetReceiveShortCut());
     ui->cbSaveMainWindowStatus->setChecked(m_pParameters->GetSaveMainWindowStatus());
+    ui->cbResumLasterClose->setChecked(m_pParameters->GetOpenLasterClose());
     
     switch (m_pParameters->GetTabPosition()) {
     case QTabWidget::North:
@@ -97,6 +98,7 @@ void CParameterDlgSettings::on_pbOk_clicked()
     
     m_pParameters->SetReceiveShortCut(ui->cbReciverShortCut->isChecked());
     m_pParameters->SetSaveMainWindowStatus(ui->cbSaveMainWindowStatus->isChecked());
+    m_pParameters->SetOpenLasterClose(ui->cbResumLasterClose->isChecked());
     
     if(ui->rbNorth->isChecked()) m_pParameters->SetTabPosition(QTabWidget::North);
     if(ui->rbSouth->isChecked()) m_pParameters->SetTabPosition(QTabWidget::South);

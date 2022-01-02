@@ -4,42 +4,42 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="200"/>
+        <location filename="../../FavoriteView.cpp" line="209"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="201"/>
+        <location filename="../../FavoriteView.cpp" line="210"/>
         <source>Open settings and connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="204"/>
+        <location filename="../../FavoriteView.cpp" line="213"/>
         <source>New group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="206"/>
+        <location filename="../../FavoriteView.cpp" line="215"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="240"/>
+        <location filename="../../FavoriteView.cpp" line="249"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="240"/>
+        <location filename="../../FavoriteView.cpp" line="249"/>
         <source>Input group name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="245"/>
+        <location filename="../../FavoriteView.cpp" line="254"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="245"/>
+        <location filename="../../FavoriteView.cpp" line="254"/>
         <source>The group [%1] is existed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -135,22 +135,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="282"/>
+        <location filename="../../ParameterDlgSettings.ui" line="258"/>
         <source>Shot screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="307"/>
+        <location filename="../../ParameterDlgSettings.ui" line="283"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="323"/>
+        <location filename="../../ParameterDlgSettings.ui" line="299"/>
         <source>Open folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="336"/>
+        <location filename="../../ParameterDlgSettings.ui" line="312"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -176,7 +176,7 @@
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="88"/>
-        <location filename="../../ParameterDlgSettings.ui" line="251"/>
+        <location filename="../../ParameterDlgSettings.ui" line="328"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -206,72 +206,77 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="170"/>
+        <location filename="../../ParameterDlgSettings.ui" line="238"/>
         <source>Main window receiver short cut key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="177"/>
+        <location filename="../../ParameterDlgSettings.ui" line="170"/>
         <source>Save main window status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="184"/>
+        <location filename="../../ParameterDlgSettings.ui" line="177"/>
         <source>Tab position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="196"/>
+        <location filename="../../ParameterDlgSettings.ui" line="189"/>
         <source>North</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="209"/>
+        <location filename="../../ParameterDlgSettings.ui" line="202"/>
         <source>South</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="222"/>
+        <location filename="../../ParameterDlgSettings.ui" line="215"/>
         <source>West</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="235"/>
+        <location filename="../../ParameterDlgSettings.ui" line="228"/>
         <source>East</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="245"/>
+        <location filename="../../ParameterDlgSettings.ui" line="322"/>
         <source>System tray icon context menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="258"/>
+        <location filename="../../ParameterDlgSettings.ui" line="335"/>
         <source>Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="265"/>
+        <location filename="../../ParameterDlgSettings.ui" line="342"/>
         <source>Recent open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="272"/>
+        <location filename="../../ParameterDlgSettings.ui" line="349"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="294"/>
+        <location filename="../../ParameterDlgSettings.ui" line="270"/>
         <source>Select shot remote desktop, otherwise shot window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="378"/>
-        <source>Ok(&amp;O)</source>
+        <location filename="../../ParameterDlgSettings.ui" line="359"/>
+        <source>Resume the connections when it was last closed at startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="385"/>
+        <source>Ok(&amp;O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="392"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -420,7 +425,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="227"/>
-        <location filename="../../mainwindow.cpp" line="271"/>
+        <location filename="../../mainwindow.cpp" line="273"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -429,9 +434,9 @@
         <location filename="../../mainwindow.ui" line="233"/>
         <location filename="../../mainwindow.ui" line="236"/>
         <location filename="../../mainwindow.ui" line="239"/>
-        <location filename="../../mainwindow.cpp" line="272"/>
-        <location filename="../../mainwindow.cpp" line="273"/>
         <location filename="../../mainwindow.cpp" line="274"/>
+        <location filename="../../mainwindow.cpp" line="275"/>
+        <location filename="../../mainwindow.cpp" line="276"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -594,45 +599,45 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="301"/>
+        <location filename="../../mainwindow.cpp" line="303"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="302"/>
-        <location filename="../../mainwindow.cpp" line="303"/>
         <location filename="../../mainwindow.cpp" line="304"/>
+        <location filename="../../mainwindow.cpp" line="305"/>
+        <location filename="../../mainwindow.cpp" line="306"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="508"/>
-        <location filename="../../mainwindow.cpp" line="526"/>
+        <location filename="../../mainwindow.cpp" line="510"/>
+        <location filename="../../mainwindow.cpp" line="528"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="518"/>
+        <location filename="../../mainwindow.cpp" line="520"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="520"/>
+        <location filename="../../mainwindow.cpp" line="522"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="608"/>
+        <location filename="../../mainwindow.cpp" line="610"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="634"/>
+        <location filename="../../mainwindow.cpp" line="636"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="773"/>
+        <location filename="../../mainwindow.cpp" line="817"/>
         <source>Save screenslot to </source>
         <translation type="unfinished"></translation>
     </message>

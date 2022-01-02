@@ -183,6 +183,8 @@ MainWindow::MainWindow(QWidget *parent)
         if(!state.isEmpty())
             restoreState(state);
     }
+    
+    LoadConnectLasterClose();
 }
 
 MainWindow::~MainWindow()
@@ -719,6 +721,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
     qDebug() << "MainWindow::closeEvent()";
+    
+    SaveConnectLasterClose();
+    
     foreach (auto it, m_Connecters)
         it->DisConnect();
     
@@ -733,6 +738,45 @@ void MainWindow::closeEvent(QCloseEvent *event)
         set.remove("MainWindow/Status/State");
     }
     QMainWindow::closeEvent(event);
+}
+
+int MainWindow::LoadConnectLasterClose()
+{
+    if(!m_Parameter.GetOpenLasterClose())
+        return 0;
+    
+    QFile f(RabbitCommon::CDir::Instance()->GetDirUserConfig()
+            + QDir::separator() + "LasterClose.dat");
+    if(f.open(QFile::ReadOnly))
+    {
+        QDataStream d(&f);
+        while(1){
+            QString szFile;
+            d >> szFile;
+            if(szFile.isEmpty())
+                break;
+            slotOpenFile(szFile);
+        }
+        f.close();
+    }
+    return 0;
+}
+
+int MainWindow::SaveConnectLasterClose()
+{
+    QFile f(RabbitCommon::CDir::Instance()->GetDirUserConfig()
+                  + QDir::separator() + "LasterClose.dat");
+    f.open(QFile::WriteOnly);
+    if(m_Parameter.GetOpenLasterClose())
+    {
+        QDataStream d(&f);
+        foreach(auto it, m_ConfigureFiles)
+        {
+            d << it;
+        }
+    }
+    f.close();
+    return 0;
 }
 
 void MainWindow::on_actionSend_ctl_alt_del_triggered()

@@ -57,6 +57,8 @@ private Q_SLOTS:
     void slotConnected();
 private:
     int Connect(CConnecter* p, bool set, QString szFile = QString());
+    int LoadConnectLasterClose();
+    int SaveConnectLasterClose();
 public:
     virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
 private:

@@ -42,7 +42,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
                     this, SLOT(slotFavortiedoubleClicked(const QModelIndex&)));
     Q_ASSERT(check);
     
-    m_szSaveFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+    m_szSaveFile = RabbitCommon::CDir::Instance()->GetDirUserConfig()
             + QDir::separator() + "Favorite.ini";
     QSettings set(m_szSaveFile, QSettings::IniFormat);
     int nRootCount = 0;
