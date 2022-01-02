@@ -39,6 +39,10 @@ CConnect *CConnecterFreeRdp::InstanceConnect()
                     SLOT(slotGetUserPassword(char**, char**, char**)),
                     Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigBlockShowMessage(QString, QString, QMessageBox::StandardButtons, QMessageBox::StandardButton&)),
+                    SLOT(slotBlockShowMessage(QString, QString, QMessageBox::StandardButtons, QMessageBox::StandardButton&)),
+                    Qt::BlockingQueuedConnection);
+    Q_ASSERT(check);
     return p;
 }
 

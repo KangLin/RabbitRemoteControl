@@ -2,7 +2,12 @@
 
 ### v0.0.15
 + Refactor CConneter paramters interface
++ Refactor CConneterDesktop interface
+  + add CConneterDesktopThread
+  + add PluginViewerThread
 + Modify documents
++ Add input password when is connecting
++ Add show message dialog in connect
 + Fix same bug
   - Fix CConneter::Name CConneter::ServerName bug
   - Fix favorite bug

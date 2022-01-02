@@ -14,6 +14,7 @@
 #include "Connecter.h"
 #include <QMimeData>
 #include "FrmViewer.h"
+#include <QMessageBox>
 
 /*!
  * \~chinese
@@ -147,6 +148,10 @@ Q_SIGNALS:
 
     void sigError(const int nError, const QString &szError = QString());
     void sigInformation(const QString& szInfo);
+
+    void sigBlockShowMessage(QString title, QString message,
+                             QMessageBox::StandardButtons buttons,
+                             QMessageBox::StandardButton& nRet);
 
 public Q_SLOTS:
     virtual void slotMousePressEvent(Qt::MouseButtons, QPoint);

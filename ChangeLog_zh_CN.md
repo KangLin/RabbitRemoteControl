@@ -2,7 +2,12 @@
 
 ### v0.0.15
 + 重构 CConneter 参数接口
++ 重构 CConneterDesktop 接口
+  + 增加 CConneterDesktopThread
+  + 增加 PluginViewerThread
 + 修改文档
++ 增加连接时输入密码
++ 增加连接显示消息对话框
 + 修复一些错误
   - 修复得到名称、服务名错误
   - 修复收藏夹错误

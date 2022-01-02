@@ -244,7 +244,7 @@ BOOL CConnectFreeRdp::Client_new(freerdp *instance, rdpContext *context)
     
     // Because it is setted in settings.
 	instance->Authenticate = cb_authenticate;
-	//instance->GatewayAuthenticate = cb_GatewayAuthenticate;
+	instance->GatewayAuthenticate = cb_GatewayAuthenticate;
     
     instance->VerifyCertificateEx = cb_verify_certificate_ex;
 	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;
@@ -655,19 +655,19 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username,
     return TRUE;
 }
 
-BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance, char **username, char **password, char **domain)
+BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance,
+                                char **username, char **password, char **domain)
 {
     qDebug() << "CConnectFreeRdp::cb_GatewayAuthenticate";
 	if(!instance)
 		return FALSE;
 
-    if(username)
-        *username = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Username));
-    if(password)
-	    *password = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Password));
-    if(domain)
-        *domain = _strdup(freerdp_settings_get_string(instance->settings, FreeRDP_Domain));
-
+    rdpContext* pContext = (rdpContext*)instance->context;
+    CConnectFreeRdp* pThis = ((ClientContext*)pContext)->pThis;
+    if(username || password)
+    {
+        emit pThis->sigGetUserPassword(username, password, domain);
+    }
 	return TRUE;
 }
 
@@ -682,20 +682,70 @@ DWORD CConnectFreeRdp::cb_verify_certificate_ex(freerdp *instance,
     CConnectFreeRdp* pThis = ((ClientContext*)pContext)->pThis;
     if(common_name)
         emit pThis->sigServerName(common_name);
+    
+    QString title(tr("Verify certificate"));
+    QString message;
+    message += tr("Host: %1; Port: %2 \n").arg(host).arg(QString::number(port));
+    message += tr("Common name: ") + common_name + "\n";
+    message += tr("Subject: ") + subject + "\n";
+    message += tr("Issuer: ") + issuer + "\n";
+    message += tr("Fingerprint: ") + fingerprint;
+    
+    QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
+    QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
+    emit pThis->sigBlockShowMessage(title, message, buttons, nRet);
+    
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
+    switch(nRet)
+    {
+    case QMessageBox::StandardButton::Yes:
+        return 1;
+    case QMessageBox::StandardButton::Ignore:
+        return 2;
+    default:
+        return 0;
+    }
     return 2;
 }
 
 DWORD CConnectFreeRdp::cb_verify_changed_certificate_ex(freerdp *instance,
                       const char *host, UINT16 port,
                       const char *common_name, const char *subject,
-                      const char *issuer, const char *new_fingerprint,
+                      const char *issuer, const char *fingerprint,
                       const char *old_subject, const char *old_issuer,
                       const char *old_fingerprint, DWORD flags)
 {
     qDebug() << "CConnectFreeRdp::cb_verify_changed_certificate_ex";
+    rdpContext* pContext = (rdpContext*)instance->context;
+    CConnectFreeRdp* pThis = ((ClientContext*)pContext)->pThis;
     
+    QString title(tr("Verify changed certificate"));
+    QString message;
+    message += tr("Host: %1; Port: %2 \n").arg(host).arg(QString::number(port));
+    message += tr("Common name: ") + common_name + "\n";
+    message += tr("New subject: ") + subject + "\n";
+    message += tr("New issuer: ") + issuer + "\n";
+    message += tr("New fingerprint: ") + fingerprint + "\n";
+    message += tr("Old subject: ") + old_subject + "\n";
+    message += tr("Old issuer: ") + old_issuer + "\n";
+    message += tr("Old fingerprint: ") + old_fingerprint;
+    
+    QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
+    QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
+    emit pThis->sigBlockShowMessage(title, message, buttons, nRet);
+    
+    /* return 1 to accept and store a certificate, 2 to accept
+	 * a certificate only for this session, 0 otherwise */
+    switch(nRet)
+    {
+    case QMessageBox::StandardButton::Yes:
+        return 1;
+    case QMessageBox::StandardButton::Ignore:
+        return 2;
+    default:
+        return 0;
+    }
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
     return 2;

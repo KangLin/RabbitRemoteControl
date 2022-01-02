@@ -109,3 +109,10 @@ int CConnecterDesktopThread::Save(QSettings &set)
         GetParameter()->Save(set);
     return nRet;
 }
+
+void CConnecterDesktopThread::slotBlockShowMessage(QString title, QString message,
+                                                   QMessageBox::StandardButtons buttons,
+                                                   QMessageBox::StandardButton &nRet)
+{
+    nRet = QMessageBox::information(GetViewer(), title, message, buttons);
+}
