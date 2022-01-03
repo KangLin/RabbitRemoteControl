@@ -19,6 +19,7 @@ CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
 
 CConnecter::~CConnecter()
 {
+    LOG_MODEL_DEBUG("CConnecter", "CConnecter::~CConnecter");
 }
 
 const QString CConnecter::Id()
@@ -79,6 +80,10 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
     QDialog* p = GetDialogSettings(parent);
     if(p)
     {
+        // The dialog is closed when the connect is close.
+        bool check = connect(this, SIGNAL(sigDisconnected()),
+                             p, SLOT(reject()));
+        Q_ASSERT(check);
         p->setWindowIcon(this->Icon());
         p->setWindowTitle(tr("Set ") + m_pPluginViewer->DisplayName());
 #ifdef BUILD_QUIWidget
