@@ -8,7 +8,6 @@
 #include "Connect.h"
 #include "Parameter.h"
 #include "FrmViewer.h"
-#include <QMessageBox>
 
 class CConnectThread;
 
@@ -79,11 +78,6 @@ public Q_SLOTS:
      */
     virtual int Connect() override;
     virtual int DisConnect() override;
-
-private Q_SLOTS:
-    virtual void slotBlockShowMessage(QString title, QString message,
-                                      QMessageBox::StandardButtons buttons,
-                                      QMessageBox::StandardButton& nRet);
 
 protected:
     /*!

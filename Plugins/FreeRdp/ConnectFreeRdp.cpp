@@ -20,6 +20,7 @@
 #include "RabbitCommonTools.h"
 #include "RabbitCommonLog.h"
 #include "ConvertKeyCode.h"
+#include "DlgGetUserPassword.h"
 
 #include <QDebug>
 #include <QApplication>
@@ -42,7 +43,7 @@ CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
     m_ClientEntryPoints.settings = m_pParamter->m_pSettings;
-        
+
     rdpSettings* settings = m_pParamter->m_pSettings;
     
     freerdp_settings_set_string(settings,
@@ -650,7 +651,13 @@ BOOL CConnectFreeRdp::cb_authenticate(freerdp* instance, char** username,
     CConnectFreeRdp* pThis = ((ClientContext*)pContext)->pThis;
     if(username || password)
     {
-        emit pThis->sigGetUserPassword(username, password, domain);
+        int nRet = QDialog::Rejected;
+        emit pThis->sigBlockShowWidget("CDlgGetUserPassword", nRet, pThis->m_pParamter);
+        if(QDialog::Accepted == nRet)
+        {
+            *username = _strdup(pThis->m_pParamter->GetUser().toStdString().c_str());
+            *password = _strdup(pThis->m_pParamter->GetPassword().toStdString().c_str());
+        }
     }
     return TRUE;
 }
@@ -666,7 +673,13 @@ BOOL CConnectFreeRdp::cb_GatewayAuthenticate(freerdp *instance,
     CConnectFreeRdp* pThis = ((ClientContext*)pContext)->pThis;
     if(username || password)
     {
-        emit pThis->sigGetUserPassword(username, password, domain);
+        int nRet = QDialog::Rejected;
+        emit pThis->sigBlockShowWidget("CDlgGetUserPassword", nRet, pThis->m_pParamter);
+        if(QDialog::Accepted == nRet)
+        {
+            *username = _strdup(pThis->m_pParamter->GetUser().toStdString().c_str());
+            *password = _strdup(pThis->m_pParamter->GetPassword().toStdString().c_str());
+        }
     }
 	return TRUE;
 }

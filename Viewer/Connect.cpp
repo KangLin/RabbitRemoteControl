@@ -84,6 +84,14 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     check = connect(this, SIGNAL(sigSetClipboard(QMimeData*)),
                     pConnecter, SLOT(slotSetClipboard(QMimeData*)));
     Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigBlockShowWidget(const QString&, int&, void*)),
+                    pConnecter, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
+                    Qt::BlockingQueuedConnection);
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigBlockShowMessage(QString, QString, QMessageBox::StandardButtons, QMessageBox::StandardButton&)),
+                    pConnecter, SLOT(slotBlockShowMessage(QString, QString, QMessageBox::StandardButtons, QMessageBox::StandardButton&)),
+                    Qt::BlockingQueuedConnection);
+    Q_ASSERT(check);
     return 0;
 }
 

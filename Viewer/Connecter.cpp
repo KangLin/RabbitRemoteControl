@@ -3,6 +3,9 @@
 #include "Connecter.h"
 #include <QClipboard>
 #include <QApplication>
+#include <QDebug>
+#include <QGenericArgument>
+
 #include "PluginViewer.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
@@ -161,4 +164,59 @@ void CConnecter::slotShowServerName()
 void CConnecter::slotUpdateName()
 {
     emit sigUpdateName(Name());
+}
+
+QObject* CConnecter::createObject(const QString& className, QObject* parent)
+{
+    Q_UNUSED(parent);
+    int type = QMetaType::type(className.toStdString().c_str());
+    if(QMetaType::UnknownType == type)
+    {
+        qCritical() << className << " is QMetaType::UnknownType";
+        return nullptr;
+    }
+    QObject *obj = (QObject*)QMetaType::create(type);
+    if(nullptr == obj)
+    {
+        qCritical() << "QMetaType::create fail: " << type;
+        return nullptr;
+    }
+    //const QMetaObject* metaObj = QMetaType::metaObjectForType(type);
+    //QObject *obj = metaObj->newInstance(Q_ARG(QObject*, parent));
+    return obj;
+}
+
+void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* pContext)
+{
+    bool check = false;
+    QObject *obj = createObject(className);
+    Q_ASSERT(obj);
+    if(!obj) return;
+    
+    obj->metaObject()->invokeMethod(obj, "SetContext", Q_ARG(void*, pContext));
+    obj->metaObject()->invokeMethod(obj, "SetConnecter", Q_ARG(CConnecter*, this));
+    if(obj->inherits("QDialog"))
+    {
+        QDialog* pDlg = qobject_cast<QDialog*>(obj);
+        pDlg->setAttribute(Qt::WA_DeleteOnClose);
+        check = connect(this, SIGNAL(sigDisconnected()),
+                        pDlg, SLOT(reject()));
+        Q_ASSERT(check);
+        nRet = pDlg->exec();
+    } else if(obj->inherits("QWidget"))
+    {
+        QWidget* pWdg = qobject_cast<QWidget*>(obj);
+        pWdg->setAttribute(Qt::WA_DeleteOnClose);
+        check = connect(this, SIGNAL(sigDisconnected()),
+                        pWdg, SLOT(close()));
+        Q_ASSERT(check);
+        pWdg->show();
+    }
+}
+
+void CConnecter::slotBlockShowMessage(QString title, QString message,
+                                      QMessageBox::StandardButtons buttons,
+                                      QMessageBox::StandardButton &nRet)
+{
+    nRet = QMessageBox::information(GetViewer(), title, message, buttons);
 }

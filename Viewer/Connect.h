@@ -149,6 +149,23 @@ Q_SIGNALS:
     void sigError(const int nError, const QString &szError = QString());
     void sigInformation(const QString& szInfo);
 
+    /*!
+     * \brief When a background thread blocks the display window
+     * \param className: show windows class name
+     * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
+     *              Otherwise, ignore
+     * \param pContext: pass context to CConnecter::slotBlockShowWidget()
+     * \see CConnecter::slotBlockShowWidget() SetConnecter
+     */
+    void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
+    /*!
+     * \brief The background thread uses QMessageBox to block the display window
+     * \param title
+     * \param message
+     * \param buttons
+     * \param nRet
+     * \see CConnecter::slotBlockShowMessage() SetConnecter
+     */
     void sigBlockShowMessage(QString title, QString message,
                              QMessageBox::StandardButtons buttons,
                              QMessageBox::StandardButton& nRet);

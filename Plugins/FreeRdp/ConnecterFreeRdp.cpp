@@ -34,48 +34,5 @@ QDialog *CConnecterFreeRdp::GetDialogSettings(QWidget *parent)
 CConnect *CConnecterFreeRdp::InstanceConnect()
 {
     CConnectFreeRdp* p = new CConnectFreeRdp(this);
-    bool check = false;
-    check = connect(p, SIGNAL(sigGetUserPassword(char**, char**, char**)),
-                    SLOT(slotGetUserPassword(char**, char**, char**)),
-                    Qt::BlockingQueuedConnection);
-    Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigBlockShowMessage(QString, QString, QMessageBox::StandardButtons, QMessageBox::StandardButton&)),
-                    SLOT(slotBlockShowMessage(QString, QString, QMessageBox::StandardButtons, QMessageBox::StandardButton&)),
-                    Qt::BlockingQueuedConnection);
-    Q_ASSERT(check);
     return p;
-}
-
-void CConnecterFreeRdp::slotGetUserPassword(char** user, char** password, char** domain)
-{
-    CParameterFreeRdp* p = qobject_cast<CParameterFreeRdp*>(GetParameter());
-    if(!p) return;
-    
-    CDlgGetUserPassword dlg(GetViewer());
-    dlg.SetText(tr("Set password for %1").arg(Name()));
-    if(user && *user)
-        dlg.SetUser(*user);
-    if(password && *password)
-        dlg.SetPassword(*password);
-    if(domain && *domain)
-        dlg.SetDomain(*domain);
-    dlg.SetSavePassword(p->GetSavePassword());
-    
-    if(QDialog::Rejected == dlg.exec())
-        return;
-    
-    if(domain)
-        *domain = _strdup(dlg.GetDomain().toStdString().c_str());
-    if(user)
-        *user = _strdup(dlg.GetUser().toStdString().c_str());
-    if(password)
-        *password = _strdup(dlg.GetPassword().toStdString().c_str());
-    
-    p->SetUser(dlg.GetUser());
-    p->SetPassword(dlg.GetPassword());
-    p->SetSavePassword(dlg.GetSavePassword());
-    if(dlg.GetSavePassword())
-    {
-        emit sigUpdateParamters(this);
-    }
 }

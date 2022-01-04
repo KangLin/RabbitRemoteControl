@@ -65,9 +65,6 @@ public:
     static BOOL cb_end_paint(rdpContext* context);
     
     static UINT32 GetImageFormat(QImage::Format format);
-    
-Q_SIGNALS:
-    void sigGetUserPassword(char** user, char** password, char** domain);
 
 private:
     UINT32 GetImageFormat();

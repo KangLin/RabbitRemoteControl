@@ -13,6 +13,8 @@
 #include <QIcon>
 #include <QMimeData>
 #include <QSettings>
+#include <QMessageBox>
+
 #include "viewer_export.h"
 
 class CPluginViewer;
@@ -212,9 +214,31 @@ protected:
      */
     virtual QString ServerName();
 
+    static QObject* createObject(const QString &className, QObject* parent = NULL);
+
 private Q_SLOTS:
     void slotShowServerName();
     void slotUpdateName();
+    /*!
+     * \brief When a background thread blocks the display window
+     * \param className: show windows class name
+     * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
+     *              Otherwise, ignore
+     * \param pContext: pass context from CConnect::sigBlockShowWidget()
+     * \see CConnect::sigBlockShowWidget()
+     */
+    virtual void slotBlockShowWidget(const QString& className, int &nRet, void* pContext);
+    /*!
+     * \brief The background thread uses QMessageBox to block the display window
+     * \param title
+     * \param message
+     * \param buttons
+     * \param nRet
+     * \see CConnect::sigBlockShowMessage()
+     */
+    virtual void slotBlockShowMessage(QString title, QString message,
+                                      QMessageBox::StandardButtons buttons,
+                                      QMessageBox::StandardButton& nRet);
 
 private:
     const CPluginViewer* m_pPluginViewer;

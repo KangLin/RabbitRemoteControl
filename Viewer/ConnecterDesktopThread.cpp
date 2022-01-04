@@ -34,13 +34,6 @@ CParameter* CConnecterDesktopThread::GetParameter()
 int CConnecterDesktopThread::Connect()
 {
     int nRet = 0;
-    // Check whether the parameters are complete
-//    if(GetParameter() && !GetParameter()->GetCheckCompleted())
-//    {
-//        if(QDialog::Rejected == OpenDialogSettings())
-//           return -1;
-//        emit sigUpdateParamters(this);
-//    }
     m_pThread = new CConnectThread(this);
     if(!m_pThread)
         return -2;
@@ -110,9 +103,3 @@ int CConnecterDesktopThread::Save(QSettings &set)
     return nRet;
 }
 
-void CConnecterDesktopThread::slotBlockShowMessage(QString title, QString message,
-                                                   QMessageBox::StandardButtons buttons,
-                                                   QMessageBox::StandardButton &nRet)
-{
-    nRet = QMessageBox::information(GetViewer(), title, message, buttons);
-}
