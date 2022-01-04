@@ -54,8 +54,3 @@ CConnect* CConnecterTigerVnc::InstanceConnect()
     CConnectTigerVnc* p = new CConnectTigerVnc(this);
     return p;
 }
-
-void CConnecterTigerVnc::slotShowMessage(const QString& title, const QString& text, bool* reture)
-{
-    QMessageBox::information(GetViewer(), title, text);
-}

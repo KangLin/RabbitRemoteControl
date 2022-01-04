@@ -431,9 +431,12 @@ void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)
 bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text)
 {
     LOG_MODEL_ERROR("TigerVnc","%s:%s\n", title, text);
-    bool bRet = true;
-    emit sigShowMessage(QString(title), QString(text), &bRet);
-    return bRet;
+    QMessageBox::StandardButton nRet = QMessageBox::No;
+    emit sigBlockShowMessage(QString(title), QString(text),
+                             QMessageBox::Ok | QMessageBox::No, nRet);
+    if(QMessageBox::Ok == nRet)
+        return true;
+    return false;
 }
 
 // framebufferUpdateStart() is called at the beginning of an update.
