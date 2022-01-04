@@ -2,46 +2,36 @@
 #define DLGGETUSERPASSWORD_H
 
 #include <QDialog>
+#include "ConnecterTigerVnc.h"
 
 namespace Ui {
-class CDlgGetUserPassword;
+class CDlgTigerVNCGetPassword;
 }
 
-class CDlgGetUserPassword : public QDialog
+class CDlgTigerVNCGetPassword : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit CDlgGetUserPassword(QWidget *parent = nullptr);
-    virtual ~CDlgGetUserPassword();
+    explicit CDlgTigerVNCGetPassword(QWidget *parent = nullptr);
+    virtual ~CDlgTigerVNCGetPassword();
+    CDlgTigerVNCGetPassword(const CDlgTigerVNCGetPassword& dlg);
     
-    const QString &GetUser() const;
-    void SetUser(const QString &NewUser);
-    const QString &GetPassword() const;
-    void SetPassword(const QString &NewPassword);
-    
-    bool GetSavePassword() const;
-    void SetSavePassword(bool NewSave);
-    
-    const QString &GetText() const;
-    void SetText(const QString &newText);
-    
+    Q_INVOKABLE void SetContext(void* pContext);
+    Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
+        
 private slots:
     void on_pbOK_clicked();
-    
     void on_pbCancel_clicked();
     
 private:
-    Ui::CDlgGetUserPassword *ui;
-
-    QString m_Text;
-    QString m_User;
-    QString m_Password;
-    bool m_SavePassword;
+    Ui::CDlgTigerVNCGetPassword *ui;
+    CConnecterTigerVnc* m_pConnecter;
+    CParameterTigerVnc* m_pParameter;
     
     // QWidget interface
 protected:
     virtual void showEvent(QShowEvent *event) override;
 };
-
+Q_DECLARE_METATYPE(CDlgTigerVNCGetPassword)
 #endif // DLGGETUSERPASSWORD_H

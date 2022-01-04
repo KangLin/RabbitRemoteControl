@@ -52,41 +52,7 @@ QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 CConnect* CConnecterTigerVnc::InstanceConnect()
 {
     CConnectTigerVnc* p = new CConnectTigerVnc(this);
-    bool check = false;
-    check = connect(p, SIGNAL(sigGetUserPassword(char**, char**)),
-                    SLOT(slotGetUserPassword(char**, char**)),
-                    Qt::BlockingQueuedConnection);
-    Q_ASSERT(check);
     return p;
-}
-
-void CConnecterTigerVnc::slotGetUserPassword(char** user, char** password)
-{
-    CParameterTigerVnc* p = qobject_cast<CParameterTigerVnc*>(GetParameter());
-    
-    CDlgGetUserPassword dlg(GetViewer());
-    dlg.SetText(tr("Set password for %1").arg(Name()));
-    dlg.SetUser(p->GetUser());
-    dlg.SetPassword(p->GetPassword());
-    dlg.SetSavePassword(p->GetSavePassword());
-    if(QDialog::Rejected == dlg.exec())
-    {
-        *password = rfb::strDup("");
-        return;
-    }
-    
-    if(user)
-        *user = rfb::strDup(dlg.GetUser().toStdString().c_str());
-    if(password)
-        *password = rfb::strDup(dlg.GetPassword().toStdString().c_str());
-    
-    p->SetUser(dlg.GetUser());
-    p->SetPassword(dlg.GetPassword());
-    p->SetSavePassword(dlg.GetSavePassword());
-    if(dlg.GetSavePassword())
-    {
-        emit sigUpdateParamters(this);
-    }
 }
 
 void CConnecterTigerVnc::slotShowMessage(const QString& title, const QString& text, bool* reture)

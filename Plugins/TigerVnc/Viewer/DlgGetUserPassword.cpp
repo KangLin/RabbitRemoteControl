@@ -1,75 +1,58 @@
 #include "DlgGetUserPassword.h"
 #include "ui_DlgGetUserPassword.h"
 
-CDlgGetUserPassword::CDlgGetUserPassword(QWidget *parent) :
+static int g_CDlgTigerVNCGetPassword = qRegisterMetaType<CDlgTigerVNCGetPassword>();
+
+CDlgTigerVNCGetPassword::CDlgTigerVNCGetPassword(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgGetUserPassword)
+    ui(new Ui::CDlgTigerVNCGetPassword),
+    m_pConnecter(nullptr),
+    m_pParameter(nullptr)
 {
     ui->setupUi(this);
 }
 
-CDlgGetUserPassword::~CDlgGetUserPassword()
+CDlgTigerVNCGetPassword::~CDlgTigerVNCGetPassword()
 {
     delete ui;
 }
 
-const QString &CDlgGetUserPassword::GetUser() const
+CDlgTigerVNCGetPassword::CDlgTigerVNCGetPassword(const CDlgTigerVNCGetPassword& dlg)
 {
-    return m_User;
+    m_pConnecter = dlg.m_pConnecter;
+    m_pParameter = dlg.m_pParameter;
 }
 
-void CDlgGetUserPassword::SetUser(const QString &NewUser)
+void CDlgTigerVNCGetPassword::SetContext(void *pContext)
 {
-    m_User = NewUser;
 }
 
-const QString &CDlgGetUserPassword::GetPassword() const
+void CDlgTigerVNCGetPassword::SetConnecter(CConnecter *pConnecter)
 {
-    return m_Password;
+    m_pConnecter = qobject_cast<CConnecterTigerVnc*>(pConnecter);
+    if(!m_pConnecter) return;
+
+    m_pParameter = qobject_cast<CParameterTigerVnc*>(m_pConnecter->GetParameter());
 }
 
-void CDlgGetUserPassword::SetPassword(const QString &NewPassword)
+void CDlgTigerVNCGetPassword::showEvent(QShowEvent *event)
 {
-    m_Password = NewPassword;
+    ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
+    ui->lePassword->setText(m_pParameter->GetPassword());
+    ui->cbSavePassword->setChecked(m_pParameter->GetSavePassword());
+    ui->leUser->setText(m_pParameter->GetUser());
 }
 
-bool CDlgGetUserPassword::GetSavePassword() const
+void CDlgTigerVNCGetPassword::on_pbOK_clicked()
 {
-    return m_SavePassword;
-}
-
-void CDlgGetUserPassword::SetSavePassword(bool NewSave)
-{
-    m_SavePassword = NewSave;
-}
-
-void CDlgGetUserPassword::showEvent(QShowEvent *event)
-{
-    ui->leUser->setText(GetUser());
-    ui->lePassword->setText(GetPassword());
-    ui->cbSavePassword->setChecked(GetSavePassword());
-    ui->lbText->setText(GetText());
-}
-
-void CDlgGetUserPassword::on_pbOK_clicked()
-{
-    SetUser(ui->leUser->text());
-    SetPassword(ui->lePassword->text());
-    SetSavePassword(ui->cbSavePassword->isChecked());            
+    m_pParameter->SetUser(ui->leUser->text());
+    m_pParameter->SetPassword(ui->lePassword->text());
+    m_pParameter->SetSavePassword(ui->cbSavePassword->isChecked());
+    emit m_pConnecter->sigUpdateParamters(m_pConnecter);
     accept();
 }
 
-void CDlgGetUserPassword::on_pbCancel_clicked()
+void CDlgTigerVNCGetPassword::on_pbCancel_clicked()
 {
     reject();
-}
-
-const QString &CDlgGetUserPassword::GetText() const
-{
-    return m_Text;
-}
-
-void CDlgGetUserPassword::SetText(const QString &newText)
-{
-    m_Text = newText;
 }

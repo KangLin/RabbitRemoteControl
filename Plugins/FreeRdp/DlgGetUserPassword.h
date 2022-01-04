@@ -27,7 +27,7 @@ private slots:
     
 private:
     Ui::CDlgGetUserPassword *ui;
-    
+
     CConnecterFreeRdp* m_pConnecter;
     CParameterFreeRdp* m_pParameter;
 

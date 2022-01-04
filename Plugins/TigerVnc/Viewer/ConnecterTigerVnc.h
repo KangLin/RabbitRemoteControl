@@ -22,7 +22,6 @@ protected:
     virtual QString ServerName() override;
     
 private Q_SLOTS:
-    void slotGetUserPassword(char** user, char** password);
     void slotShowMessage(const QString& title, const QString& text, bool* reture);
     
 private:
