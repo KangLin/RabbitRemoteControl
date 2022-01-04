@@ -25,8 +25,6 @@ public:
     static char* cb_get_password(rfbClient* client);
     static rfbBool cb_cursor_pos(rfbClient* client, int x, int y);
     static void cb_got_cursor_shape(rfbClient* client, int xhot, int yhot, int width, int height, int bytesPerPixel);
-Q_SIGNALS:
-    void sigGetUserPassword(char** user, char** password);
     
 public Q_SLOTS:
     virtual void slotClipBoardChange() override;

@@ -45,7 +45,7 @@ SET(SOURCE_FILES
     ConnecterLibVNCServer.cpp
     ConnectLibVNCServer.cpp
     DlgSettingsLibVnc.cpp
-    DlgGetUserPassword.cpp
+    DlgLibVNCServerPassword.cpp
     )
 
 SET(HEADER_FILES
@@ -54,12 +54,12 @@ SET(HEADER_FILES
     ConnecterLibVNCServer.h
     ConnectLibVNCServer.h
     DlgSettingsLibVnc.h
-    DlgGetUserPassword.h
+    DlgLibVNCServerPassword.h
     )
 
 SET(UI_FILES
     DlgSettingsLibVnc.ui
-    DlgGetUserPassword.ui
+    DlgLibVNCServerPassword.ui
     )
 
 if(_LibvncIncludeDir)

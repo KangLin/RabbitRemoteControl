@@ -318,13 +318,14 @@ char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
     QString szPassword = pThis->m_pPara->GetPassword();
     if(szPassword.isEmpty())
     {
-        char* user = nullptr;
-        char* password = nullptr;
-        emit pThis->sigGetUserPassword(&user, &password);
-        szPassword = password;
+        int nRet = QDialog::Rejected;
+        emit pThis->sigBlockShowWidget("CDlgLibVNCServerPassword", nRet, pThis->m_pPara);
+        if(QDialog::Accepted == nRet)
+        {
+            szPassword = pThis->m_pPara->GetPassword();    
+        }
         if(szPassword.isEmpty())
             return nullptr;
-        return strdup(szPassword.toStdString().c_str());
     }
     return strdup(szPassword.toStdString().c_str());
 }
