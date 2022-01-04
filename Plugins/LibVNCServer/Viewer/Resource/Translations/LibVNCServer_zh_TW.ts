@@ -2,49 +2,46 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
-    <name>CConnecterLibVNCServer</name>
+    <name>CDlgLibVNCServerPassword</name>
     <message>
-        <location filename="../../ConnecterLibVNCServer.cpp" line="43"/>
-        <source>Set password for %1</source>
-        <translation>為 %1 設置密碼</translation>
-    </message>
-</context>
-<context>
-    <name>CDlgGetUserPassword</name>
-    <message>
-        <location filename="../../DlgGetUserPassword.ui" line="14"/>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="14"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="39"/>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="35"/>
+        <source>Text</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="47"/>
         <source>User:</source>
         <translation>用戶名：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="53"/>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="61"/>
         <source>Password:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="69"/>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="77"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="108"/>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="114"/>
         <source>OK(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="115"/>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="121"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="150"/>
-        <source>TextLabel</source>
-        <translation></translation>
+        <location filename="../../DlgLibVNCServerPassword.cpp" line="40"/>
+        <source>Set password for %1</source>
+        <translation>為 %1 設置密碼</translation>
     </message>
 </context>
 <context>

@@ -113,6 +113,10 @@
         <source>TextLabel</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Set password for %1</source>
+        <translation>為 %1 設置密碼</translation>
+    </message>
 </context>
 <context>
     <name>CDlgSetFreeRdp</name>

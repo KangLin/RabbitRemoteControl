@@ -5,22 +5,22 @@
     <name>CDataChannelIce</name>
     <message>
         <source>Signal disconnected</source>
-        <translation>信令断开连接</translation>
+        <translation type="vanished">信令断开连接</translation>
     </message>
 </context>
 <context>
     <name>CIceSignalQxmpp</name>
     <message>
         <source>Socket error</source>
-        <translation>Socket 错误</translation>
+        <translation type="vanished">Socket 错误</translation>
     </message>
     <message>
         <source>Keep alive error</source>
-        <translation>保活错误</translation>
+        <translation type="vanished">保活错误</translation>
     </message>
     <message>
         <source>xmpp stream error</source>
-        <translation>XMPP 流错误</translation>
+        <translation type="vanished">XMPP 流错误</translation>
     </message>
 </context>
 <context>
