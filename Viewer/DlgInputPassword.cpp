@@ -2,14 +2,19 @@
 
 #include "DlgInputPassword.h"
 #include "ui_DlgInputPassword.h"
+#include "ManagePassword.h"
 
 CDlgInputPassword::CDlgInputPassword(QString szTitle, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgInputPassword)
 {
     ui->setupUi(this);
-    setWindowTitle(tr("Input password"));
-    ui->lbTitle->setText(tr("Input %1:").arg(szTitle));
+    ui->pbShow->setEnabled(CManagePassword::Instance()->GetViewPassowrd());
+    setWindowTitle(tr("Input encrypt key"));
+
+    if(szTitle.isEmpty())
+        ui->rbPassword->setEnabled(false);
+
     ui->rbPassword->setText(tr("Input %1").arg(szTitle));
 }
 
@@ -34,4 +39,19 @@ int CDlgInputPassword::GetValue(InputType &t, QString &password)
     if(ui->rbPassword->isChecked()) t = Password;
     password = ui->lePassword->text();
     return 0;
+}
+
+void CDlgInputPassword::on_pbShow_clicked()
+{
+    switch(ui->lePassword->echoMode())
+    {
+    case QLineEdit::Password:
+        ui->lePassword->setEchoMode(QLineEdit::Normal);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOff"));
+        break;
+    case QLineEdit::Normal:
+        ui->lePassword->setEchoMode(QLineEdit::Password);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOn"));
+        break;
+    }
 }

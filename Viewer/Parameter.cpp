@@ -326,9 +326,13 @@ int CParameter::SavePassword(const QString &szKey, const QString &password, QSet
                         CManagePassword::Instance()->GetPromptCount() + 1);
         case CManagePassword::PromptType::Always:
         {
-            QString szKey = QInputDialog::getText(nullptr,
-                           tr("Input encrypt key"), tr("Input encrypt key"));
-            CManagePassword::Instance()->SetEncryptKey(szKey);
+            QString szKey;
+            CDlgInputPassword::InputType t = CDlgInputPassword::InputType::Encrypt;
+            CDlgInputPassword dlg;
+            if(QDialog::Accepted == dlg.exec())
+                dlg.GetValue(t, szKey);
+            if(CDlgInputPassword::InputType::Encrypt == t)
+                CManagePassword::Instance()->SetEncryptKey(szKey);
             break;
         }
         case CManagePassword::PromptType::No:
