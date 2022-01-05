@@ -24,6 +24,8 @@ private slots:
     
     void on_pbEncryptKey_clicked();
     
+    void on_pbScreenShotBrower_clicked();
+    
 private:
     Ui::CParameterDlgSettings *ui;
     

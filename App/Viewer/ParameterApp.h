@@ -17,10 +17,13 @@ public:
 public:
     bool GetScreenShot() const;
     void SetScreenShot(bool newScreenShot);
+    const QString &GetScreenShotPath() const;
+    void SetScreenShotPath(const QString& path);
 Q_SIGNALS:
-    void sigScreenShotChanged();    
+    void sigScreenShotChanged();
 private:
     bool m_bScreenShot;
+    QString m_szScreenShotPath;
     Q_PROPERTY(bool ScreenShot READ GetScreenShot WRITE SetScreenShot NOTIFY sigScreenShotChanged)
 
 public:

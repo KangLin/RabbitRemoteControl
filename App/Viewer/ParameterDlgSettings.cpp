@@ -4,6 +4,7 @@
 #include "ui_ParameterDlgSettings.h"
 #include "mainwindow.h"
 #include "ManagePassword.h"
+#include "RabbitCommonDir.h"
 
 CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *parent) :
     QDialog(parent),
@@ -11,7 +12,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
     m_pParameters(pPara)
 {
     ui->setupUi(this);
-        
+
+    ui->leShotScreenSavepath->setText(m_pParameters->GetScreenShotPath());
     ui->cbShotRemoteDesktop->setChecked(m_pParameters->GetScreenShot());
     switch (m_pParameters->GetScreenShotEndAction()) {
     case CParameterApp::NoAction:
@@ -88,7 +90,7 @@ void CParameterDlgSettings::on_pbOk_clicked()
     if(!m_pParameters) return;
     
     m_pParameters->SetScreenShot(ui->cbShotRemoteDesktop->isChecked());
-    
+    m_pParameters->SetScreenShotPath(ui->leShotScreenSavepath->text());
     if(ui->rbShotScreenNoAction->isChecked())
         m_pParameters->SetScreenShotEndAction(CParameterApp::NoAction);
     if(ui->rbShotScreenOpenFile->isChecked())
@@ -152,4 +154,14 @@ void CParameterDlgSettings::on_pbEncryptKey_clicked()
         ui->pbEncryptKey->setIcon(QIcon(":/image/EyeOn"));
         break;
     }
+}
+
+void CParameterDlgSettings::on_pbScreenShotBrower_clicked()
+{
+    QString szPath = RabbitCommon::CDir::Instance()->GetOpenDirectory(this,
+                                                    tr("Open shot screen path"),
+                                              ui->leShotScreenSavepath->text());
+    if(szPath.isEmpty())
+        return;
+    ui->leShotScreenSavepath->setText(szPath);
 }

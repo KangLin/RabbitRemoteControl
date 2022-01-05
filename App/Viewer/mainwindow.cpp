@@ -800,16 +800,10 @@ void MainWindow::slotShowTabBar(bool bShow)
 void MainWindow::on_actionScreenshot_triggered()
 {
     if(!m_pView || !m_pView->GetCurrentView()) return;
-    /*
-    QString szFile = RabbitCommon::CDir::GetSaveFileName(this,
-                                          tr("Open save screenslot file"),
-                              RabbitCommon::CDir::Instance()->GetDirUserImage(), 
-                             tr("PNG(*.png);;JEPG(*.jpg);;All files(*.*)"));//*/
-    QString szFile = RabbitCommon::CDir::Instance()->GetDirUserImage()
+    QString szFile = m_Parameter.GetScreenShotPath()
             + QDir::separator()
-            + "RabbitRemoteControl_ScreenSlot_"
             + QDateTime::currentDateTime().toLocalTime().toString("yyyy_MM_dd_hh_mm_ss_zzz")
-            + ".png";
+            + ".jpg";
     if(szFile.isEmpty()) return;
     int nRet = m_pView->Screenslot(szFile, m_Parameter.GetScreenShot());
     if(0 == nRet)

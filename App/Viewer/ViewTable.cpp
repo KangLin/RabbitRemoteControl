@@ -6,6 +6,9 @@
 #include <QStyleOption>
 #include <QDebug>
 #include <QScrollBar>
+#include <QFileInfo>
+#include <QDir>
+
 #include "RabbitCommonLog.h"
 #include "mainwindow.h"
 
@@ -150,6 +153,11 @@ int CViewTable::ShowTabBar(bool bShow)
 
 int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
 {
+    QFileInfo fi(szFile);
+    QString ext = fi.suffix().toUpper();
+    QDir d;
+    if(!d.exists(fi.path()))
+        d.mkpath(fi.path());
     CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
     if(!pScroll) return -1;
     CFrmViewer* pView = pScroll->GetViewer();
@@ -157,7 +165,7 @@ int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
     if(bRemoteDesktop)
     {
         QImage img = pView->GrabImage();
-        if(img.save(szFile))
+        if(img.save(szFile, ext.toStdString().c_str()))
             return 0;
         return -3;
     }
@@ -170,7 +178,7 @@ int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
     if(pVBar && pVBar->isVisible()) w -= pVBar->width();
     QPixmap pixmap(QSize(w, h));
     pScroll->render(&pixmap);
-    if(pixmap.toImage().save(szFile))
+    if(pixmap.toImage().save(szFile, ext.toStdString().c_str()))
     {
         return 0;
     }

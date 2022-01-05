@@ -13,6 +13,9 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_SystemTrayIconType(SystemTrayIconMenuType::Remote),
     m_bOpenLasterClose(false)
 {
+    m_szScreenShotPath = RabbitCommon::CDir::Instance()->GetDirUserImage()
+            + QDir::separator()
+            + "ScreenSlot";
 }
 
 int CParameterApp::Load()
@@ -21,8 +24,10 @@ int CParameterApp::Load()
                   QSettings::IniFormat);
     CManagePassword::Instance()->Load(set);
     
-    SetScreenShot(set.value("ShotScreen/IsShotScreen",
+    SetScreenShot(set.value("ShotScreen/ShotScreen/Desktop",
                             GetScreenShot()).toBool());
+    SetScreenShotPath(set.value("ShotScreen/ShotScreen/Path",
+                                GetScreenShotPath()).toString());
     SetScreenShotEndAction(static_cast<ScreenShotEndAction>(
                                set.value("ShotScreen/Action",
                                          GetScreenShotEndAction()).toInt()));
@@ -52,7 +57,8 @@ int CParameterApp::Save()
                   QSettings::IniFormat);
     CManagePassword::Instance()->Save(set);
 
-    set.setValue("ShotScreen/IsShotScreen", GetScreenShot());
+    set.setValue("ShotScreen/ShotScreen/Desktop", GetScreenShot());
+    set.setValue("ShotScreen/ShotScreen/Path", GetScreenShotPath());
     set.setValue("ShotScreen/Action", GetScreenShotEndAction());
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
@@ -151,6 +157,16 @@ void CParameterApp::SetScreenShot(bool newScreenShot)
         return;
     m_bScreenShot = newScreenShot;
     emit sigScreenShotChanged();
+}
+
+const QString& CParameterApp::GetScreenShotPath() const
+{
+    return m_szScreenShotPath;
+}
+
+void CParameterApp::SetScreenShotPath(const QString &path)
+{
+    m_szScreenShotPath = path;
 }
 
 CParameterApp::ScreenShotEndAction CParameterApp::GetScreenShotEndAction() const
