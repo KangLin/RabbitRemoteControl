@@ -140,17 +140,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="283"/>
+        <location filename="../../ParameterDlgSettings.ui" line="285"/>
         <source>No action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="299"/>
+        <location filename="../../ParameterDlgSettings.ui" line="301"/>
         <source>Open folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="312"/>
+        <location filename="../../ParameterDlgSettings.ui" line="314"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -176,7 +176,7 @@
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="88"/>
-        <location filename="../../ParameterDlgSettings.ui" line="328"/>
+        <location filename="../../ParameterDlgSettings.ui" line="353"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -241,22 +241,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="322"/>
-        <source>System tray icon context menu</source>
+        <location filename="../../ParameterDlgSettings.ui" line="325"/>
+        <source>Save Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="335"/>
+        <source>Brower(&amp;B)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="347"/>
+        <source>System tray icon context menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="360"/>
         <source>Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="342"/>
+        <location filename="../../ParameterDlgSettings.ui" line="367"/>
         <source>Recent open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="349"/>
+        <location filename="../../ParameterDlgSettings.ui" line="374"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
@@ -266,18 +276,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="359"/>
+        <location filename="../../ParameterDlgSettings.ui" line="384"/>
         <source>Resume the connections when it was last closed at startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="385"/>
+        <location filename="../../ParameterDlgSettings.ui" line="410"/>
         <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="392"/>
+        <location filename="../../ParameterDlgSettings.ui" line="417"/>
         <source>No(&amp;N)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.cpp" line="162"/>
+        <source>Open shot screen path</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -637,7 +652,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="817"/>
+        <location filename="../../mainwindow.cpp" line="811"/>
         <source>Save screenslot to </source>
         <translation type="unfinished"></translation>
     </message>

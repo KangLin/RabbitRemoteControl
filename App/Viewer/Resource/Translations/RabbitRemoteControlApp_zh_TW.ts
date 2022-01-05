@@ -140,17 +140,17 @@
         <translation>截屏</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="283"/>
+        <location filename="../../ParameterDlgSettings.ui" line="285"/>
         <source>No action</source>
         <translation>無動作</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="299"/>
+        <location filename="../../ParameterDlgSettings.ui" line="301"/>
         <source>Open folder</source>
         <translation>打開文件夾</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="312"/>
+        <location filename="../../ParameterDlgSettings.ui" line="314"/>
         <source>Open file</source>
         <translation>打開文件</translation>
     </message>
@@ -176,7 +176,7 @@
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="88"/>
-        <location filename="../../ParameterDlgSettings.ui" line="328"/>
+        <location filename="../../ParameterDlgSettings.ui" line="353"/>
         <source>No</source>
         <translation>無</translation>
     </message>
@@ -241,22 +241,32 @@
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="322"/>
+        <location filename="../../ParameterDlgSettings.ui" line="325"/>
+        <source>Save Path:</source>
+        <translation>保存文件夾：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="335"/>
+        <source>Brower(&amp;B)</source>
+        <translation>瀏覽(&amp;B)</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="347"/>
         <source>System tray icon context menu</source>
         <translation>系統托盤圖標右鍵菜單</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="335"/>
+        <location filename="../../ParameterDlgSettings.ui" line="360"/>
         <source>Remote</source>
         <translation>遠程菜單</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="342"/>
+        <location filename="../../ParameterDlgSettings.ui" line="367"/>
         <source>Recent open</source>
         <translation>最近打開菜單</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="349"/>
+        <location filename="../../ParameterDlgSettings.ui" line="374"/>
         <source>Favorite</source>
         <translation>收藏夾</translation>
     </message>
@@ -266,19 +276,24 @@
         <translation>選擇截取遠程桌面，否則截取窗口</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="359"/>
+        <location filename="../../ParameterDlgSettings.ui" line="384"/>
         <source>Resume the connections when it was last closed at startup</source>
         <translation>啟動時，恢復上次關閉時的連接</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="385"/>
+        <location filename="../../ParameterDlgSettings.ui" line="410"/>
         <source>Ok(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="392"/>
+        <location filename="../../ParameterDlgSettings.ui" line="417"/>
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.cpp" line="162"/>
+        <source>Open shot screen path</source>
+        <translation>打開截屏文件夾</translation>
     </message>
 </context>
 <context>
@@ -637,7 +652,7 @@
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="817"/>
+        <location filename="../../mainwindow.cpp" line="811"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>
