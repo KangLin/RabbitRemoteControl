@@ -66,7 +66,8 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     Q_ASSERT(pConnecter);
     if(!pConnecter) return -1;
     
-    bool check = connect(this, SIGNAL(sigConnected()),
+    bool check = false;
+    check = connect(this, SIGNAL(sigConnected()),
                          pConnecter, SIGNAL(sigConnected()));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigDisconnected()),

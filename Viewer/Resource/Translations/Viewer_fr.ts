@@ -54,8 +54,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="16"/>
-        <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input %1.</source>
+        <location filename="../../DlgInputPassword.cpp" line="15"/>
+        <source>The encryption key is used to encrypt the password that is saved to the file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgInputPassword.cpp" line="17"/>
+        <source>If you forget the encryption key, please use input %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

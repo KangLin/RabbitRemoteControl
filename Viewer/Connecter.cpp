@@ -92,7 +92,7 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
 #ifdef BUILD_QUIWidget
         QUIWidget* quiwidget = new QUIWidget();
         quiwidget->setMainWidget(p);
-        bool check = connect(p, SIGNAL(accepted()), quiwidget, SLOT(accept()));
+        check = connect(p, SIGNAL(accepted()), quiwidget, SLOT(accept()));
         Q_ASSERT(check);
         check = connect(p, SIGNAL(rejected()), quiwidget, SLOT(reject()));
         Q_ASSERT(check);

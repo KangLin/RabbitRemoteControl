@@ -54,9 +54,14 @@
         <translation>否(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="16"/>
-        <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input %1.</source>
-        <translation>加密密钥用于加密保存到文件中的密码。 如果您忘记了加密密钥，请使用输入 %1。</translation>
+        <location filename="../../DlgInputPassword.cpp" line="15"/>
+        <source>The encryption key is used to encrypt the password that is saved to the file.</source>
+        <translation>加密密钥用于加密保存到文件中的密码。</translation>
+    </message>
+    <message>
+        <location filename="../../DlgInputPassword.cpp" line="17"/>
+        <source>If you forget the encryption key, please use input %1.</source>
+        <translation>如果您忘记了加密密钥，请使用输入 %1。</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.cpp" line="22"/>
