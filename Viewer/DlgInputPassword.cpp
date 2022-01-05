@@ -12,6 +12,10 @@ CDlgInputPassword::CDlgInputPassword(QString szTitle, QWidget *parent) :
     ui->pbShow->setEnabled(CManagePassword::Instance()->GetViewPassowrd());
     setWindowTitle(tr("Input encrypt key"));
 
+    ui->lbDescript->setText(
+                tr("The encryption key is used to encrypt the password"
+                   " that is saved to the file. If you forget the encryption key,"
+                   " please use input %1.").arg(szTitle));
     if(szTitle.isEmpty())
         ui->rbPassword->setEnabled(false);
 

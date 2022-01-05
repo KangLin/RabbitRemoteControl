@@ -27,39 +27,39 @@
 <context>
     <name>CDlgInputPassword</name>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="35"/>
+        <location filename="../../DlgInputPassword.ui" line="54"/>
+        <location filename="../../DlgInputPassword.cpp" line="13"/>
         <source>Input encrypt key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="56"/>
-        <source>Title:</source>
+        <location filename="../../DlgInputPassword.ui" line="39"/>
+        <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input password.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="87"/>
+        <location filename="../../DlgInputPassword.ui" line="123"/>
         <source>Yes(&amp;Y)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="94"/>
+        <location filename="../../DlgInputPassword.ui" line="130"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="14"/>
-        <location filename="../../DlgInputPassword.ui" line="45"/>
-        <location filename="../../DlgInputPassword.cpp" line="11"/>
+        <location filename="../../DlgInputPassword.ui" line="64"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="12"/>
-        <source>Input %1:</source>
+        <location filename="../../DlgInputPassword.cpp" line="16"/>
+        <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="13"/>
+        <location filename="../../DlgInputPassword.cpp" line="22"/>
         <source>Input %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -74,11 +74,6 @@
     <message>
         <location filename="../../Parameter.cpp" line="228"/>
         <source>Proxy password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Parameter.cpp" line="330"/>
-        <source>Input encrypt key</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
