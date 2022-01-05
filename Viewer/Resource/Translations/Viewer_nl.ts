@@ -37,12 +37,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="83"/>
+        <location filename="../../DlgInputPassword.ui" line="87"/>
         <source>Yes(&amp;Y)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="90"/>
+        <location filename="../../DlgInputPassword.ui" line="94"/>
         <source>No(&amp;N)</source>
         <translation type="unfinished"></translation>
     </message>
