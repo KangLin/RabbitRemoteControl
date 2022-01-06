@@ -35,7 +35,6 @@ MainWindow::MainWindow(QWidget *parent)
       m_pView(nullptr),
       m_pGBView(nullptr),
       m_pFullScreenToolBar(nullptr),
-      m_bFullScreen(isFullScreen()),
       m_ptbZoom(nullptr),
       m_psbZoomFactor(nullptr),
       m_pRecentMenu(nullptr),
@@ -182,8 +181,9 @@ MainWindow::MainWindow(QWidget *parent)
         QByteArray state = set.value("MainWindow/Status/State").toByteArray();
         if(!state.isEmpty())
             restoreState(state);
+        ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
     }
-    
+
     LoadConnectLasterClose();
 }
 
@@ -246,16 +246,10 @@ void MainWindow::on_actionUpdate_U_triggered()
 #endif
 }
 
-void MainWindow::on_actionStatusBar_S_triggered()
+void MainWindow::on_actionToolBar_T_triggered(bool checked)
 {
-    ui->statusbar->setVisible(!ui->statusbar->isVisible());
-    ui->actionStatusBar_S->setChecked(ui->statusbar->isVisible());
-}
-
-void MainWindow::on_actionToolBar_T_triggered()
-{
-    ui->toolBar->setVisible(!ui->toolBar->isVisible());
-    ui->actionToolBar_T->setChecked(ui->toolBar->isVisible());
+    LOG_MODEL_DEBUG("MainWindow", "MainWindow::on_actionToolBar_T_triggered(%d)", checked);
+    ui->toolBar->setVisible(checked);
 }
 
 void MainWindow::on_actionFull_screen_F_triggered()
@@ -263,12 +257,11 @@ void MainWindow::on_actionFull_screen_F_triggered()
     CView* pTab = dynamic_cast<CView*>(this->centralWidget());
     if(pTab)
     {
-        pTab->SetFullScreen(!m_bFullScreen);
+        pTab->SetFullScreen(!isFullScreen());
     }
     
-    if(m_bFullScreen)
+    if(isFullScreen())
     {
-        m_bFullScreen = false;
         ui->actionFull_screen_F->setIcon(QIcon(":/image/FullScreen"));
         ui->actionFull_screen_F->setText(tr("Full screen(&F)"));
         ui->actionFull_screen_F->setToolTip(tr("Full screen"));
@@ -278,8 +271,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
         ui->toolBar->setVisible(true);
         //ui->toolBar->setAllowedAreas(Qt::AllToolBarAreas);
         ui->toolBar->setVisible(ui->actionToolBar_T->isChecked());
-
-        ui->statusbar->setVisible(ui->actionStatusBar_S->isChecked());
+        ui->statusbar->setVisible(true);
         ui->menubar->setVisible(true);
         if(m_pFullScreenToolBar)
         {
@@ -294,7 +286,6 @@ void MainWindow::on_actionFull_screen_F_triggered()
         return;
     }
 
-    m_bFullScreen = true;
     emit sigFullScreen();
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
@@ -721,6 +712,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
     qDebug() << "MainWindow::closeEvent()";
+    
+    if(m_Parameter.GetSaveMainWindowStatus())
+        if(isFullScreen())
+            on_actionFull_screen_F_triggered();
     
     SaveConnectLasterClose();
     

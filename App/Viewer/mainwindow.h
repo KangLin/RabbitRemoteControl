@@ -40,8 +40,6 @@ private Q_SLOTS:
     void on_actionExit_E_triggered();
     void on_actionAbout_A_triggered();
     void on_actionUpdate_U_triggered();
-    void on_actionStatusBar_S_triggered();
-    void on_actionToolBar_T_triggered();
     
     void on_actionOpenStyle_O_triggered();
     void on_actionDefaultStyle_D_triggered();
@@ -102,10 +100,10 @@ private:
     ///////// Full screen ///////// 
 private:
     CFrmFullScreenToolBar* m_pFullScreenToolBar;
-    bool m_bFullScreen;
     friend CFrmFullScreenToolBar;
 private Q_SLOTS:
     void on_actionFull_screen_F_triggered();
+    void on_actionToolBar_T_triggered(bool checked);
     
     ///////// Zoom ///////// 
 private:

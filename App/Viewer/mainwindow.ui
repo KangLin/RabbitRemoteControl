@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -75,7 +75,6 @@
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
-    <addaction name="actionStatusBar_S"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuRemote">
@@ -170,29 +169,6 @@
    </property>
    <property name="whatsThis">
     <string>Update</string>
-   </property>
-  </action>
-  <action name="actionStatusBar_S">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>StatusBar(&amp;S)</string>
-   </property>
-   <property name="iconText">
-    <string>StatusBar</string>
-   </property>
-   <property name="toolTip">
-    <string>StatusBar</string>
-   </property>
-   <property name="statusTip">
-    <string>StatusBar</string>
-   </property>
-   <property name="whatsThis">
-    <string>StatusBar</string>
    </property>
   </action>
   <action name="actionToolBar_T">
