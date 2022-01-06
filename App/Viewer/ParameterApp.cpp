@@ -11,6 +11,7 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_TabPosition(QTabWidget::North),
     m_nRecentMenuMaxCount(10),
     m_SystemTrayIconType(SystemTrayIconMenuType::Remote),
+    m_bEnableSystemTrayIcon(true),
     m_bOpenLasterClose(false)
 {
     m_szScreenShotPath = RabbitCommon::CDir::Instance()->GetDirUserImage()
@@ -45,7 +46,9 @@ int CParameterApp::Load()
 
     SetSystemTrayIconMenuType(static_cast<SystemTrayIconMenuType>(
                               set.value("MainWindow/SystemTrayIcon/MenuType",
-                          static_cast<int>(GetSystemTrayIconMenuType())).toInt()));
+                       static_cast<int>(GetSystemTrayIconMenuType())).toInt()));
+    SetEnableSystemTrayIcon(set.value("MainWindow/SystemTrayIcon/Enable",
+                                    GetEnableSystemTrayIcon()).toBool());
     SetOpenLasterClose(set.value("MainWindow/OpenLasterClose",
                                   GetOpenLasterClose()).toBool());
     return 0;
@@ -66,6 +69,7 @@ int CParameterApp::Save()
     set.setValue("MainWindow/Recent/Max", GetRecentMenuMaxCount());
     set.setValue("MainWindow/SystemTrayIcon/MenuType",
                  static_cast<int>(GetSystemTrayIconMenuType()));
+    set.setValue("MainWindow/SystemTrayIcon/Enable", GetEnableSystemTrayIcon());
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     return 0;
 }
@@ -131,6 +135,18 @@ void CParameterApp::SetSystemTrayIconMenuType(SystemTrayIconMenuType newSystemTr
 {
     m_SystemTrayIconType = newSystemTrayIconType;
     emit sigSystemTrayIconTypeChanged();
+}
+
+bool CParameterApp::GetEnableSystemTrayIcon() const
+{
+    return m_bEnableSystemTrayIcon;
+}
+
+int CParameterApp::SetEnableSystemTrayIcon(bool bShow)
+{
+    m_bEnableSystemTrayIcon = bShow;
+    emit sigShowSystemTrayIcon();
+    return 0;
 }
 
 bool CParameterApp::GetOpenLasterClose() const

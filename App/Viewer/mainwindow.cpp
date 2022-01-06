@@ -169,6 +169,9 @@ MainWindow::MainWindow(QWidget *parent)
                     this,
                     SLOT(slotSystemTrayIconTypeChanged()));
     Q_ASSERT(check);
+    check = connect(&m_Parameter, SIGNAL(sigShowSystemTrayIcon()),
+                    this, SLOT(slotShowSystemTryIcon()));
+    Q_ASSERT(check);
     m_Parameter.Load();
     slotShortCut();
     
@@ -961,6 +964,12 @@ void MainWindow::slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason r
 
 void MainWindow::slotSystemTrayIconTypeChanged()
 {
+    if(!m_Parameter.GetEnableSystemTrayIcon())
+    {
+        m_TrayIcon.reset();
+        return;
+    }
+
     m_TrayIcon = QSharedPointer<QSystemTrayIcon>(new QSystemTrayIcon(this));
     if(QSystemTrayIcon::isSystemTrayAvailable())
     {
@@ -988,4 +997,9 @@ void MainWindow::slotSystemTrayIconTypeChanged()
         m_TrayIcon->hide();
         break;
     }   
+}
+
+void MainWindow::slotShowSystemTryIcon()
+{
+    slotSystemTrayIconTypeChanged();
 }

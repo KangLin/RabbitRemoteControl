@@ -78,6 +78,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
         ui->rbSystemTrayIconFavorite->setChecked(true);
         break;
     }
+    ui->cbShowSystemTrayIcon->setChecked(m_pParameters->GetEnableSystemTrayIcon());
 }
 
 CParameterDlgSettings::~CParameterDlgSettings()
@@ -128,6 +129,7 @@ void CParameterDlgSettings::on_pbOk_clicked()
     if(ui->rbSystemTrayIconFavorite->isChecked())
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Favorite);
     
+    m_pParameters->SetEnableSystemTrayIcon(ui->cbShowSystemTrayIcon->isChecked());
     accept();
 }
 

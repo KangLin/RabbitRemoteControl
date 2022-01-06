@@ -87,10 +87,14 @@ public:
     Q_ENUM(SystemTrayIconMenuType)
     SystemTrayIconMenuType GetSystemTrayIconMenuType() const;
     void SetSystemTrayIconMenuType(SystemTrayIconMenuType newSystemTrayIconType);
+    bool GetEnableSystemTrayIcon() const;
+    int SetEnableSystemTrayIcon(bool bShow);
 Q_SIGNALS:
     void sigSystemTrayIconTypeChanged();
+    void sigShowSystemTrayIcon();
 private:
     SystemTrayIconMenuType m_SystemTrayIconType;
+    bool m_bEnableSystemTrayIcon;
     Q_PROPERTY(SystemTrayIconMenuType SystemTrayIconMenuType READ GetSystemTrayIconMenuType WRITE SetSystemTrayIconMenuType NOTIFY sigSystemTrayIconTypeChanged)
     
 public:

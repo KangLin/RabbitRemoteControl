@@ -176,6 +176,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DBUILD_FREERDP=ON ^
+            -DBUILD_LibVNCServer=OFF ^
             -DLog4Qt_DIR=/lib/cmake/Log4Qt ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
             -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel ^

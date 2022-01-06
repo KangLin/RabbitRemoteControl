@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>461</width>
-    <height>472</height>
+    <height>501</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -164,6 +164,20 @@
        <string>Main window</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_7">
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="cbResumLasterClose">
+         <property name="text">
+          <string>Resume the connections when it was last closed at startup</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="cbReciverShortCut">
+         <property name="text">
+          <string>Main window receiver short cut key</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="0">
         <widget class="QCheckBox" name="cbSaveMainWindowStatus">
          <property name="text">
@@ -171,7 +185,7 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>Tab position</string>
@@ -232,27 +246,7 @@
          </layout>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QCheckBox" name="cbReciverShortCut">
-         <property name="text">
-          <string>Main window receiver short cut key</string>
-         </property>
-        </widget>
-       </item>
        <item row="6" column="0">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>66</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="5" column="0">
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
           <string>Shot screen</string>
@@ -341,7 +335,7 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QGroupBox" name="groupBox_4">
          <property name="title">
           <string>System tray icon context menu</string>
@@ -378,10 +372,23 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="cbResumLasterClose">
+       <item row="7" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>66</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="cbShowSystemTrayIcon">
          <property name="text">
-          <string>Resume the connections when it was last closed at startup</string>
+          <string>Enable system tray icon</string>
          </property>
         </widget>
        </item>

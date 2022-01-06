@@ -144,9 +144,11 @@ protected:
 private:
     QPoint m_DragStartPosition;
 
+    ///////// System tray icon //////////
 private Q_SLOTS:
     void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
+    void slotShowSystemTryIcon();
 private:
     QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };
