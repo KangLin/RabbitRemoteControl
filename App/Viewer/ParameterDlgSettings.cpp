@@ -167,3 +167,8 @@ void CParameterDlgSettings::on_pbScreenShotBrower_clicked()
         return;
     ui->leShotScreenSavepath->setText(szPath);
 }
+
+void CParameterDlgSettings::on_cbShowSystemTrayIcon_toggled(bool checked)
+{
+    ui->gbSystemTrayIconContextMenu->setEnabled(checked);
+}
