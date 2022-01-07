@@ -18,11 +18,10 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     if(!initlog)
     {
         rfb::initStdIOLoggers();
-#ifdef WIN32
-        rfb::initFileLogger("C:\\temp\\vncviewer.log");
-#else
-        rfb::initFileLogger("/tmp/vncviewer.log");
-#endif
+        QString szFile = RabbitCommon::CDir::Instance()->GetDirApplication()
+                + QDir::separator()
+                + "vncviewer.log";
+        rfb::initFileLogger(szFile.toStdString().c_str());
         rfb::LogWriter::setLogParams("*:stderr:100");
         initlog = true;
     }
@@ -32,7 +31,7 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
 CPluginTigerVnc::~CPluginTigerVnc()
 {
     //! [Clean resource]
-    qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
+    qDebug() << "CPluginTigerVnc::~CPluginTigerVnc()";
     //! [Clean resource]
 }
 
