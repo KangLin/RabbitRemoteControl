@@ -104,7 +104,8 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 |             | Proxy            | P2P              |
 |-------------|------------------|------------------|
-|TigerVnc     |:heavy_check_mark:|:heavy_check_mark:|
+|RabbitVNC    |:heavy_check_mark:|:heavy_check_mark:|
+|TigerVNC     |:heavy_check_mark:|:heavy_check_mark:|
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
@@ -176,8 +177,9 @@ Some of them are:
     - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
-|            |       Client     |    Server        |        P2P        |
+|            |       Client     |    Server        |        P2P       |
 |------------|------------------|------------------|------------------|
+|RabbitVNC   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |TigerVNC    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |LibVNCServer|:heavy_check_mark:|:heavy_check_mark:|                  |
 |RDP         |:heavy_check_mark:|                  |                  |
@@ -240,6 +242,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 ##### Dependent libraries
 - [x] [MUST] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] VNC
+  + [x] [Optional] RabbitVNC: https://github.com/KangLin/RabbitVNC
   + [x] [Optional] LibVNCServer: https://github.com/LibVNC/libvncserver
   + [x] [Optional] TigerVNC: https://github.com/KangLin/tigervnc
 - [x] [Optional] FreeRDP: https://github.com/FreeRDP/FreeRDP

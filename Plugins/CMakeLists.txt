@@ -1,6 +1,12 @@
 # author: Kang Lin <kl222@126.com>
 
 # Desktop
+
+option(BUILD_RABBITVNC "Build RabbitVNC plugin" ON)
+if(BUILD_RABBITVNC)
+    add_subdirectory(RabbitVNC)
+endif()
+
 option(BUILD_TigerVNC "Build TigerVnc plugin" ON)
 if(BUILD_TigerVNC)
     add_subdirectory(TigerVnc)

@@ -76,7 +76,7 @@
     <name>CConnecterFreeRdp</name>
     <message>
         <source>Set password for %1</source>
-        <translation>为 %1 设置密码</translation>
+        <translation type="vanished">为 %1 设置密码</translation>
     </message>
 </context>
 <context>

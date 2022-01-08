@@ -62,6 +62,14 @@
     # 安装 X 开发库
     ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
     ~$ sudo apt install libutf8proc-dev libpam0g-dev #编译 qtermwidget 需要
+    # 编译 RabbitVNC
+    ~$ sudo apt install libpixman-1-dev
+    ~$ git clone https://github.com/KangLin/RabbitVNC.git
+    ~$ cd RabbitVNC
+    ~$ mkdir build
+    ~/RabbitVNC/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/RabbitVNC/build$ cmake --build . --target install
+    ~/RabbitVNC/build$ cd ~
     # 编译 TigerVNC
     ~$ sudo apt install libpixman-1-dev
     ~$ git clone https://github.com/KangLin/tigervnc.git
@@ -93,7 +101,7 @@
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
 
 参见：[编译集成](../../.github/workflows/ubuntu.yml)
@@ -103,8 +111,9 @@
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
   - [可选] [cmark](https://github.com/commonmark/cmark): 玉兔公共库依赖
 - [可选] RFB
+  + [可选] RabbitVNC: https://github.com/KangLin/RabbitVNC
   + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + [可选] TigerVNC: https://github.com/KangLin/tigervnc
+  + [可选] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [可选] SSH
   + libssh: [https://www.libssh.org](https://www.libssh.org/)
@@ -190,6 +199,18 @@
 - 从源码编译
   + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + 指定 CMake 参数：-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
+
+#### RabbitVNC
+- 从源码编译
+源码位置: https://github.com/KangLin/RabbitVNC  
+
+    ~$ sudo apt install libpixman-1-dev
+    ~$ git clone https://github.com/KangLin/RabbitVNC.git
+    ~$ cd RabbitVNC
+    ~/RabbitVNC$ mkdir build
+    ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/RabbitVNC$ cmake --build . --target install
+- 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
 
 #### TigerVNC
 - 从源码编译
@@ -297,6 +318,7 @@
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
+  + RabbitVNC_DIR: [RabbitVNC 安装目录]/lib/cmake/RabbitVNC
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
@@ -337,7 +359,9 @@
   + 使用脚本 build_debpackage.sh
     - 设置[编译本项目](#编译本项目) → CMake 参数为环境变量。例如：
   
+          export RabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
           export tigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
+          export QtService_DIR=[QtService 安装目录]/lib/cmake/QtService
         
     - 使用脚本 build_debpackage.sh
 

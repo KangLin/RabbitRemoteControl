@@ -67,6 +67,14 @@ Prior versions don't have CMake support.
     # Install X development libraries
     ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
     ~$ sudo apt install libutf8proc-dev libpam0g-dev # Need by compile qtermwidget
+    # Compile RabbitVNC
+    ~$ sudo apt install libpixman-1-dev
+    ~$ git clone https://github.com/KangLin/RabbitVNC.git
+    ~$ cd RabbitVNC
+    ~$ mkdir build
+    ~/RabbitVNC/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/RabbitVNC/build$ cmake --build . --target install
+    ~/RabbitVNC/build$ cd ~
     # Compile TigerVNC
     ~$ sudo apt install libpixman-1-dev
     ~$ git clone https://github.com/KangLin/tigervnc.git
@@ -98,7 +106,7 @@ Prior versions don't have CMake support.
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
     
 
@@ -109,6 +117,7 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
   - [OPTIONAL] [cmark](https://github.com/commonmark/cmark): RabbitCommon dependencies
 - [OPTIONAL] RFB
+  + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [OPTIONAL] TigerVNC: https://github.com/KangLin/tigervnc
 - [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
@@ -200,6 +209,19 @@ This library is dependencies by RabbitCommon. to support Markdown syntax.
   + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
   + Specify CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
+
+#### RabbitVNC
+- Compile from source code
+Source-code location: https://github.com/KangLin/RabbitVNC  
+
+    ~$ sudo apt install libpixman-1-dev
+    ~$ git clone https://github.com/KangLin/RabbitVNC.git
+    ~$ cd RabbitVNC
+    ~/RabbitVNC$ mkdir build
+    ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/RabbitVNC$ cmake --build . --target install
+    
+- Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
 
 #### TigerVNC
 - Compile from source code
@@ -312,6 +334,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp installation path]/lib/cmake/FreeRDP-Client2
+  + RabbitVNC_DIR: [RabbitVNC installation path]/lib/cmake/RabbitVNC
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
@@ -353,6 +376,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + Use script build_debpackage.sh
     - Set [Compile this project](#Compile-this-project) → The CMake parameters as environment variable. eg:
   
+          export RabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/RabbitVNC
           export tigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
         
     - Use build_debpackage.sh

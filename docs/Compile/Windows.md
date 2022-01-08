@@ -51,6 +51,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
   - [OPTIONAL] [cmark](https://github.com/commonmark/cmark): RabbitCommon dependencies
 - [OPTIONAL] RFB
+  + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [OPTIONAL] TigerVNC: https://github.com/KangLin/tigervnc
 - [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
@@ -95,7 +96,7 @@ This library is dependencies by RabbitCommon. to support Markdown syntax.
         ~$ git clone https://github.com/commonmark/cmark
         ~$ cd cmark
         ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
         ~/cmark/build$ cmake --build . --target install
           
   + Specify the CMake parameters:
@@ -138,11 +139,24 @@ This library is dependencies by RabbitCommon. to support Markdown syntax.
         git clone https://github.com/KangLin/libvncserver.git
         cd libvncserver
         mkdir build
-        cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --target install
 
   + Specify the CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
   
+#### RabbitVNC
+- Compile from source code
+Source-code location: https://github.com/KangLin/RabbitVNC  
+
+    ~$ sudo apt install libpixman-1-dev
+    ~$ git clone https://github.com/KangLin/RabbitVNC.git
+    ~$ cd RabbitVNC
+    ~/RabbitVNC$ mkdir build
+    ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
+    ~/RabbitVNC$ cmake --build . --target install
+    
+- Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
+
 #### TigerVNC
 - Compile from source code
 
@@ -156,7 +170,7 @@ Source-code location: https://github.com/KangLin/tigervnc
     git clone https://github.com/KangLin/tigervnc.git
     cd tigervnc
     mkdir build
-    cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --target install
 
 - Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
@@ -179,7 +193,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         git submodule update --init --recursive
         mkdir build
         cd build
-        cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
         cmake --build . --target install
 
   + Specify the CMake parameters: -Dlibdatachannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
@@ -192,7 +206,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         cd qxmpp
         mkdir build
         cd build
-        cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
+        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
         cmake --build . --target install
 
   + Specify the CMake parameters: -DQXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
@@ -222,7 +236,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~$ cd qt-solutions
         ~/qt-solutions$ mkdir build
         ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
         ~/qt-solutions/build$ cmake --build . --target install
         
   + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
@@ -242,6 +256,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + WinPR_DIR: [FreeRDP installation path]/lib/cmake/WinPR2
   + FreeRDP_DIR: [FreeRDP installation path]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [FreeFRP installation path]/lib/cmake/FreeRDP-Client2
+  + RabbitVNC_DIR: [RabbitVNC installation path]/lib/cmake/RabbitVNC
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
@@ -262,7 +277,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
           cmake --build . --target install-runtime
           makensis Install.nsi  ;Package
 

@@ -49,6 +49,7 @@
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
   - [可选] [cmark](https://github.com/commonmark/cmark): 玉兔公共库依赖
 - [可选] RFB
+  + [可选] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
   + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [可选] TigerVNC: https://github.com/KangLin/tigervnc
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
@@ -91,7 +92,7 @@
         ~$ git clone https://github.com/commonmark/cmark
         ~$ cd cmark
         ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
         ~/cmark/build$ cmake --build . --target install
           
   + 指定 CMake 参数：
@@ -133,11 +134,23 @@
         git clone https://github.com/KangLin/libvncserver.git
         cd libvncserver
         mkdir build
-        cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --target install
   
   + 指定 CMake 参数：-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
   
+#### RabbitVNC
+- 从源码编译
+源码位置: https://github.com/KangLin/RabbitVNC  
+
+    ~$ sudo apt install libpixman-1-dev
+    ~$ git clone https://github.com/KangLin/RabbitVNC.git
+    ~$ cd RabbitVNC
+    ~/RabbitVNC$ mkdir build
+    ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
+    ~/RabbitVNC$ cmake --build . --target install
+- 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
+
 #### TigerVNC
 - 从源码编译
 
@@ -149,7 +162,7 @@
     git clone https://github.com/KangLin/tigervnc.git
     cd tigervnc
     mkdir build
-    cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+    cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --target install
     
 - 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
@@ -171,7 +184,7 @@
         git submodule update --init --recursive
         mkdir build
         cd build
-        cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
         cmake --build . --target install
 
   + 指定 CMake 参数: -Dlibdatachannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
@@ -184,7 +197,7 @@
         cd qxmpp
         mkdir build
         cd build
-        cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
+        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
         cmake --build . --target install
 
   + 指定 CMake 参数: -DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
@@ -214,7 +227,7 @@
         ~$ cd qt-solutions
         ~/qt-solutions$ mkdir build
         ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
         ~/qt-solutions/build$ cmake --build . --target install
         
   + 指定 CMake 参数: -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
@@ -234,6 +247,7 @@
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
+  + RabbitVNC_DIR: [RabbitVNC 安装目录]/lib/cmake/RabbitVNC
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel

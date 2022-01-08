@@ -101,7 +101,8 @@
 
 |             | 代理              | P2P              |
 |-------------|------------------|------------------|
-|TigerVnc     |:heavy_check_mark:|:heavy_check_mark:|
+|RabbitVNC     |:heavy_check_mark:|:heavy_check_mark:|
+|TigerVNC     |:heavy_check_mark:|:heavy_check_mark:|
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
@@ -174,6 +175,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 |            |       客户端      |      服务器端     |        P2P        |
 |------------|------------------|------------------|------------------|
+|RabbitVNC   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |TigerVNC    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |LibVNCServer|:heavy_check_mark:|:heavy_check_mark:|                  |
 |RDP         |:heavy_check_mark:|                  |                  |
@@ -231,6 +233,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 - [x] [必选] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] [可选] RFB
+  + [x] [可选] RabbitVNC: https://github.com/KangLin/RabbitVNC
   + [x] [可选] LibVNCServer: https://github.com/LibVNC/libvncserver
   + [x] [可选] TigerVNC: https://github.com/KangLin/tigervnc
 - [x] [可选] FreeRDP: https://github.com/FreeRDP/FreeRDP
