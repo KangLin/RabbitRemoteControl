@@ -139,13 +139,14 @@ jobs:
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/tigervnc
-        tigervnc_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/tigervnc
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
       run: |
         if [ ${{matrix.BUILD_TYPE}} == 'Release' ]; then
             export BUILD_TERMINAL=OFF
+        else
+            export tigervnc_DIR=${{ env.INSTALL_DIR }}/lib/cmake/tigervnc
         fi
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
