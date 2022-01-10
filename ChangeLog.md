@@ -1,5 +1,12 @@
 ## Change Log
 
+### v0.0.16
++ CConnecter add block dialog
++ Add enable set system tray icon
++ Add RabbitVNC plugin
++ Fix same bug
+  - Toolbar show bug
+  
 ### v0.0.15
 + Refactor CConneter paramters interface
 + Refactor CConneterDesktop interface

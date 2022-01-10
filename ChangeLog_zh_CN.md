@@ -1,7 +1,14 @@
 ## 修改日志
 
+### v0.0.16
++ CConnecter 增加阻塞显示对话框
++ 增加允许系统托盘图标设置
++ 增加玉兔插件
++ 修复一些错误
+  - 工具栏显示错误
+  
 ### v0.0.15
-+ 重构 CConneter 参数接口
++ 重构 CConnecter 参数接口
 + 重构 CConneterDesktop 接口
   + 增加 CConneterDesktopThread
   + 增加 PluginViewerThread
