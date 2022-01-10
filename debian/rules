@@ -14,6 +14,10 @@
 
 #export QT_SELECT=qt5
 
+ifdef RabbitVNC_DIR
+    PARAS += -DRabbitVNC_DIR=${RabbitVNC_DIR}
+endif
+
 ifdef tigervnc_DIR
     PARAS += -Dtigervnc_DIR=${tigervnc_DIR}
 endif

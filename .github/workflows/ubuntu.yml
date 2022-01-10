@@ -138,7 +138,7 @@ jobs:
       working-directory: ${{github.workspace}}
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
-        RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/tigervnc
+        RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
