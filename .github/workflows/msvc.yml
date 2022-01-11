@@ -9,16 +9,16 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        #os: [windows-2019, windows-2016]
-        qt_version: [5.15.2, 5.12.11]
+        qt_version: [5.15.2, 5.12.12, 6.2.2]
         include:
-#          - os: windows-2019
-#            triplet: x64-windows
-#            VCPKG_PLATFORM_TOOLSET: v142
-#            qt_version: 6.2.0
-#            qt_arch: win64_msvc2019_64
-#            CMAKE_GENERATOR: "Visual Studio 16 2019"
-#            CMAKE_GENERATOR_PLATFORM: x64
+          - os: windows-2019
+            triplet: x64-windows
+            VCPKG_PLATFORM_TOOLSET: v142
+            qt_version: 6.2.2
+            qt_arch: win64_msvc2019_64
+            CMAKE_GENERATOR: "Visual Studio 16 2019"
+            CMAKE_GENERATOR_PLATFORM: x64
+            qt_modules: qtscxml
             
           - os: windows-2019
             triplet: x64-windows
@@ -31,7 +31,7 @@ jobs:
           - os: windows-2016
             triplet: x86-windows
             VCPKG_PLATFORM_TOOLSET: v141
-            qt_version: 5.12.11
+            qt_version: 5.12.12
             qt_arch: win32_msvc2017
             CMAKE_GENERATOR: "Visual Studio 15 2017"
             CMAKE_GENERATOR_PLATFORM: Win32
@@ -47,7 +47,7 @@ jobs:
       CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
       RabbitRemoteControl_VERSION: v0.0.15
       VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
-      qt_modules: qtwebengine
+      qt_modules: qtwebengine ${{matrix.qt_modules}}
     
     defaults:
       run:
@@ -153,7 +153,7 @@ jobs:
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         )
-        
+
     - name: build tigervnc
       working-directory: ${{env.SOURCE_DIR}}
       run: |
@@ -169,7 +169,7 @@ jobs:
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
         )
-    
+
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -180,7 +180,7 @@ jobs:
       with:
         path: ${{env.TOOSL_DIR}}/qt
         key: ${{ matrix.os }}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{ matrix.BUILD_TYPE }}-QtCache-2021-11-03
-    
+
     - name: Install Qt
       # You may pin to the exact commit or the version.
       # uses: jurplel/install-qt-action@a962fb91949c8e846a3e4a944d50e7ef5cc3a28a
@@ -221,8 +221,9 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: |
         IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\Log4Qt (
-            git clone -b v1.5.1 https://github.com/MEONMedical/Log4Qt.git
+            git clone https://github.com/MEONMedical/Log4Qt.git
             cd Log4Qt
+            git checkout -b eb4b952a886ab03d24e896e38df015cf0ff5bd7a eb4b952a886ab03d24e896e38df015cf0ff5bd7a
             cmake -E make_directory build
             cd build
             cmake .. ^
@@ -249,7 +250,7 @@ jobs:
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
-    
+
     - name: build QtService
       working-directory: ${{env.SOURCE_DIR}}
       run: |
@@ -265,7 +266,7 @@ jobs:
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
-        
+
     - name: build RabbitRemoteControl
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -289,7 +290,7 @@ jobs:
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        
+
     - name: Package
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
       working-directory: ${{github.workspace}}\build
@@ -310,13 +311,13 @@ jobs:
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-        name: rabbitremotecontrol_${{ matrix.os }}
+        name: rabbitremotecontrol_${{ matrix.os }}_qt${{matrix.qt_version}}
         path: |
           ${{github.workspace}}\build\RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
-            
+
     - name: Upload To Github Release
-      if: ${{ matrix.BUILD_TYPE == 'Release' && '5.12.11' == matrix.qt_version && startsWith(github.ref, 'refs/tags/') }}
+      if: ${{ matrix.BUILD_TYPE == 'Release' && '5.12.12' == matrix.qt_version && startsWith(github.ref, 'refs/tags/') }}
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

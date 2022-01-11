@@ -5,7 +5,7 @@
     <name>CDataChannelIce</name>
     <message>
         <source>Signal disconnected</source>
-        <translation>信令断开连接</translation>
+        <translation type="vanished">信令断开连接</translation>
     </message>
 </context>
 <context>

@@ -101,7 +101,12 @@ bool CChannel::open(QTcpSocket *pSocket, OpenMode mode)
     check = connect(m_pSocket, SIGNAL(disconnected()),
                     this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    check = connect(m_pSocket, SIGNAL(error(QAbstractSocket::SocketError)),
+    check = connect(m_pSocket,
+                #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+                    SIGNAL(errorOccurred(QAbstractSocket::SocketError)),
+                #else
+                    SIGNAL(error(QAbstractSocket::SocketError)),
+                #endif
                     this, SLOT(slotError(QAbstractSocket::SocketError)));
     Q_ASSERT(check);
     return QIODevice::open(mode);

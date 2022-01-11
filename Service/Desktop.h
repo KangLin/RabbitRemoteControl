@@ -9,6 +9,7 @@
 
 #include <QRect>
 #include <QImage>
+#include <QObject>
 
 class SERVICE_EXPORT CDesktop : public QObject
 {

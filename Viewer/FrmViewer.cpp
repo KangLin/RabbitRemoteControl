@@ -165,9 +165,8 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
-    QMouseEvent e = *event;
-    QPointF pos = e.pos();
-    if(TranslationMousePoint(e.pos(), pos)) return;
+    QPointF pos = event->pos();
+    if(TranslationMousePoint(event->pos(), pos)) return;
     //qDebug() << "CFrmViewer::mousePressEvent" << event->button() << event->buttons();
     emit sigMousePressEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     event->accept();
@@ -175,9 +174,8 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
 
 void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 {
-    QMouseEvent e = *event;
-    QPointF pos = e.pos();
-    if(TranslationMousePoint(e.pos(), pos)) return;
+    QPointF pos = event->pos();
+    if(TranslationMousePoint(event->pos(), pos)) return;
     //qDebug() << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons();
     emit sigMouseReleaseEvent(event->button(), QPoint(pos.x(), pos.y()));
     event->accept();
@@ -185,9 +183,8 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 
 void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 {
-    QMouseEvent e = *event;
-    QPointF pos = e.pos();
-    if(TranslationMousePoint(e.pos(), pos)) return;
+    QPointF pos = event->pos();
+    if(TranslationMousePoint(event->pos(), pos)) return;
     emit sigMouseMoveEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     emit sigMouseMoveEvent(event);
     event->accept();
@@ -195,13 +192,12 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 
 void CFrmViewer::wheelEvent(QWheelEvent *event)
 {
-    QWheelEvent e = *event;
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-    QPointF pos = e.position();
-    if(TranslationMousePoint(e.position(), pos)) return;
+    QPointF pos = event->position();
+    if(TranslationMousePoint(event->position(), pos)) return;
 #else
-    QPointF pos = e.pos();
-    if(TranslationMousePoint(e.pos(), pos)) return;
+    QPointF pos = event->pos();
+    if(TranslationMousePoint(event->pos(), pos)) return;
 #endif
     emit sigWheelEvent(event->buttons(), QPoint(pos.x(), pos.y()), event->angleDelta());
     event->accept();

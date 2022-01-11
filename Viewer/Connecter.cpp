@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QGenericArgument>
+#include <QRegularExpression>
 
 #include "PluginViewer.h"
 #include "RabbitCommonDir.h"
@@ -31,7 +32,7 @@ const QString CConnecter::Id()
     if(GetParameter())
         szId += "_" + GetParameter()->GetHost()
                 + "_" + QString::number(GetParameter()->GetPort());
-    szId = szId.replace(QRegExp("[@:/#%!^&*]"), "_");
+    szId = szId.replace(QRegularExpression("[@:/#%!^&*\.]"), "_");
     return szId;
 }
 

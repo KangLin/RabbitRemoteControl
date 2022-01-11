@@ -4,7 +4,7 @@
 #include <rfb/keysym.h>
 #include <QScreen>
 #include <QApplication>
-#include <QDesktopWidget>
+
 #include "ParameterServiceLibVNC.h"
 #include "Screen.h"
 

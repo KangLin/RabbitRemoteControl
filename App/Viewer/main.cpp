@@ -31,9 +31,9 @@ int main(int argc, char *argv[])
     QtAndroid::hideSplashScreen();
 #endif
     
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
-#endif
+//#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+//    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
+//#endif
 
     QApplication::setApplicationVersion(BUILD_VERSION);
     QApplication::setApplicationName("RabbitRemoteControl");
@@ -100,9 +100,9 @@ int main(int argc, char *argv[])
 
     RabbitCommon::CTools::Instance()->Clean();
     a.removeTranslator(&tApp);
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
-#endif
+//#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+//    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
+//#endif
     
     return nRet;
 }

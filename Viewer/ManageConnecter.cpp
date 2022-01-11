@@ -14,9 +14,9 @@
 CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent),
     m_FileVersion(1)  //TODO: update version it if update data
 {
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_INIT_RESOURCE(translations_Viewer);
-#endif
+//#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+//    Q_INIT_RESOURCE(translations_Viewer);
+//#endif
 
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
             + "/Viewer_" + QLocale::system().name() + ".qm";
@@ -32,9 +32,9 @@ CManageConnecter::~CManageConnecter()
     qDebug() << "CManageConnecter::~CManageConnecter()";
     qApp->removeTranslator(&m_Translator);
     qDebug() << "CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()";
-#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-    Q_CLEANUP_RESOURCE(translations_Viewer);
-#endif
+//#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
+//    Q_CLEANUP_RESOURCE(translations_Viewer);
+//#endif
 }
 
 int CManageConnecter::LoadPlugins()

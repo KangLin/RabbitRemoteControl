@@ -8,7 +8,6 @@
 #include <QSettings>
 #include <QScreen>
 #include <QApplication>
-#include <QDesktopWidget>
 
 CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent) :
     QWidget(parent,
@@ -156,7 +155,11 @@ void CFrmFullScreenToolBar::slotTimeOut()
         move(frameGeometry().left(),  m_pMain->frameGeometry().height() - area);
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+void CFrmFullScreenToolBar::enterEvent(QEnterEvent *event)
+#else
 void CFrmFullScreenToolBar::enterEvent(QEvent *event)
+#endif
 {
     Q_UNUSED(event);
     m_Timer.stop();

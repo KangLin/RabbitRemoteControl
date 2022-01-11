@@ -28,6 +28,7 @@
 #include <QMouseEvent>
 #include <QDrag>
 #include <QMimeData>
+#include <QKeySequence>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -842,12 +843,33 @@ void MainWindow::slotShortCut()
             m_psbZoomFactor->setFocusPolicy(Qt::WheelFocus);
         if(m_ptbZoom)
             m_ptbZoom->setFocusPolicy(Qt::WheelFocus);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        ui->actionFull_screen_F->setShortcut(
+                    QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
+                                 QKeyCombination(Qt::Key_F)));
+        ui->actionScreenshot->setShortcut(
+                    QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
+                                 QKeyCombination(Qt::Key_S)));
+        ui->actionZoom_In->setShortcut(
+                    QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
+                                 QKeyCombination(Qt::Key_Plus)));
+        ui->actionZoom_Out->setShortcut(
+                    QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
+                                 QKeyCombination(Qt::Key_Minus)));
+        ui->actionOriginal_O->setShortcut(
+                    QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
+                                 QKeyCombination(Qt::Key_O)));
+        ui->actionZoomToWindow_Z->setShortcut(
+                    QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
+                                 QKeyCombination(Qt::Key_W)));
+#else
         ui->actionFull_screen_F->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_F));
         ui->actionScreenshot->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_S));
         ui->actionZoom_In->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_Plus));
         ui->actionZoom_Out->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_Minus));
         ui->actionOriginal_O->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_O));
         ui->actionZoomToWindow_Z->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_W));
+#endif
     } else {
         setFocusPolicy(Qt::NoFocus);
         if(m_psbZoomFactor)

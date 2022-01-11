@@ -4,9 +4,8 @@
 <context>
     <name>CDataChannelIce</name>
     <message>
-        <location filename="../../../ICE/DataChannelIce.cpp" line="376"/>
         <source>Signal disconnected</source>
-        <translation>信令服务器断开连接</translation>
+        <translation type="vanished">信令服务器断开连接</translation>
     </message>
 </context>
 <context>
