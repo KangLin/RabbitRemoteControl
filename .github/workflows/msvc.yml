@@ -260,6 +260,7 @@ jobs:
             cmake -E make_directory build
             cd build
             cmake .. ^
+                -DBUILD_EXAMPLES:BOOL=OFF ^
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
