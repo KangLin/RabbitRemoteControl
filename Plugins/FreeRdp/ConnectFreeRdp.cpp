@@ -358,10 +358,10 @@ BOOL CConnectFreeRdp::cb_pre_connect(freerdp* instance)
     // Keyboard layout
 #ifdef WIN32
     freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout,
-                                 (int)GetKeyboardLayout(0) & 0x0000FFFF);
+                           reinterpret_cast<int>(GetKeyboardLayout(0)) & 0x0000FFFF);
 #else
     freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout,
-                                freerdp_keyboard_init(settings->KeyboardLayout));
+                               freerdp_keyboard_init(settings->KeyboardLayout));
 #endif
 
     // Check desktop size
