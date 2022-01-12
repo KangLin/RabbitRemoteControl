@@ -12,7 +12,7 @@ project(Viewer LANGUAGES CXX)
 set(INSTALL_HEADER_FILES
     FrmViewer.h
     Connecter.h
-    ManageConnecter.h
+    ManagePlugin.h
     ManageConnect.h
     PluginViewer.h
     PluginViewerThread.h
@@ -34,7 +34,7 @@ set(SOURCE_FILES
     FrmViewer.cpp
     Connecter.cpp
     Connect.cpp
-    ManageConnecter.cpp
+    ManagePlugin.cpp
     ManageConnect.cpp
     PluginViewer.cpp
     PluginViewerThread.cpp

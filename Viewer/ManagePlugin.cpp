@@ -1,6 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ManageConnecter.h"
+#include "ManagePlugin.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 #include <QPluginLoader>
@@ -11,7 +11,7 @@
 #include <QCoreApplication>
 #include <QSettings>
 
-CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent),
+CManagePlugin::CManagePlugin(QObject *parent) : QObject(parent),
     m_FileVersion(1)  //TODO: update version it if update data
 {
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
@@ -27,7 +27,7 @@ CManageConnecter::CManageConnecter(QObject *parent) : QObject(parent),
     LoadPlugins();
 }
 
-CManageConnecter::~CManageConnecter()
+CManagePlugin::~CManagePlugin()
 {
     qDebug() << "CManageConnecter::~CManageConnecter()";
     qApp->removeTranslator(&m_Translator);
@@ -37,7 +37,7 @@ CManageConnecter::~CManageConnecter()
 //#endif
 }
 
-int CManageConnecter::LoadPlugins()
+int CManagePlugin::LoadPlugins()
 {
     foreach (QObject *plugin, QPluginLoader::staticInstances())
     {
@@ -69,7 +69,7 @@ int CManageConnecter::LoadPlugins()
     return FindPlugins(szPath, filters);
 }
 
-int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
+int CManagePlugin::FindPlugins(QDir dir, QStringList filters)
 {
     QString szPath = dir.path();
     QString fileName;
@@ -135,7 +135,7 @@ int CManageConnecter::FindPlugins(QDir dir, QStringList filters)
     return 0;
 }
 
-CConnecter* CManageConnecter::CreateConnecter(const QString& id)
+CConnecter* CManagePlugin::CreateConnecter(const QString& id)
 {
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
@@ -145,7 +145,7 @@ CConnecter* CManageConnecter::CreateConnecter(const QString& id)
     return nullptr;
 }
 
-CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
+CConnecter* CManagePlugin::LoadConnecter(const QString &szFile)
 {
     CConnecter* pConnecter = nullptr;
     if(szFile.isEmpty()) return nullptr;
@@ -169,7 +169,7 @@ CConnecter* CManageConnecter::LoadConnecter(const QString &szFile)
     return pConnecter;
 }
 
-int CManageConnecter::SaveConnecter(QString szFile, CConnecter *pConnecter)
+int CManagePlugin::SaveConnecter(QString szFile, CConnecter *pConnecter)
 {
     if(!pConnecter) return -1;
 
@@ -193,7 +193,7 @@ int CManageConnecter::SaveConnecter(QString szFile, CConnecter *pConnecter)
     return 0;
 }
 
-int CManageConnecter::EnumPlugins(Handle *handle)
+int CManagePlugin::EnumPlugins(Handle *handle)
 {
     int nRet = 0;
     QMap<QString, CPluginViewer*>::iterator it;

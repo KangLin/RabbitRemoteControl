@@ -19,13 +19,13 @@
  * \see   CPluginViewer CConnecter
  * \ingroup VIEWER_API
  */
-class VIEWER_EXPORT CManageConnecter : public QObject
+class VIEWER_EXPORT CManagePlugin : public QObject
 {
     Q_OBJECT
     
 public:
-    explicit CManageConnecter(QObject *parent = nullptr);
-    virtual ~CManageConnecter();
+    explicit CManagePlugin(QObject *parent = nullptr);
+    virtual ~CManagePlugin();
     
     /*!
      * \~chinese

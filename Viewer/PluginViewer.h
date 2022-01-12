@@ -91,7 +91,7 @@ private:
     QTranslator m_Translator;
     int InitTranslator();
     
-    friend class CManageConnecter;
+    friend class CManagePlugin;
     
     CPluginThread* m_pThread;
 };

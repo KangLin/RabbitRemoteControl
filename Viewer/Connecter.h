@@ -20,7 +20,7 @@
 class CPluginViewer;
 class CConnect;
 class CParameter;
-class CManageConnecter;
+class CManagePlugin;
 
 /*!
  * \~chinese
@@ -242,7 +242,7 @@ private Q_SLOTS:
 
 private:
     const CPluginViewer* m_pPluginViewer;
-    friend CManageConnecter;
+    friend CManagePlugin;
     QString m_szServerName;
     
     // The owner is a derived class of this class

@@ -9,6 +9,7 @@
  * \~english Manage CConnecter. only used by CPluginThread
  * \~
  * \see CPluginThread CPluginViewerThread CConnecterDesktop
+ * \ingroup LIBAPI_THREAD
  */ 
 class CManageConnect : public QObject
 {

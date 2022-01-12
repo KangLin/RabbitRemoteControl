@@ -13,7 +13,7 @@
 #include <QSystemTrayIcon>
 
 #include "ViewTable.h"
-#include "ManageConnecter.h"
+#include "ManagePlugin.h"
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
 #include "FavoriteView.h"
@@ -24,7 +24,7 @@ QT_END_NAMESPACE
 
 class CFrmFullScreenToolBar;
 
-class MainWindow : public QMainWindow, CManageConnecter::Handle
+class MainWindow : public QMainWindow, CManagePlugin::Handle
 {
     Q_OBJECT
 
@@ -60,7 +60,7 @@ private:
 public:
     virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
 private:
-    CManageConnecter m_ManageConnecter;
+    CManagePlugin m_ManageConnecter;
     QMap<CConnecter*, QString> m_ConfigureFiles;
     QVector<CConnecter*> m_Connecters;
     
