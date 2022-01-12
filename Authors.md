@@ -17,6 +17,7 @@
 ## The third project
 - [x] [MUST] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] VNC
+  + [x] [Optional] RabbitVNC: https://github.com/KangLin/RabbitVNC
   + [x] [Optional] libvncserver: https://github.com/LibVNC/libvncserver
   + [x] [Optional] TigerVnc: https://github.com/KangLin/tigervnc
 - [x] [Optional] FreeRDP: https://github.com/FreeRDP/FreeRDP

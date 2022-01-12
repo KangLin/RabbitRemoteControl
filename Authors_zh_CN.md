@@ -19,6 +19,7 @@
 
 - [x] [必选] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] [可选] RFB
+  + [x] [可选] RabbitVNC: https://github.com/KangLin/RabbitVNC
   + [x] [可选] libvncserver: https://github.com/LibVNC/libvncserver
   + [x] [可选] TigerVnc: https://github.com/KangLin/tigervnc
 - [x] [可选] FreeRDP: https://github.com/FreeRDP/FreeRDP
