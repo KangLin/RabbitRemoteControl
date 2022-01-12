@@ -23,17 +23,19 @@ signals:
     void sigContinue();
     
 public:
-    virtual bool hasFormat(const QString &mimetype) const;
-    virtual QStringList formats() const;
+    virtual bool hasFormat(const QString &mimetype) const override;
+    virtual QStringList formats() const override;
     
 protected:
-    virtual QVariant retrieveData(const QString &mimetype, QVariant::Type preferredType) const;
-    
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    virtual QVariant retrieveData(const QString &mimetype, QMetaType preferredType) const override;
+#else
+    virtual QVariant retrieveData(const QString &mimetype, QVariant::Type preferredType) const override;
+#endif
 private:
     CliprdrClientContext* m_pContext;
     QMap<int, QString> m_Fomats;
     QByteArray m_Data;
-    
 };
 
 #endif // CMIMEDATA_H

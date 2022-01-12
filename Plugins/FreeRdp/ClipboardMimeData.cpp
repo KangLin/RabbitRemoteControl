@@ -151,7 +151,11 @@ QStringList CClipboardMimeData::formats() const
     return reList << QMimeData::formats();
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+QVariant CClipboardMimeData::retrieveData(const QString &mimetype, QMetaType preferredType) const
+#else
 QVariant CClipboardMimeData::retrieveData(const QString &mimetype, QVariant::Type preferredType) const
+#endif
 {
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s", mimetype.toStdString().c_str());
     if(!m_Data.isNull())
