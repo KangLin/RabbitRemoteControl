@@ -72,7 +72,7 @@ jobs:
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-          name: rabbitremotecontrol_${{ matrix.os }}
+          name: rabbitremotecontrol_doxygen_${{ matrix.os }}
           path: |
             build/Doxygen
       

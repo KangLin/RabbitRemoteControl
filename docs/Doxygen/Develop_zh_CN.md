@@ -18,3 +18,6 @@
 ### 模块
 
 - [模块](modules.html)
+- 控制插件 API
+
+![ViewerPluginAPI](../Image/PluginViewerAPI.svg)

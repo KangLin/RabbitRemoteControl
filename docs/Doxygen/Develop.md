@@ -21,4 +21,4 @@ Author: Kang Lin kl222@126.com
 
 - Viewer plugin API
 
-[!ViewerPluginAPI](../Image/PluginViewerAPI.svg)
+![ViewerPluginAPI](../Image/PluginViewerAPI.svg)
