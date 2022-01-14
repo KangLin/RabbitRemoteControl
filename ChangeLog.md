@@ -6,6 +6,7 @@
 + Add RabbitVNC plugin
 + Fix same bug
   - Toolbar show bug
++ Support Qt6
   
 ### v0.0.15
 + Refactor CConneter paramters interface

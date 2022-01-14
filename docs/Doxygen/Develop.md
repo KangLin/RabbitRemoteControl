@@ -15,6 +15,10 @@ Author: Kang Lin kl222@126.com
 - [Linux](../Compile/Linux.md)
 - [Windows](../Compile/Windows.md)
 
-Module
+### Module
 
 - [Module](modules.html)
+
+- Viewer plugin API
+
+[!ViewerPluginAPI](../Image/PluginViewerAPI.svg)

@@ -46,7 +46,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 
 |Main window|Recent list menu|Connect|
 |--|--|--|
-|![Main window](docs/Image/Screenslot/MainWindows.png)|![Recent list menu](docs/Image/Screenslot/RecentMenu.png)|![Connect](docs/Image/Screenslot/Connect.png)|
+|![Main window](docs/Image/Screenshot/MainWindows.png)|![Recent list menu](docs/Image/Screenshot/RecentMenu.png)|![Connect](docs/Image/Screenshot/Connect.png)|
 
 #### Stargazers over time
 
