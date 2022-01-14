@@ -81,12 +81,11 @@ jobs:
             cd RabbitVNC
             cmake -E make_directory build
             cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} ^
-                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                  -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
+                  -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
         
     - name: build tigervnc
