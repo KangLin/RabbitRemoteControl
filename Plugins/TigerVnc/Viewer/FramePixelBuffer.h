@@ -5,6 +5,7 @@
 
 #include <rfb/PixelBuffer.h>
 #include <QImage>
+#include <QObject>
 
 class CFramePixelBuffer : public QObject,
         public rfb::FullFramePixelBuffer

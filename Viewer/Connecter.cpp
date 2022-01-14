@@ -32,7 +32,7 @@ const QString CConnecter::Id()
     if(GetParameter())
         szId += "_" + GetParameter()->GetHost()
                 + "_" + QString::number(GetParameter()->GetPort());
-    szId = szId.replace(QRegularExpression("[@:/#%!^&*\.]"), "_");
+    szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
     return szId;
 }
 
