@@ -12,7 +12,8 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_nRecentMenuMaxCount(10),
     m_SystemTrayIconType(SystemTrayIconMenuType::Remote),
     m_bEnableSystemTrayIcon(true),
-    m_bOpenLasterClose(false)
+    m_bOpenLasterClose(false),
+    m_bFavoriteEdit(false)
 {
     m_szScreenShotPath = RabbitCommon::CDir::Instance()->GetDirUserImage()
             + QDir::separator()
@@ -51,6 +52,8 @@ int CParameterApp::Load()
                                     GetEnableSystemTrayIcon()).toBool());
     SetOpenLasterClose(set.value("MainWindow/OpenLasterClose",
                                   GetOpenLasterClose()).toBool());
+    SetFavoriteEdit(set.value("MainWindow/Favorite/Double/Edit",
+                              GetFavoriteEdit()).toBool());
     return 0;
 }
 
@@ -71,6 +74,7 @@ int CParameterApp::Save()
                  static_cast<int>(GetSystemTrayIconMenuType()));
     set.setValue("MainWindow/SystemTrayIcon/Enable", GetEnableSystemTrayIcon());
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
+    set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
     return 0;
 }
 
@@ -160,6 +164,17 @@ void CParameterApp::SetOpenLasterClose(bool newOpenLasterClose)
         return;
     m_bOpenLasterClose = newOpenLasterClose;
     emit sigOpenLasterCloseChanged(m_bOpenLasterClose);
+}
+
+bool CParameterApp::GetFavoriteEdit() const
+{
+    return m_bFavoriteEdit;
+}
+
+void CParameterApp::SetFavoriteEdit(bool newFavoriteEdit)
+{
+    m_bFavoriteEdit = newFavoriteEdit;
+    emit sigFavoriteEditChanged(m_bFavoriteEdit);
 }
 
 bool CParameterApp::GetScreenShot() const

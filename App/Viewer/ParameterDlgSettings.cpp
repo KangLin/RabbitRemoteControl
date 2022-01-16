@@ -64,6 +64,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
         break;
     }
     
+    ui->rbSystemTrayIconFavorite->hide();
     switch (m_pParameters->GetSystemTrayIconMenuType()) {
     case CParameterApp::SystemTrayIconMenuType::No:
         ui->rbSystemTrayIconNo->setChecked(true);
@@ -79,6 +80,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
         break;
     }
     ui->cbShowSystemTrayIcon->setChecked(m_pParameters->GetEnableSystemTrayIcon());
+    
+    ui->cbFavoriteDoubleEdit->setChecked(m_pParameters->GetFavoriteEdit());
 }
 
 CParameterDlgSettings::~CParameterDlgSettings()
@@ -130,6 +133,8 @@ void CParameterDlgSettings::on_pbOk_clicked()
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Favorite);
     
     m_pParameters->SetEnableSystemTrayIcon(ui->cbShowSystemTrayIcon->isChecked());
+    m_pParameters->SetFavoriteEdit(ui->cbFavoriteDoubleEdit->isChecked());
+    
     accept();
 }
 

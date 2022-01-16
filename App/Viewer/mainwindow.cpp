@@ -60,6 +60,9 @@ MainWindow::MainWindow(QWidget *parent)
             check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
+            check = connect(&m_Parameter, SIGNAL(sigFavoriteEditChanged(bool)),
+                            m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
+            Q_ASSERT(check);
             m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
         }
         // Must set ObjectName then restore it. See: saveState help document
@@ -160,7 +163,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     setFocusPolicy(Qt::NoFocus);
     
-    //TODO: modify the bug
+    //TODO: complete the function
     ui->actionZoom_window_to_remote_desktop->setVisible(false);
 
     check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),

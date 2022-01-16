@@ -33,6 +33,7 @@ private slots:
     void slotOpenConnect();
     void slotDelete();
     void slotNewGroup();
+    void slotDoubleEditNode(bool bEdit);
 
 private:
     QStandardItemModel* m_pModel;

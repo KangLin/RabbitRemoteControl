@@ -105,6 +105,15 @@ Q_SIGNALS:
 private:
     bool m_bOpenLasterClose;
     Q_PROPERTY(bool bOpenLasterClose READ GetOpenLasterClose WRITE SetOpenLasterClose NOTIFY sigOpenLasterCloseChanged)
+    
+public:
+    bool GetFavoriteEdit() const;
+    void SetFavoriteEdit(bool newFavoriteEdit);
+Q_SIGNALS:
+    void sigFavoriteEditChanged(bool FavoriteEdit);
+private:
+    bool m_bFavoriteEdit;
+    Q_PROPERTY(bool FavoriteEdit READ GetFavoriteEdit WRITE SetFavoriteEdit NOTIFY sigFavoriteEditChanged)
 };
 
 #endif // CPARAMETERAPP_H

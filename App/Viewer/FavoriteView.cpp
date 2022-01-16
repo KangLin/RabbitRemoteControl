@@ -24,7 +24,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
 {
     setFocusPolicy(Qt::NoFocus);
     header()->hide();
-    //setEditTriggers(QTreeView::NoEditTriggers);
+    
     setAcceptDrops(true);
     
     m_pModel = new QStandardItemModel(this);
@@ -188,15 +188,25 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
 
 void CFavoriteView::slotFavrtieClicked(const QModelIndex &index)
 {
+}
+
+void CFavoriteView::slotFavortiedoubleClicked(const QModelIndex &index)
+{
     auto item = m_pModel->itemFromIndex(index);
     if(!item) return;
+    if(editTriggers() != QTreeView::NoEditTriggers)
+        return;
     QString szFile = item->data().toString();
     if(!szFile.isEmpty())
         emit sigConnect(szFile, false);
 }
 
-void CFavoriteView::slotFavortiedoubleClicked(const QModelIndex &index)
+void CFavoriteView::slotDoubleEditNode(bool bEdit)
 {
+    if(bEdit)
+        setEditTriggers(QTreeView::DoubleClicked);
+    else
+        setEditTriggers(QTreeView::NoEditTriggers);
 }
 
 void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
