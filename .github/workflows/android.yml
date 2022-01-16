@@ -12,7 +12,7 @@ jobs:
         ANDROID_ABI: [armeabi-v7a, x86]
         ANDROID_PLATFORM: [android-28]
         os: [Ubuntu-18.04]
-        qt_version: [5.12.11]
+        qt_version: [5.12.12]
         include:
           - VCPKG_TARGET_TRIPLET: arm-android
             qt_arch: android_armv7

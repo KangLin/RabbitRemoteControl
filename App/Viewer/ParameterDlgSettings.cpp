@@ -160,6 +160,8 @@ void CParameterDlgSettings::on_pbEncryptKey_clicked()
         ui->leEncryptKey->setEchoMode(QLineEdit::Password);
         ui->pbEncryptKey->setIcon(QIcon(":/image/EyeOn"));
         break;
+    default:
+        break;
     }
 }
 
