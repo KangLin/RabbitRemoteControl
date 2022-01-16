@@ -49,7 +49,7 @@
 |![主窗口](docs/Image/Screenslot/MainWindows.png)|![最近列表窗口](docs/Image/Screenslot/RecentMenu.png)|![连接窗口](docs/Image/Screenslot/Connect.png)|
 
 #### 项目位置
-- 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/)
+- 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 - 项目位置:
   + 主库：https://github.com/KangLin/RabbitRemoteControl
   + 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
