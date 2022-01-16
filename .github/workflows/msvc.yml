@@ -18,7 +18,7 @@ jobs:
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR: "Visual Studio 16 2019"
             CMAKE_GENERATOR_PLATFORM: x64
-            qt_modules: qtscxml
+            qt_modules: qtscxml qtpositioning
 
           - os: windows-2019
             triplet: x64-windows
