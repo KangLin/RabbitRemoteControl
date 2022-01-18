@@ -64,7 +64,8 @@ const QIcon CConnecter::Icon() const
 void CConnecter::slotSetClipboard(QMimeData* data)
 {
     QClipboard* pClipboard = QApplication::clipboard();
-    pClipboard->setMimeData(data);
+    if(pClipboard)
+        pClipboard->setMimeData(data);
 }
 
 void CConnecter::slotSetServerName(const QString& szName)
