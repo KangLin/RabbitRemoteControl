@@ -197,26 +197,25 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_request(CliprdrClientConte
         break;
     }
     case CF_DIB:
+    case CF_DIBV5:
     case CF_BITMAP:
-        mimeType = "image/bmp";
-        scrFormatID = ClipboardGetFormatId(pThis->m_pClipboard, "image/bmp");
-        if(!mimeType.isEmpty() && scrFormatID > 0)
-        {
-            QByteArray data = clipboard->mimeData()->data(mimeType);
-            //qDebug() << data << data.length();
-            if(!data.isEmpty())
-                bSuucess = ClipboardSetData(pThis->m_pClipboard, scrFormatID, data.data(), data.size());
-        }
-        break;
         if(clipboard->mimeData()->hasImage())
         {
             QImage img = clipboard->image();
+            if(img.isNull())
+                break;
             QByteArray d;
             QBuffer buffer(&d);
-            buffer.open(QIODevice::WriteOnly);
-            img.save(&buffer, "BMP");
-            buffer.close();
-            bSuucess = ClipboardSetData(pThis->m_pClipboard, CF_BITMAP, (BYTE*)d.data(), d.length());
+            if(buffer.open(QIODevice::WriteOnly))
+            {
+                img.save(&buffer, "BMP");
+                buffer.close();
+            }
+            //qDebug() << d << d.length();
+            if(!d.isEmpty())
+                bSuucess = ClipboardSetData(pThis->m_pClipboard,
+                         ClipboardGetFormatId(pThis->m_pClipboard, "image/bmp"),
+                                            (BYTE*)d.data(), d.length());
         }
         break;
     default:
@@ -236,9 +235,11 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_request(CliprdrClientConte
         pDstData = (BYTE*)ClipboardGetData(pThis->m_pClipboard, formatId, &dstSize);
     if(pDstData)
         SendDataResponse(context, pDstData, dstSize);
-
+    else
+        SendDataResponse(context, NULL, 0);
     if(pDstData)
         free(pDstData);
+    
     return nRet;
 }
 
@@ -334,6 +335,10 @@ UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
         pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
         numFormats++;
         pFormats[numFormats].formatId = CF_DIB;
+        pFormats[numFormats].formatName = nullptr;
+        pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+        numFormats++;
+        pFormats[numFormats].formatId = CF_DIBV5;
         pFormats[numFormats].formatName = nullptr;
         pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
         numFormats++;
