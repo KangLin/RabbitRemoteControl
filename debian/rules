@@ -14,6 +14,18 @@
 
 #export QT_SELECT=qt5
 
+ifdef FreeRDP_DIR
+    PARAS += -DFreeRDP_DIR=${FreeRDP_DIR}
+endif
+
+ifdef FreeRDP-Client_DIR
+    PARAS += -DFreeRDP-Client_DIR=${FreeRDP-Client_DIR}
+endif
+
+ifdef WinPR_DIR
+    PARAS += -DWinPR_DIR=${WinPR_DIR}
+endif
+
 ifdef RabbitVNC_DIR
     PARAS += -DRabbitVNC_DIR=${RabbitVNC_DIR}
 endif

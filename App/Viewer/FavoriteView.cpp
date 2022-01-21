@@ -292,7 +292,11 @@ void CFavoriteView::dropEvent(QDropEvent *event)
     if(!pData) return;
     QStandardItemModel* pModel = dynamic_cast<QStandardItemModel*>(model());
     if(!pModel) return;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    auto index = indexAt(event->position().toPoint());
+#else
     auto index = indexAt(event->pos());
+#endif
     if(index.isValid())
     {
         auto item = pModel->itemFromIndex(index);
