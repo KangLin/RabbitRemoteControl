@@ -15,7 +15,8 @@ CClipboardFreeRdp::CClipboardFreeRdp(CConnectFreeRdp *parent) : QObject(parent),
     m_pCliprdrClientContext(nullptr),
     m_pMimeData(nullptr),
     m_pClipboard(nullptr),
-    m_FileCapabilityFlags(0)
+    m_FileCapabilityFlags(0),
+    m_bFileSupported(false)
 {
     m_pClipboard = ClipboardCreate();
     wClipboardDelegate* pDelegate = ClipboardGetDelegate(m_pClipboard);
@@ -73,6 +74,8 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_capabilities(CliprdrClientContext* con
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_capabilities");
     int nRet = CHANNEL_RC_OK;
 
+    CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
+    pThis->m_bFileSupported = FALSE;
     const CLIPRDR_CAPABILITY_SET* caps;
 	const CLIPRDR_GENERAL_CAPABILITY_SET* generalCaps;
 	const BYTE* capsPtr = (const BYTE*)capabilities->capabilitySets;
@@ -87,7 +90,8 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_capabilities(CliprdrClientContext* con
 
 			if (generalCaps->generalFlags & CB_STREAM_FILECLIP_ENABLED)
 			{
-				//TODO: support file clipboard
+				// Support file clipboard
+                pThis->m_bFileSupported = TRUE;
 			}
 		}
 
@@ -110,17 +114,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
         if(!pThis->m_pMimeData) return nRet;
     }
     
-    for (UINT32 i = 0; i < formatList->numFormats; i++)
-	{
-		CLIPRDR_FORMAT* pFormat = &formatList->formats[i];
-        //TODO: Delete it
-        LOG_MODEL_DEBUG("FreeRdp", "cb_cliprdr_server_format_list FormatId: 0x%X; name: %s; get name:%s",
-                        pFormat->formatId,
-                        pFormat->formatName,
-                        ClipboardGetFormatName(pThis->m_pClipboard, pFormat->formatId));
-        //Set clipboard format
-        pThis->m_pMimeData->AddFormat(pFormat->formatId, pFormat->formatName);
-	}
+    pThis->m_pMimeData->SetFormat(formatList);
     emit pThis->m_pConnect->sigSetClipboard(pThis->m_pMimeData);
     return nRet;
 }
@@ -137,7 +131,8 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list_response(CliprdrClientCont
 
 ///////// Send format list from client to server ///////////
 
-UINT CClipboardFreeRdp::cb_cliprdr_monitor_ready(CliprdrClientContext *context, const CLIPRDR_MONITOR_READY *monitorReady)
+UINT CClipboardFreeRdp::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
+                                      const CLIPRDR_MONITOR_READY *monitorReady)
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_monitor_ready");
     UINT nRet = CHANNEL_RC_OK;
@@ -157,9 +152,12 @@ UINT CClipboardFreeRdp::cb_cliprdr_monitor_ready(CliprdrClientContext *context, 
 	generalCapabilitySet.capabilitySetType = CB_CAPSTYPE_GENERAL;
 	generalCapabilitySet.capabilitySetLength = 12;
 	generalCapabilitySet.version = CB_CAPS_VERSION_2;
-	generalCapabilitySet.generalFlags = CB_USE_LONG_FORMAT_NAMES
-            | CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS
-            | CB_HUGE_FILE_SUPPORT_ENABLED;
+	generalCapabilitySet.generalFlags = CB_USE_LONG_FORMAT_NAMES;
+
+	if (pThis->m_bFileSupported)
+		generalCapabilitySet.generalFlags |=
+		    CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS | CB_HUGE_FILE_SUPPORT_ENABLED;
+    
     pThis->m_FileCapabilityFlags = generalCapabilitySet.generalFlags;
 	if((nRet = context->ClientCapabilities(context, &capabilities)) != CHANNEL_RC_OK)
     {
@@ -272,6 +270,7 @@ UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
     /* Ensure all pending requests are answered. */
 	SendFormatDataResponse(context, NULL, 0);
 
+    Q_ASSERT(context->ClientFormatList);
 	nRet = context->ClientFormatList(context, &formatList);
     LOG_MODEL_DEBUG("FreeRdp", "SendClientFormatList nRet: %d", nRet);
     for(int i = 0; i < numFormats; i++)

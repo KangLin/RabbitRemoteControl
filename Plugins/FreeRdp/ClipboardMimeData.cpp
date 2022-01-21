@@ -8,7 +8,8 @@
 
 CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     : QMimeData(),
-      m_pContext(pContext)
+      m_pContext(pContext),
+      m_pClipboard(nullptr)
 {
 }
 
@@ -18,84 +19,34 @@ CClipboardMimeData::~CClipboardMimeData()
     emit sigContinue();
 }
 
-int CClipboardMimeData::AddFormat(int id, const QString &name)
+int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
+{
+    ClipboardDestroy(m_pClipboard);
+    m_Formats.clear();
+    for (UINT32 i = 0; i < pList->numFormats; i++)
+	{
+		CLIPRDR_FORMAT* pFormat = &pList->formats[i];
+        //TODO: Delete it
+        LOG_MODEL_DEBUG("FreeRdp", "cb_cliprdr_server_format_list FormatId: 0x%X; name: %s",
+                        pFormat->formatId,
+                        pFormat->formatName);
+        
+        AddFormat(pFormat->formatId, pFormat->formatName);
+	}
+    return 0;
+}
+
+int CClipboardMimeData::AddFormat(int id, const char *name)
 {
     int nRet = 0;
-    if(!name.isEmpty())
-    {
-        foreach(auto f, m_Fomats)
-        {
-            if(f == name)
-                return nRet;
-        }
-    }
-    
-    auto it = m_Fomats.find(id);
-    if(m_Fomats.end() != it)
-    {
-        if(it.value().isEmpty())
-        {
-            if(name.isEmpty())
-            {
-                switch (id) {
-                case CF_TEXT:
-                    it.value() = "text/plain";
-                    break;
-                case CF_DIB:
-                    it.value() = "image/bmp";
-                    break;
-                case CB_FORMAT_PNG:
-                    it.value() = "image/png";
-                    break;
-                case CB_FORMAT_JPEG:
-                    it.value() = "image/jpeg";
-                    break;
-                case CB_FORMAT_GIF:
-                    it.value() = "image/gif";
-                    break;
-                case CB_FORMAT_HTML:
-                    it.value() = "text/html";
-                    break;
-                default:
-                    break;;
-                }
-                
-            } else
-                it.value() = name;
-        }
-        else
-            LOG_MODEL_WARNING("FreeRdp", "The format is exist.");
+        
+    auto it = m_Formats.find(id);
+    if(m_Formats.end() != it)
         return nRet;
-    }   
     
-    QString szName = name;
-    if(name.isEmpty())
-    {
-        switch (id) {
-        case CF_TEXT:
-            szName = "text/plain";
-            break;
-        case CF_DIB:
-            szName = "image/bmp";
-            break;
-        case CB_FORMAT_PNG:
-            szName = "image/png";
-            break;
-        case CB_FORMAT_JPEG:
-            szName = "image/jpeg";
-            break;
-        case CB_FORMAT_GIF:
-            szName = "image/gif";
-            break;
-        case CB_FORMAT_HTML:
-            szName = "text/html";
-            break;
-        default:
-            break;;
-        }
-    }
-    
-    m_Fomats.insert(id, szName);
+    if(name)
+        ClipboardRegisterFormat(m_pClipboard, name);
+    m_Formats.insert(id, name);
 
     return nRet;
 }
@@ -103,7 +54,7 @@ int CClipboardMimeData::AddFormat(int id, const QString &name)
 bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 {
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::hasFormat: %s", mimetype.toStdString().c_str());
-    foreach(auto f, m_Fomats)
+    foreach(auto f, m_Formats)
     {
         if(f == mimetype)
             return true;
@@ -116,35 +67,36 @@ QStringList CClipboardMimeData::formats() const
     QStringList reList;    
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
 
-    for(auto it = m_Fomats.begin(); it != m_Fomats.end(); it++)
+    for(auto it = m_Formats.begin(); it != m_Formats.end(); it++)
     {
         if(it.value().isEmpty())
         {
             switch (it.key()) {
             case CF_TEXT:
+            case CF_OEMTEXT:
+            case CF_UNICODETEXT:
                 reList << "text/plain";
                 break;
             case CF_DIB:
+            case CF_BITMAP:
+            case CF_DIBV5:
                 reList << "image/bmp";
                 break;
-            case CB_FORMAT_PNG:
-                reList << "image/png";
-                break;
-            case CB_FORMAT_JPEG:
-                reList << "image/jpg" << "image/jpeg";
-                break;
-            case CB_FORMAT_GIF:
-                reList << "image/gif";
-                break;
-            case CB_FORMAT_HTML:
-                reList << "text/html";
-                break;
+            
             default:
                 continue;
             }
         }
         else
-            reList << it.value(); 
+        {
+            reList << it.value();
+            if("FileGroupDescriptorW" == it.value())
+                if(!reList.contains("text/uri-list"))
+                    reList << "text/uri-list";
+            if("HTML Format" == it.value())
+                if(!reList.contains("text/html"))
+                    reList << "text/html";
+        }
     }
     qDebug() << reList;
     
@@ -159,10 +111,10 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype, QVariant::Typ
 {
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s", mimetype.toStdString().c_str());
     if(!m_Data.isNull())
-        return m_Data;
+        return GetData(mimetype, preferredType);
     
     UINT32 format = 0;
-    for(auto it = m_Fomats.begin(); it != m_Fomats.end(); it++)
+    for(auto it = m_Formats.begin(); it != m_Formats.end(); it++)
     {
         if(it.value().isEmpty()) break;
         if(it.value() == mimetype)
@@ -201,4 +153,13 @@ int CClipboardMimeData::SetData(const char *data, int len)
     m_Data = d;
     emit sigContinue();
     return nRet;
+}
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+QVariant CClipboardMimeData::GetData(const QString &mimetype, QMetaType preferredType) const
+#else
+QVariant CClipboardMimeData::GetData(const QString &mimetype, QVariant::Type  preferredType) const
+#endif
+{
+    return QVariant();
 }

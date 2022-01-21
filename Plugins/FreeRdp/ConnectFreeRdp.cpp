@@ -38,9 +38,8 @@ CConnectFreeRdp::CConnectFreeRdp(CConnecterFreeRdp *pConnecter,
     Q_ASSERT(pConnecter);
     m_pParamter = dynamic_cast<CParameterFreeRdp*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParamter);
-    
-    wLog* root = WLog_GetRoot();
-    WLog_SetLogLevel(root, WLOG_DEBUG);
+
+    //WLog_SetLogLevel(WLog_GetRoot(), WLOG_DEBUG);
     
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
