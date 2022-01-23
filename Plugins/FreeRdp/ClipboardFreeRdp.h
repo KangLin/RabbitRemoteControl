@@ -8,6 +8,7 @@
 #include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
 #include "freerdp/client/rdpgfx.h"
+#include "winpr/clipboard.h"
 #include "ClipboardMimeData.h"
 
 class CConnectFreeRdp;
@@ -51,9 +52,11 @@ public:
                           const CLIPRDR_FORMAT_DATA_REQUEST* formatDataRequest);
     static UINT SendFormatDataResponse(CliprdrClientContext* context,
                                  const BYTE* data, size_t size);
+public Q_SLOTS:
+    static UINT slotSendFormatDataRequest(CliprdrClientContext* context,
+                                    UINT32 formatId, QString formatName);
 
-    static UINT SendDataRequest(CliprdrClientContext* context, UINT32 formatId);
-
+public:
     ///////// Send file from client to server ///////////
     static UINT SendFileContentsFailure(CliprdrClientContext* context,
                       const CLIPRDR_FILE_CONTENTS_REQUEST* fileContentsRequest);
@@ -80,6 +83,17 @@ public:
 public Q_SLOTS:
     virtual void slotClipBoardChange();
 
+Q_SIGNALS:
+    //!
+    //! \brief Notify clipboard get data from server
+    //! \param pData: data pointer
+    //! \param nLen: data length
+    //! \param formatId: format id
+    //! \param formatName: format name
+    //! if(pData == nullptr && nLen == 0) is Notify clipboard program has exited
+    void sigServerFormatData(const BYTE* pData, UINT32 nLen,
+                             UINT32 formatId, QString formatName);
+    
 private:
     CConnectFreeRdp* m_pConnect;
     CliprdrClientContext* m_pCliprdrClientContext;
@@ -87,11 +101,12 @@ private:
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
     QVector<UINT32> m_FormatIds;
 
+    // Client format data
+    QVector<CClipboardMimeData::_FORMAT> m_ServerFormatDataRequest;
+
     // File
     UINT32 m_FileCapabilityFlags;
     bool m_bFileSupported; // Whether is server support file
-
-    CClipboardMimeData* m_pMimeData;
 };
 
 #endif // CCLIPBOARDFREERDP_H

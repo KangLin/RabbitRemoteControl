@@ -9,11 +9,11 @@
 #include <QImage>
 #include <QBuffer>
 #include "ConnectFreeRdp.h"
+#include "ClipboardMimeData.h"
 
 CClipboardFreeRdp::CClipboardFreeRdp(CConnectFreeRdp *parent) : QObject(parent),
     m_pConnect(parent),
     m_pCliprdrClientContext(nullptr),
-    m_pMimeData(nullptr),
     m_pClipboard(nullptr),
     m_FileCapabilityFlags(0),
     m_bFileSupported(false)
@@ -30,10 +30,9 @@ CClipboardFreeRdp::CClipboardFreeRdp(CConnectFreeRdp *parent) : QObject(parent),
 CClipboardFreeRdp::~CClipboardFreeRdp()
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::~CClipboardFreeRdp()");
-    QClipboard* pClipboard = QApplication::clipboard();
-    if(pClipboard && pClipboard->ownsClipboard())
-        pClipboard->clear();
     
+    // Notify clipboard program has exited
+    emit sigServerFormatData(nullptr, 0, 0, "");
     ClipboardDestroy(m_pClipboard);
 }
 
@@ -99,35 +98,6 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_capabilities(CliprdrClientContext* con
 	}
     return nRet;
 }
-
-UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* context,
-                                              const CLIPRDR_FORMAT_LIST* formatList)
-{
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list");
-    int nRet = CHANNEL_RC_OK;
-    
-    CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
-    
-    if(formatList->numFormats > 0)
-    {   
-        pThis->m_pMimeData = new CClipboardMimeData(context);
-        if(!pThis->m_pMimeData) return nRet;
-    }
-    
-    pThis->m_pMimeData->SetFormat(formatList);
-    emit pThis->m_pConnect->sigSetClipboard(pThis->m_pMimeData);
-    return nRet;
-}
-
-UINT CClipboardFreeRdp::cb_cliprdr_server_format_list_response(CliprdrClientContext* context,
-                                      const CLIPRDR_FORMAT_LIST_RESPONSE* pformatListResponse)
-{
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:%d;flag:%d;datalen:%d",
-                    pformatListResponse->msgType, pformatListResponse->msgFlags, pformatListResponse->dataLen);
-    int nRet = CHANNEL_RC_OK;
-    return nRet;
-}
-
 
 ///////// Send format list from client to server ///////////
 
@@ -273,7 +243,7 @@ UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
     Q_ASSERT(context->ClientFormatList);
 	nRet = context->ClientFormatList(context, &formatList);
     LOG_MODEL_DEBUG("FreeRdp", "SendClientFormatList nRet: %d", nRet);
-    for(int i = 0; i < numFormats; i++)
+    for(UINT32 i = 0; i < numFormats; i++)
         if(pFormats[i].formatName)
             free(pFormats[i].formatName);
     delete []pFormats;
@@ -558,16 +528,53 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_file_contents_request(
     return nRet;
 }
 
-UINT CClipboardFreeRdp::cb_cliprdr_server_file_contents_response(CliprdrClientContext* context,
-                     const CLIPRDR_FILE_CONTENTS_RESPONSE* fileContentsResponse)
+///////// Server to client ///////////
+UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* context,
+                                              const CLIPRDR_FORMAT_LIST* formatList)
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_file_contents_response");
+    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list");
     int nRet = CHANNEL_RC_OK;
     
+    CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
+    CClipboardMimeData* pMimeData = nullptr;
+    if(formatList->numFormats < 0)
+    {
+        return nRet;
+    }
+    pMimeData = new CClipboardMimeData(context);
+    if(!pMimeData) return nRet;
+    
+    if(pMimeData->SetFormat(formatList))
+    {
+        pMimeData->deleteLater();
+        return nRet;
+    }
+
+    pThis->m_ServerFormatDataRequest.clear();
+    bool check = false;
+    check = connect(pThis, SIGNAL(sigServerFormatData(const BYTE*, UINT32, UINT32, QString)),
+                    pMimeData, SLOT(slotServerFormatData(const BYTE*, UINT32, UINT32, QString)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
+    check = connect(pMimeData, SIGNAL(sigSendDataRequest(CliprdrClientContext*, UINT32, QString)),
+                    pThis, SLOT(slotSendFormatDataRequest(CliprdrClientContext*, UINT32, QString)));
+    Q_ASSERT(check);
+    
+    emit pThis->m_pConnect->sigSetClipboard(pMimeData);
     return nRet;
 }
 
-UINT CClipboardFreeRdp::SendDataRequest(CliprdrClientContext* context, UINT32 formatId)
+UINT CClipboardFreeRdp::cb_cliprdr_server_format_list_response(CliprdrClientContext* context,
+                                      const CLIPRDR_FORMAT_LIST_RESPONSE* pformatListResponse)
+{
+    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:%d;flag:%d;datalen:%d",
+                    pformatListResponse->msgType, pformatListResponse->msgFlags, pformatListResponse->dataLen);
+    int nRet = CHANNEL_RC_OK;
+    return nRet;
+}
+
+UINT CClipboardFreeRdp::slotSendFormatDataRequest(CliprdrClientContext* context,
+                                            UINT32 formatId, QString formatName)
 {
 	UINT rc = CHANNEL_RC_OK;
 	CLIPRDR_FORMAT_DATA_REQUEST formatDataRequest;
@@ -575,12 +582,14 @@ UINT CClipboardFreeRdp::SendDataRequest(CliprdrClientContext* context, UINT32 fo
 	if (!context || !context->ClientFormatDataRequest)
 		return ERROR_INTERNAL_ERROR;
 
+    CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
+    CClipboardMimeData::_FORMAT f = {formatId, formatName};
+    pThis->m_ServerFormatDataRequest.push_back(f);
 	formatDataRequest.requestedFormatId = formatId;
 	rc = context->ClientFormatDataRequest(context, &formatDataRequest);
 
 	return rc;
 }
-
 
 UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_response(
         CliprdrClientContext* context,
@@ -591,10 +600,20 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_response(
     if(!context) return nRet;
 
     CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
-    if(!pThis->m_pMimeData)
-        return nRet;
+   
+    auto it = pThis->m_ServerFormatDataRequest.begin();
+    pThis->m_ServerFormatDataRequest.pop_front();
+    emit pThis->sigServerFormatData(formatDataResponse->requestedFormatData,
+                                    formatDataResponse->dataLen,
+                                    it->id,
+                                    it->name.toStdString().c_str());
+    return nRet;
+}
 
-    pThis->m_pMimeData->SetData((const char*)formatDataResponse->requestedFormatData,
-                                formatDataResponse->dataLen);
+UINT CClipboardFreeRdp::cb_cliprdr_server_file_contents_response(CliprdrClientContext* context,
+                     const CLIPRDR_FILE_CONTENTS_RESPONSE* fileContentsResponse)
+{
+    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_file_contents_response");
+    int nRet = CHANNEL_RC_OK;
     return nRet;
 }

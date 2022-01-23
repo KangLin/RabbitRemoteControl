@@ -5,6 +5,7 @@
 
 #include <QMimeData>
 #include <QMap>
+#include <QVector>
 
 #include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
@@ -17,31 +18,44 @@ public:
     explicit CClipboardMimeData(CliprdrClientContext* pContext);
     virtual ~CClipboardMimeData();
     
-    int SetFormat(const CLIPRDR_FORMAT_LIST* pList);
-    int AddFormat(int id, const char *name);
-    int SetData(const char *data, int len);
+    struct _FORMAT {
+        UINT32 id;
+        QString name;
+    };
     
-signals:
+    int SetFormat(const CLIPRDR_FORMAT_LIST* pList);
+    int AddFormat(UINT32 id, const char *name);
+    
+Q_SIGNALS:
+    void sigSendDataRequest(CliprdrClientContext* context,
+                            UINT32 formatId, QString formatName) const;
     void sigContinue();
     
 public:
     virtual bool hasFormat(const QString &mimetype) const override;
     virtual QStringList formats() const override;
     
+public Q_SLOTS:
+    int slotServerFormatData(const BYTE* pData, UINT32 nLen,
+                             UINT32 id, QString name);
+
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     virtual QVariant retrieveData(const QString &mimetype, QMetaType preferredType) const override;
-    QVariant GetData(const QString &mimetype, QMetaType preferredType) const;
 #else
     virtual QVariant retrieveData(const QString &mimetype, QVariant::Type preferredType) const override;
-    QVariant GetData(const QString &mimetype, QVariant::Type preferredType) const;
 #endif
 
 private:
     CliprdrClientContext* m_pContext;
-    QMap<int, QString> m_Formats;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
-    QByteArray m_Data;
+    
+    QVector<_FORMAT> m_Formats;
+    QMap<QString, UINT32> m_outFormats;
+    QStringList m_lstFormats;
+
+    QMap<QString, QVariant> m_Variant;
+    bool m_bExit;
     
 };
 
