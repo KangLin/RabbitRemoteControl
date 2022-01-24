@@ -288,7 +288,11 @@ QVariant CClipboardMimeData::GetValue(QString mimeType, QVariant::Type preferred
     {
         if(isText(mimeType))
         {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
             return QVariant(QMetaType(QMetaType::QString), it.value().data());
+#else
+            return QVariant(QMetaType::QString, it.value().data());
+#endif
         }
         if(isImage(mimeType))
         {
