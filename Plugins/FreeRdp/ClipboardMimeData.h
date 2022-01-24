@@ -42,9 +42,15 @@ public Q_SLOTS:
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     virtual QVariant retrieveData(const QString &mimetype, QMetaType preferredType) const override;
+    QVariant GetValue(QString mimeType, QMetaType preferredType) const;
 #else
     virtual QVariant retrieveData(const QString &mimetype, QVariant::Type preferredType) const override;
+    QVariant GetValue(QString mimeType, QVariant::Type preferredType) const;
 #endif
+
+private:
+    bool isText(QString mimeType) const;
+    bool isImage(QString mimeType) const;
 
 private:
     CliprdrClientContext* m_pContext;
