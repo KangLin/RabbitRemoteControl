@@ -74,7 +74,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         }
         else
         {
-            if(m_outFormats.find(it->name) == m_outFormats.end())
+            if(m_outFormats.find(it->name) != m_outFormats.end())
                 continue;
             m_outFormats[it->name] = it->id;
             if("FileGroupDescriptorW" == it->name)

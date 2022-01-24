@@ -304,11 +304,11 @@ jobs:
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
         makensis Install.nsi
-        if "5.12.12" == ${{matrix.qt_version}} ( ^
+        if "5.12.12" == "${{matrix.qt_version}}" (
             ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
                 -f "update_windows.xml" ^
                 --pf RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
-                -m "${{env.RabbitRemoteControl_VERSION}}" ^
+                -m "${{env.RabbitRemoteControl_VERSION}}"
         )
 
     - name: update 
