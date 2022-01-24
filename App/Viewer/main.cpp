@@ -24,7 +24,7 @@
 int main(int argc, char *argv[])
 {
     int nRet = 0;
-#if (QT_VERSION > QT_VERSION_CHECK(5,6,0))
+#if (QT_VERSION > QT_VERSION_CHECK(5,6,0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 #if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)

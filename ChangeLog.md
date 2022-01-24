@@ -1,5 +1,9 @@
 ## Change Log
 
+### v0.0.17
++ FIX the bug disconnect from server
++ Modify clipboard
+
 ### v0.0.16
 + CConnecter add block dialog
 + Add enable set system tray icon

@@ -227,7 +227,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
 ### Development
 
-[Doxyen documentation](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
+[Doxyen documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 #### Dependent
 ##### Tools

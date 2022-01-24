@@ -147,7 +147,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
                                           QVariant::Type preferredType) const
 #endif
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s; type:%d",
+    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s; type:0x%X",
                     mimetype.toStdString().c_str(), preferredType);
     auto it = m_Variant.find(mimetype);
     if(m_Variant.end() != it)
@@ -165,7 +165,8 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
         }
     }
 
-    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: format: %d", format);
+    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: format: %d;mimeData:%s",
+                    format, mimetype.toStdString().c_str());
     if(0 == format)
     {
         return QVariant();
