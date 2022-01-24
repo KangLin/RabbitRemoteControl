@@ -66,8 +66,9 @@ jobs:
             -DBUILD_DOCS=ON
         wget https://www.doxygen.nl/files/doxygen-1.9.3.linux.bin.tar.gz
         tar xzf doxygen-1.9.3.linux.bin.tar.gz
-        doxygen-1.9.3/bin/doxygen  Doxyfile_English 
-        doxygen-1.9.3/bin/doxygen  Doxyfile_Chinese                
+        doxygen-1.9.3/bin/doxygen  Doxyfile_English
+        doxygen-1.9.3/bin/doxygen  Doxyfile_Chinese
+        cp ${{github.workspace}}/README*.md ${{github.workspace}}/build/Doxygen
 
     - name: update 
       uses: actions/upload-artifact@v2
