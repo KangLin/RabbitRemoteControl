@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QEventLoop>
 #include <QRegularExpression>
+#include <QImage>
 
 static int g_UINT32 = qRegisterMetaType<UINT32>("UINT32");
 CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
@@ -236,8 +237,6 @@ int CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
         default:
             dstFormatId = ClipboardGetFormatId(m_pClipboard, name.toStdString().c_str());
         }
-        if("application/x-qt-image" == name)
-            dstFormatId = CF_BITMAP;
         bool bSuccess = ClipboardSetData(m_pClipboard, id, pData, nLen);
         if(bSuccess)
         {
@@ -292,7 +291,11 @@ QVariant CClipboardMimeData::GetValue(QString mimeType, QVariant::Type preferred
             return QVariant(QMetaType(QMetaType::QString), it.value().data());
         }
         if(isImage(mimeType))
-            return QVariant(QMetaType(QMetaType::QImage), it.value().data());
+        {
+            QImage img;
+            if(img.load(it.value().toByteArray(), "bmp"))
+                return QVariant(img);
+        }
         return QVariant(preferredType, it.value().data());
     }
     return QVariant();
