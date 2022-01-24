@@ -102,7 +102,6 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
             m_lstFormats << it.key();
         }
 
-    qDebug() << m_lstFormats;
     return 0;
 }
 
@@ -135,14 +134,15 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 
     if(isText(mimetype)) return true;
     if(isImage(mimetype)) return true;
-    if(m_outFormats.find(mimetype) == m_outFormats.end())
+    if(m_outFormats.find(mimetype) != m_outFormats.end())
         return true;
     return false;
 }
 
 QStringList CClipboardMimeData::formats() const
 { 
-    //LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
+    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
+    qDebug() << m_lstFormats;
     return m_lstFormats;
 }
 

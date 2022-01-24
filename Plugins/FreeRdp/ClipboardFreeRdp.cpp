@@ -15,6 +15,7 @@ CClipboardFreeRdp::CClipboardFreeRdp(CConnectFreeRdp *parent) : QObject(parent),
     m_pConnect(parent),
     m_pCliprdrClientContext(nullptr),
     m_pClipboard(nullptr),
+    m_bOwns(false),
     m_FileCapabilityFlags(0),
     m_bFileSupported(false)
 {
@@ -64,6 +65,11 @@ int CClipboardFreeRdp::UnInit(CliprdrClientContext *context, bool bEnable)
 void CClipboardFreeRdp::slotClipBoardChange()
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::slotClipBoardChange");
+    if(m_bOwns)
+    {
+        m_bOwns = false;
+        return;
+    }
     SendClientFormatList(m_pCliprdrClientContext);
 }
 
@@ -151,14 +157,15 @@ UINT CClipboardFreeRdp::SendClientFormatList(CliprdrClientContext *context)
     UINT32 numFormats = 0;
 
     if(!context) return nRet;
+    
+    CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
     QClipboard *clipboard = QApplication::clipboard();
-    if(!clipboard || clipboard->ownsClipboard())
+    if(!clipboard)
     {
-        LOG_MODEL_DEBUG("FreeRdp", "ownsClipboard");
+        LOG_MODEL_DEBUG("FreeRdp", "clipboard is null");
         return nRet;
     }
 
-    CClipboardFreeRdp* pThis = (CClipboardFreeRdp*)context->custom;
     pThis->m_FormatIds.clear();
     const QMimeData* pData = clipboard->mimeData();
     if(!pData || pData->formats().isEmpty())
@@ -560,6 +567,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_list(CliprdrClientContext* cont
                     pThis, SLOT(slotSendFormatDataRequest(CliprdrClientContext*, UINT32, QString)));
     Q_ASSERT(check);
     
+    pThis->m_bOwns = true;
     emit pThis->m_pConnect->sigSetClipboard(pMimeData);
     return nRet;
 }
