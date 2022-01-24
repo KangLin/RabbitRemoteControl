@@ -285,7 +285,7 @@ int CConnectRabbitVNC::OnClean()
     close();
     if(m_DataChannel)
         m_DataChannel->close();
-    emit sigDisconnected();
+    //emit sigDisconnected();
     return 0;
 }
 

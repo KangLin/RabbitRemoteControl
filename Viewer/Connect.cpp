@@ -195,6 +195,7 @@ int CConnect::Disconnect()
 {
     int nRet = 0;
     nRet = OnClean();
+    emit sigDisconnected();
     if(nRet) return nRet;
     
     return nRet;

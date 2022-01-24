@@ -666,6 +666,7 @@ void MainWindow::slotDisconnected()
             m_pView->RemoveView(c->GetViewer());
             m_Connecters.removeAll(c);
             m_ConfigureFiles.remove(c);
+            c->DisConnect();
             c->deleteLater();
             return;
         }
