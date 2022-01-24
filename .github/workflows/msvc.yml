@@ -45,7 +45,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
-      RabbitRemoteControl_VERSION: v0.0.16
+      RabbitRemoteControl_VERSION: v0.0.17
       VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
       qt_modules: qtwebengine ${{matrix.qt_modules}}
 
@@ -304,10 +304,12 @@ jobs:
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
         makensis Install.nsi
-        ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
-            -f "update_windows.xml" ^
-            --pf RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
-            -m "${{env.RabbitRemoteControl_VERSION}}"
+        if "5.12.12" == ${{matrix.qt_version}} ( ^
+            ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
+                -f "update_windows.xml" ^
+                --pf RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
+                -m "${{env.RabbitRemoteControl_VERSION}}" ^
+        )
 
     - name: update 
       uses: actions/upload-artifact@v2

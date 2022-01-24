@@ -56,7 +56,7 @@ MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
 if [ -n "$1" ]; then
     git add .
     git commit -m "Release $1"
-    git push
+    #git push
     git tag -d $1
     git tag -a $1 -m "Release $1"
     #git push origin :refs/tags/$1

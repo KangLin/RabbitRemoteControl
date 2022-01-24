@@ -2,7 +2,9 @@
 
 ### v0.0.17
 + FIX the bug disconnect from server
-+ Modify clipboard
++ Modify FreeRDP clipboard
+  - Text
+  - Image
 
 ### v0.0.16
 + CConnecter add block dialog
