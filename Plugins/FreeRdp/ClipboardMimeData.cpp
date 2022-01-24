@@ -17,9 +17,9 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
 
 CClipboardMimeData::~CClipboardMimeData()
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardMimeData::~CClipboardMimeData()");
     m_bExit = true;
     emit sigContinue();
+    LOG_MODEL_DEBUG("FreeRdp", "CClipboardMimeData::~CClipboardMimeData()");
 }
 
 int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
@@ -180,11 +180,11 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
     QEventLoop loop;
     connect(this, SIGNAL(sigContinue()), &loop, SLOT(quit()), Qt::DirectConnection);
     loop.exec();
-    
-    // Objecte destruct
-    if(m_bExit) return QVariant();
-    
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData end");
+    // Objecte destruct
+    if(m_bExit)
+        return QVariant(preferredType);
+
     auto v = m_Variant.find(mimetype);
     if(m_Variant.end() != v)
             return QVariant(preferredType, v.value().data());
