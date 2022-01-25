@@ -206,23 +206,23 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
 + Current version:
   - Windows: Supported WINDOWS 7 and later version
-    + Install package: [RabbitRemoteControl_setup_v0.0.17.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe)
-    + No need to install package: [RabbitRemoteControl_v0.0.17.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip)
+    + Install package: [RabbitRemoteControl_setup_v0.0.17-24-ge350ac65.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17-24-ge350ac65/RabbitRemoteControl_setup_v0.0.17-24-ge350ac65.exe)
+    + No need to install package: [RabbitRemoteControl_v0.0.17-24-ge350ac65.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17-24-ge350ac65/RabbitRemoteControl_windows_v0.0.17-24-ge350ac65.zip)
   - Ubuntu:
-    + Ubuntu 20.04: [rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb)
+    + Ubuntu 20.04: [rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17-24-ge350ac65/rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-20.04.deb)
           
-          sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-20.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-20.04.deb
           # sudo apt-get install -f # Install dependencies
           
-    + Ubuntu 18.04: [rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb)
+    + Ubuntu 18.04: [rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17-24-ge350ac65/rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-18.04.deb)
 
-          sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-18.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-18.04.deb
           # sudo apt-get install -f # Install dependencies
 
 ### Development
