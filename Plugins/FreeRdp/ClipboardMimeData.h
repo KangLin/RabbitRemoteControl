@@ -50,6 +50,7 @@ protected:
 
 private:
     bool isText(QString mimeType) const;
+    bool isHtml(QString mimeType) const;
     bool isImage(QString mimeType) const;
 
 private:

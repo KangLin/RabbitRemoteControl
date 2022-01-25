@@ -223,6 +223,7 @@ int CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
     }
     else
     {
+        
         switch (id) {
         case CF_TEXT:
         case CF_OEMTEXT:
@@ -245,6 +246,10 @@ int CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
             QByteArray d((char*)data, size);
             if(!d.isEmpty())
                 m_Variant[name] = QVariant(d);
+        } else {
+            QByteArray d((char*)pData, nLen);
+            if(!d.isEmpty())
+                m_Variant[name] = QVariant(d);
         }
     }
     emit sigContinue();
@@ -259,6 +264,17 @@ bool CClipboardMimeData::isText(QString mimeType) const
                               QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch match = re.match(mimeType);
         if(match.hasMatch())
+            return true;
+    }
+    return false;
+}
+
+bool CClipboardMimeData::isHtml(QString mimeType) const
+{
+    if(m_outFormats.find("text/html") != m_outFormats.end()
+            || m_outFormats.find("HTML Format") != m_outFormats.end())
+    {
+        if("text/html" == mimeType || "HTML Format" == mimeType)
             return true;
     }
     return false;
@@ -286,7 +302,7 @@ QVariant CClipboardMimeData::GetValue(QString mimeType, QVariant::Type preferred
     auto it = m_Variant.find(mimeType);
     if(m_Variant.end() != it)
     {
-        if(isText(mimeType))
+        if(isText(mimeType) || isHtml(mimeType))
         {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
             return QVariant(QMetaType(QMetaType::QString), it.value().data());
