@@ -131,8 +131,13 @@ UINT CClipboardFreeRdp::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
 	generalCapabilitySet.generalFlags = CB_USE_LONG_FORMAT_NAMES;
 
 	if (pThis->m_bFileSupported)
+    {
 		generalCapabilitySet.generalFlags |=
-		    CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS | CB_HUGE_FILE_SUPPORT_ENABLED;
+		    CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS;
+        #if QT_VERSION_CHECK(WINPR_VERSION_MAJOR, WINPR_VERSION_MINOR, WINPR_VERSION_REVISION) > QT_VERSION_CHECK(2, 4, 2)
+                generalCapabilitySet.generalFlags |= CB_HUGE_FILE_SUPPORT_ENABLED;
+        #endif
+    }
     
     pThis->m_FileCapabilityFlags = generalCapabilitySet.generalFlags;
 	if((nRet = context->ClientCapabilities(context, &capabilities)) != CHANNEL_RC_OK)
@@ -350,6 +355,7 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_request(CliprdrClientConte
         return nRet;
     }
     
+#if QT_VERSION_CHECK(WINPR_VERSION_MAJOR, WINPR_VERSION_MINOR, WINPR_VERSION_REVISION) > QT_VERSION_CHECK(2, 4, 2)
     /*
 	 * File lists require a bit of postprocessing to convert them from WinPR's FILDESCRIPTOR
 	 * format to CLIPRDR_FILELIST expected by the server.
@@ -372,7 +378,8 @@ UINT CClipboardFreeRdp::cb_cliprdr_server_format_data_request(CliprdrClientConte
 
         free(file_array);
     }
-
+#endif
+    
     nRet = SendFormatDataResponse(context, pDstData, dstSize);
 
     if(pDstData)

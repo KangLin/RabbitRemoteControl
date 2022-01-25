@@ -42,7 +42,7 @@ jobs:
         # architectures to pass to dpkg --add-architecture
         #architectures: # optional
         # apt packages to install
-        packages: xvfb xpra libglu1-mesa-dev libpulse-mainloop-glib0 cmake build-essential libusb-1.0-0-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot graphviz doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev qtwebengine5-dev
+        packages: xvfb xpra libglu1-mesa-dev libpulse-mainloop-glib0 cmake build-essential libusb-1.0-0-dev freerdp2-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot graphviz doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev qtwebengine5-dev
 
     - name: Cache installed
       uses: actions/cache@v2
@@ -52,21 +52,21 @@ jobs:
           ${{env.INSTALL_DIR}}
         key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
 
-    - name: build FreeRDP
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
-            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
-            cd FreeRDP
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}"
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
-        fi
+#    - name: build FreeRDP
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
+#            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
+#            cd FreeRDP
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. \
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}"
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#        fi
 
     - name: build RabbitVNC
       working-directory: ${{env.SOURCE_DIR}}
@@ -158,9 +158,9 @@ jobs:
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
-        FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2
-        FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2
-        WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR2
+        #FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2
+        #FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2
+        #WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR2
       run: |
         if [ ${{matrix.BUILD_TYPE}} == 'Release' ]; then
             export BUILD_TERMINAL=OFF
