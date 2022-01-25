@@ -195,23 +195,23 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 + 最后发行版本：[https://github.com/KangLin/RabbitRemoteControl/releases/latest](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
 + 当前版本：
   - Windows: 支持 WINDOWS 7 及以后版本
-    + 安装包：[RabbitRemoteControl_setup_v0.0.17-24-ge350ac65.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17-24-ge350ac65/RabbitRemoteControl_setup_v0.0.17-24-ge350ac65.exe)
-    + 绿色版本：[RabbitRemoteControl_v0.0.17-24-ge350ac65.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17-24-ge350ac65/RabbitRemoteControl_windows_v0.0.17-24-ge350ac65.zip)
+    + 安装包：[RabbitRemoteControl_setup_v0.0.17.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe)
+    + 绿色版本：[RabbitRemoteControl_v0.0.17.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip)
   - Ubuntu:
-    + Ubuntu 20.04: [rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17-24-ge350ac65/rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-20.04.deb)
+    + Ubuntu 20.04: [rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb)
 
-          sudo apt install ./rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-20.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
           
           # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
-          # sudo dpkg -i rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-20.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
           # sudo apt-get install -f # 安装依赖
 
-    + Ubuntu 18.04: [rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17-24-ge350ac65/rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-18.04.deb)
+    + Ubuntu 18.04: [rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb)
 
-          sudo apt install ./rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-18.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
           
           # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
-          # sudo dpkg -i rabbitremotecontrol_0.0.17-24-ge350ac65_amd64_Ubuntu-18.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
           # sudo apt-get install -f # 安装依赖
 
 ### 开发
