@@ -4,42 +4,42 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="209"/>
+        <location filename="../../FavoriteView.cpp" line="219"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="210"/>
+        <location filename="../../FavoriteView.cpp" line="220"/>
         <source>Open settings and connect</source>
         <translation>打开设置再连接</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="213"/>
+        <location filename="../../FavoriteView.cpp" line="223"/>
         <source>New group</source>
         <translation>新建组</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="215"/>
+        <location filename="../../FavoriteView.cpp" line="225"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="249"/>
+        <location filename="../../FavoriteView.cpp" line="259"/>
         <source>Input</source>
         <translation>输入</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="249"/>
+        <location filename="../../FavoriteView.cpp" line="259"/>
         <source>Input group name</source>
         <translation>输入组名</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="254"/>
+        <location filename="../../FavoriteView.cpp" line="264"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="254"/>
+        <location filename="../../FavoriteView.cpp" line="264"/>
         <source>The group [%1] is existed</source>
         <translation>组 [%1] 已经存在</translation>
     </message>
@@ -135,22 +135,22 @@
         <translation>普通</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="296"/>
+        <location filename="../../ParameterDlgSettings.ui" line="303"/>
         <source>Shot screen</source>
         <translation>截屏</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="323"/>
+        <location filename="../../ParameterDlgSettings.ui" line="330"/>
         <source>No action</source>
         <translation>无动作</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="339"/>
+        <location filename="../../ParameterDlgSettings.ui" line="346"/>
         <source>Open folder</source>
         <translation>打开文件夹</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="352"/>
+        <location filename="../../ParameterDlgSettings.ui" line="359"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
@@ -160,128 +160,133 @@
         <translation>最近打开文件最大数：</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="72"/>
+        <location filename="../../ParameterDlgSettings.ui" line="85"/>
         <source>Password</source>
         <translation>加密</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="80"/>
+        <location filename="../../ParameterDlgSettings.ui" line="93"/>
         <source>Encrypt key:</source>
         <translation>加密键：</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="110"/>
+        <location filename="../../ParameterDlgSettings.ui" line="123"/>
         <source>Prompt type:</source>
         <translation>提示类型：</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="119"/>
-        <location filename="../../ParameterDlgSettings.ui" line="398"/>
+        <location filename="../../ParameterDlgSettings.ui" line="132"/>
+        <location filename="../../ParameterDlgSettings.ui" line="405"/>
         <source>No</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="126"/>
+        <location filename="../../ParameterDlgSettings.ui" line="139"/>
         <source>First</source>
         <translation>一次</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="133"/>
+        <location filename="../../ParameterDlgSettings.ui" line="146"/>
         <source>Always</source>
         <translation>总是</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="144"/>
+        <location filename="../../ParameterDlgSettings.ui" line="157"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="151"/>
+        <location filename="../../ParameterDlgSettings.ui" line="164"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="195"/>
+        <location filename="../../ParameterDlgSettings.ui" line="194"/>
+        <source>Favorite: select it then double node edit, other connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="202"/>
         <source>Main window</source>
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="289"/>
+        <location filename="../../ParameterDlgSettings.ui" line="296"/>
         <source>Main window receiver short cut key</source>
         <translation>主窗口接收快捷键</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="385"/>
+        <location filename="../../ParameterDlgSettings.ui" line="392"/>
         <source>Save main window status</source>
         <translation>保存主窗口状态</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="221"/>
+        <location filename="../../ParameterDlgSettings.ui" line="228"/>
         <source>Tab position</source>
         <translation>标签位置</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="233"/>
+        <location filename="../../ParameterDlgSettings.ui" line="240"/>
         <source>North</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="259"/>
+        <location filename="../../ParameterDlgSettings.ui" line="266"/>
         <source>South</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="246"/>
+        <location filename="../../ParameterDlgSettings.ui" line="253"/>
         <source>West</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="272"/>
+        <location filename="../../ParameterDlgSettings.ui" line="279"/>
         <source>East</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="363"/>
+        <location filename="../../ParameterDlgSettings.ui" line="370"/>
         <source>Save Path:</source>
         <translation>保存文件夹：</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="373"/>
+        <location filename="../../ParameterDlgSettings.ui" line="380"/>
         <source>Brower(&amp;B)</source>
         <translation>浏览(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="392"/>
+        <location filename="../../ParameterDlgSettings.ui" line="399"/>
         <source>System tray icon context menu</source>
         <translation>系统托盘图标右键菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="405"/>
+        <location filename="../../ParameterDlgSettings.ui" line="412"/>
         <source>Remote</source>
         <translation>远程菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="412"/>
+        <location filename="../../ParameterDlgSettings.ui" line="419"/>
         <source>Recent open</source>
         <translation>最近打开菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="419"/>
+        <location filename="../../ParameterDlgSettings.ui" line="426"/>
         <source>Favorite</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="308"/>
+        <location filename="../../ParameterDlgSettings.ui" line="315"/>
         <source>Select shot remote desktop, otherwise shot window</source>
         <translation>选择截取远程桌面，否则截取窗口</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="282"/>
+        <location filename="../../ParameterDlgSettings.ui" line="289"/>
         <source>Resume the connections when it was last closed at startup</source>
         <translation>启动时，恢复上次关闭时的连接</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="201"/>
+        <location filename="../../ParameterDlgSettings.ui" line="208"/>
         <source>Enable system tray icon</source>
         <translation>允许系统托盘图标</translation>
     </message>
@@ -296,7 +301,7 @@
         <translation>取消(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.cpp" line="165"/>
+        <location filename="../../ParameterDlgSettings.cpp" line="171"/>
         <source>Open shot screen path</source>
         <translation>打开截屏文件夹</translation>
     </message>
@@ -320,9 +325,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="54"/>
-        <location filename="../../mainwindow.cpp" line="131"/>
-        <location filename="../../mainwindow.cpp" line="132"/>
-        <location filename="../../mainwindow.cpp" line="133"/>
+        <location filename="../../mainwindow.cpp" line="134"/>
+        <location filename="../../mainwindow.cpp" line="135"/>
+        <location filename="../../mainwindow.cpp" line="136"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
@@ -353,7 +358,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="203"/>
-        <location filename="../../mainwindow.cpp" line="270"/>
+        <location filename="../../mainwindow.cpp" line="273"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -583,9 +588,9 @@
         <translation>换肤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="121"/>
-        <location filename="../../mainwindow.cpp" line="122"/>
-        <location filename="../../mainwindow.cpp" line="123"/>
+        <location filename="../../mainwindow.cpp" line="124"/>
+        <location filename="../../mainwindow.cpp" line="125"/>
+        <location filename="../../mainwindow.cpp" line="126"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
@@ -594,57 +599,57 @@
         <location filename="../../mainwindow.ui" line="209"/>
         <location filename="../../mainwindow.ui" line="212"/>
         <location filename="../../mainwindow.ui" line="215"/>
-        <location filename="../../mainwindow.cpp" line="271"/>
-        <location filename="../../mainwindow.cpp" line="272"/>
-        <location filename="../../mainwindow.cpp" line="273"/>
+        <location filename="../../mainwindow.cpp" line="274"/>
+        <location filename="../../mainwindow.cpp" line="275"/>
+        <location filename="../../mainwindow.cpp" line="276"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="67"/>
+        <location filename="../../mainwindow.cpp" line="70"/>
         <source>Favorite</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="298"/>
+        <location filename="../../mainwindow.cpp" line="301"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="299"/>
-        <location filename="../../mainwindow.cpp" line="300"/>
-        <location filename="../../mainwindow.cpp" line="301"/>
+        <location filename="../../mainwindow.cpp" line="302"/>
+        <location filename="../../mainwindow.cpp" line="303"/>
+        <location filename="../../mainwindow.cpp" line="304"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="505"/>
-        <location filename="../../mainwindow.cpp" line="523"/>
+        <location filename="../../mainwindow.cpp" line="508"/>
+        <location filename="../../mainwindow.cpp" line="526"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="515"/>
+        <location filename="../../mainwindow.cpp" line="518"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="517"/>
+        <location filename="../../mainwindow.cpp" line="520"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="605"/>
+        <location filename="../../mainwindow.cpp" line="608"/>
         <source>Connecting to </source>
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="631"/>
+        <location filename="../../mainwindow.cpp" line="634"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="810"/>
+        <location filename="../../mainwindow.cpp" line="814"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>

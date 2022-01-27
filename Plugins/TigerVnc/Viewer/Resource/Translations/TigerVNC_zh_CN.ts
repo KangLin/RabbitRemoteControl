@@ -280,42 +280,42 @@
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="14"/>
         <source>Input password</source>
-        <translation >输入密码</translation>
+        <translation>输入密码</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="35"/>
         <source>OK(&amp;O)</source>
-        <translation >确定(&amp;O)</translation>
+        <translation>确定(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="42"/>
         <source>Cancel(&amp;C)</source>
-        <translation >取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="96"/>
         <source>User:</source>
-        <translation >用户：</translation>
+        <translation>用户：</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="110"/>
         <source>Password:</source>
-        <translation >密码：</translation>
+        <translation>密码：</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="126"/>
         <source>Save password</source>
-        <translation >保存密码</translation>
+        <translation>保存密码</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.ui" line="150"/>
         <source>TextLabel</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPassword.cpp" line="40"/>
         <source>Set password for %1</source>
-        <translation >为 %1 设置密码</translation>
+        <translation>为 %1 设置密码</translation>
     </message>
 </context>
 <context>
@@ -334,17 +334,17 @@
 <context>
     <name>CPluginTigerVnc</name>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="41"/>
+        <location filename="../../PluginTigerVnc.cpp" line="40"/>
         <source>TigerVNC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="46"/>
+        <location filename="../../PluginTigerVnc.cpp" line="45"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="47"/>
+        <location filename="../../PluginTigerVnc.cpp" line="46"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一个使用RFB(远程帧缓存)协议的程序。</translation>
     </message>

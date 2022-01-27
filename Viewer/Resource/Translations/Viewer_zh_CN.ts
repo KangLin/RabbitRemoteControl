@@ -19,7 +19,7 @@
         <translation>服务名：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="92"/>
+        <location filename="../../Connecter.cpp" line="93"/>
         <source>Set </source>
         <translation>设置 </translation>
     </message>

@@ -19,7 +19,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="92"/>
+        <location filename="../../Connecter.cpp" line="93"/>
         <source>Set </source>
         <translation type="unfinished"></translation>
     </message>
