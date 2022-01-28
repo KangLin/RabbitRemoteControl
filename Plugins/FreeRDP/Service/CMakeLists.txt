@@ -13,10 +13,12 @@ endif()
 
 SET(SOURCE_FILES
     ServiceFreeRDP.cpp
+    PluginServiceFreeRDP.cpp
     )
 
 SET(HEADER_FILES
     ServiceFreeRDP.h
+    PluginServiceFreeRDP.h
     )
 
 if(MINGW)

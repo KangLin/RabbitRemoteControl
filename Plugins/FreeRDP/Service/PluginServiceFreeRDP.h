@@ -1,12 +1,9 @@
-// Author: Kang Lin <kl222@126.com>
-
-#ifndef CPLUGINSERVICETIGERVNC_H
-#define CPLUGINSERVICETIGERVNC_H
+#ifndef CPLUGINSERVICEFREERDP_H
+#define CPLUGINSERVICEFREERDP_H
 
 #include "PluginService.h"
-#include <QTranslator>
 
-class CPluginServiceTigerVNC : public CPluginService
+class CPluginServiceFreeRDP : public CPluginService
 {
     Q_OBJECT
     
@@ -17,9 +14,9 @@ class CPluginServiceTigerVNC : public CPluginService
 #endif
     
 public:
-    explicit CPluginServiceTigerVNC(QObject *parent = nullptr);
-    virtual ~CPluginServiceTigerVNC();
-    
+    explicit CPluginServiceFreeRDP(QObject *parent = nullptr);
+    virtual ~CPluginServiceFreeRDP();
+
     // CPluginService interface
 public:
     virtual const QString Protol() const override;
@@ -30,4 +27,4 @@ protected:
     virtual CService *NewService() override;
 };
 
-#endif // CPLUGINSERVICETIGERVNC_H
+#endif // CPLUGINSERVICEFREERDP_H
