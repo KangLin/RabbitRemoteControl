@@ -27,12 +27,12 @@ public:
     virtual ~CService();
 
     virtual bool Enable();
-    
+
     virtual int Init();
     virtual int Clean();
 
     CParameterService* GetParameters();
-    
+
     virtual int SaveConfigure(const QString& szDir = QString());
 
 protected Q_SLOTS:
