@@ -35,30 +35,29 @@
   \image html docs/Image/PluginViewerAPI.svg
 + 写一个插件：
   - 生成插件目标名称格式为： PluginViewer${PROJECT_NAME}
-    注意：工程名必须与翻译资源文件名(.ts)相同
-    \include Plugins/TigerVnc/Viewer/CMakeLists.txt
-  - 实现 CPluginViewer
-    + 一个后台线程处理一个连接。连接可能是阻塞的。例如： FreeRDP
-      - 从 CPluginViewer 派生插件。例如： CPluginFreeRdp
+    \include Plugins/FreeRDP/Viewer/CMakeLists.txt
+  - 实现插件接口 CPluginViewer
+    + 一个后台线程处理一个连接。连接可能是阻塞的。例如：FreeRDP
+      - 从 CPluginViewer 派生插件。例如： \ref CPluginFreeRDP
         + 在类声明中实现Qt接口:
-          \snippet Plugins/FreeRdp/PluginFreeRdp.h Qt plugin interface
-    + 一个后台线程处理多个连接。连接是非阻塞的。 例如 TigerVNC
-      - 从  CPluginViewerThread 派生插件。例如：\ref CPluginTigerVnc 
+          \snippet Plugins/FreeRDP/Viewer/PluginFreeRDP.h Qt plugin interface
+    + 一个后台线程处理多个连接。连接是非阻塞的。 例如 RabbitVNC
+      - 从  CPluginViewerThread 派生插件。例如： \ref CPluginRabbitVNC
         + 在类声明中实现Qt接口:
-          \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.h Qt plugin interface
+          \snippet Plugins/RabbitVNC/Viewer/PluginRabbitVNC.h Qt plugin interface
         + 在构造函数中初始化操作。例如：初始化资源等
-          \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
+          \snippet Plugins/RabbitVNC/Viewer/PluginRabbitVNC.cpp Initialize resorce
         + 在析构函数中释放资源。
         + 实现属性、函数
-          - 插件名：必须与翻译资源文件名(.ts)相同。 例如  \ref CPluginTigerVnc::Name() 
-            \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
-  - 实现 \ref CConnecter 。
+          - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginFreeRDP::Name() 
+            \include Plugins/FreeRdp/Viewer/PluginFreeRdp.cpp
+  - 实现连接者接口 \ref CConnecter 。
     + 实现远程桌面
-      - 实现一个后台线程处理一个远程连接，连接是阻塞的。可以从 \ref CConnecterDesktopThread 派生。例如： CConnecterFreeRdp
-      - 实现一个后台线程处理多个远程连接，连接是非阻塞的。可以从 \ref CConnecterDesktop 派生。例如： \ref CConnecterTigerVnc
+      - 实现一个后台线程处理一个远程连接，连接是阻塞的。可以从 \ref CConnecterDesktopThread 派生。例如：\ref CConnecterFreeRDP
+      - 实现一个后台线程处理多个远程连接，连接是非阻塞的。可以从 \ref CConnecterDesktop 派生。例如：\ref CConnecterRabbitVNC
     + 实现远程控制台，可以从 \ref CConnecterTerminal 派生
     + 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生
-  - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectTigerVnc
+  - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectFreeRDP
 
 \defgroup LIBAPI_THREAD 线程模型
 \ingroup LIBAPI_VIEWER

@@ -20,7 +20,7 @@
  * \~chinese
  * \brief 具体连接接口。
  *     它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。
- *     详见： Connect() slotTimeOut() OnProcess() 。
+ *     详见： Connect()、 slotTimeOut()、 OnProcess() 。
  *     当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。
  * \note 这个接口仅由插件实现。 \n
  *     具体的插件需要实现下面接口：

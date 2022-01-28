@@ -29,35 +29,36 @@
   \image html docs/Image/PluginViewerAPI.svg
 + Write a plugin:
   - The format of the generated plug-in target name is: PluginViewer${PROJECT_NAME}
-    Note: The PROJECT_NAME is same as translation file(.ts) name.
-    \include Plugins/TigerVnc/Viewer/CMakeLists.txt
+    \include Plugins/FreeRDP/Viewer/CMakeLists.txt
   - Implement CPluginViewer. 
     + A background thread handles a connection. The connection may be blocked.
       E.g. FreeRDP
-      - Derive from CPluginViewer. For example: CPluginFreeRdp 
+      - Derive from CPluginViewer. For example: CPluginFreeRDP 
         + Implement the Qt interface in the class declaration:
-          \snippet Plugins/FreeRdp/PluginFreeRdp.h Qt plugin interface
+          \snippet Plugins/FreeRDP/Viewer/PluginFreeRDP.h Qt plugin interface
     + One background thread handles multiple connections.
-      The connection is non-blocking. E.g. TigerVNC 
-      - Derive from CPluginViewerThread. For example: CPluginTigerVnc
+      The connection is non-blocking. E.g. RabbitVNC 
+      - Derive from CPluginViewerThread. For example: CPluginRabbitVNC
         + Implement the Qt interface in the class declaration:
-          \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.h Qt plugin interface
+          \snippet Plugins/RabbitVNC/Viewer/PluginRabbitVNC.h Qt plugin interface
         + Initialize the operation in the constructor.
           For example: initializing resources, loading translation resources, etc.
-          \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
+          \snippet Plugins/RabbitVNC/Viewer/PluginRabbitVNC.cpp Initialize resorce
         + Release resources in the destructor.
         + Implement properties and functions
-          - Plugin name: it muse is same as translation file(.ts) name. Eg: CPluginTigerVnc::Name() 
-             \include Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp
+          - Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
+            The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
+            E.g. CPluginFreeRDP::Name() 
+             \include Plugins/FreeRdp/Viewer/PluginFreeRdp.cpp
   - Implement \ref CConnecter. 
     - Implement remote desktop
       - Implements a remote desktop background thread to handle
-        a remote desktop connection, which can be derived from CConnecterDesktopThread. Eg: CConnecterFreeRdp
+        a remote desktop connection, which can be derived from CConnecterDesktopThread. Eg: CConnecterFreeRDP
       - Implements a background thread to handle multiple remote desktop connections,
-        which can be derived from CConnecterDesktop. Eg: CConnecterTigerVnc
+        which can be derived from CConnecterDesktop. Eg: CConnecterRabbitVNC
     - Implement remote console, which can be derived from CConnecterTerminal
     - If the above two cannot meet your needs, you  can be derived from CConnecter
-  - Implement a specific connection, derived from CConnect. For example: CConnectTigerVnc 
+  - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP 
 
 \defgroup LIBAPI_THREAD Thread module
 \ingroup LIBAPI_VIEWER
