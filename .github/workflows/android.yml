@@ -29,7 +29,7 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       RabbitRemoteControl_VERSION: v0.0.17
-      VCPKGGITCOMMITID: 973a7d517c09c8cfb7e6a548fcc260ca34ba7b60
+      VCPKGGITCOMMITID: 8f315e85299d2e2f1899fd4bc07fb0c7829ae6fb
       qt_modules: qtwebengine
 
     steps:
@@ -101,7 +101,7 @@ jobs:
         appendedCacheKey: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         additionalCachedPaths: $VCPKG_ROOT/installed
         vcpkgTriplet: '${{ matrix.VCPKG_TARGET_TRIPLET }}'
-        vcpkgArguments: 'zlib openssl libssh libpng libjpeg-turbo libdatachannel'
+        vcpkgArguments: 'zlib openssl libssh libpng libjpeg-turbo pixman libdatachannel'
 
     - name: Cache installed
       uses: actions/cache@v2
@@ -154,25 +154,25 @@ jobs:
 #            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
 #        fi
         
-#    - name: build tigervnc
-#      working-directory: ${{env.SOURCE_DIR}}
-#      run: |
-#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
-#            git clone https://github.com/KangLin/tigervnc.git 
-#            cd ${{env.SOURCE_DIR}}/tigervnc
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. \
-#                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
-#                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-#                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
-#        fi
+    - name: build tigervnc
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
+            git clone https://github.com/KangLin/tigervnc.git 
+            cd ${{env.SOURCE_DIR}}/tigervnc
+            cmake -E make_directory build
+            cd build
+            cmake .. \
+                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
+                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+        fi
 
     - name: build log4qt
       working-directory: ${{env.SOURCE_DIR}}
