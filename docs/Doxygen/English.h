@@ -15,6 +15,8 @@
 \details 
 - Viewer plugin interfaces Class relationship
   \image html docs/Image/PluginViewerAPI.svg
+- Sequence diagram
+  \image html docs/Image/PluginViewerSequenceDiagram.svg
 \ingroup LIBAPI
 
 \defgroup VIEWER_API Viewer application interface
@@ -27,6 +29,8 @@
 \details
 + Class relationship
   \image html docs/Image/PluginViewerAPI.svg
++ Sequence diagram
+  \image html docs/Image/PluginViewerSequenceDiagram.svg
 + Write a plugin:
   - The format of the generated plug-in target name is: PluginViewer${PROJECT_NAME}
     \include Plugins/FreeRDP/Viewer/CMakeLists.txt
@@ -49,13 +53,15 @@
           - Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
             The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
             E.g. CPluginFreeRDP::Name() 
-             \include Plugins/FreeRdp/Viewer/PluginFreeRdp.cpp
+             \include Plugins/FreeRDP/Viewer/PluginFreeRDP.cpp
   - Implement \ref CConnecter. 
     - Implement remote desktop
       - Implements a remote desktop background thread to handle
         a remote desktop connection, which can be derived from CConnecterDesktopThread. Eg: CConnecterFreeRDP
+        \image html docs/Image/PluginViewerThreadSequenceDiagram.svg
       - Implements a background thread to handle multiple remote desktop connections,
         which can be derived from CConnecterDesktop. Eg: CConnecterRabbitVNC
+        \image html docs/Image/PluginViewerManageConnectSequenDiagram.svg
     - Implement remote console, which can be derived from CConnecterTerminal
     - If the above two cannot meet your needs, you  can be derived from CConnecter
   - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP 

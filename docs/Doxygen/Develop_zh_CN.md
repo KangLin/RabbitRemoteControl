@@ -18,5 +18,7 @@
 
 - [模块](modules.html)
 - 控制插件 API
-
-![ViewerPluginAPI](../Image/PluginViewerAPI.svg)
+  + 类关系图  
+    ![ViewerPluginAPI](../Image/PluginViewerAPI.svg)
+  + 序列图  
+    ![Sequence diagram](../Image/PluginViewerSequenceDiagram.svg)

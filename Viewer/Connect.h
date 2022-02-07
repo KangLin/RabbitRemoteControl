@@ -113,11 +113,15 @@ protected:
     virtual int OnClean() = 0;
     /*!
      * \~chinese 插件连接的具体操作处理
+     * \return 
+     *       \li >= 0: 继续。调用间隔时间，单位毫秒
+     *       \li <  0: 错误或停止
+     *     
      * \~english Specific operation processing of plug-in connection
-     * \~
      * \return 
      *       \li >= 0: continue, Interval call time (msec)
      *       \li <  0: error or stop
+     * \~
      * \see slotTimeOut()
      */
     virtual int OnProcess() = 0;

@@ -19,6 +19,8 @@
 \details 
 + 控制端插件接口类关系：
   \image html docs/Image/PluginViewerAPI.svg
++ 序列图：
+  \image html docs/Image/PluginViewerSequenceDiagram.svg
 \ingroup LIBAPI
 
 
@@ -33,6 +35,8 @@
 \details
 + 类关系：
   \image html docs/Image/PluginViewerAPI.svg
++ 序列图：
+  \image html docs/Image/PluginViewerSequenceDiagram.svg
 + 写一个插件：
   - 生成插件目标名称格式为： PluginViewer${PROJECT_NAME}
     \include Plugins/FreeRDP/Viewer/CMakeLists.txt
@@ -50,11 +54,13 @@
         + 在析构函数中释放资源。
         + 实现属性、函数
           - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginFreeRDP::Name() 
-            \include Plugins/FreeRdp/Viewer/PluginFreeRdp.cpp
+            \include Plugins/FreeRDP/Viewer/PluginFreeRDP.cpp
   - 实现连接者接口 \ref CConnecter 。
     + 实现远程桌面
       - 实现一个后台线程处理一个远程连接，连接是阻塞的。可以从 \ref CConnecterDesktopThread 派生。例如：\ref CConnecterFreeRDP
+        \image html docs/Image/PluginViewerThreadSequenceDiagram.svg
       - 实现一个后台线程处理多个远程连接，连接是非阻塞的。可以从 \ref CConnecterDesktop 派生。例如：\ref CConnecterRabbitVNC
+        \image html docs/Image/PluginViewerManageConnectSequenDiagram.svg
     + 实现远程控制台，可以从 \ref CConnecterTerminal 派生
     + 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生
   - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectFreeRDP

@@ -15,9 +15,9 @@
  * \brief It implements a background thread to handle
  *        multiple remote desktop connections.
  * \note The interface only is implemented by plug-in.
- *       The connector must be derived from CConnecterDesktop 
+ *       The connecter must be derived from CConnecterDesktop 
  * \~  
- * \see CConnecterDesktop CPluginThread CManageConnecter 
+ * \see CConnecterDesktop CPluginThread CManageConnect 
  */
 class VIEWER_EXPORT CPluginViewerThread : public CPluginViewer
 {
@@ -29,6 +29,11 @@ public:
     virtual CConnecter* CreateConnecter(const QString &szProtol) override;
     
 protected:
+    /*!
+     * \brief Create Connecter
+     * \param szProtol
+     * \return CConnecterDesktop*
+     */
     virtual CConnecterDesktop* OnCreateConnecter(const QString &szProtol) = 0;
     
 private:

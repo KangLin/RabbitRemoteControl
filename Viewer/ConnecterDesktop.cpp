@@ -1,10 +1,15 @@
 #include "ConnecterDesktop.h"
+#include "RabbitCommonLog.h"
 
 CConnecterDesktop::CConnecterDesktop(CPluginViewer *parent)
     : CConnecterDesktopThread(parent)
 {
 }
 
+CConnecterDesktop::~CConnecterDesktop()
+{
+    LOG_MODEL_DEBUG("CConnecterDesktop", "CConnecterDesktop::~CConnecterDesktop");
+}
 int CConnecterDesktop::Connect()
 {
     emit sigConnect(this);

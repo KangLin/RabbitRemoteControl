@@ -49,11 +49,12 @@ void CConnect::slotTimeOut()
             QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
             return;
         }
+        LOG_MODEL_ERROR("CConnect", "Process fail: %d", nTime);
     } catch(std::exception e) {
-        LOG_MODEL_ERROR("CConnect", "process fail:%s", e.what());
+        LOG_MODEL_ERROR("CConnect", "Process fail: %s", e.what());
         emit sigError(-1, e.what());
     }  catch (...) {
-        LOG_MODEL_ERROR("CConnect", "process fail");
+        LOG_MODEL_ERROR("CConnect", "Process fail");
         emit sigError(-2, "");
     }
     

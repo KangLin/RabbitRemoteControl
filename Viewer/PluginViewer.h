@@ -18,7 +18,7 @@
  *                  be implemented by the protol plugin.
  * \~
  * \ingroup VIEWER_PLUGIN_API
- * \see CConnecter CManageConnecter
+ * \see CConnecter CManagePlugin
  */
 class VIEWER_EXPORT CPluginViewer : public QObject
 {
@@ -47,13 +47,13 @@ public:
      *        the resources are clean are unloaded here. eg:
      * 
      * \~
-     * \snippet Viewer/Plugins/TigerVnc/PluginFactoryTigerVnc.cpp Clean resource
+     * \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Clean resource
      */
     virtual ~CPluginViewer();
 
-    /// \~english ID. Default: Protol() + ":" + Name()
+    /// ID. Default: Protol() + ":" + Name()
     virtual const QString Id() const;
-    /// \~english Plugin protol
+    /// Plugin protol
     virtual const QString Protol() const = 0;
     /// \~chinese 插件名，这个名一定要与工程名(${PROJECT_NAME})相同。
     ///           翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。
@@ -62,27 +62,27 @@ public:
     virtual const QString Name() const = 0;
     /// The plugin display name
     virtual const QString DisplayName() const;
-    /// \~english Plugin description
+    /// Plugin description
     virtual const QString Description() const = 0;
     virtual const QIcon Icon() const;
     
     /**
      * \~chinese
-     * \brief 新建 CConnecter 实例。仅由 CManageConnecter 调用
+     * \brief 新建 CConnecter 实例。仅由 CManagePlugin 调用
      * \return 返回 CConnecter 指针, 它的所有者是调用者。
      * \note 此函数新建一个堆栈对象指针，
      *       <b>调用者必须负责在用完后释放指针</b>。
      * \param szProtol 连接协议
      * 
      * \~english
-     * \brief New CConnecter instance. Only is called by CManageConnecter 
+     * \brief New CConnecter instance. Only is called by CManagePlugin 
      * \return Return CConnecter pointer, the owner is caller
      * \note The function new object pointer,
      *       <b>the caller must delete it when don't use it</b>.
      * \param szProtol
      * 
      * \~
-     * \see CManageConnecter::CreateConnecter CManageConnecter::LoadConnecter
+     * \see CManagePlugin::CreateConnecter CManagePlugin::LoadConnecter
      * 
      */
     virtual CConnecter* CreateConnecter(const QString& szProtol) = 0;

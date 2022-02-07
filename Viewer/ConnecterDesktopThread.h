@@ -19,7 +19,8 @@ class CConnectThread;
  *      在线程中调用 InstanceConnect() 实例化 CConnect ，
  *      并在 CConnect::Connect() 启动定时器，
  *      此定时器在后台线程中调用，通过对定时器的操作，实现一个非 Qt 事件循环(可能会阻塞)，详见 CConnect 。
- *      并且 CConnect 仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）(非阻塞）。
+ *      并且 CConnect 仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）(非阻塞）。\n
+ * 序列图：\image html docs/Image/PluginViewerThreadSequenceDiagram.svg
  * \note 此接口仅由插件实现。 \n
  *      具体的插件需要实现下面接口：
  *         1. 实现 InstanceConnect() ，生成连接对象
@@ -37,11 +38,12 @@ class CConnectThread;
  *     This timer is called in the background thread.
  *     Through the operation of the timer,
  *     start a non-Qt event loop (that is, normal loop processing. May block), See CConnect.
- *     And CConnect supports the Qt event (the signal-slot mechanism of QObject. no-block) .
+ *     And CConnect supports the Qt event (the signal-slot mechanism of QObject. no-block) .\n
+ *     Sequen diagram: \image html docs/Image/PluginViewerThreadSequenceDiagram.svg
  * \note The interface only is implemented by plug-in \n
  *     The specific plug-in needs to implement the following interface. 
  *         1. Implement InstanceConnect()
- *         2. Implement GetDialogSettings
+ *         2. Implement CConnecter::GetDialogSettings(QWidget* parent = nullptr)
  *         3. Implement Load(QSettings& set)
  *         4. Implement Save(QSettings& set)
  *

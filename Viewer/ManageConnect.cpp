@@ -28,7 +28,11 @@ void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
       nRet = 1 : emit sigConnected in CConnect
       */
     nRet = pConnect->Connect();
-    if(nRet < 0) return;
+    if(nRet < 0)
+    {
+        emit pConnecter->sigDisconnected();
+        return;
+    }
     if(0 == nRet) emit pConnect->sigConnected();
 
     m_Connects.insert(pConnecter, pConnect);
@@ -39,7 +43,7 @@ void CManageConnect::slotDisconnect(CConnecterDesktop *pConnecter)
     auto it = m_Connects.find(pConnecter);
     if(m_Connects.end() == it) return;
     CConnect* pConnect = it.value();
+    m_Connects.remove(pConnecter);
     pConnect->Disconnect();
     pConnect->deleteLater();
-    m_Connects.remove(pConnecter);
 }

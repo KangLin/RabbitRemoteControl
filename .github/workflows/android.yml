@@ -29,7 +29,7 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       RabbitRemoteControl_VERSION: v0.0.17
-      VCPKGGITCOMMITID: 8f315e85299d2e2f1899fd4bc07fb0c7829ae6fb
+      VCPKGGITCOMMITID: 7e7dad5fe20cdc085731343e0e197a7ae655555b
       qt_modules: qtwebengine
 
     steps:
@@ -101,7 +101,7 @@ jobs:
         appendedCacheKey: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         additionalCachedPaths: $VCPKG_ROOT/installed
         vcpkgTriplet: '${{ matrix.VCPKG_TARGET_TRIPLET }}'
-        vcpkgArguments: 'zlib openssl libssh libpng libjpeg-turbo pixman libdatachannel'
+        vcpkgArguments: 'zlib openssl libpng libjpeg-turbo pixman libdatachannel'
 
     - name: Cache installed
       uses: actions/cache@v2

@@ -7,16 +7,19 @@
  * \~chinese
  * \brief 它仅实现 Qt 事件(非阻塞)
  * \note 此接口仅由插件实现。
- *       如果要实现一个后台线程处理多个连接，此控制者插件接口必须由 CPluginViewerThread 派生。
+ *       如果要实现一个后台线程处理多个连接，此控制者插件接口必须由 CPluginViewerThread 派生。\n
+ *       序列图：\image html docs/Image/PluginViewerManageConnectSequenDiagram.svg
  * 
  * \~english
- * \brief The class only supports the Qt event (the signal-slot mechanism of QObject. no-block)
+ * \brief The class only supports the Qt event (the signal-slot mechanism of QObject, no-block)
  * \note The interface only is implemented by plug-in.
  *       If implements a background thread to handle
  *       multiple remote desktop connections,
- *       The plugin interface must be derived from CPluginViewerThread 
+ *       The plugin interface must be derived from CPluginViewerThread \n
+ *       Sequen diagram: \image html docs/Image/PluginViewerManageConnectSequenDiagram.svg
+ * 
  * \~  
- * \see CPluginViewerThread CPluginThread CManageConnecter
+ * \see CPluginViewerThread CPluginThread CManageConnect
  */
 class VIEWER_EXPORT CConnecterDesktop : public CConnecterDesktopThread
 {
@@ -24,6 +27,7 @@ class VIEWER_EXPORT CConnecterDesktop : public CConnecterDesktopThread
 
 public:
     CConnecterDesktop(CPluginViewer *parent = nullptr);
+    virtual ~CConnecterDesktop();
 
 public slots:
     virtual int Connect() override;

@@ -143,8 +143,8 @@ public Q_SLOTS:
      */
     virtual int DisConnect() = 0;
     
-    // \~chinese 下列槽仅由插件使用
-    // \~english Follow slot only is used by plugin
+    //! \~chinese 下列槽仅由插件使用
+    //! \~english Follow slot only is used by plugin
     virtual void slotSetClipboard(QMimeData *data);
     virtual void slotSetServerName(const QString &szName);
     
