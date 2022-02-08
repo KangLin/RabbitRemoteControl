@@ -19,7 +19,8 @@ class CFrmViewer;
  * \~chinese
  * \brief 
  * 用于显示从 CConnect 输出的图像，和向 CConnect 发送键盘、鼠标事件。
- * 当新的输出图像从 CConnect 输出时，它调用 slotUpdateRect() 更新显示。
+ * - 当新的输出图像从 CConnect 输出时，它调用 \ref slotUpdateRect 更新显示。
+ * - 当鼠标更新时，调用 \ref slotUpdateCursor ，位置更新时，调用 \ref slotUpdateCursorPosition
  *
  * \~english
  * \brief 
@@ -27,8 +28,10 @@ class CFrmViewer;
  * and sends input keypresses and mouse activity
  * to the CConnect.
  *
- * When the viewer receives new output from the CConnect,
- * it will update the display by calling slotUpdateRect().
+ * - When the viewer receives new image output from the CConnect,
+ *   it will update the display by calling \ref slotUpdateRect.
+ * - When the mouse update, then call \ref slotUpdateCursor,
+ *   if update position, then call \ref slotUpdateCursorPosition
  * 
  *\~
  * \see  CConnecter CConnect
@@ -84,8 +87,21 @@ public:
 public Q_SLOTS:
     void slotSetDesktopSize(int width, int height);
     void slotSetName(const QString& szName);
+    /*!
+     * \brief Update image
+     * \param r: image rect
+     * \param image: image
+     */
     void slotUpdateRect(const QRect& r, const QImage& image);
+    /*!
+     * \brief Update cursor
+     * \param cursor
+     */
     void slotUpdateCursor(const QCursor& cursor);
+    /*!
+     * \brief Update cursor position
+     * \param pos
+     */
     void slotUpdateCursorPosition(const QPoint& pos);
     void slotSystemCombination();
     
