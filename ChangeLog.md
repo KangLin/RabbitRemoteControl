@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.18
++ Organize documents
+
 ### v0.0.17
 + FIX the bug disconnect from server
 + Modify FreeRDP clipboard
