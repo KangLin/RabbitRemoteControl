@@ -649,7 +649,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="814"/>
+        <location filename="../../mainwindow.cpp" line="813"/>
         <source>Save screenslot to </source>
         <translation type="unfinished"></translation>
     </message>
