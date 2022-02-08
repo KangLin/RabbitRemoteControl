@@ -8,23 +8,24 @@
 
 
 \defgroup LIBAPI_SERVICE 服务端库
+\ingroup LIBAPI
 \brief 服务端库
 \details 类关系：
 \image html docs/Image/PluginServiceAPI.svg
-\ingroup LIBAPI
 
 
 \defgroup LIBAPI_VIEWER 控制端库
+\ingroup LIBAPI
 \brief 控制端库
 \details 
 + 控制端插件接口类关系：
   \image html docs/Image/PluginViewerAPI.svg
 + 序列图：
   \image html docs/Image/PluginViewerSequenceDiagram.svg
-\ingroup LIBAPI
 
 
 \defgroup VIEWER_API 控制端应用程序接口
+\ingroup LIBAPI_VIEWER
 \brief 控制端应用程序接口
 \details 
 + 类关系：
@@ -43,8 +44,6 @@
   - 关闭连接： CConnecter::DisConnect()
   - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，完成后并删除此连接者对象( CConnecter::deleteLater )
     
-\ingroup LIBAPI_VIEWER
-
 
 \defgroup VIEWER_PLUGIN_API 控制端插件接口
 \ingroup LIBAPI_VIEWER

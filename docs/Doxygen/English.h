@@ -5,26 +5,42 @@
 \brief Rabbit remote control library
 
 \defgroup LIBAPI_SERVICE Service library
+\ingroup LIBAPI
 \brief Service library
 \details Class relationship
 \image html docs/Image/PluginServiceAPI.svg
-\ingroup LIBAPI
+
 
 \defgroup LIBAPI_VIEWER Viewer library
+\ingroup LIBAPI
 \brief Viewer library
 \details 
 - Viewer plugin interfaces Class relationship
   \image html docs/Image/PluginViewerAPI.svg
 - Sequence diagram
   \image html docs/Image/PluginViewerSequenceDiagram.svg
-\ingroup LIBAPI
+
 
 \defgroup VIEWER_API Viewer application interface
+\ingroup LIBAPI_VIEWER
 \brief Viewer application interface
 \details
 + Class relationship
   \image html docs/Image/PluginViewerAPI.svg
-\ingroup LIBAPI_VIEWER
++ usge:
+  - Instance class: CManagePlugin m_ManageConnecter;
+    + Handle CManagePlugin::Handle::onProcess to get the registered connection plugin
+  - Use one of the following methods to get the connecter object:
+    + \ref CManagePlugin::CreateConnecter
+    + \ref CManagePlugin::LoadConnecter
+  - Connect signal:
+    + Connect CConnecter::sigConnected
+    + Connect CConnecter::sigDisconnected
+  - Open connect: CConnecter::Connect()
+  - After receiving the \ref CConnecter::sigConnected signal, do connection-related initialization work
+  - Close connect: CConnecter::DisConnect()
+  - After receiving the \ref CConnecter::sigDisconnected signal, do connection-related cleanup work, and delete the connector object after completion ( CConnecter::deleteLater )
+
 
 \defgroup VIEWER_PLUGIN_API Viewer plugin interfaces
 \ingroup LIBAPI_VIEWER
