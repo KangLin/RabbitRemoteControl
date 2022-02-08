@@ -131,12 +131,13 @@ public Q_SLOTS:
      * \~chinese
      * \brief 关闭连接
      * \note 仅由用户调用，插件不能直接调用此函数。
-     *       插件断开连接后，触发信号 sigDisconnected()
+     *       插件断开连接后，触发信号 sigDisconnected()。调用者收到信号后，删除对象
      *       
      * \~english
      * \brief Close connect
      * \note Only call by user, The plugin don't call it.
-     *       When plugin is disconnected, it emit sigDisconnected()
+     *       When plugin is disconnected, it emit sigDisconnected().
+     *       The caller receive the signal, then delete the object.
      * 
      * \~
      * \see sigDisconnected()

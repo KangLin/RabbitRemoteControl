@@ -38,30 +38,6 @@ CConnect::~CConnect()
     qDebug() << "CConnect::~CConnect()";
 }
 
-void CConnect::slotTimeOut()
-{
-    try {
-        // >= 0 : continue
-        // <  0: error or stop
-        int nTime = OnProcess();
-        if(nTime >= 0)
-        {
-            QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
-            return;
-        }
-        LOG_MODEL_ERROR("CConnect", "Process fail: %d", nTime);
-    } catch(std::exception e) {
-        LOG_MODEL_ERROR("CConnect", "Process fail: %s", e.what());
-        emit sigError(-1, e.what());
-    }  catch (...) {
-        LOG_MODEL_ERROR("CConnect", "Process fail");
-        emit sigError(-2, "");
-    }
-    
-    // Error or stop, must notify user disconnect it
-    emit sigDisconnected();
-}
-
 int CConnect::SetConnecter(CConnecter* pConnecter)
 {
     Q_ASSERT(pConnecter);
@@ -200,6 +176,30 @@ int CConnect::Disconnect()
     if(nRet) return nRet;
     
     return nRet;
+}
+
+void CConnect::slotTimeOut()
+{
+    try {
+        // >= 0 : continue
+        // <  0: error or stop
+        int nTime = OnProcess();
+        if(nTime >= 0)
+        {
+            QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
+            return;
+        }
+        LOG_MODEL_ERROR("CConnect", "Process fail: %d", nTime);
+    } catch(std::exception e) {
+        LOG_MODEL_ERROR("CConnect", "Process fail: %s", e.what());
+        emit sigError(-1, e.what());
+    }  catch (...) {
+        LOG_MODEL_ERROR("CConnect", "Process fail");
+        emit sigError(-2, "");
+    }
+
+    // Error or stop, must notify user disconnect it
+    emit sigDisconnected();
 }
 
 void CConnect::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)

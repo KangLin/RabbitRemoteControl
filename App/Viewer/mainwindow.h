@@ -58,7 +58,7 @@ private:
     int LoadConnectLasterClose();
     int SaveConnectLasterClose();
 public:
-    virtual int onProcess(const QString &id, CPluginViewer *pFactory) override;
+    virtual int onProcess(const QString &id, CPluginViewer *pPlug) override;
 private:
     CManagePlugin m_ManageConnecter;
     QMap<CConnecter*, QString> m_ConfigureFiles;

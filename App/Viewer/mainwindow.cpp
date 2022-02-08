@@ -666,7 +666,6 @@ void MainWindow::slotDisconnected()
             m_pView->RemoveView(c->GetViewer());
             m_Connecters.removeAll(c);
             m_ConfigureFiles.remove(c);
-            c->DisConnect();
             c->deleteLater();
             return;
         }
@@ -701,17 +700,17 @@ void MainWindow::on_actionDefaultStyle_D_triggered()
     RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
 }
 
-int MainWindow::onProcess(const QString &id, CPluginViewer *pFactory)
+int MainWindow::onProcess(const QString &id, CPluginViewer *pPlug)
 {
     Q_UNUSED(id);
     // Connect menu and toolbar
-    QAction* p = ui->menuConnect_C->addAction(pFactory->Protol()
-                                              + ": " + pFactory->DisplayName(),
+    QAction* p = ui->menuConnect_C->addAction(pPlug->Protol()
+                                              + ": " + pPlug->DisplayName(),
                                               this, SLOT(slotConnect()));
-    p->setToolTip(pFactory->Description());
-    p->setStatusTip(pFactory->Description());
+    p->setToolTip(pPlug->Description());
+    p->setStatusTip(pPlug->Description());
     p->setData(id);
-    p->setIcon(pFactory->Icon());
+    p->setIcon(pPlug->Icon());
 
     return 0;
 }

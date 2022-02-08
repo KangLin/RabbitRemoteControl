@@ -31,17 +31,25 @@ public:
      * \~chinese
      * \brief 新建 CConnecter 指针，所有者是调用者。
      *        <b>当不在使用时，调用者必须释放指针</b>。
+     *        调用者必须连接信号 CConnecter::sigDisconnected 。
+     *        释放指针 ( CConnecter::deleteLater )
      * \param id 插件 ID
      * \~english New CConnecter pointer, the owner is caller.
      *           <b>The caller must delete it, when isn't need it</b>.
+     *           The caller must connect CConnecter::sigDisconnected,
+     *           then delete it( CConnecter::deleteLater )
      * \param id Plugin ID
      */
     virtual CConnecter* CreateConnecter(const QString &id);
     
     /*! \~chinese \brief 从文件中新建 CConnecter 指针，所有者是调用者。
      *          <b>当不再使用时，调用者必须负责删除此指针</b>
+     *          调用者必须连接信号 CConnecter::sigDisconnected 。
+     *          释放指针( CConnecter::deleteLater )
      * \~english New CConnecter pointer from file, the owner is caller.
      *          <b>The caller must delete it, when isn't need it</b>.
+     *          The caller must connect CConnecter::sigDisconnected,
+     *          then delete it ( CConnecter::deleteLater )
      */
     virtual CConnecter* LoadConnecter(const QString& szFile);
     
@@ -62,10 +70,10 @@ public:
         /**
          * @brief Process plugins
          * @param id: plugin id
-         * @param pFactory: CPluginViewer pointer
+         * @param pPlug: CPluginViewer pointer
          * @return 
          */
-        virtual int onProcess(const QString& id, CPluginViewer* pFactory) = 0;
+        virtual int onProcess(const QString& id, CPluginViewer* pPlug) = 0;
         int m_bIgnoreReturn;
     };
     virtual int EnumPlugins(Handle* handle);

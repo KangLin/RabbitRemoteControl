@@ -21,6 +21,9 @@
 
 \defgroup VIEWER_API Viewer application interface
 \brief Viewer application interface
+\details
++ Class relationship
+  \image html docs/Image/PluginViewerAPI.svg
 \ingroup LIBAPI_VIEWER
 
 \defgroup VIEWER_PLUGIN_API Viewer plugin interfaces

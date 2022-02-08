@@ -26,6 +26,23 @@
 
 \defgroup VIEWER_API 控制端应用程序接口
 \brief 控制端应用程序接口
+\details 
++ 类关系：
+  \image html docs/Image/PluginViewerAPI.svg
++ 使用：
+  - 实例化类： \ref CManagePlugin m_ManageConnecter;
+    + 处理 CManagePlugin::Handle::onProcess 得到注册的连接插件
+  - 使用下面一种方式得到连接者对象：
+    + \ref CManagePlugin::CreateConnecter
+    + \ref CManagePlugin::LoadConnecter
+  - 关联信号：
+    + 连接成功信号： \ref CConnecter::sigConnected
+    + 断连信号： \ref CConnecter::sigDisconnected
+  - 打开连接： CConnecter::Connect()
+  - 接收到 \ref CConnecter::sigConnected 信号后，做连接相关初始化工作
+  - 关闭连接： CConnecter::DisConnect()
+  - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，完成后并删除此连接者对象( CConnecter::deleteLater )
+    
 \ingroup LIBAPI_VIEWER
 
 

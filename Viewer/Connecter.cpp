@@ -19,6 +19,14 @@ CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
     m_pPluginViewer(parent),
     m_pParameter(nullptr)
 {
+    /* 因为断连会从用户调用或者远程端断开连接或出错
+     * 从用户端调用会直接调用 DisConnect
+     * 从远程端断开连接或出错，则会触发 sigDisconnected 而不会调用 DisConnect，所以需要在此关联
+     * 这里隐式是第一个调用，否则对象先释放，则从远程端断连则不会执行。
+     */
+    bool check = connect(this, SIGNAL(sigDisconnected()),
+                         this, SLOT(DisConnect()));
+    Q_ASSERT(check);
 }
 
 CConnecter::~CConnecter()
