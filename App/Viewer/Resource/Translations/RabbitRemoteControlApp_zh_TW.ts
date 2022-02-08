@@ -203,7 +203,7 @@
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="194"/>
         <source>Favorite: select it then double node edit, other connect</source>
-        <translation type="unfinished"></translation>
+        <translation>收藏夾：選擇它，雙擊編輯節點；否則連接</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="202"/>
