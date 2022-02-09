@@ -8,8 +8,8 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
     Windows 10, version 20H2 (19042.985)
 
 #### QtCreator
-Version: v5.0.2. \
-It is recommended to use version v5.0.2 or later. \
+Version: v5.0.2.  
+It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
 ### Tools
@@ -34,8 +34,8 @@ Prior versions don't have CMake support.
 
 - Qt
   + Qt (official release): https://download.qt.io/official_releases/qt/  
-    Current version: Qt 5.12.11
-  + IDE: Qt Creator. It is recommended to use version v4.15.0 or later. \
+    Current version: Qt 5.12.12
+  + IDE: Qt Creator. It is recommended to use version v4.15.0 or later.  
   Prior versions don't have CMake support.
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
 - CMake: [https://www.cmake.org/](https://cmake.org/)

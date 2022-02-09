@@ -32,7 +32,7 @@
    
 - Qt
   + Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
-    当前使用版本：Qt 5.12.11
+    当前使用版本：Qt 5.12.12
   + IDE：Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)

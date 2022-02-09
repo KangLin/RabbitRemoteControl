@@ -13,8 +13,8 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
     Codename:	    Focal Fossa
 
 #### Qt Creator
-Version: v5.0.2 \
-It is recommended to use version v5.0.2 or later. \
+Version: v5.0.2  
+It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
 ### Tools
@@ -30,9 +30,9 @@ Prior versions don't have CMake support.
         ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
         
   + Qt (official release): https://download.qt.io/official_releases/qt/  
-    Current version: Qt 5.12.11
+    Current version: Qt 5.12.12
 
-- [OPTIONAL] IDE: Qt Creator. It is recommended to use version v4.15.0 or later. \
+- [OPTIONAL] IDE: Qt Creator. It is recommended to use version v4.15.0 or later.  
   Prior versions don't have CMake support.
 
       ~$ sudo apt install sudo apt install qtcreator

@@ -28,7 +28,7 @@
         ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
         
   + Qt 官方发行版本： https://download.qt.io/official_releases/qt/  
-    当前使用版本: Qt 5.12.11
+    当前使用版本: Qt 5.12.12
 
 - [可选] IDE: Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
   
