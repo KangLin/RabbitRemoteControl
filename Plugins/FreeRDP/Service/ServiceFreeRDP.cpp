@@ -26,17 +26,6 @@ int CServiceFreeRDP::OnInit()
 		LOG_MODEL_ERROR("CServiceFreeRDP", "Server new failed");
 		return -1;
 	}
-
-    m_pSettings = m_pServer->settings;
-    m_pSettings->NlaSecurity = FALSE;
-	m_pSettings->TlsSecurity = TRUE;
-	m_pSettings->RdpSecurity = TRUE;
-
-#ifdef WITH_SHADOW_X11
-	m_pServer->authentication = TRUE;
-#else
-	m_pServer->authentication = FALSE;
-#endif
     
     SetParameters();
     
@@ -76,6 +65,22 @@ int CServiceFreeRDP::SetParameters()
 {
     CParameterServiceFreeRDP* p = 
             dynamic_cast<CParameterServiceFreeRDP*>(GetParameters());
+
+    m_pSettings = m_pServer->settings;
+    m_pSettings->NlaSecurity = p->getNlaSecurity();
+	m_pSettings->TlsSecurity = p->getTlsSecurity();
+	m_pSettings->RdpSecurity = p->getRdpSecurity();
+    m_pSettings->UseRdpSecurityLayer = m_pSettings->RdpSecurity;
+    m_pSettings->ExtSecurity = p->getNlaExtSecurity();
+    if(!p->getSamFile().isEmpty())
+        freerdp_settings_set_string(m_pSettings, FreeRDP_NtlmSamFile,
+                                    p->getSamFile().toStdString().c_str());
+    
+	m_pServer->authentication = p->getAuthentication();
+     
     m_pServer->port = p->getPort();
+    m_pServer->mayView = p->getMayView();
+    m_pServer->mayInteract = p->getMayInteract();
+
     return 0;
 }
