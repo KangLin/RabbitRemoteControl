@@ -6,7 +6,7 @@
 #include "PluginService.h"
 #include <QTranslator>
 
-class CPluginServiceTigerVNC : public CPluginService
+class CPluginServiceRabbitVNC : public CPluginService
 {
     Q_OBJECT
     
@@ -17,8 +17,8 @@ class CPluginServiceTigerVNC : public CPluginService
 #endif
     
 public:
-    explicit CPluginServiceTigerVNC(QObject *parent = nullptr);
-    virtual ~CPluginServiceTigerVNC();
+    explicit CPluginServiceRabbitVNC(QObject *parent = nullptr);
+    virtual ~CPluginServiceRabbitVNC();
     
     // CPluginService interface
 public:

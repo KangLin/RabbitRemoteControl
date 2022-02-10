@@ -1,12 +1,12 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ServiceTigerVNC.h"
+#include "ServiceRabbitVNC.h"
 #include "RabbitCommonLog.h"
 #include "RabbitCommonTools.h"
 #include "network/Socket.h"
 #include <QHostAddress>
 #include <QTcpSocket>
-#include "ParameterServiceTigerVNC.h"
+#include "ParameterServiceRabbitVNC.h"
 #include "Connection.h"
 #include "PluginService.h"
 
@@ -18,14 +18,14 @@
 #include "ICE/DataChannelIce.h"
 #endif
 
-CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
+CServiceRabbitVNC::CServiceRabbitVNC(CPluginService *plugin) : CService(plugin)
 {
     bool check = false;
     check = connect(&m_Lister, SIGNAL(newConnection()),
                     this, SLOT(slotNewConnection()));
     Q_ASSERT(check);
     
-    m_pPara = new CParameterServiceTigerVNC(this);
+    m_pPara = new CParameterServiceRabbitVNC(this);
 
 #if defined(HAVE_ICE)
     #if defined(HAVE_QXMPP)
@@ -58,16 +58,16 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
 #endif
 }
 
-CServiceTigerVNC::~CServiceTigerVNC()
+CServiceRabbitVNC::~CServiceRabbitVNC()
 {
     LOG_MODEL_DEBUG("CServiceTigerVNC", "CServiceTigerVNC::~CServiceTigerVNC");
 }
 
-int CServiceTigerVNC::OnInit()
+int CServiceRabbitVNC::OnInit()
 {
     int nRet = 0;
-    CParameterServiceTigerVNC* p =
-            dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
+    CParameterServiceRabbitVNC* p =
+            dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters());
     if(!p)
         Q_ASSERT(false);
     
@@ -90,7 +90,7 @@ int CServiceTigerVNC::OnInit()
     return 0;
 }
 
-int CServiceTigerVNC::OnClean()
+int CServiceRabbitVNC::OnClean()
 {
     m_Lister.close();
 #ifdef HAVE_ICE
@@ -103,13 +103,13 @@ int CServiceTigerVNC::OnClean()
     return 0;
 }
 
-int CServiceTigerVNC::OnProcess()
+int CServiceRabbitVNC::OnProcess()
 {
     LOG_MODEL_DEBUG("ServiceTigerVNC", "Process ...");
     return -1;
 }
 
-void CServiceTigerVNC::slotNewConnection()
+void CServiceRabbitVNC::slotNewConnection()
 {
     if(!m_Lister.hasPendingConnections())
         return;
@@ -127,7 +127,7 @@ void CServiceTigerVNC::slotNewConnection()
                 throw std::runtime_error("Don't open channel");
             }
         QSharedPointer<CConnection> c(new CConnection(channel,
-                  dynamic_cast<CParameterServiceTigerVNC*>(this->GetParameters())),
+                  dynamic_cast<CParameterServiceRabbitVNC*>(this->GetParameters())),
                                       &QObject::deleteLater);
         m_lstConnection.push_back(c);
         bool check = connect(c.data(), SIGNAL(sigDisconnected()),
@@ -145,7 +145,7 @@ void CServiceTigerVNC::slotNewConnection()
     }
 }
 
-void CServiceTigerVNC::slotDisconnected()
+void CServiceRabbitVNC::slotDisconnected()
 {
     CConnection* pConnect = dynamic_cast<CConnection*>(sender());
     pConnect->close(tr("Exit").toStdString().c_str());
@@ -154,7 +154,7 @@ void CServiceTigerVNC::slotDisconnected()
             m_lstConnection.removeOne(c);
 }
 
-void CServiceTigerVNC::slotError(int nErr, QString szErr)
+void CServiceRabbitVNC::slotError(int nErr, QString szErr)
 {
     slotDisconnected();
 }

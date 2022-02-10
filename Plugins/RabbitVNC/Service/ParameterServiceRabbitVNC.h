@@ -5,7 +5,7 @@
 
 #include "ParameterService.h"
 
-class CParameterServiceTigerVNC : public CParameterService
+class CParameterServiceRabbitVNC : public CParameterService
 {
     Q_OBJECT
     Q_PROPERTY(bool Ice READ getIce WRITE setIce NOTIFY sigIceChanged)
@@ -22,8 +22,8 @@ class CParameterServiceTigerVNC : public CParameterService
     
     
 public:
-    explicit CParameterServiceTigerVNC(QObject *parent = nullptr);
-    virtual ~CParameterServiceTigerVNC();
+    explicit CParameterServiceRabbitVNC(QObject *parent = nullptr);
+    virtual ~CParameterServiceRabbitVNC();
     
     // CParameterService interface
 public:

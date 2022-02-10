@@ -10,6 +10,19 @@
 #include <QCommandLineParser>
 #include <QDebug>
 
+/*!
+ * \~Chinese
+ * \details
+ *  命令行参数：
+ *    - s: 产生默认参数文件到目录中
+ *    - r: 以用户进程方式启动程序
+ *    
+ * \~English
+ * \details
+ * Command line parameters:
+ *   - s: Save default parameters to files in <directory>
+ *   - r: Start a program as a user process
+ */
 CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
     : QtService<QApplication>(argc, argv, name)
 {

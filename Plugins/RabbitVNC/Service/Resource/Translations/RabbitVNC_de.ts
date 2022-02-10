@@ -2,27 +2,27 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
-    <name>CPluginServiceTigerVNC</name>
+    <name>CPluginServiceRabbitVNC</name>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="38"/>
-        <source>TigerVNC</source>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="38"/>
+        <source>RabbitVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="43"/>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="43"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="44"/>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="44"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>CServiceTigerVNC</name>
+    <name>CServiceRabbitVNC</name>
     <message>
-        <location filename="../../ServiceTigerVNC.cpp" line="151"/>
+        <location filename="../../ServiceRabbitVNC.cpp" line="151"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>

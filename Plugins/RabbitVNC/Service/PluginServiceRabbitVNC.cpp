@@ -1,15 +1,15 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "PluginServiceTigerVNC.h"
+#include "PluginServiceRabbitVNC.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 #include <QDebug>
 #include <QApplication>
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
-#include "ServiceTigerVNC.h"
+#include "ServiceRabbitVNC.h"
 
-CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent) : CPluginService(parent)
+CPluginServiceRabbitVNC::CPluginServiceRabbitVNC(QObject *parent) : CPluginService(parent)
 {
     //rfb::SecurityClient::setDefaults();
     
@@ -23,28 +23,28 @@ CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent) : CPluginService
     
 }
 
-CPluginServiceTigerVNC::~CPluginServiceTigerVNC()
+CPluginServiceRabbitVNC::~CPluginServiceRabbitVNC()
 {
-   qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
+   qDebug() << "CPluginServiceRabbitVNC::~CPluginServiceRabbitVNC()";
 }
 
-const QString CPluginServiceTigerVNC::Protol() const
+const QString CPluginServiceRabbitVNC::Protol() const
 {
     return "RFB";
 }
 
-const QString CPluginServiceTigerVNC::Name() const
+const QString CPluginServiceRabbitVNC::Name() const
 {
-    return tr("TigerVNC");
+    return tr("RabbitVNC");
 }
 
-const QString CPluginServiceTigerVNC::Description() const
+const QString CPluginServiceRabbitVNC::Description() const
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
             + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
 }
 
-CService *CPluginServiceTigerVNC::NewService()
+CService *CPluginServiceRabbitVNC::NewService()
 {
-    return new CServiceTigerVNC(this);
+    return new CServiceRabbitVNC(this);
 }

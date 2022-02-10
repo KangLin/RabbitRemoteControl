@@ -1,10 +1,10 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ParameterServiceTigerVNC.h"
+#include "ParameterServiceRabbitVNC.h"
 #include <QSettings>
 #include "RabbitCommonLog.h"
 
-CParameterServiceTigerVNC::CParameterServiceTigerVNC(QObject *parent)
+CParameterServiceRabbitVNC::CParameterServiceRabbitVNC(QObject *parent)
     : CParameterService(parent)
 {
     setPort(5900);
@@ -13,12 +13,12 @@ CParameterServiceTigerVNC::CParameterServiceTigerVNC(QObject *parent)
     m_nStunPort = m_nTurnPort = 3478;
 }
 
-CParameterServiceTigerVNC::~CParameterServiceTigerVNC()
+CParameterServiceRabbitVNC::~CParameterServiceRabbitVNC()
 {
     LOG_MODEL_DEBUG("CParameterServiceTigerVNC", "CParameterServiceTigerVNC::~CParameterServiceTigerVNC");
 }
 
-int CParameterServiceTigerVNC::OnLoad(const QString& szFile)
+int CParameterServiceRabbitVNC::OnLoad(const QString& szFile)
 {
     int nRet = CParameterService::OnLoad(szFile);
     QSettings set(szFile, QSettings::IniFormat);
@@ -36,7 +36,7 @@ int CParameterServiceTigerVNC::OnLoad(const QString& szFile)
     return nRet;
 }
 
-int CParameterServiceTigerVNC::OnSave(const QString& szFile)
+int CParameterServiceRabbitVNC::OnSave(const QString& szFile)
 {
     int nRet = CParameterService::OnSave(szFile);
     QSettings set(szFile, QSettings::IniFormat);
@@ -55,12 +55,12 @@ int CParameterServiceTigerVNC::OnSave(const QString& szFile)
     return nRet;
 }
 
-bool CParameterServiceTigerVNC::getIce() const
+bool CParameterServiceRabbitVNC::getIce() const
 {
     return m_bIce;
 }
 
-void CParameterServiceTigerVNC::setIce(bool newBIce)
+void CParameterServiceRabbitVNC::setIce(bool newBIce)
 {
     if (m_bIce == newBIce)
         return;
@@ -68,12 +68,12 @@ void CParameterServiceTigerVNC::setIce(bool newBIce)
     emit sigIceChanged();
 }
 
-const QString &CParameterServiceTigerVNC::getSignalServer() const
+const QString &CParameterServiceRabbitVNC::getSignalServer() const
 {
     return m_szSignalServer;
 }
 
-void CParameterServiceTigerVNC::setSignalServer(const QString &newSzSignalServer)
+void CParameterServiceRabbitVNC::setSignalServer(const QString &newSzSignalServer)
 {
     if (m_szSignalServer == newSzSignalServer)
         return;
@@ -81,12 +81,12 @@ void CParameterServiceTigerVNC::setSignalServer(const QString &newSzSignalServer
     emit sigSignalServerChanged();
 }
 
-quint16 CParameterServiceTigerVNC::getSignalPort() const
+quint16 CParameterServiceRabbitVNC::getSignalPort() const
 {
     return m_nSignalPort;
 }
 
-void CParameterServiceTigerVNC::setSignalPort(quint16 newNSignalPort)
+void CParameterServiceRabbitVNC::setSignalPort(quint16 newNSignalPort)
 {
     if (m_nSignalPort == newNSignalPort)
         return;
@@ -94,12 +94,12 @@ void CParameterServiceTigerVNC::setSignalPort(quint16 newNSignalPort)
     emit sigSignalPortChanged();
 }
 
-const QString &CParameterServiceTigerVNC::getSignalUser() const
+const QString &CParameterServiceRabbitVNC::getSignalUser() const
 {
     return m_szSignalUser;
 }
 
-void CParameterServiceTigerVNC::setSignalUser(const QString &newSzSignalUser)
+void CParameterServiceRabbitVNC::setSignalUser(const QString &newSzSignalUser)
 {
     if (m_szSignalUser == newSzSignalUser)
         return;
@@ -107,12 +107,12 @@ void CParameterServiceTigerVNC::setSignalUser(const QString &newSzSignalUser)
     emit sigSignalUserChanged();
 }
 
-const QString &CParameterServiceTigerVNC::getSignalPassword() const
+const QString &CParameterServiceRabbitVNC::getSignalPassword() const
 {
     return m_szSignalPassword;
 }
 
-void CParameterServiceTigerVNC::setSignalPassword(const QString &newSzSignalPassword)
+void CParameterServiceRabbitVNC::setSignalPassword(const QString &newSzSignalPassword)
 {
     if (m_szSignalPassword == newSzSignalPassword)
         return;
@@ -120,12 +120,12 @@ void CParameterServiceTigerVNC::setSignalPassword(const QString &newSzSignalPass
     emit sigSignalPasswordChanged();
 }
 
-const QString &CParameterServiceTigerVNC::getStunServer() const
+const QString &CParameterServiceRabbitVNC::getStunServer() const
 {
     return m_szStunServer;
 }
 
-void CParameterServiceTigerVNC::setStunServer(const QString &newSzStunServer)
+void CParameterServiceRabbitVNC::setStunServer(const QString &newSzStunServer)
 {
     if (m_szStunServer == newSzStunServer)
         return;
@@ -133,12 +133,12 @@ void CParameterServiceTigerVNC::setStunServer(const QString &newSzStunServer)
     emit sigStunServerChanged();
 }
 
-quint16 CParameterServiceTigerVNC::getStunPort() const
+quint16 CParameterServiceRabbitVNC::getStunPort() const
 {
     return m_nStunPort;
 }
 
-void CParameterServiceTigerVNC::setStunPort(quint16 newNStunPort)
+void CParameterServiceRabbitVNC::setStunPort(quint16 newNStunPort)
 {
     if (m_nStunPort == newNStunPort)
         return;
@@ -146,12 +146,12 @@ void CParameterServiceTigerVNC::setStunPort(quint16 newNStunPort)
     emit sigStunPortChanged();
 }
 
-const QString &CParameterServiceTigerVNC::getTurnServer() const
+const QString &CParameterServiceRabbitVNC::getTurnServer() const
 {
     return m_szTurnServer;
 }
 
-void CParameterServiceTigerVNC::setTurnServer(const QString &newSzTurnServer)
+void CParameterServiceRabbitVNC::setTurnServer(const QString &newSzTurnServer)
 {
     if (m_szTurnServer == newSzTurnServer)
         return;
@@ -159,12 +159,12 @@ void CParameterServiceTigerVNC::setTurnServer(const QString &newSzTurnServer)
     emit sigTurnServerChanged();
 }
 
-quint16 CParameterServiceTigerVNC::getTurnPort() const
+quint16 CParameterServiceRabbitVNC::getTurnPort() const
 {
     return m_nTurnPort;
 }
 
-void CParameterServiceTigerVNC::setTurnPort(quint16 newNTurnPort)
+void CParameterServiceRabbitVNC::setTurnPort(quint16 newNTurnPort)
 {
     if (m_nTurnPort == newNTurnPort)
         return;
@@ -172,12 +172,12 @@ void CParameterServiceTigerVNC::setTurnPort(quint16 newNTurnPort)
     emit sigTurnPortChanged();
 }
 
-const QString &CParameterServiceTigerVNC::getTurnUser() const
+const QString &CParameterServiceRabbitVNC::getTurnUser() const
 {
     return m_szTurnUser;
 }
 
-void CParameterServiceTigerVNC::setTurnUser(const QString &newSzTurnUser)
+void CParameterServiceRabbitVNC::setTurnUser(const QString &newSzTurnUser)
 {
     if (m_szTurnUser == newSzTurnUser)
         return;
@@ -185,12 +185,12 @@ void CParameterServiceTigerVNC::setTurnUser(const QString &newSzTurnUser)
     emit sigTurnUserChanged();
 }
 
-const QString &CParameterServiceTigerVNC::getTurnPassword() const
+const QString &CParameterServiceRabbitVNC::getTurnPassword() const
 {
     return m_szTurnPassword;
 }
 
-void CParameterServiceTigerVNC::setTurnPassword(const QString &newSzTurnPassword)
+void CParameterServiceRabbitVNC::setTurnPassword(const QString &newSzTurnPassword)
 {
     if (m_szTurnPassword == newSzTurnPassword)
         return;

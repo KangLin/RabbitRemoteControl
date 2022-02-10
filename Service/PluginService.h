@@ -32,12 +32,21 @@ public:
     virtual const QString Id() const;
     /// \~english Plugin protol
     virtual const QString Protol() const = 0;
-    /// \~english Plugin name
+    /*!
+     * \~chinese 插件名，这个名一定要与工程名(${PROJECT_NAME})相同。
+     *           翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。
+     * \~english This name must be the same as the project name (${PROJECT_NAME}).
+     *           The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
+     */
     virtual const QString Name() const = 0;
     /// \~english Plugin description
     virtual const QString Description() const = 0;
     virtual const QIcon Icon() const;
     
+    /*!
+     * \brief Default start a new thread to process Service
+     * \see CService CServiceThread
+     */
     virtual void Start();
     virtual void Stop();
 

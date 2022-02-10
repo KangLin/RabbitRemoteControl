@@ -13,15 +13,26 @@
 
 class CPluginService;
 
-///
-/// \~chinese 管理服务插件
-/// 
-/// \~english
-/// \brief Manage service plugin
-///
-/// \~
-/// \ingroup LIBAPI_SERVICE
-///
+/*!
+ *  \~chinese
+ *   \brief 管理服务插件
+ *   \details 管理系统服务与服务插件。  
+ *   使用：
+ *   
+ *        
+ *  \~english
+ *  \brief Manage service plugin
+ *  \details Manage system service and server plugins.  
+ *  Usge:
+ * 
+ *  \~
+ *        \code
+ *        CServiceManager s(argc, argv, "RabbitRemoteControlService");
+ *        s.exec();
+ *        \endcode
+ *        
+ *  \ingroup LIBAPI_SERVICE
+ */
 class SERVICE_EXPORT CServiceManager : public QtService<QApplication>
 {
 public:

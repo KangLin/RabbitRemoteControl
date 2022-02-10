@@ -10,9 +10,13 @@
 \defgroup LIBAPI_SERVICE 服务端库
 \ingroup LIBAPI
 \brief 服务端库
-\details 类关系：
-\image html docs/Image/PluginServiceAPI.svg
-
+\details 
++ 类关系：
+  \image html docs/Image/PluginServiceAPI.svg
++ 写一个插件：
+  - 实现插件接口 CPluginService 。默认为每个插件启动一个线程进行处理。例如： CPluginServiceRabbitVNC
+    + 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginServiceRabbitVNC::Name() 
+  - 实现服务接口 CService 。例如： CServiceRabbitVNC
 
 \defgroup LIBAPI_VIEWER 控制端库
 \ingroup LIBAPI

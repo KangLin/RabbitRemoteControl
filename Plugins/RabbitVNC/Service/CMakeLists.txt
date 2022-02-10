@@ -8,18 +8,18 @@ if(NOT TARGET Service)
 endif()
 SET(SRC_LIBS RabbitVNC Service)
 SET(SOURCE_FILES
-    ParameterServiceTigerVNC.cpp
-    PluginServiceTigerVNC.cpp
-    ServiceTigerVNC.cpp
+    ParameterServiceRabbitVNC.cpp
+    PluginServiceRabbitVNC.cpp
+    ServiceRabbitVNC.cpp
     Connection.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
     )
 SET(HEADER_FILES
-    ParameterServiceTigerVNC.h
-    PluginServiceTigerVNC.h
-    ServiceTigerVNC.h
+    ParameterServiceRabbitVNC.h
+    PluginServiceRabbitVNC.h
+    ServiceRabbitVNC.h
     Connection.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h

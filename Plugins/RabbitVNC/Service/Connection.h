@@ -11,8 +11,8 @@
 #include <QRect>
 
 #include "Channel.h"
-#include "ServiceTigerVNC.h"
-#include "ParameterServiceTigerVNC.h"
+#include "ServiceRabbitVNC.h"
+#include "ParameterServiceRabbitVNC.h"
 #include "InputDevice.h"
 #include "Screen.h"
 
@@ -21,7 +21,7 @@ class CConnection : public QObject, public rfb::SConnection
     Q_OBJECT
     
 public:
-    explicit CConnection(QSharedPointer<CChannel> channel, CParameterServiceTigerVNC* pPara);
+    explicit CConnection(QSharedPointer<CChannel> channel, CParameterServiceRabbitVNC* pPara);
     virtual ~CConnection();
 
     // SConnection interface
@@ -60,7 +60,7 @@ private Q_SLOTS:
 
 private:
     QSharedPointer<CChannel> m_Channel;
-    CParameterServiceTigerVNC* m_pPara;
+    CParameterServiceRabbitVNC* m_pPara;
     QSharedPointer<CInputDevice> m_InputDevice;
     
     rfb::PixelFormat m_PixelFormat;

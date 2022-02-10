@@ -34,7 +34,7 @@ static void setfile()
 bool g_setfile = false;
 
 CConnection::CConnection(QSharedPointer<CChannel> channel,
-                         CParameterServiceTigerVNC *pPara)
+                         CParameterServiceRabbitVNC *pPara)
     : QObject(), rfb::SConnection(),
       m_Channel(channel),
       m_pPara(pPara),

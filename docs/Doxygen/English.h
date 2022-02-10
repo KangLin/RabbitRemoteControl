@@ -7,9 +7,16 @@
 \defgroup LIBAPI_SERVICE Service library
 \ingroup LIBAPI
 \brief Service library
-\details Class relationship
-\image html docs/Image/PluginServiceAPI.svg
-
+\details
++ Class relationship
+  \image html docs/Image/PluginServiceAPI.svg
++ usge:
+  - Implement CPluginService . The default start a thread. eg. CPluginServiceRabbitVNC
+    + Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
+      The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
+      E.g. CPluginServiceRabbitVNC::Name() 
+  - Implement CService . Eg. CServiceRabbitVNC
+  
 
 \defgroup LIBAPI_VIEWER Viewer library
 \ingroup LIBAPI

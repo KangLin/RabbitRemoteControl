@@ -14,12 +14,12 @@
 #endif
 
 class CConnection;
-class CServiceTigerVNC : public CService//, rfb::SDesktop
+class CServiceRabbitVNC : public CService//, rfb::SDesktop
 {
     Q_OBJECT
 public:
-    explicit CServiceTigerVNC(CPluginService *plugin);
-    virtual ~CServiceTigerVNC();
+    explicit CServiceRabbitVNC(CPluginService *plugin);
+    virtual ~CServiceRabbitVNC();
 
     // CService interface
 protected:
