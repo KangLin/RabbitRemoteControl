@@ -26,6 +26,14 @@ ifdef WinPR_DIR
     PARAS += -DWinPR_DIR=${WinPR_DIR}
 endif
 
+ifdef FreeRDP-Server_DIR
+    PARAS += -DFreeRDP-Server_DIR=${FreeRDP-Server_DIR}
+endif 
+
+ifdef FreeRDP-Shadow_DIR
+    PARAS += -DFreeRDP-Shadow_DIR=${FreeRDP-Shadow_DIR}
+endif
+
 ifdef RabbitVNC_DIR
     PARAS += -DRabbitVNC_DIR=${RabbitVNC_DIR}
 endif
