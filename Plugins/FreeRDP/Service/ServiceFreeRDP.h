@@ -5,6 +5,7 @@
 
 #include "Service.h"
 #include "PluginServiceFreeRDP.h"
+#include <freerdp/server/shadow.h>
 
 class CServiceFreeRDP : public CService
 {
@@ -16,10 +17,13 @@ public:
 protected:
     virtual int OnInit() override;
     virtual int OnClean() override;
-    /// \return
-    /// \li < 0: error or stop
-    /// \li >=0: Call interval 
-    virtual int OnProcess() override;
+
+private:
+    rdpSettings* m_pSettings;
+	rdpShadowServer* m_pServer;
+    bool m_bServerInit;
+
+    int SetParameters();
 };
 
 #endif // CSERVICEFREERDP_H_KL_2022_01_27_

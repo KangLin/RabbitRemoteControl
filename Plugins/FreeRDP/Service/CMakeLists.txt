@@ -2,7 +2,7 @@
 
 project(FreeRDP)
 
-SET(SRC_LIBS freerdp-client freerdp Service)
+SET(SRC_LIBS freerdp-server freerdp-shadow freerdp-shadow-subsystem freerdp-client freerdp Service)
 if(NOT WIN32)
     LIST(APPEND SRC_LIBS winpr)
 endif()
@@ -14,11 +14,13 @@ endif()
 SET(SOURCE_FILES
     ServiceFreeRDP.cpp
     PluginServiceFreeRDP.cpp
+    ParameterServiceFreeRDP.cpp
     )
 
 SET(HEADER_FILES
     ServiceFreeRDP.h
     PluginServiceFreeRDP.h
+    ParameterServiceFreeRDP.h
     )
 
 if(MINGW)

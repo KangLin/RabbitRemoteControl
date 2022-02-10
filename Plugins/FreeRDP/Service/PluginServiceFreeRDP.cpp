@@ -20,7 +20,7 @@ const QString CPluginServiceFreeRDP::Name() const
 
 const QString CPluginServiceFreeRDP::Description() const
 {
-    return  tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
+    return tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
 }
 
 CService *CPluginServiceFreeRDP::NewService()

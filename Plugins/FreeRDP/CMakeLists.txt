@@ -16,7 +16,17 @@ endif()
 if(BUILD_VIEWER)
     add_subdirectory(Viewer)
 endif()
+
+find_package(FreeRDP-Shadow)
+message("FreeRDP-Shadow_FOUND:${FreeRDP-Shadow_FOUND}")
+
+find_package(FreeRDP-Server)
+message("FreeRDP-Server_FOUND:${FreeRDP-Server_FOUND}")
+
+if(NOT (FreeRDP-Shadow_FOUND AND FreeRDP-Server_FOUND))
+    return()
+endif()
+
 if(BUILD_SERVICE)
     add_subdirectory(Service)
 endif(BUILD_SERVICE)
-
