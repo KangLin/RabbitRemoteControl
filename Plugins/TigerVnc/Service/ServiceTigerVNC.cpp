@@ -76,7 +76,7 @@ int CServiceTigerVNC::OnInit()
         LOG_MODEL_ERROR("ServiceTigerVNC", "Lister fail: Port [%d]; %s",
                         GetParameters()->getPort(),
                         m_Lister.errorString().toStdString().c_str());
-        nRet = -1;
+        return -1;
     }
     LOG_MODEL_INFO("ServiceTigerVNC", "Lister at: %d", p->getPort());
     

@@ -10,18 +10,19 @@
 
 class CPluginService;
 
-///
-/// \~chinese 服务接口。由具体的协议实现。
-/// 
-/// \~english
-/// \brief The service interface. by specific protocol implement
-/// 
-/// \~
-/// \ingroup LIBAPI_SERVICE
-/// 
+/*!
+ * \~chinese 服务接口。由具体的协议实现。
+ * \~english
+ * \brief The service interface. by specific protocol implement
+ *  
+ * \~
+ * \ingroup LIBAPI_SERVICE
+ * \see CPluginService
+ */
 class SERVICE_EXPORT CService : public QObject
 {
     Q_OBJECT
+
 public:
     explicit CService(CPluginService *plugin);
     virtual ~CService();

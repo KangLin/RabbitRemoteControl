@@ -32,6 +32,7 @@ class CPluginService;
  *        \endcode
  *        
  *  \ingroup LIBAPI_SERVICE
+ *  \see CPluginService
  */
 class SERVICE_EXPORT CServiceManager : public QtService<QApplication>
 {

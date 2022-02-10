@@ -12,18 +12,20 @@
 class CServiceThread;
 class CServiceManager;
 
-///
-/// \~chinese 服务插件接口。默认为每个插件启动一个线程进行处理。
-/// 
-/// \~english
-/// \brief The service plugin interface. The default start a thread.
-/// 
-/// \~
-/// \ingroup LIBAPI_SERVICE
-///
+/*!
+ *  \~chinese 服务插件接口。默认为每个插件启动一个线程进行处理。
+ *  
+ *  \~english
+ *  \brief The service plugin interface. The default start a thread.
+ *  
+ *  \~
+ *  \ingroup LIBAPI_SERVICE
+ *  \see CService CServiceThread CServiceManager
+ */
 class SERVICE_EXPORT CPluginService : public QObject
 {
     Q_OBJECT
+
 public:
     explicit CPluginService(QObject *parent = nullptr);
     virtual ~CPluginService();

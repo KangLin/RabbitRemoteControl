@@ -44,7 +44,7 @@ int CService::Init()
         }
     }
     
-    if(!Enable())
+    if(!GetParameters() || !GetParameters()->getEnable())
     {
         LOG_MODEL_INFO("ServiceThread", "The service [%s] is disable",
                        m_pPlugin->Name().toStdString().c_str());
