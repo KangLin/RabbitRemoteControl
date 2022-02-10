@@ -23,7 +23,6 @@ public:
 
     // CService interface
 protected:
-    virtual int OnProcess() override;
     virtual int OnInit() override;
     virtual int OnClean() override;
     

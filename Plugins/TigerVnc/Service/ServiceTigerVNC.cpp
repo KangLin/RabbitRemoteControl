@@ -84,10 +84,11 @@ int CServiceTigerVNC::OnInit()
     if(m_Signal && p->getIce())
     {
         nRet = m_Signal->Open(p->getSignalServer(), p->getSignalPort(),
-                              p->getSignalUser(), p->getSignalPassword());   
+                              p->getSignalUser(), p->getSignalPassword());
+        if(nRet) return -2;
     }
 #endif
-    return 0;
+    return 1; //Don't use OnProcess (qt event loop)
 }
 
 int CServiceTigerVNC::OnClean()
@@ -101,12 +102,6 @@ int CServiceTigerVNC::OnClean()
 #endif
     m_lstConnection.clear();
     return 0;
-}
-
-int CServiceTigerVNC::OnProcess()
-{
-    LOG_MODEL_DEBUG("ServiceTigerVNC", "Process ...");
-    return -1;
 }
 
 void CServiceTigerVNC::slotNewConnection()

@@ -30,9 +30,9 @@ public:
     explicit CPluginService(QObject *parent = nullptr);
     virtual ~CPluginService();
     
-    /// \~english ID. Default: Protol() + "_" + Name()
+    /// ID. Default: Protol() + "_" + Name()
     virtual const QString Id() const;
-    /// \~english Plugin protol
+    /// Plugin protol
     virtual const QString Protol() const = 0;
     /*!
      * \~chinese 插件名，这个名一定要与工程名(${PROJECT_NAME})相同。
@@ -41,6 +41,7 @@ public:
      *           The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
      */
     virtual const QString Name() const = 0;
+    /// \~chinese 插件描述
     /// \~english Plugin description
     virtual const QString Description() const = 0;
     virtual const QIcon Icon() const;

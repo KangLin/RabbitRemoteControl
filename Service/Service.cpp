@@ -18,13 +18,6 @@ CService::~CService()
     LOG_MODEL_DEBUG("CService", "CService::~CService()");
 }
 
-bool CService::Enable()
-{
-    if(GetParameters())
-        return GetParameters()->getEnable();
-    return false;
-}
-
 int CService::Init()
 {
     int nRet = 0;
@@ -41,6 +34,12 @@ int CService::Init()
         QDir d;
         if(d.exists(szFile)){
             nRet = GetParameters()->OnLoad(szFile);
+            if(nRet)
+            {
+                LOG_MODEL_INFO("Service", "Load configure file fail:%d %s",
+                               nRet, szFile.toStdString().c_str());
+                return -1;
+            }
         }
     }
     
@@ -48,7 +47,7 @@ int CService::Init()
     {
         LOG_MODEL_INFO("ServiceThread", "The service [%s] is disable",
                        m_pPlugin->Name().toStdString().c_str());
-        return -1;
+        return -2;
     } else
         LOG_MODEL_INFO("ServiceThread", "The service [%s] is start",
                        m_pPlugin->Name().toStdString().c_str());
@@ -56,7 +55,7 @@ int CService::Init()
     nRet = OnInit();
     if(0 == nRet)
         QTimer::singleShot(0, this, SLOT(slotProcess()));
-
+    if(nRet > 0) return 0;
     return nRet;
 }
 
@@ -84,9 +83,20 @@ void CService::slotProcess()
     } catch (...) {
         LOG_MODEL_ERROR("CService", "OnProcess excption");
     }
-    
-    if(nRet < 0) return;
+
+    // TODO: Ignore error and stop
+    if(nRet < 0)
+    {
+        LOG_MODEL_ERROR("CService", "OnProcess fail:%d", nRet);
+        return;
+    }
     QTimer::singleShot(nRet, this, SLOT(slotProcess()));
+}
+
+int CService::OnProcess()
+{
+    LOG_MODEL_WARNING("CService", "Need to implement OnProcess");
+    return 0;
 }
 
 CParameterService* CService::GetParameters()

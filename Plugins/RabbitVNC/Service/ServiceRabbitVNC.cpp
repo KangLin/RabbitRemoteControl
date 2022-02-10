@@ -84,10 +84,11 @@ int CServiceRabbitVNC::OnInit()
     if(m_Signal && p->getIce())
     {
         nRet = m_Signal->Open(p->getSignalServer(), p->getSignalPort(),
-                              p->getSignalUser(), p->getSignalPassword());   
+                              p->getSignalUser(), p->getSignalPassword());
+        if(nRet) return -2;
     }
 #endif
-    return 0;
+    return 1; // Don't use OnProcess (qt event loop)
 }
 
 int CServiceRabbitVNC::OnClean()
@@ -101,12 +102,6 @@ int CServiceRabbitVNC::OnClean()
 #endif
     m_lstConnection.clear();
     return 0;
-}
-
-int CServiceRabbitVNC::OnProcess()
-{
-    LOG_MODEL_DEBUG("ServiceRabbitVNC", "Process ...");
-    return -1;
 }
 
 void CServiceRabbitVNC::slotNewConnection()
