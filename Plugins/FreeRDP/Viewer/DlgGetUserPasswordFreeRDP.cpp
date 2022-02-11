@@ -1,33 +1,33 @@
-#include "DlgGetUserPassword.h"
-#include "ui_DlgGetUserPassword.h"
+#include "DlgGetUserPasswordFreeRDP.h"
+#include "ui_DlgGetUserPasswordFreeRDP.h"
 
-static int g_CDlgGetUserPassword = qRegisterMetaType<CDlgGetUserPassword>();
+static int g_CDlgGetUserPasswordFreeRDP = qRegisterMetaType<CDlgGetUserPasswordFreeRDP>();
 
-CDlgGetUserPassword::CDlgGetUserPassword(QWidget *parent) :
+CDlgGetUserPasswordFreeRDP::CDlgGetUserPasswordFreeRDP(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgGetUserPassword),
+    ui(new Ui::CDlgGetUserPasswordFreeRDP),
     m_pConnecter(nullptr),
     m_pParameter(nullptr)
 {
     ui->setupUi(this);
 }
 
-CDlgGetUserPassword::CDlgGetUserPassword(const CDlgGetUserPassword& dlg)
+CDlgGetUserPasswordFreeRDP::CDlgGetUserPasswordFreeRDP(const CDlgGetUserPasswordFreeRDP& dlg)
 {
     m_pConnecter = dlg.m_pConnecter;
     m_pParameter = dlg.m_pParameter;
 }
 
-CDlgGetUserPassword::~CDlgGetUserPassword()
+CDlgGetUserPasswordFreeRDP::~CDlgGetUserPasswordFreeRDP()
 {
     delete ui;
 }
 
-void CDlgGetUserPassword::SetContext(void *pContext)
+void CDlgGetUserPasswordFreeRDP::SetContext(void *pContext)
 {
 }
 
-void CDlgGetUserPassword::SetConnecter(CConnecter *pConnecter)
+void CDlgGetUserPasswordFreeRDP::SetConnecter(CConnecter *pConnecter)
 {
     m_pConnecter = qobject_cast<CConnecterFreeRDP*>(pConnecter);
     if(!m_pConnecter) return;
@@ -35,7 +35,7 @@ void CDlgGetUserPassword::SetConnecter(CConnecter *pConnecter)
     m_pParameter = qobject_cast<CParameterFreeRDP*>(m_pConnecter->GetParameter());
 }
 
-void CDlgGetUserPassword::showEvent(QShowEvent *event)
+void CDlgGetUserPasswordFreeRDP::showEvent(QShowEvent *event)
 {
     Q_ASSERT(m_pParameter);
     if(!m_pParameter) return;
@@ -50,7 +50,7 @@ void CDlgGetUserPassword::showEvent(QShowEvent *event)
     
 }
 
-void CDlgGetUserPassword::on_pbOK_clicked()
+void CDlgGetUserPasswordFreeRDP::on_pbOK_clicked()
 {
     Q_ASSERT(m_pParameter);
     m_pParameter->SetUser(ui->leUser->text());
@@ -62,7 +62,7 @@ void CDlgGetUserPassword::on_pbOK_clicked()
     accept();
 }
 
-void CDlgGetUserPassword::on_pbCancel_clicked()
+void CDlgGetUserPasswordFreeRDP::on_pbCancel_clicked()
 {
     reject();
 }

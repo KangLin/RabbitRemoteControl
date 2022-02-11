@@ -6,17 +6,17 @@
 #include "ConnecterFreeRDP.h"
 
 namespace Ui {
-class CDlgGetUserPassword;
+class CDlgGetUserPasswordFreeRDP;
 }
 
-class CDlgGetUserPassword : public QDialog
+class CDlgGetUserPasswordFreeRDP : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit CDlgGetUserPassword(QWidget *parent = nullptr);
-    virtual ~CDlgGetUserPassword();
-    CDlgGetUserPassword(const CDlgGetUserPassword& dlg);
+    explicit CDlgGetUserPasswordFreeRDP(QWidget *parent = nullptr);
+    virtual ~CDlgGetUserPasswordFreeRDP();
+    CDlgGetUserPasswordFreeRDP(const CDlgGetUserPasswordFreeRDP& dlg);
     
     Q_INVOKABLE void SetContext(void* pContext);
     Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
@@ -26,7 +26,7 @@ private slots:
     void on_pbCancel_clicked();
     
 private:
-    Ui::CDlgGetUserPassword *ui;
+    Ui::CDlgGetUserPasswordFreeRDP *ui;
 
     CConnecterFreeRDP* m_pConnecter;
     CParameterFreeRDP* m_pParameter;
@@ -36,6 +36,6 @@ protected:
     virtual void showEvent(QShowEvent *event) override;
 };
 
-Q_DECLARE_METATYPE(CDlgGetUserPassword)
+Q_DECLARE_METATYPE(CDlgGetUserPasswordFreeRDP)
 
 #endif // DLGGETUSERPASSWORD_H

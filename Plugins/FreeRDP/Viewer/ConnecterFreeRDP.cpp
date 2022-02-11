@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QInputDialog>
 #include "DlgSetFreeRDP.h"
-#include "DlgGetUserPassword.h"
 
 CConnecterFreeRDP::CConnecterFreeRDP(CPluginViewer *parent)
     : CConnecterDesktopThread(parent)

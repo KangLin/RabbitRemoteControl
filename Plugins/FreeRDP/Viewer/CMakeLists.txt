@@ -17,7 +17,7 @@ SET(SOURCE_FILES
     CursorFreeRDP.cpp
     ClipboardFreeRDP.cpp
     ClipboardMimeData.cpp
-    DlgGetUserPassword.cpp
+    DlgGetUserPasswordFreeRDP.cpp
     )
 
 SET(HEADER_FILES
@@ -30,12 +30,12 @@ SET(HEADER_FILES
     CursorFreeRDP.h
     ClipboardFreeRDP.h
     ClipboardMimeData.h
-    DlgGetUserPassword.h
+    DlgGetUserPasswordFreeRDP.h
     )
 
 SET(UI_FILES
     DlgSetFreeRDP.ui
-    DlgGetUserPassword.ui
+    DlgGetUserPasswordFreeRDP.ui
     )
 
 if(MINGW)
