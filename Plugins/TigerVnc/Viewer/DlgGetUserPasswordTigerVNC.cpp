@@ -1,33 +1,33 @@
-#include "DlgGetUserPassword.h"
-#include "ui_DlgGetUserPassword.h"
+#include "DlgGetUserPasswordTigerVNC.h"
+#include "ui_DlgGetUserPasswordTigerVNC.h"
 
-static int g_CDlgTigerVNCGetPassword = qRegisterMetaType<CDlgTigerVNCGetPassword>();
+static int g_CDlgGetPasswordTigerVNC = qRegisterMetaType<CDlgGetPasswordTigerVNC>();
 
-CDlgTigerVNCGetPassword::CDlgTigerVNCGetPassword(QWidget *parent) :
+CDlgGetPasswordTigerVNC::CDlgGetPasswordTigerVNC(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgTigerVNCGetPassword),
+    ui(new Ui::CDlgGetPasswordTigerVNC),
     m_pConnecter(nullptr),
     m_pParameter(nullptr)
 {
     ui->setupUi(this);
 }
 
-CDlgTigerVNCGetPassword::~CDlgTigerVNCGetPassword()
+CDlgGetPasswordTigerVNC::~CDlgGetPasswordTigerVNC()
 {
     delete ui;
 }
 
-CDlgTigerVNCGetPassword::CDlgTigerVNCGetPassword(const CDlgTigerVNCGetPassword& dlg)
+CDlgGetPasswordTigerVNC::CDlgGetPasswordTigerVNC(const CDlgGetPasswordTigerVNC& dlg)
 {
     m_pConnecter = dlg.m_pConnecter;
     m_pParameter = dlg.m_pParameter;
 }
 
-void CDlgTigerVNCGetPassword::SetContext(void *pContext)
+void CDlgGetPasswordTigerVNC::SetContext(void *pContext)
 {
 }
 
-void CDlgTigerVNCGetPassword::SetConnecter(CConnecter *pConnecter)
+void CDlgGetPasswordTigerVNC::SetConnecter(CConnecter *pConnecter)
 {
     m_pConnecter = qobject_cast<CConnecterTigerVnc*>(pConnecter);
     if(!m_pConnecter) return;
@@ -35,7 +35,7 @@ void CDlgTigerVNCGetPassword::SetConnecter(CConnecter *pConnecter)
     m_pParameter = qobject_cast<CParameterTigerVnc*>(m_pConnecter->GetParameter());
 }
 
-void CDlgTigerVNCGetPassword::showEvent(QShowEvent *event)
+void CDlgGetPasswordTigerVNC::showEvent(QShowEvent *event)
 {
     ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
     ui->lePassword->setText(m_pParameter->GetPassword());
@@ -43,7 +43,7 @@ void CDlgTigerVNCGetPassword::showEvent(QShowEvent *event)
     ui->leUser->setText(m_pParameter->GetUser());
 }
 
-void CDlgTigerVNCGetPassword::on_pbOK_clicked()
+void CDlgGetPasswordTigerVNC::on_pbOK_clicked()
 {
     m_pParameter->SetUser(ui->leUser->text());
     m_pParameter->SetPassword(ui->lePassword->text());
@@ -52,7 +52,7 @@ void CDlgTigerVNCGetPassword::on_pbOK_clicked()
     accept();
 }
 
-void CDlgTigerVNCGetPassword::on_pbCancel_clicked()
+void CDlgGetPasswordTigerVNC::on_pbCancel_clicked()
 {
     reject();
 }

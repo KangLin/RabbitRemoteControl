@@ -419,7 +419,7 @@ void CConnectTigerVnc::getUserPasswd(bool secure, char **user, char **password)
         if(m_pPara->GetPassword().isEmpty())
         {
             int nRet = QDialog::Rejected;
-            emit sigBlockShowWidget("CDlgTigerVNCGetPassword", nRet, m_pPara);
+            emit sigBlockShowWidget("CDlgGetPasswordTigerVNC", nRet, m_pPara);
             if(QDialog::Accepted == nRet)
             {
                 *password = rfb::strDup(m_pPara->GetPassword().toStdString().c_str());

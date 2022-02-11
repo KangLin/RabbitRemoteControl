@@ -3,7 +3,7 @@
 #include "ConnecterTigerVnc.h"
 #include <QDebug>
 #include "RabbitCommonLog.h"
-#include "DlgGetUserPassword.h"
+#include "DlgGetUserPasswordTigerVNC.h"
 #include <QMessageBox>
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
