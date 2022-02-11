@@ -104,14 +104,15 @@ CConnectTigerVnc::~CConnectTigerVnc()
     qDebug() << "CConnectTigerVnc::~CConnectTigerVnc()";
 }
 
-/* \return 
- *     \li < 0 : error
- *     \li = 0 : emit sigConnected by caller
- *     \li = 1 : emit sigConnected in CConnect
- */    
+/*
+ * \return 
+ * \li < 0: error
+ * \li = 0: Use OnProcess (non-Qt event loop)
+ * \li > 0: Don't use OnProcess (qt event loop)
+ */  
 int CConnectTigerVnc::OnInit()
 {
-    int nRet = 0;
+    int nRet = 1;
     if(m_pPara->GetIce())
     {
 #ifdef HAVE_ICE
@@ -120,7 +121,7 @@ int CConnectTigerVnc::OnInit()
     }
     else
         nRet = SocketInit();
-    return nRet;
+    return 1;
 }
 
 #ifdef HAVE_ICE
@@ -149,7 +150,7 @@ int CConnectTigerVnc::IceInit()
     return m_Signal->Open(m_pPara->GetSignalServer(), m_pPara->GetSignalPort(),
                           m_pPara->GetSignalUser(), m_pPara->GetSignalPassword());
     
-    return 1;
+    return 0;
 }
 
 void CConnectTigerVnc::slotSignalConnected()
@@ -201,7 +202,7 @@ void CConnectTigerVnc::slotSignalError(int nErr, const QString& szErr)
 
 int CConnectTigerVnc::SocketInit()
 {
-    int nRet = 1;
+    int nRet = 0;
     try{
         
         QTcpSocket* pSock = new QTcpSocket(this);
@@ -250,7 +251,7 @@ int CConnectTigerVnc::SocketInit()
         
         pSock->connectToHost(m_pPara->GetHost(), m_pPara->GetPort());
         
-        return 1;
+        return nRet;
     } catch (rdr::Exception& e) {
         LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
         emit sigError(-4, e.str());
@@ -287,25 +288,6 @@ int CConnectTigerVnc::OnClean()
         m_DataChannel->close();
     //emit sigDisconnected();
     return 0;
-}
-
-/*!
- * \brief a non-Qt event loop (that is, normal loop processing).
- * There are not use non-Qt event loop. only use Qt event loop.
- * It is not used.
- */
-int CConnectTigerVnc::OnProcess()
-{
-    return 0;
-}
-
-/*!
- * \brief a non-Qt event loop (that is, normal loop processing).
- * There are not use non-Qt event loop. only use Qt event loop.
- */
-void CConnectTigerVnc::slotTimeOut()
-{
-    return;
 }
 
 void CConnectTigerVnc::slotConnected()

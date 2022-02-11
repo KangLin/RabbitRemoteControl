@@ -74,10 +74,6 @@ public Q_SLOTS:
      * \~chinese 默认开始定时器
      * \~english Default start timer.
      * \~
-     * \return 
-     *     \li < 0 : error
-     *     \li = 0 : emit sigConnected by caller
-     *     \li = 1 : emit sigConnected in CConnect
      * \see OnProcess slotTimeOut
      */
     virtual int Connect();
@@ -98,9 +94,9 @@ protected:
      * \~english Specific plug-in realizes connection initialization
      * \~
      * \return 
-     *     \li < 0 : error
-     *     \li = 0 : emit sigConnected by caller
-     *     \li = 1 : emit sigConnected in CConnect
+     * \li < 0: error
+     * \li = 0: Use OnProcess (non-Qt event loop)
+     * \li > 0: Don't use OnProcess (qt event loop)
      * \see Connect()
      */
     virtual int OnInit() = 0;
@@ -124,7 +120,7 @@ protected:
      * \~
      * \see slotTimeOut()
      */
-    virtual int OnProcess() = 0;
+    virtual int OnProcess();
 
 protected Q_SLOTS:
     /*!

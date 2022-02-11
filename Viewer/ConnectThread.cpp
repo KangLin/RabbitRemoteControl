@@ -28,18 +28,12 @@ void CConnectThread::run()
     CConnect* pConnect = m_pConnecter->InstanceConnect();
     if(!pConnect) return;
 
-    /*
-      nRet < 0 : error
-      nRet = 0 : emit sigConnected by caller
-      nRet = 1 : emit sigConnected in CConnect
-      */
     nRet = pConnect->Connect();
-    if(nRet < 0)
+    if(nRet)
     {
         emit m_pConnecter->sigDisconnected();
         return;
     }
-    if(0 == nRet) emit m_pConnecter->sigConnected();
 
     exec();
 

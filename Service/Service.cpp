@@ -95,7 +95,7 @@ void CService::slotProcess()
 
 int CService::OnProcess()
 {
-    LOG_MODEL_WARNING("CService", "Need to implement OnProcess");
+    LOG_MODEL_WARNING("CService", "Need to implement CService::OnProcess()");
     return 0;
 }
 

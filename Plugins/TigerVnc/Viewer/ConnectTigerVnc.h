@@ -76,9 +76,6 @@ protected:
     // Please call SetParamter before call Connect
     virtual int OnInit() override;
     virtual int OnClean() override;
-    virtual int OnProcess() override; // It is not used
-protected Q_SLOTS:
-    virtual void slotTimeOut() override;
     
 private:
     QSharedPointer<CChannel> m_DataChannel;

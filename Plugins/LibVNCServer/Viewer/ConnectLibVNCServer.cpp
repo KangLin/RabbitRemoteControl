@@ -168,11 +168,12 @@ bool CConnectLibVNCServer::InitClient()
     return TRUE;
 }
 
-/**
-  nRet < 0 : error
-  nRet = 0 : emit sigConnected by caller
-  nRet = 1 : emit sigConnected in CConnect
-  */
+/*
+ * \return 
+ * \li < 0: error
+ * \li = 0: Use OnProcess (non-Qt event loop)
+ * \li > 0: Don't use OnProcess (qt event loop)
+ */
 int CConnectLibVNCServer::OnInit()
 {
     if(!InitClient()) {
@@ -189,7 +190,7 @@ int CConnectLibVNCServer::OnInit()
     LOG_MODEL_INFO("LibVNCServer", szInfo.toStdString().c_str());
     emit sigInformation(szInfo);
  
-    return 1;
+    return 0;
 }
 
 int CConnectLibVNCServer::OnClean()

@@ -164,8 +164,9 @@ int CConnect::Connect()
     nRet = OnInit();
     if(nRet < 0) return nRet;
 
-    QTimer::singleShot(0, this, SLOT(slotTimeOut()));
-    return nRet;
+    if(0 == nRet)
+        QTimer::singleShot(0, this, SLOT(slotTimeOut()));
+    return 0;
 }
 
 int CConnect::Disconnect()
@@ -200,6 +201,12 @@ void CConnect::slotTimeOut()
 
     // Error or stop, must notify user disconnect it
     emit sigDisconnected();
+}
+
+int CConnect::OnProcess()
+{
+    LOG_MODEL_WARNING("CConnect", "Need to implement CConnect::OnProcess()");
+    return 0;
 }
 
 void CConnect::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)

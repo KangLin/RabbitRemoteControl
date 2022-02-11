@@ -22,18 +22,12 @@ void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
     CConnect* pConnect = pConnecter->InstanceConnect();
     if(!pConnect) return;
 
-    /*
-      nRet < 0 : error
-      nRet = 0 : emit sigConnected by caller
-      nRet = 1 : emit sigConnected in CConnect
-      */
     nRet = pConnect->Connect();
-    if(nRet < 0)
+    if(nRet)
     {
         emit pConnecter->sigDisconnected();
         return;
     }
-    if(0 == nRet) emit pConnect->sigConnected();
 
     m_Connects.insert(pConnecter, pConnect);
 }

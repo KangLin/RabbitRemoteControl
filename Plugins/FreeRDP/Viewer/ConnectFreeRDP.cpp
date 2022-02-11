@@ -90,15 +90,16 @@ int CConnectFreeRDP::RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints)
 	return 0;
 }
 
-/**
-  nRet < 0 : error
-  nRet = 0 : emit sigConnected
-  nRet = 1 : emit sigConnected in CConnect
-  */
+/*
+ * \return 
+ * \li < 0: error
+ * \li = 0: Use OnProcess (non-Qt event loop)
+ * \li > 0: Don't use OnProcess (qt event loop)
+ */
 int CConnectFreeRDP::OnInit()
 {
     qDebug() << "CConnectFreeRdp::Connect()";
-    int nRet = 1;
+    int nRet = 0;
     freerdp* instance = m_pContext->Context.instance;
     
     rdpSettings* settings = instance->settings;
