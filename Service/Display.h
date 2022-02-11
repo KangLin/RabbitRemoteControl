@@ -24,7 +24,9 @@ public:
 
     virtual QImage GetDisplay() = 0;
     virtual QImage GetDisplay(int x, int y, int width, int height) = 0;
-
+    virtual QImage GetCursor() = 0;
+    virtual QPoint GetCursorPosition() = 0;
+    
 protected:
     virtual int Open() = 0;
     virtual int Close() = 0;

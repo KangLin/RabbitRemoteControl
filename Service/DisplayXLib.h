@@ -6,6 +6,7 @@
 #pragma once
 
 #include "Display.h"
+#include <X11/Xlib.h>
 #include <X11/Xutil.h>
 
 class CDisplayXLib : public CDisplay
@@ -20,7 +21,9 @@ public:
     virtual QImage::Format GetFormat() override;
     virtual QImage GetDisplay(int x, int y, int width, int height) override;
     virtual QImage GetDisplay() override;
-
+    virtual QImage GetCursor() override;
+    virtual QPoint GetCursorPosition() override;
+    
 protected:
     virtual int Open() override;
     virtual int Close() override;

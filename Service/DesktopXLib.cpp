@@ -32,3 +32,13 @@ QImage CDesktopXLib::GetDesktop(int x, int y, int width, int height)
 {
     return CDisplay::Instance()->GetDisplay();
 }
+
+QImage CDesktopXLib::GetCursor()
+{
+    return CDisplay::Instance()->GetCursor();
+}
+
+QPoint CDesktopXLib::GetCursorPosition()
+{
+    return CDisplay::Instance()->GetCursorPosition();
+}

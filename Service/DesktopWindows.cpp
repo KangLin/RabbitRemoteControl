@@ -247,3 +247,15 @@ QImage CDesktopWindows::GetDesktop(int x, int y, int width, int height)
 
     return img;
 }
+
+QImage CDesktopWindows::GetCursor()
+{
+    QImage img;
+    return img;
+}
+
+QPoint CDesktopWindows::GetCursorPosition()
+{
+    QPoint pos;
+    return pos;
+}
