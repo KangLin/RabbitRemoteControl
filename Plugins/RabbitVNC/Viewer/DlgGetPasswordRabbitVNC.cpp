@@ -1,5 +1,5 @@
-#include "DlgGetUserPassword.h"
-#include "ui_DlgGetUserPassword.h"
+#include "DlgGetPasswordRabbitVNC.h"
+#include "ui_DlgGetPasswordRabbitVNC.h"
 
 static int g_CDlgGetPasswordRabbitVNC = qRegisterMetaType<CDlgGetPasswordRabbitVNC>();
 

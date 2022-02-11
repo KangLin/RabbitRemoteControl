@@ -213,8 +213,7 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
                         pDlg, SLOT(reject()));
         Q_ASSERT(check);
         nRet = pDlg->exec();
-    } else if(obj->inherits("QWidget"))
-    {
+    } else if(obj->inherits("QWidget")) {
         QWidget* pWdg = qobject_cast<QWidget*>(obj);
         pWdg->setAttribute(Qt::WA_DeleteOnClose);
         check = connect(this, SIGNAL(sigDisconnected()),

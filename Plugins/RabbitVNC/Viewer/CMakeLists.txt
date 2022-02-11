@@ -15,7 +15,7 @@ SET(SOURCE_FILES
     ConnecterRabbitVNC.cpp
     PluginRabbitVNC.cpp
     DlgSettingsRabbitVNC.cpp
-    DlgGetUserPassword.cpp
+    DlgGetPasswordRabbitVNC.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
@@ -27,14 +27,14 @@ SET(HEADER_FILES
     ConnecterRabbitVNC.h
     PluginRabbitVNC.h
     DlgSettingsRabbitVNC.h
-    DlgGetUserPassword.h
+    DlgGetPasswordRabbitVNC.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
     )
 SET(UI_FILES
     DlgSettingsRabbitVNC.ui
-    DlgGetUserPassword.ui
+    DlgGetPasswordRabbitVNC.ui
     )
 
 find_package(LibDataChannel)

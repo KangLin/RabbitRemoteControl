@@ -3,7 +3,7 @@
 #include "ConnecterRabbitVNC.h"
 #include <QDebug>
 #include "RabbitCommonLog.h"
-#include "DlgGetUserPassword.h"
+#include "DlgGetPasswordRabbitVNC.h"
 #include <QMessageBox>
 
 CConnecterRabbitVNC::CConnecterRabbitVNC(CPluginViewer *parent)

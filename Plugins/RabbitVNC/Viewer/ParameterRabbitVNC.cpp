@@ -26,21 +26,21 @@ int CParameterRabbitVNC::Load(QSettings &set)
 {
     int nRet = CParameter::Load(set);
 
-    SetShared(set.value("TigerVNC/Shared", GetShared()).toBool());
-    SetBufferEndRefresh(set.value("TigerVNC/BufferEndRefresh",
+    SetShared(set.value("RabbitVNC/Shared", GetShared()).toBool());
+    SetBufferEndRefresh(set.value("RabbitVNC/BufferEndRefresh",
                                   GetBufferEndRefresh()).toBool());
-    SetSupportsDesktopResize(set.value("TigerVNC/SupportsDesktopResize",
+    SetSupportsDesktopResize(set.value("RabbitVNC/SupportsDesktopResize",
                                        GetSupportsDesktopResize()).toBool());
-    SetAutoSelect(set.value("TigerVNC/AutoSelect", GetAutoSelect()).toBool());
-    SetColorLevel(static_cast<COLOR_LEVEL>(set.value("TigerVNC/ColorLevel",
+    SetAutoSelect(set.value("RabbitVNC/AutoSelect", GetAutoSelect()).toBool());
+    SetColorLevel(static_cast<COLOR_LEVEL>(set.value("RabbitVNC/ColorLevel",
                                                      GetColorLevel()).toInt()));
-    SetEncoding(set.value("TigerVNC/Encoding", GetEncoding()).toInt());
-    SetEnableCompressLevel(set.value("TigerVNC/EnableCompressLevel",
+    SetEncoding(set.value("RabbitVNC/Encoding", GetEncoding()).toInt());
+    SetEnableCompressLevel(set.value("RabbitVNC/EnableCompressLevel",
                                GetEnableCompressLevel()).toBool());
-    SetCompressLevel(set.value("TigerVNC/CompressLevel",
+    SetCompressLevel(set.value("RabbitVNC/CompressLevel",
                                GetCompressLevel()).toInt());
-    SetNoJpeg(set.value("TigerVNC/NoJpeg", GetNoJpeg()).toBool());
-    SetQualityLevel(set.value("TigerVNC/QualityLevel", GetQualityLevel()).toInt());
+    SetNoJpeg(set.value("RabbitVNC/NoJpeg", GetNoJpeg()).toBool());
+    SetQualityLevel(set.value("RabbitVNC/QualityLevel", GetQualityLevel()).toInt());
     SetIce(set.value("ICE/Enable", GetIce()).toBool());
     SetSignalServer(set.value("ICE/Signal/Server",
                               GetSignalServer()).toString());
@@ -73,16 +73,16 @@ int CParameterRabbitVNC::Load(QSettings &set)
 int CParameterRabbitVNC::Save(QSettings &set)
 {
     int nRet = CParameter::Save(set);
-    set.setValue("TigerVNC/Shared", GetShared());
-    set.setValue("TigerVNC/BufferEndRefresh", GetBufferEndRefresh());
-    set.setValue("TigerVNC/SupportsDesktopResize", GetSupportsDesktopResize());
-    set.setValue("TigerVNC/AutoSelect", GetAutoSelect());
-    set.setValue("TigerVNC/ColorLevel", GetColorLevel());
-    set.setValue("TigerVNC/Encoding", GetEncoding());
-    set.setValue("TigerVNC/EnableCompressLevel", GetEnableCompressLevel());
-    set.setValue("TigerVNC/CompressLevel", GetCompressLevel());
-    set.setValue("TigerVNC/NoJpeg", GetNoJpeg());
-    set.setValue("TigerVNC/QualityLevel", GetQualityLevel());
+    set.setValue("RabbitVNC/Shared", GetShared());
+    set.setValue("RabbitVNC/BufferEndRefresh", GetBufferEndRefresh());
+    set.setValue("RabbitVNC/SupportsDesktopResize", GetSupportsDesktopResize());
+    set.setValue("RabbitVNC/AutoSelect", GetAutoSelect());
+    set.setValue("RabbitVNC/ColorLevel", GetColorLevel());
+    set.setValue("RabbitVNC/Encoding", GetEncoding());
+    set.setValue("RabbitVNC/EnableCompressLevel", GetEnableCompressLevel());
+    set.setValue("RabbitVNC/CompressLevel", GetCompressLevel());
+    set.setValue("RabbitVNC/NoJpeg", GetNoJpeg());
+    set.setValue("RabbitVNC/QualityLevel", GetQualityLevel());
     set.setValue("ICE/Enable", GetIce());
     set.setValue("ICE/Signal/Server", GetSignalServer());
     set.setValue("ICE/Signal/Port", GetSignalPort());

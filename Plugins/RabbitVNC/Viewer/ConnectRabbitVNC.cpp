@@ -252,7 +252,7 @@ int CConnectRabbitVNC::SocketInit()
         
         return 1;
     } catch (rdr::Exception& e) {
-        LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
+        LOG_MODEL_ERROR("RabbitVNC", "%s", e.str());
         emit sigError(-4, e.str());
         nRet = -4;
     }
@@ -310,7 +310,7 @@ void CConnectRabbitVNC::slotTimeOut()
 
 void CConnectRabbitVNC::slotConnected()
 {
-    LOG_MODEL_INFO("TigerVnc", "Connected to host %s port %d",
+    LOG_MODEL_INFO("RabbitVNC", "Connected to host %s port %d",
                    m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
     
     setStreams(m_DataChannel->InStream(), m_DataChannel->OutStream());
@@ -319,29 +319,29 @@ void CConnectRabbitVNC::slotConnected()
 
 void CConnectRabbitVNC::slotDisConnected()
 {
-    LOG_MODEL_INFO("TigerVnc", "slotDisConnected to host %s port %d",
+    LOG_MODEL_INFO("RabbitVNC", "slotDisConnected to host %s port %d",
                    m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
     emit sigDisconnected();
 }
 
 void CConnectRabbitVNC::slotReadyRead()
 {
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::slotReadyRead");
+    //LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::slotReadyRead");
     try {
         while(processMsg())
             ;
         return;
     } catch (rdr::EndOfStream& e) {
-        LOG_MODEL_ERROR("TigerVnc", "processMsg error: %s", e.str());
+        LOG_MODEL_ERROR("RabbitVNC", "processMsg error: %s", e.str());
         emit sigError(-1, e.str());
     } catch (rdr::Exception& e) {
-        LOG_MODEL_ERROR("TigerVnc", "processMsg error: %s", e.str());
+        LOG_MODEL_ERROR("RabbitVNC", "processMsg error: %s", e.str());
         emit sigError(-1, e.str());
     } catch (std::exception &e) {
-        LOG_MODEL_ERROR("TigerVnc", "processMsg error: %s", e.what());
+        LOG_MODEL_ERROR("RabbitVNC", "processMsg error: %s", e.what());
         emit sigError(-1, e.what());
     } catch(...) {
-        LOG_MODEL_ERROR("TigerVnc", "processMsg error");
+        LOG_MODEL_ERROR("RabbitVNC", "processMsg error");
         emit sigError(-1);
     }
     return;
@@ -357,7 +357,7 @@ void CConnectRabbitVNC::slotError(int nErr, const QString& szErr)
 void CConnectRabbitVNC::initDone()
 {
     Q_ASSERT(m_pPara);
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::initDone():name:%s;width:%d;height:%d",
+    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::initDone():name:%s;width:%d;height:%d",
                     server.name(), server.width(), server.height());
     
     // If using AutoSelect with old servers, start in FullColor
@@ -381,7 +381,7 @@ void CConnectRabbitVNC::initDone()
 
 void CConnectRabbitVNC::setColourMapEntries(int firstColour, int nColours, rdr::U16 *rgbs)
 {
-    LOG_MODEL_ERROR("TigerVnc", "Invalid SetColourMapEntries from server!");
+    LOG_MODEL_ERROR("RabbitVNC", "Invalid SetColourMapEntries from server!");
 }
 
 void CConnectRabbitVNC::bell()
@@ -391,7 +391,7 @@ void CConnectRabbitVNC::bell()
 
 void CConnectRabbitVNC::setCursor(int width, int height, const rfb::Point &hotspot, const rdr::U8 *data)
 {
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
+    //LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
     if ((width == 0) || (height == 0)) {
         QImage cursor(1, 1, QImage::Format_ARGB32);
         rdr::U8 *buffer = cursor.bits();
@@ -407,7 +407,7 @@ void CConnectRabbitVNC::setCursor(int width, int height, const rfb::Point &hotsp
 
 void CConnectRabbitVNC::setCursorPos(const rfb::Point &pos)
 {
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::setCursorPos: x[%d]:y[%d]", pos.x, pos.y);
+    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::setCursorPos: x[%d]:y[%d]", pos.x, pos.y);
     emit sigUpdateCursorPosition(QPoint(pos.x, pos.y));
 }
 
@@ -419,7 +419,7 @@ void CConnectRabbitVNC::getUserPasswd(bool secure, char **user, char **password)
         if(m_pPara->GetPassword().isEmpty())
         {
             int nRet = QDialog::Rejected;
-            emit sigBlockShowWidget("CDlgTigerVNCGetPassword", nRet, m_pPara);
+            emit sigBlockShowWidget("CDlgGetPasswordRabbitVNC", nRet, m_pPara);
             if(QDialog::Accepted == nRet)
             {
                 *password = rfb::strDup(m_pPara->GetPassword().toStdString().c_str());
@@ -430,7 +430,7 @@ void CConnectRabbitVNC::getUserPasswd(bool secure, char **user, char **password)
 
 bool CConnectRabbitVNC::showMsgBox(int flags, const char *title, const char *text)
 {
-    LOG_MODEL_ERROR("TigerVnc","%s:%s\n", title, text);
+    LOG_MODEL_ERROR("RabbitVNC","%s:%s\n", title, text);
     QMessageBox::StandardButton nRet = QMessageBox::No;
     emit sigBlockShowMessage(QString(title), QString(text),
                              QMessageBox::Ok | QMessageBox::No, nRet);
@@ -462,7 +462,7 @@ void CConnectRabbitVNC::framebufferUpdateEnd()
     struct timeval now;
     
     rfb::CConnection::framebufferUpdateEnd();
-    //LOG_MODEL_ERROR("TigerVnc", "CConnectRabbitVnc::framebufferUpdateEnd");
+    //LOG_MODEL_ERROR("RabbitVNC", "CConnectRabbitVnc::framebufferUpdateEnd");
     
     m_updateCount++;
     
@@ -525,7 +525,7 @@ void CConnectRabbitVNC::autoSelectFormatAndEncoding()
             newQualityLevel = 6;
         
         if (newQualityLevel != m_pPara->GetQualityLevel()) {
-            LOG_MODEL_INFO("TigerVnc", "Throughput %d kbit/s - changing to quality %d",
+            LOG_MODEL_INFO("RabbitVNC", "Throughput %d kbit/s - changing to quality %d",
                            (int)(m_bpsEstimate/1000), newQualityLevel);
             m_pPara->SetQualityLevel(newQualityLevel);
             setQualityLevel(newQualityLevel);
@@ -547,10 +547,10 @@ void CConnectRabbitVNC::autoSelectFormatAndEncoding()
     newFullColour = (m_bpsEstimate > 256);
     if (newFullColour != (0 == m_pPara->GetColorLevel())) {
         if (newFullColour)
-            LOG_MODEL_INFO("TigerVnc", ("Throughput %d kbit/s - full color is now enabled"),
+            LOG_MODEL_INFO("RabbitVNC", ("Throughput %d kbit/s - full color is now enabled"),
                            (int)m_bpsEstimate / 1000);
         else
-            LOG_MODEL_INFO("TigerVnc", ("Throughput %d kbit/s - full color is now disabled"),
+            LOG_MODEL_INFO("RabbitVNC", ("Throughput %d kbit/s - full color is now disabled"),
                            (int)m_bpsEstimate / 1000);
         m_pPara->SetColorLevel(newFullColour ? CParameterRabbitVNC::Full : CParameterRabbitVNC::Low);
         updatePixelFormat();
@@ -583,7 +583,7 @@ void CConnectRabbitVNC::updatePixelFormat()
     
     char str[256];
     pf.print(str, 256);
-    LOG_MODEL_INFO("TigerVnc", "Using pixel format %s", str);
+    LOG_MODEL_INFO("RabbitVNC", "Using pixel format %s", str);
     setPF(pf);
 }
 
@@ -592,7 +592,7 @@ bool CConnectRabbitVNC::dataRect(const rfb::Rect &r, int encoding)
     if(!rfb::CConnection::dataRect(r, encoding))
         return false;
     
-    //    LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::dataRect:%d, %d, %d, %d; %d",
+    //    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::dataRect:%d, %d, %d, %d; %d",
     //               r.tl.x, r.tl.y, r.width(), r.height(), encoding);
     // 立即更新图像
     if(m_pPara && !m_pPara->GetBufferEndRefresh())
@@ -616,7 +616,7 @@ void CConnectRabbitVNC::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos
     if(buttons & Qt::MouseButton::RightButton)
         mask |= 0x4;
     
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::slotMousePressEvent buttons:%d;mask:%d;x:%d;y:%d", buttons, mask, pos.x(), pos.y());
+    //LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::slotMousePressEvent buttons:%d;mask:%d;x:%d;y:%d", buttons, mask, pos.x(), pos.y());
     writer()->writePointerEvent(p, mask);
 }
 
@@ -626,13 +626,13 @@ void CConnectRabbitVNC::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
     rfb::Point p(pos.x(), pos.y());
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::slotMouseReleaseEvent buttons:%d;mask:%d;x:%d;y:%d", button, mask, pos.x(), pos.y());
+    //LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::slotMouseReleaseEvent buttons:%d;mask:%d;x:%d;y:%d", button, mask, pos.x(), pos.y());
     writer()->writePointerEvent(p, mask);
 }
 
 void CConnectRabbitVNC::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::slotMouseReleaseEvent buttons:%d;x:%d;y:%d", buttons, pos.x(), pos.y());
+    //LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::slotMouseReleaseEvent buttons:%d;x:%d;y:%d", buttons, pos.x(), pos.y());
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
@@ -648,7 +648,7 @@ void CConnectRabbitVNC::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 
 void CConnectRabbitVNC::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
-    //LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::slotWheelEvent");
+    //LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::slotWheelEvent");
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
@@ -681,7 +681,7 @@ void CConnectRabbitVNC::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifie
     bool modifier = true;
     if (modifiers == Qt::NoModifier)
         modifier = false;
-    //LOG_MODEL_DEBUG("TigerVnc", "slotKeyPressEvent key:%d; modifiers:%d", key, modifiers);
+    //LOG_MODEL_DEBUG("RabbitVNC", "slotKeyPressEvent key:%d; modifiers:%d", key, modifiers);
     uint32_t k = TranslateRfbKey(key, modifier);
     if(key)
         writer()->writeKeyEvent(k, 0, true);
@@ -694,7 +694,7 @@ void CConnectRabbitVNC::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modif
     bool modifier = true;
     if (modifiers == Qt::NoModifier)
         modifier = false;
-    //LOG_MODEL_DEBUG("TigerVnc", "slotKeyReleaseEvent key:%d; modifiers:%d", key, modifiers);
+    //LOG_MODEL_DEBUG("RabbitVNC", "slotKeyReleaseEvent key:%d; modifiers:%d", key, modifiers);
     uint32_t k = TranslateRfbKey(key, modifier);
     if(key)
         writer()->writeKeyEvent(k, 0, false);
@@ -971,7 +971,7 @@ void CConnectRabbitVNC::slotClipBoardChange()
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::slotClipBoardChange()");
+    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::slotClipBoardChange()");
     announceClipboard(true);
 }
 
@@ -979,7 +979,7 @@ void CConnectRabbitVNC::handleClipboardRequest()
 {
     if(!m_pPara->GetClipboard() || !getOutStream()) return;
     
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::handleClipboardRequest");
+    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::handleClipboardRequest");
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
     
@@ -987,34 +987,34 @@ void CConnectRabbitVNC::handleClipboardRequest()
         //        setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
     } else if (mimeData->hasText()) {
         QString szText = mimeData->text();
-        LOG_MODEL_DEBUG("TigerVnc",
+        LOG_MODEL_DEBUG("RabbitVNC",
                         "CConnectRabbitVnc::handleClipboardRequest:szText:%s",
                         szText.toStdString().c_str());
         try{
             sendClipboardData(rfb::clipboardUTF8, szText.toStdString().c_str(),
                               szText.toStdString().size());
         } catch (rdr::Exception& e) {
-            LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
+            LOG_MODEL_ERROR("RabbitVNC", "%s", e.str());
         }
     } else if (mimeData->hasHtml()) {
         QString szHtml = mimeData->html();
-        LOG_MODEL_DEBUG("TigerVnc",
+        LOG_MODEL_DEBUG("RabbitVNC",
                         "CConnectRabbitVnc::handleClipboardRequest:html:%s",
                         szHtml.toStdString().c_str());
         try{
             sendClipboardData(rfb::clipboardHTML, mimeData->html().toStdString().c_str(),
                               mimeData->html().toStdString().size());
         } catch (rdr::Exception& e) {
-            LOG_MODEL_ERROR("TigerVnc", "%s", e.str());
+            LOG_MODEL_ERROR("RabbitVNC", "%s", e.str());
         }
     } else {
-        LOG_MODEL_DEBUG("TigerVnc", "Cannot display data");
+        LOG_MODEL_DEBUG("RabbitVNC", "Cannot display data");
     }
 }
 
 void CConnectRabbitVNC::handleClipboardAnnounce(bool available)
 {
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::handleClipboardAnnounce");
+    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::handleClipboardAnnounce");
     if(!m_pPara->GetClipboard() || !getOutStream()) return;
     
     if(available)
@@ -1023,7 +1023,7 @@ void CConnectRabbitVNC::handleClipboardAnnounce(bool available)
 
 void CConnectRabbitVNC::handleClipboardData(unsigned int format, const char *data, size_t length)
 {
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectRabbitVnc::handleClipboardData");
+    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::handleClipboardData");
     if(!m_pPara->GetClipboard()) return;
     
     if(rfb::clipboardUTF8 & format) {
@@ -1036,6 +1036,6 @@ void CConnectRabbitVNC::handleClipboardData(unsigned int format, const char *dat
         emit sigSetClipboard(pData);
         //pClip->setMimeData(pData);
     } else {
-        LOG_MODEL_DEBUG("TigerVnc", "Don't implement");
+        LOG_MODEL_DEBUG("RabbitVNC", "Don't implement");
     }
 }
