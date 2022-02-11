@@ -11,6 +11,7 @@
 [![最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=下载总量)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 [![贡献者](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=贡献者)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
 [![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
@@ -52,7 +53,10 @@
 - 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 - 项目位置:
   + 主库：https://github.com/KangLin/RabbitRemoteControl
-  + 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
+  + 镜像：
+    - 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
+    - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
+    - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
 
 #### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -178,7 +182,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 |RabbitVNC   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |TigerVNC    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |LibVNCServer|:heavy_check_mark:|:heavy_check_mark:|                  |
-|RDP         |:heavy_check_mark:|                  |                  |
+|RDP         |:heavy_check_mark:|:heavy_check_mark:|                  |
 |Spice       |                  |                  |                  |
 |SSH         |:heavy_check_mark:|                  |                  |
 |Terminal    |:heavy_check_mark:|                  |                  |
@@ -188,25 +192,34 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 当前已经完成常见远程控制协议客户端的开发，已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。
 终端类远程控制，因为 qtermwidget 仅支持 LINUX/UNIX ，所以需要让其支持其它平台。
 
-下一级段的工作是解决点对点远程控制，也是本项目的特点。详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+下一阶段的工作是解决点对点远程控制，也是本项目的特点。详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
 ### 下载
 
-+ 最后发行版本：[https://github.com/KangLin/RabbitRemoteControl/releases/latest](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
++ 最后发行版本：
+  - 从 github 下载: [https://github.com/KangLin/RabbitRemoteControl/releases/latest](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
+  - [![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 + 当前版本：
   - Windows: 支持 WINDOWS 7 及以后版本
-    + 安装包：[RabbitRemoteControl_setup_v0.0.17.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe)
-    + 绿色版本：[RabbitRemoteControl_v0.0.17.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip)
+    + 安装包：RabbitRemoteControl_setup_v0.0.17.exe
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe/download)
+    + 绿色版本：RabbitRemoteControl_v0.0.17.zip
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip/download)
   - Ubuntu:
-    + Ubuntu 20.04: [rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb)
-
+    + Ubuntu 20.04: rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
+      
           sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
           
           # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
           # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
           # sudo apt-get install -f # 安装依赖
 
-    + Ubuntu 18.04: [rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb)
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb/download)
+      
+    + Ubuntu 18.04: rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
 
           sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
           
@@ -214,6 +227,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
           # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
           # sudo apt-get install -f # 安装依赖
 
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb/download)
+      
 ### 开发
 
 [Doxygen 文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)

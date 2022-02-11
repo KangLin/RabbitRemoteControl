@@ -85,7 +85,7 @@ jobs:
         appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         #additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
         vcpkgTriplet: '${{matrix.triplet}}'
-        vcpkgArguments: 'zlib openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel'
+        vcpkgArguments: 'zlib openssl libssh libpng pixman libjpeg-turbo libdatachannel' # freerdp
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -103,21 +103,22 @@ jobs:
 #          cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #        )
 
-#    - name: Build FreeRDP
-#      working-directory: ${{env.SOURCE_DIR}}
-#      run: |
-#        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
-#            git clone -b 2.0.0-rc4 https://github.com/FreeRDP/FreeRDP.git
-#            cd FreeRDP
-#            git submodule update --init --recursive
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
-#                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-#            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-#        )
+    - name: Build FreeRDP
+      working-directory: ${{env.SOURCE_DIR}}
+      run: |
+        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
+            git clone -b 2.0.0-rc4 https://github.com/FreeRDP/FreeRDP.git
+            cd FreeRDP
+            git submodule update --init --recursive
+            cmake -E make_directory build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
+                -DWITH_SERVER=ON ^
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
 
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
@@ -271,6 +272,11 @@ jobs:
     - name: build RabbitRemoteControl
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
+        FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2
+        FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2
+        WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR2
+        FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2
+        FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build

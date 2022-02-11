@@ -63,7 +63,8 @@ jobs:
 #            cd build
 #            cmake .. \
 #                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}"
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
+#                -DWITH_SERVER=ON
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
 #            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
 #        fi
@@ -158,9 +159,11 @@ jobs:
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
-        #FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2
-        #FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2
-        #WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR2
+#        FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2
+#        FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2
+#        WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR2
+#        FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2
+#        FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
       run: |
         if [ ${{matrix.BUILD_TYPE}} == 'Release' ]; then
             export BUILD_TERMINAL=OFF

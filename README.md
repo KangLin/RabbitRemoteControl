@@ -10,7 +10,8 @@ Author: Kang Lin <kl222@126.com>
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
 [![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![All releases downloads](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Downloads from github](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 [![Contributors](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=Contributors)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
 [![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
@@ -56,7 +57,9 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - Project home: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 - Project position:
   - Main repository: https://github.com/KangLin/RabbitRemoteControl
-  - Mirror repository: https://gitlab.com/kl222/RabbitRemoteControl
+  - Mirror repository:
+    - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
+    - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol/
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -182,7 +185,7 @@ Some of them are:
 |RabbitVNC   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |TigerVNC    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |LibVNCServer|:heavy_check_mark:|:heavy_check_mark:|                  |
-|RDP         |:heavy_check_mark:|                  |                  |
+|RDP         |:heavy_check_mark:|:heavy_check_mark:|                  |
 |Spice       |                  |                  |                  |
 |SSH         |:heavy_check_mark:|                  |                  |
 |Terminal    |:heavy_check_mark:|                  |                  |
@@ -202,28 +205,40 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
 ### Download
 
-+ Latest Release: [https://github.com/KangLin/RabbitRemoteControl/releases/latest](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
++ Latest Release: 
+  - github: [https://github.com/KangLin/RabbitRemoteControl/releases/latest](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
+  - [![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
 + Current version:
   - Windows: Supported WINDOWS 7 and later version
-    + Install package: [RabbitRemoteControl_setup_v0.0.17.exe](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe)
-    + No need to install package: [RabbitRemoteControl_v0.0.17.zip](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip)
+    + Install package: RabbitRemoteControl_setup_v0.0.17.exe
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe/download)
+    + No need to install package: RabbitRemoteControl_v0.0.17.zip
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip/download)
   - Ubuntu:
-    + Ubuntu 20.04: [rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb)
-          
+    + Ubuntu 20.04: rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
+      
           sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
           # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
           # sudo apt-get install -f # Install dependencies
-          
-    + Ubuntu 18.04: [rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb)
+
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb/download)
+
+    + Ubuntu 18.04: rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
 
           sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
           # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
           # sudo apt-get install -f # Install dependencies
+
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb/download)
 
 ### Development
 

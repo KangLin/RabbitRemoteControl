@@ -14,6 +14,9 @@ public:
     virtual int Height() override;
     virtual QImage GetDesktop() override;
     virtual QImage GetDesktop( int x, int y, int width, int height) override;
+    
+    virtual QImage GetCursor() override;
+    virtual QPoint GetCursorPosition() override;
 };
 
 #endif // CDESKTOPXLIB_H

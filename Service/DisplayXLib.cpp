@@ -199,3 +199,64 @@ QImage CDisplayXLib::GetDisplay()
                      m_pImage, 0, 0);
     return m_Desktop;
 }
+
+QImage CDisplayXLib::GetCursor()
+{
+    QImage img;
+#ifdef HAVE_XFIXES
+		UINT32* pDstPixel;
+		XFixesCursorImage* ci;
+		XLockDisplay(m_pDisplay);
+		ci = XFixesGetCursorImage(m_pDisplay);
+		XUnlockDisplay(m_pDisplay);
+
+		if (!ci)
+			return QImage();
+
+		x = ci->x;
+		y = ci->y;
+
+		if (ci->width > subsystem->cursorMaxWidth)
+			return -1;
+
+		if (ci->height > subsystem->cursorMaxHeight)
+			return -1;
+
+		subsystem->cursorHotX = ci->xhot;
+		subsystem->cursorHotY = ci->yhot;
+		subsystem->cursorWidth = ci->width;
+		subsystem->cursorHeight = ci->height;
+		subsystem->cursorId = ci->cursor_serial;
+		n = ci->width * ci->height;
+		pDstPixel = (UINT32*)subsystem->cursorPixels;
+
+		for (k = 0; k < n; k++)
+		{
+			/* XFixesCursorImage.pixels is in *unsigned long*, which may be 8 bytes */
+			*pDstPixel++ = (UINT32)ci->pixels[k];
+		}
+
+		XFree(ci);
+		x11_shadow_pointer_alpha_update(subsystem);
+#endif
+    return img;
+}
+
+QPoint CDisplayXLib::GetCursorPosition()
+{
+    unsigned int mask;
+    int win_x = 0, win_y = 0;
+    int root_x = 0, root_y = 0;
+    Window root, child;
+    XLockDisplay(m_pDisplay);
+
+    if (!XQueryPointer(m_pDisplay, m_RootWindow, &root, &child, &root_x,
+                       &root_y, &win_x, &win_y, &mask))
+    {
+        XUnlockDisplay(m_pDisplay);
+        return QPoint();
+    }
+
+    XUnlockDisplay(m_pDisplay);
+    return QPoint(root_x, root_y);
+}

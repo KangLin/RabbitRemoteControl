@@ -71,6 +71,17 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROID)
             "CentOS:\n"
             "$ sudo yum install xorg-x11*\n")
     endif()
+    if(X11_Xfixes_FOUND)
+        LIST(APPEND PRIVATE_DEFINITIONS HAVE_XFIXES)
+        list(APPEND SRC_PRIVATE_LIBS ${X11_Xfixes_LIB})
+    else()
+        message("Please install xorg-dev:\n"
+            "Ubuntu:\n"
+            "$ sudo apt-get install xorg-dev\n"
+            
+            "CentOS:\n"
+            "$ sudo yum install xorg-x11*\n")
+    endif()
 endif()
 
 set(SOURCE_UI_FILES
