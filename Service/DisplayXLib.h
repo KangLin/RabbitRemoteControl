@@ -21,7 +21,7 @@ public:
     virtual QImage::Format GetFormat() override;
     virtual QImage GetDisplay(int x, int y, int width, int height) override;
     virtual QImage GetDisplay() override;
-    virtual QImage GetCursor() override;
+    virtual QImage GetCursor(QPoint &pos, QPoint &posHot) override;
     virtual QPoint GetCursorPosition() override;
     
 protected:

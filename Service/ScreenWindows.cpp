@@ -176,7 +176,7 @@ int CScreenWindows::GetImage(bool bBuffer)
             break;
         }
         
-        if(m_bCursor)
+        if(HasCursor())
         {
             //TODO: There is a bug
             POINT point;

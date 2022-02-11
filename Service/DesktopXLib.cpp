@@ -33,12 +33,22 @@ QImage CDesktopXLib::GetDesktop(int x, int y, int width, int height)
     return CDisplay::Instance()->GetDisplay();
 }
 
-QImage CDesktopXLib::GetCursor()
+QImage CDesktopXLib::GetCursor(QPoint &pos, QPoint &posHot)
 {
-    return CDisplay::Instance()->GetCursor();
+    return CDisplay::Instance()->GetCursor(pos, posHot);
 }
 
 QPoint CDesktopXLib::GetCursorPosition()
 {
     return CDisplay::Instance()->GetCursorPosition();
+}
+
+bool CDesktopXLib::GetHasCursor() const
+{
+    return CDisplay::Instance()->GetHasCursor();
+}
+
+void CDesktopXLib::SetHasCursor(bool hasCursor)
+{
+    return CDisplay::Instance()->SetHasCursor(hasCursor);
 }

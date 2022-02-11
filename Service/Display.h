@@ -12,7 +12,7 @@
 class SERVICE_EXPORT CDisplay
 {
 public:
-    explicit CDisplay(){};
+    explicit CDisplay(){m_bHasCursor = true;};
     virtual ~CDisplay(){};
 
     static CDisplay* Instance();
@@ -24,13 +24,23 @@ public:
 
     virtual QImage GetDisplay() = 0;
     virtual QImage GetDisplay(int x, int y, int width, int height) = 0;
-    virtual QImage GetCursor() = 0;
+    virtual QImage GetCursor(QPoint &pos, QPoint &posHot) = 0;
     virtual QPoint GetCursorPosition() = 0;
+    bool GetHasCursor() const
+    {
+        return m_bHasCursor;
+    }
+    void SetHasCursor(bool newHasCursor)
+    {
+        m_bHasCursor = newHasCursor;
+    }
     
 protected:
     virtual int Open() = 0;
     virtual int Close() = 0;
 
+private:
+    bool m_bHasCursor;
 };
 
 #endif // CDISPLAY_H

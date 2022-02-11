@@ -3,10 +3,17 @@
 #include "RabbitCommonLog.h"
 #include "DisplayXLib.h"
 
+#ifdef HAVE_Xfixes
+#include <X11/extensions/Xfixes.h>
+#endif
+
 // xlib documents: https://www.x.org/releases/current/doc/libX11/libX11/libX11.html
 // X documents: https://www.x.org/releases/current/doc/index.html
 // X Window System Concepts: https://www.x.org/wiki/guide/concepts/
 // https://www.x.org
+
+#include <QPainter>
+#include <QBitmap>
 
 CDisplayXLib::CDisplayXLib() : CDisplay(),
     m_pDisplay(NULL),
@@ -197,49 +204,61 @@ QImage CDisplayXLib::GetDisplay()
                      0, 0, Width(), Height(),
                      AllPlanes, ZPixmap,
                      m_pImage, 0, 0);
+    if(GetHasCursor())
+    {
+        QPoint pos, posHot;
+        QImage cursor = GetCursor(pos, posHot);
+        if(!cursor.isNull())
+        {
+            QPainter painter(&m_Desktop);
+            //TODO: transparent
+            //painter.setBackgroundMode(Qt::TransparentMode);
+            painter.drawImage(pos, cursor);
+        }
+    }
     return m_Desktop;
 }
 
-QImage CDisplayXLib::GetCursor()
+QImage CDisplayXLib::GetCursor(QPoint &pos, QPoint &posHot)
 {
-    QImage img;
-#ifdef HAVE_XFIXES
-		UINT32* pDstPixel;
-		XFixesCursorImage* ci;
-		XLockDisplay(m_pDisplay);
-		ci = XFixesGetCursorImage(m_pDisplay);
-		XUnlockDisplay(m_pDisplay);
+#ifdef HAVE_Xfixes
+    
+    XFixesCursorImage* ci;
+    XLockDisplay(m_pDisplay);
+    ci = XFixesGetCursorImage(m_pDisplay);
+    XUnlockDisplay(m_pDisplay);
+    
+    if (!ci)
+        return QImage();
+    
+    pos = QPoint(ci->x, ci->y);
+    posHot = QPoint(ci->xhot, ci->yhot);
+    QImage img(ci->width, ci->height, QImage::Format_ARGB32);
+    
+    unsigned char r,g,b,a;
+    unsigned short row = 0, col = 0, k = 0;
+    
+    for(row = 0; row < ci->height; row++)
+    {
+        for(col = 0; col < ci->width; col++, k++)
+        {
+            a = (unsigned char)((ci->pixels[k] >> 24) & 0xff);  
+            r = (unsigned char)((ci->pixels[k] >> 16) & 0xff);  
+            g = (unsigned char)((ci->pixels[k] >>  8) & 0xff);
+            b = (unsigned char)((ci->pixels[k] >>  0) & 0xff);
 
-		if (!ci)
-			return QImage();
+            QColor c(r, g, b, a);
+            img.setPixelColor(col, row, c);
+        }
+    }
 
-		x = ci->x;
-		y = ci->y;
+    XFree(ci);
 
-		if (ci->width > subsystem->cursorMaxWidth)
-			return -1;
-
-		if (ci->height > subsystem->cursorMaxHeight)
-			return -1;
-
-		subsystem->cursorHotX = ci->xhot;
-		subsystem->cursorHotY = ci->yhot;
-		subsystem->cursorWidth = ci->width;
-		subsystem->cursorHeight = ci->height;
-		subsystem->cursorId = ci->cursor_serial;
-		n = ci->width * ci->height;
-		pDstPixel = (UINT32*)subsystem->cursorPixels;
-
-		for (k = 0; k < n; k++)
-		{
-			/* XFixesCursorImage.pixels is in *unsigned long*, which may be 8 bytes */
-			*pDstPixel++ = (UINT32)ci->pixels[k];
-		}
-
-		XFree(ci);
-		x11_shadow_pointer_alpha_update(subsystem);
-#endif
     return img;
+#else
+    pos = GetCursorPosition();
+#endif
+    return QImage();
 }
 
 QPoint CDisplayXLib::GetCursorPosition()

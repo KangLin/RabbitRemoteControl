@@ -46,7 +46,7 @@ public:
         return 0;
     }
     
-    bool HasCursor();
+    bool HasCursor(){return m_bCursor;}
     void SetHasCursor(bool bHas){m_bCursor = bHas;}
 
 Q_SIGNALS:

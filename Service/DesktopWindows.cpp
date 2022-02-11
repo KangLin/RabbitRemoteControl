@@ -248,7 +248,7 @@ QImage CDesktopWindows::GetDesktop(int x, int y, int width, int height)
     return img;
 }
 
-QImage CDesktopWindows::GetCursor()
+QImage CDesktopWindows::GetCursor(QPoint &pos, QPoint &posHot)
 {
     QImage img;
     return img;

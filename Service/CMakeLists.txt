@@ -60,9 +60,9 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROID)
             DesktopXLib.cpp
             )
     endif()
-    if(X11_XTest_FOUND)
+    if(X11_Xtst_FOUND)
         LIST(APPEND PRIVATE_DEFINITIONS HAVE_XTEST)
-        list(APPEND SRC_PRIVATE_LIBS ${X11_XTest_LIB})
+        list(APPEND SRC_PRIVATE_LIBS X11::Xtst)
     else()
         message("Please install xorg-dev:\n"
             "Ubuntu:\n"
@@ -72,8 +72,8 @@ elseif(UNIX AND NOT APPLE AND NOT ANDROID)
             "$ sudo yum install xorg-x11*\n")
     endif()
     if(X11_Xfixes_FOUND)
-        LIST(APPEND PRIVATE_DEFINITIONS HAVE_XFIXES)
-        list(APPEND SRC_PRIVATE_LIBS ${X11_Xfixes_LIB})
+        LIST(APPEND PRIVATE_DEFINITIONS HAVE_Xfixes)
+        list(APPEND SRC_PRIVATE_LIBS X11::Xfixes)
     else()
         message("Please install xorg-dev:\n"
             "Ubuntu:\n"
@@ -100,7 +100,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}> 
     INSTALL_HEADER_FILES ${INSTALL_HEADER_FILES}
     LIBS ${SRC_LIBS}
     PRIVATE_LIBS ${SRC_PRIVATE_LIBS}
