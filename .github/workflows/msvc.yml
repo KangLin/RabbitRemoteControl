@@ -107,7 +107,7 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: |
         IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
-            git clone -b 2.0.0-rc4 https://github.com/FreeRDP/FreeRDP.git
+            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
             cd FreeRDP
             git submodule update --init --recursive
             cmake -E make_directory build
@@ -115,6 +115,7 @@ jobs:
             cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
                 -DWITH_SERVER=ON ^
+                -DCHANNEL_URBDRC=OFF ^
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
