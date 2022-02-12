@@ -2,6 +2,9 @@
 
 ### v0.0.18
 + Organize documents
++ Service
+  - add FreeRDP service
+  - Modify Desktop and grab cursor
 
 ### v0.0.17
 + FIX the bug disconnect from server
