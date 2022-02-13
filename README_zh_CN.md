@@ -5,17 +5,22 @@
 -----------------------------------------------------------------------
 
 [![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://github.com/KangLin/RabbitRemoteControl)
 [![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl)
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl?label=问题)](https://github.com/KangLin/RabbitRemoteControl/issues)
-[![最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=下载总量)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 [![贡献者](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=贡献者)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
 [![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
 [![平台](https://img.shields.io/badge/平台-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
+
+- 点赞量  
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://github.com/KangLin/RabbitRemoteControl)
+[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
+
+- 下载量  
+[![最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=下载总量)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
 -----------------------------------------------------------------------
 
