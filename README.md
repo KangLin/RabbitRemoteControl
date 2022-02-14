@@ -139,6 +139,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 ### Contribution
 
+- [Mail list](https://sourceforge.net/p/rabbitremotecontrol/mailman/rabbitremotecontrol-discuss/)
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [![Join the chat at https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 - [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
