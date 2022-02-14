@@ -18,7 +18,7 @@ jobs:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu_2022_02_14
       RabbitRemoteControl_VERSION: 0.0.17
       
     steps:
