@@ -4,7 +4,7 @@ project(LibVNCServer)
 
 set(_libvncLibs Viewer)
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Gui Widgets Network)
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     list(APPEND _libvncLibs Qt${QT_VERSION_MAJOR}::Network)
 endif()

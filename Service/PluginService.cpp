@@ -9,7 +9,7 @@
 #include <QIcon>
 #include <QLocale>
 #include <QDebug>
-#include <QApplication>
+#include <QCoreApplication>
 
 CPluginService::CPluginService(QObject *parent)
     : QObject(parent),

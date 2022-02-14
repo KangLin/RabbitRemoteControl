@@ -5,6 +5,7 @@
 + Service
   - add FreeRDP service
   - Modify Desktop and grab cursor
+    + linux
 
 ### v0.0.17
 + FIX the bug disconnect from server

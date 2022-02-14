@@ -1,5 +1,6 @@
 #include "ParameterApp.h"
 #include <QSettings>
+#include <QDir>
 #include "RabbitCommonDir.h"
 #include "ManagePassword.h"
 

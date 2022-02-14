@@ -5,7 +5,15 @@ endif()
 
 project(Service LANGUAGES CXX)
 
-set(SRC_LIBS QtService RabbitCommon)
+SET(QT_COMPONENTS Gui)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QT_COMPONENTS})
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    FOREACH(_COMPONENT ${QT_COMPONENTS})
+        list(APPEND Service_QT_LIBRARIES Qt${QT_VERSION_MAJOR}::${_COMPONENT})
+    ENDFOREACH()
+endif()
+
+set(SRC_LIBS QtService RabbitCommon ${Service_QT_LIBRARIES})
 set(SRC_PRIVATE_LIBS)
 
 set(INSTALL_HEADER_FILES

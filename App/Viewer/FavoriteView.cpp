@@ -14,6 +14,7 @@
 #include <QAction>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QDir>
 
 #include "FavoriteMimeData.h"
 #include "RabbitCommonLog.h"

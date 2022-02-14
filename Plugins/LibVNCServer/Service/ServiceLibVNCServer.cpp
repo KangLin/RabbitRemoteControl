@@ -1,9 +1,10 @@
 #include "ServiceLibVNCServer.h"
 #include "RabbitCommonLog.h"
 #include "RabbitCommonTools.h"
+
 #include <rfb/keysym.h>
 #include <QScreen>
-#include <QApplication>
+#include <QCoreApplication>
 
 #include "ParameterServiceLibVNC.h"
 #include "Screen.h"

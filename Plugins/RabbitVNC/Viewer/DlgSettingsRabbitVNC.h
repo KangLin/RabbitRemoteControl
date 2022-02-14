@@ -8,7 +8,7 @@
 #include "ParameterRabbitVNC.h"
 
 namespace Ui {
-class CDlgSettingsRabbitVnc;
+class CDlgSettingsRabbitVNC;
 }
 
 class CDlgSettingsRabbitVNC : public QDialog
@@ -34,7 +34,7 @@ private slots:
     void on_gpIce_clicked(bool checked);
     
 private:
-    Ui::CDlgSettingsRabbitVnc *ui;
+    Ui::CDlgSettingsRabbitVNC *ui;
     CParameterRabbitVNC* m_pPara;
     
     // QWidget interface

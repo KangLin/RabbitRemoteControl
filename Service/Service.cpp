@@ -3,6 +3,7 @@
 #include "Service.h"
 #include <QTimer>
 #include <QSettings>
+#include <QDir>
 #include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 #include "PluginService.h"

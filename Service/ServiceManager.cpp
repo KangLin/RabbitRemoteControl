@@ -24,7 +24,7 @@
  *   - e: Start a program as a user process
  */
 CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
-    : QtService<QApplication>(argc, argv, name)
+    : QtService<QCoreApplication>(argc, argv, name)
 {
     application()->setApplicationName(appName);
     

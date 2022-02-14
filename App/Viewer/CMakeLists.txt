@@ -24,7 +24,7 @@ set(HEADER_FILES
     View.h
     ViewFrmScroll.h
     ParameterApp.h
-   ParameterDlgSettings.h
+    ParameterDlgSettings.h
     FavoriteView.h
     FavoriteMimeData.h
     )
@@ -53,6 +53,8 @@ LIST(APPEND RCC_FILES Resource/Resource.qrc)
 #    endif()
 #endif()
 
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Gui Widgets)
+    
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     ISWINDOWS

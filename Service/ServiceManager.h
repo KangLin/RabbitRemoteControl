@@ -9,7 +9,7 @@
 #include <QMap>
 #include <QDir>
 #include "service_export.h"
-#include <QApplication>
+#include <QCoreApplication>
 
 class CPluginService;
 
@@ -34,7 +34,7 @@ class CPluginService;
  *  \ingroup LIBAPI_SERVICE
  *  \see CPluginService
  */
-class SERVICE_EXPORT CServiceManager : public QtService<QApplication>
+class SERVICE_EXPORT CServiceManager : public QtService<QCoreApplication>
 {
 public:
     explicit CServiceManager(int argc, char **argv, const QString& appName, const QString &name = "Rabbit Remote control service");

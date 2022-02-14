@@ -15,7 +15,7 @@
 
 CDlgSettingsRabbitVNC::CDlgSettingsRabbitVNC(CParameterRabbitVNC *pPara, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgSettingsRabbitVnc),
+    ui(new Ui::CDlgSettingsRabbitVNC),
     m_pPara(pPara)
 {
     setAttribute(Qt::WA_DeleteOnClose);
