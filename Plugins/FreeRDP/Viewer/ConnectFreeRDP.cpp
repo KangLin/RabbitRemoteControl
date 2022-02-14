@@ -655,7 +655,7 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
     if(username || password)
     {
         int nRet = QDialog::Rejected;
-        emit pThis->sigBlockShowWidget("DlgGetUserPasswordFreeRDP", nRet, pThis->m_pParamter);
+        emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParamter);
         if(QDialog::Accepted == nRet)
         {
             *username = _strdup(pThis->m_pParamter->GetUser().toStdString().c_str());
@@ -677,7 +677,7 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
     if(username || password)
     {
         int nRet = QDialog::Rejected;
-        emit pThis->sigBlockShowWidget("DlgGetUserPasswordFreeRDP", nRet, pThis->m_pParamter);
+        emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParamter);
         if(QDialog::Accepted == nRet)
         {
             *username = _strdup(pThis->m_pParamter->GetUser().toStdString().c_str());

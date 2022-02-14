@@ -11,42 +11,42 @@
 <context>
     <name>CDlgGetPasswordRabbitVNC</name>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="14"/>
+        <location filename="../../DlgGetPasswordRabbitVNC.ui" line="14"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="35"/>
+        <location filename="../../DlgGetPasswordRabbitVNC.ui" line="35"/>
         <source>OK(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="42"/>
+        <location filename="../../DlgGetPasswordRabbitVNC.ui" line="42"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="96"/>
+        <location filename="../../DlgGetPasswordRabbitVNC.ui" line="96"/>
         <source>User:</source>
         <translation>用戶：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="110"/>
+        <location filename="../../DlgGetPasswordRabbitVNC.ui" line="110"/>
         <source>Password:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="126"/>
+        <location filename="../../DlgGetPasswordRabbitVNC.ui" line="126"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="150"/>
+        <location filename="../../DlgGetPasswordRabbitVNC.ui" line="150"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.cpp" line="40"/>
+        <location filename="../../DlgGetPasswordRabbitVNC.cpp" line="40"/>
         <source>Set password for %1</source>
         <translation>為 %1 設置密碼</translation>
     </message>

@@ -2,6 +2,49 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CDlgGetPasswordTigerVNC</name>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="14"/>
+        <source>Input password</source>
+        <translation type="unfinished">输入密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="35"/>
+        <source>OK(&amp;O)</source>
+        <translation type="unfinished">确定(&amp;O)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="42"/>
+        <source>Cancel(&amp;C)</source>
+        <translation type="unfinished">取消(&amp;C)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="96"/>
+        <source>User:</source>
+        <translation type="unfinished">用户：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="110"/>
+        <source>Password:</source>
+        <translation type="unfinished">密码：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="126"/>
+        <source>Save password</source>
+        <translation type="unfinished">保存密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="150"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.cpp" line="40"/>
+        <source>Set password for %1</source>
+        <translation type="unfinished">为 %1 设置密码</translation>
+    </message>
+</context>
+<context>
     <name>CDlgSettingsTigerVnc</name>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="14"/>
@@ -278,44 +321,32 @@
 <context>
     <name>CDlgTigerVNCGetPassword</name>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="14"/>
         <source>Input password</source>
-        <translation>输入密码</translation>
+        <translation type="vanished">输入密码</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="35"/>
         <source>OK(&amp;O)</source>
-        <translation>确定(&amp;O)</translation>
+        <translation type="vanished">确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="42"/>
         <source>Cancel(&amp;C)</source>
-        <translation>取消(&amp;C)</translation>
+        <translation type="vanished">取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="96"/>
         <source>User:</source>
-        <translation>用户：</translation>
+        <translation type="vanished">用户：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="110"/>
         <source>Password:</source>
-        <translation>密码：</translation>
+        <translation type="vanished">密码：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="126"/>
         <source>Save password</source>
-        <translation>保存密码</translation>
+        <translation type="vanished">保存密码</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="150"/>
-        <source>TextLabel</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPassword.cpp" line="40"/>
         <source>Set password for %1</source>
-        <translation>为 %1 设置密码</translation>
+        <translation type="vanished">为 %1 设置密码</translation>
     </message>
 </context>
 <context>

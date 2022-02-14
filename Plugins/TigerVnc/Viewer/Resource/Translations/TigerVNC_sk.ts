@@ -2,6 +2,49 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sk_SK">
 <context>
+    <name>CDlgGetPasswordTigerVNC</name>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="14"/>
+        <source>Input password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="35"/>
+        <source>OK(&amp;O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="42"/>
+        <source>Cancel(&amp;C)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="96"/>
+        <source>User:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="110"/>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="126"/>
+        <source>Save password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="150"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordTigerVNC.cpp" line="40"/>
+        <source>Set password for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgSettingsTigerVnc</name>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="14"/>
@@ -272,49 +315,6 @@
     <message>
         <location filename="../../DlgSettingsTigerVnc.cpp" line="65"/>
         <source>Please set domain</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CDlgTigerVNCGetPassword</name>
-    <message>
-        <location filename="../../DlgGetUserPassword.ui" line="14"/>
-        <source>Input password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPassword.ui" line="35"/>
-        <source>OK(&amp;O)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPassword.ui" line="42"/>
-        <source>Cancel(&amp;C)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPassword.ui" line="96"/>
-        <source>User:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPassword.ui" line="110"/>
-        <source>Password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPassword.ui" line="126"/>
-        <source>Save password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPassword.ui" line="150"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgGetUserPassword.cpp" line="40"/>
-        <source>Set password for %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

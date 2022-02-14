@@ -4,89 +4,89 @@
 <context>
     <name>CConnectFreeRDP</name>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="120"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="121"/>
         <source>freerdp_connect connect to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="124"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="125"/>
         <source> fail</source>
         <translation> 失敗</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="130"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="131"/>
         <source>Connect to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="504"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="505"/>
         <source>Logon error info [</source>
         <translation>登錄錯誤信息 [</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="701"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="702"/>
         <source>Verify certificate</source>
         <translation>驗證證書</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="703"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="740"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="704"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="741"/>
         <source>Host: %1; Port: %2</source>
         <translation>主機：%1; 端口：%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="704"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="741"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="705"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="742"/>
         <source>Common name: </source>
         <translation>公共名稱：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="705"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="706"/>
         <source>Subject: </source>
         <translation>主題：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="706"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="707"/>
         <source>Issuer: </source>
         <translation>發行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="707"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="708"/>
         <source>Fingerprint: </source>
         <translation>指紋：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="738"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="739"/>
         <source>Verify changed certificate</source>
         <translation>驗證證書改變</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="742"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="743"/>
         <source>New subject: </source>
         <translation>新的主題：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="743"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="744"/>
         <source>New issuer: </source>
         <translation>新的發行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="744"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="745"/>
         <source>New fingerprint: </source>
         <translation>新的指紋：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="745"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="746"/>
         <source>Old subject: </source>
         <translation>舊的主題：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="746"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="747"/>
         <source>Old issuer: </source>
         <translation>舊的發行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="747"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="748"/>
         <source>Old fingerprint: </source>
         <translation>舊的指紋：</translation>
     </message>
@@ -94,49 +94,84 @@
 <context>
     <name>CDlgGetUserPassword</name>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="14"/>
         <source>Input password</source>
-        <translation>輸入密碼</translation>
+        <translation type="vanished">輸入密碼</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="50"/>
+        <source>Domain:</source>
+        <translation type="vanished">域名：</translation>
+    </message>
+    <message>
+        <source>User:</source>
+        <translation type="vanished">用戶：</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="vanished">密碼：</translation>
+    </message>
+    <message>
+        <source>Save password</source>
+        <translation type="vanished">保存密碼</translation>
+    </message>
+    <message>
+        <source>OK(&amp;O)</source>
+        <translation type="vanished">確定(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Cancel(&amp;C)</source>
+        <translation type="vanished">取消(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Set password for %1</source>
+        <translation type="vanished">為 %1 設置密碼</translation>
+    </message>
+</context>
+<context>
+    <name>CDlgGetUserPasswordFreeRDP</name>
+    <message>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="14"/>
+        <source>Input password</source>
+        <translation type="unfinished">輸入密碼</translation>
+    </message>
+    <message>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="50"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="59"/>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="59"/>
         <source>Domain:</source>
-        <translation>域名：</translation>
+        <translation type="unfinished">域名：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="73"/>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="73"/>
         <source>User:</source>
-        <translation>用戶：</translation>
+        <translation type="unfinished">用戶：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="87"/>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="87"/>
         <source>Password:</source>
-        <translation>密碼：</translation>
+        <translation type="unfinished">密碼：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="103"/>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="103"/>
         <source>Save password</source>
-        <translation>保存密碼</translation>
+        <translation type="unfinished">保存密碼</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="155"/>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="155"/>
         <source>OK(&amp;O)</source>
-        <translation>確定(&amp;O)</translation>
+        <translation type="unfinished">確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.ui" line="162"/>
+        <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="162"/>
         <source>Cancel(&amp;C)</source>
-        <translation>取消(&amp;C)</translation>
+        <translation type="unfinished">取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPassword.cpp" line="45"/>
+        <location filename="../../DlgGetUserPasswordFreeRDP.cpp" line="45"/>
         <source>Set password for %1</source>
-        <translation>為 %1 設置密碼</translation>
+        <translation type="unfinished">為 %1 設置密碼</translation>
     </message>
 </context>
 <context>
