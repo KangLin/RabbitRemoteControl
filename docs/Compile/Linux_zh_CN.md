@@ -30,7 +30,7 @@
   + Qt 官方发行版本： https://download.qt.io/official_releases/qt/  
     当前使用版本: Qt 5.12.12
 
-- [可选] IDE: Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
+- [可选] IDE: Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
   
       ~$ sudo apt install sudo apt install qtcreator
   
@@ -55,15 +55,16 @@
     # 安装依赖库
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     ~$ sudo apt install debhelper fakeroot
-    # RabbitCommon 依赖
+    # RabbitCommon 依赖 (可选)，当编译时它会自动被下载
     ~$ sudo apt install libcmark-dev
     # 安装 Qt
     ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
     # 安装 X 开发库
     ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
     ~$ sudo apt install libutf8proc-dev libpam0g-dev #编译 qtermwidget 需要
-    # 编译 RabbitVNC
+    # 安装 pixman ,RabbitVNC 和 TigerVNC 需要它
     ~$ sudo apt install libpixman-1-dev
+    # 编译 RabbitVNC
     ~$ git clone https://github.com/KangLin/RabbitVNC.git
     ~$ cd RabbitVNC
     ~$ mkdir build
@@ -71,7 +72,6 @@
     ~/RabbitVNC/build$ cmake --build . --target install
     ~/RabbitVNC/build$ cd ~
     # 编译 TigerVNC
-    ~$ sudo apt install libpixman-1-dev
     ~$ git clone https://github.com/KangLin/tigervnc.git
     ~$ cd tigervnc
     ~$ mkdir build
@@ -96,8 +96,8 @@
     ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
     ~/qt-solutions/qtservice/build$ cmake --build . --target install
     ~/qt-solutions/qtservice/build$ cd ~
-    ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
+    ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
@@ -111,7 +111,7 @@
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
   - [可选] [cmark](https://github.com/commonmark/cmark): 玉兔公共库依赖
 - [可选] RFB
-  + [可选] RabbitVNC: https://github.com/KangLin/RabbitVNC
+  + [可选] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [可选] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
@@ -132,8 +132,22 @@
 
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
     
+#### cmark-gfm
+支持 Github cmark 。玉兔公共库依赖。玉兔公共库编译时，会自动下载它
+- 从源码编译
+  + 源码位置： https://github.com/github/cmark-gfm
+  
+        ~$ git clone https://github.com/github/cmark-gfm.git
+        ~$ cd cmark
+        ~/cmark$ mkdir build
+        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMARK_SHARED=OFF -DCMARK_STATIC=ON -DCMARK_TESTS=OFF
+        ~/cmark/build$ cmake --build . --target install
+          
+  + 指定 CMake 参数：
+    - -Dcmark_DIR=[cmark 安装目录]/lib/cmake/cmark-gfm
+
 #### cmark
-玉兔公共库依赖
+玉兔公共库依赖。玉兔公共库编译时，会自动下载它
 - 使用系统预编译开发库
 
       ~$ sudo apt install libcmark-dev
@@ -154,11 +168,11 @@
         ~$ git clone https://github.com/commonmark/cmark
         ~$ cd cmark
         ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMARK_SHARED=OFF -DCMARK_STATIC=ON -DCMARK_TESTS=OFF
         ~/cmark/build$ cmake --build . --target install
           
   + 指定 CMake 参数：
-    - -Dcmark_DIR=[cmark 安装目录]
+    - -Dcmark_DIR=[cmark 安装目录]/lib/cmake/cmark
     
 #### FreeRDP
 - 使用系统预编译开发库
@@ -174,7 +188,7 @@
         ~/vcpkg$ vcpkg install freerdp
 
   + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-  
+  + 使用 vcpk ，不支持 FreeRDP 服务，所以需要从源码编译它。
 - 从源码编译
   + 源码位置：https://github.com/FreeRDP/FreeRDP
   + 编译详见：https://github.com/FreeRDP/FreeRDP/wiki/Compilation
@@ -182,7 +196,7 @@
           ~$ git clone https://github.com/FreeRDP/FreeRDP.git
           ~$ cd FreeRDP
           ~/FreeRDP$ mkdir build
-          ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+          ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DWITH_SERVER=ON
           ~/FreeRDP/build$ cmake --build . --target install
           
   + 指定 CMake 参数：
@@ -204,12 +218,13 @@
 - 从源码编译
 源码位置: https://github.com/KangLin/RabbitVNC  
 
-    ~$ sudo apt install libpixman-1-dev
-    ~$ git clone https://github.com/KangLin/RabbitVNC.git
-    ~$ cd RabbitVNC
-    ~/RabbitVNC$ mkdir build
-    ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/RabbitVNC$ cmake --build . --target install
+      ~$ sudo apt install libpixman-1-dev
+      ~$ git clone https://github.com/KangLin/RabbitVNC.git
+      ~$ cd RabbitVNC
+      ~/RabbitVNC$ mkdir build
+      ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+      ~/RabbitVNC$ cmake --build . --target install
+    
 - 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
 
 #### TigerVNC

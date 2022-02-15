@@ -63,8 +63,9 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 - Project position:
   - Main repository: https://github.com/KangLin/RabbitRemoteControl
   - Mirror repository:
-    - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
     - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol/
+    - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
+    - gitee: https://gitee.com/kl222/RabbitRemoteControl
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows

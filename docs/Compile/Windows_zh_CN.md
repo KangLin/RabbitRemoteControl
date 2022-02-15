@@ -33,7 +33,7 @@
 - Qt
   + Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
     当前使用版本：Qt 5.12.12
-  + IDE：Qt Creator。建议使用 v4.15.0 及以后版本，以前版本对 CMake 支持不够。
+  + IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
 - CMake: [https://www.cmake.org/](https://cmake.org/)
@@ -49,9 +49,9 @@
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
   - [可选] [cmark](https://github.com/commonmark/cmark): 玉兔公共库依赖
 - [可选] RFB
-  + [可选] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
+  + [可选] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + [可选] TigerVNC: https://github.com/KangLin/tigervnc
+  + [可选] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [可选] SSH
   + libssh: libssh: [https://www.libssh.org](https://www.libssh.org)
@@ -62,7 +62,7 @@
 - [可选] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
-- [可选] QtService: https://github.com/KangLin/qt-solutions/
+- [可选] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
 
 #### 玉兔公共库
 此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
@@ -70,8 +70,22 @@
 
     git clone https://github.com/KangLin/RabbitCommon.git
     
+#### cmark-gfm
+支持 Github cmark 。玉兔公共库依赖。玉兔公共库编译时，会自动下载它
+- 从源码编译
+  + 源码位置： https://github.com/github/cmark-gfm
+  
+        ~$ git clone https://github.com/github/cmark-gfm.git
+        ~$ cd cmark
+        ~/cmark$ mkdir build
+        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMARK_SHARED=OFF -DCMARK_STATIC=ON -DCMARK_TESTS=OFF
+        ~/cmark/build$ cmake --build . --target install
+          
+  + 指定 CMake 参数：
+    - -Dcmark_DIR=[cmark 安装目录]/lib/cmake/cmark-gfm
+    
 #### cmark
-玉兔公共库依赖
+玉兔公共库依赖。玉兔公共库编译时，会自动下载它
 - 使用系统预编译开发库
 
       ~$ sudo apt install libcmark-dev
@@ -96,7 +110,7 @@
         ~/cmark/build$ cmake --build . --target install
           
   + 指定 CMake 参数：
-    - -Dcmark_DIR=[cmark 安装目录]
+    - -Dcmark_DIR=[cmark 安装目录]/lib/cmake/cmark
 
 #### FreeRDP   
 - 使用 vcpkg
@@ -108,6 +122,7 @@
         vcpkg install freerdp
 
   + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+  + 使用 vcpk ，不支持 FreeRDP 服务，所以需要从源码编译它。
 - 从源码编译
   + 源码位置：https://github.com/FreeRDP/FreeRDP
   + 编译详见：https://github.com/FreeRDP/FreeRDP/wiki/Compilation
@@ -115,7 +130,7 @@
           git clone https://github.com/FreeRDP/FreeRDP.git
           cd FreeRDP
           mkdir build
-          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
+          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DWITH_SERVER=ON
           cmake --build . --target install
           
   + 指定 CMake 参数：
@@ -143,12 +158,13 @@
 - 从源码编译
 源码位置: https://github.com/KangLin/RabbitVNC  
 
-    ~$ sudo apt install libpixman-1-dev
-    ~$ git clone https://github.com/KangLin/RabbitVNC.git
-    ~$ cd RabbitVNC
-    ~/RabbitVNC$ mkdir build
-    ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
-    ~/RabbitVNC$ cmake --build . --target install
+      ~$ sudo apt install libpixman-1-dev
+      ~$ git clone https://github.com/KangLin/RabbitVNC.git
+      ~$ cd RabbitVNC
+      ~/RabbitVNC$ mkdir build
+      ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
+      ~/RabbitVNC$ cmake --build . --target install
+
 - 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
 
 #### TigerVNC

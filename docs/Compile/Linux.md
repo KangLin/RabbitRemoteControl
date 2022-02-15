@@ -32,7 +32,7 @@ Prior versions don't have CMake support.
   + Qt (official release): https://download.qt.io/official_releases/qt/  
     Current version: Qt 5.12.12
 
-- [OPTIONAL] IDE: Qt Creator. It is recommended to use version v4.15.0 or later.  
+- [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
   Prior versions don't have CMake support.
 
       ~$ sudo apt install sudo apt install qtcreator
@@ -60,15 +60,16 @@ Prior versions don't have CMake support.
     # Install library dependencies
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     ~$ sudo apt install debhelper fakeroot
-    # RabbitCommon dependencies
+    # Install RabbitCommon dependencies (Optional), It is automatically downloaded when compiled.
     ~$ sudo apt install libcmark-dev
     # Install Qt
     ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
     # Install X development libraries
     ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
     ~$ sudo apt install libutf8proc-dev libpam0g-dev # Need by compile qtermwidget
-    # Compile RabbitVNC
+    # Install libpixman, RabbitVNC and TigerVNC need it.
     ~$ sudo apt install libpixman-1-dev
+    # Compile RabbitVNC
     ~$ git clone https://github.com/KangLin/RabbitVNC.git
     ~$ cd RabbitVNC
     ~$ mkdir build
@@ -76,7 +77,6 @@ Prior versions don't have CMake support.
     ~/RabbitVNC/build$ cmake --build . --target install
     ~/RabbitVNC/build$ cd ~
     # Compile TigerVNC
-    ~$ sudo apt install libpixman-1-dev
     ~$ git clone https://github.com/KangLin/tigervnc.git
     ~$ cd tigervnc
     ~$ mkdir build
@@ -101,8 +101,8 @@ Prior versions don't have CMake support.
     ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
     ~/qt-solutions/qtservice/build$ cmake --build . --target install
     ~/qt-solutions/qtservice/build$ cd ~
-    ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
+    ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
@@ -119,7 +119,7 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
 - [OPTIONAL] RFB
   + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
-  + [OPTIONAL] TigerVNC: https://github.com/KangLin/tigervnc
+  + [OPTIONAL] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
 - [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [OPTIONAL] [SSH]
   + libssh: [https://www.libssh.org](https://www.libssh.org/)
@@ -139,8 +139,24 @@ If not, you must specify the CMake parameters:
 
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
     
+#### cmark-gfm
+This library is dependencies by RabbitCommon. to support Github Markdown syntax.
+It is automatically downloaded when RabbitCommon is compiled.
+- Compile from source code
+  + Source-code location https://github.com/github/cmark-gfm
+  
+        ~$ git clone https://github.com/github/cmark-gfm.git
+        ~$ cd cmark
+        ~/cmark$ mkdir build
+        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMARK_SHARED=OFF -DCMARK_STATIC=ON -DCMARK_TESTS=OFF
+        ~/cmark/build$ cmake --build . --target install
+          
+  + Specify the CMake parameters：
+    - -Dcmark_DIR=[cmark installation path]/lib/cmake/cmark-gfm
+    
 #### cmark
 This library is dependencies by RabbitCommon. to support Markdown syntax.
+It is automatically downloaded when RabbitCommon is compiled.
 - Use the system-packaged development library
 
       ~$ sudo apt install libcmark-dev
@@ -166,7 +182,7 @@ This library is dependencies by RabbitCommon. to support Markdown syntax.
         ~/cmark/build$ cmake --build . --target install
           
   + Specify the CMake parameters:
-    - -Dcmark_DIR=[cmark installation path]
+    - -Dcmark_DIR=[cmark installation path]/lib/cmake/cmark
 
 #### FreeRDP
 - Use the system-packaged development library
@@ -182,7 +198,9 @@ This library is dependencies by RabbitCommon. to support Markdown syntax.
         ~/vcpkg$ vcpkg install freerdp
 
   + Specify the CMake parameters:
-  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+  + Using vcpkg is not support the server. 
+    If you need to use the server, you need to compile it from source.
 
 - Compile from source code
   + Source-code location: https://github.com/FreeRDP/FreeRDP
@@ -191,7 +209,7 @@ This library is dependencies by RabbitCommon. to support Markdown syntax.
           ~$ git clone https://github.com/FreeRDP/FreeRDP.git
           ~$ cd FreeRDP
           ~/FreeRDP$ mkdir build
-          ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+          ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DWITH_SERVER=ON
           ~/FreeRDP/build$ cmake --build . --target install
           
   + Specify the CMake parameters:
@@ -214,12 +232,12 @@ This library is dependencies by RabbitCommon. to support Markdown syntax.
 - Compile from source code
 Source-code location: https://github.com/KangLin/RabbitVNC  
 
-    ~$ sudo apt install libpixman-1-dev
-    ~$ git clone https://github.com/KangLin/RabbitVNC.git
-    ~$ cd RabbitVNC
-    ~/RabbitVNC$ mkdir build
-    ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/RabbitVNC$ cmake --build . --target install
+      ~$ sudo apt install libpixman-1-dev
+      ~$ git clone https://github.com/KangLin/RabbitVNC.git
+      ~$ cd RabbitVNC
+      ~/RabbitVNC$ mkdir build
+      ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
+      ~/RabbitVNC$ cmake --build . --target install
     
 - Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
 
