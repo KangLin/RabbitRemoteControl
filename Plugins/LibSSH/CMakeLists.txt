@@ -48,6 +48,8 @@ SET(UI_FILES
     DlgSettingsSSH.ui
     )
 
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+
 if(libssh_INCLUDE_DIR)
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
