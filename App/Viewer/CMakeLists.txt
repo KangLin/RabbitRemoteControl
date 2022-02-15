@@ -53,7 +53,7 @@ LIST(APPEND RCC_FILES Resource/Resource.qrc)
 #    endif()
 #endif()
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Gui Widgets)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
     
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE

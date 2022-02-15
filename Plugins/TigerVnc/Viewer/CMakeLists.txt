@@ -3,7 +3,7 @@
 project(TigerVNC)
 set(CMAKE_CXX_STANDARD 17)
 SET(SRC_LIBS tigervnc Viewer)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Gui Widgets Network)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Network)
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     list(APPEND SRC_LIBS Qt${QT_VERSION_MAJOR}::Network)
 endif()

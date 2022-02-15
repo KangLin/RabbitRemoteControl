@@ -20,6 +20,8 @@ SET(UI_FILES
     DlgSettingsTerminal.ui
     )
 
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+
 ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}

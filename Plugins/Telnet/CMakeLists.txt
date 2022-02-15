@@ -51,6 +51,8 @@ SET(UI_FILES
     DlgSettingsTelnet.ui
     )
 
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+
 if(_libtelnet_include_dir)
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
