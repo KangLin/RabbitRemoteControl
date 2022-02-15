@@ -21,7 +21,7 @@ class CServiceThread;
  *  \ingroup LIBAPI_SERVICE
  *  \see CService CServiceThread CServiceManager
  */
-class CPluginService : public QObject
+class SERVICE_EXPORT CPluginService : public QObject
 {
     Q_OBJECT
 
