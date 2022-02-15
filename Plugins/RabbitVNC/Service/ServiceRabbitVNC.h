@@ -21,6 +21,10 @@ public:
     explicit CServiceRabbitVNC(CPluginService *plugin);
     virtual ~CServiceRabbitVNC();
 
+#ifdef HAVE_GUI
+    virtual QWidget* GetParameterWidget() override;
+#endif
+    
     // CService interface
 protected:
     virtual int OnInit() override;

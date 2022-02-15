@@ -6,10 +6,9 @@
 #pragma once
 
 #include "QtService/QtService"
-#include <QMap>
-#include <QDir>
 #include "service_export.h"
 #include <QCoreApplication>
+#include "ManagerPlugins.h"
 
 class CPluginService;
 
@@ -44,12 +43,8 @@ public:
 protected:
     virtual void start() override;
     virtual void stop() override;
-
-private:    
-    int LoadPlugins();
-    int FindPlugins(QDir dir, QStringList filters);
     
-    QMap<QString, CPluginService*> m_Plugins;
+    CManagerPlugins m_Plugins;
 };
 
 #endif // CSERVICEMANAGER_H

@@ -21,6 +21,10 @@ public:
     explicit CServiceTigerVNC(CPluginService *plugin);
     virtual ~CServiceTigerVNC();
 
+#ifdef HAVE_GUI
+    virtual QWidget* GetParameterWidget() override;
+#endif
+    
     // CService interface
 protected:
     virtual int OnInit() override;

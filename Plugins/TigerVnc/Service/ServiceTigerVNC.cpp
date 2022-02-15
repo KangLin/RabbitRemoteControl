@@ -63,6 +63,13 @@ CServiceTigerVNC::~CServiceTigerVNC()
     LOG_MODEL_DEBUG("CServiceTigerVNC", "CServiceTigerVNC::~CServiceTigerVNC");
 }
 
+#ifdef HAVE_GUI
+QWidget* CServiceTigerVNC::GetParameterWidget()
+{
+    return 0;
+}
+#endif
+
 int CServiceTigerVNC::OnInit()
 {
     int nRet = 0;

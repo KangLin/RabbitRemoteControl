@@ -4,42 +4,42 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="219"/>
+        <location filename="../../FavoriteView.cpp" line="220"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="220"/>
+        <location filename="../../FavoriteView.cpp" line="221"/>
         <source>Open settings and connect</source>
         <translation>打开设置再连接</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="223"/>
+        <location filename="../../FavoriteView.cpp" line="224"/>
         <source>New group</source>
         <translation>新建组</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="225"/>
+        <location filename="../../FavoriteView.cpp" line="226"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="259"/>
+        <location filename="../../FavoriteView.cpp" line="260"/>
         <source>Input</source>
         <translation>输入</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="259"/>
+        <location filename="../../FavoriteView.cpp" line="260"/>
         <source>Input group name</source>
         <translation>输入组名</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="264"/>
+        <location filename="../../FavoriteView.cpp" line="265"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="264"/>
+        <location filename="../../FavoriteView.cpp" line="265"/>
         <source>The group [%1] is existed</source>
         <translation>组 [%1] 已经存在</translation>
     </message>

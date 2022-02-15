@@ -63,6 +63,13 @@ CServiceRabbitVNC::~CServiceRabbitVNC()
     LOG_MODEL_DEBUG("CServiceRabbitVNC", "CServiceRabbitVNC::~CServiceRabbitVNC");
 }
 
+#ifdef HAVE_GUI
+QWidget* CServiceRabbitVNC::GetParameterWidget()
+{
+    return 0;
+}
+#endif
+
 int CServiceRabbitVNC::OnInit()
 {
     int nRet = 0;

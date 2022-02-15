@@ -4,42 +4,42 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="219"/>
+        <location filename="../../FavoriteView.cpp" line="220"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="220"/>
+        <location filename="../../FavoriteView.cpp" line="221"/>
         <source>Open settings and connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="223"/>
+        <location filename="../../FavoriteView.cpp" line="224"/>
         <source>New group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="225"/>
+        <location filename="../../FavoriteView.cpp" line="226"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="259"/>
+        <location filename="../../FavoriteView.cpp" line="260"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="259"/>
+        <location filename="../../FavoriteView.cpp" line="260"/>
         <source>Input group name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="264"/>
+        <location filename="../../FavoriteView.cpp" line="265"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="264"/>
+        <location filename="../../FavoriteView.cpp" line="265"/>
         <source>The group [%1] is existed</source>
         <translation type="unfinished"></translation>
     </message>

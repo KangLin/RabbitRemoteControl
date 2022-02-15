@@ -19,6 +19,13 @@ CServiceLibVNCServer::~CServiceLibVNCServer()
     LOG_MODEL_DEBUG("Service LibVNCServer", "CServiceLibVNCServer::~CServiceLibVNCServer()");
 }
 
+#ifdef HAVE_GUI
+QWidget* CServiceLibVNCServer::GetParameterWidget()
+{
+    return 0;
+}
+#endif
+
 static rfbBool checkPassword(struct _rfbClientRec* cl,
                              const char* encryptedPassWord, int len)
 {

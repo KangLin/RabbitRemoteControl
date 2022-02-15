@@ -34,3 +34,4 @@ CService *CPluginServiceLibVNCServer::NewService()
 {
     return new CServiceLibVNCServer(this);
 }
+

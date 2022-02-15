@@ -22,7 +22,7 @@
 <context>
     <name>CServiceRabbitVNC</name>
     <message>
-        <location filename="../../ServiceRabbitVNC.cpp" line="146"/>
+        <location filename="../../ServiceRabbitVNC.cpp" line="153"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>

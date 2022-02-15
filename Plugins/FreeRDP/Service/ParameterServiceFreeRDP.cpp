@@ -10,7 +10,7 @@ CParameterServiceFreeRDP::CParameterServiceFreeRDP(QObject *parent)
       #ifdef WITH_SHADOW_X11
       m_bAuthentication(true),
       #else
-      m_bAuthentication(true),
+      m_bAuthentication(false),
       #endif
       m_MayView(true),
       m_MayInteract(true)

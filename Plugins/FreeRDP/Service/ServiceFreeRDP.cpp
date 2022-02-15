@@ -61,6 +61,13 @@ int CServiceFreeRDP::OnClean()
     return nRet;
 }
 
+#ifdef HAVE_GUI
+QWidget* CServiceFreeRDP::GetParameterWidget()
+{
+    return nullptr;
+}
+#endif
+
 int CServiceFreeRDP::SetParameters()
 {
     CParameterServiceFreeRDP* p = 

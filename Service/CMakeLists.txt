@@ -5,18 +5,11 @@ endif()
 
 project(Service LANGUAGES CXX)
 
-SET(QT_COMPONENTS Gui)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QT_COMPONENTS})
-if(Qt${QT_VERSION_MAJOR}_FOUND)
-    FOREACH(_COMPONENT ${QT_COMPONENTS})
-        list(APPEND Service_QT_LIBRARIES Qt${QT_VERSION_MAJOR}::${_COMPONENT})
-    ENDFOREACH()
-endif()
-
-set(SRC_LIBS QtService RabbitCommon ${Service_QT_LIBRARIES})
+set(SRC_LIBS QtService RabbitCommon)
 set(SRC_PRIVATE_LIBS)
 
 set(INSTALL_HEADER_FILES
+    ManagerPlugins.h
     PluginService.h
     ServiceManager.h
     InputDevice.h
@@ -38,6 +31,7 @@ set(SOURCE_FILES
     Service.cpp
     ServiceThread.cpp
     ParameterService.cpp
+    ManagerPlugins.cpp
     )
 
 if(WIN32)
@@ -97,10 +91,18 @@ set(SOURCE_UI_FILES
 
 SET(RCC_FILES )
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network)
-if(Qt${QT_VERSION_MAJOR}_FOUND)
-    list(APPEND QT_LIBRARIES Qt${QT_VERSION_MAJOR}::Network)
+SET(QT_COMPONENTS Gui Network)
+if(WITH_GUI)
+    list(APPEND QT_COMPONENTS Widgets)
+    set(SERVICE_DEFINITIONS HAVE_GUI)
 endif()
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QT_COMPONENTS})
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    FOREACH(_COMPONENT ${QT_COMPONENTS})
+        list(APPEND QT_LIBRARIES Qt${QT_VERSION_MAJOR}::${_COMPONENT})
+    ENDFOREACH()
+endif()
+message("${PROJECT_NAME} QT_LIBRARIES: ${QT_LIBRARIES}")
 list(APPEND SRC_LIBS ${QT_LIBRARIES})
 INSTALL_TARGETS(TARGETS QtService)
 
@@ -113,6 +115,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     LIBS ${SRC_LIBS}
     PRIVATE_LIBS ${SRC_PRIVATE_LIBS}
     VERSION ${BUILD_VERSION}
+    DEFINITIONS ${SERVICE_DEFINITIONS}
     PRIVATE_DEFINITIONS ${PRIVATE_DEFINITIONS}
     INSTALL_EXPORT_NAME ${PROJECT_NAME}Targets
     INSTALL_NAMESPACE RabbitRemoteControl

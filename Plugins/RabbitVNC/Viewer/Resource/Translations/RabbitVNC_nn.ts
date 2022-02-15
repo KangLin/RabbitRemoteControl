@@ -56,9 +56,6 @@
         <source>Please set domain</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>CDlgSettingsRabbitVnc</name>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="14"/>
         <source>Setting RabbitVNC</source>

@@ -10,7 +10,6 @@
 #include "Screen.h"
 
 class CServiceThread;
-class CServiceManager;
 
 /*!
  *  \~chinese 服务插件接口。默认为每个插件启动一个线程进行处理。
@@ -22,7 +21,7 @@ class CServiceManager;
  *  \ingroup LIBAPI_SERVICE
  *  \see CService CServiceThread CServiceManager
  */
-class SERVICE_EXPORT CPluginService : public QObject
+class CPluginService : public QObject
 {
     Q_OBJECT
 
@@ -53,17 +52,15 @@ public:
     virtual void Start();
     virtual void Stop();
 
-protected:
     /// New service
     virtual CService* NewService() = 0;
 
+    int InitTranslator();
+    
 private:
     CServiceThread* m_pThread;
-    friend CServiceThread;
-    friend CServiceManager;
-
+    
     QTranslator m_Translator;
-    int InitTranslator();
 };
 
 QT_BEGIN_NAMESPACE

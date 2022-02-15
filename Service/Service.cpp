@@ -24,26 +24,10 @@ int CService::Init()
     int nRet = 0;
     if(GetParameters())
     {
-        QString szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
-        QSettings set(szFile, QSettings::IniFormat);
-        szFile = set.value("Configure/File" + m_pPlugin->Id(),
-                           RabbitCommon::CDir::Instance()->GetDirUserConfig()
-                           + QDir::separator()
-                           + m_pPlugin->Id()
-                           + ".rrs").toString();
-        LOG_MODEL_INFO("Service", "Configure file: %s", szFile.toStdString().c_str());
-        QDir d;
-        if(d.exists(szFile)){
-            nRet = GetParameters()->OnLoad(szFile);
-            if(nRet)
-            {
-                LOG_MODEL_INFO("Service", "Load configure file fail:%d %s",
-                               nRet, szFile.toStdString().c_str());
-                return -1;
-            }
-        }
+        nRet = LoadConfigure();
+        if(nRet) return nRet;
     }
-    
+
     if(!GetParameters() || !GetParameters()->getEnable())
     {
         LOG_MODEL_INFO("ServiceThread", "The service [%s] is disable",
@@ -52,7 +36,7 @@ int CService::Init()
     } else
         LOG_MODEL_INFO("ServiceThread", "The service [%s] is start",
                        m_pPlugin->Name().toStdString().c_str());
-    
+
     nRet = OnInit();
     if(0 == nRet)
         QTimer::singleShot(0, this, SLOT(slotProcess()));
@@ -63,7 +47,7 @@ int CService::Init()
 int CService::Clean()
 {
     int nRet = 0;
-    
+
     OnClean();
 
     if(m_pPara)
@@ -103,6 +87,32 @@ int CService::OnProcess()
 CParameterService* CService::GetParameters()
 {
     return m_pPara;
+}
+
+int CService::LoadConfigure(const QString &szDir)
+{
+    int nRet = 0;
+    QString szFile = szDir;
+    if(szFile.isEmpty())
+        szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
+    QSettings set(szFile, QSettings::IniFormat);
+    szFile = set.value("Configure/File" + m_pPlugin->Id(),
+                       RabbitCommon::CDir::Instance()->GetDirUserConfig()
+                       + QDir::separator()
+                       + m_pPlugin->Id()
+                       + ".rrs").toString();
+    LOG_MODEL_INFO("Service", "Configure file: %s", szFile.toStdString().c_str());
+    QDir d;
+    if(d.exists(szFile)){
+        nRet = GetParameters()->OnLoad(szFile);
+        if(nRet)
+        {
+            LOG_MODEL_INFO("Service", "Load configure file fail:%d %s",
+                           nRet, szFile.toStdString().c_str());
+            return -1;
+        }
+    }
+    return nRet;
 }
 
 int CService::SaveConfigure(const QString &szDir)

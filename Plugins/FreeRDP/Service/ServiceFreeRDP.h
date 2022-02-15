@@ -14,6 +14,10 @@ public:
     explicit CServiceFreeRDP(CPluginServiceFreeRDP *plugin);
     virtual ~CServiceFreeRDP();
 
+#ifdef HAVE_GUI
+    virtual QWidget* GetParameterWidget() override;
+#endif
+    
 protected:
     virtual int OnInit() override;
     virtual int OnClean() override;

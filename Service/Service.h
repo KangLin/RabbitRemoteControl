@@ -39,7 +39,11 @@ public:
     virtual int Clean();
 
     CParameterService* GetParameters();
-
+#ifdef HAVE_GUI
+    virtual QWidget* GetParameterWidget() = 0;
+#endif
+    
+    virtual int LoadConfigure(const QString& szDir = QString());
     virtual int SaveConfigure(const QString& szDir = QString());
 
 protected Q_SLOTS:

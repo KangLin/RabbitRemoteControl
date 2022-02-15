@@ -10,6 +10,10 @@ class CServiceLibVNCServer : public CService
 public:
     explicit CServiceLibVNCServer(CPluginService *plugin);
     virtual ~CServiceLibVNCServer();
+
+#ifdef HAVE_GUI
+    virtual QWidget* GetParameterWidget() override;
+#endif
     
 private:
     int OnInit() override;
