@@ -23,6 +23,13 @@ SET(HEADER_FILES
     ParameterServiceFreeRDP.h
     )
 
+if(WITH_GUI)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+    
+    list(APPEND SOURCE_FILES FrmParameterFreeRDP.cpp FrmParameterFreeRDP.ui)
+    list(APPEND HEADER_FILES FrmParameterFreeRDP.h)
+endif()
+
 if(MINGW)
     set(FreeRDP_OPTIONS -fpermissive)
 endif()

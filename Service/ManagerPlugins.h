@@ -11,6 +11,7 @@ class SERVICE_EXPORT CManagerPlugins : public QObject
     Q_OBJECT
 public:
     explicit CManagerPlugins(QObject *parent = nullptr);
+    virtual ~CManagerPlugins();
     
     QMap<QString, CPluginService*> m_Plugins;
 

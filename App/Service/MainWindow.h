@@ -16,10 +16,22 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     
+private slots:
+    void on_pbCancel_clicked();
+    void on_pbSave_clicked();
+    
+Q_SIGNALS:
+    void sigSave();
+
+private:
+    int Init();
+    int Clean();
+    
 private:
     Ui::MainWindow *ui;
     
     CManagerPlugins m_Plugins;
+    QList<CService*> m_Service;
 };
 
 #endif // MAINWINDOW_H

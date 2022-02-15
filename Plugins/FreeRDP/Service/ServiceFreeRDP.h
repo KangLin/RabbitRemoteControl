@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CSERVICEFREERDP_H_KL_2022_01_27_
 #define CSERVICEFREERDP_H_KL_2022_01_27_
 
@@ -15,7 +17,7 @@ public:
     virtual ~CServiceFreeRDP();
 
 #ifdef HAVE_GUI
-    virtual QWidget* GetParameterWidget() override;
+    virtual QWidget* GetParameterWidget(void* p = nullptr) override;
 #endif
     
 protected:

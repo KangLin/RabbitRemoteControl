@@ -9,6 +9,11 @@ CManagerPlugins::CManagerPlugins(QObject *parent)
     LoadPlugins();
 }
 
+CManagerPlugins::~CManagerPlugins()
+{
+    LOG_MODEL_DEBUG("CManagerPlugins", "CManagerPlugins::~CManagerPlugins");
+}
+
 int CManagerPlugins::LoadPlugins()
 {
     foreach (QObject *plugin, QPluginLoader::staticInstances())

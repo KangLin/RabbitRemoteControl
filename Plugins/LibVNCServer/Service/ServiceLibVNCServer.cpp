@@ -20,7 +20,7 @@ CServiceLibVNCServer::~CServiceLibVNCServer()
 }
 
 #ifdef HAVE_GUI
-QWidget* CServiceLibVNCServer::GetParameterWidget()
+QWidget* CServiceLibVNCServer::GetParameterWidget(void* p)
 {
     return 0;
 }

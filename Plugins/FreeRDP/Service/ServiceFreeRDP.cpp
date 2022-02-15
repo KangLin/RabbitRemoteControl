@@ -1,6 +1,11 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "ServiceFreeRDP.h"
 #include "RabbitCommonLog.h"
 #include "ParameterServiceFreeRDP.h"
+#ifdef HAVE_GUI
+    #include "FrmParameterFreeRDP.h"
+#endif
 
 CServiceFreeRDP::CServiceFreeRDP(CPluginServiceFreeRDP *plugin)
     : CService(plugin),
@@ -62,9 +67,10 @@ int CServiceFreeRDP::OnClean()
 }
 
 #ifdef HAVE_GUI
-QWidget* CServiceFreeRDP::GetParameterWidget()
+QWidget* CServiceFreeRDP::GetParameterWidget(void *p)
 {
-    return nullptr;
+    return new CFrmParameterFreeRDP(
+                dynamic_cast<CParameterServiceFreeRDP*>(GetParameters()));
 }
 #endif
 

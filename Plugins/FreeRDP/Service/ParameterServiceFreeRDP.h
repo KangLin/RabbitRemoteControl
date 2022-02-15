@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CPARAMETERSERVICEFREERDP_H
 #define CPARAMETERSERVICEFREERDP_H
 

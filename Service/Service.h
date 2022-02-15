@@ -40,7 +40,14 @@ public:
 
     CParameterService* GetParameters();
 #ifdef HAVE_GUI
-    virtual QWidget* GetParameterWidget() = 0;
+    /*!
+     * \brief GetParameterWidget
+     * \param p
+     * \return Parameter widget. the widget must has slotSave.
+     *         Eg: CFrmParameterFreeRDP::slotSave
+     * \snippet Plugins/FreeRDP/Service/FrmParameterFreeRDP.h slotSave
+     */
+    virtual QWidget* GetParameterWidget(void* p = nullptr) = 0;
 #endif
     
     virtual int LoadConfigure(const QString& szDir = QString());

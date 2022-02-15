@@ -22,7 +22,7 @@ public:
     virtual ~CServiceTigerVNC();
 
 #ifdef HAVE_GUI
-    virtual QWidget* GetParameterWidget() override;
+    virtual QWidget* GetParameterWidget(void* p = nullptr) override;
 #endif
     
     // CService interface

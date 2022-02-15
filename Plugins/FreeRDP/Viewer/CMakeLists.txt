@@ -42,7 +42,7 @@ if(MINGW)
     set(FreeRDP_OPTIONS -fpermissive)
 endif()
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Gui Widgets)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
 
 ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN

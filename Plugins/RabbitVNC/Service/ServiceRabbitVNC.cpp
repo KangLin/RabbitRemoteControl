@@ -64,7 +64,7 @@ CServiceRabbitVNC::~CServiceRabbitVNC()
 }
 
 #ifdef HAVE_GUI
-QWidget* CServiceRabbitVNC::GetParameterWidget()
+QWidget* CServiceRabbitVNC::GetParameterWidget(void *p)
 {
     return 0;
 }
