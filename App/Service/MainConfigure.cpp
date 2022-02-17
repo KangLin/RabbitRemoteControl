@@ -1,3 +1,11 @@
+/*!
+ *  \~english \defgroup ServiceConfigure Rabbit remote control service configure programe
+ *  \brief Rabbit remote control service configure programe
+ *  
+ *  \~chinese \defgroup ServiceConfigure 玉兔远程控制服务配置程序
+ *  \brief 玉兔远程控制服务配置程序
+ */
+
 #include "MainWindow.h"
 
 #include <QApplication>

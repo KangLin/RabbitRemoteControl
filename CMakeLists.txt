@@ -212,9 +212,11 @@ if(BUILD_DOCS)
         file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Doxygen)
         foreach(OUTPUT_LANGUAGE English Chinese)
             set(MAIN_README "${CMAKE_SOURCE_DIR}/docs/Doxygen/Develop.md")
+            set(PROJECT_NAME "Rabbit Remote Control")
             if(OUTPUT_LANGUAGE STREQUAL "Chinese")
+                set(PROJECT_NAME "玉兔远程控制")
                 set(MAIN_README "${CMAKE_SOURCE_DIR}/docs/Doxygen/Develop_zh_CN.md")
-            endif()            
+            endif()
             configure_file(${CMAKE_SOURCE_DIR}/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} @ONLY)
             add_custom_target(doc_${OUTPUT_LANGUAGE} ALL
                 ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} # &> doxygen.log

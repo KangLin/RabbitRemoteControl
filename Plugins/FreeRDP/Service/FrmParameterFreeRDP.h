@@ -18,11 +18,10 @@ public:
     explicit CFrmParameterFreeRDP(CParameterServiceFreeRDP *para);
     ~CFrmParameterFreeRDP();
     
-    /// ![slotSave]
+    //! [Save parameters]
 public Q_SLOTS:
-    //! Save parameters
     void slotSave();
-    /// ![slotSave]
+    //! [Save parameters]
 
 private:
     Ui::CFrmParameterFreeRDP *ui;

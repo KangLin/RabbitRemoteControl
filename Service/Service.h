@@ -41,12 +41,14 @@ public:
     CParameterService* GetParameters();
 #ifdef HAVE_GUI
     /*!
-     * \brief GetParameterWidget
-     * \param p
-     * \return Parameter widget. the widget must has slotSave.
+     * \~chinese 得到设置参数窗口
+     * \return 设置参数窗口。此窗口必须有定义槽 \b slotSave 。
+     * \~english GetParameterWidget
+     * \return Parameter widget. the widget must has slot \b slotSave .
      *         Eg: CFrmParameterFreeRDP::slotSave
-     * \snippet Plugins/FreeRDP/Service/FrmParameterFreeRDP.h slotSave
-     */
+     * \~
+     * \snippet Plugins/FreeRDP/Service/FrmParameterFreeRDP.h Save parameters
+     */   
     virtual QWidget* GetParameterWidget(void* p = nullptr) = 0;
 #endif
     
