@@ -8,6 +8,7 @@
 #include "QtService/QtService"
 #include "service_export.h"
 #include <QCoreApplication>
+#include <QSharedPointer>
 #include "ManagerPlugins.h"
 
 class CPluginService;
@@ -93,7 +94,7 @@ protected:
     virtual void start() override;
     virtual void stop() override;
     
-    CManagerPlugins* m_pPlugins;
+    QSharedPointer<CManagerPlugins> m_Plugins;
 };
 
 #endif // CSERVICEMANAGER_H

@@ -11,8 +11,7 @@
 #include <QDebug>
 
 CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
-    : QtService<QCoreApplication>(argc, argv, name),
-      m_pPlugins(nullptr)
+    : QtService<QCoreApplication>(argc, argv, name)
 {
     //add default parameters 
     QStringList args;
@@ -32,8 +31,9 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
                 szDir = RabbitCommon::CDir::Instance()->GetDirUserConfig();
             if(!szDir.isEmpty())
             {
-                m_pPlugins = new CManagerPlugins();
-                foreach(auto p, m_pPlugins->m_Plugins)
+                if(!m_Plugins)
+                    m_Plugins = QSharedPointer<CManagerPlugins>(new CManagerPlugins());
+                foreach(auto p, m_Plugins->m_Plugins)
                 {
                     if(p)
                     {
@@ -45,32 +45,32 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
                 application()->quit();
                 return;
             }
-        }else if (a == QLatin1String("-h") || a == QLatin1String("-help")) {
+        } else if (a == QLatin1String("-h") || a == QLatin1String("-help")) {
             exec();
             printf("\t-s(ave) [Directory] \t: Generate configuration file in [Directory]\n");
             throw std::invalid_argument("Help argument");
         }
     }
-    
-    m_pPlugins = new CManagerPlugins();
 }
 
 CServiceManager::~CServiceManager()
 {
     LOG_MODEL_DEBUG("CServiceManager", "CServiceManager::~CServiceManager");
-    if(m_pPlugins) m_pPlugins->deleteLater();
 }
 
 void CServiceManager::start()
 {
     LOG_MODEL_DEBUG("Service", "Start ...");
-    foreach(auto p, m_pPlugins->m_Plugins)
+    if(!m_Plugins)
+        m_Plugins = QSharedPointer<CManagerPlugins>(new CManagerPlugins());
+    foreach(auto p, m_Plugins->m_Plugins)
         if(p) p->Start();
 }
 
 void CServiceManager::stop()
 {
     LOG_MODEL_DEBUG("Service", "Stop ...");
-    foreach(auto p, m_pPlugins->m_Plugins)
+    if(!m_Plugins) return;
+    foreach(auto p, m_Plugins->m_Plugins)
         if(p) p->Stop();
 }
