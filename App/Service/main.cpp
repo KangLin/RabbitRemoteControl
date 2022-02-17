@@ -14,13 +14,18 @@
  */
 
 #include "ServiceManager.h"
+#include "RabbitCommonLog.h"
 
 int main(int argc, char *argv[])
 {
     int nRet = 0;
-    
 
-    CServiceManager s(argc, argv, "RabbitRemoteControlService");
-    s.exec();
+    try{
+        CServiceManager s(argc, argv, "RabbitRemoteControlService");
+        s.exec();
+    } catch (std::exception& e) {
+        LOG_MODEL_ERROR("Main", "Exception:%s\n", e.what());
+    }
+    
     return nRet;
 }

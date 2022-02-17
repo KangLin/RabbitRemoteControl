@@ -93,7 +93,7 @@ protected:
     virtual void start() override;
     virtual void stop() override;
     
-    CManagerPlugins m_Plugins;
+    CManagerPlugins* m_pPlugins;
 };
 
 #endif // CSERVICEMANAGER_H
