@@ -20,6 +20,8 @@ private slots:
     void on_pbCancel_clicked();
     void on_pbSave_clicked();
     
+    void on_actionStart_triggered();
+    
 Q_SIGNALS:
     void sigSave();
 
@@ -32,6 +34,7 @@ private:
     
     CManagerPlugins m_Plugins;
     QList<CService*> m_Service;
+    bool m_bStart;
 };
 
 #endif // MAINWINDOW_H

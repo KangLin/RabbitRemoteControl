@@ -53,6 +53,7 @@ if(WITH_GUI)
         MainConfigure.cpp
         )
     set(SOURCE_UI_FILES MainWindow.ui)
+    LIST(APPEND RCC_FILES ../Viewer/Resource/Resource.qrc)
     
     SET(QT_COMPONENTS Widgets)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QT_COMPONENTS})

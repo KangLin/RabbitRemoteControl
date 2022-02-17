@@ -169,13 +169,13 @@ endif()
 # Create install runtime target
 add_custom_target(install-runtime
   COMMAND
-     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime 
+     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime
      -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake"
 )
 # Create uninstall runtime target
 add_custom_target(uninstall-runtime
   COMMAND
-     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime 
+     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime
      -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
 )
 # Create will be delete files

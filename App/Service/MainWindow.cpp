@@ -4,7 +4,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_bStart(false)
 {
     ui->setupUi(this);
     
@@ -15,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    foreach(auto plugin, m_Plugins.m_Plugins)
+        plugin->Stop();
+    
     foreach(auto service, m_Service)
         if(service)
             service->deleteLater();
@@ -60,4 +64,28 @@ int MainWindow::Clean()
 {
     ui->twConfigure->clear();
     return 0;
+}
+
+void MainWindow::on_actionStart_triggered()
+{
+    foreach(auto plugin, m_Plugins.m_Plugins)
+    {
+        if(m_bStart)
+            plugin->Stop();
+        else
+            plugin->Start();
+    }
+    if(m_bStart)
+    {
+        ui->actionStart->setIcon(QIcon(":/image/Start"));
+        ui->actionStart->setText("Start");
+        ui->actionStart->setChecked(false);
+    }
+    else
+    {
+        ui->actionStart->setIcon(QIcon(":/image/Stop"));
+        ui->actionStart->setText("Stop");
+        ui->actionStart->setChecked(true);
+    }
+    m_bStart = !m_bStart;
 }
