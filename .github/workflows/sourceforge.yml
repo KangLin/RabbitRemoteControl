@@ -1,13 +1,13 @@
-name: mirror sourceforge
+name: mirror to sourceforge
 on: push
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       
-      - name: mirror
+      - name: mirror to sourceforge
         uses: yesolutions/mirror-action@master
         with:
           REMOTE: ssh://kl222@git.code.sf.net/p/rabbitremotecontrol/code
