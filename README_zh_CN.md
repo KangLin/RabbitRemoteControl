@@ -12,15 +12,15 @@
 [![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
 [![平台](https://img.shields.io/badge/平台-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
 
-- 点赞量  
 [![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://github.com/KangLin/RabbitRemoteControl)
 [![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
 
-- 下载量  
-[![最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=下载总量)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Github 所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20下载总量)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
+
+[![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
 -----------------------------------------------------------------------
 
@@ -203,8 +203,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 ### 下载
 
 + 最后发行版本：
-  - 从 github 下载: [https://github.com/KangLin/RabbitRemoteControl/releases/latest](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
-  - [![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
+  - [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
+  - [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
+  - [![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 + 当前版本：
   - Windows: 支持 WINDOWS 7 及以后版本
     + 安装包：RabbitRemoteControl_setup_v0.0.17.exe
