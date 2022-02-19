@@ -254,14 +254,6 @@ BOOL CConnectFreeRDP::Client_new(freerdp *instance, rdpContext *context)
 	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;
 	instance->PresentGatewayMessage = cb_present_gateway_message;
 
-	/* There are is set authenticate callback, the follow is set authenticate in console.
-    instance->Authenticate = client_cli_authenticate;
-	instance->GatewayAuthenticate = client_cli_gw_authenticate;
-	instance->VerifyCertificateEx = client_cli_verify_certificate_ex;
-	instance->VerifyChangedCertificateEx = client_cli_verify_changed_certificate_ex;
-	instance->PresentGatewayMessage = client_cli_present_gateway_message;
-	//*/
-
 	instance->LogonErrorInfo = cb_logon_error_info;
 	/*PubSub_SubscribeTerminate(context->pubSub, xf_TerminateEventHandler);
 #ifdef WITH_XRENDER
@@ -398,15 +390,12 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
  */
 BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 {
-    qDebug() << "CConnectFreeRdp::cb_post_connect()";
-	rdpUpdate* update;
-	rdpContext* context;
-	rdpSettings* settings;
+    LOG_MODEL_DEBUG("CConnecctFreeRDP", "CConnectFreeRdp::cb_post_connect()");
+	
+	rdpContext* context = instance->context;
+	rdpSettings* settings = instance->settings;
+    rdpUpdate* update = context->update;
     CConnectFreeRDP* pThis = ((ClientContext*)instance->context)->pThis;
-
-	context = instance->context;
-	settings = instance->settings;
-	update = context->update;
 
     Q_ASSERT(context);
     Q_ASSERT(settings);
@@ -735,7 +724,9 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     qDebug() << "CConnectFreeRdp::cb_verify_changed_certificate_ex";
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
-    
+    if(common_name)
+        emit pThis->sigServerName(common_name);
+
     QString title(tr("Verify changed certificate"));
     QString message;
     message += tr("Host: %1; Port: %2").arg(host).arg(QString::number(port)) + "\n";
@@ -767,8 +758,9 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     return 2;
 }
 
-BOOL CConnectFreeRDP::cb_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
-                                                  BOOL isConsentMandatory, size_t length, const WCHAR* message)
+BOOL CConnectFreeRDP::cb_present_gateway_message(
+        freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
+        BOOL isConsentMandatory, size_t length, const WCHAR* message)
 {
     qDebug() << "CConnectFreeRdp::cb_present_gateway_message";
     
