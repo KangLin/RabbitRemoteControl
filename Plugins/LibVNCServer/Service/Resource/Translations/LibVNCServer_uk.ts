@@ -27,11 +27,6 @@
 <context>
     <name>CPluginServiceLibVNCServer</name>
     <message>
-        <location filename="../../PluginServiceLibVNCServer.cpp" line="24"/>
-        <source>LibVNCServer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../PluginServiceLibVNCServer.cpp" line="29"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>

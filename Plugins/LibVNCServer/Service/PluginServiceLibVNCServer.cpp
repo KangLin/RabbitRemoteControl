@@ -21,7 +21,7 @@ const QString CPluginServiceLibVNCServer::Protol() const
 
 const QString CPluginServiceLibVNCServer::Name() const
 {
-    return tr("LibVNCServer");
+    return "LibVNCServer";
 }
 
 const QString CPluginServiceLibVNCServer::Description() const

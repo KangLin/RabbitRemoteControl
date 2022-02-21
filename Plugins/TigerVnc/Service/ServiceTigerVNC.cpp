@@ -10,6 +10,9 @@
 #include "Connection.h"
 #include "PluginService.h"
 
+#ifdef HAVE_GUI
+#include "FrmParameterTigerVNC.h"
+#endif
 #ifdef HAVE_QXMPP
     #include "ICE/IceSignalQxmpp.h"
     
@@ -66,7 +69,8 @@ CServiceTigerVNC::~CServiceTigerVNC()
 #ifdef HAVE_GUI
 QWidget* CServiceTigerVNC::GetParameterWidget(void* p)
 {
-    return 0;
+    return new CFrmParameterTigerVNC(
+                dynamic_cast<CParameterServiceTigerVNC*>(GetParameters()));
 }
 #endif
 

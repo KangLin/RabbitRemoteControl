@@ -35,7 +35,7 @@ const QString CPluginServiceRabbitVNC::Protol() const
 
 const QString CPluginServiceRabbitVNC::Name() const
 {
-    return tr("RabbitVNC");
+    return "RabbitVNC";
 }
 
 const QString CPluginServiceRabbitVNC::DisplayName() const

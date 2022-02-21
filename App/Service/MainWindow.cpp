@@ -58,7 +58,7 @@ int MainWindow::Init()
                                 w->metaObject()->className());
             }
             Q_ASSERT(check);
-            int nIndex = ui->twConfigure->addTab(w, plugin->Name());
+            int nIndex = ui->twConfigure->addTab(w, plugin->DisplayName());
             if(-1 == nIndex)
                 LOG_MODEL_ERROR("MainWindow", "addTab fail");
         }

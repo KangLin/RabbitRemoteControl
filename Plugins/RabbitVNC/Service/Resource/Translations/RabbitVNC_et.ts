@@ -72,7 +72,6 @@
 <context>
     <name>CPluginServiceRabbitVNC</name>
     <message>
-        <location filename="../../PluginServiceRabbitVNC.cpp" line="38"/>
         <location filename="../../PluginServiceRabbitVNC.cpp" line="43"/>
         <source>RabbitVNC</source>
         <translation type="unfinished"></translation>

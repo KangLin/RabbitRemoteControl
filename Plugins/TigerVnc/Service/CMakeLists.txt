@@ -63,6 +63,12 @@ if(LibDataChannel_FOUND)
     endif()
 endif()
 
+if(WITH_GUI)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+    list(APPEND SOURCE_FILES FrmParameterTigerVNC.cpp FrmParameterTigerVNC.ui)
+    list(APPEND HEADER_FILES FrmParameterTigerVNC.h)
+endif()
+
 ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
