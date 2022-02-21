@@ -12,6 +12,7 @@ SET(SOURCE_FILES
     PluginServiceRabbitVNC.cpp
     ServiceRabbitVNC.cpp
     Connection.cpp
+    FrmParameterRabbitVNC.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../Channel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
@@ -59,6 +60,12 @@ if(LibDataChannel_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/../ICE/IceSignalQxmpp.h
             )
     endif()
+endif()
+
+if(WITH_GUI)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+    list(APPEND SOURCE_FILES FrmParameterRabbitVNC.cpp FrmParameterRabbitVNC.ui)
+    list(APPEND HEADER_FILES FrmParameterRabbitVNC.h)
 endif()
 
 ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}

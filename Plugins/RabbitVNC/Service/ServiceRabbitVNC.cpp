@@ -7,6 +7,7 @@
 #include <QHostAddress>
 #include <QTcpSocket>
 #include "ParameterServiceRabbitVNC.h"
+#include "FrmParameterRabbitVNC.h"
 #include "Connection.h"
 #include "PluginService.h"
 
@@ -66,7 +67,8 @@ CServiceRabbitVNC::~CServiceRabbitVNC()
 #ifdef HAVE_GUI
 QWidget* CServiceRabbitVNC::GetParameterWidget(void *p)
 {
-    return 0;
+    return new CFrmParameterRabbitVNC(
+                dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters()));
 }
 #endif
 

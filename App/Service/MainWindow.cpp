@@ -49,8 +49,14 @@ int MainWindow::Init()
         QWidget* w = pService->GetParameterWidget();
         if(w)
         {
-            bool check = connect(this, SIGNAL(sigSave()),
-                                 w, SLOT(slotSave()));
+            // parameter widget must has slotSave()
+            bool check = connect(this, SIGNAL(sigSave()), w, SLOT(slotSave()));
+            if(!check)
+            {
+                LOG_MODEL_ERROR("MainWindows",
+                                "Class %s must has slot slotSave(), please add it",
+                                w->metaObject()->className());
+            }
             Q_ASSERT(check);
             int nIndex = ui->twConfigure->addTab(w, plugin->Name());
             if(-1 == nIndex)
