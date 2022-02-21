@@ -5,8 +5,8 @@
     <name>CFrmParameterFreeRDP</name>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
+        <source>Set FreeRDP parameters</source>
+        <translation>設置自由遠程桌面協議參數</translation>
     </message>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="22"/>

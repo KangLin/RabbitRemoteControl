@@ -5,7 +5,7 @@
     <name>CFrmParameterFreeRDP</name>
     <message>
         <location filename="../../FrmParameterFreeRDP.ui" line="14"/>
-        <source>Form</source>
+        <source>Set FreeRDP parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
