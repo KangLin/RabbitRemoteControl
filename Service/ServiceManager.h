@@ -58,6 +58,7 @@ public:
            <tr><td> -c \e{cmd} </td><td> -command \e{cmd}</td>
                 <td> 发送用户定义的命令代码到服务程序</td>
            </tr>
+           <tr><td>-s </td><td> -save    </td><td> 产生配置文件到 [目录] 中</td></tr>
            <tr><td>-v </td><td> -version </td><td> 显示版本和状态信息 </td></tr>
            <tr><td colspan=2>无参数</td><td> 开始服务 </td></tr>
         </table>
@@ -81,6 +82,7 @@ public:
            <tr><td> -c \e{cmd} </td><td> -command \e{cmd}</td>
                 <td> Send the user defined command code \e{cmd} to the service application.</td>
            </tr>
+           <tr><td>-s </td><td> -save    </td><td> Generate configuration file in [Directory]</td></tr>
            <tr><td>-v </td><td> -version </td><td> Display version and status information.</td></tr>
            <tr><td colspan=2>No arguments</td><td>Start the service</td></tr>
         </table>

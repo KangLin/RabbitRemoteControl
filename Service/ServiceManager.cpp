@@ -31,6 +31,7 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
                 szDir = RabbitCommon::CDir::Instance()->GetDirUserConfig();
             if(!szDir.isEmpty())
             {
+                // Make sure the plugin is loaded only after the application is created
                 if(!m_Plugins)
                     m_Plugins = QSharedPointer<CManagerPlugins>(new CManagerPlugins());
                 foreach(auto p, m_Plugins->m_Plugins)
@@ -61,6 +62,7 @@ CServiceManager::~CServiceManager()
 void CServiceManager::start()
 {
     LOG_MODEL_DEBUG("Service", "Start ...");
+    // Make sure the plugin is loaded only after the application is created
     if(!m_Plugins)
         m_Plugins = QSharedPointer<CManagerPlugins>(new CManagerPlugins());
     foreach(auto p, m_Plugins->m_Plugins)
