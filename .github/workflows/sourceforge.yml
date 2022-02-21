@@ -1,4 +1,4 @@
-name: mirror to sourceforge
+name: mirror
 on: push
 
 jobs:
@@ -11,6 +11,14 @@ jobs:
         uses: yesolutions/mirror-action@master
         with:
           REMOTE: ssh://kl222@git.code.sf.net/p/rabbitremotecontrol/code
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
+          GIT_SSH_NO_VERIFY_HOST: "true"
+          GIT_PUSH_ARGS: --force
+      
+      - name: mirror to bitbucket
+        uses: yesolutions/mirror-action@master
+        with:
+          REMOTE: git@bitbucket.org:kl222/rabbitremotecontrol.git
           GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
           GIT_SSH_NO_VERIFY_HOST: "true"
           GIT_PUSH_ARGS: --force
