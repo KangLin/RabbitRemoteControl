@@ -91,7 +91,7 @@
 <context>
     <name>CServiceRabbitVNC</name>
     <message>
-        <location filename="../../ServiceRabbitVNC.cpp" line="155"/>
+        <location filename="../../ServiceRabbitVNC.cpp" line="157"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>

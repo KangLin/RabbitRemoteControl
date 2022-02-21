@@ -46,6 +46,13 @@ SET(HEADER_FILES
 SET(UI_FILES
     )
 
+if(WITH_GUI)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+    
+    list(APPEND SOURCE_FILES FrmParameterServiceLibVNC.cpp FrmParameterServiceLibVNC.ui)
+    list(APPEND HEADER_FILES FrmParameterServiceLibVNC.h)
+endif()
+
 if(_LibvncIncludeDir)
     ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
         ISPLUGIN

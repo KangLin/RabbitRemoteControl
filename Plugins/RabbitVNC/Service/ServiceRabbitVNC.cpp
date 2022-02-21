@@ -7,7 +7,9 @@
 #include <QHostAddress>
 #include <QTcpSocket>
 #include "ParameterServiceRabbitVNC.h"
-#include "FrmParameterRabbitVNC.h"
+#ifdef HAVE_GUI
+    #include "FrmParameterRabbitVNC.h"
+#endif
 #include "Connection.h"
 #include "PluginService.h"
 

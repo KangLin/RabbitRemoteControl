@@ -6,6 +6,10 @@
 #include <QScreen>
 #include <QCoreApplication>
 
+#ifdef HAVE_GUI
+#include "FrmParameterServiceLibVNC.h"
+#endif
+
 #include "ParameterServiceLibVNC.h"
 #include "Screen.h"
 
@@ -22,7 +26,8 @@ CServiceLibVNCServer::~CServiceLibVNCServer()
 #ifdef HAVE_GUI
 QWidget* CServiceLibVNCServer::GetParameterWidget(void* p)
 {
-    return 0;
+    return new CFrmParameterServiceLibVNC(
+                dynamic_cast<CParameterServiceLibVNC*>(GetParameters()));
 }
 #endif
 
