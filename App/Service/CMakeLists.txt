@@ -76,7 +76,7 @@ if(WITH_GUI)
         VERSION ${BUILD_VERSION})
     
     if(UNIX AND NOT ANDROID)
-        INSTALL(FILES ${CMAKE_SOURCE_DIR}/debian/RabbitRemoteControlServiceConfigure.desktop
+        INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControlServiceConfigure.desktop
             DESTINATION share/applications
                 COMPONENT Runtime)
         INSTALL(FILES ${CMAKE_SOURCE_DIR}/App/Viewer/Resource/Image/option.png

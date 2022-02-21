@@ -1,6 +1,9 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "RabbitCommonLog.h"
+#ifdef HAVE_ABOUT
+#include "DlgAbout/DlgAbout.h"
+#endif
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -105,3 +108,30 @@ int MainWindow::SetStatusText(QString szText)
     ui->actionStart->setWhatsThis(szText);
     return 0;
 }
+
+void MainWindow::on_actionAbout_triggered()
+{
+#ifdef HAVE_ABOUT
+    CDlgAbout *about = new CDlgAbout(this);
+    about->m_AppIcon = QImage(":/image/Option");
+    about->m_szCopyrightStartTime = "2020";
+    if(about->isHidden())
+    {
+#ifdef BUILD_QUIWidget
+        QUIWidget quiwidget;
+        quiwidget.setMainWidget(about);
+        quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
+    #if defined (Q_OS_ANDROID)
+        quiwidget.showMaximized();
+    #endif
+        quiwidget.exec();
+#else
+    #if defined (Q_OS_ANDROID)
+        about->showMaximized();
+    #endif
+        about->exec();
+#endif
+    }
+#endif
+}
+

@@ -69,7 +69,7 @@ if(WIN32)
             COMPONENT Runtime)
 endif()
 if(UNIX AND NOT ANDROID)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/debian/RabbitRemoteControl.desktop
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.desktop
         DESTINATION share/applications
             COMPONENT Runtime)
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/App.png
