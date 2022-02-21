@@ -9,6 +9,8 @@ Author: Kang Lin kl222@126.com
   - Main repository: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
   - Mirror repository: [https://gitlab.com/kl222/RabbitRemoteControl](https://gitlab.com/kl222/RabbitRemoteControl)
 
+### Semantic Versioning: [https://semver.org/](https://semver.org/)
+
 ### Compile
 
 - [Linux](../Compile/Linux.md)

@@ -213,6 +213,8 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
 ### Download
 
+Semantic Versioning: https://semver.org/
+
 + Latest Release: 
   - [![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
   - [![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)

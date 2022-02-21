@@ -9,6 +9,8 @@
   - 主库：[https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
   - 中国镜像：[https://gitee.com/kl222/RabbitRemoteControl](https://gitee.com/kl222/RabbitRemoteControl)
 
+### 版本号说明： [https://semver.org/lang/zh-CN/](https://semver.org/lang/zh-CN/)
+
 ### 编译
 
 - [Linux](../Compile/Linux_zh_CN.md)
