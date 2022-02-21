@@ -24,6 +24,10 @@ private slots:
     
     void on_actionAbout_triggered();
     
+    void on_actionDefault_triggered();
+    
+    void on_actionOpen_triggered();
+    
 Q_SIGNALS:
     void sigSave();
 

@@ -3,7 +3,8 @@
 ### v0.0.18
 + Organize documents
 + Service
-  - add FreeRDP service
+  - Add service configure application
+  - Add FreeRDP service
   - Modify Desktop and grab cursor
     + linux
 

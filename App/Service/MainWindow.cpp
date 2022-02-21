@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "RabbitCommonLog.h"
+#include "RabbitCommonStyle.h"
 #ifdef HAVE_ABOUT
 #include "DlgAbout/DlgAbout.h"
 #endif
@@ -10,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     m_bStart(false)
 {
+    RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
     
     Clean();
@@ -135,3 +137,12 @@ void MainWindow::on_actionAbout_triggered()
 #endif
 }
 
+void MainWindow::on_actionDefault_triggered()
+{
+    RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+    RabbitCommon::CStyle::Instance()->slotStyle();
+}
