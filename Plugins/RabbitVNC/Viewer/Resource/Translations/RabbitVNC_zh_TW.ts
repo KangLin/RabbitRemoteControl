@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
-<context>
-    <name>CDataChannelIce</name>
-    <message>
-        <source>Signal disconnected</source>
-        <translation type="vanished">信令服務器斷開連接</translation>
-    </message>
-</context>
+
 <context>
     <name>CDlgGetPasswordRabbitVNC</name>
     <message>
@@ -66,75 +60,75 @@
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="14"/>
         <source>Setting RabbitVNC</source>
-        <translation type="unfinished"></translation>
+        <translation>設置玉兔 VNC</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="39"/>
         <source>Ok(&amp;O)</source>
-        <translation type="unfinished">確定(&amp;O)</translation>
+        <translation>確定(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="46"/>
         <source>Cancle(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="59"/>
         <source>Server</source>
-        <translation type="unfinished">服務器</translation>
+        <translation>服務器</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="67"/>
         <source>Show local cursor</source>
-        <translation type="unfinished">顯示本地光標</translation>
+        <translation>顯示本地光標</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="74"/>
         <source>Enable clipboard</source>
-        <translation type="unfinished">允許剪切板</translation>
+        <translation>允許剪切板</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="85"/>
         <source>Name:</source>
-        <translation type="unfinished">名稱：</translation>
+        <translation>名稱：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="92"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="95"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="98"/>
         <source>Connecter name</source>
-        <translation type="unfinished">連接名稱</translation>
+        <translation>連接名稱</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="109"/>
         <source>Shared</source>
-        <translation type="unfinished">共享</translation>
+        <translation>共享</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="116"/>
         <source>Real time update</source>
-        <translation type="unfinished">實時更新</translation>
+        <translation>實時更新</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="123"/>
         <source>Only view</source>
-        <translation type="unfinished">僅查看</translation>
+        <translation>僅查看</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="134"/>
         <source>Save password</source>
-        <translation type="unfinished">保存密碼</translation>
+        <translation>保存密碼</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="141"/>
         <source>Support windows resize</source>
-        <translation type="unfinished">支持窗口大小改變</translation>
+        <translation>支持窗口大小改變</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="152"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="475"/>
         <source>Server:</source>
-        <translation type="unfinished">服務器：</translation>
+        <translation>服務器：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="166"/>
@@ -143,13 +137,13 @@
         <location filename="../../DlgSettingsRabbitVNC.ui" line="420"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="468"/>
         <source>Port:</source>
-        <translation type="unfinished">端口：</translation>
+        <translation>端口：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="184"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="514"/>
         <source>User name:</source>
-        <translation type="unfinished">用戶名：</translation>
+        <translation>用戶名：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="194"/>
@@ -157,341 +151,175 @@
         <location filename="../../DlgSettingsRabbitVNC.ui" line="396"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="528"/>
         <source>Password:</source>
-        <translation type="unfinished">密碼：</translation>
+        <translation>密碼：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="246"/>
         <source>Show server name</source>
-        <translation type="unfinished">顯示服務器名</translation>
+        <translation >顯示服務器名</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="254"/>
         <source>ICE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="260"/>
         <source>Ice:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="274"/>
         <source>Domain:</source>
-        <translation type="unfinished">域名：</translation>
+        <translation>域名：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="288"/>
         <source>Turn user:</source>
-        <translation type="unfinished">Turn 用戶：</translation>
+        <translation>Turn 用戶：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="312"/>
         <source>Peer user:</source>
-        <translation type="unfinished">對端用戶：</translation>
+        <translation>對端用戶：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="326"/>
         <source>Turn server:</source>
-        <translation type="unfinished">Turn 服務器：</translation>
+        <translation>Turn 服務器：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="354"/>
         <source>Signal server:</source>
-        <translation type="unfinished">信令服務器：</translation>
+        <translation>信令服務器：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="386"/>
         <source>Signal user:</source>
-        <translation type="unfinished">信令用戶：</translation>
+        <translation>信令用戶：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="410"/>
         <source>Stun server:</source>
-        <translation type="unfinished">Stun 服務器：</translation>
+        <translation >Stun 服務器：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="453"/>
         <source>Proxy</source>
-        <translation type="unfinished">代理</translation>
+        <translation >代理</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="489"/>
         <source>No</source>
-        <translation type="unfinished">無</translation>
+        <translation >無</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="496"/>
         <source>Socks5</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="503"/>
         <source>Http</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="554"/>
         <source>Compress</source>
-        <translation type="unfinished">壓縮</translation>
+        <translation >壓縮</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="560"/>
         <source>Color level</source>
-        <translation type="unfinished">顏色級別</translation>
+        <translation >顏色級別</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="566"/>
         <source>Full</source>
-        <translation type="unfinished">全彩色</translation>
+        <translation >全彩色</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="573"/>
         <source>Low</source>
-        <translation type="unfinished">低</translation>
+        <translation >低</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="580"/>
         <source>Meduim</source>
-        <translation type="unfinished">中</translation>
+        <translation >中</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="587"/>
         <source>Very low</source>
-        <translation type="unfinished">極低</translation>
+        <translation >極低</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="609"/>
         <source>0=fast, 9=best</source>
-        <translation type="unfinished">0=最快, 9=最好</translation>
+        <translation >0=最快, 9=最好</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="620"/>
         <source>Enable JPEG compress</source>
-        <translation type="unfinished">允許JPEG壓縮</translation>
+        <translation >允許JPEG壓縮</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="634"/>
         <source>0=Worst, 9=best</source>
-        <translation type="unfinished">0=最差, 9=最好</translation>
+        <translation >0=最差, 9=最好</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="643"/>
         <source>preferred Encoding</source>
-        <translation type="unfinished">首選編碼</translation>
+        <translation >首選編碼</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="649"/>
         <source>Tight</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="656"/>
         <source>Hextile</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="663"/>
         <source>Raw</source>
-        <translation type="unfinished">原始</translation>
+        <translation >原始</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="670"/>
         <source>ZRLE</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="677"/>
         <source>CoRRE</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="684"/>
         <source>RRE</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="691"/>
         <source>copyRect</source>
-        <translation type="unfinished"></translation>
+        <translation ></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="701"/>
         <source>Compress level:</source>
-        <translation type="unfinished">壓縮級別</translation>
+        <translation >壓縮級別</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="708"/>
         <source>Auto select</source>
-        <translation type="unfinished">自動選擇</translation>
+        <translation >自動選擇</translation>
     </message>
 </context>
-<context>
-    <name>CDlgSettingsRabbitVnc</name>
-    <message>
-        <source>Ok(&amp;O)</source>
-        <translation type="vanished">確定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancle(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <translation type="vanished">服務器</translation>
-    </message>
-    <message>
-        <source>Show local cursor</source>
-        <translation type="vanished">顯示本地光標</translation>
-    </message>
-    <message>
-        <source>Enable clipboard</source>
-        <translation type="vanished">允許剪切板</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="vanished">名稱：</translation>
-    </message>
-    <message>
-        <source>Connecter name</source>
-        <translation type="vanished">連接名稱</translation>
-    </message>
-    <message>
-        <source>Shared</source>
-        <translation type="vanished">共享</translation>
-    </message>
-    <message>
-        <source>Real time update</source>
-        <translation type="vanished">實時更新</translation>
-    </message>
-    <message>
-        <source>Only view</source>
-        <translation type="vanished">僅查看</translation>
-    </message>
-    <message>
-        <source>Save password</source>
-        <translation type="vanished">保存密碼</translation>
-    </message>
-    <message>
-        <source>Support windows resize</source>
-        <translation type="vanished">支持窗口大小改變</translation>
-    </message>
-    <message>
-        <source>Server:</source>
-        <translation type="vanished">服務器：</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation type="vanished">端口：</translation>
-    </message>
-    <message>
-        <source>User name:</source>
-        <translation type="vanished">用戶名：</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">密碼：</translation>
-    </message>
-    <message>
-        <source>Show server name</source>
-        <translation type="vanished">顯示服務器名</translation>
-    </message>
-    <message>
-        <source>Domain:</source>
-        <translation type="vanished">域名：</translation>
-    </message>
-    <message>
-        <source>Turn user:</source>
-        <translation type="vanished">Turn 用戶：</translation>
-    </message>
-    <message>
-        <source>Peer user:</source>
-        <translation type="vanished">對端用戶：</translation>
-    </message>
-    <message>
-        <source>Turn server:</source>
-        <translation type="vanished">Turn 服務器：</translation>
-    </message>
-    <message>
-        <source>Signal server:</source>
-        <translation type="vanished">信令服務器：</translation>
-    </message>
-    <message>
-        <source>Signal user:</source>
-        <translation type="vanished">信令用戶：</translation>
-    </message>
-    <message>
-        <source>Stun server:</source>
-        <translation type="vanished">Stun 服務器：</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="vanished">代理</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">無</translation>
-    </message>
-    <message>
-        <source>Compress</source>
-        <translation type="vanished">壓縮</translation>
-    </message>
-    <message>
-        <source>Color level</source>
-        <translation type="vanished">顏色級別</translation>
-    </message>
-    <message>
-        <source>Full</source>
-        <translation type="vanished">全彩色</translation>
-    </message>
-    <message>
-        <source>Low</source>
-        <translation type="vanished">低</translation>
-    </message>
-    <message>
-        <source>Meduim</source>
-        <translation type="vanished">中</translation>
-    </message>
-    <message>
-        <source>Very low</source>
-        <translation type="vanished">極低</translation>
-    </message>
-    <message>
-        <source>0=fast, 9=best</source>
-        <translation type="vanished">0=最快, 9=最好</translation>
-    </message>
-    <message>
-        <source>Enable JPEG compress</source>
-        <translation type="vanished">允許JPEG壓縮</translation>
-    </message>
-    <message>
-        <source>0=Worst, 9=best</source>
-        <translation type="vanished">0=最差, 9=最好</translation>
-    </message>
-    <message>
-        <source>preferred Encoding</source>
-        <translation type="vanished">首選編碼</translation>
-    </message>
-    <message>
-        <source>Raw</source>
-        <translation type="vanished">原始</translation>
-    </message>
-    <message>
-        <source>Compress level:</source>
-        <translation type="vanished">壓縮級別</translation>
-    </message>
-    <message>
-        <source>Auto select</source>
-        <translation type="vanished">自動選擇</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">錯誤</translation>
-    </message>
-    <message>
-        <source>Please set domain</source>
-        <translation type="obsolete">請設置域名</translation>
-    </message>
-</context>
+
 <context>
     <name>CParameterRabbitVNC</name>
     <message>
@@ -505,17 +333,7 @@
         <translation>Turn 服務器密碼</translation>
     </message>
 </context>
-<context>
-    <name>CParameterRabbitVnc</name>
-    <message>
-        <source>Ice signal password</source>
-        <translation type="obsolete">Ice 信令密碼</translation>
-    </message>
-    <message>
-        <source>Ice turn password</source>
-        <translation type="obsolete">Turn 服務器密碼</translation>
-    </message>
-</context>
+
 <context>
     <name>CPluginRabbitVNC</name>
     <message>

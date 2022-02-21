@@ -74,4 +74,14 @@ if(WITH_GUI)
             $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         PRIVATE_LIBS ${SRC_LIBS}
         VERSION ${BUILD_VERSION})
+    
+    if(UNIX AND NOT ANDROID)
+        INSTALL(FILES ${CMAKE_SOURCE_DIR}/debian/RabbitRemoteControlServiceConfigure.desktop
+            DESTINATION share/applications
+                COMPONENT Runtime)
+        INSTALL(FILES ${CMAKE_SOURCE_DIR}/App/Viewer/Resource/Image/option.png
+            DESTINATION share/pixmaps
+                COMPONENT Runtime
+            RENAME RabbitRemoteControlServiceConfigure.png)
+    endif()
 endif()

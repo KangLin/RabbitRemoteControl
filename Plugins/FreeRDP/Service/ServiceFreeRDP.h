@@ -19,7 +19,7 @@ public:
 #ifdef HAVE_GUI
     virtual QWidget* GetParameterWidget(void* p = nullptr) override;
 #endif
-    
+
 protected:
     virtual int OnInit() override;
     virtual int OnClean() override;

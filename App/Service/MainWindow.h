@@ -28,6 +28,7 @@ Q_SIGNALS:
 private:
     int Init();
     int Clean();
+    int SetStatusText(QString szText);
     
 private:
     Ui::MainWindow *ui;

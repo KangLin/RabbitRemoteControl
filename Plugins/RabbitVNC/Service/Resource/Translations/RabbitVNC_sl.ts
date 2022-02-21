@@ -5,16 +5,17 @@
     <name>CPluginServiceRabbitVNC</name>
     <message>
         <location filename="../../PluginServiceRabbitVNC.cpp" line="38"/>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="43"/>
         <source>RabbitVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceRabbitVNC.cpp" line="43"/>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="48"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceRabbitVNC.cpp" line="44"/>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="49"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>

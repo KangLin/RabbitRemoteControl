@@ -181,16 +181,17 @@
     <name>CPluginLibVNCServer</name>
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="18"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="23"/>
         <source>LibVNCServer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="23"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="28"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="24"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="29"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一个使用 RFB（远程帧缓存)协议的程序集</translation>
     </message>

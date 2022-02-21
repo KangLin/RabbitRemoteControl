@@ -35,6 +35,11 @@ const QString CPluginServiceTigerVNC::Protol() const
 
 const QString CPluginServiceTigerVNC::Name() const
 {
+    return "TigerVNC";
+}
+
+const QString CPluginServiceTigerVNC::DisplayName() const
+{
     return tr("TigerVNC");
 }
 

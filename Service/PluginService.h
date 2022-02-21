@@ -40,6 +40,8 @@ public:
      *           The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
      */
     virtual const QString Name() const = 0;
+    /// The plugin display name
+    virtual const QString DisplayName() const;
     /// \~chinese 插件描述
     /// \~english Plugin description
     virtual const QString Description() const = 0;

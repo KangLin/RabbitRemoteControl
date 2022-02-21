@@ -38,6 +38,11 @@ const QString CPluginServiceRabbitVNC::Name() const
     return tr("RabbitVNC");
 }
 
+const QString CPluginServiceRabbitVNC::DisplayName() const
+{
+    return tr("RabbitVNC");
+}
+
 const QString CPluginServiceRabbitVNC::Description() const
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"

@@ -47,6 +47,11 @@ const QIcon CPluginService::Icon() const
     return QIcon(":/image/Connect");
 }
 
+const QString CPluginService::DisplayName() const
+{
+    return Name();
+}
+
 void CPluginService::Start()
 {
     if(!m_pThread)

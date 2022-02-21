@@ -78,14 +78,24 @@ void MainWindow::on_actionStart_triggered()
     if(m_bStart)
     {
         ui->actionStart->setIcon(QIcon(":/image/Start"));
-        ui->actionStart->setText("Start");
+        ui->actionStart->setText(tr("Start"));
+        SetStatusText(tr("Start service"));
         ui->actionStart->setChecked(false);
     }
     else
     {
         ui->actionStart->setIcon(QIcon(":/image/Stop"));
-        ui->actionStart->setText("Stop");
+        ui->actionStart->setText(tr("Stop"));
+        SetStatusText(tr("Stop service"));
         ui->actionStart->setChecked(true);
     }
     m_bStart = !m_bStart;
+}
+
+int MainWindow::SetStatusText(QString szText)
+{
+    ui->actionStart->setToolTip(szText);
+    ui->actionStart->setStatusTip(szText);
+    ui->actionStart->setWhatsThis(szText);
+    return 0;
 }

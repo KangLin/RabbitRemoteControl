@@ -42,11 +42,14 @@ int main(int argc, char *argv[])
 
     // Install translator
     QTranslator tApp;
-    tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
-              + QDir::separator() + "RabbitRemoteControlServiceConfigure_"
-              + QLocale::system().name() + ".qm");
+    QString szFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
+            + QDir::separator() + "RabbitRemoteControlService_"
+            + QLocale::system().name() + ".qm";
+    tApp.load(szFile);
     a.installTranslator(&tApp);
-    LOG_MODEL_INFO("Main", "Language: %s", QLocale::system().name().toStdString().c_str());
+    LOG_MODEL_INFO("Main", "Language: %s; %s",
+                   QLocale::system().name().toStdString().c_str(),
+                   szFile.toStdString().c_str());
 
     a.setApplicationDisplayName(QObject::tr("Rabbit remote control service configure"));
     a.setOrganizationName(QObject::tr("Kang Lin studio"));

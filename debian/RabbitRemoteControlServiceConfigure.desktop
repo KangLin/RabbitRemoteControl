@@ -1,0 +1,24 @@
+# https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
+
+[Desktop Entry]
+Type=Application
+Icon=RabbitRemoteControlServiceConfigure
+TryExec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlServiceConfigure
+Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlServiceConfigure
+Path=/opt/RabbitRemoteControl
+Terminal=false
+StartupNotify=true
+Categories=Network;Tools;Utility;P2P
+MimeType=application/rrc
+
+Name=Rabbit Remote Control Service Configure
+GenericName=Rabbit Remote Control Service Configure
+Comment=Rabbit Remote Control Service Configure
+
+Name[zh_CN]=玉兔远程控制服务配置
+GenericName[zh_CN]=玉兔远程控制服务配置
+Comment[zh_CN]=玉兔远程控制服务配置
+
+Name[zh_TW]=玉兔遠程控製服務配置
+GenericName[zh_TW]=玉兔遠程控製服務配置
+Comment[zh_TW]=玉兔遠程控製服務配置
