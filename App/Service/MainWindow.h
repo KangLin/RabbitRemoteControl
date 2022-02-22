@@ -32,7 +32,7 @@ Q_SIGNALS:
     void sigSave();
 
 private:
-    int Init();
+    int InitTab();
     int Clean();
     int SetStatusText(QString szText);
     

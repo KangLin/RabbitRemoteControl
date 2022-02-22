@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     
     Clean();
-    Init();
+    InitTab();
 }
 
 MainWindow::~MainWindow()
@@ -43,7 +43,7 @@ void MainWindow::on_pbSave_clicked()
     }
 }
 
-int MainWindow::Init()
+int MainWindow::InitTab()
 {
     foreach(auto plugin, m_Plugins.m_Plugins)
     {
@@ -63,7 +63,8 @@ int MainWindow::Init()
                                 w->metaObject()->className());
             }
             Q_ASSERT(check);
-            int nIndex = ui->twConfigure->addTab(w, plugin->DisplayName());
+            int nIndex = ui->twConfigure->addTab(w, plugin->Icon(),
+                                                 plugin->DisplayName());
             if(-1 == nIndex)
                 LOG_MODEL_ERROR("MainWindow", "addTab fail");
         }
