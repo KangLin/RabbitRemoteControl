@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     // Install translator
     QTranslator tApp;
     QString szFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + QDir::separator() + "RabbitRemoteControlService_"
+            + QDir::separator() + "RabbitRemoteControlServiceConfigure_"
             + QLocale::system().name() + ".qm";
     tApp.load(szFile);
     a.installTranslator(&tApp);

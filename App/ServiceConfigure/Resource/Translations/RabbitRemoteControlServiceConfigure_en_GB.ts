@@ -96,12 +96,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../MainConfigure.cpp" line="54"/>
+        <location filename="../../main.cpp" line="54"/>
         <source>Rabbit remote control service configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainConfigure.cpp" line="55"/>
+        <location filename="../../main.cpp" line="55"/>
         <source>Kang Lin studio</source>
         <translation type="unfinished"></translation>
     </message>

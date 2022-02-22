@@ -41,7 +41,7 @@
     <message>
         <location filename="../../MainWindow.ui" line="94"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>视图</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="98"/>
@@ -96,12 +96,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../MainConfigure.cpp" line="54"/>
+        <location filename="../../main.cpp" line="54"/>
         <source>Rabbit remote control service configure</source>
         <translation>玉兔远程控制服务配置</translation>
     </message>
     <message>
-        <location filename="../../MainConfigure.cpp" line="55"/>
+        <location filename="../../main.cpp" line="55"/>
         <source>Kang Lin studio</source>
         <translation>康林工作室</translation>
     </message>

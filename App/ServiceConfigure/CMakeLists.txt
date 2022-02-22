@@ -27,7 +27,7 @@ set(HEADER_FILES
     )
 set(SOURCE_FILES
     MainWindow.cpp
-    MainConfigure.cpp
+    main.cpp
     )
 set(SOURCE_UI_FILES MainWindow.ui)
 LIST(APPEND RCC_FILES ../Viewer/Resource/Resource.qrc)
