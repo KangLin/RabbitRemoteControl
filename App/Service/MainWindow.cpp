@@ -2,9 +2,13 @@
 #include "ui_MainWindow.h"
 #include "RabbitCommonLog.h"
 #include "RabbitCommonStyle.h"
+#include "RabbitCommonDir.h"
 #ifdef HAVE_ABOUT
 #include "DlgAbout/DlgAbout.h"
 #endif
+
+#include <QSettings>
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -146,4 +150,16 @@ void MainWindow::on_actionDefault_triggered()
 void MainWindow::on_actionOpen_triggered()
 {
     RabbitCommon::CStyle::Instance()->slotStyle();
+}
+
+void MainWindow::on_actionOpen_folder_triggered()
+{
+    QString szFolder;
+    QString szFile;
+    szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
+    QSettings set(szFile, QSettings::IniFormat);
+    szFolder = set.value("Configure/Folder",
+                 RabbitCommon::CDir::Instance()->GetDirUserConfig()).toString();
+    if(szFolder.isEmpty()) return;
+    QDesktopServices::openUrl(QUrl::fromLocalFile(szFolder));
 }

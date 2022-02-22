@@ -92,15 +92,22 @@ CParameterService* CService::GetParameters()
 int CService::LoadConfigure(const QString &szDir)
 {
     int nRet = 0;
-    QString szFile = szDir;
-    if(szFile.isEmpty())
+    QString szFolder = szDir;
+    QString szFile;
+    if(szFolder.isEmpty())
+    {
         szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
-    QSettings set(szFile, QSettings::IniFormat);
-    szFile = set.value("Configure/File" + m_pPlugin->Id(),
-                       RabbitCommon::CDir::Instance()->GetDirUserConfig()
+        QSettings set(szFile, QSettings::IniFormat);
+        szFolder = set.value("Configure/Folder",
+                 RabbitCommon::CDir::Instance()->GetDirUserConfig()).toString();
+        szFile = set.value("Configure/File/" + m_pPlugin->Id(),
+                       szFolder
                        + QDir::separator()
                        + m_pPlugin->Id()
                        + ".rrs").toString();
+    } else {
+        szFile = szFolder + QDir::separator() + m_pPlugin->Id() + ".rrs";
+    }
     LOG_MODEL_INFO("Service", "Configure file: %s", szFile.toStdString().c_str());
     QDir d;
     if(d.exists(szFile)){
@@ -120,18 +127,21 @@ int CService::SaveConfigure(const QString &szDir)
     int nRet = 0;
     if(GetParameters())
     {
+        QString szFolder = szDir;
         QString szFile;
-        if(szDir.isEmpty())
+        if(szFolder.isEmpty())
         {
             szFile = RabbitCommon::CDir::Instance()->GetFileUserConfigure();
             QSettings set(szFile, QSettings::IniFormat);
-            szFile = set.value("Configure/File" + m_pPlugin->Id(),
-                               RabbitCommon::CDir::Instance()->GetDirUserConfig()
-                               + QDir::separator()
-                               + m_pPlugin->Id()
-                               + ".rrs").toString();
+            szFolder = set.value("Configure/Folder",
+                     RabbitCommon::CDir::Instance()->GetDirUserConfig()).toString();
+            szFile = set.value("Configure/File/" + m_pPlugin->Id(),
+                           szFolder
+                           + QDir::separator()
+                           + m_pPlugin->Id()
+                           + ".rrs").toString();
         } else {
-            szFile = szDir + QDir::separator() + m_pPlugin->Id() + ".rrs";
+            szFile = szFolder + QDir::separator() + m_pPlugin->Id() + ".rrs";
         }
         nRet = GetParameters()->OnSave(szFile);
     }

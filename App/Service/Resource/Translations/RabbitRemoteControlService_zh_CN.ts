@@ -6,17 +6,17 @@
     <message>
         <location filename="../../MainWindow.ui" line="14"/>
         <source>Rabbit remote control service configure</source>
-        <translation type="unfinished"></translation>
+        <translation>玉兔远程控制服务配置</translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="26"/>
         <source>Tab 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="31"/>
         <source>Tab 2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../MainWindow.ui" line="54"/>

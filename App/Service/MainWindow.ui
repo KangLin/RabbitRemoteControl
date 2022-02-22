@@ -79,6 +79,20 @@
     <property name="title">
      <string>Service</string>
     </property>
+    <addaction name="actionStart"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen_folder"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
     <widget class="QMenu" name="menuStyle">
      <property name="title">
       <string>Style</string>
@@ -88,19 +102,11 @@
        <normaloff>:/image/Skin</normaloff>:/image/Skin</iconset>
      </property>
      <addaction name="actionDefault"/>
-     <addaction name="actionOpen"/>
     </widget>
-    <addaction name="actionStart"/>
-    <addaction name="separator"/>
     <addaction name="menuStyle"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionAbout"/>
-   </widget>
    <addaction name="menuService"/>
+   <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -147,9 +153,16 @@
     <string>Default</string>
    </property>
   </action>
-  <action name="actionOpen">
+  <action name="actionOpen_folder">
+   <property name="icon">
+    <iconset resource="../Viewer/Resource/Resource.qrc">
+     <normaloff>:/image/Open</normaloff>:/image/Open</iconset>
+   </property>
    <property name="text">
-    <string>Open</string>
+    <string>Open Configure folder</string>
+   </property>
+   <property name="toolTip">
+    <string>Open configure folder</string>
    </property>
   </action>
  </widget>
