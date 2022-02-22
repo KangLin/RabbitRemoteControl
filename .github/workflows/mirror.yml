@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v1
       
       - name: mirror to sourceforge
-        uses: yesolutions/mirror-action@master
+        uses: KangLin/mirror-action@master
         with:
           REMOTE: ssh://kl222@git.code.sf.net/p/rabbitremotecontrol/code
           GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
@@ -16,8 +16,9 @@ jobs:
           GIT_PUSH_ARGS: --force
       
       - name: mirror to bitbucket
-        uses: yesolutions/mirror-action@master
+        uses: KangLin/mirror-action@master
         with:
+          REMOTE_NAME: bitbucket
           REMOTE: git@bitbucket.org:kl222/rabbitremotecontrol.git
           GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
           GIT_SSH_NO_VERIFY_HOST: "true"
