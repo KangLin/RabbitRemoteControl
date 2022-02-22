@@ -121,6 +121,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionStart"/>
+   <addaction name="actionOpen_folder"/>
   </widget>
   <action name="actionStart">
    <property name="checkable">
