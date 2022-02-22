@@ -105,6 +105,7 @@
        <normaloff>:/image/Skin</normaloff>:/image/Skin</iconset>
      </property>
      <addaction name="actionDefault"/>
+     <addaction name="actionOpen"/>
     </widget>
     <addaction name="menuStyle"/>
    </widget>
@@ -167,6 +168,11 @@
    </property>
    <property name="toolTip">
     <string>Open configure folder</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
    </property>
   </action>
  </widget>

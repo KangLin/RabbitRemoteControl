@@ -15,15 +15,15 @@ class CPluginService;
 
 /*!
  *  \~chinese
- *   \brief 管理服务插件
- *   \details 管理系统服务与服务插件。
+ *   \brief 管理服务
+ *   \details 管理系统服务
  *   
  *   使用：
  *   
  *        
  *  \~english
- *  \brief Manage service plugin
- *  \details Manage system service and server plugins.
+ *  \brief Manage service
+ *  \details Manage system service
  *  
  *  Usge:
  * 
@@ -34,7 +34,7 @@ class CPluginService;
  *        \endcode
  *        
  *  \ingroup LIBAPI_SERVICE
- *  \see CPluginService
+ *  \see CManagerPlugins CPluginService
  */
 class SERVICE_EXPORT CServiceManager : public QtService<QCoreApplication>
 {
@@ -96,7 +96,7 @@ protected:
     virtual void start() override;
     virtual void stop() override;
     
-    QSharedPointer<CManagerPlugins> m_Plugins;
+    QSharedPointer<CManagePlugins> m_Plugins;
 };
 
 #endif // CSERVICEMANAGER_H

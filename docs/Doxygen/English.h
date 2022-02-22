@@ -1,8 +1,9 @@
 /**
 \~english
 
-\defgroup LIBAPI Rabbit remote control library
-\brief Rabbit remote control library
+\defgroup APP Applications
+
+\defgroup LIBAPI Libraries
 
 \defgroup LIBAPI_SERVICE Service library
 \ingroup LIBAPI

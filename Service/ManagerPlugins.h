@@ -6,16 +6,27 @@
 #include <QDir>
 #include "PluginService.h"
 
-class SERVICE_EXPORT CManagerPlugins : public QObject
+/*!
+ * \~chinese 管理插件
+ * \details 从文件加载插件并管理
+ * 
+ * \~english
+ * \brief Manage plugin.
+ * \details Load plugins from file, and manage plugins
+ *
+ * \~ 
+ * \ingroup LIBAPI_SERVICE
+ */
+class SERVICE_EXPORT CManagePlugins : public QObject
 {
     Q_OBJECT
 public:
-    explicit CManagerPlugins(QObject *parent = nullptr);
-    virtual ~CManagerPlugins();
+    explicit CManagePlugins(QObject *parent = nullptr);
+    virtual ~CManagePlugins();
     
     QMap<QString, CPluginService*> m_Plugins;
 
-private:    
+private:
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
 };

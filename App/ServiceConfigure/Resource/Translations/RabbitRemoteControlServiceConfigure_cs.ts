@@ -2,6 +2,29 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="cs_CZ">
 <context>
+    <name>CMainWindow</name>
+    <message>
+        <location filename="../../MainWindow.cpp" line="99"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="100"/>
+        <source>Start service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="106"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.cpp" line="107"/>
+        <source>Stop service</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../MainWindow.ui" line="14"/>
@@ -39,59 +62,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="138"/>
-        <location filename="../../MainWindow.cpp" line="97"/>
+        <location filename="../../MainWindow.ui" line="139"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="141"/>
-        <location filename="../../MainWindow.ui" line="144"/>
-        <location filename="../../MainWindow.ui" line="147"/>
-        <location filename="../../MainWindow.cpp" line="98"/>
+        <location filename="../../MainWindow.ui" line="142"/>
+        <location filename="../../MainWindow.ui" line="145"/>
+        <location filename="../../MainWindow.ui" line="148"/>
         <source>Start service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="152"/>
+        <location filename="../../MainWindow.ui" line="153"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="157"/>
+        <location filename="../../MainWindow.ui" line="158"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="166"/>
+        <location filename="../../MainWindow.ui" line="167"/>
         <source>Open Configure folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="169"/>
+        <location filename="../../MainWindow.ui" line="170"/>
         <source>Open configure folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="104"/>
-        <source>Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.cpp" line="105"/>
-        <source>Stop service</source>
+        <location filename="../../MainWindow.ui" line="175"/>
+        <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="54"/>
+        <location filename="../../main.cpp" line="72"/>
         <source>Rabbit remote control service configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="55"/>
+        <location filename="../../main.cpp" line="73"/>
         <source>Kang Lin studio</source>
         <translation type="unfinished"></translation>
     </message>

@@ -85,7 +85,16 @@ public:
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
 
 public Q_SLOTS:
+    /*!
+     * \brief Update desktop size
+     * \param width
+     * \param height
+     */
     void slotSetDesktopSize(int width, int height);
+    /*!
+     * \brief Update desktop name
+     * \param szName
+     */
     void slotSetName(const QString& szName);
     /*!
      * \brief Update image

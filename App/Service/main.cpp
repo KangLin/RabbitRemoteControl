@@ -11,6 +11,9 @@
  *  \brief 玉兔远程控制服务程序。
  *  
  *  命令行参数，请参见： CServiceManager::CServiceManager
+ *  
+ *  \~
+ *  \ingroup APP
  */
 
 #include "ServiceManager.h"

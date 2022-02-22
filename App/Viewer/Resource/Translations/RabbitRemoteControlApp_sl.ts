@@ -657,12 +657,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="56"/>
+        <location filename="../../main.cpp" line="67"/>
         <source>Rabbit Remote Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="57"/>
+        <location filename="../../main.cpp" line="68"/>
         <source>Kang Lin studio</source>
         <translation type="unfinished"></translation>
     </message>

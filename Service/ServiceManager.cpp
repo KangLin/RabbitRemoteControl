@@ -33,7 +33,7 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
             {
                 // Make sure the plugin is loaded only after the application is created
                 if(!m_Plugins)
-                    m_Plugins = QSharedPointer<CManagerPlugins>(new CManagerPlugins());
+                    m_Plugins = QSharedPointer<CManagePlugins>(new CManagePlugins());
                 foreach(auto p, m_Plugins->m_Plugins)
                 {
                     if(p)
@@ -64,7 +64,7 @@ void CServiceManager::start()
     LOG_MODEL_DEBUG("Service", "Start ...");
     // Make sure the plugin is loaded only after the application is created
     if(!m_Plugins)
-        m_Plugins = QSharedPointer<CManagerPlugins>(new CManagerPlugins());
+        m_Plugins = QSharedPointer<CManagePlugins>(new CManagePlugins());
     foreach(auto p, m_Plugins->m_Plugins)
         if(p) p->Start();
 }

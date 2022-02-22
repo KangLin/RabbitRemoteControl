@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "RabbitCommonLog.h"
@@ -10,7 +12,7 @@
 #include <QSettings>
 #include <QDesktopServices>
 
-MainWindow::MainWindow(QWidget *parent) :
+CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     m_bStart(false)
@@ -22,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     InitTab();
 }
 
-MainWindow::~MainWindow()
+CMainWindow::~CMainWindow()
 {
     delete ui;
     foreach(auto plugin, m_Plugins.m_Plugins)
@@ -33,12 +35,12 @@ MainWindow::~MainWindow()
             service->deleteLater();
 }
 
-void MainWindow::on_pbCancel_clicked()
+void CMainWindow::on_pbCancel_clicked()
 {
     qApp->quit();
 }
 
-void MainWindow::on_pbSave_clicked()
+void CMainWindow::on_pbSave_clicked()
 {
     emit sigSave();
     foreach(auto service, m_Service)
@@ -47,7 +49,7 @@ void MainWindow::on_pbSave_clicked()
     }
 }
 
-int MainWindow::InitTab()
+int CMainWindow::InitTab()
 {
     foreach(auto plugin, m_Plugins.m_Plugins)
     {
@@ -76,13 +78,13 @@ int MainWindow::InitTab()
     return 0;
 }
 
-int MainWindow::Clean()
+int CMainWindow::Clean()
 {
     ui->twConfigure->clear();
     return 0;
 }
 
-void MainWindow::on_actionStart_triggered()
+void CMainWindow::on_actionStart_triggered()
 {
     foreach(auto plugin, m_Plugins.m_Plugins)
     {
@@ -108,7 +110,7 @@ void MainWindow::on_actionStart_triggered()
     m_bStart = !m_bStart;
 }
 
-int MainWindow::SetStatusText(QString szText)
+int CMainWindow::SetStatusText(QString szText)
 {
     ui->actionStart->setToolTip(szText);
     ui->actionStart->setStatusTip(szText);
@@ -116,7 +118,7 @@ int MainWindow::SetStatusText(QString szText)
     return 0;
 }
 
-void MainWindow::on_actionAbout_triggered()
+void CMainWindow::on_actionAbout_triggered()
 {
 #ifdef HAVE_ABOUT
     CDlgAbout *about = new CDlgAbout(this);
@@ -142,17 +144,17 @@ void MainWindow::on_actionAbout_triggered()
 #endif
 }
 
-void MainWindow::on_actionDefault_triggered()
+void CMainWindow::on_actionDefault_triggered()
 {
     RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
 }
 
-void MainWindow::on_actionOpen_triggered()
+void CMainWindow::on_actionOpen_triggered()
 {
     RabbitCommon::CStyle::Instance()->slotStyle();
 }
 
-void MainWindow::on_actionOpen_folder_triggered()
+void CMainWindow::on_actionOpen_folder_triggered()
 {
     QString szFolder;
     QString szFile;

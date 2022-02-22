@@ -1,5 +1,16 @@
 // Author: Kang Lin <kl222@126.com>
 
+/*!
+ *  \~english \defgroup VIEWER_APP Rabbit remote control programe
+ *  \brief Rabbit remote control programe
+ *  
+ *  \~chinese \defgroup VIEWER_APP 玉兔远程控制程序
+ *  \brief 玉兔远程控制程序
+ *  \~
+ *  \ingroup APP
+ *  
+ */
+
 #include "mainwindow.h"
 
 #include <QApplication>

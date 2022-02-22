@@ -24,6 +24,10 @@ QT_END_NAMESPACE
 
 class CFrmFullScreenToolBar;
 
+/*!
+ * \brief The MainWindow class
+ * \ingroup VIEWER_APP
+ */
 class MainWindow : public QMainWindow, CManagePlugin::Handle
 {
     Q_OBJECT

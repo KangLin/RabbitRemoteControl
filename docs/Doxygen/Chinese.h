@@ -2,10 +2,9 @@
 
 \~chinese
 
+\defgroup APP 程序
 
-\defgroup LIBAPI 玉兔远程控制库
-\brief 玉兔远程控制库
-
+\defgroup LIBAPI 库
 
 \defgroup LIBAPI_SERVICE 服务端库
 \ingroup LIBAPI

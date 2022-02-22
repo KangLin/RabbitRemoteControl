@@ -3,18 +3,18 @@
 #include "RabbitCommonLog.h"
 #include <QPluginLoader>
 
-CManagerPlugins::CManagerPlugins(QObject *parent)
+CManagePlugins::CManagePlugins(QObject *parent)
     : QObject{parent}
 {
     LoadPlugins();
 }
 
-CManagerPlugins::~CManagerPlugins()
+CManagePlugins::~CManagePlugins()
 {
     LOG_MODEL_DEBUG("CManagerPlugins", "CManagerPlugins::~CManagerPlugins");
 }
 
-int CManagerPlugins::LoadPlugins()
+int CManagePlugins::LoadPlugins()
 {
     foreach (QObject *plugin, QPluginLoader::staticInstances())
     {
@@ -34,7 +34,7 @@ int CManagerPlugins::LoadPlugins()
     return FindPlugins(szPath, filters);
 }
 
-int CManagerPlugins::FindPlugins(QDir dir, QStringList filters)
+int CManagePlugins::FindPlugins(QDir dir, QStringList filters)
 {
     QString fileName;
     if(filters.isEmpty())
