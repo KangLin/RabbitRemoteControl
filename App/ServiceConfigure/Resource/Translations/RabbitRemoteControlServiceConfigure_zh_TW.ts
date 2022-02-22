@@ -9,76 +9,66 @@
         <translation>玉兔遠程控製服務配置</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="26"/>
-        <source>Tab 1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="31"/>
-        <source>Tab 2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../MainWindow.ui" line="54"/>
+        <location filename="../../MainWindow.ui" line="57"/>
         <source>Save(&amp;S)</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="61"/>
+        <location filename="../../MainWindow.ui" line="64"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="80"/>
+        <location filename="../../MainWindow.ui" line="83"/>
         <source>Service</source>
         <translation>服務</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="88"/>
+        <location filename="../../MainWindow.ui" line="91"/>
         <source>Help</source>
         <translation>幫助</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="94"/>
+        <location filename="../../MainWindow.ui" line="97"/>
         <source>View</source>
         <translation>視圖</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="98"/>
+        <location filename="../../MainWindow.ui" line="101"/>
         <source>Style</source>
         <translation>樣式</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="135"/>
+        <location filename="../../MainWindow.ui" line="138"/>
         <location filename="../../MainWindow.cpp" line="97"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="138"/>
         <location filename="../../MainWindow.ui" line="141"/>
         <location filename="../../MainWindow.ui" line="144"/>
+        <location filename="../../MainWindow.ui" line="147"/>
         <location filename="../../MainWindow.cpp" line="98"/>
         <source>Start service</source>
         <translation>開始服務</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="149"/>
+        <location filename="../../MainWindow.ui" line="152"/>
         <source>About</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="154"/>
+        <location filename="../../MainWindow.ui" line="157"/>
         <source>Default</source>
         <translation>默認</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="163"/>
+        <location filename="../../MainWindow.ui" line="166"/>
         <source>Open Configure folder</source>
         <translation>打開配置文件夾</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="166"/>
+        <location filename="../../MainWindow.ui" line="169"/>
         <source>Open configure folder</source>
         <translation>打開配置文件夾</translation>
     </message>

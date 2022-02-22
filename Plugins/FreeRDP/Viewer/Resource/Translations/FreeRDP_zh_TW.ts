@@ -92,86 +92,51 @@
     </message>
 </context>
 <context>
-    <name>CDlgGetUserPassword</name>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">輸入密碼</translation>
-    </message>
-    <message>
-        <source>Domain:</source>
-        <translation type="vanished">域名：</translation>
-    </message>
-    <message>
-        <source>User:</source>
-        <translation type="vanished">用戶：</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">密碼：</translation>
-    </message>
-    <message>
-        <source>Save password</source>
-        <translation type="vanished">保存密碼</translation>
-    </message>
-    <message>
-        <source>OK(&amp;O)</source>
-        <translation type="vanished">確定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancel(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Set password for %1</source>
-        <translation type="vanished">為 %1 設置密碼</translation>
-    </message>
-</context>
-<context>
     <name>CDlgGetUserPasswordFreeRDP</name>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="14"/>
         <source>Input password</source>
-        <translation type="unfinished">輸入密碼</translation>
+        <translation>輸入密碼</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="50"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="59"/>
         <source>Domain:</source>
-        <translation type="unfinished">域名：</translation>
+        <translation>域名：</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="73"/>
         <source>User:</source>
-        <translation type="unfinished">用戶：</translation>
+        <translation>用戶：</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="87"/>
         <source>Password:</source>
-        <translation type="unfinished">密碼：</translation>
+        <translation>密碼：</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="103"/>
         <source>Save password</source>
-        <translation type="unfinished">保存密碼</translation>
+        <translation>保存密碼</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="155"/>
         <source>OK(&amp;O)</source>
-        <translation type="unfinished">確定(&amp;O)</translation>
+        <translation>確定(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="162"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.cpp" line="45"/>
         <source>Set password for %1</source>
-        <translation type="unfinished">為 %1 設置密碼</translation>
+        <translation>為 %1 設置密碼</translation>
     </message>
 </context>
 <context>

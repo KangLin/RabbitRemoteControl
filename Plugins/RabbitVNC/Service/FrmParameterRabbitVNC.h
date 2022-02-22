@@ -20,11 +20,10 @@ public:
 public Q_SLOTS:
     void slotSave();
     //! [Save parameters]
-    
-protected:
-    virtual void showEvent(QShowEvent *event) override;
-    
+        
 private:
+    void Init();
+    
     Ui::CFrmParameterRabbitVNC *ui;
     CParameterServiceRabbitVNC* m_pParameters;
 };

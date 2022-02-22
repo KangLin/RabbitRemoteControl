@@ -10,6 +10,7 @@ CFrmParameterFreeRDP::CFrmParameterFreeRDP(CParameterServiceFreeRDP *para)
     m_Para(para)
 {
     ui->setupUi(this);
+    Init();
 }
 
 CFrmParameterFreeRDP::~CFrmParameterFreeRDP()
@@ -18,7 +19,7 @@ CFrmParameterFreeRDP::~CFrmParameterFreeRDP()
     delete ui;
 }
 
-void CFrmParameterFreeRDP::showEvent(QShowEvent *event)
+void CFrmParameterFreeRDP::Init()
 {
     ui->cbEnable->setChecked(m_Para->getEnable());
     ui->lePort->setText(QString::number(m_Para->getPort()));

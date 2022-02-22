@@ -7,6 +7,7 @@ CFrmParameterServiceLibVNC::CFrmParameterServiceLibVNC(CParameterServiceLibVNC *
     m_pParameters(para)
 {
     ui->setupUi(this);
+    Init();
 }
 
 CFrmParameterServiceLibVNC::~CFrmParameterServiceLibVNC()
@@ -21,7 +22,7 @@ void CFrmParameterServiceLibVNC::slotSave()
     m_pParameters->setPassword(ui->lePassword->text());
 }
 
-void CFrmParameterServiceLibVNC::showEvent(QShowEvent *event)
+void CFrmParameterServiceLibVNC::Init()
 {
     ui->cbEnable->setChecked(m_pParameters->getEnable());
     ui->sbPort->setValue(m_pParameters->getPort());

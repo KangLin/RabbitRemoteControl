@@ -21,10 +21,9 @@ public Q_SLOTS:
     void slotSave();
     //! [Save parameters]
     
-protected:
-    virtual void showEvent(QShowEvent *event) override;
-    
 private:
+    void Init();
+    
     Ui::CFrmParameterTigerVNC *ui;
     CParameterServiceTigerVNC* m_pParameters;
 };

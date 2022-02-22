@@ -7,6 +7,7 @@ CFrmParameterTigerVNC::CFrmParameterTigerVNC(CParameterServiceTigerVNC *para) :
     m_pParameters(para)
 {
     ui->setupUi(this);
+    Init();
 }
 
 CFrmParameterTigerVNC::~CFrmParameterTigerVNC()
@@ -36,7 +37,7 @@ void CFrmParameterTigerVNC::slotSave()
     m_pParameters->setTurnPassword(ui->leTrunPassword->text());
 }
 
-void CFrmParameterTigerVNC::showEvent(QShowEvent *event)
+void CFrmParameterTigerVNC::Init()
 {
     ui->cbEnable->setChecked(m_pParameters->getEnable());
     ui->sbPort->setValue(m_pParameters->getPort());

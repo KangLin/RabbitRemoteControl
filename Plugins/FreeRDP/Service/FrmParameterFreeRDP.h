@@ -28,9 +28,7 @@ private:
     
     CParameterServiceFreeRDP* m_Para;
     
-    // QWidget interface
-protected:
-    virtual void showEvent(QShowEvent *event) override;
+    void Init();
 };
 
 #endif // FRMPARAMETERFREERDP_H

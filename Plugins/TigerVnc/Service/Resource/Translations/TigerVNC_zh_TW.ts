@@ -74,7 +74,7 @@
     <message>
         <location filename="../../PluginServiceTigerVNC.cpp" line="43"/>
         <source>TigerVNC</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../PluginServiceTigerVNC.cpp" line="48"/>

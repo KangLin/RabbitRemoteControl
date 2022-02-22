@@ -6,42 +6,42 @@
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="14"/>
         <source>Input password</source>
-        <translation type="unfinished">输入密码</translation>
+        <translation>输入密码</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="35"/>
         <source>OK(&amp;O)</source>
-        <translation type="unfinished">确定(&amp;O)</translation>
+        <translation>确定(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="42"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="96"/>
         <source>User:</source>
-        <translation type="unfinished">用户：</translation>
+        <translation>用户：</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="110"/>
         <source>Password:</source>
-        <translation type="unfinished">密码：</translation>
+        <translation>密码：</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="126"/>
         <source>Save password</source>
-        <translation type="unfinished">保存密码</translation>
+        <translation>保存密码</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="150"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.cpp" line="40"/>
         <source>Set password for %1</source>
-        <translation type="unfinished">为 %1 设置密码</translation>
+        <translation>为 %1 设置密码</translation>
     </message>
 </context>
 <context>
@@ -316,37 +316,6 @@
         <location filename="../../DlgSettingsTigerVnc.cpp" line="65"/>
         <source>Please set domain</source>
         <translation>请设置域名</translation>
-    </message>
-</context>
-<context>
-    <name>CDlgTigerVNCGetPassword</name>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">输入密码</translation>
-    </message>
-    <message>
-        <source>OK(&amp;O)</source>
-        <translation type="vanished">确定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancel(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>User:</source>
-        <translation type="vanished">用户：</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">密码：</translation>
-    </message>
-    <message>
-        <source>Save password</source>
-        <translation type="vanished">保存密码</translation>
-    </message>
-    <message>
-        <source>Set password for %1</source>
-        <translation type="vanished">为 %1 设置密码</translation>
     </message>
 </context>
 <context>

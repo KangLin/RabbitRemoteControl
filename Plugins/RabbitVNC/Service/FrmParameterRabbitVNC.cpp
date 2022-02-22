@@ -7,6 +7,7 @@ CFrmParameterRabbitVNC::CFrmParameterRabbitVNC(CParameterServiceRabbitVNC *para)
     m_pParameters(para)
 {
     ui->setupUi(this);
+    Init();
 }
 
 CFrmParameterRabbitVNC::~CFrmParameterRabbitVNC()
@@ -36,7 +37,7 @@ void CFrmParameterRabbitVNC::slotSave()
     m_pParameters->setTurnPassword(ui->leTrunPassword->text());
 }
 
-void CFrmParameterRabbitVNC::showEvent(QShowEvent *event)
+void CFrmParameterRabbitVNC::Init()
 {
     ui->cbEnable->setChecked(m_pParameters->getEnable());
     ui->sbPort->setValue(m_pParameters->getPort());
