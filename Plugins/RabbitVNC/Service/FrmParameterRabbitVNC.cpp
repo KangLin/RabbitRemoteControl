@@ -58,3 +58,15 @@ void CFrmParameterRabbitVNC::Init()
     ui->leTurnUser->setText(m_pParameters->getTurnUser());
     ui->leTrunPassword->setText(m_pParameters->getTurnPassword());
 }
+
+void CFrmParameterRabbitVNC::on_pbShow_clicked()
+{
+    if(ui->lePassword->echoMode() == QLineEdit::Password)
+    {
+        ui->lePassword->setEchoMode(QLineEdit::Normal);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOff"));
+    } else {
+        ui->lePassword->setEchoMode(QLineEdit::Password);
+        ui->pbShow->setIcon(QIcon(":/image/EyeOn"));
+    }
+}

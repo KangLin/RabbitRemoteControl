@@ -80,7 +80,22 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lePassword"/>
+         <widget class="QLineEdit" name="lePassword">
+          <property name="echoMode">
+           <enum>QLineEdit::Password</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbShow">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../App/Viewer/Resource/Resource.qrc">
+            <normaloff>:/image/EyeOn</normaloff>:/image/EyeOn</iconset>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -248,6 +263,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../App/Viewer/Resource/Resource.qrc"/>
+  <include location="../../../App/Viewer/Resource/Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

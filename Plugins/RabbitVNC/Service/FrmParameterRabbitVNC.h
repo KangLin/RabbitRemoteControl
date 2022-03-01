@@ -21,6 +21,9 @@ public Q_SLOTS:
     void slotSave();
     //! [Save parameters]
         
+private slots:
+    void on_pbShow_clicked();
+    
 private:
     void Init();
     
