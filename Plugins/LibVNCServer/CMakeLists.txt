@@ -1,5 +1,5 @@
 if(BUILD_VIEWER)
-add_subdirectory(Viewer)
+    add_subdirectory(Viewer)
 endif()
 if(BUILD_SERVICE)
     add_subdirectory(Service)

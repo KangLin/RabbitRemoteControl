@@ -1,3 +1,5 @@
+# Author: Kang Lin <kl222@126.com>
+
 find_package(QtService)
 if(NOT QtService_FOUND)
     return()

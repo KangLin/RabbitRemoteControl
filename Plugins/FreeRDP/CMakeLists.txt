@@ -10,6 +10,8 @@ find_package(FreeRDP-Client)
 message("FreeRDP-Client_FOUND:${FreeRDP-Client_FOUND}")
 
 if(NOT (FreeRDP_FOUND AND WinPR_FOUND AND FreeRDP-Client_FOUND))
+    message("Don't find FreeRDP. Please set BUILD_FREERDP=OFF "
+        "or install FreeRDP from https://github.com/FreeRDP/FreeRDP")
     return()
 endif()
 
