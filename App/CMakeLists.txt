@@ -1,3 +1,5 @@
+# Author: Kang Lin <kl222@126.com>
+
 if(BUILD_VIEWER)
     add_subdirectory(Viewer)
 endif(BUILD_VIEWER)
