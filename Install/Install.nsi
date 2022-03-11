@@ -3,7 +3,7 @@
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "RabbitRemoteControl"
 !define PRODUCT_APP_NAME "RabbitRemoteControlApp"
-!define PRODUCT_VERSION "v0.0.17"
+!define PRODUCT_VERSION "v0.0.18"
 !define PRODUCT_PUBLISHER "KangLin studio"
 !define PRODUCT_WEB_SITE "https://github.com/KangLin/${PRODUCT_NAME}"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_APP_NAME}.exe"

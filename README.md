@@ -222,34 +222,34 @@ Semantic Versioning: https://semver.org/
 
 + Current version:
   - Windows: Supported WINDOWS 7 and later version
-    + Install package: RabbitRemoteControl_setup_v0.0.17.exe
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/RabbitRemoteControl_setup_v0.0.17.exe/download)
-    + No need to install package: RabbitRemoteControl_v0.0.17.zip
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/RabbitRemoteControl_windows_v0.0.17.zip/download)
+    + Install package: RabbitRemoteControl_setup_v0.0.18.exe
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/RabbitRemoteControl_setup_v0.0.18.exe)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.18/RabbitRemoteControl_setup_v0.0.18.exe/download)
+    + No need to install package: RabbitRemoteControl_v0.0.18.zip
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/RabbitRemoteControl_windows_v0.0.18.zip)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.18/RabbitRemoteControl_windows_v0.0.18.zip/download)
   - Ubuntu:
-    + Ubuntu 20.04: rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
+    + Ubuntu 20.04: rabbitremotecontrol_0.0.18_amd64_Ubuntu-20.04.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.18_amd64_Ubuntu-20.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.18_amd64_Ubuntu-20.04.deb
           # sudo apt-get install -f # Install dependencies
 
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-20.04.deb/download)
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-20.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-20.04.deb/download)
 
-    + Ubuntu 18.04: rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
+    + Ubuntu 18.04: rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb
 
-          sudo apt install ./rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb
           # sudo apt-get install -f # Install dependencies
 
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.17/rabbitremotecontrol_0.0.17_amd64_Ubuntu-18.04.deb/download)
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb/download)
 
 ### Development
 

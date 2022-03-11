@@ -22,7 +22,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install_mingw_2022_02_15
-      RabbitRemoteControl_VERSION: v0.0.17
+      RabbitRemoteControl_VERSION: v0.0.18
 
     steps:
     - uses: actions/checkout@v2
