@@ -23,7 +23,8 @@
       - Visual Studio 2015
       - Visual Studio 2017
       - Visual Studio 2019
-    * Visual Studio 各版本密钥：https://blog.csdn.net/kl222/article/details/84939135
+      - Visual Studio 2022
+    * Visual Studio 各版本密钥：https://github.com/KangLin/Documents/blob/master/c/VisualStudioKey.md
     * 当前使用版本：VS 2017
     
 - Windows SDK：https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
@@ -47,7 +48,6 @@
 ### 依赖库
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
-  - [可选] [cmark](https://github.com/commonmark/cmark): 玉兔公共库依赖
 - [可选] RFB
   + [可选] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
@@ -69,48 +69,6 @@
 -DRabbitCommon_DIR=[RabbitCommon 安装目录]
 
     git clone https://github.com/KangLin/RabbitCommon.git
-    
-#### cmark-gfm
-支持 Github cmark 。玉兔公共库依赖。玉兔公共库编译时，会自动下载它
-- 从源码编译
-  + 源码位置： https://github.com/github/cmark-gfm
-  
-        ~$ git clone https://github.com/github/cmark-gfm.git
-        ~$ cd cmark
-        ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMARK_SHARED=OFF -DCMARK_STATIC=ON -DCMARK_TESTS=OFF
-        ~/cmark/build$ cmake --build . --target install
-          
-  + 指定 CMake 参数：
-    - -Dcmark_DIR=[cmark 安装目录]/lib/cmake/cmark-gfm
-    
-#### cmark
-玉兔公共库依赖。玉兔公共库编译时，会自动下载它
-- 使用系统预编译开发库
-
-      ~$ sudo apt install libcmark-dev
-    
-- 使用 vcpkg
-  + 源码位置: https://github.com/microsoft/vcpkg/
-  
-        ~$ git clone https://github.com/microsoft/vcpkg.git
-        ~$ cd vcpkg
-        ~/vcpkg$ ./bootstrap-vcpkg.sh
-        ~/vcpkg$ vcpkg install cmark
-
-  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-  
-- 从源码编译
-  + 源码位置：https://github.com/commonmark/cmark
-  
-        ~$ git clone https://github.com/commonmark/cmark
-        ~$ cd cmark
-        ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
-        ~/cmark/build$ cmake --build . --target install
-          
-  + 指定 CMake 参数：
-    - -Dcmark_DIR=[cmark 安装目录]/lib/cmake/cmark
 
 #### FreeRDP   
 - 使用 vcpkg
@@ -158,12 +116,13 @@
 - 从源码编译
 源码位置: https://github.com/KangLin/RabbitVNC  
 
-      ~$ sudo apt install libpixman-1-dev
-      ~$ git clone https://github.com/KangLin/RabbitVNC.git
-      ~$ cd RabbitVNC
-      ~/RabbitVNC$ mkdir build
-      ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
-      ~/RabbitVNC$ cmake --build . --target install
+      cd vcpkg
+      vcpkg install zlib openssl libjpeg-turbo pixman
+      git clone https://github.com/KangLin/RabbitVNC.git
+      cd RabbitVNC
+      mkdir build
+      cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+      cmake --build . --target install
 
 - 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
 
@@ -260,9 +219,9 @@
   + BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF
   + BUILD_QUIWidget: 用无边框窗口做为主窗口。默认为 OFF
   + BUILD_SHARED_LIBS: 编译动态库。默认为 ON
-  + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
-  + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
-  + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
+  + WinPR_DIR:PATH: [FreeRDP 安装目录]/lib/cmake/WinPR2
+  + FreeRDP_DIR: [FreeRDP 安装目录]/lib/cmake/FreeRDP2
+  + FreeRDP-Client_DIR: [FreeRDP 安装目录]/lib/cmake/FreeRDP-Client2
   + RabbitVNC_DIR: [RabbitVNC 安装目录]/lib/cmake/RabbitVNC
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer

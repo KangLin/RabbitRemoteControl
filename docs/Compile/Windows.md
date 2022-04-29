@@ -25,7 +25,8 @@ Prior versions don't have CMake support.
       - Visual Studio 2015
       - Visual Studio 2017
       - Visual Studio 2019
-    * Visual Studio Key：https://blog.csdn.net/kl222/article/details/84939135
+      - Visual Studio 2022
+    * Visual Studio Key：https://github.com/KangLin/Documents/blob/master/c/VisualStudioKey.md
     * Current version：VS 2017
 
 - Windows SDK: https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
@@ -72,51 +73,6 @@ If not, you must specify the CMake parameters:
 -DRabbitCommon_DIR=[RabbitCommon installation path]
 
     git clone https://github.com/KangLin/RabbitCommon.git
-
-#### cmark-gfm
-This library is dependencies by RabbitCommon. to support Github Markdown syntax.
-It is automatically downloaded when RabbitCommon is compiled.
-- Compile from source code
-  + Source-code location https://github.com/github/cmark-gfm
-  
-        ~$ git clone https://github.com/github/cmark-gfm.git
-        ~$ cd cmark
-        ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMARK_SHARED=OFF -DCMARK_STATIC=ON -DCMARK_TESTS=OFF
-        ~/cmark/build$ cmake --build . --target install
-          
-  + Specify the CMake parameters：
-    - -Dcmark_DIR=[cmark installation path]/lib/cmake/cmark-gfm
-    
-#### cmark
-This library is dependencies by RabbitCommon. to support Markdown syntax.
-It is automatically downloaded when RabbitCommon is compiled.
-- Use the system-packaged development library
-
-      ~$ sudo apt install libcmark-dev
-    
-- Use vcpkg
-  + Source-code location: https://github.com/microsoft/vcpkg/
-  
-        ~$ git clone https://github.com/microsoft/vcpkg.git
-        ~$ cd vcpkg
-        ~/vcpkg$ ./bootstrap-vcpkg.sh
-        ~/vcpkg$ vcpkg install cmark
-
-  + Specify the CMake parameters:
-  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-
-- Compile from source code
-  + Source-code location: https://github.com/commonmark/cmark
-  
-        ~$ git clone https://github.com/commonmark/cmark
-        ~$ cd cmark
-        ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
-        ~/cmark/build$ cmake --build . --target install
-          
-  + Specify the CMake parameters:
-    - -Dcmark_DIR=[cmark installation path]/lib/cmake/cmark
 
 #### FreeRDP
 - Use vcpkg
@@ -165,12 +121,13 @@ It is automatically downloaded when RabbitCommon is compiled.
 - Compile from source code
 Source-code location: https://github.com/KangLin/RabbitVNC  
 
-      ~$ sudo apt install libpixman-1-dev
-      ~$ git clone https://github.com/KangLin/RabbitVNC.git
-      ~$ cd RabbitVNC
-      ~/RabbitVNC$ mkdir build
-      ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
-      ~/RabbitVNC$ cmake --build . --target install
+      cd vcpkg
+      vcpkg install zlib openssl libjpeg-turbo pixman
+      git clone https://github.com/KangLin/RabbitVNC.git
+      cd RabbitVNC
+      mkdir build
+      cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+      cmake --build . --target install
     
 - Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
 
