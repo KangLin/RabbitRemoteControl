@@ -1,5 +1,10 @@
 # Author: Kang Lin <kl222@126.com>
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
+
 find_package(QtService)
 if(NOT QtService_FOUND)
     return()
