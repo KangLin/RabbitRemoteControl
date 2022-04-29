@@ -31,7 +31,7 @@ CManagePlugin::~CManagePlugin()
 {
     qDebug() << "CManageConnecter::~CManageConnecter()";
     qApp->removeTranslator(&m_Translator);
-    qDebug() << "CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()";
+    qDebug() << "CManagePlugin::~CManagePlugin()";
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_Viewer);
 //#endif
