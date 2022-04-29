@@ -44,12 +44,12 @@ Author: Kang Lin <kl222@126.com>
 
 -----------------------------------------------------------------------
 
-### Introduction
+## Introduction
 Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
-#### Screenshot
+### Screenshot
 
 |Main window|Recent list menu|Connect|
 |--|--|--|
@@ -59,7 +59,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 
 [![Stargazers over time](https://starchart.cc/KangLin/RabbitRemoteControl.svg)](https://starchart.cc/KangLin/RabbitRemoteControl)
 
-#### Project repository position
+### Project repository position
 - Project home: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 - Project position:
   - Main repository: https://github.com/KangLin/RabbitRemoteControl
@@ -67,6 +67,20 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
     - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol/
     - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
     - gitee: https://gitee.com/kl222/RabbitRemoteControl
+
+## Functions
+
+|       |Server|Client|Clipboard|File|Audio|P2P|Proxy|TELNET|
+|-------|:----:|:----:|:-------:|:--:|:---:|:-:|:---:|:----:|
+|  RDP  |  ✓  |  ✓  |⭕  |       |        |   |    |    |
+|  RFB  | ……  |  ✓  |⭕  |       | ❌     | …… | …… |    |
+|Spice  |     |     |    |       |         |   |     |      |
+|Scrcpy |     |     |    |       |         |   |     |      |
+|TELNET |     | ⭕  |✓   | ❌    | ❌     |   |     |      |
+|  SSH  |     | ⭕  |✓   |       | ❌     |   |     |      |
+|  FTP  |     |     |    |        |❌      |   |    |      |
+
+Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported; Empty: not started
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -91,16 +105,17 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 - [x] Terminal
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 
+|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
+|--------|:-----:|:--------:|:-----:|:-:|:----:|:---:|
+|vnc     |✓      |✓         |       |   |      |     |
+|RDP     |✓      |✓         |       |   |      |     |
+|Spice   |       |          |       |   |      |     |
+|SSH     |       |✓         |       |   |      |     |
+|Terminal|       |✓         |       |   |      |     |
+|TELNET  |       |✓         |       |   |      |     |
+|Scrcpy  |       |          |       |   |      |     |
 
-|        |Windows           |Unix/linux        |Android           |MAC               |IPHONE            |WINCE             |
-|--------|------------------|------------------|------------------|------------------|------------------|------------------|
-|vnc     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
-|RDP     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
-|Spice   |                  |                  |                  |                  |                  |                  |
-|SSH     |                  |:heavy_check_mark:|                  |                  |                  |                  |
-|Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
-|TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
-|Scrcpy  |                  |                  |                  |                  |                  |                  |
+Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported; Empty: not started
 
 ##### Network protocols
 - [x] Custom p2p protocol
@@ -114,16 +129,18 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 |             | Proxy            | P2P              |
 |-------------|------------------|------------------|
-|RabbitVNC    |:heavy_check_mark:|:heavy_check_mark:|
-|TigerVNC     |:heavy_check_mark:|:heavy_check_mark:|
+|RabbitVNC    |✓|✓|
+|TigerVNC     |✓|✓|
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
-### Build status
+Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported; Empty: not started
+
+## Build status
 
 - [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
   
-#### Github actions
+### Github actions
 
 |     | master  | develop  |
 |:---:|:-----------:|:------------:|
@@ -131,7 +148,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |Windows|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 |Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 
-### Sponsorship and Donations
+## Sponsorship and Donations
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
 
 [![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation") 
@@ -139,7 +156,7 @@ If this software is useful to you, or you like it, please donate and support the
 If it cannot be displayed, please open:
 https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
 
-### Contribution
+## Contribution
 
 - [Mail list](https://sourceforge.net/p/rabbitremotecontrol/mailman/rabbitremotecontrol-discuss/)
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
@@ -174,7 +191,7 @@ Some of them are:
   - Android
 * Be finished [unsupported protocols](#Supported-protocols)
 
-### Road map
+## Road map
 - [x] Support common existing remote control protocols
   - [x] Client
     - [x] Client frame
@@ -188,17 +205,19 @@ Some of them are:
     - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
-|            |       Client     |    Server        |        P2P       |
-|------------|------------------|------------------|------------------|
-|RabbitVNC   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|TigerVNC    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|LibVNCServer|:heavy_check_mark:|:heavy_check_mark:|                  |
-|RDP         |:heavy_check_mark:|:heavy_check_mark:|                  |
-|Spice       |                  |                  |                  |
-|SSH         |:heavy_check_mark:|                  |                  |
-|Terminal    |:heavy_check_mark:|                  |                  |
-|TELNET      |:heavy_check_mark:|                  |                  |
-|Scrcpy      |                  |                  |                  |
+|            |Server|Client|Clipboard|File|Audio|P2P|Proxy|TELNET|
+|:----------:|:----:|:-----:|:------:|:--:|:---:|:--:|:--:|:--:|
+|RabbitVNC   |✓    |✓    |⭕   |       |❌      |⭕ |⭕ |    |
+|TigerVNC    |✓    |✓    |⭕   |       |❌      |⭕ |⭕ |    |
+|LibVNCServer|✓    |✓    |⭕   |       |        |    |    |    |
+|RDP         |✓    |✓    |⭕   |       |        |    |    |    |
+|Spice       |     |     |     |       |        |    |    |    |
+|SSH         |     |⭕   |✓    |       |❌      |    |    |    |
+|Terminal    |     |⭕   |✓    |       |❌      |    |    |    |
+|TELNET      |     |⭕   |✓    |❌     |❌      |    |    |    |
+|Scrcpy      |     |     |     |       |        |    |    |    |
+
+Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported; Empty: not started
 
 At present, the development of common remote control protocol client has been completed,
 and it has preliminary practical functions.
@@ -211,7 +230,7 @@ The next level of work is to solve point-to-point remote control,
 which is also a feature of this project.
 See requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7 
 
-### Download
+## Download
 
 Semantic Versioning: https://semver.org/
 
@@ -251,12 +270,12 @@ Semantic Versioning: https://semver.org/
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb/download)
 
-### Development
+## Development
 
 [Doxyen documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
-#### Dependent
-##### Tools
+### Dependent
+#### Tools
 - [Qt](qt.io)
 - C/C++ compiler
   + gcc/g++
@@ -265,7 +284,7 @@ Semantic Versioning: https://semver.org/
 - Automake、 Autoconf、 Make
 - Git
 
-##### Dependent libraries
+#### Dependent libraries
 - [x] [MUST] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] VNC
   + [x] [Optional] RabbitVNC: https://github.com/KangLin/RabbitVNC
@@ -282,11 +301,11 @@ Semantic Versioning: https://semver.org/
 - [x] [OPTIONAL] QXmpp: https://github.com/qxmpp-project/qxmpp
 - [x] [Optional] QtService: https://github.com/KangLin/qt-solutions/
 
-#### Build
+### Build
 - [Linux](docs/Compile/Linux.md)
 - [Windows](docs/Compile/Windows.md)
 
-### [License Agreement](License.md "License.md")
+## [License Agreement](License.md "License.md")
 
 Please abide by this agreement and the license agreement of [dependent library](#Dependent-libraries),
 and thank the author of [dependent library](#Dependent-libraries) and [tools](#Tools).

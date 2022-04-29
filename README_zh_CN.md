@@ -42,19 +42,19 @@
 - [许可协议](#许可协议)
 
 -----------------------------------------------------------------------
-### 简介
+## 简介
 
 玉兔远程控制是一个跨平台，支持多协议的远程控制软件。
 
 能让你在**任何地方**使用**任何设备和系统**通过**任意方式**远程管理**任意设备和系统**。
 
-#### 截屏
+### 截屏
 
 |主窗口|最近列表窗口|连接窗口|
 |--|--|--|
 |![主窗口](docs/Image/Screenslot/MainWindows.png)|![最近列表窗口](docs/Image/Screenslot/RecentMenu.png)|![连接窗口](docs/Image/Screenslot/Connect.png)|
 
-#### 项目位置
+### 项目位置
 - 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 - 项目位置:
   + 主库：https://github.com/KangLin/RabbitRemoteControl
@@ -62,6 +62,20 @@
     - 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
     - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
     - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
+
+### 功能
+
+|       |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
+|:-----:|:---:|:---:|:--:|:-----:|:------:|:-:|:--:|:-:|
+|  RDP  |  ✓  |  ✓  |⭕  |       |        |   |    |    |
+|  RFB  | ……  |  ✓  |⭕  |       | ❌     | …… | …… |    |
+|Spice  |     |     |    |       |         |   |     |      |
+|Scrcpy |     |     |    |       |         |   |     |      |
+|TELNET |     | ⭕  |✓   | ❌    | ❌     |   |     |      |
+|  SSH  |     | ⭕  |✓   |       | ❌     |   |     |      |
+|  FTP  |     |     |    |        |❌      |   |    |      |
+
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; ❌: 不支持; 空：未开始
 
 #### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -85,17 +99,17 @@
 - [x] [TELNET: http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 
-  
-|        |Windows           |Unix/linux        |Android           |MAC               |IPHONE            |WINCE             |
-|--------|------------------|------------------|------------------|------------------|------------------|------------------|
-|vnc     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
-|RDP     |:heavy_check_mark:|:heavy_check_mark:|                  |                  |                  |                  |
-|Spice   |                  |                  |                  |                  |                  |                  |
-|SSH     |                  |:heavy_check_mark:|                  |                  |                  |                  |
-|Terminal|                  |:heavy_check_mark:|                  |                  |                  |                  |
-|TELNET  |                  |:heavy_check_mark:|                  |                  |                  |                  |
-|Scrcpy  |                  |                  |                  |                  |                  |                  |
+|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
+|--------|-------|----------|-------|---|------|-----|
+|vnc     |✓      |✓         |       |   |      |     |
+|RDP     |✓      |✓         |       |   |      |     |
+|Spice   |       |          |       |   |      |     |
+|SSH     |       |✓         |       |   |      |     |
+|Terminal|       |✓         |       |   |      |     |
+|TELNET  |       |✓         |       |   |      |     |
+|Scrcpy  |       |          |       |   |      |     |
 
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; ❌: 不支持; 空：未开始
 
 ##### 网络协议
 
@@ -110,13 +124,14 @@
 
 |             | 代理              | P2P              |
 |-------------|------------------|------------------|
-|RabbitVNC     |:heavy_check_mark:|:heavy_check_mark:|
-|TigerVNC     |:heavy_check_mark:|:heavy_check_mark:|
+|RabbitVNC     |✓                | ✓                |
+|TigerVNC     |✓                 |✓                |
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; ❌: 不支持; 空：未开始
 
-### 编译状态
+## 编译状态
 
 [![编译状态](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)  
 
@@ -129,7 +144,7 @@
 |Android|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 
 
-### 捐赠
+## 捐赠
 
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
 
@@ -138,7 +153,7 @@
 如果不能显示，请打开：
 https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
 
-### 贡献
+## 贡献
 
 - [邮件列表](https://sourceforge.net/p/rabbitremotecontrol/mailman/rabbitremotecontrol-discuss/)
 - [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
@@ -169,7 +184,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
   - Android
 * 完成还未支持的[协议](支持协议)
 
-### 线路图
+## 线路图
 - [x] 支持常见已有远程控制协议
   - [x] 客户端
     - [x] 客户端框架
@@ -183,24 +198,26 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
     - [x] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [x] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
-|            |       客户端      |      服务器端     |        P2P        |
-|------------|------------------|------------------|------------------|
-|RabbitVNC   |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|TigerVNC    |:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|LibVNCServer|:heavy_check_mark:|:heavy_check_mark:|                  |
-|RDP         |:heavy_check_mark:|:heavy_check_mark:|                  |
-|Spice       |                  |                  |                  |
-|SSH         |:heavy_check_mark:|                  |                  |
-|Terminal    |:heavy_check_mark:|                  |                  |
-|TELNET      |:heavy_check_mark:|                  |                  |
-|Scrcpy      |                  |                  |                  |
+|            |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
+|:----------:|:---:|:---:|:---:|:-----:|:------:|:-:|:--:|:-:|
+|RabbitVNC   |✓    |✓    |⭕   |       |❌      |⭕ |⭕ |    |
+|TigerVNC    |✓    |✓    |⭕   |       |❌      |⭕ |⭕ |    |
+|LibVNCServer|✓    |✓    |⭕   |       |        |    |    |    |
+|RDP         |✓    |✓    |⭕   |       |        |    |    |    |
+|Spice       |     |     |     |       |        |    |    |    |
+|SSH         |     |⭕   |✓    |       |❌      |    |    |    |
+|Terminal    |     |⭕   |✓    |       |❌      |    |    |    |
+|TELNET      |     |⭕   |✓    |❌     |❌      |    |    |    |
+|Scrcpy      |     |     |     |       |        |    |    |    |
+
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; ❌: 不支持; 空：未开始
 
 当前已经完成常见远程控制协议客户端的开发，已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。
 终端类远程控制，因为 qtermwidget 仅支持 LINUX/UNIX ，所以需要让其支持其它平台。
 
 下一阶段的工作是解决点对点远程控制，也是本项目的特点。详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
-### 下载
+## 下载
 
 版本号说明： https://semver.org/lang/zh-CN/
 
@@ -239,12 +256,12 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb/download)
       
-### 开发
+## 开发
 
 [Doxygen 文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
-#### 依赖
-##### 工具
+### 依赖
+#### 工具
 
 - [Qt](qt.io)
 - C/C++ compiler
@@ -254,7 +271,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - Automake、 Autoconf、 Make
 - Git
 
-##### 依赖库
+#### 依赖库
 
 - [x] [必选] RabbitCommon：https://github.com/KangLin/RabbitCommon
 - [x] [可选] RFB
@@ -272,9 +289,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [x] [可选] QXmpp: https://github.com/qxmpp-project/qxmpp
 - [x] [可选] QtService: https://github.com/KangLin/qt-solutions/
 
-#### 编译
+### 编译
 - [Linux](docs/Compile/Linux_zh_CN.md)
 - [Windows](docs/Compile/Windows_zh_CN.md)
 
-### [许可协议](License.md "License.md")
+## [许可协议](License.md "License.md")
 请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。
