@@ -20,51 +20,51 @@
     </message>
     <message>
         <location filename="../../FrmParameterTigerVNC.ui" line="52"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="132"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="167"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="219"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="147"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="182"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="234"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
         <location filename="../../FrmParameterTigerVNC.ui" line="78"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="108"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="195"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="123"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="210"/>
         <source>Password:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="90"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="105"/>
         <source>ICE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="98"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="113"/>
         <source>Signal user:</source>
         <translation>信令用戶：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="122"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="137"/>
         <source>Stun server:</source>
         <translation>Stun 服務器：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="148"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="163"/>
         <source>Enable ICE</source>
         <translation>允許 ICE</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="157"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="172"/>
         <source>Turn server:</source>
         <translation>Turn 服務器：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="185"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="200"/>
         <source>Turn user:</source>
         <translation>Turn 用戶：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="209"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="224"/>
         <source>Signal server:</source>
         <translation>信令服務器：</translation>
     </message>

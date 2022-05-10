@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include <QWidget>
+#include <QOpenGLWidget>
 #include <QSettings>
 #include "viewer_export.h"
 
