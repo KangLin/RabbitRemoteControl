@@ -35,7 +35,7 @@ CConnect::CConnect(CConnecter *pConnecter, QObject *parent, bool bDirectConnecti
 
 CConnect::~CConnect()
 {
-    qDebug() << "CConnect::~CConnect()";
+    LOG_MODEL_DEBUG("CConnect", "CConnect::~CConnect()");
 }
 
 int CConnect::SetConnecter(CConnecter* pConnecter)
