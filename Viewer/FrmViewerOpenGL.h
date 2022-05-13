@@ -106,6 +106,13 @@ protected:
     virtual void resizeGL(int w, int height) override;
     virtual void paintGL() override;
 
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    
 private:
     QImage m_Desktop;
     
@@ -120,6 +127,8 @@ private:
     double m_dbZoomFactor;
     
     int ReSize(int width, int height);
+    int TranslationMousePoint(QPointF inPos, QPointF &outPos);
+    QRectF GetAspectRationRect();
 };
 
 #endif // COPENGLWIDGET_H

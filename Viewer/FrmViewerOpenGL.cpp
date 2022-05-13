@@ -3,6 +3,8 @@
 #include "FrmViewerOpenGL.h"
 #include <QDebug>
 #include <QPainter>
+#include <QResizeEvent>
+#include <QCursor>
 #include "RabbitCommonLog.h"
 
 class COpenGLInit
@@ -258,4 +260,123 @@ void CFrmViewerOpenGL::slotSystemCombination()
     emit sigKeyPressEvent(Qt::Key_Control, Qt::NoModifier);
     emit sigKeyPressEvent(Qt::Key_Alt, Qt::NoModifier);
     emit sigKeyPressEvent(Qt::Key_Delete, Qt::NoModifier);
+}
+
+QRectF CFrmViewerOpenGL::GetAspectRationRect()
+{
+    QRectF dstRect = rect();
+    qreal newW = dstRect.width();
+    qreal newH = dstRect.height();
+    qreal newT = 0;
+    qreal newL = 0;
+    
+    qreal rateW = static_cast<qreal>(rect().width())
+            / static_cast<qreal>(m_Desktop.width());
+    qreal rateH = static_cast<qreal>(rect().height())
+            / static_cast<qreal>(m_Desktop.height());
+    if(rateW < rateH)
+    {
+        newW = m_Desktop.width() * rateW;
+        newH = m_Desktop.height() * rateW;
+        newT = (static_cast<qreal>(rect().height()) - newH)
+                / static_cast<qreal>(2);
+    } else if(rateW > rateH) {
+        newW = m_Desktop.width() * rateH;
+        newH = m_Desktop.height() * rateH;
+        newL = (static_cast<qreal>(rect().width()) - newW)
+                / static_cast<qreal>(2);
+    }
+    dstRect = QRectF(newL, newT, newW, newH);
+    return dstRect;
+}
+
+int CFrmViewerOpenGL::TranslationMousePoint(QPointF inPos, QPointF &outPos)
+{
+    //qDebug() << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
+
+    switch (m_AdaptWindows) {
+    case Auto:
+    case Original:
+    case OriginalCenter:
+        outPos = inPos;
+        break;
+    case Zoom:
+        outPos.setX(inPos.x() / GetZoomFactor());
+        outPos.setY(inPos.y() / GetZoomFactor());
+        break;
+    case ZoomToWindow:
+        outPos.setX(m_Desktop.width() * inPos.x() / width());
+        outPos.setY(m_Desktop.height() * inPos.y() / height());
+        break;
+    case KeepAspectRationToWindow:
+    {
+        QRectF r = GetAspectRationRect();
+        if(inPos.x() < r.left()
+                || inPos.x() > r.right()
+                || inPos.y() < r.top()
+                || inPos.y() > r.bottom())
+            return -1;
+        outPos.setX(m_Desktop.width() * (inPos.x() - r.left()) / r.width());
+        outPos.setY(m_Desktop.height() * (inPos.y() - r.top()) / r.height());
+        break;
+    }
+    default:
+        break;
+    }
+
+    return 0; 
+}
+
+void CFrmViewerOpenGL::mousePressEvent(QMouseEvent *event)
+{
+    QPointF pos = event->pos();
+    if(TranslationMousePoint(event->pos(), pos)) return;
+    //qDebug() << "CFrmViewer::mousePressEvent" << event->button() << event->buttons();
+    emit sigMousePressEvent(event->buttons(), QPoint(pos.x(), pos.y()));
+    event->accept();
+}
+
+void CFrmViewerOpenGL::mouseReleaseEvent(QMouseEvent *event)
+{
+    QPointF pos = event->pos();
+    if(TranslationMousePoint(event->pos(), pos)) return;
+    //qDebug() << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons();
+    emit sigMouseReleaseEvent(event->button(), QPoint(pos.x(), pos.y()));
+    event->accept();
+}
+
+void CFrmViewerOpenGL::mouseMoveEvent(QMouseEvent *event)
+{
+    QPointF pos = event->pos();
+    if(TranslationMousePoint(event->pos(), pos)) return;
+    emit sigMouseMoveEvent(event->buttons(), QPoint(pos.x(), pos.y()));
+    emit sigMouseMoveEvent(event);
+    event->accept();
+}
+
+void CFrmViewerOpenGL::wheelEvent(QWheelEvent *event)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    QPointF pos = event->position();
+    if(TranslationMousePoint(event->position(), pos)) return;
+#else
+    QPointF pos = event->pos();
+    if(TranslationMousePoint(event->pos(), pos)) return;
+#endif
+    emit sigWheelEvent(event->buttons(), QPoint(pos.x(), pos.y()), event->angleDelta());
+    event->accept();
+}
+
+void CFrmViewerOpenGL::keyPressEvent(QKeyEvent *event)
+{
+    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    emit sigKeyPressEvent(event->key(), event->modifiers());
+    event->accept();
+}
+
+void CFrmViewerOpenGL::keyReleaseEvent(QKeyEvent *event)
+{
+    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    emit sigKeyReleaseEvent(event->key(), event->modifiers());
+    event->accept();
 }
