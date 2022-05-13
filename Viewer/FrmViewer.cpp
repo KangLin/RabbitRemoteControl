@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "FrmViewer.h"
-#include "ui_FrmViewer.h"
 #include <QPainter>
 #include <QClipboard>
 #include <QDebug>
@@ -11,11 +10,9 @@
 #include "RabbitCommonLog.h"
 
 CFrmViewer::CFrmViewer(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::CFrmViewer)
+    QWidget(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
-    ui->setupUi(this);
 
     SetAdaptWindows(ZoomToWindow);
     SetZoomFactor(1);
@@ -28,7 +25,6 @@ CFrmViewer::CFrmViewer(QWidget *parent) :
 CFrmViewer::~CFrmViewer()
 {
     qDebug() << "CFrmViewer::~CFrmViewer()";
-    delete ui;
 }
 
 void CFrmViewer::resizeEvent(QResizeEvent *event)

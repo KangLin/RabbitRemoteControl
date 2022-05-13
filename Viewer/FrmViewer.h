@@ -5,12 +5,6 @@
 
 #pragma once
 
-#include <QOpenGLWidget>
-#include <QSettings>
-#include "viewer_export.h"
-
-class CConnecter;
-
 #ifdef USE_FROM_OPENGL
 
     #include "FrmViewerOpenGL.h"
@@ -18,9 +12,9 @@ class CConnecter;
 
 #else
 
-namespace Ui {
-class CFrmViewer;
-}
+#include <QWidget>
+#include <QSettings>
+#include "viewer_export.h"
 
 /**
  * \~chinese
@@ -145,7 +139,6 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
 
 private:
-    Ui::CFrmViewer *ui;
     QImage m_Desktop;
 
     ADAPT_WINDOWS m_AdaptWindows;

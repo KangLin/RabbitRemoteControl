@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef COPENGLWIDGET_H
-#define COPENGLWIDGET_H
+#ifndef CFRMVIEWEROPENGL_H
+#define CFRMVIEWEROPENGL_H
 
 #include <QImage>
 #include <QOpenGLFunctions>
@@ -11,8 +11,10 @@
 #include <QOpenGLTexture>
 #include <QOpenGLVertexArrayObject>
 #include <QSettings>
+#include "viewer_export.h"
 
-class CFrmViewerOpenGL : public QOpenGLWidget, protected QOpenGLFunctions
+class VIEWER_EXPORT CFrmViewerOpenGL
+        : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
     Q_PROPERTY(double ZoomFactor READ GetZoomFactor WRITE SetZoomFactor)
@@ -131,4 +133,4 @@ private:
     QRectF GetAspectRationRect();
 };
 
-#endif // COPENGLWIDGET_H
+#endif // CFRMVIEWEROPENGL_H

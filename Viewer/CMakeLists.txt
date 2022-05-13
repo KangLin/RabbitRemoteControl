@@ -62,7 +62,6 @@ list(APPEND SOURCE_FILES
     )
 
 set(SOURCE_UI_FILES
-    FrmViewer.ui
     DlgInputPassword.ui
     )
 
