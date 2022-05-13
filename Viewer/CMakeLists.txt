@@ -9,7 +9,22 @@ set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
 project(Viewer LANGUAGES CXX)
 
-set(INSTALL_HEADER_FILES
+set(INSTALL_HEADER_FILES )
+set(SOURCE_FILES )
+
+option(USE_FROM_OPENGL "Use opengl from" OFF)
+if(USE_FROM_OPENGL)
+    set(VIEWER_DEFINITIONS USE_FROM_OPENGL)
+    list(APPEND SOURCE_FILES
+        FrmViewerOpenGL.cpp)
+    list(APPEND INSTALL_HEADER_FILES
+        FrmViewerOpenGL.h)
+else()
+    list(APPEND SOURCE_FILES
+        FrmViewer.cpp)
+endif()
+
+list(APPEND INSTALL_HEADER_FILES
     FrmViewer.h
     Connecter.h
     ManagePlugin.h
@@ -30,8 +45,7 @@ set(HEADER_FILES
     DlgInputPassword.h
     )
 
-set(SOURCE_FILES
-    FrmViewer.cpp
+list(APPEND SOURCE_FILES
     Connecter.cpp
     Connect.cpp
     ManagePlugin.cpp
@@ -80,6 +94,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     LIBS ${SRC_LIBS}
     VERSION ${BUILD_VERSION}
     PRIVATE_DEFINITIONS ${PRIVATE_DEFINITIONS}
+    DEFINITIONS ${VIEWER_DEFINITIONS}
     INSTALL_EXPORT_NAME ${PROJECT_NAME}Targets
     INSTALL_NAMESPACE RabbitRemoteControl
     )

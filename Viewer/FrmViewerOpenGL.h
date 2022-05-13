@@ -1,57 +1,25 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef FRMVIEWER_H
-#define FRMVIEWER_H
+#ifndef COPENGLWIDGET_H
+#define COPENGLWIDGET_H
 
-#pragma once
-
-#include <QWidget>
+#include <QImage>
+#include <QOpenGLFunctions>
+#include <QOpenGLBuffer>
+#include <QOpenGLShaderProgram>
+#include <QOpenGLWidget>
+#include <QOpenGLTexture>
+#include <QOpenGLVertexArrayObject>
 #include <QSettings>
-#include "viewer_export.h"
 
-class CConnecter;
-
-#ifdef USE_FROM_OPENGL
-
-    #include "FrmViewerOpenGL.h"
-    #define CFrmViewer CFrmViewerOpenGL
-
-#else
-
-namespace Ui {
-class CFrmViewer;
-}
-
-/**
- * \~chinese
- * \brief 
- * 用于显示从 CConnect 输出的图像，和向 CConnect 发送键盘、鼠标事件。
- * - 当新的输出图像从 CConnect 输出时，它调用 \ref slotUpdateRect 更新显示。
- * - 当鼠标更新时，调用 \ref slotUpdateCursor ，位置更新时，调用 \ref slotUpdateCursorPosition
- *
- * \~english
- * \brief 
- * A widget which displays output image from a CConnect
- * and sends input keypresses and mouse activity
- * to the CConnect.
- *
- * - When the viewer receives new image output from the CConnect,
- *   it will update the display by calling \ref slotUpdateRect.
- * - When the mouse update, then call \ref slotUpdateCursor,
- *   if update position, then call \ref slotUpdateCursorPosition
- * 
- *\~
- * \see  CConnecter CConnect
- * \ingroup VIEWER_PLUGIN_API
- */
-class VIEWER_EXPORT CFrmViewer : public QWidget
+class CFrmViewerOpenGL : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
     Q_PROPERTY(double ZoomFactor READ GetZoomFactor WRITE SetZoomFactor)
 
 public:
-    explicit CFrmViewer(QWidget *parent = nullptr);
-    virtual ~CFrmViewer() override;
+    explicit CFrmViewerOpenGL(QWidget *parent = nullptr);
+    virtual ~CFrmViewerOpenGL() override;
     
     /**
      * \~chinese 窗口适配枚举常量
@@ -90,7 +58,7 @@ public:
     virtual int Save(QSettings &set);
 
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
-
+    
 public Q_SLOTS:
     /*!
      * \brief Update desktop size
@@ -130,33 +98,28 @@ Q_SIGNALS:
     void sigKeyPressEvent(int key, Qt::KeyboardModifiers modify);
     void sigKeyReleaseEvent(int key, Qt::KeyboardModifiers modify);
     
-    // Please use CConnecter::sigServerName
-    void sigServerName(const QString &szName);
+    //void setImage(QImage img);
 
+    // QOpenGLWidget interface
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void paintEvent(QPaintEvent *event) override;
-
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseReleaseEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
-    virtual void wheelEvent(QWheelEvent *event) override;
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void initializeGL() override;
+    virtual void resizeGL(int w, int height) override;
+    virtual void paintGL() override;
 
 private:
-    Ui::CFrmViewer *ui;
     QImage m_Desktop;
-
+    
+    QOpenGLVertexArrayObject m_VaoQuad;
+    QOpenGLBuffer m_VboQuad;
+    QOpenGLShaderProgram *m_ShaderProgram;
+    QVector<GLfloat> m_VertexData;
+    
+    QOpenGLTexture* m_Texture;
+    
     ADAPT_WINDOWS m_AdaptWindows;
     double m_dbZoomFactor;
     
     int ReSize(int width, int height);
-    void paintDesktop();
-    int TranslationMousePoint(QPointF inPos, QPointF &outPos);
-    QRectF GetAspectRationRect();
 };
 
-#endif // #ifdef USE_FROM_OPENGL
-
-#endif // FRMVIEWER_H
+#endif // COPENGLWIDGET_H

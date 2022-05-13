@@ -107,8 +107,13 @@ MainWindow::MainWindow(QWidget *parent)
         check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
                         this, SLOT(slotCloseView(const QWidget*)));
         Q_ASSERT(check);
+#ifdef USE_FROM_OPENGL
+        check = connect(m_pView, SIGNAL(sigAdaptWindows(const CFrmViewerOpenGL::ADAPT_WINDOWS)),
+                        this, SLOT(slotAdaptWindows(const CFrmViewerOpenGL::ADAPT_WINDOWS)));
+#else
         check = connect(m_pView, SIGNAL(sigAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)),
                         this, SLOT(slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)));
+#endif
         Q_ASSERT(check);
         this->setCentralWidget(m_pView);
     }
