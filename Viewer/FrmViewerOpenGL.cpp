@@ -44,7 +44,7 @@ const char* g_FragmentSource =
         "}\n";
 
 CFrmViewerOpenGL::CFrmViewerOpenGL(QWidget *parent)
-    : QOpenGLWidget(parent)
+    : QOpenGLWidget(parent), m_pTexture(nullptr)
 {
     // store triangle vertex coordinate & texCoord
     m_VertexData = { -1.0,  1.0, 0.0, 0.0,
@@ -55,15 +55,13 @@ CFrmViewerOpenGL::CFrmViewerOpenGL(QWidget *parent)
 
 CFrmViewerOpenGL::~CFrmViewerOpenGL()
 {
-    LOG_MODEL_DEBUG("CFrmViewerOpenGL", "CFrmViewerOpenGL::~CFrmViewerOpenGL()");    
+    LOG_MODEL_DEBUG("CFrmViewerOpenGL", "CFrmViewerOpenGL::~CFrmViewerOpenGL()");
+    if(m_pTexture)
+    {
+        delete m_pTexture;
+        m_pTexture = nullptr;
+    }
 }
-
-//void CFrmViewerOpenGL::setImage(QImage img)
-//{
-//    m_Desktop = img;
-//    m_Texture = new QOpenGLTexture(m_Desktop);
-//    update();
-//}
 
 void CFrmViewerOpenGL::initializeGL()
 {
@@ -72,20 +70,19 @@ void CFrmViewerOpenGL::initializeGL()
     glClearColor(0.0, 0.0, 0.0, 1.0);
 
     // create the shader program
-    m_ShaderProgram = new QOpenGLShaderProgram;
-    bool success = m_ShaderProgram->addShaderFromSourceCode(QOpenGLShader::Vertex, g_VertexSource);
+    bool success = m_ShaderProgram.addShaderFromSourceCode(QOpenGLShader::Vertex, g_VertexSource);
     if(!success) {
         qDebug() << "failed!";
     }
-    success = m_ShaderProgram->addShaderFromSourceCode(QOpenGLShader::Fragment, g_FragmentSource);
+    success = m_ShaderProgram.addShaderFromSourceCode(QOpenGLShader::Fragment, g_FragmentSource);
     if(!success) {
         qDebug() << "failed!";
     }
 
     // bind location for the vertex shader
-    m_ShaderProgram->bindAttributeLocation("position", 0);
-    m_ShaderProgram->link();
-    m_ShaderProgram->bind();
+    m_ShaderProgram.bindAttributeLocation("position", 0);
+    m_ShaderProgram.link();
+    m_ShaderProgram.bind();
 
     // create the vertex array object
     m_VaoQuad.create();
@@ -95,24 +92,25 @@ void CFrmViewerOpenGL::initializeGL()
     m_VboQuad.create();
     m_VboQuad.setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_VboQuad.bind();
-    m_VboQuad.allocate(m_VertexData.constData(), m_VertexData.count() * sizeof(GLfloat));
+    m_VboQuad.allocate(m_VertexData.constData(),
+                       m_VertexData.count() * sizeof(GLfloat));
 
     // connect the inputs to the shader program
-    m_ShaderProgram->enableAttributeArray(0);
-    m_ShaderProgram->enableAttributeArray(1);
-    m_ShaderProgram->setAttributeBuffer(0, GL_FLOAT, 0, 2, 4*sizeof(GLfloat));
-    m_ShaderProgram->setAttributeBuffer(1, GL_FLOAT, 2*sizeof(GLfloat), 2, 4*sizeof(GLfloat));
+    m_ShaderProgram.enableAttributeArray(0);
+    m_ShaderProgram.enableAttributeArray(1);
+    m_ShaderProgram.setAttributeBuffer(0, GL_FLOAT, 0, 2, 4 * sizeof(GLfloat));
+    m_ShaderProgram.setAttributeBuffer(
+                1, GL_FLOAT, 2 * sizeof(GLfloat), 2, 4 * sizeof(GLfloat));
 
-    QString errorLog = m_ShaderProgram->log();
+    QString errorLog = m_ShaderProgram.log();
     qDebug() << errorLog;
-    
-    m_Texture = new QOpenGLTexture(m_Desktop);
-    
-    m_VaoQuad.release();
+
     m_VboQuad.release();
-    m_ShaderProgram->release();
+    m_VaoQuad.release();
+    m_ShaderProgram.release();
 
     GLenum error = glGetError();
+    Q_UNUSED(error);
 }
 
 void CFrmViewerOpenGL::resizeGL(int width, int height)
@@ -123,19 +121,22 @@ void CFrmViewerOpenGL::resizeGL(int width, int height)
 void CFrmViewerOpenGL::paintGL()
 {
     qDebug() << "CFrmViewerOpenGL::paintGL()";
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    if(m_Desktop.isNull()) { return; }
-    m_ShaderProgram->bind();
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    if(m_Desktop.isNull() || !m_pTexture || !m_pTexture->isCreated()) return;
+    
+    m_ShaderProgram.bind();
     m_VaoQuad.bind();
-    if(m_Texture->isCreated()) m_Texture->bind();
+    m_pTexture->bind();
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    m_pTexture->release();
     m_VaoQuad.release();
-    m_ShaderProgram->release();
+    m_ShaderProgram.release();
 
-    QString errorLog = m_ShaderProgram->log();
+    QString errorLog = m_ShaderProgram.log();
     qDebug() << errorLog;
 
     GLenum error = glGetError();
+    Q_UNUSED(error);
 }
 
 double CFrmViewerOpenGL::GetZoomFactor() const
@@ -236,7 +237,12 @@ void CFrmViewerOpenGL::slotUpdateRect(const QRect& r, const QImage& image)
     if(m_Desktop.isNull() || m_Desktop.rect() == r)
     {
         m_Desktop = image;
-        m_Texture = new QOpenGLTexture(m_Desktop);
+        if(m_pTexture)
+        {
+            delete m_pTexture;
+            m_pTexture = nullptr;
+        }
+        m_pTexture = new QOpenGLTexture(m_Desktop);
         update();
     }
 }
@@ -369,14 +375,14 @@ void CFrmViewerOpenGL::wheelEvent(QWheelEvent *event)
 
 void CFrmViewerOpenGL::keyPressEvent(QKeyEvent *event)
 {
-    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
     emit sigKeyPressEvent(event->key(), event->modifiers());
     event->accept();
 }
 
 void CFrmViewerOpenGL::keyReleaseEvent(QKeyEvent *event)
 {
-    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
     emit sigKeyReleaseEvent(event->key(), event->modifiers());
     event->accept();
 }

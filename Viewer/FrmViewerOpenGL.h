@@ -99,8 +99,6 @@ Q_SIGNALS:
     void sigWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta);
     void sigKeyPressEvent(int key, Qt::KeyboardModifiers modify);
     void sigKeyReleaseEvent(int key, Qt::KeyboardModifiers modify);
-    
-    //void setImage(QImage img);
 
     // QOpenGLWidget interface
 protected:
@@ -120,10 +118,10 @@ private:
     
     QOpenGLVertexArrayObject m_VaoQuad;
     QOpenGLBuffer m_VboQuad;
-    QOpenGLShaderProgram *m_ShaderProgram;
+    QOpenGLShaderProgram m_ShaderProgram;
     QVector<GLfloat> m_VertexData;
     
-    QOpenGLTexture* m_Texture;
+    QOpenGLTexture* m_pTexture;
     
     ADAPT_WINDOWS m_AdaptWindows;
     double m_dbZoomFactor;
