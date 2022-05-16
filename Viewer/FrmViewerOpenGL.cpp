@@ -72,6 +72,43 @@ CFrmViewerOpenGL::~CFrmViewerOpenGL()
     }
 }
 
+void CFrmViewerOpenGL::InitVertor()
+{
+    m_ShaderProgram.bind();
+
+    // create the vertex array object
+    if(!m_VaoQuad.isCreated())
+        m_VaoQuad.create();
+    m_VaoQuad.bind();
+
+    // create the vertex buffer object
+    if(!m_VboQuad.isCreated())
+    {
+        m_VboQuad.create();
+        m_VboQuad.setUsagePattern(QOpenGLBuffer::StaticDraw);
+    }
+    m_VboQuad.bind();
+    m_VboQuad.allocate(m_VertexData.constData(),
+                       m_VertexData.count() * sizeof(GLfloat));
+
+    // connect the inputs to the shader program
+    m_ShaderProgram.enableAttributeArray(0);
+    m_ShaderProgram.enableAttributeArray(1);
+    m_ShaderProgram.setAttributeBuffer(0, GL_FLOAT, 0, 2, 4 * sizeof(GLfloat));
+    m_ShaderProgram.setAttributeBuffer(
+                1, GL_FLOAT, 2 * sizeof(GLfloat), 2, 4 * sizeof(GLfloat));
+
+    QString errorLog = m_ShaderProgram.log();
+    //qDebug() << errorLog;
+
+    m_VboQuad.release();
+    m_VaoQuad.release();
+    m_ShaderProgram.release();
+
+    GLenum error = glGetError();
+    Q_UNUSED(error);
+}
+
 void CFrmViewerOpenGL::initializeGL()
 {
     qDebug() << "CFrmViewerOpenGL::initializeGL()";
@@ -91,45 +128,18 @@ void CFrmViewerOpenGL::initializeGL()
     // bind location for the vertex shader
     m_ShaderProgram.bindAttributeLocation("position", 0);
     m_ShaderProgram.link();
-    m_ShaderProgram.bind();
-
-    // create the vertex array object
-    m_VaoQuad.create();
-    m_VaoQuad.bind();
-
-    // create the vertex buffer object
-    m_VboQuad.create();
-    m_VboQuad.setUsagePattern(QOpenGLBuffer::StaticDraw);
-    m_VboQuad.bind();
-    m_VboQuad.allocate(m_VertexData.constData(),
-                       m_VertexData.count() * sizeof(GLfloat));
-
-    // connect the inputs to the shader program
-    m_ShaderProgram.enableAttributeArray(0);
-    m_ShaderProgram.enableAttributeArray(1);
-    m_ShaderProgram.setAttributeBuffer(0, GL_FLOAT, 0, 2, 4 * sizeof(GLfloat));
-    m_ShaderProgram.setAttributeBuffer(
-                1, GL_FLOAT, 2 * sizeof(GLfloat), 2, 4 * sizeof(GLfloat));
-
-    QString errorLog = m_ShaderProgram.log();
-    qDebug() << errorLog;
-
-    m_VboQuad.release();
-    m_VaoQuad.release();
-    m_ShaderProgram.release();
-
-    GLenum error = glGetError();
-    Q_UNUSED(error);
+    InitVertor();
 }
 
 void CFrmViewerOpenGL::resizeGL(int width, int height)
 {
     // only drawing the 2d surface so no need to modify any projections etc;
+    qDebug() << "CFrmViewerOpenGL::resizeGL:" << width << height;
 }
 
 void CFrmViewerOpenGL::paintGL()
 {
-    qDebug() << "CFrmViewerOpenGL::paintGL()";
+    //qDebug() << "CFrmViewerOpenGL::paintGL()";
     //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     if(m_Desktop.isNull() || !m_pTexture || !m_pTexture->isCreated()) return;
     
@@ -142,7 +152,8 @@ void CFrmViewerOpenGL::paintGL()
     m_ShaderProgram.release();
 
     QString errorLog = m_ShaderProgram.log();
-    qDebug() << errorLog;
+    Q_UNUSED(errorLog);
+    //qDebug() << errorLog;
 
     GLenum error = glGetError();
     Q_UNUSED(error);
@@ -186,7 +197,31 @@ void CFrmViewerOpenGL::SetAdaptWindows(ADAPT_WINDOWS aw)
             SetZoomFactor(1);
         case Zoom:
             ReSize(m_Desktop.width(), m_Desktop.height());
+            m_VertexData = { -1.0,  1.0, 0.0, 0.0,
+                              1.0,  1.0, 1.0, 0.0,
+                              1.0, -1.0, 1.0, 1.0,
+                             -1.0, -1.0, 0.0, 1.0 };
+            InitVertor();
             break;
+        case ZoomToWindow:
+        {
+            m_VertexData = { -1.0,  1.0, 0.0, 0.0,
+                              1.0,  1.0, 1.0, 0.0,
+                              1.0, -1.0, 1.0, 1.0,
+                             -1.0, -1.0, 0.0, 1.0 };
+            InitVertor();
+            break;
+        }
+        case KeepAspectRationToWindow:
+        {
+            QRectF r = GetAspectRationRect();
+            m_VertexData = { -((float)r.width()/(float)width()), (float)r.height()/(float)height(), 0.0, 0.0,
+                              (float)r.width()/(float)width(), (float)r.height()/(float)height(), 1.0, 0.0,
+                              (float)r.width()/(float)width(), -((float)r.height()/(float)height()), 1.0, 1.0,
+                             -((float)r.width()/(float)width()), -((float)r.height()/(float)height()), 0.0, 1.0 };
+            InitVertor();
+            break;
+        }
         default:
             break;
         }

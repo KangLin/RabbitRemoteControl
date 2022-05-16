@@ -112,20 +112,22 @@ protected:
     virtual void wheelEvent(QWheelEvent *event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
-    
+
+    void InitVertor();
+
 private:
     QImage m_Desktop;
-    
+
     QOpenGLVertexArrayObject m_VaoQuad;
     QOpenGLBuffer m_VboQuad;
     QOpenGLShaderProgram m_ShaderProgram;
     QVector<GLfloat> m_VertexData;
-    
+
     QOpenGLTexture* m_pTexture;
-    
+
     ADAPT_WINDOWS m_AdaptWindows;
     double m_dbZoomFactor;
-    
+
     int ReSize(int width, int height);
     int TranslationMousePoint(QPointF inPos, QPointF &outPos);
     QRectF GetAspectRationRect();
