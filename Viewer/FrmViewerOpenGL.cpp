@@ -46,6 +46,15 @@ const char* g_FragmentSource =
 CFrmViewerOpenGL::CFrmViewerOpenGL(QWidget *parent)
     : QOpenGLWidget(parent), m_pTexture(nullptr)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
+
+    SetAdaptWindows(ZoomToWindow);
+    SetZoomFactor(1);
+    
+    setMouseTracking(true);
+    setFocusPolicy(Qt::WheelFocus);
+    setFocus();
+
     // store triangle vertex coordinate & texCoord
     m_VertexData = { -1.0,  1.0, 0.0, 0.0,
                       1.0,  1.0, 1.0, 0.0,
@@ -375,14 +384,14 @@ void CFrmViewerOpenGL::wheelEvent(QWheelEvent *event)
 
 void CFrmViewerOpenGL::keyPressEvent(QKeyEvent *event)
 {
-    LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
     emit sigKeyPressEvent(event->key(), event->modifiers());
     event->accept();
 }
 
 void CFrmViewerOpenGL::keyReleaseEvent(QKeyEvent *event)
 {
-    LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
     emit sigKeyReleaseEvent(event->key(), event->modifiers());
     event->accept();
 }
