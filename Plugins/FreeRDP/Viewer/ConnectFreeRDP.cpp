@@ -472,7 +472,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 
 void CConnectFreeRDP::cb_post_disconnect(freerdp* instance)
 {
-	rdpContext* context;
+	rdpContext* context = nullptr;
 
 	if (!instance || !instance->context)
 		return;

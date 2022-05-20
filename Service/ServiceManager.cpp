@@ -9,6 +9,7 @@
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QDebug>
+#include <stdexcept>
 
 CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
     : QtService<QCoreApplication>(argc, argv, name)
