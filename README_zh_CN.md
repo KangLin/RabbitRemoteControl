@@ -155,7 +155,9 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 ## 贡献
 
-- [邮件列表](https://sourceforge.net/p/rabbitremotecontrol/mailman/rabbitremotecontrol-discuss/)
+- [邮件列表](https://sourceforge.net/p/rabbitremotecontrol/mailman/)
+  - 开发组 <rabbitremotecontrol-developer@lists.sourceforge.net>
+  - 讨论组 <rabbitremotecontrol-discuss@lists.sourceforge.net>
 - [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [![加入聊天 https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 - [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
