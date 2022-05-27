@@ -221,7 +221,7 @@ jobs:
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-        name: rabbitremotecontrol_${{ matrix.os }}
+        name: rabbitremotecontrol_${{ matrix.os }}_mingw
         path: |
           ${{github.workspace}}/build/RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe
       if: ${{ matrix.BUILD_TYPE == 'Release' }}

@@ -80,7 +80,7 @@ jobs:
         appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         #additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
         vcpkgTriplet: '${{matrix.triplet}}'
-        vcpkgArguments: 'zlib openssl libssh libpng pixman libjpeg-turbo libdatachannel' # freerdp'
+        vcpkgArguments: 'zlib openssl libssh libpng pixman libjpeg-turbo libdatachannel freerdp'
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -101,26 +101,26 @@ jobs:
 #          cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #        )
 
-    - name: Build FreeRDP
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
-            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
-            cd FreeRDP
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. ^
-                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
-                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
-                -DWITH_SERVER=ON ^
-                -DCHANNEL_URBDRC=OFF ^
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-        )
+#    - name: Build FreeRDP
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
+#            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
+#            cd FreeRDP
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. ^
+#                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
+#                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
+#                -DWITH_SERVER=ON ^
+#                -DCHANNEL_URBDRC=OFF ^
+#                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#        )
 
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
@@ -337,7 +337,7 @@ jobs:
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-        name: rabbitremotecontrol_${{ matrix.os }}_qt${{matrix.qt_version}}
+        name: rabbitremotecontrol_${{ matrix.os }}_msvc_qt${{matrix.qt_version}}
         path: |
           ${{github.workspace}}\build\RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
