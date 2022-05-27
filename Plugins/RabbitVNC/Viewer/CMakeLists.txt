@@ -75,7 +75,7 @@ if(LibDataChannel_FOUND)
             )
     endif()
 endif()
-
+#message("RabbitVNC links libraries:${SRC_LIBS}")
 ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}

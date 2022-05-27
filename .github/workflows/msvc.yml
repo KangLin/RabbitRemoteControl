@@ -41,7 +41,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.18
-      VCPKGGITCOMMITID: 5cf60186a241e84e8232641ee973395d4fde90e1
+      VCPKGGITCOMMITID: 306c9a9e22e4a4425e21da69d141e8b102a5b956
       qt_modules: qtwebengine ${{matrix.qt_modules}}
 
     defaults:
@@ -80,7 +80,7 @@ jobs:
         appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         #additionalCachedPaths: ${{ env.VCPKG_ROOT }}/installed
         vcpkgTriplet: '${{matrix.triplet}}'
-        vcpkgArguments: 'zlib openssl libssh libpng pixman libjpeg-turbo libdatachannel' # freerdp
+        vcpkgArguments: 'zlib openssl libssh libpng pixman libjpeg-turbo libdatachannel' # freerdp'
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
