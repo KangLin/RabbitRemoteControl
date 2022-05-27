@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
+    <name>CDataChannelIce</name>
+    <message>
+        <location filename="../../../ICE/DataChannelIce.cpp" line="376"/>
+        <source>Signal disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgGetPasswordRabbitVNC</name>
     <message>
         <location filename="../../DlgGetPasswordRabbitVNC.ui" line="14"/>

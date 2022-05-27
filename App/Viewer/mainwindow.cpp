@@ -258,6 +258,26 @@ void MainWindow::on_actionUpdate_U_triggered()
 #endif
 }
 
+void MainWindow::on_actionLog_directory_triggered()
+{
+    RabbitCommon::OpenLogFile();
+    return;
+    QString d = LOG_DIRECTORY();
+    if(d.isEmpty())
+        return;
+    QDesktopServices::openUrl(d);
+}
+
+void MainWindow::on_actionOpen_Log_file_triggered()
+{
+    RabbitCommon::OpenLogDirectory();
+    return;
+    QString f = LOG_FILE();
+    if(f.isEmpty())
+        return;
+    QDesktopServices::openUrl(QUrl::fromLocalFile(f));
+}
+
 void MainWindow::on_actionToolBar_T_triggered(bool checked)
 {
     LOG_MODEL_DEBUG("MainWindow", "MainWindow::on_actionToolBar_T_triggered(%d)", checked);

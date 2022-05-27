@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -90,6 +90,17 @@
        <normaloff>:/image/Connect</normaloff>:/image/Connect</iconset>
      </property>
     </widget>
+    <widget class="QMenu" name="menuOpen_Log">
+     <property name="title">
+      <string>Open Log</string>
+     </property>
+     <property name="icon">
+      <iconset resource="Resource/Resource.qrc">
+       <normaloff>:/image/Log</normaloff>:/image/Log</iconset>
+     </property>
+     <addaction name="actionOpen_Log_file"/>
+     <addaction name="actionLog_directory"/>
+    </widget>
     <addaction name="menuConnect_C"/>
     <addaction name="actionDisconnect_D"/>
     <addaction name="actionOpen_O"/>
@@ -101,6 +112,7 @@
     <addaction name="separator"/>
     <addaction name="actionCurrent_connect_parameters"/>
     <addaction name="actionSettings"/>
+    <addaction name="menuOpen_Log"/>
     <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
@@ -590,8 +602,31 @@
     <string>Add to favorite</string>
    </property>
   </action>
+  <action name="actionLog_directory">
+   <property name="text">
+    <string>Open log directory</string>
+   </property>
+   <property name="statusTip">
+    <string>Open log directory</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open log directory</string>
+   </property>
+  </action>
+  <action name="actionOpen_Log_file">
+   <property name="text">
+    <string>Open log file</string>
+   </property>
+   <property name="statusTip">
+    <string>Open log file</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open log file</string>
+   </property>
+  </action>
  </widget>
  <resources>
+  <include location="Resource/Resource.qrc"/>
   <include location="Resource/Resource.qrc"/>
  </resources>
  <connections/>

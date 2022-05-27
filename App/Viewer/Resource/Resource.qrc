@@ -38,5 +38,6 @@
         <file alias="Group">Image/Group.svg</file>
         <file alias="Start">Image/start.png</file>
         <file alias="Stop">Image/Stop.png</file>
+        <file alias="Log">Image/log.svg</file>
     </qresource>
 </RCC>

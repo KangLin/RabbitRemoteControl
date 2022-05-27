@@ -211,6 +211,7 @@ jobs:
         cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
         move /Y install\plugins\*crypto*.dll install\bin
         move /Y install\plugins\*ssl*.dll install\bin
+        copy /Y C:\msys64\mingw64\bin\*.dll install\bin
         copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
         copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
@@ -222,5 +223,5 @@ jobs:
       with:
         name: rabbitremotecontrol_${{ matrix.os }}
         path: |
-          ${{github.workspace}}/build/RabbitRemoteControl-Setup-${{env.RabbitRemoteControl_VERSION}}.exe
+          ${{github.workspace}}/build/RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe
       if: ${{ matrix.BUILD_TYPE == 'Release' }}

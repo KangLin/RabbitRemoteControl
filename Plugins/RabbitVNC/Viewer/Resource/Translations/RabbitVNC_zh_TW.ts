@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
-
+<context>
+    <name>CDataChannelIce</name>
+    <message>
+        <location filename="../../../ICE/DataChannelIce.cpp" line="376"/>
+        <source>Signal disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>CDlgGetPasswordRabbitVNC</name>
     <message>
@@ -156,7 +163,7 @@
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="246"/>
         <source>Show server name</source>
-        <translation >顯示服務器名</translation>
+        <translation>顯示服務器名</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="254"/>
@@ -201,125 +208,124 @@
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="410"/>
         <source>Stun server:</source>
-        <translation >Stun 服務器：</translation>
+        <translation>Stun 服務器：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="453"/>
         <source>Proxy</source>
-        <translation >代理</translation>
+        <translation>代理</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="489"/>
         <source>No</source>
-        <translation >無</translation>
+        <translation>無</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="496"/>
         <source>Socks5</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="503"/>
         <source>Http</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="554"/>
         <source>Compress</source>
-        <translation >壓縮</translation>
+        <translation>壓縮</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="560"/>
         <source>Color level</source>
-        <translation >顏色級別</translation>
+        <translation>顏色級別</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="566"/>
         <source>Full</source>
-        <translation >全彩色</translation>
+        <translation>全彩色</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="573"/>
         <source>Low</source>
-        <translation >低</translation>
+        <translation>低</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="580"/>
         <source>Meduim</source>
-        <translation >中</translation>
+        <translation>中</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="587"/>
         <source>Very low</source>
-        <translation >極低</translation>
+        <translation>極低</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="609"/>
         <source>0=fast, 9=best</source>
-        <translation >0=最快, 9=最好</translation>
+        <translation>0=最快, 9=最好</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="620"/>
         <source>Enable JPEG compress</source>
-        <translation >允許JPEG壓縮</translation>
+        <translation>允許JPEG壓縮</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="634"/>
         <source>0=Worst, 9=best</source>
-        <translation >0=最差, 9=最好</translation>
+        <translation>0=最差, 9=最好</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="643"/>
         <source>preferred Encoding</source>
-        <translation >首選編碼</translation>
+        <translation>首選編碼</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="649"/>
         <source>Tight</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="656"/>
         <source>Hextile</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="663"/>
         <source>Raw</source>
-        <translation >原始</translation>
+        <translation>原始</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="670"/>
         <source>ZRLE</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="677"/>
         <source>CoRRE</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="684"/>
         <source>RRE</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="691"/>
         <source>copyRect</source>
-        <translation ></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="701"/>
         <source>Compress level:</source>
-        <translation >壓縮級別</translation>
+        <translation>壓縮級別</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="708"/>
         <source>Auto select</source>
-        <translation >自動選擇</translation>
+        <translation>自動選擇</translation>
     </message>
 </context>
-
 <context>
     <name>CParameterRabbitVNC</name>
     <message>
@@ -333,7 +339,6 @@
         <translation>Turn 服務器密碼</translation>
     </message>
 </context>
-
 <context>
     <name>CPluginRabbitVNC</name>
     <message>

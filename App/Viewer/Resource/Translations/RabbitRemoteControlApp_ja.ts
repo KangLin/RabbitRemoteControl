@@ -330,9 +330,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="54"/>
-        <location filename="../../mainwindow.cpp" line="134"/>
-        <location filename="../../mainwindow.cpp" line="135"/>
-        <location filename="../../mainwindow.cpp" line="136"/>
+        <location filename="../../mainwindow.cpp" line="139"/>
+        <location filename="../../mainwindow.cpp" line="140"/>
+        <location filename="../../mainwindow.cpp" line="141"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
@@ -347,261 +347,280 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="114"/>
+        <location filename="../../mainwindow.ui" line="126"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="142"/>
+        <location filename="../../mainwindow.ui" line="154"/>
         <source>About(&amp;A)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="145"/>
-        <location filename="../../mainwindow.ui" line="148"/>
-        <location filename="../../mainwindow.ui" line="151"/>
-        <location filename="../../mainwindow.ui" line="154"/>
+        <location filename="../../mainwindow.ui" line="157"/>
+        <location filename="../../mainwindow.ui" line="160"/>
+        <location filename="../../mainwindow.ui" line="163"/>
+        <location filename="../../mainwindow.ui" line="166"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="162"/>
-        <location filename="../../mainwindow.ui" line="165"/>
-        <location filename="../../mainwindow.ui" line="168"/>
-        <location filename="../../mainwindow.ui" line="171"/>
+        <location filename="../../mainwindow.ui" line="174"/>
+        <location filename="../../mainwindow.ui" line="177"/>
+        <location filename="../../mainwindow.ui" line="180"/>
+        <location filename="../../mainwindow.ui" line="183"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="185"/>
-        <location filename="../../mainwindow.ui" line="188"/>
-        <location filename="../../mainwindow.ui" line="191"/>
-        <location filename="../../mainwindow.ui" line="194"/>
+        <location filename="../../mainwindow.ui" line="197"/>
+        <location filename="../../mainwindow.ui" line="200"/>
+        <location filename="../../mainwindow.ui" line="203"/>
+        <location filename="../../mainwindow.ui" line="206"/>
         <source>ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="233"/>
-        <location filename="../../mainwindow.ui" line="236"/>
-        <location filename="../../mainwindow.ui" line="239"/>
-        <location filename="../../mainwindow.ui" line="242"/>
+        <location filename="../../mainwindow.ui" line="245"/>
+        <location filename="../../mainwindow.ui" line="248"/>
+        <location filename="../../mainwindow.ui" line="251"/>
+        <location filename="../../mainwindow.ui" line="254"/>
         <source>Original size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="278"/>
+        <location filename="../../mainwindow.ui" line="290"/>
         <source>Keep aspect ration zoom to window(&amp;K)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="281"/>
-        <location filename="../../mainwindow.ui" line="284"/>
-        <location filename="../../mainwindow.ui" line="287"/>
-        <location filename="../../mainwindow.ui" line="290"/>
+        <location filename="../../mainwindow.ui" line="293"/>
+        <location filename="../../mainwindow.ui" line="296"/>
+        <location filename="../../mainwindow.ui" line="299"/>
+        <location filename="../../mainwindow.ui" line="302"/>
         <source>Keep aspect ration zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="305"/>
-        <location filename="../../mainwindow.ui" line="308"/>
-        <location filename="../../mainwindow.ui" line="311"/>
-        <location filename="../../mainwindow.ui" line="314"/>
+        <location filename="../../mainwindow.ui" line="317"/>
+        <location filename="../../mainwindow.ui" line="320"/>
+        <location filename="../../mainwindow.ui" line="323"/>
+        <location filename="../../mainwindow.ui" line="326"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="341"/>
-        <location filename="../../mainwindow.ui" line="344"/>
-        <location filename="../../mainwindow.ui" line="347"/>
-        <location filename="../../mainwindow.ui" line="350"/>
+        <location filename="../../mainwindow.ui" line="353"/>
+        <location filename="../../mainwindow.ui" line="356"/>
+        <location filename="../../mainwindow.ui" line="359"/>
+        <location filename="../../mainwindow.ui" line="362"/>
         <source>Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="362"/>
-        <location filename="../../mainwindow.ui" line="365"/>
-        <location filename="../../mainwindow.ui" line="368"/>
-        <location filename="../../mainwindow.ui" line="371"/>
+        <location filename="../../mainwindow.ui" line="374"/>
+        <location filename="../../mainwindow.ui" line="377"/>
+        <location filename="../../mainwindow.ui" line="380"/>
+        <location filename="../../mainwindow.ui" line="383"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="159"/>
+        <location filename="../../mainwindow.ui" line="171"/>
         <source>Update(&amp;U)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="182"/>
+        <location filename="../../mainwindow.ui" line="95"/>
+        <source>Open Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="194"/>
         <source>ToolBar(&amp;T)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="203"/>
-        <location filename="../../mainwindow.cpp" line="273"/>
+        <location filename="../../mainwindow.ui" line="215"/>
+        <location filename="../../mainwindow.cpp" line="298"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="206"/>
-        <location filename="../../mainwindow.ui" line="209"/>
-        <location filename="../../mainwindow.ui" line="212"/>
-        <location filename="../../mainwindow.ui" line="215"/>
-        <location filename="../../mainwindow.cpp" line="274"/>
-        <location filename="../../mainwindow.cpp" line="275"/>
-        <location filename="../../mainwindow.cpp" line="276"/>
+        <location filename="../../mainwindow.ui" line="218"/>
+        <location filename="../../mainwindow.ui" line="221"/>
+        <location filename="../../mainwindow.ui" line="224"/>
+        <location filename="../../mainwindow.ui" line="227"/>
+        <location filename="../../mainwindow.cpp" line="299"/>
+        <location filename="../../mainwindow.cpp" line="300"/>
+        <location filename="../../mainwindow.cpp" line="301"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="230"/>
+        <location filename="../../mainwindow.ui" line="242"/>
         <source>Original size(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="254"/>
+        <location filename="../../mainwindow.ui" line="266"/>
         <source>Zoom to window(&amp;Z)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="257"/>
-        <location filename="../../mainwindow.ui" line="260"/>
-        <location filename="../../mainwindow.ui" line="263"/>
-        <location filename="../../mainwindow.ui" line="266"/>
+        <location filename="../../mainwindow.ui" line="269"/>
+        <location filename="../../mainwindow.ui" line="272"/>
+        <location filename="../../mainwindow.ui" line="275"/>
+        <location filename="../../mainwindow.ui" line="278"/>
         <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="302"/>
+        <location filename="../../mainwindow.ui" line="314"/>
         <source>Exit(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="323"/>
-        <location filename="../../mainwindow.ui" line="326"/>
-        <location filename="../../mainwindow.ui" line="329"/>
+        <location filename="../../mainwindow.ui" line="335"/>
+        <location filename="../../mainwindow.ui" line="338"/>
+        <location filename="../../mainwindow.ui" line="341"/>
         <source>Recently connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="338"/>
+        <location filename="../../mainwindow.ui" line="350"/>
         <source>Disconnect(&amp;D)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="359"/>
-        <location filename="../../mainwindow.ui" line="393"/>
+        <location filename="../../mainwindow.ui" line="371"/>
+        <location filename="../../mainwindow.ui" line="405"/>
         <source>Open(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="376"/>
+        <location filename="../../mainwindow.ui" line="388"/>
         <source>Default(&amp;D)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="379"/>
-        <location filename="../../mainwindow.ui" line="382"/>
-        <location filename="../../mainwindow.ui" line="385"/>
-        <location filename="../../mainwindow.ui" line="388"/>
+        <location filename="../../mainwindow.ui" line="391"/>
+        <location filename="../../mainwindow.ui" line="394"/>
+        <location filename="../../mainwindow.ui" line="397"/>
+        <location filename="../../mainwindow.ui" line="400"/>
         <source>Default style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="396"/>
-        <location filename="../../mainwindow.ui" line="399"/>
-        <location filename="../../mainwindow.ui" line="402"/>
-        <location filename="../../mainwindow.ui" line="405"/>
+        <location filename="../../mainwindow.ui" line="408"/>
+        <location filename="../../mainwindow.ui" line="411"/>
+        <location filename="../../mainwindow.ui" line="414"/>
+        <location filename="../../mainwindow.ui" line="417"/>
         <source>Open style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="410"/>
+        <location filename="../../mainwindow.ui" line="422"/>
         <source>Send Ctl+Alt+Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="425"/>
-        <location filename="../../mainwindow.ui" line="428"/>
+        <location filename="../../mainwindow.ui" line="437"/>
+        <location filename="../../mainwindow.ui" line="440"/>
         <source>Show TabBar(&amp;B)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="431"/>
-        <location filename="../../mainwindow.ui" line="434"/>
-        <location filename="../../mainwindow.ui" line="437"/>
+        <location filename="../../mainwindow.ui" line="443"/>
+        <location filename="../../mainwindow.ui" line="446"/>
+        <location filename="../../mainwindow.ui" line="449"/>
         <source>Show TabBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="449"/>
-        <location filename="../../mainwindow.ui" line="452"/>
-        <location filename="../../mainwindow.ui" line="455"/>
+        <location filename="../../mainwindow.ui" line="461"/>
+        <location filename="../../mainwindow.ui" line="464"/>
+        <location filename="../../mainwindow.ui" line="467"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="467"/>
-        <location filename="../../mainwindow.ui" line="470"/>
-        <location filename="../../mainwindow.ui" line="473"/>
+        <location filename="../../mainwindow.ui" line="479"/>
+        <location filename="../../mainwindow.ui" line="482"/>
+        <location filename="../../mainwindow.ui" line="485"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="497"/>
-        <location filename="../../mainwindow.ui" line="500"/>
-        <location filename="../../mainwindow.ui" line="503"/>
-        <location filename="../../mainwindow.ui" line="506"/>
+        <location filename="../../mainwindow.ui" line="509"/>
+        <location filename="../../mainwindow.ui" line="512"/>
+        <location filename="../../mainwindow.ui" line="515"/>
+        <location filename="../../mainwindow.ui" line="518"/>
         <source>Screenshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="515"/>
-        <location filename="../../mainwindow.ui" line="518"/>
-        <location filename="../../mainwindow.ui" line="521"/>
+        <location filename="../../mainwindow.ui" line="527"/>
+        <location filename="../../mainwindow.ui" line="530"/>
+        <location filename="../../mainwindow.ui" line="533"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="530"/>
-        <location filename="../../mainwindow.ui" line="533"/>
-        <location filename="../../mainwindow.ui" line="536"/>
-        <location filename="../../mainwindow.ui" line="539"/>
+        <location filename="../../mainwindow.ui" line="542"/>
+        <location filename="../../mainwindow.ui" line="545"/>
+        <location filename="../../mainwindow.ui" line="548"/>
+        <location filename="../../mainwindow.ui" line="551"/>
         <source>Current connect parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="548"/>
-        <location filename="../../mainwindow.ui" line="551"/>
-        <location filename="../../mainwindow.ui" line="554"/>
+        <location filename="../../mainwindow.ui" line="560"/>
+        <location filename="../../mainwindow.ui" line="563"/>
+        <location filename="../../mainwindow.ui" line="566"/>
         <source>Clone current connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="566"/>
-        <location filename="../../mainwindow.ui" line="569"/>
-        <location filename="../../mainwindow.ui" line="572"/>
+        <location filename="../../mainwindow.ui" line="578"/>
+        <location filename="../../mainwindow.ui" line="581"/>
+        <location filename="../../mainwindow.ui" line="584"/>
         <source>Favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="581"/>
-        <location filename="../../mainwindow.ui" line="584"/>
-        <location filename="../../mainwindow.ui" line="587"/>
-        <location filename="../../mainwindow.ui" line="590"/>
+        <location filename="../../mainwindow.ui" line="593"/>
+        <location filename="../../mainwindow.ui" line="596"/>
+        <location filename="../../mainwindow.ui" line="599"/>
+        <location filename="../../mainwindow.ui" line="602"/>
         <source>Add to favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="482"/>
-        <location filename="../../mainwindow.ui" line="485"/>
-        <location filename="../../mainwindow.ui" line="488"/>
+        <location filename="../../mainwindow.ui" line="607"/>
+        <location filename="../../mainwindow.ui" line="610"/>
+        <location filename="../../mainwindow.ui" line="613"/>
+        <source>Open log directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="618"/>
+        <location filename="../../mainwindow.ui" line="621"/>
+        <location filename="../../mainwindow.ui" line="624"/>
+        <source>Open log file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="494"/>
+        <location filename="../../mainwindow.ui" line="497"/>
+        <location filename="../../mainwindow.ui" line="500"/>
         <source>Zoom window to remote desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="124"/>
-        <location filename="../../mainwindow.cpp" line="125"/>
-        <location filename="../../mainwindow.cpp" line="126"/>
+        <location filename="../../mainwindow.cpp" line="129"/>
+        <location filename="../../mainwindow.cpp" line="130"/>
+        <location filename="../../mainwindow.cpp" line="131"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -611,45 +630,45 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="301"/>
+        <location filename="../../mainwindow.cpp" line="326"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="302"/>
-        <location filename="../../mainwindow.cpp" line="303"/>
-        <location filename="../../mainwindow.cpp" line="304"/>
+        <location filename="../../mainwindow.cpp" line="327"/>
+        <location filename="../../mainwindow.cpp" line="328"/>
+        <location filename="../../mainwindow.cpp" line="329"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="508"/>
-        <location filename="../../mainwindow.cpp" line="526"/>
+        <location filename="../../mainwindow.cpp" line="533"/>
+        <location filename="../../mainwindow.cpp" line="551"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="518"/>
+        <location filename="../../mainwindow.cpp" line="543"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="520"/>
+        <location filename="../../mainwindow.cpp" line="545"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="608"/>
+        <location filename="../../mainwindow.cpp" line="633"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="634"/>
+        <location filename="../../mainwindow.cpp" line="659"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="813"/>
+        <location filename="../../mainwindow.cpp" line="838"/>
         <source>Save screenslot to </source>
         <translation type="unfinished"></translation>
     </message>
