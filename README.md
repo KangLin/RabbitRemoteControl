@@ -18,7 +18,6 @@ Author: Kang Lin <kl222@126.com>
 [![Downloads from github](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20downloads)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20downloads)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
-
 [![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
 [![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
 [![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
@@ -70,17 +69,18 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 
 ## Functions
 
-|       |Server|Client|Clipboard|File|Audio|P2P|Proxy|TELNET|
-|-------|:----:|:----:|:-------:|:--:|:---:|:-:|:---:|:----:|
-|  RDP  |  ✓  |  ✓  |⭕  |       |        |   |    |    |
-|  RFB  | ……  |  ✓  |⭕  |       | ❌     | …… | …… |    |
-|Spice  |     |     |    |       |         |   |     |      |
-|Scrcpy |     |     |    |       |         |   |     |      |
-|TELNET |     | ⭕  |✓   | ❌    | ❌     |   |     |      |
-|  SSH  |     | ⭕  |✓   |       | ❌     |   |     |      |
-|  FTP  |     |     |    |        |❌      |   |    |      |
+|        |Server|Client|Clipboard|File|Audio|P2P|Proxy|Terminal|
+|------- |:----:|:----:|:-------:|:--:|:---:|:-:|:---:|:----:|
+|  RDP   |  ✓   |  ✓   |    ⭕   |     |    |    |    |  ❌  |
+|  RFB   | ……   |  ✓   |    ⭕   |     | ❌ | …… | …… |      |
+|Spice   |      |      |        |     |    |    |    |      |
+|Scrcpy  |      |      |        |     |    |   |     |      |
+|Terminal|     | ⭕  |✓   | ❌    | ❌     |   |     |      |
+|TELNET  |     | ⭕  |✓   | ❌    | ❌     |   |     |      |
+|  SSH   |     | ⭕  |✓   |       | ❌     |   |     |      |
+|  FTP   |     |     |    |        |❌      |   |    |      |
 
-Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported; Empty: not started
+Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -115,7 +115,7 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |TELNET  |       |✓         |       |   |      |     |
 |Scrcpy  |       |          |       |   |      |     |
 
-Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported; Empty: not started
+Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 ##### Network protocols
 - [x] Custom p2p protocol
@@ -134,7 +134,7 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported;
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
-Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported; Empty: not started
+Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 ## Build status
 
@@ -158,7 +158,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 ## Contribution
 
-- [Mail list](https://sourceforge.net/p/rabbitremotecontrol/mailman/)
+- [Mailing list](https://sourceforge.net/p/rabbitremotecontrol/mailman/)
   - Developer <rabbitremotecontrol-developer@lists.sourceforge.net>
   - Discuss <rabbitremotecontrol-discuss@lists.sourceforge.net>
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
@@ -207,19 +207,19 @@ Some of them are:
     - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
-|            |Server|Client|Clipboard|File|Audio|P2P|Proxy|TELNET|
+|            |Server|Client|Clipboard|File|Audio|P2P|Proxy|Terminal|
 |:----------:|:----:|:-----:|:------:|:--:|:---:|:--:|:--:|:--:|
-|RabbitVNC   |✓    |✓    |⭕   |       |❌      |⭕ |⭕ |    |
-|TigerVNC    |✓    |✓    |⭕   |       |❌      |⭕ |⭕ |    |
-|LibVNCServer|✓    |✓    |⭕   |       |        |    |    |    |
-|RDP         |✓    |✓    |⭕   |       |        |    |    |    |
-|Spice       |     |     |     |       |        |    |    |    |
-|SSH         |     |⭕   |✓    |       |❌      |    |    |    |
-|Terminal    |     |⭕   |✓    |       |❌      |    |    |    |
-|TELNET      |     |⭕   |✓    |❌     |❌      |    |    |    |
-|Scrcpy      |     |     |     |       |        |    |    |    |
+|RabbitVNC   | ✓    |✓      |    ⭕   |    |❌ | ⭕ |  ⭕ |    |
+|TigerVNC    | ✓    |✓      |    ⭕   |    |❌ | ⭕ |  ⭕ |    |
+|LibVNCServer| ✓    |✓      |    ⭕   |    |❌ |    |    |    |
+|RDP         | ✓    |✓      |    ⭕   |    |    |    |    |❌  |
+|Spice       |      |       |        |     |    |    |    |    |
+|SSH         |      |⭕      |✓       |     |❌ |    |    |    |
+|Terminal    |      |⭕      |✓       |    |❌  |    |    |    |
+|TELNET      |      |⭕      |✓       |❌  |❌  |    |    |    |
+|Scrcpy      |      |       |        |    |    |    |    |    |
 
-Legend: ✓ : completed; … : working; ⭕ : not completed; ❌: not supported; Empty: not started
+Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 At present, the development of common remote control protocol client has been completed,
 and it has preliminary practical functions.
@@ -309,5 +309,6 @@ Semantic Versioning: https://semver.org/
 
 ## [License Agreement](License.md "License.md")
 
-Please abide by this agreement and the license agreement of [dependent library](#Dependent-libraries),
-and thank the author of [dependent library](#Dependent-libraries) and [tools](#Tools).
+Please abide by the [License Agreement](License.md "License.md") of this project
+and the license agreement of the [dependent library](#Dependent-libraries),
+and thank the authors of [dependent library](#Dependent-libraries) and [tools](#Tools).

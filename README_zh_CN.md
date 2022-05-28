@@ -67,15 +67,16 @@
 
 |       |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
 |:-----:|:---:|:---:|:--:|:-----:|:------:|:-:|:--:|:-:|
-|  RDP  |  ✓  |  ✓  |⭕  |       |        |   |    |    |
+|  RDP  |  ✓  |  ✓  |⭕  |       |        |   |    | ❌ |
 |  RFB  | ……  |  ✓  |⭕  |       | ❌     | …… | …… |    |
-|Spice  |     |     |    |       |         |   |     |      |
-|Scrcpy |     |     |    |       |         |   |     |      |
+|Spice  |     |     |    |       |       |   |     |      |
+|Scrcpy |     |     |    |       |       |   |     |      |
+|终端   |     | ⭕  |✓   | ❌    | ❌     |   |     |      |
 |TELNET |     | ⭕  |✓   | ❌    | ❌     |   |     |      |
 |  SSH  |     | ⭕  |✓   |       | ❌     |   |     |      |
-|  FTP  |     |     |    |        |❌      |   |    |      |
+|  FTP  |     |     |    |      |❌      |   |    |      |
 
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; ❌: 不支持; 空：未开始
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 #### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -105,11 +106,11 @@
 |RDP     |✓      |✓         |       |   |      |     |
 |Spice   |       |          |       |   |      |     |
 |SSH     |       |✓         |       |   |      |     |
-|Terminal|       |✓         |       |   |      |     |
+|终端    |       |✓         |       |   |      |     |
 |TELNET  |       |✓         |       |   |      |     |
 |Scrcpy  |       |          |       |   |      |     |
 
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; ❌: 不支持; 空：未开始
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 ##### 网络协议
 
@@ -124,16 +125,15 @@
 
 |             | 代理              | P2P              |
 |-------------|------------------|------------------|
-|RabbitVNC     |✓                | ✓                |
+|RabbitVNC    |✓                | ✓                |
 |TigerVNC     |✓                 |✓                |
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; ❌: 不支持; 空：未开始
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 ## 编译状态
 
-[![编译状态](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)  
 
 #### Github actions
 
@@ -202,17 +202,17 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
 |            |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
 |:----------:|:---:|:---:|:---:|:-----:|:------:|:-:|:--:|:-:|
-|RabbitVNC   |✓    |✓    |⭕   |       |❌      |⭕ |⭕ |    |
-|TigerVNC    |✓    |✓    |⭕   |       |❌      |⭕ |⭕ |    |
-|LibVNCServer|✓    |✓    |⭕   |       |        |    |    |    |
-|RDP         |✓    |✓    |⭕   |       |        |    |    |    |
-|Spice       |     |     |     |       |        |    |    |    |
+|RabbitVNC   |✓    |✓    |⭕   |       |❌      |⭕  |⭕|   |
+|TigerVNC    |✓    |✓    |⭕   |       |❌      |⭕  |⭕|   |
+|LibVNCServer|✓    |✓    |⭕   |       |❌      |    |   |    |
+|RDP         |✓    |✓    |⭕   |       |        |   |    |❌  |
+|Spice       |     |     |     |       |       |    |    |    |
 |SSH         |     |⭕   |✓    |       |❌      |    |    |    |
-|Terminal    |     |⭕   |✓    |       |❌      |    |    |    |
+|终端         |     |⭕   |✓    |       |❌     |    |    |    |
 |TELNET      |     |⭕   |✓    |❌     |❌      |    |    |    |
-|Scrcpy      |     |     |     |       |        |    |    |    |
+|Scrcpy      |     |     |     |       |       |    |    |    |
 
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; ❌: 不支持; 空：未开始
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 当前已经完成常见远程控制协议客户端的开发，已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。
 终端类远程控制，因为 qtermwidget 仅支持 LINUX/UNIX ，所以需要让其支持其它平台。
@@ -296,4 +296,4 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 - [Windows](docs/Compile/Windows_zh_CN.md)
 
 ## [许可协议](License.md "License.md")
-请遵守本协议和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。
+请遵守本项目[许可协议](License.md "License.md")和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。
