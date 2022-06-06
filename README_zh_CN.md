@@ -259,7 +259,7 @@ https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.pn
 
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.18/rabbitremotecontrol_0.0.18_amd64_Ubuntu-18.04.deb/download)
-      
+
 ## 开发
 
 [Doxygen 文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
