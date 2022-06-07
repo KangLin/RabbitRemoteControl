@@ -260,7 +260,7 @@ void MainWindow::on_actionUpdate_U_triggered()
 
 void MainWindow::on_actionLog_directory_triggered()
 {
-    RabbitCommon::OpenLogFile();
+    RabbitCommon::OpenLogDirectory();
     return;
     QString d = LOG_DIRECTORY();
     if(d.isEmpty())
@@ -270,7 +270,7 @@ void MainWindow::on_actionLog_directory_triggered()
 
 void MainWindow::on_actionOpen_Log_file_triggered()
 {
-    RabbitCommon::OpenLogDirectory();
+    RabbitCommon::OpenLogFile();
     return;
     QString f = LOG_FILE();
     if(f.isEmpty())
