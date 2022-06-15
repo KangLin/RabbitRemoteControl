@@ -18,7 +18,11 @@ public:
     explicit CChannel(QObject *parent = nullptr);
     virtual ~CChannel();
     
+    /// \~chinese
+    /// \param pSocket: 所有者是这个类的实例
+    /// \~english
     /// \param pSocket: The Owner is the instance of this class.
+    /// 
     virtual bool open(QTcpSocket* pSocket, OpenMode mode);
     virtual void close() override;
     

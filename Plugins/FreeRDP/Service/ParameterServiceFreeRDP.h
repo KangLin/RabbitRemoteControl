@@ -12,8 +12,8 @@ class CParameterServiceFreeRDP : public CParameterService
 public:
     explicit CParameterServiceFreeRDP(QObject *parent = nullptr);
     
-    virtual int OnLoad(const QString &szFile) override;
-    virtual int OnSave(const QString &szFile) override;
+    virtual int Load(const QString &szFile) override;
+    virtual int Save(const QString &szFile) override;
     
     bool getTlsSecurity() const;
     void setTlsSecurity(bool newTlsSecurity);

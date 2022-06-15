@@ -27,8 +27,8 @@ public:
     
     // CParameterService interface
 public:
-    virtual int OnLoad(const QString& szFile = QString());
-    virtual int OnSave(const QString& szFile = QString());
+    virtual int Load(const QString& szFile = QString());
+    virtual int Save(const QString& szFile = QString());
     
     bool getIce() const;
     void setIce(bool newBIce);

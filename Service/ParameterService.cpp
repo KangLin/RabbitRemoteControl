@@ -15,7 +15,7 @@ CParameterService::~CParameterService()
     LOG_MODEL_DEBUG("CParameterService", "CParameterService::~CParameterService");
 }
 
-int CParameterService::OnLoad(const QString& szFile)
+int CParameterService::Load(const QString& szFile)
 {
     QSettings set(szFile, QSettings::IniFormat);
     m_nPort = set.value("Port", m_nPort).toUInt();
@@ -24,7 +24,7 @@ int CParameterService::OnLoad(const QString& szFile)
     return 0;
 }
 
-int CParameterService::OnSave(const QString& szFile)
+int CParameterService::Save(const QString& szFile)
 {
     QSettings set(szFile, QSettings::IniFormat);
     set.setValue("Port", m_nPort);

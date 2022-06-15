@@ -124,7 +124,7 @@ void CParameterServiceFreeRDP::setSamFile(const QString &newSamFile)
     emit sigSamFileChanged();
 }
 
-int CParameterServiceFreeRDP::OnLoad(const QString &szFile)
+int CParameterServiceFreeRDP::Load(const QString &szFile)
 {
     QSettings set(szFile, QSettings::IniFormat);
     
@@ -137,10 +137,10 @@ int CParameterServiceFreeRDP::OnLoad(const QString &szFile)
     setAuthentication(set.value("Server/Authentication", getAuthentication()).toBool());
     setMayView(set.value("Server/MayView", getMayView()).toBool());
     setMayInteract(set.value("Server/MayInteract", getMayInteract()).toBool());
-    return CParameterService::OnLoad(szFile);
+    return CParameterService::Load(szFile);
 }
 
-int CParameterServiceFreeRDP::OnSave(const QString &szFile)
+int CParameterServiceFreeRDP::Save(const QString &szFile)
 {
     QSettings set(szFile, QSettings::IniFormat);
     
@@ -154,5 +154,5 @@ int CParameterServiceFreeRDP::OnSave(const QString &szFile)
     set.setValue("Server/MayView", getMayView());
     set.setValue("Server/MayInteract", getMayInteract());
     
-    return CParameterService::OnSave(szFile);
+    return CParameterService::Save(szFile);
 }

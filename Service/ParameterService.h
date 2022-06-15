@@ -17,8 +17,8 @@ public:
     explicit CParameterService(QObject *parent = nullptr);
     virtual ~CParameterService();
     
-    virtual int OnLoad(const QString& szFile = QString());
-    virtual int OnSave(const QString& szFile = QString());
+    virtual int Load(const QString& szFile = QString());
+    virtual int Save(const QString& szFile = QString());
     
     quint16 getPort() const;
     void setPort(quint16 newPort);

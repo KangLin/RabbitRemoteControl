@@ -111,7 +111,7 @@ int CService::LoadConfigure(const QString &szDir)
     LOG_MODEL_INFO("Service", "Configure file: %s", szFile.toStdString().c_str());
     QDir d;
     if(d.exists(szFile)){
-        nRet = GetParameters()->OnLoad(szFile);
+        nRet = GetParameters()->Load(szFile);
         if(nRet)
         {
             LOG_MODEL_INFO("Service", "Load configure file fail:%d %s",
@@ -143,7 +143,7 @@ int CService::SaveConfigure(const QString &szDir)
         } else {
             szFile = szFolder + QDir::separator() + m_pPlugin->Id() + ".rrs";
         }
-        nRet = GetParameters()->OnSave(szFile);
+        nRet = GetParameters()->Save(szFile);
     }
     return nRet;
 }

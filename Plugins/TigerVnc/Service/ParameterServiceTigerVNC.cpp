@@ -18,9 +18,9 @@ CParameterServiceTigerVNC::~CParameterServiceTigerVNC()
     LOG_MODEL_DEBUG("CParameterServiceTigerVNC", "CParameterServiceTigerVNC::~CParameterServiceTigerVNC");
 }
 
-int CParameterServiceTigerVNC::OnLoad(const QString& szFile)
+int CParameterServiceTigerVNC::Load(const QString& szFile)
 {
-    int nRet = CParameterService::OnLoad(szFile);
+    int nRet = CParameterService::Load(szFile);
     QSettings set(szFile, QSettings::IniFormat);
     m_bIce = set.value("ICE/Enable", m_bIce).toBool();
     m_szSignalServer = set.value("ICE/Signal/Server", m_szSignalServer).toString();
@@ -36,9 +36,9 @@ int CParameterServiceTigerVNC::OnLoad(const QString& szFile)
     return nRet;
 }
 
-int CParameterServiceTigerVNC::OnSave(const QString& szFile)
+int CParameterServiceTigerVNC::Save(const QString& szFile)
 {
-    int nRet = CParameterService::OnSave(szFile);
+    int nRet = CParameterService::Save(szFile);
     QSettings set(szFile, QSettings::IniFormat);
     set.setValue("ICE/Enable", m_bIce);
     set.setValue("ICE/Signal/Server", m_szSignalServer);
