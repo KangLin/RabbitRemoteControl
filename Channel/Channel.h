@@ -7,8 +7,9 @@
 
 #include <QIODevice>
 #include <QTcpSocket>
+#include "channel_export.h"
 
-class CChannel : public QIODevice
+class CHANNEL_EXPORT CChannel : public QIODevice
 {
     Q_OBJECT
     

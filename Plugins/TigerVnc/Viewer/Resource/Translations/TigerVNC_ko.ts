@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ko_KR">
 <context>
+    <name>CDataChannelIce</name>
+    <message>
+        <location filename="../../../ICE/DataChannelIce.cpp" line="376"/>
+        <source>Signal disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgGetPasswordTigerVNC</name>
     <message>
         <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="14"/>
@@ -315,6 +323,24 @@
     <message>
         <location filename="../../DlgSettingsTigerVnc.cpp" line="65"/>
         <source>Please set domain</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CIceSignalQxmpp</name>
+    <message>
+        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="158"/>
+        <source>Socket error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="161"/>
+        <source>Keep alive error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="164"/>
+        <source>xmpp stream error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

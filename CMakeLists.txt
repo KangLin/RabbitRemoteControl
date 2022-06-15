@@ -145,6 +145,7 @@ else()
     message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
 endif()
 
+add_subdirectory(Channel)
 cmake_dependent_option(BUILD_VIEWER "Build viewer" ON WITH_GUI OFF)
 if(BUILD_VIEWER)
     add_subdirectory(Viewer)

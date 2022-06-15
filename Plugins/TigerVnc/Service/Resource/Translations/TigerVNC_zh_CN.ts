@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CDataChannelIce</name>
+    <message>
+        <location filename="../../../ICE/DataChannelIce.cpp" line="376"/>
+        <source>Signal disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CFrmParameterTigerVNC</name>
     <message>
         <location filename="../../FrmParameterTigerVNC.ui" line="14"/>
@@ -67,6 +75,24 @@
         <location filename="../../FrmParameterTigerVNC.ui" line="224"/>
         <source>Signal server:</source>
         <translation>信令服务器：</translation>
+    </message>
+</context>
+<context>
+    <name>CIceSignalQxmpp</name>
+    <message>
+        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="158"/>
+        <source>Socket error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="161"/>
+        <source>Keep alive error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="164"/>
+        <source>xmpp stream error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
