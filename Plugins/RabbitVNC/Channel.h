@@ -7,8 +7,6 @@
 
 #include <QIODevice>
 #include <QTcpSocket>
-#include "rdr/InStream.h"
-#include "rdr/OutStream.h"
 
 class CChannel : public QIODevice
 {
@@ -25,10 +23,7 @@ public:
     /// 
     virtual bool open(QTcpSocket* pSocket, OpenMode mode);
     virtual void close() override;
-    
-    rdr::InStream* InStream();
-    rdr::OutStream* OutStream();
-    
+
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
@@ -41,8 +36,6 @@ private Q_SLOTS:
 
 private:
     QTcpSocket* m_pSocket;
-    rdr::InStream* m_pInStream;
-    rdr::OutStream* m_pOutStream;
     
     // QIODevice interface
 protected:

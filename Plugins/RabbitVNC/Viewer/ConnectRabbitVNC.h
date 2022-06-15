@@ -9,8 +9,8 @@
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
-#include "QSocketInStream.h"
-#include "QSocketOutStream.h"
+#include "InStreamChannel.h"
+#include "OutStreamChannel.h"
 #include "Channel.h"
 #include "ParameterRabbitVNC.h"
 
@@ -79,7 +79,9 @@ protected:
     
 private:
     QSharedPointer<CChannel> m_DataChannel;
-
+    QSharedPointer<rdr::InStream> m_InStream;
+    QSharedPointer<rdr::OutStream> m_OutStream;
+    
     unsigned long long m_bpsEstimate;
     unsigned m_updateCount;
     struct timeval updateStartTime;

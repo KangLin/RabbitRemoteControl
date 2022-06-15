@@ -1,8 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "Connection.h"
-#include "QSocketInStream.h"
-#include "QSocketOutStream.h"
 #include "RabbitCommonLog.h"
 #include "rfb/SSecurityVncAuth.h"
 #include "rfb/SMsgWriter.h"
@@ -74,7 +72,9 @@ CConnection::~CConnection()
 void CConnection::slotConnected()
 {
     try{
-        setStreams(m_Channel->InStream(), m_Channel->OutStream());
+        m_InStream = QSharedPointer<rdr::InStream>(new CInStreamChannel(m_Channel.data()));
+        m_OutStream = QSharedPointer<rdr::OutStream>(new COutStreamChannel(m_Channel.data()));
+        setStreams(m_InStream.data(), m_OutStream.data());
         
         char* pass = new char[128];
         strcpy(pass, m_pPara->getPassword().toStdString().c_str());

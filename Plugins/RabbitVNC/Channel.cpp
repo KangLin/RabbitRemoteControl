@@ -1,37 +1,19 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "Channel.h"
-#include "InStreamChannel.h"
-#include "OutStreamChannel.h"
-#include "QSocketInStream.h"
-#include "QSocketOutStream.h"
 #include "RabbitCommonLog.h"
 
 CChannel::CChannel(QObject *parent)
     : QIODevice(parent),
       m_pSocket(nullptr)
 {
-    m_pInStream = new CInStreamChannel(this);
-    m_pOutStream = new COutStreamChannel(this);
 }
 
 CChannel::~CChannel()
 {
     LOG_MODEL_DEBUG("CChannel", "CChannel::~CChannel");
 //    if(isOpen()) close();
-    if(m_pInStream) delete m_pInStream;
-    if(m_pOutStream) delete m_pOutStream;
     if(m_pSocket) m_pSocket->deleteLater();
-}
-
-rdr::InStream* CChannel::InStream()
-{
-    return m_pInStream;
-}
-
-rdr::OutStream* CChannel::OutStream()
-{
-    return m_pOutStream;
 }
 
 qint64 CChannel::readData(char *data, qint64 maxlen)

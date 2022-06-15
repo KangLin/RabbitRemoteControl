@@ -11,6 +11,8 @@
 #include <QRect>
 
 #include "Channel.h"
+#include "InStreamChannel.h"
+#include "OutStreamChannel.h"
 #include "ServiceRabbitVNC.h"
 #include "ParameterServiceRabbitVNC.h"
 #include "InputDevice.h"
@@ -60,6 +62,8 @@ private Q_SLOTS:
 
 private:
     QSharedPointer<CChannel> m_Channel;
+    QSharedPointer<rdr::InStream> m_InStream;
+    QSharedPointer<rdr::OutStream> m_OutStream;
     CParameterServiceRabbitVNC* m_pPara;
     QSharedPointer<CInputDevice> m_InputDevice;
     

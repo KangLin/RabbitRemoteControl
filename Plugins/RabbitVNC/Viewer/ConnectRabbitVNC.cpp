@@ -285,6 +285,7 @@ int CConnectRabbitVNC::OnClean()
     if(m_Signal) m_Signal->Close();
 #endif
     close();
+    setStreams(nullptr, nullptr);
     if(m_DataChannel)
         m_DataChannel->close();
     //emit sigDisconnected();
@@ -296,7 +297,9 @@ void CConnectRabbitVNC::slotConnected()
     LOG_MODEL_INFO("RabbitVNC", "Connected to host %s port %d",
                    m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
     
-    setStreams(m_DataChannel->InStream(), m_DataChannel->OutStream());
+    m_InStream = QSharedPointer<rdr::InStream>(new CInStreamChannel(m_DataChannel.data()));
+    m_OutStream = QSharedPointer<rdr::OutStream>(new COutStreamChannel(m_DataChannel.data()));
+    setStreams(m_InStream.data(), m_OutStream.data());
     initialiseProtocol();
 }
 
@@ -432,7 +435,7 @@ void CConnectRabbitVNC::framebufferUpdateStart()
     
     // For bandwidth estimate
     gettimeofday(&updateStartTime, NULL);
-    m_updateStartPos = m_DataChannel->InStream()->pos();
+    m_updateStartPos = m_InStream->pos();
 }
 
 // framebufferUpdateEnd() is called at the end of an update.
@@ -455,7 +458,7 @@ void CConnectRabbitVNC::framebufferUpdateEnd()
     elapsed += now.tv_usec - updateStartTime.tv_usec;
     if (elapsed == 0)
         elapsed = 1;
-    bps = (unsigned long long)(m_DataChannel->InStream()->pos() -
+    bps = (unsigned long long)(m_InStream->pos() -
                                m_updateStartPos) * 8 *
             1000000 / elapsed;
     // Allow this update to influence things more the longer it took, to a
