@@ -10,7 +10,8 @@ COutStreamChannel::COutStreamChannel(CChannel* pDataChannel)
 
 bool COutStreamChannel::flushBuffer()
 {
-    Q_ASSERT(m_pDataChannel);
+    //Q_ASSERT(m_pDataChannel);
+    if(!m_pDataChannel || !m_pDataChannel->isOpen()) return false;
     qint64 n = m_pDataChannel->write((const char*)sentUpTo, ptr - sentUpTo);
     
     if (0 == n)
