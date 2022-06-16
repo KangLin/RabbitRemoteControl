@@ -154,7 +154,8 @@ If this software is useful to you, or you like it, please donate and support the
 [![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation") 
 
 If it cannot be displayed, please open:
-https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
+- https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
+- https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute.png
 
 ## Contribution
 
