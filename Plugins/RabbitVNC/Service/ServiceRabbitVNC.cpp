@@ -4,6 +4,7 @@
 #include "RabbitCommonLog.h"
 #include "RabbitCommonTools.h"
 #include "network/Socket.h"
+#include <stdexcept>
 #include <QHostAddress>
 #include <QTcpSocket>
 #include "ParameterServiceRabbitVNC.h"
