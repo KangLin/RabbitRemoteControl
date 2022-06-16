@@ -1,12 +1,12 @@
 //! @author Kang Lin(kl222@126.com)
 
-#include "DataChannelIce.h"
+#include "ChannelIce.h"
 #include "rtc/rtc.hpp"
 #include "RabbitCommonLog.h"
 #include <QDebug>
 #include <QThread>
 
-CDataChannelIce::CDataChannelIce(QObject* parent) : CChannel(parent)
+CChannelIce::CChannelIce(QObject* parent) : CChannel(parent)
 {}
 
 void logCallback(rtc::LogLevel level, std::string message)
@@ -33,9 +33,9 @@ void logCallback(rtc::LogLevel level, std::string message)
 
 static bool gInitLog = false;
 
-CDataChannelIce::CDataChannelIce(QSharedPointer<CIceSignal> signal, QObject *parent)
+CChannelIce::CChannelIce(CIceSignal* pSignal, QObject *parent)
     : CChannel(parent),
-      m_Signal(signal)
+      m_pSignal(pSignal)
 {
     //*
     if(!gInitLog) {
@@ -43,27 +43,27 @@ CDataChannelIce::CDataChannelIce(QSharedPointer<CIceSignal> signal, QObject *par
         rtc::InitLogger(rtc::LogLevel::Debug, logCallback);//*/
     }
 
-    SetSignal(signal);
+    SetSignal(pSignal);
 }
 
-CDataChannelIce::~CDataChannelIce()
+CChannelIce::~CChannelIce()
 {
     qDebug() << "CDataChannel::~CDataChannel()";
 }
 
-int CDataChannelIce::SetSignal(QSharedPointer<CIceSignal> signal)
+int CChannelIce::SetSignal(CIceSignal *signal)
 {
     bool check = false;
-    m_Signal = signal;
-    if(m_Signal)
+    m_pSignal = signal;
+    if(m_pSignal)
     {
-        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
+        check = connect(m_pSignal, SIGNAL(sigConnected()),
                         this, SLOT(slotSignalConnected()));
         Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
+        check = connect(m_pSignal, SIGNAL(sigDisconnected()),
                         this, SLOT(slotSignalDisconnected()));
         Q_ASSERT(check);
-        check = connect(m_Signal.data(),
+        check = connect(m_pSignal,
                         SIGNAL(sigDescription(const QString&,
                                               const QString&,
                                               const QString&,
@@ -76,7 +76,7 @@ int CDataChannelIce::SetSignal(QSharedPointer<CIceSignal> signal)
                                                            const QString&,
                                                            const QString&)));
         Q_ASSERT(check);
-        check = connect(m_Signal.data(),
+        check = connect(m_pSignal,
                         SIGNAL(sigCandiate(const QString&,
                                            const QString&,
                                            const QString&,
@@ -89,35 +89,35 @@ int CDataChannelIce::SetSignal(QSharedPointer<CIceSignal> signal)
                                                         const QString&,
                                                         const QString&)));
         Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
+        check = connect(m_pSignal, SIGNAL(sigError(int, const QString&)),
                         this, SLOT(slotSignalError(int, const QString&)));
         Q_ASSERT(check);
     }
     return 0;
 }
 
-QString CDataChannelIce::GetUser()
+QString CChannelIce::GetUser()
 {
     return m_szUser;
 }
 
-QString CDataChannelIce::GetPeerUser()
+QString CChannelIce::GetPeerUser()
 {
     return m_szPeerUser;
 }
 
-QString CDataChannelIce::GetChannelId()
+QString CChannelIce::GetChannelId()
 {
     return m_szChannelId;
 }
 
-int CDataChannelIce::SetConfigure(const rtc::Configuration &config)
+int CChannelIce::SetConfigure(const rtc::Configuration &config)
 {
     m_Config = config;
     return 0;
 }
 
-int CDataChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
+int CChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
 {
 //    LOG_MODEL_DEBUG("DataChannel", "onDataChannel: DataCannel label: %s",
 //                    dc->label().c_str());
@@ -167,7 +167,7 @@ int CDataChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
     return 0;
 }
 
-int CDataChannelIce::CreateDataChannel(bool bData)
+int CChannelIce::CreateDataChannel(bool bDataChannel)
 {
     m_peerConnection = std::make_shared<rtc::PeerConnection>(m_Config);
     if(!m_peerConnection)
@@ -205,7 +205,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
         // Send to the peer through the signal channel
         if(m_szPeerUser.isEmpty() || m_szChannelId.isEmpty())
            LOG_MODEL_ERROR("DataChannel", "Please set peer user and channel id");
-        m_Signal->SendDescription(GetPeerUser(), GetChannelId(), description, GetUser());
+        m_pSignal->SendDescription(GetPeerUser(), GetChannelId(), description, GetUser());
     });
     m_peerConnection->onLocalCandidate(
                 [this](rtc::Candidate candidate){
@@ -220,7 +220,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
         // Send to the peer through the signal channel
         if(m_szPeerUser.isEmpty() || m_szChannelId.isEmpty())
            LOG_MODEL_ERROR("DataChannel", "Please set peer user and channel id");
-        m_Signal->SendCandiate(m_szPeerUser, m_szChannelId, candidate);
+        m_pSignal->SendCandiate(m_szPeerUser, m_szChannelId, candidate);
     });
     m_peerConnection->onDataChannel([this](std::shared_ptr<rtc::DataChannel> dc) {
         LOG_MODEL_INFO("DataChannel", "Open data channel:%s",
@@ -236,7 +236,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
         SetDataChannel(dc);
     });
 
-    if(bData)
+    if(bDataChannel)
     {
         auto dc = m_peerConnection->createDataChannel(GetChannelId().toStdString());
         SetDataChannel(dc);
@@ -244,7 +244,7 @@ int CDataChannelIce::CreateDataChannel(bool bData)
     return 0;
 }
 
-bool CDataChannelIce::open(const QString &user, const QString &peer, bool bData)
+bool CChannelIce::open(const QString &user, const QString &peer, bool bChannelId)
 {
     bool bRet = false;
     bRet = QIODevice::open(QIODevice::ReadWrite);
@@ -252,14 +252,14 @@ bool CDataChannelIce::open(const QString &user, const QString &peer, bool bData)
     
     m_szPeerUser = peer;
     m_szUser = user;
-    if(bData)
-        m_szChannelId = GenerateID(peer + "_");
-    int nRet = CreateDataChannel(bData);
+    if(bChannelId)
+        m_szChannelId = GenerateID("c_");
+    int nRet = CreateDataChannel(bChannelId);
     if(nRet) return false;
     return true;
 }
 
-bool CDataChannelIce::open(const QString &fromUser, const QString &toUser,
+bool CChannelIce::open(const QString &fromUser, const QString &toUser,
                            const QString &channelId, const QString &type,
                            const QString &sdp)
 {
@@ -270,11 +270,11 @@ bool CDataChannelIce::open(const QString &fromUser, const QString &toUser,
     return true;
 }
 
-void CDataChannelIce::close()
+void CChannelIce::close()
 {
     LOG_MODEL_DEBUG("CDataChannelIce", "CDataChannelIce::Close()");
 
-    m_Signal->disconnect(this);
+    m_pSignal->disconnect(this);
 
     if(m_dataChannel)
     {
@@ -292,7 +292,7 @@ void CDataChannelIce::close()
 }
 
 #define DEFAULT_MAX_MESSAGE_SIZE 0x7FFF
-qint64 CDataChannelIce::writeData(const char *data, qint64 len)
+qint64 CChannelIce::writeData(const char *data, qint64 len)
 {
     if(!m_dataChannel)
     {
@@ -342,7 +342,7 @@ qint64 CDataChannelIce::writeData(const char *data, qint64 len)
     return -1;
 }
 
-qint64 CDataChannelIce::readData(char *data, qint64 maxlen)
+qint64 CChannelIce::readData(char *data, qint64 maxlen)
 {
     if(!m_dataChannel || m_dataChannel->isClosed() || !isOpen()) return -1;
 
@@ -362,21 +362,21 @@ qint64 CDataChannelIce::readData(char *data, qint64 maxlen)
     return n;
 }
 
-bool CDataChannelIce::isSequential() const
+bool CChannelIce::isSequential() const
 {
     return true;
 }
 
-void CDataChannelIce::slotSignalConnected()
+void CChannelIce::slotSignalConnected()
 {
 }
 
-void CDataChannelIce::slotSignalDisconnected()
+void CChannelIce::slotSignalDisconnected()
 {
     emit sigError(-1, tr("Signal disconnected"));
 }
 
-void CDataChannelIce::slotSignalReceiverCandiate(const QString& fromUser,
+void CChannelIce::slotSignalReceiverCandiate(const QString& fromUser,
                                                  const QString &toUser,
                                                  const QString &channelId,
                                                  const QString& mid,
@@ -399,7 +399,7 @@ void CDataChannelIce::slotSignalReceiverCandiate(const QString& fromUser,
     }
 }
 
-void CDataChannelIce::slotSignalReceiverDescription(const QString& fromUser,
+void CChannelIce::slotSignalReceiverDescription(const QString& fromUser,
                                                     const QString &toUser,
                                                     const QString &channelId,
                                                     const QString &type,
@@ -424,12 +424,12 @@ void CDataChannelIce::slotSignalReceiverDescription(const QString& fromUser,
         m_peerConnection->setRemoteDescription(des);
 }
 
-void CDataChannelIce::slotSignalError(int error, const QString& szError)
+void CChannelIce::slotSignalError(int error, const QString& szError)
 {
     //emit sigError(error, tr("Signal error: %1").arg(szError));
 }
 
-QString CDataChannelIce::GenerateID(const QString &lable)
+QString CChannelIce::GenerateID(const QString &lable)
 {
     static qint64 id = 0;
     static QMutex mutex;

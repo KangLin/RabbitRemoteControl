@@ -18,7 +18,7 @@ public:
      *  to decide whether to open the parameter dialog 
      * \return 
      */
-    virtual bool GetCheckCompleted();
+    virtual bool GetCheckCompleted() override;
     
     enum COLOR_LEVEL {
         Full,

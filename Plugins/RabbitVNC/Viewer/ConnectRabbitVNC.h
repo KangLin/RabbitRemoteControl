@@ -98,12 +98,7 @@ private:
     int SetChannelConnect(QSharedPointer<CChannel> channl);
     
 #ifdef HAVE_ICE
-    QSharedPointer<CIceSignal> m_Signal;
     int IceInit();
-private Q_SLOTS:
-    void slotSignalConnected();
-    void slotSignalDisconnected();
-    void slotSignalError(int nErr, const QString& szErr);
 #endif
 };
 

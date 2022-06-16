@@ -19,7 +19,7 @@
     
 #endif
 #ifdef HAVE_ICE
-#include "ICE/DataChannelIce.h"
+#include "ICE/ChannelIce.h"
 #endif
 
 CServiceRabbitVNC::CServiceRabbitVNC(CPluginService *plugin) : CService(plugin)
@@ -216,7 +216,7 @@ void CServiceRabbitVNC::slotSignalOffer(const QString& fromUser,
         CParameterServiceRabbitVNC* p =
                 dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters());
         if(!p) return;
-        QSharedPointer<CDataChannelIce> channel(new CDataChannelIce(m_Signal),
+        QSharedPointer<CChannelIce> channel(new CChannelIce(m_Signal.data()),
                                                 &QObject::deleteLater);
         if(!channel->isOpen())
         {

@@ -77,4 +77,6 @@ Q_SIGNALS:
                         const QString& sdp);
 };
 
+extern CIceSignal* g_pSignal;
+
 #endif // CSIGNAL_H

@@ -1,12 +1,12 @@
 #ifndef CDATACHANNELICECHANNEL_H
 #define CDATACHANNELICECHANNEL_H
 
-#include "DataChannelIce.h"
+#include "ChannelIce.h"
 #include <QMap>
 #include <QSharedPointer>
 
 class CIceManager;
-class CDataChannelIceChannel : public CDataChannelIce
+class CDataChannelIceChannel : public CChannelIce
 {
     Q_OBJECT
 

@@ -19,8 +19,7 @@ class CParameterServiceRabbitVNC : public CParameterService
     Q_PROPERTY(quint16 TurnPort READ getTurnPort WRITE setTurnPort NOTIFY sigTurnPortChanged)
     Q_PROPERTY(QString TurnUser READ getTurnUser WRITE setTurnUser NOTIFY sigTurnUserChanged)
     Q_PROPERTY(QString TurnPassword READ getTurnPassword WRITE setTurnPassword NOTIFY sigTurnPasswordChanged)
-    
-    
+
 public:
     explicit CParameterServiceRabbitVNC(QObject *parent = nullptr);
     virtual ~CParameterServiceRabbitVNC();

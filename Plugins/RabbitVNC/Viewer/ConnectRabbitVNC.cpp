@@ -43,7 +43,7 @@
 #include "RabbitCommonLog.h"
 
 #ifdef HAVE_ICE
-#include "ICE/DataChannelIce.h"
+#include "ICE/ChannelIce.h"
 #endif
 #ifdef HAVE_QXMPP
 #include "ICE/IceSignalQxmpp.h"
@@ -128,47 +128,26 @@ int CConnectRabbitVNC::OnInit()
 #ifdef HAVE_ICE
 int CConnectRabbitVNC::IceInit()
 {
-    if(m_Signal) return -1;
-#ifdef HAVE_QXMPP
-    m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
-#endif
-    if(!m_Signal)
+    if(!g_pSignal || !g_pSignal->IsOpen())
     {
-        LOG_MODEL_ERROR("CConnectRabbitVNC", "The m_Signal is null");
+        LOG_MODEL_ERROR("CConnectRabbitVNC",
+                        "The g_pSignal is null. or signal don't connect server");
         return -1;
     }
-    
-    bool check = false;
-    check = connect(m_Signal.data(), SIGNAL(sigConnected()),
-                    this, SLOT(slotSignalConnected()));
-    Q_ASSERT(check);
-    check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
-                    this, SLOT(slotSignalDisconnected()));
-    Q_ASSERT(check);
-    check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
-                    this, SLOT(slotSignalError(int, const QString&)));
-    Q_ASSERT(check);
-    return m_Signal->Open(m_pPara->GetSignalServer(), m_pPara->GetSignalPort(),
-                          m_pPara->GetSignalUser(), m_pPara->GetSignalPassword());
-    
-    return 0;
-}
 
-void CConnectRabbitVNC::slotSignalConnected()
-{
     LOG_MODEL_INFO("CConnectRabbitVnc", "Connected to signal server:%s:%d; user:%s",
                    m_pPara->GetSignalServer().toStdString().c_str(),
                    m_pPara->GetSignalPort(),
                    m_pPara->GetSignalUser().toStdString().c_str());
-    auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
+    auto channel = QSharedPointer<CChannelIce>(new CChannelIce(g_pSignal));
     if(!channel)
     {
         LOG_MODEL_ERROR("CConnectRabbitVnc", "new CDataChannelIce fail");
-        return;
+        return -2;
     }
     m_DataChannel = channel;
     SetChannelConnect(channel);
-    
+
     rtc::Configuration config;
     rtc::IceServer stun(m_pPara->GetStunServer().toStdString().c_str(),
                         m_pPara->GetStunPort());
@@ -179,25 +158,14 @@ void CConnectRabbitVNC::slotSignalConnected()
     config.iceServers.push_back(stun);
     config.iceServers.push_back(turn);
     channel->SetConfigure(config);
-    
+
     bool bRet = channel->open(m_pPara->GetSignalUser(),
                               m_pPara->GetPeerUser(), true);
     if(!bRet)
     {
         emit sigError(-1, "Open channel fail");
     }
-    return;
-}
-
-void CConnectRabbitVNC::slotSignalDisconnected()
-{   
-}
-
-void CConnectRabbitVNC::slotSignalError(int nErr, const QString& szErr)
-{
-    LOG_MODEL_ERROR("CConnectRabbitVnc", "Signal error:%d; %s",
-                    nErr, szErr.toStdString().c_str());
-    //emit sigError(nErr, szErr);
+    return 0;
 }
 #endif
 
@@ -282,7 +250,7 @@ int CConnectRabbitVNC::SetChannelConnect(QSharedPointer<CChannel> channl)
 int CConnectRabbitVNC::OnClean()
 {
 #ifdef HAVE_ICE
-    if(m_Signal) m_Signal->Close();
+    if(g_pSignal) g_pSignal->Close();
 #endif
     close();
     setStreams(nullptr, nullptr);

@@ -6,7 +6,7 @@ CDataChannelIceChannel::CDataChannelIceChannel(
         QSharedPointer<CIceSignal> signal,
         QSharedPointer<CIceManager> iceManager,
         QObject *parent)
-    : CDataChannelIce(parent),
+    : CChannelIce(parent),
       m_IceManager(iceManager),
       m_bServer(false)
 {

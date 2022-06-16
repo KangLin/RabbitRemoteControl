@@ -12,14 +12,14 @@
 #include <QMutex>
 #include <QSharedPointer>
 
-class CDataChannelIce : public CChannel
+class CChannelIce : public CChannel
 {
     Q_OBJECT
 
 public:
-    explicit CDataChannelIce(QSharedPointer<CIceSignal> signal,
+    explicit CChannelIce(CIceSignal* pSignal,
                           QObject *parent = nullptr);
-    virtual ~CDataChannelIce();
+    virtual ~CChannelIce();
 
     //! @note These properties must be set before calling Open
     int SetConfigure(const rtc::Configuration& config);
@@ -31,7 +31,7 @@ public:
     //!        Called by client
     virtual bool open(const QString& user,
                       const QString& peer,
-                      bool bData);
+                      bool bChannelId);
     //! Open channel. For passive receivers
     //! @note Must call SetConfigure set the service properties before calling it
     //! @note Called by service
@@ -62,14 +62,14 @@ private Q_SLOTS:
                                                const QString& sdp);
 
 private:
-    CDataChannelIce(QObject *parent = nullptr);
+    CChannelIce(QObject *parent = nullptr);
 
-    virtual int SetSignal(QSharedPointer<CIceSignal> signal);
+    virtual int SetSignal(CIceSignal* signal);
     virtual int SetDataChannel(std::shared_ptr<rtc::DataChannel>);   
-    virtual int CreateDataChannel(bool bData);
+    virtual int CreateDataChannel(bool bDataChannel);
     QString GenerateID(const QString& lable = QString());
     
-    QSharedPointer<CIceSignal> m_Signal;
+    CIceSignal* m_pSignal;
     QString m_szUser;
     QString m_szPeerUser;
     QString m_szChannelId;

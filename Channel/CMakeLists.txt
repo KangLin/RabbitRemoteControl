@@ -11,10 +11,12 @@ project(Channel LANGUAGES CXX)
 
 list(APPEND CHANNEL_INSTALL_HEADER_FILES
     Channel.h
+    ICE/ParameterSignal.h
     )
 
 list(APPEND CHANNEL_SOURCE_FILES
     Channel.cpp
+    ICE/ParameterSignal.cpp
     )
 
 find_package(LibDataChannel)
@@ -28,12 +30,12 @@ if(LibDataChannel_FOUND)
         list(APPEND CHANNEL_SRC_LIBS LibDataChannel::datachannel)
     endif()
     list(APPEND CHANNEL_SOURCE_FILES
-        ICE/DataChannelIce.cpp
+        ICE/ChannelIce.cpp
         ICE/IceSignal.cpp)
     list(APPEND CHANNEL_INSTALL_HEADER_FILES
         ICE/IceSignal.h)
     list(APPEND CHANNEL_HEADER_FILES
-        ICE/DataChannelIce.h
+        ICE/ChannelIce.h
         )
     if(UNIX)
         install_targets(TARGETS LibDataChannel::datachannel)
