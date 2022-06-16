@@ -3,6 +3,7 @@
 #include "IceSignalQxmpp.h"
 #include "RabbitCommonLog.h"
 #include "QXmppUtils.h"
+#include <QCoreApplication>
 
 int g_CIceSignalQXmppIq = qRegisterMetaType<CIceSignalQXmppIq>("CIceSignalQXmppIq");
 
@@ -33,6 +34,30 @@ CIceSignalQxmpp::CIceSignalQxmpp(QObject *parent)
 int CIceSignalQxmpp::Open(const QString &szServer, quint16 nPort, const QString &user, const QString &password)
 {
     QXmppConfiguration conf;
+    
+    if(QXmppUtils::jidToDomain(user).isEmpty())
+    {
+        LOG_MODEL_ERROR("CIceSignalQxmpp", "The user name is error. please use format: user@domain/resource");
+        return -1;
+    }
+    if(QXmppUtils::jidToResource(user).isEmpty())
+    {
+        LOG_MODEL_WARNING("CIceSignalQxmpp", "The user name is error. please use format: user@domain/resource");
+        conf.setResource(qApp->applicationName()
+                 #if defined(Q_OS_ANDROID)
+                         + "_android"
+                 #elif defined(Q_OS_LINUX)
+                        + "_linux"
+                 #elif defined(Q_OS_WIN)
+                        + "_windows"
+                 #elif defined(Q_OS_OSX)
+                         + "_osx"
+                 #elif defined(Q_OS_IOS)
+                         + "_ios"
+                 #endif
+                         );
+    }
+    
     conf.setHost(szServer);
     conf.setPort(nPort);
     conf.setJid(user);
@@ -138,16 +163,6 @@ int CIceSignalQxmpp::SendCandiate(const QString &toUser,
 void CIceSignalQxmpp::slotSendPackage(CIceSignalQXmppIq iq)
 {
     m_Manager.sendPacket(iq);
-}
-
-int CIceSignalQxmpp::Write(const char *buf, int nLen)
-{
-    return 0;
-}
-
-int CIceSignalQxmpp::Read(char *buf, int nLen)
-{
-    return 0;
 }
 
 void CIceSignalQxmpp::slotError(QXmppClient::Error e)

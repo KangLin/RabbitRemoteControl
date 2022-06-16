@@ -36,27 +36,9 @@ public:
                              const rtc::Candidate& candidate,
                              const QString& fromUser = QString()) = 0;
 
-    /**
-     * @brief Write
-     * @param buf
-     * @param nLen
-     * @return If success, return count bytes of be send
-     *         If fail, return -1
-     */
-    virtual int Write(const char* buf, int nLen) = 0;
-    /**
-     * @brief Read
-     * @param buf
-     * @param nLen
-     * @return If success, return count bytes of be read
-     *         If fail, return -1
-     */
-    virtual int Read(char* buf, int nLen) = 0;
-
 Q_SIGNALS:
     void sigConnected();
     void sigDisconnected();
-    void sigReadyRead();
     void sigError(int nError, const QString& szError);
 
     /**

@@ -28,8 +28,6 @@ public:
                              const QString &channelId,
                              const rtc::Candidate &candidate,
                              const QString &fromUser) override;
-    virtual int Write(const char *buf, int nLen) override;
-    virtual int Read(char *buf, int nLen) override;
 
     bool proecssIq(CIceSignalQXmppIq iq);
     
