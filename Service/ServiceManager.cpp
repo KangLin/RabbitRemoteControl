@@ -4,17 +4,22 @@
 #include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 #include "Service.h"
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
 
 #include "PluginService.h"
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QDebug>
+#include <QSettings>
+
 #include <stdexcept>
 
 CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
     : QtService<QCoreApplication>(argc, argv, name)
 {
-    //add default parameters 
+    // Add default parameters 
     QStringList args;
     for (int i = 0; i < argc; ++i)
          args.append(QString::fromLocal8Bit(argv[i]));
@@ -44,6 +49,13 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
                             pService->SaveConfigure(szDir);
                     }
                 }
+
+#ifdef HAVE_ICE
+                QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                              QSettings::IniFormat);
+                CICE::Instance()->GetParameter()->Save(set);
+                set.sync();
+#endif
                 application()->quit();
                 return;
             }

@@ -12,6 +12,10 @@
 #include <QSettings>
 #include <QDesktopServices>
 
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
+
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -47,10 +51,33 @@ void CMainWindow::on_pbSave_clicked()
     {
         service->SaveConfigure();
     }
+    
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
+    CICE::Instance()->GetParameter()->Save(set);
 }
 
 int CMainWindow::InitTab()
 {
+    QWidget* pIce = CICE::Instance()->GetWidget(this);
+    if(pIce)
+    {
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
+        CICE::Instance()->GetParameter()->Load(set);
+        // parameter widget must has slotSave()
+        bool check = connect(this, SIGNAL(sigSave()), pIce, SLOT(slotSave()));
+        if(!check)
+        {
+            LOG_MODEL_ERROR("MainWindows",
+                            "Class %s must has slot slotSave(), please add it",
+                            pIce->metaObject()->className());
+        }
+        Q_ASSERT(check);
+        int nIndex = ui->twConfigure->addTab(pIce, pIce->windowIcon(),
+                                             pIce->windowTitle());
+        if(-1 == nIndex)
+            LOG_MODEL_ERROR("MainWindow", "addTab ice fail");
+    }
+    
     foreach(auto plugin, m_Plugins.m_Plugins)
     {
         CService* pService = plugin->NewService();
@@ -75,6 +102,7 @@ int CMainWindow::InitTab()
                 LOG_MODEL_ERROR("MainWindow", "addTab fail");
         }
     }
+    
     return 0;
 }
 

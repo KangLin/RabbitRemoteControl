@@ -5,6 +5,7 @@
 #include "mainwindow.h"
 #include "ManagePassword.h"
 #include "RabbitCommonDir.h"
+#include "RabbitCommonLog.h"
 #include "Ice.h"
 
 CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *parent) :
@@ -21,6 +22,12 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
         bool check = false;
         check = connect(this, SIGNAL(accepted()),
                         pWidget, SLOT(slotSave()));
+        if(!check)
+        {
+            LOG_MODEL_ERROR("CParameterDlgSettings",
+                            "Class %s must has slot slotSave(), please add it",
+                            pWidget->metaObject()->className());
+        }
         Q_ASSERT(check);
     }
 
