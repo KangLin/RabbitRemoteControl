@@ -3,6 +3,7 @@
 #include <QDir>
 #include "RabbitCommonDir.h"
 #include "ManagePassword.h"
+#include "Ice.h"
 
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bScreenShot(false),
@@ -55,7 +56,7 @@ int CParameterApp::Load()
                                   GetOpenLasterClose()).toBool());
     SetFavoriteEdit(set.value("MainWindow/Favorite/Double/Edit",
                               GetFavoriteEdit()).toBool());
-    return 0;
+    return CICE::Instance()->GetParameter()->Load(set);
 }
 
 int CParameterApp::Save()
@@ -76,7 +77,8 @@ int CParameterApp::Save()
     set.setValue("MainWindow/SystemTrayIcon/Enable", GetEnableSystemTrayIcon());
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
-    return 0;
+    
+    return CICE::Instance()->GetParameter()->Save(set);
 }
 
 bool CParameterApp::GetReceiveShortCut() const

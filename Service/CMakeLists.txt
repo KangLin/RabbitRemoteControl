@@ -12,7 +12,7 @@ endif()
 
 project(Service LANGUAGES CXX)
 
-set(SRC_LIBS QtService RabbitCommon)
+set(SRC_LIBS QtService Channel)
 set(SRC_PRIVATE_LIBS)
 
 set(INSTALL_HEADER_FILES

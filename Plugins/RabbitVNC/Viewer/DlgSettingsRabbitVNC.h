@@ -20,9 +20,6 @@ public:
     virtual ~CDlgSettingsRabbitVNC();
     
 private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    
     void on_cbCompressAutoSelect_stateChanged(int arg1);
 
     void on_cbCompress_stateChanged(int arg1);
@@ -32,6 +29,10 @@ private slots:
     void on_pbShow_clicked();
         
     void on_gpIce_clicked(bool checked);
+    
+    void on_pbOk_clicked();
+    
+    void on_pbCancle_clicked();
     
 private:
     Ui::CDlgSettingsRabbitVNC *ui;

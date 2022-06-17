@@ -17,9 +17,6 @@ CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent) : CParameter(parent)
     SetQualityLevel(8);
     
     SetIce(false);
-    SetSignalPort(5222);
-    SetStunPort(3748);
-    SetTurnPort(3748);
 }
 
 int CParameterRabbitVNC::Load(QSettings &set)
@@ -41,31 +38,8 @@ int CParameterRabbitVNC::Load(QSettings &set)
                                GetCompressLevel()).toInt());
     SetNoJpeg(set.value("RabbitVNC/NoJpeg", GetNoJpeg()).toBool());
     SetQualityLevel(set.value("RabbitVNC/QualityLevel", GetQualityLevel()).toInt());
-    SetIce(set.value("ICE/Enable", GetIce()).toBool());
-    SetSignalServer(set.value("ICE/Signal/Server",
-                              GetSignalServer()).toString());
-    SetSignalPort(set.value("ICE/Signal/Port", GetSignalPort()).toUInt());
-    SetSignalUser(set.value("ICE/Signal/User", GetSignalUser()).toString());
-    if(GetSavePassword())
-    {
-        QString szPassword;
-        if(!LoadPassword(tr("Ice signal password"), "ICE/Signal/password",
-                         szPassword, set))
-            SetSignalPassword(szPassword);
-    }
+    SetIce(set.value("ICE/Enable", GetIce()).toBool());  
     SetPeerUser(set.value("ICE/Peer/User", GetPeerUser()).toString());
-    SetStunServer(set.value("ICE/Stun/Server", GetStunServer()).toString());
-    SetStunPort(set.value("ICE/Stun/Port", GetStunPort()).toUInt());
-    SetTurnServer(set.value("ICE/Turn/Server", GetTurnServer()).toString());
-    SetTurnPort(set.value("ICE/Turn/Port", GetTurnPort()).toUInt());
-    SetTurnUser(set.value("ICE/Turn/User", GetTurnUser()).toString());
-    if(GetSavePassword())
-    {
-        QString szPassword;
-        if(!LoadPassword(tr("Ice turn password"), "ICE/Turn/password",
-                         szPassword, set))
-            SetTurnPassword(szPassword);
-    }
 
     return nRet;
 }
@@ -84,17 +58,7 @@ int CParameterRabbitVNC::Save(QSettings &set)
     set.setValue("RabbitVNC/NoJpeg", GetNoJpeg());
     set.setValue("RabbitVNC/QualityLevel", GetQualityLevel());
     set.setValue("ICE/Enable", GetIce());
-    set.setValue("ICE/Signal/Server", GetSignalServer());
-    set.setValue("ICE/Signal/Port", GetSignalPort());
-    set.setValue("ICE/Signal/User", GetSignalUser());
-    SavePassword("ICE/Signal/password", GetSignalPassword(), set);
     set.setValue("ICE/Peer/User", GetPeerUser());
-    set.setValue("ICE/Stun/Server", GetStunServer());
-    set.setValue("ICE/Stun/Port", GetStunPort());
-    set.setValue("ICE/Turn/Server", GetTurnServer());
-    set.setValue("ICE/Turn/Port", GetTurnPort());
-    set.setValue("ICE/Turn/User", GetTurnUser());
-    SavePassword("ICE/Turn/password", GetTurnPassword(), set);
     return nRet;
 }
 
@@ -102,10 +66,6 @@ bool CParameterRabbitVNC::GetCheckCompleted()
 {
     if(GetIce())
     {
-        if(GetSignalServer().isEmpty() || GetSignalPort() <= 0
-                || GetSignalUser().isEmpty() || GetSignalPassword().isEmpty()
-                || GetStunServer().isEmpty() || GetStunPort() <= 0)
-            return false;
         return true;
     }
     
@@ -224,46 +184,6 @@ void CParameterRabbitVNC::SetIce(bool newIce)
     m_bIce = newIce;
 }
 
-const QString &CParameterRabbitVNC::GetSignalServer() const
-{
-    return m_szSignalServer;
-}
-
-void CParameterRabbitVNC::SetSignalServer(const QString &newSignalServer)
-{
-    m_szSignalServer = newSignalServer;
-}
-
-quint16 CParameterRabbitVNC::GetSignalPort() const
-{
-    return m_nSignalPort;
-}
-
-void CParameterRabbitVNC::SetSignalPort(quint16 newSignalPort)
-{
-    m_nSignalPort = newSignalPort;
-}
-
-const QString &CParameterRabbitVNC::GetSignalUser() const
-{
-    return m_szSignalUser;
-}
-
-void CParameterRabbitVNC::SetSignalUser(const QString &newSignalUser)
-{
-    m_szSignalUser = newSignalUser;
-}
-
-const QString &CParameterRabbitVNC::GetSignalPassword() const
-{
-    return m_szSignalPassword;
-}
-
-void CParameterRabbitVNC::SetSignalPassword(const QString &newSignalPassword)
-{
-    m_szSignalPassword = newSignalPassword;
-}
-
 const QString &CParameterRabbitVNC::GetPeerUser() const
 {
     return m_szPeerUser;
@@ -272,64 +192,4 @@ const QString &CParameterRabbitVNC::GetPeerUser() const
 void CParameterRabbitVNC::SetPeerUser(const QString &newPeerUser)
 {
     m_szPeerUser = newPeerUser;
-}
-
-const QString &CParameterRabbitVNC::GetStunServer() const
-{
-    return m_szStunServer;
-}
-
-void CParameterRabbitVNC::SetStunServer(const QString &newStunServer)
-{
-    m_szStunServer = newStunServer;
-}
-
-quint16 CParameterRabbitVNC::GetStunPort() const
-{
-    return m_nStunPort;
-}
-
-void CParameterRabbitVNC::SetStunPort(quint16 newStunPort)
-{
-    m_nStunPort = newStunPort;
-}
-
-const QString &CParameterRabbitVNC::GetTurnServer() const
-{
-    return m_szTurnServer;
-}
-
-void CParameterRabbitVNC::SetTurnServer(const QString &newTurnServer)
-{
-    m_szTurnServer = newTurnServer;
-}
-
-quint16 CParameterRabbitVNC::GetTurnPort() const
-{
-    return m_nTurnPort;
-}
-
-void CParameterRabbitVNC::SetTurnPort(quint16 newTurnPort)
-{
-    m_nTurnPort = newTurnPort;
-}
-
-const QString &CParameterRabbitVNC::GetTurnUser() const
-{
-    return m_szTurnUser;
-}
-
-void CParameterRabbitVNC::SetTurnUser(const QString &newTurnUser)
-{
-    m_szTurnUser = newTurnUser;
-}
-
-const QString &CParameterRabbitVNC::GetTurnPassword() const
-{
-    return m_szTurnPassword;
-}
-
-void CParameterRabbitVNC::SetTurnPassword(const QString &newTurnPassword)
-{
-    m_szTurnPassword = newTurnPassword;
 }

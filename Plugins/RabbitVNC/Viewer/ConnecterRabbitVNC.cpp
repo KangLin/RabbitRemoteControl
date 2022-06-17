@@ -30,8 +30,8 @@ QString CConnecterRabbitVNC::ServerName()
     {
         if(m_Para.GetIce())
         {
-            if(!m_Para.GetSignalUser().isEmpty())
-                return m_Para.GetSignalUser();
+            if(!m_Para.GetPeerUser().isEmpty())
+                return m_Para.GetPeerUser();
         }
         else {
             if(!GetParameter()->GetHost().isEmpty())

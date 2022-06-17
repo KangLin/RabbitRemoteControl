@@ -43,10 +43,8 @@
 #include "RabbitCommonLog.h"
 
 #ifdef HAVE_ICE
+#include "ICE/Ice.h"
 #include "ICE/ChannelIce.h"
-#endif
-#ifdef HAVE_QXMPP
-#include "ICE/IceSignalQxmpp.h"
 #endif
 
 // 8 colours (1 bit per component)
@@ -114,32 +112,29 @@ int CConnectRabbitVNC::OnInit()
 {
     int nRet = 1;
     if(m_pPara->GetIce())
-    {
-#ifdef HAVE_ICE
         nRet = IceInit();
-#endif
-    }
     else
         nRet = SocketInit();
     if(nRet) return nRet;
     return 1;
 }
 
-#ifdef HAVE_ICE
 int CConnectRabbitVNC::IceInit()
 {
-    if(!g_pSignal || !g_pSignal->IsOpen())
+#ifdef HAVE_ICE
+    CIceSignal* pSignal = CICE::Instance()->GetSignal().data();
+    if(!pSignal || !pSignal->IsOpen())
     {
         LOG_MODEL_ERROR("CConnectRabbitVNC",
                         "The g_pSignal is null. or signal don't connect server");
         return -1;
     }
-
+    
     LOG_MODEL_INFO("CConnectRabbitVnc", "Connected to signal server:%s:%d; user:%s",
-                   m_pPara->GetSignalServer().toStdString().c_str(),
-                   m_pPara->GetSignalPort(),
-                   m_pPara->GetSignalUser().toStdString().c_str());
-    auto channel = QSharedPointer<CChannelIce>(new CChannelIce(g_pSignal));
+                   CICE::Instance()->GetParameter()->getSignalServer().toStdString().c_str(),
+                   CICE::Instance()->GetParameter()->getSignalPort(),
+                   CICE::Instance()->GetParameter()->getSignalUser().toStdString().c_str());
+    auto channel = QSharedPointer<CChannelIce>(new CChannelIce(pSignal));
     if(!channel)
     {
         LOG_MODEL_ERROR("CConnectRabbitVnc", "new CDataChannelIce fail");
@@ -147,27 +142,28 @@ int CConnectRabbitVNC::IceInit()
     }
     m_DataChannel = channel;
     SetChannelConnect(channel);
-
+    
     rtc::Configuration config;
-    rtc::IceServer stun(m_pPara->GetStunServer().toStdString().c_str(),
-                        m_pPara->GetStunPort());
-    rtc::IceServer turn(m_pPara->GetTurnServer().toStdString().c_str(),
-                        m_pPara->GetTurnPort(),
-                        m_pPara->GetTurnUser().toStdString().c_str(),
-                        m_pPara->GetTurnPassword().toStdString().c_str());
+    rtc::IceServer stun(CICE::Instance()->GetParameter()->getStunServer().toStdString().c_str(),
+                        CICE::Instance()->GetParameter()->getStunPort());
+    rtc::IceServer turn(CICE::Instance()->GetParameter()->getTurnServer().toStdString().c_str(),
+                        CICE::Instance()->GetParameter()->getTurnPort(),
+                        CICE::Instance()->GetParameter()->getTurnUser().toStdString().c_str(),
+                        CICE::Instance()->GetParameter()->getTurnPassword().toStdString().c_str());
     config.iceServers.push_back(stun);
     config.iceServers.push_back(turn);
     channel->SetConfigure(config);
-
-    bool bRet = channel->open(m_pPara->GetSignalUser(),
+    
+    bool bRet = channel->open(CICE::Instance()->GetParameter()->getSignalUser(),
                               m_pPara->GetPeerUser(), true);
     if(!bRet)
     {
         emit sigError(-1, "Open channel fail");
     }
+    
+#endif
     return 0;
 }
-#endif
 
 int CConnectRabbitVNC::SocketInit()
 {
@@ -249,9 +245,6 @@ int CConnectRabbitVNC::SetChannelConnect(QSharedPointer<CChannel> channl)
 
 int CConnectRabbitVNC::OnClean()
 {
-#ifdef HAVE_ICE
-    if(g_pSignal) g_pSignal->Close();
-#endif
     close();
     setStreams(nullptr, nullptr);
     if(m_DataChannel)

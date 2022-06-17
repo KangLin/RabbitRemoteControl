@@ -20,6 +20,9 @@ public:
     
     //! [Save parameters]
 public Q_SLOTS:
+    /*!
+     * \brief Save parameter
+     */
     void slotSave();
     //! [Save parameters]
 

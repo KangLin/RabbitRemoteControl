@@ -7,12 +7,13 @@
 #include <string>
 
 #include "rtc/rtc.hpp"
+#include "channel_export.h"
 
 /*!
  * \brief The ICE signal
  * \details The signal is base on [libdatachannel](https://github.com/paullouisageneau/libdatachannel)
  */
-class CIceSignal : public QObject
+class CHANNEL_EXPORT CIceSignal : public QObject
 {
     Q_OBJECT
 
@@ -76,7 +77,5 @@ Q_SIGNALS:
                         const QString& type,
                         const QString& sdp);
 };
-
-extern CIceSignal* g_pSignal;
 
 #endif // CSIGNAL_H

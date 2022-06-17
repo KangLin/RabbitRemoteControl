@@ -12,7 +12,7 @@
 #include <QMutex>
 #include <QSharedPointer>
 
-class CChannelIce : public CChannel
+class CHANNEL_EXPORT CChannelIce : public CChannel
 {
     Q_OBJECT
 

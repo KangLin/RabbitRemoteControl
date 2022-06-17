@@ -10,7 +10,9 @@
 #ifdef HAVE_QXMPP
     #include "QXmppUtils.h"
 #endif
-
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
 #undef SetPort
 
 CDlgSettingsRabbitVNC::CDlgSettingsRabbitVNC(CParameterRabbitVNC *pPara, QWidget *parent) :
@@ -44,60 +46,21 @@ QString jidToDomain(const QString &jid)
 }
 #endif
 
-void CDlgSettingsRabbitVNC::on_pushButton_clicked()
+void CDlgSettingsRabbitVNC::on_pbOk_clicked()
 {
     if(!m_pPara)
         reject();
     
     // Server
-    if(ui->gpIce->isChecked())
+    bool ice = CICE::Instance()->GetParameter()->getIce();
+    if(ui->gpIce->isChecked() && ice)
     {
         m_pPara->SetIce(true);
-        m_pPara->SetSignalServer(ui->leIceSignalServer->text());
-        m_pPara->SetSignalPort(ui->spSignalPort->value());
-        m_pPara->SetSignalUser(ui->leSignalUser->text());
-        m_pPara->SetSignalPassword(ui->leSignalPassword->text());
         m_pPara->SetPeerUser(ui->lePeerUser->text());
-#ifdef HAVE_QXMPP
-        if(ui->leDomain->text().isEmpty()
-                && jidToDomain(m_pPara->GetSignalUser()).isEmpty())
-        {
-            QMessageBox::critical(this, tr("Error"), tr("Please set domain"));
-            return;
-        }
-        if(jidToDomain(m_pPara->GetSignalUser()).isEmpty()
-                && !ui->leDomain->text().isEmpty())
-        {
-            m_pPara->SetSignalUser(m_pPara->GetSignalUser()
-                                   + "@" + ui->leDomain->text());
-        }
-        if(QXmppUtils::jidToResource(m_pPara->GetSignalUser()).isEmpty())
-        {
-            m_pPara->SetSignalUser(m_pPara->GetSignalUser() + "/"
-                             + QXmppUtils::jidToUser(m_pPara->GetSignalUser()));
-        }
-        if(jidToDomain(m_pPara->GetPeerUser()).isEmpty()
-                && !ui->leDomain->text().isEmpty())
-        {
-            m_pPara->SetPeerUser(m_pPara->GetPeerUser()
-                                 + "@" + ui->leDomain->text());
-        }
-        if(QXmppUtils::jidToResource(m_pPara->GetPeerUser()).isEmpty())
-        {
-            m_pPara->SetPeerUser(m_pPara->GetPeerUser()
-                         + "/" + QXmppUtils::jidToUser(m_pPara->GetPeerUser()));
-        }
-#endif
-        m_pPara->SetStunServer(ui->leStunServer->text());
-        m_pPara->SetStunPort(ui->spStunPort->value());
-        m_pPara->SetTurnServer(ui->leTurnServer->text());
-        m_pPara->SetTurnPort(ui->spTurnPort->value());
-        m_pPara->SetTurnUser(ui->leTurnUser->text());
-        m_pPara->SetTurnPassword(ui->leTurnPassword->text());
     } else {
         m_pPara->SetIce(false);
     }
-    
+
     m_pPara->SetHost(ui->leServer->text());
     m_pPara->SetPort(ui->spPort->value());
     m_pPara->SetName(ui->leName->text());
@@ -149,7 +112,7 @@ void CDlgSettingsRabbitVNC::on_pushButton_clicked()
     accept();
 }
 
-void CDlgSettingsRabbitVNC::on_pushButton_2_clicked()
+void CDlgSettingsRabbitVNC::on_pbCancle_clicked()
 {
     reject();
 }
@@ -195,32 +158,26 @@ void CDlgSettingsRabbitVNC::on_cbJPEG_stateChanged(int arg1)
 void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event);
-    
+
     // Server
-    if(m_pPara->GetIce())
+    bool ice = CICE::Instance()->GetParameter()->getIce();
+    if(ice)
     {
-        ui->gpIce->setChecked(true);
-        ui->leServer->setEnabled(false);
-        ui->spPort->setEnabled(false);
+        if(m_pPara->GetIce())
+        {
+            ui->gpIce->setChecked(true);
+            ui->leServer->setEnabled(false);
+            ui->spPort->setEnabled(false);
+        } else {
+            ui->gpIce->setChecked(false);
+        }
     } else {
-        ui->gpIce->setChecked(false);
+        ui->gpIce->setEnabled(false);
     }
+
     ui->leServer->setText(m_pPara->GetHost());
     ui->spPort->setValue(m_pPara->GetPort());
-    ui->leIceSignalServer->setText(m_pPara->GetSignalServer());
-    ui->spSignalPort->setValue(m_pPara->GetSignalPort());
-    ui->leSignalUser->setText(m_pPara->GetSignalUser());
-#ifdef HAVE_QXMPP
-    ui->leDomain->setText(jidToDomain(m_pPara->GetSignalUser()));
-#endif
-    ui->leSignalPassword->setText(m_pPara->GetSignalPassword());
     ui->lePeerUser->setText(m_pPara->GetPeerUser());
-    ui->leStunServer->setText(m_pPara->GetStunServer());
-    ui->spStunPort->setValue(m_pPara->GetStunPort());
-    ui->leTurnServer->setText(m_pPara->GetTurnServer());
-    ui->spTurnPort->setValue(m_pPara->GetTurnPort());
-    ui->leTurnUser->setText(m_pPara->GetTurnUser());
-    ui->leTurnPassword->setText(m_pPara->GetTurnPassword());
     
     ui->leName->setText(m_pPara->GetName());
     ui->leUserName->setText(m_pPara->GetUser());

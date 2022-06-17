@@ -11,12 +11,10 @@ project(Channel LANGUAGES CXX)
 
 list(APPEND CHANNEL_INSTALL_HEADER_FILES
     Channel.h
-    ICE/ParameterSignal.h
     )
 
 list(APPEND CHANNEL_SOURCE_FILES
     Channel.cpp
-    ICE/ParameterSignal.cpp
     )
 
 find_package(LibDataChannel)
@@ -31,16 +29,18 @@ if(LibDataChannel_FOUND)
     endif()
     list(APPEND CHANNEL_SOURCE_FILES
         ICE/ChannelIce.cpp
-        ICE/IceSignal.cpp)
+        ICE/IceSignal.cpp
+        ICE/Ice.cpp)
     list(APPEND CHANNEL_INSTALL_HEADER_FILES
-        ICE/IceSignal.h)
+        ICE/IceSignal.h
+        ICE/Ice.h)
     list(APPEND CHANNEL_HEADER_FILES
         ICE/ChannelIce.h
         )
     if(UNIX)
         install_targets(TARGETS LibDataChannel::datachannel)
     endif()
-    
+
     find_package(QXmpp)
     if(QXmpp_FOUND)
         list(APPEND CHANNEL_DEFINITIONS HAVE_QXMPP)
@@ -51,16 +51,30 @@ if(LibDataChannel_FOUND)
             ICE/IceSignalQXmppIq.cpp
             ICE/IceSignalQXmppManager.cpp
             ICE/IceSignalQxmpp.cpp
+            ICE/ParameterICE.cpp
             )
         list(APPEND CHANNEL_HEADER_FILES
             ICE/IceSignalQXmppIq.h
             ICE/IceSignalQXmppManager.h
             ICE/IceSignalQxmpp.h
+            ICE/ParameterICE.h
             )
+    endif()
+
+    if(WITH_GUI)
+        find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+        if(Qt${QT_VERSION_MAJOR}_FOUND)
+            list(APPEND CHANNEL_SRC_LIBS Qt${QT_VERSION_MAJOR}::Widgets)
+        endif()
+        list(APPEND CHANNEL_SOURCE_FILES ICE/FrmParameterICE.cpp)
+        list(APPEND CHANNEL_INSTALL_HEADER_FILES ICE/FrmParameterICE.h)
+        list(APPEND CHANNEL_UIS ICE/FrmParameterICE.ui)
     endif()
 endif()
 
 list(APPEND CHANNEL_HEADER_FILES ${CHANNEL_INSTALL_HEADER_FILES})
+
+list(APPEND CHANNEL_RCC_FILES)
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network)
 if(Qt${QT_VERSION_MAJOR}_FOUND)
@@ -71,8 +85,10 @@ list(APPEND CHANNEL_SRC_LIBS RabbitCommon)
 message("CHANNEL_SRC_LIBS: ${CHANNEL_SRC_LIBS}")
 ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${CHANNEL_SOURCE_FILES} ${CHANNEL_HEADER_FILES}
+        ${CHANNEL_UIS} ${CHANNEL_RCC_FILES}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ICE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     INSTALL_HEADER_FILES ${CHANNEL_INSTALL_HEADER_FILES}
     LIBS ${CHANNEL_SRC_LIBS}

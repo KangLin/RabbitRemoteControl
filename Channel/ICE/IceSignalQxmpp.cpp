@@ -7,8 +7,6 @@
 
 int g_CIceSignalQXmppIq = qRegisterMetaType<CIceSignalQXmppIq>("CIceSignalQXmppIq");
 
-CIceSignal* g_pSignal = new CIceSignalQxmpp();
-
 CIceSignalQxmpp::CIceSignalQxmpp(QObject *parent)
     : CIceSignal(parent),
       m_Manager(this)

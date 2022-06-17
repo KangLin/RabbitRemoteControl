@@ -5,6 +5,7 @@
 #include "mainwindow.h"
 #include "ManagePassword.h"
 #include "RabbitCommonDir.h"
+#include "Ice.h"
 
 CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *parent) :
     QDialog(parent),
@@ -12,6 +13,16 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
     m_pParameters(pPara)
 {
     ui->setupUi(this);
+
+    QWidget* pWidget = CICE::Instance()->GetWidget(this);
+    if(pWidget)
+    {
+        ui->tabWidget->addTab(pWidget, pWidget->windowTitle());
+        bool check = false;
+        check = connect(this, SIGNAL(accepted()),
+                        pWidget, SLOT(slotSave()));
+        Q_ASSERT(check);
+    }
 
     ui->leShotScreenSavepath->setText(m_pParameters->GetScreenShotPath());
     ui->cbShotRemoteDesktop->setChecked(m_pParameters->GetScreenShot());

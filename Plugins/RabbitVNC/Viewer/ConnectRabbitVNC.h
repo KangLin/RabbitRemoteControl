@@ -16,10 +16,6 @@
 
 #include <QEventLoop>
 
-#ifdef HAVE_ICE
-    #include "ICE/IceSignal.h"
-#endif
-
 class CConnecterRabbitVNC;
 class CConnectRabbitVNC : public CConnect,
         public rfb::CConnection,
@@ -46,7 +42,6 @@ public:
     virtual void initDone() override;
 
     // CMsgHandler interface
-public:
     virtual void framebufferUpdateStart() override;
     virtual void framebufferUpdateEnd() override;
     virtual bool dataRect(const rfb::Rect &r, int encoding) override;
@@ -97,9 +92,7 @@ private:
     int SocketInit();
     int SetChannelConnect(QSharedPointer<CChannel> channl);
     
-#ifdef HAVE_ICE
     int IceInit();
-#endif
 };
 
 #endif // CConnectRabbitVnc_H
