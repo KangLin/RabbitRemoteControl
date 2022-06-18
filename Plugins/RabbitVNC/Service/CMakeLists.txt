@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 if(NOT TARGET Service)
     return()
 endif()
-SET(SRC_LIBS Channel RabbitVNC Service)
+SET(SRC_LIBS RabbitVNC Service)
 SET(SOURCE_FILES
     ParameterServiceRabbitVNC.cpp
     PluginServiceRabbitVNC.cpp
