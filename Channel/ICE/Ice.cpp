@@ -49,7 +49,7 @@ CParameterICE* CICE::GetParameter()
     return &m_Parameter;
 }
 
-QWidget* CICE::GetWidget(QWidget *parent)
+QWidget* CICE::GetParameterWidget(QWidget *parent)
 {
     return new CFrmParameterICE(GetParameter(), parent);
 }

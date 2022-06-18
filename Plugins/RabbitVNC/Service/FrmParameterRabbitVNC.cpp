@@ -1,8 +1,8 @@
 #include "FrmParameterRabbitVNC.h"
 #include "ui_FrmParameterRabbitVNC.h"
 
-CFrmParameterRabbitVNC::CFrmParameterRabbitVNC(CParameterServiceRabbitVNC *para) :
-    QWidget(nullptr),
+CFrmParameterRabbitVNC::CFrmParameterRabbitVNC(CParameterServiceRabbitVNC *para, QWidget *parent) :
+    QWidget(parent),
     ui(new Ui::CFrmParameterRabbitVNC),
     m_pParameters(para)
 {

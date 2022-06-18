@@ -15,7 +15,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
 {
     ui->setupUi(this);
 
-    QWidget* pWidget = CICE::Instance()->GetWidget(this);
+    QWidget* pWidget = CICE::Instance()->GetParameterWidget(this);
     if(pWidget)
     {
         ui->tabWidget->addTab(pWidget, pWidget->windowTitle());

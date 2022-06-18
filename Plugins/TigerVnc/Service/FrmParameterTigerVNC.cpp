@@ -1,8 +1,8 @@
 #include "FrmParameterTigerVNC.h"
 #include "ui_FrmParameterTigerVNC.h"
 
-CFrmParameterTigerVNC::CFrmParameterTigerVNC(CParameterServiceTigerVNC *para) :
-    QWidget(nullptr),
+CFrmParameterTigerVNC::CFrmParameterTigerVNC(CParameterServiceTigerVNC *para, QWidget *parent) :
+    QWidget(parent),
     ui(new Ui::CFrmParameterTigerVNC),
     m_pParameters(para)
 {

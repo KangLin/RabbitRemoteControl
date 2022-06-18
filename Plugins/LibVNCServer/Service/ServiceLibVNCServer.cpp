@@ -24,10 +24,10 @@ CServiceLibVNCServer::~CServiceLibVNCServer()
 }
 
 #ifdef HAVE_GUI
-QWidget* CServiceLibVNCServer::GetParameterWidget(void* p)
+QWidget* CServiceLibVNCServer::GetParameterWidget(QWidget* parent)
 {
     return new CFrmParameterServiceLibVNC(
-                dynamic_cast<CParameterServiceLibVNC*>(GetParameters()));
+                dynamic_cast<CParameterServiceLibVNC*>(GetParameters()), parent);
 }
 #endif
 

@@ -58,7 +58,7 @@ void CMainWindow::on_pbSave_clicked()
 
 int CMainWindow::InitTab()
 {
-    QWidget* pIce = CICE::Instance()->GetWidget(this);
+    QWidget* pIce = CICE::Instance()->GetParameterWidget(this);
     if(pIce)
     {
         QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
@@ -84,7 +84,7 @@ int CMainWindow::InitTab()
         if(!pService) continue;
         pService->LoadConfigure();
         m_Service.push_back(pService);
-        QWidget* w = pService->GetParameterWidget();
+        QWidget* w = pService->GetParameterWidget(ui->twConfigure);
         if(w)
         {
             // parameter widget must has slotAccept()

@@ -62,10 +62,10 @@ CServiceRabbitVNC::~CServiceRabbitVNC()
 }
 
 #ifdef HAVE_GUI
-QWidget* CServiceRabbitVNC::GetParameterWidget(void *p)
+QWidget* CServiceRabbitVNC::GetParameterWidget(QWidget *parent)
 {
     return new CFrmParameterRabbitVNC(
-                dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters()));
+                dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters()), parent);
 }
 #endif
 

@@ -67,10 +67,10 @@ CServiceTigerVNC::~CServiceTigerVNC()
 }
 
 #ifdef HAVE_GUI
-QWidget* CServiceTigerVNC::GetParameterWidget(void* p)
+QWidget* CServiceTigerVNC::GetParameterWidget(QWidget* parent)
 {
     return new CFrmParameterTigerVNC(
-                dynamic_cast<CParameterServiceTigerVNC*>(GetParameters()));
+                dynamic_cast<CParameterServiceTigerVNC*>(GetParameters()), parent);
 }
 #endif
 

@@ -13,7 +13,7 @@ class CFrmParameterTigerVNC : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmParameterTigerVNC(CParameterServiceTigerVNC *para = nullptr);
+    explicit CFrmParameterTigerVNC(CParameterServiceTigerVNC *para, QWidget *parent = nullptr);
     ~CFrmParameterTigerVNC();
     
     //! [Accept parameters]

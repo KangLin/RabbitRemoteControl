@@ -13,7 +13,7 @@ class CFrmParameterServiceLibVNC : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmParameterServiceLibVNC(CParameterServiceLibVNC *para = nullptr);
+    explicit CFrmParameterServiceLibVNC(CParameterServiceLibVNC *para, QWidget* parent = nullptr);
     ~CFrmParameterServiceLibVNC();
     
     //! [Accept parameters]

@@ -1,8 +1,8 @@
 #include "FrmParameterServiceLibVNC.h"
 #include "ui_FrmParameterServiceLibVNC.h"
 
-CFrmParameterServiceLibVNC::CFrmParameterServiceLibVNC(CParameterServiceLibVNC *para) :
-    QWidget(nullptr),
+CFrmParameterServiceLibVNC::CFrmParameterServiceLibVNC(CParameterServiceLibVNC *para, QWidget* parent) :
+    QWidget(parent),
     ui(new Ui::CFrmParameterServiceLibVNC),
     m_pParameters(para)
 {

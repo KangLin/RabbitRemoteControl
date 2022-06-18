@@ -17,7 +17,7 @@ public:
     virtual ~CServiceFreeRDP();
 
 #ifdef HAVE_GUI
-    virtual QWidget* GetParameterWidget(void* p = nullptr) override;
+    virtual QWidget* GetParameterWidget(QWidget* parent = nullptr) override;
 #endif
 
 protected:

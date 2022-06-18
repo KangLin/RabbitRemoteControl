@@ -15,7 +15,7 @@ class CFrmParameterFreeRDP : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmParameterFreeRDP(CParameterServiceFreeRDP *para);
+    explicit CFrmParameterFreeRDP(CParameterServiceFreeRDP *para, QWidget* parent = nullptr);
     ~CFrmParameterFreeRDP();
     
     //! [Accept parameters]

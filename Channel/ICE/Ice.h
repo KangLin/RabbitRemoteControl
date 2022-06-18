@@ -17,7 +17,7 @@ public:
     
     QSharedPointer<CIceSignal> GetSignal();
     CParameterICE* GetParameter();
-    QWidget* GetWidget(QWidget* parent);
+    QWidget* GetParameterWidget(QWidget* parent = nullptr);
     
 public Q_SLOTS:
     void slotIceChanged();

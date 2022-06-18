@@ -54,7 +54,7 @@ public:
      * \~
      * \snippet Plugins/FreeRDP/Service/FrmParameterFreeRDP.h Accept parameters
      */   
-    virtual QWidget* GetParameterWidget(void* p = nullptr) = 0;
+    virtual QWidget* GetParameterWidget(QWidget* parent = nullptr) = 0;
 #endif
     
     virtual int LoadConfigure(const QString& szDir = QString());

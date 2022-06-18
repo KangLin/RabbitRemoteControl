@@ -67,10 +67,10 @@ int CServiceFreeRDP::OnClean()
 }
 
 #ifdef HAVE_GUI
-QWidget* CServiceFreeRDP::GetParameterWidget(void *p)
+QWidget* CServiceFreeRDP::GetParameterWidget(QWidget *parent)
 {
     return new CFrmParameterFreeRDP(
-                dynamic_cast<CParameterServiceFreeRDP*>(GetParameters()));
+                dynamic_cast<CParameterServiceFreeRDP*>(GetParameters()), parent);
 }
 #endif
 

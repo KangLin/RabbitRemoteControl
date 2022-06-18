@@ -4,8 +4,8 @@
 #include "ui_FrmParameterFreeRDP.h"
 #include "RabbitCommonLog.h"
 
-CFrmParameterFreeRDP::CFrmParameterFreeRDP(CParameterServiceFreeRDP *para)
-    : QWidget(nullptr),
+CFrmParameterFreeRDP::CFrmParameterFreeRDP(CParameterServiceFreeRDP *para, QWidget* parent)
+    : QWidget(parent),
     ui(new Ui::CFrmParameterFreeRDP),
     m_Para(para)
 {

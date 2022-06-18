@@ -13,7 +13,7 @@ class CFrmParameterRabbitVNC : public QWidget
     Q_OBJECT
     
 public:
-    explicit CFrmParameterRabbitVNC(CParameterServiceRabbitVNC *para = nullptr);
+    explicit CFrmParameterRabbitVNC(CParameterServiceRabbitVNC *para, QWidget* parent = nullptr);
     ~CFrmParameterRabbitVNC();
     
     //! [Accept parameters]
