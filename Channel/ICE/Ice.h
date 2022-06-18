@@ -20,6 +20,8 @@ public:
     QWidget* GetParameterWidget(QWidget* parent = nullptr);
     
 public Q_SLOTS:
+    void slotStart();
+    void slotStop();
     void slotIceChanged();
     void slotConnected();
     void slotDisconnected();

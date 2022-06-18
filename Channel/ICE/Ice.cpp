@@ -25,11 +25,11 @@ CICE::CICE(QObject *parent)
     }
 #endif
 
-#ifdef HAVE_ICE
-    check = connect(GetParameter(), SIGNAL(sigIceChanged()),
-                    this, SLOT(slotIceChanged()));
-    Q_ASSERT(check);
-#endif
+//#ifdef HAVE_ICE
+//    check = connect(GetParameter(), SIGNAL(sigIceChanged()),
+//                    this, SLOT(slotIceChanged()));
+//    Q_ASSERT(check);
+//#endif
 }
 
 CICE* CICE::Instance()
@@ -66,6 +66,28 @@ void CICE::slotIceChanged()
         signal->Open(pPara->getSignalServer(), pPara->getSignalPort(),
                      pPara->getSignalUser(), pPara->getSignalPassword());
     }
+}
+
+void CICE::slotStart()
+{
+    QSharedPointer<CIceSignal> signal = GetSignal();
+    if(!signal) return;
+    if(signal->IsConnected())
+        signal->Close();
+    CParameterICE* pPara = GetParameter();
+    if(pPara->getIce())
+    {
+        signal->Open(pPara->getSignalServer(), pPara->getSignalPort(),
+                     pPara->getSignalUser(), pPara->getSignalPassword());
+    }
+}
+
+void CICE::slotStop()
+{
+    QSharedPointer<CIceSignal> signal = GetSignal();
+    if(!signal) return;
+    if(signal->IsConnected())
+        signal->Close();
 }
 
 void CICE::slotConnected()

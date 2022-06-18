@@ -18,6 +18,7 @@ set(SRC_PRIVATE_LIBS)
 set(INSTALL_HEADER_FILES
     ManagerPlugins.h
     PluginService.h
+    PluginServicThread.h
     ServiceManager.h
     InputDevice.h
     Screen.h
@@ -34,6 +35,7 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
     PluginService.cpp
+    PluginServicThread.cpp
     ServiceManager.cpp
     Service.cpp
     ServiceThread.cpp

@@ -71,7 +71,6 @@ QWidget* CServiceTigerVNC::GetParameterWidget(QWidget* parent)
 
 int CServiceTigerVNC::OnInit()
 {
-    int nRet = 0;
     CParameterServiceTigerVNC* p =
             dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
     if(!p)

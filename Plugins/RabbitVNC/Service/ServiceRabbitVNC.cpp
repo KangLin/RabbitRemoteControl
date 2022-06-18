@@ -71,7 +71,6 @@ QWidget* CServiceRabbitVNC::GetParameterWidget(QWidget *parent)
 
 int CServiceRabbitVNC::OnInit()
 {
-    int nRet = 0;
     CParameterServiceRabbitVNC* p =
             dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters());
     if(!p)

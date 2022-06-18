@@ -92,7 +92,7 @@ int CServiceLibVNCServer::OnInit()
     
     /* initialize the server */
     rfbInitServer(m_rfbScreen);
-    return 0;
+    return 0; //Use OnProcess (non-Qt event loop)
 }
 
 int CServiceLibVNCServer::OnClean()

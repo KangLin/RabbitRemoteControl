@@ -47,7 +47,9 @@ int CServiceFreeRDP::OnInit()
 		LOG_MODEL_ERROR("CServiceFreeRDP", "Failed to start server.");
 		return nRet;
 	}
-    
+     
+    // Don't use OnProcess (qt event loop)
+    // Because freerdp has new thread process loop
     return 1;
 }
 

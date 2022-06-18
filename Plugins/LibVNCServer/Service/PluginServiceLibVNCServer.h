@@ -1,10 +1,10 @@
 #ifndef CPLUGINSERVICELIBVNCSERVER_H
 #define CPLUGINSERVICELIBVNCSERVER_H
 
-#include "PluginService.h"
+#include "PluginServiceThread.h"
 #include <QTranslator>
 
-class CPluginServiceLibVNCServer : public CPluginService
+class CPluginServiceLibVNCServer : public CPluginServiceThread
 {
     Q_OBJECT
     Q_INTERFACES(CPluginService)

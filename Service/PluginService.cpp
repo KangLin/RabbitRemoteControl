@@ -2,7 +2,6 @@
 
 #include "PluginService.h"
 
-#include "ServiceThread.h"
 #include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 
@@ -12,10 +11,8 @@
 #include <QCoreApplication>
 
 CPluginService::CPluginService(QObject *parent)
-    : QObject(parent),
-    m_pThread(nullptr)
-{
-}
+    : QObject(parent)
+{}
 
 CPluginService::~CPluginService()
 {
@@ -54,20 +51,15 @@ const QString CPluginService::DisplayName() const
 
 void CPluginService::Start()
 {
-    if(!m_pThread)
-    {
-        m_pThread = new CServiceThread(this, this);    
-    }
-
-    if(m_pThread)
-        m_pThread->start();
+    if(!m_Service)
+        m_Service =  QSharedPointer<CService>(NewService());
+    if(m_Service)
+       m_Service->Init(); 
 }
 
 void CPluginService::Stop()
 {
-    if(m_pThread)
-    {
-        m_pThread->quit();
-        m_pThread = nullptr;
-    }
+    if(m_Service)
+       m_Service->Clean();
+    m_Service.reset();
 }

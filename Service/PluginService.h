@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include <QTranslator>
+#include <QSharedPointer>
 
 #include "Service.h"
 #include "Screen.h"
@@ -12,14 +13,14 @@
 class CServiceThread;
 
 /*!
- *  \~chinese 服务插件接口。默认为每个插件启动一个线程进行处理。
+ *  \~chinese 服务插件接口。
  *  
  *  \~english
- *  \brief The service plugin interface. The default start a thread.
+ *  \brief The service plugin interface. 
  *  
  *  \~
  *  \ingroup LIBAPI_SERVICE
- *  \see CService CServiceThread CServiceManager
+ *  \see CService CServiceManager
  */
 class SERVICE_EXPORT CPluginService : public QObject
 {
@@ -48,8 +49,8 @@ public:
     virtual const QIcon Icon() const;
     
     /*!
-     * \brief Default start a new thread to process Service
-     * \see CService CServiceThread
+     * \brief Default start a Service
+     * \see CService
      */
     virtual void Start();
     virtual void Stop();
@@ -60,8 +61,7 @@ public:
     int InitTranslator();
     
 private:
-    CServiceThread* m_pThread;
-    
+    QSharedPointer<CService> m_Service;
     QTranslator m_Translator;
 };
 
