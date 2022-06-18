@@ -21,11 +21,15 @@ find_package(LibDataChannel)
 if(LibDataChannel_FOUND)
     list(APPEND CHANNEL_DEFINITIONS HAVE_ICE)
     if (TARGET LibDataChannel::LibDataChannel)
-        list(APPEND CHANNEL_SRC_LIBS LibDataChannel::LibDataChannel)
+        set(libdatachannel_lib LibDataChannel::LibDataChannel)
     elseif (TARGET LibDatachannel::datachannel)
-        list(APPEND CHANNEL_SRC_LIBS LibDatachannel::datachannel)
+        set(libdatachannel_lib LibDatachannel::datachannel)
     else()
-        list(APPEND CHANNEL_SRC_LIBS LibDataChannel::datachannel)
+        set(libdatachannel_lib LibDataChannel::datachannel)
+    endif()
+    list(APPEND CHANNEL_SRC_LIBS ${libdatachannel_lib})
+    if(UNIX)
+        install_targets(TARGETS ${libdatachannel_lib})
     endif()
     list(APPEND CHANNEL_SOURCE_FILES
         ICE/ChannelIce.cpp
@@ -37,9 +41,6 @@ if(LibDataChannel_FOUND)
     list(APPEND CHANNEL_HEADER_FILES
         ICE/ChannelIce.h
         )
-    if(UNIX)
-        install_targets(TARGETS LibDataChannel::datachannel)
-    endif()
 
     find_package(QXmpp)
     if(QXmpp_FOUND)
