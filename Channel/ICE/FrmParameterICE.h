@@ -27,13 +27,17 @@ public Q_SLOTS:
 
 private slots:
     void on_cbEnableICE_stateChanged(int arg1);
+    void on_pbConnect_clicked(bool checked);
     
 private:
-    void Init();
     void EnableCompone(bool bEnable);
     
     Ui::CFrmParameterICE *ui;
     CParameterICE* m_pParameters;
+    
+    // QWidget interface
+protected:
+    virtual void showEvent(QShowEvent *event) override;
 };
 
 #endif // CFRMPARAMETERICE_H

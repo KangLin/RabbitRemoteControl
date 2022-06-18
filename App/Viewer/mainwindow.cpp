@@ -192,6 +192,7 @@ MainWindow::MainWindow(QWidget *parent)
                     SIGNAL(sigError(const int, const QString&)),
                     this, SLOT(slotError(const int, const QString&)));
     Q_ASSERT(check);
+    CICE::Instance()->slotStart();
     
     if(m_Parameter.GetSaveMainWindowStatus())
     {

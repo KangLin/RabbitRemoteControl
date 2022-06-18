@@ -1,6 +1,7 @@
 #include "FrmParameterICE.h"
 #include "ui_FrmParameterICE.h"
 #include <QDebug>
+#include "Ice.h"
 
 CFrmParameterICE::CFrmParameterICE(CParameterICE *para, QWidget *parent) :
     QWidget(parent),
@@ -8,7 +9,19 @@ CFrmParameterICE::CFrmParameterICE(CParameterICE *para, QWidget *parent) :
     m_pParameters(para)
 {
     ui->setupUi(this);
-    Init();
+
+    if(CICE::Instance()->GetSignal()->IsConnected())
+    {
+        ui->pbConnect->setChecked(true);
+        ui->pbConnect->setText(tr("Disconnect"));
+        ui->pbConnect->setIcon(QIcon(":/image/Disconnect"));
+    }
+    else
+    {
+        ui->pbConnect->setChecked(false);
+        ui->pbConnect->setText(tr("Connect"));
+        ui->pbConnect->setIcon(QIcon(":/image/Connect"));
+    }
 }
 
 CFrmParameterICE::~CFrmParameterICE()
@@ -35,9 +48,10 @@ void CFrmParameterICE::slotAccept()
     m_pParameters->setTurnPassword(ui->leTrunPassword->text());
 }
 
-void CFrmParameterICE::Init()
+void CFrmParameterICE::showEvent(QShowEvent *event)
 {    
     ui->cbEnableICE->setChecked(m_pParameters->getIce());
+    on_cbEnableICE_stateChanged(ui->cbEnableICE->isChecked());
     
     ui->leSignalServer->setText(m_pParameters->getSignalServer());
     ui->sbSignalPort->setValue(m_pParameters->getSignalPort());
@@ -55,14 +69,12 @@ void CFrmParameterICE::Init()
 
 void CFrmParameterICE::on_cbEnableICE_stateChanged(int arg1)
 {
-    if(Qt::Checked == arg1)
-        EnableCompone(true);
-    else
-        EnableCompone(false);
+    EnableCompone(arg1);
 }
 
 void CFrmParameterICE::EnableCompone(bool bEnable)
 {
+    ui->pbConnect->setEnabled(bEnable);
     ui->leSignalServer->setEnabled(bEnable);
     ui->sbSignalPort->setEnabled(bEnable);
     ui->leSignalName->setEnabled(bEnable);
@@ -75,4 +87,20 @@ void CFrmParameterICE::EnableCompone(bool bEnable)
     ui->sbTurnPort->setEnabled(bEnable);
     ui->leTurnUser->setEnabled(bEnable);
     ui->leTrunPassword->setEnabled(bEnable);
+}
+
+void CFrmParameterICE::on_pbConnect_clicked(bool checked)
+{
+    if(checked)
+    {
+        ui->pbConnect->setIcon(QIcon(":/image/Disconnect"));
+        ui->pbConnect->setText(tr("Disconnect"));
+        CICE::Instance()->slotStart();
+    }
+    else
+    {
+        ui->pbConnect->setIcon(QIcon(":/image/Connect"));
+        ui->pbConnect->setText(tr("Connect"));
+        CICE::Instance()->slotStop();
+    }
 }
