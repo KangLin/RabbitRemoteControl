@@ -4,11 +4,19 @@
 #endif
 #include "FrmParameterICE.h"
 #include "RabbitCommonLog.h"
+#include "RabbitCommonDir.h"
+#include <QCoreApplication>
 
 CICE::CICE(QObject *parent)
     : QObject{parent}
 {
     bool check = false;
+    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
+            + "/Channel_" + QLocale::system().name() + ".qm";
+    if(!m_Translator.load(szTranslatorFile))
+        qCritical() << "Open translator file fail:" << szTranslatorFile;
+    qApp->installTranslator(&m_Translator);
+    
 #ifdef HAVE_QXMPP
     m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp(this));
     if(m_Signal)
@@ -30,6 +38,11 @@ CICE::CICE(QObject *parent)
 //                    this, SLOT(slotIceChanged()));
 //    Q_ASSERT(check);
 //#endif
+}
+
+CICE::~CICE()
+{
+    qApp->removeTranslator(&m_Translator);
 }
 
 CICE* CICE::Instance()

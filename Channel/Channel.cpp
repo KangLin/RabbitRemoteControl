@@ -6,8 +6,7 @@
 CChannel::CChannel(QObject *parent)
     : QIODevice(parent),
       m_pSocket(nullptr)
-{
-}
+{}
 
 CChannel::~CChannel()
 {

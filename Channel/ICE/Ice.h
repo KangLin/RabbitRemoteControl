@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QSharedPointer>
+#include <QTranslator>
+
 #include "IceSignal.h"
 #include "ParameterICE.h"
 #include "FrmParameterICE.h"
@@ -12,7 +14,8 @@ class CHANNEL_EXPORT CICE : public QObject
     Q_OBJECT
 public:
     explicit CICE(QObject *parent = nullptr);
-
+    virtual ~CICE();
+    
     static CICE* Instance();
     
     QSharedPointer<CIceSignal> GetSignal();
@@ -30,6 +33,7 @@ public Q_SLOTS:
 private:
     QSharedPointer<CIceSignal> m_Signal;
     CParameterICE m_Parameter;
+    QTranslator m_Translator;
 };
 
 #endif // CICE_H
