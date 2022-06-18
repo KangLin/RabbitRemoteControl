@@ -123,7 +123,7 @@ int CConnectRabbitVNC::IceInit()
 {
 #ifdef HAVE_ICE
     CIceSignal* pSignal = CICE::Instance()->GetSignal().data();
-    if(!pSignal || !pSignal->IsOpen())
+    if(!pSignal || !pSignal->IsConnected())
     {
         LOG_MODEL_ERROR("CConnectRabbitVNC",
                         "The g_pSignal is null. or signal don't connect server");

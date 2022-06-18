@@ -77,7 +77,7 @@ int CIceSignalQxmpp::Close()
     return 0;
 }
 
-bool CIceSignalQxmpp::IsOpen()
+bool CIceSignalQxmpp::IsConnected()
 {
     return m_Client.isConnected();
 }

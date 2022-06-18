@@ -26,7 +26,7 @@ public:
                      const QString& password = QString()) = 0;
 
     virtual int Close() = 0;
-    virtual bool IsOpen() = 0;
+    virtual bool IsConnected() = 0;
 
     virtual int SendDescription(const QString& toUser,
                                 const QString& channelId,

@@ -19,7 +19,7 @@ public:
                      const QString &user = QString(),
                      const QString &password = QString()) override;
     virtual int Close() override;
-    virtual bool IsOpen() override;
+    virtual bool IsConnected() override;
     virtual int SendDescription(const QString &toUser,
                                 const QString &channelId,
                                 const rtc::Description &description,

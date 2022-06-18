@@ -58,7 +58,7 @@ void CICE::slotIceChanged()
 {
     QSharedPointer<CIceSignal> signal = GetSignal();
     if(!signal) return;
-    if(signal->IsOpen())
+    if(signal->IsConnected())
         signal->Close();
     CParameterICE* pPara = GetParameter();
     if(pPara->getIce())
