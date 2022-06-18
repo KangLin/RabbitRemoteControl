@@ -2,7 +2,12 @@
 
 project(RabbitVNC)
 
-SET(SRC_LIBS Channel RabbitVNC Viewer)
+SET(RabbitVNC_SRC_LIBS Channel RabbitVNC Viewer)
+
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    list(APPEND RabbitVNC_SRC_LIBS Qt${QT_VERSION_MAJOR}::Widgets)
+endif()
 
 SET(RabbitVNC_SOURCE_FILES
     ParameterRabbitVNC.cpp
@@ -31,12 +36,12 @@ SET(RabbitVNC_UI_FILES
     DlgGetPasswordRabbitVNC.ui
     )
 
-#message("RabbitVNC links libraries:${SRC_LIBS}")
+#message("RabbitVNC links libraries:${RabbitVNC_SRC_LIBS}")
 ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
     SOURCE_FILES ${RabbitVNC_SOURCE_FILES} ${RabbitVNC_HEADER_FILES}
         ${RabbitVNC_UI_FILES} ${RabbitVNC_RCC_FILES}
-    PRIVATE_LIBS ${SRC_LIBS}
+    PRIVATE_LIBS ${RabbitVNC_SRC_LIBS}
     PRIVATE_INCLUDE_DIRS $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
     INSTALL_DIR plugins/Viewer
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer

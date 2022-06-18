@@ -4,6 +4,11 @@ project(TigerVNC)
 
 SET(TigerVNC_SRC_LIBS tigervnc Viewer)
 
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    list(APPEND TigerVNC_SRC_LIBS Qt${QT_VERSION_MAJOR}::Widgets)
+endif()
+
 SET(TigerVNC_SOURCE_FILES
     ParameterTigerVnc.cpp
     ConnectTigerVnc.cpp
