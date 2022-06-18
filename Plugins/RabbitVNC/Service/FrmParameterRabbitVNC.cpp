@@ -15,7 +15,7 @@ CFrmParameterRabbitVNC::~CFrmParameterRabbitVNC()
     delete ui;
 }
 
-void CFrmParameterRabbitVNC::slotSave()
+void CFrmParameterRabbitVNC::slotAccept()
 {
     m_pParameters->setEnable(ui->cbEnable->isChecked());
     m_pParameters->setPort(ui->sbPort->value());

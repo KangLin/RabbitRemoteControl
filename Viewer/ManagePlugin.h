@@ -54,7 +54,7 @@ public:
     virtual CConnecter* LoadConnecter(const QString& szFile);
     
     /// \~chinese 保存参数到文件
-    /// \~english Save parameters to file
+    /// \~english Accept parameters to file
     virtual int SaveConnecter(QString szFile, CConnecter* pConnecter);
 
     /**

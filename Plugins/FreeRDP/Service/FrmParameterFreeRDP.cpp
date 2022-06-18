@@ -36,7 +36,7 @@ void CFrmParameterFreeRDP::Init()
     ui->leSamFile->setText(m_Para->getSamFile());
 }
 
-void CFrmParameterFreeRDP::slotSave()
+void CFrmParameterFreeRDP::slotAccept()
 {
     m_Para->setEnable(ui->cbEnable->isChecked());
     m_Para->setPort(ui->lePort->text().toUInt());

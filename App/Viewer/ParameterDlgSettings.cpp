@@ -21,11 +21,11 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
         ui->tabWidget->addTab(pWidget, pWidget->windowTitle());
         bool check = false;
         check = connect(this, SIGNAL(accepted()),
-                        pWidget, SLOT(slotSave()));
+                        pWidget, SLOT(slotAccept()));
         if(!check)
         {
             LOG_MODEL_ERROR("CParameterDlgSettings",
-                            "Class %s must has slot slotSave(), please add it",
+                            "Class %s must has slot slotAccept(), please add it",
                             pWidget->metaObject()->className());
         }
         Q_ASSERT(check);

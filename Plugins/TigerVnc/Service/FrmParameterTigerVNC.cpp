@@ -15,7 +15,7 @@ CFrmParameterTigerVNC::~CFrmParameterTigerVNC()
     delete ui;
 }
 
-void CFrmParameterTigerVNC::slotSave()
+void CFrmParameterTigerVNC::slotAccept()
 {
     m_pParameters->setEnable(ui->cbEnable->isChecked());
     m_pParameters->setPort(ui->sbPort->value());

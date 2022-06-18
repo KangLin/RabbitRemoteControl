@@ -16,13 +16,13 @@ public:
     explicit CFrmParameterTigerVNC(CParameterServiceTigerVNC *para = nullptr);
     ~CFrmParameterTigerVNC();
     
-    //! [Save parameters]
+    //! [Accept parameters]
 public Q_SLOTS:
     /*!
-     * \brief Save parameter
+     * \brief Accept parameter
      */
-    void slotSave();
-    //! [Save parameters]
+    void slotAccept();
+    //! [Accept parameters]
     
 private slots:
     void on_pbShow_clicked();

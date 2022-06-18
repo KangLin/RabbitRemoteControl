@@ -17,7 +17,7 @@ CFrmParameterICE::~CFrmParameterICE()
     qDebug() << "CFrmParameterICE::~CFrmParameterICE()";
 }
 
-void CFrmParameterICE::slotSave()
+void CFrmParameterICE::slotAccept()
 {
     m_pParameters->setIce(ui->cbEnableICE->isChecked());
     

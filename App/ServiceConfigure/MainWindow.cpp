@@ -46,7 +46,7 @@ void CMainWindow::on_pbCancel_clicked()
 
 void CMainWindow::on_pbSave_clicked()
 {
-    emit sigSave();
+    emit sigAccept();
     foreach(auto service, m_Service)
     {
         service->SaveConfigure();
@@ -63,12 +63,12 @@ int CMainWindow::InitTab()
     {
         QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
         CICE::Instance()->GetParameter()->Load(set);
-        // parameter widget must has slotSave()
-        bool check = connect(this, SIGNAL(sigSave()), pIce, SLOT(slotSave()));
+        // parameter widget must has slotAccept()
+        bool check = connect(this, SIGNAL(sigAccept()), pIce, SLOT(slotAccept()));
         if(!check)
         {
             LOG_MODEL_ERROR("MainWindows",
-                            "Class %s must has slot slotSave(), please add it",
+                            "Class %s must has slot slotAccept(), please add it",
                             pIce->metaObject()->className());
         }
         Q_ASSERT(check);
@@ -87,12 +87,12 @@ int CMainWindow::InitTab()
         QWidget* w = pService->GetParameterWidget();
         if(w)
         {
-            // parameter widget must has slotSave()
-            bool check = connect(this, SIGNAL(sigSave()), w, SLOT(slotSave()));
+            // parameter widget must has slotAccept()
+            bool check = connect(this, SIGNAL(sigAccept()), w, SLOT(slotAccept()));
             if(!check)
             {
                 LOG_MODEL_ERROR("MainWindows",
-                                "Class %s must has slot slotSave(), please add it",
+                                "Class %s must has slot slotAccept(), please add it",
                                 w->metaObject()->className());
             }
             Q_ASSERT(check);

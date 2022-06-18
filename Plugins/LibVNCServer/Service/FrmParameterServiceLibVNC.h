@@ -16,10 +16,10 @@ public:
     explicit CFrmParameterServiceLibVNC(CParameterServiceLibVNC *para = nullptr);
     ~CFrmParameterServiceLibVNC();
     
-    //! [Save parameters]
+    //! [Accept parameters]
 public Q_SLOTS:
-    void slotSave();
-    //! [Save parameters]
+    void slotAccept();
+    //! [Accept parameters]
 
 private:
     Ui::CFrmParameterServiceLibVNC *ui;

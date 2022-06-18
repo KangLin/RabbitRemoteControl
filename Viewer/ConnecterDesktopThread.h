@@ -89,7 +89,7 @@ protected:
     virtual int Load(QSettings &set) override;
     /*!
      * \~chinese \brief 保存参数
-     * \~english Save parameters
+     * \~english Accept parameters
      */
     virtual int Save(QSettings &set) override;
 

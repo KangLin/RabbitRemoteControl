@@ -34,16 +34,16 @@ private slots:
 Q_SIGNALS:
     /*!
      * \~chinese 通知插件设置窗口参数发生改变。
-     *           设置参数窗口必须有定义槽 \b slotSave 。
-     *           例如：CFrmParameterFreeRDP::slotSave
+     *           设置参数窗口必须有定义槽 \b slotAccept 。
+     *           例如：CFrmParameterFreeRDP::slotAccept
      * \~english Notifies the plugin settings window that parameters have changed.
-     *           the widget must has slot \b slotSave .
-     *           Eg: CFrmParameterFreeRDP::slotSave
+     *           the widget must has slot \b slotAccept .
+     *           Eg: CFrmParameterFreeRDP::slotAccept
      * \~
-     * \snippet Plugins/FreeRDP/Service/FrmParameterFreeRDP.h Save parameters
+     * \snippet Plugins/FreeRDP/Service/FrmParameterFreeRDP.h Accept parameters
      * \see CService::GetParameterWidget
      */
-    void sigSave();
+    void sigAccept();
 
 private:
     int InitTab();

@@ -42,12 +42,17 @@ public:
 #ifdef HAVE_GUI
     /*!
      * \~chinese 得到设置参数窗口
-     * \return 设置参数窗口。此窗口必须有定义槽 \b slotSave 。
+     * \return 设置参数窗口。此窗口的所有者为调用者。
+     * \note 此窗口必须有定义槽 \b slotAccept 。
+     *       例如: CFrmParameterFreeRDP::slotAccept
+     *
      * \~english GetParameterWidget
-     * \return Parameter widget. the widget must has slot \b slotSave .
-     *         Eg: CFrmParameterFreeRDP::slotSave
+     * \return Parameter widget. The QWidget owner is caller.
+     * \note the widget must has slot \b slotAccept .
+     *         Eg: CFrmParameterFreeRDP::slotAccept
+     *
      * \~
-     * \snippet Plugins/FreeRDP/Service/FrmParameterFreeRDP.h Save parameters
+     * \snippet Plugins/FreeRDP/Service/FrmParameterFreeRDP.h Accept parameters
      */   
     virtual QWidget* GetParameterWidget(void* p = nullptr) = 0;
 #endif
