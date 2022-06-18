@@ -43,10 +43,8 @@
 #include "RabbitCommonLog.h"
 
 #ifdef HAVE_ICE
-#include "ICE/DataChannelIce.h"
-#endif
-#ifdef HAVE_QXMPP
-#include "ICE/IceSignalQxmpp.h"
+    #include "Ice.h"
+    #include "ICE/ChannelIce.h"
 #endif
 
 // 8 colours (1 bit per component)
@@ -115,90 +113,58 @@ int CConnectTigerVnc::OnInit()
     int nRet = 1;
     if(m_pPara->GetIce())
     {
-#ifdef HAVE_ICE
         nRet = IceInit();
-#endif
     }
     else
         nRet = SocketInit();
     return 1;
 }
 
-#ifdef HAVE_ICE
 int CConnectTigerVnc::IceInit()
 {
-    if(m_Signal) return -1;
-#ifdef HAVE_QXMPP
-    m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp());
-#endif
-    if(!m_Signal)
+#ifdef HAVE_ICE
+    CIceSignal* pSignal = CICE::Instance()->GetSignal().data();
+    if(!pSignal || !pSignal->IsConnected())
     {
-        LOG_MODEL_ERROR("CConnectTigerVnc", "The m_Signal is null");
+        LOG_MODEL_ERROR("CConnectTigerVnc",
+                        "The g_pSignal is null. or signal don't connect server");
         return -1;
     }
     
-    bool check = false;
-    check = connect(m_Signal.data(), SIGNAL(sigConnected()),
-                    this, SLOT(slotSignalConnected()));
-    Q_ASSERT(check);
-    check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
-                    this, SLOT(slotSignalDisconnected()));
-    Q_ASSERT(check);
-    check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
-                    this, SLOT(slotSignalError(int, const QString&)));
-    Q_ASSERT(check);
-    return m_Signal->Open(m_pPara->GetSignalServer(), m_pPara->GetSignalPort(),
-                          m_pPara->GetSignalUser(), m_pPara->GetSignalPassword());
-    
-    return 0;
-}
-
-void CConnectTigerVnc::slotSignalConnected()
-{
     LOG_MODEL_INFO("CConnectTigerVnc", "Connected to signal server:%s:%d; user:%s",
-                   m_pPara->GetSignalServer().toStdString().c_str(),
-                   m_pPara->GetSignalPort(),
-                   m_pPara->GetSignalUser().toStdString().c_str());
-    auto channel = QSharedPointer<CDataChannelIce>(new CDataChannelIce(m_Signal));
+                   CICE::Instance()->GetParameter()->getSignalServer().toStdString().c_str(),
+                   CICE::Instance()->GetParameter()->getSignalPort(),
+                   CICE::Instance()->GetParameter()->getSignalUser().toStdString().c_str());
+    auto channel = QSharedPointer<CChannelIce>(new CChannelIce(pSignal));
     if(!channel)
     {
         LOG_MODEL_ERROR("CConnectTigerVnc", "new CDataChannelIce fail");
-        return;
+        return -2;
     }
     m_DataChannel = channel;
     SetChannelConnect(channel);
     
     rtc::Configuration config;
-    rtc::IceServer stun(m_pPara->GetStunServer().toStdString().c_str(),
-                        m_pPara->GetStunPort());
-    rtc::IceServer turn(m_pPara->GetTurnServer().toStdString().c_str(),
-                        m_pPara->GetTurnPort(),
-                        m_pPara->GetTurnUser().toStdString().c_str(),
-                        m_pPara->GetTurnPassword().toStdString().c_str());
+    rtc::IceServer stun(CICE::Instance()->GetParameter()->getStunServer().toStdString().c_str(),
+                        CICE::Instance()->GetParameter()->getStunPort());
+    rtc::IceServer turn(CICE::Instance()->GetParameter()->getTurnServer().toStdString().c_str(),
+                        CICE::Instance()->GetParameter()->getTurnPort(),
+                        CICE::Instance()->GetParameter()->getTurnUser().toStdString().c_str(),
+                        CICE::Instance()->GetParameter()->getTurnPassword().toStdString().c_str());
     config.iceServers.push_back(stun);
     config.iceServers.push_back(turn);
     channel->SetConfigure(config);
     
-    bool bRet = channel->open(m_pPara->GetSignalUser(),
+    bool bRet = channel->open(CICE::Instance()->GetParameter()->getSignalUser(),
                               m_pPara->GetPeerUser(), true);
     if(!bRet)
     {
         emit sigError(-1, "Open channel fail");
     }
-    return;
-}
-
-void CConnectTigerVnc::slotSignalDisconnected()
-{   
-}
-
-void CConnectTigerVnc::slotSignalError(int nErr, const QString& szErr)
-{
-    LOG_MODEL_ERROR("CConnectTigerVnc", "Signal error:%d; %s",
-                    nErr, szErr.toStdString().c_str());
-    //emit sigError(nErr, szErr);
-}
+    
 #endif
+    return 0;
+}
 
 int CConnectTigerVnc::SocketInit()
 {
@@ -280,10 +246,8 @@ int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channl)
 
 int CConnectTigerVnc::OnClean()
 {
-#ifdef HAVE_ICE
-    if(m_Signal) m_Signal->Close();
-#endif
     close();
+    setStreams(nullptr, nullptr);
     if(m_DataChannel)
         m_DataChannel->close();
     //emit sigDisconnected();
@@ -295,7 +259,9 @@ void CConnectTigerVnc::slotConnected()
     LOG_MODEL_INFO("TigerVnc", "Connected to host %s port %d",
                    m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
     
-    setStreams(m_DataChannel->InStream(), m_DataChannel->OutStream());
+    m_InStream = QSharedPointer<rdr::InStream>(new CInStreamChannel(m_DataChannel.data()));
+    m_OutStream = QSharedPointer<rdr::OutStream>(new COutStreamChannel(m_DataChannel.data()));
+    setStreams(m_InStream.data(), m_OutStream.data());
     initialiseProtocol();
 }
 
@@ -431,7 +397,7 @@ void CConnectTigerVnc::framebufferUpdateStart()
     
     // For bandwidth estimate
     gettimeofday(&updateStartTime, NULL);
-    m_updateStartPos = m_DataChannel->InStream()->pos();
+    m_updateStartPos = m_InStream->pos();
 }
 
 // framebufferUpdateEnd() is called at the end of an update.
@@ -454,7 +420,7 @@ void CConnectTigerVnc::framebufferUpdateEnd()
     elapsed += now.tv_usec - updateStartTime.tv_usec;
     if (elapsed == 0)
         elapsed = 1;
-    bps = (unsigned long long)(m_DataChannel->InStream()->pos() -
+    bps = (unsigned long long)(m_InStream->pos() -
                                m_updateStartPos) * 8 *
             1000000 / elapsed;
     // Allow this update to influence things more the longer it took, to a

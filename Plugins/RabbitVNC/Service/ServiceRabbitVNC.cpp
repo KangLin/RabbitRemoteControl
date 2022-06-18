@@ -92,12 +92,6 @@ int CServiceRabbitVNC::OnInit()
 int CServiceRabbitVNC::OnClean()
 {
     m_Lister.close();
-#ifdef HAVE_ICE
-    if(m_Signal)
-    {
-        m_Signal->Close();
-    }
-#endif
     m_lstConnection.clear();
     return 0;
 }

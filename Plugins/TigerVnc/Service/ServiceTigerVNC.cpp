@@ -13,12 +13,10 @@
 #ifdef HAVE_GUI
 #include "FrmParameterTigerVNC.h"
 #endif
-#ifdef HAVE_QXMPP
-    #include "ICE/IceSignalQxmpp.h"
-    
-#endif
+
 #ifdef HAVE_ICE
-#include "ICE/DataChannelIce.h"
+    #include "Ice.h"
+    #include "ICE/ChannelIce.h"
 #endif
 
 CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
@@ -31,10 +29,7 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
     m_pPara = new CParameterServiceTigerVNC(this);
 
 #if defined(HAVE_ICE)
-    #if defined(HAVE_QXMPP)
-    m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp(this),
-                                          &QObject::deleteLater);
-    #endif
+    m_Signal = CICE::Instance()->GetSignal();
     if(m_Signal)
     {
         check = connect(m_Signal.data(), SIGNAL(sigConnected()),
@@ -91,26 +86,12 @@ int CServiceTigerVNC::OnInit()
     }
     LOG_MODEL_INFO("ServiceTigerVNC", "Lister at: %d", p->getPort());
     
-#ifdef HAVE_ICE
-    if(m_Signal && p->getIce())
-    {
-        nRet = m_Signal->Open(p->getSignalServer(), p->getSignalPort(),
-                              p->getSignalUser(), p->getSignalPassword());
-        if(nRet) return -2;
-    }
-#endif
     return 1; //Don't use OnProcess (qt event loop)
 }
 
 int CServiceTigerVNC::OnClean()
 {
     m_Lister.close();
-#ifdef HAVE_ICE
-    if(m_Signal)
-    {
-        m_Signal->Close();
-    }
-#endif
     m_lstConnection.clear();
     return 0;
 }
@@ -215,7 +196,7 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
         CParameterServiceTigerVNC* p =
                 dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
         if(!p) return;
-        QSharedPointer<CDataChannelIce> channel(new CDataChannelIce(m_Signal),
+        QSharedPointer<CChannelIce> channel(new CChannelIce(m_Signal.data()),
                                                 &QObject::deleteLater);
         if(!channel->isOpen())
         {

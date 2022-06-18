@@ -9,16 +9,11 @@
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
-#include "QSocketInStream.h"
-#include "QSocketOutStream.h"
 #include "Channel.h"
 #include "ParameterTigerVnc.h"
-
+#include "../../RabbitVNC/InStreamChannel.h"
+#include "../../RabbitVNC/OutStreamChannel.h"
 #include <QEventLoop>
-
-#ifdef HAVE_ICE
-    #include "ICE/IceSignal.h"
-#endif
 
 class CConnecterTigerVnc;
 class CConnectTigerVnc : public CConnect,
@@ -79,7 +74,9 @@ protected:
     
 private:
     QSharedPointer<CChannel> m_DataChannel;
-
+    QSharedPointer<rdr::InStream> m_InStream;
+    QSharedPointer<rdr::OutStream> m_OutStream;
+    
     unsigned long long m_bpsEstimate;
     unsigned m_updateCount;
     struct timeval updateStartTime;
@@ -95,14 +92,7 @@ private:
     int SocketInit();
     int SetChannelConnect(QSharedPointer<CChannel> channl);
     
-#ifdef HAVE_ICE
-    QSharedPointer<CIceSignal> m_Signal;
     int IceInit();
-private Q_SLOTS:
-    void slotSignalConnected();
-    void slotSignalDisconnected();
-    void slotSignalError(int nErr, const QString& szErr);
-#endif
 };
 
 #endif // CCONNECTTIGERVNC_H
