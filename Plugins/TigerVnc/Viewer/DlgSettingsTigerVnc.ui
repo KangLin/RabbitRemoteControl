@@ -58,25 +58,7 @@
       <attribute name="title">
        <string>Server</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_9">
-       <item row="5" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QCheckBox" name="cbLocalCursor">
-           <property name="text">
-            <string>Show local cursor</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="cbClipboard">
-           <property name="text">
-            <string>Enable clipboard</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
+      <layout class="QGridLayout" name="gridLayout_8">
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
@@ -96,49 +78,6 @@
            </property>
            <property name="whatsThis">
             <string>Connecter name</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="4" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item>
-          <widget class="QCheckBox" name="cbShared">
-           <property name="text">
-            <string>Shared</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="cbRealTimeUpdate">
-           <property name="text">
-            <string>Real time update</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="cbOnlyView">
-           <property name="text">
-            <string>Only view</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="6" column="0">
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="cbSave">
-           <property name="text">
-            <string>Save password</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="cbResizeWindows">
-           <property name="text">
-            <string>Support windows resize</string>
            </property>
           </widget>
          </item>
@@ -176,7 +115,7 @@
          </item>
         </layout>
        </item>
-       <item row="3" column="0">
+       <item row="2" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="label_2">
@@ -227,34 +166,75 @@
          </item>
         </layout>
        </item>
-       <item row="8" column="0">
-        <spacer name="verticalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QCheckBox" name="cbShared">
+           <property name="text">
+            <string>Shared</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbRealTimeUpdate">
+           <property name="text">
+            <string>Real time update</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbOnlyView">
+           <property name="text">
+            <string>Only view</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="7" column="0">
+       <item row="4" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QCheckBox" name="cbLocalCursor">
+           <property name="text">
+            <string>Show local cursor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbClipboard">
+           <property name="text">
+            <string>Enable clipboard</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="5" column="0">
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="cbSave">
+           <property name="text">
+            <string>Save password</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="cbResizeWindows">
+           <property name="text">
+            <string>Support windows resize</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="6" column="0">
         <widget class="QCheckBox" name="cbShowServerName">
          <property name="text">
           <string>Show server name</string>
          </property>
         </widget>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab">
-      <attribute name="title">
-       <string>ICE</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_10">
-       <item row="1" column="0">
+       <item row="7" column="0">
         <widget class="QGroupBox" name="gpIce">
          <property name="title">
           <string>Ice:</string>
@@ -265,46 +245,8 @@
          <property name="checked">
           <bool>true</bool>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8">
-          <item row="1" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_16">
-            <item>
-             <widget class="QLabel" name="label_21">
-              <property name="text">
-               <string>Domain:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="leDomain"/>
-            </item>
-           </layout>
-          </item>
-          <item row="6" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_12">
-            <item>
-             <widget class="QLabel" name="label_16">
-              <property name="text">
-               <string>Turn user:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="leTurnUser"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_17">
-              <property name="text">
-               <string>Password:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="leTurnPassword"/>
-            </item>
-           </layout>
-          </item>
-          <item row="3" column="0">
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_14">
             <item>
              <widget class="QLabel" name="label">
@@ -318,133 +260,21 @@
             </item>
            </layout>
           </item>
-          <item row="5" column="0">
-           <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>Turn server:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="leTurnServer"/>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="label_15">
-              <property name="text">
-               <string>Port:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="QSpinBox" name="spTurnPort">
-              <property name="maximum">
-               <number>65536</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_15">
-            <item>
-             <widget class="QLabel" name="lbServer_2">
-              <property name="text">
-               <string>Signal server:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="leIceSignalServer">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_20">
-              <property name="text">
-               <string>Port:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="spSignalPort">
-              <property name="maximum">
-               <number>65536</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="2" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_13">
-            <item>
-             <widget class="QLabel" name="label_18">
-              <property name="text">
-               <string>Signal user:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="leSignalUser"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_19">
-              <property name="text">
-               <string>Password:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="leSignalPassword"/>
-            </item>
-           </layout>
-          </item>
-          <item row="4" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QLabel" name="label_12">
-              <property name="text">
-               <string>Stun server:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="leStunServer"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>Port:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="spStunPort">
-              <property name="maximum">
-               <number>65536</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="7" column="0">
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
          </layout>
         </widget>
+       </item>
+       <item row="8" column="0">
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -747,6 +577,7 @@
   <tabstop>tabWidget</tabstop>
  </tabstops>
  <resources>
+  <include location="../../../App/Viewer/Resource/Resource.qrc"/>
   <include location="../../../App/Viewer/Resource/Resource.qrc"/>
  </resources>
  <connections/>

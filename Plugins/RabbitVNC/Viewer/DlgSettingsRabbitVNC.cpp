@@ -7,12 +7,10 @@
 #include <QMessageBox>
 #include "ManagePassword.h"
 
-#ifdef HAVE_QXMPP
-    #include "QXmppUtils.h"
-#endif
 #ifdef HAVE_ICE
     #include "Ice.h"
 #endif
+
 #undef SetPort
 
 CDlgSettingsRabbitVNC::CDlgSettingsRabbitVNC(CParameterRabbitVNC *pPara, QWidget *parent) :
@@ -35,16 +33,6 @@ CDlgSettingsRabbitVNC::~CDlgSettingsRabbitVNC()
     qDebug() << "CDlgSettingsRabbitVnc::~CDlgSettingsRabbitVnc()";
     delete ui;
 }
-
-#ifdef HAVE_QXMPP
-QString jidToDomain(const QString &jid)
-{
-    auto v = QXmppUtils::jidToBareJid(jid).split("@");
-    if(v.size() < 2)
-        return QString();
-    return v.last();
-}
-#endif
 
 void CDlgSettingsRabbitVNC::on_pbOk_clicked()
 {
