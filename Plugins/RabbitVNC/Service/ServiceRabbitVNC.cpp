@@ -14,12 +14,9 @@
 #include "Connection.h"
 #include "PluginService.h"
 
-#ifdef HAVE_QXMPP
-    #include "ICE/IceSignalQxmpp.h"
-    
-#endif
 #ifdef HAVE_ICE
 #include "ICE/ChannelIce.h"
+#include "Ice.h"
 #endif
 
 CServiceRabbitVNC::CServiceRabbitVNC(CPluginService *plugin) : CService(plugin)
@@ -32,10 +29,7 @@ CServiceRabbitVNC::CServiceRabbitVNC(CPluginService *plugin) : CService(plugin)
     m_pPara = new CParameterServiceRabbitVNC(this);
 
 #if defined(HAVE_ICE)
-    #if defined(HAVE_QXMPP)
-    m_Signal = QSharedPointer<CIceSignal>(new CIceSignalQxmpp(this),
-                                          &QObject::deleteLater);
-    #endif
+    m_Signal = CICE::Instance()->GetSignal();
     if(m_Signal)
     {
         check = connect(m_Signal.data(), SIGNAL(sigConnected()),
