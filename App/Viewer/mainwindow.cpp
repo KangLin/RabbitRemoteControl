@@ -19,6 +19,10 @@
 #include "FrmFullScreenToolBar.h"
 #include "ParameterDlgSettings.h"
 
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
+
 #include <QMessageBox>
 #include <QScreen>
 #include <QApplication>
@@ -184,10 +188,17 @@ MainWindow::MainWindow(QWidget *parent)
     m_Parameter.Load();
     slotShortCut();
     
+    check = connect(CICE::Instance()->GetSignal().data(),
+                    SIGNAL(sigError(const int, const QString&)),
+                    this, SLOT(slotError(const int, const QString&)));
+    Q_ASSERT(check);
+    
     if(m_Parameter.GetSaveMainWindowStatus())
     {
-        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
-        QByteArray geometry = set.value("MainWindow/Status/Geometry").toByteArray();
+        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                      QSettings::IniFormat);
+        QByteArray geometry
+                = set.value("MainWindow/Status/Geometry").toByteArray();
         if(!geometry.isEmpty())
             restoreGeometry(geometry);
         QByteArray state = set.value("MainWindow/Status/State").toByteArray();

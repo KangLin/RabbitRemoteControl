@@ -85,15 +85,7 @@ int CServiceRabbitVNC::OnInit()
         return -1;
     }
     LOG_MODEL_INFO("ServiceRabbitVNC", "Lister at: %d", p->getPort());
-    
-#ifdef HAVE_ICE
-    if(m_Signal && p->getIce())
-    {
-        nRet = m_Signal->Open(p->getSignalServer(), p->getSignalPort(),
-                              p->getSignalUser(), p->getSignalPassword());
-        if(nRet) return -2;
-    }
-#endif
+
     return 1; // Don't use OnProcess (qt event loop)
 }
 

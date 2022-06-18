@@ -37,7 +37,9 @@ int CIceSignalQxmpp::Open(const QString &szServer, quint16 nPort, const QString 
     
     if(QXmppUtils::jidToDomain(user).isEmpty())
     {
-        LOG_MODEL_ERROR("CIceSignalQxmpp", "The user name is error. please use format: user@domain/resource");
+        QString szMsg = "The user name is error. please use format: user@domain/resource";
+        LOG_MODEL_ERROR("CIceSignalQxmpp", szMsg.toStdString().c_str());
+        emit sigError(-100, szMsg);
         return -1;
     }
     if(QXmppUtils::jidToResource(user).isEmpty())
