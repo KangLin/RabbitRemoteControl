@@ -34,10 +34,12 @@ if(LibDataChannel_FOUND)
     list(APPEND CHANNEL_SOURCE_FILES
         ICE/ChannelIce.cpp
         ICE/IceSignal.cpp
-        ICE/Ice.cpp)
+        ICE/Ice.cpp
+        ICE/ParameterICE.cpp)
     list(APPEND CHANNEL_INSTALL_HEADER_FILES
         ICE/IceSignal.h
-        ICE/Ice.h)
+        ICE/Ice.h
+        ICE/ParameterICE.h)
     list(APPEND CHANNEL_HEADER_FILES
         ICE/ChannelIce.h
         )
@@ -52,13 +54,11 @@ if(LibDataChannel_FOUND)
             ICE/IceSignalQXmppIq.cpp
             ICE/IceSignalQXmppManager.cpp
             ICE/IceSignalQxmpp.cpp
-            ICE/ParameterICE.cpp
             )
         list(APPEND CHANNEL_HEADER_FILES
             ICE/IceSignalQXmppIq.h
             ICE/IceSignalQXmppManager.h
             ICE/IceSignalQxmpp.h
-            ICE/ParameterICE.h
             )
     endif()
 
