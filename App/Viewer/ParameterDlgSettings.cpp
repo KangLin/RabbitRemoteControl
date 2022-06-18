@@ -6,7 +6,9 @@
 #include "ManagePassword.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
-#include "Ice.h"
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
 
 CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *parent) :
     QDialog(parent),
@@ -14,7 +16,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
     m_pParameters(pPara)
 {
     ui->setupUi(this);
-
+    
+#ifdef HAVE_ICE
     QWidget* pWidget = CICE::Instance()->GetParameterWidget(this);
     if(pWidget)
     {
@@ -30,7 +33,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *pare
         }
         Q_ASSERT(check);
     }
-
+#endif
+    
     ui->leShotScreenSavepath->setText(m_pParameters->GetScreenShotPath());
     ui->cbShotRemoteDesktop->setChecked(m_pParameters->GetScreenShot());
     switch (m_pParameters->GetScreenShotEndAction()) {

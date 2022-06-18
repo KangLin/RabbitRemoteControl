@@ -51,13 +51,15 @@ void CMainWindow::on_pbSave_clicked()
     {
         service->SaveConfigure();
     }
-    
+#ifdef HAVE_ICE
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
     CICE::Instance()->GetParameter()->Save(set);
+#endif
 }
 
 int CMainWindow::InitTab()
 {
+#ifdef HAVE_ICE
     QWidget* pIce = CICE::Instance()->GetParameterWidget(this);
     if(pIce)
     {
@@ -77,7 +79,7 @@ int CMainWindow::InitTab()
         if(-1 == nIndex)
             LOG_MODEL_ERROR("MainWindow", "addTab ice fail");
     }
-    
+#endif
     foreach(auto plugin, m_Plugins.m_Plugins)
     {
         CService* pService = plugin->NewService();

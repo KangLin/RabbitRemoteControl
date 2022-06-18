@@ -5,7 +5,7 @@
 #include "ServiceLibVNCServer.h"
 
 CPluginServiceLibVNCServer::CPluginServiceLibVNCServer(QObject *parent)
-    : CPluginServiceThread(parent)
+    : CPluginServicThread(parent)
 {
 }
 

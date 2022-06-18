@@ -16,6 +16,7 @@
 class CPluginServicThread : public CPluginService
 {
     Q_OBJECT
+
 public:
     explicit CPluginServicThread(QObject *parent = nullptr);
     virtual ~CPluginServicThread() override;

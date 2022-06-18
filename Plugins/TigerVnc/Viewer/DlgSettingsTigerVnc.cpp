@@ -40,7 +40,10 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         reject();
     
     // Server
-    bool ice = CICE::Instance()->GetParameter()->getIce();
+    bool ice = true;
+#ifdef HAVE_ICE
+    CICE::Instance()->GetParameter()->getIce();
+#endif
     if(ui->gpIce->isChecked() && ice)
     {
         m_pPara->SetIce(true);
@@ -148,7 +151,10 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     Q_UNUSED(event);
     
     // Server
-    bool ice = CICE::Instance()->GetParameter()->getIce();
+    bool ice = true;
+#ifdef HAVE_ICE
+    CICE::Instance()->GetParameter()->getIce();
+#endif
     if(ice)
     {
         if(m_pPara->GetIce())
@@ -162,7 +168,7 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     } else {
         ui->gpIce->setEnabled(false);
     }
-    
+
     ui->leName->setText(m_pPara->GetName());
     ui->leUserName->setText(m_pPara->GetUser());
     ui->lePassword->setText(m_pPara->GetPassword());

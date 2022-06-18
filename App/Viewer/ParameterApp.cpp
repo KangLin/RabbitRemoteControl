@@ -3,7 +3,9 @@
 #include <QDir>
 #include "RabbitCommonDir.h"
 #include "ManagePassword.h"
-#include "Ice.h"
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
 
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bScreenShot(false),
@@ -56,7 +58,10 @@ int CParameterApp::Load()
                                   GetOpenLasterClose()).toBool());
     SetFavoriteEdit(set.value("MainWindow/Favorite/Double/Edit",
                               GetFavoriteEdit()).toBool());
+#ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Load(set);
+#endif
+    return 0;
 }
 
 int CParameterApp::Save()
@@ -78,7 +83,10 @@ int CParameterApp::Save()
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
     
+#ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Save(set);
+#endif
+    return 0;
 }
 
 bool CParameterApp::GetReceiveShortCut() const
