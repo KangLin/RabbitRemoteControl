@@ -23,7 +23,7 @@
     </message>
     <message>
         <location filename="../../ICE/FrmParameterICE.ui" line="41"/>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="157"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="155"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -73,17 +73,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="153"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="151"/>
         <source>Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="121"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="119"/>
         <source>The user name format is error. please use format: user@domain/resource</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="122"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="120"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>

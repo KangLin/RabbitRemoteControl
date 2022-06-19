@@ -14,17 +14,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="36"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="83"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="52"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="32"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="78"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="56"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>

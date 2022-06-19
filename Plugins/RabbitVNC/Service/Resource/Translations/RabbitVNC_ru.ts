@@ -14,17 +14,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="30"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="96"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="39"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="32"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="63"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="69"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>

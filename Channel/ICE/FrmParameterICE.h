@@ -35,15 +35,12 @@ private slots:
     void on_leSignalName_editingFinished();
     
 private:
+    void Init();
     void EnableCompone(bool bEnable);
     void SetConnectButton(bool bConnected);
     
     Ui::CFrmParameterICE *ui;
     CParameterICE* m_pParameters;
-    
-    // QWidget interface
-protected:
-    virtual void showEvent(QShowEvent *event) override;
 };
 
 #endif // CFRMPARAMETERICE_H

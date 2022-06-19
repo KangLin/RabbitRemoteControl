@@ -31,6 +31,8 @@ CFrmParameterICE::CFrmParameterICE(CParameterICE *para, QWidget *parent) :
                         this, SLOT(slotError(int, const QString&)));
         Q_ASSERT(check);
     }
+    
+    Init();
 }
 
 CFrmParameterICE::~CFrmParameterICE()
@@ -57,7 +59,7 @@ void CFrmParameterICE::slotAccept()
     m_pParameters->setTurnPassword(ui->leTrunPassword->text());
 }
 
-void CFrmParameterICE::showEvent(QShowEvent *event)
+void CFrmParameterICE::Init()
 {    
     ui->cbEnableICE->setChecked(m_pParameters->getIce());
     on_cbEnableICE_stateChanged(ui->cbEnableICE->isChecked());

@@ -60,11 +60,11 @@ void CMainWindow::on_pbSave_clicked()
 int CMainWindow::InitTab()
 {
 #ifdef HAVE_ICE
-    QWidget* pIce = CICE::Instance()->GetParameterWidget(this);
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
+    CICE::Instance()->GetParameter()->Load(set);
+    QWidget* pIce = CICE::Instance()->GetParameterWidget(ui->twConfigure);
     if(pIce)
     {
-        QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
-        CICE::Instance()->GetParameter()->Load(set);
         // parameter widget must has slotAccept()
         bool check = connect(this, SIGNAL(sigAccept()), pIce, SLOT(slotAccept()));
         if(!check)
@@ -80,6 +80,7 @@ int CMainWindow::InitTab()
             LOG_MODEL_ERROR("MainWindow", "addTab ice fail");
     }
 #endif
+
     foreach(auto plugin, m_Plugins.m_Plugins)
     {
         CService* pService = plugin->NewService();

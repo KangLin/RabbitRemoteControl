@@ -189,8 +189,7 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
                        fromUser.toStdString().c_str(),
                        toUser.toStdString().c_str(),
                        channelId.toStdString().c_str());
-        CParameterServiceTigerVNC* p =
-                dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
+        CParameterICE* p = CICE::Instance()->GetParameter();
         if(!p) return;
         QSharedPointer<CChannelIce> channel(new CChannelIce(m_Signal.data()),
                                                 &QObject::deleteLater);

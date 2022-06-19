@@ -189,8 +189,7 @@ void CServiceRabbitVNC::slotSignalOffer(const QString& fromUser,
                        fromUser.toStdString().c_str(),
                        toUser.toStdString().c_str(),
                        channelId.toStdString().c_str());
-        CParameterServiceRabbitVNC* p =
-                dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters());
+        CParameterICE* p = CICE::Instance()->GetParameter();
         if(!p) return;
         QSharedPointer<CChannelIce> channel(new CChannelIce(m_Signal.data()),
                                                 &QObject::deleteLater);

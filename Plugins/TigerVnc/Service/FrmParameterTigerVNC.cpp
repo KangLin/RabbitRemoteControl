@@ -7,6 +7,7 @@ CFrmParameterTigerVNC::CFrmParameterTigerVNC(CParameterServiceTigerVNC *para, QW
     m_pParameters(para)
 {
     ui->setupUi(this);
+    
     Init();
 }
 

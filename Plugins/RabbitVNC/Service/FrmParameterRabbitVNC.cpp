@@ -7,6 +7,7 @@ CFrmParameterRabbitVNC::CFrmParameterRabbitVNC(CParameterServiceRabbitVNC *para,
     m_pParameters(para)
 {
     ui->setupUi(this);
+
     Init();
 }
 

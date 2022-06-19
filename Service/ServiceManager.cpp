@@ -65,6 +65,12 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
             throw std::invalid_argument("Help argument");
         }
     }
+    
+#ifdef HAVE_ICE
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    CICE::Instance()->GetParameter()->Load(set);
+#endif
 }
 
 CServiceManager::~CServiceManager()
