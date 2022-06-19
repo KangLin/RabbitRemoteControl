@@ -14,18 +14,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="43"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="30"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="52"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="39"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="76"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="63"/>
         <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="90"/>
+        <source>Channel type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="96"/>
+        <source>Enable socket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -55,7 +65,7 @@
 <context>
     <name>CServiceRabbitVNC</name>
     <message>
-        <location filename="../../ServiceRabbitVNC.cpp" line="140"/>
+        <location filename="../../ServiceRabbitVNC.cpp" line="156"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>

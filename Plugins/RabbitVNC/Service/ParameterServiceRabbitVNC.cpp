@@ -9,6 +9,7 @@ CParameterServiceRabbitVNC::CParameterServiceRabbitVNC(QObject *parent)
 {
     setPort(5900);
     m_bIce = false;
+    m_bEnableSocket = true;
 }
 
 CParameterServiceRabbitVNC::~CParameterServiceRabbitVNC()
@@ -20,7 +21,8 @@ int CParameterServiceRabbitVNC::Load(const QString& szFile)
 {
     int nRet = CParameterService::Load(szFile);
     QSettings set(szFile, QSettings::IniFormat);
-    m_bIce = set.value("ICE/Enable", m_bIce).toBool();
+    m_bIce = set.value("Channel/Enable/ICE", m_bIce).toBool();
+    m_bEnableSocket = set.value("Channel/Enable/Socket", GetEnableSocket()).toBool();
     return nRet;
 }
 
@@ -28,7 +30,8 @@ int CParameterServiceRabbitVNC::Save(const QString& szFile)
 {
     int nRet = CParameterService::Save(szFile);
     QSettings set(szFile, QSettings::IniFormat);
-    set.setValue("ICE/Enable", m_bIce);
+    set.setValue("Channel/Enable/ICE", m_bIce);
+    set.setValue("Channel/Enable/Socket", m_bEnableSocket);
     set.sync();
     return nRet;
 }
@@ -44,4 +47,17 @@ void CParameterServiceRabbitVNC::setIce(bool newBIce)
         return;
     m_bIce = newBIce;
     emit sigIceChanged();
+}
+
+bool CParameterServiceRabbitVNC::GetEnableSocket() const
+{
+    return m_bEnableSocket;
+}
+
+void CParameterServiceRabbitVNC::SetEnableSocket(bool newSocket)
+{
+    if (m_bEnableSocket == newSocket)
+        return;
+    m_bEnableSocket = newSocket;
+    emit sigEnableSocketChanged(m_bEnableSocket);
 }

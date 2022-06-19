@@ -14,19 +14,29 @@
         <translation>基本</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="43"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="30"/>
         <source>Enable</source>
         <translation>允許</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="52"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="39"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="76"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="63"/>
         <source>Password:</source>
         <translation>密碼：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="90"/>
+        <source>Channel type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="96"/>
+        <source>Enable socket</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmParameterRabbitVNC.ui" line="103"/>
@@ -55,7 +65,7 @@
 <context>
     <name>CServiceRabbitVNC</name>
     <message>
-        <location filename="../../ServiceRabbitVNC.cpp" line="140"/>
+        <location filename="../../ServiceRabbitVNC.cpp" line="156"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>

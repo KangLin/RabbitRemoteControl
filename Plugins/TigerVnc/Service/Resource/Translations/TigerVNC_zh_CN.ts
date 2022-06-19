@@ -14,19 +14,29 @@
         <translation>基本</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="96"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="30"/>
         <source>Enable</source>
         <translation>允许</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="45"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="39"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="69"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="63"/>
         <source>Password:</source>
         <translation>密码：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterTigerVNC.ui" line="90"/>
+        <source>Channel type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterTigerVNC.ui" line="96"/>
+        <source>Enable socket</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmParameterTigerVNC.ui" line="103"/>
@@ -55,7 +65,7 @@
 <context>
     <name>CServiceTigerVNC</name>
     <message>
-        <location filename="../../ServiceTigerVNC.cpp" line="140"/>
+        <location filename="../../ServiceTigerVNC.cpp" line="155"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>

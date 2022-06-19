@@ -27,9 +27,31 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
     Q_ASSERT(check);
     
     m_pPara = new CParameterServiceTigerVNC(this);
+}
 
+CServiceTigerVNC::~CServiceTigerVNC()
+{
+    LOG_MODEL_DEBUG("CServiceTigerVNC", "CServiceTigerVNC::~CServiceTigerVNC");
+}
+
+#ifdef HAVE_GUI
+QWidget* CServiceTigerVNC::GetParameterWidget(QWidget* parent)
+{
+    return new CFrmParameterTigerVNC(
+                dynamic_cast<CParameterServiceTigerVNC*>(GetParameters()), parent);
+}
+#endif
+
+int CServiceTigerVNC::OnInit()
+{
+    bool check = false;
+    CParameterServiceTigerVNC* p =
+            dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
+    if(!p)
+        Q_ASSERT(false);
+    
 #if defined(HAVE_ICE)
-    if(dynamic_cast<CParameterServiceTigerVNC*>(m_pPara)->getIce())
+    if(p->getIce())
     {
         m_Signal = CICE::Instance()->GetSignal();
         if(m_Signal)
@@ -57,42 +79,35 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
         }
     }
 #endif
-}
-
-CServiceTigerVNC::~CServiceTigerVNC()
-{
-    LOG_MODEL_DEBUG("CServiceTigerVNC", "CServiceTigerVNC::~CServiceTigerVNC");
-}
-
-#ifdef HAVE_GUI
-QWidget* CServiceTigerVNC::GetParameterWidget(QWidget* parent)
-{
-    return new CFrmParameterTigerVNC(
-                dynamic_cast<CParameterServiceTigerVNC*>(GetParameters()), parent);
-}
-#endif
-
-int CServiceTigerVNC::OnInit()
-{
-    CParameterServiceTigerVNC* p =
-            dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
-    if(!p)
-        Q_ASSERT(false);
     
-    if(!m_Lister.listen(QHostAddress::Any, p->getPort()))
+    if(p->GetEnableSocket())
     {
-        LOG_MODEL_ERROR("ServiceTigerVNC", "Lister fail: Port [%d]; %s",
-                        GetParameters()->getPort(),
-                        m_Lister.errorString().toStdString().c_str());
-        return -1;
+        if(!m_Lister.listen(QHostAddress::Any, p->getPort()))
+        {
+            LOG_MODEL_ERROR("ServiceTigerVNC", "Lister fail: Port [%d]; %s",
+                            GetParameters()->getPort(),
+                            m_Lister.errorString().toStdString().c_str());
+            return -1;
+        }
+        LOG_MODEL_INFO("ServiceTigerVNC", "Lister at: %d", p->getPort());
     }
-    LOG_MODEL_INFO("ServiceTigerVNC", "Lister at: %d", p->getPort());
-    
+
     return 1; //Don't use OnProcess (qt event loop)
 }
 
 int CServiceTigerVNC::OnClean()
 {
+#if defined(HAVE_ICE)
+    CParameterServiceTigerVNC* p =
+            dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
+    if(p)
+    {
+        m_Signal = CICE::Instance()->GetSignal();
+        if(m_Signal)
+            m_Signal->disconnect(this);
+    }
+#endif
+    
     m_Lister.close();
     m_lstConnection.clear();
     return 0;

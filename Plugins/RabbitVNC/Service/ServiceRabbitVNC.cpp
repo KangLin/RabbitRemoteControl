@@ -27,9 +27,43 @@ CServiceRabbitVNC::CServiceRabbitVNC(CPluginService *plugin) : CService(plugin)
     Q_ASSERT(check);
     
     m_pPara = new CParameterServiceRabbitVNC(this);
+}
+
+CServiceRabbitVNC::~CServiceRabbitVNC()
+{
+    LOG_MODEL_DEBUG("CServiceRabbitVNC", "CServiceRabbitVNC::~CServiceRabbitVNC");
+}
+
+#ifdef HAVE_GUI
+QWidget* CServiceRabbitVNC::GetParameterWidget(QWidget *parent)
+{
+    return new CFrmParameterRabbitVNC(
+                dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters()), parent);
+}
+#endif
+
+int CServiceRabbitVNC::OnInit()
+{
+    bool check = false;
+    CParameterServiceRabbitVNC* p =
+            dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters());
+    if(!p)
+        Q_ASSERT(false);
+    
+    if(p->GetEnableSocket())
+    {
+        if(!m_Lister.listen(QHostAddress::Any, p->getPort()))
+        {
+            LOG_MODEL_ERROR("ServiceRabbitVNC", "Lister fail: Port [%d]; %s",
+                            GetParameters()->getPort(),
+                            m_Lister.errorString().toStdString().c_str());
+            return -1;
+        }
+        LOG_MODEL_INFO("ServiceRabbitVNC", "Lister at: %d", p->getPort());
+    }
 
 #if defined(HAVE_ICE)
-    if(dynamic_cast<CParameterServiceRabbitVNC*>(m_pPara)->getIce())
+    if(p->getIce())
     {
         m_Signal = CICE::Instance()->GetSignal();
         if(m_Signal)
@@ -57,42 +91,23 @@ CServiceRabbitVNC::CServiceRabbitVNC(CPluginService *plugin) : CService(plugin)
         }
     }
 #endif
-}
-
-CServiceRabbitVNC::~CServiceRabbitVNC()
-{
-    LOG_MODEL_DEBUG("CServiceRabbitVNC", "CServiceRabbitVNC::~CServiceRabbitVNC");
-}
-
-#ifdef HAVE_GUI
-QWidget* CServiceRabbitVNC::GetParameterWidget(QWidget *parent)
-{
-    return new CFrmParameterRabbitVNC(
-                dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters()), parent);
-}
-#endif
-
-int CServiceRabbitVNC::OnInit()
-{
-    CParameterServiceRabbitVNC* p =
-            dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters());
-    if(!p)
-        Q_ASSERT(false);
     
-    if(!m_Lister.listen(QHostAddress::Any, p->getPort()))
-    {
-        LOG_MODEL_ERROR("ServiceRabbitVNC", "Lister fail: Port [%d]; %s",
-                        GetParameters()->getPort(),
-                        m_Lister.errorString().toStdString().c_str());
-        return -1;
-    }
-    LOG_MODEL_INFO("ServiceRabbitVNC", "Lister at: %d", p->getPort());
-
     return 1; // Don't use OnProcess (qt event loop)
 }
 
 int CServiceRabbitVNC::OnClean()
 {
+#if defined(HAVE_ICE)
+    CParameterServiceRabbitVNC* p =
+            dynamic_cast<CParameterServiceRabbitVNC*>(GetParameters());
+    if(p)
+    {
+        m_Signal = CICE::Instance()->GetSignal();
+        if(m_Signal)
+            m_Signal->disconnect(this);
+    }
+#endif
+
     m_Lister.close();
     m_lstConnection.clear();
     return 0;

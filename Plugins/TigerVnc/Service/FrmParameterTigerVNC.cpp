@@ -24,6 +24,7 @@ CFrmParameterTigerVNC::CFrmParameterTigerVNC(CParameterServiceTigerVNC *para, QW
     ui->sbPort->setValue(m_pParameters->getPort());
     ui->lePassword->setText(m_pParameters->getPassword());
     ui->cbEnableICE->setChecked(m_pParameters->getIce());
+    ui->cbEnableSocket->setChecked(m_pParameters->GetEnableSocket());
 }
 
 CFrmParameterTigerVNC::~CFrmParameterTigerVNC()
@@ -37,6 +38,7 @@ void CFrmParameterTigerVNC::slotAccept()
     m_pParameters->setPort(ui->sbPort->value());
     m_pParameters->setPassword(ui->lePassword->text());
     m_pParameters->setIce(ui->cbEnableICE->isChecked());
+    m_pParameters->SetEnableSocket(ui->cbEnableSocket->isChecked());
 }
 
 void CFrmParameterTigerVNC::on_pbShow_clicked()
