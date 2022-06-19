@@ -75,16 +75,24 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuService">
     <property name="title">
      <string>Service</string>
     </property>
+    <widget class="QMenu" name="menuOpen_Log">
+     <property name="title">
+      <string>Open Log</string>
+     </property>
+     <addaction name="actionOpen_log_file"/>
+     <addaction name="actionOpen_log_folder"/>
+    </widget>
     <addaction name="actionStart"/>
     <addaction name="separator"/>
     <addaction name="actionOpen_folder"/>
+    <addaction name="menuOpen_Log"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -173,6 +181,16 @@
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionOpen_log_file">
+   <property name="text">
+    <string>Open log file</string>
+   </property>
+  </action>
+  <action name="actionOpen_log_folder">
+   <property name="text">
+    <string>Open log folder</string>
    </property>
   </action>
  </widget>
