@@ -23,8 +23,8 @@
     </message>
     <message>
         <location filename="../../ICE/FrmParameterICE.ui" line="41"/>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="22"/>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="103"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="23"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="104"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
@@ -67,28 +67,10 @@
         <translation>TURN 用户：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="16"/>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="97"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="17"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="98"/>
         <source>Disconnect</source>
         <translation>断开连接</translation>
-    </message>
-</context>
-<context>
-    <name>CIceSignalQxmpp</name>
-    <message>
-        <location filename="../../ICE/IceSignalQxmpp.cpp" line="175"/>
-        <source>Socket error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ICE/IceSignalQxmpp.cpp" line="178"/>
-        <source>Keep alive error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ICE/IceSignalQxmpp.cpp" line="181"/>
-        <source>xmpp stream error</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
