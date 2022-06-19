@@ -108,15 +108,17 @@ void CICE::slotStop()
 void CICE::slotConnected()
 {
     CParameterICE* pPara = GetParameter();
-    LOG_MODEL_INFO("ICE", "Connect to signal server: %s:%d",
-                    pPara->getSignalServer().toStdString().c_str(),
+    LOG_MODEL_INFO("ICE", "%s is connected to signal server: %s:%d",
+                   pPara->getSignalUser().toStdString().c_str(),
+                   pPara->getSignalServer().toStdString().c_str(),
                    pPara->getSignalPort());
 }
 
 void CICE::slotDisconnected()
 {
     CParameterICE* pPara = GetParameter();
-    LOG_MODEL_INFO("ICE", "Disconnect to signal server: %s:%d",
+    LOG_MODEL_INFO("ICE", "%s is disconnected to signal server: %s:%d",
+                   pPara->getSignalUser().toStdString().c_str(),
                    pPara->getSignalServer().toStdString().c_str(),
                    pPara->getSignalPort());
 }
@@ -124,7 +126,8 @@ void CICE::slotDisconnected()
 void CICE::slotError(int nError, const QString& szError)
 {
     CParameterICE* pPara = GetParameter();
-    LOG_MODEL_INFO("ICE", "Signal server[%s:%d] error [%d]:%s",
+    LOG_MODEL_INFO("ICE", "%s signal server[%s:%d] error [%d]:%s",
+                   pPara->getSignalUser().toStdString().c_str(),
                    pPara->getSignalServer().toStdString().c_str(),
                    pPara->getSignalPort(),
                    nError, szError.toStdString().c_str());
