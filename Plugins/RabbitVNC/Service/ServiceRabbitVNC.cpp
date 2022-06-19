@@ -88,6 +88,7 @@ int CServiceRabbitVNC::OnInit()
                                                        const QString&,
                                                        const QString&)));
             Q_ASSERT(check);
+            LOG_MODEL_INFO("ServiceRabbitVNC", "Connect ICE signal");
         }
     }
 #endif

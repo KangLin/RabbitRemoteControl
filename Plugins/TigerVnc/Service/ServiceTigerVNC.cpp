@@ -76,6 +76,7 @@ int CServiceTigerVNC::OnInit()
                                                        const QString&,
                                                        const QString&)));
             Q_ASSERT(check);
+            LOG_MODEL_INFO("ServiceTigerVNC", "Connect ICE signal");
         }
     }
 #endif
