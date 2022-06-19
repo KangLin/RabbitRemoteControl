@@ -32,15 +32,15 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
     m_Signal = CICE::Instance()->GetSignal();
     if(m_Signal)
     {
-        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
-                        this, SLOT(slotSignalConnected()));
-        Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
-                        this, SLOT(slotSignalDisConnected()));
-        Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
-                        this, SLOT(slotSignalError(int, const QString&)));
-        Q_ASSERT(check);
+//        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
+//                        this, SLOT(slotSignalConnected()));
+//        Q_ASSERT(check);
+//        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
+//                        this, SLOT(slotSignalDisConnected()));
+//        Q_ASSERT(check);
+//        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
+//                        this, SLOT(slotSignalError(int, const QString&)));
+//        Q_ASSERT(check);
         check = connect(m_Signal.data(), SIGNAL(sigOffer(const QString&,
                                                           const QString&,
                                                           const QString&,
@@ -148,8 +148,7 @@ void CServiceTigerVNC::slotError(int nErr, QString szErr)
 #ifdef HAVE_ICE
 void CServiceTigerVNC::slotSignalConnected()
 {
-    CParameterServiceTigerVNC* p =
-            dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
+    CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
     LOG_MODEL_INFO("ServiceTigerVNC", "Connected to signal server: %s:%d; user:%s",
                    p->getSignalServer().toStdString().c_str(),
@@ -159,8 +158,7 @@ void CServiceTigerVNC::slotSignalConnected()
 
 void CServiceTigerVNC::slotSignalDisConnected()
 {
-    CParameterServiceTigerVNC* p =
-            dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
+    CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
     LOG_MODEL_INFO("ServiceTigerVNC", "Disconnect signal server: %s:%d; user:%s",
                    p->getSignalServer().toStdString().c_str(),
@@ -170,8 +168,7 @@ void CServiceTigerVNC::slotSignalDisConnected()
 
 void CServiceTigerVNC::slotSignalError(int nErr, const QString& szErr)
 {
-    CParameterServiceTigerVNC* p =
-            dynamic_cast<CParameterServiceTigerVNC*>(GetParameters());
+    CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
     LOG_MODEL_ERROR("ServiceTigerVNC", "signal: %s:%d; user:%s; error: %d: %s",
                     p->getSignalServer().toStdString().c_str(),
