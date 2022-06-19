@@ -29,29 +29,32 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
     m_pPara = new CParameterServiceTigerVNC(this);
 
 #if defined(HAVE_ICE)
-    m_Signal = CICE::Instance()->GetSignal();
-    if(m_Signal)
+    if(dynamic_cast<CParameterServiceTigerVNC*>(m_pPara)->getIce())
     {
-//        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
-//                        this, SLOT(slotSignalConnected()));
-//        Q_ASSERT(check);
-//        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
-//                        this, SLOT(slotSignalDisConnected()));
-//        Q_ASSERT(check);
-//        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
-//                        this, SLOT(slotSignalError(int, const QString&)));
-//        Q_ASSERT(check);
-        check = connect(m_Signal.data(), SIGNAL(sigOffer(const QString&,
-                                                          const QString&,
-                                                          const QString&,
-                                                          const QString&,
-                                                          const QString&)),
-                        this, SLOT(slotSignalOffer(const QString&,
-                                             const QString&,
-                                             const QString&,
-                                             const QString&,
-                                             const QString&)));
-        Q_ASSERT(check);
+        m_Signal = CICE::Instance()->GetSignal();
+        if(m_Signal)
+        {
+            //        check = connect(m_Signal.data(), SIGNAL(sigConnected()),
+            //                        this, SLOT(slotSignalConnected()));
+            //        Q_ASSERT(check);
+            //        check = connect(m_Signal.data(), SIGNAL(sigDisconnected()),
+            //                        this, SLOT(slotSignalDisConnected()));
+            //        Q_ASSERT(check);
+            //        check = connect(m_Signal.data(), SIGNAL(sigError(int, const QString&)),
+            //                        this, SLOT(slotSignalError(int, const QString&)));
+            //        Q_ASSERT(check);
+            check = connect(m_Signal.data(), SIGNAL(sigOffer(const QString&,
+                                                             const QString&,
+                                                             const QString&,
+                                                             const QString&,
+                                                             const QString&)),
+                            this, SLOT(slotSignalOffer(const QString&,
+                                                       const QString&,
+                                                       const QString&,
+                                                       const QString&,
+                                                       const QString&)));
+            Q_ASSERT(check);
+        }
     }
 #endif
 }

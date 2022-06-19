@@ -55,7 +55,7 @@
 <context>
     <name>CServiceTigerVNC</name>
     <message>
-        <location filename="../../ServiceTigerVNC.cpp" line="137"/>
+        <location filename="../../ServiceTigerVNC.cpp" line="140"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
