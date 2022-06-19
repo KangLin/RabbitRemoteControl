@@ -6,6 +6,8 @@
 #include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 #include <QCoreApplication>
+#include <QLocale>
+#include <QDebug>
 
 CICE::CICE(QObject *parent)
     : QObject{parent}
