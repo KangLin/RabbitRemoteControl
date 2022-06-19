@@ -10,7 +10,8 @@ CFrmParameterICE::CFrmParameterICE(CParameterICE *para, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    if(CICE::Instance()->GetSignal()->IsConnected())
+    if(CICE::Instance()->GetSignal()
+            && CICE::Instance()->GetSignal()->IsConnected())
     {
         ui->pbConnect->setChecked(true);
         ui->pbConnect->setText(tr("Disconnect"));

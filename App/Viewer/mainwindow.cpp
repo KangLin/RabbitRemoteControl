@@ -188,11 +188,15 @@ MainWindow::MainWindow(QWidget *parent)
     m_Parameter.Load();
     slotShortCut();
 #ifdef HAVE_ICE
-    check = connect(CICE::Instance()->GetSignal().data(),
-                    SIGNAL(sigError(const int, const QString&)),
-                    this, SLOT(slotError(const int, const QString&)));
-    Q_ASSERT(check);
+    if(CICE::Instance()->GetSignal())
+    {
+        check = connect(CICE::Instance()->GetSignal().data(),
+                        SIGNAL(sigError(const int, const QString&)),
+                        this, SLOT(slotError(const int, const QString&)));
+        Q_ASSERT(check);
+    }
     CICE::Instance()->slotStart();
+    
 #endif
     
     if(m_Parameter.GetSaveMainWindowStatus())
