@@ -30,6 +30,9 @@ private slots:
     void on_actionDefault_triggered();
     void on_actionOpen_triggered();
     void on_actionOpen_folder_triggered();
+
+    void on_actionOpen_log_file_triggered();
+    void on_actionOpen_log_folder_triggered();
     
 Q_SIGNALS:
     /*!

@@ -195,3 +195,13 @@ void CMainWindow::on_actionOpen_folder_triggered()
     if(szFolder.isEmpty()) return;
     QDesktopServices::openUrl(QUrl::fromLocalFile(szFolder));
 }
+
+void CMainWindow::on_actionOpen_log_file_triggered()
+{
+    RabbitCommon::OpenLogFile();
+}
+
+void CMainWindow::on_actionOpen_log_folder_triggered()
+{
+    RabbitCommon::OpenLogDirectory();
+}

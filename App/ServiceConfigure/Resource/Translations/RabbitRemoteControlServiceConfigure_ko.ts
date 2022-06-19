@@ -4,22 +4,22 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../../MainWindow.cpp" line="99"/>
+        <location filename="../../MainWindow.cpp" line="129"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="100"/>
+        <location filename="../../MainWindow.cpp" line="130"/>
         <source>Start service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="106"/>
+        <location filename="../../MainWindow.cpp" line="136"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="107"/>
+        <location filename="../../MainWindow.cpp" line="137"/>
         <source>Stop service</source>
         <translation type="unfinished"></translation>
     </message>
@@ -47,55 +47,70 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="91"/>
+        <location filename="../../MainWindow.ui" line="87"/>
+        <source>Open Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="99"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="97"/>
+        <location filename="../../MainWindow.ui" line="105"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="101"/>
+        <location filename="../../MainWindow.ui" line="109"/>
         <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="139"/>
+        <location filename="../../MainWindow.ui" line="147"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="142"/>
-        <location filename="../../MainWindow.ui" line="145"/>
-        <location filename="../../MainWindow.ui" line="148"/>
+        <location filename="../../MainWindow.ui" line="150"/>
+        <location filename="../../MainWindow.ui" line="153"/>
+        <location filename="../../MainWindow.ui" line="156"/>
         <source>Start service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="153"/>
+        <location filename="../../MainWindow.ui" line="161"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="158"/>
+        <location filename="../../MainWindow.ui" line="166"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="167"/>
+        <location filename="../../MainWindow.ui" line="175"/>
         <source>Open Configure folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="170"/>
+        <location filename="../../MainWindow.ui" line="178"/>
         <source>Open configure folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="175"/>
+        <location filename="../../MainWindow.ui" line="183"/>
         <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="188"/>
+        <source>Open log file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="193"/>
+        <source>Open log folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -2,14 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sl_SI">
 <context>
-    <name>CDataChannelIce</name>
-    <message>
-        <location filename="../../../ICE/DataChannelIce.cpp" line="376"/>
-        <source>Signal disconnected</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CFrmParameterTigerVNC</name>
     <message>
         <location filename="../../FrmParameterTigerVNC.ui" line="14"/>
@@ -28,70 +20,12 @@
     </message>
     <message>
         <location filename="../../FrmParameterTigerVNC.ui" line="52"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="147"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="182"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="234"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmParameterTigerVNC.ui" line="78"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="123"/>
-        <location filename="../../FrmParameterTigerVNC.ui" line="210"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="105"/>
-        <source>ICE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="113"/>
-        <source>Signal user:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="137"/>
-        <source>Stun server:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="163"/>
-        <source>Enable ICE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="172"/>
-        <source>Turn server:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="200"/>
-        <source>Turn user:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="224"/>
-        <source>Signal server:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CIceSignalQxmpp</name>
-    <message>
-        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="158"/>
-        <source>Socket error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="161"/>
-        <source>Keep alive error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../ICE/IceSignalQxmpp.cpp" line="164"/>
-        <source>xmpp stream error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -116,7 +50,7 @@
 <context>
     <name>CServiceTigerVNC</name>
     <message>
-        <location filename="../../ServiceTigerVNC.cpp" line="157"/>
+        <location filename="../../ServiceTigerVNC.cpp" line="137"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
