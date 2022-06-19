@@ -89,27 +89,46 @@
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="175"/>
+        <location filename="../../MainWindow.ui" line="169"/>
+        <location filename="../../MainWindow.ui" line="172"/>
+        <source>Default style</source>
+        <translation>默认样式</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="181"/>
         <source>Open Configure folder</source>
         <translation>打开配置文件夹</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="178"/>
+        <location filename="../../MainWindow.ui" line="184"/>
+        <location filename="../../MainWindow.ui" line="187"/>
+        <location filename="../../MainWindow.ui" line="190"/>
         <source>Open configure folder</source>
         <translation>打开配置文件夹</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="183"/>
+        <location filename="../../MainWindow.ui" line="195"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="188"/>
+        <location filename="../../MainWindow.ui" line="198"/>
+        <location filename="../../MainWindow.ui" line="201"/>
+        <location filename="../../MainWindow.ui" line="204"/>
+        <source>Open stype</source>
+        <translation>打开样式</translation>
+    </message>
+    <message>
+        <location filename="../../MainWindow.ui" line="209"/>
+        <location filename="../../MainWindow.ui" line="212"/>
+        <location filename="../../MainWindow.ui" line="215"/>
         <source>Open log file</source>
         <translation>打开日志文件</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.ui" line="193"/>
+        <location filename="../../MainWindow.ui" line="220"/>
+        <location filename="../../MainWindow.ui" line="223"/>
+        <location filename="../../MainWindow.ui" line="226"/>
         <source>Open log folder</source>
         <translation>打开日志文件夹</translation>
     </message>

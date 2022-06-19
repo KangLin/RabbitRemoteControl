@@ -28,6 +28,7 @@ public Q_SLOTS:
 private slots:
     void on_cbEnableICE_stateChanged(int arg1);
     void on_pbConnect_clicked(bool checked);
+    void on_leSignalName_editingFinished();
     
 private:
     void EnableCompone(bool bEnable);

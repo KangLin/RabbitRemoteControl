@@ -89,7 +89,17 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="leSignalName"/>
+      <widget class="QLineEdit" name="leSignalName">
+       <property name="toolTip">
+        <string>Format: user@domain/Resource</string>
+       </property>
+       <property name="statusTip">
+        <string>Format: user@domain/Resource</string>
+       </property>
+       <property name="whatsThis">
+        <string>Format: user@domain/Resource</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_5">

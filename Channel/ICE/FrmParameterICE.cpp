@@ -1,7 +1,13 @@
 #include "FrmParameterICE.h"
 #include "ui_FrmParameterICE.h"
-#include <QDebug>
+
 #include "Ice.h"
+#ifdef HAVE_QXMPP
+    #include "QXmppUtils.h"
+#endif
+
+#include <QDebug>
+#include <QMessageBox>
 
 CFrmParameterICE::CFrmParameterICE(CParameterICE *para, QWidget *parent) :
     QWidget(parent),
@@ -104,4 +110,17 @@ void CFrmParameterICE::on_pbConnect_clicked(bool checked)
         ui->pbConnect->setText(tr("Connect"));
         CICE::Instance()->slotStop();
     }
+}
+
+void CFrmParameterICE::on_leSignalName_editingFinished()
+{
+    #ifdef HAVE_QXMPP
+    QString user = ui->leSignalName->text();
+    if(QXmppUtils::jidToDomain(user).isEmpty()
+            || QXmppUtils::jidToResource(user).isEmpty())
+    {
+        QString szMsg = tr("The user name format is error. please use format: user@domain/resource");
+        QMessageBox::critical(this, tr("Error"), szMsg);
+    }
+#endif
 }

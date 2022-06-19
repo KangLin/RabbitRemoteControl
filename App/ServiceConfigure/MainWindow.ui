@@ -165,6 +165,12 @@
    <property name="text">
     <string>Default</string>
    </property>
+   <property name="toolTip">
+    <string>Default style</string>
+   </property>
+   <property name="statusTip">
+    <string>Default style</string>
+   </property>
   </action>
   <action name="actionOpen_folder">
    <property name="icon">
@@ -177,19 +183,46 @@
    <property name="toolTip">
     <string>Open configure folder</string>
    </property>
+   <property name="statusTip">
+    <string>Open configure folder</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open configure folder</string>
+   </property>
   </action>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open stype</string>
+   </property>
+   <property name="statusTip">
+    <string>Open stype</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open stype</string>
    </property>
   </action>
   <action name="actionOpen_log_file">
    <property name="text">
     <string>Open log file</string>
    </property>
+   <property name="statusTip">
+    <string>Open log file</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open log file</string>
+   </property>
   </action>
   <action name="actionOpen_log_folder">
    <property name="text">
+    <string>Open log folder</string>
+   </property>
+   <property name="statusTip">
+    <string>Open log folder</string>
+   </property>
+   <property name="whatsThis">
     <string>Open log folder</string>
    </property>
   </action>
