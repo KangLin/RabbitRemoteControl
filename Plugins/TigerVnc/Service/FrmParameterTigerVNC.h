@@ -28,8 +28,6 @@ private slots:
     void on_pbShow_clicked();
     
 private:
-    void Init();
-    
     Ui::CFrmParameterTigerVNC *ui;
     CParameterServiceTigerVNC* m_pParameters;
 };

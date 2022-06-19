@@ -80,7 +80,7 @@
     <message>
         <location filename="../../ICE/FrmParameterICE.cpp" line="119"/>
         <source>The user name format is error. please use format: user@domain/resource</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名格式错误。请用格式 user@domain/resource</translation>
     </message>
     <message>
         <location filename="../../ICE/FrmParameterICE.cpp" line="120"/>

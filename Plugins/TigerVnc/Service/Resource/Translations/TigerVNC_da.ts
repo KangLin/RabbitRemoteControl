@@ -14,17 +14,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="83"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="96"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="32"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="103"/>
+        <source>Enable ICE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterTigerVNC.ui" line="45"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="56"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="69"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>

@@ -27,9 +27,7 @@ public Q_SLOTS:
 private slots:
     void on_pbShow_clicked();
     
-private:
-    void Init();
-    
+private:    
     Ui::CFrmParameterRabbitVNC *ui;
     CParameterServiceRabbitVNC* m_pParameters;
 };

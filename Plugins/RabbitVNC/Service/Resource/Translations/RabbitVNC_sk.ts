@@ -14,18 +14,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="96"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="43"/>
         <source>Enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="32"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="52"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="69"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="76"/>
         <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="103"/>
+        <source>Enable ICE</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

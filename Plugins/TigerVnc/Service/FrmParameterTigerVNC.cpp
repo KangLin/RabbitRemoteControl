@@ -1,6 +1,10 @@
 #include "FrmParameterTigerVNC.h"
 #include "ui_FrmParameterTigerVNC.h"
 
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
+
 CFrmParameterTigerVNC::CFrmParameterTigerVNC(CParameterServiceTigerVNC *para, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmParameterTigerVNC),
@@ -8,7 +12,18 @@ CFrmParameterTigerVNC::CFrmParameterTigerVNC(CParameterServiceTigerVNC *para, QW
 {
     ui->setupUi(this);
     
-    Init();
+#ifdef HAVE_ICE
+    QSharedPointer<CIceSignal> signal = CICE::Instance()->GetSignal();
+    if(signal)
+        ui->cbEnableICE->setEnabled(true);
+    else
+        ui->cbEnableICE->setEnabled(false);
+#endif
+    
+    ui->cbEnable->setChecked(m_pParameters->getEnable());
+    ui->sbPort->setValue(m_pParameters->getPort());
+    ui->lePassword->setText(m_pParameters->getPassword());
+    ui->cbEnableICE->setChecked(m_pParameters->getIce());
 }
 
 CFrmParameterTigerVNC::~CFrmParameterTigerVNC()
@@ -21,13 +36,7 @@ void CFrmParameterTigerVNC::slotAccept()
     m_pParameters->setEnable(ui->cbEnable->isChecked());
     m_pParameters->setPort(ui->sbPort->value());
     m_pParameters->setPassword(ui->lePassword->text());
-}
-
-void CFrmParameterTigerVNC::Init()
-{
-    ui->cbEnable->setChecked(m_pParameters->getEnable());
-    ui->sbPort->setValue(m_pParameters->getPort());
-    ui->lePassword->setText(m_pParameters->getPassword());
+    m_pParameters->setIce(ui->cbEnableICE->isChecked());
 }
 
 void CFrmParameterTigerVNC::on_pbShow_clicked()

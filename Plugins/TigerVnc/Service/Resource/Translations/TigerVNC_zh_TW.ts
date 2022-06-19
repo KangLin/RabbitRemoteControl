@@ -14,43 +14,24 @@
         <translation>基本</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="83"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="96"/>
         <source>Enable</source>
         <translation>允許</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="32"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="45"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="56"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="69"/>
         <source>Password:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <source>Signal user:</source>
-        <translation type="vanished">信令用戶：</translation>
-    </message>
-    <message>
-        <source>Stun server:</source>
-        <translation type="vanished">Stun 服務器：</translation>
-    </message>
-    <message>
+        <location filename="../../FrmParameterTigerVNC.ui" line="103"/>
         <source>Enable ICE</source>
-        <translation type="vanished">允許 ICE</translation>
-    </message>
-    <message>
-        <source>Turn server:</source>
-        <translation type="vanished">Turn 服務器：</translation>
-    </message>
-    <message>
-        <source>Turn user:</source>
-        <translation type="vanished">Turn 用戶：</translation>
-    </message>
-    <message>
-        <source>Signal server:</source>
-        <translation type="vanished">信令服務器：</translation>
+        <translation>允許 ICE</translation>
     </message>
 </context>
 <context>

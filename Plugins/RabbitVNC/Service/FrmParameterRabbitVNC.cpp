@@ -1,14 +1,29 @@
 #include "FrmParameterRabbitVNC.h"
 #include "ui_FrmParameterRabbitVNC.h"
 
+#ifdef HAVE_ICE
+    #include "Ice.h"
+#endif
+
 CFrmParameterRabbitVNC::CFrmParameterRabbitVNC(CParameterServiceRabbitVNC *para, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmParameterRabbitVNC),
     m_pParameters(para)
 {
     ui->setupUi(this);
+    
+#ifdef HAVE_ICE
+    QSharedPointer<CIceSignal> signal = CICE::Instance()->GetSignal();
+    if(signal)
+        ui->cbEnableICE->setEnabled(true);
+    else
+        ui->cbEnableICE->setEnabled(false);
+#endif
 
-    Init();
+    ui->cbEnable->setChecked(m_pParameters->getEnable());
+    ui->sbPort->setValue(m_pParameters->getPort());
+    ui->lePassword->setText(m_pParameters->getPassword());
+    ui->cbEnableICE->setChecked(m_pParameters->getIce());
 }
 
 CFrmParameterRabbitVNC::~CFrmParameterRabbitVNC()
@@ -21,13 +36,7 @@ void CFrmParameterRabbitVNC::slotAccept()
     m_pParameters->setEnable(ui->cbEnable->isChecked());
     m_pParameters->setPort(ui->sbPort->value());
     m_pParameters->setPassword(ui->lePassword->text());
-}
-
-void CFrmParameterRabbitVNC::Init()
-{
-    ui->cbEnable->setChecked(m_pParameters->getEnable());
-    ui->sbPort->setValue(m_pParameters->getPort());
-    ui->lePassword->setText(m_pParameters->getPassword());
+    m_pParameters->setIce(ui->cbEnableICE->isChecked());
 }
 
 void CFrmParameterRabbitVNC::on_pbShow_clicked()
