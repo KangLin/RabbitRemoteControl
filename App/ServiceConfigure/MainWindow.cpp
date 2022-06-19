@@ -123,6 +123,14 @@ void CMainWindow::on_actionStart_triggered()
         else
             plugin->Start();
     }
+    
+#ifdef HAVE_ICE
+    if(m_bStart)
+        CICE::Instance()->slotStop();
+    else
+        CICE::Instance()->slotStart();
+#endif
+    
     if(m_bStart)
     {
         ui->actionStart->setIcon(QIcon(":/image/Start"));

@@ -23,8 +23,7 @@
     </message>
     <message>
         <location filename="../../ICE/FrmParameterICE.ui" line="41"/>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="29"/>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="110"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="157"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
@@ -74,18 +73,17 @@
         <translation>TURN 用户：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="23"/>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="104"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="153"/>
         <source>Disconnect</source>
         <translation>断开连接</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="122"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="121"/>
         <source>The user name format is error. please use format: user@domain/resource</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="123"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="122"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>

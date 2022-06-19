@@ -14,20 +14,22 @@ CFrmParameterICE::CFrmParameterICE(CParameterICE *para, QWidget *parent) :
     ui(new Ui::CFrmParameterICE),
     m_pParameters(para)
 {
+    bool check = false;
     ui->setupUi(this);
 
-    if(CICE::Instance()->GetSignal()
-            && CICE::Instance()->GetSignal()->IsConnected())
+    QSharedPointer<CIceSignal> signal = CICE::Instance()->GetSignal();
+    if(signal)
     {
-        ui->pbConnect->setChecked(true);
-        ui->pbConnect->setText(tr("Disconnect"));
-        ui->pbConnect->setIcon(QIcon(":/image/Disconnect"));
-    }
-    else
-    {
-        ui->pbConnect->setChecked(false);
-        ui->pbConnect->setText(tr("Connect"));
-        ui->pbConnect->setIcon(QIcon(":/image/Connect"));
+        SetConnectButton(signal->IsConnected());
+        check = connect(signal.data(), SIGNAL(sigConnected()),
+                        this, SLOT(slotConnected()));
+        Q_ASSERT(check);
+        check = connect(signal.data(), SIGNAL(sigDisconnected()),
+                        this, SLOT(slotDisconnected()));
+        Q_ASSERT(check);
+        check = connect(signal.data(), SIGNAL(sigError(int, const QString&)),
+                        this, SLOT(slotError(int, const QString&)));
+        Q_ASSERT(check);
     }
 }
 
@@ -98,18 +100,11 @@ void CFrmParameterICE::EnableCompone(bool bEnable)
 
 void CFrmParameterICE::on_pbConnect_clicked(bool checked)
 {
+    SetConnectButton(!checked);
     if(checked)
-    {
-        ui->pbConnect->setIcon(QIcon(":/image/Disconnect"));
-        ui->pbConnect->setText(tr("Disconnect"));
         CICE::Instance()->slotStart();
-    }
     else
-    {
-        ui->pbConnect->setIcon(QIcon(":/image/Connect"));
-        ui->pbConnect->setText(tr("Connect"));
         CICE::Instance()->slotStop();
-    }
 }
 
 void CFrmParameterICE::on_leSignalName_editingFinished()
@@ -123,4 +118,39 @@ void CFrmParameterICE::on_leSignalName_editingFinished()
         QMessageBox::critical(this, tr("Error"), szMsg);
     }
 #endif
+}
+
+void CFrmParameterICE::slotConnected()
+{
+    QSharedPointer<CIceSignal> signal = CICE::Instance()->GetSignal();
+    if(signal)
+        SetConnectButton(signal->IsConnected());
+}
+
+void CFrmParameterICE::slotDisconnected()
+{
+    QSharedPointer<CIceSignal> signal = CICE::Instance()->GetSignal();
+    if(signal)
+        SetConnectButton(signal->IsConnected());
+}
+
+void CFrmParameterICE::slotError(int nError, const QString& szError)
+{
+    QSharedPointer<CIceSignal> signal = CICE::Instance()->GetSignal();
+    if(signal)
+        SetConnectButton(signal->IsConnected());
+}
+
+void CFrmParameterICE::SetConnectButton(bool bConnected)
+{
+    if(bConnected)
+    {
+        ui->pbConnect->setChecked(true);
+        ui->pbConnect->setText(tr("Disconnect"));
+        ui->pbConnect->setIcon(QIcon(":/image/Disconnect"));
+    } else {
+        ui->pbConnect->setChecked(false);
+        ui->pbConnect->setText(tr("Connect"));
+        ui->pbConnect->setIcon(QIcon(":/image/Connect"));
+    }
 }

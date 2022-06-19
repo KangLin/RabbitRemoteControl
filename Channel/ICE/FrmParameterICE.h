@@ -26,12 +26,17 @@ public Q_SLOTS:
     //! [Accept parameters]
 
 private slots:
+    void slotConnected();
+    void slotDisconnected();
+    void slotError(int nError, const QString& szError);
+    
     void on_cbEnableICE_stateChanged(int arg1);
     void on_pbConnect_clicked(bool checked);
     void on_leSignalName_editingFinished();
     
 private:
     void EnableCompone(bool bEnable);
+    void SetConnectButton(bool bConnected);
     
     Ui::CFrmParameterICE *ui;
     CParameterICE* m_pParameters;

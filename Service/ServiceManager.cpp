@@ -80,6 +80,10 @@ void CServiceManager::start()
         m_Plugins = QSharedPointer<CManagePlugins>(new CManagePlugins());
     foreach(auto p, m_Plugins->m_Plugins)
         if(p) p->Start();
+    
+#ifdef HAVE_ICE
+    CICE::Instance()->slotStart();
+#endif
 }
 
 void CServiceManager::stop()
@@ -88,4 +92,8 @@ void CServiceManager::stop()
     if(!m_Plugins) return;
     foreach(auto p, m_Plugins->m_Plugins)
         if(p) p->Stop();
+    
+#ifdef HAVE_ICE
+    CICE::Instance()->slotStop();
+#endif
 }
