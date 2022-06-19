@@ -9,6 +9,16 @@
 #include <QTcpSocket>
 #include "channel_export.h"
 
+/*!
+ * \~chinese
+ * \brief 通道接口类。此类默认实现一个 TCP 的通道。
+ *
+ * \~english
+ * \brief The channel interface class. This class implements a TCP channel by default.
+ * 
+ * \~
+ * \ingroup LIBAPI_CHANNEL
+ */
 class CHANNEL_EXPORT CChannel : public QIODevice
 {
     Q_OBJECT

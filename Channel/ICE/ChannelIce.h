@@ -12,6 +12,17 @@
 #include <QMutex>
 #include <QSharedPointer>
 
+/*!
+ * \~chinese
+ * \brief ICE 通道类。此类实现一个 ICE 的通道。
+ *
+ * \~english
+ * \brief The ICE channel interface class. This class implements a ICE channel.
+ * 
+ * \~
+ * \ingroup LIBAPI_ICE LIBAPI_CHANNEL
+ * \see CIceSignal
+ */
 class CHANNEL_EXPORT CChannelIce : public CChannel
 {
     Q_OBJECT

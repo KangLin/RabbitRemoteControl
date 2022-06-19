@@ -101,7 +101,7 @@
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/share/cmake/libdatachannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
 
 参见：[编译集成](../../.github/workflows/ubuntu.yml)
@@ -263,7 +263,7 @@
         ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
         ~/libdatachannel/build$ cmake --build . --target install
 
-  + 指定 CMake 参数: -DLibDataChannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
+  + 指定 CMake 参数: -DLibDataChannel_DIR=[libdatachannel 安装目录]/lib/cmake/LibDataChannel
 
 #### QXmpp
 - 从源码编译
@@ -336,7 +336,7 @@
   + RabbitVNC_DIR: [RabbitVNC 安装目录]/lib/cmake/RabbitVNC
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
-  + LibDataChannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
+  + LibDataChannel_DIR: [libdatachannel 安装目录]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
   + qtermwidget5_DIR: [qtermwidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh

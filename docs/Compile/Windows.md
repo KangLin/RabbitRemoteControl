@@ -31,7 +31,7 @@ Prior versions don't have CMake support.
 
 - Windows SDK: https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
     Install the SDK that corresponds to your operating system. (CDB must be installed, and Qt debugging is required.)
-- Windows Driver Kit: https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
+- [OPTIONAL] Windows Driver Kit: https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
 
 - Qt
   + Qt (official release): https://download.qt.io/official_releases/qt/  
@@ -170,7 +170,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
         cmake --build . --target install
 
-  + Specify the CMake parameters: -Dlibdatachannel_DIR=[libdatachannel installation path]/share/cmake/libdatachannel
+  + Specify the CMake parameters: -Dlibdatachannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
 
 #### QXmpp
 - Compile from source code
@@ -233,7 +233,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + RabbitVNC_DIR: [RabbitVNC installation path]/lib/cmake/RabbitVNC
   + TigerVNC_DIR: [TigerVNC installation path]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver installation path]/lib/cmake/LibVNCServer
-  + libdatachannel_DIR: [libdatachannel installation path]/share/cmake/libdatachannel
+  + libdatachannel_DIR: [libdatachannel installation path]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
   + QTermWidget5_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh

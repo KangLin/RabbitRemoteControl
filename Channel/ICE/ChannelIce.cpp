@@ -1,4 +1,4 @@
-//! @author Kang Lin(kl222@126.com)
+//! @author Kang Lin <kl222@126.com>
 
 #include "ChannelIce.h"
 #include "rtc/rtc.hpp"

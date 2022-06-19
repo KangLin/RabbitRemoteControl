@@ -10,8 +10,16 @@
 #include "channel_export.h"
 
 /*!
- * \brief The ICE signal
+ * \~chinese
+ * \brief ICE 信令接口类
+ * \details 此信令基于 [libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+ * 
+ * \~english
+ * \brief The ICE signal interface class
  * \details The signal is base on [libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+ * 
+ * \~
+ * \ingroup LIBAPI_ICE
  */
 class CHANNEL_EXPORT CIceSignal : public QObject
 {

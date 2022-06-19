@@ -8,6 +8,16 @@ namespace Ui {
 class CFrmParameterICE;
 }
 
+/*!
+ * \~chinese
+ * \brief 设置参数对话框
+ *
+ * \~english
+ * \brief Set parameter dialog
+ * 
+ * \~
+ * \ingroup LIBAPI_ICE
+ */
 class CFrmParameterICE : public QWidget
 {
     Q_OBJECT

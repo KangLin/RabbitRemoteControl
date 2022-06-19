@@ -5,6 +5,17 @@
 #include <QSettings>
 #include "channel_export.h"
 
+/*!
+ * \~chinese
+ * \brief ICE 参数辅助类。用于管理 ICE 的参数。
+ * 
+ * \~english
+ * \brief ICE parameter helper class. Parameters for managing ICE.
+ * 
+ * \~
+ * \ingroup LIBAPI_ICE
+ * \see CFrmParameterICE
+ */
 class CHANNEL_EXPORT CParameterICE : public QObject
 {
     Q_OBJECT

@@ -9,6 +9,17 @@
 #include "ParameterICE.h"
 #include "FrmParameterICE.h"
 
+/*!
+ * \~chinese
+ * \brief 提供管理、访问ICE的一个单例对象
+ * 
+ * \~english
+ * \brief Provides a singleton object for management and access to ICE
+ * 
+ * \~
+ * \ingroup LIBAPI_ICE
+ * \see CIceSignal CParameterICE CFrmParameterICE
+ */
 class CHANNEL_EXPORT CICE : public QObject
 {
     Q_OBJECT
@@ -16,6 +27,10 @@ public:
     explicit CICE(QObject *parent = nullptr);
     virtual ~CICE();
     
+    /*!
+     * \brief Single instance
+     * \return 
+     */
     static CICE* Instance();
     
     QSharedPointer<CIceSignal> GetSignal();

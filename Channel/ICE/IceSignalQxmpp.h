@@ -7,6 +7,18 @@
 #include "QXmppClient.h"
 #include "IceSignalQXmppManager.h"
 
+/*!
+ * \~chinese
+ * \brief QXMPP 实现 ICE 信令类
+ * \details 此信令基于 [libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+ * 
+ * \~english
+ * \brief QXMPP implements ICE signaling class
+ * \details The signal is base on [libdatachannel](https://github.com/paullouisageneau/libdatachannel)
+ * 
+ * \~
+ * \ingroup LIBAPI_ICE
+ */
 class CIceSignalQxmpp : public CIceSignal
 {
     Q_OBJECT

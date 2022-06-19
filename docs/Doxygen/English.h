@@ -97,4 +97,17 @@
 \ingroup LIBAPI_VIEWER
 \brief Thread module
 
+\defgroup LIBAPI_CHANNEL Channel
+\brief Stream data channel
+\ingroup LIBAPI
+\details
++ Class relationship
+  \image html docs/Image/Channel.svg
+  
+\defgroup LIBAPI_ICE ICE
+\ingroup LIBAPI_CHANNEL
+\details
++ Class relationship
+  \image html docs/Image/Channel.svg
+  
 */

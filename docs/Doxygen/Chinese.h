@@ -88,4 +88,17 @@
 \ingroup LIBAPI_VIEWER
 \brief 线程模型
 
+\defgroup LIBAPI_CHANNEL 通道
+\ingroup LIBAPI
+\brief 流式数据通道
+\details
++ 类关系图
+  \image html docs/Image/Channel.svg
+  
+\defgroup LIBAPI_ICE ICE
+\ingroup LIBAPI_CHANNEL
+\details
++ 类关系图
+  \image html docs/Image/Channel.svg
+
 */

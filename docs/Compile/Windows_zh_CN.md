@@ -29,7 +29,7 @@
     
 - Windows SDK：https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
     根据你的操作系统安装相应的 SDK。 CDB必须要安装，QT调试需要。
-- Windows Driver Kit：https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
+- [可选] Windows Driver Kit：https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
    
 - Qt
   + Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
@@ -162,7 +162,7 @@
         cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
         cmake --build . --target install
 
-  + 指定 CMake 参数: -Dlibdatachannel_DIR=[libdatachannel 安装目录]/share/cmake/libdatachannel
+  + 指定 CMake 参数: -Dlibdatachannel_DIR=[libdatachannel 安装目录]/lib/cmake/LibDataChannel
 
 #### QXmpp
 - 从源码编译
@@ -225,7 +225,7 @@
   + RabbitVNC_DIR: [RabbitVNC 安装目录]/lib/cmake/RabbitVNC
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
-  + libdatachannel_DIR: [libdatachannel 安装目录]/share/cmake/libdatachannel
+  + libdatachannel_DIR: [libdatachannel 安装目录]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
   + qtermwidget5_DIR: [QTermWidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
