@@ -107,7 +107,7 @@
         <location filename="../../FrmFullScreenToolBar.cpp" line="81"/>
         <location filename="../../FrmFullScreenToolBar.cpp" line="82"/>
         <source>Disconnect</source>
-        <translation>关闭边连接</translation>
+        <translation>关闭连接</translation>
     </message>
     <message>
         <location filename="../../FrmFullScreenToolBar.cpp" line="74"/>
