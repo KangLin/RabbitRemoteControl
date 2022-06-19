@@ -73,4 +73,22 @@
         <translation>断开连接</translation>
     </message>
 </context>
+<context>
+    <name>CIceSignalQxmpp</name>
+    <message>
+        <location filename="../../ICE/IceSignalQxmpp.cpp" line="175"/>
+        <source>Socket error</source>
+        <translation>Socket 错误</translation>
+    </message>
+    <message>
+        <location filename="../../ICE/IceSignalQxmpp.cpp" line="178"/>
+        <source>Keep alive error</source>
+        <translation>保持活动错误</translation>
+    </message>
+    <message>
+        <location filename="../../ICE/IceSignalQxmpp.cpp" line="181"/>
+        <source>xmpp stream error</source>
+        <translation>XMPP 流错误</translation>
+    </message>
+</context>
 </TS>
