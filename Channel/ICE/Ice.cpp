@@ -88,7 +88,7 @@ void CICE::slotStart()
     QSharedPointer<CIceSignal> signal = GetSignal();
     if(!signal) return;
     if(signal->IsConnected())
-        signal->Close();
+        return;
     CParameterICE* pPara = GetParameter();
     if(pPara->getIce())
     {
@@ -101,7 +101,7 @@ void CICE::slotStop()
 {
     QSharedPointer<CIceSignal> signal = GetSignal();
     if(!signal) return;
-    if(signal->IsConnected())
+    //if(signal->IsConnected())
         signal->Close();
 }
 

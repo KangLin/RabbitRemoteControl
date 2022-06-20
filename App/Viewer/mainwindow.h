@@ -93,6 +93,15 @@ private Q_SLOTS:
     void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
 
+    ///////// ICE signal /////////
+private:
+    QPushButton * m_pSignalStatus;
+private Q_SLOTS:
+    void slotSignalConnected();
+    void slotSignalDisconnected();
+    void slotSignalError(const int nError, const QString &szInfo);
+    void slotSignalPushButtonClicked(bool checked);
+
 protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;

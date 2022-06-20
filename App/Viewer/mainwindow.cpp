@@ -33,10 +33,12 @@
 #include <QDrag>
 #include <QMimeData>
 #include <QKeySequence>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
+      m_pSignalStatus(nullptr),
       m_pView(nullptr),
       m_pGBView(nullptr),
       m_pFullScreenToolBar(nullptr),
@@ -169,9 +171,9 @@ MainWindow::MainWindow(QWidget *parent)
         m_pGBView->setEnabled(false);
     }
     ui->actionZoomToWindow_Z->setChecked(true);
-    
+
     setFocusPolicy(Qt::NoFocus);
-    
+
     //TODO: complete the function
     ui->actionZoom_window_to_remote_desktop->setVisible(false);
 
@@ -191,14 +193,27 @@ MainWindow::MainWindow(QWidget *parent)
     if(CICE::Instance()->GetSignal())
     {
         check = connect(CICE::Instance()->GetSignal().data(),
+                        SIGNAL(sigConnected()),
+                        this, SLOT(slotSignalConnected()));
+        Q_ASSERT(check);
+        check = connect(CICE::Instance()->GetSignal().data(),
+                        SIGNAL(sigDisconnected()),
+                        this, SLOT(slotSignalDisconnected()));
+        Q_ASSERT(check);
+        check = connect(CICE::Instance()->GetSignal().data(),
                         SIGNAL(sigError(const int, const QString&)),
-                        this, SLOT(slotError(const int, const QString&)));
+                        this, SLOT(slotSignalError(const int, const QString&)));
         Q_ASSERT(check);
     }
     CICE::Instance()->slotStart();
-    
+    m_pSignalStatus = new QPushButton();
+    m_pSignalStatus->setToolTip(tr("ICE singal status"));
+    m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
+    m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
+    slotSignalDisconnected();
+    statusBar()->addPermanentWidget(m_pSignalStatus);
 #endif
-    
+
     if(m_Parameter.GetSaveMainWindowStatus())
     {
         QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
@@ -698,6 +713,40 @@ void MainWindow::on_actionDisconnect_D_triggered()
     slotCloseView(pView);    
 }
 
+void MainWindow::slotSignalConnected()
+{
+    m_pSignalStatus->setToolTip(tr("ICE singal status: Connected"));
+    m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
+    m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
+    //m_pSignalStatus->setText(tr("Connected"));
+    m_pSignalStatus->setIcon(QIcon(":/image/Connect"));
+}
+
+void MainWindow::slotSignalDisconnected()
+{
+    m_pSignalStatus->setToolTip(tr("ICE singal status: Disconnected"));
+    m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
+    m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
+    //m_pSignalStatus->setText(tr("Disconnected"));
+    m_pSignalStatus->setIcon(QIcon(":/image/Disconnect"));
+}
+
+void MainWindow::slotSignalError(const int nError, const QString &szInfo)
+{
+    slotSignalDisconnected();
+    slotInformation(szInfo);
+}
+
+void MainWindow::slotSignalPushButtonClicked(bool checked)
+{
+#ifdef HAVE_ICE
+    if(checked)
+        CICE::Instance()->slotStart();
+    else
+        CICE::Instance()->slotStop();
+#endif
+}
+
 void MainWindow::slotDisconnected()
 {
     CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
@@ -717,12 +766,12 @@ void MainWindow::slotDisconnected()
 void MainWindow::slotError(const int nError, const QString &szInfo)
 {
     Q_UNUSED(nError);
-    this->statusBar()->showMessage(szInfo);
+    slotInformation(szInfo);
 }
 
 void MainWindow::slotInformation(const QString& szInfo)
 {
-    this->statusBar()->showMessage(szInfo);
+    statusBar()->showMessage(szInfo);
 }
 
 void MainWindow::slotUpdateName(const QString& szName)
