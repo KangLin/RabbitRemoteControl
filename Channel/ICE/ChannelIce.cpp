@@ -6,43 +6,47 @@
 #include <QDebug>
 #include <QThread>
 
+// Set libdatachannel log callback function
+class CLogCallback
+{
+public:
+    CLogCallback()
+    {
+        rtc::InitLogger(rtc::LogLevel::Debug, logCallback);
+    }
+    
+    static void logCallback(rtc::LogLevel level, std::string message)
+    {
+        switch (level) {
+        case rtc::LogLevel::Verbose:
+        case rtc::LogLevel::Debug:
+            LOG_MODEL_DEBUG("Libdatachannel", message.c_str());
+            break;
+        case rtc::LogLevel::Info:
+            LOG_MODEL_INFO("Libdatachannel", message.c_str());
+            break;
+        case rtc::LogLevel::Warning:
+            LOG_MODEL_WARNING("Libdatachannel", message.c_str());
+            break;
+        case rtc::LogLevel::Error:
+        case rtc::LogLevel::Fatal:
+            LOG_MODEL_ERROR("Libdatachannel", message.c_str());
+            break;
+        case rtc::LogLevel::None:
+            break;
+        }
+    }
+};
+
+static CLogCallback g_LogCallback;
+
 CChannelIce::CChannelIce(QObject* parent) : CChannel(parent)
 {}
-
-void logCallback(rtc::LogLevel level, std::string message)
-{
-    switch (level) {
-    case rtc::LogLevel::Verbose:
-    case rtc::LogLevel::Debug:
-        LOG_MODEL_DEBUG("Libdatachannel", message.c_str());
-        break;
-    case rtc::LogLevel::Info:
-        LOG_MODEL_INFO("Libdatachannel", message.c_str());
-        break;
-    case rtc::LogLevel::Warning:
-        LOG_MODEL_WARNING("Libdatachannel", message.c_str());
-        break;
-    case rtc::LogLevel::Error:
-    case rtc::LogLevel::Fatal:
-        LOG_MODEL_ERROR("Libdatachannel", message.c_str());
-        break;
-    case rtc::LogLevel::None:
-        break;
-    }
-}
-
-static bool gInitLog = false;
 
 CChannelIce::CChannelIce(CIceSignal* pSignal, QObject *parent)
     : CChannel(parent),
       m_pSignal(pSignal)
 {
-    //*
-    if(!gInitLog) {
-        gInitLog = true;
-        rtc::InitLogger(rtc::LogLevel::Debug, logCallback);//*/
-    }
-
     SetSignal(pSignal);
 }
 
