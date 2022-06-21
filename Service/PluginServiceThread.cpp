@@ -1,14 +1,14 @@
-#include "PluginServicThread.h"
+#include "PluginServiceThread.h"
 #include "ServiceThread.h"
 
-CPluginServicThread::CPluginServicThread(QObject *parent)
+CPluginServiceThread::CPluginServiceThread(QObject *parent)
     : CPluginService(parent)
 {}
 
-CPluginServicThread::~CPluginServicThread()
+CPluginServiceThread::~CPluginServiceThread()
 {}
 
-void CPluginServicThread::Start()
+void CPluginServiceThread::Start()
 {
     if(!m_Thread)
     {
@@ -19,7 +19,7 @@ void CPluginServicThread::Start()
         m_Thread->start();
 }
 
-void CPluginServicThread::Stop()
+void CPluginServiceThread::Stop()
 {
     if(m_Thread)
     {

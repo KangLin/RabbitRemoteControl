@@ -13,13 +13,13 @@
  *  \ingroup LIBAPI_SERVICE
  *  \see CService CServiceThread CServiceManager CPluginService
  */
-class CPluginServicThread : public CPluginService
+class CPluginServiceThread : public CPluginService
 {
     Q_OBJECT
 
 public:
-    explicit CPluginServicThread(QObject *parent = nullptr);
-    virtual ~CPluginServicThread() override;
+    explicit CPluginServiceThread(QObject *parent = nullptr);
+    virtual ~CPluginServiceThread() override;
     
     /*!
      * \brief Default start a new thread to process Service
