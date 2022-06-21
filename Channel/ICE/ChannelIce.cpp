@@ -38,7 +38,8 @@ public:
     }
 };
 
-static CLogCallback g_LogCallback;
+// Set libdatachannel log callback function
+//static CLogCallback g_LogCallback;
 
 CChannelIce::CChannelIce(QObject* parent) : CChannel(parent)
 {}
