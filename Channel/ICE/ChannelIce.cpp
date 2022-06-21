@@ -240,16 +240,6 @@ int CChannelIce::CreateDataChannel(bool bDataChannel)
         }
 
         SetDataChannel(dc);
-
-        // \~chinese 因为 dc 已打开，所以必须在此打开设备和触发 sigConnected()
-        // \~english Because the dc is opened, so must open device and emit sigConnected
-        if(QIODevice::open(QIODevice::ReadWrite))
-            emit sigConnected();
-        else
-            LOG_MODEL_ERROR("CChannelIce", "Open Device fail:user:%s;peer:%s;channelId:%d",
-                            GetUser().toStdString().c_str(),
-                            GetPeerUser().toStdString().c_str(),
-                            GetChannelId().toStdString().c_str());
     });
 
     if(bDataChannel)
@@ -319,13 +309,13 @@ qint64 CChannelIce::writeData(const char *data, qint64 len)
                         "m_dataChannel->isClosed():peer:%s;channel:%s",
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str());
-        return -1;
+        return -2;
     }
     
     if(!isOpen())
     {
         LOG_MODEL_ERROR("CChannelIce", "The data channel isn't open");
-        return -1;
+        return -3;
     }
     
     bool bSend = false;
@@ -342,7 +332,7 @@ qint64 CChannelIce::writeData(const char *data, qint64 len)
         if(!bSend)
         {
             LOG_MODEL_ERROR("CChannelIce", "Send fail. len:%d;n:%d", len, n);
-            return -1;
+            return -4;
         }
         n -= DEFAULT_MAX_MESSAGE_SIZE;
     }
@@ -352,7 +342,7 @@ qint64 CChannelIce::writeData(const char *data, qint64 len)
         if(bSend) return len;
     }
     LOG_MODEL_ERROR("CChannelIce", "Send fail. Len:%d; n:0X%X", len, n);
-    return -1;
+    return -5;
 }
 
 qint64 CChannelIce::readData(char *data, qint64 maxlen)
