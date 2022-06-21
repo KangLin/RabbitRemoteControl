@@ -34,6 +34,8 @@ private slots:
     void on_actionOpen_log_file_triggered();
     void on_actionOpen_log_folder_triggered();
     
+    void on_actionOpen_log_configure_file_triggered();
+    
 Q_SIGNALS:
     /*!
      * \~chinese 通知插件设置窗口参数发生改变。

@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -100,6 +100,7 @@
      </property>
      <addaction name="actionOpen_Log_file"/>
      <addaction name="actionLog_directory"/>
+     <addaction name="actionOpen_log_configure_file"/>
     </widget>
     <addaction name="menuConnect_C"/>
     <addaction name="actionDisconnect_D"/>
@@ -622,6 +623,17 @@
    </property>
    <property name="whatsThis">
     <string>Open log file</string>
+   </property>
+  </action>
+  <action name="actionOpen_log_configure_file">
+   <property name="text">
+    <string>Open log configure file</string>
+   </property>
+   <property name="statusTip">
+    <string>Open log configure file</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open log configure file</string>
    </property>
   </action>
  </widget>

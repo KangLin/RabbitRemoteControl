@@ -44,6 +44,7 @@ private Q_SLOTS:
     void on_actionExit_E_triggered();
     void on_actionAbout_A_triggered();
     void on_actionUpdate_U_triggered();
+    void on_actionOpen_log_configure_file_triggered();
     void on_actionLog_directory_triggered();
     void on_actionOpen_Log_file_triggered();
         
@@ -164,7 +165,7 @@ private Q_SLOTS:
     void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
     void slotShowSystemTryIcon();
-    
+
 private:
     QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };

@@ -75,7 +75,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuService">
@@ -88,6 +88,7 @@
      </property>
      <addaction name="actionOpen_log_file"/>
      <addaction name="actionOpen_log_folder"/>
+     <addaction name="actionOpen_log_configure_file"/>
     </widget>
     <addaction name="actionStart"/>
     <addaction name="separator"/>
@@ -224,6 +225,17 @@
    </property>
    <property name="whatsThis">
     <string>Open log folder</string>
+   </property>
+  </action>
+  <action name="actionOpen_log_configure_file">
+   <property name="text">
+    <string>Open log configure file</string>
+   </property>
+   <property name="statusTip">
+    <string>Open log configure file</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open log configure file</string>
    </property>
   </action>
  </widget>
