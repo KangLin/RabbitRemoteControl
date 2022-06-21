@@ -136,7 +136,13 @@ int CChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str(),
                         m_dataChannel->label().c_str());
-        emit sigConnected();
+        if(QIODevice::open(QIODevice::ReadWrite))
+            emit sigConnected();
+        else
+            LOG_MODEL_ERROR("CChannelIce", "Open Device fail:user:%s;peer:%s;channelId:%d",
+                            GetUser().toStdString().c_str(),
+                            GetPeerUser().toStdString().c_str(),
+                            GetChannelId().toStdString().c_str());
     });
 
     dc->onClosed([this]() {
@@ -233,6 +239,16 @@ int CChannelIce::CreateDataChannel(bool bDataChannel)
         }
 
         SetDataChannel(dc);
+
+        // \~chinese 因为 dc 已打开，所以必须在此打开设备和触发 sigConnected()
+        // \~english Because the dc is opened, so must open device and emit sigConnected
+        if(QIODevice::open(QIODevice::ReadWrite))
+            emit sigConnected();
+        else
+            LOG_MODEL_ERROR("CChannelIce", "Open Device fail:user:%s;peer:%s;channelId:%d",
+                            GetUser().toStdString().c_str(),
+                            GetPeerUser().toStdString().c_str(),
+                            GetChannelId().toStdString().c_str());
     });
 
     if(bDataChannel)
@@ -246,9 +262,6 @@ int CChannelIce::CreateDataChannel(bool bDataChannel)
 bool CChannelIce::open(const QString &user, const QString &peer, bool bChannelId)
 {
     bool bRet = false;
-    bRet = QIODevice::open(QIODevice::ReadWrite);
-    if(!bRet) return false;
-    
     m_szPeerUser = peer;
     m_szUser = user;
     if(bChannelId)
@@ -372,7 +385,7 @@ void CChannelIce::slotSignalConnected()
 
 void CChannelIce::slotSignalDisconnected()
 {
-    emit sigError(-1, tr("Signal disconnected"));
+    //emit sigError(-1, tr("Signal disconnected"));
 }
 
 void CChannelIce::slotSignalReceiverCandiate(const QString& fromUser,

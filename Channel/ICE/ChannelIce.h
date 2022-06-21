@@ -32,20 +32,34 @@ public:
                           QObject *parent = nullptr);
     virtual ~CChannelIce();
 
-    //! @note These properties must be set before calling Open
+    //! \~chinese
+    //! \note 必须在调用 open 前调用此函数设置服务器属性
+    //! 
+    //! \~english
+    //! \note These properties must be set before calling Open
     int SetConfigure(const rtc::Configuration& config);
     
-    //! Open channel. Used for active callers
-    //! @param bData: true: open data channel
-    //!              false: don't open data channel
-    //! @note Must call SetConfigure set the service properties before calling it
-    //!        Called by client
+    //! \~chinese
+    //! 打开通道。用于激活呼叫
+    //! \note 由客户端调用。调用此函数前，必须先调用 SetConfigure 设置服务器属性。
+    //! 
+    //! \~english
+    //! Open channel. for activating calls
+    //! \return true: open data channel
+    //!         false: don't open data channel
+    //! \note Called by client.
+    //!     Must call SetConfigure set the service properties before calling it.
     virtual bool open(const QString& user,
                       const QString& peer,
                       bool bChannelId);
+    //! \~chinese
+    //! 打开通道。用于被动接收
+    //! \note 由服务器调用。调用此函数前，必须先调用 SetConfigure 设置服务器属性。
+    //! 
+    //! \~english
     //! Open channel. For passive receivers
-    //! @note Must call SetConfigure set the service properties before calling it
-    //! @note Called by service
+    //! \note Called by service.
+    //!     Must call SetConfigure set the service properties before calling it. 
     virtual bool open(const QString& fromUser,
                       const QString& toUser,
                       const QString& channelId,
