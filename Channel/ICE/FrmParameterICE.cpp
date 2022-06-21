@@ -44,7 +44,7 @@ CFrmParameterICE::~CFrmParameterICE()
 void CFrmParameterICE::slotAccept()
 {
     m_pParameters->setIce(ui->cbEnableICE->isChecked());
-    
+    m_pParameters->SetIceDebug(ui->cbEnableIceDebug->isChecked());
     m_pParameters->setSignalServer(ui->leSignalServer->text());
     m_pParameters->setSignalPort(ui->sbSignalPort->value());
     m_pParameters->setSignalUser(ui->leSignalName->text());
@@ -63,6 +63,7 @@ void CFrmParameterICE::Init()
 {    
     ui->cbEnableICE->setChecked(m_pParameters->getIce());
     on_cbEnableICE_stateChanged(ui->cbEnableICE->isChecked());
+    ui->cbEnableIceDebug->setChecked(m_pParameters->GetIceDebug());
     
     ui->leSignalServer->setText(m_pParameters->getSignalServer());
     ui->sbSignalPort->setValue(m_pParameters->getSignalPort());
@@ -111,7 +112,7 @@ void CFrmParameterICE::on_pbConnect_clicked(bool checked)
 
 void CFrmParameterICE::on_leSignalName_editingFinished()
 {
-    #ifdef HAVE_QXMPP
+#ifdef HAVE_QXMPP
     QString user = ui->leSignalName->text();
     if(QXmppUtils::jidToDomain(user).isEmpty()
             || QXmppUtils::jidToResource(user).isEmpty())

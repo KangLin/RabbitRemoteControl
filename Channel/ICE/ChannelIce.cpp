@@ -1,4 +1,4 @@
-//! @author Kang Lin <kl222@126.com>
+//! \author Kang Lin <kl222@126.com>
 
 #include "ChannelIce.h"
 #include "rtc/rtc.hpp"
@@ -6,40 +6,46 @@
 #include <QDebug>
 #include <QThread>
 
-// Set libdatachannel log callback function
-class CLogCallback
-{
-public:
-    CLogCallback()
-    {
-        rtc::InitLogger(rtc::LogLevel::Debug, logCallback);
-    }
-    
-    static void logCallback(rtc::LogLevel level, std::string message)
-    {
-        switch (level) {
-        case rtc::LogLevel::Verbose:
-        case rtc::LogLevel::Debug:
-            LOG_MODEL_DEBUG("Libdatachannel", message.c_str());
-            break;
-        case rtc::LogLevel::Info:
-            LOG_MODEL_INFO("Libdatachannel", message.c_str());
-            break;
-        case rtc::LogLevel::Warning:
-            LOG_MODEL_WARNING("Libdatachannel", message.c_str());
-            break;
-        case rtc::LogLevel::Error:
-        case rtc::LogLevel::Fatal:
-            LOG_MODEL_ERROR("Libdatachannel", message.c_str());
-            break;
-        case rtc::LogLevel::None:
-            break;
-        }
-    }
-};
+///////////////////////// Set libdatachannel log callback function ///////////////////////
 
+CLibDataChannelLogCallback::CLibDataChannelLogCallback(QObject *parent)
+    : QObject(parent)
+{
+    rtc::InitLogger(rtc::LogLevel::Debug, logCallback);
+}
+
+void CLibDataChannelLogCallback::slotEnable(bool enable)
+{
+    m_bEnable = enable;
+}
+
+void CLibDataChannelLogCallback::logCallback(rtc::LogLevel level, std::string message)
+{
+    if(!m_bEnable) return;
+    switch (level) {
+    case rtc::LogLevel::Verbose:
+    case rtc::LogLevel::Debug:
+        LOG_MODEL_DEBUG("Libdatachannel", message.c_str());
+        break;
+    case rtc::LogLevel::Info:
+        LOG_MODEL_INFO("Libdatachannel", message.c_str());
+        break;
+    case rtc::LogLevel::Warning:
+        LOG_MODEL_WARNING("Libdatachannel", message.c_str());
+        break;
+    case rtc::LogLevel::Error:
+    case rtc::LogLevel::Fatal:
+        LOG_MODEL_ERROR("Libdatachannel", message.c_str());
+        break;
+    case rtc::LogLevel::None:
+        break;
+    }
+}
+
+bool CLibDataChannelLogCallback::m_bEnable = true;
 // Set libdatachannel log callback function
-//static CLogCallback g_LogCallback;
+CLibDataChannelLogCallback g_LogCallback;
+///////////////////////// End set libdatachannel log callback function ///////////////////////
 
 CChannelIce::CChannelIce(QObject* parent) : CChannel(parent)
 {}
@@ -132,7 +138,8 @@ int CChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
     m_dataChannel = dc;
 
     dc->onOpen([this]() {
-        LOG_MODEL_INFO("CChannelIce", "Open data channel user:%s;peer:%s;channelId:%s:lable:%s",
+        LOG_MODEL_INFO("CChannelIce",
+                      "Open data channel user:%s;peer:%s;channelId:%s:lable:%s",
                         GetUser().toStdString().c_str(),
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str(),
@@ -140,14 +147,16 @@ int CChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
         if(QIODevice::open(QIODevice::ReadWrite))
             emit sigConnected();
         else
-            LOG_MODEL_ERROR("CChannelIce", "Open Device fail:user:%s;peer:%s;channelId:%d",
+            LOG_MODEL_ERROR("CChannelIce",
+                            "Open Device fail:user:%s;peer:%s;channelId:%d",
                             GetUser().toStdString().c_str(),
                             GetPeerUser().toStdString().c_str(),
                             GetChannelId().toStdString().c_str());
     });
 
     dc->onClosed([this]() {
-        LOG_MODEL_INFO("CChannelIce", "Close data channel: user:%s;peer:%s;channelId:%s:lable:%s",
+        LOG_MODEL_INFO("CChannelIce",
+                    "Close data channel: user:%s;peer:%s;channelId:%s:lable:%s",
                         GetUser().toStdString().c_str(),
                         GetPeerUser().toStdString().c_str(),
                         GetChannelId().toStdString().c_str(),

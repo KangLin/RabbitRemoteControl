@@ -1,10 +1,12 @@
 #include "Ice.h"
+#include "ChannelIce.h"
 #ifdef HAVE_QXMPP
 #include "IceSignalQxmpp.h"
 #endif
 #include "FrmParameterICE.h"
 #include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
+
 #include <QCoreApplication>
 #include <QLocale>
 #include <QDebug>
@@ -35,11 +37,12 @@ CICE::CICE(QObject *parent)
     }
 #endif
 
-//#ifdef HAVE_ICE
-//    check = connect(GetParameter(), SIGNAL(sigIceChanged()),
-//                    this, SLOT(slotIceChanged()));
-//    Q_ASSERT(check);
-//#endif
+#ifdef HAVE_ICE
+    check = connect(GetParameter(), SIGNAL(sigIceDebugChanged(bool)),
+                    &g_LogCallback, SLOT(slotEnable(bool)));
+    Q_ASSERT(check);
+    g_LogCallback.slotEnable(GetParameter()->GetIceDebug());
+#endif
 }
 
 CICE::~CICE()

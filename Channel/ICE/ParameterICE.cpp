@@ -4,6 +4,7 @@ CParameterICE::CParameterICE(QObject *parent)
     : QObject{parent}
 {
     m_bIce = false;
+    m_bIceDebug = false;
     m_nSignalPort = 5222;
     m_nStunPort = m_nTurnPort = 3478;
 }
@@ -24,6 +25,7 @@ int CParameterICE::Load(QSettings &set)
     m_szTurnPassword = set.value("ICE/TURN/Password", m_szTurnPassword).toString();
 
     setIce(set.value("ICE/Enable", m_bIce).toBool());
+    SetIceDebug(set.value("ICE/Enable/Debug", GetIceDebug()).toBool());
     return nRet;
 }
 
@@ -41,6 +43,7 @@ int CParameterICE::Save(QSettings &set)
     set.setValue("ICE/TURN/User", m_szTurnUser);
     set.setValue("ICE/TURN/Password", m_szTurnPassword);
     set.setValue("ICE/Enable", m_bIce);
+    set.setValue("ICE/Enable/Debug", GetIceDebug());
     return nRet;
 }
 
@@ -55,6 +58,19 @@ void CParameterICE::setIce(bool newBIce)
         return;
     m_bIce = newBIce;
     emit sigIceChanged();
+}
+
+bool CParameterICE::GetIceDebug() const
+{
+    return m_bIceDebug;
+}
+
+void CParameterICE::SetIceDebug(bool newIceDebug)
+{
+    if(m_bIceDebug == newIceDebug)
+        return;
+    m_bIceDebug = newIceDebug;
+    emit sigIceDebugChanged(m_bIceDebug);
 }
 
 const QString &CParameterICE::getSignalServer() const

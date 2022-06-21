@@ -30,6 +30,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="cbEnableIceDebug">
+       <property name="text">
+        <string>Enable ICE debug</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pbConnect">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">

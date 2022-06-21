@@ -20,6 +20,7 @@ class CHANNEL_EXPORT CParameterICE : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool Ice READ getIce WRITE setIce NOTIFY sigIceChanged)
+    Q_PROPERTY(bool IceDebug READ GetIceDebug WRITE SetIceDebug NOTIFY sigIceDebugChanged)
     Q_PROPERTY(QString SignalServer READ getSignalServer WRITE setSignalServer NOTIFY sigSignalServerChanged)
     Q_PROPERTY(quint16 SignalPort READ getSignalPort WRITE setSignalPort NOTIFY sigSignalPortChanged)
     Q_PROPERTY(QString SignalUser READ getSignalUser WRITE setSignalUser NOTIFY sigSignalUserChanged)
@@ -39,6 +40,8 @@ public:
 
     bool getIce() const;
     void setIce(bool newBIce);
+    bool GetIceDebug() const;
+    void SetIceDebug(bool newIceDebug);
     const QString &getSignalServer() const;
     void setSignalServer(const QString &newSzSignalServer);
     quint16 getSignalPort() const;
@@ -62,6 +65,7 @@ public:
     
 signals:
     void sigIceChanged();
+    void sigIceDebugChanged(bool enable);
     void sigSignalServerChanged();
     void sigSignalPortChanged();
     void sigSignalUserChanged();
@@ -75,6 +79,7 @@ signals:
     
 private:
     bool m_bIce;
+    bool m_bIceDebug;
     QString m_szSignalServer;
     quint16 m_nSignalPort;
     QString m_szSignalUser, m_szSignalPassword;

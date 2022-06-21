@@ -169,14 +169,12 @@ int CConnectRabbitVNC::SocketInit()
 {
     int nRet = 0;
     try{
-        
-        QTcpSocket* pSock = new QTcpSocket(this);
-        if(!pSock)
-            return -1;
-        
         m_DataChannel = QSharedPointer<CChannel>(new CChannel());
-        if(!m_DataChannel) return -2;
+        if(!m_DataChannel) return -1;
         
+        // The pointer is freed by CChannel. see: CChannel::open
+        QTcpSocket* pSock = new QTcpSocket(this);
+        if(!pSock) return -2;
         if(!m_DataChannel->open(pSock, QIODevice::ReadWrite))
         {
             LOG_MODEL_ERROR("CConnectRabbitVnc", "Open channel fail");
@@ -255,8 +253,12 @@ int CConnectRabbitVNC::OnClean()
 
 void CConnectRabbitVNC::slotConnected()
 {
-    LOG_MODEL_INFO("RabbitVNC", "Connected to host %s port %d",
-                   m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
+    if(m_pPara->GetIce())
+        LOG_MODEL_INFO("RabbitVNC", "Connected to peer %s",
+                       m_pPara->GetPeerUser().toStdString().c_str());
+    else
+        LOG_MODEL_INFO("RabbitVNC", "Connected to host %s port %d",
+                       m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
     
     m_InStream = QSharedPointer<rdr::InStream>(new CInStreamChannel(m_DataChannel.data()));
     m_OutStream = QSharedPointer<rdr::OutStream>(new COutStreamChannel(m_DataChannel.data()));
@@ -304,7 +306,8 @@ void CConnectRabbitVNC::slotError(int nErr, const QString& szErr)
 void CConnectRabbitVNC::initDone()
 {
     Q_ASSERT(m_pPara);
-    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::initDone():name:%s;width:%d;height:%d",
+    LOG_MODEL_DEBUG("RabbitVNC",
+                    "CConnectRabbitVnc::initDone():name:%s;width:%d;height:%d",
                     server.name(), server.width(), server.height());
     
     // If using AutoSelect with old servers, start in FullColor
@@ -326,7 +329,8 @@ void CConnectRabbitVNC::initDone()
     emit sigConnected();
 }
 
-void CConnectRabbitVNC::setColourMapEntries(int firstColour, int nColours, rdr::U16 *rgbs)
+void CConnectRabbitVNC::setColourMapEntries(int firstColour,
+                                            int nColours, rdr::U16 *rgbs)
 {
     LOG_MODEL_ERROR("RabbitVNC", "Invalid SetColourMapEntries from server!");
 }
@@ -336,7 +340,8 @@ void CConnectRabbitVNC::bell()
     qApp->beep();
 }
 
-void CConnectRabbitVNC::setCursor(int width, int height, const rfb::Point &hotspot, const rdr::U8 *data)
+void CConnectRabbitVNC::setCursor(int width, int height,
+                                  const rfb::Point &hotspot, const rdr::U8 *data)
 {
     //LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::setCursor:%d,%d", hotspot.x, hotspot.y);
     if ((width == 0) || (height == 0)) {
