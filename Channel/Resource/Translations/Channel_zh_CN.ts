@@ -2,14 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
-    <name>CChannelIce</name>
-    <message>
-        <location filename="../../ICE/ChannelIce.cpp" line="376"/>
-        <source>Signal disconnected</source>
-        <translation>信令服务器断开连接</translation>
-    </message>
-</context>
-<context>
     <name>CFrmParameterICE</name>
     <message>
         <location filename="../../ICE/FrmParameterICE.ui" line="14"/>
@@ -22,68 +14,73 @@
         <translation>允许 ICE</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="41"/>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="155"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="35"/>
+        <source>Enable ICE debug</source>
+        <translation>允许 ICE 调试</translation>
+    </message>
+    <message>
+        <location filename="../../ICE/FrmParameterICE.ui" line="48"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="156"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="59"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="66"/>
         <source>Signal server:</source>
         <translation>信令服务器：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="69"/>
-        <location filename="../../ICE/FrmParameterICE.ui" line="131"/>
-        <location filename="../../ICE/FrmParameterICE.ui" line="159"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="76"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="138"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="166"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="87"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="94"/>
         <source>Signal user:</source>
         <translation>信令用户：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="94"/>
-        <location filename="../../ICE/FrmParameterICE.ui" line="97"/>
-        <location filename="../../ICE/FrmParameterICE.ui" line="100"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="101"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="104"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="107"/>
         <source>Format: user@domain/Resource</source>
         <translation>格式：user@domain/Resource</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="107"/>
-        <location filename="../../ICE/FrmParameterICE.ui" line="187"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="114"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="194"/>
         <source>Password:</source>
         <translation>密码：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="121"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="128"/>
         <source>Stun server:</source>
         <translation>STUN 服务器：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="149"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="156"/>
         <source>Turn server:</source>
         <translation>TURN 服务器：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.ui" line="177"/>
+        <location filename="../../ICE/FrmParameterICE.ui" line="184"/>
         <source>Turn user:</source>
         <translation>TURN 用户：</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="151"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="152"/>
         <source>Disconnect</source>
         <translation>断开连接</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="119"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="120"/>
         <source>The user name format is error. please use format: user@domain/resource</source>
         <translation>用户名格式错误。请用格式 user@domain/resource</translation>
     </message>
     <message>
-        <location filename="../../ICE/FrmParameterICE.cpp" line="120"/>
+        <location filename="../../ICE/FrmParameterICE.cpp" line="121"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
