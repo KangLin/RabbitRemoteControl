@@ -34,11 +34,11 @@ Author: Kang Lin <kl222@126.com>
 - [Contribution](#Contribution)
 - [Road map](#Road-map)
 - [Download](#Download)
-- [Development](#Development)
-  + [Build](#Build)
-    - [Linux](docs/Compile/Linux.md)
-    - [Windows](docs/Compile/Windows.md)
 - [Change log](ChangeLog.md)
+- [Development](#Development)
+  + [Compilation](#Compilation)
+    - [Compiling for Linux](docs/Compile/Linux.md)
+    - [Compiling for Windows](docs/Compile/Windows.md)
 - [License Agreement](#License-Agreement)
 
 -----------------------------------------------------------------------
@@ -54,10 +54,6 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 |--|--|--|
 |![Main window](docs/Image/Screenshot/MainWindows_en.png)|![Recent list menu](docs/Image/Screenshot/RecentMenu_en.png)|![Connect](docs/Image/Screenshot/Connect_en.png)|
 
-#### Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/KangLin/RabbitRemoteControl.svg)](https://starchart.cc/KangLin/RabbitRemoteControl)
-
 ### Project repository position
 - Project home: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 - Project position:
@@ -68,19 +64,6 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
     - gitee: https://gitee.com/kl222/RabbitRemoteControl
 
 ## Functions
-
-|        |Server|Client|Clipboard|File|Audio|P2P|Proxy|Terminal|
-|------- |:----:|:----:|:-------:|:--:|:---:|:-:|:---:|:----:|
-|  RDP   |  ✓   |  ✓   |    ⭕   |     |    |    |    |  ❌  |
-|  RFB   | ……   |  ✓   |    ⭕   |     | ❌ | …… | …… |      |
-|Spice   |      |      |        |     |    |    |    |      |
-|Scrcpy  |      |      |        |     |    |   |     |      |
-|Terminal|     | ⭕  |✓   | ❌    | ❌     |   |     |      |
-|TELNET  |     | ⭕  |✓   | ❌    | ❌     |   |     |      |
-|  SSH   |     | ⭕  |✓   |       | ❌     |   |     |      |
-|  FTP   |     |     |    |        |❌      |   |    |      |
-
-Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 #### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 - [x] Windows
@@ -95,16 +78,6 @@ Interested and capable friends are welcome to participate in the development of 
 
 If you want to donate the developed devices for me, please contact: (email: kl222@126.com)
 
-#### Supported protocols
-##### Remote control protocols
-- [x] VNC (Virtual Network Computing): [RFB("remote framebuffer"): https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
-- [x] Remote desktop protocol: [RDP: https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
-- [ ] [Spice: https://www.spice-space.org/](https://www.spice-space.org/)
-- [x] [SSH]()
-- [x] [TELNET: http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
-- [x] Terminal
-- [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
-
 |        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
 |--------|:-----:|:--------:|:-----:|:-:|:----:|:---:|
 |vnc     |✓      |✓         |       |   |      |     |
@@ -117,24 +90,51 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
+#### Supported protocols
+
+##### Remote control protocols
+
+- [x] RFB("remote framebuffer") is also called VNC(Virtual Network Computing): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
+- [x] RDP(Remote desktop protocol): [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
+- [x] [SSH]()
+- [x] TELNET: [http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
+- [x] Terminal
+- [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+
 ##### Network protocols
-- [x] Custom p2p protocol
-  + ICE
-  + STUN
-  + TURN
+
+- [x] Peer-to-Peer (P2P) protocol
+  + ICE (Interactive Connectivity Establishment): [RFC 8445](https://datatracker.ietf.org/doc/rfc8445/) 
+  + STUN: [RFC 5389](https://datatracker.ietf.org/doc/rfc5389/)
+  + TURN(Traversal Using Relays around NAT): [RF C5766](https://datatracker.ietf.org/doc/rfc5766/)
 - [x] Proxy
   + [x] socks
   + [ ] http
-  + [x] Custom p2p proxy protocol: [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
+  + [x] Peer-to-Peer (P2P) proxy protocol: [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
-|             | Proxy            | P2P              |
-|-------------|------------------|------------------|
-|RabbitVNC    |✓|✓|
-|TigerVNC     |✓|✓|
-|LibVNC       |                  |                  |
-|FreeRDP      |                  |                  |
+|        |Server|Client|Clipboard|File|Audio|P2P|Proxy|Terminal|
+|------- |:----:|:----:|:-------:|:--:|:---:|:-:|:---:|:----:|
+|  RDP   |  ✓   |  ✓   |    ⭕   |     |    |    |    |  ❌  |
+|  RFB   | ……   |  ✓   |    ⭕   |     | ❌  |✓   |  ✓ |      |
+|Spice   |      |      |         |     |    |    |    |      |
+|Scrcpy  |      |      |         |     |    |    |    |      |
+|Terminal|      | ⭕   |✓        | ❌   | ❌  |    |    |      |
+|TELNET  |      | ⭕   |✓        | ❌   | ❌  |    |    |      |
+|  SSH   |      | ⭕   |✓        |     | ❌  |    |    |      |
+|  FTP   |      |      |         |      |❌  |    |    |      |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
+
+|             | Proxy | P2P  |
+|-------------|-------|------|
+|RabbitVNC    |✓      | ✓    |
+|TigerVNC     |✓      | ✓    |
+|LibVNC       |       |      |
+|FreeRDP      |       |      |
+
+Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
+
 
 ## Build status
 
@@ -142,13 +142,16 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
   
 ### Github actions
 
+
 |     | master  | develop  |
 |:---:|:-----------:|:------------:|
 |Linux|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 |Windows|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 |Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 
+
 ## Sponsorship and Donations
+
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
 
 [![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation") 
@@ -195,43 +198,47 @@ Some of them are:
 * Be finished [unsupported protocols](#Supported-protocols)
 
 ## Road map
+
 - [x] Support common existing remote control protocols
   - [x] Client
     - [x] Client frame
       - [x] Remote desktop
       - [x] Terminal（Linux implemented，but it is has a smae BUG）
     - [x] Specific protocol support, see: [Supported protocol](#Supported-protocols)
-    - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
+    - [x] Peer-to-Peer (P2P) remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
   - [x] Server
     - [x] Server framework
     - [x] Specific protocol support, see: [Supported protocol](#Supported-protocols)
-    - [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
-- [x] Custom point-to-point remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
+    - [x] Peer-to-Peer (P2P) remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
+- [x] Peer-to-Peer (P2P)remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
 |            |Server|Client|Clipboard|File|Audio|P2P|Proxy|Terminal|
 |:----------:|:----:|:-----:|:------:|:--:|:---:|:--:|:--:|:--:|
-|RabbitVNC   | ✓    |✓      |    ⭕   |    |❌ | ⭕ |  ⭕ |    |
-|TigerVNC    | ✓    |✓      |    ⭕   |    |❌ | ⭕ |  ⭕ |    |
-|LibVNCServer| ✓    |✓      |    ⭕   |    |❌ |    |    |    |
-|RDP         | ✓    |✓      |    ⭕   |    |    |    |    |❌  |
-|Spice       |      |       |        |     |    |    |    |    |
-|SSH         |      |⭕      |✓       |     |❌ |    |    |    |
-|Terminal    |      |⭕      |✓       |    |❌  |    |    |    |
-|TELNET      |      |⭕      |✓       |❌  |❌  |    |    |    |
-|Scrcpy      |      |       |        |    |    |    |    |    |
+|RabbitVNC   | ✓    |✓      |    ⭕  |    |  ❌  |✓   |  ✓ |    |
+|TigerVNC    | ✓    |✓      |    ⭕  |    |  ❌  |✓   |  ✓ |    |
+|LibVNCServer| ✓    |✓      |    ⭕  |    |  ❌  |    |    |    |
+|RDP         | ✓    |✓      |    ⭕  |    |     |    |    | ❌  |
+|Spice       |      |       |        |    |     |    |    |    |
+|SSH         |      |⭕     |✓       |    |  ❌  |    |    |    |
+|Terminal    |      |⭕     |✓       |    |  ❌  |    |    |    |
+|TELNET      |      |⭕     |✓       |❌   |  ❌  |    |    |    |
+|Scrcpy      |      |       |        |    |     |    |    |    |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
-At present, the development of common remote control protocol client has been completed,
-and it has preliminary practical functions.
-It is necessary for small partners to try it out, find BUG,
+- The development of common remote control protocol clients 
+and some servers has been completed.
+It has preliminary practical functions,
+and needs to be tried by small partners, find bugs,
 and put forward suggestions that can be more convenient to use in practical applications.
 
-For terminal remote control, because qtermwidget only supports LINUX/UNIX, it needs to support other platforms.
+- For terminal remote control, because qtermwidget only supports LINUX/UNIX, it needs to support other platforms.
 
-The next level of work is to solve point-to-point remote control,
+- Peer-to-Peer (P2P) remote control is finished.
 which is also a feature of this project.
 See requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7 
+
+## [Change log](ChangeLog.md)
 
 ## Download
 
@@ -278,6 +285,7 @@ Semantic Versioning: https://semver.org/
 [Doxyen documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Dependent
+
 #### Tools
 - [Qt](qt.io)
 - C/C++ compiler
@@ -304,9 +312,9 @@ Semantic Versioning: https://semver.org/
 - [x] [OPTIONAL] QXmpp: https://github.com/qxmpp-project/qxmpp
 - [x] [Optional] QtService: https://github.com/KangLin/qt-solutions/
 
-### Build
-- [Linux](docs/Compile/Linux.md)
-- [Windows](docs/Compile/Windows.md)
+### Compilation
+- [Compiling for Linux](docs/Compile/Linux.md)
+- [Compiling for Windows](docs/Compile/Windows.md)
 
 ## [License Agreement](License.md "License.md")
 

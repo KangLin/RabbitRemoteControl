@@ -33,12 +33,12 @@
 - [捐赠](#捐赠)
 - [贡献](#贡献)
 - [线路图](#线路图)
-- [下载](#下载)
 - [修改日志](ChangeLog_zh_CN.md)
+- [下载](#下载)
 - [开发](#开发)
   + [编译](#编译)
-    - [Linux](docs/Compile/Linux_zh_CN.md)
-    - [Windows](docs/Compile/Windows_zh_CN.md)
+    - [为 Linux 编译](docs/Compile/Linux_zh_CN.md)
+    - [为 Windows 编译](docs/Compile/Windows_zh_CN.md)
 - [许可协议](#许可协议)
 
 -----------------------------------------------------------------------
@@ -52,9 +52,10 @@
 
 |主窗口|最近列表窗口|连接窗口|
 |--|--|--|
-|![主窗口](docs/Image/Screenslot/MainWindows.png)|![最近列表窗口](docs/Image/Screenslot/RecentMenu.png)|![连接窗口](docs/Image/Screenslot/Connect.png)|
+|![主窗口](docs/Image/Screenshot/MainWindows_en.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu_en.png)|![连接窗口](docs/Image/Screenshot/Connect_en.png)|
 
 ### 项目位置
+
 - 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 - 项目位置:
   + 主库：https://github.com/KangLin/RabbitRemoteControl
@@ -64,19 +65,6 @@
     - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
 
 ### 功能
-
-|       |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
-|:-----:|:---:|:---:|:--:|:-----:|:------:|:-:|:--:|:-:|
-|  RDP  |  ✓  |  ✓  |⭕  |       |        |   |    | ❌ |
-|  RFB  | ……  |  ✓  |⭕  |       | ❌     | …… | …… |    |
-|Spice  |     |     |    |       |       |   |     |      |
-|Scrcpy |     |     |    |       |       |   |     |      |
-|终端    |     | ⭕  |✓   | ❌    | ❌    |   |     |      |
-|TELNET |     | ⭕  |✓   | ❌    | ❌    |   |     |      |
-|  SSH  |     | ⭕  |✓   |       | ❌    |   |     |      |
-|  FTP  |     |     |    |      |❌      |   |    |      |
-
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 #### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 
@@ -92,16 +80,6 @@
 
 如果你想为本人捐赠开发设备，请联系：kl222@126.com
 
-#### 支持协议
-##### 远程控制协议
-- [x] VNC（虚拟网络计算）: [RFB("remote framebuffer"): https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
-- [x] 远程桌面协议: [RDP: https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
-- [ ] [Spice: https://www.spice-space.org/](https://www.spice-space.org/)
-- [x] 终端
-- [x] [SSH]()
-- [x] [TELNET: http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
-- [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
-
 |        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
 |--------|-------|----------|-------|---|------|-----|
 |vnc     |✓      |✓         |       |   |      |     |
@@ -114,28 +92,53 @@
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
+#### 支持协议
+
+##### 远程控制协议
+- [x] VNC（虚拟网络计算）也叫 RFB("remote framebuffer"): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
+- [x] RDP（远程桌面协议）: [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
+- [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
+- [x] 终端
+- [x] [SSH]()
+- [x] TELNET: [http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
+- [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+
 ##### 网络协议
 
-- [x] 自定义的 P2P 协议
-  + ICE
-  + STUN
-  + TURN
+- [x] 端到端（P2P）协议
+  + ICE（交互式连接建立）: [RFC 8445](https://datatracker.ietf.org/doc/rfc8445/)
+  + STUN: [RFC 5389](https://datatracker.ietf.org/doc/rfc5389/)
+  + TURN(在 NAT 周围使用中继进行遍历): [RF C5766](https://datatracker.ietf.org/doc/rfc5766/)
 - [x] 代理
   + [x] socks
   + [ ] http
-  + [x] 自定义的 P2P 代理协议： [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
+  + [x] 端到端（P2P）代理协议： [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
+
+
+|       |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
+|:-----:|:---:|:---:|:--:|:-----:|:------:|:-:|:--:|:-:|
+|  RDP  |  ✓  |  ✓  |⭕  |       |        |   |    | ❌ |
+|  RFB  | ……  |  ✓  |⭕  |       | ❌      |✓  |  ✓ |   |
+|Spice  |     |     |    |       |        |   |    |   |
+|Scrcpy |     |     |    |       |        |   |    |   |
+|终端    |     | ⭕  |✓   | ❌     | ❌     |    |   |    |
+|TELNET |     | ⭕  |✓   | ❌     | ❌      |   |   |    |
+|  SSH  |     | ⭕  |✓   |       | ❌      |   |     |      |
+|  FTP  |     |     |    |       | ❌      |   |    |      |
+
+图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 |             | 代理              | P2P              |
 |-------------|------------------|------------------|
-|RabbitVNC    |✓                | ✓                |
-|TigerVNC     |✓                 |✓                |
+|RabbitVNC    |✓                 |✓                 |
+|TigerVNC     |✓                 |✓                 |
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
-## 编译状态
 
+## 编译状态
 
 #### Github actions
 
@@ -144,7 +147,6 @@
 |Linux|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 |Windows|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
 |Android|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-
 
 ## 捐赠
 
@@ -190,37 +192,41 @@
 * 完成还未支持的[协议](支持协议)
 
 ## 线路图
+
 - [x] 支持常见已有远程控制协议
   - [x] 客户端
     - [x] 客户端框架
       - [x] 远程桌面
       - [x] 控制终端（Linux下实现，但有BUG）
     - [x] 具体协议支持，详见：[支持协议](#支持协议)
-    - [x] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+    - [x] 端到端（P2P）远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
   - [x] 服务器
     - [x] 服务器框架
     - [x] 具体协议支持，详见：[支持协议](#支持协议)
-    - [x] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
-- [x] 自定义点对点远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+    - [x] 端到端（P2P）远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+- [x] 端到端（P2P）远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+
 
 |            |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
 |:----------:|:---:|:---:|:---:|:-----:|:------:|:-:|:--:|:-:|
-|RabbitVNC   |✓    |✓    |⭕   |       |❌      |⭕  |⭕|   |
-|TigerVNC    |✓    |✓    |⭕   |       |❌      |⭕  |⭕|   |
-|LibVNCServer|✓    |✓    |⭕   |       |❌      |    |   |    |
+|RabbitVNC   |……   |✓    |⭕   |       |❌       |✓  | ✓  |   |
+|TigerVNC    |……   |✓    |⭕   |       |❌       |✓  | ✓  |   |
+|LibVNCServer|✓    |✓    |⭕   |       |❌       |   |    |   |
 |RDP         |✓    |✓    |⭕   |       |        |   |    |❌  |
-|Spice       |     |     |     |       |       |    |    |    |
-|SSH         |     |⭕   |✓    |       |❌      |    |    |    |
-|终端         |     |⭕   |✓    |       |❌     |    |    |    |
-|TELNET      |     |⭕   |✓    |❌     |❌      |    |    |    |
-|Scrcpy      |     |     |     |       |       |    |    |    |
+|Spice       |     |     |     |       |        |   |    |    |
+|SSH         |     |⭕   |✓    |       |❌       |   |    |    |
+|终端         |     |⭕   |✓    |       |❌       |   |    |    |
+|TELNET      |     |⭕   |✓    |❌      |❌       |   |    |    |
+|Scrcpy      |     |     |     |       |        |   |    |    |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
-当前已经完成常见远程控制协议客户端的开发，已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。
-终端类远程控制，因为 qtermwidget 仅支持 LINUX/UNIX ，所以需要让其支持其它平台。
 
-下一阶段的工作是解决点对点远程控制，也是本项目的特点。详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+- 已经完成常见远程控制协议客户端和部分服务端的开发。已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。
+- 终端类远程控制。因为 qtermwidget 仅支持 LINUX/UNIX ，所以需要让其支持其它平台。
+- 已经完成端到端（P2P）远程控制。它是本项目的特点。详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
+
+## [修改日志](ChangeLog_zh_CN.md)
 
 ## 下载
 
@@ -266,6 +272,7 @@
 [Doxygen 文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
 ### 依赖
+
 #### 工具
 
 - [Qt](qt.io)
@@ -295,8 +302,10 @@
 - [x] [可选] QtService: https://github.com/KangLin/qt-solutions/
 
 ### 编译
-- [Linux](docs/Compile/Linux_zh_CN.md)
-- [Windows](docs/Compile/Windows_zh_CN.md)
+
+- [为 Linux 编译](docs/Compile/Linux_zh_CN.md)
+- [为 Windows 编译](docs/Compile/Windows_zh_CN.md)
 
 ## [许可协议](License.md "License.md")
+
 请遵守本项目[许可协议](License.md "License.md")和[依赖库](#依赖库)的许可协议，并感谢[依赖库](#依赖库)和[工具](#工具)的作者。

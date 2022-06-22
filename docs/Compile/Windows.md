@@ -1,4 +1,4 @@
-## Compilation on Windows
+## Compiling for Windows
 Author: Kang Lin <kl222@126.com>  
 Translator: Allan Nordhøy <epost@anotheragency.no>
 
