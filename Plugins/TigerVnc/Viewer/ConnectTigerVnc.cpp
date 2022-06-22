@@ -170,14 +170,12 @@ int CConnectTigerVnc::SocketInit()
 {
     int nRet = 0;
     try{
+        m_DataChannel = QSharedPointer<CChannel>(new CChannel());
+        if(!m_DataChannel) return -1;
         
         QTcpSocket* pSock = new QTcpSocket(this);
         if(!pSock)
-            return -1;
-        
-        m_DataChannel = QSharedPointer<CChannel>(new CChannel());
-        if(!m_DataChannel) return -2;
-        
+            return -2;
         if(!m_DataChannel->open(pSock, QIODevice::ReadWrite))
         {
             LOG_MODEL_ERROR("CConnectTigerVnc", "Open channel fail");
@@ -256,8 +254,12 @@ int CConnectTigerVnc::OnClean()
 
 void CConnectTigerVnc::slotConnected()
 {
-    LOG_MODEL_INFO("TigerVnc", "Connected to host %s port %d",
-                   m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
+    if(m_pPara->GetIce())
+        LOG_MODEL_INFO("RabbitVNC", "Connected to peer %s",
+                       m_pPara->GetPeerUser().toStdString().c_str());
+    else
+        LOG_MODEL_INFO("RabbitVNC", "Connected to host %s port %d",
+                       m_pPara->GetHost().toStdString().c_str(), m_pPara->GetPort());
     
     m_InStream = QSharedPointer<rdr::InStream>(new CInStreamChannel(m_DataChannel.data()));
     m_OutStream = QSharedPointer<rdr::OutStream>(new COutStreamChannel(m_DataChannel.data()));
