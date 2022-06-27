@@ -55,6 +55,9 @@ SetCompressor lzma
 LangString LANG_PRODUCT_NAME ${LANG_ENGLISH} "Rabbit Remote Control"
 LangString LANG_PRODUCT_NAME ${LANG_SIMPCHINESE} "玉兔远程控制"
 
+LangString LANG_PRODUCT_NAME_CONFIGURE ${LANG_ENGLISH} "Rabbit Remote Control Service Configure"
+LangString LANG_PRODUCT_NAME_CONFIGURE ${LANG_SIMPCHINESE} "玉兔远程控制服务配置程序"
+
 LangString LANG_UNINSTALL_CONFIRM ${LANG_ENGLISH} "Thank you very much! $(^Name) has been successfully removed."
 LangString LANG_UNINSTALL_CONFIRM ${LANG_SIMPCHINESE} "非常感谢您的使用！ $(^Name) 已成功地从您的计算机中移除。"
 
@@ -158,18 +161,21 @@ SectionEnd
 Section -AdditionalIcons
   CreateDirectory "$SMPROGRAMS\$(LANG_PRODUCT_NAME)"
   CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
+  CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\$(LANG_PRODUCT_NAME_CONFIGURE).lnk" "$INSTDIR\bin\${LANG_PRODUCT_NAME_CONFIGURE}.exe"
   CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\Uninstall.lnk" "$INSTDIR\uninst.exe"
 
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
     
   CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
+  CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${LANG_PRODUCT_NAME_CONFIGURE}.exe"
 SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
 
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\${LANG_PRODUCT_NAME_CONFIGURE}.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "Path" "$INSTDIR\"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
@@ -204,6 +210,7 @@ Section Uninstall
   RMDir /r "$SMPROGRAMS\$(LANG_PRODUCT_NAME)"
   SetOutPath "$SMPROGRAMS"
   Delete "$DESKTOP\$(LANG_PRODUCT_NAME).lnk"
+  Delete "$DESKTOP\$(LANG_PRODUCT_NAME_CONFIGURE).lnk"
   RMDIR /r "$INSTDIR"
   ;SetShellVarContext current
   
