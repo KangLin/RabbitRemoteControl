@@ -89,7 +89,11 @@ void CICE::slotIceChanged()
 void CICE::slotStart()
 {
     QSharedPointer<CIceSignal> signal = GetSignal();
-    if(!signal) return;
+    if(!signal)
+    {
+        LOG_MODEL_ERROR("CICE", "The signal is null");
+        return;
+    }
     if(signal->IsConnected())
         return;
     CParameterICE* pPara = GetParameter();
