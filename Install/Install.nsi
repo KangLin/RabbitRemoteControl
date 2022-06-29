@@ -3,6 +3,7 @@
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "RabbitRemoteControl"
 !define PRODUCT_APP_NAME "RabbitRemoteControlApp"
+!define PRODUCT_APP_SERVICE_CONFIGURE_NAME "RabbitRemoteControlServiceConfigure"
 !define PRODUCT_VERSION "v0.0.18"
 !define PRODUCT_PUBLISHER "KangLin studio"
 !define PRODUCT_WEB_SITE "https://github.com/KangLin/${PRODUCT_NAME}"
@@ -161,21 +162,24 @@ SectionEnd
 Section -AdditionalIcons
   CreateDirectory "$SMPROGRAMS\$(LANG_PRODUCT_NAME)"
   CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
-  CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\$(LANG_PRODUCT_NAME_CONFIGURE).lnk" "$INSTDIR\bin\${LANG_PRODUCT_NAME_CONFIGURE}.exe"
+  IfFileExists "$INSTDIR\bin\${PRODUCT_APP_SERVICE_CONFIGURE_NAME}.exe" 0 +2
+  CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\$(LANG_PRODUCT_NAME_CONFIGURE).lnk" "$INSTDIR\bin\${PRODUCT_APP_SERVICE_CONFIGURE_NAME}.exe"
   CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\Uninstall.lnk" "$INSTDIR\uninst.exe"
 
   WriteIniStr "$INSTDIR\${PRODUCT_NAME}.url" "InternetShortcut" "URL" "${PRODUCT_WEB_SITE}"
   CreateShortCut "$SMPROGRAMS\$(LANG_PRODUCT_NAME)\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
-    
+
   CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
-  CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\bin\${LANG_PRODUCT_NAME_CONFIGURE}.exe"
+  IfFileExists "$INSTDIR\bin\${PRODUCT_APP_SERVICE_CONFIGURE_NAME}.exe" 0 +2
+  CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME_CONFIGURE).lnk" "$INSTDIR\bin\${PRODUCT_APP_SERVICE_CONFIGURE_NAME}.exe"
 SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
 
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\${PRODUCT_APP_NAME}.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\${LANG_PRODUCT_NAME_CONFIGURE}.exe"
+  IfFileExists "$INSTDIR\bin\${PRODUCT_APP_SERVICE_CONFIGURE_NAME}.exe" 0 +2
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\bin\${PRODUCT_APP_SERVICE_CONFIGURE_NAME}.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}" "Path" "$INSTDIR\"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
@@ -191,7 +195,7 @@ SectionEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Function OpenReadme
-    ExecShell "open" "https://github.com/KangLin/RabbitRemoteControl/" 
+    ExecShell "open" "https://github.com/KangLin/RabbitRemoteControl/"
 FunctionEnd
 
 Function un.onUninstSuccess
@@ -213,12 +217,12 @@ Section Uninstall
   Delete "$DESKTOP\$(LANG_PRODUCT_NAME_CONFIGURE).lnk"
   RMDIR /r "$INSTDIR"
   ;SetShellVarContext current
-  
+
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
   ;DeleteRegKey HKLM "${PRODUCT_DIR_REGKEY}"
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_DIR_REGKEY}"
   DeleteRegValue  ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\Run" "${PRODUCT_NAME}"
-  
+
   ;SendMessage ${HWND_BROADCAST} ${WM_WININICHANGE} 0 "STR:Environment"
   ;SetAutoClose true
 SectionEnd
