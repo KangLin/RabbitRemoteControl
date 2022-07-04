@@ -233,6 +233,7 @@ QImage CDisplayXLib::GetDisplay()
             if(m_Desktop.format() != cursor.format())
                 cursor = cursor.convertToFormat(m_Desktop.format());
             QPainter painter(&m_Desktop);
+            painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
             painter.drawImage(pos, cursor);
         }
     }
@@ -255,7 +256,7 @@ QImage CDisplayXLib::GetCursor(QPoint &pos, QPoint &posHot)
     posHot = QPoint(ci->xhot, ci->yhot);
     QImage img(ci->width, ci->height, QImage::Format_ARGB32);
 
-    unsigned char r,g,b,a;
+    unsigned char r = 0, g = 0, b = 0, a = 0;
     unsigned short row = 0, col = 0, k = 0;
 
     for(row = 0; row < ci->height; row++)

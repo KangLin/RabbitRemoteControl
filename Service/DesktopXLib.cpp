@@ -25,7 +25,7 @@ int CDesktopXLib::Height()
 
 QImage CDesktopXLib::GetDesktop()
 {
-    return CDisplay::Instance()->GetDisplay(0, 0, -1, -1);
+    return CDisplay::Instance()->GetDisplay();
 }
 
 QImage CDesktopXLib::GetDesktop(int x, int y, int width, int height)
