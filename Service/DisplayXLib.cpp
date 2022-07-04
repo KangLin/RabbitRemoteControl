@@ -116,25 +116,24 @@ int CDisplayXLib::Open()
                             DefaultDepth(m_pDisplay, DefaultScreen(m_pDisplay)),
                             ZPixmap, 0, 0, Width(), Height(),
                             BitmapPad(m_pDisplay), 0);
-        if(m_pImage)
-        {
+        if(m_pImage) {
             m_pImage->data = (char *)malloc(m_pImage->bytes_per_line * m_pImage->height);
-            if (m_pImage->data) 
-            {
+            if (m_pImage->data) {
                 m_Format = GetFormat(m_pImage);
-                if(QImage::Format_Invalid != GetFormat())
+                if(QImage::Format_Invalid != GetFormat()) {
                     m_Desktop = QImage((uchar*)m_pImage->data,
                                      Width(), Height(), GetFormat());
+                    //m_Desktop.fill(QColor(0,0,0,0));
+                }
             }
 
-            if(!m_pImage->data || QImage::Format_Invalid == GetFormat())
-            {
+            if(!m_pImage->data || QImage::Format_Invalid == GetFormat()) {
                 DestroyImage(m_pImage);
                 m_pImage = NULL;
             }
         }
     }
-    
+
     return nRet;
 }
 
@@ -174,9 +173,9 @@ QImage CDisplayXLib::GetDisplay(int x, int y, int width, int height)
     if(!m_pDisplay || 0 == m_RootWindow)
         return QImage();
 
-    if(-1 > width)
+    if(0 > width)
         width = Width();
-    if(-1 > height)
+    if(0 > height)
         height = Height();
     XImage *pImage = XGetImage(m_pDisplay, m_RootWindow, x, y, width, height,
                                AllPlanes, ZPixmap);
@@ -188,6 +187,20 @@ QImage CDisplayXLib::GetDisplay(int x, int y, int width, int height)
                    pImage->width, pImage->height,
                    GetFormat(),
                    DestroyImage, pImage);
+        
+        if(GetHasCursor())
+        {
+            QPoint pos, posHot;
+            QImage cursor = GetCursor(pos, posHot);
+            if(!cursor.isNull()
+                    && pos.x() >= x && (pos.x() + cursor.width()) <= width
+                    && pos.y() >= y && (pos.y() + cursor.height()) <= height)
+            {
+                QPainter painter(&img);
+                painter.drawImage(pos, cursor);
+            }
+        }
+        
         return img;
     }
     else
@@ -200,19 +213,26 @@ QImage CDisplayXLib::GetDisplay()
 {
     if(QImage::Format_Invalid != GetFormat()
             && m_pDisplay && m_RootWindow && m_pImage)
-        XGetSubImage(m_pDisplay, m_RootWindow,
+    {
+        XImage* pImg = XGetSubImage(m_pDisplay, m_RootWindow,
                      0, 0, Width(), Height(),
                      AllPlanes, ZPixmap,
                      m_pImage, 0, 0);
+        if(NULL == pImg)
+        {
+            LOG_MODEL_ERROR("CDisplayXLib", "Get desktop fail");
+        }
+    }
+
     if(GetHasCursor())
     {
         QPoint pos, posHot;
         QImage cursor = GetCursor(pos, posHot);
         if(!cursor.isNull())
         {
+            if(m_Desktop.format() != cursor.format())
+                cursor = cursor.convertToFormat(m_Desktop.format());
             QPainter painter(&m_Desktop);
-            //TODO: transparent
-            //painter.setBackgroundMode(Qt::TransparentMode);
             painter.drawImage(pos, cursor);
         }
     }
@@ -234,16 +254,16 @@ QImage CDisplayXLib::GetCursor(QPoint &pos, QPoint &posHot)
     pos = QPoint(ci->x, ci->y);
     posHot = QPoint(ci->xhot, ci->yhot);
     QImage img(ci->width, ci->height, QImage::Format_ARGB32);
-    
+
     unsigned char r,g,b,a;
     unsigned short row = 0, col = 0, k = 0;
-    
+
     for(row = 0; row < ci->height; row++)
     {
         for(col = 0; col < ci->width; col++, k++)
         {
-            a = (unsigned char)((ci->pixels[k] >> 24) & 0xff);  
-            r = (unsigned char)((ci->pixels[k] >> 16) & 0xff);  
+            a = (unsigned char)((ci->pixels[k] >> 24) & 0xff);
+            r = (unsigned char)((ci->pixels[k] >> 16) & 0xff);
             g = (unsigned char)((ci->pixels[k] >>  8) & 0xff);
             b = (unsigned char)((ci->pixels[k] >>  0) & 0xff);
 
