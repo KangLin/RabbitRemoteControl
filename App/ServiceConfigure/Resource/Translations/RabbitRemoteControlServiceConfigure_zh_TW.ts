@@ -4,22 +4,22 @@
 <context>
     <name>CMainWindow</name>
     <message>
-        <location filename="../../MainWindow.cpp" line="139"/>
+        <location filename="../../MainWindow.cpp" line="138"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="140"/>
+        <location filename="../../MainWindow.cpp" line="139"/>
         <source>Start service</source>
         <translation>開始服務</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="146"/>
+        <location filename="../../MainWindow.cpp" line="145"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../MainWindow.cpp" line="147"/>
+        <location filename="../../MainWindow.cpp" line="146"/>
         <source>Stop service</source>
         <translation>停止服務</translation>
     </message>
