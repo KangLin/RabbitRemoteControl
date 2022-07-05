@@ -83,10 +83,11 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 |vnc     |✓      |✓         |       |   |      |     |
 |RDP     |✓      |✓         |       |   |      |     |
 |Spice   |       |          |       |   |      |     |
-|SSH     |       |✓         |       |   |      |     |
-|Terminal|       |✓         |       |   |      |     |
-|TELNET  |       |✓         |       |   |      |     |
 |Scrcpy  |       |          |       |   |      |     |
+|Terminal|       |✓         |       |   |      |     |
+|SSH     |       |✓         |       |   |      |     |
+|TELNET  |       |✓         |       |   |      |     |
+|FTP     |       |          |       |   |      |     |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
@@ -94,13 +95,14 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 
 ##### Remote control protocols
 
-- [x] RFB("remote framebuffer") is also called VNC(Virtual Network Computing): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
+- [x] RFB(Remote framebuffer) is also called VNC(Virtual Network Computing): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
 - [x] RDP(Remote desktop protocol): [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
-- [x] [SSH]()
-- [x] TELNET: [http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
+- [x] SSH: [https://www.rfc-editor.org/info/rfc4251](https://www.rfc-editor.org/info/rfc4251)
+- [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [x] Terminal
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+- [ ] FTP(File Transfer Protocol): [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
 
 ##### Network protocols
 
@@ -211,6 +213,7 @@ Some of them are:
     - [x] Specific protocol support, see: [Supported protocol](#Supported-protocols)
     - [x] Peer-to-Peer (P2P) remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [x] Peer-to-Peer (P2P)remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
+- [ ] File Transfer Protocol(FTP)
 
 |            |Server|Client|Clipboard|File|Audio|P2P|Proxy|Terminal|
 |:----------:|:----:|:-----:|:------:|:--:|:---:|:--:|:--:|:--:|
@@ -219,10 +222,10 @@ Some of them are:
 |LibVNCServer| ✓    |✓      |    ⭕  |    |  ❌  |    |    |    |
 |RDP         | ✓    |✓      |    ⭕  |    |     |    |    | ❌  |
 |Spice       |      |       |        |    |     |    |    |    |
-|SSH         |      |⭕     |✓       |    |  ❌  |    |    |    |
-|Terminal    |      |⭕     |✓       |    |  ❌  |    |    |    |
-|TELNET      |      |⭕     |✓       |❌   |  ❌  |    |    |    |
 |Scrcpy      |      |       |        |    |     |    |    |    |
+|Terminal    |      |⭕     |✓       |    |  ❌  |    |    |    |
+|SSH         |      |⭕     |✓       |    |  ❌  |    |    |    |
+|TELNET      |      |⭕     |✓       |❌   |  ❌  |    |    |    |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
@@ -249,7 +252,7 @@ Semantic Versioning: https://semver.org/
   - [![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
-+ Current version:
++ Current version: v0.0.18
   - Windows: Supported WINDOWS 7 and later version
     + Install package: RabbitRemoteControl_setup_v0.0.18.exe
       - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/RabbitRemoteControl_setup_v0.0.18.exe)

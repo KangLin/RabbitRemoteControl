@@ -85,10 +85,11 @@
 |vnc     |✓      |✓         |       |   |      |     |
 |RDP     |✓      |✓         |       |   |      |     |
 |Spice   |       |          |       |   |      |     |
-|SSH     |       |✓         |       |   |      |     |
-|终端     |       |✓         |       |   |      |     |
-|TELNET  |       |✓         |       |   |      |     |
 |Scrcpy  |       |          |       |   |      |     |
+|终端     |       |✓         |       |   |      |     |
+|SSH     |       |✓         |       |   |      |     |
+|TELNET  |       |✓         |       |   |      |     |
+|FTP     |       |          |       |   |      |     |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
@@ -99,9 +100,10 @@
 - [x] RDP（远程桌面协议）: [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] 终端
-- [x] [SSH]()
-- [x] TELNET: [http://www.faqs.org/rfcs/rfc855.html](http://www.faqs.org/rfcs/rfc855.html)
+- [x] SSH: [https://www.rfc-editor.org/info/rfc4251](https://www.rfc-editor.org/info/rfc4251)
+- [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
+- [ ] FTP（文件传输协议）: [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
 
 ##### 网络协议
 
@@ -123,8 +125,8 @@
 |Scrcpy |     |     |    |       |        |   |    |   |
 |终端    |     | ⭕  |✓   | ❌     | ❌     |    |   |    |
 |TELNET |     | ⭕  |✓   | ❌     | ❌      |   |   |    |
-|  SSH  |     | ⭕  |✓   |       | ❌      |   |     |      |
-|  FTP  |     |     |    |       | ❌      |   |    |      |
+|  SSH  |     | ⭕  |✓   |       | ❌      |   |    |   |
+|  FTP  |     |     |    |       | ❌      |   |   |    |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
@@ -205,7 +207,7 @@
     - [x] 具体协议支持，详见：[支持协议](#支持协议)
     - [x] 端到端（P2P）远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [x] 端到端（P2P）远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
-
+- [ ] 文件传输协议（FTP）
 
 |            |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
 |:----------:|:---:|:---:|:---:|:-----:|:------:|:-:|:--:|:-:|
@@ -214,10 +216,10 @@
 |LibVNCServer|✓    |✓    |⭕   |       |❌       |   |    |   |
 |RDP         |✓    |✓    |⭕   |       |        |   |    |❌  |
 |Spice       |     |     |     |       |        |   |    |    |
-|SSH         |     |⭕   |✓    |       |❌       |   |    |    |
-|终端         |     |⭕   |✓    |       |❌       |   |    |    |
-|TELNET      |     |⭕   |✓    |❌      |❌       |   |    |    |
 |Scrcpy      |     |     |     |       |        |   |    |    |
+|终端         |     |⭕   |✓    |       |❌       |   |    |    |
+|SSH         |     |⭕   |✓    |       |❌       |   |    |    |
+|TELNET      |     |⭕   |✓    |❌      |❌       |   |    |    |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
@@ -236,7 +238,7 @@
   - [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
-+ 当前版本：
++ 当前版本：v0.0.18
   - Windows: 支持 WINDOWS 7 及以后版本
     + 安装包：RabbitRemoteControl_setup_v0.0.18.exe
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.18/RabbitRemoteControl_setup_v0.0.18.exe)
