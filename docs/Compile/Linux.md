@@ -60,8 +60,6 @@ Prior versions don't have CMake support.
     # Install library dependencies
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     ~$ sudo apt install debhelper fakeroot
-    # Install RabbitCommon dependencies (Optional), It is automatically downloaded when compiled.
-    ~$ sudo apt install libcmark-dev
     # Install Qt
     ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
     # Install X development libraries
@@ -115,7 +113,6 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
 ### Library dependencies
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
-  - [OPTIONAL] [cmark](https://github.com/commonmark/cmark): RabbitCommon dependencies
 - [OPTIONAL] RFB
   + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
@@ -138,51 +135,6 @@ If not, you must specify the CMake parameters:
 -DRabbitCommon_DIR=[RabbitCommon installation path]
 
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
-    
-#### cmark-gfm
-This library is dependencies by RabbitCommon. to support Github Markdown syntax.
-It is automatically downloaded when RabbitCommon is compiled.
-- Compile from source code
-  + Source-code location https://github.com/github/cmark-gfm
-  
-        ~$ git clone https://github.com/github/cmark-gfm.git
-        ~$ cd cmark
-        ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DCMARK_SHARED=OFF -DCMARK_STATIC=ON -DCMARK_TESTS=OFF
-        ~/cmark/build$ cmake --build . --target install
-          
-  + Specify the CMake parameters：
-    - -Dcmark_DIR=[cmark installation path]/lib/cmake/cmark-gfm
-    
-#### cmark
-This library is dependencies by RabbitCommon. to support Markdown syntax.
-It is automatically downloaded when RabbitCommon is compiled.
-- Use the system-packaged development library
-
-      ~$ sudo apt install libcmark-dev
-    
-- Use vcpkg
-  + Source-code location: https://github.com/microsoft/vcpkg/
-  
-        ~$ git clone https://github.com/microsoft/vcpkg.git
-        ~$ cd vcpkg
-        ~/vcpkg$ ./bootstrap-vcpkg.sh
-        ~/vcpkg$ vcpkg install cmark
-
-  + Specify the CMake parameters:
-  -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-
-- Compile from source code
-  + Source-code location: https://github.com/commonmark/cmark
-  
-        ~$ git clone https://github.com/commonmark/cmark
-        ~$ cd cmark
-        ~/cmark$ mkdir build
-        ~/cmark/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-        ~/cmark/build$ cmake --build . --target install
-          
-  + Specify the CMake parameters:
-    - -Dcmark_DIR=[cmark installation path]/lib/cmake/cmark
 
 #### FreeRDP
 - Use the system-packaged development library

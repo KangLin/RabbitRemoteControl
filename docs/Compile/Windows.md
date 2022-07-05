@@ -50,7 +50,6 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 ### Library dependencies
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
-  - [OPTIONAL] [cmark](https://github.com/commonmark/cmark): RabbitCommon dependencies
 - [OPTIONAL] RFB
   + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
