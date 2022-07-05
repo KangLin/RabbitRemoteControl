@@ -1,34 +1,48 @@
 # author: Kang Lin <kl222@126.com>
 
-# Desktop
+## Desktop
 
-option(BUILD_RABBITVNC "Build RabbitVNC plugin" ON)
+cmake_dependent_option(BUILD_RABBITVNC
+    "Build RabbitVNC plugin" ON BUILD_PLUGINS OFF)
 if(BUILD_RABBITVNC)
     add_subdirectory(RabbitVNC)
 endif()
 
-option(BUILD_TigerVNC "Build TigerVnc plugin" ON)
+cmake_dependent_option(BUILD_TigerVNC
+    "Build TigerVnc plugin" ON BUILD_PLUGINS OFF)
 if(BUILD_TigerVNC)
     add_subdirectory(TigerVnc)
 endif()
 
-option(BUILD_LibVNCServer "Build LibVNCServer plugin" ON)
+cmake_dependent_option(BUILD_LibVNCServer
+    "Build LibVNCServer plugin" ON BUILD_PLUGINS OFF)
 if(BUILD_LibVNCServer)
     add_subdirectory(LibVNCServer)
 endif()
 
-option(BUILD_FREERDP "Build freerdp plugin" OFF)
+cmake_dependent_option(BUILD_FREERDP
+    "Build freerdp plugin" OFF BUILD_PLUGINS OFF)
 if(BUILD_FREERDP)
     add_subdirectory(FreeRDP)
 endif()
 
+## Terminal
+
 if(BUILD_VIEWER)
+    find_package(qtermwidget5)
+    cmake_dependent_option(BUILD_TERMINAL "Build Terminal" ON
+        "BUILD_PLUGINS;qtermwidget5_FOUND" OFF)
     if(BUILD_TERMINAL)
-        find_package(qtermwidget5)
-        if(qtermwidget5_FOUND)
-            add_subdirectory(Terminal)
-            add_subdirectory(Telnet)
-            add_subdirectory(LibSSH)
-        endif()
-    endif(BUILD_TERMINAL)
+        add_subdirectory(Terminal)
+    endif()
+    cmake_dependent_option(BUILD_TELNET "Build Telnet" ON
+        "BUILD_PLUGINS;qtermwidget5_FOUND" OFF)
+    if(BUILD_TELNET)
+        add_subdirectory(Telnet)
+    endif()
+    cmake_dependent_option(BUILD_LIBSSH "Build libssh" ON
+        "BUILD_PLUGINS;qtermwidget5_FOUND" OFF)
+    if(BUILD_LIBSSH)
+        add_subdirectory(LibSSH)
+    endif()
 endif(BUILD_VIEWER)
