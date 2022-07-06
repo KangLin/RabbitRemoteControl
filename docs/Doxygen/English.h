@@ -9,11 +9,14 @@
 \ingroup LIBAPI
 \brief Service library
 \details
+
++ Threading model: A plugin starts a thread to process a service.
+    See the specific implementation: CPluginServiceThread and CService
 + Class relationship
   \image html docs/Image/PluginServiceAPI.svg
 + usge:
   - Implement plugin interface:
-    + CPluginService: process in main thread
+    + CPluginService: Plugin interface
     + CPluginServiceThread: The default start a new thread. eg. CPluginServiceRabbitVNC
       - Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
         The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
@@ -56,6 +59,9 @@
 \ingroup LIBAPI_VIEWER
 \brief Viewer plugin interfaces.
 \details
++ Viewer thread module
+  - Blocked: Most control protocol implementation library connections are blocking.
+  - No-blocking: eg: qt event
 + Class relationship
   \image html docs/Image/PluginViewerAPI.svg
 + Sequence diagram

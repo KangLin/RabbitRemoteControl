@@ -10,11 +10,13 @@
 \ingroup LIBAPI
 \brief 服务端库
 \details 
+
++ 线程模型：一个插件启动一个线程处理一个服务。具体实现见： CPluginServiceThread 和 CService
 + 类关系：
   \image html docs/Image/PluginServiceAPI.svg
 + 写一个插件：
   - 实现插件接口:
-    + CPluginService 在主线程中处理
+    + CPluginService 服务插件接口
     + CPluginServiceThread: 默认为每个插件启动一个线程进行处理。例如： CPluginServiceRabbitVNC
       - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginServiceRabbitVNC::Name() 
   - 实现服务接口 CService 。支持Qt事件或非Qt事件循环。例如： CServiceRabbitVNC
@@ -55,6 +57,10 @@
 \ingroup LIBAPI_VIEWER
 \brief 控制端插件接口.
 \details
+
++ 控制端线程模型：
+  - 阻塞：大多数控制协议实现库连接都是阻塞的。
+  - 非阻塞：例如Qt事件
 + 类关系：
   \image html docs/Image/PluginViewerAPI.svg
 + 序列图：

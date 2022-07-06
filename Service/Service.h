@@ -13,15 +13,23 @@ class CPluginService;
 /*!
  * \~chinese 服务接口。由具体的协议实现。支持非Qt事件循环。详见： Init() 、 slotProcess()
  *           如果不启用非Qt事件循环。则 OnInit() 返回 > 0
- *
+ * \details
+ *     实现接口：
+ *     + OnInit()
+ *     + OnProcess()
+ *     + OnClean()
  * \~english
  * \brief The service interface. by specific protocol implement.
  *        Support non-Qt event loop. see: Init(), slotProcess().
  *        If don't use non-Qt event loop. then OnInit() return > 0
- *
+ * \details
+ *     Implement the interface:
+ *     + OnInit()
+ *     + OnProcess()
+ *     + OnClean()
  * \~
  * \ingroup LIBAPI_SERVICE
- * \see CPluginService
+ * \see CPluginServiceThread CPluginService
  */
 class SERVICE_EXPORT CService : public QObject
 {
@@ -71,17 +79,34 @@ protected Q_SLOTS:
 
 protected:
     /*!
+     * \~chinese 初始化服务
+     * \return
+     * \li < 0: 错误
+     * \li = 0: 使用 OnProcess (非 Qt 事件循环)
+     * \li > 0: 不使用 OnProcess (Qt 事件循环)
+     * \~english Init service
      * \return
      * \li < 0: error
      * \li = 0: Use OnProcess (non-Qt event loop)
      * \li > 0: Don't use OnProcess (qt event loop)
      */
     virtual int OnInit() = 0;
+    /*!
+     * \~chinese 清理服务
+     * \~english
+     * \brief Clean service
+     * \return 
+     */
     virtual int OnClean() = 0;
     /*!
+     * \~chinese 处理服务
+     * \return
+     * \li <  0: 错误或停止
+     * \li >= 0: 调用间隔。单位：毫秒
+     * \~english Process service
      * \return
      * \li <  0: error or stop
-     * \li >= 0: Call interval
+     * \li >= 0: Call interval. Unit: milliseconds
      */
     virtual int OnProcess();
 
