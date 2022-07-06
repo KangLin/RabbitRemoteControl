@@ -58,6 +58,10 @@ ifdef Log4Qt_DIR
     PARAS += -DLog4Qt_DIR=${Log4Qt_DIR}
 endif
 
+ifdef qtermwidget5_DIR
+    PARAS += -Dqtermwidget5_DIR={qtermwidget5_DIR}
+endif
+
 ifdef BUILD_DOCS
     PARAS += -DBUILD_DOCS=${BUILD_DOCS}
 endif
