@@ -34,6 +34,8 @@ public:
     /*!
      * \~chinese 加载参数，支持非Qt事件循环
      * \~english Load parameters, support non-Qt event loop
+     * \~
+     * \see OnInit()
      */
     virtual int Init();
     virtual int Clean();

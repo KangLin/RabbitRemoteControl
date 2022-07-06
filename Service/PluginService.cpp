@@ -54,7 +54,7 @@ void CPluginService::Start()
     if(!m_Service)
         m_Service =  QSharedPointer<CService>(NewService());
     if(m_Service)
-       m_Service->Init(); 
+       m_Service->Init();
 }
 
 void CPluginService::Stop()

@@ -3,10 +3,10 @@
 #ifndef CPLUGINSERVICETIGERVNC_H
 #define CPLUGINSERVICETIGERVNC_H
 
-#include "PluginService.h"
+#include "PluginServiceThread.h"
 #include <QTranslator>
 
-class CPluginServiceTigerVNC : public CPluginService
+class CPluginServiceTigerVNC : public CPluginServiceThread
 {
     Q_OBJECT
     

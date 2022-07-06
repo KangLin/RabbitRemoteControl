@@ -9,7 +9,8 @@
 #include <rfb/Logger_stdio.h>
 #include "ServiceTigerVNC.h"
 
-CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent) : CPluginService(parent)
+CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent)
+    : CPluginServiceThread(parent)
 {
     //rfb::SecurityClient::setDefaults();
     

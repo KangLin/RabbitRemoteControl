@@ -9,7 +9,8 @@
 #include <rfb/Logger_stdio.h>
 #include "ServiceRabbitVNC.h"
 
-CPluginServiceRabbitVNC::CPluginServiceRabbitVNC(QObject *parent) : CPluginService(parent)
+CPluginServiceRabbitVNC::CPluginServiceRabbitVNC(QObject *parent)
+    : CPluginServiceThread(parent)
 {
     //rfb::SecurityClient::setDefaults();
     

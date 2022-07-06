@@ -49,7 +49,7 @@ public:
     virtual const QIcon Icon() const;
     
     /*!
-     * \brief Default start a Service
+     * \brief Start a Service
      * \see CService
      */
     virtual void Start();

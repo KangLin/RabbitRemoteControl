@@ -13,7 +13,7 @@
  *  \ingroup LIBAPI_SERVICE
  *  \see CService CServiceThread CServiceManager CPluginService
  */
-class CPluginServiceThread : public CPluginService
+class SERVICE_EXPORT CPluginServiceThread : public CPluginService
 {
     Q_OBJECT
 

@@ -12,12 +12,14 @@
 + Class relationship
   \image html docs/Image/PluginServiceAPI.svg
 + usge:
-  - Implement CPluginService . The default start a thread. eg. CPluginServiceRabbitVNC
-    + Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
-      The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
-      E.g. CPluginServiceRabbitVNC::Name() 
+  - Implement plugin interface:
+    + CPluginService: process in main thread
+    + CPluginServiceThread: The default start a new thread. eg. CPluginServiceRabbitVNC
+      - Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
+        The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
+        E.g. CPluginServiceRabbitVNC::Name() 
   - Implement CService . Eg. CServiceRabbitVNC
-  
+
 
 \defgroup LIBAPI_VIEWER Viewer library
 \ingroup LIBAPI

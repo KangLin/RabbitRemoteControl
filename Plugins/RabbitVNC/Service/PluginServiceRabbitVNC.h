@@ -3,10 +3,10 @@
 #ifndef CPLUGINSERVICETIGERVNC_H
 #define CPLUGINSERVICETIGERVNC_H
 
-#include "PluginService.h"
+#include "PluginServiceThread.h"
 #include <QTranslator>
 
-class CPluginServiceRabbitVNC : public CPluginService
+class CPluginServiceRabbitVNC : public CPluginServiceThread
 {
     Q_OBJECT
     
@@ -19,17 +19,17 @@ class CPluginServiceRabbitVNC : public CPluginService
 public:
     explicit CPluginServiceRabbitVNC(QObject *parent = nullptr);
     virtual ~CPluginServiceRabbitVNC();
-    
+
     // CPluginService interface
 public:
     virtual const QString Protol() const override;
     virtual const QString Name() const override;
     virtual const QString DisplayName() const override;
     virtual const QString Description() const override;
-    
+
 protected:
     virtual CService *NewService() override;
-    
+
 private:
     QTranslator m_Translator;
 };
