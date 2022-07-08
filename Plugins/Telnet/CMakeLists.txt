@@ -29,7 +29,6 @@ else()
 
     list(APPEND _telnet_libs ${libtelnet_lib})
     set(_libtelnet_include_dir ${libtelnetIncludeDir})
-    mark_as_advanced(libssh_DIR)
 endif()
 message("libtelnet:${_telnet_libs}")
 
