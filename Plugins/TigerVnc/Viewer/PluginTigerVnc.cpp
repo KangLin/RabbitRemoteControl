@@ -12,7 +12,7 @@ static bool initlog = false;
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     : CPluginViewerThread(parent)
 {
-    //! [Initialize resorce]
+    //! [Initialize resource]
 
     //rfb::SecurityClient::setDefaults();
     if(!initlog)
@@ -25,7 +25,7 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
         rfb::LogWriter::setLogParams("*:stderr:100");
         initlog = true;
     }
-    //! [Initialize resorce]
+    //! [Initialize resource]
 }
 
 CPluginTigerVnc::~CPluginTigerVnc()

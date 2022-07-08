@@ -12,7 +12,7 @@ static bool initlog = false;
 CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
     : CPluginViewerThread(parent)
 {
-    //! [Initialize resorce]
+    //! [Initialize resource]
 
     //rfb::SecurityClient::setDefaults();
     if(!initlog)
@@ -27,7 +27,7 @@ CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
         rfb::LogWriter::setLogParams("*:stderr:100");
         initlog = true;
     }
-    //! [Initialize resorce]
+    //! [Initialize resource]
 }
 
 CPluginRabbitVNC::~CPluginRabbitVNC()

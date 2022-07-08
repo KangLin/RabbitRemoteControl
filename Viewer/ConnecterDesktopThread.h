@@ -13,14 +13,17 @@ class CConnectThread;
 
 /**
  * \~chinese
- * \brief 它实现一个远程桌面后台线程处理一个远程桌面连接。
+ * \brief 它默认启动一个后台线程。实现一个远程桌面后台线程处理一个远程桌面连接。
+ *        可与 CPluginViewer 一起使用，用于连接是阻塞模型的。
  * \details
  * 原理：在 Connect() 中启动一个后台线程 CConnectThread 。
  *      在线程中调用 InstanceConnect() 实例化 CConnect ，
  *      并在 CConnect::Connect() 启动定时器，
  *      此定时器在后台线程中调用，通过对定时器的操作，实现一个非 Qt 事件循环(可能会阻塞)，详见 CConnect 。
- *      并且 CConnect 仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）(非阻塞）。\n
+ *      并且 CConnect 仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）(非阻塞）。
+ *
  * 序列图：\image html docs/Image/PluginViewerThreadSequenceDiagram.svg
+ *
  * \note 此接口仅由插件实现。 \n
  *      具体的插件需要实现下面接口：
  *         1. 实现 InstanceConnect() ，生成连接对象
@@ -30,7 +33,10 @@ class CConnectThread;
  *   
  * 
  * \~english
- * \brief It implements a remote desktop background thread to handle a remote desktop connection.
+ * \brief It starts a background thread by default.
+ *        It implements a remote desktop background thread to
+ *        handle a remote desktop connection.
+ *        Can be used with CPluginViewer for connections that are blocking models.
  * \details 
  *     Principle: Start a background thread (CConnectThread) in Connect() .
  *     Call InstanceConnect() in the thread to instantiate CConnect,
@@ -38,8 +44,10 @@ class CConnectThread;
  *     This timer is called in the background thread.
  *     Through the operation of the timer,
  *     start a non-Qt event loop (that is, normal loop processing. May block), See CConnect.
- *     And CConnect supports the Qt event (the signal-slot mechanism of QObject. no-block) .\n
+ *     And CConnect supports the Qt event (the signal-slot mechanism of QObject. no-block).
+ *
  *     Sequen diagram: \image html docs/Image/PluginViewerThreadSequenceDiagram.svg
+ *
  * \note The interface only is implemented by plug-in \n
  *     The specific plug-in needs to implement the following interface. 
  *         1. Implement InstanceConnect()
@@ -48,7 +56,7 @@ class CConnectThread;
  *         4. Implement Save(QSettings& set)
  *
  * \~  
- * \see CConnect CConnectThread CConnecter
+ * \see CConnect CConnectThread CConnecter CPluginViewer
  */
 class VIEWER_EXPORT CConnecterDesktopThread : public CConnecter
 {

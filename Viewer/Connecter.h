@@ -30,8 +30,8 @@ class CManagePlugin;
  * 序列图：\image html docs/Image/PluginViewerSequenceDiagram.svg
  *  已经提供以下类型的基本实现：
  *  1. 桌面类连接：  
- *     1.1. 一个线程处理一个连接： \ref CConnecterDesktopThread  
- *     1.2. 一个线程处理多个连接： \ref CConnecterDesktop  
+ *     1.1. 用于连接是阻塞模型(一个线程处理一个连接)： \ref CConnecterDesktopThread  
+ *     1.2. 用于连接是非阻塞模型(一个线程处理多个连接)： \ref CConnecterDesktop  
  *  2. 控制台类连接：\ref CConnecterTerminal
  *  
  * \~english
@@ -41,8 +41,10 @@ class CManagePlugin;
  * Sequen diagram: \image html docs/Image/PluginViewerSequenceDiagram.svg
  * Basic implementations of the following types have been provided:     
  *   1. Desktop type:  
- *      1.1. One thread handles one connection: \ref CConnecterDesktopThread  
- *      1.2. One thread handles multiple connections: \ref CConnecterDesktop  
+ *      1.1. The connection used is the blocking model
+ *           (One thread handles one connection): \ref CConnecterDesktopThread  
+ *      1.2. The connection is a non-blocking model
+ *           (One thread handles multiple connections): \ref CConnecterDesktop  
  *   2. Termianal type: \ref CConnecterTerminal
  * 
  * \~

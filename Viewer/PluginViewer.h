@@ -28,12 +28,12 @@ public:
     /**
      * \~chinese
      * \brief 初始化操作。例如：初始化资源等，例如：
-     * \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
+     * \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resource
      * \note  派生类必须实现它. 
      * 
      * \~english
      * \brief the resources are initialized are loaded here. eg:
-     * \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resorce
+     * \snippet Plugins/TigerVnc/Viewer/PluginTigerVnc.cpp Initialize resource
      * \note When the derived class is implemented.
      * 
      * \~

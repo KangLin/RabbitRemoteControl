@@ -7,16 +7,20 @@
 
 /**
  * \~chinese
- * \brief 它实现一个后台线程处理多个远程桌面连接。
+ * \brief 它默认启动一个后台线程。
+ *        它与 CConnecterDesktop 一起可实现一个后台线程处理多个远程桌面连接。
+ * \image html docs/Image/PluginViewerManageConnectSequenDiagram.svg
  * \note 此接口仅由插件实现。
  *       连接者必须从 CConnecterDesktop 派生。
  * 
  * \~english
- * \brief It implements a background thread to handle
- *        multiple remote desktop connections.
+ * \brief It starts a background thread by default.
+ *        Together with CConnecterDesktop, it enables a background thread to
+ *        handle multiple remote desktop connections.
+ * \image html docs/Image/PluginViewerManageConnectSequenDiagram.svg
  * \note The interface only is implemented by plug-in.
  *       The connecter must be derived from CConnecterDesktop 
- * \~  
+ * \~
  * \see CConnecterDesktop CPluginThread CManageConnect 
  */
 class VIEWER_EXPORT CPluginViewerThread : public CPluginViewer

@@ -91,12 +91,18 @@ protected:
 
     /*!
      * \~chinese 具体的插件实现连接初始化
+     * \return
+     * \li < 0: 错误
+     * \li = 0: 使用 OnProcess (非 Qt 事件循环)
+     * \li > 0: 不便用 use OnProcess (qt 事件循环)
+     *
      * \~english Specific plug-in realizes connection initialization
-     * \~
-     * \return 
+     * \return
      * \li < 0: error
      * \li = 0: Use OnProcess (non-Qt event loop)
      * \li > 0: Don't use OnProcess (qt event loop)
+     *
+     * \~
      * \see Connect()
      */
     virtual int OnInit() = 0;
