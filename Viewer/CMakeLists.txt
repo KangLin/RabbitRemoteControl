@@ -98,7 +98,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INSTALL_NAMESPACE RabbitRemoteControl
     )
 
-option(BUILD_TERMINAL "Build terminal plugins" ON)
-if(BUILD_TERMINAL)
+option(BUILD_VIEWER_TERMINAL "Build terminal viewer" ON)
+if(BUILD_VIEWER_TERMINAL)
     add_subdirectory(Terminal)
-endif(BUILD_TERMINAL)
+endif(BUILD_VIEWER_TERMINAL)
