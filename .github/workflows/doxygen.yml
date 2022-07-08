@@ -18,7 +18,8 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu
       RabbitRemoteControl_VERSION: v0.0.18
-      
+      DOXYGEN_VERSION: 1.9.4
+
     steps:
     - uses: actions/checkout@v2
       with:
@@ -29,7 +30,15 @@ jobs:
         cmake -E make_directory ${{env.SOURCE_DIR}}
         cmake -E make_directory ${{env.TOOSL_DIR}}
         cmake -E make_directory ${{env.INSTALL_DIR}}
-        
+
+    - name: Cache installed
+      uses: actions/cache@v2
+      id: cache-installed
+      with:
+        path: |
+          ${{env.TOOSL_DIR}}
+        key: cache-installed-doxygen-${{matrix.os}}
+    
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -40,7 +49,16 @@ jobs:
         # architectures to pass to dpkg --add-architecture
         #architectures: # optional
         # apt packages to install
-        packages: cmake build-essential graphviz doxygen qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools
+        packages: cmake build-essential graphviz qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools
+
+    - name: Download doxygen
+      run: |
+        if [ ! -d ${{env.TOOSL_DIR}}/doxygen-${{env.DOXYGEN_VERSION}} ]; then
+            cd ${{env.TOOSL_DIR}}
+            wget https://www.doxygen.nl/files/doxygen-${{env.DOXYGEN_VERSION}}.linux.bin.tar.gz
+            tar xzf doxygen-${{env.DOXYGEN_VERSION}}.linux.bin.tar.gz
+        fi
+        sudo cp ${{env.TOOSL_DIR}}/doxygen-${{env.DOXYGEN_VERSION}}/bin/doxygen /usr/bin/doxygen
 
     - name: build doxygen
       working-directory: ${{github.workspace}}
@@ -64,11 +82,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install \
             -DBUILD_DOCS=ON
-        wget https://www.doxygen.nl/files/doxygen-1.9.3.linux.bin.tar.gz
-        tar xzf doxygen-1.9.3.linux.bin.tar.gz
-        doxygen-1.9.3/bin/doxygen  Doxyfile_English
-        doxygen-1.9.3/bin/doxygen  Doxyfile_Chinese
-        cp ${{github.workspace}}/README*.md ${{github.workspace}}/build/Doxygen
+        cmake --build .
 
     - name: update 
       uses: actions/upload-artifact@v2

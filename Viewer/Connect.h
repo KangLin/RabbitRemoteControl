@@ -18,7 +18,7 @@
 
 /*!
  * \~chinese
- * \brief 具体连接接口。
+ * \brief 具体连接接口。它由协议插件实现。
  *     它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。
  *     详见： Connect()、 slotTimeOut()、 OnProcess() 。
  *     当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。
@@ -30,7 +30,7 @@
  *     - slotClipBoardChange()
  * 
  * \~english
- * \brief Connect interface.
+ * \brief Connect interface. It is implemented by the protol plugin.
  *      It starts a timer by default to start a non-Qt event loop (that is, normal loop processing) .
  *      See Connect(), slotTimeOut(), OnProcess() for details.
  *      Of course, it still supports Qt events (the signal-slot mechanism of QObject).

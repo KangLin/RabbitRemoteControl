@@ -14,8 +14,8 @@
 /**
  * \~chinese \brief 控制者插件接口。建立 CConnecter 实例，它由协议插件实现。
  * 
- * \~english \brief The plugin interface. Create CConnecter instance
- *                  be implemented by the protol plugin.
+ * \~english \brief The plugin interface. Create CConnecter instance.
+ *                  The interface only is implemented by plug-in.
  * \~
  * \ingroup VIEWER_PLUGIN_API
  * \see CConnecter CManagePlugin

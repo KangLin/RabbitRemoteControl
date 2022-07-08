@@ -25,7 +25,7 @@ class CManagePlugin;
 /*!
  * \~chinese
  * \brief 描述连接应用接口。
- * \note 此类是用户接使用接口，由插件实现
+ * \note 此类是用户使用接口，由插件实现
  * \details 
  * 序列图：\image html docs/Image/PluginViewerSequenceDiagram.svg
  *  已经提供以下类型的基本实现：
@@ -36,7 +36,8 @@ class CManagePlugin;
  *  
  * \~english
  * \brief Connecter interface
- * \note  The class is a interface used by Use UI
+ * \note  The class is a interface used by Use UI.
+ *        It is implemented by the protol plugin.
  * \details
  * Sequen diagram: \image html docs/Image/PluginViewerSequenceDiagram.svg
  * Basic implementations of the following types have been provided:     
