@@ -4,32 +4,20 @@ Author: Kang Lin <kl222@126.com>
 
 -----------------------------------------------------------------------
 
-[![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
-[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/)
-[![Contributors](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=Contributors)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
-[![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
-[![platform](https://img.shields.io/badge/platform-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
-
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=Github%20stars)](https://github.com/KangLin/RabbitRemoteControl/)
-[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
-
-[![Downloads from github](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20downloads)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20downloads)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
-
-[![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
-[![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
-
------------------------------------------------------------------------
-
 [:cn: 中文](README_zh_CN.md)
 
 -----------------------------------------------------------------------
 
 - [Introduction](#Introduction)
-- [Build status](#Build-status)
+  + [Screenshot](#Screenshot)
+  + [Project repository position](#Project-repository-position)
+- [Functions](#Functions)
+  + [Supported protocols](#Supported-protocols)
+    - [Remote control protocols](#Remote-control-protocols)
+    - [Network protocols](#Network-protocols)
+  + [Function list](#Function-list)
+  + [Full Documentation](#Full-Documentation)
+- [Status](#Status)
 - [Sponsorship and Donations](#Sponsorship-and-Donations)
 - [Contribution](#Contribution)
 - [Road map](#Road-map)
@@ -61,6 +49,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
   - Mirror repository:
     - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol/
     - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
+    - launchpad: https://launchpad.net/rabbitremotecontrol
     - gitee: https://gitee.com/kl222/RabbitRemoteControl
 
 ## Functions
@@ -115,16 +104,18 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
   + [ ] http
   + [x] Peer-to-Peer (P2P) proxy protocol: [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
-|        |Server|Client|Clipboard|File|Audio|P2P|Proxy|Terminal|
-|------- |:----:|:----:|:-------:|:--:|:---:|:-:|:---:|:----:|
-|  RDP   |  ✓   |  ✓   |    ⭕   |     |    |    |    |  ❌  |
-|  RFB   | ……   |  ✓   |    ⭕   |     | ❌  |✓   |  ✓ |      |
-|Spice   |      |      |         |     |    |    |    |      |
-|Scrcpy  |      |      |         |     |    |    |    |      |
-|Terminal|      | ⭕   |✓        | ❌   | ❌  |    |    |      |
-|TELNET  |      | ⭕   |✓        | ❌   | ❌  |    |    |      |
-|  SSH   |      | ⭕   |✓        |     | ❌  |    |    |      |
-|  FTP   |      |      |         |      |❌  |    |    |      |
+##### Function list
+
+|        |Server|Client|Desktop  |Clipboard|File|Audio|P2P|Proxy|Terminal|
+|------- |:----:|:----:|:-------:|:-------:|:--:|:---:|:-:|:---:|:----:|
+|  RDP   |  ✓   |  ✓   |  ✓      |    ⭕   |     |    |    |    |  ❌  |
+|  RFB   | ……   |  ✓   |  ✓      |    ⭕   |     | ❌  |✓   |  ✓ |      |
+|Spice   |      |      |         |         |     |    |    |    |      |
+|Scrcpy  |      |      |         |         |     |    |    |    |      |
+|Terminal|      | ⭕   | ❌       |✓        | ❌   | ❌  |    |    |      |
+|TELNET  |      | ⭕   | ❌       |✓        | ❌   | ❌  |    |    |      |
+|  SSH   |      | ⭕   | ❌       |✓        |     | ❌  |    |    |      |
+|  FTP   |      |      | ❌       |         |     |❌  |    |    |      |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
@@ -137,19 +128,40 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
+##### Full Documentation
 
-## Build status
+- [Development documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
+- [Compilation documentation](#Compilation)
+
+## Status
+
+[![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/issues)
+[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl/)
+[![Contributors](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=Contributors)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
+[![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
+[![platform](https://img.shields.io/badge/platform-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=Github%20stars)](https://github.com/KangLin/RabbitRemoteControl/)
+[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
+[![Downloads from github](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20downloads)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20downloads)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
+[![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
+[![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
+
+### Build status
 
 - [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
   
-### Github actions
+#### Github actions
 
 
 |     | master  | develop  |
 |:---:|:-----------:|:------------:|
-|Linux|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Windows|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Linux|[![ubuntu](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/ubuntu.yml)|[![ubuntu](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/ubuntu.yml)
+|Windows|[![msvc](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml)[![mingw](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml/badge.svg?branch=master)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml)|[![msvc](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml)[![mingw](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml/badge.svg?branch=develop)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml)
+|Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml)
 
 
 ## Sponsorship and Donations
@@ -215,17 +227,18 @@ Some of them are:
 - [x] Peer-to-Peer (P2P)remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [ ] File Transfer Protocol(FTP)
 
-|            |Server|Client|Clipboard|File|Audio|P2P|Proxy|Terminal|
-|:----------:|:----:|:-----:|:------:|:--:|:---:|:--:|:--:|:--:|
-|RabbitVNC   | ✓    |✓      |    ⭕  |    |  ❌  |✓   |  ✓ |    |
-|TigerVNC    | ✓    |✓      |    ⭕  |    |  ❌  |✓   |  ✓ |    |
-|LibVNCServer| ✓    |✓      |    ⭕  |    |  ❌  |    |    |    |
-|RDP         | ✓    |✓      |    ⭕  |    |     |    |    | ❌  |
-|Spice       |      |       |        |    |     |    |    |    |
-|Scrcpy      |      |       |        |    |     |    |    |    |
-|Terminal    |      |⭕     |✓       |    |  ❌  |    |    |    |
-|SSH         |      |⭕     |✓       |    |  ❌  |    |    |    |
-|TELNET      |      |⭕     |✓       |❌   |  ❌  |    |    |    |
+|            |Server|Client|Desktop|Clipboard|File|Audio|P2P|Proxy|Terminal|
+|:----------:|:----:|:-----:|:------:|:------:|:--:|:---:|:--:|:--:|:--:|
+|RabbitVNC   | ✓    |✓      |✓       |    ⭕  |    |  ❌  |✓   |  ✓ |    |
+|TigerVNC    | ✓    |✓      |✓       |    ⭕  |    |  ❌  |✓   |  ✓ |    |
+|LibVNCServer| ✓    |✓      |✓       |    ⭕  |    |  ❌  |    |    |    |
+|RDP         | ✓    |✓      |✓       |    ⭕  |    |     |    |    | ❌  |
+|Spice       |      |       |        |        |    |     |    |    |    |
+|Scrcpy      |      |       |        |        |    |     |    |    |    |
+|Terminal    |      |⭕     |  ❌     |✓       |    |  ❌  |    |    |    |
+|SSH         |      |⭕     |  ❌     |✓       |    |  ❌  |    |    |    |
+|TELNET      |      |⭕     |  ❌     |✓       |❌   |  ❌  |    |    |    |
+|FTP         |      |       |  ❌     |        |    |  ❌  |    |    |    |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
@@ -285,7 +298,7 @@ Semantic Versioning: https://semver.org/
 
 ## Development
 
-[Doxyen documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
+### [Development documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Dependent
 

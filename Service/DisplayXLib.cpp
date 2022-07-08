@@ -248,7 +248,6 @@ QImage CDisplayXLib::GetCursor(QPoint &pos, QPoint &posHot)
     XLockDisplay(m_pDisplay);
     ci = XFixesGetCursorImage(m_pDisplay);
     XUnlockDisplay(m_pDisplay);
-    
     if (!ci)
         return QImage();
     

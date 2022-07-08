@@ -4,32 +4,21 @@
 
 -----------------------------------------------------------------------
 
-[![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl)
-[![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl?label=问题)](https://github.com/KangLin/RabbitRemoteControl/issues)
-[![贡献者](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=贡献者)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
-[![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
-[![平台](https://img.shields.io/badge/平台-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
-
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://github.com/KangLin/RabbitRemoteControl)
-[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
-
-[![Github 所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20下载总量)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20下载总量)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
-
-[![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
-[![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
-
------------------------------------------------------------------------
-
 [:us: English](README.md)
 
 -----------------------------------------------------------------------
 
 - [简介](#简介)
-- [编译状态](#编译状态)
+  + [截屏](#截屏)
+  + [项目位置](#项目位置)
+- [功能](#功能)
+  + [支持操作系统](#支持操作系统)
+  + [支持协议](#支持协议)
+    - [远程控制协议](#远程控制协议)
+    - [网络协议](#网络协议)
+  + [功能列表](#功能列表)
+  + [详尽文档](#详尽文档)
+- [状态](#状态)
 - [捐赠](#捐赠)
 - [贡献](#贡献)
 - [线路图](#线路图)
@@ -63,10 +52,11 @@
     - 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
     - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
     - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
+    - launchpad: https://launchpad.net/rabbitremotecontrol
 
-### 功能
+## 功能
 
-#### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
+### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
 
 - [x] Windows
 - [x] Unix/Linux
@@ -93,9 +83,9 @@
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
-#### 支持协议
+### 支持协议
 
-##### 远程控制协议
+#### 远程控制协议
 - [x] VNC（虚拟网络计算）也叫 RFB("remote framebuffer"): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
 - [x] RDP（远程桌面协议）: [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
@@ -105,7 +95,7 @@
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [ ] FTP（文件传输协议）: [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
 
-##### 网络协议
+#### 网络协议
 
 - [x] 端到端（P2P）协议
   + ICE（交互式连接建立）: [RFC 8445](https://datatracker.ietf.org/doc/rfc8445/)
@@ -116,17 +106,18 @@
   + [ ] http
   + [x] 端到端（P2P）代理协议： [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
+#### 功能列表
 
-|       |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
-|:-----:|:---:|:---:|:--:|:-----:|:------:|:-:|:--:|:-:|
-|  RDP  |  ✓  |  ✓  |⭕  |       |        |   |    | ❌ |
-|  RFB  | ……  |  ✓  |⭕  |       | ❌      |✓  |  ✓ |   |
-|Spice  |     |     |    |       |        |   |    |   |
-|Scrcpy |     |     |    |       |        |   |    |   |
-|终端    |     | ⭕  |✓   | ❌     | ❌     |    |   |    |
-|TELNET |     | ⭕  |✓   | ❌     | ❌      |   |   |    |
-|  SSH  |     | ⭕  |✓   |       | ❌      |   |    |   |
-|  FTP  |     |     |    |       | ❌      |   |   |    |
+|       |服务器|客户端|远程桌面|剪切板|文件传输|音频传输|P2P|代理|终端|
+|:-----:|:---:|:---:|:----:|:--:|:-----:|:------:|:-:|:--:|:-:|
+|  RDP  |  ✓  |  ✓  |  ✓   |⭕  |       |        |   |    | ❌ |
+|  RFB  | ……  |  ✓  |  ✓   |⭕  |       | ❌      |✓  |  ✓ |   |
+|Spice  |     |     |      |    |       |        |   |    |   |
+|Scrcpy |     |     |      |    |       |        |   |    |   |
+|终端    |     | ⭕  | ❌    |✓   | ❌     | ❌     |    |   |    |
+|TELNET |     | ⭕  | ❌    |✓   | ❌     | ❌      |   |   |    |
+|  SSH  |     | ⭕  | ❌    |✓   |       | ❌      |   |    |   |
+|  FTP  |     |     | ❌    |    |       | ❌      |   |   |    |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
@@ -139,16 +130,39 @@
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
+#### 详尽文档
 
-## 编译状态
+- [开发文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
+- [编译文档](#编译)
+
+## 状态
+
+[![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl)
+[![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl?label=问题)](https://github.com/KangLin/RabbitRemoteControl/issues)
+[![贡献者](https://img.shields.io/github/contributors/KangLin/RabbitRemoteControl.svg?label=贡献者)](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-yellow.svg)](https://github.com/KangLin/RabbitRemoteControl/pulls)
+[![C++](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
+[![平台](https://img.shields.io/badge/平台-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://github.com/KangLin/RabbitRemoteControl)
+[![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
+[![Github 所有发行版本下载量](https://img.shields.io/github/downloads/KangLin/RabbitRemoteControl/total?label=Github%20下载总量)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Download from sourceforge](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20下载总量)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
+[![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
+[![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
+
+### 编译状态
+
+- [![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
 
 #### Github actions
 
 |     | master 分支 | develop 分支 |
 |:---:|:-----------:|:------------:|
-|Linux|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Linux 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Windows|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Windows 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
-|Android|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions)|[![Android 编译状态](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions)
+|Linux|[![ubuntu](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/ubuntu.yml)|[![ubuntu](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/ubuntu.yml)
+|Windows|[![msvc](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml)[![mingw](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml/badge.svg?branch=master)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml)|[![msvc](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml)[![mingw](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml/badge.svg?branch=develop)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml)
+|Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml)
 
 ## 捐赠
 
@@ -209,17 +223,18 @@
 - [x] 端到端（P2P）远程控制协议，详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [ ] 文件传输协议（FTP）
 
-|            |服务器|客户端|剪切板|文件传输|音频传输入|P2P|代理|终端|
-|:----------:|:---:|:---:|:---:|:-----:|:------:|:-:|:--:|:-:|
-|RabbitVNC   |……   |✓    |⭕   |       |❌       |✓  | ✓  |   |
-|TigerVNC    |……   |✓    |⭕   |       |❌       |✓  | ✓  |   |
-|LibVNCServer|✓    |✓    |⭕   |       |❌       |   |    |   |
-|RDP         |✓    |✓    |⭕   |       |        |   |    |❌  |
-|Spice       |     |     |     |       |        |   |    |    |
-|Scrcpy      |     |     |     |       |        |   |    |    |
-|终端         |     |⭕   |✓    |       |❌       |   |    |    |
-|SSH         |     |⭕   |✓    |       |❌       |   |    |    |
-|TELNET      |     |⭕   |✓    |❌      |❌       |   |    |    |
+|            |服务器|客户端|远程桌面|剪切板|文件传输|音频传输入|P2P|代理|终端|
+|:----------:|:---:|:---:|:----:|:---:|:-----:|:------:|:-:|:--:|:-:|
+|RabbitVNC   |……   |✓    |✓     |⭕   |       |❌       |✓  | ✓  |   |
+|TigerVNC    |……   |✓    |✓     |⭕   |       |❌       |✓  | ✓  |   |
+|LibVNCServer|✓    |✓    |✓     |⭕   |       |❌       |   |    |   |
+|RDP         |✓    |✓    |✓     |⭕   |       |        |   |    |❌  |
+|Spice       |     |     |      |     |       |        |   |    |    |
+|Scrcpy      |     |     |      |     |       |        |   |    |    |
+|终端         |     |⭕   |❌     |✓    |       |❌       |   |    |    |
+|SSH         |     |⭕   |❌     |✓    |       |❌       |   |    |    |
+|TELNET      |     |⭕   |❌     |✓    |❌      |❌       |   |    |    |
+|FTP         |     |     |❌     |     |       |❌       |   |    |    |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
@@ -271,7 +286,7 @@
 
 ## 开发
 
-[Doxygen 文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
+### [开发文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
 ### 依赖
 
