@@ -17,7 +17,7 @@ environment:
     secure: PUmp7039ro52579dlxAk59tjpeeyiFbdWvHfLCkjF5c=
     
   matrix:
-  ##### msvc 2015 ########    
+  ##### msvc 2017 ########    
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     GENERATORS: "Visual Studio 15 2017"
     TOOLCHAIN_VERSION: 15
@@ -32,6 +32,7 @@ environment:
     QT_ROOT: C:\Qt\5.12\msvc2017_64
     BUILD_ARCH: x64
     
+  ##### msvc 2015 ######## 
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     GENERATORS: "Visual Studio 14 2015"
     TOOLCHAIN_VERSION: 14
@@ -69,7 +70,17 @@ before_build:
   - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 50fd3d9957195575849a49fa591e645f1d8e7156 50fd3d9957195575849a49fa591e645f1d8e7156 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libssh libpng pixman libjpeg-turbo freerdp libdatachannel
+  - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libssh libpng pixman libjpeg-turbo libdatachannel
+  
+  - cd "%OTHER_SOURCE%"
+  - if not exist FreeRDP (git clone -b 2.7.0 https://github.com/FreeRDP/FreeRDP.git)
+  - cd FreeRDP
+  - git submodule update --init --recursive
+  - cmake -E make_directory build
+  - cd build
+  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DWITH_SERVER=ON -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
   
 #  - cd "%OTHER_SOURCE%"
 #  - if not exist libdatachannel (git clone https://github.com/paullouisageneau/libdatachannel.git)
@@ -136,7 +147,7 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR="%INSTALL_DIR%/lib/cmake" -DLog4Qt_DIR="%INSTALL_DIR%/lib/cmake/Log4Qt" -DQXmpp_DIR="%INSTALL_DIR%/lib/cmake/qxmpp" -DQtService_DIR="%INSTALL_DIR%/lib/cmake/qtservice" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON #-DLibDataChannel_DIR="%INSTALL_DIR%/share/cmake/LibDataChannel"
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR="%INSTALL_DIR%/lib/cmake" -DLog4Qt_DIR="%INSTALL_DIR%/lib/cmake/Log4Qt" -DQXmpp_DIR="%INSTALL_DIR%/lib/cmake/qxmpp" -DQtService_DIR="%INSTALL_DIR%/lib/cmake/qtservice" -DFreeRDP-Server_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP-Server2 -DFreeRDP-Client_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP-Client2 -DFreeRDP_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP2 -DWinPR_DIR="%INSTALL_DIR%/lib/cmake/WinPR2  -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON #-DLibDataChannel_DIR="%INSTALL_DIR%/share/cmake/LibDataChannel"
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
   - move /Y install\plugins\*crypto*.dll install\bin
