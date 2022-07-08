@@ -182,7 +182,7 @@
 - [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [![加入聊天 https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 - [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
-- [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): 感谢贡献者
+- [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): 感谢[贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
 如果您想知道如何提供帮助，不要害怕，有很多方法：
 
