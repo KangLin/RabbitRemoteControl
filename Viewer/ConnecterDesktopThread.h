@@ -14,7 +14,7 @@ class CConnectThread;
 /**
  * \~chinese
  * \brief 它默认启动一个后台线程。实现一个远程桌面后台线程处理一个远程桌面连接。
- *        可与 CPluginViewer 一起使用，用于连接是阻塞模型的。
+ *        可与插件接口从 CPluginViewer 派生的插件一起使用，用于连接是阻塞模型的。
  * \details
  * 原理：在 Connect() 中启动一个后台线程 CConnectThread 。
  *      在线程中调用 InstanceConnect() 实例化 CConnect ，
@@ -36,7 +36,8 @@ class CConnectThread;
  * \brief It starts a background thread by default.
  *        It implements a remote desktop background thread to
  *        handle a remote desktop connection.
- *        Can be used with CPluginViewer for connections that are blocking models.
+ *        Can be used with plugins whose plugin interface
+ *        derives from CPluginViewer for connection is blocking model.
  * \details 
  *     Principle: Start a background thread (CConnectThread) in Connect() .
  *     Call InstanceConnect() in the thread to instantiate CConnect,

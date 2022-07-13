@@ -98,7 +98,7 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 - [x] Peer-to-Peer (P2P) protocol
   + ICE (Interactive Connectivity Establishment): [RFC 8445](https://datatracker.ietf.org/doc/rfc8445/) 
   + STUN: [RFC 5389](https://datatracker.ietf.org/doc/rfc5389/)
-  + TURN(Traversal Using Relays around NAT): [RF C5766](https://datatracker.ietf.org/doc/rfc5766/)
+  + TURN(Traversal Using Relays around NAT): [RFC 5766](https://datatracker.ietf.org/doc/rfc5766/)
 - [x] Proxy
   + [x] socks
   + [ ] http

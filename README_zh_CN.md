@@ -100,7 +100,7 @@
 - [x] 端到端（P2P）协议
   + ICE（交互式连接建立）: [RFC 8445](https://datatracker.ietf.org/doc/rfc8445/)
   + STUN: [RFC 5389](https://datatracker.ietf.org/doc/rfc5389/)
-  + TURN(在 NAT 周围使用中继进行遍历): [RF C5766](https://datatracker.ietf.org/doc/rfc5766/)
+  + TURN(在 NAT 周围使用中继进行遍历): [RFC 5766](https://datatracker.ietf.org/doc/rfc5766/)
 - [x] 代理
   + [x] socks
   + [ ] http
