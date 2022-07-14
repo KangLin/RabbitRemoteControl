@@ -23,7 +23,7 @@ if(POLICY CMP0021)
     cmake_policy(SET CMP0021 NEW)
 endif()
 
-SET(BUILD_VERSION "v0.0.18")
+SET(BUILD_VERSION "v0.0.19")
 # Find Git Version Patch
 IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     if(NOT GIT)
