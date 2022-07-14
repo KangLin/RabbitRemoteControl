@@ -4,10 +4,11 @@
 #include "PluginService.h"
 
 /*!
- *  \~chinese 服务插件接口。默认为每个插件启动一个线程进行处理。
+ *  \~chinese 服务插件接口。默认为每个插件启动一个线程进行处理。由插件实现。
  *  
  *  \~english
  *  \brief The service plugin interface. The default start a thread.
+ *         By specific plug-in implement.
  *  
  *  \~
  *  \ingroup LIBAPI_SERVICE

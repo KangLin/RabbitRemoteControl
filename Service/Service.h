@@ -18,6 +18,7 @@ class CPluginService;
  *     + OnInit()
  *     + OnProcess()
  *     + OnClean()
+ *     
  * \~english
  * \brief The service interface. by specific protocol implement.
  *        Support non-Qt event loop. see: Init(), slotProcess().
