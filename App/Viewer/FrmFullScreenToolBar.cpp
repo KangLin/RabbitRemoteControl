@@ -46,13 +46,13 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     m_ToolBar.addSeparator();
     QAction* pZoomToWindow = m_ToolBar.addAction(QIcon(":/image/ZoomToWindow"),
        tr("Zoom to windows"), m_pMain, SLOT(on_actionZoomToWindow_Z_triggered()));
-    m_pMain->m_pGBView->addAction(pZoomToWindow);
+    m_pMain->m_pGBViewZoom->addAction(pZoomToWindow);
     QAction* pZoomOrigin = m_ToolBar.addAction(QIcon(":/image/Original"),
                     tr("Origin"), m_pMain, SLOT(on_actionOriginal_O_triggered()));
-    m_pMain->m_pGBView->addAction(pZoomOrigin);
+    m_pMain->m_pGBViewZoom->addAction(pZoomOrigin);
     QAction* pZoomIn = m_ToolBar.addAction(QIcon(":/image/ZoomIn"),
                     tr("Zoom In"), m_pMain, SLOT(on_actionZoom_In_triggered()));
-    m_pMain->m_pGBView->addAction(pZoomIn);
+    m_pMain->m_pGBViewZoom->addAction(pZoomIn);
 //    QSpinBox* psbZoomFactor = new QSpinBox(&m_ToolBar);
 //    psbZoomFactor->setRange(0, 9999999);
 //    psbZoomFactor->setValue(100);
@@ -64,7 +64,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
 //    m_ToolBar.addWidget(psbZoomFactor);
     QAction* pZoomOut = m_ToolBar.addAction(QIcon(":/image/ZoomOut"),
                   tr("Zoom Out"), m_pMain, SLOT(on_actionZoom_Out_triggered()));
-    m_pMain->m_pGBView->addAction(pZoomOut);
+    m_pMain->m_pGBViewZoom->addAction(pZoomOut);
 
     m_ToolBar.addSeparator();
     m_ToolBar.addAction(QIcon(":/image/Screenshot"), tr("ScreenShot"),

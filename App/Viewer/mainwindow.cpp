@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
       ui(new Ui::MainWindow),
       m_pSignalStatus(nullptr),
       m_pView(nullptr),
-      m_pGBView(nullptr),
+      m_pGBViewZoom(nullptr),
       m_pFullScreenToolBar(nullptr),
       m_ptbZoom(nullptr),
       m_psbZoomFactor(nullptr),
@@ -161,17 +161,19 @@ MainWindow::MainWindow(QWidget *parent)
     pFactor->setDefaultWidget(m_psbZoomFactor);
     ui->menuZoom->insertAction(ui->actionZoom_Out, pFactor);
     
-    m_pGBView = new QActionGroup(this);
-    if(m_pGBView) {
-        m_pGBView->addAction(ui->actionZoomToWindow_Z);
-        m_pGBView->addAction(ui->actionKeep_aspect_ration_to_windows_K);
-        m_pGBView->addAction(ui->actionOriginal_O);
-        m_pGBView->addAction(ui->actionZoom_In);
-        m_pGBView->addAction(ui->actionZoom_Out);
-        m_pGBView->setEnabled(false);
+    m_pGBViewZoom = new QActionGroup(this);
+    if(m_pGBViewZoom) {
+        m_pGBViewZoom->addAction(ui->actionZoomToWindow_Z);
+        m_pGBViewZoom->addAction(ui->actionKeep_aspect_ration_to_windows_K);
+        m_pGBViewZoom->addAction(ui->actionOriginal_O);
+        m_pGBViewZoom->addAction(ui->actionZoom_In);
+        m_pGBViewZoom->addAction(ui->actionZoom_Out);
+        m_pGBViewZoom->setEnabled(false);
     }
     ui->actionZoomToWindow_Z->setChecked(true);
 
+    EnableMenu(false);
+    
     setFocusPolicy(Qt::NoFocus);
 
     //TODO: complete the function
@@ -235,7 +237,7 @@ MainWindow::~MainWindow()
 {
     qDebug() << "MainWindow::~MainWindow()";
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
-    if(m_pGBView) delete m_pGBView;
+    if(m_pGBViewZoom) delete m_pGBViewZoom;
     
     delete ui;
 }
@@ -463,12 +465,7 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 {
     if(!m_pView)
         return;
-    if(m_pGBView)
-        m_pGBView->setEnabled(true);
-    if(m_ptbZoom)
-        m_ptbZoom->setEnabled(true);
-    if(m_psbZoomFactor)
-        m_psbZoomFactor->setEnabled(true);
+    EnableMenu(true);
     switch (aw) {
     case CFrmViewer::Auto:
     case CFrmViewer::Original:
@@ -494,16 +491,26 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
     case CFrmViewer::Disable:
         if(m_ptbZoom)
             m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
-        if(m_pGBView)
-            m_pGBView->setEnabled(false);
-        if(m_ptbZoom)
-            m_ptbZoom->setEnabled(false);
-        if(m_psbZoomFactor)
-            m_psbZoomFactor->setEnabled(false);
+        EnableMenu(false);
         break;
     default:
         break;
     }
+}
+
+void MainWindow::EnableMenu(bool bEnable)
+{
+    if(m_pGBViewZoom)
+        m_pGBViewZoom->setEnabled(bEnable);
+    if(m_ptbZoom)
+        m_ptbZoom->setEnabled(bEnable);
+    if(m_psbZoomFactor)
+        m_psbZoomFactor->setEnabled(bEnable);
+    ui->actionClone->setEnabled(bEnable);
+    ui->actionAdd_to_favorite->setEnabled(bEnable);
+    ui->actionCurrent_connect_parameters->setEnabled(bEnable);
+    ui->actionScreenshot->setEnabled(bEnable);
+    ui->actionDisconnect_D->setEnabled(bEnable);
 }
 
 void MainWindow::on_actionExit_E_triggered()

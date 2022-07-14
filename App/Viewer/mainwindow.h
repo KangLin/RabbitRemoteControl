@@ -111,7 +111,8 @@ protected:
 private:
     Ui::MainWindow *ui;
     CView* m_pView;
-    QActionGroup* m_pGBView;
+
+    void EnableMenu(bool bEnable);
     
     ///////// Full screen ///////// 
 private:
@@ -125,6 +126,7 @@ private Q_SLOTS:
 private:
     QToolButton* m_ptbZoom;
     QSpinBox* m_psbZoomFactor;
+    QActionGroup* m_pGBViewZoom;
 private Q_SLOTS:
     void on_actionZoom_window_to_remote_desktop_triggered();
     void on_actionOriginal_O_changed();

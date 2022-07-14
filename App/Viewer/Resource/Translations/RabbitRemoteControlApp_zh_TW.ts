@@ -363,7 +363,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="216"/>
-        <location filename="../../mainwindow.cpp" line="325"/>
+        <location filename="../../mainwindow.cpp" line="327"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -626,9 +626,9 @@
         <location filename="../../mainwindow.ui" line="222"/>
         <location filename="../../mainwindow.ui" line="225"/>
         <location filename="../../mainwindow.ui" line="228"/>
-        <location filename="../../mainwindow.cpp" line="326"/>
-        <location filename="../../mainwindow.cpp" line="327"/>
         <location filename="../../mainwindow.cpp" line="328"/>
+        <location filename="../../mainwindow.cpp" line="329"/>
+        <location filename="../../mainwindow.cpp" line="330"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -638,25 +638,25 @@
         <translation>收藏夾</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="210"/>
+        <location filename="../../mainwindow.cpp" line="212"/>
         <source>ICE singal status</source>
         <translation>ICE 信令狀態</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="353"/>
+        <location filename="../../mainwindow.cpp" line="355"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="354"/>
-        <location filename="../../mainwindow.cpp" line="355"/>
         <location filename="../../mainwindow.cpp" line="356"/>
+        <location filename="../../mainwindow.cpp" line="357"/>
+        <location filename="../../mainwindow.cpp" line="358"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="560"/>
-        <location filename="../../mainwindow.cpp" line="578"/>
+        <location filename="../../mainwindow.cpp" line="567"/>
+        <location filename="../../mainwindow.cpp" line="585"/>
         <source>Load file fail: </source>
         <translation>加載文件失敗：</translation>
     </message>
@@ -664,37 +664,37 @@
         <location filename="../../mainwindow.ui" line="378"/>
         <location filename="../../mainwindow.ui" line="381"/>
         <location filename="../../mainwindow.ui" line="384"/>
-        <location filename="../../mainwindow.cpp" line="570"/>
+        <location filename="../../mainwindow.cpp" line="577"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="572"/>
+        <location filename="../../mainwindow.cpp" line="579"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="660"/>
+        <location filename="../../mainwindow.cpp" line="667"/>
         <source>Connecting to </source>
         <translation>正在連接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="686"/>
+        <location filename="../../mainwindow.cpp" line="693"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="713"/>
+        <location filename="../../mainwindow.cpp" line="720"/>
         <source>ICE singal status: Connected</source>
         <translation>ICE 信令狀態：連接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="722"/>
+        <location filename="../../mainwindow.cpp" line="729"/>
         <source>ICE singal status: Disconnected</source>
         <translation>ICE 信令狀態：斷開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="899"/>
+        <location filename="../../mainwindow.cpp" line="906"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>
