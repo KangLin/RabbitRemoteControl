@@ -44,8 +44,7 @@ QString CConnecterTigerVnc::ServerName()
 
 QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
 {
-    Q_UNUSED(parent)
-    CDlgSettingsTigerVnc* p = new CDlgSettingsTigerVnc(&m_Para);
+    CDlgSettingsTigerVnc* p = new CDlgSettingsTigerVnc(&m_Para, parent);
     return p;
 }
 

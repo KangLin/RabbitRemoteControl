@@ -44,8 +44,7 @@ QString CConnecterRabbitVNC::ServerName()
 
 QDialog *CConnecterRabbitVNC::GetDialogSettings(QWidget *parent)
 {
-    Q_UNUSED(parent)
-    CDlgSettingsRabbitVNC* p = new CDlgSettingsRabbitVNC(&m_Para);
+    CDlgSettingsRabbitVNC* p = new CDlgSettingsRabbitVNC(&m_Para, parent);
     return p;
 }
 

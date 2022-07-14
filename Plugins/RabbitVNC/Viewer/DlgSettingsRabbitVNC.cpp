@@ -13,8 +13,8 @@
 
 #undef SetPort
 
-CDlgSettingsRabbitVNC::CDlgSettingsRabbitVNC(CParameterRabbitVNC *pPara, QWidget *parent) :
-    QDialog(parent),
+CDlgSettingsRabbitVNC::CDlgSettingsRabbitVNC(CParameterRabbitVNC *pPara, QWidget *parent)
+    : QDialog(parent),
     ui(new Ui::CDlgSettingsRabbitVNC),
     m_pPara(pPara)
 {

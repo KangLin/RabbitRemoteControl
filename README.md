@@ -43,6 +43,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 |![Main window](docs/Image/Screenshot/MainWindows_en.png)|![Recent list menu](docs/Image/Screenshot/RecentMenu_en.png)|![Connect](docs/Image/Screenshot/Connect_en.png)|
 
 ### Project repository position
+
 - Project home: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 - Project position:
   - Main repository: https://github.com/KangLin/RabbitRemoteControl
