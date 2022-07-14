@@ -369,19 +369,19 @@
      <normaloff>:/image/Open</normaloff>:/image/Open</iconset>
    </property>
    <property name="text">
-    <string>Open(&amp;O)</string>
+    <string>Open(&amp;O) rabbit remote control file</string>
    </property>
    <property name="iconText">
     <string>Open</string>
    </property>
    <property name="toolTip">
-    <string>Open</string>
+    <string>Open rabbit remote control file</string>
    </property>
    <property name="statusTip">
-    <string>Open</string>
+    <string>Open rabbit remote control file</string>
    </property>
    <property name="whatsThis">
-    <string>Open</string>
+    <string>Open rabbit remote control file</string>
    </property>
   </action>
   <action name="actionDefaultStyle_D">

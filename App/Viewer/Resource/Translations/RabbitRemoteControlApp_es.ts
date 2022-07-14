@@ -419,9 +419,6 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="375"/>
-        <location filename="../../mainwindow.ui" line="378"/>
-        <location filename="../../mainwindow.ui" line="381"/>
-        <location filename="../../mainwindow.ui" line="384"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
@@ -494,6 +491,10 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="372"/>
+        <source>Open(&amp;O) rabbit remote control file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.ui" line="406"/>
         <source>Open(&amp;O)</source>
         <translation type="unfinished"></translation>
@@ -660,6 +661,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="378"/>
+        <location filename="../../mainwindow.ui" line="381"/>
+        <location filename="../../mainwindow.ui" line="384"/>
         <location filename="../../mainwindow.cpp" line="570"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>

@@ -398,9 +398,6 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="375"/>
-        <location filename="../../mainwindow.ui" line="378"/>
-        <location filename="../../mainwindow.ui" line="381"/>
-        <location filename="../../mainwindow.ui" line="384"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
@@ -570,6 +567,11 @@
         <translation>退出(&amp;E)</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="372"/>
+        <source>Open(&amp;O) rabbit remote control file</source>
+        <translation>打开玉兔远程控制文件(&amp;O)</translation>
+    </message>
+    <message>
         <location filename="../../mainwindow.ui" line="423"/>
         <source>Send Ctl+Alt+Del</source>
         <translation>发送 Ctl+Alt+Del</translation>
@@ -598,7 +600,6 @@
         <translation>断开连接(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="372"/>
         <location filename="../../mainwindow.ui" line="406"/>
         <source>Open(&amp;O)</source>
         <translation>打开(&amp;O)</translation>
@@ -660,6 +661,9 @@
         <translation>加载文件失败：</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="378"/>
+        <location filename="../../mainwindow.ui" line="381"/>
+        <location filename="../../mainwindow.ui" line="384"/>
         <location filename="../../mainwindow.cpp" line="570"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
