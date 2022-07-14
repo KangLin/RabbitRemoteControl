@@ -13,6 +13,7 @@
   + [项目位置](#项目位置)
 - [功能](#功能)
   + [支持操作系统](#支持操作系统)
+  + [支持多语言](#支持多语言)
   + [支持协议](#支持协议)
     - [远程控制协议](#远程控制协议)
     - [网络协议](#网络协议)
@@ -41,7 +42,7 @@
 
 |主窗口|最近列表窗口|连接窗口|
 |--|--|--|
-|![主窗口](docs/Image/Screenshot/MainWindows_en.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu_en.png)|![连接窗口](docs/Image/Screenshot/Connect_en.png)|
+|![主窗口](docs/Image/Screenshot/MainWindows.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu.png)|![连接窗口](docs/Image/Screenshot/Connect.png)|
 
 ### 项目位置
 
@@ -56,7 +57,9 @@
 
 ## 功能
 
-### 支持操作系统 (参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
+### 支持操作系统
+
+参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html)
 
 - [x] Windows
 - [x] Unix/Linux
@@ -82,6 +85,12 @@
 |FTP     |       |          |       |   |      |     |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
+
+### 支持多语言
+
+- [x] 英语
+- [x] 简体中文
+- [x] 繁体中文
 
 ### 支持协议
 
@@ -130,7 +139,7 @@
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
-#### 详尽文档
+### 详尽文档
 
 - [开发文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 - [编译文档](#编译)

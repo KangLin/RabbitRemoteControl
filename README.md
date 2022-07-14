@@ -12,6 +12,8 @@ Author: Kang Lin <kl222@126.com>
   + [Screenshot](#Screenshot)
   + [Project repository position](#Project-repository-position)
 - [Functions](#Functions)
+  + [Supported operating system](#Supported-operating-system)
+  + [Supported multiple languages](#Supported-multiple-languages)
   + [Supported protocols](#Supported-protocols)
     - [Remote control protocols](#Remote-control-protocols)
     - [Network protocols](#Network-protocols)
@@ -55,7 +57,10 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 
 ## Functions
 
-#### Supported operating system (See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html))
+### Supported operating system
+
+See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html)
+
 - [x] Windows
 - [x] Unix/Linux
 - [x] Android
@@ -81,9 +86,15 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
-#### Supported protocols
+### Supported multiple languages
 
-##### Remote control protocols
+- [x] English
+- [x] Simplified Chinese
+- [x] Traditional Chinese
+
+### Supported protocols
+
+#### Remote control protocols
 
 - [x] RFB(Remote framebuffer) is also called VNC(Virtual Network Computing): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
 - [x] RDP(Remote desktop protocol): [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
@@ -94,7 +105,7 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [ ] FTP(File Transfer Protocol): [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)
 
-##### Network protocols
+#### Network protocols
 
 - [x] Peer-to-Peer (P2P) protocol
   + ICE (Interactive Connectivity Establishment): [RFC 8445](https://datatracker.ietf.org/doc/rfc8445/) 
@@ -105,7 +116,7 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
   + [ ] http
   + [x] Peer-to-Peer (P2P) proxy protocol: [https://github.com/KangLin/RabbitRemoteControl/issues/7](https://github.com/KangLin/RabbitRemoteControl/issues/7)
 
-##### Function list
+#### Function list
 
 |        |Server|Client|Desktop  |Clipboard|File|Audio|P2P|Proxy|Terminal|
 |------- |:----:|:----:|:-------:|:-------:|:--:|:---:|:-:|:---:|:----:|
@@ -129,7 +140,7 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
-##### Full Documentation
+### Full Documentation
 
 - [Development documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 - [Compilation documentation](#Compilation)
