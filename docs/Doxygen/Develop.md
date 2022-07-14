@@ -24,9 +24,3 @@ Author: Kang Lin kl222@126.com
 ### Module
 
 - [Module](modules.html)
-
-- Viewer plugin API
-  + class relation  
-    ![ViewerPluginAPI](../Image/PluginViewerAPI.svg)
-  + Sequence diagram   
-    ![Sequence diagram](../Image/PluginViewerSequenceDiagram.svg)

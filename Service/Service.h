@@ -11,7 +11,8 @@
 class CPluginService;
 
 /*!
- * \~chinese 服务接口。由具体的协议实现。支持非Qt事件循环。详见： Init() 、 slotProcess()
+ * \~chinese 服务接口。由具体的协议实现。此接口仅由插件实现。
+ *           支持非Qt事件循环。详见： Init() 、 slotProcess()
  *           如果不启用非Qt事件循环。则 OnInit() 返回 > 0
  * \details
  *     实现接口：
@@ -21,6 +22,7 @@ class CPluginService;
  *     
  * \~english
  * \brief The service interface. by specific protocol implement.
+ *        The interface only is implemented and used by plugin.
  *        Support non-Qt event loop. see: Init(), slotProcess().
  *        If don't use non-Qt event loop. then OnInit() return > 0
  * \details

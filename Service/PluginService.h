@@ -13,10 +13,11 @@
 class CServiceThread;
 
 /*!
- *  \~chinese 服务插件接口。由插件实现。
+ *  \~chinese 服务插件接口。此接口仅由插件实现。
  *  
  *  \~english
- *  \brief The service plugin interface. By specific plug-in implement.
+ *  \brief The service plugin interface.
+ *         The interface only is implemented and used by plugin.
  *  
  *  \~
  *  \ingroup LIBAPI_SERVICE
