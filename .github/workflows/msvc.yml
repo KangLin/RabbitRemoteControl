@@ -42,7 +42,7 @@ jobs:
       CMAKE_GENERATOR: ${{matrix.CMAKE_GENERATOR}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
-      RabbitRemoteControl_VERSION: v0.0.19
+      RabbitRemoteControl_VERSION: v0.0.20
       VCPKGGITCOMMITID: 5cf60186a241e84e8232641ee973395d4fde90e1
       qt_modules: qtwebengine ${{matrix.qt_modules}}
 

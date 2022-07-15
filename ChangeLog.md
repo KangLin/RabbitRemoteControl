@@ -1,5 +1,11 @@
 ## Change Log
 
+### v0.0.20
+
++ Add version suffix to Windows dynamic library. see RabbitCommon
++ RabbitCommon adds openssl version judgment.
+  This may be the cause of an unknown crash on program startup.
+
 ### v0.0.19
 + Add OpenGL form
 + Add open log

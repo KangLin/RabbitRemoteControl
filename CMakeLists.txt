@@ -23,7 +23,7 @@ if(POLICY CMP0021)
     cmake_policy(SET CMP0021 NEW)
 endif()
 
-SET(RabbitRemoteControl_VERSION "v0.0.19")
+SET(RabbitRemoteControl_VERSION "v0.0.20")
 # Find Git Version Patch
 IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     if(NOT GIT)

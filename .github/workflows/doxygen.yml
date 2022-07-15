@@ -17,7 +17,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu
-      RabbitRemoteControl_VERSION: v0.0.19
+      RabbitRemoteControl_VERSION: v0.0.20
       DOXYGEN_VERSION: 1.9.4
 
     steps:
