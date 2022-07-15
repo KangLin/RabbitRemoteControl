@@ -39,6 +39,7 @@ SET(RabbitVNC_UI_FILES
 #message("RabbitVNC links libraries:${RabbitVNC_SRC_LIBS}")
 ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
+    VERSION ${RabbitRemoteControl_VERSION}
     SOURCE_FILES ${RabbitVNC_SOURCE_FILES} ${RabbitVNC_HEADER_FILES}
         ${RabbitVNC_UI_FILES} ${RabbitVNC_RCC_FILES}
     PRIVATE_LIBS ${RabbitVNC_SRC_LIBS}

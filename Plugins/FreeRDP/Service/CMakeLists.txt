@@ -43,4 +43,5 @@ ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
     PRIVATE_OPTIONS ${FreeRDP_OPTIONS}
     INSTALL_DIR plugins/Service
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Service
+    VERSION ${RabbitRemoteControl_VERSION}
     )

@@ -24,6 +24,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
 
 ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     ISPLUGIN
+    VERSION ${RabbitRemoteControl_VERSION}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS ${lib_terminal}
     INSTALL_DIR plugins/Viewer

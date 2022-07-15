@@ -70,6 +70,7 @@ if(_LibvncIncludeDir)
         PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
         INSTALL_DIR plugins/Viewer
         OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
+        VERSION ${RabbitRemoteControl_VERSION}
         )
 else()
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
@@ -78,5 +79,6 @@ else()
         PRIVATE_LIBS ${_libvncLibs}
         INSTALL_DIR plugins/Viewer
         OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
+        VERSION ${RabbitRemoteControl_VERSION}
         )
 endif()

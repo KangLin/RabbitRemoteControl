@@ -55,6 +55,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
 if(_libtelnet_include_dir)
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
+        VERSION ${RabbitRemoteControl_VERSION}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
         PRIVATE_INCLUDE_DIRS ${_libtelnet_include_dir}
@@ -64,6 +65,7 @@ if(_libtelnet_include_dir)
 else()
     ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
         ISPLUGIN
+        VERSION ${RabbitRemoteControl_VERSION}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
         INSTALL_DIR plugins/Viewer

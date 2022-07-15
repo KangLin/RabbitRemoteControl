@@ -61,6 +61,7 @@ if(_LibvncIncludeDir)
         PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
         INSTALL_DIR plugins/Service
         OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Service
+        VERSION ${RabbitRemoteControl_VERSION}
         )
 else()
     ADD_PLUGIN_TARGET(NAME PluginService${PROJECT_NAME}
@@ -69,5 +70,6 @@ else()
         PRIVATE_LIBS ${SRC_LIBS}
         INSTALL_DIR plugins/Service
         OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Service
+        VERSION ${RabbitRemoteControl_VERSION}
         )
 endif()

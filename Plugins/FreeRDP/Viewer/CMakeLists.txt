@@ -53,5 +53,6 @@ ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
     PRIVATE_OPTIONS ${FreeRDP_OPTIONS}
     INSTALL_DIR plugins/Viewer
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
+    VERSION ${RabbitRemoteControl_VERSION}
     )
 
