@@ -249,11 +249,10 @@
 - 终端类远程控制。因为 qtermwidget 仅支持 LINUX/UNIX ，所以需要让其支持其它平台。
 - 已经完成端到端（P2P）远程控制。它是本项目的特点。详见需求: https://github.com/KangLin/RabbitRemoteControl/issues/7
 
-## [修改日志](ChangeLog_zh_CN.md)
-
 ## 下载
 
-版本号说明： https://semver.org/lang/zh-CN/
+- [修改日志](ChangeLog_zh_CN.md)
+- 版本号说明： https://semver.org/lang/zh-CN/
 
 + 最后发行版本：
   - [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)

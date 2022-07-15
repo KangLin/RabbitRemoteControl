@@ -262,11 +262,10 @@ and put forward suggestions that can be more convenient to use in practical appl
 which is also a feature of this project.
 See requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7 
 
-## [Change log](ChangeLog.md)
-
 ## Download
 
-Semantic Versioning: https://semver.org/
+- [Change log](ChangeLog.md)
+- Semantic Versioning: https://semver.org/
 
 + Latest Release: 
   - [![Latest Release](https://img.shields.io/github/release/KangLin/RabbitRemoteControl.svg?label=Github%20latest%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases/latest)
