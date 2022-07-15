@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 //    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
 
-    QApplication::setApplicationVersion(BUILD_VERSION);
+    QApplication::setApplicationVersion(RabbitRemoteControl_VERSION);
     QApplication::setApplicationName("RabbitRemoteControl");
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     QApplication::setDesktopFileName(QLatin1String("RabbitRemoteControl.desktop"));

@@ -23,7 +23,7 @@ if(POLICY CMP0021)
     cmake_policy(SET CMP0021 NEW)
 endif()
 
-SET(BUILD_VERSION "v0.0.19")
+SET(RabbitRemoteControl_VERSION "v0.0.19")
 # Find Git Version Patch
 IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     if(NOT GIT)
@@ -45,11 +45,11 @@ IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
                 OUTPUT_VARIABLE GIT_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE
             )
         endif()
-        SET(BUILD_VERSION ${GIT_VERSION})
+        SET(RabbitRemoteControl_VERSION ${GIT_VERSION})
     ENDIF()
 ENDIF()
-message("BUILD_VERSION ${PROJECT_NAME}:${BUILD_VERSION}")
-set(VERSION ${BUILD_VERSION})
+message("RabbitRemoteControl_VERSION ${PROJECT_NAME}:${RabbitRemoteControl_VERSION}")
+set(VERSION ${RabbitRemoteControl_VERSION})
 
 IF(MSVC)
     # This option is to enable the /MP switch for Visual Studio 2005 and above compilers

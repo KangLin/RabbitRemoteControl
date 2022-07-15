@@ -127,6 +127,7 @@ Q_SIGNALS:
     // Please use CConnecter::sigServerName
     void sigServerName(const QString &szName);
 
+    // QWidget interface
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
@@ -148,6 +149,7 @@ private:
     void paintDesktop();
     int TranslationMousePoint(QPointF inPos, QPointF &outPos);
     QRectF GetAspectRationRect();
+
 };
 
 #endif // #ifdef USE_FROM_OPENGL
