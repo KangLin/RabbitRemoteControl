@@ -321,12 +321,12 @@ jobs:
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{matrix.BUILD_TYPE}}
+        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install-runtime
 
     - name: Package
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+      # if: ${{ matrix.BUILD_TYPE == 'Release' }}
       working-directory: ${{github.workspace}}\build
       run: |
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install-runtime
         move /Y install\plugins\*crypto*.dll install\bin
         move /Y install\plugins\*ssl*.dll install\bin
         copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
