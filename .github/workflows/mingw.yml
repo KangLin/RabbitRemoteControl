@@ -203,12 +203,11 @@ jobs:
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
         cmake --build . --config ${{ matrix.BUILD_TYPE }}
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
+        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
     - name: Package
       working-directory: ${{github.workspace}}/build
       run: |
-        cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install-runtime
         move /Y install\plugins\*crypto*.dll install\bin
         move /Y install\plugins\*ssl*.dll install\bin
         copy /Y C:\msys64\mingw64\bin\*.dll install\bin
@@ -216,12 +215,12 @@ jobs:
         copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         makensis ${{github.workspace}}/build/Install.nsi
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+      #if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
-    - name: update 
+    - name: update
       uses: actions/upload-artifact@v2
       with:
-        name: rabbitremotecontrol_${{ matrix.os }}_mingw
+        name: rabbitremotecontrol_${{ matrix.os }}_mingw_${{matrix.BUILD_TYPE}}
         path: |
           ${{github.workspace}}/build/RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe
       if: ${{ matrix.BUILD_TYPE == 'Release' }}

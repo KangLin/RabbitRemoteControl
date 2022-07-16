@@ -344,10 +344,10 @@ jobs:
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-        name: rabbitremotecontrol_${{ matrix.os }}_msvc_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
+        name: rabbitremotecontrol_${{matrix.os}}_msvc_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
         path: |
           ${{github.workspace}}\build\RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+      #if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
     - name: Upload To Github Release
       if: ${{ matrix.BUILD_TYPE == 'Release' && '5.12.12' == matrix.qt_version && startsWith(github.ref, 'refs/tags/') }}
