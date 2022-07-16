@@ -48,7 +48,7 @@ IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
         SET(RabbitRemoteControl_VERSION ${GIT_VERSION})
     ENDIF()
 ENDIF()
-message("RabbitRemoteControl_VERSION ${PROJECT_NAME}:${RabbitRemoteControl_VERSION}")
+message("${PROJECT_NAME}:${RabbitRemoteControl_VERSION}")
 set(VERSION ${RabbitRemoteControl_VERSION})
 
 IF(MSVC)

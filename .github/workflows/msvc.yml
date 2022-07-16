@@ -14,12 +14,12 @@ jobs:
         CMAKE_GENERATOR_PLATFORM: [x64, Win32]
         # VCPKG_PLATFORM_TOOLSET: [v142, v141, v140]
         include:
-          - triplet: x64-windows
-            VCPKG_PLATFORM_TOOLSET: v142
-            qt_version: 6.2.2
-            qt_arch: win64_msvc2019_64
-            CMAKE_GENERATOR_PLATFORM: x64
-            qt_modules: qtscxml qtpositioning
+          #- triplet: x64-windows
+          #  VCPKG_PLATFORM_TOOLSET: v142
+          #  qt_version: 6.2.2
+          #  qt_arch: win64_msvc2019_64
+          #  CMAKE_GENERATOR_PLATFORM: x64
+          #  qt_modules: qtscxml qtpositioning
 
           - triplet: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142
@@ -321,7 +321,7 @@ jobs:
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{matrix.BUILD_TYPE}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install-runtime
+        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 
     - name: Package
       # if: ${{ matrix.BUILD_TYPE == 'Release' }}
@@ -344,7 +344,7 @@ jobs:
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-        name: rabbitremotecontrol_${{ matrix.os }}_msvc_qt${{matrix.qt_version}}
+        name: rabbitremotecontrol_${{ matrix.os }}_msvc_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
         path: |
           ${{github.workspace}}\build\RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
