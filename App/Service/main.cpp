@@ -22,7 +22,6 @@
 
 int main(int argc, char *argv[])
 {
-    RabbitCommon::CTools::EnableCoreDump();
     int nRet = 0;
 
     try{
