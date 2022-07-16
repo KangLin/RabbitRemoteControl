@@ -1,5 +1,8 @@
 ## 修改日志
 
+### v0.0.21
++ 在 Windows 下，增加导出崩溃文件
+
 ### v0.0.20
 + 为 Windows 动态库增加版本后缀。详见: RabbitCommon
 + RabbitCommon 增加 openssl 版本判断。这也许是程序启动时不明崩溃的原因。

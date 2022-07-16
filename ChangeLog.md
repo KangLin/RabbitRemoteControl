@@ -1,5 +1,9 @@
 ## Change Log
 
+### v0.0.21
+
++ Add core dump in windows
+
 ### v0.0.20
 
 + Add version suffix to Windows dynamic library. see RabbitCommon
