@@ -45,6 +45,7 @@ jobs:
       RabbitRemoteControl_VERSION: v0.0.20
       VCPKGGITCOMMITID: 5cf60186a241e84e8232641ee973395d4fde90e1
       qt_modules: qtwebengine ${{matrix.qt_modules}}
+      VCINSTALLDIR: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC
 
     defaults:
       run:
