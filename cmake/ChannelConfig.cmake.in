@@ -3,6 +3,6 @@
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/")
 
 include(CMakeFindDependencyMacro)
-find_dependency(Qt@QT_VERSION_MAJOR@ COMPONENTS @VIEWER_QT_COMPONENTS@)
-find_dependency(Channel)
+find_dependency(Qt@QT_VERSION_MAJOR@ COMPONENTS @CHANNEL_QT_COMPONENTS@)
+find_dependency(RabbitCommon)
 include("${CMAKE_CURRENT_LIST_DIR}/ViewerTargets.cmake")

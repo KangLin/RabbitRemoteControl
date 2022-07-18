@@ -10,7 +10,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 project(RabbitRemoteControlServiceConfigure LANGUAGES CXX)
 
 if(WIN32)
-    set(RCC_FILES Resource/App.rc)
+    set(RabbitRemoteControlServiceConfigure_RCC_FILES Resource/App.rc)
 endif()
 
 find_package(QtService)
@@ -18,9 +18,9 @@ if(NOT QtService_FOUND)
     return()
 endif()
 message("QtServeice is found")
-SET(SRC_LIBS RabbitCommon ${QT_LIBRARIES})
+SET(RabbitRemoteControlServiceConfigure_SRC_LIBS RabbitCommon)
 
-list(APPEND SRC_LIBS Service)
+list(APPEND RabbitRemoteControlServiceConfigure_SRC_LIBS Service)
 
 set(HEADER_FILES 
     MainWindow.h
@@ -30,26 +30,26 @@ set(SOURCE_FILES
     main.cpp
     )
 set(SOURCE_UI_FILES MainWindow.ui)
-LIST(APPEND RCC_FILES ../Viewer/Resource/Resource.qrc)
+LIST(APPEND RabbitRemoteControlServiceConfigure_RCC_FILES ../Viewer/Resource/Resource.qrc)
 
-SET(QT_COMPONENTS Widgets)
+SET(QT_COMPONENTS Core Gui Widgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${QT_COMPONENTS})
-    list(APPEND QT_LIBRARIES Qt${QT_VERSION_MAJOR}::${_COMPONENT})
+    list(APPEND RabbitRemoteControlServiceConfigure_QT_LIBRARIES Qt${QT_VERSION_MAJOR}::${_COMPONENT})
     ENDFOREACH()
 endif()
-message("${PROJECT_NAME} QT_LIBRARIES: ${QT_LIBRARIES}")
-list(APPEND SRC_LIBS ${QT_LIBRARIES})
+message("${PROJECT_NAME} RabbitRemoteControlServiceConfigure_QT_LIBRARIES: ${RabbitRemoteControlServiceConfigure_QT_LIBRARIES}")
+list(APPEND RabbitRemoteControlServiceConfigure_SRC_LIBS ${RabbitRemoteControlServiceConfigure_QT_LIBRARIES})
 
-ADD_TARGET(NAME ${PROJECT_NAME}
+ADD_TARGET(NAME RabbitRemoteControlServiceConfigure
     ISEXE
-    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
+    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RabbitRemoteControlServiceConfigure_RCC_FILES}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
     INCLUDE_DIRS
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-    PRIVATE_LIBS ${SRC_LIBS}
+    PRIVATE_LIBS ${RabbitRemoteControlServiceConfigure_SRC_LIBS}
     VERSION ${RabbitRemoteControl_VERSION})
 
 if(UNIX AND NOT ANDROID)
