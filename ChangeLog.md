@@ -3,12 +3,14 @@
 ### v0.0.21
 
 + Add core dump in windows
++ FIX install MSVC system libraries in windows. See RabbitCommon
++ FIX: divide by 0 crash. Affects all previous releases.
+  See RabbitCommon: 7ed300a206d8a36c30003b6c19ad181682d0ff5f
 
 ### v0.0.20
 
 + Add version suffix to Windows dynamic library. see RabbitCommon
 + RabbitCommon adds openssl version judgment.
-  This may be the cause of an unknown crash on program startup.
 
 ### v0.0.19
 + Add OpenGL form
