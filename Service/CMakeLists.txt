@@ -13,7 +13,6 @@ endif()
 project(Service LANGUAGES CXX)
 
 set(Service_LIBS QtService Channel)
-set(Service_PRIVATE_LIBS)
 
 set(Service_INSTALL_HEADER_FILES
     ManagerPlugins.h
