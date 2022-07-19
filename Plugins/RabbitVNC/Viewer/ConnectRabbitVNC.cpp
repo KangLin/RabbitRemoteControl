@@ -384,8 +384,9 @@ bool CConnectRabbitVNC::showMsgBox(int flags, const char *title, const char *tex
 {
     LOG_MODEL_ERROR("RabbitVNC","%s:%s\n", title, text);
     QMessageBox::StandardButton nRet = QMessageBox::No;
+    bool bCheckBox = 0;
     emit sigBlockShowMessage(QString(title), QString(text),
-                             QMessageBox::Ok | QMessageBox::No, nRet);
+                             QMessageBox::Ok | QMessageBox::No, nRet, bCheckBox);
     if(QMessageBox::Ok == nRet)
         return true;
     return false;

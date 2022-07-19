@@ -702,12 +702,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="67"/>
+        <location filename="../../main.cpp" line="69"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔遠程控製</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="68"/>
+        <location filename="../../main.cpp" line="70"/>
         <source>Kang Lin studio</source>
         <translation>康林工作室</translation>
     </message>

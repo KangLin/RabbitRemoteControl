@@ -226,9 +226,13 @@ protected:
 private Q_SLOTS:
     void slotShowServerName();
     void slotUpdateName();
+
     /*!
      * \brief When a background thread blocks the display window
      * \param className: show windows class name
+     *        The class must have foller public functions:
+     *            Q_INVOKABLE void SetContext(void* pContext);
+     *            Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
      * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
      *              Otherwise, ignore
      * \param pContext: pass context from CConnect::sigBlockShowWidget()
@@ -241,11 +245,14 @@ private Q_SLOTS:
      * \param message
      * \param buttons
      * \param nRet
-     * \see CConnect::sigBlockShowMessage()
+     * \param checkBox
+     * \param szCheckBoxContext
      */
     virtual void slotBlockShowMessage(QString title, QString message,
                                       QMessageBox::StandardButtons buttons,
-                                      QMessageBox::StandardButton& nRet);
+                                      QMessageBox::StandardButton& nRet,
+                                      bool &checkBox,
+                                      QString szCheckBoxContext = QString());
 
 private:
     const CPluginViewer* m_pPluginViewer;

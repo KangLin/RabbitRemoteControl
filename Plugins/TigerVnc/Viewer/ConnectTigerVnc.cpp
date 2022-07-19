@@ -382,8 +382,9 @@ bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text
 {
     LOG_MODEL_ERROR("TigerVnc","%s:%s\n", title, text);
     QMessageBox::StandardButton nRet = QMessageBox::No;
+    bool bCheckBox = 0;
     emit sigBlockShowMessage(QString(title), QString(text),
-                             QMessageBox::Ok | QMessageBox::No, nRet);
+                             QMessageBox::Ok | QMessageBox::No, nRet, bCheckBox);
     if(QMessageBox::Ok == nRet)
         return true;
     return false;

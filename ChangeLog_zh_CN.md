@@ -5,6 +5,7 @@
 + 在 Windows 下，安装 MSVC 系统库。详见: RabbitCommon
 + 修复除 0 引起的崩溃。影响前面所有发行版本。此错误是 RabbitCommon 引起的。
   详见：RabbitCommon: 7ed300a206d8a36c30003b6c19ad181682d0ff5f
++ Viewer: 在显示对话框中显示 QCheckBox
 
 ### v0.0.20
 + 为 Windows 动态库增加版本后缀。详见: RabbitCommon

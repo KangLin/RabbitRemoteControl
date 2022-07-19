@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QGenericArgument>
 #include <QRegularExpression>
+#include <QCheckBox>
 
 #include "PluginViewer.h"
 #include "RabbitCommonDir.h"
@@ -225,7 +226,20 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
 
 void CConnecter::slotBlockShowMessage(QString title, QString message,
                                       QMessageBox::StandardButtons buttons,
-                                      QMessageBox::StandardButton &nRet)
+                                      QMessageBox::StandardButton &nRet,
+                                      bool &checkBox,
+                                      QString szCheckBoxContext)
 {
-    nRet = QMessageBox::information(GetViewer(), title, message, buttons);
+    QCheckBox* pBox = nullptr;
+    QMessageBox msg(QMessageBox::Information, title, message, buttons, GetViewer());
+    if(!szCheckBoxContext.isEmpty())
+    {
+        pBox = new QCheckBox(szCheckBoxContext);
+        if(pBox)
+            pBox->setCheckable(true);
+        msg.setCheckBox(pBox);
+    }
+    nRet = (QMessageBox::StandardButton)msg.exec();
+    if(pBox)
+        checkBox = pBox->isChecked();
 }

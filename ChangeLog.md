@@ -6,6 +6,7 @@
 + FIX install MSVC system libraries in windows. See RabbitCommon
 + FIX: divide by 0 crash. Affects all previous releases.
   See RabbitCommon: 7ed300a206d8a36c30003b6c19ad181682d0ff5f
++ Viewer: add QCheckBox in show dialog
 
 ### v0.0.20
 

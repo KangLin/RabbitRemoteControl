@@ -96,7 +96,7 @@ private:
     };
     ClientContext* m_pContext;
     CParameterFreeRDP* m_pParamter;
-    
+    CConnecterFreeRDP* m_pConnecter;
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
         
     QImage m_Image;

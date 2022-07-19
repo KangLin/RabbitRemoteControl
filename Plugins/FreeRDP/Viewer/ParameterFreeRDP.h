@@ -21,11 +21,15 @@ public:
     UINT GetReconnectInterval() const;
     void SetReconnectInterval(UINT newReconnectInterval);
     
+    bool GetShowVerifyDiaglog() const;
+    void SetShowVerifyDiaglog(bool bShow);
+    
 signals:
     void sigReconnectIntervalChanged();
     
 private:
     UINT m_nReconnectInterval; // Unit: second
+    bool m_bShowVerifyDiaglog;
 };
 
 #endif // CPARAMETERFREERDP_H

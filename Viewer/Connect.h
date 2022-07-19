@@ -170,11 +170,15 @@ Q_SIGNALS:
      * \param message
      * \param buttons
      * \param nRet
+     * \param checkBox
+     * \param checkBoxContext
      * \see CConnecter::slotBlockShowMessage() SetConnecter
      */
     void sigBlockShowMessage(QString title, QString message,
                              QMessageBox::StandardButtons buttons,
-                             QMessageBox::StandardButton& nRet);
+                             QMessageBox::StandardButton& nRet,
+                             bool &checkBox,
+                             QString checkBoxContext = QString());
 
 public Q_SLOTS:
     virtual void slotMousePressEvent(Qt::MouseButtons, QPoint);

@@ -4,89 +4,95 @@
 <context>
     <name>CConnectFreeRDP</name>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="121"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="122"/>
         <source>freerdp_connect connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="125"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="126"/>
         <source> fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="131"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="132"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="494"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="495"/>
         <source>Logon error info [</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="691"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="698"/>
         <source>Verify certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="693"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="732"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="700"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="749"/>
         <source>Host: %1; Port: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="694"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="733"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="701"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="750"/>
         <source>Common name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="695"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="702"/>
         <source>Subject: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="696"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="703"/>
         <source>Issuer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="697"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="704"/>
         <source>Fingerprint: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="730"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="710"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="762"/>
+        <source>Don&apos;t show again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="747"/>
         <source>Verify changed certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="734"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="751"/>
         <source>New subject: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="735"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="752"/>
         <source>New issuer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="736"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="753"/>
         <source>New fingerprint: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="737"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="754"/>
         <source>Old subject: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="738"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="755"/>
         <source>Old issuer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="739"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="756"/>
         <source>Old fingerprint: </source>
         <translation type="unfinished"></translation>
     </message>

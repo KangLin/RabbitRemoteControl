@@ -32,6 +32,7 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
     : CConnect(pConnecter, parent),
       m_pContext(nullptr),
       m_pParamter(nullptr),
+      m_pConnecter(pConnecter),
       m_ClipBoard(this),
       m_Cursor(this)
 {
@@ -688,9 +689,15 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     if(common_name)
         emit pThis->sigServerName(common_name);
     
+    if(!pThis->m_pParamter->GetShowVerifyDiaglog()) {
+        /* return 1 to accept and store a certificate, 2 to accept
+         * a certificate only for this session, 0 otherwise */
+        return 2;
+    }
+
     QString title(tr("Verify certificate"));
     QString message;
-    message += tr("Host: %1; Port: %2").arg(host).arg(QString::number(port)) + "\n";
+    message += tr("Host: %1; Port: %2").arg(host, QString::number(port)) + "\n";
     message += tr("Common name: ") + common_name + "\n";
     message += tr("Subject: ") + subject + "\n";
     message += tr("Issuer: ") + issuer + "\n";
@@ -698,8 +705,12 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
-    emit pThis->sigBlockShowMessage(title, message, buttons, nRet);
-    
+    bool bCheckBox = 0;
+    emit pThis->sigBlockShowMessage(title, message, buttons, nRet, bCheckBox,
+                                    tr("Don't show again"));
+    pThis->m_pParamter->SetShowVerifyDiaglog(!bCheckBox);
+    if(pThis->m_pConnecter)
+        emit pThis->m_pConnecter->sigUpdateParamters(pThis->m_pConnecter);
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
     switch(nRet)
@@ -727,9 +738,15 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     if(common_name)
         emit pThis->sigServerName(common_name);
 
+    if(!pThis->m_pParamter->GetShowVerifyDiaglog()) {
+        /* return 1 to accept and store a certificate, 2 to accept
+         * a certificate only for this session, 0 otherwise */
+        return 2;
+    }
+
     QString title(tr("Verify changed certificate"));
     QString message;
-    message += tr("Host: %1; Port: %2").arg(host).arg(QString::number(port)) + "\n";
+    message += tr("Host: %1; Port: %2").arg(host, QString::number(port)) + "\n";
     message += tr("Common name: ") + common_name + "\n";
     message += tr("New subject: ") + subject + "\n";
     message += tr("New issuer: ") + issuer + "\n";
@@ -737,13 +754,18 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     message += tr("Old subject: ") + old_subject + "\n";
     message += tr("Old issuer: ") + old_issuer + "\n";
     message += tr("Old fingerprint: ") + old_fingerprint;
-    
+
+    bool bCheckBox = 0;
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
-    emit pThis->sigBlockShowMessage(title, message, buttons, nRet);
-    
+    emit pThis->sigBlockShowMessage(title, message, buttons, nRet, bCheckBox,
+                                    tr("Don't show again"));
+    pThis->m_pParamter->SetShowVerifyDiaglog(!bCheckBox);
+    if(pThis->m_pConnecter)
+        emit pThis->m_pConnecter->sigUpdateParamters(pThis->m_pConnecter);
+
     /* return 1 to accept and store a certificate, 2 to accept
-	 * a certificate only for this session, 0 otherwise */
+         * a certificate only for this session, 0 otherwise */
     switch(nRet)
     {
     case QMessageBox::StandardButton::Yes:
@@ -753,8 +775,9 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     default:
         return 0;
     }
+
     /* return 1 to accept and store a certificate, 2 to accept
-	 * a certificate only for this session, 0 otherwise */
+     * a certificate only for this session, 0 otherwise */
     return 2;
 }
 

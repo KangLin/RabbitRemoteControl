@@ -66,8 +66,16 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
                     pConnecter, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
                     Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigBlockShowMessage(QString, QString, QMessageBox::StandardButtons, QMessageBox::StandardButton&)),
-                    pConnecter, SLOT(slotBlockShowMessage(QString, QString, QMessageBox::StandardButtons, QMessageBox::StandardButton&)),
+    check = connect(this, SIGNAL(sigBlockShowMessage(
+                                     QString, QString,
+                                     QMessageBox::StandardButtons,
+                                     QMessageBox::StandardButton&,
+                                     bool&, QString)),
+                    pConnecter, SLOT(slotBlockShowMessage(
+                                         QString, QString,
+                                         QMessageBox::StandardButtons,
+                                         QMessageBox::StandardButton&,
+                                         bool&, QString)),
                     Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     return 0;
