@@ -4,22 +4,22 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="57"/>
+        <location filename="../../Connecter.cpp" line="82"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="58"/>
+        <location filename="../../Connecter.cpp" line="83"/>
         <source>Protol:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="59"/>
+        <location filename="../../Connecter.cpp" line="84"/>
         <source>Server name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="102"/>
+        <location filename="../../Connecter.cpp" line="129"/>
         <source>Set </source>
         <translation type="unfinished"></translation>
     </message>
@@ -72,12 +72,12 @@
 <context>
     <name>CParameter</name>
     <message>
-        <location filename="../../Parameter.cpp" line="212"/>
+        <location filename="../../Parameter.cpp" line="223"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Parameter.cpp" line="228"/>
+        <location filename="../../Parameter.cpp" line="239"/>
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>
