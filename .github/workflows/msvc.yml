@@ -322,7 +322,11 @@ jobs:
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config ${{matrix.BUILD_TYPE}}
-        cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        IF "${{matrix.BUILD_TYPE}}" == "Release" (
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
+        ) else (
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
+        )
 
     - name: Package
       # if: ${{ matrix.BUILD_TYPE == 'Release' }}
