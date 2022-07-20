@@ -215,6 +215,7 @@ jobs:
         copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         makensis ${{github.workspace}}/build/Install.nsi
+        md5sum RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe > RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5
       #if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
     - name: update

@@ -334,7 +334,9 @@ jobs:
         copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
         copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
+        md5sum RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip > RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip.md5
         makensis Install.nsi
+        md5sum RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe > RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5
         if "5.12.12" == "${{matrix.qt_version}}" (
             ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
                 -f "update_windows.xml" ^
@@ -361,5 +363,7 @@ jobs:
            [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
         files: |
           ${{github.workspace}}\build\RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip
+          ${{github.workspace}}\build\RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip.md5
           ${{github.workspace}}\build\RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe
+          ${{github.workspace}}\build\RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5
           ${{github.workspace}}\build\update_windows.xml

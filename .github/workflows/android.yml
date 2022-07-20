@@ -290,7 +290,8 @@ jobs:
         mv -f ${APK_FILE} ${APK_NAME}
         APK_FILE=${APK_NAME}
         cp ${{github.workspace}}/Update/update_android.xml .
-        MD5=`md5sum ${APK_FILE} | awk '{print $1}'`
+        md5sum ${APK_FILE} > ${APK_FILE}.md5
+        MD5=`cat ${APK_FILE}.md5 | awk '{print $1}'`
         echo "MD5:${MD5}"
         sed -i "s/<VERSION>.*</<VERSION>${RabbitRemoteControl_VERSION}</g" update_android.xml
         sed -i "s/<INFO>.*</<INFO>Release rabbit remote control ${RabbitRemoteControl_VERSION}</g" update_android.xml
@@ -319,4 +320,6 @@ jobs:
            [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
         files: |
             ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk
+            ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk.md5
             ${{env.INSTALL_DIR}}/update_android.xml
+
