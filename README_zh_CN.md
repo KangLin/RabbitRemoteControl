@@ -266,7 +266,7 @@
     + MD5 文件: RabbitRemoteControl_setup_v0.0.21.exe.md5
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/RabbitRemoteControl_setup_v0.0.21.exe.md5)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/RabbitRemoteControl_setup_v0.0.21.exe.md5/download)
-    + 绿色版本：RabbitRemoteControl_v0.0.21.zip
+    + 绿色版本：RabbitRemoteControl_windows_v0.0.21.zip
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/RabbitRemoteControl_windows_v0.0.21.zip)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/RabbitRemoteControl_windows_v0.0.21.zip/download)
     + MD5 文件: RabbitRemoteControl_windows_v0.0.21.zip.md5
@@ -283,7 +283,7 @@
 
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb/download)
-    +  MD5 文件: rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb.md5
+    + MD5 文件: rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb.md5
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb.md5)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb.md5/download)
     + Ubuntu 18.04: rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb
@@ -296,9 +296,9 @@
 
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb/download)
-    +  MD5 文件:
-      -  [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5)
-      -  [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5/download)
+    + MD5 文件:
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5/download)
 
 ## 开发
 

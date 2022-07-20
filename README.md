@@ -277,13 +277,13 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
     + Install package: RabbitRemoteControl_setup_v0.0.21.exe
       - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/RabbitRemoteControl_setup_v0.0.21.exe)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/RabbitRemoteControl_setup_v0.0.21.exe/download)
-    + MD5 file
+    + MD5 file: RabbitRemoteControl_setup_v0.0.21.exe.md5
       - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/RabbitRemoteControl_setup_v0.0.21.exe.md5)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/RabbitRemoteControl_setup_v0.0.21.exe.md5/download)
-    + No need to install package: RabbitRemoteControl_v0.0.21.zip
+    + No need to install package: RabbitRemoteControl_windows_v0.0.21.zip
       - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/RabbitRemoteControl_windows_v0.0.21.zip)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/RabbitRemoteControl_windows_v0.0.21.zip/download)
-    + MD5 file
+    + MD5 file: RabbitRemoteControl_windows_v0.0.21.zip.md5
       - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/RabbitRemoteControl_windows_v0.0.21.zip.md5)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/RabbitRemoteControl_windows_v0.0.21.zip.md5/download)
   - Ubuntu:
@@ -297,7 +297,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb/download)
-    + MD5 file
+    + MD5 file: rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb.md5
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb.md5)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb.md5/download)
     + Ubuntu 18.04: rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb
@@ -310,7 +310,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb/download)
-    + MD5 file
+    + MD5 file: rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5/download)
       
