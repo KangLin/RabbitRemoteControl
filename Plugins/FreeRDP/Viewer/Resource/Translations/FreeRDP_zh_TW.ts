@@ -24,75 +24,75 @@
         <translation>登錄錯誤信息 [</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="698"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="701"/>
         <source>Verify certificate</source>
         <translation>驗證證書</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="700"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="749"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="703"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="752"/>
         <source>Host: %1; Port: %2</source>
         <translation>主機：%1; 端口：%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="701"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="750"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="704"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="753"/>
         <source>Common name: </source>
         <translation>公共名稱：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="702"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="705"/>
         <source>Subject: </source>
         <translation>主題：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="703"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="706"/>
         <source>Issuer: </source>
         <translation>發行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="704"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="707"/>
         <source>Fingerprint: </source>
         <translation>指紋：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="710"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="762"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="713"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="765"/>
         <source>Don&apos;t show again</source>
         <translation>不再顯示</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="747"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="750"/>
         <source>Verify changed certificate</source>
         <translation>驗證證書改變</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="751"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="754"/>
         <source>New subject: </source>
         <translation>新的主題：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="752"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="755"/>
         <source>New issuer: </source>
         <translation>新的發行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="753"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="756"/>
         <source>New fingerprint: </source>
         <translation>新的指紋：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="754"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="757"/>
         <source>Old subject: </source>
         <translation>舊的主題：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="755"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="758"/>
         <source>Old issuer: </source>
         <translation>舊的發行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="756"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="759"/>
         <source>Old fingerprint: </source>
         <translation>舊的指紋：</translation>
     </message>
