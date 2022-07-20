@@ -28,7 +28,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
-      RabbitRemoteControl_VERSION: v0.0.20
+      RabbitRemoteControl_VERSION: v0.0.21
       VCPKGGITCOMMITID: faed44dfa013088fe1910908a8a65887622f412f
       qt_modules: qtwebengine
 

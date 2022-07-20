@@ -258,36 +258,36 @@
   - [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
-+ 当前版本：v0.0.20
++ 当前版本：v0.0.21
   - Windows: 支持 WINDOWS 7 及以后版本
-    + 安装包：RabbitRemoteControl_setup_v0.0.20.exe
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.20/RabbitRemoteControl_setup_v0.0.20.exe)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.20/RabbitRemoteControl_setup_v0.0.20.exe/download)
-    + 绿色版本：RabbitRemoteControl_v0.0.20.zip
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.20/RabbitRemoteControl_windows_v0.0.20.zip)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.20/RabbitRemoteControl_windows_v0.0.20.zip/download)
+    + 安装包：RabbitRemoteControl_setup_v0.0.21.exe
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/RabbitRemoteControl_setup_v0.0.21.exe)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/RabbitRemoteControl_setup_v0.0.21.exe/download)
+    + 绿色版本：RabbitRemoteControl_v0.0.21.zip
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/RabbitRemoteControl_windows_v0.0.21.zip)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/RabbitRemoteControl_windows_v0.0.21.zip/download)
   - Ubuntu:
-    + Ubuntu 20.04: rabbitremotecontrol_0.0.20_amd64_Ubuntu-20.04.deb
+    + Ubuntu 20.04: rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.20_amd64_Ubuntu-20.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb
           
           # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
-          # sudo dpkg -i rabbitremotecontrol_0.0.20_amd64_Ubuntu-20.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb
           # sudo apt-get install -f # 安装依赖
 
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.20/rabbitremotecontrol_0.0.20_amd64_Ubuntu-20.04.deb)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.20/rabbitremotecontrol_0.0.20_amd64_Ubuntu-20.04.deb/download)
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-20.04.deb/download)
       
-    + Ubuntu 18.04: rabbitremotecontrol_0.0.20_amd64_Ubuntu-18.04.deb
+    + Ubuntu 18.04: rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb
 
-          sudo apt install ./rabbitremotecontrol_0.0.20_amd64_Ubuntu-18.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb
           
           # 如要你是在老的 linux 发行版本上，你需要用下列命令替换：
-          # sudo dpkg -i rabbitremotecontrol_0.0.20_amd64_Ubuntu-18.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb
           # sudo apt-get install -f # 安装依赖
 
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.20/rabbitremotecontrol_0.0.20_amd64_Ubuntu-18.04.deb)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.20/rabbitremotecontrol_0.0.20_amd64_Ubuntu-18.04.deb/download)
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb/download)
 
 ## 开发
 
