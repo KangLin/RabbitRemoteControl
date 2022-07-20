@@ -687,7 +687,10 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
     if(common_name)
+    {
+        pThis->m_pParamter->SetServerName(common_name);
         emit pThis->sigServerName(common_name);
+    }
     
     if(!pThis->m_pParamter->GetShowVerifyDiaglog()) {
         /* return 1 to accept and store a certificate, 2 to accept

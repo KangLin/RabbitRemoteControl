@@ -41,6 +41,16 @@ void CParameter::SetName(const QString& name)
     emit sigNameChanged(m_szName);
 }
 
+const QString CParameter::GetServerName() const
+{
+    return m_szServerName;
+}
+
+void CParameter::SetServerName(const QString& name)
+{
+    m_szServerName = name;
+}
+
 bool CParameter::GetShowServerName() const
 {
     return m_bShowServerName;
@@ -201,6 +211,7 @@ void CParameter::SetProxyPassword(const QString &password)
 int CParameter::Load(QSettings &set)
 {
     SetName(set.value("Name", GetName()).toString());
+    SetName(set.value("ServerName", GetServerName()).toString());
     SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
     SetHost(set.value("Host", GetHost()).toString());
     SetPort(set.value("Port", GetPort()).toUInt());
@@ -235,6 +246,7 @@ int CParameter::Load(QSettings &set)
 int CParameter::Save(QSettings &set)
 {
     set.setValue("Name", GetName());
+    set.setValue("ServerName", GetServerName());
     set.setValue("ShowServerName", GetShowServerName());
     set.setValue("Host", GetHost());
     set.setValue("Port", GetPort());

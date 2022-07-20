@@ -39,16 +39,41 @@ const QString CConnecter::Id()
 {
     QString szId = Protol() + "_" + m_pPluginViewer->Name();
     if(GetParameter())
-        szId += "_" + GetParameter()->GetHost()
-                + "_" + QString::number(GetParameter()->GetPort());
+    {
+        if(GetParameter()->GetHost().isEmpty())
+        {
+            if(!GetParameter()->GetName().isEmpty())
+                szId += "_" + GetParameter()->GetName();
+        } else {
+            szId += "_" + GetParameter()->GetHost()
+                    + "_" + QString::number(GetParameter()->GetPort());
+        }
+    }
     szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
     return szId;
 }
 
+/*!
+ * \~chinese
+ * \brief 显示顺序：
+ *        - 用户参数设置的名称
+ *        - 如果允许，远程服务名。
+ *        - 远程地址
+ *
+ * \~english
+ *  Display order:
+ *  - User paramter Name()
+ *  - if enable, Server name
+ *  - Host and port
+ *  
+ * \~
+ * \see ServerName()
+ */
 const QString CConnecter::Name()
 {
     if(GetParameter() && !GetParameter()->GetName().isEmpty())
         return GetParameter()->GetName();
+
     return ServerName();
 }
 
@@ -85,6 +110,8 @@ void CConnecter::slotSetServerName(const QString& szName)
 
 QString CConnecter::ServerName()
 {
+    if(m_szServerName.isEmpty() && GetParameter())
+        return GetParameter()->GetServerName();
     return m_szServerName;
 }
 

@@ -26,6 +26,7 @@ class VIEWER_EXPORT CParameter : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
+    Q_PROPERTY(QString ServerName READ GetServerName WRITE SetServerName)
     Q_PROPERTY(bool ShowServerName READ GetShowServerName WRITE SetShowServerName NOTIFY sigShowServerNameChanged)
     Q_PROPERTY(QString Host READ GetHost WRITE SetHost)
     Q_PROPERTY(qint16 Port READ GetPort WRITE SetPort)
@@ -57,6 +58,9 @@ public:
     const QString GetName() const;
     void SetName(const QString& name);
     
+    const QString GetServerName() const;
+    void SetServerName(const QString& name);
+
     bool GetShowServerName() const;
     void SetShowServerName(bool NewShowServerName);
     
@@ -114,6 +118,7 @@ protected:
 
 private:
     QString m_szName;
+    QString m_szServerName;
     bool m_bShowServerName;
     QString m_szHost;
     quint16 m_nPort;
