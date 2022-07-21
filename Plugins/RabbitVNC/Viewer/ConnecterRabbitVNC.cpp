@@ -2,9 +2,11 @@
 
 #include "ConnecterRabbitVNC.h"
 #include <QDebug>
+#include <QMessageBox>
+#include <QRegularExpression>
 #include "RabbitCommonLog.h"
 #include "DlgGetPasswordRabbitVNC.h"
-#include <QMessageBox>
+#include "PluginViewer.h"
 
 CConnecterRabbitVNC::CConnecterRabbitVNC(CPluginViewer *parent)
     : CConnecterDesktop(parent)
@@ -51,4 +53,20 @@ QDialog *CConnecterRabbitVNC::GetDialogSettings(QWidget *parent)
 CConnect* CConnecterRabbitVNC::InstanceConnect()
 {
     return new CConnectRabbitVNC(this);
+}
+
+const QString CConnecterRabbitVNC::Id()
+{
+    if(m_Para.GetIce())
+    {
+        QString szId = Protol() + "_" + m_pPluginViewer->Name();
+        if(GetParameter())
+        {
+            if(!m_Para.GetPeerUser().isEmpty())
+                szId += + "_" + m_Para.GetPeerUser();
+        }
+        szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
+        return szId;
+    }
+    return CConnecter::Id();
 }

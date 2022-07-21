@@ -296,7 +296,7 @@
 
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb/download)
-    + MD5 文件:
+    + MD5 文件: rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.21/rabbitremotecontrol_0.0.21_amd64_Ubuntu-18.04.deb.md5/download)
 

@@ -14,6 +14,8 @@ class CConnecterTigerVnc : public CConnecterDesktop
 public:
     explicit CConnecterTigerVnc(CPluginViewer *parent);
     virtual ~CConnecterTigerVnc() override;
+
+    virtual const QString Id() override;
     virtual qint16 Version() override;
 
 protected:

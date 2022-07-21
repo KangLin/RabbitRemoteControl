@@ -2,9 +2,11 @@
 
 #include "ConnecterTigerVnc.h"
 #include <QDebug>
+#include <QMessageBox>
+#include <QRegularExpression>
 #include "RabbitCommonLog.h"
 #include "DlgGetUserPasswordTigerVNC.h"
-#include <QMessageBox>
+#include "PluginViewer.h"
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginViewer *parent)
     : CConnecterDesktop(parent)
@@ -30,8 +32,8 @@ QString CConnecterTigerVnc::ServerName()
     {
         if(m_Para.GetIce())
         {
-            if(!m_Para.GetSignalUser().isEmpty())
-                return m_Para.GetSignalUser();
+            if(!m_Para.GetPeerUser().isEmpty())
+                return m_Para.GetPeerUser();
         }
         else {
             if(!GetParameter()->GetHost().isEmpty())
@@ -52,4 +54,20 @@ CConnect* CConnecterTigerVnc::InstanceConnect()
 {
     CConnectTigerVnc* p = new CConnectTigerVnc(this);
     return p;
+}
+
+const QString CConnecterTigerVnc::Id()
+{
+    if(m_Para.GetIce())
+    {
+        QString szId = Protol() + "_" + m_pPluginViewer->Name();
+        if(GetParameter())
+        {
+            if(!m_Para.GetPeerUser().isEmpty())
+                szId += + "_" + m_Para.GetPeerUser();
+        }
+        szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
+        return szId;
+    }
+    return CConnecter::Id();
 }

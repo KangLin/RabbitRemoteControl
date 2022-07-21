@@ -14,6 +14,8 @@ class CConnecterRabbitVNC : public CConnecterDesktop
 public:
     explicit CConnecterRabbitVNC(CPluginViewer *parent);
     virtual ~CConnecterRabbitVNC() override;
+
+    virtual const QString Id() override;
     virtual qint16 Version() override;
 
 protected:

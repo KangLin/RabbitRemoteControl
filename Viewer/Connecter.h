@@ -228,6 +228,10 @@ private Q_SLOTS:
     void slotUpdateName();
 
     /*!
+     * \~chinese
+     * 从后台线程中阻塞显示窗口
+     *
+     * \~english
      * \brief When a background thread blocks the display window
      * \param className: show windows class name
      *        The class must have foller public functions:
@@ -236,10 +240,15 @@ private Q_SLOTS:
      * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
      *              Otherwise, ignore
      * \param pContext: pass context from CConnect::sigBlockShowWidget()
+     * \~
      * \see CConnect::sigBlockShowWidget()
      */
     virtual void slotBlockShowWidget(const QString& className, int &nRet, void* pContext);
     /*!
+     * \~chinese
+     * 从后台线程中显示 QMessageBox
+     *
+     * \~english
      * \brief The background thread uses QMessageBox to block the display window
      * \param title
      * \param message
@@ -254,11 +263,13 @@ private Q_SLOTS:
                                       bool &checkBox,
                                       QString szCheckBoxContext = QString());
 
-private:
+protected:
     const CPluginViewer* m_pPluginViewer;
+
+private:
     friend CManagePlugin;
     QString m_szServerName;
-    
+
     // The owner is a derived class of this class
     CParameter* m_pParameter;
 };
