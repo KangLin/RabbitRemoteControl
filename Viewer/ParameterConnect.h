@@ -22,7 +22,7 @@
  * @~
  * @ingroup VIEWER_PLUGIN_API
  */
-class VIEWER_EXPORT CParameter : public QObject
+class VIEWER_EXPORT CParameterConnect : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
@@ -43,7 +43,7 @@ class VIEWER_EXPORT CParameter : public QObject
     Q_PROPERTY(QString ProxyPassword READ GetProxyPassword WRITE SetProxyPassword)
     
 public:
-    explicit CParameter(QObject *parent = nullptr);
+    explicit CParameterConnect(QObject *parent = nullptr);
 
     virtual int Load(QSettings &set);
     virtual int Save(QSettings &set);

@@ -19,7 +19,7 @@
 
 class CPluginViewer;
 class CConnect;
-class CParameter;
+class CParameterConnect;
 class CManagePlugin;
 
 /*!
@@ -207,8 +207,8 @@ protected:
     virtual int Load(QSettings &set) = 0;
     virtual int Save(QSettings &set) = 0;
 
-    virtual CParameter* GetParameter();
-    virtual int SetParameter(CParameter* p);
+    virtual CParameterConnect* GetParameter();
+    virtual int SetParameter(CParameterConnect* p);
 
     /*!
      * \~chinese
@@ -271,7 +271,7 @@ private:
     QString m_szServerName;
 
     // The owner is a derived class of this class
-    CParameter* m_pParameter;
+    CParameterConnect* m_pParameter;
 };
 
 #endif // CCONNECTER_H

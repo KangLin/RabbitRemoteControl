@@ -4,7 +4,7 @@
 #define CConnectRabbitVnc_H
 
 #include "Connect.h"
-#include "Parameter.h"
+#include "ParameterConnect.h"
 #include "network/TcpSocket.h"
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"

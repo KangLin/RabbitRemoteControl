@@ -1,15 +1,15 @@
 #ifndef CPARAMETERLIBVNCSERVER_H
 #define CPARAMETERLIBVNCSERVER_H
 
-#include "Parameter.h"
+#include "ParameterConnect.h"
 
-class CParameterLibVNCServer : public CParameter
+class CParameterLibVNCServer : public CParameterConnect
 {
     Q_OBJECT
 public:
     explicit CParameterLibVNCServer(QObject *parent = nullptr);
     
-    // CParameter interface
+    // CParameterConnect interface
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
         

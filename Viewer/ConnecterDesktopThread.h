@@ -6,7 +6,7 @@
 #pragma once
 
 #include "Connect.h"
-#include "Parameter.h"
+#include "ParameterConnect.h"
 #include "FrmViewer.h"
 
 class CConnectThread;
@@ -78,7 +78,7 @@ public:
      */
     virtual CConnect* InstanceConnect() = 0;
 
-    virtual CParameter* GetParameter() override;
+    virtual CParameterConnect* GetParameter() override;
 
 public Q_SLOTS:
     /*!

@@ -14,7 +14,7 @@
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
-#include "Parameter.h"
+#include "ParameterConnect.h"
 
 CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
     m_pPluginViewer(parent),
@@ -169,12 +169,12 @@ int CConnecter::Save(QString szFile)
     return Save(set);
 }
 
-CParameter* CConnecter::GetParameter()
+CParameterConnect* CConnecter::GetParameter()
 {
     return m_pParameter;
 }
 
-int CConnecter::SetParameter(CParameter *p)
+int CConnecter::SetParameter(CParameterConnect *p)
 {
     if(GetParameter())
         GetParameter()->disconnect(this);

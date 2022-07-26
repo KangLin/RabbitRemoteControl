@@ -1,10 +1,10 @@
 #ifndef CPARAMETERFREERDP_H
 #define CPARAMETERFREERDP_H
 
-#include "Parameter.h"
+#include "ParameterConnect.h"
 #include "freerdp/freerdp.h"
 
-class CParameterFreeRDP : public CParameter
+class CParameterFreeRDP : public CParameterConnect
 {
     Q_OBJECT
     Q_PROPERTY(UINT ReconnectInterval READ GetReconnectInterval WRITE SetReconnectInterval NOTIFY sigReconnectIntervalChanged)

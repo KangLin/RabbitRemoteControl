@@ -1,6 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "Parameter.h"
+#include "ParameterConnect.h"
 #include "RabbitCommonEncrypt.h"
 #include "RabbitCommonTools.h"
 #include "RabbitCommonLog.h"
@@ -9,7 +9,7 @@
 #include <QCryptographicHash>
 #include <QInputDialog>
 
-CParameter::CParameter(QObject *parent) : QObject(parent),
+CParameterConnect::CParameterConnect(QObject *parent) : QObject(parent),
     m_bShowServerName(true),
     m_nPort(0),
     m_bSavePassword(CManagePassword::Instance()->GetSavePassword()),
@@ -22,18 +22,18 @@ CParameter::CParameter(QObject *parent) : QObject(parent),
     SetUser(RabbitCommon::CTools::GetCurrentUser());
 }
 
-bool CParameter::GetCheckCompleted()
+bool CParameterConnect::GetCheckCompleted()
 {
     if(GetSavePassword()) return true;
     return false;
 }
 
-const QString CParameter::GetName() const
+const QString CParameterConnect::GetName() const
 {
     return m_szName;
 }
 
-void CParameter::SetName(const QString& name)
+void CParameterConnect::SetName(const QString& name)
 {
     if(m_szName == name)
         return;
@@ -41,22 +41,22 @@ void CParameter::SetName(const QString& name)
     emit sigNameChanged(m_szName);
 }
 
-const QString CParameter::GetServerName() const
+const QString CParameterConnect::GetServerName() const
 {
     return m_szServerName;
 }
 
-void CParameter::SetServerName(const QString& name)
+void CParameterConnect::SetServerName(const QString& name)
 {
     m_szServerName = name;
 }
 
-bool CParameter::GetShowServerName() const
+bool CParameterConnect::GetShowServerName() const
 {
     return m_bShowServerName;
 }
 
-void CParameter::SetShowServerName(bool NewShowServerName)
+void CParameterConnect::SetShowServerName(bool NewShowServerName)
 {
     if (m_bShowServerName == NewShowServerName)
         return;
@@ -64,151 +64,151 @@ void CParameter::SetShowServerName(bool NewShowServerName)
     emit sigShowServerNameChanged();
 }
 
-void CParameter::SetHost(const QString& host)
+void CParameterConnect::SetHost(const QString& host)
 {
     if (m_szHost == host)
         return;
     m_szHost = host;
 }
 
-const QString CParameter::GetHost() const
+const QString CParameterConnect::GetHost() const
 {
     return m_szHost;
 }
 
-const quint16 CParameter::GetPort() const
+const quint16 CParameterConnect::GetPort() const
 {
     return m_nPort;
 }
 
-void CParameter::SetPort(quint16 port)
+void CParameterConnect::SetPort(quint16 port)
 {
     if(m_nPort == port)
         return;
     m_nPort = port;
 }
 
-const QString CParameter::GetUser() const
+const QString CParameterConnect::GetUser() const
 {
     return m_szUser;
 }
 
-void CParameter::SetUser(const QString &user)
+void CParameterConnect::SetUser(const QString &user)
 {
     if (m_szUser == user)
         return;
     m_szUser = user;
 }
 
-const QString CParameter::GetPassword() const
+const QString CParameterConnect::GetPassword() const
 {
     return m_szPassword;
 }
 
-void CParameter::SetPassword(const QString &password)
+void CParameterConnect::SetPassword(const QString &password)
 {
     m_szPassword = password;
 }
 
-const bool CParameter::GetSavePassword() const
+const bool CParameterConnect::GetSavePassword() const
 {
     return m_bSavePassword;
 }
 
-void CParameter::SetSavePassword(bool save)
+void CParameterConnect::SetSavePassword(bool save)
 {
     if (m_bSavePassword == save)
         return;
     m_bSavePassword = save;
 }
 
-const bool CParameter::GetOnlyView() const
+const bool CParameterConnect::GetOnlyView() const
 {
     return m_bOnlyView;
 }
 
-void CParameter::SetOnlyView(bool only)
+void CParameterConnect::SetOnlyView(bool only)
 {
     if(m_bOnlyView == only)
         return;
     m_bOnlyView = only;
 }
 
-const bool CParameter::GetLocalCursor() const
+const bool CParameterConnect::GetLocalCursor() const
 {
     return m_bLocalCursor;
 }
 
-void CParameter::SetLocalCursor(bool cursor)
+void CParameterConnect::SetLocalCursor(bool cursor)
 {
     if(m_bLocalCursor == cursor)
         return;
     m_bLocalCursor = cursor;
 }
 
-const bool CParameter::GetClipboard() const
+const bool CParameterConnect::GetClipboard() const
 {
     return m_bClipboard;
 }
 
-void CParameter::SetClipboard(bool c)
+void CParameterConnect::SetClipboard(bool c)
 {
     m_bClipboard = c;
 }
 
-const CParameter::emProxy CParameter::GetProxyType() const
+const CParameterConnect::emProxy CParameterConnect::GetProxyType() const
 {
     return m_eProxyType;
 }
 
-void CParameter::SetProxyType(emProxy type)
+void CParameterConnect::SetProxyType(emProxy type)
 {
     if (m_eProxyType == type)
         return;
     m_eProxyType = type;
 }
 
-const QString CParameter::GetProxyHost() const
+const QString CParameterConnect::GetProxyHost() const
 {
     return m_szProxyHost;
 }
 
-void CParameter::SetProxyHost(const QString &host)
+void CParameterConnect::SetProxyHost(const QString &host)
 {
     m_szProxyHost = host;
 }
 
-const quint16 CParameter::GetProxyPort() const
+const quint16 CParameterConnect::GetProxyPort() const
 {
     return m_nProxyPort;
 }
 
-void CParameter::SetProxyPort(quint16 port)
+void CParameterConnect::SetProxyPort(quint16 port)
 {
     m_nProxyPort = port;
 }
 
-const QString CParameter::GetProxyUser() const
+const QString CParameterConnect::GetProxyUser() const
 {
     return m_szProxyUser;
 }
 
-void CParameter::SetProxyUser(const QString &user)
+void CParameterConnect::SetProxyUser(const QString &user)
 {
     m_szProxyUser = user;
 }
 
-const QString CParameter::GetProxyPassword() const
+const QString CParameterConnect::GetProxyPassword() const
 {
     return m_szProxyPassword;
 }
 
-void CParameter::SetProxyPassword(const QString &password)
+void CParameterConnect::SetProxyPassword(const QString &password)
 {
     m_szProxyPassword = password;
 }
 
-int CParameter::Load(QSettings &set)
+int CParameterConnect::Load(QSettings &set)
 {
     SetName(set.value("Name", GetName()).toString());
     SetName(set.value("ServerName", GetServerName()).toString());
@@ -243,7 +243,7 @@ int CParameter::Load(QSettings &set)
     return 0;
 }
 
-int CParameter::Save(QSettings &set)
+int CParameterConnect::Save(QSettings &set)
 {
     set.setValue("Name", GetName());
     set.setValue("ServerName", GetServerName());
@@ -265,7 +265,7 @@ int CParameter::Save(QSettings &set)
     return 0;
 }
 
-QByteArray CParameter::PasswordSum(const std::string &password)
+QByteArray CParameterConnect::PasswordSum(const std::string &password)
 {
     QCryptographicHash sum(QCryptographicHash::Md5);
     sum.addData(password.c_str(), password.length());
@@ -278,7 +278,7 @@ QByteArray CParameter::PasswordSum(const std::string &password)
     return sum.result();
 }
 
-int CParameter::LoadPassword(const QString &szTitle, const QString &szKey, QString &password, QSettings &set)
+int CParameterConnect::LoadPassword(const QString &szTitle, const QString &szKey, QString &password, QSettings &set)
 {
     QByteArray sum = set.value(szKey + "_sum").toByteArray();
     QByteArray pwByte = set.value(szKey).toByteArray();
@@ -297,7 +297,7 @@ int CParameter::LoadPassword(const QString &szTitle, const QString &szKey, QStri
             && PasswordSum(password.toStdString()) == sum)
         return 0;
     
-    LOG_MODEL_DEBUG("CParameter", "Password don't dencode");
+    LOG_MODEL_DEBUG("CParameterConnect", "Password don't dencode");
     CDlgInputPassword d(szTitle);
     if(QDialog::Accepted != d.exec())
     {
@@ -314,7 +314,7 @@ int CParameter::LoadPassword(const QString &szTitle, const QString &szKey, QStri
     return LoadPassword(szTitle, szKey, password, set);
 }
 
-int CParameter::SavePassword(const QString &szKey, const QString &password, QSettings &set, bool bSave)
+int CParameterConnect::SavePassword(const QString &szKey, const QString &password, QSettings &set, bool bSave)
 {
     if(bSave)
         set.setValue("SavePassword", GetSavePassword());

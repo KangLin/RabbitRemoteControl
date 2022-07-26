@@ -90,11 +90,11 @@ void CDlgSettingsRabbitVNC::on_pbOk_clicked()
     
     // Proxy
     if(ui->rbProxyNo->isChecked())
-        m_pPara->SetProxyType(CParameter::emProxy::No);
+        m_pPara->SetProxyType(CParameterConnect::emProxy::No);
     if(ui->rbProxySocks->isChecked())
-        m_pPara->SetProxyType(CParameter::emProxy::SocksV5);
+        m_pPara->SetProxyType(CParameterConnect::emProxy::SocksV5);
     if(ui->rbHttp->isChecked())
-        m_pPara->SetProxyType(CParameter::emProxy::Http);
+        m_pPara->SetProxyType(CParameterConnect::emProxy::Http);
     m_pPara->SetProxyHost(ui->leProxyServer->text());
     m_pPara->SetProxyPort(ui->spProxyPort->value());
     m_pPara->SetProxyUser(ui->leProxyUser->text());
@@ -248,14 +248,14 @@ void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
     // Proxy
     switch(m_pPara->GetProxyType())
     {
-    case CParameter::emProxy::No:
+    case CParameterConnect::emProxy::No:
         ui->rbProxyNo->setChecked(true);
         break;
-    case CParameter::emProxy::SocksV4:
-    case CParameter::emProxy::SocksV5:
+    case CParameterConnect::emProxy::SocksV4:
+    case CParameterConnect::emProxy::SocksV5:
         ui->rbProxySocks->setChecked(true);
         break;
-    case CParameter::emProxy::Http:
+    case CParameterConnect::emProxy::Http:
         ui->rbHttp->setChecked(true);
         break;
     default:

@@ -188,15 +188,15 @@ int CConnectTigerVnc::SocketInit()
         // Set sock
         switch(m_pPara->GetProxyType())
         {
-        case CParameter::emProxy::SocksV4:
+        case CParameterConnect::emProxy::SocksV4:
             break;
-        case CParameter::emProxy::SocksV5:
+        case CParameterConnect::emProxy::SocksV5:
             type = QNetworkProxy::Socks5Proxy;
             break;
-        case CParameter::emProxy::Http:
+        case CParameterConnect::emProxy::Http:
             type = QNetworkProxy::HttpProxy;
             break;
-        case CParameter::emProxy::No:
+        case CParameterConnect::emProxy::No:
             break;
         default:
             break;

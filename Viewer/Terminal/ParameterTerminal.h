@@ -1,12 +1,12 @@
 #ifndef CPARAMETERTERMINALAPPEARANCE_H
 #define CPARAMETERTERMINALAPPEARANCE_H
 
-#include "Parameter.h"
+#include "ParameterConnect.h"
 #include "qtermwidget.h"
 #include <QFont>
 #include "terminal_export.h"
 
-class TERMINAL_EXPORT CParameterTerminal : public CParameter
+class TERMINAL_EXPORT CParameterTerminal : public CParameterConnect
 {
     Q_OBJECT
     

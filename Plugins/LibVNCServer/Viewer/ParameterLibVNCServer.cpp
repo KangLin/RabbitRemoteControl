@@ -1,6 +1,6 @@
 #include "ParameterLibVNCServer.h"
 
-CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent) : CParameter(parent)
+CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent) : CParameterConnect(parent)
 {
     SetPort(5900);
     SetShared(true);
@@ -14,12 +14,12 @@ CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent) : CParameter(par
 
 int CParameterLibVNCServer::Load(QSettings &set)
 {
-    return CParameter::Load(set);
+    return CParameterConnect::Load(set);
 }
 
 int CParameterLibVNCServer::Save(QSettings &set)
 {
-    return CParameter::Save(set);
+    return CParameterConnect::Save(set);
 }
 
 int CParameterLibVNCServer::GetQualityLevel() const

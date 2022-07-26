@@ -1,14 +1,14 @@
 #include "ParameterFreeRDP.h"
 #include <QSettings>
 
-CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameter(parent),
+CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnect(parent),
     m_nReconnectInterval(5),
     m_bShowVerifyDiaglog(true)
 {}
 
 int CParameterFreeRDP::Load(QSettings &set)
 {
-    CParameter::Load(set);
+    CParameterConnect::Load(set);
     
     QString szDomain = set.value("FreeRDP/Domain").toString();
     freerdp_settings_set_string(
@@ -34,7 +34,7 @@ int CParameterFreeRDP::Load(QSettings &set)
 
 int CParameterFreeRDP::Save(QSettings &set)
 {
-    CParameter::Save(set);
+    CParameterConnect::Save(set);
     
     set.setValue("FreeRDP/Domain", freerdp_settings_get_string(
                      m_pSettings, FreeRDP_Domain));
