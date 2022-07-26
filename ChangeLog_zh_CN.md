@@ -1,5 +1,9 @@
 ## 修改日志
 
+### v0.0.22
++ 增加键盘挂钩
+  - Windows
+  
 ### v0.0.21
 + 在 Windows 下，增加导出崩溃文件
 + 在 Windows 下，安装 MSVC 系统库。详见: RabbitCommon

@@ -1,7 +1,10 @@
 ## Change Log
 
-### v0.0.21
+### v0.0.22
++ Add keyboard hook
+  - Windows
 
+### v0.0.21
 + Add core dump in windows
 + FIX install MSVC system libraries in windows. See RabbitCommon
 + FIX: divide by 0 crash. Affects all previous releases.
@@ -10,7 +13,6 @@
 + Viewer: optimize CConnecter::Name() and CConnecter::ServerName()
 
 ### v0.0.20
-
 + Add version suffix to Windows dynamic library. see RabbitCommon
 + RabbitCommon adds openssl version judgment.
 

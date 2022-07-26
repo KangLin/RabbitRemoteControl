@@ -15,7 +15,10 @@ CConnecterDesktopThread::CConnecterDesktopThread(CPluginViewer *parent)
 CConnecterDesktopThread::~CConnecterDesktopThread()
 {
     if(m_pView)
+    {
         delete m_pView;
+        m_pView = nullptr;
+    }
     
     LOG_MODEL_DEBUG("CConnecterDesktopThread", "CConnecterDesktopThread::~CConnecterDesktopThread");
     //qDebug() << this << this->metaObject()->className();

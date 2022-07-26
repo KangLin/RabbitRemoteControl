@@ -25,6 +25,8 @@ CManagePlugin::CManagePlugin(QObject *parent) : QObject(parent),
     qApp->installTranslator(&m_Translator);
     
     LoadPlugins();
+
+    m_Hook = QSharedPointer<CHook>(CHook::GetHook());
 }
 
 CManagePlugin::~CManagePlugin()

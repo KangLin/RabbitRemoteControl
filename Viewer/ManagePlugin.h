@@ -10,7 +10,9 @@
 #include <QMap>
 #include <QIcon>
 #include <QTranslator>
+#include <QSharedPointer>
 #include "PluginViewer.h"
+#include "Hook.h"
 
 /**
  * \~chinese \brief 管理插件和连接者
@@ -84,10 +86,9 @@ private:
     
 private:
     QMap<QString, CPluginViewer*> m_Plugins;
-    
     qint8 m_FileVersion;
-
     QTranslator m_Translator;
+    QSharedPointer<CHook> m_Hook;
 };
 
 #endif // CMANAGECONNECTER_H

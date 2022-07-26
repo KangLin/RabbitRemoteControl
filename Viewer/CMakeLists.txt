@@ -34,12 +34,13 @@ list(APPEND VIEWER_INSTALL_HEADER_FILES
     ManagePassword.h
     )
 
-set(VIEWER_HEADER_FILES
+list(APPEND VIEWER_HEADER_FILES
     ${VIEWER_INSTALL_HEADER_FILES}
     Connect.h
     ConnectThread.h
     PluginThread.h
     DlgInputPassword.h
+    Hook.h
     )
 
 list(APPEND VIEWER_SOURCE_FILES
@@ -56,6 +57,7 @@ list(APPEND VIEWER_SOURCE_FILES
     Parameter.cpp
     ManagePassword.cpp
     DlgInputPassword.cpp
+    Hook.cpp
     )
 
 set(SOURCE_UI_FILES
@@ -63,6 +65,11 @@ set(SOURCE_UI_FILES
     )
 
 SET(RCC_FILES )
+
+if(WIN32)
+    list(APPEND VIEWER_HEADER_FILES Windows/HookWindows.h)
+    list(APPEND VIEWER_SOURCE_FILES Windows/HookWindows.cpp)
+endif()
 
 SET(VIEWER_QT_COMPONENTS Core Gui Widgets)
 if(ANDROID)
