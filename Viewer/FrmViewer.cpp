@@ -201,14 +201,14 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
-    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key: 0x%X;modifiers: 0x%X", event->key(), event->modifiers());
     emit sigKeyPressEvent(event->key(), event->modifiers());
     event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
-    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    //LOG_MODEL_DEBUG("CFrmViewer", "keyReleaseEvent key: 0x%X;modifiers: 0x%X", event->key(), event->modifiers());
     emit sigKeyReleaseEvent(event->key(), event->modifiers());
     event->accept();
 }

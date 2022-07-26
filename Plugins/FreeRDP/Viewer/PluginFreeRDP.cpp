@@ -13,7 +13,7 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
 
 CPluginFreeRDP::~CPluginFreeRDP()
 {
-    qDebug() << "CPluginFactoryFreeRdp::~CPluginFactoryFreeRdp()";
+    qDebug() << "CPluginFreeRDP::~CPluginFreeRDP()";
 }
 
 const QString CPluginFreeRDP::Name() const

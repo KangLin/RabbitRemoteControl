@@ -85,9 +85,9 @@ UINT32 CConvertKeyCode::QtToScanCode(int key, Qt::KeyboardModifiers modifiers)
         Qt::Key_F33
         Qt::Key_F34
         Qt::Key_F35
-        Qt::Key_Super_L
-        Qt::Key_Super_R
         */
+    case Qt::Key_Super_L: return RDP_SCANCODE_LWIN;
+    case Qt::Key_Super_R: return RDP_SCANCODE_RWIN;
     case Qt::Key_Menu: return RDP_SCANCODE_LMENU;
         // Qt::Key_Hyper_L
         // Qt::Key_Hyper_R
