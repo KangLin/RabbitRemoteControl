@@ -29,7 +29,7 @@ class VIEWER_EXPORT CPluginViewerThread : public CPluginViewer
 public:
     explicit CPluginViewerThread(QObject *parent = nullptr);
     virtual ~CPluginViewerThread();
-
+private:
     virtual CConnecter* CreateConnecter(const QString &szProtol) override;
     
 protected:

@@ -24,6 +24,7 @@ public:
     virtual const QString Description() const override;
     virtual const QString Protol() const override;
     virtual const QIcon Icon() const override;
+private:
     virtual CConnecter *CreateConnecter(const QString &szProtol) override;
 };
 

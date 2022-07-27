@@ -12,16 +12,17 @@ class CPluginTerminal : public CPluginViewer
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPluginViewer_iid)
 #endif
-    
+
 public:
     explicit CPluginTerminal(QObject *parent = nullptr);
     virtual ~CPluginTerminal();
-    
+
     virtual const QString Protol() const override;
     virtual const QString Name() const override;
     virtual const QString DisplayName() const override;
     virtual const QString Description() const override;
     virtual const QIcon Icon() const override;
+private:
     virtual CConnecter *CreateConnecter(const QString &szProtol) override;
 };
 

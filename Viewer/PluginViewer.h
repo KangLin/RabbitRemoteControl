@@ -65,7 +65,8 @@ public:
     /// Plugin description
     virtual const QString Description() const = 0;
     virtual const QIcon Icon() const;
-    
+
+private:
     /**
      * \~chinese
      * \brief 新建 CConnecter 实例。仅由 CManagePlugin 调用
@@ -86,7 +87,7 @@ public:
      * 
      */
     virtual CConnecter* CreateConnecter(const QString& szProtol) = 0;
-    
+
 private:
     QTranslator m_Translator;
     int InitTranslator();
