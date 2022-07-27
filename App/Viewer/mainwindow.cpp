@@ -37,13 +37,13 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-      ui(new Ui::MainWindow),
       m_pSignalStatus(nullptr),
+      ui(new Ui::MainWindow),
       m_pView(nullptr),
-      m_pGBViewZoom(nullptr),
       m_pFullScreenToolBar(nullptr),
       m_ptbZoom(nullptr),
       m_psbZoomFactor(nullptr),
+      m_pGBViewZoom(nullptr),
       m_pRecentMenu(nullptr),
       m_pFavoriteDockWidget(nullptr),
       m_pFavoriteView(nullptr)
@@ -125,7 +125,8 @@ MainWindow::MainWindow(QWidget *parent)
     }
     
     m_ManageConnecter.EnumPlugins(this);
-    
+    m_ManageConnecter.LoadSettings();
+
     QToolButton* tbConnect = new QToolButton(ui->toolBar);
     tbConnect->setFocusPolicy(Qt::NoFocus);
     tbConnect->setPopupMode(QToolButton::InstantPopup);
@@ -925,9 +926,12 @@ void MainWindow::on_actionScreenshot_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    CParameterDlgSettings set(&m_Parameter, this);
+    CParameterDlgSettings set(&m_Parameter, m_ManageConnecter.GetSettingsWidgets(this), this);
     if(CParameterDlgSettings::Accepted == set.exec())
+    {
+        m_ManageConnecter.SaveSettings();
         m_Parameter.Save();
+    }
 }
 
 void MainWindow::slotShortCut()

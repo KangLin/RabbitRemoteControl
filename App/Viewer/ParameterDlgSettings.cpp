@@ -10,13 +10,29 @@
     #include "Ice.h"
 #endif
 
-CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara, QWidget *parent) :
+CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
+        QList<QWidget *> wViewer,
+        QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CParameterDlgSettings),
     m_pParameters(pPara)
 {
     ui->setupUi(this);
-    
+
+    foreach(auto p, wViewer)
+    {
+        ui->tabWidget->addTab(p, p->windowTitle());
+        bool check = false;
+        check = connect(this, SIGNAL(accepted()), p, SLOT(slotAccept()));
+        if(!check)
+        {
+            LOG_MODEL_ERROR("CParameterDlgSettings",
+                            "Class %s must has slot slotAccept(), please add it",
+                            p->metaObject()->className());
+        }
+        Q_ASSERT(check);
+    }
+
 #ifdef HAVE_ICE
     QWidget* pWidget = CICE::Instance()->GetParameterWidget(this);
     if(pWidget)

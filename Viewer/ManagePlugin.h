@@ -13,6 +13,7 @@
 #include <QSharedPointer>
 #include "PluginViewer.h"
 #include "Hook.h"
+#include "ParameterViewer.h"
 
 /**
  * \~chinese \brief 管理插件和连接者
@@ -59,6 +60,38 @@ public:
     /// \~english Accept connecter parameters to file
     virtual int SaveConnecter(QString szFile, CConnecter* pConnecter);
 
+    /*!
+     * \~chinese 得到设置参数窗口
+     * \return 设置参数窗口。此窗口的所有者为调用者。
+     * \note 此窗口必须有定义槽 \b slotAccept 。
+     *       例如: CFrmParameterViewer::slotAccept
+     *
+     * \~english Get parameter settings widget
+     * \return Parameter widget. The QWidget owner is caller.
+     * \note the widget must has slot \b slotAccept .
+     *         Eg: CFrmParameterViewer::slotAccept
+     *
+     * \~
+     * \snippet Viewer/FrmParameterViewer.h Accept parameters
+     */   
+    virtual QList<QWidget*> GetSettingsWidgets(QWidget *parent);
+    /*!
+     * \~chinese
+     * \brief 从文件中加载控制端参数
+     * \param szFile: 文件名
+     * \~english Load viewer parameters from file.
+     * \param szFile: file name
+     */
+    virtual int LoadSettings(QString szFile = QString());
+    /*!
+     * \~chinese
+     * \brief 保存控制端参数到文件
+     * \param szFile：文件名
+     * \~english Save viewer parameters to file
+     * 
+     */
+    virtual int SaveSettings(QString szFile = QString());
+
     /**
      * \~chinese
      * \brief 处理连接者。用于客户端得到连接者信号
@@ -70,10 +103,9 @@ public:
     public:
         Handle(): m_bIgnoreReturn(false){}
         /**
-         * @brief Process plugins
-         * @param id: plugin id
-         * @param pPlug: CPluginViewer pointer
-         * @return 
+         * \brief Process plugins
+         * \param id: plugin id
+         * \param pPlug: CPluginViewer pointer
          */
         virtual int onProcess(const QString& id, CPluginViewer* pPlug) = 0;
         int m_bIgnoreReturn;
@@ -83,12 +115,16 @@ public:
 private:    
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
-    
+
+private Q_SLOTS:
+    void slotHookKeyboardChanged();
+
 private:
     QMap<QString, CPluginViewer*> m_Plugins;
     qint8 m_FileVersion;
     QTranslator m_Translator;
     QSharedPointer<CHook> m_Hook;
+    CParameterViewer m_ParameterViewer;
 };
 
 #endif // CMANAGECONNECTER_H

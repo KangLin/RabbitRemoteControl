@@ -7,7 +7,6 @@
 
 #include "Parameter.h"
 #include <QDataStream>
-#include <QSettings>
 
 /**
  * \~english
@@ -45,8 +44,8 @@ class VIEWER_EXPORT CParameterConnect : public CParameter
 public:
     explicit CParameterConnect(QObject *parent = nullptr);
 
-    virtual int Load(QSettings &set);
-    virtual int Save(QSettings &set);
+    virtual int Load(QSettings &set) override;
+    virtual int Save(QSettings &set) override;
     
     /*!
      * \brief Check whether the parameters are complete

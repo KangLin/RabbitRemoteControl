@@ -85,7 +85,7 @@ int CConnecterDesktopThread::Load(QSettings &set)
         nRet = m_pView->Load(set);
         if(nRet) return nRet;
     }
-    
+
     if(GetParameter())
         nRet = GetParameter()->Load(set);
         

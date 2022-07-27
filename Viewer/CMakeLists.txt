@@ -32,6 +32,7 @@ list(APPEND VIEWER_INSTALL_HEADER_FILES
     ConnecterDesktop.h
     Parameter.h
     ParameterConnect.h
+    ParameterViewer.h
     ManagePassword.h
     )
 
@@ -42,6 +43,7 @@ list(APPEND VIEWER_HEADER_FILES
     PluginThread.h
     DlgInputPassword.h
     Hook.h
+    FrmParameterViewer.h
     )
 
 list(APPEND VIEWER_SOURCE_FILES
@@ -57,6 +59,8 @@ list(APPEND VIEWER_SOURCE_FILES
     PluginThread.cpp
     Parameter.cpp
     ParameterConnect.cpp
+    ParameterViewer.cpp
+    FrmParameterViewer.cpp
     ManagePassword.cpp
     DlgInputPassword.cpp
     Hook.cpp
@@ -64,6 +68,7 @@ list(APPEND VIEWER_SOURCE_FILES
 
 set(SOURCE_UI_FILES
     DlgInputPassword.ui
+    FrmParameterViewer.ui
     )
 
 SET(RCC_FILES )

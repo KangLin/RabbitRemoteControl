@@ -3,6 +3,8 @@
 #include "ManagePlugin.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
+#include "FrmParameterViewer.h"
+
 #include <QPluginLoader>
 #include <QDebug>
 #include <QtPlugin>
@@ -14,6 +16,7 @@
 CManagePlugin::CManagePlugin(QObject *parent) : QObject(parent),
     m_FileVersion(1)  //TODO: update version it if update data
 {
+    bool check = false;
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_INIT_RESOURCE(translations_Viewer);
 //#endif
@@ -23,10 +26,14 @@ CManagePlugin::CManagePlugin(QObject *parent) : QObject(parent),
     if(!m_Translator.load(szTranslatorFile))
         qCritical() << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);
-    
+
     LoadPlugins();
 
-    m_Hook = QSharedPointer<CHook>(CHook::GetHook());
+    check = connect(&m_ParameterViewer, SIGNAL(sigHookKeyboardChanged()),
+                    this, SLOT(slotHookKeyboardChanged()));
+    Q_ASSERT(check);
+    if(m_ParameterViewer.GetHookKeyboard())
+        m_Hook = QSharedPointer<CHook>(CHook::GetHook());
 }
 
 CManagePlugin::~CManagePlugin()
@@ -195,6 +202,26 @@ int CManagePlugin::SaveConnecter(QString szFile, CConnecter *pConnecter)
     return 0;
 }
 
+int CManagePlugin::LoadSettings(QString szFile)
+{
+    return m_ParameterViewer.CParameter::Load(szFile);
+}
+
+int CManagePlugin::SaveSettings(QString szFile)
+{
+    return m_ParameterViewer.CParameter::Save(szFile);
+}
+
+QList<QWidget*> CManagePlugin::GetSettingsWidgets(QWidget* parent)
+{
+    QList<QWidget*> lstWidget;
+
+    QWidget* p = new CFrmParameterViewer(&m_ParameterViewer, parent);
+    if(p)
+        lstWidget.push_back(p);
+    return lstWidget;
+}
+
 int CManagePlugin::EnumPlugins(Handle *handle)
 {
     int nRet = 0;
@@ -211,4 +238,12 @@ int CManagePlugin::EnumPlugins(Handle *handle)
         }
     }
     return nRet;
+}
+
+void CManagePlugin::slotHookKeyboardChanged()
+{
+    if(m_ParameterViewer.GetHookKeyboard())
+        m_Hook = QSharedPointer<CHook>(CHook::GetHook());
+    else
+        m_Hook.reset();
 }

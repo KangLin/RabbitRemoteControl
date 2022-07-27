@@ -10,7 +10,8 @@ class CParameterApp : public QObject
 
 public:
     explicit CParameterApp(QObject *parent = nullptr);
-    
+
+public Q_SLOTS:
     virtual int Load();
     virtual int Save();
     
