@@ -301,7 +301,7 @@
         <translation>取消(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.cpp" line="193"/>
+        <location filename="../../ParameterDlgSettings.cpp" line="209"/>
         <source>Open shot screen path</source>
         <translation>打开截屏文件夹</translation>
     </message>

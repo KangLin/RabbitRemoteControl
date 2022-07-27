@@ -301,7 +301,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.cpp" line="193"/>
+        <location filename="../../ParameterDlgSettings.cpp" line="209"/>
         <source>Open shot screen path</source>
         <translation type="unfinished"></translation>
     </message>

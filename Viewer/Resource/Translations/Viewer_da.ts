@@ -70,14 +70,27 @@
     </message>
 </context>
 <context>
-    <name>CParameter</name>
+    <name>CFrmParameterViewer</name>
     <message>
-        <location filename="../../Parameter.cpp" line="223"/>
+        <location filename="../../FrmParameterViewer.ui" line="14"/>
+        <source>Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="26"/>
+        <source>Hook: capture system key</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CParameterConnect</name>
+    <message>
+        <location filename="../../ParameterConnect.cpp" line="224"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Parameter.cpp" line="239"/>
+        <location filename="../../ParameterConnect.cpp" line="240"/>
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>
