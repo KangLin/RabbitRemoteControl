@@ -44,7 +44,7 @@ public:
      */
     virtual CConnecter* CreateConnecter(const QString &id);
     
-    /*! \~chinese \brief 从文件中新建 CConnecter 指针，所有者是调用者。
+    /*! \~chinese 从文件中新建 CConnecter 指针，所有者是调用者。
      *          <b>当不再使用时，调用者必须负责删除此指针</b>
      *          调用者必须连接信号 CConnecter::sigDisconnected 。
      *          释放指针( CConnecter::deleteLater )
@@ -55,8 +55,8 @@ public:
      */
     virtual CConnecter* LoadConnecter(const QString& szFile);
     
-    /// \~chinese 保存参数到文件
-    /// \~english Accept parameters to file
+    /// \~chinese 保存连接参数到文件
+    /// \~english Accept connecter parameters to file
     virtual int SaveConnecter(QString szFile, CConnecter* pConnecter);
 
     /**

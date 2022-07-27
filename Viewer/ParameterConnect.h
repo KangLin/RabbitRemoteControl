@@ -1,28 +1,28 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPARAMTER_H
-#define CPARAMTER_H
+#ifndef CPARAMTERCONNECT_H
+#define CPARAMTERCONNECT_H
 
 #pragma once
 
-#include "viewer_export.h"
-#include <QObject>
+#include "Parameter.h"
 #include <QDataStream>
 #include <QSettings>
 
 /**
- * @~english
- * @brief The parameter interface. It contains basic parameters.
- * @note The interface only is implemented and used by plugin
+ * \~english
+ * \brief The parameter interface. It contains basic parameters.
+ *        It only valid in plugin.
+ *        The application cannot access it directly,
+ *        it can only be set via CConnecter::OpenDialogSettings.
+ * \note The interface only is implemented and used by plugin
  * 
- * @~chinese
- * @brief 参数接口。它包含基本参数
- * @note 此接口仅由插件派生实现和使用
- * 
- * @~
- * @ingroup VIEWER_PLUGIN_API
+ * \~chinese
+ * \brief 连接参数接口。它包含基本参数。此类仅在插件内有效。
+ *        应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
+ * \note 此接口仅由插件派生实现和使用
  */
-class VIEWER_EXPORT CParameterConnect : public QObject
+class VIEWER_EXPORT CParameterConnect : public CParameter
 {
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
@@ -138,4 +138,4 @@ private:
     QString m_szProxyPassword;    
 };
 
-#endif // CPARAMTER_H
+#endif // CPARAMTERCONNECT_H

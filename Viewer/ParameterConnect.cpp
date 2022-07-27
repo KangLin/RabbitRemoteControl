@@ -9,7 +9,8 @@
 #include <QCryptographicHash>
 #include <QInputDialog>
 
-CParameterConnect::CParameterConnect(QObject *parent) : QObject(parent),
+CParameterConnect::CParameterConnect(QObject *parent)
+    : CParameter(parent),
     m_bShowServerName(true),
     m_nPort(0),
     m_bSavePassword(CManagePassword::Instance()->GetSavePassword()),

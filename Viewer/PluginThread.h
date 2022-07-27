@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CPLUGINHREAD_H_KL_2021_08_05
 #define CPLUGINHREAD_H_KL_2021_08_05
 
