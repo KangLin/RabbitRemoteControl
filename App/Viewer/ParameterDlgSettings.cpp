@@ -3,7 +3,6 @@
 #include "ParameterDlgSettings.h"
 #include "ui_ParameterDlgSettings.h"
 #include "mainwindow.h"
-#include "ManagePassword.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 #ifdef HAVE_ICE
@@ -86,22 +85,6 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     
     ui->sbRecentMenuMaxCount->setValue(m_pParameters->GetRecentMenuMaxCount());
     
-    ui->leEncryptKey->setText(CManagePassword::Instance()->GetEncryptKey());
-    ui->cbSavePassword->setChecked(CManagePassword::Instance()->GetSavePassword());
-    ui->cbEnableViewPassword->setChecked(CManagePassword::Instance()->GetViewPassowrd());
-    ui->pbEncryptKey->setEnabled(ui->cbEnableViewPassword->isChecked());
-    switch (CManagePassword::Instance()->GetPromptType()) {
-    case CManagePassword::PromptType::Always:
-        ui->rbPromptAlways->setChecked(true);
-        break;
-    case CManagePassword::PromptType::First:
-        ui->rbPromptFirst->setChecked(true);
-        break;
-    case CManagePassword::PromptType::No:
-        ui->rbPromptNo->setChecked(true);
-        break;
-    }
-    
     ui->rbSystemTrayIconFavorite->hide();
     switch (m_pParameters->GetSystemTrayIconMenuType()) {
     case CParameterApp::SystemTrayIconMenuType::No:
@@ -148,18 +131,8 @@ void CParameterDlgSettings::on_pbOk_clicked()
     if(ui->rbSouth->isChecked()) m_pParameters->SetTabPosition(QTabWidget::South);
     if(ui->rbEast->isChecked()) m_pParameters->SetTabPosition(QTabWidget::East);
     if(ui->rbWest->isChecked()) m_pParameters->SetTabPosition(QTabWidget::West);
-    
+
     m_pParameters->SetRecentMenuMaxCount(ui->sbRecentMenuMaxCount->value());
-    
-    CManagePassword::Instance()->SetEncryptKey(ui->leEncryptKey->text());
-    CManagePassword::Instance()->SetSavePassword(ui->cbSavePassword->isChecked());
-    CManagePassword::Instance()->SetViewPassowrd(ui->cbEnableViewPassword->isChecked());
-    if(ui->rbPromptAlways->isChecked())
-        CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::Always);
-    if(ui->rbPromptFirst->isChecked())
-        CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::First);
-    if(ui->rbPromptNo->isChecked())
-        CManagePassword::Instance()->SetPromptType(CManagePassword::PromptType::No);
     
     if(ui->rbSystemTrayIconNo->isChecked())
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::No);
@@ -179,28 +152,6 @@ void CParameterDlgSettings::on_pbOk_clicked()
 void CParameterDlgSettings::on_pbNo_clicked()
 {
     reject();
-}
-
-void CParameterDlgSettings::on_cbEnableViewPassword_clicked(bool checked)
-{
-    ui->pbEncryptKey->setEnabled(checked);
-}
-
-void CParameterDlgSettings::on_pbEncryptKey_clicked()
-{
-    switch(ui->leEncryptKey->echoMode())
-    {
-    case QLineEdit::Password:
-        ui->leEncryptKey->setEchoMode(QLineEdit::Normal);
-        ui->pbEncryptKey->setIcon(QIcon(":/image/EyeOff"));
-        break;
-    case QLineEdit::Normal:
-        ui->leEncryptKey->setEchoMode(QLineEdit::Password);
-        ui->pbEncryptKey->setIcon(QIcon(":/image/EyeOn"));
-        break;
-    default:
-        break;
-    }
 }
 
 void CParameterDlgSettings::on_pbScreenShotBrower_clicked()

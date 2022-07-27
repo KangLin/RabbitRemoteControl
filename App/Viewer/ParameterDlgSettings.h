@@ -22,8 +22,6 @@ private slots:
     void on_pbOk_clicked();
     void on_pbNo_clicked();
 
-    void on_cbEnableViewPassword_clicked(bool checked);
-    void on_pbEncryptKey_clicked();
     void on_pbScreenShotBrower_clicked();
     void on_cbShowSystemTrayIcon_toggled(bool checked);
     

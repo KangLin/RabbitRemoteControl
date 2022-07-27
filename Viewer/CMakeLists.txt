@@ -33,7 +33,6 @@ list(APPEND VIEWER_INSTALL_HEADER_FILES
     Parameter.h
     ParameterConnect.h
     ParameterViewer.h
-    ManagePassword.h
     )
 
 list(APPEND VIEWER_HEADER_FILES
@@ -61,7 +60,6 @@ list(APPEND VIEWER_SOURCE_FILES
     ParameterConnect.cpp
     ParameterViewer.cpp
     FrmParameterViewer.cpp
-    ManagePassword.cpp
     DlgInputPassword.cpp
     Hook.cpp
     )

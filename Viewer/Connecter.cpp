@@ -174,6 +174,30 @@ CParameterConnect* CConnecter::GetParameter()
     return m_pParameter;
 }
 
+int CConnecter::SetParameterViewer(CParameterViewer* pPara)
+{
+    if(GetParameter())
+    {
+        GetParameter()->m_pParameterViewe = pPara;
+        if(pPara)
+            GetParameter()->SetSavePassword(pPara->GetSavePassword());
+        return 0;
+    } else {
+        LOG_MODEL_ERROR("CConnecter",
+                "If the parameters(CParameterConnect or its derived classes) "
+                "requires a CParameterViewer. "
+                "Please instantiate the parameters "
+                "and call SetParameter in the %s::%s to set the parameters pointer. "
+                "If you are sure the parameter does not need CParameterViewer. "
+                "please overload the SetParameterViewer in the %s. don't set it",
+                metaObject()->className(),
+                metaObject()->className(),
+                metaObject()->className());
+        Q_ASSERT(false);
+    }
+    return -1;
+}
+
 int CConnecter::SetParameter(CParameterConnect *p)
 {
     if(GetParameter())

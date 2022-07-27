@@ -39,7 +39,7 @@
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="54"/>
-        <location filename="../../DlgInputPassword.cpp" line="13"/>
+        <location filename="../../DlgInputPassword.cpp" line="12"/>
         <source>Input encrypt key</source>
         <translation>輸入加密鍵</translation>
     </message>
@@ -54,17 +54,17 @@
         <translation>否(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="15"/>
+        <location filename="../../DlgInputPassword.cpp" line="14"/>
         <source>The encryption key is used to encrypt the password that is saved to the file.</source>
         <translation>加密密鑰用於加密保存到文件中的密碼。</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="17"/>
+        <location filename="../../DlgInputPassword.cpp" line="16"/>
         <source>If you forget the encryption key, please use input %1.</source>
         <translation>如果您忘記了加密密鑰，請使用輸入 %1。</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.cpp" line="22"/>
+        <location filename="../../DlgInputPassword.cpp" line="21"/>
         <source>Input %1</source>
         <translation>輸入 %1</translation>
     </message>
@@ -77,7 +77,52 @@
         <translation>控製端</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="26"/>
+        <location filename="../../FrmParameterViewer.ui" line="54"/>
+        <source>Key used to encrypt saved password:</source>
+        <translation>加密鍵用於加密碼保存的密碼</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="42"/>
+        <source>Enable view password</source>
+        <translation>允許查看密碼</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="94"/>
+        <source>No</source>
+        <translation>不</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="101"/>
+        <source>First</source>
+        <translation>第一次</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="108"/>
+        <source>Always</source>
+        <translation>總是</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="27"/>
+        <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="35"/>
+        <source>Save password</source>
+        <translation>保存密碼</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="62"/>
+        <source>Encrypt key:</source>
+        <translation>加密鍵</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="117"/>
+        <source>Prompt type:</source>
+        <translation>提示類型</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterViewer.ui" line="20"/>
         <source>Hook: capture system key</source>
         <translation>掛鉤：捕獲系統鍵</translation>
     </message>
@@ -85,12 +130,12 @@
 <context>
     <name>CParameterConnect</name>
     <message>
-        <location filename="../../ParameterConnect.cpp" line="224"/>
+        <location filename="../../ParameterConnect.cpp" line="229"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterConnect.cpp" line="240"/>
+        <location filename="../../ParameterConnect.cpp" line="245"/>
         <source>Proxy password</source>
         <translation>代理密碼</translation>
     </message>

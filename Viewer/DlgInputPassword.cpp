@@ -2,14 +2,13 @@
 
 #include "DlgInputPassword.h"
 #include "ui_DlgInputPassword.h"
-#include "ManagePassword.h"
 
-CDlgInputPassword::CDlgInputPassword(QString szTitle, QWidget *parent) :
-    QDialog(parent),
+CDlgInputPassword::CDlgInputPassword(bool bShow, QString szTitle, QWidget *parent)
+    : QDialog(parent),
     ui(new Ui::CDlgInputPassword)
 {
     ui->setupUi(this);
-    ui->pbShow->setEnabled(CManagePassword::Instance()->GetViewPassowrd());
+    ui->pbShow->setEnabled(bShow);
     setWindowTitle(tr("Input encrypt key"));
 
     QString szDescript = tr("The encryption key is used to encrypt the password that is saved to the file.");

@@ -149,7 +149,9 @@ CConnecter* CManagePlugin::CreateConnecter(const QString& id)
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
     {
-        return it.value()->CreateConnecter(id);
+        CConnecter* p = it.value()->CreateConnecter(id);
+        if(p) p->SetParameterViewer(&m_ParameterViewer);
+        return p;
     }
     return nullptr;
 }

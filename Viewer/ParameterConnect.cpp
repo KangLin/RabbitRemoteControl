@@ -4,16 +4,16 @@
 #include "RabbitCommonEncrypt.h"
 #include "RabbitCommonTools.h"
 #include "RabbitCommonLog.h"
-#include "ManagePassword.h"
 #include "DlgInputPassword.h"
 #include <QCryptographicHash>
 #include <QInputDialog>
 
 CParameterConnect::CParameterConnect(QObject *parent)
     : CParameter(parent),
+    m_pParameterViewe(nullptr),
     m_bShowServerName(true),
     m_nPort(0),
-    m_bSavePassword(CManagePassword::Instance()->GetSavePassword()),
+    m_bSavePassword(false),
     m_bOnlyView(false),
     m_bLocalCursor(true),
     m_bClipboard(true),
@@ -21,6 +21,11 @@ CParameterConnect::CParameterConnect(QObject *parent)
     m_nProxyPort(1080)
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
+}
+
+CParameterViewer* CParameterConnect::GetParameterViewer()
+{
+    return m_pParameterViewe;
 }
 
 bool CParameterConnect::GetCheckCompleted()
@@ -266,40 +271,44 @@ int CParameterConnect::Save(QSettings &set)
     return 0;
 }
 
-QByteArray CParameterConnect::PasswordSum(const std::string &password)
+QByteArray CParameterConnect::PasswordSum(const std::string &password,
+                                          const std::string &key)
 {
     QCryptographicHash sum(QCryptographicHash::Md5);
     sum.addData(password.c_str(), password.length());
     std::string pw = "RabbitRemoteControl";
     sum.addData(pw.c_str(), pw.length());
-    std::string key =
-       CManagePassword::Instance()->GetEncryptKey().toStdString().c_str(); 
     if(!key.empty())
         sum.addData(key.c_str(), key.length());
     return sum.result();
 }
 
-int CParameterConnect::LoadPassword(const QString &szTitle, const QString &szKey, QString &password, QSettings &set)
+int CParameterConnect::LoadPassword(const QString &szTitle,
+                                    const QString &szKey,
+                                    QString &password,
+                                    QSettings &set)
 {
     QByteArray sum = set.value(szKey + "_sum").toByteArray();
     QByteArray pwByte = set.value(szKey).toByteArray();
     RabbitCommon::CEncrypt e;
     
-    std::string pw =
-            CManagePassword::Instance()->GetEncryptKey().toStdString().c_str();
-    if(!pw.empty())
+    std::string key;
+    if(GetParameterViewer())
+        key = GetParameterViewer()->GetEncryptKey().toStdString().c_str();
+    if(key.empty())
     {
-        e.SetPassword(pw.c_str());
         if(!e.Dencode(pwByte, password)
-                && PasswordSum(password.toStdString()) == sum)
+                && PasswordSum(password.toStdString(), key) == sum)
+            return 0;
+    } else {
+        e.SetPassword(key.c_str());
+        if(!e.Dencode(pwByte, password)
+                && PasswordSum(password.toStdString(), key) == sum)
             return 0;
     }
-    if(!e.Dencode(pwByte, password)
-            && PasswordSum(password.toStdString()) == sum)
-        return 0;
-    
+
     LOG_MODEL_DEBUG("CParameterConnect", "Password don't dencode");
-    CDlgInputPassword d(szTitle);
+    CDlgInputPassword d(GetParameterViewer()->GetViewPassowrd(), szTitle);
     if(QDialog::Accepted != d.exec())
     {
         SetSavePassword(false);
@@ -311,11 +320,13 @@ int CParameterConnect::LoadPassword(const QString &szTitle, const QString &szKey
     if(nRet) return nRet;
     if(CDlgInputPassword::InputType::Password == t)
         return 0;
-    CManagePassword::Instance()->SetEncryptKey(password);
+    GetParameterViewer()->SetEncryptKey(password);
     return LoadPassword(szTitle, szKey, password, set);
 }
 
-int CParameterConnect::SavePassword(const QString &szKey, const QString &password, QSettings &set, bool bSave)
+int CParameterConnect::SavePassword(const QString &szKey,
+                                    const QString &password,
+                                    QSettings &set, bool bSave)
 {
     if(bSave)
         set.setValue("SavePassword", GetSavePassword());
@@ -328,33 +339,33 @@ int CParameterConnect::SavePassword(const QString &szKey, const QString &passwor
 
     QByteArray encryptPassword;
     RabbitCommon::CEncrypt e;
-    std::string pw = CManagePassword::Instance()->GetEncryptKey().toStdString();
-    if(pw.empty())
+    std::string key = GetParameterViewer()->GetEncryptKey().toStdString();
+    if(key.empty())
     {
-        switch (CManagePassword::Instance()->GetPromptType()) {
-        case CManagePassword::PromptType::First:
-            if(CManagePassword::Instance()->GetPromptCount() >= 1)
+        switch (GetParameterViewer()->GetPromptType()) {
+        case CParameterViewer::PromptType::First:
+            if(GetParameterViewer()->GetPromptCount() >= 1)
                 break;
-            CManagePassword::Instance()->SetPromptCount(
-                        CManagePassword::Instance()->GetPromptCount() + 1);
-        case CManagePassword::PromptType::Always:
+            GetParameterViewer()->SetPromptCount(
+                        GetParameterViewer()->GetPromptCount() + 1);
+        case CParameterViewer::PromptType::Always:
         {
             QString szKey;
             CDlgInputPassword::InputType t = CDlgInputPassword::InputType::Encrypt;
-            CDlgInputPassword dlg;
+            CDlgInputPassword dlg(GetParameterViewer()->GetViewPassowrd());
             if(QDialog::Accepted == dlg.exec())
                 dlg.GetValue(t, szKey);
             if(CDlgInputPassword::InputType::Encrypt == t)
-                CManagePassword::Instance()->SetEncryptKey(szKey);
+                GetParameterViewer()->SetEncryptKey(szKey);
             break;
         }
-        case CManagePassword::PromptType::No:
+        case CParameterViewer::PromptType::No:
             break;
         }
     } else
-        e.SetPassword(pw.c_str());
+        e.SetPassword(key.c_str());
     e.Encode(GetPassword(), encryptPassword);
     set.setValue(szKey, encryptPassword);
-    set.setValue(szKey + "_sum", PasswordSum(GetPassword().toStdString()));  
+    set.setValue(szKey + "_sum", PasswordSum(GetPassword().toStdString(), key));
     return 0;
 }

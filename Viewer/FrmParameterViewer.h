@@ -25,6 +25,9 @@ public Q_SLOTS:
     void slotAccept();
     //! [Accept parameters]
 
+    void on_cbEnableViewPassword_clicked(bool checked);
+    void on_pbEncryptKey_clicked();
+
 private:
     Ui::CFrmParameterViewer *ui;
     CParameterViewer* m_pPara;

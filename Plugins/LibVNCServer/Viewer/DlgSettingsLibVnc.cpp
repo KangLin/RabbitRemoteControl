@@ -3,7 +3,6 @@
 #include "DlgSettingsLibVnc.h"
 #include "ui_DlgSettingsLibVnc.h"
 #include <QDebug>
-#include "ManagePassword.h"
 
 CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidget *parent) :
     QDialog(parent),
@@ -19,7 +18,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
     ui->spPort->setValue(m_pPara->GetPort());
     ui->leUserName->setText(m_pPara->GetUser());
     ui->lePassword->setText(m_pPara->GetPassword());
-    ui->pbShow->setEnabled(CManagePassword::Instance()->GetViewPassowrd());
+    ui->pbShow->setEnabled(m_pSettings->GetParameterViewer()->GetViewPassowrd());
     ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
     ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
     

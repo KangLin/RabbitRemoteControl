@@ -3,6 +3,7 @@
 ### v0.0.22
 + Add keyboard hook
   - Windows
++ Refactor parameter
 
 ### v0.0.21
 + Add core dump in windows

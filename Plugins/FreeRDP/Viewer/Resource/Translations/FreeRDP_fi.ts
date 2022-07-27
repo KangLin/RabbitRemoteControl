@@ -252,7 +252,7 @@
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="283"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="39"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="38"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -272,22 +272,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="43"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="42"/>
         <source>8 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="44"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="43"/>
         <source>16 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="44"/>
         <source>24 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="46"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
         <source>32 bits</source>
         <translation type="unfinished"></translation>
     </message>

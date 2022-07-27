@@ -252,7 +252,7 @@
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="283"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="39"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="38"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -272,22 +272,22 @@
         <translation>遠程顏色深度：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="43"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="42"/>
         <source>8 bits</source>
         <translation>8 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="44"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="43"/>
         <source>16 bits</source>
         <translation>16 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="44"/>
         <source>24 bits</source>
         <translation>24 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="46"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
         <source>32 bits</source>
         <translation>32 比特</translation>
     </message>

@@ -5,8 +5,10 @@
 
 #pragma once
 
-#include "Parameter.h"
+#include "ParameterViewer.h"
 #include <QDataStream>
+
+class CConnecter;
 
 /**
  * \~english
@@ -14,12 +16,30 @@
  *        It only valid in plugin.
  *        The application cannot access it directly,
  *        it can only be set via CConnecter::OpenDialogSettings.
- * \note The interface only is implemented and used by plugin
- * 
+ * \note
+ *  - The interface only is implemented and used by plugin.
+ *  - If it or its derived class requires a CParameterViewer.
+ *    Please instantiate the parameters and call SetParameter
+ *    in the constructor of the CConnecter derived class
+ *    to set the parameters pointer.
+ *    If you are sure to it does not need CParameterViewer.
+ *    please overload the SetParameterViewer in the CConnecter derived class.
+ *    don't set it.
+ *
  * \~chinese
  * \brief 连接参数接口。它包含基本参数。此类仅在插件内有效。
  *        应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
- * \note 此接口仅由插件派生实现和使用
+ * \note
+ *  - 此接口仅由插件派生实现和使用。
+ *  - 如果它或其派生类需要 CParameterViewer。
+ *    请在 CConnecter 的派生类的构造函数中实例化参数，并调用 SetParameter 设置参数指针。
+ *    如果参数不需要 CParameterViewer，那请在 CConnecter 派生类
+ *    重载 SetParameterViewer 不设置 CParameterViewer。
+ *
+ * \~
+ * \see CManagePlugin::CreateConnecter CConnecter::CConnecter
+ *      SetParameterViewer SetParameter
+ *      CParameterViewer
  */
 class VIEWER_EXPORT CParameterConnect : public CParameter
 {
@@ -46,7 +66,9 @@ public:
 
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
-    
+
+    CParameterViewer* GetParameterViewer();
+
     /*!
      * \brief Check whether the parameters are complete
      *  to decide whether to open the parameter dialog 
@@ -111,11 +133,18 @@ Q_SIGNALS:
     void sigShowServerNameChanged();
     
 protected:
-    QByteArray PasswordSum(const std::string &password);
-    int LoadPassword(const QString &szTitle, const QString &szKey, QString &password, QSettings &set);
-    int SavePassword(const QString &szKey, const QString &password, QSettings &set, bool bSave = false);
+    QByteArray PasswordSum(const std::string &password, const std::string &key);
+    int LoadPassword(const QString &szTitle, const QString &szKey,
+                     QString &password, QSettings &set);
+    int SavePassword(const QString &szKey, const QString &password,
+                     QSettings &set, bool bSave = false);
 
 private:
+    friend CConnecter;
+    /*!
+     * \see CManagePlugin::CreateConnecter CConnecter::SetParameterViewer
+     */
+    CParameterViewer* m_pParameterViewe;
     QString m_szName;
     QString m_szServerName;
     bool m_bShowServerName;

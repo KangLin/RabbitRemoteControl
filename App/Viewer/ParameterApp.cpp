@@ -2,7 +2,6 @@
 #include <QSettings>
 #include <QDir>
 #include "RabbitCommonDir.h"
-#include "ManagePassword.h"
 #ifdef HAVE_ICE
     #include "Ice.h"
 #endif
@@ -28,7 +27,6 @@ int CParameterApp::Load()
 {
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
-    CManagePassword::Instance()->Load(set);
     
     SetScreenShot(set.value("ShotScreen/ShotScreen/Desktop",
                             GetScreenShot()).toBool());
@@ -68,7 +66,6 @@ int CParameterApp::Save()
 {
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
-    CManagePassword::Instance()->Save(set);
 
     set.setValue("ShotScreen/ShotScreen/Desktop", GetScreenShot());
     set.setValue("ShotScreen/ShotScreen/Path", GetScreenShotPath());

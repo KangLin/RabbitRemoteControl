@@ -5,7 +5,6 @@
 #include "rfb/encodings.h"
 #include <QDebug>
 #include <QMessageBox>
-#include "ManagePassword.h"
 
 #ifdef HAVE_ICE
     #include "Ice.h"
@@ -172,7 +171,7 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     ui->leName->setText(m_pPara->GetName());
     ui->leUserName->setText(m_pPara->GetUser());
     ui->lePassword->setText(m_pPara->GetPassword());
-    ui->pbShow->setEnabled(CManagePassword::Instance()->GetViewPassowrd());
+    ui->pbShow->setEnabled(m_pPara->GetParameterViewer()->GetViewPassowrd());
     ui->cbSave->setChecked(m_pPara->GetSavePassword());
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
     ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());

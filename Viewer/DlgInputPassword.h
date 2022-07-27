@@ -14,7 +14,9 @@ class CDlgInputPassword : public QDialog
     Q_OBJECT
     
 public:
-    explicit CDlgInputPassword(QString szTitle = QString(), QWidget *parent = nullptr);
+    explicit CDlgInputPassword(bool bShow = false,
+                               QString szTitle = QString(),
+                               QWidget *parent = nullptr);
     virtual ~CDlgInputPassword();
     
     enum InputType{
