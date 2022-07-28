@@ -61,16 +61,16 @@ public:
     /*!
      * \~chinese
      * \param parent: 此指针必须是相应的 CPluginViewer 派生类的实例指针
-     * \note 如果参数(CParameterConnect 或其派生类）需要 CParameterViewer。
-     *       请在其派生类的构造函数中实例化参数，并调用 SetParameter 设置参数指针。
-     *       如果参数不需要 CParameterViewer，那请在其派生类重载 SetParameterViewer 。
+     * \note 如果参数( CParameterConnect 或其派生类）需要 CParameterViewer 。
+     *       请在其派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
+     *       如果参数不需要 CParameterViewer ，那请在其派生类重载 CConnecter::SetParameterViewer 。
      * \~english
      * \param parent: The parent pointer must be specified as
      *        the corresponding CPluginViewer derived class
-     * \note If the parameters(CParameterConnect or its derived class) requires a CParameterViewer.
-     *       Please instantiate the parameters and call SetParameter in the derived class to set the parameters pointer.
+     * \note If the parameters( CParameterConnect or its derived class) requires a CParameterViewer .
+     *       Please instantiate the parameters and call CConnecter::SetParameter in the derived class to set the parameters pointer.
      *       If you are sure the parameter does not need CParameterViewer.
-     *       please overload the SetParameterViewer in the derived class. don't set it.
+     *       please overload the CConnecter::SetParameterViewer in the derived class. don't set it.
      * \~
      * \see CManagePlugin::CreateConnecter SetParameterViewer SetParameter
      *      CParameterConnect CParameterViewer

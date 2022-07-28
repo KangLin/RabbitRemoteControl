@@ -19,11 +19,11 @@ class CConnecter;
  * \note
  *  - The interface only is implemented and used by plugin.
  *  - If it or its derived class requires a CParameterViewer.
- *    Please instantiate the parameters and call SetParameter
+ *    Please instantiate the parameters and call CConnecter::SetParameter
  *    in the constructor of the CConnecter derived class
  *    to set the parameters pointer.
  *    If you are sure to it does not need CParameterViewer.
- *    please overload the SetParameterViewer in the CConnecter derived class.
+ *    please overload the CConnecter::SetParameterViewer in the CConnecter derived class.
  *    don't set it.
  *
  * \~chinese
@@ -31,14 +31,14 @@ class CConnecter;
  *        应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
  * \note
  *  - 此接口仅由插件派生实现和使用。
- *  - 如果它或其派生类需要 CParameterViewer。
- *    请在 CConnecter 的派生类的构造函数中实例化参数，并调用 SetParameter 设置参数指针。
- *    如果参数不需要 CParameterViewer，那请在 CConnecter 派生类
- *    重载 SetParameterViewer 不设置 CParameterViewer。
+ *  - 如果它或其派生类需要 CParameterViewer 。
+ *    请在 CConnecter 的派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
+ *    如果参数不需要 CParameterViewer ，那请在 CConnecter 派生类
+ *    重载 CConnecter::SetParameterViewer 不设置 CParameterViewer 。
  *
  * \~
  * \see CManagePlugin::CreateConnecter CConnecter::CConnecter
- *      SetParameterViewer SetParameter
+ *      CConnecter::SetParameterViewer CConnecter::SetParameter
  *      CParameterViewer
  */
 class VIEWER_EXPORT CParameterConnect : public CParameter
