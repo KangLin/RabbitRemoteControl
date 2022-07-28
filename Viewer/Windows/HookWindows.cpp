@@ -23,8 +23,8 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
     if (code == HC_ACTION)
     {
         KBDLLHOOKSTRUCT* hook = reinterpret_cast<KBDLLHOOKSTRUCT*>(lparam);
-        LOG_MODEL_DEBUG("CHookWindows", "vkCode: 0x%X; scanCode: 0x%X; flags: 0x%X",
-                        hook->vkCode, hook->scanCode, hook->flags);
+//        LOG_MODEL_DEBUG("CHookWindows", "vkCode: 0x%X; scanCode: 0x%X; flags: 0x%X",
+//                        hook->vkCode, hook->scanCode, hook->flags);
         int key = 0;
         Qt::KeyboardModifiers keyMdf = Qt::NoModifier;
         switch(hook->vkCode)
@@ -86,8 +86,8 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
                     emit self->sigKeyPressEvent(key, keyMdf);
                 if(wparam == WM_KEYUP || wparam == WM_SYSKEYUP)
                     emit self->sigKeyReleaseEvent(key, Qt::NoModifier);
-                LOG_MODEL_DEBUG("CHookWindows", "process vkCode: 0x%X; scanCode: 0x%X; flags: 0x%X",
-                                hook->vkCode, hook->scanCode, hook->flags);
+//                LOG_MODEL_DEBUG("CHookWindows", "process vkCode: 0x%X; scanCode: 0x%X; flags: 0x%X",
+//                                hook->vkCode, hook->scanCode, hook->flags);
                 return true;
             }
         }
