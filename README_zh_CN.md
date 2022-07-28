@@ -46,14 +46,12 @@
 
 ### 项目位置
 
-- 项目主页: [https://kanglin.github.io/RabbitRemoteControl/](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
-- 项目位置:
-  + 主库：https://github.com/KangLin/RabbitRemoteControl
-  + 镜像：
-    - 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
-    - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
-    - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
-    - launchpad: https://launchpad.net/rabbitremotecontrol
++ 主库：https://github.com/KangLin/RabbitRemoteControl
++ 镜像：
+  - 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
+  - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
+  - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
+  - launchpad: https://launchpad.net/rabbitremotecontrol
 
 ## 功能
 
