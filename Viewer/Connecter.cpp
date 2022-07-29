@@ -14,7 +14,7 @@
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
-#include "ParameterConnect.h"
+#include "ParameterConnecter.h"
 
 CConnecter::CConnecter(CPluginViewer *parent) : QObject(parent),
     m_pPluginViewer(parent),
@@ -169,7 +169,7 @@ int CConnecter::Save(QString szFile)
     return Save(set);
 }
 
-CParameterConnect* CConnecter::GetParameter()
+CParameterConnecter* CConnecter::GetParameter()
 {
     return m_pParameter;
 }
@@ -184,7 +184,7 @@ int CConnecter::SetParameterViewer(CParameterViewer* pPara)
         return 0;
     } else {
         LOG_MODEL_ERROR("CConnecter",
-                "If the parameters(CParameterConnect or its derived classes) "
+                "If the parameters(CParameterConnecter or its derived classes) "
                 "requires a CParameterViewer. "
                 "Please instantiate the parameters "
                 "and call SetParameter in the %s::%s to set the parameters pointer. "
@@ -198,7 +198,7 @@ int CConnecter::SetParameterViewer(CParameterViewer* pPara)
     return -1;
 }
 
-int CConnecter::SetParameter(CParameterConnect *p)
+int CConnecter::SetParameter(CParameterConnecter *p)
 {
     if(GetParameter())
         GetParameter()->disconnect(this);

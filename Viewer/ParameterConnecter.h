@@ -41,7 +41,7 @@ class CConnecter;
  *      CConnecter::SetParameterViewer CConnecter::SetParameter
  *      CParameterViewer
  */
-class VIEWER_EXPORT CParameterConnect : public CParameter
+class VIEWER_EXPORT CParameterConnecter : public CParameter
 {
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
@@ -62,7 +62,7 @@ class VIEWER_EXPORT CParameterConnect : public CParameter
     Q_PROPERTY(QString ProxyPassword READ GetProxyPassword WRITE SetProxyPassword)
     
 public:
-    explicit CParameterConnect(QObject *parent = nullptr);
+    explicit CParameterConnecter(QObject *parent = nullptr);
 
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;

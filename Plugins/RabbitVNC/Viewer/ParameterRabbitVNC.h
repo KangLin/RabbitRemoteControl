@@ -1,9 +1,9 @@
 #ifndef CParameterRabbitVnc_H
 #define CParameterRabbitVnc_H
 
-#include "ParameterConnect.h"
+#include "ParameterConnecter.h"
 
-class CParameterRabbitVNC : public CParameterConnect
+class CParameterRabbitVNC : public CParameterConnecter
 {
     Q_OBJECT
 public:

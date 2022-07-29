@@ -1,9 +1,9 @@
 #ifndef CPARAMETERTIGERVNC_H
 #define CPARAMETERTIGERVNC_H
 
-#include "ParameterConnect.h"
+#include "ParameterConnecter.h"
 
-class CParameterTigerVnc : public CParameterConnect
+class CParameterTigerVnc : public CParameterConnecter
 {
     Q_OBJECT
 public:

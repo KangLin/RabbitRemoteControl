@@ -19,7 +19,7 @@
 
 class CPluginViewer;
 class CConnect;
-class CParameterConnect;
+class CParameterConnecter;
 class CParameterViewer;
 class CManagePlugin;
 
@@ -61,19 +61,19 @@ public:
     /*!
      * \~chinese
      * \param parent: 此指针必须是相应的 CPluginViewer 派生类的实例指针
-     * \note 如果参数( CParameterConnect 或其派生类）需要 CParameterViewer 。
+     * \note 如果参数( CParameterConnecter 或其派生类）需要 CParameterViewer 。
      *       请在其派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
      *       如果参数不需要 CParameterViewer ，那请在其派生类重载 CConnecter::SetParameterViewer 。
      * \~english
      * \param parent: The parent pointer must be specified as
      *        the corresponding CPluginViewer derived class
-     * \note If the parameters( CParameterConnect or its derived class) requires a CParameterViewer .
+     * \note If the parameters( CParameterConnecter or its derived class) requires a CParameterViewer .
      *       Please instantiate the parameters and call CConnecter::SetParameter in the derived class to set the parameters pointer.
      *       If you are sure the parameter does not need CParameterViewer.
      *       please overload the CConnecter::SetParameterViewer in the derived class. don't set it.
      * \~
      * \see CManagePlugin::CreateConnecter SetParameterViewer SetParameter
-     *      CParameterConnect CParameterViewer
+     *      CParameterConnecter CParameterViewer
      */
     explicit CConnecter(CPluginViewer *parent);
     virtual ~CConnecter();
@@ -218,13 +218,13 @@ protected:
     virtual int Load(QSettings &set) = 0;
     virtual int Save(QSettings &set) = 0;
 
-    virtual CParameterConnect* GetParameter();
+    virtual CParameterConnecter* GetParameter();
     /*!
      * \brief Set parameter pointer.
      *        Ability to overload this function to set the parameter signal.
      * \param p
      */
-    virtual int SetParameter(CParameterConnect* p);
+    virtual int SetParameter(CParameterConnecter* p);
 
     /*!
      * \~chinese
@@ -282,9 +282,9 @@ private Q_SLOTS:
 protected:
     const CPluginViewer* m_pPluginViewer;
     /*!
-     * \note If CParameterConnect isn't need CParameterViewer.
+     * \note If CParameterConnecter isn't need CParameterViewer.
      *       please overload this function.
-     * \see CManagePlugin::CreateConnecter CParameterConnect CParameterViewer
+     * \see CManagePlugin::CreateConnecter CParameterConnecter CParameterViewer
      */
     virtual int SetParameterViewer(CParameterViewer* pPara);
 
@@ -293,7 +293,7 @@ private:
     QString m_szServerName;
 
     // The owner is a derived class of this class
-    CParameterConnect* m_pParameter;
+    CParameterConnecter* m_pParameter;
 };
 
 #endif // CCONNECTER_H

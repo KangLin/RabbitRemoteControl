@@ -1,7 +1,7 @@
 #include "ParameterRabbitVNC.h"
 #include "rfb/encodings.h"
 
-CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent) : CParameterConnect(parent)
+CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent) : CParameterConnecter(parent)
 {
     SetPort(5900);
     SetShared(true);
@@ -21,7 +21,7 @@ CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent) : CParameterConnect(pa
 
 int CParameterRabbitVNC::Load(QSettings &set)
 {
-    int nRet = CParameterConnect::Load(set);
+    int nRet = CParameterConnecter::Load(set);
 
     SetShared(set.value("RabbitVNC/Shared", GetShared()).toBool());
     SetBufferEndRefresh(set.value("RabbitVNC/BufferEndRefresh",
@@ -46,7 +46,7 @@ int CParameterRabbitVNC::Load(QSettings &set)
 
 int CParameterRabbitVNC::Save(QSettings &set)
 {
-    int nRet = CParameterConnect::Save(set);
+    int nRet = CParameterConnecter::Save(set);
     set.setValue("RabbitVNC/Shared", GetShared());
     set.setValue("RabbitVNC/BufferEndRefresh", GetBufferEndRefresh());
     set.setValue("RabbitVNC/SupportsDesktopResize", GetSupportsDesktopResize());

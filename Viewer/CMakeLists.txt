@@ -31,7 +31,7 @@ list(APPEND VIEWER_INSTALL_HEADER_FILES
     ConnecterDesktopThread.h
     ConnecterDesktop.h
     Parameter.h
-    ParameterConnect.h
+    ParameterConnecter.h
     ParameterViewer.h
     )
 
@@ -57,7 +57,7 @@ list(APPEND VIEWER_SOURCE_FILES
     ConnectThread.cpp
     PluginThread.cpp
     Parameter.cpp
-    ParameterConnect.cpp
+    ParameterConnecter.cpp
     ParameterViewer.cpp
     FrmParameterViewer.cpp
     DlgInputPassword.cpp

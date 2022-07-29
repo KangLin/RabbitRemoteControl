@@ -133,9 +133,9 @@ bool CConnectLibVNCServer::InitClient()
     // Set sock
     switch(m_pPara->GetProxyType())
     {
-    case CParameterConnect::emProxy::SocksV4:
+    case CParameterConnecter::emProxy::SocksV4:
         break;
-    case CParameterConnect::emProxy::SocksV5:
+    case CParameterConnecter::emProxy::SocksV5:
     {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
@@ -151,10 +151,10 @@ bool CConnectLibVNCServer::InitClient()
         m_pClient->sock = m_tcpSocket.socketDescriptor();
         break;
     }
-    case (CParameterConnect::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
+    case (CParameterConnecter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
         m_pClient->destHost = strdup(m_pPara->GetProxyHost().toStdString().c_str());
         m_pClient->destPort = m_pPara->GetProxyPort();
-    case CParameterConnect::emProxy::No:
+    case CParameterConnecter::emProxy::No:
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
             LOG_MODEL_ERROR("LibVNCServer", "rfbInitClient fail");

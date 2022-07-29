@@ -17,12 +17,12 @@
  * 参数有以下类型：
  * 1. 仅在插件内有效。应用程序不能直接访问，
  *    应用程序只能通过 CConnecter::OpenDialogSettings 进行设置。
- *    \see CParameterConnect
+ *    \see CParameterConnecter
  * 2. 在控制端库内有效。 \see CParameterViwer
  *    应用程序不能直接访问。
  *    应用程序只通过 CManagePlugin::GetSettings 进行设置。
  *    插件可以直接使用或者以其做为初始化值。
- *    例如：保存密码可以以它为初始化值。 \see CParameterConnect::m_bSavePassword
+ *    例如：保存密码可以以它为初始化值。 \see CParameterConnecter::m_bSavePassword
  * 3. 同时在应用程序和控制端库有效。
  *
  * \~english
@@ -33,13 +33,13 @@
  * 1. Only valid in the plugin.
  *    The application cannot access it directly,
  *    it can only be set via CConnecter::OpenDialogSettings.
- *    \see CParameterConnect
+ *    \see CParameterConnecter
  * 2. Valid in the viewer. \see CParameterViwer
  *    The application cannot access it directly,
  *    it can only be set via CManagePlugin::GetSettings.
  *    Plugins can use them directly or use them as initialization values.
  *    For example: save the password can use it as the initialization value.
- *    \see CParameterConnect::m_bSavePassword 
+ *    \see CParameterConnecter::m_bSavePassword 
  * 3. Valid in both the application and the viewer.
  *
  * \~

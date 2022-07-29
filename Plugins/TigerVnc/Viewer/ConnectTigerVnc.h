@@ -4,7 +4,7 @@
 #define CCONNECTTIGERVNC_H
 
 #include "Connect.h"
-#include "ParameterConnect.h"
+#include "ParameterConnecter.h"
 #include "network/TcpSocket.h"
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"

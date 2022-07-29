@@ -13,7 +13,7 @@
  *        it can only be set via CManagePlugin::GetSettingsWidgets.
  * \note
  *  - The interface only is implemented and used by viewer or plugin.
- *  - If the parameters(\ref CParameterConnect or its derived class) requires a CParameterViewer.
+ *  - If the parameters(\ref CParameterConnecter or its derived class) requires a CParameterViewer.
  *    Please instantiate the parameters and call CConnecter::SetParameter in the constructor of the CConnecter derived class to set the parameters.
  *    If you are sure to the parameter does not need CParameterViewer.
  *    please overload the CConnecter::SetParameterViewer in the CConnecter derived class.
@@ -24,7 +24,7 @@
  *        应用程序不能直接访问，只能通过 CManagePlugin::GetSettingsWidgets 进行设置。
  * \note
  *  - 此接口仅由插件派生实现和使用。
- *  - 如果参数( CParameterConnect 或其派生类）需要 CParameterViewer 。
+ *  - 如果参数( CParameterConnecter 或其派生类）需要 CParameterViewer 。
  *    请在 CConnecter 派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
  *    如果参数不需要 CParameterViewer ，
  *    那请在 CConnecter 派生类重载 CConnecter::SetParameterViewer 不设置它。
@@ -32,7 +32,7 @@
  * \~
  * \see CManagePlugin::CreateConnecter CConnecter::CConnecter
  *      CConnecter::SetParameterViewer CConnecter::SetParameter
- *      CParameterConnect
+ *      CParameterConnecter
  */
 class VIEWER_EXPORT CParameterViewer : public CParameter
 {

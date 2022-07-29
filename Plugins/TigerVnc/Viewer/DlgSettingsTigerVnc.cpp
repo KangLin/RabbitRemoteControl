@@ -89,11 +89,11 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
     
     // Proxy
     if(ui->rbProxyNo->isChecked())
-        m_pPara->SetProxyType(CParameterConnect::emProxy::No);
+        m_pPara->SetProxyType(CParameterConnecter::emProxy::No);
     if(ui->rbProxySocks->isChecked())
-        m_pPara->SetProxyType(CParameterConnect::emProxy::SocksV5);
+        m_pPara->SetProxyType(CParameterConnecter::emProxy::SocksV5);
     if(ui->rbHttp->isChecked())
-        m_pPara->SetProxyType(CParameterConnect::emProxy::Http);
+        m_pPara->SetProxyType(CParameterConnecter::emProxy::Http);
     m_pPara->SetProxyHost(ui->leProxyServer->text());
     m_pPara->SetProxyPort(ui->spProxyPort->value());
     m_pPara->SetProxyUser(ui->leProxyUser->text());
@@ -243,14 +243,14 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     // Proxy
     switch(m_pPara->GetProxyType())
     {
-    case CParameterConnect::emProxy::No:
+    case CParameterConnecter::emProxy::No:
         ui->rbProxyNo->setChecked(true);
         break;
-    case CParameterConnect::emProxy::SocksV4:
-    case CParameterConnect::emProxy::SocksV5:
+    case CParameterConnecter::emProxy::SocksV4:
+    case CParameterConnecter::emProxy::SocksV5:
         ui->rbProxySocks->setChecked(true);
         break;
-    case CParameterConnect::emProxy::Http:
+    case CParameterConnecter::emProxy::Http:
         ui->rbHttp->setChecked(true);
         break;
     default:

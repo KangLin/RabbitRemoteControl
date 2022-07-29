@@ -67,14 +67,14 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
     // Proxy
     switch(m_pPara->GetProxyType())
     {
-    case CParameterConnect::emProxy::No:
+    case CParameterConnecter::emProxy::No:
         ui->rbProxyNo->setChecked(true);
         break;
-    case CParameterConnect::emProxy::SocksV4:
-    case CParameterConnect::emProxy::SocksV5:
+    case CParameterConnecter::emProxy::SocksV4:
+    case CParameterConnecter::emProxy::SocksV5:
         ui->rbProxySocks->setChecked(true);
         break;
-    case (CParameterConnect::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
+    case (CParameterConnecter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
         ui->rbProxyUltraVncRepeater->setChecked(true);
         break;
     default:
@@ -133,11 +133,11 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     
     // Proxy
     if(ui->rbProxyNo->isChecked())
-        m_pPara->SetProxyType(CParameterConnect::emProxy::No);
+        m_pPara->SetProxyType(CParameterConnecter::emProxy::No);
     if(ui->rbProxySocks->isChecked())
-        m_pPara->SetProxyType(CParameterConnect::emProxy::SocksV5);
+        m_pPara->SetProxyType(CParameterConnecter::emProxy::SocksV5);
     if(ui->rbProxyUltraVncRepeater->isChecked())
-        m_pPara->SetProxyType( (CParameterConnect::emProxy)CParameterLibVNCServer::emVncProxy::UltraVncRepeater);
+        m_pPara->SetProxyType( (CParameterConnecter::emProxy)CParameterLibVNCServer::emVncProxy::UltraVncRepeater);
     m_pPara->SetProxyHost(ui->leProxyServer->text());
     m_pPara->SetProxyPort(ui->spProxyPort->value());
     m_pPara->SetProxyUser(ui->leProxyUser->text());
