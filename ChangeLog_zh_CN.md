@@ -7,7 +7,10 @@
 + 重命名
   - 重命名 viewer 到 client
   - 重命名 CPluginViewer 到 CPluginClient
-  
+  - 重命名 CPluginViewerThread 到 CPluginClientThread
+  - 重命名 CParameterViewer 到 CParameterClient
+  - 重命名 CConnecter::SetParameterViewer 到 CConnecter::SetParameterClient
+
 ### v0.0.21
 + 在 Windows 下，增加导出崩溃文件
 + 在 Windows 下，安装 MSVC 系统库。详见: RabbitCommon

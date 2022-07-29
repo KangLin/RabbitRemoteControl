@@ -22,7 +22,7 @@ class CConnectThread;
  *      此定时器在后台线程中调用，通过对定时器的操作，实现一个非 Qt 事件循环(可能会阻塞)，详见 CConnect 。
  *      并且 CConnect 仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）(非阻塞）。
  *
- * 序列图：\image html docs/Image/PluginViewerThreadSequenceDiagram.svg
+ * 序列图：\image html docs/Image/PluginClientBlockSequenceDiagram.svg
  *
  * \note 此接口仅由插件实现。 \n
  *      具体的插件需要实现下面接口：
@@ -47,7 +47,7 @@ class CConnectThread;
  *     start a non-Qt event loop (that is, normal loop processing. May block), See CConnect.
  *     And CConnect supports the Qt event (the signal-slot mechanism of QObject. no-block).
  *
- *     Sequen diagram: \image html docs/Image/PluginViewerThreadSequenceDiagram.svg
+ *     Sequen diagram: \image html docs/Image/PluginClientBlockSequenceDiagram.svg
  *
  * \note The interface only is implemented by plug-in \n
  *     The specific plug-in needs to implement the following interface. 

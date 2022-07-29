@@ -27,9 +27,9 @@
 \brief 客户端库
 \details 
 + 客户端插件接口类关系：
-  \image html docs/Image/PluginViewerAPI.svg
+  \image html docs/Image/PluginClientAPI.svg
 + 序列图：
-  \image html docs/Image/PluginViewerSequenceDiagram.svg
+  \image html docs/Image/PluginClientSequenceDiagram.svg
 
 
 \defgroup VIEWER_API 客户端应用程序接口
@@ -37,7 +37,7 @@
 \brief 客户端应用程序接口
 \details 
 + 类关系：
-  \image html docs/Image/PluginViewerAPI.svg
+  \image html docs/Image/PluginClientAPI.svg
 + 使用：
   - 实例化类： \ref CManagePlugin m_ManageConnecter;
     + 处理 CManagePlugin::Handle::onProcess 得到注册的连接插件
@@ -64,9 +64,9 @@
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
     \see CPluginClientThread CConnecterDesktop
 + 类关系：
-  \image html docs/Image/PluginViewerAPI.svg
+  \image html docs/Image/PluginClientAPI.svg
 + 序列图：
-  \image html docs/Image/PluginViewerSequenceDiagram.svg
+  \image html docs/Image/PluginClientSequenceDiagram.svg
 + 写一个插件：
   - 生成插件目标名称格式为： PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
@@ -94,10 +94,10 @@
     + 实现远程桌面
       - 如果是阻塞线程模型。实现一个后台线程处理一个远程连接，连接是阻塞的。
         可以从 \ref CConnecterDesktopThread 派生。例如：\ref CConnecterFreeRDP
-        \image html docs/Image/PluginViewerThreadSequenceDiagram.svg
+        \image html docs/Image/PluginClientBlockSequenceDiagram.svg
       - 如果非阻塞线程模型。实现一个后台线程处理多个远程连接，连接是非阻塞的。
         可以从 \ref CConnecterDesktop 派生。例如：\ref CConnecterRabbitVNC
-        \image html docs/Image/PluginViewerManageConnectSequenDiagram.svg
+        \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
     + 实现远程控制台，可以从 \ref CConnecterTerminal 派生
     + 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生
   - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectFreeRDP

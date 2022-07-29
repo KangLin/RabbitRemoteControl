@@ -29,9 +29,9 @@
 \brief Client library
 \details 
 - Client plugin interfaces Class relationship
-  \image html docs/Image/PluginViewerAPI.svg
+  \image html docs/Image/PluginClientAPI.svg
 - Sequence diagram
-  \image html docs/Image/PluginViewerSequenceDiagram.svg
+  \image html docs/Image/PluginClientSequenceDiagram.svg
 
 
 \defgroup VIEWER_API Client application interface
@@ -39,7 +39,7 @@
 \brief Client application interface
 \details
 + Class relationship
-  \image html docs/Image/PluginViewerAPI.svg
+  \image html docs/Image/PluginClientAPI.svg
 + usge:
   - Instance class: CManagePlugin m_ManageConnecter;
     + Handle CManagePlugin::Handle::onProcess to get the registered connection plugin
@@ -65,9 +65,9 @@
   - No-blocking: eg: qt event. A thread can handle multiple connections.
     \see CPluginClientThread CConnecterDesktop
 + Class relationship
-  \image html docs/Image/PluginViewerAPI.svg
+  \image html docs/Image/PluginClientAPI.svg
 + Sequence diagram
-  \image html docs/Image/PluginViewerSequenceDiagram.svg
+  \image html docs/Image/PluginClientSequenceDiagram.svg
 + Write a plugin:
   - The format of the generated plug-in target name is: PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
@@ -103,10 +103,10 @@
     - Implement remote desktop
       - Blocked: Implements a remote desktop background thread to handle
         a remote desktop connection, which can be derived from CConnecterDesktopThread. Eg: CConnecterFreeRDP
-        \image html docs/Image/PluginViewerThreadSequenceDiagram.svg
+        \image html docs/Image/PluginClientBlockSequenceDiagram.svg
       - No-blocking: Implements a background thread to handle multiple remote desktop connections,
         which can be derived from CConnecterDesktop. Eg: CConnecterRabbitVNC
-        \image html docs/Image/PluginViewerManageConnectSequenDiagram.svg
+        \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
     - Implement remote console, which can be derived from CConnecterTerminal
     - If the above two cannot meet your needs, you  can be derived from CConnecter
   - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP 
