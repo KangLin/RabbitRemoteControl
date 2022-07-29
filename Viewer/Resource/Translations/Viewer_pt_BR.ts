@@ -128,14 +128,14 @@
     </message>
 </context>
 <context>
-    <name>CParameterConnect</name>
+    <name>CParameterConnecter</name>
     <message>
-        <location filename="../../ParameterConnect.cpp" line="229"/>
+        <location filename="../../ParameterConnecter.cpp" line="229"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterConnect.cpp" line="245"/>
+        <location filename="../../ParameterConnecter.cpp" line="245"/>
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>

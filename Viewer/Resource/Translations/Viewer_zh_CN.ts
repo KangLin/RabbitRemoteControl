@@ -130,12 +130,23 @@
 <context>
     <name>CParameterConnect</name>
     <message>
-        <location filename="../../ParameterConnect.cpp" line="229"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterConnect.cpp" line="245"/>
+        <source>Proxy password</source>
+        <translation>代理密码</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterConnecter</name>
+    <message>
+        <location filename="../../ParameterConnecter.cpp" line="229"/>
+        <source>Password</source>
+        <translation>密码</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterConnecter.cpp" line="245"/>
         <source>Proxy password</source>
         <translation>代理密码</translation>
     </message>
