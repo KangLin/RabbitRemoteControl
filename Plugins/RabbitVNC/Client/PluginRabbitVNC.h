@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "PluginViewerThread.h"
+#include "PluginClientThread.h"
 #include <QTranslator>
 
-class CPluginRabbitVNC : public CPluginViewerThread
+class CPluginRabbitVNC : public CPluginClientThread
 {
     Q_OBJECT
     

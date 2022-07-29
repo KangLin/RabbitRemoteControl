@@ -11,13 +11,13 @@
 /*!
  * \~chinese 一个线程处理多个连接者 CConnecterDesktop 。
  *           一个连接者对应一个连接，也就是一个线程处理多个连接。
- *           此类仅用于 CPluginViewerThread
+ *           此类仅用于 CPluginClientThread
  *           由插件使用。例如：CPluginTigerVnc
  * \~english One thread handles multiple CConnecterDesktop.
- *           only used by CPluginViewerThread.
+ *           only used by CPluginClientThread.
  *           Be used by plugin. eg: CPluginTigerVnc
  * \~
- * \see CPluginViewerThread CManageConnect CConnecterDesktop
+ * \see CPluginClientThread CManageConnect CConnecterDesktop
  * \ingroup LIBAPI_THREAD
  */
 class CLIENT_EXPORT CPluginThread : public QThread

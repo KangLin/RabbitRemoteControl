@@ -10,7 +10,7 @@
 
 static bool initlog = false;
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
-    : CPluginViewerThread(parent)
+    : CPluginClientThread(parent)
 {
     //! [Initialize resource]
 

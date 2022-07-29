@@ -8,7 +8,7 @@
  * \~chinese 管理连接。此类仅用于 CPluginThread
  * \~english Manage CConnecter. only used by CPluginThread
  * \~
- * \see CPluginThread CPluginViewerThread CConnecterDesktop
+ * \see CPluginThread CPluginClientThread CConnecterDesktop
  * \ingroup LIBAPI_THREAD
  */ 
 class CManageConnect : public QObject

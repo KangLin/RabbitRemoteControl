@@ -1,7 +1,7 @@
-#include "PluginViewerThread.h"
+#include "PluginClientThread.h"
 #include "RabbitCommonLog.h"
 
-CPluginViewerThread::CPluginViewerThread(QObject *parent) : CPluginClient(parent),
+CPluginClientThread::CPluginClientThread(QObject *parent) : CPluginClient(parent),
     m_pThread(nullptr)
 {
     m_pThread = new CPluginThread();
@@ -14,22 +14,22 @@ CPluginViewerThread::CPluginViewerThread(QObject *parent) : CPluginClient(parent
     }
 }
 
-CPluginViewerThread::~CPluginViewerThread()
+CPluginClientThread::~CPluginClientThread()
 {
-    LOG_MODEL_DEBUG("CPluginViewerThread", "CPluginViewerThread::~CPluginViewerThread");
+    LOG_MODEL_DEBUG("CPluginClientThread", "CPluginClientThread::~CPluginClientThread");
     if(m_pThread)
         m_pThread->quit(); // The don't deleteLater().
                            // because of it is connected finished signal
 }
 
-CConnecter *CPluginViewerThread::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginClientThread::CreateConnecter(const QString &szProtol)
 {
     CConnecterDesktop* pConnecter = OnCreateConnecter(szProtol);
     if(!pConnecter) return nullptr;
     
     if(nullptr == m_pThread)
     {
-        LOG_MODEL_DEBUG("CPluginViewerThread", "The thread is nullptr");
+        LOG_MODEL_DEBUG("CPluginClientThread", "The thread is nullptr");
         return nullptr;
     }
 

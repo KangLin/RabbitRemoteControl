@@ -23,12 +23,12 @@
  * \~
  * \see CConnecterDesktop CPluginThread CManageConnect 
  */
-class CLIENT_EXPORT CPluginViewerThread : public CPluginClient
+class CLIENT_EXPORT CPluginClientThread : public CPluginClient
 {
     Q_OBJECT
 public:
-    explicit CPluginViewerThread(QObject *parent = nullptr);
-    virtual ~CPluginViewerThread();
+    explicit CPluginClientThread(QObject *parent = nullptr);
+    virtual ~CPluginClientThread();
 private:
     virtual CConnecter* CreateConnecter(const QString &szProtol) override;
     

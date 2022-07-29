@@ -27,7 +27,7 @@ list(APPEND VIEWER_INSTALL_HEADER_FILES
     ManagePlugin.h
     ManageConnect.h
     PluginClient.h
-    PluginViewerThread.h
+    PluginClientThread.h
     ConnecterDesktopThread.h
     ConnecterDesktop.h
     Parameter.h
@@ -51,7 +51,7 @@ list(APPEND VIEWER_SOURCE_FILES
     ManagePlugin.cpp
     ManageConnect.cpp
     PluginClient.cpp
-    PluginViewerThread.cpp
+    PluginClientThread.cpp
     ConnecterDesktopThread.cpp
     ConnecterDesktop.cpp
     ConnectThread.cpp

@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "PluginViewerThread.h"
+#include "PluginClientThread.h"
 #include <QTranslator>
 
-class CPluginTigerVnc : public CPluginViewerThread
+class CPluginTigerVnc : public CPluginClientThread
 {
     Q_OBJECT
     

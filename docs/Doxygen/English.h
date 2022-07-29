@@ -63,7 +63,7 @@
   - Blocked: Most control protocol implementation library connections are blocking.
     \see CPluginClient CConnecterDesktopThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
-    \see CPluginViewerThread CConnecterDesktop
+    \see CPluginClientThread CConnecterDesktop
 + Class relationship
   \image html docs/Image/PluginViewerAPI.svg
 + Sequence diagram
@@ -87,7 +87,7 @@
              \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
     + No-blocking: One background thread handles multiple connections.
       The connection is non-blocking. E.g. RabbitVNC 
-      - Derive from CPluginViewerThread. For example: CPluginRabbitVNC
+      - Derive from CPluginClientThread. For example: CPluginRabbitVNC
         + Implement the Qt interface in the class declaration:
           \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.h Qt plugin interface
         + Initialize the operation in the constructor.
