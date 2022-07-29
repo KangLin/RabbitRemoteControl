@@ -13,7 +13,7 @@
 #include <QSharedPointer>
 #include "PluginClient.h"
 #include "Hook.h"
-#include "ParameterViewer.h"
+#include "ParameterClient.h"
 
 /**
  * \~chinese \brief 管理插件和连接者
@@ -46,7 +46,7 @@ public:
     virtual CConnecter* CreateConnecter(const QString &id);
     
     /*! \~chinese 从文件中新建 CConnecter 指针，所有者是调用者。
-     *          <b>当不再使用时，调用者必须负责删除此指针</b>
+     *          <b>当不再使用时，调用者必须负责删除此指针</b>。
      *          调用者必须连接信号 CConnecter::sigDisconnected 。
      *          释放指针( CConnecter::deleteLater )
      * \~english New CConnecter pointer from file, the owner is caller.
@@ -124,7 +124,7 @@ private:
     qint8 m_FileVersion;
     QTranslator m_Translator;
     QSharedPointer<CHook> m_Hook;
-    CParameterViewer m_ParameterViewer;
+    CParameterClient m_ParameterClient;
 };
 
 #endif // CMANAGECONNECTER_H

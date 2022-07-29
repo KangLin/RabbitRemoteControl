@@ -23,7 +23,7 @@ CParameterConnecter::CParameterConnecter(QObject *parent)
     SetUser(RabbitCommon::CTools::GetCurrentUser());
 }
 
-CParameterViewer* CParameterConnecter::GetParameterViewer()
+CParameterClient* CParameterConnecter::GetParameterViewer()
 {
     return m_pParameterViewe;
 }
@@ -343,12 +343,12 @@ int CParameterConnecter::SavePassword(const QString &szKey,
     if(key.empty())
     {
         switch (GetParameterViewer()->GetPromptType()) {
-        case CParameterViewer::PromptType::First:
+        case CParameterClient::PromptType::First:
             if(GetParameterViewer()->GetPromptCount() >= 1)
                 break;
             GetParameterViewer()->SetPromptCount(
                         GetParameterViewer()->GetPromptCount() + 1);
-        case CParameterViewer::PromptType::Always:
+        case CParameterClient::PromptType::Always:
         {
             QString szKey;
             CDlgInputPassword::InputType t = CDlgInputPassword::InputType::Encrypt;
@@ -359,7 +359,7 @@ int CParameterConnecter::SavePassword(const QString &szKey,
                 GetParameterViewer()->SetEncryptKey(szKey);
             break;
         }
-        case CParameterViewer::PromptType::No:
+        case CParameterClient::PromptType::No:
             break;
         }
     } else

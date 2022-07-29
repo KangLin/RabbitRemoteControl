@@ -5,9 +5,9 @@
 
 ### 项目位置
 
-+ 主库：https://github.com/KangLin/RabbitRemoteControl
++ 主库： https://github.com/KangLin/RabbitRemoteControl
 + 镜像：
-  - 中国镜像：https://gitee.com/kl222/RabbitRemoteControl
+  - 中国镜像： https://gitee.com/kl222/RabbitRemoteControl
   - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
   - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
   - launchpad: https://launchpad.net/rabbitremotecontrol

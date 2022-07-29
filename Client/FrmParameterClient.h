@@ -2,20 +2,20 @@
 #define FRMPARAMETERVIEWER_H
 
 #include <QWidget>
-#include "ParameterViewer.h"
+#include "ParameterClient.h"
 
 namespace Ui {
-class CFrmParameterViewer;
+class CFrmParameterClient;
 }
 
-class CFrmParameterViewer : public QWidget
+class CFrmParameterClient : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit CFrmParameterViewer(CParameterViewer* pParameter,
+    explicit CFrmParameterClient(CParameterClient* pParameter,
                                  QWidget *parent = nullptr);
-    virtual ~CFrmParameterViewer();
+    virtual ~CFrmParameterClient();
 
     //! [Accept parameters]
 public Q_SLOTS:
@@ -29,8 +29,8 @@ public Q_SLOTS:
     void on_pbEncryptKey_clicked();
 
 private:
-    Ui::CFrmParameterViewer *ui;
-    CParameterViewer* m_pPara;
+    Ui::CFrmParameterClient *ui;
+    CParameterClient* m_pPara;
 };
 
 #endif // FRMPARAMETERVIEWER_H

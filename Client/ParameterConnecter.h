@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "ParameterViewer.h"
+#include "ParameterClient.h"
 #include <QDataStream>
 
 class CConnecter;
@@ -18,12 +18,12 @@ class CConnecter;
  *        it can only be set via CConnecter::OpenDialogSettings.
  * \note
  *  - The interface only is implemented and used by plugin.
- *  - If it or its derived class requires a CParameterViewer.
+ *  - If it or its derived class requires a CParameterClient.
  *    Please instantiate the parameters and call CConnecter::SetParameter
  *    in the constructor of the CConnecter derived class
  *    to set the parameters pointer.
- *    If you are sure to it does not need CParameterViewer.
- *    please overload the CConnecter::SetParameterViewer in the CConnecter derived class.
+ *    If you are sure to it does not need CParameterClient.
+ *    please overload the CConnecter::SetParameterClient in the CConnecter derived class.
  *    don't set it.
  *
  * \~chinese
@@ -31,15 +31,15 @@ class CConnecter;
  *        应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
  * \note
  *  - 此接口仅由插件派生实现和使用。
- *  - 如果它或其派生类需要 CParameterViewer 。
+ *  - 如果它或其派生类需要 CParameterClient 。
  *    请在 CConnecter 的派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
- *    如果参数不需要 CParameterViewer ，那请在 CConnecter 派生类
- *    重载 CConnecter::SetParameterViewer 不设置 CParameterViewer 。
+ *    如果参数不需要 CParameterClient ，那请在 CConnecter 派生类
+ *    重载 CConnecter::SetParameterClient 不设置 CParameterClient 。
  *
  * \~
  * \see CManagePlugin::CreateConnecter CConnecter::CConnecter
- *      CConnecter::SetParameterViewer CConnecter::SetParameter
- *      CParameterViewer
+ *      CConnecter::SetParameterClient CConnecter::SetParameter
+ *      CParameterClient
  */
 class CLIENT_EXPORT CParameterConnecter : public CParameter
 {
@@ -67,7 +67,7 @@ public:
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
 
-    CParameterViewer* GetParameterViewer();
+    CParameterClient* GetParameterViewer();
 
     /*!
      * \brief Check whether the parameters are complete
@@ -98,6 +98,10 @@ public:
     void SetPassword(const QString& password);
     
     const bool GetSavePassword() const;
+    /*!
+     * \brief Set save password
+     * \param save
+     */
     void SetSavePassword(bool save);
 
     const bool GetOnlyView() const;
@@ -142,9 +146,9 @@ protected:
 private:
     friend CConnecter;
     /*!
-     * \see CManagePlugin::CreateConnecter CConnecter::SetParameterViewer
+     * \see CManagePlugin::CreateConnecter CConnecter::SetParameterClient
      */
-    CParameterViewer* m_pParameterViewe;
+    CParameterClient* m_pParameterViewe;
     QString m_szName;
     QString m_szServerName;
     bool m_bShowServerName;

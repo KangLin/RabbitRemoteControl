@@ -7,16 +7,16 @@
 
 /*!
  * \~english
- * \brief The CParameterViewer class
+ * \brief The CParameterClient class
  *        The parameters is valid in the Client.
  *        The application cannot access it directly,
  *        it can only be set via CManagePlugin::GetSettingsWidgets.
  * \note
  *  - The interface only is implemented and used by Client or plugin.
- *  - If the parameters(\ref CParameterConnecter or its derived class) requires a CParameterViewer.
+ *  - If the parameters(\ref CParameterConnecter or its derived class) requires a CParameterClient.
  *    Please instantiate the parameters and call CConnecter::SetParameter in the constructor of the CConnecter derived class to set the parameters.
- *    If you are sure to the parameter does not need CParameterViewer.
- *    please overload the CConnecter::SetParameterViewer in the CConnecter derived class.
+ *    If you are sure to the parameter does not need CParameterClient.
+ *    please overload the CConnecter::SetParameterClient in the CConnecter derived class.
  *    don't set it.
  *
  * \~chinese
@@ -24,24 +24,30 @@
  *        应用程序不能直接访问，只能通过 CManagePlugin::GetSettingsWidgets 进行设置。
  * \note
  *  - 此接口仅由插件派生实现和使用。
- *  - 如果参数( CParameterConnecter 或其派生类）需要 CParameterViewer 。
+ *  - 如果参数( CParameterConnecter 或其派生类）需要 CParameterClient 。
  *    请在 CConnecter 派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
- *    如果参数不需要 CParameterViewer ，
- *    那请在 CConnecter 派生类重载 CConnecter::SetParameterViewer 不设置它。
+ *    如果参数不需要 CParameterClient ，
+ *    那请在 CConnecter 派生类重载 CConnecter::SetParameterClient 不设置它。
  *
  * \~
  * \see CManagePlugin::CreateConnecter CConnecter::CConnecter
- *      CConnecter::SetParameterViewer CConnecter::SetParameter
+ *      CConnecter::SetParameterClient CConnecter::SetParameter
  *      CParameterConnecter
  */
-class CLIENT_EXPORT CParameterViewer : public CParameter
+class CLIENT_EXPORT CParameterClient : public CParameter
 {
     Q_OBJECT
 public:
-    explicit CParameterViewer(QObject *parent = nullptr);
-    virtual ~CParameterViewer();
+    explicit CParameterClient(QObject *parent = nullptr);
+    virtual ~CParameterClient();
 
+    /*!
+     * \see CClient::LoadSettings
+     */
     virtual int Load(QSettings &set) override;
+    /*!
+     * \see CClient::SaveSettings
+     */
     virtual int Save(QSettings &set) override;
 
 public:

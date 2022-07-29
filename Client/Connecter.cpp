@@ -174,7 +174,7 @@ CParameterConnecter* CConnecter::GetParameter()
     return m_pParameter;
 }
 
-int CConnecter::SetParameterViewer(CParameterViewer* pPara)
+int CConnecter::SetParameterClient(CParameterClient* pPara)
 {
     if(GetParameter())
     {
@@ -185,11 +185,11 @@ int CConnecter::SetParameterViewer(CParameterViewer* pPara)
     } else {
         LOG_MODEL_ERROR("CConnecter",
                 "If the parameters(CParameterConnecter or its derived classes) "
-                "requires a CParameterViewer. "
+                "requires a CParameterClient. "
                 "Please instantiate the parameters "
                 "and call SetParameter in the %s::%s to set the parameters pointer. "
-                "If you are sure the parameter does not need CParameterViewer. "
-                "please overload the SetParameterViewer in the %s. don't set it",
+                "If you are sure the parameter does not need CParameterClient. "
+                "please overload the SetParameterClient in the %s. don't set it",
                 metaObject()->className(),
                 metaObject()->className(),
                 metaObject()->className());

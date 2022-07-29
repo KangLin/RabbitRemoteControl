@@ -3,7 +3,7 @@
 #include "ManagePlugin.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
-#include "FrmParameterViewer.h"
+#include "FrmParameterClient.h"
 
 #include <QPluginLoader>
 #include <QDebug>
@@ -29,10 +29,10 @@ CManagePlugin::CManagePlugin(QObject *parent) : QObject(parent),
 
     LoadPlugins();
 
-    check = connect(&m_ParameterViewer, SIGNAL(sigHookKeyboardChanged()),
+    check = connect(&m_ParameterClient, SIGNAL(sigHookKeyboardChanged()),
                     this, SLOT(slotHookKeyboardChanged()));
     Q_ASSERT(check);
-    if(m_ParameterViewer.GetHookKeyboard())
+    if(m_ParameterClient.GetHookKeyboard())
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
 }
 
@@ -150,7 +150,7 @@ CConnecter* CManagePlugin::CreateConnecter(const QString& id)
     if(m_Plugins.end() != it)
     {
         CConnecter* p = it.value()->CreateConnecter(id);
-        if(p) p->SetParameterViewer(&m_ParameterViewer);
+        if(p) p->SetParameterClient(&m_ParameterClient);
         return p;
     }
     return nullptr;
@@ -206,19 +206,19 @@ int CManagePlugin::SaveConnecter(QString szFile, CConnecter *pConnecter)
 
 int CManagePlugin::LoadSettings(QString szFile)
 {
-    return m_ParameterViewer.CParameter::Load(szFile);
+    return m_ParameterClient.CParameter::Load(szFile);
 }
 
 int CManagePlugin::SaveSettings(QString szFile)
 {
-    return m_ParameterViewer.CParameter::Save(szFile);
+    return m_ParameterClient.CParameter::Save(szFile);
 }
 
 QList<QWidget*> CManagePlugin::GetSettingsWidgets(QWidget* parent)
 {
     QList<QWidget*> lstWidget;
 
-    QWidget* p = new CFrmParameterViewer(&m_ParameterViewer, parent);
+    QWidget* p = new CFrmParameterClient(&m_ParameterClient, parent);
     if(p)
         lstWidget.push_back(p);
     return lstWidget;
@@ -244,7 +244,7 @@ int CManagePlugin::EnumPlugins(Handle *handle)
 
 void CManagePlugin::slotHookKeyboardChanged()
 {
-    if(m_ParameterViewer.GetHookKeyboard())
+    if(m_ParameterClient.GetHookKeyboard())
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
     else
         m_Hook.reset();
