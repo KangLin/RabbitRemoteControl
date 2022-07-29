@@ -10,7 +10,7 @@
  * \brief The CParameterClient class
  *        The parameters is valid in the Client.
  *        The application cannot access it directly,
- *        it can only be set via CManagePlugin::GetSettingsWidgets.
+ *        it can only be set via CClient::GetSettingsWidgets.
  * \note
  *  - The interface only is implemented and used by Client or plugin.
  *  - If the parameters(\ref CParameterConnecter or its derived class) requires a CParameterClient.
@@ -21,7 +21,7 @@
  *
  * \~chinese
  * \brief 客户端参数接口。它包含客户端的参数。此类仅在客户端和插件内有效。
- *        应用程序不能直接访问，只能通过 CManagePlugin::GetSettingsWidgets 进行设置。
+ *        应用程序不能直接访问，只能通过 CClient::GetSettingsWidgets 进行设置。
  * \note
  *  - 此接口仅由插件派生实现和使用。
  *  - 如果参数( CParameterConnecter 或其派生类）需要 CParameterClient 。
@@ -30,7 +30,7 @@
  *    那请在 CConnecter 派生类重载 CConnecter::SetParameterClient 不设置它。
  *
  * \~
- * \see CManagePlugin::CreateConnecter CConnecter::CConnecter
+ * \see CClient::CreateConnecter CConnecter::CConnecter
  *      CConnecter::SetParameterClient CConnecter::SetParameter
  *      CParameterConnecter
  */

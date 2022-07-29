@@ -13,7 +13,7 @@
 #include <QSystemTrayIcon>
 
 #include "ViewTable.h"
-#include "ManagePlugin.h"
+#include "Client.h"
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
 #include "FavoriteView.h"
@@ -28,7 +28,7 @@ class CFrmFullScreenToolBar;
  * \brief The MainWindow class
  * \ingroup VIEWER_APP
  */
-class MainWindow : public QMainWindow, CManagePlugin::Handle
+class MainWindow : public QMainWindow, CClient::Handle
 {
     Q_OBJECT
 
@@ -67,7 +67,7 @@ private:
 public:
     virtual int onProcess(const QString &id, CPluginClient *pPlug) override;
 private:
-    CManagePlugin m_ManageConnecter;
+    CClient m_Client;
     QMap<CConnecter*, QString> m_ConfigureFiles;
     QVector<CConnecter*> m_Connecters;
     

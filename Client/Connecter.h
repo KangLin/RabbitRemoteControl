@@ -21,7 +21,7 @@ class CPluginClient;
 class CConnect;
 class CParameterConnecter;
 class CParameterClient;
-class CManagePlugin;
+class CClient;
 
 /*!
  * \~chinese
@@ -72,7 +72,7 @@ public:
      *       If you are sure the parameter does not need CParameterClient.
      *       please overload the CConnecter::SetParameterClient in the derived class. don't set it.
      * \~
-     * \see CManagePlugin::CreateConnecter SetParameterClient SetParameter
+     * \see CClient::CreateConnecter SetParameterClient SetParameter
      *      CParameterConnecter CParameterClient
      */
     explicit CConnecter(CPluginClient *parent);
@@ -284,12 +284,12 @@ protected:
     /*!
      * \note If CParameterConnecter isn't need CParameterClient.
      *       please overload this function.
-     * \see CManagePlugin::CreateConnecter CParameterConnecter CParameterClient
+     * \see CClient::CreateConnecter CParameterConnecter CParameterClient
      */
     virtual int SetParameterClient(CParameterClient* pPara);
 
 private:
-    friend CManagePlugin;
+    friend CClient;
     QString m_szServerName;
 
     // The owner is a derived class of this class

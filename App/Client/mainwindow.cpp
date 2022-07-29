@@ -124,8 +124,8 @@ MainWindow::MainWindow(QWidget *parent)
         this->setCentralWidget(m_pView);
     }
     
-    m_ManageConnecter.EnumPlugins(this);
-    m_ManageConnecter.LoadSettings();
+    m_Client.EnumPlugins(this);
+    m_Client.LoadSettings();
 
     QToolButton* tbConnect = new QToolButton(ui->toolBar);
     tbConnect->setFocusPolicy(Qt::NoFocus);
@@ -536,7 +536,7 @@ void MainWindow::slotUpdateParameters(CConnecter* pConnecter)
     auto it = m_ConfigureFiles.find(pConnecter);
     if(m_ConfigureFiles.end() == it)
         return;
-    m_ManageConnecter.SaveConnecter(it.value(), pConnecter);
+    m_Client.SaveConnecter(it.value(), pConnecter);
 }
 
 void MainWindow::on_actionClone_triggered()
@@ -551,7 +551,7 @@ void MainWindow::on_actionClone_triggered()
             if(m_ConfigureFiles.end() == it)
                 return;
             QString szFile = it.value();
-            auto pConnecter = m_ManageConnecter.LoadConnecter(szFile);
+            auto pConnecter = m_Client.LoadConnecter(szFile);
             if(!pConnecter) return;
             Connect(pConnecter, false, szFile);
             return;
@@ -562,7 +562,7 @@ void MainWindow::on_actionClone_triggered()
 void MainWindow::slotOpenFile(const QString& szFile, bool bOpenSettings)
 {
     if(szFile.isEmpty()) return;
-    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
+    CConnecter* p = m_Client.LoadConnecter(szFile);
     if(nullptr == p)
     {
         slotInformation(tr("Load file fail: ") + szFile);
@@ -580,7 +580,7 @@ void MainWindow::on_actionOpen_O_triggered()
                      tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
     if(szFile.isEmpty()) return;
 
-    CConnecter* p = m_ManageConnecter.LoadConnecter(szFile);
+    CConnecter* p = m_Client.LoadConnecter(szFile);
     if(nullptr == p)
     {
         slotInformation(tr("Load file fail: ") + szFile);
@@ -598,7 +598,7 @@ void MainWindow::slotConnect()
         return;
     }
     QAction* pAction = dynamic_cast<QAction*>(this->sender());    
-    CConnecter* p = m_ManageConnecter.CreateConnecter(pAction->data().toString());
+    CConnecter* p = m_Client.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
     
     Connect(p, true);
@@ -660,7 +660,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     
     int nRet = 0;
     if(bSave)
-        nRet = m_ManageConnecter.SaveConnecter(szFile, p);
+        nRet = m_Client.SaveConnecter(szFile, p);
     if(0 == nRet)
         m_pRecentMenu->addRecentFile(szFile, p->Name());
 
@@ -926,10 +926,10 @@ void MainWindow::on_actionScreenshot_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    CParameterDlgSettings set(&m_Parameter, m_ManageConnecter.GetSettingsWidgets(this), this);
+    CParameterDlgSettings set(&m_Parameter, m_Client.GetSettingsWidgets(this), this);
     if(CParameterDlgSettings::Accepted == set.exec())
     {
-        m_ManageConnecter.SaveSettings();
+        m_Client.SaveSettings();
         m_Parameter.Save();
     }
 }

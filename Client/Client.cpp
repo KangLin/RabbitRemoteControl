@@ -1,6 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ManagePlugin.h"
+#include "Client.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonLog.h"
 #include "FrmParameterClient.h"
@@ -13,7 +13,7 @@
 #include <QCoreApplication>
 #include <QSettings>
 
-CManagePlugin::CManagePlugin(QObject *parent) : QObject(parent),
+CClient::CClient(QObject *parent) : QObject(parent),
     m_FileVersion(1)  //TODO: update version it if update data
 {
     bool check = false;
@@ -36,17 +36,17 @@ CManagePlugin::CManagePlugin(QObject *parent) : QObject(parent),
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
 }
 
-CManagePlugin::~CManagePlugin()
+CClient::~CClient()
 {
     qDebug() << "CManageConnecter::~CManageConnecter()";
     qApp->removeTranslator(&m_Translator);
-    qDebug() << "CManagePlugin::~CManagePlugin()";
+    qDebug() << "CClient::~CClient()";
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_Client);
 //#endif
 }
 
-int CManagePlugin::LoadPlugins()
+int CClient::LoadPlugins()
 {
     foreach (QObject *plugin, QPluginLoader::staticInstances())
     {
@@ -78,7 +78,7 @@ int CManagePlugin::LoadPlugins()
     return FindPlugins(szPath, filters);
 }
 
-int CManagePlugin::FindPlugins(QDir dir, QStringList filters)
+int CClient::FindPlugins(QDir dir, QStringList filters)
 {
     QString szPath = dir.path();
     QString fileName;
@@ -144,7 +144,7 @@ int CManagePlugin::FindPlugins(QDir dir, QStringList filters)
     return 0;
 }
 
-CConnecter* CManagePlugin::CreateConnecter(const QString& id)
+CConnecter* CClient::CreateConnecter(const QString& id)
 {
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
@@ -156,7 +156,7 @@ CConnecter* CManagePlugin::CreateConnecter(const QString& id)
     return nullptr;
 }
 
-CConnecter* CManagePlugin::LoadConnecter(const QString &szFile)
+CConnecter* CClient::LoadConnecter(const QString &szFile)
 {
     CConnecter* pConnecter = nullptr;
     if(szFile.isEmpty()) return nullptr;
@@ -180,7 +180,7 @@ CConnecter* CManagePlugin::LoadConnecter(const QString &szFile)
     return pConnecter;
 }
 
-int CManagePlugin::SaveConnecter(QString szFile, CConnecter *pConnecter)
+int CClient::SaveConnecter(QString szFile, CConnecter *pConnecter)
 {
     if(!pConnecter) return -1;
 
@@ -204,17 +204,17 @@ int CManagePlugin::SaveConnecter(QString szFile, CConnecter *pConnecter)
     return 0;
 }
 
-int CManagePlugin::LoadSettings(QString szFile)
+int CClient::LoadSettings(QString szFile)
 {
     return m_ParameterClient.CParameter::Load(szFile);
 }
 
-int CManagePlugin::SaveSettings(QString szFile)
+int CClient::SaveSettings(QString szFile)
 {
     return m_ParameterClient.CParameter::Save(szFile);
 }
 
-QList<QWidget*> CManagePlugin::GetSettingsWidgets(QWidget* parent)
+QList<QWidget*> CClient::GetSettingsWidgets(QWidget* parent)
 {
     QList<QWidget*> lstWidget;
 
@@ -224,7 +224,7 @@ QList<QWidget*> CManagePlugin::GetSettingsWidgets(QWidget* parent)
     return lstWidget;
 }
 
-int CManagePlugin::EnumPlugins(Handle *handle)
+int CClient::EnumPlugins(Handle *handle)
 {
     int nRet = 0;
     QMap<QString, CPluginClient*>::iterator it;
@@ -242,7 +242,7 @@ int CManagePlugin::EnumPlugins(Handle *handle)
     return nRet;
 }
 
-void CManagePlugin::slotHookKeyboardChanged()
+void CClient::slotHookKeyboardChanged()
 {
     if(m_ParameterClient.GetHookKeyboard())
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());

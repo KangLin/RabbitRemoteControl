@@ -10,6 +10,7 @@
   - 重命名 CPluginViewerThread 到 CPluginClientThread
   - 重命名 CParameterViewer 到 CParameterClient
   - 重命名 CConnecter::SetParameterViewer 到 CConnecter::SetParameterClient
+  - 重命名 CManagePlugin 到 CClient
 
 ### v0.0.21
 + 在 Windows 下，增加导出崩溃文件

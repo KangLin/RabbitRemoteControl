@@ -20,7 +20,7 @@
  *    \see CParameterConnecter
  * 2. 在客户端库内有效。
  *    应用程序不能直接访问。
- *    应用程序只通过 CManagePlugin::GetSettingsWidgets 进行设置。
+ *    应用程序只通过 CClient::GetSettingsWidgets 进行设置。
  *    插件可以直接使用或者以其做为初始化值。
  *    例如：保存密码可以以它为初始化值。 详见： CConnecter::SetParameterClient
  *    \see CParameterClient
@@ -37,7 +37,7 @@
  *    \see CParameterConnecter
  * 2. Valid in the Client. 
  *    The application cannot access it directly,
- *    it can only be set via CManagePlugin::GetSettingsWidgets.
+ *    it can only be set via CClient::GetSettingsWidgets.
  *    Plugins can use them directly or use them as initialization values.
  *    For example: save the password can use it as the initialization value.
  *    See: CConnecter::SetParameterClient

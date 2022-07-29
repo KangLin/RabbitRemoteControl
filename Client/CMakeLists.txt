@@ -24,7 +24,7 @@ endif()
 list(APPEND VIEWER_INSTALL_HEADER_FILES
     FrmViewer.h
     Connecter.h
-    ManagePlugin.h
+    Client.h
     ManageConnect.h
     PluginClient.h
     PluginClientThread.h
@@ -48,7 +48,7 @@ list(APPEND VIEWER_HEADER_FILES
 list(APPEND VIEWER_SOURCE_FILES
     Connecter.cpp
     Connect.cpp
-    ManagePlugin.cpp
+    Client.cpp
     ManageConnect.cpp
     PluginClient.cpp
     PluginClientThread.cpp

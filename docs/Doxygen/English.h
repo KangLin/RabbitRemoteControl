@@ -41,11 +41,11 @@
 + Class relationship
   \image html docs/Image/PluginClientAPI.svg
 + usge:
-  - Instance class: CManagePlugin m_ManageConnecter;
-    + Handle CManagePlugin::Handle::onProcess to get the registered connection plugin
+  - Instance class: CClient m_Client;
+    + Handle CClient::Handle::onProcess to get the registered connection plugin
   - Use one of the following methods to get the connecter object:
-    + \ref CManagePlugin::CreateConnecter
-    + \ref CManagePlugin::LoadConnecter
+    + \ref CClient::CreateConnecter
+    + \ref CClient::LoadConnecter
   - Connect signal:
     + Connect CConnecter::sigConnected
     + Connect CConnecter::sigDisconnected

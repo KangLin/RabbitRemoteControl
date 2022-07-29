@@ -18,7 +18,7 @@
  *                  The interface only is implemented by plug-in.
  * \~
  * \ingroup VIEWER_PLUGIN_API
- * \see CConnecter CManagePlugin
+ * \see CConnecter CClient
  */
 class CLIENT_EXPORT CPluginClient : public QObject
 {
@@ -69,21 +69,21 @@ public:
 private:
     /**
      * \~chinese
-     * \brief 新建 CConnecter 实例。仅由 CManagePlugin 调用
+     * \brief 新建 CConnecter 实例。仅由 CClient 调用
      * \return 返回 CConnecter 指针, 它的所有者是调用者。
      * \note 此函数新建一个堆栈对象指针，
      *       <b>调用者必须负责在用完后释放指针</b>。
      * \param szProtol 连接协议
      * 
      * \~english
-     * \brief New CConnecter instance. Only is called by CManagePlugin 
+     * \brief New CConnecter instance. Only is called by CClient 
      * \return Return CConnecter pointer, the owner is caller
      * \note The function new object pointer,
      *       <b>the caller must delete it when don't use it</b>.
      * \param szProtol
      * 
      * \~
-     * \see CManagePlugin::CreateConnecter CManagePlugin::LoadConnecter
+     * \see CClient::CreateConnecter CClient::LoadConnecter
      * 
      */
     virtual CConnecter* CreateConnecter(const QString& szProtol) = 0;
@@ -92,7 +92,7 @@ private:
     QTranslator m_Translator;
     int InitTranslator();
     
-    friend class CManagePlugin;
+    friend class CClient;
     
     CPluginThread* m_pThread;
 };

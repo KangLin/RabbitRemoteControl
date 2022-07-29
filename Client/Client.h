@@ -22,13 +22,13 @@
  * \see   CPluginClient CConnecter
  * \ingroup VIEWER_API
  */
-class CLIENT_EXPORT CManagePlugin : public QObject
+class CLIENT_EXPORT CClient : public QObject
 {
     Q_OBJECT
     
 public:
-    explicit CManagePlugin(QObject *parent = nullptr);
-    virtual ~CManagePlugin();
+    explicit CClient(QObject *parent = nullptr);
+    virtual ~CClient();
     
     /*!
      * \~chinese

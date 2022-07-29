@@ -37,7 +37,7 @@ class CConnecter;
  *    重载 CConnecter::SetParameterClient 不设置 CParameterClient 。
  *
  * \~
- * \see CManagePlugin::CreateConnecter CConnecter::CConnecter
+ * \see CClient::CreateConnecter CConnecter::CConnecter
  *      CConnecter::SetParameterClient CConnecter::SetParameter
  *      CParameterClient
  */
@@ -146,7 +146,7 @@ protected:
 private:
     friend CConnecter;
     /*!
-     * \see CManagePlugin::CreateConnecter CConnecter::SetParameterClient
+     * \see CClient::CreateConnecter CConnecter::SetParameterClient
      */
     CParameterClient* m_pParameterViewe;
     QString m_szName;
