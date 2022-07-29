@@ -1,8 +1,7 @@
 #include "Parameter.h"
 #include "RabbitCommonDir.h"
 
-CParameter::CParameter(QObject *parent)
-    : QObject(parent)
+CParameter::CParameter(QObject *parent) : QObject(parent)
 {}
 
 CParameter::~CParameter()

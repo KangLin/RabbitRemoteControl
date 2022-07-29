@@ -20,7 +20,7 @@
  * \~english \brief manage plugins and connecter
  * \~
  * \see   CPluginClient CConnecter
- * \ingroup VIEWER_API
+ * \ingroup CLIENT_API
  */
 class CLIENT_EXPORT CClient : public QObject
 {
@@ -88,7 +88,7 @@ public:
      * \brief 保存客户端参数到文件
      * \param szFile：文件名
      * \~english Save Client parameters to file
-     * 
+     * \param szFile: file name
      */
     virtual int SaveSettings(QString szFile = QString());
 

@@ -37,6 +37,7 @@
 class CLIENT_EXPORT CParameterClient : public CParameter
 {
     Q_OBJECT
+
 public:
     explicit CParameterClient(QObject *parent = nullptr);
     virtual ~CParameterClient();
@@ -61,8 +62,7 @@ private:
                NOTIFY sigHookKeyboardChanged)
     
 
-    //////////////// Password ////////////////
-    
+//////////////// Password ////////////////
 public:
     const QString &GetEncryptKey() const;
     void SetEncryptKey(const QString &newPassword);
@@ -106,8 +106,7 @@ Q_SIGNALS:
 private:
     int m_nPromptCount;
     Q_PROPERTY(int PromptCount READ GetPromptCount WRITE SetPromptCount NOTIFY sigPromptCountChanged)
-    
-    
+
 public:
     bool GetViewPassowrd() const;
     void SetViewPassowrd(bool NewViewPassowrd);
@@ -116,8 +115,7 @@ Q_SIGNALS:
 private:
     bool m_bViewPassowrd;
     Q_PROPERTY(bool ViewPassowrd READ GetViewPassowrd WRITE SetViewPassowrd NOTIFY sigViewPassowrdChanged)
-    
-    //////////////// Password end ////////////////
+//////////////// Password end ////////////////
 };
 
 #endif // CPARAMETERVIEWER_H

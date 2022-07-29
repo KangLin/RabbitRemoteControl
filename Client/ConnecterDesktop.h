@@ -9,7 +9,7 @@
  * \details
  * 序列图：\image html docs/Image/PluginClientNoBlockSequenDiagram.svg
  * \note 此接口仅由插件实现。
- *       如果要实现一个后台线程处理多个连接，此控制者插件接口必须由 CPluginClientThread 派生。 \n
+ *       如果要实现一个后台线程处理多个连接，此客户端插件接口必须由 CPluginClientThread 派生。 \n
  * 
  * \~english
  * \brief The class only supports the Qt event (the signal-slot mechanism of QObject, no-block)
@@ -20,7 +20,7 @@
  *       multiple remote desktop connections,
  *       The plugin interface must be derived from CPluginClientThread. \n
  * 
- * \~  
+ * \~
  * \see CPluginClientThread CPluginThread CManageConnect
  */
 class CLIENT_EXPORT CConnecterDesktop : public CConnecterDesktopThread

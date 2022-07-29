@@ -34,7 +34,7 @@
   \image html docs/Image/PluginClientSequenceDiagram.svg
 
 
-\defgroup VIEWER_API Client application interface
+\defgroup CLIENT_API Client application interface
 \ingroup LIBAPI_CLIENT
 \brief Client application interface
 \details
@@ -55,7 +55,7 @@
   - After receiving the \ref CConnecter::sigDisconnected signal, do connection-related cleanup work, and delete the connector object after completion ( CConnecter::deleteLater )
 
 
-\defgroup VIEWER_PLUGIN_API Client plugin interfaces
+\defgroup CLIENT_PLUGIN_API Client plugin interfaces
 \ingroup LIBAPI_CLIENT
 \brief Client plugin interfaces.
 \details
@@ -114,6 +114,14 @@
 \defgroup LIBAPI_THREAD Thread module
 \ingroup LIBAPI_CLIENT
 \brief Thread module
+\details
++ Thread module
+  - Blocked: Most control protocol implementation library connections are blocking.
+    \see CPluginClient CConnecterDesktopThread
+  - No-blocking: eg: qt event. A thread can handle multiple connections.
+    \see CPluginClientThread CConnecterDesktop
++ Class relationship
+  \image html docs/Image/PluginClientAPI.svg
 
 \defgroup LIBAPI_CHANNEL Channel
 \brief Stream data channel

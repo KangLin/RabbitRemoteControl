@@ -45,7 +45,7 @@
  * 3. Valid in both the application and the Client.
  *
  * \~
- * \ingroup VIEWER_PLUGIN_API
+ * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CParameter : public QObject
 {

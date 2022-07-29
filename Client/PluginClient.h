@@ -12,13 +12,17 @@
 #include "PluginThread.h"
 
 /**
- * \~chinese \brief 控制者插件接口。建立 CConnecter 实例，它由协议插件实现。
- * 
- * \~english \brief The plugin interface. Create CConnecter instance.
- *                  The interface only is implemented by plug-in.
+ * \~chinese
+ * \brief 客户端插件接口。建立 CConnecter 实例，它由协议插件实现。
+ *        可以与 CConnecterDesktopThread 一起使用，用于连接是阻塞模型的。
+ *
+ * \~english
+ * \brief The plugin interface. Create CConnecter instance.
+ *        The interface only is implemented by plug-in.
+ *        It may be used with CConnecterDesktopThread for connection is blocking model.
  * \~
- * \ingroup VIEWER_PLUGIN_API
- * \see CConnecter CClient
+ * \see CClient CConnecterDesktopThread CConnecter
+ * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CPluginClient : public QObject
 {
@@ -32,7 +36,7 @@ public:
      * \note  派生类必须实现它. 
      * 
      * \~english
-     * \brief the resources are initialized are loaded here. eg:
+     * \brief The resources are initialized are loaded here. eg:
      * \snippet Plugins/TigerVnc/Client/PluginTigerVnc.cpp Initialize resource
      * \note When the derived class is implemented.
      * 

@@ -21,7 +21,7 @@
  * \note The interface only is implemented by plug-in.
  *       The connecter must be derived from CConnecterDesktop 
  * \~
- * \see CConnecterDesktop CPluginThread CManageConnect 
+ * \see CConnecterDesktop CPluginThread CManageConnect
  */
 class CLIENT_EXPORT CPluginClientThread : public CPluginClient
 {

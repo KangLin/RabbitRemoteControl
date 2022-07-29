@@ -56,7 +56,7 @@ class CConnectThread;
  *         3. Implement Load(QSettings& set)
  *         4. Implement Save(QSettings& set)
  *
- * \~  
+ * \~
  * \see CConnect CConnectThread CConnecter CPluginClient
  */
 class CLIENT_EXPORT CConnecterDesktopThread : public CConnecter

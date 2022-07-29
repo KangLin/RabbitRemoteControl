@@ -22,8 +22,10 @@
  *     它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。
  *     详见： Connect()、 slotTimeOut()、 OnProcess() 。
  *     当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。
- * \note 这个接口仅由插件实现。 \n
- *     具体的插件需要实现下面接口：
+ * \note
+ *  - 这个接口仅由插件实现。
+ *  - 它的实例在后台线程中。
+ *  - 具体的插件需要实现下面接口：
  *     - OnInit()
  *     - OnClean()
  *     - OnProcess()
@@ -34,8 +36,10 @@
  *      It starts a timer by default to start a non-Qt event loop (that is, normal loop processing) .
  *      See Connect(), slotTimeOut(), OnProcess() for details.
  *      Of course, it still supports Qt events (the signal-slot mechanism of QObject).
- * \note The interface only is implemented by plug-in. \n
- *      The plug-in needs to implement the following interface. 
+ * \note
+ *  - The interface only is implemented by plug-in.
+ *  - Its instance is in a background thread.
+ *  - The plug-in needs to implement the following interface.
  *     - OnInit()
  *     - OnClean()
  *     - OnProcess()
@@ -43,7 +47,7 @@
  *
  * \~
  * \see CConnecterDesktopThread CFrmViewer
- * \ingroup VIEWER_PLUGIN_API
+ * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CConnect : public QObject
 {

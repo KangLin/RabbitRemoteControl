@@ -26,7 +26,9 @@ class CClient;
 /*!
  * \~chinese
  * \brief 描述连接应用接口。
- * \note 此类是用户使用接口，由插件实现
+ * \note
+ *   - 此类是用户使用接口，由插件实现。
+ *   - 它的实例在主线程中。
  * \details 
  * 序列图：\image html docs/Image/PluginClientSequenceDiagram.svg
  *  已经提供以下类型的基本实现：
@@ -37,8 +39,10 @@ class CClient;
  *  
  * \~english
  * \brief Connecter interface
- * \note  The class is a interface used by Use UI.
- *        It is implemented by the protol plugin.
+ * \note
+ *   - The class is a interface used by Use UI.
+ *     It is implemented by the protol plugin.
+ *   - Its instance is in the main thread.
  * \details
  * Sequen diagram: \image html docs/Image/PluginClientSequenceDiagram.svg
  * Basic implementations of the following types have been provided:     
@@ -51,7 +55,7 @@ class CClient;
  * 
  * \~
  * \see   CPluginClient CFrmViewer
- * \ingroup VIEWER_API VIEWER_PLUGIN_API
+ * \ingroup CLIENT_API CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CConnecter : public QObject
 {

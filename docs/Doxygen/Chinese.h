@@ -32,7 +32,7 @@
   \image html docs/Image/PluginClientSequenceDiagram.svg
 
 
-\defgroup VIEWER_API 客户端应用程序接口
+\defgroup CLIENT_API 客户端应用程序接口
 \ingroup LIBAPI_CLIENT
 \brief 客户端应用程序接口
 \details 
@@ -53,7 +53,7 @@
   - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，完成后并删除此连接者对象( CConnecter::deleteLater )
     
 
-\defgroup VIEWER_PLUGIN_API 客户端插件接口
+\defgroup CLIENT_PLUGIN_API 客户端插件接口
 \ingroup LIBAPI_CLIENT
 \brief 客户端插件接口.
 \details
@@ -105,7 +105,15 @@
 \defgroup LIBAPI_THREAD 线程模型
 \ingroup LIBAPI_CLIENT
 \brief 线程模型
-
+\details
++ 线程模型
+  - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
+    \see CPluginClient CConnecterDesktopThread
+  - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
+    \see CPluginClientThread CConnecterDesktop
++ 类关系：
+  \image html docs/Image/PluginClientAPI.svg
+  
 \defgroup LIBAPI_CHANNEL 通道
 \ingroup LIBAPI
 \brief 流式数据通道
