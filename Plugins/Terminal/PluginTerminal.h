@@ -1,16 +1,16 @@
 #ifndef CPLUGINTERMINAL_H_KL_2021_07_23
 #define CPLUGINTERMINAL_H_KL_2021_07_23
 
-#include "PluginViewer.h"
+#include "PluginClient.h"
 #include <QTranslator>
 
-class CPluginTerminal : public CPluginViewer
+class CPluginTerminal : public CPluginClient
 {
     Q_OBJECT
-    Q_INTERFACES(CPluginViewer)
+    Q_INTERFACES(CPluginClient)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginViewer_iid)
+    Q_PLUGIN_METADATA(IID CPluginClient_iid)
 #endif
 
 public:

@@ -5,7 +5,7 @@
 #include <QDebug>
 
 CPluginTerminal::CPluginTerminal(QObject *parent)
-    : CPluginViewer(parent)
+    : CPluginClient(parent)
 {
 }
 

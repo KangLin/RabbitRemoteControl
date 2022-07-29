@@ -26,7 +26,7 @@ int CPluginService::InitTranslator()
             + "/" + Name() + "_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
     {
-        LOG_MODEL_ERROR("CPluginViewer", "Open translator file fail:",
+        LOG_MODEL_ERROR("CPluginClient", "Open translator file fail:",
                         szTranslatorFile.toStdString().c_str());
         return -1;
     }

@@ -3,20 +3,20 @@
 
 #pragma once
 
-#include "PluginViewer.h"
+#include "PluginClient.h"
 #include <QTranslator>
 
-class CPluginTelnet : public CPluginViewer
+class CPluginTelnet : public CPluginClient
 {
     Q_OBJECT
 public:
     explicit CPluginTelnet(QObject *parent = nullptr);
     virtual ~CPluginTelnet();
     
-    Q_INTERFACES(CPluginViewer)
+    Q_INTERFACES(CPluginClient)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-    Q_PLUGIN_METADATA(IID CPluginViewer_iid)
+    Q_PLUGIN_METADATA(IID CPluginClient_iid)
 #endif
 
     // CPluginFactory interface

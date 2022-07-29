@@ -53,22 +53,22 @@ SET(UI_FILES
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
 
 if(_libtelnet_include_dir)
-    ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
+    ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
         ISPLUGIN
         VERSION ${RabbitRemoteControl_VERSION}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
         PRIVATE_INCLUDE_DIRS ${_libtelnet_include_dir}
-        INSTALL_DIR plugins/Viewer
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
+        INSTALL_DIR plugins/Client
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
         )
 else()
-    ADD_PLUGIN_TARGET(NAME PluginViewer${PROJECT_NAME}
+    ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
         ISPLUGIN
         VERSION ${RabbitRemoteControl_VERSION}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_telnet_libs}
-        INSTALL_DIR plugins/Viewer
-        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Viewer
+        INSTALL_DIR plugins/Client
+        OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
         )
 endif()

@@ -30,7 +30,7 @@ set(SOURCE_FILES
     main.cpp
     )
 set(SOURCE_UI_FILES MainWindow.ui)
-LIST(APPEND RabbitRemoteControlServiceConfigure_RCC_FILES ../Viewer/Resource/Resource.qrc)
+LIST(APPEND RabbitRemoteControlServiceConfigure_RCC_FILES ../Client/Resource/Resource.qrc)
 
 SET(QT_COMPONENTS Core Gui Widgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${QT_COMPONENTS})
@@ -56,7 +56,7 @@ if(UNIX AND NOT ANDROID)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControlServiceConfigure.desktop
         DESTINATION share/applications
         COMPONENT Runtime)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/App/Viewer/Resource/Image/option.png
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/App/Client/Resource/Image/option.png
         DESTINATION share/pixmaps
         COMPONENT Runtime
         RENAME RabbitRemoteControlServiceConfigure.png)

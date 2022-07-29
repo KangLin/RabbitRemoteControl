@@ -22,19 +22,19 @@
   - 实现服务接口 CService 。支持Qt事件或非Qt事件循环。例如： CServiceRabbitVNC
 
 
-\defgroup LIBAPI_VIEWER 控制端库
+\defgroup LIBAPI_CLIENT 客户端库
 \ingroup LIBAPI
-\brief 控制端库
+\brief 客户端库
 \details 
-+ 控制端插件接口类关系：
++ 客户端插件接口类关系：
   \image html docs/Image/PluginViewerAPI.svg
 + 序列图：
   \image html docs/Image/PluginViewerSequenceDiagram.svg
 
 
-\defgroup VIEWER_API 控制端应用程序接口
-\ingroup LIBAPI_VIEWER
-\brief 控制端应用程序接口
+\defgroup VIEWER_API 客户端应用程序接口
+\ingroup LIBAPI_CLIENT
+\brief 客户端应用程序接口
 \details 
 + 类关系：
   \image html docs/Image/PluginViewerAPI.svg
@@ -53,14 +53,14 @@
   - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，完成后并删除此连接者对象( CConnecter::deleteLater )
     
 
-\defgroup VIEWER_PLUGIN_API 控制端插件接口
-\ingroup LIBAPI_VIEWER
-\brief 控制端插件接口.
+\defgroup VIEWER_PLUGIN_API 客户端插件接口
+\ingroup LIBAPI_CLIENT
+\brief 客户端插件接口.
 \details
 
 + 线程模型：
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
-    \see CPluginViewer CConnecterDesktopThread
+    \see CPluginClient CConnecterDesktopThread
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
     \see CPluginViewerThread CConnecterDesktop
 + 类关系：
@@ -68,28 +68,28 @@
 + 序列图：
   \image html docs/Image/PluginViewerSequenceDiagram.svg
 + 写一个插件：
-  - 生成插件目标名称格式为： PluginViewer${PROJECT_NAME}
-    \include Plugins/FreeRDP/Viewer/CMakeLists.txt
-  - 实现插件接口 CPluginViewer
+  - 生成插件目标名称格式为： PluginClient${PROJECT_NAME}
+    \include Plugins/FreeRDP/Client/CMakeLists.txt
+  - 实现插件接口 CPluginClient
     + 如果是阻塞线程模型。一个后台线程处理一个连接。连接是阻塞的。例如：FreeRDP
-      - 从 CPluginViewer 派生插件。例如： \ref CPluginFreeRDP
+      - 从 CPluginClient 派生插件。例如： \ref CPluginFreeRDP
         + 在类声明中实现Qt接口:
-          \snippet Plugins/FreeRDP/Viewer/PluginFreeRDP.h Qt plugin interface
+          \snippet Plugins/FreeRDP/Client/PluginFreeRDP.h Qt plugin interface
         + 在构造函数中初始化操作。例如：初始化资源等
         + 在析构函数中释放资源。
         + 实现属性、函数
           - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginFreeRDP::Name() 
-            \include Plugins/FreeRDP/Viewer/PluginFreeRDP.cpp
+            \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
     + 如果非阻塞线程模型。一个后台线程处理多个连接。连接是非阻塞的。 例如 RabbitVNC
       - 从  CPluginViewerThread 派生插件。例如： \ref CPluginRabbitVNC
         + 在类声明中实现Qt接口:
-          \snippet Plugins/RabbitVNC/Viewer/PluginRabbitVNC.h Qt plugin interface
+          \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.h Qt plugin interface
         + 在构造函数中初始化操作。例如：初始化资源等
-          \snippet Plugins/RabbitVNC/Viewer/PluginRabbitVNC.cpp Initialize resource
+          \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp Initialize resource
         + 在析构函数中释放资源。
         + 实现属性、函数
           - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginRabbitVNC::Name() 
-            \include Plugins/RabbitVNC/Viewer/PluginRabbitVNC.cpp
+            \include Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp
   - 实现连接者接口 \ref CConnecter 。
     + 实现远程桌面
       - 如果是阻塞线程模型。实现一个后台线程处理一个远程连接，连接是阻塞的。
@@ -103,7 +103,7 @@
   - 实现具体的连接，从 \ref CConnect 派生 。例如：\ref CConnectFreeRDP
 
 \defgroup LIBAPI_THREAD 线程模型
-\ingroup LIBAPI_VIEWER
+\ingroup LIBAPI_CLIENT
 \brief 线程模型
 
 \defgroup LIBAPI_CHANNEL 通道

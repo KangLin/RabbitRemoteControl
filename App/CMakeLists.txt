@@ -1,8 +1,8 @@
 # Author: Kang Lin <kl222@126.com>
 
-if(BUILD_VIEWER)
-    add_subdirectory(Viewer)
-endif(BUILD_VIEWER)
+if(BUILD_CLIENT)
+    add_subdirectory(Client)
+endif(BUILD_CLIENT)
 if(BUILD_SERVICE)
     find_package(QtService)
     if(QtService_FOUND)

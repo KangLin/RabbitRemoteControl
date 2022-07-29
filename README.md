@@ -1,4 +1,4 @@
-# <img src="App/Viewer/Resource/Image/App.png" width="48" height="48" />[Rabbit Remote Control](https://github.com/KangLin/RabbitRemoteControl)
+# <img src="App/Client/Resource/Image/App.png" width="48" height="48" />[Rabbit Remote Control](https://github.com/KangLin/RabbitRemoteControl)
 
 Author: Kang Lin <kl222@126.com>
 

@@ -4,6 +4,9 @@
 + Add keyboard hook
   - Windows
 + Refactor parameter
++ Rename
+  - Rename viewer to client
+  - Rename CPluginViewer to CPluginClient
 
 ### v0.0.21
 + Add core dump in windows

@@ -15,8 +15,8 @@ if(NOT (FreeRDP_FOUND AND WinPR_FOUND AND FreeRDP-Client_FOUND))
     return()
 endif()
 
-if(BUILD_VIEWER)
-    add_subdirectory(Viewer)
+if(BUILD_CLIENT)
+    add_subdirectory(Client)
 endif()
 
 find_package(FreeRDP-Shadow)

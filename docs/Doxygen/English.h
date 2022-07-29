@@ -24,19 +24,19 @@
   - Implement CService . Eg. CServiceRabbitVNC
 
 
-\defgroup LIBAPI_VIEWER Viewer library
+\defgroup LIBAPI_CLIENT Client library
 \ingroup LIBAPI
-\brief Viewer library
+\brief Client library
 \details 
-- Viewer plugin interfaces Class relationship
+- Client plugin interfaces Class relationship
   \image html docs/Image/PluginViewerAPI.svg
 - Sequence diagram
   \image html docs/Image/PluginViewerSequenceDiagram.svg
 
 
-\defgroup VIEWER_API Viewer application interface
-\ingroup LIBAPI_VIEWER
-\brief Viewer application interface
+\defgroup VIEWER_API Client application interface
+\ingroup LIBAPI_CLIENT
+\brief Client application interface
 \details
 + Class relationship
   \image html docs/Image/PluginViewerAPI.svg
@@ -55,13 +55,13 @@
   - After receiving the \ref CConnecter::sigDisconnected signal, do connection-related cleanup work, and delete the connector object after completion ( CConnecter::deleteLater )
 
 
-\defgroup VIEWER_PLUGIN_API Viewer plugin interfaces
-\ingroup LIBAPI_VIEWER
-\brief Viewer plugin interfaces.
+\defgroup VIEWER_PLUGIN_API Client plugin interfaces
+\ingroup LIBAPI_CLIENT
+\brief Client plugin interfaces.
 \details
 + Thread module
   - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPluginViewer CConnecterDesktopThread
+    \see CPluginClient CConnecterDesktopThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
     \see CPluginViewerThread CConnecterDesktop
 + Class relationship
@@ -69,14 +69,14 @@
 + Sequence diagram
   \image html docs/Image/PluginViewerSequenceDiagram.svg
 + Write a plugin:
-  - The format of the generated plug-in target name is: PluginViewer${PROJECT_NAME}
-    \include Plugins/FreeRDP/Viewer/CMakeLists.txt
-  - Implement CPluginViewer. 
+  - The format of the generated plug-in target name is: PluginClient${PROJECT_NAME}
+    \include Plugins/FreeRDP/Client/CMakeLists.txt
+  - Implement CPluginClient. 
     + Blocked: A background thread handles a connection. The connection is blocked.
       E.g. FreeRDP
-      - Derive from CPluginViewer. For example: CPluginFreeRDP 
+      - Derive from CPluginClient. For example: CPluginFreeRDP 
         + Implement the Qt interface in the class declaration:
-          \snippet Plugins/FreeRDP/Viewer/PluginFreeRDP.h Qt plugin interface
+          \snippet Plugins/FreeRDP/Client/PluginFreeRDP.h Qt plugin interface
         + Initialize the operation in the constructor.
           For example: initializing resources, loading translation resources, etc.
         + Release resources in the destructor.
@@ -84,21 +84,21 @@
           - Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
             The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
             E.g. CPluginFreeRDP::Name() 
-             \include Plugins/FreeRDP/Viewer/PluginFreeRDP.cpp
+             \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
     + No-blocking: One background thread handles multiple connections.
       The connection is non-blocking. E.g. RabbitVNC 
       - Derive from CPluginViewerThread. For example: CPluginRabbitVNC
         + Implement the Qt interface in the class declaration:
-          \snippet Plugins/RabbitVNC/Viewer/PluginRabbitVNC.h Qt plugin interface
+          \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.h Qt plugin interface
         + Initialize the operation in the constructor.
           For example: initializing resources, loading translation resources, etc.
-          \snippet Plugins/RabbitVNC/Viewer/PluginRabbitVNC.cpp Initialize resource
+          \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp Initialize resource
         + Release resources in the destructor.
         + Implement properties and functions
           - Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
             The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
             E.g. CPluginRabbitVNC::Name() 
-             \include Plugins/RabbitVNC/Viewer/PluginRabbitVNC.cpp
+             \include Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp
   - Implement \ref CConnecter. 
     - Implement remote desktop
       - Blocked: Implements a remote desktop background thread to handle
@@ -112,7 +112,7 @@
   - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP 
 
 \defgroup LIBAPI_THREAD Thread module
-\ingroup LIBAPI_VIEWER
+\ingroup LIBAPI_CLIENT
 \brief Thread module
 
 \defgroup LIBAPI_CHANNEL Channel

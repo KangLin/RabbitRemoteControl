@@ -4,6 +4,9 @@
 + 增加键盘挂钩
   - Windows
 + 重构参数
++ 重命名
+  - 重命名 viewer 到 client
+  - 重命名 CPluginViewer 到 CPluginClient
   
 ### v0.0.21
 + 在 Windows 下，增加导出崩溃文件

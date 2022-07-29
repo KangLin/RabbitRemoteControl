@@ -6,7 +6,7 @@
 #include <QDebug>
 
 CPluginTelnet::CPluginTelnet(QObject *parent)
-    : CPluginViewer(parent)
+    : CPluginClient(parent)
 {
 }
 

@@ -77,7 +77,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../../App/Viewer/Resource/Resource.qrc">
+            <iconset resource="../../../App/Client/Resource/Resource.qrc">
              <normaloff>:/image/EyeOn</normaloff>:/image/EyeOn</iconset>
            </property>
           </widget>
@@ -127,8 +127,8 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../../App/Viewer/Resource/Resource.qrc"/>
-  <include location="../../../App/Viewer/Resource/Resource.qrc"/>
+  <include location="../../../App/Client/Resource/Resource.qrc"/>
+  <include location="../../../App/Client/Resource/Resource.qrc"/>
  </resources>
  <connections/>
 </ui>

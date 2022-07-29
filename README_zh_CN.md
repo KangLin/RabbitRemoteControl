@@ -1,4 +1,4 @@
-# <img src="App/Viewer/Resource/Image/App.png" width="48" height="48" />[玉兔远程控制](https://github.com/KangLin/RabbitRemoteControl)
+# <img src="App/Client/Resource/Image/App.png" width="48" height="48" />[玉兔远程控制](https://github.com/KangLin/RabbitRemoteControl)
 
 作者: 康林 <kl222@126.com>
 
