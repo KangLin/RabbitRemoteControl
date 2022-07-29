@@ -70,7 +70,7 @@ jobs:
         cd ${{github.workspace}}/build
         cmake ${{github.workspace}} \
             -DBUILD_APP:BOOL=OF \
-            -DBUILD_VIEWER:BOOL=OFF \
+            -DBUILD_CLIENT:BOOL=OFF \
             -DBUILD_PLUGINS:BOOL=OFF \
             -DBUILD_SERVICE:BOOL=OFF \
             -DBUILD_ABOUT:BOOL=OFF \
@@ -82,7 +82,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install \
             -DBUILD_DOCS=ON
-        cmake --build . --target doc_English,doc_Chinese
+        cmake --build .
 
     - name: update 
       uses: actions/upload-artifact@v2
