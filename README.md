@@ -95,7 +95,7 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 
 #### Remote control protocols
 
-- [x] RFB(Remote framebuffer) is also called VNC(Virtual Network Computing): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
+- [x] RFB(Remote frame buffer) is also called VNC(Virtual Network Computing): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
 - [x] RDP(Remote desktop protocol): [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] SSH: [https://www.rfc-editor.org/info/rfc4251](https://www.rfc-editor.org/info/rfc4251)
