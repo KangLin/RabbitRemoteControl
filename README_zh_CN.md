@@ -94,7 +94,7 @@
 ### 支持协议
 
 #### 远程控制协议
-- [x] VNC（虚拟网络计算）也叫 RFB("remote framebuffer"): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
+- [x] VNC（虚拟网络计算）也叫 RFB(远程帧缓存): [https://github.com/rfbproto/rfbproto](https://github.com/rfbproto/rfbproto)
 - [x] RDP（远程桌面协议）: [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] 终端
