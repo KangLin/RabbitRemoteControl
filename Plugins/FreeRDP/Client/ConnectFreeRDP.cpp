@@ -402,6 +402,10 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     Q_ASSERT(settings);
     Q_ASSERT(pThis);
     
+    const char* pWindowTitle = freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
+    if(pWindowTitle)
+        emit pThis->sigServerName(pWindowTitle);;
+    
     int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
     int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
 
