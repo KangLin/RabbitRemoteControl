@@ -1,9 +1,6 @@
 ## Change Log
 
-### v0.0.22
-+ Add keyboard hook
-  - Windows
-+ Refactor parameter
+### v0.0.23
 + Rename
   - Rename viewer to client
   - Rename CPluginViewer to CPluginClient
@@ -11,6 +8,11 @@
   - Rename CParameterViewer to CParameterClient
   - Rename CConnecter::SetParameterViewer to CConnecter::SetParameterClient
   - Rename CManagePlugin to CClient
+
+### v0.0.22
++ Add keyboard hook
+  - Windows
++ Refactor parameter
 
 ### v0.0.21
 + Add core dump in windows

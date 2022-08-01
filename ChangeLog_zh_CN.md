@@ -1,9 +1,6 @@
 ## 修改日志
 
-### v0.0.22
-+ 增加键盘挂钩
-  - Windows
-+ 重构参数
+### v0.0.23
 + 重命名
   - 重命名 viewer 到 client
   - 重命名 CPluginViewer 到 CPluginClient
@@ -11,6 +8,11 @@
   - 重命名 CParameterViewer 到 CParameterClient
   - 重命名 CConnecter::SetParameterViewer 到 CConnecter::SetParameterClient
   - 重命名 CManagePlugin 到 CClient
+  
+### v0.0.22
++ 增加键盘挂钩
+  - Windows
++ 重构参数
 
 ### v0.0.21
 + 在 Windows 下，增加导出崩溃文件
