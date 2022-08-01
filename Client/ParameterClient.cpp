@@ -17,21 +17,21 @@ int CParameterClient::Load(QSettings &set)
     SetHookKeyboard(set.value("Client/Hook/Keyboard",
                               GetHookKeyboard()).toBool());
     SetPromptType(static_cast<PromptType>(
-                    set.value("Manage/Password/Prompty/Type",
+                    set.value("Client/Password/Prompty/Type",
                               static_cast<int>(GetPromptType())).toInt()
                               ));
-    SetSavePassword(set.value("Manage/Password/Save", GetSavePassword()).toBool());
-    SetViewPassowrd(set.value("Manage/Password/View", GetViewPassowrd()).toBool());
+    SetSavePassword(set.value("Client/Password/Save", GetSavePassword()).toBool());
+    SetViewPassowrd(set.value("Client/Password/View", GetViewPassowrd()).toBool());
     return 0;
 }
 
 int CParameterClient::Save(QSettings& set)
 {
     set.setValue("Client/Hook/Keyboard", GetHookKeyboard());
-    set.setValue("Manage/Password/Prompty/Type",
+    set.setValue("Client/Password/Prompty/Type",
                  static_cast<int>(GetPromptType()));
-    set.setValue("Manage/Password/Save", GetSavePassword());
-    set.setValue("Manage/Password/View", GetViewPassowrd());
+    set.setValue("Client/Password/Save", GetSavePassword());
+    set.setValue("Client/Password/View", GetViewPassowrd());
     return 0;
 }
 
