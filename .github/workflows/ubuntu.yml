@@ -172,7 +172,7 @@ jobs:
         fi
         ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
         cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
-        md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5
+        md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
 
 #    - name: update xml file
 #      if: ${{ matrix.BUILD_TYPE == 'Release' }}
@@ -206,7 +206,7 @@ jobs:
            [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
         files: |
             ${{github.workspace}}/rabbitremotecontrol_*.deb
-            ${{github.workspace}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5
+            ${{github.workspace}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
 
 #- name: Release
 #  uses: fnkr/github-action-ghr@v1

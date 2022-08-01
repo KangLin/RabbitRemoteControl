@@ -275,15 +275,15 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
     + Install package: RabbitRemoteControl_setup_v0.0.22.exe
       - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe/download)
-    + MD5 file: RabbitRemoteControl_setup_v0.0.22.exe.md5
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe.md5)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe.md5/download)
+    + MD5SUM file: RabbitRemoteControl_setup_v0.0.22.exe.md5sum
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe.md5sum/download)
     + No need to install package: RabbitRemoteControl_windows_v0.0.22.zip
       - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip/download)
-    + MD5 file: RabbitRemoteControl_windows_v0.0.22.zip.md5
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip.md5)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip.md5/download)
+    + MD5SUM file: RabbitRemoteControl_windows_v0.0.22.zip.md5sum
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip.md5sum/download)
   - Ubuntu:
     + Ubuntu 20.04: rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb
       
@@ -295,9 +295,9 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb/download)
-    + MD5 file: rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5/download)
+    + MD5SUM file: rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5sum
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5sum/download)
     + Ubuntu 18.04: rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb
 
           sudo apt install ./rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb
@@ -308,9 +308,9 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb/download)
-    + MD5 file: rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5/download)
+    + MD5SUM file: rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5sum
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5sum/download)
       
 ## Development
 

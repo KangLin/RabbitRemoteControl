@@ -261,15 +261,15 @@
     + 安装包：RabbitRemoteControl_setup_v0.0.22.exe
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe/download)
-    + MD5 文件: RabbitRemoteControl_setup_v0.0.22.exe.md5
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe.md5)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe.md5/download)
+    + md5 校验文件: RabbitRemoteControl_setup_v0.0.22.exe.md5sum
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe.md5sum)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_setup_v0.0.22.exe.md5sum/download)
     + 绿色版本：RabbitRemoteControl_windows_v0.0.22.zip
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip/download)
-    + MD5 文件: RabbitRemoteControl_windows_v0.0.22.zip.md5
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip.md5)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip.md5/download)
+    + md5 校验文件: RabbitRemoteControl_windows_v0.0.22.zip.md5sum
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip.md5sum)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/RabbitRemoteControl_windows_v0.0.22.zip.md5sum/download)
   - Ubuntu:
     + Ubuntu 20.04: rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb
       
@@ -281,9 +281,9 @@
 
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb/download)
-    + MD5 文件: rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5/download)
+    + md5 校验文件: rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5sum
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5sum)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-20.04.deb.md5sum/download)
     + Ubuntu 18.04: rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb
 
           sudo apt install ./rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb
@@ -294,9 +294,9 @@
 
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb/download)
-    + MD5 文件: rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5/download)
+    + md5 校验文件: rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5sum
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5sum)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.22/rabbitremotecontrol_0.0.22_amd64_Ubuntu-18.04.deb.md5sum/download)
 
 ## 开发
 
