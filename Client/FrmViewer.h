@@ -5,6 +5,31 @@
 
 #pragma once
 
+#include <QMutex>
+#include <QImage>
+#include <QSharedPointer>
+#include "client_export.h"
+
+class CLIENT_EXPORT CImage : public QObject {
+    Q_OBJECT
+public:
+    CImage(QObject* parent = nullptr) : QObject(parent){
+        mutex = new QMutex();
+    }
+    CImage(const CImage& img){
+        image = img.image;
+        rect = img.rect;
+        mutex = img.mutex;
+    }
+    ~CImage(){
+        if(mutex) delete mutex;
+    }
+    QImage image;
+    QRect rect;
+    QMutex* mutex;
+};
+//Q_DECLARE_METATYPE(CImage)
+
 #ifdef USE_FROM_OPENGL
 
     #include "FrmViewerOpenGL.h"
@@ -14,7 +39,7 @@
 
 #include <QWidget>
 #include <QSettings>
-#include "client_export.h"
+#include <QMutex>
 
 /**
  * \~chinese
@@ -90,6 +115,7 @@ public Q_SLOTS:
      * \brief Update desktop size
      * \param width
      * \param height
+     * \note The plugin is use CConnect::sigSetDesktopSize
      */
     void slotSetDesktopSize(int width, int height);
     /*!
@@ -103,6 +129,7 @@ public Q_SLOTS:
      * \param image: image
      */
     void slotUpdateRect(const QRect& r, const QImage& image);
+    void slotUpdateRect(QSharedPointer<CImage> image);
     /*!
      * \brief Update cursor
      * \param cursor
@@ -141,6 +168,8 @@ protected:
 
 private:
     QImage m_Desktop;
+    QSize m_DesktopSize;
+    QSharedPointer<CImage> m_Image;
 
     ADAPT_WINDOWS m_AdaptWindows;
     double m_dbZoomFactor;

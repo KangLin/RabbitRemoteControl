@@ -26,6 +26,8 @@
 #include <QApplication>
 #include <QScreen>
 #include <QInputDialog>
+#include <QMutexLocker>
+#include <QPainter>
 
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                  QObject *parent)
@@ -410,11 +412,16 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
 
     emit pThis->sigSetDesktopSize(desktopWidth, desktopHeight);
-    
+
     pThis->m_Image = QImage(desktopWidth,
                             desktopHeight,
                             QImage::Format_RGB32);
-    
+    pThis->m_Desktop = QSharedPointer<CImage>(new CImage());
+//    pThis->m_Desktop->image = QImage(desktopWidth,
+//                              desktopHeight,
+//                              QImage::Format_RGB32);
+    pThis->m_Desktop->rect = QRect(0, 0, desktopWidth, desktopHeight);
+
     // Init gdi format
     if (!gdi_init_ex(instance, pThis->GetImageFormat(),
                      0, pThis->m_Image.bits(), nullptr))
@@ -440,8 +447,9 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 //		palette_cache_register_callbacks(instance->update);
 //	}
 
+    update->BeginPaint = cb_begin_paint;
     update->EndPaint = cb_end_paint;
-
+    update->DesktopResize = cb_desktop_resize;
 //	if (settings->SoftwareGdi)
 //	{
 //		update->EndPaint = xf_sw_end_paint;
@@ -800,14 +808,93 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
     return TRUE;
 }
 
+BOOL CConnectFreeRDP::cb_begin_paint(rdpContext *context)
+{
+    HGDI_DC hdc;
+
+    if (!context || !context->gdi || !context->gdi->primary
+            || !context->gdi->primary->hdc)
+		return FALSE;
+
+    hdc = context->gdi->primary->hdc;
+
+	if (!hdc || !hdc->hwnd || !hdc->hwnd->invalid)
+		return FALSE;
+
+	hdc->hwnd->invalid->null = TRUE;
+	hdc->hwnd->ninvalid = 0;
+	return TRUE;
+}
+
+BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
+{
+    if(x > m_Image.width() || y > m_Image.height())
+        return TRUE;
+
+    QRect rect(x, y, w, h);
+    /*
+    if(m_Desktop)
+    {
+        m_Desktop->rect = rect;
+        m_Desktop->mutex->lock();
+        m_Desktop->image = m_Image.copy(rect);
+        m_Desktop->mutex->unlock();
+        emit sigUpdateRect(m_Desktop);
+    } else //*/
+        emit sigUpdateRect(m_Image.rect(), m_Image);
+    return FALSE;
+}
+
 BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 {
     //qDebug() << "CConnectFreeRdp::cb_end_paint";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
+    INT32 x, y;
+    INT32 w, h;
 
-    emit pThis->sigUpdateRect(pThis->m_Image.rect(), pThis->m_Image);
+    HGDI_DC hdc;
+
+    if (!context || !context->gdi || !context->gdi->primary
+            || !context->gdi->primary->hdc)
+		return FALSE;
+
+    hdc = context->gdi->primary->hdc;
+
+	if (!hdc || !hdc->hwnd || !hdc->hwnd->invalid)
+		return FALSE;
+
+    x = hdc->hwnd->invalid->x;
+	y = hdc->hwnd->invalid->y;
+	w = hdc->hwnd->invalid->w;
+	h = hdc->hwnd->invalid->h;
+
+    pThis->UpdateBuffer(x, y, w, h);
     return TRUE;
+}
+
+BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
+{
+    qDebug() << "CConnectFreeRDP::cb_desktop_resize";
+    ClientContext* pContext = (ClientContext*)context;
+    CConnectFreeRDP* pThis = pContext->pThis;
+    rdpSettings* settings;
+    if (!context || !context->settings)
+		return FALSE;
+    settings = context->settings;
+    int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
+    int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
+
+    emit pThis->sigSetDesktopSize(desktopWidth, desktopHeight);
+
+    pThis->m_Image = QImage(desktopWidth,
+                            desktopHeight,
+                            QImage::Format_RGB32);
+    if (!gdi_resize_ex(context->gdi, desktopWidth, desktopHeight, 0,
+	                   context->gdi->dstFormat, pThis->m_Image.bits(), NULL))
+		return FALSE;
+    pThis->UpdateBuffer(0, 0, desktopWidth, desktopHeight);
+    return FALSE;
 }
 
 void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)

@@ -8,6 +8,7 @@
 #include "ClipboardFreeRDP.h"
 #include "ConnecterFreeRDP.h"
 #include "CursorFreeRDP.h"
+#include <QSharedPointer>
 
 class CConnectFreeRDP : public CConnect
 {
@@ -62,13 +63,16 @@ public:
     static BOOL cb_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
                                            BOOL isConsentMandatory, size_t length, const WCHAR* message);
     
+    static BOOL cb_begin_paint(rdpContext* context);
     static BOOL cb_end_paint(rdpContext* context);
-    
+    static BOOL cb_desktop_resize(rdpContext* context);
+
     static UINT32 GetImageFormat(QImage::Format format);
 
 private:
     UINT32 GetImageFormat();
-    
+    BOOL UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h);
+
     // CConnect interface
 public Q_SLOTS:
     virtual void slotClipBoardChange() override;
@@ -100,6 +104,7 @@ private:
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
         
     QImage m_Image;
+    QSharedPointer<CImage> m_Desktop;
 
     CClipboardFreeRDP m_ClipBoard;
     CCursorFreeRDP m_Cursor;

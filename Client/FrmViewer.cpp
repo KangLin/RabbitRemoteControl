@@ -6,11 +6,11 @@
 #include <QDebug>
 #include <QResizeEvent>
 #include <QCursor>
+#include <QMutexLocker>
 #include "Connect.h"
 #include "RabbitCommonLog.h"
 
-CFrmViewer::CFrmViewer(QWidget *parent) :
-    QWidget(parent)
+CFrmViewer::CFrmViewer(QWidget *parent) : QWidget(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
 
@@ -42,18 +42,18 @@ QRectF CFrmViewer::GetAspectRationRect()
     qreal newL = 0;
     
     qreal rateW = static_cast<qreal>(rect().width())
-            / static_cast<qreal>(m_Desktop.width());
+            / static_cast<qreal>(m_DesktopSize.width());
     qreal rateH = static_cast<qreal>(rect().height())
-            / static_cast<qreal>(m_Desktop.height());
+            / static_cast<qreal>(m_DesktopSize.height());
     if(rateW < rateH)
     {
-        newW = m_Desktop.width() * rateW;
-        newH = m_Desktop.height() * rateW;
+        newW = m_DesktopSize.width() * rateW;
+        newH = m_DesktopSize.height() * rateW;
         newT = (static_cast<qreal>(rect().height()) - newH)
                 / static_cast<qreal>(2);
     } else if(rateW > rateH) {
-        newW = m_Desktop.width() * rateH;
-        newH = m_Desktop.height() * rateH;
+        newW = m_DesktopSize.width() * rateH;
+        newH = m_DesktopSize.height() * rateH;
         newL = (static_cast<qreal>(rect().width()) - newW)
                 / static_cast<qreal>(2);
     }
@@ -68,13 +68,7 @@ void CFrmViewer::paintDesktop()
         LOG_MODEL_DEBUG("CFrmViewer", "CFrmViewer is hidden");
         return;
     }
-    
-    if(m_Desktop.isNull())
-    {
-        LOG_MODEL_DEBUG("CFrmViewer", "m_Desktop.isNull");
-        return;
-    }
-    
+
     QPainter painter(this);
     // 设置平滑模式
     painter.setRenderHint(QPainter::SmoothPixmapTransform);
@@ -87,10 +81,10 @@ void CFrmViewer::paintDesktop()
     case Original:
         break;
     case OriginalCenter:
-        dstRect.setLeft((rect().width() - m_Desktop.rect().width()) >> 1); 
-        dstRect.setTop((rect().height() - m_Desktop.rect().height()) >> 1);
-        dstRect.setWidth(m_Desktop.width());
-        dstRect.setHeight(m_Desktop.height());
+        dstRect.setLeft((rect().width() - m_DesktopSize.width()) >> 1);
+        dstRect.setTop((rect().height() - m_DesktopSize.height()) >> 1);
+        dstRect.setWidth(m_DesktopSize.width());
+        dstRect.setHeight(m_DesktopSize.height());
         break;
     case KeepAspectRationToWindow:
     {
@@ -100,22 +94,27 @@ void CFrmViewer::paintDesktop()
     default:
         break;
     }
-    painter.drawImage(dstRect, m_Desktop);
+
+    if(m_Image)
+    {
+        if(m_Desktop.rect() == m_Image->rect)
+        {
+            QMutexLocker lock(m_Image->mutex);
+            painter.drawImage(m_Image->rect, m_Image->image);
+            return;
+        }
+    }
+    if(!m_Desktop.isNull())
+        painter.drawImage(dstRect, m_Desktop);
 }
 
 void CFrmViewer::paintEvent(QPaintEvent *event)
 {
+    //qDebug() << "CFrmViewer::paintEvent";
     Q_UNUSED(event)
     if(this->isHidden())
     {
         qDebug() << "CFrmViewer is hidden";
-        return;
-    }
-    if(m_Desktop.isNull())
-    {
-        //TODO: Test
-        QWidget::paintEvent(event);
-        qDebug() << "m_Desktop.isNull";
         return;
     }
     
@@ -137,8 +136,8 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
         outPos.setY(inPos.y() / GetZoomFactor());
         break;
     case ZoomToWindow:
-        outPos.setX(m_Desktop.width() * inPos.x() / width());
-        outPos.setY(m_Desktop.height() * inPos.y() / height());
+        outPos.setX(m_DesktopSize.width() * inPos.x() / width());
+        outPos.setY(m_DesktopSize.height() * inPos.y() / height());
         break;
     case KeepAspectRationToWindow:
     {
@@ -148,8 +147,8 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
                 || inPos.y() < r.top()
                 || inPos.y() > r.bottom())
             return -1;
-        outPos.setX(m_Desktop.width() * (inPos.x() - r.left()) / r.width());
-        outPos.setY(m_Desktop.height() * (inPos.y() - r.top()) / r.height());
+        outPos.setX(m_DesktopSize.width() * (inPos.x() - r.left()) / r.width());
+        outPos.setY(m_DesktopSize.height() * (inPos.y() - r.top()) / r.height());
         break;
     }
     default:
@@ -226,7 +225,7 @@ void CFrmViewer::slotSystemCombination()
 
 QSize CFrmViewer::GetDesktopSize()
 {
-    return m_Desktop.size();
+    return m_DesktopSize;
 }
 
 double CFrmViewer::GetZoomFactor() const
@@ -261,7 +260,7 @@ void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
         case OriginalCenter:
             SetZoomFactor(1);
         case Zoom:
-            ReSize(m_Desktop.width(), m_Desktop.height());
+            ReSize(m_DesktopSize.width(), m_DesktopSize.height());
             break;
         default:
             break;
@@ -278,6 +277,7 @@ CFrmViewer::ADAPT_WINDOWS CFrmViewer::GetAdaptWindows()
 
 void CFrmViewer::slotSetDesktopSize(int width, int height)
 {
+    m_DesktopSize = QSize(width, height);
     m_Desktop = QImage(width, height, QImage::Format_RGB32);
     
     if(Original == m_AdaptWindows
@@ -296,14 +296,31 @@ void CFrmViewer::slotSetName(const QString& szName)
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
+    //qDebug() << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)";
     if(m_Desktop.isNull() || m_Desktop.rect() == r)
         m_Desktop = image;
     else
     {
         QPainter painter(&m_Desktop);
-        painter.drawImage(r, image, r);
+        painter.drawImage(r, image);
     }
-    update();
+    update(r);
+}
+
+void CFrmViewer::slotUpdateRect(QSharedPointer<CImage> image)
+{
+    //qDebug() << "void CFrmViewer::slotUpdateRect(QSharedPointer<CImage> image)";
+    m_Image = image;
+    if(m_Image)
+    {
+        if(m_Desktop.rect() != m_Image->rect)
+        {
+            QMutexLocker lock(m_Image->mutex);
+            QPainter painter(&m_Desktop);
+            painter.drawImage(m_Image->rect, m_Image->image);
+        }
+    }
+    update(m_Image->rect);
 }
 
 void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
@@ -334,8 +351,8 @@ QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
 {
     int width = w, height = h;
     if(-1 == w)
-        width = m_Desktop.width();
+        width = m_DesktopSize.width();
     if(-1 == w)
-        height = m_Desktop.height();
+        height = m_DesktopSize.height();
     return m_Desktop.copy(x, y, width, height);
 }
