@@ -456,7 +456,10 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 //	update->PlaySound = xf_play_sound;
 //	update->SetKeyboardIndicators = xf_keyboard_set_indicators;
 //	update->SetKeyboardImeStatus = xf_keyboard_set_ime_status;
-
+    
+//    freerdp_keyboard_init_ex(instance->context->settings->KeyboardLayout,
+//	                         instance->context->settings->KeyboardRemappingList);
+    
     //TODO: clipboard
 //	if (!(xfc->clipboard = xf_clipboard_new(xfc)))
 //		return FALSE;
