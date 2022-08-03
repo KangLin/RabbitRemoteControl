@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
@@ -78,10 +78,12 @@ endif()
 
 list(APPEND CLIENT_LIBS Channel)
 if(UNIX)
-    find_package(GTK2)
-    if(GTK2_FOUND)
-        list(APPEND CLIENT_LIBS GTK2::gtk GTK2::gdk)
-    endif(NOT GTK3_FOUND)
+    find_package(X11)
+    if(X11_FOUND)
+        list(APPEND CLIENT_LIBS X11::xcb)
+        list(APPEND CLIENT_HEADER_FILES Unix/HookUnix.h)
+        list(APPEND CLIENT_SOURCE_FILES Unix/HookUnix.cpp)
+    endif()
 endif()
 
 SET(VIEWER_QT_COMPONENTS Core Gui Widgets)

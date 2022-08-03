@@ -4,6 +4,11 @@
 #include <QApplication>
 #include <QDebug>
 
+CHook* CHook::GetHook(QObject *parent)
+{
+    return new CHookWindows(parent);
+}
+
 CHookWindows::CHookWindows(QObject *parent)
     : CHook(parent),
       m_hKeyboard(nullptr)
@@ -113,4 +118,9 @@ int CHookWindows::UnRegisterKeyboard()
         m_hKeyboard = nullptr;
     }
     return 0;
+}
+
+bool CHookWindows::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
+{
+    return false;
 }

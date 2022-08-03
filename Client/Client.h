@@ -11,6 +11,7 @@
 #include <QIcon>
 #include <QTranslator>
 #include <QSharedPointer>
+
 #include "PluginClient.h"
 #include "Hook.h"
 #include "ParameterClient.h"

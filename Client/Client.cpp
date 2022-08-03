@@ -245,7 +245,9 @@ int CClient::EnumPlugins(Handle *handle)
 void CClient::slotHookKeyboardChanged()
 {
     if(m_ParameterClient.GetHookKeyboard())
+    {
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
-    else
+    } else {
         m_Hook.reset();
+    }
 }
