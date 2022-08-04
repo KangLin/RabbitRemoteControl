@@ -42,7 +42,13 @@ if(MINGW)
     set(FreeRDP_OPTIONS -fpermissive)
 endif()
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
+set(FreeRDP_QT_COMPONENTS Widgets Multimedia)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${FreeRDP_QT_COMPONENTS})
+if(Qt${QT_VERSION_MAJOR}_FOUND)
+    FOREACH(_COMPONENT ${FreeRDP_QT_COMPONENTS})
+        list(APPEND SRC_LIBS Qt${QT_VERSION_MAJOR}::${_COMPONENT})
+    ENDFOREACH()
+endif()
 
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN

@@ -28,6 +28,11 @@
 #include <QInputDialog>
 #include <QMutexLocker>
 #include <QPainter>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include <QSoundEffect>
+#else
+    #include <QSound>
+#endif
 
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                  QObject *parent)
@@ -450,18 +455,8 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     update->BeginPaint = cb_begin_paint;
     update->EndPaint = cb_end_paint;
     update->DesktopResize = cb_desktop_resize;
-//	if (settings->SoftwareGdi)
-//	{
-//		update->EndPaint = xf_sw_end_paint;
-//		update->DesktopResize = xf_sw_desktop_resize;
-//	}
-//	else
-//	{
-//		update->EndPaint = xf_hw_end_paint;
-//		update->DesktopResize = xf_hw_desktop_resize;
-//	}
 
-//	update->PlaySound = xf_play_sound;
+	update->PlaySound = cb_play_bell_sound;
 //	update->SetKeyboardIndicators = xf_keyboard_set_indicators;
 //	update->SetKeyboardImeStatus = xf_keyboard_set_ime_status;
     
@@ -895,6 +890,27 @@ BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 		return FALSE;
     pThis->UpdateBuffer(0, 0, desktopWidth, desktopHeight);
     return FALSE;
+}
+
+BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_UPDATE *play_sound)
+{
+    ClientContext* pContext = (ClientContext*)context;
+    CConnectFreeRDP* pThis = pContext->pThis;
+	WINPR_UNUSED(play_sound);
+    QApplication::beep();
+    return TRUE;
+    
+    QString szFile;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    QSoundEffect effect;
+    effect.setSource(QUrl::fromLocalFile(szFile));
+//    effect.setLoopCount(1);
+//    effect.setVolume(1);
+    effect.play();
+#else
+    QSound::play(szFile);
+#endif
+	return TRUE;
 }
 
 void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)

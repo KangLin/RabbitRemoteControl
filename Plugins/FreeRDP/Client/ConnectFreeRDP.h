@@ -66,6 +66,7 @@ public:
     static BOOL cb_begin_paint(rdpContext* context);
     static BOOL cb_end_paint(rdpContext* context);
     static BOOL cb_desktop_resize(rdpContext* context);
+    static BOOL cb_play_bell_sound(rdpContext* context, const PLAY_SOUND_UPDATE* play_sound);
 
     static UINT32 GetImageFormat(QImage::Format format);
 
