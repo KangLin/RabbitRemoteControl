@@ -821,7 +821,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
     SaveConnectLasterClose();
     
     foreach (auto it, m_Connecters)
+    {
+        //TODO: Whether to save the setting
+        emit it->sigUpdateParamters(it);
         it->DisConnect();
+    }
     
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);    
