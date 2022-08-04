@@ -67,6 +67,9 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                 FreeRDP_Password,
                                 m_pParamter->GetPassword().toStdString().c_str());
 
+    qDebug() << "FreeRDP build configure:" << freerdp_get_build_config() << "\n"
+             << "Version:" << freerdp_get_build_revision() << "\n"
+             << "Date:" << freerdp_get_build_date();
     RdpClientEntry(&m_ClientEntryPoints);
     
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
@@ -88,13 +91,13 @@ int CConnectFreeRDP::RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints)
 {
 	pEntryPoints->Version = 1;
 	pEntryPoints->Size = sizeof(RDP_CLIENT_ENTRY_POINTS_V1);
-	pEntryPoints->GlobalInit = Client_global_init;
-	pEntryPoints->GlobalUninit = Client_global_uninit;
+	pEntryPoints->GlobalInit = cb_global_init;
+	pEntryPoints->GlobalUninit = cb_global_uninit;
 	pEntryPoints->ContextSize = sizeof(ClientContext);
-	pEntryPoints->ClientNew = Client_new;
-	pEntryPoints->ClientFree = Client_free;
-	pEntryPoints->ClientStart = Client_start;
-	pEntryPoints->ClientStop = Client_stop;
+	pEntryPoints->ClientNew = cb_client_new;
+	pEntryPoints->ClientFree = cb_client_free;
+	pEntryPoints->ClientStart = cb_client_start;
+	pEntryPoints->ClientStop = cb_client_stop;
 	return 0;
 }
 
@@ -235,19 +238,19 @@ void CConnectFreeRDP::slotClipBoardChange()
         m_ClipBoard.slotClipBoardChange();
 }
 
-BOOL CConnectFreeRDP::Client_global_init()
+BOOL CConnectFreeRDP::cb_global_init()
 {
 	qDebug() << "CConnectFreeRdp::Client_global_init()";
 
 	return TRUE;
 }
 
-void CConnectFreeRDP::Client_global_uninit()
+void CConnectFreeRDP::cb_global_uninit()
 {
     qDebug() << "CConnectFreeRdp::Client_global_uninit()";
 }
 
-BOOL CConnectFreeRDP::Client_new(freerdp *instance, rdpContext *context)
+BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
 {
     qDebug() << "CConnectFreeRdp::Client_new()";
     instance->PreConnect = cb_pre_connect;
@@ -263,28 +266,25 @@ BOOL CConnectFreeRDP::Client_new(freerdp *instance, rdpContext *context)
 	instance->PresentGatewayMessage = cb_present_gateway_message;
 
 	instance->LogonErrorInfo = cb_logon_error_info;
-	/*PubSub_SubscribeTerminate(context->pubSub, xf_TerminateEventHandler);
-#ifdef WITH_XRENDER
-	PubSub_SubscribeZoomingChange(context->pubSub, xf_ZoomingChangeEventHandler);
-	PubSub_SubscribePanningChange(context->pubSub, xf_PanningChangeEventHandler);
-#endif
-    */
+	PubSub_SubscribeTerminate(context->pubSub, OnTerminateEventHandler);
+
     return TRUE;
 }
 
-void CConnectFreeRDP::Client_free(freerdp *instance, rdpContext *context)
+void CConnectFreeRDP::cb_client_free(freerdp *instance, rdpContext *context)
 {
     qDebug() << "CConnectFreeRdp::Client_free()";
+    PubSub_UnsubscribeTerminate(context->pubSub, OnTerminateEventHandler);
 }
 
-int CConnectFreeRDP::Client_start(rdpContext *context)
+int CConnectFreeRDP::cb_client_start(rdpContext *context)
 {
     int nRet = 0;
     qDebug() << "CConnectFreeRdp::Client_start()";
     return nRet;
 }
 
-int CConnectFreeRDP::Client_stop(rdpContext *context)
+int CConnectFreeRDP::cb_client_stop(rdpContext *context)
 {
     int nRet = 0;
     qDebug() << "CConnectFreeRdp::Client_stop()";
@@ -343,7 +343,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         if (!settings->Username)
             return FALSE;
         
-        LOG_MODEL_ERROR("FreeRdp", "No user name set. - Using login name: %s", settings->Username);
+        LOG_MODEL_WARNING("FreeRdp", "No user name set. - Using login name: %s", settings->Username);
 	}
 
 	if (settings->AuthenticationOnly)
@@ -510,6 +510,15 @@ int CConnectFreeRDP::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
 	emit pThis->sigInformation(szErr);
     emit pThis->sigError(type, szErr);
 	return 1;
+}
+
+void CConnectFreeRDP::OnTerminateEventHandler(void *context, TerminateEventArgs *e)
+{
+    qDebug() << "CConnectFreeRDP::TerminateEventHandler:" << e->code;
+    WINPR_UNUSED(e);
+    rdpContext* pContext = (rdpContext*)context;
+    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+    emit pThis->sigDisconnected();
 }
 
 void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context, ChannelConnectedEventArgs *e)
