@@ -107,6 +107,7 @@ private:
     // File
     UINT32 m_FileCapabilityFlags;
     bool m_bFileSupported; // Whether is server support file
+    BOOL m_bFileFormatsRegistered;
 };
 
 #endif // CCLIPBOARDFREERDP_H

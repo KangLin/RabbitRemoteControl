@@ -17,9 +17,12 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     m_pClipboard(nullptr),
     m_bOwns(false),
     m_FileCapabilityFlags(0),
-    m_bFileSupported(false)
+    m_bFileSupported(false),
+    m_bFileFormatsRegistered(false)
 {
     m_pClipboard = ClipboardCreate();
+    if (ClipboardGetFormatId(m_pClipboard, "text/uri-list"))
+        m_bFileFormatsRegistered = true;
     wClipboardDelegate* pDelegate = ClipboardGetDelegate(m_pClipboard);
     pDelegate->custom = this;
     pDelegate->ClipboardFileSizeSuccess = cb_clipboard_file_size_success;
@@ -130,7 +133,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
 	generalCapabilitySet.version = CB_CAPS_VERSION_2;
 	generalCapabilitySet.generalFlags = CB_USE_LONG_FORMAT_NAMES;
 
-	if (pThis->m_bFileSupported)
+	if (pThis->m_bFileSupported && pThis->m_bFileFormatsRegistered)
     {
 		generalCapabilitySet.generalFlags |=
 		    CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS;
@@ -496,7 +499,7 @@ UINT CClipboardFreeRDP::ServerFileSizeRequest(
 
 	if (fileContentsRequest->cbRequested != sizeof(UINT64))
 	{
-		LOG_MODEL_ERROR("FreeRdp", "unexpected FILECONTENTS_SIZE request: %" PRIu32 " bytes",
+		LOG_MODEL_WARNING("FreeRdp", "unexpected FILECONTENTS_SIZE request: %" PRIu32 " bytes",
 		          fileContentsRequest->cbRequested);
 	}
 
