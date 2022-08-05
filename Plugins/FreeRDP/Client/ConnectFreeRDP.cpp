@@ -266,7 +266,9 @@ BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
 	instance->PresentGatewayMessage = cb_present_gateway_message;
 
 	instance->LogonErrorInfo = cb_logon_error_info;
-	PubSub_SubscribeTerminate(context->pubSub, OnTerminateEventHandler);
+
+    // Because it is processed in OnProcess. so comment it.
+    //PubSub_SubscribeTerminate(context->pubSub, OnTerminateEventHandler);
 
     return TRUE;
 }
@@ -411,8 +413,11 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     
     const char* pWindowTitle = freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
     if(pWindowTitle)
-        emit pThis->sigServerName(pWindowTitle);;
-    
+    {
+//        WCHAR* windowTitle = NULL;
+//        ConvertToUnicode(CP_UTF8, 0, settings->WindowTitle, -1, &windowTitle, 0);
+        emit pThis->sigServerName(pWindowTitle);
+    }
     int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
     int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
 
@@ -438,7 +443,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     // Register cursor pointer
     if(pThis->m_Cursor.RegisterPointer(context->graphics))
         return FALSE;
-    
+
 //	if (!settings->SoftwareGdi)
 //	{
 //        //pThis->m_Graphics.Registergraphics(context->graphics);
@@ -836,7 +841,8 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
         return TRUE;
 
     QRect rect(x, y, w, h);
-    /*
+    //qDebug() << "Update:" << rect;
+    //*
     if(m_Desktop)
     {
         m_Desktop->rect = rect;
@@ -845,7 +851,7 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
         m_Desktop->mutex->unlock();
         emit sigUpdateRect(m_Desktop);
     } else //*/
-        emit sigUpdateRect(m_Image.rect(), m_Image);
+        emit sigUpdateRect(rect, m_Image.copy(rect));
     return FALSE;
 }
 
@@ -856,8 +862,13 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
     CConnectFreeRDP* pThis = pContext->pThis;
     INT32 x, y;
     INT32 w, h;
-
+    int ninvalid;
+    HGDI_RGN cinvalid;
+    REGION16 invalidRegion;
+    RECTANGLE_16 invalidRect;
+    const RECTANGLE_16* extents;
     HGDI_DC hdc;
+    int i = 0;
 
     if (!context || !context->gdi || !context->gdi->primary
             || !context->gdi->primary->hdc)
@@ -868,12 +879,36 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 	if (!hdc || !hdc->hwnd || !hdc->hwnd->invalid)
 		return FALSE;
 
-    x = hdc->hwnd->invalid->x;
-	y = hdc->hwnd->invalid->y;
-	w = hdc->hwnd->invalid->w;
-	h = hdc->hwnd->invalid->h;
+    HGDI_WND hwnd = context->gdi->primary->hdc->hwnd;
+    ninvalid = hwnd->ninvalid;
+	cinvalid = hwnd->cinvalid;
+    if (ninvalid < 1)
+		return TRUE;
 
-    pThis->UpdateBuffer(x, y, w, h);
+    region16_init(&invalidRegion);
+
+	for (i = 0; i < ninvalid; i++)
+	{
+		invalidRect.left = cinvalid[i].x;
+		invalidRect.top = cinvalid[i].y;
+		invalidRect.right = cinvalid[i].x + cinvalid[i].w;
+		invalidRect.bottom = cinvalid[i].y + cinvalid[i].h;
+		region16_union_rect(&invalidRegion, &invalidRegion, &invalidRect);
+	}
+
+	if (!region16_is_empty(&invalidRegion))
+	{
+		extents = region16_extents(&invalidRegion);
+        QRect updateRect;
+        updateRect.setX(extents->left);
+        updateRect.setY(extents->top);
+        updateRect.setRight(extents->right);
+        updateRect.setBottom(extents->bottom);
+        pThis->UpdateBuffer(updateRect.x(), updateRect.y(), updateRect.width(), updateRect.height());
+    }
+
+	region16_uninit(&invalidRegion);
+
     return TRUE;
 }
 

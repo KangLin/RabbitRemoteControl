@@ -79,6 +79,7 @@ public Q_SLOTS:
      * \param image: image
      */
     void slotUpdateRect(const QRect& r, const QImage& image);
+    void slotUpdateRect(QSharedPointer<CImage> image);
     /*!
      * \brief Update cursor
      * \param cursor

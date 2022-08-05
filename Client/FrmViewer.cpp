@@ -95,15 +95,13 @@ void CFrmViewer::paintDesktop()
         break;
     }
 
-    if(m_Image)
+    if(m_Image && m_Desktop.rect() == m_Image->rect)
     {
-        if(m_Desktop.rect() == m_Image->rect)
-        {
-            QMutexLocker lock(m_Image->mutex);
-            painter.drawImage(m_Image->rect, m_Image->image);
-            return;
-        }
+        QMutexLocker lock(m_Image->mutex);
+        painter.drawImage(m_Image->rect, m_Image->image);
+        return;
     }
+
     if(!m_Desktop.isNull())
         painter.drawImage(dstRect, m_Desktop);
 }

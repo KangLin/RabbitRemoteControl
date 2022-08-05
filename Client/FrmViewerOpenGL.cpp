@@ -1,6 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "FrmViewerOpenGL.h"
+#include "FrmViewer.h"
 #include <QDebug>
 #include <QPainter>
 #include <QResizeEvent>
@@ -290,6 +290,9 @@ void CFrmViewerOpenGL::slotUpdateRect(const QRect& r, const QImage& image)
         update();
     }
 }
+
+void CFrmViewerOpenGL::slotUpdateRect(QSharedPointer<CImage> image)
+{}
 
 void CFrmViewerOpenGL::slotUpdateCursor(const QCursor& cursor)
 {
