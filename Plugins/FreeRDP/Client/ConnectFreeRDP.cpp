@@ -444,19 +444,6 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     if(pThis->m_Cursor.RegisterPointer(context->graphics))
         return FALSE;
 
-//	if (!settings->SoftwareGdi)
-//	{
-//        //pThis->m_Graphics.Registergraphics(context->graphics);
-        
-//        //TODO: register update callbacks
-//		//xf_gdi_register_update_callbacks(update);
-//		brush_cache_register_callbacks(instance->update);
-//		glyph_cache_register_callbacks(instance->update);
-//		bitmap_cache_register_callbacks(instance->update);
-//		offscreen_cache_register_callbacks(instance->update);
-//		palette_cache_register_callbacks(instance->update);
-//	}
-
     update->BeginPaint = cb_begin_paint;
     update->EndPaint = cb_end_paint;
     update->DesktopResize = cb_desktop_resize;

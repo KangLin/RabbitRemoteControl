@@ -41,7 +41,6 @@ jobs:
             mingw-w64-x86_64-qtwebkit ^
             mingw-w64-x86_64-zlib ^
             mingw-w64-x86_64-libvncserver ^
-            mingw-w64-x86_64-freerdp ^
             mingw-w64-x86_64-cyrus-sasl ^
             mingw-w64-x86_64-pixman ^
             mingw-w64-x86_64-openjpeg ^
@@ -69,6 +68,27 @@ jobs:
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
+
+    - name: Build FreeRDP
+      working-directory: ${{env.SOURCE_DIR}}
+      env:
+        MSYSTEM: MINGW64
+        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+      run: |
+       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
+            git clone -b 2.8.0 https://github.com/FreeRDP/FreeRDP.git
+            cd FreeRDP
+            git submodule update --init --recursive
+            cmake -E make_directory build
+            cd build
+            cmake .. ^
+                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
+                -DWITH_SERVER=ON ^
+                -DCHANNEL_URBDRC=OFF
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+        )
 
     - name: build RabbitVNC
       working-directory: ${{env.SOURCE_DIR}}
