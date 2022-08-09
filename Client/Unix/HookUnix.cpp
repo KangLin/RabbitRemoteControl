@@ -14,7 +14,8 @@ CHook* CHook::GetHook(QObject *parent)
 CHookUnix::CHookUnix(QObject *parent)
     : CHook(parent)
 {
-    RegisterKeyboard();
+    //TODO:
+    //RegisterKeyboard();
 }
 
 CHookUnix::~CHookUnix()

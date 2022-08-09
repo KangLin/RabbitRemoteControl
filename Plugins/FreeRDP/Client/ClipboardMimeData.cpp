@@ -258,6 +258,8 @@ int CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
 
 bool CClipboardMimeData::isText(QString mimeType) const
 {
+    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isText: %s",
+                    mimeType.toStdString().c_str());
     if(m_outFormats.find("text/plain") != m_outFormats.end())
     {
         QRegularExpression re("text/plain[;]*.*",
@@ -271,6 +273,8 @@ bool CClipboardMimeData::isText(QString mimeType) const
 
 bool CClipboardMimeData::isHtml(QString mimeType) const
 {
+    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isHtml: %s",
+                    mimeType.toStdString().c_str());
     if(m_outFormats.find("text/html") != m_outFormats.end()
             || m_outFormats.find("HTML Format") != m_outFormats.end())
     {
@@ -282,6 +286,8 @@ bool CClipboardMimeData::isHtml(QString mimeType) const
 
 bool CClipboardMimeData::isImage(QString mimeType) const
 {
+    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isImage: %s",
+                    mimeType.toStdString().c_str());
     if(m_outFormats.find("image/bmp") != m_outFormats.end())
     {
         QRegularExpression re(".*image.*",
