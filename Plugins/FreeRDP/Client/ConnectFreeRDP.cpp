@@ -430,7 +430,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 //    pThis->m_Desktop->image = QImage(desktopWidth,
 //                              desktopHeight,
 //                              QImage::Format_RGB32);
-    pThis->m_Desktop->rect = QRect(0, 0, desktopWidth, desktopHeight);
+//    pThis->m_Desktop->rect = QRect(0, 0, desktopWidth, desktopHeight);
 
     // Init gdi format
     if (!gdi_init_ex(instance, pThis->GetImageFormat(),
@@ -829,7 +829,7 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
 
     QRect rect(x, y, w, h);
     //qDebug() << "Update:" << rect;
-    //*
+    /*
     if(m_Desktop)
     {
         m_Desktop->rect = rect;

@@ -28,7 +28,6 @@ public:
     QRect rect;
     QMutex* mutex;
 };
-//Q_DECLARE_METATYPE(CImage)
 
 #ifdef USE_FROM_OPENGL
 
@@ -169,7 +168,6 @@ protected:
 private:
     QImage m_Desktop;
     QSize m_DesktopSize;
-    QSharedPointer<CImage> m_Image;
 
     ADAPT_WINDOWS m_AdaptWindows;
     double m_dbZoomFactor;

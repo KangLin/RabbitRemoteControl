@@ -6,7 +6,6 @@
 #include <QDebug>
 #include <QResizeEvent>
 #include <QCursor>
-#include <QMutexLocker>
 #include "Connect.h"
 #include "RabbitCommonLog.h"
 
@@ -93,13 +92,6 @@ void CFrmViewer::paintDesktop()
     }
     default:
         break;
-    }
-
-    if(m_Image && m_Desktop.rect() == m_Image->rect)
-    {
-        QMutexLocker lock(m_Image->mutex);
-        painter.drawImage(m_Image->rect, m_Image->image);
-        return;
     }
 
     if(!m_Desktop.isNull())
@@ -302,23 +294,18 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
         QPainter painter(&m_Desktop);
         painter.drawImage(r, image);
     }
-    update(r);
+    update();
 }
 
 void CFrmViewer::slotUpdateRect(QSharedPointer<CImage> image)
 {
     //qDebug() << "void CFrmViewer::slotUpdateRect(QSharedPointer<CImage> image)";
-    m_Image = image;
-    if(m_Image)
-    {
-        if(m_Desktop.rect() != m_Image->rect)
-        {
-            QMutexLocker lock(m_Image->mutex);
-            QPainter painter(&m_Desktop);
-            painter.drawImage(m_Image->rect, m_Image->image);
-        }
-    }
-    update(m_Image->rect);
+
+    image->mutex->lock();
+    QPainter painter(&m_Desktop);
+    painter.drawImage(image->rect, image->image);
+    image->mutex->unlock();
+    update();
 }
 
 void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
