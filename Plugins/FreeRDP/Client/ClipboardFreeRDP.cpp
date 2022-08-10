@@ -10,6 +10,10 @@
 #include <QBuffer>
 #include "ConnectFreeRDP.h"
 #include "ClipboardMimeData.h"
+#include "winpr/wlog.h"
+
+#define WINPR_TAG(tag) "com.winpr." tag
+#define TAG WINPR_TAG("clipboard")
 
 CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     m_pConnect(parent),
@@ -20,6 +24,7 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     m_bFileSupported(false),
     m_bFileFormatsRegistered(false)
 {
+    WLog_SetLogLevel(WLog_Get(TAG), WLOG_TRACE);
     m_pClipboard = ClipboardCreate();
     if (ClipboardGetFormatId(m_pClipboard, "text/uri-list"))
         m_bFileFormatsRegistered = true;
@@ -29,6 +34,7 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     pDelegate->ClipboardFileSizeFailure = cb_clipboard_file_size_failure;
     pDelegate->ClipboardFileRangeSuccess = cb_clipboard_file_range_success;
     pDelegate->ClipboardFileRangeFailure = cb_clipboard_file_range_failure;
+    pDelegate->IsFileNameComponentValid = cbIsFileNameComponentValid;
 }
 
 CClipboardFreeRDP::~CClipboardFreeRDP()
@@ -136,10 +142,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
 	if (pThis->m_bFileSupported && pThis->m_bFileFormatsRegistered)
     {
 		generalCapabilitySet.generalFlags |=
-		    CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS;
-        #if QT_VERSION_CHECK(WINPR_VERSION_MAJOR, WINPR_VERSION_MINOR, WINPR_VERSION_REVISION) > QT_VERSION_CHECK(2, 4, 2)
-              generalCapabilitySet.generalFlags |= CB_HUGE_FILE_SUPPORT_ENABLED;
-        #endif
+                CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS
+                | CB_HUGE_FILE_SUPPORT_ENABLED;
     }
 
     pThis->m_FileCapabilityFlags = generalCapabilitySet.generalFlags;
@@ -441,7 +445,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(CliprdrClientConte
 
         free(file_array);
     }
-    
+
     nRet = SendFormatDataResponse(context, pDstData, dstSize);
 
     if(pDstData)
@@ -467,6 +471,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_size_success(
         const wClipboardFileSizeRequest* request,
         UINT64 fileSize)
 {
+    qDebug() << "CClipboardFreeRDP::cb_clipboard_file_size_success";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 	response.msgFlags = CB_RESPONSE_OK;
@@ -482,6 +487,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_size_failure(
         const wClipboardFileSizeRequest* request,
         UINT errorCode)
 {
+    qDebug() << "CClipboardFreeRDP::cb_clipboard_file_size_failure";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 	WINPR_UNUSED(errorCode);
@@ -497,6 +503,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_range_success(
         const wClipboardFileRangeRequest* request,
         const BYTE* data, UINT32 size)
 {
+    qDebug() << "CClipboardFreeRDP::cb_clipboard_file_range_success";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 	response.msgFlags = CB_RESPONSE_OK;
@@ -512,6 +519,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_range_failure(
         const wClipboardFileRangeRequest* request,
         UINT errorCode)
 {
+    qDebug() << "CClipboardFreeRDP::cb_clipboard_file_range_failure";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 	WINPR_UNUSED(errorCode);
@@ -520,6 +528,27 @@ UINT CClipboardFreeRDP::cb_clipboard_file_range_failure(
 	response.streamId = request->streamId;
 	return pThis->m_pCliprdrClientContext->ClientFileContentsResponse(
                 pThis->m_pCliprdrClientContext, &response);
+}
+
+BOOL CClipboardFreeRDP::cbIsFileNameComponentValid(LPCWSTR lpFileName)
+{
+    qDebug() << "CClipboardFreeRDP::cbIsFileNameComponentValid: " << lpFileName;
+    LPCWSTR c;
+
+	if (!lpFileName)
+		return FALSE;
+
+	if (lpFileName[0] == L'\0')
+		return FALSE;
+
+	/* Reserved characters */
+	for (c = lpFileName; *c; ++c)
+	{
+		if (*c == L'/')
+			return FALSE;
+	}
+
+	return TRUE;
 }
 
 UINT CClipboardFreeRDP::SendFileContentsFailure(CliprdrClientContext* context,

@@ -5,10 +5,12 @@
 #include <QDebug>
 #include <QInputDialog>
 #include "DlgSetFreeRDP.h"
+#include "winpr/wlog.h"
 
 CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *parent)
     : CConnecterDesktopThread(parent)
 {
+    //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
     SetParameter(&m_ParameterFreeRdp);
     // 在 freerdp_client_context_free 中释放
     m_ParameterFreeRdp.m_pSettings = freerdp_settings_new(0);

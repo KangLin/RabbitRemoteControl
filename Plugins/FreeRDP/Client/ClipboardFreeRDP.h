@@ -79,7 +79,8 @@ public:
             wClipboardDelegate* delegate,
             const wClipboardFileRangeRequest* request,
             UINT errorCode);
-
+    static BOOL cbIsFileNameComponentValid(LPCWSTR lpFileName);
+    
 public Q_SLOTS:
     virtual void slotClipBoardChange();
 
