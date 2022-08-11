@@ -179,7 +179,7 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
         return nRet;
     }
 
-    pThis->m_FormatIds.clear();
+    QVector<UINT32> formatIds;
     const QMimeData* pData = clipboard->mimeData();
     if(!pData || pData->formats().isEmpty())
     {
@@ -203,11 +203,11 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
     {
         UINT32 id = ClipboardRegisterFormat(
                     pThis->m_pClipboard, f.toStdString().c_str());
-        if(!pThis->m_FormatIds.contains(id))
+        if(!formatIds.contains(id))
         {
             pFormats[numFormats].formatName = _strdup(f.toStdString().c_str());
             pFormats[numFormats].formatId = id;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
     }
@@ -216,44 +216,44 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
     {
         UINT32 id = ClipboardRegisterFormat(
                     pThis->m_pClipboard, "FileGroupDescriptorW");
-        if(!pThis->m_FormatIds.contains(id))
+        if(!formatIds.contains(id))
         {
             pFormats[numFormats].formatName = _strdup("FileGroupDescriptorW");
             pFormats[numFormats].formatId = id;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
         id = ClipboardRegisterFormat(
                     pThis->m_pClipboard, "text/uri-list");
-        if(!pThis->m_FormatIds.contains(id))
+        if(!formatIds.contains(id))
         {
             pFormats[numFormats].formatName = _strdup("text/uri-list");
             pFormats[numFormats].formatId = id;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
     }
     if(pData->hasImage())
     {
-//        if(!pThis->m_FormatIds.contains(CF_BITMAP))
+//        if(!formatIds.contains(CF_BITMAP))
 //        {
 //            pFormats[numFormats].formatId = CF_BITMAP;
 //            pFormats[numFormats].formatName = nullptr;
-//            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+//            formatIds.push_back(pFormats[numFormats].formatId);
 //            numFormats++;
 //        }
-        if(!pThis->m_FormatIds.contains(CF_DIB))
+        if(!formatIds.contains(CF_DIB))
         {
             pFormats[numFormats].formatId = CF_DIB;
             pFormats[numFormats].formatName = nullptr;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
-        if(!pThis->m_FormatIds.contains(CF_DIBV5))
+        if(!formatIds.contains(CF_DIBV5))
         {
             pFormats[numFormats].formatId = CF_DIBV5;
             pFormats[numFormats].formatName = nullptr;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
     }
@@ -261,51 +261,51 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
     {
         UINT32 id = ClipboardRegisterFormat(
                     pThis->m_pClipboard, "text/html");
-        if(!pThis->m_FormatIds.contains(id))
+        if(!formatIds.contains(id))
         {
             pFormats[numFormats].formatId = id;
             pFormats[numFormats].formatName = _strdup("text/html");
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
         id = ClipboardRegisterFormat(
                     pThis->m_pClipboard, "HTML Format");
-        if(!pThis->m_FormatIds.contains(id))
+        if(!formatIds.contains(id))
         {
             pFormats[numFormats].formatId = id;
             pFormats[numFormats].formatName = _strdup("HTML Format");
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
     }
     if(pData->hasText())
     {
-        if(!pThis->m_FormatIds.contains(CF_TEXT))
+        if(!formatIds.contains(CF_TEXT))
         {
             pFormats[numFormats].formatId = CF_TEXT;
             pFormats[numFormats].formatName = nullptr;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
-        if(!pThis->m_FormatIds.contains(CF_OEMTEXT))
+        if(!formatIds.contains(CF_OEMTEXT))
         {
             pFormats[numFormats].formatId = CF_OEMTEXT;
             pFormats[numFormats].formatName = nullptr;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
-        if(!pThis->m_FormatIds.contains(CF_UNICODETEXT))
+        if(!formatIds.contains(CF_UNICODETEXT))
         {
             pFormats[numFormats].formatId = CF_UNICODETEXT;
             pFormats[numFormats].formatName = nullptr;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
-        if(!pThis->m_FormatIds.contains(CF_LOCALE))
+        if(!formatIds.contains(CF_LOCALE))
         {
             pFormats[numFormats].formatId = CF_LOCALE;
             pFormats[numFormats].formatName = nullptr;
-            pThis->m_FormatIds.push_back(pFormats[numFormats].formatId);
+            formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
     }
@@ -345,11 +345,6 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(CliprdrClientConte
     if(!context) return nRet;
     
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
-    if(!pThis->m_FormatIds.contains(dstFormatId))
-    {
-        LOG_MODEL_ERROR("FreeRdp", "The formatid[%d] is support", dstFormatId);
-        return nRet;
-    }
     LOG_MODEL_DEBUG("FreeRdp", "server format date request formatID: %d", dstFormatId);
     QClipboard *clipboard = QApplication::clipboard();
     //if(!clipboard->ownsClipboard()) return nRet;
@@ -391,7 +386,12 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(CliprdrClientConte
         }
         break;
     default:
-        if(ClipboardGetFormatId(pThis->m_pClipboard, "FileGroupDescriptorW")
+        if(ClipboardGetFormatId(pThis->m_pClipboard, "HTML Format")
+                == dstFormatId)
+        {
+            mimeType = "text/html";
+            scrFormatID = ClipboardGetFormatId(pThis->m_pClipboard, "text/html");
+        } else if(ClipboardGetFormatId(pThis->m_pClipboard, "FileGroupDescriptorW")
                 == dstFormatId)
         {
             mimeType = "text/uri-list";
@@ -399,10 +399,6 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(CliprdrClientConte
         } else {
             mimeType = ClipboardGetFormatName(pThis->m_pClipboard, dstFormatId);
             scrFormatID = dstFormatId;
-            if("text/uri-list" == mimeType)
-            {
-                dstFormatId = ClipboardGetFormatId(pThis->m_pClipboard, "FileGroupDescriptorW");
-            }
         }
         if(!mimeType.isEmpty() && scrFormatID > 0)
         {
@@ -430,7 +426,9 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(CliprdrClientConte
 	 * We check for "FileGroupDescriptorW" format being registered (i.e., nonzero) in order
 	 * to not process CF_RAW as a file list in case WinPR does not support file transfers.
 	 */
-    if(dstFormatId && ClipboardGetFormatId(pThis->m_pClipboard, "FileGroupDescriptorW") == dstFormatId)
+    if(dstFormatId
+       && (ClipboardGetFormatId(pThis->m_pClipboard, "FileGroupDescriptorW")
+           == dstFormatId))
     {
         UINT error = NO_ERROR;
         FILEDESCRIPTORW* file_array = (FILEDESCRIPTORW*)pDstData;

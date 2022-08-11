@@ -100,7 +100,6 @@ private:
     CliprdrClientContext* m_pCliprdrClientContext;
 
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
-    QVector<UINT32> m_FormatIds;
     bool m_bOwns;
     // Client format data
     QVector<CClipboardMimeData::_FORMAT> m_ServerFormatDataRequest;
