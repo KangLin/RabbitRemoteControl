@@ -4,7 +4,7 @@
 #define CMIMEDATA_H
 
 #include <QMimeData>
-#include <QMap>
+#include <QMultiMap>
 #include <QVector>
 
 #include "freerdp/freerdp.h"
@@ -21,11 +21,11 @@ public:
     struct _FORMAT {
         UINT32 id;
         QString name;
+        UINT32 localId;
     };
     
     int SetFormat(const CLIPRDR_FORMAT_LIST* pList);
-    int AddFormat(UINT32 id, const char *name);
-    
+
 Q_SIGNALS:
     void sigSendDataRequest(CliprdrClientContext* context,
                             UINT32 formatId, QString formatName) const;
@@ -36,7 +36,7 @@ public:
     virtual QStringList formats() const override;
     
 public Q_SLOTS:
-    int slotServerFormatData(const BYTE* pData, UINT32 nLen,
+    void slotServerFormatData(const BYTE* pData, UINT32 nLen,
                              UINT32 id, QString name);
 
 protected:
@@ -49,21 +49,25 @@ protected:
 #endif
 
 private:
-    bool isText(QString mimeType) const;
-    bool isHtml(QString mimeType) const;
-    bool isImage(QString mimeType) const;
+    int AddFormat(UINT32 id, const char *name);
+
+    bool isText(QString mimeType, bool bRegular = true) const;
+    bool isHtml(QString mimeType, bool bRegular = true) const;
+    bool isImage(QString mimeType, bool bRegular = true) const;
+    bool isUrls(QString mimeType, bool bRegular = true) const;
 
 private:
     CliprdrClientContext* m_pContext;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
-    
-    QVector<_FORMAT> m_Formats;
-    QMap<QString, UINT32> m_outFormats;
-    QStringList m_lstFormats;
 
-    QMap<QString, QVariant> m_Variant;
+    QVector<_FORMAT> m_Formats; // Save server format
+    QMultiMap<QString, _FORMAT> m_indexString;
+    QMap<UINT32, _FORMAT> m_indexId;
+    QStringList m_lstFormats; // Clipboard return farmat
+
+    QVariant m_Variant;
     bool m_bExit;
-    
+
 };
 
 #endif // CMIMEDATA_H

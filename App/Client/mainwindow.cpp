@@ -34,6 +34,7 @@
 #include <QMimeData>
 #include <QKeySequence>
 #include <QPushButton>
+#include <QDateTime>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),

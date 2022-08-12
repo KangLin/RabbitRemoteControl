@@ -99,6 +99,7 @@ private:
     CConnectFreeRDP* m_pConnect;
     CliprdrClientContext* m_pCliprdrClientContext;
 
+    friend CClipboardMimeData;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
     bool m_bOwns;
     // Client format data

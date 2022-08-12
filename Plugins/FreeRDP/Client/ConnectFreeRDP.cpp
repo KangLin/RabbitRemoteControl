@@ -67,9 +67,6 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                 FreeRDP_Password,
                                 m_pParamter->GetPassword().toStdString().c_str());
 
-    qDebug() << "FreeRDP build configure:" << freerdp_get_build_config() << "\n"
-             << "Version:" << freerdp_get_build_revision() << "\n"
-             << "Date:" << freerdp_get_build_date();
     RdpClientEntry(&m_ClientEntryPoints);
     
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);

@@ -14,7 +14,10 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
       m_pContext(pContext),
       m_pClipboard(nullptr),
       m_bExit(false)
-{}
+{
+    CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
+    m_pClipboard = pThis->m_pClipboard;
+}
 
 CClipboardMimeData::~CClipboardMimeData()
 {
@@ -25,82 +28,83 @@ CClipboardMimeData::~CClipboardMimeData()
 
 int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
 {
-    ClipboardDestroy(m_pClipboard);
-    m_pClipboard = ClipboardCreate();
-    if(!m_pClipboard) return -1;
+    if(!m_pClipboard)
+    {
+        Q_ASSERT(FALSE);
+        return -1;
+    }
     m_Formats.clear();
     for (UINT32 i = 0; i < pList->numFormats; i++)
 	{
 		CLIPRDR_FORMAT* pFormat = &pList->formats[i];
         //*
-        LOG_MODEL_DEBUG("FreeRdp", "FormatId: 0x%X; name: %s",
+        LOG_MODEL_DEBUG("FreeRdp", "Format Id: 0x%X; name: %s",
                         pFormat->formatId,
                         pFormat->formatName);//*/
         AddFormat(pFormat->formatId, pFormat->formatName);
-	}
-
+    }
+    
     if(m_Formats.isEmpty())
         return 0;
 
     for(auto it = m_Formats.begin(); it != m_Formats.end(); it++)
     {
+        m_indexId.insert(it->id, *it);
         if(it->name.isEmpty())
         {
             switch (it->id) {
             case CF_TEXT:
             case CF_OEMTEXT:
             case CF_UNICODETEXT:
+            case CF_LOCALE:
             {
-                if(m_outFormats.find("text/plain") == m_outFormats.end())
-                    m_outFormats["text/plain"] = it->id;
-            }
+                m_indexString.insert("text/plain", *it);
                 break;
+            }
             case CF_DIB:
-            case CF_BITMAP:
-            case CF_DIBV5:
+            //case CF_BITMAP:
+            //case CF_DIBV5:
             {
-                if(m_outFormats.find("image/bmp") == m_outFormats.end())
-                    m_outFormats["image/bmp"] = it->id;
-            }
+                m_indexString.insert("image/bmp", *it);
                 break;
+            }
             default:
             {
                 const char* name = ClipboardGetFormatName(m_pClipboard, it->id);
                 if(name)
-                    m_outFormats[name] = it->id;
+                    m_indexString.insert(name, *it);
             }
-                break;
             }
         }
         else
         {
-            if(m_outFormats.find(it->name) != m_outFormats.end())
-                continue;
-            m_outFormats[it->name] = it->id;
+            m_indexString.insert(it->name, *it);
             if("FileGroupDescriptorW" == it->name)
-                if(m_outFormats.find("text/uri-list") == m_outFormats.end())
-                {
-                    m_outFormats["text/uri-list"] = it->id;
-                }
-            if("HTML Format" == it->name)
-                if(m_outFormats.find("text/html") == m_outFormats.end())
-                {
-                    m_outFormats["text/html"] = it->id;
-                }
-            if(isText(it->name))
-                if(m_outFormats.find("text/plain") == m_outFormats.end())
-                    m_outFormats["text/plain"] = it->id;
-            if(isImage(it->name))
-                if(m_outFormats.find("image/bmp") == m_outFormats.end())
-                    m_outFormats["image/bmp"] = it->id;
+            {
+                m_indexString.insert("text/uri-list", *it);
+            }
+            if("text/html" != it->name && isHtml(it->name, false))
+            {
+                m_indexString.insert("text/html", *it);
+            }
+            if("text/plain" != it->name && isText(it->name, false))
+            {
+                m_indexString.insert("text/plain", *it);
+            }
+            if("image/bmp" != it->name && isImage(it->name))
+            {
+                m_indexString.insert("image/bmp", *it);
+            }
         }
     }
 
-    if(m_lstFormats.isEmpty())
-        for(auto it = m_outFormats.begin(); m_outFormats.end() != it; it++)
-        {
+    m_lstFormats.clear();
+    for(auto it = m_indexString.begin(); m_indexString.end() != it; it++)
+    {
+        if(!m_lstFormats.contains(it.key()))
             m_lstFormats << it.key();
-        }
+    }
+    qDebug() << "Formats:" << m_lstFormats;
 
     return 0;
 }
@@ -112,14 +116,26 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
     foreach(auto it, m_Formats)
     {
         if(it.id == id)
+        {
+            LOG_MODEL_WARNING("CClipboardMimeData", "Repeat format id: 0x%X", id);
             return -1;
+        }
+
+        if(name)
+        {
+            if(name == it.name)
+            {
+                LOG_MODEL_WARNING("CClipboardMimeData", "Repeat format name: %s", name);
+                return -2;
+            }
+        }
     }
 
-    _FORMAT f = {id, name};
-    f.id = id;
-    f.name = name;
+    _FORMAT f = {id, name, id};
     if(name)
-        ClipboardRegisterFormat(m_pClipboard, name);
+    {
+        f.localId = ClipboardRegisterFormat(m_pClipboard, name);
+    }
 
     m_Formats.push_back(f);
 
@@ -132,11 +148,9 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::hasFormat: %s",
                     mimetype.toStdString().c_str());//*/
 
-    if(isText(mimetype)) return true;
-    if(isImage(mimetype)) return true;
-    if(m_outFormats.find(mimetype) != m_outFormats.end())
+    if(isImage(mimetype) && m_lstFormats.contains("image/bmp"))
         return true;
-    return false;
+    return m_lstFormats.contains(mimetype);
 }
 
 QStringList CClipboardMimeData::formats() const
@@ -154,45 +168,28 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
                                           QVariant::Type preferredType) const
 #endif
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s; type:0x%X",
+    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s; type:%d",
                     mimetype.toStdString().c_str(), preferredType);
-    auto it = GetValue(mimetype, preferredType);
-    if(!it.isNull()) return it;
+    qDebug() << mimetype << preferredType;
 
-    UINT32 format = 0;
-    QString name = mimetype;
-    for(auto it = m_outFormats.begin(); it != m_outFormats.end(); it++)
-    {
-        if(it.key() == mimetype)
-        {   
-            format = it.value();
-            break;
-        }
-    }
+    QString mt = mimetype;
+    if(isImage(mt)) mt = "image/bmp";
+    auto returnValue = GetValue(mt, preferredType);
+    if(!returnValue.isNull())
+        return returnValue;
 
-    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: format: %d;mimeData:%s",
-                    format, mimetype.toStdString().c_str());
-    while(0 == format)
-    {
-        auto text = m_outFormats.find("text/plain");
-        if(text != m_outFormats.end() && isText(mimetype))
-        {
-            format = text.value();
-            break;
-        }
-        auto image = m_outFormats.find("image/bmp");
-        if(image != m_outFormats.end() && isImage(mimetype))
-        {
-            format = image.value();
-            break;
-        }
+    if(m_indexString.find(mt) == m_indexString.end())
         return QVariant();
-    }
-    
+
+    auto value = m_indexString.value(mt);
+
+    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: format: %d; name:%s; mimeData:%s",
+                    value.id, value.name.toStdString().c_str(), mimetype.toStdString().c_str());
+
     if(!m_pContext) return QVariant();
 
-    emit sigSendDataRequest(m_pContext, format, name);
-    
+    emit sigSendDataRequest(m_pContext, value.id, value.name);
+
     // add wait response event
     QEventLoop loop;
     connect(this, SIGNAL(sigContinue()), &loop, SLOT(quit()), Qt::DirectConnection);
@@ -200,67 +197,109 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData end");
     // Objecte destruct
     if(m_bExit)
-        return QVariant(preferredType);
+        return QVariant();
 
-    it = GetValue(mimetype, preferredType);
-    if(!it.isNull()) return it;
-
-    return QVariant();
+    return GetValue(mt, preferredType);
 }
 
 //! if(pData == nullptr && nLen == 0) is Notify clipboard program has exited
-int CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
+void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
                                              UINT32 id, QString name)
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardMimeData::slotServerFormatData: id:%d,name:%s",
                     id, name.toStdString().c_str());
     int nRet = 0;
-    UINT32 dstFormatId = 0;
-    if(!pData && 0 == nLen)
-    {
-        m_bExit = true;
-        m_pContext = nullptr;
-    }
-    else
-    {
-        
+    UINT32 srcId = 0;
+    UINT32 dstId = 0;
+    do{
+        if(!pData && 0 == nLen)
+        {
+            m_bExit = true;
+            m_pContext = nullptr;
+            break;
+        }
+
+        if(m_indexId.find(id) == m_indexId.end())
+            break;
+
+        auto it = m_indexId[id];
         switch (id) {
         case CF_TEXT:
         case CF_OEMTEXT:
         case CF_UNICODETEXT:
+        case CF_LOCALE:
         {
-            dstFormatId = CF_UNICODETEXT;
+            srcId = it.localId;
+            dstId = CF_UNICODETEXT;
+            break;
         }
+        case CF_DIB:
+        //case CF_DIBV5:
+        {
+            srcId = it.localId;
+            dstId = ClipboardGetFormatId(m_pClipboard, "image/bmp");
             break;
-        case CF_BITMAP:
-            dstFormatId = CF_BITMAP;
-            break;
+        }
         default:
-            dstFormatId = ClipboardGetFormatId(m_pClipboard, name.toStdString().c_str());
-        }
-        bool bSuccess = ClipboardSetData(m_pClipboard, id, pData, nLen);
-        if(bSuccess)
         {
-            UINT32 size = 0;
-            void* data = ClipboardGetData(m_pClipboard, dstFormatId, &size);
-            QByteArray d((char*)data, size);
-            if(!d.isEmpty())
-                m_Variant[name] = QVariant(d);
-        } else {
-            QByteArray d((char*)pData, nLen);
-            if(!d.isEmpty())
-                m_Variant[name] = QVariant(d);
+            srcId = it.localId;
+            if(it.name.isEmpty())
+                dstId = it.localId;
+            else {
+                if(isText(it.name, false))
+                    dstId = CF_UNICODETEXT;
+                else if(isHtml(it.name, false))
+                    dstId = ClipboardGetFormatId(m_pClipboard, "text/html");
+                else if(isUrls(it.name, false))
+                    dstId = ClipboardGetFormatId(m_pClipboard, "text/uri-list");
+            }
         }
-    }
+        }
+        bool bSuccess = ClipboardSetData(m_pClipboard, srcId, pData, nLen);
+        if(!bSuccess) break;
+
+        UINT32 size = 0;
+        void* data = ClipboardGetData(m_pClipboard, dstId, &size);
+        if(!data)
+        {
+            LOG_MODEL_ERROR("CClipboardMimeData",
+                            "ClipboardGetData fail: dstId: %d srcId: %d",
+                            dstId, srcId);
+            break;
+        }
+
+        QByteArray d((char*)data, size);
+        if(d.isEmpty()) break;
+
+        if(isHtml(it.name))
+        {
+            m_Variant = QString(d);
+        } else if (CF_UNICODETEXT == dstId) {
+            m_Variant = QString::fromUtf16((const char16_t*)data, size / 2);
+        } else if(ClipboardGetFormatId(m_pClipboard, "image/bmp") == dstId) {
+            QImage img;
+            if(img.loadFromData(d, "BMP"))
+                m_Variant = img;
+        } else if(isUrls(it.name)) {
+            ;
+        }
+        else
+            m_Variant = QVariant(d);
+
+    }while(0);
     emit sigContinue();
-    return nRet;
+    return;
 }
 
-bool CClipboardMimeData::isText(QString mimeType) const
+bool CClipboardMimeData::isText(QString mimeType, bool bRegular) const
 {
-    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isText: %s",
-                    mimeType.toStdString().c_str());
-    if(m_outFormats.find("text/plain") != m_outFormats.end())
+//    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isText: %s",
+//                    mimeType.toStdString().c_str());
+    if("UTF8_STRING" == mimeType) return true;
+    if("TEXT" == mimeType) return true;
+    if("STRING" == mimeType) return true;
+    if("text/plain" == mimeType) return true;
+    if(bRegular)
     {
         QRegularExpression re("text/plain[;]*.*",
                               QRegularExpression::CaseInsensitiveOption);
@@ -271,26 +310,39 @@ bool CClipboardMimeData::isText(QString mimeType) const
     return false;
 }
 
-bool CClipboardMimeData::isHtml(QString mimeType) const
+bool CClipboardMimeData::isHtml(QString mimeType, bool bRegular) const
 {
-    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isHtml: %s",
-                    mimeType.toStdString().c_str());
-    if(m_outFormats.find("text/html") != m_outFormats.end()
-            || m_outFormats.find("HTML Format") != m_outFormats.end())
-    {
-        if("text/html" == mimeType || "HTML Format" == mimeType)
-            return true;
-    }
+//    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isHtml: %s",
+//                    mimeType.toStdString().c_str());
+    
+    if("text/html" == mimeType || "HTML Format" == mimeType)
+        return true;
+
     return false;
 }
 
-bool CClipboardMimeData::isImage(QString mimeType) const
+bool CClipboardMimeData::isUrls(QString mimeType, bool bRegular) const
 {
-    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isImage: %s",
-                    mimeType.toStdString().c_str());
-    if(m_outFormats.find("image/bmp") != m_outFormats.end())
+//    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isUrls: %s",
+//                    mimeType.toStdString().c_str());
+    
+    if("FileGroupDescriptorW" == mimeType || "text/uri-list" == mimeType)
+        return true;
+
+    return false;
+}
+
+bool CClipboardMimeData::isImage(QString mimeType, bool bRegular) const
+{
+//    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isImage: %s",
+//                    mimeType.toStdString().c_str());
+
+    if("image/bmp" == mimeType) return true;
+    // QClipboard return QImage mimeType is "application/x-qt-image"
+    if("application/x-qt-image" == mimeType) return true;
+    if(bRegular)
     {
-        QRegularExpression re(".*image.*",
+        QRegularExpression re("image/.*",
                               QRegularExpression::CaseInsensitiveOption);
         QRegularExpressionMatch match = re.match(mimeType);
         if(match.hasMatch())
@@ -305,24 +357,5 @@ QVariant CClipboardMimeData::GetValue(QString mimeType, QMetaType preferredType)
 QVariant CClipboardMimeData::GetValue(QString mimeType, QVariant::Type preferredType) const
 #endif
 {
-    auto it = m_Variant.find(mimeType);
-    if(m_Variant.end() != it)
-    {
-        if(isText(mimeType) || isHtml(mimeType))
-        {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-            return QVariant(QMetaType(QMetaType::QString), it.value().data());
-#else
-            return QVariant(QMetaType::QString, it.value().data());
-#endif
-        }
-        if(isImage(mimeType))
-        {
-            QImage img;
-            if(img.load(it.value().toByteArray(), "bmp"))
-                return QVariant(img);
-        }
-        return QVariant(preferredType, it.value().data());
-    }
-    return QVariant();
+    return m_Variant;
 }

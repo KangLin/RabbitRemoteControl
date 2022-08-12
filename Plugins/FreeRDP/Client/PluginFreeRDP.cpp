@@ -9,6 +9,9 @@
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
+    qDebug() //<< "FreeRDP build configure:" << freerdp_get_build_config() << "\n"
+             << "Version:" << freerdp_get_build_revision() << "\n"
+             << "Date:" << freerdp_get_build_date();
 }
 
 CPluginFreeRDP::~CPluginFreeRDP()
