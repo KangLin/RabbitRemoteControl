@@ -28,7 +28,7 @@ public:
 
 Q_SIGNALS:
     void sigSendDataRequest(CliprdrClientContext* context,
-                            UINT32 formatId, QString formatName) const;
+                            UINT32 formatId) const;
     void sigContinue();
     
 public:
@@ -37,15 +37,13 @@ public:
     
 public Q_SLOTS:
     void slotServerFormatData(const BYTE* pData, UINT32 nLen,
-                             UINT32 id, QString name);
+                             UINT32 id);
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     virtual QVariant retrieveData(const QString &mimetype, QMetaType preferredType) const override;
-    QVariant GetValue(QString mimeType, QMetaType preferredType) const;
 #else
     virtual QVariant retrieveData(const QString &mimetype, QVariant::Type preferredType) const override;
-    QVariant GetValue(QString mimeType, QVariant::Type preferredType) const;
 #endif
 
 private:

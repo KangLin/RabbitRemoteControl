@@ -172,12 +172,11 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
                     mimetype.toStdString().c_str(), preferredType);
     qDebug() << mimetype << preferredType;
 
+    if(!m_Variant.isNull())
+        return m_Variant;
+
     QString mt = mimetype;
     if(isImage(mt)) mt = "image/bmp";
-    auto returnValue = GetValue(mt, preferredType);
-    if(!returnValue.isNull())
-        return returnValue;
-
     if(m_indexString.find(mt) == m_indexString.end())
         return QVariant();
 
@@ -188,7 +187,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
 
     if(!m_pContext) return QVariant();
 
-    emit sigSendDataRequest(m_pContext, value.id, value.name);
+    emit sigSendDataRequest(m_pContext, value.id);
 
     // add wait response event
     QEventLoop loop;
@@ -199,15 +198,16 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
     if(m_bExit)
         return QVariant();
 
-    return GetValue(mt, preferredType);
+    return m_Variant;
 }
 
 //! if(pData == nullptr && nLen == 0) is Notify clipboard program has exited
 void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
-                                             UINT32 id, QString name)
+                                             UINT32 id)
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardMimeData::slotServerFormatData: id:%d,name:%s",
-                    id, name.toStdString().c_str());
+    LOG_MODEL_DEBUG("FreeRdp",
+                    "CClipboardMimeData::slotServerFormatData: id:%d",
+                    id);
     int nRet = 0;
     UINT32 srcId = 0;
     UINT32 dstId = 0;
@@ -349,13 +349,4 @@ bool CClipboardMimeData::isImage(QString mimeType, bool bRegular) const
             return true;
     }
     return false;
-}
-
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-QVariant CClipboardMimeData::GetValue(QString mimeType, QMetaType preferredType) const
-#else
-QVariant CClipboardMimeData::GetValue(QString mimeType, QVariant::Type preferredType) const
-#endif
-{
-    return m_Variant;
 }

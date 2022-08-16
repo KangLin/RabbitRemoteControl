@@ -54,7 +54,7 @@ public:
                                  const BYTE* data, size_t size);
 public Q_SLOTS:
     static UINT slotSendFormatDataRequest(CliprdrClientContext* context,
-                                    UINT32 formatId, QString formatName);
+                                    UINT32 formatId);
 
 public:
     ///////// Send file from client to server ///////////
@@ -90,10 +90,9 @@ Q_SIGNALS:
     //! \param pData: data pointer
     //! \param nLen: data length
     //! \param formatId: format id
-    //! \param formatName: format name
     //! if(pData == nullptr && nLen == 0) is Notify clipboard program has exited
     void sigServerFormatData(const BYTE* pData, UINT32 nLen,
-                             UINT32 formatId, QString formatName);
+                             UINT32 formatId);
     
 private:
     CConnectFreeRDP* m_pConnect;
@@ -102,8 +101,8 @@ private:
     friend CClipboardMimeData;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
     bool m_bOwns;
-    // Client format data
-    QVector<CClipboardMimeData::_FORMAT> m_ServerFormatDataRequest;
+    // Client request format data
+    UINT32 m_RequestFormatId;
 
     // File
     UINT32 m_FileCapabilityFlags;

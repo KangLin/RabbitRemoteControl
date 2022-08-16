@@ -42,7 +42,7 @@ CClipboardFreeRDP::~CClipboardFreeRDP()
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::~CClipboardFreeRdp()");
     
     // Notify clipboard program has exited
-    emit sigServerFormatData(nullptr, 0, 0, "");
+    emit sigServerFormatData(nullptr, 0, 0);
     ClipboardDestroy(m_pClipboard);
 }
 
@@ -653,14 +653,17 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list(CliprdrClientContext* cont
         return nRet;
     }
 
-    pThis->m_ServerFormatDataRequest.clear();
     bool check = false;
-    check = connect(pThis, SIGNAL(sigServerFormatData(const BYTE*, UINT32, UINT32, QString)),
-                    pMimeData, SLOT(slotServerFormatData(const BYTE*, UINT32, UINT32, QString)),
+    check = connect(pThis,
+                    SIGNAL(sigServerFormatData(const BYTE*, UINT32, UINT32)),
+                    pMimeData,
+                    SLOT(slotServerFormatData(const BYTE*, UINT32, UINT32)),
                     Qt::DirectConnection);
     Q_ASSERT(check);
-    check = connect(pMimeData, SIGNAL(sigSendDataRequest(CliprdrClientContext*, UINT32, QString)),
-                    pThis, SLOT(slotSendFormatDataRequest(CliprdrClientContext*, UINT32, QString)));
+    check = connect(pMimeData,
+                    SIGNAL(sigSendDataRequest(CliprdrClientContext*, UINT32)),
+                    pThis,
+                SLOT(slotSendFormatDataRequest(CliprdrClientContext*, UINT32)));
     Q_ASSERT(check);
     
     pThis->m_bOwns = true;
@@ -668,8 +671,9 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list(CliprdrClientContext* cont
     return nRet;
 }
 
-UINT CClipboardFreeRDP::cb_cliprdr_server_format_list_response(CliprdrClientContext* context,
-                                      const CLIPRDR_FORMAT_LIST_RESPONSE* pformatListResponse)
+UINT CClipboardFreeRDP::cb_cliprdr_server_format_list_response(
+        CliprdrClientContext* context,
+        const CLIPRDR_FORMAT_LIST_RESPONSE* pformatListResponse)
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:%d;flag:%d;datalen:%d",
                     pformatListResponse->msgType, pformatListResponse->msgFlags, pformatListResponse->dataLen);
@@ -678,7 +682,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list_response(CliprdrClientCont
 }
 
 UINT CClipboardFreeRDP::slotSendFormatDataRequest(CliprdrClientContext* context,
-                                            UINT32 formatId, QString formatName)
+                                            UINT32 formatId)
 {
 	UINT rc = CHANNEL_RC_OK;
 	CLIPRDR_FORMAT_DATA_REQUEST formatDataRequest;
@@ -687,8 +691,7 @@ UINT CClipboardFreeRDP::slotSendFormatDataRequest(CliprdrClientContext* context,
 		return ERROR_INTERNAL_ERROR;
 
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
-    CClipboardMimeData::_FORMAT f = {formatId, formatName};
-    pThis->m_ServerFormatDataRequest.push_back(f);
+    pThis->m_RequestFormatId = formatId;
 	formatDataRequest.requestedFormatId = formatId;
 	rc = context->ClientFormatDataRequest(context, &formatDataRequest);
 
@@ -705,12 +708,9 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_response(
 
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
    
-    auto it = pThis->m_ServerFormatDataRequest.begin();
-    pThis->m_ServerFormatDataRequest.pop_front();
     emit pThis->sigServerFormatData(formatDataResponse->requestedFormatData,
                                     formatDataResponse->dataLen,
-                                    it->id,
-                                    it->name.toStdString().c_str());
+                                    pThis->m_RequestFormatId);
     return nRet;
 }
 
