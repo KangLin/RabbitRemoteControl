@@ -224,15 +224,6 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
 
         auto it = m_indexId[id];
         switch (id) {
-        case CF_TEXT:
-        case CF_OEMTEXT:
-        case CF_UNICODETEXT:
-        case CF_LOCALE:
-        {
-            srcId = it.localId;
-            dstId = CF_UNICODETEXT;
-            break;
-        }
         case CF_DIB:
         //case CF_DIBV5:
         {
@@ -246,9 +237,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
             if(it.name.isEmpty())
                 dstId = it.localId;
             else {
-                if(isText(it.name, false))
-                    dstId = CF_UNICODETEXT;
-                else if(isHtml(it.name, false))
+                if(isHtml(it.name, false))
                     dstId = ClipboardGetFormatId(m_pClipboard, "text/html");
                 else if(isUrls(it.name, false))
                     dstId = ClipboardGetFormatId(m_pClipboard, "text/uri-list");
@@ -271,11 +260,19 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
         QByteArray d((char*)data, size);
         if(d.isEmpty()) break;
 
-        if(isHtml(it.name))
+        switch (id) {
+        case CF_UNICODETEXT:
         {
-            m_Variant = QString(d);
-        } else if (CF_UNICODETEXT == dstId) {
             m_Variant = QString::fromUtf16((const char16_t*)data, size / 2);
+            break;
+        }
+        default:
+            break;
+        }
+        if("UTF8_STRING" == it.name) {
+            m_Variant = QString::fromUtf8(d);
+        } else if(isHtml(it.name)) {
+            m_Variant = QString(d);
         } else if(ClipboardGetFormatId(m_pClipboard, "image/bmp") == dstId) {
             QImage img;
             if(img.loadFromData(d, "BMP"))
