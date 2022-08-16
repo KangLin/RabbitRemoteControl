@@ -119,7 +119,7 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 
 |        |Server|Client|Desktop  |Clipboard|File|Audio|P2P|Proxy|Terminal|
 |------- |:----:|:----:|:-------:|:-------:|:--:|:---:|:-:|:---:|:----:|
-|  RDP   |  ✓   |  ✓   |  ✓      |    ⭕   | …… |    |    |    |  ❌  |
+|  RDP   |  ✓   |  ✓   |  ✓      |    ✓    | …… |    |    |    |  ❌  |
 |  RFB   | ……   |  ✓   |  ✓      |    ⭕   |     | ❌  |✓   |  ✓ |      |
 |Spice   |      |      |         |         |     |    |    |    |      |
 |Scrcpy  |      |      |         |         |     |    |    |    |      |
@@ -238,7 +238,7 @@ Some of them are:
 |RabbitVNC   | ✓    |✓      |✓       |    ⭕  |    |  ❌  |✓   |  ✓ |    |
 |TigerVNC    | ✓    |✓      |✓       |    ⭕  |    |  ❌  |✓   |  ✓ |    |
 |LibVNCServer| ✓    |✓      |✓       |    ⭕  |    |  ❌  |    |    |    |
-|RDP         | ✓    |✓      |✓       |    ⭕  | …… |     |    |    | ❌  |
+|RDP         | ✓    |✓      |✓       |    ✓   | …… |     |    |    | ❌  |
 |Spice       |      |       |        |        |    |     |    |    |    |
 |Scrcpy      |      |       |        |        |    |     |    |    |    |
 |Terminal    |      |⭕     |  ❌     |✓       |    |  ❌  |    |    |    |
