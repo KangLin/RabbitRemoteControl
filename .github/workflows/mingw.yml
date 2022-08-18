@@ -176,8 +176,7 @@ jobs:
 #            cmake .. ^
 #                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
 #                -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF ^
-#                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+#                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
 #            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #        )
@@ -233,7 +232,6 @@ jobs:
         copy /Y C:\msys64\mingw64\bin\*.dll install\bin
         copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
         copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
-        copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
         makensis ${{github.workspace}}/build/Install.nsi
         md5sum RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe > RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5
       #if: ${{ matrix.BUILD_TYPE == 'Release' }}

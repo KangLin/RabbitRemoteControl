@@ -1,0 +1,14 @@
+{
+  "name": "rabbitremotecontrol",
+  "version-string":"0.0.23",
+  "dependencies": [
+    "openssl",
+    "libssh",
+    "libdatachannel",
+    "freerdp"
+  ],
+  "builtin-baseline":"9259a0719d94c402aae2ab7975bc096afdec15df",
+  "overrides": [
+      { "name": "openssl", "version-string": "1.1.1n" }
+  ]
+}

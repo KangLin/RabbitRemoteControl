@@ -208,7 +208,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
     LOG_MODEL_DEBUG("FreeRdp",
                     "CClipboardMimeData::slotServerFormatData: id:%d",
                     id);
-    int nRet = 0;
+
     UINT32 srcId = 0;
     UINT32 dstId = 0;
     do{
