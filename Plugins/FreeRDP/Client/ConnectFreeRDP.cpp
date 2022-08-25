@@ -16,6 +16,7 @@
 #include "freerdp/channels/disp.h"
 #include "freerdp/channels/tsmf.h"
 #include "freerdp/channels/rdpsnd.h"
+#include "freerdp/client/channels.h"
 
 #include "RabbitCommonTools.h"
 #include "RabbitCommonLog.h"
@@ -48,11 +49,6 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
     Q_ASSERT(m_pParamter);
 
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_DEBUG);
-    
-    ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
-	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
-	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
-    m_ClientEntryPoints.settings = m_pParamter->m_pSettings;
 
     rdpSettings* settings = m_pParamter->m_pSettings;
     
@@ -67,7 +63,17 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                 FreeRDP_Password,
                                 m_pParamter->GetPassword().toStdString().c_str());
 
-    RdpClientEntry(&m_ClientEntryPoints);
+    ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
+	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
+	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
+    m_ClientEntryPoints.settings = m_pParamter->m_pSettings;
+	m_ClientEntryPoints.GlobalInit = cb_global_init;
+	m_ClientEntryPoints.GlobalUninit = cb_global_uninit;
+	m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
+	m_ClientEntryPoints.ClientNew = cb_client_new;
+	m_ClientEntryPoints.ClientFree = cb_client_free;
+	m_ClientEntryPoints.ClientStart = cb_client_start;
+	m_ClientEntryPoints.ClientStop = cb_client_stop;
     
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
 	if(p)
@@ -82,20 +88,6 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
 CConnectFreeRDP::~CConnectFreeRDP()
 {
     qDebug() << "CConnectFreeRdp::~CConnectFreeRdp()";
-}
-
-int CConnectFreeRDP::RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints)
-{
-	pEntryPoints->Version = 1;
-	pEntryPoints->Size = sizeof(RDP_CLIENT_ENTRY_POINTS_V1);
-	pEntryPoints->GlobalInit = cb_global_init;
-	pEntryPoints->GlobalUninit = cb_global_uninit;
-	pEntryPoints->ContextSize = sizeof(ClientContext);
-	pEntryPoints->ClientNew = cb_client_new;
-	pEntryPoints->ClientFree = cb_client_free;
-	pEntryPoints->ClientStart = cb_client_start;
-	pEntryPoints->ClientStop = cb_client_stop;
-	return 0;
 }
 
 /*
@@ -238,7 +230,7 @@ void CConnectFreeRDP::slotClipBoardChange()
 BOOL CConnectFreeRDP::cb_global_init()
 {
 	qDebug() << "CConnectFreeRdp::Client_global_init()";
-
+    freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
 	return TRUE;
 }
 
@@ -315,6 +307,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     
     settings = instance->settings;
 	channels = context->channels;
+
 #if defined (Q_OS_WIN)
     settings->OsMajorType = OSMAJORTYPE_WINDOWS;
     settings->OsMinorType = OSMINORTYPE_WINDOWS_NT;
@@ -333,7 +326,8 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	if (!freerdp_client_load_addins(channels, instance->settings))
 		return FALSE;
 
-	if (!settings->Username && !settings->CredentialsFromStdin && !settings->SmartcardLogon)
+	if (!settings->Username && !settings->CredentialsFromStdin
+            && !settings->SmartcardLogon)
 	{
         // Get system login name
         QString szUser = RabbitCommon::CTools::Instance()->GetCurrentUser();
@@ -358,35 +352,22 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	}
 
     // Keyboard layout
-#ifdef WIN32
-    freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout,
-                           reinterpret_cast<int>(GetKeyboardLayout(0)) & 0x0000FFFF);
-#else
-    freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout,
-                               freerdp_keyboard_init(settings->KeyboardLayout));
-#endif
+    UINT32 rc = freerdp_keyboard_init(
+                freerdp_settings_get_uint32(settings, FreeRDP_KeyboardLayout));
+    freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout, rc);
 
-    // Check desktop size
+    // Check desktop size, it is set in paramter
     UINT32 width = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
     UINT32 height = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
-#if defined (Q_OS_WIN)
-    /* FIXME: desktopWidth has a limitation that it should be divisible by 4,
-	 *        otherwise the screen will crash when connecting to an XP desktop.*/
-	freerdp_settings_set_uint32(settings, FreeRDP_DesktopWidth, (width + 3) & (~3));
-#endif
     if ((width < 64) || (height < 64) ||
             (width > 4096) || (height > 4096))
     {
-        LOG_MODEL_ERROR("FreeRdp", "invalid dimensions %d:%d" 
-                        , settings->DesktopWidth
-                        , settings->DesktopHeight);
+        LOG_MODEL_ERROR("FreeRdp", "invalid dimensions %d:%d", width, height);
         return FALSE;
     } else {
-        LOG_MODEL_INFO("FreeRdp", "Init desktop size %d*%d",
-                       settings->DesktopWidth,
-                       settings->DesktopHeight);
+        LOG_MODEL_INFO("FreeRdp", "Init desktop size %d*%d", width, height);
     }
-    
+
 	return TRUE;
 }
 

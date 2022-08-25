@@ -89,8 +89,6 @@ public Q_SLOTS:
     virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
     
 private:
-    int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
-   
     // CConnect interface
     virtual int OnInit() override;
     virtual int OnClean() override;
