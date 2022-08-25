@@ -324,7 +324,10 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
     LOG_MODEL_DEBUG("FreeRdp", "SendClientFormatList nRet: %d", nRet);
     for(UINT32 i = 0; i < numFormats; i++)
         if(pFormats[i].formatName)
+        {
+            //qDebug() << pFormats[i].formatName;
             free(pFormats[i].formatName);
+        }
     delete []pFormats;
     return nRet;
 }
@@ -678,6 +681,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list_response(
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:%d;flag:%d;datalen:%d",
                     pformatListResponse->msgType, pformatListResponse->msgFlags, pformatListResponse->dataLen);
     int nRet = CHANNEL_RC_OK;
+    if (pformatListResponse->msgFlags != CB_RESPONSE_OK)
+        return E_FAIL;
     return nRet;
 }
 
