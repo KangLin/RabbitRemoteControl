@@ -8,6 +8,7 @@
 #include <QtDebug>
 #include <QImage>
 #include <QBuffer>
+#include <QStandardPaths>
 #include "ConnectFreeRDP.h"
 #include "ClipboardMimeData.h"
 #include "winpr/wlog.h"
@@ -30,6 +31,9 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
         m_bFileFormatsRegistered = true;
     wClipboardDelegate* pDelegate = ClipboardGetDelegate(m_pClipboard);
     pDelegate->custom = this;
+    /* Set up a filesystem base path for local URI */
+	pDelegate->basePath = _strdup(QStandardPaths::writableLocation(
+                QStandardPaths::TempLocation).toStdString().c_str());
     pDelegate->ClipboardFileSizeSuccess = cb_clipboard_file_size_success;
     pDelegate->ClipboardFileSizeFailure = cb_clipboard_file_size_failure;
     pDelegate->ClipboardFileRangeSuccess = cb_clipboard_file_range_success;

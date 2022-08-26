@@ -104,6 +104,9 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         if(!m_lstFormats.contains(it.key()))
             m_lstFormats << it.key();
     }
+//    if(m_lstFormats.contains("text/uri-list")
+//            && !m_lstFormats.contains("x-special/gnome-copied-files"))
+//        m_lstFormats << "x-special/gnome-copied-files";
     qDebug() << "Formats:" << m_lstFormats;
 
     return 0;
@@ -150,6 +153,8 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 
     if(isImage(mimetype) && m_lstFormats.contains("image/bmp"))
         return true;
+    if(isUrls(mimetype) && m_lstFormats.contains("text/uri-list"))
+        return true;
     return m_lstFormats.contains(mimetype);
 }
 
@@ -173,10 +178,18 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
     qDebug() << mimetype << preferredType;
 
     if(!m_Variant.isNull())
+    {
+        if(isUrls(mimetype))
+        {
+            //TODO: Add request file from server
+            ;
+        }
         return m_Variant;
+    }
 
     QString mt = mimetype;
     if(isImage(mt)) mt = "image/bmp";
+    //if(isUrls(mt)) mt = "text/uri-list";
     if(m_indexString.find(mt) == m_indexString.end())
         return QVariant();
 
@@ -278,7 +291,8 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
             if(img.loadFromData(d, "BMP"))
                 m_Variant = img;
         } else if(isUrls(it.name)) {
-            ;
+            qDebug() << d;
+            m_Variant = d;
         }
         else
             m_Variant = QVariant(d);
@@ -323,7 +337,8 @@ bool CClipboardMimeData::isUrls(QString mimeType, bool bRegular) const
 //    LOG_MODEL_DEBUG("CClipboardMimeData", "CClipboardMimeData::isUrls: %s",
 //                    mimeType.toStdString().c_str());
     
-    if("FileGroupDescriptorW" == mimeType || "text/uri-list" == mimeType)
+    if("FileGroupDescriptorW" == mimeType || "text/uri-list" == mimeType
+            || "x-special/gnome-copied-files" == mimeType)
         return true;
 
     return false;
