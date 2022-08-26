@@ -274,29 +274,32 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
         if(d.isEmpty()) break;
 
         switch (id) {
+        case CF_OEMTEXT:
+        {
+            m_Variant = QString::fromLocal8Bit(d);
+            break;
+        }
         case CF_UNICODETEXT:
         {
             m_Variant = QString::fromUtf16((const char16_t*)data, size / 2);
             break;
         }
         default:
-            break;
+            if("UTF8_STRING" == it.name) {
+                m_Variant = QString::fromUtf8(d);
+            } else if(isHtml(it.name)) {
+                m_Variant = QString(d);
+            } else if(ClipboardGetFormatId(m_pClipboard, "image/bmp") == dstId) {
+                QImage img;
+                if(img.loadFromData(d, "BMP"))
+                    m_Variant = img;
+            } else if(isUrls(it.name)) {
+                qDebug() << d;
+                m_Variant = d;
+            }
+            else
+                m_Variant = QVariant(d);
         }
-        if("UTF8_STRING" == it.name) {
-            m_Variant = QString::fromUtf8(d);
-        } else if(isHtml(it.name)) {
-            m_Variant = QString(d);
-        } else if(ClipboardGetFormatId(m_pClipboard, "image/bmp") == dstId) {
-            QImage img;
-            if(img.loadFromData(d, "BMP"))
-                m_Variant = img;
-        } else if(isUrls(it.name)) {
-            qDebug() << d;
-            m_Variant = d;
-        }
-        else
-            m_Variant = QVariant(d);
-
     }while(0);
     emit sigContinue();
     return;

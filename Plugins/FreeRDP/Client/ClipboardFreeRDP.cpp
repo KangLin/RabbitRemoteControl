@@ -9,6 +9,8 @@
 #include <QImage>
 #include <QBuffer>
 #include <QStandardPaths>
+#include <QDir>
+
 #include "ConnectFreeRDP.h"
 #include "ClipboardMimeData.h"
 #include "winpr/wlog.h"
@@ -32,8 +34,11 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     wClipboardDelegate* pDelegate = ClipboardGetDelegate(m_pClipboard);
     pDelegate->custom = this;
     /* Set up a filesystem base path for local URI */
-	pDelegate->basePath = _strdup(QStandardPaths::writableLocation(
-                QStandardPaths::TempLocation).toStdString().c_str());
+    QString szPath = QStandardPaths::writableLocation(
+                QStandardPaths::TempLocation)
+            + QDir::separator() + "Rabbit"
+            + QDir::separator() + "RabbitRemoteControl";
+	pDelegate->basePath = _strdup(szPath.toStdString().c_str());
     pDelegate->ClipboardFileSizeSuccess = cb_clipboard_file_size_success;
     pDelegate->ClipboardFileSizeFailure = cb_clipboard_file_size_failure;
     pDelegate->ClipboardFileRangeSuccess = cb_clipboard_file_range_success;
@@ -147,7 +152,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
     {
 		generalCapabilitySet.generalFlags |=
                 CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS
-                | CB_HUGE_FILE_SUPPORT_ENABLED;
+                | CB_HUGE_FILE_SUPPORT_ENABLED
+                ;
     }
 
     pThis->m_FileCapabilityFlags = generalCapabilitySet.generalFlags;
