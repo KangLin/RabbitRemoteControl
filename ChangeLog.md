@@ -1,6 +1,13 @@
 ## Change Log
 
 ### v0.0.23
++ Rename
+  - Rename viewer to client
+  - Rename CPluginViewer to CPluginClient
+  - Rename CPluginViewerThread to CPluginClientThread
+  - Rename CParameterViewer to CParameterClient
+  - Rename CConnecter::SetParameterViewer to CConnecter::SetParameterClient
+  - Rename CManagePlugin to CClient
 - FreeRDP:
   + Completed clipboard functions
     - Text
@@ -12,13 +19,6 @@
 + Add keyboard hook
   - Windows
 + Refactor parameter
-+ Rename
-  - Rename viewer to client
-  - Rename CPluginViewer to CPluginClient
-  - Rename CPluginViewerThread to CPluginClientThread
-  - Rename CParameterViewer to CParameterClient
-  - Rename CConnecter::SetParameterViewer to CConnecter::SetParameterClient
-  - Rename CManagePlugin to CClient
 
 ### v0.0.21
 + Add core dump in windows
