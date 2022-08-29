@@ -13,8 +13,6 @@ int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>("KeyboardMo
 int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
 Q_DECLARE_METATYPE(Qt::MouseButton)
 int g_QtMouseButton = qRegisterMetaType<Qt::MouseButton>("MouseButton");
-int g_CImage = qRegisterMetaType<CImage>("CImage");
-int g_QSharedPointer_CImage = qRegisterMetaType<QSharedPointer<CImage>>("qRegisterMetaType");
 
 CConnect::CConnect(CConnecter *pConnecter, QObject *parent, bool bDirectConnection)
     : QObject(parent), m_pView(nullptr)
@@ -103,9 +101,6 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
 
     check = connect(this, SIGNAL(sigUpdateRect(const QRect&, const QImage&)),
                     m_pView, SLOT(slotUpdateRect(const QRect&, const QImage&)));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigUpdateRect(QSharedPointer<CImage>)),
-                    m_pView, SLOT(slotUpdateRect(QSharedPointer<CImage>)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigUpdateCursor(const QCursor&)),
                     m_pView, SLOT(slotUpdateCursor(const QCursor&)));

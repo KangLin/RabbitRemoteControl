@@ -10,25 +10,6 @@
 #include <QSharedPointer>
 #include "client_export.h"
 
-class CLIENT_EXPORT CImage : public QObject {
-    Q_OBJECT
-public:
-    CImage(QObject* parent = nullptr) : QObject(parent){
-        mutex = new QMutex();
-    }
-    CImage(const CImage& img){
-        image = img.image;
-        rect = img.rect;
-        mutex = img.mutex;
-    }
-    ~CImage(){
-        if(mutex) delete mutex;
-    }
-    QImage image;
-    QRect rect;
-    QMutex* mutex;
-};
-
 #ifdef USE_FROM_OPENGL
 
     #include "FrmViewerOpenGL.h"
@@ -128,7 +109,6 @@ public Q_SLOTS:
      * \param image: image
      */
     void slotUpdateRect(const QRect& r, const QImage& image);
-    void slotUpdateRect(QSharedPointer<CImage> image);
     /*!
      * \brief Update cursor
      * \param cursor

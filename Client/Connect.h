@@ -152,7 +152,6 @@ Q_SIGNALS:
     void sigServerName(const QString& szName);
 
     void sigUpdateRect(const QRect& r, const QImage& image);
-    void sigUpdateRect(QSharedPointer<CImage> image);
     void sigUpdateCursor(const QCursor& cursor);
     void sigUpdateCursorPosition(const QPoint& pos);
     void sigSetClipboard(QMimeData* data);

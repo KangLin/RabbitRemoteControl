@@ -105,7 +105,6 @@ private:
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
         
     QImage m_Image;
-    QSharedPointer<CImage> m_Desktop;
 
     CClipboardFreeRDP m_ClipBoard;
     CCursorFreeRDP m_Cursor;

@@ -402,7 +402,6 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     pThis->m_Image = QImage(desktopWidth,
                             desktopHeight,
                             QImage::Format_RGB32);
-    pThis->m_Desktop = QSharedPointer<CImage>(new CImage());
 
     // Init gdi format
     if (!gdi_init_ex(instance, pThis->GetImageFormat(),
@@ -757,16 +756,8 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
 
     QRect rect(x, y, w, h);
     //qDebug() << "Update:" << rect;
-    /*
-    if(m_Desktop)
-    {
-        m_Desktop->rect = rect;
-        m_Desktop->mutex->lock();
-        m_Desktop->image = m_Image.copy(rect);
-        m_Desktop->mutex->unlock();
-        emit sigUpdateRect(m_Desktop);
-    } else //*/
-        emit sigUpdateRect(rect, m_Image.copy(rect));
+    //emit sigUpdateRect(rect, m_Image.copy(rect));
+    emit sigUpdateRect(m_Image.rect(), m_Image);
     return FALSE;
 }
 

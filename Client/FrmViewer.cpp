@@ -297,17 +297,6 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
     update();
 }
 
-void CFrmViewer::slotUpdateRect(QSharedPointer<CImage> image)
-{
-    //qDebug() << "void CFrmViewer::slotUpdateRect(QSharedPointer<CImage> image)";
-
-    image->mutex->lock();
-    QPainter painter(&m_Desktop);
-    painter.drawImage(image->rect, image->image);
-    image->mutex->unlock();
-    update();
-}
-
 void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
 {
     setCursor(cursor);
