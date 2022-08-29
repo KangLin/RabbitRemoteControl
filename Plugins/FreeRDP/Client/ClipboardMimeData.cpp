@@ -189,12 +189,14 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
 
     QString mt = mimetype;
     if(isImage(mt)) mt = "image/bmp";
-    //if(isUrls(mt)) mt = "text/uri-list";
     if(m_indexString.find(mt) == m_indexString.end())
         return QVariant();
 
-    auto value = m_indexString.value(mt);
-
+    _FORMAT value;
+    auto lstValue = m_indexString.values(mt);
+    if(lstValue.isEmpty())
+        return QVariant();
+    value = *lstValue.crbegin();
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: format: %d; name:%s; mimeData:%s",
                     value.id, value.name.toStdString().c_str(), mimetype.toStdString().c_str());
 
@@ -254,6 +256,8 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
                     dstId = ClipboardGetFormatId(m_pClipboard, "text/html");
                 else if(isUrls(it.name, false))
                     dstId = ClipboardGetFormatId(m_pClipboard, "text/uri-list");
+                else
+                    dstId = it.localId;
             }
         }
         }
@@ -274,9 +278,18 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
         if(d.isEmpty()) break;
 
         switch (id) {
+        case CF_TEXT:
+        {
+            m_Variant = QString::fromLatin1(d);
+            break;
+        }
         case CF_OEMTEXT:
         {
+#ifdef Q_OS_WINDOWS
             m_Variant = QString::fromLocal8Bit(d);
+#else
+            m_Variant = d;
+#endif
             break;
         }
         case CF_UNICODETEXT:
