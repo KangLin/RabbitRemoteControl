@@ -27,7 +27,10 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     m_bFileSupported(false),
     m_bFileFormatsRegistered(false)
 {
-    WLog_SetLogLevel(WLog_Get(TAG), WLOG_TRACE);
+    auto log = WLog_Get(TAG);
+    WLog_SetLogLevel(log, WLOG_DEBUG);
+    qDebug() << "log:" << WLog_GetLogLevel(log) << WLog_IsLevelActive(log, WLOG_DEBUG);
+
     m_pClipboard = ClipboardCreate();
     if (ClipboardGetFormatId(m_pClipboard, "text/uri-list"))
         m_bFileFormatsRegistered = true;

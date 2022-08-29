@@ -1,6 +1,17 @@
 ## Change Log
 
 ### v0.0.23
+- FreeRDP:
+  + Completed clipboard functions
+    - Text
+    - HTML
+    - Image
+  + Add play bell sound
+
+### v0.0.22
++ Add keyboard hook
+  - Windows
++ Refactor parameter
 + Rename
   - Rename viewer to client
   - Rename CPluginViewer to CPluginClient
@@ -8,11 +19,6 @@
   - Rename CParameterViewer to CParameterClient
   - Rename CConnecter::SetParameterViewer to CConnecter::SetParameterClient
   - Rename CManagePlugin to CClient
-
-### v0.0.22
-+ Add keyboard hook
-  - Windows
-+ Refactor parameter
 
 ### v0.0.21
 + Add core dump in windows

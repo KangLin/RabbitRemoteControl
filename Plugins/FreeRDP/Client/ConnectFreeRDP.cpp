@@ -48,8 +48,6 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
     m_pParamter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParamter);
 
-    //WLog_SetLogLevel(WLog_GetRoot(), WLOG_DEBUG);
-
     rdpSettings* settings = m_pParamter->m_pSettings;
     
     freerdp_settings_set_string(settings,

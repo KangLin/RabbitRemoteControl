@@ -5,7 +5,6 @@
 #include <QDebug>
 #include <QInputDialog>
 #include "DlgSetFreeRDP.h"
-#include "winpr/wlog.h"
 
 CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *parent)
     : CConnecterDesktopThread(parent)
