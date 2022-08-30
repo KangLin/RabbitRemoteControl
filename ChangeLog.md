@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.24
++ Install FreeRDP dll
+
 ### v0.0.23
 + Rename
   - Rename viewer to client

@@ -5,6 +5,7 @@ project(FreeRDP)
 SET(SRC_LIBS freerdp-server freerdp-shadow freerdp-shadow-subsystem freerdp-client freerdp Service)
 if(NOT WIN32)
     LIST(APPEND SRC_LIBS winpr)
+    install_targets(TARGETS ${SRC_LIBS})
 endif()
 
 if(NOT TARGET Service)

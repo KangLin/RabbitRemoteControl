@@ -5,6 +5,7 @@ project(FreeRDP)
 SET(SRC_LIBS freerdp-client freerdp Client)
 if(NOT WIN32)
     LIST(APPEND SRC_LIBS winpr)
+    install_targets(TARGETS ${SRC_LIBS})
 endif()
 
 SET(SOURCE_FILES
