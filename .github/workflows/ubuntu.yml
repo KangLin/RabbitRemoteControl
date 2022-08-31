@@ -174,23 +174,23 @@ jobs:
         cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
         md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
 
-    - name: update xml file
-      if: ${{ matrix.BUILD_TYPE == 'Release' }}
-      working-directory: ${{github.workspace}}
-      run: |
-        #sudo apt update -y -qq
-        #sudo apt-get install -y -qq xvfb xpra
-        sudo Xvfb :999 -ac &
-        export DISPLAY=:999.0
-        echo "Install rabbit remote control ......"
-        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb
-        echo "Update update_linux.xml ......"
-        export QT_XCB_GL_INTEGRATION=none
-        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
-            -f "`pwd`/update_linux.xml" \
-            -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
-            --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
-            -m "v${{env.RabbitRemoteControl_VERSION}}"
+#    - name: update xml file
+#      if: ${{ matrix.BUILD_TYPE == 'Release' }}
+#      working-directory: ${{github.workspace}}
+#      run: |
+#        #sudo apt update -y -qq
+#        #sudo apt-get install -y -qq xvfb xpra
+#        sudo Xvfb :999 -ac &
+#        export DISPLAY=:999.0
+#        echo "Install rabbit remote control ......"
+#        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb
+#        echo "Update update_linux.xml ......"
+#        export QT_XCB_GL_INTEGRATION=none
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
+#            -f "`pwd`/update_linux.xml" \
+#            -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
+#            --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
+#            -m "v${{env.RabbitRemoteControl_VERSION}}"
 
     - name: update 
       uses: actions/upload-artifact@v2
