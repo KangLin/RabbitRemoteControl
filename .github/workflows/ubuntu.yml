@@ -185,6 +185,7 @@ jobs:
         echo "Install rabbit remote control ......"
         sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb
         echo "Update update_linux.xml ......"
+        export QT_XCB_GL_INTEGRATION=none
         /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
             -f "`pwd`/update_linux.xml" \
             -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
