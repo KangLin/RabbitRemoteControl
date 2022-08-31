@@ -20,18 +20,18 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu_2022_02_14
       RabbitRemoteControl_VERSION: 0.0.24
-      
+
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    
+
     - name: make_directory
       run: |
         cmake -E make_directory ${{env.SOURCE_DIR}}
         cmake -E make_directory ${{env.TOOSL_DIR}}
         cmake -E make_directory ${{env.INSTALL_DIR}}
-  
+
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
@@ -98,7 +98,7 @@ jobs:
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
-    
+
     - name: build libdatachannel
       working-directory: ${{env.SOURCE_DIR}}
       run: |
@@ -131,7 +131,7 @@ jobs:
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         fi
-    
+
     - name: build QtService
       working-directory: ${{env.SOURCE_DIR}}
       env:
@@ -150,7 +150,7 @@ jobs:
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
-        
+
     - name: build_debpackage.sh
       working-directory: ${{github.workspace}}
       env:
@@ -185,7 +185,11 @@ jobs:
 #        echo "Install rabbit remote control ......"
 #        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb
 #        echo "Update update_linux.xml ......"
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp -f "`pwd`/update_linux.xml" --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb -m "v${{env.RabbitRemoteControl_VERSION}}"
+#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
+#            -f "`pwd`/update_linux.xml" \
+#            -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
+#            --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
+#            -m "v${{env.RabbitRemoteControl_VERSION}}"
 
     - name: update 
       uses: actions/upload-artifact@v2
@@ -193,6 +197,7 @@ jobs:
           name: rabbitremotecontrol_${{matrix.os}}
           path: |
             rabbitremotecontrol_*.deb
+            update_linux.xml
       if: ${{ matrix.BUILD_TYPE == 'Release' }} 
 
     - name: Upload To Github Release
@@ -205,6 +210,7 @@ jobs:
         body: |
            [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
         files: |
+            ${{github.workspace}}/update_linux.xml
             ${{github.workspace}}/rabbitremotecontrol_*.deb
             ${{github.workspace}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
 
@@ -215,7 +221,6 @@ jobs:
 #    GHR_COMPRESS: xz
 #    GHR_PATH: ${{github.workspace}}/rabbitremotecontrol_*.deb
 #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
 #    - name: Upload To Github Release
 #      # You may pin to the exact commit or the version.

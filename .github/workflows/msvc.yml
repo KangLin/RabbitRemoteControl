@@ -341,6 +341,7 @@ jobs:
         if "5.12.12" == "${{matrix.qt_version}}" (
             ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
                 -f "update_windows.xml" ^
+                -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
                 --pf RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
                 -m "${{env.RabbitRemoteControl_VERSION}}"
         )
@@ -351,6 +352,7 @@ jobs:
         name: rabbitremotecontrol_${{matrix.os}}_msvc_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
         path: |
           ${{github.workspace}}\build\RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe
+          ${{github.workspace}}\build\update_windows.xml
       #if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
     - name: Upload To Github Release
