@@ -154,6 +154,8 @@
 [![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 [![从 sourceforge 下载量](https://img.shields.io/sourceforge/dt/rabbitremotecontrol.svg?label=Sourceforge%20下载总量)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
+[Github release 下载统计](http://gra.caldis.me/?user=KangLin&repo=RabbitRemoteControl)
+
 [![Gitter](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![GitHub forks](https://img.shields.io/github/forks/KangLin/RabbitRemoteControl)](https://github.com/KangLin/RabbitRemoteControl)
 [![GitHub issues](https://img.shields.io/github/issues/KangLin/RabbitRemoteControl?label=问题)](https://github.com/KangLin/RabbitRemoteControl/issues)
