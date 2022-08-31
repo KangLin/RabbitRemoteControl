@@ -70,59 +70,59 @@
     </message>
 </context>
 <context>
-    <name>CFrmParameterViewer</name>
+    <name>CFrmParameterClient</name>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="14"/>
+        <location filename="../../FrmParameterClient.ui" line="14"/>
         <source>Client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="20"/>
+        <location filename="../../FrmParameterClient.ui" line="20"/>
         <source>Hook: capture system key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="27"/>
+        <location filename="../../FrmParameterClient.ui" line="27"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="35"/>
+        <location filename="../../FrmParameterClient.ui" line="35"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="42"/>
+        <location filename="../../FrmParameterClient.ui" line="42"/>
         <source>Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="54"/>
+        <location filename="../../FrmParameterClient.ui" line="54"/>
         <source>Key used to encrypt saved password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="62"/>
+        <location filename="../../FrmParameterClient.ui" line="62"/>
         <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="94"/>
+        <location filename="../../FrmParameterClient.ui" line="94"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="101"/>
+        <location filename="../../FrmParameterClient.ui" line="101"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="108"/>
+        <location filename="../../FrmParameterClient.ui" line="108"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterViewer.ui" line="117"/>
+        <location filename="../../FrmParameterClient.ui" line="117"/>
         <source>Prompt type:</source>
         <translation type="unfinished"></translation>
     </message>
