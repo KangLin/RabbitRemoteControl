@@ -1,5 +1,9 @@
 ## Change Log
 
+### v0.0.25
++ Modify CI for automation update
++ Modify translations
+
 ### v0.0.24
 + Install FreeRDP dll
 
