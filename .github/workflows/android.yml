@@ -98,10 +98,10 @@ jobs:
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
         # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
         # compute its hash and append this to the computed cache's key.
-        appendedCacheKey: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}-2022-08-04
+        appendedCacheKey: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         additionalCachedPaths: $VCPKG_ROOT/installed
         vcpkgTriplet: '${{ matrix.VCPKG_TARGET_TRIPLET }}'
-        vcpkgArguments: 'zlib openssl libpng libjpeg-turbo libdatachannel'
+        vcpkgArguments: 'zlib openssl libpng libjpeg-turbo' # libdatachannel'
 
     - name: Cache installed
       uses: actions/cache@v2
@@ -110,7 +110,7 @@ jobs:
         path: |
           ${{env.INSTALL_DIR}}
         key: cache-installed-android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}
-    
+
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
       run: |
@@ -322,4 +322,3 @@ jobs:
             ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk
             ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk.md5
             ${{env.INSTALL_DIR}}/update_android.xml
-
