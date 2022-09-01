@@ -22,6 +22,44 @@ jobs:
       RabbitRemoteControl_VERSION: 0.0.24
 
     steps:
+    - name: core dump infomations
+      if: false
+      run: |
+        echo "# ulimit -a"
+        ulimit -a
+        echo "# cat /proc/sys/kernel/core_pattern"
+        cat /proc/sys/kernel/core_pattern
+        echo "# ulimit -c unlimited"
+        ulimit -c unlimited
+        echo "# sudo sysctl -w kernel.core_pattern=core"
+        sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
+        echo "# ulimit -a"
+        ulimit -a
+        echo "# cat /proc/sys/kernel/core_pattern"
+        cat /proc/sys/kernel/core_pattern
+
+#        See: https://www.cnblogs.com/cong-wang/p/15026524.html
+#        Naming of core dump files
+#               By default, a core dump file is named core, but the /proc/sys/kernel/core_pattern file (since  Linux  2.6  and
+#               2.4.21)  can  be  set  to  define a template that is used to name core dump files.  The template can contain %
+#               specifiers which are substituted by the following values when a core file is created:
+#
+#                   %%  a single % character
+#                   %c  core file size soft resource limit of crashing process (since Linux 2.6.24)
+#                   %d  dump mode—same as value returned by prctl(2) PR_GET_DUMPABLE (since Linux 3.7)
+#                   %e  executable filename (without path prefix)
+#                   %E  pathname of executable, with slashes ('/') replaced by exclamation marks ('!') (since Linux 3.0).
+#                   %g  (numeric) real GID of dumped process
+#                   %h  hostname (same as nodename returned by uname(2))
+#                   %i  TID of thread that triggered core dump, as seen in the PID  namespace  in  which  the  thread  resides
+#                       (since Linux 3.18)
+#                   %I  TID of thread that triggered core dump, as seen in the initial PID namespace (since Linux 3.18)
+#                   %p  PID of dumped process, as seen in the PID namespace in which the process resides
+#                   %P  PID of dumped process, as seen in the initial PID namespace (since Linux 3.12)
+#                   %s  number of signal causing dump
+#                   %t  time of dump, expressed as seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC)
+#                   %u  (numeric) real UID of dumped process
+
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -36,13 +74,28 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
 
+#    - name: apt helper action
+#      uses: ryankurte/action-apt@v0.3.0
+#      with:
+#        arch: amd64
+#        packages: xvfb xpra libglu1-mesa-dev libpulse-mainloop-glib0 cmake build-essential libusb-1.0-0-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot graphviz qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev libx11-dev libxfixes-dev qtwebengine5-dev gdb
+
     - name: apt helper action
-      uses: ryankurte/action-apt@v0.2.0
-      with:
-        # architectures to pass to dpkg --add-architecture
-        #architectures: # optional
-        # apt packages to install
-        packages: xvfb xpra libglu1-mesa-dev libpulse-mainloop-glib0 cmake build-essential libusb-1.0-0-dev libvncserver-dev libpixman-1-dev libssh-dev libtelnet-dev libqxmpp-dev debhelper dh-systemd fakeroot graphviz qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libutf8proc-dev libqtermwidget5-0-dev libpam0g-dev libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev libx11-dev libxfixes-dev qtwebengine5-dev
+      run: |
+        sudo apt update
+        sudo apt upgrade
+        sudo apt install xvfb xpra \
+            libglu1-mesa-dev libpulse-mainloop-glib0 \
+            cmake build-essential \
+            libusb-1.0-0-dev libvncserver-dev libpixman-1-dev libssh-dev \
+            libtelnet-dev libqxmpp-dev \
+            debhelper fakeroot graphviz dh-systemd \
+            qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools \
+            qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev \
+            qtwebengine5-dev libqtermwidget5-0-dev \
+            libutf8proc-dev libpam0g-dev \
+            libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
+            libx11-dev libxfixes-dev
 
     - name: Cache installed
       uses: actions/cache@v2
@@ -174,32 +227,44 @@ jobs:
         cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
         md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
 
-#    - name: update xml file
-#      if: ${{ matrix.BUILD_TYPE == 'Release' }}
-#      working-directory: ${{github.workspace}}
-#      run: |
-#        #sudo apt update -y -qq
-#        #sudo apt-get install -y -qq xvfb xpra
-#        sudo Xvfb :999 -ac &
-#        export DISPLAY=:999.0
-#        echo "Install rabbit remote control ......"
-#        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb
-#        echo "Update update_linux.xml ......"
-#        export QT_XCB_GL_INTEGRATION=none
-#        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
-#            -f "`pwd`/update_linux.xml" \
-#            -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
-#            --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
-#            -m "v${{env.RabbitRemoteControl_VERSION}}"
+    - name: update xml file
+      if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.os == 'Ubuntu-20.04'}}
+      working-directory: ${{github.workspace}}
+      #continue-on-error: true
+      run: |
+        #sudo apt update -y -qq
+        #sudo apt-get install -y -qq xvfb xpra
+        sudo Xvfb :999 -ac &
+        export DISPLAY=:999.0
+        echo "Install rabbit remote control ......"
+        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb
+        echo "Update update_linux.xml ......"
+        export QT_XCB_GL_INTEGRATION=none
+        MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum|awk '{print $1}'`
+        echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb: ${MD5SUM}"
+        #ulimit -c unlimited
+        #echo "# sudo sysctl -w kernel.core_pattern=core"
+        #sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
+        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
+            -f "`pwd`/update_linux.xml" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb" \
+            --md5 "${MD5SUM}" \
+            -m "v${{env.RabbitRemoteControl_VERSION}}"
 
-    - name: update 
+    - name: dump core
+      if: false
+      working-directory: ${{github.workspace}}
+      run: |
+        gdb /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp core
+
+    - name: update
+      if: ${{ matrix.BUILD_TYPE == 'Release' }}
       uses: actions/upload-artifact@v2
       with:
           name: rabbitremotecontrol_${{matrix.os}}
           path: |
             rabbitremotecontrol_*.deb
             update_linux.xml
-      if: ${{ matrix.BUILD_TYPE == 'Release' }} 
 
     - name: Upload To Github Release
       if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
