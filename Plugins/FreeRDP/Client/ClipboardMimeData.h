@@ -54,6 +54,8 @@ private:
     bool isImage(QString mimeType, bool bRegular = true) const;
     bool isUrls(QString mimeType, bool bRegular = true) const;
 
+    int requestFileFromServer(const QString& mimetype, void* pData, UINT32 nLen);
+
 private:
     CliprdrClientContext* m_pContext;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr

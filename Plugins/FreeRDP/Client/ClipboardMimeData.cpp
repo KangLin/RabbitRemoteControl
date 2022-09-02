@@ -7,6 +7,7 @@
 #include <QEventLoop>
 #include <QRegularExpression>
 #include <QImage>
+#include <QUrl>
 
 static int g_UINT32 = qRegisterMetaType<UINT32>("UINT32");
 CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
@@ -83,6 +84,10 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
             {
                 m_indexString.insert("text/uri-list", *it);
             }
+            if("x-special/gnome-copied-files" == it->name)
+            {
+                m_indexString.insert("text/uri-list", *it);
+            }
             if("text/html" != it->name && isHtml(it->name, false))
             {
                 m_indexString.insert("text/html", *it);
@@ -104,9 +109,9 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         if(!m_lstFormats.contains(it.key()))
             m_lstFormats << it.key();
     }
-//    if(m_lstFormats.contains("text/uri-list")
-//            && !m_lstFormats.contains("x-special/gnome-copied-files"))
-//        m_lstFormats << "x-special/gnome-copied-files";
+    if(m_lstFormats.contains("text/uri-list")
+            && !m_lstFormats.contains("x-special/gnome-copied-files"))
+        m_lstFormats << "x-special/gnome-copied-files";
     qDebug() << "Formats:" << m_lstFormats;
 
     return 0;
@@ -175,15 +180,10 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
 {
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: %s; type:%d",
                     mimetype.toStdString().c_str(), preferredType);
-    qDebug() << mimetype << preferredType;
+    qDebug() << mimetype << preferredType << m_Variant;
 
     if(!m_Variant.isNull())
     {
-        if(isUrls(mimetype))
-        {
-            //TODO: Add request file from server
-            ;
-        }
         return m_Variant;
     }
 
@@ -307,8 +307,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
                 if(img.loadFromData(d, "BMP"))
                     m_Variant = img;
             } else if(isUrls(it.name)) {
-                qDebug() << d;
-                m_Variant = d;
+                requestFileFromServer(it.name, data, size);
             }
             else
                 m_Variant = QVariant(d);
@@ -377,4 +376,45 @@ bool CClipboardMimeData::isImage(QString mimeType, bool bRegular) const
             return true;
     }
     return false;
+}
+
+int CClipboardMimeData::requestFileFromServer(const QString &mimetype,
+                                              void *pData, UINT32 nLen)
+{
+    // TODO: Get file index and file name
+    QString szFiles = QString::fromLatin1((char*)pData, nLen);
+    QStringList lstFile = szFiles.split("\r\n");
+    
+    // TODO: request file from server
+    
+    // TODO: Save to local file
+    
+    // TODO: Convert file list
+    
+    // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
+    // "text/uri-list" format is LocalFile1\r\nLocalFile2\r\n...
+    QByteArray gnomeFormat;
+    if("x-special/gnome-copied-files" == mimetype)
+    {
+        // Copy file (gnome)
+        QString fileName
+           = QUrl::fromLocalFile("/home/RabbitRemoteControl/tag.sh").toEncoded()
+           + "\n" + QUrl::fromLocalFile("/home/RabbitRemoteControl/README.md").toEncoded();
+        gnomeFormat
+                = QByteArray("copy\n").append(fileName);
+        
+    } else if("text/uri-list" == mimetype)
+    {
+        QString fileName
+           = QUrl::fromLocalFile("/home/RabbitRemoteControl/tag.sh").toEncoded()
+           + "\r\n" + QUrl::fromLocalFile("/home/RabbitRemoteControl/README.md").toEncoded();
+        gnomeFormat.append(fileName);
+    }
+
+    // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
+    QByteArray v = QByteArray("copy\n").append(lstFile.join("\n"));    
+    m_Variant = v;
+    qDebug() << "QVariant:" << m_Variant;
+
+    return 0;
 }
