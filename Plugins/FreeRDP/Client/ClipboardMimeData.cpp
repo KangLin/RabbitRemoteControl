@@ -390,7 +390,8 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
                                               void *pData, UINT32 nLen)
 {
     LOG_MODEL_DEBUG("CClipboardMimeData",
-                    "CClipboardMimeData::slotRequestFileFromServer:%s",
+                    "CClipboardMimeData::slotRequestFileFromServer:%s; %s",
+                    mimetype.toStdString().c_str(),
                     pData);
     // Get file index and file name
     QString szFiles = QString::fromLatin1((char*)pData, nLen);
@@ -426,13 +427,8 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
                 nLen = nBlock;
             // Request file from server
             rc = sendRequestFilecontents(i,  FILECONTENTS_RANGE,
-                             #ifdef Q_OS_WINDOWS
-                                         offset.HighPart,
-                                         offset.LowPart,
-                             #else
                                          offset.u.HighPart,
                                          offset.u.LowPart,
-                             #endif
                                          nLen);
             if(CHANNEL_RC_OK != rc)
             {
@@ -468,6 +464,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
         }
         m_Variant = gnomeFormat;
     }
+    //*
     if("text/uri-list" == mimetype || "FileGroupDescriptorW" == mimetype)
     {
         foreach(auto s, m_Stream)
@@ -480,7 +477,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
             gnomeFormat.append(fileName);
         }
         m_Variant = gnomeFormat;
-    }
+    }//*/
 
     qDebug() << "CClipboardMimeData::slotRequestFileFromServer::QVariant:" << m_Variant;
     m_bFile = true;
