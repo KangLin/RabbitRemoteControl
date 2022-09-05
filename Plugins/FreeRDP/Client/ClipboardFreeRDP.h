@@ -93,6 +93,7 @@ Q_SIGNALS:
     //! if(pData == nullptr && nLen == 0) is Notify clipboard program has exited
     void sigServerFormatData(const BYTE* pData, UINT32 nLen,
                              UINT32 formatId);
+    void sigServerFileContentsRespose(UINT32 streamId, QByteArray& data);
     
 private:
     CConnectFreeRDP* m_pConnect;

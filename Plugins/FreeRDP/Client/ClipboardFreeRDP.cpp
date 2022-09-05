@@ -55,6 +55,8 @@ CClipboardFreeRDP::~CClipboardFreeRDP()
     
     // Notify clipboard program has exited
     emit sigServerFormatData(nullptr, 0, 0);
+    QByteArray data;
+    emit sigServerFileContentsRespose(-1, data);
     ClipboardDestroy(m_pClipboard);
 }
 
@@ -676,6 +678,12 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list(CliprdrClientContext* cont
                     SLOT(slotServerFormatData(const BYTE*, UINT32, UINT32)),
                     Qt::DirectConnection);
     Q_ASSERT(check);
+    check = connect(pThis,
+                    SIGNAL(sigServerFileContentsRespose(UINT32, QByteArray&)),
+                    pMimeData,
+                    SLOT(slotServerFileContentsRespose(UINT32, QByteArray&)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
     check = connect(pMimeData,
                     SIGNAL(sigSendDataRequest(CliprdrClientContext*, UINT32)),
                     pThis,
@@ -737,5 +745,17 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_response(CliprdrClientCo
 {
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_file_contents_response");
     int nRet = CHANNEL_RC_OK;
+
+    if (!context || !fileContentsResponse)
+		return ERROR_INTERNAL_ERROR;
+
+	if (fileContentsResponse->msgFlags != CB_RESPONSE_OK)
+		return E_FAIL;
+
+    CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
+    QByteArray data((char*)fileContentsResponse->requestedData,
+                    fileContentsResponse->cbRequested);
+    emit pThis->sigServerFileContentsRespose(fileContentsResponse->streamId,
+                                    data);
     return nRet;
 }

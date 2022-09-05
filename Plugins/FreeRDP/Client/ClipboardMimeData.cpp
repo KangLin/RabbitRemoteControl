@@ -14,10 +14,16 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     : QMimeData(),
       m_pContext(pContext),
       m_pClipboard(nullptr),
+      m_bFile(false),
       m_bExit(false)
 {
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
     m_pClipboard = pThis->m_pClipboard;
+    bool check = false;
+    check = connect(this, SIGNAL(sigRequestFileFromServer(const QString&, void*, UINT32)),
+                    this, SLOT(slotRequestFileFromServer(const QString&, void*, UINT32)),
+                    Qt::DirectConnection);
+    Q_ASSERT(check);
 }
 
 CClipboardMimeData::~CClipboardMimeData()
@@ -184,6 +190,11 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
 
     if(!m_Variant.isNull())
     {
+        if(isUrls(mimetype) && !m_bFile)
+        {
+            QByteArray data = m_Variant.toByteArray();
+            emit sigRequestFileFromServer(mimetype, data.data(), data.size());
+        }
         return m_Variant;
     }
 
@@ -229,7 +240,6 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
     do{
         if(!pData && 0 == nLen)
         {
-            m_bExit = true;
             m_pContext = nullptr;
             break;
         }
@@ -306,8 +316,6 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
                 QImage img;
                 if(img.loadFromData(d, "BMP"))
                     m_Variant = img;
-            } else if(isUrls(it.name)) {
-                requestFileFromServer(it.name, data, size);
             }
             else
                 m_Variant = QVariant(d);
@@ -378,43 +386,149 @@ bool CClipboardMimeData::isImage(QString mimeType, bool bRegular) const
     return false;
 }
 
-int CClipboardMimeData::requestFileFromServer(const QString &mimetype,
+void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
                                               void *pData, UINT32 nLen)
 {
-    // TODO: Get file index and file name
+    LOG_MODEL_DEBUG("CClipboardMimeData",
+                    "CClipboardMimeData::slotRequestFileFromServer:%s",
+                    pData);
+    // Get file index and file name
     QString szFiles = QString::fromLatin1((char*)pData, nLen);
     QStringList lstFile = szFiles.split("\r\n");
-    
-    // TODO: request file from server
-    
-    // TODO: Save to local file
-    
-    // TODO: Convert file list
-    
+    for(int i = 0; i < lstFile.size() - 1; i++)
+    {
+        QString szFile = lstFile.at(i);
+        QSharedPointer<_CliprdrFileStream> stream
+                = QSharedPointer<_CliprdrFileStream>(new _CliprdrFileStream());
+        stream->m_File.setFileName(lstFile.at(i));
+        stream->m_Success = false;
+        m_Stream.insert(i, stream);
+        // Get file size
+        UINT rc = sendRequestFilecontents(i,  FILECONTENTS_SIZE, 0, 0, 8);
+        if(CHANNEL_RC_OK != rc)
+        {
+            continue;
+        }
+        ULARGE_INTEGER size, offset;
+        offset.QuadPart = 0;
+        size.QuadPart = *((LONGLONG*)(stream->m_Data.data()));
+        if(size.QuadPart <= 0)
+            continue;
+        // Open local file
+        if(!stream->m_File.open(QFile::WriteOnly))
+        {
+            return;
+        }
+        do {
+            int nBlock = 1024 << 4;
+            int nLen = size.QuadPart - offset.QuadPart;
+            if(nLen > nBlock)
+                nLen = nBlock;
+            // Request file from server
+            rc = sendRequestFilecontents(i,  FILECONTENTS_RANGE,
+                             #ifdef Q_OS_WINDOWS
+                                         offset.HighPart,
+                                         offset.LowPart,
+                             #else
+                                         offset.u.HighPart,
+                                         offset.u.LowPart,
+                             #endif
+                                         nLen);
+            if(CHANNEL_RC_OK != rc)
+            {
+                stream->m_File.close();
+                break;
+            }
+            // Save to local file
+            stream->m_File.write(stream->m_Data);
+            offset.QuadPart += stream->m_Data.size();
+        } while(offset.QuadPart < size.QuadPart);
+        stream->m_File.close();
+        stream->m_Success = true;
+    }
+    // Convert file list
     // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
     // "text/uri-list" format is LocalFile1\r\nLocalFile2\r\n...
     QByteArray gnomeFormat;
     if("x-special/gnome-copied-files" == mimetype)
     {
-        // Copy file (gnome)
-        QString fileName
-           = QUrl::fromLocalFile("/home/RabbitRemoteControl/tag.sh").toEncoded()
-           + "\n" + QUrl::fromLocalFile("/home/RabbitRemoteControl/README.md").toEncoded();
-        gnomeFormat
-                = QByteArray("copy\n").append(fileName);
-        
-    } else if("text/uri-list" == mimetype)
+        gnomeFormat.append("copy\n");
+        int b = 0;
+        foreach(auto s, m_Stream)
+        {
+            if(!s->m_Success)
+                continue;
+            QString fileName;
+            if(b)
+                fileName += "\n";
+            else
+                b=1;
+            fileName += QUrl::fromLocalFile(s->m_File.fileName()).toEncoded();
+            gnomeFormat.append(fileName);
+        }
+        m_Variant = gnomeFormat;
+    }
+    if("text/uri-list" == mimetype || "FileGroupDescriptorW" == mimetype)
     {
-        QString fileName
-           = QUrl::fromLocalFile("/home/RabbitRemoteControl/tag.sh").toEncoded()
-           + "\r\n" + QUrl::fromLocalFile("/home/RabbitRemoteControl/README.md").toEncoded();
-        gnomeFormat.append(fileName);
+        foreach(auto s, m_Stream)
+        {
+            if(!s->m_Success)
+                continue;
+            QString fileName;
+            fileName += QUrl::fromLocalFile(s->m_File.fileName()).toEncoded();
+            fileName += "\r\n";
+            gnomeFormat.append(fileName);
+        }
+        m_Variant = gnomeFormat;
     }
 
-    // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
-    QByteArray v = QByteArray("copy\n").append(lstFile.join("\n"));    
-    m_Variant = v;
-    qDebug() << "QVariant:" << m_Variant;
+    qDebug() << "CClipboardMimeData::slotRequestFileFromServer::QVariant:" << m_Variant;
+    m_bFile = true;
+    return;
+}
 
-    return 0;
+UINT CClipboardMimeData::sendRequestFilecontents(
+        ULONG index,
+        UINT32 flag,
+        DWORD positionhigh,
+        DWORD positionlow,
+        ULONG nreq)
+{
+	UINT rc = ERROR_INTERNAL_ERROR;
+    if(!m_pContext) return rc;
+
+    CLIPRDR_FILE_CONTENTS_REQUEST fileContentsRequest;
+	fileContentsRequest.streamId = (UINT32)index;
+	fileContentsRequest.listIndex = index;
+	fileContentsRequest.dwFlags = flag;
+	fileContentsRequest.nPositionLow = positionlow;
+	fileContentsRequest.nPositionHigh = positionhigh;
+	fileContentsRequest.cbRequested = nreq;
+    fileContentsRequest.clipDataId = 0;
+    fileContentsRequest.msgFlags = 0;
+    rc = m_pContext->ClientFileContentsRequest(m_pContext, &fileContentsRequest);
+
+    // add wait response event
+    QEventLoop loop;
+    connect(this, SIGNAL(sigContinue()), &loop, SLOT(quit()), Qt::DirectConnection);
+    loop.exec();
+
+    // Objecte destruct
+    if(m_bExit)
+        return CHANNEL_RC_NULL_DATA;
+
+	return rc;
+}
+
+void CClipboardMimeData::slotServerFileContentsRespose(UINT32 streamId,
+                                                       QByteArray &data)
+{
+    auto stream = m_Stream.find(streamId);
+    do{
+        if(m_Stream.end() == stream || data.isNull())
+            break;
+        QSharedPointer<_CliprdrFileStream> s = *stream;
+        s->m_Data = data;
+    }while(0);
+    emit sigContinue();
 }

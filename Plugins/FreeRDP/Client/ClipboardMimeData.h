@@ -6,6 +6,8 @@
 #include <QMimeData>
 #include <QMultiMap>
 #include <QVector>
+#include <QFile>
+#include <QSharedPointer>
 
 #include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
@@ -31,6 +33,7 @@ Q_SIGNALS:
                             UINT32 formatId) const;
     void sigContinue();
     
+    
 public:
     virtual bool hasFormat(const QString &mimetype) const override;
     virtual QStringList formats() const override;
@@ -38,6 +41,7 @@ public:
 public Q_SLOTS:
     void slotServerFormatData(const BYTE* pData, UINT32 nLen,
                              UINT32 id);
+    void slotServerFileContentsRespose(UINT32 streamId, QByteArray& data);
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -54,8 +58,16 @@ private:
     bool isImage(QString mimeType, bool bRegular = true) const;
     bool isUrls(QString mimeType, bool bRegular = true) const;
 
-    int requestFileFromServer(const QString& mimetype, void* pData, UINT32 nLen);
-
+Q_SIGNALS:
+    void sigRequestFileFromServer(const QString& mimetype, void* pData, UINT32 nLen) const;
+private Q_SLOTS:
+    void slotRequestFileFromServer(const QString& mimetype, void* pData, UINT32 nLen);
+private:
+    UINT sendRequestFilecontents(ULONG index,
+                                           UINT32 flag,
+                                           DWORD positionhigh,
+                                           DWORD positionlow,
+                                           ULONG nreq);
 private:
     CliprdrClientContext* m_pContext;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
@@ -66,8 +78,16 @@ private:
     QStringList m_lstFormats; // Clipboard return farmat
 
     QVariant m_Variant;
+    bool m_bFile;
     bool m_bExit;
-
+    
+    struct _CliprdrFileStream
+    {
+        QFile m_File;
+        QByteArray m_Data;
+        bool m_Success;
+    };
+    QMap<UINT32, QSharedPointer<_CliprdrFileStream> > m_Stream;
 };
 
 #endif // CMIMEDATA_H
