@@ -80,9 +80,10 @@ private:
     QStringList m_lstFormats; // Clipboard return farmat
 
     QVariant m_Variant;
-    bool m_bFile;
+    QVariant m_gnomeFiles;
+    QVariant m_uriFiles;
     bool m_bExit;
-    
+
     struct _CliprdrFileStream
     {
         QFile m_File;

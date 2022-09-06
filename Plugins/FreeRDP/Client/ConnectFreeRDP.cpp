@@ -766,8 +766,6 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
     //qDebug() << "CConnectFreeRdp::cb_end_paint";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
-    INT32 x, y;
-    INT32 w, h;
     int ninvalid;
     HGDI_RGN cinvalid;
     REGION16 invalidRegion;

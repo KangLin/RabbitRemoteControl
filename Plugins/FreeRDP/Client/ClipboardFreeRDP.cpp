@@ -761,13 +761,15 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_response(
     {
         LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_file_contents_response size is zero.");
         QByteArray data;
-        emit pThis->sigServerFileContentsRespose(fileContentsResponse->streamId,
-                                                 data);
+        emit pThis->sigServerFileContentsRespose(
+                    fileContentsResponse->streamId,
+                    data);
     } else {
         QByteArray data((char*)fileContentsResponse->requestedData,
                         fileContentsResponse->cbRequested);
-        emit pThis->sigServerFileContentsRespose(fileContentsResponse->streamId,
-                                                 data);
+        emit pThis->sigServerFileContentsRespose(
+                    fileContentsResponse->streamId,
+                    data);
     }
     return nRet;
 }

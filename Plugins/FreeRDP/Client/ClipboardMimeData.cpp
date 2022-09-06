@@ -14,7 +14,6 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     : QMimeData(),
       m_pContext(pContext),
       m_pClipboard(nullptr),
-      m_bFile(false),
       m_bExit(false)
 {
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
@@ -117,7 +116,12 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
     }
     if(m_lstFormats.contains("text/uri-list")
             && !m_lstFormats.contains("x-special/gnome-copied-files"))
-        m_lstFormats << "x-special/gnome-copied-files";
+    {
+        m_lstFormats.push_front("x-special/gnome-copied-files");
+        m_lstFormats.removeOne("text/uri-list");
+        m_lstFormats.push_front("text/uri-list");
+    }
+    
     qDebug() << "Formats:" << m_lstFormats;
 
     return 0;
@@ -172,6 +176,7 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 QStringList CClipboardMimeData::formats() const
 { 
     //LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
+
     qDebug() << m_lstFormats;
     return m_lstFormats;
 }
@@ -190,11 +195,6 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
 
     if(!m_Variant.isNull())
     {
-        if(isUrls(mimetype) && !m_bFile)
-        {
-            QByteArray data = m_Variant.toByteArray();
-            emit sigRequestFileFromServer(mimetype, data.data(), data.size());
-        }
         return m_Variant;
     }
 
@@ -208,8 +208,11 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
     if(lstValue.isEmpty())
         return QVariant();
     value = *lstValue.crbegin();
-//    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData: format: %d; name:%s; mimeData:%s",
-//                    value.id, value.name.toStdString().c_str(), mimetype.toStdString().c_str());
+    /*
+    LOG_MODEL_DEBUG("FreeRdp",
+                    "CMimeData::retrieveData: format: %d; name:%s; mimeData:%s",
+                    value.id,
+          value.name.toStdString().c_str(), mimetype.toStdString().c_str());//*/
 
     if(!m_pContext) return QVariant();
 
@@ -219,11 +222,16 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
     QEventLoop loop;
     connect(this, SIGNAL(sigContinue()), &loop, SLOT(quit()), Qt::DirectConnection);
     loop.exec();
-    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData end");
+    //LOG_MODEL_DEBUG("FreeRdp", "CMimeData::retrieveData end");
     // Objecte destruct
     if(m_bExit)
         return QVariant();
 
+    if(isUrls(mimetype))
+    {
+        QByteArray data = m_Variant.toByteArray();
+        emit sigRequestFileFromServer(mimetype, data.data(), data.size());
+    }
     return m_Variant;
 }
 
@@ -317,8 +325,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
                 QImage img;
                 if(img.loadFromData(d, "BMP"))
                     m_Variant = img;
-            }
-            else
+            } else
                 m_Variant = QVariant(d);
         }
     }while(0);
@@ -478,12 +485,13 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
             fileName += QUrl::fromLocalFile(s->m_File.fileName()).toEncoded();
             gnomeFormat.append(fileName);
         }
+        m_gnomeFiles = gnomeFormat;
         m_Variant = gnomeFormat;
     }
     //*
     if("text/uri-list" == mimetype || "FileGroupDescriptorW" == mimetype)
     {
-        QByteArray gnomeFormat;
+        QByteArray uriFormat;
         foreach(auto s, m_Stream)
         {
             if(!s->m_Success)
@@ -491,13 +499,14 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
             QString fileName;
             fileName += QUrl::fromLocalFile(s->m_File.fileName()).toEncoded();
             fileName += "\r\n";
-            gnomeFormat.append(fileName);
+            uriFormat.append(fileName);
         }
-        m_Variant = gnomeFormat;
+        m_uriFiles = uriFormat;
+        m_Variant = uriFormat;
     } //*/
 
     qDebug() << "CClipboardMimeData::slotRequestFileFromServer::QVariant:" << m_Variant;
-    m_bFile = true;
+
     return;
 }
 
