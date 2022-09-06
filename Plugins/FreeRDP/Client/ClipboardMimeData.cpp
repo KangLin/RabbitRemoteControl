@@ -410,19 +410,25 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
         {
             continue;
         }
+        if(stream->m_Data.isNull() || stream->m_Data.size() == 0)
+            continue;
         ULARGE_INTEGER size, offset;
         offset.QuadPart = 0;
         size.QuadPart = *((LONGLONG*)(stream->m_Data.data()));
         if(size.QuadPart <= 0)
             continue;
+        LOG_MODEL_DEBUG("CClipboardMimeData", "File %s length:%d %d",
+                        szFile.toStdString().c_str(), size.u.HighPart,
+                        size.u.LowPart);
         // Open local file
         if(!stream->m_File.open(QFile::WriteOnly))
         {
             return;
         }
+        bool bSuccess = true;
         do {
-            int nBlock = 1024 << 4;
-            int nLen = size.QuadPart - offset.QuadPart;
+            UINT32 nBlock = 2 << 15;
+            UINT32 nLen = size.QuadPart - offset.QuadPart;
             if(nLen > nBlock)
                 nLen = nBlock;
             // Request file from server
@@ -432,7 +438,12 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
                                          nLen);
             if(CHANNEL_RC_OK != rc)
             {
-                stream->m_File.close();
+                bSuccess = false;
+                break;
+            }
+            if(stream->m_Data.isNull() || stream->m_Data.size() == 0)
+            {
+                bSuccess = false;
                 break;
             }
             // Save to local file
@@ -440,14 +451,16 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
             offset.QuadPart += stream->m_Data.size();
         } while(offset.QuadPart < size.QuadPart);
         stream->m_File.close();
-        stream->m_Success = true;
+        if(!bSuccess)
+            stream->m_File.remove();
+        stream->m_Success = bSuccess;
     }
     // Convert file list
     // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
     // "text/uri-list" format is LocalFile1\r\nLocalFile2\r\n...
-    QByteArray gnomeFormat;
     if("x-special/gnome-copied-files" == mimetype)
     {
+        QByteArray gnomeFormat;
         gnomeFormat.append("copy\n");
         int b = 0;
         foreach(auto s, m_Stream)
@@ -467,6 +480,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
     //*
     if("text/uri-list" == mimetype || "FileGroupDescriptorW" == mimetype)
     {
+        QByteArray gnomeFormat;
         foreach(auto s, m_Stream)
         {
             if(!s->m_Success)
@@ -477,7 +491,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
             gnomeFormat.append(fileName);
         }
         m_Variant = gnomeFormat;
-    }//*/
+    } //*/
 
     qDebug() << "CClipboardMimeData::slotRequestFileFromServer::QVariant:" << m_Variant;
     m_bFile = true;
@@ -489,7 +503,7 @@ UINT CClipboardMimeData::sendRequestFilecontents(
         UINT32 flag,
         DWORD positionhigh,
         DWORD positionlow,
-        ULONG nreq)
+        UINT32 nreq)
 {
 	UINT rc = ERROR_INTERNAL_ERROR;
     if(!m_pContext) return rc;
@@ -520,6 +534,9 @@ UINT CClipboardMimeData::sendRequestFilecontents(
 void CClipboardMimeData::slotServerFileContentsRespose(UINT32 streamId,
                                                        QByteArray &data)
 {
+    LOG_MODEL_DEBUG("CClipboardMimeData",
+                    "CClipboardMimeData::slotServerFileContentsRespose: index:%d,data length:%d",
+                    streamId, data.size());
     auto stream = m_Stream.find(streamId);
     do{
         if(m_Stream.end() == stream || data.isNull())

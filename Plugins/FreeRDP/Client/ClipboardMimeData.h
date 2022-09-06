@@ -13,6 +13,7 @@
 #include "freerdp/client/cliprdr.h"
 #include "winpr/clipboard.h"
 
+class CClipboardFreeRDP;
 class CClipboardMimeData : public QMimeData
 {
     Q_OBJECT
@@ -67,8 +68,9 @@ private:
                                            UINT32 flag,
                                            DWORD positionhigh,
                                            DWORD positionlow,
-                                           ULONG nreq);
+                                           UINT32 nreq);
 private:
+    friend CClipboardFreeRDP;
     CliprdrClientContext* m_pContext;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
 
