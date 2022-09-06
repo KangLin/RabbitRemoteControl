@@ -26,7 +26,7 @@ public:
         QString name;
         UINT32 localId;
     };
-    
+
     int SetFormat(const CLIPRDR_FORMAT_LIST* pList);
 
 Q_SIGNALS:
@@ -64,11 +64,11 @@ Q_SIGNALS:
 private Q_SLOTS:
     void slotRequestFileFromServer(const QString& mimetype, void* pData, UINT32 nLen);
 private:
-    UINT sendRequestFilecontents(ULONG index,
-                                           UINT32 flag,
-                                           DWORD positionhigh,
-                                           DWORD positionlow,
-                                           UINT32 nreq);
+    UINT sendRequestFilecontents(UINT32 index,
+                                 UINT32 flag,
+                                 DWORD positionhigh,
+                                 DWORD positionlow,
+                                 UINT32 nreq);
 private:
     friend CClipboardFreeRDP;
     CliprdrClientContext* m_pContext;
