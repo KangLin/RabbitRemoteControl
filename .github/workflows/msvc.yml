@@ -105,8 +105,10 @@ jobs:
       working-directory: ${{env.SOURCE_DIR}}
       run: |
        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
-            git clone -b 2.8.0 https://github.com/FreeRDP/FreeRDP.git
+            ; git clone -b 2.8.0 https://github.com/FreeRDP/FreeRDP.git
+            git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
+            git checkout stable-2.0
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
