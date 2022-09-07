@@ -510,22 +510,40 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
     return;
 }
 
-UINT CClipboardMimeData::sendRequestFilecontents(UINT32 index,
-        UINT32 flag,
-        DWORD positionhigh,
-        DWORD positionlow,
-        UINT32 nreq)
+UINT CClipboardMimeData::sendRequestFilecontents(UINT32 listIndex,
+        UINT32 dwFlags,
+        DWORD nPositionHigh,
+        DWORD nPositionLow,
+        UINT32 cbRequested)
 {
 	UINT rc = ERROR_INTERNAL_ERROR;
     if(!m_pContext) return rc;
 
-    CLIPRDR_FILE_CONTENTS_REQUEST fileContentsRequest;
-	fileContentsRequest.streamId = index;
-	fileContentsRequest.listIndex = index;
-	fileContentsRequest.dwFlags = flag;
-	fileContentsRequest.nPositionLow = positionlow;
-	fileContentsRequest.nPositionHigh = positionhigh;
-	fileContentsRequest.cbRequested = nreq;
+    CLIPRDR_FILE_CONTENTS_REQUEST fileContentsRequest = {0};
+	fileContentsRequest.streamId = listIndex;
+	fileContentsRequest.listIndex = listIndex;
+	fileContentsRequest.dwFlags = dwFlags;
+    switch (dwFlags)
+    {
+    /*
+     * [MS-RDPECLIP] 2.2.5.3 File Contents Request PDU (CLIPRDR_FILECONTENTS_REQUEST).
+     *
+     * A request for the size of the file identified by the lindex field. The size MUST be
+     * returned as a 64-bit, unsigned integer. The cbRequested field MUST be set to
+     * 0x00000008 and both the nPositionLow and nPositionHigh fields MUST be
+     * set to 0x00000000.
+     */
+    case FILECONTENTS_SIZE:
+        fileContentsRequest.cbRequested = sizeof(UINT64);
+        fileContentsRequest.nPositionHigh = 0;
+        fileContentsRequest.nPositionLow = 0;
+        break;
+    case FILECONTENTS_RANGE:
+        fileContentsRequest.cbRequested = cbRequested;
+        fileContentsRequest.nPositionHigh = nPositionHigh;
+        fileContentsRequest.nPositionLow = nPositionLow;
+        break;
+    }
     fileContentsRequest.clipDataId = 0;
     fileContentsRequest.msgFlags = 0;
     rc = m_pContext->ClientFileContentsRequest(m_pContext, &fileContentsRequest);

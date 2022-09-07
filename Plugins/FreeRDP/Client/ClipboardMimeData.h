@@ -64,11 +64,11 @@ Q_SIGNALS:
 private Q_SLOTS:
     void slotRequestFileFromServer(const QString& mimetype, void* pData, UINT32 nLen);
 private:
-    UINT sendRequestFilecontents(UINT32 index,
-                                 UINT32 flag,
-                                 DWORD positionhigh,
-                                 DWORD positionlow,
-                                 UINT32 nreq);
+    UINT sendRequestFilecontents(UINT32 listIndex,
+                                 UINT32 dwFlags,
+                                 DWORD nPositionHigh,
+                                 DWORD nPositionLow,
+                                 UINT32 cbRequested);
 private:
     friend CClipboardFreeRDP;
     CliprdrClientContext* m_pContext;
