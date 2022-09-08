@@ -19,7 +19,7 @@ int CCursorFreeRDP::RegisterPointer(rdpGraphics *graphics)
 	pointer->size = sizeof(_Pointer);
 	pointer->New = cb_Pointer_New;
 	pointer->Free = cb_Pointer_Free;
-	pointer->Set = cb_Pointer_Set;
+ 	pointer->Set = cb_Pointer_Set;
 	pointer->SetNull = cb_Pointer_SetNull;
 	pointer->SetDefault = cb_Pointer_SetDefault;
 	pointer->SetPosition = cb_Pointer_SetPosition;
@@ -43,7 +43,13 @@ void CCursorFreeRDP::cb_Pointer_Free(rdpContext* context, rdpPointer* pointer)
     pThis->m_Cursor.onFree(context, pointer);   
 }
 
-BOOL CCursorFreeRDP::cb_Pointer_Set(rdpContext *context, const rdpPointer *pointer)
+BOOL CCursorFreeRDP::cb_Pointer_Set(rdpContext *context,
+                                    #if FreeRDP_VERSION_MAJOR >= 3
+                                    rdpPointer* pointer
+                                    #else
+                                    const rdpPointer *pointer
+                                    #endif
+                                    )
 {
     //LOG_MODEL_DEBUG("FreeRdp", "cb_Pointer_Set");
     CConnectFreeRDP* pThis = ((CConnectFreeRDP::ClientContext*)context)->pThis;

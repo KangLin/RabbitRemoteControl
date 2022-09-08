@@ -327,12 +327,31 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
             numFormats++;
         }
     }
-
-    LOG_MODEL_DEBUG("FreeRdp", "SendClientFormatList formats: %d", numFormats);
+    /*
+    QString szFormats;
+    for(int i = 0; i < numFormats; i++)
+    {
+        szFormats += " id:" + QString::number(pFormats[i].formatId);
+        if(pFormats[numFormats].formatName)
+        {
+            szFormats += "(";
+            szFormats += pFormats[numFormats].formatName;
+            szFormats += ");";
+        }
+    }
+    LOG_MODEL_DEBUG("FreeRdp", "SendClientFormatList formats: %d:%s",
+                    numFormats,
+                    szFormats.toStdString().c_str());//*/
+#if FreeRDP_VERSION_MAJOR >= 3
+    formatList.common.msgFlags = CB_RESPONSE_OK;
+    formatList.common.msgType = CB_FORMAT_LIST;
+#else
     formatList.msgFlags = CB_RESPONSE_OK;
+    formatList.msgType = CB_FORMAT_LIST;
+#endif
 	formatList.numFormats = numFormats;
 	formatList.formats = pFormats;
-	formatList.msgType = CB_FORMAT_LIST;
+	
 
     /* Ensure all pending requests are answered. */
 	SendFormatDataResponse(context, NULL, 0);
@@ -477,8 +496,13 @@ UINT CClipboardFreeRDP::SendFormatDataResponse(CliprdrClientContext *context,
                                                const BYTE *data, size_t size)
 {
     CLIPRDR_FORMAT_DATA_RESPONSE response = { 0 };
+#if FreeRDP_VERSION_MAJOR >= 3
+    response.common.msgFlags = (data) ? CB_RESPONSE_OK : CB_RESPONSE_FAIL;
+    response.common.dataLen = size;
+#else
 	response.msgFlags = (data) ? CB_RESPONSE_OK : CB_RESPONSE_FAIL;
 	response.dataLen = size;
+#endif
 	response.requestedFormatData = data;
 	return context->ClientFormatDataResponse(context, &response);
 }
@@ -493,7 +517,11 @@ UINT CClipboardFreeRDP::cb_clipboard_file_size_success(
     qDebug() << "CClipboardFreeRDP::cb_clipboard_file_size_success";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
+#if FreeRDP_VERSION_MAJOR >= 3
+    response.common.msgFlags = CB_RESPONSE_OK;
+#else
 	response.msgFlags = CB_RESPONSE_OK;
+#endif
 	response.streamId = request->streamId;
 	response.cbRequested = sizeof(UINT64);
 	response.requestedData = (BYTE*)&fileSize;
@@ -510,8 +538,11 @@ UINT CClipboardFreeRDP::cb_clipboard_file_size_failure(
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 	WINPR_UNUSED(errorCode);
-
+#if FreeRDP_VERSION_MAJOR >= 3
+    response.common.msgFlags = CB_RESPONSE_FAIL;
+#else
 	response.msgFlags = CB_RESPONSE_FAIL;
+#endif
 	response.streamId = request->streamId;
 	return pThis->m_pCliprdrClientContext->ClientFileContentsResponse(
                 pThis->m_pCliprdrClientContext, &response);
@@ -525,7 +556,11 @@ UINT CClipboardFreeRDP::cb_clipboard_file_range_success(
     qDebug() << "CClipboardFreeRDP::cb_clipboard_file_range_success";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
+#if FreeRDP_VERSION_MAJOR >= 3
+    response.common.msgFlags = CB_RESPONSE_OK;
+#else
 	response.msgFlags = CB_RESPONSE_OK;
+#endif
 	response.streamId = request->streamId;
 	response.cbRequested = size;
 	response.requestedData = (BYTE*)data;
@@ -542,8 +577,11 @@ UINT CClipboardFreeRDP::cb_clipboard_file_range_failure(
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 	WINPR_UNUSED(errorCode);
-
+#if FreeRDP_VERSION_MAJOR >= 3
+    response.common.msgFlags = CB_RESPONSE_FAIL;
+#else
 	response.msgFlags = CB_RESPONSE_FAIL;
+#endif
 	response.streamId = request->streamId;
 	return pThis->m_pCliprdrClientContext->ClientFileContentsResponse(
                 pThis->m_pCliprdrClientContext, &response);
@@ -574,7 +612,11 @@ UINT CClipboardFreeRDP::SendFileContentsFailure(CliprdrClientContext* context,
                   const CLIPRDR_FILE_CONTENTS_REQUEST* fileContentsRequest)
 {
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
+#if FreeRDP_VERSION_MAJOR >= 3
+    response.common.msgFlags = CB_RESPONSE_FAIL;
+#else
 	response.msgFlags = CB_RESPONSE_FAIL;
+#endif
 	response.streamId = fileContentsRequest->streamId;
 	return context->ClientFileContentsResponse(context, &response);
 }
@@ -702,10 +744,22 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list_response(
         CliprdrClientContext* context,
         const CLIPRDR_FORMAT_LIST_RESPONSE* pformatListResponse)
 {
+#if FreeRDP_VERSION_MAJOR >= 3
+    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:%d;flag:%d;datalen:%d",
+                    pformatListResponse->common.msgType, pformatListResponse->common.msgFlags, pformatListResponse->common.dataLen);
+#else
     LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:%d;flag:%d;datalen:%d",
                     pformatListResponse->msgType, pformatListResponse->msgFlags, pformatListResponse->dataLen);
+#endif
+
     int nRet = CHANNEL_RC_OK;
-    if (pformatListResponse->msgFlags != CB_RESPONSE_OK)
+    if (
+        #if FreeRDP_VERSION_MAJOR >= 3
+            pformatListResponse->common.msgFlags
+        #else
+            pformatListResponse->msgFlags
+        #endif
+            != CB_RESPONSE_OK)
         return E_FAIL;
     return nRet;
 }
@@ -738,7 +792,11 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_response(
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
    
     emit pThis->sigServerFormatData(formatDataResponse->requestedFormatData,
+                                #if FreeRDP_VERSION_MAJOR >= 3
+                                    formatDataResponse->common.dataLen,
+                                #else
                                     formatDataResponse->dataLen,
+                                #endif
                                     pThis->m_RequestFormatId);
     return nRet;
 }
@@ -753,7 +811,13 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_response(
     if (!context || !fileContentsResponse)
 		return ERROR_INTERNAL_ERROR;
 
-	if (fileContentsResponse->msgFlags != CB_RESPONSE_OK)
+	if (
+        #if FreeRDP_VERSION_MAJOR >= 3
+            fileContentsResponse->common.msgFlags
+        #else
+            fileContentsResponse->msgFlags
+        #endif
+            != CB_RESPONSE_OK)
 		return E_FAIL;
 
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;

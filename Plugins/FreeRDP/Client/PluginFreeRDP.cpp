@@ -11,8 +11,8 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
     qDebug() << "FreeRDP" //<< " build configure:" << freerdp_get_build_config() << "\n"
-             << "Version:" << freerdp_get_build_revision()
-             << "Date:" << freerdp_get_build_date();
+             << "Version:" << freerdp_get_version_string() << ";"
+             << "Build version:" << freerdp_get_build_revision();
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
 

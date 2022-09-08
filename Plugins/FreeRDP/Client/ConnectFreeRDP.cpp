@@ -100,7 +100,7 @@ int CConnectFreeRDP::OnInit()
     int nRet = 0;
     freerdp* instance = m_pContext->Context.instance;
     
-    rdpSettings* settings = instance->settings;
+    rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
     if(nullptr == settings) return -1;
     
@@ -141,7 +141,12 @@ int CConnectFreeRDP::OnClean()
     int nRet = 0;
     if(m_pContext)
     {
+#if FreeRDP_VERSION_MAJOR >= 3
+        freerdp_client_stop(&m_pContext->Context);
+        //freerdp_abort_connect_context(&m_pContext->Context);
+#else
         freerdp_abort_connect(m_pContext->Context.instance);
+#endif
         rdpContext* pContext = (rdpContext*)m_pContext;
         freerdp_disconnect(pContext->instance);
         freerdp_client_stop(pContext);
@@ -166,7 +171,11 @@ int CConnectFreeRDP::OnProcess()
     int nRet = 0;
     HANDLE handles[64];
     rdpContext* pContext = (rdpContext*)m_pContext;
+#if FreeRDP_VERSION_MAJOR >= 3
+    if(freerdp_shall_disconnect_context(pContext))
+#else
     if(freerdp_shall_disconnect(pContext->instance))
+#endif
         return -1;
     else
     {
@@ -180,18 +189,18 @@ int CConnectFreeRDP::OnProcess()
         }
         
         nCount += tmp;
-        
+#if FreeRDP_VERSION_MAJOR < 3
         handles[nCount++] = pContext->abortEvent;
-                
+#endif
         DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
         if (waitStatus == WAIT_FAILED)
             return -3;
-        
+#if FreeRDP_VERSION_MAJOR < 3
         /* Check if a processed event called freerdp_abort_connect() and exit if true */
 		if (WaitForSingleObject(pContext->abortEvent, 0) == WAIT_OBJECT_0)
 			/* Session disconnected by local user action */
             return -4;
-        
+#endif
         if (!freerdp_check_event_handles(pContext))
         {
             nRet = -5;
@@ -298,12 +307,12 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	rdpSettings* settings = nullptr;
 	rdpContext* context = instance->context;
     
-    if (!instance || !instance->context || !instance->settings)
+    if (!instance || !instance->context || !instance->context->settings)
     { 
         return FALSE;
     }
     
-    settings = instance->settings;
+    settings = instance->context->settings;
 	channels = context->channels;
 
 #if defined (Q_OS_WIN)
@@ -321,7 +330,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	PubSub_SubscribeChannelDisconnected(instance->context->pubSub,
 	                                    OnChannelDisconnectedEventHandler);
 
-	if (!freerdp_client_load_addins(channels, instance->settings))
+	if (!freerdp_client_load_addins(channels, instance->context->settings))
 		return FALSE;
 
 	if (!settings->Username && !settings->CredentialsFromStdin
@@ -379,8 +388,8 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     LOG_MODEL_DEBUG("CConnecctFreeRDP", "CConnectFreeRdp::cb_post_connect()");
 	
 	rdpContext* context = instance->context;
-	rdpSettings* settings = instance->settings;
-    rdpUpdate* update = instance->update;
+	rdpSettings* settings = instance->context->settings;
+    rdpUpdate* update = instance->context->update;
     CConnectFreeRDP* pThis = ((ClientContext*)instance->context)->pThis;
 
     Q_ASSERT(context);
@@ -475,7 +484,11 @@ int CConnectFreeRDP::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
 	return 1;
 }
 
-void CConnectFreeRDP::OnTerminateEventHandler(void *context, TerminateEventArgs *e)
+void CConnectFreeRDP::OnTerminateEventHandler(void *context,
+                                              #if FreeRDP_VERSION_MAJOR >= 3
+                                              const
+                                              #endif
+                                              TerminateEventArgs *e)
 {
     qDebug() << "CConnectFreeRDP::TerminateEventHandler:" << e->code;
     WINPR_UNUSED(e);
@@ -484,7 +497,11 @@ void CConnectFreeRDP::OnTerminateEventHandler(void *context, TerminateEventArgs 
     emit pThis->sigDisconnected();
 }
 
-void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context, ChannelConnectedEventArgs *e)
+void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
+                                                     #if FreeRDP_VERSION_MAJOR >= 3
+                                                     const
+                                                     #endif
+                                                     ChannelConnectedEventArgs *e)
 {
     rdpContext* pContext = (rdpContext*)context;
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
@@ -515,7 +532,11 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context, ChannelConne
         LOG_MODEL_WARNING("FreeRdp", "Unimplemented: channel %s connected but we can’t use it\n", e->name);
 }
 
-void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context, ChannelDisconnectedEventArgs *e)
+void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
+                                                        #if FreeRDP_VERSION_MAJOR >= 3
+                                                        const
+                                                        #endif
+                                                        ChannelDisconnectedEventArgs *e)
 {
     rdpContext* pContext = (rdpContext*)context;
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;

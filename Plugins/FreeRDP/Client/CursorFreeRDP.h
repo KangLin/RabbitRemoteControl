@@ -23,7 +23,13 @@ public:
     
     static BOOL cb_Pointer_New(rdpContext* context, rdpPointer* pointer);
     static void cb_Pointer_Free(rdpContext* context, rdpPointer* pointer);
-    static BOOL cb_Pointer_Set(rdpContext* context, const rdpPointer* pointer);
+    static BOOL cb_Pointer_Set(rdpContext* context,
+                           #if FreeRDP_VERSION_MAJOR >= 3
+                               rdpPointer* pointer
+                           #else
+                               const rdpPointer* pointer
+                           #endif
+                               );
     static BOOL cb_Pointer_SetNull(rdpContext* context);
     static BOOL cb_Pointer_SetDefault(rdpContext* context);
     static BOOL cb_Pointer_SetPosition(rdpContext* context, UINT32 x, UINT32 y);

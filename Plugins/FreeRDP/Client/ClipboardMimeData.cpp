@@ -69,7 +69,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
             }
             case CF_DIB:
             //case CF_BITMAP:
-            //case CF_DIBV5:
+            case CF_DIBV5:
             {
                 m_indexString.insert("image/bmp", *it);
                 break;
@@ -81,9 +81,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
                     m_indexString.insert(name, *it);
             }
             }
-        }
-        else
-        {
+        } else {
             m_indexString.insert(it->name, *it);
             if("FileGroupDescriptorW" == it->name)
             {
@@ -174,10 +172,10 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 }
 
 QStringList CClipboardMimeData::formats() const
-{ 
-    //LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
-
-    qDebug() << m_lstFormats;
+{
+    //*
+    LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
+    qDebug() << m_lstFormats; //*/
     return m_lstFormats;
 }
 
@@ -259,7 +257,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
         auto it = m_indexId[id];
         switch (id) {
         case CF_DIB:
-        //case CF_DIBV5:
+        case CF_DIBV5:
         {
             srcId = it.localId;
             dstId = ClipboardGetFormatId(m_pClipboard, "image/bmp");
@@ -544,8 +542,6 @@ UINT CClipboardMimeData::sendRequestFilecontents(UINT32 listIndex,
         fileContentsRequest.nPositionLow = nPositionLow;
         break;
     }
-    fileContentsRequest.clipDataId = 0;
-    fileContentsRequest.msgFlags = 0;
     rc = m_pContext->ClientFileContentsRequest(m_pContext, &fileContentsRequest);
 
     // add wait response event

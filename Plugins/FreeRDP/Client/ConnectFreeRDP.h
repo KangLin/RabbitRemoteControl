@@ -46,12 +46,23 @@ public:
     static BOOL cb_post_connect(freerdp* instance);
     static void cb_post_disconnect(freerdp* instance);
     static int cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 type);
-    
-    static void OnTerminateEventHandler(void* context, TerminateEventArgs* e);
 
-    static void OnChannelConnectedEventHandler(void* context, ChannelConnectedEventArgs* e);
-    static void OnChannelDisconnectedEventHandler(void* context, ChannelDisconnectedEventArgs* e);
-    
+    static void OnTerminateEventHandler(void* context,
+                                    #if FreeRDP_VERSION_MAJOR >= 3
+                                        const
+                                    #endif
+                                        TerminateEventArgs* e);
+    static void OnChannelConnectedEventHandler(void* context,
+                                           #if FreeRDP_VERSION_MAJOR >= 3
+                                               const
+                                           #endif
+                                               ChannelConnectedEventArgs* e);
+    static void OnChannelDisconnectedEventHandler(void* context,
+                                              #if FreeRDP_VERSION_MAJOR >= 3
+                                                  const
+                                              #endif
+                                                  ChannelDisconnectedEventArgs* e);
+
 	static BOOL cb_authenticate(freerdp* instance, char** username, char** password, char** domain);
 	static BOOL cb_GatewayAuthenticate(freerdp* instance, char** username, char** password, char** domain);
     static DWORD cb_verify_certificate_ex(freerdp* instance, const char* host, UINT16 port,

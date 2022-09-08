@@ -2,13 +2,13 @@
 
 project(FreeRDP)
 
-SET(SRC_LIBS freerdp-client freerdp Client)
+SET(FreeRDP_LIBS freerdp-client freerdp Client)
 if(NOT WIN32)
-    LIST(APPEND SRC_LIBS winpr)
-    install_targets(TARGETS ${SRC_LIBS})
+    LIST(APPEND FreeRDP_LIBS winpr)
+    install_targets(TARGETS ${FreeRDP_LIBS})
 endif()
 
-SET(SOURCE_FILES
+SET(FreeRDP_SOURCE_FILES
     ParameterFreeRDP.cpp
     PluginFreeRDP.cpp
     ConnectFreeRDP.cpp
@@ -21,7 +21,7 @@ SET(SOURCE_FILES
     DlgGetUserPasswordFreeRDP.cpp
     )
 
-SET(HEADER_FILES
+SET(FreeRDP_HEADER_FILES
     ParameterFreeRDP.h
     PluginFreeRDP.h
     ConnectFreeRDP.h
@@ -34,7 +34,7 @@ SET(HEADER_FILES
     DlgGetUserPasswordFreeRDP.h
     )
 
-SET(UI_FILES
+SET(FreeRDP_UI_FILES
     DlgSetFreeRDP.ui
     DlgGetUserPasswordFreeRDP.ui
     )
@@ -47,16 +47,15 @@ set(FreeRDP_QT_COMPONENTS Widgets Multimedia)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${FreeRDP_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${FreeRDP_QT_COMPONENTS})
-        list(APPEND SRC_LIBS Qt${QT_VERSION_MAJOR}::${_COMPONENT})
+        list(APPEND FreeRDP_LIBS Qt${QT_VERSION_MAJOR}::${_COMPONENT})
     ENDFOREACH()
 endif()
-
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN
-    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
-    PRIVATE_LIBS ${SRC_LIBS}
+    SOURCE_FILES ${FreeRDP_SOURCE_FILES} ${FreeRDP_HEADER_FILES} ${FreeRDP_UI_FILES}
+    PRIVATE_LIBS ${FreeRDP_LIBS}
     PRIVATE_INCLUDE_DIRS ${FreeRDP_INCLUDE_DIR} ${WinPR_INCLUDE_DIR}
-    PRIVATE_DEFINITIONS ${RDP_DEFINED}
+    PRIVATE_DEFINITIONS FreeRDP_VERSION_MAJOR=${FreeRDP_MAJOR}
     PRIVATE_OPTIONS ${FreeRDP_OPTIONS}
     INSTALL_DIR plugins/Client
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client

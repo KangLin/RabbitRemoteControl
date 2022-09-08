@@ -2,13 +2,12 @@
 
 set(FreeRDPVERSION 2.8.0)
 find_package(WinPR)
-message("WinPR_FOUND:${WinPR_FOUND}")
+message("WinPR_FOUND:${WinPR_VERSION}")
 
 find_package(FreeRDP)
-message("FreeRDP_FOUND:${FreeRDP_FOUND}")
-
+message("FreeRDP_FOUND:${FreeRDP_VERSION}")
 find_package(FreeRDP-Client)
-message("FreeRDP-Client_FOUND:${FreeRDP-Client_FOUND}")
+message("FreeRDP-Client_FOUND:${FreeRDP-Client_VERSION}")
 
 if(NOT (FreeRDP_FOUND AND WinPR_FOUND AND FreeRDP-Client_FOUND))
     message("Don't find FreeRDP ${FreeRDPVERSION}. Please set BUILD_FREERDP=OFF "
@@ -21,16 +20,16 @@ if(FreeRDP_VERSION VERSION_LESS FreeRDPVERSION)
         "or install FreeRDP ${FreeRDPVERSION} from https://github.com/FreeRDP/FreeRDP")
     return()
 endif()
-
+set(FreeRDP_MAJOR ${FreeRDP_VERSION_MAJOR})
 if(BUILD_CLIENT)
     add_subdirectory(Client)
 endif()
 
 find_package(FreeRDP-Shadow ${FreeRDP_VERSION})
-message("FreeRDP-Shadow_FOUND:${FreeRDP-Shadow_FOUND}")
+message("FreeRDP-Shadow_FOUND:${FreeRDP-Shadow_VERSION}")
 
 find_package(FreeRDP-Server ${FreeRDP_VERSION})
-message("FreeRDP-Server_FOUND:${FreeRDP-Server_FOUND}")
+message("FreeRDP-Server_FOUND:${FreeRDP-Server_VERSION}")
 
 if(NOT (FreeRDP-Shadow_FOUND AND FreeRDP-Server_FOUND))
     return()
