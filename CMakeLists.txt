@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.19)
 
 project(RabbitRemoteControl)
 
