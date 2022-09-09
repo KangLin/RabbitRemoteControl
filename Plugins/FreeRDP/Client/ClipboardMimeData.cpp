@@ -8,6 +8,8 @@
 #include <QRegularExpression>
 #include <QImage>
 #include <QUrl>
+#include <QDir>
+#include <QFileInfo>
 
 static int g_UINT32 = qRegisterMetaType<UINT32>("UINT32");
 CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
@@ -43,7 +45,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
     for (UINT32 i = 0; i < pList->numFormats; i++)
 	{
 		CLIPRDR_FORMAT* pFormat = &pList->formats[i];
-        //*
+        /*
         LOG_MODEL_DEBUG("FreeRdp", "Format Id: 0x%X; name: %s",
                         pFormat->formatId,
                         pFormat->formatName);//*/
@@ -165,7 +167,7 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
 
 bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 {
-    //*
+    /*
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::hasFormat: %s",
                     mimetype.toStdString().c_str());//*/
 
@@ -178,7 +180,7 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 
 QStringList CClipboardMimeData::formats() const
 {
-    //*
+    /*
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::formats");
     qDebug() << m_lstFormats; //*/
     return m_lstFormats;
@@ -400,7 +402,7 @@ bool CClipboardMimeData::isImage(QString mimeType, bool bRegular) const
 void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
                                               void *pData, UINT32 nLen)
 {
-    /*
+    //*
     LOG_MODEL_DEBUG("CClipboardMimeData",
                     "CClipboardMimeData::slotRequestFileFromServer:%s; %s",
                     mimetype.toStdString().c_str(),
@@ -410,10 +412,14 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
     QStringList lstFile = szFiles.split("\r\n");
     for(int i = 0; i < lstFile.size() - 1; i++)
     {
-        QString szFile = lstFile.at(i);
+        QString szFile = QUrl(lstFile.at(i)).toLocalFile();
+        QFileInfo fileInfo(szFile);
+        QDir d(fileInfo.absolutePath());
+        if(!d.exists())
+            d.mkpath(fileInfo.absolutePath());
         QSharedPointer<_CliprdrFileStream> stream
                 = QSharedPointer<_CliprdrFileStream>(new _CliprdrFileStream());
-        stream->m_File.setFileName(lstFile.at(i));
+        stream->m_File.setFileName(szFile);
         stream->m_Success = false;
         m_Stream.insert(i, stream);
         // Get file size
@@ -436,6 +442,9 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
         // Open local file
         if(!stream->m_File.open(QFile::WriteOnly))
         {
+            LOG_MODEL_ERROR("CClipboardMimeData", "Open file fail: %s; %s",
+                            szFile.toStdString().c_str(),
+                            stream->m_File.errorString().toStdString().c_str());
             return;
         }
         bool bSuccess = true;
@@ -470,7 +479,6 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
     }
     // Convert file list
     // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
-    // "text/uri-list" format is LocalFile1\r\nLocalFile2\r\n...
     if("x-special/gnome-copied-files" == mimetype)
     {
         QByteArray gnomeFormat;
@@ -492,6 +500,10 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
         m_Variant = gnomeFormat;
     }
     //*
+    // "text/uri-list" format is LocalFile1\r\nLocalFile2\r\n...
+    // See:
+    //   uri syntax: https://www.rfc-editor.org/rfc/rfc3986#section-3
+    //   uri-lists format: https://www.rfc-editor.org/rfc/rfc2483#section-5
     if("text/uri-list" == mimetype || "FileGroupDescriptorW" == mimetype)
     {
         QByteArray uriFormat;

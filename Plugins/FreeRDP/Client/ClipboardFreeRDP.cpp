@@ -29,7 +29,8 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
 {
     auto log = WLog_Get(TAG);
     WLog_SetLogLevel(log, WLOG_DEBUG);
-    qDebug() << "log:" << WLog_GetLogLevel(log) << WLog_IsLevelActive(log, WLOG_DEBUG);
+    LOG_MODEL_DEBUG("CClipboardFreeRDP", "log: %d; %d",
+                   WLog_GetLogLevel(log), WLog_IsLevelActive(log, WLOG_DEBUG));
 
     m_pClipboard = ClipboardCreate();
     if (ClipboardGetFormatId(m_pClipboard, "text/uri-list"))
@@ -41,6 +42,8 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
                 QStandardPaths::TempLocation)
             + QDir::separator() + "Rabbit"
             + QDir::separator() + "RabbitRemoteControl";
+    LOG_MODEL_DEBUG("CClipboardFreeRDP", "Clipboard delegate base path: %s",
+                    szPath.toStdString().c_str());
 	pDelegate->basePath = _strdup(szPath.toStdString().c_str());
     pDelegate->ClipboardFileSizeSuccess = cb_clipboard_file_size_success;
     pDelegate->ClipboardFileSizeFailure = cb_clipboard_file_size_failure;

@@ -4,15 +4,17 @@
 #include <QDebug>
 #include <QApplication>
 #include "RabbitCommonDir.h"
+#include "RabbitCommonLog.h"
 #include "ConnecterFreeRDP.h"
 #include "winpr/wlog.h"
 
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
-    qDebug() << "FreeRDP" //<< " build configure:" << freerdp_get_build_config() << "\n"
-             << "Version:" << freerdp_get_version_string() << ";"
-             << "Build version:" << freerdp_get_build_revision();
+    //qDebug() << "FreeRDP" << "build configure:" << freerdp_get_build_config() << "\n";
+    LOG_MODEL_INFO("CPluginFreeRDP", "FreeRDP version: %s; Build version: %s",
+                   freerdp_get_version_string(),
+                   freerdp_get_build_revision());
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
 
