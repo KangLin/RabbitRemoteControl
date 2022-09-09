@@ -43,7 +43,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
     for (UINT32 i = 0; i < pList->numFormats; i++)
 	{
 		CLIPRDR_FORMAT* pFormat = &pList->formats[i];
-        /*
+        //*
         LOG_MODEL_DEBUG("FreeRdp", "Format Id: 0x%X; name: %s",
                         pFormat->formatId,
                         pFormat->formatName);//*/
@@ -110,7 +110,12 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
     for(auto it = m_indexString.begin(); m_indexString.end() != it; it++)
     {
         if(!m_lstFormats.contains(it.key()))
-            m_lstFormats << it.key();
+            m_lstFormats << (it.key());
+    }
+    if(m_lstFormats.contains("image/bmp")
+            && !m_lstFormats.contains("application/x-qt-image"))
+    {
+        m_lstFormats << ("application/x-qt-image");
     }
     if(m_lstFormats.contains("text/uri-list")
             && !m_lstFormats.contains("x-special/gnome-copied-files"))
@@ -160,7 +165,7 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
 
 bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 {
-    /*
+    //*
     LOG_MODEL_DEBUG("FreeRdp", "CMimeData::hasFormat: %s",
                     mimetype.toStdString().c_str());//*/
 

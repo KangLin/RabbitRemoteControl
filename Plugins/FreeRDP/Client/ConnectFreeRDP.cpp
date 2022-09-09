@@ -96,7 +96,7 @@ CConnectFreeRDP::~CConnectFreeRDP()
  */
 int CConnectFreeRDP::OnInit()
 {
-    qDebug() << "CConnectFreeRdp::Connect()";
+    qDebug() << "CConnectFreeRdp::OnInit()";
     int nRet = 0;
     freerdp* instance = m_pContext->Context.instance;
     
