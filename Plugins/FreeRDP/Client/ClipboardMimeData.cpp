@@ -409,10 +409,10 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
                     pData);//*/
     // Get file index and file name
     QString szFiles = QString::fromLatin1((char*)pData, nLen);
-    QStringList lstFile = szFiles.split("\r\n");
+    QStringList lstFile = szFiles.split("\n");
     for(int i = 0; i < lstFile.size() - 1; i++)
     {
-        QString szFile = QUrl(lstFile.at(i)).toLocalFile();
+        QString szFile = QUrl(lstFile.at(i).trimmed()).toLocalFile();
         QFileInfo fileInfo(szFile);
         QDir d(fileInfo.absolutePath());
         if(!d.exists())
