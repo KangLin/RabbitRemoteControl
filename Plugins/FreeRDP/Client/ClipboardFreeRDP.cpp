@@ -27,10 +27,11 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     m_bFileSupported(false),
     m_bFileFormatsRegistered(false)
 {
+    /*
     auto log = WLog_Get(TAG);
     WLog_SetLogLevel(log, WLOG_DEBUG);
     LOG_MODEL_DEBUG("CClipboardFreeRDP", "log: %d; %d",
-                   WLog_GetLogLevel(log), WLog_IsLevelActive(log, WLOG_DEBUG));
+                WLog_GetLogLevel(log), WLog_IsLevelActive(log, WLOG_DEBUG));//*/
 
     m_pClipboard = ClipboardCreate();
     if (ClipboardGetFormatId(m_pClipboard, "text/uri-list"))
@@ -244,8 +245,15 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
             formatIds.push_back(pFormats[numFormats].formatId);
             numFormats++;
         }
-        id = ClipboardRegisterFormat(
-                    pThis->m_pClipboard, "text/uri-list");
+        id = ClipboardRegisterFormat(pThis->m_pClipboard, "FileContents");
+        if(!formatIds.contains(id))
+        {
+            pFormats[numFormats].formatName = _strdup("FileContents");
+            pFormats[numFormats].formatId = id;
+            formatIds.push_back(pFormats[numFormats].formatId);
+            numFormats++;
+        }
+        id = ClipboardRegisterFormat(pThis->m_pClipboard, "text/uri-list");
         if(!formatIds.contains(id))
         {
             pFormats[numFormats].formatName = _strdup("text/uri-list");
@@ -446,7 +454,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(CliprdrClientConte
         if(!mimeType.isEmpty() && scrFormatID > 0)
         {
             QByteArray data = clipboard->mimeData()->data(mimeType);
-            qDebug() << data << data.length();
+            qDebug() << "mimeData:" << data << data.length();
             if(!data.isEmpty())
                 bSuucess = ClipboardSetData(pThis->m_pClipboard, scrFormatID, data.data(), data.size());
         }
@@ -455,9 +463,12 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(CliprdrClientConte
 
     if(bSuucess)
         pDstData = (BYTE*)ClipboardGetData(pThis->m_pClipboard, dstFormatId, &dstSize);
-    
+
     if(!pDstData)
     {
+        LOG_MODEL_ERROR("FreeRDP",
+                     "ClipboardGetData fail: dstFormatId: %d, srcFormatId: %d",
+                     dstFormatId, scrFormatID);
         nRet = SendFormatDataResponse(context, NULL, 0);
         return nRet;
     }
