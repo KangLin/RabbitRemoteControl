@@ -27,7 +27,7 @@ public:
     static void cb_got_cursor_shape(rfbClient* client, int xhot, int yhot, int width, int height, int bytesPerPixel);
     
 public Q_SLOTS:
-    virtual void slotClipBoardChange() override;
+    virtual void slotClipBoardChanged() override;
     virtual void slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos) override;
     virtual void slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos) override;
     virtual void slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos) override;

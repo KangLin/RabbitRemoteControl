@@ -916,13 +916,13 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
     
 }
 
-void CConnectTigerVnc::slotClipBoardChange()
+void CConnectTigerVnc::slotClipBoardChanged()
 {
     if(!m_pPara->GetClipboard() || !getOutStream()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     
-    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotClipBoardChange()");
+    LOG_MODEL_DEBUG("TigerVnc", "CConnectTigerVnc::slotClipBoardChanged()");
     announceClipboard(true);
 }
 

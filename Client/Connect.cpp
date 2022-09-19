@@ -18,15 +18,6 @@ CConnect::CConnect(CConnecter *pConnecter, QObject *parent, bool bDirectConnecti
     : QObject(parent), m_pView(nullptr)
 {
     Q_ASSERT(pConnecter);
-    
-    bool check = false;
-//    if(bDirectConnection)
-//        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
-//                        this, SLOT(slotClipBoardChange()), Qt::DirectConnection);
-//    else
-        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
-                        this, SLOT(slotClipBoardChange()));
-    Q_ASSERT(check);
     CFrmViewer* pView = qobject_cast<CFrmViewer*>(pConnecter->GetViewer());
     if(pView)
         SetViewer(pView, bDirectConnection);
@@ -58,6 +49,9 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigInformation(const QString&)),
                     pConnecter, SIGNAL(sigInformation(const QString&)));
+    Q_ASSERT(check);
+    check = connect(pConnecter, SIGNAL(sigClipBoardChanged()),
+                    this, SLOT(slotClipBoardChanged()));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigSetClipboard(QMimeData*)),
                     pConnecter, SLOT(slotSetClipboard(QMimeData*)));

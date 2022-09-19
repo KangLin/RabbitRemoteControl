@@ -200,6 +200,10 @@ Q_SIGNALS:
      */
     void sigUpdateParamters(CConnecter* pConnecter);
 
+private:
+Q_SIGNALS:
+    void sigClipBoardChanged();
+
 protected:
     /*!
      * \~chinese

@@ -90,9 +90,9 @@ int CClipboardFreeRDP::UnInit(CliprdrClientContext *context, bool bEnable)
     return 0;
 }
 
-void CClipboardFreeRDP::slotClipBoardChange()
+void CClipboardFreeRDP::slotClipBoardChanged()
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::slotClipBoardChange");
+    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::slotClipBoardChanged");
     // Whether it is the clipboard's QMimeData set by this connection
     if(m_bOwns)
     {

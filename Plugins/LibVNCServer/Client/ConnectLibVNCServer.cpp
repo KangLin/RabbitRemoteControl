@@ -231,7 +231,7 @@ int CConnectLibVNCServer::OnProcess()
     return 0;
 }
 
-void CConnectLibVNCServer::slotClipBoardChange()
+void CConnectLibVNCServer::slotClipBoardChanged()
 {
     if(m_pPara && !m_pPara->GetClipboard()) return;
     QClipboard* pClipboard = QApplication::clipboard();

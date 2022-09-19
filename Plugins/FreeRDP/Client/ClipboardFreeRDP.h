@@ -82,7 +82,7 @@ public:
     static BOOL cbIsFileNameComponentValid(LPCWSTR lpFileName);
     
 public Q_SLOTS:
-    virtual void slotClipBoardChange();
+    virtual void slotClipBoardChanged();
 
 Q_SIGNALS:
     //!

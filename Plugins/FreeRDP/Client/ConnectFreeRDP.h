@@ -89,7 +89,7 @@ private:
 
     // CConnect interface
 public Q_SLOTS:
-    virtual void slotClipBoardChange() override;
+    virtual void slotClipBoardChanged() override;
     
 public Q_SLOTS:
     virtual void slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos) override;

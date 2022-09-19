@@ -21,7 +21,7 @@ public slots:
     virtual int OnClean() override;
     virtual int OnInit() override;
     virtual int OnProcess() override;
-    virtual void slotClipBoardChange() override;
+    virtual void slotClipBoardChanged() override;
     void slotSendData(const char *,int);
     void slotReceivedData(const QString &text);
     
