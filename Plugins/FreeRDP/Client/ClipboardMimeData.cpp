@@ -232,7 +232,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
     if(m_bExit)
         return QVariant();
 
-    if(isUrls(mimetype))
+    if(isUrls(mimetype) && !m_Variant.isNull())
     {
         QByteArray data = m_Variant.toByteArray();
         emit sigRequestFileFromServer(mimetype, data.data(), data.size());
