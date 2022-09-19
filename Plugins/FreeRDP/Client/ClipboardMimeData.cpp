@@ -504,6 +504,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
     //*
     // "text/uri-list" format is LocalFile1\r\nLocalFile2\r\n...
     // See:
+    //   URI is specified by RFC 8089: https://datatracker.ietf.org/doc/html/rfc8089
     //   uri syntax: https://www.rfc-editor.org/rfc/rfc3986#section-3
     //   uri-lists format: https://www.rfc-editor.org/rfc/rfc2483#section-5
     if("text/uri-list" == mimetype || "FileGroupDescriptorW" == mimetype)
