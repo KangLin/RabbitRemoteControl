@@ -29,7 +29,7 @@
  *     - OnInit()
  *     - OnClean()
  *     - OnProcess()
- *     - slotClipBoardChange()
+ *     - slotClipBoardChanged()
  * 
  * \~english
  * \brief Connect interface. It is implemented by the protol plugin.
@@ -43,7 +43,7 @@
  *     - OnInit()
  *     - OnClean()
  *     - OnProcess()
- *     - slotClipBoardChange()
+ *     - slotClipBoardChanged()
  *
  * \~
  * \see CConnecterDesktopThread CFrmViewer
@@ -87,8 +87,8 @@ public Q_SLOTS:
      * \~chinese 当剪切板发生改变时调用
      * \~english Be called whe the clip board change
      */
-    virtual void slotClipBoardChange() = 0;
-    
+    virtual void slotClipBoardChanged() = 0;
+
 protected:
     virtual int SetConnecter(CConnecter* pConnecter);
     virtual int SetViewer(CFrmViewer* pView, bool bDirectConnection);

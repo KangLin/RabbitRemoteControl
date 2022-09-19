@@ -918,13 +918,13 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
     
 }
 
-void CConnectRabbitVNC::slotClipBoardChange()
+void CConnectRabbitVNC::slotClipBoardChanged()
 {
     if(!m_pPara->GetClipboard() || !getOutStream()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     
-    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::slotClipBoardChange()");
+    LOG_MODEL_DEBUG("RabbitVNC", "CConnectRabbitVnc::slotClipBoardChanged()");
     announceClipboard(true);
 }
 

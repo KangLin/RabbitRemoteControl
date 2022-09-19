@@ -255,7 +255,7 @@ int CConnectSSH::OnProcess()
     return nRet;
 }
 
-void CConnectSSH::slotClipBoardChange()
+void CConnectSSH::slotClipBoardChanged()
 {
 }
 

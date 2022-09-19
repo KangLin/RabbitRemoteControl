@@ -32,7 +32,7 @@ public Q_SLOTS:
     virtual void slotConnected();
     virtual void slotDisConnected();
     virtual void slotReadyRead();
-    virtual void slotClipBoardChange() override;
+    virtual void slotClipBoardChanged() override;
 
     void slotError(int nErr, const QString &szErr);
 

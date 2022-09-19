@@ -228,10 +228,11 @@ int CConnectFreeRDP::OnProcess()
     return nRet;
 }
 
-void CConnectFreeRDP::slotClipBoardChange()
+void CConnectFreeRDP::slotClipBoardChanged()
 {
+    LOG_MODEL_DEBUG("FreeRdp", "CConnectFreeRDP::slotClipBoardChanged()");
     if(m_pParamter->GetClipboard())
-        m_ClipBoard.slotClipBoardChange();
+        m_ClipBoard.slotClipBoardChanged();
 }
 
 BOOL CConnectFreeRDP::cb_global_init()

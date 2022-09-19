@@ -28,6 +28,12 @@ CConnecter::CConnecter(CPluginClient *parent) : QObject(parent),
     bool check = connect(this, SIGNAL(sigDisconnected()),
                          this, SLOT(DisConnect()));
     Q_ASSERT(check);
+    if(QApplication::clipboard())
+    {
+        check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
+                        this, SIGNAL(sigClipBoardChanged()));
+        Q_ASSERT(check);
+    }
 }
 
 CConnecter::~CConnecter()
@@ -96,10 +102,17 @@ const QIcon CConnecter::Icon() const
 }
 
 void CConnecter::slotSetClipboard(QMimeData* data)
-{
+{    
     QClipboard* pClipboard = QApplication::clipboard();
-    if(pClipboard)
+    if(pClipboard) {
+        pClipboard->disconnect(this);
+
         pClipboard->setMimeData(data);
+
+        bool check = connect(pClipboard, SIGNAL(dataChanged()),
+                             this, SIGNAL(sigClipBoardChanged()));
+        Q_ASSERT(check);
+    }
 }
 
 void CConnecter::slotSetServerName(const QString& szName)
