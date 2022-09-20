@@ -412,7 +412,9 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
     QStringList lstFile = szFiles.split("\n");
     for(int i = 0; i < lstFile.size() - 1; i++)
     {
-        QString szFile = QUrl(lstFile.at(i).trimmed()).toLocalFile();
+        QString szFile = lstFile.at(i).trimmed();
+        if(szFile.isEmpty()) continue;
+        szFile = QUrl(szFile).toLocalFile();
         QFileInfo fileInfo(szFile);
         QDir d(fileInfo.absolutePath());
         if(!d.exists())
