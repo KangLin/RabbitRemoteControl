@@ -2,7 +2,7 @@ Source: rabbitremotecontrol
 Section: main
 Priority: optional
 Maintainer: Kang Lin <kl222@126.com>
-Build-Depends: debhelper (>= 6), cmake (>= 2.8.0), dh-systemd (>= 1.5)
+Build-Depends: debhelper (>= 6), cmake (>= 2.8.0)
 Standards-Version:"v0.0.24"
 Homepage: https://github.com/KangLin/RabbitRemoteControl
 Vcs-Git: https://github.com/KangLin/RabbitRemoteControl.git

@@ -88,8 +88,8 @@ jobs:
             libglu1-mesa-dev libpulse-mainloop-glib0 \
             cmake build-essential \
             libusb-1.0-0-dev libvncserver-dev libpixman-1-dev libssh-dev \
-            libtelnet-dev libqxmpp-dev \
-            debhelper fakeroot graphviz dh-systemd \
+            libtelnet-dev libqxmpp-dev libfuse-dev \
+            debhelper fakeroot graphviz \
             qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools \
             qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev \
             qtwebengine5-dev libqtermwidget5-0-dev \
@@ -108,9 +108,11 @@ jobs:
     - name: build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
-            git clone -b 2.8.0 https://github.com/FreeRDP/FreeRDP.git
+        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
+            git clone https://github.com/FreeRDP/FreeRDP.git
+            # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
+            git checkout -b 7e8bb42005b2b47ea825a29d824f176e3da91635 7e8bb42005b2b47ea825a29d824f176e3da91635
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
@@ -212,11 +214,11 @@ jobs:
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
-        FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2
-        FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2
-        WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR2
-        FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2
-        FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
+        FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3
+        FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
+        WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR3
+        FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
+        FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
       run: |
         if [ ${{matrix.BUILD_TYPE}} == 'Release' ]; then
             export BUILD_VIEWER_TERMINAL=OFF

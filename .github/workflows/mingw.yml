@@ -76,9 +76,11 @@ jobs:
 #        MSYSTEM: MINGW64
 #        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
 #      run: |
-#       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
-#            git clone -b 2.8.0 https://github.com/FreeRDP/FreeRDP.git
+#       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP3 (
+#            git clone https://github.com/FreeRDP/FreeRDP.git
+#            ;git clone https://github.com/KangLin/FreeRDP.git
 #            cd FreeRDP
+#            ;git checkout -b 7e8bb42005b2b47ea825a29d824f176e3da91635 7e8bb42005b2b47ea825a29d824f176e3da91635
 #            git submodule update --init --recursive
 #            cmake -E make_directory build
 #            cd build
@@ -216,6 +218,11 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DBUILD_FREERDP=ON ^
+            -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3 ^
+            -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ^
+            -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR3 ^
+            -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3 ^
+            -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3 ^
             -DBUILD_LibVNCServer=OFF ^
             -DLog4Qt_DIR=/lib/cmake/Log4Qt ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
