@@ -104,11 +104,11 @@ jobs:
     - name: Build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}
       run: |
-       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP2 (
-            ; git clone -b 2.8.0 https://github.com/FreeRDP/FreeRDP.git
-            git clone https://github.com/KangLin/FreeRDP.git
+       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP3 (
+            git clone https://github.com/FreeRDP/FreeRDP.git
+            ; git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout stable-2.0
+            git checkout -b 7e8bb42005b2b47ea825a29d824f176e3da91635 7e8bb42005b2b47ea825a29d824f176e3da91635
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
@@ -290,11 +290,6 @@ jobs:
     - name: build RabbitRemoteControl
       env:
         RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
-        FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2
-        FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2
-        WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR2
-        FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2
-        FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
       run: |
         cmake -E make_directory ${{github.workspace}}/build
         cd ${{github.workspace}}/build
@@ -306,14 +301,15 @@ jobs:
             -DCMARK_STATIC=ON ^
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
-            -DBUILD_FREERDP=ON ^
-            -DBUILD_LibVNCServer=OFF ^
             -DBUILD_QUIWidget=OFF ^
+            -DBUILD_LibVNCServer=OFF ^
+            -DBUILD_FREERDP=ON ^
             -DLog4Qt_DIR=${{env.INSTALL_DIR}}/lib/cmake/Log4Qt ^
-            -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2 ^
-            -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ^
-            -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR2 ^
-            -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2 ^
+            -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3 ^
+            -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ^
+            -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR3 ^
+            -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3 ^
+            -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3 ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^
