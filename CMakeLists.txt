@@ -2,7 +2,10 @@
 
 cmake_minimum_required(VERSION 3.19)
 
-project(RabbitRemoteControl)
+project(RabbitRemoteControl
+    DESCRIPTION "Rabbit Remote Control"
+    HOMEPAGE_URL "https://github.com/KangLin/RabbitRemoteControl"
+    )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
