@@ -18,6 +18,7 @@ Author: Kang Lin <kl222@126.com>
     - [Remote control protocols](#Remote-control-protocols)
     - [Network protocols](#Network-protocols)
   + [Function list](#Function-list)
+  + [Plugins](#Plugins)
   + [Full Documentation](#Full-Documentation)
 - [Status](#Status)
 - [Sponsorship and Donations](#Sponsorship-and-Donations)
@@ -138,6 +139,14 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 |FreeRDP      |       |      |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
+
+#### Plugins
+
+- [FreeRDP](Plugins/FreeRDP/README.md)
+- VNC
+  - [RabbitVNC](Plugins/RabbitVNC/README.md)
+  - [TigerVnc](Plugins/TigerVnc/README.md)
+  - [LibVNCServer](Plugins/LibVNCServer/README.md)
 
 ### Full Documentation
 

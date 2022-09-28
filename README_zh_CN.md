@@ -18,6 +18,7 @@
     - [远程控制协议](#远程控制协议)
     - [网络协议](#网络协议)
   + [功能列表](#功能列表)
+  + [插件](#插件)
   + [详尽文档](#详尽文档)
 - [状态](#状态)
 - [捐赠](#捐赠)
@@ -137,6 +138,14 @@
 |FreeRDP      |                  |                  |
 
 图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
+
+#### 插件
+
+- [FreeRDP](Plugins/FreeRDP/README_zh_CN.md)
+- VNC
+  - [RabbitVNC](Plugins/RabbitVNC/README.md)
+  - [TigerVnc](Plugins/TigerVnc/README.md)
+  - [LibVNCServer](Plugins/LibVNCServer/README.md)
 
 ### 详尽文档
 
