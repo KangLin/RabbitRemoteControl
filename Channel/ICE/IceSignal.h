@@ -1,10 +1,11 @@
-//! @author Kang Lin(kl222@126.com)
+//! @author Kang Lin <kl222@126.com>
 
 #ifndef CSIGNAL_H
 #define CSIGNAL_H
 
 #include <QObject>
 #include <string>
+#include <QLoggingCategory>
 
 #include "rtc/rtc.hpp"
 #include "channel_export.h"
@@ -84,6 +85,9 @@ Q_SIGNALS:
                         const QString& channelId,
                         const QString& type,
                         const QString& sdp);
+    
+protected:
+    QLoggingCategory m_Log;
 };
 
 #endif // CSIGNAL_H

@@ -4,23 +4,23 @@
 #include <QDebug>
 #include <QApplication>
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #include "ConnecterFreeRDP.h"
 #include "winpr/wlog.h"
+
+Q_LOGGING_CATEGORY(FreeRDP, "FreeRDP")
 
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
-    //qDebug() << "FreeRDP" << "build configure:" << freerdp_get_build_config() << "\n";
-    LOG_MODEL_INFO("CPluginFreeRDP", "FreeRDP version: %s; Build version: %s",
-                   freerdp_get_version_string(),
-                   freerdp_get_build_revision());
+    //qDebug(FreeRDP) << "FreeRDP" << "build configure:" << freerdp_get_build_config() << "\n";
+    qDebug(FreeRDP) << "FreeRDP version:" << freerdp_get_version_string()
+                   << "Build version:" << freerdp_get_build_revision();
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
 
 CPluginFreeRDP::~CPluginFreeRDP()
 {
-    qDebug() << "CPluginFreeRDP::~CPluginFreeRDP()";
+    qDebug(FreeRDP) << "CPluginFreeRDP::~CPluginFreeRDP()";
 }
 
 const QString CPluginFreeRDP::Name() const
@@ -38,7 +38,7 @@ const QString CPluginFreeRDP::Description() const
     return tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
 }
 
-const QString CPluginFreeRDP::Protol() const
+const QString CPluginFreeRDP::Protocol() const
 {
     return "RDP";
 }

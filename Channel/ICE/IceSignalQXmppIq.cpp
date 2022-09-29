@@ -2,8 +2,10 @@
 
 #include "IceSignalQXmppIq.h"
 #include <QDomComment>
-#include "RabbitCommonLog.h"
 #include <QDebug>
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(ChannelICE, "Channel.ICE")
 
 CIceSignalQXmppIq::CIceSignalQXmppIq()
 {   
@@ -25,7 +27,7 @@ void CIceSignalQXmppIq::parseElementFromChild(const QDomElement &element)
     QDomElement dataChannelElement = element.firstChildElement("query");
     if(dataChannelElement.isNull())
     {
-        LOG_MODEL_ERROR("CIceSignalQXmppManager", "webrtcElement is null");
+        qCritical(ChannelICE) << "webrtcElement is null";
         return;
     }
     m_ChannelId = dataChannelElement.attribute("channelid");

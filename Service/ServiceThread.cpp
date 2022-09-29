@@ -1,7 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ServiceThread.h"
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Service)
 
 CServiceThread::CServiceThread(CPluginService *pPlugin, QObject *parent)
     : QThread(parent),
@@ -11,7 +13,7 @@ CServiceThread::CServiceThread(CPluginService *pPlugin, QObject *parent)
 
 CServiceThread::~CServiceThread()
 {
-    LOG_MODEL_DEBUG("CServiceThread", "CServiceThread::~CServiceThread()");
+    qDebug(Service) << "CServiceThread::~CServiceThread()";
 }
 
 void CServiceThread::run()
@@ -19,25 +21,21 @@ void CServiceThread::run()
     CService* pService = m_pPlugin->NewService();
     if(!pService)
     {
-        LOG_MODEL_ERROR("ServiceThread", "GetService fail");
+        qCritical(Service) << "GetService fail";
         return;
     }
-    
-    LOG_MODEL_INFO("ServiceThread", "The service [%s] is start",
-                   m_pPlugin->Name().toStdString().c_str());
-    
+    qInfo(Service) << "The service" << m_pPlugin->Name() << "is start";
+
     int nRet = pService->Init();
     if(nRet)
     {
-        LOG_MODEL_WARNING("ServiceThread", "The service [%s] initial fail",
-                       m_pPlugin->Name().toStdString().c_str());
+        qWarning(Service) <<  "The service" << m_pPlugin->Name() << "initial fail";
         return;
     }
     
     exec();
     
-    LOG_MODEL_INFO("ServiceThread", "The service [%s] is stop",
-                   m_pPlugin->Name().toStdString().c_str());
+    qInfo(Service) << "The service" << m_pPlugin->Name() << "is stop";
 
     pService->Clean();
     pService->deleteLater();

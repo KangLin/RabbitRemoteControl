@@ -28,7 +28,7 @@ endif()
 
 ## Terminal
 
-if(BUILD_VIEWER_TERMINAL AND BUILD_PLUGINS)
+if(BUILD_CLIENT_TERMINAL AND BUILD_PLUGINS)
     find_package(qtermwidget5)
     if(qtermwidget5_FOUND)
         option(BUILD_TERMINAL "Build Terminal" ON)

@@ -2,13 +2,15 @@
 
 #include "PluginService.h"
 
-#include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 
 #include <QIcon>
 #include <QLocale>
 #include <QDebug>
 #include <QCoreApplication>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Service)
 
 CPluginService::CPluginService(QObject *parent)
     : QObject(parent)
@@ -16,7 +18,7 @@ CPluginService::CPluginService(QObject *parent)
 
 CPluginService::~CPluginService()
 {
-    LOG_MODEL_DEBUG("CPluginService", "CPluginService::~CPluginService");
+    qDebug(Service) << "CPluginService::~CPluginService";
     qApp->removeTranslator(&m_Translator);
 }
 
@@ -26,8 +28,7 @@ int CPluginService::InitTranslator()
             + "/" + Name() + "_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
     {
-        LOG_MODEL_ERROR("CPluginClient", "Open translator file fail:",
-                        szTranslatorFile.toStdString().c_str());
+        qCritical(Service) << "Open translator file fail:" << szTranslatorFile;
         return -1;
     }
     qApp->installTranslator(&m_Translator);

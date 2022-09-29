@@ -1,9 +1,9 @@
 #include "PluginLibSSH.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #include "ConnecterSSH.h"
 
-#include <QDebug>
+#include <QLoggingCategory>
+Q_LOGGING_CATEGORY(ssh, "SSH")
 
 CPluginLibSSH::CPluginLibSSH()
 {
@@ -11,10 +11,10 @@ CPluginLibSSH::CPluginLibSSH()
 
 CPluginLibSSH::~CPluginLibSSH()
 {
-    qDebug() << "CPluginFactoryLibSSH::~CPluginFactoryLibSSH()";
+    qDebug(ssh) << "CPluginFactoryLibSSH::~CPluginFactoryLibSSH()";
 }
 
-const QString CPluginLibSSH::Protol() const
+const QString CPluginLibSSH::Protocol() const
 {
     return "SSH";
 }
@@ -34,9 +34,9 @@ const QIcon CPluginLibSSH::Icon() const
     return QIcon(":/image/SSH");
 }
 
-CConnecter *CPluginLibSSH::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginLibSSH::CreateConnecter(const QString &szProtocol)
 {
-    if(Id() == szProtol)
+    if(Id() == szProtocol)
         return new CConnecterSSH(this);
     return nullptr;
 }

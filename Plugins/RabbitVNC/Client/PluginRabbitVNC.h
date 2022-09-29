@@ -27,7 +27,7 @@ public:
     virtual const QString Name() const override;
     virtual const QString DisplayName() const override;
     virtual const QString Description() const override;
-    virtual const QString Protol() const override;
+    virtual const QString Protocol() const override;
     virtual const QIcon Icon() const override;
 
 protected:

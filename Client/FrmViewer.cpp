@@ -7,7 +7,6 @@
 #include <QResizeEvent>
 #include <QCursor>
 #include "Connect.h"
-#include "RabbitCommonLog.h"
 
 CFrmViewer::CFrmViewer(QWidget *parent) : QWidget(parent)
 {
@@ -23,13 +22,13 @@ CFrmViewer::CFrmViewer(QWidget *parent) : QWidget(parent)
 
 CFrmViewer::~CFrmViewer()
 {
-    qDebug() << "CFrmViewer::~CFrmViewer()";
+    qDebug(Client) << "CFrmViewer::~CFrmViewer()";
 }
 
 void CFrmViewer::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
-    //qDebug() << "CFrmViewer::resizeEvent:" << event->size();
+    //qDebug(Client) << "CFrmViewer::resizeEvent:" << event->size();
 }
 
 QRectF CFrmViewer::GetAspectRationRect()
@@ -64,7 +63,7 @@ void CFrmViewer::paintDesktop()
 {
     if(this->isHidden())
     {
-        LOG_MODEL_DEBUG("CFrmViewer", "CFrmViewer is hidden");
+        qDebug(Client) << "CFrmViewer is hidden";
         return;
     }
 
@@ -100,7 +99,7 @@ void CFrmViewer::paintDesktop()
 
 void CFrmViewer::paintEvent(QPaintEvent *event)
 {
-    //qDebug() << "CFrmViewer::paintEvent";
+    //qqDebug(Client) << "CFrmViewer::paintEvent";
     Q_UNUSED(event)
     if(this->isHidden())
     {
@@ -113,7 +112,7 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
 
 int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
 {
-    //qDebug() << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
+    //qDebug(Client) << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
 
     switch (m_AdaptWindows) {
     case Auto:
@@ -152,7 +151,7 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
     QPointF pos = event->pos();
     if(TranslationMousePoint(event->pos(), pos)) return;
-    //qDebug() << "CFrmViewer::mousePressEvent" << event->button() << event->buttons();
+    //qDebug(Client) << "CFrmViewer::mousePressEvent" << event->button() << event->buttons();
     emit sigMousePressEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -161,7 +160,7 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 {
     QPointF pos = event->pos();
     if(TranslationMousePoint(event->pos(), pos)) return;
-    //qDebug() << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons();
+    //qDebug(Client) << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons();
     emit sigMouseReleaseEvent(event->button(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -190,14 +189,14 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
-    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key: 0x%X;modifiers: 0x%X", event->key(), event->modifiers());
+    //qDebug(Client) << "keyPressEvent key: 0x%X;modifiers: 0x%X", event->key(), event->modifiers());
     emit sigKeyPressEvent(event->key(), event->modifiers());
     event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
-    //LOG_MODEL_DEBUG("CFrmViewer", "keyReleaseEvent key: 0x%X;modifiers: 0x%X", event->key(), event->modifiers());
+    //qDebug(Client) << "keyReleaseEvent key: 0x%X;modifiers: 0x%X", event->key(), event->modifiers());
     emit sigKeyReleaseEvent(event->key(), event->modifiers());
     event->accept();
 }
@@ -286,7 +285,7 @@ void CFrmViewer::slotSetName(const QString& szName)
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
-    //qDebug() << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)";
+    //qDebug(Client) << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)";
     if(m_Desktop.isNull() || m_Desktop.rect() == r)
         m_Desktop = image;
     else

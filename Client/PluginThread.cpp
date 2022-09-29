@@ -1,5 +1,4 @@
 #include "PluginThread.h"
-#include "RabbitCommonLog.h"
 #include <QTimer>
 #include "ManageConnect.h"
 
@@ -10,7 +9,7 @@ CPluginThread::CPluginThread()
 
 CPluginThread::~CPluginThread()
 {
-    LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::~CConnecterThread()");
+    qDebug(Client) << "CConnecterThread::~CConnecterThread()";
 }
 
 /*!
@@ -20,7 +19,7 @@ CPluginThread::~CPluginThread()
  */
 void CPluginThread::run()
 {
-    LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::run()");
+    qDebug(Client) << "CConnecterThread::run()";
     CManageConnect mc;
     bool check = false;
     check = connect(this, SIGNAL(sigConnect(CConnecterDesktop*)),

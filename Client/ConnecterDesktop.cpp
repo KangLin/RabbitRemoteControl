@@ -1,5 +1,4 @@
 #include "ConnecterDesktop.h"
-#include "RabbitCommonLog.h"
 
 CConnecterDesktop::CConnecterDesktop(CPluginClient *parent)
     : CConnecterDesktopThread(parent)
@@ -8,7 +7,7 @@ CConnecterDesktop::CConnecterDesktop(CPluginClient *parent)
 
 CConnecterDesktop::~CConnecterDesktop()
 {
-    LOG_MODEL_DEBUG("CConnecterDesktop", "CConnecterDesktop::~CConnecterDesktop");
+    qDebug(Client) << "CConnecterDesktop::~CConnecterDesktop";
 }
 int CConnecterDesktop::Connect()
 {

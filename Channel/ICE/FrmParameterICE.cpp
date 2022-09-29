@@ -1,3 +1,5 @@
+//! @author Kang Lin <kl222@126.com>
+
 #include "FrmParameterICE.h"
 #include "ui_FrmParameterICE.h"
 

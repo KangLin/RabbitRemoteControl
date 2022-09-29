@@ -2,11 +2,11 @@
 
 #include "FrmParameterFreeRDP.h"
 #include "ui_FrmParameterFreeRDP.h"
-#include "RabbitCommonLog.h"
 
 CFrmParameterFreeRDP::CFrmParameterFreeRDP(CParameterServiceFreeRDP *para, QWidget* parent)
     : QWidget(parent),
     ui(new Ui::CFrmParameterFreeRDP),
+    m_Log("FreeRDP"),
     m_Para(para)
 {
     ui->setupUi(this);
@@ -15,7 +15,7 @@ CFrmParameterFreeRDP::CFrmParameterFreeRDP(CParameterServiceFreeRDP *para, QWidg
 
 CFrmParameterFreeRDP::~CFrmParameterFreeRDP()
 {
-    LOG_MODEL_DEBUG("CFrmParameterFreeRDP", "CFrmParameterFreeRDP::~CFrmParameterFreeRDP");
+    qDebug(m_Log) << "CFrmParameterFreeRDP::~CFrmParameterFreeRDP";
     delete ui;
 }
 

@@ -42,7 +42,7 @@ endif()
 message("${PROJECT_NAME} RabbitRemoteControlServiceConfigure_QT_LIBRARIES: ${RabbitRemoteControlServiceConfigure_QT_LIBRARIES}")
 list(APPEND RabbitRemoteControlServiceConfigure_SRC_LIBS ${RabbitRemoteControlServiceConfigure_QT_LIBRARIES})
 
-ADD_TARGET(NAME RabbitRemoteControlServiceConfigure
+ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RabbitRemoteControlServiceConfigure_RCC_FILES}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
@@ -62,3 +62,11 @@ if(UNIX AND NOT ANDROID)
         RENAME RabbitRemoteControlServiceConfigure.png)
 endif()
 
+configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
+    ${CMAKE_BINARY_DIR}/etc/${PROJECT_NAME}.conf
+    COPYONLY)
+
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
+    DESTINATION etc
+    COMPONENT Runtime
+    RENAME ${PROJECT_NAME}.conf)

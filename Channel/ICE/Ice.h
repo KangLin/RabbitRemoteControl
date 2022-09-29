@@ -1,3 +1,5 @@
+//! @author Kang Lin <kl222@126.com>
+
 #ifndef CICE_H
 #define CICE_H
 
@@ -49,6 +51,7 @@ private:
     QSharedPointer<CIceSignal> m_Signal;
     CParameterICE m_Parameter;
     QTranslator m_Translator;
+    QLoggingCategory m_Log;
 };
 
 #endif // CICE_H

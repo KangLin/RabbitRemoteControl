@@ -10,7 +10,6 @@
 
 #include "PluginClient.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
@@ -38,12 +37,12 @@ CConnecter::CConnecter(CPluginClient *parent) : QObject(parent),
 
 CConnecter::~CConnecter()
 {
-    LOG_MODEL_DEBUG("CConnecter", "CConnecter::~CConnecter");
+    qDebug(Client) << "CConnecter::~CConnecter";
 }
 
 const QString CConnecter::Id()
 {
-    QString szId = Protol() + "_" + m_pPluginClient->Name();
+    QString szId = Protocol() + "_" + m_pPluginClient->Name();
     if(GetParameter())
     {
         if(GetParameter()->GetHost().isEmpty())
@@ -86,14 +85,14 @@ const QString CConnecter::Name()
 const QString CConnecter::Description()
 {
     return tr("Name:") + Name() + " "
-            + tr("Protol:") + Protol() + " "
+            + tr("Protol:") + Protocol() + " "
             + tr("Server name:") + ServerName() + " "
             + m_pPluginClient->Description();
 }
 
-const QString CConnecter::Protol() const
+const QString CConnecter::Protocol() const
 {
-    return m_pPluginClient->Protol();
+    return m_pPluginClient->Protocol();
 }
 
 const QIcon CConnecter::Icon() const
@@ -153,7 +152,7 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
         p->setAttribute(Qt::WA_DeleteOnClose);
         nRet = p->exec();
     } else {
-        LOG_MODEL_ERROR("CConnecter",  "The protol[%s] don't settings dialog", Protol().toStdString().c_str());
+        qCritical(Client) << "The protol [" << Protocol() << "] don't settings dialog";
     }
     return nRet;
 }
@@ -163,7 +162,7 @@ int CConnecter::Load(QString szFile)
     Q_ASSERT(!szFile.isEmpty());
     if(szFile.isEmpty())
     {
-        LOG_MODEL_ERROR("CConnecter", "The load file is empty");
+        qCritical(Client) << "The load file is empty";
         return -1;
     }
     QSettings set(szFile, QSettings::IniFormat);
@@ -175,7 +174,7 @@ int CConnecter::Save(QString szFile)
     Q_ASSERT(!szFile.isEmpty());
     if(szFile.isEmpty())
     {
-        LOG_MODEL_ERROR("CConnecter", "The load file is empty");
+        qCritical(Client) << "The load file is empty";
         return -1;
     }    
     QSettings set(szFile, QSettings::IniFormat);
@@ -196,16 +195,16 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
             GetParameter()->SetSavePassword(pPara->GetSavePassword());
         return 0;
     } else {
-        LOG_MODEL_ERROR("CConnecter",
+        qCritical(Client) << 
                 "If the parameters(CParameterConnecter or its derived classes) "
                 "requires a CParameterClient. "
                 "Please instantiate the parameters "
-                "and call SetParameter in the %s::%s to set the parameters pointer. "
+                "and call SetParameter in the "
+                << metaObject()->className() << "::" << metaObject()->className()
+                << "to set the parameters pointer. "
                 "If you are sure the parameter does not need CParameterClient. "
-                "please overload the SetParameterClient in the %s. don't set it",
-                metaObject()->className(),
-                metaObject()->className(),
-                metaObject()->className());
+                "please overload the SetParameterClient in the"
+                << metaObject()->className() << ". don't set it";
         Q_ASSERT(false);
     }
     return -1;
@@ -247,13 +246,13 @@ QObject* CConnecter::createObject(const QString& className, QObject* parent)
     int type = QMetaType::type(className.toStdString().c_str());
     if(QMetaType::UnknownType == type)
     {
-        qCritical() << className << " is QMetaType::UnknownType";
+        qCritical(Client) << className << " is QMetaType::UnknownType";
         return nullptr;
     }
     QObject *obj = (QObject*)QMetaType::create(type);
     if(nullptr == obj)
     {
-        qCritical() << "QMetaType::create fail: " << type;
+        qCritical(Client) << "QMetaType::create fail: " << type;
         return nullptr;
     }
     //const QMetaObject* metaObj = QMetaType::metaObjectForType(type);

@@ -1,6 +1,5 @@
 #include "FrmParameterTerminalAppearanceSettings.h"
 #include "ui_FrmParameterTerminalAppearanceSettings.h"
-#include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 #include "qtermwidget.h"
 
@@ -12,6 +11,8 @@
 #include <QDebug>
 #include <QTranslator>
 #include <QFont>
+
+Q_DECLARE_LOGGING_CATEGORY(ClientTerminal)
 
 class CTerminal
 {
@@ -25,14 +26,14 @@ public:
         QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
                 + QDir::separator() + "Terminal_" + QLocale::system().name() + ".qm";
         if(!m_Translator.load(szTranslatorFile))
-            qCritical() << "Open translator file fail:" << szTranslatorFile;
+            qCritical(ClientTerminal) << "Open translator file fail:" << szTranslatorFile;
         qApp->installTranslator(&m_Translator);
     };
     
     ~CTerminal()
     {
         qApp->removeTranslator(&m_Translator);
-        qDebug() << "CTerminal::~CTerminal()";
+        qDebug(ClientTerminal) << "CTerminal::~CTerminal()";
     #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
         Q_INIT_RESOURCE(translations_Terminal);
     #endif

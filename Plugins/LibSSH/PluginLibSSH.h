@@ -20,13 +20,13 @@ public:
     virtual ~CPluginLibSSH();
 
 public:
-    virtual const QString Protol() const override;
+    virtual const QString Protocol() const override;
     virtual const QString Name() const override;
     virtual const QString Description() const override;
     virtual const QIcon Icon() const override;
 
 private:
-    virtual CConnecter *CreateConnecter(const QString &szProtol) override;
+    virtual CConnecter *CreateConnecter(const QString &szProtocol) override;
 };
 
 #endif // CPLUGINLIBSSH_H_KL_2021_07_23

@@ -2,8 +2,9 @@
 
 #include "ParameterService.h"
 #include <QSettings>
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
 
+Q_DECLARE_LOGGING_CATEGORY(Service)
 CParameterService::CParameterService(QObject *parent) : QObject(parent),
     m_nPort(0),
     m_bEnable(true)
@@ -12,7 +13,7 @@ CParameterService::CParameterService(QObject *parent) : QObject(parent),
 
 CParameterService::~CParameterService()
 {
-    LOG_MODEL_DEBUG("CParameterService", "CParameterService::~CParameterService");
+    qDebug(Service) << "CParameterService::~CParameterService";
 }
 
 int CParameterService::Load(const QString& szFile)

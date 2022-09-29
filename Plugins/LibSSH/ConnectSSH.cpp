@@ -1,6 +1,7 @@
 #include "ConnectSSH.h"
-#include "RabbitCommonLog.h"
-#include <QDebug>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(ssh)
 
 CConnectSSH::CConnectSSH(CConnecterSSH *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
@@ -25,23 +26,23 @@ int CConnectSSH::SetParamter(void *pPara)
 
     if(m_pPara->GetHost().isEmpty())
     {
-        LOG_MODEL_ERROR("LibSSH",  "The host isn't setting");
+        qCritical(ssh) << "The host isn't setting";
         emit sigError(-1, "The host isn't setting");
     }
     else if (ssh_options_set(m_pSession, SSH_OPTIONS_HOST,
                              m_pPara->GetHost().toStdString().c_str()) < 0) {
-        LOG_MODEL_ERROR("LibSSH",  "The host set is fail");
+        qCritical(ssh) << "The host set is fail";
         emit sigError(-2, "The host set is fail");
         return -2;
     }
 
     if(m_pPara->GetUser().isEmpty())
     {
-        LOG_MODEL_ERROR("LibSSH",  "The user isn't setting");
+        qCritical(ssh) << "The user isn't setting";
         emit sigError(-3, "The user isn't setting");
     } else if (ssh_options_set(m_pSession, SSH_OPTIONS_USER,
                                m_pPara->GetUser().toStdString().c_str()) < 0) {
-        LOG_MODEL_ERROR("LibSSH",  "The user set fail");
+        qCritical(ssh) << "The user set fail";
         emit sigError(-3, "The user set fail");
         return -3;
     }
@@ -56,8 +57,7 @@ int CConnectSSH::SetParamter(void *pPara)
         if (ssh_pcap_file_open(m_pPcapFile,
                                m_pPara->captrueFile.toStdString().c_str())
                 == SSH_ERROR) {
-            LOG_MODEL_ERROR("LibSSH", "Error opening pcap file: %s\n",
-                            m_pPara->captrueFile.toStdString().c_str());
+            qCritical(ssh) << "Error opening pcap file:" << m_pPara->captrueFile;
             ssh_pcap_file_free(m_pPcapFile);
             m_pPcapFile = NULL;
             return -5;
@@ -109,7 +109,7 @@ int CConnectSSH::OnInit()
 //    Q_ASSERT(check);
 
     if (ssh_connect(m_pSession)) {
-        LOG_MODEL_ERROR("LibSSH",  "Connection failed : %s\n", ssh_get_error(m_pSession));
+        qCritical(ssh) << "Connection failed:" << ssh_get_error(m_pSession);
         return -1;
     }
 
@@ -121,7 +121,7 @@ int CConnectSSH::OnInit()
     ssh_userauth_none(m_pSession, NULL);
     char* banner = ssh_get_issue_banner(m_pSession);
     if (banner) {
-        LOG_MODEL_ERROR("LibSSH",  "%s\n", banner);
+        qCritical(ssh) << banner;
         free(banner);
     }
 
@@ -132,22 +132,22 @@ int CConnectSSH::OnInit()
 
     m_pChannel = ssh_channel_new(m_pSession);
     if (m_pChannel == NULL) {
-        LOG_MODEL_ERROR("LibSSH",  "Don't create channel: %s",
-                        ssh_get_error(m_pSession));
+        qCritical(ssh) << "Don't create channel:" << ssh_get_error(m_pSession);
         return -1;
     }
 
     if (ssh_channel_open_session(m_pChannel)) {
-        LOG_MODEL_ERROR("LibSSH", "Error opening channel : %s\n", ssh_get_error(m_pSession));
+        qCritical(ssh) << "Error opening channel:" << ssh_get_error(m_pSession);
         return -1;
     }
 
     ssh_channel_request_pty(m_pChannel);
     ssh_channel_change_pty_size(m_pChannel, pConsole->screenColumnsCount(), pConsole->screenLinesCount());
-    LOG_MODEL_DEBUG("LibSSH", "row:%d; col:%d", pConsole->screenLinesCount(), pConsole->screenColumnsCount());
+    qDebug(ssh) << "row:" << pConsole->screenLinesCount()
+                << ";col:" << pConsole->screenColumnsCount();
 
     if (ssh_channel_request_shell(m_pChannel)) {
-        LOG_MODEL_ERROR("LibSSH", "Requesting shell : %s\n", ssh_get_error(m_pSession));
+        qCritical(ssh) << "Requesting shell:" << ssh_get_error(m_pSession);
         return -1;
     }
 
@@ -243,14 +243,14 @@ int CConnectSSH::OnProcess()
     if (ssh_channel_is_open(m_pChannel)) {
         nRet = ssh_event_dopoll(m_pEvent, 500);
         if (nRet == SSH_ERROR) {
-            LOG_MODEL_ERROR("LibSSH",  "Error in ssh_event_dopoll()\n");
+            qCritical(ssh) << "Error in ssh_event_dopoll()";
             nRet = -1;
         } else if(nRet == SSH_EOF)
             nRet = 1;
         else if(SSH_AGAIN == nRet || SSH_OK == nRet)
             nRet = 0;
     } else
-        LOG_MODEL_ERROR("LibSSH",  "ssh channel isn't open");
+        qCritical(ssh) << "ssh channel isn't open";
 
     return nRet;
 }
@@ -267,7 +267,7 @@ int CConnectSSH::cbAuthCallback(const char *prompt,
                          void *userdata)
 {
     CConnectSSH* pThis = (CConnectSSH*)userdata;
-    LOG_MODEL_ERROR("LibSSH", "prompt:%s\n; echo: %d; verify: %d", prompt, echo, verify);
+    qCritical(ssh) << "prompt:" << prompt << ";echo:" << echo << ";verify:" << verify;
     return pThis->GetPassword(prompt, buf, len, echo, verify);
 }
 
@@ -304,7 +304,7 @@ int CConnectSSH::VerifyKnownhost(ssh_session session)
     
     rc = ssh_get_server_publickey(session, &srv_pubkey);
     if (rc < 0) {
-        LOG_MODEL_ERROR("LibSSH", "ssh_get_server_publickey fail");
+        qCritical(ssh) << "ssh_get_server_publickey fail";
         return -1;
     }
 
@@ -314,7 +314,7 @@ int CConnectSSH::VerifyKnownhost(ssh_session session)
                                 &hlen);
     ssh_key_free(srv_pubkey);
     if (rc < 0) {
-        LOG_MODEL_ERROR("LibSSH", "ssh_get_publickey_hash fail");
+        qCritical(ssh) << "ssh_get_publickey_hash fail";
         return -1;
     }
 
@@ -335,27 +335,27 @@ int CConnectSSH::VerifyKnownhost(ssh_session session)
         szErr = tr("Host key for server changed : server's one is now :\n");
         szErr += szFinger + "\n";
         szErr += tr("For security reason, connection will be stopped\n");
-        LOG_MODEL_ERROR("LibSSH", szErr.toStdString().c_str());
+        qCritical(ssh) << szErr;
         return -1;
     case SSH_KNOWN_HOSTS_OTHER:
         szErr = tr("The host key for this server was not found but an other type of key exists.\n");
         szErr += tr("An attacker might change the default server key to confuse your client"
                 "into thinking the key does not exist\n"
                 "We advise you to rerun the client with -d or -r for more safety.\n");
-        LOG_MODEL_ERROR("LibSSH", szErr.toStdString().c_str());
+        qCritical(ssh) << szErr;
         return -1;
     case SSH_KNOWN_HOSTS_NOT_FOUND:
         szErr = tr("Could not find known host file. If you accept the host key here,\n");
         szErr += tr("the file will be automatically created.\n");
-        LOG_MODEL_ERROR("LibSSH", szErr.toStdString().c_str());
+        qCritical(ssh) << szErr;
     case SSH_SERVER_NOT_KNOWN:
         szErr = tr("The server is unknown. This new key will be written on disk for further usage.\n");
         szErr += szFinger;
-        LOG_MODEL_DEBUG("LibSSH", szErr.toStdString().c_str());
+        qCritical(ssh) << szErr;
 
         rc = ssh_session_update_known_hosts(session);
         if (rc != SSH_OK) {
-            LOG_MODEL_ERROR("LibSSH", "error %s\n", strerror(errno));
+            qCritical(ssh) << "error:" << strerror(errno);
             return -1;
         }
         
@@ -385,7 +385,7 @@ int CConnectSSH::VerifyKnownhost(ssh_session session)
 
         break;
     case SSH_KNOWN_HOSTS_ERROR:
-        LOG_MODEL_ERROR("libSSH", "%s",ssh_get_error(session));
+        qCritical(ssh) << "Known host error:" << ssh_get_error(session);
         return -1;
     case SSH_KNOWN_HOSTS_OK:
         break; // ok 
@@ -396,8 +396,7 @@ int CConnectSSH::VerifyKnownhost(ssh_session session)
 
 void CConnectSSH::error(ssh_session session)
 {
-    LOG_MODEL_ERROR("LibSSH", "Authentication failed: %s\n", 
-                    ssh_get_error(session));
+    qCritical(ssh) << "Authentication failed:" << ssh_get_error(session);
 }
 
 int CConnectSSH::Authenticate(ssh_session session)
@@ -494,7 +493,7 @@ int CConnectSSH::Authenticate(ssh_session session)
 
     banner = ssh_get_issue_banner(session);
     if (banner) {
-        LOG_MODEL_INFO("LibSSH", "%s\n",banner);
+        qInfo(ssh) << banner;
         /* TODO:
         SSH_STRING_FREE_CHAR(banner); //*/
     }
@@ -515,5 +514,5 @@ void CConnectSSH::slotSendData(const char *buf,int len)
 
 void CConnectSSH::slotReceivedData(const QString &text)
 {
-    LOG_MODEL_DEBUG("LibSSH", "Receive data: %s", text.toStdString().c_str());
+    qDebug(ssh) << "Receive data:" << text;
 }

@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ServiceFreeRDP.h"
-#include "RabbitCommonLog.h"
 #include "ParameterServiceFreeRDP.h"
 #ifdef HAVE_GUI
     #include "FrmParameterFreeRDP.h"
@@ -9,6 +8,7 @@
 
 CServiceFreeRDP::CServiceFreeRDP(CPluginServiceFreeRDP *plugin)
     : CService(plugin),
+      m_Log("FreeRDP"),
       m_pSettings(nullptr),
       m_pServer(nullptr),
       m_bServerInit(false)
@@ -28,7 +28,7 @@ int CServiceFreeRDP::OnInit()
 	m_pServer = shadow_server_new();
 	if (!m_pServer)
 	{
-		LOG_MODEL_ERROR("CServiceFreeRDP", "Server new failed");
+		qCritical(m_Log) << "Server new failed";
 		return -1;
 	}
     
@@ -37,14 +37,14 @@ int CServiceFreeRDP::OnInit()
     nRet = shadow_server_init(m_pServer);
     if(nRet < 0)
     {
-        LOG_MODEL_ERROR("CServiceFreeRDP", "Server initialization failed.");
+        qCritical(m_Log) << "Server initialization failed.";
         return nRet;
     }
     m_bServerInit = true;
     
     if ((nRet = shadow_server_start(m_pServer)) < 0)
 	{
-		LOG_MODEL_ERROR("CServiceFreeRDP", "Failed to start server.");
+		qCritical(m_Log) << "Failed to start server.";
 		return nRet;
 	}
      

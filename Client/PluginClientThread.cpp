@@ -1,5 +1,4 @@
 #include "PluginClientThread.h"
-#include "RabbitCommonLog.h"
 
 CPluginClientThread::CPluginClientThread(QObject *parent) : CPluginClient(parent),
     m_pThread(nullptr)
@@ -16,7 +15,7 @@ CPluginClientThread::CPluginClientThread(QObject *parent) : CPluginClient(parent
 
 CPluginClientThread::~CPluginClientThread()
 {
-    LOG_MODEL_DEBUG("CPluginClientThread", "CPluginClientThread::~CPluginClientThread");
+    qDebug(Client) << "CPluginClientThread::~CPluginClientThread";
     if(m_pThread)
         m_pThread->quit(); // The don't deleteLater().
                            // because of it is connected finished signal
@@ -29,7 +28,7 @@ CConnecter *CPluginClientThread::CreateConnecter(const QString &szProtol)
     
     if(nullptr == m_pThread)
     {
-        LOG_MODEL_DEBUG("CPluginClientThread", "The thread is nullptr");
+        qDebug(Client) << "The thread is nullptr";
         return nullptr;
     }
 

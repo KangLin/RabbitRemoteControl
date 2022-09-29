@@ -29,7 +29,7 @@ const QString CPluginLibVNCServer::Description() const
             + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
 }
 
-const QString CPluginLibVNCServer::Protol() const
+const QString CPluginLibVNCServer::Protocol() const
 {
     return "RFB";
 }
@@ -39,9 +39,9 @@ const QIcon CPluginLibVNCServer::Icon() const
     return QIcon(":/image/Connect");
 }
 
-CConnecter *CPluginLibVNCServer::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginLibVNCServer::CreateConnecter(const QString &szProtocol)
 {
-    if(Id() == szProtol)
+    if(Id() == szProtocol)
     {   
         return new CConnecterLibVNCServer(this);
     }

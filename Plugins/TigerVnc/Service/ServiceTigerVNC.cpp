@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ServiceTigerVNC.h"
-#include "RabbitCommonLog.h"
 #include "RabbitCommonTools.h"
 #include "network/Socket.h"
 #include <QHostAddress>
@@ -19,6 +18,7 @@
     #include "ICE/ChannelIce.h"
 #endif
 
+Q_DECLARE_LOGGING_CATEGORY(TigerVNC)
 CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
 {
     bool check = false;
@@ -31,7 +31,7 @@ CServiceTigerVNC::CServiceTigerVNC(CPluginService *plugin) : CService(plugin)
 
 CServiceTigerVNC::~CServiceTigerVNC()
 {
-    LOG_MODEL_DEBUG("CServiceTigerVNC", "CServiceTigerVNC::~CServiceTigerVNC");
+    qDebug(TigerVNC) << "CServiceTigerVNC::~CServiceTigerVNC";
 }
 
 #ifdef HAVE_GUI
@@ -76,7 +76,7 @@ int CServiceTigerVNC::OnInit()
                                                        const QString&,
                                                        const QString&)));
             Q_ASSERT(check);
-            LOG_MODEL_INFO("ServiceTigerVNC", "Connect ICE signal");
+            qInfo(TigerVNC) << "Connect ICE signal";
         }
     }
 #endif
@@ -85,12 +85,12 @@ int CServiceTigerVNC::OnInit()
     {
         if(!m_Lister.listen(QHostAddress::Any, p->getPort()))
         {
-            LOG_MODEL_ERROR("ServiceTigerVNC", "Lister fail: Port [%d]; %s",
+            qCritical(TigerVNC, "Lister fail: Port [%d]; %s",
                             GetParameters()->getPort(),
                             m_Lister.errorString().toStdString().c_str());
             return -1;
         }
-        LOG_MODEL_INFO("ServiceTigerVNC", "Lister at: %d", p->getPort());
+        qInfo(TigerVNC) << "Lister at:" << p->getPort();
     }
 
     return 1; //Don't use OnProcess (qt event loop)
@@ -120,15 +120,14 @@ void CServiceTigerVNC::slotNewConnection()
         return;
     QTcpSocket* pSocket = m_Lister.nextPendingConnection();
     if(!pSocket) return;
-    LOG_MODEL_INFO("ServiceTigerVNC", "New connection: %s:%d",
-                   pSocket->peerAddress().toString().toStdString().c_str(),
-                   pSocket->peerPort());
+    qInfo(TigerVNC) << "New connection:"
+                    << pSocket->peerAddress() << ":" << pSocket->peerPort();
     try {
         QSharedPointer<CChannel> channel(new CChannel(), &QObject::deleteLater);
         if(!channel->isOpen())
             if(!channel->open(pSocket, QIODevice::ReadWrite))
             {
-                LOG_MODEL_ERROR("ServiceTigerVNC", "Don't open channel");
+                qCritical(TigerVNC) << "Don't open channel";
                 throw std::runtime_error("Don't open channel");
             }
         QSharedPointer<CConnection> c(new CConnection(channel,
@@ -144,9 +143,9 @@ void CServiceTigerVNC::slotNewConnection()
         // Because the socket is connected, so emit sigConnected()
         emit channel->sigConnected();
     }  catch (std::exception e) {
-        LOG_MODEL_ERROR("ServiceTigerVNC", e.what());
+        qCritical(TigerVNC) << "New connection exception" << e.what();
     }  catch(...) {
-        LOG_MODEL_ERROR("ServiceTigerVNC", "New connection exception");
+        qCritical(TigerVNC) << "New connection exception";
     }
 }
 
@@ -169,7 +168,7 @@ void CServiceTigerVNC::slotSignalConnected()
 {
     CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
-    LOG_MODEL_INFO("ServiceTigerVNC", "Connected to signal server: %s:%d; user:%s",
+    qInfo(TigerVNC, "Connected to signal server: %s:%d; user:%s",
                    p->getSignalServer().toStdString().c_str(),
                    p->getSignalPort(),
                    p->getSignalUser().toStdString().c_str());
@@ -179,7 +178,7 @@ void CServiceTigerVNC::slotSignalDisConnected()
 {
     CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
-    LOG_MODEL_INFO("ServiceTigerVNC", "Disconnect signal server: %s:%d; user:%s",
+    qInfo(TigerVNC, "Disconnect signal server: %s:%d; user:%s",
                    p->getSignalServer().toStdString().c_str(),
                    p->getSignalPort(),
                    p->getSignalUser().toStdString().c_str());
@@ -189,7 +188,7 @@ void CServiceTigerVNC::slotSignalError(int nErr, const QString& szErr)
 {
     CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
-    LOG_MODEL_ERROR("ServiceTigerVNC", "signal: %s:%d; user:%s; error: %d: %s",
+    qCritical(TigerVNC, "signal: %s:%d; user:%s; error: %d: %s",
                     p->getSignalServer().toStdString().c_str(),
                     p->getSignalPort(),
                     p->getSignalUser().toStdString().c_str(),
@@ -203,7 +202,7 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
                                        const QString& sdp)
 {
     try {
-        LOG_MODEL_INFO("ServiceTigerVNC",
+        qInfo(TigerVNC,
                        "New connection: from:%s; to:%s; channelId:%s",
                        fromUser.toStdString().c_str(),
                        toUser.toStdString().c_str(),
@@ -226,7 +225,7 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
             channel->SetConfigure(config);
             if(!channel->open(fromUser, toUser, channelId, type, sdp))
             {
-                LOG_MODEL_ERROR("ServiceTigerVNC", "Don't open channel");
+                qCritical(TigerVNC) << "Don't open channel";
                 throw std::runtime_error("Don't open channel");
             }
         }
@@ -241,9 +240,9 @@ void CServiceTigerVNC::slotSignalOffer(const QString& fromUser,
                         this, SLOT(slotError(int, QString)));
         Q_ASSERT(check);
     }  catch (std::exception e) {
-        LOG_MODEL_ERROR("ServiceTigerVNC", e.what());
+        qCritical(TigerVNC) << "New connection exception" << e.what();
     }  catch(...) {
-        LOG_MODEL_ERROR("ServiceTigerVNC", "New connection exception");
+        qCritical(TigerVNC) << "New connection exception";
     }
 }
 #endif //HAVE_ICE

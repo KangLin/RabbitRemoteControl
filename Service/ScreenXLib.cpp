@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ScreenXLib.h"
 #include "RabbitCommonLog.h"
+#include "ScreenXLib.h"
 #include <X11/Xlib.h>
 #include <stdexcept>
 

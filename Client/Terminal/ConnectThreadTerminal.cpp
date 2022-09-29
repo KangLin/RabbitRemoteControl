@@ -1,7 +1,8 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectThreadTerminal.h"
-#include "RabbitCommonLog.h"
+
+Q_DECLARE_LOGGING_CATEGORY(ClientTerminal)
 
 CConnectThreadTerminal::CConnectThreadTerminal(CConnecterTerminal *pConnecter)
     : QThread(),
@@ -29,5 +30,5 @@ void CConnectThreadTerminal::run()
 
     pConnect->deleteLater();
 
-    LOG_MODEL_DEBUG("CConnectThread", "Run end");
+    qDebug(ClientTerminal) << "Run end";
 }

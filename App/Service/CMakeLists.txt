@@ -43,3 +43,12 @@ ADD_TARGET(NAME ${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     PRIVATE_LIBS ${SRC_LIBS}
     VERSION ${RabbitRemoteControl_VERSION})
+
+configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
+    ${CMAKE_BINARY_DIR}/etc/${PROJECT_NAME}.conf
+    COPYONLY)
+
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
+    DESTINATION etc
+    COMPONENT Runtime
+    RENAME ${PROJECT_NAME}.conf)

@@ -1,10 +1,11 @@
+//! @author Kang Lin <kl222@126.com>
+
 #include "Ice.h"
 #include "ChannelIce.h"
 #ifdef HAVE_QXMPP
 #include "IceSignalQxmpp.h"
 #endif
 #include "FrmParameterICE.h"
-#include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 
 #include <QCoreApplication>
@@ -12,13 +13,14 @@
 #include <QDebug>
 
 CICE::CICE(QObject *parent)
-    : QObject{parent}
+    : QObject{parent},
+      m_Log("Channel.ICE")
 {
     bool check = false;
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
             + "/Channel_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
-        qCritical() << "Open translator file fail:" << szTranslatorFile;
+        qCritical(m_Log) << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);
     
 #ifdef HAVE_QXMPP
@@ -91,7 +93,7 @@ void CICE::slotStart()
     QSharedPointer<CIceSignal> signal = GetSignal();
     if(!signal)
     {
-        LOG_MODEL_ERROR("CICE", "The signal is null");
+        qCritical(m_Log) << "The signal is null";
         return;
     }
     if(signal->IsConnected())
@@ -115,27 +117,24 @@ void CICE::slotStop()
 void CICE::slotConnected()
 {
     CParameterICE* pPara = GetParameter();
-    LOG_MODEL_INFO("ICE", "User %s is connected to signal server: %s:%d",
-                   pPara->getSignalUser().toStdString().c_str(),
-                   pPara->getSignalServer().toStdString().c_str(),
-                   pPara->getSignalPort());
+    qInfo(m_Log) << "User" << pPara->getSignalUser()
+                  << "is connected to signal server:"
+                  << pPara->getSignalServer() << ":" << pPara->getSignalPort();
 }
 
 void CICE::slotDisconnected()
 {
     CParameterICE* pPara = GetParameter();
-    LOG_MODEL_INFO("ICE", "User %s is disconnected to signal server: %s:%d",
-                   pPara->getSignalUser().toStdString().c_str(),
-                   pPara->getSignalServer().toStdString().c_str(),
-                   pPara->getSignalPort());
+    qInfo(m_Log) << "User" << pPara->getSignalUser()
+                  << "is disconnected to signal server:"
+                  << pPara->getSignalServer() << ":" << pPara->getSignalPort();
 }
 
 void CICE::slotError(int nError, const QString& szError)
 {
     CParameterICE* pPara = GetParameter();
-    LOG_MODEL_INFO("ICE", "User %s signal server[%s:%d] error [%d]:%s",
-                   pPara->getSignalUser().toStdString().c_str(),
-                   pPara->getSignalServer().toStdString().c_str(),
-                   pPara->getSignalPort(),
-                   nError, szError.toStdString().c_str());
+    qInfo(m_Log) << "User" << pPara->getSignalUser()
+                  << "signal server["
+                  << pPara->getSignalServer() << ":" << pPara->getSignalPort()
+                  << "] error:" << nError << szError;
 }

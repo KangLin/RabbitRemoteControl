@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <QLoggingCategory>
 #include <QIODevice>
 #include <QTcpSocket>
 #include "channel_export.h"
@@ -46,6 +47,7 @@ private Q_SLOTS:
     void slotDisconnected();
 
 private:
+    QLoggingCategory m_Log;
     QTcpSocket* m_pSocket;
     
     // QIODevice interface

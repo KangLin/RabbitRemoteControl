@@ -17,8 +17,10 @@
  */
 
 #include "ServiceManager.h"
-#include "RabbitCommonLog.h"
 #include "RabbitCommonTools.h"
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(App, "App")
 
 int main(int argc, char *argv[])
 {
@@ -28,7 +30,7 @@ int main(int argc, char *argv[])
         CServiceManager s(argc, argv, "RabbitRemoteControlService");
         s.exec();
     } catch (std::exception& e) {
-        LOG_MODEL_ERROR("Main", "Exception:%s\n", e.what());
+        qCritical(App) << "Exception:" << e.what();
     }
     
     return nRet;

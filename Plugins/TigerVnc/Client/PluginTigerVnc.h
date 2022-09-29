@@ -26,11 +26,11 @@ public:
     
     virtual const QString Name() const override;
     virtual const QString Description() const override;
-    virtual const QString Protol() const override;
+    virtual const QString Protocol() const override;
     virtual const QIcon Icon() const override;
 
 protected:
-    virtual CConnecterDesktop* OnCreateConnecter(const QString& szProtol) override;
+    virtual CConnecterDesktop* OnCreateConnecter(const QString& szProtocol) override;
 };
 
 #endif // CPLUGINTIGERVNC_H_KL_2021_07_23

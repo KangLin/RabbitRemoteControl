@@ -12,7 +12,9 @@
     #include "QUIWidget/QUIWidget.h"
 #endif
 
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(ClientTerminal, "Client.Terminal")
 
 CConnecterTerminal::CConnecterTerminal(CPluginClient *parent)
     : CConnecter(parent),
@@ -39,7 +41,7 @@ CConnecterTerminal::CConnecterTerminal(CPluginClient *parent)
 
 CConnecterTerminal::~CConnecterTerminal()
 {
-    qDebug() << "CConnecterTerminal::~CConnecterTerminal()";
+    qDebug(ClientTerminal) << "CConnecterTerminal::~CConnecterTerminal()";
     
     if(m_pConsole)
     {

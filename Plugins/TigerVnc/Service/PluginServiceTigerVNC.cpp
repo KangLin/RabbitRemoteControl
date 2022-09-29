@@ -2,13 +2,13 @@
 
 #include "PluginServiceTigerVNC.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #include <QDebug>
 #include <QApplication>
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
 #include "ServiceTigerVNC.h"
 
+Q_LOGGING_CATEGORY(TigerVNC, "TigerVNC")
 CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent)
     : CPluginServiceThread(parent)
 {
@@ -26,7 +26,7 @@ CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent)
 
 CPluginServiceTigerVNC::~CPluginServiceTigerVNC()
 {
-   qDebug() << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
+   qDebug(TigerVNC) << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
 }
 
 const QString CPluginServiceTigerVNC::Protol() const

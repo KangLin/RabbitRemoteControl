@@ -3,6 +3,7 @@
 #ifndef CCURSOR_H
 #define CCURSOR_H
 
+#include <QLoggingCategory>
 #include <QImage>
 #include <QRect>
 #include <QObject>
@@ -46,5 +47,7 @@ private:
     
     QImage m_Cursor;
 };
+
+Q_DECLARE_LOGGING_CATEGORY(FreeRDP)
 
 #endif // CCURSOR_H

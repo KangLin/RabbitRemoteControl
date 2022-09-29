@@ -35,6 +35,9 @@
 #include <QKeySequence>
 #include <QPushButton>
 #include <QDateTime>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(App)
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -311,7 +314,7 @@ void MainWindow::on_actionOpen_Log_file_triggered()
 
 void MainWindow::on_actionToolBar_T_triggered(bool checked)
 {
-    LOG_MODEL_DEBUG("MainWindow", "MainWindow::on_actionToolBar_T_triggered(%d)", checked);
+    qDebug(App) << "MainWindow::on_actionToolBar_T_triggered:" << checked;
     ui->toolBar->setVisible(checked);
 }
 
@@ -391,14 +394,10 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
 void MainWindow::on_actionZoom_window_to_remote_desktop_triggered()
 {
-    LOG_MODEL_DEBUG("MainWindow", "main window:%d,%d", 
-                    frameGeometry().width(),
-                    frameGeometry().height());
+    qDebug(App) << "main window:" <<  frameGeometry();
     if(!m_pView) return;
     QSize s = m_pView->GetDesktopSize();
-    LOG_MODEL_DEBUG("MainWindow", "size:%d,%d", 
-                    s.width(),
-                    s.height());
+    qDebug(App) << "size:" << s;
     resize(s);
 }
 
@@ -426,7 +425,7 @@ void MainWindow::on_actionOriginal_O_changed()
 
 void MainWindow::on_actionOriginal_O_triggered()
 {
-    qDebug() << "on_actionOriginal_O_triggered()";
+    qDebug(App) << "on_actionOriginal_O_triggered()";
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::Original);
     if(m_psbZoomFactor)
@@ -799,7 +798,7 @@ int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)
 {
     Q_UNUSED(id);
     // Connect menu and toolbar
-    QAction* p = ui->menuConnect_C->addAction(pPlug->Protol()
+    QAction* p = ui->menuConnect_C->addAction(pPlug->Protocol()
                                               + ": " + pPlug->DisplayName(),
                                               this, SLOT(slotConnect()));
     p->setToolTip(pPlug->Description());
@@ -813,7 +812,7 @@ int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
-    qDebug() << "MainWindow::closeEvent()";
+    qDebug(App) << "MainWindow::closeEvent()";
     
     if(m_Parameter.GetSaveMainWindowStatus())
         if(isFullScreen())
@@ -1042,23 +1041,23 @@ void MainWindow::slotDockWidgetFavoriteVisibilityChanged(bool visib)
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-    LOG_MODEL_DEBUG("MainWindow", "dragEnterEvent");
+    qDebug(App) << "dragEnterEvent";
     
     if(event->mimeData()->hasUrls())
     {
-        qWarning() << event->mimeData()->urls();
+        qWarning(App) << event->mimeData()->urls();
         event->acceptProposedAction();
     }
 }
 
 void MainWindow::dragMoveEvent(QDragMoveEvent *event)
 {
-    //LOG_MODEL_DEBUG("MainWindow", "dragMoveEvent");
+    //qDebug(App) << "dragMoveEvent";
 }
 
 void MainWindow::dropEvent(QDropEvent *event)
 {
-    LOG_MODEL_DEBUG("MainWindow", "dropEvent");
+    qDebug(App) << "dropEvent";
     if(!event->mimeData()->hasUrls())
         return;
     auto urls = event->mimeData()->urls();
@@ -1109,7 +1108,7 @@ void MainWindow::slotSystemTrayIconTypeChanged()
         m_TrayIcon->setToolTip(windowTitle());
         m_TrayIcon->show();
     } else
-        LOG_MODEL_WARNING("MainWindow", "System tray is not available");
+        qWarning(App) << "System tray is not available";
     
     switch (m_Parameter.GetSystemTrayIconMenuType())
     {

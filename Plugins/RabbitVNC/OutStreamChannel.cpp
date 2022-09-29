@@ -1,6 +1,8 @@
 #include "OutStreamChannel.h"
-#include "RabbitCommonLog.h"
+
 #include <stdexcept>
+
+Q_DECLARE_LOGGING_CATEGORY(VncStreamChannel)
 
 COutStreamChannel::COutStreamChannel(CChannel* pDataChannel)
     : rdr::BufferedOutStream(),
@@ -19,9 +21,8 @@ bool COutStreamChannel::flushBuffer()
 
     if(-1 == n)
     {
-        LOG_MODEL_ERROR("COutStreamDataChannel",
-                        "COutStreamDataChannel::fillBuffer: %s",
-                        m_pDataChannel->errorString().toStdString().c_str());
+        qCritical(VncStreamChannel) << "COutStreamDataChannel::fillBuffer:"
+                                    << m_pDataChannel->errorString();
         return false;
         throw std::runtime_error(m_pDataChannel->errorString().toStdString());
     }

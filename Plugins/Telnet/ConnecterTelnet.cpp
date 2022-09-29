@@ -1,8 +1,9 @@
 #include "ConnecterTelnet.h"
 #include "DlgSettingsTelnet.h"
-#include "RabbitCommonLog.h"
 
 #include <unistd.h>
+
+Q_DECLARE_LOGGING_CATEGORY(Telnet)
 
 CConnecterTelnet::CConnecterTelnet(CPluginClient *parent)
     : CConnecterTerminal(parent),
@@ -97,7 +98,7 @@ void CConnecterTelnet::slotError(QAbstractSocket::SocketError err)
     if(!m_pSocket) return;
     szErr = m_pSocket->errorString();
     emit sigError(err, szErr);
-    LOG_MODEL_ERROR("ConnecterTelnet", "error: %d; %s", err, szErr.toStdString().c_str());
+    qCritical(Telnet) << "error:" << err << "-" << szErr;
     if(err == QTcpSocket::ConnectionRefusedError
             || err == QTcpSocket::HostNotFoundError)
         DisConnect();

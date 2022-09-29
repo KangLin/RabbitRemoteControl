@@ -57,8 +57,8 @@ public:
 
     /// ID. Default: Protol() + ":" + Name()
     virtual const QString Id() const;
-    /// Plugin protol
-    virtual const QString Protol() const = 0;
+    /// Plugin Protocol
+    virtual const QString Protocol() const = 0;
     /// \~chinese 插件名，这个名一定要与工程名(${PROJECT_NAME})相同。
     ///           翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。
     /// \~english This name must be the same as the project name (${PROJECT_NAME}).
@@ -77,20 +77,20 @@ private:
      * \return 返回 CConnecter 指针, 它的所有者是调用者。
      * \note 此函数新建一个堆栈对象指针，
      *       <b>调用者必须负责在用完后释放指针</b>。
-     * \param szProtol 连接协议
+     * \param szProtocol 连接协议
      * 
      * \~english
      * \brief New CConnecter instance. Only is called by CClient 
      * \return Return CConnecter pointer, the owner is caller
      * \note The function new object pointer,
      *       <b>the caller must delete it when don't use it</b>.
-     * \param szProtol
+     * \param szProtocol
      * 
      * \~
      * \see CClient::CreateConnecter CClient::LoadConnecter
      * 
      */
-    virtual CConnecter* CreateConnecter(const QString& szProtol) = 0;
+    virtual CConnecter* CreateConnecter(const QString& szProtocol) = 0;
 
 private:
     QTranslator m_Translator;

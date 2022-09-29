@@ -1,12 +1,15 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QLoggingCategory>
+#include <QCryptographicHash>
+#include <QInputDialog>
+
 #include "ParameterConnecter.h"
 #include "RabbitCommonEncrypt.h"
 #include "RabbitCommonTools.h"
-#include "RabbitCommonLog.h"
 #include "DlgInputPassword.h"
-#include <QCryptographicHash>
-#include <QInputDialog>
+
+Q_DECLARE_LOGGING_CATEGORY(Client);
 
 CParameterConnecter::CParameterConnecter(QObject *parent)
     : CParameter(parent),
@@ -307,7 +310,7 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
             return 0;
     }
 
-    LOG_MODEL_DEBUG("CParameterConnecter", "Password don't dencode");
+    qDebug(Client) << "Password don't dencode";
     CDlgInputPassword d(GetParameterViewer()->GetViewPassowrd(), szTitle);
     if(QDialog::Accepted != d.exec())
     {

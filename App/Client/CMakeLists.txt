@@ -61,17 +61,28 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS Client)
 
+if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl.conf)
+    configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.debug.conf
+        ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl.conf
+        COPYONLY)
+endif()
+
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
+    DESTINATION etc
+    COMPONENT Runtime)
+
 if(WIN32)
     install(FILES Resource/Image/App.ico
         DESTINATION .
-            COMPONENT Runtime)
+        COMPONENT Runtime)
 endif()
 if(UNIX AND NOT ANDROID)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.desktop
         DESTINATION share/applications
-            COMPONENT Runtime)
+        COMPONENT Runtime)
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/Image/App.png
         DESTINATION share/pixmaps
-            COMPONENT Runtime
+        COMPONENT Runtime
         RENAME RabbitRemoteControl.png)
 endif()
+

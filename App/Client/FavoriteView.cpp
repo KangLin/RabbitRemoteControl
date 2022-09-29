@@ -15,10 +15,12 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QDir>
+#include <QLoggingCategory>
 
 #include "FavoriteMimeData.h"
-#include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
+
+Q_DECLARE_LOGGING_CATEGORY(App)
 
 CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
     m_pModel(nullptr)
@@ -273,11 +275,11 @@ void CFavoriteView::slotNewGroup()
 
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)
 {
-    LOG_MODEL_DEBUG("CFavoriteView", "dragEnterEvent");
+    qDebug(App) << "dragEnterEvent";
     const CFavoriteMimeData* pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if (pData)
     {
-        LOG_MODEL_DEBUG("CFavoriteView", "dragEnterEvent acceptProposedAction");
+        qDebug(App) << "dragEnterEvent acceptProposedAction";
         event->acceptProposedAction();
     }
 }
@@ -288,7 +290,7 @@ void CFavoriteView::dragMoveEvent(QDragMoveEvent *event)
 
 void CFavoriteView::dropEvent(QDropEvent *event)
 {
-    LOG_MODEL_DEBUG("CFavoriteView", "dropEvent");
+    qDebug(App) << "dropEvent";
     const CFavoriteMimeData *pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if(!pData) return;
     QStandardItemModel* pModel = dynamic_cast<QStandardItemModel*>(model());
@@ -305,8 +307,7 @@ void CFavoriteView::dropEvent(QDropEvent *event)
         {
             foreach(auto i, pData->m_Items)
             {
-                LOG_MODEL_DEBUG("CFavoriteView", "dropEvent: %s",
-                                item->text().toStdString().c_str());
+                qDebug(App) << "dropEvent:" << item->text();
                 
                 auto newItem = NewItem(i);
                 item->appendRow(newItem);
@@ -314,8 +315,7 @@ void CFavoriteView::dropEvent(QDropEvent *event)
                     pModel->removeRow(i.row(), i.parent());
             } 
         } else
-            LOG_MODEL_WARNING("CFavoriteView", "Don't group node. the data:%s",
-                              item->data().toString().toStdString().c_str());
+            qWarning(App) << "Don't group node. the data:" << item->data();
     }else{
         foreach(auto i, pData->m_Items)
         {
@@ -348,14 +348,14 @@ void CFavoriteView::mousePressEvent(QMouseEvent *event)
 
 void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
 {
-    LOG_MODEL_DEBUG("CFavoriteView", "mouseMoveEvent");
+    qDebug(App) << "mouseMoveEvent";
     do{
         if (!(event->buttons() & Qt::LeftButton))
             break;
         if ((event->pos() - m_DragStartPosition).manhattanLength()
                 < QApplication::startDragDistance())
             break;
-        LOG_MODEL_DEBUG("CFavoriteView", "mouseMoveEvent drag");
+        qDebug(App) << "mouseMoveEvent drag";
         QDrag *drag = new QDrag(this);
         CFavoriteMimeData *pData = new CFavoriteMimeData();
         pData->m_Items = this->selectionModel()->selectedIndexes();

@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectThread.h"
-#include "RabbitCommonLog.h"
 
 CConnectThread::CConnectThread(CConnecterDesktopThread *pConnect) : QThread(),
     m_pConnecter(pConnect)
@@ -9,7 +8,7 @@ CConnectThread::CConnectThread(CConnecterDesktopThread *pConnect) : QThread(),
 
 CConnectThread::~CConnectThread()
 {
-    LOG_MODEL_DEBUG("CConnectThread", "CConnectThread::~CConnectThread");
+    qDebug(Client) << "CConnectThread::~CConnectThread";
 }
 
 /*!
@@ -40,5 +39,5 @@ void CConnectThread::run()
     pConnect->Disconnect();
     pConnect->deleteLater();
 
-    LOG_MODEL_DEBUG("CConnectThread", "Run end");
+    qDebug(Client) << "Run end";
 }

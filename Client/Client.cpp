@@ -2,7 +2,6 @@
 
 #include "Client.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #include "FrmParameterClient.h"
 
 #include <QPluginLoader>
@@ -24,7 +23,7 @@ CClient::CClient(QObject *parent) : QObject(parent),
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
             + "/Client_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
-        qCritical() << "Open translator file fail:" << szTranslatorFile;
+        qCritical(Client) << "Open translator file fail:" << szTranslatorFile;
     qApp->installTranslator(&m_Translator);
 
     LoadPlugins();
@@ -38,9 +37,9 @@ CClient::CClient(QObject *parent) : QObject(parent),
 
 CClient::~CClient()
 {
-    qDebug() << "CManageConnecter::~CManageConnecter()";
+    qDebug(Client) << "CClient::~CClient()";
     qApp->removeTranslator(&m_Translator);
-    qDebug() << "CClient::~CClient()";
+
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_Client);
 //#endif
@@ -59,8 +58,7 @@ int CClient::LoadPlugins()
                 p->InitTranslator();
             }
             else
-                LOG_MODEL_ERROR("ManageConnecter", "The plugin [%s] is exist.",
-                                p->Name().toStdString().c_str());
+                qCritical(Client) << "The plugin" << p->Name() << " is exist.";
         }
     }
 
@@ -123,13 +121,12 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
                     p->InitTranslator();
                 }
                 else
-                    LOG_MODEL_ERROR("ManageConnecter", "The plugin [%s] is exist.",
-                                    p->Name().toStdString().c_str());
+                    qCritical(Client) << "The plugin [" << p->Name() << "] is exist.";
             }
         }else{
             QString szMsg;
             szMsg = "load plugin error: " + loader.errorString();
-            LOG_MODEL_ERROR("ManageConnecter", szMsg.toStdString().c_str());
+            qCritical(Client) << szMsg;
         }
         
         foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
@@ -164,18 +161,15 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
     QSettings set(szFile, QSettings::IniFormat);
     m_FileVersion = set.value("Manage/FileVersion", m_FileVersion).toInt();
     QString id = set.value("Plugin/ID").toString();
-    QString protol = set.value("Plugin/Protol").toString();
+    QString protocol = set.value("Plugin/Protocol").toString();
     QString name = set.value("Plugin/Name").toString();
-    
-    LOG_MODEL_INFO("ManageConnecter", "protol: %s  name: %s",
-                   protol.toStdString().c_str(),
-                   name.toStdString().c_str());
+
+    qInfo(Client) << "protocol:" << protocol << "name:" << name;
     pConnecter = CreateConnecter(id);
     if(pConnecter)
         pConnecter->Load(szFile);
     else
-        LOG_MODEL_ERROR("ManageConnecter", "Don't create connecter: %s",
-                        protol.toStdString().c_str());
+        qCritical(Client) << "Don't create connecter:" << protocol;
 
     return pConnecter;
 }
@@ -197,7 +191,7 @@ int CClient::SaveConnecter(QString szFile, CConnecter *pConnecter)
     
     set.setValue("Manage/FileVersion", m_FileVersion);
     set.setValue("Plugin/ID", pPluginClient->Id());
-    set.setValue("Plugin/Protol", pPluginClient->Protol());
+    set.setValue("Plugin/Protocol", pPluginClient->Protocol());
     set.setValue("Plugin/Name", pPluginClient->Name());
     pConnecter->Save(szFile);
 

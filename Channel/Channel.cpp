@@ -1,16 +1,16 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "Channel.h"
-#include "RabbitCommonLog.h"
 
 CChannel::CChannel(QObject *parent)
     : QIODevice(parent),
+      m_Log("Channel"),
       m_pSocket(nullptr)
 {}
 
 CChannel::~CChannel()
 {
-    LOG_MODEL_DEBUG("CChannel", "CChannel::~CChannel");
+    qDebug(m_Log) << "CChannel::~CChannel";
 //    if(isOpen()) close();
     if(m_pSocket) m_pSocket->deleteLater();
 }
@@ -39,7 +39,7 @@ void CChannel::slotConnected()
 //    if(!isOpen())
 //        if(!open(QIODevice::ReadWrite))
 //        {
-//            LOG_MODEL_ERROR("CDataChannel", "Open data channel fail");
+//            qCritical(m_Log) << "Open data channel fail";
 //            return;
 //        }
     emit sigConnected();
