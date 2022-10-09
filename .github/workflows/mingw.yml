@@ -87,7 +87,8 @@ jobs:
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
                 -DWITH_SERVER=ON ^
-                -DCHANNEL_URBDRC=OFF
+                -DCHANNEL_URBDRC=OFF ^
+                -DUSE_UNWIND=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
