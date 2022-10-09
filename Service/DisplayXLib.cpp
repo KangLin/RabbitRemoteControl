@@ -1,6 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
 #include "DisplayXLib.h"
 
 #ifdef HAVE_Xfixes
@@ -14,6 +14,8 @@
 
 #include <QPainter>
 #include <QBitmap>
+
+Q_DECLARE_LOGGING_CATEGORY(LogScreen)
 
 CDisplayXLib::CDisplayXLib() : CDisplay(),
     m_pDisplay(NULL),
@@ -64,7 +66,7 @@ QImage::Format CDisplayXLib::GetFormat(XImage* pImage)
     case 24:
         return QImage::Format_RGB888;
     default:
-        LOG_MODEL_ERROR("CDisplayXLib", "Don't support format:%d", pImage->bits_per_pixel);
+        qCritical(LogScreen) << "Don't support format:" << pImage->bits_per_pixel;
         return QImage::Format_Invalid;
     }
 }
@@ -91,13 +93,13 @@ int CDisplayXLib::Open()
             if (vendrel % 1000) {
                 version += "." + QString::number(vendrel % 1000);
             }
-            LOG_MODEL_DEBUG("CDisplayXLib", version.toStdString().c_str());
+            qInfo(LogScreen) << version;
         }
         
         m_RootWindow = DefaultRootWindow(m_pDisplay); // RootWindow(dsp,0);/* Refer to the root window */
         if(0 == m_RootWindow)
         {
-            LOG_MODEL_ERROR("CDisplayXLib", "cannot get root window");
+            qCritical(LogScreen) << "cannot get root window";
             nRet = -2;
             break;
         }
@@ -164,7 +166,7 @@ int CDisplayXLib::GetScreenCount()
 
 void CDisplayXLib::DestroyImage(void *pImage)
 {
-    LOG_MODEL_DEBUG("CDisplayXLib", "void DestroyImage(void *info)");
+    qDebug(LogScreen) << "void DestroyImage(void *info)";
     XDestroyImage(static_cast<XImage*>(pImage));
 }
 
@@ -220,7 +222,7 @@ QImage CDisplayXLib::GetDisplay()
                      m_pImage, 0, 0);
         if(NULL == pImg)
         {
-            LOG_MODEL_ERROR("CDisplayXLib", "Get desktop fail");
+            qCritical(LogScreen) << "Get desktop fail";
         }
     }
 

@@ -1,6 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
 #include "ScreenXLib.h"
 #include <X11/Xlib.h>
 #include <stdexcept>
@@ -9,6 +9,8 @@
 // X documents: https://www.x.org/releases/current/doc/index.html
 // X Window System Concepts: https://www.x.org/wiki/guide/concepts/
 //  https://www.x.org
+
+Q_LOGGING_CATEGORY(LogScreen, "Screen")
 
 CScreen* CScreen::Instance()
 {
@@ -29,7 +31,7 @@ CScreen* CScreen::Instance()
                 if (vendrel % 1000) {
                     version += "." + QString::number(vendrel % 1000);
                 }
-                LOG_MODEL_DEBUG("CScreenXLib", version.toStdString().c_str());
+                qInfo(LogScreen) << version;
                 XCloseDisplay(dpy);
             }
         }
@@ -45,14 +47,15 @@ CScreenXLib::CScreenXLib(QObject *parent) : CScreen(parent)
     dsp = XOpenDisplay(NULL);/* Connect to a local display */
     if(NULL == dsp)
     {
-        LOG_MODEL_ERROR("CScreenXLib", "Cannot connect to local display");
-        throw std::runtime_error("Cannot connect to local display");
+        szErr = "Cannot connect to local display";
+        qCritical(LogScreen) << szErr;
+        throw std::runtime_error(szErr.toStdString().c_str());
     }
     do{
         Visual* vis = DefaultVisual(dsp, DefaultScreen(dsp));
         if (vis->c_class != TrueColor) {
-            LOG_MODEL_ERROR("CScreenXLib", "pseudocolour not supported");
             szErr = "pseudocolour not supported";
+            qCritical(LogScreen) << szErr;
             break;
         }
         
@@ -61,8 +64,8 @@ CScreenXLib::CScreenXLib(QObject *parent) : CScreen(parent)
                                 BitmapPad(dsp), 0);
         m_pImage->data = (char *)malloc(m_pImage->bytes_per_line * m_pImage->height);
         if (m_pImage->data == NULL) {
-            LOG_MODEL_ERROR("CScreenXLib", "malloc() failed");
             szErr = "malloc() failed";
+            qCritical(LogScreen) << szErr;
         }
     } while(0);
     
@@ -86,7 +89,7 @@ int CScreenXLib::Width()
     dsp = XOpenDisplay(NULL);/* Connect to a local display */
     if(NULL == dsp)
     {
-        LOG_MODEL_ERROR("CScreenXLib", "Cannot connect to local display");
+        qCritical(LogScreen) << "Cannot connect to local display";
         return 0;
     }
     w = DisplayWidth(dsp, DefaultScreen(dsp));
@@ -101,7 +104,7 @@ int CScreenXLib::Height()
     dsp = XOpenDisplay(NULL);/* Connect to a local display */
     if(NULL == dsp)
     {
-        LOG_MODEL_ERROR("CScreenXLib", "Cannot connect to local display");
+        qCritical(LogScreen) << "Cannot connect to local display";
         return 0;
     }
     h = DisplayHeight(dsp, DefaultScreen(dsp));
@@ -141,7 +144,7 @@ int CScreenXLib::VisibleMonitorCount()
 
 void myImageCleanupHandler(void *info)
 {
-    LOG_MODEL_DEBUG("CScreenXLib", "void myImageCleanupHandler(void *info)");
+    qDebug(LogScreen) << "void myImageCleanupHandler(void *info)";
     XDestroyImage(static_cast<XImage*>(info));
 }
 
@@ -154,7 +157,7 @@ QImage::Format CScreenXLib::GetFormat(XImage *img)
     case 24:
         return QImage::Format_RGB888;
     default:
-        LOG_MODEL_ERROR("CScreenXLib", "Don't support format:%d", img->bits_per_pixel);
+        qCritical(LogScreen) << "Don't support format:" << img->bits_per_pixel;
         return QImage::Format_Invalid;
     }
 
@@ -172,14 +175,14 @@ QImage CScreenXLib::GetScreen(int index)
     dsp = XOpenDisplay(NULL);/* Connect to a local display */
     if(NULL == dsp)
     {
-        LOG_MODEL_ERROR("CScreenXLib","Cannot connect to local display");
+        qCritical(LogScreen) << "Cannot connect to local display";
         return m_Screen;
     }
     do{
         desktop = DefaultRootWindow(dsp); // RootWindow(dsp,0);/* Refer to the root window */
         if(0 == desktop)
         {
-            LOG_MODEL_ERROR("CScreenXLib", "cannot get root window");
+            qCritical(LogScreen) << "cannot get root window";
             break;
         }
         

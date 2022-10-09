@@ -66,8 +66,8 @@ int CManagePlugins::FindPlugins(QDir dir, QStringList filters)
     }
         
     foreach (fileName, files) {
-        QString szPlugins = dir.absoluteFilePath(fileName);
-        QPluginLoader loader(szPlugins);
+        QString szPlugin = dir.absoluteFilePath(fileName);
+        QPluginLoader loader(szPlugin);
         QObject *plugin = loader.instance();
         if (plugin) {
             CPluginService* p = qobject_cast<CPluginService*>(plugin);
@@ -75,14 +75,12 @@ int CManagePlugins::FindPlugins(QDir dir, QStringList filters)
             {
                 m_Plugins.insert(p->Id(), p);
                 p->InitTranslator();
-//                LOG_MODEL_DEBUG("CServiceManager", "Load plugin:%s;%s",
-//                                p->Id().toStdString().c_str(),
-//                                p->Description().toStdString().c_str());
+                qInfo(Service) << "Load plugin id:" << p->Id()
+                                << ";Description:" << p->Description()
+                                << ";File:" << szPlugin;
             }
         }else{
-            QString szMsg;
-            szMsg = "load plugin error: " + loader.errorString();
-            qCritical(Service) << szMsg.toStdString().c_str();
+            qCritical(Service) << "load plugin error:" << loader.errorString();;
         }
         
         foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {

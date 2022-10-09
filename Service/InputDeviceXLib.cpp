@@ -2,7 +2,7 @@
 
 // 参考： https://github.com/KangLin/Documents/blob/master/os/Keyboard.md
 
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
 #include <X11/X.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -10,6 +10,8 @@
 #include <X11/extensions/XTest.h>
 #endif
 #include "InputDeviceXLib.h"
+
+Q_LOGGING_CATEGORY(LogInput, "Device.Input")
 
 QSharedPointer<CInputDevice> CInputDevice::GenerateObject()
 {
@@ -23,7 +25,7 @@ CInputDeviceXLib::CInputDeviceXLib() : CInputDevice(),
 
 CInputDeviceXLib::~CInputDeviceXLib()
 {
-    LOG_MODEL_DEBUG("CInputDeviceXLib", "CInputDeviceXLib::~CInputDeviceXLib()");
+    qDebug(LogInput) << "CInputDeviceXLib::~CInputDeviceXLib()";
 }
 
 #ifdef HAVE_XTEST
@@ -90,7 +92,7 @@ int CInputDeviceXLib::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
     }
 
     if (!keycode) {
-        LOG_MODEL_ERROR("CInputDeviceXLib", "Could not map key event to X11 key code");
+        qCritical(LogInput) << "Could not map key event to X11 key code";
         nRet = -2;
         break;
     }
@@ -100,7 +102,7 @@ int CInputDeviceXLib::KeyEvent(quint32 keysym, quint32 xtcode, bool down)
     else
         pressedKeys.erase(keysym);
     
-    LOG_MODEL_DEBUG("CInputDeviceXLib", "%d %s", keycode, down ? "down" : "up");
+    qDebug(LogInput, "%d %s", keycode, down ? "down" : "up");
     
     XTestFakeKeyEvent(display, keycode, down, CurrentTime);
     } while(0);
@@ -192,7 +194,7 @@ int CInputDeviceXLib::MouseEvent(MouseButtons buttons, QPoint pos)
     Display *display = XOpenDisplay(NULL);
     if(display == NULL)
     {
-        LOG_MODEL_ERROR("CInputDevice", "Open display fail");
+        qCritical(LogInput) << "Open display fail";
         return -1;
     }
     Window root = DefaultRootWindow(display);
