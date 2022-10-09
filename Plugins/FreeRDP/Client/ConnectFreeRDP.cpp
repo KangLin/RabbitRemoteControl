@@ -401,9 +401,14 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     const char* pWindowTitle = freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
     if(pWindowTitle)
     {
-//        WCHAR* windowTitle = NULL;
-//        ConvertToUnicode(CP_UTF8, 0, settings->WindowTitle, -1, &windowTitle, 0);
-        emit pThis->sigServerName(pWindowTitle);
+        WCHAR* windowTitle = NULL;
+        ConvertToUnicode(CP_UTF8, 0, settings->WindowTitle, -1, &windowTitle, 0);
+        if(windowTitle)
+        {
+            QString title = QString::fromUtf16((const char16_t*)windowTitle);
+            emit pThis->sigServerName(title);
+            free(windowTitle);
+        }
     }
     int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
     int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
@@ -643,7 +648,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
                        const char *common_name, const char *subject,
                        const char *issuer, const char *fingerprint, DWORD flags)
 {
-   qDebug(FreeRDP) << "CConnectFreeRdp::cb_verify_certificate_ex";
+    qDebug(FreeRDP) << "CConnectFreeRdp::cb_verify_certificate_ex";
 
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
@@ -778,7 +783,7 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
         return TRUE;
 
     QRect rect(x, y, w, h);
-    //qDebug() << "Update:" << rect;
+    //qDebug(FreeRDP) << "Update:" << rect;
     //emit sigUpdateRect(rect, m_Image.copy(rect));
     emit sigUpdateRect(m_Image.rect(), m_Image);
     return FALSE;
@@ -786,7 +791,7 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
 
 BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 {
-    //qDebug() << "CConnectFreeRdp::cb_end_paint";
+    //qDebug(FreeRDP) << "CConnectFreeRdp::cb_end_paint";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
     int ninvalid;
