@@ -8,6 +8,8 @@
 #include <QApplication>
 #include "RabbitCommonDir.h"
 
+Q_LOGGING_CATEGORY(TigerVNC, "VNC.Tiger")
+
 static bool initlog = false;
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     : CPluginClientThread(parent)
@@ -31,7 +33,7 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
 CPluginTigerVnc::~CPluginTigerVnc()
 {
     //! [Clean resource]
-    qDebug() << "CPluginTigerVnc::~CPluginTigerVnc()";
+    qDebug(TigerVNC) << "CPluginTigerVnc::~CPluginTigerVnc()";
     //! [Clean resource]
 }
 
@@ -46,14 +48,14 @@ const QString CPluginTigerVnc::Description() const
             + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
 }
 
-const QString CPluginTigerVnc::Protol() const
+const QString CPluginTigerVnc::Protocol() const
 {
     return "RFB";
 }
 
-CConnecterDesktop *CPluginTigerVnc::OnCreateConnecter(const QString &szProtol)
+CConnecterDesktop *CPluginTigerVnc::OnCreateConnecter(const QString &szProtocol)
 {
-    if(Id() == szProtol)
+    if(Id() == szProtocol)
     {
         return new CConnecterTigerVnc(this);
     }

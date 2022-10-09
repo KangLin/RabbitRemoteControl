@@ -85,7 +85,7 @@ public:
     virtual const QString Id();
     virtual const QString Name();
     virtual const QString Description();
-    virtual const QString Protol() const;
+    virtual const QString Protocol() const;
     virtual qint16 Version() = 0;
     virtual const QIcon Icon() const;
 

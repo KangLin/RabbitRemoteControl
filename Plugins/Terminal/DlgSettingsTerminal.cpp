@@ -1,9 +1,10 @@
 #include "DlgSettingsTerminal.h"
 #include "ui_DlgSettingsTerminal.h"
-#include "RabbitCommonLog.h"
 
-#include <QDebug>
+#include <QLoggingCategory>
 #include <qtermwidget.h>
+
+Q_DECLARE_LOGGING_CATEGORY(Terminal)
 
 CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminal *pPara, QWidget *parent) :
     QDialog(parent),
@@ -25,7 +26,7 @@ CDlgSettingsTerminal::CDlgSettingsTerminal(CParameterTerminal *pPara, QWidget *p
 
 CDlgSettingsTerminal::~CDlgSettingsTerminal()
 {
-    qDebug() << "CDlgSettingsTerminal::~CDlgSettingsTerminal()";
+    qDebug(Terminal) << "CDlgSettingsTerminal::~CDlgSettingsTerminal()";
     delete ui;
 }
 

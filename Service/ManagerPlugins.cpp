@@ -1,8 +1,9 @@
 #include "ManagerPlugins.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #include <QPluginLoader>
+#include <QLoggingCategory>
 
+Q_DECLARE_LOGGING_CATEGORY(Service)
 CManagePlugins::CManagePlugins(QObject *parent)
     : QObject{parent}
 {
@@ -11,7 +12,7 @@ CManagePlugins::CManagePlugins(QObject *parent)
 
 CManagePlugins::~CManagePlugins()
 {
-    LOG_MODEL_DEBUG("CManagerPlugins", "CManagerPlugins::~CManagerPlugins");
+    qDebug(Service) << "CManagerPlugins::~CManagerPlugins";
 }
 
 int CManagePlugins::LoadPlugins()
@@ -81,7 +82,7 @@ int CManagePlugins::FindPlugins(QDir dir, QStringList filters)
         }else{
             QString szMsg;
             szMsg = "load plugin error: " + loader.errorString();
-            LOG_MODEL_ERROR("ManageConnecter", szMsg.toStdString().c_str());
+            qCritical(Service) << szMsg.toStdString().c_str();
         }
         
         foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {

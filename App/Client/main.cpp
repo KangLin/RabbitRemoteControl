@@ -24,13 +24,17 @@
 
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
+
 #ifdef HAVE_UPDATE
 #include "FrmUpdater/FrmUpdater.h"
 #endif
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
+
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(App, "App")
 
 int main(int argc, char *argv[])
 {
@@ -64,7 +68,7 @@ int main(int argc, char *argv[])
               + QDir::separator() + "RabbitRemoteControlApp_"
               + QLocale::system().name() + ".qm");
     a.installTranslator(&tApp);
-    LOG_MODEL_INFO("Main", "Language: %s", QLocale::system().name().toStdString().c_str());
+    qInfo(App) << "Language:" << QLocale::system();
 
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     a.setOrganizationName(QObject::tr("Kang Lin Studio"));
@@ -74,7 +78,7 @@ int main(int argc, char *argv[])
     QSharedPointer<CFrmUpdater> pUpdate(new CFrmUpdater());
     pUpdate->SetTitle(QImage(":/image/App"));
     if(pUpdate->GenerateUpdateXml())
-        LOG_MODEL_ERROR("main", "GenerateUpdateXml fail");
+        qCritical(App) << "GenerateUpdateXml fail";
     else    
         return 0;
 #endif
@@ -102,9 +106,9 @@ int main(int argc, char *argv[])
 
         nRet = a.exec();
     } catch (std::exception &e) {
-        LOG_MODEL_ERROR("main", "exception: %s", e.what());
+        qCritical(App) << "exception:" << e.what();
     } catch(...) {
-        LOG_MODEL_ERROR("main", "exception");
+        qCritical(App) << "exception:";
     }
 
 #ifndef BUILD_QUIWidget

@@ -15,6 +15,9 @@
 #include "ParameterRabbitVNC.h"
 
 #include <QEventLoop>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(RabbitVNC)
 
 class CConnecterRabbitVNC;
 class CConnectRabbitVNC : public CConnect,

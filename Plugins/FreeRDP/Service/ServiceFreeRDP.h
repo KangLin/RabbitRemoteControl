@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <QLoggingCategory>
 #include "Service.h"
 #include "PluginServiceFreeRDP.h"
 #include <freerdp/server/shadow.h>
@@ -25,6 +26,7 @@ protected:
     virtual int OnClean() override;
 
 private:
+    QLoggingCategory m_Log;
     rdpSettings* m_pSettings;
 	rdpShadowServer* m_pServer;
     bool m_bServerInit;

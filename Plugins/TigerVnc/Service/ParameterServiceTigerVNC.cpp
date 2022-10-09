@@ -2,7 +2,9 @@
 
 #include "ParameterServiceTigerVNC.h"
 #include <QSettings>
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(TigerVNC)
 
 CParameterServiceTigerVNC::CParameterServiceTigerVNC(QObject *parent)
     : CParameterService(parent)
@@ -14,7 +16,7 @@ CParameterServiceTigerVNC::CParameterServiceTigerVNC(QObject *parent)
 
 CParameterServiceTigerVNC::~CParameterServiceTigerVNC()
 {
-    LOG_MODEL_DEBUG("CParameterServiceTigerVNC", "CParameterServiceTigerVNC::~CParameterServiceTigerVNC");
+    qDebug(TigerVNC) << "CParameterServiceTigerVNC::~CParameterServiceTigerVNC";
 }
 
 int CParameterServiceTigerVNC::Load(const QString& szFile)

@@ -13,6 +13,8 @@
 #include <QApplication>
 #include "Desktop.h"
 
+Q_DECLARE_LOGGING_CATEGORY(TigerVNC)
+
 static void setfile()
 {
     const char* file = "/home/build-RabbitRemoteControl-Desktop_Qt_5_12_11_GCC_64bit-Debug/password";
@@ -66,7 +68,7 @@ CConnection::CConnection(QSharedPointer<CChannel> channel,
 
 CConnection::~CConnection()
 {
-    LOG_MODEL_DEBUG("CConnection", "CConnection::~CConnection");
+    qDebug(TigerVNC) << "CConnection::~CConnection";
 }
 
 void CConnection::slotConnected()
@@ -88,23 +90,23 @@ void CConnection::slotConnected()
     } catch(rdr::Exception& e) {
         std::string szErr ("initialistProtocol() fail:");
         szErr += e.str();
-        LOG_MODEL_ERROR("Connection", szErr.c_str());
+        qCritical(TigerVNC) << szErr.c_str();
         emit sigError(-1, szErr.c_str());
     } catch(std::exception& e) {
         std::string szErr ("initialistProtocol() fail:");
         szErr += e.what();
-        LOG_MODEL_ERROR("Connection", szErr.c_str());
+        qCritical(TigerVNC) << szErr.c_str();
         emit sigError(-1, szErr.c_str());
     } catch(...) {
         std::string szErr ("initialistProtocol() fail.");
-        LOG_MODEL_ERROR("Connection", szErr.c_str());
+        qCritical(TigerVNC) << szErr.c_str();
         emit sigError(-1, szErr.c_str());
     }
 }
 
 void CConnection::slotReadyRead()
 {
-    LOG_MODEL_DEBUG("Connection", "CConnection::slotReadyRead()");
+    qDebug(TigerVNC) << "CConnection::slotReadyRead()";
     if (state() == RFBSTATE_CLOSING) return;
     try {
         inProcessMessages = true;
@@ -141,20 +143,20 @@ void CConnection::slotReadyRead()
             slotDesktopUpdate(img, img.rect());
         }
     } catch (rdr::Exception e) {
-        LOG_MODEL_ERROR("CConnection", "Exception:%s", e.str());
+        qCritical(TigerVNC) << "Exception:" << e.str();
         emit sigError(-1, QString("processMsg exception:") + e.str());
     } catch (std::exception e) {
-        LOG_MODEL_ERROR("CConnection", "std Exception:%s", e.what());
+        qCritical(TigerVNC) << "std Exception:" << e.what();
         emit sigError(-1, QString("std Exception:") + e.what());
     } catch (...) {
-        LOG_MODEL_ERROR("CConnection", "exception");
+        qCritical(TigerVNC) << "exception";
         emit sigError(-1, QString("Exception:"));
     }
 }
 
 void CConnection::slotDisconnected()
 {
-    LOG_MODEL_DEBUG("Connection", "The connect disconnect");
+    qDebug(TigerVNC) << "The connect disconnect";
     emit sigDisconnected();
 }
 
@@ -165,14 +167,14 @@ void CConnection::slotError(int nErr, const QString& szErr)
 
 void CConnection::queryConnection(const char *userName)
 {
-    LOG_MODEL_DEBUG("Connection", "queryConnection: %s", userName);
+    qDebug(TigerVNC) << "queryConnection:" << userName;
     //TODO: check user is accpet?
     SConnection::queryConnection(userName);
 }
 
 void CConnection::authSuccess()
 {
-    LOG_MODEL_DEBUG("Connection", "CConnection::authSuccess(): state:%d", state());
+    qDebug(TigerVNC) << "CConnection::authSuccess(): state:" << state();
     // Set the connection parameters appropriately
     QString name = RabbitCommon::CTools::GetHostName()
             + "@" + RabbitCommon::CTools::GetCurrentUser();
@@ -187,7 +189,7 @@ void CConnection::authSuccess()
     client.setPF(m_PixelFormat);
     char buffer[256];
     client.pf().print(buffer, 256);
-    LOG_MODEL_INFO("Connection", "Set server pixel format:%s; width:%d, height:%d",
+    qInfo(TigerVNC, "Set server pixel format:%s; width:%d, height:%d",
                    buffer, w, h);
 
     // Mark the entire display as "dirty"
@@ -196,7 +198,7 @@ void CConnection::authSuccess()
 
 void CConnection::clientInit(bool shared)
 {
-    LOG_MODEL_DEBUG("Connection", "clientInit shared:%d", shared);
+    qDebug(TigerVNC) << "clientInit shared:" << shared;
     SConnection::clientInit(shared);
     
     bool check = connect(CDesktop::Instance(), SIGNAL(sigUpdate(QImage, QRect)),
@@ -206,7 +208,7 @@ void CConnection::clientInit(bool shared)
 
 void CConnection::setDesktopSize(int fb_width, int fb_height, const rfb::ScreenSet &layout)
 {
-    LOG_MODEL_DEBUG("Connection", "setDesktopSize: %d:%d", fb_width, fb_height);
+    qDebug(TigerVNC, "setDesktopSize: %d:%d", fb_width, fb_height);
 
     //TODO: Add set server desktop size
     
@@ -219,7 +221,7 @@ void CConnection::setPixelFormat(const rfb::PixelFormat &pf)
     SConnection::setPixelFormat(pf);
     char buffer[256];
     pf.print(buffer, 256);
-    LOG_MODEL_DEBUG("CConnection", "Set pixel format: %s", buffer);
+    qDebug(TigerVNC) << "Set pixel format:" << buffer;
     
     //TODO: add setCursor();
 
@@ -228,7 +230,7 @@ void CConnection::setPixelFormat(const rfb::PixelFormat &pf)
 void CConnection::framebufferUpdateRequest(const rfb::Rect &r, bool incremental)
 {
     /*
-    LOG_MODEL_DEBUG("Connection", "framebufferUpdateRequest:incremental: %d; %d,%d,%d,%d",
+    qDebug(TigerVNC, "framebufferUpdateRequest:incremental: %d; %d,%d,%d,%d",
                     incremental, r.tl.x, r.tl.y,
                     r.br.x, r.br.y);//*/
     if (!accessCheck(AccessView)) return;
@@ -238,7 +240,7 @@ void CConnection::framebufferUpdateRequest(const rfb::Rect &r, bool incremental)
     rfb::Rect safeRect;
     // Check that the client isn't sending crappy requests
     if (!r.enclosed_by(rfb::Rect(0, 0, client.width(), client.height()))) {
-        LOG_MODEL_ERROR("Connection", "FramebufferUpdateRequest %dx%d at %d,%d exceeds framebuffer %dx%d",
+        qCritical(TigerVNC, "FramebufferUpdateRequest %dx%d at %d,%d exceeds framebuffer %dx%d",
                    r.width(), r.height(), r.tl.x, r.tl.y,
                    client.width(), client.height());
         safeRect = r.intersect(rfb::Rect(0, 0, client.width(), client.height()));
@@ -270,7 +272,7 @@ void CConnection::framebufferUpdateRequest(const rfb::Rect &r, bool incremental)
 
 void CConnection::fence(rdr::U32 flags, unsigned len, const char data[])
 {
-    LOG_MODEL_DEBUG("Connection", "fence: flags:%d,len:%d", flags, len);
+    qDebug(TigerVNC, "fence: flags:%d,len:%d", flags, len);
     rdr::U8 type;
     
     if (flags & rfb::fenceFlagRequest) {
@@ -297,7 +299,7 @@ void CConnection::fence(rdr::U32 flags, unsigned len, const char data[])
     }
     
     if (len < 1)
-        LOG_MODEL_ERROR("Connection", "Fence response of unexpected size received");
+        qCritical(TigerVNC) << "Fence response of unexpected size received";
     
     type = data[0];
     
@@ -309,13 +311,13 @@ void CConnection::fence(rdr::U32 flags, unsigned len, const char data[])
         //congestion.gotPong();
         break;
     default:
-        LOG_MODEL_ERROR("Connection", "Fence response of unexpected type received");
+        qCritical(TigerVNC) << "Fence response of unexpected type received";
     }
 }
 
 void CConnection::enableContinuousUpdates(bool enable, int x, int y, int w, int h)
 {
-    LOG_MODEL_DEBUG("Connection", "enableContinuousUpdates: %d, %d,%d,%d,%d",
+    qDebug(TigerVNC, "enableContinuousUpdates: %d, %d,%d,%d,%d",
                     enable, x,y,w,h);
     //SConnection::enableContinuousUpdates(enable, x, y, w, h);
     
@@ -338,14 +340,14 @@ void CConnection::enableContinuousUpdates(bool enable, int x, int y, int w, int 
 
 void CConnection::keyEvent(rdr::U32 keysym, rdr::U32 keycode, bool down)
 {
-    LOG_MODEL_DEBUG("Connection", "keysym:%d;keycode:%d;down:%d", keysym, keycode, down);
+    qDebug(TigerVNC, "keysym:%d;keycode:%d;down:%d", keysym, keycode, down);
     if(m_InputDevice)
         m_InputDevice->KeyEvent(keysym, keycode, down);
 }
 
 void CConnection::pointerEvent(const rfb::Point &pos, int buttonMask)
 {
-    //LOG_MODEL_DEBUG("Connection", "pos:%d,%d;button:%d", pos.x, pos.y, buttonMask);
+    //qDebug(TigerVNC, "pos:%d,%d;button:%d", pos.x, pos.y, buttonMask);
     CInputDevice::MouseButtons button;
     if(buttonMask & 0x1)
         button |= CInputDevice::LeftButton;
@@ -368,7 +370,7 @@ void CConnection::pointerEvent(const rfb::Point &pos, int buttonMask)
 
 void CConnection::clientCutText(const char *str)
 {
-    LOG_MODEL_DEBUG("Connection", "cut text:%s", str);
+    qDebug(TigerVNC) << "cut text:" << str;
 }
 
 QSharedPointer<rfb::PixelBuffer> CConnection::GetBufferFromQImage(QImage &img)
@@ -429,10 +431,10 @@ void CConnection::writeDataUpdate(QImage img, QRect rect)
 
 void CConnection::slotDesktopUpdate(QImage img, QRect rect)
 {
-    //LOG_MODEL_DEBUG("Connection", "Update screen");
+    qDebug(TigerVNC) << "Update screen";
     if(img.isNull() || !writer())
     {
-        LOG_MODEL_ERROR("Connection", "Image is null");
+        qCritical(TigerVNC) << "Image is null";
         return;
     }
     

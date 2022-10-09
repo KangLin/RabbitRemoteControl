@@ -2,7 +2,6 @@
 
 #include "ConnecterFreeRDP.h"
 #include "ConnectFreeRDP.h"
-#include <QDebug>
 #include <QInputDialog>
 #include "DlgSetFreeRDP.h"
 
@@ -18,7 +17,7 @@ CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *parent)
 
 CConnecterFreeRDP::~CConnecterFreeRDP()
 {
-    qDebug() << "CConnecterFreeRdp::~CConnecterFreeRdp()";
+    qDebug(FreeRDP) << "CConnecterFreeRdp::~CConnecterFreeRdp()";
 }
 
 qint16 CConnecterFreeRDP::Version()

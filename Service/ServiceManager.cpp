@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ServiceManager.h"
-#include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 #include "Service.h"
 #ifdef HAVE_ICE
@@ -13,8 +12,10 @@
 #include <QCommandLineParser>
 #include <QDebug>
 #include <QSettings>
-
+#include <QLoggingCategory>
 #include <stdexcept>
+
+Q_LOGGING_CATEGORY(Service, "Service")
 
 CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, const QString &name)
     : QtService<QCoreApplication>(argc, argv, name)
@@ -75,12 +76,12 @@ CServiceManager::CServiceManager(int argc, char **argv, const QString& appName, 
 
 CServiceManager::~CServiceManager()
 {
-    LOG_MODEL_DEBUG("CServiceManager", "CServiceManager::~CServiceManager");
+    qDebug(Service) << "CServiceManager::~CServiceManager";
 }
 
 void CServiceManager::start()
 {
-    LOG_MODEL_DEBUG("Service", "Start ...");
+    qDebug(Service) << "Service", "Start ...";
     // Make sure the plugin is loaded only after the application is created
     if(!m_Plugins)
         m_Plugins = QSharedPointer<CManagePlugins>(new CManagePlugins());
@@ -94,7 +95,7 @@ void CServiceManager::start()
 
 void CServiceManager::stop()
 {
-    LOG_MODEL_DEBUG("Service", "Stop ...");
+    qDebug(Service) << "Service", "Stop ...";
     if(!m_Plugins) return;
     foreach(auto p, m_Plugins->m_Plugins)
         if(p) p->Stop();

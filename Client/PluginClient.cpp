@@ -2,7 +2,6 @@
 
 #include "PluginClient.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #include <QLocale>
 #include <QDebug>
 #include <QApplication>
@@ -23,8 +22,7 @@ int CPluginClient::InitTranslator()
             + QDir::separator() + Name() + "_" + QLocale::system().name() + ".qm";
     if(!m_Translator.load(szTranslatorFile))
     {
-        LOG_MODEL_ERROR("CPluginClient", "Open translator file fail:",
-                        szTranslatorFile.toStdString().c_str());
+        qDebug(Client) << "Open translator file fail:" << szTranslatorFile;
         return -1;
     }
     qApp->installTranslator(&m_Translator);
@@ -33,7 +31,7 @@ int CPluginClient::InitTranslator()
 
 const QString CPluginClient::Id() const
 {
-    return Protol() + ":" + Name();
+    return Protocol() + ":" + Name();
 }
 
 const QString CPluginClient::DisplayName() const

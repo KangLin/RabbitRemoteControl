@@ -1,4 +1,4 @@
-//! @author Kang Lin(kl222@126.com)
+//! @author Kang Lin <kl222@126.com>
 
 #ifndef CDATACHANNELICE_H
 #define CDATACHANNELICE_H
@@ -104,6 +104,7 @@ private:
 
     QByteArray m_data;
     QMutex m_MutexData;
+    QLoggingCategory m_Log;
 
 protected:
     bool isSequential() const;
@@ -122,6 +123,7 @@ public Q_SLOTS:
     void slotEnable(bool enable);
 
 private:
+    static QLoggingCategory m_Log;
     static bool m_bEnable;
     static void logCallback(rtc::LogLevel level, std::string message);
 };

@@ -4,9 +4,11 @@
 #include <QTimer>
 #include <QSettings>
 #include <QDir>
-#include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 #include "PluginService.h"
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Service)
 
 CService::CService(CPluginService *plugin) : QObject(),
     m_pPara(nullptr),
@@ -16,7 +18,7 @@ CService::CService(CPluginService *plugin) : QObject(),
 
 CService::~CService()
 {
-    LOG_MODEL_DEBUG("CService", "CService::~CService()");
+    qDebug(Service) << "CService::~CService()";
 }
 
 int CService::Init()
@@ -30,12 +32,10 @@ int CService::Init()
 
     if(!GetParameters() || !GetParameters()->getEnable())
     {
-        LOG_MODEL_INFO("ServiceThread", "The service [%s] is disable",
-                       m_pPlugin->Name().toStdString().c_str());
+        qInfo(Service) << "The service" << m_pPlugin->Name() << "is disable";
         return -2;
     } else
-        LOG_MODEL_INFO("ServiceThread", "The service [%s] is start",
-                       m_pPlugin->Name().toStdString().c_str());
+        qInfo(Service) << "The service" << m_pPlugin->Name() << "is start";
 
     nRet = OnInit();
     if(0 == nRet)
@@ -64,15 +64,15 @@ void CService::slotProcess()
     try{
         nRet = OnProcess();
     } catch (std::exception& e) {
-        LOG_MODEL_ERROR("CService", "OnProcess excption:%s", e.what());
+        qCritical(Service) << "OnProcess excption:" << e.what();
     } catch (...) {
-        LOG_MODEL_ERROR("CService", "OnProcess excption");
+        qCritical(Service) << "OnProcess excption";
     }
 
     // TODO: Ignore error and stop
     if(nRet < 0)
     {
-        LOG_MODEL_ERROR("CService", "OnProcess fail:%d", nRet);
+        qCritical(Service) << "OnProcess fail:", nRet;
         return;
     }
     QTimer::singleShot(nRet, this, SLOT(slotProcess()));
@@ -80,7 +80,7 @@ void CService::slotProcess()
 
 int CService::OnProcess()
 {
-    LOG_MODEL_WARNING("CService", "Need to implement CService::OnProcess()");
+    qWarning(Service) << "Need to implement CService::OnProcess()";
     return 0;
 }
 
@@ -108,14 +108,13 @@ int CService::LoadConfigure(const QString &szDir)
     } else {
         szFile = szFolder + QDir::separator() + m_pPlugin->Id() + ".rrs";
     }
-    LOG_MODEL_INFO("Service", "Configure file: %s", szFile.toStdString().c_str());
+    qInfo(Service) << "Configure file:" << szFile;
     QDir d;
     if(d.exists(szFile)){
         nRet = GetParameters()->Load(szFile);
         if(nRet)
         {
-            LOG_MODEL_INFO("Service", "Load configure file fail:%d %s",
-                           nRet, szFile.toStdString().c_str());
+            qInfo(Service) << "Load configure file fail:" << nRet << ":" << szFile;
             return -1;
         }
     }

@@ -3,6 +3,9 @@
 #include <QMenu>
 #include <QApplication>
 #include <QDesktopServices>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(ClientTerminal)
 
 CFrmTermWidget::CFrmTermWidget(QWidget *parent) : QTermWidget(0, parent)
 {
@@ -18,7 +21,7 @@ CFrmTermWidget::CFrmTermWidget(QWidget *parent) : QTermWidget(0, parent)
 
 CFrmTermWidget::~CFrmTermWidget()
 {
-    qDebug() << "CFrmTermWidget::~CFrmTermWidget()";
+    qDebug(ClientTerminal) << "CFrmTermWidget::~CFrmTermWidget()";
 }
 
 void CFrmTermWidget::slotCustomContextMenuCall(const QPoint & pos)

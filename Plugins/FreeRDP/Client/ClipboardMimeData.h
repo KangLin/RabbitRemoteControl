@@ -8,6 +8,7 @@
 #include <QVector>
 #include <QFile>
 #include <QSharedPointer>
+#include <QLoggingCategory>
 
 #include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
@@ -71,6 +72,8 @@ private:
                                  UINT32 cbRequested);
 private:
     friend CClipboardFreeRDP;
+    QLoggingCategory m_Log;
+
     CliprdrClientContext* m_pContext;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
 

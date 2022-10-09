@@ -9,7 +9,6 @@
 #include <QFileInfo>
 #include <QDir>
 
-#include "RabbitCommonLog.h"
 #include "mainwindow.h"
 
 CViewTable::CViewTable(QWidget *parent) : CView(parent),

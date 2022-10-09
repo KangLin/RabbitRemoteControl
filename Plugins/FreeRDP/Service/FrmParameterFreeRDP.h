@@ -3,6 +3,7 @@
 #ifndef FRMPARAMETERFREERDP_H
 #define FRMPARAMETERFREERDP_H
 
+#include <QLoggingCategory>
 #include <QWidget>
 #include "ParameterServiceFreeRDP.h"
 
@@ -28,7 +29,7 @@ public Q_SLOTS:
 
 private:
     Ui::CFrmParameterFreeRDP *ui;
-    
+    QLoggingCategory m_Log;
     CParameterServiceFreeRDP* m_Para;
     
     void Init();

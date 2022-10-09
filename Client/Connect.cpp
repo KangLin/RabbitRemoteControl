@@ -9,6 +9,7 @@
 #include <QTimer>
 #include "RabbitCommonLog.h"
 
+Q_LOGGING_CATEGORY(Client, "Client")
 int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>("KeyboardModifiers");
 int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
 Q_DECLARE_METATYPE(Qt::MouseButton)
@@ -26,7 +27,7 @@ CConnect::CConnect(CConnecter *pConnecter, QObject *parent, bool bDirectConnecti
 
 CConnect::~CConnect()
 {
-    LOG_MODEL_DEBUG("CConnect", "CConnect::~CConnect()");
+    qDebug(Client) << "CConnect::~CConnect()";
 }
 
 int CConnect::SetConnecter(CConnecter* pConnecter)
@@ -192,12 +193,12 @@ void CConnect::slotTimeOut()
             QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
             return;
         }
-        LOG_MODEL_ERROR("CConnect", "Process fail: %d", nTime);
+        qCritical(Client) << "Process fail:" << nTime;
     } catch(std::exception e) {
-        LOG_MODEL_ERROR("CConnect", "Process fail: %s", e.what());
+        qCritical(Client) << "Process fail:" << e.what();
         emit sigError(-1, e.what());
     }  catch (...) {
-        LOG_MODEL_ERROR("CConnect", "Process fail");
+        qCritical(Client) << "Process fail";
         emit sigError(-2, "");
     }
 
@@ -207,36 +208,36 @@ void CConnect::slotTimeOut()
 
 int CConnect::OnProcess()
 {
-    LOG_MODEL_WARNING("CConnect", "Need to implement CConnect::OnProcess()");
+    qDebug(Client) << "Need to implement CConnect::OnProcess()";
     return 0;
 }
 
 void CConnect::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
-    qDebug() << "CConnect::slotWheelEvent";
+    qDebug(Client) << "CConnect::slotWheelEvent";
 }
 
 void CConnect::slotMouseMoveEvent(Qt::MouseButtons, QPoint)
 {
-    qDebug() << "CConnect::slotMouseMoveEvent";
+    qDebug(Client) << "CConnect::slotMouseMoveEvent";
 }
 
 void CConnect::slotMousePressEvent(Qt::MouseButtons, QPoint)
 {
-    qDebug() << "CConnect::slotMousePressEvent";
+    qDebug(Client) << "CConnect::slotMousePressEvent";
 }
 
 void CConnect::slotMouseReleaseEvent(Qt::MouseButton, QPoint)
 {
-    qDebug() << "CConnect::slotMouseReleaseEvent";
+    qDebug(Client) << "CConnect::slotMouseReleaseEvent";
 }
 
 void CConnect::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    qDebug() << "CConnect::slotKeyPressEvent";
+    qDebug(Client) << "CConnect::slotKeyPressEvent";
 }
 
 void CConnect::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    qDebug() << "CConnect::slotKeyReleaseEvent";
+    qDebug(Client) << "CConnect::slotKeyReleaseEvent";
 }

@@ -3,6 +3,7 @@
 #include "ConnecterPluginTerminal.h"
 
 #include <QDebug>
+Q_LOGGING_CATEGORY(Terminal, "Terminal")
 
 CPluginTerminal::CPluginTerminal(QObject *parent)
     : CPluginClient(parent)
@@ -11,10 +12,10 @@ CPluginTerminal::CPluginTerminal(QObject *parent)
 
 CPluginTerminal::~CPluginTerminal()
 {
-    qDebug() << "CPluginFactoryTerminal::~CPluginFactoryTerminal()";
+    qDebug(Terminal) << "CPluginFactoryTerminal::~CPluginFactoryTerminal()";
 }
 
-const QString CPluginTerminal::Protol() const
+const QString CPluginTerminal::Protocol() const
 {
     return "Terminal";
 }
@@ -39,9 +40,9 @@ const QIcon CPluginTerminal::Icon() const
     return QIcon(":/image/Console");
 }
 
-CConnecter *CPluginTerminal::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginTerminal::CreateConnecter(const QString &szProtocol)
 {
-    if(Id() == szProtol)
+    if(Id() == szProtocol)
     {   
         return new CConnecterPluginTerminal(this);
     }

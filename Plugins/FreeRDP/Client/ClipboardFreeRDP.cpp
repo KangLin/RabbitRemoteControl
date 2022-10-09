@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ClipboardFreeRDP.h"
-#include "RabbitCommonLog.h"
 #include <QClipboard>
 #include <QApplication>
 #include <QMimeData>
@@ -18,6 +17,8 @@
 #define WINPR_TAG(tag) "com.winpr." tag
 #define TAG WINPR_TAG("clipboard")
 
+Q_LOGGING_CATEGORY(FreeRDPClipboard, "FreeRDP.Clipboard")
+
 CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     m_pConnect(parent),
     m_pCliprdrClientContext(nullptr),
@@ -30,8 +31,9 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     /*
     auto log = WLog_Get(TAG);
     WLog_SetLogLevel(log, WLOG_DEBUG);
-    LOG_MODEL_DEBUG("CClipboardFreeRDP", "log: %d; %d",
-                WLog_GetLogLevel(log), WLog_IsLevelActive(log, WLOG_DEBUG));//*/
+    qDebug(FreeRDPClipboard) << "log level:" << WLog_GetLogLevel(log)
+                             << ";IsLevelActive:"
+                             << WLog_IsLevelActive(log, WLOG_DEBUG);//*/
 
     m_pClipboard = ClipboardCreate();
     if (ClipboardGetFormatId(m_pClipboard, "text/uri-list"))
@@ -43,8 +45,7 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
                 QStandardPaths::TempLocation)
             + QDir::separator() + "Rabbit"
             + QDir::separator() + "RabbitRemoteControl";
-    LOG_MODEL_DEBUG("CClipboardFreeRDP", "Clipboard delegate base path: %s",
-                    szPath.toStdString().c_str());
+    qDebug(FreeRDPClipboard) << "Delegate base path:" << szPath;
 
 	pDelegate->basePath = _strdup(szPath.toStdString().c_str());
     pDelegate->ClipboardFileSizeSuccess = cb_clipboard_file_size_success;
@@ -56,7 +57,7 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
 
 CClipboardFreeRDP::~CClipboardFreeRDP()
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::~CClipboardFreeRdp()");
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::~CClipboardFreeRdp()";
     
     // Notify clipboard program has exited
     emit sigServerFormatData(nullptr, 0, 0);
@@ -92,7 +93,7 @@ int CClipboardFreeRDP::UnInit(CliprdrClientContext *context, bool bEnable)
 
 void CClipboardFreeRDP::slotClipBoardChanged()
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::slotClipBoardChanged");
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::slotClipBoardChanged";
     // Whether it is the clipboard's QMimeData set by this connection
     if(m_bOwns)
     {
@@ -108,8 +109,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_capabilities(
         CliprdrClientContext* context,
         const CLIPRDR_CAPABILITIES* capabilities)
 {
-    LOG_MODEL_DEBUG("FreeRdp",
-                    "CClipboardFreeRdp::cb_cliprdr_server_capabilities");
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::cb_cliprdr_server_capabilities";
+
     int nRet = CHANNEL_RC_OK;
 
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
@@ -143,7 +144,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_capabilities(
 UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
                                       const CLIPRDR_MONITOR_READY *monitorReady)
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_monitor_ready");
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::cb_cliprdr_monitor_ready";
     UINT nRet = CHANNEL_RC_OK;
 
     if (!context || !context->ClientCapabilities)
@@ -175,7 +176,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
 	if((nRet = context->ClientCapabilities(context, &capabilities))
             != CHANNEL_RC_OK)
     {
-        LOG_MODEL_ERROR("FreeRdp", "Send Client Capabilities fail");
+        qCritical(FreeRDPClipboard) << "Send Client Capabilities fail";
         return nRet;
     }
     
@@ -188,7 +189,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
 // Clipboard Formats: https://docs.microsoft.com/en-us/windows/win32/dataxchg/clipboard-formats
 UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::SendClientFormatList");
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::SendClientFormatList";
     int nRet = CHANNEL_RC_OK;
     int nLen = 0;
     CLIPRDR_FORMAT* pFormats = nullptr;
@@ -201,7 +202,7 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
     QClipboard *clipboard = QApplication::clipboard();
     if(!clipboard)
     {
-        LOG_MODEL_DEBUG("FreeRdp", "clipboard is null");
+        qDebug(FreeRDPClipboard) << "clipboard is null";
         return nRet;
     }
 
@@ -209,7 +210,7 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
     const QMimeData* pData = clipboard->mimeData();
     if(!pData || pData->formats().isEmpty())
     {
-        LOG_MODEL_DEBUG("FreeRdp", "clipboard->mimeData is null");
+        qDebug(FreeRDPClipboard) << "clipboard->mimeData is null";
         return nRet;
     }
     auto clipFormats = pData->formats();
@@ -221,12 +222,12 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
     }
     if(!pFormats)
     {
-        LOG_MODEL_ERROR("FreeRdp",
-                        "failed to allocate %d CLIPRDR_FORMAT structs", nLen);
+        qCritical(FreeRDPClipboard) << "Failed to allocate"
+                                  << nLen << "CLIPRDR_FORMAT structs";
         return CHANNEL_RC_NO_MEMORY;
     }
     memset(pFormats, 0, sizeof(CLIPRDR_FORMAT) * nLen);
-    qDebug() << "Clipboard formats:" << clipFormats;
+    qDebug(FreeRDPClipboard) << "Clipboard formats:" << clipFormats;
     foreach(auto f, pData->formats())
     {
         UINT32 id = ClipboardRegisterFormat(
@@ -356,7 +357,7 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
             szFormats += ");";
         }
     }
-    LOG_MODEL_DEBUG("FreeRdp", "SendClientFormatList formats: %d:%s",
+    qDebug(FreeRDPClipboard, "SendClientFormatList formats: %d:%s",
                     numFormats,
                     szFormats.toStdString().c_str());//*/
 #if FreeRDP_VERSION_MAJOR >= 3
@@ -375,7 +376,7 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
 
     Q_ASSERT(context->ClientFormatList);
 	nRet = context->ClientFormatList(context, &formatList);
-    LOG_MODEL_DEBUG("FreeRdp", "SendClientFormatList nRet: %d", nRet);
+    qDebug(FreeRDPClipboard) << "SendClientFormatList nRet:" << nRet;
     for(UINT32 i = 0; i < numFormats; i++)
         if(pFormats[i].formatName)
         {
@@ -392,8 +393,9 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(
         CliprdrClientContext* context,
         const CLIPRDR_FORMAT_DATA_REQUEST* formatDataRequest)
 {
-    LOG_MODEL_DEBUG("FreeRdp",
-                    "CClipboardFreeRdp::cb_cliprdr_server_format_data_request");
+    qDebug(FreeRDPClipboard)
+            << "CClipboardFreeRdp::cb_cliprdr_server_format_data_request";
+
     int nRet = CHANNEL_RC_OK;
     bool bSuucess = false;
     QString mimeType;
@@ -404,8 +406,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(
     if(!context) return ERROR_INTERNAL_ERROR;
     
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
-    LOG_MODEL_DEBUG("FreeRdp", "server format date request formatID: %d",
-                    dstFormatId);
+    qDebug(FreeRDPClipboard) << "server format date request formatID:"
+                    << dstFormatId;
     QClipboard *clipboard = QApplication::clipboard();
     if(!clipboard) return ERROR_INTERNAL_ERROR;
     
@@ -466,7 +468,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(
         if(!mimeType.isEmpty() && scrFormatID > 0)
         {
             QByteArray data = clipboard->mimeData()->data(mimeType);
-            qDebug() << "mimeData:" << data << data.length();
+            qDebug(FreeRDPClipboard) << "mimeData:" << data << data.length();
             if(!data.isEmpty())
                 bSuucess = ClipboardSetData(pThis->m_pClipboard, scrFormatID,
                                             data.data(), data.size());
@@ -480,9 +482,9 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(
 
     if(!pDstData)
     {
-        LOG_MODEL_ERROR("FreeRDP",
-                     "ClipboardGetData fail: dstFormatId: %d, srcFormatId: %d",
-                     dstFormatId, scrFormatID);
+        qCritical(FreeRDPClipboard)
+                << "ClipboardGetData fail: dstFormatId:" << dstFormatId
+                << ", srcFormatId:" << scrFormatID;
         nRet = SendFormatDataResponse(context, NULL, 0);
         return nRet;
     }
@@ -505,11 +507,9 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(
         error = cliprdr_serialize_file_list_ex(
                     pThis->m_FileCapabilityFlags, file_array,
                     file_count, &pDstData, &dstSize);
-
         if (error)
-            LOG_MODEL_ERROR("FreeRdp",
-                         "failed to serialize CLIPRDR_FILELIST: 0x%08X", error);
-
+            qCritical(FreeRDPClipboard)
+                    << "failed to serialize CLIPRDR_FILELIST:" << error;
         free(file_array);
     }
 
@@ -519,8 +519,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(
         free(pDstData);
 
     /*
-    LOG_MODEL_DEBUG("FreeRdp",
-               "cb_cliprdr_server_format_data_request end. nRet: %d", nRet);//*/
+    qDebug(FreeRDPClipboard) <<
+               "cb_cliprdr_server_format_data_request end. nRet:" << nRet;//*/
 
     return nRet;
 }
@@ -547,7 +547,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_size_success(
         const wClipboardFileSizeRequest* request,
         UINT64 fileSize)
 {
-    qDebug() << "CClipboardFreeRDP::cb_clipboard_file_size_success";
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRDP::cb_clipboard_file_size_success";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 #if FreeRDP_VERSION_MAJOR >= 3
@@ -567,7 +567,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_size_failure(
         const wClipboardFileSizeRequest* request,
         UINT errorCode)
 {
-    qDebug() << "CClipboardFreeRDP::cb_clipboard_file_size_failure";
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRDP::cb_clipboard_file_size_failure";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 	WINPR_UNUSED(errorCode);
@@ -586,7 +586,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_range_success(
         const wClipboardFileRangeRequest* request,
         const BYTE* data, UINT32 size)
 {
-    qDebug() << "CClipboardFreeRDP::cb_clipboard_file_range_success";
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRDP::cb_clipboard_file_range_success";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 #if FreeRDP_VERSION_MAJOR >= 3
@@ -606,7 +606,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_range_failure(
         const wClipboardFileRangeRequest* request,
         UINT errorCode)
 {
-    qDebug() << "CClipboardFreeRDP::cb_clipboard_file_range_failure";
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRDP::cb_clipboard_file_range_failure";
 	CLIPRDR_FILE_CONTENTS_RESPONSE response = { 0 };
 	CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)delegate->custom;
 	WINPR_UNUSED(errorCode);
@@ -622,7 +622,7 @@ UINT CClipboardFreeRDP::cb_clipboard_file_range_failure(
 
 BOOL CClipboardFreeRDP::cbIsFileNameComponentValid(LPCWSTR lpFileName)
 {
-    qDebug() << "CClipboardFreeRDP::cbIsFileNameComponentValid: " << lpFileName;
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRDP::cbIsFileNameComponentValid: " << lpFileName;
     LPCWSTR c;
 
 	if (!lpFileName)
@@ -681,9 +681,8 @@ UINT CClipboardFreeRDP::ServerFileSizeRequest(
 
 	if (fileContentsRequest->cbRequested != sizeof(UINT64))
 	{
-		LOG_MODEL_WARNING("FreeRdp",
-                      "unexpected FILECONTENTS_SIZE request: %" PRIu32 " bytes",
-		          fileContentsRequest->cbRequested);
+		qWarning(FreeRDPClipboard) << "unexpected FILECONTENTS_SIZE request:"
+                              << fileContentsRequest->cbRequested << " bytes";
 	}
 
 	return pDelegate->ClientRequestFileSize(pDelegate, &request);
@@ -693,8 +692,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_request(
         CliprdrClientContext* context,
         const CLIPRDR_FILE_CONTENTS_REQUEST* fileContentsRequest)
 {
-    LOG_MODEL_DEBUG("FreeRdp",
-                  "CClipboardFreeRdp::cb_cliprdr_server_file_contents_request");
+    qDebug(FreeRDPClipboard) <<
+                  "CClipboardFreeRdp::cb_cliprdr_server_file_contents_request";
     int nRet = CHANNEL_RC_OK;
 
     UINT error = NO_ERROR;
@@ -711,7 +710,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_request(
          & (FILECONTENTS_SIZE | FILECONTENTS_RANGE))
             == (FILECONTENTS_SIZE | FILECONTENTS_RANGE))
 	{
-		LOG_MODEL_ERROR("FreeRdp", "invalid CLIPRDR_FILECONTENTS_REQUEST.dwFlags");
+		qCritical(FreeRDPClipboard) << "invalid CLIPRDR_FILECONTENTS_REQUEST.dwFlags";
 		return SendFileContentsFailure(context, fileContentsRequest);
 	}
 
@@ -723,8 +722,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_request(
 
 	if (error)
 	{
-		LOG_MODEL_ERROR("FreeRdp",
-                "failed to handle CLIPRDR_FILECONTENTS_REQUEST: 0x%08X", error);
+		qCritical(FreeRDPClipboard)
+                << "failed to handle CLIPRDR_FILECONTENTS_REQUEST:" << error;
 		return SendFileContentsFailure(context, fileContentsRequest);
 	}
 
@@ -736,7 +735,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list(
         CliprdrClientContext* context,
         const CLIPRDR_FORMAT_LIST* formatList)
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list");
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::cb_cliprdr_server_format_list";
     int nRet = CHANNEL_RC_OK;
     
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
@@ -783,11 +782,17 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list_response(
         const CLIPRDR_FORMAT_LIST_RESPONSE* pformatListResponse)
 {
 #if FreeRDP_VERSION_MAJOR >= 3
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:%d;flag:%d;datalen:%d",
-                    pformatListResponse->common.msgType, pformatListResponse->common.msgFlags, pformatListResponse->common.dataLen);
+    qDebug(FreeRDPClipboard)
+            << "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:"
+            << pformatListResponse->common.msgType
+            << ";flag:" << pformatListResponse->common.msgFlags
+            << ";datalen:" << pformatListResponse->common.dataLen;
 #else
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:%d;flag:%d;datalen:%d",
-                    pformatListResponse->msgType, pformatListResponse->msgFlags, pformatListResponse->dataLen);
+    qDebug(FreeRDPClipboard)
+            << "CClipboardFreeRdp::cb_cliprdr_server_format_list_response:type:"
+            << pformatListResponse->msgType
+            << ";flag:" << pformatListResponse->msgFlags
+            << ";datalen:" << pformatListResponse->dataLen;
 #endif
 
     if (
@@ -822,7 +827,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_response(
         CliprdrClientContext* context,
         const CLIPRDR_FORMAT_DATA_RESPONSE* formatDataResponse)
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_format_data_response");
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::cb_cliprdr_server_format_data_response";
     int nRet = CHANNEL_RC_OK;
     if(!context) return nRet;
 
@@ -842,7 +847,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_response(
         CliprdrClientContext* context,
         const CLIPRDR_FILE_CONTENTS_RESPONSE* fileContentsResponse)
 {
-    LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_file_contents_response");
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::cb_cliprdr_server_file_contents_response";
     int nRet = CHANNEL_RC_OK;
 
     if (!context || !fileContentsResponse)
@@ -860,7 +865,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_response(
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
     if(0 == fileContentsResponse->cbRequested)
     {
-        LOG_MODEL_DEBUG("FreeRdp", "CClipboardFreeRdp::cb_cliprdr_server_file_contents_response size is zero.");
+        qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::cb_cliprdr_server_file_contents_response size is zero.";
         QByteArray data;
         emit pThis->sigServerFileContentsRespose(
                     fileContentsResponse->streamId,

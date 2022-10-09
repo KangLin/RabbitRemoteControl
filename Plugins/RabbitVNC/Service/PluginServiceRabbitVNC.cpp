@@ -2,12 +2,14 @@
 
 #include "PluginServiceRabbitVNC.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #include <QDebug>
 #include <QApplication>
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
 #include "ServiceRabbitVNC.h"
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(RabbitVNC, "RabbitVNC")
 
 CPluginServiceRabbitVNC::CPluginServiceRabbitVNC(QObject *parent)
     : CPluginServiceThread(parent)
@@ -26,7 +28,7 @@ CPluginServiceRabbitVNC::CPluginServiceRabbitVNC(QObject *parent)
 
 CPluginServiceRabbitVNC::~CPluginServiceRabbitVNC()
 {
-   qDebug() << "CPluginServiceRabbitVNC::~CPluginServiceRabbitVNC()";
+   qDebug(RabbitVNC) << "CPluginServiceRabbitVNC::~CPluginServiceRabbitVNC()";
 }
 
 const QString CPluginServiceRabbitVNC::Protol() const

@@ -4,9 +4,12 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QRegularExpression>
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
+
 #include "DlgGetPasswordRabbitVNC.h"
 #include "PluginClient.h"
+
+Q_DECLARE_LOGGING_CATEGORY(RabbitVNC)
 
 CConnecterRabbitVNC::CConnecterRabbitVNC(CPluginClient *parent)
     : CConnecterDesktop(parent)
@@ -16,7 +19,7 @@ CConnecterRabbitVNC::CConnecterRabbitVNC(CPluginClient *parent)
 
 CConnecterRabbitVNC::~CConnecterRabbitVNC()
 {
-    qDebug() << "CConnecterRabbitVnc::~CConnecterRabbitVnc()";
+    qDebug(RabbitVNC) << "CConnecterRabbitVnc::~CConnecterRabbitVnc()";
 }
 
 qint16 CConnecterRabbitVNC::Version()
@@ -59,7 +62,7 @@ const QString CConnecterRabbitVNC::Id()
 {
     if(m_Para.GetIce())
     {
-        QString szId = Protol() + "_" + m_pPluginClient->Name();
+        QString szId = Protocol() + "_" + m_pPluginClient->Name();
         if(GetParameter())
         {
             if(!m_Para.GetPeerUser().isEmpty())

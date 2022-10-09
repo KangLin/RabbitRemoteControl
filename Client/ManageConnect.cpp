@@ -1,5 +1,4 @@
 #include "ManageConnect.h"
-#include "RabbitCommonLog.h"
 #include "ConnecterDesktopThread.h"
 
 CManageConnect::CManageConnect(QObject *parent) : QObject(parent)
@@ -18,7 +17,7 @@ CManageConnect::~CManageConnect()
 void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
 {
     int nRet = 0;
-    LOG_MODEL_DEBUG("CConnecterThread", "CConnecterThread::slotConnect()");
+    qDebug(Client) << "CConnecterThread::slotConnect()";
     CConnect* pConnect = pConnecter->InstanceConnect();
     if(!pConnect) return;
 

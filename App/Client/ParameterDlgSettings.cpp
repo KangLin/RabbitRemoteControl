@@ -4,10 +4,12 @@
 #include "ui_ParameterDlgSettings.h"
 #include "mainwindow.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #ifdef HAVE_ICE
     #include "Ice.h"
 #endif
+
+#include <QLoggingCategory>
+Q_DECLARE_LOGGING_CATEGORY(App)
 
 CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
         QList<QWidget *> wViewer,
@@ -25,9 +27,9 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
         check = connect(this, SIGNAL(accepted()), p, SLOT(slotAccept()));
         if(!check)
         {
-            LOG_MODEL_ERROR("CParameterDlgSettings",
-                            "Class %s must has slot slotAccept(), please add it",
-                            p->metaObject()->className());
+            qCritical(App) << "Class" << p->metaObject()->className()
+                            << "must has slot slotAccept(), please add it";
+                            
         }
         Q_ASSERT(check);
     }
@@ -42,9 +44,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
                         pWidget, SLOT(slotAccept()));
         if(!check)
         {
-            LOG_MODEL_ERROR("CParameterDlgSettings",
-                            "Class %s must has slot slotAccept(), please add it",
-                            pWidget->metaObject()->className());
+            qCritical(App) << "Class" << pWidget->metaObject()->className()
+                            << "must has slot slotAccept(), please add it";
         }
         Q_ASSERT(check);
     }

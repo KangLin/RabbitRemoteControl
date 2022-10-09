@@ -1,7 +1,6 @@
 //! @author Kang Lin(kl222@126.com)
 
 #include "IceSignalQxmpp.h"
-#include "RabbitCommonLog.h"
 #include "QXmppUtils.h"
 #include <QCoreApplication>
 
@@ -38,13 +37,13 @@ int CIceSignalQxmpp::Open(const QString &szServer, quint16 nPort, const QString 
     if(QXmppUtils::jidToDomain(user).isEmpty())
     {
         QString szMsg = "The user name is error. please use format: user@domain/resource";
-        LOG_MODEL_ERROR("CIceSignalQxmpp", szMsg.toStdString().c_str());
+        qCritical(m_Log) << szMsg;
         emit sigError(-100, szMsg);
         return -1;
     }
     if(QXmppUtils::jidToResource(user).isEmpty())
     {
-        LOG_MODEL_WARNING("CIceSignalQxmpp", "The user name is error. please use format: user@domain/resource");
+        qWarning(m_Log) << "The user name is error. please use format: user@domain/resource";
         conf.setResource(qApp->applicationName()
                  #if defined(Q_OS_ANDROID)
                          + "_android"
@@ -87,16 +86,14 @@ bool CIceSignalQxmpp::IsConnected()
 bool CIceSignalQxmpp::proecssIq(CIceSignalQXmppIq iq)
 {
     /*
-    LOG_MODEL_DEBUG("CIceSignalQxmpp", "from:%s;to:%s;type:%s",
-                    iq.from().toStdString().c_str(),
-                    iq.to().toStdString().c_str(),
-                    iq.SignalType().toStdString().c_str());//*/
+    qDebug(m_Log) << "from:" << iq.from()
+                   << ";to:" << iq.to()
+                   << ";type:" << iq.SignalType();//*/
     if(iq.SignalType() == "offer")
     {
         /*
-        LOG_MODEL_DEBUG("CIceSignalQxmpp", "type:%s; sdp:%s",
-                        iq.SignalType().toStdString().c_str(),
-                        iq.Description().toStdString().c_str());//*/
+        qDebug(m_Log) << "type:" << iq.SignalType()
+                        << "SDP:" << iq.Description();//*/
         emit sigOffer(iq.from(),
                       iq.to(),
                       iq.ChannelId(),
@@ -104,9 +101,8 @@ bool CIceSignalQxmpp::proecssIq(CIceSignalQXmppIq iq)
                       iq.Description());
     } else if(iq.SignalType() == "answer") {
         /*
-        LOG_MODEL_DEBUG("CIceSignalQxmpp", "type:%s; sdp:%s",
-                        iq.SignalType().toStdString().c_str(),
-                        iq.Description().toStdString().c_str());//*/
+        qDebug(m_Log) << "type:" << iq.SignalType()
+                       << "Description:" << iq.Description();//*/
         emit sigDescription(iq.from(),
                             iq.to(),
                             iq.ChannelId(),
@@ -114,18 +110,16 @@ bool CIceSignalQxmpp::proecssIq(CIceSignalQXmppIq iq)
                             iq.Description());
     } else if (iq.SignalType()  == "candidate") {
         /*
-        LOG_MODEL_DEBUG("CIceSignalQxmpp", "type:%s; mid:%s, candiate:%s",
-                        iq.SignalType().toStdString().c_str(),
-                        iq.mid().toStdString().c_str(),
-                        iq.Candiate().toStdString().c_str());//*/
+        qDebug(m_Log) << "type:" << iq.SignalType()
+                        << "Mid:" << iq.mid()
+                        << "Candiate:" << iq.Candiate();//*/
         emit sigCandiate(iq.from(),
                          iq.to(),
                          iq.ChannelId(),
                          iq.mid(),
                          iq.Candiate());
     } else {
-        LOG_MODEL_ERROR("CIceSignalQxmpp", "iq type error: %s",
-                        iq.SignalType().toStdString().c_str());
+        qCritical(m_Log) << "iq type error:" << iq.SignalType();
         return false;
     }
     return true;
@@ -183,6 +177,6 @@ void CIceSignalQxmpp::slotError(QXmppClient::Error e)
     default:
         break;
     }
-    LOG_MODEL_ERROR("CIceSignalQxmpp", "Error:%d;%s", e, szError.toStdString().c_str());
+    qCritical(m_Log) << "Error:" << szError;
     emit sigError(e, szError);
 }

@@ -3,7 +3,6 @@
 #include "ConnecterDesktopThread.h"
 #include <QDebug>
 #include "ConnectThread.h"
-#include "RabbitCommonLog.h"
 #include "RabbitCommonDir.h"
 
 CConnecterDesktopThread::CConnecterDesktopThread(CPluginClient *parent)
@@ -20,7 +19,7 @@ CConnecterDesktopThread::~CConnecterDesktopThread()
         m_pView = nullptr;
     }
     
-    LOG_MODEL_DEBUG("CConnecterDesktopThread", "CConnecterDesktopThread::~CConnecterDesktopThread");
+    qDebug(Client) << "CConnecterDesktopThread::~CConnecterDesktopThread";
     //qDebug() << this << this->metaObject()->className();
 }
 

@@ -11,10 +11,13 @@
 
 #include <QSettings>
 #include <QDesktopServices>
+#include <QLoggingCategory>
 
 #ifdef HAVE_ICE
     #include "Ice.h"
 #endif
+
+Q_DECLARE_LOGGING_CATEGORY(App)
 
 CMainWindow::CMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -69,15 +72,14 @@ int CMainWindow::InitTab()
         bool check = connect(this, SIGNAL(sigAccept()), pIce, SLOT(slotAccept()));
         if(!check)
         {
-            LOG_MODEL_ERROR("MainWindows",
-                            "Class %s must has slot slotAccept(), please add it",
-                            pIce->metaObject()->className());
+            qCritical(App) << "Class" << pIce->metaObject()->className()
+                            << "must has slot slotAccept(), please add it";
         }
         Q_ASSERT(check);
         int nIndex = ui->twConfigure->addTab(pIce, pIce->windowIcon(),
                                              pIce->windowTitle());
         if(-1 == nIndex)
-            LOG_MODEL_ERROR("MainWindow", "addTab ice fail");
+            qCritical(App) << "addTab ice fail";
     }
 #endif
 
@@ -94,15 +96,14 @@ int CMainWindow::InitTab()
             bool check = connect(this, SIGNAL(sigAccept()), w, SLOT(slotAccept()));
             if(!check)
             {
-                LOG_MODEL_ERROR("MainWindows",
-                                "Class %s must has slot slotAccept(), please add it",
-                                w->metaObject()->className());
+                qCritical(App) << "Class" << pIce->metaObject()->className()
+                                << "must has slot slotAccept(), please add it";                
             }
             Q_ASSERT(check);
             int nIndex = ui->twConfigure->addTab(w, plugin->Icon(),
                                                  plugin->DisplayName());
             if(-1 == nIndex)
-                LOG_MODEL_ERROR("MainWindow", "addTab fail");
+                qCritical(App) << "addTab fail";
         }
     }
     

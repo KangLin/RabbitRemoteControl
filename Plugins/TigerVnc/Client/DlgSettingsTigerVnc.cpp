@@ -12,6 +12,8 @@
 
 #undef SetPort
 
+Q_DECLARE_LOGGING_CATEGORY(TigerVNC)
+
 CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSettingsTigerVnc),
@@ -29,7 +31,7 @@ CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *p
 
 CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()
 {
-    qDebug() << "CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()";
+    qDebug(TigerVNC) << "CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()";
     delete ui;
 }
 

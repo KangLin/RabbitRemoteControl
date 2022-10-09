@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ServiceRabbitVNC.h"
-#include "RabbitCommonLog.h"
 #include "RabbitCommonTools.h"
 #include "network/Socket.h"
 #include <stdexcept>
@@ -19,6 +18,9 @@
 #include "Ice.h"
 #endif
 
+#include <QLoggingCategory>
+Q_DECLARE_LOGGING_CATEGORY(RabbitVNC)
+
 CServiceRabbitVNC::CServiceRabbitVNC(CPluginService *plugin) : CService(plugin)
 {
     bool check = false;
@@ -31,7 +33,7 @@ CServiceRabbitVNC::CServiceRabbitVNC(CPluginService *plugin) : CService(plugin)
 
 CServiceRabbitVNC::~CServiceRabbitVNC()
 {
-    LOG_MODEL_DEBUG("CServiceRabbitVNC", "CServiceRabbitVNC::~CServiceRabbitVNC");
+    qDebug(RabbitVNC) << "CServiceRabbitVNC::~CServiceRabbitVNC";
 }
 
 #ifdef HAVE_GUI
@@ -54,12 +56,11 @@ int CServiceRabbitVNC::OnInit()
     {
         if(!m_Lister.listen(QHostAddress::Any, p->getPort()))
         {
-            LOG_MODEL_ERROR("ServiceRabbitVNC", "Lister fail: Port [%d]; %s",
-                            GetParameters()->getPort(),
-                            m_Lister.errorString().toStdString().c_str());
+            qCritical(RabbitVNC) << "Lister fail: Port" << GetParameters()->getPort()
+                      << "; %s" << m_Lister.errorString().toStdString().c_str();
             return -1;
         }
-        LOG_MODEL_INFO("ServiceRabbitVNC", "Lister at: %d", p->getPort());
+        qInfo(RabbitVNC) << "Lister at:", p->getPort();
     }
 
 #if defined(HAVE_ICE)
@@ -88,7 +89,7 @@ int CServiceRabbitVNC::OnInit()
                                                        const QString&,
                                                        const QString&)));
             Q_ASSERT(check);
-            LOG_MODEL_INFO("ServiceRabbitVNC", "Connect ICE signal");
+            qInfo(RabbitVNC) << "Connect ICE signal";
         }
     }
 #endif
@@ -120,15 +121,14 @@ void CServiceRabbitVNC::slotNewConnection()
         return;
     QTcpSocket* pSocket = m_Lister.nextPendingConnection();
     if(!pSocket) return;
-    LOG_MODEL_INFO("ServiceRabbitVNC", "New connection: %s:%d",
-                   pSocket->peerAddress().toString().toStdString().c_str(),
-                   pSocket->peerPort());
+    qInfo(RabbitVNC) << "New connection:"
+                   << pSocket->peerAddress() << ":" << pSocket->peerPort();
     try {
         QSharedPointer<CChannel> channel(new CChannel(), &QObject::deleteLater);
         if(!channel->isOpen())
             if(!channel->open(pSocket, QIODevice::ReadWrite))
             {
-                LOG_MODEL_ERROR("ServiceRabbitVNC", "Don't open channel");
+                qCritical(RabbitVNC) << "Don't open channel";
                 throw std::runtime_error("Don't open channel");
             }
         QSharedPointer<CConnection> c(new CConnection(channel,
@@ -144,9 +144,9 @@ void CServiceRabbitVNC::slotNewConnection()
         // Because the socket is connected, so emit sigConnected()
         emit channel->sigConnected();
     }  catch (std::exception e) {
-        LOG_MODEL_ERROR("ServiceRabbitVNC", e.what());
+        qCritical(RabbitVNC) << "New connection exception:" << e.what();
     }  catch(...) {
-        LOG_MODEL_ERROR("ServiceRabbitVNC", "New connection exception");
+        qCritical(RabbitVNC) << "New connection exception";
     }
 }
 
@@ -169,7 +169,7 @@ void CServiceRabbitVNC::slotSignalConnected()
 {
     CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
-    LOG_MODEL_INFO("ServiceRabbitVNC", "Connected to signal server: %s:%d; user:%s",
+    qInfo(RabbitVNC, "Connected to signal server: %s:%d; user:%s",
                    p->getSignalServer().toStdString().c_str(),
                    p->getSignalPort(),
                    p->getSignalUser().toStdString().c_str());
@@ -179,7 +179,7 @@ void CServiceRabbitVNC::slotSignalDisConnected()
 {
     CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
-    LOG_MODEL_INFO("ServiceRabbitVNC", "Disconnect signal server: %s:%d; user:%s",
+    qInfo(RabbitVNC, "Disconnect signal server: %s:%d; user:%s",
                    p->getSignalServer().toStdString().c_str(),
                    p->getSignalPort(),
                    p->getSignalUser().toStdString().c_str());
@@ -189,7 +189,7 @@ void CServiceRabbitVNC::slotSignalError(int nErr, const QString& szErr)
 {
     CParameterICE* p = CICE::Instance()->GetParameter();
     if(!p) return;
-    LOG_MODEL_ERROR("ServiceRabbitVNC", "signal: %s:%d; user:%s; error: %d: %s",
+    qCritical(RabbitVNC, "signal: %s:%d; user:%s; error: %d: %s",
                     p->getSignalServer().toStdString().c_str(),
                     p->getSignalPort(),
                     p->getSignalUser().toStdString().c_str(),
@@ -203,7 +203,7 @@ void CServiceRabbitVNC::slotSignalOffer(const QString& fromUser,
                                        const QString& sdp)
 {
     try {
-        LOG_MODEL_INFO("ServiceRabbitVNC",
+        qInfo(RabbitVNC,
                        "New connection: from:%s; to:%s; channelId:%s",
                        fromUser.toStdString().c_str(),
                        toUser.toStdString().c_str(),
@@ -226,7 +226,7 @@ void CServiceRabbitVNC::slotSignalOffer(const QString& fromUser,
             channel->SetConfigure(config);
             if(!channel->open(fromUser, toUser, channelId, type, sdp))
             {
-                LOG_MODEL_ERROR("ServiceRabbitVNC", "Don't open channel");
+                qCritical(RabbitVNC) << "Don't open channel";
                 throw std::runtime_error("Don't open channel");
             }
         }
@@ -241,9 +241,9 @@ void CServiceRabbitVNC::slotSignalOffer(const QString& fromUser,
                         this, SLOT(slotError(int, QString)));
         Q_ASSERT(check);
     }  catch (std::exception e) {
-        LOG_MODEL_ERROR("ServiceRabbitVNC", e.what());
+        qCritical(RabbitVNC) << "New connection exception" << e.what();
     }  catch(...) {
-        LOG_MODEL_ERROR("ServiceRabbitVNC", "New connection exception");
+        qCritical(RabbitVNC) << "New connection exception";
     }
 }
 #endif //HAVE_ICE

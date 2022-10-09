@@ -4,7 +4,6 @@
 
 #include <QGuiApplication>
 #include <QScrollBar>
-#include "RabbitCommonLog.h"
 
 CViewFrmScroll::CViewFrmScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
 {

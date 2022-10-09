@@ -1,6 +1,7 @@
 #include "InStreamChannel.h"
-#include "RabbitCommonLog.h"
 #include <stdexcept>
+
+Q_LOGGING_CATEGORY(VncStreamChannel, "VNC.Stream.Channel")
 
 CInStreamChannel::CInStreamChannel(CChannel* pDataChannel)
     : rdr::BufferedInStream(),
@@ -19,9 +20,8 @@ bool CInStreamChannel::fillBuffer(size_t maxSize)
 
     if(-1 == n)
     {
-        LOG_MODEL_ERROR("CInStreamDataChannel",
-                        "CInStreamDataChannel::fillBuffer: %s",
-                        m_pDataChannel->errorString().toStdString().c_str());
+        qCritical(VncStreamChannel) << "CInStreamDataChannel::fillBuffer:"
+                                    << m_pDataChannel->errorString();
         //return false;
         throw std::runtime_error(m_pDataChannel->errorString().toStdString());
     }

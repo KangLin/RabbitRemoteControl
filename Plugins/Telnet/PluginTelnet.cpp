@@ -1,9 +1,10 @@
 #include "PluginTelnet.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #include "ConnecterTelnet.h"
 
-#include <QDebug>
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(Telnet, "Telnet")
 
 CPluginTelnet::CPluginTelnet(QObject *parent)
     : CPluginClient(parent)
@@ -12,10 +13,10 @@ CPluginTelnet::CPluginTelnet(QObject *parent)
 
 CPluginTelnet::~CPluginTelnet()
 {
-    qDebug() << "CPluginFactoryTelnet::~CPluginFactoryTelnet()";
+    qDebug(Telnet) << "CPluginFactoryTelnet::~CPluginFactoryTelnet()";
 }
 
-const QString CPluginTelnet::Protol() const
+const QString CPluginTelnet::Protocol() const
 {
     return "Telnet";
 }
@@ -35,9 +36,9 @@ const QIcon CPluginTelnet::Icon() const
     return QIcon(":/image/Console");
 }
 
-CConnecter *CPluginTelnet::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginTelnet::CreateConnecter(const QString &szProtocol)
 {
-    if(Id() == szProtol)
+    if(Id() == szProtocol)
     {   
         return new CConnecterTelnet(this);
     }

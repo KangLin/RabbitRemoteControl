@@ -34,13 +34,16 @@
 
 #include "RabbitCommonTools.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 #ifdef HAVE_UPDATE
 #include "FrmUpdater/FrmUpdater.h"
 #endif
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
+
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(App, "App")
 
 int main(int argc, char *argv[])
 {
@@ -62,13 +65,9 @@ int main(int argc, char *argv[])
             + QLocale::system().name() + ".qm";
     tApp.load(szFile);
     if(a.installTranslator(&tApp))
-        LOG_MODEL_INFO("Main", "Language: %s; %s",
-                   QLocale::system().name().toStdString().c_str(),
-                   szFile.toStdString().c_str());
+        qInfo(App) << "Language:" << QLocale::system() << "File:" << szFile;
     else
-        LOG_MODEL_ERROR("Main", "Language: %s; %s",
-                   QLocale::system().name().toStdString().c_str(),
-                   szFile.toStdString().c_str());
+        qCritical(App) << "Language:" << QLocale::system() << "File:" << szFile;
 
     a.setApplicationDisplayName(QObject::tr("Rabbit remote control service configure"));
     a.setOrganizationName(QObject::tr("Kang Lin studio"));
@@ -97,9 +96,9 @@ int main(int argc, char *argv[])
 
         nRet = a.exec();
     } catch (std::exception &e) {
-        LOG_MODEL_ERROR("main", "exception: %s", e.what());
+        qCritical(App) << "exception:" << e.what();
     } catch(...) {
-        LOG_MODEL_ERROR("main", "exception");
+        qCritical(App) << "exception";
     }
 
 #ifndef BUILD_QUIWidget

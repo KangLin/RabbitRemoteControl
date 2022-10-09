@@ -1,12 +1,14 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginRabbitVNC.h"
+#include "RabbitCommonDir.h"
 #include "ConnecterRabbitVNC.h"
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
-#include <QDebug>
+
 #include <QApplication>
-#include "RabbitCommonDir.h"
+
+Q_LOGGING_CATEGORY(RabbitVNC, "VNC.Rabbit")
 
 static bool initlog = false;
 CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
@@ -33,7 +35,7 @@ CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
 CPluginRabbitVNC::~CPluginRabbitVNC()
 {
     //! [Clean resource]
-    qDebug() << "CPluginRabbitVnc::~CPluginRabbitVnc()";
+    qDebug(RabbitVNC) << "CPluginRabbitVnc::~CPluginRabbitVnc()";
     //! [Clean resource]
 }
 
@@ -53,7 +55,7 @@ const QString CPluginRabbitVNC::Description() const
             + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
 }
 
-const QString CPluginRabbitVNC::Protol() const
+const QString CPluginRabbitVNC::Protocol() const
 {
     return "RFB";
 }
