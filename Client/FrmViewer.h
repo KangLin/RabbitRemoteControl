@@ -26,7 +26,7 @@
  * \brief 
  * 用于显示从 CConnect 输出的图像，和向 CConnect 发送键盘、鼠标事件。
  * - 当新的输出图像从 CConnect 输出时，它调用 \ref slotUpdateRect 更新显示。
- * - 当鼠标更新时，调用 \ref slotUpdateCursor ，位置更新时，调用 \ref slotUpdateCursorPosition
+ * - 当鼠标更新时，调用 \ref slotUpdateCursor ；位置更新时，调用 \ref slotUpdateCursorPosition
  *
  * \~english
  * \brief 
@@ -36,7 +36,7 @@
  *
  * - When the viewer receives new image output from the CConnect,
  *   it will update the display by calling \ref slotUpdateRect.
- * - When the mouse update, then call \ref slotUpdateCursor,
+ * - When the mouse update, then call \ref slotUpdateCursor ;
  *   if update position, then call \ref slotUpdateCursorPosition
  * 
  *\~
@@ -135,7 +135,6 @@ Q_SIGNALS:
 
     // QWidget interface
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
 
     virtual void mousePressEvent(QMouseEvent *event) override;

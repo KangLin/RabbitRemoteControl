@@ -27,12 +27,6 @@ CFrmViewer::~CFrmViewer()
     qDebug(Client) << "CFrmViewer::~CFrmViewer()";
 }
 
-void CFrmViewer::resizeEvent(QResizeEvent *event)
-{
-    Q_UNUSED(event)
-    //qDebug(Client) << "CFrmViewer::resizeEvent:" << event->size();
-}
-
 QRectF CFrmViewer::GetAspectRationRect()
 {
     QRectF dstRect = rect();
@@ -289,11 +283,15 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
     //qDebug(Client) << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)";
     if(m_Desktop.isNull() || m_Desktop.rect() == r)
+    {
         m_Desktop = image;
+        //qDebug(Client) << "Update image size is same old image size";
+    }
     else
     {
         QPainter painter(&m_Desktop);
         painter.drawImage(r, image);
+        //qDebug(Client) << "Update image size isn't same old image size";
     }
     update();
 }
