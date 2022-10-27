@@ -72,11 +72,19 @@ int main(int argc, char *argv[])
 
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     a.setOrganizationName(QObject::tr("Kang Lin Studio"));
-    
+
 #ifdef HAVE_UPDATE
     // Check update version
     QSharedPointer<CFrmUpdater> pUpdate(new CFrmUpdater());
-    pUpdate->SetTitle(QImage(":/image/App"));
+    QIcon icon = QIcon::fromTheme("app");
+    if(!icon.isNull())
+    {
+        auto sizeList = icon.availableSizes();
+        if(sizeList.isEmpty()){
+            QPixmap p = icon.pixmap(*sizeList.begin());
+            pUpdate->SetTitle(p.toImage());
+        }
+    }
     if(pUpdate->GenerateUpdateXml())
         qCritical(App) << "GenerateUpdateXml fail";
     else    
@@ -85,7 +93,7 @@ int main(int argc, char *argv[])
     
     MainWindow* w = new MainWindow();
     try {
-        //w->setWindowIcon(QIcon(":/image/App"));
+        //w->setWindowIcon(QIcon::themeName("app"));
         //w->setWindowTitle(a.applicationDisplayName());
         
 #ifdef BUILD_QUIWidget

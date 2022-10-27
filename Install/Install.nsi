@@ -23,8 +23,8 @@ SetCompressor lzma
 
 ; MUI Settings
 !define MUI_ABORTWARNING
-!define MUI_ICON "install\App.ico"
-!define MUI_UNICON "install\App.ico"
+!define MUI_ICON "install\app.ico"
+!define MUI_UNICON "install\app.ico"
 
 ; Language Selection Dialog Settings
 !define MUI_LANGDLL_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"

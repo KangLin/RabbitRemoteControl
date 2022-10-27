@@ -48,8 +48,7 @@ private Q_SLOTS:
     void on_actionLog_directory_triggered();
     void on_actionOpen_Log_file_triggered();
         
-    void on_actionOpenStyle_O_triggered();
-    void on_actionDefaultStyle_D_triggered();
+    void on_actionStyle_S_triggered();
 
     void on_actionSend_ctl_alt_del_triggered();
 

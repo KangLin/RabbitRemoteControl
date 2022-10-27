@@ -35,7 +35,7 @@ int CParameterApp::Load()
     SetScreenShotEndAction(static_cast<ScreenShotEndAction>(
                                set.value("ShotScreen/Action",
                                          GetScreenShotEndAction()).toInt()));
-    
+
     SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt",
                                  GetReceiveShortCut()).toBool());
     SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable",

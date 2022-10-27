@@ -58,11 +58,11 @@ void CFrmParameterClient::on_pbEncryptKey_clicked()
     {
     case QLineEdit::Password:
         ui->leEncryptKey->setEchoMode(QLineEdit::Normal);
-        ui->pbEncryptKey->setIcon(QIcon(":/image/EyeOff"));
+        ui->pbEncryptKey->setIcon(QIcon::fromTheme("eye-off"));
         break;
     case QLineEdit::Normal:
         ui->leEncryptKey->setEchoMode(QLineEdit::Password);
-        ui->pbEncryptKey->setIcon(QIcon(":/image/EyeOn"));
+        ui->pbEncryptKey->setIcon(QIcon::fromTheme("eye-on"));
         break;
     default:
         break;

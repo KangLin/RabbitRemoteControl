@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>330</height>
+    <height>362</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Set FreeRdp</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../App/Client/Resource/Resource.qrc">
+   <iconset>
     <normaloff>:/image/App</normaloff>:/image/App</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -87,8 +87,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../App/Client/Resource/Resource.qrc">
-             <normaloff>:/image/EyeOn</normaloff>:/image/EyeOn</iconset>
+            <iconset theme="eye-on"/>
            </property>
           </widget>
          </item>
@@ -364,8 +363,6 @@
   <tabstop>cbColorDepth</tabstop>
   <tabstop>tabWidget</tabstop>
  </tabstops>
- <resources>
-  <include location="../../App/Client/Resource/Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -36,7 +36,7 @@ const QString CPluginLibVNCServer::Protocol() const
 
 const QIcon CPluginLibVNCServer::Icon() const
 {
-    return QIcon(":/image/Connect");
+    return QIcon::fromTheme("network-wired");
 }
 
 CConnecter *CPluginLibVNCServer::CreateConnecter(const QString &szProtocol)

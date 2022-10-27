@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     CMainWindow* w = new CMainWindow();
     w->setWindowTitle(a.applicationDisplayName());
     try {
-        //w->setWindowIcon(QIcon(":/image/App"));
+        //w->setWindowIcon(QIcon::fromTheme("app"));
         //w->setWindowTitle(a.applicationDisplayName());
         
 #ifdef BUILD_QUIWidget

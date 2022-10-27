@@ -41,5 +41,5 @@ const QString CPluginClient::DisplayName() const
 
 const QIcon CPluginClient::Icon() const
 {
-    return QIcon(":/image/Connect");
+    return QIcon::fromTheme("network-wired");
 }

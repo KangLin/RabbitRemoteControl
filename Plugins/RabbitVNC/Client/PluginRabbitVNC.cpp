@@ -71,5 +71,5 @@ CConnecterDesktop *CPluginRabbitVNC::OnCreateConnecter(const QString &szProtol)
 
 const QIcon CPluginRabbitVNC::Icon() const
 {
-    return QIcon(":/image/Connect");
+    return QIcon::fromTheme("network-wired");
 }

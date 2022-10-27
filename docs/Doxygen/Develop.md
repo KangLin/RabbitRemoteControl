@@ -24,3 +24,8 @@ Author: Kang Lin kl222@126.com
 ### Module
 
 - [Module](modules.html)
+
+### Icon theme
+
+- Icon Theme Specification: https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html
+- Icon Naming Specification: https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html

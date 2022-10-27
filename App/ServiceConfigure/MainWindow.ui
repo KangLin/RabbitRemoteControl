@@ -14,8 +14,8 @@
    <string>Rabbit remote control service configure</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../Client/Resource/Resource.qrc">
-    <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
+   <iconset theme="system-settings">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -86,6 +86,10 @@
      <property name="title">
       <string>Open Log</string>
      </property>
+     <property name="icon">
+      <iconset theme="logger">
+       <normaloff>.</normaloff>.</iconset>
+     </property>
      <addaction name="actionOpen_log_file"/>
      <addaction name="actionOpen_log_folder"/>
      <addaction name="actionOpen_log_configure_file"/>
@@ -105,18 +109,7 @@
     <property name="title">
      <string>View</string>
     </property>
-    <widget class="QMenu" name="menuStyle">
-     <property name="title">
-      <string>Style</string>
-     </property>
-     <property name="icon">
-      <iconset resource="../Client/Resource/Resource.qrc">
-       <normaloff>:/image/Skin</normaloff>:/image/Skin</iconset>
-     </property>
-     <addaction name="actionDefault"/>
-     <addaction name="actionOpen"/>
-    </widget>
-    <addaction name="menuStyle"/>
+    <addaction name="actionStyle_S"/>
    </widget>
    <addaction name="menuService"/>
    <addaction name="menuView"/>
@@ -141,8 +134,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../Client/Resource/Resource.qrc">
-     <normaloff>:/image/Start</normaloff>:/image/Start</iconset>
+    <iconset theme="media-playback-start">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Start</string>
@@ -158,11 +151,18 @@
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="help-about"/>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
   </action>
   <action name="actionDefault">
+   <property name="icon">
+    <iconset theme="preferences-desktop-theme">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Default</string>
    </property>
@@ -175,8 +175,8 @@
   </action>
   <action name="actionOpen_folder">
    <property name="icon">
-    <iconset resource="../Client/Resource/Resource.qrc">
-     <normaloff>:/image/Open</normaloff>:/image/Open</iconset>
+    <iconset theme="folder-open">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Open Configure folder</string>
@@ -192,6 +192,10 @@
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset theme="document-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Open</string>
    </property>
@@ -206,6 +210,10 @@
    </property>
   </action>
   <action name="actionOpen_log_file">
+   <property name="icon">
+    <iconset theme="document-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Open log file</string>
    </property>
@@ -217,6 +225,10 @@
    </property>
   </action>
   <action name="actionOpen_log_folder">
+   <property name="icon">
+    <iconset theme="folder-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Open log folder</string>
    </property>
@@ -228,6 +240,10 @@
    </property>
   </action>
   <action name="actionOpen_log_configure_file">
+   <property name="icon">
+    <iconset theme="document-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
    <property name="text">
     <string>Open log configure file</string>
    </property>
@@ -238,10 +254,16 @@
     <string>Open log configure file</string>
    </property>
   </action>
+  <action name="actionStyle_S">
+   <property name="icon">
+    <iconset theme="style">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Style(&amp;S)</string>
+   </property>
+  </action>
  </widget>
- <resources>
-  <include location="../Client/Resource/Resource.qrc"/>
-  <include location="../Client/Resource/Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

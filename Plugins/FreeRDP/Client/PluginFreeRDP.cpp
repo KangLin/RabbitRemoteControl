@@ -45,7 +45,7 @@ const QString CPluginFreeRDP::Protocol() const
 
 const QIcon CPluginFreeRDP::Icon() const
 {
-    return QIcon(":/image/Windows");
+    return QIcon::fromTheme("windows");
 }
 
 CConnecter* CPluginFreeRDP::CreateConnecter(const QString &szProtol)

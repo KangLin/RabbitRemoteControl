@@ -152,10 +152,10 @@ void CFrmParameterICE::SetConnectButton(bool bConnected)
     {
         ui->pbConnect->setChecked(true);
         ui->pbConnect->setText(tr("Disconnect"));
-        ui->pbConnect->setIcon(QIcon(":/image/Disconnect"));
+        ui->pbConnect->setIcon(QIcon::fromTheme("network-wireless"));
     } else {
         ui->pbConnect->setChecked(false);
         ui->pbConnect->setText(tr("Connect"));
-        ui->pbConnect->setIcon(QIcon(":/image/Connect"));
+        ui->pbConnect->setIcon(QIcon::fromTheme("network-wired"));
     }
 }

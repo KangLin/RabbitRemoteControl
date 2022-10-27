@@ -23,7 +23,7 @@ case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
         rm -fr /usr/share/applications/RabbitRemoteControl.desktop
         rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
-        rm -fr /usr/share/pixmaps/RabbitRemoteControl.png
+        rm -fr /usr/share/pixmaps/RabbitRemoteControl.svg
         ldconfig
     ;;
 

@@ -55,11 +55,11 @@ ADD_TARGET(NAME ${PROJECT_NAME}
 if(UNIX AND NOT ANDROID)
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControlServiceConfigure.desktop
         DESTINATION share/applications
-        COMPONENT Runtime)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/App/Client/Resource/Image/option.png
+            COMPONENT Runtime)
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/App/Client/Resource/Image/system-settings.svg
         DESTINATION share/pixmaps
-        COMPONENT Runtime
-        RENAME RabbitRemoteControlServiceConfigure.png)
+            COMPONENT Runtime
+        RENAME RabbitRemoteControlServiceConfigure.svg)
 endif()
 
 configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
@@ -68,5 +68,5 @@ configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
 
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
     DESTINATION etc
-    COMPONENT Runtime
+        COMPONENT Runtime
     RENAME ${PROJECT_NAME}.conf)

@@ -1,4 +1,4 @@
-# <img src="App/Client/Resource/Image/App.png" width="48" height="48" />[玉兔远程控制](https://github.com/KangLin/RabbitRemoteControl)
+# <img src="App/Client/Resource/Image/app.png" width="48" height="48" />[玉兔远程控制](https://github.com/KangLin/RabbitRemoteControl)
 
 作者: 康林 <kl222@126.com>
 
@@ -10,6 +10,7 @@
 
 - [简介](#简介)
   + [截屏](#截屏)
+    - [多样式](#多样式)
   + [项目位置](#项目位置)
 - [功能](#功能)
   + [支持操作系统](#支持操作系统)
@@ -44,6 +45,12 @@
 |主窗口|最近列表窗口|连接窗口|
 |--|--|--|
 |![主窗口](docs/Image/Screenshot/MainWindows.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu.png)|![连接窗口](docs/Image/Screenshot/Connect.png)|
+
+#### 多样式
+
+|默认样式|黑绿样式|黑色样式|白色样式|
+|:-------:|:------:|:-------:|:------:|
+|![默认样式](docs/Image/Screenshot/DefaultStyle.png)|![黑绿样式](docs/Image/Screenshot/MainWindows.png)|![黑色样式](docs/Image/Screenshot/black.png)|![白色样式](docs/Image/Screenshot/white.png)|
 
 ### 项目位置
 

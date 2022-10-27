@@ -33,7 +33,7 @@ const QString CPluginTelnet::Description() const
 
 const QIcon CPluginTelnet::Icon() const
 {
-    return QIcon(":/image/Console");
+    return QIcon::fromTheme("console");
 }
 
 CConnecter *CPluginTelnet::CreateConnecter(const QString &szProtocol)

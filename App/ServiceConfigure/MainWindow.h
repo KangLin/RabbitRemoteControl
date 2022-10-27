@@ -21,21 +21,20 @@ class CMainWindow : public QMainWindow
 public:
     explicit CMainWindow(QWidget *parent = nullptr);
     ~CMainWindow();
-    
-private slots:
+
+private Q_SLOTS:
     void on_pbCancel_clicked();
     void on_pbSave_clicked();
     void on_actionStart_triggered();
     void on_actionAbout_triggered();
-    void on_actionDefault_triggered();
-    void on_actionOpen_triggered();
     void on_actionOpen_folder_triggered();
 
     void on_actionOpen_log_file_triggered();
     void on_actionOpen_log_folder_triggered();
-    
     void on_actionOpen_log_configure_file_triggered();
-    
+
+    void on_actionStyle_S_triggered();
+
 Q_SIGNALS:
     /*!
      * \~chinese 通知插件设置窗口参数发生改变。

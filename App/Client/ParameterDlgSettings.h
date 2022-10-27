@@ -24,7 +24,7 @@ private slots:
 
     void on_pbScreenShotBrower_clicked();
     void on_cbShowSystemTrayIcon_toggled(bool checked);
-    
+   
 private:
     Ui::CParameterDlgSettings *ui;
     

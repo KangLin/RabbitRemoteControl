@@ -42,7 +42,7 @@ const QString CPluginService::Id() const
 
 const QIcon CPluginService::Icon() const
 {
-    return QIcon(":/image/Connect");
+    return QIcon::fromTheme("network-wired");
 }
 
 const QString CPluginService::DisplayName() const

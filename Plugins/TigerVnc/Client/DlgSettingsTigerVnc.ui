@@ -14,7 +14,7 @@
    <string>Setting TigerVNC</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../App/Client/Resource/Resource.qrc">
+   <iconset>
     <normaloff>:/image/App</normaloff>:/image/App</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
@@ -153,8 +153,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../../App/Client/Resource/Resource.qrc">
-             <normaloff>:/image/EyeOn</normaloff>:/image/EyeOn</iconset>
+            <iconset theme="eye-on"/>
            </property>
            <property name="checkable">
             <bool>true</bool>
@@ -576,9 +575,6 @@
   <tabstop>spJPEGLevel</tabstop>
   <tabstop>tabWidget</tabstop>
  </tabstops>
- <resources>
-  <include location="../../../App/Client/Resource/Resource.qrc"/>
-  <include location="../../../App/Client/Resource/Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

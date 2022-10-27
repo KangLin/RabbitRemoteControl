@@ -103,7 +103,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}-2022-10-09
+        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
 
     - name: build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}
@@ -112,7 +112,7 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b 229e04723197692372f888dd56993cf2f7a7c762 229e04723197692372f888dd56993cf2f7a7c762
+            git checkout -b 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build

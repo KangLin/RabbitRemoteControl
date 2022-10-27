@@ -3,7 +3,12 @@
 ### v0.0.25
 + Modify CI for automation update
 + Modify translations
-
++ Add icon theme
++ FreeRDP:
+  - Clipboard
+    + Copy file
+      - Client to server
+      
 ### v0.0.24
 + Install FreeRDP dll
 

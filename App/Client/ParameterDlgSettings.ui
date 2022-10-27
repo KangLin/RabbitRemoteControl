@@ -14,8 +14,7 @@
    <string>Settings</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource/Resource.qrc">
-    <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
+   <iconset theme="system-settings"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
@@ -55,7 +54,7 @@
       <string>Settings</string>
      </property>
      <property name="windowIcon">
-      <iconset resource="Resource/Resource.qrc">
+      <iconset>
        <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
      </property>
      <property name="currentIndex">
@@ -66,6 +65,37 @@
        <string>General</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Recent open file max count:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="sbRecentMenuMaxCount">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="singleStep">
+            <number>10</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="cbFavoriteDoubleEdit">
+         <property name="text">
+          <string>Favorite: select it then double node edit, other connect</string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="0">
         <spacer name="verticalSpacer">
          <property name="orientation">
@@ -78,31 +108,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="cbFavoriteDoubleEdit">
-         <property name="text">
-          <string>Favorite: select it then double node edit, other connect</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Recent open file max count:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="sbRecentMenuMaxCount">
-           <property name="singleStep">
-            <number>10</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
       </layout>
      </widget>
@@ -345,8 +350,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="Resource/Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

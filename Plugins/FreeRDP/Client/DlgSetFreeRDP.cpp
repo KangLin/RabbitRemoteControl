@@ -194,11 +194,11 @@ void CDlgSetFreeRDP::on_pbShow_clicked()
     {
     case QLineEdit::Password:
         ui->lePassword->setEchoMode(QLineEdit::Normal);
-        ui->pbShow->setIcon(QIcon(":/image/EyeOff"));
+        ui->pbShow->setIcon(QIcon::fromTheme("eye-off"));
         break;
     case QLineEdit::Normal:
         ui->lePassword->setEchoMode(QLineEdit::Password);
-        ui->pbShow->setIcon(QIcon(":/image/EyeOn"));
+        ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
         break;
     }
 }

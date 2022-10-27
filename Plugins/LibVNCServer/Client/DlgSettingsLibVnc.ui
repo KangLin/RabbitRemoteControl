@@ -14,8 +14,7 @@
    <string>Setting LibVnc</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../App/Client/Resource/Resource.qrc">
-    <normaloff>:/image/App</normaloff>:/image/App</iconset>
+   <iconset theme="app"/>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
@@ -122,7 +121,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../../App/Client/Resource/Resource.qrc">
+            <iconset>
              <normaloff>:/image/EyeOn</normaloff>:/image/EyeOn</iconset>
            </property>
           </widget>

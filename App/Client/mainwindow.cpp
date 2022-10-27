@@ -6,7 +6,7 @@
 #include "FrmUpdater/FrmUpdater.h"
 #endif
 #include "RabbitCommonDir.h"
-#include "RabbitCommonStyle.h"
+#include "FrmStyle/FrmStyle.h"
 #include "RabbitCommonLog.h"
 #ifdef HAVE_ABOUT
 #include "DlgAbout/DlgAbout.h"
@@ -53,8 +53,6 @@ MainWindow::MainWindow(QWidget *parent)
       m_pFavoriteView(nullptr)
 {
     bool check = false;
-
-    RabbitCommon::CStyle::Instance()->LoadStyle();
 
     ui->setupUi(this);
     
@@ -136,7 +134,7 @@ MainWindow::MainWindow(QWidget *parent)
     tbConnect->setPopupMode(QToolButton::InstantPopup);
     //tbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     tbConnect->setMenu(ui->menuConnect_C);
-    tbConnect->setIcon(QIcon(":/image/Connect"));
+    tbConnect->setIcon(QIcon::fromTheme("network-wired"));
     tbConnect->setText(tr("Connect"));
     tbConnect->setToolTip(tr("Connect"));
     tbConnect->setStatusTip(tr("Connect"));
@@ -146,7 +144,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ptbZoom->setPopupMode(QToolButton::InstantPopup);
     //m_ptbZoom->setToolButtonStyle(Qt::ToolButtonFollowStyle);
     m_ptbZoom->setMenu(ui->menuZoom);
-    m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
+    m_ptbZoom->setIcon(QIcon::fromTheme("zoom"));
     m_ptbZoom->setText(tr("Zoom"));
     m_ptbZoom->setStatusTip(tr("Zoom"));
     m_ptbZoom->setToolTip(tr("Zoom"));
@@ -251,7 +249,12 @@ void MainWindow::on_actionAbout_A_triggered()
 {
 #ifdef HAVE_ABOUT
     CDlgAbout *about = new CDlgAbout(this);
-    about->m_AppIcon = QImage(":/image/App");
+    QIcon icon = QIcon::fromTheme("app");
+    if(icon.isNull()) return;
+    auto sizeList = icon.availableSizes();
+    if(sizeList.isEmpty()) return;
+    QPixmap p = icon.pixmap(*sizeList.begin());
+    about->m_AppIcon = p.toImage();
     about->m_szCopyrightStartTime = "2020";
     if(about->isHidden())
     {
@@ -277,7 +280,12 @@ void MainWindow::on_actionUpdate_U_triggered()
 {
 #ifdef HAVE_UPDATE
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
-    m_pfrmUpdater->SetTitle(QImage(":/image/App"));
+    QIcon icon = QIcon::fromTheme("app");
+    if(icon.isNull()) return;
+    auto sizeList = icon.availableSizes();
+    if(sizeList.isEmpty()) return;
+    QPixmap p = icon.pixmap(*sizeList.begin());
+    m_pfrmUpdater->SetTitle(p.toImage());
     m_pfrmUpdater->SetInstallAutoStartup();
 #ifdef BUILD_QUIWidget
     QUIWidget* pQuiwidget = new QUIWidget(nullptr, true);
@@ -328,7 +336,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     
     if(isFullScreen())
     {
-        ui->actionFull_screen_F->setIcon(QIcon(":/image/FullScreen"));
+        ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-fullscreen"));
         ui->actionFull_screen_F->setText(tr("Full screen(&F)"));
         ui->actionFull_screen_F->setToolTip(tr("Full screen"));
         ui->actionFull_screen_F->setStatusTip(tr("Full screen"));
@@ -356,7 +364,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
    
-    ui->actionFull_screen_F->setIcon(QIcon(":/image/ExitFullScreen"));
+    ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-restore"));
     ui->actionFull_screen_F->setText(tr("Exit full screen(&E)"));
     ui->actionFull_screen_F->setToolTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setStatusTip(tr("Exit full screen"));
@@ -487,11 +495,11 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
     case CFrmViewer::Zoom:
         ui->actionZoom_Out->setChecked(true);
         if(m_ptbZoom)
-            m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
+            m_ptbZoom->setIcon(QIcon::fromTheme("zoom"));
         break;
     case CFrmViewer::Disable:
         if(m_ptbZoom)
-            m_ptbZoom->setIcon(QIcon(":/image/Zoom"));
+            m_ptbZoom->setIcon(QIcon::fromTheme("zoom"));
         EnableMenu(false);
         break;
     default:
@@ -722,7 +730,7 @@ void MainWindow::slotSignalConnected()
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
     m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
     //m_pSignalStatus->setText(tr("Connected"));
-    m_pSignalStatus->setIcon(QIcon(":/image/Connect"));
+    m_pSignalStatus->setIcon(QIcon::fromTheme("newwork-wired"));
 }
 
 void MainWindow::slotSignalDisconnected()
@@ -731,7 +739,7 @@ void MainWindow::slotSignalDisconnected()
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
     m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
     //m_pSignalStatus->setText(tr("Disconnected"));
-    m_pSignalStatus->setIcon(QIcon(":/image/Disconnect"));
+    m_pSignalStatus->setIcon(QIcon::fromTheme("network-wireless"));
 }
 
 void MainWindow::slotSignalError(const int nError, const QString &szInfo)
@@ -784,14 +792,10 @@ void MainWindow::slotUpdateName(const QString& szName)
     m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName);
 }
 
-void MainWindow::on_actionOpenStyle_O_triggered()
+void MainWindow::on_actionStyle_S_triggered()
 {
-    RabbitCommon::CStyle::Instance()->slotStyle();
-}
-
-void MainWindow::on_actionDefaultStyle_D_triggered()
-{
-    RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
+    CFrmStyle* s = new CFrmStyle();
+    s->show();
 }
 
 int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)

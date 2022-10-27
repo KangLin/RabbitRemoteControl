@@ -64,5 +64,5 @@ CConnecterDesktop *CPluginTigerVnc::OnCreateConnecter(const QString &szProtocol)
 
 const QIcon CPluginTigerVnc::Icon() const
 {
-    return QIcon(":/image/Connect");
+    return QIcon::fromTheme("network-wired");
 }

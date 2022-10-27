@@ -4,6 +4,7 @@
 #include "ui_ParameterDlgSettings.h"
 #include "mainwindow.h"
 #include "RabbitCommonDir.h"
+#include "RabbitCommonStyle.h"
 #ifdef HAVE_ICE
     #include "Ice.h"
 #endif
@@ -104,6 +105,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     ui->cbShowSystemTrayIcon->setChecked(m_pParameters->GetEnableSystemTrayIcon());
     
     ui->cbFavoriteDoubleEdit->setChecked(m_pParameters->GetFavoriteEdit());
+
 }
 
 CParameterDlgSettings::~CParameterDlgSettings()
@@ -146,7 +148,7 @@ void CParameterDlgSettings::on_pbOk_clicked()
     
     m_pParameters->SetEnableSystemTrayIcon(ui->cbShowSystemTrayIcon->isChecked());
     m_pParameters->SetFavoriteEdit(ui->cbFavoriteDoubleEdit->isChecked());
-    
+
     accept();
 }
 

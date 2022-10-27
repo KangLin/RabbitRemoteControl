@@ -37,7 +37,7 @@ const QString CPluginTerminal::Description() const
 
 const QIcon CPluginTerminal::Icon() const
 {
-    return QIcon(":/image/Console");
+    return QIcon::fromTheme("console");
 }
 
 CConnecter *CPluginTerminal::CreateConnecter(const QString &szProtocol)

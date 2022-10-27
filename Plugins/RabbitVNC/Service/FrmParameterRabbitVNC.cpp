@@ -46,9 +46,9 @@ void CFrmParameterRabbitVNC::on_pbShow_clicked()
     if(ui->lePassword->echoMode() == QLineEdit::Password)
     {
         ui->lePassword->setEchoMode(QLineEdit::Normal);
-        ui->pbShow->setIcon(QIcon(":/image/EyeOff"));
+        ui->pbShow->setIcon(QIcon::fromTheme("eye-off"));
     } else {
         ui->lePassword->setEchoMode(QLineEdit::Password);
-        ui->pbShow->setIcon(QIcon(":/image/EyeOn"));
+        ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
     }
 }

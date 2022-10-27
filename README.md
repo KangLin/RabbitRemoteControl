@@ -1,4 +1,4 @@
-# <img src="App/Client/Resource/Image/App.png" width="48" height="48" />[Rabbit Remote Control](https://github.com/KangLin/RabbitRemoteControl)
+# <img src="App/Client/Resource/Image/app.png" width="48" height="48" />[Rabbit Remote Control](https://github.com/KangLin/RabbitRemoteControl)
 
 Author: Kang Lin <kl222@126.com>
 
@@ -10,6 +10,7 @@ Author: Kang Lin <kl222@126.com>
 
 - [Introduction](#Introduction)
   + [Screenshot](#Screenshot)
+    - [Multiple style](#Multiple-style)
   + [Project repository position](#Project-repository-position)
 - [Functions](#Functions)
   + [Supported operating system](#Supported-operating-system)
@@ -44,6 +45,12 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 |Main window|Recent list menu|Connect|
 |--|--|--|
 |![Main window](docs/Image/Screenshot/MainWindows_en.png)|![Recent list menu](docs/Image/Screenshot/RecentMenu_en.png)|![Connect](docs/Image/Screenshot/Connect_en.png)|
+
+#### Multiple style
+
+|Default style|Black-Green style|Black style|White style|
+|:-------:|:------:|:-------:|:------:|
+|![Default style](docs/Image/Screenshot/DefaultStyle.png)|![Black-Green style](docs/Image/Screenshot/MainWindows.png)|![Black](docs/Image/Screenshot/black.png)|![White](docs/Image/Screenshot/white.png)|
 
 ### Project repository position
 

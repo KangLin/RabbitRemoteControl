@@ -4,22 +4,22 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="82"/>
+        <location filename="../../Connecter.cpp" line="87"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="83"/>
+        <location filename="../../Connecter.cpp" line="88"/>
         <source>Protol:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="84"/>
+        <location filename="../../Connecter.cpp" line="89"/>
         <source>Server name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="129"/>
+        <location filename="../../Connecter.cpp" line="141"/>
         <source>Set </source>
         <translation type="unfinished"></translation>
     </message>
@@ -107,22 +107,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="94"/>
+        <location filename="../../FrmParameterClient.ui" line="93"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="101"/>
+        <location filename="../../FrmParameterClient.ui" line="100"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="108"/>
+        <location filename="../../FrmParameterClient.ui" line="107"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="117"/>
+        <location filename="../../FrmParameterClient.ui" line="116"/>
         <source>Prompt type:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -130,12 +130,12 @@
 <context>
     <name>CParameterConnecter</name>
     <message>
-        <location filename="../../ParameterConnecter.cpp" line="229"/>
+        <location filename="../../ParameterConnecter.cpp" line="232"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterConnecter.cpp" line="245"/>
+        <location filename="../../ParameterConnecter.cpp" line="248"/>
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>

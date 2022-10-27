@@ -3,7 +3,7 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "RabbitCommonLog.h"
-#include "RabbitCommonStyle.h"
+#include "FrmStyle/FrmStyle.h"
 #include "RabbitCommonDir.h"
 #ifdef HAVE_ABOUT
 #include "DlgAbout/DlgAbout.h"
@@ -24,7 +24,6 @@ CMainWindow::CMainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     m_bStart(false)
 {
-    RabbitCommon::CStyle::Instance()->LoadStyle();
     ui->setupUi(this);
     
     Clean();
@@ -135,14 +134,14 @@ void CMainWindow::on_actionStart_triggered()
     
     if(m_bStart)
     {
-        ui->actionStart->setIcon(QIcon(":/image/Start"));
+        ui->actionStart->setIcon(QIcon::fromTheme("media-playback-start"));
         ui->actionStart->setText(tr("Start"));
         SetStatusText(tr("Start service"));
         ui->actionStart->setChecked(false);
     }
     else
     {
-        ui->actionStart->setIcon(QIcon(":/image/Stop"));
+        ui->actionStart->setIcon(QIcon::fromTheme("media-playback-stop"));
         ui->actionStart->setText(tr("Stop"));
         SetStatusText(tr("Stop service"));
         ui->actionStart->setChecked(true);
@@ -162,7 +161,12 @@ void CMainWindow::on_actionAbout_triggered()
 {
 #ifdef HAVE_ABOUT
     CDlgAbout *about = new CDlgAbout(this);
-    about->m_AppIcon = QImage(":/image/Option");
+    QIcon icon = QIcon::fromTheme("system-settings");
+    if(icon.isNull()) return;
+    auto sizeList = icon.availableSizes();
+    if(sizeList.isEmpty()) return;
+    QPixmap p = icon.pixmap(*sizeList.begin());
+    about->m_AppIcon = p.toImage();
     about->m_szCopyrightStartTime = "2020";
     if(about->isHidden())
     {
@@ -182,16 +186,6 @@ void CMainWindow::on_actionAbout_triggered()
 #endif
     }
 #endif
-}
-
-void CMainWindow::on_actionDefault_triggered()
-{
-    RabbitCommon::CStyle::Instance()->slotSetDefaultStyle();
-}
-
-void CMainWindow::on_actionOpen_triggered()
-{
-    RabbitCommon::CStyle::Instance()->slotStyle();
 }
 
 void CMainWindow::on_actionOpen_folder_triggered()
@@ -221,3 +215,8 @@ void CMainWindow::on_actionOpen_log_configure_file_triggered()
     RabbitCommon::OpenLogConfigureFile();
 }
 
+void CMainWindow::on_actionStyle_S_triggered()
+{
+    CFrmStyle* s = new CFrmStyle();
+    s->show();
+}

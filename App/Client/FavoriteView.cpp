@@ -66,7 +66,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
     {
         QString szGroup = set.value("Group_" + QString::number(g)).toString();
         QStandardItem* pGroup = new QStandardItem(szGroup);
-        pGroup->setIcon(QIcon(":/image/Group"));
+        pGroup->setIcon(QIcon::fromTheme("network-workgroup"));
         m_pModel->appendRow(pGroup);
         int n = set.value(szGroup + "/" + "count").toInt();
         for(int i = 0; i < n; i++)
@@ -269,7 +269,7 @@ void CFavoriteView::slotNewGroup()
     }
 
     QStandardItem* pGroup = new QStandardItem(szGroup);
-    pGroup->setIcon(QIcon(":/image/Group"));
+    pGroup->setIcon(QIcon::fromTheme("network-workgroup"));
     m_pModel->appendRow(pGroup);
 }
 

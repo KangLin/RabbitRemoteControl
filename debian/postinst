@@ -35,21 +35,21 @@ case "$1" in
                 ln -s $INSTALL_ROOT/share/applications/RabbitRemoteControlServiceConfigure.desktop /usr/share/applications/RabbitRemoteControlServiceConfigure.desktop
             fi
         fi
-        if [ ! -f /usr/share/pixmaps/RabbitRemoteControl.png ]; then
-            if [ -f $INSTALL_ROOT/share/pixmaps/RabbitRemoteControl.png ]; then
+        if [ ! -f /usr/share/pixmaps/RabbitRemoteControl.svg ]; then
+            if [ -f $INSTALL_ROOT/share/pixmaps/RabbitRemoteControl.svg ]; then
                 if [ ! -d /usr/share/pixmaps ]; then
                     mkdir -p /usr/share/pixmaps
                 fi
-                ln -s $INSTALL_ROOT/share/pixmaps/RabbitRemoteControl.png /usr/share/pixmaps/RabbitRemoteControl.png
+                ln -s $INSTALL_ROOT/share/pixmaps/RabbitRemoteControl.svg /usr/share/pixmaps/RabbitRemoteControl.svg
             fi
         fi
         
-        if [ ! -f /usr/share/pixmaps/RabbitRemoteControlServiceConfigure.png ]; then
-            if [ -f $INSTALL_ROOT/share/pixmaps/RabbitRemoteControlServiceConfigure.png ]; then
+        if [ ! -f /usr/share/pixmaps/RabbitRemoteControlServiceConfigure.svg ]; then
+            if [ -f $INSTALL_ROOT/share/pixmaps/RabbitRemoteControlServiceConfigure.svg ]; then
                 if [ ! -d /usr/share/pixmaps ]; then
                     mkdir -p /usr/share/pixmaps
                 fi
-                ln -s $INSTALL_ROOT/share/pixmaps/RabbitRemoteControlServiceConfigure.png /usr/share/pixmaps/RabbitRemoteControlServiceConfigure.png
+                ln -s $INSTALL_ROOT/share/pixmaps/RabbitRemoteControlServiceConfigure.svg /usr/share/pixmaps/RabbitRemoteControlServiceConfigure.svg
             fi
         fi
         
@@ -66,10 +66,10 @@ case "$1" in
     abort-upgrade|abort-remove|abort-deconfigure)
         rm -fr $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
-        rm -fr /usr/share/pixmaps/RabbitRemoteControl.png
+        rm -fr /usr/share/pixmaps/RabbitRemoteControl.svg
         rm -fr /usr/share/applications/RabbitRemoteControl.desktop
         rm -fr /usr/share/applications/RabbitRemoteControlServiceConfigure.desktop
-        rm -fr /usr/share/pixmaps/RabbitRemoteControlServiceConfigure.png
+        rm -fr /usr/share/pixmaps/RabbitRemoteControlServiceConfigure.svg
         ldconfig
     ;;
 

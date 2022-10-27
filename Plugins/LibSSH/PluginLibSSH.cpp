@@ -31,7 +31,7 @@ const QString CPluginLibSSH::Description() const
 
 const QIcon CPluginLibSSH::Icon() const
 {
-    return QIcon(":/image/SSH");
+    return QIcon::fromTheme("ssh");
 }
 
 CConnecter *CPluginLibSSH::CreateConnecter(const QString &szProtocol)
