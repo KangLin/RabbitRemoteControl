@@ -57,6 +57,7 @@ Prior versions don't have CMake support.
        
 ### Compilation
 
+```bash
     # Install library dependencies
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     ~$ sudo apt install debhelper fakeroot
@@ -106,7 +107,7 @@ Prior versions don't have CMake support.
     ~/RabbitRemoteControl$ cd build
     ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --target install
-    
+```
 
 See: [Compile integration](../../.github/workflows/ubuntu.yml)
 
