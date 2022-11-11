@@ -217,15 +217,20 @@ void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
     auto index = indexAt(pos);
     QMenu menu(this);
     auto item = m_pModel->itemFromIndex(index);
-    if(item && item->data().isValid())
+    if(item)
     {
-        menu.addAction(tr("Connect"), this, SLOT(slotConnect()));
-        menu.addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
-    }
-    menu.addSeparator();
-    menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
-    if(item && item->data().isValid())
-        menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
+        if(item->data().isValid()) {
+            menu.addAction(tr("Connect"), this, SLOT(slotConnect()));
+            menu.addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
+            menu.addSeparator();
+            menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
+        } else {
+            menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
+            menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
+        }
+    } else
+        menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
+        
     menu.exec(mapToGlobal(pos));
 }
 
