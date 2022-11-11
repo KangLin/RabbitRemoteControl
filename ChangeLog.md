@@ -8,7 +8,9 @@
   - Clipboard
     + Copy file
       - Client to server
-      
+      - Server to client(Copy directory is core)
++ Fix pop menu bug in favorite
+
 ### v0.0.24
 + Install FreeRDP dll
 
