@@ -66,24 +66,26 @@ if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl.conf)
         ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl.conf
         COPYONLY)
 endif()
-
 INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
     DESTINATION etc
-    COMPONENT Runtime)
+        COMPONENT Runtime)
 
 if(WIN32)
     install(FILES Resource/icons/green/ico/app.ico
         DESTINATION .
-        COMPONENT Runtime)
+            COMPONENT Runtime)
 endif()
 if(UNIX AND NOT ANDROID)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.desktop
+    set(APP_ICON_NAME org.Rabbit.RemoteControl)
+    configure_file(${CMAKE_SOURCE_DIR}/share/applications/org.Rabbit.RemoteControl.desktop.in
+        ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.desktop)
+    INSTALL(FILES ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.desktop
         DESTINATION share/applications
             COMPONENT Runtime)
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/green/svg/app.svg
         DESTINATION share/pixmaps
             COMPONENT Runtime
-        RENAME RabbitRemoteControl.svg)
+        RENAME ${APP_ICON_NAME}.svg)
 endif()
 
 # Install QIcon theme

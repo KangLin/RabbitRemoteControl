@@ -1,7 +1,5 @@
 # Author: Kang Lin <kl222@126.com>
 
-cmake_minimum_required(VERSION 2.8.11)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -53,13 +51,18 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     VERSION ${RabbitRemoteControl_VERSION})
 
 if(UNIX AND NOT ANDROID)
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControlServiceConfigure.desktop
+    # Install .desktop file
+    set(APP_ICON_NAME org.Rabbit.RemoteControl.Service.Configure)
+    configure_file(${CMAKE_SOURCE_DIR}/share/applications/org.Rabbit.RemoteControl.Service.Configure.desktop.in
+        ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.Service.Configure.desktop)
+    INSTALL(FILES ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.Service.Configure.desktop
         DESTINATION share/applications
             COMPONENT Runtime)
+    # Install icon of .desktop
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/App/Client/Resource/Image/system-settings.svg
         DESTINATION share/pixmaps
             COMPONENT Runtime
-        RENAME RabbitRemoteControlServiceConfigure.svg)
+        RENAME ${APP_ICON_NAME}.svg)
 endif()
 
 configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf

@@ -2,7 +2,7 @@
 
 [Desktop Entry]
 Type=Application
-Icon=RabbitRemoteControl
+Icon=@APP_ICON_NAME@
 TryExec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
 Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
 Path=/opt/RabbitRemoteControl
