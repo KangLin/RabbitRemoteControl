@@ -50,7 +50,7 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 
 |Default style|Black-Green style|Black style|White style|
 |:-------:|:------:|:-------:|:------:|
-|![Default style](docs/Image/Screenshot/DefaultStyle.png)|![Black-Green style](docs/Image/Screenshot/MainWindows.png)|![Black](docs/Image/Screenshot/black.png)|![White](docs/Image/Screenshot/white.png)|
+|![Default style](docs/Image/Screenshot/DefaultStyle.png)|![Black-Green style](docs/Image/Screenshot/MainWindows_en.png)|![Black](docs/Image/Screenshot/black.png)|![White](docs/Image/Screenshot/white.png)|
 
 ### Project repository position
 
