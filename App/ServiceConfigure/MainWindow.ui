@@ -14,8 +14,7 @@
    <string>Rabbit remote control service configure</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="system-settings">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset theme="system-settings"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -75,7 +74,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuService">
@@ -152,7 +151,8 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about"/>
+    <iconset theme="help-about">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>About</string>
