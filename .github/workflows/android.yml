@@ -185,6 +185,8 @@ jobs:
             cmake -E make_directory build
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+                -DLOG4QT_ENABLE_EXAMPLES=OFF \
+                -DLOG4QT_ENABLE_TESTS=OFF \
                 -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
                 -DQt5Core_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Core \
                 -DQt5Network_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Network \

@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.19)
 
 project(RabbitRemoteControl
     DESCRIPTION "Rabbit Remote Control"
@@ -126,7 +126,7 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
 endif()
 get_filename_component(QT_INSTALL_DIR "${Qt${QT_VERSION_MAJOR}_DIR}/../../.." ABSOLUTE)
 message("QT_INSTALL_DIR:${QT_INSTALL_DIR}")
-message("QT_LIBRARIES:${QT_LIBRARIES}")
+message("${PROJECT_NAME} QT_LIBRARIES:${QT_LIBRARIES}")
 
 if(NOT RabbitCommon_DIR)
     set(RabbitCommon_DIR $ENV{RabbitCommon_DIR})
