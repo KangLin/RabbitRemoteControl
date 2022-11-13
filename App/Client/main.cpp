@@ -18,8 +18,8 @@
 #include <QDebug>
 #include <QtGlobal>
 #include <QSharedPointer>
-#if defined(Q_OS_ANDROID)
-    #include <QtAndroid>
+#if defined(Q_OS_ANDROID) && (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+#include <QtAndroid>
 #endif
 
 #include "RabbitCommonTools.h"
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
-#if defined(Q_OS_ANDROID) && QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+#if defined(Q_OS_ANDROID) && (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QtAndroid::hideSplashScreen();
 #endif
     

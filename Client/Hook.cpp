@@ -13,3 +13,10 @@ CHook::~CHook()
 {
     qDebug(Client) << "CHook::~CHook()";
 }
+
+#ifdef Q_OS_ANDROID
+CHook* CHook::GetHook(QObject *parent)
+{
+    return nullptr;
+}
+#endif

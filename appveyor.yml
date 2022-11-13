@@ -1,5 +1,5 @@
 #TODO: Change version
-version: "v0.0.9.{build}"
+version: "v0.0.25.{build}"
 
 cache:
   - ..\other_source
@@ -18,22 +18,22 @@ environment:
     
   matrix:
   ##### msvc 2017 ########    
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    GENERATORS: "Visual Studio 15 2017"
-    TOOLCHAIN_VERSION: 15
-    VCPKG_PLATFORM_TOOLSET: v141
-    QT_ROOT: C:\Qt\5.12\msvc2017
-    BUILD_ARCH: x86
+  #- APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+  #  GENERATORS: "Visual Studio 15 2017"
+  #  TOOLCHAIN_VERSION: 15
+  #  VCPKG_PLATFORM_TOOLSET: v141
+  #  QT_ROOT: C:\Qt\5.12\msvc2017
+  #  BUILD_ARCH: x86
 
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    GENERATORS: "Visual Studio 15 2017 Win64"
-    TOOLCHAIN_VERSION: 15
-    VCPKG_PLATFORM_TOOLSET: v141
-    QT_ROOT: C:\Qt\5.12\msvc2017_64
-    BUILD_ARCH: x64
+  #- APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+  #  GENERATORS: "Visual Studio 15 2017 Win64"
+  #  TOOLCHAIN_VERSION: 15
+  #  VCPKG_PLATFORM_TOOLSET: v141
+  #  QT_ROOT: C:\Qt\5.12\msvc2017_64
+  #  BUILD_ARCH: x64
     
   ##### msvc 2015 ######## 
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     GENERATORS: "Visual Studio 14 2015"
     TOOLCHAIN_VERSION: 14
     VCPKG_PLATFORM_TOOLSET: v140
@@ -67,18 +67,19 @@ before_build:
   - cd %OTHER_SOURCE%
   - if not exist "%INSTALL_DIR%" (mkdir "%INSTALL_DIR%")
   - cd %OTHER_SOURCE%
-  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 50fd3d9957195575849a49fa591e645f1d8e7156 50fd3d9957195575849a49fa591e645f1d8e7156 )
+  - if not exist vcpkg (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b 94ce0dab56f4d8ba6bd631ba59ed682b02d45c46 94ce0dab56f4d8ba6bd631ba59ed682b02d45c46 )
   - cd %VCPKG_DIR%
   - bootstrap-vcpkg.bat
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libssh libpng pixman libjpeg-turbo libdatachannel
+  - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libpng pixman libjpeg-turbo
   
   - cd "%OTHER_SOURCE%"
-  - if not exist FreeRDP (git clone -b 2.7.0 https://github.com/FreeRDP/FreeRDP.git)
+  - if not exist FreeRDP (git clone https://github.com/FreeRDP/FreeRDP.git)
   - cd FreeRDP
+  - git checkout -b 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
   - git submodule update --init --recursive
   - cmake -E make_directory build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DWITH_SERVER=ON -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DWITH_SERVER=ON -DCHANNEL_URBDRC=OFF -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
   
@@ -111,32 +112,32 @@ before_build:
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
   
-  - cd "%OTHER_SOURCE%"
-  - if not exist Log4Qt (git clone -b v1.5.1 https://github.com/MEONMedical/Log4Qt.git)
-  - cd Log4Qt
-  - cmake -E make_directory build
-  - cd build
-  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  - cmake --build . --config Release
-  - cmake --build . --config Release --target install
+  #- cd "%OTHER_SOURCE%"
+  #- if not exist Log4Qt (git clone https://github.com/KangLin/Log4Qt.git)
+  #- cd Log4Qt
+  #- cmake -E make_directory build
+  #- cd build
+  #- cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  #- cmake --build . --config Release
+  #- cmake --build . --config Release --target install
   
-  - cd "%OTHER_SOURCE%"
-  - if not exist qxmpp (git clone -b v1.4.0 https://github.com/qxmpp-project/qxmpp.git)
-  - cd qxmpp
-  - cmake -E make_directory build
-  - cd build
-  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  - cmake --build . --config Release
-  - cmake --build . --config Release --target install
+  #- cd "%OTHER_SOURCE%"
+  #- if not exist qxmpp (git clone -b v1.4.0 https://github.com/qxmpp-project/qxmpp.git)
+  #- cd qxmpp
+  #- cmake -E make_directory build
+  #- cd build
+  #- cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  #- cmake --build . --config Release
+  #- cmake --build . --config Release --target install
   
-  - cd "%OTHER_SOURCE%"
-  - if not exist qt-solutions (git clone https://github.com/KangLin/qt-solutions.git)
-  - cd qt-solutions/qtservice
-  - cmake -E make_directory build
-  - cd build
-  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  - cmake --build . --config Release
-  - cmake --build . --config Release --target install
+  #- cd "%OTHER_SOURCE%"
+  #- if not exist qt-solutions (git clone https://github.com/KangLin/qt-solutions.git)
+  #- cd qt-solutions/qtservice
+  #- cmake -E make_directory build
+  #- cd build
+  #- cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  #- cmake --build . --config Release
+  #- cmake --build . --config Release --target install
   
   - cd "%OTHER_SOURCE%"
   - if exist RabbitCommon (rmdir /s /q "RabbitCommon")
@@ -153,21 +154,22 @@ build_script:
   - move /Y install\plugins\*crypto*.dll install\bin
   - move /Y install\plugins\*ssl*.dll install\bin
   - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
-  #- call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl_setup_v0.0.9.exe -m "v0.0.9"
+  - copy RabbitRemoteControl_setup_v0.0.25.exe RabbitRemoteControl_setup_windowsxp_v0.0.25.exe
+  #- call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl_setup_v0.0.25.exe -m "v0.0.25"
 
 artifacts:
-  - path: build\RabbitRemoteControl_setup_*.exe
+  - path: build\RabbitRemoteControl_setup_windowsxp_v0.0.25.exe
   
   #- path: build\update_windows.xml
   
   - path: build\install\
-    name: RabbitRemoteControl_v0.0.9
+    name: RabbitRemoteControl_v0.0.25
     type: zip
 
 test: off
 
 #See: https://www.appveyor.com/docs/deployment/github/
-#deploy:
+deploy:
   #provider: FTP 
   #protocol: sftp 
   #host: frs.sourceforge.net 
@@ -181,17 +183,17 @@ test: off
   #on:
     #branch: master
 
-#  - provider: GitHub
-#    # token : https://github.com/settings/tokens
-#    # password encrypt: https://ci.appveyor.com/tools/encrypt
-#    auth_token:
-#      secure: 9do9yUjK8IrlU7jqUHUSPkTDADxzqBSa2GxJ0b0mqo9U2gaAkDFgsiDTvjPgCcnV
-#    #artifact:
-#    #draft: true
-#    #prerelease: true
-#    force_update: false
-#    on:
-#      TOOLCHAIN_VERSION: 15
-#      #QT_VERSION: 5.6.3
-#      BUILD_ARCH: x86
-#      appveyor_repo_tag: true        # deploy on tag push only
+  - provider: GitHub
+    # token : https://github.com/settings/tokens
+    # password encrypt: https://ci.appveyor.com/tools/encrypt
+    auth_token:
+      secure: 9do9yUjK8IrlU7jqUHUSPkTDADxzqBSa2GxJ0b0mqo9U2gaAkDFgsiDTvjPgCcnV
+    #artifact:
+    #draft: true
+    #prerelease: true
+    force_update: false
+    on:
+      TOOLCHAIN_VERSION: 15
+      #QT_VERSION: 5.6.3
+      BUILD_ARCH: x86
+      appveyor_repo_tag: true        # deploy on tag push only
