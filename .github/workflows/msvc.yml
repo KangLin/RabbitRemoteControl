@@ -12,20 +12,20 @@ jobs:
         os: [windows-latest]
         CMAKE_GENERATOR: [Visual Studio 17 2022]
         CMAKE_GENERATOR_PLATFORM: [x64, Win32]
-        # VCPKG_PLATFORM_TOOLSET: [v142, v141, v140]
+        #VCPKG_PLATFORM_TOOLSET: [v142, v141, v140]
         include:
-          #- triplet: x64-windows
-          #  VCPKG_PLATFORM_TOOLSET: v142
-          #  qt_version: 6.2.2
-          #  qt_arch: win64_msvc2019_64
-          #  CMAKE_GENERATOR_PLATFORM: x64
-          #  qt_modules: qtscxml qtpositioning
-
           - triplet: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142
-            qt_version: 5.15.2
+            qt_version: 6.2.2
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
+            qt_modules: qtscxml qtpositioning
+
+          #- triplet: x64-windows
+          #  VCPKG_PLATFORM_TOOLSET: v142
+          #  qt_version: 5.15.2
+          #  qt_arch: win64_msvc2019_64
+          #  CMAKE_GENERATOR_PLATFORM: x64
 
           - triplet: x86-windows
             VCPKG_PLATFORM_TOOLSET: v141
@@ -43,7 +43,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.25
-      VCPKGGITCOMMITID: c0b6d35a67d2ad358a6ced92b7aad16a7bf17737 #5cf60186a241e84e8232641ee973395d4fde90e1
+      VCPKGGITCOMMITID: 94ce0dab56f4d8ba6bd631ba59ed682b02d45c46
       VCPKG_OVERLAY_PORTS: ${{github.workspace}}\vcpkg\ports
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       VCINSTALLDIR: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC

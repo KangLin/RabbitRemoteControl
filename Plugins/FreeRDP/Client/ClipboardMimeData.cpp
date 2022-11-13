@@ -187,12 +187,13 @@ QStringList CClipboardMimeData::formats() const
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
                                           QMetaType preferredType) const
+
 #else
 QVariant CClipboardMimeData::retrieveData(const QString &mimetype,
                                           QVariant::Type preferredType) const
 #endif
 {
-    //*
+    /*
     qDebug(m_Log) << "CMimeData::retrieveData:" << mimetype
                    <<  "type:" << preferredType
                    << "Variant:" << m_Variant; //*/
@@ -483,7 +484,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
             else
                 b=1;
             fileName += QUrl::fromLocalFile(s->m_File.fileName()).toEncoded();
-            gnomeFormat.append(fileName);
+            gnomeFormat.append(fileName.toStdString().c_str());
         }
         m_gnomeFiles = gnomeFormat;
         m_Variant = gnomeFormat;
@@ -504,7 +505,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimetype,
             QString fileName;
             fileName += QUrl::fromLocalFile(s->m_File.fileName()).toEncoded();
             fileName += "\r\n";
-            uriFormat.append(fileName);
+            uriFormat.append(fileName.toStdString().c_str());
         }
         m_uriFiles = uriFormat;
         m_Variant = uriFormat;

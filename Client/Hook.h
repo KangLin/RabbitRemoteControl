@@ -21,7 +21,7 @@ public:
     static CHook* GetHook(QObject *parent = nullptr);
 
     virtual int RegisterKeyboard() = 0;
-    virtual int UnRegisterKeyboard() = 0;
+    virtual int UnRegisterKeyboard() = 0;   
 };
 
 #endif // CHOOK_H

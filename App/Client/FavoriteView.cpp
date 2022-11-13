@@ -3,7 +3,6 @@
 #include <QMouseEvent>
 #include <QDrag>
 #include <QMimeData>
-#include <QDebug>
 #include <QApplication>
 #include <QHeaderView>
 #include <QSettings>
@@ -20,7 +19,9 @@
 #include "FavoriteMimeData.h"
 #include "RabbitCommonDir.h"
 
-Q_DECLARE_LOGGING_CATEGORY(App)
+Q_LOGGING_CATEGORY(FavoriteLogger, "App.Favorite")
+
+Q_DECLARE_LOGGING_CATEGORY(FavoriteLogger)
 
 CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
     m_pModel(nullptr)
@@ -54,7 +55,12 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
     {
         QString name = set.value("Name_" + QString::number(i)).toString();
         QString file = set.value("File_" + QString::number(i)).toString();
+        if(name.isEmpty()) {
+            qCritical(FavoriteLogger) << "Current node is empty!";
+            continue;
+        }
         QStandardItem* item = new QStandardItem(name);
+        item->setIcon(QIcon::fromTheme("network-wired"));
         if(item)
         {
             item->setData(file);
@@ -73,7 +79,13 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
         {
             QString name = set.value(szGroup + "/Name_" + QString::number(i)).toString();
             QString file = set.value(szGroup + "/File_" + QString::number(i)).toString();
+            if(name.isEmpty())
+            {
+                qCritical(FavoriteLogger) << "Current node is empty!";
+                continue;
+            }
             QStandardItem* item = new QStandardItem(name);
+            item->setIcon(QIcon::fromTheme("network-wired"));
             if(item)
             {
                 item->setData(file);
@@ -139,6 +151,7 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
         if(it.isEmpty())
         {
             pItem = new QStandardItem(szName);
+            pItem->setIcon(QIcon::fromTheme("network-wired"));
             m_pModel->appendRow(pItem);
         } else {
             QList<QStandardItem*>::iterator i;
@@ -150,6 +163,7 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
             if(it.end() != i)
                 return 1;
             pItem = new QStandardItem(szName);
+            pItem->setIcon(QIcon::fromTheme("network-wired"));
             m_pModel->appendRow(pItem);
         }
     } else {
@@ -160,6 +174,7 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
             if(it.isEmpty())
             {
                 pItem = new QStandardItem(szName);
+                pItem->setIcon(QIcon::fromTheme("network-wired"));
                 m_pModel->appendRow(pItem);
             }
         } else {
@@ -170,6 +185,7 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
                 QStandardItem* pGroup = new QStandardItem(szGroup);
                 m_pModel->appendRow(pGroup);
                 pItem = new QStandardItem(szName);
+                pItem->setIcon(QIcon::fromTheme("network-wired"));
                 pGroup->appendRow(pItem);
             } else {
                 if(lstGroup[0]->data().isValid()) return 2;
@@ -180,6 +196,7 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
                         return -3;
                 }
                 pItem = new QStandardItem(szName);
+                pItem->setIcon(QIcon::fromTheme("network-wired"));
                 lstGroup[0]->appendRow(pItem);
             }
         }
@@ -280,11 +297,11 @@ void CFavoriteView::slotNewGroup()
 
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)
 {
-    qDebug(App) << "dragEnterEvent";
+    qDebug(FavoriteLogger) << "dragEnterEvent";
     const CFavoriteMimeData* pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if (pData)
     {
-        qDebug(App) << "dragEnterEvent acceptProposedAction";
+        qDebug(FavoriteLogger) << "dragEnterEvent acceptProposedAction";
         event->acceptProposedAction();
     }
 }
@@ -295,7 +312,7 @@ void CFavoriteView::dragMoveEvent(QDragMoveEvent *event)
 
 void CFavoriteView::dropEvent(QDropEvent *event)
 {
-    qDebug(App) << "dropEvent";
+    qDebug(FavoriteLogger) << "dropEvent";
     const CFavoriteMimeData *pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if(!pData) return;
     QStandardItemModel* pModel = dynamic_cast<QStandardItemModel*>(model());
@@ -312,7 +329,7 @@ void CFavoriteView::dropEvent(QDropEvent *event)
         {
             foreach(auto i, pData->m_Items)
             {
-                qDebug(App) << "dropEvent:" << item->text();
+                qDebug(FavoriteLogger) << "dropEvent:" << item->text();
                 
                 auto newItem = NewItem(i);
                 item->appendRow(newItem);
@@ -320,7 +337,7 @@ void CFavoriteView::dropEvent(QDropEvent *event)
                     pModel->removeRow(i.row(), i.parent());
             } 
         } else
-            qWarning(App) << "Don't group node. the data:" << item->data();
+            qWarning(FavoriteLogger) << "Don't group node. the data:" << item->data();
     }else{
         foreach(auto i, pData->m_Items)
         {
@@ -353,14 +370,14 @@ void CFavoriteView::mousePressEvent(QMouseEvent *event)
 
 void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug(App) << "mouseMoveEvent";
+    qDebug(FavoriteLogger) << "mouseMoveEvent";
     do{
         if (!(event->buttons() & Qt::LeftButton))
             break;
         if ((event->pos() - m_DragStartPosition).manhattanLength()
                 < QApplication::startDragDistance())
             break;
-        qDebug(App) << "mouseMoveEvent drag";
+        qDebug(FavoriteLogger) << "mouseMoveEvent drag";
         QDrag *drag = new QDrag(this);
         CFavoriteMimeData *pData = new CFavoriteMimeData();
         pData->m_Items = this->selectionModel()->selectedIndexes();
