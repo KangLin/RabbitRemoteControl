@@ -23,7 +23,7 @@ if(WIN32)
 endif()
 
 if(WITH_GUI)
-    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets)
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets)
 else()
     find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 endif()
