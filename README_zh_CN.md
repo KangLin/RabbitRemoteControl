@@ -199,6 +199,8 @@
 |Windows|[![msvc](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml/badge.svg?branch=master)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml)[![mingw](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml/badge.svg?branch=master)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml)|[![msvc](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml/badge.svg?branch=develop)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/msvc.yml)[![mingw](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml/badge.svg?branch=develop)](https://github.com/KangLin/RabbitRemoteControl/actions/workflows/mingw.yml)
 |Android|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml)|[![Android Build status](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml/badge.svg?branch=develop)](https://github.com/kanglin/rabbitremotecontrol/actions/workflows/android.yml)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/q6vsg0u0v4tavkg1?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitremotecontrol)
+
 ## 捐赠
 
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
