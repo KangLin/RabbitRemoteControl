@@ -103,7 +103,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
+        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}-2022-10-15
 
     - name: build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}
@@ -241,7 +241,9 @@ jobs:
         sudo Xvfb :999 -ac &
         export DISPLAY=:999.0
         echo "Install rabbit remote control ......"
-        sudo dpkg -i rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb
+        sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
+        echo "ls -l /opt/RabbitRemoteControl/bin/"
+        ls -l /opt/RabbitRemoteControl/bin/
         echo "Update update_linux.xml ......"
         export QT_XCB_GL_INTEGRATION=none
         MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum|awk '{print $1}'`
