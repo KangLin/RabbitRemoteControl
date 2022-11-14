@@ -61,10 +61,11 @@ void CMainWindow::on_pbSave_clicked()
 
 int CMainWindow::InitTab()
 {
+    QWidget* pIce = nullptr;
 #ifdef HAVE_ICE
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(), QSettings::IniFormat);
     CICE::Instance()->GetParameter()->Load(set);
-    QWidget* pIce = CICE::Instance()->GetParameterWidget(ui->twConfigure);
+    pIce = CICE::Instance()->GetParameterWidget(ui->twConfigure);
     if(pIce)
     {
         // parameter widget must has slotAccept()
@@ -95,8 +96,9 @@ int CMainWindow::InitTab()
             bool check = connect(this, SIGNAL(sigAccept()), w, SLOT(slotAccept()));
             if(!check)
             {
-                qCritical(App) << "Class" << pIce->metaObject()->className()
-                                << "must has slot slotAccept(), please add it";                
+                if(pIce)
+                    qCritical(App) << "Class" << pIce->metaObject()->className()
+                                   << "must has slot slotAccept(), please add it";
             }
             Q_ASSERT(check);
             int nIndex = ui->twConfigure->addTab(w, plugin->Icon(),

@@ -7,14 +7,14 @@ set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
 project(RabbitRemoteControlService LANGUAGES CXX)
 
-set(HEADER_FILES
+set(SERVICE_HEADER_FILES
     )
 
-set(SOURCE_FILES
+set(SERVICE_SOURCE_FILES
     main.cpp
     )
 
-set(SOURCE_UI_FILES
+set(SERVICE_UI_FILES
 
     )
 
@@ -22,7 +22,12 @@ if(WIN32)
     set(RCC_FILES Resource/App.rc)
 endif()
 
-SET(SRC_LIBS RabbitCommon ${QT_LIBRARIES})
+if(WITH_GUI)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets)
+else()
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+endif()
+SET(SERVICE_LIBS RabbitCommon)
 
 find_package(QtService)
 if(NOT QtService_FOUND)
@@ -30,16 +35,16 @@ if(NOT QtService_FOUND)
 endif()
 message("QtServeice is found")
 
-list(APPEND SRC_LIBS Service)
+list(APPEND SERVICE_LIBS Service)
 
 ADD_TARGET(NAME ${PROJECT_NAME}
     ISEXE
-    SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
+    SOURCE_FILES ${SERVICE_SOURCE_FILES} ${SERVICE_HEADER_FILES} ${SERVICE_UI_FILES} ${RCC_FILES}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-    PRIVATE_LIBS ${SRC_LIBS}
+    PRIVATE_LIBS ${SERVICE_LIBS}
     VERSION ${RabbitRemoteControl_VERSION})
 
 configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
