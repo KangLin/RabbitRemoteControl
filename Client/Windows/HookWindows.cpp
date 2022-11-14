@@ -119,6 +119,7 @@ int CHookWindows::UnRegisterKeyboard()
     }
     return 0;
 }
+
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 bool CHookWindows::nativeEventFilter(const QByteArray &eventType, void *message, qintptr *result)
 {
