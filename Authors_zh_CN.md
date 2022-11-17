@@ -4,7 +4,8 @@
 
 ## 贡献者
 - Allan Nordhøy <epost@anotheragency.no>
-- 所有贡献者，详见: [https://github.com/KangLin/RabbitRemoteControl/graphs/contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+
+详见: [https://github.com/KangLin/RabbitRemoteControl/graphs/contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
 ## 工具
 

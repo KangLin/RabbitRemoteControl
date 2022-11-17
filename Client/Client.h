@@ -43,6 +43,8 @@ public:
      *           The caller must connect CConnecter::sigDisconnected,
      *           then delete it( CConnecter::deleteLater )
      * \param id Plugin ID
+     * \~
+     * \callgraph
      */
     virtual CConnecter* CreateConnecter(const QString &id);
     
@@ -54,11 +56,16 @@ public:
      *          <b>The caller must delete it, when isn't need it</b>.
      *          The caller must connect CConnecter::sigDisconnected,
      *          then delete it ( CConnecter::deleteLater )
+     * \~
+     * \callgraph
      */
     virtual CConnecter* LoadConnecter(const QString& szFile);
     
-    /// \~chinese 保存连接参数到文件
-    /// \~english Accept connecter parameters to file
+    /*! \~chinese 保存连接参数到文件
+     * \~english Accept connecter parameters to file
+     * \~
+     * \callgraph
+     */
     virtual int SaveConnecter(QString szFile, CConnecter* pConnecter);
 
     /*!
