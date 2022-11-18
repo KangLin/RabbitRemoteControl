@@ -170,6 +170,10 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
         ui->gpIce->setEnabled(false);
     }
 
+    ui->leServer->setText(m_pPara->GetHost());
+    ui->spPort->setValue(m_pPara->GetPort());
+    ui->lePeerUser->setText(m_pPara->GetPeerUser());
+
     ui->leName->setText(m_pPara->GetName());
     ui->leUserName->setText(m_pPara->GetUser());
     ui->lePassword->setText(m_pPara->GetPassword());
