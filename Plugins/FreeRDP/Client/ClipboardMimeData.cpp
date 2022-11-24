@@ -365,7 +365,9 @@ bool CClipboardMimeData::isUrls(QString mimeType, bool bRegular) const
 {
     qDebug(m_Log) << "CClipboardMimeData::isUrls:" << mimeType;
     
-    if("FileGroupDescriptorW" == mimeType || "text/uri-list" == mimeType
+    if("FileGroupDescriptorW" == mimeType
+            || "FileContents" == mimeType
+            || "text/uri-list" == mimeType
             || "x-special/gnome-copied-files" == mimeType)
         return true;
 
