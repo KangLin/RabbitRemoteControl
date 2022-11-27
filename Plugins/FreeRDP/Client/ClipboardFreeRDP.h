@@ -5,11 +5,10 @@
 
 #include <QObject>
 #include <QVector>
-#include "freerdp/freerdp.h"
-#include "freerdp/client/cliprdr.h"
-#include "freerdp/client/rdpgfx.h"
-#include "winpr/clipboard.h"
+#include <QLoggingCategory>
 #include "ClipboardMimeData.h"
+#include "freerdp/client/cliprdr.h"
+#include "winpr/clipboard.h"
 
 class CConnectFreeRDP;
 class CClipboardFreeRDP : public QObject
@@ -98,7 +97,6 @@ Q_SIGNALS:
 private:
     CConnectFreeRDP* m_pConnect;
     CliprdrClientContext* m_pCliprdrClientContext;
-
     friend CClipboardMimeData;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
     bool m_bOwns;

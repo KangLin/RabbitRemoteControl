@@ -40,6 +40,8 @@
 
 能让你在**任何地方**使用**任何设备和系统**通过**任意方式**远程管理**任意设备和系统**。
 
+它包括远程桌面、远程终端等远程控制功能。
+
 ### 截屏
 
 |主窗口|最近列表窗口|连接窗口|
@@ -188,7 +190,7 @@
 
 [![平台](https://img.shields.io/badge/平台-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
 
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://github.com/KangLin/RabbitRemoteControl)
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://star-history.com/#KangLin/RabbitRemoteControl&Date)
 [![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
 
 ### 编译状态

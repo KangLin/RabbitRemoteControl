@@ -54,7 +54,7 @@ const QString CConnecter::Id()
                     + "_" + QString::number(GetParameter()->GetPort());
         }
     }
-    szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
+    szId = szId.replace(QRegularExpression("[-@:/#%!^&*\\.]"), "_");
     return szId;
 }
 

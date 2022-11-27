@@ -40,6 +40,8 @@ Rabbit Remote Control is a cross-platform, multi-protocol remote control softwar
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
+It include remote desktop, remote terminal etc remote control functions.
+
 ### Screenshot
 
 |Main window|Recent list menu|Connect|
@@ -188,9 +190,8 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 
 [![platform](https://img.shields.io/badge/platform-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
 
-[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=Github%20stars)](https://github.com/KangLin/RabbitRemoteControl/)
+[![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=Github%20stars)](https://star-history.com/#KangLin/RabbitRemoteControl&Date)
 [![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
-
 
 ### Build status
 

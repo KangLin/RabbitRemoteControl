@@ -19,7 +19,7 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
       m_bExit(false)
 {
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
-    m_pClipboard = pThis->m_pClipboard;
+    m_pClipboard = pThis->m_pClipboard; // ClipboardCreate();
     bool check = false;
     check = connect(this, SIGNAL(sigRequestFileFromServer(const QString&, void*, UINT32)),
                     this, SLOT(slotRequestFileFromServer(const QString&, void*, UINT32)),
@@ -32,6 +32,7 @@ CClipboardMimeData::~CClipboardMimeData()
     m_bExit = true;
     emit sigContinue();
     qDebug(m_Log) << "CClipboardMimeData::~CClipboardMimeData()";
+    ClipboardDestroy(m_pClipboard);
 }
 
 int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
@@ -84,24 +85,15 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
             }
         } else {
             m_indexString.insert(it->name, *it);
-            if("FileGroupDescriptorW" == it->name)
-            {
+            if("FileGroupDescriptorW" == it->name) {
                 m_indexString.insert("text/uri-list", *it);
-            }
-            if("x-special/gnome-copied-files" == it->name)
-            {
+            } else if("x-special/gnome-copied-files" == it->name) {
                 m_indexString.insert("text/uri-list", *it);
-            }
-            if("text/html" != it->name && isHtml(it->name, false))
-            {
-                m_indexString.insert("text/html", *it);
-            }
-            if("text/plain" != it->name && isText(it->name, false))
-            {
+            } else if("text/plain" != it->name && isText(it->name, false)) {
                 m_indexString.insert("text/plain", *it);
-            }
-            if("image/bmp" != it->name && isImage(it->name))
-            {
+            } else if("text/html" != it->name && isHtml(it->name, false)) {
+                m_indexString.insert("text/html", *it);
+            } else if("image/bmp" != it->name && isImage(it->name)) {
                 m_indexString.insert("image/bmp", *it);
             }
         }

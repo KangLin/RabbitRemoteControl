@@ -10,7 +10,6 @@
 #include <QSharedPointer>
 #include <QLoggingCategory>
 
-#include "freerdp/freerdp.h"
 #include "freerdp/client/cliprdr.h"
 #include "winpr/clipboard.h"
 
@@ -75,7 +74,7 @@ private:
     QLoggingCategory m_Log;
 
     CliprdrClientContext* m_pContext;
-    wClipboard* m_pClipboard; // Clipboard interface provided by winpr
+    wClipboard* m_pClipboard; // Clipboard interface provided by winpr library
 
     QVector<_FORMAT> m_Formats; // Save server format
     QMultiMap<QString, _FORMAT> m_indexString;
