@@ -63,9 +63,6 @@ void CFrmViewer::paintDesktop()
         return;
     }
 
-    QPainter painter(this);
-    // 设置平滑模式
-    painter.setRenderHint(QPainter::SmoothPixmapTransform);
     QRectF dstRect = rect();
     
     switch (m_AdaptWindows) {
@@ -90,7 +87,12 @@ void CFrmViewer::paintDesktop()
     }
 
     if(!m_Desktop.isNull())
+    {
+        QPainter painter(this);
+        // 设置平滑模式
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
         painter.drawImage(dstRect, m_Desktop);
+    }
 }
 
 void CFrmViewer::paintEvent(QPaintEvent *event)

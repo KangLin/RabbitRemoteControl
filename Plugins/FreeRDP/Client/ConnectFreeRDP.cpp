@@ -402,7 +402,11 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     if(pWindowTitle)
     {
         WCHAR* windowTitle = NULL;
+//#if FreeRDP_VERSION_MAJOR >= 3
+//        windowTitle = ConvertUtf8ToWCharAlloc(settings->WindowTitle, NULL);
+//#else
         ConvertToUnicode(CP_UTF8, 0, settings->WindowTitle, -1, &windowTitle, 0);
+//#endif
         if(windowTitle)
         {
             QString title = QString::fromUtf16((const char16_t*)windowTitle);

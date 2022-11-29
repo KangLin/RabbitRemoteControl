@@ -103,7 +103,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}-2022-10-15
+        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}_2022_10_28
 
     - name: build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}

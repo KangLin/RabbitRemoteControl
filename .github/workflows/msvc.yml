@@ -72,7 +72,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}-2022-11-10
+        key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2022_10_28
 
     - name: run-vcpkg
       uses: lukka/run-vcpkg@v7

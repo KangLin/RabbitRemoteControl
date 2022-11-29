@@ -63,7 +63,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-mingw
+        key: cache-installed-mingw_2022_10_28
         
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}

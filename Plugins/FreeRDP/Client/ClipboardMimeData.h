@@ -46,9 +46,9 @@ public Q_SLOTS:
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    virtual QVariant retrieveData(const QString &mimetype, QMetaType preferredType) const override;
+    virtual QVariant retrieveData(const QString &mimeType, QMetaType preferredType) const override;
 #else
-    virtual QVariant retrieveData(const QString &mimetype, QVariant::Type preferredType) const override;
+    virtual QVariant retrieveData(const QString &mimeType, QVariant::Type preferredType) const override;
 #endif
 
 private:
@@ -60,9 +60,9 @@ private:
     bool isUrls(QString mimeType, bool bRegular = true) const;
 
 Q_SIGNALS:
-    void sigRequestFileFromServer(const QString& mimetype, void* pData, UINT32 nLen) const;
+    void sigRequestFileFromServer(const QString& mimetype, const void* pData, const UINT32 nLen) const;
 private Q_SLOTS:
-    void slotRequestFileFromServer(const QString& mimetype, void* pData, UINT32 nLen);
+    void slotRequestFileFromServer(const QString& mimeType, const void* pData, const UINT32 nLen);
 private:
     UINT sendRequestFilecontents(UINT32 listIndex,
                                  UINT32 dwFlags,
