@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QVector>
 #include <QLoggingCategory>
+#include <QList>
 #include "ClipboardMimeData.h"
 #include "freerdp/client/cliprdr.h"
 #include "winpr/clipboard.h"
@@ -98,8 +99,8 @@ private:
     CConnectFreeRDP* m_pConnect;
     CliprdrClientContext* m_pCliprdrClientContext;
     friend CClipboardMimeData;
+    QList<qint32> m_lstClipboardMimeDataId;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr
-    bool m_bOwns;
     // Client request format data
     UINT32 m_RequestFormatId;
 

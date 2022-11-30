@@ -11,7 +11,9 @@
 #include <QUrl>
 #include <QDir>
 #include <QFileInfo>
+#include <QDateTime>
 
+QAtomicInteger<qint32> CClipboardMimeData::m_nId(1);
 static int g_UINT32 = qRegisterMetaType<UINT32>("UINT32");
 CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     : QMimeData(),
@@ -20,6 +22,9 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
       m_pClipboard(nullptr),
       m_bExit(false)
 {
+    m_Id = m_nId++;
+    if(0 == m_Id) m_Id = m_nId++;
+    qDebug(m_Log) << "CClipboardMimeData::CClipboardMimeData:" << GetId();
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
     m_pClipboard = pThis->m_pClipboard;
     bool check = false;
@@ -31,9 +36,15 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
 
 CClipboardMimeData::~CClipboardMimeData()
 {
-    qDebug(m_Log) << "CClipboardMimeData::~CClipboardMimeData()";
+    qDebug(m_Log) << "CClipboardMimeData::~CClipboardMimeData():" << GetId();
     m_bExit = true;
     emit sigContinue();
+    qDebug(m_Log) << "CClipboardMimeData::~CClipboardMimeData() end:" << GetId();
+}
+
+const qint32 CClipboardMimeData::GetId() const
+{
+    return m_Id;
 }
 
 int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
@@ -121,6 +132,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         m_lstFormats.push_front("text/uri-list");
     }
 
+    m_lstFormats << MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP;
     qDebug(m_Log) << "Formats:" << m_lstFormats;
 
     return 0;
@@ -161,8 +173,8 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
 
 bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 {
-    /*
-    qDebug(m_Log) << "CMimeData::hasFormat:"
+    //*
+    qDebug(m_Log) << "CClipboardMimeData::hasFormat:"
                     << mimetype.toStdString().c_str();//*/
 
     if(isImage(mimetype) && m_lstFormats.contains("image/bmp"))
@@ -175,7 +187,7 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 QStringList CClipboardMimeData::formats() const
 {
     /*
-    qDebug(m_Log) << "CMimeData::formats:" <<  m_lstFormats; //*/
+    qDebug(m_Log) << "CClipboardMimeData::formats:" <<  m_lstFormats; //*/
     return m_lstFormats;
 }
 
@@ -188,9 +200,12 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
                                           QVariant::Type preferredType) const
 #endif
 {
-    /*
-    qDebug(m_Log) << "CMimeData::retrieveData:" << mimetype
+    //*
+    qDebug(m_Log) << "CClipboardMimeData::retrieveData:" << GetId() << mimeType
                      << "Variant:" << m_Variant; //*/
+    if(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP == mimeType)
+        return GetId();
+
     QString mt = mimeType;
     if(isImage(mt)) mt = "image/bmp";
     if(m_indexString.find(mt) == m_indexString.end())
@@ -202,7 +217,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
         return QVariant();
     value = *lstValue.crbegin();
     //*
-    qDebug(m_Log) << "CMimeData::retrieveData: format id:" << value.id
+    qDebug(m_Log) << "CClipboardMimeData::retrieveData: format id:" << value.id
          << "name:" << value.name << "mimeData:" << mimeType; //*/
 
     if(!m_pContext) return QVariant();
@@ -213,7 +228,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
     QEventLoop loop;
     connect(this, SIGNAL(sigContinue()), &loop, SLOT(quit()), Qt::DirectConnection);
     loop.exec();
-    qDebug(m_Log) << "CMimeData::retrieveData end";
+    qDebug(m_Log) << "CClipboardMimeData::retrieveData end";
     // Objecte destruct
     if(m_bExit)
         return QVariant();
@@ -532,6 +547,8 @@ UINT CClipboardMimeData::sendRequestFilecontents(UINT32 listIndex,
         DWORD nPositionLow,
         UINT32 cbRequested)
 {
+    //*
+    qDebug(m_Log) << "CClipboardMimeData::sendRequestFilecontents";//*/
 	UINT rc = ERROR_INTERNAL_ERROR;
     if(!m_pContext) return rc;
 

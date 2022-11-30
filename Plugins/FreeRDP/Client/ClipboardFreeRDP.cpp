@@ -23,7 +23,6 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     m_pConnect(parent),
     m_pCliprdrClientContext(nullptr),
     m_pClipboard(nullptr),
-    m_bOwns(false),
     m_FileCapabilityFlags(0),
     m_bFileSupported(false),
     m_bFileFormatsRegistered(false)
@@ -95,13 +94,27 @@ void CClipboardFreeRDP::slotClipBoardChanged()
 {
     qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::slotClipBoardChanged";
     // Whether it is the clipboard's QMimeData set by this connection
-    if(m_bOwns)
-    {
-        m_bOwns = false;
-        return;
-    }
     const QMimeData* pMimeType = QApplication::clipboard()->mimeData();
     if(!pMimeType) return;
+
+    qint32 data = 0;
+    QVariant d = pMimeType->data(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP);
+    if(!d.isNull()) {
+        data = d.toInt();
+        if(!m_lstClipboardMimeDataId.isEmpty()
+                && m_lstClipboardMimeDataId.contains(data))
+        {//*
+            qDebug(FreeRDPClipboard)
+                    << "CClipboardFreeRdp::slotClipBoardChanged: clipboard is this owner"
+                    << data << m_lstClipboardMimeDataId;//*/
+            return;
+        }
+        //*
+    }
+
+    qDebug(FreeRDPClipboard)  << "CClipboardFreeRdp::slotClipBoardChanged:"
+                              << data << m_lstClipboardMimeDataId;//*/
+    m_lstClipboardMimeDataId.clear();
     SendClientFormatList(m_pCliprdrClientContext);
 }
 
@@ -744,9 +757,9 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list(
     {
         return nRet;
     }
+    // The pMimeData is freed by QApplication::clipboard()
     pMimeData = new CClipboardMimeData(context);
     if(!pMimeData) return nRet;
-    
     if(pMimeData->SetFormat(formatList))
     {
         pMimeData->deleteLater();
@@ -772,7 +785,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list(
                 SLOT(slotSendFormatDataRequest(CliprdrClientContext*, UINT32)));
     Q_ASSERT(check);
 
-    pThis->m_bOwns = true;
+    pThis->m_lstClipboardMimeDataId.push_back(pMimeData->GetId());
     emit pThis->m_pConnect->sigSetClipboard(pMimeData);
     return nRet;
 }
