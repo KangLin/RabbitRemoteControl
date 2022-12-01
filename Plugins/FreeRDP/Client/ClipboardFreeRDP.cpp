@@ -51,7 +51,10 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     pDelegate->ClipboardFileSizeFailure = cb_clipboard_file_size_failure;
     pDelegate->ClipboardFileRangeSuccess = cb_clipboard_file_range_success;
     pDelegate->ClipboardFileRangeFailure = cb_clipboard_file_range_failure;
+    
+#if FreeRDP_VERSION_MAJOR > 2 || (FreeRDP_VERSION_MAJOR == 2 && FreeRDP_VERSION_MINOR > 7)
     pDelegate->IsFileNameComponentValid = cbIsFileNameComponentValid;
+#endif
 }
 
 CClipboardFreeRDP::~CClipboardFreeRDP()

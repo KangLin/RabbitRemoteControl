@@ -73,8 +73,9 @@ before_build:
   - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libpng pixman libjpeg-turbo
 
   - cd %OTHER_SOURCE%
-  - if not exist cmake-3.25.0-rc4-windows-i386 (curl https://github.com/Kitware/CMake/releases/download/v3.25.0-rc4/cmake-3.25.0-rc4-windows-i386.zip && 7z x cmake-3.25.0-rc4-windows-i386.zip)
-  - cd cmake-3.25.0-rc4-windows-i386
+  - set CMAKE_VERSION=3.25.0
+  - if not exist cmake-%CMAKE_VERSION%-windows-i386 (curl -O https://github.com/Kitware/CMake/releases/download/v%CMAKE_VERSION%/cmake-%CMAKE_VERSION%-windows-i386.zip && 7z x cmake-%CMAKE_VERSION%-windows-i386.zip)
+  - cd cmake-%CMAKE_VERSION%-windows-i386
   - set PATH="%CD%/bin";%PATH%
 
   - cd "%OTHER_SOURCE%"
