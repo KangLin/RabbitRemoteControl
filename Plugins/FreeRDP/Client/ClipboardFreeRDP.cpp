@@ -1,4 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
+// See: https://github.com/KangLin/Documents/blob/master/qt/clipboard.md
 
 #include "ClipboardFreeRDP.h"
 #include <QClipboard>
@@ -102,7 +103,7 @@ void CClipboardFreeRDP::slotClipBoardChanged()
 
     qint32 data = 0;
     QVariant d = pMimeType->data(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP);
-    if(!d.isNull()) {
+    if(d.isValid()) {
         data = d.toInt();
         if(!m_lstClipboardMimeDataId.isEmpty()
                 && m_lstClipboardMimeDataId.contains(data))
@@ -182,9 +183,11 @@ UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
 
 	if (pThis->m_bFileSupported && pThis->m_bFileFormatsRegistered)
     {
-		generalCapabilitySet.generalFlags |=
+        generalCapabilitySet.generalFlags |=
                 CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS
+        #if FreeRDP_VERSION_MAJOR > 2 || (FreeRDP_VERSION_MAJOR == 2 && FreeRDP_VERSION_MINOR > 7)
                 | CB_HUGE_FILE_SUPPORT_ENABLED
+        #endif
                 ;
     }
 

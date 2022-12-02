@@ -13,6 +13,29 @@
 #include <QFileInfo>
 #include <QDateTime>
 
+#ifndef Q_OS_WINDOWS
+//
+// format of CF_FILEGROUPDESCRIPTOR
+//
+typedef struct _FILEGROUPDESCRIPTORA { // fgd
+     UINT cItems;
+     FILEDESCRIPTOR fgd[1];
+} FILEGROUPDESCRIPTORA, * LPFILEGROUPDESCRIPTORA;
+
+typedef struct _FILEGROUPDESCRIPTORW { // fgd
+     UINT cItems;
+     FILEDESCRIPTORW fgd[1];
+} FILEGROUPDESCRIPTORW, * LPFILEGROUPDESCRIPTORW;
+
+#ifdef UNICODE
+#define FILEGROUPDESCRIPTOR     FILEGROUPDESCRIPTORW
+#define LPFILEGROUPDESCRIPTOR   LPFILEGROUPDESCRIPTORW
+#else
+#define FILEGROUPDESCRIPTOR     FILEGROUPDESCRIPTORA
+#define LPFILEGROUPDESCRIPTOR   LPFILEGROUPDESCRIPTORA
+#endif
+#endif
+
 QAtomicInteger<qint32> CClipboardMimeData::m_nId(1);
 static int g_UINT32 = qRegisterMetaType<UINT32>("UINT32");
 CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
@@ -23,8 +46,10 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
       m_bExit(false)
 {
     m_Id = m_nId++;
-    if(0 == m_Id) m_Id = m_nId++;
+    while(0 == m_Id)
+        m_Id = m_nId++;
     qDebug(m_Log) << "CClipboardMimeData::CClipboardMimeData:" << GetId();
+ 
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
     m_pClipboard = pThis->m_pClipboard;
     bool check = false;
@@ -63,20 +88,26 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
                         << "name:" << pFormat->formatName;//*/
         AddFormat(pFormat->formatId, pFormat->formatName);
     }
-    
+
     if(m_Formats.isEmpty())
         return 0;
 
+    QString szFormats;
     for(auto it = m_Formats.begin(); it != m_Formats.end(); it++)
     {
+        //*
+        szFormats += QString::number(it->id) + "[";
+        szFormats += it->name;
+        szFormats += "]; "; //*/
+
         m_indexId.insert(it->id, *it);
         if(it->name.isEmpty())
         {
             switch (it->id) {
             case CF_TEXT:
-            //case CF_OEMTEXT:
+            case CF_OEMTEXT:
             case CF_UNICODETEXT:
-            //case CF_LOCALE:
+            case CF_LOCALE:
             {
                 m_indexString.insert("text/plain", *it);
                 break;
@@ -86,6 +117,11 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
             case CF_DIBV5:
             {
                 m_indexString.insert("image/bmp", *it);
+                break;
+            }
+            case CF_HDROP:
+            {
+                m_indexString.insert("text/uri-list", *it);
                 break;
             }
             default:
@@ -98,6 +134,12 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         } else {
             m_indexString.insert(it->name, *it);
             if("FileGroupDescriptorW" == it->name) {
+                m_indexString.insert("text/uri-list", *it);
+            } else if("FileGroupDescriptor" == it->name) {
+                m_indexString.insert("text/uri-list", *it);
+            } else if("UniformResourceLocatorW" == it->name) {
+                m_indexString.insert("text/uri-list", *it);
+            } else if("UniformResourceLocator" == it->name) {
                 m_indexString.insert("text/uri-list", *it);
             } else if("x-special/gnome-copied-files" == it->name) {
                 m_indexString.insert("text/uri-list", *it);
@@ -123,7 +165,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         m_lstFormats << ("application/x-qt-image");
     }
 
-    // Only in linux or unix
+    // Only used by linux or unix
     if(m_lstFormats.contains("text/uri-list")
             && !m_lstFormats.contains("x-special/gnome-copied-files"))
     {
@@ -132,8 +174,20 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         m_lstFormats.push_front("text/uri-list");
     }
 
+    // Only used by windows
+    if(m_lstFormats.contains("text/uri-list")
+            && !m_lstFormats.contains("FileGroupDescriptorW"))
+    {
+        m_lstFormats.push_front("FileGroupDescriptorW");
+        m_lstFormats.removeOne("text/uri-list");
+        m_lstFormats.push_front("text/uri-list");
+    }
+
+    // Used to identify oneself
     m_lstFormats << MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP;
-    qDebug(m_Log) << "Formats:" << m_lstFormats;
+
+    qDebug(m_Log) << "CClipboardMimeData::SetFormat: input formats:" << szFormats
+                  << "Formats:" << m_lstFormats;
 
     return 0;
 }
@@ -303,7 +357,6 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
             m_Variant = QString::fromLatin1(d);
             break;
         }
-        /*
         case CF_OEMTEXT:
         {
 #ifdef Q_OS_WINDOWS
@@ -312,7 +365,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
             m_Variant = d;
 #endif
             break;
-        } //*/
+        }
         case CF_UNICODETEXT:
         {
             m_Variant = QString::fromUtf16((const char16_t*)data, size / 2);
@@ -368,7 +421,9 @@ bool CClipboardMimeData::isUrls(QString mimeType, bool bRegular) const
     //qDebug(m_Log) << "CClipboardMimeData::isUrls:" << mimeType;
     
     if("FileGroupDescriptorW" == mimeType
-            //|| "FileContents" == mimeType
+            || "FileGroupDescriptor" == mimeType
+            || "UniformResourceLocatorW" == mimeType
+            || "UniformResourceLocator" == mimeType
             || "text/uri-list" == mimeType
             || "x-special/gnome-copied-files" == mimeType)
         return true;
@@ -421,7 +476,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
     QStringList lstFile = szFiles.split("\n");
     free(data);
 
-    FILEGROUPDESCRIPTOR* pDes = (FILEGROUPDESCRIPTOR*)pData;
+    FILEGROUPDESCRIPTORW* pDes = (FILEGROUPDESCRIPTORW*)pData;
     for(int i = 0; i < pDes->cItems; i++)
     {
         QString szFile = lstFile[i].trimmed();
