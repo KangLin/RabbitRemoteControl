@@ -14,26 +14,26 @@
 #include <QDateTime>
 
 #ifndef Q_OS_WINDOWS
-//
-// format of CF_FILEGROUPDESCRIPTOR
-//
-typedef struct _FILEGROUPDESCRIPTORA { // fgd
-     UINT cItems;
-     FILEDESCRIPTOR fgd[1];
-} FILEGROUPDESCRIPTORA, * LPFILEGROUPDESCRIPTORA;
-
-typedef struct _FILEGROUPDESCRIPTORW { // fgd
-     UINT cItems;
-     FILEDESCRIPTORW fgd[1];
-} FILEGROUPDESCRIPTORW, * LPFILEGROUPDESCRIPTORW;
-
-#ifdef UNICODE
-#define FILEGROUPDESCRIPTOR     FILEGROUPDESCRIPTORW
-#define LPFILEGROUPDESCRIPTOR   LPFILEGROUPDESCRIPTORW
-#else
-#define FILEGROUPDESCRIPTOR     FILEGROUPDESCRIPTORA
-#define LPFILEGROUPDESCRIPTOR   LPFILEGROUPDESCRIPTORA
-#endif
+    //
+    // format of CF_FILEGROUPDESCRIPTOR
+    //
+    typedef struct _FILEGROUPDESCRIPTORA { // fgd
+         UINT cItems;
+         FILEDESCRIPTOR fgd[1];
+    } FILEGROUPDESCRIPTORA, * LPFILEGROUPDESCRIPTORA;
+    
+    typedef struct _FILEGROUPDESCRIPTORW { // fgd
+         UINT cItems;
+         FILEDESCRIPTORW fgd[1];
+    } FILEGROUPDESCRIPTORW, * LPFILEGROUPDESCRIPTORW;
+    
+    #ifdef UNICODE
+    #define FILEGROUPDESCRIPTOR     FILEGROUPDESCRIPTORW
+    #define LPFILEGROUPDESCRIPTOR   LPFILEGROUPDESCRIPTORW
+    #else
+    #define FILEGROUPDESCRIPTOR     FILEGROUPDESCRIPTORA
+    #define LPFILEGROUPDESCRIPTOR   LPFILEGROUPDESCRIPTORA
+    #endif
 #endif
 
 QAtomicInteger<qint32> CClipboardMimeData::m_nId(1);
@@ -53,8 +53,14 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
     m_pClipboard = pThis->m_pClipboard;
     bool check = false;
-    check = connect(this, SIGNAL(sigRequestFileFromServer(const QString&, const void*, const UINT32)),
-                    this, SLOT(slotRequestFileFromServer(const QString&, const void*, const UINT32)),
+    check = connect(this, SIGNAL(sigRequestFileFromServer(const QString&,
+                                                          const QString&,
+                                                          const void*,
+                                                          const UINT32)),
+                    this, SLOT(slotRequestFileFromServer(const QString&,
+                                                         const QString&,
+                                                         const void*,
+                                                         const UINT32)),
                     Qt::DirectConnection);
     Q_ASSERT(check);
 }
@@ -134,9 +140,17 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
         } else {
             m_indexString.insert(it->name, *it);
             if("FileGroupDescriptorW" == it->name) {
+#ifdef Q_OS_WINDOWS
                 m_indexString.insert("text/uri-list", *it);
+#else
+                m_indexString.insert("x-special/gnome-copied-files", *it);
+#endif
             } else if("FileGroupDescriptor" == it->name) {
+#ifdef Q_OS_WINDOWS
                 m_indexString.insert("text/uri-list", *it);
+#else
+                m_indexString.insert("x-special/gnome-copied-files", *it);
+#endif
             } else if("UniformResourceLocatorW" == it->name) {
                 m_indexString.insert("text/uri-list", *it);
             } else if("UniformResourceLocator" == it->name) {
@@ -290,7 +304,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
     if(isUrls(mimeType) && !m_Variant.isNull())
     {
         QByteArray data = m_Variant.toByteArray();
-        emit sigRequestFileFromServer(value.name, data.data(), data.size());
+        emit sigRequestFileFromServer(mimeType, value.name, data.data(), data.size());
     }
     return m_Variant;
 }
@@ -450,14 +464,19 @@ bool CClipboardMimeData::isImage(QString mimeType, bool bRegular) const
 }
 
 void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
-                                              const void *pData, const UINT32 nLen)
+                                                   const QString &valueName,
+                                                   const void *pData,
+                                                   const UINT32 nLen)
 {
     //*
     qDebug(m_Log) << "CClipboardMimeData::slotRequestFileFromServer:"
-                   << mimeType.toStdString().c_str()
-                   << pData;//*/
-    int srcId = ClipboardGetFormatId(m_pClipboard, mimeType.toStdString().c_str());
-    int dstId = ClipboardGetFormatId(m_pClipboard, "text/uri-list");
+                   << mimeType << valueName << pData;//*/
+    if(!("FileGroupDescriptorW" == valueName
+         || "FileGroupDescriptor" == valueName))
+            return;
+
+    int srcId = ClipboardGetFormatId(m_pClipboard, valueName.toStdString().c_str());
+    int dstId = ClipboardGetFormatId(m_pClipboard, mimeType.toStdString().c_str());
     bool bSuccess = ClipboardSetData(m_pClipboard, srcId, pData, nLen);
     if(!bSuccess) {
         qCritical(m_Log) << "ClipboardSetData fail: dstId:" << dstId
@@ -475,8 +494,8 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
     QString szFiles = QString::fromLatin1((char*)data, size);
     QStringList lstFile = szFiles.split("\n");
     free(data);
-
-    FILEGROUPDESCRIPTORW* pDes = (FILEGROUPDESCRIPTORW*)pData;
+/*
+    FILEGROUPDESCRIPTOR* pDes = (FILEGROUPDESCRIPTOR*)pData;
     for(int i = 0; i < pDes->cItems; i++)
     {
         QString szFile = lstFile[i].trimmed();
@@ -507,9 +526,9 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
         size.QuadPart = *((LONGLONG*)(stream->m_Data.data()));
         if(size.QuadPart <= 0)
             continue;
-        //*
+
         qDebug(m_Log) << "File" << szFile
-                       << ";Length:" << size.u.HighPart << size.u.LowPart;//*/
+                       << ";Length:" << size.u.HighPart << size.u.LowPart;
         // Open local file
         if(!stream->m_File.open(QFile::WriteOnly))
         {
@@ -547,6 +566,9 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
             stream->m_File.remove();
         stream->m_Success = bSuccess;
     }
+    
+    */
+    
     // Convert file list
     // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
     if("x-special/gnome-copied-files" == mimeType)

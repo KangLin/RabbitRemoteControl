@@ -62,9 +62,11 @@ private:
     bool isUrls(QString mimeType, bool bRegular = true) const;
 
 Q_SIGNALS:
-    void sigRequestFileFromServer(const QString& mimetype, const void* pData, const UINT32 nLen) const;
+    void sigRequestFileFromServer(const QString& mimetype, const QString& valueName,
+                                  const void* pData, const UINT32 nLen) const;
 private Q_SLOTS:
-    void slotRequestFileFromServer(const QString& mimeType, const void* pData, const UINT32 nLen);
+    void slotRequestFileFromServer(const QString& mimeType, const QString& valueName,
+                                   const void* pData, const UINT32 nLen);
 private:
     UINT sendRequestFilecontents(UINT32 listIndex,
                                  UINT32 dwFlags,
