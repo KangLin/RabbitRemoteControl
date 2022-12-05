@@ -60,9 +60,9 @@ install:
 
 before_build:
   #- set VCPKG_DIR=C:\Tools\vcpkg
-  - set OTHER_SOURCE=%APPVEYOR_BUILD_FOLDER%/../other_source
-  - set INSTALL_DIR=%OTHER_SOURCE%/install_dir
-  - set VCPKG_DIR=%OTHER_SOURCE%/vcpkg
+  - set OTHER_SOURCE=%APPVEYOR_BUILD_FOLDER%\..\other_source
+  - set INSTALL_DIR=%OTHER_SOURCE%\install_dir
+  - set VCPKG_DIR=%OTHER_SOURCE%\vcpkg
   - if not exist "%OTHER_SOURCE%" ( mkdir "%OTHER_SOURCE%" )
 
   - cd %OTHER_SOURCE%
@@ -158,11 +158,11 @@ build_script:
   - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR="%INSTALL_DIR%/lib/cmake" -DLog4Qt_DIR="%INSTALL_DIR%/lib/cmake/Log4Qt" -DQXmpp_DIR="%INSTALL_DIR%/lib/cmake/qxmpp" -DQtService_DIR="%INSTALL_DIR%/lib/cmake/qtservice" -DFreeRDP-Server_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP-Server2 -DFreeRDP-Client_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP-Client2 -DFreeRDP_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP2 -DWinPR_DIR="%INSTALL_DIR%/lib/cmake/WinPR2  -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON #-DLibDataChannel_DIR="%INSTALL_DIR%/share/cmake/LibDataChannel"
   - cmake --build . --config Release
   - cmake --build . --config Release --target install-runtime
-  - echo "move /Y %VCPKG_DIR%/installed/%BUILD_ARCH%-windows/*.dll install\bin"
-  - move /Y %VCPKG_DIR%/installed/%BUILD_ARCH%-windows/*.dll install\bin
-  - call "C:/Program Files (x86)/NSIS/makensis.exe" Install.nsi
+  - echo "xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin"
+  - xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin
+  - call "C:\Program Files (x86)\NSIS\makensis.exe" Install.nsi
   - copy RabbitRemoteControl_setup_v0.0.25.exe RabbitRemoteControl_setup_windowsxp_v0.0.25.exe
-  #- call "install/bin/RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl_setup_v0.0.25.exe -m "v0.0.25"
+  #- call "install\bin\RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl_setup_v0.0.25.exe -m "v0.0.25"
 
 artifacts:
   - path: build\RabbitRemoteControl_setup_windowsxp_v0.0.25.exe

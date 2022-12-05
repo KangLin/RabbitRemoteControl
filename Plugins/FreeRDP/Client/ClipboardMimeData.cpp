@@ -13,27 +13,15 @@
 #include <QFileInfo>
 #include <QDateTime>
 
-#ifndef Q_OS_WINDOWS
+#if !(defined (Q_OS_WINDOWS) || defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WINRT))
     //
     // format of CF_FILEGROUPDESCRIPTOR
     //
-    typedef struct _FILEGROUPDESCRIPTORA { // fgd
-         UINT cItems;
-         FILEDESCRIPTOR fgd[1];
-    } FILEGROUPDESCRIPTORA, * LPFILEGROUPDESCRIPTORA;
-    
     typedef struct _FILEGROUPDESCRIPTORW { // fgd
          UINT cItems;
          FILEDESCRIPTORW fgd[1];
     } FILEGROUPDESCRIPTORW, * LPFILEGROUPDESCRIPTORW;
     
-    #ifdef UNICODE
-    #define FILEGROUPDESCRIPTOR     FILEGROUPDESCRIPTORW
-    #define LPFILEGROUPDESCRIPTOR   LPFILEGROUPDESCRIPTORW
-    #else
-    #define FILEGROUPDESCRIPTOR     FILEGROUPDESCRIPTORA
-    #define LPFILEGROUPDESCRIPTOR   LPFILEGROUPDESCRIPTORA
-    #endif
 #endif
 
 QAtomicInteger<qint32> CClipboardMimeData::m_nId(1);
@@ -470,7 +458,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
 {
     //*
     qDebug(m_Log) << "CClipboardMimeData::slotRequestFileFromServer:"
-                   << mimeType << valueName << pData;//*/
+                  << valueName << mimeType << pData;//*/
     if(!("FileGroupDescriptorW" == valueName
          || "FileGroupDescriptor" == valueName))
             return;
@@ -494,8 +482,8 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
     QString szFiles = QString::fromLatin1((char*)data, size);
     QStringList lstFile = szFiles.split("\n");
     free(data);
-/*
-    FILEGROUPDESCRIPTOR* pDes = (FILEGROUPDESCRIPTOR*)pData;
+
+    FILEGROUPDESCRIPTORW* pDes = (FILEGROUPDESCRIPTORW*)pData;
     for(int i = 0; i < pDes->cItems; i++)
     {
         QString szFile = lstFile[i].trimmed();
@@ -566,8 +554,6 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
             stream->m_File.remove();
         stream->m_Success = bSuccess;
     }
-    
-    */
     
     // Convert file list
     // "x-special/gnome-copied-files" format is copy\nLocalFile1\nLocalFile2\n...
