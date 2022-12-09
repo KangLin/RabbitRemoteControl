@@ -49,6 +49,7 @@ jobs:
             mingw-w64-x86_64-yasm ^
             mingw-w64-x86_64-openh264 ^
             mingw-w64-x86_64-qxmpp ^
+            mingw-w64-x86_64-freerdp ^
             git base-devel
 
     - name: make_directory
@@ -63,35 +64,35 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-mingw_2022_10_28
+        key: cache-installed-mingw_2022_12_01
         
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
 
-    - name: Build FreeRDP
-      working-directory: ${{env.SOURCE_DIR}}
-      env:
-        MSYSTEM: MINGW64
-        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
-      run: |
-       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP3 (
-            git clone https://github.com/FreeRDP/FreeRDP.git
-            ;git clone https://github.com/KangLin/FreeRDP.git
-            cd FreeRDP
-            ;git checkout -b 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. ^
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
-                -DWITH_SERVER=ON ^
-                -DCHANNEL_URBDRC=OFF ^
-                -DUSE_UNWIND=OFF
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-        )
+#    - name: Build FreeRDP
+#      working-directory: ${{env.SOURCE_DIR}}
+#      env:
+#        MSYSTEM: MINGW64
+#        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+#      run: |
+#       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP3 (
+#            git clone https://github.com/FreeRDP/FreeRDP.git
+#            ;git clone https://github.com/KangLin/FreeRDP.git
+#            cd FreeRDP
+#            ;git checkout -b 2ad14696124b5a7689a323f56859efb329a3d25c 2ad14696124b5a7689a323f56859efb329a3d25c ; 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. ^
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
+#                -DWITH_SERVER=ON ^
+#                -DCHANNEL_URBDRC=OFF ^
+#                -DUSE_UNWIND=OFF
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#        )
 
     - name: build RabbitVNC
       working-directory: ${{env.SOURCE_DIR}}
@@ -220,11 +221,6 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DBUILD_FREERDP=ON ^
-            -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3 ^
-            -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ^
-            -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR3 ^
-            -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3 ^
-            -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3 ^
             -DBUILD_LibVNCServer=OFF ^
             -DLog4Qt_DIR=/lib/cmake/Log4Qt ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^

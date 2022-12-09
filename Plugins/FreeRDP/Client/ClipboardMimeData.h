@@ -9,10 +9,12 @@
 #include <QFile>
 #include <QSharedPointer>
 #include <QLoggingCategory>
+#include <QAtomicInteger>
 
 #include "freerdp/client/cliprdr.h"
 #include "winpr/clipboard.h"
 
+#define MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP "rabbit/remotecontrol/plugins/freerdp"
 class CClipboardFreeRDP;
 class CClipboardMimeData : public QMimeData
 {
@@ -21,6 +23,7 @@ public:
     explicit CClipboardMimeData(CliprdrClientContext* pContext);
     virtual ~CClipboardMimeData();
     
+    const qint32 GetId() const;
     struct _FORMAT {
         UINT32 id;
         QString name;
@@ -33,8 +36,7 @@ Q_SIGNALS:
     void sigSendDataRequest(CliprdrClientContext* context,
                             UINT32 formatId) const;
     void sigContinue();
-    
-    
+
 public:
     virtual bool hasFormat(const QString &mimetype) const override;
     virtual QStringList formats() const override;
@@ -60,9 +62,11 @@ private:
     bool isUrls(QString mimeType, bool bRegular = true) const;
 
 Q_SIGNALS:
-    void sigRequestFileFromServer(const QString& mimetype, const void* pData, const UINT32 nLen) const;
+    void sigRequestFileFromServer(const QString& mimetype, const QString& valueName,
+                                  const void* pData, const UINT32 nLen) const;
 private Q_SLOTS:
-    void slotRequestFileFromServer(const QString& mimeType, const void* pData, const UINT32 nLen);
+    void slotRequestFileFromServer(const QString& mimeType, const QString& valueName,
+                                   const void* pData, const UINT32 nLen);
 private:
     UINT sendRequestFilecontents(UINT32 listIndex,
                                  UINT32 dwFlags,
@@ -72,6 +76,8 @@ private:
 private:
     friend CClipboardFreeRDP;
     QLoggingCategory m_Log;
+    static QAtomicInteger<qint32> m_nId;
+    qint32 m_Id;
 
     CliprdrClientContext* m_pContext;
     wClipboard* m_pClipboard; // Clipboard interface provided by winpr library

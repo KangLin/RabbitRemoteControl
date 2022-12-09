@@ -1,4 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
+// See: https://github.com/KangLin/Documents/blob/master/qt/clipboard.md
 
 #include "ClipboardFreeRDP.h"
 #include <QClipboard>
@@ -23,7 +24,6 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     m_pConnect(parent),
     m_pCliprdrClientContext(nullptr),
     m_pClipboard(nullptr),
-    m_bOwns(false),
     m_FileCapabilityFlags(0),
     m_bFileSupported(false),
     m_bFileFormatsRegistered(false)
@@ -52,7 +52,10 @@ CClipboardFreeRDP::CClipboardFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
     pDelegate->ClipboardFileSizeFailure = cb_clipboard_file_size_failure;
     pDelegate->ClipboardFileRangeSuccess = cb_clipboard_file_range_success;
     pDelegate->ClipboardFileRangeFailure = cb_clipboard_file_range_failure;
+    
+#if FreeRDP_VERSION_MAJOR > 2 || (FreeRDP_VERSION_MAJOR == 2 && FreeRDP_VERSION_MINOR > 7)
     pDelegate->IsFileNameComponentValid = cbIsFileNameComponentValid;
+#endif
 }
 
 CClipboardFreeRDP::~CClipboardFreeRDP()
@@ -95,13 +98,27 @@ void CClipboardFreeRDP::slotClipBoardChanged()
 {
     qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::slotClipBoardChanged";
     // Whether it is the clipboard's QMimeData set by this connection
-    if(m_bOwns)
-    {
-        m_bOwns = false;
-        return;
-    }
     const QMimeData* pMimeType = QApplication::clipboard()->mimeData();
     if(!pMimeType) return;
+
+    qint32 data = 0;
+    QVariant d = pMimeType->data(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP);
+    if(d.isValid()) {
+        data = d.toInt();
+        if(!m_lstClipboardMimeDataId.isEmpty()
+                && m_lstClipboardMimeDataId.contains(data))
+        {//*
+            qDebug(FreeRDPClipboard)
+                    << "CClipboardFreeRdp::slotClipBoardChanged: clipboard is this owner"
+                    << data << m_lstClipboardMimeDataId;//*/
+            return;
+        }
+        //*
+    }
+
+    qDebug(FreeRDPClipboard)  << "CClipboardFreeRdp::slotClipBoardChanged:"
+                              << data << m_lstClipboardMimeDataId;//*/
+    m_lstClipboardMimeDataId.clear();
     SendClientFormatList(m_pCliprdrClientContext);
 }
 
@@ -166,9 +183,11 @@ UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
 
 	if (pThis->m_bFileSupported && pThis->m_bFileFormatsRegistered)
     {
-		generalCapabilitySet.generalFlags |=
+        generalCapabilitySet.generalFlags |=
                 CB_STREAM_FILECLIP_ENABLED | CB_FILECLIP_NO_FILE_PATHS
+        #if FreeRDP_VERSION_MAJOR > 2 || (FreeRDP_VERSION_MAJOR == 2 && FreeRDP_VERSION_MINOR > 7)
                 | CB_HUGE_FILE_SUPPORT_ENABLED
+        #endif
                 ;
     }
 
@@ -744,9 +763,9 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list(
     {
         return nRet;
     }
+    // The pMimeData is freed by QApplication::clipboard()
     pMimeData = new CClipboardMimeData(context);
     if(!pMimeData) return nRet;
-    
     if(pMimeData->SetFormat(formatList))
     {
         pMimeData->deleteLater();
@@ -772,7 +791,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list(
                 SLOT(slotSendFormatDataRequest(CliprdrClientContext*, UINT32)));
     Q_ASSERT(check);
 
-    pThis->m_bOwns = true;
+    pThis->m_lstClipboardMimeDataId.push_back(pMimeData->GetId());
     emit pThis->m_pConnect->sigSetClipboard(pMimeData);
     return nRet;
 }

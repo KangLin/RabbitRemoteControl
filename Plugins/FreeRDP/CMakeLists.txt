@@ -1,6 +1,6 @@
 # Author: Kang Lin <kl222@126.com>
 
-set(FreeRDPVERSION 2.8.0)
+set(FreeRDPVERSION 2.2.0)
 find_package(WinPR)
 message("WinPR_FOUND:${WinPR_VERSION}")
 
@@ -21,6 +21,7 @@ if(FreeRDP_VERSION VERSION_LESS FreeRDPVERSION)
     return()
 endif()
 set(FreeRDP_MAJOR ${FreeRDP_VERSION_MAJOR})
+set(FreeRDP_MINOR ${FreeRDP_VERSION_MINOR})
 if(BUILD_CLIENT)
     add_subdirectory(Client)
 endif()

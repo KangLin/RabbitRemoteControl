@@ -14,7 +14,8 @@
    <string>Settings</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="system-settings"/>
+   <iconset theme="system-settings">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
@@ -58,7 +59,7 @@
        <normaloff>:/image/Option</normaloff>:/image/Option</iconset>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="General">
       <attribute name="title">

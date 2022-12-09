@@ -95,7 +95,7 @@ jobs:
             qtwebengine5-dev libqtermwidget5-0-dev \
             libutf8proc-dev libpam0g-dev \
             libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
-            libx11-dev libxfixes-dev
+            libx11-dev libxfixes-dev freerdp2-dev
 
     - name: Cache installed
       uses: actions/cache@v2
@@ -103,26 +103,26 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}_2022_10_28
+        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}_2022_12_01
 
-    - name: build FreeRDP
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
-            git clone https://github.com/FreeRDP/FreeRDP.git
-            # git clone https://github.com/KangLin/FreeRDP.git
-            cd FreeRDP
-            git checkout -b 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-                -DWITH_SERVER=ON
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
-        fi
+#    - name: build FreeRDP
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
+#            git clone https://github.com/FreeRDP/FreeRDP.git
+#            # git clone https://github.com/KangLin/FreeRDP.git
+#            cd FreeRDP
+#            git checkout -b 2ad14696124b5a7689a323f56859efb329a3d25c 2ad14696124b5a7689a323f56859efb329a3d25c # 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. \
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
+#                -DWITH_SERVER=ON
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#        fi
 
     - name: build RabbitVNC
       working-directory: ${{env.SOURCE_DIR}}
@@ -216,11 +216,11 @@ jobs:
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
         Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
-        FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3
-        FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
-        WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR3
-        FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
-        FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
+        #FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3
+        #FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
+        #WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR3
+        #FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
+        #FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
       run: |
         if [ ${{matrix.BUILD_TYPE}} == 'Release' ]; then
             export BUILD_VIEWER_TERMINAL=OFF

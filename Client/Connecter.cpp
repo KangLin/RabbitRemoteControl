@@ -104,13 +104,13 @@ void CConnecter::slotSetClipboard(QMimeData* data)
 {    
     QClipboard* pClipboard = QApplication::clipboard();
     if(pClipboard) {
-        pClipboard->disconnect(this);
+//        pClipboard->disconnect(this);
 
         pClipboard->setMimeData(data);
 
-        bool check = connect(pClipboard, SIGNAL(dataChanged()),
-                             this, SIGNAL(sigClipBoardChanged()));
-        Q_ASSERT(check);
+//        bool check = connect(pClipboard, SIGNAL(dataChanged()),
+//                             this, SIGNAL(sigClipBoardChanged()));
+//        Q_ASSERT(check);
     }
 }
 

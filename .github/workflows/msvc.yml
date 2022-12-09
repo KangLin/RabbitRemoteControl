@@ -46,7 +46,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.25
-      VCPKGGITCOMMITID: 94ce0dab56f4d8ba6bd631ba59ed682b02d45c46
+      VCPKGGITCOMMITID: 251741475900c9a57549d80f1b5a5e30e63d1887
       VCPKG_OVERLAY_PORTS: ${{github.workspace}}\vcpkg\ports
       qt_modules: '${{matrix.qt_modules}}'
       VCINSTALLDIR: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC
@@ -72,7 +72,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2022_10_28
+        key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2022_12_01
 
     - name: run-vcpkg
       uses: lukka/run-vcpkg@v7
@@ -83,7 +83,7 @@ jobs:
         # compute its hash and append this to the computed cache's key.
         appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
         vcpkgTriplet: '${{matrix.triplet}}'
-        vcpkgArguments: 'zlib openssl libssh libpng pixman libjpeg-turbo libdatachannel' # freerdp'
+        vcpkgArguments: 'libssh libpng pixman libjpeg-turbo libdatachannel freerdp'
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -104,28 +104,28 @@ jobs:
 #          cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #        )
 
-    - name: Build FreeRDP
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP3 (
-            git clone https://github.com/FreeRDP/FreeRDP.git
-            ; git clone https://github.com/KangLin/FreeRDP.git
-            cd FreeRDP
-            git checkout -b 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. ^
-                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
-                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
-                -DWITH_SERVER=ON ^
-                -DCHANNEL_URBDRC=OFF ^
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-        )
+#    - name: Build FreeRDP
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#       IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\FreeRDP3 (
+#            git clone https://github.com/FreeRDP/FreeRDP.git
+#            ; git clone https://github.com/KangLin/FreeRDP.git
+#            cd FreeRDP
+#            git checkout -b 2ad14696124b5a7689a323f56859efb329a3d25c 2ad14696124b5a7689a323f56859efb329a3d25c ;1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. ^
+#                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
+#                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
+#                -DWITH_SERVER=ON ^
+#                -DCHANNEL_URBDRC=OFF ^
+#                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#        )
 
     - name: Build libvncserver
       working-directory: ${{env.SOURCE_DIR}}
@@ -309,11 +309,6 @@ jobs:
             -DBUILD_LibVNCServer=OFF ^
             -DBUILD_FREERDP=ON ^
             -DLog4Qt_DIR=${{env.INSTALL_DIR}}/lib/cmake/Log4Qt ^
-            -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3 ^
-            -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ^
-            -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR3 ^
-            -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3 ^
-            -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3 ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^

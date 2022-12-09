@@ -4,7 +4,7 @@ CParameterClient::CParameterClient(QObject *parent)
     : CParameter(parent),
       m_bHookKeyboard(true),
       m_bSavePassword(false),
-      m_PromptType(PromptType::First),
+      m_PromptType(PromptType::No),
       m_nPromptCount(0),
       m_bViewPassowrd(false)
 {}
