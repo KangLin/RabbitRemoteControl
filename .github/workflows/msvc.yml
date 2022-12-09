@@ -343,7 +343,7 @@ jobs:
         if "5.12.12" == "${{matrix.qt_version}}" (
             ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
                 -f "update_windows.xml" ^
-                -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
+                -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
                 --pf RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
                 -m "${{env.RabbitRemoteControl_VERSION}}"
         )

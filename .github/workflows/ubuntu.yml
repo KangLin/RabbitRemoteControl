@@ -253,8 +253,9 @@ jobs:
         #sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
         /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
             -f "`pwd`/update_linux.xml" \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb";"https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb" \
             --md5 "${MD5SUM}" \
+            -pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
             -m "v${{env.RabbitRemoteControl_VERSION}}"
 
     - name: dump core
