@@ -46,7 +46,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.25
-      VCPKGGITCOMMITID: 251741475900c9a57549d80f1b5a5e30e63d1887
+      VCPKGGITCOMMITID: 56765209ec0e92c58a5fd91aa09c46a16d660026
       #VCPKG_OVERLAY_PORTS: ${{github.workspace}}\vcpkg\ports
       qt_modules: '${{matrix.qt_modules}}'
       VCINSTALLDIR: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC
