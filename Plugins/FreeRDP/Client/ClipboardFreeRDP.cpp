@@ -113,11 +113,11 @@ void CClipboardFreeRDP::slotClipBoardChanged()
                     << data << m_lstClipboardMimeDataId;//*/
             return;
         }
-        //*
     }
 
-    qDebug(FreeRDPClipboard)  << "CClipboardFreeRdp::slotClipBoardChanged:"
-                              << data << m_lstClipboardMimeDataId;//*/
+    //*
+    qDebug(FreeRDPClipboard) << "CClipboardFreeRdp::slotClipBoardChanged:"
+                             << data << m_lstClipboardMimeDataId;//*/
     m_lstClipboardMimeDataId.clear();
     SendClientFormatList(m_pCliprdrClientContext);
 }
@@ -135,7 +135,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_capabilities(
     const CLIPRDR_CAPABILITY_SET* caps;
 	const CLIPRDR_GENERAL_CAPABILITY_SET* generalCaps;
 	const BYTE* capsPtr = (const BYTE*)capabilities->capabilitySets;
-	
+
 	for (UINT32 i = 0; i < capabilities->cCapabilitiesSets; i++)
 	{
 		caps = (const CLIPRDR_CAPABILITY_SET*)capsPtr;
@@ -198,7 +198,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
         qCritical(FreeRDPClipboard) << "Send Client Capabilities fail";
         return nRet;
     }
-    
+
     // Send client formats
     return SendClientFormatList(context);
 }
