@@ -990,7 +990,11 @@ void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers
     // Convert to rdp scan code freerdp/scancode.h
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
+#if FreeRDP_VERSION_MAJOR >= 3
+        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, true, false, k);
+#else
         freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, true, k);
+#endif
 }
 
 void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
@@ -999,5 +1003,9 @@ void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifie
     if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
+#if FreeRDP_VERSION_MAJOR >= 3
+        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, false, k);
+#else
         freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, k);
+#endif
 }

@@ -72,7 +72,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2022_12_23
+        key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2022_12_24
 
     - name: run-vcpkg
       uses: lukka/run-vcpkg@v7
@@ -111,7 +111,7 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             ; git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b 2809e14064aa70405aeeefde603453afd1e53075 2809e14064aa70405aeeefde603453afd1e53075 ;1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
+            git checkout -b bee2873b5213cd9697eb583ade765a40ba9bc473 bee2873b5213cd9697eb583ade765a40ba9bc473 ;1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
