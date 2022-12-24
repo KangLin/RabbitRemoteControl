@@ -6,8 +6,9 @@
 #include "FrmUpdater/FrmUpdater.h"
 #endif
 #include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
 #include "FrmStyle/FrmStyle.h"
-#include "RabbitCommonLog.h"
+
 #ifdef HAVE_ABOUT
 #include "DlgAbout/DlgAbout.h"
 #endif
@@ -307,17 +308,17 @@ void MainWindow::on_actionUpdate_U_triggered()
 
 void MainWindow::on_actionOpen_log_configure_file_triggered()
 {
-    RabbitCommon::OpenLogConfigureFile();
+    RabbitCommon::CTools::OpenLogConfigureFile();
 }
 
 void MainWindow::on_actionLog_directory_triggered()
 {
-    RabbitCommon::OpenLogFolder();
+    RabbitCommon::CTools::OpenLogFolder();
 }
 
 void MainWindow::on_actionOpen_Log_file_triggered()
 {
-    RabbitCommon::OpenLogFile();
+    RabbitCommon::CTools::OpenLogFile();
 }
 
 void MainWindow::on_actionToolBar_T_triggered(bool checked)
