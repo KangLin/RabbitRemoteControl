@@ -46,7 +46,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.25
-      VCPKGGITCOMMITID: 56765209ec0e92c58a5fd91aa09c46a16d660026
+      VCPKGGITCOMMITID: 6adca01a3fadca0cc0b80f03ec57c7c3a0be5c02
       #VCPKG_OVERLAY_PORTS: ${{github.workspace}}\vcpkg\ports
       qt_modules: '${{matrix.qt_modules}}'
       VCINSTALLDIR: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC
@@ -340,13 +340,11 @@ jobs:
         md5sum RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip > RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip.md5sum
         makensis Install.nsi
         md5sum RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe > RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5sum
-        if "5.12.12" == "${{matrix.qt_version}}" (
-            ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
+        ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
                 -f "update_windows.xml" ^
                 -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
                 --pf RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
                 -m "${{env.RabbitRemoteControl_VERSION}}"
-        )
 
     - name: update 
       uses: actions/upload-artifact@v2

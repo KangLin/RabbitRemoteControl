@@ -27,7 +27,7 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       RabbitRemoteControl_VERSION: v0.0.25
-      VCPKGGITCOMMITID: 56765209ec0e92c58a5fd91aa09c46a16d660026
+      VCPKGGITCOMMITID: 6adca01a3fadca0cc0b80f03ec57c7c3a0be5c02
       qt_modules: '${{matrix.qt_modules}}'
 
     steps:
