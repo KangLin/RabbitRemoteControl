@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
     if(!icon.isNull())
     {
         auto sizeList = icon.availableSizes();
-        if(sizeList.isEmpty()){
+        if(!sizeList.isEmpty()){
             QPixmap p = icon.pixmap(*sizeList.begin());
             pUpdate->SetTitle(p.toImage());
         }
