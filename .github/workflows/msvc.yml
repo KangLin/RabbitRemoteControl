@@ -363,7 +363,7 @@ jobs:
       with:
         prerelease: true
         body: |
-           [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
+          [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
         files: |
           ${{github.workspace}}\build\RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip
           ${{github.workspace}}\build\RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip.md5sum

@@ -159,8 +159,10 @@ int CConnectFreeRDP::OnClean()
 
 /*!
  * \~chinese 插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。
+ *
  * \~english Specific operation processing of plug-in connection.
  *           Because of it is a non-Qt event loop, so wait in here.
+ *
  * \~
  * \return 
  *       \li >= 0: continue, Interval call time (msec)
