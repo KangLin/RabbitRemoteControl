@@ -11,7 +11,12 @@ message("FreeRDP-Client_FOUND:${FreeRDP-Client_VERSION}")
 
 if(NOT (FreeRDP_FOUND AND WinPR_FOUND AND FreeRDP-Client_FOUND))
     message("Don't find FreeRDP ${FreeRDPVERSION}. Please set BUILD_FREERDP=OFF "
-        "or install FreeRDP ${FreeRDPVERSION} from https://github.com/FreeRDP/FreeRDP")
+        "or install FreeRDP ${FreeRDPVERSION} from https://github.com/FreeRDP/FreeRDP\n"
+        "or set:\n"
+        "    -DFreeRDP_DIR:PATH=${INSTALL}/lib/cmake/FreeRDP3\n"
+        "    -DFreeRDP-Client_DIR:PATH=${INSTALL}/lib/cmake/FreeRDP-Client3\n"
+        "    -DWinPR_DIR:PATH=${INSTALL}/lib/cmake/WinPR3"
+    )
     return()
 endif()
 if(FreeRDP_VERSION VERSION_LESS FreeRDPVERSION)
@@ -33,6 +38,11 @@ find_package(FreeRDP-Server ${FreeRDP_VERSION})
 message("FreeRDP-Server_FOUND:${FreeRDP-Server_VERSION}")
 
 if(NOT (FreeRDP-Shadow_FOUND AND FreeRDP-Server_FOUND))
+    message("Don't find FreeRDP server\n"
+            "Set:\n"
+            "    -DFreeRDP-Server_DIR=\n"
+            "    -DFreeRDP-Shadow_DIR="
+    )
     return()
 endif()
 
