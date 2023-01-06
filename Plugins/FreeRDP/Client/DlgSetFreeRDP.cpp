@@ -4,11 +4,13 @@
 #include "ui_DlgSetFreeRDP.h"
 #include <QApplication>
 #include <QScreen>
+#include <QFileSystemModel>
 
 CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSetFreeRDP),
-    m_pSettings(pSettings)
+    m_pSettings(pSettings),
+    m_pFileModel(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
@@ -43,6 +45,43 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->cbColorDepth->addItem(tr("16 bits"), 16);
     ui->cbColorDepth->addItem(tr("24 bits"), 24);
     ui->cbColorDepth->addItem(tr("32 bits"), 32);
+
+    QString szRdpSndParamters
+                     = tr("- [sys:<sys>,][dev:<dev>,][format:<format>,][rate:<rate>,][channel:<channel>]\n"
+                     #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WINRT)
+                          "- sys:winmm"
+                     #elif defined(Q_OS_IOS)
+                          "- sys:ios\n"
+                          "- sys:mac"
+                     #elif defined (Q_OS_ANDROID)
+                          "- sys:opensles" 
+                     #elif defined (Q_OS_LINUX) || defined (Q_OS_UNIX)
+                          "- sys:alsa\n" 
+                          "- sys:oss\n"
+                          "- sys:oss,dev:1,format:1\n"
+                          "- sys:sndio"
+                     #endif
+                         );
+    QString szRdpSnd = tr("Options for redirection of audio output:\n") + szRdpSndParamters;
+    ui->leRdpSnd->setToolTip(szRdpSnd);
+    ui->leRdpSnd->setStatusTip(szRdpSnd);
+    ui->leRdpSnd->setWhatsThis(szRdpSnd);
+    
+    QString szAudin = tr("Options for redirection of audio input:\n") + szRdpSndParamters;
+    ui->leAudin->setToolTip(szAudin);
+    ui->leAudin->setStatusTip(szAudin);
+    ui->leAudin->setWhatsThis(szAudin);
+    
+    m_pFileModel= new QFileSystemModel();
+    m_pFileModel->setNameFilterDisables(false);
+    m_pFileModel->setFilter(QDir::Drives | QDir::Dirs | QDir::NoDotAndDotDot);
+    m_pFileModel->setRootPath("");
+    ui->tvDrive->setModel(m_pFileModel);
+    ui->tvDrive->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    int count = m_pFileModel->columnCount();
+    for(int i = 1; i < count; i++)
+        ui->tvDrive->hideColumn(i);
+   
 }
 
 CDlgSetFreeRDP::~CDlgSetFreeRDP()
@@ -87,6 +126,29 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     freerdp_settings_set_uint32(m_pSettings->m_pSettings, FreeRDP_ColorDepth,
                                ui->cbColorDepth->currentData().toInt());
     m_pSettings->SetReconnectInterval(ui->sbReconnect->value());
+
+    // Redirection
+    m_pSettings->SetRedirectionPrinter(ui->cbPrinter->isChecked());
+    m_pSettings->SetRedirectionSound(ui->cbRdpSnd->isChecked());
+    m_pSettings->SetRedirectionSoundParamters(ui->leRdpSnd->text());
+    m_pSettings->SetRedirectionMicrophone(ui->cbAudin->isChecked());
+    m_pSettings->SetRedirectionMicrophoneParamters(ui->leAudin->text());
+    
+    QStringList lstDrives;
+    //获取选中的行，默认获取选中行的第一列数据（0），列的索引值和上面一样0、1、2、3......
+    QModelIndexList selected = ui->tvDrive->selectionModel()->selectedRows(0);
+    QList<QModelIndex>::iterator it;
+    QModelIndex modelIndex;
+    QString szPath;
+    for (it = selected.begin(); it != selected.end(); ++it)
+    {
+        modelIndex = *it;
+        szPath = m_pFileModel->filePath(modelIndex);
+        if(!szPath.isEmpty())
+            lstDrives.append(szPath);
+    }
+    m_pSettings->SetRedirectionDrives(lstDrives);
+
     accept();
 }
 
@@ -144,8 +206,25 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
                                             FreeRDP_ColorDepth));
     if(-1 != nIndex)
         ui->cbColorDepth->setCurrentIndex(nIndex);
-    
+
     ui->sbReconnect->setValue(m_pSettings->GetReconnectInterval());
+
+    // Redirection
+    ui->cbPrinter->setChecked(m_pSettings->GetRedirectionPrinter());
+    ui->cbRdpSnd->setChecked(m_pSettings->GetRedirectionSound());
+    ui->leRdpSnd->setText(m_pSettings->GetRedirectionSoundParamters());
+    ui->cbAudin->setChecked(m_pSettings->GetRedirectionMicrophone());
+    ui->leAudin->setText(m_pSettings->GetRedirectionMicrophoneParamters());
+
+    QStringList lstDrives = m_pSettings->GetRedirectionDrives();
+    foreach(auto path, lstDrives)
+    {
+        QModelIndex index;
+        if(!path.isEmpty()) {
+            index = m_pFileModel->index(path);
+            ui->tvDrive->setCurrentIndex(index);
+        }
+    }
 }
 
 void CDlgSetFreeRDP::on_rbFullScreen_clicked(bool checked)

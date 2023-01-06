@@ -127,16 +127,16 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 
 #### Function list
 
-|        |Server|Client|Desktop  |Clipboard|File|Audio|P2P|Proxy|Terminal|
-|------- |:----:|:----:|:-------:|:-------:|:--:|:---:|:-:|:---:|:----:|
-|  RDP   |  ✓   |  ✓   |  ✓      |    ✓    | …… |    |    |    |  ❌  |
-|  RFB   | ……   |  ✓   |  ✓      |    ✓    |     | ❌  |✓   |  ✓ |      |
-|Spice   |      |      |         |         |     |    |    |    |      |
-|Scrcpy  |      |      |         |         |     |    |    |    |      |
-|Terminal|      | ⭕   | ❌       |✓        | ❌   | ❌  |    |    |      |
-|TELNET  |      | ⭕   | ❌       |✓        | ❌   | ❌  |    |    |      |
-|  SSH   |      | ⭕   | ❌       |✓        |     | ❌  |    |    |      |
-|  FTP   |      |      | ❌       |         |     |❌  |    |    |      |
+|        |Server|Client|Desktop  |Clipboard|File|Audio|Redirection|P2P|Proxy|Terminal|
+|:-----:|:---:|:---:|:----:|:--:|:-----:|:------:|:-----:|:-:|:--:|:-:|
+|  RDP  |  ✓  |  ✓  |  ✓   |✓   | ……    |  ✓     | ……    |   |    | ❌ |
+|  RFB  | ……  |  ✓  |  ✓   |✓   |       | ❌     | ❌    |✓  |  ✓ |   |
+|Spice  |     |     |      |    |       |        | ❌    |   |    |   |
+|Scrcpy |     |     |      |    |       |        |  ❌   |   |    |   |
+|Terminal|     | ⭕  | ❌  |✓   | ❌    | ❌    | ❌    |    |   |    |
+|TELNET |     | ⭕  | ❌  |✓   | ❌    | ❌    |  ❌    |   |   |    |
+|  SSH  |     | ⭕  | ❌  |✓   |       | ❌     | ❌    |   |    |   |
+|  FTP  |     |     | ❌  |    |       | ❌     |  ❌   |   |   |    |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
@@ -266,18 +266,18 @@ Some of them are:
 - [x] Peer-to-Peer (P2P)remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
 - [ ] File Transfer Protocol(FTP)
 
-|            |Server|Client|Desktop|Clipboard|File|Audio|P2P|Proxy|Terminal|
-|:----------:|:----:|:-----:|:------:|:------:|:--:|:---:|:--:|:--:|:--:|
-|RabbitVNC   | ✓    |✓      |✓       |    ✓   |    |  ❌  |✓   |  ✓ |    |
-|TigerVNC    | ✓    |✓      |✓       |    ✓   |    |  ❌  |✓   |  ✓ |    |
-|LibVNCServer| ✓    |✓      |✓       |    ✓   |    |  ❌  |    |    |    |
-|RDP         | ✓    |✓      |✓       |    ✓   | …… |     |    |    | ❌  |
-|Spice       |      |       |        |        |    |     |    |    |    |
-|Scrcpy      |      |       |        |        |    |     |    |    |    |
-|Terminal    |      |⭕     |  ❌     |✓       |    |  ❌  |    |    |    |
-|SSH         |      |⭕     |  ❌     |✓       |    |  ❌  |    |    |    |
-|TELNET      |      |⭕     |  ❌     |✓       |❌   |  ❌  |    |    |    |
-|FTP         |      |       |  ❌     |        |    |  ❌  |    |    |    |
+|            |Server|Client|Desktop|Clipboard|File|Audio|Redirection|P2P|Proxy|Terminal|
+|:----------:|:----:|:-----:|:------:|:------:|:--:|:---:|:--------:|:--:|:--:|:--:|
+|RabbitVNC   | ✓    |✓      |✓       |    ✓   |    |  ❌ |    ❌    |✓   |  ✓ |    |
+|TigerVNC    | ✓    |✓      |✓       |    ✓   |    |  ❌  |   ❌    |✓   |  ✓ |    |
+|LibVNCServer| ✓    |✓      |✓       |    ✓   |    |  ❌  |   ❌    |    |    |    |
+|RDP         | ✓    |✓      |✓       |    ✓   | …… |  ✓   |  ……     |    |    | ❌ |
+|Spice       |      |       |        |        |    |      |    ❌   |    |    |    |
+|Scrcpy      |      |       |        |        |    |      |    ❌   |    |    |    |
+|Terminal    |      |⭕    |  ❌     |✓       |    |  ❌  |    ❌  |    |    |    |
+|SSH         |      |⭕     |  ❌     |✓       |    |  ❌  |  ❌   |    |    |    |
+|TELNET      |      |⭕     |  ❌     |✓       |❌   |  ❌|   ❌   |    |    |    |
+|FTP         |      |       |  ❌     |        |    |  ❌  |  ❌   |    |    |    |
 
 Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 

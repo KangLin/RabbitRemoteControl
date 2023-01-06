@@ -22,12 +22,16 @@
 #include "ConvertKeyCode.h"
 #include "DlgGetUserPasswordFreeRDP.h"
 
+#include <memory.h>
 #include <QDebug>
 #include <QApplication>
 #include <QScreen>
 #include <QInputDialog>
 #include <QMutexLocker>
 #include <QPainter>
+#include <QPrinterInfo>
+#include <QSerialPort>
+#include <QSerialPortInfo>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QSoundEffect>
 #else
@@ -99,15 +103,22 @@ int CConnectFreeRDP::OnInit()
 {
     qDebug(FreeRDP) << "CConnectFreeRdp::OnInit()";
     int nRet = 0;
+    BOOL status = false;
     freerdp* instance = m_pContext->Context.instance;
-    
+
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
     if(nullptr == settings) return -1;
-    
+
+    //Load channel
+    RedirectionSound();
+    RedirectionMicrophone();
+    RedirectionDrive();
+    RedirectionPrinter();
+    RedirectionSerial();
+
     freerdp_client_start(&m_pContext->Context);
-    
-    BOOL status = freerdp_connect(instance);
+    status = freerdp_connect(instance);
     if (!status)
 	{
 		if (freerdp_get_last_error(instance->context) == FREERDP_ERROR_AUTHENTICATION_FAILED)
@@ -1010,4 +1021,194 @@ void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifie
 #else
         freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, k);
 #endif
+}
+
+int CConnectFreeRDP::RedirectionSound()
+{
+    if(!m_pParamter->GetRedirectionSound())
+        return 0;
+
+    freerdp* instance = m_pContext->Context.instance;
+    
+    rdpSettings* settings = instance->context->settings;
+    Q_ASSERT(settings);
+
+    // Sound:
+    // rdpsnd channel paramters format see: rdpsnd_process_addin_args in FreeRDP/channels/rdpsnd/client/rdpsnd_main.c
+    // rdpsnd devices see: rdpsnd_process_connect in FreeRDP/channels/rdpsnd/client/rdpsnd_main.c
+    // Format ag: /rdpsnd:sys:oss,dev:1,format:1
+    //
+    size_t count = 0;
+    union
+    {
+        char** p;
+        const char** pc;
+    } ptr;
+    ptr.p = CommandLineParseCommaSeparatedValuesEx("rdpsnd",
+              m_pParamter->GetRedirectionSoundParamters().toStdString().c_str(),
+                                                   &count);
+    BOOL status = freerdp_client_add_static_channel(settings, count,
+                                                #if FreeRDP_VERSION_MAJOR < 3
+                                                    ptr.p
+                                                #else
+                                                    ptr.pc
+                                                #endif
+                                                    );
+    if (status)
+    {
+        status = freerdp_client_add_dynamic_channel(settings, count,
+                                            #if FreeRDP_VERSION_MAJOR < 3
+                                                    ptr.p
+                                            #else
+                                                    ptr.pc
+                                            #endif
+                                                    );
+    }
+    
+    if(!status)
+    {
+        qCritical(FreeRDP) << "Load rdpsnd fail";
+        return -1;
+    }
+    
+    return 0;
+}
+
+int CConnectFreeRDP::RedirectionMicrophone()
+{
+    if(!m_pParamter->GetRedirectionMicrophone())
+        return 0;
+
+    freerdp* instance = m_pContext->Context.instance;
+
+    rdpSettings* settings = instance->context->settings;
+    Q_ASSERT(settings);
+    
+    // Microphone:
+    // Audin channel paramters format see: audin_process_addin_args in FreeRDP/channels/audin/client/audin_main.c
+    // Audin channel devices see: audin_DVCPluginEntry in FreeRDP/channels/audin/client/audin_main.c
+    size_t count = 0;
+    union
+    {
+        char** p;
+        const char** pc;
+    } ptr;
+    ptr.p = CommandLineParseCommaSeparatedValuesEx("audin",
+         m_pParamter->GetRedirectionMicrophoneParamters().toStdString().c_str(),
+                                                   &count);
+    BOOL status = freerdp_client_add_dynamic_channel(settings, count,
+                                                 #if FreeRDP_VERSION_MAJOR < 3
+                                                         ptr.p
+                                                 #else
+                                                         ptr.pc
+                                                 #endif
+                                                     );
+    
+    if(!status)
+    {
+        qCritical(FreeRDP) << "Load audin fail";
+        return -1;
+    }
+    
+    return 0;
+}
+
+int CConnectFreeRDP::RedirectionDrive()
+{
+    QStringList lstDrives = m_pParamter->GetRedirectionDrives();
+    if(lstDrives.isEmpty())
+        return 0;
+
+    freerdp* instance = m_pContext->Context.instance;
+    rdpSettings* settings = instance->context->settings;
+    Q_ASSERT(settings);
+
+    foreach (auto drive, lstDrives) {
+        // Format: /drive:name,path
+        char* pDrive = _strdup(drive.toStdString().c_str());
+        const char* argvDrive[] = {"drive", pDrive};
+        int count = sizeof(argvDrive) / sizeof(const char*);
+        BOOL status = freerdp_client_add_device_channel(settings, count,
+                                                #if FreeRDP_VERSION_MAJOR < 3
+                                                    (char**)
+                                                #endif
+                                                        argvDrive);
+        if(pDrive) free(pDrive);
+        if(!status)
+        {
+            qCritical(FreeRDP) << "Load drive fail";
+            return -1;
+        }
+    }
+
+    return 0;
+}
+
+int CConnectFreeRDP::RedirectionPrinter()
+{
+    if(!m_pParamter->GetRedirectionPrinter())
+        return 0;
+
+    freerdp* instance = m_pContext->Context.instance;
+    rdpSettings* settings = instance->context->settings;
+    Q_ASSERT(settings);
+    // 获取系统的打印机列表，并在combobox中显示
+    QStringList printerList = QPrinterInfo::availablePrinterNames();
+    if(printerList.isEmpty())
+    {
+        qCritical(FreeRDP) << "The printer is empty";
+        return -1;
+    }
+    qDebug(FreeRDP) << printerList;
+
+    // Format: /printer:<device>,<driver>,[default]
+    const char* argvPrinter[] = {"printer",  nullptr, nullptr};
+    int count = sizeof(argvPrinter) / sizeof(const char*);
+    BOOL status = freerdp_client_add_device_channel(settings, count,
+                                                #if FreeRDP_VERSION_MAJOR < 3
+                                                    (char**)
+                                                #endif
+                                                    argvPrinter);
+    if(!status) {
+        qCritical(FreeRDP) << "Load printer fail";
+        return -2;
+    }
+
+    return 0;
+}
+
+int CConnectFreeRDP::RedirectionSerial()
+{
+    freerdp* instance = m_pContext->Context.instance;
+    rdpSettings* settings = instance->context->settings;
+    Q_ASSERT(settings);
+
+    QList<QSerialPortInfo> lstSerial = QSerialPortInfo::availablePorts();
+
+    foreach (auto serial, lstSerial) {
+        // Format: /serial:<name>,<device>,[SerCx2|SerCx|Serial],[permissive]
+        //     ag: /serial:COM1,/dev/ttyS0
+        qDebug(FreeRDP) << "systemLocation:" << serial.systemLocation()
+                        << "portName:" << serial.portName()
+                        << "serialNumber:" << serial.serialNumber();
+        char* pSerial = _strdup(serial.systemLocation().toStdString().c_str());
+        char* pName = _strdup(("RDP_COM" + serial.serialNumber()).toStdString().c_str());
+        const char* argvSerial[] = {"serial", pName, pSerial};
+        int count = sizeof(argvSerial) / sizeof(const char*);
+        BOOL status = freerdp_client_add_device_channel(settings, count,
+                                                #if FreeRDP_VERSION_MAJOR < 3
+                                                    (char**)
+                                                #endif
+                                                        argvSerial);
+        if(pSerial) free(pSerial);
+        if(pName) free(pName);
+
+        if(!status)
+        {
+            qCritical(FreeRDP) << "Load drive fail";
+            return -1;
+        }
+    }
+
+    return 0;
 }

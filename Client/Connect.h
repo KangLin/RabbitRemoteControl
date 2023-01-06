@@ -137,6 +137,7 @@ protected Q_SLOTS:
      * \~chinese 一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。
      *   如果 CConnect 没有一个非 Qt 事件循环（就是普通的循环处理），必须重载它。
      *   参见 CConnectTigerVnc::slotTimeOut()
+     *
      * \~english a non-Qt event loop (that is, normal loop processing)，
      *   It call OnProcess(), and start timer.
      *   If CConnect don not have a non-Qt event loop, must override it.

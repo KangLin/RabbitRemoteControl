@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>362</height>
+    <width>536</width>
+    <height>438</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,6 +54,9 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
+     <property name="movable">
+      <bool>false</bool>
+     </property>
      <widget class="QWidget" name="Server">
       <attribute name="title">
        <string>Server</string>
@@ -87,7 +90,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="eye-on"/>
+            <iconset theme="eye-on">
+             <normaloff>.</normaloff>.</iconset>
            </property>
           </widget>
          </item>
@@ -142,9 +146,9 @@
        <item row="6" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
-          <widget class="QCheckBox" name="cbClipboard">
+          <widget class="QCheckBox" name="cbShowServerName">
            <property name="text">
-            <string>Enable clipboard</string>
+            <string>Show server name</string>
            </property>
           </widget>
          </item>
@@ -254,16 +258,9 @@
          </item>
         </layout>
        </item>
-       <item row="7" column="0">
-        <widget class="QCheckBox" name="cbShowServerName">
-         <property name="text">
-          <string>Show server name</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="Display">
       <attribute name="title">
        <string>Display</string>
       </attribute>
@@ -341,6 +338,114 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="LocalResource">
+      <attribute name="title">
+       <string>Local resource</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Audio</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="leRdpSnd"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="cbRdpSnd">
+            <property name="text">
+             <string>Play remote audio on this computer</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="cbAudin">
+            <property name="text">
+             <string>Use this computer's microphone on the remote computer</string>
+            </property>
+            <property name="autoRepeat">
+             <bool>false</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>false</bool>
+            </property>
+            <property name="tristate">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLineEdit" name="leAudin"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="cbPrinter">
+         <property name="toolTip">
+          <string>Printer: Redirection the local printers to the remote computer</string>
+         </property>
+         <property name="statusTip">
+          <string>Printer: Redirection the local printers to the remote computer</string>
+         </property>
+         <property name="whatsThis">
+          <string>Printer: Redirection the local printers to the remote computer</string>
+         </property>
+         <property name="text">
+          <string>Printer: Redirection the local printers to the remote computer</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="cbClipboard">
+         <property name="toolTip">
+          <string>Clipboard: Redirection the clipboard</string>
+         </property>
+         <property name="statusTip">
+          <string>Clipboard: Redirection the clipboard</string>
+         </property>
+         <property name="whatsThis">
+          <string>Clipboard: Redirection the clipboard</string>
+         </property>
+         <property name="text">
+          <string>Clipboard: Redirection the clipboard</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="toolTip">
+          <string>Redirect the following selected drives to the remote computer</string>
+         </property>
+         <property name="statusTip">
+          <string>Redirect the following selected drives to the remote computer</string>
+         </property>
+         <property name="whatsThis">
+          <string>Redirect the following selected drives to the remote computer</string>
+         </property>
+         <property name="title">
+          <string>Drive: Redirect the following selected drives to the remote computer</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QTreeView" name="tvDrive">
+            <property name="selectionMode">
+             <enum>QAbstractItemView::MultiSelection</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
   </layout>
@@ -353,7 +458,6 @@
   <tabstop>lePassword</tabstop>
   <tabstop>cbSavePassword</tabstop>
   <tabstop>cbOnlyView</tabstop>
-  <tabstop>cbClipboard</tabstop>
   <tabstop>pbOk</tabstop>
   <tabstop>pbCancel</tabstop>
   <tabstop>rbFullScreen</tabstop>

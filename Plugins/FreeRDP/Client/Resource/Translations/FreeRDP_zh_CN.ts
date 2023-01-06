@@ -4,95 +4,95 @@
 <context>
     <name>CConnectFreeRDP</name>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="119"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="131"/>
         <source>freerdp_connect connect to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="123"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="135"/>
         <source> fail</source>
         <translation> 失败</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="129"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="141"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="468"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="501"/>
         <source>Logon error info [</source>
         <translation>登录错误信息 [</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="639"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="684"/>
         <source>Verify certificate</source>
         <translation>验证证书</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="641"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="690"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="686"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="735"/>
         <source>Host: %1; Port: %2</source>
         <translation>主机：%1; 端口：%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="642"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="691"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="687"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="736"/>
         <source>Common name: </source>
         <translation>公共名称：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="643"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="688"/>
         <source>Subject: </source>
         <translation>主题：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="644"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="689"/>
         <source>Issuer: </source>
         <translation>发行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="645"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="690"/>
         <source>Fingerprint: </source>
         <translation>指纹：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="651"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="703"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="696"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="748"/>
         <source>Don&apos;t show again</source>
         <translation>不再显示</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="688"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="733"/>
         <source>Verify changed certificate</source>
         <translation>验证证书改变</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="692"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="737"/>
         <source>New subject: </source>
         <translation>新的主题：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="693"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="738"/>
         <source>New issuer: </source>
         <translation>新的发行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="694"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="739"/>
         <source>New fingerprint: </source>
         <translation>新的指纹：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="695"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="740"/>
         <source>Old subject: </source>
         <translation>旧的主题：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="696"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="741"/>
         <source>Old issuer: </source>
         <translation>旧的发行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="697"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="742"/>
         <source>Old fingerprint: </source>
         <translation>旧的指纹：</translation>
     </message>
@@ -163,131 +163,174 @@
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="59"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="62"/>
         <source>Server</source>
         <translation>服务器</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="67"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="70"/>
         <source>Password:</source>
         <translation>密码：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="102"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="105"/>
         <source>User name:</source>
         <translation>用户名：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="116"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="119"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="123"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="126"/>
         <source>Only View</source>
         <translation>仅查看</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="134"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="137"/>
         <source>Domain:</source>
         <translation>域名：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="148"/>
-        <source>Enable clipboard</source>
-        <translation>允许剪切板</translation>
+        <location filename="../../DlgSetFreeRDP.ui" line="343"/>
+        <source>Local resource</source>
+        <translation>本地资源</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="161"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="349"/>
+        <source>Audio</source>
+        <translation>音频</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="355"/>
+        <source>Use this computer&apos;s microphone on the remote computer</source>
+        <translation>在远程计算机上使用本计算机的麦克风</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="371"/>
+        <source>Play remote audio on this computer</source>
+        <translation>在本机上播放远程音频</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="384"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="387"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="390"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
+        <source>Printer: Redirection the local printers to the remote computer</source>
+        <translation>打印机：重定向本地打印机到远程计算机上</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="403"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="406"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="409"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="412"/>
+        <source>Clipboard: Redirection the clipboard</source>
+        <translation>剪切板：重定向剪切板</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="419"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="422"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="425"/>
+        <source>Redirect the following selected drives to the remote computer</source>
+        <translation>重定向下列选中的驱动器到远程计算机上</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="428"/>
+        <source>Drive: Redirect the following selected drives to the remote computer</source>
+        <translation>驱动器：重定向下列选中的驱动器到远程计算机上</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="164"/>
         <source>Reconnect interval:</source>
         <translation>重连间隔：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="174"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="180"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="177"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="183"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect interval&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t 重连&lt;/p&gt;&lt;p&gt;&amp;gt;0: 重连间隔&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="177"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="180"/>
         <source>Reconnect interval</source>
         <translation>重连间隔</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="194"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="197"/>
         <source>Server:</source>
         <translation>服务器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="208"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="211"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="239"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="242"/>
         <source>Name:</source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="246"/>
         <location filename="../../DlgSetFreeRDP.ui" line="249"/>
         <location filename="../../DlgSetFreeRDP.ui" line="252"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="255"/>
         <source>Connecter name</source>
         <translation>连接名称</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="261"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="151"/>
         <source>Show server name</source>
         <translation>显示服务器名</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="269"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="265"/>
         <source>Display</source>
         <translation>显示</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="275"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="271"/>
         <source>Remote desktop size:</source>
         <translation>远程桌面尺寸：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="283"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="38"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="279"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="40"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="294"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="290"/>
         <source>Select size:</source>
         <translation>选择尺寸：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="306"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="302"/>
         <source>Use all local monitors for remote sessions</source>
         <translation>将本地所有监视器用于远程会话</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="318"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="314"/>
         <source>Remote color depth:</source>
         <translation>远程颜色深度：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="42"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="44"/>
         <source>8 bits</source>
         <translation>8 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="43"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
         <source>16 bits</source>
         <translation>16 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="44"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="46"/>
         <source>24 bits</source>
         <translation>24 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="47"/>
         <source>32 bits</source>
         <translation>32 比特</translation>
     </message>
@@ -295,12 +338,12 @@
 <context>
     <name>CPluginFreeRDP</name>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="31"/>
+        <location filename="../../PluginFreeRDP.cpp" line="33"/>
         <source>Free remote desktop</source>
         <translation>自由远程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="36"/>
+        <location filename="../../PluginFreeRDP.cpp" line="38"/>
         <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
         <translation>RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
     </message>

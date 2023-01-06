@@ -20,7 +20,7 @@ jobs:
             qt_version: 6.2.4
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
-            qt_modules: 'qtwebengine qtscxml qtmultimedia qtimageformats qtwebchannel'
+            qt_modules: 'qtwebengine qtscxml qtmultimedia qtimageformats qtwebchannel qtserialport qtserialbus'
 
           - triplet: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142

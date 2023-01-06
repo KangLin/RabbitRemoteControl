@@ -14,8 +14,13 @@ protocol using [FreeRDP](https://github.com/FreeRDP/FreeRDP).
 #### Client
 
 - [x] Remote desktop
-- [x] Clipboard
-  - [x] Text
-  - [x] HTML
-  - [x] Picture
-  - [ ] File
+- [x] Redirection
+  - [x] Printer
+  - [x] Drive
+  - [x] Audio input and output
+  - [x] Clipboard
+    - [x] Text
+    - [x] HTML
+    - [x] Picture
+    - [ ] File
+  - [x] Serial

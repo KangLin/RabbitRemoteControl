@@ -6,6 +6,7 @@
 #include <QDialog>
 #include "freerdp/freerdp.h"
 #include "ConnecterFreeRDP.h"
+#include <QFileSystemModel>
 
 namespace Ui {
 class CDlgSetFreeRDP;
@@ -32,6 +33,7 @@ private:
 private:
     Ui::CDlgSetFreeRDP *ui;
     CParameterFreeRDP* m_pSettings;
+    QFileSystemModel* m_pFileModel;
     
     // QWidget interface
 protected:

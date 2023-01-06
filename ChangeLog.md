@@ -1,5 +1,13 @@
 ## Change Log
 
+### v0.0.26
++ FreeRDP:
+  + Redirection
+    + Audio input and output
+    + Drive
+    + Printer
+    + Serial
+
 ### v0.0.25
 + Modify CI for automation update
 + Modify translations

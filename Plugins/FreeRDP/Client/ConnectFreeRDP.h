@@ -25,7 +25,7 @@ public:
     static void cb_client_free(freerdp* instance, rdpContext* context);
     static int cb_client_start(rdpContext* context);
     static int cb_client_stop(rdpContext* context);
-    
+
     /**
      * Callback given to freerdp_connect() to process the pre-connect operations.
      * It will fill the rdp_freerdp structure (instance) with the appropriate options to use for the
@@ -75,7 +75,7 @@ public:
                                                   const char* old_fingerprint, DWORD flags);
     static BOOL cb_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
                                            BOOL isConsentMandatory, size_t length, const WCHAR* message);
-    
+
     static BOOL cb_begin_paint(rdpContext* context);
     static BOOL cb_end_paint(rdpContext* context);
     static BOOL cb_desktop_resize(rdpContext* context);
@@ -86,6 +86,12 @@ public:
 private:
     UINT32 GetImageFormat();
     BOOL UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h);
+
+    int RedirectionSound();
+    int RedirectionMicrophone();
+    int RedirectionDrive();
+    int RedirectionPrinter();
+    int RedirectionSerial();
 
     // CConnect interface
 public Q_SLOTS:

@@ -43,7 +43,7 @@ if(MINGW)
     set(FreeRDP_OPTIONS -fpermissive)
 endif()
 
-set(FreeRDP_QT_COMPONENTS Widgets Multimedia)
+set(FreeRDP_QT_COMPONENTS Widgets Multimedia PrintSupport SerialPort)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${FreeRDP_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${FreeRDP_QT_COMPONENTS})

@@ -92,7 +92,7 @@ jobs:
             debhelper fakeroot graphviz \
             qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools \
             qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev \
-            qtwebengine5-dev libqtermwidget5-0-dev \
+            qtwebengine5-dev libqtermwidget5-0-dev libqt5serialport5-dev\
             libutf8proc-dev libpam0g-dev \
             libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
             libx11-dev libxfixes-dev

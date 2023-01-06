@@ -44,12 +44,12 @@
         <translation>輸入加密鍵</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="123"/>
+        <location filename="../../DlgInputPassword.ui" line="122"/>
         <source>Yes(&amp;Y)</source>
         <translation>是(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../../DlgInputPassword.ui" line="130"/>
+        <location filename="../../DlgInputPassword.ui" line="129"/>
         <source>No(&amp;N)</source>
         <translation>否(&amp;N)</translation>
     </message>
