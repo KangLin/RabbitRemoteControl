@@ -1179,12 +1179,15 @@ int CConnectFreeRDP::RedirectionPrinter()
 
 int CConnectFreeRDP::RedirectionSerial()
 {
+    //TODO: FreeRDP don't support
+    return 0;
     freerdp* instance = m_pContext->Context.instance;
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
     QList<QSerialPortInfo> lstSerial = QSerialPortInfo::availablePorts();
 
+    int nNum = 1;
     foreach (auto serial, lstSerial) {
         // Format: /serial:<name>,<device>,[SerCx2|SerCx|Serial],[permissive]
         //     ag: /serial:COM1,/dev/ttyS0
@@ -1192,7 +1195,7 @@ int CConnectFreeRDP::RedirectionSerial()
                         << "portName:" << serial.portName()
                         << "serialNumber:" << serial.serialNumber();
         char* pSerial = _strdup(serial.systemLocation().toStdString().c_str());
-        char* pName = _strdup(("RDP_COM" + serial.serialNumber()).toStdString().c_str());
+        char* pName = _strdup(serial.portName().toStdString().c_str());
         const char* argvSerial[] = {"serial", pName, pSerial};
         int count = sizeof(argvSerial) / sizeof(const char*);
         BOOL status = freerdp_client_add_device_channel(settings, count,

@@ -283,7 +283,7 @@ jobs:
       with:
         prerelease: true
         body: |
-           [:cn: 修改日志](ChangeLog_zh_CN.md) [:us: Change log](ChangeLog.md)
+           [:cn: 修改日志](ChangeLog_zh_CN.md) [:cn: README](README_zh_CN.md) [:us: Change log](ChangeLog.md) [README](README.md)
         files: |
             ${{github.workspace}}/update_linux.xml
             ${{github.workspace}}/rabbitremotecontrol_*.deb
