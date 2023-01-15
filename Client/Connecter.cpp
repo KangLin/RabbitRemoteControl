@@ -190,19 +190,18 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
 {
     if(GetParameter())
     {
-        GetParameter()->m_pParameterViewe = pPara;
+        GetParameter()->m_pParameterClient = pPara;
         if(pPara)
             GetParameter()->SetSavePassword(pPara->GetSavePassword());
         return 0;
     } else {
-        qCritical(Client) << 
-                "If the parameters(CParameterConnecter or its derived classes) "
-                "requires a CParameterClient. "
-                "Please instantiate the parameters "
+        qCritical(Client) << "The CConnecter is not paramters! please create paramters."
                 "and call SetParameter in the "
                 << metaObject()->className() << "::" << metaObject()->className()
                 << "to set the parameters pointer. "
-                "If you are sure the parameter does not need CParameterClient. "
+                "Default set CParameterClient for the parameters of connecter (CParameterConnecter or its derived classes) "
+                "See: CClient::CreateConnecter."
+                "If you are sure the parameter of connecter does not need CParameterClient. "
                 "please overload the SetParameterClient in the"
                 << metaObject()->className() << ". don't set it";
         Q_ASSERT(false);

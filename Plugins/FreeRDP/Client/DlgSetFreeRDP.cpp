@@ -170,7 +170,7 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
     ui->spPort->setValue(m_pSettings->GetPort());
     ui->leUserName->setText(m_pSettings->GetUser());
     ui->lePassword->setText(m_pSettings->GetPassword());
-    ui->pbShow->setEnabled(m_pSettings->GetParameterViewer()->GetViewPassowrd());
+    ui->pbShow->setEnabled(m_pSettings->GetParameterClient()->GetViewPassowrd());
 
     ui->cbSavePassword->setChecked(m_pSettings->GetSavePassword());
     ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());

@@ -13,7 +13,7 @@ Q_DECLARE_LOGGING_CATEGORY(Client);
 
 CParameterConnecter::CParameterConnecter(QObject *parent)
     : CParameter(parent),
-    m_pParameterViewe(nullptr),
+    m_pParameterClient(nullptr),
     m_bShowServerName(true),
     m_nPort(0),
     m_bSavePassword(false),
@@ -26,9 +26,9 @@ CParameterConnecter::CParameterConnecter(QObject *parent)
     SetUser(RabbitCommon::CTools::GetCurrentUser());
 }
 
-CParameterClient* CParameterConnecter::GetParameterViewer()
+CParameterClient* CParameterConnecter::GetParameterClient()
 {
-    return m_pParameterViewe;
+    return m_pParameterClient;
 }
 
 bool CParameterConnecter::GetCheckCompleted()
@@ -296,8 +296,8 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
     RabbitCommon::CEncrypt e;
     
     std::string key;
-    if(GetParameterViewer())
-        key = GetParameterViewer()->GetEncryptKey().toStdString().c_str();
+    if(GetParameterClient())
+        key = GetParameterClient()->GetEncryptKey().toStdString().c_str();
     if(key.empty())
     {
         if(!e.Dencode(pwByte, password)
@@ -311,7 +311,7 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
     }
 
     qDebug(Client) << "Password don't dencode";
-    CDlgInputPassword d(GetParameterViewer()->GetViewPassowrd(), szTitle);
+    CDlgInputPassword d(GetParameterClient()->GetViewPassowrd(), szTitle);
     if(QDialog::Accepted != d.exec())
     {
         SetSavePassword(false);
@@ -323,7 +323,7 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
     if(nRet) return nRet;
     if(CDlgInputPassword::InputType::Password == t)
         return 0;
-    GetParameterViewer()->SetEncryptKey(password);
+    GetParameterClient()->SetEncryptKey(password);
     return LoadPassword(szTitle, szKey, password, set);
 }
 
@@ -342,24 +342,24 @@ int CParameterConnecter::SavePassword(const QString &szKey,
 
     QByteArray encryptPassword;
     RabbitCommon::CEncrypt e;
-    std::string key = GetParameterViewer()->GetEncryptKey().toStdString();
+    std::string key = GetParameterClient()->GetEncryptKey().toStdString();
     if(key.empty())
     {
-        switch (GetParameterViewer()->GetPromptType()) {
+        switch (GetParameterClient()->GetPromptType()) {
         case CParameterClient::PromptType::First:
-            if(GetParameterViewer()->GetPromptCount() >= 1)
+            if(GetParameterClient()->GetPromptCount() >= 1)
                 break;
-            GetParameterViewer()->SetPromptCount(
-                        GetParameterViewer()->GetPromptCount() + 1);
+            GetParameterClient()->SetPromptCount(
+                        GetParameterClient()->GetPromptCount() + 1);
         case CParameterClient::PromptType::Always:
         {
             QString szKey;
             CDlgInputPassword::InputType t = CDlgInputPassword::InputType::Encrypt;
-            CDlgInputPassword dlg(GetParameterViewer()->GetViewPassowrd());
+            CDlgInputPassword dlg(GetParameterClient()->GetViewPassowrd());
             if(QDialog::Accepted == dlg.exec())
                 dlg.GetValue(t, szKey);
             if(CDlgInputPassword::InputType::Encrypt == t)
-                GetParameterViewer()->SetEncryptKey(szKey);
+                GetParameterClient()->SetEncryptKey(szKey);
             break;
         }
         case CParameterClient::PromptType::No:

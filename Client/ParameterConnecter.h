@@ -22,6 +22,7 @@ class CConnecter;
  *    Please instantiate the parameters and call CConnecter::SetParameter
  *    in the constructor of the CConnecter derived class
  *    to set the parameters pointer.
+ *    Default set the CParameterClient for it. See: CClient::CreateConnecter .
  *    If you are sure to it does not need CParameterClient.
  *    please overload the CConnecter::SetParameterClient in the CConnecter derived class.
  *    don't set it.
@@ -33,6 +34,7 @@ class CConnecter;
  *  - 此接口仅由插件派生实现和使用。
  *  - 如果它或其派生类需要 CParameterClient 。
  *    请在 CConnecter 的派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
+ *    默认会自动为它设置 CParameterClient 。详见: CClient::CreateConnecter 。
  *    如果参数不需要 CParameterClient ，那请在 CConnecter 派生类
  *    重载 CConnecter::SetParameterClient 不设置 CParameterClient 。
  *
@@ -67,7 +69,7 @@ public:
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
 
-    CParameterClient* GetParameterViewer();
+    CParameterClient* GetParameterClient();
 
     /*!
      * \brief Check whether the parameters are complete
@@ -148,7 +150,7 @@ private:
     /*!
      * \see CClient::CreateConnecter CConnecter::SetParameterClient
      */
-    CParameterClient* m_pParameterViewe;
+    CParameterClient* m_pParameterClient;
     QString m_szName;
     QString m_szServerName;
     bool m_bShowServerName;

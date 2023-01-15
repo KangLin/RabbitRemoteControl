@@ -8,24 +8,29 @@
 /*!
  * \~english
  * \brief The CParameterClient class
- *        The parameters is valid in the Client.
+ *        The parameters is valid in the CClient and plugin.
  *        The application cannot access it directly,
  *        it can only be set via CClient::GetSettingsWidgets.
  * \note
- *  - The interface only is implemented and used by Client or plugin.
- *  - If the parameters(\ref CParameterConnecter or its derived class) requires a CParameterClient.
- *    Please instantiate the parameters and call CConnecter::SetParameter in the constructor of the CConnecter derived class to set the parameters.
+ *  - The interface only is implemented by CClient and used by plugin.
+ *  - If the parameters of connecter ( CParameterConnecter or its derived class ) requires a CParameterClient.
+ *    Please instantiate the parameters of connecter
+ *    and call CConnecter::SetParameter in the constructor of the CConnecter derived class to set the parameters.
+ *    Default set the CParameterClient for the paramters of connecter. See: CClient::CreateConnecter .
  *    If you are sure to the parameter does not need CParameterClient.
  *    please overload the CConnecter::SetParameterClient in the CConnecter derived class.
  *    don't set it.
  *
  * \~chinese
- * \brief 客户端参数接口。它包含客户端的参数。此类仅在客户端和插件内有效。
+ * \brief 客户端库(CClient)参数接口。它包含客户端库(CClient)的参数。
+ *        或者插件需要使用的参数的初始化值。此类仅在客户端库(CClient)和插件内有效。
  *        应用程序不能直接访问，只能通过 CClient::GetSettingsWidgets 进行设置。
  * \note
- *  - 此接口仅由插件派生实现和使用。
- *  - 如果参数( CParameterConnecter 或其派生类）需要 CParameterClient 。
- *    请在 CConnecter 派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
+ *  - 此接口仅由CClient实现，插件使用。
+ *  - 如果连接参数 ( CParameterConnecter 或其派生类 ) 需要 CParameterClient 。
+ *    请在 CConnecter 派生类的构造函数中实例化连接参数，
+ *    并调用 CConnecter::SetParameter 设置参数指针。
+ *    默认会自动为连接参数设置 CParameterClient 。详见: CClient::CreateConnecter 。
  *    如果参数不需要 CParameterClient ，
  *    那请在 CConnecter 派生类重载 CConnecter::SetParameterClient 不设置它。
  *
@@ -62,7 +67,8 @@ private:
                NOTIFY sigHookKeyboardChanged)
     
 
-//////////////// Password ////////////////
+    //////////////// Password ////////////////
+
 public:
     const QString &GetEncryptKey() const;
     void SetEncryptKey(const QString &newPassword);
@@ -115,7 +121,8 @@ Q_SIGNALS:
 private:
     bool m_bViewPassowrd;
     Q_PROPERTY(bool ViewPassowrd READ GetViewPassowrd WRITE SetViewPassowrd NOTIFY sigViewPassowrdChanged)
-//////////////// Password end ////////////////
+
+    //////////////// Password end ////////////////
 };
 
 #endif // CPARAMETERVIEWER_H

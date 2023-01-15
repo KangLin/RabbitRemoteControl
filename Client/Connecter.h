@@ -68,6 +68,7 @@ public:
      * \note 如果参数( CParameterConnecter 或其派生类）需要 CParameterClient 。
      *       请在其派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
      *       如果参数不需要 CParameterClient ，那请在其派生类重载 CConnecter::SetParameterClient 。
+     *
      * \~english
      * \param parent: The parent pointer must be specified as
      *        the corresponding CPluginClient derived class
