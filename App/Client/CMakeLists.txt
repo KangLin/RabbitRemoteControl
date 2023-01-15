@@ -13,6 +13,7 @@ set(SOURCE_FILES
     ParameterDlgSettings.cpp
     FavoriteView.cpp
     FavoriteMimeData.cpp
+    FrmOpenConnect.cpp
     )
 
 set(HEADER_FILES
@@ -25,12 +26,14 @@ set(HEADER_FILES
     ParameterDlgSettings.h
     FavoriteView.h
     FavoriteMimeData.h
+    FrmOpenConnect.h
     )
 
 set(SOURCE_UI_FILES
     mainwindow.ui
     FrmFullScreenToolBar.ui
     ParameterDlgSettings.ui
+    FrmOpenConnect.ui
     )
 
 if(WIN32)

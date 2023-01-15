@@ -7,6 +7,8 @@
     + Drive
     + Printer
     + Serial
++ App:
+  + Add open the dialog of connect settings 
 
 ### v0.0.25
 + Modify CI for automation update

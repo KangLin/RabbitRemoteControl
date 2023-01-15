@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -93,7 +93,8 @@
     </widget>
     <addaction name="menuConnect_C"/>
     <addaction name="actionDisconnect_D"/>
-    <addaction name="actionOpen_O"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionOpenRRCFile"/>
     <addaction name="actionClone"/>
     <addaction name="actionRecently_connected"/>
     <addaction name="separator"/>
@@ -121,7 +122,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionOpen_O"/>
+   <addaction name="actionOpen"/>
+   <addaction name="actionOpenRRCFile"/>
    <addaction name="actionClone"/>
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
@@ -279,7 +281,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-aspect-ratio"/>
+    <iconset theme="zoom-aspect-ratio">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Keep aspect ration zoom to window(&amp;K)</string>
@@ -357,7 +360,7 @@
     <string>Disconnect</string>
    </property>
   </action>
-  <action name="actionOpen_O">
+  <action name="actionOpenRRCFile">
    <property name="icon">
     <iconset theme="document-open">
      <normaloff>.</normaloff>.</iconset>
@@ -376,48 +379,6 @@
    </property>
    <property name="whatsThis">
     <string>Open rabbit remote control file</string>
-   </property>
-  </action>
-  <action name="actionDefaultStyle_D">
-   <property name="icon">
-    <iconset theme="preferences-desktop-theme">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Default(&amp;D)</string>
-   </property>
-   <property name="iconText">
-    <string>Default style</string>
-   </property>
-   <property name="toolTip">
-    <string>Default style</string>
-   </property>
-   <property name="statusTip">
-    <string>Default style</string>
-   </property>
-   <property name="whatsThis">
-    <string>Default style</string>
-   </property>
-  </action>
-  <action name="actionOpenStyle_O">
-   <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Open(&amp;O)</string>
-   </property>
-   <property name="iconText">
-    <string>Open style</string>
-   </property>
-   <property name="toolTip">
-    <string>Open style</string>
-   </property>
-   <property name="statusTip">
-    <string>Open style</string>
-   </property>
-   <property name="whatsThis">
-    <string>Open style</string>
    </property>
   </action>
   <action name="actionSend_ctl_alt_del">
@@ -657,6 +618,15 @@
    </property>
    <property name="text">
     <string>Style(&amp;S)</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset theme="folder-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Open(&amp;O)</string>
    </property>
   </action>
  </widget>

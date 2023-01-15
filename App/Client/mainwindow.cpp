@@ -19,6 +19,7 @@
 #include "Connecter.h"
 #include "FrmFullScreenToolBar.h"
 #include "ParameterDlgSettings.h"
+#include "FrmOpenConnect.h"
 
 #ifdef HAVE_ICE
     #include "Ice.h"
@@ -101,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
     tbRecent->setText(ui->actionRecently_connected->text());
     tbRecent->setToolTip(ui->actionRecently_connected->toolTip());
     tbRecent->setStatusTip(ui->actionRecently_connected->statusTip());
-    ui->toolBar->insertWidget(ui->actionOpen_O, tbRecent);
+    ui->toolBar->insertWidget(ui->actionOpen, tbRecent);
     
 #ifdef HAVE_UPDATE
     CFrmUpdater updater;
@@ -581,7 +582,7 @@ void MainWindow::slotOpenFile(const QString& szFile, bool bOpenSettings)
     Connect(p, bOpenSettings, szFile);
 }
 
-void MainWindow::on_actionOpen_O_triggered()
+void MainWindow::on_actionOpenRRCFile_triggered()
 {
     QString szFile = RabbitCommon::CDir::GetOpenFileName(this,
                      tr("Open rabbit remote control file"),
@@ -597,6 +598,15 @@ void MainWindow::on_actionOpen_O_triggered()
     }
 
     Connect(p, true);
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+    CFrmOpenConnect* p = new CFrmOpenConnect(&m_Client);
+    bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
+                    this, SLOT(slotOpenFile(const QString&, bool)));
+    Q_ASSERT(check);
+    p->show();
 }
 
 void MainWindow::slotConnect()
@@ -652,7 +662,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
         switch(nRet)
         {
         case QDialog::Rejected:
-            delete p;
+            p->deleteLater();
             return 0;
         case QDialog::Accepted:
             bSave = true;

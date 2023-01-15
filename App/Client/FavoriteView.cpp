@@ -33,7 +33,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
     
     m_pModel = new QStandardItemModel(this);
     setModel(m_pModel);
-    
+
     setContextMenuPolicy(Qt::CustomContextMenu);
     bool check = connect(this,
                          SIGNAL(customContextMenuRequested(const QPoint &)),

@@ -55,7 +55,8 @@ private Q_SLOTS:
     ///////// Connect ///////// 
     void slotUpdateParameters(CConnecter* pConnecter);
     void on_actionClone_triggered();
-    void on_actionOpen_O_triggered();
+    void on_actionOpen_triggered();
+    void on_actionOpenRRCFile_triggered();
     void slotOpenFile(const QString& szFile, bool bOpenSettings = false);
     void slotConnect();
     void slotConnected();

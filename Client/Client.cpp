@@ -78,7 +78,6 @@ int CClient::LoadPlugins()
 
 int CClient::FindPlugins(QDir dir, QStringList filters)
 {
-    QString szPath = dir.path();
     QString fileName;
     if(filters.isEmpty())
     {
@@ -90,7 +89,7 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
     }
     
     QString szCurrentPath = QDir::currentPath();
-    QStringList files = dir.entryList(filters, QDir::Files);
+    QStringList files = dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot);
     if(!files.isEmpty())
     {
         //This method is invalid
