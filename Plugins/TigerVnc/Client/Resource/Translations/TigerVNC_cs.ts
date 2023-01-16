@@ -80,190 +80,190 @@
     </message>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="123"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="344"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="343"/>
         <source>User name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="133"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="358"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="357"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="217"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="216"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="224"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="223"/>
         <source>Support windows resize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="199"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="198"/>
         <source>Show local cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="206"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="205"/>
         <source>Enable clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="174"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="173"/>
         <source>Shared</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="181"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="180"/>
         <source>Real time update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="188"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="187"/>
         <source>Only view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="91"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="305"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="304"/>
         <source>Server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="105"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="298"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="297"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="233"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="232"/>
         <source>Show server name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="240"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="239"/>
         <source>Ice:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="254"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="253"/>
         <source>Peer user:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="283"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="282"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="319"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="318"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="326"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="325"/>
         <source>Socks5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="333"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="332"/>
         <source>Http</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="384"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="383"/>
         <source>Compress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="390"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="389"/>
         <source>Color level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="396"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="395"/>
         <source>Full</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="403"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="402"/>
         <source>Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="410"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="409"/>
         <source>Meduim</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="417"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="416"/>
         <source>Very low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="439"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="438"/>
         <source>0=fast, 9=best</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="450"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="449"/>
         <source>Enable JPEG compress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="464"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="463"/>
         <source>0=Worst, 9=best</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="473"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="472"/>
         <source>preferred Encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="479"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="478"/>
         <source>Tight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="486"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="485"/>
         <source>Hextile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="493"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="492"/>
         <source>Raw</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="500"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="499"/>
         <source>ZRLE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="507"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="506"/>
         <source>CoRRE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="514"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="513"/>
         <source>RRE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="521"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="520"/>
         <source>copyRect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="531"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="530"/>
         <source>Compress level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="538"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="537"/>
         <source>Auto select</source>
         <translation type="unfinished"></translation>
     </message>
@@ -284,17 +284,17 @@
 <context>
     <name>CPluginTigerVnc</name>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="40"/>
+        <location filename="../../PluginTigerVnc.cpp" line="42"/>
         <source>TigerVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="45"/>
+        <location filename="../../PluginTigerVnc.cpp" line="47"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="46"/>
+        <location filename="../../PluginTigerVnc.cpp" line="48"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>

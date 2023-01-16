@@ -198,45 +198,60 @@
         <translation>本地资源</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="349"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="409"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="355"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="415"/>
+        <source>Play remote audio</source>
+        <translation>播放音频</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="421"/>
+        <source>On this computer</source>
+        <translation>在此计算机上</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="431"/>
+        <source>On remote computer</source>
+        <translation>在远程计算机上</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="441"/>
+        <source>Disable</source>
+        <translation>禁止</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="451"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation>在远程计算机上使用本计算机的麦克风</translation>
     </message>
     <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="349"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="352"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="355"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="358"/>
+        <source>Printer: Redirection the local printers to the remote computer</source>
+        <translation>打印机：重定向本地打印机到远程计算机上</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="368"/>
         <location filename="../../DlgSetFreeRDP.ui" line="371"/>
-        <source>Play remote audio on this computer</source>
-        <translation>在本机上播放远程音频</translation>
+        <location filename="../../DlgSetFreeRDP.ui" line="374"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="377"/>
+        <source>Clipboard: Redirection the clipboard</source>
+        <translation>剪切板：重定向剪切板</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="384"/>
         <location filename="../../DlgSetFreeRDP.ui" line="387"/>
         <location filename="../../DlgSetFreeRDP.ui" line="390"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
-        <source>Printer: Redirection the local printers to the remote computer</source>
-        <translation>打印机：重定向本地打印机到远程计算机上</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="403"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="406"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="409"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="412"/>
-        <source>Clipboard: Redirection the clipboard</source>
-        <translation>剪切板：重定向剪切板</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="419"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="422"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="425"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation>重定向下列选中的驱动器到远程计算机上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="428"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation>驱动器：重定向下列选中的驱动器到远程计算机上</translation>
     </message>
@@ -333,6 +348,30 @@
         <location filename="../../DlgSetFreeRDP.cpp" line="47"/>
         <source>32 bits</source>
         <translation>32 比特</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="50"/>
+        <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
+- sys:winmm- sys:ios
+- sys:mac- sys:opensles- sys:alsa
+- sys:oss
+- sys:oss,dev:1,format:1
+- sys:sndio</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="65"/>
+        <source>Options for redirection of audio output:
+</source>
+        <translation>重定向音频输出的选项:
+</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="70"/>
+        <source>Options for redirection of audio input:
+</source>
+        <translation>重定向音频输入的选项:
+</translation>
     </message>
 </context>
 <context>

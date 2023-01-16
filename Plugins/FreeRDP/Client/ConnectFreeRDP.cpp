@@ -153,15 +153,15 @@ int CConnectFreeRDP::OnClean()
     int nRet = 0;
     if(m_pContext)
     {
+        rdpContext* pContext = (rdpContext*)m_pContext;
+        freerdp_disconnect(pContext->instance);
 #if FreeRDP_VERSION_MAJOR >= 3
         freerdp_client_stop(&m_pContext->Context);
         //freerdp_abort_connect_context(&m_pContext->Context);
 #else
+        freerdp_client_stop(pContext);
         freerdp_abort_connect(m_pContext->Context.instance);
 #endif
-        rdpContext* pContext = (rdpContext*)m_pContext;
-        freerdp_disconnect(pContext->instance);
-        freerdp_client_stop(pContext);
         freerdp_client_context_free(pContext);
         m_pContext = nullptr;
     }
@@ -1025,14 +1025,26 @@ void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifie
 
 int CConnectFreeRDP::RedirectionSound()
 {
-    if(!m_pParamter->GetRedirectionSound())
-        return 0;
-
-    freerdp* instance = m_pContext->Context.instance;
-    
+    freerdp* instance = m_pContext->Context.instance;   
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
+    if(m_pParamter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Disable)
+    {
+        /* Disable sound */
+		freerdp_settings_set_bool(settings, FreeRDP_AudioPlayback, FALSE);
+		freerdp_settings_set_bool(settings, FreeRDP_RemoteConsoleAudio, FALSE);
+        return 0;
+    } else if(m_pParamter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Local)
+    {
+        freerdp_settings_set_bool(settings, FreeRDP_AudioPlayback, TRUE);
+		freerdp_settings_set_bool(settings, FreeRDP_AudioCapture, TRUE);
+    } else if(m_pParamter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
+    {
+        freerdp_settings_set_bool(settings, FreeRDP_RemoteConsoleAudio, TRUE);
+        return 0;
+    }
+    
     // Sound:
     // rdpsnd channel paramters format see: rdpsnd_process_addin_args in FreeRDP/channels/rdpsnd/client/rdpsnd_main.c
     // rdpsnd devices see: rdpsnd_process_connect in FreeRDP/channels/rdpsnd/client/rdpsnd_main.c
@@ -1076,6 +1088,8 @@ int CConnectFreeRDP::RedirectionSound()
 
 int CConnectFreeRDP::RedirectionMicrophone()
 {
+    if(m_pParamter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
+        return 0;
     if(!m_pParamter->GetRedirectionMicrophone())
         return 0;
 
@@ -1083,7 +1097,9 @@ int CConnectFreeRDP::RedirectionMicrophone()
 
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
-    
+
+    freerdp_settings_set_bool(settings, FreeRDP_AudioCapture, TRUE);
+
     // Microphone:
     // Audin channel paramters format see: audin_process_addin_args in FreeRDP/channels/audin/client/audin_main.c
     // Audin channel devices see: audin_DVCPluginEntry in FreeRDP/channels/audin/client/audin_main.c

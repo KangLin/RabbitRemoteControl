@@ -4,8 +4,8 @@
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnecter(parent),
     m_nReconnectInterval(5),
     m_bShowVerifyDiaglog(true),
-    m_bRedirectionPrinter(true),
-    m_bRedirectionSound(true),
+    m_bRedirectionPrinter(false),
+    m_nRedirectionSound(RedirecionSoundType::Local),
     m_bRedirectionMicrophone(false)
 {
     m_szRedirectionSoundParamters = 
@@ -48,8 +48,8 @@ int CParameterFreeRDP::Load(QSettings &set)
 
     SetRedirectionPrinter(set.value("FreeRDP/Redirection/Printer",
                                    GetRedirectionPrinter()).toBool());
-    SetRedirectionSound(set.value("FreeRDP/Redirection/Sound",
-                                   GetRedirectionSound()).toBool());
+    SetRedirectionSound(static_cast<RedirecionSoundType>(set.value("FreeRDP/Redirection/Sound",
+                        static_cast<int>(GetRedirectionSound())).toInt()));
     SetRedirectionSoundParamters(set.value("FreeRDP/Redirection/Sound/Paramters",
                                    GetRedirectionSoundParamters()).toString());
     SetRedirectionMicrophone(set.value("FreeRDP/Redirection/Microphone",
@@ -88,7 +88,7 @@ int CParameterFreeRDP::Save(QSettings &set)
     set.setValue("FreeRDP/ShowVerifyDiaglog", GetShowVerifyDiaglog());
 
     set.setValue("FreeRDP/Redirection/Printer", GetRedirectionPrinter());
-    set.setValue("FreeRDP/Redirection/Sound", GetRedirectionSound());
+    set.setValue("FreeRDP/Redirection/Sound", static_cast<int>(GetRedirectionSound()));
     set.setValue("FreeRDP/Redirection/Sound/Paramters", GetRedirectionSoundParamters());
     set.setValue("FreeRDP/Redirection/Microphone", GetRedirectionMicrophone());
     set.setValue("FreeRDP/Redirection/Microphone/Paramters", GetRedirectionMicrophoneParamters());
@@ -134,17 +134,17 @@ void CParameterFreeRDP::SetShowVerifyDiaglog(bool bShow)
     m_bShowVerifyDiaglog = bShow;
 }
 
-bool CParameterFreeRDP::GetRedirectionSound() const
+CParameterFreeRDP::RedirecionSoundType CParameterFreeRDP::GetRedirectionSound() const
 {
-    return m_bRedirectionSound;
+    return m_nRedirectionSound;
 }
 
-void CParameterFreeRDP::SetRedirectionSound(bool newRedirectionSound)
+void CParameterFreeRDP::SetRedirectionSound(RedirecionSoundType newRedirectionSound)
 {
-    if (m_bRedirectionSound == newRedirectionSound)
+    if (m_nRedirectionSound == newRedirectionSound)
         return;
-    m_bRedirectionSound = newRedirectionSound;
-    emit sigRedirectionSoundChanged(m_bRedirectionSound);
+    m_nRedirectionSound = newRedirectionSound;
+    emit sigRedirectionSoundChanged(m_nRedirectionSound);
 }
 
 bool CParameterFreeRDP::GetRedirectionMicrophone() const

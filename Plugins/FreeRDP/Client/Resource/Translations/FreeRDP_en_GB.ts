@@ -198,45 +198,60 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="349"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="409"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="355"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="415"/>
+        <source>Play remote audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="421"/>
+        <source>On this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="431"/>
+        <source>On remote computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="441"/>
+        <source>Disable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="451"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="349"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="352"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="355"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="358"/>
+        <source>Printer: Redirection the local printers to the remote computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="368"/>
         <location filename="../../DlgSetFreeRDP.ui" line="371"/>
-        <source>Play remote audio on this computer</source>
+        <location filename="../../DlgSetFreeRDP.ui" line="374"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="377"/>
+        <source>Clipboard: Redirection the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="384"/>
         <location filename="../../DlgSetFreeRDP.ui" line="387"/>
         <location filename="../../DlgSetFreeRDP.ui" line="390"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
-        <source>Printer: Redirection the local printers to the remote computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="403"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="406"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="409"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="412"/>
-        <source>Clipboard: Redirection the clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="419"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="422"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="425"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="428"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -332,6 +347,28 @@
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="47"/>
         <source>32 bits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="50"/>
+        <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
+- sys:winmm- sys:ios
+- sys:mac- sys:opensles- sys:alsa
+- sys:oss
+- sys:oss,dev:1,format:1
+- sys:sndio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="65"/>
+        <source>Options for redirection of audio output:
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="70"/>
+        <source>Options for redirection of audio input:
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -129,7 +129,14 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 
     // Redirection
     m_pSettings->SetRedirectionPrinter(ui->cbPrinter->isChecked());
-    m_pSettings->SetRedirectionSound(ui->cbRdpSnd->isChecked());
+    CParameterFreeRDP::RedirecionSoundType tRdirectionSound;
+    if(ui->rbAudioDisable->isChecked())
+        tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Disable;
+    else if(ui->rbAudioLocal->isChecked())
+        tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Local;
+    else if(ui->rbAudioRemote->isChecked())
+        tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Remote;
+    m_pSettings->SetRedirectionSound(tRdirectionSound);
     m_pSettings->SetRedirectionSoundParamters(ui->leRdpSnd->text());
     m_pSettings->SetRedirectionMicrophone(ui->cbAudin->isChecked());
     m_pSettings->SetRedirectionMicrophoneParamters(ui->leAudin->text());
@@ -211,7 +218,12 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
 
     // Redirection
     ui->cbPrinter->setChecked(m_pSettings->GetRedirectionPrinter());
-    ui->cbRdpSnd->setChecked(m_pSettings->GetRedirectionSound());
+    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Disable)
+        ui->rbAudioDisable->setChecked(true);
+    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Local)
+        ui->rbAudioLocal->setChecked(true);
+    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
+        ui->rbAudioRemote->setChecked(true);
     ui->leRdpSnd->setText(m_pSettings->GetRedirectionSoundParamters());
     ui->cbAudin->setChecked(m_pSettings->GetRedirectionMicrophone());
     ui->leAudin->setText(m_pSettings->GetRedirectionMicrophoneParamters());
@@ -280,4 +292,21 @@ void CDlgSetFreeRDP::on_pbShow_clicked()
         ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
         break;
     }
+}
+
+void CDlgSetFreeRDP::on_rbAudioDisable_toggled(bool checked)
+{
+    ui->leRdpSnd->setEnabled(!checked);
+}
+
+void CDlgSetFreeRDP::on_rbAudioLocal_toggled(bool checked)
+{
+    ui->leRdpSnd->setEnabled(checked);
+}
+
+void CDlgSetFreeRDP::on_rbAudioRemote_toggled(bool checked)
+{
+    ui->leRdpSnd->setEnabled(!checked);
+    ui->leAudin->setEnabled(!checked);
+    ui->cbAudin->setEnabled(!checked);
 }

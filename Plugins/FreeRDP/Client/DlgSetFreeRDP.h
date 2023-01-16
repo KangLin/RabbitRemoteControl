@@ -27,6 +27,12 @@ private slots:
     
     void on_pbShow_clicked();
     
+    void on_rbAudioDisable_toggled(bool checked);
+    
+    void on_rbAudioLocal_toggled(bool checked);
+    
+    void on_rbAudioRemote_toggled(bool checked);
+    
 private:
     int InsertDesktopSize(int width, int height);
     

@@ -9,7 +9,7 @@ class CParameterFreeRDP : public CParameterConnecter
     Q_OBJECT
     Q_PROPERTY(bool RedirectionPrinter READ GetRedirectionPrinter WRITE SetRedirectionPrinter NOTIFY sigRedirectionPrinterChanged)
     Q_PROPERTY(UINT ReconnectInterval READ GetReconnectInterval WRITE SetReconnectInterval NOTIFY sigReconnectIntervalChanged)
-    Q_PROPERTY(bool RedirectionSound READ GetRedirectionSound WRITE SetRedirectionSound NOTIFY sigRedirectionSoundChanged)
+    Q_PROPERTY(RedirecionSoundType RedirectionSound READ GetRedirectionSound WRITE SetRedirectionSound NOTIFY sigRedirectionSoundChanged)
     Q_PROPERTY(QString RedirectionSoundParamters READ GetRedirectionSoundParamters WRITE SetRedirectionSoundParamters NOTIFY sigRedirectionSoundParamtersChanged)
     Q_PROPERTY(bool RedirectionMicrophone READ GetRedirectionMicrophone WRITE SetRedirectionMicrophone NOTIFY sigRedirectionMicrophoneChanged)
     Q_PROPERTY(QStringList RedirectionDrives READ GetRedirectionDrives WRITE SetRedirectionDrives NOTIFY sigRedirectionDrivesChanged)
@@ -29,8 +29,13 @@ public:
     bool GetShowVerifyDiaglog() const;
     void SetShowVerifyDiaglog(bool bShow);
     
-    bool GetRedirectionSound() const;
-    void SetRedirectionSound(bool newRedirectionSound);
+    enum class RedirecionSoundType {
+        Disable,
+        Local,
+        Remote
+    };
+    RedirecionSoundType GetRedirectionSound() const;
+    void SetRedirectionSound(RedirecionSoundType newRedirectionSound);
     bool GetRedirectionMicrophone() const;
     void SetRedirectionMicrophone(bool newRedirectionMicrophone);
     QStringList GetRedirectionDrives() const;
@@ -48,7 +53,7 @@ public:
 signals:
     void sigReconnectIntervalChanged();
     
-    void sigRedirectionSoundChanged(bool RedirectionSound);
+    void sigRedirectionSoundChanged(RedirecionSoundType RedirectionSound);
     void sigRedirectionSoundParamtersChanged();
     void sigRedirectionMicrophoneChanged(bool RedirectionMicrophone);
     void sigRedirectionMicrophoneParamtersChanged();
@@ -60,7 +65,7 @@ private:
     bool m_bShowVerifyDiaglog;
     
     bool m_bRedirectionPrinter;
-    bool m_bRedirectionSound;
+    RedirecionSoundType m_nRedirectionSound;
     QString m_szRedirectionSoundParamters;
     bool m_bRedirectionMicrophone;
     QString m_szRedirectionMicrophoneParamters;

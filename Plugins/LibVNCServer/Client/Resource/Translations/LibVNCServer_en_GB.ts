@@ -52,127 +52,127 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="28"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="27"/>
         <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="36"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="35"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="43"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="46"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="49"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="42"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="45"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="48"/>
         <source>Connecter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="60"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="309"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="59"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="308"/>
         <source>Server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="88"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="337"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="87"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="336"/>
         <source>User name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="102"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="351"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="101"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="350"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="137"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="136"/>
         <source>Shared</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="144"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="143"/>
         <source>Only view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="155"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="154"/>
         <source>Use local cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="162"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="161"/>
         <source>Enable clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="173"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="172"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="180"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="179"/>
         <source>Show server name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="203"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="202"/>
         <source>Compress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="209"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="208"/>
         <source>Compress level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="228"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="227"/>
         <source>0=fast, 9=best</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="239"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="238"/>
         <source>Enable JPEG compress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="253"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="252"/>
         <source>0=Worst, 9=best</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="276"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="275"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="284"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="283"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="291"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="290"/>
         <source>Socks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="298"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="297"/>
         <source>UltraVNC repeater</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="319"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="318"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="395"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="394"/>
         <source>Ok(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="402"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="401"/>
         <source>Cancle(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
