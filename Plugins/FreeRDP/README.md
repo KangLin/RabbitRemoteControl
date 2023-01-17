@@ -23,4 +23,4 @@ protocol using [FreeRDP](https://github.com/FreeRDP/FreeRDP).
     - [x] HTML
     - [x] Picture
     - [ ] File
-  - [x] Serial
+  - [ ] Serial

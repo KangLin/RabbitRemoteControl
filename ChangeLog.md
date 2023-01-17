@@ -6,7 +6,6 @@
     + Audio input and output
     + Drive
     + Printer
-    + Serial
 + App:
   + Add open the dialog of connect settings 
 
@@ -32,12 +31,12 @@
   - Rename CParameterViewer to CParameterClient
   - Rename CConnecter::SetParameterViewer to CConnecter::SetParameterClient
   - Rename CManagePlugin to CClient
-- FreeRDP:
-  + Completed clipboard functions
-    - Text
-    - HTML
-    - Image
-  + Add play bell sound
++ FreeRDP:
+  - Completed clipboard functions
+    + Text
+    + HTML
+    + Image
+  - Add play bell sound
 
 ### v0.0.22
 + Add keyboard hook

@@ -105,7 +105,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}_2022_12_24
+        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}_2023_01_28
 
     - name: build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}
@@ -114,14 +114,15 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b bee2873b5213cd9697eb583ade765a40ba9bc473 bee2873b5213cd9697eb583ade765a40ba9bc473 # 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
+            git checkout -b 3f80e6a5ba9eda2f66e09a849ebb66afc79e3b3e 3f80e6a5ba9eda2f66e09a849ebb66afc79e3b3e # 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
             cmake .. \
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                 -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-                -DWITH_SERVER=ON
+                -DWITH_SERVER=ON \
+                -DWITH_CLIENT_SDL=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
         fi
