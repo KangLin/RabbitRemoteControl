@@ -286,3 +286,13 @@ void CDlgSettingsRabbitVNC::on_gpIce_clicked(bool checked)
     ui->leServer->setEnabled(!checked);
     ui->spPort->setEnabled(!checked);
 }
+
+void CDlgSettingsRabbitVNC::on_leServer_editingFinished()
+{
+    auto s = ui->leServer->text().split(":");
+    if(s.size() == 2)
+    {
+        ui->spPort->setValue(s[1].toUInt());
+        ui->leServer->setText(s[0]);
+    }
+}

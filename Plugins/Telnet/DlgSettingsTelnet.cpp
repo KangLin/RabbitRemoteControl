@@ -45,3 +45,13 @@ void CDlgSettingsTelnet::on_pbCancle_clicked()
 {
     this->reject();
 }
+
+void CDlgSettingsTelnet::on_leHost_editingFinished()
+{
+    auto s = ui->leHost->text().split(":");
+    if(s.size() == 2)
+    {
+        ui->spPort->setValue(s[1].toUInt());
+        ui->leHost->setText(s[0]);
+    }
+}

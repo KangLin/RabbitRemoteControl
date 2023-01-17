@@ -24,15 +24,14 @@ private slots:
     void on_pbOk_clicked();
     void on_pbCancel_clicked();
     void on_rbFullScreen_clicked(bool checked);
-    
+    void on_leServer_editingFinished();
+
     void on_pbShow_clicked();
-    
+
     void on_rbAudioDisable_toggled(bool checked);
-    
     void on_rbAudioLocal_toggled(bool checked);
-    
     void on_rbAudioRemote_toggled(bool checked);
-    
+
 private:
     int InsertDesktopSize(int width, int height);
     

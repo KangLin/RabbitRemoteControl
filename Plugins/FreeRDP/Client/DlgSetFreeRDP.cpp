@@ -252,12 +252,22 @@ void CDlgSetFreeRDP::on_rbFullScreen_clicked(bool checked)
     ui->cbDesktopSize->setCurrentText(curSize);
 }
 
+void CDlgSetFreeRDP::on_leServer_editingFinished()
+{
+    auto s = ui->leServer->text().split(":");
+    if(s.size() == 2)
+    {
+        ui->spPort->setValue(s[1].toUInt());
+        ui->leServer->setText(s[0]);
+    }
+}
+
 int CDlgSetFreeRDP::InsertDesktopSize(int width, int height)
 {
     QString curSize = QString::number(width) + "×" + QString::number(height);
     if(ui->cbDesktopSize->findText(curSize) > -1)
         return 0;
-    
+
     for(int i = 0; i < ui->cbDesktopSize->count(); i++)
     {
         QString curText = ui->cbDesktopSize->itemText(i);
@@ -272,7 +282,7 @@ int CDlgSetFreeRDP::InsertDesktopSize(int width, int height)
             }
         }
     }
-    
+
     if(ui->cbDesktopSize->findText(curSize) == -1)
         ui->cbDesktopSize->addItem(curSize);
     

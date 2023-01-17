@@ -50,7 +50,7 @@ class CLIENT_EXPORT CParameterConnecter : public CParameter
     Q_PROPERTY(QString ServerName READ GetServerName WRITE SetServerName)
     Q_PROPERTY(bool ShowServerName READ GetShowServerName WRITE SetShowServerName NOTIFY sigShowServerNameChanged)
     Q_PROPERTY(QString Host READ GetHost WRITE SetHost)
-    Q_PROPERTY(qint16 Port READ GetPort WRITE SetPort)
+    Q_PROPERTY(quint16 Port READ GetPort WRITE SetPort)
     Q_PROPERTY(QString User READ GetUser WRITE SetUser)
     Q_PROPERTY(QString Password READ GetPassword WRITE SetPassword)
     Q_PROPERTY(bool SavePassword READ GetSavePassword WRITE SetSavePassword)

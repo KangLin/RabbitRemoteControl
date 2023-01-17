@@ -27,6 +27,8 @@ private slots:
     
     void on_pbShow_clicked();
     
+    void on_leHost_editingFinished();
+    
 private:
     Ui::CDlgSettingsLibVnc *ui;
     CParameterLibVNCServer* m_pPara;

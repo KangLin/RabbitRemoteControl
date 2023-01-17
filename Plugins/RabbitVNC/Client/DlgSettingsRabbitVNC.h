@@ -34,6 +34,8 @@ private slots:
     
     void on_pbCancle_clicked();
     
+    void on_leServer_editingFinished();
+    
 private:
     Ui::CDlgSettingsRabbitVNC *ui;
     CParameterRabbitVNC* m_pPara;

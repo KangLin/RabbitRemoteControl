@@ -24,6 +24,8 @@ private slots:
     void on_pbCancle_clicked();
     void on_pbCapFileBrower_clicked();
     
+    void on_leHost_editingFinished();
+    
 private:
     Ui::CDlgSettingsSSH *ui;
     CConnecterSSH* m_pConnecter;

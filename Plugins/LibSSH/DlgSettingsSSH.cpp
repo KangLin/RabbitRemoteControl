@@ -13,7 +13,7 @@ CDlgSettingsSSH::CDlgSettingsSSH(CParameterSSH *pPara, QWidget *parent) :
     Q_ASSERT(m_pPara);
     ui->leName->setText(m_pPara->GetName());
     ui->leHost->setText(m_pPara->GetHost());
-    ui->sbPort->setValue(m_pPara->GetPort());
+    ui->spPort->setValue(m_pPara->GetPort());
     ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
     ui->leUser->setText(m_pPara->GetUser());
     ui->lePassword->setText(m_pPara->GetPassword());
@@ -39,7 +39,7 @@ void CDlgSettingsSSH::on_pbOK_clicked()
 {
     m_pPara->SetName(ui->leName->text());
     m_pPara->SetHost(ui->leHost->text());
-    m_pPara->SetPort(ui->sbPort->value());
+    m_pPara->SetPort(ui->spPort->value());
     m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
     m_pPara->SetUser(ui->leUser->text());
     m_pPara->SetPassword(ui->lePassword->text());
@@ -66,4 +66,14 @@ void CDlgSettingsSSH::on_pbCapFileBrower_clicked()
                                                             tr("Capture file"),
                QStandardPaths::writableLocation(QStandardPaths::TempLocation)
                                           + QDir::separator() + "capfile.dat"));
+}
+
+void CDlgSettingsSSH::on_leHost_editingFinished()
+{
+    auto s = ui->leHost->text().split(":");
+    if(s.size() == 2)
+    {
+        ui->spPort->setValue(s[1].toUInt());
+        ui->leHost->setText(s[0]);
+    }
 }

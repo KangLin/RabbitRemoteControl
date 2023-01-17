@@ -33,6 +33,8 @@ private slots:
         
     void on_gpIce_clicked(bool checked);
     
+    void on_leServer_editingFinished();
+    
 private:
     Ui::CDlgSettingsTigerVnc *ui;
     CParameterTigerVnc* m_pPara;
