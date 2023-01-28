@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp_H">
@@ -123,7 +123,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
-   <addaction name="actionOpenRRCFile"/>
    <addaction name="actionClone"/>
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>

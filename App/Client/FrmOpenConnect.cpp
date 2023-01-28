@@ -11,6 +11,8 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CFrmOpenConnect),
     m_pToolBar(nullptr),
+    m_ptbConnect(nullptr),
+    m_pMenuNew(nullptr),
     m_pModel(nullptr),
     m_pClient(pClient),
     m_nFileRow(0)
@@ -24,12 +26,29 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
                           this, SLOT(slotConnect()));
     m_pToolBar->addAction(/*QIcon::fromTheme("network-wired"), */tr("Edit and Connect"),
                           this, SLOT(slotEditConnect()));
-    m_pToolBar->addAction(/*QIcon::fromTheme("edit-copy"),*/ tr("Edit"),
+    m_pToolBar->addSeparator();
+
+    m_ptbConnect = new QToolButton(m_pToolBar);
+    m_ptbConnect->setFocusPolicy(Qt::NoFocus);
+    m_ptbConnect->setPopupMode(QToolButton::InstantPopup);
+    //m_ptbConnect->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    m_pMenuNew = new QMenu(tr("New"), this);
+    m_pMenuNew->setIcon(QIcon::fromTheme("add"));
+    m_ptbConnect->setMenu(m_pMenuNew);
+    m_ptbConnect->setIcon(m_pMenuNew->icon());
+    m_ptbConnect->setText(tr("New"));
+    m_ptbConnect->setToolTip(tr("New"));
+    m_ptbConnect->setStatusTip(tr("New"));
+    m_pToolBar->addWidget(m_ptbConnect);
+    m_pClient->EnumPlugins(this);
+    m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"),
                           this, SLOT(slotEdit()));
     m_pToolBar->addAction(QIcon::fromTheme("edit-copy"), tr("Copy"),
                           this, SLOT(slotCopy()));
     m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"),
                           this, SLOT(slotDelete()));
+    m_pToolBar->addSeparator();
+
     m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
                           this, SLOT(slotCancel()));
     ui->gridLayout->addWidget(m_pToolBar);
@@ -86,6 +105,7 @@ CFrmOpenConnect::~CFrmOpenConnect()
 
 int CFrmOpenConnect::LoadFiles()
 {
+    m_pModel->removeRows(0, m_pModel->rowCount());
     QString szPath = RabbitCommon::CDir::Instance()->GetDirUserData();
     QDir dir(szPath);
     QStringList files = dir.entryList(QStringList() << "*.rrc",
@@ -120,6 +140,74 @@ void CFrmOpenConnect::slotCancel()
     close();
 }
 
+int CFrmOpenConnect::onProcess(const QString &id, CPluginClient *pPlug)
+{
+    // Connect menu and toolbar
+    QAction* pAction = m_pMenuNew->addAction(pPlug->Protocol()
+                                       + ": " + pPlug->DisplayName(),
+                                       this, SLOT(slotNew()));
+    pAction->setToolTip(pPlug->Description());
+    pAction->setStatusTip(pPlug->Description());
+    pAction->setData(id);
+    pAction->setIcon(pPlug->Icon());
+    return 0;
+}
+
+void CFrmOpenConnect::slotNew()
+{
+    QAction* pAction = dynamic_cast<QAction*>(this->sender());    
+    CConnecter* c = m_pClient->CreateConnecter(pAction->data().toString());
+    if(nullptr == c) return;
+
+    int nRet = c->OpenDialogSettings(this);
+    switch(nRet)
+    {
+    case QDialog::Rejected:
+        break;
+    case QDialog::Accepted:
+    {
+        QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+                + QDir::separator()
+                + c->Id()
+                + ".rrc";
+        QDir d;
+        if(d.exists(szFile)) {
+            QMessageBox::StandardButton r
+                    = QMessageBox::warning(this, tr("Warning"),
+              tr("File of connecter is exists. whether to overwrite it? File: %1").arg(szFile),
+              QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No,
+                                               QMessageBox::StandardButton::No);
+            if(QMessageBox::StandardButton::Ok == r)
+            {
+                d.remove(szFile);
+                m_pClient->SaveConnecter(szFile, c);
+            }
+            break;
+        }
+
+        m_pClient->SaveConnecter(szFile, c);
+        
+        QList<QStandardItem*> lstItem;
+        QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
+        pName->setToolTip(c->Description());
+        lstItem << pName;
+        QStandardItem* pProtocol = new QStandardItem(c->Protocol());
+        lstItem << pProtocol;
+        QFileInfo fi(szFile);
+        lstItem << new QStandardItem(fi.lastModified().toString());
+        QStandardItem* pId = new QStandardItem(c->Id());
+        lstItem << pId;
+        QStandardItem* pFile = new QStandardItem(szFile);
+        lstItem << pFile;
+        m_pModel->insertRow(0, lstItem);
+
+        break;
+    }
+    }
+
+    c->deleteLater();
+}
+
 void CFrmOpenConnect::slotEdit()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
@@ -127,17 +215,17 @@ void CFrmOpenConnect::slotEdit()
     foreach(auto index, lstIndex)
     {
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
-        CConnecter* p = m_pClient->LoadConnecter(szFile);
-        int nRet = p->OpenDialogSettings(this);
+        CConnecter* c = m_pClient->LoadConnecter(szFile);
+        int nRet = c->OpenDialogSettings(this);
         switch(nRet)
         {
         case QDialog::Rejected:
             break;
         case QDialog::Accepted:
-            m_pClient->SaveConnecter(szFile, p);
+            m_pClient->SaveConnecter(szFile, c);
             break;
         }
-        p->deleteLater();
+        c->deleteLater();
     }
 }
 
@@ -148,18 +236,18 @@ void CFrmOpenConnect::slotEditConnect()
     foreach(auto index, lstIndex)
     {
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
-        CConnecter* p = m_pClient->LoadConnecter(szFile);
-        int nRet = p->OpenDialogSettings(this);
+        CConnecter* c = m_pClient->LoadConnecter(szFile);
+        int nRet = c->OpenDialogSettings(this);
         switch(nRet)
         {
         case QDialog::Rejected:
             break;
         case QDialog::Accepted:
-            m_pClient->SaveConnecter(szFile, p);
+            m_pClient->SaveConnecter(szFile, c);
             emit sigConnect(szFile);
             break;
         }
-        p->deleteLater();
+        c->deleteLater();
     }
     close();
 }
@@ -171,27 +259,47 @@ void CFrmOpenConnect::slotCopy()
     foreach(auto index, lstIndex)
     {
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
-        CConnecter* p = m_pClient->LoadConnecter(szFile);
-        int nRet = p->OpenDialogSettings(this);
-        switch(nRet)
-        {
-        case QDialog::Rejected:
-            break;
-        case QDialog::Accepted:
-            szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
+        CConnecter* c = m_pClient->LoadConnecter(szFile);
+
+        do {
+            bool bExit = true;
+            int nRet = c->OpenDialogSettings(this);
+            switch(nRet)
+            {
+            case QDialog::Rejected:
+                break;
+            case QDialog::Accepted:
+            {
+                szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
                         + QDir::separator()
-                        + p->Id()
+                        + c->Id()
                         + ".rrc";
-            QDir d(szFile);
-            if(d.exists(szFile)) {
-                QMessageBox::warning(this, "Replace",
-                    "File of connecter is exists. please modify the name of connecter");
-            } else {
-                m_pClient->SaveConnecter(szFile, p);
+                QDir d(szFile);
+                if(d.exists(szFile)) {
+                    QMessageBox::StandardButton r = QMessageBox::warning(this,
+                        tr("Warning"),
+                        tr("File of connecter is exists. whether to overwrite it? "
+                        "If select No, please modify the name of connecter"), 
+                        QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No | QMessageBox::StandardButton::Cancel,
+                        QMessageBox::StandardButton::No);
+                    if(QMessageBox::StandardButton::No == r)
+                    {
+                        bExit = false;
+                        break;
+                    }
+                    if(QMessageBox::StandardButton::Cancel == r)
+                        break;
+                }
+                m_pClient->SaveConnecter(szFile, c);
+                break;
             }
-            break;
-        }
-        p->deleteLater();
+            }
+
+            if(bExit)
+                break;
+        } while(1);
+
+        c->deleteLater();
     }
     LoadFiles();
 }
@@ -207,11 +315,6 @@ void CFrmOpenConnect::slotDelete()
         if(d.remove(szFile))
             m_pModel->removeRow(index.row());
     }
-}
-
-void CFrmOpenConnect::on_pbAdd_clicked()
-{
-    LoadFiles();
 }
 
 void CFrmOpenConnect::slotConnect()
@@ -230,11 +333,13 @@ void CFrmOpenConnect::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
     
-    menu.addAction(tr("Connect"), this, SLOT(slotConnect()));
+    menu.addAction(QIcon::fromTheme("network-wired"), tr("Connect"), this, SLOT(slotConnect()));
     menu.addAction(tr("Edit and Connect"), this, SLOT(slotEditConnect()));
+    menu.addSeparator();
+    menu.addMenu(m_pMenuNew);
     menu.addAction(tr("Edit"), this, SLOT(slotEdit()));
-    menu.addAction(tr("Copy"), this, SLOT(slotCopy()));
-    menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
+    menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy"), this, SLOT(slotCopy()));
+    menu.addAction(QIcon::fromTheme("edit-delete"), tr("Delete"), this, SLOT(slotDelete()));
     
     menu.exec(mapToGlobal(pos));
 }

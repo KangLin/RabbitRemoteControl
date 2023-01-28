@@ -220,7 +220,7 @@ void CParameterConnecter::SetProxyPassword(const QString &password)
 int CParameterConnecter::Load(QSettings &set)
 {
     SetName(set.value("Name", GetName()).toString());
-    SetName(set.value("ServerName", GetServerName()).toString());
+    SetServerName(set.value("ServerName", GetServerName()).toString());
     SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
     SetHost(set.value("Host", GetHost()).toString());
     SetPort(set.value("Port", GetPort()).toUInt());
@@ -294,23 +294,18 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
     QByteArray sum = set.value(szKey + "_sum").toByteArray();
     QByteArray pwByte = set.value(szKey).toByteArray();
     RabbitCommon::CEncrypt e;
-    
+
     std::string key;
     if(GetParameterClient())
         key = GetParameterClient()->GetEncryptKey().toStdString().c_str();
-    if(key.empty())
-    {
-        if(!e.Dencode(pwByte, password)
-                && PasswordSum(password.toStdString(), key) == sum)
-            return 0;
-    } else {
+    if(!key.empty())
         e.SetPassword(key.c_str());
-        if(!e.Dencode(pwByte, password)
-                && PasswordSum(password.toStdString(), key) == sum)
-            return 0;
-    }
 
-    qDebug(Client) << "Password don't dencode";
+    if(!e.Dencode(pwByte, password)
+            && PasswordSum(password.toStdString(), key) == sum)
+            return 0;
+
+    qDebug(Client) << "Password don't dencode or sum is error";
     CDlgInputPassword d(GetParameterClient()->GetViewPassowrd(), szTitle);
     if(QDialog::Accepted != d.exec())
     {
@@ -347,10 +342,12 @@ int CParameterConnecter::SavePassword(const QString &szKey,
     {
         switch (GetParameterClient()->GetPromptType()) {
         case CParameterClient::PromptType::First:
-            if(GetParameterClient()->GetPromptCount() >= 1)
+        {
+            int nCount = GetParameterClient()->GetPromptCount();
+            if(nCount >= 1)
                 break;
-            GetParameterClient()->SetPromptCount(
-                        GetParameterClient()->GetPromptCount() + 1);
+            GetParameterClient()->SetPromptCount(nCount + 1);
+        }
         case CParameterClient::PromptType::Always:
         {
             QString szKey;

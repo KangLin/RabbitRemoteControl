@@ -84,6 +84,22 @@ public:
     virtual ~CConnecter();
     
     virtual const QString Id();
+    /*!
+     * \~chinese
+     * \brief 显示顺序：
+     *        - 用户参数设置的名称
+     *        - 如果允许，远程服务名。
+     *        - 远程地址
+     *
+     * \~english
+     *  Display order:
+     *  - User paramter Name()
+     *  - if enable, Server name
+     *  - Host and port
+     *  
+     * \~
+     * \see ServerName()
+     */
     virtual const QString Name();
     virtual const QString Description();
     virtual const QString Protocol() const;
@@ -234,6 +250,12 @@ protected:
      * \param p
      */
     virtual int SetParameter(CParameterConnecter* p);
+    /*!
+     * \note If CParameterConnecter isn't need CParameterClient.
+     *       please overload this function.
+     * \see CClient::CreateConnecter CParameterConnecter CParameterClient
+     */
+    virtual int SetParameterClient(CParameterClient* pPara);
 
     /*!
      * \~chinese
@@ -290,12 +312,6 @@ private Q_SLOTS:
 
 protected:
     const CPluginClient* m_pPluginClient;
-    /*!
-     * \note If CParameterConnecter isn't need CParameterClient.
-     *       please overload this function.
-     * \see CClient::CreateConnecter CParameterConnecter CParameterClient
-     */
-    virtual int SetParameterClient(CParameterClient* pPara);
 
 private:
     friend CClient;

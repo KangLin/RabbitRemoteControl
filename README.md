@@ -69,7 +69,7 @@ It include remote desktop, remote terminal etc remote control functions.
 
 See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html)
 
-- [x] Windows
+- [x] Windows 7 SP1 and later
 - [x] Unix/Linux
 - [x] Android
 - [ ] mac os

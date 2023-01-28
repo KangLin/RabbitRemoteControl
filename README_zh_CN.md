@@ -69,7 +69,7 @@
 
 参见：[https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/supported-platforms.html)
 
-- [x] Windows
+- [x] Windows 7 SP1 及以后
 - [x] Unix/Linux
 - [x] Android
 - [ ] mac os

@@ -45,14 +45,11 @@ const QString CConnecter::Id()
     QString szId = Protocol() + "_" + m_pPluginClient->Name();
     if(GetParameter())
     {
-        if(GetParameter()->GetHost().isEmpty())
-        {
-            if(!GetParameter()->GetName().isEmpty())
-                szId += "_" + GetParameter()->GetName();
-        } else {
+        if(!GetParameter()->GetName().isEmpty())
+            szId += "_" + GetParameter()->GetName();
+        if(!GetParameter()->GetHost().isEmpty())
             szId += "_" + GetParameter()->GetHost()
                     + "_" + QString::number(GetParameter()->GetPort());
-        }
     }
     szId = szId.replace(QRegularExpression("[-@:/#%!^&*\\.]"), "_");
     return szId;
@@ -76,7 +73,7 @@ const QString CConnecter::Id()
  */
 const QString CConnecter::Name()
 {
-    if(GetParameter() && !GetParameter()->GetName().isEmpty())
+    if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
         return GetParameter()->GetName();
 
     return ServerName();

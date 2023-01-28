@@ -4,22 +4,22 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="87"/>
+        <location filename="../../Connecter.cpp" line="84"/>
         <source>Name:</source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="88"/>
+        <location filename="../../Connecter.cpp" line="85"/>
         <source>Protol:</source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="89"/>
+        <location filename="../../Connecter.cpp" line="86"/>
         <source>Server name:</source>
         <translation>服務名：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="141"/>
+        <location filename="../../Connecter.cpp" line="138"/>
         <source>Set </source>
         <translation>設置 </translation>
     </message>
