@@ -16,6 +16,9 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
     m_nFileRow(0)
 {
     ui->setupUi(this);
+
+    setAttribute(Qt::WA_DeleteOnClose);
+
     m_pToolBar = new QToolBar(this);
     m_pToolBar->addAction(QIcon::fromTheme("network-wired"), tr("Connect"),
                           this, SLOT(slotConnect()));
@@ -30,8 +33,6 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
     m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
                           this, SLOT(slotCancel()));
     ui->gridLayout->addWidget(m_pToolBar);
-
-    setAttribute(Qt::WA_DeleteOnClose);
 
     Q_ASSERT(m_pClient);
     m_pTableView = new QTableView(this);
@@ -62,6 +63,20 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
 #endif
 
     LoadFiles();
+    
+    //必须在 setModel 后,才能应用
+    /*第二个参数可以为：
+    QHeaderView::Interactive     ：0 用户可设置，也可被程序设置成默认大小
+    QHeaderView::Fixed           ：2 用户不可更改列宽
+    QHeaderView::Stretch         ：1 根据空间，自动改变列宽，用户与程序不能改变列宽
+    QHeaderView::ResizeToContents：3 根据内容改变列宽，用户与程序不能改变列宽
+    */
+    m_pTableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    //以下设置列宽函数必须要数据加载完成后使用,才能应用
+    //See: https://blog.csdn.net/qq_40450386/article/details/86083759
+    //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
+    //m_pTableView->resizeColumnToContents(0); //设置第0列宽度自适应内容
+    //m_pTableView->resizeColumnToContents(2); //设置第1列宽度自适应内容
 }
 
 CFrmOpenConnect::~CFrmOpenConnect()

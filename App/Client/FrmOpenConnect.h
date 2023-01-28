@@ -32,6 +32,7 @@ private slots:
     void slotConnect();
     void slotCustomContextMenu(const QPoint &pos);
     void slotDoubleClicked(const QModelIndex& index);
+
 private:
     int LoadFiles();
 
