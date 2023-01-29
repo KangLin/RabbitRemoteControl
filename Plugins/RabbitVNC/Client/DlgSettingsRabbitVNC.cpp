@@ -39,9 +39,9 @@ void CDlgSettingsRabbitVNC::on_pbOk_clicked()
         reject();
     
     // Server
-    bool ice = true;
+    bool ice = false;
 #ifdef HAVE_ICE
-    CICE::Instance()->GetParameter()->getIce();
+    ice = CICE::Instance()->GetParameter()->getIce();
 #endif
     if(ui->gpIce->isChecked() && ice)
     {
@@ -150,7 +150,7 @@ void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
     Q_UNUSED(event);
 
     // Server
-    bool ice = true;
+    bool ice = false;
 #ifdef HAVE_ICE
     ice = CICE::Instance()->GetParameter()->getIce();
 #endif
