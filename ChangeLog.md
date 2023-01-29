@@ -8,6 +8,7 @@
     + Printer
 + App:
   + Add open the dialog of connect settings 
++ Rename tag.sh to release.sh
 
 ### v0.0.25
 + Modify CI for automation update
@@ -25,12 +26,12 @@
 
 ### v0.0.23
 + Rename
-  - Rename viewer to client
-  - Rename CPluginViewer to CPluginClient
-  - Rename CPluginViewerThread to CPluginClientThread
-  - Rename CParameterViewer to CParameterClient
-  - Rename CConnecter::SetParameterViewer to CConnecter::SetParameterClient
-  - Rename CManagePlugin to CClient
+  - Rename the directory viewer to client
+  - Rename the class CPluginViewer to CPluginClient
+  - Rename the class CPluginViewerThread to CPluginClientThread
+  - Rename the class CParameterViewer to CParameterClient
+  - Rename the class CManagePlugin to CClient
+  - Rename the functioin CConnecter::SetParameterViewer to CConnecter::SetParameterClient
 + FreeRDP:
   - Completed clipboard functions
     + Text

@@ -7,6 +7,7 @@
     + 驱动器
     + 打印机
 + 应用程序增加打开连接配置列表窗口
++ 重命名 tag.sh 为 release.sh
 
 ### v0.0.25
 + 为自动更新，修改自动化编译分发
@@ -24,12 +25,12 @@
 
 ### v0.0.23
 + 重命名
-  - 重命名 viewer 到 client
-  - 重命名 CPluginViewer 到 CPluginClient
-  - 重命名 CPluginViewerThread 到 CPluginClientThread
-  - 重命名 CParameterViewer 到 CParameterClient
-  - 重命名 CConnecter::SetParameterViewer 到 CConnecter::SetParameterClient
-  - 重命名 CManagePlugin 到 CClient
+  - 重命名目录 viewer 到 client
+  - 重命名类 CPluginViewer 到 CPluginClient
+  - 重命名类 CPluginViewerThread 到 CPluginClientThread
+  - 重命名类 CParameterViewer 到 CParameterClient
+  - 重命名类 CManagePlugin 到 CClient
+  - 重命名函数 CConnecter::SetParameterViewer 到 CConnecter::SetParameterClient
 + FreeRDP:
   - 完成的剪切板功能
     + 文本
