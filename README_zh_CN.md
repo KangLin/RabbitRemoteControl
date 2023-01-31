@@ -188,7 +188,7 @@
 [![Qt5](https://img.shields.io/badge/Qt-5-brightgreen)](https://doc.qt.io/qt-5/)
 [![Qt6](https://img.shields.io/badge/Qt-6-brightgreen)](https://doc.qt.io/qt-6/)
 
-[![平台](https://img.shields.io/badge/平台-linux%20|%20android%20|%20macos%20|%20windows-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
+[![平台](https://img.shields.io/badge/平台-windows%20|%20linux%20|%20android%20|%20macos-blue.svg)](https://github.com/KangLin/RabbitRemoteControl)
 
 [![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=点赞量)](https://star-history.com/#KangLin/RabbitRemoteControl&Date)
 [![Gitee stars](https://gitee.com/kl222/RabbitRemoteControl/badge/star.svg?theme=dark)](https://gitee.com/kl222/RabbitRemoteControl/stargazers)
