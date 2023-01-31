@@ -81,9 +81,9 @@ const QString CConnecter::Name()
 
 const QString CConnecter::Description()
 {
-    return tr("Name:") + Name() + " "
-            + tr("Protol:") + Protocol() + " "
-            + tr("Server name:") + ServerName() + " "
+    return tr("Name:") + Name() + "\n"
+            + tr("Protol:") + Protocol() + "\n"
+            + tr("Server name:") + ServerName() + "\n"
             + m_pPluginClient->Description();
 }
 
