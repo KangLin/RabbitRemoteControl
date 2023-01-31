@@ -132,13 +132,13 @@
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="25"/>
-        <location filename="../../FrmOpenConnect.cpp" line="336"/>
+        <location filename="../../FrmOpenConnect.cpp" line="337"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="27"/>
-        <location filename="../../FrmOpenConnect.cpp" line="337"/>
+        <location filename="../../FrmOpenConnect.cpp" line="338"/>
         <source>Edit and Connect</source>
         <translation type="unfinished"></translation>
     </message>
@@ -152,19 +152,19 @@
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="44"/>
-        <location filename="../../FrmOpenConnect.cpp" line="340"/>
+        <location filename="../../FrmOpenConnect.cpp" line="341"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="46"/>
-        <location filename="../../FrmOpenConnect.cpp" line="341"/>
+        <location filename="../../FrmOpenConnect.cpp" line="342"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="48"/>
-        <location filename="../../FrmOpenConnect.cpp" line="342"/>
+        <location filename="../../FrmOpenConnect.cpp" line="343"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -200,7 +200,7 @@
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="176"/>
-        <location filename="../../FrmOpenConnect.cpp" line="280"/>
+        <location filename="../../FrmOpenConnect.cpp" line="281"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
@@ -210,7 +210,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmOpenConnect.cpp" line="281"/>
+        <location filename="../../FrmOpenConnect.cpp" line="282"/>
         <source>File of connecter is exists. whether to overwrite it? If select No, please modify the name of connecter</source>
         <translation type="unfinished"></translation>
     </message>

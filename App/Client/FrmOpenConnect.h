@@ -39,6 +39,7 @@ private slots:
 
 private:
     int LoadFiles();
+    int InsertItem(CConnecter* c, QString &szFile);
 
 private:
     Ui::CFrmOpenConnect *ui;

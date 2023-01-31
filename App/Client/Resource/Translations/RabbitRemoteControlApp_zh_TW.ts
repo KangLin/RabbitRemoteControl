@@ -132,13 +132,13 @@
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="25"/>
-        <location filename="../../FrmOpenConnect.cpp" line="336"/>
+        <location filename="../../FrmOpenConnect.cpp" line="337"/>
         <source>Connect</source>
         <translation>連接</translation>
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="27"/>
-        <location filename="../../FrmOpenConnect.cpp" line="337"/>
+        <location filename="../../FrmOpenConnect.cpp" line="338"/>
         <source>Edit and Connect</source>
         <translation>編輯並連接</translation>
     </message>
@@ -152,19 +152,19 @@
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="44"/>
-        <location filename="../../FrmOpenConnect.cpp" line="340"/>
+        <location filename="../../FrmOpenConnect.cpp" line="341"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="46"/>
-        <location filename="../../FrmOpenConnect.cpp" line="341"/>
+        <location filename="../../FrmOpenConnect.cpp" line="342"/>
         <source>Copy</source>
         <translation>復製</translation>
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="48"/>
-        <location filename="../../FrmOpenConnect.cpp" line="342"/>
+        <location filename="../../FrmOpenConnect.cpp" line="343"/>
         <source>Delete</source>
         <translation>刪除</translation>
     </message>
@@ -200,7 +200,7 @@
     </message>
     <message>
         <location filename="../../FrmOpenConnect.cpp" line="176"/>
-        <location filename="../../FrmOpenConnect.cpp" line="280"/>
+        <location filename="../../FrmOpenConnect.cpp" line="281"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
@@ -210,7 +210,7 @@
         <translation>此連接文件已存在,是否覆蓋它？文件: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmOpenConnect.cpp" line="281"/>
+        <location filename="../../FrmOpenConnect.cpp" line="282"/>
         <source>File of connecter is exists. whether to overwrite it? If select No, please modify the name of connecter</source>
         <translation>此連接文件已存在,是否覆蓋它？如果選擇否，請修改連接的名稱。</translation>
     </message>

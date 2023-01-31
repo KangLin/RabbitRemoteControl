@@ -90,7 +90,11 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
     QHeaderView::Stretch         ：1 根据空间，自动改变列宽，用户与程序不能改变列宽
     QHeaderView::ResizeToContents：3 根据内容改变列宽，用户与程序不能改变列宽
     */
-    m_pTableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    m_pTableView->horizontalHeader()->setSectionResizeMode(
+            #if defined(DEBUG) && !defined(Q_OS_ANDROID)
+                0,
+            #endif
+                QHeaderView::ResizeToContents);
     //以下设置列宽函数必须要数据加载完成后使用,才能应用
     //See: https://blog.csdn.net/qq_40450386/article/details/86083759
     //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
@@ -187,19 +191,7 @@ void CFrmOpenConnect::slotNew()
 
         m_pClient->SaveConnecter(szFile, c);
         
-        QList<QStandardItem*> lstItem;
-        QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
-        pName->setToolTip(c->Description());
-        lstItem << pName;
-        QStandardItem* pProtocol = new QStandardItem(c->Protocol());
-        lstItem << pProtocol;
-        QFileInfo fi(szFile);
-        lstItem << new QStandardItem(fi.lastModified().toString());
-        QStandardItem* pId = new QStandardItem(c->Id());
-        lstItem << pId;
-        QStandardItem* pFile = new QStandardItem(szFile);
-        lstItem << pFile;
-        m_pModel->insertRow(0, lstItem);
+        InsertItem(c, szFile);
 
         break;
     }
@@ -263,6 +255,7 @@ void CFrmOpenConnect::slotCopy()
 
         do {
             bool bExit = true;
+            bool bInsert = true;
             int nRet = c->OpenDialogSettings(this);
             switch(nRet)
             {
@@ -289,8 +282,11 @@ void CFrmOpenConnect::slotCopy()
                     }
                     if(QMessageBox::StandardButton::Cancel == r)
                         break;
+                    bInsert = false;
                 }
                 m_pClient->SaveConnecter(szFile, c);
+                if(bInsert)
+                    InsertItem(c, szFile);
                 break;
             }
             }
@@ -301,7 +297,6 @@ void CFrmOpenConnect::slotCopy()
 
         c->deleteLater();
     }
-    LoadFiles();
 }
 
 void CFrmOpenConnect::slotDelete()
@@ -349,4 +344,23 @@ void CFrmOpenConnect::slotDoubleClicked(const QModelIndex& index)
     QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
     emit sigConnect(szFile);
     close();
+}
+
+int CFrmOpenConnect::InsertItem(CConnecter *c, QString& szFile)
+{
+    QList<QStandardItem*> lstItem;
+    QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
+    pName->setToolTip(c->Description());
+    lstItem << pName;
+    QStandardItem* pProtocol = new QStandardItem(c->Protocol());
+    lstItem << pProtocol;
+    QFileInfo fi(szFile);
+    lstItem << new QStandardItem(fi.lastModified().toString());
+    QStandardItem* pId = new QStandardItem(c->Id());
+    lstItem << pId;
+    QStandardItem* pFile = new QStandardItem(szFile);
+    lstItem << pFile;
+    m_pModel->insertRow(0, lstItem);
+    m_pTableView->selectRow(0);
+    return 0;
 }
