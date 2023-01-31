@@ -123,14 +123,14 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
-   <addaction name="actionClone"/>
+   <addaction name="separator"/>
+   <addaction name="actionFavorites"/>
+   <addaction name="actionAdd_to_favorite"/>
+   <addaction name="separator"/>
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
    <addaction name="actionShow_TabBar_B"/>
-   <addaction name="separator"/>
-   <addaction name="actionFavorites"/>
-   <addaction name="actionAdd_to_favorite"/>
    <addaction name="separator"/>
    <addaction name="actionScreenshot"/>
    <addaction name="actionCurrent_connect_parameters"/>
