@@ -8,7 +8,7 @@ Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlServiceConfigure
 Path=/opt/RabbitRemoteControl
 Terminal=false
 StartupNotify=true
-Categories=Network;Utility;P2P
+Categories=Network;Utility;P2P;Qt
 MimeType=application/rrc
 
 Name=Rabbit Remote Control Service Configure
