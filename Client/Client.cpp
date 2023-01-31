@@ -223,17 +223,27 @@ int CClient::EnumPlugins(Handle *handle)
     QMap<QString, CPluginClient*>::iterator it;
     for(it = m_Plugins.begin(); it != m_Plugins.end(); it++)
     {
-        if(handle->m_bIgnoreReturn)
-            handle->onProcess(it.key(), it.value());
-        else
-        {
-            nRet = handle->onProcess(it.key(), it.value());
-            if(nRet)
-                return nRet;
-        }
+        nRet = handle->onProcess(it.key(), it.value());
+        if(nRet)
+            return nRet;
     }
     return nRet;
 }
+
+#if HAS_CPP_11
+int CClient::EnumPlugins(std::function<int(const QString &, CPluginClient *)> cb)
+{
+    int nRet = 0;
+    QMap<QString, CPluginClient*>::iterator it;
+    for(it = m_Plugins.begin(); it != m_Plugins.end(); it++)
+    {
+        nRet = cb(it.key(), it.value());
+        if(nRet)
+            return nRet;
+    }
+    return nRet;
+}
+#endif
 
 void CClient::slotHookKeyboardChanged()
 {
