@@ -318,7 +318,8 @@ jobs:
       with:
         prerelease: true
         body: |
-           [:cn: 修改日志](ChangeLog_zh_CN.md) [:cn: README](README_zh_CN.md) [:us: Change log](ChangeLog.md) [:us: README](README.md)
+           [:cn: 修改日志](ChangeLog_zh_CN.md) [:cn: 说明](README_zh_CN.md)
+           [:us: Change log](ChangeLog.md) [:us: README](README.md)
         files: |
             ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk
             ${{env.INSTALL_DIR}}/RabbitRemoteControl_${{matrix.ANDROID_ABI}}_${{env.RabbitRemoteControl_VERSION}}.apk.md5

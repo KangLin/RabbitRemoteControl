@@ -26,6 +26,7 @@ Q_DECLARE_LOGGING_CATEGORY(FavoriteLogger)
 CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
     m_pModel(nullptr)
 {
+    setWindowTitle(tr("Favorite"));
     setFocusPolicy(Qt::NoFocus);
     header()->hide();
     

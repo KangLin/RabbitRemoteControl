@@ -4,11 +4,11 @@
 + FreeRDP:
   + Redirection
     + Audio input and output
-    + Drive
+    + Drive(Files)
     + Printer
 + App:
-  + Add open the dialog of connect settings 
-+ Rename tag.sh to release.sh
+  + Add open the dialog of list connect settings 
++ Rename tag.sh to deploy.sh
 
 ### v0.0.25
 + Modify CI for automation update

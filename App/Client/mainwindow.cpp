@@ -19,12 +19,13 @@
 #include "Connecter.h"
 #include "FrmFullScreenToolBar.h"
 #include "ParameterDlgSettings.h"
-#include "FrmOpenConnect.h"
+#include "FrmListConnects.h"
 
 #ifdef HAVE_ICE
     #include "Ice.h"
 #endif
 
+#include <QGridLayout>
 #include <QMessageBox>
 #include <QScreen>
 #include <QApplication>
@@ -43,6 +44,7 @@ Q_DECLARE_LOGGING_CATEGORY(App)
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
+      m_pDockListConnects(nullptr),
       m_pSignalStatus(nullptr),
       ui(new Ui::MainWindow),
       m_pView(nullptr),
@@ -57,10 +59,31 @@ MainWindow::MainWindow(QWidget *parent)
     bool check = false;
 
     ui->setupUi(this);
-    
+
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     setAcceptDrops(true);
-    
+
+    m_pDockListConnects = new QDockWidget(this);
+    if(m_pDockListConnects)
+    {
+        CFrmListConnects* pListConnects = new CFrmListConnects(&m_Client, false);
+        if(pListConnects) {
+            check = connect(pListConnects, SIGNAL(sigConnect(const QString&, bool)),
+                            this, SLOT(slotOpenFile(const QString&, bool)));
+            Q_ASSERT(check);
+            // Must set ObjectName then restore it. See: saveState help document
+            m_pDockListConnects->setObjectName("dckListConnects");
+            m_pDockListConnects->setWidget(pListConnects);
+            m_pDockListConnects->setWindowTitle(pListConnects->windowTitle());
+            m_pDockListConnects->hide();
+        }
+        ui->actionList_connects_UL->setChecked(false);
+        addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, m_pDockListConnects);
+        check = connect(m_pDockListConnects, SIGNAL(visibilityChanged(bool)),
+                        this, SLOT(slotDockListConnectsVisibilityChanged(bool)));
+        Q_ASSERT(check);
+    }
+
     m_pFavoriteDockWidget = new QDockWidget(this);
     if(m_pFavoriteDockWidget)
     {
@@ -74,10 +97,10 @@ MainWindow::MainWindow(QWidget *parent)
                             m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
             Q_ASSERT(check);
             m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
+            m_pFavoriteDockWidget->setWindowTitle(m_pFavoriteView->windowTitle());
         }
         // Must set ObjectName then restore it. See: saveState help document
         m_pFavoriteDockWidget->setObjectName("dckFavorite");
-        m_pFavoriteDockWidget->setWindowTitle(tr("Favorite"));
         m_pFavoriteDockWidget->hide();
         ui->actionFavorites->setChecked(false);
         addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pFavoriteDockWidget);
@@ -85,7 +108,7 @@ MainWindow::MainWindow(QWidget *parent)
                         this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
         Q_ASSERT(check);
     }
-    
+
     m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotOpenFile(const QString&)));
@@ -102,8 +125,8 @@ MainWindow::MainWindow(QWidget *parent)
     tbRecent->setText(ui->actionRecently_connected->text());
     tbRecent->setToolTip(ui->actionRecently_connected->toolTip());
     tbRecent->setStatusTip(ui->actionRecently_connected->statusTip());
-    ui->toolBar->insertWidget(ui->actionOpen, tbRecent);
-    
+    ui->toolBar->insertWidget(ui->actionOpenListConnections, tbRecent);
+
 #ifdef HAVE_UPDATE
     CFrmUpdater updater;
     ui->actionUpdate_U->setIcon(updater.windowIcon());
@@ -127,7 +150,7 @@ MainWindow::MainWindow(QWidget *parent)
         Q_ASSERT(check);
         this->setCentralWidget(m_pView);
     }
-    
+
     m_Client.EnumPlugins(this);
     m_Client.LoadSettings();
 
@@ -141,7 +164,7 @@ MainWindow::MainWindow(QWidget *parent)
     tbConnect->setToolTip(tr("Connect"));
     tbConnect->setStatusTip(tr("Connect"));
     ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
-    
+
     m_ptbZoom = new QToolButton(ui->toolBar);
     m_ptbZoom->setPopupMode(QToolButton::InstantPopup);
     //m_ptbZoom->setToolButtonStyle(Qt::ToolButtonFollowStyle);
@@ -165,7 +188,7 @@ MainWindow::MainWindow(QWidget *parent)
     QWidgetAction* pFactor = new QWidgetAction(ui->menuZoom);
     pFactor->setDefaultWidget(m_psbZoomFactor);
     ui->menuZoom->insertAction(ui->actionZoom_Out, pFactor);
-    
+
     m_pGBViewZoom = new QActionGroup(this);
     if(m_pGBViewZoom) {
         m_pGBViewZoom->addAction(ui->actionZoomToWindow_Z);
@@ -178,7 +201,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionZoomToWindow_Z->setChecked(true);
 
     EnableMenu(false);
-    
+
     setFocusPolicy(Qt::NoFocus);
 
     //TODO: complete the function
@@ -600,15 +623,6 @@ void MainWindow::on_actionOpenRRCFile_triggered()
     Connect(p, true);
 }
 
-void MainWindow::on_actionOpen_triggered()
-{
-    CFrmOpenConnect* p = new CFrmOpenConnect(&m_Client);
-    bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
-                    this, SLOT(slotOpenFile(const QString&, bool)));
-    Q_ASSERT(check);
-    p->show();
-}
-
 void MainWindow::slotConnect()
 {
     if(nullptr == m_pView)
@@ -1022,6 +1036,38 @@ void MainWindow::on_actionCurrent_connect_parameters_triggered()
     }
 }
 
+void MainWindow::on_actionOpenListConnections_triggered()
+{
+    CFrmListConnects* p = new CFrmListConnects(&m_Client);
+    if(!p) return;
+    bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
+                    this, SLOT(slotOpenFile(const QString&, bool)));
+    Q_ASSERT(check);
+
+    QDialog d;
+    d.resize(540, 400);
+    QGridLayout* pLayout = new QGridLayout(&d);
+    if(pLayout){
+        pLayout->addWidget(p);
+        check = connect(p, SIGNAL(destroyed()), &d, SLOT(reject()));
+        d.setLayout(pLayout);
+    }
+    d.exec();
+}
+
+void MainWindow::on_actionList_connects_UL_triggered(bool checked)
+{
+    if(!m_pDockListConnects)
+        return;
+
+    m_pDockListConnects->setVisible(checked);
+}
+
+void MainWindow::slotDockListConnectsVisibilityChanged(bool visible)
+{
+    ui->actionList_connects_UL->setChecked(visible);
+}
+
 void MainWindow::on_actionAdd_to_favorite_triggered()
 {
     if(!m_pView || !m_pFavoriteView) return;
@@ -1038,15 +1084,12 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
     }
 }
 
-void MainWindow::on_actionFavorites_triggered()
+void MainWindow::on_actionFavorites_triggered(bool checked)
 {
     if(!m_pFavoriteDockWidget)
         return;
-    
-    if(ui->actionFavorites->isChecked())
-        m_pFavoriteDockWidget->show();
-    else
-        m_pFavoriteDockWidget->hide();
+
+    m_pFavoriteDockWidget->setVisible(checked);
 }
 
 void MainWindow::slotDockWidgetFavoriteVisibilityChanged(bool visib)

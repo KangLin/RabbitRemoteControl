@@ -93,9 +93,10 @@
     </widget>
     <addaction name="menuConnect_C"/>
     <addaction name="actionDisconnect_D"/>
-    <addaction name="actionOpen"/>
+    <addaction name="actionOpenListConnections"/>
     <addaction name="actionOpenRRCFile"/>
     <addaction name="actionClone"/>
+    <addaction name="actionList_connects_UL"/>
     <addaction name="actionRecently_connected"/>
     <addaction name="separator"/>
     <addaction name="actionAdd_to_favorite"/>
@@ -122,7 +123,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionOpen"/>
+   <addaction name="actionOpenListConnections"/>
    <addaction name="separator"/>
    <addaction name="actionFavorites"/>
    <addaction name="actionAdd_to_favorite"/>
@@ -140,8 +141,7 @@
   </widget>
   <action name="actionAbout_A">
    <property name="icon">
-    <iconset theme="help-about">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="help-about"/>
    </property>
    <property name="text">
     <string>About(&amp;A)</string>
@@ -161,8 +161,7 @@
   </action>
   <action name="actionUpdate_U">
    <property name="icon">
-    <iconset theme="system-software-update">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="system-software-update"/>
    </property>
    <property name="text">
     <string>Update(&amp;U)</string>
@@ -205,8 +204,7 @@
   </action>
   <action name="actionFull_screen_F">
    <property name="icon">
-    <iconset theme="view-fullscreen">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="view-fullscreen"/>
    </property>
    <property name="text">
     <string>Full screen(&amp;F)</string>
@@ -232,8 +230,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-original">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-original"/>
    </property>
    <property name="text">
     <string>Original size(&amp;O)</string>
@@ -256,8 +253,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-fit-best">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-fit-best"/>
    </property>
    <property name="text">
     <string>Zoom to window(&amp;Z)</string>
@@ -280,8 +276,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-aspect-ratio">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-aspect-ratio"/>
    </property>
    <property name="text">
     <string>Keep aspect ration zoom to window(&amp;K)</string>
@@ -304,8 +299,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset theme="window-close">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="window-close"/>
    </property>
    <property name="text">
     <string>Exit(&amp;E)</string>
@@ -325,8 +319,7 @@
   </action>
   <action name="actionRecently_connected">
    <property name="icon">
-    <iconset theme="document-open-recent">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="document-open-recent"/>
    </property>
    <property name="text">
     <string>Recently connected</string>
@@ -340,8 +333,7 @@
   </action>
   <action name="actionDisconnect_D">
    <property name="icon">
-    <iconset theme="network-wireless">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="network-wireless"/>
    </property>
    <property name="text">
     <string>Disconnect(&amp;D)</string>
@@ -361,8 +353,7 @@
   </action>
   <action name="actionOpenRRCFile">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="document-open"/>
    </property>
    <property name="text">
     <string>Open(&amp;O) rabbit remote control file</string>
@@ -393,8 +384,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="tabbar">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="tabbar"/>
    </property>
    <property name="text">
     <string>Show TabBar(&amp;B)</string>
@@ -417,8 +407,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-in">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-in"/>
    </property>
    <property name="text">
     <string>Zoom In</string>
@@ -435,8 +424,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-out">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-out"/>
    </property>
    <property name="text">
     <string>Zoom Out</string>
@@ -450,8 +438,7 @@
   </action>
   <action name="actionZoom_window_to_remote_desktop">
    <property name="icon">
-    <iconset theme="folder-remote">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="folder-remote"/>
    </property>
    <property name="text">
     <string>Zoom window to remote desktop</string>
@@ -465,8 +452,7 @@
   </action>
   <action name="actionScreenshot">
    <property name="icon">
-    <iconset theme="camera-photo">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="camera-photo"/>
    </property>
    <property name="text">
     <string>Screenshot</string>
@@ -483,8 +469,7 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="emblem-system">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="emblem-system"/>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -498,8 +483,7 @@
   </action>
   <action name="actionCurrent_connect_parameters">
    <property name="icon">
-    <iconset theme="system-settings">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="system-settings"/>
    </property>
    <property name="text">
     <string>Current connect parameters</string>
@@ -516,8 +500,7 @@
   </action>
   <action name="actionClone">
    <property name="icon">
-    <iconset theme="edit-copy">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="edit-copy"/>
    </property>
    <property name="text">
     <string>Clone current connect</string>
@@ -534,8 +517,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="favorites">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="favorites"/>
    </property>
    <property name="text">
     <string>Favorites</string>
@@ -549,8 +531,7 @@
   </action>
   <action name="actionAdd_to_favorite">
    <property name="icon">
-    <iconset theme="emblem-favorite">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="emblem-favorite"/>
    </property>
    <property name="text">
     <string>Add to favorite</string>
@@ -567,8 +548,7 @@
   </action>
   <action name="actionLog_directory">
    <property name="icon">
-    <iconset theme="folder-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="folder-open"/>
    </property>
    <property name="text">
     <string>Open log directory</string>
@@ -582,8 +562,7 @@
   </action>
   <action name="actionOpen_Log_file">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="document-open"/>
    </property>
    <property name="text">
     <string>Open log file</string>
@@ -597,8 +576,7 @@
   </action>
   <action name="actionOpen_log_configure_file">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="document-open"/>
    </property>
    <property name="text">
     <string>Open log configure file</string>
@@ -612,20 +590,47 @@
   </action>
   <action name="actionStyle_S">
    <property name="icon">
-    <iconset theme="style">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="style"/>
    </property>
    <property name="text">
     <string>Style(&amp;S)</string>
    </property>
   </action>
-  <action name="actionOpen">
+  <action name="actionOpenListConnections">
    <property name="icon">
-    <iconset theme="folder-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="folder-open"/>
    </property>
    <property name="text">
-    <string>Open(&amp;O)</string>
+    <string>Open the list of connections(&amp;O)</string>
+   </property>
+   <property name="iconText">
+    <string>Open the list of connections(&amp;O)</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the list of connections(&amp;O)</string>
+   </property>
+   <property name="statusTip">
+    <string>Open the list of connections(&amp;O)</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open the list of connections(&amp;O)</string>
+   </property>
+  </action>
+  <action name="actionList_connects_UL">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>List connections(&amp;L)</string>
+   </property>
+   <property name="toolTip">
+    <string>List connections(&amp;L)</string>
+   </property>
+   <property name="statusTip">
+    <string>List connections(&amp;L)</string>
+   </property>
+   <property name="whatsThis">
+    <string>List connections(&amp;L)</string>
    </property>
   </action>
  </widget>

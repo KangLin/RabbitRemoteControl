@@ -94,6 +94,6 @@ if [ -n "$1" ]; then
     git tag -d $1
     git tag -a $1 -m "Release $1"
     #git push origin :refs/tags/$1
-    git push origin $1
     git push
+    git push origin $1
 fi

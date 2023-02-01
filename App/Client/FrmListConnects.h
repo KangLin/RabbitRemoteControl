@@ -8,17 +8,20 @@
 #include <QToolButton>
 #include "Client.h"
 
-namespace Ui {
-class CFrmOpenConnect;
-}
-
-class CFrmOpenConnect : public QWidget, CClient::Handle
+/*!
+ * \~chinese 列出存在的连接配置
+ *
+ * \~english List the connect of be existed
+ */
+class CFrmListConnects : public QWidget, CClient::Handle
 {
     Q_OBJECT
     
 public:
-    explicit CFrmOpenConnect(CClient* pClient, QWidget *parent = nullptr);
-    virtual ~CFrmOpenConnect();
+    explicit CFrmListConnects(CClient* pClient,
+                              bool bClose = true,
+                              QWidget *parent = nullptr);
+    virtual ~CFrmListConnects();
 
 public:
     virtual int onProcess(const QString &id, CPluginClient *pPlug) override;
@@ -27,7 +30,6 @@ Q_SIGNALS:
     void sigConnect(const QString &szFile, bool bOpenSettings = false);
 
 private slots:
-    void slotCancel();
     void slotEditConnect();
     void slotNew();
     void slotEdit();
@@ -42,7 +44,6 @@ private:
     int InsertItem(CConnecter* c, QString &szFile);
 
 private:
-    Ui::CFrmOpenConnect *ui;
     QToolBar* m_pToolBar;
     QToolButton* m_ptbConnect;
     QMenu* m_pMenuNew;
@@ -51,6 +52,8 @@ private:
     QStandardItemModel* m_pModel;
     CClient* m_pClient;
     int m_nFileRow;
+    
+    bool m_bClose;
 };
 
 #endif // FRMOPENCONNECT_H

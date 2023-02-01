@@ -456,6 +456,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
                                                    const void *pData,
                                                    const UINT32 nLen)
 {
+    return; //TODO:  delete it!!!
     //*
     qDebug(m_Log) << "CClipboardMimeData::slotRequestFileFromServer:"
                   << valueName << mimeType << pData;//*/

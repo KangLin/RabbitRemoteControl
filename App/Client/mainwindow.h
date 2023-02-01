@@ -55,7 +55,6 @@ private Q_SLOTS:
     ///////// Connect ///////// 
     void slotUpdateParameters(CConnecter* pConnecter);
     void on_actionClone_triggered();
-    void on_actionOpen_triggered();
     void on_actionOpenRRCFile_triggered();
     void slotOpenFile(const QString& szFile, bool bOpenSettings = false);
     void slotConnect();
@@ -137,11 +136,19 @@ private Q_SLOTS:
     void on_actionZoomToWindow_Z_triggered();
     void on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1);
     void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
-    
+
     ///////// Recent open ///////// 
 private:
     RabbitCommon::CRecentMenu* m_pRecentMenu;
-    
+
+    ///////// List connects /////////
+private:
+    QDockWidget* m_pDockListConnects;
+private Q_SLOTS:
+    void on_actionOpenListConnections_triggered();
+    void on_actionList_connects_UL_triggered(bool checked);
+    void slotDockListConnectsVisibilityChanged(bool visible);
+
     ///////// Favorite //////////
 private:
     QDockWidget* m_pFavoriteDockWidget;
@@ -149,8 +156,8 @@ private:
 private Q_SLOTS:
     void on_actionAdd_to_favorite_triggered();
     void slotDockWidgetFavoriteVisibilityChanged(bool visible);
-    void on_actionFavorites_triggered();
-    
+    void on_actionFavorites_triggered(bool checked);
+
 public:
     CParameterApp m_Parameter;
 

@@ -303,47 +303,47 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
   - [![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
-+ Current version: v0.0.25
++ Current version: v0.0.26
   - Windows: Supported WINDOWS 7 and later version
-    + Install package: RabbitRemoteControl_setup_v0.0.25.exe
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.25/RabbitRemoteControl_setup_v0.0.25.exe)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.25/RabbitRemoteControl_setup_v0.0.25.exe/download)
-    + MD5SUM file: RabbitRemoteControl_setup_v0.0.25.exe.md5sum
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.25/RabbitRemoteControl_setup_v0.0.25.exe.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.25/RabbitRemoteControl_setup_v0.0.25.exe.md5sum/download)
-    + No need to install package: RabbitRemoteControl_windows_v0.0.25.zip
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.25/RabbitRemoteControl_windows_v0.0.25.zip)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.25/RabbitRemoteControl_windows_v0.0.25.zip/download)
-    + MD5SUM file: RabbitRemoteControl_windows_v0.0.25.zip.md5sum
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.25/RabbitRemoteControl_windows_v0.0.25.zip.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.25/RabbitRemoteControl_windows_v0.0.25.zip.md5sum/download)
+    + Install package: RabbitRemoteControl_setup_v0.0.26.exe
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_setup_v0.0.26.exe)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_setup_v0.0.26.exe/download)
+    + MD5SUM file: RabbitRemoteControl_setup_v0.0.26.exe.md5sum
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_setup_v0.0.26.exe.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_setup_v0.0.26.exe.md5sum/download)
+    + No need to install package: RabbitRemoteControl_windows_v0.0.26.zip
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_windows_v0.0.26.zip)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_windows_v0.0.26.zip/download)
+    + MD5SUM file: RabbitRemoteControl_windows_v0.0.26.zip.md5sum
+      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_windows_v0.0.26.zip.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_windows_v0.0.26.zip.md5sum/download)
   - Ubuntu:
-    + Ubuntu 20.04: rabbitremotecontrol_0.0.25_amd64_Ubuntu-20.04.deb
+    + Ubuntu 20.04: rabbitremotecontrol_0.0.26_amd64_Ubuntu-20.04.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.25_amd64_Ubuntu-20.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.26_amd64_Ubuntu-20.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.25_amd64_Ubuntu-20.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.26_amd64_Ubuntu-20.04.deb
           # sudo apt-get install -f # Install dependencies
 
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.25/rabbitremotecontrol_0.0.25_amd64_Ubuntu-20.04.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.25/rabbitremotecontrol_0.0.25_amd64_Ubuntu-20.04.deb/download)
-    + MD5SUM file: rabbitremotecontrol_0.0.25_amd64_Ubuntu-20.04.deb.md5sum
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.25/rabbitremotecontrol_0.0.25_amd64_Ubuntu-20.04.deb.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.25/rabbitremotecontrol_0.0.25_amd64_Ubuntu-20.04.deb.md5sum/download)
-    + Ubuntu 18.04: rabbitremotecontrol_0.0.25_amd64_Ubuntu-18.04.deb
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/rabbitremotecontrol_0.0.26_amd64_Ubuntu-20.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/rabbitremotecontrol_0.0.26_amd64_Ubuntu-20.04.deb/download)
+    + MD5SUM file: rabbitremotecontrol_0.0.26_amd64_Ubuntu-20.04.deb.md5sum
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/rabbitremotecontrol_0.0.26_amd64_Ubuntu-20.04.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/rabbitremotecontrol_0.0.26_amd64_Ubuntu-20.04.deb.md5sum/download)
+    + Ubuntu 18.04: rabbitremotecontrol_0.0.26_amd64_Ubuntu-18.04.deb
 
-          sudo apt install ./rabbitremotecontrol_0.0.25_amd64_Ubuntu-18.04.deb
+          sudo apt install ./rabbitremotecontrol_0.0.26_amd64_Ubuntu-18.04.deb
           
           # If you're on an older Linux distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.25_amd64_Ubuntu-18.04.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.26_amd64_Ubuntu-18.04.deb
           # sudo apt-get install -f # Install dependencies
 
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.25/rabbitremotecontrol_0.0.25_amd64_Ubuntu-18.04.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.25/rabbitremotecontrol_0.0.25_amd64_Ubuntu-18.04.deb/download)
-    + MD5SUM file: rabbitremotecontrol_0.0.25_amd64_Ubuntu-18.04.deb.md5sum
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.25/rabbitremotecontrol_0.0.25_amd64_Ubuntu-18.04.deb.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.25/rabbitremotecontrol_0.0.25_amd64_Ubuntu-18.04.deb.md5sum/download)
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/rabbitremotecontrol_0.0.26_amd64_Ubuntu-18.04.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/rabbitremotecontrol_0.0.26_amd64_Ubuntu-18.04.deb/download)
+    + MD5SUM file: rabbitremotecontrol_0.0.26_amd64_Ubuntu-18.04.deb.md5sum
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/rabbitremotecontrol_0.0.26_amd64_Ubuntu-18.04.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/rabbitremotecontrol_0.0.26_amd64_Ubuntu-18.04.deb.md5sum/download)
       
 ## Development
 

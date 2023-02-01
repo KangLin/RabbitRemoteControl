@@ -1,25 +1,25 @@
-#include "FrmOpenConnect.h"
-#include "ui_FrmOpenConnect.h"
+#include "FrmListConnects.h"
 #include "RabbitCommonDir.h"
+#include <QGridLayout>
 #include <QDateTime>
 #include <QStandardItem>
 #include <QDir>
 #include <QHeaderView>
 #include <QMenu>
 
-CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
+CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::CFrmOpenConnect),
     m_pToolBar(nullptr),
     m_ptbConnect(nullptr),
     m_pMenuNew(nullptr),
     m_pModel(nullptr),
     m_pClient(pClient),
-    m_nFileRow(0)
+    m_nFileRow(0),
+    m_bClose(bClose)
 {
-    ui->setupUi(this);
-
     setAttribute(Qt::WA_DeleteOnClose);
+    setLayout(new QGridLayout(this));
+    setWindowTitle(tr("List connections"));
 
     m_pToolBar = new QToolBar(this);
     m_pToolBar->addAction(QIcon::fromTheme("network-wired"), tr("Connect"),
@@ -49,9 +49,11 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
                           this, SLOT(slotDelete()));
     m_pToolBar->addSeparator();
 
-    m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
-                          this, SLOT(slotCancel()));
-    ui->gridLayout->addWidget(m_pToolBar);
+    if(m_bClose)
+        m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
+                          this, SLOT(close()));
+
+    layout()->addWidget(m_pToolBar);
 
     Q_ASSERT(m_pClient);
     m_pTableView = new QTableView(this);
@@ -63,13 +65,14 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
     check = connect(m_pTableView, SIGNAL(doubleClicked(const QModelIndex &)),
                     this, SLOT(slotDoubleClicked(const QModelIndex&)));
     Q_ASSERT(check);
-    ui->gridLayout->addWidget(m_pTableView);;
-    
+    layout()->addWidget(m_pTableView);;
+
     m_pModel = new QStandardItemModel(m_pTableView);
     m_pTableView->setModel(m_pModel);
     m_pTableView->verticalHeader()->hide();
     m_pTableView->setSelectionMode(QAbstractItemView::SingleSelection);
     m_pTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    m_pTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_pModel->setHorizontalHeaderItem(0, new QStandardItem(tr("Name")));
     m_pModel->setHorizontalHeaderItem(1, new QStandardItem(tr("Protocol")));
     m_pModel->setHorizontalHeaderItem(2, new QStandardItem(tr("Date")));
@@ -102,12 +105,11 @@ CFrmOpenConnect::CFrmOpenConnect(CClient* pClient, QWidget *parent) :
     //m_pTableView->resizeColumnToContents(2); //设置第1列宽度自适应内容
 }
 
-CFrmOpenConnect::~CFrmOpenConnect()
+CFrmListConnects::~CFrmListConnects()
 {
-    delete ui;
 }
 
-int CFrmOpenConnect::LoadFiles()
+int CFrmListConnects::LoadFiles()
 {
     m_pModel->removeRows(0, m_pModel->rowCount());
     QString szPath = RabbitCommon::CDir::Instance()->GetDirUserData();
@@ -139,12 +141,26 @@ int CFrmOpenConnect::LoadFiles()
     return 0;
 }
 
-void CFrmOpenConnect::slotCancel()
+int CFrmListConnects::InsertItem(CConnecter *c, QString& szFile)
 {
-    close();
+    QList<QStandardItem*> lstItem;
+    QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
+    pName->setToolTip(c->Description());
+    lstItem << pName;
+    QStandardItem* pProtocol = new QStandardItem(c->Protocol());
+    lstItem << pProtocol;
+    QFileInfo fi(szFile);
+    lstItem << new QStandardItem(fi.lastModified().toString());
+    QStandardItem* pId = new QStandardItem(c->Id());
+    lstItem << pId;
+    QStandardItem* pFile = new QStandardItem(szFile);
+    lstItem << pFile;
+    m_pModel->insertRow(0, lstItem);
+    m_pTableView->selectRow(0);
+    return 0;
 }
 
-int CFrmOpenConnect::onProcess(const QString &id, CPluginClient *pPlug)
+int CFrmListConnects::onProcess(const QString &id, CPluginClient *pPlug)
 {
     // Connect menu and toolbar
     QAction* pAction = m_pMenuNew->addAction(pPlug->Protocol()
@@ -157,7 +173,7 @@ int CFrmOpenConnect::onProcess(const QString &id, CPluginClient *pPlug)
     return 0;
 }
 
-void CFrmOpenConnect::slotNew()
+void CFrmListConnects::slotNew()
 {
     QAction* pAction = dynamic_cast<QAction*>(this->sender());    
     CConnecter* c = m_pClient->CreateConnecter(pAction->data().toString());
@@ -200,7 +216,7 @@ void CFrmOpenConnect::slotNew()
     c->deleteLater();
 }
 
-void CFrmOpenConnect::slotEdit()
+void CFrmListConnects::slotEdit()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -221,7 +237,7 @@ void CFrmOpenConnect::slotEdit()
     }
 }
 
-void CFrmOpenConnect::slotEditConnect()
+void CFrmListConnects::slotEditConnect()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -241,10 +257,11 @@ void CFrmOpenConnect::slotEditConnect()
         }
         c->deleteLater();
     }
-    close();
+    if(m_bClose)
+        close();
 }
 
-void CFrmOpenConnect::slotCopy()
+void CFrmListConnects::slotCopy()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -299,7 +316,7 @@ void CFrmOpenConnect::slotCopy()
     }
 }
 
-void CFrmOpenConnect::slotDelete()
+void CFrmListConnects::slotDelete()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -312,7 +329,7 @@ void CFrmOpenConnect::slotDelete()
     }
 }
 
-void CFrmOpenConnect::slotConnect()
+void CFrmListConnects::slotConnect()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -321,10 +338,10 @@ void CFrmOpenConnect::slotConnect()
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
         emit sigConnect(szFile);
     }
-    close();
+    if(m_bClose) close();
 }
 
-void CFrmOpenConnect::slotCustomContextMenu(const QPoint &pos)
+void CFrmListConnects::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
     
@@ -339,28 +356,9 @@ void CFrmOpenConnect::slotCustomContextMenu(const QPoint &pos)
     menu.exec(mapToGlobal(pos));
 }
 
-void CFrmOpenConnect::slotDoubleClicked(const QModelIndex& index)
+void CFrmListConnects::slotDoubleClicked(const QModelIndex& index)
 {
     QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
     emit sigConnect(szFile);
-    close();
-}
-
-int CFrmOpenConnect::InsertItem(CConnecter *c, QString& szFile)
-{
-    QList<QStandardItem*> lstItem;
-    QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
-    pName->setToolTip(c->Description());
-    lstItem << pName;
-    QStandardItem* pProtocol = new QStandardItem(c->Protocol());
-    lstItem << pProtocol;
-    QFileInfo fi(szFile);
-    lstItem << new QStandardItem(fi.lastModified().toString());
-    QStandardItem* pId = new QStandardItem(c->Id());
-    lstItem << pId;
-    QStandardItem* pFile = new QStandardItem(szFile);
-    lstItem << pFile;
-    m_pModel->insertRow(0, lstItem);
-    m_pTableView->selectRow(0);
-    return 0;
+    if(m_bClose) close();
 }
