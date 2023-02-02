@@ -212,6 +212,8 @@ if(BUILD_DOCS)
     find_package(Doxygen)
     if(DOXYGEN_FOUND)
         file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/Doxygen)
+        file(COPY ${CMAKE_SOURCE_DIR}/docs/Doxygen/index.html
+            DESTINATION ${CMAKE_BINARY_DIR}/Doxygen)
         foreach(OUTPUT_LANGUAGE English Chinese)
             set(MAIN_README "${CMAKE_SOURCE_DIR}/docs/Doxygen/Develop.md")
             set(PROJECT_NAME "Rabbit Remote Control")
