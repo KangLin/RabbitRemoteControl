@@ -303,7 +303,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
   - [![Release](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20Release)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Download RabbitRemoteControl](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 
-+ Current version: v0.0.26
++ Current version: 0.0.26
   - Windows: Supported WINDOWS 7 and later version
     + Install package: RabbitRemoteControl_setup_v0.0.26.exe
       - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_setup_v0.0.26.exe)

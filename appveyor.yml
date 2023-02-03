@@ -7,7 +7,7 @@ cache:
 # https://www.appveyor.com/docs/build-cache/#cleaning-up-cache
 
 environment:
-  RabbitRemoteControlVersion: "v0.0.25"
+  RabbitRemoteControlVersion: v0.0.25
   STOREPASS:
     secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=
   QT_USER:
@@ -195,13 +195,13 @@ deploy:
     # token : https://github.com/settings/tokens
     # password encrypt: https://ci.appveyor.com/tools/encrypt
     auth_token:
-      secure: 9do9yUjK8IrlU7jqUHUSPkTDADxzqBSa2GxJ0b0mqo9U2gaAkDFgsiDTvjPgCcnV
+      secure: xk9mUybB/QLi8+bJobhnOJbuYFdnys9DVLXcOGtbVXnuIZwvKxxQCoFIyVnUf6PP
     #artifact:
     #draft: true
     #prerelease: true
     force_update: false
     on:
-      TOOLCHAIN_VERSION: 15
+      TOOLCHAIN_VERSION: 14
       #QT_VERSION: 5.6.3
       BUILD_ARCH: x86
       appveyor_repo_tag: true        # deploy on tag push only
