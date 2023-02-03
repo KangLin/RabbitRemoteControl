@@ -109,22 +109,24 @@ MainWindow::MainWindow(QWidget *parent)
         Q_ASSERT(check);
     }
 
-    m_pRecentMenu = new RabbitCommon::CRecentMenu(this);
+    m_pRecentMenu = new RabbitCommon::CRecentMenu(tr("Recently connected"),
+                                  QIcon::fromTheme("document-open-recent"),
+                                                  this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotOpenFile(const QString&)));
     Q_ASSERT(check);
     check = connect(&m_Parameter, SIGNAL(sigRecentMenuMaxCountChanged(int)),
                     m_pRecentMenu, SLOT(setMaxCount(int)));
     Q_ASSERT(check);
-    ui->actionRecently_connected->setMenu(m_pRecentMenu);
+    QAction* pRecentAction = ui->menuRemote->insertMenu(ui->actionList_connects_UL, m_pRecentMenu);
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
     tbRecent->setFocusPolicy(Qt::NoFocus);
     tbRecent->setPopupMode(QToolButton::InstantPopup);
     tbRecent->setMenu(m_pRecentMenu);
-    tbRecent->setIcon(ui->actionRecently_connected->icon());
-    tbRecent->setText(ui->actionRecently_connected->text());
-    tbRecent->setToolTip(ui->actionRecently_connected->toolTip());
-    tbRecent->setStatusTip(ui->actionRecently_connected->statusTip());
+    tbRecent->setIcon(pRecentAction->icon());
+    tbRecent->setText(pRecentAction->text());
+    tbRecent->setToolTip(pRecentAction->toolTip());
+    tbRecent->setStatusTip(pRecentAction->statusTip());
     ui->toolBar->insertWidget(ui->actionOpenListConnections, tbRecent);
 
 #ifdef HAVE_UPDATE

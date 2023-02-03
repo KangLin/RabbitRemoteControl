@@ -34,6 +34,10 @@
 	#define HAS_CPP_17 1
 #endif
 
+#if HAS_CPP_11
+    #include <functional>
+#endif
+
 /**
  * \~chinese \brief 管理插件和连接者
  * \~english \brief manage plugins and connecter

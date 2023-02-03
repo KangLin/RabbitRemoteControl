@@ -46,10 +46,8 @@ sed -i "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g"
 sed -i "s/^\SET(RabbitRemoteControl_VERSION.*/\SET(RabbitRemoteControl_VERSION \"${VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
-#sed -i "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml
-#sed -i "s/-m \"v[0-9]\+\.[0-9]\+\.[0-9]\+\"/-m \"${VERSION}\"/g" ${SOURCE_DIR}/appveyor.yml
-#sed -i "s/RabbitRemoteControl-Setup-v[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl-Setup-${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
-#sed -i "s/RabbitRemoteControl_v[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
+sed -i "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml
+sed -i "s/RabbitRemoteControlVersion:.*/RabbitRemoteControlVersion: ${VERSION}/g" ${SOURCE_DIR}/appveyor.yml
 #sed -i "s/PROJECT_NUMBER.*v[0-9]\+\.[0-9]\+\.[0-9]\+/PROJECT_NUMBER = ${VERSION}/g" ${SOURCE_DIR}/Doxyfile.in
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/msvc.yml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}/g" ${SOURCE_DIR}/.github/workflows/mingw.yml

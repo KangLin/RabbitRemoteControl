@@ -1,5 +1,5 @@
 #TODO: Change version
-version: "v0.0.25.{build}"
+version: "v0.0.26.{build}"
 
 cache:
   - ..\other_source
@@ -7,6 +7,7 @@ cache:
 # https://www.appveyor.com/docs/build-cache/#cleaning-up-cache
 
 environment:
+  RabbitRemoteControlVersion: "v0.0.25"
   STOREPASS:
     secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=
   QT_USER:
@@ -161,16 +162,16 @@ build_script:
   - echo "xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin"
   - xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin
   - call "C:\Program Files (x86)\NSIS\makensis.exe" Install.nsi
-  - copy RabbitRemoteControl_setup_v0.0.25.exe RabbitRemoteControl_setup_windowsxp_v0.0.25.exe
-  #- call "install\bin\RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl_setup_v0.0.25.exe -m "v0.0.25"
+  - copy RabbitRemoteControl_setup_%RabbitRemoteControlVersion%.exe RabbitRemoteControl_setup_windowsxp_%RabbitRemoteControlVersion%.exe
+  #- call "install\bin\RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl_setup_%RabbitRemoteControlVersion%.exe -m "%RabbitRemoteControlVersion%"
 
 artifacts:
-  - path: build\RabbitRemoteControl_setup_windowsxp_v0.0.25.exe
+  - path: build\RabbitRemoteControl_setup_windowsxp_%RabbitRemoteControlVersion%.exe
 
   #- path: build\update_windows.xml
 
   - path: build\install\
-    name: RabbitRemoteControl_v0.0.25
+    name: RabbitRemoteControl_windowsxp_%RabbitRemoteControlVersion%
     type: zip
 
 test: off
