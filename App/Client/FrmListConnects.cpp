@@ -48,6 +48,8 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
     m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"),
                           this, SLOT(slotDelete()));
     m_pToolBar->addSeparator();
+    m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+                          this, SLOT(slotLoadFiles()));
 
     if(m_bClose)
         m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
@@ -83,9 +85,9 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
     m_pTableView->hideColumn(3);
     m_pTableView->hideColumn(m_nFileRow);
 #endif
-
-    LoadFiles();
     
+    slotLoadFiles();
+
     //必须在 setModel 后,才能应用
     /*第二个参数可以为：
     QHeaderView::Interactive     ：0 用户可设置，也可被程序设置成默认大小
@@ -109,7 +111,7 @@ CFrmListConnects::~CFrmListConnects()
 {
 }
 
-int CFrmListConnects::LoadFiles()
+void CFrmListConnects::slotLoadFiles()
 {
     m_pModel->removeRows(0, m_pModel->rowCount());
     QString szPath = RabbitCommon::CDir::Instance()->GetDirUserData();
@@ -138,7 +140,7 @@ int CFrmListConnects::LoadFiles()
 
         c->deleteLater();
     }
-    return 0;
+    return;
 }
 
 int CFrmListConnects::InsertItem(CConnecter *c, QString& szFile)
@@ -352,7 +354,9 @@ void CFrmListConnects::slotCustomContextMenu(const QPoint &pos)
     menu.addAction(tr("Edit"), this, SLOT(slotEdit()));
     menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy"), this, SLOT(slotCopy()));
     menu.addAction(QIcon::fromTheme("edit-delete"), tr("Delete"), this, SLOT(slotDelete()));
-    
+    menu.addSeparator();
+    menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"), this, SLOT(slotLoadFiles()));
+
     menu.exec(mapToGlobal(pos));
 }
 

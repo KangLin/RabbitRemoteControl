@@ -38,9 +38,9 @@ private slots:
     void slotConnect();
     void slotCustomContextMenu(const QPoint &pos);
     void slotDoubleClicked(const QModelIndex& index);
+    void slotLoadFiles();
 
 private:
-    int LoadFiles();
     int InsertItem(CConnecter* c, QString &szFile);
 
 private:
