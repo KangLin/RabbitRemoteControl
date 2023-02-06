@@ -1,5 +1,70 @@
 rabbitremotecontrol (0.0.26) unstable; urgency=medium
 
-    * Initial Release. Closed: #991840
-      
- -- Kang Lin <kl222@126.com>  Wed, 04 Aug 2021 15:32:43 +0800
+    * Modify deploy.sh to debian/changelog
+    * Docs: Modify .github/ISSUE_TEMPLATE/bug_report.md
+    * App::Client: add refresh button in CFrmListConnects
+    * CI: Update appveyor.yml
+    * App::Client: modify recent menu
+    * Documents: Modify doxygen
+    * App::Client: rename CFrmOpenConnect to CFrmListConnects
+    * App::Client: modify toolbar in MainWindow
+    * Client: Modify CConnecter::Description() format
+    * App::Client: modify fouce in FrmOpenConnect
+    * Client: Add EnumPlugins lambda callback function in C++11
+    * Modify README
+    * Modify debian package
+    * Modify change log
+    * VNC: Fix ice bug
+    * App::Client: Add new in open connect dialog
+    * App::Client: modify table view to resize to contents
+    * Modify documents
+    * Plugin: Automatically detach ports from server addresses
+    * Plugins::FreeRDP: add redirection sound type
+    * Plugins::LibVNCServer: Fix eye icon theme bug
+    * App::Client: add open the dialog of settings connect
+    * Client: modify paramters
+    * CI: Modify release body
+    * FreeRDP::Client: add redirection - Sound - Microphone - Drive - Printer
+    * FreeRDP: modify CMakeLists.txt
+    * Modify ci
+    * Modify comments
+    * FIX: updater bug
+    * CI: update vcpkg version to 6adca01a3fadca0cc0b80f03ec57c7c3a0be5c02
+    * App::Client: use RabbitCommon::CTools::OpenLogFile()
+    * FreeRDP: update freerdp_input_send_keyboard_event_ex
+    * CI: modify msvc.yml
+    * Modify comments
+    * CI: modify doxygen.yml
+    * CI: updater vcpkg version to 94ce0dab56f4d8ba6bd631ba59ed682b02d45c46
+    * App: modify debug info for language
+    * Modify CMakeLists.txt
+    * Merge branch 'develop' of github.com:KangLin/RabbitRemoteControl into develop
+    * CI: disable VCPKG_OVERLAY_PORTS
+    * CI: FreeRDP version update to 2ad14696124b5a7689a323f56859efb329a3d25c
+    * Merge branch 'develop' of github.com:KangLin/RabbitRemoteControl into develop
+    * CI: modify updater
+    * FreeRDP: modify FILEGROUPDESCRIPTORW
+    * App::Client: Modify prompt for the password encryption type
+    * Modify appveyor.yml
+    * FreeRDP: Modify clipboard
+    * FreeRDP: update freerdp version to 2ad14696124b5a7689a323f56859efb329a3d25c
+    * Modify RabbitRemoteControl.conf
+    * FreeRDP: modify clipboard change signal
+    * FreeRDP: FIX clipboard copy file
+    * Client: modify connecter id
+    * Modify debug configure
+    * Plugins::TigerVNC::Client: FIX setting diaglog
+    * Rename tag.sh to release.sh
+    * CI: modify appveyor.yml
+    * CI: update release to Qt6.2.4
+    * FIX: HookUnix build fail in Qt6
+    * Modify CI
+    * CMake: add REQUIRED in find_package
+    * CMake: FIX cmake configure error in App::Service
+    * Modify cmake min version
+    * Client: modify icon in Client/DlgInputPassword.ui
+    * App: add item icon in favorite
+    * Update doxygen.yml
+
+ -- Kang Lin <kl222@126.com>  Wed, 08 Feb 2023 09:25:59 +0800
+

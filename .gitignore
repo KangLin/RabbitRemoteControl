@@ -10,6 +10,7 @@
 *.dll
 *.dylib
 *.json
+*.tmp
 
 # Qt-es
 object_script.*.Release

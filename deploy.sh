@@ -4,6 +4,7 @@
 set -e
 
 SOURCE_DIR=`pwd`
+PRE_TAG=`git tag --sort=-creatordate | head -n 1`
 
 if [ -n "$1" ]; then
     VERSION=`git describe --tags`
@@ -56,7 +57,29 @@ sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}
 
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
 sed -i "s/^\Standards-Version:.*/\Standards-Version:\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/debian/control
-sed -i "s/rabbitremotecontrol (.*)/rabbitremotecontrol (${DEBIAN_VERSION})/g" ${SOURCE_DIR}/debian/changelog
+
+CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
+CHANGLOG_FILE=${SOURCE_DIR}/debian/changelog
+echo "rabbitremotecontrol (${DEBIAN_VERSION}) unstable; urgency=medium" > ${CHANGLOG_FILE}
+echo "" >> ${CHANGLOG_FILE}
+echo "`git log --pretty=format:'    * %s' ${PRE_TAG}..HEAD`" >> ${CHANGLOG_FILE}
+echo "" >> ${CHANGLOG_FILE}
+echo " -- `git log --pretty=format:'%an <%ae>' HEAD^..HEAD`  `date --rfc-email`" >> ${CHANGLOG_FILE}
+echo "" >> ${CHANGLOG_FILE}
+
+#CHANGLOG_EXIST="`grep "rabbitremotecontrol (${DEBIAN_VERSION})" ${CHANGLOG_FILE}`"
+#if [ -z "$CHANGLOG_EXIST" ]; then
+#    echo "rabbitremotecontrol (${DEBIAN_VERSION}) unstable; urgency=medium" > ${CHANGLOG_TMP}
+#    echo "" >> ${CHANGLOG_TMP}
+#    echo "`git log --pretty=format:'    * %s (%an <%ae>)' ${PRE_TAG}..HEAD`" >> ${CHANGLOG_TMP}
+#    echo "" >> ${CHANGLOG_TMP}
+#    echo " -- `git log --pretty=format:'%an <%ae>' HEAD^..HEAD`  `date --rfc-email`" >> ${CHANGLOG_TMP}
+#    echo "" >> ${CHANGLOG_TMP}
+#    cat ${CHANGLOG_FILE} >> ${CHANGLOG_TMP}
+#    rm ${CHANGLOG_FILE}
+#    mv ${CHANGLOG_TMP} ${CHANGLOG_FILE}
+#fi
+
 sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 #sed -i "s/[0-9]\+\.[0-9]\+\.[0-9]\+/${DEBIAN_VERSION}/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
@@ -82,7 +105,7 @@ function replace_paragraph {
 }
 
 # Generate Authors.md
-AUTHORS="\n`git log --pretty=format:'- %an' |sort|uniq` \n"
+#AUTHORS="\n`git log --pretty=format:'- %an' |sort|uniq` \n"
 #replace_paragraph "Contributors" "See:" "$AUTHORS" ${SOURCE_DIR}/Authors.md
 #replace_paragraph "贡献者" "详见" "Author" ${SOURCE_DIR}/Authors_zh_CN.md
 
