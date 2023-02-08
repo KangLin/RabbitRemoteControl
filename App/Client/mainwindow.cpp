@@ -118,7 +118,9 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(&m_Parameter, SIGNAL(sigRecentMenuMaxCountChanged(int)),
                     m_pRecentMenu, SLOT(setMaxCount(int)));
     Q_ASSERT(check);
-    QAction* pRecentAction = ui->menuRemote->insertMenu(ui->actionList_connects_UL, m_pRecentMenu);
+    QAction* pRecentAction = ui->menuRemote->insertMenu(
+                ui->actionList_connects_UL, m_pRecentMenu);
+    pRecentAction->setStatusTip(pRecentAction->text());
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
     tbRecent->setFocusPolicy(Qt::NoFocus);
     tbRecent->setPopupMode(QToolButton::InstantPopup);
