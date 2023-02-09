@@ -133,7 +133,7 @@
     <message>
         <location filename="../../FrmListConnects.cpp" line="22"/>
         <source>List connections</source>
-        <translation>列出连接</translation>
+        <translation>连接列表</translation>
     </message>
     <message>
         <location filename="../../FrmListConnects.cpp" line="25"/>
@@ -174,13 +174,13 @@
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../FrmListConnects.cpp" line="51"/>
+        <location filename="../../FrmListConnects.cpp" line="55"/>
         <location filename="../../FrmListConnects.cpp" line="358"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../FrmListConnects.cpp" line="55"/>
+        <location filename="../../FrmListConnects.cpp" line="52"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
@@ -578,7 +578,7 @@
         <location filename="../../mainwindow.ui" line="642"/>
         <location filename="../../mainwindow.ui" line="645"/>
         <source>List of connections(&amp;L)</source>
-        <translation>列出连接(&amp;L)</translation>
+        <translation>连接列表(&amp;L)</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="442"/>

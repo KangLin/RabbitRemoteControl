@@ -71,14 +71,14 @@ MainWindow::MainWindow(QWidget *parent)
             check = connect(pListConnects, SIGNAL(sigConnect(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
-            // Must set ObjectName then restore it. See: saveState help document
-            m_pDockListConnects->setObjectName("dckListConnects");
             m_pDockListConnects->setWidget(pListConnects);
             m_pDockListConnects->setWindowTitle(pListConnects->windowTitle());
-            m_pDockListConnects->hide();
         }
+        // Must set ObjectName then restore it. See: saveState help document
+        m_pDockListConnects->setObjectName("dckListConnects");
+        m_pDockListConnects->hide();
         ui->actionList_connects_UL->setChecked(false);
-        addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, m_pDockListConnects);
+        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockListConnects);
         check = connect(m_pDockListConnects, SIGNAL(visibilityChanged(bool)),
                         this, SLOT(slotDockListConnectsVisibilityChanged(bool)));
         Q_ASSERT(check);
@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
         m_pFavoriteDockWidget->setObjectName("dckFavorite");
         m_pFavoriteDockWidget->hide();
         ui->actionFavorites->setChecked(false);
-        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pFavoriteDockWidget);
+        tabifyDockWidget(m_pDockListConnects, m_pFavoriteDockWidget);
         check = connect(m_pFavoriteDockWidget, SIGNAL(visibilityChanged(bool)),
                         this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
         Q_ASSERT(check);

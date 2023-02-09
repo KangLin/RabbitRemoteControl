@@ -174,13 +174,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListConnects.cpp" line="51"/>
+        <location filename="../../FrmListConnects.cpp" line="55"/>
         <location filename="../../FrmListConnects.cpp" line="358"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListConnects.cpp" line="55"/>
+        <location filename="../../FrmListConnects.cpp" line="52"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>

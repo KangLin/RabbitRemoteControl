@@ -47,13 +47,13 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
                           this, SLOT(slotCopy()));
     m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"),
                           this, SLOT(slotDelete()));
-    m_pToolBar->addSeparator();
-    m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
-                          this, SLOT(slotLoadFiles()));
-
+    m_pToolBar->addSeparator();   
     if(m_bClose)
         m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
                           this, SLOT(close()));
+    else
+        m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+                          this, SLOT(slotLoadFiles()));
 
     layout()->addWidget(m_pToolBar);
 
