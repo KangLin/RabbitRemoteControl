@@ -18,11 +18,7 @@ class CTerminal
 {
 public:
     CTerminal()
-    {
-    #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-        Q_INIT_RESOURCE(translations_Terminal);
-    #endif
-    
+    { 
         QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
                 + QDir::separator() + "Terminal_" + QLocale::system().name() + ".qm";
         if(!m_Translator.load(szTranslatorFile))
@@ -34,9 +30,6 @@ public:
     {
         qApp->removeTranslator(&m_Translator);
         qDebug(ClientTerminal) << "CTerminal::~CTerminal()";
-    #if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
-        Q_INIT_RESOURCE(translations_Terminal);
-    #endif
     };
     
 private:
