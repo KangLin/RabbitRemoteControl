@@ -121,6 +121,7 @@ void CParameterFreeRDP::SetReconnectInterval(UINT newReconnectInterval)
     else
         freerdp_settings_set_bool(m_pSettings,
                                   FreeRDP_AutoReconnectionEnabled, false);
+    SetModified(true);
     emit sigReconnectIntervalChanged();
 }
 
@@ -131,7 +132,10 @@ bool CParameterFreeRDP::GetShowVerifyDiaglog() const
 
 void CParameterFreeRDP::SetShowVerifyDiaglog(bool bShow)
 {
+    if(m_bShowVerifyDiaglog == bShow)
+        return;
     m_bShowVerifyDiaglog = bShow;
+    SetModified(true);
 }
 
 CParameterFreeRDP::RedirecionSoundType CParameterFreeRDP::GetRedirectionSound() const
@@ -144,6 +148,7 @@ void CParameterFreeRDP::SetRedirectionSound(RedirecionSoundType newRedirectionSo
     if (m_nRedirectionSound == newRedirectionSound)
         return;
     m_nRedirectionSound = newRedirectionSound;
+    SetModified(true);
     emit sigRedirectionSoundChanged(m_nRedirectionSound);
 }
 
@@ -157,6 +162,7 @@ void CParameterFreeRDP::SetRedirectionMicrophone(bool newRedirectionMicrophone)
     if (m_bRedirectionMicrophone == newRedirectionMicrophone)
         return;
     m_bRedirectionMicrophone = newRedirectionMicrophone;
+    SetModified(true);
     emit sigRedirectionMicrophoneChanged(m_bRedirectionMicrophone);
 }
 
@@ -170,6 +176,7 @@ void CParameterFreeRDP::SetRedirectionDrives(const QStringList &newRedirectionDr
     if (m_lstRedirectionDrives == newRedirectionDrive)
         return;
     m_lstRedirectionDrives = newRedirectionDrive;
+    SetModified(true);
     emit sigRedirectionDrivesChanged(m_lstRedirectionDrives);
 }
 
@@ -183,6 +190,7 @@ void CParameterFreeRDP::SetRedirectionPrinter(bool newRedirectionPrinter)
     if (m_bRedirectionPrinter == newRedirectionPrinter)
         return;
     m_bRedirectionPrinter = newRedirectionPrinter;
+    SetModified(true);
     emit sigRedirectionPrinterChanged(m_bRedirectionPrinter);
 }
 
@@ -196,6 +204,7 @@ void CParameterFreeRDP::SetRedirectionSoundParamters(const QString &newRedirecti
     if (m_szRedirectionSoundParamters == newRedirectionSoundParamters)
         return;
     m_szRedirectionSoundParamters = newRedirectionSoundParamters;
+    SetModified(true);
     emit sigRedirectionSoundParamtersChanged();
 }
 
@@ -209,5 +218,6 @@ void CParameterFreeRDP::SetRedirectionMicrophoneParamters(const QString &newRedi
     if (m_szRedirectionMicrophoneParamters == newRedirectionMicrophoneParamters)
         return;
     m_szRedirectionMicrophoneParamters = newRedirectionMicrophoneParamters;
+    SetModified(true);
     emit sigRedirectionMicrophoneParamtersChanged();
 }

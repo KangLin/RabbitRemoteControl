@@ -5,21 +5,26 @@
     <name>CConnecter</name>
     <message>
         <location filename="../../Connecter.cpp" line="84"/>
-        <source>Name:</source>
+        <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Connecter.cpp" line="85"/>
-        <source>Protol:</source>
+        <source>Protol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Connecter.cpp" line="86"/>
-        <source>Server name:</source>
+        <source>Server name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="138"/>
+        <location filename="../../Connecter.cpp" line="87"/>
+        <source>Description: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Connecter.cpp" line="148"/>
         <source>Set </source>
         <translation type="unfinished"></translation>
     </message>
@@ -130,12 +135,12 @@
 <context>
     <name>CParameterConnecter</name>
     <message>
-        <location filename="../../ParameterConnecter.cpp" line="232"/>
+        <location filename="../../ParameterConnecter.cpp" line="262"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterConnecter.cpp" line="248"/>
+        <location filename="../../ParameterConnecter.cpp" line="278"/>
         <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>

@@ -81,10 +81,10 @@ const QString CConnecter::Name()
 
 const QString CConnecter::Description()
 {
-    return tr("Name:") + Name() + "\n"
-            + tr("Protol:") + Protocol() + "\n"
-            + tr("Server name:") + ServerName() + "\n"
-            + m_pPluginClient->Description();
+    return tr("Name: ") + Name() + "\n"
+            + tr("Protol: ") + Protocol() + "\n"
+            + tr("Server name: ") + ServerName() + "\n"
+            + tr("Description: ") + m_pPluginClient->Description();
 }
 
 const QString CConnecter::Protocol() const
@@ -113,7 +113,17 @@ void CConnecter::slotSetClipboard(QMimeData* data)
 
 void CConnecter::slotSetServerName(const QString& szName)
 {
+    if(m_szServerName == szName)
+        return;
+
     m_szServerName = szName;
+    if(GetParameter())
+    {
+        if(GetParameter()->GetServerName() == szName)
+            return;
+        GetParameter()->SetServerName(szName);
+    }
+
     emit sigUpdateName(Name());
 }
 

@@ -13,15 +13,15 @@ Q_DECLARE_LOGGING_CATEGORY(Client);
 
 CParameterConnecter::CParameterConnecter(QObject *parent)
     : CParameter(parent),
-    m_pParameterClient(nullptr),
-    m_bShowServerName(true),
-    m_nPort(0),
-    m_bSavePassword(false),
-    m_bOnlyView(false),
-    m_bLocalCursor(true),
-    m_bClipboard(true),
-    m_eProxyType(emProxy::No),
-    m_nProxyPort(1080)
+      m_pParameterClient(nullptr),
+      m_bShowServerName(true),
+      m_nPort(0),
+      m_bSavePassword(false),
+      m_bOnlyView(false),
+      m_bLocalCursor(true),
+      m_bClipboard(true),
+      m_eProxyType(emProxy::No),
+      m_nProxyPort(1080)
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
 }
@@ -47,6 +47,7 @@ void CParameterConnecter::SetName(const QString& name)
     if(m_szName == name)
         return;
     m_szName = name;
+    SetModified(true);
     emit sigNameChanged(m_szName);
 }
 
@@ -57,7 +58,10 @@ const QString CParameterConnecter::GetServerName() const
 
 void CParameterConnecter::SetServerName(const QString& name)
 {
+    if(m_szServerName == name)
+        return;
     m_szServerName = name;
+    SetModified(true);
 }
 
 bool CParameterConnecter::GetShowServerName() const
@@ -70,6 +74,7 @@ void CParameterConnecter::SetShowServerName(bool NewShowServerName)
     if (m_bShowServerName == NewShowServerName)
         return;
     m_bShowServerName = NewShowServerName;
+    SetModified(true);
     emit sigShowServerNameChanged();
 }
 
@@ -78,6 +83,7 @@ void CParameterConnecter::SetHost(const QString& host)
     if (m_szHost == host)
         return;
     m_szHost = host;
+    SetModified(true);
 }
 
 const QString CParameterConnecter::GetHost() const
@@ -95,6 +101,7 @@ void CParameterConnecter::SetPort(quint16 port)
     if(m_nPort == port)
         return;
     m_nPort = port;
+    SetModified(true);
 }
 
 const QString CParameterConnecter::GetUser() const
@@ -107,6 +114,7 @@ void CParameterConnecter::SetUser(const QString &user)
     if (m_szUser == user)
         return;
     m_szUser = user;
+    SetModified(true);
 }
 
 const QString CParameterConnecter::GetPassword() const
@@ -116,7 +124,10 @@ const QString CParameterConnecter::GetPassword() const
 
 void CParameterConnecter::SetPassword(const QString &password)
 {
+    if(m_szPassword == password)
+        return;
     m_szPassword = password;
+    SetModified(true);
 }
 
 const bool CParameterConnecter::GetSavePassword() const
@@ -129,6 +140,7 @@ void CParameterConnecter::SetSavePassword(bool save)
     if (m_bSavePassword == save)
         return;
     m_bSavePassword = save;
+    SetModified(true);
 }
 
 const bool CParameterConnecter::GetOnlyView() const
@@ -141,6 +153,7 @@ void CParameterConnecter::SetOnlyView(bool only)
     if(m_bOnlyView == only)
         return;
     m_bOnlyView = only;
+    SetModified(true);
 }
 
 const bool CParameterConnecter::GetLocalCursor() const
@@ -153,6 +166,7 @@ void CParameterConnecter::SetLocalCursor(bool cursor)
     if(m_bLocalCursor == cursor)
         return;
     m_bLocalCursor = cursor;
+    SetModified(true);
 }
 
 const bool CParameterConnecter::GetClipboard() const
@@ -162,7 +176,10 @@ const bool CParameterConnecter::GetClipboard() const
 
 void CParameterConnecter::SetClipboard(bool c)
 {
+    if(m_bClipboard == c)
+        return;
     m_bClipboard = c;
+    SetModified(true);
 }
 
 const CParameterConnecter::emProxy CParameterConnecter::GetProxyType() const
@@ -175,6 +192,7 @@ void CParameterConnecter::SetProxyType(emProxy type)
     if (m_eProxyType == type)
         return;
     m_eProxyType = type;
+    SetModified(true);
 }
 
 const QString CParameterConnecter::GetProxyHost() const
@@ -184,7 +202,10 @@ const QString CParameterConnecter::GetProxyHost() const
 
 void CParameterConnecter::SetProxyHost(const QString &host)
 {
+    if(m_szProxyHost == host)
+        return;
     m_szProxyHost = host;
+    SetModified(true);
 }
 
 const quint16 CParameterConnecter::GetProxyPort() const
@@ -194,7 +215,10 @@ const quint16 CParameterConnecter::GetProxyPort() const
 
 void CParameterConnecter::SetProxyPort(quint16 port)
 {
+    if(m_nProxyPort == port)
+        return;
     m_nProxyPort = port;
+    SetModified(true);
 }
 
 const QString CParameterConnecter::GetProxyUser() const
@@ -204,7 +228,10 @@ const QString CParameterConnecter::GetProxyUser() const
 
 void CParameterConnecter::SetProxyUser(const QString &user)
 {
+    if(m_szProxyUser == user)
+        return;
     m_szProxyUser = user;
+    SetModified(true);
 }
 
 const QString CParameterConnecter::GetProxyPassword() const
@@ -214,7 +241,10 @@ const QString CParameterConnecter::GetProxyPassword() const
 
 void CParameterConnecter::SetProxyPassword(const QString &password)
 {
+    if(m_szProxyPassword == password)
+        return;
     m_szProxyPassword = password;
+    SetModified(true);
 }
 
 int CParameterConnecter::Load(QSettings &set)

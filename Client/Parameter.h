@@ -61,10 +61,20 @@ public:
     virtual int Load(QSettings &set) = 0;
     virtual int Save(QSettings &set) = 0;
 
+    bool GetModified();
+
 Q_SIGNALS:
+    //! Notify changed
     void sigChanged();
-    // Notify save to file
-    void sigSave();
+
+protected:
+    /*!
+     * \brief Must call it when set parameters
+     * \param bModified
+     */
+    int SetModified(bool bModified = true);    
+private:
+    bool m_bModified;
 };
 
 #endif // CPARAMETER_H_KL_2022_07_27

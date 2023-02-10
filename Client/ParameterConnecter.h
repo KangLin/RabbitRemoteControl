@@ -147,6 +147,7 @@ protected:
 
 private:
     friend CConnecter;
+
     /*!
      * \see CClient::CreateConnecter CConnecter::SetParameterClient
      */

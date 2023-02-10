@@ -44,6 +44,7 @@ void CParameterClient::SetHookKeyboard(bool newHookKeyboard)
 {
     if (m_bHookKeyboard == newHookKeyboard)
         return;
+    SetModified(true);
     m_bHookKeyboard = newHookKeyboard;
     emit sigHookKeyboardChanged();
 }
@@ -70,6 +71,7 @@ void CParameterClient::SetSavePassword(bool NewAutoSavePassword)
 {
     if (m_bSavePassword == NewAutoSavePassword)
         return;
+    SetModified(true);
     m_bSavePassword = NewAutoSavePassword;
     emit sigSavePasswordChanged(m_bSavePassword);
 }
@@ -83,6 +85,7 @@ void CParameterClient::SetPromptType(PromptType NewPromptType)
 {
     if (m_PromptType == NewPromptType)
         return;
+    SetModified(true);
     m_PromptType = NewPromptType;
     emit sigPromptTypeChanged(m_PromptType);
 }
@@ -110,5 +113,6 @@ void CParameterClient::SetViewPassowrd(bool NewViewPassowrd)
     if (m_bViewPassowrd == NewViewPassowrd)
         return;
     m_bViewPassowrd = NewViewPassowrd;
+    SetModified(true);
     emit sigViewPassowrdChanged(m_bViewPassowrd);
 }

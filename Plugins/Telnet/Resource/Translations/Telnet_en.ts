@@ -49,12 +49,12 @@
 <context>
     <name>CPluginTelnet</name>
     <message>
-        <location filename="../../PluginTelnet.cpp" line="25"/>
+        <location filename="../../PluginTelnet.cpp" line="26"/>
         <source>Telnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTelnet.cpp" line="30"/>
+        <location filename="../../PluginTelnet.cpp" line="31"/>
         <source>Telnet: net terminal</source>
         <translation type="unfinished"></translation>
     </message>

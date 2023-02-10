@@ -81,7 +81,10 @@ bool CParameterRabbitVNC::GetShared() const
 
 void CParameterRabbitVNC::SetShared(bool newShared)
 {
+    if(m_bShared == newShared)
+        return;
     m_bShared = newShared;
+    SetModified(true);
 }
 
 bool CParameterRabbitVNC::GetBufferEndRefresh() const
@@ -91,7 +94,10 @@ bool CParameterRabbitVNC::GetBufferEndRefresh() const
 
 void CParameterRabbitVNC::SetBufferEndRefresh(bool newBufferEndRefresh)
 {
+    if(m_bBufferEndRefresh == newBufferEndRefresh)
+        return;
     m_bBufferEndRefresh = newBufferEndRefresh;
+    SetModified(true);
 }
 
 bool CParameterRabbitVNC::GetSupportsDesktopResize() const
@@ -101,7 +107,9 @@ bool CParameterRabbitVNC::GetSupportsDesktopResize() const
 
 void CParameterRabbitVNC::SetSupportsDesktopResize(bool newSupportsDesktopResize)
 {
+    if(m_bSupportsDesktopResize == newSupportsDesktopResize)
     m_bSupportsDesktopResize = newSupportsDesktopResize;
+    SetModified(true);
 }
 
 bool CParameterRabbitVNC::GetAutoSelect() const
@@ -111,7 +119,10 @@ bool CParameterRabbitVNC::GetAutoSelect() const
 
 void CParameterRabbitVNC::SetAutoSelect(bool newAutoSelect)
 {
+    if(m_bAutoSelect == newAutoSelect)
+        return;
     m_bAutoSelect = newAutoSelect;
+    SetModified(true);
 }
 
 CParameterRabbitVNC::COLOR_LEVEL CParameterRabbitVNC::GetColorLevel() const
@@ -121,7 +132,10 @@ CParameterRabbitVNC::COLOR_LEVEL CParameterRabbitVNC::GetColorLevel() const
 
 void CParameterRabbitVNC::SetColorLevel(COLOR_LEVEL newColorLevel)
 {
+    if(m_nColorLevel == newColorLevel)
+        return;
     m_nColorLevel = newColorLevel;
+    SetModified(true);
 }
 
 int CParameterRabbitVNC::GetEncoding() const
@@ -131,7 +145,10 @@ int CParameterRabbitVNC::GetEncoding() const
 
 void CParameterRabbitVNC::SetEncoding(int newEncoding)
 {
+    if(m_nEncoding == newEncoding)
+        return;
     m_nEncoding = newEncoding;
+    SetModified(true);
 }
 
 bool CParameterRabbitVNC::GetEnableCompressLevel() const
@@ -141,7 +158,10 @@ bool CParameterRabbitVNC::GetEnableCompressLevel() const
 
 void CParameterRabbitVNC::SetEnableCompressLevel(bool newCompressLevel)
 {
+    if(m_bCompressLevel == newCompressLevel)
+        return;
     m_bCompressLevel = newCompressLevel;
+    SetModified(true);
 }
 
 int CParameterRabbitVNC::GetCompressLevel() const
@@ -151,7 +171,10 @@ int CParameterRabbitVNC::GetCompressLevel() const
 
 void CParameterRabbitVNC::SetCompressLevel(int newCompressLevel)
 {
+    if(m_nCompressLevel == newCompressLevel)
+        return;
     m_nCompressLevel = newCompressLevel;
+    SetModified(true);
 }
 
 bool CParameterRabbitVNC::GetNoJpeg() const
@@ -161,7 +184,10 @@ bool CParameterRabbitVNC::GetNoJpeg() const
 
 void CParameterRabbitVNC::SetNoJpeg(bool newNoJpeg)
 {
+    if(m_bNoJpeg == newNoJpeg)
+        return;
     m_bNoJpeg = newNoJpeg;
+    SetModified(true);
 }
 
 int CParameterRabbitVNC::GetQualityLevel() const
@@ -171,7 +197,10 @@ int CParameterRabbitVNC::GetQualityLevel() const
 
 void CParameterRabbitVNC::SetQualityLevel(int newQualityLevel)
 {
+    if(m_nQualityLevel == newQualityLevel)
+        return;
     m_nQualityLevel = newQualityLevel;
+    SetModified(true);
 }
 
 bool CParameterRabbitVNC::GetIce() const
@@ -181,7 +210,10 @@ bool CParameterRabbitVNC::GetIce() const
 
 void CParameterRabbitVNC::SetIce(bool newIce)
 {
+    if(m_bIce == newIce)
+        return;
     m_bIce = newIce;
+    SetModified(true);
 }
 
 const QString &CParameterRabbitVNC::GetPeerUser() const
@@ -191,5 +223,8 @@ const QString &CParameterRabbitVNC::GetPeerUser() const
 
 void CParameterRabbitVNC::SetPeerUser(const QString &newPeerUser)
 {
+    if(m_szPeerUser == newPeerUser)
+        return;
     m_szPeerUser = newPeerUser;
+    SetModified(true);
 }

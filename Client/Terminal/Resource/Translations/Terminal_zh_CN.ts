@@ -45,8 +45,8 @@
     </message>
     <message>
         <location filename="../../FrmParameterTerminalAppearanceSettings.ui" line="213"/>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="99"/>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="107"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="100"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="108"/>
         <source>Example: Display font</source>
         <translation>示例：显示字体</translation>
     </message>
@@ -71,42 +71,42 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="69"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="70"/>
         <source>BlockCursor</source>
         <translation>方块光标</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="70"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="71"/>
         <source>UnderlineCursor</source>
         <translation>下划线光标</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="71"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="72"/>
         <source>IBeamCursor</source>
         <translation>I 形光标</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="78"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="79"/>
         <source>No</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="79"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="80"/>
         <source>Left</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="80"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="81"/>
         <source>Right</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="131"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="132"/>
         <source>Backgroup image</source>
         <translation>背景图像</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="132"/>
+        <location filename="../../FrmParameterTerminalAppearanceSettings.cpp" line="133"/>
         <source>Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)</source>
         <translation>图像 (*.png *.xpm *.jpg *.bmp *.jpeg);;所有文件 (*.*)</translation>
     </message>
@@ -147,37 +147,37 @@
 <context>
     <name>CFrmTermWidget</name>
     <message>
-        <location filename="../../FrmTermWidget.cpp" line="28"/>
+        <location filename="../../FrmTermWidget.cpp" line="31"/>
         <source>Copy selection to clipboard</source>
         <translation>复制选择到剪切板</translation>
     </message>
     <message>
-        <location filename="../../FrmTermWidget.cpp" line="29"/>
+        <location filename="../../FrmTermWidget.cpp" line="32"/>
         <source>Paste clipboard</source>
         <translation>粘贴剪切板</translation>
     </message>
     <message>
-        <location filename="../../FrmTermWidget.cpp" line="30"/>
+        <location filename="../../FrmTermWidget.cpp" line="33"/>
         <source>Paste selection</source>
         <translation>粘贴选择</translation>
     </message>
     <message>
-        <location filename="../../FrmTermWidget.cpp" line="32"/>
+        <location filename="../../FrmTermWidget.cpp" line="35"/>
         <source>Zoom in</source>
         <translation>放大字体</translation>
     </message>
     <message>
-        <location filename="../../FrmTermWidget.cpp" line="33"/>
+        <location filename="../../FrmTermWidget.cpp" line="36"/>
         <source>Zoom out</source>
         <translation>缩小字体</translation>
     </message>
     <message>
-        <location filename="../../FrmTermWidget.cpp" line="34"/>
+        <location filename="../../FrmTermWidget.cpp" line="37"/>
         <source>Zoom reset</source>
         <translation>恢复字体</translation>
     </message>
     <message>
-        <location filename="../../FrmTermWidget.cpp" line="36"/>
+        <location filename="../../FrmTermWidget.cpp" line="39"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>

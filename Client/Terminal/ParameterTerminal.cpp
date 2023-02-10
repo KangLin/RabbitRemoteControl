@@ -92,7 +92,10 @@ int CParameterTerminal::GetHistorySize() const
 
 void CParameterTerminal::SetHistorySize(int newHistorySize)
 {
+    if(m_nHistorySize == newHistorySize)
+        return;
     m_nHistorySize = newHistorySize;
+    SetModified(true);
 }
 
 const QString &CParameterTerminal::GetTextCodec() const
@@ -102,7 +105,10 @@ const QString &CParameterTerminal::GetTextCodec() const
 
 void CParameterTerminal::SetTextCodec(const QString &newTextCodec)
 {
+    if(m_szTextCodec == newTextCodec)
+        return;
     m_szTextCodec = newTextCodec;
+    SetModified(true);
 }
 
 const QString &CParameterTerminal::GetKeyBindings() const
@@ -112,7 +118,10 @@ const QString &CParameterTerminal::GetKeyBindings() const
 
 void CParameterTerminal::SetKeyBindings(const QString &newSzKeyBindings)
 {
+    if(m_szKeyBindings == newSzKeyBindings)
+        return;
     m_szKeyBindings = newSzKeyBindings;
+    SetModified(true);
 }
 
 bool CParameterTerminal::GetDirectional() const
@@ -122,7 +131,10 @@ bool CParameterTerminal::GetDirectional() const
 
 void CParameterTerminal::SetDirectional(bool newBiDirectional)
 {
+    if(m_bDirectional == newBiDirectional)
+        return;
     m_bDirectional = newBiDirectional;
+    SetModified(true);
 }
 
 bool CParameterTerminal::GetDisableBracketedPasteMode() const
@@ -132,7 +144,10 @@ bool CParameterTerminal::GetDisableBracketedPasteMode() const
 
 void CParameterTerminal::SetDisableBracketedPasteMode(bool newDisableBracketedPasteMode)
 {
+    if(m_bDisableBracketedPasteMode == newDisableBracketedPasteMode)
+        return;
     m_bDisableBracketedPasteMode = newDisableBracketedPasteMode;
+    SetModified(true);
 }
 
 bool CParameterTerminal::GetMotionAfterPasting() const
@@ -142,7 +157,10 @@ bool CParameterTerminal::GetMotionAfterPasting() const
 
 void CParameterTerminal::SetMotionAfterPasting(bool newMotionAfterPasting)
 {
+    if(m_bMotionAfterPasting == newMotionAfterPasting)
+        return;
     m_bMotionAfterPasting = newMotionAfterPasting;
+    SetModified(true);
 }
 
 bool CParameterTerminal::GetFlowControlWarning() const
@@ -152,7 +170,10 @@ bool CParameterTerminal::GetFlowControlWarning() const
 
 void CParameterTerminal::SetFlowControlWarning(bool newFlowControlWarning)
 {
+    if(m_bFlowControlWarning == newFlowControlWarning)
+        return;
     m_bFlowControlWarning = newFlowControlWarning;
+    SetModified(true);
 }
 
 bool CParameterTerminal::GetFlowControl() const
@@ -162,7 +183,10 @@ bool CParameterTerminal::GetFlowControl() const
 
 void CParameterTerminal::SetFlowControl(bool newFlowControl)
 {
+    if(m_bFlowControl == newFlowControl)
+        return;
     m_bFlowControl = newFlowControl;
+    SetModified(true);
 }
 
 const QString &CParameterTerminal::GetBackgroupImage() const
@@ -172,7 +196,10 @@ const QString &CParameterTerminal::GetBackgroupImage() const
 
 void CParameterTerminal::SetBackgroupImage(const QString &newBackgroupImage)
 {
+    if(m_BackgroupImage == newBackgroupImage)
+        return;
     m_BackgroupImage = newBackgroupImage;
+    SetModified(true);
 }
 
 int CParameterTerminal::GetTransparency() const
@@ -182,7 +209,10 @@ int CParameterTerminal::GetTransparency() const
 
 void CParameterTerminal::SetTransparency(int newTermTransparency)
 {
+    if(m_nTransparency == newTermTransparency)
+        return;
     m_nTransparency = newTermTransparency;
+    SetModified(true);
 }
 
 QTermWidget::ScrollBarPosition CParameterTerminal::GetScrollBarPosition() const
@@ -192,7 +222,10 @@ QTermWidget::ScrollBarPosition CParameterTerminal::GetScrollBarPosition() const
 
 void CParameterTerminal::SetScrollBarPosition(QTermWidget::ScrollBarPosition newScrollBarPosition)
 {
+    if(m_ScrollBarPosition == newScrollBarPosition)
+        return;
     m_ScrollBarPosition = newScrollBarPosition;
+    SetModified(true);
 }
 
 Konsole::Emulation::KeyboardCursorShape CParameterTerminal::GetCursorShape() const
@@ -202,7 +235,10 @@ Konsole::Emulation::KeyboardCursorShape CParameterTerminal::GetCursorShape() con
 
 void CParameterTerminal::SetCursorShape(Konsole::Emulation::KeyboardCursorShape newCursorShape)
 {
+    if(m_CursorShape == newCursorShape)
+        return;
     m_CursorShape = newCursorShape;
+    SetModified(true);
 }
 
 const QString &CParameterTerminal::GetColorScheme() const
@@ -212,7 +248,10 @@ const QString &CParameterTerminal::GetColorScheme() const
 
 void CParameterTerminal::SetColorScheme(const QString &newColorScheme)
 {
+    if(m_szColorScheme == newColorScheme)
+        return;
     m_szColorScheme = newColorScheme;
+    SetModified(true);
 }
 
 bool CParameterTerminal::GetSizeHint() const
@@ -222,7 +261,10 @@ bool CParameterTerminal::GetSizeHint() const
 
 void CParameterTerminal::SetSizeHint(bool newSizeHint)
 {
+    if(m_bSizeHint == newSizeHint)
+        return;
     m_bSizeHint = newSizeHint;
+    SetModified(true);
 }
 
 const QFont &CParameterTerminal::GetFont() const
@@ -232,5 +274,8 @@ const QFont &CParameterTerminal::GetFont() const
 
 void CParameterTerminal::SetFont(const QFont &newFont)
 {
+    if(m_Font == newFont)
+        return;
     m_Font = newFont;
+    SetModified(true);
 }

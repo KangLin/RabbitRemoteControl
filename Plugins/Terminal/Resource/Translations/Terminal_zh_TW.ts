@@ -22,12 +22,12 @@
 <context>
     <name>CPluginTerminal</name>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="29"/>
+        <location filename="../../PluginTerminal.cpp" line="30"/>
         <source>Terminal</source>
         <translation>終端</translation>
     </message>
     <message>
-        <location filename="../../PluginTerminal.cpp" line="34"/>
+        <location filename="../../PluginTerminal.cpp" line="35"/>
         <source>Terminal: native(shell) and remote(telnet, etc) terminal</source>
         <translation>終端：本地(shell)和遠程(telnet、等)終端</translation>
     </message>
