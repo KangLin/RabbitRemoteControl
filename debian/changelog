@@ -1,5 +1,8 @@
 rabbitremotecontrol (0.0.26) unstable; urgency=medium
 
+    * CI: modify github release
+    * Client::Terminal: remove Q_INIT_RESOURCE
+    * Client: modify paramter
     * App::Client: modify dock widget layout
     * App::Client: add recent menu status tip
     * Modify deploy.sh to debian/changelog
@@ -68,5 +71,5 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * App: add item icon in favorite
     * Update doxygen.yml
 
- -- Kang Lin <kl222@126.com>  Thu, 09 Feb 2023 10:53:17 +0800
+ -- Kang Lin <kl222@126.com>  Sat, 11 Feb 2023 12:53:03 +0800
 
