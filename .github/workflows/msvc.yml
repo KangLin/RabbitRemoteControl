@@ -195,7 +195,7 @@ jobs:
       uses: actions/cache@v1  # not v2!
       with:
         path: ${{env.TOOSL_DIR}}/qt
-        key: rabbitremotecontrol_msvc_qt-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}
+        key: qt_${{matrix.qt_version}}_${{matrix.qt_arch}}
 
     - name: Install Qt
       # You may pin to the exact commit or the version.
