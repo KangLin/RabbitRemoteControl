@@ -64,10 +64,10 @@ int main(int argc, char *argv[])
 
     // Install translator
     QTranslator tApp;
-    tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
+    if(tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
               + QDir::separator() + "RabbitRemoteControlApp_"
-              + QLocale::system().name() + ".qm");
-    a.installTranslator(&tApp);
+              + QLocale::system().name() + ".qm"))
+        a.installTranslator(&tApp);
     qInfo(App) << "Language:" << QLocale::system().name();
 
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));

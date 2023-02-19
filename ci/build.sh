@@ -128,10 +128,10 @@ esac
 
 export PKG_CONFIG_PATH=${ThirdLibs_DIR}/lib/pkgconfig:${PKG_CONFIG_PATH}
 if [ -n "$appveyor_RabbitRemoteControl_VERSION" -a -z "$VERSION" ]; then
-    export VERSION="v0.0.26"
+    export VERSION="v0.0.27"
 fi
 if [ -z "$VERSION" ]; then
-    export VERSION="v0.0.26"
+    export VERSION="v0.0.27"
 fi
 
 export UPLOADTOOL_BODY="Release RabbitRemoteControl ${VERSION}.<br> The change see [ChangeLog.md](ChangeLog.md)"

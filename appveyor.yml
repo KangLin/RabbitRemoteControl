@@ -1,5 +1,5 @@
 #TODO: Change version
-version: "v0.0.26.{build}"
+version: "v0.0.27.{build}"
 
 cache:
   - ..\other_source
@@ -7,7 +7,7 @@ cache:
 # https://www.appveyor.com/docs/build-cache/#cleaning-up-cache
 
 environment:
-  RabbitRemoteControlVersion: v0.0.26
+  RabbitRemoteControlVersion: v0.0.27
   STOREPASS:
     secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=
   QT_USER:

@@ -170,6 +170,7 @@ void CMainWindow::on_actionAbout_triggered()
     QPixmap p = icon.pixmap(*sizeList.begin());
     about->m_AppIcon = p.toImage();
     about->m_szCopyrightStartTime = "2020";
+    about->m_szVersionRevision = RabbitRemoteControl_VERSION_REVISION;
     if(about->isHidden())
     {
 #ifdef BUILD_QUIWidget

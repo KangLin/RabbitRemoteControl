@@ -44,7 +44,7 @@ if [ -z "$VERSION" ]; then
 fi
 
 sed -i "s/^\!define PRODUCT_VERSION.*/\!define PRODUCT_VERSION \"${VERSION}\"/g" ${SOURCE_DIR}/Install/Install.nsi
-sed -i "s/^\SET(RabbitRemoteControl_VERSION.*/\SET(RabbitRemoteControl_VERSION \"${VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
+sed -i "s/SET(RabbitRemoteControl_VERSION \"v[0-9]\+\.[0-9]\+\.[0-9]\+\")/SET(RabbitRemoteControl_VERSION \"${VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/<VERSION>.*</<VERSION>${VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/export VERSION=.*/export VERSION=\"${VERSION}\"/g" ${SOURCE_DIR}/ci/build.sh
 sed -i "s/version:.*/version: \"${VERSION}.{build}\"/g" ${SOURCE_DIR}/appveyor.yml

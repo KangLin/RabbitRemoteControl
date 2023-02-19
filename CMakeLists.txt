@@ -26,7 +26,6 @@ if(POLICY CMP0021)
     cmake_policy(SET CMP0021 NEW)
 endif()
 
-SET(RabbitRemoteControl_VERSION "v0.0.26")
 # Find Git Version Patch
 IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
     if(NOT GIT)
@@ -41,17 +40,23 @@ IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
             COMMAND ${GIT} describe --tags
             OUTPUT_VARIABLE GIT_VERSION  OUTPUT_STRIP_TRAILING_WHITESPACE
         )
-        if(NOT GIT_VERSION)
-            EXECUTE_PROCESS(
-                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-                COMMAND ${GIT} rev-parse --short HEAD
-                OUTPUT_VARIABLE GIT_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE
-            )
-        endif()
+    
+        EXECUTE_PROCESS(
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            COMMAND ${GIT} rev-parse --short HEAD
+            OUTPUT_VARIABLE GIT_VERSION_REVISION OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        IF(NOT GIT_VERSION)
+            SET(GIT_VERSION ${GIT_VERSION_REVISION})
+        ENDIF()
         SET(RabbitRemoteControl_VERSION ${GIT_VERSION})
+        SET(RabbitRemoteControl_VERSION_REVISION ${GIT_VERSION_REVISION})
     ENDIF()
 ENDIF()
-message("${PROJECT_NAME}:${RabbitRemoteControl_VERSION}")
+IF(NOT RabbitRemoteControl_VERSION)
+    SET(RabbitRemoteControl_VERSION "v0.0.27")
+ENDIF()
+message("${PROJECT_NAME}:${RabbitRemoteControl_VERSION};Revision:${GIT_VERSION_REVISION}")
 set(VERSION ${RabbitRemoteControl_VERSION})
 
 IF(MSVC)
