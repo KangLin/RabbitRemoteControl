@@ -28,9 +28,14 @@ if [ ! -f /usr/share/pixmaps/${PROJECT_NAME}.png ]; then
     EXIT_CODE=$[EXIT_CODE+1]
 fi
 
-if [ ! -f /etc/ld.so.conf.d/${PROJECT_NAME}.conf ]; then
-	echo "There are not /etc/ld.so.conf.d/${PROJECT_NAME}.conf"
-	EXIT_CODE=$[EXIT_CODE+1]
+if [ ! -f "/opt/${PROJECT_NAME}/bin/${PROJECT_NAME}.sh" ]; then
+    echo "/opt/${PROJECT_NAME}/bin/${PROJECT_NAME}.sh"
+    EXIT_CODE=$[EXIT_CODE+1]
 fi
+
+#if [ ! -f /etc/ld.so.conf.d/${PROJECT_NAME}.conf ]; then
+#	echo "There are not /etc/ld.so.conf.d/${PROJECT_NAME}.conf"
+#	EXIT_CODE=$[EXIT_CODE+1]
+#fi
 
 exit $EXIT_CODE

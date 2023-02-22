@@ -85,6 +85,9 @@ if(UNIX AND NOT ANDROID)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.desktop
         DESTINATION share/applications
             COMPONENT Runtime)
+    INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
+            DESTINATION ${CMAKE_INSTALL_BINDIR}
+                COMPONENT Runtime)
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/green/svg/app.svg
         DESTINATION share/pixmaps
             COMPONENT Runtime

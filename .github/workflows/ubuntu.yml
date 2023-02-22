@@ -3,8 +3,8 @@ name: ubuntu
 on: [push]
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
 jobs:
   build:
     strategy:
@@ -15,10 +15,10 @@ jobs:
 
     runs-on: ${{matrix.os}}
     env:
-      BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu_2022_02_14
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.BUILD_TYPE}}_${{matrix.os}}
       RabbitRemoteControl_VERSION: 0.0.27
 
     steps:
@@ -105,7 +105,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}_2023_02_02
+        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
 
     - name: build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}
@@ -241,12 +241,12 @@ jobs:
       run: |
         #sudo apt update -y -qq
         #sudo apt-get install -y -qq xvfb xpra
-        sudo Xvfb :999 -ac &
-        export DISPLAY=:999.0
+        sudo Xvfb :99 -ac &
+        export DISPLAY=:99.0
         echo "Install rabbit remote control ......"
         sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
-        echo "ls -l /opt/RabbitRemoteControl/bin/"
-        ls -l /opt/RabbitRemoteControl/bin/
+        #echo "ls -l /opt/RabbitRemoteControl/bin/"
+        #ls -l /opt/RabbitRemoteControl/bin/
         echo "Update update_linux.xml ......"
         export QT_XCB_GL_INTEGRATION=none
         MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum|awk '{print $1}'`
@@ -254,7 +254,7 @@ jobs:
         #ulimit -c unlimited
         #echo "# sudo sysctl -w kernel.core_pattern=core"
         #sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
-        /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
+        /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
             -f "`pwd`/update_linux.xml" \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb" \
             --md5 "${MD5SUM}" \

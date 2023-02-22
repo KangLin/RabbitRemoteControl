@@ -3,8 +3,8 @@
 [Desktop Entry]
 Type=Application
 Icon=@APP_ICON_NAME@
-TryExec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
-Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
+TryExec=/opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh
+Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh
 Path=/opt/RabbitRemoteControl
 Terminal=false
 StartupNotify=true
