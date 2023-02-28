@@ -47,7 +47,7 @@ if(LibDataChannel_FOUND)
     find_package(QXmpp)
     if(QXmpp_FOUND)
         list(APPEND CHANNEL_DEFINITIONS HAVE_QXMPP)
-        find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network Xml)
+        list(APPEND CHANNEL_QT_COMPONENTS Network Xml)
         list(APPEND CHANNEL_PRIVATE_LIBS QXmpp::QXmpp)
         install_targets(TARGETS QXmpp::QXmpp)
         list(APPEND CHANNEL_SOURCE_FILES
