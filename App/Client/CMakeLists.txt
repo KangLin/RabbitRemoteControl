@@ -64,12 +64,12 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS Client)
 
-if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl.conf)
-    configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.debug.conf
-        ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl.conf
+if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf)
+    configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.debug.conf
+        ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf
         COPYONLY)
 endif()
-INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.conf
     DESTINATION etc
         COMPONENT Runtime)
 

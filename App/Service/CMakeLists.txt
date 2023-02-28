@@ -48,11 +48,11 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     PRIVATE_LIBS ${SERVICE_LIBS}
     VERSION ${RabbitRemoteControl_VERSION})
 
-configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
-    ${CMAKE_BINARY_DIR}/etc/${PROJECT_NAME}.conf
+configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.conf
+    ${CMAKE_BINARY_DIR}/etc/${PROJECT_NAME}_log4qt.conf
     COPYONLY)
 
-INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl.conf
+INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.conf
     DESTINATION etc
     COMPONENT Runtime
-    RENAME ${PROJECT_NAME}.conf)
+    RENAME ${PROJECT_NAME}_log4qt.conf)
