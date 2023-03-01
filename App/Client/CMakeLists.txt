@@ -64,14 +64,25 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS Client)
 
-if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf)
-    configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.debug.conf
-        ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf
-        COPYONLY)
-endif()
-INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.conf
-    DESTINATION etc
+if(Log4Qt_FOUND)
+    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf)
+        configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.debug.conf
+            ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf
+            COPYONLY)
+    endif()
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.conf
+        DESTINATION etc
         COMPONENT Runtime)
+else()
+    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.conf)
+        configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.conf
+            ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.conf
+            COPYONLY)
+    endif()
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.conf
+        DESTINATION etc
+        COMPONENT Runtime)
+endif()
 
 if(WIN32)
     install(FILES Resource/icons/green/ico/app.ico
