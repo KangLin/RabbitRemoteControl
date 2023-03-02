@@ -105,7 +105,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
+        key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}_2023_03_02
 
     - name: build FreeRDP
       working-directory: ${{env.SOURCE_DIR}}
@@ -171,26 +171,26 @@ jobs:
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
         fi
 
-    - name: build log4qt
-      working-directory: ${{env.SOURCE_DIR}}
-      env:
-        QT_ROOT: /usr/lib/`uname -m`-linux-gnu/qt5
-      run: |
-        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt ]; then
-            git clone https://github.com/KangLin/Log4Qt.git
-            cd Log4Qt
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
-                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
-                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
-                -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}} \
-                -DLOG4QT_ENABLE_EXAMPLES=OFF \
-                -DLOG4QT_ENABLE_TESTS=OFF
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
-        fi
+#    - name: build log4qt
+#      working-directory: ${{env.SOURCE_DIR}}
+#      env:
+#        QT_ROOT: /usr/lib/`uname -m`-linux-gnu/qt5
+#      run: |
+#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt ]; then
+#            git clone https://github.com/KangLin/Log4Qt.git
+#            cd Log4Qt
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+#                -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
+#                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
+#                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
+#                -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}} \
+#                -DLOG4QT_ENABLE_EXAMPLES=OFF \
+#                -DLOG4QT_ENABLE_TESTS=OFF
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#        fi
 
     - name: build QtService
       working-directory: ${{env.SOURCE_DIR}}
@@ -218,7 +218,6 @@ jobs:
         RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
         LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
         QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
-        Log4Qt_DIR: ${{env.INSTALL_DIR}}/lib/cmake/Log4Qt
         FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3
         FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
         WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR3

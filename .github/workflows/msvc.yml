@@ -72,7 +72,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2033_02_02
+        key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2033_03_02
 
     - name: run-vcpkg
       uses: lukka/run-vcpkg@v7
@@ -233,25 +233,25 @@ jobs:
         # Any extra arguments to append to the back
         #extra: # optional
 
-    - name: build log4qt
-      working-directory: ${{env.SOURCE_DIR}}
-      run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\Log4Qt (
-            git clone https://github.com/KangLin/Log4Qt.git
-            cd Log4Qt
-            cmake -E make_directory build
-            cd build
-            cmake .. ^
-                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
-                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
-                -DLOG4QT_ENABLE_EXAMPLES=OFF ^
-                -DLOG4QT_ENABLE_TESTS=OFF ^
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-        )
+#    - name: build log4qt
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\Log4Qt (
+#            git clone https://github.com/KangLin/Log4Qt.git
+#            cd Log4Qt
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. ^
+#                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
+#                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+#                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
+#                -DLOG4QT_ENABLE_EXAMPLES=OFF ^
+#                -DLOG4QT_ENABLE_TESTS=OFF ^
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#        )
 
     - name: build qxmpp
       working-directory: ${{env.SOURCE_DIR}}
@@ -308,7 +308,6 @@ jobs:
             -DBUILD_QUIWidget=OFF ^
             -DBUILD_LibVNCServer=OFF ^
             -DBUILD_FREERDP=ON ^
-            -DLog4Qt_DIR=${{env.INSTALL_DIR}}/lib/cmake/Log4Qt ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^

@@ -64,7 +64,7 @@ jobs:
       with:
         path: |
           ${{env.INSTALL_DIR}}
-        key: cache-installed-mingw_2023_02_15
+        key: cache-installed-mingw_2023_03_02
         
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
@@ -149,24 +149,24 @@ jobs:
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
         )
 
-    - name: build log4qt
-      working-directory: ${{env.SOURCE_DIR}}
-      env:
-        MSYSTEM: MINGW64
-        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
-      run: |
-        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\Log4Qt (
-            git clone https://github.com/KangLin/Log4Qt.git
-            cd Log4Qt
-            cmake -E make_directory build
-            cd build
-            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-                -DLOG4QT_ENABLE_EXAMPLES=OFF ^
-                -DLOG4QT_ENABLE_TESTS=OFF ^
-                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-        )
+#    - name: build log4qt
+#      working-directory: ${{env.SOURCE_DIR}}
+#      env:
+#        MSYSTEM: MINGW64
+#        PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
+#      run: |
+#        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\Log4Qt (
+#            git clone https://github.com/KangLin/Log4Qt.git
+#            cd Log4Qt
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+#                -DLOG4QT_ENABLE_EXAMPLES=OFF ^
+#                -DLOG4QT_ENABLE_TESTS=OFF ^
+#                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#        )
         
 #    - name: build qxmpp
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -222,7 +222,6 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DBUILD_FREERDP=ON ^
             -DBUILD_LibVNCServer=OFF ^
-            -DLog4Qt_DIR=/lib/cmake/Log4Qt ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
             -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
