@@ -26,39 +26,6 @@ if(POLICY CMP0021)
     cmake_policy(SET CMP0021 NEW)
 endif()
 
-# Find Git Version Patch
-IF(EXISTS "${CMAKE_SOURCE_DIR}/.git")
-    if(NOT GIT)
-        SET(GIT $ENV{GIT})
-    endif()
-    if(NOT GIT)
-        FIND_PROGRAM(GIT NAMES git git.exe git.cmd)
-    endif()
-    IF(GIT)
-        EXECUTE_PROCESS(
-            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-            COMMAND ${GIT} describe --tags
-            OUTPUT_VARIABLE GIT_VERSION  OUTPUT_STRIP_TRAILING_WHITESPACE
-        )
-    
-        EXECUTE_PROCESS(
-            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-            COMMAND ${GIT} rev-parse --short HEAD
-            OUTPUT_VARIABLE GIT_VERSION_REVISION OUTPUT_STRIP_TRAILING_WHITESPACE
-        )
-        IF(NOT GIT_VERSION)
-            SET(GIT_VERSION ${GIT_VERSION_REVISION})
-        ENDIF()
-        SET(RabbitRemoteControl_VERSION ${GIT_VERSION})
-        SET(RabbitRemoteControl_VERSION_REVISION ${GIT_VERSION_REVISION})
-    ENDIF()
-ENDIF()
-IF(NOT RabbitRemoteControl_VERSION)
-    SET(RabbitRemoteControl_VERSION "v0.0.27")
-ENDIF()
-message("${PROJECT_NAME}:${RabbitRemoteControl_VERSION};Revision:${GIT_VERSION_REVISION}")
-set(VERSION ${RabbitRemoteControl_VERSION})
-
 IF(MSVC)
     # This option is to enable the /MP switch for Visual Studio 2005 and above compilers
     OPTION(WIN32_USE_MP "Set to ON to build with the /MP option (Visual Studio 2005 and above)." ON)
@@ -149,6 +116,14 @@ else()
     message("   ag:")
     message(FATAL_ERROR "       cmake -DRabbitCommon_DIR= ")
 endif()
+
+GET_VERSION(OUT_VERSION RabbitRemoteControl_VERSION
+    OUT_REVISION RabbitRemoteControl_REVISION)
+IF(NOT RabbitRemoteControl_VERSION)
+    SET(RabbitRemoteControl_VERSION "v0.0.27")
+ENDIF()
+message("RabbitRemoteControl_VERSION:${RabbitRemoteControl_VERSION};Revision:${RabbitRemoteControl_REVISION}")
+set(VERSION ${RabbitRemoteControl_VERSION})
 
 add_subdirectory(Channel)
 cmake_dependent_option(BUILD_CLIENT "Build Client" ON WITH_GUI OFF)
