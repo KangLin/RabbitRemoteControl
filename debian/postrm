@@ -18,9 +18,11 @@ set -e
 # for details, see https://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+INSTALL_ROOT=/opt/RabbitRemoteControl
 
 case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+        rm -fr $INSTALL_ROOT/log $INSTALL_ROOT/bin/log
         rm -fr /usr/share/applications/org.Rabbit.RemoteControl.desktop
         rm -fr /usr/share/pixmaps/org.Rabbit.RemoteControl.svg
         rm -fr /usr/share/applications/org.Rabbit.RemoteControl.Service.Configure.desktop
