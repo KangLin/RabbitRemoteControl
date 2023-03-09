@@ -3,7 +3,7 @@
 project(FreeRDP)
 
 SET(FreeRDP_LIBS freerdp-client freerdp Client)
-if(NOT WIN32)
+if(UNIX)
     LIST(APPEND FreeRDP_LIBS winpr)
     install_targets(TARGETS ${FreeRDP_LIBS})
 endif()
