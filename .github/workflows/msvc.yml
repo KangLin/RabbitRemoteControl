@@ -111,7 +111,7 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             ; git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b 0c496681f5ac8b08f77121388d413eff298edb57 0c496681f5ac8b08f77121388d413eff298edb57 ;1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
+            git checkout -b b7b46b812395cf3a67b1e36f0fbf1386f4372443 b7b46b812395cf3a67b1e36f0fbf1386f4372443
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
@@ -122,6 +122,8 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
                 -DWITH_SERVER=ON ^
                 -DWITH_CLIENT_SDL=OFF ^
+                -DWITH_KRB5=OFF \
+                -DWITH_MANPAGES=OFF
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
