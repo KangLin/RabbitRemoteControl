@@ -105,6 +105,16 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
     //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
     //m_pTableView->resizeColumnToContents(0); //设置第0列宽度自适应内容
     //m_pTableView->resizeColumnToContents(2); //设置第1列宽度自适应内容
+
+    QItemSelectionModel* pSelect = m_pTableView->selectionModel();
+    QModelIndexList lstIndex;
+    if(pSelect)
+        lstIndex = pSelect->selectedRows();
+    if(m_pModel->rowCount() > 0 && lstIndex.isEmpty())
+    {
+        m_pTableView->selectRow(0);
+    }
+
 }
 
 CFrmListConnects::~CFrmListConnects()
