@@ -113,7 +113,11 @@ private:
     
 private:
     struct ClientContext{
-        rdpContext Context;
+        #if FreeRDP_VERSION_MAJOR >= 3
+            rdpClientContext Context;
+        #else
+            rdpContext Context;
+        #endif
         CConnectFreeRDP* pThis;
     };
     ClientContext* m_pContext;

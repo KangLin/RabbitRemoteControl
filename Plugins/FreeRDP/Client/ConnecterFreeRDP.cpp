@@ -33,6 +33,10 @@ QDialog *CConnecterFreeRDP::GetDialogSettings(QWidget *parent)
 
 CConnect *CConnecterFreeRDP::InstanceConnect()
 {
-    CConnectFreeRDP* p = new CConnectFreeRDP(this);
-    return p;
+    try{
+        CConnectFreeRDP* p = new CConnectFreeRDP(this);
+        return p;
+    } catch(...) {
+        return nullptr;
+    }
 }

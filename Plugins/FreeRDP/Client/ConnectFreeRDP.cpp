@@ -83,9 +83,10 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
     {
         m_pContext = (ClientContext*)p;
         m_pContext->pThis = this;
-    } else 
+    } else {
         qCritical(FreeRDPConnect) << "freerdp_client_context_new fail";
-    
+        throw("freerdp_client_context_new fail");
+    }
 }
 
 CConnectFreeRDP::~CConnectFreeRDP()
@@ -104,8 +105,8 @@ int CConnectFreeRDP::OnInit()
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnInit()";
     int nRet = 0;
     BOOL status = false;
-    freerdp* instance = m_pContext->Context.instance;
-
+    rdpContext* pRdpContext = (rdpContext*)m_pContext;
+    freerdp* instance = pRdpContext->instance;
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
     if(nullptr == settings) return -1;
@@ -117,7 +118,7 @@ int CConnectFreeRDP::OnInit()
     RedirectionPrinter();
     RedirectionSerial();
 
-    freerdp_client_start(&m_pContext->Context);
+    freerdp_client_start(pRdpContext);
     status = freerdp_connect(instance);
     if (!status)
 	{
@@ -153,16 +154,15 @@ int CConnectFreeRDP::OnClean()
     int nRet = 0;
     if(m_pContext)
     {
-        rdpContext* pContext = (rdpContext*)m_pContext;
-        freerdp_disconnect(pContext->instance);
+        rdpContext* pRdpContext = (rdpContext*)m_pContext;
+        freerdp_disconnect(pRdpContext->instance);
+        freerdp_client_stop(pRdpContext);
 #if FreeRDP_VERSION_MAJOR >= 3
-        freerdp_client_stop(&m_pContext->Context);
-        //freerdp_abort_connect_context(&m_pContext->Context);
+        freerdp_abort_connect_context(pRdpContext);
 #else
-        freerdp_client_stop(pContext);
-        freerdp_abort_connect(m_pContext->Context.instance);
+        freerdp_abort_connect(pRdpContext->instance);
 #endif
-        freerdp_client_context_free(pContext);
+        freerdp_client_context_free(pRdpContext);
         m_pContext = nullptr;
     }
     return nRet;
@@ -184,17 +184,17 @@ int CConnectFreeRDP::OnProcess()
 {
     int nRet = 0;
     HANDLE handles[64];
-    rdpContext* pContext = (rdpContext*)m_pContext;
+    rdpContext* pRdpContext = (rdpContext*)m_pContext;
 #if FreeRDP_VERSION_MAJOR >= 3
-    if(freerdp_shall_disconnect_context(pContext))
+    if(freerdp_shall_disconnect_context(pRdpContext))
 #else
-    if(freerdp_shall_disconnect(pContext->instance))
+    if(freerdp_shall_disconnect(pRdpContext->instance))
 #endif
         return -1;
     else
     {
         DWORD nCount = 0;
-        DWORD tmp = freerdp_get_event_handles(pContext, &handles[nCount],
+        DWORD tmp = freerdp_get_event_handles(pRdpContext, &handles[nCount],
                                               ARRAYSIZE(handles) - nCount);
         if (tmp == 0)
         {
@@ -204,24 +204,24 @@ int CConnectFreeRDP::OnProcess()
         
         nCount += tmp;
 #if FreeRDP_VERSION_MAJOR < 3
-        handles[nCount++] = pContext->abortEvent;
+        handles[nCount++] = pRdpContext->abortEvent;
 #endif
         DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
         if (waitStatus == WAIT_FAILED)
             return -3;
 #if FreeRDP_VERSION_MAJOR < 3
         /* Check if a processed event called freerdp_abort_connect() and exit if true */
-		if (WaitForSingleObject(pContext->abortEvent, 0) == WAIT_OBJECT_0)
+		if (WaitForSingleObject(pRdpContext->abortEvent, 0) == WAIT_OBJECT_0)
 			/* Session disconnected by local user action */
             return -4;
 #endif
-        if (!freerdp_check_event_handles(pContext))
+        if (!freerdp_check_event_handles(pRdpContext))
         {
             nRet = -5;
             // Reconnect
-            if(pContext->settings->AutoReconnectionEnabled)
+            if(pRdpContext->settings->AutoReconnectionEnabled)
             {
-                if (client_auto_reconnect_ex(pContext->instance, NULL))
+                if (client_auto_reconnect_ex(pRdpContext->instance, NULL))
                     return m_pParamter->GetReconnectInterval() * 1000;
                 else
                 {
@@ -229,11 +229,11 @@ int CConnectFreeRDP::OnProcess()
                      * Indicate an unsuccessful connection attempt if reconnect
                      * did not succeed and no other error was specified.
                      */
-                    if (freerdp_error_info(pContext->instance) == 0)
+                    if (freerdp_error_info(pRdpContext->instance) == 0)
                         nRet = -6;
                 }
                 
-                if (freerdp_get_last_error(pContext) == FREERDP_ERROR_SUCCESS)
+                if (freerdp_get_last_error(pRdpContext) == FREERDP_ERROR_SUCCESS)
                     qCritical(FreeRDPConnect) << "Failed to check FreeRDP file descriptor";
             }
         }
@@ -799,7 +799,7 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
     if(x > m_Image.width() || y > m_Image.height())
         return TRUE;
 
-    QRect rect(x, y, w, h);
+    //QRect rect(x, y, w, h);
     //qDebug(FreeRDPConnect) << "Update:" << rect;
     //emit sigUpdateRect(rect, m_Image.copy(rect));
     emit sigUpdateRect(m_Image.rect(), m_Image);
@@ -937,11 +937,15 @@ void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
     {
         flags |= PTR_FLAGS_HWHEEL | p.x();
     }
-    
+#if FreeRDP_VERSION_MAJOR >= 3
+    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
+                                     pos.x(), pos.y());
+#else
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
                                    pos.x(),
                                    pos.y());
+#endif
 }
 
 void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
@@ -955,10 +959,15 @@ void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
         flags |= PTR_FLAGS_BUTTON2;
     if(buttons & Qt::MouseButton::MiddleButton)
         flags |= PTR_FLAGS_BUTTON3;
-    freerdp_input_send_mouse_event(m_pContext->Context.input,
+#if FreeRDP_VERSION_MAJOR >= 3
+    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
+                                     pos.x(), pos.y());
+#else
+        freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
                                    pos.x(),
                                    pos.y());
+#endif
 }
 
 void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
@@ -972,10 +981,15 @@ void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
         flags |= PTR_FLAGS_BUTTON2;
     if(buttons & Qt::MouseButton::MiddleButton)
         flags |= PTR_FLAGS_BUTTON3;
+#if FreeRDP_VERSION_MAJOR >= 3
+    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
+                                     pos.x(), pos.y());
+#else
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
                                    pos.x(),
                                    pos.y());
+#endif
 }
 
 void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
@@ -990,10 +1004,15 @@ void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
     if(button & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
     //qDebug(FreeRDPConnect) << "Flags:" << flags;
+#if FreeRDP_VERSION_MAJOR >= 3
+    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
+                                     pos.x(), pos.y());
+#else
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
                                    pos.x(),
                                    pos.y());
+#endif
 }
 
 void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
@@ -1004,7 +1023,7 @@ void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
 #if FreeRDP_VERSION_MAJOR >= 3
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, true, false, k);
+        freerdp_input_send_keyboard_event_ex(m_pContext->Context.context.input, true, false, k);
 #else
         freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, true, k);
 #endif
@@ -1017,7 +1036,7 @@ void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifie
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
 #if FreeRDP_VERSION_MAJOR >= 3
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, false, k);
+        freerdp_input_send_keyboard_event_ex(m_pContext->Context.context.input, false, false, k);
 #else
         freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, k);
 #endif
@@ -1025,7 +1044,8 @@ void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifie
 
 int CConnectFreeRDP::RedirectionSound()
 {
-    freerdp* instance = m_pContext->Context.instance;   
+    rdpContext* pRdpContext = (rdpContext*)m_pContext;
+    freerdp* instance = pRdpContext->instance;
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
@@ -1093,7 +1113,8 @@ int CConnectFreeRDP::RedirectionMicrophone()
     if(!m_pParamter->GetRedirectionMicrophone())
         return 0;
 
-    freerdp* instance = m_pContext->Context.instance;
+    rdpContext* pRdpContext = (rdpContext*)m_pContext;
+    freerdp* instance = pRdpContext->instance;
 
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
@@ -1135,7 +1156,8 @@ int CConnectFreeRDP::RedirectionDrive()
     if(lstDrives.isEmpty())
         return 0;
 
-    freerdp* instance = m_pContext->Context.instance;
+    rdpContext* pRdpContext = (rdpContext*)m_pContext;
+    freerdp* instance = pRdpContext->instance;
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
@@ -1165,7 +1187,8 @@ int CConnectFreeRDP::RedirectionPrinter()
     if(!m_pParamter->GetRedirectionPrinter())
         return 0;
 
-    freerdp* instance = m_pContext->Context.instance;
+    rdpContext* pRdpContext = (rdpContext*)m_pContext;
+    freerdp* instance = pRdpContext->instance;
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
     // 获取系统的打印机列表，并在combobox中显示
@@ -1197,7 +1220,8 @@ int CConnectFreeRDP::RedirectionSerial()
 {
     //TODO: FreeRDP don't support
     return 0;
-    freerdp* instance = m_pContext->Context.instance;
+    rdpContext* pRdpContext = (rdpContext*)m_pContext;
+    freerdp* instance = pRdpContext->instance;
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
