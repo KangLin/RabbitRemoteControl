@@ -908,17 +908,19 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
 
 void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotWheelEvent";
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->GetOnlyView()) return;
    
     UINT16 flags = 0;
+    /*
     if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
     if(buttons & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
     if(buttons & Qt::MouseButton::MiddleButton)
         flags |= PTR_FLAGS_BUTTON3;
-    
+    //*/
     QPoint p = angleDelta;
     if(p.y() > 0)
     {
@@ -938,8 +940,10 @@ void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
         flags |= PTR_FLAGS_HWHEEL | p.x();
     }
 #if FreeRDP_VERSION_MAJOR >= 3
+    freerdp_client_send_wheel_event(&m_pContext->Context, flags);
+    /*
     freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
-                                     pos.x(), pos.y());
+                                     pos.x(), pos.y());//*/
 #else
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
@@ -950,15 +954,17 @@ void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
 
 void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseMoveEvent";
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
+    /*
     if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
     if(buttons & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
     if(buttons & Qt::MouseButton::MiddleButton)
-        flags |= PTR_FLAGS_BUTTON3;
+        flags |= PTR_FLAGS_BUTTON3;//*/
 #if FreeRDP_VERSION_MAJOR >= 3
     freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
                                      pos.x(), pos.y());
@@ -972,6 +978,7 @@ void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 
 void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMousePressEvent";
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_DOWN;
@@ -994,6 +1001,7 @@ void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 
 void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseReleaseEvent";
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT16 flags = 0;
@@ -1017,6 +1025,7 @@ void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 
 void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotKeyPressEvent";
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
@@ -1031,6 +1040,7 @@ void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers
 
 void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotKeyReleaseEvent";
     if(!m_pContext) return;
     if(m_pParamter && m_pParamter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
