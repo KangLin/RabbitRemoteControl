@@ -38,7 +38,7 @@
     #include <QSound>
 #endif
 
-Q_DECLARE_LOGGING_CATEGORY(FreeRDP)
+Q_LOGGING_CATEGORY(FreeRDPConnect, "FreeRDP.Connect")
 
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                  QObject *parent)
@@ -84,13 +84,13 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
         m_pContext = (ClientContext*)p;
         m_pContext->pThis = this;
     } else 
-        qCritical(FreeRDP) << "freerdp_client_context_new fail";
+        qCritical(FreeRDPConnect) << "freerdp_client_context_new fail";
     
 }
 
 CConnectFreeRDP::~CConnectFreeRDP()
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::~CConnectFreeRdp()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::~CConnectFreeRdp()";
 }
 
 /*
@@ -101,7 +101,7 @@ CConnectFreeRDP::~CConnectFreeRDP()
  */
 int CConnectFreeRDP::OnInit()
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::OnInit()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnInit()";
     int nRet = 0;
     BOOL status = false;
     freerdp* instance = m_pContext->Context.instance;
@@ -133,7 +133,7 @@ int CConnectFreeRDP::OnInit()
         szErr += ":";
         szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
         szErr += tr(" fail");
-        qCritical(FreeRDP) << szErr;
+        qCritical(FreeRDPConnect) << szErr;
         emit sigError(nRet, szErr.toStdString().c_str());
     } else {
         emit sigConnected();
@@ -142,7 +142,7 @@ int CConnectFreeRDP::OnInit()
         szInfo += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
         szInfo += ":";
         szInfo += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
-        qInfo(FreeRDP) << szInfo;
+        qInfo(FreeRDPConnect) << szInfo;
         emit sigInformation(szInfo);
     }
     return nRet;
@@ -198,7 +198,7 @@ int CConnectFreeRDP::OnProcess()
                                               ARRAYSIZE(handles) - nCount);
         if (tmp == 0)
         {
-            qCritical(FreeRDP) << "freerdp_get_event_handles failed";
+            qCritical(FreeRDPConnect) << "freerdp_get_event_handles failed";
             return -2;
         }
         
@@ -234,7 +234,7 @@ int CConnectFreeRDP::OnProcess()
                 }
                 
                 if (freerdp_get_last_error(pContext) == FREERDP_ERROR_SUCCESS)
-                    qCritical(FreeRDP) << "Failed to check FreeRDP file descriptor";
+                    qCritical(FreeRDPConnect) << "Failed to check FreeRDP file descriptor";
             }
         }
     }
@@ -244,26 +244,26 @@ int CConnectFreeRDP::OnProcess()
 
 void CConnectFreeRDP::slotClipBoardChanged()
 {
-    qDebug(FreeRDP) << "CConnectFreeRDP::slotClipBoardChanged()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotClipBoardChanged()";
     if(m_pParamter->GetClipboard())
         m_ClipBoard.slotClipBoardChanged();
 }
 
 BOOL CConnectFreeRDP::cb_global_init()
 {
-	qDebug(FreeRDP) << "CConnectFreeRdp::Client_global_init()";
+	qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_global_init()";
     freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
 	return TRUE;
 }
 
 void CConnectFreeRDP::cb_global_uninit()
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::Client_global_uninit()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_global_uninit()";
 }
 
 BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::Client_new()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_new()";
     instance->PreConnect = cb_pre_connect;
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
@@ -286,21 +286,21 @@ BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
 
 void CConnectFreeRDP::cb_client_free(freerdp *instance, rdpContext *context)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::Client_free()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_free()";
     PubSub_UnsubscribeTerminate(context->pubSub, OnTerminateEventHandler);
 }
 
 int CConnectFreeRDP::cb_client_start(rdpContext *context)
 {
     int nRet = 0;
-    qDebug(FreeRDP) << "CConnectFreeRdp::Client_start()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_start()";
     return nRet;
 }
 
 int CConnectFreeRDP::cb_client_stop(rdpContext *context)
 {
     int nRet = 0;
-    qDebug(FreeRDP) << "CConnectFreeRdp::Client_stop()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_stop()";
     return nRet;
 }
 
@@ -317,7 +317,7 @@ int CConnectFreeRDP::cb_client_stop(rdpContext *context)
  */
 BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::cb_pre_connect()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_pre_connect()";
 	rdpChannels* channels = nullptr;
 	rdpSettings* settings = nullptr;
 	rdpContext* context = instance->context;
@@ -358,7 +358,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         if (!settings->Username)
             return FALSE;
         
-        qWarning(FreeRDP) << "No user name set. - Using login name:" << settings->Username;
+        qWarning(FreeRDPConnect) << "No user name set. - Using login name:" << settings->Username;
 	}
 
 	if (settings->AuthenticationOnly)
@@ -366,11 +366,11 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 		/* Check +auth-only has a username and password. */
 		if (!settings->Password)
 		{
-			qCritical(FreeRDP) << "auth-only, but no password set. Please provide one.";
+			qCritical(FreeRDPConnect) << "auth-only, but no password set. Please provide one.";
 			return FALSE;
 		}
 
-		qInfo(FreeRDP) << "Authentication only. Don't connect to X.";
+		qInfo(FreeRDPConnect) << "Authentication only. Don't connect to X.";
 	}
 
     // Keyboard layout
@@ -384,10 +384,10 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     if ((width < 64) || (height < 64) ||
             (width > 4096) || (height > 4096))
     {
-        qCritical(FreeRDP) << "invalid dimensions" << width << "*" << height;
+        qCritical(FreeRDPConnect) << "invalid dimensions" << width << "*" << height;
         return FALSE;
     } else {
-        qInfo(FreeRDP) << "Init desktop size " <<  width << "*" << height;
+        qInfo(FreeRDPConnect) << "Init desktop size " <<  width << "*" << height;
     }
 
 	return TRUE;
@@ -400,7 +400,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
  */
 BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::cb_post_connect()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_post_connect()";
 	
 	rdpContext* context = instance->context;
 	rdpSettings* settings = instance->context->settings;
@@ -440,7 +440,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     if (!gdi_init_ex(instance, pThis->GetImageFormat(),
                      0, pThis->m_Image.bits(), nullptr))
 	{
-        qCritical(FreeRDP) << "gdi_init fail";
+        qCritical(FreeRDPConnect) << "gdi_init fail";
         return FALSE;
     }
 
@@ -502,7 +502,7 @@ int CConnectFreeRDP::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
     szErr += str_type;
     szErr += "] ";
     szErr += str_data;
-	qDebug(FreeRDP) << szErr;
+	qDebug(FreeRDPConnect) << szErr;
 	emit pThis->sigInformation(szErr);
     emit pThis->sigError(type, szErr);
 	return 1;
@@ -514,7 +514,7 @@ void CConnectFreeRDP::OnTerminateEventHandler(void *context,
                                               #endif
                                               TerminateEventArgs *e)
 {
-    qDebug(FreeRDP) << "CConnectFreeRDP::TerminateEventHandler:" << e->code;
+    qDebug(FreeRDPConnect) << "CConnectFreeRDP::TerminateEventHandler:" << e->code;
     WINPR_UNUSED(e);
     rdpContext* pContext = (rdpContext*)context;
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
@@ -531,29 +531,29 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
     if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
     {
-        qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
     } else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
-		qInfo(FreeRDP) << "channel" << e->name << "connected";
+		qInfo(FreeRDPConnect) << "channel" << e->name << "connected";
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParamter->GetClipboard());
 	} else if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0) {
-        qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
     } else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 	} else  if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 	} else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0) {
-        qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 	} else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 	} else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 	} else if (strcmp(e->name, VIDEO_CONTROL_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 	} else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 	} else
-        qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 }
 
 void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
@@ -567,27 +567,27 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
     
     if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
     {
-        qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
     } else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
-		qInfo(FreeRDP) << "channel" << e->name << "disconnected";
+		qDebug(FreeRDPConnect) << "channel" << e->name << "disconnected";
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParamter->GetClipboard());
 	} else if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0) {
-        qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	} else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	} else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	} else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0) {
-        qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	} else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	} else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	} else if (strcmp(e->name, VIDEO_CONTROL_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	} else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDP) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	}
 }
 
@@ -620,7 +620,7 @@ UINT32 CConnectFreeRDP::GetImageFormat()
 BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
                                       char** password, char** domain)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::cb_authenticate";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_authenticate";
 	if(!instance)
 		return FALSE;
     rdpContext* pContext = (rdpContext*)instance->context;
@@ -641,7 +641,7 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
 BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
                                 char **username, char **password, char **domain)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::cb_GatewayAuthenticate";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_GatewayAuthenticate";
 	if(!instance)
 		return FALSE;
 
@@ -665,7 +665,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
                        const char *common_name, const char *subject,
                        const char *issuer, const char *fingerprint, DWORD flags)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::cb_verify_certificate_ex";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_verify_certificate_ex";
 
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
@@ -718,7 +718,7 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
                       const char *old_subject, const char *old_issuer,
                       const char *old_fingerprint, DWORD flags)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::cb_verify_changed_certificate_ex";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_verify_changed_certificate_ex";
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
     if(common_name)
@@ -771,7 +771,7 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
         freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
         BOOL isConsentMandatory, size_t length, const WCHAR* message)
 {
-    qDebug(FreeRDP) << "CConnectFreeRdp::cb_present_gateway_message";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_present_gateway_message";
     
     return TRUE;
 }
@@ -800,7 +800,7 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
         return TRUE;
 
     QRect rect(x, y, w, h);
-    //qDebug(FreeRDP) << "Update:" << rect;
+    //qDebug(FreeRDPConnect) << "Update:" << rect;
     //emit sigUpdateRect(rect, m_Image.copy(rect));
     emit sigUpdateRect(m_Image.rect(), m_Image);
     return FALSE;
@@ -808,7 +808,7 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
 
 BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 {
-    //qDebug(FreeRDP) << "CConnectFreeRdp::cb_end_paint";
+    //qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_end_paint";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
     int ninvalid;
@@ -863,7 +863,7 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 
 BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 {
-    qDebug(FreeRDP) << "CConnectFreeRDP::cb_desktop_resize";
+    qDebug(FreeRDPConnect) << "CConnectFreeRDP::cb_desktop_resize";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
     rdpSettings* settings;
@@ -989,7 +989,7 @@ void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
         flags |= PTR_FLAGS_BUTTON3;
     if(button & Qt::MouseButton::RightButton)
         flags |= PTR_FLAGS_BUTTON2;
-    //qDebug(FreeRDP) << "Flags:" << flags;
+    //qDebug(FreeRDPConnect) << "Flags:" << flags;
     freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
                                    pos.x(),
@@ -1079,7 +1079,7 @@ int CConnectFreeRDP::RedirectionSound()
     
     if(!status)
     {
-        qCritical(FreeRDP) << "Load rdpsnd fail";
+        qCritical(FreeRDPConnect) << "Load rdpsnd fail";
         return -1;
     }
     
@@ -1122,7 +1122,7 @@ int CConnectFreeRDP::RedirectionMicrophone()
     
     if(!status)
     {
-        qCritical(FreeRDP) << "Load audin fail";
+        qCritical(FreeRDPConnect) << "Load audin fail";
         return -1;
     }
     
@@ -1152,7 +1152,7 @@ int CConnectFreeRDP::RedirectionDrive()
         if(pDrive) free(pDrive);
         if(!status)
         {
-            qCritical(FreeRDP) << "Load drive fail";
+            qCritical(FreeRDPConnect) << "Load drive fail";
             return -1;
         }
     }
@@ -1172,10 +1172,10 @@ int CConnectFreeRDP::RedirectionPrinter()
     QStringList printerList = QPrinterInfo::availablePrinterNames();
     if(printerList.isEmpty())
     {
-        qCritical(FreeRDP) << "The printer is empty";
+        qCritical(FreeRDPConnect) << "The printer is empty";
         return -1;
     }
-    qDebug(FreeRDP) << printerList;
+    qDebug(FreeRDPConnect) << printerList;
 
     // Format: /printer:<device>,<driver>,[default]
     const char* argvPrinter[] = {"printer",  nullptr, nullptr};
@@ -1186,7 +1186,7 @@ int CConnectFreeRDP::RedirectionPrinter()
                                                 #endif
                                                     argvPrinter);
     if(!status) {
-        qCritical(FreeRDP) << "Load printer fail";
+        qCritical(FreeRDPConnect) << "Load printer fail";
         return -2;
     }
 
@@ -1207,7 +1207,7 @@ int CConnectFreeRDP::RedirectionSerial()
     foreach (auto serial, lstSerial) {
         // Format: /serial:<name>,<device>,[SerCx2|SerCx|Serial],[permissive]
         //     ag: /serial:COM1,/dev/ttyS0
-        qDebug(FreeRDP) << "systemLocation:" << serial.systemLocation()
+        qDebug(FreeRDPConnect) << "systemLocation:" << serial.systemLocation()
                         << "portName:" << serial.portName()
                         << "serialNumber:" << serial.serialNumber();
         char* pSerial = _strdup(serial.systemLocation().toStdString().c_str());
@@ -1224,7 +1224,7 @@ int CConnectFreeRDP::RedirectionSerial()
 
         if(!status)
         {
-            qCritical(FreeRDP) << "Load drive fail";
+            qCritical(FreeRDPConnect) << "Load drive fail";
             return -1;
         }
     }

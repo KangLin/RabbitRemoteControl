@@ -7,20 +7,19 @@
 #include "ConnecterFreeRDP.h"
 #include "winpr/wlog.h"
 
-Q_LOGGING_CATEGORY(FreeRDP, "FreeRDP")
-
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
-    : CPluginClient(parent)
+    : CPluginClient(parent),
+      m_Logger("FreeRDP.Plugin")
 {
-    //qDebug(FreeRDP) << "FreeRDP" << "build configure:" << freerdp_get_build_config() << "\n";
-    qInfo(FreeRDP) << "FreeRDP version:" << freerdp_get_version_string()
+    //qDebug(m_Logger) << "FreeRDP" << "build configure:" << freerdp_get_build_config() << "\n";
+    qInfo(m_Logger) << "FreeRDP version:" << freerdp_get_version_string()
                    << "Build version:" << freerdp_get_build_revision();
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
 
 CPluginFreeRDP::~CPluginFreeRDP()
 {
-    qDebug(FreeRDP) << "CPluginFreeRDP::~CPluginFreeRDP()";
+    qDebug(m_Logger) << "CPluginFreeRDP::~CPluginFreeRDP()";
 }
 
 const QString CPluginFreeRDP::Name() const

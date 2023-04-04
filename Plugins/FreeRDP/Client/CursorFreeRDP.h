@@ -46,8 +46,7 @@ private:
     CConnectFreeRDP* m_pConnect;
     
     QImage m_Cursor;
+    QLoggingCategory m_Logger;
 };
-
-Q_DECLARE_LOGGING_CATEGORY(FreeRDP)
 
 #endif // CCURSOR_H

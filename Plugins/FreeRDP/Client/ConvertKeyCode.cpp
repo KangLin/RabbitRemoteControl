@@ -3,9 +3,7 @@
 #include "ConvertKeyCode.h"
 
 CConvertKeyCode::CConvertKeyCode()
-{
-    
-}
+{}
 
 /**
  * @brief CConvertKeyCode::QtToScanCode

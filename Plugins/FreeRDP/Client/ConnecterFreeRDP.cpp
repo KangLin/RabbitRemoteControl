@@ -6,7 +6,8 @@
 #include "DlgSetFreeRDP.h"
 
 CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *parent)
-    : CConnecterDesktopThread(parent)
+    : CConnecterDesktopThread(parent),
+      m_Logger("FreeRDP.Connecter")
 {
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
     SetParameter(&m_ParameterFreeRdp);
@@ -17,7 +18,7 @@ CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *parent)
 
 CConnecterFreeRDP::~CConnecterFreeRDP()
 {
-    qDebug(FreeRDP) << "CConnecterFreeRdp::~CConnecterFreeRdp()";
+    qDebug(m_Logger) << "CConnecterFreeRdp::~CConnecterFreeRdp()";
 }
 
 qint16 CConnecterFreeRDP::Version()

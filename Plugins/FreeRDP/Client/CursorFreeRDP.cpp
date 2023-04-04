@@ -5,7 +5,8 @@
 #include <freerdp/gdi/gdi.h>
 
 CCursorFreeRDP::CCursorFreeRDP(CConnectFreeRDP *parent) : QObject(parent),
-    m_pConnect(parent)
+    m_pConnect(parent),
+    m_Logger("FreeRDP.Cursor")
 {}
 
 int CCursorFreeRDP::RegisterPointer(rdpGraphics *graphics)
@@ -29,14 +30,14 @@ int CCursorFreeRDP::RegisterPointer(rdpGraphics *graphics)
 
 BOOL CCursorFreeRDP::cb_Pointer_New(rdpContext *context, rdpPointer *pointer)
 {
-    //qDebug(FreeRDP) << "cb_Pointer_New";
+    //qDebug(m_Logger) << "cb_Pointer_New";
     CConnectFreeRDP* pThis = ((CConnectFreeRDP::ClientContext*)context)->pThis;
     return pThis->m_Cursor.onNew(context, pointer);
 }
 
 void CCursorFreeRDP::cb_Pointer_Free(rdpContext* context, rdpPointer* pointer)
 {
-    //qDebug(FreeRDP) << "cb_Pointer_Free";
+    //qDebug(m_Logger) << "cb_Pointer_Free";
     CConnectFreeRDP* pThis = ((CConnectFreeRDP::ClientContext*)context)->pThis;
     pThis->m_Cursor.onFree(context, pointer);   
 }
@@ -49,21 +50,21 @@ BOOL CCursorFreeRDP::cb_Pointer_Set(rdpContext *context,
                                     #endif
                                     )
 {
-    //qDebug(FreeRDP) << "cb_Pointer_Set";
+    //qDebug(m_Logger) << "cb_Pointer_Set";
     CConnectFreeRDP* pThis = ((CConnectFreeRDP::ClientContext*)context)->pThis;
     return pThis->m_Cursor.onSet(context, pointer);
 }
 
 BOOL CCursorFreeRDP::cb_Pointer_SetNull(rdpContext *context)
 {
-    //qDebug(FreeRDP) << "cb_Pointer_SetNull";
+    //qDebug(m_Logger) << "cb_Pointer_SetNull";
     CConnectFreeRDP* pThis = ((CConnectFreeRDP::ClientContext*)context)->pThis;
     return pThis->m_Cursor.onSetNull(context);
 }
 
 BOOL CCursorFreeRDP::cb_Pointer_SetDefault(rdpContext *context)
 {
-    //qDebug(FreeRDP) << "cb_Pointer_SetDefault";
+    //qDebug(m_Logger) << "cb_Pointer_SetDefault";
     CConnectFreeRDP* pThis = ((CConnectFreeRDP::ClientContext*)context)->pThis;
     return pThis->m_Cursor.onSetDefault(context);
     return TRUE;
@@ -71,7 +72,7 @@ BOOL CCursorFreeRDP::cb_Pointer_SetDefault(rdpContext *context)
 
 BOOL CCursorFreeRDP::cb_Pointer_SetPosition(rdpContext *context, UINT32 x, UINT32 y)
 {
-    //qDebug(FreeRDP) << "cb_Pointer_SetPosition";
+    //qDebug(m_Logger) << "cb_Pointer_SetPosition";
     CConnectFreeRDP* pThis = ((CConnectFreeRDP::ClientContext*)context)->pThis;
     return pThis->m_Cursor.onSetPosition(context, x, y);
     return TRUE;

@@ -110,6 +110,4 @@ private:
     BOOL m_bFileFormatsRegistered;
 };
 
-Q_DECLARE_LOGGING_CATEGORY(FreeRDPClipboard)
-
 #endif // CCLIPBOARDFREERDP_H

@@ -25,6 +25,7 @@ protected:
 
 private:
     CParameterFreeRDP m_ParameterFreeRdp;
+    QLoggingCategory m_Logger;
 };
 
 #endif // CCONNECTERFREERDP_H

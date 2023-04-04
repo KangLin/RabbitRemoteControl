@@ -34,6 +34,7 @@ private:
     
 private:
     QTranslator m_Translator;
+    QLoggingCategory m_Logger;
 };
 
 #endif // CPluginFreeRdp_H_KL_2021_07_23
