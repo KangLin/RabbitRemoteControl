@@ -1,6 +1,11 @@
 name: msvc
 
-on: [push]
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_ubuntu.outputs.name }}
 
 jobs:
   use_install_qt:
@@ -50,15 +55,21 @@ jobs:
       #VCPKG_OVERLAY_PORTS: ${{github.workspace}}\vcpkg\ports
       qt_modules: '${{matrix.qt_modules}}'
       VCINSTALLDIR: C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC
+      artifact_name: build_ubuntu
+
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
 
     defaults:
       run:
         shell: cmd
 
     steps:
-    - uses: actions/checkout@v2
+
+    - uses: actions/checkout@v3
       with:
-        fetch-depth: 0
+        submodules: true
 
     - name: make directory
       run: |
@@ -348,27 +359,27 @@ jobs:
                 -m "${{env.RabbitRemoteControl_VERSION}}"
 
     - name: update 
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-        name: rabbitremotecontrol_${{matrix.os}}_msvc_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
+        name: ${{ env.artifact_name }}
         path: |
           ${{github.workspace}}\build\RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe
           ${{github.workspace}}\build\update_windows.xml
       #if: ${{ matrix.BUILD_TYPE == 'Release' }}
 
-    - name: Upload To Github Release
-      if: ${{ matrix.BUILD_TYPE == 'Release' && '5.12.12' == matrix.qt_version && startsWith(github.ref, 'refs/tags/') }}
-      uses: softprops/action-gh-release@v0.1.14
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        prerelease: true
-#        body: |
-#          [:cn: 修改日志](ChangeLog_zh_CN.md) [:cn: 说明](README_zh_CN.md)
-#          [:us: Change log](ChangeLog.md) [:us: README](README.md)
-        files: |
-          ${{github.workspace}}\build\RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip
-          ${{github.workspace}}\build\RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip.md5sum
-          ${{github.workspace}}\build\RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe
-          ${{github.workspace}}\build\RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5sum
-          ${{github.workspace}}\build\update_windows.xml
+#    - name: Upload To Github Release
+#      if: ${{ matrix.BUILD_TYPE == 'Release' && '5.12.12' == matrix.qt_version && startsWith(github.ref, 'refs/tags/') }}
+#      uses: softprops/action-gh-release@v0.1.14
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      with:
+#        prerelease: true
+##        body: |
+##          [:cn: 修改日志](ChangeLog_zh_CN.md) [:cn: 说明](README_zh_CN.md)
+##          [:us: Change log](ChangeLog.md) [:us: README](README.md)
+#        files: |
+#          ${{github.workspace}}\build\RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip
+#          ${{github.workspace}}\build\RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip.md5sum
+#          ${{github.workspace}}\build\RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe
+#          ${{github.workspace}}\build\RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5sum
+#          ${{github.workspace}}\build\update_windows.xml

@@ -1,12 +1,17 @@
 name: ubuntu
 
-on: [push]
-
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_ubuntu.outputs.name }}
+      
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 jobs:
-  build:
+  build_ubuntu:
     strategy:
       matrix:
         os: [Ubuntu-22.04, Ubuntu-20.04, Ubuntu-18.04]
@@ -20,7 +25,12 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.BUILD_TYPE}}_${{matrix.os}}
       RabbitRemoteControl_VERSION: 0.0.27
+      artifact_name: build_ubuntu
 
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
+  
     steps:
     - name: core dump infomations
       if: false
@@ -60,9 +70,9 @@ jobs:
 #                   %t  time of dump, expressed as seconds since the Epoch, 1970-01-01 00:00:00 +0000 (UTC)
 #                   %u  (numeric) real UID of dumped process
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
-        fetch-depth: 0
+        submodules: true
 
     - name: make_directory
       run: |
@@ -270,27 +280,27 @@ jobs:
 
     - name: update
       if: ${{ matrix.BUILD_TYPE == 'Release' }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
-          name: rabbitremotecontrol_${{matrix.os}}
+          name: ${{ env.artifact_name }}
           path: |
             rabbitremotecontrol_*.deb
             update_linux.xml
 
-    - name: Upload To Github Release
-      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      with:
-        prerelease: true
-        body: |
-          [:cn: 修改日志](ChangeLog_zh_CN.md) [:cn: 说明](README_zh_CN.md)
-          [:us: Change log](ChangeLog.md) [:us: README](README.md)
-        files: |
-            ${{github.workspace}}/update_linux.xml
-            ${{github.workspace}}/rabbitremotecontrol_*.deb
-            ${{github.workspace}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
+#    - name: Upload To Github Release
+#      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
+#      uses: softprops/action-gh-release@v1
+#      env:
+#        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#      with:
+#        prerelease: true
+#        body: |
+#          [:cn: 修改日志](ChangeLog_zh_CN.md) [:cn: 说明](README_zh_CN.md)
+#          [:us: Change log](ChangeLog.md) [:us: README](README.md)
+#        files: |
+#            ${{github.workspace}}/update_linux.xml
+#            ${{github.workspace}}/rabbitremotecontrol_*.deb
+#            ${{github.workspace}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
 
 #- name: Release
 #  uses: fnkr/github-action-ghr@v1

@@ -1,0 +1,36 @@
+name: build
+
+env:
+  artifact_path: artifact_path
+
+on: 
+  push:
+  
+jobs:
+  build_linux:
+    uses: ./.github/workflows/ubuntu.yml
+
+  build_windows:
+    uses: ./.github/workflows/msvc.yml
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build_linux, build_windows]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.build_linux.outputs.name }}
+          path: ${{ env.artifact_path }}
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.build_windows.outputs.name }}
+          path: ${{ env.artifact_path }}
+
+      - name: Display structure of downloaded files
+        run: |
+          ls -R
