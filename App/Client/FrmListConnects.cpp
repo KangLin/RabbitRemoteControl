@@ -17,6 +17,7 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
     m_nFileRow(0),
     m_bClose(bClose)
 {
+    setFocusPolicy(Qt::NoFocus);
     setAttribute(Qt::WA_DeleteOnClose);
     setLayout(new QGridLayout(this));
     setWindowTitle(tr("List connections"));

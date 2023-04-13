@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
+    setFocusPolicy(Qt::NoFocus);
+
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     setAcceptDrops(true);
 
@@ -77,11 +79,8 @@ MainWindow::MainWindow(QWidget *parent)
         // Must set ObjectName then restore it. See: saveState help document
         m_pDockListConnects->setObjectName("dckListConnects");
         m_pDockListConnects->hide();
-        ui->actionList_connects_UL->setChecked(false);
+        ui->menuView->addAction(m_pDockListConnects->toggleViewAction());
         addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockListConnects);
-        check = connect(m_pDockListConnects, SIGNAL(visibilityChanged(bool)),
-                        this, SLOT(slotDockListConnectsVisibilityChanged(bool)));
-        Q_ASSERT(check);
     }
 
     m_pFavoriteDockWidget = new QDockWidget(this);
@@ -102,11 +101,8 @@ MainWindow::MainWindow(QWidget *parent)
         // Must set ObjectName then restore it. See: saveState help document
         m_pFavoriteDockWidget->setObjectName("dckFavorite");
         m_pFavoriteDockWidget->hide();
-        ui->actionFavorites->setChecked(false);
+        ui->menuView->addAction(m_pFavoriteDockWidget->toggleViewAction());
         tabifyDockWidget(m_pDockListConnects, m_pFavoriteDockWidget);
-        check = connect(m_pFavoriteDockWidget, SIGNAL(visibilityChanged(bool)),
-                        this, SLOT(slotDockWidgetFavoriteVisibilityChanged(bool)));
-        Q_ASSERT(check);
     }
 
     m_pRecentMenu = new RabbitCommon::CRecentMenu(tr("Recently connected"),
@@ -119,7 +115,7 @@ MainWindow::MainWindow(QWidget *parent)
                     m_pRecentMenu, SLOT(setMaxCount(int)));
     Q_ASSERT(check);
     QAction* pRecentAction = ui->menuRemote->insertMenu(
-                ui->actionList_connects_UL, m_pRecentMenu);
+                ui->actionOpenListConnections, m_pRecentMenu);
     pRecentAction->setStatusTip(pRecentAction->text());
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
     tbRecent->setFocusPolicy(Qt::NoFocus);
@@ -205,8 +201,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionZoomToWindow_Z->setChecked(true);
 
     EnableMenu(false);
-
-    setFocusPolicy(Qt::NoFocus);
 
     //TODO: complete the function
     ui->actionZoom_window_to_remote_desktop->setVisible(false);
@@ -1060,19 +1054,6 @@ void MainWindow::on_actionOpenListConnections_triggered()
     d.exec();
 }
 
-void MainWindow::on_actionList_connects_UL_triggered(bool checked)
-{
-    if(!m_pDockListConnects)
-        return;
-
-    m_pDockListConnects->setVisible(checked);
-}
-
-void MainWindow::slotDockListConnectsVisibilityChanged(bool visible)
-{
-    ui->actionList_connects_UL->setChecked(visible);
-}
-
 void MainWindow::on_actionAdd_to_favorite_triggered()
 {
     if(!m_pView || !m_pFavoriteView) return;
@@ -1087,19 +1068,6 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
             m_pFavoriteView->AddFavorite(c->Name(), it.value());
         }
     }
-}
-
-void MainWindow::on_actionFavorites_triggered(bool checked)
-{
-    if(!m_pFavoriteDockWidget)
-        return;
-
-    m_pFavoriteDockWidget->setVisible(checked);
-}
-
-void MainWindow::slotDockWidgetFavoriteVisibilityChanged(bool visib)
-{
-    ui->actionFavorites->setChecked(visib);
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)

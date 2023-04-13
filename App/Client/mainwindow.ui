@@ -96,10 +96,8 @@
     <addaction name="actionOpenListConnections"/>
     <addaction name="actionOpenRRCFile"/>
     <addaction name="actionClone"/>
-    <addaction name="actionList_connects_UL"/>
     <addaction name="separator"/>
     <addaction name="actionAdd_to_favorite"/>
-    <addaction name="actionFavorites"/>
     <addaction name="separator"/>
     <addaction name="actionCurrent_connect_parameters"/>
     <addaction name="actionSettings"/>
@@ -124,7 +122,6 @@
    </attribute>
    <addaction name="actionOpenListConnections"/>
    <addaction name="separator"/>
-   <addaction name="actionFavorites"/>
    <addaction name="actionAdd_to_favorite"/>
    <addaction name="separator"/>
    <addaction name="actionDisconnect_D"/>
@@ -514,24 +511,6 @@
     <string>Clone current connect</string>
    </property>
   </action>
-  <action name="actionFavorites">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="favorites">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Favorites</string>
-   </property>
-   <property name="statusTip">
-    <string>Favorites</string>
-   </property>
-   <property name="whatsThis">
-    <string>Favorites</string>
-   </property>
-  </action>
   <action name="actionAdd_to_favorite">
    <property name="icon">
     <iconset theme="emblem-favorite">
@@ -623,26 +602,6 @@
    </property>
    <property name="whatsThis">
     <string>Open the list of connections(&amp;O)</string>
-   </property>
-  </action>
-  <action name="actionList_connects_UL">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>List of connections(&amp;L)</string>
-   </property>
-   <property name="iconText">
-    <string>List of connections(&amp;L)</string>
-   </property>
-   <property name="toolTip">
-    <string>List of connections(&amp;L)</string>
-   </property>
-   <property name="statusTip">
-    <string>List of connections(&amp;L)</string>
-   </property>
-   <property name="whatsThis">
-    <string>List of connections(&amp;L)</string>
    </property>
   </action>
  </widget>

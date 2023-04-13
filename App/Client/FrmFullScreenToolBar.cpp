@@ -28,7 +28,9 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     bool check = false;
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
-    
+
+    setFocusPolicy(Qt::NoFocus);
+
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
     
     m_pNail = m_ToolBar.addAction(QIcon::fromTheme("nail"), tr("Nail"),

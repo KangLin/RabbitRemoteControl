@@ -146,8 +146,6 @@ private:
     QDockWidget* m_pDockListConnects;
 private Q_SLOTS:
     void on_actionOpenListConnections_triggered();
-    void on_actionList_connects_UL_triggered(bool checked);
-    void slotDockListConnectsVisibilityChanged(bool visible);
 
     ///////// Favorite //////////
 private:
@@ -155,8 +153,6 @@ private:
     CFavoriteView* m_pFavoriteView;
 private Q_SLOTS:
     void on_actionAdd_to_favorite_triggered();
-    void slotDockWidgetFavoriteVisibilityChanged(bool visible);
-    void on_actionFavorites_triggered(bool checked);
 
 public:
     CParameterApp m_Parameter;
