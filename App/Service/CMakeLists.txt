@@ -58,12 +58,12 @@ if(Log4Qt_FOUND)
         DESTINATION etc
         COMPONENT Runtime)
 else()
-    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.conf)
-        configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.conf
-            ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.conf
+    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini)
+        configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
+            ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini
             COPYONLY)
     endif()
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.conf
+    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
         DESTINATION etc
         COMPONENT Runtime)
 endif()

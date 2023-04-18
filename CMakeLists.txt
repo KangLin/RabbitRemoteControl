@@ -148,27 +148,27 @@ if(BUILD_EXAMPLE)
     add_subdirectory(Example)
 endif()
 
-# Create install runtime target
-add_custom_target(install-runtime
-  COMMAND
-     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime
-     -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake"
-)
-# Create uninstall runtime target
-add_custom_target(uninstall-runtime
-  COMMAND
-     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime
-     -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-)
-# Create will be delete files
-CONFIGURE_FILE(
-    "${RabbitCommon_DIR}/cmake/cmake_uninstall.cmake.in"
-    "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY)
-# Create unistall target
-ADD_CUSTOM_TARGET(uninstall
-    "${CMAKE_COMMAND}" -P "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
-    DEPENDS uninstall-runtime)
+## Create install runtime target
+#add_custom_target(install-runtime
+#  COMMAND
+#     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime
+#     -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_install.cmake"
+#)
+## Create uninstall runtime target
+#add_custom_target(uninstall-runtime
+#  COMMAND
+#     "${CMAKE_COMMAND}" -DCMAKE_INSTALL_COMPONENT=Runtime
+#     -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+#)
+## Create will be delete files
+#CONFIGURE_FILE(
+#    "${RabbitCommon_DIR}/cmake/cmake_uninstall.cmake.in"
+#    "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
+#    IMMEDIATE @ONLY)
+## Create unistall target
+#ADD_CUSTOM_TARGET(uninstall
+#    "${CMAKE_COMMAND}" -P "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
+#    DEPENDS uninstall-runtime)
 
 iF(WIN32)
     INSTALL(FILES Install/Install.nsi DESTINATION "${CMAKE_BINARY_DIR}"

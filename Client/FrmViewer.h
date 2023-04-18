@@ -155,6 +155,7 @@ private:
     void paintDesktop();
     int TranslationMousePoint(QPointF inPos, QPointF &outPos);
     QRectF GetAspectRationRect();
+
 };
 
 #endif // #ifdef USE_FROM_OPENGL
