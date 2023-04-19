@@ -3,13 +3,14 @@
 #include "Client.h"
 #include "RabbitCommonDir.h"
 #include "FrmParameterClient.h"
+#include "FrmViewer.h"
 
 #include <QPluginLoader>
 #include <QDebug>
 #include <QtPlugin>
 #include <QDataStream>
 #include <QFile>
-#include <QCoreApplication>
+#include <QApplication>
 #include <QSettings>
 
 CClient::CClient(QObject *parent) : QObject(parent),
@@ -19,6 +20,8 @@ CClient::CClient(QObject *parent) : QObject(parent),
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_INIT_RESOURCE(translations_Client);
 //#endif
+
+    qApp->installEventFilter(this);
 
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
             + "/Client_" + QLocale::system().name() + ".qm";
@@ -253,4 +256,44 @@ void CClient::slotHookKeyboardChanged()
     } else {
         m_Hook.reset();
     }
+}
+
+bool CClient::eventFilter(QObject *watched, QEvent *event)
+{
+    if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())
+    {
+        qDebug(Client) << "eventFilter:" << event;
+        bool bProcess = false;
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        switch (keyEvent->key()) {
+        case Qt::Key_Tab:
+            bProcess = true;
+            break;
+        default:
+            break;
+        }
+
+        if(bProcess) {
+            switch(event->type()) {
+            case QEvent::KeyPress:
+            {
+                CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
+                if(focus) {
+                    emit focus->sigKeyPressEvent(keyEvent->key(), keyEvent->modifiers());
+                    return true;
+                }
+            }
+            case QEvent::KeyRelease:
+            {
+                CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
+                if(focus) {
+                    emit focus->sigKeyReleaseEvent(keyEvent->key(), keyEvent->modifiers());
+                    return true;
+                }
+                
+            }
+            }
+        }
+    }
+    return QObject::eventFilter(watched, event);
 }

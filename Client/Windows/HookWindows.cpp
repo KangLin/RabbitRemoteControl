@@ -34,11 +34,11 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
         Qt::KeyboardModifiers keyMdf = Qt::NoModifier;
         switch(hook->vkCode)
         {
-        case VK_TAB:
-        {
-            key = Qt::Key_Tab;
-            break;
-        }
+//        case VK_TAB:
+//        {
+//            key = Qt::Key_Tab;
+//            break;
+//        }
 //        case VK_DELETE:
 //        {
 //            key = Qt::Key_Delete;
@@ -54,6 +54,7 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
             key = Qt::Key_Super_R;
             break;
         }
+        /*
         case VK_MENU:
         case VK_LMENU:
         case VK_RMENU:
@@ -62,7 +63,6 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
             keyMdf = Qt::KeyboardModifier::AltModifier;
             break;
         }
-            /*
         case VK_CONTROL:
         case VK_LCONTROL:
         case VK_RCONTROL:
@@ -83,7 +83,7 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
             break;
         }
         if(key) {
-            CFrmViewer* self = dynamic_cast<CFrmViewer*>(QApplication::focusWidget());
+            CFrmViewer* self = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
             WId foreground_window = reinterpret_cast<WId>(GetForegroundWindow());
             if (self && self->parentWidget()->window()->winId() == foreground_window)
             {

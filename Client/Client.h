@@ -165,6 +165,10 @@ private:
     QTranslator m_Translator;
     QSharedPointer<CHook> m_Hook;
     CParameterClient m_ParameterClient;
+    
+public:
+    // QObject interface
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif // CMANAGECONNECTER_H
