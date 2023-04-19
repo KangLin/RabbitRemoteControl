@@ -1,4 +1,7 @@
 #include "ConnecterDesktop.h"
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CConnecterDesktop::CConnecterDesktop(CPluginClient *parent)
     : CConnecterDesktopThread(parent)

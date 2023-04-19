@@ -2,14 +2,17 @@
 
 #include "FrmViewer.h"
 #include "Connect.h"
+#include "RabbitCommonLog.h"
+
 #include <QApplication>
 #include <QDebug>
 #include <QtPlugin>
 #include <QClipboard>
 #include <QTimer>
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(Client, "Client")
+Q_DECLARE_LOGGING_CATEGORY(Client)
+
 int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>("KeyboardModifiers");
 int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
 Q_DECLARE_METATYPE(Qt::MouseButton)

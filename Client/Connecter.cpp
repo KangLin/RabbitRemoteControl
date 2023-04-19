@@ -1,19 +1,22 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "Connecter.h"
-#include <QClipboard>
-#include <QApplication>
-#include <QDebug>
-#include <QGenericArgument>
-#include <QRegularExpression>
-#include <QCheckBox>
-
 #include "PluginClient.h"
 #include "RabbitCommonDir.h"
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
 #include "ParameterConnecter.h"
+
+#include <QClipboard>
+#include <QApplication>
+#include <QDebug>
+#include <QGenericArgument>
+#include <QRegularExpression>
+#include <QCheckBox>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CConnecter::CConnecter(CPluginClient *parent) : QObject(parent),
     m_pPluginClient(parent),

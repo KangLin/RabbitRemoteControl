@@ -1,6 +1,10 @@
 #include "PluginThread.h"
-#include <QTimer>
 #include "ManageConnect.h"
+
+#include <QTimer>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CPluginThread::CPluginThread()
     : QThread()

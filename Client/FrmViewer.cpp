@@ -1,12 +1,15 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "FrmViewer.h"
+
 #include <QPainter>
 #include <QClipboard>
 #include <QDebug>
 #include <QResizeEvent>
 #include <QCursor>
-#include "Connect.h"
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CFrmViewer::CFrmViewer(QWidget *parent) : QWidget(parent)
 {

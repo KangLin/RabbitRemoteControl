@@ -1,25 +1,28 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginFreeRDP.h"
-#include <QDebug>
-#include <QApplication>
 #include "RabbitCommonDir.h"
 #include "ConnecterFreeRDP.h"
 #include "winpr/wlog.h"
 
+#include <QDebug>
+#include <QApplication>
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(LoggerPlugin, "FreeRDP.Plugin")
+
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
-    : CPluginClient(parent),
-      m_Logger("FreeRDP.Plugin")
+    : CPluginClient(parent)
 {
-    //qDebug(m_Logger) << "FreeRDP" << "build configure:" << freerdp_get_build_config() << "\n";
-    qInfo(m_Logger) << "FreeRDP version:" << freerdp_get_version_string()
+    //qDebug(LoggerPlugin) << "FreeRDP" << "build configure:" << freerdp_get_build_config() << "\n";
+    qInfo(LoggerPlugin) << "FreeRDP version:" << freerdp_get_version_string()
                    << "Build version:" << freerdp_get_build_revision();
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
 
 CPluginFreeRDP::~CPluginFreeRDP()
 {
-    qDebug(m_Logger) << "CPluginFreeRDP::~CPluginFreeRDP()";
+    qDebug(LoggerPlugin) << "CPluginFreeRDP::~CPluginFreeRDP()";
 }
 
 const QString CPluginFreeRDP::Name() const

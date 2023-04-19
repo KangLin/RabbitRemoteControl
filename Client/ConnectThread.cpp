@@ -1,6 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectThread.h"
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CConnectThread::CConnectThread(CConnecterDesktopThread *pConnect) : QThread(),
     m_pConnecter(pConnect)

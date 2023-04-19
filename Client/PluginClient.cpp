@@ -2,10 +2,14 @@
 
 #include "PluginClient.h"
 #include "RabbitCommonDir.h"
+
 #include <QLocale>
 #include <QDebug>
 #include <QApplication>
 #include <QDir>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CPluginClient::CPluginClient(QObject *parent) : QObject(parent)
 {

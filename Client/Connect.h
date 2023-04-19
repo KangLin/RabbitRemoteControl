@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include <QLoggingCategory>
 #include <QPoint>
 #include <QtPlugin>
 #include <QMouseEvent>
@@ -196,7 +195,5 @@ public Q_SLOTS:
 private:
     CFrmViewer* m_pView;
 };
-
-Q_DECLARE_LOGGING_CATEGORY(Client);
 
 #endif // CCONNECT_H

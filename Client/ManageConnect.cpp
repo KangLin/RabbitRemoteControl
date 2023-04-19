@@ -1,6 +1,10 @@
 #include "ManageConnect.h"
 #include "ConnecterDesktopThread.h"
 
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
+
 CManageConnect::CManageConnect(QObject *parent) : QObject(parent)
 {
 }

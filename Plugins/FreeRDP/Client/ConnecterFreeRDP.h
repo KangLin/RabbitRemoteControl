@@ -8,6 +8,8 @@
 #include "freerdp/freerdp.h"
 #include "ParameterFreeRDP.h"
 
+#include <QLoggingCategory>
+
 class CConnecterFreeRDP : public CConnecterDesktopThread
 {
     Q_OBJECT

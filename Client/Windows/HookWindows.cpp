@@ -6,7 +6,10 @@
 
 CHook* CHook::GetHook(QObject *parent)
 {
-    return new CHookWindows(parent);
+    CHookWindows* p = nullptr;
+    if(!p)
+        p = new CHookWindows(parent);
+    return p;
 }
 
 CHookWindows::CHookWindows(QObject *parent)

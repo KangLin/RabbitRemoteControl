@@ -1,5 +1,9 @@
 #include "PluginClientThread.h"
 
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
+
 CPluginClientThread::CPluginClientThread(QObject *parent) : CPluginClient(parent),
     m_pThread(nullptr)
 {

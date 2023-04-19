@@ -12,6 +12,9 @@
 #include <QFile>
 #include <QApplication>
 #include <QSettings>
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(Client, "Client")
 
 CClient::CClient(QObject *parent) : QObject(parent),
     m_FileVersion(1)  //TODO: update version it if update data

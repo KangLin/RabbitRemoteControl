@@ -1,21 +1,27 @@
 #include "HookUnix.h"
+#include "xcb/xcb.h"
+
 #include <QDebug>
 #include <QApplication>
 #include <QWidget>
 #include <QAbstractEventDispatcher>
+#include <QLoggingCategory>
 
-#include "xcb/xcb.h"
+Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CHook* CHook::GetHook(QObject *parent)
 {
-    return new CHookUnix(parent);
+    CHookUnix* p = nullptr;
+    if(!p)
+        p = new CHookUnix(parent);
+    return p;
 }
 
 CHookUnix::CHookUnix(QObject *parent)
     : CHook(parent)
 {
     //TODO:
-    //RegisterKeyboard();
+    RegisterKeyboard();
 }
 
 CHookUnix::~CHookUnix()
@@ -44,6 +50,7 @@ bool CHookUnix::nativeEventFilter(const QByteArray &eventType, void *message, qi
 bool CHookUnix::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
 #endif
 {
+    qDebug(Client) << "CClient::nativeEventFilter:" << eventType;
     if (eventType == "xcb_generic_event_t") {
         xcb_generic_event_t* e = static_cast<xcb_generic_event_t *>(message);
         switch (e->response_type & ~0x80) {
@@ -67,20 +74,28 @@ bool CHookUnix::nativeEventFilter(const QByteArray &eventType, void *message, lo
               break;
             }
         }
-
-        //qDebug() << "CClient::nativeEventFilter" << message << *result;
     }
     return false;
 }
 
 int CHookUnix::RegisterKeyboard()
 {
-    QCoreApplication::eventDispatcher()->installNativeEventFilter(this);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    qApp->installNativeEventFilter(this);
+#else
+    if(QCoreApplication::eventDispatcher())
+        QCoreApplication::eventDispatcher()->installNativeEventFilter(this);
+#endif
     return 0;
 }
 
 int CHookUnix::UnRegisterKeyboard()
 {
-    QCoreApplication::eventDispatcher()->removeNativeEventFilter(this);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+    qApp->removeNativeEventFilter(this);
+#else
+    if(QCoreApplication::eventDispatcher())
+        QCoreApplication::eventDispatcher()->removeNativeEventFilter(this);
+#endif
     return 0;
 }

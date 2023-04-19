@@ -4,6 +4,9 @@
 #include <QDebug>
 #include "ConnectThread.h"
 #include "RabbitCommonDir.h"
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CConnecterDesktopThread::CConnecterDesktopThread(CPluginClient *parent)
     : CConnecter(parent),
