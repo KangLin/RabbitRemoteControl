@@ -77,8 +77,10 @@ if(UNIX)
     find_package(X11)
     if(X11_FOUND)
         list(APPEND CLIENT_LIBS X11::xcb)
-        list(APPEND CLIENT_HEADER_FILES Unix/HookUnix.h)
-        list(APPEND CLIENT_SOURCE_FILES Unix/HookUnix.cpp)
+        list(APPEND CLIENT_HEADER_FILES Unix/HookUnix.h
+            Unix/HookUnixNativeEventFilter.h)
+        list(APPEND CLIENT_SOURCE_FILES Unix/HookUnix.cpp
+            Unix/HookUnixNativeEventFilter.cpp)
     endif()
 endif()
 

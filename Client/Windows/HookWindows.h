@@ -17,14 +17,6 @@ public:
     virtual int RegisterKeyboard() override;
     virtual int UnRegisterKeyboard() override;
 
-    // QAbstractNativeEventFilter interface
-public:
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    virtual bool nativeEventFilter(const QByteArray &eventType, void *message, qintptr *result) override;
-#else
-    virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *result) override;
-#endif
-
 private:
     static LRESULT CALLBACK keyboardHookProc(INT code, WPARAM wparam, LPARAM lparam);
     HHOOK m_hKeyboard;

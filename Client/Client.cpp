@@ -44,6 +44,7 @@ CClient::CClient(QObject *parent) : QObject(parent),
 CClient::~CClient()
 {
     qDebug(Client) << "CClient::~CClient()";
+    qApp->installEventFilter(nullptr);
     qApp->removeTranslator(&m_Translator);
 
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
@@ -265,7 +266,7 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
 {
     if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())
     {
-        qDebug(Client) << "eventFilter:" << event;
+        //qDebug(Client) << "eventFilter:" << event;
         bool bProcess = false;
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         switch (keyEvent->key()) {
