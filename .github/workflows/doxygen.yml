@@ -7,11 +7,7 @@ env:
   
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [Ubuntu-20.04]
-
-    runs-on: ${{matrix.os}}
+    runs-on: ubuntu-latest
     env:
       BUILD_TYPE:  Release
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
@@ -37,7 +33,7 @@ jobs:
       with:
         path: |
           ${{env.TOOSL_DIR}}
-        key: cache-installed-doxygen-${{matrix.os}}
+        key: cache-installed-doxygen
     
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
@@ -87,7 +83,7 @@ jobs:
     - name: update 
       uses: actions/upload-artifact@v2
       with:
-          name: rabbitremotecontrol_doxygen_${{ matrix.os }}
+          name: rabbitremotecontrol_doxygen
           path: |
             build/Doxygen
       

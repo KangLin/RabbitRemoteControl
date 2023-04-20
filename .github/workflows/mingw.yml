@@ -25,7 +25,7 @@ jobs:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
-      INSTALL_DIR: ${{github.workspace}}\.cache\install_mingw
+      INSTALL_DIR: ${{github.workspace}}\.cache\install_mingw_${{matrix.BUILD_TYPE}}
       RabbitRemoteControl_VERSION: v0.0.27
       artifact_name: build_mingw
 
@@ -51,6 +51,7 @@ jobs:
             mingw-w64-x86_64-qt5 ^
             mingw-w64-x86_64-qtwebkit ^
             mingw-w64-x86_64-zlib ^
+            mingw-w64-x86_64-openssl ^
             mingw-w64-x86_64-libvncserver ^
             mingw-w64-x86_64-cyrus-sasl ^
             mingw-w64-x86_64-pixman ^
@@ -201,7 +202,7 @@ jobs:
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
       - name: Package
-        #if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{github.workspace}}/build
         run: |
           move /Y install\plugins\*crypto*.dll install\bin
@@ -212,7 +213,7 @@ jobs:
           makensis ${{github.workspace}}/build/Install.nsi
           md5sum RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe > RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5
 
-#      - name: update
+#      - name: Update artifact
 #        if: ${{ matrix.BUILD_TYPE == 'Release' }}
 #        uses: actions/upload-artifact@v2
 #        with:

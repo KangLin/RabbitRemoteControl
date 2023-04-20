@@ -39,12 +39,12 @@ jobs:
     env:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
-      INSTALL_DIR: ${{github.workspace}}\.cache\install_msvc_${{matrix.triplet}}_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}\.cache\install_msvc_qt${{matrix.qt_version}}_${{matrix.triplet}}_${{matrix.BUILD_TYPE}}
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
-      RabbitRemoteControl_VERSION: v1.0.9
-      VCPKGGITCOMMITID: 9c7c66471005cb132832786d5d65d83d2cf503ad
+      RabbitRemoteControl_VERSION: v0.0.27
+      VCPKGGITCOMMITID: 2b1757dd1d5ed7d9d5bb65fd8316631b157e7afc
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       artifact_name: build_msvc
 
@@ -75,7 +75,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: RabbitRemoteControl_msvc_cache-installed-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}_2033_03_02
+          key: cache-installed-msvc
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v7.4
@@ -84,7 +84,7 @@ jobs:
           vcpkgDirectory: ${{runner.workspace}}/vcpkg/
           # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
           # compute its hash and append this to the computed cache's key.
-          appendedCacheKey: cache-vcpkg-msvc-${{matrix.os}}-vc${{matrix.VCPKG_PLATFORM_TOOLSET}}-${{matrix.triplet}}-qt${{matrix.qt_version}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
+          appendedCacheKey: cache-vcpkg-${{env.VCPKGGITCOMMITID}}
           vcpkgTriplet: '${{matrix.triplet}}'
           vcpkgArguments: 'openssl libssh libpng pixman libjpeg-turbo libdatachannel libusb' # freerdp'
 
@@ -125,8 +125,8 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
                 -DWITH_SERVER=ON ^
                 -DWITH_CLIENT_SDL=OFF ^
-                -DWITH_KRB5=OFF \
-                -DWITH_MANPAGES=OFF
+                -DWITH_KRB5=OFF ^
+                -DWITH_MANPAGES=OFF ^
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
@@ -248,8 +248,9 @@ jobs:
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
-      
+
       - name: build RabbitRemoteControl
+        working-directory: ${{github.workspace}}\build
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
@@ -279,13 +280,13 @@ jobs:
             -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           ) else (
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
+            cmake --install . --config ${{matrix.BUILD_TYPE}}
           )
 
       - name: Package
-        # if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{github.workspace}}\build
         run: |
           move /Y install\plugins\*crypto*.dll install\bin
@@ -303,7 +304,8 @@ jobs:
                 --pf RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe ^
                 -m "${{env.RabbitRemoteControl_VERSION}}"
 
-      - name: update 
+      - name: Update artifact
+        if: ${{ matrix.BUILD_TYPE == 'Release' && '5.12.12' == matrix.qt_version }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}

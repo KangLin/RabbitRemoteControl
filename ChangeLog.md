@@ -9,8 +9,10 @@
 + App:
   + Add open the dialog of list connect settings 
 + Rename tag.sh to deploy.sh
-+ Fix: Fixed a bug where the correct dependency library could not be loaded
++ Fix:
+  - Fixed a bug where the correct dependency library could not be loaded
   when there were different versions of the dependency library under Linux.
+  - Fixed tab key event
 
 ### v0.0.25
 + Modify CI for automation update

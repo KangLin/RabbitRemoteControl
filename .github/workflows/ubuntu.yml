@@ -22,7 +22,7 @@ jobs:
       BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.BUILD_TYPE}}_${{matrix.os}}
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu_${{matrix.BUILD_TYPE}}
       RabbitRemoteControl_VERSION: 0.0.27
       artifact_name: build_ubuntu
 
@@ -110,7 +110,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: cache-installed-ubuntu-${{matrix.os}}-${{matrix.BUILD_TYPE}}
+          key: cache-installed-ubuntu
 
       - name: build FreeRDP
         working-directory: ${{env.SOURCE_DIR}}
@@ -119,7 +119,7 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b b7b46b812395cf3a67b1e36f0fbf1386f4372443 b7b46b812395cf3a67b1e36f0fbf1386f4372443
+            git checkout -b 4be3950fd8fc98fa0e1a422383cda59edf29fbb4 4be3950fd8fc98fa0e1a422383cda59edf29fbb4
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
@@ -216,11 +216,11 @@ jobs:
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           fi
           ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
-          cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
-          md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
+          cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb
+          md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum
 
       - name: update xml file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.os == 'Ubuntu-20.04'}}
+        if: ${{ matrix.BUILD_TYPE == 'Release'}}
         working-directory: ${{github.workspace}}
         #continue-on-error: true
         run: |
@@ -229,21 +229,21 @@ jobs:
           sudo Xvfb :99 -ac &
           export DISPLAY=:99.0
           echo "Install rabbit remote control ......"
-          sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb
+          sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb
           #echo "ls -l /opt/RabbitRemoteControl/bin/"
           #ls -l /opt/RabbitRemoteControl/bin/
           echo "Update update_linux.xml ......"
           export QT_XCB_GL_INTEGRATION=none
-          MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum|awk '{print $1}'`
-          echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb: ${MD5SUM}"
+          MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum|awk '{print $1}'`
+          echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb: ${MD5SUM}"
           #ulimit -c unlimited
           #echo "# sudo sysctl -w kernel.core_pattern=core"
           #sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
           /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
             -f "`pwd`/update_linux.xml" \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb" \
             --md5 "${MD5SUM}" \
-            --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{ matrix.os }}.deb \
+            --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb \
             -m "v${{env.RabbitRemoteControl_VERSION}}"
 
       - name: dump core
@@ -252,7 +252,7 @@ jobs:
         run: |
           gdb /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp core
 
-      - name: update
+      - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
         with:
@@ -274,7 +274,7 @@ jobs:
 #        files: |
 #            ${{github.workspace}}/update_linux.xml
 #            ${{github.workspace}}/rabbitremotecontrol_*.deb
-#            ${{github.workspace}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64_${{matrix.os}}.deb.md5sum
+#            ${{github.workspace}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum
 
 #- name: Release
 #  uses: fnkr/github-action-ghr@v1
