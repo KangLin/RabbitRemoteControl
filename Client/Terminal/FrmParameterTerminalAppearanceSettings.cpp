@@ -12,7 +12,7 @@
 #include <QTranslator>
 #include <QFont>
 
-Q_DECLARE_LOGGING_CATEGORY(ClientTerminal)
+Q_DECLARE_LOGGING_CATEGORY(Terminal)
 
 class CTerminal
 {
@@ -22,14 +22,14 @@ public:
         QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
                 + QDir::separator() + "Terminal_" + QLocale::system().name() + ".qm";
         if(!m_Translator.load(szTranslatorFile))
-            qCritical(ClientTerminal) << "Open translator file fail:" << szTranslatorFile;
+            qCritical(Terminal) << "Open translator file fail:" << szTranslatorFile;
         qApp->installTranslator(&m_Translator);
     };
     
     ~CTerminal()
     {
         qApp->removeTranslator(&m_Translator);
-        qDebug(ClientTerminal) << "CTerminal::~CTerminal()";
+        qDebug(Terminal) << "CTerminal::~CTerminal()";
     };
     
 private:

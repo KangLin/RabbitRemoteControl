@@ -1,8 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectThreadTerminal.h"
+#include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(ClientTerminal)
+Q_DECLARE_LOGGING_CATEGORY(Terminal)
 
 CConnectThreadTerminal::CConnectThreadTerminal(CConnecterTerminal *pConnecter)
     : QThread(),
@@ -30,5 +31,5 @@ void CConnectThreadTerminal::run()
 
     pConnect->deleteLater();
 
-    qDebug(ClientTerminal) << "Run end";
+    qDebug(Terminal) << "Run end";
 }

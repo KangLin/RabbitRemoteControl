@@ -2,7 +2,7 @@
 #include "ui_FrmParameterTerminalBehavior.h"
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(ClientTerminal)
+Q_DECLARE_LOGGING_CATEGORY(Terminal)
 
 CFrmParameterTerminalBehavior::CFrmParameterTerminalBehavior(CParameterTerminal *pPara, QWidget *parent) :
     QWidget(parent),
@@ -11,7 +11,7 @@ CFrmParameterTerminalBehavior::CFrmParameterTerminalBehavior(CParameterTerminal 
 {
     ui->setupUi(this);
     
-    //qDebug(ClientTerminal) << "KeyBindings" << QTermWidget::availableKeyBindings();
+    //qDebug(Terminal) << "KeyBindings" << QTermWidget::availableKeyBindings();
     ui->cbKeyBinding->addItems(QTermWidget::availableKeyBindings());
     ui->cbKeyBinding->setCurrentText(pPara->GetKeyBindings());
 

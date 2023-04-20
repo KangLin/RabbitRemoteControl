@@ -2,6 +2,7 @@
 #include "DlgSettingsTelnet.h"
 
 #include <unistd.h>
+#include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(Telnet)
 

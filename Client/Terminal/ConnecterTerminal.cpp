@@ -14,7 +14,7 @@
 
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(ClientTerminal, "Client.Terminal")
+Q_DECLARE_LOGGING_CATEGORY(Terminal)
 
 CConnecterTerminal::CConnecterTerminal(CPluginClient *parent)
     : CConnecter(parent),
@@ -41,7 +41,7 @@ CConnecterTerminal::CConnecterTerminal(CPluginClient *parent)
 
 CConnecterTerminal::~CConnecterTerminal()
 {
-    qDebug(ClientTerminal) << "CConnecterTerminal::~CConnecterTerminal()";
+    qDebug(Terminal) << "CConnecterTerminal::~CConnecterTerminal()";
     
     if(m_pConsole)
     {

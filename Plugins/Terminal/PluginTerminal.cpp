@@ -2,8 +2,9 @@
 #include "RabbitCommonDir.h"
 #include "ConnecterPluginTerminal.h"
 
-#include <QDebug>
-Q_LOGGING_CATEGORY(Terminal, "Terminal")
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(Terminal, "Client.Terminal")
 
 CPluginTerminal::CPluginTerminal(QObject *parent)
     : CPluginClient(parent)
