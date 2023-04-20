@@ -50,9 +50,13 @@
     + Connect CConnecter::sigConnected
     + Connect CConnecter::sigDisconnected
   - Open connect: CConnecter::Connect()
-  - After receiving the \ref CConnecter::sigConnected signal, do connection-related initialization work
+  - After receiving the \ref CConnecter::sigConnected signal,
+    do connection-related initialization work
   - Close connect: CConnecter::DisConnect()
-  - After receiving the \ref CConnecter::sigDisconnected signal, do connection-related cleanup work, and delete the connector object after completion ( CConnecter::deleteLater )
+  - After receiving the \ref CConnecter::sigDisconnected signal,
+    do connection-related cleanup work,
+    and delete the connector object after completion
+     (MUST use CConnecter::deleteLater )
 
 
 \defgroup CLIENT_PLUGIN_API Client plugin interfaces

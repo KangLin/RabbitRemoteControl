@@ -956,6 +956,7 @@ void MainWindow::on_actionScreenshot_triggered()
     return ;
 }
 
+// [Get the widget that settings client pararmeters]
 void MainWindow::on_actionSettings_triggered()
 {
     CParameterDlgSettings set(&m_Parameter, m_Client.GetSettingsWidgets(this), this);
@@ -965,6 +966,7 @@ void MainWindow::on_actionSettings_triggered()
         m_Parameter.Save();
     }
 }
+// [Get the widget that settings client pararmeters]
 
 void MainWindow::slotShortCut()
 {

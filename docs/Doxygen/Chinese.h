@@ -50,7 +50,7 @@
   - 打开连接： CConnecter::Connect()
   - 接收到 \ref CConnecter::sigConnected 信号后，做连接相关初始化工作
   - 关闭连接： CConnecter::DisConnect()
-  - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，完成后并删除此连接者对象( CConnecter::deleteLater )
+  - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，完成后并删除此连接者对象 (必须使用 CConnecter::deleteLater )
     
 
 \defgroup CLIENT_PLUGIN_API 客户端插件接口
@@ -80,7 +80,7 @@
         + 实现属性、函数
           - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginFreeRDP::Name() 
             \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
-    + 如果非阻塞线程模型。一个后台线程处理多个连接。连接是非阻塞的。 例如 RabbitVNC
+    + 如果非阻塞线程模型。一个后台线程处理多个连接。连接是非阻塞的。 例如：RabbitVNC
       - 从  CPluginClientThread 派生插件。例如： \ref CPluginRabbitVNC
         + 在类声明中实现Qt接口:
           \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.h Qt plugin interface

@@ -17,13 +17,13 @@ public:
                                  QWidget *parent = nullptr);
     virtual ~CFrmParameterClient();
 
-    //! [Accept parameters]
+    // [Accept parameters]
 public Q_SLOTS:
     /*!
      * \brief Accept parameters
      */
     void slotAccept();
-    //! [Accept parameters]
+    // [Accept parameters]
 
     void on_cbEnableViewPassword_clicked(bool checked);
     void on_pbEncryptKey_clicked();

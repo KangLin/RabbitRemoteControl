@@ -93,16 +93,28 @@ public:
     /*!
      * \~chinese 得到设置参数窗口
      * \return 设置参数窗口。此窗口的所有者为调用者。
-     * \note 此窗口必须有定义槽 \b slotAccept 。
-     *       例如: CFrmParameterViewer::slotAccept
-     *
+     * \note 此窗口必须有定义槽 \b slotAccept 。用于接受设置。
+     *       例如: CFrmParameterClient::slotAccept
+     * \snippet Client/FrmParameterClient.h Accept parameters
+     * 用法示例：
+     * \snippet App/Client/mainwindow.cpp Get the widget that settings client pararmeters
+     * 
+     * 在 CParameterDlgSettings 的构造函数中连接信号和槽
+     * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
+     * 
      * \~english Get parameter settings widget
      * \return Parameter widget. The QWidget owner is caller.
-     * \note the widget must has slot \b slotAccept .
-     *         Eg: CFrmParameterViewer::slotAccept
+     * \note the widget must has slot \b slotAccept . Used to accept settings.
+     *         Eg: CFrmParameterClient::slotAccept
      *
+     * \snippet Client/FrmParameterClient.h Accept parameters
+     * Usage:
+     * \snippet App/Client/mainwindow.cpp Get the widget that settings client pararmeters
+     * Connect the signal(accepted) to the slot(slotAccept) in CParameterDlgSettings
+     * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
+     * 
      * \~
-     * \snippet Client/FrmParameterViewer.h Accept parameters
+     * \see CFrmParameterClient CParameterDlgSettings
      */   
     virtual QList<QWidget*> GetSettingsWidgets(QWidget *parent);
     /*!

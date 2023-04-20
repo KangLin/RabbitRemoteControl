@@ -271,6 +271,7 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         switch (keyEvent->key()) {
         case Qt::Key_Tab:
+        case Qt::Key_Alt:
             bProcess = true;
             break;
         default:

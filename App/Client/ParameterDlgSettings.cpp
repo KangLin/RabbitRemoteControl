@@ -20,7 +20,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     m_pParameters(pPara)
 {
     ui->setupUi(this);
-
+    
+    // [connect accepted to slotAccept of widget]
     foreach(auto p, wViewer)
     {
         ui->tabWidget->addTab(p, p->windowTitle());
@@ -30,10 +31,10 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
         {
             qCritical(App) << "Class" << p->metaObject()->className()
                             << "must has slot slotAccept(), please add it";
-                            
         }
         Q_ASSERT(check);
     }
+    // [connect accepted to slotAccept of widget]
 
 #ifdef HAVE_ICE
     QWidget* pWidget = CICE::Instance()->GetParameterWidget(this);
