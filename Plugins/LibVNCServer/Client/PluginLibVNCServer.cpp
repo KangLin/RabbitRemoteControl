@@ -2,7 +2,8 @@
 #include "RabbitCommonDir.h"
 #include "ConnecterLibVNCServer.h"
 
-#include <QDebug>
+#include <QLoggingCategory>
+Q_LOGGING_CATEGORY(LibVNCServer, "LibVNCServer")
 
 CPluginLibVNCServer::CPluginLibVNCServer(QObject *parent) : CPluginClient(parent)
 {
@@ -10,7 +11,7 @@ CPluginLibVNCServer::CPluginLibVNCServer(QObject *parent) : CPluginClient(parent
 
 CPluginLibVNCServer::~CPluginLibVNCServer()
 {
-    qDebug() << "CPluginFactoryLibVNCServer::~CPluginFactoryLibVNCServer()";
+    qDebug(LibVNCServer) << "CPluginFactoryLibVNCServer::~CPluginFactoryLibVNCServer()";
 }
 
 const QString CPluginLibVNCServer::Name() const

@@ -1,12 +1,14 @@
 #include "ConnectLibVNCServer.h"
 #include "ConnecterLibVNCServer.h"
-#include "RabbitCommonLog.h"
+
 #include <QDebug>
 #include <QApplication>
 #include <QImage>
 #include <QClipboard>
 #include <QNetworkProxy>
 #include <QInputDialog>
+#include <QLoggingCategory>
+Q_DECLARE_LOGGING_CATEGORY(LibVNCServer)
 
 const char* gThis = "This pointer";
 #define LOG_BUFFER_LENGTH 1024
@@ -24,12 +26,12 @@ static void rfbQtClientLog(const char *format, ...)
     va_end(args);
     if(nRet < 0 || nRet >= LOG_BUFFER_LENGTH)
     {
-        LOG_MODEL_ERROR("LibVNCServer",
-                        "vsprintf buf is short, %d > %d. Truncated it:%d",
-                        nRet, LOG_BUFFER_LENGTH, nRet - LOG_BUFFER_LENGTH);
+        qCritical(LibVNCServer) << "vsprintf buf is short,"
+                                << nRet << ">" <<  LOG_BUFFER_LENGTH
+                                << ". Truncated it:" << nRet - LOG_BUFFER_LENGTH;
         buf[LOG_BUFFER_LENGTH - 1] = 0;
     }
-    LOG_MODEL_DEBUG("LibVNCServer", buf);
+    qDebug(LibVNCServer) << buf;
 }
 
 CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, QObject *parent)
@@ -48,7 +50,7 @@ CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, Q
 
 CConnectLibVNCServer::~CConnectLibVNCServer()
 {
-    qDebug() << "CConnectLibVNCServer::~CConnectLibVNCServer()";
+    qDebug(LibVNCServer) << "CConnectLibVNCServer::~CConnectLibVNCServer()";
 }
 
 bool CConnectLibVNCServer::InitClient()
@@ -58,7 +60,7 @@ bool CConnectLibVNCServer::InitClient()
     m_pClient = rfbGetClient(8,3,4);
     if(!m_pClient)
     {
-        LOG_MODEL_ERROR("LibVNCServer", "rfbGetClient fail");
+        qCritical(LibVNCServer) << "rfbGetClient fail";
         return false;
     }
     
@@ -157,7 +159,7 @@ bool CConnectLibVNCServer::InitClient()
     case CParameterConnecter::emProxy::No:
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
-            LOG_MODEL_ERROR("LibVNCServer", "rfbInitClient fail");
+            qCritical(LibVNCServer) <<  "rfbInitClient fail";
             return FALSE;
         }
         break;
@@ -177,7 +179,7 @@ bool CConnectLibVNCServer::InitClient()
 int CConnectLibVNCServer::OnInit()
 {
     if(!InitClient()) {
-        LOG_MODEL_ERROR("LibVNCServer", "rfbInitClient fail");
+        qCritical(LibVNCServer) << "rfbInitClient fail";
         emit sigError(-1, "Connect fail");
         return -2;
     }
@@ -187,7 +189,7 @@ int CConnectLibVNCServer::OnInit()
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     
     QString szInfo = QString("Connect to ") + m_pClient->desktopName;
-    LOG_MODEL_INFO("LibVNCServer", szInfo.toStdString().c_str());
+    qInfo(LibVNCServer) << szInfo;
     emit sigInformation(szInfo);
  
     return 0;
@@ -272,7 +274,7 @@ void CConnectLibVNCServer::cb_got_selection(rfbClient *client, const char *text,
 
 void CConnectLibVNCServer::cb_kbd_leds(rfbClient *client, int value, int pad)
 {
-    LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_kbd_leds");
+    qDebug(LibVNCServer) << "CConnectLibVnc::cb_kbd_leds";
 }
 
 void CConnectLibVNCServer::cb_bell(struct _rfbClient *client)
@@ -282,12 +284,12 @@ void CConnectLibVNCServer::cb_bell(struct _rfbClient *client)
 
 void CConnectLibVNCServer::cb_text_chat(rfbClient *client, int value, char *text)
 {
-    LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_text_chat");
+    qDebug(LibVNCServer) << "CConnectLibVnc::cb_text_chat";
 }
 
 rfbCredential* CConnectLibVNCServer::cb_get_credential(rfbClient *cl, int credentialType)
 {
-    LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_get_credential");
+    qDebug(LibVNCServer) <<"CConnectLibVnc::cb_get_credential";
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(cl, (void*)gThis);
     rfbCredential *c = (rfbCredential*)malloc(sizeof(rfbCredential));
     c->userCredential.username = (char*)malloc(RFB_BUF_SIZE);
@@ -296,11 +298,11 @@ rfbCredential* CConnectLibVNCServer::cb_get_credential(rfbClient *cl, int creden
     memset(c->userCredential.password, 0, RFB_BUF_SIZE);
 
     if(credentialType != rfbCredentialTypeUser) {
-        LOG_MODEL_ERROR("LibVNCServer", "something else than username and password required for authentication\n");
+        qCritical(LibVNCServer) << "something else than username and password required for authentication";
         return NULL;
     }
 
-    LOG_MODEL_ERROR("LibVNCServer", "username and password required for authentication!\n");
+    qDebug(LibVNCServer) << "Username and password required for authentication!";
 
     memcpy(c->userCredential.username,
            pThis->m_pPara->GetUser().toStdString().c_str(),
@@ -371,7 +373,7 @@ void CConnectLibVNCServer::cb_got_cursor_shape(rfbClient *client,
                     xhot, yhot, width, height, bytesPerPixel);//*/
     if(!client->rcSource)
     {
-        LOG_MODEL_ERROR("LibVNCServer", "client->rcSource is null");
+        qCritical(LibVNCServer) << "client->rcSource is null";
         return;
     }
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
@@ -423,7 +425,7 @@ void CConnectLibVNCServer::slotMousePressEvent(Qt::MouseButtons buttons, QPoint 
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
-    //qDebug() << "CConnectLibVnc::slotMousePressEvent" << e->button() << e->buttons();
+    //qDebug(LibVNCServer) << "CConnectLibVnc::slotMousePressEvent" << e->button() << e->buttons();
     unsigned char mask = 0;
     if(buttons & Qt::MouseButton::LeftButton)
         mask |= 0x1;
@@ -451,7 +453,7 @@ void CConnectLibVNCServer::slotMouseReleaseEvent(Qt::MouseButton button, QPoint 
 
 void CConnectLibVNCServer::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //qDebug() << "CConnectLibVnc::slotMouseMoveEvent" << e->button() << e->buttons();
+    //qDebug(LibVNCServer) << "CConnectLibVnc::slotMouseMoveEvent" << e->button() << e->buttons();
     if(!m_pClient) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;

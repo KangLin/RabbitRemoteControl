@@ -2,9 +2,9 @@
 
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "RabbitCommonLog.h"
-#include "FrmStyle/FrmStyle.h"
+#include "Style/FrmStyle.h"
 #include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
 #ifdef HAVE_ABOUT
 #include "DlgAbout/DlgAbout.h"
 #endif
@@ -205,17 +205,17 @@ void CMainWindow::on_actionOpen_folder_triggered()
 
 void CMainWindow::on_actionOpen_log_file_triggered()
 {
-    RabbitCommon::OpenLogFile();
+    RabbitCommon::CTools::Instance()->OpenLogFile();
 }
 
 void CMainWindow::on_actionOpen_log_folder_triggered()
 {
-    RabbitCommon::OpenLogFolder();
+    RabbitCommon::CTools::Instance()->OpenLogFolder();
 }
 
 void CMainWindow::on_actionOpen_log_configure_file_triggered()
 {
-    RabbitCommon::OpenLogConfigureFile();
+    RabbitCommon::CTools::Instance()->OpenLogConfigureFile();
 }
 
 void CMainWindow::on_actionStyle_S_triggered()

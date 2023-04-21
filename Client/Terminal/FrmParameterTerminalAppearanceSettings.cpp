@@ -4,13 +4,13 @@
 #include "qtermwidget.h"
 
 #include "RabbitCommonDir.h"
-#include "RabbitCommonLog.h"
 
 #include <QCoreApplication>
 #include <QLocale>
 #include <QDebug>
 #include <QTranslator>
 #include <QFont>
+#include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(Terminal)
 

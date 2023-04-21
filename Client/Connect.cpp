@@ -2,7 +2,6 @@
 
 #include "FrmViewer.h"
 #include "Connect.h"
-#include "RabbitCommonLog.h"
 
 #include <QApplication>
 #include <QDebug>

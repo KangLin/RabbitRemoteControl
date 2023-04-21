@@ -4,7 +4,7 @@
 #include "ui_ParameterDlgSettings.h"
 #include "mainwindow.h"
 #include "RabbitCommonDir.h"
-#include "RabbitCommonStyle.h"
+
 #ifdef HAVE_ICE
     #include "Ice.h"
 #endif

@@ -1,6 +1,7 @@
 ## Change Log
 
 ### v0.0.26
++ Use RabbitCommon v2
 + FreeRDP:
   + Redirection
     + Audio input and output

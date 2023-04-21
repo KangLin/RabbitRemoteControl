@@ -1,5 +1,5 @@
 #include "ServiceLibVNCServer.h"
-#include "RabbitCommonLog.h"
+
 #include "RabbitCommonTools.h"
 
 #include <rfb/keysym.h>
@@ -13,6 +13,9 @@
 #include "ParameterServiceLibVNC.h"
 #include "Screen.h"
 
+#include <QLoggingCategory>
+Q_DECLARE_LOGGING_CATEGORY(LibVNCServer)
+
 CServiceLibVNCServer::CServiceLibVNCServer(CPluginService *plugin) : CService(plugin)
 {
     m_pPara = new CParameterServiceLibVNC(this);
@@ -20,7 +23,7 @@ CServiceLibVNCServer::CServiceLibVNCServer(CPluginService *plugin) : CService(pl
 
 CServiceLibVNCServer::~CServiceLibVNCServer()
 {
-    LOG_MODEL_DEBUG("Service LibVNCServer", "CServiceLibVNCServer::~CServiceLibVNCServer()");
+    qDebug(LibVNCServer) << "CServiceLibVNCServer::~CServiceLibVNCServer()";
 }
 
 #ifdef HAVE_GUI
@@ -34,7 +37,7 @@ QWidget* CServiceLibVNCServer::GetParameterWidget(QWidget* parent)
 static rfbBool checkPassword(struct _rfbClientRec* cl,
                              const char* encryptedPassWord, int len)
 {
-    LOG_MODEL_DEBUG("Service LibVNCServer", "Password:%s", encryptedPassWord);
+    qDebug(LibVNCServer) << "Password:" << encryptedPassWord;
     CServiceLibVNCServer* pThis = reinterpret_cast<CServiceLibVNCServer*>(cl->screen->screenData);
     if(pThis->GetParameters()->getPassword() == encryptedPassWord)
         return true;
@@ -43,18 +46,18 @@ static rfbBool checkPassword(struct _rfbClientRec* cl,
 
 static void dokey(rfbBool down,rfbKeySym key,rfbClientPtr cl)
 {
-    LOG_MODEL_DEBUG("Service LibVNCServer", "key: %d;down:%d", key, down);
+    qDebug(LibVNCServer) << "key:" << key <<";down:" << down;
 }
 
 static void doptr(int buttonMask,int x,int y,rfbClientPtr cl)
 {
-    LOG_MODEL_DEBUG("Service LibVNCServer", "Mouse: button:%d;x:%d;y:%d",
-                    buttonMask, x, y);
+    qDebug(LibVNCServer) << "Mouse: button:" << buttonMask
+                         << ";x:" << x << ";y:" << y;
 }
 
 static enum rfbNewClientAction newclient(rfbClientPtr cl)
 {
-    LOG_MODEL_DEBUG("Service LibVNCServer", "New client:%s", cl->host);
+    qDebug(LibVNCServer) << "New client:" << cl->host;
 //  cl->clientData = (void*)calloc(sizeof(ClientData),1);
 //  cl->clientGoneHook = clientgone;
   return RFB_CLIENT_ACCEPT;
@@ -62,7 +65,7 @@ static enum rfbNewClientAction newclient(rfbClientPtr cl)
 
 int CServiceLibVNCServer::OnInit()
 {
-    LOG_MODEL_DEBUG("CServiceLibVNCServer", "CServiceLibVNCServer Init ......");
+    qDebug(LibVNCServer) << "CServiceLibVNCServer Init ......";
 
     int w = 640;
     int h = 480;
@@ -97,7 +100,7 @@ int CServiceLibVNCServer::OnInit()
 
 int CServiceLibVNCServer::OnClean()
 {
-    LOG_MODEL_DEBUG("CServiceLibVNCServer", "CServiceLibVNCServer Clean ......");
+    qDebug(LibVNCServer) << "CServiceLibVNCServer Clean ......";
     free(m_rfbScreen->frameBuffer);
     rfbScreenCleanup(m_rfbScreen);
     return 0;
