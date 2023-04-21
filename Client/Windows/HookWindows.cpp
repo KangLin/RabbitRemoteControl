@@ -1,5 +1,4 @@
 #include "HookWindows.h"
-#include "RabbitCommonLog.h"
 #include "FrmViewer.h"
 #include <QApplication>
 #include <QDebug>

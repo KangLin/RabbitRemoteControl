@@ -3,14 +3,14 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #ifdef HAVE_UPDATE
-#include "FrmUpdater/FrmUpdater.h"
+#include "FrmUpdater.h"
 #endif
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
-#include "Style/FrmStyle.h"
+#include "FrmStyle.h"
 
 #ifdef HAVE_ABOUT
-#include "DlgAbout/DlgAbout.h"
+#include "DlgAbout.h"
 #endif
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
