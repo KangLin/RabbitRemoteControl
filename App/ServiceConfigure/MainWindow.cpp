@@ -2,11 +2,11 @@
 
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "Style/FrmStyle.h"
+#include "FrmStyle.h"
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 #ifdef HAVE_ABOUT
-#include "DlgAbout/DlgAbout.h"
+#include "DlgAbout.h"
 #endif
 
 #include <QSettings>
@@ -19,8 +19,7 @@
 
 Q_DECLARE_LOGGING_CATEGORY(App)
 
-CMainWindow::CMainWindow(QWidget *parent) :
-    QMainWindow(parent),
+CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent),
     ui(new Ui::MainWindow),
     m_bStart(false)
 {
