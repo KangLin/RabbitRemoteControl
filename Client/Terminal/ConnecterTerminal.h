@@ -34,7 +34,7 @@ private Q_SLOTS:
     
 protected:
     virtual QString ServerName() override;
-    virtual int SetParamter();
+    virtual int SetParameter();
 
     /**
      * @brief OnConnect

@@ -39,7 +39,7 @@ void CDlgSettingsTerminal::on_pbOk_clicked()
     this->accept();
 }
 
-void CDlgSettingsTerminal::on_pbCancle_clicked()
+void CDlgSettingsTerminal::on_pbCancel_clicked()
 {
     this->reject();
 }

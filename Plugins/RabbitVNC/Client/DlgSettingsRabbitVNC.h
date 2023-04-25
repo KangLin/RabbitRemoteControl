@@ -32,7 +32,7 @@ private slots:
     
     void on_pbOk_clicked();
     
-    void on_pbCancle_clicked();
+    void on_pbCancel_clicked();
     
     void on_leServer_editingFinished();
     

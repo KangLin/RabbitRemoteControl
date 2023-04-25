@@ -112,12 +112,12 @@ bool CIceSignalQxmpp::proecssIq(CIceSignalQXmppIq iq)
         /*
         qDebug(m_Log) << "type:" << iq.SignalType()
                         << "Mid:" << iq.mid()
-                        << "Candiate:" << iq.Candiate();//*/
-        emit sigCandiate(iq.from(),
+                        << "Candidate:" << iq.Candidate();//*/
+        emit sigCandidate(iq.from(),
                          iq.to(),
                          iq.ChannelId(),
                          iq.mid(),
-                         iq.Candiate());
+                         iq.Candidate());
     } else {
         qCritical(m_Log) << "iq type error:" << iq.SignalType();
         return false;
@@ -140,7 +140,7 @@ int CIceSignalQxmpp::SendDescription(const QString &toUser,
     return 0;
 }
 
-int CIceSignalQxmpp::SendCandiate(const QString &toUser,
+int CIceSignalQxmpp::SendCandidate(const QString &toUser,
                                   const QString &channelId,
                                   const rtc::Candidate &candidate,
                                   const QString &fromUser)
@@ -151,7 +151,7 @@ int CIceSignalQxmpp::SendCandiate(const QString &toUser,
     iq.setChannelId(channelId);
     iq.setSignalType("candidate");
     iq.setMid(candidate.mid().c_str());
-    iq.setCandiate(std::string(candidate).c_str());
+    iq.setCandidate(std::string(candidate).c_str());
     emit sigSendPackage(iq);
     return 0;
 }

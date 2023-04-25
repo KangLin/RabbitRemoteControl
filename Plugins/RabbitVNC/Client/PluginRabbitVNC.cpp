@@ -60,9 +60,9 @@ const QString CPluginRabbitVNC::Protocol() const
     return "RFB";
 }
 
-CConnecterDesktop *CPluginRabbitVNC::OnCreateConnecter(const QString &szProtol)
+CConnecterDesktop *CPluginRabbitVNC::OnCreateConnecter(const QString &szProtocol)
 {
-    if(Id() == szProtol)
+    if(Id() == szProtocol)
     {
         return new CConnecterRabbitVNC(this);
     }

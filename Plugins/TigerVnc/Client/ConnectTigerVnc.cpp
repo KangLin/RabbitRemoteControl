@@ -223,19 +223,19 @@ int CConnectTigerVnc::SocketInit()
     return nRet;
 }
 
-int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channl)
+int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
 {
     bool check = false;
-    check = connect(channl.data(), SIGNAL(sigConnected()),
+    check = connect(channel.data(), SIGNAL(sigConnected()),
                     this, SLOT(slotConnected()));
     Q_ASSERT(check);
-    check = connect(channl.data(), SIGNAL(sigDisconnected()),
+    check = connect(channel.data(), SIGNAL(sigDisconnected()),
                     this, SLOT(slotDisConnected()));
     Q_ASSERT(check);
-    check = connect(channl.data(), SIGNAL(readyRead()),
+    check = connect(channel.data(), SIGNAL(readyRead()),
                     this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
-    check = connect(channl.data(), SIGNAL(sigError(int, const QString&)),
+    check = connect(channel.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotError(int, const QString&)));
     Q_ASSERT(check);
     return 0;

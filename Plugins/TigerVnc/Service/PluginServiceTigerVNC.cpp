@@ -7,8 +7,10 @@
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
 #include "ServiceTigerVNC.h"
+#include <QLoggingCategory>
 
 Q_LOGGING_CATEGORY(TigerVNC, "TigerVNC")
+
 CPluginServiceTigerVNC::CPluginServiceTigerVNC(QObject *parent)
     : CPluginServiceThread(parent)
 {
@@ -29,7 +31,7 @@ CPluginServiceTigerVNC::~CPluginServiceTigerVNC()
    qDebug(TigerVNC) << "CManageConnectTigerVnc::~CManageConnectTigerVnc()";
 }
 
-const QString CPluginServiceTigerVNC::Protol() const
+const QString CPluginServiceTigerVNC::Protocol() const
 {
     return "RFB";
 }

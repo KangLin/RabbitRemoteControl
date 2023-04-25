@@ -73,7 +73,7 @@ public:
            <tr><td> -e    </td><td> -exec      </td>
                  <td> Execute the service as a standalone application (useful for debug purposes).
                    This is a blocking call, the service will be executed like a normal application.
-                   In this mode you will not be able to communicate with the service from the contoller.
+                   In this mode you will not be able to communicate with the service from the controller.
                  </td>
            </tr>
            <tr><td> -t </td><td> -terminate </td><td> Stop the service.</td></tr>

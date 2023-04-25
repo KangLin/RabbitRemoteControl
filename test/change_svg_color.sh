@@ -1,5 +1,5 @@
 if [ $# -lt 3 ]; then
-    echo "Input paramters[$#] is fail. "
+    echo "Input parameters[$#] is fail. "
     echo "Please using:"
     echo "$0 old_color new_color path"
     exit

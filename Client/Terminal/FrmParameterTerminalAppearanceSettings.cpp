@@ -119,7 +119,7 @@ int CFrmParameterTerminalAppearanceSettings::AcceptSettings()
     return 0;
 }
 
-void CFrmParameterTerminalAppearanceSettings::on_pbBrower_clicked()
+void CFrmParameterTerminalAppearanceSettings::on_pbBrowser_clicked()
 {
     QString file = RabbitCommon::CDir::Instance()->GetOpenFileName(this,
                                                tr("Backgroup image"), QString(),

@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "Connection.h"
-#include "RabbitCommonLog.h"
 #include "rfb/SSecurityVncAuth.h"
 #include "rfb/SMsgWriter.h"
 #include "rfb/screenTypes.h"
@@ -168,7 +167,7 @@ void CConnection::slotError(int nErr, const QString& szErr)
 void CConnection::queryConnection(const char *userName)
 {
     qDebug(RabbitVNC) << "queryConnection:" << userName;
-    //TODO: check user is accpet?
+    //TODO: check user is accept?
     SConnection::queryConnection(userName);
 }
 

@@ -31,7 +31,7 @@
  *     - slotClipBoardChanged()
  * 
  * \~english
- * \brief Connect interface. It is implemented by the protol plugin.
+ * \brief Connect interface. It is implemented by the Protocol plugin.
  *      It starts a timer by default to start a non-Qt event loop (that is, normal loop processing) .
  *      See Connect(), slotTimeOut(), OnProcess() for details.
  *      Of course, it still supports Qt events (the signal-slot mechanism of QObject).
@@ -84,7 +84,7 @@ public Q_SLOTS:
 
     /*!
      * \~chinese 当剪切板发生改变时调用
-     * \~english Be called whe the clip board change
+     * \~english Be called when the clip board change
      */
     virtual void slotClipBoardChanged() = 0;
 

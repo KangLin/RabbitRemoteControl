@@ -61,7 +61,7 @@ int CInputDeviceWindows::MouseEvent(MouseButtons buttons, QPoint pos)
             flags |= MOUSEEVENTF_MIDDLEUP;
     }
     
-    // Check the right button on chanage state
+    // Check the right button on change state
     if((m_LastButtons & RightButton) != (RightButton & buttons))
     {
         if(buttons & RightButton)

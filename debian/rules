@@ -22,6 +22,11 @@ ifdef FreeRDP-Client_DIR
     PARAS += -DFreeRDP-Client_DIR=${FreeRDP-Client_DIR}
 endif
 
+# Because "-" is not used by export
+ifdef FreeRDP_Client_DIR
+    PARAS += -DFreeRDP-Client_DIR=${FreeRDP_Client_DIR}
+endif
+
 ifdef WinPR_DIR
     PARAS += -DWinPR_DIR=${WinPR_DIR}
 endif
@@ -30,8 +35,18 @@ ifdef FreeRDP-Server_DIR
     PARAS += -DFreeRDP-Server_DIR=${FreeRDP-Server_DIR}
 endif 
 
+# Because "-" is not used by export
+ifdef FreeRDP_Server_DIR
+    PARAS += -DFreeRDP-Server_DIR=${FreeRDP_Server_DIR}
+endif 
+
 ifdef FreeRDP-Shadow_DIR
     PARAS += -DFreeRDP-Shadow_DIR=${FreeRDP-Shadow_DIR}
+endif
+
+# Because "-" is not used by export
+ifdef FreeRDP_Shadow_DIR
+    PARAS += -DFreeRDP-Shadow_DIR=${FreeRDP_Shadow_DIR}
 endif
 
 ifdef RabbitVNC_DIR
@@ -83,12 +98,11 @@ override_dh_auto_configure:
 	dh_auto_configure -- -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
             -DBUILD_FREERDP=ON \
             -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
-            -DQt5_DIR=${QT_ROOT}/lib/cmake/Qt5 \
+            -DQt6_DIR=${QT_ROOT}/lib/cmake/Qt6 \
             -DRabbitCommon_DIR=${RabbitCommon_DIR} \
             -DCMARK_SHARED:BOOL=ON \
             -DCMARK_TESTS:BOOL=OFF \
-            -DCMARK_STATIC=OFF \
-            ${PARAS}
+            -DCMARK_STATIC=OFF ${PARAS}
 
 override_dh_auto_build:
 	dh_auto_build -- $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`" = "0",, -j`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`)

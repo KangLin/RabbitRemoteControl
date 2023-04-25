@@ -32,7 +32,7 @@ public:
      * connection.
      *
      * @param instance - pointer to the rdp_freerdp structure that contains the connection's parameters,
-     * and will be filled with the appropriate informations.
+     * and will be filled with the appropriate information.
      *
      * @return TRUE if successful. FALSE otherwise.
      * Can exit with error code XF_EXIT_PARSE_ARGUMENTS if there is an error in the parameters.
@@ -121,7 +121,7 @@ private:
         CConnectFreeRDP* pThis;
     };
     ClientContext* m_pContext;
-    CParameterFreeRDP* m_pParamter;
+    CParameterFreeRDP* m_pParameter;
     CConnecterFreeRDP* m_pConnecter;
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
         

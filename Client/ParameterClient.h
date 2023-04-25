@@ -16,7 +16,7 @@
  *  - If the parameters of connecter ( CParameterConnecter or its derived class ) requires a CParameterClient.
  *    Please instantiate the parameters of connecter
  *    and call CConnecter::SetParameter in the constructor of the CConnecter derived class to set the parameters.
- *    Default set the CParameterClient for the paramters of connecter. See: CClient::CreateConnecter .
+ *    Default set the CParameterClient for the parameters of connecter. See: CClient::CreateConnecter .
  *    If you are sure to the parameter does not need CParameterClient.
  *    please overload the CConnecter::SetParameterClient in the CConnecter derived class.
  *    don't set it.

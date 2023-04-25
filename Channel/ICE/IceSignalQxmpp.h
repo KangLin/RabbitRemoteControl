@@ -36,7 +36,7 @@ public:
                                 const QString &channelId,
                                 const rtc::Description &description,
                                 const QString &fromUser) override;
-    virtual int SendCandiate(const QString &toUser,
+    virtual int SendCandidate(const QString &toUser,
                              const QString &channelId,
                              const rtc::Candidate &candidate,
                              const QString &fromUser) override;

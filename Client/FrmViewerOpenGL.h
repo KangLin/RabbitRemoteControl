@@ -35,7 +35,7 @@ public:
                                       ///< \~chinese 原始桌面大小，桌面的左上点与窗口的左上点对齐
         OriginalCenter = 3,           ///< \~english Original desktop size, the center of the desktop is aligned with the center of the window
                                       ///< \~chinese 原始桌面大小，桌面中心点与窗口中心点对齐
-        Zoom = 4,                     ///< \~english zoom windows = destop size * factor
+        Zoom = 4,                     ///< \~english zoom windows = desktop size * factor
                                       ///< \~chinese 缩放窗口大小等于桌面大小 * 系数
         ZoomToWindow = 5,             ///< \~english Desktop adapt to windows
                                       ///< \~chinese 桌面缩放到窗口大小，窗口是固定的

@@ -290,9 +290,9 @@
              <widget class="QLineEdit" name="leShotScreenSavepath"/>
             </item>
             <item>
-             <widget class="QPushButton" name="pbScreenShotBrower">
+             <widget class="QPushButton" name="pbScreenShotBrowser">
               <property name="text">
-               <string>Brower(&amp;B)</string>
+               <string>Browser(&amp;B)</string>
               </property>
              </widget>
             </item>

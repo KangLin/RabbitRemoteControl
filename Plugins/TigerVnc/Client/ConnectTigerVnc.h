@@ -90,7 +90,7 @@ private:
     void updatePixelFormat();
     
     int SocketInit();
-    int SetChannelConnect(QSharedPointer<CChannel> channl);
+    int SetChannelConnect(QSharedPointer<CChannel> channel);
     
     int IceInit();
 };

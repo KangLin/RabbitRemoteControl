@@ -14,7 +14,7 @@ public:
     
     // CConnect interface
 protected:
-    virtual int SetParamter(void *pPara);
+    virtual int SetParameter(void *pPara);
     
 public slots:
     virtual int Initialize();

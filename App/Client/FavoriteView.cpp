@@ -145,8 +145,8 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
     if(!m_pModel) return -1;
     QStandardItem* pItem = nullptr;
     QString szGroup;
-    auto indexs = selectionModel()->selectedIndexes();
-    if(indexs.isEmpty())
+    auto indexes = selectionModel()->selectedIndexes();
+    if(indexes.isEmpty())
     {
         auto it = m_pModel->findItems(szName, Qt::MatchFixedString);
         if(it.isEmpty())
@@ -168,7 +168,7 @@ int CFavoriteView::AddFavorite(const QString& szName, const QString &szFile)
             m_pModel->appendRow(pItem);
         }
     } else {
-        auto itemGroup = m_pModel->itemFromIndex(indexs[0]);
+        auto itemGroup = m_pModel->itemFromIndex(indexes[0]);
         if(itemGroup->data().isValid())
         {
             auto it = m_pModel->findItems(szName, Qt::MatchFixedString);

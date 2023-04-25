@@ -48,7 +48,7 @@ void CDlgGetPasswordTigerVNC::on_pbOK_clicked()
     m_pParameter->SetUser(ui->leUser->text());
     m_pParameter->SetPassword(ui->lePassword->text());
     m_pParameter->SetSavePassword(ui->cbSavePassword->isChecked());
-    emit m_pConnecter->sigUpdateParamters(m_pConnecter);
+    emit m_pConnecter->sigUpdateParameters(m_pConnecter);
     accept();
 }
 

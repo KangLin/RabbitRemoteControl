@@ -30,15 +30,15 @@ public:
     explicit CPluginClientThread(QObject *parent = nullptr);
     virtual ~CPluginClientThread();
 private:
-    virtual CConnecter* CreateConnecter(const QString &szProtol) override;
+    virtual CConnecter* CreateConnecter(const QString &szProtocol) override;
     
 protected:
     /*!
      * \brief Create Connecter
-     * \param szProtol
+     * \param szProtocol
      * \return CConnecterDesktop*
      */
-    virtual CConnecterDesktop* OnCreateConnecter(const QString &szProtol) = 0;
+    virtual CConnecterDesktop* OnCreateConnecter(const QString &szProtocol) = 0;
     
 private:
     CPluginThread* m_pThread;

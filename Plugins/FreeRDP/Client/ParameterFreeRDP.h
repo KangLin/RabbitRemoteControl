@@ -10,7 +10,7 @@ class CParameterFreeRDP : public CParameterConnecter
     Q_PROPERTY(bool RedirectionPrinter READ GetRedirectionPrinter WRITE SetRedirectionPrinter NOTIFY sigRedirectionPrinterChanged)
     Q_PROPERTY(UINT ReconnectInterval READ GetReconnectInterval WRITE SetReconnectInterval NOTIFY sigReconnectIntervalChanged)
     Q_PROPERTY(RedirecionSoundType RedirectionSound READ GetRedirectionSound WRITE SetRedirectionSound NOTIFY sigRedirectionSoundChanged)
-    Q_PROPERTY(QString RedirectionSoundParamters READ GetRedirectionSoundParamters WRITE SetRedirectionSoundParamters NOTIFY sigRedirectionSoundParamtersChanged)
+    Q_PROPERTY(QString RedirectionSoundParameters READ GetRedirectionSoundParameters WRITE SetRedirectionSoundParameters NOTIFY sigRedirectionSoundParametersChanged)
     Q_PROPERTY(bool RedirectionMicrophone READ GetRedirectionMicrophone WRITE SetRedirectionMicrophone NOTIFY sigRedirectionMicrophoneChanged)
     Q_PROPERTY(QStringList RedirectionDrives READ GetRedirectionDrives WRITE SetRedirectionDrives NOTIFY sigRedirectionDrivesChanged)
 
@@ -44,19 +44,19 @@ public:
     bool GetRedirectionPrinter() const;
     void SetRedirectionPrinter(bool newRedirectionPrinter);
     
-    const QString &GetRedirectionSoundParamters() const;
-    void SetRedirectionSoundParamters(const QString &newRedirectionSoundParamters);
+    const QString &GetRedirectionSoundParameters() const;
+    void SetRedirectionSoundParameters(const QString &newRedirectionSoundParameters);
     
-    const QString &GetRedirectionMicrophoneParamters() const;
-    void SetRedirectionMicrophoneParamters(const QString &newRedirectionMicrophoneParamters);
+    const QString &GetRedirectionMicrophoneParameters() const;
+    void SetRedirectionMicrophoneParameters(const QString &newRedirectionMicrophoneParameters);
     
 signals:
     void sigReconnectIntervalChanged();
     
     void sigRedirectionSoundChanged(RedirecionSoundType RedirectionSound);
-    void sigRedirectionSoundParamtersChanged();
+    void sigRedirectionSoundParametersChanged();
     void sigRedirectionMicrophoneChanged(bool RedirectionMicrophone);
-    void sigRedirectionMicrophoneParamtersChanged();
+    void sigRedirectionMicrophoneParametersChanged();
     void sigRedirectionDrivesChanged(QStringList RedirectionDrive);
     void sigRedirectionPrinterChanged(bool RedirectionPrinter);
 
@@ -66,11 +66,11 @@ private:
     
     bool m_bRedirectionPrinter;
     RedirecionSoundType m_nRedirectionSound;
-    QString m_szRedirectionSoundParamters;
+    QString m_szRedirectionSoundParameters;
     bool m_bRedirectionMicrophone;
-    QString m_szRedirectionMicrophoneParamters;
+    QString m_szRedirectionMicrophoneParameters;
     QStringList m_lstRedirectionDrives;
-    Q_PROPERTY(QString RedirectionMicrophoneParamters READ GetRedirectionMicrophoneParamters WRITE SetRedirectionMicrophoneParamters NOTIFY sigRedirectionMicrophoneParamtersChanged)
+    Q_PROPERTY(QString RedirectionMicrophoneParameters READ GetRedirectionMicrophoneParameters WRITE SetRedirectionMicrophoneParameters NOTIFY sigRedirectionMicrophoneParametersChanged)
 };
 
 #endif // CPARAMETERFREERDP_H

@@ -114,9 +114,9 @@
           <widget class="QLineEdit" name="leCapFile"/>
          </item>
          <item>
-          <widget class="QPushButton" name="pbCapFileBrower">
+          <widget class="QPushButton" name="pbCapFileBrowser">
            <property name="text">
-            <string>Brower(&amp;B)</string>
+            <string>Browser(&amp;B)</string>
            </property>
           </widget>
          </item>
@@ -162,9 +162,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbCancle">
+      <widget class="QPushButton" name="pbCancel">
        <property name="text">
-        <string>Cancle(&amp;C)</string>
+        <string>Cancel(&amp;C)</string>
        </property>
       </widget>
      </item>

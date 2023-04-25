@@ -31,7 +31,7 @@ public:
     virtual const QIcon Icon() const override;
 
 protected:
-    virtual CConnecterDesktop* OnCreateConnecter(const QString& szProtol) override;    
+    virtual CConnecterDesktop* OnCreateConnecter(const QString& szProtocol) override;    
 };
 
 #endif // CPluginRabbitVnc_H_KL_2021_07_23

@@ -58,7 +58,7 @@ void CDlgGetUserPasswordFreeRDP::on_pbOK_clicked()
     m_pParameter->SetSavePassword(ui->cbSavePassword->isChecked());
     freerdp_settings_set_string(m_pParameter->m_pSettings, FreeRDP_Domain,
                                 ui->leDomain->text().toStdString().c_str());
-    emit m_pConnecter->sigUpdateParamters(m_pConnecter);
+    emit m_pConnecter->sigUpdateParameters(m_pConnecter);
     accept();
 }
 

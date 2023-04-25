@@ -256,7 +256,7 @@ Some of them are:
   - [x] Client
     - [x] Client frame
       - [x] Remote desktop
-      - [x] Terminal（Linux implemented，but it is has a smae BUG）
+      - [x] Terminal（Linux implemented，but it is has a same BUG）
     - [x] Specific protocol support, see: [Supported protocol](#Supported-protocols)
     - [x] Peer-to-Peer (P2P) remote control protocol, see requirements for details: https://github.com/KangLin/RabbitRemoteControl/issues/7
   - [x] Server

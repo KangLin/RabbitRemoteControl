@@ -35,6 +35,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/.cache/install_macos_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
       qt_modules: ${{matrix.qt_modules}}
       RabbitRemoteControl_VERSION: v1.0.9
+      VCPKGGITCOMMITID: 2b1757dd1d5ed7d9d5bb65fd8316631b157e7afc
       artifact_name: build_macos
 
     # Map the job outputs to step outputs
@@ -62,27 +63,38 @@ jobs:
             ${{env.INSTALL_DIR}}
           key: Cache-installed-macos
 
-      - name: build FreeRDP
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
-            git clone https://github.com/FreeRDP/FreeRDP.git
-            # git clone https://github.com/KangLin/FreeRDP.git
-            cd FreeRDP
-            git checkout -b b7b46b812395cf3a67b1e36f0fbf1386f4372443 b7b46b812395cf3a67b1e36f0fbf1386f4372443
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-                -DWITH_SERVER=ON \
-                -DWITH_CLIENT_SDL=OFF \
-                -DWITH_KRB5=OFF \
-                -DWITH_MANPAGES=OFF
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
-          fi
+      - name: run-vcpkg
+        uses: lukka/run-vcpkg@v7.4
+        with:
+          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+          vcpkgDirectory: ${{runner.workspace}}/vcpkg/
+          # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
+          # compute its hash and append this to the computed cache's key.
+          appendedCacheKey: cache-vcpkg-${{env.VCPKGGITCOMMITID}}
+          vcpkgArguments: 'openssl libssh libpng pixman libjpeg-turbo libdatachannel freerdp'
+
+#      - name: build FreeRDP
+#        working-directory: ${{env.SOURCE_DIR}}
+#        run: |
+#          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
+#            git clone https://github.com/FreeRDP/FreeRDP.git
+#            # git clone https://github.com/KangLin/FreeRDP.git
+#            cd FreeRDP
+#            git checkout -b 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. \
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
+#                -DWITH_SERVER=ON \
+#                -DWITH_CLIENT_SDL=OFF \
+#                -DWITH_KRB5=OFF \
+#                -DWITH_MANPAGES=OFF \
+#                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#          fi
 
       - name: build RabbitVNC
         working-directory: ${{env.SOURCE_DIR}}
@@ -94,7 +106,8 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
           fi
@@ -109,7 +122,8 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
           fi
@@ -123,7 +137,9 @@ jobs:
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
+            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
           fi
@@ -160,7 +176,8 @@ jobs:
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
-                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5
+                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
           fi
@@ -175,7 +192,8 @@ jobs:
               -Dcmark-gfm_DIR=${{env.INSTALL_DIR}}/lib/cmake \
               -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
               -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install \
-              -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake
+              -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
+              -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target package
           7z a RabbitCommon_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*

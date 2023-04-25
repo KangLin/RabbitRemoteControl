@@ -31,10 +31,10 @@ public:
     explicit CPluginService(QObject *parent = nullptr);
     virtual ~CPluginService();
     
-    /// ID. Default: Protol() + "_" + Name()
+    /// ID. Default: Protocol() + "_" + Name()
     virtual const QString Id() const;
-    /// Plugin protol
-    virtual const QString Protol() const = 0;
+    /// Plugin Protocol
+    virtual const QString Protocol() const = 0;
     /*!
      * \~chinese 插件名，这个名一定要与工程名(${PROJECT_NAME})相同。
      *           翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。

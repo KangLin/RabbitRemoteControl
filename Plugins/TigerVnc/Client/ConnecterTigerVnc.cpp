@@ -4,7 +4,6 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QRegularExpression>
-#include "RabbitCommonLog.h"
 #include "DlgGetUserPasswordTigerVNC.h"
 #include "PluginClient.h"
 

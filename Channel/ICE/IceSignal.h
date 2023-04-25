@@ -41,7 +41,7 @@ public:
                                 const QString& channelId,
                                 const rtc::Description& description,
                                 const QString& fromUser = QString()) = 0;
-    virtual int SendCandiate(const QString& toUser,
+    virtual int SendCandidate(const QString& toUser,
                              const QString& channelId,
                              const rtc::Candidate& candidate,
                              const QString& fromUser = QString()) = 0;
@@ -68,7 +68,7 @@ Q_SIGNALS:
      * @param mid
      * @param sdp
      */
-    void sigCandiate(const QString& fromUser,
+    void sigCandidate(const QString& fromUser,
                      const QString& toUser,
                      const QString& channelId,
                      const QString& mid,

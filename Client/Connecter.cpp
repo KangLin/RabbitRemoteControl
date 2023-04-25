@@ -67,7 +67,7 @@ const QString CConnecter::Id()
  *
  * \~english
  *  Display order:
- *  - User paramter Name()
+ *  - User parameter Name()
  *  - if enable, Server name
  *  - Host and port
  *  
@@ -85,7 +85,7 @@ const QString CConnecter::Name()
 const QString CConnecter::Description()
 {
     return tr("Name: ") + Name() + "\n"
-            + tr("Protol: ") + Protocol() + "\n"
+            + tr("Protocol: ") + Protocol() + "\n"
             + tr("Server name: ") + ServerName() + "\n"
             + tr("Description: ") + m_pPluginClient->Description();
 }
@@ -162,7 +162,7 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
         p->setAttribute(Qt::WA_DeleteOnClose);
         nRet = p->exec();
     } else {
-        qCritical(Client) << "The protol [" << Protocol() << "] don't settings dialog";
+        qCritical(Client) << "The Protocol [" << Protocol() << "] don't settings dialog";
     }
     return nRet;
 }
@@ -205,7 +205,7 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
             GetParameter()->SetSavePassword(pPara->GetSavePassword());
         return 0;
     } else {
-        qCritical(Client) << "The CConnecter is not paramters! please create paramters."
+        qCritical(Client) << "The CConnecter is not parameters! please create parameters."
                 "and call SetParameter in the "
                 << metaObject()->className() << "::" << metaObject()->className()
                 << "to set the parameters pointer. "

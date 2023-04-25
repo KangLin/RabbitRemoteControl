@@ -228,7 +228,7 @@ int CInputDeviceXLib::MouseEvent(MouseButtons buttons, QPoint pos)
             click(display, Button2, false);
     }
     
-    // Check the right button on chanage state
+    // Check the right button on change state
     if((m_LastButtons & RightButton) != (RightButton & buttons))
     {
         if(buttons & RightButton)

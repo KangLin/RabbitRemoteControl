@@ -10,7 +10,7 @@ CPluginServiceFreeRDP::CPluginServiceFreeRDP(QObject *parent)
 CPluginServiceFreeRDP::~CPluginServiceFreeRDP()
 {}
 
-const QString CPluginServiceFreeRDP::Protol() const
+const QString CPluginServiceFreeRDP::Protocol() const
 {
     return "RDP";
 }
@@ -27,7 +27,7 @@ const QString CPluginServiceFreeRDP::DisplayName() const
 
 const QString CPluginServiceFreeRDP::Description() const
 {
-    return tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
+    return tr("RDP(Windows remote desktop protocol): Access remote desktops such as windows.");
 }
 
 CService *CPluginServiceFreeRDP::NewService()

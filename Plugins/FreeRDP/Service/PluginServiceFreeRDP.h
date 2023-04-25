@@ -21,7 +21,7 @@ public:
 
     // CPluginService interface
 public:
-    virtual const QString Protol() const override;
+    virtual const QString Protocol() const override;
     virtual const QString Name() const override;
     virtual const QString DisplayName() const override;
     virtual const QString Description() const override;

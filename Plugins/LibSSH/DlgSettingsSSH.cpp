@@ -54,12 +54,12 @@ void CDlgSettingsSSH::on_pbOK_clicked()
     accept();
 }
 
-void CDlgSettingsSSH::on_pbCancle_clicked()
+void CDlgSettingsSSH::on_pbCancel_clicked()
 {
     reject();
 }
 
-void CDlgSettingsSSH::on_pbCapFileBrower_clicked()
+void CDlgSettingsSSH::on_pbCapFileBrowser_clicked()
 {
     ui->leCapFile->setText(
             RabbitCommon::CDir::Instance()->GetSaveFileName(this,

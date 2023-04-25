@@ -89,13 +89,13 @@ int CChannelIce::SetSignal(CIceSignal *signal)
                                                            const QString&)));
         Q_ASSERT(check);
         check = connect(m_pSignal,
-                        SIGNAL(sigCandiate(const QString&,
+                        SIGNAL(sigCandidate(const QString&,
                                            const QString&,
                                            const QString&,
                                            const QString&,
                                            const QString&)),
                         this,
-                        SLOT(slotSignalReceiverCandiate(const QString&,
+                        SLOT(slotSignalReceiverCandidate(const QString&,
                                                         const QString&,
                                                         const QString&,
                                                         const QString&,
@@ -141,21 +141,21 @@ int CChannelIce::SetDataChannel(std::shared_ptr<rtc::DataChannel> dc)
         qInfo(m_Log) << "Open data channel user:" << GetUser()
                       << ";peer:" << GetPeerUser()
                       << ";channelId:" << GetChannelId()
-                      << ";lable:" << m_dataChannel->label().c_str();
+                      << ";label:" << m_dataChannel->label().c_str();
         if(QIODevice::open(QIODevice::ReadWrite))
             emit sigConnected();
         else
             qInfo(m_Log) << "Open Device fail:user:" << GetUser()
                           << ";peer:" << GetPeerUser()
                           << ";channelId:" << GetChannelId()
-                          << ";lable:" << m_dataChannel->label().c_str();
+                          << ";label:" << m_dataChannel->label().c_str();
     });
 
     dc->onClosed([this]() {
         qInfo(m_Log) << "Close data channel user:" << GetUser()
                       << ";peer:" << GetPeerUser()
                       << ";channelId:" << GetChannelId()
-                      << ";lable:" << m_dataChannel->label().c_str();
+                      << ";label:" << m_dataChannel->label().c_str();
         emit sigDisconnected();
     });
 
@@ -230,13 +230,13 @@ int CChannelIce::CreateDataChannel(bool bDataChannel)
            qDebug(m_Log) << "Please set peer user and channel id";
            return;
         }
-        m_pSignal->SendCandiate(m_szPeerUser, m_szChannelId, candidate);
+        m_pSignal->SendCandidate(m_szPeerUser, m_szChannelId, candidate);
     });
     m_peerConnection->onDataChannel([this](std::shared_ptr<rtc::DataChannel> dc) {
         qInfo(m_Log) << "Open data channel:" << dc->label().c_str();
         if(dc->label().c_str() != GetChannelId())
         {
-            qDebug(m_Log) << "Channel label diffent:" << GetChannelId()
+            qDebug(m_Log) << "Channel label different:" << GetChannelId()
                            << dc->label().c_str();
             return;
         }
@@ -379,14 +379,14 @@ void CChannelIce::slotSignalDisconnected()
     //emit sigError(-1, tr("Signal disconnected"));
 }
 
-void CChannelIce::slotSignalReceiverCandiate(const QString& fromUser,
+void CChannelIce::slotSignalReceiverCandidate(const QString& fromUser,
                                                  const QString &toUser,
                                                  const QString &channelId,
                                                  const QString& mid,
                                                  const QString& sdp)
 {
     /*
-    qDebug(m_Log, "slotSignalReceiverCandiate fromUser:%s; toUser:%s; channelId:%s; mid:%s; sdp:%s",
+    qDebug(m_Log, "slotSignalReceiverCandidate fromUser:%s; toUser:%s; channelId:%s; mid:%s; sdp:%s",
            fromUser.toStdString().c_str(),
            toUser.toStdString().c_str(),
            channelId.toStdString().c_str(),
@@ -396,8 +396,8 @@ void CChannelIce::slotSignalReceiverCandiate(const QString& fromUser,
             || GetChannelId() != channelId) return;
     if(m_peerConnection)
     {
-        rtc::Candidate candiate(sdp.toStdString(), mid.toStdString());
-        m_peerConnection->addRemoteCandidate(candiate);
+        rtc::Candidate Candidate(sdp.toStdString(), mid.toStdString());
+        m_peerConnection->addRemoteCandidate(Candidate);
     }
 }
 
@@ -430,12 +430,12 @@ void CChannelIce::slotSignalError(int error, const QString& szError)
     //emit sigError(error, tr("Signal error: %1").arg(szError));
 }
 
-QString CChannelIce::GenerateID(const QString &lable)
+QString CChannelIce::GenerateID(const QString &label)
 {
     static qint64 id = 0;
     static QMutex mutex;
     QMutexLocker locker(&mutex);
-    QString szId = lable;
+    QString szId = label;
     szId += QString::number(id++);
     return szId;
 }

@@ -11,6 +11,7 @@
 *.dylib
 *.json
 *.tmp
+*.bkp
 
 # Qt-es
 object_script.*.Release

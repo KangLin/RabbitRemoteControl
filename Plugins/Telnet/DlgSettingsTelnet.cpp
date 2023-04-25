@@ -41,7 +41,7 @@ void CDlgSettingsTelnet::on_pbOK_clicked()
     this->accept();
 }
 
-void CDlgSettingsTelnet::on_pbCancle_clicked()
+void CDlgSettingsTelnet::on_pbCancel_clicked()
 {
     this->reject();
 }

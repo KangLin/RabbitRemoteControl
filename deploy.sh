@@ -19,7 +19,7 @@ if [ -n "$1" ]; then
     fi
 
     PRE_TAG=`git tag --sort=-taggerdate | head -n 1`
-    echo "Current verion: $VERSION, current tag: $PRE_TAG. The version to will be set tag version: $1 message: $MESSAGE"
+    echo "Current version: $VERSION, current tag: $PRE_TAG. The version to will be set tag version: $1 message: $MESSAGE"
     echo "Please check the follow list:"
     echo "    - Test is ok ?"
     echo "    - Translation is ok ?"
@@ -32,7 +32,7 @@ if [ -n "$1" ]; then
     fi
     git tag -a $1 -m "Release $1 ${MESSAGE}"
 else
-    echo "Useg: $0 release_version [release_message]"
+    echo "Usage: $0 release_version [release_message]"
     echo "   release_version format: [v][0-9].[0-9].[0-9]"
     exit -1
 fi

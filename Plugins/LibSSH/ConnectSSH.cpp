@@ -18,7 +18,7 @@ CConnectSSH::CConnectSSH(CConnecterSSH *pConnecter, QObject *parent)
     m_pPara = dynamic_cast<CParameterSSH*>(pConnecter->m_pPara);
 }
 
-int CConnectSSH::SetParamter(void *pPara)
+int CConnectSSH::SetParameter(void *pPara)
 {
     int nRet = 0;
 
@@ -85,7 +85,7 @@ int CConnectSSH::Initialize()
     nRet = ssh_set_callbacks(m_pSession, m_pCb);
     if(nRet) return nRet;
 
-    nRet = SetParamter(m_pPara);
+    nRet = SetParameter(m_pPara);
 
     return nRet;
 }

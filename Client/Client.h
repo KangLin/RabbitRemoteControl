@@ -97,7 +97,7 @@ public:
      *       例如: CFrmParameterClient::slotAccept
      * \snippet Client/FrmParameterClient.h Accept parameters
      * 用法示例：
-     * \snippet App/Client/mainwindow.cpp Get the widget that settings client pararmeters
+     * \snippet App/Client/mainwindow.cpp Get the widget that settings client parameters
      * 
      * 在 CParameterDlgSettings 的构造函数中连接信号和槽
      * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
@@ -109,7 +109,7 @@ public:
      *
      * \snippet Client/FrmParameterClient.h Accept parameters
      * Usage:
-     * \snippet App/Client/mainwindow.cpp Get the widget that settings client pararmeters
+     * \snippet App/Client/mainwindow.cpp Get the widget that settings client parameters
      * Connect the signal(accepted) to the slot(slotAccept) in CParameterDlgSettings
      * \snippet App/Client/ParameterDlgSettings.cpp connect accepted to slotAccept of widget
      * 

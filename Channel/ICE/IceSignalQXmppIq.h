@@ -21,8 +21,8 @@ public:
     void setSignalType(const QString &newType);
     const QString &Description() const;
     void setDescription(const QString &newDescription);
-    const QString &Candiate() const;
-    void setCandiate(const QString &newCandiate);
+    const QString &Candidate() const;
+    void setCandidate(const QString &newCandidate);
     const QString &mid() const;
     void setMid(const QString &newMid);
     
@@ -34,7 +34,7 @@ private:
     QString m_ChannelId;
     QString m_SignalType;
     QString m_Description;
-    QString m_Candiate;
+    QString m_Candidate;
     QString m_mid;
 };
 

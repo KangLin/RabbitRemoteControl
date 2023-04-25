@@ -37,7 +37,7 @@ int CPluginService::InitTranslator()
 
 const QString CPluginService::Id() const
 {
-    return Protol() + "_" + Name();
+    return Protocol() + "_" + Name();
 }
 
 const QIcon CPluginService::Icon() const

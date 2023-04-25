@@ -113,9 +113,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbCancle">
+      <widget class="QPushButton" name="pbCancel">
        <property name="text">
-        <string>Cancle(&amp;C)</string>
+        <string>Cancel(&amp;C)</string>
        </property>
       </widget>
      </item>

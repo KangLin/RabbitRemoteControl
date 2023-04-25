@@ -25,9 +25,9 @@ CPluginClientThread::~CPluginClientThread()
                            // because of it is connected finished signal
 }
 
-CConnecter *CPluginClientThread::CreateConnecter(const QString &szProtol)
+CConnecter *CPluginClientThread::CreateConnecter(const QString &szProtocol)
 {
-    CConnecterDesktop* pConnecter = OnCreateConnecter(szProtol);
+    CConnecterDesktop* pConnecter = OnCreateConnecter(szProtocol);
     if(!pConnecter) return nullptr;
     
     if(nullptr == m_pThread)

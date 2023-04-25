@@ -114,7 +114,7 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             ; git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b b7b46b812395cf3a67b1e36f0fbf1386f4372443 b7b46b812395cf3a67b1e36f0fbf1386f4372443
+            git checkout -b 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build

@@ -37,7 +37,7 @@ const QString CPluginFreeRDP::DisplayName() const
 
 const QString CPluginFreeRDP::Description() const
 {
-    return tr("RDP(Windows remote desktop protol): Access remote desktops such as windows.");
+    return tr("RDP(Windows remote desktop Protocol): Access remote desktops such as windows.");
 }
 
 const QString CPluginFreeRDP::Protocol() const
@@ -50,9 +50,9 @@ const QIcon CPluginFreeRDP::Icon() const
     return QIcon::fromTheme("windows");
 }
 
-CConnecter* CPluginFreeRDP::CreateConnecter(const QString &szProtol)
+CConnecter* CPluginFreeRDP::CreateConnecter(const QString &szProtocol)
 {
-    if(Id() == szProtol)
+    if(Id() == szProtocol)
     {   
         return new CConnecterFreeRDP(this);
     }

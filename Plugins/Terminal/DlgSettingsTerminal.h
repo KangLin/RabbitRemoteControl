@@ -20,7 +20,7 @@ public:
 
 private slots:
     void on_pbOk_clicked();
-    void on_pbCancle_clicked();
+    void on_pbCancel_clicked();
     
 private:
     Ui::CDlgSettingsTerminal *ui;

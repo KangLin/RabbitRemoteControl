@@ -31,7 +31,7 @@ CPluginServiceRabbitVNC::~CPluginServiceRabbitVNC()
    qDebug(RabbitVNC) << "CPluginServiceRabbitVNC::~CPluginServiceRabbitVNC()";
 }
 
-const QString CPluginServiceRabbitVNC::Protol() const
+const QString CPluginServiceRabbitVNC::Protocol() const
 {
     return "RFB";
 }

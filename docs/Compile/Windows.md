@@ -102,7 +102,7 @@ If not, you must specify the CMake parameters:
     - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR2
   
 #### LibVNCServer
-- Compile from sorce code
+- Compile from source code
   + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
   

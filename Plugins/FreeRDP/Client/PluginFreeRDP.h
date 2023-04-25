@@ -30,7 +30,7 @@ public:
     virtual const QIcon Icon() const override;
     
 private:
-    virtual CConnecter* CreateConnecter(const QString& szProtol) override;
+    virtual CConnecter* CreateConnecter(const QString& szProtocol) override;
     
 private:
     QTranslator m_Translator;

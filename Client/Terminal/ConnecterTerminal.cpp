@@ -85,7 +85,7 @@ int CConnecterTerminal::Connect()
 {
     int nRet = 0;
 
-    nRet = SetParamter();
+    nRet = SetParameter();
 
     if(m_bThread)
     {
@@ -123,7 +123,7 @@ int CConnecterTerminal::DisConnect()
     return nRet;
 }
 
-int CConnecterTerminal::SetParamter()
+int CConnecterTerminal::SetParameter()
 {
     int nRet = 0;
 

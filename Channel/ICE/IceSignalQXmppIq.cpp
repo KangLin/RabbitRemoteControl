@@ -34,7 +34,7 @@ void CIceSignalQXmppIq::parseElementFromChild(const QDomElement &element)
     m_SignalType = dataChannelElement.attribute("type");
     if("candidate" == SignalType())
     {
-        m_Candiate = dataChannelElement.firstChildElement("candidate").text();
+        m_Candidate = dataChannelElement.firstChildElement("candidate").text();
         m_mid = dataChannelElement.firstChildElement("mid").text();
     } else {
         m_Description = dataChannelElement.firstChildElement("description").text();
@@ -49,7 +49,7 @@ void CIceSignalQXmppIq::toXmlElementFromChild(QXmlStreamWriter *writer) const
     writer->writeAttribute("type", SignalType());
     if("candidate" == SignalType())
     {
-        writer->writeTextElement("candidate", Candiate());
+        writer->writeTextElement("candidate", Candidate());
         writer->writeTextElement("mid", mid());
     } else {
         writer->writeTextElement("description", Description());
@@ -87,14 +87,14 @@ void CIceSignalQXmppIq::setDescription(const QString &newDescription)
     m_Description = newDescription;
 }
 
-const QString &CIceSignalQXmppIq::Candiate() const
+const QString &CIceSignalQXmppIq::Candidate() const
 {
-    return m_Candiate;
+    return m_Candidate;
 }
 
-void CIceSignalQXmppIq::setCandiate(const QString &newCandiate)
+void CIceSignalQXmppIq::setCandidate(const QString &newCandidate)
 {
-    m_Candiate = newCandiate;
+    m_Candidate = newCandidate;
 }
 
 const QString &CIceSignalQXmppIq::mid() const

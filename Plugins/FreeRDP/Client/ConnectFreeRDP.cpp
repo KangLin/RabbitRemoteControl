@@ -44,32 +44,32 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                  QObject *parent)
     : CConnect(pConnecter, parent),
       m_pContext(nullptr),
-      m_pParamter(nullptr),
+      m_pParameter(nullptr),
       m_pConnecter(pConnecter),
       m_ClipBoard(this),
       m_Cursor(this)
 {
     Q_ASSERT(pConnecter);
-    m_pParamter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
-    Q_ASSERT(m_pParamter);
+    m_pParameter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
+    Q_ASSERT(m_pParameter);
 
-    rdpSettings* settings = m_pParamter->m_pSettings;
+    rdpSettings* settings = m_pParameter->m_pSettings;
     
     freerdp_settings_set_string(settings,
                                 FreeRDP_ServerHostname,
-                                m_pParamter->GetHost().toStdString().c_str());
-    settings->ServerPort = m_pParamter->GetPort();
+                                m_pParameter->GetHost().toStdString().c_str());
+    settings->ServerPort = m_pParameter->GetPort();
     freerdp_settings_set_string(settings,
                                 FreeRDP_Username,
-                                m_pParamter->GetUser().toStdString().c_str());
+                                m_pParameter->GetUser().toStdString().c_str());
     freerdp_settings_set_string(settings,
                                 FreeRDP_Password,
-                                m_pParamter->GetPassword().toStdString().c_str());
+                                m_pParameter->GetPassword().toStdString().c_str());
 
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
-    m_ClientEntryPoints.settings = m_pParamter->m_pSettings;
+    m_ClientEntryPoints.settings = m_pParameter->m_pSettings;
 	m_ClientEntryPoints.GlobalInit = cb_global_init;
 	m_ClientEntryPoints.GlobalUninit = cb_global_uninit;
 	m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
@@ -222,7 +222,7 @@ int CConnectFreeRDP::OnProcess()
             if(pRdpContext->settings->AutoReconnectionEnabled)
             {
                 if (client_auto_reconnect_ex(pRdpContext->instance, NULL))
-                    return m_pParamter->GetReconnectInterval() * 1000;
+                    return m_pParameter->GetReconnectInterval() * 1000;
                 else
                 {
                     /*
@@ -245,7 +245,7 @@ int CConnectFreeRDP::OnProcess()
 void CConnectFreeRDP::slotClipBoardChanged()
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotClipBoardChanged()";
-    if(m_pParamter->GetClipboard())
+    if(m_pParameter->GetClipboard())
         m_ClipBoard.slotClipBoardChanged();
 }
 
@@ -268,7 +268,7 @@ BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
     
-    // Because it is setted in settings.
+    // Because it is already set in the parameters
 	instance->Authenticate = cb_authenticate;
 	instance->GatewayAuthenticate = cb_GatewayAuthenticate;
     
@@ -310,7 +310,7 @@ int CConnectFreeRDP::cb_client_stop(rdpContext *context)
  * connection.
  *
  * @param instance - pointer to the rdp_freerdp structure that contains the connection's parameters,
- * and will be filled with the appropriate informations.
+ * and will be filled with the appropriate information.
  *
  * @return TRUE if successful. FALSE otherwise.
  * Can exit with error code XF_EXIT_PARSE_ARGUMENTS if there is an error in the parameters.
@@ -378,7 +378,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
                 freerdp_settings_get_uint32(settings, FreeRDP_KeyboardLayout));
     freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout, rc);
 
-    // Check desktop size, it is set in paramter
+    // Check desktop size, it is set in parameter
     UINT32 width = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
     UINT32 height = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
     if ((width < 64) || (height < 64) ||
@@ -535,7 +535,7 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
     } else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
 		qInfo(FreeRDPConnect) << "channel" << e->name << "connected";
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
-                                pThis->m_pParamter->GetClipboard());
+                                pThis->m_pParameter->GetClipboard());
 	} else if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0) {
         qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
     } else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0) {
@@ -571,7 +571,7 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
     } else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
 		qDebug(FreeRDPConnect) << "channel" << e->name << "disconnected";
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
-                                  pThis->m_pParamter->GetClipboard());
+                                  pThis->m_pParameter->GetClipboard());
 	} else if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0) {
         qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	} else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0) {
@@ -628,11 +628,11 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
     if(username || password)
     {
         int nRet = QDialog::Rejected;
-        emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParamter);
+        emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
         if(QDialog::Accepted == nRet)
         {
-            *username = _strdup(pThis->m_pParamter->GetUser().toStdString().c_str());
-            *password = _strdup(pThis->m_pParamter->GetPassword().toStdString().c_str());
+            *username = _strdup(pThis->m_pParameter->GetUser().toStdString().c_str());
+            *password = _strdup(pThis->m_pParameter->GetPassword().toStdString().c_str());
         }
     }
     return TRUE;
@@ -650,11 +650,11 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
     if(username || password)
     {
         int nRet = QDialog::Rejected;
-        emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParamter);
+        emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
         if(QDialog::Accepted == nRet)
         {
-            *username = _strdup(pThis->m_pParamter->GetUser().toStdString().c_str());
-            *password = _strdup(pThis->m_pParamter->GetPassword().toStdString().c_str());
+            *username = _strdup(pThis->m_pParameter->GetUser().toStdString().c_str());
+            *password = _strdup(pThis->m_pParameter->GetPassword().toStdString().c_str());
         }
     }
 	return TRUE;
@@ -671,11 +671,11 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
     if(common_name)
     {
-        pThis->m_pParamter->SetServerName(common_name);
+        pThis->m_pParameter->SetServerName(common_name);
         emit pThis->sigServerName(common_name);
     }
     
-    if(!pThis->m_pParamter->GetShowVerifyDiaglog()) {
+    if(!pThis->m_pParameter->GetShowVerifyDiaglog()) {
         /* return 1 to accept and store a certificate, 2 to accept
          * a certificate only for this session, 0 otherwise */
         return 2;
@@ -694,9 +694,9 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     bool bCheckBox = 0;
     emit pThis->sigBlockShowMessage(title, message, buttons, nRet, bCheckBox,
                                     tr("Don't show again"));
-    pThis->m_pParamter->SetShowVerifyDiaglog(!bCheckBox);
+    pThis->m_pParameter->SetShowVerifyDiaglog(!bCheckBox);
     if(pThis->m_pConnecter)
-        emit pThis->m_pConnecter->sigUpdateParamters(pThis->m_pConnecter);
+        emit pThis->m_pConnecter->sigUpdateParameters(pThis->m_pConnecter);
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
     switch(nRet)
@@ -724,7 +724,7 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     if(common_name)
         emit pThis->sigServerName(common_name);
 
-    if(!pThis->m_pParamter->GetShowVerifyDiaglog()) {
+    if(!pThis->m_pParameter->GetShowVerifyDiaglog()) {
         /* return 1 to accept and store a certificate, 2 to accept
          * a certificate only for this session, 0 otherwise */
         return 2;
@@ -746,9 +746,9 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
     emit pThis->sigBlockShowMessage(title, message, buttons, nRet, bCheckBox,
                                     tr("Don't show again"));
-    pThis->m_pParamter->SetShowVerifyDiaglog(!bCheckBox);
+    pThis->m_pParameter->SetShowVerifyDiaglog(!bCheckBox);
     if(pThis->m_pConnecter)
-        emit pThis->m_pConnecter->sigUpdateParamters(pThis->m_pConnecter);
+        emit pThis->m_pConnecter->sigUpdateParameters(pThis->m_pConnecter);
 
     /* return 1 to accept and store a certificate, 2 to accept
          * a certificate only for this session, 0 otherwise */
@@ -910,7 +910,7 @@ void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
 {
     //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotWheelEvent";
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->GetOnlyView()) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
     UINT16 flags = 0;
     /*
@@ -956,7 +956,7 @@ void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseMoveEvent";
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->GetOnlyView()) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
     /*
     if(buttons & Qt::MouseButton::LeftButton)
@@ -980,7 +980,7 @@ void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMousePressEvent";
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->GetOnlyView()) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_DOWN;
     if(buttons & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
@@ -1003,7 +1003,7 @@ void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
     //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseReleaseEvent";
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->GetOnlyView()) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = 0;
     if(button & Qt::MouseButton::LeftButton)
         flags |= PTR_FLAGS_BUTTON1;
@@ -1027,7 +1027,7 @@ void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers
 {
     //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotKeyPressEvent";
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->GetOnlyView()) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
@@ -1042,7 +1042,7 @@ void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifie
 {
     //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotKeyReleaseEvent";
     if(!m_pContext) return;
-    if(m_pParamter && m_pParamter->GetOnlyView()) return;
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
 #if FreeRDP_VERSION_MAJOR >= 3
@@ -1059,24 +1059,24 @@ int CConnectFreeRDP::RedirectionSound()
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
-    if(m_pParamter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Disable)
+    if(m_pParameter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Disable)
     {
         /* Disable sound */
 		freerdp_settings_set_bool(settings, FreeRDP_AudioPlayback, FALSE);
 		freerdp_settings_set_bool(settings, FreeRDP_RemoteConsoleAudio, FALSE);
         return 0;
-    } else if(m_pParamter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Local)
+    } else if(m_pParameter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Local)
     {
         freerdp_settings_set_bool(settings, FreeRDP_AudioPlayback, TRUE);
 		freerdp_settings_set_bool(settings, FreeRDP_AudioCapture, TRUE);
-    } else if(m_pParamter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
+    } else if(m_pParameter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
     {
         freerdp_settings_set_bool(settings, FreeRDP_RemoteConsoleAudio, TRUE);
         return 0;
     }
     
     // Sound:
-    // rdpsnd channel paramters format see: rdpsnd_process_addin_args in FreeRDP/channels/rdpsnd/client/rdpsnd_main.c
+    // rdpsnd channel parameters format see: rdpsnd_process_addin_args in FreeRDP/channels/rdpsnd/client/rdpsnd_main.c
     // rdpsnd devices see: rdpsnd_process_connect in FreeRDP/channels/rdpsnd/client/rdpsnd_main.c
     // Format ag: /rdpsnd:sys:oss,dev:1,format:1
     //
@@ -1087,7 +1087,7 @@ int CConnectFreeRDP::RedirectionSound()
         const char** pc;
     } ptr;
     ptr.p = CommandLineParseCommaSeparatedValuesEx("rdpsnd",
-              m_pParamter->GetRedirectionSoundParamters().toStdString().c_str(),
+              m_pParameter->GetRedirectionSoundParameters().toStdString().c_str(),
                                                    &count);
     BOOL status = freerdp_client_add_static_channel(settings, count,
                                                 #if FreeRDP_VERSION_MAJOR < 3
@@ -1118,9 +1118,9 @@ int CConnectFreeRDP::RedirectionSound()
 
 int CConnectFreeRDP::RedirectionMicrophone()
 {
-    if(m_pParamter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
+    if(m_pParameter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
         return 0;
-    if(!m_pParamter->GetRedirectionMicrophone())
+    if(!m_pParameter->GetRedirectionMicrophone())
         return 0;
 
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
@@ -1132,7 +1132,7 @@ int CConnectFreeRDP::RedirectionMicrophone()
     freerdp_settings_set_bool(settings, FreeRDP_AudioCapture, TRUE);
 
     // Microphone:
-    // Audin channel paramters format see: audin_process_addin_args in FreeRDP/channels/audin/client/audin_main.c
+    // Audin channel parameters format see: audin_process_addin_args in FreeRDP/channels/audin/client/audin_main.c
     // Audin channel devices see: audin_DVCPluginEntry in FreeRDP/channels/audin/client/audin_main.c
     size_t count = 0;
     union
@@ -1141,7 +1141,7 @@ int CConnectFreeRDP::RedirectionMicrophone()
         const char** pc;
     } ptr;
     ptr.p = CommandLineParseCommaSeparatedValuesEx("audin",
-         m_pParamter->GetRedirectionMicrophoneParamters().toStdString().c_str(),
+         m_pParameter->GetRedirectionMicrophoneParameters().toStdString().c_str(),
                                                    &count);
     BOOL status = freerdp_client_add_dynamic_channel(settings, count,
                                                  #if FreeRDP_VERSION_MAJOR < 3
@@ -1162,7 +1162,7 @@ int CConnectFreeRDP::RedirectionMicrophone()
 
 int CConnectFreeRDP::RedirectionDrive()
 {
-    QStringList lstDrives = m_pParamter->GetRedirectionDrives();
+    QStringList lstDrives = m_pParameter->GetRedirectionDrives();
     if(lstDrives.isEmpty())
         return 0;
 
@@ -1194,7 +1194,7 @@ int CConnectFreeRDP::RedirectionDrive()
 
 int CConnectFreeRDP::RedirectionPrinter()
 {
-    if(!m_pParamter->GetRedirectionPrinter())
+    if(!m_pParameter->GetRedirectionPrinter())
         return 0;
 
     rdpContext* pRdpContext = (rdpContext*)m_pContext;

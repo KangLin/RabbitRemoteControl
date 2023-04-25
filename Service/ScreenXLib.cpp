@@ -186,7 +186,7 @@ QImage CScreenXLib::GetScreen(int index)
             break;
         }
         
-        /* Retrive the width and the height of the screen */
+        /* Retrieve the width and the height of the screen */
         screen_width = Width(); // DisplayWidth(dsp, 0);
         screen_height = Height(); // DisplayHeight(dsp, 0);
         

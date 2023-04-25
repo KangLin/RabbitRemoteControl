@@ -15,7 +15,7 @@ CPluginServiceLibVNCServer::~CPluginServiceLibVNCServer()
     qDebug(LibVNCServer) << "CPluginServiceLibVNCServer::~CPluginServiceLibVNCServer()";
 }
 
-const QString CPluginServiceLibVNCServer::Protol() const
+const QString CPluginServiceLibVNCServer::Protocol() const
 {
     return "RFB";
 }

@@ -235,7 +235,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
     CICE::Instance()->slotStart();
     m_pSignalStatus = new QPushButton();
-    m_pSignalStatus->setToolTip(tr("ICE singal status"));
+    m_pSignalStatus->setToolTip(tr("ICE signal status"));
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
     m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
     slotSignalDisconnected();
@@ -673,7 +673,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     check = connect(p, SIGNAL(sigUpdateName(const QString&)),
                     this, SLOT(slotUpdateName(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigUpdateParamters(CConnecter*)),
+    check = connect(p, SIGNAL(sigUpdateParameters(CConnecter*)),
                          this, SLOT(slotUpdateParameters(CConnecter*)));
     Q_ASSERT(check);
         
@@ -742,7 +742,7 @@ void MainWindow::slotCloseView(const QWidget* pView)
         if(c->GetViewer() == pView)
         {
             //TODO: Whether to save the setting
-            emit c->sigUpdateParamters(c);
+            emit c->sigUpdateParameters(c);
             c->DisConnect();
         }
     }
@@ -758,7 +758,7 @@ void MainWindow::on_actionDisconnect_D_triggered()
 
 void MainWindow::slotSignalConnected()
 {
-    m_pSignalStatus->setToolTip(tr("ICE singal status: Connected"));
+    m_pSignalStatus->setToolTip(tr("ICE signal status: Connected"));
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
     m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
     //m_pSignalStatus->setText(tr("Connected"));
@@ -767,7 +767,7 @@ void MainWindow::slotSignalConnected()
 
 void MainWindow::slotSignalDisconnected()
 {
-    m_pSignalStatus->setToolTip(tr("ICE singal status: Disconnected"));
+    m_pSignalStatus->setToolTip(tr("ICE signal status: Disconnected"));
     m_pSignalStatus->setStatusTip(m_pSignalStatus->toolTip());
     m_pSignalStatus->setWhatsThis(m_pSignalStatus->toolTip());
     //m_pSignalStatus->setText(tr("Disconnected"));
@@ -859,7 +859,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     foreach (auto it, m_Connecters)
     {
         //TODO: Whether to save the setting
-        emit it->sigUpdateParamters(it);
+        emit it->sigUpdateParameters(it);
         it->DisConnect();
     }
     
@@ -964,7 +964,7 @@ void MainWindow::on_actionScreenshot_triggered()
     return ;
 }
 
-// [Get the widget that settings client pararmeters]
+// [Get the widget that settings client parameters]
 void MainWindow::on_actionSettings_triggered()
 {
     CParameterDlgSettings set(&m_Parameter, m_Client.GetSettingsWidgets(this), this);
@@ -974,7 +974,7 @@ void MainWindow::on_actionSettings_triggered()
         m_Parameter.Save();
     }
 }
-// [Get the widget that settings client pararmeters]
+// [Get the widget that settings client parameters]
 
 void MainWindow::slotShortCut()
 {
@@ -1038,7 +1038,7 @@ void MainWindow::on_actionCurrent_connect_parameters_triggered()
             int nRet = c->OpenDialogSettings(this);
             if(QDialog::Accepted == nRet)
             {
-                emit c->sigUpdateParamters(c);
+                emit c->sigUpdateParameters(c);
                 return;
             }
         }

@@ -41,7 +41,7 @@ class CClient;
  * \brief Connecter interface
  * \note
  *   - The class is a interface used by Use UI.
- *     It is implemented by the protol plugin.
+ *     It is implemented by the Protocol plugin.
  *   - Its instance is in the main thread.
  * \details
  * Sequen diagram: \image html docs/Image/PluginClientSequenceDiagram.svg
@@ -93,7 +93,7 @@ public:
      *
      * \~english
      *  Display order:
-     *  - User paramter Name()
+     *  - User parameter Name()
      *  - if enable, Server name
      *  - Host and port
      *  
@@ -205,7 +205,7 @@ Q_SIGNALS:
     void sigUpdateName(const QString& szName);
     void sigError(const int nError, const QString &szError);
     /*!
-     * \brief Show infomation in main windows 
+     * \brief Show information in main windows 
      * \param szInfo
      * \see MainWindow::slotInformation()
      */
@@ -215,7 +215,7 @@ Q_SIGNALS:
      * \brief Update parameters, notify application to save or show parameters.
      * \param pConnecter
      */
-    void sigUpdateParamters(CConnecter* pConnecter);
+    void sigUpdateParameters(CConnecter* pConnecter);
 
 private:
 Q_SIGNALS:
@@ -281,7 +281,7 @@ private Q_SLOTS:
      * \~english
      * \brief When a background thread blocks the display window
      * \param className: show windows class name
-     *        The class must have foller public functions:
+     *        The class must have follower public functions:
      *            Q_INVOKABLE void SetContext(void* pContext);
      *            Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
      * \param nRet: If className is QDialog derived class, QDialog::exec() return value.

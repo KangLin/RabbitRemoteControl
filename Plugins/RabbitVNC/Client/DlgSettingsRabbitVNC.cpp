@@ -102,7 +102,7 @@ void CDlgSettingsRabbitVNC::on_pbOk_clicked()
     accept();
 }
 
-void CDlgSettingsRabbitVNC::on_pbCancle_clicked()
+void CDlgSettingsRabbitVNC::on_pbCancel_clicked()
 {
     reject();
 }

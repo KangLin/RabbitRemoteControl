@@ -13,9 +13,9 @@ if(NOT (FreeRDP_FOUND AND WinPR_FOUND AND FreeRDP-Client_FOUND))
     message("Don't find FreeRDP ${FreeRDPVERSION}. Please set BUILD_FREERDP=OFF "
         "or install FreeRDP ${FreeRDPVERSION} from https://github.com/FreeRDP/FreeRDP\n"
         "or set:\n"
-        "    -DFreeRDP_DIR:PATH=${INSTALL}/lib/cmake/FreeRDP3\n"
-        "    -DFreeRDP-Client_DIR:PATH=${INSTALL}/lib/cmake/FreeRDP-Client3\n"
-        "    -DWinPR_DIR:PATH=${INSTALL}/lib/cmake/WinPR3"
+        "    -DFreeRDP_DIR:PATH=INSTALL_ROOT/lib/cmake/FreeRDP3\n"
+        "    -DFreeRDP-Client_DIR:PATH=INSTALL_ROOT/lib/cmake/FreeRDP-Client3\n"
+        "    -DWinPR_DIR:PATH=INSTALL_ROOT/lib/cmake/WinPR3"
     )
     return()
 endif()

@@ -25,9 +25,9 @@ QDialog *CConnecterTelnet::GetDialogSettings(QWidget *parent)
     return new CDlgSettingsTelnet(m_pPara, parent);
 }
 
-int CConnecterTelnet::SetParamter()
+int CConnecterTelnet::SetParameter()
 {
-    return CConnecterTerminal::SetParamter();
+    return CConnecterTerminal::SetParameter();
 }
 
 int CConnecterTelnet::OnConnect()

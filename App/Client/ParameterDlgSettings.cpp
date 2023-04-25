@@ -158,7 +158,7 @@ void CParameterDlgSettings::on_pbNo_clicked()
     reject();
 }
 
-void CParameterDlgSettings::on_pbScreenShotBrower_clicked()
+void CParameterDlgSettings::on_pbScreenShotBrowser_clicked()
 {
     QString szPath = RabbitCommon::CDir::Instance()->GetOpenDirectory(this,
                                                     tr("Open shot screen path"),

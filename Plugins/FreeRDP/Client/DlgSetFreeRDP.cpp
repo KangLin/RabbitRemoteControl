@@ -46,7 +46,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->cbColorDepth->addItem(tr("24 bits"), 24);
     ui->cbColorDepth->addItem(tr("32 bits"), 32);
 
-    QString szRdpSndParamters
+    QString szRdpSndParameters
                      = tr("- [sys:<sys>,][dev:<dev>,][format:<format>,][rate:<rate>,][channel:<channel>]\n"
                      #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WINRT)
                           "- sys:winmm"
@@ -62,12 +62,12 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
                           "- sys:sndio"
                      #endif
                          );
-    QString szRdpSnd = tr("Options for redirection of audio output:\n") + szRdpSndParamters;
+    QString szRdpSnd = tr("Options for redirection of audio output:\n") + szRdpSndParameters;
     ui->leRdpSnd->setToolTip(szRdpSnd);
     ui->leRdpSnd->setStatusTip(szRdpSnd);
     ui->leRdpSnd->setWhatsThis(szRdpSnd);
     
-    QString szAudin = tr("Options for redirection of audio input:\n") + szRdpSndParamters;
+    QString szAudin = tr("Options for redirection of audio input:\n") + szRdpSndParameters;
     ui->leAudin->setToolTip(szAudin);
     ui->leAudin->setStatusTip(szAudin);
     ui->leAudin->setWhatsThis(szAudin);
@@ -137,9 +137,9 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     else if(ui->rbAudioRemote->isChecked())
         tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Remote;
     m_pSettings->SetRedirectionSound(tRdirectionSound);
-    m_pSettings->SetRedirectionSoundParamters(ui->leRdpSnd->text());
+    m_pSettings->SetRedirectionSoundParameters(ui->leRdpSnd->text());
     m_pSettings->SetRedirectionMicrophone(ui->cbAudin->isChecked());
-    m_pSettings->SetRedirectionMicrophoneParamters(ui->leAudin->text());
+    m_pSettings->SetRedirectionMicrophoneParameters(ui->leAudin->text());
     
     QStringList lstDrives;
     //获取选中的行，默认获取选中行的第一列数据（0），列的索引值和上面一样0、1、2、3......
@@ -224,9 +224,9 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
         ui->rbAudioLocal->setChecked(true);
     if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
         ui->rbAudioRemote->setChecked(true);
-    ui->leRdpSnd->setText(m_pSettings->GetRedirectionSoundParamters());
+    ui->leRdpSnd->setText(m_pSettings->GetRedirectionSoundParameters());
     ui->cbAudin->setChecked(m_pSettings->GetRedirectionMicrophone());
-    ui->leAudin->setText(m_pSettings->GetRedirectionMicrophoneParamters());
+    ui->leAudin->setText(m_pSettings->GetRedirectionMicrophoneParameters());
 
     QStringList lstDrives = m_pSettings->GetRedirectionDrives();
     foreach(auto path, lstDrives)

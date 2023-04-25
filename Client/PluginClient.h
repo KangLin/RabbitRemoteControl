@@ -55,7 +55,7 @@ public:
      */
     virtual ~CPluginClient();
 
-    /// ID. Default: Protol() + ":" + Name()
+    /// ID. Default: Protocol() + ":" + Name()
     virtual const QString Id() const;
     /// Plugin Protocol
     virtual const QString Protocol() const = 0;

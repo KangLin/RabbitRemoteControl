@@ -20,7 +20,7 @@ public:
     
 private slots:
     void on_pbOK_clicked();
-    void on_pbCancle_clicked();
+    void on_pbCancel_clicked();
 
     void on_leHost_editingFinished();
     

@@ -74,7 +74,7 @@ public:
 private Q_SLOTS:
     virtual void slotSignalConnected();
     virtual void slotSignalDisconnected();
-    virtual void slotSignalReceiverCandiate(const QString& fromUser,
+    virtual void slotSignalReceiverCandidate(const QString& fromUser,
                                             const QString& toUser,
                                             const QString& channelId,
                                             const QString& mid,
@@ -92,7 +92,7 @@ private:
     virtual int SetSignal(CIceSignal* signal);
     virtual int SetDataChannel(std::shared_ptr<rtc::DataChannel>);   
     virtual int CreateDataChannel(bool bDataChannel);
-    QString GenerateID(const QString& lable = QString());
+    QString GenerateID(const QString& label = QString());
     
     CIceSignal* m_pSignal;
     QString m_szUser;

@@ -43,7 +43,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>Cancle(&amp;C)</string>
+        <string>Cancel(&amp;C)</string>
        </property>
       </widget>
      </item>

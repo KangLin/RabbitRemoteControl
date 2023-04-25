@@ -16,7 +16,7 @@ jobs:
       matrix:
         BUILD_TYPE: [Release, Debug]
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     env:
       BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
@@ -83,26 +83,44 @@ jobs:
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
-        run: git clone https://github.com/KangLin/RabbitCommon.git
+        run: |
+            git clone -b v2 https://github.com/KangLin/RabbitCommon.git
 
       - name: Install apt packages
         run: |
-          sudo apt-get update -y \
-            && sudo apt-get upgrade -y \
-            && sudo apt-get install -y xvfb xpra \
-                cmake build-essential \
-                debhelper fakeroot graphviz \
-                libglu1-mesa-dev libpulse-mainloop-glib0 \
-                libusb-1.0-0-dev libvncserver-dev libpixman-1-dev libssh-dev \
-                libtelnet-dev libqxmpp-dev libfuse-dev \
-                qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools \
-                qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev \
-                qtwebengine5-dev libqtermwidget5-0-dev libqt5serialport5-dev\
-                libutf8proc-dev libpam0g-dev \
-                libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
-                libx11-dev libxfixes-dev
-            
-#freerdp2-dev
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt install -y -q cmake build-essential xvfb xpra \
+              libglu1-mesa-dev libpulse-mainloop-glib0 \
+              cmake debhelper fakeroot \
+              qmake6 \
+              qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools \
+              qt6-multimedia-dev qt6-webengine-dev qt6-webengine-dev-tools \
+              qt6-l10n-tools qt6-translations-l10n \
+              qt6-webview-dev qt6-webengine-private-dev\
+              qt6-scxml-dev qt6-image-formats-plugins \
+              libqt6serialport6-dev \
+              qt6-multimedia-dev \
+              libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
+              libx11-dev libxfixes-dev \
+              libpixman-1-dev libpam0g-dev libutf8proc-dev \
+              libfuse3-dev libusb-1.0-0-dev \
+              libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev
+
+#          sudo apt-get install -y xvfb xpra \
+#              cmake build-essential \
+#              debhelper fakeroot graphviz \
+#              libglu1-mesa-dev libpulse-mainloop-glib0 \
+#              libusb-1.0-0-dev libvncserver-dev libpixman-1-dev libssh-dev \
+#              libtelnet-dev libqxmpp-dev libfuse-dev \
+#              libutf8proc-dev libpam0g-dev \
+#              qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools \
+#              qt6-multimedia-dev qt6-webengine-dev qt6-webview-dev \
+#              qt6-scxml-dev qt6-image-formats-plugins \
+#              libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
+#              libx11-dev libxfixes-dev
+
+#                freerdp2-dev
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -119,7 +137,7 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b 4be3950fd8fc98fa0e1a422383cda59edf29fbb4 4be3950fd8fc98fa0e1a422383cda59edf29fbb4
+            git checkout -b 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
@@ -204,11 +222,11 @@ jobs:
           RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
           LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
           QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
-          FreeRDP_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3
-          FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
-          WinPR_DIR: ${{env.INSTALL_DIR}}/lib/cmake/WinPR3
-          FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
-          FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
+          FreeRDP_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
+          WinPR_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/WinPR3
+          FreeRDP_Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
+          FreeRDP_Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
+          FreeRDP_Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
         run: |
           if [ ${{matrix.BUILD_TYPE}} == 'Release' ]; then
               export BUILD_VIEWER_TERMINAL=OFF
@@ -303,7 +321,7 @@ jobs:
 #        prerelease: true # optional, default is false
 #        # With tags: true, your Releases deployment will trigger if and only if the build is a tagged build.
 #        tags: true # optional, default is false
-#        # Only work on these branches(splited by semicolon), set to nothing to accept all branches.
+#        # Only work on these branches(splitted by semicolon), set to nothing to accept all branches.
 #        branches: master # optional, default is 
 #        # With verbose: true, be verbose.
 #        verbose: true # optional, default is false

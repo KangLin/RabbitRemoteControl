@@ -91,7 +91,7 @@
 + Support Qt6
   
 ### v0.0.15
-+ Refactor CConneter paramters interface
++ Refactor CConneter parameters interface
 + Refactor CConneterDesktop interface
   + add CConneterDesktopThread
   + add PluginViewerThread
@@ -132,7 +132,7 @@
 ### v0.0.10
 + Add zoom view
 + FIX: libvncserver initial bug
-+ Reface viewer paramters
++ Reface viewer parameters
 + Add screenslot
 
 ### v0.0.9
@@ -143,7 +143,7 @@
 + Add Peer to peer
 + Refactor frame
 + Add github actions
-+ App: Add viwer automation adjust scroll bar by mouse move
++ App: Add viewer automation adjust scroll bar by mouse move
 + Fix some bug
 
 ### v0.0.8
@@ -186,7 +186,7 @@
 ### v0.0.1
 + Gui
   - Screen zoom
-+ Supported protols
++ Supported protocols
   - Vnc base functions
 + Display
   - Screen
