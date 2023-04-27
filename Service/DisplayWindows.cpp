@@ -1,7 +1,8 @@
 #include "DisplayWindows.h"
 #include <Windows.h>
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
 
+Q_DECLARE_LOGGING_CATEGORY(logDW)
 CDisplayWindows::CDisplayWindows(QObject *parent) : CDesktop(parent)
 {
     m_DC = GetDesktopDC();
@@ -49,7 +50,7 @@ QImage CDisplayWindows::GetDisplay(int width, int height, int x, int y)
     do{
         if(NULL == m_DC)
         {
-            LOG_MODEL_ERROR("Screen",
+            qCritical(logDW,
                             "GetDC fail: %d",
                             GetLastError());
             return img;
@@ -73,7 +74,7 @@ QImage CDisplayWindows::GetDisplay(int width, int height, int x, int y)
             m_MemDc = CreateCompatibleDC(m_DC);
             if(NULL == m_MemDc)
             {
-                LOG_MODEL_ERROR("Screen",
+                qCritical(logDW,
                                 "CreateCompatibleDC fail: %d",
                                 GetLastError());
                 break;
@@ -82,7 +83,7 @@ QImage CDisplayWindows::GetDisplay(int width, int height, int x, int y)
             m_Bitmap = CreateCompatibleBitmap(m_DC, m_Width, m_Height);
             if(NULL == m_Bitmap)
             {
-                LOG_MODEL_ERROR("Screen",
+                qCritical(logDW,
                                 "CreateCompatibleBitmap fail: %d",
                                 GetLastError());
                 break;
@@ -90,7 +91,7 @@ QImage CDisplayWindows::GetDisplay(int width, int height, int x, int y)
             HGDIOBJ oldBitmap = SelectObject(m_MemDc, m_Bitmap);
             if(NULL == oldBitmap)
             {
-                LOG_MODEL_ERROR("Screen",
+                qCritical(logDW,
                                 "SelectObject fail: %d",
                                 GetLastError());
                 break;
@@ -98,7 +99,7 @@ QImage CDisplayWindows::GetDisplay(int width, int height, int x, int y)
         }
         if(!BitBlt(m_MemDc, 0, 0, m_Width, m_Height, m_DC, x, y, SRCCOPY))
         {
-            LOG_MODEL_ERROR("Screen",
+            qCritical(logDW,
                             "BitBlt fail: %d",
                             GetLastError());
             break;
@@ -130,7 +131,7 @@ QImage CDisplayWindows::GetDisplay(int width, int height, int x, int y)
         if (!::GetDIBits(m_MemDc, m_Bitmap, 0, m_Height,
                          img.bits(), (BITMAPINFO*)&bi, DIB_RGB_COLORS))
         {
-            LOG_MODEL_ERROR("Screen",
+            qCritical(logDW,
                             "Get image fail: %d",
                             GetLastError());
             break;

@@ -34,7 +34,9 @@
 
 #include "ScreenWindows.h"
 #include <Windows.h>
-#include "RabbitCommonLog.h"
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logDW)
 
 CScreen* CScreen::Instance()
 {
@@ -50,7 +52,7 @@ CScreenWindows::CScreenWindows(QObject *parent) : CScreen(parent)
 
 CScreenWindows::~CScreenWindows()
 {
-    LOG_MODEL_DEBUG("CScreenWindows", "CScreenWindows::~CScreenWindows");
+    qDebug(logDW, "CScreenWindows::~CScreenWindows");
 }
 
 int CScreenWindows::Width()
@@ -135,7 +137,7 @@ int CScreenWindows::GetImage(bool bBuffer)
         dc = GetDC(GetDesktopWindow()); // Multi-screen
         if(NULL == dc)
         {
-            LOG_MODEL_ERROR("Screen",
+            qCritical(logDW,
                             "GetDC fail: %d",
                             GetLastError());
             break;
@@ -144,7 +146,7 @@ int CScreenWindows::GetImage(bool bBuffer)
         memDc = CreateCompatibleDC(dc);
         if(NULL == memDc)
         {
-            LOG_MODEL_ERROR("Screen",
+            qCritical(logDW,
                             "CreateCompatibleDC fail: %d",
                             GetLastError());
             break;
@@ -155,7 +157,7 @@ int CScreenWindows::GetImage(bool bBuffer)
         bitmap = CreateCompatibleBitmap(dc, ScreenWidth, ScreenHeight);
         if(NULL == bitmap)
         {
-            LOG_MODEL_ERROR("Screen",
+            qCritical(logDW,
                             "CreateCompatibleBitmap fail: %d",
                             GetLastError());
             break;
@@ -163,14 +165,14 @@ int CScreenWindows::GetImage(bool bBuffer)
         HGDIOBJ oldBitmap = SelectObject(memDc, bitmap);
         if(NULL == oldBitmap)
         {
-            LOG_MODEL_ERROR("Screen",
+            qCritical(logDW,
                             "SelectObject fail: %d",
                             GetLastError());
             break;
         }
         if(!BitBlt(memDc, 0, 0, ScreenWidth, ScreenHeight, dc, 0, 0, SRCCOPY))
         {
-            LOG_MODEL_ERROR("Screen",
+            qCritical(logDW,
                             "BitBlt fail: %d",
                             GetLastError());
             break;
@@ -214,7 +216,7 @@ int CScreenWindows::GetImage(bool bBuffer)
             if (!::GetDIBits(memDc, bitmap, 0, ScreenHeight,
                              m_Screen.bits(), (BITMAPINFO*)&bi, DIB_RGB_COLORS))
             {
-                LOG_MODEL_ERROR("Screen",
+                qCritical(logDW,
                                 "Get image fail: %d",
                                 GetLastError());
                 break;
@@ -226,14 +228,14 @@ int CScreenWindows::GetImage(bool bBuffer)
             // Get image format
             if (!::GetDIBits(memDc, bitmap, 0, ScreenHeight, NULL, (BITMAPINFO*)&bi, DIB_RGB_COLORS))
             {
-                LOG_MODEL_ERROR("Screen",
+                qCritical(logDW,
                                 "unable to determine device pixel format: %d",
                                 GetLastError());
                 break;
             }
             //        if (!::GetDIBits(memDc, bitmap, 0, ScreenHeight, NULL, (BITMAPINFO*)&bi, DIB_RGB_COLORS))
             //        {
-            //            LOG_MODEL_ERROR("Screen",
+            //            qCritical(logDW,
             //                            "unable to determine pixel shifts/palette: %d",
             //                            GetLastError());
             //            break;
@@ -248,20 +250,20 @@ int CScreenWindows::GetImage(bool bBuffer)
                     switch (bi.bmiHeader.biBitCount) {
                     case 16:
                         // RGB 555 - High Colour
-                        LOG_MODEL_INFO("Screen", "16-bit High Colour");
+                        qInfo(logDW, "16-bit High Colour");
                         m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB555);
                         break;
                     case 24:
-                        LOG_MODEL_INFO("Screen", "24-bit High Colour");
+                        qInfo(logDW, "24-bit High Colour");
                         m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB888);
                         break; 
                     case 32:
                         // RGB 888 - True Colour
-                        LOG_MODEL_INFO("Screen", "32-bit High Colour");
+                        qInfo(logDW, "32-bit High Colour");
                         m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_ARGB32);
                         break; 
                     default:
-                        LOG_MODEL_ERROR("Screen","bits per pixel %u not supported", bi.bmiHeader.biBitCount);
+                        qCritical(logDW, "bits per pixel %u not supported", bi.bmiHeader.biBitCount);
                         break;
                     };
                     break;
@@ -270,16 +272,16 @@ int CScreenWindows::GetImage(bool bBuffer)
                     switch (bi.bmiHeader.biBitCount) {
                     case 16:
                         // RGB 555 - High Colour
-                        LOG_MODEL_INFO("Screen", "16-bit High Colour");
+                        qInfo(logDW, "16-bit High Colour");
                         m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_RGB555);
                         break;
                     case 32:
                         // RGB 888 - True Colour
-                        LOG_MODEL_INFO("Screen", "32-bit High Colour");
+                        qInfo(logDW, "32-bit High Colour");
                         m_Screen = QImage(ScreenWidth, ScreenHeight, QImage::Format_ARGB32);
                         break; 
                     default:
-                        LOG_MODEL_ERROR("Screen","bits per pixel %u not supported", bi.bmiHeader.biBitCount);
+                        qCritical(logDW, "bits per pixel %u not supported", bi.bmiHeader.biBitCount);
                         break;
                     };
                     break;
@@ -287,7 +289,7 @@ int CScreenWindows::GetImage(bool bBuffer)
                 
                 nRet = 0;
             } else {
-                LOG_MODEL_ERROR("Screen", "bi.bmiHeader.biBitCount < 8");
+                qCritical(logDW, "bi.bmiHeader.biBitCount < 8");
             }
         }
         

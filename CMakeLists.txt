@@ -97,6 +97,7 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
     ENDFOREACH()
 endif()
 get_filename_component(QT_INSTALL_DIR "${Qt${QT_VERSION_MAJOR}_DIR}/../../.." ABSOLUTE)
+message("Qt${QT_VERSION_MAJOR}_DIR:${Qt${QT_VERSION_MAJOR}_DIR}")
 message("QT_INSTALL_DIR:${QT_INSTALL_DIR}")
 message("${PROJECT_NAME} QT_LIBRARIES:${QT_LIBRARIES}")
 

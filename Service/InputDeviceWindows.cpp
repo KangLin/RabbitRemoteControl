@@ -2,9 +2,11 @@
 
 #include "InputDeviceWindows.h"
 #include <Windows.h>
-#include "RabbitCommonLog.h"
 #include <QRect>
 #include <QSharedPointer>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logDW)
 
 QSharedPointer<CInputDevice> CInputDevice::GenerateObject()
 {
@@ -17,7 +19,7 @@ CInputDeviceWindows::CInputDeviceWindows() : CInputDevice()
 
 CInputDeviceWindows::~CInputDeviceWindows()
 {
-    LOG_MODEL_DEBUG("CInputDeviceX11", "CInputDeviceX11::~CInputDeviceX11");
+    qDebug(logDW, "CInputDeviceX11::~CInputDeviceX11");
 }
 
 int CInputDeviceWindows::KeyEvent(quint32 keysym, quint32 keycode, bool down)
@@ -113,16 +115,16 @@ int CInputDeviceWindows::MouseEvent(MouseButtons buttons, QPoint pos)
     //    input.mi.mouseData = mouseWheelValue;
     //    if(1 != SendInput(1, &input, sizeof(INPUT)))
     //    {
-    //        LOG_MODEL_ERROR("InputDevice", "SendInput fail: %d", GetLastError());
+    //        qCritical(logDW, "SendInput fail: %d", GetLastError());
     //        return -1;
     //    }
     
     QRect primaryDisplay(0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
-    //    LOG_MODEL_DEBUG("InputDevice", "primary screen:%d,%d;pos:%d,%d",
+    //    qDebug(logDW, "primary screen:%d,%d;pos:%d,%d",
     //                    primaryDisplay.width(), primaryDisplay.height(),
     //                    pos.x(), pos.y());
     if (primaryDisplay.contains(pos)) {
-        LOG_MODEL_DEBUG("InputDevice", "In primary screen");
+        qDebug(logDW, "In primary screen");
         // mouse_event wants coordinates specified as a proportion of the
         // primary display's size, scaled to the range 0 to 65535
         QPoint scaled;
@@ -145,7 +147,7 @@ int CInputDeviceWindows::MouseEvent(MouseButtons buttons, QPoint pos)
         evt.mi.time = 0;
         if (SendInput(1, &evt, sizeof(evt)) != 1)
         {
-            LOG_MODEL_ERROR("InputDevice", "SendInput fail: %d", GetLastError());
+            qCritical(logDW, "SendInput fail: %d", GetLastError());
             return -1;
         }
     }

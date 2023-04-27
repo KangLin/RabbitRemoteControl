@@ -3,7 +3,7 @@
 #include "IceSignalWebSocket.h"
 
 #include <nlohmann/json.hpp>
-#include "RabbitCommonLog.h"
+
 #include <QDebug>
 
 CIceSignalWebSocket::CIceSignalWebSocket(QObject *parent) : CIceSignal(parent)
@@ -45,7 +45,7 @@ int CIceSignalWebSocket::Open(const std::string &szServer, quint16 nPort,
 
     const std::string url = wsPrefix + szServer + ":" +
                        std::to_string(nPort) + "/" + user;
-    LOG_MODEL_DEBUG("SignalWebsocket", "Url is %s", url.c_str());
+    qDebug(m_Log, "Url is %s", url.c_str());
     return Open(url, user, password);
 }
 
@@ -59,15 +59,15 @@ int CIceSignalWebSocket::Open(const std::string &szUrl,
     if(!m_webSocket) return -1;
 
     m_webSocket->onOpen([this]() {
-        LOG_MODEL_DEBUG("SignalWebSocket", "WebSocket is open");
+        qDebug(m_Log, "WebSocket is open");
         emit sigConnected();
     });
     m_webSocket->onError([this](std::string szErr) {
-        LOG_MODEL_DEBUG("SignalWebSocket", "WebSocket is error");
+        qDebug(m_Log, "WebSocket is error");
         emit sigError(-1, szErr.c_str());
     });
     m_webSocket->onClosed([this]() {
-        LOG_MODEL_DEBUG("SignalWebSocket", "WebSocket is close");
+        qDebug(m_Log, "WebSocket is close");
         emit sigDisconnected();
     });
     m_webSocket->onMessage([this](std::variant<rtc::binary, std::string> data) {
@@ -120,7 +120,7 @@ int CIceSignalWebSocket::Open(const std::string &szUrl,
     try {
         m_webSocket->open(szUrl);
     }  catch (std::exception &e) {
-        LOG_MODEL_ERROR("SignalWebsocket",
+        qCritical(m_Log,
                         "Open websocket fail: %s; %s",
                         e.what(), szUrl.c_str());
         return -1;

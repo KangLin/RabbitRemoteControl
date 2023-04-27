@@ -29,7 +29,7 @@ jobs:
     # Map the job outputs to step outputs
     outputs:
       name: ${{ env.artifact_name }}
-  
+
     steps:
       - name: core dump infomations
         if: false
@@ -93,34 +93,18 @@ jobs:
           sudo apt install -y -q cmake build-essential xvfb xpra \
               libglu1-mesa-dev libpulse-mainloop-glib0 \
               cmake debhelper fakeroot \
-              qmake6 \
-              qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools \
-              qt6-multimedia-dev qt6-webengine-dev qt6-webengine-dev-tools \
-              qt6-l10n-tools qt6-translations-l10n \
-              qt6-webview-dev qt6-webengine-private-dev\
-              qt6-scxml-dev qt6-image-formats-plugins \
-              libqt6serialport6-dev \
-              qt6-multimedia-dev \
+              qt6-tools-dev qt6-tools-dev-tools \
+              qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
+              libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
+              qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev \
+              qt6-webengine-dev qt6-webengine-dev-tools \
               libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
               libx11-dev libxfixes-dev \
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse3-dev libusb-1.0-0-dev \
-              libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev
-
-#          sudo apt-get install -y xvfb xpra \
-#              cmake build-essential \
-#              debhelper fakeroot graphviz \
-#              libglu1-mesa-dev libpulse-mainloop-glib0 \
-#              libusb-1.0-0-dev libvncserver-dev libpixman-1-dev libssh-dev \
-#              libtelnet-dev libqxmpp-dev libfuse-dev \
-#              libutf8proc-dev libpam0g-dev \
-#              qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools \
-#              qt6-multimedia-dev qt6-webengine-dev qt6-webview-dev \
-#              qt6-scxml-dev qt6-image-formats-plugins \
-#              libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
-#              libx11-dev libxfixes-dev
-
-#                freerdp2-dev
+              libvncserver-dev libssh-dev libtelnet-dev
+              
+#freerdp2-dev
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -137,7 +121,7 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658
+            git checkout -b 6abd9165e6a99549d413f0b2ad18c3a7e150a426 6abd9165e6a99549d413f0b2ad18c3a7e150a426
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
@@ -233,7 +217,8 @@ jobs:
           else
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           fi
-          ./build_debpackage.sh /usr/lib/`uname -m`-linux-gnu/qt5
+          export Qt6_DIR=/usr/lib/`uname-a`-linux-gnu/cmake/Qt6
+          ./build_debpackage.sh
           cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb
           md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum
 

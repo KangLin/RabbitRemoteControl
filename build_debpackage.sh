@@ -3,7 +3,6 @@
 if [ -n "$1" -a -z "$QT_ROOT" ]; then
 	export QT_ROOT=$1
 fi
-
 if [ ! -f /usr/bin/qmake -a -z "$QT_ROOT" ]; then
 	echo "$0 QT_ROOT RabbitCommon_DIR"
     exit -1

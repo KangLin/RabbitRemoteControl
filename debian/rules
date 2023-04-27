@@ -98,11 +98,11 @@ override_dh_auto_configure:
 	dh_auto_configure -- -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
             -DBUILD_FREERDP=ON \
             -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
-            -DQt6_DIR=${QT_ROOT}/lib/cmake/Qt6 \
             -DRabbitCommon_DIR=${RabbitCommon_DIR} \
             -DCMARK_SHARED:BOOL=ON \
             -DCMARK_TESTS:BOOL=OFF \
             -DCMARK_STATIC=OFF ${PARAS}
+#-DQt6_DIR=${QT_ROOT}/lib/cmake/Qt6
 
 override_dh_auto_build:
 	dh_auto_build -- $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`" = "0",, -j`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`)

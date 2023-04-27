@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QResizeEvent>
 #include <QCursor>
-#include "RabbitCommonLog.h"
 
 class COpenGLInit
 {
@@ -64,7 +63,7 @@ CFrmViewerOpenGL::CFrmViewerOpenGL(QWidget *parent)
 
 CFrmViewerOpenGL::~CFrmViewerOpenGL()
 {
-    LOG_MODEL_DEBUG("CFrmViewerOpenGL", "CFrmViewerOpenGL::~CFrmViewerOpenGL()");
+    qDebug() << "CFrmViewerOpenGL::~CFrmViewerOpenGL()";
     if(m_pTexture)
     {
         delete m_pTexture;
@@ -422,14 +421,14 @@ void CFrmViewerOpenGL::wheelEvent(QWheelEvent *event)
 
 void CFrmViewerOpenGL::keyPressEvent(QKeyEvent *event)
 {
-    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    //qDebug("keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
     emit sigKeyPressEvent(event->key(), event->modifiers());
     event->accept();
 }
 
 void CFrmViewerOpenGL::keyReleaseEvent(QKeyEvent *event)
 {
-    //LOG_MODEL_DEBUG("CFrmViewer", "keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
+    //qDebug("keyPressEvent key:%d;modifiers:%d", event->key(), event->modifiers());
     emit sigKeyReleaseEvent(event->key(), event->modifiers());
     event->accept();
 }
