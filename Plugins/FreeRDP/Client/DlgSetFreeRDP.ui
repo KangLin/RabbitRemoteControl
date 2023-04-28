@@ -421,7 +421,7 @@
                 <string>On this computer</string>
                </property>
                <property name="checked">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -439,6 +439,9 @@
               <widget class="QRadioButton" name="rbAudioDisable">
                <property name="text">
                 <string>Disable</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
                </property>
               </widget>
              </item>

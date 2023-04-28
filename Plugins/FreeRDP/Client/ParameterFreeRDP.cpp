@@ -5,7 +5,7 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnecter(pare
     m_nReconnectInterval(5),
     m_bShowVerifyDiaglog(true),
     m_bRedirectionPrinter(false),
-    m_nRedirectionSound(RedirecionSoundType::Local),
+    m_nRedirectionSound(RedirecionSoundType::Disable),
     m_bRedirectionMicrophone(false)
 {
     m_szRedirectionSoundParameters = 
