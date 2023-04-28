@@ -44,9 +44,6 @@ private Q_SLOTS:
     void on_actionExit_E_triggered();
     void on_actionAbout_A_triggered();
     void on_actionUpdate_U_triggered();
-    void on_actionOpen_log_configure_file_triggered();
-    void on_actionLog_directory_triggered();
-    void on_actionOpen_Log_file_triggered();
         
     void on_actionStyle_S_triggered();
 
