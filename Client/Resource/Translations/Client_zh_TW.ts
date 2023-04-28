@@ -9,9 +9,13 @@
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="88"/>
         <source>Protol: </source>
-        <translation>協議：</translation>
+        <translation type="vanished">協議：</translation>
+    </message>
+    <message>
+        <location filename="../../Connecter.cpp" line="88"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Connecter.cpp" line="89"/>

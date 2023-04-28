@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="../../Connecter.cpp" line="88"/>
-        <source>Protol: </source>
+        <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>

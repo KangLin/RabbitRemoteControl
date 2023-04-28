@@ -65,9 +65,8 @@
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="46"/>
         <source>Cancle(&amp;C)</source>
-        <translation>取消(&amp;C)</translation>
+        <translation type="vanished">取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="59"/>
@@ -88,6 +87,11 @@
         <location filename="../../DlgSettingsRabbitVNC.ui" line="67"/>
         <source>Name:</source>
         <translation>名称：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="46"/>
+        <source>Cancel(&amp;C)</source>
+        <translation type="unfinished">取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="74"/>

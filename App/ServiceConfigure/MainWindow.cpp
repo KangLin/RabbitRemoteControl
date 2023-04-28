@@ -25,6 +25,8 @@ CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent),
 {
     ui->setupUi(this);
     
+    ui->menuService->addMenu(RabbitCommon::CTools::GetLogMenu(ui->menuService));
+    
     Clean();
     InitTab();
 }
@@ -200,21 +202,6 @@ void CMainWindow::on_actionOpen_folder_triggered()
                  RabbitCommon::CDir::Instance()->GetDirUserConfig()).toString();
     if(szFolder.isEmpty()) return;
     QDesktopServices::openUrl(QUrl::fromLocalFile(szFolder));
-}
-
-void CMainWindow::on_actionOpen_log_file_triggered()
-{
-    RabbitCommon::CTools::Instance()->OpenLogFile();
-}
-
-void CMainWindow::on_actionOpen_log_folder_triggered()
-{
-    RabbitCommon::CTools::Instance()->OpenLogFolder();
-}
-
-void CMainWindow::on_actionOpen_log_configure_file_triggered()
-{
-    RabbitCommon::CTools::Instance()->OpenLogConfigureFile();
 }
 
 void CMainWindow::on_actionStyle_S_triggered()

@@ -29,10 +29,6 @@ private Q_SLOTS:
     void on_actionAbout_triggered();
     void on_actionOpen_folder_triggered();
 
-    void on_actionOpen_log_file_triggered();
-    void on_actionOpen_log_folder_triggered();
-    void on_actionOpen_log_configure_file_triggered();
-
     void on_actionStyle_S_triggered();
 
 Q_SIGNALS:

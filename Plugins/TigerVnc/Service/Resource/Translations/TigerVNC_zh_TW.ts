@@ -29,17 +29,17 @@
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="90"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="89"/>
         <source>Channel type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="96"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="95"/>
         <source>Enable socket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="103"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="102"/>
         <source>Enable ICE</source>
         <translation>允許 ICE</translation>
     </message>
@@ -47,17 +47,17 @@
 <context>
     <name>CPluginServiceTigerVNC</name>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="44"/>
+        <location filename="../../PluginServiceTigerVNC.cpp" line="46"/>
         <source>TigerVNC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="49"/>
+        <location filename="../../PluginServiceTigerVNC.cpp" line="51"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="50"/>
+        <location filename="../../PluginServiceTigerVNC.cpp" line="52"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一個使用RFB(遠程幀緩存)協議的程序。</translation>
     </message>

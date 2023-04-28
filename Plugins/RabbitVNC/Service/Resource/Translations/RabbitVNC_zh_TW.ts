@@ -29,17 +29,17 @@
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="90"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="89"/>
         <source>Channel type</source>
         <translation>通道類型</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="96"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="95"/>
         <source>Enable socket</source>
         <translation>允許 socket</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterRabbitVNC.ui" line="103"/>
+        <location filename="../../FrmParameterRabbitVNC.ui" line="102"/>
         <source>Enable ICE</source>
         <translation>允許 ICE</translation>
     </message>
@@ -47,17 +47,17 @@
 <context>
     <name>CPluginServiceRabbitVNC</name>
     <message>
-        <location filename="../../PluginServiceRabbitVNC.cpp" line="44"/>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="46"/>
         <source>RabbitVNC</source>
         <translation>玉兔 VNC</translation>
     </message>
     <message>
-        <location filename="../../PluginServiceRabbitVNC.cpp" line="49"/>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="51"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginServiceRabbitVNC.cpp" line="50"/>
+        <location filename="../../PluginServiceRabbitVNC.cpp" line="52"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一個使用RFB(遠程幀緩存)協議的程序。</translation>
     </message>

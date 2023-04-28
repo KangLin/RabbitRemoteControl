@@ -19,17 +19,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="90"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="89"/>
         <source>Channel type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="96"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="95"/>
         <source>Enable socket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterTigerVNC.ui" line="103"/>
+        <location filename="../../FrmParameterTigerVNC.ui" line="102"/>
         <source>Enable ICE</source>
         <translation type="unfinished"></translation>
     </message>
@@ -47,17 +47,17 @@
 <context>
     <name>CPluginServiceTigerVNC</name>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="44"/>
+        <location filename="../../PluginServiceTigerVNC.cpp" line="46"/>
         <source>TigerVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="49"/>
+        <location filename="../../PluginServiceTigerVNC.cpp" line="51"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginServiceTigerVNC.cpp" line="50"/>
+        <location filename="../../PluginServiceTigerVNC.cpp" line="52"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>

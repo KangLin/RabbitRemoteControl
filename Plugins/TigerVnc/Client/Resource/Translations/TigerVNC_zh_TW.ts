@@ -85,6 +85,11 @@
         <translation>共享</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="46"/>
+        <source>Cancel(&amp;C)</source>
+        <translation type="unfinished">取消(&amp;C)</translation>
+    </message>
+    <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="67"/>
         <source>Name:</source>
         <translation>名稱：</translation>
@@ -283,9 +288,8 @@
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="46"/>
         <source>Cancle(&amp;C)</source>
-        <translation>取消(&amp;C)</translation>
+        <translation type="vanished">取消(&amp;C)</translation>
     </message>
     <message>
         <source>Signal server:</source>

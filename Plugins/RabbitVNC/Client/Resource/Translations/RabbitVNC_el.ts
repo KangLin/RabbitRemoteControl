@@ -57,11 +57,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="46"/>
-        <source>Cancle(&amp;C)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="59"/>
         <source>Server</source>
         <translation type="unfinished"></translation>
@@ -117,6 +112,11 @@
         <location filename="../../DlgSettingsRabbitVNC.ui" line="91"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="304"/>
         <source>Server:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="46"/>
+        <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

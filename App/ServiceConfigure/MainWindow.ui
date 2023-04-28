@@ -14,7 +14,8 @@
    <string>Rabbit remote control service configure</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="system-settings"/>
+   <iconset theme="system-settings">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -74,29 +75,16 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuService">
     <property name="title">
      <string>Service</string>
     </property>
-    <widget class="QMenu" name="menuOpen_Log">
-     <property name="title">
-      <string>Open Log</string>
-     </property>
-     <property name="icon">
-      <iconset theme="logger">
-       <normaloff>.</normaloff>.</iconset>
-     </property>
-     <addaction name="actionOpen_log_file"/>
-     <addaction name="actionOpen_log_folder"/>
-     <addaction name="actionOpen_log_configure_file"/>
-    </widget>
     <addaction name="actionStart"/>
     <addaction name="separator"/>
     <addaction name="actionOpen_folder"/>
-    <addaction name="menuOpen_Log"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -207,51 +195,6 @@
    </property>
    <property name="whatsThis">
     <string>Open stype</string>
-   </property>
-  </action>
-  <action name="actionOpen_log_file">
-   <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Open log file</string>
-   </property>
-   <property name="statusTip">
-    <string>Open log file</string>
-   </property>
-   <property name="whatsThis">
-    <string>Open log file</string>
-   </property>
-  </action>
-  <action name="actionOpen_log_folder">
-   <property name="icon">
-    <iconset theme="folder-open">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Open log folder</string>
-   </property>
-   <property name="statusTip">
-    <string>Open log folder</string>
-   </property>
-   <property name="whatsThis">
-    <string>Open log folder</string>
-   </property>
-  </action>
-  <action name="actionOpen_log_configure_file">
-   <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Open log configure file</string>
-   </property>
-   <property name="statusTip">
-    <string>Open log configure file</string>
-   </property>
-   <property name="whatsThis">
-    <string>Open log configure file</string>
    </property>
   </action>
   <action name="actionStyle_S">

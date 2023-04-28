@@ -8,6 +8,7 @@
 #include "ParameterServiceTigerVNC.h"
 #include "Connection.h"
 #include "PluginService.h"
+#include <stdexcept>
 
 #ifdef HAVE_GUI
 #include "FrmParameterTigerVNC.h"
