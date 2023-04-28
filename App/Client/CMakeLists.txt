@@ -60,7 +60,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     ISWINDOWS
     VERSION ${RabbitRemoteControl_VERSION}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
-      RabbitRemoteControl_VERSION_REVISION="${RabbitRemoteControl_VERSION_REVISION}"
+      RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS Client)
 

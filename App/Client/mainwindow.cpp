@@ -279,7 +279,7 @@ void MainWindow::on_actionAbout_A_triggered()
     QPixmap p = icon.pixmap(*sizeList.begin());
     about->m_AppIcon = p.toImage();
     about->m_szCopyrightStartTime = "2020";
-    about->m_szVersionRevision = RabbitRemoteControl_VERSION_REVISION;
+    about->m_szVersionRevision = RabbitRemoteControl_REVISION;
     QString szInfo;
     szInfo = tr("### Plugin") + "\n";
     m_Client.EnumPlugins([&szInfo](const QString& id, CPluginClient* pPlug)->int{

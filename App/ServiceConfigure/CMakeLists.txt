@@ -37,7 +37,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     ISWINDOWS
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RabbitRemoteControlServiceConfigure_RCC_FILES}
     PRIVATE_DEFINITIONS RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}"
-        RabbitRemoteControl_VERSION_REVISION="${RabbitRemoteControl_VERSION_REVISION}"
+        RabbitRemoteControl_REVISION="${RabbitRemoteControl_REVISION}"
     INCLUDE_DIRS
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
