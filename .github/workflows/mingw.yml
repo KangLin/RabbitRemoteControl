@@ -1,4 +1,4 @@
-name: build_mingw
+name: mingw
 
 on:
   workflow_call:
@@ -9,7 +9,6 @@ on:
 
 jobs:
   build_mingw:
-    name: build mingw
 
     strategy:
       matrix:

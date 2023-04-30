@@ -84,7 +84,7 @@ jobs:
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-            git clone -b v2 https://github.com/KangLin/RabbitCommon.git
+            git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: Install apt packages
         run: |
@@ -182,8 +182,6 @@ jobs:
 
       - name: build QtService
         working-directory: ${{env.SOURCE_DIR}}
-        env:
-          QT_ROOT: /usr/lib/`uname -m`-linux-gnu/qt5
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/QtService ]; then
             git clone https://github.com/KangLin/qt-solutions.git
@@ -191,10 +189,9 @@ jobs:
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
+            export Qt6_DIR=/usr/lib/`uname-a`-linux-gnu/cmake/Qt6
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
-                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
           fi

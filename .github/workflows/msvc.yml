@@ -1,4 +1,4 @@
-name: build_msvc
+name: msvc
 
 on:
   workflow_call:
@@ -13,14 +13,14 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        qt_version: [5.15.2, 5.12.12]
+        qt_version: [6.5.0, 5.15.2, 5.12.12]
         include:
-#          - qt_version: 6.4.2
-#            triplet: x64-windows
-#            VCPKG_PLATFORM_TOOLSET: v142
-#            qt_arch: win64_msvc2019_64
-#            CMAKE_GENERATOR_PLATFORM: x64
-#            qt_modules: qtscxml qtpositioning
+          - qt_version: 6.5.0
+            triplet: x64-windows
+            VCPKG_PLATFORM_TOOLSET: v142
+            qt_arch: win64_msvc2019_64
+            CMAKE_GENERATOR_PLATFORM: x64
+            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport
 
           - qt_version: 5.15.2
             triplet: x64-windows
@@ -51,7 +51,7 @@ jobs:
     # Map the job outputs to step outputs
     outputs:
       name: ${{ env.artifact_name }}
-      
+
     defaults:
       run:
         shell: cmd
@@ -247,7 +247,7 @@ jobs:
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
-        run: git clone -b v2 https://github.com/KangLin/RabbitCommon.git
+        run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: build RabbitRemoteControl
         working-directory: ${{github.workspace}}\build

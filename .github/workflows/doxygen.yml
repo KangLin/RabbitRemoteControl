@@ -6,7 +6,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
 jobs:
-  build:
+  build_doxygen:
     runs-on: ubuntu-latest
     env:
       BUILD_TYPE:  Release
