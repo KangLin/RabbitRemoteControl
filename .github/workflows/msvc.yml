@@ -249,7 +249,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
-      - name: build RabbitRemoteControl
+      - name: Build RabbitRemoteControl
         working-directory: ${{github.workspace}}\build
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon

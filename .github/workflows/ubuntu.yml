@@ -92,7 +92,7 @@ jobs:
           sudo apt-get upgrade -y
           sudo apt install -y -q cmake build-essential xvfb xpra \
               libglu1-mesa-dev libpulse-mainloop-glib0 \
-              cmake debhelper fakeroot \
+              cmake debhelper fakeroot graphviz \
               qt6-tools-dev qt6-tools-dev-tools \
               qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
               libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
@@ -102,9 +102,7 @@ jobs:
               libx11-dev libxfixes-dev \
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse3-dev libusb-1.0-0-dev \
-              libvncserver-dev libssh-dev libtelnet-dev
-              
-#freerdp2-dev
+              libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -115,6 +113,7 @@ jobs:
           key: cache-installed-ubuntu
 
       - name: build FreeRDP
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
