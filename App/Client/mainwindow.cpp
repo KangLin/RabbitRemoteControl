@@ -59,6 +59,9 @@ MainWindow::MainWindow(QWidget *parent)
     bool check = false;
 
     ui->setupUi(this);
+    
+    ui->menuRemote->insertMenu(ui->actionSettings,
+                               RabbitCommon::CTools::GetLogMenu(this));
 
     setFocusPolicy(Qt::NoFocus);
 
@@ -104,9 +107,6 @@ MainWindow::MainWindow(QWidget *parent)
         ui->menuView->addAction(m_pFavoriteDockWidget->toggleViewAction());
         tabifyDockWidget(m_pDockListConnects, m_pFavoriteDockWidget);
     }
-    
-    ui->menuRemote->insertMenu(ui->actionSettings,
-                               RabbitCommon::CTools::GetLogMenu(ui->menuRemote));
 
     m_pRecentMenu = new RabbitCommon::CRecentMenu(tr("Recently connected"),
                                   QIcon::fromTheme("document-open-recent"),
