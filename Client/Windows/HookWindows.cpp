@@ -95,7 +95,7 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
                     emit self->sigKeyReleaseEvent(key, Qt::NoModifier);
 //                LOG_MODEL_DEBUG("CHookWindows", "process vkCode: 0x%X; scanCode: 0x%X; flags: 0x%X",
 //                                hook->vkCode, hook->scanCode, hook->flags);
-                return true;
+                return 0;
             }
         }
     }
