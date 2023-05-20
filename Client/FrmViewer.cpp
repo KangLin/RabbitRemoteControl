@@ -190,16 +190,16 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
-    //qDebug(Client) << "keyPressEvent key:" << event->key() << "modifiers:" << event->modifiers();
+    //qDebug(Client) << "CFrmViewer::keyPressEvent" << event;
     emit sigKeyPressEvent(event->key(), event->modifiers());
-    //event->accept();
+    event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
-    //qDebug(Client) << "keyReleaseEvent key:" << event->key() << "modifiers:" << event->modifiers();
+    //qDebug(Client) << "CFrmViewer::keyReleaseEvent" << event;
     emit sigKeyReleaseEvent(event->key(), event->modifiers());
-    //event->accept();
+    event->accept();
 }
 
 void CFrmViewer::slotSystemCombination()

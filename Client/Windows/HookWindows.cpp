@@ -1,7 +1,10 @@
 #include "HookWindows.h"
 #include "FrmViewer.h"
 #include <QApplication>
-#include <QDebug>
+
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(clientHookWindows, "Client.Hook.Windows")
 
 CHook* CHook::GetHook(QObject *parent)
 {
@@ -20,7 +23,7 @@ CHookWindows::CHookWindows(QObject *parent)
 
 CHookWindows::~CHookWindows()
 {
-    qDebug() << "CHookWindows::~CHookWindows()";
+    qDebug(clientHookWindows) << "CHookWindows::~CHookWindows()";
     UnRegisterKeyboard();
 }
 
@@ -30,8 +33,10 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
     if (code == HC_ACTION)
     {
         KBDLLHOOKSTRUCT* hook = reinterpret_cast<KBDLLHOOKSTRUCT*>(lparam);
-//        LOG_MODEL_DEBUG("CHookWindows", "vkCode: 0x%X; scanCode: 0x%X; flags: 0x%X",
-//                        hook->vkCode, hook->scanCode, hook->flags);
+        /*
+        qDebug(clientHookWindows) << "process vkCode:" << hook->vkCode
+                                  << "scanCode:" << hook->scanCode
+                                  << "flags:" << hook->flags;//*/
         int key = 0;
         Qt::KeyboardModifiers keyMdf = Qt::NoModifier;
         switch(hook->vkCode)
@@ -49,11 +54,13 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
         case VK_LWIN:
         {
             key = Qt::Key_Super_L;
+            keyMdf = Qt::MetaModifier;
             break;
         }
         case VK_RWIN:
         {
             key = Qt::Key_Super_R;
+            keyMdf = Qt::MetaModifier;
             break;
         }
         /*
@@ -93,8 +100,10 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
                     emit self->sigKeyPressEvent(key, keyMdf);
                 if(wparam == WM_KEYUP || wparam == WM_SYSKEYUP)
                     emit self->sigKeyReleaseEvent(key, Qt::NoModifier);
-//                LOG_MODEL_DEBUG("CHookWindows", "process vkCode: 0x%X; scanCode: 0x%X; flags: 0x%X",
-//                                hook->vkCode, hook->scanCode, hook->flags);
+                /*
+                qDebug(clientHookWindows) << "process vkCode:" << hook->vkCode
+                                          << "scanCode:" << hook->scanCode
+                                          << "flags:" << hook->flags;//*/
                 return 0;
             }
         }

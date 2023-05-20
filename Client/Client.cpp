@@ -37,6 +37,7 @@ CClient::CClient(QObject *parent) : QObject(parent),
     check = connect(&m_ParameterClient, SIGNAL(sigHookKeyboardChanged()),
                     this, SLOT(slotHookKeyboardChanged()));
     Q_ASSERT(check);
+    // TODO: Disabe it ?
     if(m_ParameterClient.GetHookKeyboard())
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
 }
@@ -258,7 +259,8 @@ void CClient::slotHookKeyboardChanged()
     {
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
     } else {
-        m_Hook.reset();
+        if(m_Hook)
+            m_Hook.reset();
     }
 }
 
@@ -269,7 +271,17 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
         //qDebug(Client) << "eventFilter:" << event;
         bool bProcess = false;
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-        switch (keyEvent->key()) {
+        int key = keyEvent->key();
+        switch (key) {
+        case Qt::Key_Meta:
+#if defined(Q_OS_WIN)
+            key = Qt::Key_Super_L;
+#endif
+#if defined(Q_OS_MACOS)
+            key = Qt::Qt::Key_Control;
+#endif
+            bProcess = true;
+            break;
         case Qt::Key_Tab:
         case Qt::Key_Alt:
             bProcess = true;
@@ -284,7 +296,7 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
             {
                 CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
                 if(focus) {
-                    emit focus->sigKeyPressEvent(keyEvent->key(), keyEvent->modifiers());
+                    emit focus->sigKeyPressEvent(key, keyEvent->modifiers());
                     return true;
                 }
             }
@@ -292,11 +304,12 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
             {
                 CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
                 if(focus) {
-                    emit focus->sigKeyReleaseEvent(keyEvent->key(), keyEvent->modifiers());
+                    emit focus->sigKeyReleaseEvent(key, keyEvent->modifiers());
                     return true;
                 }
-                
             }
+            default:
+                break;
             }
         }
     }
