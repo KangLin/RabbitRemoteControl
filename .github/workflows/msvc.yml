@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.5.0, 5.15.2, 5.12.12]
+        qt_version: [6.5.1, 5.15.2, 5.12.12]
         include:
-          - qt_version: 6.5.0
+          - qt_version: 6.5.1
             triplet: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win64_msvc2019_64

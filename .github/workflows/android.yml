@@ -60,6 +60,104 @@ jobs:
           cmake -E make_directory ${{env.INSTALL_DIR}}
           cmake -E make_directory ${{github.workspace}}/build
 
+#      - name: run-vcpkg
+#        uses: lukka/run-vcpkg@v7.4
+##        env:
+##          ANDROID_NDK: /usr/local/lib/android/sdk/ndk/23.2.8568313
+##          ANDROID_NDK_ROOT: /usr/local/lib/android/sdk/ndk/23.2.8568313
+##          ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/23.2.8568313
+##          ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/23.2.8568313
+##          ANDROID_NDK_LATEST_HOME: /usr/local/lib/android/sdk/ndk/23.2.8568313
+#        with:
+#          # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_INSTALLATION_ROOT, RUNVCPK_VCPKG_INSTALLATION_ROOT), without installing any port.
+#          #setupOnly: # optional
+#          #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
+#          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+#          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+#          # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
+#          # compute its hash and append this to the computed cache's key.
+#          appendedCacheKey: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
+#          additionalCachedPaths: $VCPKG_INSTALLATION_ROOT/installed
+#          vcpkgTriplet: '${{ matrix.VCPKG_TARGET_TRIPLET }}'
+#          vcpkgArguments: 'zlib openssl libpng libjpeg-turbo libdatachannel'
+          
+      - name: run-vcpkg
+        run: |
+          cd ${{env.VCPKG_INSTALLATION_ROOT}}
+          ./vcpkg --triplet=${{ matrix.VCPKG_TARGET_TRIPLET }} \
+            install zlib openssl libpng libjpeg-turbo libdatachannel
+      
+      - name: Cache installed
+        uses: actions/cache@v2
+        id: cache-installed
+        with:
+          path: |
+            ${{env.INSTALL_DIR}}
+          key: cache-installed-android-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}
+
+      - name: Build libvncserver
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
+            git clone https://github.com/KangLin/libvncserver.git
+            cd libvncserver
+            #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
+            cmake -E make_directory build
+            cd build
+            cmake .. \
+                -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF \
+                -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF \
+                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+          fi
+
+#    - name: build FreeRDP
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
+#            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
+#            cd FreeRDP
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. \
+#                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_INSTALLATION_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#        fi
+        
+#    - name: build tigervnc
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
+#            git clone https://github.com/KangLin/tigervnc.git 
+#            cd ${{env.SOURCE_DIR}}/tigervnc
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. \
+#                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
+#                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+#                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
+#            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+#        fi
+
       - name: Cache Qt
         id: cache-qt
         uses: actions/cache@v1  # not v2!
@@ -95,92 +193,6 @@ jobs:
           modules: '${{env.qt_modules}}' # optional. See: https://ddalcino.github.io/aqt-list-server/
           cached: '${{ steps.cache-qt.outputs.cache-hit }}' # optional, default is false
 
-      - name: run-vcpkg
-        uses: lukka/run-vcpkg@v7.4
-        with:
-          # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
-          #setupOnly: # optional
-          #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
-          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
-          # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
-          # compute its hash and append this to the computed cache's key.
-          appendedCacheKey: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
-          additionalCachedPaths: $VCPKG_ROOT/installed
-          vcpkgTriplet: '${{ matrix.VCPKG_TARGET_TRIPLET }}'
-          vcpkgArguments: 'zlib openssl libpng libjpeg-turbo libdatachannel'
-
-      - name: Cache installed
-        uses: actions/cache@v2
-        id: cache-installed
-        with:
-          path: |
-            ${{env.INSTALL_DIR}}
-          key: cache-installed-android-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}
-
-      - name: Build libvncserver
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
-            git clone https://github.com/KangLin/libvncserver.git
-            cd libvncserver
-            #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF \
-                -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF \
-                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
-          fi
-
-#    - name: build FreeRDP
-#      working-directory: ${{env.SOURCE_DIR}}
-#      run: |
-#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
-#            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
-#            cd FreeRDP
-#            git submodule update --init --recursive
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. \
-#                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
-#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
-#        fi
-        
-#    - name: build tigervnc
-#      working-directory: ${{env.SOURCE_DIR}}
-#      run: |
-#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
-#            git clone https://github.com/KangLin/tigervnc.git 
-#            cd ${{env.SOURCE_DIR}}/tigervnc
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. \
-#                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
-#                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-#                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
-#        fi
-
 #    - name: build log4qt
 #      working-directory: ${{env.SOURCE_DIR}}
 #      env:
@@ -201,7 +213,7 @@ jobs:
 #                -DQt5Test_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Test \
 #                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
 #                -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}} \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
 #                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
@@ -229,7 +241,7 @@ jobs:
                 -DQt5Network_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Network \
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                 -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}} \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
