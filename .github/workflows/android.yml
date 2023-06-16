@@ -34,11 +34,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      VCPKGGITCOMMITID: 5d2a0a9814db499f6ba2e847ca7ab5912badcdbf
+      VCPKG_ROOT:  ${{github.workspace}}/.cache/source/vcpkg
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_anrdoi_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
       RabbitRemoteControl_VERSION: v0.0.25
-      VCPKGGITCOMMITID: 1ba9a2591f15af5900f2ce2b3e2bf31771e3ac48
+
       artifact_name: build_android
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
@@ -83,10 +85,16 @@ jobs:
           
       - name: run-vcpkg
         run: |
-          cd ${{env.VCPKG_INSTALLATION_ROOT}}
-          ./vcpkg --triplet=${{ matrix.VCPKG_TARGET_TRIPLET }} \
-            install zlib openssl libpng libjpeg-turbo libdatachannel
-      
+          echo "ANDROID_NDK=$ANDROID_NDK"
+          echo "ANDROID_NDK_ROOT=$ANDROID_NDK_ROOT"
+          echo "ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
+          cd ${{env.SOURCE_DIR}}
+          git clone https://github.com/microsoft/vcpkg.git
+          cd vcpkg
+          git checkout -b ${{env.VCPKGGITCOMMITID}} ${{env.VCPKGGITCOMMITID}}
+          ./bootstrap-vcpkg.sh
+          vcpkg --triplet ${{ matrix.VCPKG_TARGET_TRIPLET }} install zlib openssl libpng libjpeg-turbo libdatachannel
+
       - name: Cache installed
         uses: actions/cache@v2
         id: cache-installed
@@ -109,7 +117,7 @@ jobs:
                 -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
@@ -130,7 +138,7 @@ jobs:
 #                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_INSTALLATION_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
 #                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
 #                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
 #                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
@@ -150,7 +158,7 @@ jobs:
 #                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
 #                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
 #                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
 #                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
@@ -213,7 +221,7 @@ jobs:
 #                -DQt5Test_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Test \
 #                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
 #                -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}} \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
 #                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
@@ -241,7 +249,7 @@ jobs:
                 -DQt5Network_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Network \
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
                 -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}} \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_INSTALLATION_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}

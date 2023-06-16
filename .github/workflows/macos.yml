@@ -34,7 +34,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/.cache/install_macos_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       RabbitRemoteControl_VERSION: v1.0.9
-      VCPKGGITCOMMITID: 2b1757dd1d5ed7d9d5bb65fd8316631b157e7afc
+      VCPKGGITCOMMITID: 5d2a0a9814db499f6ba2e847ca7ab5912badcdbf
       artifact_name: build_macos
 
     # Map the job outputs to step outputs
