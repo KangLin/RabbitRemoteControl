@@ -47,3 +47,8 @@ const QIcon CPluginClient::Icon() const
 {
     return QIcon::fromTheme("network-wired");
 }
+
+const QString CPluginClient::Details() const
+{
+    return QString();
+}

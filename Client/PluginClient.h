@@ -69,6 +69,8 @@ public:
     /// Plugin description
     virtual const QString Description() const = 0;
     virtual const QIcon Icon() const;
+    /// Display more information in About dialog
+    virtual const QString Details() const;
 
 private:
     /**

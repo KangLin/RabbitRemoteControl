@@ -4,17 +4,17 @@
 <context>
     <name>CConnectFreeRDP</name>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="131"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="132"/>
         <source>freerdp_connect connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="135"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="136"/>
         <source> fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="141"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="142"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -223,7 +223,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="451"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="454"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -381,7 +381,22 @@
     </message>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="38"/>
-        <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
+        <source>RDP(Windows remote desktop Protocol): Access remote desktops such as windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="54"/>
+        <source>- FreeRDP version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="57"/>
+        <source>- Build version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="62"/>
+        <source>- Build date:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

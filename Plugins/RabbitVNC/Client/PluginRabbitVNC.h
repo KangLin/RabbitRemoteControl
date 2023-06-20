@@ -29,6 +29,7 @@ public:
     virtual const QString Description() const override;
     virtual const QString Protocol() const override;
     virtual const QIcon Icon() const override;
+    virtual const QString Details() const override;
 
 protected:
     virtual CConnecterDesktop* OnCreateConnecter(const QString& szProtocol) override;    

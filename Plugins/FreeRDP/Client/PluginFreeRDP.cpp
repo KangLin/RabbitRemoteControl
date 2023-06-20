@@ -14,9 +14,7 @@ Q_LOGGING_CATEGORY(LoggerPlugin, "FreeRDP.Plugin")
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
-    //qDebug(LoggerPlugin) << "FreeRDP" << "build configure:" << freerdp_get_build_config() << "\n";
-    qInfo(LoggerPlugin) << "FreeRDP version:" << freerdp_get_version_string()
-                   << "Build version:" << freerdp_get_build_revision();
+    qDebug(LoggerPlugin) << Details();
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
 
@@ -48,6 +46,25 @@ const QString CPluginFreeRDP::Protocol() const
 const QIcon CPluginFreeRDP::Icon() const
 {
     return QIcon::fromTheme("windows");
+}
+
+const QString CPluginFreeRDP::Details() const
+{
+    QString szDetails;
+    szDetails = tr("- FreeRDP version:");
+    szDetails += freerdp_get_version_string();
+    szDetails += "\n";
+    szDetails += tr("- Build version:");
+    szDetails += freerdp_get_build_revision();
+    szDetails += ":";
+    szDetails += freerdp_get_build_revision();
+    szDetails += "\n";
+    szDetails += tr("- Build date:");
+    szDetails += freerdp_get_build_date();
+    szDetails += "\n";
+    szDetails += "- ";
+    szDetails += freerdp_get_build_config();
+    return szDetails;
 }
 
 CConnecter* CPluginFreeRDP::CreateConnecter(const QString &szProtocol)

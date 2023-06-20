@@ -61,10 +61,7 @@ int CClient::LoadPlugins()
         if(p)
         {
             if(m_Plugins.find(p->Id()) == m_Plugins.end())
-            {
-                m_Plugins.insert(p->Id(), p);
-                p->InitTranslator();
-            }
+                AppendPlugin(p);
             else
                 qCritical(Client) << "The plugin" << p->Name() << " is exist.";
         }
@@ -123,10 +120,7 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
             if(p)
             {
                 if(m_Plugins.find(p->Id()) == m_Plugins.end())
-                {   
-                    m_Plugins.insert(p->Id(), p);
-                    p->InitTranslator();
-                }
+                    AppendPlugin(p);
                 else
                     qCritical(Client) << "The plugin [" << p->Name() << "] is exist.";
             }
@@ -142,9 +136,16 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
                 FindPlugins(pluginDir, filters);
         }
     }
-    
+
     QDir::setCurrent(szCurrentPath);
 
+    return 0;
+}
+
+int CClient::AppendPlugin(CPluginClient *p)
+{
+    m_Plugins.insert(p->Id(), p);
+    p->InitTranslator();
     return 0;
 }
 

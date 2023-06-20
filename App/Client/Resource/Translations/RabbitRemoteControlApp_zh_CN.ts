@@ -287,7 +287,7 @@
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="295"/>
         <source>Browser(&amp;B)</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览(&amp;B)</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="307"/>
@@ -323,10 +323,6 @@
         <location filename="../../ParameterDlgSettings.ui" line="285"/>
         <source>Save Path:</source>
         <translation>保存文件夹：</translation>
-    </message>
-    <message>
-        <source>Brower(&amp;B)</source>
-        <translation type="vanished">浏览(&amp;B)</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="314"/>
@@ -410,10 +406,6 @@
         <translation>远程(&amp;R)</translation>
     </message>
     <message>
-        <source>Open Log</source>
-        <translation type="vanished">打开日志</translation>
-    </message>
-    <message>
         <location filename="../../mainwindow.ui" line="102"/>
         <source>toolBar</source>
         <translation></translation>
@@ -435,7 +427,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="196"/>
-        <location filename="../../mainwindow.cpp" line="360"/>
+        <location filename="../../mainwindow.cpp" line="363"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -531,18 +523,6 @@
         <location filename="../../mainwindow.ui" line="516"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夹</translation>
-    </message>
-    <message>
-        <source>Open log directory</source>
-        <translation type="vanished">打开日志文件目录</translation>
-    </message>
-    <message>
-        <source>Open log file</source>
-        <translation type="vanished">打开日志文件</translation>
-    </message>
-    <message>
-        <source>Open log configure file</source>
-        <translation type="vanished">打开日志配置文件</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="525"/>
@@ -663,9 +643,9 @@
         <location filename="../../mainwindow.ui" line="202"/>
         <location filename="../../mainwindow.ui" line="205"/>
         <location filename="../../mainwindow.ui" line="208"/>
-        <location filename="../../mainwindow.cpp" line="361"/>
-        <location filename="../../mainwindow.cpp" line="362"/>
-        <location filename="../../mainwindow.cpp" line="363"/>
+        <location filename="../../mainwindow.cpp" line="364"/>
+        <location filename="../../mainwindow.cpp" line="365"/>
+        <location filename="../../mainwindow.cpp" line="366"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -674,20 +654,20 @@
         <translation type="vanished">ICE 信令状态</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="388"/>
+        <location filename="../../mainwindow.cpp" line="391"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="389"/>
-        <location filename="../../mainwindow.cpp" line="390"/>
-        <location filename="../../mainwindow.cpp" line="391"/>
+        <location filename="../../mainwindow.cpp" line="392"/>
+        <location filename="../../mainwindow.cpp" line="393"/>
+        <location filename="../../mainwindow.cpp" line="394"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="596"/>
-        <location filename="../../mainwindow.cpp" line="614"/>
+        <location filename="../../mainwindow.cpp" line="599"/>
+        <location filename="../../mainwindow.cpp" line="617"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
@@ -695,7 +675,7 @@
         <location filename="../../mainwindow.ui" line="343"/>
         <location filename="../../mainwindow.ui" line="346"/>
         <location filename="../../mainwindow.ui" line="349"/>
-        <location filename="../../mainwindow.cpp" line="606"/>
+        <location filename="../../mainwindow.cpp" line="609"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
@@ -710,27 +690,27 @@
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="608"/>
+        <location filename="../../mainwindow.cpp" line="611"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="696"/>
+        <location filename="../../mainwindow.cpp" line="699"/>
         <source>Connecting to </source>
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="722"/>
+        <location filename="../../mainwindow.cpp" line="725"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="749"/>
+        <location filename="../../mainwindow.cpp" line="752"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="758"/>
+        <location filename="../../mainwindow.cpp" line="761"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
@@ -743,7 +723,7 @@
         <translation type="vanished">ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="935"/>
+        <location filename="../../mainwindow.cpp" line="938"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>

@@ -48,11 +48,11 @@
 class CLIENT_EXPORT CClient : public QObject
 {
     Q_OBJECT
-    
+
 public:
     explicit CClient(QObject *parent = nullptr);
     virtual ~CClient();
-    
+
     /*!
      * \~chinese
      * \brief 新建 CConnecter 指针，所有者是调用者。
@@ -69,7 +69,7 @@ public:
      * \callgraph
      */
     virtual CConnecter* CreateConnecter(const QString &id);
-    
+
     /*! \~chinese 从文件中新建 CConnecter 指针，所有者是调用者。
      *          <b>当不再使用时，调用者必须负责删除此指针</b>。
      *          调用者必须连接信号 CConnecter::sigDisconnected 。
@@ -82,7 +82,7 @@ public:
      * \callgraph
      */
     virtual CConnecter* LoadConnecter(const QString& szFile);
-    
+
     /*! \~chinese 保存连接参数到文件
      * \~english Accept connecter parameters to file
      * \~
@@ -164,9 +164,10 @@ public:
             std::function<int(const QString& id, CPluginClient* pPlug)> cb);
 #endif
 
-private:    
+private:
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
+    int AppendPlugin(CPluginClient* plugin);
 
 private Q_SLOTS:
     void slotHookKeyboardChanged();
@@ -177,7 +178,7 @@ private:
     QTranslator m_Translator;
     QSharedPointer<CHook> m_Hook;
     CParameterClient m_ParameterClient;
-    
+
 public:
     // QObject interface
     virtual bool eventFilter(QObject *watched, QEvent *event) override;

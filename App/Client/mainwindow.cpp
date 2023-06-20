@@ -284,13 +284,18 @@ void MainWindow::on_actionAbout_A_triggered()
     about->m_szCopyrightStartTime = "2020";
     about->m_szVersionRevision = RabbitRemoteControl_REVISION;
     QString szInfo;
-    szInfo = tr("### Plugin") + "\n";
-    m_Client.EnumPlugins([&szInfo](const QString& id, CPluginClient* pPlug)->int{
-        szInfo += "- " + pPlug->Protocol() + "-" + pPlug->DisplayName()
-                  + ": " + pPlug->Description() + "\n";
+    
+    m_Client.EnumPlugins([&szInfo](const QString& id, CPluginClient* pPlugin)->int{
+        szInfo += "#### " + pPlugin->DisplayName() + "\n"
+                  + pPlugin->Description() + "\n\r";
+        if(!pPlugin->Details().isEmpty())
+            szInfo += pPlugin->Details() + "\n";
         return 0;
     });
-    about->m_szInfo = szInfo;
+    if(!szInfo.isEmpty())
+        szInfo = tr("### Plugin") + "\n" + szInfo;
+    qDebug(App) << "Info:" << szInfo;
+    about->m_szDetails = szInfo;
     if(about->isHidden())
     {
 #ifdef BUILD_QUIWidget

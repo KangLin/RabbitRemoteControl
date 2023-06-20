@@ -4,17 +4,17 @@
 <context>
     <name>CConnectFreeRDP</name>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="131"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="132"/>
         <source>freerdp_connect connect to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="135"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="136"/>
         <source> fail</source>
         <translation> 失败</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="141"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="142"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>
@@ -223,7 +223,7 @@
         <translation>禁止</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="451"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="454"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation>在远程计算机上使用本计算机的麦克风</translation>
     </message>
@@ -383,8 +383,23 @@
     </message>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="38"/>
-        <source>RDP(Windows remote desktop protol): Access remote desktops such as windows.</source>
+        <source>RDP(Windows remote desktop Protocol): Access remote desktops such as windows.</source>
         <translation>RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="54"/>
+        <source>- FreeRDP version:</source>
+        <translation>- FreeRDP 版本：</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="57"/>
+        <source>- Build version:</source>
+        <translation>- 编译版本：</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="62"/>
+        <source>- Build date:</source>
+        <translation>- 编译日期：</translation>
     </message>
 </context>
 </TS>
