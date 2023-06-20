@@ -75,7 +75,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: cache-installed-msvc
+          key: installed-msvc
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v7.4
@@ -114,7 +114,7 @@ jobs:
             git clone https://github.com/FreeRDP/FreeRDP.git
             ; git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
-            git checkout -b 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658 0b16fcef18c9ec0f5ffb14c3d9357fe8acdf7658
+            git checkout -b 04fa5b3033722df4fba45c02056be8e7cb45d7c6 04fa5b3033722df4fba45c02056be8e7cb45d7c6
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
