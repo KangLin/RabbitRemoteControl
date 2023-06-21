@@ -242,7 +242,6 @@ jobs:
             -f "`pwd`/update_linux.xml" \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb" \
             --md5 "${MD5SUM}" \
-            --pf rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb \
             -m "v${{env.RabbitRemoteControl_VERSION}}"
 
       - name: dump core
