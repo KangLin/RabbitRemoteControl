@@ -44,7 +44,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.27
-      VCPKGGITCOMMITID: 5d2a0a9814db499f6ba2e847ca7ab5912badcdbf
+      VCPKGGITCOMMITID: 1286cac8751e13bb289061b7e3b89eb4c3f613a2
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       artifact_name: build_msvc
 
