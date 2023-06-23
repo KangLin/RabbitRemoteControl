@@ -20,7 +20,7 @@ jobs:
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
-            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport
+            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qtwebchannel qtwebsockets qtwebview qtpositioning 
 
           - qt_version: 5.15.2
             triplet: x64-windows

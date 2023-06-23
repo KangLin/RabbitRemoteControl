@@ -19,7 +19,7 @@ jobs:
         qt_version: [6.5.1, 5.15.2, 5.12.12]
         include:
           - qt_version: 6.5.1
-            qt_modules: qtscxml qtmultimedia qtserialport qtimageformats
+            qt_modules: qtscxml qtmultimedia qtserialport qtimageformats qtwebchannel qtwebsockets qtwebview
 
           - qt_version: 5.15.2
 
