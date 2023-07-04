@@ -42,8 +42,8 @@ Q_SIGNALS:
     
 private Q_SLOTS:
     void on_actionExit_E_triggered();
-    void on_actionAbout_A_triggered();
-    void on_actionUpdate_U_triggered();
+    void on_actionAbout_triggered();
+    void on_actionUpdate_triggered();
         
     void on_actionStyle_S_triggered();
 
@@ -82,8 +82,9 @@ private Q_SLOTS:
     void slotInformation(const QString& szInfo);
     void slotUpdateName(const QString& szName);
     
-    void on_actionShow_TabBar_B_triggered();
-    void slotShowTabBar(bool bShow);
+    void on_actionShow_TabBar_B_triggered(bool bShow);
+    void on_actionMain_menu_bar_M_triggered(bool checked);
+    void on_actionStatus_bar_S_triggered(bool checked);
 
     void on_actionScreenshot_triggered();
     void on_actionSettings_triggered();
@@ -167,7 +168,7 @@ private Q_SLOTS:
     void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
     void slotShowSystemTryIcon();
-
+    
 private:
     QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };

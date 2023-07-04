@@ -59,9 +59,8 @@ MainWindow::MainWindow(QWidget *parent)
     bool check = false;
 
     ui->setupUi(this);
-    
-    ui->menuRemote->insertMenu(ui->actionSettings,
-                               RabbitCommon::CTools::GetLogMenu(this));
+
+    ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
 
     setFocusPolicy(Qt::NoFocus);
 
@@ -132,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 #ifdef HAVE_UPDATE
     CFrmUpdater updater;
-    ui->actionUpdate_U->setIcon(updater.windowIcon());
+    ui->actionUpdate->setIcon(updater.windowIcon());
 #endif
 
     //TODO: Change view
@@ -258,6 +257,9 @@ MainWindow::MainWindow(QWidget *parent)
             restoreState(state);
         ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
     }
+    
+    ui->actionMain_menu_bar_M->setChecked(!menuBar()->isHidden());
+    ui->actionStatus_bar_S->setChecked(!statusBar()->isHidden());
 
     LoadConnectLasterClose();
 }
@@ -271,7 +273,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionAbout_A_triggered()
+void MainWindow::on_actionAbout_triggered()
 {
 #ifdef HAVE_ABOUT
     CDlgAbout *about = new CDlgAbout(this);
@@ -316,7 +318,7 @@ void MainWindow::on_actionAbout_A_triggered()
 #endif
 }
 
-void MainWindow::on_actionUpdate_U_triggered()
+void MainWindow::on_actionUpdate_triggered()
 {
 #ifdef HAVE_UPDATE
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
@@ -419,7 +421,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     if(p)
     {
         check = connect(m_pFullScreenToolBar, SIGNAL(sigShowTabBar(bool)),
-                        SLOT(slotShowTabBar(bool)));
+                        SLOT(on_actionShow_TabBar_B_triggered(bool)));
         Q_ASSERT(check);
     }
     m_pFullScreenToolBar->show();
@@ -914,16 +916,21 @@ void MainWindow::on_actionSend_ctl_alt_del_triggered()
         m_pView->slotSystemCombination();
 }
 
-void MainWindow::on_actionShow_TabBar_B_triggered()
-{
-    slotShowTabBar(ui->actionShow_TabBar_B->isChecked());
-}
-
-void MainWindow::slotShowTabBar(bool bShow)
+void MainWindow::on_actionShow_TabBar_B_triggered(bool bShow)
 {
     CViewTable* p = dynamic_cast<CViewTable*>(m_pView);
     if(p)
         p->ShowTabBar(bShow);
+}
+
+void MainWindow::on_actionMain_menu_bar_M_triggered(bool checked)
+{
+    menuBar()->setVisible(checked);
+}
+
+void MainWindow::on_actionStatus_bar_S_triggered(bool checked)
+{
+    statusBar()->setVisible(checked);
 }
 
 void MainWindow::on_actionScreenshot_triggered()
@@ -1152,6 +1159,12 @@ void MainWindow::slotSystemTrayIconTypeChanged()
     case CParameterApp::SystemTrayIconMenuType::RecentOpen:
         m_TrayIcon->setContextMenu(m_pRecentMenu);
         break;
+    case CParameterApp::SystemTrayIconMenuType::View:
+        m_TrayIcon->setContextMenu(ui->menuView);
+        break;
+    case CParameterApp::SystemTrayIconMenuType::Tools:
+        m_TrayIcon->setContextMenu(ui->menuTools);
+        break;
     case CParameterApp::SystemTrayIconMenuType::Favorite:
     case CParameterApp::SystemTrayIconMenuType::No:
         m_TrayIcon->hide();
@@ -1163,3 +1176,6 @@ void MainWindow::slotShowSystemTryIcon()
 {
     slotSystemTrayIconTypeChanged();
 }
+
+
+

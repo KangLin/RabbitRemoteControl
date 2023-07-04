@@ -27,12 +27,12 @@
      <height>27</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHelp_H">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help(&amp;H)</string>
     </property>
-    <addaction name="actionAbout_A"/>
-    <addaction name="actionUpdate_U"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionUpdate"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -57,13 +57,9 @@
     <addaction name="menuZoom"/>
     <addaction name="separator"/>
     <addaction name="actionShow_TabBar_B"/>
-    <addaction name="separator"/>
-    <addaction name="actionScreenshot"/>
-    <addaction name="actionSend_ctl_alt_del"/>
-    <addaction name="separator"/>
-    <addaction name="actionStyle_S"/>
-    <addaction name="separator"/>
     <addaction name="actionToolBar_T"/>
+    <addaction name="actionStatus_bar_S"/>
+    <addaction name="actionMain_menu_bar_M"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuRemote">
@@ -88,13 +84,23 @@
     <addaction name="actionAdd_to_favorite"/>
     <addaction name="separator"/>
     <addaction name="actionCurrent_connect_parameters"/>
-    <addaction name="actionSettings"/>
     <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools(&amp;T)</string>
+    </property>
+    <addaction name="actionScreenshot"/>
+    <addaction name="actionSend_ctl_alt_del"/>
+    <addaction name="separator"/>
+    <addaction name="actionStyle_S"/>
+    <addaction name="actionSettings"/>
+   </widget>
    <addaction name="menuRemote"/>
    <addaction name="menuView"/>
-   <addaction name="menuHelp_H"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -122,7 +128,7 @@
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
   </widget>
-  <action name="actionAbout_A">
+  <action name="actionAbout">
    <property name="icon">
     <iconset theme="help-about">
      <normaloff>.</normaloff>.</iconset>
@@ -143,7 +149,7 @@
     <string>About</string>
    </property>
   </action>
-  <action name="actionUpdate_U">
+  <action name="actionUpdate">
    <property name="icon">
     <iconset theme="system-software-update">
      <normaloff>.</normaloff>.</iconset>
@@ -544,6 +550,46 @@
    </property>
    <property name="whatsThis">
     <string>Open the list of connections(&amp;O)</string>
+   </property>
+  </action>
+  <action name="actionMain_menu_bar_M">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Main menu bar(&amp;M)</string>
+   </property>
+   <property name="iconText">
+    <string>Main menu bar</string>
+   </property>
+   <property name="toolTip">
+    <string>Main menu bar</string>
+   </property>
+   <property name="statusTip">
+    <string>Main menu bar</string>
+   </property>
+   <property name="whatsThis">
+    <string>Main menu bar</string>
+   </property>
+  </action>
+  <action name="actionStatus_bar_S">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Status bar(&amp;S)</string>
+   </property>
+   <property name="iconText">
+    <string>Status bar</string>
+   </property>
+   <property name="toolTip">
+    <string>Status bar</string>
+   </property>
+   <property name="statusTip">
+    <string>Status bar</string>
+   </property>
+   <property name="whatsThis">
+    <string>Status bar</string>
    </property>
   </action>
  </widget>

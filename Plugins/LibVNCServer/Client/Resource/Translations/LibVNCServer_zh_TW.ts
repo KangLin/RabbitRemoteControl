@@ -137,6 +137,11 @@
         <translation>0=最差,9=最好</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsLibVnc.ui" line="401"/>
+        <source>Cancel(&amp;C)</source>
+        <translation type="unfinished">取消(&amp;C)</translation>
+    </message>
+    <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="208"/>
         <source>Compress level:</source>
         <translation>壓縮級別：</translation>
@@ -172,26 +177,25 @@
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="401"/>
         <source>Cancle(&amp;C)</source>
-        <translation>取消(&amp;C)</translation>
+        <translation type="vanished">取消(&amp;C)</translation>
     </message>
 </context>
 <context>
     <name>CPluginLibVNCServer</name>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="18"/>
-        <location filename="../../PluginLibVNCServer.cpp" line="23"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="19"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="24"/>
         <source>LibVNCServer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="28"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="29"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="29"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="30"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一個使用 RFB（遠程幀緩存)協議的程序集</translation>
     </message>

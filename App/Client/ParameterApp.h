@@ -83,7 +83,9 @@ public:
         No,
         RecentOpen,
         Favorite,
-        Remote
+        Remote,
+        View,
+        Tools
     };
     Q_ENUM(SystemTrayIconMenuType)
     SystemTrayIconMenuType GetSystemTrayIconMenuType() const;
