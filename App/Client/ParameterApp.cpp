@@ -13,14 +13,30 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bSaveMainWindowStatus(true),
     m_TabPosition(QTabWidget::North),
     m_nRecentMenuMaxCount(10),
-    m_SystemTrayIconType(SystemTrayIconMenuType::Remote),
+    m_SystemTrayIconType(SystemTrayIconMenuType::MenuBar),
     m_bEnableSystemTrayIcon(true),
     m_bOpenLasterClose(false),
-    m_bFavoriteEdit(false)
+    m_bFavoriteEdit(false),
+    m_bStatusBar(true),
+    m_bTabBar(true),
+    m_bMenuBar(true)
 {
     m_szScreenShotPath = RabbitCommon::CDir::Instance()->GetDirUserImage()
             + QDir::separator()
             + "ScreenSlot";
+}
+
+CParameterApp::~CParameterApp()
+{
+    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
+                  QSettings::IniFormat);
+    if(GetSaveMainWindowStatus())
+    {
+        set.setValue("MainWindow/Status/Bar", GetStatusBar());
+        set.setValue("MainWindow/TabBar", GetTabBar());
+        set.setValue("MainWindow/MenuBar", GetMenuBar());
+        // Geometry and status is saved MainWindow::closeEvent()
+    }
 }
 
 int CParameterApp::Load()
@@ -58,6 +74,16 @@ int CParameterApp::Load()
                                   GetOpenLasterClose()).toBool());
     SetFavoriteEdit(set.value("MainWindow/Favorite/Double/Edit",
                               GetFavoriteEdit()).toBool());
+
+    SetStatusBar(set.value("MainWindow/Status/Bar",
+                           GetStatusBar()).toBool());
+    
+    SetTabBar(set.value("MainWindow/TabBar",
+                           GetTabBar()).toBool());
+    
+    SetMenuBar(set.value("MainWindow/MenuBar",
+                        GetMenuBar()).toBool());
+
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Load(set);
 #endif
@@ -81,7 +107,7 @@ int CParameterApp::Save()
                  static_cast<int>(GetSystemTrayIconMenuType()));
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
-    
+
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Save(set);
 #endif
@@ -225,4 +251,34 @@ void CParameterApp::SetScreenShotEndAction(ScreenShotEndAction newScreenShotEndA
         return;
     m_ScreenShotEndAction = newScreenShotEndAction;
     emit sigScreenShotEndActionChanged();
+}
+
+bool CParameterApp::GetStatusBar() const
+{
+    return m_bStatusBar;
+}
+
+void CParameterApp::SetStatusBar(bool checked)
+{
+    m_bStatusBar = checked;
+}
+
+bool CParameterApp::GetTabBar() const
+{
+    return m_bTabBar;
+}
+
+void CParameterApp::SetTabBar(bool checked)
+{
+    m_bTabBar = checked;
+}
+
+bool CParameterApp::GetMenuBar() const
+{
+    return m_bMenuBar;
+}
+
+void CParameterApp::SetMenuBar(bool checked)
+{
+    m_bMenuBar = checked;
 }

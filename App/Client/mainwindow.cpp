@@ -256,10 +256,15 @@ MainWindow::MainWindow(QWidget *parent)
         if(!state.isEmpty())
             restoreState(state);
         ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
+        ui->actionStatus_bar_S->setChecked(m_Parameter.GetStatusBar());
+        statusBar()->setVisible(m_Parameter.GetStatusBar());
+        ui->actionShow_TabBar_B->setChecked(m_Parameter.GetTabBar());
+        on_actionShow_TabBar_B_triggered(m_Parameter.GetTabBar());
+        menuBar()->setVisible(m_Parameter.GetMenuBar());
+        ui->actionMain_menu_bar_M->setChecked(m_Parameter.GetMenuBar());
     }
     
     ui->actionMain_menu_bar_M->setChecked(!menuBar()->isHidden());
-    ui->actionStatus_bar_S->setChecked(!statusBar()->isHidden());
 
     slotEnableSystemTrayIcon();
 
@@ -866,6 +871,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     {
         set.setValue("MainWindow/Status/Geometry", saveGeometry());
         set.setValue("MainWindow/Status/State", saveState());
+        // Other parameters of main windows is saved CParameterApp::~CParameterApp()
     } else {
         set.remove("MainWindow/Status/Geometry");
         set.remove("MainWindow/Status/State");
@@ -922,17 +928,22 @@ void MainWindow::on_actionShow_TabBar_B_triggered(bool bShow)
 {
     CViewTable* p = dynamic_cast<CViewTable*>(m_pView);
     if(p)
+    {
         p->ShowTabBar(bShow);
+        m_Parameter.SetTabBar(bShow);
+    }
 }
 
 void MainWindow::on_actionMain_menu_bar_M_triggered(bool checked)
 {
     menuBar()->setVisible(checked);
+    m_Parameter.SetMenuBar(checked);
 }
 
 void MainWindow::on_actionStatus_bar_S_triggered(bool checked)
 {
     statusBar()->setVisible(checked);
+    m_Parameter.SetStatusBar(checked);
 }
 
 void MainWindow::on_actionScreenshot_triggered()

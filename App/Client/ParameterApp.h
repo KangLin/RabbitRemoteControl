@@ -10,6 +10,7 @@ class CParameterApp : public QObject
 
 public:
     explicit CParameterApp(QObject *parent = nullptr);
+    virtual ~CParameterApp();
 
 public Q_SLOTS:
     virtual int Load();
@@ -117,6 +118,27 @@ Q_SIGNALS:
 private:
     bool m_bFavoriteEdit;
     Q_PROPERTY(bool FavoriteEdit READ GetFavoriteEdit WRITE SetFavoriteEdit NOTIFY sigFavoriteEditChanged)
+    
+public:
+    bool GetStatusBar() const;
+    void SetStatusBar(bool checked);
+private:
+    bool m_bStatusBar;
+    Q_PROPERTY(bool StatusBar READ GetStatusBar WRITE SetStatusBar)
+    
+public:
+    bool GetTabBar() const;
+    void SetTabBar(bool checked);
+private:
+    bool m_bTabBar;
+    Q_PROPERTY(bool TabBar READ GetTabBar WRITE SetTabBar)
+    
+public:
+    bool GetMenuBar() const;
+    void SetMenuBar(bool checked);
+private:
+    bool m_bMenuBar;
+    Q_PROPERTY(bool MenuBar READ GetMenuBar WRITE SetMenuBar)
 };
 
 #endif // CPARAMETERAPP_H
