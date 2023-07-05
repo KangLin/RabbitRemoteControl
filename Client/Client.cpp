@@ -61,7 +61,10 @@ int CClient::LoadPlugins()
         if(p)
         {
             if(m_Plugins.find(p->Id()) == m_Plugins.end())
+            {
+                qInfo(Client) << "Success: Load plugin" << p->Name();
                 AppendPlugin(p);
+            }
             else
                 qCritical(Client) << "The plugin" << p->Name() << " is exist.";
         }
@@ -120,7 +123,11 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
             if(p)
             {
                 if(m_Plugins.find(p->Id()) == m_Plugins.end())
+                {
+                    qInfo(Client) << "Success: Load plugin"
+                                  << p->Name() << ":" << szPlugins;
                     AppendPlugin(p);
+                }
                 else
                     qCritical(Client) << "The plugin [" << p->Name() << "] is exist.";
             }

@@ -14,8 +14,7 @@
    <string>Rabbit Remote Control</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="app">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset theme="app"/>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
@@ -24,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">

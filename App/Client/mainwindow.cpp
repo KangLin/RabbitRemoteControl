@@ -1068,6 +1068,7 @@ void MainWindow::on_actionOpenListConnections_triggered()
 
     QDialog d;
     d.resize(540, 400);
+    d.setWindowIcon(windowIcon());
     QGridLayout* pLayout = new QGridLayout(&d);
     if(pLayout){
         pLayout->addWidget(p);
