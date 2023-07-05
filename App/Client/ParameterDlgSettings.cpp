@@ -87,20 +87,19 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     }
     
     ui->sbRecentMenuMaxCount->setValue(m_pParameters->GetRecentMenuMaxCount());
-    
-    ui->rbSystemTrayIconFavorite->hide();
+
     switch (m_pParameters->GetSystemTrayIconMenuType()) {
     case CParameterApp::SystemTrayIconMenuType::No:
         ui->rbSystemTrayIconNo->setChecked(true);
+        break;
+    case CParameterApp::SystemTrayIconMenuType::MenuBar:
+        ui->rbMenuBar->setChecked(true);
         break;
     case CParameterApp::SystemTrayIconMenuType::RecentOpen:
         ui->rbSystemTrayIconRecentOpen->setChecked(true);
         break;
     case CParameterApp::SystemTrayIconMenuType::Remote:
         ui->rbSystemTrayIconRemote->setChecked(true);
-        break;
-    case CParameterApp::SystemTrayIconMenuType::Favorite:
-        ui->rbSystemTrayIconFavorite->setChecked(true);
         break;
     }
     ui->cbShowSystemTrayIcon->setChecked(m_pParameters->GetEnableSystemTrayIcon());
@@ -138,16 +137,17 @@ void CParameterDlgSettings::on_pbOk_clicked()
 
     m_pParameters->SetRecentMenuMaxCount(ui->sbRecentMenuMaxCount->value());
     
+    //NOTE: The order cannot be changed
+    m_pParameters->SetEnableSystemTrayIcon(ui->cbShowSystemTrayIcon->isChecked());
     if(ui->rbSystemTrayIconNo->isChecked())
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::No);
+    if(ui->rbMenuBar->isChecked())
+        m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::MenuBar);
     if(ui->rbSystemTrayIconRecentOpen->isChecked())
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::RecentOpen);
     if(ui->rbSystemTrayIconRemote->isChecked())
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Remote);
-    if(ui->rbSystemTrayIconFavorite->isChecked())
-        m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Favorite);
     
-    m_pParameters->SetEnableSystemTrayIcon(ui->cbShowSystemTrayIcon->isChecked());
     m_pParameters->SetFavoriteEdit(ui->cbFavoriteDoubleEdit->isChecked());
 
     accept();

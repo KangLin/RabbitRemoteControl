@@ -265,7 +265,7 @@
         <translation>最近打开文件最大数：</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="320"/>
+        <location filename="../../ParameterDlgSettings.ui" line="334"/>
         <source>No</source>
         <translation>无</translation>
     </message>
@@ -300,7 +300,7 @@
         <translation>标签位置</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="155"/>
+        <location filename="../../ParameterDlgSettings.ui" line="168"/>
         <source>North</source>
         <translation>上</translation>
     </message>
@@ -310,12 +310,12 @@
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="168"/>
+        <location filename="../../ParameterDlgSettings.ui" line="194"/>
         <source>West</source>
         <translation>左</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="194"/>
+        <location filename="../../ParameterDlgSettings.ui" line="155"/>
         <source>East</source>
         <translation>右</translation>
     </message>
@@ -331,18 +331,22 @@
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="327"/>
+        <source>Main menu bar</source>
+        <translation type="unfinished">主菜单条</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterDlgSettings.ui" line="320"/>
         <source>Remote</source>
         <translation>远程菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="334"/>
+        <location filename="../../ParameterDlgSettings.ui" line="341"/>
         <source>Recent open</source>
         <translation>最近打开菜单</translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.ui" line="341"/>
         <source>Favorite</source>
-        <translation>收藏夹</translation>
+        <translation type="vanished">收藏夹</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="230"/>
@@ -432,7 +436,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="202"/>
-        <location filename="../../mainwindow.cpp" line="367"/>
+        <location filename="../../mainwindow.cpp" line="369"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -674,9 +678,9 @@
         <location filename="../../mainwindow.ui" line="208"/>
         <location filename="../../mainwindow.ui" line="211"/>
         <location filename="../../mainwindow.ui" line="214"/>
-        <location filename="../../mainwindow.cpp" line="368"/>
-        <location filename="../../mainwindow.cpp" line="369"/>
         <location filename="../../mainwindow.cpp" line="370"/>
+        <location filename="../../mainwindow.cpp" line="371"/>
+        <location filename="../../mainwindow.cpp" line="372"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -685,20 +689,20 @@
         <translation type="vanished">ICE 信令状态</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="395"/>
+        <location filename="../../mainwindow.cpp" line="397"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="396"/>
-        <location filename="../../mainwindow.cpp" line="397"/>
         <location filename="../../mainwindow.cpp" line="398"/>
+        <location filename="../../mainwindow.cpp" line="399"/>
+        <location filename="../../mainwindow.cpp" line="400"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="603"/>
-        <location filename="../../mainwindow.cpp" line="621"/>
+        <location filename="../../mainwindow.cpp" line="605"/>
+        <location filename="../../mainwindow.cpp" line="623"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
@@ -706,7 +710,7 @@
         <location filename="../../mainwindow.ui" line="349"/>
         <location filename="../../mainwindow.ui" line="352"/>
         <location filename="../../mainwindow.ui" line="355"/>
-        <location filename="../../mainwindow.cpp" line="613"/>
+        <location filename="../../mainwindow.cpp" line="615"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
@@ -716,32 +720,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="298"/>
+        <location filename="../../mainwindow.cpp" line="300"/>
         <source>### Plugin</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="615"/>
+        <location filename="../../mainwindow.cpp" line="617"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="703"/>
+        <location filename="../../mainwindow.cpp" line="705"/>
         <source>Connecting to </source>
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="729"/>
+        <location filename="../../mainwindow.cpp" line="731"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="756"/>
+        <location filename="../../mainwindow.cpp" line="758"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="765"/>
+        <location filename="../../mainwindow.cpp" line="767"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
@@ -754,7 +758,7 @@
         <translation type="vanished">ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="947"/>
+        <location filename="../../mainwindow.cpp" line="949"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>

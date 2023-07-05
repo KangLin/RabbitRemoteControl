@@ -82,10 +82,10 @@ public:
     {
         No,
         RecentOpen,
-        Favorite,
         Remote,
         View,
-        Tools
+        Tools,
+        MenuBar
     };
     Q_ENUM(SystemTrayIconMenuType)
     SystemTrayIconMenuType GetSystemTrayIconMenuType() const;
@@ -94,7 +94,7 @@ public:
     int SetEnableSystemTrayIcon(bool bShow);
 Q_SIGNALS:
     void sigSystemTrayIconTypeChanged();
-    void sigShowSystemTrayIcon();
+    void sigEnableSystemTrayIcon();
 private:
     SystemTrayIconMenuType m_SystemTrayIconType;
     bool m_bEnableSystemTrayIcon;

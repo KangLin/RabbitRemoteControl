@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>461</width>
+    <width>484</width>
     <height>501</height>
    </rect>
   </property>
@@ -143,6 +143,19 @@
           <string>Tab position</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="3">
+           <widget class="QRadioButton" name="rbEast">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>East</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QRadioButton" name="rbNorth">
             <property name="sizePolicy">
@@ -153,19 +166,6 @@
             </property>
             <property name="text">
              <string>North</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QRadioButton" name="rbWest">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>West</string>
             </property>
            </widget>
           </item>
@@ -182,8 +182,8 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="3">
-           <widget class="QRadioButton" name="rbEast">
+          <item row="0" column="2">
+           <widget class="QRadioButton" name="rbWest">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -191,7 +191,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>East</string>
+             <string>West</string>
             </property>
            </widget>
           </item>
@@ -313,7 +313,21 @@
          <property name="title">
           <string>System tray icon context menu</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="2">
+           <widget class="QRadioButton" name="rbSystemTrayIconRemote">
+            <property name="text">
+             <string>Remote</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="rbMenuBar">
+            <property name="text">
+             <string>Main menu bar</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QRadioButton" name="rbSystemTrayIconNo">
             <property name="text">
@@ -321,24 +335,10 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QRadioButton" name="rbSystemTrayIconRemote">
-            <property name="text">
-             <string>Remote</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
+          <item row="0" column="3">
            <widget class="QRadioButton" name="rbSystemTrayIconRecentOpen">
             <property name="text">
              <string>Recent open</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QRadioButton" name="rbSystemTrayIconFavorite">
-            <property name="text">
-             <string>Favorite</string>
             </property>
            </widget>
           </item>

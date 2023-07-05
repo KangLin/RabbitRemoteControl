@@ -214,8 +214,8 @@ MainWindow::MainWindow(QWidget *parent)
                     this,
                     SLOT(slotSystemTrayIconTypeChanged()));
     Q_ASSERT(check);
-    check = connect(&m_Parameter, SIGNAL(sigShowSystemTrayIcon()),
-                    this, SLOT(slotShowSystemTryIcon()));
+    check = connect(&m_Parameter, SIGNAL(sigEnableSystemTrayIcon()),
+                    this, SLOT(slotEnableSystemTrayIcon()));
     Q_ASSERT(check);
     m_Parameter.Load();
     slotShortCut();
@@ -260,6 +260,8 @@ MainWindow::MainWindow(QWidget *parent)
     
     ui->actionMain_menu_bar_M->setChecked(!menuBar()->isHidden());
     ui->actionStatus_bar_S->setChecked(!statusBar()->isHidden());
+
+    slotEnableSystemTrayIcon();
 
     LoadConnectLasterClose();
 }
@@ -1111,6 +1113,8 @@ void MainWindow::dropEvent(QDropEvent *event)
 
 void MainWindow::slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
+    //qDebug(App) << "MainWindow::slotSystemTrayIconActivated";
+
     Q_UNUSED(reason)
 #if defined(Q_OS_ANDROID)
     showMaximized();
@@ -1131,28 +1135,47 @@ void MainWindow::slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason r
 
 void MainWindow::slotSystemTrayIconTypeChanged()
 {
-    if(!m_Parameter.GetEnableSystemTrayIcon())
+    //qDebug(App) << "MainWindow::slotSystemTrayIconTypeChanged:" << m_Parameter.GetEnableSystemTrayIcon();
+    if(!QSystemTrayIcon::isSystemTrayAvailable())
     {
-        m_TrayIcon.reset();
+        qWarning(App) << "System tray is not available";
         return;
     }
+    
+    if(!m_Parameter.GetEnableSystemTrayIcon())
+    {
+        qDebug(App) << "Disable system tray icon";
+        return;
+    }
+
+    if(m_TrayIcon)
+        m_TrayIcon.reset();
 
     m_TrayIcon = QSharedPointer<QSystemTrayIcon>(new QSystemTrayIcon(this));
     if(QSystemTrayIcon::isSystemTrayAvailable())
     {
         bool check = connect(m_TrayIcon.data(),
-                        SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                        this,
-          SLOT(slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
+                             SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                             this,
+                             SLOT(slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
         Q_ASSERT(check);
         m_TrayIcon->setIcon(this->windowIcon());
         m_TrayIcon->setToolTip(windowTitle());
         m_TrayIcon->show();
     } else
         qWarning(App) << "System tray is not available";
-    
+
     switch (m_Parameter.GetSystemTrayIconMenuType())
     {
+    case CParameterApp::SystemTrayIconMenuType::MenuBar:
+    {
+        QMenu* pMenu = new QMenu(this);
+        pMenu->addMenu(ui->menuRemote);
+        pMenu->addMenu(ui->menuView);
+        pMenu->addMenu(ui->menuTools);
+        m_TrayIcon->setContextMenu(pMenu);
+        break;
+    }
     case CParameterApp::SystemTrayIconMenuType::Remote:
         m_TrayIcon->setContextMenu(ui->menuRemote);
         break;
@@ -1165,17 +1188,19 @@ void MainWindow::slotSystemTrayIconTypeChanged()
     case CParameterApp::SystemTrayIconMenuType::Tools:
         m_TrayIcon->setContextMenu(ui->menuTools);
         break;
-    case CParameterApp::SystemTrayIconMenuType::Favorite:
     case CParameterApp::SystemTrayIconMenuType::No:
-        m_TrayIcon->hide();
+        m_TrayIcon->setContextMenu(nullptr);
         break;
     }   
 }
 
-void MainWindow::slotShowSystemTryIcon()
+void MainWindow::slotEnableSystemTrayIcon()
 {
-    slotSystemTrayIconTypeChanged();
+    //qDebug(App) << "MainWindow::slotEnableSystemTryIcon()";
+    if(m_TrayIcon)
+    {
+        if(!m_Parameter.GetEnableSystemTrayIcon())
+            m_TrayIcon.reset();
+    } else
+        slotSystemTrayIconTypeChanged();
 }
-
-
-

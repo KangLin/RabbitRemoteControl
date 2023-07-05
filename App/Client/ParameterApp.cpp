@@ -46,12 +46,14 @@ int CParameterApp::Load()
 
     SetRecentMenuMaxCount(set.value("MainWindow/Recent/Max",
                                     GetRecentMenuMaxCount()).toInt());
-
+    
+    //NOTE: The order cannot be changed
+    SetEnableSystemTrayIcon(set.value("MainWindow/SystemTrayIcon/Enable",
+                                      GetEnableSystemTrayIcon()).toBool());
     SetSystemTrayIconMenuType(static_cast<SystemTrayIconMenuType>(
                               set.value("MainWindow/SystemTrayIcon/MenuType",
                        static_cast<int>(GetSystemTrayIconMenuType())).toInt()));
-    SetEnableSystemTrayIcon(set.value("MainWindow/SystemTrayIcon/Enable",
-                                    GetEnableSystemTrayIcon()).toBool());
+    
     SetOpenLasterClose(set.value("MainWindow/OpenLasterClose",
                                   GetOpenLasterClose()).toBool());
     SetFavoriteEdit(set.value("MainWindow/Favorite/Double/Edit",
@@ -74,9 +76,9 @@ int CParameterApp::Save()
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
     set.setValue("MainWindow/Tab/Position", GetTabPosition());
     set.setValue("MainWindow/Recent/Max", GetRecentMenuMaxCount());
+    set.setValue("MainWindow/SystemTrayIcon/Enable", GetEnableSystemTrayIcon());
     set.setValue("MainWindow/SystemTrayIcon/MenuType",
                  static_cast<int>(GetSystemTrayIconMenuType()));
-    set.setValue("MainWindow/SystemTrayIcon/Enable", GetEnableSystemTrayIcon());
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
     
@@ -145,6 +147,8 @@ CParameterApp::SystemTrayIconMenuType CParameterApp::GetSystemTrayIconMenuType()
 
 void CParameterApp::SetSystemTrayIconMenuType(SystemTrayIconMenuType newSystemTrayIconType)
 {
+    if(m_SystemTrayIconType == newSystemTrayIconType)
+        return;
     m_SystemTrayIconType = newSystemTrayIconType;
     emit sigSystemTrayIconTypeChanged();
 }
@@ -156,8 +160,10 @@ bool CParameterApp::GetEnableSystemTrayIcon() const
 
 int CParameterApp::SetEnableSystemTrayIcon(bool bShow)
 {
+    if(m_bEnableSystemTrayIcon == bShow)
+        return 0;
     m_bEnableSystemTrayIcon = bShow;
-    emit sigShowSystemTrayIcon();
+    emit sigEnableSystemTrayIcon();
     return 0;
 }
 
