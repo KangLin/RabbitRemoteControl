@@ -67,7 +67,7 @@ before_build:
   - if not exist "%OTHER_SOURCE%" ( mkdir "%OTHER_SOURCE%" )
 
   - cd %OTHER_SOURCE%
-  - set CMAKE_VERSION=3.25.0
+  - set CMAKE_VERSION=3.26.4
   - if not exist cmake-%CMAKE_VERSION%-windows-i386 (curl -fsSL -o cmake-%CMAKE_VERSION%-windows-i386.zip https://github.com/Kitware/CMake/releases/download/v%CMAKE_VERSION%/cmake-%CMAKE_VERSION%-windows-i386.zip && 7z x cmake-%CMAKE_VERSION%-windows-i386.zip)
   - cd cmake-%CMAKE_VERSION%-windows-i386
   - set PATH="%CD%/bin";%PATH%
@@ -121,15 +121,6 @@ before_build:
   - cmake --build . --config Release --target install
 
   #- cd "%OTHER_SOURCE%"
-  #- if not exist Log4Qt (git clone https://github.com/KangLin/Log4Qt.git)
-  #- cd Log4Qt
-  #- cmake -E make_directory build
-  #- cd build
-  #- cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  #- cmake --build . --config Release
-  #- cmake --build . --config Release --target install
-
-  #- cd "%OTHER_SOURCE%"
   #- if not exist qxmpp (git clone -b v1.4.0 https://github.com/qxmpp-project/qxmpp.git)
   #- cd qxmpp
   #- cmake -E make_directory build
@@ -156,17 +147,18 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR="%INSTALL_DIR%/lib/cmake" -DLog4Qt_DIR="%INSTALL_DIR%/lib/cmake/Log4Qt" -DQXmpp_DIR="%INSTALL_DIR%/lib/cmake/qxmpp" -DQtService_DIR="%INSTALL_DIR%/lib/cmake/qtservice" -DFreeRDP-Server_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP-Server2 -DFreeRDP-Client_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP-Client2 -DFreeRDP_DIR="%INSTALL_DIR%/lib/cmake/FreeRDP2 -DWinPR_DIR="%INSTALL_DIR%/lib/cmake/WinPR2  -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON #-DLibDataChannel_DIR="%INSTALL_DIR%/share/cmake/LibDataChannel"
+  - cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%cd%/install" -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" -Dtigervnc_DIR="%INSTALL_DIR%/lib/cmake" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" -DBUILD_FREERDP=ON #-DLibDataChannel_DIR="%INSTALL_DIR%/share/cmake/LibDataChannel"
   - cmake --build . --config Release
-  - cmake --build . --config Release --target install-runtime
+  - cmake --build . --config Release --target install
   - echo "xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin"
   - xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin
+  - xcopy /Y %INSTALL_DIR%\bin\*.dll install\bin
   - call "C:\Program Files (x86)\NSIS\makensis.exe" Install.nsi
-  - copy RabbitRemoteControl_setup_%RabbitRemoteControlVersion%.exe RabbitRemoteControl_setup_windowsxp_%RabbitRemoteControlVersion%.exe
+  - copy RabbitRemoteControl_setup_%RabbitRemoteControlVersion%.exe RabbitRemoteControl_%RabbitRemoteControlVersion%_windowsxp_setup.exe
   #- call "install\bin\RabbitRemoteControlApp.exe" -f "update_windows.xml" --pf RabbitRemoteControl_setup_%RabbitRemoteControlVersion%.exe -m "%RabbitRemoteControlVersion%"
 
 artifacts:
-  - path: build\RabbitRemoteControl_setup_windowsxp_%RabbitRemoteControlVersion%.exe
+  - path: build\RabbitRemoteControl_%RabbitRemoteControlVersion%_windowsxp_setup.exe
 
   #- path: build\update_windows.xml
 

@@ -93,7 +93,7 @@ jobs:
           cd vcpkg
           git checkout -b ${{env.VCPKGGITCOMMITID}} ${{env.VCPKGGITCOMMITID}}
           ./bootstrap-vcpkg.sh
-          vcpkg --triplet ${{ matrix.VCPKG_TARGET_TRIPLET }} install zlib openssl libpng libjpeg-turbo libdatachannel
+          vcpkg --triplet ${{ matrix.VCPKG_TARGET_TRIPLET }} install zlib openssl libpng libjpeg-turbo
 
       - name: Cache installed
         uses: actions/cache@v2

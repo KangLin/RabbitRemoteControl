@@ -16,8 +16,11 @@ jobs:
       matrix:
         # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.5.1, 5.15.2, 5.12.12]
+        qt_version: [6.6.0, 6.5.1, 5.15.2, 5.12.12]
         include:
+          - qt_version: 6.6.0
+            qt_modules: qtscxml qtmultimedia qtserialport qtimageformats qtwebchannel qtwebsockets qtwebview
+          
           - qt_version: 6.5.1
             qt_modules: qtscxml qtmultimedia qtserialport qtimageformats qtwebchannel qtwebsockets qtwebview
 
@@ -212,7 +215,20 @@ jobs:
               -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
               -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install \
               -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
-              -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+              -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+              -DBUILD_LibVNCServer=OFF \
+              -DBUILD_FREERDP=ON \
+              -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
+              -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
+              -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
+              -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
+              -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService \
+              -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+              -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 \
+              -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2 \
+              -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR2 \
+              -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2 \
+              -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target package
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
