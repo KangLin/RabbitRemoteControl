@@ -81,10 +81,6 @@ private Q_SLOTS:
      */
     void slotInformation(const QString& szInfo);
     void slotUpdateName(const QString& szName);
-    
-    void on_actionShow_TabBar_B_triggered(bool bShow);
-    void on_actionMain_menu_bar_M_triggered(bool checked);
-    void on_actionStatus_bar_S_triggered(bool checked);
 
     void on_actionScreenshot_triggered();
     void on_actionSettings_triggered();
@@ -110,15 +106,20 @@ private:
     CView* m_pView;
 
     void EnableMenu(bool bEnable);
-    
+
+private Q_SLOTS:
+    void on_actionTabBar_B_toggled(bool bShow);
+    void on_actionMain_menu_bar_M_toggled(bool checked);
+    void on_actionToolBar_T_toggled(bool checked);
+    void on_actionStatus_bar_S_toggled(bool checked);
+
     ///////// Full screen ///////// 
 private:
     CFrmFullScreenToolBar* m_pFullScreenToolBar;
     friend CFrmFullScreenToolBar;
 private Q_SLOTS:
     void on_actionFull_screen_F_triggered();
-    void on_actionToolBar_T_triggered(bool checked);
-    
+
     ///////// Zoom ///////// 
 private:
     QToolButton* m_ptbZoom;

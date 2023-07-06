@@ -332,7 +332,7 @@
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="327"/>
         <source>Main menu bar</source>
-        <translation type="unfinished">主菜單條</translation>
+        <translation>主菜單條</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="320"/>
@@ -343,10 +343,6 @@
         <location filename="../../ParameterDlgSettings.ui" line="341"/>
         <source>Recent open</source>
         <translation>最近打開菜單</translation>
-    </message>
-    <message>
-        <source>Favorite</source>
-        <translation type="vanished">收藏夾</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="230"/>
@@ -436,7 +432,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="202"/>
-        <location filename="../../mainwindow.cpp" line="369"/>
+        <location filename="../../mainwindow.cpp" line="366"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -475,11 +471,17 @@
         <translation>打開</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="375"/>
+        <source>TabBar(&amp;B)</source>
+        <translation>標簽條(&amp;B)</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="378"/>
         <location filename="../../mainwindow.ui" line="381"/>
         <location filename="../../mainwindow.ui" line="384"/>
         <location filename="../../mainwindow.ui" line="387"/>
-        <source>Show TabBar</source>
-        <translation>顯示標簽條</translation>
+        <source>TabBar</source>
+        <translation>標簽條</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="399"/>
@@ -548,28 +550,28 @@
         <translation>打開連接列表(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="560"/>
+        <location filename="../../mainwindow.ui" line="564"/>
         <source>Main menu bar(&amp;M)</source>
         <translation>主菜單條(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="563"/>
-        <location filename="../../mainwindow.ui" line="566"/>
-        <location filename="../../mainwindow.ui" line="569"/>
-        <location filename="../../mainwindow.ui" line="572"/>
+        <location filename="../../mainwindow.ui" line="567"/>
+        <location filename="../../mainwindow.ui" line="570"/>
+        <location filename="../../mainwindow.ui" line="573"/>
+        <location filename="../../mainwindow.ui" line="576"/>
         <source>Main menu bar</source>
         <translation>主菜單條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="583"/>
-        <location filename="../../mainwindow.ui" line="586"/>
-        <location filename="../../mainwindow.ui" line="589"/>
-        <location filename="../../mainwindow.ui" line="592"/>
+        <location filename="../../mainwindow.ui" line="587"/>
+        <location filename="../../mainwindow.ui" line="590"/>
+        <location filename="../../mainwindow.ui" line="593"/>
+        <location filename="../../mainwindow.ui" line="596"/>
         <source>Status bar</source>
         <translation>狀態條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="580"/>
+        <location filename="../../mainwindow.ui" line="584"/>
         <source>Status bar(&amp;S)</source>
         <translation>狀態條(&amp;S)</translation>
     </message>
@@ -646,12 +648,6 @@
         <translation>發送 Ctl+Alt+Del</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="375"/>
-        <location filename="../../mainwindow.ui" line="378"/>
-        <source>Show TabBar(&amp;B)</source>
-        <translation>顯示標簽條(&amp;B)</translation>
-    </message>
-    <message>
         <location filename="../../mainwindow.ui" line="71"/>
         <source>Connect(&amp;C)</source>
         <translation>連接(&amp;C)</translation>
@@ -678,9 +674,9 @@
         <location filename="../../mainwindow.ui" line="208"/>
         <location filename="../../mainwindow.ui" line="211"/>
         <location filename="../../mainwindow.ui" line="214"/>
-        <location filename="../../mainwindow.cpp" line="370"/>
-        <location filename="../../mainwindow.cpp" line="371"/>
-        <location filename="../../mainwindow.cpp" line="372"/>
+        <location filename="../../mainwindow.cpp" line="367"/>
+        <location filename="../../mainwindow.cpp" line="368"/>
+        <location filename="../../mainwindow.cpp" line="369"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -689,20 +685,20 @@
         <translation type="vanished">ICE 信令狀態</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="397"/>
+        <location filename="../../mainwindow.cpp" line="394"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="398"/>
-        <location filename="../../mainwindow.cpp" line="399"/>
-        <location filename="../../mainwindow.cpp" line="400"/>
+        <location filename="../../mainwindow.cpp" line="395"/>
+        <location filename="../../mainwindow.cpp" line="396"/>
+        <location filename="../../mainwindow.cpp" line="397"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="605"/>
-        <location filename="../../mainwindow.cpp" line="623"/>
+        <location filename="../../mainwindow.cpp" line="602"/>
+        <location filename="../../mainwindow.cpp" line="620"/>
         <source>Load file fail: </source>
         <translation>加載文件失敗：</translation>
     </message>
@@ -710,7 +706,7 @@
         <location filename="../../mainwindow.ui" line="349"/>
         <location filename="../../mainwindow.ui" line="352"/>
         <location filename="../../mainwindow.ui" line="355"/>
-        <location filename="../../mainwindow.cpp" line="615"/>
+        <location filename="../../mainwindow.cpp" line="612"/>
         <source>Open rabbit remote control file</source>
         <translation>打開玉兔遠程控製文件</translation>
     </message>
@@ -720,34 +716,54 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="300"/>
+        <location filename="../../mainwindow.cpp" line="303"/>
         <source>### Plugin</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="617"/>
+        <location filename="../../mainwindow.cpp" line="614"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="705"/>
+        <location filename="../../mainwindow.cpp" line="702"/>
         <source>Connecting to </source>
         <translation>正在連接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="731"/>
+        <location filename="../../mainwindow.cpp" line="728"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="758"/>
+        <location filename="../../mainwindow.cpp" line="755"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="767"/>
+        <location filename="../../mainwindow.cpp" line="764"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="935"/>
+        <source>Hide menu bar</source>
+        <translation>隱藏菜單欄</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="936"/>
+        <source>The menu bar will be hidden, the tool bar must be showed.</source>
+        <translation>將隱藏菜單欄，必須顯示工具條。</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="964"/>
+        <source>Hide tool bar</source>
+        <translation>隱藏工具條</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="965"/>
+        <source>The tool bar will be hidden, the menu bar must be showed.</source>
+        <translation>將隱藏工具條，必須顯示菜單欄。</translation>
     </message>
     <message>
         <source>ICE singal status: Connected</source>
@@ -758,7 +774,7 @@
         <translation type="vanished">ICE 信令狀態：斷開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="949"/>
+        <location filename="../../mainwindow.cpp" line="993"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>

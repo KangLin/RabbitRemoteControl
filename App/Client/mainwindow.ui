@@ -14,7 +14,8 @@
    <string>Rabbit Remote Control</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="app"/>
+   <iconset theme="app">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
@@ -55,7 +56,7 @@
     <addaction name="actionFull_screen_F"/>
     <addaction name="menuZoom"/>
     <addaction name="separator"/>
-    <addaction name="actionShow_TabBar_B"/>
+    <addaction name="actionTabBar_B"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatus_bar_S"/>
     <addaction name="actionMain_menu_bar_M"/>
@@ -119,7 +120,7 @@
    <addaction name="actionDisconnect_D"/>
    <addaction name="separator"/>
    <addaction name="actionFull_screen_F"/>
-   <addaction name="actionShow_TabBar_B"/>
+   <addaction name="actionTabBar_B"/>
    <addaction name="separator"/>
    <addaction name="actionScreenshot"/>
    <addaction name="actionCurrent_connect_parameters"/>
@@ -359,7 +360,7 @@
     <string>Send Ctl+Alt+Del</string>
    </property>
   </action>
-  <action name="actionShow_TabBar_B">
+  <action name="actionTabBar_B">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -371,19 +372,19 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Show TabBar(&amp;B)</string>
+    <string>TabBar(&amp;B)</string>
    </property>
    <property name="iconText">
-    <string>Show TabBar(&amp;B)</string>
+    <string>TabBar</string>
    </property>
    <property name="toolTip">
-    <string>Show TabBar</string>
+    <string>TabBar</string>
    </property>
    <property name="statusTip">
-    <string>Show TabBar</string>
+    <string>TabBar</string>
    </property>
    <property name="whatsThis">
-    <string>Show TabBar</string>
+    <string>TabBar</string>
    </property>
   </action>
   <action name="actionZoom_In">
@@ -554,6 +555,10 @@
   <action name="actionMain_menu_bar_M">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="menu">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Main menu bar(&amp;M)</string>

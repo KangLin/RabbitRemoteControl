@@ -176,7 +176,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ptbZoom->setStatusTip(tr("Zoom"));
     m_ptbZoom->setToolTip(tr("Zoom"));
     m_ptbZoom->setEnabled(false);
-    ui->toolBar->insertWidget(ui->actionShow_TabBar_B, m_ptbZoom);
+    ui->toolBar->insertWidget(ui->actionTabBar_B, m_ptbZoom);
 
     m_psbZoomFactor = new QSpinBox(ui->toolBar);
     m_psbZoomFactor->setRange(0, 9999999);
@@ -255,16 +255,14 @@ MainWindow::MainWindow(QWidget *parent)
         QByteArray state = set.value("MainWindow/Status/State").toByteArray();
         if(!state.isEmpty())
             restoreState(state);
-        ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
+        
         ui->actionStatus_bar_S->setChecked(m_Parameter.GetStatusBar());
         statusBar()->setVisible(m_Parameter.GetStatusBar());
-        ui->actionShow_TabBar_B->setChecked(m_Parameter.GetTabBar());
-        on_actionShow_TabBar_B_triggered(m_Parameter.GetTabBar());
-        menuBar()->setVisible(m_Parameter.GetMenuBar());
+        ui->actionTabBar_B->setChecked(m_Parameter.GetTabBar());
+        on_actionMain_menu_bar_M_toggled(m_Parameter.GetMenuBar());
         ui->actionMain_menu_bar_M->setChecked(m_Parameter.GetMenuBar());
+        ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
     }
-    
-    ui->actionMain_menu_bar_M->setChecked(!menuBar()->isHidden());
 
     slotEnableSystemTrayIcon();
 
@@ -352,12 +350,6 @@ void MainWindow::on_actionUpdate_triggered()
 #endif 
 #endif
 #endif
-}
-
-void MainWindow::on_actionToolBar_T_triggered(bool checked)
-{
-    qDebug(App) << "MainWindow::on_actionToolBar_T_triggered:" << checked;
-    ui->toolBar->setVisible(checked);
 }
 
 void MainWindow::on_actionFull_screen_F_triggered()
@@ -924,7 +916,7 @@ void MainWindow::on_actionSend_ctl_alt_del_triggered()
         m_pView->slotSystemCombination();
 }
 
-void MainWindow::on_actionShow_TabBar_B_triggered(bool bShow)
+void MainWindow::on_actionTabBar_B_toggled(bool bShow)
 {
     CViewTable* p = dynamic_cast<CViewTable*>(m_pView);
     if(p)
@@ -934,13 +926,54 @@ void MainWindow::on_actionShow_TabBar_B_triggered(bool bShow)
     }
 }
 
-void MainWindow::on_actionMain_menu_bar_M_triggered(bool checked)
+void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
 {
+    qDebug(App) << "MainWindow::on_actionMain_menu_bar_M_triggered:" << checked;
+    if(ui->toolBar->isHidden() && !checked)
+    {
+        if( QMessageBox::StandardButton::Yes
+            == QMessageBox::information(this, tr("Hide menu bar"),
+                tr("The menu bar will be hidden, the tool bar must be showed."),
+                     QMessageBox::StandardButton::Yes
+                     | QMessageBox::StandardButton::No))
+        {
+            ui->actionToolBar_T->setChecked(true);
+        } else
+            return;
+    }
+    
     menuBar()->setVisible(checked);
     m_Parameter.SetMenuBar(checked);
+    if(checked)
+    {
+        ui->toolBar->removeAction(ui->actionMain_menu_bar_M);
+    }
+    else
+    {
+        ui->toolBar->insertAction(ui->actionTabBar_B,
+                                  ui->actionMain_menu_bar_M);
+    }
 }
 
-void MainWindow::on_actionStatus_bar_S_triggered(bool checked)
+void MainWindow::on_actionToolBar_T_toggled(bool checked)
+{
+    qDebug(App) << "MainWindow::on_actionToolBar_T_triggered:" << checked;
+    if(menuBar()->isHidden() && !checked)
+    {
+        if( QMessageBox::StandardButton::Yes
+            == QMessageBox::information(this, tr("Hide tool bar"),
+                tr("The tool bar will be hidden, the menu bar must be showed."),
+                QMessageBox::StandardButton::Yes
+                | QMessageBox::StandardButton::No))
+        {
+            ui->actionMain_menu_bar_M->setChecked(true);
+        } else
+            return;
+    }
+    ui->toolBar->setVisible(checked);
+}
+
+void MainWindow::on_actionStatus_bar_S_toggled(bool checked)
 {
     statusBar()->setVisible(checked);
     m_Parameter.SetStatusBar(checked);
