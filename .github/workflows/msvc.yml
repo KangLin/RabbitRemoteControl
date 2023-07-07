@@ -271,6 +271,9 @@ jobs:
             -DCMARK_STATIC=ON ^
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
+            -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
+            -DVCPKG_VERBOSE=ON ^
+            -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
             -DBUILD_QUIWidget=OFF ^
             -DBUILD_LibVNCServer=OFF ^
             -DBUILD_FREERDP=ON ^
@@ -279,7 +282,6 @@ jobs:
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^
             -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
-            -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
             -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ^
             -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2 ^
             -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR2 ^
