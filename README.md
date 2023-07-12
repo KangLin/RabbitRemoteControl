@@ -44,9 +44,9 @@ It include remote desktop, remote terminal etc remote control functions.
 
 ### Screenshot
 
-|Main window|Recent list menu|Connect|
-|--|--|--|
-|![Main window](docs/Image/Screenshot/MainWindows_en.png)|![Recent list menu](docs/Image/Screenshot/RecentMenu_en.png)|![Connect](docs/Image/Screenshot/Connect_en.png)|
+|Main window|Recent list menu|Connect|Work|
+|--|--|--|--|
+|![Main window](docs/Image/Screenshot/MainWindows_en.png)|![Recent list menu](docs/Image/Screenshot/RecentMenu_en.png)|![Connect](docs/Image/Screenshot/Connect_en.png)|![Work](docs/Image/Screenshot/Work.png)|
 
 #### Multiple style
 

@@ -44,9 +44,9 @@
 
 ### 截屏
 
-|主窗口|最近列表窗口|连接窗口|
-|--|--|--|
-|![主窗口](docs/Image/Screenshot/MainWindows.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu.png)|![连接窗口](docs/Image/Screenshot/Connect.png)|
+|主窗口|最近列表窗口|连接窗口|工作窗口|
+|--|--|--|--|
+|![主窗口](docs/Image/Screenshot/MainWindows.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu.png)|![连接窗口](docs/Image/Screenshot/Connect.png)|![Work](docs/Image/Screenshot/Work.png)|
 
 #### 多样式
 
