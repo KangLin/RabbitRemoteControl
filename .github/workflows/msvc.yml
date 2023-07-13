@@ -273,7 +273,7 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
             -DVCPKG_VERBOSE=ON ^
-            -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+            -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
             -DBUILD_QUIWidget=OFF ^
             -DBUILD_LibVNCServer=OFF ^
             -DBUILD_FREERDP=ON ^
