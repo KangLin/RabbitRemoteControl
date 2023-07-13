@@ -83,17 +83,17 @@ jobs:
 #          vcpkgTriplet: '${{ matrix.VCPKG_TARGET_TRIPLET }}'
 #          vcpkgArguments: 'zlib openssl libpng libjpeg-turbo libdatachannel'
           
-      - name: run-vcpkg
-        run: |
-          echo "ANDROID_NDK=$ANDROID_NDK"
-          echo "ANDROID_NDK_ROOT=$ANDROID_NDK_ROOT"
-          echo "ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
-          cd ${{env.SOURCE_DIR}}
-          git clone https://github.com/microsoft/vcpkg.git
-          cd vcpkg
-          git checkout -b ${{env.VCPKGGITCOMMITID}} ${{env.VCPKGGITCOMMITID}}
-          ./bootstrap-vcpkg.sh
-          vcpkg --triplet ${{ matrix.VCPKG_TARGET_TRIPLET }} install zlib openssl libpng libjpeg-turbo
+#      - name: run-vcpkg
+#        run: |
+#          echo "ANDROID_NDK=$ANDROID_NDK"
+#          echo "ANDROID_NDK_ROOT=$ANDROID_NDK_ROOT"
+#          echo "ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
+#          cd ${{env.SOURCE_DIR}}
+#          git clone https://github.com/microsoft/vcpkg.git
+#          cd vcpkg
+#          git checkout -b ${{env.VCPKGGITCOMMITID}} ${{env.VCPKGGITCOMMITID}}
+#          ./bootstrap-vcpkg.sh
+#          vcpkg --triplet ${{ matrix.VCPKG_TARGET_TRIPLET }} install zlib openssl libpng libjpeg-turbo
 
       - name: Cache installed
         uses: actions/cache@v2
