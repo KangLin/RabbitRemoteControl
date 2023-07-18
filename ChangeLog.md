@@ -14,6 +14,7 @@
   - Fixed a bug where the correct dependency library could not be loaded
   when there were different versions of the dependency library under Linux.
   - Fixed tab key event
++ Replace RabbitCommon::CDir::GetOpenFileName with QFileDialog::getOpenFileName etc
 
 ### v0.0.25
 + Modify CI for automation update

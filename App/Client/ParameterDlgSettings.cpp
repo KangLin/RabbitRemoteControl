@@ -9,6 +9,7 @@
     #include "Ice.h"
 #endif
 
+#include <QFileDialog>
 #include <QLoggingCategory>
 Q_DECLARE_LOGGING_CATEGORY(App)
 
@@ -160,7 +161,7 @@ void CParameterDlgSettings::on_pbNo_clicked()
 
 void CParameterDlgSettings::on_pbScreenShotBrowser_clicked()
 {
-    QString szPath = RabbitCommon::CDir::Instance()->GetOpenDirectory(this,
+    QString szPath = QFileDialog::getExistingDirectory(this,
                                                     tr("Open shot screen path"),
                                               ui->leShotScreenSavepath->text());
     if(szPath.isEmpty())

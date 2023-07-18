@@ -12,6 +12,7 @@
 + 修复：
   - 修复在 LINUX 下有不同版本依赖库时,不能加载正确的依赖库
   - 修复　tab　键事件
++ 用 QFileDialog::getOpenFileName 替换 RabbitCommon::CDir::GetOpenFileName 等
 
 ### v0.0.25
 + 为自动更新，修改自动化编译分发

@@ -38,6 +38,7 @@
 #include <QKeySequence>
 #include <QPushButton>
 #include <QDateTime>
+#include <QFileDialog>
 #include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(App)
@@ -608,7 +609,7 @@ void MainWindow::slotOpenFile(const QString& szFile, bool bOpenSettings)
 
 void MainWindow::on_actionOpenRRCFile_triggered()
 {
-    QString szFile = RabbitCommon::CDir::GetOpenFileName(this,
+    QString szFile = QFileDialog::getOpenFileName(this,
                      tr("Open rabbit remote control file"),
                      RabbitCommon::CDir::Instance()->GetDirUserData(), 
                      tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
