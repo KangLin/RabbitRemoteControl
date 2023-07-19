@@ -218,9 +218,18 @@ int CConnectFreeRDP::OnProcess()
         if (!freerdp_check_event_handles(pRdpContext))
         {
             nRet = -5;
+            UINT32 err = freerdp_get_last_error(pRdpContext);
+            qCritical(FreeRDPConnect) << "freerdp_check_event_handles[" << err << "]"
+                                      << freerdp_get_last_error_category(err) << "-"
+                                      << freerdp_get_last_error_name(err) << ":"
+                                      << freerdp_get_last_error_string(err);
             // Reconnect
-            if(pRdpContext->settings->AutoReconnectionEnabled)
+            bool bReconnect = freerdp_settings_get_bool(pRdpContext->settings,
+                                               FreeRDP_AutoReconnectionEnabled);
+            qDebug(FreeRDPConnect) << "Reconnect:" << bReconnect;
+            if(bReconnect)
             {
+                qDebug(FreeRDPConnect) << "Reconnect" << m_pParameter->GetReconnectInterval() * 1000;
                 if (client_auto_reconnect_ex(pRdpContext->instance, NULL))
                     return m_pParameter->GetReconnectInterval() * 1000;
                 else
@@ -232,9 +241,13 @@ int CConnectFreeRDP::OnProcess()
                     if (freerdp_error_info(pRdpContext->instance) == 0)
                         nRet = -6;
                 }
-                
-                if (freerdp_get_last_error(pRdpContext) == FREERDP_ERROR_SUCCESS)
-                    qCritical(FreeRDPConnect) << "Failed to check FreeRDP file descriptor";
+
+                UINT32 err = freerdp_get_last_error(pRdpContext);
+                if (FREERDP_ERROR_SUCCESS != err)
+                    qCritical(FreeRDPConnect) << "Auto reconnection[" << err << "]"
+                                          << freerdp_get_last_error_category(err)
+                                          << freerdp_get_last_error_name(err)
+                                          << freerdp_get_last_error_string(err);
             }
         }
     }

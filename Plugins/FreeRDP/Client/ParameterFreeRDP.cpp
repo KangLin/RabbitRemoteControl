@@ -111,16 +111,19 @@ UINT CParameterFreeRDP::GetReconnectInterval() const
 
 void CParameterFreeRDP::SetReconnectInterval(UINT newReconnectInterval)
 {
-    if (m_nReconnectInterval == newReconnectInterval)
-        return;
-
-    m_nReconnectInterval = newReconnectInterval;
-    if(m_nReconnectInterval)
+    Q_ASSERT(newReconnectInterval >= 0);
+    if(newReconnectInterval)
         freerdp_settings_set_bool(m_pSettings,
                                   FreeRDP_AutoReconnectionEnabled, true);
     else
         freerdp_settings_set_bool(m_pSettings,
                                   FreeRDP_AutoReconnectionEnabled, false);
+
+    if (m_nReconnectInterval == newReconnectInterval)
+        return;
+
+    m_nReconnectInterval = newReconnectInterval;
+
     SetModified(true);
     emit sigReconnectIntervalChanged();
 }
