@@ -176,8 +176,8 @@ int CConnectFreeRDP::OnClean()
  *
  * \~
  * \return 
- *       \li >= 0: continue, Interval call time (msec)
- *       \li  < 0: error or stop
+ *    \li >= 0: continue, Interval call time (msec)
+ *    \li  < 0: error or stop
  * \see slotTimeOut()
  */
 int CConnectFreeRDP::OnProcess()
@@ -334,12 +334,12 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	rdpChannels* channels = nullptr;
 	rdpSettings* settings = nullptr;
 	rdpContext* context = instance->context;
-    
+
     if (!instance || !instance->context || !instance->context->settings)
-    { 
+    {
         return FALSE;
     }
-    
+
     settings = instance->context->settings;
 	channels = context->channels;
 
@@ -351,7 +351,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	settings->OsMajorType = OSMAJORTYPE_UNIX;
 	settings->OsMinorType = OSMINORTYPE_NATIVE_XSERVER;
 #endif
-        
+
     // Subscribe channel event
     PubSub_SubscribeChannelConnected(instance->context->pubSub,
                                      OnChannelConnectedEventHandler);
@@ -374,16 +374,21 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         qWarning(FreeRDPConnect) << "No user name set. - Using login name:" << settings->Username;
 	}
 
-	if (settings->AuthenticationOnly)
-	{
-		/* Check +auth-only has a username and password. */
-		if (!settings->Password)
-		{
-			qCritical(FreeRDPConnect) << "auth-only, but no password set. Please provide one.";
-			return FALSE;
-		}
-
-		qInfo(FreeRDPConnect) << "Authentication only. Don't connect to X.";
+    if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
+    {
+        /* Check +auth-only has a username and password. */
+        if (!freerdp_settings_get_string(settings, FreeRDP_Password))
+        {
+            qCritical(FreeRDPConnect) << "auth-only, but no password set. Please provide one.";
+            return FALSE;
+        }
+#if FreeRDP_VERSION_MAJOR > 2
+        if (!freerdp_settings_set_bool(settings, FreeRDP_DeactivateClientDecoding, TRUE))
+            return FALSE;
+#endif
+        qInfo(FreeRDPConnect) << "Authentication only. Don't connect to X.";
+    } else {
+		
 	}
 
     // Keyboard layout
@@ -406,6 +411,43 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	return TRUE;
 }
 
+const char* CConnectFreeRDP::GetTitle(freerdp* instance)
+{
+    const char* windowTitle;
+    UINT32 port;
+    BOOL addPort;
+    const char* name = nullptr;
+
+    CConnectFreeRDP* pThis = ((ClientContext*)instance->context)->pThis;
+    rdpSettings* settings = instance->context->settings;
+
+    if (!settings)
+        return nullptr;
+    
+    windowTitle = freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
+    if (windowTitle)
+        return _strdup(windowTitle);
+
+#if FreeRDP_VERSION_MAJOR >= 3
+    name = freerdp_settings_get_server_name(settings);
+#else
+    name = pThis->m_pParameter->GetHost().toStdString().c_str();
+#endif
+    port = freerdp_settings_get_uint32(settings, FreeRDP_ServerPort);
+    
+    addPort = (port != 3389);
+    
+    char buffer[MAX_PATH + 64] = { 0 };
+    
+    if (!addPort)
+        sprintf_s(buffer, sizeof(buffer), "%s", name);
+    else
+        sprintf_s(buffer, sizeof(buffer), "%s:%" PRIu32, name, port);
+    
+    freerdp_settings_set_string(settings, FreeRDP_WindowTitle, buffer);
+    return freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
+}
+
 /**
  * Callback given to freerdp_connect() to perform post-connection operations.
  * It will be called only if the connection was initialized properly, and will continue the
@@ -420,11 +462,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     rdpUpdate* update = instance->context->update;
     CConnectFreeRDP* pThis = ((ClientContext*)instance->context)->pThis;
 
-    Q_ASSERT(context);
-    Q_ASSERT(settings);
-    Q_ASSERT(pThis);
-
-    const char* pWindowTitle = freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
+    const char* pWindowTitle = GetTitle(instance);
     if(pWindowTitle)
     {
         WCHAR* windowTitle = NULL;
@@ -437,7 +475,6 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
         {
             QString title = QString::fromUtf16((const char16_t*)windowTitle);
             emit pThis->sigServerName(title);
-            free(windowTitle);
         }
     }
     int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);

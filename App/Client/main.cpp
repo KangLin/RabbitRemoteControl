@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     }
     if(pUpdate->GenerateUpdateXml())
         qCritical(App) << "GenerateUpdateXml fail";
-    else    
+    else
         return 0;
 #endif
     

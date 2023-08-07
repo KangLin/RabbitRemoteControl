@@ -82,6 +82,7 @@ public:
     static BOOL cb_play_bell_sound(rdpContext* context, const PLAY_SOUND_UPDATE* play_sound);
 
     static UINT32 GetImageFormat(QImage::Format format);
+    static const char* GetTitle(freerdp *instance);
 
 private:
     UINT32 GetImageFormat();
