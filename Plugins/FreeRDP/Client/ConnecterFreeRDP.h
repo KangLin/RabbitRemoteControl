@@ -5,7 +5,6 @@
 
 #include "Connecter.h"
 #include "ConnecterDesktopThread.h"
-#include "freerdp/freerdp.h"
 #include "ParameterFreeRDP.h"
 
 #include <QLoggingCategory>

@@ -62,24 +62,35 @@ public:
                                                   const
                                               #endif
                                                   ChannelDisconnectedEventArgs* e);
-
-	static BOOL cb_authenticate(freerdp* instance, char** username, char** password, char** domain);
-	static BOOL cb_GatewayAuthenticate(freerdp* instance, char** username, char** password, char** domain);
-    static DWORD cb_verify_certificate_ex(freerdp* instance, const char* host, UINT16 port,
-                                                 const char* common_name, const char* subject,
-                                                 const char* issuer, const char* fingerprint, DWORD flags);
-    static DWORD cb_verify_changed_certificate_ex(freerdp* instance, const char* host, UINT16 port,
-                                                  const char* common_name, const char* subject,
-                                                  const char* issuer, const char* fingerprint,
-                                                  const char* old_subject, const char* old_issuer,
-                                                  const char* old_fingerprint, DWORD flags);
-    static BOOL cb_present_gateway_message(freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
-                                           BOOL isConsentMandatory, size_t length, const WCHAR* message);
+    
+	static BOOL cb_authenticate(freerdp* instance,
+                               char** username, char** password, char** domain);
+	static BOOL cb_GatewayAuthenticate(freerdp* instance,
+                               char** username, char** password, char** domain);
+#if FreeRDP_VERSION_MAJOR > 3
+    static BOOL cb_authenticate_ex(freerdp* instance,
+                                   char** username, char** password,
+                                   char** domain, rdp_auth_reason reason);
+#endif
+    static DWORD cb_verify_certificate_ex(freerdp* instance,
+                                                  const char* host, UINT16 port,
+                                   const char* common_name, const char* subject,
+                      const char* issuer, const char* fingerprint, DWORD flags);
+    static DWORD cb_verify_changed_certificate_ex(freerdp* instance,
+                                                  const char* host, UINT16 port,
+                                   const char* common_name, const char* subject,
+                                    const char* issuer, const char* fingerprint,
+                                const char* old_subject, const char* old_issuer,
+                                      const char* old_fingerprint, DWORD flags);
+    static BOOL cb_present_gateway_message(freerdp* instance,
+                                           UINT32 type, BOOL isDisplayMandatory,
+                  BOOL isConsentMandatory, size_t length, const WCHAR* message);
 
     static BOOL cb_begin_paint(rdpContext* context);
     static BOOL cb_end_paint(rdpContext* context);
     static BOOL cb_desktop_resize(rdpContext* context);
-    static BOOL cb_play_bell_sound(rdpContext* context, const PLAY_SOUND_UPDATE* play_sound);
+    static BOOL cb_play_bell_sound(rdpContext* context,
+                                   const PLAY_SOUND_UPDATE* play_sound);
 
     static UINT32 GetImageFormat(QImage::Format format);
     static const char* GetTitle(freerdp *instance);

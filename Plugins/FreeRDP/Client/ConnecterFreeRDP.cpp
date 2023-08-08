@@ -26,17 +26,18 @@ qint16 CConnecterFreeRDP::Version()
     return 0;
 }
 
-QDialog *CConnecterFreeRDP::GetDialogSettings(QWidget *parent)
+QDialog* CConnecterFreeRDP::GetDialogSettings(QWidget *parent)
 {
     return new CDlgSetFreeRDP(&m_ParameterFreeRdp, parent);
 }
 
-CConnect *CConnecterFreeRDP::InstanceConnect()
+CConnect* CConnecterFreeRDP::InstanceConnect()
 {
     try{
         CConnectFreeRDP* p = new CConnectFreeRDP(this);
         return p;
     } catch(...) {
+        qDebug(m_Logger) << "CConnecterFreeRDP::InstanceConnect() exception";
         return nullptr;
     }
 }

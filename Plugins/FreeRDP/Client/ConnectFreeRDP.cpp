@@ -280,11 +280,14 @@ BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
     instance->PreConnect = cb_pre_connect;
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
-    
+
     // Because it is already set in the parameters
-	instance->Authenticate = cb_authenticate;
-	instance->GatewayAuthenticate = cb_GatewayAuthenticate;
-    
+#if FreeRDP_VERSION_MAJOR < 3
+    instance->Authenticate = cb_authenticate;
+    instance->GatewayAuthenticate = cb_GatewayAuthenticate;
+#else
+    instance->AuthenticateEx = cb_authenticate_ex;
+#endif
     instance->VerifyCertificateEx = cb_verify_certificate_ex;
 	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;
 	instance->PresentGatewayMessage = cb_present_gateway_message;
@@ -666,6 +669,18 @@ UINT32 CConnectFreeRDP::GetImageFormat()
 {
     return GetImageFormat(m_Image.format());
 }
+
+#if FreeRDP_VERSION_MAJOR > 3
+//TODO: implement it!!!
+static BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
+                               char** username, char** password,
+                               char** domain, rdp_auth_reason reason)
+{
+    qCritical(FreeRDPConnect) << "CConnectFreeRdp::cb_authenticate_ex is not implement";
+    Q_ASSERT(false);
+    return TRUE;
+}
+#endif
 
 BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
                                       char** password, char** domain)
