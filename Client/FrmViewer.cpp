@@ -92,6 +92,16 @@ void CFrmViewer::paintDesktop()
     if(!m_Desktop.isNull())
     {
         QPainter painter(this);
+        // Clear background
+        if(KeepAspectRationToWindow == m_AdaptWindows)
+        {
+#if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
+            painter.fillRect(rect(), QBrush(palette().color(QPalette::Window)));
+#else
+            painter.fillRect(rect(), QBrush(palette().color(QPalette::Background)));
+#endif
+        }
+
         // 设置平滑模式
         painter.setRenderHint(QPainter::SmoothPixmapTransform);
         painter.drawImage(dstRect, m_Desktop);
