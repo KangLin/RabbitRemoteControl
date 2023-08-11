@@ -99,7 +99,9 @@ jobs:
               qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev \
               qt6-webengine-dev qt6-webengine-dev-tools \
               libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
-              libx11-dev libxfixes-dev \
+              libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
+              libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
+              libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse3-dev libusb-1.0-0-dev \
               libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev
