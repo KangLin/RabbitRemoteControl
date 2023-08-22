@@ -464,7 +464,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 	rdpSettings* settings = instance->context->settings;
     rdpUpdate* update = instance->context->update;
     CConnectFreeRDP* pThis = ((ClientContext*)instance->context)->pThis;
-
+    
     const char* pWindowTitle = GetTitle(instance);
     if(pWindowTitle)
     {
@@ -477,7 +477,8 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
         if(windowTitle)
         {
             QString title = QString::fromUtf16((const char16_t*)windowTitle);
-            emit pThis->sigServerName(title);
+            if(pThis->m_pParameter->GetServerName().isEmpty())
+                emit pThis->sigServerName(title);
         }
     }
     int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
@@ -736,7 +737,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
     if(common_name)
     {
-        pThis->m_pParameter->SetServerName(common_name);
+        //pThis->m_pParameter->SetServerName(common_name);
         emit pThis->sigServerName(common_name);
     }
     
