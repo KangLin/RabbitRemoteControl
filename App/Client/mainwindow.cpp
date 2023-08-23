@@ -705,7 +705,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     {
         m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
         m_pView->AddView(p->GetViewer());
-        m_pView->SetWidowsTitle(p->GetViewer(), p->Name()); 
+        m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Description()); 
     }
     
     m_Connecters.push_back(p);
@@ -816,7 +816,7 @@ void MainWindow::slotUpdateName(const QString& szName)
 {
     CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
     if(!pConnecter) return;
-    m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName);
+    m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName, pConnecter->Description());
 }
 
 void MainWindow::on_actionStyle_S_triggered()

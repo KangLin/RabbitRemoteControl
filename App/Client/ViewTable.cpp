@@ -123,12 +123,14 @@ int CViewTable::RemoveView(QWidget *pView)
     return 0;
 }
 
-void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle)
+void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle,
+                                const QString &szToolTip)
 {
     if(!pView) return;
     pView->setWindowTitle(szTitle);
     int nIndex = GetViewIndex(pView);
     m_pTab->setTabText(nIndex, szTitle);
+    m_pTab->setTabToolTip(nIndex, szToolTip);
 }
 
 int CViewTable::SetFullScreen(bool bFull)

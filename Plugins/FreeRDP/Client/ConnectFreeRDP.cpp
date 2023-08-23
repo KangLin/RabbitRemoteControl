@@ -757,7 +757,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
-    bool bCheckBox = 0;
+    bool bCheckBox = false;
     emit pThis->sigBlockShowMessage(title, message, buttons, nRet, bCheckBox,
                                     tr("Don't show again"));
     pThis->m_pParameter->SetShowVerifyDiaglog(!bCheckBox);
@@ -807,7 +807,7 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     message += tr("Old issuer: ") + old_issuer + "\n";
     message += tr("Old fingerprint: ") + old_fingerprint;
 
-    bool bCheckBox = 0;
+    bool bCheckBox = false;
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
     emit pThis->sigBlockShowMessage(title, message, buttons, nRet, bCheckBox,
