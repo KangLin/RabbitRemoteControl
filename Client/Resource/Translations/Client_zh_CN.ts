@@ -82,67 +82,67 @@
         <translation>控制端</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
+        <location filename="../../FrmParameterClient.ui" line="100"/>
         <source>Connecter name</source>
         <translation>连接名</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="26"/>
+        <location filename="../../FrmParameterClient.ui" line="106"/>
         <source>Show protocol prefix in name</source>
         <translation>在连接名中显示协议前缀</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="33"/>
+        <location filename="../../FrmParameterClient.ui" line="113"/>
         <source>Only show ip:port in name</source>
         <translation>在连接名中仅显示 IP:PORT</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="43"/>
+        <location filename="../../FrmParameterClient.ui" line="123"/>
         <source>Hook: capture system key</source>
         <translation>挂钩：捕获系统键</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="50"/>
+        <location filename="../../FrmParameterClient.ui" line="130"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="58"/>
+        <location filename="../../FrmParameterClient.ui" line="138"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="65"/>
+        <location filename="../../FrmParameterClient.ui" line="145"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="84"/>
+        <location filename="../../FrmParameterClient.ui" line="20"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密键用于加密码保存的密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="92"/>
+        <location filename="../../FrmParameterClient.ui" line="28"/>
         <source>Encrypt key:</source>
         <translation>加密键</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="124"/>
+        <location filename="../../FrmParameterClient.ui" line="60"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="131"/>
+        <location filename="../../FrmParameterClient.ui" line="67"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="138"/>
+        <location filename="../../FrmParameterClient.ui" line="74"/>
         <source>Always</source>
         <translation>总是</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="147"/>
+        <location filename="../../FrmParameterClient.ui" line="83"/>
         <source>Prompt type:</source>
         <translation>提示类型</translation>
     </message>

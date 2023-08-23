@@ -839,6 +839,38 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_present_gateway_message";
     
+    if (!isDisplayMandatory && !isConsentMandatory)
+        return TRUE;
+    
+    QString msgType = (type == GATEWAY_MESSAGE_CONSENT) ? tr("Consent message") : tr("Service message");
+    msgType += "\n";
+    
+    LPSTR msg = nullptr;
+    if (ConvertFromUnicode(CP_UTF8, 0, message, (int)(length / 2), &msg, 0, NULL, NULL) < 1)
+    {
+        qCritical(FreeRDPConnect) << "Failed to convert message!";
+        return FALSE;
+    }
+    msgType += msg;
+    msgType += "\n";
+    free(msg);
+    
+    msgType += tr("I understand and agree to the terms of this policy (Y/N)");
+    
+    rdpContext* pContext = (rdpContext*)instance->context;
+    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+    QMessageBox::StandardButton nRet = QMessageBox::No;
+    bool bCheckBox = false;
+    emit pThis->sigBlockShowMessage(tr("Gateway message"), msgType,
+                                    QMessageBox::Yes|QMessageBox::No,
+                                    nRet, bCheckBox);
+    switch (nRet) {
+    case QMessageBox::Yes:
+        return TRUE;
+        break;
+    default:
+        return FALSE;
+    }
     return TRUE;
 }
 

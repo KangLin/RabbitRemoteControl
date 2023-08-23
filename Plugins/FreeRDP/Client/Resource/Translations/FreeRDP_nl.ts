@@ -96,6 +96,26 @@
         <source>Old fingerprint: </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="845"/>
+        <source>Consent message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="845"/>
+        <source>Service message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="858"/>
+        <source>I understand and agree to the terms of this policy (Y/N)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="864"/>
+        <source>Gateway message</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CDlgGetUserPasswordFreeRDP</name>

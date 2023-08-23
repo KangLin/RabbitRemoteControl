@@ -82,67 +82,67 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
+        <location filename="../../FrmParameterClient.ui" line="100"/>
         <source>Connecter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="26"/>
+        <location filename="../../FrmParameterClient.ui" line="106"/>
         <source>Show protocol prefix in name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="33"/>
+        <location filename="../../FrmParameterClient.ui" line="113"/>
         <source>Only show ip:port in name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="43"/>
+        <location filename="../../FrmParameterClient.ui" line="123"/>
         <source>Hook: capture system key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="50"/>
+        <location filename="../../FrmParameterClient.ui" line="130"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="58"/>
+        <location filename="../../FrmParameterClient.ui" line="138"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="65"/>
+        <location filename="../../FrmParameterClient.ui" line="145"/>
         <source>Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="84"/>
+        <location filename="../../FrmParameterClient.ui" line="20"/>
         <source>Key used to encrypt saved password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="92"/>
+        <location filename="../../FrmParameterClient.ui" line="28"/>
         <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="124"/>
+        <location filename="../../FrmParameterClient.ui" line="60"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="131"/>
+        <location filename="../../FrmParameterClient.ui" line="67"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="138"/>
+        <location filename="../../FrmParameterClient.ui" line="74"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="147"/>
+        <location filename="../../FrmParameterClient.ui" line="83"/>
         <source>Prompt type:</source>
         <translation type="unfinished"></translation>
     </message>

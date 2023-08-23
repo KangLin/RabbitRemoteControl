@@ -96,6 +96,26 @@
         <source>Old fingerprint: </source>
         <translation>旧的指纹：</translation>
     </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="845"/>
+        <source>Consent message</source>
+        <translation>同意消息</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="845"/>
+        <source>Service message</source>
+        <translation>服务留言</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="858"/>
+        <source>I understand and agree to the terms of this policy (Y/N)</source>
+        <translation>我理解并同意本政策的条款（是/否）</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="864"/>
+        <source>Gateway message</source>
+        <translation>网关消息</translation>
+    </message>
 </context>
 <context>
     <name>CDlgGetUserPasswordFreeRDP</name>
