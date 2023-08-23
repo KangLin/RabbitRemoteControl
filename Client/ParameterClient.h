@@ -123,6 +123,25 @@ private:
     Q_PROPERTY(bool ViewPassowrd READ GetViewPassowrd WRITE SetViewPassowrd NOTIFY sigViewPassowrdChanged)
 
     //////////////// Password end ////////////////
+    
+public:
+    bool GetShowProtocolPrefix() const;
+    void SetShowProtocolPrefix(bool bShowProtocolPrefix);
+Q_SIGNALS:
+    void sigShowProtocolPrefixChanged();    
+private:
+    bool m_bShowProtocolPrefix;
+    Q_PROPERTY(bool ShowProtocolPrefix READ GetShowProtocolPrefix WRITE SetShowProtocolPrefix NOTIFY sigShowProtocolPrefixChanged)
+
+public:
+    bool GetShowIpPortInName() const;
+    void SetShowIpPortInName(bool bShowIpPortInName);
+Q_SIGNALS:
+    void sigSHowIpPortInNameChanged();
+private:
+    bool m_bShowIpPortInName;
+    Q_PROPERTY(bool ShowIpPortInName READ GetShowIpPortInName WRITE SetShowIpPortInName NOTIFY sigSHowIpPortInNameChanged)
+
 };
 
 #endif // CPARAMETERVIEWER_H

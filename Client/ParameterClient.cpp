@@ -22,6 +22,8 @@ int CParameterClient::Load(QSettings &set)
                               ));
     SetSavePassword(set.value("Client/Password/Save", GetSavePassword()).toBool());
     SetViewPassowrd(set.value("Client/Password/View", GetViewPassowrd()).toBool());
+    SetShowProtocolPrefix(set.value("Client/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
+    SetShowIpPortInName(set.value("Client/Name/ShowIpPort", GetShowIpPortInName()).toBool());
     return 0;
 }
 
@@ -32,6 +34,8 @@ int CParameterClient::Save(QSettings& set)
                  static_cast<int>(GetPromptType()));
     set.setValue("Client/Password/Save", GetSavePassword());
     set.setValue("Client/Password/View", GetViewPassowrd());
+    set.setValue("Client/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
+    set.setValue("Client/Name/ShowIpPort", GetShowIpPortInName());
     return 0;
 }
 
@@ -115,4 +119,32 @@ void CParameterClient::SetViewPassowrd(bool NewViewPassowrd)
     m_bViewPassowrd = NewViewPassowrd;
     SetModified(true);
     emit sigViewPassowrdChanged(m_bViewPassowrd);
+}
+
+bool CParameterClient::GetShowProtocolPrefix() const
+{
+    return m_bShowProtocolPrefix;
+}
+
+void CParameterClient::SetShowProtocolPrefix(bool bShowProtocolPrefix)
+{
+    if(m_bShowProtocolPrefix == bShowProtocolPrefix)
+        return;
+    m_bShowProtocolPrefix = bShowProtocolPrefix;
+    SetModified(true);
+    emit sigShowProtocolPrefixChanged();
+}
+
+bool CParameterClient::GetShowIpPortInName() const
+{
+    return m_bShowIpPortInName;
+}
+
+void CParameterClient::SetShowIpPortInName(bool bShowIpPortInName)
+{
+    if(m_bShowIpPortInName == bShowIpPortInName)
+        return;
+    m_bShowIpPortInName = bShowIpPortInName;
+    SetModified(true);
+    emit sigSHowIpPortInNameChanged();
 }

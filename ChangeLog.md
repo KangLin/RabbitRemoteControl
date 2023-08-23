@@ -15,6 +15,10 @@
   when there were different versions of the dependency library under Linux.
   - Fixed tab key event
 + Replace RabbitCommon::CDir::GetOpenFileName with QFileDialog::getOpenFileName etc
++ UI
+  + Add set parameter in client
+    + Add prefix in name
+    + Add only show IP:PORT in name
 
 ### v0.0.25
 + Modify CI for automation update

@@ -76,10 +76,16 @@ const QString CConnecter::Id()
  */
 const QString CConnecter::Name()
 {
-    if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
-        return GetParameter()->GetName();
+    QString szName;
+    if(GetParameter() && GetParameter()->m_pParameterClient
+        && GetParameter()->m_pParameterClient->GetShowProtocolPrefix())
+        szName = Protocol() + ":";
 
-    return ServerName();
+    if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
+        szName += GetParameter()->GetName();
+    else
+        szName += ServerName();
+    return szName;
 }
 
 const QString CConnecter::Description()
@@ -132,6 +138,13 @@ void CConnecter::slotSetServerName(const QString& szName)
 
 QString CConnecter::ServerName()
 {
+    if(GetParameter() && GetParameter()->m_pParameterClient
+        && GetParameter()->m_pParameterClient->GetShowIpPortInName())
+    {
+        return GetParameter()->GetHost()
+               + ":" + QString::number(GetParameter()->GetPort());
+    }
+
     if(m_szServerName.isEmpty() && GetParameter())
         return GetParameter()->GetServerName();
     return m_szServerName;
@@ -202,7 +215,15 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
     {
         GetParameter()->m_pParameterClient = pPara;
         if(pPara)
+        {
             GetParameter()->SetSavePassword(pPara->GetSavePassword());
+            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
+                                 this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
+                            this, SLOT(slotUpdateName()));
+            Q_ASSERT(check);
+        }
         return 0;
     } else {
         qCritical(Client) << "The CConnecter is not parameters! please create parameters."
@@ -234,7 +255,7 @@ int CConnecter::SetParameter(CParameterConnecter *p)
         Q_ASSERT(check);
         check = connect(GetParameter(), SIGNAL(sigShowServerNameChanged()),
                         this, SLOT(slotShowServerName()));
-        Q_ASSERT(check);   
+        Q_ASSERT(check);
     }
     return 0;
 }

@@ -25,6 +25,8 @@ CFrmParameterClient::CFrmParameterClient(CParameterClient *pParameter, QWidget *
         ui->rbPromptNo->setChecked(true);
         break;
     }
+    ui->cbShowPrefix->setChecked(m_pPara->GetShowProtocolPrefix());
+    ui->cbShowIPPort->setChecked(m_pPara->GetShowIpPortInName());
 }
 
 CFrmParameterClient::~CFrmParameterClient()
@@ -45,6 +47,8 @@ void CFrmParameterClient::slotAccept()
         m_pPara->SetPromptType(CParameterClient::PromptType::First);
     if(ui->rbPromptNo->isChecked())
         m_pPara->SetPromptType(CParameterClient::PromptType::No);
+    m_pPara->SetShowProtocolPrefix(ui->cbShowPrefix->isChecked());
+    m_pPara->SetShowIpPortInName(ui->cbShowIPPort->isChecked());
 }
 
 void CFrmParameterClient::on_cbEnableViewPassword_clicked(bool checked)

@@ -182,8 +182,8 @@ public Q_SLOTS:
      */
     virtual int DisConnect() = 0;
     
-    //! \~chinese 下列槽仅由插件使用
-    //! \~english Follow slot only is used by plugin
+    //! \~chinese 下列槽仅由 CConnect::SetConnecter 使用
+    //! \~english Follow slot only is used by CConnect::SetConnecter
     virtual void slotSetClipboard(QMimeData *data);
     virtual void slotSetServerName(const QString &szName);
     
@@ -259,11 +259,13 @@ protected:
 
     /*!
      * \~chinese
-     * \brief 当前连接名。例如：服务名或 IP:端口
+     * \brief 当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口
      * \return 返回服务名
      * 
      * \~english
-     * \brief Current connect server name. eg: Server name or Ip:Port 
+     * \brief Current connect server name
+     *        (remote desktop name, if not present, then IP:PORT).
+     *        eg: Server name or Ip:Port 
      * \return Current connect server name.
      */
     virtual QString ServerName();

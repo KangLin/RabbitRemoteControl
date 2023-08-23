@@ -4,31 +4,27 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="87"/>
+        <location filename="../../Connecter.cpp" line="93"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <source>Protol: </source>
-        <translation type="vanished">協議：</translation>
-    </message>
-    <message>
-        <location filename="../../Connecter.cpp" line="88"/>
+        <location filename="../../Connecter.cpp" line="94"/>
         <source>Protocol: </source>
-        <translation type="unfinished"></translation>
+        <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="89"/>
+        <location filename="../../Connecter.cpp" line="95"/>
         <source>Server name: </source>
         <translation>服務名：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="90"/>
+        <location filename="../../Connecter.cpp" line="96"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="151"/>
+        <location filename="../../Connecter.cpp" line="164"/>
         <source>Set </source>
         <translation>設置 </translation>
     </message>
@@ -87,51 +83,66 @@
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="20"/>
+        <source>Connecter name</source>
+        <translation>連接名</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="26"/>
+        <source>Show protocol prefix in name</source>
+        <translation>在連接名中顯示協議前綴</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="33"/>
+        <source>Only show ip:port in name</source>
+        <translation>在連接名中僅顯示 IP:PORT</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="43"/>
         <source>Hook: capture system key</source>
         <translation>掛鉤：捕獲系統鍵</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="27"/>
+        <location filename="../../FrmParameterClient.ui" line="50"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="35"/>
+        <location filename="../../FrmParameterClient.ui" line="58"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="42"/>
+        <location filename="../../FrmParameterClient.ui" line="65"/>
         <source>Enable view password</source>
         <translation>允許查看密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="54"/>
+        <location filename="../../FrmParameterClient.ui" line="84"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密鍵用於加密碼保存的密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="62"/>
+        <location filename="../../FrmParameterClient.ui" line="92"/>
         <source>Encrypt key:</source>
         <translation>加密鍵</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="93"/>
+        <location filename="../../FrmParameterClient.ui" line="124"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="100"/>
+        <location filename="../../FrmParameterClient.ui" line="131"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="107"/>
+        <location filename="../../FrmParameterClient.ui" line="138"/>
         <source>Always</source>
         <translation>總是</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="116"/>
+        <location filename="../../FrmParameterClient.ui" line="147"/>
         <source>Prompt type:</source>
         <translation>提示類型</translation>
     </message>
