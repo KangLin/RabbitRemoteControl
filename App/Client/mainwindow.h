@@ -81,6 +81,7 @@ private Q_SLOTS:
      */
     void slotInformation(const QString& szInfo);
     void slotUpdateName(const QString& szName);
+    void slotUpdateName();
 
     void on_actionScreenshot_triggered();
     void on_actionSettings_triggered();

@@ -6,7 +6,9 @@ CParameterClient::CParameterClient(QObject *parent)
       m_bSavePassword(false),
       m_PromptType(PromptType::No),
       m_nPromptCount(0),
-      m_bViewPassowrd(false)
+      m_bViewPassowrd(false),
+      m_bShowProtocolPrefix(false),
+      m_bShowIpPortInName(false)
 {}
 
 CParameterClient::~CParameterClient()
@@ -22,8 +24,8 @@ int CParameterClient::Load(QSettings &set)
                               ));
     SetSavePassword(set.value("Client/Password/Save", GetSavePassword()).toBool());
     SetViewPassowrd(set.value("Client/Password/View", GetViewPassowrd()).toBool());
-    SetShowProtocolPrefix(set.value("Client/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
-    SetShowIpPortInName(set.value("Client/Name/ShowIpPort", GetShowIpPortInName()).toBool());
+    SetShowProtocolPrefix(set.value("Client/Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
+    SetShowIpPortInName(set.value("Client/Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
     return 0;
 }
 
@@ -34,8 +36,8 @@ int CParameterClient::Save(QSettings& set)
                  static_cast<int>(GetPromptType()));
     set.setValue("Client/Password/Save", GetSavePassword());
     set.setValue("Client/Password/View", GetViewPassowrd());
-    set.setValue("Client/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
-    set.setValue("Client/Name/ShowIpPort", GetShowIpPortInName());
+    set.setValue("Client/Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
+    set.setValue("Client/Connecter/Name/ShowIpPort", GetShowIpPortInName());
     return 0;
 }
 

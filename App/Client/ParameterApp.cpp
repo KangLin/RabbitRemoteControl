@@ -12,6 +12,8 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
     m_TabPosition(QTabWidget::North),
+    m_bEnableTabToolTip(true),
+    m_bEnableTabIcon(true),
     m_nRecentMenuMaxCount(10),
     m_SystemTrayIconType(SystemTrayIconMenuType::MenuBar),
     m_bEnableSystemTrayIcon(true),
@@ -57,8 +59,12 @@ int CParameterApp::Load()
     SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable",
                                       GetSaveMainWindowStatus()).toBool());
     SetTabPosition(static_cast<QTabWidget::TabPosition>(
-                       set.value("MainWindow/Tab/Position",
+                       set.value("MainWindow/View/TabView/Tab/Position",
                                  GetTabPosition()).toInt()));
+    SetEnableTabToolTip(set.value("MainWindow/View/TabView/Tab/Enable/ToolTip",
+                                  GetEnableTabToolTip()).toBool());
+    SetEnableTabIcon(set.value("MainWindow/View/TabView/Tab/Enable/Icon",
+                               GetEnableTabIcon()).toBool());
 
     SetRecentMenuMaxCount(set.value("MainWindow/Recent/Max",
                                     GetRecentMenuMaxCount()).toInt());
@@ -69,7 +75,7 @@ int CParameterApp::Load()
     SetSystemTrayIconMenuType(static_cast<SystemTrayIconMenuType>(
                               set.value("MainWindow/SystemTrayIcon/MenuType",
                        static_cast<int>(GetSystemTrayIconMenuType())).toInt()));
-    
+
     SetOpenLasterClose(set.value("MainWindow/OpenLasterClose",
                                   GetOpenLasterClose()).toBool());
     SetFavoriteEdit(set.value("MainWindow/Favorite/Double/Edit",
@@ -100,13 +106,16 @@ int CParameterApp::Save()
     set.setValue("ShotScreen/Action", GetScreenShotEndAction());
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
-    set.setValue("MainWindow/Tab/Position", GetTabPosition());
+    set.setValue("MainWindow/View/TabView/Tab/Position", GetTabPosition());
+    set.setValue("MainWindow/View/TabView/Tab/Enable/ToolTip", GetEnableTabToolTip());
+    set.setValue("MainWindow/View/TabView/Tab/Enable/Icon", GetEnableTabIcon());
     set.setValue("MainWindow/Recent/Max", GetRecentMenuMaxCount());
     set.setValue("MainWindow/SystemTrayIcon/Enable", GetEnableSystemTrayIcon());
     set.setValue("MainWindow/SystemTrayIcon/MenuType",
                  static_cast<int>(GetSystemTrayIconMenuType()));
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
+    
 
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Save(set);
@@ -151,6 +160,32 @@ void CParameterApp::SetTabPosition(const QTabWidget::TabPosition &newTabPosition
         return;
     m_TabPosition = newTabPosition;
     emit sigTabPositionChanged();
+}
+
+const bool CParameterApp::GetEnableTabToolTip() const
+{
+    return m_bEnableTabToolTip;
+}
+
+void CParameterApp::SetEnableTabToolTip(bool bEnable)
+{
+    if(m_bEnableTabToolTip == bEnable)
+        return;
+    m_bEnableTabToolTip = bEnable;
+    emit sigEnableTabToolTipChanged();
+}
+
+const bool CParameterApp::GetEnableTabIcon() const
+{
+    return m_bEnableTabIcon;
+}
+
+void CParameterApp::SetEnableTabIcon(bool bEnable)
+{
+    if(m_bEnableTabIcon == bEnable)
+        return;
+    m_bEnableTabIcon = bEnable;
+    emit sigEnableTabIconChanged();
 }
 
 int CParameterApp::GetRecentMenuMaxCount() const

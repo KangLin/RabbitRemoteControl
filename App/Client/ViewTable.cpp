@@ -27,6 +27,7 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
         MainWindow* p = dynamic_cast<MainWindow*>(this->parent());
         if(p)
         {
+            m_pMainWindow = p;
             m_pTab->setTabPosition(p->m_Parameter.GetTabPosition());
             check = connect(&p->m_Parameter, SIGNAL(sigTabPositionChanged()),
                             this, SLOT(slotTabPositionChanged()));
@@ -124,13 +125,20 @@ int CViewTable::RemoveView(QWidget *pView)
 }
 
 void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle,
-                                const QString &szToolTip)
+                                const QIcon &icon, const QString &szToolTip)
 {
     if(!pView) return;
     pView->setWindowTitle(szTitle);
     int nIndex = GetViewIndex(pView);
     m_pTab->setTabText(nIndex, szTitle);
-    m_pTab->setTabToolTip(nIndex, szToolTip);
+    if(m_pMainWindow->m_Parameter.GetEnableTabToolTip())
+        m_pTab->setTabToolTip(nIndex, szToolTip);
+    else
+        m_pTab->setTabToolTip(nIndex, "");
+    if(m_pMainWindow->m_Parameter.GetEnableTabIcon())
+        m_pTab->setTabIcon(nIndex, icon);
+    else
+        m_pTab->setTabIcon(nIndex, QIcon());
 }
 
 int CViewTable::SetFullScreen(bool bFull)

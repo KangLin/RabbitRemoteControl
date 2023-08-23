@@ -36,7 +36,7 @@ public:
     virtual QWidget* GetCurrentView() = 0;
     virtual int SetFullScreen(bool bFull) = 0;
     /// The QWidget* pView must is same as CConnecter::GetViewer()
-    virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle, const QString& szToolTip) = 0;
+    virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle, const QIcon& icon, const QString& szToolTip) = 0;
     /// The QWidget* pView must is same as CConnecter::GetViewer()
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) = 0;
     

@@ -7,6 +7,7 @@
 #include <QScrollArea>
 #include "View.h"
 
+class MainWindow;
 /**
  * @brief The CViewTable class
  * @ingroup ViewApi
@@ -23,7 +24,7 @@ public:
     virtual int AddView(QWidget *pView) override;
     virtual int RemoveView(QWidget *pView) override;
     virtual QWidget *GetCurrentView() override;
-    virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle, const QString& szToolTip) override;
+    virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle, const QIcon& icon, const QString& szToolTip) override;
     virtual int SetFullScreen(bool bFull) override;
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) override;
 
@@ -46,6 +47,7 @@ private Q_SLOTS:
     
 private:
     QTabWidget* m_pTab;
+    MainWindow* m_pMainWindow;
 
     QWidget* GetViewer(int index);
     int GetViewIndex(QWidget* pView);

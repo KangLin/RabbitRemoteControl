@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>484</width>
-    <height>501</height>
+    <height>410</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,37 +18,6 @@
     <normaloff>.</normaloff>.</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbOk">
-       <property name="text">
-        <string>Ok(&amp;O)</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbNo">
-       <property name="text">
-        <string>No(&amp;N)</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="windowTitle">
@@ -66,6 +35,26 @@
        <string>General</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_6">
+       <item row="5" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="cbFavoriteDoubleEdit">
+         <property name="text">
+          <string>Favorite: select it then double node edit, other connect</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
@@ -90,129 +79,7 @@
          </item>
         </layout>
        </item>
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="cbFavoriteDoubleEdit">
-         <property name="text">
-          <string>Favorite: select it then double node edit, other connect</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab">
-      <attribute name="title">
-       <string>Main window</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_7">
-       <item row="3" column="0">
-        <widget class="QCheckBox" name="cbShowSystemTrayIcon">
-         <property name="text">
-          <string>Enable system tray icon</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>66</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="5" column="0">
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>Tab position</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="3">
-           <widget class="QRadioButton" name="rbEast">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>East</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QRadioButton" name="rbNorth">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>North</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QRadioButton" name="rbSouth">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>South</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QRadioButton" name="rbWest">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>West</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="cbResumLasterClose">
-         <property name="text">
-          <string>Resume the connections when it was last closed at startup</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QCheckBox" name="cbReciverShortCut">
-         <property name="text">
-          <string>Main window receiver short cut key</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
+       <item row="4" column="0">
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
           <string>Shot screen</string>
@@ -302,13 +169,114 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QCheckBox" name="cbSaveMainWindowStatus">
+        <widget class="QCheckBox" name="cbResumLasterClose">
          <property name="text">
-          <string>Save main window status</string>
+          <string>Resume the connections when it was last closed at startup</string>
          </property>
         </widget>
        </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Main window</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
        <item row="4" column="0">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Tab view</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="groupBox_3">
+            <property name="title">
+             <string>Position</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <widget class="QRadioButton" name="rbNorth">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>North</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="rbSouth">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>South</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QRadioButton" name="rbWest">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>West</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QRadioButton" name="rbEast">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>East</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QCheckBox" name="cbTabIcon">
+              <property name="text">
+               <string>Icon</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cbTabToolTip">
+              <property name="text">
+               <string>ToolTip</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
         <widget class="QGroupBox" name="gbSystemTrayIconContextMenu">
          <property name="title">
           <string>System tray icon context menu</string>
@@ -345,12 +313,104 @@
          </layout>
         </widget>
        </item>
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>66</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="cbReciverShortCut">
+         <property name="text">
+          <string>Main window receiver short cut key</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="cbShowSystemTrayIcon">
+         <property name="text">
+          <string>Enable system tray icon</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="cbSaveMainWindowStatus">
+         <property name="text">
+          <string>Save main window status</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
    </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbOk">
+       <property name="text">
+        <string>Ok(&amp;O)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbNo">
+       <property name="text">
+        <string>No(&amp;N)</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>sbRecentMenuMaxCount</tabstop>
+  <tabstop>cbResumLasterClose</tabstop>
+  <tabstop>cbFavoriteDoubleEdit</tabstop>
+  <tabstop>cbShotRemoteDesktop</tabstop>
+  <tabstop>rbShotScreenNoAction</tabstop>
+  <tabstop>rbShotScreenOpenFolder</tabstop>
+  <tabstop>rbShotScreenOpenFile</tabstop>
+  <tabstop>leShotScreenSavepath</tabstop>
+  <tabstop>pbScreenShotBrowser</tabstop>
+  <tabstop>cbReciverShortCut</tabstop>
+  <tabstop>cbSaveMainWindowStatus</tabstop>
+  <tabstop>cbShowSystemTrayIcon</tabstop>
+  <tabstop>rbSystemTrayIconNo</tabstop>
+  <tabstop>rbMenuBar</tabstop>
+  <tabstop>rbSystemTrayIconRemote</tabstop>
+  <tabstop>rbSystemTrayIconRecentOpen</tabstop>
+  <tabstop>rbNorth</tabstop>
+  <tabstop>rbSouth</tabstop>
+  <tabstop>rbWest</tabstop>
+  <tabstop>rbEast</tabstop>
+  <tabstop>cbTabIcon</tabstop>
+  <tabstop>cbTabToolTip</tabstop>
+  <tabstop>pbOk</tabstop>
+  <tabstop>pbNo</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

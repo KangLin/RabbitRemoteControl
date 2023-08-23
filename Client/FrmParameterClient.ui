@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>358</height>
+    <height>364</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -166,6 +166,18 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>cbHookKeyboard</tabstop>
+  <tabstop>leEncryptKey</tabstop>
+  <tabstop>pbEncryptKey</tabstop>
+  <tabstop>rbPromptNo</tabstop>
+  <tabstop>rbPromptFirst</tabstop>
+  <tabstop>rbPromptAlways</tabstop>
+  <tabstop>cbSavePassword</tabstop>
+  <tabstop>cbEnableViewPassword</tabstop>
+  <tabstop>cbShowPrefix</tabstop>
+  <tabstop>cbShowIPPort</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -86,7 +86,9 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
         ui->rbEast->setChecked(true);
         break;
     }
-    
+    ui->cbTabToolTip->setChecked(m_pParameters->GetEnableTabToolTip());
+    ui->cbTabIcon->setChecked(m_pParameters->GetEnableTabIcon());
+
     ui->sbRecentMenuMaxCount->setValue(m_pParameters->GetRecentMenuMaxCount());
 
     switch (m_pParameters->GetSystemTrayIconMenuType()) {
@@ -135,6 +137,8 @@ void CParameterDlgSettings::on_pbOk_clicked()
     if(ui->rbSouth->isChecked()) m_pParameters->SetTabPosition(QTabWidget::South);
     if(ui->rbEast->isChecked()) m_pParameters->SetTabPosition(QTabWidget::East);
     if(ui->rbWest->isChecked()) m_pParameters->SetTabPosition(QTabWidget::West);
+    m_pParameters->SetEnableTabToolTip(ui->cbTabToolTip->isChecked());
+    m_pParameters->SetEnableTabIcon(ui->cbTabIcon->isChecked());
 
     m_pParameters->SetRecentMenuMaxCount(ui->sbRecentMenuMaxCount->value());
     

@@ -68,7 +68,25 @@ Q_SIGNALS:
 private:    
     QTabWidget::TabPosition m_TabPosition;
     Q_PROPERTY(QTabWidget::TabPosition TabPosition READ GetTabPosition WRITE SetTabPosition NOTIFY sigTabPositionChanged)
-    
+
+public:
+    const bool GetEnableTabToolTip() const;
+    void SetEnableTabToolTip(bool bEnable);
+Q_SIGNALS:
+    void sigEnableTabToolTipChanged();
+private:
+    bool m_bEnableTabToolTip;
+    Q_PROPERTY(bool EnableTabToolTip READ GetEnableTabToolTip WRITE SetEnableTabToolTip NOTIFY sigEnableTabToolTipChanged)
+
+public:
+    const bool GetEnableTabIcon() const;
+    void SetEnableTabIcon(bool bEnable);
+Q_SIGNALS:
+    void sigEnableTabIconChanged();
+private:
+    bool m_bEnableTabIcon;
+    Q_PROPERTY(bool EnableTabIcon READ GetEnableTabIcon WRITE SetEnableTabIcon NOTIFY sigEnableTabIconChanged)
+
 public:
     int GetRecentMenuMaxCount() const;
     void SetRecentMenuMaxCount(int newRecentMenuMaxCount);

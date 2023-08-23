@@ -218,6 +218,12 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(&m_Parameter, SIGNAL(sigEnableSystemTrayIcon()),
                     this, SLOT(slotEnableSystemTrayIcon()));
     Q_ASSERT(check);
+    check = connect(&m_Parameter, SIGNAL(sigEnableTabToolTipChanged()),
+                    this, SLOT(slotUpdateName()));
+    Q_ASSERT(check);
+    check = connect(&m_Parameter, SIGNAL(sigEnableTabIconChanged()),
+                    this, SLOT(slotUpdateName()));
+    Q_ASSERT(check);
     m_Parameter.Load();
     slotShortCut();
 #ifdef HAVE_ICE
@@ -705,7 +711,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     {
         m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
         m_pView->AddView(p->GetViewer());
-        m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Description()); 
+        m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description()); 
     }
     
     m_Connecters.push_back(p);
@@ -812,11 +818,23 @@ void MainWindow::slotInformation(const QString& szInfo)
     statusBar()->showMessage(szInfo);
 }
 
+void MainWindow::slotUpdateName()
+{
+    foreach (auto pConnecter, m_Connecters)
+    {
+        m_pView->SetWidowsTitle(pConnecter->GetViewer(),
+                                pConnecter->Name(),
+                                pConnecter->Icon(),
+                                pConnecter->Description());
+    }
+}
+
 void MainWindow::slotUpdateName(const QString& szName)
 {
     CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
     if(!pConnecter) return;
-    m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName, pConnecter->Description());
+    m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName,
+                            pConnecter->Icon(), pConnecter->Description());
 }
 
 void MainWindow::on_actionStyle_S_triggered()
