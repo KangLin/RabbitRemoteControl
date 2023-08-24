@@ -280,13 +280,19 @@ void CConnectTigerVnc::slotReadyRead()
             ;
         return;
     } catch (rdr::EndOfStream& e) {
-        qCritical(TigerVNC) << "processMsg error:" << e.str();
+        qCritical(TigerVNC) << e.str();
+        emit sigError(-1, e.str());
+    } catch(rdr::GAIException &e) {
+        qCritical(TigerVNC) << e.err << e.str();
+        emit sigError(-1, e.str());
+    } catch(rdr::SystemException &e) {
+        qCritical(TigerVNC) << e.err << e.str();
         emit sigError(-1, e.str());
     } catch (rdr::Exception& e) {
-        qCritical(TigerVNC) << "processMsg error:" << e.str();
+        qCritical(TigerVNC) << e.str();
         emit sigError(-1, e.str());
     } catch (std::exception &e) {
-        qCritical(TigerVNC) << "processMsg error:" << e.what();
+        qCritical(TigerVNC) << e.what();
         emit sigError(-1, e.what());
     } catch(...) {
         qCritical(TigerVNC) << "processMsg error";

@@ -281,13 +281,19 @@ void CConnectRabbitVNC::slotReadyRead()
             ;
         return;
     } catch (rdr::EndOfStream& e) {
-        qCritical(RabbitVNC) << "processMsg error:" << e.str();
+        qCritical(RabbitVNC) << e.str();
+        emit sigError(-1, e.str());
+    } catch(rdr::GAIException &e) {
+        qCritical(RabbitVNC) << e.err << e.str();
+        emit sigError(-1, e.str());
+    } catch(rdr::SystemException &e) {
+        qCritical(RabbitVNC) << e.err << e.str();
         emit sigError(-1, e.str());
     } catch (rdr::Exception& e) {
-        qCritical(RabbitVNC) << "processMsg error:" << e.str();
+        qCritical(RabbitVNC) << e.str();
         emit sigError(-1, e.str());
     } catch (std::exception &e) {
-        qCritical(RabbitVNC) << "processMsg error:" << e.what();
+        qCritical(RabbitVNC) << e.what();
         emit sigError(-1, e.what());
     } catch(...) {
         qCritical(RabbitVNC) << "processMsg error";
@@ -299,6 +305,7 @@ void CConnectRabbitVNC::slotReadyRead()
 
 void CConnectRabbitVNC::slotError(int nErr, const QString& szErr)
 {
+    qCritical(RabbitVNC) << "Error:" << nErr << "-" << szErr;
     emit sigError(nErr, szErr);
     emit sigDisconnected();
 }
