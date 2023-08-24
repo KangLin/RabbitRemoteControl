@@ -122,20 +122,42 @@ int CConnectFreeRDP::OnInit()
     status = freerdp_connect(instance);
     if (!status)
 	{
-		if (freerdp_get_last_error(instance->context) == FREERDP_ERROR_AUTHENTICATION_FAILED)
-			nRet = -2;
-		else if (freerdp_get_last_error(instance->context) ==
-		         FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED)
-			nRet = -3;
-		else
-			nRet = -4;
-        QString szErr = tr("freerdp_connect connect to ");
-        szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
-        szErr += ":";
-        szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
-        szErr += tr(" fail");
+        QMessageBox::StandardButton nRetButton = QMessageBox::Ok;
+        bool checkBox = false;
+        QString szErr;
+        UINT32 nErr = freerdp_get_last_error(instance->context);
+        switch(nErr) {
+        case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
+        {
+            nRet = -2;
+            szErr = tr("Logon to ");
+            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += ":";
+            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += tr(" fail. Please check that the username and password are correct.");
+            break;
+        }
+        case FREERDP_ERROR_AUTHENTICATION_FAILED:
+        case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
+        default:
+            nRet = -3;
+            szErr = tr("Connect to ");
+            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += ":";
+            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += tr(" fail:");
+            szErr += "[";
+            szErr += QString::number(nErr) + " - ";
+            szErr += freerdp_get_last_error_name(nErr);
+            szErr += "] ";
+            /*szErr += "[";
+        szErr += freerdp_get_last_error_category(nErr);
+        szErr += "] ";*/
+            szErr += freerdp_get_last_error_string(nErr);
+        }
         qCritical(FreeRDPConnect) << szErr;
         emit sigError(nRet, szErr.toStdString().c_str());
+        emit sigBlockShowMessage(tr("Error"), szErr, QMessageBox::Ok, nRetButton, checkBox);
     } else {
         emit sigConnected();
 
@@ -343,6 +365,8 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         return FALSE;
     }
 
+    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+    if(!pThis) return FALSE;
     settings = instance->context->settings;
 	channels = context->channels;
 
@@ -363,18 +387,20 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 
 	if (!freerdp_client_load_addins(channels, instance->context->settings))
 		return FALSE;
-
-	if (!settings->Username && !settings->CredentialsFromStdin
-            && !settings->SmartcardLogon)
+    
+    if (pThis->m_pParameter->GetUser().isEmpty()
+        && !settings->CredentialsFromStdin
+        && !settings->SmartcardLogon)
 	{
         // Get system login name
         QString szUser = RabbitCommon::CTools::Instance()->GetCurrentUser();
-        if(!szUser.isEmpty())
-            settings->Username = _strdup(szUser.toStdString().c_str());
-        if (!settings->Username)
-            return FALSE;
-        
-        qWarning(FreeRDPConnect) << "No user name set. - Using login name:" << settings->Username;
+        if(!szUser.isEmpty()){
+            pThis->m_pParameter->SetUser(szUser);
+            freerdp_settings_set_string(settings,
+                                        FreeRDP_Username,
+                          pThis->m_pParameter->GetUser().toStdString().c_str());
+        }
+        qWarning(FreeRDPConnect) << "No user name set. - Using login name:" << szUser;
 	}
 
     if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
@@ -552,7 +578,7 @@ int CConnectFreeRDP::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
 	CConnectFreeRDP* pThis = ((ClientContext*)instance->context)->pThis;
 	const char* str_data = freerdp_get_logon_error_info_data(data);
 	const char* str_type = freerdp_get_logon_error_info_type(type);
-    QString szErr = tr("Logon error info [");
+    QString szErr = tr("FreeRDP logon info: [");
     szErr += str_type;
     szErr += "] ";
     szErr += str_data;
@@ -699,7 +725,8 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
         {
             *username = _strdup(pThis->m_pParameter->GetUser().toStdString().c_str());
             *password = _strdup(pThis->m_pParameter->GetPassword().toStdString().c_str());
-        }
+        } else
+            return FALSE;
     }
     return TRUE;
 }
@@ -721,7 +748,8 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
         {
             *username = _strdup(pThis->m_pParameter->GetUser().toStdString().c_str());
             *password = _strdup(pThis->m_pParameter->GetPassword().toStdString().c_str());
-        }
+        } else
+            return FALSE;
     }
 	return TRUE;
 }

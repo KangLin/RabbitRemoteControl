@@ -296,7 +296,19 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
     QObject *obj = createObject(className);
     Q_ASSERT(obj);
     if(!obj) return;
-    
+    /*
+    if(-1 == obj->metaObject()->indexOfMethod("SetContext"))
+    {
+        qCritical(Client) << "The class" << className << "is not method" << "SetContext"
+                          << "It must be SetContext and SetConnecter method.";
+        Q_ASSERT(false);
+    }
+    if(-1 == obj->metaObject()->indexOfMethod("SetConnecter"))
+    {
+        qCritical(Client) << "The class" << className << "is not method" << "SetConnecter"
+            << "It must be SetContext and SetConnecter method.";
+        Q_ASSERT(false);
+    } //*/
     obj->metaObject()->invokeMethod(obj, "SetContext", Q_ARG(void*, pContext));
     obj->metaObject()->invokeMethod(obj, "SetConnecter", Q_ARG(CConnecter*, this));
     if(obj->inherits("QDialog"))

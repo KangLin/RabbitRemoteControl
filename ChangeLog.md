@@ -19,6 +19,9 @@
   + Add set parameter in client
     + Add prefix in name
     + Add only show IP:PORT in name
+  + Add set parameter in main windows
+    + Add icon in tab view
+    + Add tooltip in tab view
 
 ### v0.0.25
 + Modify CI for automation update

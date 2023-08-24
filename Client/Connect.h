@@ -162,6 +162,9 @@ Q_SIGNALS:
     /*!
      * \brief When a background thread blocks the display window
      * \param className: show windows class name
+     *        The class must have follower public functions:
+     *            Q_INVOKABLE void SetContext(void* pContext);
+     *            Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
      * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
      *              Otherwise, ignore
      * \param pContext: pass context to CConnecter::slotBlockShowWidget()

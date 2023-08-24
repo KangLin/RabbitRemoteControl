@@ -289,6 +289,7 @@ private Q_SLOTS:
      * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
      *              Otherwise, ignore
      * \param pContext: pass context from CConnect::sigBlockShowWidget()
+     *
      * \~
      * \see CConnect::sigBlockShowWidget()
      */
@@ -305,6 +306,9 @@ private Q_SLOTS:
      * \param nRet
      * \param checkBox
      * \param szCheckBoxContext
+     * 
+     * \~
+     * \see CConnect::sigBlockShowMessage
      */
     virtual void slotBlockShowMessage(QString title, QString message,
                                       QMessageBox::StandardButtons buttons,
