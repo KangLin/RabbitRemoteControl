@@ -27,6 +27,7 @@
 
 #include <QGridLayout>
 #include <QMessageBox>
+#include <QCheckBox>
 #include <QScreen>
 #include <QApplication>
 #include <QDebug>
@@ -811,6 +812,18 @@ void MainWindow::slotError(const int nError, const QString &szInfo)
 {
     Q_UNUSED(nError);
     slotInformation(szInfo);
+    if(m_Parameter.GetMessageBoxDisplayInformation()) {
+        QMessageBox box(QMessageBox::Critical, tr("Error"), szInfo, QMessageBox::Ok, this);
+        QCheckBox* cb = new QCheckBox(tr("Use message box to display error information"), this);
+        cb->setChecked(true);
+        box.setCheckBox(cb);
+        box.exec();
+        if(!cb->isChecked())
+        {
+            m_Parameter.SetMessageBoxDisplayInformation(false);
+            m_Parameter.Save();
+        }
+    }
 }
 
 void MainWindow::slotInformation(const QString& szInfo)

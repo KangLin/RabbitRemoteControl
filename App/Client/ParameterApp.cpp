@@ -21,7 +21,8 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bFavoriteEdit(false),
     m_bStatusBar(true),
     m_bTabBar(true),
-    m_bMenuBar(true)
+    m_bMenuBar(true),
+    m_bMessageBoxDisplayInfomation(true)
 {
     m_szScreenShotPath = RabbitCommon::CDir::Instance()->GetDirUserImage()
             + QDir::separator()
@@ -45,7 +46,7 @@ int CParameterApp::Load()
 {
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
-    
+
     SetScreenShot(set.value("ShotScreen/ShotScreen/Desktop",
                             GetScreenShot()).toBool());
     SetScreenShotPath(set.value("ShotScreen/ShotScreen/Path",
@@ -83,12 +84,16 @@ int CParameterApp::Load()
 
     SetStatusBar(set.value("MainWindow/Status/Bar",
                            GetStatusBar()).toBool());
-    
+
     SetTabBar(set.value("MainWindow/TabBar",
                            GetTabBar()).toBool());
-    
+
     SetMenuBar(set.value("MainWindow/MenuBar",
                         GetMenuBar()).toBool());
+
+    SetMessageBoxDisplayInformation(
+        set.value("MainWindow/MessageBoxDisplayInformation",
+                  GetMessageBoxDisplayInformation()).toBool());
 
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Load(set);
@@ -115,7 +120,7 @@ int CParameterApp::Save()
                  static_cast<int>(GetSystemTrayIconMenuType()));
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
-    
+    set.setValue("MainWindow/MessageBoxDisplayInformation", GetMessageBoxDisplayInformation());
 
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Save(set);
@@ -316,4 +321,16 @@ bool CParameterApp::GetMenuBar() const
 void CParameterApp::SetMenuBar(bool checked)
 {
     m_bMenuBar = checked;
+}
+
+const bool CParameterApp::GetMessageBoxDisplayInformation() const
+{
+    return m_bMessageBoxDisplayInfomation;
+}
+
+void CParameterApp::SetMessageBoxDisplayInformation(bool bEnable)
+{
+    if(m_bMessageBoxDisplayInfomation == bEnable)
+        return;
+    m_bMessageBoxDisplayInfomation = bEnable;
 }

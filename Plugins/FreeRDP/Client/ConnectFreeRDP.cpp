@@ -157,7 +157,6 @@ int CConnectFreeRDP::OnInit()
         }
         qCritical(FreeRDPConnect) << szErr;
         emit sigError(nRet, szErr.toStdString().c_str());
-        emit sigBlockShowMessage(tr("Error"), szErr, QMessageBox::Ok, nRetButton, checkBox);
     } else {
         emit sigConnected();
 

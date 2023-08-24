@@ -157,6 +157,13 @@ public:
 private:
     bool m_bMenuBar;
     Q_PROPERTY(bool MenuBar READ GetMenuBar WRITE SetMenuBar)
+    
+public:
+    const bool GetMessageBoxDisplayInformation() const;
+    void SetMessageBoxDisplayInformation(bool bEnable);
+private:
+    bool m_bMessageBoxDisplayInfomation;
+    Q_PROPERTY(bool MessageBoxDisplyInformtion READ GetMessageBoxDisplayInformation WRITE SetMessageBoxDisplayInformation)
 };
 
 #endif // CPARAMETERAPP_H

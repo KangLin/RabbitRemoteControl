@@ -108,7 +108,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     ui->cbShowSystemTrayIcon->setChecked(m_pParameters->GetEnableSystemTrayIcon());
     
     ui->cbFavoriteDoubleEdit->setChecked(m_pParameters->GetFavoriteEdit());
-
+    ui->cbMessageBoxDisplayInfo->setChecked(m_pParameters->GetMessageBoxDisplayInformation());
 }
 
 CParameterDlgSettings::~CParameterDlgSettings()
@@ -141,7 +141,7 @@ void CParameterDlgSettings::on_pbOk_clicked()
     m_pParameters->SetEnableTabIcon(ui->cbTabIcon->isChecked());
 
     m_pParameters->SetRecentMenuMaxCount(ui->sbRecentMenuMaxCount->value());
-    
+
     //NOTE: The order cannot be changed
     m_pParameters->SetEnableSystemTrayIcon(ui->cbShowSystemTrayIcon->isChecked());
     if(ui->rbSystemTrayIconNo->isChecked())
@@ -152,8 +152,9 @@ void CParameterDlgSettings::on_pbOk_clicked()
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::RecentOpen);
     if(ui->rbSystemTrayIconRemote->isChecked())
         m_pParameters->SetSystemTrayIconMenuType(CParameterApp::SystemTrayIconMenuType::Remote);
-    
+
     m_pParameters->SetFavoriteEdit(ui->cbFavoriteDoubleEdit->isChecked());
+    m_pParameters->SetMessageBoxDisplayInformation(ui->cbMessageBoxDisplayInfo->isChecked());
 
     accept();
 }
