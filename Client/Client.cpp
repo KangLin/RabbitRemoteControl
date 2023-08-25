@@ -179,7 +179,7 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
     QString protocol = set.value("Plugin/Protocol").toString();
     QString name = set.value("Plugin/Name").toString();
 
-    qInfo(Client) << "protocol:" << protocol << "name:" << name;
+    //qInfo(Client) << "protocol:" << protocol << "name:" << name;
     pConnecter = CreateConnecter(id);
     if(pConnecter)
         pConnecter->Load(szFile);

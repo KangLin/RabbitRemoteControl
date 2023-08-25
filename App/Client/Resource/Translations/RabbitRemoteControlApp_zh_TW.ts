@@ -300,6 +300,11 @@
         <translation>上</translation>
     </message>
     <message>
+        <location filename="../../ParameterDlgSettings.ui" line="181"/>
+        <source>Use message box to display information</source>
+        <translation>使用消息框顯示信息</translation>
+    </message>
+    <message>
         <location filename="../../ParameterDlgSettings.ui" line="229"/>
         <source>South</source>
         <translation>下</translation>
@@ -348,11 +353,6 @@
         <location filename="../../ParameterDlgSettings.ui" line="174"/>
         <source>Resume the connections when it was last closed at startup</source>
         <translation>啟動時，恢復上次關閉時的連接</translation>
-    </message>
-    <message>
-        <location filename="../../ParameterDlgSettings.ui" line="181"/>
-        <source>Use message box to display error information</source>
-        <translation>使用消息框顯示錯誤信息</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="198"/>
@@ -746,57 +746,60 @@
         <translation>玉兔遠程控製文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="710"/>
+        <location filename="../../mainwindow.cpp" line="715"/>
         <source>Connecting to </source>
         <translation>正在連接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="736"/>
+        <location filename="../../mainwindow.cpp" line="741"/>
         <source>Connected to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="763"/>
+        <location filename="../../mainwindow.cpp" line="768"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令狀態：連接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="772"/>
+        <location filename="../../mainwindow.cpp" line="777"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令狀態：斷開</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="816"/>
+        <location filename="../../mainwindow.cpp" line="830"/>
+        <source>Use message box to display information</source>
+        <translation type="unfinished">使用消息框顯示信息</translation>
+    </message>
+    <message>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation type="vanished">錯誤</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="817"/>
         <source>Use message box to display error information</source>
-        <translation type="unfinished">使用消息框顯示錯誤信息</translation>
+        <translation type="obsolete">使用消息框顯示錯誤信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="967"/>
+        <location filename="../../mainwindow.cpp" line="979"/>
         <source>Hide menu bar</source>
         <translation>隱藏菜單欄</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="968"/>
+        <location filename="../../mainwindow.cpp" line="980"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>將隱藏菜單欄，必須顯示工具條。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="996"/>
+        <location filename="../../mainwindow.cpp" line="1008"/>
         <source>Hide tool bar</source>
         <translation>隱藏工具條</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="997"/>
+        <location filename="../../mainwindow.cpp" line="1009"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>將隱藏工具條，必須顯示菜單欄。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1025"/>
+        <location filename="../../mainwindow.cpp" line="1037"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>

@@ -122,8 +122,6 @@ int CConnectFreeRDP::OnInit()
     status = freerdp_connect(instance);
     if (!status)
 	{
-        QMessageBox::StandardButton nRetButton = QMessageBox::Ok;
-        bool checkBox = false;
         QString szErr;
         UINT32 nErr = freerdp_get_last_error(instance->context);
         switch(nErr) {
@@ -135,8 +133,10 @@ int CConnectFreeRDP::OnInit()
             szErr += ":";
             szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
             szErr += tr(" fail. Please check that the username and password are correct.");
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
+        case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
         case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
         default:
@@ -146,7 +146,7 @@ int CConnectFreeRDP::OnInit()
             szErr += ":";
             szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
             szErr += tr(" fail:");
-            szErr += "[";
+            szErr += " [";
             szErr += QString::number(nErr) + " - ";
             szErr += freerdp_get_last_error_name(nErr);
             szErr += "] ";
@@ -154,9 +154,10 @@ int CConnectFreeRDP::OnInit()
         szErr += freerdp_get_last_error_category(nErr);
         szErr += "] ";*/
             szErr += freerdp_get_last_error_string(nErr);
+            
         }
         qCritical(FreeRDPConnect) << szErr;
-        emit sigError(nRet, szErr.toStdString().c_str());
+        emit sigError(nRet, szErr.toStdString().c_str());        
     } else {
         emit sigConnected();
 

@@ -2,6 +2,35 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sl_SI">
 <context>
+    <name>CConnectRabbitVNC</name>
+    <message>
+        <location filename="../../ConnectRabbitVNC.cpp" line="286"/>
+        <source>Logon to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectRabbitVNC.cpp" line="290"/>
+        <source> fail. Please check that the username and password are correct.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectRabbitVNC.cpp" line="295"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="307"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectRabbitVNC.cpp" line="298"/>
+        <source>Connect to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectRabbitVNC.cpp" line="302"/>
+        <source> fail.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CDlgGetPasswordRabbitVNC</name>
     <message>
         <location filename="../../DlgGetPasswordRabbitVNC.ui" line="14"/>

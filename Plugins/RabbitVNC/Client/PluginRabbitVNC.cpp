@@ -8,7 +8,7 @@
 
 #include <QApplication>
 
-Q_LOGGING_CATEGORY(RabbitVNC, "VNC.Rabbit")
+Q_LOGGING_CATEGORY(RabbitVNC, "RabbitVNC")
 
 static bool initlog = false;
 CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)

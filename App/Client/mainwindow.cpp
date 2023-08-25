@@ -669,6 +669,11 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     check = connect(p, SIGNAL(sigError(const int, const QString &)),
                     this, SLOT(slotError(const int, const QString&)));
     Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigShowMessage(const QString&, const QString&,
+                                             const QMessageBox::Icon&)),
+                   this, SLOT(slotShowMessage(const QString&, const QString&,
+                                             const QMessageBox::Icon&)));
+    Q_ASSERT(check);
     check = connect(p, SIGNAL(sigInformation(const QString&)),
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
@@ -812,17 +817,24 @@ void MainWindow::slotError(const int nError, const QString &szInfo)
 {
     Q_UNUSED(nError);
     slotInformation(szInfo);
-    if(m_Parameter.GetMessageBoxDisplayInformation()) {
-        QMessageBox box(QMessageBox::Critical, tr("Error"), szInfo, QMessageBox::Ok, this);
-        QCheckBox* cb = new QCheckBox(tr("Use message box to display error information"), this);
-        cb->setChecked(true);
-        box.setCheckBox(cb);
-        box.exec();
-        if(!cb->isChecked())
-        {
-            m_Parameter.SetMessageBoxDisplayInformation(false);
-            m_Parameter.Save();
-        }
+}
+
+void MainWindow::slotShowMessage(const QString &title, const QString &message,
+                                 const QMessageBox::Icon &icon)
+{
+    slotInformation(message);
+    if(!m_Parameter.GetMessageBoxDisplayInformation())
+        return;
+    
+    QMessageBox msg(icon, title, message, QMessageBox::Ok, this);
+    QCheckBox* cb = new QCheckBox(tr("Use message box to display information"), this);
+    cb->setChecked(true);
+    msg.setCheckBox(cb);
+    msg.exec();
+    if(!cb->isChecked())
+    {
+        m_Parameter.SetMessageBoxDisplayInformation(false);
+        m_Parameter.Save();
     }
 }
 

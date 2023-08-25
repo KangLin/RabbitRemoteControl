@@ -73,7 +73,18 @@ private Q_SLOTS:
     void slotCloseView(const QWidget* pView);    
     void slotDisconnected();
     void slotError(const int nError, const QString &szInfo);
-    
+    /*!
+     * \~chinese
+     * \brief 用消息对话框(QMessageBox)显示信息
+     * 
+     * \~english
+     * \brief Use message box display information
+     *
+     * \~
+     * \see CConnecter::sigShowMessage()
+     */
+    virtual void slotShowMessage(const QString& title, const QString& message,
+                                 const QMessageBox::Icon& icon);
     /*!
      * \brief Show information
      * \param szInfo

@@ -36,6 +36,7 @@
 #include <QInputDialog>
 
 #include "rfb/Security.h"
+#include "rfb/Exception.h"
 #ifdef HAVE_GNUTLS
 #include "rfb/CSecurityTLS.h"
 #endif
@@ -279,6 +280,30 @@ void CConnectTigerVnc::slotReadyRead()
         while(processMsg())
             ;
         return;
+    } catch (rfb::AuthFailureException& e) {
+        QString szErr;
+        szErr = tr("Logon to ");
+        szErr += m_pPara->GetHost();
+        szErr += ":";
+        szErr += QString::number(m_pPara->GetPort());
+        szErr += tr(" fail. Please check that the username and password are correct.");
+        szErr += " [";
+        szErr += e.str();
+        szErr += "]";
+        qCritical(TigerVNC) << szErr;
+        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+    } catch (rfb::ConnFailedException& e) {
+        QString szErr;
+        szErr = tr("Connect to ");
+        szErr += m_pPara->GetHost();
+        szErr += ":";
+        szErr += QString::number(m_pPara->GetPort());
+        szErr += tr(" fail.");
+        szErr += " [";
+        szErr += e.str();
+        szErr += "]";
+        qCritical(TigerVNC) << szErr;
+        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
     } catch (rdr::EndOfStream& e) {
         qCritical(TigerVNC) << e.str();
         emit sigError(-1, e.str());

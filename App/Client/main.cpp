@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
               + QDir::separator() + "RabbitRemoteControlApp_"
               + QLocale::system().name() + ".qm"))
         a.installTranslator(&tApp);
-    qInfo(App) << "Language:" << QLocale::system().name();
+    //qInfo(App) << "Language:" << QLocale::system().name();
 
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     a.setOrganizationName(QObject::tr("Kang Lin Studio"));

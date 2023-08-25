@@ -54,7 +54,7 @@ class CClient;
  *   2. Termianal type: \ref CConnecterTerminal
  * 
  * \~
- * \see   CPluginClient CFrmViewer
+ * \see CPluginClient CFrmViewer
  * \ingroup CLIENT_API CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CConnecter : public QObject
@@ -204,12 +204,36 @@ Q_SIGNALS:
      */
     void sigUpdateName(const QString& szName);
     void sigError(const int nError, const QString &szError);
+
     /*!
+     * \~chinese
+     * \note 它与 sigShowMessage 的区别是 sigShowMessage 用对话框显示
+     * \brief 中主窗口中显示信息
+     *
+     * \~english
+     * \note It differs from sigShowMessage in that sigShowMessage is displayed in a dialog box
      * \brief Show information in main windows 
      * \param szInfo
-     * \see MainWindow::slotInformation()
+     * \~
+     * \see sigShowMessage MainWindow::slotInformation()
      */
     void sigInformation(const QString& szInfo);
+    /*!
+     * \~chinese
+     * \brief 从后台线程中触发在主线程中显示消息对话框(QMessageBox)，不阻塞后台线程
+     * \note  它与 sigInformation 区别是，sigInformation 不用对话框显示
+     *
+     * \~english
+     * \brief Trigger the display of a message dialog (QMessageBox)
+     *        in the main thread from a background thread
+     *        without blocking the background thread
+     * \note It differs from sigInformation in that sigInformation is not displayed in a dialog box
+     *
+     * \~
+     * \see sigInformation Connect::SetConnecter
+     */
+    void sigShowMessage(const QString& title, const QString& message,
+                        const QMessageBox::Icon& icon = QMessageBox::Information);
 
     /*!
      * \brief Update parameters, notify application to save or show parameters.
@@ -278,10 +302,10 @@ private Q_SLOTS:
 
     /*!
      * \~chinese
-     * 从后台线程中阻塞显示窗口
+     * 阻塞后台线程，并在前台线程中显示窗口。
      *
      * \~english
-     * \brief When a background thread blocks the display window
+     * \brief Blocks the background thread and displays the window in the foreground thread.
      * \param className: show windows class name
      *        The class must have follower public functions:
      *            Q_INVOKABLE void SetContext(void* pContext);
@@ -296,10 +320,10 @@ private Q_SLOTS:
     virtual void slotBlockShowWidget(const QString& className, int &nRet, void* pContext);
     /*!
      * \~chinese
-     * 从后台线程中显示 QMessageBox
+     * 阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)
      *
      * \~english
-     * \brief The background thread uses QMessageBox to block the display window
+     * \brief Block background threads and display message dialogs in foreground threads (QMessageBox)
      * \param title
      * \param message
      * \param buttons

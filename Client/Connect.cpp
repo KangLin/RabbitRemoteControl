@@ -16,6 +16,7 @@ int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>("KeyboardMo
 int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
 Q_DECLARE_METATYPE(Qt::MouseButton)
 int g_QtMouseButton = qRegisterMetaType<Qt::MouseButton>("MouseButton");
+int g_QMessageBox_Icon = qRegisterMetaType<Qt::MouseButton>("QMessageBox::Icon");
 
 CConnect::CConnect(CConnecter *pConnecter, QObject *parent, bool bDirectConnection)
     : QObject(parent), m_pView(nullptr)
@@ -39,7 +40,7 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     
     bool check = false;
     check = connect(this, SIGNAL(sigConnected()),
-                         pConnecter, SIGNAL(sigConnected()));
+                    pConnecter, SIGNAL(sigConnected()));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigDisconnected()),
                     pConnecter, SIGNAL(sigDisconnected()));
@@ -59,20 +60,25 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     check = connect(this, SIGNAL(sigSetClipboard(QMimeData*)),
                     pConnecter, SLOT(slotSetClipboard(QMimeData*)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigBlockShowWidget(const QString&, int&, void*)),
-                    pConnecter, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
-                    Qt::BlockingQueuedConnection);
+    check = connect(this, SIGNAL(sigShowMessage(const QString&, const QString&,
+                                                const QMessageBox::Icon&)),
+            pConnecter, SIGNAL(sigShowMessage(const QString&, const QString&,
+                                              const QMessageBox::Icon&)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigBlockShowMessage(
-                                     QString, QString,
-                                     QMessageBox::StandardButtons,
-                                     QMessageBox::StandardButton&,
-                                     bool&, QString)),
+                              QString, QString,
+                              QMessageBox::StandardButtons,
+                              QMessageBox::StandardButton&,
+                              bool&, QString)),
                     pConnecter, SLOT(slotBlockShowMessage(
-                                         QString, QString,
-                                         QMessageBox::StandardButtons,
-                                         QMessageBox::StandardButton&,
-                                         bool&, QString)),
+                        QString, QString,
+                        QMessageBox::StandardButtons,
+                        QMessageBox::StandardButton&,
+                        bool&, QString)),
+                    Qt::BlockingQueuedConnection);
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigBlockShowWidget(const QString&, int&, void*)),
+                    pConnecter, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
                     Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     return 0;
