@@ -67,7 +67,7 @@ public:
                                char** username, char** password, char** domain);
 	static BOOL cb_GatewayAuthenticate(freerdp* instance,
                                char** username, char** password, char** domain);
-#if FreeRDP_VERSION_MAJOR > 3
+#if FreeRDP_VERSION_MAJOR >= 3
     static BOOL cb_authenticate_ex(freerdp* instance,
                                    char** username, char** password,
                                    char** domain, rdp_auth_reason reason);

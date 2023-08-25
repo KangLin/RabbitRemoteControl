@@ -59,10 +59,12 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                 FreeRDP_ServerHostname,
                                 m_pParameter->GetHost().toStdString().c_str());
     settings->ServerPort = m_pParameter->GetPort();
-    freerdp_settings_set_string(settings,
+    if(!m_pParameter->GetUser().isEmpty())
+        freerdp_settings_set_string(settings,
                                 FreeRDP_Username,
                                 m_pParameter->GetUser().toStdString().c_str());
-    freerdp_settings_set_string(settings,
+    if(!m_pParameter->GetPassword().isEmpty())
+        freerdp_settings_set_string(settings,
                                 FreeRDP_Password,
                                 m_pParameter->GetPassword().toStdString().c_str());
 
@@ -697,15 +699,147 @@ UINT32 CConnectFreeRDP::GetImageFormat()
     return GetImageFormat(m_Image.format());
 }
 
-#if FreeRDP_VERSION_MAJOR > 3
-//TODO: implement it!!!
-static BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
+#if FreeRDP_VERSION_MAJOR >= 3
+static CREDUI_INFOW wfUiInfo = { sizeof(CREDUI_INFOW), NULL, L"Enter your credentials",
+                                L"Remote Desktop Security", NULL };
+BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
                                char** username, char** password,
                                char** domain, rdp_auth_reason reason)
 {
-    qCritical(FreeRDPConnect) << "CConnectFreeRdp::cb_authenticate_ex is not implement";
-    Q_ASSERT(false);
+    qCritical(FreeRDPConnect) << "CConnectFreeRdp::cb_authenticate_ex";
+    if(!instance)
+        return FALSE;
+    rdpContext* pContext = (rdpContext*)instance->context;
+    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+#ifdef Q_OS_WINDOWS
+    BOOL fSave;
+    DWORD status;
+    DWORD dwFlags;
+    WCHAR UserNameW[CREDUI_MAX_USERNAME_LENGTH + 1] = { 0 };
+    WCHAR UserW[CREDUI_MAX_USERNAME_LENGTH + 1] = { 0 };
+    WCHAR DomainW[CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1] = { 0 };
+    WCHAR PasswordW[CREDUI_MAX_PASSWORD_LENGTH + 1] = { 0 };
+    
+    WINPR_ASSERT(instance);
+    WINPR_ASSERT(instance->context);
+    WINPR_ASSERT(instance->context->settings);
+    
+    WINPR_ASSERT(username);
+    WINPR_ASSERT(domain);
+    WINPR_ASSERT(password);
+    
+    const WCHAR auth[] = L"Target credentials requested";
+    const WCHAR authPin[] = L"PIN requested";
+    const WCHAR gwAuth[] = L"Gateway credentials requested";
+    const WCHAR* titleW = auth;
+    
+    fSave = FALSE;
+    dwFlags = CREDUI_FLAGS_DO_NOT_PERSIST | CREDUI_FLAGS_EXCLUDE_CERTIFICATES |
+              CREDUI_FLAGS_USERNAME_TARGET_CREDENTIALS;
+    switch (reason)
+    {
+    case AUTH_NLA:
+        break;
+    case AUTH_TLS:
+    case AUTH_RDP:
+        if ((*username) && (*password))
+            return TRUE;
+        break;
+    case AUTH_SMARTCARD_PIN:
+        dwFlags &= ~CREDUI_FLAGS_USERNAME_TARGET_CREDENTIALS;
+        dwFlags |= CREDUI_FLAGS_PASSWORD_ONLY_OK | CREDUI_FLAGS_KEEP_USERNAME;
+        titleW = authPin;
+        if (*password)
+            return TRUE;
+        if (!(*username))
+            *username = _strdup("PIN");
+        break;
+    case GW_AUTH_HTTP:
+    case GW_AUTH_RDG:
+    case GW_AUTH_RPC:
+        titleW = gwAuth;
+        break;
+    default:
+        return FALSE;
+    }
+    
+    if (*username)
+    {
+        ConvertUtf8ToWChar(*username, UserNameW, ARRAYSIZE(UserNameW));
+        ConvertUtf8ToWChar(*username, UserW, ARRAYSIZE(UserW));
+    }
+    
+    if (*password)
+        ConvertUtf8ToWChar(*password, PasswordW, ARRAYSIZE(PasswordW));
+    
+    if (*domain)
+        ConvertUtf8ToWChar(*domain, DomainW, ARRAYSIZE(DomainW));
+    
+    if (_wcsnlen(PasswordW, ARRAYSIZE(PasswordW)) == 0)
+    {
+        status = CredUIPromptForCredentialsW(&wfUiInfo, titleW, NULL, 0, UserNameW,
+                                             ARRAYSIZE(UserNameW), PasswordW,
+                                             ARRAYSIZE(PasswordW), &fSave, dwFlags);
+        if (status != NO_ERROR)
+        {
+            qCritical(FreeRDPConnect,
+                      "CredUIPromptForCredentials unexpected status: 0x%08lX",
+                      status);
+            return FALSE;
+        }
+        
+        if ((dwFlags & CREDUI_FLAGS_KEEP_USERNAME) == 0)
+        {
+            status = CredUIParseUserNameW(UserNameW, UserW, ARRAYSIZE(UserW), DomainW,
+                                          ARRAYSIZE(DomainW));
+            if (status != NO_ERROR)
+            {
+                CHAR User[CREDUI_MAX_USERNAME_LENGTH + 1] = { 0 };
+                CHAR UserName[CREDUI_MAX_USERNAME_LENGTH + 1] = { 0 };
+                CHAR Domain[CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1] = { 0 };
+                
+                ConvertWCharNToUtf8(UserNameW, ARRAYSIZE(UserNameW), UserName, ARRAYSIZE(UserName));
+                ConvertWCharNToUtf8(UserW, ARRAYSIZE(UserW), User, ARRAYSIZE(User));
+                ConvertWCharNToUtf8(DomainW, ARRAYSIZE(DomainW), Domain, ARRAYSIZE(Domain));
+                qCritical(FreeRDPConnect,
+                          "Failed to parse UserName: %s into User: %s Domain: %s",
+                          UserName, User, Domain);
+                return FALSE;
+            }
+        }
+    }
+    
+    *username = ConvertWCharNToUtf8Alloc(UserW, ARRAYSIZE(UserW), NULL);
+    if (!(*username))
+    {
+        qCritical(FreeRDPConnect) << "ConvertWCharNToUtf8Alloc failed" << status;
+        return FALSE;
+    }
+    
+    if (_wcsnlen(DomainW, ARRAYSIZE(DomainW)) > 0)
+        *domain = ConvertWCharNToUtf8Alloc(DomainW, ARRAYSIZE(DomainW), NULL);
+    else
+        *domain = _strdup("\0");
+    
+    if (!(*domain))
+    {
+        free(*username);
+        qCritical(FreeRDPConnect) << "strdup failed" << status;
+        return FALSE;
+    }
+    
+    *password = ConvertWCharNToUtf8Alloc(PasswordW, ARRAYSIZE(PasswordW), NULL);
+    if (!(*password))
+    {
+        free(*username);
+        free(*domain);
+        return FALSE;
+    }
     return TRUE;
+#else
+    return cb_authenticate(instance, username, password, domain);
+#endif
+    
 }
 #endif
 
@@ -717,14 +851,22 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
 		return FALSE;
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
-    if(username || password)
+    if(username || password || domain)
     {
         int nRet = QDialog::Rejected;
         emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
         if(QDialog::Accepted == nRet)
         {
-            *username = _strdup(pThis->m_pParameter->GetUser().toStdString().c_str());
-            *password = _strdup(pThis->m_pParameter->GetPassword().toStdString().c_str());
+            QString szPassword = pThis->m_pParameter->GetPassword();
+            QString szName = pThis->m_pParameter->GetUser();
+            QString szDomain = freerdp_settings_get_string(
+                pThis->m_pParameter->m_pSettings, FreeRDP_Domain);;
+            if(!szDomain.isEmpty() && domain)
+                *domain = _strdup(szDomain.toStdString().c_str());
+            if(!szName.isEmpty() && username)
+                *username = _strdup(szName.toStdString().c_str());
+            if(!szPassword.isEmpty() && password)
+                *password = _strdup(szPassword.toStdString().c_str());
         } else
             return FALSE;
     }
@@ -746,8 +888,16 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
         emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
         if(QDialog::Accepted == nRet)
         {
-            *username = _strdup(pThis->m_pParameter->GetUser().toStdString().c_str());
-            *password = _strdup(pThis->m_pParameter->GetPassword().toStdString().c_str());
+            QString szPassword = pThis->m_pParameter->GetPassword();
+            QString szName = pThis->m_pParameter->GetUser();
+            QString szDomain = freerdp_settings_get_string(
+                pThis->m_pParameter->m_pSettings, FreeRDP_Domain);;
+            if(!szDomain.isEmpty() && domain)
+                *domain = _strdup(szDomain.toStdString().c_str());
+            if(!szName.isEmpty() && username)
+                *username = _strdup(szName.toStdString().c_str());
+            if(!szPassword.isEmpty() && password)
+                *password = _strdup(szPassword.toStdString().c_str());
         } else
             return FALSE;
     }
@@ -866,39 +1016,40 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
         BOOL isConsentMandatory, size_t length, const WCHAR* message)
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_present_gateway_message";
-    
+
     if (!isDisplayMandatory && !isConsentMandatory)
         return TRUE;
-    
-    QString msgType = (type == GATEWAY_MESSAGE_CONSENT) ? tr("Consent message") : tr("Service message");
-    msgType += "\n";
-    
-    LPSTR msg = nullptr;
-    if (ConvertFromUnicode(CP_UTF8, 0, message, (int)(length / 2), &msg, 0, NULL, NULL) < 1)
+
+    /* special handling for consent messages (show modal dialog) */
+    if (type == GATEWAY_MESSAGE_CONSENT && isConsentMandatory)
     {
-        qCritical(FreeRDPConnect) << "Failed to convert message!";
-        return FALSE;
+        QString msgType = (type == GATEWAY_MESSAGE_CONSENT)
+                              ? tr("Consent message") : tr("Service message");
+        msgType += "\n";
+        msgType += QString::fromStdWString((wchar_t*)message);
+        msgType += "\n";
+        msgType += tr("I understand and agree to the terms of this policy (Y/N)");
+
+        rdpContext* pContext = (rdpContext*)instance->context;
+        CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+        QMessageBox::StandardButton nRet = QMessageBox::No;
+        bool bCheckBox = false;
+        emit pThis->sigBlockShowMessage(tr("Gateway message"), msgType,
+                                        QMessageBox::Yes|QMessageBox::No,
+                                        nRet, bCheckBox);
+        switch (nRet) {
+        case QMessageBox::Yes:
+            return TRUE;
+            break;
+        default:
+            return FALSE;
+        }
     }
-    msgType += msg;
-    msgType += "\n";
-    free(msg);
+    else
+        return client_cli_present_gateway_message(
+            instance, type, isDisplayMandatory,
+            isConsentMandatory, length, message);
     
-    msgType += tr("I understand and agree to the terms of this policy (Y/N)");
-    
-    rdpContext* pContext = (rdpContext*)instance->context;
-    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
-    QMessageBox::StandardButton nRet = QMessageBox::No;
-    bool bCheckBox = false;
-    emit pThis->sigBlockShowMessage(tr("Gateway message"), msgType,
-                                    QMessageBox::Yes|QMessageBox::No,
-                                    nRet, bCheckBox);
-    switch (nRet) {
-    case QMessageBox::Yes:
-        return TRUE;
-        break;
-    default:
-        return FALSE;
-    }
     return TRUE;
 }
 

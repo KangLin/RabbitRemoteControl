@@ -97,7 +97,8 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     m_pSettings->SetPort(ui->spPort->value());
     m_pSettings->SetUser(ui->leUserName->text());
     m_pSettings->SetPassword(ui->lePassword->text());
-    freerdp_settings_set_string(m_pSettings->m_pSettings,
+    if(!ui->leDomain->text().isEmpty())
+        freerdp_settings_set_string(m_pSettings->m_pSettings,
                                 FreeRDP_Domain,
                                 ui->leDomain->text().toStdString().c_str());
 

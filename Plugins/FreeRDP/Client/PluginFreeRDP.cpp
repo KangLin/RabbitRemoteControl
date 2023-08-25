@@ -59,9 +59,11 @@ const QString CPluginFreeRDP::Details() const
     szDetails += ":";
     szDetails += freerdp_get_build_revision();
     szDetails += "\n";
+#if FreeRDP_VERSION_MAJOR < 3
     szDetails += tr("- Build date:");
     szDetails += freerdp_get_build_date();
     szDetails += "\n";
+#endif
     szDetails += "- ";
     szDetails += freerdp_get_build_config();
     return szDetails;

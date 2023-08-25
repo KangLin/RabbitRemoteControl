@@ -39,6 +39,9 @@ SET(FreeRDP_UI_FILES
     DlgGetUserPasswordFreeRDP.ui
     )
 
+if(WIN32)
+    list(APPEND FreeRDP_LIBS Credui.dll)
+endif()
 if(MINGW)
     set(FreeRDP_OPTIONS -fpermissive)
 endif()
