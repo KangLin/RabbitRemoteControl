@@ -72,6 +72,22 @@ public:
                                    char** username, char** password,
                                    char** domain, rdp_auth_reason reason);
 #endif
+    /** @brief Callback used if user interaction is required to accept
+	 *         a certificate.
+	 *
+	 *  @param instance         Pointer to the freerdp instance.
+	 *  @param data             Pointer to certificate data (full chain) in PEM format.
+	 *  @param length           The length of the certificate data.
+	 *  @param hostname         The hostname connecting to.
+	 *  @param port             The port connecting to.
+	 *  @param flags            Flags of type VERIFY_CERT_FLAG*
+	 *
+	 *  @return 1 to accept and store a certificate, 2 to accept
+	 *          a certificate only for this session, 0 otherwise.
+	 */
+    static int cb_verify_x509_certificate(freerdp* instance,
+                                          const BYTE* data, size_t length,
+                                const char* hostname, UINT16 port, DWORD flags);
     static DWORD cb_verify_certificate_ex(freerdp* instance,
                                                   const char* host, UINT16 port,
                                    const char* common_name, const char* subject,

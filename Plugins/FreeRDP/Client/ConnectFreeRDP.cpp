@@ -312,6 +312,7 @@ BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
 #else
     instance->AuthenticateEx = cb_authenticate_ex;
 #endif
+    //instance->VerifyX509Certificate = cb_verify_x509_certificate;
     instance->VerifyCertificateEx = cb_verify_certificate_ex;
 	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;
 	instance->PresentGatewayMessage = cb_present_gateway_message;
@@ -904,6 +905,31 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
 	return TRUE;
 }
 
+int CConnectFreeRDP::cb_verify_x509_certificate(freerdp* instance,
+                                               const BYTE* data, size_t length,
+                                 const char* hostname, UINT16 port, DWORD flags)
+{
+    rdpContext* pContext = (rdpContext*)instance->context;
+    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+
+    return 0;
+}
+
+/** Callback set in the rdp_freerdp structure, and used to make a certificate validation
+ *  when the connection requires it.
+ *  This function will actually be called by tls_verify_certificate().
+ *  @see rdp_client_connect() and tls_connect()
+ *  @param instance     pointer to the rdp_freerdp structure that contains the connection settings
+ *  @param host         The host currently connecting to
+ *  @param port         The port currently connecting to
+ *  @param common_name  The common name of the certificate, should match host or an alias of it
+ *  @param subject      The subject of the certificate
+ *  @param issuer       The certificate issuer name
+ *  @param fingerprint  The fingerprint of the certificate
+ *  @param flags        See VERIFY_CERT_FLAG_* for possible values.
+ *
+ *  @return 1 if the certificate is trusted, 2 if temporary trusted, 0 otherwise.
+ */
 DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
                        const char *host, UINT16 port,
                        const char *common_name, const char *subject,
@@ -918,21 +944,34 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
         //pThis->m_pParameter->SetServerName(common_name);
         emit pThis->sigServerName(common_name);
     }
-    
+
     if(!pThis->m_pParameter->GetShowVerifyDiaglog()) {
         /* return 1 to accept and store a certificate, 2 to accept
          * a certificate only for this session, 0 otherwise */
         return 2;
     }
 
+    QString szType = tr("RDP-Server");
+    if (flags & VERIFY_CERT_FLAG_GATEWAY)
+        szType = tr("RDP-Gateway");
+    if (flags & VERIFY_CERT_FLAG_REDIRECT)
+        szType = tr("RDP-Redirect");
+
     QString title(tr("Verify certificate"));
     QString message;
-    message += tr("Host: %1; Port: %2").arg(host, QString::number(port)) + "\n";
+    message += szType + tr(": %1:%2").arg(host, QString::number(port)) + "\n";
     message += tr("Common name: ") + common_name + "\n";
     message += tr("Subject: ") + subject + "\n";
     message += tr("Issuer: ") + issuer + "\n";
-    message += tr("Fingerprint: ") + fingerprint;
-    
+    message += tr("Fingerprint: ") + fingerprint + "\n";
+    message += "\n";
+    message += tr("The above X.509 certificate could not be verified, "
+                  "possibly because you do not have the CA certificate "
+                  "in your certificate store, or the certificate has expired. "
+                  "Please look at the OpenSSL documentation on "
+                  "how to add a private CA to the store.");
+    message += "\n";
+
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
     bool bCheckBox = false;
@@ -955,6 +994,25 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     return 2;
 }
 
+/** Callback set in the rdp_freerdp structure, and used to make a certificate validation
+ *  when a stored certificate does not match the remote counterpart.
+ *  This function will actually be called by tls_verify_certificate().
+ *  @see rdp_client_connect() and tls_connect()
+ *  @param instance        pointer to the rdp_freerdp structure that contains the connection
+ * settings
+ *  @param host            The host currently connecting to
+ *  @param port            The port currently connecting to
+ *  @param common_name     The common name of the certificate, should match host or an alias of it
+ *  @param subject         The subject of the certificate
+ *  @param issuer          The certificate issuer name
+ *  @param fingerprint     The fingerprint of the certificate
+ *  @param old_subject     The subject of the previous certificate
+ *  @param old_issuer      The previous certificate issuer name
+ *  @param old_fingerprint The fingerprint of the previous certificate
+ *  @param flags           See VERIFY_CERT_FLAG_* for possible values.
+ *
+ *  @return 1 if the certificate is trusted, 2 if temporary trusted, 0 otherwise.
+ */
 DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
                       const char *host, UINT16 port,
                       const char *common_name, const char *subject,
@@ -973,17 +1031,30 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
          * a certificate only for this session, 0 otherwise */
         return 2;
     }
-
+    
+    QString szType = tr("RDP-Server");
+    if (flags & VERIFY_CERT_FLAG_GATEWAY)
+        szType = tr("RDP-Gateway");
+    if (flags & VERIFY_CERT_FLAG_REDIRECT)
+        szType = tr("RDP-Redirect");
+    
     QString title(tr("Verify changed certificate"));
     QString message;
-    message += tr("Host: %1; Port: %2").arg(host, QString::number(port)) + "\n";
+    message += szType + tr(": %1:%2").arg(host, QString::number(port)) + "\n";
     message += tr("Common name: ") + common_name + "\n";
     message += tr("New subject: ") + subject + "\n";
     message += tr("New issuer: ") + issuer + "\n";
     message += tr("New fingerprint: ") + fingerprint + "\n";
     message += tr("Old subject: ") + old_subject + "\n";
     message += tr("Old issuer: ") + old_issuer + "\n";
-    message += tr("Old fingerprint: ") + old_fingerprint;
+    message += tr("Old fingerprint: ") + old_fingerprint + "\n";
+    message += "\n";
+    message += tr("The above X.509 certificate could not be verified, "
+                  "possibly because you do not have the CA certificate "
+                  "in your certificate store, or the certificate has expired. "
+                  "Please look at the OpenSSL documentation on "
+                  "how to add a private CA to the store.");
+    message += "\n";
 
     bool bCheckBox = false;
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
