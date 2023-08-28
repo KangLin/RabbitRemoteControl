@@ -1026,6 +1026,10 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
                   "Please look at the OpenSSL documentation on "
                   "how to add a private CA to the store.");
     message += "\n";
+    message += "\n";
+    message += tr("Yes - trusted") + "\n";
+    message += tr("Ignore - temporary trusted") + "\n";
+    message += tr("No - no trusted") + "\n";
 
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
@@ -1110,6 +1114,10 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
                   "Please look at the OpenSSL documentation on "
                   "how to add a private CA to the store.");
     message += "\n";
+    message += "\n";
+    message += tr("Yes - trusted") + "\n";
+    message += tr("Ignore - temporary trusted") + "\n";
+    message += tr("No - no trusted") + "\n";
 
     bool bCheckBox = false;
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
