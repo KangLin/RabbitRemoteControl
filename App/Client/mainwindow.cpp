@@ -428,7 +428,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     if(p)
     {
         check = connect(m_pFullScreenToolBar, SIGNAL(sigShowTabBar(bool)),
-                        SLOT(on_actionShow_TabBar_B_triggered(bool)));
+                        SLOT(on_actionTabBar_B_toggled(bool)));
         Q_ASSERT(check);
     }
     m_pFullScreenToolBar->show();
