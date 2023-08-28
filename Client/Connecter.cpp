@@ -15,6 +15,7 @@
 #include <QRegularExpression>
 #include <QCheckBox>
 #include <QLoggingCategory>
+#include <QInputDialog>
 
 Q_DECLARE_LOGGING_CATEGORY(Client)
 
@@ -329,14 +330,15 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
     }
 }
 
-void CConnecter::slotBlockShowMessage(QString title, QString message,
+void CConnecter::slotBlockShowMessage(const QString &szTitle, const QString &szMessage,
                                       QMessageBox::StandardButtons buttons,
                                       QMessageBox::StandardButton &nRet,
                                       bool &checkBox,
                                       QString szCheckBoxContext)
 {
     QCheckBox* pBox = nullptr;
-    QMessageBox msg(QMessageBox::Information, title, message, buttons, GetViewer());
+    QMessageBox msg(QMessageBox::Information,
+                    szTitle, szMessage, buttons, GetViewer());
     if(!szCheckBoxContext.isEmpty())
     {
         pBox = new QCheckBox(szCheckBoxContext);
@@ -347,4 +349,19 @@ void CConnecter::slotBlockShowMessage(QString title, QString message,
     nRet = (QMessageBox::StandardButton)msg.exec();
     if(pBox)
         checkBox = pBox->isChecked();
+}
+
+void CConnecter::slotBlockInputDialog(const QString &szTitle, const QString &szLable,
+                                      const QString &szMessage,
+                                      QString& szText)
+{
+    bool ok = false;
+    QString t = QInputDialog::getText(nullptr,
+                                           szTitle,
+                                           szLable,
+                                           QLineEdit::Normal,
+                                           szMessage,
+                                           &ok);
+    if(ok && !t.isEmpty())
+        szText = t;
 }

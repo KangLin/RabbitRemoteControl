@@ -201,11 +201,22 @@ Q_SIGNALS:
      * \~
      * \see CConnecter::slotBlockShowMessage() SetConnecter
      */
-    void sigBlockShowMessage(QString title, QString message,
+    void sigBlockShowMessage(const QString& szTitle,
+                             const QString& szMessage,
                              QMessageBox::StandardButtons buttons,
                              QMessageBox::StandardButton& nRet,
                              bool &checkBox,
                              QString checkBoxContext = QString());
+    /*!
+     * \brief Block background threads and display input dialogs in foreground threads (QInputDialog)
+     * \~
+     * \see CConnecter::slotBlockInputDialog() SetConnecter
+     */
+    void sigBlockInputDialog(const QString& szTitle,
+                             const QString& szLable,
+                             const QString& szMessage,
+                             QString& szText
+                             );
     /*!
      * \~chinese
      * 阻塞后台线程，并在前台线程中显示窗口。

@@ -324,21 +324,26 @@ private Q_SLOTS:
      *
      * \~english
      * \brief Block background threads and display message dialogs in foreground threads (QMessageBox)
-     * \param title
-     * \param message
-     * \param buttons
-     * \param nRet
-     * \param checkBox
-     * \param szCheckBoxContext
      * 
      * \~
      * \see CConnect::sigBlockShowMessage
      */
-    virtual void slotBlockShowMessage(QString title, QString message,
+    virtual void slotBlockShowMessage(const QString& szTitle,
+                                      const QString& szMessage,
                                       QMessageBox::StandardButtons buttons,
                                       QMessageBox::StandardButton& nRet,
                                       bool &checkBox,
                                       QString szCheckBoxContext = QString());
+    /*!
+     * \brief Block background threads and display input dialogs in foreground threads (QInputDialog)
+     * \~
+     * \see CConnecter::sigBlockInputDialog() SetConnecter
+     */
+    virtual void slotBlockInputDialog(const QString& szTitle,
+                                      const QString& szLable,
+                                      const QString& szMessage,
+                                      QString& szText
+                                      );
 
 protected:
     const CPluginClient* m_pPluginClient;

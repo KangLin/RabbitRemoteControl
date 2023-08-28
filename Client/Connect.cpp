@@ -66,15 +66,25 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
                                               const QMessageBox::Icon&)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigBlockShowMessage(
-                              QString, QString,
+                              const QString&, const QString&,
                               QMessageBox::StandardButtons,
                               QMessageBox::StandardButton&,
                               bool&, QString)),
                     pConnecter, SLOT(slotBlockShowMessage(
-                        QString, QString,
+                        const QString&, const QString&,
                         QMessageBox::StandardButtons,
                         QMessageBox::StandardButton&,
                         bool&, QString)),
+                    Qt::BlockingQueuedConnection);
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigBlockInputDialog(const QString&,
+                                                     const QString&,
+                                                     const QString&,
+                                                     QString&)),
+                    pConnecter, SLOT(slotBlockInputDialog(const QString&,
+                                                          const QString&,
+                                                          const QString&,
+                                                          QString&)),
                     Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigBlockShowWidget(const QString&, int&, void*)),

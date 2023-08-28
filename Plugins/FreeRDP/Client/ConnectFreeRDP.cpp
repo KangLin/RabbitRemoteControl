@@ -311,6 +311,7 @@ BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
     instance->GatewayAuthenticate = cb_GatewayAuthenticate;
 #else
     instance->AuthenticateEx = cb_authenticate_ex;
+    instance->ChooseSmartcard = cb_choose_smartcard;
 #endif
     //instance->VerifyX509Certificate = cb_verify_x509_certificate;
     instance->VerifyCertificateEx = cb_verify_certificate_ex;
@@ -392,8 +393,8 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 		return FALSE;
     
     if (pThis->m_pParameter->GetUser().isEmpty()
-        && !settings->CredentialsFromStdin
-        && !settings->SmartcardLogon)
+        && !freerdp_settings_get_bool(settings, FreeRDP_CredentialsFromStdin)
+        && !freerdp_settings_get_bool(settings, FreeRDP_SmartcardLogon))
 	{
         // Get system login name
         QString szUser = RabbitCommon::CTools::Instance()->GetCurrentUser();
@@ -701,6 +702,7 @@ UINT32 CConnectFreeRDP::GetImageFormat()
 }
 
 #if FreeRDP_VERSION_MAJOR >= 3
+
 static CREDUI_INFOW wfUiInfo = { sizeof(CREDUI_INFOW), NULL, L"Enter your credentials",
                                 L"Remote Desktop Security", NULL };
 BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
@@ -839,10 +841,61 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
     return TRUE;
 #else
     return cb_authenticate(instance, username, password, domain);
-#endif
+#endif //#ifdef Q_OS_WINDOWS
     
 }
-#endif
+
+BOOL CConnectFreeRDP::cb_choose_smartcard(freerdp* instance,
+                         SmartcardCertInfo** cert_list,
+                         DWORD count,
+                         DWORD* choice, BOOL gateway)
+{
+    rdpContext* pContext = (rdpContext*)instance->context;
+    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+    QString msg("Multiple smartcards are available for use:\n");
+    for (DWORD i = 0; i < count; i++)
+    {
+        const SmartcardCertInfo* cert = cert_list[i];
+        char* reader = ConvertWCharToUtf8Alloc(cert->reader, NULL);
+        char* container_name = ConvertWCharToUtf8Alloc(cert->containerName, NULL);
+
+        msg += QString::number(i) + " ";
+        msg += QString(container_name) + "\n\t";
+        msg += "Reader: " + QString(reader) + "\n\t";
+        msg += "User: " + QString(cert->userHint) + + "@" + QString(cert->domainHint) + "\n\t";
+        msg += "Subject: " + QString(cert->subject) + "\n\t";
+        msg += "Issuer: " + QString(cert->issuer) + "\n\t";
+        msg += "UPN: " + QString(cert->upn) + "\n";
+        
+        free(reader);
+        free(container_name);
+    }
+    
+    msg += "\nChoose a smartcard to use for ";
+    if(gateway)
+        msg += "gateway authentication";
+    else
+        msg += "logon";
+    
+    msg += "(0 - " + QString::number(count - 1) + ")";
+    
+    QString num;
+    emit pThis->sigBlockInputDialog(tr("Choose"), tr("Please choose smartcard"),
+                                    msg, num);
+    if(!num.isEmpty())
+    {
+        bool ok = false;
+        int n = num.toInt(&ok);
+        if(ok)
+        {
+            *choice = n;
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+#endif //#if FreeRDP_VERSION_MAJOR >= 3
 
 BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
                                       char** password, char** domain)
@@ -938,7 +991,9 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_verify_certificate_ex";
 
     rdpContext* pContext = (rdpContext*)instance->context;
+    Q_ASSERT(pContext);
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+    Q_ASSERT(pThis);
     if(common_name)
     {
         //pThis->m_pParameter->SetServerName(common_name);
@@ -1097,7 +1152,15 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
         QString msgType = (type == GATEWAY_MESSAGE_CONSENT)
                               ? tr("Consent message") : tr("Service message");
         msgType += "\n";
+#if FreeRDP_VERSION_MAJOR >= 3
+        char* pMsg = ConvertWCharToUtf8Alloc(message, NULL);
+        if(pMsg) {
+            msgType += pMsg;
+            free(pMsg);
+        }
+#else
         msgType += QString::fromStdWString((wchar_t*)message);
+#endif
         msgType += "\n";
         msgType += tr("I understand and agree to the terms of this policy (Y/N)");
 

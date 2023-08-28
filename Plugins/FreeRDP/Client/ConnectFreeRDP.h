@@ -71,6 +71,10 @@ public:
     static BOOL cb_authenticate_ex(freerdp* instance,
                                    char** username, char** password,
                                    char** domain, rdp_auth_reason reason);
+    static BOOL cb_choose_smartcard(freerdp* instance,
+                                    SmartcardCertInfo** cert_list,
+                                    DWORD count,
+                                    DWORD* choice, BOOL gateway);
 #endif
     /** @brief Callback used if user interaction is required to accept
 	 *         a certificate.
