@@ -139,7 +139,27 @@ int CConnectFreeRDP::OnInit()
             break;
         }
         case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
+        {
+            nRet = -3;
+            szErr = tr("Logon to ");
+            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += ":";
+            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += tr(" fail. Please check password are correct.");
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            break;
+        }
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
+        {
+            nRet = -3;
+            szErr = tr("Logon to ");
+            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += ":";
+            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += tr(" authentication fail. please add a CA certificate to the store.");
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            break;
+        }
         case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
         default:
             nRet = -3;
@@ -845,6 +865,7 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
     
 }
 
+//TODO: to be continue!!!
 BOOL CConnectFreeRDP::cb_choose_smartcard(freerdp* instance,
                          SmartcardCertInfo** cert_list,
                          DWORD count,
@@ -919,7 +940,7 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
                 *domain = _strdup(szDomain.toStdString().c_str());
             if(!szName.isEmpty() && username)
                 *username = _strdup(szName.toStdString().c_str());
-            if(!szPassword.isEmpty() && password)
+            //if(!szPassword.isEmpty() && password) // 如果加上会触发 FREERDP_ERROR_AUTHENTICATION_FAILED
                 *password = _strdup(szPassword.toStdString().c_str());
         } else
             return FALSE;
@@ -950,7 +971,7 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
                 *domain = _strdup(szDomain.toStdString().c_str());
             if(!szName.isEmpty() && username)
                 *username = _strdup(szName.toStdString().c_str());
-            if(!szPassword.isEmpty() && password)
+            //if(!szPassword.isEmpty() && password)
                 *password = _strdup(szPassword.toStdString().c_str());
         } else
             return FALSE;
