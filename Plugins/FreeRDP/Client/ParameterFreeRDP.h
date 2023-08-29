@@ -20,8 +20,19 @@ public:
     // CParameter interface
     virtual int Load(QSettings &set) override;
     virtual int Save(QSettings &set) override;
-    
+
     rdpSettings* m_pSettings;
+
+    // CParameterConnecter interface
+public:
+    virtual void SetHost(const QString &szHost) Q_DECL_OVERRIDE;
+    virtual void SetPort(quint16 port) Q_DECL_OVERRIDE;
+    virtual void SetUser(const QString &szUser) Q_DECL_OVERRIDE;
+    virtual void SetPassword(const QString &szPassword) Q_DECL_OVERRIDE;
+    virtual void SetClipboard(bool c) Q_DECL_OVERRIDE;
+    
+    void SetDomain(const QString& szDomain);
+    const QString GetDomain() const;
     
     UINT GetReconnectInterval() const;
     void SetReconnectInterval(UINT newReconnectInterval);
@@ -71,6 +82,7 @@ private:
     QString m_szRedirectionMicrophoneParameters;
     QStringList m_lstRedirectionDrives;
     Q_PROPERTY(QString RedirectionMicrophoneParameters READ GetRedirectionMicrophoneParameters WRITE SetRedirectionMicrophoneParameters NOTIFY sigRedirectionMicrophoneParametersChanged)
+
 };
 
 #endif // CPARAMETERFREERDP_H

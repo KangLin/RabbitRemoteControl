@@ -97,11 +97,7 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     m_pSettings->SetPort(ui->spPort->value());
     m_pSettings->SetUser(ui->leUserName->text());
     m_pSettings->SetPassword(ui->lePassword->text());
-    if(!ui->leDomain->text().isEmpty())
-        freerdp_settings_set_string(m_pSettings->m_pSettings,
-                                FreeRDP_Domain,
-                                ui->leDomain->text().toStdString().c_str());
-
+    m_pSettings->SetDomain(ui->leDomain->text());
     m_pSettings->SetSavePassword(ui->cbSavePassword->isChecked());
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
@@ -172,8 +168,7 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
 
     // Server
     ui->leName->setText(m_pSettings->GetName());
-    ui->leDomain->setText(freerdp_settings_get_string(m_pSettings->m_pSettings,
-                                                      FreeRDP_Domain));
+    ui->leDomain->setText(m_pSettings->GetDomain());
     ui->leServer->setText(m_pSettings->GetHost());
     ui->spPort->setValue(m_pSettings->GetPort());
     ui->leUserName->setText(m_pSettings->GetUser());

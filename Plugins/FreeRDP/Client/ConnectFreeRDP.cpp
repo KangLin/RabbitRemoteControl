@@ -54,19 +54,6 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
     Q_ASSERT(m_pParameter);
 
     rdpSettings* settings = m_pParameter->m_pSettings;
-    
-    freerdp_settings_set_string(settings,
-                                FreeRDP_ServerHostname,
-                                m_pParameter->GetHost().toStdString().c_str());
-    settings->ServerPort = m_pParameter->GetPort();
-    if(!m_pParameter->GetUser().isEmpty())
-        freerdp_settings_set_string(settings,
-                                FreeRDP_Username,
-                                m_pParameter->GetUser().toStdString().c_str());
-    if(!m_pParameter->GetPassword().isEmpty())
-        freerdp_settings_set_string(settings,
-                                FreeRDP_Password,
-                                m_pParameter->GetPassword().toStdString().c_str());
 
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
@@ -420,9 +407,6 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         QString szUser = RabbitCommon::CTools::Instance()->GetCurrentUser();
         if(!szUser.isEmpty()){
             pThis->m_pParameter->SetUser(szUser);
-            freerdp_settings_set_string(settings,
-                                        FreeRDP_Username,
-                          pThis->m_pParameter->GetUser().toStdString().c_str());
         }
         qWarning(FreeRDPConnect) << "No user name set. - Using login name:" << szUser;
 	}
@@ -430,7 +414,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
     {
         /* Check +auth-only has a username and password. */
-        if (!freerdp_settings_get_string(settings, FreeRDP_Password))
+        if (!pThis->m_pParameter->GetPassword().isEmpty())
         {
             qCritical(FreeRDPConnect) << "auth-only, but no password set. Please provide one.";
             return FALSE;
@@ -633,29 +617,10 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
 {
     rdpContext* pContext = (rdpContext*)context;
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
-    if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
-    {
-        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
-    } else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
+    if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
 		qInfo(FreeRDPConnect) << "channel" << e->name << "connected";
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParameter->GetClipboard());
-	} else if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0) {
-        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
-    } else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
-	} else  if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
-	} else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0) {
-        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
-	} else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
-	} else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
-	} else if (strcmp(e->name, VIDEO_CONTROL_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
-	} else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 	} else
         qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 }
@@ -669,28 +634,11 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
     rdpContext* pContext = (rdpContext*)context;
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
     
-    if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
-    {
-        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
-    } else if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
+    if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
 		qDebug(FreeRDPConnect) << "channel" << e->name << "disconnected";
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParameter->GetClipboard());
-	} else if (strcmp(e->name, RDPEI_DVC_CHANNEL_NAME) == 0) {
-        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
-	} else if (strcmp(e->name, TSMF_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
-	} else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
-	} else if (strcmp(e->name, ENCOMSP_SVC_CHANNEL_NAME) == 0) {
-        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
-	} else if (strcmp(e->name, DISP_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
-	} else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
-	} else if (strcmp(e->name, VIDEO_CONTROL_DVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
-	} else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0) {
+	} else {
 		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	}
 }

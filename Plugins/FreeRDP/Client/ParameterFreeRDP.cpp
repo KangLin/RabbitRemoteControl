@@ -2,6 +2,7 @@
 #include <QSettings>
 
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnecter(parent),
+    m_pSettings(nullptr),
     m_nReconnectInterval(5),
     m_bShowVerifyDiaglog(true),
     m_bRedirectionPrinter(false),
@@ -25,10 +26,10 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnecter(pare
 int CParameterFreeRDP::Load(QSettings &set)
 {
     CParameterConnecter::Load(set);
-    
-    QString szDomain = set.value("FreeRDP/Domain").toString();
-    freerdp_settings_set_string(
-                m_pSettings, FreeRDP_Domain, szDomain.toStdString().c_str());
+
+    Q_ASSERT(m_pSettings);
+
+    SetDomain(set.value("FreeRDP/Domain", GetDomain()).toString());
     UINT32 width, height, colorDepth;
     width  = set.value("FreeRDP/Width", freerdp_settings_get_uint32(
                            m_pSettings, FreeRDP_DesktopWidth)).toInt();
@@ -75,8 +76,7 @@ int CParameterFreeRDP::Save(QSettings &set)
 {
     CParameterConnecter::Save(set);
 
-    set.setValue("FreeRDP/Domain", freerdp_settings_get_string(
-                     m_pSettings, FreeRDP_Domain));
+    set.setValue("FreeRDP/Domain", GetDomain());
     set.setValue("FreeRDP/Width", freerdp_settings_get_uint32(
                      m_pSettings, FreeRDP_DesktopWidth));
     set.setValue("FreeRDP/Height", freerdp_settings_get_uint32(
@@ -223,4 +223,60 @@ void CParameterFreeRDP::SetRedirectionMicrophoneParameters(const QString &newRed
     m_szRedirectionMicrophoneParameters = newRedirectionMicrophoneParameters;
     SetModified(true);
     emit sigRedirectionMicrophoneParametersChanged();
+}
+
+void CParameterFreeRDP::SetClipboard(bool c)
+{
+    Q_ASSERT(m_pSettings);
+    freerdp_settings_set_bool(m_pSettings, FreeRDP_RedirectClipboard, c);
+    CParameterConnecter::SetClipboard(c);
+}
+
+void CParameterFreeRDP::SetHost(const QString &szHost)
+{
+    Q_ASSERT(m_pSettings);
+    freerdp_settings_set_string(m_pSettings,
+                                FreeRDP_ServerHostname,
+                                szHost.toStdString().c_str());
+    CParameterConnecter::SetHost(szHost);
+}
+
+void CParameterFreeRDP::SetPort(quint16 port)
+{
+    Q_ASSERT(m_pSettings);
+    freerdp_settings_set_uint16(m_pSettings, FreeRDP_ServerPort, port);
+    CParameterConnecter::SetPort(port);
+}
+
+void CParameterFreeRDP::SetUser(const QString &szUser)
+{
+    Q_ASSERT(m_pSettings);
+    if(!szUser.isEmpty())
+        freerdp_settings_set_string(m_pSettings,
+                                    FreeRDP_Username,
+                                    szUser.toStdString().c_str());
+    CParameterConnecter::SetUser(szUser);
+}
+
+void CParameterFreeRDP::SetPassword(const QString &szPassword)
+{
+    Q_ASSERT(m_pSettings);
+    if(!szPassword.isEmpty())
+        freerdp_settings_set_string(m_pSettings,
+                                    FreeRDP_Password,
+                                    szPassword.toStdString().c_str());
+    CParameterConnecter::SetPassword(szPassword);
+}
+
+void CParameterFreeRDP::SetDomain(const QString& szDomain)
+{
+    Q_ASSERT(m_pSettings);
+    freerdp_settings_set_string(
+        m_pSettings, FreeRDP_Domain, szDomain.toStdString().c_str());
+}
+
+const QString CParameterFreeRDP::GetDomain() const
+{
+    Q_ASSERT(m_pSettings);
+    return freerdp_settings_get_string(m_pSettings, FreeRDP_Domain);
 }

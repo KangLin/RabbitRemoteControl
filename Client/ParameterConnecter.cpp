@@ -42,11 +42,11 @@ const QString CParameterConnecter::GetName() const
     return m_szName;
 }
 
-void CParameterConnecter::SetName(const QString& name)
+void CParameterConnecter::SetName(const QString& szName)
 {
-    if(m_szName == name)
+    if(m_szName == szName)
         return;
-    m_szName = name;
+    m_szName = szName;
     SetModified(true);
     emit sigNameChanged(m_szName);
 }
@@ -56,11 +56,11 @@ const QString CParameterConnecter::GetServerName() const
     return m_szServerName;
 }
 
-void CParameterConnecter::SetServerName(const QString& name)
+void CParameterConnecter::SetServerName(const QString& szName)
 {
-    if(m_szServerName == name)
+    if(m_szServerName == szName)
         return;
-    m_szServerName = name;
+    m_szServerName = szName;
     SetModified(true);
 }
 
@@ -109,11 +109,11 @@ const QString CParameterConnecter::GetUser() const
     return m_szUser;
 }
 
-void CParameterConnecter::SetUser(const QString &user)
+void CParameterConnecter::SetUser(const QString &szUser)
 {
-    if (m_szUser == user)
+    if (m_szUser == szUser)
         return;
-    m_szUser = user;
+    m_szUser = szUser;
     SetModified(true);
 }
 
@@ -122,11 +122,11 @@ const QString CParameterConnecter::GetPassword() const
     return m_szPassword;
 }
 
-void CParameterConnecter::SetPassword(const QString &password)
+void CParameterConnecter::SetPassword(const QString &szPassword)
 {
-    if(m_szPassword == password)
+    if(m_szPassword == szPassword)
         return;
-    m_szPassword = password;
+    m_szPassword = szPassword;
     SetModified(true);
 }
 

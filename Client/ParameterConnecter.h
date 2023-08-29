@@ -79,25 +79,25 @@ public:
     virtual bool GetCheckCompleted();
     
     const QString GetName() const;
-    void SetName(const QString& name);
+    void SetName(const QString& szName);
     
     const QString GetServerName() const;
-    void SetServerName(const QString& name);
+    void SetServerName(const QString& szName);
 
     bool GetShowServerName() const;
     void SetShowServerName(bool NewShowServerName);
     
-    const QString GetHost() const;
-    void SetHost(const QString& szHost);
+    virtual const QString GetHost() const;
+    virtual void SetHost(const QString& szHost);
     
-    const quint16 GetPort() const;
-    void SetPort(quint16 port);
+    virtual const quint16 GetPort() const;
+    virtual void SetPort(quint16 port);
     
-    const QString GetUser() const;
-    void SetUser(const QString &user);
+    virtual const QString GetUser() const;
+    virtual void SetUser(const QString& szUser);
     
-    const QString GetPassword() const;
-    void SetPassword(const QString& password);
+    virtual const QString GetPassword() const;
+    virtual void SetPassword(const QString& szPassword);
     
     const bool GetSavePassword() const;
     /*!
@@ -109,11 +109,11 @@ public:
     const bool GetOnlyView() const;
     void SetOnlyView(bool only);
     
-    const bool GetLocalCursor() const;
-    void SetLocalCursor(bool cursor);
+    virtual const bool GetLocalCursor() const;
+    virtual void SetLocalCursor(bool cursor);
     
-    const bool GetClipboard() const;
-    void SetClipboard(bool c);
+    virtual const bool GetClipboard() const;
+    virtual void SetClipboard(bool c);
     
     enum class emProxy {
         No,

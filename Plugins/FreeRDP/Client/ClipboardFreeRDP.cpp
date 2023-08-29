@@ -71,9 +71,11 @@ CClipboardFreeRDP::~CClipboardFreeRDP()
 
 int CClipboardFreeRDP::Init(CliprdrClientContext *context, bool bEnable)
 {
+    if(!bEnable) return 0;
+
     m_pCliprdrClientContext = context;
     context->custom = this;
-    if(!bEnable) return 0;
+
     // See: [MS_RDPECLIP] 1.3.2.1 Initialization Sequence
     // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpeclip/a5cae3c9-170c-4154-992d-9ac8a149cc7e
     context->ServerCapabilities = cb_cliprdr_server_capabilities;
