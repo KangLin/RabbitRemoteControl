@@ -54,6 +54,9 @@ case "$1" in
                 ln -s $INSTALL_ROOT/share/pixmaps/org.Rabbit.RemoteControl.Service.Configure.svg /usr/share/pixmaps/org.Rabbit.RemoteControl.Service.Configure.svg
             fi
         fi
+        
+        chmod -R a+rw $INSTALL_ROOT/etc
+        chmod -R a+rw $INSTALL_ROOT/log
 
         #echo "/opt/RabbitRemoteControl/lib" > /etc/ld.so.conf.d/RabbitRemoteControl.conf
         #echo "/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu" >> /etc/ld.so.conf.d/RabbitRemoteControl.conf
