@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginFreeRDP.h"
-#include "RabbitCommonDir.h"
 #include "ConnecterFreeRDP.h"
 #include "winpr/wlog.h"
 
@@ -10,12 +9,45 @@
 #include <QLoggingCategory>
 
 Q_LOGGING_CATEGORY(LoggerPlugin, "FreeRDP.Plugin")
+Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
 
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
     qDebug(LoggerPlugin) << Details();
-    //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
+    static wLogCallbacks* pCbLog = new wLogCallbacks;
+    BOOL bRet = WLog_SetLogAppenderType(WLog_GetRoot(), WLOG_APPENDER_CALLBACK);
+    if(bRet && pCbLog)
+    {
+        memset(pCbLog, 0, sizeof(wLogCallbacks));
+        pCbLog->message = [](const wLogMessage* msg)->BOOL{
+            switch(msg->Level)
+            {
+            case WLOG_TRACE:
+                break;
+            case WLOG_DEBUG:
+                qDebug(LoggerFreeRDP) /*<< msg->PrefixString */ << msg->TextString;
+                break;
+            case WLOG_INFO:
+                qInfo(LoggerFreeRDP) /*<< msg->PrefixString*/ << msg->TextString;
+                break;
+            case WLOG_WARN:
+                qWarning(LoggerFreeRDP) /*<< msg->PrefixString */<< msg->TextString;
+            case WLOG_ERROR:
+                qCritical(LoggerFreeRDP) /*<< msg->PrefixString*/ << msg->TextString;
+                break;
+            case WLOG_FATAL:
+            case WLOG_OFF:
+                qFatal(msg->FormatString, msg->TextString);
+                break;
+            default:
+                break;
+            }
+            return TRUE;
+        };
+        WLog_ConfigureAppender(WLog_GetLogAppender(WLog_GetRoot()), "callbacks", pCbLog);
+    }
+    WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
 
 CPluginFreeRDP::~CPluginFreeRDP()

@@ -244,7 +244,7 @@ void CParameterFreeRDP::SetHost(const QString &szHost)
 void CParameterFreeRDP::SetPort(quint16 port)
 {
     Q_ASSERT(m_pSettings);
-    freerdp_settings_set_uint16(m_pSettings, FreeRDP_ServerPort, port);
+    freerdp_settings_set_uint32(m_pSettings, FreeRDP_ServerPort, port);
     CParameterConnecter::SetPort(port);
 }
 

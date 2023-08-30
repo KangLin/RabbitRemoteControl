@@ -308,7 +308,7 @@ jobs:
                 -m "${{env.RabbitRemoteControl_VERSION}}"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && '6.5.2' == matrix.qt_version }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}

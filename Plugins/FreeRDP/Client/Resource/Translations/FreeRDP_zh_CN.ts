@@ -505,27 +505,27 @@
 <context>
     <name>CPluginFreeRDP</name>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="33"/>
+        <location filename="../../PluginFreeRDP.cpp" line="62"/>
         <source>Free remote desktop</source>
         <translation>自由远程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="38"/>
+        <location filename="../../PluginFreeRDP.cpp" line="67"/>
         <source>RDP(Windows remote desktop Protocol): Access remote desktops such as windows.</source>
         <translation>RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="54"/>
+        <location filename="../../PluginFreeRDP.cpp" line="83"/>
         <source>- FreeRDP version:</source>
         <translation>- FreeRDP 版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="57"/>
+        <location filename="../../PluginFreeRDP.cpp" line="86"/>
         <source>- Build version:</source>
         <translation>- 编译版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="63"/>
+        <location filename="../../PluginFreeRDP.cpp" line="92"/>
         <source>- Build date:</source>
         <translation>- 编译日期：</translation>
     </message>
