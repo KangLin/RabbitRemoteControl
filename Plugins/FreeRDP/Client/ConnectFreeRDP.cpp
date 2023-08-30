@@ -1,4 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
+// https://learn.microsoft.com/zh-cn/windows-server/remote/remote-desktop-services/welcome-to-rds
 
 #include "ConnectFreeRDP.h"
 
@@ -111,62 +112,80 @@ int CConnectFreeRDP::OnInit()
     status = freerdp_connect(instance);
     if (!status)
 	{
-        QString szErr;
         UINT32 nErr = freerdp_get_last_error(instance->context);
+
+        QString szErr;
+        szErr = tr("Connect to ");
+        szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+        szErr += ":";
+        szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+        szErr += tr(" fail.");
+        szErr += " [";
+        szErr += QString::number(nErr) + " - ";
+        szErr += freerdp_get_last_error_name(nErr);
+        szErr += "] ";
+        /*szErr += "[";
+        szErr += freerdp_get_last_error_category(nErr);
+        szErr += "] ";*/
+        szErr += freerdp_get_last_error_string(nErr);
+
         switch(nErr) {
         case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
         {
             nRet = -2;
-            szErr = tr("Logon to ");
+            QString szErr = tr("Logon to ");
             szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
             szErr += ":";
             szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
-            szErr += tr(" fail. Please check that the username and password are correct.");
+            szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
         {
             nRet = -3;
-            szErr = tr("Logon to ");
+            QString szErr = tr("Logon to ");
             szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
             szErr += ":";
             szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
-            szErr += tr(" fail. Please check password are correct.");
+            szErr += tr(" fail. Please check password are correct.") + "\n";
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
         {
-            nRet = -3;
-            szErr = tr("Logon to ");
+            nRet = -4;
+            QString szErr = tr("Logon to ");
             szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
             szErr += ":";
             szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
-            szErr += tr(" authentication fail. please add a CA certificate to the store.");
+            szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            break;
+        }
+        case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
+        {
+            nRet = -5;
+            QString szErr = tr("Logon to ");
+            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += ":";
+            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += tr(" connect transport layer fail.") + "\n\n";
+            szErr += tr("Please:") + "\n";
+            szErr += tr("1. Check for any network related issues") + "\n";
+            szErr += tr("2. Check you have proper security settings ('NLA' enabled is required for most connections nowadays)") + "\n";
+            szErr += tr("3. Check the certificate is proper (and guacd properly checks that)") + "\n";
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
         default:
-            nRet = -3;
-            szErr = tr("Connect to ");
-            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
-            szErr += ":";
-            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
-            szErr += tr(" fail:");
-            szErr += " [";
-            szErr += QString::number(nErr) + " - ";
-            szErr += freerdp_get_last_error_name(nErr);
-            szErr += "] ";
-            /*szErr += "[";
-        szErr += freerdp_get_last_error_category(nErr);
-        szErr += "] ";*/
-            szErr += freerdp_get_last_error_string(nErr);
-            
+            nRet = -10;
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
         }
+
         qCritical(FreeRDPConnect) << szErr;
-        emit sigError(nRet, szErr.toStdString().c_str());        
+        emit sigError(nRet, szErr.toStdString().c_str());
     } else {
         emit sigConnected();
 
