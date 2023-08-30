@@ -4,28 +4,29 @@
 <context>
     <name>CConnectRabbitVNC</name>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="286"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="287"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="290"/>
-        <source> fail. Please check that the username and password are correct.</source>
+        <location filename="../../ConnectRabbitVNC.cpp" line="292"/>
+        <source>Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="295"/>
-        <location filename="../../ConnectRabbitVNC.cpp" line="307"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="293"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="308"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="298"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="300"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="302"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="291"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="304"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>

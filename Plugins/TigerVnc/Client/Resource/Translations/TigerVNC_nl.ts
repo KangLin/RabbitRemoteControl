@@ -4,28 +4,29 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="285"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="286"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="289"/>
-        <source> fail. Please check that the username and password are correct.</source>
+        <location filename="../../ConnectTigerVnc.cpp" line="291"/>
+        <source>Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="294"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="306"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="292"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="307"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="297"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="299"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="301"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="290"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="303"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>

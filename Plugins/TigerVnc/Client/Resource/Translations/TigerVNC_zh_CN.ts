@@ -4,30 +4,31 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="285"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="286"/>
         <source>Logon to </source>
-        <translation type="unfinished"></translation>
+        <translation>登录到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="289"/>
-        <source> fail. Please check that the username and password are correct.</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../ConnectTigerVnc.cpp" line="291"/>
+        <source>Please check that the username and password are correct.</source>
+        <translation>检查用户名和密码是否正确。</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="294"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="306"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="292"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="307"/>
         <source>Error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="297"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="299"/>
         <source>Connect to </source>
-        <translation type="unfinished"></translation>
+        <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="301"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="290"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="303"/>
         <source> fail.</source>
-        <translation type="unfinished"></translation>
+        <translation> 失败。</translation>
     </message>
 </context>
 <context>
@@ -116,7 +117,7 @@
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="46"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="67"/>

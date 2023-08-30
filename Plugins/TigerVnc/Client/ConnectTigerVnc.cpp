@@ -276,22 +276,24 @@ void CConnectTigerVnc::slotDisConnected()
 void CConnectTigerVnc::slotReadyRead()
 {
     qDebug(TigerVNC) << "CConnectTigerVnc::slotReadyRead";
+    QString szErr("processMsg exception: ");
+    int nRet = -1;
     try {
         while(processMsg())
             ;
         return;
     } catch (rfb::AuthFailureException& e) {
-        QString szErr;
         szErr = tr("Logon to ");
         szErr += m_pPara->GetHost();
         szErr += ":";
         szErr += QString::number(m_pPara->GetPort());
-        szErr += tr(" fail. Please check that the username and password are correct.");
+        szErr += tr(" fail.");
+        QString szMsg = szErr + "\n" + tr("Please check that the username and password are correct.") + "\n";
+        emit sigShowMessage(tr("Error"), szMsg, QMessageBox::Critical);
+        
         szErr += " [";
         szErr += e.str();
         szErr += "]";
-        qCritical(TigerVNC) << szErr;
-        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
     } catch (rfb::ConnFailedException& e) {
         QString szErr;
         szErr = tr("Connect to ");
@@ -302,28 +304,26 @@ void CConnectTigerVnc::slotReadyRead()
         szErr += " [";
         szErr += e.str();
         szErr += "]";
-        qCritical(TigerVNC) << szErr;
         emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
     } catch (rdr::EndOfStream& e) {
-        qCritical(TigerVNC) << e.str();
-        emit sigError(-1, e.str());
+        szErr += e.str();
     } catch(rdr::GAIException &e) {
-        qCritical(TigerVNC) << e.err << e.str();
-        emit sigError(-1, e.str());
+        nRet = e.err;
+        szErr += "[" + QString::number(e.err) + "] " + e.str();
     } catch(rdr::SystemException &e) {
-        qCritical(TigerVNC) << e.err << e.str();
-        emit sigError(-1, e.str());
+        nRet = e.err;
+        szErr += "[" + QString::number(e.err) + "] " + e.str();
     } catch (rdr::Exception& e) {
-        qCritical(TigerVNC) << e.str();
-        emit sigError(-1, e.str());
+        szErr += e.str();
     } catch (std::exception &e) {
-        qCritical(TigerVNC) << e.what();
-        emit sigError(-1, e.what());
+        szErr += e.what();
     } catch(...) {
-        qCritical(TigerVNC) << "processMsg error";
-        emit sigError(-1);
+        szErr = "processMsg exception";
     }
+    qCritical(TigerVNC) << szErr;
+    emit sigError(nRet, szErr);
     return;
+    emit sigDisconnected();
     emit sigDisconnected();
 }
 

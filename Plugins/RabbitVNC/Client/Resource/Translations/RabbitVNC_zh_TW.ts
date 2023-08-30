@@ -4,30 +4,31 @@
 <context>
     <name>CConnectRabbitVNC</name>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="286"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="287"/>
         <source>Logon to </source>
-        <translation type="unfinished"></translation>
+        <translation>登錄到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="290"/>
-        <source> fail. Please check that the username and password are correct.</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../ConnectRabbitVNC.cpp" line="292"/>
+        <source>Please check that the username and password are correct.</source>
+        <translation>請檢查用戶名和密碼是否正確。</translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="295"/>
-        <location filename="../../ConnectRabbitVNC.cpp" line="307"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="293"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="308"/>
         <source>Error</source>
-        <translation type="unfinished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="298"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="300"/>
         <source>Connect to </source>
-        <translation type="unfinished"></translation>
+        <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="302"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="291"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="304"/>
         <source> fail.</source>
-        <translation type="unfinished"></translation>
+        <translation> 失敗。</translation>
     </message>
 </context>
 <context>
@@ -120,7 +121,7 @@
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="46"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="74"/>
