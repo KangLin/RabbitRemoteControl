@@ -73,6 +73,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lePassword">
+           <property name="toolTip">
+            <string>Please checked save password to enable</string>
+           </property>
            <property name="inputMask">
             <string/>
            </property>
@@ -81,6 +84,9 @@
            </property>
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
+           </property>
+           <property name="placeholderText">
+            <string>Please checked save password to enable</string>
            </property>
           </widget>
          </item>

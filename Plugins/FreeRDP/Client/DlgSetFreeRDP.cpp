@@ -176,6 +176,7 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
     ui->pbShow->setEnabled(m_pSettings->GetParameterClient()->GetViewPassowrd());
 
     ui->cbSavePassword->setChecked(m_pSettings->GetSavePassword());
+    ui->lePassword->setEnabled(ui->cbSavePassword->isChecked());
     ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
     ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
     ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
@@ -315,4 +316,12 @@ void CDlgSetFreeRDP::on_rbAudioRemote_toggled(bool checked)
     ui->leRdpSnd->setEnabled(!checked);
     ui->leAudin->setEnabled(!checked);
     ui->cbAudin->setEnabled(!checked);
+}
+
+void CDlgSetFreeRDP::on_cbSavePassword_stateChanged(int arg1)
+{
+    if(Qt::Checked == arg1)
+        ui->lePassword->setEnabled(true);
+    else
+        ui->lePassword->setEnabled(false);
 }
