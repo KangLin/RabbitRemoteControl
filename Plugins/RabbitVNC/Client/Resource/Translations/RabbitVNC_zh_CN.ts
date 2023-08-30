@@ -104,12 +104,12 @@
         <translation>服务器</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="198"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="209"/>
         <source>Show local cursor</source>
         <translation>显示本地光标</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="205"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="216"/>
         <source>Enable clipboard</source>
         <translation>允许剪切板</translation>
     </message>
@@ -131,61 +131,67 @@
         <translation>连接名称</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="173"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="144"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="156"/>
+        <source>Please checked save password to enable</source>
+        <translation>请选择保存密码允许输入</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="191"/>
         <source>Shared</source>
         <translation>共享</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="180"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="234"/>
         <source>Real time update</source>
         <translation>实时更新</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="187"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="198"/>
         <source>Only view</source>
         <translation>仅查看</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="216"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="184"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="223"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="227"/>
         <source>Support windows resize</source>
         <translation>支持窗口大小改变</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="91"/>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="304"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="315"/>
         <source>Server:</source>
         <translation>服务器：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="105"/>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="297"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="308"/>
         <source>Port:</source>
         <translation>端口：</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="123"/>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="343"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="354"/>
         <source>User name:</source>
         <translation>用户名：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="133"/>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="357"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="137"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="368"/>
         <source>Password:</source>
         <translation>密码：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="232"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="243"/>
         <source>Show server name</source>
         <translation>显示服务器名</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="239"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="250"/>
         <source>Ice:</source>
         <translation></translation>
     </message>
@@ -198,7 +204,7 @@
         <translation type="vanished">Turn 用户：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="253"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="264"/>
         <source>Peer user:</source>
         <translation>对端用户：</translation>
     </message>
@@ -219,117 +225,117 @@
         <translation type="vanished">Stun 服务器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="282"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="293"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="318"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="329"/>
         <source>No</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="325"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="336"/>
         <source>Socks5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="332"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="343"/>
         <source>Http</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="383"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="394"/>
         <source>Compress</source>
         <translation>压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="389"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="400"/>
         <source>Color level</source>
         <translation>颜色级别</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="395"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="406"/>
         <source>Full</source>
         <translation>全彩色</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="402"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="413"/>
         <source>Low</source>
         <translation>低</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="409"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="420"/>
         <source>Meduim</source>
         <translation>中</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="416"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="427"/>
         <source>Very low</source>
         <translation>极低</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="438"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="449"/>
         <source>0=fast, 9=best</source>
         <translation>0=最快, 9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="449"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="460"/>
         <source>Enable JPEG compress</source>
         <translation>允许JPEG压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="463"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="474"/>
         <source>0=Worst, 9=best</source>
         <translation>0=最差, 9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="472"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="483"/>
         <source>preferred Encoding</source>
         <translation>首选编码</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="478"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="489"/>
         <source>Tight</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="485"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="496"/>
         <source>Hextile</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="492"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="503"/>
         <source>Raw</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="499"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="510"/>
         <source>ZRLE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="506"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="517"/>
         <source>CoRRE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="513"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="524"/>
         <source>RRE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="520"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="531"/>
         <source>copyRect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="530"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="541"/>
         <source>Compress level:</source>
         <translation>压缩级别</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="537"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="548"/>
         <source>Auto select</source>
         <translation>自动选择</translation>
     </message>
