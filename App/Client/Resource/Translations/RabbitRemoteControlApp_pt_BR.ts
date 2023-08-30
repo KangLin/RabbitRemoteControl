@@ -795,12 +795,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="73"/>
+        <location filename="../../main.cpp" line="82"/>
         <source>Rabbit Remote Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="74"/>
+        <location filename="../../main.cpp" line="83"/>
         <source>Kang Lin Studio</source>
         <translation type="unfinished"></translation>
     </message>

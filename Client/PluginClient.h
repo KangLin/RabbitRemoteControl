@@ -96,6 +96,7 @@ private:
 
 private:
     QTranslator m_Translator;
+    bool m_bTranslator;
     int InitTranslator();
     
     friend class CClient;

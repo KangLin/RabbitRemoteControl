@@ -89,7 +89,7 @@
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="162"/>
         <source>3. Check the certificate is proper (and guacd properly checks that)</source>
-        <translation>檢查證書是否正確（並正確檢查）</translation>
+        <translation>3. 檢查證書是否正確（並正確檢查）</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="175"/>

@@ -11,25 +11,32 @@
 
 Q_DECLARE_LOGGING_CATEGORY(Client)
 
-CPluginClient::CPluginClient(QObject *parent) : QObject(parent)
+CPluginClient::CPluginClient(QObject *parent) : QObject(parent),
+    m_bTranslator(false)
 {
 }
 
 CPluginClient::~CPluginClient()
 {
-    qApp->removeTranslator(&m_Translator);
+    if(m_bTranslator)
+        qApp->removeTranslator(&m_Translator);
 }
 
 int CPluginClient::InitTranslator()
 {
     QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirPluginsTranslation("plugins/Client")
             + QDir::separator() + Name() + "_" + QLocale::system().name() + ".qm";
-    if(!m_Translator.load(szTranslatorFile))
-    {
-        qDebug(Client) << "Open translator file fail:" << szTranslatorFile;
+    m_bTranslator = m_Translator.load(szTranslatorFile);
+    if(m_bTranslator) {
+        m_bTranslator = qApp->installTranslator(&m_Translator);
+        if(!m_bTranslator)
+            qCritical(Client) << "Install translator fail:" << szTranslatorFile;
+    }
+    else {
+        qCritical(Client) << "Load translator file fail:" << szTranslatorFile;
         return -1;
     }
-    qApp->installTranslator(&m_Translator);
+
     return 0;
 }
 

@@ -807,12 +807,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="73"/>
+        <location filename="../../main.cpp" line="82"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔远程控制</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="74"/>
+        <location filename="../../main.cpp" line="83"/>
         <source>Kang Lin Studio</source>
         <translation>康林工作室</translation>
     </message>

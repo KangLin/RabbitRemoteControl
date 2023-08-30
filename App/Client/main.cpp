@@ -63,11 +63,20 @@ int main(int argc, char *argv[])
     RabbitCommon::CTools::Instance()->Init();
 
     // Install translator
+    QString szTranslator;
     QTranslator tApp;
-    if(tApp.load(RabbitCommon::CDir::Instance()->GetDirTranslations()
-              + QDir::separator() + "RabbitRemoteControlApp_"
-              + QLocale::system().name() + ".qm"))
-        a.installTranslator(&tApp);
+    szTranslator = RabbitCommon::CDir::Instance()->GetDirTranslations()
+                   + QDir::separator() + "RabbitRemoteControlApp_"
+                   + QLocale::system().name() + ".qm";
+    bool bTranslator = tApp.load(szTranslator);
+    if(bTranslator) {
+        bTranslator = a.installTranslator(&tApp);
+        if(!bTranslator)
+            qCritical(App) << "Install translator fail:" << szTranslator;
+    }
+    else
+        qCritical(App) << "Load translator file fail:" << szTranslator;
+    
     //qInfo(App) << "Language:" << QLocale::system().name();
 
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
@@ -124,7 +133,8 @@ int main(int argc, char *argv[])
 #endif
 
     RabbitCommon::CTools::Instance()->Clean();
-    a.removeTranslator(&tApp);
+    if(bTranslator)
+        a.removeTranslator(&tApp);
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
