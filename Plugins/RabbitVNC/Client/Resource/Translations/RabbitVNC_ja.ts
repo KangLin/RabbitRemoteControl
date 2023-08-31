@@ -92,12 +92,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="209"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="212"/>
         <source>Show local cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="216"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="219"/>
         <source>Enable clipboard</source>
         <translation type="unfinished"></translation>
     </message>
@@ -114,33 +114,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="191"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="194"/>
         <source>Shared</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="234"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="237"/>
         <source>Real time update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="198"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="201"/>
         <source>Only view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="184"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="187"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="227"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="230"/>
         <source>Support windows resize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="91"/>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="315"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="318"/>
         <source>Server:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -151,19 +151,19 @@
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="105"/>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="308"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="311"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="123"/>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="354"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="357"/>
         <source>User name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="137"/>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="368"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="371"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -174,132 +174,137 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="243"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="163"/>
+        <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="246"/>
         <source>Show server name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="250"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="253"/>
         <source>Ice:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="264"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="267"/>
         <source>Peer user:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="293"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="296"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="329"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="332"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="336"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="339"/>
         <source>Socks5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="343"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="346"/>
         <source>Http</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="394"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="397"/>
         <source>Compress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="400"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="403"/>
         <source>Color level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="406"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="409"/>
         <source>Full</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="413"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="416"/>
         <source>Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="420"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="423"/>
         <source>Meduim</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="427"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="430"/>
         <source>Very low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="449"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="452"/>
         <source>0=fast, 9=best</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="460"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="463"/>
         <source>Enable JPEG compress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="474"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="477"/>
         <source>0=Worst, 9=best</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="483"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="486"/>
         <source>preferred Encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="489"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="492"/>
         <source>Tight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="496"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="499"/>
         <source>Hextile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="503"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="506"/>
         <source>Raw</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="510"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="513"/>
         <source>ZRLE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="517"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="520"/>
         <source>CoRRE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="524"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="527"/>
         <source>RRE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="531"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="534"/>
         <source>copyRect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="541"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="544"/>
         <source>Compress level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.ui" line="548"/>
+        <location filename="../../DlgSettingsRabbitVNC.ui" line="551"/>
         <source>Auto select</source>
         <translation type="unfinished"></translation>
     </message>

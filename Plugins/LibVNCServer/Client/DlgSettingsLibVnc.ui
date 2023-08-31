@@ -14,7 +14,8 @@
    <string>Setting LibVnc</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="app"/>
+   <iconset theme="app">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
@@ -117,6 +118,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="pbShow">
+           <property name="toolTip">
+            <string>Menu: Tools→Settings→Client→Password-&amp;gt;Enable view password</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -424,9 +428,6 @@
   <tabstop>spJPEGLevel</tabstop>
   <tabstop>tabWidget</tabstop>
  </tabstops>
- <resources>
-  <include location="../../../App/Client/Resource/Resource.qrc"/>
-  <include location="../../../App/Client/Resource/Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -79,7 +79,7 @@
     <message>
         <location filename="../../FrmParameterClient.ui" line="14"/>
         <source>Client</source>
-        <translation>控制端</translation>
+        <translation>客户端</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="100"/>

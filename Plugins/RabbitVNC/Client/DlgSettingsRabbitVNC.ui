@@ -159,6 +159,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="pbShow">
+           <property name="toolTip">
+            <string>Menu: Tools→Settings→Client→Password-&gt;Enable view password</string>
+           </property>
            <property name="text">
             <string/>
            </property>
