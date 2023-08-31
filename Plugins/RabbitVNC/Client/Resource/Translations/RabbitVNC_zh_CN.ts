@@ -4,29 +4,41 @@
 <context>
     <name>CConnectRabbitVNC</name>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="287"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="304"/>
         <source>Logon to </source>
         <translation>登录到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="292"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="309"/>
         <source>Please check that the username and password are correct.</source>
         <translation>请检查用户名和密码是否正确。</translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="293"/>
-        <location filename="../../ConnectRabbitVNC.cpp" line="308"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="215"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="230"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="310"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="325"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="300"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="213"/>
+        <source>The proxy server is empty, please input it</source>
+        <translation>代理服务器为空，请输入</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectRabbitVNC.cpp" line="228"/>
+        <source>The server is empty, please input it</source>
+        <translation>服务器为空，请输入</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectRabbitVNC.cpp" line="317"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="291"/>
-        <location filename="../../ConnectRabbitVNC.cpp" line="304"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="308"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="321"/>
         <source> fail.</source>
         <translation> 失败。</translation>
     </message>

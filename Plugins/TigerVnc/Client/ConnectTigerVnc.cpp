@@ -113,11 +113,11 @@ int CConnectTigerVnc::OnInit()
 {
     int nRet = 1;
     if(m_pPara->GetIce())
-    {
         nRet = IceInit();
-    }
     else
         nRet = SocketInit();
+    if(nRet) return nRet; // error
+    // Don't use OnProcess (qt event loop)
     return 1;
 }
 
@@ -206,6 +206,14 @@ int CConnectTigerVnc::SocketInit()
         {
             QNetworkProxy proxy;
             proxy.setType(type);
+            if(m_pPara->GetProxyHost().isEmpty())
+            {
+                QString szErr;
+                szErr = tr("The proxy server is empty, please input it");
+                qCritical(TigerVNC) << szErr;
+                emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+                return -4;
+            }
             proxy.setHostName(m_pPara->GetProxyHost());
             proxy.setPort(m_pPara->GetProxyPort());
             proxy.setUser(m_pPara->GetProxyUser());
@@ -213,13 +221,21 @@ int CConnectTigerVnc::SocketInit()
             pSock->setProxy(proxy);
         }
         
+        if(m_pPara->GetHost().isEmpty())
+        {
+            QString szErr;
+            szErr = tr("The server is empty, please input it");
+            qCritical(TigerVNC) << szErr;
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            return -5;
+        }
         pSock->connectToHost(m_pPara->GetHost(), m_pPara->GetPort());
         
         return nRet;
     } catch (rdr::Exception& e) {
         qCritical(TigerVNC) << "SocketInit exception:" << e.str();
-        emit sigError(-4, e.str());
-        nRet = -4;
+        emit sigError(-6, e.str());
+        nRet = -6;
     }
     return nRet;
 }

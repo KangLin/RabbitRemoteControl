@@ -6,7 +6,6 @@
 #include <QRegularExpression>
 #include <QLoggingCategory>
 
-#include "DlgGetPasswordRabbitVNC.h"
 #include "PluginClient.h"
 
 Q_DECLARE_LOGGING_CATEGORY(RabbitVNC)

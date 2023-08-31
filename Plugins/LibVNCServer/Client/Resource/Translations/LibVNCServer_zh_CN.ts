@@ -2,6 +2,25 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CConnectLibVNCServer</name>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="73"/>
+        <source>The server is empty, please input it</source>
+        <translation>服务器为空，请输入</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="75"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="158"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="156"/>
+        <source>The proxy server is empty, please input it</source>
+        <translation>代理服务器为空，请输入</translation>
+    </message>
+</context>
+<context>
     <name>CDlgLibVNCServerPassword</name>
     <message>
         <location filename="../../DlgLibVNCServerPassword.ui" line="14"/>

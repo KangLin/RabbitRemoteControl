@@ -4,9 +4,9 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QRegularExpression>
-#include "DlgGetUserPasswordTigerVNC.h"
 #include "PluginClient.h"
 
+Q_DECLARE_LOGGING_CATEGORY(TigerVNC)
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginClient *parent)
     : CConnecterDesktop(parent)
 {
@@ -15,7 +15,7 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginClient *parent)
 
 CConnecterTigerVnc::~CConnecterTigerVnc()
 {
-    qDebug() << "CConnecterTigerVnc::~CConnecterTigerVnc()";
+    qDebug(TigerVNC) << "CConnecterTigerVnc::~CConnecterTigerVnc()";
 }
 
 qint16 CConnecterTigerVnc::Version()

@@ -107,7 +107,16 @@ int CConnectFreeRDP::OnInit()
     RedirectionDrive();
     RedirectionPrinter();
     RedirectionSerial();
-
+    
+    if(m_pParameter->GetHost().isEmpty())
+    {
+        QString szErr;
+        szErr = tr("The server is empty, please input it");
+        qCritical(FreeRDPConnect) << szErr;
+        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+        emit sigError(nRet, szErr.toStdString().c_str());
+        return -2;
+    }
     freerdp_client_start(pRdpContext);
     status = freerdp_connect(instance);
     if (!status)
@@ -132,7 +141,7 @@ int CConnectFreeRDP::OnInit()
         switch(nErr) {
         case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
         {
-            nRet = -2;
+            nRet = -3;
             QString szErr = tr("Logon to ");
             szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
             szErr += ":";
@@ -143,7 +152,7 @@ int CConnectFreeRDP::OnInit()
         }
         case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
         {
-            nRet = -3;
+            nRet = -4;
             QString szErr = tr("Logon to ");
             szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
             szErr += ":";
@@ -154,7 +163,7 @@ int CConnectFreeRDP::OnInit()
         }
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
         {
-            nRet = -4;
+            nRet = -5;
             QString szErr = tr("Logon to ");
             szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
             szErr += ":";
@@ -165,7 +174,7 @@ int CConnectFreeRDP::OnInit()
         }
         case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
         {
-            nRet = -5;
+            nRet = -6;
             QString szErr = tr("Logon to ");
             szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
             szErr += ":";
@@ -180,7 +189,7 @@ int CConnectFreeRDP::OnInit()
         }
         case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
         default:
-            nRet = -10;
+            nRet = -7;
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
         }
 

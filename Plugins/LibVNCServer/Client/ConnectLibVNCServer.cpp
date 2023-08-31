@@ -67,6 +67,14 @@ bool CConnectLibVNCServer::InitClient()
     // Set parameters
     m_pClient->programName = strdup(qApp->applicationName().toStdString().c_str());
     // Set server ip and port
+    if(m_pPara->GetHost().isEmpty())
+    {
+        QString szErr;
+        szErr = tr("The server is empty, please input it");
+        qCritical(LibVNCServer) << szErr;
+        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+        return false;
+    }
     m_pClient->serverHost = strdup(m_pPara->GetHost().toStdString().c_str());
     m_pClient->serverPort = m_pPara->GetPort();
     
@@ -142,6 +150,14 @@ bool CConnectLibVNCServer::InitClient()
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
         proxy.setHostName(m_pPara->GetProxyHost());
+        if(m_pPara->GetProxyHost().isEmpty())
+        {
+            QString szErr;
+            szErr = tr("The proxy server is empty, please input it");
+            qCritical(LibVNCServer) << szErr;
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            return false;
+        }
         proxy.setPort(m_pPara->GetProxyPort());
         proxy.setUser(m_pPara->GetProxyUser());
         proxy.setPassword(m_pPara->GetProxyPassword());
@@ -171,10 +187,10 @@ bool CConnectLibVNCServer::InitClient()
 }
 
 /*
- * \return 
- * \li < 0: error
- * \li = 0: Use OnProcess (non-Qt event loop)
- * \li > 0: Don't use OnProcess (qt event loop)
+ * return 
+ *  < 0: error
+ *  = 0: Use OnProcess (non-Qt event loop)
+ *  > 0: Don't use OnProcess (qt event loop)
  */
 int CConnectLibVNCServer::OnInit()
 {
@@ -228,7 +244,10 @@ int CConnectLibVNCServer::OnProcess()
     
     if(nRet > 0)
         if(!HandleRFBServerMessage(m_pClient))
+        {
+            qCritical(LibVNCServer) << "HandleRFBServerMessage fail";
             return -1;
+        }
     
     return 0;
 }
