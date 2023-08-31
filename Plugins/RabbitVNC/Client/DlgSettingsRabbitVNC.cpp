@@ -178,6 +178,10 @@ void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
     ui->pbShow->setEnabled(m_pPara->GetParameterClient()->GetViewPassowrd());
     ui->cbSave->setChecked(m_pPara->GetSavePassword());
     ui->lePassword->setEnabled(ui->cbSave->isChecked());
+    if(ui->cbSave->isChecked())
+        ui->lePassword->setPlaceholderText(tr("Input password"));
+    else
+        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));        
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
     ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
 
@@ -301,8 +305,12 @@ void CDlgSettingsRabbitVNC::on_leServer_editingFinished()
 void CDlgSettingsRabbitVNC::on_cbSave_stateChanged(int arg1)
 {
     if(Qt::Checked == arg1)
+    {
         ui->lePassword->setEnabled(true);
-    else
+        ui->lePassword->setPlaceholderText(tr("Input password"));
+    } else {
+        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
         ui->lePassword->setEnabled(false);
+    }
 }
 

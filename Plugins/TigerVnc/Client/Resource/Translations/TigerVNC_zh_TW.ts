@@ -140,6 +140,8 @@
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="113"/>
         <location filename="../../DlgSettingsTigerVnc.ui" line="125"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="186"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="314"/>
         <source>Please checked save password to enable</source>
         <translation>選擇保存密碼允許輸入</translation>
     </message>
@@ -343,6 +345,12 @@
     <message>
         <source>Please set domain</source>
         <translation type="vanished">請設置域名</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="184"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="311"/>
+        <source>Input password</source>
+        <translation type="unfinished">輸入密碼</translation>
     </message>
 </context>
 <context>

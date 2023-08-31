@@ -19,8 +19,8 @@ public:
     virtual ~CDlgSettingsLibVnc();
     
 private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
+    void on_pbOk_clicked();
+    void on_pbCancel_clicked();
 
     void on_cbCompress_stateChanged(int arg1);
     void on_cbJPEG_stateChanged(int arg1);
@@ -28,6 +28,8 @@ private slots:
     void on_pbShow_clicked();
     
     void on_leHost_editingFinished();
+    
+    void on_cbSavePassword_stateChanged(int arg1);
     
 private:
     Ui::CDlgSettingsLibVnc *ui;

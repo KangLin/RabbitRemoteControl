@@ -170,6 +170,8 @@
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="113"/>
         <location filename="../../DlgSettingsTigerVnc.ui" line="125"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="186"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="314"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -306,6 +308,12 @@
     <message>
         <location filename="../../DlgSettingsTigerVnc.ui" line="520"/>
         <source>Auto select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="184"/>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="311"/>
+        <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

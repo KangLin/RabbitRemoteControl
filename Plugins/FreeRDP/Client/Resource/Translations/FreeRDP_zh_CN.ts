@@ -10,10 +10,6 @@
         <translation>连接到 </translation>
     </message>
     <message>
-        <source> fail:</source>
-        <translation type="vanished"> 失败：</translation>
-    </message>
-    <message>
         <location filename="../../ConnectFreeRDP.cpp" line="136"/>
         <location filename="../../ConnectFreeRDP.cpp" line="147"/>
         <location filename="../../ConnectFreeRDP.cpp" line="158"/>
@@ -304,7 +300,7 @@
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="96"/>
         <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
-        <translation type="unfinished">菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
+        <translation>菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="114"/>
@@ -397,6 +393,8 @@
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="77"/>
         <location filename="../../DlgSetFreeRDP.ui" line="89"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="183"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="332"/>
         <source>Please checked save password to enable</source>
         <translation>请选保存密码允许输入</translation>
     </message>
@@ -512,6 +510,12 @@
 </source>
         <translation>重定向音频输入的选项:
 </translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="181"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="329"/>
+        <source>Input password</source>
+        <translation>输入密码</translation>
     </message>
 </context>
 <context>

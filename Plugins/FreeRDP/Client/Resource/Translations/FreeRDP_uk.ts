@@ -393,6 +393,8 @@
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="77"/>
         <location filename="../../DlgSetFreeRDP.ui" line="89"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="183"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="332"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -505,6 +507,12 @@
         <location filename="../../DlgSetFreeRDP.cpp" line="70"/>
         <source>Options for redirection of audio input:
 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="181"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="329"/>
+        <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

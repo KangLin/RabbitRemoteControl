@@ -11,52 +11,57 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
-    
+
     // Server
     ui->leName->setText(m_pPara->GetName());
     ui->leHost->setText(m_pPara->GetHost());
     ui->spPort->setValue(m_pPara->GetPort());
     ui->leUserName->setText(m_pPara->GetUser());
     ui->lePassword->setText(m_pPara->GetPassword());
-    ui->pbShow->setEnabled(m_pPara->GetParameterClient()->GetViewPassowrd());
     ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
+    ui->lePassword->setEnabled(ui->cbSavePassword->isChecked());
+    if(ui->cbSavePassword->isChecked())
+        ui->lePassword->setPlaceholderText(tr("Input password"));
+    else
+        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
+    ui->pbShow->setEnabled(m_pPara->GetParameterClient()->GetViewPassowrd());
     ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
     
     ui->cbShared->setChecked(m_pPara->GetShared());
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
-//    ui->cbRealTimeUpdate->setChecked(!m_pPara->GetBufferEndRefresh());
+    //    ui->cbRealTimeUpdate->setChecked(!m_pPara->GetBufferEndRefresh());
     ui->cbLocalCursor->setChecked(m_pPara->GetLocalCursor());
-//    ui->cbResizeWindows->setChecked(m_pPara->GetSupportsDesktopResize());
+    //    ui->cbResizeWindows->setChecked(m_pPara->GetSupportsDesktopResize());
     ui->cbClipboard->setChecked(m_pPara->GetClipboard());
     
     // Compress
-//    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
-
-//    switch(m_pPara->nEncoding)
-//    {
-//    case rfb::encodingTight:
-//        ui->rbTight->setChecked(true);
-//        break;
-//    case rfb::encodingRaw:
-//        ui->rbRaw->setChecked(true);
-//        break;
-//    case rfb::encodingRRE:
-//        ui->rbRRE->setChecked(true);
-//        break;
-//    case rfb::encodingZRLE:
-//        ui->rbZRLE->setChecked(true);
-//        break;
-//    case rfb::encodingCoRRE:
-//        ui->rbCoRRE->setChecked(true);
-//        break;
-//    case rfb::encodingCopyRect:
-//        ui->rbCopyRect->setChecked(true);
-//        break;
-//    case rfb::encodingHextile:
-//        ui->rbHextile->setChecked(true);
-//        break;
-//    }
-
+    //    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
+    
+    //    switch(m_pPara->nEncoding)
+    //    {
+    //    case rfb::encodingTight:
+    //        ui->rbTight->setChecked(true);
+    //        break;
+    //    case rfb::encodingRaw:
+    //        ui->rbRaw->setChecked(true);
+    //        break;
+    //    case rfb::encodingRRE:
+    //        ui->rbRRE->setChecked(true);
+    //        break;
+    //    case rfb::encodingZRLE:
+    //        ui->rbZRLE->setChecked(true);
+    //        break;
+    //    case rfb::encodingCoRRE:
+    //        ui->rbCoRRE->setChecked(true);
+    //        break;
+    //    case rfb::encodingCopyRect:
+    //        ui->rbCopyRect->setChecked(true);
+    //        break;
+    //    case rfb::encodingHextile:
+    //        ui->rbHextile->setChecked(true);
+    //        break;
+    //    }
+    
     ui->cbCompress->setChecked(m_pPara->GetEnableCompressLevel());
     ui->spCompressLevel->setEnabled(m_pPara->GetEnableCompressLevel());
     ui->spCompressLevel->setValue(m_pPara->GetCompressLevel());
@@ -92,7 +97,7 @@ CDlgSettingsLibVnc::~CDlgSettingsLibVnc()
     delete ui;
 }
 
-void CDlgSettingsLibVnc::on_pushButton_clicked()
+void CDlgSettingsLibVnc::on_pbOk_clicked()
 {
     if(!m_pPara)
         reject();
@@ -146,7 +151,7 @@ void CDlgSettingsLibVnc::on_pushButton_clicked()
     accept();
 }
 
-void CDlgSettingsLibVnc::on_pushButton_2_clicked()
+void CDlgSettingsLibVnc::on_pbCancel_clicked()
 {
     reject();
 }
@@ -185,5 +190,17 @@ void CDlgSettingsLibVnc::on_leHost_editingFinished()
     {
         ui->spPort->setValue(s[1].toUInt());
         ui->leHost->setText(s[0]);
+    }
+}
+
+void CDlgSettingsLibVnc::on_cbSavePassword_stateChanged(int arg1)
+{
+    if(Qt::Checked == arg1)
+    {
+        ui->lePassword->setEnabled(true);
+        ui->lePassword->setPlaceholderText(tr("Input password"));
+    } else {
+        ui->lePassword->setEnabled(false);
+        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
     }
 }

@@ -133,6 +133,8 @@
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="144"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="156"/>
+        <location filename="../../DlgSettingsRabbitVNC.cpp" line="184"/>
+        <location filename="../../DlgSettingsRabbitVNC.cpp" line="312"/>
         <source>Please checked save password to enable</source>
         <translation>請選擇保存密碼允許輸入</translation>
     </message>
@@ -343,6 +345,12 @@
         <location filename="../../DlgSettingsRabbitVNC.ui" line="551"/>
         <source>Auto select</source>
         <translation>自動選擇</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsRabbitVNC.cpp" line="182"/>
+        <location filename="../../DlgSettingsRabbitVNC.cpp" line="310"/>
+        <source>Input password</source>
+        <translation type="unfinished">輸入密碼</translation>
     </message>
 </context>
 <context>
