@@ -149,10 +149,11 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
       - name: build tigervnc
+        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
@@ -210,9 +211,13 @@ jobs:
           FreeRDP_Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
           FreeRDP_Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
         run: |
-          if [ ${{matrix.BUILD_TYPE}} == 'Release' ]; then
+          if [ '${{matrix.BUILD_TYPE}}' == 'Release' ]; then
+              echo "Build Release ......"
               export BUILD_VIEWER_TERMINAL=OFF
+              export BUILD_LibVNCServer=OFF
+              export BUILD_TigerVNC=OFF
           else
+              echo "Build Debug ......"
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           fi
           export Qt6_DIR=/usr/lib/`uname-a`-linux-gnu/cmake/Qt6

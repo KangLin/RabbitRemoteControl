@@ -133,6 +133,7 @@ jobs:
 #          )
 
       - name: Build libvncserver
+        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
@@ -173,6 +174,7 @@ jobs:
           )
 
       - name: build tigervnc
+        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
@@ -254,6 +256,11 @@ jobs:
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
+          IF /i "${{matrix.BUILD_TYPE}}" == "Release" (
+              echo "Build Release ......"
+              set BUILD_LibVNCServer=OFF
+              set BUILD_TigerVNC=OFF
+          )
           cmake -E make_directory ${{github.workspace}}/build
           cd ${{github.workspace}}/build
           cmake ${{github.workspace}} ^
@@ -268,13 +275,12 @@ jobs:
             -DVCPKG_VERBOSE=ON ^
             -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
             -DBUILD_QUIWidget=OFF ^
-            -DBUILD_LibVNCServer=OFF ^
-            -DBUILD_FREERDP=ON ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^
             -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
+            -DBUILD_FREERDP=ON ^
             -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ^
             -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2 ^
             -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR2 ^
