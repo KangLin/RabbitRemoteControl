@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>397</width>
+    <width>436</width>
     <height>500</height>
    </rect>
   </property>
@@ -18,37 +18,6 @@
     <normaloff>:/image/App</normaloff>:/image/App</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
-   <item row="1" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Ok(&amp;O)</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string>Cancel(&amp;C)</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
@@ -116,7 +85,7 @@
         </layout>
        </item>
        <item row="2" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
@@ -127,6 +96,10 @@
          <item>
           <widget class="QLineEdit" name="leUserName"/>
          </item>
+        </layout>
+       </item>
+       <item row="3" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="label_3">
            <property name="text">
@@ -136,6 +109,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lePassword">
+           <property name="toolTip">
+            <string>Please checked save password to enable</string>
+           </property>
            <property name="inputMask">
             <string/>
            </property>
@@ -145,6 +121,9 @@
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
            </property>
+           <property name="placeholderText">
+            <string>Please checked save password to enable</string>
+           </property>
           </widget>
          </item>
          <item>
@@ -153,7 +132,8 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset theme="eye-on"/>
+            <iconset theme="eye-on">
+             <normaloff>.</normaloff>.</iconset>
            </property>
            <property name="checkable">
             <bool>true</bool>
@@ -165,19 +145,19 @@
          </item>
         </layout>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
-          <widget class="QCheckBox" name="cbShared">
+          <widget class="QCheckBox" name="cbSave">
            <property name="text">
-            <string>Shared</string>
+            <string>Save password</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="cbRealTimeUpdate">
+          <widget class="QCheckBox" name="cbShared">
            <property name="text">
-            <string>Real time update</string>
+            <string>Shared</string>
            </property>
           </widget>
          </item>
@@ -190,7 +170,7 @@
          </item>
         </layout>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
           <widget class="QCheckBox" name="cbLocalCursor">
@@ -208,32 +188,32 @@
          </item>
         </layout>
        </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="cbSave">
-           <property name="text">
-            <string>Save password</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
+         <item row="0" column="2">
           <widget class="QCheckBox" name="cbResizeWindows">
            <property name="text">
             <string>Support windows resize</string>
            </property>
           </widget>
          </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="cbRealTimeUpdate">
+           <property name="text">
+            <string>Real time update</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
-       <item row="6" column="0">
+       <item row="7" column="0">
         <widget class="QCheckBox" name="cbShowServerName">
          <property name="text">
           <string>Show server name</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="8" column="0">
         <widget class="QGroupBox" name="gpIce">
          <property name="title">
           <string>Ice:</string>
@@ -262,7 +242,7 @@
          </layout>
         </widget>
        </item>
-       <item row="8" column="0">
+       <item row="9" column="0">
         <spacer name="verticalSpacer_4">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -542,17 +522,45 @@
      </widget>
     </widget>
    </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Ok(&amp;O)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Cancel(&amp;C)</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>leServer</tabstop>
   <tabstop>leUserName</tabstop>
-  <tabstop>lePassword</tabstop>
   <tabstop>cbShared</tabstop>
-  <tabstop>cbRealTimeUpdate</tabstop>
   <tabstop>cbLocalCursor</tabstop>
   <tabstop>cbClipboard</tabstop>
-  <tabstop>cbSave</tabstop>
   <tabstop>cbResizeWindows</tabstop>
   <tabstop>cbOnlyView</tabstop>
   <tabstop>pushButton</tabstop>

@@ -179,6 +179,7 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
     ui->lePassword->setText(m_pPara->GetPassword());
     ui->pbShow->setEnabled(m_pPara->GetParameterClient()->GetViewPassowrd());
     ui->cbSave->setChecked(m_pPara->GetSavePassword());
+    ui->lePassword->setEnabled(ui->cbSave->isChecked());
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
     ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
 
@@ -297,4 +298,12 @@ void CDlgSettingsTigerVnc::on_leServer_editingFinished()
         ui->spPort->setValue(s[1].toUInt());
         ui->leServer->setText(s[0]);
     }
+}
+
+void CDlgSettingsTigerVnc::on_cbSave_stateChanged(int arg1)
+{
+    if(Qt::Checked == arg1)
+        ui->lePassword->setEnabled(true);
+    else
+        ui->lePassword->setEnabled(false);
 }

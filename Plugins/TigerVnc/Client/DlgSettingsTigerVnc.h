@@ -35,6 +35,8 @@ private slots:
     
     void on_leServer_editingFinished();
     
+    void on_cbSave_stateChanged(int arg1);
+    
 private:
     Ui::CDlgSettingsTigerVnc *ui;
     CParameterTigerVnc* m_pPara;
