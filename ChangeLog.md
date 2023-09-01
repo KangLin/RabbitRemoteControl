@@ -23,6 +23,12 @@
     + Add icon in tab view
     + Add tooltip in tab view
   + Optimize the user interface
+  + Optimize logon and setting dialog
+    + RabbitVNC
+    + TigerVNC
+    + LibVNCServer
+  + Client:
+    + Add sigShowMessage
 
 ### v0.0.25
 + Modify CI for automation update
