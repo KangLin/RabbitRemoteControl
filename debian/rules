@@ -57,6 +57,10 @@ ifdef tigervnc_DIR
     PARAS += -Dtigervnc_DIR=${tigervnc_DIR}
 endif
 
+ifdef LibVNCServer_DIR
+    PARAS += -DLibVNCServer_DIR=${LibVNCServer_DIR}
+endif
+
 ifdef QtService_DIR
     PARAS += -DQtService_DIR=${QtService_DIR}
 endif

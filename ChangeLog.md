@@ -22,6 +22,7 @@
   + Add set parameter in main windows
     + Add icon in tab view
     + Add tooltip in tab view
+  + Optimize the user interface
 
 ### v0.0.25
 + Modify CI for automation update

@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
       m_psbZoomFactor(nullptr),
       m_pGBViewZoom(nullptr),
       m_pRecentMenu(nullptr),
-      m_pFavoriteDockWidget(nullptr),
+      m_pDockFavorite(nullptr),
       m_pFavoriteView(nullptr)
 {
     bool check = false;
@@ -69,6 +69,28 @@ MainWindow::MainWindow(QWidget *parent)
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     setAcceptDrops(true);
 
+    m_pDockFavorite = new QDockWidget(this);
+    if(m_pDockFavorite)
+    {
+        m_pFavoriteView = new CFavoriteView(m_pDockFavorite);
+        if(m_pFavoriteView)
+        {
+            check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
+                            this, SLOT(slotOpenFile(const QString&, bool)));
+            Q_ASSERT(check);
+            check = connect(&m_Parameter, SIGNAL(sigFavoriteEditChanged(bool)),
+                            m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
+            Q_ASSERT(check);
+            m_pDockFavorite->setWidget(m_pFavoriteView);
+            m_pDockFavorite->setWindowTitle(m_pFavoriteView->windowTitle());
+        }
+        // Must set ObjectName then restore it. See: saveState help document
+        m_pDockFavorite->setObjectName("dockFavorite");
+        //m_pDockFavorite->hide();
+        ui->menuView->addAction(m_pDockFavorite->toggleViewAction());
+        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockFavorite);
+    }
+
     m_pDockListConnects = new QDockWidget(this);
     if(m_pDockListConnects)
     {
@@ -81,32 +103,10 @@ MainWindow::MainWindow(QWidget *parent)
             m_pDockListConnects->setWindowTitle(pListConnects->windowTitle());
         }
         // Must set ObjectName then restore it. See: saveState help document
-        m_pDockListConnects->setObjectName("dckListConnects");
-        m_pDockListConnects->hide();
+        m_pDockListConnects->setObjectName("dockListConnects");
+        //m_pDockListConnects->hide();
         ui->menuView->addAction(m_pDockListConnects->toggleViewAction());
-        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockListConnects);
-    }
-
-    m_pFavoriteDockWidget = new QDockWidget(this);
-    if(m_pFavoriteDockWidget)
-    {
-        m_pFavoriteView = new CFavoriteView(m_pFavoriteDockWidget);
-        if(m_pFavoriteView)
-        {
-            check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
-                            this, SLOT(slotOpenFile(const QString&, bool)));
-            Q_ASSERT(check);
-            check = connect(&m_Parameter, SIGNAL(sigFavoriteEditChanged(bool)),
-                            m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
-            Q_ASSERT(check);
-            m_pFavoriteDockWidget->setWidget(m_pFavoriteView);
-            m_pFavoriteDockWidget->setWindowTitle(m_pFavoriteView->windowTitle());
-        }
-        // Must set ObjectName then restore it. See: saveState help document
-        m_pFavoriteDockWidget->setObjectName("dckFavorite");
-        m_pFavoriteDockWidget->hide();
-        ui->menuView->addAction(m_pFavoriteDockWidget->toggleViewAction());
-        tabifyDockWidget(m_pDockListConnects, m_pFavoriteDockWidget);
+        tabifyDockWidget(m_pDockFavorite, m_pDockListConnects);
     }
 
     m_pRecentMenu = new RabbitCommon::CRecentMenu(tr("Recently connected"),
@@ -376,41 +376,64 @@ void MainWindow::on_actionFull_screen_F_triggered()
         ui->actionFull_screen_F->setStatusTip(tr("Full screen"));
         ui->actionFull_screen_F->setWhatsThis(tr("Full screen"));
 
-        ui->toolBar->setVisible(true);
-        //ui->toolBar->setAllowedAreas(Qt::AllToolBarAreas);
-        ui->toolBar->setVisible(ui->actionToolBar_T->isChecked());
-        ui->statusbar->setVisible(true);
-        ui->menubar->setVisible(true);
+        ui->toolBar->setVisible(m_FullState.toolBar);
+        ui->statusbar->setVisible(m_FullState.statusbar);
+        ui->menubar->setVisible(m_FullState.menubar);
+
+        m_pDockListConnects->setVisible(m_FullState.dockListConnects);
+        m_pDockFavorite->setVisible(m_FullState.dockFavorite);
+        // This is hade code. it is in RabbitCommon
+        QDockWidget* pDockDebugLog = findChild<QDockWidget*>("dockDebugLog");
+        if(pDockDebugLog)
+        {
+            pDockDebugLog->setVisible(m_FullState.dockDebugLog);
+        }
+
         if(m_pFullScreenToolBar)
         {
+            // Delete it when the widget is close
             m_pFullScreenToolBar->close();
             m_pFullScreenToolBar = nullptr;
         }
-        
+
         emit sigShowNormal();
         this->showNormal();
         this->activateWindow();
-        
+
         return;
     }
 
     emit sigFullScreen();
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
-   
+
     ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-restore"));
     ui->actionFull_screen_F->setText(tr("Exit full screen(&E)"));
     ui->actionFull_screen_F->setToolTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setStatusTip(tr("Exit full screen"));
     ui->actionFull_screen_F->setWhatsThis(tr("Exit full screen"));
 
+    m_FullState.toolBar = ui->toolBar->isVisible();
     ui->toolBar->setVisible(false);
-    //ui->toolBar->setAllowedAreas(Qt::NoToolBarArea);
-
+    m_FullState.statusbar = ui->statusbar->isVisible();
     ui->statusbar->setVisible(false);
+    m_FullState.menubar = ui->menubar->isVisible();
     ui->menubar->setVisible(false);
 
+    m_FullState.dockListConnects = m_pDockListConnects->isVisible();
+    m_pDockListConnects->setVisible(false);
+    m_FullState.dockFavorite = m_pDockFavorite->isVisible();
+    m_pDockFavorite->setVisible(false);
+    // This is hade code. it is in RabbitCommon
+    QDockWidget* pDockDebugLog = findChild<QDockWidget*>("dockDebugLog");
+    if(pDockDebugLog)
+    {
+        m_FullState.dockDebugLog = pDockDebugLog->isVisible();
+        pDockDebugLog->setVisible(false);
+    }
+
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
+    // Delete it when the widget is close
     m_pFullScreenToolBar = new CFrmFullScreenToolBar(this);
     m_pFullScreenToolBar->move((qApp->primaryScreen()->geometry().width()
                - m_pFullScreenToolBar->frameGeometry().width()) / 2, 0);
@@ -423,7 +446,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     check = connect(m_pFullScreenToolBar, SIGNAL(sigDisconnect()), 
                     this, SLOT(on_actionDisconnect_D_triggered()));
     Q_ASSERT(check);
-    
+
     CViewTable* p = dynamic_cast<CViewTable*>(pTab);
     if(p)
     {

@@ -26,6 +26,11 @@ if(BUILD_FREERDP)
     add_subdirectory(FreeRDP)
 endif()
 
+message(STATUS "BUILD_RABBITVNC:${BUILD_RABBITVNC}")
+message(STATUS "BUILD_TigerVNC:${BUILD_TigerVNC}")
+message(STATUS "BUILD_LibVNCServer:${BUILD_LibVNCServer}")
+message(STATUS "BUILD_FREERDP:${BUILD_FREERDP}")
+
 ## Terminal
 
 if(BUILD_CLIENT_TERMINAL AND BUILD_PLUGINS)
@@ -45,3 +50,7 @@ if(BUILD_CLIENT_TERMINAL AND BUILD_PLUGINS)
         endif()
     endif()
 endif()
+
+message(STATUS "BUILD_TERMINAL:${BUILD_TERMINAL}")
+message(STATUS "BUILD_TELNET:${BUILD_TELNET}")
+message(STATUS "BUILD_LIBSSH:${BUILD_LIBSSH}")

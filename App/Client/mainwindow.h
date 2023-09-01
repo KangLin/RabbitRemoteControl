@@ -127,6 +127,15 @@ private Q_SLOTS:
 
     ///////// Full screen ///////// 
 private:
+    struct _FullState {
+        bool statusbar;
+        bool toolBar;
+        bool menubar;
+        bool dockListConnects;
+        bool dockFavorite;
+        bool dockDebugLog;
+    };
+    struct _FullState m_FullState;
     CFrmFullScreenToolBar* m_pFullScreenToolBar;
     friend CFrmFullScreenToolBar;
 private Q_SLOTS:
@@ -160,7 +169,7 @@ private Q_SLOTS:
 
     ///////// Favorite //////////
 private:
-    QDockWidget* m_pFavoriteDockWidget;
+    QDockWidget* m_pDockFavorite;
     CFavoriteView* m_pFavoriteView;
 private Q_SLOTS:
     void on_actionAdd_to_favorite_triggered();
