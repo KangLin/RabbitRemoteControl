@@ -61,7 +61,8 @@ MainWindow::MainWindow(QWidget *parent)
     bool check = false;
 
     ui->setupUi(this);
-
+    
+    RabbitCommon::CTools::AddStyleMenu(ui->menuTools);
     ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
 
     setFocusPolicy(Qt::NoFocus);
@@ -883,12 +884,6 @@ void MainWindow::slotUpdateName(const QString& szName)
     if(!pConnecter) return;
     m_pView->SetWidowsTitle(pConnecter->GetViewer(), szName,
                             pConnecter->Icon(), pConnecter->Description());
-}
-
-void MainWindow::on_actionStyle_S_triggered()
-{
-    CFrmStyle* s = new CFrmStyle();
-    s->show();
 }
 
 int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)

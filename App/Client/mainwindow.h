@@ -44,8 +44,6 @@ private Q_SLOTS:
     void on_actionExit_E_triggered();
     void on_actionAbout_triggered();
     void on_actionUpdate_triggered();
-        
-    void on_actionStyle_S_triggered();
 
     void on_actionSend_ctl_alt_del_triggered();
 

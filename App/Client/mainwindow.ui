@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -94,7 +94,6 @@
     <addaction name="actionScreenshot"/>
     <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="separator"/>
-    <addaction name="actionStyle_S"/>
     <addaction name="actionSettings"/>
    </widget>
    <addaction name="menuRemote"/>
@@ -520,15 +519,6 @@
    </property>
    <property name="whatsThis">
     <string>Add to favorite</string>
-   </property>
-  </action>
-  <action name="actionStyle_S">
-   <property name="icon">
-    <iconset theme="style">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Style(&amp;S)</string>
    </property>
   </action>
   <action name="actionOpenListConnections">
