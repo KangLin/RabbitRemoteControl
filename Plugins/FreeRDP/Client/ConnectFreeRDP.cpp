@@ -55,30 +55,6 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
     Q_ASSERT(pConnecter);
     m_pParameter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParameter);
-
-    rdpSettings* settings = m_pParameter->m_pSettings;
-
-    ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
-	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
-	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
-    m_ClientEntryPoints.settings = m_pParameter->m_pSettings;
-	m_ClientEntryPoints.GlobalInit = cb_global_init;
-	m_ClientEntryPoints.GlobalUninit = cb_global_uninit;
-	m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
-	m_ClientEntryPoints.ClientNew = cb_client_new;
-	m_ClientEntryPoints.ClientFree = cb_client_free;
-	m_ClientEntryPoints.ClientStart = cb_client_start;
-	m_ClientEntryPoints.ClientStop = cb_client_stop;
-    
-    rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
-	if(p)
-    {
-        m_pContext = (ClientContext*)p;
-        m_pContext->pThis = this;
-    } else {
-        qCritical(FreeRDPConnect) << "freerdp_client_context_new fail";
-        throw("freerdp_client_context_new fail");
-    }
 }
 
 CConnectFreeRDP::~CConnectFreeRDP()
@@ -96,6 +72,29 @@ int CConnectFreeRDP::OnInit()
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnInit()";
     int nRet = 0;
+
+    ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
+	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
+	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
+    m_ClientEntryPoints.settings = m_pParameter->m_pSettings;
+	m_ClientEntryPoints.GlobalInit = cb_global_init;
+	m_ClientEntryPoints.GlobalUninit = cb_global_uninit;
+	m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
+	m_ClientEntryPoints.ClientNew = cb_client_new;
+	m_ClientEntryPoints.ClientFree = cb_client_free;
+	m_ClientEntryPoints.ClientStart = cb_client_start;
+	m_ClientEntryPoints.ClientStop = cb_client_stop;
+
+    rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
+	if(p)
+    {
+        m_pContext = (ClientContext*)p;
+        m_pContext->pThis = this;
+    } else {
+        qCritical(FreeRDPConnect) << "freerdp_client_context_new fail";
+        return -1;
+    }
+
     BOOL status = false;
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
     freerdp* instance = pRdpContext->instance;
@@ -109,7 +108,7 @@ int CConnectFreeRDP::OnInit()
     RedirectionDrive();
     RedirectionPrinter();
     RedirectionSerial();
-    
+
     if(m_pParameter->GetHost().isEmpty())
     {
         QString szErr;
@@ -127,9 +126,9 @@ int CConnectFreeRDP::OnInit()
 
         QString szErr;
         szErr = tr("Connect to ");
-        szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+        szErr += m_pParameter->GetHost();
         szErr += ":";
-        szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+        szErr += QString::number(m_pParameter->GetPort());
         szErr += tr(" fail.");
         szErr += " [";
         szErr += QString::number(nErr) + " - ";
@@ -145,9 +144,9 @@ int CConnectFreeRDP::OnInit()
         {
             nRet = -3;
             QString szErr = tr("Logon to ");
-            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += m_pParameter->GetHost();
             szErr += ":";
-            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += QString::number(m_pParameter->GetPort());
             szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -156,9 +155,9 @@ int CConnectFreeRDP::OnInit()
         {
             nRet = -4;
             QString szErr = tr("Logon to ");
-            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += m_pParameter->GetHost();
             szErr += ":";
-            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += QString::number(m_pParameter->GetPort());
             szErr += tr(" fail. Please check password are correct.") + "\n";
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -167,9 +166,9 @@ int CConnectFreeRDP::OnInit()
         {
             nRet = -5;
             QString szErr = tr("Logon to ");
-            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += m_pParameter->GetHost();
             szErr += ":";
-            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += QString::number(m_pParameter->GetPort());
             szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -178,9 +177,9 @@ int CConnectFreeRDP::OnInit()
         {
             nRet = -6;
             QString szErr = tr("Logon to ");
-            szErr += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+            szErr += m_pParameter->GetHost();
             szErr += ":";
-            szErr += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+            szErr += QString::number(m_pParameter->GetPort());
             szErr += tr(" connect transport layer fail.") + "\n\n";
             szErr += tr("Please:") + "\n";
             szErr += tr("1. Check for any network related issues") + "\n";
@@ -201,9 +200,9 @@ int CConnectFreeRDP::OnInit()
         emit sigConnected();
 
         QString szInfo = tr("Connect to ");
-        szInfo += freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+        szInfo += m_pParameter->GetHost();
         szInfo += ":";
-        szInfo += QString::number(freerdp_settings_get_uint32(settings, FreeRDP_ServerPort));
+        szInfo += QString::number(m_pParameter->GetPort());
         qInfo(FreeRDPConnect) << szInfo;
         emit sigInformation(szInfo);
     }
