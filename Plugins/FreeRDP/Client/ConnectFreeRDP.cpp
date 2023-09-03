@@ -77,13 +77,21 @@ int CConnectFreeRDP::OnInit()
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
     m_ClientEntryPoints.settings = m_pParameter->m_pSettings;
-	m_ClientEntryPoints.GlobalInit = cb_global_init;
-	m_ClientEntryPoints.GlobalUninit = cb_global_uninit;
+    m_ClientEntryPoints.GlobalInit = OnGlobalInit;
+	m_ClientEntryPoints.GlobalUninit = OnGlobalUninit;
 	m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
-	m_ClientEntryPoints.ClientNew = cb_client_new;
-	m_ClientEntryPoints.ClientFree = cb_client_free;
-	m_ClientEntryPoints.ClientStart = cb_client_start;
-	m_ClientEntryPoints.ClientStop = cb_client_stop;
+    m_ClientEntryPoints.ClientNew = OnClientNew;
+    m_ClientEntryPoints.ClientFree = OnClientFree;
+    m_ClientEntryPoints.ClientStart = [](rdpContext* context)->int {
+        CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+        if(!pThis) return -1;
+        return pThis->OnClientStart(context);
+    };
+	m_ClientEntryPoints.ClientStop = [](rdpContext* context)->int {
+        CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+        if(!pThis) return -1;
+        return pThis->OnClientStop(context);
+    };
 
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
 	if(p)
@@ -95,12 +103,7 @@ int CConnectFreeRDP::OnInit()
         return -1;
     }
 
-    BOOL status = false;
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-    freerdp* instance = pRdpContext->instance;
-    rdpSettings* settings = instance->context->settings;
-    Q_ASSERT(settings);
-    if(nullptr == settings) return -1;
 
     //Load channel
     RedirectionSound();
@@ -118,99 +121,19 @@ int CConnectFreeRDP::OnInit()
         emit sigError(nRet, szErr.toStdString().c_str());
         return -2;
     }
-    freerdp_client_start(pRdpContext);
-    status = freerdp_connect(instance);
-    if (!status)
-	{
-        UINT32 nErr = freerdp_get_last_error(instance->context);
-
-        QString szErr;
-        szErr = tr("Connect to ");
-        szErr += m_pParameter->GetHost();
-        szErr += ":";
-        szErr += QString::number(m_pParameter->GetPort());
-        szErr += tr(" fail.");
-        szErr += " [";
-        szErr += QString::number(nErr) + " - ";
-        szErr += freerdp_get_last_error_name(nErr);
-        szErr += "] ";
-        /*szErr += "[";
-        szErr += freerdp_get_last_error_category(nErr);
-        szErr += "] ";*/
-        szErr += freerdp_get_last_error_string(nErr);
-
-        switch(nErr) {
-        case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
-        {
-            nRet = -3;
-            QString szErr = tr("Logon to ");
-            szErr += m_pParameter->GetHost();
-            szErr += ":";
-            szErr += QString::number(m_pParameter->GetPort());
-            szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
-            break;
-        }
-        case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
-        {
-            nRet = -4;
-            QString szErr = tr("Logon to ");
-            szErr += m_pParameter->GetHost();
-            szErr += ":";
-            szErr += QString::number(m_pParameter->GetPort());
-            szErr += tr(" fail. Please check password are correct.") + "\n";
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
-            break;
-        }
-        case FREERDP_ERROR_AUTHENTICATION_FAILED:
-        {
-            nRet = -5;
-            QString szErr = tr("Logon to ");
-            szErr += m_pParameter->GetHost();
-            szErr += ":";
-            szErr += QString::number(m_pParameter->GetPort());
-            szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
-            break;
-        }
-        case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
-        {
-            nRet = -6;
-            QString szErr = tr("Logon to ");
-            szErr += m_pParameter->GetHost();
-            szErr += ":";
-            szErr += QString::number(m_pParameter->GetPort());
-            szErr += tr(" connect transport layer fail.") + "\n\n";
-            szErr += tr("Please:") + "\n";
-            szErr += tr("1. Check for any network related issues") + "\n";
-            szErr += tr("2. Check you have proper security settings ('NLA' enabled is required for most connections nowadays)") + "\n";
-            szErr += tr("3. Check the certificate is proper (and guacd properly checks that)") + "\n";
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
-            break;
-        }
-        case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
-        default:
-            nRet = -7;
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
-        }
-
-        qCritical(FreeRDPConnect) << szErr;
-        emit sigError(nRet, szErr.toStdString().c_str());
-    } else {
-        emit sigConnected();
-
-        QString szInfo = tr("Connect to ");
-        szInfo += m_pParameter->GetHost();
-        szInfo += ":";
-        szInfo += QString::number(m_pParameter->GetPort());
-        qInfo(FreeRDPConnect) << szInfo;
-        emit sigInformation(szInfo);
+    nRet = freerdp_client_start(pRdpContext);
+    if(nRet)
+    {
+        qCritical(FreeRDPConnect) << "freerdp_client_start fail";
+        return -3;
     }
+
     return nRet;
 }
 
 int CConnectFreeRDP::OnClean()
 {
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClean()";
     int nRet = 0;
     if(m_pContext)
     {
@@ -322,21 +245,21 @@ void CConnectFreeRDP::slotClipBoardChanged()
         m_ClipBoard.slotClipBoardChanged();
 }
 
-BOOL CConnectFreeRDP::cb_global_init()
+BOOL CConnectFreeRDP::OnGlobalInit()
 {
-	qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_global_init()";
-    freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
+	qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnGlobalInit()";
+    //freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
 	return TRUE;
 }
 
-void CConnectFreeRDP::cb_global_uninit()
+void CConnectFreeRDP::OnGlobalUninit()
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_global_uninit()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnGlobalUninit()";
 }
 
-BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
+BOOL CConnectFreeRDP::OnClientNew(freerdp *instance, rdpContext *context)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_new()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientNew()";
     instance->PreConnect = cb_pre_connect;
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
@@ -362,23 +285,110 @@ BOOL CConnectFreeRDP::cb_client_new(freerdp *instance, rdpContext *context)
     return TRUE;
 }
 
-void CConnectFreeRDP::cb_client_free(freerdp *instance, rdpContext *context)
+void CConnectFreeRDP::OnClientFree(freerdp *instance, rdpContext *context)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_free()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientFree()";
     PubSub_UnsubscribeTerminate(context->pubSub, OnTerminateEventHandler);
 }
 
-int CConnectFreeRDP::cb_client_start(rdpContext *context)
+int CConnectFreeRDP::OnClientStart(rdpContext *context)
 {
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientStart()";
     int nRet = 0;
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_start()";
+    freerdp* instance = context->instance;
+    BOOL status = freerdp_connect(instance);
+    if (status) {
+        emit sigConnected();
+
+        QString szInfo = tr("Connect to ");
+        szInfo += m_pParameter->GetHost();
+        szInfo += ":";
+        szInfo += QString::number(m_pParameter->GetPort());
+        qInfo(FreeRDPConnect) << szInfo;
+        emit sigInformation(szInfo);
+    } else {
+        UINT32 nErr = freerdp_get_last_error(instance->context);
+
+        QString szErr;
+        szErr = tr("Connect to ");
+        szErr += m_pParameter->GetHost();
+        szErr += ":";
+        szErr += QString::number(m_pParameter->GetPort());
+        szErr += tr(" fail.");
+        szErr += " [";
+        szErr += QString::number(nErr) + " - ";
+        szErr += freerdp_get_last_error_name(nErr);
+        szErr += "] ";
+        /*szErr += "[";
+        szErr += freerdp_get_last_error_category(nErr);
+        szErr += "] ";*/
+        szErr += freerdp_get_last_error_string(nErr);
+
+        switch(nErr) {
+        case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
+        {
+            nRet = -3;
+            QString szErr = tr("Logon to ");
+            szErr += m_pParameter->GetHost();
+            szErr += ":";
+            szErr += QString::number(m_pParameter->GetPort());
+            szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            break;
+        }
+        case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
+        {
+            nRet = -4;
+            QString szErr = tr("Logon to ");
+            szErr += m_pParameter->GetHost();
+            szErr += ":";
+            szErr += QString::number(m_pParameter->GetPort());
+            szErr += tr(" fail. Please check password are correct.") + "\n";
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            break;
+        }
+        case FREERDP_ERROR_AUTHENTICATION_FAILED:
+        {
+            nRet = -5;
+            QString szErr = tr("Logon to ");
+            szErr += m_pParameter->GetHost();
+            szErr += ":";
+            szErr += QString::number(m_pParameter->GetPort());
+            szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            break;
+        }
+        case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
+        {
+            nRet = -6;
+            QString szErr = tr("Logon to ");
+            szErr += m_pParameter->GetHost();
+            szErr += ":";
+            szErr += QString::number(m_pParameter->GetPort());
+            szErr += tr(" connect transport layer fail.") + "\n\n";
+            szErr += tr("Please:") + "\n";
+            szErr += tr("1. Check for any network related issues") + "\n";
+            szErr += tr("2. Check you have proper security settings ('NLA' enabled is required for most connections nowadays)") + "\n";
+            szErr += tr("3. Check the certificate is proper (and guacd properly checks that)") + "\n";
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            break;
+        }
+        case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
+        default:
+            nRet = -7;
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+        }
+
+        qCritical(FreeRDPConnect) << szErr;
+        emit sigError(nRet, szErr.toStdString().c_str());
+    }
     return nRet;
 }
 
-int CConnectFreeRDP::cb_client_stop(rdpContext *context)
+int CConnectFreeRDP::OnClientStop(rdpContext *context)
 {
     int nRet = 0;
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::Client_stop()";
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientStop()";
     return nRet;
 }
 
@@ -596,6 +606,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 
 void CConnectFreeRDP::cb_post_disconnect(freerdp* instance)
 {
+    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_post_disconnect()";
 	rdpContext* context = nullptr;
 
 	if (!instance || !instance->context)

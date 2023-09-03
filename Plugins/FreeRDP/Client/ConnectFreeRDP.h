@@ -19,12 +19,13 @@ public:
                              QObject *parent = nullptr);
     virtual ~CConnectFreeRDP() override;
 
-    static BOOL cb_global_init();
-    static void cb_global_uninit();
-    static BOOL cb_client_new(freerdp* instance, rdpContext* context);
-    static void cb_client_free(freerdp* instance, rdpContext* context);
-    static int cb_client_start(rdpContext* context);
-    static int cb_client_stop(rdpContext* context);
+    
+    static BOOL OnGlobalInit();
+    static void OnGlobalUninit();
+    static BOOL OnClientNew(freerdp* instance, rdpContext* context);
+    static void OnClientFree(freerdp* instance, rdpContext* context);
+    int OnClientStart(rdpContext* context);
+    int OnClientStop(rdpContext* context);
 
     /**
      * Callback given to freerdp_connect() to process the pre-connect operations.
