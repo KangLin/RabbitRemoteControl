@@ -284,16 +284,12 @@ BOOL CConnectFreeRDP::OnClientNew(freerdp *instance, rdpContext *context)
 
 	instance->LogonErrorInfo = cb_logon_error_info;
 
-    // Because it is processed in OnProcess. so comment it.
-    //PubSub_SubscribeTerminate(context->pubSub, OnTerminateEventHandler);
-
     return TRUE;
 }
 
 void CConnectFreeRDP::OnClientFree(freerdp *instance, rdpContext *context)
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientFree()";
-    PubSub_UnsubscribeTerminate(context->pubSub, OnTerminateEventHandler);
 }
 
 int CConnectFreeRDP::OnClientStart(rdpContext *context)
@@ -648,19 +644,6 @@ int CConnectFreeRDP::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
 	emit pThis->sigInformation(szErr);
     emit pThis->sigError(type, szErr);
 	return 1;
-}
-
-void CConnectFreeRDP::OnTerminateEventHandler(void *context,
-                                              #if FreeRDP_VERSION_MAJOR >= 3
-                                              const
-                                              #endif
-                                              TerminateEventArgs *e)
-{
-    qDebug(FreeRDPConnect) << "CConnectFreeRDP::TerminateEventHandler:" << e->code;
-    WINPR_UNUSED(e);
-    rdpContext* pContext = (rdpContext*)context;
-    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
-    emit pThis->sigDisconnected();
 }
 
 void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,

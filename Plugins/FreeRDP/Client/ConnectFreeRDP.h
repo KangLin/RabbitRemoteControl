@@ -48,11 +48,6 @@ public:
     static void cb_post_disconnect(freerdp* instance);
     static int cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 type);
 
-    static void OnTerminateEventHandler(void* context,
-                                    #if FreeRDP_VERSION_MAJOR >= 3
-                                        const
-                                    #endif
-                                        TerminateEventArgs* e);
     static void OnChannelConnectedEventHandler(void* context,
                                            #if FreeRDP_VERSION_MAJOR >= 3
                                                const
