@@ -3,7 +3,7 @@
 
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnecter(parent),
     m_pSettings(nullptr),
-    m_nReconnectInterval(5),
+    m_nReconnectInterval(0),
     m_bShowVerifyDiaglog(true),
     m_bRedirectionPrinter(false),
     m_nRedirectionSound(RedirecionSoundType::Disable),
@@ -123,6 +123,9 @@ void CParameterFreeRDP::SetReconnectInterval(UINT newReconnectInterval)
         return;
 
     m_nReconnectInterval = newReconnectInterval;
+    freerdp_settings_set_uint32(m_pSettings,
+                                FreeRDP_AutoReconnectMaxRetries,
+                                m_nReconnectInterval);
 
     SetModified(true);
     emit sigReconnectIntervalChanged();

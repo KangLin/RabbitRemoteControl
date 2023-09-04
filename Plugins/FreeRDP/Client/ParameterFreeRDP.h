@@ -72,7 +72,7 @@ signals:
     void sigRedirectionPrinterChanged(bool RedirectionPrinter);
 
 private:
-    UINT m_nReconnectInterval; // Unit: second
+    UINT32 m_nReconnectInterval; // Unit: second
     bool m_bShowVerifyDiaglog;
     
     bool m_bRedirectionPrinter;

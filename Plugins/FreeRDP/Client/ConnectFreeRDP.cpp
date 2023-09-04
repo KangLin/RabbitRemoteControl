@@ -208,6 +208,7 @@ int CConnectFreeRDP::OnProcess()
             szErr += freerdp_get_last_error_string(err);
             qCritical(FreeRDPConnect) << szErr;
             emit sigError(err, szErr);
+
             // Reconnect
             freerdp *instance = pRdpContext->instance;
             if (client_auto_reconnect(instance))
@@ -235,7 +236,7 @@ int CConnectFreeRDP::OnProcess()
         if(freerdp_shall_disconnect(pRdpContext->instance))
 #endif
         {
-            qCritical(FreeRDPConnect) << "freerdp_shall_disconnect fail";
+            qCritical(FreeRDPConnect) << "Abort connect";
             nRet = -7;
         }
     } while(false);

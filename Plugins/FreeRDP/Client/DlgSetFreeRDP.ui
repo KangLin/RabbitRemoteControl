@@ -170,7 +170,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Reconnect interval:</string>
+            <string>Reconnect count:</string>
            </property>
           </widget>
          </item>
@@ -183,13 +183,13 @@
             </sizepolicy>
            </property>
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don't reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect interval&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don't reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect count&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="statusTip">
-            <string>Reconnect interval</string>
+            <string>Reconnect count</string>
            </property>
            <property name="whatsThis">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don't reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect interval&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don't reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect count&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="maximum">
             <number>99999</number>
