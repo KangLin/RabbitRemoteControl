@@ -3,7 +3,6 @@
 #include "ConnecterDesktopThread.h"
 #include <QDebug>
 #include "ConnectThread.h"
-#include "RabbitCommonDir.h"
 #include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(Client)
@@ -38,6 +37,7 @@ CParameterConnecter* CConnecterDesktopThread::GetParameter()
 
 int CConnecterDesktopThread::Connect()
 {
+    //qDebug(Client) << "CConnecterDesktopThread::Connect";
     int nRet = 0;
     m_pThread = new CConnectThread(this);
     if(!m_pThread)
@@ -54,6 +54,7 @@ int CConnecterDesktopThread::Connect()
 
 int CConnecterDesktopThread::DisConnect()
 {
+    //qDebug(Client) << "CConnecterDesktopThread::DisConnect";
     int nRet = 0;
     if(m_pThread)
     {

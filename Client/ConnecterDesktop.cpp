@@ -14,12 +14,14 @@ CConnecterDesktop::~CConnecterDesktop()
 }
 int CConnecterDesktop::Connect()
 {
+    //qDebug(Client) << "CConnecterDesktop::Connect";
     emit sigConnect(this);
     return 0;
 }
 
 int CConnecterDesktop::DisConnect()
 {
+    //qDebug(Client) << "CConnecterDesktop::DisConnect";
     emit sigDisconnect(this);
     return 0;
 }

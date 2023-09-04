@@ -5,25 +5,24 @@
 
 #include "ConnectFreeRDP.h"
 
-#include "freerdp/client/cmdline.h"
+#undef PEN_FLAG_INVERTED
+#include "freerdp/client.h"
+#include "freerdp/client/channels.h"
+#include "freerdp/channels/rdpei.h"
+#include "freerdp/channels/rdpdr.h"
+#include "freerdp/channels/disp.h"
+#include "freerdp/channels/tsmf.h"
+#include "freerdp/channels/rdpsnd.h"
 #include "freerdp/client/encomsp.h"
 #include "freerdp/gdi/gfx.h"
 #include "freerdp/settings.h"
 #include "freerdp/locale/keyboard.h"
 #include "freerdp/channels/rdpgfx.h"
 #include "freerdp/channels/cliprdr.h"
-
-#undef PEN_FLAG_INVERTED
-#include "freerdp/channels/rdpei.h"
-#include "freerdp/channels/rdpdr.h"
-#include "freerdp/channels/disp.h"
-#include "freerdp/channels/tsmf.h"
-#include "freerdp/channels/rdpsnd.h"
-#include "freerdp/client/channels.h"
+#include "freerdp/client/cmdline.h"
 
 #include "RabbitCommonTools.h"
 #include "ConvertKeyCode.h"
-#include "DlgGetUserPasswordFreeRDP.h"
 
 #include <memory.h>
 #include <QDebug>
@@ -138,13 +137,12 @@ int CConnectFreeRDP::OnClean()
     if(m_pContext)
     {
         rdpContext* pRdpContext = (rdpContext*)m_pContext;
-        freerdp_disconnect(pRdpContext->instance);
-        freerdp_client_stop(pRdpContext);
-#if FreeRDP_VERSION_MAJOR >= 3
-        freerdp_abort_connect_context(pRdpContext);
-#else
-        freerdp_abort_connect(pRdpContext->instance);
-#endif
+        if(freerdp_client_stop(pRdpContext))
+            qCritical(FreeRDPConnect) << "freerdp_client_stop fail";
+
+        if(!freerdp_disconnect(pRdpContext->instance))
+            qCritical(FreeRDPConnect) << "freerdp_disconnect fail";
+
         freerdp_client_context_free(pRdpContext);
         m_pContext = nullptr;
     }
@@ -168,72 +166,79 @@ int CConnectFreeRDP::OnProcess()
     int nRet = 0;
     HANDLE handles[64];
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-#if FreeRDP_VERSION_MAJOR >= 3
-    if(freerdp_shall_disconnect_context(pRdpContext))
-#else
-    if(freerdp_shall_disconnect(pRdpContext->instance))
-#endif
-        return -1;
-    else
-    {
+
+    do {
         DWORD nCount = 0;
-        DWORD tmp = freerdp_get_event_handles(pRdpContext, &handles[nCount],
+        nCount = freerdp_get_event_handles(pRdpContext, &handles[nCount],
                                               ARRAYSIZE(handles) - nCount);
-        if (tmp == 0)
+        if (nCount == 0)
         {
             qCritical(FreeRDPConnect) << "freerdp_get_event_handles failed";
-            return -2;
+            nRet = -2;
+            break;
         }
-        
-        nCount += tmp;
-#if FreeRDP_VERSION_MAJOR < 3
-        handles[nCount++] = pRdpContext->abortEvent;
-#endif
+
         DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
         if (waitStatus == WAIT_FAILED)
-            return -3;
-#if FreeRDP_VERSION_MAJOR < 3
-        /* Check if a processed event called freerdp_abort_connect() and exit if true */
-		if (WaitForSingleObject(pRdpContext->abortEvent, 0) == WAIT_OBJECT_0)
-			/* Session disconnected by local user action */
-            return -4;
-#endif
+        {
+            qCritical(FreeRDPConnect) << "WaitForMultipleObjects: WAIT_FAILED";
+            nRet = -3;
+            break;
+        }
+
+        if(waitStatus == WAIT_TIMEOUT)
+        {
+            nRet = 0;
+            break;
+        }
+
         if (!freerdp_check_event_handles(pRdpContext))
         {
             nRet = -5;
-            UINT32 err = freerdp_get_last_error(pRdpContext);
-            qCritical(FreeRDPConnect) << "freerdp_check_event_handles[" << err << "]"
-                                      << freerdp_get_last_error_category(err) << "-"
-                                      << freerdp_get_last_error_name(err) << ":"
-                                      << freerdp_get_last_error_string(err);
-            // Reconnect
-            bool bReconnect = freerdp_settings_get_bool(pRdpContext->settings,
-                                               FreeRDP_AutoReconnectionEnabled);
-            qDebug(FreeRDPConnect) << "Reconnect:" << bReconnect;
-            if(bReconnect)
-            {
-                qDebug(FreeRDPConnect) << "Reconnect" << m_pParameter->GetReconnectInterval() * 1000;
-                if (client_auto_reconnect_ex(pRdpContext->instance, NULL))
-                    return m_pParameter->GetReconnectInterval() * 1000;
-                else
-                {
-                    /*
-                     * Indicate an unsuccessful connection attempt if reconnect
-                     * did not succeed and no other error was specified.
-                     */
-                    if (freerdp_error_info(pRdpContext->instance) == 0)
-                        nRet = -6;
-                }
 
-                UINT32 err = freerdp_get_last_error(pRdpContext);
-                if (FREERDP_ERROR_SUCCESS != err)
-                    qCritical(FreeRDPConnect) << "Auto reconnection[" << err << "]"
-                                          << freerdp_get_last_error_category(err)
-                                          << freerdp_get_last_error_name(err)
-                                          << freerdp_get_last_error_string(err);
+            UINT32 err = freerdp_get_last_error(pRdpContext);
+            QString szErr;
+            szErr = "freerdp_check_event_handles[";
+            szErr += QString::number(err);
+            szErr += "]";
+            szErr += freerdp_get_last_error_category(err);
+            szErr += "-";
+            szErr += freerdp_get_last_error_name(err);
+            szErr += ":";
+            szErr += freerdp_get_last_error_string(err);
+            qCritical(FreeRDPConnect) << szErr;
+            emit sigError(err, szErr);
+            // Reconnect
+            freerdp *instance = pRdpContext->instance;
+            if (client_auto_reconnect(instance))
+            {
+                nRet = 0;
+                break;
             }
+
+            err = freerdp_get_last_error(pRdpContext);
+            szErr = "client_auto_reconnect[";
+            szErr += QString::number(err);
+            szErr += "]";
+            szErr += freerdp_get_last_error_category(err);
+            szErr += "-";
+            szErr += freerdp_get_last_error_name(err);
+            szErr += ":";
+            szErr += freerdp_get_last_error_string(err);
+            qCritical(FreeRDPConnect) << szErr;
+            emit sigError(err, szErr);
         }
-    }
+
+#if FreeRDP_VERSION_MAJOR >= 3
+        if(freerdp_shall_disconnect_context(pRdpContext))
+#else
+        if(freerdp_shall_disconnect(pRdpContext->instance))
+#endif
+        {
+            qCritical(FreeRDPConnect) << "freerdp_shall_disconnect fail";
+            nRet = -7;
+        }
+    } while(false);
 
     return nRet;
 }
@@ -295,7 +300,7 @@ int CConnectFreeRDP::OnClientStart(rdpContext *context)
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientStart()";
     int nRet = 0;
-    freerdp* instance = context->instance;
+    freerdp* instance = freerdp_client_get_instance(context);
     BOOL status = freerdp_connect(instance);
     if (status) {
         emit sigConnected();
@@ -389,6 +394,15 @@ int CConnectFreeRDP::OnClientStop(rdpContext *context)
 {
     int nRet = 0;
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientStop()";
+#if FreeRDP_VERSION_MAJOR >= 3
+    nRet = freerdp_client_common_stop(context);
+#else
+    BOOL bRet = freerdp_abort_connect(context->instance);
+    if(!bRet)
+    {   qCritical(FreeRDPConnect) << "freerdp_abort_connect fail";
+        nRet = -1;
+    }
+#endif
     return nRet;
 }
 
@@ -1483,7 +1497,7 @@ void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifie
 int CConnectFreeRDP::RedirectionSound()
 {
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-    freerdp* instance = pRdpContext->instance;
+    freerdp* instance = freerdp_client_get_instance(pRdpContext);
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
@@ -1552,7 +1566,7 @@ int CConnectFreeRDP::RedirectionMicrophone()
         return 0;
 
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-    freerdp* instance = pRdpContext->instance;
+    freerdp* instance = freerdp_client_get_instance(pRdpContext);
 
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
@@ -1595,7 +1609,7 @@ int CConnectFreeRDP::RedirectionDrive()
         return 0;
 
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-    freerdp* instance = pRdpContext->instance;
+    freerdp* instance = freerdp_client_get_instance(pRdpContext);
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
@@ -1626,7 +1640,7 @@ int CConnectFreeRDP::RedirectionPrinter()
         return 0;
 
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-    freerdp* instance = pRdpContext->instance;
+    freerdp* instance = freerdp_client_get_instance(pRdpContext);
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
     // 获取系统的打印机列表，并在combobox中显示
@@ -1659,7 +1673,7 @@ int CConnectFreeRDP::RedirectionSerial()
     //TODO: FreeRDP don't support
     return 0;
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-    freerdp* instance = pRdpContext->instance;
+    freerdp* instance = freerdp_client_get_instance(pRdpContext);
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
