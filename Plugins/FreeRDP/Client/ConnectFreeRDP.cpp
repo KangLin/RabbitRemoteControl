@@ -1,5 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 // https://learn.microsoft.com/zh-cn/windows-server/remote/remote-desktop-services/welcome-to-rds
+// X.509 Public Key Certificates: https://learn.microsoft.com/zh-cn/windows/win32/seccertenroll/about-x-509-public-key-certificates
+// Cryptography: https://learn.microsoft.com/zh-cn/windows/win32/seccrypto/cryptography-portal
 
 #include "ConnectFreeRDP.h"
 

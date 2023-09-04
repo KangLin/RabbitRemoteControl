@@ -414,9 +414,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="43"/>
-        <location filename="../../mainwindow.cpp" line="177"/>
         <location filename="../../mainwindow.cpp" line="178"/>
         <location filename="../../mainwindow.cpp" line="179"/>
+        <location filename="../../mainwindow.cpp" line="180"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
@@ -431,239 +431,238 @@
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="108"/>
+        <location filename="../../mainwindow.ui" line="107"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="137"/>
+        <location filename="../../mainwindow.ui" line="136"/>
         <source>About(&amp;A)</source>
         <translation>关于(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="158"/>
+        <location filename="../../mainwindow.ui" line="157"/>
         <source>Update(&amp;U)</source>
         <translation>更新(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="181"/>
+        <location filename="../../mainwindow.ui" line="180"/>
         <source>ToolBar(&amp;T)</source>
         <translation>工具条(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="202"/>
-        <location filename="../../mainwindow.cpp" line="374"/>
+        <location filename="../../mainwindow.ui" line="201"/>
+        <location filename="../../mainwindow.cpp" line="375"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="253"/>
+        <location filename="../../mainwindow.ui" line="252"/>
         <source>Zoom to window(&amp;Z)</source>
         <translation>远程桌面缩放到窗口大小(&amp;Z)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="256"/>
-        <location filename="../../mainwindow.ui" line="259"/>
-        <location filename="../../mainwindow.ui" line="262"/>
-        <location filename="../../mainwindow.ui" line="265"/>
+        <location filename="../../mainwindow.ui" line="255"/>
+        <location filename="../../mainwindow.ui" line="258"/>
+        <location filename="../../mainwindow.ui" line="261"/>
+        <location filename="../../mainwindow.ui" line="264"/>
         <source>Zoom to window</source>
         <translation>远程桌面缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="304"/>
-        <location filename="../../mainwindow.ui" line="307"/>
-        <location filename="../../mainwindow.ui" line="310"/>
-        <location filename="../../mainwindow.ui" line="313"/>
+        <location filename="../../mainwindow.ui" line="303"/>
+        <location filename="../../mainwindow.ui" line="306"/>
+        <location filename="../../mainwindow.ui" line="309"/>
+        <location filename="../../mainwindow.ui" line="312"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="325"/>
-        <location filename="../../mainwindow.ui" line="328"/>
-        <location filename="../../mainwindow.ui" line="331"/>
-        <location filename="../../mainwindow.ui" line="334"/>
+        <location filename="../../mainwindow.ui" line="324"/>
+        <location filename="../../mainwindow.ui" line="327"/>
+        <location filename="../../mainwindow.ui" line="330"/>
+        <location filename="../../mainwindow.ui" line="333"/>
         <source>Disconnect</source>
         <translation>关闭边连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="346"/>
+        <location filename="../../mainwindow.ui" line="345"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="375"/>
+        <location filename="../../mainwindow.ui" line="374"/>
         <source>TabBar(&amp;B)</source>
         <translation>标签条(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="378"/>
-        <location filename="../../mainwindow.ui" line="381"/>
-        <location filename="../../mainwindow.ui" line="384"/>
-        <location filename="../../mainwindow.ui" line="387"/>
+        <location filename="../../mainwindow.ui" line="377"/>
+        <location filename="../../mainwindow.ui" line="380"/>
+        <location filename="../../mainwindow.ui" line="383"/>
+        <location filename="../../mainwindow.ui" line="386"/>
         <source>TabBar</source>
         <translation>标签条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="399"/>
-        <location filename="../../mainwindow.ui" line="402"/>
-        <location filename="../../mainwindow.ui" line="405"/>
+        <location filename="../../mainwindow.ui" line="398"/>
+        <location filename="../../mainwindow.ui" line="401"/>
+        <location filename="../../mainwindow.ui" line="404"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="417"/>
-        <location filename="../../mainwindow.ui" line="420"/>
-        <location filename="../../mainwindow.ui" line="423"/>
+        <location filename="../../mainwindow.ui" line="416"/>
+        <location filename="../../mainwindow.ui" line="419"/>
+        <location filename="../../mainwindow.ui" line="422"/>
         <source>Zoom Out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="447"/>
-        <location filename="../../mainwindow.ui" line="450"/>
-        <location filename="../../mainwindow.ui" line="453"/>
-        <location filename="../../mainwindow.ui" line="456"/>
+        <location filename="../../mainwindow.ui" line="446"/>
+        <location filename="../../mainwindow.ui" line="449"/>
+        <location filename="../../mainwindow.ui" line="452"/>
+        <location filename="../../mainwindow.ui" line="455"/>
         <source>Screenshot</source>
         <translation>截屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="465"/>
-        <location filename="../../mainwindow.ui" line="468"/>
-        <location filename="../../mainwindow.ui" line="471"/>
+        <location filename="../../mainwindow.ui" line="464"/>
+        <location filename="../../mainwindow.ui" line="467"/>
+        <location filename="../../mainwindow.ui" line="470"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="480"/>
-        <location filename="../../mainwindow.ui" line="483"/>
-        <location filename="../../mainwindow.ui" line="486"/>
-        <location filename="../../mainwindow.ui" line="489"/>
+        <location filename="../../mainwindow.ui" line="479"/>
+        <location filename="../../mainwindow.ui" line="482"/>
+        <location filename="../../mainwindow.ui" line="485"/>
+        <location filename="../../mainwindow.ui" line="488"/>
         <source>Current connect parameters</source>
         <translation>当前连接参数</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="498"/>
-        <location filename="../../mainwindow.ui" line="501"/>
-        <location filename="../../mainwindow.ui" line="504"/>
+        <location filename="../../mainwindow.ui" line="497"/>
+        <location filename="../../mainwindow.ui" line="500"/>
+        <location filename="../../mainwindow.ui" line="503"/>
         <source>Clone current connect</source>
         <translation>克隆当前连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="513"/>
-        <location filename="../../mainwindow.ui" line="516"/>
-        <location filename="../../mainwindow.ui" line="519"/>
-        <location filename="../../mainwindow.ui" line="522"/>
+        <location filename="../../mainwindow.ui" line="512"/>
+        <location filename="../../mainwindow.ui" line="515"/>
+        <location filename="../../mainwindow.ui" line="518"/>
+        <location filename="../../mainwindow.ui" line="521"/>
         <source>Add to favorite</source>
         <translation>增加到收藏夹</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="531"/>
         <source>Style(&amp;S)</source>
-        <translation>样式(&amp;S)</translation>
+        <translation type="vanished">样式(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="540"/>
-        <location filename="../../mainwindow.ui" line="543"/>
-        <location filename="../../mainwindow.ui" line="546"/>
-        <location filename="../../mainwindow.ui" line="549"/>
-        <location filename="../../mainwindow.ui" line="552"/>
+        <location filename="../../mainwindow.ui" line="530"/>
+        <location filename="../../mainwindow.ui" line="533"/>
+        <location filename="../../mainwindow.ui" line="536"/>
+        <location filename="../../mainwindow.ui" line="539"/>
+        <location filename="../../mainwindow.ui" line="542"/>
         <source>Open the list of connections(&amp;O)</source>
         <translation>打开连接列表(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="564"/>
+        <location filename="../../mainwindow.ui" line="554"/>
         <source>Main menu bar(&amp;M)</source>
         <translation>主菜单条(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="567"/>
-        <location filename="../../mainwindow.ui" line="570"/>
-        <location filename="../../mainwindow.ui" line="573"/>
-        <location filename="../../mainwindow.ui" line="576"/>
+        <location filename="../../mainwindow.ui" line="557"/>
+        <location filename="../../mainwindow.ui" line="560"/>
+        <location filename="../../mainwindow.ui" line="563"/>
+        <location filename="../../mainwindow.ui" line="566"/>
         <source>Main menu bar</source>
         <translation>主菜单条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="587"/>
-        <location filename="../../mainwindow.ui" line="590"/>
-        <location filename="../../mainwindow.ui" line="593"/>
-        <location filename="../../mainwindow.ui" line="596"/>
+        <location filename="../../mainwindow.ui" line="577"/>
+        <location filename="../../mainwindow.ui" line="580"/>
+        <location filename="../../mainwindow.ui" line="583"/>
+        <location filename="../../mainwindow.ui" line="586"/>
         <source>Status bar</source>
         <translation>状态条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="584"/>
+        <location filename="../../mainwindow.ui" line="574"/>
         <source>Status bar(&amp;S)</source>
         <translation>状态条(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="432"/>
-        <location filename="../../mainwindow.ui" line="435"/>
-        <location filename="../../mainwindow.ui" line="438"/>
+        <location filename="../../mainwindow.ui" line="431"/>
+        <location filename="../../mainwindow.ui" line="434"/>
+        <location filename="../../mainwindow.ui" line="437"/>
         <source>Zoom window to remote desktop</source>
         <translation>缩放窗口到远程桌面大小</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="140"/>
-        <location filename="../../mainwindow.ui" line="143"/>
-        <location filename="../../mainwindow.ui" line="146"/>
-        <location filename="../../mainwindow.ui" line="149"/>
+        <location filename="../../mainwindow.ui" line="139"/>
+        <location filename="../../mainwindow.ui" line="142"/>
+        <location filename="../../mainwindow.ui" line="145"/>
+        <location filename="../../mainwindow.ui" line="148"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="161"/>
-        <location filename="../../mainwindow.ui" line="164"/>
-        <location filename="../../mainwindow.ui" line="167"/>
-        <location filename="../../mainwindow.ui" line="170"/>
+        <location filename="../../mainwindow.ui" line="160"/>
+        <location filename="../../mainwindow.ui" line="163"/>
+        <location filename="../../mainwindow.ui" line="166"/>
+        <location filename="../../mainwindow.ui" line="169"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="184"/>
-        <location filename="../../mainwindow.ui" line="187"/>
-        <location filename="../../mainwindow.ui" line="190"/>
-        <location filename="../../mainwindow.ui" line="193"/>
+        <location filename="../../mainwindow.ui" line="183"/>
+        <location filename="../../mainwindow.ui" line="186"/>
+        <location filename="../../mainwindow.ui" line="189"/>
+        <location filename="../../mainwindow.ui" line="192"/>
         <source>ToolBar</source>
         <translation>工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="229"/>
+        <location filename="../../mainwindow.ui" line="228"/>
         <source>Original size(&amp;O)</source>
         <translation>远程桌面还原到原始大小(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="232"/>
-        <location filename="../../mainwindow.ui" line="235"/>
-        <location filename="../../mainwindow.ui" line="238"/>
-        <location filename="../../mainwindow.ui" line="241"/>
+        <location filename="../../mainwindow.ui" line="231"/>
+        <location filename="../../mainwindow.ui" line="234"/>
+        <location filename="../../mainwindow.ui" line="237"/>
+        <location filename="../../mainwindow.ui" line="240"/>
         <source>Original size</source>
         <translation>原始大小</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="277"/>
+        <location filename="../../mainwindow.ui" line="276"/>
         <source>Keep aspect ration zoom to window(&amp;K)</source>
         <translation>远程桌面保持纵横比缩放到窗口大小(&amp;K)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="280"/>
-        <location filename="../../mainwindow.ui" line="283"/>
-        <location filename="../../mainwindow.ui" line="286"/>
-        <location filename="../../mainwindow.ui" line="289"/>
+        <location filename="../../mainwindow.ui" line="279"/>
+        <location filename="../../mainwindow.ui" line="282"/>
+        <location filename="../../mainwindow.ui" line="285"/>
+        <location filename="../../mainwindow.ui" line="288"/>
         <source>Keep aspect ration zoom to window</source>
         <translation>远程桌面保持纵横比缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="301"/>
+        <location filename="../../mainwindow.ui" line="300"/>
         <source>Exit(&amp;E)</source>
         <translation>退出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="343"/>
+        <location filename="../../mainwindow.ui" line="342"/>
         <source>Open(&amp;O) rabbit remote control file</source>
         <translation>打开玉兔远程控制文件(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="360"/>
+        <location filename="../../mainwindow.ui" line="359"/>
         <source>Send Ctl+Alt+Del</source>
         <translation>发送 Ctl+Alt+Del</translation>
     </message>
@@ -673,30 +672,30 @@
         <translation>连接(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="112"/>
+        <location filename="../../mainwindow.cpp" line="113"/>
         <source>Recently connected</source>
         <translation>最近连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="322"/>
+        <location filename="../../mainwindow.ui" line="321"/>
         <source>Disconnect(&amp;D)</source>
         <translation>断开连接(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="167"/>
         <location filename="../../mainwindow.cpp" line="168"/>
         <location filename="../../mainwindow.cpp" line="169"/>
+        <location filename="../../mainwindow.cpp" line="170"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="205"/>
-        <location filename="../../mainwindow.ui" line="208"/>
-        <location filename="../../mainwindow.ui" line="211"/>
-        <location filename="../../mainwindow.ui" line="214"/>
-        <location filename="../../mainwindow.cpp" line="375"/>
+        <location filename="../../mainwindow.ui" line="204"/>
+        <location filename="../../mainwindow.ui" line="207"/>
+        <location filename="../../mainwindow.ui" line="210"/>
+        <location filename="../../mainwindow.ui" line="213"/>
         <location filename="../../mainwindow.cpp" line="376"/>
         <location filename="../../mainwindow.cpp" line="377"/>
+        <location filename="../../mainwindow.cpp" line="378"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -705,68 +704,68 @@
         <translation type="vanished">ICE 信令状态</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="402"/>
+        <location filename="../../mainwindow.cpp" line="412"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="403"/>
-        <location filename="../../mainwindow.cpp" line="404"/>
-        <location filename="../../mainwindow.cpp" line="405"/>
+        <location filename="../../mainwindow.cpp" line="413"/>
+        <location filename="../../mainwindow.cpp" line="414"/>
+        <location filename="../../mainwindow.cpp" line="415"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="610"/>
-        <location filename="../../mainwindow.cpp" line="628"/>
+        <location filename="../../mainwindow.cpp" line="634"/>
+        <location filename="../../mainwindow.cpp" line="652"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="349"/>
-        <location filename="../../mainwindow.ui" line="352"/>
-        <location filename="../../mainwindow.ui" line="355"/>
-        <location filename="../../mainwindow.cpp" line="620"/>
+        <location filename="../../mainwindow.ui" line="348"/>
+        <location filename="../../mainwindow.ui" line="351"/>
+        <location filename="../../mainwindow.ui" line="354"/>
+        <location filename="../../mainwindow.cpp" line="644"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="248"/>
+        <location filename="../../mainwindow.cpp" line="249"/>
         <source>ICE signal status</source>
         <translation>ICE 信令状态</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="311"/>
+        <location filename="../../mainwindow.cpp" line="312"/>
         <source>### Plugin</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="622"/>
+        <location filename="../../mainwindow.cpp" line="646"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="715"/>
+        <location filename="../../mainwindow.cpp" line="739"/>
         <source>Connecting to </source>
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="741"/>
+        <location filename="../../mainwindow.cpp" line="765"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="768"/>
+        <location filename="../../mainwindow.cpp" line="792"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令状态：连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="777"/>
+        <location filename="../../mainwindow.cpp" line="801"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="830"/>
+        <location filename="../../mainwindow.cpp" line="854"/>
         <source>Use message box to display information</source>
         <translation type="unfinished">使用消息框显示信息</translation>
     </message>
@@ -779,27 +778,27 @@
         <translation type="obsolete">使用消息框显示错误信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="979"/>
+        <location filename="../../mainwindow.cpp" line="997"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="980"/>
+        <location filename="../../mainwindow.cpp" line="998"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1008"/>
+        <location filename="../../mainwindow.cpp" line="1026"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1009"/>
+        <location filename="../../mainwindow.cpp" line="1027"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1037"/>
+        <location filename="../../mainwindow.cpp" line="1055"/>
         <source>Save screenslot to </source>
         <translation>保存截屏到 </translation>
     </message>
