@@ -88,8 +88,8 @@
           git clone https://github.com/FreeRDP/FreeRDP.git
           cd FreeRDP
           mkdir build
-          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DWITH_SERVER=ON
-          cmake --build . --target install
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DWITH_SERVER=ON
+          cmake --build . --config Release --target install
           
   + 指定 CMake 参数：
     - -DBUILD_FREERDP=ON
@@ -107,8 +107,8 @@
         git clone https://github.com/KangLin/libvncserver.git
         cd libvncserver
         mkdir build
-        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-        cmake --build . --target install
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --config Release --target install
   
   + 指定 CMake 参数：-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
   
@@ -121,8 +121,8 @@
       git clone https://github.com/KangLin/RabbitVNC.git
       cd RabbitVNC
       mkdir build
-      cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-      cmake --build . --target install
+      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+      cmake --build . --config Release --target install
 
 - 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
 
@@ -137,8 +137,8 @@
     git clone https://github.com/KangLin/tigervnc.git
     cd tigervnc
     mkdir build
-    cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-    cmake --build . --target install
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+    cmake --build . --config Release --target install
     
 - 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
   
@@ -159,8 +159,8 @@
         git submodule update --init --recursive
         mkdir build
         cd build
-        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
-        cmake --build . --target install
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install
+        cmake --build . --config Release --target install
 
   + 指定 CMake 参数: -Dlibdatachannel_DIR=[libdatachannel 安装目录]/lib/cmake/LibDataChannel
 
@@ -172,8 +172,8 @@
         cd qxmpp
         mkdir build
         cd build
-        cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
-        cmake --build . --target install
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
+        cmake --build . --config Release --target install
 
   + 指定 CMake 参数: -DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
   
@@ -202,8 +202,8 @@
         ~$ cd qt-solutions
         ~/qt-solutions$ mkdir build
         ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install
-        ~/qt-solutions/build$ cmake --build . --target install
+        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install
+        ~/qt-solutions/build$ cmake --build . --config Release --target install
         
   + 指定 CMake 参数: -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
 
@@ -215,15 +215,21 @@
 
 - CMake 参数
   + RabbitCommon_DIR：RabbitCommon 源码位置
+  + BUILD_CLIENT: 编译客户端。默认为 ON
+  + BUILD_SERVICE: 编译服务器端。默认依赖是否有 QtService
+  + BUILD_PLUGINS: 编译插件。默认为 ON
+  + BUILD_APP: 编译应用程序。默认为 ON
   + BUILD_DOCS: 编译文档。默认为 OFF
-  + BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF
-  + BUILD_QUIWidget: 用无边框窗口做为主窗口。默认为 OFF
   + BUILD_SHARED_LIBS: 编译动态库。默认为 ON
+  + BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF
   + WinPR_DIR:PATH: [FreeRDP 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [FreeRDP 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [FreeRDP 安装目录]/lib/cmake/FreeRDP-Client2
+  + BUILD_RABBITVNC: 编译 RabbitVNC 插件。默认为 ON
   + RabbitVNC_DIR: [RabbitVNC 安装目录]/lib/cmake/RabbitVNC
+  + BUILD_TigerVNC: 编译 TigerVNC。默认为 ON
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
+  + BUILD_LibVNCServer: 编译 LibVNCServer。默认为 ON
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + libdatachannel_DIR: [libdatachannel 安装目录]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
@@ -243,8 +249,8 @@
   
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_INSTALL_PREIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-          cmake --build . --target install-runtime
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+          cmake --build . --config Release --target install-runtime
           makensis Install.nsi  ;打包
 
   + IDE (Qt Creator) 编译
@@ -252,3 +258,5 @@
     - 打开项目: 菜单→文件→打开文件或项目，选择项目根目录中的 CMakeLists.txt 
     - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
+
+**注意：**如果插件没有加载。则可能是插件的依赖库没有安装到系统。你可以把依赖库复制插件的目录中。

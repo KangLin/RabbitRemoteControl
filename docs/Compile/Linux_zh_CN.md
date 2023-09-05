@@ -67,15 +67,15 @@
     ~$ git clone https://github.com/KangLin/RabbitVNC.git
     ~$ cd RabbitVNC
     ~$ mkdir build
-    ~/RabbitVNC/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/RabbitVNC/build$ cmake --build . --target install
+    ~/RabbitVNC/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/RabbitVNC/build$ cmake --build . --config Release --target install
     ~/RabbitVNC/build$ cd ~
     # 编译 TigerVNC
     ~$ git clone https://github.com/KangLin/tigervnc.git
     ~$ cd tigervnc
     ~$ mkdir build
-    ~/tigervnc/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/tigervnc/build$ cmake --build . --target install
+    ~/tigervnc/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/tigervnc/build$ cmake --build . --config Release --target install
     ~/tigervnc/build$ cd ~
     ~$ sudo apt install libqxmpp-dev
     # 编译 libdatachannel
@@ -84,24 +84,24 @@
     ~/libdatachannel$ git submodule update --init --recursive
     ~/libdatachannel$ mkdir build
     ~/libdatachannel$ cd build
-    ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/libdatachannel/build$ cmake --build . --target install
+    ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/libdatachannel/build$ cmake --build . --config Release --target install
     ~/libdatachannel/build$ cd ~
     # 编译 QtService
     ~$ git clone https://github.com/KangLin/qt-solutions.git
     ~$ cd qt-solutions/qtservice
     ~/qt-solutions/qtservice$ mkdir build
     ~/qt-solutions/qtservice$ cd build
-    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/qt-solutions/qtservice/build$ cmake --build . --target install
+    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/qt-solutions/qtservice/build$ cmake --build . --config Release --target install
     ~/qt-solutions/qtservice/build$ cd ~
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
     ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
-    ~/RabbitRemoteControl/build$ cmake --build . --target install
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
 ```
 
 参见：[编译集成](../../.github/workflows/ubuntu.yml)
@@ -153,8 +153,8 @@
           ~$ git clone https://github.com/FreeRDP/FreeRDP.git
           ~$ cd FreeRDP
           ~/FreeRDP$ mkdir build
-          ~/FreeRDP/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DWITH_SERVER=ON
-          ~/FreeRDP/build$ cmake --build . --target install
+          ~/FreeRDP/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install -DWITH_SERVER=ON
+          ~/FreeRDP/build$ cmake --build . --config Release --target install
           
   + 指定 CMake 参数：
     - -DBUILD_FREERDP=ON
@@ -179,8 +179,8 @@
       ~$ git clone https://github.com/KangLin/RabbitVNC.git
       ~$ cd RabbitVNC
       ~/RabbitVNC$ mkdir build
-      ~/RabbitVNC$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-      ~/RabbitVNC$ cmake --build . --target install
+      ~/RabbitVNC$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+      ~/RabbitVNC$ cmake --build . --config Release --target install
     
 - 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
 
@@ -194,8 +194,8 @@
     ~$ git clone https://github.com/KangLin/tigervnc.git
     ~$ cd tigervnc
     ~/tigervnc$ mkdir build
-    ~/tigervnc$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/tigervnc$ cmake --build . --target install
+    ~/tigervnc$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/tigervnc$ cmake --build . --config Release --target install
     
 - 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
 
@@ -217,8 +217,8 @@
         ~/libdatachannel$ git submodule update --init --recursive
         ~/libdatachannel$ mkdir build
         ~/libdatachannel$ cd build
-        ~/libdatachannel/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
-        ~/libdatachannel/build$ cmake --build . --target install
+        ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
+        ~/libdatachannel/build$ cmake --build . --config Release --target install
 
   + 指定 CMake 参数: -DLibDataChannel_DIR=[libdatachannel 安装目录]/lib/cmake/LibDataChannel
 
@@ -230,8 +230,8 @@
         ~$ cd qxmpp
         ~/qxmpp$ mkdir build
         ~/qxmpp$ cd build
-        ~/qxmpp/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-        ~/qxmpp/build$ cmake --build . --target install
+        ~/qxmpp/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qxmpp/build$ cmake --build . --config Release --target install
 
   + 指定 CMake 参数: -DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
   
@@ -270,8 +270,8 @@
         ~$ cd qt-solutions
         ~/qt-solutions$ mkdir build
         ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install
-        ~/qt-solutions/build$ cmake --build . --target install
+        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qt-solutions/build$ cmake --build . --config Release --target install
         
   + 指定 CMake 参数: -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
   
@@ -283,15 +283,21 @@
 
 - CMake 参数
   + RabbitCommon_DIR: RabbitCommon 源码位置
+  + BUILD_CLIENT: 编译客户端。默认为 ON
+  + BUILD_SERVICE: 编译服务器端。默认依赖是否有 QtService
+  + BUILD_PLUGINS: 编译插件。默认为 ON
+  + BUILD_APP: 编译应用程序。默认为 ON
   + BUILD_DOCS: 编译文档。默认为 OFF
-  + BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF
-  + BUILD_QUIWidget: 用无边框窗口做为主窗口。默认为 OFF
   + BUILD_SHARED_LIBS: 编译动态库。默认为 ON
+  + BUILD_FREERDP：是否编译 FreeRDP。 默认为 OFF
   + WinPR_DIR:PATH: [freerdp 安装目录]/lib/cmake/WinPR2
   + FreeRDP_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP2
   + FreeRDP-Client_DIR: [freerdp 安装目录]/lib/cmake/FreeRDP-Client2
+  + BUILD_RABBITVNC: 编译 RabbitVNC 插件。默认为 ON
   + RabbitVNC_DIR: [RabbitVNC 安装目录]/lib/cmake/RabbitVNC
+  + BUILD_TigerVNC: 编译 TigerVNC。默认为 ON
   + tigervnc_DIR: [TigerVNC 安装目录]/lib/cmake/tigervnc
+  + BUILD_LibVNCServer: 编译 LibVNCServer。默认为 ON
   + LibVNCServer_DIR: [libvncserver 安装目录]/lib/cmake/LibVNCServer
   + LibDataChannel_DIR: [libdatachannel 安装目录]/lib/cmake/LibDataChannel
   + QXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
@@ -312,15 +318,15 @@
      
            ~$ cd RabbitRemoteControl
            ~/RabbitRemoteControl$ mkdir build
-           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install 
-           ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
+           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install 
+           ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install-runtime
 
      - 使用 vcpkg
      
            ~$ cd RabbitRemoteControl
            ~/RabbitRemoteControl$ mkdir build
-           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_INSTALL_PREIX=`pwd`/install [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-           ~/RabbitRemoteControl/build$ cmake --build . --target install-runtime
+           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+           ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install-runtime
 
   + IDE(Qt Creator) 编译
     - 打开项目: 菜单→文件→打开文件或项目，选择项目根目录中的 CMakeLists.txt 
@@ -338,3 +344,14 @@
     - 使用脚本 build_debpackage.sh
 
           ./build_debpackage.sh $QT_ROOT $RabbitCommon_DIR
+
+- 运行
+  + 程序安装在 `pwd`/install/bin 下
+  
+        ~$ cd RabbitRemoteControl
+        ~/RabbitRemoteControl$ cd build/install/bin
+        ~/RabbitRemoteControl$ ./RabbitRemoteControl.sh
+
+  **注意：**如果插件没有加载。则可能是插件的依赖库没有安装到系统。
+  你可以把依赖库的目录加入到环境变量 PKG_CONFIG_PATH 中。
+  你也可以把依赖库的目录加入到 /etc/ld.so.conf 文件中，然后运行 ldconfig 把依赖库加入到系统中。
