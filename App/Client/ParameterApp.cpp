@@ -26,7 +26,7 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
 {
     m_szScreenShotPath = RabbitCommon::CDir::Instance()->GetDirUserImage()
             + QDir::separator()
-            + "ScreenSlot";
+            + "ScreenShot";
 }
 
 CParameterApp::~CParameterApp()

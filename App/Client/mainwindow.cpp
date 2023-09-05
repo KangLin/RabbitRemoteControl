@@ -1049,10 +1049,10 @@ void MainWindow::on_actionScreenshot_triggered()
             + QDateTime::currentDateTime().toLocalTime().toString("yyyy_MM_dd_hh_mm_ss_zzz")
             + ".jpg";
     if(szFile.isEmpty()) return;
-    int nRet = m_pView->Screenslot(szFile, m_Parameter.GetScreenShot());
+    int nRet = m_pView->ScreenShot(szFile, m_Parameter.GetScreenShot());
     if(0 == nRet)
     {
-        slotInformation(tr("Save screenslot to ") + szFile);
+        slotInformation(tr("Save ScreenShot to ") + szFile);
         switch (m_Parameter.GetScreenShotEndAction()) {
         case CParameterApp::OpenFile:
             QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));

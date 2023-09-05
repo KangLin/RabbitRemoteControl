@@ -160,7 +160,7 @@ int CViewTable::ShowTabBar(bool bShow)
     return 0;
 }
 
-int CViewTable::Screenslot(const QString &szFile, bool bRemoteDesktop)
+int CViewTable::ScreenShot(const QString &szFile, bool bRemoteDesktop)
 {
     QFileInfo fi(szFile);
     QString ext = fi.suffix().toUpper();

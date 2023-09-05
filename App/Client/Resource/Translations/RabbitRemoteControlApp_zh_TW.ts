@@ -770,6 +770,11 @@
         <translation type="unfinished">使用消息框顯示信息</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="1055"/>
+        <source>Save ScreenShot to </source>
+        <translation>保存截屏到 </translation>
+    </message>
+    <message>
         <source>Error</source>
         <translation type="vanished">錯誤</translation>
     </message>
@@ -796,11 +801,6 @@
         <location filename="../../mainwindow.cpp" line="1027"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>將隱藏工具條，必須顯示菜單欄。</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="1055"/>
-        <source>Save screenslot to </source>
-        <translation>保存截屏到 </translation>
     </message>
 </context>
 <context>

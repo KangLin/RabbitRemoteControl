@@ -46,7 +46,7 @@ public:
      * \param bRemoteDesktop: slot remote desktop
      * \return 
      */
-    virtual int Screenslot(const QString& szFile, bool bRemoteDesktop = true) = 0;
+    virtual int ScreenShot(const QString& szFile, bool bRemoteDesktop = true) = 0;
     virtual QSize GetDesktopSize() = 0;
 
 public Q_SLOTS:

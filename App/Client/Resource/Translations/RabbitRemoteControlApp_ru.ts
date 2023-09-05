@@ -783,7 +783,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="1055"/>
-        <source>Save screenslot to </source>
+        <source>Save ScreenShot to </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

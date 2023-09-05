@@ -29,7 +29,7 @@ public:
     virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) override;
 
     int ShowTabBar(bool bShow);
-    virtual int Screenslot(const QString& szFile, bool bRemoteDesktop = true) override;
+    virtual int ScreenShot(const QString& szFile, bool bRemoteDesktop = true) override;
     virtual double GetZoomFactor() override;
     virtual QSize GetDesktopSize() override;
     
