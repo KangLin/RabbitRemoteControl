@@ -410,8 +410,8 @@
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="77"/>
         <location filename="../../DlgSetFreeRDP.ui" line="89"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="183"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="332"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="197"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="354"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -454,7 +454,7 @@
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="288"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="40"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="46"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -474,27 +474,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="44"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="50"/>
         <source>8 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="51"/>
         <source>16 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="46"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="52"/>
         <source>24 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="47"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="53"/>
         <source>32 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="50"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="56"/>
         <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
 - sys:winmm- sys:ios
 - sys:mac- sys:opensles- sys:alsa
@@ -504,20 +504,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="65"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="71"/>
         <source>Options for redirection of audio output:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="70"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="76"/>
         <source>Options for redirection of audio input:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="181"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="329"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="195"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="351"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>

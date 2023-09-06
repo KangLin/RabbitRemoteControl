@@ -1,10 +1,17 @@
 // Author: Kang Lin <kl222@126.com>
-//! 
+
 #include "DlgSetFreeRDP.h"
 #include "ui_DlgSetFreeRDP.h"
 #include <QApplication>
 #include <QScreen>
 #include <QFileSystemModel>
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    #include <QMediaDevices>
+    #include <QAudioDevice>
+#else
+    #include <QAudioDeviceInfo>
+#endif
 
 CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     QDialog(parent),
@@ -81,7 +88,6 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     int count = m_pFileModel->columnCount();
     for(int i = 1; i < count; i++)
         ui->tvDrive->hideColumn(i);
-   
 }
 
 CDlgSetFreeRDP::~CDlgSetFreeRDP()
@@ -126,18 +132,27 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 
     // Redirection
     m_pSettings->SetRedirectionPrinter(ui->cbPrinter->isChecked());
-    CParameterFreeRDP::RedirecionSoundType tRdirectionSound;
-    if(ui->rbAudioDisable->isChecked())
-        tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Disable;
-    else if(ui->rbAudioLocal->isChecked())
-        tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Local;
-    else if(ui->rbAudioRemote->isChecked())
-        tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Remote;
-    m_pSettings->SetRedirectionSound(tRdirectionSound);
+    if(HasAudioOutput()) {
+        CParameterFreeRDP::RedirecionSoundType tRdirectionSound
+            = CParameterFreeRDP::RedirecionSoundType::Disable;
+        if(ui->rbAudioDisable->isChecked())
+            tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Disable;
+        else if(ui->rbAudioLocal->isChecked())
+            tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Local;
+        else if(ui->rbAudioRemote->isChecked())
+            tRdirectionSound = CParameterFreeRDP::RedirecionSoundType::Remote;
+        m_pSettings->SetRedirectionSound(tRdirectionSound);
+    } else {
+        m_pSettings->SetRedirectionSound(
+            CParameterFreeRDP::RedirecionSoundType::Disable);
+    }
     m_pSettings->SetRedirectionSoundParameters(ui->leRdpSnd->text());
-    m_pSettings->SetRedirectionMicrophone(ui->cbAudin->isChecked());
+    if(HasAudioInput())
+        m_pSettings->SetRedirectionMicrophone(ui->cbAudin->isChecked());
+    else
+        m_pSettings->SetRedirectionMicrophone(false);
     m_pSettings->SetRedirectionMicrophoneParameters(ui->leAudin->text());
-    
+
     QStringList lstDrives;
     //获取选中的行，默认获取选中行的第一列数据（0），列的索引值和上面一样0、1、2、3......
     QModelIndexList selected = ui->tvDrive->selectionModel()->selectedRows(0);
@@ -219,6 +234,8 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
 
     // Redirection
     ui->cbPrinter->setChecked(m_pSettings->GetRedirectionPrinter());
+    ui->leRdpSnd->setEnabled(HasAudioOutput());
+    ui->gbAudio->setEnabled(HasAudioOutput());
     if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Disable)
         ui->rbAudioDisable->setChecked(true);
     if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Local)
@@ -226,7 +243,13 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
     if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
         ui->rbAudioRemote->setChecked(true);
     ui->leRdpSnd->setText(m_pSettings->GetRedirectionSoundParameters());
-    ui->cbAudin->setChecked(m_pSettings->GetRedirectionMicrophone());
+    if(HasAudioInput()) {
+        ui->cbAudin->setChecked(m_pSettings->GetRedirectionMicrophone());
+    } else {
+        ui->cbAudin->setChecked(false);
+        ui->cbAudin->setEnabled(false);
+        ui->leAudin->setEnabled(false);
+    }
     ui->leAudin->setText(m_pSettings->GetRedirectionMicrophoneParameters());
 
     QStringList lstDrives = m_pSettings->GetRedirectionDrives();
@@ -302,6 +325,8 @@ void CDlgSetFreeRDP::on_pbShow_clicked()
         ui->lePassword->setEchoMode(QLineEdit::Password);
         ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
         break;
+    default:
+        ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
     }
 }
 
@@ -331,4 +356,24 @@ void CDlgSetFreeRDP::on_cbSavePassword_stateChanged(int arg1)
         ui->lePassword->setEnabled(false);
         ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
     }
+}
+
+bool CDlgSetFreeRDP::HasAudioOutput()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    auto d = QMediaDevices::defaultAudioOutput();
+    return !d.isNull();
+#else
+    return !QAudioDeviceInfo::defaultOutputDevice().isNull();
+#endif
+}
+
+bool CDlgSetFreeRDP::HasAudioInput()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    auto d = QMediaDevices::defaultAudioInput();
+    return !d.isNull();
+#else
+    return !QAudioDeviceInfo::defaultInputDevice().isNull();
+#endif
 }

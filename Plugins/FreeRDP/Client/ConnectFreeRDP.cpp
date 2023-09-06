@@ -448,7 +448,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 
 	if (!freerdp_client_load_addins(channels, instance->context->settings))
 		return FALSE;
-    
+
     if (pThis->m_pParameter->GetUser().isEmpty()
         && !freerdp_settings_get_bool(settings, FreeRDP_CredentialsFromStdin)
         && !freerdp_settings_get_bool(settings, FreeRDP_SmartcardLogon))

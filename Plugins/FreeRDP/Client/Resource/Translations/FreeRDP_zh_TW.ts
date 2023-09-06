@@ -331,18 +331,18 @@
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="173"/>
         <source>Reconnect count:</source>
-        <translation type="unfinished"></translation>
+        <translation>重連接次數：</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="186"/>
         <location filename="../../DlgSetFreeRDP.ui" line="192"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect count&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: 重連接次數：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="189"/>
         <source>Reconnect count</source>
-        <translation type="unfinished"></translation>
+        <translation>重連接次數</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="352"/>
@@ -408,24 +408,12 @@
         <translation>驅動器：重定向下列選中的驅動器到遠程計算機上</translation>
     </message>
     <message>
-        <source>Reconnect interval:</source>
-        <translation type="vanished">重連間隔：</translation>
-    </message>
-    <message>
         <location filename="../../DlgSetFreeRDP.ui" line="77"/>
         <location filename="../../DlgSetFreeRDP.ui" line="89"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="183"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="332"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="197"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="354"/>
         <source>Please checked save password to enable</source>
         <translation>請選保存密碼允許輸入</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect interval&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t 重連&lt;/p&gt;&lt;p&gt;&amp;gt;0: 重連間隔&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Reconnect interval</source>
-        <translation type="vanished">重連間隔</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="206"/>
@@ -466,7 +454,7 @@
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="288"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="40"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="46"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -486,27 +474,27 @@
         <translation>遠程顏色深度：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="44"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="50"/>
         <source>8 bits</source>
         <translation>8 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="51"/>
         <source>16 bits</source>
         <translation>16 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="46"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="52"/>
         <source>24 bits</source>
         <translation>24 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="47"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="53"/>
         <source>32 bits</source>
         <translation>32 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="50"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="56"/>
         <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
 - sys:winmm- sys:ios
 - sys:mac- sys:opensles- sys:alsa
@@ -516,22 +504,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="65"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="71"/>
         <source>Options for redirection of audio output:
 </source>
         <translation>重定向音頻輸出的選項:
 </translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="70"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="76"/>
         <source>Options for redirection of audio input:
 </source>
         <translation>重定向音頻輸入的選項:
 </translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="181"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="329"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="195"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="351"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>

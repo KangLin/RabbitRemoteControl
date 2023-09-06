@@ -419,7 +419,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="0" column="0">
-           <widget class="QGroupBox" name="groupBox_4">
+           <widget class="QGroupBox" name="gbAudio">
             <property name="title">
              <string>Play remote audio</string>
             </property>

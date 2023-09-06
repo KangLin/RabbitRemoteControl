@@ -36,7 +36,9 @@ private slots:
     
 private:
     int InsertDesktopSize(int width, int height);
-    
+    bool HasAudioOutput();
+    bool HasAudioInput();
+
 private:
     Ui::CDlgSetFreeRDP *ui;
     CParameterFreeRDP* m_pSettings;
