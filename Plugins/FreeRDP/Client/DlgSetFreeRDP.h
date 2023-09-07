@@ -35,6 +35,7 @@ private slots:
     void on_cbSavePassword_stateChanged(int arg1);
     
 private:
+    QRect GetScreenGeometry();
     int InsertDesktopSize(int width, int height);
     bool HasAudioOutput();
     bool HasAudioInput();

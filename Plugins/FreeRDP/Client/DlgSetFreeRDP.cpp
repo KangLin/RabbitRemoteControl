@@ -26,10 +26,10 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->cbDesktopSize->addItem("800×600");
     ui->cbDesktopSize->addItem("1024×600");
     ui->cbDesktopSize->addItem("1024×768");
-    ui->cbDesktopSize->addItem("1280×1024");
-    ui->cbDesktopSize->addItem("1280×854");
     ui->cbDesktopSize->addItem("1280×720");
+    ui->cbDesktopSize->addItem("1280×854");
     ui->cbDesktopSize->addItem("1280×960");
+    ui->cbDesktopSize->addItem("1280×1024");
     ui->cbDesktopSize->addItem("1366×768");
     ui->cbDesktopSize->addItem("1400×1050");
     ui->cbDesktopSize->addItem("1440×900");
@@ -40,13 +40,12 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->cbDesktopSize->addItem("1920×1080");
     ui->cbDesktopSize->addItem("1920×1200");
 
-    QScreen* pScreen = QApplication::primaryScreen();
-    int width = pScreen->availableGeometry().width();
-    int height = pScreen->availableGeometry().height();
+    int width = GetScreenGeometry().width();
+    int height = GetScreenGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
     ui->rbFullScreen->setText(tr("Full screen") + ": " + curSize);
     if(ui->cbDesktopSize->findText(curSize) == -1)
-        ui->cbDesktopSize->addItem(curSize);
+        InsertDesktopSize(width, height);
     
     ui->cbColorDepth->addItem(tr("8 bits"), 8);
     ui->cbColorDepth->addItem(tr("16 bits"), 16);
@@ -114,8 +113,8 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     int index = szSize.indexOf("×");
     if(-1 < index)
     {
-        int width = szSize.left(index).toInt();
-        int height = szSize.right(szSize.length() - index - 1).toInt();
+        UINT32 width = szSize.left(index).toInt();
+        UINT32 height = szSize.right(szSize.length() - index - 1).toInt();
         freerdp_settings_set_uint32(m_pSettings->m_pSettings,
                                     FreeRDP_DesktopWidth, width);
         freerdp_settings_set_uint32(m_pSettings->m_pSettings,
@@ -201,9 +200,8 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
     ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
 
     // Display
-    QScreen* pScreen = QApplication::primaryScreen();
-    int width = pScreen->availableGeometry().width();
-    int height = pScreen->availableGeometry().height();
+    int width = GetScreenGeometry().width();
+    int height = GetScreenGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
     InsertDesktopSize(width, height);
     UINT32 desktopWidth = 0, desktopHeight = 0;
@@ -286,23 +284,75 @@ void CDlgSetFreeRDP::on_leServer_editingFinished()
     }
 }
 
+QRect CDlgSetFreeRDP::GetScreenGeometry()
+{
+    QRect r;
+    if(freerdp_settings_get_bool(m_pSettings->m_pSettings, FreeRDP_UseMultimon))
+    {
+        auto lstScreen = QApplication::screens();
+        foreach(auto pScreen, lstScreen)
+        {
+            r = r.united(pScreen->geometry());
+        }
+    } else {
+        QScreen* pScreen = QApplication::primaryScreen();
+        r = pScreen->geometry();
+    }
+    return r;
+}
+
 int CDlgSetFreeRDP::InsertDesktopSize(int width, int height)
 {
     QString curSize = QString::number(width) + "×" + QString::number(height);
     if(ui->cbDesktopSize->findText(curSize) > -1)
         return 0;
 
-    for(int i = 0; i < ui->cbDesktopSize->count(); i++)
+    int nCount = ui->cbDesktopSize->count();
+    for(int i = 0; i < nCount; i++)
     {
         QString curText = ui->cbDesktopSize->itemText(i);
         int nIndex = curText.indexOf("×");
-        if(-1 < nIndex)
+        if(nIndex > -1)
         {
             int w = curText.left(nIndex).toInt();
+            int h = curText.right(curText.length() - nIndex - 1).toInt();
             if(w > width)
             {
                 ui->cbDesktopSize->insertItem(i, curSize);
                 return 0;
+            } else if(w == width) {
+                if(h > height)
+                {
+                    ui->cbDesktopSize->insertItem(i, curSize);
+                    return 0;
+                } if(h == height) {
+                    return 0;
+                } else {
+                    int j = i + 1;
+                     while(j < nCount) {
+                        QString curText = ui->cbDesktopSize->itemText(j);
+                        int nIndex = curText.indexOf("×");
+                        if(-1 >= nIndex) {
+                            j++;
+                        } else {
+                            int w = curText.left(nIndex).toInt();
+                            int h = curText.right(curText.length() - nIndex - 1).toInt();
+                            if(w != width) {
+                                ui->cbDesktopSize->insertItem(j, curSize);
+                                return 0;
+                            } else {
+                                if(h > height)
+                                {
+                                    ui->cbDesktopSize->insertItem(j, curSize);
+                                    return 0;
+                                } else if(h == height)
+                                    return 0;
+                                else
+                                    j++;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
