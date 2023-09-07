@@ -40,7 +40,10 @@ int CParameterFreeRDP::Load(QSettings &set)
     freerdp_settings_set_uint32(m_pSettings, FreeRDP_DesktopWidth, width);
     freerdp_settings_set_uint32(m_pSettings, FreeRDP_DesktopHeight, height);
     freerdp_settings_set_uint32(m_pSettings, FreeRDP_ColorDepth, colorDepth);
-
+    bool bUseMultimon = set.value("FreeRDP/UseMultimon", freerdp_settings_get_bool(
+                                    m_pSettings, FreeRDP_UseMultimon)).toBool();
+    freerdp_settings_set_bool(m_pSettings, FreeRDP_UseMultimon, bUseMultimon);
+    
     SetReconnectInterval(set.value("FreeRDP/ReconnectionInterval",
                                    GetReconnectInterval()).toInt());
     
@@ -83,6 +86,8 @@ int CParameterFreeRDP::Save(QSettings &set)
                      m_pSettings, FreeRDP_DesktopHeight));
     set.setValue("FreeRDP/ColorDepth", freerdp_settings_get_uint32(
                      m_pSettings, FreeRDP_ColorDepth));
+    set.setValue("FreeRDP/UseMultimon", freerdp_settings_get_bool(
+                                            m_pSettings, FreeRDP_UseMultimon));
 
     set.setValue("FreeRDP/ReconnectionInterval", GetReconnectInterval());
     set.setValue("FreeRDP/ShowVerifyDiaglog", GetShowVerifyDiaglog());

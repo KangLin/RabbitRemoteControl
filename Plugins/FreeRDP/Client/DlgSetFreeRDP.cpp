@@ -120,10 +120,12 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
         freerdp_settings_set_uint32(m_pSettings->m_pSettings,
                                     FreeRDP_DesktopHeight, height);
     }
+
+    freerdp_settings_set_bool(m_pSettings->m_pSettings, FreeRDP_UseMultimon, ui->cbAllMonitor->isChecked());
     if(ui->cbAllMonitor->isChecked())
     {
         //TODO: complete it
-        m_pSettings->m_pSettings->MonitorCount = QApplication::screens().length();
+        freerdp_settings_set_uint32(m_pSettings->m_pSettings, FreeRDP_MonitorCount, QApplication::screens().length());
     }
     freerdp_settings_set_uint32(m_pSettings->m_pSettings, FreeRDP_ColorDepth,
                                ui->cbColorDepth->currentData().toInt());
@@ -220,7 +222,7 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
                 + "×" + QString::number(desktopHeight);
         ui->cbDesktopSize->setCurrentText(curSize);
     }
-    if(m_pSettings->m_pSettings->MonitorCount > 1)
+    if(freerdp_settings_get_bool(m_pSettings->m_pSettings, FreeRDP_UseMultimon))
         ui->cbAllMonitor->setChecked(true);
     int nIndex = ui->cbColorDepth->findData(
                 freerdp_settings_get_uint32(m_pSettings->m_pSettings,
