@@ -121,6 +121,8 @@ private:
     int RedirectionPrinter();
     int RedirectionSerial();
 
+    bool SendMouseEvent(UINT16 flags, QPoint pos);
+
     // CConnect interface
 public Q_SLOTS:
     virtual void slotClipBoardChanged() override;
@@ -132,7 +134,7 @@ public Q_SLOTS:
     virtual void slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta) override;
     virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
     virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
-    
+
 private:
     // CConnect interface
     virtual int OnInit() override;

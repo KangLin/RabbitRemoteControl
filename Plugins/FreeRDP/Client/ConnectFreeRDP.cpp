@@ -1332,21 +1332,28 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
 	return TRUE;
 }
 
+// https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
+bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
+{
+#if FreeRDP_VERSION_MAJOR >= 3
+    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
+                                     pos.x(), pos.y());
+#else
+    return freerdp_input_send_mouse_event(m_pContext->Context.input,
+                                   flags,
+                                   pos.x(),
+                                   pos.y());
+#endif
+    return true;
+}
+
 void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotWheelEvent";
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotWheelEvent" << buttons << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
     UINT16 flags = 0;
-    /*
-    if(buttons & Qt::MouseButton::LeftButton)
-        flags |= PTR_FLAGS_BUTTON1;
-    if(buttons & Qt::MouseButton::RightButton)
-        flags |= PTR_FLAGS_BUTTON2;
-    if(buttons & Qt::MouseButton::MiddleButton)
-        flags |= PTR_FLAGS_BUTTON3;
-    //*/
     QPoint p = angleDelta;
     if(p.y() > 0)
     {
@@ -1378,75 +1385,52 @@ void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
 #endif
 }
 
+// https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
 void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseMoveEvent";
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseMoveEvent" << buttons << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
-    /*
-    if(buttons & Qt::MouseButton::LeftButton)
-        flags |= PTR_FLAGS_BUTTON1;
-    if(buttons & Qt::MouseButton::RightButton)
-        flags |= PTR_FLAGS_BUTTON2;
-    if(buttons & Qt::MouseButton::MiddleButton)
-        flags |= PTR_FLAGS_BUTTON3;//*/
-#if FreeRDP_VERSION_MAJOR >= 3
-    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
-                                     pos.x(), pos.y());
-#else
-        freerdp_input_send_mouse_event(m_pContext->Context.input,
-                                   flags,
-                                   pos.x(),
-                                   pos.y());
-#endif
+    SendMouseEvent(flags, pos);
 }
 
 void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMousePressEvent";
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMousePressEvent" << buttons << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_DOWN;
     if(buttons & Qt::MouseButton::LeftButton)
+    {
         flags |= PTR_FLAGS_BUTTON1;
-    if(buttons & Qt::MouseButton::RightButton)
+    } else if(buttons & Qt::MouseButton::RightButton)
+    {   
         flags |= PTR_FLAGS_BUTTON2;
-    if(buttons & Qt::MouseButton::MiddleButton)
+    } else if(buttons & Qt::MouseButton::MiddleButton)
+    {
         flags |= PTR_FLAGS_BUTTON3;
-#if FreeRDP_VERSION_MAJOR >= 3
-    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
-                                     pos.x(), pos.y());
-#else
-    freerdp_input_send_mouse_event(m_pContext->Context.input,
-                                   flags,
-                                   pos.x(),
-                                   pos.y());
-#endif
+    }
+    SendMouseEvent(flags, pos);    
 }
 
 void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseReleaseEvent";
+    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseReleaseEvent" << button << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = 0;
     if(button & Qt::MouseButton::LeftButton)
+    {
         flags |= PTR_FLAGS_BUTTON1;
-    if(button & Qt::MouseButton::MiddleButton)
+    } else if(button & Qt::MouseButton::MiddleButton)
+    {
         flags |= PTR_FLAGS_BUTTON3;
-    if(button & Qt::MouseButton::RightButton)
+    } else if(button & Qt::MouseButton::RightButton)
+    {
         flags |= PTR_FLAGS_BUTTON2;
-    //qDebug(FreeRDPConnect) << "Flags:" << flags;
-#if FreeRDP_VERSION_MAJOR >= 3
-    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
-                                     pos.x(), pos.y());
-#else
-    freerdp_input_send_mouse_event(m_pContext->Context.input,
-                                   flags,
-                                   pos.x(),
-                                   pos.y());
-#endif
+    }
+    SendMouseEvent(flags, pos);    
 }
 
 void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)

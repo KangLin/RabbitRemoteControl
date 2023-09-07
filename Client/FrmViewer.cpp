@@ -160,26 +160,42 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
 
 void CFrmViewer::mousePressEvent(QMouseEvent *event)
 {
-    QPointF pos = event->pos();
-    if(TranslationMousePoint(event->pos(), pos)) return;
-    //qDebug(Client) << "CFrmViewer::mousePressEvent" << event->button() << event->buttons();
+    QPointF pos =
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        event->position();
+#else
+        event->pos();
+#endif
+
+    if(TranslationMousePoint(pos, pos)) return;
+    //qDebug(Client) << "CFrmViewer::mousePressEvent" << event->button() << event->buttons() << pos;
     emit sigMousePressEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
 void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
 {
-    QPointF pos = event->pos();
-    if(TranslationMousePoint(event->pos(), pos)) return;
-    //qDebug(Client) << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons();
+    QPointF pos =
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        event->position();
+#else
+        event->pos();
+#endif
+    if(TranslationMousePoint(pos, pos)) return;
+    //qDebug(Client) << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons() << pos;
     emit sigMouseReleaseEvent(event->button(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
 void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 {
-    QPointF pos = event->pos();
-    if(TranslationMousePoint(event->pos(), pos)) return;
+    QPointF pos =
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        event->position();
+#else
+        event->pos();
+#endif
+    if(TranslationMousePoint(pos, pos)) return;
     emit sigMouseMoveEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     emit sigMouseMoveEvent(event);
     event->accept();
@@ -187,13 +203,13 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 
 void CFrmViewer::wheelEvent(QWheelEvent *event)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-    QPointF pos = event->position();
-    if(TranslationMousePoint(event->position(), pos)) return;
+    QPointF pos = 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        event->position();
 #else
-    QPointF pos = event->pos();
-    if(TranslationMousePoint(event->pos(), pos)) return;
+        event->pos();
 #endif
+    if(TranslationMousePoint(pos, pos)) return;
     emit sigWheelEvent(event->buttons(), QPoint(pos.x(), pos.y()), event->angleDelta());
     event->accept();
 }

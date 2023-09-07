@@ -7,6 +7,7 @@
     + Audio input and output
     + Drive(Files)
     + Printer
+  + Fix press the left and right mouse buttons at the same time BUG
 + App:
   + Add open the dialog of list connect settings 
 + Rename tag.sh to deploy.sh
