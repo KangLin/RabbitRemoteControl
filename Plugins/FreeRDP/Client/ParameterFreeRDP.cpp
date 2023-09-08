@@ -21,6 +21,24 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnecter(pare
         #endif
             ;
     m_szRedirectionMicrophoneParameters = m_szRedirectionSoundParameters;
+    
+    m_lstDesktopSizes <<"640×480"
+                      <<"800×600"
+                      <<"1024×600"
+                      <<"1024×768"
+                      <<"1280×720"
+                      <<"1280×854"
+                      <<"1280×960"
+                      <<"1280×1024"
+                      <<"1366×768"
+                      <<"1400×1050"
+                      <<"1440×900"
+                      <<"1600×900"
+                      <<"1600×1024"
+                      <<"1600×1200"
+                      <<"1680×1050"
+                      <<"1920×1080"
+                      <<"1920×1200";
 }
 
 int CParameterFreeRDP::Load(QSettings &set)
@@ -44,6 +62,8 @@ int CParameterFreeRDP::Load(QSettings &set)
                                     m_pSettings, FreeRDP_UseMultimon)).toBool();
     freerdp_settings_set_bool(m_pSettings, FreeRDP_UseMultimon, bUseMultimon);
     
+    SetDesktopSizes(set.value("FreeRDP/DesktopSizes",
+                              GetDesktopSizes()).toStringList());
     SetReconnectInterval(set.value("FreeRDP/ReconnectionInterval",
                                    GetReconnectInterval()).toInt());
     
@@ -88,7 +108,8 @@ int CParameterFreeRDP::Save(QSettings &set)
                      m_pSettings, FreeRDP_ColorDepth));
     set.setValue("FreeRDP/UseMultimon", freerdp_settings_get_bool(
                                             m_pSettings, FreeRDP_UseMultimon));
-
+    
+    set.setValue("FreeRDP/DesktopSizes", GetDesktopSizes());
     set.setValue("FreeRDP/ReconnectionInterval", GetReconnectInterval());
     set.setValue("FreeRDP/ShowVerifyDiaglog", GetShowVerifyDiaglog());
 
@@ -106,6 +127,17 @@ int CParameterFreeRDP::Save(QSettings &set)
                       lstDrive[i]);
     }
 
+    return 0;
+}
+
+const QStringList CParameterFreeRDP::GetDesktopSizes() const
+{
+    return m_lstDesktopSizes;
+}
+
+int CParameterFreeRDP::SetDesktopSizes(QStringList lstSize)
+{
+    m_lstDesktopSizes = lstSize;
     return 0;
 }
 

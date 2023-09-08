@@ -13,6 +13,8 @@
     #include <QAudioDeviceInfo>
 #endif
 
+#include "DlgDesktopSize.h"
+
 CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSetFreeRDP),
@@ -21,29 +23,13 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
-
-    ui->cbDesktopSize->addItem("640×480");
-    ui->cbDesktopSize->addItem("800×600");
-    ui->cbDesktopSize->addItem("1024×600");
-    ui->cbDesktopSize->addItem("1024×768");
-    ui->cbDesktopSize->addItem("1280×720");
-    ui->cbDesktopSize->addItem("1280×854");
-    ui->cbDesktopSize->addItem("1280×960");
-    ui->cbDesktopSize->addItem("1280×1024");
-    ui->cbDesktopSize->addItem("1366×768");
-    ui->cbDesktopSize->addItem("1400×1050");
-    ui->cbDesktopSize->addItem("1440×900");
-    ui->cbDesktopSize->addItem("1600×900");
-    ui->cbDesktopSize->addItem("1600×1024");
-    ui->cbDesktopSize->addItem("1600×1200");
-    ui->cbDesktopSize->addItem("1680×1050");
-    ui->cbDesktopSize->addItem("1920×1080");
-    ui->cbDesktopSize->addItem("1920×1200");
+    
+    ui->cbDesktopSize->addItems(m_pSettings->GetDesktopSizes());
 
     int width = GetScreenGeometry().width();
     int height = GetScreenGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
-    ui->rbFullScreen->setText(tr("Full screen") + ": " + curSize);
+    ui->rbLocalScreen->setText(tr("Local screen:") + ": " + curSize);
     if(ui->cbDesktopSize->findText(curSize) == -1)
         InsertDesktopSize(width, height);
     
@@ -213,7 +199,7 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
                                                 FreeRDP_DesktopHeight);
     if(width == desktopWidth && height == desktopHeight)
     {
-        ui->rbFullScreen->setChecked(true);
+        ui->rbLocalScreen->setChecked(true);
         ui->cbDesktopSize->setCurrentText(curSize);
     } else {
         ui->rbSelect->setChecked(true);
@@ -263,14 +249,14 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
     }
 }
 
-void CDlgSetFreeRDP::on_rbFullScreen_clicked(bool checked)
+void CDlgSetFreeRDP::on_rbLocalScreen_clicked(bool checked)
 {
     if(!checked) return;
     QScreen* pScreen = QApplication::primaryScreen();
     int width = pScreen->availableGeometry().width();
     int height = pScreen->availableGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
-    //ui->rbFullScreen->setText(tr("Full screen") + ": " + curSize);
+    //ui->rbLocalScreen->setText(tr("Local screen:") + ": " + curSize);
     if(ui->cbDesktopSize->findText(curSize) == -1)
         ui->cbDesktopSize->addItem(curSize);
     ui->cbDesktopSize->setCurrentText(curSize);
@@ -301,6 +287,21 @@ QRect CDlgSetFreeRDP::GetScreenGeometry()
         r = pScreen->geometry();
     }
     return r;
+}
+int CDlgSetFreeRDP::InsertDesktopSize(QString szSize)
+{
+    int w, h;
+    int nIndex = szSize.indexOf("×");
+    if(nIndex > -1)
+    {
+        bool ok = false;
+        w = szSize.left(nIndex).toInt(&ok);
+        if(ok)
+            h = szSize.right(szSize.length() - nIndex - 1).toInt(&ok);
+        if(!ok)
+            return -1;
+    }
+    return InsertDesktopSize(w, h);
 }
 
 int CDlgSetFreeRDP::InsertDesktopSize(int width, int height)
@@ -428,4 +429,21 @@ bool CDlgSetFreeRDP::HasAudioInput()
 #else
     return !QAudioDeviceInfo::defaultInputDevice().isNull();
 #endif
+}
+
+void CDlgSetFreeRDP::on_pbSizeEdit_clicked()
+{
+    CDlgDesktopSize dlg;
+    QStringList lstSize;
+    for(int i = 0; i < ui->cbDesktopSize->count(); i++)
+        lstSize << ui->cbDesktopSize->itemText(i);
+    dlg.SetDesktopSizes(lstSize);
+    if(QDialog::Accepted == dlg.exec())
+    {
+        ui->cbDesktopSize->clear();
+        foreach(auto s, dlg.GetDesktopSize())
+        {
+            InsertDesktopSize(s);
+        }
+    }
 }

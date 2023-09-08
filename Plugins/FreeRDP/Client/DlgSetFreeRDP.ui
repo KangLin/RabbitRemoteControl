@@ -283,9 +283,9 @@
           <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <widget class="QRadioButton" name="rbFullScreen">
+             <widget class="QRadioButton" name="rbLocalScreen">
               <property name="text">
-               <string>Full screen</string>
+               <string>Local screen</string>
               </property>
              </widget>
             </item>
@@ -301,7 +301,30 @@
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="cbDesktopSize"/>
+             <widget class="QComboBox" name="cbDesktopSize">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="editable">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pbSizeEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -495,7 +518,7 @@
   <tabstop>cbOnlyView</tabstop>
   <tabstop>pbOk</tabstop>
   <tabstop>pbCancel</tabstop>
-  <tabstop>rbFullScreen</tabstop>
+  <tabstop>rbLocalScreen</tabstop>
   <tabstop>rbSelect</tabstop>
   <tabstop>cbDesktopSize</tabstop>
   <tabstop>cbAllMonitor</tabstop>

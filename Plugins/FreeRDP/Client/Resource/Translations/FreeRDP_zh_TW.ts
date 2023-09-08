@@ -229,6 +229,29 @@
     </message>
 </context>
 <context>
+    <name>CDlgDesktopSize</name>
+    <message>
+        <location filename="../../DlgDesktopSize.ui" line="14"/>
+        <source>Edit screen resolution</source>
+        <translation>編譯屏幕分辨率</translation>
+    </message>
+    <message>
+        <location filename="../../DlgDesktopSize.ui" line="31"/>
+        <source>Add</source>
+        <translation>增加</translation>
+    </message>
+    <message>
+        <location filename="../../DlgDesktopSize.ui" line="41"/>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+    <message>
+        <location filename="../../DlgDesktopSize.ui" line="58"/>
+        <source>The format is error. Please enter the width×height correctly</source>
+        <translation>格式錯誤。請正確輸入高×寬</translation>
+    </message>
+</context>
+<context>
     <name>CDlgGetUserPasswordFreeRDP</name>
     <message>
         <location filename="../../DlgGetUserPasswordFreeRDP.ui" line="14"/>
@@ -345,73 +368,88 @@
         <translation>重連接次數</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="352"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="32"/>
+        <source>Local screen:</source>
+        <translation>本地屏幕:</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="325"/>
+        <source>...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="375"/>
         <source>Local resource</source>
         <translation>本地資源</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="418"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="441"/>
         <source>Audio</source>
         <translation>音頻</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="424"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="447"/>
         <source>Play remote audio</source>
         <translation>播放音頻</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="430"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="453"/>
         <source>On this computer</source>
         <translation>在此計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="440"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="463"/>
         <source>On remote computer</source>
         <translation>在遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="450"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="473"/>
         <source>Disable</source>
         <translation>禁止</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="463"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="486"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation>在遠程計算機上使用本計算機的麥克風</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="358"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="361"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="364"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="367"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="381"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="384"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="387"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="390"/>
         <source>Printer: Redirection the local printers to the remote computer</source>
         <translation>打印機：重定向本地打印機到遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="377"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="380"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="383"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="386"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="288"/>
+        <source>Local screen</source>
+        <translation>本地屏幕</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="400"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="403"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="406"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="409"/>
         <source>Clipboard: Redirection the clipboard</source>
         <translation>剪切板：重定向剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="396"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="399"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="416"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="419"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="422"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation>重定向下列選中的驅動器到遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="402"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="425"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation>驅動器：重定向下列選中的驅動器到遠程計算機上</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="77"/>
         <location filename="../../DlgSetFreeRDP.ui" line="89"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="197"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="354"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="185"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="410"/>
         <source>Please checked save password to enable</source>
         <translation>請選保存密碼允許輸入</translation>
     </message>
@@ -453,48 +491,42 @@
         <translation>遠程桌面尺寸：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="288"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="46"/>
-        <source>Full screen</source>
-        <translation>全屏</translation>
-    </message>
-    <message>
         <location filename="../../DlgSetFreeRDP.ui" line="299"/>
         <source>Select size:</source>
         <translation>選擇尺寸：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="311"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="334"/>
         <source>Use all local monitors for remote sessions</source>
         <translation>將本地所有監視器用於遠程會話</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="323"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="346"/>
         <source>Remote color depth:</source>
         <translation>遠程顏色深度：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="50"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="36"/>
         <source>8 bits</source>
         <translation>8 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="51"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="37"/>
         <source>16 bits</source>
         <translation>16 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="52"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="38"/>
         <source>24 bits</source>
         <translation>24 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="53"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="39"/>
         <source>32 bits</source>
         <translation>32 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="56"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="42"/>
         <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
 - sys:winmm- sys:ios
 - sys:mac- sys:opensles- sys:alsa
@@ -504,22 +536,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="71"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="57"/>
         <source>Options for redirection of audio output:
 </source>
         <translation>重定向音頻輸出的選項:
 </translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="76"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="62"/>
         <source>Options for redirection of audio input:
 </source>
         <translation>重定向音頻輸入的選項:
 </translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="195"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="351"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="183"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="407"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>

@@ -34,6 +34,9 @@ public:
     void SetDomain(const QString& szDomain);
     const QString GetDomain() const;
     
+    const QStringList GetDesktopSizes() const;
+    int SetDesktopSizes(QStringList size);
+
     UINT GetReconnectInterval() const;
     void SetReconnectInterval(UINT newReconnectInterval);
     
@@ -72,6 +75,8 @@ signals:
     void sigRedirectionPrinterChanged(bool RedirectionPrinter);
 
 private:
+    QStringList m_lstDesktopSizes;
+
     UINT32 m_nReconnectInterval; // Unit: second
     bool m_bShowVerifyDiaglog;
     

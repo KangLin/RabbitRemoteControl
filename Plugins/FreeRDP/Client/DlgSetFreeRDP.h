@@ -23,7 +23,7 @@ public:
 private slots:
     void on_pbOk_clicked();
     void on_pbCancel_clicked();
-    void on_rbFullScreen_clicked(bool checked);
+    void on_rbLocalScreen_clicked(bool checked);
     void on_leServer_editingFinished();
 
     void on_pbShow_clicked();
@@ -34,8 +34,11 @@ private slots:
     
     void on_cbSavePassword_stateChanged(int arg1);
     
+    void on_pbSizeEdit_clicked();
+    
 private:
     QRect GetScreenGeometry();
+    int InsertDesktopSize(QString szSize);
     int InsertDesktopSize(int width, int height);
     bool HasAudioOutput();
     bool HasAudioInput();

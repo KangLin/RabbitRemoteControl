@@ -19,6 +19,7 @@ SET(FreeRDP_SOURCE_FILES
     ClipboardFreeRDP.cpp
     ClipboardMimeData.cpp
     DlgGetUserPasswordFreeRDP.cpp
+    DlgDesktopSize.cpp
     )
 
 SET(FreeRDP_HEADER_FILES
@@ -32,11 +33,13 @@ SET(FreeRDP_HEADER_FILES
     ClipboardFreeRDP.h
     ClipboardMimeData.h
     DlgGetUserPasswordFreeRDP.h
+    DlgDesktopSize.h
     )
 
 SET(FreeRDP_UI_FILES
     DlgSetFreeRDP.ui
     DlgGetUserPasswordFreeRDP.ui
+    DlgDesktopSize.ui
     )
 
 SET(FreeRDP_DEFINITIONS
