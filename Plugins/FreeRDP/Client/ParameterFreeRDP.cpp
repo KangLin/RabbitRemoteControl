@@ -272,6 +272,14 @@ void CParameterFreeRDP::SetClipboard(bool c)
     CParameterConnecter::SetClipboard(c);
 }
 
+void CParameterFreeRDP::SetOnlyView(bool bOnly)
+{
+#if FreeRDP_VERSION_MAJOR >= 3
+    freerdp_settings_set_bool(m_pSettings, FreeRDP_SuspendInput, bOnly);
+#endif
+    return CParameterConnecter::SetOnlyView(bOnly);
+}
+
 void CParameterFreeRDP::SetHost(const QString &szHost)
 {
     Q_ASSERT(m_pSettings);

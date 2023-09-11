@@ -247,6 +247,7 @@ int CConnectFreeRDP::OnProcess()
 void CConnectFreeRDP::slotClipBoardChanged()
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotClipBoardChanged()";
+    if(m_pParameter && m_pParameter->GetOnlyView()) return;
     if(m_pParameter->GetClipboard())
         m_ClipBoard.slotClipBoardChanged();
 }
@@ -1335,6 +1336,8 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
 bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
 {
+    if(m_pParameter && m_pParameter->GetOnlyView()) return true;
+
 #if FreeRDP_VERSION_MAJOR >= 3
     freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
                                      pos.x(), pos.y());

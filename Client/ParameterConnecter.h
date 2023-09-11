@@ -107,7 +107,7 @@ public:
     void SetSavePassword(bool save);
 
     const bool GetOnlyView() const;
-    void SetOnlyView(bool only);
+    virtual void SetOnlyView(bool only);
     
     virtual const bool GetLocalCursor() const;
     virtual void SetLocalCursor(bool cursor);

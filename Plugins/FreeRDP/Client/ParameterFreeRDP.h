@@ -30,7 +30,8 @@ public:
     virtual void SetUser(const QString &szUser) Q_DECL_OVERRIDE;
     virtual void SetPassword(const QString &szPassword) Q_DECL_OVERRIDE;
     virtual void SetClipboard(bool c) Q_DECL_OVERRIDE;
-    
+    virtual void SetOnlyView(bool only) Q_DECL_OVERRIDE;
+
     void SetDomain(const QString& szDomain);
     const QString GetDomain() const;
     
