@@ -83,8 +83,8 @@ If not, you must specify the CMake parameters:
         vcpkg install freerdp
 
   + Specify the CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-  + Using vcpkg is not support the server. 
-    If you need to use the server, you need to compile it from source.
+  + With vcpk, the FreeRDP service is not a default feature,
+    so you need to specify it manually.
 - Compile from source code
   + Source-code location: https://github.com/FreeRDP/FreeRDP
   + Compilation instructions: https://github.com/FreeRDP/FreeRDP/wiki/Compilation

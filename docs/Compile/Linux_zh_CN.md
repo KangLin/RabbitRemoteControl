@@ -145,7 +145,7 @@
         ~/vcpkg$ vcpkg install freerdp
 
   + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-  + 使用 vcpk ，不支持 FreeRDP 服务，所以需要从源码编译它。
+  + 使用 vcpk ， FreeRDP 服务不是默认功能，所以需要你手动指定。
 - 从源码编译
   + 源码位置：https://github.com/FreeRDP/FreeRDP
   + 编译详见：https://github.com/FreeRDP/FreeRDP/wiki/Compilation
