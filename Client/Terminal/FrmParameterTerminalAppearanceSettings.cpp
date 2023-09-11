@@ -121,7 +121,7 @@ int CFrmParameterTerminalAppearanceSettings::AcceptSettings()
 
 void CFrmParameterTerminalAppearanceSettings::on_pbBrowser_clicked()
 {
-    QString file = RabbitCommon::CDir::Instance()->GetOpenFileName(this,
+    QString file = QFileDialog::getOpenFileName(this,
                                                tr("Backgroup image"), QString(),
                 tr("Images (*.png *.xpm *.jpg *.bmp *.jpeg);;All files (*.*)"));
     if(!file.isEmpty())
