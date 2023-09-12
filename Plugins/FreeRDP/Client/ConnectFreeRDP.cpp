@@ -1309,7 +1309,7 @@ BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 	                   context->gdi->dstFormat, pThis->m_Image.bits(), NULL))
 		return FALSE;
     pThis->UpdateBuffer(0, 0, desktopWidth, desktopHeight);
-    return FALSE;
+    return TRUE;
 }
 
 BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_UPDATE *play_sound)
@@ -1445,7 +1445,7 @@ void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
     if(RDP_SCANCODE_UNKNOWN != key)
 #if FreeRDP_VERSION_MAJOR >= 3
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.context.input, true, false, k);
+        freerdp_input_send_keyboard_event_ex(m_pContext->Context.context.input, true, true, k);
 #else
         freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, true, k);
 #endif
