@@ -5,38 +5,45 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
 ### Environment
 #### Operating system 
 
-    ~$ lsb_release -a
-    No LSB modules are available.
-    Distributor ID:	Ubuntu
-    Description:	Ubuntu 20.04.2 LTS
-    Release:	    20.04
-    Codename:	    Focal Fossa
+- Ubuntu
+
+      ~$ lsb_release -a
+      No LSB modules are available.
+      Distributor ID:	Ubuntu
+      Description:	Ubuntu 22.04.3 LTS
+      Release:	22.04
+      Codename:	jammy
+
+- Debian
+
+      ~$ lsb_release -a
+      No LSB modules are available.
+      Distributor ID:	Debian
+      Description:	Debian GNU/Linux 12 (bookworm)
+      Release:	12
+      Codename:	bookworm
 
 #### Qt Creator
-Version: v5.0.2  
+Version: v9.0.2  
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
 ### Tools
 
-- Compiler
-  + GCC/g++
-  
-        ~$ sudo apt install g++ gcc
-        
-- Qt
-  + System build-in:
-  
-        ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
-        
-  + Qt (official release): https://download.qt.io/official_releases/qt/  
-    Current version: Qt 5.12.12
+- Install the development tools package
 
-- [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
-  Prior versions don't have CMake support.
+      ~$ sudo apt install build-essential
 
-      ~$ sudo apt install sudo apt install qtcreator
+  - The development tools package already includes the installation of the following:
+    - Compiler
+      - GCC/g++
   
+            ~$ sudo apt install g++ gcc
+            
+      - automake、autoconf、make、fakeroot
+
+            ~$ sudo apt install automake autoconf make fakeroot
+
 - Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
       ~$ sudo apt install git
@@ -44,87 +51,46 @@ Prior versions don't have CMake support.
 - CMake: [https://cmake.org](https://cmake.org/)
 
       ~$ sudo apt install cmake
-        
-- Automake, Autoconf, Make
 
-      ~$ sudo apt install automake autoconf make
+- Package tools: debhelper
+
+      ~$ sudo apt install debhelper
+
+- Qt
+  + Qt (official release): https://download.qt.io/official_releases/qt/
+  + Qt5: Current version: 5.12.12
+    + System build-in:
+
+          ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
+
+  + Qt6: Current version: 6.4.2
+    + System build-in:
+
+          ~$ sudo apt install qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev qt6-webengine-dev qt6-webengine-dev-tools
+
+- [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
+  Prior versions don't have CMake support.
+
+      ~$ sudo apt install qtcreator
 
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 
-- Package tools: debhelper、 fakeroot
-
-      ~$ sudo apt install debhelper fakeroot
-       
-### Compilation
-
-```bash
-    # Install library dependencies
-    ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
-    ~$ sudo apt install debhelper fakeroot
-    # Install Qt
-    ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
-    # Install X development libraries
-    ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
-    ~$ sudo apt install libutf8proc-dev libpam0g-dev # Need by compile qtermwidget
-    # Install libpixman, RabbitVNC and TigerVNC need it.
-    ~$ sudo apt install libpixman-1-dev
-    # Compile RabbitVNC
-    ~$ git clone https://github.com/KangLin/RabbitVNC.git
-    ~$ cd RabbitVNC
-    ~$ mkdir build
-    ~/RabbitVNC/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/RabbitVNC/build$ cmake --build . --config Release --target install
-    ~/RabbitVNC/build$ cd ~
-    # Compile TigerVNC
-    ~$ git clone https://github.com/KangLin/tigervnc.git
-    ~$ cd tigervnc
-    ~$ mkdir build
-    ~/tigervnc/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/tigervnc/build$ cmake --build . --config Release --target install
-    ~/tigervnc/build$ cd ~
-    ~$ sudo apt install libqxmpp-dev
-    # Compile libdatachannel
-    ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
-    ~$ cd libdatachannel
-    ~/libdatachannel$ git submodule update --init --recursive
-    ~/libdatachannel$ mkdir build
-    ~/libdatachannel$ cd build
-    ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/libdatachannel/build$ cmake --build . --config Release --target install
-    ~/libdatachannel/build$ cd ~
-    # Compile QtService
-    ~$ git clone https://github.com/KangLin/qt-solutions.git
-    ~$ cd qt-solutions/qtservice
-    ~/qt-solutions/qtservice$ mkdir build
-    ~/qt-solutions/qtservice$ cd build
-    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
-    ~/qt-solutions/qtservice/build$ cmake --build . --config Release --target install
-    ~/qt-solutions/qtservice/build$ cd ~
-    ~$ git clone https://github.com/KangLin/RabbitCommon.git
-    ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
-    ~$ cd RabbitRemoteControl
-    ~/RabbitRemoteControl$ mkdir build
-    ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
-    ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
-```
-
-See: [Compile integration](../../.github/workflows/ubuntu.yml)
+      ~$ sudo apt install doxygen
 
 ### Library dependencies
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+- [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [OPTIONAL] RFB
   + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [OPTIONAL] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
-- [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
+- [OPTIONAL] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [OPTIONAL] [SSH]
   + libssh: [https://www.libssh.org](https://www.libssh.org/)
   + libssh2:
     - [https://www.libssh2.org](https://www.libssh2.org/)
     - [https://github.com/libssh2/libssh2](https://github.com/libssh2/libssh2/)
-- [OPTIONAL] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [OPTIONAL] libtelnet: [https://github.com/seanmiddleditch/libtelnet](https://github.com/seanmiddleditch/libtelnet)
 - [OPTIONAL] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 - [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
@@ -162,7 +128,7 @@ If not, you must specify the CMake parameters:
           ~$ git clone https://github.com/FreeRDP/FreeRDP.git
           ~$ cd FreeRDP
           ~/FreeRDP$ mkdir build
-          ~/FreeRDP/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install -DWITH_SERVER=ON
+          ~/FreeRDP/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install -DWITH_SERVER=ON
           ~/FreeRDP/build$ cmake --build . --config Release --target install
           
   + Specify the CMake parameters:
@@ -189,7 +155,7 @@ Source-code location: https://github.com/KangLin/RabbitVNC
       ~$ git clone https://github.com/KangLin/RabbitVNC.git
       ~$ cd RabbitVNC
       ~/RabbitVNC$ mkdir build
-      ~/RabbitVNC$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+      ~/RabbitVNC$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
       ~/RabbitVNC$ cmake --build . --config Release --target install
     
 - Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
@@ -206,7 +172,7 @@ Source-code location: https://github.com/KangLin/tigervnc
     ~$ git clone https://github.com/KangLin/tigervnc.git
     ~$ cd tigervnc
     ~/tigervnc$ mkdir build
-    ~/tigervnc$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+    ~/tigervnc$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/tigervnc$ cmake --build . --config Release --target install
     
 - Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
@@ -231,7 +197,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~/libdatachannel$ git submodule update --init --recursive
         ~/libdatachannel$ mkdir build
         ~/libdatachannel$ cd build
-        ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
         ~/libdatachannel/build$ cmake --build . --config Release --target install
 
   + Specify the CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
@@ -244,7 +210,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~$ cd qxmpp
         ~/qxmpp$ mkdir build
         ~/qxmpp$ cd build
-        ~/qxmpp/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
+        ~/qxmpp/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
         ~/qxmpp/build$ cmake --build . --config Release --target install
 
   + Specify the CMake parameters: -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
@@ -285,7 +251,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~$ cd qt-solutions
         ~/qt-solutions$ mkdir build
         ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
+        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
         ~/qt-solutions/build$ cmake --build . --config Release --target install
   
   + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
@@ -323,25 +289,21 @@ Source-code location: https://github.com/KangLin/tigervnc
 - If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
-- Install target
-  + install-runtime: Only install runtime libraries and the program
-  + install: Install runtime and development libraries and the program
-  
 - Compilation
   + Compile from the command-line
     - Not using vcpkg
 
           ~$ cd RabbitRemoteControl
           ~/RabbitRemoteControl$ mkdir build
-          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install
-          ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install-runtime
+          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+          ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
 
     -  If using vcpkg
 
            ~$ cd RabbitRemoteControl
            ~/RabbitRemoteControl$ mkdir build
-           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=`pwd`/install [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-           ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install-runtime
+           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+           ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
 
   + Using an IDE (Qt Creator)
     - Open project: Menu→ File→ Open File or project, Select the CMakeLists.txt of the project
@@ -361,7 +323,7 @@ Source-code location: https://github.com/KangLin/tigervnc
           ./build_debpackage.sh $QT_ROOT $RabbitCommon_DIR
 
 - Run
-  + The application is installed in `pwd`/install/bin
+  + The application is installed in install/bin
   
         ~$ cd RabbitRemoteControl
         ~/RabbitRemoteControl$ cd build/install/bin
@@ -372,3 +334,63 @@ It may be that the plugin's dependencies are not installed on the system.
 You can add the path of the dependent library to the environment variable PKG_CONFIG_PATH.
 You can also add the path of the dependent library to the /etc/ld.so.conf file,
 and then run ldconfig to add the dependent library to the system.
+
+### Compilation
+
+```bash
+    #Install the development tools package
+    ~$ sudo apt install build-essential
+    # Install tools
+    ~$ sudo apt install git cmake debhelper doxygen
+    # Install Qt5
+    ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
+
+    # Install library dependencies
+    ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
+    # Install X development libraries
+    ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
+    ~$ sudo apt install libutf8proc-dev libpam0g-dev # Need by compile qtermwidget
+    # Install libpixman, RabbitVNC and TigerVNC need it.
+    ~$ sudo apt install libpixman-1-dev
+    # Compile RabbitVNC
+    ~$ git clone https://github.com/KangLin/RabbitVNC.git
+    ~$ cd RabbitVNC
+    ~$ mkdir build
+    ~/RabbitVNC/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/RabbitVNC/build$ cmake --build . --config Release --target install
+    ~/RabbitVNC/build$ cd ~
+    # Compile TigerVNC
+    ~$ git clone https://github.com/KangLin/tigervnc.git
+    ~$ cd tigervnc
+    ~$ mkdir build
+    ~/tigervnc/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/tigervnc/build$ cmake --build . --config Release --target install
+    ~/tigervnc/build$ cd ~
+    ~$ sudo apt install libqxmpp-dev
+    # Compile libdatachannel
+    ~$ git clone https://github.com/paullouisageneau/libdatachannel.git
+    ~$ cd libdatachannel
+    ~/libdatachannel$ git submodule update --init --recursive
+    ~/libdatachannel$ mkdir build
+    ~/libdatachannel$ cd build
+    ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/libdatachannel/build$ cmake --build . --config Release --target install
+    ~/libdatachannel/build$ cd ~
+    # Compile QtService
+    ~$ git clone https://github.com/KangLin/qt-solutions.git
+    ~$ cd qt-solutions/qtservice
+    ~/qt-solutions/qtservice$ mkdir build
+    ~/qt-solutions/qtservice$ cd build
+    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/qt-solutions/qtservice/build$ cmake --build . --config Release --target install
+    ~/qt-solutions/qtservice/build$ cd ~
+    ~$ git clone https://github.com/KangLin/RabbitCommon.git
+    ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+    ~$ cd RabbitRemoteControl
+    ~/RabbitRemoteControl$ mkdir build
+    ~/RabbitRemoteControl$ cd build
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
+```
+
+See: [Compile integration](../../.github/workflows/ubuntu.yml)

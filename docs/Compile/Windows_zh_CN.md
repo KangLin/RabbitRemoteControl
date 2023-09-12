@@ -8,7 +8,7 @@
 
 #### Qt Creator
 
-版本：v5.0.2。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+版本：v11.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -88,7 +88,7 @@
           git clone https://github.com/FreeRDP/FreeRDP.git
           cd FreeRDP
           mkdir build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DWITH_SERVER=ON
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DWITH_SERVER=ON
           cmake --build . --config Release --target install
           
   + 指定 CMake 参数：
@@ -107,7 +107,7 @@
         git clone https://github.com/KangLin/libvncserver.git
         cd libvncserver
         mkdir build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config Release --target install
   
   + 指定 CMake 参数：-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
@@ -121,7 +121,7 @@
       git clone https://github.com/KangLin/RabbitVNC.git
       cd RabbitVNC
       mkdir build
-      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
       cmake --build . --config Release --target install
 
 - 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
@@ -137,7 +137,7 @@
     git clone https://github.com/KangLin/tigervnc.git
     cd tigervnc
     mkdir build
-    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --config Release --target install
     
 - 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
@@ -159,7 +159,7 @@
         git submodule update --init --recursive
         mkdir build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         cmake --build . --config Release --target install
 
   + 指定 CMake 参数: -Dlibdatachannel_DIR=[libdatachannel 安装目录]/lib/cmake/LibDataChannel
@@ -172,7 +172,7 @@
         cd qxmpp
         mkdir build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
         cmake --build . --config Release --target install
 
   + 指定 CMake 参数: -DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
@@ -202,7 +202,7 @@
         ~$ cd qt-solutions
         ~/qt-solutions$ mkdir build
         ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install
+        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         ~/qt-solutions/build$ cmake --build . --config Release --target install
         
   + 指定 CMake 参数: -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
@@ -249,7 +249,7 @@
   
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
           cmake --build . --config Release --target install-runtime
           makensis Install.nsi  ;打包
 
@@ -259,4 +259,4 @@
     - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
 
-**注意：**如果插件没有加载。则可能是插件的依赖库没有安装到系统。你可以把依赖库复制插件的目录中。
+**注意：** 如果插件没有加载。则可能是插件的依赖库没有安装到系统。你可以把依赖库复制插件的目录中。

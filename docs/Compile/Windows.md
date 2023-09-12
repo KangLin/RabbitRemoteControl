@@ -8,7 +8,7 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
     Windows 10, version 20H2 (19042.985)
 
 #### QtCreator
-Version: v5.0.2.  
+Version: v11.0.0 .  
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -92,7 +92,7 @@ If not, you must specify the CMake parameters:
           git clone https://github.com/FreeRDP/FreeRDP.git
           cd FreeRDP
           mkdir build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DWITH_SERVER=ON
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DWITH_SERVER=ON
           cmake --build . --config Release --target install
 
   + Specify the CMake parameters: 
@@ -111,7 +111,7 @@ If not, you must specify the CMake parameters:
         git clone https://github.com/KangLin/libvncserver.git
         cd libvncserver
         mkdir build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config Release --target install
 
   + Specify the CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
@@ -125,7 +125,7 @@ Source-code location: https://github.com/KangLin/RabbitVNC
       git clone https://github.com/KangLin/RabbitVNC.git
       cd RabbitVNC
       mkdir build
-      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
       cmake --build . --config Release --target install
     
 - Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
@@ -143,7 +143,7 @@ Source-code location: https://github.com/KangLin/tigervnc
     git clone https://github.com/KangLin/tigervnc.git
     cd tigervnc
     mkdir build
-    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --config Release --target install
 
 - Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
@@ -166,7 +166,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         git submodule update --init --recursive
         mkdir build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         cmake --build . --config Release --target install
 
   + Specify the CMake parameters: -Dlibdatachannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
@@ -179,7 +179,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         cd qxmpp
         mkdir build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
         cmake --build . --config Release --target install
 
   + Specify the CMake parameters: -DQXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
@@ -209,7 +209,7 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~$ cd qt-solutions
         ~/qt-solutions$ mkdir build
         ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install
+        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         ~/qt-solutions/build$ cmake --build . --config Release --target install
         
   + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
@@ -256,7 +256,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREIX=%CD%/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
           cmake --build . --config Release --target install-runtime
           makensis Install.nsi  ;Package
 
