@@ -2,6 +2,7 @@
 
 #include "FrmFullScreenToolBar.h"
 #include "ui_FrmFullScreenToolBar.h"
+#include "ui_mainwindow.h"
 #include "RabbitCommonDir.h"
 #include <QStyleOption>
 #include <QVBoxLayout>
@@ -46,15 +47,29 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     pFull->setStatusTip(tr("Full"));
     
     m_ToolBar.addSeparator();
+    m_pGBViewZoom = new QActionGroup(this);
     QAction* pZoomToWindow = m_ToolBar.addAction(QIcon::fromTheme("zoom-fit-best"),
        tr("Zoom to windows"), m_pMain, SLOT(on_actionZoomToWindow_Z_triggered()));
-    m_pMain->m_pGBViewZoom->addAction(pZoomToWindow);
+    m_pGBViewZoom->addAction(pZoomToWindow);
+    pZoomToWindow->setCheckable(true);
+    pZoomToWindow->setChecked(m_pMain->ui->actionZoomToWindow_Z->isChecked());
+    QAction* pZoomKeepAspectRationToWindow =
+        m_ToolBar.addAction(QIcon::fromTheme("zoom-aspect-ratio"),
+                            tr("Keep aspect ration zoom to window"), m_pMain,
+                  SLOT(on_actionKeep_aspect_ration_to_windows_K_triggered()));
+    m_pGBViewZoom->addAction(pZoomKeepAspectRationToWindow);
+    pZoomKeepAspectRationToWindow->setCheckable(true);
+    pZoomKeepAspectRationToWindow->setChecked(m_pMain->ui->actionKeep_aspect_ration_to_windows_K->isChecked());
     QAction* pZoomOrigin = m_ToolBar.addAction(QIcon::fromTheme("zoom-original"),
                     tr("Origin"), m_pMain, SLOT(on_actionOriginal_O_triggered()));
-    m_pMain->m_pGBViewZoom->addAction(pZoomOrigin);
+    m_pGBViewZoom->addAction(pZoomOrigin);
+    pZoomOrigin->setCheckable(true);
+    pZoomOrigin->setChecked(m_pMain->ui->actionOriginal_O->isChecked());
     QAction* pZoomIn = m_ToolBar.addAction(QIcon::fromTheme("zoom-in"),
                     tr("Zoom In"), m_pMain, SLOT(on_actionZoom_In_triggered()));
-    m_pMain->m_pGBViewZoom->addAction(pZoomIn);
+    m_pGBViewZoom->addAction(pZoomIn);
+    pZoomIn->setCheckable(true);
+    pZoomIn->setChecked(m_pMain->ui->actionZoom_In->isChecked());
 //    QSpinBox* psbZoomFactor = new QSpinBox(&m_ToolBar);
 //    psbZoomFactor->setRange(0, 9999999);
 //    psbZoomFactor->setValue(100);
@@ -66,7 +81,9 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
 //    m_ToolBar.addWidget(psbZoomFactor);
     QAction* pZoomOut = m_ToolBar.addAction(QIcon::fromTheme("zoom-out"),
                   tr("Zoom Out"), m_pMain, SLOT(on_actionZoom_Out_triggered()));
-    m_pMain->m_pGBViewZoom->addAction(pZoomOut);
+    m_pGBViewZoom->addAction(pZoomOut);
+    pZoomOut->setCheckable(true);
+    pZoomOut->setChecked(m_pMain->ui->actionZoom_Out->isChecked());
 
     m_ToolBar.addSeparator();
     m_ToolBar.addAction(QIcon::fromTheme("camera-photo"), tr("ScreenShot"),

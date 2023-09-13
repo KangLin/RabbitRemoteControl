@@ -52,6 +52,7 @@ private:
     
     QPointF m_Pos;
     QToolBar m_ToolBar;
+    QActionGroup* m_pGBViewZoom;
     QAction* m_pNail;
     MainWindow* m_pMain;
     QTimer m_Timer;

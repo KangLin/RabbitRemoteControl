@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "ui_mainwindow.h"
 #ifdef HAVE_UPDATE
 #include "FrmUpdater.h"
 #endif
@@ -471,15 +471,18 @@ void MainWindow::on_actionZoomToWindow_Z_triggered()
 {
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::ZoomToWindow);
+    // because it may be called from CFrFullScreenToolBar::m_ToolBar
+    ui->actionZoomToWindow_Z->setChecked(true);
     if(m_ptbZoom)
         m_ptbZoom->setIcon(ui->actionZoomToWindow_Z->icon());
 }
 
-void MainWindow::on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1)
+void MainWindow::on_actionKeep_aspect_ration_to_windows_K_triggered()
 {
-    if(!arg1) return;
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::KeepAspectRationToWindow);
+    // because it may be called from CFrFullScreenToolBar::m_ToolBar
+    ui->actionKeep_aspect_ration_to_windows_K->setChecked(true);
     if(m_ptbZoom)
         m_ptbZoom->setIcon(ui->actionKeep_aspect_ration_to_windows_K->icon());
 }
@@ -494,6 +497,8 @@ void MainWindow::on_actionOriginal_O_triggered()
     qDebug(App) << "on_actionOriginal_O_triggered()";
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::Original);
+    // because it may be called from CFrFullScreenToolBar::m_ToolBar
+    ui->actionOriginal_O->setChecked(true);
     if(m_psbZoomFactor)
         m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     if(m_ptbZoom)
@@ -504,6 +509,8 @@ void MainWindow::on_actionZoom_In_triggered()
 {
     if(!m_pView) return;
     m_pView->slotZoomIn();
+    // because it may be called from CFrFullScreenToolBar::m_ToolBar
+    ui->actionZoom_In->setChecked(true);
     if(m_psbZoomFactor)
         m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     m_pView->SetAdaptWindows(CFrmViewer::Zoom);
@@ -515,6 +522,8 @@ void MainWindow::on_actionZoom_Out_triggered()
 {
     if(!m_pView) return;
     m_pView->slotZoomOut();
+    // because it may be called from CFrFullScreenToolBar::m_ToolBar
+    ui->actionZoom_Out->setChecked(true);
     if(m_psbZoomFactor)
         m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
     m_pView->SetAdaptWindows(CFrmViewer::Zoom);

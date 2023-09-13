@@ -152,7 +152,7 @@ private Q_SLOTS:
     void on_actionZoom_Out_triggered();
     void slotZoomFactor(int v);
     void on_actionZoomToWindow_Z_triggered();
-    void on_actionKeep_aspect_ration_to_windows_K_toggled(bool arg1);
+    void on_actionKeep_aspect_ration_to_windows_K_triggered();
     void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
 
     ///////// Recent open ///////// 

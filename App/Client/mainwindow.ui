@@ -24,7 +24,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -269,8 +269,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-aspect-ratio">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-aspect-ratio"/>
    </property>
    <property name="text">
     <string>Keep aspect ration zoom to window(&amp;K)</string>
