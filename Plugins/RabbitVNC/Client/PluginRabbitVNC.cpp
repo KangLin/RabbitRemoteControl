@@ -21,9 +21,9 @@ CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
     {
         rfb::initStdIOLoggers();
 
-        QString szFile = RabbitCommon::CDir::Instance()->GetDirApplication()
+        QString szFile = RabbitCommon::CDir::Instance()->GetDirLog()
                 + QDir::separator()
-                + "vncviewer.log";
+                + "RabbitVNC.log";
         rfb::initFileLogger(szFile.toStdString().c_str());
 
         rfb::LogWriter::setLogParams("*:stderr:100");

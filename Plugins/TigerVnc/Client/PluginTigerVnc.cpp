@@ -20,9 +20,9 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     if(!initlog)
     {
         rfb::initStdIOLoggers();
-        QString szFile = RabbitCommon::CDir::Instance()->GetDirApplication()
+        QString szFile = RabbitCommon::CDir::Instance()->GetDirLog()
                 + QDir::separator()
-                + "vncviewer.log";
+                + "TigerVnc.log";
         rfb::initFileLogger(szFile.toStdString().c_str());
         rfb::LogWriter::setLogParams("*:stderr:100");
         initlog = true;
