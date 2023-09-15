@@ -436,8 +436,15 @@ void MainWindow::on_actionFull_screen_F_triggered()
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
     // Delete it when the widget is close
     m_pFullScreenToolBar = new CFrmFullScreenToolBar(this);
-    m_pFullScreenToolBar->move((qApp->primaryScreen()->geometry().width()
-               - m_pFullScreenToolBar->frameGeometry().width()) / 2, 0);
+    QScreen* pScreen = qApp->primaryScreen();
+    if(pScreen) {
+        qDebug(App) << "Primary screen geometry:" << pScreen->geometry()
+                    << "availableGeometry:" << pScreen->availableGeometry();
+        m_pFullScreenToolBar->move(pScreen->geometry().left()
+                           + (pScreen->geometry().width()
+                           - m_pFullScreenToolBar->frameGeometry().width()) / 2,
+                           pScreen->geometry().top());
+    }
     bool check = connect(m_pFullScreenToolBar, SIGNAL(sigExitFullScreen()),
                          this, SLOT(on_actionFull_screen_F_triggered()));
     Q_ASSERT(check);
