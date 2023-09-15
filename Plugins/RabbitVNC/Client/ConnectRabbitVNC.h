@@ -38,7 +38,7 @@ public Q_SLOTS:
     virtual void slotReadyRead();
     virtual void slotClipBoardChanged() override;
 
-    void slotError(int nErr, const QString &szErr);
+    void slotChannelError(int nErr, const QString &szErr);
 
 public:
     // rfb::CConnection callback methods
@@ -56,8 +56,11 @@ public:
     virtual void handleClipboardRequest() override;
     virtual void handleClipboardAnnounce(bool available) override;
     virtual void handleClipboardData(unsigned int format, const char *data, size_t length) override;
-
+    
+    // rfb::UserPasswdGetter interface
     virtual void getUserPasswd(bool secure, char** user, char** password) override;
+
+    // rfb::UserMsgBox interface
     virtual bool showMsgBox(int flags, const char *title, const char *text) override;
 
 public Q_SLOTS:
@@ -89,6 +92,7 @@ private:
 
 private:
     CParameterRabbitVNC* m_pPara;
+    int SetPara();
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
     

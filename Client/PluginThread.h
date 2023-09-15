@@ -25,7 +25,7 @@ class CLIENT_EXPORT CPluginThread : public QThread
     Q_OBJECT
     
 public:
-    explicit CPluginThread();
+    explicit CPluginThread(QObject *parent = nullptr);
     virtual ~CPluginThread();
 
 Q_SIGNALS:

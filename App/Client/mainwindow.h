@@ -68,7 +68,8 @@ private:
     ///////// Disconnect /////////
 private Q_SLOTS:
     void on_actionDisconnect_D_triggered();
-    void slotCloseView(const QWidget* pView);    
+    void slotCloseView(const QWidget* pView);
+    void slotDisconnect();
     void slotDisconnected();
     void slotError(const int nError, const QString &szInfo);
     /*!

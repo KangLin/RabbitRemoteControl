@@ -36,8 +36,8 @@ public slots:
     virtual int DisConnect() override;
     
 Q_SIGNALS:
-    void sigConnect(CConnecterDesktop*);
-    void sigDisconnect(CConnecterDesktop*);
+    void sigOpenConnect(CConnecterDesktop*);
+    void sigCloseconnect(CConnecterDesktop*);
 
 };
 

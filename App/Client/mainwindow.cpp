@@ -682,7 +682,6 @@ void MainWindow::slotConnect()
     QAction* pAction = dynamic_cast<QAction*>(this->sender());    
     CConnecter* p = m_Client.CreateConnecter(pAction->data().toString());
     if(nullptr == p) return;
-    
     Connect(p, true);
 }
 
@@ -698,10 +697,14 @@ void MainWindow::slotConnect()
  */
 int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
 {
+    qDebug(App) << "MainWindow::Connect: set:" << set << "File:" << szFile;
     bool bSave = false; //whether is save configure file
     Q_ASSERT(p);
     bool check = connect(p, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
+    Q_ASSERT(check);
+    check = connect(p, SIGNAL(sigDisconnect()),
+                    this, SLOT(slotDisconnect()));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigDisconnected()),
                              this, SLOT(slotDisconnected()));
@@ -723,7 +726,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     check = connect(p, SIGNAL(sigUpdateParameters(CConnecter*)),
                          this, SLOT(slotUpdateParameters(CConnecter*)));
     Q_ASSERT(check);
-        
+
     if(set)
     {
         int nRet = p->OpenDialogSettings(this);
@@ -744,7 +747,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
                     + p->Id()
                     + ".rrc";
     m_ConfigureFiles[p] = szFile;
-    
+
     int nRet = 0;
     if(bSave)
         nRet = m_Client.SaveConnecter(szFile, p);
@@ -757,13 +760,14 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     {
         m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
         m_pView->AddView(p->GetViewer());
-        m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description()); 
+        m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
+        //qDebug(App) << "View:" << p->GetViewer();
     }
-    
+
     m_Connecters.push_back(p);
-    
+
     p->Connect();
-    
+
     return 0;
 }
 
@@ -783,6 +787,7 @@ void MainWindow::slotConnected()
 
 void MainWindow::slotCloseView(const QWidget* pView)
 {
+    qDebug(App) << "MainWindow::slotCloseView" << pView;
     if(!pView) return;
     foreach(auto c, m_Connecters)
     {
@@ -797,10 +802,38 @@ void MainWindow::slotCloseView(const QWidget* pView)
 
 void MainWindow::on_actionDisconnect_D_triggered()
 {
+    qDebug(App) << "MainWindow::on_actionDisconnect_D_triggered()";
     if(!m_pView) return;
     
     QWidget* pView = m_pView->GetCurrentView();
     slotCloseView(pView);    
+}
+
+void MainWindow::slotDisconnect()
+{
+    qDebug(App) << "MainWindow::slotDisconnect()";
+    CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
+    if(!pConnecter) return;
+    //TODO: Whether to save the setting
+    emit pConnecter->sigUpdateParameters(pConnecter);
+    pConnecter->DisConnect();
+}
+
+void MainWindow::slotDisconnected()
+{
+    qDebug(App) << "MainWindow::slotDisconnected()";
+    CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
+    foreach(auto c, m_Connecters)
+    {
+        if(c == pConnecter)
+        {
+            m_pView->RemoveView(c->GetViewer());
+            m_Connecters.removeAll(c);
+            m_ConfigureFiles.remove(c);
+            c->deleteLater();
+            return;
+        }
+    }
 }
 
 void MainWindow::slotSignalConnected()
@@ -835,22 +868,6 @@ void MainWindow::slotSignalPushButtonClicked(bool checked)
     else
         CICE::Instance()->slotStop();
 #endif
-}
-
-void MainWindow::slotDisconnected()
-{
-    CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
-    foreach(auto c, m_Connecters)
-    {
-        if(c == pConnecter)
-        {
-            m_pView->RemoveView(c->GetViewer());
-            m_Connecters.removeAll(c);
-            m_ConfigureFiles.remove(c);
-            c->deleteLater();
-            return;
-        }
-    }
 }
 
 void MainWindow::slotError(const int nError, const QString &szInfo)

@@ -6,11 +6,11 @@
 Q_DECLARE_LOGGING_CATEGORY(Client)
 
 CManageConnect::CManageConnect(QObject *parent) : QObject(parent)
-{
-}
+{}
 
 CManageConnect::~CManageConnect()
 {
+    qDebug(Client) << "CManageConnect::~CManageConnect()";
     foreach(auto pConnect, m_Connects)
     {
         pConnect->Disconnect();
@@ -21,22 +21,25 @@ CManageConnect::~CManageConnect()
 void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
 {
     int nRet = 0;
-    qDebug(Client) << "CConnecterThread::slotConnect()";
+    qDebug(Client) << "CManageConnect::slotConnect()";
     CConnect* pConnect = pConnecter->InstanceConnect();
-    if(!pConnect) return;
-
-    nRet = pConnect->Connect();
-    if(nRet)
+    if(!pConnect)
     {
-        emit pConnecter->sigDisconnected();
+        qCritical(Client) << "InstanceConnect fail";
+        emit pConnecter->sigDisconnect();
         return;
     }
 
     m_Connects.insert(pConnecter, pConnect);
+
+    nRet = pConnect->Connect();
+    if(nRet)
+        emit pConnecter->sigDisconnect();
 }
 
 void CManageConnect::slotDisconnect(CConnecterDesktop *pConnecter)
 {
+    qDebug(Client) << "CManageConnect::slotDisconnect()";
     auto it = m_Connects.find(pConnecter);
     if(m_Connects.end() == it) return;
     CConnect* pConnect = it.value();

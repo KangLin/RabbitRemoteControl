@@ -76,7 +76,9 @@ public Q_SLOTS:
     /*!
      * \~chinese 默认开始定时器
      * \~english Default start timer.
+     * 
      * \~
+     * \return 0: success; other error
      * \see OnProcess slotTimeOut
      */
     virtual int Connect();
@@ -146,6 +148,15 @@ protected Q_SLOTS:
     
 Q_SIGNALS:
     void sigConnected();
+    /*!
+     * \~chinese 通知用户断开连接。仅由插件触发。
+     *    当从插件中需要要断开连接时触发。例如：对端断开连接、重置连接或者连接出错。
+     * \~english Notify the user to disconnect. Triggered only by plugins
+     *    Emit when you need to disconnect from the plug-in.
+     *    For example, the peer disconnect or reset the connection
+     *    or the connection is error
+     */
+    void sigDisconnect();
     void sigDisconnected();
 
     void sigSetDesktopSize(int width, int height);

@@ -12,6 +12,8 @@
 
 #undef SetPort
 
+Q_DECLARE_LOGGING_CATEGORY(RabbitVNC)
+
 CDlgSettingsRabbitVNC::CDlgSettingsRabbitVNC(CParameterRabbitVNC *pPara, QWidget *parent)
     : QDialog(parent),
     ui(new Ui::CDlgSettingsRabbitVNC),
@@ -29,7 +31,7 @@ CDlgSettingsRabbitVNC::CDlgSettingsRabbitVNC(CParameterRabbitVNC *pPara, QWidget
 
 CDlgSettingsRabbitVNC::~CDlgSettingsRabbitVNC()
 {
-    qDebug() << "CDlgSettingsRabbitVnc::~CDlgSettingsRabbitVnc()";
+    qDebug(RabbitVNC) << "CDlgSettingsRabbitVnc::~CDlgSettingsRabbitVnc()";
     delete ui;
 }
 

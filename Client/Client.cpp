@@ -161,6 +161,7 @@ CConnecter* CClient::CreateConnecter(const QString& id)
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
     {
+        qDebug(Client) << "CreateConnecter id:" << id;
         CConnecter* p = it.value()->CreateConnecter(id);
         if(p) p->SetParameterClient(&m_ParameterClient);
         return p;
@@ -178,8 +179,9 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
     QString id = set.value("Plugin/ID").toString();
     QString protocol = set.value("Plugin/Protocol").toString();
     QString name = set.value("Plugin/Name").toString();
-
-    //qInfo(Client) << "protocol:" << protocol << "name:" << name;
+    Q_UNUSED(name);
+    qDebug(Client) << "LoadConnecter protocol:" << protocol
+                  << "name:" << name << "id:" << id;
     pConnecter = CreateConnecter(id);
     if(pConnecter)
         pConnecter->Load(szFile);

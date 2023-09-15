@@ -70,26 +70,9 @@ CConnectRabbitVNC::CConnectRabbitVNC(CConnecterRabbitVNC *pConnecter, QObject *p
       m_updateCount(0),
       m_pPara(nullptr)
 {
-    security.setUserPasswdGetter(this);
-    
-#ifdef HAVE_GNUTLS
-    rfb::CSecurityTLS::msg = this;
-#endif
-    
     m_pPara = dynamic_cast<CParameterRabbitVNC*>(pConnecter->GetParameter());
     Q_ASSERT(m_pPara);
-    
-    setShared(m_pPara->GetShared());
-    supportsLocalCursor = m_pPara->GetLocalCursor();
-    
-    // Set Preferred Encoding
-    setPreferredEncoding(m_pPara->GetEncoding());
-    setCompressLevel(m_pPara->GetCompressLevel());
-    setQualityLevel(m_pPara->GetQualityLevel());
-    
-    // Set server pixmap format
-    updatePixelFormat();
-    
+
     if(!m_pPara->GetLocalCursor())
     {
         emit sigUpdateCursor(QCursor(Qt::BlankCursor));
@@ -103,6 +86,28 @@ CConnectRabbitVNC::~CConnectRabbitVNC()
     qDebug(RabbitVNC) << "CConnectRabbitVNC::~CConnectRabbitVNC()";
 }
 
+int CConnectRabbitVNC::SetPara()
+{
+    security.setUserPasswdGetter(this);
+
+#ifdef HAVE_GNUTLS
+    rfb::CSecurityTLS::msg = this;
+#endif
+
+    setShared(m_pPara->GetShared());
+    supportsLocalCursor = m_pPara->GetLocalCursor();
+
+    // Set Preferred Encoding
+    setPreferredEncoding(m_pPara->GetEncoding());
+    setCompressLevel(m_pPara->GetCompressLevel());
+    setQualityLevel(m_pPara->GetQualityLevel());
+
+    // Set server pixmap format
+    updatePixelFormat();
+
+    return 0;
+}
+
 /*
  * \return 
  * \li < 0: error
@@ -111,6 +116,7 @@ CConnectRabbitVNC::~CConnectRabbitVNC()
  */
 int CConnectRabbitVNC::OnInit()
 {
+    qDebug(RabbitVNC) << "CConnectRabbitVNC::OnInit()";
     int nRet = 1;
     if(m_pPara->GetIce())
         nRet = IceInit();
@@ -182,9 +188,9 @@ int CConnectRabbitVNC::SocketInit()
             qCritical(RabbitVNC) << "Open channel fail";
             return -3;
         }
-        
+
         SetChannelConnect(m_DataChannel);
-        
+
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
         switch(m_pPara->GetProxyType())
@@ -202,7 +208,7 @@ int CConnectRabbitVNC::SocketInit()
         default:
             break;
         }
-        
+
         if(QNetworkProxy::NoProxy != type)
         {
             QNetworkProxy proxy;
@@ -221,7 +227,7 @@ int CConnectRabbitVNC::SocketInit()
             proxy.setPassword(m_pPara->GetProxyPassword());
             pSock->setProxy(proxy);
         }
-        
+
         if(m_pPara->GetHost().isEmpty())
         {
             QString szErr;
@@ -231,7 +237,7 @@ int CConnectRabbitVNC::SocketInit()
             return -5;
         }
         pSock->connectToHost(m_pPara->GetHost(), m_pPara->GetPort());
-        
+
         return nRet;
     } catch (rdr::Exception& e) {
         qCritical(RabbitVNC) << "SocketInit" << e.str();
@@ -254,18 +260,18 @@ int CConnectRabbitVNC::SetChannelConnect(QSharedPointer<CChannel> channel)
                     this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
     check = connect(channel.data(), SIGNAL(sigError(int, const QString&)),
-                    this, SLOT(slotError(int, const QString&)));
+                    this, SLOT(slotChannelError(int, const QString&)));
     Q_ASSERT(check);
     return 0;
 }
 
 int CConnectRabbitVNC::OnClean()
 {
+    qDebug(RabbitVNC) << "CConnectRabbitVNC::OnClean()";
     close();
     setStreams(nullptr, nullptr);
     if(m_DataChannel)
         m_DataChannel->close();
-    //emit sigDisconnected();
     return 0;
 }
 
@@ -273,13 +279,24 @@ void CConnectRabbitVNC::slotConnected()
 {
     if(m_pPara->GetIce())
         qInfo(RabbitVNC) << "Connected to peer"
-                          << m_pPara->GetPeerUser().toStdString().c_str();
+                         << m_pPara->GetPeerUser().toStdString().c_str();
     else
         qInfo(RabbitVNC) << "Connected to"
-                          << m_pPara->GetHost() << ":" << m_pPara->GetPort();
-
+                         << m_pPara->GetHost() << ":" << m_pPara->GetPort();
+    
+    int nRet = SetPara();
+    {
+        emit sigDisconnect();
+        return;
+    }
     m_InStream = QSharedPointer<rdr::InStream>(new CInStreamChannel(m_DataChannel.data()));
     m_OutStream = QSharedPointer<rdr::OutStream>(new COutStreamChannel(m_DataChannel.data()));
+    if(!(m_InStream && m_OutStream))
+    {
+        qCritical(RabbitVNC) << "m_InStream or m_OutStream is null";
+        emit sigDisconnect();
+        return;
+    }
     setStreams(m_InStream.data(), m_OutStream.data());
     initialiseProtocol();
 }
@@ -288,7 +305,7 @@ void CConnectRabbitVNC::slotDisConnected()
 {
     qInfo(RabbitVNC) << "slotDisConnected to"
                       << m_pPara->GetHost() << ":" << m_pPara->GetPort();
-    emit sigDisconnected();
+    // There isn't emit sigDisconnect, because of sigDisconnect is emited in CConnect::Disconnect()
 }
 
 void CConnectRabbitVNC::slotReadyRead()
@@ -308,7 +325,7 @@ void CConnectRabbitVNC::slotReadyRead()
         szErr += tr(" fail.");
         QString szMsg = szErr + "\n" + tr("Please check that the username and password are correct.") + "\n";
         emit sigShowMessage(tr("Error"), szMsg, QMessageBox::Critical);
-        
+
         szErr += " [";
         szErr += e.str();
         szErr += "]";
@@ -336,19 +353,18 @@ void CConnectRabbitVNC::slotReadyRead()
     } catch (std::exception &e) {
         szErr += e.what();
     } catch(...) {
-        szErr = "processMsg exception";
+        szErr += "unknow exception";
     }
     qCritical(RabbitVNC) << szErr;
     emit sigError(nRet, szErr);
-    return;
-    emit sigDisconnected();
+    emit sigDisconnect();
 }
 
-void CConnectRabbitVNC::slotError(int nErr, const QString& szErr)
+void CConnectRabbitVNC::slotChannelError(int nErr, const QString& szErr)
 {
-    qCritical(RabbitVNC) << "Error:" << nErr << "-" << szErr;
+    qCritical(RabbitVNC) << "Channel error:" << nErr << "-" << szErr;
     emit sigError(nErr, szErr);
-    emit sigDisconnected();
+    emit sigDisconnect();
 }
 
 void CConnectRabbitVNC::initDone()
@@ -358,8 +374,9 @@ void CConnectRabbitVNC::initDone()
                     "CConnectRabbitVnc::initDone():name:"
                     << server.name()
                     << "width:" << server.width()
-                    << "height:" << server.height();
-    
+                    << "height:" << server.height()
+                    << "stat:" << state();
+
     // If using AutoSelect with old servers, start in FullColor
     // mode. See comment in autoSelectFormatAndEncoding. 
     if (server.beforeVersion(3, 8) && m_pPara->GetAutoSelect())
@@ -367,15 +384,15 @@ void CConnectRabbitVNC::initDone()
         m_pPara->SetColorLevel(CParameterRabbitVNC::Full);
         updatePixelFormat();
     }
-    
+
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
-    
+
     emit sigServerName(szName);
-    
+
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
-    
+
     emit sigConnected();
 }
 
@@ -711,7 +728,7 @@ void CConnectRabbitVNC::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modif
 quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
 {
     quint32 k = 5000;
-    
+
     switch (inkey)
     {
     case Qt::Key_Backspace: k = XK_BackSpace; break;
@@ -723,7 +740,7 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_Space: k = XK_space; break;
     case Qt::Key_Delete: k = XK_Delete; break;
     case Qt::Key_Period: k = XK_period; break;
-    
+
     /* International & multi-key character composition */
     case Qt::Key_Multi_key: k = XK_Multi_key; break;
     case Qt::Key_Codeinput: k = XK_Codeinput; break;
@@ -748,7 +765,7 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_Kana_Shift: k = XK_Kana_Shift; break;
     case Qt::Key_Eisu_Shift: k = XK_Eisu_Shift; break;
     case Qt::Key_Eisu_toggle: k = XK_Eisu_toggle; break;
-        
+
     //special keyboard char
     case Qt::Key_Exclam: k = XK_exclam; break; //!
     case Qt::Key_QuoteDbl: k = XK_quotedbl; break; //"
@@ -759,7 +776,7 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_Apostrophe: k = XK_apostrophe; break;//!
     case Qt::Key_ParenLeft: k = XK_parenleft; break; // (
     case Qt::Key_ParenRight: k = XK_parenright; break; // )
-        
+
     case Qt::Key_Slash: k = XK_slash; break;    // /
     case Qt::Key_Asterisk: k = XK_asterisk; break;  //*
     case Qt::Key_Minus: k = XK_minus; break;    //-
@@ -767,14 +784,14 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_Enter: k = XK_Return; break;   //
     case Qt::Key_Equal: k = XK_equal; break;    //=
     case Qt::Key_Comma: return XK_comma; //,
-        
+
     case Qt::Key_Colon: k = XK_colon;break; // :
     case Qt::Key_Semicolon: k = XK_semicolon; break; //;
     case Qt::Key_Less: k = XK_less; break; // <
     case Qt::Key_Greater: k = XK_greater; break; // >
     case Qt::Key_Question: k = XK_question; break; //?
     case Qt::Key_At: k = XK_at; break; //@
-        
+
     case Qt::Key_BracketLeft: k = XK_bracketleft; break;
     case Qt::Key_Backslash: k = XK_backslash;break;
     case Qt::Key_BracketRight: k = XK_bracketright;break;
@@ -801,7 +818,7 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_notsign: k = XK_notsign; break;
     case Qt::Key_hyphen: k = XK_hyphen; break;
     case Qt::Key_registered: k = XK_registered; break;
-        
+
     case Qt::Key_Up: k = XK_Up; break;
     case Qt::Key_Down: k = XK_Down; break;
     case Qt::Key_Right: k = XK_Right; break;
@@ -829,7 +846,7 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
         k = XK_Cancel;
         break;
     case Qt::Key_Mode_switch: k = XK_Mode_switch; break;
-        
+
     case Qt::Key_F1: k = XK_F1; break;
     case Qt::Key_F2: k = XK_F2; break;
     case Qt::Key_F3: k = XK_F3; break;
@@ -869,12 +886,12 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_NumLock: k = XK_Num_Lock; break;
     case Qt::Key_CapsLock: k = XK_Caps_Lock; break;
     case Qt::Key_ScrollLock: k = XK_Scroll_Lock; break;
-        
+
     case Qt::Key_Shift: k = XK_Shift_R; break; //k = XK_Shift_L; break;
     case Qt::Key_Control: k = XK_Control_R; break;// k = XK_Control_L; break;
     case Qt::Key_Alt: k = XK_Alt_R; break;//k = XK_Alt_L; break;
     case Qt::Key_Meta: k = XK_Meta_R; break;//k = XK_Meta_L; break;*/
-        
+
     case Qt::Key_Super_L: k = XK_Super_L; break;		/* left "windows" key */
     case Qt::Key_Super_R: k = XK_Super_R; break;		/* right "windows" key */
 
@@ -892,10 +909,10 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_8: k = XK_8;break;
     case Qt::Key_9: k = XK_9;break;
     }
-    
+
     if (k == 5000)
     {
-        
+
         if (!modifier)
         {
             switch (inkey)
@@ -961,14 +978,14 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
             }
         }
     }
-    
+
     return k;
-    
+
 }
 
 void CConnectRabbitVNC::slotClipBoardChanged()
 {
-    if(!m_pPara->GetClipboard() || !getOutStream()) return;
+    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     qDebug(RabbitVNC) << "CConnectRabbitVnc::slotClipBoardChanged()";
@@ -977,12 +994,12 @@ void CConnectRabbitVNC::slotClipBoardChanged()
 
 void CConnectRabbitVNC::handleClipboardRequest()
 {
-    if(!m_pPara->GetClipboard() || !getOutStream()) return;
-    
+    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
+
     qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardRequest";
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
-    
+
     if (mimeData->hasImage()) {
         //        setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
     } else if (mimeData->hasText()) {
@@ -1011,8 +1028,8 @@ void CConnectRabbitVNC::handleClipboardRequest()
 void CConnectRabbitVNC::handleClipboardAnnounce(bool available)
 {
     qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardAnnounce";
-    if(!m_pPara->GetClipboard() || !getOutStream()) return;
-    
+    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
+
     if(available)
         this->requestClipboard();
 }
@@ -1020,8 +1037,8 @@ void CConnectRabbitVNC::handleClipboardAnnounce(bool available)
 void CConnectRabbitVNC::handleClipboardData(unsigned int format, const char *data, size_t length)
 {
     qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardData";
-    if(!m_pPara->GetClipboard()) return;
-    
+    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
+
     if(rfb::clipboardUTF8 & format) {
         QMimeData* pData = new QMimeData();
         pData->setText(QString::fromUtf8(data));

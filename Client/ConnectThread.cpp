@@ -5,7 +5,10 @@
 
 Q_DECLARE_LOGGING_CATEGORY(Client)
 
-CConnectThread::CConnectThread(CConnecterDesktopThread *pConnect) : QThread(),
+CConnectThread::CConnectThread(CConnecterDesktopThread *pConnect)
+    : QThread(), // Note that the parent object pointer cannot be set here.
+                 // The object is also deleted when the parent object (CConnecterDesktopThread) is destroyed.
+                 // See also: CConnecterDesktopThread::Connect()
     m_pConnecter(pConnect)
 {}
 
@@ -26,21 +29,30 @@ CConnectThread::~CConnectThread()
  */
 void CConnectThread::run()
 {
+    qDebug(Client) << "CConnectThread::run() start";
+
+    Q_ASSERT(m_pConnecter);
     int nRet = 0;
     CConnect* pConnect = m_pConnecter->InstanceConnect();
-    if(!pConnect) return;
-
-    nRet = pConnect->Connect();
-    if(nRet)
+    if(!pConnect)
     {
-        emit m_pConnecter->sigDisconnected();
-        return;
+        qCritical(Client) << "InstanceConnect fail";
+        emit m_pConnecter->sigDisconnect();
+    }
+
+    if(pConnect){
+        nRet = pConnect->Connect();
+        if(nRet)
+            emit pConnect->sigDisconnect();
     }
 
     exec();
 
-    pConnect->Disconnect();
-    pConnect->deleteLater();
+    if(pConnect) {
+        pConnect->Disconnect();
+        pConnect->deleteLater();
+    } else
+        emit m_pConnecter->sigDisconnected();
 
-    qDebug(Client) << "Run end";
+    qDebug(Client) << "CConnectThread::run() end";
 }

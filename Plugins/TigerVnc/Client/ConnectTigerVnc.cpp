@@ -70,26 +70,9 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
       m_updateCount(0),
       m_pPara(nullptr)
 {
-    security.setUserPasswdGetter(this);
-    
-#ifdef HAVE_GNUTLS
-    rfb::CSecurityTLS::msg = this;
-#endif
-    
     m_pPara = dynamic_cast<CParameterTigerVnc*>(pConnecter->GetParameter());
     Q_ASSERT(m_pPara);
-    
-    setShared(m_pPara->GetShared());
-    supportsLocalCursor = m_pPara->GetLocalCursor();
-    
-    // Set Preferred Encoding
-    setPreferredEncoding(m_pPara->GetEncoding());
-    setCompressLevel(m_pPara->GetCompressLevel());
-    setQualityLevel(m_pPara->GetQualityLevel());
-    
-    // Set server pixmap format
-    updatePixelFormat();
-    
+
     if(!m_pPara->GetLocalCursor())
     {
         emit sigUpdateCursor(QCursor(Qt::BlankCursor));
@@ -103,6 +86,27 @@ CConnectTigerVnc::~CConnectTigerVnc()
     qDebug(TigerVNC) << "CConnectTigerVnc::~CConnectTigerVnc()";
 }
 
+int CConnectTigerVnc::SetPara()
+{
+    security.setUserPasswdGetter(this);
+
+#ifdef HAVE_GNUTLS
+    rfb::CSecurityTLS::msg = this;
+#endif
+
+    setShared(m_pPara->GetShared());
+    supportsLocalCursor = m_pPara->GetLocalCursor();
+    
+    // Set Preferred Encoding
+    setPreferredEncoding(m_pPara->GetEncoding());
+    setCompressLevel(m_pPara->GetCompressLevel());
+    setQualityLevel(m_pPara->GetQualityLevel());
+    
+    // Set server pixmap format
+    updatePixelFormat();
+    return 0;
+}
+
 /*
  * \return 
  * \li < 0: error
@@ -111,6 +115,7 @@ CConnectTigerVnc::~CConnectTigerVnc()
  */  
 int CConnectTigerVnc::OnInit()
 {
+    qDebug(TigerVNC) << "CConnectTigerVnc::OnInit()";
     int nRet = 1;
     if(m_pPara->GetIce())
         nRet = IceInit();
@@ -253,13 +258,14 @@ int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
                     this, SLOT(slotReadyRead()));
     Q_ASSERT(check);
     check = connect(channel.data(), SIGNAL(sigError(int, const QString&)),
-                    this, SLOT(slotError(int, const QString&)));
+                    this, SLOT(slotChannelError(int, const QString&)));
     Q_ASSERT(check);
     return 0;
 }
 
 int CConnectTigerVnc::OnClean()
 {
+    qDebug(TigerVNC) << "CConnectTigerVnc::OnClean()";
     close();
     setStreams(nullptr, nullptr);
     if(m_DataChannel)
@@ -275,9 +281,20 @@ void CConnectTigerVnc::slotConnected()
     else
         qInfo(TigerVNC) << "Connected to"
                         << m_pPara->GetHost() << ":" << m_pPara->GetPort();
-    
+    int nRet = SetPara();
+    if(nRet)
+    {
+        emit sigDisconnect();
+        return;
+    }
     m_InStream = QSharedPointer<rdr::InStream>(new CInStreamChannel(m_DataChannel.data()));
     m_OutStream = QSharedPointer<rdr::OutStream>(new COutStreamChannel(m_DataChannel.data()));
+    if(!(m_InStream && m_OutStream))
+    {
+        qCritical(TigerVNC) << "m_InStream or m_OutStream is null";
+        emit sigDisconnect();
+        return;
+    }
     setStreams(m_InStream.data(), m_OutStream.data());
     initialiseProtocol();
 }
@@ -286,12 +303,12 @@ void CConnectTigerVnc::slotDisConnected()
 {
     qInfo(TigerVNC) << "slotDisConnected to"
                     << m_pPara->GetHost() << ":" << m_pPara->GetPort();
-    emit sigDisconnected();
+    // There isn't emit sigDisconnect, because of sigDisconnect is emited in CConnect::Disconnect()
 }
 
 void CConnectTigerVnc::slotReadyRead()
 {
-    qDebug(TigerVNC) << "CConnectTigerVnc::slotReadyRead";
+    //qDebug(TigerVNC) << "CConnectTigerVnc::slotReadyRead";
     QString szErr("processMsg exception: ");
     int nRet = -1;
     try {
@@ -306,7 +323,7 @@ void CConnectTigerVnc::slotReadyRead()
         szErr += tr(" fail.");
         QString szMsg = szErr + "\n" + tr("Please check that the username and password are correct.") + "\n";
         emit sigShowMessage(tr("Error"), szMsg, QMessageBox::Critical);
-        
+
         szErr += " [";
         szErr += e.str();
         szErr += "]";
@@ -334,17 +351,16 @@ void CConnectTigerVnc::slotReadyRead()
     } catch (std::exception &e) {
         szErr += e.what();
     } catch(...) {
-        szErr = "processMsg exception";
+        szErr += "unknow exception";
     }
     qCritical(TigerVNC) << szErr;
     emit sigError(nRet, szErr);
-    return;
-    emit sigDisconnected();
-    emit sigDisconnected();
+    emit sigDisconnect();
 }
 
-void CConnectTigerVnc::slotError(int nErr, const QString& szErr)
+void CConnectTigerVnc::slotChannelError(int nErr, const QString& szErr)
 {
+    qDebug(TigerVNC) << "Channel error:" << nErr << "-" << szErr;
     emit sigError(nErr, szErr);
     emit sigDisconnected();
 }
@@ -355,7 +371,7 @@ void CConnectTigerVnc::initDone()
     qDebug(TigerVNC) << "CConnectTigerVnc::initDone():name:" << server.name()
                      << ";Width:" << server.width()
                      << ";Height:" << server.height();
-    
+
     // If using AutoSelect with old servers, start in FullColor
     // mode. See comment in autoSelectFormatAndEncoding. 
     if (server.beforeVersion(3, 8) && m_pPara->GetAutoSelect())
@@ -363,15 +379,15 @@ void CConnectTigerVnc::initDone()
         m_pPara->SetColorLevel(CParameterTigerVnc::Full);
         updatePixelFormat();
     }
-    
+
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
-    
+
     emit sigServerName(szName);
-    
+
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
-    
+
     emit sigConnected();
 }
 
@@ -971,21 +987,20 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 
 void CConnectTigerVnc::slotClipBoardChanged()
 {
-    if(!m_pPara->GetClipboard() || !getOutStream()) return;
+    qDebug(TigerVNC) << "CConnectTigerVnc::slotClipBoardChanged()";
+    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
-    qDebug(TigerVNC) << "CConnectTigerVnc::slotClipBoardChanged()";
     announceClipboard(true);
 }
 
 void CConnectTigerVnc::handleClipboardRequest()
 {
-    if(!m_pPara->GetClipboard() || !getOutStream()) return;
-    
     qDebug(TigerVNC) << "CConnectTigerVnc::handleClipboardRequest";
+    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
-    
+
     if (mimeData->hasImage()) {
         //        setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
     } else if (mimeData->hasText()) {
@@ -1016,8 +1031,7 @@ void CConnectTigerVnc::handleClipboardRequest()
 void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 {
     qDebug(TigerVNC) << "CConnectTigerVnc::handleClipboardAnnounce";
-    if(!m_pPara->GetClipboard() || !getOutStream()) return;
-    
+    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     if(available)
         this->requestClipboard();
 }
@@ -1025,7 +1039,7 @@ void CConnectTigerVnc::handleClipboardAnnounce(bool available)
 void CConnectTigerVnc::handleClipboardData(unsigned int format, const char *data, size_t length)
 {
     qDebug(TigerVNC) << "CConnectTigerVnc::handleClipboardData";
-    if(!m_pPara->GetClipboard()) return;
+    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     
     if(rfb::clipboardUTF8 & format) {
         QMimeData* pData = new QMimeData();

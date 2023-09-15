@@ -190,12 +190,21 @@ public Q_SLOTS:
 Q_SIGNALS:
     /*!
      * \~chinese 连接成功信号。仅由插件触发
-     * \~english Successful connection signal. Only triggered by plugins
+     * \~english Successful connection signal. Triggered only by plugins
      */
     void sigConnected();
     /*!
+     * \~chinese 通知用户断开连接。仅由插件触发。
+     *    当从插件中需要要断开连接时触发。例如：对端断开连接、重置连接或者连接出错。
+     * \~english Notify the user to disconnect. Triggered only by plugins
+     *    Emit when you need to disconnect from the plug-in.
+     *    For example, the peer disconnect or reset the connection
+     *    or the connection is error
+     */
+    void sigDisconnect();
+    /*!
      * \~chinese 断开连接成功信号。仅由插件触发
-     * \~english Successful disconnection signal. Only triggered by plugins
+     * \~english Successful disconnection signal. Triggered only by plugins
      */
     void sigDisconnected();
     /*!

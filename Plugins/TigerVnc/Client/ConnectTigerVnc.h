@@ -33,8 +33,8 @@ public Q_SLOTS:
     virtual void slotDisConnected();
     virtual void slotReadyRead();
     virtual void slotClipBoardChanged() override;
-
-    void slotError(int nErr, const QString &szErr);
+    
+    void slotChannelError(int nErr, const QString &szErr);
 
 public:
     // rfb::CConnection callback methods
@@ -86,9 +86,10 @@ private:
 
 private:
     CParameterTigerVnc* m_pPara;
+    int SetPara();
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
-    
+
     int SocketInit();
     int SetChannelConnect(QSharedPointer<CChannel> channel);
     

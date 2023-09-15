@@ -42,6 +42,9 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     check = connect(this, SIGNAL(sigConnected()),
                     pConnecter, SIGNAL(sigConnected()));
     Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigDisconnect()),
+                    pConnecter, SIGNAL(sigDisconnect()));
+    Q_ASSERT(check);
     check = connect(this, SIGNAL(sigDisconnected()),
                     pConnecter, SIGNAL(sigDisconnected()));
     Q_ASSUME(check);
@@ -181,6 +184,7 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
 
 int CConnect::Connect()
 {
+    qDebug(Client) << "CConnect::Connect()";
     int nRet = 0;
     nRet = OnInit();
     if(nRet < 0) return nRet;
@@ -192,18 +196,18 @@ int CConnect::Connect()
 
 int CConnect::Disconnect()
 {
+    qDebug(Client) << "CConnect::Disconnect()";
     int nRet = 0;
     nRet = OnClean();
     emit sigDisconnected();
-    if(nRet) return nRet;
-    
     return nRet;
 }
 
 void CConnect::slotTimeOut()
 {
+    //qDebug(Client) << "CConnect::slotTimeOut()";
     try {
-        // >= 0 : continue
+        // >= 0 : continue. Call interval
         // <  0: error or stop
         int nTime = OnProcess();
         if(nTime >= 0)
@@ -212,21 +216,22 @@ void CConnect::slotTimeOut()
             return;
         }
         qCritical(Client) << "Process fail:" << nTime;
+        emit sigError(-1, "Process fail or stop");
     } catch(std::exception e) {
         qCritical(Client) << "Process fail:" << e.what();
-        emit sigError(-1, e.what());
+        emit sigError(-2, e.what());
     }  catch (...) {
         qCritical(Client) << "Process fail";
-        emit sigError(-2, "");
+        emit sigError(-3, "Process fail");
     }
 
     // Error or stop, must notify user disconnect it
-    emit sigDisconnected();
+    emit sigDisconnect();
 }
 
 int CConnect::OnProcess()
 {
-    qDebug(Client) << "Need to implement CConnect::OnProcess()";
+    qWarning(Client) << "Need to implement CConnect::OnProcess()";
     return 0;
 }
 

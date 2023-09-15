@@ -18,6 +18,7 @@ CPluginClient::CPluginClient(QObject *parent) : QObject(parent),
 
 CPluginClient::~CPluginClient()
 {
+    qDebug(Client) << "CPluginClient::~CPluginClient()";
     if(m_bTranslator)
         qApp->removeTranslator(&m_Translator);
 }

@@ -6,10 +6,9 @@
 
 Q_DECLARE_LOGGING_CATEGORY(Client)
 
-CPluginThread::CPluginThread()
-    : QThread()
-{
-}
+CPluginThread::CPluginThread(QObject *parent)
+    : QThread(parent)
+{}
 
 CPluginThread::~CPluginThread()
 {
