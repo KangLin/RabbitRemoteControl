@@ -22,7 +22,7 @@ CPluginThread::~CPluginThread()
  */
 void CPluginThread::run()
 {
-    qDebug(Client) << "CConnecterThread::run()";
+    qDebug(Client) << "CConnecterThread::run() start";
     CManageConnect mc;
     bool check = false;
     check = connect(this, SIGNAL(sigConnect(CConnecterDesktop*)),
@@ -33,4 +33,5 @@ void CPluginThread::run()
     Q_ASSERT(check);
     
     exec();
+    qDebug(Client) << "CConnecterThread::run() end";
 }

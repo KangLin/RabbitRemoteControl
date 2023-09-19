@@ -161,7 +161,9 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 
 ### Full Documentation
 
-- [Development documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
+- Development documentation
+  - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.25/English/html/index.html)
+  - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 - [Compilation documentation](#Compilation)
 
 ## Status
@@ -344,7 +346,9 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
       
 ## Development
 
-### [Development documentation](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
+### Development documentation
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.25/English/html/index.html)
+- [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Dependent
 

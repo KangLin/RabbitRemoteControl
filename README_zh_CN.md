@@ -160,7 +160,9 @@
 
 ### 详尽文档
 
-- [开发文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
+- 开发文档
+  - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.25/Chinese/html/index.html)
+  - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 - [编译文档](#编译)
 
 ## 状态
@@ -332,7 +334,9 @@
 
 ## 开发
 
-### [开发文档](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
+### 开发文档
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.25/Chinese/html/index.html)
+- [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
 ### 依赖
 
