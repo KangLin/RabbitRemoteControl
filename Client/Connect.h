@@ -151,6 +151,7 @@ Q_SIGNALS:
     /*!
      * \~chinese 通知用户断开连接。仅由插件触发。
      *    当从插件中需要要断开连接时触发。例如：对端断开连接、重置连接或者连接出错。
+     *
      * \~english Notify the user to disconnect. Triggered only by plugins
      *    Emit when you need to disconnect from the plug-in.
      *    For example, the peer disconnect or reset the connection
@@ -161,7 +162,16 @@ Q_SIGNALS:
 
     void sigSetDesktopSize(int width, int height);
     void sigServerName(const QString& szName);
-
+    
+    /*!
+     * \~chinese 通知视图，图像更新
+     * \param r: 更新图像的矩形
+     * \param image: 更新矩形内的图像
+     *
+     * \~english Notify the CFrmView update image
+     * \param r: update rect
+     * \param image: update image of rect
+     */
     void sigUpdateRect(const QRect& r, const QImage& image);
     void sigUpdateCursor(const QCursor& cursor);
     void sigUpdateCursorPosition(const QPoint& pos);

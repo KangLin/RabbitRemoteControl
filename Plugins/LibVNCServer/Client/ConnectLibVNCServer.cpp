@@ -31,7 +31,7 @@ static void rfbQtClientLog(const char *format, ...)
                                 << ". Truncated it:" << nRet - LOG_BUFFER_LENGTH;
         buf[LOG_BUFFER_LENGTH - 1] = 0;
     }
-    qDebug(LibVNCServer) << buf;
+    qDebug(LibVNCServer) << "Log:" << buf;
 }
 
 CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, QObject *parent)
@@ -57,7 +57,7 @@ bool CConnectLibVNCServer::InitClient()
 {
     if(m_pClient) Q_ASSERT(!m_pClient);
     
-    m_pClient = rfbGetClient(8,3,4);
+    m_pClient = rfbGetClient(8, 3, 4);
     if(!m_pClient)
     {
         qCritical(LibVNCServer) << "rfbGetClient fail";
@@ -187,32 +187,34 @@ bool CConnectLibVNCServer::InitClient()
 }
 
 /*
- * return 
+ * return
  *  < 0: error
  *  = 0: Use OnProcess (non-Qt event loop)
  *  > 0: Don't use OnProcess (qt event loop)
  */
 int CConnectLibVNCServer::OnInit()
 {
+    qDebug(LibVNCServer) << "CConnectLibVNCServer::OnInit()";
     if(!InitClient()) {
         qCritical(LibVNCServer) << "rfbInitClient fail";
         emit sigError(-1, "Connect fail");
         return -2;
     }
 
-    emit sigConnected();
-    emit sigServerName(m_pClient->desktopName);
-    emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
-    
     QString szInfo = QString("Connect to ") + m_pClient->desktopName;
     qInfo(LibVNCServer) << szInfo;
+    
+    emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
+    emit sigConnected();
+    emit sigServerName(m_pClient->desktopName);
     emit sigInformation(szInfo);
- 
+
     return 0;
 }
 
 int CConnectLibVNCServer::OnClean()
 {
+    qDebug(LibVNCServer) << "CConnectLibVNCServer::OnClean()";
     if(m_pClient)
     {
         m_tcpSocket.close();
@@ -229,7 +231,7 @@ int CConnectLibVNCServer::OnClean()
  * \~english Specific operation processing of plug-in connection.
  *           Because of it is a non-Qt event loop, so wait in here.
  * \~
- * \return 
+ * \return
  *       \li >= 0: continue, Interval call time (msec)
  *       \li < 0: error or stop
  * \see slotTimeOut()
@@ -241,14 +243,14 @@ int CConnectLibVNCServer::OnProcess()
     nRet = WaitForMessage(m_pClient, 500);
     if (nRet < 0)
         return nRet;
-    
+
     if(nRet > 0)
         if(!HandleRFBServerMessage(m_pClient))
         {
             qCritical(LibVNCServer) << "HandleRFBServerMessage fail";
             return -1;
         }
-    
+
     return 0;
 }
 
@@ -268,7 +270,7 @@ void CConnectLibVNCServer::slotClipBoardChanged()
 
 rfbBool CConnectLibVNCServer::cb_resize(rfbClient* client)
 {
-    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_resize");
+    qDebug(LibVNCServer) << "CConnectLibVnc::cb_resize:" << client->width << client->height;
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if(pThis->OnSize()) return FALSE;
     return TRUE;
@@ -276,14 +278,14 @@ rfbBool CConnectLibVNCServer::cb_resize(rfbClient* client)
 
 void CConnectLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int h)
 {
-    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
+    qDebug(LibVNCServer, "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
-    emit pThis->sigUpdateRect(QRect(x, y, w, h), pThis->m_Image);
+    emit pThis->sigUpdateRect(QRect(0, 0, client->width, client->height), pThis->m_Image);
 }
 
 void CConnectLibVNCServer::cb_got_selection(rfbClient *client, const char *text, int len)
 {
-    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_got_selection:%s", text);
+    //qDebug(LibVNCServer, "CConnectLibVnc::cb_got_selection:%s", text);
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if(!pThis->m_pPara->GetClipboard()) return;
     QClipboard* pClipboard = QApplication::clipboard();
@@ -371,12 +373,14 @@ int CConnectLibVNCServer::OnSize()
 	m_pClient->format.greenMax = 255;
 	m_pClient->format.blueMax = 255;
 	SetFormatAndEncodings(m_pClient);
+    
+    emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     return nRet;
 }
 
 rfbBool CConnectLibVNCServer::cb_cursor_pos(rfbClient *client, int x, int y)
 {
-    //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
+    //qDebug(LibVNCServer, "CConnectLibVnc::cb_cursor_pos:%d,%d", x, y);
     rfbBool bRet = true;
     
     return bRet;
@@ -388,7 +392,7 @@ void CConnectLibVNCServer::cb_got_cursor_shape(rfbClient *client,
                                          int bytesPerPixel)
 {
     /*
-    LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
+    qDebug(LibVNCServer, "CConnectLibVnc::cb_got_cursor_shape:x:%d, y:%d, width:%d, height:%d, bytesPerPixel:%d",
                     xhot, yhot, width, height, bytesPerPixel);//*/
     if(!client->rcSource)
     {
@@ -472,7 +476,7 @@ void CConnectLibVNCServer::slotMouseReleaseEvent(Qt::MouseButton button, QPoint 
 
 void CConnectLibVNCServer::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //qDebug(LibVNCServer) << "CConnectLibVnc::slotMouseMoveEvent" << e->button() << e->buttons();
+    //qDebug(LibVNCServer) << "CConnectLibVnc::slotMouseMoveEvent" << buttons << pos;
     if(!m_pClient) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
@@ -487,7 +491,7 @@ void CConnectLibVNCServer::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint p
 
 void CConnectLibVNCServer::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
-    //vlog.debug("CConnectLibVnc::slotWheelEvent");
+    //qDebug(LibVNCServer) << "CConnectLibVnc::slotWheelEvent" << buttons << pos << angleDelta;
     if(!m_pClient) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
