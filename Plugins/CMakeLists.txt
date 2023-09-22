@@ -9,13 +9,13 @@ if(BUILD_RABBITVNC)
 endif()
 
 cmake_dependent_option(BUILD_TigerVNC
-    "Build TigerVnc plugin" ON BUILD_PLUGINS OFF)
+    "Build TigerVnc plugin" OFF BUILD_PLUGINS OFF)
 if(BUILD_TigerVNC)
     add_subdirectory(TigerVnc)
 endif()
 
 cmake_dependent_option(BUILD_LibVNCServer
-    "Build LibVNCServer plugin" ON BUILD_PLUGINS OFF)
+    "Build LibVNCServer plugin" OFF BUILD_PLUGINS OFF)
 if(BUILD_LibVNCServer)
     add_subdirectory(LibVNCServer)
 endif()
