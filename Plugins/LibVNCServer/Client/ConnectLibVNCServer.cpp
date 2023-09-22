@@ -55,15 +55,18 @@ CConnectLibVNCServer::~CConnectLibVNCServer()
 
 bool CConnectLibVNCServer::InitClient()
 {
-    if(m_pClient) Q_ASSERT(!m_pClient);
-    
+    if(m_pClient) Q_ASSERT(false);
+
     m_pClient = rfbGetClient(8, 3, 4);
     if(!m_pClient)
     {
+        QString szErr;
+        szErr = tr("Protocol version error");
+        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
         qCritical(LibVNCServer) << "rfbGetClient fail";
         return false;
     }
-    
+
     // Set parameters
     m_pClient->programName = strdup(qApp->applicationName().toStdString().c_str());
     // Set server ip and port
@@ -77,11 +80,11 @@ bool CConnectLibVNCServer::InitClient()
     }
     m_pClient->serverHost = strdup(m_pPara->GetHost().toStdString().c_str());
     m_pClient->serverPort = m_pPara->GetPort();
-    
+
     m_pClient->appData.shareDesktop = m_pPara->GetShared();
     m_pClient->appData.viewOnly = m_pPara->GetOnlyView();
     m_pClient->appData.useRemoteCursor = m_pPara->GetLocalCursor();
-    
+
     //Qt is support QImage::Format_RGB32, so we use default format QImage::Format_RGB32 in OnSize()
 //    m_pClient->appData.requestedDepth = m_pPara->nColorLevel;
 //    m_pClient->format.depth = m_pPara->nColorLevel;
@@ -118,13 +121,13 @@ bool CConnectLibVNCServer::InitClient()
 //		m_pClient->format.greenMax = 0xff;
 //		break;
 //	}
-    
+
     m_pClient->appData.enableJPEG = m_pPara->GetJpeg();
     if(m_pClient->appData.enableJPEG)
         m_pClient->appData.qualityLevel = m_pPara->GetQualityLevel();
     if(m_pPara->GetEnableCompressLevel())
         m_pClient->appData.compressLevel = m_pPara->GetCompressLevel();
-    
+
     // Set callback function
     m_pClient->MallocFrameBuffer = cb_resize;
     m_pClient->GotFrameBufferUpdate = cb_update;
@@ -136,10 +139,10 @@ bool CConnectLibVNCServer::InitClient()
     m_pClient->GetPassword = cb_get_password;
     m_pClient->HandleCursorPos = cb_cursor_pos;
     m_pClient->GotCursorShape = cb_got_cursor_shape;
-    
+
     m_pClient->canHandleNewFBSize = TRUE;
     rfbClientSetClientData(m_pClient, (void*)gThis, this);
-    
+
     // Set sock
     switch(m_pPara->GetProxyType())
     {
@@ -175,7 +178,11 @@ bool CConnectLibVNCServer::InitClient()
     case CParameterConnecter::emProxy::No:
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
-            qCritical(LibVNCServer) <<  "rfbInitClient fail";
+            QString szErr;
+            szErr = tr("Connect to %1:%2 fail").arg(m_pPara->GetHost(),
+                                      QString::number(m_pPara->GetPort()));
+            qCritical(LibVNCServer) <<  szErr;
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             return FALSE;
         }
         break;
@@ -196,14 +203,16 @@ int CConnectLibVNCServer::OnInit()
 {
     qDebug(LibVNCServer) << "CConnectLibVNCServer::OnInit()";
     if(!InitClient()) {
-        qCritical(LibVNCServer) << "rfbInitClient fail";
+        qCritical(LibVNCServer) << "InitClient fail";
         emit sigError(-1, "Connect fail");
-        return -2;
+        return -1;
     }
+
+    if(!m_pClient) return -2;
 
     QString szInfo = QString("Connect to ") + m_pClient->desktopName;
     qInfo(LibVNCServer) << szInfo;
-    
+
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
     emit sigConnected();
     emit sigServerName(m_pClient->desktopName);
@@ -218,8 +227,7 @@ int CConnectLibVNCServer::OnClean()
     if(m_pClient)
     {
         m_tcpSocket.close();
-        m_pClient->sock = -1; //RFB_INVALID_SOCKET;
-
+        //m_pClient->sock = -1; //RFB_INVALID_SOCKET;
         rfbClientCleanup(m_pClient);
         m_pClient = nullptr;
     }
@@ -239,6 +247,11 @@ int CConnectLibVNCServer::OnClean()
 int CConnectLibVNCServer::OnProcess()
 {
     int nRet = 0;
+    if(!m_pClient)
+    {
+        Q_ASSERT(m_pClient);
+        return -1;
+    }
     //LOG_MODEL_DEBUG("CConnectLibVNCServer", "CConnectLibVNCServer::Process()");
     nRet = WaitForMessage(m_pClient, 500);
     if (nRet < 0)
@@ -248,7 +261,7 @@ int CConnectLibVNCServer::OnProcess()
         if(!HandleRFBServerMessage(m_pClient))
         {
             qCritical(LibVNCServer) << "HandleRFBServerMessage fail";
-            return -1;
+            return -2;
         }
 
     return 0;
@@ -256,7 +269,7 @@ int CConnectLibVNCServer::OnProcess()
 
 void CConnectLibVNCServer::slotClipBoardChanged()
 {
-    if(m_pPara && !m_pPara->GetClipboard()) return;
+    if(!m_pPara || !m_pPara->GetClipboard() || !m_pClient) return;
     QClipboard* pClipboard = QApplication::clipboard();
     if(pClipboard)
     {
@@ -270,7 +283,7 @@ void CConnectLibVNCServer::slotClipBoardChanged()
 
 rfbBool CConnectLibVNCServer::cb_resize(rfbClient* client)
 {
-    qDebug(LibVNCServer) << "CConnectLibVnc::cb_resize:" << client->width << client->height;
+    //qDebug(LibVNCServer) << "CConnectLibVnc::cb_resize:" << client->width << client->height;
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
     if(pThis->OnSize()) return FALSE;
     return TRUE;
@@ -278,9 +291,9 @@ rfbBool CConnectLibVNCServer::cb_resize(rfbClient* client)
 
 void CConnectLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int h)
 {
-    qDebug(LibVNCServer, "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
+    //qDebug(LibVNCServer, "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
-    emit pThis->sigUpdateRect(QRect(0, 0, client->width, client->height), pThis->m_Image);
+    emit pThis->sigUpdateRect(pThis->m_Image.rect(), pThis->m_Image);
 }
 
 void CConnectLibVNCServer::cb_got_selection(rfbClient *client, const char *text, int len)

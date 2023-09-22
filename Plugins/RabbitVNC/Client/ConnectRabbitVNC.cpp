@@ -694,8 +694,8 @@ void CConnectRabbitVNC::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPo
 
 void CConnectRabbitVNC::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
+    if(!writer()) return;
     bool modifier = true;
     if (modifiers == Qt::NoModifier)
         modifier = false;
@@ -985,7 +985,7 @@ quint32 CConnectRabbitVNC::TranslateRfbKey(quint32 inkey, bool modifier)
 
 void CConnectRabbitVNC::slotClipBoardChanged()
 {
-    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
+    if(!m_pPara || !m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     qDebug(RabbitVNC) << "CConnectRabbitVnc::slotClipBoardChanged()";
@@ -994,7 +994,7 @@ void CConnectRabbitVNC::slotClipBoardChanged()
 
 void CConnectRabbitVNC::handleClipboardRequest()
 {
-    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
+    if(!m_pPara || !m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
 
     qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardRequest";
     const QClipboard *clipboard = QApplication::clipboard();
@@ -1028,7 +1028,7 @@ void CConnectRabbitVNC::handleClipboardRequest()
 void CConnectRabbitVNC::handleClipboardAnnounce(bool available)
 {
     qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardAnnounce";
-    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
+    if(!m_pPara || !m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
 
     if(available)
         this->requestClipboard();
@@ -1037,7 +1037,7 @@ void CConnectRabbitVNC::handleClipboardAnnounce(bool available)
 void CConnectRabbitVNC::handleClipboardData(unsigned int format, const char *data, size_t length)
 {
     qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardData";
-    if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
+    if(!m_pPara || !m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
 
     if(rfb::clipboardUTF8 & format) {
         QMimeData* pData = new QMimeData();
