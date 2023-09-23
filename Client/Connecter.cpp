@@ -268,13 +268,23 @@ void CConnecter::slotUpdateName()
 QObject* CConnecter::createObject(const QString& className, QObject* parent)
 {
     Q_UNUSED(parent);
-    int type = QMetaType::type(className.toStdString().c_str());
+    int type =
+        #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            QMetaType::fromName(className.toStdString().c_str()).id();
+        #else
+            QMetaType::type(className.toStdString().c_str());
+        #endif
     if(QMetaType::UnknownType == type)
     {
         qCritical(Client) << className << " is QMetaType::UnknownType";
         return nullptr;
     }
-    QObject *obj = (QObject*)QMetaType::create(type);
+    QObject *obj =
+        #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            (QObject*)QMetaType(type).create();
+        #else
+            (QObject*)QMetaType::create(type);
+        #endif
     if(nullptr == obj)
     {
         qCritical(Client) << "QMetaType::create fail: " << type;
