@@ -272,6 +272,7 @@ int CConnectRabbitVNC::OnClean()
     setStreams(nullptr, nullptr);
     if(m_DataChannel)
         m_DataChannel->close();
+    emit sigDisconnected();
     return 0;
 }
 

@@ -199,7 +199,6 @@ int CConnect::Disconnect()
     qDebug(Client) << "CConnect::Disconnect()";
     int nRet = 0;
     nRet = OnClean();
-    emit sigDisconnected();
     return nRet;
 }
 

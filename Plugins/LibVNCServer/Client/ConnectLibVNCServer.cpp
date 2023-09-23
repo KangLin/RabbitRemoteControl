@@ -214,7 +214,6 @@ int CConnectLibVNCServer::OnInit()
     qInfo(LibVNCServer) << szInfo;
 
     emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
-    emit sigConnected();
     emit sigServerName(m_pClient->desktopName);
     emit sigInformation(szInfo);
 

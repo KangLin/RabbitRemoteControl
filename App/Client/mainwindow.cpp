@@ -783,6 +783,7 @@ void MainWindow::slotConnected()
 //    m_Connecters.push_back(p);
 
     slotInformation(tr("Connected to ") + p->Name());
+    qDebug(App) << "MainWindow::slotConnected()" << p->Name();
 }
 
 void MainWindow::slotCloseView(const QWidget* pView)

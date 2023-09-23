@@ -270,7 +270,7 @@ int CConnectTigerVnc::OnClean()
     setStreams(nullptr, nullptr);
     if(m_DataChannel)
         m_DataChannel->close();
-    //emit sigDisconnected();
+    emit sigDisconnected();
     return 0;
 }
 

@@ -40,10 +40,12 @@ void CConnectThread::run()
         emit m_pConnecter->sigDisconnect();
     }
 
-    if(pConnect){
+    if(pConnect) {
         nRet = pConnect->Connect();
         if(nRet)
             emit pConnect->sigDisconnect();
+        else
+            emit pConnect->sigConnected();
     }
 
     exec();
@@ -51,8 +53,9 @@ void CConnectThread::run()
     if(pConnect) {
         pConnect->Disconnect();
         pConnect->deleteLater();
-    } else
-        emit m_pConnecter->sigDisconnected();
+    }
+
+    emit m_pConnecter->sigDisconnected();
 
     qDebug(Client) << "CConnectThread::run() end";
 }

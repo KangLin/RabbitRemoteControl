@@ -301,8 +301,6 @@ int CConnectFreeRDP::OnClientStart(rdpContext *context)
     freerdp* instance = freerdp_client_get_instance(context);
     BOOL status = freerdp_connect(instance);
     if (status) {
-        emit sigConnected();
-
         QString szInfo = tr("Connect to ");
         szInfo += m_pParameter->GetHost();
         szInfo += ":";

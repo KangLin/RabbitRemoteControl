@@ -202,10 +202,10 @@ int CClient::SaveConnecter(QString szFile, CConnecter *pConnecter)
                 + ".rrc";
 
     QSettings set(szFile, QSettings::IniFormat);
-    
+
     const CPluginClient* pPluginClient = pConnecter->m_pPluginClient;
     Q_ASSERT(pPluginClient);
-    
+
     set.setValue("Manage/FileVersion", m_FileVersion);
     set.setValue("Plugin/ID", pPluginClient->Id());
     set.setValue("Plugin/Protocol", pPluginClient->Protocol());
