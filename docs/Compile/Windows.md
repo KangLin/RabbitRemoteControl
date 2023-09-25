@@ -243,25 +243,23 @@ Source-code location: https://github.com/KangLin/tigervnc
   + QTermWidget5_DIR: [QTermWidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   + QtService_DIR: [QtService installation path]/lib/cmake/QtService
-  
 - If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-
+  + X_VCPKG_APPLOCAL_DEPS_INSTALL: ON #When installing, copy the dependent libraries to the installation directory
 - Compile
-  + Install target
-    - install-runtime: Only install runtime libraries and the program
-    - install: Install runtime and development libraries and the program
-
   + Compile from the command-line
 
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-          cmake --build . --config Release --target install-runtime
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+          cmake --build . --config Release
+          cmake --install . --config Release --component runtime --strip
           makensis Install.nsi  ;Package
 
   + Using an IDE (Qt Creator)
-    - Set vcpkg: Menu→Options→Kits→Cmake Configuration: add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    - Set vcpkg: Menu→Options→Kits→Cmake Configuration:
+      + Add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+      + Set X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
     - Open project: Menu→File→Open File or project, Select the CMakeLists.txt of the project
     - Configure: Click Project→"Build & Run" in the toolbar on the left to configure CMake parameters
     - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)

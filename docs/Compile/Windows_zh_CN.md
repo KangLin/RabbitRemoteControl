@@ -236,25 +236,23 @@
   + qtermwidget5_DIR: [QTermWidget 安装目录]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   + QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
-  
 - 如果使用 vcpkg，增加下面参数
   + CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-  
+  + X_VCPKG_APPLOCAL_DEPS_INSTALL: ON  #安装时，把把依赖库的复制到安装目录中
 - 编译
-  + 安装目标
-    - install-runtime: 只安装运行库和程序
-    - install: 安装所有库（运行库与开发库）和程序
-
   + 命令行编译
   
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-          cmake --build . --config Release --target install-runtime
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+          cmake --build . --config Release
+          cmake --install . --config Release --component runtime --strip
           makensis Install.nsi  ;打包
 
   + IDE (Qt Creator) 编译
-    - 设置 vcpkg: 选项→Kits→Cmake Configureration: 增加 CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+    - 设置 vcpkg: 选项→Kits→Cmake Configureration:
+      + 增加 CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+      + 设置 X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
     - 打开项目: 菜单→文件→打开文件或项目，选择项目根目录中的 CMakeLists.txt 
     - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
     - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
