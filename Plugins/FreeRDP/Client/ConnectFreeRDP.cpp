@@ -137,11 +137,11 @@ int CConnectFreeRDP::OnClean()
     if(m_pContext)
     {
         rdpContext* pRdpContext = (rdpContext*)m_pContext;
-        if(freerdp_client_stop(pRdpContext))
-            qCritical(FreeRDPConnect) << "freerdp_client_stop fail";
-
         if(!freerdp_disconnect(pRdpContext->instance))
             qCritical(FreeRDPConnect) << "freerdp_disconnect fail";
+
+        if(freerdp_client_stop(pRdpContext))
+            qCritical(FreeRDPConnect) << "freerdp_client_stop fail";
 
         freerdp_client_context_free(pRdpContext);
         m_pContext = nullptr;

@@ -304,11 +304,11 @@ jobs:
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{github.workspace}}\build
         run: |
-          move /Y install\plugins\*crypto*.dll install\bin
-          move /Y install\plugins\*ssl*.dll install\bin
-          copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
-          copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
-          copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
+          ;move /Y install\plugins\*crypto*.dll install\bin
+          ;move /Y install\plugins\*ssl*.dll install\bin
+          ;copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
+          ;copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
+          ;copy /Y ${{env.RUNVCPKG_VCPKG_ROOT}}\installed\${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}}\bin\*.dll install\bin
           7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
           md5sum RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip > RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip.md5sum
           makensis Install.nsi
