@@ -236,30 +236,30 @@ int CConnect::OnProcess()
 
 void CConnect::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
-    qDebug(Client) << "CConnect::slotWheelEvent";
+    qDebug(Client) << "Need to implement CConnect::slotWheelEvent";
 }
 
 void CConnect::slotMouseMoveEvent(Qt::MouseButtons, QPoint)
 {
-    qDebug(Client) << "CConnect::slotMouseMoveEvent";
+    qDebug(Client) << "Need to implement CConnect::slotMouseMoveEvent";
 }
 
 void CConnect::slotMousePressEvent(Qt::MouseButtons, QPoint)
 {
-    qDebug(Client) << "CConnect::slotMousePressEvent";
+    qDebug(Client) << "Need to implement CConnect::slotMousePressEvent";
 }
 
 void CConnect::slotMouseReleaseEvent(Qt::MouseButton, QPoint)
 {
-    qDebug(Client) << "CConnect::slotMouseReleaseEvent";
+    qDebug(Client) << "Need to implement CConnect::slotMouseReleaseEvent";
 }
 
 void CConnect::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    qDebug(Client) << "CConnect::slotKeyPressEvent";
+    qDebug(Client) << "Need to implement CConnect::slotKeyPressEvent";
 }
 
 void CConnect::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    qDebug(Client) << "CConnect::slotKeyReleaseEvent";
+    qDebug(Client) << "Need to implement CConnect::slotKeyReleaseEvent";
 }

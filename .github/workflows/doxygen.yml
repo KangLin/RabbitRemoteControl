@@ -94,7 +94,7 @@ jobs:
         build_dir: build/Doxygen
 
     - name: Deploy to sourceforge.io
-      if: startsWith(github.ref, 'refs/tags/')
+      #if: startsWith(github.ref, 'refs/tags/')
       working-directory: ${{env.SOURCE_DIR}}
       run: |
         echo "${{secrets.GIT_SSH_PRIVATE_KEY}}" > id_rsa

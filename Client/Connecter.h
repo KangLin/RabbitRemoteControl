@@ -182,11 +182,13 @@ public Q_SLOTS:
      */
     virtual int DisConnect() = 0;
     
-    //! \~chinese 下列槽仅由 CConnect::SetConnecter 使用
-    //! \~english Follow slot only is used by CConnect::SetConnecter
+    //! \~chinese \note 仅由 CConnect::SetConnecter() 使用
+    //! \~english \note The slot only is used by CConnect::SetConnecter()
     virtual void slotSetClipboard(QMimeData *data);
+    //! \~chinese \note 仅由 CConnect::SetConnecter() 使用
+    //! \~english \note The slot only is used by CConnect::SetConnecter()
     virtual void slotSetServerName(const QString &szName);
-    
+
 Q_SIGNALS:
     /*!
      * \~chinese 连接成功信号。仅由插件触发

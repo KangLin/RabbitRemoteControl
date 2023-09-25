@@ -58,7 +58,7 @@ public:
      * \param pConnecter
      * \param parent
      * \param bDirectConnection:
-     *        \li true: 当可能会阻塞事件循环时
+     *        \li true: 当阻塞事件循环时，可能会造成延迟，所以直接连接信号
      *        \li false: 当一个非阻塞事件循环时
      * \~english
      * \param pConnecter
@@ -74,12 +74,13 @@ public:
 
 public Q_SLOTS:   
     /*!
-     * \~chinese 默认开始定时器
-     * \~english Default start timer.
-     * 
+     * \~chinese 开始连接。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件
+     * \~english Start connect. Based on the OnInit() return value,
+     *           decide whether to start the timer to support no-qt event
+     *
      * \~
      * \return 0: success; other error
-     * \see OnProcess slotTimeOut
+     * \see OnInit() OnProcess() slotTimeOut()
      */
     virtual int Connect();
     virtual int Disconnect();
@@ -98,14 +99,14 @@ protected:
      * \~chinese 具体的插件实现连接初始化
      * \return
      * \li < 0: 错误
-     * \li = 0: 使用 OnProcess (非 Qt 事件循环)
-     * \li > 0: 不便用 use OnProcess (qt 事件循环)
+     * \li = 0: 使用 OnProcess() (非 Qt 事件循环)
+     * \li > 0: 不使用 OnProcess() (qt 事件循环)
      *
      * \~english Specific plug-in realizes connection initialization
      * \return
      * \li < 0: error
-     * \li = 0: Use OnProcess (non-Qt event loop)
-     * \li > 0: Don't use OnProcess (qt event loop)
+     * \li = 0: Use OnProcess() (non-Qt event loop)
+     * \li > 0: Don't use OnProcess() (qt event loop)
      *
      * \~
      * \see Connect()
@@ -136,16 +137,17 @@ protected:
 protected Q_SLOTS:
     /*!
      * \~chinese 一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。
-     *   如果 CConnect 没有一个非 Qt 事件循环（就是普通的循环处理），必须重载它。
-     *   参见 CConnectTigerVnc::slotTimeOut()
+     *   如果 CConnect 没有一个非 Qt 事件循环（就是普通的循环处理），必须重载它，或者 OnInit() 返回值大于 0
      *
      * \~english a non-Qt event loop (that is, normal loop processing)，
      *   It call OnProcess(), and start timer.
-     *   If CConnect don not have a non-Qt event loop, must override it.
-     *   see CConnectTigerVnc::slotTimeOut()
+     *   If CConnect don not have a non-Qt event loop, must override it, or OnInit() return >0
+     *
+     * \~
+     * \see Connect()
      */
     virtual void slotTimeOut();
-    
+
 Q_SIGNALS:
     void sigConnected();
     /*!

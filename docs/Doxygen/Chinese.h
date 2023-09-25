@@ -41,17 +41,20 @@
 + 使用：
   - 实例化类： \ref CClient m_Client;
     + 处理 CClient::Handle::onProcess 得到注册的连接插件
-  - 使用下面一种方式得到连接者对象：
+  - 使用下面一种方式建立连接者对象：
     + \ref CClient::CreateConnecter
     + \ref CClient::LoadConnecter
   - 关联信号：
     + 连接成功信号： \ref CConnecter::sigConnected
-    + 断连信号： \ref CConnecter::sigDisconnected
+    + 断开连接信号：　\ref CConnecter::sigDisconnect
+    + 断连成功信号： \ref CConnecter::sigDisconnected
   - 打开连接： CConnecter::Connect()
   - 接收到 \ref CConnecter::sigConnected 信号后，做连接相关初始化工作
+  - 接收到　CConnecter::sigDisconnect　信号后，关闭连接。
   - 关闭连接： CConnecter::DisConnect()
-  - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，完成后并删除此连接者对象 (必须使用 CConnecter::deleteLater )
-    
+  - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，
+　　　完成后并删除此连接者对象 (必须使用 CConnecter::deleteLater )
+ 
 
 \defgroup CLIENT_PLUGIN_API 客户端插件接口
 \ingroup LIBAPI_CLIENT
@@ -113,14 +116,14 @@
     \see CPluginClientThread CConnecterDesktop
 + 类关系：
   \image html docs/Image/PluginClientAPI.svg
-  
+
 \defgroup LIBAPI_CHANNEL 通道
 \ingroup LIBAPI
 \brief 流式数据通道
 \details
 + 类关系图
   \image html docs/Image/Channel.svg
-  
+
 \defgroup LIBAPI_ICE ICE
 \ingroup LIBAPI_CHANNEL
 \details
