@@ -216,9 +216,15 @@ jobs:
               export BUILD_VIEWER_TERMINAL=OFF
               export BUILD_LibVNCServer=OFF
               export BUILD_TigerVNC=OFF
+              export BUILD_FREERDP=ON
+              export BUILD_RABBITVNC=ON
           else
               echo "Build Debug ......"
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
+              export BUILD_LibVNCServer=ON
+              export BUILD_TigerVNC=ON
+              export BUILD_FREERDP=ON
+              export BUILD_RABBITVNC=ON
           fi
           export Qt6_DIR=/usr/lib/`uname-a`-linux-gnu/cmake/Qt6
           ./build_debpackage.sh

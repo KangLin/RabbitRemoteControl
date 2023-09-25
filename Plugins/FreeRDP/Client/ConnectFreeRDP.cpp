@@ -1317,7 +1317,7 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
 	WINPR_UNUSED(play_sound);
     QApplication::beep();
     return TRUE;
-    
+
     QString szFile;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     QSoundEffect effect;
@@ -1335,6 +1335,7 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
 bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
 {
     if(m_pParameter && m_pParameter->GetOnlyView()) return true;
+    if(!m_pContext || !m_pContext->Context.input) return false;
 
 #if FreeRDP_VERSION_MAJOR >= 3
     freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,

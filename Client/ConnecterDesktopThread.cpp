@@ -21,7 +21,7 @@ CConnecterDesktopThread::~CConnecterDesktopThread()
         m_pView = nullptr;
     }
     
-    qDebug(Client) << "CConnecterDesktopThread::~CConnecterDesktopThread";
+    qDebug(Client) << "CConnecterDesktopThread::~CConnecterDesktopThread()";
     //qDebug() << this << this->metaObject()->className();
 }
 
@@ -37,7 +37,7 @@ CParameterConnecter* CConnecterDesktopThread::GetParameter()
 
 int CConnecterDesktopThread::Connect()
 {
-    qDebug(Client) << "CConnecterDesktopThread::Connect";
+    qDebug(Client) << "CConnecterDesktopThread::Connect()";
     int nRet = 0;
     m_pThread = new CConnectThread(this);
     if(!m_pThread)
@@ -54,7 +54,7 @@ int CConnecterDesktopThread::Connect()
 
 int CConnecterDesktopThread::DisConnect()
 {
-    qDebug(Client) << "CConnecterDesktopThread::DisConnect";
+    qDebug(Client) << "CConnecterDesktopThread::DisConnect()";
     int nRet = 0;
     if(m_pThread)
     {

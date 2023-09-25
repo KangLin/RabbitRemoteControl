@@ -2,26 +2,22 @@
 
 ## Desktop
 
-cmake_dependent_option(BUILD_RABBITVNC
-    "Build RabbitVNC plugin" ON BUILD_PLUGINS OFF)
+option(BUILD_RABBITVNC "Build RabbitVNC plugin" ON)
 if(BUILD_RABBITVNC)
     add_subdirectory(RabbitVNC)
 endif()
 
-cmake_dependent_option(BUILD_TigerVNC
-    "Build TigerVnc plugin" OFF BUILD_PLUGINS OFF)
+option(BUILD_TigerVNC "Build TigerVnc plugin" $ENV{BUILD_TigerVNC})
 if(BUILD_TigerVNC)
     add_subdirectory(TigerVnc)
 endif()
 
-cmake_dependent_option(BUILD_LibVNCServer
-    "Build LibVNCServer plugin" OFF BUILD_PLUGINS OFF)
+option(BUILD_LibVNCServer "Build LibVNCServer plugin" $ENV{BUILD_LibVNCServer})
 if(BUILD_LibVNCServer)
     add_subdirectory(LibVNCServer)
 endif()
 
-cmake_dependent_option(BUILD_FREERDP
-    "Build freerdp plugin" OFF BUILD_PLUGINS OFF)
+option(BUILD_FREERDP "Build freerdp plugin" OFF)
 if(BUILD_FREERDP)
     add_subdirectory(FreeRDP)
 endif()
@@ -33,7 +29,7 @@ message(STATUS "BUILD_FREERDP:${BUILD_FREERDP}")
 
 ## Terminal
 
-if(BUILD_CLIENT_TERMINAL AND BUILD_PLUGINS)
+if(BUILD_CLIENT_TERMINAL)
     find_package(qtermwidget5)
     if(qtermwidget5_FOUND)
         option(BUILD_TERMINAL "Build Terminal" ON)

@@ -192,10 +192,13 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DBUILD_FREERDP=ON ^
-            -DBUILD_LibVNCServer=OFF ^
+            -DBUILD_LibVNCServer=ON ^
+            -DBUILD_RABBITVNC=ON ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
+            -DBUILD_TigerVNC=ON ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
             -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel ^
+            -DBUILD_SERVICE=ON ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
           cmake --build . --config ${{ matrix.BUILD_TYPE }}

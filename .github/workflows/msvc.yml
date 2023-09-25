@@ -258,8 +258,15 @@ jobs:
         run: |
           IF /i "${{matrix.BUILD_TYPE}}" == "Release" (
               echo "Build Release ......"
+              set BUILD_RABBITVNC=ON
               set BUILD_LibVNCServer=OFF
               set BUILD_TigerVNC=OFF
+              set BUILD_SERVICE=OFF
+          ) else (
+              echo "Build Debug ......"
+              set BUILD_LibVNCServer=ON
+              set BUILD_TigerVNC=ON
+              set BUILD_SERVICE=ON
           )
           cmake -E make_directory ${{github.workspace}}/build
           cd ${{github.workspace}}/build
