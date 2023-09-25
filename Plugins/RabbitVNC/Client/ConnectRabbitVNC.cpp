@@ -286,6 +286,7 @@ void CConnectRabbitVNC::slotConnected()
                          << m_pPara->GetHost() << ":" << m_pPara->GetPort();
     
     int nRet = SetPara();
+    if(nRet)
     {
         emit sigDisconnect();
         return;
@@ -507,7 +508,7 @@ void CConnectRabbitVNC::framebufferUpdateEnd()
     if(m_pPara && m_pPara->GetBufferEndRefresh())
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
-        emit sigUpdateRect(img.rect(), img);
+        emit sigUpdateRect(img);
     }
     
     // Compute new settings based on updated bandwidth values
@@ -617,7 +618,7 @@ bool CConnectRabbitVNC::dataRect(const rfb::Rect &r, int encoding)
     if(m_pPara && !m_pPara->GetBufferEndRefresh())
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
-        emit sigUpdateRect(img.rect(), img);
+        emit sigUpdateRect(QRect(r.tl.x, r.tl.y, r.width(), r.height()), img);
     }
     return true;
 }

@@ -292,7 +292,7 @@ void CConnectLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int
 {
     //qDebug(LibVNCServer, "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
-    emit pThis->sigUpdateRect(pThis->m_Image.rect(), pThis->m_Image);
+    emit pThis->sigUpdateRect(QRect(x, y, w, h), pThis->m_Image);
 }
 
 void CConnectLibVNCServer::cb_got_selection(rfbClient *client, const char *text, int len)

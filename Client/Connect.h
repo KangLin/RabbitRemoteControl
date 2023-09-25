@@ -168,13 +168,18 @@ Q_SIGNALS:
     /*!
      * \~chinese 通知视图，图像更新
      * \param r: 更新图像的矩形
-     * \param image: 更新矩形内的图像
+     * \param image: 包含更新矩形的图像
      *
      * \~english Notify the CFrmView update image
-     * \param r: update rect
-     * \param image: update image of rect
+     * \param r: update rectangle
+     * \param image: An image that contains an update rectangle
      */
     void sigUpdateRect(const QRect& r, const QImage& image);
+    /*!
+     * \brief Notify the CFrmView update image
+     * \param image
+     */
+    void sigUpdateRect(const QImage& image);
     void sigUpdateCursor(const QCursor& cursor);
     void sigUpdateCursorPosition(const QPoint& pos);
     void sigSetClipboard(QMimeData* data);
@@ -186,7 +191,7 @@ Q_SIGNALS:
      *
      * \~english
      * \note It differs from sigShowMessage in that sigShowMessage is displayed in a dialog box
-     * 
+     *
      * \~
      * \see sigShowMessage
      */

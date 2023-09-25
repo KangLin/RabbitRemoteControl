@@ -1224,10 +1224,9 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
     if(x > m_Image.width() || y > m_Image.height())
         return TRUE;
 
-    //QRect rect(x, y, w, h);
+    QRect rect(x, y, w, h);
     //qDebug(FreeRDPConnect) << "Update:" << rect;
-    //emit sigUpdateRect(rect, m_Image.copy(rect));
-    emit sigUpdateRect(m_Image.rect(), m_Image);
+    emit sigUpdateRect(rect, m_Image);
     return FALSE;
 }
 

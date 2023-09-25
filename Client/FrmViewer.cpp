@@ -310,9 +310,17 @@ void CFrmViewer::slotSetName(const QString& szName)
     emit sigServerName(szName);
 }
 
+void CFrmViewer::slotUpdateRect(const QImage& image)
+{
+    //qDebug(Client) << "void CFrmViewer::slotUpdateRect(const QImage& image)" << image;
+    QPainter painter(&m_Desktop);
+    painter.drawImage(image.rect(), image);
+    update();
+}
+
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
-    //qDebug(Client) << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)";
+    //qDebug(Client) << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)" << r << image;
     if(m_Desktop.isNull() || m_Desktop.rect() == r)
     {
         m_Desktop = image;
@@ -321,9 +329,10 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
     else
     {
         QPainter painter(&m_Desktop);
-        painter.drawImage(r, image);
-        //qDebug(Client) << "Update image size isn't same old image size";
+        painter.drawImage(r, image, r);
+        //qDebug(Client) << "Update image size isn't same old image size" << r << image;
     }
+
     update();
 }
 

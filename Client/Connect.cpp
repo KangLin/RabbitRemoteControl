@@ -118,6 +118,9 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
     check = connect(this, SIGNAL(sigUpdateRect(const QRect&, const QImage&)),
                     m_pView, SLOT(slotUpdateRect(const QRect&, const QImage&)));
     Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigUpdateRect(const QImage&)),
+                    m_pView, SLOT(slotUpdateRect(const QImage&)));
+    Q_ASSERT(check);
     check = connect(this, SIGNAL(sigUpdateCursor(const QCursor&)),
                     m_pView, SLOT(slotUpdateCursor(const QCursor&)));
     Q_ASSERT(check);
