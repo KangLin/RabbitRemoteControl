@@ -610,7 +610,10 @@ void CConnectRabbitVNC::updatePixelFormat()
 bool CConnectRabbitVNC::dataRect(const rfb::Rect &r, int encoding)
 {
     if(!rfb::CConnection::dataRect(r, encoding))
+    {
+        qCritical(RabbitVNC) << "rfb::CConnection::dataRect fail";
         return false;
+    }
     /*
     qDebug(RabbitVNC, "CConnectRabbitVnc::dataRect:%d, %d, %d, %d; %d",
                    r.tl.x, r.tl.y, r.width(), r.height(), encoding); //*/
@@ -618,7 +621,7 @@ bool CConnectRabbitVNC::dataRect(const rfb::Rect &r, int encoding)
     if(m_pPara && !m_pPara->GetBufferEndRefresh())
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
-        emit sigUpdateRect(QRect(r.tl.x, r.tl.y, r.width(), r.height()), img);
+        emit sigUpdateRect(img);
     }
     return true;
 }
