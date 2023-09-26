@@ -23,7 +23,8 @@ Q_LOGGING_CATEGORY(FavoriteLogger, "App.Favorite")
 
 Q_DECLARE_LOGGING_CATEGORY(FavoriteLogger)
 
-CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
+CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
+    m_pDockTitleBar(nullptr),
     m_pModel(nullptr)
 {
     setWindowTitle(tr("Favorite"));
@@ -94,6 +95,19 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(),
             }
         }
     }
+    
+    m_pDockTitleBar = new RabbitCommon::CTitleBar(this);
+    // Create tools pushbutton in title bar
+    m_pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
+    check = connect(m_pMenu, SIGNAL(aboutToShow()), this, SLOT(slotMenu()));
+    Q_ASSERT(check);
+    QPushButton* pTools = m_pDockTitleBar->CreateSmallPushButton(
+        QIcon::fromTheme("tools"), m_pDockTitleBar);
+    pTools->setToolTip(tr("Tools"));
+    pTools->setMenu(m_pMenu);
+    QList<QWidget*> lstWidget;
+    lstWidget << pTools;
+    m_pDockTitleBar->AddWidgets(lstWidget);
 }
 
 CFavoriteView::~CFavoriteView()
@@ -230,26 +244,30 @@ void CFavoriteView::slotDoubleEditNode(bool bEdit)
         setEditTriggers(QTreeView::NoEditTriggers);
 }
 
-void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
+void CFavoriteView::slotMenu()
 {
-    auto index = indexAt(pos);
-    QMenu menu(this);
+    auto index = this->currentIndex();
     auto item = m_pModel->itemFromIndex(index);
+    m_pMenu->clear();
     if(item)
     {
         if(item->data().isValid()) {
-            menu.addAction(tr("Connect"), this, SLOT(slotConnect()));
-            menu.addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
-            menu.addSeparator();
-            menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
-        } else {
-            menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
-            menu.addAction(tr("Delete"), this, SLOT(slotDelete()));
+            m_pMenu->addAction(tr("Connect"), this, SLOT(slotConnect()));
+            m_pMenu->addAction(tr("Open settings and connect"), this, SLOT(slotOpenConnect()));
+            m_pMenu->addAction(tr("Delete Connect"), this, SLOT(slotDelete()));
         }
+        m_pMenu->addSeparator();
+        m_pMenu->addAction(tr("New group"), this, SLOT(slotNewGroup()));
+        if(!item->data().isValid())
+            m_pMenu->addAction(tr("Delete group"), this, SLOT(slotDelete()));
     } else
-        menu.addAction(tr("New group"), this, SLOT(slotNewGroup()));
-        
-    menu.exec(mapToGlobal(pos));
+        m_pMenu->addAction(tr("New group"), this, SLOT(slotNewGroup()));
+}
+
+void CFavoriteView::slotCustomContextMenu(const QPoint &pos)
+{
+    slotMenu();
+    m_pMenu->exec(mapToGlobal(pos));
 }
 
 void CFavoriteView::slotConnect()

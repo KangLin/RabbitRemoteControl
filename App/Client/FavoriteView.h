@@ -3,6 +3,7 @@
 
 #include <QTreeView>
 #include <QStandardItem>
+#include "TitleBar.h"
 
 class CFavoriteView : public QTreeView
 {
@@ -11,6 +12,7 @@ public:
     explicit CFavoriteView(QWidget *parent = nullptr);
     virtual ~CFavoriteView();
     
+    RabbitCommon::CTitleBar* m_pDockTitleBar;
     int AddFavorite(const QString& szName, const QString &szFile);
 
 Q_SIGNALS:
@@ -34,13 +36,16 @@ private slots:
     void slotDelete();
     void slotNewGroup();
     void slotDoubleEditNode(bool bEdit);
+    void slotMenu();
 
 private:
     QStandardItemModel* m_pModel;
     QString m_szSaveFile;
-    
+
     QPoint m_DragStartPosition;
-    
+
+    QMenu* m_pMenu;
+
     QStandardItem* NewItem(const QModelIndex &index);
     int Save();
 };
