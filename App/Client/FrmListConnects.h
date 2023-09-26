@@ -47,6 +47,11 @@ private:
     QToolBar* m_pToolBar;
     QToolButton* m_ptbConnect;
     QMenu* m_pMenuNew;
+    QAction* m_pConnect;
+    QAction* m_pEditConnect;
+    QAction* m_pEdit;
+    QAction* m_pCopy;
+    QAction* m_pDelete;
 
     QTableView* m_pTableView;
     QStandardItemModel* m_pModel;

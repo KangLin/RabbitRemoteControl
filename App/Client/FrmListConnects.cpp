@@ -23,10 +23,14 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
     setWindowTitle(tr("List connections"));
 
     m_pToolBar = new QToolBar(this);
-    m_pToolBar->addAction(QIcon::fromTheme("network-wired"), tr("Connect"),
+    m_pConnect = m_pToolBar->addAction(QIcon::fromTheme("network-wired"), tr("Connect"),
                           this, SLOT(slotConnect()));
-    m_pToolBar->addAction(/*QIcon::fromTheme("network-wired"), */tr("Edit and Connect"),
+    m_pConnect->setStatusTip(tr("Connect"));
+    m_pConnect->setToolTip(tr("Connect"));
+    m_pEditConnect = m_pToolBar->addAction(/*QIcon::fromTheme("network-wired"), */tr("Edit and Connect"),
                           this, SLOT(slotEditConnect()));
+    m_pEditConnect->setStatusTip(tr("Edit and Connect"));
+    m_pEditConnect->setToolTip(tr("Edit and Connect"));
     m_pToolBar->addSeparator();
 
     m_ptbConnect = new QToolButton(m_pToolBar);
@@ -42,19 +46,31 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
     m_ptbConnect->setStatusTip(tr("New"));
     m_pToolBar->addWidget(m_ptbConnect);
     m_pClient->EnumPlugins(this);
-    m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"),
+    m_pEdit = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"),
                           this, SLOT(slotEdit()));
-    m_pToolBar->addAction(QIcon::fromTheme("edit-copy"), tr("Copy"),
+    m_pEdit->setStatusTip(tr("Edit"));
+    m_pEdit->setToolTip(tr("Edit"));
+    m_pCopy = m_pToolBar->addAction(QIcon::fromTheme("edit-copy"), tr("Copy"),
                           this, SLOT(slotCopy()));
-    m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"),
+    m_pCopy->setStatusTip(tr("Copy"));
+    m_pCopy->setToolTip(tr("Copy"));
+    m_pDelete = m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"),
                           this, SLOT(slotDelete()));
-    m_pToolBar->addSeparator();   
-    if(m_bClose)
-        m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
+    m_pDelete->setToolTip(tr("Delete"));
+    m_pDelete->setStatusTip(tr("Delete"));
+    m_pToolBar->addSeparator();
+    if(m_bClose) {
+        QAction* pClose = m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
                           this, SLOT(close()));
-    else
-        m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
-                          this, SLOT(slotLoadFiles()));
+        pClose->setStatusTip(tr("Close"));
+        pClose->setToolTip(tr("Close"));
+    }
+    else {
+        QAction* pRefresh = m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+                                                  this, SLOT(slotLoadFiles()));
+        pRefresh->setToolTip(tr("Refresh"));
+        pRefresh->setStatusTip(tr("Refresh"));
+    }
 
     layout()->addWidget(m_pToolBar);
 
@@ -151,6 +167,22 @@ void CFrmListConnects::slotLoadFiles()
 
         c->deleteLater();
     }
+
+    if(m_pModel->rowCount() > 0)
+    {
+        m_pConnect->setEnabled(true);
+        m_pEditConnect->setEnabled(true);
+        m_pEdit->setEnabled(true);
+        m_pCopy->setEnabled(true);
+        m_pDelete->setEnabled(true);
+    } else {
+        m_pConnect->setEnabled(false);
+        m_pEditConnect->setEnabled(false);
+        m_pEdit->setEnabled(false);
+        m_pCopy->setEnabled(false);
+        m_pDelete->setEnabled(false);
+    }
+
     return;
 }
 
