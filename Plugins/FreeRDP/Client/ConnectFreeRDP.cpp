@@ -1334,12 +1334,13 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
 bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
 {
     if(m_pParameter && m_pParameter->GetOnlyView()) return true;
-    if(!m_pContext || !m_pContext->Context.input) return false;
+    if(!m_pContext) return false;
 
 #if FreeRDP_VERSION_MAJOR >= 3
     freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
                                      pos.x(), pos.y());
 #else
+    if(!m_pContext->Context.input) return false;
     return freerdp_input_send_mouse_event(m_pContext->Context.input,
                                    flags,
                                    pos.x(),
