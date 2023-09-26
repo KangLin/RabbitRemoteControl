@@ -303,7 +303,7 @@ void CConnectTigerVnc::slotDisConnected()
 {
     qInfo(TigerVNC) << "slotDisConnected to"
                     << m_pPara->GetHost() << ":" << m_pPara->GetPort();
-    // There isn't emit sigDisconnect, because of sigDisconnect is emited in CConnect::Disconnect()
+    // There isn't emit sigDisconnect, because of sigDisconnect is emitted in CConnect::Disconnect()
 }
 
 void CConnectTigerVnc::slotReadyRead()
@@ -351,7 +351,7 @@ void CConnectTigerVnc::slotReadyRead()
     } catch (std::exception &e) {
         szErr += e.what();
     } catch(...) {
-        szErr += "unknow exception";
+        szErr += "unknown exception";
     }
     qCritical(TigerVNC) << szErr;
     emit sigError(nRet, szErr);

@@ -37,7 +37,7 @@ CClient::CClient(QObject *parent) : QObject(parent),
     check = connect(&m_ParameterClient, SIGNAL(sigHookKeyboardChanged()),
                     this, SLOT(slotHookKeyboardChanged()));
     Q_ASSERT(check);
-    // TODO: Disabe it ?
+    // TODO: Disable it ?
     if(m_ParameterClient.GetHookKeyboard())
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
 }
