@@ -7,7 +7,7 @@
 #include <QHeaderView>
 #include <QMenu>
 
-CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *parent) :
+CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent) :
     QWidget(parent),
     m_pToolBar(nullptr),
     m_ptbConnect(nullptr),
@@ -15,7 +15,8 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
     m_pModel(nullptr),
     m_pClient(pClient),
     m_nFileRow(0),
-    m_bClose(bClose)
+    m_bDock(bDock),
+    m_pDockTitleBar(nullptr)
 {
     setFocusPolicy(Qt::NoFocus);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -59,20 +60,40 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bClose, QWidget *paren
     m_pDelete->setToolTip(tr("Delete"));
     m_pDelete->setStatusTip(tr("Delete"));
     m_pToolBar->addSeparator();
-    if(m_bClose) {
+    if(m_bDock) {
+        m_pRefresh = m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+                                                  this, SLOT(slotLoadFiles()));
+        m_pRefresh->setToolTip(tr("Refresh"));
+        m_pRefresh->setStatusTip(tr("Refresh"));
+    } else {
         QAction* pClose = m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
-                          this, SLOT(close()));
+                                                this, SLOT(close()));
         pClose->setStatusTip(tr("Close"));
         pClose->setToolTip(tr("Close"));
     }
-    else {
-        QAction* pRefresh = m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
-                                                  this, SLOT(slotLoadFiles()));
-        pRefresh->setToolTip(tr("Refresh"));
-        pRefresh->setStatusTip(tr("Refresh"));
-    }
 
     layout()->addWidget(m_pToolBar);
+    
+    if(bDock) {
+        m_pDockTitleBar = new RabbitCommon::CTitleBar(this);
+        // Create tools pushbutton in title bar
+        QMenu* pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
+        QPushButton* pTools = m_pDockTitleBar->CreateSmallPushButton(
+            QIcon::fromTheme("tools"), m_pDockTitleBar);
+        pTools->setToolTip(tr("Tools"));
+        pTools->setMenu(pMenu);
+        QList<QWidget*> lstWidget;
+        lstWidget << pTools;
+        m_pDockTitleBar->AddWidgets(lstWidget);
+        
+        pMenu->addAction(m_pConnect);
+        pMenu->addAction(m_pEditConnect);
+        pMenu->addMenu(m_pMenuNew);
+        pMenu->addAction(m_pEdit);
+        pMenu->addAction(m_pCopy);
+        pMenu->addAction(m_pDelete);
+        pMenu->addAction(m_pRefresh);
+    }
 
     Q_ASSERT(m_pClient);
     m_pTableView = new QTableView(this);
@@ -302,7 +323,7 @@ void CFrmListConnects::slotEditConnect()
         }
         c->deleteLater();
     }
-    if(m_bClose)
+    if(!m_bDock)
         close();
 }
 
@@ -383,7 +404,7 @@ void CFrmListConnects::slotConnect()
         QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
         emit sigConnect(szFile);
     }
-    if(m_bClose) close();
+    if(!m_bDock) close();
 }
 
 void CFrmListConnects::slotCustomContextMenu(const QPoint &pos)
@@ -407,5 +428,5 @@ void CFrmListConnects::slotDoubleClicked(const QModelIndex& index)
 {
     QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
     emit sigConnect(szFile);
-    if(m_bClose) close();
+    if(!m_bDock) close();
 }

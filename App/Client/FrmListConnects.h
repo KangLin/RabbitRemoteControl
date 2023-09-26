@@ -7,6 +7,7 @@
 #include <QTableView>
 #include <QToolButton>
 #include "Client.h"
+#include "TitleBar.h"
 
 /*!
  * \~chinese 列出存在的连接配置
@@ -19,12 +20,14 @@ class CFrmListConnects : public QWidget, CClient::Handle
     
 public:
     explicit CFrmListConnects(CClient* pClient,
-                              bool bClose = true,
+                              bool bDock = false,
                               QWidget *parent = nullptr);
     virtual ~CFrmListConnects();
 
 public:
     virtual int onProcess(const QString &id, CPluginClient *pPlug) override;
+    
+    RabbitCommon::CTitleBar* m_pDockTitleBar;
 
 Q_SIGNALS:
     void sigConnect(const QString &szFile, bool bOpenSettings = false);
@@ -52,13 +55,14 @@ private:
     QAction* m_pEdit;
     QAction* m_pCopy;
     QAction* m_pDelete;
+    QAction* m_pRefresh;
 
     QTableView* m_pTableView;
     QStandardItemModel* m_pModel;
     CClient* m_pClient;
     int m_nFileRow;
     
-    bool m_bClose;
+    bool m_bDock;
 };
 
 #endif // FRMOPENCONNECT_H

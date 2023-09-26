@@ -95,8 +95,10 @@ MainWindow::MainWindow(QWidget *parent)
     m_pDockListConnects = new QDockWidget(this);
     if(m_pDockListConnects)
     {
-        CFrmListConnects* pListConnects = new CFrmListConnects(&m_Client, false);
+        CFrmListConnects* pListConnects = new CFrmListConnects(&m_Client, true);
         if(pListConnects) {
+            if(pListConnects->m_pDockTitleBar)
+                m_pDockListConnects->setTitleBarWidget(pListConnects->m_pDockTitleBar);
             check = connect(pListConnects, SIGNAL(sigConnect(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
@@ -1189,7 +1191,7 @@ void MainWindow::on_actionCurrent_connect_parameters_triggered()
 
 void MainWindow::on_actionOpenListConnections_triggered()
 {
-    CFrmListConnects* p = new CFrmListConnects(&m_Client);
+    CFrmListConnects* p = new CFrmListConnects(&m_Client, false);
     if(!p) return;
     bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
                     this, SLOT(slotOpenFile(const QString&, bool)));
