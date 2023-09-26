@@ -30,6 +30,10 @@
     + LibVNCServer
   + Client:
     + Add sigShowMessage
++ Client interface
+  + Add CConnecter::sigDisconnect()
+  + Add CConnect::sigDisconnect()
+  + Add CConnect::sigUpdateRect(const QImage& image)
 
 ### v0.0.25
 + Modify CI for automation update

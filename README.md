@@ -344,39 +344,11 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.27_amd64_Ubuntu-18.04.deb.md5sum)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.27_amd64_Ubuntu-18.04.deb.md5sum/download)
       
-## Development
+## [Development](docs/Doxygen/Develop.md)
 
 ### Development documentation
 - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.25/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
-
-### Dependent
-
-#### Tools
-- [Qt](qt.io)
-- C/C++ compiler
-  + gcc/g++
-  + MSVC
-- [CMake](https://cmake.org/)
-- Automake、 Autoconf、 Make
-- Git
-
-#### Dependent libraries
-- [x] [MUST] RabbitCommon：https://github.com/KangLin/RabbitCommon
-- [x] VNC
-  + [x] [Optional] RabbitVNC: https://github.com/KangLin/RabbitVNC
-  + [x] [Optional] LibVNCServer: https://github.com/LibVNC/libvncserver
-  + [x] [Optional] TigerVNC: https://github.com/KangLin/tigervnc
-- [x] [Optional] FreeRDP: https://github.com/FreeRDP/FreeRDP
-- [x] [Optional] [SSH]
-  + [x] LIBSSH: https://www.libssh.org
-  + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
-- [x] [Optional] QTermWidget: https://github.com/lxqt/qtermwidget
-- [x] [Optional] libtelnet: https://github.com/seanmiddleditch/libtelnet
-- [ ] [Optional] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
-- [x] [Optional] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
-- [x] [OPTIONAL] QXmpp: https://github.com/qxmpp-project/qxmpp
-- [x] [Optional] QtService: https://github.com/KangLin/qt-solutions/
 
 ### Compilation
 - [Compiling for Linux](docs/Compile/Linux.md)

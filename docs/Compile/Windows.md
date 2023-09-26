@@ -252,16 +252,22 @@ Source-code location: https://github.com/KangLin/tigervnc
           cd RabbitRemoteControl
           mkdir build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
-          cmake --build . --config Release
-          cmake --install . --config Release --component runtime --strip
-          makensis Install.nsi  ;Package
+          cmake --build . --config Release --target install
+
+          ; Package
+          cmake --install . --config Release --component Runtime --strip
+          cmake --install . --config Release --component Application --strip
+          cmake --install . --config Release --component Plugin --strip
+          cmake --install . --config Release --component DependLibraries --strip
+          makensis Install.nsi
 
   + Using an IDE (Qt Creator)
-    - Set vcpkg: Menu→Options→Kits→Cmake Configuration:
+    - Set vcpkg: Menu→Edit→Preferences→Kits→Cmake Configuration:
       + Add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
       + Set X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
     - Open project: Menu→File→Open File or project, Select the CMakeLists.txt of the project
     - Configure: Click Project→"Build & Run" in the toolbar on the left to configure CMake parameters
+      - If need install: select install in target
     - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
 
 **Note:** If the plugin does not load.

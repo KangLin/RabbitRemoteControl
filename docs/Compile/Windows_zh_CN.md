@@ -245,16 +245,22 @@
           cd RabbitRemoteControl
           mkdir build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
-          cmake --build . --config Release
-          cmake --install . --config Release --component runtime --strip
+          cmake --build . --config Release --target
+
+          ; 打包
+          cmake --install . --config Release --component Runtime --strip
+          cmake --install . --config Release --component Application --strip
+          cmake --install . --config Release --component Plugin --strip
+          cmake --install . --config Release --component DependLibraries --strip
           makensis Install.nsi  ;打包
 
   + IDE (Qt Creator) 编译
-    - 设置 vcpkg: 选项→Kits→Cmake Configureration:
+    - 设置 vcpkg: 编辑→Preferences(Options)→构建套件(Kits)→Cmake Configureration:
       + 增加 CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
       + 设置 X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
-    - 打开项目: 菜单→文件→打开文件或项目，选择项目根目录中的 CMakeLists.txt 
-    - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
-    - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
+    - 打开项目: “菜单→文件→打开文件或项目”，选择项目根目录中的 CMakeLists.txt 
+    - 配置：点左侧工具栏上的 “项目→构建与运行”，配置 CMake 参数
+      - 如果要安装，还需要　“项目→构建与运行→构建步骤→目标”　中，选中　install
+    - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 “F5”
 
 **注意：** 如果插件没有加载。则可能是插件的依赖库没有安装到系统。你可以把依赖库复制插件的目录中。

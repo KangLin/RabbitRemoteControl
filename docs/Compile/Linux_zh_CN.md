@@ -293,9 +293,10 @@
            ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
 
   + IDE(Qt Creator) 编译
-    - 打开项目: 菜单→文件→打开文件或项目，选择项目根目录中的 CMakeLists.txt 
-    - 配置：点左侧工具栏上的 项目→编译与运行，配置 CMake 参数
-    - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 F5
+    - 打开项目: “菜单→文件→打开文件或项目”，选择项目根目录中的 CMakeLists.txt 
+    - 配置：点左侧工具栏上的 “项目→构建与运行”，配置 CMake 参数
+      - 如果要安装，还需要　“项目→构建与运行→构建步骤→目标”　中，选中　install
+    - 编译与运行： 点左侧工具栏上的 “开始调试” 或者按快捷键 “F5”
     - 如果用 vcpkg: 选项→Kits→Cmake Configureration: 增加 CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
   + 使用脚本 build_debpackage.sh

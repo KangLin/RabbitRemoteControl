@@ -29,6 +29,10 @@
     + LibVNCServer
   + 客户端
     + 增加 sigShowMessage 接口
++ 客户端接口
+  + 增加　CConnecter::sigDisconnect()
+  + 增加　CConnect::sigDisconnect()
+  + 增加  CConnect::sigUpdateRect(const QImage& image)
 
 ### v0.0.25
 + 为自动更新，修改自动化编译分发

@@ -332,41 +332,11 @@
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.27_amd64_Ubuntu-18.04.deb.md5sum)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.27_amd64_Ubuntu-18.04.deb.md5sum/download)
 
-## 开发
+## [开发](docs/Doxygen/Develop_zh_CN.md)
 
-### 开发文档
+### 在线开发文档
 - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.25/Chinese/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
-
-### 依赖
-
-#### 工具
-
-- [Qt](qt.io)
-- C/C++ compiler
-  + gcc/g++
-  + MSVC
-- [CMake](https://cmake.org/)
-- Automake、 Autoconf、 Make
-- Git
-
-#### 依赖库
-
-- [x] [必选] RabbitCommon：https://github.com/KangLin/RabbitCommon
-- [x] [可选] RFB
-  + [x] [可选] RabbitVNC: https://github.com/KangLin/RabbitVNC
-  + [x] [可选] LibVNCServer: https://github.com/LibVNC/libvncserver
-  + [x] [可选] TigerVNC: https://github.com/KangLin/tigervnc
-- [x] [可选] FreeRDP: https://github.com/FreeRDP/FreeRDP
-- [x] [可选] [SSH]
-  + [x] LIBSSH: https://www.libssh.org
-  + [ ] LIBSSH2: https://www.libssh2.org/ https://github.com/libssh2/libssh2
-- [x] [可选] QTermWidget: https://github.com/lxqt/qtermwidget
-- [x] [可选] libtelnet: https://github.com/seanmiddleditch/libtelnet
-- [ ] [可选] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
-- [x] [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
-- [x] [可选] QXmpp: https://github.com/qxmpp-project/qxmpp
-- [x] [可选] QtService: https://github.com/KangLin/qt-solutions/
 
 ### 编译
 

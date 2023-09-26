@@ -295,9 +295,17 @@ jobs:
             -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
           ) else (
-            cmake --install . --config ${{matrix.BUILD_TYPE}}
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
           )
 
       - name: Package
