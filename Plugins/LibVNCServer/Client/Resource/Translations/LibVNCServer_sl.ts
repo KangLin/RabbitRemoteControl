@@ -4,19 +4,31 @@
 <context>
     <name>CConnectLibVNCServer</name>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="73"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="76"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="75"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="158"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="65"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="78"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="161"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="185"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="156"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="64"/>
+        <source>Protocol version error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="159"/>
         <source>The proxy server is empty, please input it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="182"/>
+        <source>Connect to %1:%2 fail</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

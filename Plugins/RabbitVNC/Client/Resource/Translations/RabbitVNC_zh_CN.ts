@@ -4,41 +4,41 @@
 <context>
     <name>CConnectRabbitVNC</name>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="304"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="323"/>
         <source>Logon to </source>
         <translation>登录到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="309"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="328"/>
         <source>Please check that the username and password are correct.</source>
         <translation>请检查用户名和密码是否正确。</translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="215"/>
-        <location filename="../../ConnectRabbitVNC.cpp" line="230"/>
-        <location filename="../../ConnectRabbitVNC.cpp" line="310"/>
-        <location filename="../../ConnectRabbitVNC.cpp" line="325"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="221"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="236"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="329"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="344"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="213"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="219"/>
         <source>The proxy server is empty, please input it</source>
         <translation>代理服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="228"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="234"/>
         <source>The server is empty, please input it</source>
         <translation>服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="317"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="336"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectRabbitVNC.cpp" line="308"/>
-        <location filename="../../ConnectRabbitVNC.cpp" line="321"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="327"/>
+        <location filename="../../ConnectRabbitVNC.cpp" line="340"/>
         <source> fail.</source>
         <translation> 失败。</translation>
     </message>
@@ -145,8 +145,8 @@
     <message>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="144"/>
         <location filename="../../DlgSettingsRabbitVNC.ui" line="156"/>
-        <location filename="../../DlgSettingsRabbitVNC.cpp" line="184"/>
-        <location filename="../../DlgSettingsRabbitVNC.cpp" line="312"/>
+        <location filename="../../DlgSettingsRabbitVNC.cpp" line="186"/>
+        <location filename="../../DlgSettingsRabbitVNC.cpp" line="314"/>
         <source>Please checked save password to enable</source>
         <translation>请选择保存密码允许输入</translation>
     </message>
@@ -359,8 +359,8 @@
         <translation>自动选择</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsRabbitVNC.cpp" line="182"/>
-        <location filename="../../DlgSettingsRabbitVNC.cpp" line="310"/>
+        <location filename="../../DlgSettingsRabbitVNC.cpp" line="184"/>
+        <location filename="../../DlgSettingsRabbitVNC.cpp" line="312"/>
         <source>Input password</source>
         <translation>输入密码</translation>
     </message>

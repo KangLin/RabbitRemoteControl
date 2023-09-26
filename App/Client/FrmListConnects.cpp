@@ -73,7 +73,7 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
     }
 
     layout()->addWidget(m_pToolBar);
-    
+
     if(bDock) {
         m_pDockTitleBar = new RabbitCommon::CTitleBar(this);
         // Create tools pushbutton in title bar

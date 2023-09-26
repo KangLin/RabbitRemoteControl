@@ -4,41 +4,41 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="302"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="319"/>
         <source>Logon to </source>
         <translation>登录到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="307"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="324"/>
         <source>Please check that the username and password are correct.</source>
         <translation>检查用户名和密码是否正确。</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="214"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="229"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="308"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="323"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="219"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="234"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="325"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="340"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="212"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="217"/>
         <source>The proxy server is empty, please input it</source>
         <translation>代理服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="227"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="232"/>
         <source>The server is empty, please input it</source>
         <translation>服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="315"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="332"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="306"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="319"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="323"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="336"/>
         <source> fail.</source>
         <translation> 失败。</translation>
     </message>
