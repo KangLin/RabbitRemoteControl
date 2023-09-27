@@ -1,7 +1,220 @@
-rabbitremotecontrol (0.0.27) unstable; urgency=medium
+rabbitremotecontrol (0.0.26) unstable; urgency=medium
 
+    * Modify documents
+    * App: add favorite in favorite dock widget
+    * Modify translations
+    * App: add title menu in CFavoriteView
+    * App: add title menu when list connect from is dock widget
+    * App: Enable action in list connect from
+    * Fix typo
+    * Modify docments
+    * FreeRDP: install FreeRDP dynamic libraries
+    * VNC: modify sigUpdateRect(img)
+    * Client: add void sigUpdateRect(const QImage& image);
+    * doc: Modify doxygen documents
+    * FreeRDP: modify OnClean()
+    * CI: modify ci
+    * doc: Modify docuemnts
+    * Modify qt6 compile warn
+    * Client: move sigConnected and sigDisConnected to ConnectThread::run() when connect is bloack
+    * Plugins::LibVNCServer: add check error
+    * Plugins::LibVNCServer: Modify CRLF to LF
+    * Plugins::LibVNCServer: fix update desktop bug
+    * CMake: disable service and terminal
+    * docs: modify documents to add sourceforget htdocs
+    * Client: add sigDisConnect
+    * App: modify full screen
+    * Modify log
+    * App::Client: add keep aspect ratio zoom in full screen toolbar
+    * docs: modify compile documents
+    * FreeRDP: fix cb_desktop_resize bug
+    * FreeRDP: modify only view
+    * Terminal: Replace RabbitCommon::CDir::GetOpenFileName with QFileDialog::getOpenFileName
+    * doc: modify complie documents
+    * FreeRDP: add edit screen resolution
+    * FreeRDP: fix press the left and right mouse buttons at the same time BUG
+    * FreeRDP: modify mulitimon screen
+    * FreeRDP: modify locale screen size
+    * FreeRDP: check audio device
+    * Modify typo
+    * doc: Modify compile documents
+    * FreeRDP: modify reconnect
+    * FreeRDP: remove OnTerminateEventHandler
+    * FreeRDP: modify follow
+    * FreeRDP: use Lambda replease call back funtion
+    * FreeRDP: modify init
+    * Add comments
+    * Modify Change log
+    * App::Client: modify style menu
+    * App::Client: modify full screen
+    * CI: disable libvncserver and tigervnc
+    * Plugin: check host
+    * LibVNCServer: modify input password
+    * Plugins: modify view password
+    * TigerVNC: modify input password
+    * RabbitVNC: modify input password
+    * FreeRDP: modify input password
+    * Modify load translations
+    * FreeRDP: add freerdp log callback function
+    * VNC: modify proess exception
+    * FreeRDP: add FREERDP_ERROR_CONNECT_TRANSPORT_FAILED prompt
+    * Modify postinst
+    * Client: modify CParameterConnecter
+    * FreeRDP: modify logon error
+    * FreeRDP: modify certificate prompt
+    * FreeRDP: add ChooseSmartcard callback function
+    * App: Fix on_actionTabBar_B_toggled bug
+    * FreeRDP: modify verify certificate
+    * FreeRDP: add AuthenticateEx call back function
+    * Client: add CConnecter::sigShowMessage() signal
+    * VNC: modify exception
+    * App::Client: add use message box to display error information
+    * FreeRDP::Client: modify logon
+    * App: add show icon and tooltip in tab view
+    * App::Client: add ToolTip in View
+    * FreeRDP: add gateway message
+    * Client: - add name prefix - add only show IP:PORT in name
+    * FreeRDP: fix server name
+    * CI: modify ubuntu.yml to add xcb dependencies
+    * Client: fix clear background in CFrmViewer
+    * FreeRDP::Client: add cb_authenticate_ex
+    * FreeRDP::Client: add GetTitle
+    * CI: modify msvc.yml
+    * FreeRDP: Fix reconnet parameter
+    * Replace RabbitCommon::CDir::GetOpenFileName with QFileDialog::getOpenFileName etc
+    * CI: modify android.yml
+    * CI: modify ci
+    * Add work.png
+    * Android: modify AndroidManifest.xml
+    * CI: -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+    * App::Client: Modify menu bar
+    * FIX list connects windows icon
+    * CI: modify ci
+    * Add main menu status
+    * Fix system tray icon
+    * App::Client: modify menu
+    * Modify RabbitRemoteControl_logqt.ini
+    * CI: update vcpkg to 1286cac8751e13bb289061b7e3b89eb4c3f613a2
+    * CI: FIX qtwebengine
+    * CI: modify ubuntu.yml
+    * Add CPluginClient::Details
+    * Modify RabbitRemoteControl_logqt.ini
+    * CI: modify vcpkg
+    * CI: modify qt version 6.5.0 to 6.5.1
+    * Add cmake status
+    * Modify deploy.sh
+    * Client: modify eventfilter for Key_meta
+    * Client: modify windows hook
+    * Modify log
+    * CI: use freerdp2
+    * Modify ci
+    * Server: modify log
+    * App: modify log menu
+    * Fix RabbitRemoteControl_VERSION_REVISION
+    * Plugins::FreeRDP::Client: set redirection sound type initial
+    * CI: modify ubuntu.yml
+    * Fix typo
+    * App::Client: add plugin information in about diaglog
+    * Modify RabbitCommon
+    * Use RabbitCommon v2
+    * CI: modify ci
+    * Log: modify terminal log
+    * Modify comments
+    * Client: modify native event filter, but it is fail
+    * Modify log
+    * Client: Fix tab key event
+    * FIX: RabbitRemoteControl_logqt.ini
+    * CI: add code spell
+    * Modify dock widget menu
+    * CI: add reusable workflow
+    * FreeRDP: modify mouse
+    * FreeRDP: add rdpClientContext in FreeRDP 3
+    * FreeRDP: modify log
+    * Log: rename RabbitRemoteControl_logqt.conf to RabbitRemoteControl_logqt.ini
+    * App::Client: set default select
+    * CI: modify freerdp version
+    * CI: modify ubuntu.yml
+    * Modify CMakeLists.txt
+    * Modify postrm
+    * Use GET_VERSION
+    * CI: remove log4qt
+    * Log: add qt log configure file
+    * Channel: modify CMakeLists.txt
+    * App::Client: modify log
+    * CI: add .gtlab-ci.yml and Dockerfile
+    * Fix: Fixed a bug where the correct dependency library could not be loaded when there were different versions of the dependency library under Linux.
     * App::Client: add revision
     * CI: update cache
+    * CI: modify github release
+    * Client::Terminal: remove Q_INIT_RESOURCE
+    * Client: modify paramter
+    * App::Client: modify dock widget layout
+    * App::Client: add recent menu status tip
+    * Modify deploy.sh to debian/changelog
+    * Docs: Modify .github/ISSUE_TEMPLATE/bug_report.md
+    * App::Client: add refresh button in CFrmListConnects
+    * CI: Update appveyor.yml
+    * App::Client: modify recent menu
+    * Documents: Modify doxygen
+    * App::Client: rename CFrmOpenConnect to CFrmListConnects
+    * App::Client: modify toolbar in MainWindow
+    * Client: Modify CConnecter::Description() format
+    * App::Client: modify fouce in FrmOpenConnect
+    * Client: Add EnumPlugins lambda callback function in C++11
+    * Modify README
+    * Modify debian package
+    * Modify change log
+    * VNC: Fix ice bug
+    * App::Client: Add new in open connect dialog
+    * App::Client: modify table view to resize to contents
+    * Modify documents
+    * Plugin: Automatically detach ports from server addresses
+    * Plugins::FreeRDP: add redirection sound type
+    * Plugins::LibVNCServer: Fix eye icon theme bug
+    * App::Client: add open the dialog of settings connect
+    * Client: modify paramters
+    * CI: Modify release body
+    * FreeRDP::Client: add redirection - Sound - Microphone - Drive - Printer
+    * FreeRDP: modify CMakeLists.txt
+    * Modify ci
+    * Modify comments
+    * FIX: updater bug
+    * CI: update vcpkg version to 6adca01a3fadca0cc0b80f03ec57c7c3a0be5c02
+    * App::Client: use RabbitCommon::CTools::OpenLogFile()
+    * FreeRDP: update freerdp_input_send_keyboard_event_ex
+    * CI: modify msvc.yml
+    * Modify comments
+    * CI: modify doxygen.yml
+    * CI: updater vcpkg version to 94ce0dab56f4d8ba6bd631ba59ed682b02d45c46
+    * App: modify debug info for language
+    * Modify CMakeLists.txt
+    * Merge branch 'develop' of github.com:KangLin/RabbitRemoteControl into develop
+    * CI: disable VCPKG_OVERLAY_PORTS
+    * CI: FreeRDP version update to 2ad14696124b5a7689a323f56859efb329a3d25c
+    * Merge branch 'develop' of github.com:KangLin/RabbitRemoteControl into develop
+    * CI: modify updater
+    * FreeRDP: modify FILEGROUPDESCRIPTORW
+    * App::Client: Modify prompt for the password encryption type
+    * Modify appveyor.yml
+    * FreeRDP: Modify clipboard
+    * FreeRDP: update freerdp version to 2ad14696124b5a7689a323f56859efb329a3d25c
+    * Modify RabbitRemoteControl.conf
+    * FreeRDP: modify clipboard change signal
+    * FreeRDP: FIX clipboard copy file
+    * Client: modify connecter id
+    * Modify debug configure
+    * Plugins::TigerVNC::Client: FIX setting diaglog
+    * Rename tag.sh to release.sh
+    * CI: modify appveyor.yml
+    * CI: update release to Qt6.2.4
+    * FIX: HookUnix build fail in Qt6
+    * Modify CI
+    * CMake: add REQUIRED in find_package
+    * CMake: FIX cmake configure error in App::Service
+    * Modify cmake min version
+    * Client: modify icon in Client/DlgInputPassword.ui
+    * App: add item icon in favorite
+    * Update doxygen.yml
 
- -- Kang Lin <kl222@126.com>  Sun, 19 Feb 2023 12:13:38 +0800
+ -- Kang Lin <kl222@126.com>  Wed, 27 Sep 2023 13:09:20 +0800
 

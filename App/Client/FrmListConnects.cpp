@@ -75,7 +75,7 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
     layout()->addWidget(m_pToolBar);
 
     if(bDock) {
-        m_pDockTitleBar = new RabbitCommon::CTitleBar(this);
+        m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
         // Create tools pushbutton in title bar
         QMenu* pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
         QPushButton* pTools = m_pDockTitleBar->CreateSmallPushButton(
@@ -179,7 +179,7 @@ void CFrmListConnects::slotLoadFiles()
         QStandardItem* pProtocol = new QStandardItem(c->Protocol());
         lstItem << pProtocol;
         QFileInfo fi(szFile);
-        lstItem << new QStandardItem(fi.lastModified().toString());
+        lstItem << new QStandardItem(fi.lastModified().toLocalTime().toString());
         QStandardItem* pId = new QStandardItem(c->Id());
         lstItem << pId;
         QStandardItem* pFile = new QStandardItem(szFile);

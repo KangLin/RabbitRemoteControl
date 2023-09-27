@@ -96,7 +96,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
         }
     }
     
-    m_pDockTitleBar = new RabbitCommon::CTitleBar(this);
+    m_pDockTitleBar = new RabbitCommon::CTitleBar(parent);
     // Create tools pushbutton in title bar
     m_pMenu = new QMenu(tr("Tools"), m_pDockTitleBar);
     check = connect(m_pMenu, SIGNAL(aboutToShow()), this, SLOT(slotMenu()));
@@ -262,6 +262,9 @@ void CFavoriteView::slotMenu()
             m_pMenu->addAction(tr("Delete group"), this, SLOT(slotDelete()));
     } else
         m_pMenu->addAction(tr("New group"), this, SLOT(slotNewGroup()));
+
+    m_pMenu->addSeparator();
+    m_pMenu->addAction(tr("Add to favorite"), this, SIGNAL(sigFavorite()));
 }
 
 void CFavoriteView::slotCustomContextMenu(const QPoint &pos)

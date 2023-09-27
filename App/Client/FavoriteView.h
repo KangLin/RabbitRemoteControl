@@ -17,6 +17,7 @@ public:
 
 Q_SIGNALS:
     void sigConnect(const QString &szFile, bool bOpenSettings);
+    void sigFavorite();
     
     // QWidget interface
 protected:

@@ -80,6 +80,9 @@ MainWindow::MainWindow(QWidget *parent)
             check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
                             this, SLOT(slotOpenFile(const QString&, bool)));
             Q_ASSERT(check);
+            check = connect(m_pFavoriteView, SIGNAL(sigFavorite()),
+                            this, SLOT(on_actionAdd_to_favorite_triggered()));
+            Q_ASSERT(check);
             check = connect(&m_Parameter, SIGNAL(sigFavoriteEditChanged(bool)),
                             m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
             Q_ASSERT(check);
@@ -96,7 +99,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_pDockListConnects = new QDockWidget(this);
     if(m_pDockListConnects)
     {
-        CFrmListConnects* pListConnects = new CFrmListConnects(&m_Client, true);
+        CFrmListConnects* pListConnects = new CFrmListConnects(&m_Client, true, m_pDockListConnects);
         if(pListConnects) {
             if(pListConnects->m_pDockTitleBar)
                 m_pDockListConnects->setTitleBarWidget(pListConnects->m_pDockTitleBar);

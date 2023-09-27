@@ -16,7 +16,7 @@ protocol using [FreeRDP](https://github.com/FreeRDP/FreeRDP).
 - [x] Remote desktop
 - [x] Redirection
   - [x] Printer
-  - [x] Drive
+  - [x] Drive. Can be used to transfer files.
   - [x] Audio input and output
   - [x] Clipboard
     - [x] Text

@@ -67,7 +67,7 @@
 
 ### 模块
 
-- [rabbitremotecontrol.sourceforge.io](https://rabbitremotecontrol.sourceforge.io/v0.0.25/Chinese/html/modules.html)
+- [rabbitremotecontrol.sourceforge.io](https://rabbitremotecontrol.sourceforge.io/v0.0.26/Chinese/html/modules.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/modules.html)
 
 ### 图标主题
