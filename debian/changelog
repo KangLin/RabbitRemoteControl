@@ -1,6 +1,5 @@
 rabbitremotecontrol (0.0.26) unstable; urgency=medium
 
-    * Modify documents
     * App: add favorite in favorite dock widget
     * Modify translations
     * App: add title menu in CFavoriteView
@@ -216,5 +215,5 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * App: add item icon in favorite
     * Update doxygen.yml
 
- -- Kang Lin <kl222@126.com>  Wed, 27 Sep 2023 13:09:20 +0800
+ -- Kang Lin <kl222@126.com>  Wed, 27 Sep 2023 14:14:37 +0800
 

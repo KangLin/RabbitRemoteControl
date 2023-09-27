@@ -1,5 +1,5 @@
 #TODO: Change version
-version: "v0.0.27.{build}"
+version: "v0.0.26.{build}"
 
 cache:
   - ..\other_source
@@ -7,7 +7,7 @@ cache:
 # https://www.appveyor.com/docs/build-cache/#cleaning-up-cache
 
 environment:
-  RabbitRemoteControlVersion: v0.0.27
+  RabbitRemoteControlVersion: v0.0.26
   STOREPASS:
     secure: l9BZEU39F1a4vSkhwl0CHR+yh6CD1c7byGzMv+1NUa4=
   QT_USER:
@@ -183,17 +183,17 @@ deploy:
   #on:
     #branch: master
 
-  - provider: GitHub
-    # token : https://github.com/settings/tokens
-    # password encrypt: https://ci.appveyor.com/tools/encrypt
-    auth_token:
-      secure: xk9mUybB/QLi8+bJobhnOJbuYFdnys9DVLXcOGtbVXnuIZwvKxxQCoFIyVnUf6PP
-    #artifact:
-    #draft: true
-    #prerelease: true
-    force_update: false
-    on:
-      TOOLCHAIN_VERSION: 14
-      #QT_VERSION: 5.6.3
-      BUILD_ARCH: x86
-      appveyor_repo_tag: true        # deploy on tag push only
+#  - provider: GitHub
+#    # token : https://github.com/settings/tokens
+#    # password encrypt: https://ci.appveyor.com/tools/encrypt
+#    auth_token:
+#      secure: xk9mUybB/QLi8+bJobhnOJbuYFdnys9DVLXcOGtbVXnuIZwvKxxQCoFIyVnUf6PP
+#    #artifact:
+#    #draft: true
+#    #prerelease: true
+#    force_update: false
+#    on:
+#      TOOLCHAIN_VERSION: 14
+#      #QT_VERSION: 5.6.3
+#      BUILD_ARCH: x86
+#      appveyor_repo_tag: true        # deploy on tag push only
