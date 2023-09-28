@@ -1,5 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 // See: https://github.com/KangLin/Documents/blob/master/qt/clipboard.md
+// RDP protocol: https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpeclip/fb9b7e0b-6db4-41c2-b83c-f889c1ee7688
 
 #include "ClipboardFreeRDP.h"
 #include <QClipboard>
@@ -149,6 +150,8 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_capabilities(
 
 ///////// Send format list from client to server ///////////
 
+// 1.3.2.1 Initialization Sequence:
+//    https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpeclip/a5cae3c9-170c-4154-992d-9ac8a149cc7e
 UINT CClipboardFreeRDP::cb_cliprdr_monitor_ready(CliprdrClientContext *context,
                                       const CLIPRDR_MONITOR_READY *monitorReady)
 {
