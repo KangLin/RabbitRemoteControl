@@ -76,20 +76,20 @@ int CConnectFreeRDP::OnInit()
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
     m_ClientEntryPoints.settings = m_pParameter->m_pSettings;
-    m_ClientEntryPoints.GlobalInit = OnGlobalInit;
-	m_ClientEntryPoints.GlobalUninit = OnGlobalUninit;
+    m_ClientEntryPoints.GlobalInit = cbGlobalInit;
+	m_ClientEntryPoints.GlobalUninit = cbGlobalUninit;
 	m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
-    m_ClientEntryPoints.ClientNew = OnClientNew;
-    m_ClientEntryPoints.ClientFree = OnClientFree;
+    m_ClientEntryPoints.ClientNew = cbClientNew;
+    m_ClientEntryPoints.ClientFree = cbClientFree;
     m_ClientEntryPoints.ClientStart = [](rdpContext* context)->int {
         CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
         if(!pThis) return -1;
-        return pThis->OnClientStart(context);
+        return pThis->cbClientStart(context);
     };
 	m_ClientEntryPoints.ClientStop = [](rdpContext* context)->int {
         CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
         if(!pThis) return -1;
-        return pThis->OnClientStop(context);
+        return pThis->cbClientStop(context);
     };
 
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
@@ -252,19 +252,19 @@ void CConnectFreeRDP::slotClipBoardChanged()
         m_ClipBoard.slotClipBoardChanged();
 }
 
-BOOL CConnectFreeRDP::OnGlobalInit()
+BOOL CConnectFreeRDP::cbGlobalInit()
 {
 	qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnGlobalInit()";
     //freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
 	return TRUE;
 }
 
-void CConnectFreeRDP::OnGlobalUninit()
+void CConnectFreeRDP::cbGlobalUninit()
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnGlobalUninit()";
 }
 
-BOOL CConnectFreeRDP::OnClientNew(freerdp *instance, rdpContext *context)
+BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientNew()";
     instance->PreConnect = cb_pre_connect;
@@ -289,12 +289,12 @@ BOOL CConnectFreeRDP::OnClientNew(freerdp *instance, rdpContext *context)
     return TRUE;
 }
 
-void CConnectFreeRDP::OnClientFree(freerdp *instance, rdpContext *context)
+void CConnectFreeRDP::cbClientFree(freerdp *instance, rdpContext *context)
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientFree()";
 }
 
-int CConnectFreeRDP::OnClientStart(rdpContext *context)
+int CConnectFreeRDP::cbClientStart(rdpContext *context)
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientStart()";
     int nRet = 0;
@@ -386,7 +386,7 @@ int CConnectFreeRDP::OnClientStart(rdpContext *context)
     return nRet;
 }
 
-int CConnectFreeRDP::OnClientStop(rdpContext *context)
+int CConnectFreeRDP::cbClientStop(rdpContext *context)
 {
     int nRet = 0;
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientStop()";
@@ -580,6 +580,8 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
         qCritical(FreeRDPConnect) << "gdi_init fail";
         return FALSE;
     }
+
+    Q_ASSERT(instance->context->cache);
 
     // Register cursor pointer
     if(pThis->m_Cursor.RegisterPointer(context->graphics))
@@ -1222,12 +1224,12 @@ BOOL CConnectFreeRDP::cb_begin_paint(rdpContext *context)
 BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
 {
     if(x > m_Image.width() || y > m_Image.height())
-        return TRUE;
+        return FALSE;
 
     QRect rect(x, y, w, h);
     //qDebug(FreeRDPConnect) << "Update:" << rect;
     emit sigUpdateRect(rect, m_Image);
-    return FALSE;
+    return TRUE;
 }
 
 BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
@@ -1248,8 +1250,8 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 		return FALSE;
 
     hdc = context->gdi->primary->hdc;
-
-	if (!hdc || !hdc->hwnd || !hdc->hwnd->invalid)
+    
+    if (!hdc || !hdc->hwnd || !hdc->hwnd->invalid)
 		return FALSE;
 
     HGDI_WND hwnd = context->gdi->primary->hdc->hwnd;

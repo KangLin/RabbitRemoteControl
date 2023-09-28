@@ -20,12 +20,12 @@ public:
     virtual ~CConnectFreeRDP() override;
 
     
-    static BOOL OnGlobalInit();
-    static void OnGlobalUninit();
-    static BOOL OnClientNew(freerdp* instance, rdpContext* context);
-    static void OnClientFree(freerdp* instance, rdpContext* context);
-    int OnClientStart(rdpContext* context);
-    int OnClientStop(rdpContext* context);
+    static BOOL cbGlobalInit();
+    static void cbGlobalUninit();
+    static BOOL cbClientNew(freerdp* instance, rdpContext* context);
+    static void cbClientFree(freerdp* instance, rdpContext* context);
+    int cbClientStart(rdpContext* context);
+    int cbClientStop(rdpContext* context);
 
     /**
      * Callback given to freerdp_connect() to process the pre-connect operations.
