@@ -305,7 +305,7 @@ jobs:
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries
           )
 
       - name: Package
@@ -320,21 +320,21 @@ jobs:
           7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
           md5sum RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip > RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip.md5sum
           makensis Install.nsi
-          cp RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt_${{matrix.qt_version}}_Setup.exe
-          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt_${{matrix.qt_version}}_Setup.exe > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt_${{matrix.qt_version}}_Setup.exe.md5sum
+          cp RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_Setup.exe
+          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_Setup.exe > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_Setup.exe.md5sum
           ${{github.workspace}}\build\install\bin\RabbitRemoteControlApp.exe ^
                 -f "update_windows.xml" ^
-                -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt_${{matrix.qt_version}}_Setup.exe;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt_${{matrix.qt_version}}_Setup.exe ^
-                --pf RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt_${{matrix.qt_version}}_Setup.exe ^
+                -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_Setup.exe;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_Setup.exe ^
+                --pf RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_Setup.exe ^
                 -m "${{env.RabbitRemoteControl_VERSION}}"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && '6.5.2' == matrix.qt_version }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && '5.15.2' != matrix.qt_version }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
           path: |
-            ${{github.workspace}}\build\RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt_${{matrix.qt_version}}_Setup.exe
+            ${{github.workspace}}\build\RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_Setup.exe
 
       - name: Update artifact update_windows.xml
         if: ${{ matrix.BUILD_TYPE == 'Release' && '6.5.2' == matrix.qt_version }}
