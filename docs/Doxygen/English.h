@@ -28,7 +28,7 @@
 \ingroup LIBAPI
 \brief Client library
 \details 
-- Client plugin interfaces Class relationship
+- Client plugin interfaces class relationship
   \image html docs/Image/PluginClientAPI.svg
 - Sequence diagram
   \image html docs/Image/PluginClientSequenceDiagram.svg
