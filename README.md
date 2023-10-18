@@ -94,7 +94,8 @@ See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.q
 |TELNET  |       |✓         |       |   |      |     |
 |FTP     |       |          |       |   |      |     |
 
-Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
+Legend:  
+ ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 ### Supported multiple languages
 
@@ -140,7 +141,8 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 |  SSH  |     | ⭕  | ❌  |✓   |       | ❌     | ❌    |   |    |   |
 |  FTP  |     |     | ❌  |    |       | ❌     |  ❌   |   |   |    |
 
-Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
+Legend:  
+ ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 |             | Proxy | P2P  |
 |-------------|-------|------|
@@ -149,7 +151,8 @@ Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started;
 |LibVNC       |       |      |
 |FreeRDP      |       |      |
 
-Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
+Legend:  
+ ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 #### Plugins
 
@@ -278,7 +281,8 @@ Some of them are:
 |TELNET      |      |⭕     |  ❌     |✓       |❌   |  ❌|   ❌   |    |    |    |
 |FTP         |      |       |  ❌     |        |    |  ❌  |  ❌   |    |    |    |
 
-Legend: ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
+Legend:  
+ ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
 - The development of common remote control protocol clients 
 and some servers has been completed.
@@ -304,12 +308,20 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 
 + Current version: 0.0.26
   - Windows: Supported WINDOWS 7 and later version
-    + Install package: RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe/download)
-    + MD5SUM file: RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe.md5sum
-      - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe.md5sum/download)
+    + Win32
+	  + Install package: RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe/download)
+      + MD5SUM file: RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe.md5sum/download)
+	+ Win64
+      + Install package: RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe/download)
+      + MD5SUM file: RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum/download)
   - Ubuntu:
     + rabbitremotecontrol_0.0.26_amd64.deb
       

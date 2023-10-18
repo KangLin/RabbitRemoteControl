@@ -94,7 +94,8 @@
 |TELNET  |       |✓         |       |   |      |     |
 |FTP     |       |          |       |   |      |     |
 
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
+图例：  
+ ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 ### 支持多语言
 
@@ -139,7 +140,8 @@
 |  SSH  |     | ⭕  | ❌  |✓   |       | ❌     | ❌  |   |    |   |
 |  FTP  |     |     | ❌  |    |       | ❌     | ❌  |   |   |    |
 
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
+图例：  
+ ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 |             | 代理              | P2P              |
 |-------------|------------------|------------------|
@@ -148,7 +150,8 @@
 |LibVNC       |                  |                  |
 |FreeRDP      |                  |                  |
 
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
+图例：  
+ ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 #### 插件
 
@@ -274,7 +277,8 @@
 |TELNET      |     |⭕   |❌   |✓    |❌     |❌      |❌      |   |    |    |
 |FTP         |     |     |❌   |     |       |❌      | ❌     |   |    |    |
 
-图例： ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
+图例：  
+ ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
 
 - 已经完成常见远程控制协议客户端和部分服务端的开发。已初步具备实用功能，需要小伙伴们试用，发现BUG，提出能更方便在实际应用中使用的建议。
@@ -292,12 +296,20 @@
   - [![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
 + 当前版本：v0.0.26
   - Windows: 支持 WINDOWS 7 及以后版本
-    + 安装包：RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe/download)
-    + md5 校验文件: RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe.md5sum
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe.md5sum)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt_6.5.2_Setup.exe.md5sum/download)
+    + Win32
+	  + 安装包: RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe/download)
+      + MD5SUM 文件: RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt5.12.12_win32_msvc2017_Setup.exe.md5sum/download)
+	+ Win64
+      + 安装包: RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe/download)
+      + MD5SUM 文件: RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.26/RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.26/RabbitRemoteControl_v0.0.26_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum/download)
   - Ubuntu:
     + rabbitremotecontrol_0.0.26_amd64.deb
       
