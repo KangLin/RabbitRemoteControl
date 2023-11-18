@@ -114,7 +114,7 @@ int CConnectRabbitVNC::SetPara()
  * \li = 0: Use OnProcess (non-Qt event loop)
  * \li > 0: Don't use OnProcess (qt event loop)
  */
-int CConnectRabbitVNC::OnInit()
+CConnect::OnInitReturnValue CConnectRabbitVNC::OnInit()
 {
     qDebug(RabbitVNC) << "CConnectRabbitVNC::OnInit()";
     int nRet = 1;
@@ -122,9 +122,9 @@ int CConnectRabbitVNC::OnInit()
         nRet = IceInit();
     else
         nRet = SocketInit();
-    if(nRet) return nRet; // error
+    if(nRet) return OnInitReturnValue::Fail; // error
     // Don't use OnProcess (qt event loop)
-    return 1;
+    return OnInitReturnValue::NotUseOnProcess;
 }
 
 int CConnectRabbitVNC::IceInit()

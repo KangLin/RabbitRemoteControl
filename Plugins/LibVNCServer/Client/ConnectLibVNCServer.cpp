@@ -199,16 +199,16 @@ bool CConnectLibVNCServer::InitClient()
  *  = 0: Use OnProcess (non-Qt event loop)
  *  > 0: Don't use OnProcess (qt event loop)
  */
-int CConnectLibVNCServer::OnInit()
+CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
 {
     qDebug(LibVNCServer) << "CConnectLibVNCServer::OnInit()";
     if(!InitClient()) {
         qCritical(LibVNCServer) << "InitClient fail";
         emit sigError(-1, "Connect fail");
-        return -1;
+        return OnInitReturnValue::Fail;
     }
 
-    if(!m_pClient) return -2;
+    if(!m_pClient) return OnInitReturnValue::Fail;
 
     QString szInfo = QString("Connect to ") + m_pClient->desktopName;
     qInfo(LibVNCServer) << szInfo;
@@ -217,7 +217,7 @@ int CConnectLibVNCServer::OnInit()
     emit sigServerName(m_pClient->desktopName);
     emit sigInformation(szInfo);
 
-    return 0;
+    return OnInitReturnValue::UseOnProcess;
 }
 
 int CConnectLibVNCServer::OnClean()

@@ -1,5 +1,9 @@
 ## Change Log
 
+### v0.0.27
+- Client:
+  + add OnInitReturnValue in CConnect
+
 ### v0.0.26
 + Use RabbitCommon v2
 + FreeRDP:

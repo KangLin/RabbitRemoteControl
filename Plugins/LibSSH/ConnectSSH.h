@@ -19,7 +19,7 @@ protected:
 public slots:
     virtual int Initialize();
     virtual int OnClean() override;
-    virtual int OnInit() override;
+    virtual OnInitReturnValue OnInit() override;
     virtual int OnProcess() override;
     virtual void slotClipBoardChanged() override;
     void slotSendData(const char *,int);

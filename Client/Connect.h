@@ -95,6 +95,12 @@ protected:
     virtual int SetConnecter(CConnecter* pConnecter);
     virtual int SetViewer(CFrmViewer* pView, bool bDirectConnection);
 
+    enum class OnInitReturnValue{
+        Fail = -1,
+        Success = 0,
+        UseOnProcess = Success,
+        NotUseOnProcess = 1,
+    };
     /*!
      * \~chinese 具体的插件实现连接初始化
      * \return
@@ -111,7 +117,7 @@ protected:
      * \~
      * \see Connect()
      */
-    virtual int OnInit() = 0;
+    virtual OnInitReturnValue OnInit() = 0;
     /*!
      * \~chinese 清理
      * \~english Clean

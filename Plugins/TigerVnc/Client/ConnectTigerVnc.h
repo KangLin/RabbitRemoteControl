@@ -69,7 +69,7 @@ public Q_SLOTS:
     // CConnect interface
 protected:
     // Please call SetParamter before call Connect
-    virtual int OnInit() override;
+    virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     
 private:

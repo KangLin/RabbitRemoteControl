@@ -90,15 +90,15 @@ int CConnectSSH::Initialize()
     return nRet;
 }
 
-int CConnectSSH::OnInit()
+CConnect::OnInitReturnValue CConnectSSH::OnInit()
 {
     int nRet = 0;
 
     nRet = Initialize();
-    if(nRet) return nRet;
+    if(nRet) return OnInitReturnValue::Fail;
     
     CFrmTermWidget* pConsole = qobject_cast<CFrmTermWidget*>(m_pConnecter->GetViewer());
-    if(!pConsole) return -4;
+    if(!pConsole) return OnInitReturnValue::Fail;
 
     //pConsole->startTerminalTeletype();
 //    bool check = pConsole->connect(pConsole, SIGNAL(sendData(const char *,int)),
@@ -110,12 +110,12 @@ int CConnectSSH::OnInit()
 
     if (ssh_connect(m_pSession)) {
         qCritical(ssh) << "Connection failed:" << ssh_get_error(m_pSession);
-        return -1;
+        return OnInitReturnValue::Fail;
     }
 
     int state = VerifyKnownhost(m_pSession);
     if (state != 0) {
-        return -2;
+        return OnInitReturnValue::Fail;
     }
 
     ssh_userauth_none(m_pSession, NULL);
@@ -127,18 +127,18 @@ int CConnectSSH::OnInit()
 
     int auth = Authenticate(m_pSession);
     if (auth != SSH_AUTH_SUCCESS) {
-        return -1;
+        return OnInitReturnValue::Fail;
     }
 
     m_pChannel = ssh_channel_new(m_pSession);
     if (m_pChannel == NULL) {
         qCritical(ssh) << "Don't create channel:" << ssh_get_error(m_pSession);
-        return -1;
+        return OnInitReturnValue::Fail;
     }
 
     if (ssh_channel_open_session(m_pChannel)) {
         qCritical(ssh) << "Error opening channel:" << ssh_get_error(m_pSession);
-        return -1;
+        return OnInitReturnValue::Fail;
     }
 
     ssh_channel_request_pty(m_pChannel);
@@ -148,7 +148,7 @@ int CConnectSSH::OnInit()
 
     if (ssh_channel_request_shell(m_pChannel)) {
         qCritical(ssh) << "Requesting shell:" << ssh_get_error(m_pSession);
-        return -1;
+        return OnInitReturnValue::Fail;
     }
 
     m_pEvent = ssh_event_new();
@@ -158,10 +158,10 @@ int CConnectSSH::OnInit()
     if(connector_in && m_pChannel && m_pEvent)
     {
         nRet = ssh_connector_set_out_channel(connector_in, m_pChannel, SSH_CONNECTOR_STDOUT);
-        if(nRet) return -2;
+        if(nRet) return OnInitReturnValue::Fail;
         ssh_connector_set_in_fd(connector_in, pConsole->getPtySlaveFd());
         nRet = ssh_event_add_connector(m_pEvent, connector_in);
-        if(nRet) return -3;
+        if(nRet) return OnInitReturnValue::Fail;
     }
 
     /* stdout */
@@ -172,10 +172,10 @@ int CConnectSSH::OnInit()
 #define SSH_CONNECTOR_STDINOUT SSH_CONNECTOR_STDOUT
 #endif
         nRet = ssh_connector_set_in_channel(connector_out, m_pChannel, SSH_CONNECTOR_STDINOUT);
-        if(nRet) return -4;
+        if(nRet) return OnInitReturnValue::Fail;
        ssh_connector_set_out_fd(connector_out, pConsole->getPtySlaveFd());
         nRet = ssh_event_add_connector(m_pEvent, connector_out);
-        if(nRet) return -5;
+        if(nRet) return OnInitReturnValue::Fail;
     }
 
     /* stderr */
@@ -184,12 +184,12 @@ int CConnectSSH::OnInit()
     {
         ssh_connector_set_out_fd(connector_err, 2);
         nRet = ssh_connector_set_in_channel(connector_err, m_pChannel, SSH_CONNECTOR_STDERR);
-        if(nRet) return -6;
+        if(nRet) return OnInitReturnValue::Fail;
         nRet = ssh_event_add_connector(m_pEvent, connector_err);
-        if(nRet) return -7;
+        if(nRet) return OnInitReturnValue::Fail;
     }
-
-    return nRet;
+    
+    return OnInitReturnValue::UseOnProcess;
 }
 
 int CConnectSSH::OnClean()

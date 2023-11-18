@@ -137,7 +137,7 @@ public Q_SLOTS:
 
 private:
     // CConnect interface
-    virtual int OnInit() override;
+    virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
     

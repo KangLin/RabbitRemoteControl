@@ -189,7 +189,7 @@ int CConnect::Connect()
 {
     qDebug(Client) << "CConnect::Connect()";
     int nRet = 0;
-    nRet = OnInit();
+    nRet = static_cast<int>(OnInit());
     if(nRet < 0) return nRet;
 
     if(0 == nRet)

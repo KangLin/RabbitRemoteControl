@@ -67,7 +67,7 @@ CConnectFreeRDP::~CConnectFreeRDP()
  * \li = 0: Use OnProcess (non-Qt event loop)
  * \li > 0: Don't use OnProcess (qt event loop)
  */
-int CConnectFreeRDP::OnInit()
+CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 {
     qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnInit()";
     int nRet = 0;
@@ -99,7 +99,7 @@ int CConnectFreeRDP::OnInit()
         m_pContext->pThis = this;
     } else {
         qCritical(FreeRDPConnect) << "freerdp_client_context_new fail";
-        return -1;
+        return OnInitReturnValue::Fail;
     }
 
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
@@ -117,17 +117,17 @@ int CConnectFreeRDP::OnInit()
         szErr = tr("The server is empty, please input it");
         qCritical(FreeRDPConnect) << szErr;
         emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
-        emit sigError(nRet, szErr.toStdString().c_str());
-        return -2;
+        emit sigError(-1, szErr.toStdString().c_str());
+        return OnInitReturnValue::Fail;
     }
     nRet = freerdp_client_start(pRdpContext);
     if(nRet)
     {
         qCritical(FreeRDPConnect) << "freerdp_client_start fail";
-        return -3;
+        return OnInitReturnValue::Fail;
     }
-
-    return nRet;
+    
+    return OnInitReturnValue::UseOnProcess;
 }
 
 int CConnectFreeRDP::OnClean()

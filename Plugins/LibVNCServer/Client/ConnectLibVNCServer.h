@@ -36,7 +36,7 @@ public Q_SLOTS:
     virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
 
 private:
-    virtual int OnInit() override;
+    virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
 
