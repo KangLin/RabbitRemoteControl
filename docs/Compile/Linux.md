@@ -338,6 +338,8 @@ and then run ldconfig to add the dependent library to the system.
 
 ### Compilation
 
+- Ubuntu
+
 ```bash
     #Install the development tools package
     ~$ sudo apt install build-essential
@@ -346,7 +348,7 @@ and then run ldconfig to add the dependent library to the system.
     # Install Qt5
     ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
 
-    # Install library dependencies
+    # Install dependency libraries
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     # Install X development libraries
     ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
@@ -395,3 +397,4 @@ and then run ldconfig to add the dependent library to the system.
 ```
 
 See: [Compile integration](../../.github/workflows/ubuntu.yml)
+
