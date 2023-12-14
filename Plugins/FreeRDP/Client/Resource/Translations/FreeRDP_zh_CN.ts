@@ -383,32 +383,42 @@
         <translation>本地资源</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="441"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="446"/>
+        <source>Selected:</source>
+        <translation>选择的：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="453"/>
+        <source>Clear all</source>
+        <translation>清除全部</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="465"/>
         <source>Audio</source>
         <translation>音频</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="447"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="471"/>
         <source>Play remote audio</source>
         <translation>播放音频</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="453"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="477"/>
         <source>On this computer</source>
         <translation>在此计算机上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="463"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="487"/>
         <source>On remote computer</source>
         <translation>在远程计算机上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="473"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="497"/>
         <source>Disable</source>
         <translation>禁止</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="486"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="510"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation>在远程计算机上使用本计算机的麦克风</translation>
     </message>
@@ -448,8 +458,8 @@
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="77"/>
         <location filename="../../DlgSetFreeRDP.ui" line="89"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="185"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="410"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="192"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="418"/>
         <source>Please checked save password to enable</source>
         <translation>请选保存密码允许输入</translation>
     </message>
@@ -550,10 +560,15 @@
 </translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="183"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="407"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="190"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="415"/>
         <source>Input password</source>
         <translation>输入密码</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="474"/>
+        <source>Selected counts: </source>
+        <translation>选择数： </translation>
     </message>
 </context>
 <context>

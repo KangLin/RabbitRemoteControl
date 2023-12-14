@@ -383,32 +383,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="441"/>
-        <source>Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="447"/>
-        <source>Play remote audio</source>
+        <location filename="../../DlgSetFreeRDP.ui" line="446"/>
+        <source>Selected:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="453"/>
+        <source>Clear all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="465"/>
+        <source>Audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="471"/>
+        <source>Play remote audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="477"/>
         <source>On this computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="463"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="487"/>
         <source>On remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="473"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="497"/>
         <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="486"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="510"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -443,8 +453,8 @@
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="77"/>
         <location filename="../../DlgSetFreeRDP.ui" line="89"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="185"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="410"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="192"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="418"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -548,9 +558,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="183"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="407"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="190"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="415"/>
         <source>Input password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="474"/>
+        <source>Selected counts: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

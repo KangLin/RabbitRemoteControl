@@ -80,18 +80,7 @@ int CParameterFreeRDP::Load(QSettings &set)
                                    GetRedirectionMicrophone()).toBool());
     SetRedirectionMicrophoneParameters(set.value("FreeRDP/Redirection/Microphone/Parameters",
                                    GetRedirectionMicrophoneParameters()).toString());
-    
-    QStringList lstDrive;
-    int count = set.value("FreeRDP/Redirection/Drive/count", 0).toInt();
-    for(int i = 0; i < count; i++)
-    {
-        QString drive = set.value("FreeRDP/Redirection/Drive/" + QString::number(i), "").toString();
-        if(!drive.isEmpty())
-            lstDrive.append(drive);
-    }
-    if(!lstDrive.isEmpty())
-        SetRedirectionDrives(lstDrive);
-
+    SetRedirectionDrives(set.value("FreeRDP/Redirection/Drive").toStringList());
     return 0;
 }
 
@@ -118,14 +107,7 @@ int CParameterFreeRDP::Save(QSettings &set)
     set.setValue("FreeRDP/Redirection/Sound/Parameters", GetRedirectionSoundParameters());
     set.setValue("FreeRDP/Redirection/Microphone", GetRedirectionMicrophone());
     set.setValue("FreeRDP/Redirection/Microphone/Parameters", GetRedirectionMicrophoneParameters());
-
-    QStringList lstDrive = GetRedirectionDrives();
-    if(!lstDrive.isEmpty()) {
-        set.setValue("FreeRDP/Redirection/Drive/count", lstDrive.size());
-        for(int i = 0; i < lstDrive.size(); i++)
-            set.setValue("FreeRDP/Redirection/Drive/" + QString::number(i),
-                      lstDrive[i]);
-    }
+    set.setValue("FreeRDP/Redirection/Drive", GetRedirectionDrives());
 
     return 0;
 }

@@ -73,6 +73,13 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     int count = m_pFileModel->columnCount();
     for(int i = 1; i < count; i++)
         ui->tvDrive->hideColumn(i);
+    
+    bool check = connect(ui->tvDrive->selectionModel(),
+                         SIGNAL(selectionChanged(const QItemSelection &,
+                                                 const QItemSelection &)),
+                         this,
+                         SLOT(slotSelectionChanged(QItemSelection,QItemSelection)));
+    Q_ASSERT(check);
 }
 
 CDlgSetFreeRDP::~CDlgSetFreeRDP()
@@ -247,6 +254,7 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
             ui->tvDrive->setCurrentIndex(index);
         }
     }
+    ShowDriveSelected(lstDrives.size());
 }
 
 void CDlgSetFreeRDP::on_rbLocalScreen_clicked(bool checked)
@@ -446,4 +454,23 @@ void CDlgSetFreeRDP::on_pbSizeEdit_clicked()
             InsertDesktopSize(s);
         }
     }
+}
+
+void CDlgSetFreeRDP::on_pbDriveClearAll_clicked()
+{
+    ui->tvDrive->clearSelection();
+    ShowDriveSelected(0);
+}
+
+void CDlgSetFreeRDP::slotSelectionChanged(const QItemSelection &selected,
+                                          const QItemSelection &deselected)
+{
+    QModelIndexList s = ui->tvDrive->selectionModel()->selectedRows(0);
+    ShowDriveSelected(s.size());
+}
+
+int CDlgSetFreeRDP::ShowDriveSelected(int counts)
+{
+    ui->lbDriveSelected->setText(tr("Selected counts: ") + QString::number(counts));
+    return 0;
 }

@@ -7,6 +7,7 @@
 #include "freerdp/freerdp.h"
 #include "ConnecterFreeRDP.h"
 #include <QFileSystemModel>
+#include <QItemSelection>
 
 namespace Ui {
 class CDlgSetFreeRDP;
@@ -36,12 +37,17 @@ private slots:
     
     void on_pbSizeEdit_clicked();
     
+    void on_pbDriveClearAll_clicked();
+    void slotSelectionChanged(const QItemSelection &selected,
+                              const QItemSelection &deselected);
+    
 private:
     QRect GetScreenGeometry();
     int InsertDesktopSize(QString szSize);
     int InsertDesktopSize(int width, int height);
     bool HasAudioOutput();
     bool HasAudioInput();
+    int ShowDriveSelected(int counts);
 
 private:
     Ui::CDlgSetFreeRDP *ui;
