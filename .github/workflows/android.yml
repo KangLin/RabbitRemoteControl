@@ -14,20 +14,20 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_armv7, android_x86_64]
-        qt_version: [6.5.1]
+        qt_version: [6.6.1]
         include:
           - BUILD_TYPE: Release
             qt_arch: android_arm64_v8a
-            qt_version: 6.5.1
+            qt_version: 6.6.1
             VCPKG_TARGET_TRIPLET: arm-android
 
           - BUILD_TYPE: Release
             qt_arch: android_armv7
-            qt_version: 6.5.1
+            qt_version: 6.6.1
             VCPKG_TARGET_TRIPLET: arm-android
 
           - BUILD_TYPE: Release
-            qt_version: 6.5.1
+            qt_version: 6.6.1
             qt_arch: android_x86_64 
             VCPKG_TARGET_TRIPLET: x64-android
 
@@ -239,7 +239,9 @@ jobs:
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
           QT_ROOT: ${{env.Qt5_Dir}}
-          STOREPASS: ${{secrets.STOREPASS}}
+          QT_ANDROID_KEYSTORE_PATH: ${{env.SOURCE_DIR}}/RabbitCommon/RabbitCommon.keystore
+          QT_ANDROID_KEYSTORE_ALIAS: rabbitcommon
+          QT_ANDROID_KEYSTORE_STORE_PASS: ${{secrets.STOREPASS}}
         run: |
           sudo chmod 777 ${Qt6_DIR}/bin/qt-cmake
           ${Qt6_DIR}/bin/qt-cmake ${{github.workspace}} \
@@ -255,6 +257,8 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
             -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
             -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}} \
+            -DQT_ANDROID_SIGN_APK=ON \
+            -DQT_ENABLE_VERBOSE_DEPLOYMENT=OFF \
             -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools
           cmake --build . --config ${{matrix.BUILD_TYPE}}  --target all
           APK_FILE=`find . -name "android-*.apk"`
