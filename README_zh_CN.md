@@ -62,6 +62,7 @@
   - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
   - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
   - launchpad: https://launchpad.net/rabbitremotecontrol
+  - kde: https://invent.kde.org/kanglin/RabbitRemoteControl
 
 ## 功能
 
