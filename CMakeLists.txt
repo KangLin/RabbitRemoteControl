@@ -203,7 +203,7 @@ if(BUILD_DOCS)
                 set(PROJECT_NAME "玉兔远程控制")
                 set(MAIN_README "${CMAKE_SOURCE_DIR}/docs/Doxygen/Develop_zh_CN.md")
             endif()
-            configure_file(${CMAKE_SOURCE_DIR}/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} @ONLY)
+            configure_file(${CMAKE_SOURCE_DIR}/docs/Doxygen/Doxyfile.in ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} @ONLY)
             add_custom_target(doc_${OUTPUT_LANGUAGE} ALL
                 ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/Doxyfile_${OUTPUT_LANGUAGE} # &> doxygen.log
                 WORKING_DIRECTORY ${CMAKE_BINARY_DIR}

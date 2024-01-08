@@ -161,6 +161,11 @@ public:
      * \note It is need c++ standard 11
      */
     virtual int EnumPlugins(
+            /**
+             * \brief Process plugins callback function
+             * \param id: plugin id
+             * \param pPlug: CPluginClient pointer
+             */
             std::function<int(const QString& id, CPluginClient* pPlug)> cb);
 #endif
 

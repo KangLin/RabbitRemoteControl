@@ -39,21 +39,21 @@
 + 类关系：
   \image html docs/Image/PluginClientAPI.svg
 + 使用：
-  - 实例化类： \ref CClient m_Client;
+  - 实例化类： CClient m_Client;
     + 处理 CClient::Handle::onProcess 得到注册的连接插件
   - 使用下面一种方式建立连接者对象：
-    + \ref CClient::CreateConnecter
-    + \ref CClient::LoadConnecter
+    + CClient::CreateConnecter
+    + CClient::LoadConnecter
   - 关联信号：
-    + 连接成功信号： \ref CConnecter::sigConnected
-    + 断开连接信号：　\ref CConnecter::sigDisconnect
-    + 断连成功信号： \ref CConnecter::sigDisconnected
+    + 连接成功信号： CConnecter::sigConnected
+    + 断开连接信号： CConnecter::sigDisconnect
+    + 断连成功信号： CConnecter::sigDisconnected
   - 打开连接： CConnecter::Connect()
-  - 接收到 \ref CConnecter::sigConnected 信号后，做连接相关初始化工作
-  - 接收到　CConnecter::sigDisconnect　信号后，关闭连接。
+  - 接收到 CConnecter::sigConnected 信号后，做连接相关初始化工作
+  - 接收到 CConnecter::sigDisconnect() 信号后，关闭连接。
   - 关闭连接： CConnecter::DisConnect()
-  - 接收到 \ref CConnecter::sigDisconnected 信号后，做连接相关的清理工作，
-　　　完成后并删除此连接者对象 (必须使用 CConnecter::deleteLater )
+  - 接收到 CConnecter::sigDisconnected 信号后，做连接相关的清理工作，
+   完成后并删除此连接者对象 (必须使用 CConnecter::deleteLater )
  
 
 \defgroup CLIENT_PLUGIN_API 客户端插件接口

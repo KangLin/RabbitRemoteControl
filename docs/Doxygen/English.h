@@ -44,18 +44,18 @@
   - Instance class: CClient m_Client;
     + Handle CClient::Handle::onProcess to get the registered connection plugin
   - Use one of the following methods to create the connecter object:
-    + \ref CClient::CreateConnecter
-    + \ref CClient::LoadConnecter
+    + CClient::CreateConnecter
+    + CClient::LoadConnecter
   - Connect signal:
     + Connected CConnecter::sigConnected
     + Disconnect CConnecter::sigDisconnect
     + Disconnected CConnecter::sigDisconnected
   - Open the connect: CConnecter::Connect()
-  - After receiving the \ref CConnecter::sigConnected signal,
+  - After receiving the CConnecter::sigConnected signal,
     do connection-related initialization work
   - After receiving the CConnecter::sigDisconnect signal, Close the connect.
   - Close the connect: CConnecter::DisConnect()
-  - After receiving the \ref CConnecter::sigDisconnected signal,
+  - After receiving the CConnecter::sigDisconnected signal,
     do connection-related cleanup work,
     and delete the connector object after completion
      (MUST use CConnecter::deleteLater )
