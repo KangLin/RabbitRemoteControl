@@ -29,7 +29,7 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * FreeRDP: fix cb_desktop_resize bug
     * FreeRDP: modify only view
     * Terminal: Replace RabbitCommon::CDir::GetOpenFileName with QFileDialog::getOpenFileName
-    * doc: modify complie documents
+    * doc: modify compile documents
     * FreeRDP: add edit screen resolution
     * FreeRDP: fix press the left and right mouse buttons at the same time BUG
     * FreeRDP: modify mulitimon screen
@@ -40,7 +40,7 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * FreeRDP: modify reconnect
     * FreeRDP: remove OnTerminateEventHandler
     * FreeRDP: modify follow
-    * FreeRDP: use Lambda replease call back funtion
+    * FreeRDP: use Lambda replease call back function
     * FreeRDP: modify init
     * Add comments
     * Modify Change log
@@ -146,7 +146,7 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * CI: update cache
     * CI: modify github release
     * Client::Terminal: remove Q_INIT_RESOURCE
-    * Client: modify paramter
+    * Client: modify parameter
     * App::Client: modify dock widget layout
     * App::Client: add recent menu status tip
     * Modify deploy.sh to debian/changelog
@@ -171,7 +171,7 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * Plugins::FreeRDP: add redirection sound type
     * Plugins::LibVNCServer: Fix eye icon theme bug
     * App::Client: add open the dialog of settings connect
-    * Client: modify paramters
+    * Client: modify parameters
     * CI: Modify release body
     * FreeRDP::Client: add redirection - Sound - Microphone - Drive - Printer
     * FreeRDP: modify CMakeLists.txt

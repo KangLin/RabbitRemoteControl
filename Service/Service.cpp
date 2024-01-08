@@ -64,9 +64,9 @@ void CService::slotProcess()
     try{
         nRet = OnProcess();
     } catch (std::exception& e) {
-        qCritical(Service) << "OnProcess excption:" << e.what();
+        qCritical(Service) << "OnProcess exception:" << e.what();
     } catch (...) {
-        qCritical(Service) << "OnProcess excption";
+        qCritical(Service) << "OnProcess exception";
     }
 
     // TODO: Ignore error and stop
