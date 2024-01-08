@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.6.0, 5.15.2, 5.12.12]
+        qt_version: [6.6.1, 5.15.2, 5.12.12]
         include:
-          - qt_version: 6.6.0
+          - qt_version: 6.6.1
             triplet: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win64_msvc2019_64
@@ -58,7 +58,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.26
-      VCPKGGITCOMMITID: 980ec0f49d81f794778386f7bd518b2cc9c092f0
+      VCPKGGITCOMMITID: f1c6efee2245009540dde947e0e3d008f3aa7dbb
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       artifact_name: build_msvc
 
@@ -91,16 +91,23 @@ jobs:
             ${{env.INSTALL_DIR}}
           key: installed-msvc
 
+      - name: Cache vcpkg
+        uses: actions/cache@v2
+        id: cache-vcpkg
+        with:
+          path: |
+            ${{ runner.workspace }}/vcpkg/
+          key: cache-vcpkg
+
       - name: run-vcpkg
-        uses: lukka/run-vcpkg@v7.4
+        uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
           vcpkgDirectory: ${{runner.workspace}}/vcpkg/
-          # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
-          # compute its hash and append this to the computed cache's key.
-          appendedCacheKey: cache-vcpkg-${{env.VCPKGGITCOMMITID}}
-          vcpkgTriplet: '${{matrix.triplet}}'
-          vcpkgArguments: 'openssl libssh libpng pixman libjpeg-turbo libdatachannel libusb freerdp'
+
+      - name: run vcpkg
+        run: |
+          vcpkg install --triplet=${{matrix.triplet}}
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -207,13 +214,6 @@ jobs:
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
 
-      - name: Cache Qt
-        id: cache-qt
-        uses: actions/cache@v1  # not v2!
-        with:
-          path: ${{env.TOOSL_DIR}}/qt
-          key: qt_${{matrix.qt_version}}_${{matrix.qt_arch}}
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -221,7 +221,8 @@ jobs:
           version: '${{matrix.qt_version}}' # optional, default is 5.15.2
           arch: '${{matrix.qt_arch}}' # optional
           modules: '${{env.qt_modules}}' # optional.  see: https://ddalcino.github.io/aqt-list-server/
-          cached: '${{steps.cache-qt.outputs.cache-hit}}' # optional, default is false
+          cache: true
+          cache-key-prefix: install-qt-action
 
       - name: build qxmpp
         working-directory: ${{env.SOURCE_DIR}}

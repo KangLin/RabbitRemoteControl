@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VCPKGGITCOMMITID: 980ec0f49d81f794778386f7bd518b2cc9c092f0
+      VCPKGGITCOMMITID: f1c6efee2245009540dde947e0e3d008f3aa7dbb
       VCPKG_ROOT:  ${{github.workspace}}/.cache/source/vcpkg
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
@@ -63,39 +63,6 @@ jobs:
           cmake -E make_directory ${{env.INSTALL_DIR}}
           cmake -E make_directory ${{github.workspace}}/build
 
-#      - name: run-vcpkg
-#        uses: lukka/run-vcpkg@v7.4
-##        env:
-##          ANDROID_NDK: /usr/local/lib/android/sdk/ndk/23.2.8568313
-##          ANDROID_NDK_ROOT: /usr/local/lib/android/sdk/ndk/23.2.8568313
-##          ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/23.2.8568313
-##          ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/23.2.8568313
-##          ANDROID_NDK_LATEST_HOME: /usr/local/lib/android/sdk/ndk/23.2.8568313
-#        with:
-#          # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_INSTALLATION_ROOT, RUNVCPK_VCPKG_INSTALLATION_ROOT), without installing any port.
-#          #setupOnly: # optional
-#          #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
-#          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
-#          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
-#          # Since the cache must be invalidated when content of the vcpkg.json file changes, let's
-#          # compute its hash and append this to the computed cache's key.
-#          appendedCacheKey: android_${{matrix.os}}-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}-${{env.VCPKGGITCOMMITID}}
-#          additionalCachedPaths: $VCPKG_INSTALLATION_ROOT/installed
-#          vcpkgTriplet: '${{ matrix.VCPKG_TARGET_TRIPLET }}'
-#          vcpkgArguments: 'zlib openssl libpng libjpeg-turbo libdatachannel'
-          
-#      - name: run-vcpkg
-#        run: |
-#          echo "ANDROID_NDK=$ANDROID_NDK"
-#          echo "ANDROID_NDK_ROOT=$ANDROID_NDK_ROOT"
-#          echo "ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
-#          cd ${{env.SOURCE_DIR}}
-#          git clone https://github.com/microsoft/vcpkg.git
-#          cd vcpkg
-#          git checkout -b ${{env.VCPKGGITCOMMITID}} ${{env.VCPKGGITCOMMITID}}
-#          ./bootstrap-vcpkg.sh
-#          vcpkg --triplet ${{ matrix.VCPKG_TARGET_TRIPLET }} install zlib openssl libpng libjpeg-turbo
-
       - name: Cache installed
         uses: actions/cache@v2
         id: cache-installed
@@ -103,6 +70,30 @@ jobs:
           path: |
             ${{env.INSTALL_DIR}}
           key: cache-installed-android-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}
+
+      - name: Cache vcpkg
+        if: false
+        uses: actions/cache@v2
+        id: cache-vcpkg
+        with:
+          path: |
+            ${{ runner.workspace }}/vcpkg/
+          key: cache-vcpkg
+
+      - name: run-vcpkg
+        if: false
+        uses: lukka/run-vcpkg@v11
+        with:
+          # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
+          #setupOnly: # optional
+          #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
+          vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
+          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+          
+      - name: run vcpkg
+        if: false
+        run: |
+          vcpkg install --triplet=${{matrix.triplet}}
 
       - name: Build libvncserver
         working-directory: ${{env.SOURCE_DIR}}
@@ -183,7 +174,8 @@ jobs:
           target: 'desktop'
           arch: 'gcc_64'
           set-env: false
-          cached: '${{ steps.cache-qt.outputs.cache-hit }}' # optional, default is false
+          cache: true
+          cache-key-prefix: install-qt-action
 
       - name: Install Qt of android
         uses: jurplel/install-qt-action@v3
@@ -198,9 +190,10 @@ jobs:
           target: 'android' # optional, default is desktop
           # Architecture for Windows/Android
           arch: '${{matrix.qt_arch}}' # optional
-          # Additional Qt modules to install       
+          # Additional Qt modules to install
           modules: '${{env.qt_modules}}' # optional. See: https://ddalcino.github.io/aqt-list-server/
-          cached: '${{ steps.cache-qt.outputs.cache-hit }}' # optional, default is false
+          cache: true
+          cache-key-prefix: install-qt-action
 
       - name: build qxmpp
         working-directory: ${{env.SOURCE_DIR}}

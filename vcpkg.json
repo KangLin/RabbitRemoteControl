@@ -5,7 +5,10 @@
     "openssl",
     "libssh",
     "libdatachannel",
-    "freerdp"
+    "freerdp",
+    "libjpeg-turbo",
+    "libpng",
+    "pixman"
   ],
   "builtin-baseline":"9259a0719d94c402aae2ab7975bc096afdec15df",
   "overrides": [
