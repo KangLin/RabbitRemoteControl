@@ -47,7 +47,7 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigDisconnected()),
                     pConnecter, SIGNAL(sigDisconnected()));
-    Q_ASSUME(check);
+    Q_ASSERT(check);
     check = connect(this, SIGNAL(sigServerName(const QString&)),
                     pConnecter, SLOT(slotSetServerName(const QString&)));
     Q_ASSERT(check);
