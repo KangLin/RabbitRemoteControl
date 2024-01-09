@@ -288,7 +288,7 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
             key = Qt::Key_Super_L;
 #endif
 #if defined(Q_OS_MACOS)
-            key = Qt::Qt::Key_Control;
+            key = Qt::Key_Control;
 #endif
             bProcess = true;
             break;

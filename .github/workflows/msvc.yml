@@ -58,7 +58,7 @@ jobs:
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.26
-      VCPKGGITCOMMITID: f1c6efee2245009540dde947e0e3d008f3aa7dbb
+      VCPKGGITCOMMITID: 3bc5ff7f7ab72b57f0945d35bbbdaac2060bc268
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       artifact_name: build_msvc
 
@@ -107,7 +107,8 @@ jobs:
 
       - name: run vcpkg
         run: |
-          vcpkg install --triplet=${{matrix.triplet}}
+          vcpkg install --triplet=${{matrix.triplet}} ^
+              --x-feature=vnc
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -154,7 +155,7 @@ jobs:
 #          )
 
       - name: Build libvncserver
-        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (

@@ -39,7 +39,7 @@ jobs:
       INSTALL_DIR: ${{github.workspace}}/.cache/install_macos_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       RabbitRemoteControl_VERSION: v1.0.9
-      VCPKGGITCOMMITID: f1c6efee2245009540dde947e0e3d008f3aa7dbb
+      VCPKGGITCOMMITID: 3bc5ff7f7ab72b57f0945d35bbbdaac2060bc268
       artifact_name: build_macos
 
     # Map the job outputs to step outputs
@@ -83,7 +83,9 @@ jobs:
 
       - name: run vcpkg
         run: |
-          vcpkg install --triplet=${{matrix.triplet}}
+          brew install nasm
+          vcpkg install --triplet=${{matrix.triplet}} \
+              --x-feature=vnc
 
 #      - name: build FreeRDP
 #        working-directory: ${{env.SOURCE_DIR}}
@@ -125,6 +127,7 @@ jobs:
           fi
 
       - name: build tigervnc
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
