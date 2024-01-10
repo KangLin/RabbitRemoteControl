@@ -14,8 +14,7 @@
    <string>Rabbit remote control service configure</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="system-settings">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset theme="system-settings"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -75,7 +74,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuService">
@@ -96,7 +95,6 @@
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionStyle_S"/>
    </widget>
    <addaction name="menuService"/>
    <addaction name="menuView"/>
@@ -121,8 +119,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="media-playback-start">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="media-playback-start"/>
    </property>
    <property name="text">
     <string>Start</string>
@@ -139,8 +136,7 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="help-about"/>
    </property>
    <property name="text">
     <string>About</string>
@@ -148,8 +144,7 @@
   </action>
   <action name="actionDefault">
    <property name="icon">
-    <iconset theme="preferences-desktop-theme">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="preferences-desktop-theme"/>
    </property>
    <property name="text">
     <string>Default</string>
@@ -163,8 +158,7 @@
   </action>
   <action name="actionOpen_folder">
    <property name="icon">
-    <iconset theme="folder-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="folder-open"/>
    </property>
    <property name="text">
     <string>Open Configure folder</string>
@@ -181,8 +175,7 @@
   </action>
   <action name="actionOpen">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="document-open"/>
    </property>
    <property name="text">
     <string>Open</string>
@@ -195,15 +188,6 @@
    </property>
    <property name="whatsThis">
     <string>Open stype</string>
-   </property>
-  </action>
-  <action name="actionStyle_S">
-   <property name="icon">
-    <iconset theme="style">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
-   <property name="text">
-    <string>Style(&amp;S)</string>
    </property>
   </action>
  </widget>

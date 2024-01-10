@@ -29,8 +29,6 @@ private Q_SLOTS:
     void on_actionAbout_triggered();
     void on_actionOpen_folder_triggered();
 
-    void on_actionStyle_S_triggered();
-
 Q_SIGNALS:
     /*!
      * \~chinese 通知插件设置窗口参数发生改变。

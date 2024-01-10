@@ -2,7 +2,7 @@
 
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "FrmStyle.h"
+
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 #ifdef HAVE_ABOUT
@@ -24,9 +24,10 @@ CMainWindow::CMainWindow(QWidget *parent) : QMainWindow(parent),
     m_bStart(false)
 {
     ui->setupUi(this);
-    
-    ui->menuService->addMenu(RabbitCommon::CTools::GetLogMenu(ui->menuService));
-    
+
+    RabbitCommon::CTools::AddStyleMenu(ui->menuView);
+    ui->menuService->addMenu(RabbitCommon::CTools::GetLogMenu(ui->menuView));
+
     Clean();
     InitTab();
 }
@@ -36,7 +37,7 @@ CMainWindow::~CMainWindow()
     delete ui;
     foreach(auto plugin, m_Plugins.m_Plugins)
         plugin->Stop();
-    
+
     foreach(auto service, m_Service)
         if(service)
             service->deleteLater();
@@ -108,7 +109,7 @@ int CMainWindow::InitTab()
                 qCritical(App) << "addTab fail";
         }
     }
-    
+
     return 0;
 }
 
@@ -202,10 +203,4 @@ void CMainWindow::on_actionOpen_folder_triggered()
                  RabbitCommon::CDir::Instance()->GetDirUserConfig()).toString();
     if(szFolder.isEmpty()) return;
     QDesktopServices::openUrl(QUrl::fromLocalFile(szFolder));
-}
-
-void CMainWindow::on_actionStyle_S_triggered()
-{
-    CFrmStyle* s = new CFrmStyle();
-    s->show();
 }
