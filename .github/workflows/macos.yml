@@ -36,10 +36,10 @@ jobs:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_macos_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}/.cache/install
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       RabbitRemoteControl_VERSION: v1.0.9
-      VCPKGGITCOMMITID: 3bc5ff7f7ab72b57f0945d35bbbdaac2060bc268
+      VCPKGGITCOMMITID: c9919121dde6f61c0436adda94624636e041226b
       artifact_name: build_macos
 
     # Map the job outputs to step outputs
@@ -65,15 +65,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: Cache-installed-macos
-
-      - name: Cache vcpkg
-        uses: actions/cache@v2
-        id: cache-vcpkg
-        with:
-          path: |
-            ${{ runner.workspace }}/vcpkg/
-          key: cache-vcpkg
+          key: cached-install-macos-qt${{matrix.qt_version}}-${{matrix.qt_arch}}-${{matrix.BUILD_TYPE}}
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
@@ -84,8 +76,8 @@ jobs:
       - name: run vcpkg
         run: |
           brew install nasm
-          vcpkg install --triplet=${{matrix.triplet}} \
-              --x-feature=vnc
+#          vcpkg install --triplet=${{matrix.triplet}} \
+#              --x-feature=vnc
 
 #      - name: build FreeRDP
 #        working-directory: ${{env.SOURCE_DIR}}
@@ -107,7 +99,7 @@ jobs:
 #                -DWITH_MANPAGES=OFF \
 #                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #          fi
 
       - name: build RabbitVNC
@@ -123,11 +115,11 @@ jobs:
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
       - name: build tigervnc
-        if: false
+        if: ${{ matrix.BUILD_TYPE == 'Debug' }}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
@@ -140,8 +132,30 @@ jobs:
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
+
+      - name: Build libvncserver
+        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
+            git clone https://github.com/KangLin/libvncserver.git
+            cd libvncserver
+            ;git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
+            cmake -E make_directory build
+            cd build
+            cmake .. ^
+                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
+                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
+                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF ^
+                -DBUILD_EXAMPLES=OFF ^
+                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+          )
 
 #      - name: build libdatachannel
 #        working-directory: ${{env.SOURCE_DIR}}
@@ -156,7 +170,7 @@ jobs:
 #                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
 #                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 #          fi
 
       - name: Install Qt
@@ -167,7 +181,7 @@ jobs:
           arch: '${{matrix.qt_arch}}' # optional
           modules: '${{env.qt_modules}}' # optional
           cache: true
-          cache-key-prefix: install-qt-action
+          cache-key-prefix: cached_qt
 
       - name: build qxmpp
         working-directory: ${{env.SOURCE_DIR}}
@@ -203,7 +217,7 @@ jobs:
                 -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
       - name: git clone RabbitCommon
@@ -241,7 +255,7 @@ jobs:
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' }} 
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}

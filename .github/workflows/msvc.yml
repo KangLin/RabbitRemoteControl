@@ -53,12 +53,12 @@ jobs:
     env:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
-      INSTALL_DIR: ${{github.workspace}}\.cache\install_msvc_qt${{matrix.qt_version}}_${{matrix.triplet}}_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}\.cache\install
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       RabbitRemoteControl_VERSION: v0.0.26
-      VCPKGGITCOMMITID: 3bc5ff7f7ab72b57f0945d35bbbdaac2060bc268
+      VCPKGGITCOMMITID: c9919121dde6f61c0436adda94624636e041226b
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       artifact_name: build_msvc
 
@@ -89,15 +89,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: installed-msvc
-
-      - name: Cache vcpkg
-        uses: actions/cache@v2
-        id: cache-vcpkg
-        with:
-          path: |
-            ${{ runner.workspace }}/vcpkg/
-          key: cache-vcpkg
+          key: cached-install-msvc-qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
@@ -106,6 +98,7 @@ jobs:
           vcpkgDirectory: ${{runner.workspace}}/vcpkg/
 
       - name: run vcpkg
+        if: false
         run: |
           vcpkg install --triplet=${{matrix.triplet}} ^
               --x-feature=vnc
@@ -155,7 +148,7 @@ jobs:
 #          )
 
       - name: Build libvncserver
-        if: false
+        if: false #${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
@@ -196,7 +189,7 @@ jobs:
           )
 
       - name: build tigervnc
-        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
+        if: false #${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
@@ -223,7 +216,7 @@ jobs:
           arch: '${{matrix.qt_arch}}' # optional
           modules: '${{env.qt_modules}}' # optional.  see: https://ddalcino.github.io/aqt-list-server/
           cache: true
-          cache-key-prefix: install-qt-action
+          cache-key-prefix: cached-qt
 
       - name: build qxmpp
         working-directory: ${{env.SOURCE_DIR}}

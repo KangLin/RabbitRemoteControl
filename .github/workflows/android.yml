@@ -27,11 +27,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VCPKGGITCOMMITID: 3bc5ff7f7ab72b57f0945d35bbbdaac2060bc268
+      VCPKGGITCOMMITID: c9919121dde6f61c0436adda94624636e041226b
       VCPKG_ROOT:  ${{github.workspace}}/.cache/source/vcpkg
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_anrdoi_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}/.cache/install
       STOREPASS: ${{secrets.STOREPASS}}
       RabbitRemoteControl_VERSION: v0.0.26
 
@@ -62,15 +62,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: cache-installed-android-qt${{matrix.qt_version}}-${{matrix.VCPKG_TARGET_TRIPLET}}-${{matrix.BUILD_TYPE}}
-
-      - name: Cache vcpkg
-        uses: actions/cache@v2
-        id: cache-vcpkg
-        with:
-          path: |
-            ${{ runner.workspace }}/vcpkg/
-          key: cache-vcpkg
+          key: cached-install-android-qt${{matrix.qt_version}}-${{matrix.qt_arch}}-${{matrix.BUILD_TYPE}}
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
@@ -82,6 +74,7 @@ jobs:
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
           
       - name: run vcpkg
+        if: false
         run: |
           vcpkg install --triplet=${{matrix.VCPKG_TARGET_TRIPLET}} \
               --x-feature=vnc
@@ -105,7 +98,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
 #    - name: build FreeRDP
@@ -126,28 +119,28 @@ jobs:
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #        fi
-        
-#    - name: build tigervnc
-#      working-directory: ${{env.SOURCE_DIR}}
-#      run: |
-#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
-#            git clone https://github.com/KangLin/tigervnc.git 
-#            cd ${{env.SOURCE_DIR}}/tigervnc
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. \
-#                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
-#                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-#                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-#            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
-#        fi
+
+      - name: build tigervnc
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
+              git clone https://github.com/KangLin/tigervnc.git 
+              cd ${{env.SOURCE_DIR}}/tigervnc
+              cmake -E make_directory build
+              cd build
+              cmake .. \
+                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
+                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
+              cmake --build . --config ${{ matrix.BUILD_TYPE }}
+              cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+          fi
 
       - name: Install Qt of gcc_64
         uses: jurplel/install-qt-action@v3
@@ -159,7 +152,7 @@ jobs:
           arch: 'gcc_64'
           set-env: false
           cache: true
-          cache-key-prefix: install-qt-action
+          cache-key-prefix: cached_qt
 
       - name: Install Qt of android
         uses: jurplel/install-qt-action@v3
@@ -177,7 +170,7 @@ jobs:
           # Additional Qt modules to install
           modules: '${{env.qt_modules}}' # optional. See: https://ddalcino.github.io/aqt-list-server/
           cache: true
-          cache-key-prefix: install-qt-action
+          cache-key-prefix: cached_qt
 
       - name: build qxmpp
         if: false
@@ -205,7 +198,7 @@ jobs:
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
                 -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           fi
 
       - name: git clone RabbitCommon
