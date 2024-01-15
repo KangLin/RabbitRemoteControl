@@ -58,7 +58,7 @@ sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}
 sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/README*.md
 
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
-sed -i "s/^\Standards-Version:.*/\Standards-Version:\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/debian/control
+sed -i "s/^\Standards-Version:.*/\Standards-Version: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/debian/control
 sed -i "s/rabbitremotecontrol_[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 
 CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
@@ -68,7 +68,6 @@ echo "" >> ${CHANGLOG_FILE}
 echo "`git log --pretty=format:'    * %s' ${PRE_TAG}..HEAD`" >> ${CHANGLOG_FILE}
 echo "" >> ${CHANGLOG_FILE}
 echo " -- `git log --pretty=format:'%an <%ae>' HEAD^..HEAD`  `date --rfc-email`" >> ${CHANGLOG_FILE}
-echo "" >> ${CHANGLOG_FILE}
 
 #CHANGLOG_EXIST="`grep "rabbitremotecontrol (${DEBIAN_VERSION})" ${CHANGLOG_FILE}`"
 #if [ -z "$CHANGLOG_EXIST" ]; then
@@ -77,7 +76,6 @@ echo "" >> ${CHANGLOG_FILE}
 #    echo "`git log --pretty=format:'    * %s (%an <%ae>)' ${PRE_TAG}..HEAD`" >> ${CHANGLOG_TMP}
 #    echo "" >> ${CHANGLOG_TMP}
 #    echo " -- `git log --pretty=format:'%an <%ae>' HEAD^..HEAD`  `date --rfc-email`" >> ${CHANGLOG_TMP}
-#    echo "" >> ${CHANGLOG_TMP}
 #    cat ${CHANGLOG_FILE} >> ${CHANGLOG_TMP}
 #    rm ${CHANGLOG_FILE}
 #    mv ${CHANGLOG_TMP} ${CHANGLOG_FILE}

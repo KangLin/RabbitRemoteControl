@@ -3,6 +3,7 @@
 ### v0.0.27
 - Client:
   + add OnInitReturnValue in CConnect
+  + Modify debian package
 
 ### v0.0.26
 + Use RabbitCommon v2

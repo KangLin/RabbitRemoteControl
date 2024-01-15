@@ -3,7 +3,8 @@
 ### v0.0.27
 - 客户端接口:
   + 在 CConnect 中增加 OnInitReturnValue
-  
+  + 修改 Debian 打包
+
 ### v0.0.26
 + 使用 RabbitCommon v2
 + FreeRDP:
