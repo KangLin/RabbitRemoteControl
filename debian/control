@@ -9,7 +9,8 @@ Build-Depends: debhelper(>= 13), debhelper-compat (=13), fakeroot,
  qt6-tools-dev, qt6-tools-dev-tools,
  qt6-base-dev, qt6-base-dev-tools, qt6-qpa-plugins, qt6-l10n-tools,
  qt6-translations-l10n, qt6-scxml-dev, qt6-webengine-dev,
- qt6-webengine-dev-tools, qt6-multimedia-dev, freerdp2-dev
+ qt6-webengine-dev-tools, qt6-multimedia-dev,
+ freerdp2-dev, libvncserver-dev
 Standards-Version: 0.0.26
 Homepage: https://github.com/KangLin/RabbitRemoteControl
 Vcs-Git: https://github.com/KangLin/RabbitRemoteControl.git
@@ -20,6 +21,7 @@ Package: rabbitremotecontrol
 Architecture: any
 #Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: rabbitcommon (>=2)
 Description: Rabbit Remote Control
  Rabbit remote control is  is a cross-platform,
  multi-protocol remote control software.
