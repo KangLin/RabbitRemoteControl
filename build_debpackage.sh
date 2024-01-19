@@ -18,7 +18,6 @@ fi
 
 if [ ! -d "$RabbitCommon_DIR" ]; then
 	echo "$0 QT_ROOT RabbitCommon_DIR"
-        exit -2
 fi
 
 if [ -z "$BUILD_TYPE" ]; then
@@ -62,9 +61,9 @@ export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
 #The -us -uc tell it there is no need to GPG sign the package. the -S is build source package
 #dpkg-buildpackage -us -uc -S
 
-dpkg-buildpackage -S
+#dpkg-buildpackage -S
 
 # build source and binary package
 #dpkg-buildpackage -us -uc 
 
-#dpkg-buildpackage
+dpkg-buildpackage -b
