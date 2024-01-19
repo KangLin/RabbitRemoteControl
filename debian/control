@@ -11,7 +11,7 @@ Build-Depends: debhelper(>= 13), debhelper-compat (=13), fakeroot,
  qt6-translations-l10n, qt6-scxml-dev, qt6-webengine-dev,
  qt6-webengine-dev-tools, qt6-multimedia-dev,
  freerdp2-dev, libvncserver-dev
-Standards-Version: 0.0.26
+Standards-Version: 4.6.2
 Homepage: https://github.com/KangLin/RabbitRemoteControl
 Vcs-Git: https://github.com/KangLin/RabbitRemoteControl.git
 Vcs-Browser: https://github.com/KangLin/RabbitRemoteControl
