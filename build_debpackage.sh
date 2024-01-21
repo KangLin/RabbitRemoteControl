@@ -54,9 +54,12 @@ export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
 
 # -b  Equivalent to --build=binary or --build=any,all.
 # -S  Equivalent to --build=source
+# -d, --no-check-builddeps    do not check build dependencies and conflicts.
+#      --ignore-builtin-builddeps
+#                              do not check builtin build dependencies.
 
 #The -us -uc tell it there is no need to GPG sign the package. the -b is build binary
-#dpkg-buildpackage -us -uc -b
+dpkg-buildpackage -us -uc -b -d
 
 #The -us -uc tell it there is no need to GPG sign the package. the -S is build source package
 #dpkg-buildpackage -us -uc -S
@@ -66,4 +69,4 @@ export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
 # build source and binary package
 #dpkg-buildpackage -us -uc 
 
-dpkg-buildpackage -b
+#dpkg-buildpackage -b
