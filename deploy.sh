@@ -58,7 +58,6 @@ sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${VERSION}
 sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/README*.md
 
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
-sed -i "s/^\Standards-Version:.*/\Standards-Version: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/debian/control
 sed -i "s/rabbitremotecontrol_[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 
 CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
