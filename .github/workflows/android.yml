@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      VCPKGGITCOMMITID: c9919121dde6f61c0436adda94624636e041226b
+      VCPKGGITCOMMITID: a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
       VCPKG_ROOT:  ${{github.workspace}}/.cache/source/vcpkg
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
