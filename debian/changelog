@@ -13,7 +13,7 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * doc: Modify doxygen documents
     * FreeRDP: modify OnClean()
     * CI: modify ci
-    * doc: Modify docuemnts
+    * doc: Modify documents
     * Modify qt6 compile warn
     * Client: move sigConnected and sigDisConnected to ConnectThread::run() when connect is bloack
     * Plugins::LibVNCServer: add check error
