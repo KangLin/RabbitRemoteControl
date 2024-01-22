@@ -16,7 +16,7 @@ jobs:
         qt_version: [6.6.1, 5.15.2, 5.12.12]
         include:
           - qt_version: 6.6.1
-            triplet: x64-windows
+            VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
@@ -25,7 +25,7 @@ jobs:
             UpdateXml: false
 
           - qt_version: 5.15.2
-            triplet: x64-windows
+            VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
@@ -33,7 +33,7 @@ jobs:
             UpdateXml: false
 
           - qt_version: 5.15.2
-            triplet: x86-windows
+            VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win32_msvc2019
             CMAKE_GENERATOR_PLATFORM: Win32
@@ -41,7 +41,7 @@ jobs:
             UpdateXml: true
 
           - qt_version: 5.12.12
-            triplet: x86-windows
+            VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v141
             qt_arch: win32_msvc2017
             CMAKE_GENERATOR_PLATFORM: Win32
@@ -100,7 +100,7 @@ jobs:
       - name: run vcpkg
         if: false
         run: |
-          vcpkg install --triplet=${{matrix.triplet}} ^
+          vcpkg install --VCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
               --x-feature=vnc
 
 #    - name: build libdatachannel

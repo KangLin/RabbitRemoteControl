@@ -18,7 +18,7 @@ jobs:
         BUILD_TYPE: [Release, Debug]
         qt_version: [6.6.1, 6.5.1, 5.15.2, 5.12.12]
         qt_arch: [clang_64]
-        triplet: [x64-osx]
+        VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
           - qt_version: 6.6.1
             qt_modules: qtscxml qtmultimedia qtserialport qtimageformats qtwebchannel qtwebsockets qtwebview
@@ -76,7 +76,7 @@ jobs:
       - name: run vcpkg
         run: |
           brew install nasm
-#          vcpkg install --triplet=${{matrix.triplet}} \
+#          vcpkg install --VCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
 #              --x-feature=vnc
 
 #      - name: build FreeRDP
