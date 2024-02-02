@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 #if defined(Q_OS_ANDROID) && (QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QtAndroid::hideSplashScreen();
 #endif
-    
+
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_INIT_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     }
     else
         qCritical(App) << "Load translator file fail:" << szTranslator;
-    
+
     //qInfo(App) << "Language:" << QLocale::system().name();
 
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
@@ -94,17 +94,18 @@ int main(int argc, char *argv[])
             pUpdate->SetTitle(p.toImage());
         }
     }
-    if(pUpdate->GenerateUpdateXml())
-        qCritical(App) << "GenerateUpdateXml fail";
-    else
+    if(a.arguments().length() > 1) {
+        pUpdate->GenerateUpdateJson();
+        pUpdate->GenerateUpdateXml();
         return 0;
+    }
 #endif
-    
+
     MainWindow* w = new MainWindow();
     try {
         //w->setWindowIcon(QIcon::themeName("app"));
         //w->setWindowTitle(a.applicationDisplayName());
-        
+
 #ifdef BUILD_QUIWidget
         QSharedPointer<QUIWidget> quiwidget(new QUIWidget(nullptr, true));
         bool check = quiwidget->connect(w, SIGNAL(sigFullScreen()),
