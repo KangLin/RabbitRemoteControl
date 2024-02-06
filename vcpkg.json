@@ -3,7 +3,8 @@
   "version-string":"0.0.23",
 
   "dependencies": [
-      "openssl"
+      "openssl",
+      "zlib"
   ],
 
   "default-features": ["freerdp"],

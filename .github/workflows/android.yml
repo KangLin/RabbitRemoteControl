@@ -19,10 +19,12 @@ jobs:
           - BUILD_TYPE: Release
             qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
+            config_arch: arm64_v8a
 
           - BUILD_TYPE: Release
             qt_arch: android_x86_64 
             VCPKG_TARGET_TRIPLET: x64-android
+            config_arch: x86_64
 
     runs-on: ubuntu-latest
 
@@ -45,7 +47,8 @@ jobs:
       name: ${{ env.artifact_name }}
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -233,12 +236,22 @@ jobs:
           cmake --build . --config ${{matrix.BUILD_TYPE}} --target all
           cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           APK_FILE=`find . -name "android-*.apk"`
-          cp $APK_FILE RabbitRemoteControl_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
+          cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
 
+      - name: Update configure file
+        working-directory: ${{github.workspace}}/build
+        run: |
+          ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
+              update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json \
+              RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk \
+              android ${{matrix.config_arch}} \
+              "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk,https://sourceforge.net/projects/RabbitRemoteControl/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk"
+      
       - name: Update artifact
         #if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
           path: |
-            ${{github.workspace}}/build/RabbitRemoteControl_${{env.Calendar_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
+            ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
+            ${{github.workspace}}/build/update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json
