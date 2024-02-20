@@ -20,7 +20,6 @@
       "freerdp": {
           "description": "freerdp",
           "dependencies": [
-              "libdatachannel",
               {
                   "name": "freerdp",
                   "platform": "windows | osx | ios | linux | mingw"
@@ -31,6 +30,7 @@
       "vnc": {
           "description": "vnc",
           "dependencies": [
+              "libdatachannel",
               "libjpeg-turbo",
               "pixman"
           ]
