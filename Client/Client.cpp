@@ -66,7 +66,7 @@ int CClient::LoadPlugins()
                 AppendPlugin(p);
             }
             else
-                qCritical(Client) << "The plugin" << p->Name() << " is exist.";
+                qWarning(Client) << "The plugin" << p->Name() << " is exist.";
         }
     }
 
@@ -103,13 +103,13 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
         //This method is invalid
         //QCoreApplication::addLibraryPath(QDir::cleanPath(dir.absolutePath()));
 
-        QDir::setCurrent(QDir::cleanPath(QDir::cleanPath(dir.absolutePath())));
-        
+        QDir::setCurrent(QDir::cleanPath(dir.absolutePath()));
+
         // This method is valid
 //#if defined(Q_OS_WINDOWS)
 //        QString szPath = QString::fromLocal8Bit(qgetenv("PATH"));
 //        szPath += ";";
-//        szPath += QDir::cleanPath(QDir::cleanPath(dir.absolutePath()));
+//        szPath += QDir::cleanPath(dir.absolutePath());
 //        qputenv("PATH", szPath.toLatin1());
 //#endif
     }
@@ -129,19 +129,19 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
                     AppendPlugin(p);
                 }
                 else
-                    qCritical(Client) << "The plugin [" << p->Name() << "] is exist.";
+                    qWarning(Client) << "The plugin [" << p->Name() << "] is exist.";
             }
         }else{
             QString szMsg;
             szMsg = "load plugin error: " + loader.errorString();
             qCritical(Client) << szMsg;
         }
-        
-        foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
-            QDir pluginDir = dir;
-            if(pluginDir.cd(fileName))
-                FindPlugins(pluginDir, filters);
-        }
+    }
+
+    foreach (fileName, dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot)) {
+        QDir pluginDir = dir;
+        if(pluginDir.cd(fileName))
+            FindPlugins(pluginDir, filters);
     }
 
     QDir::setCurrent(szCurrentPath);
