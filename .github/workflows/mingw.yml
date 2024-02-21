@@ -24,7 +24,7 @@ jobs:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
-      INSTALL_DIR: ${{github.workspace}}\.cache\install_mingw_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}\.cache\install
       RabbitRemoteControl_VERSION: v0.0.26
       artifact_name: build_mingw
 
@@ -74,7 +74,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: cache-installed-mingw
+          key: install_mingw_${{matrix.BUILD_TYPE}}
         
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}

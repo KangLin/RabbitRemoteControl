@@ -22,7 +22,7 @@ jobs:
       BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}/.cache/install
       RabbitRemoteControl_VERSION: 0.0.26
       artifact_name: build_ubuntu
 
@@ -112,7 +112,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: cache-installed-ubuntu
+          key: install_ubuntu_${{matrix.BUILD_TYPE}}
 
       - name: build FreeRDP
         if: false

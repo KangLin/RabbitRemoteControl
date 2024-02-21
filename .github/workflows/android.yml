@@ -65,7 +65,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: cached-install-android-qt${{matrix.qt_version}}-${{matrix.qt_arch}}-${{matrix.BUILD_TYPE}}
+          key: install_android_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
