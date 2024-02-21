@@ -29,14 +29,14 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      RabbitRemoteControl_VERSION: v0.0.26
       VCPKGGITCOMMITID: a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
-      VCPKG_ROOT:  ${{github.workspace}}/.cache/source/vcpkg
+      VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_HOST_TRIPLET: x64-linux
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       STOREPASS: ${{secrets.STOREPASS}}
-      RabbitRemoteControl_VERSION: v0.0.26
-
       artifact_name: build_android
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
@@ -229,6 +229,8 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
             -DCMAKE_INSTALL_PREFIX=`pwd`/install \
             -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+            -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}\scripts\buildsystems\vcpkg.cmake" \
+            -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$Qt6_DIR/lib/cmake/Qt6/qt.toolchain.cmake \            
             -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \
             -DANDROID_NATIVE_API_LEVEL=${{env.ANDROID_NATIVE_API_LEVEL}} \
             -DQT_ANDROID_SIGN_APK=ON \

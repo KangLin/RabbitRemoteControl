@@ -63,12 +63,7 @@ install:
 
   - cd %OTHER_SOURCE%
   - set VCPKG_DIR=%OTHER_SOURCE%\vcpkg
-  - if not exist %VCPKG_DIR% (
-       git clone "https://github.com/microsoft/vcpkg.git"
-       cd "%VCPKG_DIR%"
-       git checkout -b a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6 a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
-       bootstrap-vcpkg.bat)
-  - vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libpng pixman libjpeg-turbo freerdp
+  - if not exist %VCPKG_DIR% (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6 a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6 && bootstrap-vcpkg.bat &&  vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libpng pixman libjpeg-turbo freerdp )
 
 before_build:
 #  - cd "%OTHER_SOURCE%"
@@ -133,7 +128,8 @@ build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - mkdir build
   - cd build
-  - cmake %APPVEYOR_BUILD_FOLDER% ^
+  - |
+    cmake %APPVEYOR_BUILD_FOLDER% ^
         -G"%GENERATORS%" ^
         -DCMARK_SHARED=OFF ^
         -DCMARK_TESTS=OFF ^
@@ -176,7 +172,6 @@ deploy:
   #username: kl222,rabbitim
   #密码用这个加密 https://ci.appveyor.com/tools/encrypt
   #password:
-  #  secure: 2WEtOQrdty3V3g0aEVvS3Q==
   #folder: pfs  #link pfs to /home/frs/project/r/ra/rabbitim
   #draft: false
   #active_mode: false

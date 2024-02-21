@@ -2,7 +2,7 @@
 
 project(FreeRDP)
 
-SET(FreeRDP_LIBS freerdp-client freerdp Client winpr)
+SET(FreeRDP_LIBS freerdp-client freerdp winpr Client)
 if(NOT DEFINED X_VCPKG_APPLOCAL_DEPS_INSTALL OR NOT X_VCPKG_APPLOCAL_DEPS_INSTALL)
     install_targets(TARGETS ${FreeRDP_LIBS})
 endif()

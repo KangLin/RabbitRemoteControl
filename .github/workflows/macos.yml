@@ -35,9 +35,10 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       qt_modules: qtwebengine ${{matrix.qt_modules}}
-      RabbitRemoteControl_VERSION: v1.0.9
       VCPKGGITCOMMITID: a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
+      VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       artifact_name: build_macos
+      RabbitRemoteControl_VERSION: v1.0.9
 
     # Map the job outputs to step outputs
     outputs:
@@ -70,11 +71,9 @@ jobs:
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
           vcpkgDirectory: ${{runner.workspace}}/vcpkg/
 
-      - name: run vcpkg
+      - name: install nasm
         run: |
           brew install nasm
-#          vcpkg install --VCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
-#              --x-feature=vnc
 
 #      - name: build FreeRDP
 #        working-directory: ${{env.SOURCE_DIR}}
@@ -133,28 +132,29 @@ jobs:
           fi
 
       - name: Build libvncserver
-        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
             #git clone https://github.com/KangLin/libvncserver.git
             git clone https://github.com/LibVNC/libvncserver.git
             cd libvncserver
-            ;git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
+            #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
             cd build
-            cmake .. ^
-                -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
-                -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-                -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF ^
-                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" ^
-                -DBUILD_EXAMPLES=OFF ^
+            cmake .. \
+                -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF \
+                -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF \
+                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}} \
+                -DBUILD_EXAMPLES=OFF \
                 -DWITH_TESTS=OFF
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-          )
+            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+          fi
 
 #      - name: build libdatachannel
 #        working-directory: ${{env.SOURCE_DIR}}
