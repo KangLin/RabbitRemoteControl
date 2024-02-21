@@ -16,11 +16,11 @@ jobs:
       matrix:
         # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.6.1, 5.15.2, 5.12.12]
+        qt_version: [6.6.2, 5.15.2, 5.12.12]
         qt_arch: [clang_64]
         VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
-          - qt_version: 6.6.1
+          - qt_version: 6.6.2
             qt_modules: qtscxml qtmultimedia qtserialport qtimageformats qtwebchannel qtwebsockets qtwebview
 
           - qt_version: 5.15.2
@@ -116,7 +116,7 @@ jobs:
           fi
 
       - name: build tigervnc
-        if: ${{ matrix.BUILD_TYPE == 'Debug' }}
+        if: false #${{ matrix.BUILD_TYPE == 'Debug' }}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
@@ -137,7 +137,8 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
-            git clone https://github.com/KangLin/libvncserver.git
+            #git clone https://github.com/KangLin/libvncserver.git
+            git clone https://github.com/LibVNC/libvncserver.git
             cd libvncserver
             ;git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
@@ -147,9 +148,10 @@ jobs:
                 -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF ^
-                -DBUILD_EXAMPLES=OFF ^
                 -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" ^
+                -DBUILD_EXAMPLES=OFF ^
+                -DWITH_TESTS=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -226,6 +228,17 @@ jobs:
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
+          if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
+              export BUILD_RABBITVNC=ON
+              export BUILD_LibVNCServer=OFF
+              export BUILD_TigerVNC=OFF
+              export BUILD_SERVICE=OFF
+          else
+              export BUILD_RABBITVNC=ON
+              export BUILD_LibVNCServer=ON
+              export BUILD_TigerVNC=ON
+              export BUILD_SERVICE=ON
+          fi
           cmake ${{github.workspace}} \
               -DCMARK_SHARED=OFF \
               -DCMARK_TESTS=OFF \
@@ -234,7 +247,7 @@ jobs:
               -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/build/install \
               -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
               -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
-              -DBUILD_LibVNCServer=OFF \
+              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
               -DBUILD_FREERDP=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
@@ -260,7 +273,7 @@ jobs:
                RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip \
                macos ${{matrix.config_arch}} \
                "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip;https://sourceforge.net/projects/rabbitRabbitRemoteControl/files/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip"
-      
+
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3

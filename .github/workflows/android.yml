@@ -14,7 +14,7 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.6.1]
+        qt_version: [6.6.2]
         include:
           - BUILD_TYPE: Release
             qt_arch: android_arm64_v8a
@@ -86,7 +86,8 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
-            git clone https://github.com/KangLin/libvncserver.git
+            #git clone https://github.com/KangLin/libvncserver.git
+            git clone https://github.com/LibVNC/libvncserver.git
             cd libvncserver
             #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
@@ -99,7 +100,9 @@ jobs:
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
                 -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
+                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}} \
+                -DBUILD_EXAMPLES=OFF \
+                -DWITH_TESTS=OFF
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
@@ -126,6 +129,7 @@ jobs:
 #        fi
 
       - name: build tigervnc
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then

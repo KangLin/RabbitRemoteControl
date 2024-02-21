@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.6.1, 5.15.2, 5.12.12]
+        qt_version: [6.6.2, 5.15.2, 5.12.12]
         include:
-          - qt_version: 6.6.1
+          - qt_version: 6.6.2
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win64_msvc2019_64
@@ -27,12 +27,6 @@ jobs:
             VCPKG_PLATFORM_TOOLSET: v142
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
-
-          - qt_version: 5.15.2
-            VCPKG_TARGET_TRIPLET: x86-windows
-            VCPKG_PLATFORM_TOOLSET: v142
-            qt_arch: win32_msvc2019
-            CMAKE_GENERATOR_PLATFORM: Win32
 
           - qt_version: 5.12.12
             VCPKG_TARGET_TRIPLET: x86-windows
@@ -90,7 +84,6 @@ jobs:
           vcpkgDirectory: ${{runner.workspace}}/vcpkg/
 
       - name: run vcpkg
-        if: false
         run: |
           vcpkg install --VCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
               --x-feature=vnc
@@ -140,11 +133,12 @@ jobs:
 #          )
 
       - name: Build libvncserver
-        if: false #${{ matrix.BUILD_TYPE == 'Debug'}}
+        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
-            git clone https://github.com/KangLin/libvncserver.git
+            #git clone https://github.com/KangLin/libvncserver.git
+            git clone https://github.com/LibVNC/libvncserver.git
             cd libvncserver
             ;git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
@@ -154,9 +148,10 @@ jobs:
                 -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF ^
-                -DBUILD_EXAMPLES=OFF ^
                 -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" ^
+                -DBUILD_EXAMPLES=OFF ^
+                -DWITH_TESTS=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -269,7 +264,6 @@ jobs:
               set BUILD_TigerVNC=ON
               set BUILD_SERVICE=ON
           )
-          cmake -E make_directory ${{github.workspace}}/build
           cd ${{github.workspace}}/build
           cmake ${{github.workspace}} ^
             -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
