@@ -76,7 +76,7 @@ int CClient::LoadPlugins()
 #endif
 
     QStringList filters;
-#if defined (Q_OS_WINDOWS)
+#if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
         filters << "*PluginClient*.dll";
 #else
         filters << "*PluginClient*.so";
@@ -89,7 +89,7 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
     QString fileName;
     if(filters.isEmpty())
     {
-#if defined (Q_OS_WINDOWS)
+#if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
         filters << "*PluginClient*.dll";
 #else
         filters << "*PluginClient*.so";

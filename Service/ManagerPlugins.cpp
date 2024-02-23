@@ -27,7 +27,7 @@ int CManagePlugins::LoadPlugins()
     QString szPath = RabbitCommon::CDir::Instance()->GetDirPlugins()
             + QDir::separator() + "Service";
     QStringList filters;
-#if defined (Q_OS_WINDOWS)
+#if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
     filters << "*PluginService*.dll";
 #else
     filters << "*PluginService*.so";
@@ -40,7 +40,7 @@ int CManagePlugins::FindPlugins(QDir dir, QStringList filters)
     QString fileName;
     if(filters.isEmpty())
     {
-#if defined (Q_OS_WINDOWS)
+#if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
         filters << "*PluginService*.dll";
 #else
         filters << "*PluginService*.so";
