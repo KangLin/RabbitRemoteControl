@@ -19,12 +19,12 @@ jobs:
           - BUILD_TYPE: Release
             qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
-            config_arch: arm64_v8a
+            ANDROID_ABI: arm64_v8a
 
           - BUILD_TYPE: Release
-            qt_arch: android_x86_64 
+            qt_arch: android_x86_64
             VCPKG_TARGET_TRIPLET: x64-android
-            config_arch: x86_64
+            ANDROID_ABI: x86_64
 
     runs-on: ubuntu-latest
 
@@ -32,14 +32,14 @@ jobs:
       RabbitRemoteControl_VERSION: v0.0.26
       VCPKGGITCOMMITID: a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
-      VCPKG_HOST_TRIPLET: x64-linux
+      VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
-      STOREPASS: ${{secrets.STOREPASS}}
       artifact_name: build_android
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
+      ANDROID_ABI: ${{matrix.ANDROID_ABI}}
       qt_modules: 'qtimageformats qtmultimedia qtscxml qtwebchannel qtwebsockets qtwebview'
 
     # Map the job outputs to step outputs
@@ -75,79 +75,6 @@ jobs:
           #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
-          
-      - name: run vcpkg
-        if: false
-        run: |
-          vcpkg install --triplet=${{matrix.VCPKG_TARGET_TRIPLET}} \
-              --x-feature=vnc
-
-      - name: Build libvncserver
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
-            #git clone https://github.com/KangLin/libvncserver.git
-            git clone https://github.com/LibVNC/libvncserver.git
-            cd libvncserver
-            #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF \
-                -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF \
-                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}} \
-                -DBUILD_EXAMPLES=OFF \
-                -DWITH_TESTS=OFF
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          fi
-
-#    - name: build FreeRDP
-#      working-directory: ${{env.SOURCE_DIR}}
-#      run: |
-#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
-#            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
-#            cd FreeRDP
-#            git submodule update --init --recursive
-#            cmake -E make_directory build
-#            cd build
-#            cmake .. \
-#                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_INSTALLATION_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
-#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-#                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-#        fi
-
-      - name: build tigervnc
-        if: false
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
-              git clone https://github.com/KangLin/tigervnc.git 
-              cd ${{env.SOURCE_DIR}}/tigervnc
-              cmake -E make_directory build
-              cd build
-              cmake .. \
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
-                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-              cmake --build . --config ${{ matrix.BUILD_TYPE }}
-              cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          fi
 
       - name: Install Qt of gcc_64
         uses: jurplel/install-qt-action@v3
@@ -179,6 +106,108 @@ jobs:
           cache: true
           cache-key-prefix: cached_qt
 
+      - name: chmod qt-cmake
+        run: |
+          sudo chmod 777 ${Qt6_DIR}/bin/qt-cmake
+
+      - name: build RabbitVNC
+        if: false
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ]; then
+            git clone https://github.com/KangLin/RabbitVNC.git
+            cd ${{env.SOURCE_DIR}}/RabbitVNC
+            cmake -E make_directory build
+            cd build
+            ${Qt6_DIR}/bin/qt-cmake .. \
+                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_VERBOSE_MAKEFILE=ON \
+                -DCMAKE_AUTOGEN_VERBOSE=ON \
+                -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+                -DBUILD_TESTS=OFF \
+                -DBUILD_VIEWER=OFF
+            cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
+          fi
+
+      - name: Build libvncserver
+        if: false
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
+            #git clone https://github.com/KangLin/libvncserver.git
+            git clone https://github.com/LibVNC/libvncserver.git
+            cd libvncserver
+            #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
+            cmake -E make_directory build
+            cd build
+            ${Qt6_DIR}/bin/qt-cmake .. \
+                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_VERBOSE_MAKEFILE=ON \
+                -DCMAKE_AUTOGEN_VERBOSE=ON \
+                -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+                -DWITH_OPENSSL=ON \
+                -DWITH_GCRYPT=OFF \
+                -DBUILD_EXAMPLES=OFF \
+                -DWITH_TESTS=OFF
+            cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
+          fi
+
+#    - name: build FreeRDP
+#      working-directory: ${{env.SOURCE_DIR}}
+#      run: |
+#        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
+#            git clone -b 2.5.0 https://github.com/FreeRDP/FreeRDP.git
+#            cd FreeRDP
+#            git submodule update --init --recursive
+#            cmake -E make_directory build
+#            cd build
+#            cmake .. \
+#                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_INSTALLATION_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
+#                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+#                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
+#                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+#                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
+#                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+#                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
+#                -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#        fi
+
+      - name: build tigervnc
+        if: false
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
+              git clone https://github.com/KangLin/tigervnc.git
+              cd ${{env.SOURCE_DIR}}/tigervnc
+              cmake -E make_directory build
+              cd build
+              ${Qt6_DIR}/bin/qt-cmake .. \
+                  -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                  -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                  -DCMAKE_VERBOSE_MAKEFILE=ON \
+                  -DCMAKE_AUTOGEN_VERBOSE=ON \
+                  -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                  -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                  -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                  -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+                  -DBUILD_TESTS=OFF \
+                  -DBUILD_VIEWER=OFF
+              cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
+              cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
+          fi
+
       - name: build qxmpp
         if: false
         working-directory: ${{env.SOURCE_DIR}}
@@ -190,22 +219,19 @@ jobs:
             cd qxmpp
             cmake -E make_directory build
             cd build
-            cmake .. -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF \
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
-                -DQt5Core_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Core \
-                -DQt5Gui_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Gui \
-                -DQt5Test_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Test \
-                -DQt5Xml_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Xml \
-                -DQt5Network_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5Network \
-                -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
-                -DCMAKE_PREFIX_PATH=${{env.QT_ROOT}} \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            ${Qt6_DIR}/bin/qt-cmake .. \
+                -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
+                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DCMAKE_VERBOSE_MAKEFILE=ON \
+                -DCMAKE_AUTOGEN_VERBOSE=ON \
+                -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+                -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+                -DBUILD_EXAMPLES=OFF \
+                -DBUILD_TESTS=OFF
+            cmake --build . --verbose --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target install
           fi
 
       - name: git clone RabbitCommon
@@ -221,26 +247,27 @@ jobs:
           QT_ANDROID_KEYSTORE_STORE_PASS: ${{secrets.STOREPASS}}
         run: |
           sudo chmod 777 ${Qt6_DIR}/bin/qt-cmake
-          ${Qt6_DIR}/bin/qt-cmake ${{github.workspace}} \
-            -DCMARK_SHARED=OFF \
-            -DCMARK_TESTS=OFF \
-            -DCMARK_STATIC=ON \
-            -DBUILD_FREERDP=ON \
-            -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-            -DCMAKE_INSTALL_PREFIX=`pwd`/install \
-            -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-            -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}\scripts\buildsystems\vcpkg.cmake" \
-            -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$Qt6_DIR/lib/cmake/Qt6/qt.toolchain.cmake \            
-            -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \
-            -DANDROID_NATIVE_API_LEVEL=${{env.ANDROID_NATIVE_API_LEVEL}} \
-            -DQT_ANDROID_SIGN_APK=ON \
-            -DQT_ENABLE_VERBOSE_DEPLOYMENT=OFF \
-            -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
-            -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
-            -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake \
-            -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp
-          cmake --build . --config ${{matrix.BUILD_TYPE}} --target all
-          cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+          ${Qt6_DIR}/bin/qt-cmake .. \
+              -DCMARK_SHARED=OFF \
+              -DCMARK_TESTS=OFF \
+              -DCMARK_STATIC=ON \
+              -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+              -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+              -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+              -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+              -DVCPKG_APPLOCAL_DEPS=ON \
+              -DINSTALL_QT=ON \
+              -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+              -DQT_ANDROID_SIGN_APK=ON \
+              -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
+              -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+              -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+              -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
+              -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake \
+              -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp
+          cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target all
+          cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target install
           APK_FILE=`find . -name "android-*.apk"`
           cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
 
@@ -250,9 +277,9 @@ jobs:
           ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
               update_${{matrix.qt_arch}}_${{matrix.qt_version}}.json \
               RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk \
-              android ${{matrix.config_arch}} \
+              android ${{matrix.ANDROID_ABI}} \
               "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk,https://sourceforge.net/projects/RabbitRemoteControl/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk"
-      
+
       - name: Update artifact
         #if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
