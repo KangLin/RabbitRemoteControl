@@ -147,6 +147,7 @@ jobs:
             ${Qt6_DIR}/bin/qt-cmake .. \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DCMAKE_AUTOGEN_VERBOSE=ON \
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
@@ -260,6 +261,7 @@ jobs:
               -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
               -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
+              -DVCPKG_TRACE_FIND_PACKAGE=ON \
               -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
               -DBUILD_LibVNCServer=ON \

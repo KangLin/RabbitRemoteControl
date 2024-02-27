@@ -64,6 +64,16 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS Client)
 
+if(ANDROID)
+    if(NOT EXISTS ${CMAKE_BINARY_DIR}/plugins/Client)
+        file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/plugins/Client)
+    endif()
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        QT_ANDROID_EXTRA_PLUGINS
+            ${CMAKE_BINARY_DIR}/plugins/Client
+        )
+endif()
+
 if(Log4Qt_FOUND)
     if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf)
         configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.debug.conf

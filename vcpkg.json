@@ -7,13 +7,13 @@
       "zlib"
   ],
 
-  "default-features": ["freerdp"],
+  "default-features": ["client"],
 
   "features": {
       "client": {
           "description": "client",
           "dependencies": [
-              "freerdp"
+              "vnc"
           ]
       },
 
@@ -30,7 +30,6 @@
       "vnc": {
           "description": "vnc",
           "dependencies": [
-              "libdatachannel",
               "libjpeg-turbo",
               "pixman"
           ]
