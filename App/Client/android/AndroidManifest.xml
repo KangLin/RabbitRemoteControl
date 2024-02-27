@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <manifest
-    package="org.KangLinStudio.RabbitRemoteControl"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.KangLinStudio.RabbitRemoteControl"
     android:versionName="0.0.9"
     android:versionCode="0"
     android:installLocation="auto">
-    
-    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="28"/>
 
     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
          Remove the comment if you do not require these default permissions. -->
@@ -35,18 +33,19 @@
         android:label="@string/app_name"
         android:icon="@drawable/icon">
         
-        <activity
+        <activity android:name="org.qtproject.qt.android.bindings.QtActivity"
             android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
-            android:name="org.qtproject.qt.android.bindings.QtActivity"
             android:label="@string/app_name"
+            android:launchMode="singleTop"
             android:screenOrientation="unspecified"
-            android:launchMode="singleTop">
+            android:exported="true">
             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <meta-data android:name="android.app.lib_name" android:value="CalendarApp"/>
+
+            <meta-data android:name="android.app.lib_name" android:value="RabbitRemoteControlApp"/>
             <meta-data android:name="android.app.arguments" android:value=""/>
             <!-- extract android style -->
             <!-- available android:values :
