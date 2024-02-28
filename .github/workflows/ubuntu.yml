@@ -280,12 +280,12 @@ jobs:
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v3
         with:
-            name: ${{ env.artifact_name }}
-            path: |
-              ${{github.workspace}}/rabbitremotecontrol_*.deb
-              ${{github.workspace}}/update_ubuntu.json
-              ${{github.workspace}}/version.json
-              ${{github.workspace}}/update_linux.xml
+          name: ${{ env.artifact_name }}
+          path: |
+            ${{github.workspace}}/rabbitremotecontrol_*.deb
+            ${{github.workspace}}/update_ubuntu.json
+            ${{github.workspace}}/version.json
+            ${{github.workspace}}/update_linux.xml
 
 #    - name: Upload To Github Release
 #      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}

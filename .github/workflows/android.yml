@@ -16,13 +16,11 @@ jobs:
         qt_arch: [android_arm64_v8a, android_x86_64]
         qt_version: [6.6.2]
         include:
-          - BUILD_TYPE: Release
-            qt_arch: android_arm64_v8a
+          - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
             ANDROID_ABI: arm64_v8a
 
-          - BUILD_TYPE: Release
-            qt_arch: android_x86_64
+          - qt_arch: android_x86_64
             VCPKG_TARGET_TRIPLET: x64-android
             ANDROID_ABI: x86_64
 
@@ -30,8 +28,9 @@ jobs:
 
     env:
       RabbitRemoteControl_VERSION: v0.0.26
-      VCPKGGITCOMMITID: a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
+      VCPKGGITCOMMITID: 3f966cf6a8654a0bc067738bcb95d489e197ad68
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
@@ -70,11 +69,14 @@ jobs:
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
         with:
-          # Indicates whether to only setup vcpkg (i.e. installing it and setting the environment variables VCPKG_ROOT, RUNVCPK_VCPKG_ROOT), without installing any port.
-          #setupOnly: # optional
-          #vcpkgGitURL: https://github.com/KangLin/vcpkg.git
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
-          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+          vcpkgDirectory: ${{env.SOURCE_DIR}}/vcpkg
+
+      - name: run vcpkg
+        if: false
+        working-directory: ${{github.workspace}}
+        run: |
+          vcpkg install --triplet ${{matrix.VCPKG_TARGET_TRIPLET}} --x-feature=vnc
 
       - name: Install Qt of gcc_64
         uses: jurplel/install-qt-action@v3
@@ -123,11 +125,14 @@ jobs:
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
-                -DCMAKE_AUTOGEN_VERBOSE=ON \
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
-                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                -DVCPKG_TRACE_FIND_PACKAGE=ON \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed \
                 -DBUILD_TESTS=OFF \
                 -DBUILD_VIEWER=OFF
             cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
@@ -149,14 +154,17 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
-                -DCMAKE_AUTOGEN_VERBOSE=ON \
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
-                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                -DVCPKG_TRACE_FIND_PACKAGE=ON \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed \
                 -DWITH_OPENSSL=ON \
                 -DWITH_GCRYPT=OFF \
-                -DBUILD_EXAMPLES=OFF \
+                -DWITH_EXAMPLES=OFF \
                 -DWITH_TESTS=OFF
             cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
@@ -178,6 +186,11 @@ jobs:
 #                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
 #                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
 #                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+#                -DVCPKG_VERBOSE=ON \
+#                -DVCPKG_TRACE_FIND_PACKAGE=ON \
+#                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+#                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+#                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/FreeRDP/vcpkg_installed \
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}}
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
@@ -197,11 +210,14 @@ jobs:
                   -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                   -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                   -DCMAKE_VERBOSE_MAKEFILE=ON \
-                  -DCMAKE_AUTOGEN_VERBOSE=ON \
                   -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
                   -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
-                  -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+                  -DVCPKG_VERBOSE=ON \
+                  -DVCPKG_TRACE_FIND_PACKAGE=ON \
+                  -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                  -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                  -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/tigervnc/vcpkg_installed \
                   -DBUILD_TESTS=OFF \
                   -DBUILD_VIEWER=OFF
               cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
@@ -227,7 +243,11 @@ jobs:
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
-                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_TRACE_FIND_PACKAGE=ON \
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/qxmpp/vcpkg_installed \
                 -DBUILD_EXAMPLES=OFF \
                 -DBUILD_TESTS=OFF
             cmake --build . --verbose --config ${{matrix.BUILD_TYPE}}
@@ -252,11 +272,12 @@ jobs:
               -DCMARK_TESTS=OFF \
               -DCMARK_STATIC=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+              -DCMAKE_AUTOGEN_VERBOSE=ON \
               -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
               -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
               -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
-              -DVCPKG_APPLOCAL_DEPS=ON \
+              -DVCPKG_VERBOSE=ON \
               -DINSTALL_QT=ON \
               -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \

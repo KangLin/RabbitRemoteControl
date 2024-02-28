@@ -35,8 +35,9 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       qt_modules: qtwebengine ${{matrix.qt_modules}}
-      VCPKGGITCOMMITID: a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
+      VCPKGGITCOMMITID: 3f966cf6a8654a0bc067738bcb95d489e197ad68
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       artifact_name: build_macos
       RabbitRemoteControl_VERSION: v1.0.9
 
@@ -69,7 +70,7 @@ jobs:
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
-          vcpkgDirectory: ${{runner.workspace}}/vcpkg/
+          vcpkgDirectory: ${{env.SOURCE_DIR}}/vcpkg          
 
       - name: install nasm
         run: |
@@ -109,7 +110,11 @@ jobs:
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed \
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
@@ -126,7 +131,11 @@ jobs:
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF \
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/tigervnc/vcpkg_installed \
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}               
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
@@ -142,15 +151,16 @@ jobs:
             cmake -E make_directory build
             cd build
             cmake .. \
-                -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF \
-                -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
-                -DVCPKG_CHAINLbuildOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
-                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
-                -DANDROID_PLATFORM=${{matrix.ANDROID_PLATFORM}} \
-                -DBUILD_EXAMPLES=OFF \
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed \
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
+                -DWITH_OPENSSL=ON \
+                -DWITH_GCRYPT=OFF \
+                -DWITH_EXAMPLES=OFF \
                 -DWITH_TESTS=OFF
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
@@ -167,7 +177,11 @@ jobs:
 #            cd build
 #            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
 #                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-#                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+#                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+#                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libdatachannel/vcpkg_installed \
+#                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+#                -DVCPKG_VERBOSE=ON \
+#                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}
 #            cmake --build . --config ${{ matrix.BUILD_TYPE }}
 #            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 #          fi
@@ -194,7 +208,11 @@ jobs:
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
                 -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF \
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} \
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/qxmpp/vcpkg_installed \
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}                
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           fi
@@ -214,7 +232,11 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DQT_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
                 -DQt5_DIR=${{env.QT_ROOT}}/lib/cmake/Qt5 \
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/QtService/vcpkg_installed \
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}                
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
@@ -248,6 +270,8 @@ jobs:
               -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}/lib/cmake \
               -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" \
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+              -DVCPKG_VERBOSE=ON \
+              -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
               -DBUILD_FREERDP=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \

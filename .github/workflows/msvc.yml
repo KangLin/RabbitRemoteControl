@@ -40,8 +40,9 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      VCPKGGITCOMMITID: a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
+      VCPKGGITCOMMITID: 3f966cf6a8654a0bc067738bcb95d489e197ad68
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
@@ -76,17 +77,19 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: install_msvc_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
+          key: install_msvc_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}_2024_03_01
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: ${{env.VCPKGGITCOMMITID}}
-          vcpkgDirectory: ${{runner.workspace}}/vcpkg/
+          vcpkgDirectory: ${{env.SOURCE_DIR}}/vcpkg
 
       - name: run vcpkg
+        if: false
+        working-directory: ${{github.workspace}}
         run: |
-          vcpkg install --x-feature=vnc
+          vcpkg install --triplet ${{matrix.VCPKG_TARGET_TRIPLET}} --x-feature=vnc
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -146,13 +149,20 @@ jobs:
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" ^
+                -DVCPKG_VERBOSE=ON ^
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed ^
+                -DVCPKG_TRACE_FIND_PACKAGE=ON ^
+                -DBUILD_VIEWER=OFF ^
+                -DBUILD_TESTS=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
 
       - name: build tigervnc
-        if: false #${{ matrix.BUILD_TYPE == 'Debug'}}
+        if: false # ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
@@ -166,7 +176,14 @@ jobs:
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
-                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" ^
+                -DVCPKG_VERBOSE=ON ^
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/tigervnc/vcpkg_installed ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+                -DVCPKG_TRACE_FIND_PACKAGE=ON ^
+                -DBUILD_VIEWER=OFF ^
+                -DBUILD_TESTS=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -189,7 +206,12 @@ jobs:
                 -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF ^
                 -DCMAKE_INSTALL_PREFIX="${{ env.INSTALL_DIR }}" ^
                 -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" ^
-                -DBUILD_EXAMPLES=OFF ^
+                -DVCPKG_VERBOSE=ON ^
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+                -DVCPKG_TRACE_FIND_PACKAGE=ON ^
+                -DWITH_EXAMPLES=OFF ^
                 -DWITH_TESTS=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
@@ -219,7 +241,12 @@ jobs:
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
+                -DVCPKG_VERBOSE=ON ^
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/qxmpp/vcpkg_installed ^
+                -DVCPKG_TRACE_FIND_PACKAGE=ON 
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -235,10 +262,15 @@ jobs:
             cmake .. ^
                 -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
                 -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
-                -DBUILD_EXAMPLES:BOOL=OFF ^
+                -DBUILD_EXAMPLES=OFF ^
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
-                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
+                -DVCPKG_VERBOSE=ON ^
+                -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
+                -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+                -DVCPKG_TRACE_FIND_PACKAGE=ON
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/QtService/vcpkg_installed
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -275,7 +307,9 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
             -DVCPKG_VERBOSE=ON ^
+            -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
             -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+            -DVCPKG_TRACE_FIND_PACKAGE=ON ^
             -DBUILD_QUIWidget=OFF ^
             -DBUILD_APP=ON ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
@@ -291,11 +325,14 @@ jobs:
             -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
-            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
-            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component DependLibraries --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Application"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Application --strip
+            echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Plugin"
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --component Plugin --strip
           ) else (
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: Runtime Application Plugin"
             cmake --install . --config ${{matrix.BUILD_TYPE}} --component Runtime
@@ -308,6 +345,7 @@ jobs:
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{github.workspace}}\build
         run: |
+          copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\
           7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
           makensis Install.nsi
           copy /Y RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe
