@@ -1,6 +1,16 @@
+# Author: Kang Lin<kl222@126.com>
+
 name: Doxygen
 
-on: [push]
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_doxygen.outputs.name }}
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build_doxygen:
@@ -10,8 +20,13 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu
+      DOXYGEN_VERSION: 1.9.8
+      artifact_name: build_doxygen
       RabbitRemoteControl_VERSION: v0.0.26
-      DOXYGEN_VERSION: 1.9.5
+
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
 
     steps:
     - uses: actions/checkout@v3
@@ -23,6 +38,7 @@ jobs:
         cmake -E make_directory ${{env.SOURCE_DIR}}
         cmake -E make_directory ${{env.TOOSL_DIR}}
         cmake -E make_directory ${{env.INSTALL_DIR}}
+        cmake -E make_directory ${{github.workspace}}/build
 
     - name: Cache installed
       uses: actions/cache@v2
@@ -30,19 +46,18 @@ jobs:
       with:
         path: |
           ${{env.TOOSL_DIR}}
-        key: cache-installed-doxygen
+        key: install-doxygen
 
     - name: git clone RabbitCommon
       working-directory: ${{env.SOURCE_DIR}}
       run: git clone https://github.com/KangLin/RabbitCommon.git
 
-    - name: apt helper action
-      uses: ryankurte/action-apt@v0.2.0
-      with:
-        # architectures to pass to dpkg --add-architecture
-        #architectures: # optional
-        # apt packages to install
-        packages: cmake build-essential graphviz qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools
+    - name: install apt packages
+      run: |
+        sudo apt update -y -q
+        sudo apt upgrade -y -q
+        sudo apt install -y -q cmake build-essential graphviz \
+            qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools
 
     - name: Download doxygen
       run: |
@@ -76,13 +91,14 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install \
             -DBUILD_DOCS=ON
         cmake --build . --target doc_Chinese doc_English
+        7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_document.zip Doxygen/*
 
-    - name: update
-      uses: actions/upload-artifact@v2
+    - name: Update artifact
+      uses: actions/upload-artifact@v3
       with:
-        name: rabbitremotecontrol_doxygen
+        name: ${{ env.artifact_name }}
         path: |
-          build/Doxygen
+          ${{github.workspace}}/build/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_document.zip
 
     - name: Deploy to GitHub Pages
       if: startsWith(github.ref, 'refs/tags/')
