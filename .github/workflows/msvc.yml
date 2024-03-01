@@ -18,7 +18,7 @@ jobs:
           - qt_version: 6.6.2
             qt_arch: win64_msvc2019_64
             qt_modules: qtscxml qtmultimedia qtimageformats qtwebchannel qtwebsockets qtwebview qtpositioning qtserialport
-            CMAKE_GENERATOR_PLATFORM: x64            
+            CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v142
             

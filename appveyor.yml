@@ -20,14 +20,19 @@ environment:
   ##### msvc 2015 ######## 
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     GENERATORS: "Visual Studio 14 2015"
+    CMAKE_GENERATOR_PLATFORM: x64
     TOOLCHAIN_VERSION: 14
     VCPKG_PLATFORM_TOOLSET: v140
+    VCPKG_TARGET_TRIPLET: x86-windows
     QT_ROOT: C:\Qt\5.6\msvc2015
     BUILD_ARCH: x86
 
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     GENERATORS: "Visual Studio 14 2015 Win64"
+    CMAKE_GENERATOR_PLATFORM: Win32
     TOOLCHAIN_VERSION: 14
+    VCPKG_PLATFORM_TOOLSET: v140
+    VCPKG_TARGET_TRIPLET: x64-windows
     QT_ROOT: C:\Qt\5.6\msvc2015_64
     BUILD_ARCH: x64
 
@@ -63,66 +68,51 @@ install:
 
   - cd %OTHER_SOURCE%
   - set VCPKG_DIR=%OTHER_SOURCE%\vcpkg
-  - if not exist %VCPKG_DIR% (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6 a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6 && bootstrap-vcpkg.bat &&  vcpkg --triplet %BUILD_ARCH%-windows install zlib openssl libpng pixman libjpeg-turbo freerdp )
+  - if not exist %VCPKG_DIR% (git clone "https://github.com/microsoft/vcpkg.git" && cd "%VCPKG_DIR%" && git checkout -b a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6 a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6 && bootstrap-vcpkg.bat )
 
 before_build:
-#  - cd "%OTHER_SOURCE%"
-#  - if not exist FreeRDP (git clone https://github.com/FreeRDP/FreeRDP.git)
-#  - cd FreeRDP
-#  - git checkout -b 1da0d63c7850275dd56a59749f51a60cf6eaabd6 1da0d63c7850275dd56a59749f51a60cf6eaabd6
-#  - git submodule update --init --recursive
-#  - cmake -E make_directory build
-#  - cd build
-#  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DWITH_SERVER=ON -DCHANNEL_URBDRC=OFF -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-#  - cmake --build . --config Release
-#  - cmake --build . --config Release --target install
+  - cd "%OTHER_SOURCE%"
+  - if not exist RabbitVNC (git clone https://github.com/KangLin/RabbitVNC.git)
+  - cd RabbitVNC
+  - cmake -E make_directory build
+  - cd build
+  - |
+      cmake .. -G"%GENERATORS%" ^
+          -DCMAKE_BUILD_TYPE=Release ^
+          -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" ^
+          -DBUILD_TESTS=OFF ^
+          -DBUILD_VIEWER=OFF ^
+          -DENABLE_NLS=OFF ^
+          -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" ^
+          -DVCPKG_VERBOSE=ON ^
+          -DVCPKG_TARGET_TRIPLET=%VCPKG_TARGET_TRIPLET% ^
+          -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+          -DVCPKG_INSTALLED_DIR=%INSTALL_DIR%/RabbitVNC/vcpkg_installed ^
+          -DVCPKG_TRACE_FIND_PACKAGE=ON
+  - cmake --build . --config Release
+  - cmake --build . --config Release --target install
 
-#  - cd "%OTHER_SOURCE%"
-#  - if not exist libdatachannel (git clone https://github.com/paullouisageneau/libdatachannel.git)
-#  - cd libdatachannel
-#  - git submodule update --init --recursive
-#  - git checkout -b v0.14.3 v0.14.3
-#  - cmake -E make_directory build
-#  - cd build
-#  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-#  - cmake --build . --config Release --target install
-#  #- if NOT "%TOOLCHAIN_VERSION%" == "14" (cmake --build . --config Release --target install)
- 
   - cd "%OTHER_SOURCE%"
   - if not exist libvncserver (git clone "https://github.com/KangLin/libvncserver.git")
   - cd libvncserver
   - cmake -E make_directory build
   - cd build
-  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DWITH_OPENSSL=ON -DWITH_GCRYPT=OFF -DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
+  - |
+      cmake .. -G"%GENERATORS%" ^
+          -DCMAKE_BUILD_TYPE=Release ^
+          -DWITH_OPENSSL=ON ^
+          -DWITH_GCRYPT=OFF ^
+          -DBUILD_TESTS=OFF ^
+          -DBUILD_EXAMPLES=OFF ^
+          -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" ^
+          -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" ^
+          -DVCPKG_VERBOSE=ON ^
+          -DVCPKG_TARGET_TRIPLET=%VCPKG_TARGET_TRIPLET% ^
+          -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+          -DVCPKG_INSTALLED_DIR=%INSTALL_DIR%/libvncservice/vcpkg_installed ^
+          -DVCPKG_TRACE_FIND_PACKAGE=ON
   - cmake --build . --config Release
   - cmake --build . --config Release --target install
-
-#  - cd "%OTHER_SOURCE%"
-#  - if not exist tigervnc (git clone https://github.com/KangLin/tigervnc.git)
-#  - cd tigervnc
-#  - cmake -E make_directory build
-#  - cd build
-#  - cmake .. -G"%GENERATORS%" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-#  - cmake --build . --config Release
-#  - cmake --build . --config Release --target install
-
-  #- cd "%OTHER_SOURCE%"
-  #- if not exist qxmpp (git clone -b v1.4.0 https://github.com/qxmpp-project/qxmpp.git)
-  #- cd qxmpp
-  #- cmake -E make_directory build
-  #- cd build
-  #- cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  #- cmake --build . --config Release
-  #- cmake --build . --config Release --target install
-
-  #- cd "%OTHER_SOURCE%"
-  #- if not exist qt-solutions (git clone https://github.com/KangLin/qt-solutions.git)
-  #- cd qt-solutions/qtservice
-  #- cmake -E make_directory build
-  #- cd build
-  #- cmake .. -G"%GENERATORS%" -DQT_DIR=%QT_ROOT%/lib/cmake/Qt5 -DQt5_DIR=%QT_ROOT%/lib/cmake/Qt5 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake"
-  #- cmake --build . --config Release
-  #- cmake --build . --config Release --target install
 
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
@@ -140,8 +130,10 @@ build_script:
         -DCMAKE_INSTALL_PREFIX="%cd%/install" ^
         -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" ^
         -DCMAKE_TOOLCHAIN_FILE="%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake" ^
+        -DVCPKG_VERBOSE=ON ^
+        -DVCPKG_TARGET_TRIPLET=%VCPKG_TARGET_TRIPLET% ^
         -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
-        -DVCPKG_APPLOCAL_DEPS=ON ^
+        -DVCPKG_TRACE_FIND_PACKAGE=ON ^
         -DLibVNCServer_DIR="%INSTALL_DIR%/lib/cmake/LibVNCServer" ^
         -Dtigervnc_DIR="%INSTALL_DIR%/lib/cmake" ^        
         -DBUILD_FREERDP=ON
