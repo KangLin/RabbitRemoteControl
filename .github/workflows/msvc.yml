@@ -346,6 +346,7 @@ jobs:
         working-directory: ${{github.workspace}}\build
         run: |
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
+          copy /Y vcpkg_installed\${{matrix.VCPKG_TARGET_TRIPLET}}\bin\*.dll install\bin
           7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
           makensis Install.nsi
           copy /Y RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe
