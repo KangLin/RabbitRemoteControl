@@ -11,7 +11,8 @@
 
 #include <QFileDialog>
 #include <QLoggingCategory>
-Q_DECLARE_LOGGING_CATEGORY(App)
+
+static Q_LOGGING_CATEGORY(log, "App.MainWindow.Parameter")
 
 CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
         QList<QWidget *> wViewer,
@@ -30,7 +31,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
         check = connect(this, SIGNAL(accepted()), p, SLOT(slotAccept()));
         if(!check)
         {
-            qCritical(App) << "Class" << p->metaObject()->className()
+            qCritical(log) << "Class" << p->metaObject()->className()
                             << "must has slot slotAccept(), please add it";
         }
         Q_ASSERT(check);
@@ -47,7 +48,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
                         pWidget, SLOT(slotAccept()));
         if(!check)
         {
-            qCritical(App) << "Class" << pWidget->metaObject()->className()
+            qCritical(log) << "Class" << pWidget->metaObject()->className()
                             << "must has slot slotAccept(), please add it";
         }
         Q_ASSERT(check);

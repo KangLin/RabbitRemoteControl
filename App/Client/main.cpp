@@ -34,7 +34,7 @@
 
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(App, "App")
+static Q_LOGGING_CATEGORY(log, "App.Main")
 
 int main(int argc, char *argv[])
 {
@@ -61,6 +61,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     RabbitCommon::CTools::Instance()->Init();
+    
+    qInfo(log) << a.applicationName() + " " + a.applicationVersion() + " " + QObject::tr("Start");
 
     // Install translator
     QString szTranslator;
@@ -72,12 +74,12 @@ int main(int argc, char *argv[])
     if(bTranslator) {
         bTranslator = a.installTranslator(&tApp);
         if(!bTranslator)
-            qCritical(App) << "Install translator fail:" << szTranslator;
+            qCritical(log) << "Install translator fail:" << szTranslator;
     }
     else
-        qCritical(App) << "Load translator file fail:" << szTranslator;
+        qCritical(log) << "Load translator file fail:" << szTranslator;
 
-    //qInfo(App) << "Language:" << QLocale::system().name();
+    //qInfo(log) << "Language:" << QLocale::system().name();
 
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     a.setOrganizationName(QObject::tr("Kang Lin Studio"));
@@ -124,9 +126,9 @@ int main(int argc, char *argv[])
 
         nRet = a.exec();
     } catch (std::exception &e) {
-        qCritical(App) << "exception:" << e.what();
+        qCritical(log) << "exception:" << e.what();
     } catch(...) {
-        qCritical(App) << "exception:";
+        qCritical(log) << "exception:";
     }
 
 #ifndef BUILD_QUIWidget
@@ -140,5 +142,6 @@ int main(int argc, char *argv[])
 //    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
     
+    qInfo(log) << a.applicationName() + " " + a.applicationVersion() + " " + QObject::tr("End");
     return nRet;
 }

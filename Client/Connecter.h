@@ -109,11 +109,11 @@ public:
     /*!
      * \~chinese
      * \brief 得到显示视图
-     * \return CFrmViewer*: 视图指针。它的所有者是本类的实例
-     * 
+     * \return CFrmViewer*: 视图指针。它的所有者是本类或其派生类的实例
+     *
      * \~english
-     * \brief Get Viewer 
-     * \return CFrmViewer*: the ownership is a instance of this class
+     * \brief Get Viewer
+     * \return CFrmViewer*: the ownership is a instance of this class or its derivative class
      */
     virtual QWidget* GetViewer() = 0;
     /*!

@@ -8,13 +8,16 @@
 #include <QApplication>
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(LoggerPlugin, "FreeRDP.Plugin")
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Plugin")
 Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
 
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
-    qDebug(LoggerPlugin) << Details();
+    qInfo(log) << "FreeRDP version:" << freerdp_get_version_string()
+                        << "revision:" << freerdp_get_build_revision();
+    qDebug(log) << Details();
+
     static wLogCallbacks* pCbLog = new wLogCallbacks;
     BOOL bRet = WLog_SetLogAppenderType(WLog_GetRoot(), WLOG_APPENDER_CALLBACK);
     if(bRet && pCbLog)
@@ -52,7 +55,7 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
 
 CPluginFreeRDP::~CPluginFreeRDP()
 {
-    qDebug(LoggerPlugin) << "CPluginFreeRDP::~CPluginFreeRDP()";
+    qDebug(log) << "CPluginFreeRDP::~CPluginFreeRDP()";
 }
 
 const QString CPluginFreeRDP::Name() const
@@ -80,6 +83,9 @@ const QIcon CPluginFreeRDP::Icon() const
     return QIcon::fromTheme("windows");
 }
 
+/*!
+ * \brief Show the plugin depends on the freerdp version 
+ */
 const QString CPluginFreeRDP::Details() const
 {
     QString szDetails;

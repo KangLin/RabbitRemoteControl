@@ -4,7 +4,7 @@
 
 #include "ClipboardMimeData.h"
 #include "ClipboardFreeRDP.h"
-#include <QDebug>
+#include <QLoggingCategory>
 #include <QEventLoop>
 #include <QRegularExpression>
 #include <QImage>
@@ -26,9 +26,11 @@
 
 QAtomicInteger<qint32> CClipboardMimeData::m_nId(1);
 static int g_UINT32 = qRegisterMetaType<UINT32>("UINT32");
+
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Clipboard.MimeData")
+
 CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     : QMimeData(),
-      m_Log("FreeRDP.Clipboard.MimeData"),
       m_pContext(pContext),
       m_pClipboard(nullptr),
       m_bExit(false)
@@ -36,7 +38,7 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
     m_Id = m_nId++;
     while(0 == m_Id)
         m_Id = m_nId++;
-    qDebug(m_Log) << "CClipboardMimeData::CClipboardMimeData:" << GetId();
+    qDebug(log) << "CClipboardMimeData::CClipboardMimeData:" << GetId();
  
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)pContext->custom;
     m_pClipboard = pThis->m_pClipboard;
@@ -55,10 +57,10 @@ CClipboardMimeData::CClipboardMimeData(CliprdrClientContext *pContext)
 
 CClipboardMimeData::~CClipboardMimeData()
 {
-    qDebug(m_Log) << "CClipboardMimeData::~CClipboardMimeData():" << GetId();
+    qDebug(log) << "CClipboardMimeData::~CClipboardMimeData():" << GetId();
     m_bExit = true;
     emit sigContinue();
-    qDebug(m_Log) << "CClipboardMimeData::~CClipboardMimeData() end:" << GetId();
+    qDebug(log) << "CClipboardMimeData::~CClipboardMimeData() end:" << GetId();
 }
 
 const qint32 CClipboardMimeData::GetId() const
@@ -78,7 +80,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
 	{
 		CLIPRDR_FORMAT* pFormat = &pList->formats[i];
         /*
-        qDebug(m_Log) << "Format Id:" << pFormat->formatId
+        qDebug(log) << "Format Id:" << pFormat->formatId
                         << "name:" << pFormat->formatName;//*/
         AddFormat(pFormat->formatId, pFormat->formatName);
     }
@@ -188,7 +190,7 @@ int CClipboardMimeData::SetFormat(const CLIPRDR_FORMAT_LIST *pList)
     // Used to identify oneself
     m_lstFormats << MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP;
 
-    qDebug(m_Log) << "CClipboardMimeData::SetFormat: input formats:" << szFormats
+    qDebug(log) << "CClipboardMimeData::SetFormat: input formats:" << szFormats
                   << "Formats:" << m_lstFormats;
 
     return 0;
@@ -202,7 +204,7 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
     {
         if(it.id == id)
         {
-            qWarning(m_Log) << "Repeat format id:" << id;
+            qWarning(log) << "Repeat format id:" << id;
             return -1;
         }
 
@@ -210,7 +212,7 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
         {
             if(name == it.name)
             {
-                qWarning(m_Log) << "Repeat format name:" << name;
+                qWarning(log) << "Repeat format name:" << name;
                 return -2;
             }
         }
@@ -230,7 +232,7 @@ int CClipboardMimeData::AddFormat(UINT32 id, const char *name)
 bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 {
     //*
-    qDebug(m_Log) << "CClipboardMimeData::hasFormat:"
+    qDebug(log) << "CClipboardMimeData::hasFormat:"
                     << mimetype.toStdString().c_str();//*/
 
     if(isImage(mimetype) && m_lstFormats.contains("image/bmp"))
@@ -243,7 +245,7 @@ bool CClipboardMimeData::hasFormat(const QString &mimetype) const
 QStringList CClipboardMimeData::formats() const
 {
     /*
-    qDebug(m_Log) << "CClipboardMimeData::formats:" <<  m_lstFormats; //*/
+    qDebug(log) << "CClipboardMimeData::formats:" <<  m_lstFormats; //*/
     return m_lstFormats;
 }
 
@@ -257,7 +259,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
 #endif
 {
     //*
-    qDebug(m_Log) << "CClipboardMimeData::retrieveData:" << GetId() << mimeType
+    qDebug(log) << "CClipboardMimeData::retrieveData:" << GetId() << mimeType
                      << "Variant:" << m_Variant; //*/
     if(MIME_TYPE_RABBITREMOTECONTROL_PLUGINS_FREERDP == mimeType)
         return GetId();
@@ -273,7 +275,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
         return QVariant();
     value = *lstValue.crbegin();
     //*
-    qDebug(m_Log) << "CClipboardMimeData::retrieveData: format id:" << value.id
+    qDebug(log) << "CClipboardMimeData::retrieveData: format id:" << value.id
          << "name:" << value.name << "mimeData:" << mimeType; //*/
 
     if(!m_pContext) return QVariant();
@@ -284,7 +286,7 @@ QVariant CClipboardMimeData::retrieveData(const QString &mimeType,
     QEventLoop loop;
     connect(this, SIGNAL(sigContinue()), &loop, SLOT(quit()), Qt::DirectConnection);
     loop.exec();
-    qDebug(m_Log) << "CClipboardMimeData::retrieveData end";
+    qDebug(log) << "CClipboardMimeData::retrieveData end";
     // Objecte destruct
     if(m_bExit)
         return QVariant();
@@ -302,7 +304,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
                                              UINT32 id)
 {
     //*
-    qDebug(m_Log) << "CClipboardMimeData::slotServerFormatData: id:" << id;//*/
+    qDebug(log) << "CClipboardMimeData::slotServerFormatData: id:" << id;//*/
 
     UINT32 srcId = 0;
     UINT32 dstId = 0;
@@ -345,7 +347,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
         void* data = ClipboardGetData(m_pClipboard, dstId, &size);
         if(!data)
         {
-            qDebug(m_Log) << "ClipboardGetData fail: dstId:" << dstId
+            qDebug(log) << "ClipboardGetData fail: dstId:" << dstId
                            << "srcId:" << srcId;
             break;
         }
@@ -392,7 +394,7 @@ void CClipboardMimeData::slotServerFormatData(const BYTE* pData, UINT32 nLen,
 
 bool CClipboardMimeData::isText(QString mimeType, bool bRegular) const
 {
-    //qDebug(m_Log) << "CClipboardMimeData::isText:" << mimeType;
+    //qDebug(log) << "CClipboardMimeData::isText:" << mimeType;
     if("UTF8_STRING" == mimeType) return true;
     if("TEXT" == mimeType) return true;
     if("STRING" == mimeType) return true;
@@ -410,7 +412,7 @@ bool CClipboardMimeData::isText(QString mimeType, bool bRegular) const
 
 bool CClipboardMimeData::isHtml(QString mimeType, bool bRegular) const
 {
-    //qDebug(m_Log) << "CClipboardMimeData::isHtml:" << mimeType;
+    //qDebug(log) << "CClipboardMimeData::isHtml:" << mimeType;
     
     if("text/html" == mimeType || "HTML Format" == mimeType)
         return true;
@@ -420,7 +422,7 @@ bool CClipboardMimeData::isHtml(QString mimeType, bool bRegular) const
 
 bool CClipboardMimeData::isUrls(QString mimeType, bool bRegular) const
 {
-    //qDebug(m_Log) << "CClipboardMimeData::isUrls:" << mimeType;
+    //qDebug(log) << "CClipboardMimeData::isUrls:" << mimeType;
     
     if("FileGroupDescriptorW" == mimeType
             || "FileGroupDescriptor" == mimeType
@@ -435,7 +437,7 @@ bool CClipboardMimeData::isUrls(QString mimeType, bool bRegular) const
 
 bool CClipboardMimeData::isImage(QString mimeType, bool bRegular) const
 {
-    //qDebug(m_Log) << "CClipboardMimeData::isImage:" << mimeType;
+    //qDebug(log) << "CClipboardMimeData::isImage:" << mimeType;
 
     if("image/bmp" == mimeType) return true;
     // QClipboard return QImage mimeType is "application/x-qt-image"
@@ -458,7 +460,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
 {
     return; //TODO:  delete it!!!
     //*
-    qDebug(m_Log) << "CClipboardMimeData::slotRequestFileFromServer:"
+    qDebug(log) << "CClipboardMimeData::slotRequestFileFromServer:"
                   << valueName << mimeType << pData;//*/
     if(!("FileGroupDescriptorW" == valueName
          || "FileGroupDescriptor" == valueName))
@@ -468,7 +470,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
     int dstId = ClipboardGetFormatId(m_pClipboard, mimeType.toStdString().c_str());
     bool bSuccess = ClipboardSetData(m_pClipboard, srcId, pData, nLen);
     if(!bSuccess) {
-        qCritical(m_Log) << "ClipboardSetData fail: dstId:" << dstId
+        qCritical(log) << "ClipboardSetData fail: dstId:" << dstId
                        << "srcId:" << srcId;
         return;
     }
@@ -476,7 +478,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
     UINT32 size = 0;
     void* data = ClipboardGetData(m_pClipboard, dstId, &size);
     if(!data) {
-        qCritical(m_Log) << "ClipboardGetData fail: dstId:" << dstId
+        qCritical(log) << "ClipboardGetData fail: dstId:" << dstId
                        << "srcId:" << srcId;
         return;
     }
@@ -516,12 +518,12 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
         if(size.QuadPart <= 0)
             continue;
 
-        qDebug(m_Log) << "File" << szFile
+        qDebug(log) << "File" << szFile
                        << ";Length:" << size.u.HighPart << size.u.LowPart;
         // Open local file
         if(!stream->m_File.open(QFile::WriteOnly))
         {
-            qCritical(m_Log) << "Open file fail:" << szFile
+            qCritical(log) << "Open file fail:" << szFile
                               << stream->m_File.errorString();
             return;
         }
@@ -600,7 +602,7 @@ void CClipboardMimeData::slotRequestFileFromServer(const QString &mimeType,
         m_Variant = uriFormat;
     } //*/
 
-    qDebug(m_Log) << "CClipboardMimeData::slotRequestFileFromServer::QVariant:" << m_Variant;
+    qDebug(log) << "CClipboardMimeData::slotRequestFileFromServer::QVariant:" << m_Variant;
 
     return;
 }
@@ -612,7 +614,7 @@ UINT CClipboardMimeData::sendRequestFilecontents(UINT32 listIndex,
         UINT32 cbRequested)
 {
     //*
-    qDebug(m_Log) << "CClipboardMimeData::sendRequestFilecontents";//*/
+    qDebug(log) << "CClipboardMimeData::sendRequestFilecontents";//*/
 	UINT rc = ERROR_INTERNAL_ERROR;
     if(!m_pContext) return rc;
 
@@ -659,7 +661,7 @@ void CClipboardMimeData::slotServerFileContentsRespose(UINT32 streamId,
                                                        QByteArray &data)
 {
     //*
-    qDebug(m_Log) << "CClipboardMimeData::slotServerFileContentsRespose: index:"
+    qDebug(log) << "CClipboardMimeData::slotServerFileContentsRespose: index:"
                    << streamId << ";Data length:" << data.size();//*/
     auto stream = m_Stream.find(streamId);
     do{

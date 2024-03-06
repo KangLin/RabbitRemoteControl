@@ -54,22 +54,34 @@ public:
      * \snippet Plugins/TigerVnc/Client/PluginTigerVnc.cpp Clean resource
      */
     virtual ~CPluginClient();
-
-    /// ID. Default: Protocol() + ":" + Name()
+    
+    /// \~chinese 标识。默认： Protocol() + ":" + Name()
+    /// \~english ID. Default: Protocol() + ":" + Name()
     virtual const QString Id() const;
-    /// Plugin Protocol
+    /// \~chinese 协议
+    /// \~english Plugin Protocol
     virtual const QString Protocol() const = 0;
     /// \~chinese 插件名，这个名一定要与工程名(${PROJECT_NAME})相同。
     ///           翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。
     /// \~english This name must be the same as the project name (${PROJECT_NAME}).
     ///           The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
     virtual const QString Name() const = 0;
-    /// The plugin display name
+    /// \~chinese 在界面上显示的名称
+    /// \~english The plugin display name
     virtual const QString DisplayName() const;
-    /// Plugin description
+    /// \~chinese 描述
+    /// \~english Plugin description.
     virtual const QString Description() const = 0;
     virtual const QIcon Icon() const;
-    /// Display more information in About dialog
+    /*!
+     * \~chinese 显示更多细节。
+     *    例如： 在关于对话框或日志中显示。
+     *    包括插件的依赖库的版本信息和描述
+     * \~english Display more information in About dialog or log.
+     *    eg: Include te plugin depends on the library version and description
+     * \~
+     * \see CPluginFreeRDP::Details()
+     */
     virtual const QString Details() const;
 
 private:

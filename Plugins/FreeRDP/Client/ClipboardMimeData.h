@@ -8,7 +8,6 @@
 #include <QVector>
 #include <QFile>
 #include <QSharedPointer>
-#include <QLoggingCategory>
 #include <QAtomicInteger>
 
 #include "freerdp/client/cliprdr.h"
@@ -75,7 +74,7 @@ private:
                                  UINT32 cbRequested);
 private:
     friend CClipboardFreeRDP;
-    QLoggingCategory m_Log;
+
     static QAtomicInteger<qint32> m_nId;
     qint32 m_Id;
 

@@ -11,7 +11,7 @@
 #include <QApplication>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(App)
+static Q_LOGGING_CATEGORY(log, "App.MainWindow.FullScreen")
 
 CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent) :
     QWidget(parent,
@@ -121,7 +121,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
 
 CFrmFullScreenToolBar::~CFrmFullScreenToolBar()
 {
-    qDebug(App) << "CFrmFullScreenToolBar::~CFrmFullScreenToolBar()";
+    qDebug(log) << "CFrmFullScreenToolBar::~CFrmFullScreenToolBar()";
     m_Timer.stop();
     delete ui;
 }

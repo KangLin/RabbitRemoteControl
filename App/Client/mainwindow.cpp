@@ -42,7 +42,7 @@
 #include <QFileDialog>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(App)
+static Q_LOGGING_CATEGORY(log, "App.MainWindow")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -286,7 +286,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    qDebug() << "MainWindow::~MainWindow()";
+    qDebug(log) << "MainWindow::~MainWindow()";
     if(m_pFullScreenToolBar) m_pFullScreenToolBar->close();
     if(m_pGBViewZoom) delete m_pGBViewZoom;
     
@@ -316,7 +316,7 @@ void MainWindow::on_actionAbout_triggered()
     });
     if(!szInfo.isEmpty())
         szInfo = tr("### Plugin") + "\n" + szInfo;
-    qDebug(App) << "Info:" << szInfo;
+    qDebug(log) << "Info:" << szInfo;
     about->m_szDetails = szInfo;
     if(about->isHidden())
     {
@@ -374,7 +374,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     {
         pTab->SetFullScreen(!isFullScreen());
     }
-    
+
     if(isFullScreen())
     {
         ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-fullscreen"));
@@ -444,7 +444,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_pFullScreenToolBar = new CFrmFullScreenToolBar(this);
     QScreen* pScreen = qApp->primaryScreen();
     if(pScreen) {
-        qDebug(App) << "Primary screen geometry:" << pScreen->geometry()
+        qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
                     << "availableGeometry:" << pScreen->availableGeometry();
         m_pFullScreenToolBar->move(pScreen->geometry().left()
                            + (pScreen->geometry().width()
@@ -457,7 +457,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     check = connect(m_pFullScreenToolBar, SIGNAL(sigExit()),
                     this, SLOT(on_actionExit_E_triggered()));
     Q_ASSERT(check);
-    check = connect(m_pFullScreenToolBar, SIGNAL(sigDisconnect()), 
+    check = connect(m_pFullScreenToolBar, SIGNAL(sigDisconnect()),
                     this, SLOT(on_actionDisconnect_D_triggered()));
     Q_ASSERT(check);
 
@@ -473,10 +473,10 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
 void MainWindow::on_actionZoom_window_to_remote_desktop_triggered()
 {
-    qDebug(App) << "main window:" <<  frameGeometry();
+    qDebug(log) << "main window:" <<  frameGeometry();
     if(!m_pView) return;
     QSize s = m_pView->GetDesktopSize();
-    qDebug(App) << "size:" << s;
+    qDebug(log) << "size:" << s;
     resize(s);
 }
 
@@ -507,7 +507,7 @@ void MainWindow::on_actionOriginal_O_changed()
 
 void MainWindow::on_actionOriginal_O_triggered()
 {
-    qDebug(App) << "on_actionOriginal_O_triggered()";
+    qDebug(log) << "on_actionOriginal_O_triggered()";
     if(!m_pView) return;
     m_pView->SetAdaptWindows(CFrmViewer::Original);
     // because it may be called from CFrFullScreenToolBar::m_ToolBar
@@ -703,7 +703,7 @@ void MainWindow::slotConnect()
  */
 int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
 {
-    qDebug(App) << "MainWindow::Connect: set:" << set << "File:" << szFile;
+    qDebug(log) << "MainWindow::Connect: set:" << set << "File:" << szFile;
     bool bSave = false; //whether is save configure file
     Q_ASSERT(p);
     bool check = connect(p, SIGNAL(sigConnected()),
@@ -767,7 +767,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
         m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
         m_pView->AddView(p->GetViewer());
         m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
-        //qDebug(App) << "View:" << p->GetViewer();
+        //qDebug(log) << "View:" << p->GetViewer();
     }
 
     m_Connecters.push_back(p);
@@ -789,12 +789,12 @@ void MainWindow::slotConnected()
 //    m_Connecters.push_back(p);
 
     slotInformation(tr("Connected to ") + p->Name());
-    qDebug(App) << "MainWindow::slotConnected()" << p->Name();
+    qDebug(log) << "MainWindow::slotConnected()" << p->Name();
 }
 
 void MainWindow::slotCloseView(const QWidget* pView)
 {
-    qDebug(App) << "MainWindow::slotCloseView" << pView;
+    qDebug(log) << "MainWindow::slotCloseView" << pView;
     if(!pView) return;
     foreach(auto c, m_Connecters)
     {
@@ -809,7 +809,7 @@ void MainWindow::slotCloseView(const QWidget* pView)
 
 void MainWindow::on_actionDisconnect_D_triggered()
 {
-    qDebug(App) << "MainWindow::on_actionDisconnect_D_triggered()";
+    qDebug(log) << "MainWindow::on_actionDisconnect_D_triggered()";
     if(!m_pView) return;
     
     QWidget* pView = m_pView->GetCurrentView();
@@ -818,7 +818,7 @@ void MainWindow::on_actionDisconnect_D_triggered()
 
 void MainWindow::slotDisconnect()
 {
-    qDebug(App) << "MainWindow::slotDisconnect()";
+    qDebug(log) << "MainWindow::slotDisconnect()";
     CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
     if(!pConnecter) return;
     //TODO: Whether to save the setting
@@ -828,7 +828,7 @@ void MainWindow::slotDisconnect()
 
 void MainWindow::slotDisconnected()
 {
-    qDebug(App) << "MainWindow::slotDisconnected()";
+    qDebug(log) << "MainWindow::slotDisconnected()";
     CConnecter* pConnecter = dynamic_cast<CConnecter*>(sender());
     foreach(auto c, m_Connecters)
     {
@@ -944,7 +944,7 @@ int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
-    qDebug(App) << "MainWindow::closeEvent()";
+    qDebug(log) << "MainWindow::closeEvent()";
     
     if(m_Parameter.GetSaveMainWindowStatus())
         if(isFullScreen())
@@ -1030,7 +1030,7 @@ void MainWindow::on_actionTabBar_B_toggled(bool bShow)
 
 void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
 {
-    qDebug(App) << "MainWindow::on_actionMain_menu_bar_M_triggered:" << checked;
+    qDebug(log) << "MainWindow::on_actionMain_menu_bar_M_triggered:" << checked;
     if(ui->toolBar->isHidden() && !checked)
     {
         if( QMessageBox::StandardButton::Yes
@@ -1059,7 +1059,7 @@ void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
 
 void MainWindow::on_actionToolBar_T_toggled(bool checked)
 {
-    qDebug(App) << "MainWindow::on_actionToolBar_T_triggered:" << checked;
+    qDebug(log) << "MainWindow::on_actionToolBar_T_triggered:" << checked;
     if(menuBar()->isHidden() && !checked)
     {
         if( QMessageBox::StandardButton::Yes
@@ -1231,23 +1231,23 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
-    qDebug(App) << "dragEnterEvent";
+    qDebug(log) << "dragEnterEvent";
     
     if(event->mimeData()->hasUrls())
     {
-        qWarning(App) << event->mimeData()->urls();
+        qWarning(log) << event->mimeData()->urls();
         event->acceptProposedAction();
     }
 }
 
 void MainWindow::dragMoveEvent(QDragMoveEvent *event)
 {
-    //qDebug(App) << "dragMoveEvent";
+    //qDebug(log) << "dragMoveEvent";
 }
 
 void MainWindow::dropEvent(QDropEvent *event)
 {
-    qDebug(App) << "dropEvent";
+    qDebug(log) << "dropEvent";
     if(!event->mimeData()->hasUrls())
         return;
     auto urls = event->mimeData()->urls();
@@ -1260,7 +1260,7 @@ void MainWindow::dropEvent(QDropEvent *event)
 
 void MainWindow::slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
-    //qDebug(App) << "MainWindow::slotSystemTrayIconActivated";
+    //qDebug(log) << "MainWindow::slotSystemTrayIconActivated";
 
     Q_UNUSED(reason)
 #if defined(Q_OS_ANDROID)
@@ -1282,16 +1282,16 @@ void MainWindow::slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason r
 
 void MainWindow::slotSystemTrayIconTypeChanged()
 {
-    //qDebug(App) << "MainWindow::slotSystemTrayIconTypeChanged:" << m_Parameter.GetEnableSystemTrayIcon();
+    //qDebug(log) << "MainWindow::slotSystemTrayIconTypeChanged:" << m_Parameter.GetEnableSystemTrayIcon();
     if(!QSystemTrayIcon::isSystemTrayAvailable())
     {
-        qWarning(App) << "System tray is not available";
+        qWarning(log) << "System tray is not available";
         return;
     }
     
     if(!m_Parameter.GetEnableSystemTrayIcon())
     {
-        qDebug(App) << "Disable system tray icon";
+        qDebug(log) << "Disable system tray icon";
         return;
     }
 
@@ -1310,7 +1310,7 @@ void MainWindow::slotSystemTrayIconTypeChanged()
         m_TrayIcon->setToolTip(windowTitle());
         m_TrayIcon->show();
     } else
-        qWarning(App) << "System tray is not available";
+        qWarning(log) << "System tray is not available";
 
     switch (m_Parameter.GetSystemTrayIconMenuType())
     {
@@ -1343,7 +1343,7 @@ void MainWindow::slotSystemTrayIconTypeChanged()
 
 void MainWindow::slotEnableSystemTrayIcon()
 {
-    //qDebug(App) << "MainWindow::slotEnableSystemTryIcon()";
+    //qDebug(log) << "MainWindow::slotEnableSystemTryIcon()";
     if(m_TrayIcon)
     {
         if(!m_Parameter.GetEnableSystemTrayIcon())

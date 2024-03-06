@@ -19,9 +19,7 @@
 #include "FavoriteMimeData.h"
 #include "RabbitCommonDir.h"
 
-Q_LOGGING_CATEGORY(FavoriteLogger, "App.Favorite")
-
-Q_DECLARE_LOGGING_CATEGORY(FavoriteLogger)
+static Q_LOGGING_CATEGORY(log, "App.MainWindow.Favorite")
 
 CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
     m_pDockTitleBar(nullptr),
@@ -58,7 +56,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
         QString name = set.value("Name_" + QString::number(i)).toString();
         QString file = set.value("File_" + QString::number(i)).toString();
         if(name.isEmpty()) {
-            qCritical(FavoriteLogger) << "Current node is empty!";
+            qCritical(log) << "Current node is empty!";
             continue;
         }
         QStandardItem* item = new QStandardItem(name);
@@ -83,7 +81,7 @@ CFavoriteView::CFavoriteView(QWidget *parent) : QTreeView(parent),
             QString file = set.value(szGroup + "/File_" + QString::number(i)).toString();
             if(name.isEmpty())
             {
-                qCritical(FavoriteLogger) << "Current node is empty!";
+                qCritical(log) << "Current node is empty!";
                 continue;
             }
             QStandardItem* item = new QStandardItem(name);
@@ -319,11 +317,11 @@ void CFavoriteView::slotNewGroup()
 
 void CFavoriteView::dragEnterEvent(QDragEnterEvent *event)
 {
-    qDebug(FavoriteLogger) << "dragEnterEvent";
+    qDebug(log) << "dragEnterEvent";
     const CFavoriteMimeData* pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if (pData)
     {
-        qDebug(FavoriteLogger) << "dragEnterEvent acceptProposedAction";
+        qDebug(log) << "dragEnterEvent acceptProposedAction";
         event->acceptProposedAction();
     }
 }
@@ -334,7 +332,7 @@ void CFavoriteView::dragMoveEvent(QDragMoveEvent *event)
 
 void CFavoriteView::dropEvent(QDropEvent *event)
 {
-    qDebug(FavoriteLogger) << "dropEvent";
+    qDebug(log) << "dropEvent";
     const CFavoriteMimeData *pData = qobject_cast<const CFavoriteMimeData*>(event->mimeData());
     if(!pData) return;
     QStandardItemModel* pModel = dynamic_cast<QStandardItemModel*>(model());
@@ -351,7 +349,7 @@ void CFavoriteView::dropEvent(QDropEvent *event)
         {
             foreach(auto i, pData->m_Items)
             {
-                qDebug(FavoriteLogger) << "dropEvent:" << item->text();
+                qDebug(log) << "dropEvent:" << item->text();
                 
                 auto newItem = NewItem(i);
                 item->appendRow(newItem);
@@ -359,7 +357,7 @@ void CFavoriteView::dropEvent(QDropEvent *event)
                     pModel->removeRow(i.row(), i.parent());
             } 
         } else
-            qWarning(FavoriteLogger) << "Don't group node. the data:" << item->data();
+            qWarning(log) << "Don't group node. the data:" << item->data();
     }else{
         foreach(auto i, pData->m_Items)
         {
@@ -392,14 +390,14 @@ void CFavoriteView::mousePressEvent(QMouseEvent *event)
 
 void CFavoriteView::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug(FavoriteLogger) << "mouseMoveEvent";
+    qDebug(log) << "mouseMoveEvent";
     do{
         if (!(event->buttons() & Qt::LeftButton))
             break;
         if ((event->pos() - m_DragStartPosition).manhattanLength()
                 < QApplication::startDragDistance())
             break;
-        qDebug(FavoriteLogger) << "mouseMoveEvent drag";
+        qDebug(log) << "mouseMoveEvent drag";
         QDrag *drag = new QDrag(this);
         CFavoriteMimeData *pData = new CFavoriteMimeData();
         pData->m_Items = this->selectionModel()->selectedIndexes();
