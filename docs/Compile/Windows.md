@@ -273,3 +273,5 @@ Source-code location: https://github.com/KangLin/tigervnc
 **Note:** If the plugin does not load.
 It may be that the plugin's dependencies are not installed on the system.
 You can copy the dependent library into the plugin's directory.
+
+See: [Compile integration](../../.github/workflows/msvc.yml)

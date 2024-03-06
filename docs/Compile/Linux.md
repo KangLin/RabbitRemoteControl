@@ -340,18 +340,21 @@ and then run ldconfig to add the dependent library to the system.
 
 - Ubuntu
 
-```bash
+    ```bash
     #Install the development tools package
     ~$ sudo apt install build-essential
     # Install tools
     ~$ sudo apt install git cmake debhelper doxygen
     # Install Qt5
-    ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
+    ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev \
+        qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev \
+        libqtermwidget5-0-dev
 
     # Install dependency libraries
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
     # Install X development libraries
-    ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
+    ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
+        libx11-dev libxfixes-dev
     ~$ sudo apt install libutf8proc-dev libpam0g-dev # Need by compile qtermwidget
     # Install libpixman, RabbitVNC and TigerVNC need it.
     ~$ sudo apt install libpixman-1-dev
@@ -359,14 +362,16 @@ and then run ldconfig to add the dependent library to the system.
     ~$ git clone https://github.com/KangLin/RabbitVNC.git
     ~$ cd RabbitVNC
     ~$ mkdir build
-    ~/RabbitVNC/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/RabbitVNC/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/RabbitVNC/build$ cmake --build . --config Release --target install
     ~/RabbitVNC/build$ cd ~
     # Compile TigerVNC
     ~$ git clone https://github.com/KangLin/tigervnc.git
     ~$ cd tigervnc
     ~$ mkdir build
-    ~/tigervnc/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/tigervnc/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/tigervnc/build$ cmake --build . --config Release --target install
     ~/tigervnc/build$ cd ~
     ~$ sudo apt install libqxmpp-dev
@@ -376,7 +381,8 @@ and then run ldconfig to add the dependent library to the system.
     ~/libdatachannel$ git submodule update --init --recursive
     ~/libdatachannel$ mkdir build
     ~/libdatachannel$ cd build
-    ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/libdatachannel/build$ cmake --build . --config Release --target install
     ~/libdatachannel/build$ cd ~
     # Compile QtService
@@ -384,7 +390,8 @@ and then run ldconfig to add the dependent library to the system.
     ~$ cd qt-solutions/qtservice
     ~/qt-solutions/qtservice$ mkdir build
     ~/qt-solutions/qtservice$ cd build
-    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/qt-solutions/qtservice/build$ cmake --build . --config Release --target install
     ~/qt-solutions/qtservice/build$ cd ~
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
@@ -392,9 +399,15 @@ and then run ldconfig to add the dependent library to the system.
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DBUILD_FREERDP=ON -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+        -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC \
+        -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc \
+        -DBUILD_FREERDP=ON \
+        -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel \
+        -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
-```
+    ```
 
 See: [Compile integration](../../.github/workflows/ubuntu.yml)
 

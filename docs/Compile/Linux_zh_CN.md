@@ -323,16 +323,21 @@
 
 ### 编译
 
-```bash
+- Ubuntu
+
+    ```bash
     # 安装开发工具软件包
     ~$ sudo apt install build-essential
     # 安装工具
     ~$ sudo apt install git cmake debhelper doxygen
     # [可选] 安装 Qt5
-    ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
+    ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev \
+        qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev \
+        libqtermwidget5-0-dev
 
     # 安装 X 开发库
-    ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev libx11-dev libxfixes-dev
+    ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
+        libx11-dev libxfixes-dev
     ~$ sudo apt install libutf8proc-dev libpam0g-dev #编译 qtermwidget 需要
     # 安装依赖库
     ~$ sudo apt install freerdp2-dev libvncserver-dev libssh-dev libtelnet-dev
@@ -343,14 +348,16 @@
     ~$ git clone https://github.com/KangLin/RabbitVNC.git
     ~$ cd RabbitVNC
     ~$ mkdir build
-    ~/RabbitVNC/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/RabbitVNC/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/RabbitVNC/build$ cmake --build . --config Release --target install
     ~/RabbitVNC/build$ cd ~
     # 编译 TigerVNC
     ~$ git clone https://github.com/KangLin/tigervnc.git
     ~$ cd tigervnc
     ~$ mkdir build
-    ~/tigervnc/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/tigervnc/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/tigervnc/build$ cmake --build . --config Release --target install
     ~/tigervnc/build$ cd ~
     ~$ sudo apt install libqxmpp-dev
@@ -360,7 +367,8 @@
     ~/libdatachannel$ git submodule update --init --recursive
     ~/libdatachannel$ mkdir build
     ~/libdatachannel$ cd build
-    ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/libdatachannel/build$ cmake --build . --config Release --target install
     ~/libdatachannel/build$ cd ~
     # 编译 QtService
@@ -368,7 +376,8 @@
     ~$ cd qt-solutions/qtservice
     ~/qt-solutions/qtservice$ mkdir build
     ~/qt-solutions/qtservice$ cd build
-    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+    ~/qt-solutions/qtservice/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/qt-solutions/qtservice/build$ cmake --build . --config Release --target install
     ~/qt-solutions/qtservice/build$ cd ~
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
@@ -376,8 +385,14 @@
     ~$ cd RabbitRemoteControl
     ~/RabbitRemoteControl$ mkdir build
     ~/RabbitRemoteControl$ cd build
-    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install -DBUILD_FREERDP=ON -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
+    ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+        -DBUILD_FREERDP=ON \
+        -DRabbitVNC_DIR=~/RabbitVNC/build/install/lib/cmake/RabbitVNC \
+        -Dtigervnc_DIR=~/tigervnc/build/install/lib/cmake/tigervnc \
+        -DLibDataChannel_DIR=~/libdatachannel/build/install/lib/cmake/LibDataChannel \
+        -DQtService_DIR=~/qt-solutions/qtservice/build/lib/cmake/QtService
     ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
-```
+    ```
 
 参见：[编译集成](../../.github/workflows/ubuntu.yml)
