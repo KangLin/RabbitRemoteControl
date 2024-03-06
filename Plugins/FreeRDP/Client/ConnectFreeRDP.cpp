@@ -709,9 +709,10 @@ UINT32 CConnectFreeRDP::GetImageFormat()
 }
 
 #if FreeRDP_VERSION_MAJOR >= 3
-
+#ifdef Q_OS_WINDOWS
 static CREDUI_INFOW wfUiInfo = { sizeof(CREDUI_INFOW), NULL, L"Enter your credentials",
                                 L"Remote Desktop Security", NULL };
+#endif
 BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
                                char** username, char** password,
                                char** domain, rdp_auth_reason reason)
