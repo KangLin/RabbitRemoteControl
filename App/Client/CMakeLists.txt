@@ -64,6 +64,17 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${SOURCE_UI_FILES} ${RCC_FILES}
     PRIVATE_LIBS Client)
 
+# Install other files
+set(OTHER_FILES
+    ${CMAKE_SOURCE_DIR}/License.md
+    ${CMAKE_SOURCE_DIR}/Authors.md
+    ${CMAKE_SOURCE_DIR}/ChangeLog.md
+    ${CMAKE_SOURCE_DIR}/Authors_zh_CN.md
+    ${CMAKE_SOURCE_DIR}/ChangeLog_zh_CN.md)
+INSTALL_FILE(SOURCES  ${OTHER_FILES}
+    DESTINATION ${CMAKE_INSTALL_DOCDIR}
+        COMPONENT Runtime)
+
 if(ANDROID)
     if(NOT EXISTS ${CMAKE_BINARY_DIR}/plugins/Client)
         file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/plugins/Client)
