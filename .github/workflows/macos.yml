@@ -35,7 +35,7 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       qt_modules: qtwebengine ${{matrix.qt_modules}}
-      VCPKGGITCOMMITID: 3f966cf6a8654a0bc067738bcb95d489e197ad68
+      VCPKGGITCOMMITID: cf4ebef2294e164875ce17d7937f44d3e3ea156e
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       artifact_name: build_macos

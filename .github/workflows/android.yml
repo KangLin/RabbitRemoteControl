@@ -18,7 +18,7 @@ jobs:
         include:
           - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
-            ANDROID_ABI: arm64_v8a
+            ANDROID_ABI: arm64-v8a
 
           - qt_arch: android_x86_64
             VCPKG_TARGET_TRIPLET: x64-android
@@ -28,7 +28,7 @@ jobs:
 
     env:
       RabbitRemoteControl_VERSION: v0.0.26
-      VCPKGGITCOMMITID: 3f966cf6a8654a0bc067738bcb95d489e197ad68
+      VCPKGGITCOMMITID: cf4ebef2294e164875ce17d7937f44d3e3ea156e
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
@@ -162,6 +162,9 @@ jobs:
                 -DVCPKG_TRACE_FIND_PACKAGE=ON \
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed \
+                -DANDROID_ABI=${{env.ANDROID_ABI}} \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed \
                 -DWITH_OPENSSL=ON \
                 -DWITH_GCRYPT=OFF \
                 -DWITH_EXAMPLES=OFF \
@@ -273,6 +276,7 @@ jobs:
               -DCMARK_STATIC=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
               -DCMAKE_AUTOGEN_VERBOSE=ON \
+              -DCMAKE_MAKE_PROGRAM="make" \
               -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
               -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
               -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
