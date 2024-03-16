@@ -157,30 +157,30 @@ artifacts:
 test: off
 
 #See: https://www.appveyor.com/docs/deployment/github/
-deploy:
-  #provider: FTP 
-  #protocol: sftp 
-  #host: frs.sourceforge.net 
-  #username: kl222,rabbitim
-  #密码用这个加密 https://ci.appveyor.com/tools/encrypt
-  #password:
-  #folder: pfs  #link pfs to /home/frs/project/r/ra/rabbitim
-  #draft: false
-  #active_mode: false
-  #on:
-    #branch: master
+#deploy:
+#  #provider: FTP
+#  #protocol: sftp
+#  #host: frs.sourceforge.net
+#  #username: kl222,rabbitim
+#  #密码用这个加密 https://ci.appveyor.com/tools/encrypt
+#  #password:
+#  #folder: pfs  #link pfs to /home/frs/project/r/ra/rabbitim
+#  #draft: false
+#  #active_mode: false
+#  #on:
+#    #branch: master
 
-  - provider: GitHub
-    # token : https://github.com/settings/tokens
-    # password encrypt: https://ci.appveyor.com/tools/encrypt
-    auth_token:
-      secure: xk9mUybB/QLi8+bJobhnOJbuYFdnys9DVLXcOGtbVXnuIZwvKxxQCoFIyVnUf6PP
-    #artifact:
-    #draft: true
-    #prerelease: true
-    force_update: false
-    on:
-      TOOLCHAIN_VERSION: 14
-      #QT_VERSION: 5.6.3
-      BUILD_ARCH: x86
-      appveyor_repo_tag: true        # deploy on tag push only
+#  - provider: GitHub
+#    # token : https://github.com/settings/tokens
+#    # password encrypt: https://ci.appveyor.com/tools/encrypt
+#    auth_token:
+#      secure: xk9mUybB/QLi8+bJobhnOJbuYFdnys9DVLXcOGtbVXnuIZwvKxxQCoFIyVnUf6PP
+#    #artifact:
+#    #draft: true
+#    #prerelease: true
+#    force_update: false
+#    on:
+#      TOOLCHAIN_VERSION: 14
+#      #QT_VERSION: 5.6.3
+#      BUILD_ARCH: x86
+#      appveyor_repo_tag: true        # deploy on tag push only

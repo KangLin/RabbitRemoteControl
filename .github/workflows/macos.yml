@@ -35,7 +35,7 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       qt_modules: qtwebengine ${{matrix.qt_modules}}
-      VCPKGGITCOMMITID: cf4ebef2294e164875ce17d7937f44d3e3ea156e
+      VCPKGGITCOMMITID: 995451296a8237ff0ea4213b9deda73bb3f5229a
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       artifact_name: build_macos
@@ -288,7 +288,7 @@ jobs:
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
 
       - name: Update configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.2' }}
         working-directory: ${{github.workspace}}/build
         run: |
           ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
@@ -298,7 +298,7 @@ jobs:
                "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip;https://sourceforge.net/projects/rabbitRabbitRemoteControl/files/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.2' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
