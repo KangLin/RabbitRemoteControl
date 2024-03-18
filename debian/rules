@@ -93,10 +93,17 @@ ifdef INSTALL_DIR
     LIB_PARAS += ${INSTALL_DIR}/lib
 endif
 
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+BUILD_DIR = "build_$(DEB_HOST_MULTIARCH)"
+PACKAGE_DIR = "debian/rabbitremotecontrol"
+
 %:
 	dh $@
 
-# This is example for Cmake ( See https://bugs.debian.org/641051 )
+# Debian 维护者指南: https://www.debian.org/doc/manuals/debmake-doc/index.zh-cn.html
+# Debian 新维护者手册: https://www.debian.org/doc/manuals/maint-guide/dreq.zh-cn.html#rules
+# See: man debhelper
+# This is example for Cmake (See https://bugs.debian.org/641051 )
 override_dh_auto_configure:
 	dh_auto_configure -- -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
             -DBUILD_FREERDP=ON \
@@ -105,7 +112,18 @@ override_dh_auto_configure:
             -DCMARK_SHARED:BOOL=ON \
             -DCMARK_TESTS:BOOL=OFF \
             -DCMARK_STATIC=OFF ${PARAS}
-#-DQt6_DIR=${QT_ROOT}/lib/cmake/Qt6
 
-override_dh_shlibdeps:
-	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)
+override_dh_auto_build:
+#	dh_auto_build --parallel -B$(BUILD_DIR)
+	cmake  --build $(BUILD_DIR) --config Release \
+		--parallel $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`", `cat /proc/cpuinfo |grep 'cpu cores' |wc -l`, 1)
+
+override_dh_auto_install:
+	cmake --install $(BUILD_DIR) --config Release \
+		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
+
+#override_dh_shlibdeps:
+#	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)
+
+override_dh_builddeb:
+	dh_builddeb --package=rabbitremotecontrol -P$(PACKAGE_DIR)
