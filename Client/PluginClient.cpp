@@ -2,6 +2,7 @@
 
 #include "PluginClient.h"
 #include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
 
 #include <QLocale>
 #include <QDebug>
@@ -11,34 +12,29 @@
 
 Q_DECLARE_LOGGING_CATEGORY(Client)
 
-CPluginClient::CPluginClient(QObject *parent) : QObject(parent),
-    m_bTranslator(false)
+CPluginClient::CPluginClient(QObject *parent) : QObject(parent)
 {
 }
 
 CPluginClient::~CPluginClient()
 {
     qDebug(Client) << "CPluginClient::~CPluginClient()";
-    if(m_bTranslator)
-        qApp->removeTranslator(&m_Translator);
+    if(m_Translator)
+        RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
 }
 
 int CPluginClient::InitTranslator()
 {
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirPluginsTranslation("plugins/Client")
-            + QDir::separator() + Name() + "_" + QLocale::system().name() + ".qm";
-    m_bTranslator = m_Translator.load(szTranslatorFile);
-    if(m_bTranslator) {
-        m_bTranslator = qApp->installTranslator(&m_Translator);
-        if(!m_bTranslator)
-            qCritical(Client) << "Install translator fail:" << szTranslatorFile;
-    }
-    else {
-        qCritical(Client) << "Load translator file fail:" << szTranslatorFile;
-        return -1;
-    }
+    m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
+        Name(),
+        RabbitCommon::CTools::TranslationType::Plugin,
+        "plugins/Client");
+    if(m_Translator)
+        return 0;
 
-    return 0;
+    qCritical(Client) << "Don't load translator.";
+    Q_ASSERT(false);
+    return -1;
 }
 
 const QString CPluginClient::Id() const

@@ -2,6 +2,7 @@
 
 #include "Client.h"
 #include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
 #include "FrmParameterClient.h"
 #include "FrmViewer.h"
 
@@ -26,11 +27,9 @@ CClient::CClient(QObject *parent) : QObject(parent),
 
     qApp->installEventFilter(this);
 
-    QString szTranslatorFile = RabbitCommon::CDir::Instance()->GetDirTranslations()
-            + "/Client_" + QLocale::system().name() + ".qm";
-    if(!m_Translator.load(szTranslatorFile))
-        qCritical(Client) << "Open translator file fail:" << szTranslatorFile;
-    qApp->installTranslator(&m_Translator);
+    m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
+        "Client",
+        RabbitCommon::CTools::TranslationType::Library);
 
     LoadPlugins();
 
@@ -46,7 +45,7 @@ CClient::~CClient()
 {
     qDebug(Client) << "CClient::~CClient()";
     qApp->installEventFilter(nullptr);
-    qApp->removeTranslator(&m_Translator);
+    RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
 
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_Client);

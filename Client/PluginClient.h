@@ -107,8 +107,7 @@ private:
     virtual CConnecter* CreateConnecter(const QString& szProtocol) = 0;
 
 private:
-    QTranslator m_Translator;
-    bool m_bTranslator;
+    QSharedPointer<QTranslator> m_Translator;
     int InitTranslator();
     
     friend class CClient;

@@ -23,7 +23,6 @@
 #endif
 
 #include "RabbitCommonTools.h"
-#include "RabbitCommonDir.h"
 
 #ifdef HAVE_UPDATE
 #include "FrmUpdater/FrmUpdater.h"
@@ -61,25 +60,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     RabbitCommon::CTools::Instance()->Init();
-    
+
     qInfo(log) << a.applicationName() + " " + a.applicationVersion() + " " + QObject::tr("Start");
 
-    // Install translator
-    QString szTranslator;
-    QTranslator tApp;
-    szTranslator = RabbitCommon::CDir::Instance()->GetDirTranslations()
-                   + QDir::separator() + "RabbitRemoteControlApp_"
-                   + QLocale::system().name() + ".qm";
-    bool bTranslator = tApp.load(szTranslator);
-    if(bTranslator) {
-        bTranslator = a.installTranslator(&tApp);
-        if(!bTranslator)
-            qCritical(log) << "Install translator fail:" << szTranslator;
-    }
-    else
-        qCritical(log) << "Load translator file fail:" << szTranslator;
-
-    //qInfo(log) << "Language:" << QLocale::system().name();
+    QSharedPointer<QTranslator> tApp =
+        RabbitCommon::CTools::Instance()->InstallTranslator("RabbitRemoteControlApp");
 
     a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
     a.setOrganizationName(QObject::tr("Kang Lin Studio"));
@@ -136,8 +121,8 @@ int main(int argc, char *argv[])
 #endif
 
     RabbitCommon::CTools::Instance()->Clean();
-    if(bTranslator)
-        a.removeTranslator(&tApp);
+    if(tApp)
+        RabbitCommon::CTools::Instance()->RemoveTranslator(tApp);
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif

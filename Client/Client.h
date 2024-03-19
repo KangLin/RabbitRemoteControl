@@ -180,7 +180,7 @@ private Q_SLOTS:
 private:
     QMap<QString, CPluginClient*> m_Plugins;
     qint8 m_FileVersion;
-    QTranslator m_Translator;
+    QSharedPointer<QTranslator> m_Translator;
     QSharedPointer<CHook> m_Hook;
     CParameterClient m_ParameterClient;
 
