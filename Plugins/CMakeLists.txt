@@ -1,5 +1,19 @@
 # author: Kang Lin <kl222@126.com>
 
+# setup rpath to where binary is at.
+if(APPLE)
+    if(PARA_ISEXE)
+        SET(INSTALL_RPATH
+            "@executable_path:@executable_path/../../lib:@executable_path/../../lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+    else()
+        SET(INSTALL_RPATH
+            "@loader_path:@loader_path/../../lib:@loader_path/../../lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+    endif()
+else()
+    SET(INSTALL_RPATH
+        "$ORIGIN:$ORIGIN/../../lib:$ORIGIN/../../lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+endif()
+
 ## Desktop
 
 option(BUILD_RABBITVNC "Build RabbitVNC plugin" ON)

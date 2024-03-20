@@ -123,7 +123,7 @@ override_dh_auto_install:
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
 
 override_dh_shlibdeps:
-	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l$(PACKAGE_DIR)/opt/RabbitRemoteControl/lib:$(PACKAGE_DIR)/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/$(PACKAGE_DIR)/opt/RabbitRemoteControl/lib:`pwd`/$(PACKAGE_DIR)/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)
 
 override_dh_builddeb:
 	dh_builddeb --package=rabbitremotecontrol -P$(PACKAGE_DIR)

@@ -75,6 +75,7 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     PRIVATE_OPTIONS ${FreeRDP_OPTIONS}
     INSTALL_DIR plugins/Client
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
+    INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
     )
 
