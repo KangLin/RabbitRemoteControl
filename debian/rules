@@ -105,7 +105,7 @@ PACKAGE_DIR = "debian/rabbitremotecontrol"
 # See: man debhelper
 # This is example for Cmake (See https://bugs.debian.org/641051 )
 override_dh_auto_configure:
-	dh_auto_configure -- -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+	dh_auto_configure -B$(BUILD_DIR) -- -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
             -DBUILD_FREERDP=ON \
             -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
             -DRabbitCommon_DIR=${RabbitCommon_DIR} \
@@ -122,8 +122,8 @@ override_dh_auto_install:
 	cmake --install $(BUILD_DIR) --config Release \
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
 
-#override_dh_shlibdeps:
-#	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib:`pwd`/debian/rabbitremotecontrol/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)
+override_dh_shlibdeps:
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info -l$(PACKAGE_DIR)/opt/RabbitRemoteControl/lib:$(PACKAGE_DIR)/opt/RabbitRemoteControl/lib/`uname -m`-linux-gnu:$(LIB_PARAS)
 
 override_dh_builddeb:
 	dh_builddeb --package=rabbitremotecontrol -P$(PACKAGE_DIR)
