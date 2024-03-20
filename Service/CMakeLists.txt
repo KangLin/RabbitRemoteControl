@@ -107,7 +107,6 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
 endif()
 list(APPEND Service_LIBS ${Service_QT_LIBRARIES})
 message("${PROJECT_NAME} LIBRARIES: ${Service_LIBS}")
-INSTALL_TARGETS(TARGETS QtService)
 
 ADD_TARGET(NAME Service
     SOURCE_FILES ${Service_SOURCE_FILES} ${Service_HEADER_FILES}

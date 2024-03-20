@@ -32,8 +32,6 @@ int CPluginClient::InitTranslator()
     if(m_Translator)
         return 0;
 
-    qCritical(Client) << "Don't load translator.";
-    Q_ASSERT(false);
     return -1;
 }
 

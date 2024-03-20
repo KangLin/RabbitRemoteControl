@@ -28,9 +28,6 @@ if(LibDataChannel_FOUND)
         set(libdatachannel_lib LibDataChannel::datachannel)
     endif()
     list(APPEND CHANNEL_SRC_LIBS ${libdatachannel_lib})
-    if(UNIX)
-        install_targets(TARGETS ${libdatachannel_lib})
-    endif()
     list(APPEND CHANNEL_SOURCE_FILES
         ICE/ChannelIce.cpp
         ICE/IceSignal.cpp
@@ -49,7 +46,6 @@ if(LibDataChannel_FOUND)
         list(APPEND CHANNEL_DEFINITIONS HAVE_QXMPP)
         list(APPEND CHANNEL_QT_COMPONENTS Network Xml)
         list(APPEND CHANNEL_PRIVATE_LIBS QXmpp::QXmpp)
-        install_targets(TARGETS QXmpp::QXmpp)
         list(APPEND CHANNEL_SOURCE_FILES
             ICE/IceSignalQXmppIq.cpp
             ICE/IceSignalQXmppManager.cpp

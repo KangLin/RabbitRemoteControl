@@ -319,10 +319,13 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
             -DVCPKG_VERBOSE=ON ^
             -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^
-            -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+            -DX_VCPKG_APPLOCAL_DEPS_INSTALL=OFF ^
+            -DVCPKG_APPLOCAL_DEPS=OFF ^
             -DVCPKG_TRACE_FIND_PACKAGE=ON ^
             -DBUILD_QUIWidget=OFF ^
             -DBUILD_APP=ON ^
+            -DRABBIT_ENABLE_INSTALL_DEPEND=OFF ^
+            -DRABBIT_ENABLE_INSTALL_QT=ON ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^
@@ -357,6 +360,7 @@ jobs:
         working-directory: ${{github.workspace}}\build
         run: |
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
+          copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
           copy /Y vcpkg_installed\${{matrix.VCPKG_TARGET_TRIPLET}}\bin\*.dll install\bin
           7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
           makensis Install.nsi

@@ -111,7 +111,8 @@ override_dh_auto_configure:
             -DRabbitCommon_DIR=${RabbitCommon_DIR} \
             -DCMARK_SHARED=OFF \
             -DCMARK_TESTS=OFF \
-            -DCMARK_STATIC=ON ${PARAS}
+            -DCMARK_STATIC=ON \
+            ${PARAS}
 
 override_dh_auto_build:
 #	dh_auto_build --parallel -B$(BUILD_DIR)

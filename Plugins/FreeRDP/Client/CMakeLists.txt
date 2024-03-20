@@ -3,16 +3,6 @@
 project(FreeRDP)
 
 SET(FreeRDP_LIBS freerdp-client freerdp winpr Client)
-if(APPLE)
-    list(APPEND FreeRDP_LIBS winpr-tools)
-    find_package(Threads)
-    if(Threads_FOUND)
-        list(APPEND FreeRDP_LIBS Threads::Threads)
-    endif()
-endif()
-if(NOT DEFINED X_VCPKG_APPLOCAL_DEPS_INSTALL OR NOT X_VCPKG_APPLOCAL_DEPS_INSTALL)
-    install_targets(TARGETS ${FreeRDP_LIBS})
-endif()
 
 SET(FreeRDP_SOURCE_FILES
     ParameterFreeRDP.cpp
