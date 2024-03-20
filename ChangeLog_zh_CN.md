@@ -4,7 +4,7 @@
 - 客户端接口:
   - 在 CConnect 中增加 OnInitReturnValue
   - 修改 Debian 打包
-  - 使用 RabbitCommon v2.1.0
+  - 使用 [RabbitCommon v2.2.0](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.0)
 
 ### v0.0.26
 - 使用 RabbitCommon v2
