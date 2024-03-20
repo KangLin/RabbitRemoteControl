@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: https://github.com/KangLin/RabbitCommon
-Upstream-Name: rabbitcommon
+Source: https://github.com/KangLin/RabbitRemoteControl
+Upstream-Name: rabbitremotecontrol
 Upstream-Contact: Kang Lin <kl222@126.com>
 
 Files: *

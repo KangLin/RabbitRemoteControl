@@ -109,9 +109,9 @@ override_dh_auto_configure:
             -DBUILD_FREERDP=ON \
             -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl \
             -DRabbitCommon_DIR=${RabbitCommon_DIR} \
-            -DCMARK_SHARED:BOOL=ON \
-            -DCMARK_TESTS:BOOL=OFF \
-            -DCMARK_STATIC=OFF ${PARAS}
+            -DCMARK_SHARED=OFF \
+            -DCMARK_TESTS=OFF \
+            -DCMARK_STATIC=ON ${PARAS}
 
 override_dh_auto_build:
 #	dh_auto_build --parallel -B$(BUILD_DIR)
@@ -119,7 +119,17 @@ override_dh_auto_build:
 		--parallel $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`", `cat /proc/cpuinfo |grep 'cpu cores' |wc -l`, 1)
 
 override_dh_auto_install:
-	cmake --install $(BUILD_DIR) --config Release \
+	cmake --install $(BUILD_DIR) --config Release --strip \
+		--component Runtime \
+		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
+	cmake --install $(BUILD_DIR) --config Release --strip \
+		--component Application \
+		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
+	cmake --install $(BUILD_DIR) --config Release --strip \
+		--component DependLibraries \
+		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
+	cmake --install $(BUILD_DIR) --config Release --strip \
+		--component Plugin \
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
 
 override_dh_shlibdeps:
