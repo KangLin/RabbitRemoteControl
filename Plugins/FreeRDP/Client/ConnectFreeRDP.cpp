@@ -40,7 +40,7 @@
     #include <QSound>
 #endif
 
-Q_LOGGING_CATEGORY(FreeRDPConnect, "FreeRDP.Connect")
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
 
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
                                  QObject *parent)
@@ -58,7 +58,7 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
 
 CConnectFreeRDP::~CConnectFreeRDP()
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::~CConnectFreeRdp()";
+    qDebug(log) << "CConnectFreeRdp::~CConnectFreeRdp()";
 }
 
 /*
@@ -69,7 +69,7 @@ CConnectFreeRDP::~CConnectFreeRDP()
  */
 CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnInit()";
+    qDebug(log) << "CConnectFreeRdp::OnInit()";
     int nRet = 0;
 
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
@@ -81,16 +81,8 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 	m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
     m_ClientEntryPoints.ClientNew = cbClientNew;
     m_ClientEntryPoints.ClientFree = cbClientFree;
-    m_ClientEntryPoints.ClientStart = [](rdpContext* context)->int {
-        CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
-        if(!pThis) return -1;
-        return pThis->cbClientStart(context);
-    };
-	m_ClientEntryPoints.ClientStop = [](rdpContext* context)->int {
-        CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
-        if(!pThis) return -1;
-        return pThis->cbClientStop(context);
-    };
+    m_ClientEntryPoints.ClientStart = cbClientStart;
+	m_ClientEntryPoints.ClientStop = cbClientStop;
 
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
 	if(p)
@@ -98,7 +90,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         m_pContext = (ClientContext*)p;
         m_pContext->pThis = this;
     } else {
-        qCritical(FreeRDPConnect) << "freerdp_client_context_new fail";
+        qCritical(log) << "freerdp_client_context_new fail";
         return OnInitReturnValue::Fail;
     }
 
@@ -115,7 +107,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     {
         QString szErr;
         szErr = tr("The server is empty, please input it");
-        qCritical(FreeRDPConnect) << szErr;
+        qCritical(log) << szErr;
         emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
         emit sigError(-1, szErr.toStdString().c_str());
         return OnInitReturnValue::Fail;
@@ -123,7 +115,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     nRet = freerdp_client_start(pRdpContext);
     if(nRet)
     {
-        qCritical(FreeRDPConnect) << "freerdp_client_start fail";
+        qCritical(log) << "freerdp_client_start fail";
         return OnInitReturnValue::Fail;
     }
     
@@ -132,16 +124,16 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 
 int CConnectFreeRDP::OnClean()
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClean()";
+    qDebug(log) << "CConnectFreeRdp::OnClean()";
     int nRet = 0;
     if(m_pContext)
     {
         rdpContext* pRdpContext = (rdpContext*)m_pContext;
         if(!freerdp_disconnect(pRdpContext->instance))
-            qCritical(FreeRDPConnect) << "freerdp_disconnect fail";
+            qCritical(log) << "freerdp_disconnect fail";
 
         if(freerdp_client_stop(pRdpContext))
-            qCritical(FreeRDPConnect) << "freerdp_client_stop fail";
+            qCritical(log) << "freerdp_client_stop fail";
 
         freerdp_client_context_free(pRdpContext);
         m_pContext = nullptr;
@@ -173,7 +165,7 @@ int CConnectFreeRDP::OnProcess()
                                               ARRAYSIZE(handles) - nCount);
         if (nCount == 0)
         {
-            qCritical(FreeRDPConnect) << "freerdp_get_event_handles failed";
+            qCritical(log) << "freerdp_get_event_handles failed";
             nRet = -2;
             break;
         }
@@ -181,7 +173,7 @@ int CConnectFreeRDP::OnProcess()
         DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
         if (waitStatus == WAIT_FAILED)
         {
-            qCritical(FreeRDPConnect) << "WaitForMultipleObjects: WAIT_FAILED";
+            qCritical(log) << "WaitForMultipleObjects: WAIT_FAILED";
             nRet = -3;
             break;
         }
@@ -206,7 +198,7 @@ int CConnectFreeRDP::OnProcess()
             szErr += freerdp_get_last_error_name(err);
             szErr += ":";
             szErr += freerdp_get_last_error_string(err);
-            qCritical(FreeRDPConnect) << szErr;
+            qCritical(log) << szErr;
             emit sigError(err, szErr);
 
             // Reconnect
@@ -226,7 +218,7 @@ int CConnectFreeRDP::OnProcess()
             szErr += freerdp_get_last_error_name(err);
             szErr += ":";
             szErr += freerdp_get_last_error_string(err);
-            qCritical(FreeRDPConnect) << szErr;
+            qCritical(log) << szErr;
             emit sigError(err, szErr);
         }
 
@@ -236,7 +228,7 @@ int CConnectFreeRDP::OnProcess()
         if(freerdp_shall_disconnect(pRdpContext->instance))
 #endif
         {
-            qCritical(FreeRDPConnect) << "Abort connect";
+            qCritical(log) << "Abort connect";
             nRet = -7;
         }
     } while(false);
@@ -246,7 +238,7 @@ int CConnectFreeRDP::OnProcess()
 
 void CConnectFreeRDP::slotClipBoardChanged()
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotClipBoardChanged()";
+    qDebug(log) << "CConnectFreeRDP::slotClipBoardChanged()";
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     if(m_pParameter->GetClipboard())
         m_ClipBoard.slotClipBoardChanged();
@@ -254,19 +246,19 @@ void CConnectFreeRDP::slotClipBoardChanged()
 
 BOOL CConnectFreeRDP::cbGlobalInit()
 {
-	qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnGlobalInit()";
+	qDebug(log) << "CConnectFreeRdp::OnGlobalInit()";
     //freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
 	return TRUE;
 }
 
 void CConnectFreeRDP::cbGlobalUninit()
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnGlobalUninit()";
+    qDebug(log) << "CConnectFreeRdp::OnGlobalUninit()";
 }
 
 BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientNew()";
+    qDebug(log) << "CConnectFreeRdp::OnClientNew()";
     instance->PreConnect = cb_pre_connect;
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
@@ -291,30 +283,37 @@ BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
 
 void CConnectFreeRDP::cbClientFree(freerdp *instance, rdpContext *context)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientFree()";
+    qDebug(log) << "CConnectFreeRdp::OnClientFree()";
 }
 
 int CConnectFreeRDP::cbClientStart(rdpContext *context)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientStart()";
+    qDebug(log) << "CConnectFreeRdp::OnClientStart()";
     int nRet = 0;
+    
+    if (!context || !context->settings)
+        return -1;
     freerdp* instance = freerdp_client_get_instance(context);
+    if(!instance)
+        return -2;
+
+    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
     BOOL status = freerdp_connect(instance);
     if (status) {
         QString szInfo = tr("Connect to ");
-        szInfo += m_pParameter->GetHost();
+        szInfo += pThis->m_pParameter->GetHost();
         szInfo += ":";
-        szInfo += QString::number(m_pParameter->GetPort());
-        qInfo(FreeRDPConnect) << szInfo;
-        emit sigInformation(szInfo);
+        szInfo += QString::number(pThis->m_pParameter->GetPort());
+        qInfo(log) << szInfo;
+        emit pThis->sigInformation(szInfo);
     } else {
-        UINT32 nErr = freerdp_get_last_error(instance->context);
+        UINT32 nErr = freerdp_get_last_error(context);
 
         QString szErr;
         szErr = tr("Connect to ");
-        szErr += m_pParameter->GetHost();
+        szErr += pThis->m_pParameter->GetHost();
         szErr += ":";
-        szErr += QString::number(m_pParameter->GetPort());
+        szErr += QString::number(pThis->m_pParameter->GetPort());
         szErr += tr(" fail.");
         szErr += " [";
         szErr += QString::number(nErr) + " - ";
@@ -330,58 +329,58 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         {
             nRet = -3;
             QString szErr = tr("Logon to ");
-            szErr += m_pParameter->GetHost();
+            szErr += pThis->m_pParameter->GetHost();
             szErr += ":";
-            szErr += QString::number(m_pParameter->GetPort());
+            szErr += QString::number(pThis->m_pParameter->GetPort());
             szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
         {
             nRet = -4;
             QString szErr = tr("Logon to ");
-            szErr += m_pParameter->GetHost();
+            szErr += pThis->m_pParameter->GetHost();
             szErr += ":";
-            szErr += QString::number(m_pParameter->GetPort());
+            szErr += QString::number(pThis->m_pParameter->GetPort());
             szErr += tr(" fail. Please check password are correct.") + "\n";
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
         {
             nRet = -5;
             QString szErr = tr("Logon to ");
-            szErr += m_pParameter->GetHost();
+            szErr += pThis->m_pParameter->GetHost();
             szErr += ":";
-            szErr += QString::number(m_pParameter->GetPort());
+            szErr += QString::number(pThis->m_pParameter->GetPort());
             szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
         {
             nRet = -6;
             QString szErr = tr("Logon to ");
-            szErr += m_pParameter->GetHost();
+            szErr += pThis->m_pParameter->GetHost();
             szErr += ":";
-            szErr += QString::number(m_pParameter->GetPort());
+            szErr += QString::number(pThis->m_pParameter->GetPort());
             szErr += tr(" connect transport layer fail.") + "\n\n";
             szErr += tr("Please:") + "\n";
             szErr += tr("1. Check for any network related issues") + "\n";
             szErr += tr("2. Check you have proper security settings ('NLA' enabled is required for most connections nowadays)") + "\n";
             szErr += tr("3. Check the certificate is proper (and guacd properly checks that)") + "\n";
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
         default:
             nRet = -7;
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
         }
 
-        qCritical(FreeRDPConnect) << szErr;
-        emit sigError(nRet, szErr.toStdString().c_str());
+        qCritical(log) << szErr;
+        emit pThis->sigError(nRet, szErr.toStdString().c_str());
     }
     return nRet;
 }
@@ -389,13 +388,13 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
 int CConnectFreeRDP::cbClientStop(rdpContext *context)
 {
     int nRet = 0;
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::OnClientStop()";
+    qDebug(log) << "CConnectFreeRdp::OnClientStop()";
 #if FreeRDP_VERSION_MAJOR >= 3
     nRet = freerdp_client_common_stop(context);
 #else
     BOOL bRet = freerdp_abort_connect(context->instance);
     if(!bRet)
-    {   qCritical(FreeRDPConnect) << "freerdp_abort_connect fail";
+    {   qCritical(log) << "freerdp_abort_connect fail";
         nRet = -1;
     }
 #endif
@@ -415,7 +414,7 @@ int CConnectFreeRDP::cbClientStop(rdpContext *context)
  */
 BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_pre_connect()";
+    qDebug(log) << "CConnectFreeRdp::cb_pre_connect()";
 	rdpChannels* channels = nullptr;
 	rdpSettings* settings = nullptr;
 	rdpContext* context = instance->context;
@@ -457,7 +456,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         if(!szUser.isEmpty()){
             pThis->m_pParameter->SetUser(szUser);
         }
-        qWarning(FreeRDPConnect) << "No user name set. - Using login name:" << szUser;
+        qWarning(log) << "No user name set. - Using login name:" << szUser;
 	}
 
     if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
@@ -465,14 +464,14 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         /* Check +auth-only has a username and password. */
         if (!pThis->m_pParameter->GetPassword().isEmpty())
         {
-            qCritical(FreeRDPConnect) << "auth-only, but no password set. Please provide one.";
+            qCritical(log) << "auth-only, but no password set. Please provide one.";
             return FALSE;
         }
 #if FreeRDP_VERSION_MAJOR > 2
         if (!freerdp_settings_set_bool(settings, FreeRDP_DeactivateClientDecoding, TRUE))
             return FALSE;
 #endif
-        qInfo(FreeRDPConnect) << "Authentication only. Don't connect to X.";
+        qInfo(log) << "Authentication only. Don't connect to X.";
     } else {
 		
 	}
@@ -488,10 +487,10 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     if ((width < 64) || (height < 64) ||
             (width > 4096) || (height > 4096))
     {
-        qCritical(FreeRDPConnect) << "invalid dimensions" << width << "*" << height;
+        qCritical(log) << "invalid dimensions" << width << "*" << height;
         return FALSE;
     } else {
-        qInfo(FreeRDPConnect) << "Init desktop size " <<  width << "*" << height;
+        qInfo(log) << "Init desktop size " <<  width << "*" << height;
     }
 
 	return TRUE;
@@ -541,7 +540,7 @@ const char* CConnectFreeRDP::GetTitle(freerdp* instance)
  */
 BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_post_connect()";
+    qDebug(log) << "CConnectFreeRdp::cb_post_connect()";
 	
 	rdpContext* context = instance->context;
 	rdpSettings* settings = instance->context->settings;
@@ -577,7 +576,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     if (!gdi_init_ex(instance, pThis->GetImageFormat(),
                      0, pThis->m_Image.bits(), nullptr))
 	{
-        qCritical(FreeRDPConnect) << "gdi_init fail";
+        qCritical(log) << "gdi_init fail";
         return FALSE;
     }
 
@@ -618,7 +617,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 
 void CConnectFreeRDP::cb_post_disconnect(freerdp* instance)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_post_disconnect()";
+    qDebug(log) << "CConnectFreeRdp::cb_post_disconnect()";
 	rdpContext* context = nullptr;
 
 	if (!instance || !instance->context)
@@ -642,7 +641,7 @@ int CConnectFreeRDP::cb_logon_error_info(freerdp* instance, UINT32 data, UINT32 
     szErr += str_type;
     szErr += "] ";
     szErr += str_data;
-	qDebug(FreeRDPConnect) << szErr;
+	qDebug(log) << szErr;
 	emit pThis->sigInformation(szErr);
     emit pThis->sigError(type, szErr);
 	return 1;
@@ -657,11 +656,11 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
     rdpContext* pContext = (rdpContext*)context;
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
     if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
-		qInfo(FreeRDPConnect) << "channel" << e->name << "connected";
+		qInfo(log) << "channel" << e->name << "connected";
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParameter->GetClipboard());
 	} else
-        qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+        qDebug(log) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 }
 
 void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
@@ -674,11 +673,11 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
     
     if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
-		qDebug(FreeRDPConnect) << "channel" << e->name << "disconnected";
+		qDebug(log) << "channel" << e->name << "disconnected";
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParameter->GetClipboard());
 	} else {
-		qDebug(FreeRDPConnect) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+		qDebug(log) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 	}
 }
 
@@ -717,7 +716,7 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
                                char** username, char** password,
                                char** domain, rdp_auth_reason reason)
 {
-    qCritical(FreeRDPConnect) << "CConnectFreeRdp::cb_authenticate_ex";
+    qCritical(log) << "CConnectFreeRdp::cb_authenticate_ex";
     if(!instance)
         return FALSE;
     rdpContext* pContext = (rdpContext*)instance->context;
@@ -793,7 +792,7 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
                                              ARRAYSIZE(PasswordW), &fSave, dwFlags);
         if (status != NO_ERROR)
         {
-            qCritical(FreeRDPConnect,
+            qCritical(log,
                       "CredUIPromptForCredentials unexpected status: 0x%08lX",
                       status);
             return FALSE;
@@ -812,7 +811,7 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
                 ConvertWCharNToUtf8(UserNameW, ARRAYSIZE(UserNameW), UserName, ARRAYSIZE(UserName));
                 ConvertWCharNToUtf8(UserW, ARRAYSIZE(UserW), User, ARRAYSIZE(User));
                 ConvertWCharNToUtf8(DomainW, ARRAYSIZE(DomainW), Domain, ARRAYSIZE(Domain));
-                qCritical(FreeRDPConnect,
+                qCritical(log,
                           "Failed to parse UserName: %s into User: %s Domain: %s",
                           UserName, User, Domain);
                 return FALSE;
@@ -823,7 +822,7 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
     *username = ConvertWCharNToUtf8Alloc(UserW, ARRAYSIZE(UserW), NULL);
     if (!(*username))
     {
-        qCritical(FreeRDPConnect) << "ConvertWCharNToUtf8Alloc failed" << status;
+        qCritical(log) << "ConvertWCharNToUtf8Alloc failed" << status;
         return FALSE;
     }
     
@@ -835,7 +834,7 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
     if (!(*domain))
     {
         free(*username);
-        qCritical(FreeRDPConnect) << "strdup failed" << status;
+        qCritical(log) << "strdup failed" << status;
         return FALSE;
     }
     
@@ -909,7 +908,7 @@ BOOL CConnectFreeRDP::cb_choose_smartcard(freerdp* instance,
 BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
                                       char** password, char** domain)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_authenticate";
+    qDebug(log) << "CConnectFreeRdp::cb_authenticate";
 	if(!instance)
 		return FALSE;
     rdpContext* pContext = (rdpContext*)instance->context;
@@ -939,7 +938,7 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
 BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
                                 char **username, char **password, char **domain)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_GatewayAuthenticate";
+    qDebug(log) << "CConnectFreeRdp::cb_GatewayAuthenticate";
 	if(!instance)
 		return FALSE;
 
@@ -997,7 +996,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
                        const char *common_name, const char *subject,
                        const char *issuer, const char *fingerprint, DWORD flags)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_verify_certificate_ex";
+    qDebug(log) << "CConnectFreeRdp::cb_verify_certificate_ex";
 
     rdpContext* pContext = (rdpContext*)instance->context;
     Q_ASSERT(pContext);
@@ -1088,7 +1087,7 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
                       const char *old_subject, const char *old_issuer,
                       const char *old_fingerprint, DWORD flags)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_verify_changed_certificate_ex";
+    qDebug(log) << "CConnectFreeRdp::cb_verify_changed_certificate_ex";
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
     if(common_name)
@@ -1158,7 +1157,7 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
         freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
         BOOL isConsentMandatory, size_t length, const WCHAR* message)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_present_gateway_message";
+    qDebug(log) << "CConnectFreeRdp::cb_present_gateway_message";
 
     if (!isDisplayMandatory && !isConsentMandatory)
         return TRUE;
@@ -1228,14 +1227,14 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
         return FALSE;
 
     QRect rect(x, y, w, h);
-    //qDebug(FreeRDPConnect) << "Update:" << rect;
+    //qDebug(log) << "Update:" << rect;
     emit sigUpdateRect(rect, m_Image);
     return TRUE;
 }
 
 BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRdp::cb_end_paint";
+    //qDebug(log) << "CConnectFreeRdp::cb_end_paint";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
     int ninvalid;
@@ -1290,7 +1289,7 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 
 BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 {
-    qDebug(FreeRDPConnect) << "CConnectFreeRDP::cb_desktop_resize";
+    qDebug(log) << "CConnectFreeRDP::cb_desktop_resize";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
     rdpSettings* settings;
@@ -1354,7 +1353,7 @@ bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
 
 void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotWheelEvent" << buttons << pos;
+    //qDebug(log) << "CConnectFreeRDP::slotWheelEvent" << buttons << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
@@ -1393,7 +1392,7 @@ void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
 void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseMoveEvent" << buttons << pos;
+    //qDebug(log) << "CConnectFreeRDP::slotMouseMoveEvent" << buttons << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
@@ -1402,7 +1401,7 @@ void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 
 void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMousePressEvent" << buttons << pos;
+    //qDebug(log) << "CConnectFreeRDP::slotMousePressEvent" << buttons << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_DOWN;
@@ -1421,7 +1420,7 @@ void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 
 void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotMouseReleaseEvent" << button << pos;
+    //qDebug(log) << "CConnectFreeRDP::slotMouseReleaseEvent" << button << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = 0;
@@ -1440,7 +1439,7 @@ void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 
 void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotKeyPressEvent";
+    //qDebug(log) << "CConnectFreeRDP::slotKeyPressEvent";
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
@@ -1455,7 +1454,7 @@ void CConnectFreeRDP::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers
 
 void CConnectFreeRDP::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    //qDebug(FreeRDPConnect) << "CConnectFreeRDP::slotKeyReleaseEvent";
+    //qDebug(log) << "CConnectFreeRDP::slotKeyReleaseEvent";
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(key, modifiers);
@@ -1524,7 +1523,7 @@ int CConnectFreeRDP::RedirectionSound()
     
     if(!status)
     {
-        qCritical(FreeRDPConnect) << "Load rdpsnd fail";
+        qCritical(log) << "Load rdpsnd fail";
         return -1;
     }
     
@@ -1568,7 +1567,7 @@ int CConnectFreeRDP::RedirectionMicrophone()
     
     if(!status)
     {
-        qCritical(FreeRDPConnect) << "Load audin fail";
+        qCritical(log) << "Load audin fail";
         return -1;
     }
     
@@ -1599,7 +1598,7 @@ int CConnectFreeRDP::RedirectionDrive()
         if(pDrive) free(pDrive);
         if(!status)
         {
-            qCritical(FreeRDPConnect) << "Load drive fail";
+            qCritical(log) << "Load drive fail";
             return -1;
         }
     }
@@ -1620,10 +1619,10 @@ int CConnectFreeRDP::RedirectionPrinter()
     QStringList printerList = QPrinterInfo::availablePrinterNames();
     if(printerList.isEmpty())
     {
-        qCritical(FreeRDPConnect) << "The printer is empty";
+        qCritical(log) << "The printer is empty";
         return -1;
     }
-    qDebug(FreeRDPConnect) << printerList;
+    qDebug(log) << printerList;
 
     // Format: /printer:<device>,<driver>,[default]
     const char* argvPrinter[] = {"printer",  nullptr, nullptr};
@@ -1634,7 +1633,7 @@ int CConnectFreeRDP::RedirectionPrinter()
                                                 #endif
                                                     argvPrinter);
     if(!status) {
-        qCritical(FreeRDPConnect) << "Load printer fail";
+        qCritical(log) << "Load printer fail";
         return -2;
     }
 
@@ -1656,7 +1655,7 @@ int CConnectFreeRDP::RedirectionSerial()
     foreach (auto serial, lstSerial) {
         // Format: /serial:<name>,<device>,[SerCx2|SerCx|Serial],[permissive]
         //     ag: /serial:COM1,/dev/ttyS0
-        qDebug(FreeRDPConnect) << "systemLocation:" << serial.systemLocation()
+        qDebug(log) << "systemLocation:" << serial.systemLocation()
                         << "portName:" << serial.portName()
                         << "serialNumber:" << serial.serialNumber();
         char* pSerial = _strdup(serial.systemLocation().toStdString().c_str());
@@ -1673,7 +1672,7 @@ int CConnectFreeRDP::RedirectionSerial()
 
         if(!status)
         {
-            qCritical(FreeRDPConnect) << "Load drive fail";
+            qCritical(log) << "Load drive fail";
             return -1;
         }
     }
