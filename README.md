@@ -63,6 +63,7 @@ It include remote desktop, remote terminal etc remote control functions.
   - launchpad: https://launchpad.net/rabbitremotecontrol
   - gitee: https://gitee.com/kl222/RabbitRemoteControl
   - kde: https://invent.kde.org/kanglin/RabbitRemoteControl
+  - bitbucket: https://bitbucket.org/kl222/rabbitremotecontrol
 
 ## Functions
 
