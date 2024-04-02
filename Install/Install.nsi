@@ -23,8 +23,8 @@ SetCompressor lzma
 
 ; MUI Settings
 !define MUI_ABORTWARNING
-!define MUI_ICON "install\app.ico"
-!define MUI_UNICON "install\app.ico"
+!define MUI_ICON "@CMAKE_INSTALL_PREFIX@\app.ico"
+!define MUI_UNICON "@CMAKE_INSTALL_PREFIX@\app.ico"
 
 ; Language Selection Dialog Settings
 !define MUI_LANGDLL_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
@@ -34,7 +34,7 @@ SetCompressor lzma
 ; Welcome page
 !insertmacro MUI_PAGE_WELCOME
 ; License page
-!insertmacro MUI_PAGE_LICENSE "share\doc\RabbitRemoteControl\License.md"
+!insertmacro MUI_PAGE_LICENSE "@CMAKE_INSTALL_PREFIX@\share\doc\RabbitRemoteControl\License.md"
 ; Components page
 !insertmacro MUI_PAGE_COMPONENTS
 ; Directory page

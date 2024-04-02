@@ -73,7 +73,7 @@ set(OTHER_FILES
     ${CMAKE_SOURCE_DIR}/ChangeLog_zh_CN.md)
 INSTALL_FILE(SOURCES  ${OTHER_FILES}
     DESTINATION ${CMAKE_INSTALL_DOCDIR}
-        COMPONENT Runtime)
+        COMPONENT Application)
 
 if(ANDROID)
     if(NOT EXISTS ${CMAKE_BINARY_DIR}/plugins/Client)
@@ -93,7 +93,7 @@ if(Log4Qt_FOUND)
     endif()
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.conf
         DESTINATION etc
-        COMPONENT Runtime)
+        COMPONENT Application)
 else()
     if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini)
         configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
@@ -102,13 +102,13 @@ else()
     endif()
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
         DESTINATION etc
-        COMPONENT Runtime)
+        COMPONENT Application)
 endif()
 
 if(WIN32)
     install(FILES Resource/icons/green/ico/app.ico
         DESTINATION .
-            COMPONENT Runtime)
+            COMPONENT Application)
 endif()
 if(UNIX AND NOT ANDROID)
     set(APP_ICON_NAME org.Rabbit.RemoteControl)
@@ -116,13 +116,13 @@ if(UNIX AND NOT ANDROID)
         ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.desktop)
     INSTALL(FILES ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.desktop
         DESTINATION share/applications
-            COMPONENT Runtime)
+            COMPONENT Application)
     INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
             DESTINATION ${CMAKE_INSTALL_BINDIR}
-                COMPONENT Runtime)
+                COMPONENT Application)
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/green/svg/app.svg
         DESTINATION share/pixmaps
-            COMPONENT Runtime
+            COMPONENT Application
         RENAME ${APP_ICON_NAME}.svg)
 endif()
 

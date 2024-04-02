@@ -160,8 +160,9 @@ if(BUILD_EXAMPLE)
 endif()
 
 iF(WIN32)
-    INSTALL(FILES Install/Install.nsi DESTINATION "${CMAKE_BINARY_DIR}"
-        COMPONENT Runtime)
+    # 替换 Install.nsi 中的 CMAKE_INSTALL_PREFIX 等
+    configure_file(${CMAKE_SOURCE_DIR}/Install/Install.nsi
+        ${CMAKE_BINARY_DIR}/Install.nsi @ONLY)
 endif()
 
 option(BUILD_DOCS "Generating API documentation" OFF)
