@@ -10,7 +10,7 @@
     "configurePresets": [
         {
             "name": "vcpkg",
-            "description": "Configure with vcpkg. please set VCPKG_ROOT environment first",
+            "description": "Configure with vcpkg. please set VCPKG_ROOT environment value first",
             "hidden": true,
             "cacheVariables": {
                 "CMAKE_TOOLCHAIN_FILE": {
@@ -47,29 +47,31 @@
         
         {
             "name": "qt6",
+            "description": "Use qt6. Please set environment value Qt6_DIR first",
             "inherits": [
-            	"base"
+                "base"
             ],
             "cacheVariables": {
-                "QT_ROOT": {
+                "QT_DIR": {
                     "value": "$env{Qt6_DIR}",
                     "type": "PATH"
                 },
                 "Qt6_DIR": {
                     "value": "$env{Qt6_DIR}",
                     "type": "PATH"
-                }
+                },
+                "QT_DEBUG_FIND_PACKAGE": "ON"
             }
         },
         {
             "name": "qt5",
-            "description": "Versions earlier than QT6.5 use OpenSSL 1.1",
+            "description": "Use Qt5(or versions earlier than QT6.5) use OpenSSL1.1 . Please set environment value Qt5_DIR first",
             "inherits": [
-            	"base",
-            	"openssl1.1"
+                "base",
+                "openssl1.1"
             ],
             "cacheVariables": {
-                "QT_ROOT": {
+                "QT_DIR": {
                     "value": "$env{Qt5_DIR}",
                     "type": "PATH"
                 },
@@ -106,7 +108,7 @@
                 "lhs": "${hostSystemName}",
                 "rhs": "Windows"
             }
-        },        
+        },
         {
             "name": "msvc-x64-qt6",
             "inherits": [
@@ -158,6 +160,38 @@
                 "ninja",
                 "qt5"
             ]
+        },
+        {
+            "name": "android-arm64-qt6",
+            "description": "android arm64 for qt6, please set environment value ANDROID_NDK_HOME first",
+            "inherits": [
+                "qt6"
+            ],
+            "binaryDir": "build/arm64/qt6",
+            "cacheVariables": {
+                "ANDROID_ABI": "arm64-v8a",
+                "VCPKG_TARGET_TRIPLET": "arm64-android",
+                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": {
+                    "value": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
+                    "type": "FILEPATH"
+                }
+            }
+        },
+        {
+            "name": "android-x86_64-qt6",
+            "description": "android x86_64 for qt6, please set environment value ANDROID_NDK_HOME first",
+            "inherits": [
+                "qt6"
+            ],
+            "binaryDir": "build/x86_64/qt6",
+            "cacheVariables": {
+                "ANDROID_ABI": "x86_64",
+                "VCPKG_TARGET_TRIPLET": "x64-android",
+                "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": {
+                    "value": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
+                    "type": "FILEPATH"
+                }
+            }
         }
     ],
 
