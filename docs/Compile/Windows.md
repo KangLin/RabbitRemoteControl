@@ -35,11 +35,13 @@ Prior versions don't have CMake support.
 
 - Qt
   + Qt (official release): https://download.qt.io/official_releases/qt/  
-    Current version: Qt 5.12.12
+    Current version: Qt 6.7.0
   + IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
+    Current version: 12.0.2
   Prior versions don't have CMake support.
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
 - CMake: [https://www.cmake.org/](https://cmake.org/)
+  Version: 3.27.0
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
 

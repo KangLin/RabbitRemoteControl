@@ -24,7 +24,7 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
       Codename:	bookworm
 
 #### Qt Creator
-Version: v9.0.2  
+Version: v12.0.2  
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -49,6 +49,8 @@ Prior versions don't have CMake support.
       ~$ sudo apt install git
         
 - CMake: [https://cmake.org](https://cmake.org/)
+
+  Version: 3.27.0
 
       ~$ sudo apt install cmake
 

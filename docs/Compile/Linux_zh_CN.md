@@ -24,7 +24,7 @@
 
 #### Qt Creator
 
-版本：v9.0.2。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+版本：v12.0.2。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -47,6 +47,8 @@
       ~$ sudo apt install git
 
 - CMAKE: [http://www.cmake.org](http://www.cmake.org)
+
+  版本: 3.27.0
 
       ~$ sudo apt install cmake
 
