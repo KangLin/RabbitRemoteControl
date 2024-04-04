@@ -247,7 +247,6 @@ void CConnectFreeRDP::slotClipBoardChanged()
 BOOL CConnectFreeRDP::cbGlobalInit()
 {
 	qDebug(log) << "CConnectFreeRdp::OnGlobalInit()";
-    //freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
 	return TRUE;
 }
 
@@ -656,11 +655,16 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
     rdpContext* pContext = (rdpContext*)context;
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
     if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
-		qInfo(log) << "channel" << e->name << "connected";
+        qDebug(log) << "channel" << e->name << "connected";
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParameter->GetClipboard());
-	} else
+    } else {
+#if FreeRDP_VERSION_MAJOR >= 3
+        freerdp_client_OnChannelConnectedEventHandler(pContext, e);
+#else
         qDebug(log) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
+#endif
+    }
 }
 
 void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
@@ -677,7 +681,11 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParameter->GetClipboard());
 	} else {
-		qDebug(log) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+#if FreeRDP_VERSION_MAJOR >= 3
+        freerdp_client_OnChannelDisconnectedEventHandler(pContext, e);
+#else
+        qDebug(log) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
+#endif
 	}
 }
 
@@ -720,7 +728,6 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
     if(!instance)
         return FALSE;
     rdpContext* pContext = (rdpContext*)instance->context;
-    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
 #ifdef Q_OS_WINDOWS
     BOOL fSave;
     DWORD status;
