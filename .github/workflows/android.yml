@@ -30,7 +30,7 @@ jobs:
 
     env:
       RabbitRemoteControl_VERSION: v0.0.26
-      VCPKGGITCOMMITID: 898b728edc5e0d12b50015f9cd18247c4257a3eb
+      VCPKGGITCOMMITID: 0bc3f04da6cb8ae1dbd5e2051032c596bb03cffa
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
@@ -41,7 +41,7 @@ jobs:
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
       ANDROID_ABI: ${{matrix.ANDROID_ABI}}
-      qt_modules: 'qtimageformats qtmultimedia qtscxml qtwebchannel qtwebsockets qtwebview'
+      qt_modules: 'qtimageformats qtmultimedia qtscxml qtwebchannel qtwebsockets qtwebview qtserialport'
 
     # Map the job outputs to step outputs
     outputs:
@@ -59,6 +59,12 @@ jobs:
           cmake -E make_directory ${{env.TOOSL_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
           cmake -E make_directory ${{github.workspace}}/build
+
+      - name: Install apt packages
+        run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt install -y -q ninja-build
 
       - name: Cache installed
         uses: actions/cache@v2
@@ -283,7 +289,9 @@ jobs:
               -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
               -DVCPKG_VERBOSE=ON \
-              -DINSTALL_QT=ON \
+              -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
+              -DRABBIT_ENABLE_INSTALL_QT=ON \
+              -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
               -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
               -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
@@ -297,6 +305,22 @@ jobs:
           cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target all
           APK_FILE=`find . -name "android-*.apk"`
           cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
+
+      - name: Build RabbitRemoteControl with cmake preset
+        if: false
+        working-directory: ${{github.workspace}}
+        env:
+          RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
+          QT_ANDROID_KEYSTORE_PATH: ${{env.SOURCE_DIR}}/RabbitCommon/RabbitCommon.keystore
+          QT_ANDROID_KEYSTORE_ALIAS: rabbitcommon
+          QT_ANDROID_KEYSTORE_STORE_PASS: ${{secrets.STOREPASS}}
+        run: |
+          export QT_ROOT=${{env.Qt6_DIR}}
+          cmake --preset "android-${{env.ANDROID_ABI}}-qt6" \
+            -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+            -DQT_ANDROID_SIGN_APK=ON \
+            -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools
+          cmake --build --preset "android-${{env.ANDROID_ABI}}-qt6"
 
       - name: Update configure file
         working-directory: ${{github.workspace}}/build

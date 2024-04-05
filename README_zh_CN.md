@@ -74,7 +74,7 @@
 - [x] Windows 7 SP1 及以后
 - [x] Unix/Linux
 - [x] Android
-- [ ] mac os
+- [x] mac os
 - [ ] IPHONE
 - [ ] WINCE
 
@@ -87,8 +87,8 @@
 
 |        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
 |--------|-------|----------|-------|---|------|-----|
-|vnc     |✓      |✓         |       |   |      |     |
-|RDP     |✓      |✓         |       |   |      |     |
+|vnc     |✓      |✓         |✓      |✓  |      |     |
+|RDP     |✓      |✓         |       |✓  |      |     |
 |Spice   |       |          |       |   |      |     |
 |Scrcpy  |       |          |       |   |      |     |
 |终端     |       |✓         |       |   |      |     |

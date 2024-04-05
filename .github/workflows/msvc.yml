@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.7.0, 5.15.2, 5.12.12]
+        qt_version: [6.6.3, 5.15.2, 5.12.12]
         include:
-          - qt_version: 6.7.0
+          - qt_version: 6.6.3
             qt_arch: win64_msvc2019_64
             qt_modules: qtscxml qtmultimedia qtimageformats qtwebchannel qtwebsockets qtwebview qtpositioning qtserialport
             CMAKE_GENERATOR_PLATFORM: x64
@@ -42,7 +42,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      VCPKGGITCOMMITID: 898b728edc5e0d12b50015f9cd18247c4257a3eb
+      VCPKGGITCOMMITID: 0bc3f04da6cb8ae1dbd5e2051032c596bb03cffa
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
@@ -65,7 +65,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          submodules: true
+          submodules: recursive
 
       - name: Make directories
         run: |
@@ -283,7 +283,7 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: Build RabbitRemoteControl with cmake preset
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.7.0' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.3' }}
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
@@ -378,9 +378,9 @@ jobs:
                 --pf RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe ^
                 -m "${{env.RabbitRemoteControl_VERSION}}"
           RENAME update_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json.xml update_windows.xml
-      
+
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.7.0' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.3' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}
@@ -389,7 +389,7 @@ jobs:
             ${{github.workspace}}\build\update_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json
 
       - name: Update artifact update_windows.xml
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.7.0' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.3' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}

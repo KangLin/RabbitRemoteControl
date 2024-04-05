@@ -18,7 +18,8 @@
                     "type": "FILEPATH"
                 },
                 "VCPKG_VERBOSE": "ON",
-                "X_VCPKG_APPLOCAL_DEPS_INSTALL": "ON"
+                "X_VCPKG_APPLOCAL_DEPS_INSTALL": "ON",
+                "VCPKG_TRACE_FIND_PACKAGE": "ON"
             }
         },
         {
@@ -30,7 +31,11 @@
                 "CMARK_SHARED": "OFF",
                 "CMARK_TESTS": "OFF",
                 "CMARK_STATIC": "ON",
-                "CMAKE_BUILD_TYPE": "Release"
+                "CMAKE_BUILD_TYPE": "Release",
+                "QT_DEBUG_FIND_PACKAGE": "ON",
+                "RABBIT_ENABLE_INSTALL_DEPENDENT": "ON",
+                "RABBIT_ENABLE_INSTALL_QT": "ON",
+                "RABBIT_ENABLE_INSTALL_TO_BUILD_PATH": "OFF"
             }
         },
         {
@@ -44,48 +49,50 @@
                 }
             }
         },
-        
+
         {
             "name": "qt6",
-            "description": "Use qt6. Please set environment value Qt6_DIR first",
+            "description": "Use qt6. Please set environment value QT_ROOT first",
+            "hidden": true,
             "inherits": [
                 "base"
             ],
             "cacheVariables": {
-                "QT_DIR": {
-                    "value": "$env{Qt6_DIR}",
+                "QT_ROOT": {
+                    "value": "$env{QT_ROOT}",
                     "type": "PATH"
                 },
-                "Qt6_DIR": {
-                    "value": "$env{Qt6_DIR}",
+                "Qt6_ROOT": {
+                    "value": "$env{QT_ROOT}",
                     "type": "PATH"
-                },
-                "QT_DEBUG_FIND_PACKAGE": "ON"
+                }
             }
         },
         {
             "name": "qt5",
             "description": "Use Qt5(or versions earlier than QT6.5) use OpenSSL1.1 . Please set environment value Qt5_DIR first",
+            "hidden": true,
             "inherits": [
                 "base",
                 "openssl1.1"
             ],
             "cacheVariables": {
-                "QT_DIR": {
-                    "value": "$env{Qt5_DIR}",
+                "QT_ROOT": {
+                    "value": "$env{QT_ROOT}",
                     "type": "PATH"
                 },
-                "Qt5_DIR":  {
-                    "value": "$env{Qt5_DIR}",
+                "Qt5_ROOT": {
+                    "value": "$env{QT_ROOT}",
                     "type": "PATH"
                 }
             }
         },
-        
+
         {
             "name": "x64",
             "hidden": true,
             "binaryDir": "build/x64",
+            "installDir": "build/install/x64",
             "architecture": {
                 "value": "x64"
             }
@@ -94,6 +101,7 @@
             "name": "x86",
             "hidden": true,
             "binaryDir": "build/x86",
+            "installDir": "build/install/x86",
             "architecture": {
                 "value": "Win32"
             }
@@ -111,34 +119,38 @@
         },
         {
             "name": "msvc-x64-qt6",
+            "description": "Please set environment value VCPKG_ROOT, QT_ROOT first",
             "inherits": [
                 "msvc",
-                "qt6",
-                "x64"
+                "x64",
+                "qt6"
             ]
         },
         {
             "name": "msvc-x86-qt6",
+            "description": "Please set environment value VCPKG_ROOT, QT_ROOT first",
             "inherits": [
                 "msvc",
-                "qt6",
-                "x86"
+                "x86",
+                "qt6"
             ]
         },
         {
             "name": "msvc-x64-qt5",
+            "description": "Please set environment value VCPKG_ROOT, Qt5_DIR first",
             "inherits": [
                 "msvc",
-                "qt5",
-                "x64"
+                "x64",
+                "qt5"
             ]
         },
         {
             "name": "msvc-x86-qt5",
+            "description": "Please set environment value VCPKG_ROOT, Qt5_DIR first",
             "inherits": [
                 "msvc",
-                "qt5",
-                "x86"
+                "x86",
+                "qt5"
             ]
         },
 
@@ -149,6 +161,7 @@
         },
         {
             "name": "ninja-qt6",
+            "description": "Please set environment value VCPKG_ROOT, QT_ROOT first",
             "inherits": [
                 "ninja",
                 "qt6"
@@ -156,21 +169,31 @@
         },
         {
             "name": "ninja-qt5",
+            "description": "Please set environment value VCPKG_ROOT, Qt5_DIR first",
             "inherits": [
                 "ninja",
                 "qt5"
             ]
         },
         {
-            "name": "android-arm64-qt6",
-            "description": "android arm64 for qt6, please set environment value ANDROID_NDK_HOME first",
+            "name": "android-arm64-v8a-qt6",
+            "description": "android arm64 for qt6, please set environment value VCPKG_ROOT, QT_ROOT, ANDROID_NDK_HOME first",
             "inherits": [
-                "qt6"
+                "ninja-qt6"
             ],
-            "binaryDir": "build/arm64/qt6",
+            "binaryDir": "build/android-arm64-v8a",
             "cacheVariables": {
+                "CMAKE_MAKE_PROGRAM": "ninja",
                 "ANDROID_ABI": "arm64-v8a",
                 "VCPKG_TARGET_TRIPLET": "arm64-android",
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "value": "$env{QT_ROOT}/lib/cmake/Qt6/qt.toolchain.cmake",
+                    "type": "FILEPATH"
+                },
+                "QT_CHAINLOAD_TOOLCHAIN_FILE": {
+                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                    "type": "FILEPATH"
+                },
                 "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": {
                     "value": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
                     "type": "FILEPATH"
@@ -179,14 +202,23 @@
         },
         {
             "name": "android-x86_64-qt6",
-            "description": "android x86_64 for qt6, please set environment value ANDROID_NDK_HOME first",
+            "description": "android x86_64 for qt6, please set environment value VCPKG_ROOT, QT_ROOT, ANDROID_NDK_HOME first",
             "inherits": [
-                "qt6"
+                "ninja-qt6"
             ],
-            "binaryDir": "build/x86_64/qt6",
+            "binaryDir": "build/android-x86_64",
             "cacheVariables": {
+                "CMAKE_MAKE_PROGRAM": "ninja",
                 "ANDROID_ABI": "x86_64",
                 "VCPKG_TARGET_TRIPLET": "x64-android",
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "value": "$env{QT_ROOT}/lib/cmake/Qt6/qt.toolchain.cmake",
+                    "type": "FILEPATH"
+                },
+                "QT_CHAINLOAD_TOOLCHAIN_FILE": {
+                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                    "type": "FILEPATH"
+                },
                 "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": {
                     "value": "$env{ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake",
                     "type": "FILEPATH"
@@ -236,7 +268,7 @@
                 "rhs": "Windows"
             }
         },
-        
+
         {
             "name": "ninja-qt6",
             "configurePreset": "ninja-qt6",
@@ -245,6 +277,17 @@
         {
             "name": "ninja4-qt5",
             "configurePreset": "ninja-qt5",
+            "configuration": "Release"
+        },
+
+        {
+            "name": "android-arm64-v8a-qt6",
+            "configurePreset": "android-arm64-v8a-qt6",
+            "configuration": "Release"
+        },
+        {
+            "name": "android-x86_64-qt6",
+            "configurePreset": "android-x86_64-qt6",
             "configuration": "Release"
         }
     ],
@@ -273,6 +316,47 @@
                 {
                     "type": "build",
                     "name": "msvc-x86-qt6"
+                }
+            ]
+        },
+
+        {
+            "name": "ninja-qt6",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "ninja-qt6"
+                },
+                {
+                    "type": "build",
+                    "name": "ninja-qt6"
+                }
+            ]
+        },
+
+        {
+            "name": "android-arm64-v8a-qt6",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "android-arm64-v8a-qt6"
+                },
+                {
+                    "type": "build",
+                    "name": "android-arm64-v8a-qt6"
+                }
+            ]
+        },
+        {
+            "name": "android-x86_64-qt6",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "android-x86_64-qt6"
+                },
+                {
+                    "type": "build",
+                    "name": "android-x86_64-qt6"
                 }
             ]
         }

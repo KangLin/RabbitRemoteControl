@@ -724,7 +724,7 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
                                char** username, char** password,
                                char** domain, rdp_auth_reason reason)
 {
-    qCritical(log) << "CConnectFreeRdp::cb_authenticate_ex";
+    qCritical(log) << "CConnectFreeRdp::cb_authenticate_ex. reason:" << reason;
     if(!instance)
         return FALSE;
     rdpContext* pContext = (rdpContext*)instance->context;
@@ -856,7 +856,6 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
 #else
     return cb_authenticate(instance, username, password, domain);
 #endif //#ifdef Q_OS_WINDOWS
-    
 }
 
 //TODO: to be continue!!!

@@ -74,7 +74,7 @@ See: [https://doc.qt.io/qt-5/supported-platforms.html](https://doc.qt.io/qt-5/su
 - [x] Windows 7 SP1 and later
 - [x] Unix/Linux
 - [x] Android
-- [ ] mac os
+- [x] mac os
 - [ ] IPHONE
 - [ ] WINCE
 
@@ -87,8 +87,8 @@ See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.q
 
 |        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
 |--------|:-----:|:--------:|:-----:|:-:|:----:|:---:|
-|vnc     |✓      |✓         |       |   |      |     |
-|RDP     |✓      |✓         |       |   |      |     |
+|vnc     |✓      |✓         |✓      |✓  |      |     |
+|RDP     |✓      |✓         |       |✓  |      |     |
 |Spice   |       |          |       |   |      |     |
 |Scrcpy  |       |          |       |   |      |     |
 |Terminal|       |✓         |       |   |      |     |
