@@ -10,7 +10,7 @@
 #include <QDir>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.Plugin")
 
 CPluginClient::CPluginClient(QObject *parent) : QObject(parent)
 {
@@ -18,7 +18,7 @@ CPluginClient::CPluginClient(QObject *parent) : QObject(parent)
 
 CPluginClient::~CPluginClient()
 {
-    qDebug(Client) << "CPluginClient::~CPluginClient()";
+    qDebug(log) << "CPluginClient::~CPluginClient()";
     if(m_Translator)
         RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
 }

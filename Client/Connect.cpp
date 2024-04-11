@@ -10,7 +10,7 @@
 #include <QTimer>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.Connect")
 
 int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>("KeyboardModifiers");
 int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
@@ -30,7 +30,7 @@ CConnect::CConnect(CConnecter *pConnecter, QObject *parent, bool bDirectConnecti
 
 CConnect::~CConnect()
 {
-    qDebug(Client) << "CConnect::~CConnect()";
+    qDebug(log) << "CConnect::~CConnect()";
 }
 
 int CConnect::SetConnecter(CConnecter* pConnecter)
@@ -187,7 +187,7 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
 
 int CConnect::Connect()
 {
-    qDebug(Client) << "CConnect::Connect()";
+    qDebug(log) << "CConnect::Connect()";
     int nRet = 0;
     nRet = static_cast<int>(OnInit());
     if(nRet < 0) return nRet;
@@ -199,7 +199,7 @@ int CConnect::Connect()
 
 int CConnect::Disconnect()
 {
-    qDebug(Client) << "CConnect::Disconnect()";
+    qDebug(log) << "CConnect::Disconnect()";
     int nRet = 0;
     nRet = OnClean();
     return nRet;
@@ -207,7 +207,7 @@ int CConnect::Disconnect()
 
 void CConnect::slotTimeOut()
 {
-    //qDebug(Client) << "CConnect::slotTimeOut()";
+    //qDebug(log) << "CConnect::slotTimeOut()";
     try {
         // >= 0 : continue. Call interval
         // <  0: error or stop
@@ -217,13 +217,13 @@ void CConnect::slotTimeOut()
             QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
             return;
         }
-        qCritical(Client) << "Process fail:" << nTime;
+        qCritical(log) << "Process fail:" << nTime;
         emit sigError(-1, "Process fail or stop");
     } catch(std::exception e) {
-        qCritical(Client) << "Process fail:" << e.what();
+        qCritical(log) << "Process fail:" << e.what();
         emit sigError(-2, e.what());
     }  catch (...) {
-        qCritical(Client) << "Process fail";
+        qCritical(log) << "Process fail";
         emit sigError(-3, "Process fail");
     }
 
@@ -233,36 +233,36 @@ void CConnect::slotTimeOut()
 
 int CConnect::OnProcess()
 {
-    qWarning(Client) << "Need to implement CConnect::OnProcess()";
+    qWarning(log) << "Need to implement CConnect::OnProcess()";
     return 0;
 }
 
 void CConnect::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
-    qDebug(Client) << "Need to implement CConnect::slotWheelEvent";
+    qDebug(log) << "Need to implement CConnect::slotWheelEvent";
 }
 
 void CConnect::slotMouseMoveEvent(Qt::MouseButtons, QPoint)
 {
-    qDebug(Client) << "Need to implement CConnect::slotMouseMoveEvent";
+    qDebug(log) << "Need to implement CConnect::slotMouseMoveEvent";
 }
 
 void CConnect::slotMousePressEvent(Qt::MouseButtons, QPoint)
 {
-    qDebug(Client) << "Need to implement CConnect::slotMousePressEvent";
+    qDebug(log) << "Need to implement CConnect::slotMousePressEvent";
 }
 
 void CConnect::slotMouseReleaseEvent(Qt::MouseButton, QPoint)
 {
-    qDebug(Client) << "Need to implement CConnect::slotMouseReleaseEvent";
+    qDebug(log) << "Need to implement CConnect::slotMouseReleaseEvent";
 }
 
 void CConnect::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    qDebug(Client) << "Need to implement CConnect::slotKeyPressEvent";
+    qDebug(log) << "Need to implement CConnect::slotKeyPressEvent";
 }
 
 void CConnect::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
-    qDebug(Client) << "Need to implement CConnect::slotKeyReleaseEvent";
+    qDebug(log) << "Need to implement CConnect::slotKeyReleaseEvent";
 }

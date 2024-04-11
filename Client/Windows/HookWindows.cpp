@@ -4,8 +4,8 @@
 
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(clientHookWindows, "Client.Hook.Windows")
-
+static Q_LOGGING_CATEGORY(log, "Client.Hook.Windows")
+    
 CHook* CHook::GetHook(QObject *parent)
 {
     CHookWindows* p = nullptr;
@@ -23,7 +23,7 @@ CHookWindows::CHookWindows(QObject *parent)
 
 CHookWindows::~CHookWindows()
 {
-    qDebug(clientHookWindows) << "CHookWindows::~CHookWindows()";
+    qDebug(log) << "CHookWindows::~CHookWindows()";
     UnRegisterKeyboard();
 }
 
@@ -34,7 +34,7 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
     {
         KBDLLHOOKSTRUCT* hook = reinterpret_cast<KBDLLHOOKSTRUCT*>(lparam);
         /*
-        qDebug(clientHookWindows) << "process vkCode:" << hook->vkCode
+        qDebug(log) << "process vkCode:" << hook->vkCode
                                   << "scanCode:" << hook->scanCode
                                   << "flags:" << hook->flags;//*/
         int key = 0;
@@ -101,7 +101,7 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
                 if(wparam == WM_KEYUP || wparam == WM_SYSKEYUP)
                     emit self->sigKeyReleaseEvent(key, Qt::NoModifier);
                 /*
-                qDebug(clientHookWindows) << "process vkCode:" << hook->vkCode
+                qDebug(log) << "process vkCode:" << hook->vkCode
                                           << "scanCode:" << hook->scanCode
                                           << "flags:" << hook->flags;//*/
                 return 0;

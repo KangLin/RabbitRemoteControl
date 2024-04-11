@@ -4,7 +4,7 @@
 #include <QTimer>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.Plugin.Thread")
 
 CPluginThread::CPluginThread(QObject *parent)
     : QThread(parent)
@@ -12,7 +12,7 @@ CPluginThread::CPluginThread(QObject *parent)
 
 CPluginThread::~CPluginThread()
 {
-    qDebug(Client) << "CConnecterThread::~CConnecterThread()";
+    qDebug(log) << "CConnecterThread::~CConnecterThread()";
 }
 
 /*!
@@ -22,7 +22,7 @@ CPluginThread::~CPluginThread()
  */
 void CPluginThread::run()
 {
-    qDebug(Client) << "CConnecterThread::run() start";
+    qDebug(log) << "CConnecterThread::run() start";
     CManageConnect mc;
     bool check = false;
     check = connect(this, SIGNAL(sigConnect(CConnecterDesktop*)),
@@ -33,5 +33,5 @@ void CPluginThread::run()
     Q_ASSERT(check);
     
     exec();
-    qDebug(Client) << "CConnecterThread::run() end";
+    qDebug(log) << "CConnecterThread::run() end";
 }

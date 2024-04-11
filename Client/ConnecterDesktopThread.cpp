@@ -5,7 +5,7 @@
 #include "ConnectThread.h"
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.Connecter.DesktopThread")
 
 CConnecterDesktopThread::CConnecterDesktopThread(CPluginClient *parent)
     : CConnecter(parent),
@@ -21,8 +21,8 @@ CConnecterDesktopThread::~CConnecterDesktopThread()
         m_pView = nullptr;
     }
     
-    qDebug(Client) << "CConnecterDesktopThread::~CConnecterDesktopThread()";
-    //qDebug() << this << this->metaObject()->className();
+    qDebug(log) << "CConnecterDesktopThread::~CConnecterDesktopThread()";
+    //qDebug(log) << this << this->metaObject()->className();
 }
 
 QWidget *CConnecterDesktopThread::GetViewer()
@@ -37,7 +37,7 @@ CParameterConnecter* CConnecterDesktopThread::GetParameter()
 
 int CConnecterDesktopThread::Connect()
 {
-    qDebug(Client) << "CConnecterDesktopThread::Connect()";
+    qDebug(log) << "CConnecterDesktopThread::Connect()";
     int nRet = 0;
     m_pThread = new CConnectThread(this);
     if(!m_pThread)
@@ -54,7 +54,7 @@ int CConnecterDesktopThread::Connect()
 
 int CConnecterDesktopThread::DisConnect()
 {
-    qDebug(Client) << "CConnecterDesktopThread::DisConnect()";
+    qDebug(log) << "CConnecterDesktopThread::DisConnect()";
     int nRet = 0;
     if(m_pThread)
     {

@@ -4,7 +4,7 @@
 #include <QApplication>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.Hook.Unix")
 
 CHookUnixNativeEventFilter::CHookUnixNativeEventFilter()
 {
@@ -32,7 +32,7 @@ bool CHookUnixNativeEventFilter::nativeEventFilter(const QByteArray &eventType, 
 bool CHookUnixNativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
 #endif
 {
-    qDebug(Client) << "CClient::nativeEventFilter:" << eventType;
+    qDebug(log) << "CClient::nativeEventFilter:" << eventType;
     if (eventType == "xcb_generic_event_t") {
         xcb_generic_event_t* e = static_cast<xcb_generic_event_t *>(message);
         switch (e->response_type & ~0x80) {

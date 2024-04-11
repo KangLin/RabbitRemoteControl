@@ -6,8 +6,6 @@
 #include <QAbstractEventDispatcher>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
-
 CHook* CHook::GetHook(QObject *parent)
 {
     CHookUnix* p = nullptr;

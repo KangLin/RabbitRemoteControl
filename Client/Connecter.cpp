@@ -17,7 +17,7 @@
 #include <QLoggingCategory>
 #include <QInputDialog>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.Connecter.Desktop")
 
 CConnecter::CConnecter(CPluginClient *parent) : QObject(parent),
     m_pPluginClient(parent),
@@ -35,7 +35,7 @@ CConnecter::CConnecter(CPluginClient *parent) : QObject(parent),
 
 CConnecter::~CConnecter()
 {
-    qDebug(Client) << "CConnecter::~CConnecter";
+    qDebug(log) << "CConnecter::~CConnecter";
 }
 
 const QString CConnecter::Id()
@@ -91,8 +91,8 @@ const QString CConnecter::Description()
            + " - " + m_pPluginClient->DisplayName()
 #endif
            + "\n"
-            + tr("Server name: ") + ServerName() + "\n"
-            + tr("Description: ") + m_pPluginClient->Description();
+           + tr("Server name: ") + ServerName() + "\n"
+           + tr("Description: ") + m_pPluginClient->Description();
 }
 
 const QString CConnecter::Protocol() const
@@ -174,7 +174,7 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
         p->setAttribute(Qt::WA_DeleteOnClose);
         nRet = p->exec();
     } else {
-        qCritical(Client) << "The Protocol [" << Protocol() << "] don't settings dialog";
+        qCritical(log) << "The Protocol [" << Protocol() << "] don't settings dialog";
     }
     return nRet;
 }
@@ -184,7 +184,7 @@ int CConnecter::Load(QString szFile)
     Q_ASSERT(!szFile.isEmpty());
     if(szFile.isEmpty())
     {
-        qCritical(Client) << "The load file is empty";
+        qCritical(log) << "The load file is empty";
         return -1;
     }
     QSettings set(szFile, QSettings::IniFormat);
@@ -196,7 +196,7 @@ int CConnecter::Save(QString szFile)
     Q_ASSERT(!szFile.isEmpty());
     if(szFile.isEmpty())
     {
-        qCritical(Client) << "The load file is empty";
+        qCritical(log) << "The load file is empty";
         return -1;
     }    
     QSettings set(szFile, QSettings::IniFormat);
@@ -225,7 +225,7 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
         }
         return 0;
     } else {
-        qCritical(Client) << "The CConnecter is not parameters! please create parameters."
+        qCritical(log) << "The CConnecter is not parameters! please create parameters."
                 "and call SetParameter in the "
                 << metaObject()->className() << "::" << metaObject()->className()
                 << "to set the parameters pointer. "
@@ -280,7 +280,7 @@ QObject* CConnecter::createObject(const QString& className, QObject* parent)
         #endif
     if(QMetaType::UnknownType == type)
     {
-        qCritical(Client) << className << " is QMetaType::UnknownType";
+        qCritical(log) << className << " is QMetaType::UnknownType";
         return nullptr;
     }
     QObject *obj =
@@ -291,7 +291,7 @@ QObject* CConnecter::createObject(const QString& className, QObject* parent)
         #endif
     if(nullptr == obj)
     {
-        qCritical(Client) << "QMetaType::create fail: " << type;
+        qCritical(log) << "QMetaType::create fail: " << type;
         return nullptr;
     }
     //const QMetaObject* metaObj = QMetaType::metaObjectForType(type);
@@ -308,13 +308,13 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
     /*
     if(-1 == obj->metaObject()->indexOfMethod("SetContext"))
     {
-        qCritical(Client) << "The class" << className << "is not method" << "SetContext"
+        qCritical(log) << "The class" << className << "is not method" << "SetContext"
                           << "It must be SetContext and SetConnecter method.";
         Q_ASSERT(false);
     }
     if(-1 == obj->metaObject()->indexOfMethod("SetConnecter"))
     {
-        qCritical(Client) << "The class" << className << "is not method" << "SetConnecter"
+        qCritical(log) << "The class" << className << "is not method" << "SetConnecter"
             << "It must be SetContext and SetConnecter method.";
         Q_ASSERT(false);
     } //*/

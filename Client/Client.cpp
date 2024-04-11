@@ -15,7 +15,7 @@
 #include <QSettings>
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(Client, "Client")
+static Q_LOGGING_CATEGORY(log, "Client")
 
 CClient::CClient(QObject *parent) : QObject(parent),
     m_FileVersion(1)  //TODO: update version it if update data
@@ -43,7 +43,7 @@ CClient::CClient(QObject *parent) : QObject(parent),
 
 CClient::~CClient()
 {
-    qDebug(Client) << "CClient::~CClient()";
+    qDebug(log) << "CClient::~CClient()";
     qApp->installEventFilter(nullptr);
     RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
 
@@ -61,11 +61,11 @@ int CClient::LoadPlugins()
         {
             if(m_Plugins.find(p->Id()) == m_Plugins.end())
             {
-                qInfo(Client) << "Success: Load plugin" << p->Name();
+                qInfo(log) << "Success: Load plugin" << p->Name();
                 AppendPlugin(p);
             }
             else
-                qWarning(Client) << "The plugin" << p->Name() << " is exist.";
+                qWarning(log) << "The plugin" << p->Name() << " is exist.";
         }
     }
 
@@ -123,17 +123,17 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
             {
                 if(m_Plugins.find(p->Id()) == m_Plugins.end())
                 {
-                    qInfo(Client) << "Success: Load plugin"
+                    qInfo(log) << "Success: Load plugin"
                                   << p->Name() << ":" << szPlugins;
                     AppendPlugin(p);
                 }
                 else
-                    qWarning(Client) << "The plugin [" << p->Name() << "] is exist.";
+                    qWarning(log) << "The plugin [" << p->Name() << "] is exist.";
             }
         }else{
             QString szMsg;
             szMsg = "load plugin error: " + loader.errorString();
-            qCritical(Client) << szMsg;
+            qCritical(log) << szMsg;
         }
     }
 
@@ -160,7 +160,7 @@ CConnecter* CClient::CreateConnecter(const QString& id)
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
     {
-        qDebug(Client) << "CreateConnecter id:" << id;
+        qDebug(log) << "CreateConnecter id:" << id;
         CConnecter* p = it.value()->CreateConnecter(id);
         if(p) p->SetParameterClient(&m_ParameterClient);
         return p;
@@ -179,13 +179,13 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
     QString protocol = set.value("Plugin/Protocol").toString();
     QString name = set.value("Plugin/Name").toString();
     Q_UNUSED(name);
-    qDebug(Client) << "LoadConnecter protocol:" << protocol
+    qDebug(log) << "LoadConnecter protocol:" << protocol
                   << "name:" << name << "id:" << id;
     pConnecter = CreateConnecter(id);
     if(pConnecter)
         pConnecter->Load(szFile);
     else
-        qCritical(Client) << "Don't create connecter:" << protocol;
+        qCritical(log) << "Don't create connecter:" << protocol;
 
     return pConnecter;
 }
@@ -277,7 +277,7 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
 {
     if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())
     {
-        //qDebug(Client) << "eventFilter:" << event;
+        //qDebug(log) << "eventFilter:" << event;
         bool bProcess = false;
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         int key = keyEvent->key();

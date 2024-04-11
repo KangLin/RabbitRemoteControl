@@ -3,14 +3,14 @@
 
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.MangeConnect")
 
 CManageConnect::CManageConnect(QObject *parent) : QObject(parent)
 {}
 
 CManageConnect::~CManageConnect()
 {
-    qDebug(Client) << "CManageConnect::~CManageConnect()";
+    qDebug(log) << "CManageConnect::~CManageConnect()";
     foreach(auto pConnect, m_Connects)
     {
         pConnect->Disconnect();
@@ -21,11 +21,11 @@ CManageConnect::~CManageConnect()
 void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
 {
     int nRet = 0;
-    qDebug(Client) << "CManageConnect::slotConnect()";
+    qDebug(log) << "CManageConnect::slotConnect()";
     CConnect* pConnect = pConnecter->InstanceConnect();
     if(!pConnect)
     {
-        qCritical(Client) << "InstanceConnect fail";
+        qCritical(log) << "InstanceConnect fail";
         emit pConnecter->sigDisconnect();
         return;
     }
@@ -39,7 +39,7 @@ void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
 
 void CManageConnect::slotDisconnect(CConnecterDesktop *pConnecter)
 {
-    qDebug(Client) << "CManageConnect::slotDisconnect()";
+    qDebug(log) << "CManageConnect::slotDisconnect()";
     auto it = m_Connects.find(pConnecter);
     if(m_Connects.end() == it) return;
     CConnect* pConnect = it.value();

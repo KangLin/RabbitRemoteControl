@@ -4,7 +4,7 @@
 
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.Hook")
 
 CHook::CHook(QObject *parent)
     : QObject(parent)
@@ -12,7 +12,7 @@ CHook::CHook(QObject *parent)
 
 CHook::~CHook()
 {
-    qDebug(Client) << "CHook::~CHook()";
+    qDebug(log) << "CHook::~CHook()";
 }
 
 #ifdef Q_OS_ANDROID

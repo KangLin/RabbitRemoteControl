@@ -2,7 +2,7 @@
 
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.Plugin.Thread")
 
 CPluginClientThread::CPluginClientThread(QObject *parent) : CPluginClient(parent),
     m_pThread(nullptr)
@@ -20,7 +20,7 @@ CPluginClientThread::CPluginClientThread(QObject *parent) : CPluginClient(parent
 
 CPluginClientThread::~CPluginClientThread()
 {
-    qDebug(Client) << "CPluginClientThread::~CPluginClientThread";
+    qDebug(log) << "CPluginClientThread::~CPluginClientThread";
     if(m_pThread)
         m_pThread->quit(); // The don't deleteLater().
                            // because of it is connected finished signal
@@ -28,13 +28,13 @@ CPluginClientThread::~CPluginClientThread()
 
 CConnecter *CPluginClientThread::CreateConnecter(const QString &szProtocol)
 {
-    qDebug(Client) << "CPluginClientThread::CreateConnecter()" << szProtocol;
+    qDebug(log) << "CPluginClientThread::CreateConnecter()" << szProtocol;
     CConnecterDesktop* pConnecter = OnCreateConnecter(szProtocol);
     if(!pConnecter) return nullptr;
     
     if(nullptr == m_pThread)
     {
-        qDebug(Client) << "The thread is nullptr";
+        qDebug(log) << "The thread is nullptr";
         return nullptr;
     }
 

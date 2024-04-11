@@ -9,7 +9,7 @@
 #include <QCursor>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(Client)
+static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 
 CFrmViewer::CFrmViewer(QWidget *parent) : QWidget(parent)
 {
@@ -27,7 +27,7 @@ CFrmViewer::CFrmViewer(QWidget *parent) : QWidget(parent)
 
 CFrmViewer::~CFrmViewer()
 {
-    qDebug(Client) << "CFrmViewer::~CFrmViewer()";
+    qDebug(log) << "CFrmViewer::~CFrmViewer()";
 }
 
 QRectF CFrmViewer::GetAspectRationRect()
@@ -62,7 +62,7 @@ void CFrmViewer::paintDesktop()
 {
     if(this->isHidden())
     {
-        qDebug(Client) << "CFrmViewer is hidden";
+        qDebug(log) << "CFrmViewer is hidden";
         return;
     }
 
@@ -110,20 +110,20 @@ void CFrmViewer::paintDesktop()
 
 void CFrmViewer::paintEvent(QPaintEvent *event)
 {
-    //qqDebug(Client) << "CFrmViewer::paintEvent";
+    //qqDebug(log) << "CFrmViewer::paintEvent";
     Q_UNUSED(event)
     if(this->isHidden())
     {
         qDebug() << "CFrmViewer is hidden";
         return;
     }
-    
+
     paintDesktop();
 }
 
 int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
 {
-    //qDebug(Client) << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
+    //qDebug(log) << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
 
     switch (m_AdaptWindows) {
     case Auto:
@@ -168,7 +168,7 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
 #endif
 
     if(TranslationMousePoint(pos, pos)) return;
-    //qDebug(Client) << "CFrmViewer::mousePressEvent" << event->button() << event->buttons() << pos;
+    //qDebug(log) << "CFrmViewer::mousePressEvent" << event->button() << event->buttons() << pos;
     emit sigMousePressEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -182,7 +182,7 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
         event->pos();
 #endif
     if(TranslationMousePoint(pos, pos)) return;
-    //qDebug(Client) << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons() << pos;
+    //qDebug(log) << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons() << pos;
     emit sigMouseReleaseEvent(event->button(), QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -216,14 +216,14 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
-    //qDebug(Client) << "CFrmViewer::keyPressEvent" << event;
+    //qDebug(log) << "CFrmViewer::keyPressEvent" << event;
     emit sigKeyPressEvent(event->key(), event->modifiers());
     event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
-    //qDebug(Client) << "CFrmViewer::keyReleaseEvent" << event;
+    //qDebug(log) << "CFrmViewer::keyReleaseEvent" << event;
     emit sigKeyReleaseEvent(event->key(), event->modifiers());
     event->accept();
 }
@@ -312,7 +312,7 @@ void CFrmViewer::slotSetName(const QString& szName)
 
 void CFrmViewer::slotUpdateRect(const QImage& image)
 {
-    //qDebug(Client) << "void CFrmViewer::slotUpdateRect(const QImage& image)" << image;
+    //qDebug(log) << "void CFrmViewer::slotUpdateRect(const QImage& image)" << image;
     QPainter painter(&m_Desktop);
     painter.drawImage(image.rect(), image);
     update();
@@ -320,17 +320,17 @@ void CFrmViewer::slotUpdateRect(const QImage& image)
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
-    //qDebug(Client) << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)" << r << image;
+    //qDebug(log) << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)" << r << image;
     if(m_Desktop.isNull() || m_Desktop.rect() == r)
     {
         m_Desktop = image;
-        //qDebug(Client) << "Update image size is same old image size";
+        //qDebug(log) << "Update image size is same old image size";
     }
     else
     {
         QPainter painter(&m_Desktop);
         painter.drawImage(r, image, r);
-        //qDebug(Client) << "Update image size isn't same old image size" << r << image;
+        //qDebug(log) << "Update image size isn't same old image size" << r << image;
     }
 
     update();

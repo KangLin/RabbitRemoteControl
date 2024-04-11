@@ -9,7 +9,7 @@
 #include "RabbitCommonTools.h"
 #include "DlgInputPassword.h"
 
-Q_DECLARE_LOGGING_CATEGORY(Client);
+static Q_LOGGING_CATEGORY(log, "Client.Parameter.Connecter")
 
 CParameterConnecter::CParameterConnecter(QObject *parent)
     : CParameter(parent),
@@ -335,7 +335,7 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
             && PasswordSum(password.toStdString(), key) == sum)
             return 0;
 
-    qDebug(Client) << "Password don't dencode or sum is error";
+    qDebug(log) << "Password don't dencode or sum is error";
     CDlgInputPassword d(GetParameterClient()->GetViewPassowrd(), szTitle);
     if(QDialog::Accepted != d.exec())
     {
