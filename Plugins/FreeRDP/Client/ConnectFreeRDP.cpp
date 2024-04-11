@@ -78,11 +78,11 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     m_ClientEntryPoints.settings = m_pParameter->m_pSettings;
     m_ClientEntryPoints.GlobalInit = cbGlobalInit;
 	m_ClientEntryPoints.GlobalUninit = cbGlobalUninit;
-	m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
     m_ClientEntryPoints.ClientNew = cbClientNew;
     m_ClientEntryPoints.ClientFree = cbClientFree;
     m_ClientEntryPoints.ClientStart = cbClientStart;
 	m_ClientEntryPoints.ClientStop = cbClientStop;
+    m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
 
     rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
 	if(p)
@@ -228,7 +228,7 @@ int CConnectFreeRDP::OnProcess()
         if(freerdp_shall_disconnect(pRdpContext->instance))
 #endif
         {
-            qCritical(log) << "Abort connect";
+            qCritical(log) << "freerdp_shall_disconnect false";
             nRet = -7;
         }
     } while(false);
@@ -428,13 +428,32 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     settings = instance->context->settings;
 	channels = context->channels;
 
+    /* Optional OS identifier sent to server */
 #if defined (Q_OS_WIN)
-    settings->OsMajorType = OSMAJORTYPE_WINDOWS;
-    settings->OsMinorType = OSMINORTYPE_WINDOWS_NT;
-#endif
-#if defined (Q_OS_UNIX)
-	settings->OsMajorType = OSMAJORTYPE_UNIX;
-	settings->OsMinorType = OSMINORTYPE_NATIVE_XSERVER;
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_WINDOWS))
+        return FALSE;
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_WINDOWS_NT))
+        return FALSE;
+#elif defined(Q_OS_ANDROID)
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_ANDROID))
+        return FALSE;
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
+        return FALSE;
+#elif defined(Q_OS_IOS)
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_IOS))
+        return FALSE;
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
+        return FALSE;
+#elif defined (Q_OS_UNIX)
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_UNIX))
+        return FALSE;
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_NATIVE_XSERVER))
+        return FALSE;
+#else
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_UNSPECIFIED))
+        return FALSE;
+    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
+        return FALSE;
 #endif
 
     // Subscribe channel event
@@ -443,9 +462,11 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	PubSub_SubscribeChannelDisconnected(instance->context->pubSub,
 	                                    OnChannelDisconnectedEventHandler);
 
+#if FreeRDP_VERSION_MAJOR < 3
 	if (!freerdp_client_load_addins(channels, instance->context->settings))
 		return FALSE;
-
+#endif
+    
     if (pThis->m_pParameter->GetUser().isEmpty()
         && !freerdp_settings_get_bool(settings, FreeRDP_CredentialsFromStdin)
         && !freerdp_settings_get_bool(settings, FreeRDP_SmartcardLogon))
@@ -466,7 +487,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
             qCritical(log) << "auth-only, but no password set. Please provide one.";
             return FALSE;
         }
-#if FreeRDP_VERSION_MAJOR > 2
+#if FreeRDP_VERSION_MAJOR >= 3
         if (!freerdp_settings_set_bool(settings, FreeRDP_DeactivateClientDecoding, TRUE))
             return FALSE;
 #endif
@@ -590,15 +611,12 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     update->DesktopResize = cb_desktop_resize;
 
 	update->PlaySound = cb_play_bell_sound;
-//	update->SetKeyboardIndicators = xf_keyboard_set_indicators;
+
+	update->SetKeyboardIndicators = cb_keyboard_set_indicators;
 //	update->SetKeyboardImeStatus = xf_keyboard_set_ime_status;
     
 //    freerdp_keyboard_init_ex(instance->context->settings->KeyboardLayout,
 //	                         instance->context->settings->KeyboardRemappingList);
-    
-    //TODO: clipboard
-//	if (!(xfc->clipboard = xf_clipboard_new(xfc)))
-//		return FALSE;
 
 //	if (!(xfc->xfDisp = xf_disp_new(xfc)))
 //	{
@@ -1319,6 +1337,7 @@ BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 
 BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_UPDATE *play_sound)
 {
+    qDebug(log) << "CConnectFreeRDP::cb_play_bell_sound";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
 	WINPR_UNUSED(play_sound);
@@ -1336,6 +1355,27 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
     QSound::play(szFile);
 #endif
 	return TRUE;
+}
+
+/* This function is called to update the keyboard indicator LED */
+BOOL CConnectFreeRDP::cb_keyboard_set_indicators(rdpContext *context, UINT16 led_flags)
+{
+    qDebug(log) << "CConnectFreeRDP::cb_keyboard_set_indicators";
+    ClientContext* pContext = (ClientContext*)context;
+    CConnectFreeRDP* pThis = pContext->pThis;
+
+    int state = Qt::Key_unknown;
+
+    if (led_flags & KBD_SYNC_NUM_LOCK)
+        state |= Qt::Key_NumLock;
+    if (led_flags & KBD_SYNC_CAPS_LOCK)
+        state |= Qt::Key_CapsLock;
+    if (led_flags & KBD_SYNC_SCROLL_LOCK)
+        state |= Qt::Key_ScrollLock;
+
+    //TODO: set keyboard indicators
+
+    return TRUE;
 }
 
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17

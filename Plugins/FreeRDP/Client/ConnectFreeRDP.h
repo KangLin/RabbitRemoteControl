@@ -106,6 +106,7 @@ public:
     static BOOL cb_desktop_resize(rdpContext* context);
     static BOOL cb_play_bell_sound(rdpContext* context,
                                    const PLAY_SOUND_UPDATE* play_sound);
+    static BOOL cb_keyboard_set_indicators(rdpContext* context, UINT16 led_flags);
 
     static UINT32 GetImageFormat(QImage::Format format);
     static const char* GetTitle(freerdp *instance);
