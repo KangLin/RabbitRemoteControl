@@ -30,7 +30,7 @@ jobs:
 
     env:
       RabbitRemoteControl_VERSION: v0.0.26
-      VCPKGGITCOMMITID: 0bc3f04da6cb8ae1dbd5e2051032c596bb03cffa
+      VCPKGGITCOMMITID: 501cb01e517ee5689577bb01ba8bd1b4c1041a53
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
@@ -301,13 +301,13 @@ jobs:
               -DBUILD_LibVNCServer=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
               -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake \
-              -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp
+              -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
+              -DBUILD_FREERDP=ON
           cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target all
           APK_FILE=`find . -name "android-*.apk"`
           cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
 
       - name: Build RabbitRemoteControl with cmake preset
-        if: false
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon

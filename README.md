@@ -36,7 +36,8 @@ Author: Kang Lin <kl222@126.com>
 -----------------------------------------------------------------------
 
 ## Introduction
-Rabbit Remote Control is a cross-platform, multi-protocol remote control software.
+
+Rabbit Remote Control is a open-source, cross-platform, multi-protocol remote control software.
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
@@ -88,7 +89,7 @@ See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.q
 |        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
 |--------|:-----:|:--------:|:-----:|:-:|:----:|:---:|
 |vnc     |✓      |✓         |✓      |✓  |      |     |
-|RDP     |✓      |✓         |       |✓  |      |     |
+|RDP     |✓      |✓         |……     |✓  |      |     |
 |Spice   |       |          |       |   |      |     |
 |Scrcpy  |       |          |       |   |      |     |
 |Terminal|       |✓         |       |   |      |     |
