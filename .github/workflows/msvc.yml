@@ -20,20 +20,20 @@ jobs:
             qt_modules: qtscxml qtmultimedia qtimageformats qtwebchannel qtwebsockets qtwebview qtpositioning qtserialport
             CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
-            VCPKG_PLATFORM_TOOLSET: v142
+            VCPKG_PLATFORM_TOOLSET: v143
             
           - qt_version: 5.15.2
             qt_arch: win64_msvc2019_64
             CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
-            VCPKG_PLATFORM_TOOLSET: v142
+            VCPKG_PLATFORM_TOOLSET: v143
             VCPKG_OVERLAY_PORTS: "vcpkg/ports"
 
           - qt_version: 5.12.12
             qt_arch: win32_msvc2017
             CMAKE_GENERATOR_PLATFORM: Win32
             VCPKG_TARGET_TRIPLET: x86-windows
-            VCPKG_PLATFORM_TOOLSET: v141
+            VCPKG_PLATFORM_TOOLSET: v143
             VCPKG_OVERLAY_PORTS: "vcpkg/ports"
 
     runs-on: windows-latest
@@ -42,7 +42,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      VCPKGGITCOMMITID: 501cb01e517ee5689577bb01ba8bd1b4c1041a53
+      VCPKGGITCOMMITID: 007aaced1a9d3245e28a2ba9395dca88ea890db1
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
