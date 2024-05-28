@@ -943,7 +943,6 @@ int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    Q_UNUSED(event);
     qDebug(log) << "MainWindow::closeEvent()";
     
     if(m_Parameter.GetSaveMainWindowStatus())
