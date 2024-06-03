@@ -106,7 +106,7 @@ else()
 endif()
 
 if(WIN32)
-    install(FILES Resource/icons/green/ico/app.ico
+    install(FILES Resource/icons/rabbit-green/ico/app.ico
         DESTINATION .
             COMPONENT Application)
 endif()
@@ -120,7 +120,7 @@ if(UNIX AND NOT ANDROID)
     INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
             DESTINATION ${CMAKE_INSTALL_BINDIR}
                 COMPONENT Application)
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/green/svg/app.svg
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
         DESTINATION share/pixmaps
             COMPONENT Application
         RENAME ${APP_ICON_NAME}.svg)

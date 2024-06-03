@@ -1,4 +1,7 @@
 debian/files
+debian/rabbitremotecontrol
+debian/.debhelper/
+
 # C++ objects and libs
 *.slo
 *.lo
@@ -13,6 +16,9 @@ debian/files
 *.json
 *.tmp
 *.bkp
+
+*.log
+*.substvars
 
 # Qt-es
 object_script.*.Release
