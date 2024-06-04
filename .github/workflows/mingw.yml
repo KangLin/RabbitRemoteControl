@@ -147,7 +147,7 @@ jobs:
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibDataChannel (
-            git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
+            git clone -b v0.21.1 https://github.com/paullouisageneau/libdatachannel.git
             cd libdatachannel
             git submodule update --init --recursive
             cmake -E make_directory build
