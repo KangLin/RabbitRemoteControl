@@ -117,7 +117,7 @@ override_dh_auto_configure:
 override_dh_auto_build:
 #	dh_auto_build --parallel -B$(BUILD_DIR)
 	cmake  --build $(BUILD_DIR) --config Release \
-		--parallel $(if "`cat /proc/cpuinfo |grep 'cpu cores' |wc -l`", `cat /proc/cpuinfo |grep 'cpu cores' |wc -l`, 1)
+		--parallel $(if "`cat /proc/cpuinfo |grep 'processor' |wc -l`", `cat /proc/cpuinfo |grep 'processor' |wc -l`, 1)
 
 override_dh_auto_install:
 	cmake --install $(BUILD_DIR) --config Release --strip \
