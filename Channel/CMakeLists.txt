@@ -17,6 +17,22 @@ list(APPEND CHANNEL_SOURCE_FILES
     Channel.cpp
     )
 
+find_package(libssh)
+if(libssh_FOUND)
+    list(APPEND CHANNEL_DEFINITIONS HAVE_LIBSSH)
+    list(APPEND CHANNEL_SRC_LIBS ssh)
+    list(APPEND CHANNEL_SRC_INCLUDE_DIRS
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/SSH)
+    list(APPEND CHANNEL_INSTALL_HEADER_FILES
+        SSH/ChannelSSHTunnel.h
+        SSH/ParameterSSH.h
+        )
+    list(APPEND CHANNEL_SOURCE_FILES
+        SSH/ChannelSSHTunnel.cpp
+        SSH/ParameterSSH.cpp
+        )
+endif()
+
 find_package(LibDataChannel)
 if(LibDataChannel_FOUND)
     list(APPEND CHANNEL_DEFINITIONS HAVE_ICE)
@@ -27,6 +43,8 @@ if(LibDataChannel_FOUND)
     else()
         set(libdatachannel_lib LibDataChannel::datachannel)
     endif()
+    list(APPEND CHANNEL_SRC_INCLUDE_DIRS
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ICE)
     list(APPEND CHANNEL_SRC_LIBS ${libdatachannel_lib})
     list(APPEND CHANNEL_SOURCE_FILES
         ICE/ChannelIce.cpp
@@ -85,7 +103,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
         ${CHANNEL_UIS} ${CHANNEL_RCC_FILES}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ICE
+        ${CHANNEL_SRC_INCLUDE_DIRS}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     INSTALL_HEADER_FILES ${CHANNEL_INSTALL_HEADER_FILES}
     LIBS ${CHANNEL_SRC_LIBS}

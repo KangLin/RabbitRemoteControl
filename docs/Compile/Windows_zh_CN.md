@@ -56,7 +56,9 @@
   + [可选] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [可选] SSH
-  + libssh: libssh: [https://www.libssh.org](https://www.libssh.org)
+  + libssh:
+    - [https://www.libssh.org](https://www.libssh.org)
+    - [libssh API](https://api.libssh.org/stable/index.html)
   + libssh2:
     - [https://www.libssh2.org](libssh2: https://www.libssh2.org/)
     - [https://github.com/libssh2/libssh2](https://github.com/libssh2/libssh2/)

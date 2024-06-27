@@ -5,6 +5,7 @@
   - 在 CConnect 中增加 OnInitReturnValue
   - 修改 Debian 打包
   - 使用 [RabbitCommon v2.2.0](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.0)
+  - 增加 SSH 隧道
 
 ### v0.0.26
 - 使用 RabbitCommon v2

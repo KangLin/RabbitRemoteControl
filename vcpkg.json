@@ -42,7 +42,8 @@
       "dependencies": [
         "libjpeg-turbo",
         "libpng",
-        "pixman"
+        "pixman",
+        "libssh"
       ]
     }
   }

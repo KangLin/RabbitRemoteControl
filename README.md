@@ -115,6 +115,7 @@ Legend:
 - [x] RDP(Remote desktop protocol): [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] SSH: [https://www.rfc-editor.org/info/rfc4251](https://www.rfc-editor.org/info/rfc4251)
+  - [libssh](https://api.libssh.org/stable/index.html)
 - [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [x] Terminal
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)

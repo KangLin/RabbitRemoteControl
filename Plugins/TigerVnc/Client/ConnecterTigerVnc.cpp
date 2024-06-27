@@ -6,7 +6,8 @@
 #include <QRegularExpression>
 #include "PluginClient.h"
 
-Q_DECLARE_LOGGING_CATEGORY(TigerVNC)
+static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Connecter")
+
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginClient *parent)
     : CConnecterDesktop(parent)
 {
@@ -15,7 +16,7 @@ CConnecterTigerVnc::CConnecterTigerVnc(CPluginClient *parent)
 
 CConnecterTigerVnc::~CConnecterTigerVnc()
 {
-    qDebug(TigerVNC) << "CConnecterTigerVnc::~CConnecterTigerVnc()";
+    qDebug(log) << "CConnecterTigerVnc::~CConnecterTigerVnc()";
 }
 
 qint16 CConnecterTigerVnc::Version()

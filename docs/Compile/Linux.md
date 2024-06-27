@@ -89,7 +89,9 @@ Prior versions don't have CMake support.
   + [OPTIONAL] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
 - [OPTIONAL] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
 - [OPTIONAL] [SSH]
-  + libssh: [https://www.libssh.org](https://www.libssh.org/)
+  + libssh:
+    - [https://www.libssh.org](https://www.libssh.org/)
+    - [libssh API](https://api.libssh.org/stable/index.html)
   + libssh2:
     - [https://www.libssh2.org](https://www.libssh2.org/)
     - [https://github.com/libssh2/libssh2](https://github.com/libssh2/libssh2/)

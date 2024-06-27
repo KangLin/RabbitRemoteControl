@@ -5,6 +5,7 @@
   - add OnInitReturnValue in CConnect
   - Modify debian package
   - Use [RabbitCommon v2.2.0](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.0)
+  - Add SSH tunnel
 
 ### v0.0.26
 - Use RabbitCommon v2

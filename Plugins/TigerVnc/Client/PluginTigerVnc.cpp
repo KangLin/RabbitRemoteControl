@@ -8,7 +8,7 @@
 #include <QApplication>
 #include "RabbitCommonDir.h"
 
-Q_LOGGING_CATEGORY(TigerVNC, "VNC.Tiger")
+static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Plugin")
 
 static bool initlog = false;
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
@@ -33,7 +33,7 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
 CPluginTigerVnc::~CPluginTigerVnc()
 {
     //! [Clean resource]
-    qDebug(TigerVNC) << "CPluginTigerVnc::~CPluginTigerVnc()";
+    qDebug(log) << "CPluginTigerVnc::~CPluginTigerVnc()";
     //! [Clean resource]
 }
 

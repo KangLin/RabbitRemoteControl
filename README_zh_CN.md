@@ -114,6 +114,7 @@
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] 终端
 - [x] SSH: [https://www.rfc-editor.org/info/rfc4251](https://www.rfc-editor.org/info/rfc4251)
+  - [libssh](https://api.libssh.org/stable/index.html)
 - [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [ ] FTP（文件传输协议）: [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)

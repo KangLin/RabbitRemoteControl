@@ -94,6 +94,7 @@ private:
     int SetChannelConnect(QSharedPointer<CChannel> channel);
     
     int IceInit();
+    int SSHInit();
 };
 
 #endif // CCONNECTTIGERVNC_H

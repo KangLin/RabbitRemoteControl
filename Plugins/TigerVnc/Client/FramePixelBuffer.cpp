@@ -3,7 +3,7 @@
 #include "FramePixelBuffer.h"
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(TigerVNC)
+static Q_LOGGING_CATEGORY(log, "VNC.Tiger")
 
 CFramePixelBuffer::CFramePixelBuffer(int width, int height, QObject *parent)
     : QObject(parent),
@@ -18,7 +18,7 @@ CFramePixelBuffer::CFramePixelBuffer(int width, int height, QObject *parent)
 
 CFramePixelBuffer::~CFramePixelBuffer()
 {
-    qDebug(TigerVNC) << "CFramePixelBuffer::~CFramePixelBuffer()";
+    qDebug(log) << "CFramePixelBuffer::~CFramePixelBuffer()";
 }
 
 const QImage& CFramePixelBuffer::getImage()

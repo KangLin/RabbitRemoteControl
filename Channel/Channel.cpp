@@ -70,7 +70,9 @@ void CChannel::close()
 bool CChannel::open(QTcpSocket *pSocket, OpenMode mode)
 {
     Q_ASSERT(pSocket);
-    if(m_pSocket) m_pSocket->deleteLater();
+    if(m_pSocket && m_pSocket != pSocket)
+        m_pSocket->deleteLater();
+
     m_pSocket = pSocket;
     bool check = false;
     check = connect(m_pSocket, SIGNAL(readyRead()),
