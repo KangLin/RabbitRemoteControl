@@ -1,7 +1,64 @@
 #include "ChannelSSHTunnel.h"
 #include <QLoggingCategory>
+#include <QThread>
+#include <QDateTime>
 
 static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel")
+static Q_LOGGING_CATEGORY(logSSH, "Channel.SSH.log")
+
+class CChannelThread: public QThread
+{
+public:
+    explicit CChannelThread(CChannelSSHTunnel* pChannel);
+    ~CChannelThread();
+protected:
+    virtual void run() override;
+private:
+    CChannelSSHTunnel* m_pChannel;
+};
+
+CChannelThread::CChannelThread(CChannelSSHTunnel *pChannel): QThread()
+{
+    m_pChannel = pChannel;
+}
+
+CChannelThread::~CChannelThread()
+{
+    qDebug(log) << "CChannelThread::~CChannelThread()";
+}
+
+void CChannelThread::run()
+{
+    m_pChannel->run();
+}
+
+void CChannelSSHTunnel::run()
+{
+    int nRet = 0;
+
+    while (ssh_channel_is_open(m_Channel)
+           && !ssh_channel_is_eof(m_Channel)
+           && isOpen()
+           ) {
+        
+        struct timeval timeout = {10, 0};
+        ssh_channel channels[2];
+        channels[0] = m_Channel;
+        channels[1] = NULL;
+        nRet = ssh_channel_select(channels, NULL, NULL, &timeout);
+        if (SSH_OK == nRet || SSH_AGAIN == nRet) {
+            emit readyRead();
+            continue;
+        }
+        
+        QString szErr = "Select error:" + QString::number(nRet) + " " + ssh_get_error(m_Session);
+        qCritical(log) << szErr;
+        emit sigError(nRet, "select exit");
+        break;
+    }
+    
+    qDebug(log) << "The thread exit";
+}
 
 CChannelSSHTunnel::CChannelSSHTunnel(
         QSharedPointer<CParameterSSH> parameter,
@@ -16,23 +73,46 @@ CChannelSSHTunnel::CChannelSSHTunnel(
 
 qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
 {
-    if(!m_Channel || !ssh_channel_is_open(m_Channel))
-        return 0;
-    return ssh_channel_read(m_Channel, data, maxlen, 0);
+    if(!m_Channel || !ssh_channel_is_open(m_Channel)) {
+        qCritical(log) << "The channel is not open";
+        return -1;
+    }
+    return ssh_channel_read_nonblocking(m_Channel, data, maxlen, 0);
 }
 
 qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
 {
-    if(!m_Channel || !ssh_channel_is_open(m_Channel))
-        return 0;
+    if(!m_Channel || !ssh_channel_is_open(m_Channel)) {
+        qCritical(log) << "The channel is not open";
+        return -1;
+    }
     return ssh_channel_write(m_Channel, data, len);
+}
+
+void CChannelSSHTunnel::cb_log(ssh_session session,
+                               int priority,
+                               const char *message,
+                               void *userdata)
+{
+    switch (priority) {
+    case SSH_LOG_WARN:
+        qWarning(logSSH) << message;
+        break;
+    case SSH_LOG_INFO:
+        qInfo(logSSH) << message;
+    case SSH_LOG_DEBUG:
+    case SSH_LOG_TRACE:
+        qDebug(logSSH) << message;
+    default:
+        break;
+    }   
 }
 
 bool CChannelSSHTunnel::open(OpenMode mode)
 {
     int nRet = 0;
     QString szErr;
-
+    
     m_Session = ssh_new();
     if(NULL == m_Session)
     {
@@ -47,6 +127,24 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             qCritical(log) << "The parameter is null";
         }
         Q_ASSERT(m_Parameter);
+            
+        struct ssh_callbacks_struct cb = {
+            .userdata = this,
+            .log_function = cb_log
+        };
+        ssh_callbacks_init(&cb);
+        ssh_set_callbacks(m_Session, &cb);
+        
+        /*
+            SSH_LOG_NOLOG: No logging
+            SSH_LOG_WARNING: Only warnings
+            SSH_LOG_PROTOCOL: High level protocol information
+            SSH_LOG_PACKET: Lower level protocol information, packet level
+            SSH_LOG_FUNCTIONS: Every function path The default is SSH_LOG_NOLOG.
+         */
+        int verbosity = SSH_LOG_NOLOG;
+        ssh_options_set(m_Session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
+        
         if(!m_Parameter->GetServer().isEmpty()){
             nRet = ssh_options_set(m_Session, SSH_OPTIONS_HOST,
                                    m_Parameter->GetServer().toStdString().c_str());
@@ -116,9 +214,12 @@ bool CChannelSSHTunnel::open(OpenMode mode)
 
 void CChannelSSHTunnel::close()
 {
+    qDebug(log) << "CChannelSSHTunnel::close()";
+
     if(m_Channel) {
-        if(ssh_channel_is_open(m_Channel))
+        if(ssh_channel_is_open(m_Channel)) {
             ssh_channel_close(m_Channel);
+        }
         ssh_channel_free(m_Channel);
         m_Channel = NULL;
     }
@@ -377,7 +478,7 @@ int CChannelSSHTunnel::forward(ssh_session session)
         m_Channel = NULL;
 
         QString szErr;
-        szErr = tr("SSH failed: ") + ssh_get_error(session);
+        szErr = tr("SSH failed: open forward.") + ssh_get_error(session);
         szErr += "(" + m_Parameter->GetRemoteHost()
                 + ":" + QString::number(m_Parameter->GetRemotePort()) + ")";
         qCritical(log) << szErr;
@@ -386,9 +487,17 @@ int CChannelSSHTunnel::forward(ssh_session session)
     }
 
     qInfo(log) << "Connected:"
-               << m_Parameter->GetRemoteHost() + ":" + m_Parameter->GetRemotePort()
+               << m_Parameter->GetRemoteHost()
+                      + ":" + QString::number(m_Parameter->GetRemotePort())
                << "with ssh turnnel:"
-               << m_Parameter->GetServer() + ":" + m_Parameter->GetPort();
+               << m_Parameter->GetServer()
+                      + ":" + QString::number(m_Parameter->GetPort());
+    
     emit sigConnected();
+    
+    CChannelThread* thread = new CChannelThread(this);
+    Q_ASSERT(connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater())));
+    thread->start();
+
     return nRet;
 }

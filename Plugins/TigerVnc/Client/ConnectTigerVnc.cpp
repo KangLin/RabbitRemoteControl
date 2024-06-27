@@ -123,10 +123,11 @@ CConnect::OnInitReturnValue CConnectTigerVnc::OnInit()
     int nRet = 0;
     
     //*TODO: remove
+#ifdef HAVE_LIBSSH
     nRet = SSHInit();
     if(nRet) return OnInitReturnValue::Fail; // error
     return OnInitReturnValue::NotUseOnProcess;//*/
-    
+#endif
     if(m_pPara->GetIce())
         nRet = IceInit();
     else
@@ -261,6 +262,7 @@ int CConnectTigerVnc::SocketInit()
 
 int CConnectTigerVnc::SSHInit()
 {
+#ifdef HAVE_LIBSSH
     QSharedPointer<CParameterSSH> parameter(new CParameterSSH());
     auto channel = QSharedPointer<CChannelSSHTunnel>(new CChannelSSHTunnel(parameter));
     if(!channel) {
@@ -280,6 +282,7 @@ int CConnectTigerVnc::SSHInit()
         emit sigShowMessage(tr("Error"), szMsg, QMessageBox::Critical);
         return -2;
     }
+#endif
     return 0;
 }
 

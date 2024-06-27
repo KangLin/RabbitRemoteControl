@@ -5,6 +5,7 @@
 
 #include <Channel.h>
 #include <libssh/libssh.h>
+#include <libssh/callbacks.h>
 #include <ParameterSSH.h>
 #include <QSharedPointer>
 
@@ -30,7 +31,8 @@ public:
 public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
-
+    
+    void run();
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
     virtual qint64 writeData(const char *data, qint64 len) override;
@@ -51,6 +53,11 @@ private:
         const QString szPrivateKeyFile,
         const QString szPassphrase);
     int forward(ssh_session session);
+
+    static void cb_log(ssh_session session,
+                       int priority,
+                       const char *message,
+                       void *userdata);
 
 private:
     ssh_session m_Session;

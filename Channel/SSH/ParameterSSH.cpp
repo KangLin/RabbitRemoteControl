@@ -12,15 +12,11 @@ CParameterSSH::CParameterSSH(QObject *parent)
     m_nSourcePort(0)
 {
     //TODO: remove it
-    
     m_szServer = "192.168.11.28";
     m_szPublicKeyFile = "/home/l/.ssh/id_rsa.pub";
     m_szPrivateKeyFile = "/home/l/.ssh/id_rsa";
-    /*m_szRemoteHost = "localhost";
+    m_szRemoteHost = "localhost";
     m_nRemotePort = 5906;
-    
-    
-//*/
 }
 
 int CParameterSSH::Load(QSettings &set)
