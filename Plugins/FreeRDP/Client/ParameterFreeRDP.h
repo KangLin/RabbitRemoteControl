@@ -15,11 +15,11 @@ class CParameterFreeRDP : public CParameterConnecter
     Q_PROPERTY(QStringList RedirectionDrives READ GetRedirectionDrives WRITE SetRedirectionDrives NOTIFY sigRedirectionDrivesChanged)
 
 public:
-    explicit CParameterFreeRDP(QObject *parent = nullptr);
+    explicit CParameterFreeRDP(CParameterConnecter *parent = nullptr);
 
     // CParameter interface
-    virtual int Load(QSettings &set) override;
-    virtual int Save(QSettings &set) override;
+    virtual int onLoad(QSettings &set) override;
+    virtual int onSave(QSettings &set) override;
 
     rdpSettings* m_pSettings;
 

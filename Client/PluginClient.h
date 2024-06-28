@@ -105,13 +105,12 @@ private:
      * 
      */
     virtual CConnecter* CreateConnecter(const QString& szProtocol) = 0;
+    friend class CClient;
 
 private:
     QSharedPointer<QTranslator> m_Translator;
     int InitTranslator();
-    
-    friend class CClient;
-    
+
     CPluginThread* m_pThread;
 };
 

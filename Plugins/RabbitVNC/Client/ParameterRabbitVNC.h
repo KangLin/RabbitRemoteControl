@@ -7,11 +7,11 @@ class CParameterRabbitVNC : public CParameterConnecter
 {
     Q_OBJECT
 public:
-    explicit CParameterRabbitVNC(QObject *parent = nullptr);
+    explicit CParameterRabbitVNC(CParameterConnecter *parent = nullptr);
     
 public:
-    virtual int Load(QSettings &set) override;
-    virtual int Save(QSettings &set) override;
+    virtual int onLoad(QSettings &set) override;
+    virtual int onSave(QSettings &set) override;
     
     /*!
      * \brief Check whether the parameters are complete

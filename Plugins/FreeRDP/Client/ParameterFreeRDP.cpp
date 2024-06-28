@@ -1,7 +1,8 @@
 #include "ParameterFreeRDP.h"
 #include <QSettings>
 
-CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnecter(parent),
+CParameterFreeRDP::CParameterFreeRDP(CParameterConnecter *parent)
+    : CParameterConnecter(parent),
     m_pSettings(nullptr),
     m_nReconnectInterval(0),
     m_bShowVerifyDiaglog(true),
@@ -41,9 +42,9 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent) : CParameterConnecter(pare
                       <<"1920×1200";
 }
 
-int CParameterFreeRDP::Load(QSettings &set)
+int CParameterFreeRDP::onLoad(QSettings &set)
 {
-    CParameterConnecter::Load(set);
+    CParameterConnecter::onLoad(set);
 
     Q_ASSERT(m_pSettings);
 
@@ -84,9 +85,9 @@ int CParameterFreeRDP::Load(QSettings &set)
     return 0;
 }
 
-int CParameterFreeRDP::Save(QSettings &set)
+int CParameterFreeRDP::onSave(QSettings &set)
 {
-    CParameterConnecter::Save(set);
+    CParameterConnecter::onSave(set);
 
     set.setValue("FreeRDP/Domain", GetDomain());
     set.setValue("FreeRDP/Width", freerdp_settings_get_uint32(

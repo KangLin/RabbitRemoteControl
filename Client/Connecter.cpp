@@ -72,8 +72,8 @@ const QString CConnecter::Id()
 const QString CConnecter::Name()
 {
     QString szName;
-    if(GetParameter() && GetParameter()->m_pParameterClient
-        && GetParameter()->m_pParameterClient->GetShowProtocolPrefix())
+    if(GetParameter() && GetParameter()->GetParameterClient()
+        && GetParameter()->GetParameterClient()->GetShowProtocolPrefix())
         szName = Protocol() + ":";
 
     if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
@@ -137,8 +137,8 @@ void CConnecter::slotSetServerName(const QString& szName)
 
 QString CConnecter::ServerName()
 {
-    if(GetParameter() && GetParameter()->m_pParameterClient
-        && GetParameter()->m_pParameterClient->GetShowIpPortInName())
+    if(GetParameter() && GetParameter()->GetParameterClient()
+        && GetParameter()->GetParameterClient()->GetShowIpPortInName())
     {
         return GetParameter()->GetHost()
                + ":" + QString::number(GetParameter()->GetPort());
@@ -212,7 +212,7 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
 {
     if(GetParameter())
     {
-        GetParameter()->m_pParameterClient = pPara;
+        GetParameter()->SetParameterClient(pPara);
         if(pPara)
         {
             GetParameter()->SetSavePassword(pPara->GetSavePassword());

@@ -11,8 +11,9 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Connecter")
 
-CParameterConnecter::CParameterConnecter(QObject *parent)
+CParameterConnecter::CParameterConnecter(CParameterConnecter *parent)
     : CParameter(parent),
+      m_Parent(parent),
       m_pParameterClient(nullptr),
       m_bShowServerName(true),
       m_nPort(0),
@@ -28,7 +29,14 @@ CParameterConnecter::CParameterConnecter(QObject *parent)
 
 CParameterClient* CParameterConnecter::GetParameterClient()
 {
+    if(m_Parent) return m_Parent->GetParameterClient();
     return m_pParameterClient;
+}
+
+int CParameterConnecter::SetParameterClient(CParameterClient *p)
+{
+    m_pParameterClient = p;
+    return 0;
 }
 
 bool CParameterConnecter::GetCheckCompleted()
@@ -247,7 +255,7 @@ void CParameterConnecter::SetProxyPassword(const QString &password)
     SetModified(true);
 }
 
-int CParameterConnecter::Load(QSettings &set)
+int CParameterConnecter::onLoad(QSettings &set)
 {
     SetName(set.value("Name", GetName()).toString());
     SetServerName(set.value("ServerName", GetServerName()).toString());
@@ -282,7 +290,7 @@ int CParameterConnecter::Load(QSettings &set)
     return 0;
 }
 
-int CParameterConnecter::Save(QSettings &set)
+int CParameterConnecter::onSave(QSettings &set)
 {
     set.setValue("Name", GetName());
     set.setValue("ServerName", GetServerName());

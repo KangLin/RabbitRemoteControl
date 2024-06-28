@@ -360,7 +360,7 @@ protected:
     const CPluginClient* m_pPluginClient;
 
 private:
-    friend CClient;
+    friend class CClient;
     QString m_szServerName;
 
     // The owner is a derived class of this class

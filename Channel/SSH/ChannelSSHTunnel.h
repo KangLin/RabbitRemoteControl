@@ -8,6 +8,7 @@
 #include <libssh/callbacks.h>
 #include <ParameterSSH.h>
 #include <QSharedPointer>
+#include "channel_export.h"
 
 /*!
  * \~chinese
@@ -19,7 +20,7 @@
  * \~
  * \ingroup LIBAPI_CHANNEL
  */
-class CChannelSSHTunnel : public CChannel
+class CHANNEL_EXPORT CChannelSSHTunnel : public CChannel
 {
     Q_OBJECT
 

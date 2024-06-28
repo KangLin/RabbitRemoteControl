@@ -19,6 +19,26 @@ CParameterSSH::CParameterSSH(QObject *parent)
     m_nRemotePort = 5906;
 }
 
+CParameterSSH::CParameterSSH(const CParameterSSH &c)
+{
+    m_szServer = c.m_szServer;
+    m_nPort = c.m_nPort;
+    m_szUser = c.m_szUser;
+    m_szPassword = c.m_szPassword;
+    
+    m_nAuthenticationMethod = c.m_nAuthenticationMethod;
+    m_PublicKeyHashType = c.m_PublicKeyHashType;
+    m_szPublicKeyFile = c.m_szPublicKeyFile;
+    m_szPrivateKeyFile = c.m_szPrivateKeyFile;
+    m_szPassphrase = c.m_szPassphrase;
+    
+    m_szRemoteHost = c.m_szRemoteHost;
+    m_nRemotePort = c.m_nRemotePort;
+    
+    m_szSourceHost = c.m_szSourceHost;
+    m_nSourcePort = c.m_nSourcePort;
+}
+
 int CParameterSSH::Load(QSettings &set)
 {
     set.beginGroup("SSH/Tunnel");

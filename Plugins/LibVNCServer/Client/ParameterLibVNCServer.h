@@ -7,11 +7,11 @@ class CParameterLibVNCServer : public CParameterConnecter
 {
     Q_OBJECT
 public:
-    explicit CParameterLibVNCServer(QObject *parent = nullptr);
+    explicit CParameterLibVNCServer(CParameterConnecter *parent = nullptr);
     
     // CParameterConnecter interface
-    virtual int Load(QSettings &set) override;
-    virtual int Save(QSettings &set) override;
+    virtual int onLoad(QSettings &set) override;
+    virtual int onSave(QSettings &set) override;
         
     enum class emVncProxy {
         UltraVncRepeater = (int) emProxy::User + 1

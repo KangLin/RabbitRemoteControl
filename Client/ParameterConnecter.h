@@ -28,15 +28,47 @@ class CConnecter;
  *    don't set it.
  *
  * \~chinese
- * \brief 连接参数接口。它包含基本参数。此类仅在插件内有效。
- *        应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
+ * \brief
+ *  连接参数接口。此类仅在插件内有效。
+ *  - 应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
+ *  - 插件通过 CConnecterDesktopThread::SetParameter 访问
+ *  
  * \note
  *  - 此接口仅由插件派生实现和使用。
  *  - 如果它或其派生类需要 CParameterClient 。
- *    请在 CConnecter 的派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
- *    默认会自动为它设置 CParameterClient 。详见: CClient::CreateConnecter 。
- *    如果参数不需要 CParameterClient ，那请在 CConnecter 派生类
- *    重载 CConnecter::SetParameterClient 不设置 CParameterClient 。
+ *    - 请在 CConnecter 的派生类的构造函数中实例化 CParameterConnecter 或其派生类，
+ *      并调用 CConnecter::SetParameter 设置参数指针。
+ *    - 默认会自动为它设置 CParameterClient 。详见: CClient::CreateConnecter 。
+ *    - 如果参数不需要 CParameterClient ，那请在 CConnecter 派生类
+ *    - 重载 CConnecter::SetParameterClient 不设置 CParameterClient 。
+ *
+ *
+ *  例如：
+ *  连接参数包括以下几种类型：
+ *  - 基本参数 (class CParameterBase : public CParameterConnecter)
+ *  - 网络参数 (class CParameterNet : public CParameterConnecter)
+ *  - 视频参数 (class CParameterVideo : public CParameterConnecter)
+ *  - 音频参数 (class CParameterAudio : public CParameterConnecter)
+ *  
+ *  其中 CParameterBase 它需要 CFrmParameterClient ，其它的类型则不需要。
+ *  那么连接参数可以是以上类型的集合：
+ *  
+ *  class CParameterConnect : public CParameterConnecter
+ *  {
+ *  public:
+ *      CParameterConnect::CParameterConnect(CParameterConnecter *parent = nullptr);
+ *      
+ *      CParameterBase m_Base;
+ *      CParameterNet m_Net;
+ *      CParameterVideo m_Video;
+ *      CParameterAudio m_Audio;
+ *  };
+ *
+ *  CParameterConnect::CParameterConnect(CParameterConnecter *parent = nullptr)
+ *   : CParameterConnecter(parent),
+ *     m_Base(this), // 需要 CFrmParameterClient 在这里初始化，并且需要设置参数 this
+ *     m_Video()     // 需要 CFrmParameterClient 在这里初始化，则不需要设置参数
+ *  {}
  *
  * \~
  * \see CClient::CreateConnecter CConnecter::CConnecter
@@ -64,12 +96,13 @@ class CLIENT_EXPORT CParameterConnecter : public CParameter
     Q_PROPERTY(QString ProxyPassword READ GetProxyPassword WRITE SetProxyPassword)
     
 public:
-    explicit CParameterConnecter(QObject *parent = nullptr);
-
-    virtual int Load(QSettings &set) override;
-    virtual int Save(QSettings &set) override;
+    /*!
+     * \param parent 如果需要 CParameterClient ，则设置 parent
+     */
+    explicit CParameterConnecter(CParameterConnecter *parent = nullptr);
 
     CParameterClient* GetParameterClient();
+    int SetParameterClient(CParameterClient* p);
 
     /*!
      * \brief Check whether the parameters are complete
@@ -139,6 +172,9 @@ Q_SIGNALS:
     void sigShowServerNameChanged();
     
 protected:
+    virtual int onLoad(QSettings &set) override;
+    virtual int onSave(QSettings &set) override;
+    
     QByteArray PasswordSum(const std::string &password, const std::string &key);
     int LoadPassword(const QString &szTitle, const QString &szKey,
                      QString &password, QSettings &set);
@@ -146,12 +182,12 @@ protected:
                      QSettings &set, bool bSave = false);
 
 private:
-    friend CConnecter;
-
+    CParameterConnecter* m_Parent;
     /*!
      * \see CClient::CreateConnecter CConnecter::SetParameterClient
      */
     CParameterClient* m_pParameterClient;
+
     QString m_szName;
     QString m_szServerName;
     bool m_bShowServerName;

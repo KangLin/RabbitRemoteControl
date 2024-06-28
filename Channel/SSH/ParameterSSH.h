@@ -12,6 +12,8 @@ class CParameterSSH : public QObject
 public:
     explicit CParameterSSH(QObject *parent = nullptr);
 
+    CParameterSSH(const CParameterSSH& c);
+    
     virtual int Load(QSettings &set);
     virtual int Save(QSettings &set);
 

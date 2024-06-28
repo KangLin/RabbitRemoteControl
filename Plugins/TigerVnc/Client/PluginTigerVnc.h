@@ -28,8 +28,8 @@ public:
     virtual const QString Description() const override;
     virtual const QString Protocol() const override;
     virtual const QIcon Icon() const override;
-
-protected:
+    
+private:
     virtual CConnecterDesktop* OnCreateConnecter(const QString& szProtocol) override;
 };
 

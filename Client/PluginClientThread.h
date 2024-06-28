@@ -30,10 +30,10 @@ class CLIENT_EXPORT CPluginClientThread : public CPluginClient
 public:
     explicit CPluginClientThread(QObject *parent = nullptr);
     virtual ~CPluginClientThread();
+
 private:
     virtual CConnecter* CreateConnecter(const QString &szProtocol) override;
 
-protected:
     /*!
      * \brief Create Connecter
      * \param szProtocol

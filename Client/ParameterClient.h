@@ -46,15 +46,16 @@ class CLIENT_EXPORT CParameterClient : public CParameter
 public:
     explicit CParameterClient(QObject *parent = nullptr);
     virtual ~CParameterClient();
-
+    
+protected:
     /*!
      * \see CClient::LoadSettings
      */
-    virtual int Load(QSettings &set) override;
+    virtual int onLoad(QSettings &set) override;
     /*!
      * \see CClient::SaveSettings
      */
-    virtual int Save(QSettings &set) override;
+    virtual int onSave(QSettings &set) override;
 
 public:
     bool GetHookKeyboard() const;

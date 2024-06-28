@@ -13,8 +13,7 @@
 static Q_LOGGING_CATEGORY(log, "Client.Plugin")
 
 CPluginClient::CPluginClient(QObject *parent) : QObject(parent)
-{
-}
+{}
 
 CPluginClient::~CPluginClient()
 {

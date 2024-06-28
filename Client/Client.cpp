@@ -150,6 +150,7 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
 
 int CClient::AppendPlugin(CPluginClient *p)
 {
+    if(!p) return -1;
     m_Plugins.insert(p->Id(), p);
     p->InitTranslator();
     return 0;

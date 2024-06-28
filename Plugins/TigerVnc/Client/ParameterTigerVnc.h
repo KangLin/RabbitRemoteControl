@@ -7,12 +7,10 @@ class CParameterTigerVnc : public CParameterConnecter
 {
     Q_OBJECT
 public:
-    explicit CParameterTigerVnc(QObject *parent = nullptr);
+    explicit CParameterTigerVnc(CParameterConnecter *parent = nullptr);
     
 public:
-    virtual int Load(QSettings &set) override;
-    virtual int Save(QSettings &set) override;
-    
+
     /*!
      * \brief Check whether the parameters are complete
      *  to decide whether to open the parameter dialog 
@@ -92,7 +90,11 @@ public:
     
     const QString &GetTurnPassword() const;
     void SetTurnPassword(const QString &newTurnPassword);
-    
+
+protected:
+    virtual int onLoad(QSettings &set) override;
+    virtual int onSave(QSettings &set) override;
+
 private:
     QString szServerName;
 

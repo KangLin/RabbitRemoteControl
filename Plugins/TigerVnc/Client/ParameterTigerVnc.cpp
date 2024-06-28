@@ -1,7 +1,8 @@
 #include "ParameterTigerVnc.h"
 #include "rfb/encodings.h"
 
-CParameterTigerVnc::CParameterTigerVnc(QObject *parent) : CParameterConnecter(parent)
+CParameterTigerVnc::CParameterTigerVnc(CParameterConnecter *parent)
+    : CParameterConnecter(parent)
 {
     SetPort(5900);
     SetShared(true);
@@ -22,9 +23,9 @@ CParameterTigerVnc::CParameterTigerVnc(QObject *parent) : CParameterConnecter(pa
     SetTurnPort(3748);
 }
 
-int CParameterTigerVnc::Load(QSettings &set)
+int CParameterTigerVnc::onLoad(QSettings &set)
 {
-    int nRet = CParameterConnecter::Load(set);
+    int nRet = CParameterConnecter::onLoad(set);
 
     SetShared(set.value("TigerVNC/Shared", GetShared()).toBool());
     SetBufferEndRefresh(set.value("TigerVNC/BufferEndRefresh",
@@ -70,9 +71,9 @@ int CParameterTigerVnc::Load(QSettings &set)
     return nRet;
 }
 
-int CParameterTigerVnc::Save(QSettings &set)
+int CParameterTigerVnc::onSave(QSettings &set)
 {
-    int nRet = CParameterConnecter::Save(set);
+    int nRet = CParameterConnecter::onSave(set);
     set.setValue("TigerVNC/Shared", GetShared());
     set.setValue("TigerVNC/BufferEndRefresh", GetBufferEndRefresh());
     set.setValue("TigerVNC/SupportsDesktopResize", GetSupportsDesktopResize());
