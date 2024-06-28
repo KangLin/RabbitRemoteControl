@@ -229,8 +229,17 @@ QList<QWidget*> CClient::GetSettingsWidgets(QWidget* parent)
     QList<QWidget*> lstWidget;
 
     QWidget* p = new CFrmParameterClient(&m_ParameterClient, parent);
-    if(p)
+    if(p) {
+        int idx = p->metaObject()->indexOfSlot("slotAccept()");
+        if(-1 == idx) {
+            QString szErr = "Class ";
+            szErr += p->metaObject()->className();
+            szErr += " hasn't slot slotAccept(), please add it.";
+            Q_ASSERT_X(false, "Client", szErr.toStdString().c_str());
+        }
+
         lstWidget.push_back(p);
+    }
     return lstWidget;
 }
 
