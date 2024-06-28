@@ -2,6 +2,7 @@
 #define CPARAMETERTIGERVNC_H
 
 #include "ParameterConnecter.h"
+#include "ParameterNet.h"
 
 class CParameterTigerVnc : public CParameterConnecter
 {
@@ -10,6 +11,8 @@ public:
     explicit CParameterTigerVnc(CParameterConnecter *parent = nullptr);
     
 public:
+    
+    CParameterNet m_Net;
 
     /*!
      * \brief Check whether the parameters are complete
@@ -96,6 +99,7 @@ protected:
     virtual int onSave(QSettings &set) override;
 
 private:
+
     QString szServerName;
 
     bool m_bShared;

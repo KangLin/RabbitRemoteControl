@@ -23,7 +23,6 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     FrmViewer.h
     Connecter.h
     Client.h
-    ManageConnect.h
     PluginClient.h
     PluginClientThread.h
     ConnecterDesktopThread.h
@@ -31,6 +30,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     Parameter.h
     ParameterConnecter.h
     ParameterClient.h
+    ParameterNet.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -38,6 +38,7 @@ list(APPEND CLIENT_HEADER_FILES
     Connect.h
     ConnectThread.h
     PluginThread.h
+    ManageConnect.h
     DlgInputPassword.h
     Hook.h
     FrmParameterClient.h
@@ -58,6 +59,7 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterConnecter.cpp
     ParameterClient.cpp
     FrmParameterClient.cpp
+    ParameterNet.cpp
     DlgInputPassword.cpp
     Hook.cpp
     )

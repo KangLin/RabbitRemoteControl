@@ -298,7 +298,7 @@ int CParameterConnecter::onSave(QSettings &set)
     set.setValue("Host", GetHost());
     set.setValue("Port", GetPort());
     set.setValue("User", GetUser());
-    SavePassword("Password", GetPassword(), set, true);
+    SavePassword("Password", GetPassword(), set, GetSavePassword());
     set.setValue("OnlyView", GetOnlyView());
     set.setValue("LocalCursor", GetLocalCursor());
     set.setValue("Clipboard", GetClipboard());
@@ -364,9 +364,7 @@ int CParameterConnecter::SavePassword(const QString &szKey,
                                     const QString &password,
                                     QSettings &set, bool bSave)
 {
-    if(bSave)
-        set.setValue("SavePassword", GetSavePassword());
-    if(!GetSavePassword())
+    if(!bSave)
     {
         set.remove(szKey);
         set.remove(szKey + "_sum");

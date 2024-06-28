@@ -53,20 +53,20 @@ void CDlgSettingsTigerVnc::on_pushButton_clicked()
         m_pPara->SetIce(false);
     }
     
-    m_pPara->SetHost(ui->leServer->text());
-    m_pPara->SetPort(ui->spPort->value());
-    m_pPara->SetName(ui->leName->text());
-    m_pPara->SetUser(ui->leUserName->text());
-    m_pPara->SetPassword(ui->lePassword->text());
+    m_pPara->m_Net.SetHost(ui->leServer->text());
+    m_pPara->m_Net.SetPort(ui->spPort->value());
+    m_pPara->m_Net.SetName(ui->leName->text());
+    m_pPara->m_Net.SetUser(ui->leUserName->text());
+    m_pPara->m_Net.SetPassword(ui->lePassword->text());
     
     m_pPara->SetOnlyView(ui->cbOnlyView->isChecked());
-    m_pPara->SetSavePassword(ui->cbSave->isChecked());
+    m_pPara->m_Net.SetSavePassword(ui->cbSave->isChecked());
     m_pPara->SetShared(ui->cbShared->isChecked());
     m_pPara->SetBufferEndRefresh(!ui->cbRealTimeUpdate->isChecked());
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
     m_pPara->SetSupportsDesktopResize(ui->cbResizeWindows->isChecked());
     m_pPara->SetClipboard(ui->cbClipboard->isChecked());
-    m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
+    m_pPara->m_Net.SetShowServerName(ui->cbShowServerName->isChecked());
     
     // Compress
     m_pPara->SetAutoSelect(ui->cbCompressAutoSelect->isChecked());
@@ -170,22 +170,22 @@ void CDlgSettingsTigerVnc::showEvent(QShowEvent *event)
         ui->gpIce->setEnabled(false);
     }
 
-    ui->leServer->setText(m_pPara->GetHost());
-    ui->spPort->setValue(m_pPara->GetPort());
+    ui->leServer->setText(m_pPara->m_Net.GetHost());
+    ui->spPort->setValue(m_pPara->m_Net.GetPort());
     ui->lePeerUser->setText(m_pPara->GetPeerUser());
 
-    ui->leName->setText(m_pPara->GetName());
-    ui->leUserName->setText(m_pPara->GetUser());
-    ui->lePassword->setText(m_pPara->GetPassword());
+    ui->leName->setText(m_pPara->m_Net.GetName());
+    ui->leUserName->setText(m_pPara->m_Net.GetUser());
+    ui->lePassword->setText(m_pPara->m_Net.GetPassword());
     ui->pbShow->setEnabled(m_pPara->GetParameterClient()->GetViewPassowrd());
-    ui->cbSave->setChecked(m_pPara->GetSavePassword());
+    ui->cbSave->setChecked(m_pPara->m_Net.GetSavePassword());
     ui->lePassword->setEnabled(ui->cbSave->isChecked());
     if(ui->cbSave->isChecked())
         ui->lePassword->setPlaceholderText(tr("Input password"));
     else
         ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
-    ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
+    ui->cbShowServerName->setChecked(m_pPara->m_Net.GetShowServerName());
 
     ui->cbShared->setChecked(m_pPara->GetShared());
     ui->cbRealTimeUpdate->setChecked(!m_pPara->GetBufferEndRefresh());
