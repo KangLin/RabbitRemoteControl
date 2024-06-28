@@ -4,8 +4,9 @@
 #include <QObject>
 #include <QSettings>
 #include "libssh/libssh.h"
+#include "channel_export.h"
 
-class CParameterSSH : public QObject
+class CHANNEL_EXPORT CParameterSSH : public QObject
 {
     Q_OBJECT
 
