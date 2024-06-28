@@ -1,6 +1,6 @@
 # author: Kang Lin <kl222@126.com>
 
-# setup rpath to where binary is at.
+# setup RPATH to where binary is at.
 if(APPLE)
     if(PARA_ISEXE)
         SET(INSTALL_RPATH

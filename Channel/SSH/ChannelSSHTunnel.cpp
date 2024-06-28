@@ -127,11 +127,10 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             qCritical(log) << "The parameter is null";
         }
         Q_ASSERT(m_Parameter);
-            
-        struct ssh_callbacks_struct cb = {
-            .userdata = this,
-            .log_function = cb_log
-        };
+
+        struct ssh_callbacks_struct cb;
+        cb.userdata = this;
+        cb.log_function = cb_log;
         ssh_callbacks_init(&cb);
         ssh_set_callbacks(m_Session, &cb);
         
