@@ -35,7 +35,8 @@
                 "QT_DEBUG_FIND_PACKAGE": "ON",
                 "RABBIT_ENABLE_INSTALL_DEPENDENT": "ON",
                 "RABBIT_ENABLE_INSTALL_QT": "ON",
-                "RABBIT_ENABLE_INSTALL_TO_BUILD_PATH": "OFF"
+                "RABBIT_ENABLE_INSTALL_TO_BUILD_PATH": "OFF",
+                "VCPKG_MANIFEST_FEATURES": "freerdp;vnc"
             }
         },
         {
