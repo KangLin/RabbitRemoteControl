@@ -5,6 +5,21 @@
 #include "client_export.h"
 #include "ParameterConnecter.h"
 
+/*!
+ * \~english
+ * \brief The parameter interface. It contains basic network parameters.
+ *        It only valid in plugin.
+ * \note
+ *  - The interface only is implemented and used by plugin.
+ *
+ * \~chinese
+ * \brief
+ *  网络连接参数接口。此类仅在插件内有效。
+ *
+ * \~
+ * \see CParameterConnecter
+ * \ingroup CLIENT_PLUGIN_API
+ */
 class CLIENT_EXPORT CParameterNet
     : public CParameterConnecter
 {
@@ -41,7 +56,7 @@ public:
      */
     void SetSavePassword(bool save);
 
-public:
+protected:
     virtual int onLoad(QSettings &set) override;
     virtual int onSave(QSettings &set) override;
 

@@ -1,8 +1,15 @@
 #include "Parameter.h"
 #include "RabbitCommonDir.h"
 
-CParameter::CParameter(QObject *parent) : QObject(parent), m_bModified(false)
-{}
+CParameter::CParameter(QObject *parent)
+    : QObject(parent),
+    m_bModified(false)
+{
+    CParameter* p = qobject_cast<CParameter*>(parent);
+    if(p) {
+        p->AddMember(this);
+    }
+}
 
 CParameter::~CParameter()
 {}
@@ -32,14 +39,26 @@ int CParameter::Save(QString szFile, bool bForce)
 
 int CParameter::Load(QSettings &set)
 {
-    return onLoad(set);
+    int nRet = 0;
+    foreach (auto p, m_Member) {
+        nRet = p->Load(set);
+        if(nRet) return nRet;
+    }
+    nRet = onLoad(set);
+    return nRet;
 }
 
 int CParameter::Save(QSettings &set, bool bForce)
 {
+    int nRet = 0;
     if(GetModified()) emit sigChanged();
     if(!GetModified() && !bForce) return 0;
-    return onSave(set);
+    foreach (auto p, m_Member) {
+        nRet = p->Save(set);
+        if(nRet) return nRet;
+    }
+    nRet = onSave(set);
+    return nRet;
 }
 
 bool CParameter::CheckCompleted()
@@ -57,5 +76,12 @@ int CParameter::SetModified(bool bModified)
     if(m_bModified == bModified)
         return 0;
     m_bModified = bModified;
+    return 0;
+}
+
+int CParameter::AddMember(CParameter* p)
+{
+    if(!m_Member.contains(p))
+        m_Member.push_back(p);
     return 0;
 }

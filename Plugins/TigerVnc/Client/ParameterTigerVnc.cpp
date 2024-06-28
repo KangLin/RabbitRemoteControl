@@ -30,8 +30,6 @@ int CParameterTigerVnc::onLoad(QSettings &set)
 {
     int nRet = CParameterConnecter::onLoad(set);
     if(nRet) return nRet;
-    nRet = m_Net.onLoad(set);
-    if(nRet) return nRet;
 
     SetShared(set.value("TigerVNC/Shared", GetShared()).toBool());
     SetBufferEndRefresh(set.value("TigerVNC/BufferEndRefresh",
@@ -80,8 +78,6 @@ int CParameterTigerVnc::onLoad(QSettings &set)
 int CParameterTigerVnc::onSave(QSettings &set)
 {
     int nRet = CParameterConnecter::onSave(set);
-    if(nRet) return nRet;
-    nRet = m_Net.onSave(set);
     if(nRet) return nRet;
     
     set.setValue("TigerVNC/Shared", GetShared());

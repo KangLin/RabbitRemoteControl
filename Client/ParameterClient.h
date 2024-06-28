@@ -9,8 +9,9 @@
  * \~english
  * \brief The CParameterClient class
  *        The parameters is valid in the CClient and plugin.
+ *        Plugin accessed via CParameterConnecter::GetParameterClient .
  *        The application cannot access it directly,
- *        it can only be set via CClient::GetSettingsWidgets.
+ *        it can only be set via CClient::GetSettingsWidgets .
  * \note
  *  - The interface only is implemented by CClient and used by plugin.
  *  - If the parameters of connecter ( CParameterConnecter or its derived class ) requires a CParameterClient.
@@ -24,9 +25,10 @@
  * \~chinese
  * \brief 客户端库(CClient)参数接口。它包含客户端库(CClient)的参数。
  *        或者插件需要使用的参数的初始化值。此类仅在客户端库(CClient)和插件内有效。
+ *        插件通过 CParameterConnecter::GetParameterClient 访问。
  *        应用程序不能直接访问，只能通过 CClient::GetSettingsWidgets 进行设置。
  * \note
- *  - 此接口仅由CClient实现，插件使用。
+ *  - 此接口仅由 CClient 实现，插件使用。
  *  - 如果连接参数 ( CParameterConnecter 或其派生类 ) 需要 CParameterClient 。
  *    请在 CConnecter 派生类的构造函数中实例化连接参数，
  *    并调用 CConnecter::SetParameter 设置参数指针。
@@ -35,9 +37,12 @@
  *    那请在 CConnecter 派生类重载 CConnecter::SetParameterClient 不设置它。
  *
  * \~
- * \see CClient::CreateConnecter CConnecter::CConnecter
- *      CConnecter::SetParameterClient CConnecter::SetParameter
+ * \see CClient::CreateConnecter
+ *      CConnecter::CConnecter
+ *      CConnecter::SetParameterClient
+ *      CConnecter::SetParameter
  *      CParameterConnecter
+ * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CParameterClient : public CParameter
 {

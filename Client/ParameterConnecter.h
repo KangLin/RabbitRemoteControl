@@ -71,9 +71,12 @@ class CConnecter;
  *  {}
  *
  * \~
- * \see CClient::CreateConnecter CConnecter::CConnecter
- *      CConnecter::SetParameterClient CConnecter::SetParameter
+ * \see CClient::CreateConnecter
+ *      CConnecter::CConnecter
+ *      CConnecter::SetParameterClient
+ *      CConnecter::SetParameter
  *      CParameterClient
+ * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CParameterConnecter : public CParameter
 {

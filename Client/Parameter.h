@@ -15,7 +15,8 @@
  * \brief 参数接口类
  * \details
  * 参数有以下类型：
- * 1. 仅在插件内有效。应用程序不能直接访问，
+ * 1. 仅在插件内有效。
+ *    应用程序不能直接访问，
  *    应用程序只能通过 CConnecter::OpenDialogSettings 进行设置。
  *    \see CParameterConnecter
  * 2. 在客户端库和插件内有效。
@@ -54,6 +55,18 @@ class CLIENT_EXPORT CParameter : public QObject
     Q_PROPERTY(bool Modified READ GetModified WRITE SetModified FINAL)
 
 public:
+    /*!
+     * \~english
+     * \brief
+     *  This object, or its derivative,
+     *  is a member of another instance of this diagonal,
+     *  and its Load and Save are automatically called
+     * \param parent An instance of this class or its derivative class
+     *
+     * \~chinese
+     * \brief 此对象或者其派生对象作为另一个此对角的实例的成员，则自动调用其 Load 和 Save
+     * \param parent 此类或其派生类的实例
+     */
     explicit CParameter(QObject *parent = nullptr);
     virtual ~CParameter();
 
@@ -91,11 +104,11 @@ public:
 Q_SIGNALS:
     /*!
      * \~chinese 当参数改变时，触发
-     *  通常如果需要，则相应的参数会对应一个改变事件。所以很少需要触发此信号。
+     *  通常如果需要，则相应的参数会对应一个改变事件。所以很少需要连接此信号。
      *
      * \~english emit when the parameter changes
      * Usually if required, the corresponding parameter corresponds to
-     * a change event. So it is rarely necessary to trigger this signal.
+     * a change event. So it is rarely necessary to connect this signal.
      */
     void sigChanged();
 
@@ -123,6 +136,15 @@ protected:
      */
     bool GetModified();
 
+    /*!
+     * \~english Instances of this class and its derived classes are
+     *           members of the instance
+     *
+     * \~chinese
+     * \brief 此类及其派生类的实例做为实例的成员
+     */
+    int AddMember(CParameter* p);
+
 private:
     /*!
      * \~chinese
@@ -131,6 +153,15 @@ private:
      * \brief If false, then don't save when save.
      */
     bool m_bModified;
+
+    /*!
+     * \~english Instances of this class and its derived classes are
+     *           members of the instance
+     *
+     * \~chinese
+     * \brief 此类及其派生类的实例做为实例的成员
+     */
+    QVector<CParameter*> m_Member;
 };
 
 #endif // CPARAMETER_H_KL_2022_07_27
