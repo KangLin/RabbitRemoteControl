@@ -25,8 +25,8 @@
  *  - The parameters of connecter( CParameterConnecter or it's derived class )
  *    use the value of CParameterClient as its initial value. \n
  *    For example, saving a password can be initialized with it.
- *    \snippet Client/ParameterNet.cpp Initialize parameter
- *    \see CParameterNet::onLoad
+ *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
+ *    \see CParameterUser::onLoad
  *
  *
  * \~chinese 客户端参数
@@ -46,8 +46,8 @@
  *  - 连接参数 ( CParameterConnecter 或其派生类 ) 使用 CParameterClient 的值做为其初始值。
  *    请在 CParameterConnecter::onLoad 中初始化。\n
  *    例如：保存密码以 CParameterClient 的成员值做为其初始化值。
- *    \snippet Client/ParameterNet.cpp Initialize parameter
- *    \see CParameterNet::onLoad
+ *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
+ *    \see CParameterUser::onLoad
  *
  * \~
  * \see CClient::CreateConnecter

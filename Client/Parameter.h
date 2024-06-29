@@ -7,6 +7,7 @@
 
 #include <QSettings>
 #include <QString>
+#include <QVector>
 #include "client_export.h"
 
 /*!
@@ -28,8 +29,8 @@
  *
  *      例如：保存密码以 CParameterClient 的成员值做为其初始化值。
  *      请在 CParameterConnecter::onLoad 中初始化。
- *      \snippet Client/ParameterNet.cpp Initialize parameter
- *      \see CParameterNet::onLoad
+ *      \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
+ *      \see CParameterUser::onLoad
  *   3. 同时在应用程序、客户端库和插件内有效。暂时没有使用此类型。
  *
  * \~english
@@ -51,8 +52,8 @@
  *     For example: save the password can use the value of CParameterClient
  *     as the initialization value.
  *     Please initialize in CParameterConnecter::onLoad .
- *     \snippet Client/ParameterNet.cpp Initialize parameter
- *     \see CParameterNet::onLoad
+ *     \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
+ *     \see CParameterUser::onLoad
  *  3. Valid in both the application and the Client and the plugin.
  *     This type is not used at this time.
  * \~

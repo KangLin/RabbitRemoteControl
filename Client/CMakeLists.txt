@@ -30,8 +30,8 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     Parameter.h
     ParameterConnecter.h
     ParameterClient.h
-    ParameterNet.h
-    ParameterSSH.h
+    ParameterCompone/ParameterNet.h
+    ParameterCompone/ParameterUser.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -60,11 +60,16 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterConnecter.cpp
     ParameterClient.cpp
     FrmParameterClient.cpp
-    ParameterNet.cpp
-    ParameterSSH.cpp
+    ParameterCompone/ParameterNet.cpp
+    ParameterCompone/ParameterUser.cpp
     DlgInputPassword.cpp
     Hook.cpp
     )
+
+if(libssh_FOUND)
+    list(APPEND CLIENT_INSTALL_HEADER_FILES ParameterCompone/ParameterSSH.h)
+    list(APPEND CLIENT_SOURCE_FILES ParameterCompone/ParameterSSH.cpp)
+endif()
 
 set(CLIENT_UI_FILES
     DlgInputPassword.ui
@@ -108,6 +113,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${CLIENT_SOURCE_FILES} ${CLIENT_HEADER_FILES} ${CLIENT_UI_FILES}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ParameterCompone
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     INSTALL_HEADER_FILES ${CLIENT_INSTALL_HEADER_FILES}
     LIBS ${CLIENT_LIBS}

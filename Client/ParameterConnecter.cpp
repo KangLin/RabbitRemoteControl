@@ -4,10 +4,10 @@
 #include <QCryptographicHash>
 #include <QInputDialog>
 
-#include "ParameterConnecter.h"
 #include "RabbitCommonEncrypt.h"
 #include "RabbitCommonTools.h"
 #include "DlgInputPassword.h"
+#include "ParameterConnecter.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Connecter")
 
@@ -25,7 +25,8 @@ CParameterConnecter::CParameterConnecter(QObject* parent)
     m_nProxyPort(1080)
 {}
 
-CParameterConnecter::CParameterConnecter(CParameterConnecter *parent, const QString &szPrefix)
+CParameterConnecter::CParameterConnecter(
+    CParameterConnecter *parent, const QString &szPrefix)
     : CParameter(parent, szPrefix),
       m_Parent(parent),
       m_pParameterClient(nullptr),

@@ -59,13 +59,14 @@ int CParameter::Load(QSettings &set)
     if(!GetPrefix().isEmpty())
         set.beginGroup(GetPrefix());
 
-    foreach (auto p, m_Member) {
-        nRet = p->Load(set);
-        if(nRet) break;
-    }
+    nRet = onLoad(set);
 
-    if(!nRet)
-        nRet = onLoad(set);
+    if(!nRet) {
+        foreach (auto p, m_Member) {
+            nRet = p->Load(set);
+            if(nRet) break;
+        }
+    }
 
     if(!GetPrefix().isEmpty())
         set.endGroup();
@@ -81,13 +82,14 @@ int CParameter::Save(QSettings &set, bool bForce)
     if(!GetPrefix().isEmpty())
         set.beginGroup(GetPrefix());
 
-    foreach (auto p, m_Member) {
-        nRet = p->Save(set);
-        if(nRet) break;
-    }
+    nRet = onSave(set);
 
-    if(!nRet)
-        nRet = onSave(set);
+    if(!nRet) {
+        foreach (auto p, m_Member) {
+            nRet = p->Save(set);
+            if(nRet) break;
+        }
+    }
 
     if(!GetPrefix().isEmpty())
         set.endGroup();

@@ -6,7 +6,7 @@
 #ifdef BUILD_QUIWidget
     #include "QUIWidget/QUIWidget.h"
 #endif
-#include "ParameterConnecter.h"
+#include "ParameterNet.h"
 
 #include <QClipboard>
 #include <QApplication>

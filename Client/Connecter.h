@@ -16,11 +16,10 @@
 #include <QMessageBox>
 
 #include "client_export.h"
+#include "ParameterConnecter.h"
 
 class CPluginClient;
 class CConnect;
-class CParameterConnecter;
-class CParameterClient;
 class CClient;
 
 /*!

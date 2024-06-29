@@ -6,9 +6,6 @@
 #pragma once
 
 #include "ParameterClient.h"
-#include <QDataStream>
-
-class CConnecter;
 
 /*!
  * \~chinese
@@ -23,7 +20,7 @@ class CConnecter;
 
 /*!
  * \~english
- * \brief The parameter interface. It contains basic parameters.
+ * \brief the parameters of connecter interface.
  *        It only valid in plugin.
  *        The application cannot access it directly,
  *        it can only be set via CConnecter::OpenDialogSettings.
@@ -39,12 +36,11 @@ class CConnecter;
  *    don't set it.
  *
  * \~chinese
- * \brief
- *  连接参数接口。此类仅在插件内有效。
- *  - 应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
- *  - 插件通过 CConnecterDesktopThread::GetParameter 访问
+ * \brief 连接参数接口。包括基本参数。此类仅在插件内有效。
  *  
  * \note
+ *  - 应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
+ *  - 插件通过 CConnecterDesktopThread::GetParameter 访问
  *  - 此接口仅由插件派生实现和使用。
  *  - 如果它或其派生类需要 CParameterClient 。
  *    - 请在 CConnecter 的派生类的构造函数中实例化 CParameterConnecter 或其派生类，
@@ -54,14 +50,16 @@ class CConnecter;
  *    - 重载 CConnecter::SetParameterClient 不设置 CParameterClient 。
  *
  *
- *  例如：
+ * \details
+ *  连接参数接口。包括基本参数（网络参数等）。可以按参数类型分类建立派生类。
+ *
+ *  例如：\n
  *  连接参数包括以下几种类型：
- *  - 基本参数 (class CParameterBase : public CParameterConnecter)
- *  - 网络参数 (class CParameterNet : public CParameterConnecter)
+ *  - 用户参数 (class CParameterUser : public CParameterConnecter)
  *  - 视频参数 (class CParameterVideo : public CParameterConnecter)
  *  - 音频参数 (class CParameterAudio : public CParameterConnecter)
  *  
- *  其中 CParameterBase 它需要 CFrmParameterClient ，其它的类型则不需要。
+ *  其中 CParameterUser 它需要 CFrmParameterClient ，其它的类型则不需要。
  *
  *  - 那么连接参数可以是以上类型的集合：
  *
@@ -69,23 +67,25 @@ class CConnecter;
  *  class CParameterConnect : public CParameterConnecter
  *  {
  *  public:
- *      CParameterConnect::CParameterConnect(CParameterConnecter *parent = nullptr);
- *      
- *      CParameterBase m_Base;
- *      CParameterNet m_Net;
+ *      explicit CParameterConnect::CParameterConnect(
+ *          CParameterConnecter *parent = nullptr);
+ *
+ *      CParameterUser m_User;
  *      CParameterVideo m_Video;
  *      CParameterAudio m_Audio;
  *  };
  *  \endcode
- *  - 对需要 CFrmParameterClient 的 CParameterNet 使用其构造函数
+ *
+ *  - 对需要 CFrmParameterClient 的 CParameterUser 使用其构造函数
  *    CParameterConnecter(CParameterConnecter *parent, const QString& szPrefix)
  *    进行实例化。
- *  - 对不需要 CFrmParameterClient 的 CParameterNet 使用其默认构造函数
+ *  - 对不需要 CFrmParameterClient 的 CParameterVideo 使用其默认构造函数
  *    CParameterConnecter(QObject *parent = nullptr) 进行实例化。
+ *
  *  \code
  *  CParameterConnect::CParameterConnect(CParameterConnecter *parent = nullptr)
  *   : CParameterConnecter(parent),
- *     m_Base(this, "Host"), // 需要 CFrmParameterClient， 在这里初始化，并且需要设置参数 this
+ *     m_User(this, "Host"), // 需要 CFrmParameterClient， 在这里初始化，并且第一个参数需要设置为 this
  *     m_Video()             // 不需要 CFrmParameterClient， 在这里初始化，则不需要设置参数
  *  {}
  * \endcode
@@ -93,8 +93,8 @@ class CConnecter;
  *  - 连接参数使用 CFrmParameterClient 的值做为其初始值。
  *    请在 CParameterConnecter::onLoad 中初始化。\n
  *    例如：保存密码可以以它为初始化值。
- *    \snippet Client/ParameterNet.cpp Initialize parameter
- *    \see CParameterNet::onLoad CParameterConnecter::GetParameterClient
+ *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
+ *    \see CParameterUser::onLoad
  *
  * \~
  * \see CClient::CreateConnecter
@@ -102,7 +102,7 @@ class CConnecter;
  *      CConnecter::SetParameterClient
  *      CConnecter::SetParameter
  *      CParameterClient
- *      GetParameterClient
+ *      CParameterConnecter::GetParameterClient
  * \ingroup CLIENT_PARAMETER
  */
 class CLIENT_EXPORT CParameterConnecter : public CParameter
@@ -130,7 +130,9 @@ public:
     /*!
      * \param parent 如果需要 CParameterClient ，则设置 parent
      */
-    explicit CParameterConnecter(CParameterConnecter *parent, const QString& szPrefix);
+    explicit CParameterConnecter(
+        CParameterConnecter *parent,
+        const QString& szPrefix = QString());
 
     CParameterClient* GetParameterClient();
     int SetParameterClient(CParameterClient* p);

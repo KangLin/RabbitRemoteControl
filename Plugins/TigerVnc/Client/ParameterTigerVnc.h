@@ -11,7 +11,7 @@ public:
     explicit CParameterTigerVnc(QObject *parent = nullptr);
     
 public:
-    
+
     CParameterNet m_Net;
 
     /*!
