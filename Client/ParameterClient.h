@@ -6,35 +6,48 @@
 #include "Parameter.h"
 
 /*!
- * \~english
- * \brief The CParameterClient class
- *        The parameters is valid in the CClient and plugin.
- *        Plugin accessed via CParameterConnecter::GetParameterClient .
- *        The application cannot access it directly,
- *        it can only be set via CClient::GetSettingsWidgets .
+ * \~english The parameters of client
+ * \details
+ *   - The parameters is valid in the CClient and plugin.
+ *   - Plugin accessed via CParameterConnecter::GetParameterClient .
+ *   - The application cannot access it directly,
+ *     it can only be set via CClient::GetSettingsWidgets .
+ *
  * \note
  *  - The interface only is implemented by CClient and used by plugin.
- *  - If the parameters of connecter ( CParameterConnecter or its derived class ) requires a CParameterClient.
- *    Please instantiate the parameters of connecter
- *    and call CConnecter::SetParameter in the constructor of the CConnecter derived class to set the parameters.
- *    Default set the CParameterClient for the parameters of connecter. See: CClient::CreateConnecter .
- *    If you are sure to the parameter does not need CParameterClient.
- *    please overload the CConnecter::SetParameterClient in the CConnecter derived class.
- *    don't set it.
+ *  - If the parameters of connecter ( CParameterConnecter or it's derived class ) requires a CParameterClient.
+ *    - Please instantiate the parameters of connecter in the constructor of the CConnecter or it's derived class.
+ *    - Call CConnecter::SetParameter to set the parameters.
+ *    - Default set the CParameterClient for the parameters of connecter. See: CClient::CreateConnecter .
+ *    - If you are sure to the parameter does not need CParameterClient.
+ *      please overload the CConnecter::SetParameterClient in the CConnecter derived class.
+ *      don't set it.
+ *  - The parameters of connecter( CParameterConnecter or it's derived class )
+ *    use the value of CParameterClient as its initial value. \n
+ *    For example, saving a password can be initialized with it.
+ *    \snippet Client/ParameterNet.cpp Initialize parameter
+ *    \see CParameterNet::onLoad
  *
- * \~chinese
- * \brief 客户端库(CClient)参数接口。它包含客户端库(CClient)的参数。
- *        或者插件需要使用的参数的初始化值。此类仅在客户端库(CClient)和插件内有效。
- *        插件通过 CParameterConnecter::GetParameterClient 访问。
- *        应用程序不能直接访问，只能通过 CClient::GetSettingsWidgets 进行设置。
+ *
+ * \~chinese 客户端参数
+ * \details
+ * - 此参数仅在客户端和插件中使用。
+ * - 插件通过 CParameterConnecter::GetParameterClient 访问。
+ * - 应用程序不能直接访问，只能通过 CClient::GetSettingsWidgets 进行设置。
+ *
  * \note
- *  - 此接口仅由 CClient 实现，插件使用。
+ *  - 此接口仅由 CClient 实现，插件和客户端（ CClient ) 使用。
  *  - 如果连接参数 ( CParameterConnecter 或其派生类 ) 需要 CParameterClient 。
- *    请在 CConnecter 派生类的构造函数中实例化连接参数，
- *    并调用 CConnecter::SetParameter 设置参数指针。
- *    默认会自动为连接参数设置 CParameterClient 。详见: CClient::CreateConnecter 。
- *    如果参数不需要 CParameterClient ，
- *    那请在 CConnecter 派生类重载 CConnecter::SetParameterClient 不设置它。
+ *    - 请在 CConnecter 派生类的构造函数中实例化连接参数，
+ *    - 调用 CConnecter::SetParameter 设置参数指针。
+ *    - 默认会自动为连接参数设置 CParameterClient 。详见: CClient::CreateConnecter 。
+ *    - 如果参数不需要 CParameterClient ，
+ *      那请在 CConnecter 派生类重载 CConnecter::SetParameterClient 不设置它。
+ *  - 连接参数 ( CParameterConnecter 或其派生类 ) 使用 CParameterClient 的值做为其初始值。
+ *    请在 CParameterConnecter::onLoad 中初始化。\n
+ *    例如：保存密码以 CParameterClient 的成员值做为其初始化值。
+ *    \snippet Client/ParameterNet.cpp Initialize parameter
+ *    \see CParameterNet::onLoad
  *
  * \~
  * \see CClient::CreateConnecter
@@ -42,7 +55,7 @@
  *      CConnecter::SetParameterClient
  *      CConnecter::SetParameter
  *      CParameterConnecter
- * \ingroup CLIENT_PLUGIN_API
+ * \ingroup CLIENT_PARAMETER
  */
 class CLIENT_EXPORT CParameterClient : public CParameter
 {

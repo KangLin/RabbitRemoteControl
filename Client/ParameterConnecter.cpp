@@ -11,8 +11,22 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Connecter")
 
-CParameterConnecter::CParameterConnecter(CParameterConnecter *parent)
+CParameterConnecter::CParameterConnecter(QObject* parent)
     : CParameter(parent),
+    m_Parent(nullptr),
+    m_pParameterClient(nullptr),
+    m_bShowServerName(true),
+    m_nPort(0),
+    m_bSavePassword(false),
+    m_bOnlyView(false),
+    m_bLocalCursor(true),
+    m_bClipboard(true),
+    m_eProxyType(emProxy::No),
+    m_nProxyPort(1080)
+{}
+
+CParameterConnecter::CParameterConnecter(CParameterConnecter *parent, const QString &szPrefix)
+    : CParameter(parent, szPrefix),
       m_Parent(parent),
       m_pParameterClient(nullptr),
       m_bShowServerName(true),

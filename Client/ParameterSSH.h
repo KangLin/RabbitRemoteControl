@@ -7,11 +7,17 @@
 #include "ParameterConnecter.h"
 #include "ParameterChannelSSH.h"
 
+/*!
+ * \brief The CParameterSSH class
+ *
+ * \~
+ * \ingroup CLIENT_PARAMETER_COMPONE
+ */
 class CParameterSSH : public CParameterConnecter
 {
     Q_OBJECT
 public:
-    explicit CParameterSSH(CParameterConnecter* parent);
+    explicit CParameterSSH(CParameterConnecter* parent, const QString& szPrefix = QString());
 
     CParameterChannelSSH m_Channel;
 

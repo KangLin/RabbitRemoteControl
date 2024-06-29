@@ -1,9 +1,9 @@
 #include "ParameterTigerVnc.h"
 #include "rfb/encodings.h"
 
-CParameterTigerVnc::CParameterTigerVnc(CParameterConnecter *parent)
+CParameterTigerVnc::CParameterTigerVnc(QObject *parent)
     : CParameterConnecter(parent),
-    m_Net(this)
+    m_Net(this, "Host")
 {
     m_Net.SetPort(5900);
 

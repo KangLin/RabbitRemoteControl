@@ -10,44 +10,66 @@
 #include "client_export.h"
 
 /*!
- *
  * \~chinese
- * \brief 参数接口类
+ * \defgroup CLIENT_PARAMETER 参数接口
+ * \brief 参数接口
  * \details
- * 参数有以下类型：
- * 1. 仅在插件内有效。
- *    应用程序不能直接访问，
- *    应用程序只能通过 CConnecter::OpenDialogSettings 进行设置。
- *    \see CParameterConnecter
- * 2. 在客户端库和插件内有效。
- *    应用程序不能直接访问。
- *    应用程序只通过 CClient::GetSettingsWidgets 进行设置。
- *    插件可以直接使用或者以其做为初始化值。
- *    例如：保存密码可以以它为初始化值。 详见： CConnecter::SetParameterClient
- *    \see CParameterClient
- * 3. 同时在应用程序、客户端库和插件内有效。暂时没有使用此类型。
+ *   参数有以下类型：
+ *   1. 仅在插件内有效。
+ *      应用程序不能直接访问，
+ *      应用程序只能通过 CConnecter::OpenDialogSettings 进行设置。
+ *      \see CParameterConnecter
+ *   2. 在客户端库和插件内有效。
+ *      应用程序不能直接访问。
+ *      应用程序只通过 CClient::GetSettingsWidgets 进行设置。
+ *      插件可以直接使用或者以其做为初始化值。
+ *      \see CParameterClient
+ *           CConnecter::SetParameterClient
+ *
+ *      例如：保存密码以 CParameterClient 的成员值做为其初始化值。
+ *      请在 CParameterConnecter::onLoad 中初始化。
+ *      \snippet Client/ParameterNet.cpp Initialize parameter
+ *      \see CParameterNet::onLoad
+ *   3. 同时在应用程序、客户端库和插件内有效。暂时没有使用此类型。
  *
  * \~english
- * \brief The CParameter interface class
- *
+ * \defgroup CLIENT_PARAMETER Parameter interface
+ * \brief Parameter interface
  * \details
- * The parameter has the following type:
- * 1. Only valid in the plugin.
- *    The application cannot access it directly,
- *    it can only be set via CConnecter::OpenDialogSettings.
- *    \see CParameterConnecter
- * 2. Valid in the Client and the plugin. 
- *    The application cannot access it directly,
- *    it can only be set via CClient::GetSettingsWidgets.
- *    Plugins can use them directly or use them as initialization values.
- *    For example: save the password can use it as the initialization value.
- *    See: CConnecter::SetParameterClient
- *    \see CParameterClient
- * 3. Valid in both the application and the Client and the plugin.
- *    This type is not used at this time.
+ *  The parameter has the following type:
+ *  1. Only valid in the plugin.
+ *     The application cannot access it directly,
+ *     it can only be set via CConnecter::OpenDialogSettings.
+ *     \see CParameterConnecter
+ *  2. Valid in the Client and the plugin.
+ *     The application cannot access it directly,
+ *     it can only be set via CClient::GetSettingsWidgets.
+ *     Plugins can use them directly or use them as initialization values.
+ *     \see CParameterClient
+ *          CConnecter::SetParameterClient
  *
+ *     For example: save the password can use the value of CParameterClient
+ *     as the initialization value.
+ *     Please initialize in CParameterConnecter::onLoad .
+ *     \snippet Client/ParameterNet.cpp Initialize parameter
+ *     \see CParameterNet::onLoad
+ *  3. Valid in both the application and the Client and the plugin.
+ *     This type is not used at this time.
  * \~
- * \ingroup CLIENT_PLUGIN_API
+ * \ingroup LIBAPI_CLIENT
+ */
+
+/*!
+ * \~chinese 参数接口
+ * \details
+ * - 如果你需要自动嵌套调用 CParameter::onLoad 或 CParameter::onSave ，
+ *   请用构造函数 CParameter(CParameter* parent, const QString& szPrefix) 初始化实例。
+ *
+ * \~english Parameter interface
+ * - If you need to automatically nest calls CParameter::onLoad or CParameter::onSave,
+ *   Please initialize the instance with CParameter(CParameter* parent, const QString& szPrefix).
+ * \~
+ * \ingroup CLIENT_PARAMETER CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CParameter : public QObject
 {
@@ -55,19 +77,21 @@ class CLIENT_EXPORT CParameter : public QObject
     Q_PROPERTY(bool Modified READ GetModified WRITE SetModified FINAL)
 
 public:
+    explicit CParameter(QObject *parent = nullptr);
     /*!
      * \~english
      * \brief
      *  This object, or its derivative,
-     *  is a member of another instance of this diagonal,
+     *  is a member of another instance of this class,
      *  and its Load and Save are automatically called
      * \param parent An instance of this class or its derivative class
      *
      * \~chinese
-     * \brief 此对象或者其派生对象作为另一个此对角的实例的成员，则自动调用其 Load 和 Save
+     * \brief 此对象或者其派生对象作为另一个此类对象的实例的成员，则自动调用其 Load 和 Save
      * \param parent 此类或其派生类的实例
+     * \param szPrefix 前缀。 \see QSetting::beginGroup
      */
-    explicit CParameter(QObject *parent = nullptr);
+    explicit CParameter(CParameter* parent, const QString& szPrefix);
     virtual ~CParameter();
 
     virtual int Load(QString szFile = QString());
@@ -136,6 +160,7 @@ protected:
      */
     bool GetModified();
 
+private:
     /*!
      * \~english Instances of this class and its derived classes are
      *           members of the instance
@@ -144,8 +169,12 @@ protected:
      * \brief 此类及其派生类的实例做为实例的成员
      */
     int AddMember(CParameter* p);
+    QString GetPrefix() const;
+    int SetPrefix(const QString& szPrefix);
 
 private:
+    QString m_szPrefix;
+
     /*!
      * \~chinese
      * \brief 标识参数是否有修改。如果 false，则保存文件时，不保存

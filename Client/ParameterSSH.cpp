@@ -1,6 +1,7 @@
 #include "ParameterSSH.h"
 
-CParameterSSH::CParameterSSH(CParameterConnecter *parent): CParameterConnecter(parent)
+CParameterSSH::CParameterSSH(CParameterConnecter *parent, const QString &szPrefix)
+    : CParameterConnecter(parent, szPrefix)
 {}
 
 int CParameterSSH::onLoad(QSettings &set)

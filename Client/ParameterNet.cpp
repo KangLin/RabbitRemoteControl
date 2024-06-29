@@ -1,8 +1,8 @@
 #include "ParameterNet.h"
 #include "RabbitCommonTools.h"
 
-CParameterNet::CParameterNet(CParameterConnecter* parent)
-    : CParameterConnecter(parent),
+CParameterNet::CParameterNet(CParameterConnecter* parent, const QString &szPrefix)
+    : CParameterConnecter(parent, szPrefix),
     m_bShowServerName(true),
     m_nPort(0),
     m_bSavePassword(false)
@@ -19,7 +19,13 @@ int CParameterNet::onLoad(QSettings &set)
     SetHost(set.value("Host", GetHost()).toString());
     SetPort(set.value("Port", GetPort()).toUInt());
     SetUser(set.value("User", GetUser()).toString());
-    SetSavePassword(set.value("SavePassword", GetSavePassword()).toBool());
+
+    //! [Initialize parameter]
+    bool bDefaultSavePassword = GetSavePassword();
+    if(GetParameterClient())
+        bDefaultSavePassword = GetParameterClient()->GetSavePassword();
+    SetSavePassword(set.value("SavePassword", bDefaultSavePassword).toBool());
+    //! [Initialize parameter]
     if(GetSavePassword())
     {
         QString szPassword;

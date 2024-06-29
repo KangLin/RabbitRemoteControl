@@ -4,15 +4,30 @@
 CParameter::CParameter(QObject *parent)
     : QObject(parent),
     m_bModified(false)
+{}
+
+CParameter::CParameter(CParameter* parent, const QString& szPrefix)
+    : CParameter(parent)
 {
-    CParameter* p = qobject_cast<CParameter*>(parent);
-    if(p) {
-        p->AddMember(this);
+    if(parent) {
+        parent->AddMember(this);
     }
+    SetPrefix(szPrefix);
 }
 
 CParameter::~CParameter()
 {}
+
+QString CParameter::GetPrefix() const
+{
+    return m_szPrefix;
+}
+
+int CParameter::SetPrefix(const QString& szName)
+{
+    m_szPrefix = szName;
+    return 0;
+}
 
 int CParameter::Load(QString szFile)
 {
@@ -40,11 +55,20 @@ int CParameter::Save(QString szFile, bool bForce)
 int CParameter::Load(QSettings &set)
 {
     int nRet = 0;
+
+    if(!GetPrefix().isEmpty())
+        set.beginGroup(GetPrefix());
+
     foreach (auto p, m_Member) {
         nRet = p->Load(set);
-        if(nRet) return nRet;
+        if(nRet) break;
     }
-    nRet = onLoad(set);
+
+    if(!nRet)
+        nRet = onLoad(set);
+
+    if(!GetPrefix().isEmpty())
+        set.endGroup();
     return nRet;
 }
 
@@ -53,11 +77,20 @@ int CParameter::Save(QSettings &set, bool bForce)
     int nRet = 0;
     if(GetModified()) emit sigChanged();
     if(!GetModified() && !bForce) return 0;
+
+    if(!GetPrefix().isEmpty())
+        set.beginGroup(GetPrefix());
+
     foreach (auto p, m_Member) {
         nRet = p->Save(set);
-        if(nRet) return nRet;
+        if(nRet) break;
     }
-    nRet = onSave(set);
+
+    if(!nRet)
+        nRet = onSave(set);
+
+    if(!GetPrefix().isEmpty())
+        set.endGroup();
     return nRet;
 }
 

@@ -8,7 +8,7 @@ class CParameterTigerVnc : public CParameterConnecter
 {
     Q_OBJECT
 public:
-    explicit CParameterTigerVnc(CParameterConnecter *parent = nullptr);
+    explicit CParameterTigerVnc(QObject *parent = nullptr);
     
 public:
     

@@ -115,7 +115,7 @@
         \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
     - Implement remote console, which can be derived from CConnecterTerminal
     - If the above two cannot meet your needs, you  can be derived from CConnecter
-  - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP 
+  - Implement a specific connection, derived from CConnect. For example: CConnectFreeRDP
 
 \defgroup LIBAPI_THREAD Thread module
 \ingroup LIBAPI_CLIENT

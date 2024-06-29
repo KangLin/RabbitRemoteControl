@@ -10,7 +10,18 @@
 
 class CConnecter;
 
-/**
+/*!
+ * \~chinese
+ * \defgroup CLIENT_PARAMETER_COMPONE 参数组件
+ * \brief 参数组件
+ * \~english
+ * \defgroup CLIENT_PARAMETER_COMPONE Parameter compone
+ * \brief Parameter compone
+ * \~
+ * \ingroup CLIENT_PARAMETER
+ */
+
+/*!
  * \~english
  * \brief The parameter interface. It contains basic parameters.
  *        It only valid in plugin.
@@ -31,7 +42,7 @@ class CConnecter;
  * \brief
  *  连接参数接口。此类仅在插件内有效。
  *  - 应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
- *  - 插件通过 CConnecterDesktopThread::SetParameter 访问
+ *  - 插件通过 CConnecterDesktopThread::GetParameter 访问
  *  
  * \note
  *  - 此接口仅由插件派生实现和使用。
@@ -51,8 +62,10 @@ class CConnecter;
  *  - 音频参数 (class CParameterAudio : public CParameterConnecter)
  *  
  *  其中 CParameterBase 它需要 CFrmParameterClient ，其它的类型则不需要。
- *  那么连接参数可以是以上类型的集合：
- *  
+ *
+ *  - 那么连接参数可以是以上类型的集合：
+ *
+ *  \code
  *  class CParameterConnect : public CParameterConnecter
  *  {
  *  public:
@@ -63,12 +76,25 @@ class CConnecter;
  *      CParameterVideo m_Video;
  *      CParameterAudio m_Audio;
  *  };
- *
+ *  \endcode
+ *  - 对需要 CFrmParameterClient 的 CParameterNet 使用其构造函数
+ *    CParameterConnecter(CParameterConnecter *parent, const QString& szPrefix)
+ *    进行实例化。
+ *  - 对不需要 CFrmParameterClient 的 CParameterNet 使用其默认构造函数
+ *    CParameterConnecter(QObject *parent = nullptr) 进行实例化。
+ *  \code
  *  CParameterConnect::CParameterConnect(CParameterConnecter *parent = nullptr)
  *   : CParameterConnecter(parent),
- *     m_Base(this), // 需要 CFrmParameterClient 在这里初始化，并且需要设置参数 this
- *     m_Video()     // 需要 CFrmParameterClient 在这里初始化，则不需要设置参数
+ *     m_Base(this, "Host"), // 需要 CFrmParameterClient， 在这里初始化，并且需要设置参数 this
+ *     m_Video()             // 不需要 CFrmParameterClient， 在这里初始化，则不需要设置参数
  *  {}
+ * \endcode
+ *
+ *  - 连接参数使用 CFrmParameterClient 的值做为其初始值。
+ *    请在 CParameterConnecter::onLoad 中初始化。\n
+ *    例如：保存密码可以以它为初始化值。
+ *    \snippet Client/ParameterNet.cpp Initialize parameter
+ *    \see CParameterNet::onLoad CParameterConnecter::GetParameterClient
  *
  * \~
  * \see CClient::CreateConnecter
@@ -76,7 +102,8 @@ class CConnecter;
  *      CConnecter::SetParameterClient
  *      CConnecter::SetParameter
  *      CParameterClient
- * \ingroup CLIENT_PLUGIN_API
+ *      GetParameterClient
+ * \ingroup CLIENT_PARAMETER
  */
 class CLIENT_EXPORT CParameterConnecter : public CParameter
 {
@@ -99,10 +126,11 @@ class CLIENT_EXPORT CParameterConnecter : public CParameter
     Q_PROPERTY(QString ProxyPassword READ GetProxyPassword WRITE SetProxyPassword)
     
 public:
+    explicit CParameterConnecter(QObject *parent = nullptr);
     /*!
      * \param parent 如果需要 CParameterClient ，则设置 parent
      */
-    explicit CParameterConnecter(CParameterConnecter *parent = nullptr);
+    explicit CParameterConnecter(CParameterConnecter *parent, const QString& szPrefix);
 
     CParameterClient* GetParameterClient();
     int SetParameterClient(CParameterClient* p);

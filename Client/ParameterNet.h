@@ -18,7 +18,7 @@
  *
  * \~
  * \see CParameterConnecter
- * \ingroup CLIENT_PLUGIN_API
+ * \ingroup CLIENT_PARAMETER_COMPONE
  */
 class CLIENT_EXPORT CParameterNet
     : public CParameterConnecter
@@ -26,7 +26,7 @@ class CLIENT_EXPORT CParameterNet
     Q_OBJECT
 
 public:
-    explicit CParameterNet(CParameterConnecter* parent);
+    explicit CParameterNet(CParameterConnecter* parent, const QString& szPrefix = QString());
     
     const QString GetName() const;
     void SetName(const QString& szName);
