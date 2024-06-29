@@ -61,7 +61,7 @@ void CChannelSSHTunnel::run()
 }
 
 CChannelSSHTunnel::CChannelSSHTunnel(
-        QSharedPointer<CParameterSSH> parameter,
+        QSharedPointer<CParameterChannelSSH> parameter,
         QObject *parent)
     : CChannel(parent),
     m_Session(NULL),

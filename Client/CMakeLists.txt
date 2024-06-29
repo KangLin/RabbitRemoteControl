@@ -31,6 +31,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     ParameterConnecter.h
     ParameterClient.h
     ParameterNet.h
+    ParameterSSH.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -60,6 +61,7 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterClient.cpp
     FrmParameterClient.cpp
     ParameterNet.cpp
+    ParameterSSH.cpp
     DlgInputPassword.cpp
     Hook.cpp
     )

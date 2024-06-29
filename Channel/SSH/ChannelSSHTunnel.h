@@ -6,8 +6,9 @@
 #include <Channel.h>
 #include <libssh/libssh.h>
 #include <libssh/callbacks.h>
-#include <ParameterSSH.h>
 #include <QSharedPointer>
+
+#include "ParameterChannelSSH.h"
 #include "channel_export.h"
 
 /*!
@@ -25,7 +26,7 @@ class CHANNEL_EXPORT CChannelSSHTunnel : public CChannel
     Q_OBJECT
 
 public:
-    explicit CChannelSSHTunnel(QSharedPointer<CParameterSSH> parameter,
+    explicit CChannelSSHTunnel(QSharedPointer<CParameterChannelSSH> parameter,
                                QObject *parent = nullptr);
 
     // QIODevice interface
@@ -63,7 +64,7 @@ private:
 private:
     ssh_session m_Session;
     ssh_channel m_Channel;
-    QSharedPointer<CParameterSSH> m_Parameter;
+    QSharedPointer<CParameterChannelSSH> m_Parameter;
 };
 
 #endif // CCHANNELSSHTUNNEL_H

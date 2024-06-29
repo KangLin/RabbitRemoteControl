@@ -1,19 +1,21 @@
-#ifndef CPARAMETERSSH_H
-#define CPARAMETERSSH_H
+#ifndef CPARAMETERCHANNELSSH_H
+#define CPARAMETERCHANNELSSH_H
+
+#pragma once
 
 #include <QObject>
 #include <QSettings>
 #include "libssh/libssh.h"
 #include "channel_export.h"
 
-class CHANNEL_EXPORT CParameterSSH : public QObject
+class CHANNEL_EXPORT CParameterChannelSSH : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit CParameterSSH(QObject *parent = nullptr);
+    explicit CParameterChannelSSH(QObject *parent = nullptr);
 
-    CParameterSSH(const CParameterSSH& c);
+    CParameterChannelSSH(const CParameterChannelSSH& c);
     
     virtual int Load(QSettings &set);
     virtual int Save(QSettings &set);
@@ -76,4 +78,4 @@ private:
     quint16 m_nSourcePort;
 };
 
-#endif // CPARAMETERSSH_H
+#endif // CPARAMETERCHANNELSSH_H

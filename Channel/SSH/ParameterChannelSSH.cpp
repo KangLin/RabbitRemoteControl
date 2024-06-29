@@ -1,7 +1,7 @@
-#include "ParameterSSH.h"
+#include "ParameterChannelSSH.h"
 #include "RabbitCommonTools.h"
 
-CParameterSSH::CParameterSSH(QObject *parent)
+CParameterChannelSSH::CParameterChannelSSH(QObject *parent)
     : QObject{parent},
     m_nPort(22),
     m_szUser(RabbitCommon::CTools::Instance()->GetCurrentUser()),
@@ -19,7 +19,7 @@ CParameterSSH::CParameterSSH(QObject *parent)
     m_nRemotePort = 5906;
 }
 
-CParameterSSH::CParameterSSH(const CParameterSSH &c)
+CParameterChannelSSH::CParameterChannelSSH(const CParameterChannelSSH &c)
 {
     m_szServer = c.m_szServer;
     m_nPort = c.m_nPort;
@@ -39,7 +39,7 @@ CParameterSSH::CParameterSSH(const CParameterSSH &c)
     m_nSourcePort = c.m_nSourcePort;
 }
 
-int CParameterSSH::Load(QSettings &set)
+int CParameterChannelSSH::Load(QSettings &set)
 {
     set.beginGroup("SSH/Tunnel");
     setServer(set.value("Server", GetServer()).toString());
@@ -64,7 +64,7 @@ int CParameterSSH::Load(QSettings &set)
     return 0;
 }
 
-int CParameterSSH::Save(QSettings &set)
+int CParameterChannelSSH::Save(QSettings &set)
 {
     set.beginGroup("SSH/Tunnel");
     set.setValue("Server", GetServer());
@@ -84,144 +84,144 @@ int CParameterSSH::Save(QSettings &set)
     return 0;
 }
 
-QString CParameterSSH::GetServer() const
+QString CParameterChannelSSH::GetServer() const
 {
     return m_szServer;
 }
 
-int CParameterSSH::setServer(const QString &szServer)
+int CParameterChannelSSH::setServer(const QString &szServer)
 {
     m_szServer = szServer;
     return 0;
 }
 
-quint16 CParameterSSH::GetPort() const
+quint16 CParameterChannelSSH::GetPort() const
 {
     return m_nPort;
 }
 
-int CParameterSSH::SetPort(const quint16 nPort)
+int CParameterChannelSSH::SetPort(const quint16 nPort)
 {
     m_nPort = nPort;
     return 0;
 }
 
-QString CParameterSSH::GetUser() const
+QString CParameterChannelSSH::GetUser() const
 {
     return m_szUser;
 }
 
-int CParameterSSH::SetUser(const QString &szUser)
+int CParameterChannelSSH::SetUser(const QString &szUser)
 {
     m_szUser = szUser;
     return 0;
 }
 
-QString CParameterSSH::GetPassword() const
+QString CParameterChannelSSH::GetPassword() const
 {
     return m_szPassword;
 }
 
-int CParameterSSH::SetPassword(const QString szPassword)
+int CParameterChannelSSH::SetPassword(const QString szPassword)
 {
     m_szPassword = szPassword;
     return 0;
 }
 
-int CParameterSSH::GetAuthenticationMethod() const
+int CParameterChannelSSH::GetAuthenticationMethod() const
 {
     return m_nAuthenticationMethod;
 }
 
-int CParameterSSH::SetAuthenticationMethod(int method)
+int CParameterChannelSSH::SetAuthenticationMethod(int method)
 {
     m_nAuthenticationMethod = method;
     return 0;
 }
 
-QString CParameterSSH::GetPassphrase() const
+QString CParameterChannelSSH::GetPassphrase() const
 {
     return m_szPassphrase;
 }
 
-int CParameterSSH::SetPassphrase(const QString passphrase)
+int CParameterChannelSSH::SetPassphrase(const QString passphrase)
 {
     m_szPassphrase = passphrase;
     return 0;
 }
 
-ssh_publickey_hash_type CParameterSSH::GetPublicKeyHashType() const
+ssh_publickey_hash_type CParameterChannelSSH::GetPublicKeyHashType() const
 {
     return m_PublicKeyHashType;
 }
 
-int CParameterSSH::SetPublicKeyHashType(ssh_publickey_hash_type type)
+int CParameterChannelSSH::SetPublicKeyHashType(ssh_publickey_hash_type type)
 {
     m_PublicKeyHashType = type;
     return 0;
 }
 
-QString CParameterSSH::GetPublicKeyFile() const
+QString CParameterChannelSSH::GetPublicKeyFile() const
 {
     return m_szPublicKeyFile;
 }
 
-int CParameterSSH::SetPublicKeyFile(const QString szFile)
+int CParameterChannelSSH::SetPublicKeyFile(const QString szFile)
 {
     m_szPublicKeyFile = szFile;
     return 0;
 }
 
-QString CParameterSSH::GetPrivateKeyFile() const
+QString CParameterChannelSSH::GetPrivateKeyFile() const
 {
     return m_szPrivateKeyFile;
 }
 
-int CParameterSSH::SetPrivateKeyFile(const QString szFile)
+int CParameterChannelSSH::SetPrivateKeyFile(const QString szFile)
 {
     m_szPrivateKeyFile = szFile;
     return 0;
 }
 
-QString CParameterSSH::GetRemoteHost() const
+QString CParameterChannelSSH::GetRemoteHost() const
 {
     return m_szRemoteHost;
 }
 
-int CParameterSSH::SetRemoteHost(const QString szHost)
+int CParameterChannelSSH::SetRemoteHost(const QString szHost)
 {
     m_szRemoteHost = szHost;
     return 0;
 }
 
-quint16 CParameterSSH::GetRemotePort() const
+quint16 CParameterChannelSSH::GetRemotePort() const
 {
     return m_nRemotePort;
 }
 
-int CParameterSSH::SetRemotePort(const quint16 nPort)
+int CParameterChannelSSH::SetRemotePort(const quint16 nPort)
 {
     m_nRemotePort = nPort;
     return 0;
 }
 
-QString CParameterSSH::GetSourceHost() const
+QString CParameterChannelSSH::GetSourceHost() const
 {
     return m_szSourceHost;
 }
 
-int CParameterSSH::SetSourceHost(const QString szHost)
+int CParameterChannelSSH::SetSourceHost(const QString szHost)
 {
     m_szSourceHost = szHost;
     return 0;
 }
 
-quint16 CParameterSSH::GetSourcePort() const
+quint16 CParameterChannelSSH::GetSourcePort() const
 {
     return m_nSourcePort;
 }
 
-int CParameterSSH::SetSourcePort(const quint16 nPort)
+int CParameterChannelSSH::SetSourcePort(const quint16 nPort)
 {
     m_nSourcePort = nPort;
     return 0;

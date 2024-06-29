@@ -263,7 +263,7 @@ int CConnectTigerVnc::SocketInit()
 int CConnectTigerVnc::SSHInit()
 {
 #ifdef HAVE_LIBSSH
-    QSharedPointer<CParameterSSH> parameter(new CParameterSSH());
+    QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
     auto channel = QSharedPointer<CChannelSSHTunnel>(new CChannelSSHTunnel(parameter));
     if(!channel) {
         qCritical(log) << "New CChannelSSHTunnel fail";

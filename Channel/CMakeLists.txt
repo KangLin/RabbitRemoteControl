@@ -25,11 +25,11 @@ if(libssh_FOUND)
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/SSH)
     list(APPEND CHANNEL_INSTALL_HEADER_FILES
         SSH/ChannelSSHTunnel.h
-        SSH/ParameterSSH.h
+        SSH/ParameterChannelSSH.h
         )
     list(APPEND CHANNEL_SOURCE_FILES
         SSH/ChannelSSHTunnel.cpp
-        SSH/ParameterSSH.cpp
+        SSH/ParameterChannelSSH.cpp
         )
 endif()
 
