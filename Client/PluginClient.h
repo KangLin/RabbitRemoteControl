@@ -78,7 +78,7 @@ public:
      *    例如： 在关于对话框或日志中显示。
      *    包括插件的依赖库的版本信息和描述
      * \~english Display more information in About dialog or log.
-     *    eg: Include te plugin depends on the library version and description
+     *    eg: Include the plugin depends on the library version and description
      * \~
      * \see CPluginFreeRDP::Details()
      */

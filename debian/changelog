@@ -6,7 +6,7 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * App: add title menu when list connect from is dock widget
     * App: Enable action in list connect from
     * Fix typo
-    * Modify docments
+    * Modify documents
     * FreeRDP: install FreeRDP dynamic libraries
     * VNC: modify sigUpdateRect(img)
     * Client: add void sigUpdateRect(const QImage& image);
@@ -79,7 +79,7 @@ rabbitremotecontrol (0.0.26) unstable; urgency=medium
     * FreeRDP::Client: add cb_authenticate_ex
     * FreeRDP::Client: add GetTitle
     * CI: modify msvc.yml
-    * FreeRDP: Fix reconnet parameter
+    * FreeRDP: Fix reconnect parameter
     * Replace RabbitCommon::CDir::GetOpenFileName with QFileDialog::getOpenFileName etc
     * CI: modify android.yml
     * CI: modify ci

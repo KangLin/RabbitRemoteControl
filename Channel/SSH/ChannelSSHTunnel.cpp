@@ -327,7 +327,7 @@ int CChannelSSHTunnel::authenticationUser(
 {
     int nRet = 0;
     int nServerMethod = nMethod;
-    qDebug(log) << "Authentication mothod:" << nMethod;
+    qDebug(log) << "Authentication method:" << nMethod;
     //* Get authentication list from ssh server
     nRet = ssh_userauth_none(m_Session,
                              szUser.toStdString().c_str());
