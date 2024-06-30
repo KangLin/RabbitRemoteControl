@@ -60,7 +60,7 @@ const QString CConnecterTigerVnc::Id()
 {
     if(m_Para.GetIce())
     {
-        QString szId = Protocol() + "_" + m_pPluginClient->Name();
+        QString szId = Protocol() + "_" + GetPlugClient()->Name();
         if(GetParameter())
         {
             if(!m_Para.GetPeerUser().isEmpty())

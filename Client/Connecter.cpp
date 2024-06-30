@@ -40,7 +40,7 @@ CConnecter::~CConnecter()
 
 const QString CConnecter::Id()
 {
-    QString szId = Protocol() + "_" + m_pPluginClient->Name();
+    QString szId = Protocol() + "_" + GetPlugClient()->Name();
     if(GetParameter())
     {
         if(!GetParameter()->GetName().isEmpty())
@@ -88,21 +88,21 @@ const QString CConnecter::Description()
     return tr("Name: ") + Name() + "\n"
            + tr("Protocol: ") + Protocol()
 #ifdef DEBUG
-           + " - " + m_pPluginClient->DisplayName()
+           + " - " + GetPlugClient()->DisplayName()
 #endif
            + "\n"
            + tr("Server name: ") + ServerName() + "\n"
-           + tr("Description: ") + m_pPluginClient->Description();
+           + tr("Description: ") + GetPlugClient()->Description();
 }
 
 const QString CConnecter::Protocol() const
 {
-    return m_pPluginClient->Protocol();
+    return GetPlugClient()->Protocol();
 }
 
 const QIcon CConnecter::Icon() const
 {
-    return m_pPluginClient->Icon();
+    return GetPlugClient()->Icon();
 }
 
 void CConnecter::slotSetClipboard(QMimeData* data)
@@ -160,7 +160,7 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
                              p, SLOT(reject()));
         Q_ASSERT(check);
         p->setWindowIcon(this->Icon());
-        p->setWindowTitle(tr("Set ") + m_pPluginClient->DisplayName());
+        p->setWindowTitle(tr("Set ") + GetPlugClient()->DisplayName());
 #ifdef BUILD_QUIWidget
         QUIWidget* quiwidget = new QUIWidget();
         quiwidget->setMainWidget(p);
@@ -262,6 +262,11 @@ int CConnecter::SetParameter(CParameterBase *p)
         Q_ASSERT(check);
     }
     return 0;
+}
+
+CPluginClient* CConnecter::GetPlugClient() const
+{
+    return m_pPluginClient;
 }
 
 void CConnecter::slotShowServerName()

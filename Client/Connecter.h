@@ -284,13 +284,16 @@ protected:
      * \param p
      */
     virtual int SetParameter(CParameterBase* p);
+
+private:
     /*!
      * \note If CParameterConnecter isn't need CParameterClient.
      *       please overload this function.
      * \see CClient::CreateConnecter CParameterConnecter CParameterClient
      */
-    virtual int SetParameterClient(CParameterClient* pPara);
+    Q_INVOKABLE virtual int SetParameterClient(CParameterClient* pPara);
 
+protected:
     /*!
      * \~chinese
      * \brief 当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口
@@ -356,11 +359,12 @@ private Q_SLOTS:
                                       );
 
 protected:
-    const CPluginClient* m_pPluginClient;
+    Q_INVOKABLE CPluginClient* GetPlugClient() const;
 
 private:
-    friend class CClient;
     QString m_szServerName;
+
+    CPluginClient* m_pPluginClient;
 
     // The owner is a derived class of this class
     CParameterBase* m_pParameter;

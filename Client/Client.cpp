@@ -163,7 +163,18 @@ CConnecter* CClient::CreateConnecter(const QString& id)
     {
         qDebug(log) << "CreateConnecter id:" << id;
         CConnecter* p = it.value()->CreateConnecter(id);
-        if(p) p->SetParameterClient(&m_ParameterClient);
+        //if(p) p->SetParameterClient(&m_ParameterClient);
+        if(p) {
+            int val = 0;
+            bool bRet = QMetaObject::invokeMethod(
+                p,
+                "SetParameterClient",
+                Qt::DirectConnection,
+                Q_RETURN_ARG(int, val),
+                Q_ARG(CParameterClient*, &m_ParameterClient));
+            if(!bRet|| val)
+                return nullptr;
+        }
         return p;
     }
     return nullptr;
@@ -203,7 +214,16 @@ int CClient::SaveConnecter(QString szFile, CConnecter *pConnecter)
 
     QSettings set(szFile, QSettings::IniFormat);
 
-    const CPluginClient* pPluginClient = pConnecter->m_pPluginClient;
+    CPluginClient* pPluginClient = nullptr; //pConnecter->m_pPluginClient;
+    bool bRet = QMetaObject::invokeMethod(
+        pConnecter,
+        "GetPlugClient",
+        Qt::DirectConnection,
+        Q_RETURN_ARG(CPluginClient*, pPluginClient));
+    if(!bRet || !pPluginClient)
+    {
+        qCritical(log) << "Get plugin client fail";
+    }
     Q_ASSERT(pPluginClient);
 
     set.setValue("Manage/FileVersion", m_FileVersion);
