@@ -22,6 +22,11 @@
 class CLIENT_EXPORT CParameterBase : public CParameterConnecter
 {
     Q_OBJECT
+    Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
+    Q_PROPERTY(QString ServerName READ GetServerName WRITE SetServerName)
+    Q_PROPERTY(bool ShowServerName READ GetShowServerName WRITE SetShowServerName NOTIFY sigShowServerNameChanged)
+    Q_PROPERTY(bool OnlyView READ GetOnlyView WRITE SetOnlyView)
+    Q_PROPERTY(bool LocalCursor READ GetLocalCursor WRITE SetLocalCursor)
 
 public:
     explicit CParameterBase(QObject* parent = nullptr);
@@ -31,10 +36,32 @@ public:
     const QString GetName() const;
     void SetName(const QString& szName);
 
+    const QString GetServerName() const;
+    void SetServerName(const QString& szName);
+
+    bool GetShowServerName() const;
+    void SetShowServerName(bool NewShowServerName);
+
     CParameterNet m_Net;
 
+    const bool GetOnlyView() const;
+    void SetOnlyView(bool only);
+
+    const bool GetLocalCursor() const;
+    void SetLocalCursor(bool cursor);
+
+Q_SIGNALS:
+    void sigNameChanged(const QString &name = QString());
+    void sigShowServerNameChanged();
+
 private:
+    int Init();
     QString m_szName;
+    QString m_szServerName;
+    bool m_bShowServerName;
+
+    bool m_bOnlyView;
+    bool m_bLocalCursor;
 
     // CParameter interface
 protected:

@@ -15,11 +15,8 @@ CParameterConnecter::CParameterConnecter(QObject* parent)
     : CParameter(parent),
     m_Parent(nullptr),
     m_pParameterClient(nullptr),
-    m_bShowServerName(true),
     m_nPort(0),
     m_bSavePassword(false),
-    m_bOnlyView(false),
-    m_bLocalCursor(true),
     m_bClipboard(true),
     m_eProxyType(emProxy::No),
     m_nProxyPort(1080)
@@ -30,11 +27,8 @@ CParameterConnecter::CParameterConnecter(
     : CParameter(parent, szPrefix),
       m_Parent(parent),
       m_pParameterClient(nullptr),
-      m_bShowServerName(true),
       m_nPort(0),
       m_bSavePassword(false),
-      m_bOnlyView(false),
-      m_bLocalCursor(true),
       m_bClipboard(true),
       m_eProxyType(emProxy::No),
       m_nProxyPort(1080)
@@ -80,47 +74,6 @@ bool CParameterConnecter::GetCheckCompleted()
 {
     if(GetSavePassword()) return true;
     return false;
-}
-
-const QString CParameterConnecter::GetName() const
-{
-    return m_szName;
-}
-
-void CParameterConnecter::SetName(const QString& szName)
-{
-    if(m_szName == szName)
-        return;
-    m_szName = szName;
-    SetModified(true);
-    emit sigNameChanged(m_szName);
-}
-
-const QString CParameterConnecter::GetServerName() const
-{
-    return m_szServerName;
-}
-
-void CParameterConnecter::SetServerName(const QString& szName)
-{
-    if(m_szServerName == szName)
-        return;
-    m_szServerName = szName;
-    SetModified(true);
-}
-
-bool CParameterConnecter::GetShowServerName() const
-{
-    return m_bShowServerName;
-}
-
-void CParameterConnecter::SetShowServerName(bool NewShowServerName)
-{
-    if (m_bShowServerName == NewShowServerName)
-        return;
-    m_bShowServerName = NewShowServerName;
-    SetModified(true);
-    emit sigShowServerNameChanged();
 }
 
 void CParameterConnecter::SetHost(const QString& host)
@@ -185,32 +138,6 @@ void CParameterConnecter::SetSavePassword(bool save)
     if (m_bSavePassword == save)
         return;
     m_bSavePassword = save;
-    SetModified(true);
-}
-
-const bool CParameterConnecter::GetOnlyView() const
-{
-    return m_bOnlyView;
-}
-
-void CParameterConnecter::SetOnlyView(bool only)
-{
-    if(m_bOnlyView == only)
-        return;
-    m_bOnlyView = only;
-    SetModified(true);
-}
-
-const bool CParameterConnecter::GetLocalCursor() const
-{
-    return m_bLocalCursor;
-}
-
-void CParameterConnecter::SetLocalCursor(bool cursor)
-{
-    if(m_bLocalCursor == cursor)
-        return;
-    m_bLocalCursor = cursor;
     SetModified(true);
 }
 
@@ -294,9 +221,6 @@ void CParameterConnecter::SetProxyPassword(const QString &password)
 
 int CParameterConnecter::onLoad(QSettings &set)
 {
-    SetName(set.value("Name", GetName()).toString());
-    SetServerName(set.value("ServerName", GetServerName()).toString());
-    SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
     SetHost(set.value("Host", GetHost()).toString());
     SetPort(set.value("Port", GetPort()).toUInt());
     SetUser(set.value("User", GetUser()).toString());
@@ -307,8 +231,6 @@ int CParameterConnecter::onLoad(QSettings &set)
         if(!LoadPassword(tr("Password"), "Password", szPassword, set))
             SetPassword(szPassword);
     }
-    SetOnlyView(set.value("OnlyView", GetOnlyView()).toBool());
-    SetLocalCursor(set.value("LocalCursor", GetLocalCursor()).toBool());
     SetClipboard(set.value("Clipboard", GetClipboard()).toBool());
     
     SetProxyType(static_cast<emProxy>(set.value("Proxy/Type",
@@ -329,15 +251,10 @@ int CParameterConnecter::onLoad(QSettings &set)
 
 int CParameterConnecter::onSave(QSettings &set)
 {
-    set.setValue("Name", GetName());
-    set.setValue("ServerName", GetServerName());
-    set.setValue("ShowServerName", GetShowServerName());
     set.setValue("Host", GetHost());
     set.setValue("Port", GetPort());
     set.setValue("User", GetUser());
     SavePassword("Password", GetPassword(), set, GetSavePassword());
-    set.setValue("OnlyView", GetOnlyView());
-    set.setValue("LocalCursor", GetLocalCursor());
     set.setValue("Clipboard", GetClipboard());
     
     set.setValue("Proxy/Type", (int)m_eProxyType);

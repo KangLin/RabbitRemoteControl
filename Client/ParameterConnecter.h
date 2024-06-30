@@ -101,16 +101,11 @@
 class CLIENT_EXPORT CParameterConnecter : public CParameter
 {
     Q_OBJECT
-    Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
-    Q_PROPERTY(QString ServerName READ GetServerName WRITE SetServerName)
-    Q_PROPERTY(bool ShowServerName READ GetShowServerName WRITE SetShowServerName NOTIFY sigShowServerNameChanged)
     Q_PROPERTY(QString Host READ GetHost WRITE SetHost)
     Q_PROPERTY(quint16 Port READ GetPort WRITE SetPort)
     Q_PROPERTY(QString User READ GetUser WRITE SetUser)
     Q_PROPERTY(QString Password READ GetPassword WRITE SetPassword)
     Q_PROPERTY(bool SavePassword READ GetSavePassword WRITE SetSavePassword)
-    Q_PROPERTY(bool OnlyView READ GetOnlyView WRITE SetOnlyView)
-    Q_PROPERTY(bool LocalCursor READ GetLocalCursor WRITE SetLocalCursor)
     Q_PROPERTY(bool Clipboard READ GetClipboard WRITE SetClipboard)
     Q_PROPERTY(emProxy ProxyType READ GetProxyType WRITE SetProxyType)
     Q_PROPERTY(QString ProxyHost READ GetProxyHost WRITE SetProxyHost)
@@ -173,15 +168,6 @@ public:
      */
     virtual bool GetCheckCompleted();
     
-    const QString GetName() const;
-    void SetName(const QString& szName);
-    
-    const QString GetServerName() const;
-    void SetServerName(const QString& szName);
-
-    bool GetShowServerName() const;
-    void SetShowServerName(bool NewShowServerName);
-    
     virtual const QString GetHost() const;
     virtual void SetHost(const QString& szHost);
     
@@ -200,12 +186,6 @@ public:
      * \param save
      */
     void SetSavePassword(bool save);
-
-    const bool GetOnlyView() const;
-    virtual void SetOnlyView(bool only);
-    
-    virtual const bool GetLocalCursor() const;
-    virtual void SetLocalCursor(bool cursor);
     
     virtual const bool GetClipboard() const;
     virtual void SetClipboard(bool c);
@@ -234,19 +214,13 @@ Q_SIGNALS:
     void sigShowServerNameChanged();
 
 private:
-
-    QString m_szName;
-    QString m_szServerName;
-    bool m_bShowServerName;
     QString m_szHost;
     quint16 m_nPort;
     
     QString m_szUser;
     QString m_szPassword;
     bool m_bSavePassword;
-    
-    bool m_bOnlyView;
-    bool m_bLocalCursor;
+
     bool m_bClipboard;
     
     emProxy m_eProxyType;
