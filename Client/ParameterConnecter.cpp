@@ -40,6 +40,21 @@ CParameterConnecter::CParameterConnecter(
       m_nProxyPort(1080)
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
+
+    if(parent) {
+        bool check = connect(parent, SIGNAL(sigSetParameterClient()),
+                             this, SLOT(slotSetParameterClient()));
+        check = connect(parent, SIGNAL(sigSetParameterClient()),
+                        this, SIGNAL(sigSetParameterClient()));
+        Q_ASSERT(check);
+    } else {
+        QString szErr = this->metaObject()->className();
+          szErr += "The parent is null. "
+               "Please use CParameterConnecter::CParameterConnecter(QObject *parent = nullptr)";
+        qCritical(log) << szErr;
+        Q_ASSERT_X(false, "CParameterConnecter", szErr.toStdString().c_str());
+    }
+
 }
 
 CParameterClient* CParameterConnecter::GetParameterClient()

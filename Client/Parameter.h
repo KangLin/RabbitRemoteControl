@@ -17,21 +17,16 @@
  * \details
  *   参数有以下类型：
  *   1. 仅在插件内有效。
- *      应用程序不能直接访问，
- *      应用程序只能通过 CConnecter::OpenDialogSettings 进行设置。
- *      \see CParameterConnecter
- *   2. 在客户端库和插件内有效。
- *      应用程序不能直接访问。
- *      应用程序只通过 CClient::GetSettingsWidgets 进行设置。
- *      插件可以直接使用或者以其做为初始化值。
+ *      应用程序不能访问，但是可以通过 CConnecter::OpenDialogSettings 进行设置。
+ *      \see CParameterConnecter CParameterBase
+ *   2. 在客户端库 (CClient) 和插件内有效。\n
+ *      应用程序不能访问，但是可以通过 CClient::GetSettingsWidgets 进行设置。\n
+ *      客户端 (CClient) 和插件可以直接使用。插件可以以其做为初始化值。
+ *      \ref sub_Use_CParameterClient
  *      \see CParameterClient
  *           CConnecter::SetParameterClient
- *
- *      例如：保存密码以 CParameterClient 的成员值做为其初始化值。
- *      请在 CParameterConnecter::onLoad 中初始化。
- *      \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
- *      \see CParameterUser::onLoad
- *   3. 同时在应用程序、客户端库和插件内有效。暂时没有使用此类型。
+ *           CParameterUser::onLoad
+ *   3. 同时在应用程序、客户端库 (CClient) 和插件内有效。暂时没有使用此类型。
  *
  * \~english
  * \defgroup CLIENT_PARAMETER Parameter interface
@@ -39,21 +34,18 @@
  * \details
  *  The parameter has the following type:
  *  1. Only valid in the plugin.
- *     The application cannot access it directly,
- *     it can only be set via CConnecter::OpenDialogSettings.
+ *     The application cannot access it,
+ *     but the application can be set it via CConnecter::OpenDialogSettings.
  *     \see CParameterConnecter
- *  2. Valid in the Client and the plugin.
- *     The application cannot access it directly,
- *     it can only be set via CClient::GetSettingsWidgets.
- *     Plugins can use them directly or use them as initialization values.
+ *  2. Valid in the CClient and the plugin.\n
+ *     The application cannot access it,
+ *     but the application can be set it via CClient::GetSettingsWidgets.\n
+ *     CClient and Plugins can use them directly.
+ *     The plugin maybe use them as initialization values.
+ *     \ref sub_Use_CParameterClient
  *     \see CParameterClient
  *          CConnecter::SetParameterClient
- *
- *     For example: save the password can use the value of CParameterClient
- *     as the initialization value.
- *     Please initialize in CParameterConnecter::onLoad .
- *     \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
- *     \see CParameterUser::onLoad
+ *          CParameterUser::onLoad
  *  3. Valid in both the application and the Client and the plugin.
  *     This type is not used at this time.
  * \~

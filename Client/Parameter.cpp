@@ -1,6 +1,10 @@
 #include "Parameter.h"
 #include "RabbitCommonDir.h"
 
+#include <QLoggingCategory>
+
+static Q_LOGGING_CATEGORY(log, "Client.Parameter")
+
 CParameter::CParameter(QObject *parent)
     : QObject(parent),
     m_bModified(false)
@@ -11,6 +15,12 @@ CParameter::CParameter(CParameter* parent, const QString& szPrefix)
 {
     if(parent) {
         parent->AddMember(this);
+    } else {
+        QString szErr = this->metaObject()->className();
+        szErr += "'s parent is null. "
+                 "Please use CParameter::CParameter(QObject *parent = nullptr)";
+        qCritical(log) << szErr;
+        Q_ASSERT_X(false, "CParameter", szErr.toStdString().c_str());
     }
     SetPrefix(szPrefix);
 }

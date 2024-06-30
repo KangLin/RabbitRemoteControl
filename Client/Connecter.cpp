@@ -45,9 +45,9 @@ const QString CConnecter::Id()
     {
         if(!GetParameter()->GetName().isEmpty())
             szId += "_" + GetParameter()->GetName();
-        if(!GetParameter()->GetHost().isEmpty())
-            szId += "_" + GetParameter()->GetHost()
-                    + "_" + QString::number(GetParameter()->GetPort());
+        if(!GetParameter()->m_Net.GetHost().isEmpty())
+            szId += "_" + GetParameter()->m_Net.GetHost()
+                    + "_" + QString::number(GetParameter()->m_Net.GetPort());
     }
     szId = szId.replace(QRegularExpression("[-@:/#%!^&*\\.]"), "_");
     return szId;
@@ -140,8 +140,8 @@ QString CConnecter::ServerName()
     if(GetParameter() && GetParameter()->GetParameterClient()
         && GetParameter()->GetParameterClient()->GetShowIpPortInName())
     {
-        return GetParameter()->GetHost()
-               + ":" + QString::number(GetParameter()->GetPort());
+        return GetParameter()->m_Net.GetHost()
+               + ":" + QString::number(GetParameter()->m_Net.GetPort());
     }
 
     if(m_szServerName.isEmpty() && GetParameter())
@@ -203,11 +203,6 @@ int CConnecter::Save(QString szFile)
     return Save(set);
 }
 
-CParameterConnecter* CConnecter::GetParameter()
-{
-    return m_pParameter;
-}
-
 int CConnecter::SetParameterClient(CParameterClient* pPara)
 {
     if(GetParameter())
@@ -239,10 +234,20 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
     return -1;
 }
 
-int CConnecter::SetParameter(CParameterConnecter *p)
+CParameterBase* CConnecter::GetParameter()
+{
+    return m_pParameter;
+}
+
+int CConnecter::SetParameter(CParameterBase *p)
 {
     if(GetParameter())
         GetParameter()->disconnect(this);
+
+    if(!qobject_cast<CParameterBase*>(p))
+        qWarning(log) << "The parameter("
+                      << p->metaObject()->className()
+                      << ") must be derived from CParameterBase";
 
     m_pParameter = p;
 

@@ -1,18 +1,16 @@
 #ifndef CPARAMETERTIGERVNC_H
 #define CPARAMETERTIGERVNC_H
 
-#include "ParameterConnecter.h"
+#include "ParameterBase.h"
 #include "ParameterNet.h"
 
-class CParameterTigerVnc : public CParameterConnecter
+class CParameterTigerVnc : public CParameterBase
 {
     Q_OBJECT
 public:
     explicit CParameterTigerVnc(QObject *parent = nullptr);
     
 public:
-
-    CParameterNet m_Net;
 
     /*!
      * \brief Check whether the parameters are complete

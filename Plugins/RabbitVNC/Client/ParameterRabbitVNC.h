@@ -1,13 +1,13 @@
 #ifndef CParameterRabbitVnc_H
 #define CParameterRabbitVnc_H
 
-#include "ParameterConnecter.h"
+#include "ParameterBase.h"
 
-class CParameterRabbitVNC : public CParameterConnecter
+class CParameterRabbitVNC : public CParameterBase
 {
     Q_OBJECT
 public:
-    explicit CParameterRabbitVNC(CParameterConnecter *parent = nullptr);
+    explicit CParameterRabbitVNC(QObject *parent = nullptr);
     
 public:
     virtual int onLoad(QSettings &set) override;

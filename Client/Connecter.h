@@ -16,7 +16,7 @@
 #include <QMessageBox>
 
 #include "client_export.h"
-#include "ParameterConnecter.h"
+#include "ParameterBase.h"
 
 class CPluginClient;
 class CConnect;
@@ -277,13 +277,13 @@ protected:
     virtual int Load(QSettings &set) = 0;
     virtual int Save(QSettings &set) = 0;
 
-    virtual CParameterConnecter* GetParameter();
+    virtual CParameterBase* GetParameter();
     /*!
      * \brief Set parameter pointer.
      *        Ability to overload this function to set the parameter signal.
      * \param p
      */
-    virtual int SetParameter(CParameterConnecter* p);
+    virtual int SetParameter(CParameterBase* p);
     /*!
      * \note If CParameterConnecter isn't need CParameterClient.
      *       please overload this function.
@@ -363,7 +363,7 @@ private:
     QString m_szServerName;
 
     // The owner is a derived class of this class
-    CParameterConnecter* m_pParameter;
+    CParameterBase* m_pParameter;
 };
 
 #endif // CCONNECTER_H

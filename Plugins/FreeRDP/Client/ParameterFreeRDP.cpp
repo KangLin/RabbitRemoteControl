@@ -1,8 +1,8 @@
 #include "ParameterFreeRDP.h"
 #include <QSettings>
 
-CParameterFreeRDP::CParameterFreeRDP(CParameterConnecter *parent)
-    : CParameterConnecter(parent),
+CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
+    : CParameterBase(parent),
     m_pSettings(nullptr),
     m_nReconnectInterval(0),
     m_bShowVerifyDiaglog(true),

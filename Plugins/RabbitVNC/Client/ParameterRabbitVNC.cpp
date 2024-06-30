@@ -1,8 +1,8 @@
 #include "ParameterRabbitVNC.h"
 #include "rfb/encodings.h"
 
-CParameterRabbitVNC::CParameterRabbitVNC(CParameterConnecter *parent)
-    : CParameterConnecter(parent)
+CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent)
+    : CParameterBase(parent)
 {
     SetPort(5900);
     SetShared(true);

@@ -30,6 +30,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     Parameter.h
     ParameterConnecter.h
     ParameterClient.h
+    ParameterCompone/ParameterBase.h
     ParameterCompone/ParameterNet.h
     ParameterCompone/ParameterUser.h
     )
@@ -60,6 +61,7 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterConnecter.cpp
     ParameterClient.cpp
     FrmParameterClient.cpp
+    ParameterCompone/ParameterBase.cpp
     ParameterCompone/ParameterNet.cpp
     ParameterCompone/ParameterUser.cpp
     DlgInputPassword.cpp

@@ -30,7 +30,7 @@ QWidget *CConnecterDesktopThread::GetViewer()
     return m_pView;
 }
 
-CParameterConnecter* CConnecterDesktopThread::GetParameter()
+CParameterBase *CConnecterDesktopThread::GetParameter()
 {
     return CConnecter::GetParameter();
 }

@@ -36,35 +36,31 @@
  *    don't set it.
  *
  * \~chinese
- * \brief 连接参数接口。包括基本参数。此类仅在插件内有效。
+ * \brief 连接参数接口。仅在插件内有效。
  *  
- * \note
- *  - 应用程序不能直接访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
+ * \details
+ *  - 应用程序不能访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
  *  - 插件通过 CConnecterDesktopThread::GetParameter 访问
  *  - 此接口仅由插件派生实现和使用。
- *  - 如果它或其派生类需要 CParameterClient 。
- *    - 请在 CConnecter 的派生类的构造函数中实例化 CParameterConnecter 或其派生类，
- *      并调用 CConnecter::SetParameter 设置参数指针。
- *    - 默认会自动为它设置 CParameterClient 。详见: CClient::CreateConnecter 。
- *    - 如果参数不需要 CParameterClient ，那请在 CConnecter 派生类
- *    - 重载 CConnecter::SetParameterClient 不设置 CParameterClient 。
+ *  - \ref sub_Use_CParameterClient
  *
- *
- * \details
- *  连接参数接口。包括基本参数（网络参数等）。可以按参数类型分类建立派生类。
+ *  因为可能会有很多参数，所以需要按参数类型分类。每个分类可以从此类派生出一个单独的类。\n
+ *  因为连接参数都有一些基本的参数（例如网络地址等），所以则从 CParameterBase 派生。
+ *  而每个分类做为它的成员变量。
  *
  *  例如：\n
  *  连接参数包括以下几种类型：
+ *  - 基本参数 (class CParameterBase : public CParameterConnecter)
  *  - 用户参数 (class CParameterUser : public CParameterConnecter)
  *  - 视频参数 (class CParameterVideo : public CParameterConnecter)
  *  - 音频参数 (class CParameterAudio : public CParameterConnecter)
- *  
+ *
  *  其中 CParameterUser 它需要 CFrmParameterClient ，其它的类型则不需要。
  *
- *  - 那么连接参数可以是以上类型的集合：
+ *  那么连接参数可以是以上类型的集合：
  *
  *  \code
- *  class CParameterConnect : public CParameterConnecter
+ *  class CParameterConnect : public CParameterBase
  *  {
  *  public:
  *      explicit CParameterConnect::CParameterConnect(
@@ -84,20 +80,17 @@
  *
  *  \code
  *  CParameterConnect::CParameterConnect(CParameterConnecter *parent = nullptr)
- *   : CParameterConnecter(parent),
- *     m_User(this, "Host"), // 需要 CFrmParameterClient， 在这里初始化，并且第一个参数需要设置为 this
+ *   : CParameterBase(parent),
+ *     m_User(this, "Host"), // 需要 CFrmParameterClient， 在这里初始化，并且第一个参数必须设置为 this
  *     m_Video()             // 不需要 CFrmParameterClient， 在这里初始化，则不需要设置参数
  *  {}
  * \endcode
  *
- *  - 连接参数使用 CFrmParameterClient 的值做为其初始值。
- *    请在 CParameterConnecter::onLoad 中初始化。\n
- *    例如：保存密码可以以它为初始化值。
- *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
- *    \see CParameterUser::onLoad
+ *  - \ref sub_Use_CParameterClient_in_CParameterConnecter
  *
  * \~
- * \see CClient::CreateConnecter
+ * \see CParameterBase
+ *      CClient::CreateConnecter
  *      CConnecter::CConnecter
  *      CConnecter::SetParameterClient
  *      CConnecter::SetParameter
@@ -134,6 +127,7 @@ public:
         CParameterConnecter *parent,
         const QString& szPrefix = QString());
 
+    //! Get CParameterClient
     CParameterClient* GetParameterClient();
     int SetParameterClient(CParameterClient* p);
 
@@ -205,6 +199,7 @@ Q_SIGNALS:
     void sigShowServerNameChanged();
     
 protected:
+    //! Load parameters from settings
     virtual int onLoad(QSettings &set) override;
     virtual int onSave(QSettings &set) override;
     

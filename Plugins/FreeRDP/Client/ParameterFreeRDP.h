@@ -1,10 +1,10 @@
 #ifndef CPARAMETERFREERDP_H
 #define CPARAMETERFREERDP_H
 
-#include "ParameterConnecter.h"
+#include "ParameterBase.h"
 #include "freerdp/freerdp.h"
 
-class CParameterFreeRDP : public CParameterConnecter
+class CParameterFreeRDP : public CParameterBase
 {
     Q_OBJECT
     Q_PROPERTY(bool RedirectionPrinter READ GetRedirectionPrinter WRITE SetRedirectionPrinter NOTIFY sigRedirectionPrinterChanged)
@@ -15,7 +15,7 @@ class CParameterFreeRDP : public CParameterConnecter
     Q_PROPERTY(QStringList RedirectionDrives READ GetRedirectionDrives WRITE SetRedirectionDrives NOTIFY sigRedirectionDrivesChanged)
 
 public:
-    explicit CParameterFreeRDP(CParameterConnecter *parent = nullptr);
+    explicit CParameterFreeRDP(QObject *parent = nullptr);
 
     // CParameter interface
     virtual int onLoad(QSettings &set) override;
