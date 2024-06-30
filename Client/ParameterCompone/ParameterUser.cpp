@@ -1,5 +1,8 @@
 #include "ParameterUser.h"
 #include "RabbitCommonTools.h"
+#include <QLoggingCategory>
+
+static Q_LOGGING_CATEGORY(log, "Client.Parameter.User")
 
 CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPrefix)
     : CParameterConnecter(parent, szPrefix),
@@ -14,12 +17,8 @@ int CParameterUser::onLoad(QSettings &set)
 
     SetUser(set.value("Name", GetUser()).toString());
 
-    //! [Initialize parameter]
-    bool bDefaultSavePassword = GetSavePassword();
-    if(GetParameterClient())
-        bDefaultSavePassword = GetParameterClient()->GetSavePassword();
-    SetSavePassword(set.value("SavePassword", bDefaultSavePassword).toBool());
-    //! [Initialize parameter]
+    SetSavePassword(set.value("SavePassword", GetSavePassword()).toBool());
+
     if(GetSavePassword())
     {
         QString szPassword;
@@ -34,6 +33,7 @@ int CParameterUser::onSave(QSettings &set)
 {
     set.beginGroup("User");
     set.setValue("Name", GetUser());
+    set.setValue("SavePassword", GetSavePassword());
     SavePassword("Password", GetPassword(), set, GetSavePassword());
     set.endGroup();
     return 0;
@@ -77,3 +77,20 @@ void CParameterUser::SetSavePassword(bool save)
     m_bSavePassword = save;
     SetModified(true);
 }
+
+//! [Initialize parameter after set CParameterClient]
+int CParameterUser::slotSetParameterClient()
+{
+    if(!GetParameterClient()) {
+        QString szErr = "The CParameterClient is null";
+        qCritical(log) << szErr;
+        Q_ASSERT_X(false, "CParameterUser", szErr.toStdString().c_str());
+        return 0;
+    }
+
+    if(GetParameterClient())
+        SetSavePassword(GetParameterClient()->GetSavePassword());
+
+    return 0;
+}
+//! [Initialize parameter after set CParameterClient]

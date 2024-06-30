@@ -65,7 +65,14 @@ CParameterClient* CParameterConnecter::GetParameterClient()
 
 int CParameterConnecter::SetParameterClient(CParameterClient *p)
 {
+    if(m_pParameterClient == p) return 0;
     m_pParameterClient = p;
+    emit sigSetParameterClient();
+    return 0;
+}
+
+int CParameterConnecter::slotSetParameterClient()
+{
     return 0;
 }
 

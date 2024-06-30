@@ -28,8 +28,9 @@
  *    in the parameters of connecter ( CParameterConnecter or it's derived class )
  *  - The parameters of connecter( CParameterConnecter or it's derived class )
  *    use the value of CParameterClient as its initial value. \n
- *    For example, saving a password can be initialized with it.
- *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
+ *    Please override CParameterConnecter::slotSetParameterClient and initialize the relevant values in it.
+ *    For example, Whether to save the password with the member value of CParameterClient as its initialization value.
+ *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
  *    \see CParameterUser::onLoad
  *
  *
@@ -50,9 +51,9 @@
  * \subsubsection sub_Use_CParameterClient_in_CParameterConnecter 在连接参数 ( CParameterConnecter 或其派生类 ) 中使用客户端库参数 (CParameterClient)
  *   - 在连接参数 ( CParameterConnecter 或其派生类 ) 使用 CParameterConnecter::GetParameterClient() 来得到客户端库参数 (CParameterClient) 。
  *   - 连接参数 ( CParameterConnecter 或其派生类 ) 使用客户端库参数 (CParameterClient) 的值做为其初始值。
- *     请在 CParameterConnecter::onLoad 中初始化。\n
- *     例如：保存密码以 CParameterClient 的成员值做为其初始化值。
- *     \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter
+ *     请重载 CParameterConnecter::slotSetParameterClient 并在其中初始化相关的值。\n
+ *     例如：是否保存密码以 CParameterClient 的成员值做为其初始化值。
+ *     \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
  *     \see CParameterUser::onLoad
  *
  * \~

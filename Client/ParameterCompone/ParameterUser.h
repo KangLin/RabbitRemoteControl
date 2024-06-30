@@ -47,6 +47,10 @@ private:
     QString m_szUser;
     QString m_szPassword;
     bool m_bSavePassword;
+
+    // CParameterConnecter interface
+protected:
+    virtual int slotSetParameterClient() override;
 };
 
 #endif // CPARAMETERUSERPASSWORD_H

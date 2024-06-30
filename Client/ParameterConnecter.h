@@ -131,6 +131,41 @@ public:
     CParameterClient* GetParameterClient();
     int SetParameterClient(CParameterClient* p);
 
+protected:
+    //! Load parameters from settings
+    virtual int onLoad(QSettings &set) override;
+    virtual int onSave(QSettings &set) override;
+
+Q_SIGNALS:
+    void sigSetParameterClient();
+
+protected Q_SLOTS:
+    /*!
+     * \~chinese 设置 CParameterClient 后调用，用于初始化与 CParameterClient 有关的操作。
+     *
+     * \~english Call after set CParameterClient.
+     * Used to initialize operations related to CParameterClient.
+     *
+     * \~
+     * \ref sub_Use_CParameterClient_in_CParameterConnecter
+     */
+    virtual int slotSetParameterClient();
+
+protected:
+    QByteArray PasswordSum(const std::string &password, const std::string &key);
+    int LoadPassword(const QString &szTitle, const QString &szKey,
+                     QString &password, QSettings &set);
+    int SavePassword(const QString &szKey, const QString &password,
+                     QSettings &set, bool bSave = false);
+
+private:
+    CParameterConnecter* m_Parent;
+    /*!
+     * \see CClient::CreateConnecter CConnecter::SetParameterClient
+     */
+    CParameterClient* m_pParameterClient;
+
+public:
     /*!
      * \brief Check whether the parameters are complete
      *  to decide whether to open the parameter dialog 
@@ -197,24 +232,8 @@ public:
 Q_SIGNALS:
     void sigNameChanged(const QString &name = QString());
     void sigShowServerNameChanged();
-    
-protected:
-    //! Load parameters from settings
-    virtual int onLoad(QSettings &set) override;
-    virtual int onSave(QSettings &set) override;
-    
-    QByteArray PasswordSum(const std::string &password, const std::string &key);
-    int LoadPassword(const QString &szTitle, const QString &szKey,
-                     QString &password, QSettings &set);
-    int SavePassword(const QString &szKey, const QString &password,
-                     QSettings &set, bool bSave = false);
 
 private:
-    CParameterConnecter* m_Parent;
-    /*!
-     * \see CClient::CreateConnecter CConnecter::SetParameterClient
-     */
-    CParameterClient* m_pParameterClient;
 
     QString m_szName;
     QString m_szServerName;
