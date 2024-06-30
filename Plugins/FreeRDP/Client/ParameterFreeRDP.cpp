@@ -44,7 +44,7 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
 
 int CParameterFreeRDP::onLoad(QSettings &set)
 {
-    CParameterConnecter::onLoad(set);
+    CParameterBase::onLoad(set);
 
     Q_ASSERT(m_pSettings);
 
@@ -87,7 +87,7 @@ int CParameterFreeRDP::onLoad(QSettings &set)
 
 int CParameterFreeRDP::onSave(QSettings &set)
 {
-    CParameterConnecter::onSave(set);
+    CParameterBase::onSave(set);
 
     set.setValue("FreeRDP/Domain", GetDomain());
     set.setValue("FreeRDP/Width", freerdp_settings_get_uint32(
@@ -252,7 +252,7 @@ void CParameterFreeRDP::SetClipboard(bool c)
 {
     Q_ASSERT(m_pSettings);
     freerdp_settings_set_bool(m_pSettings, FreeRDP_RedirectClipboard, c);
-    CParameterConnecter::SetClipboard(c);
+    CParameterBase::SetClipboard(c);
 }
 
 void CParameterFreeRDP::SetOnlyView(bool bOnly)
@@ -260,7 +260,7 @@ void CParameterFreeRDP::SetOnlyView(bool bOnly)
 #if FreeRDP_VERSION_MAJOR >= 3
     freerdp_settings_set_bool(m_pSettings, FreeRDP_SuspendInput, bOnly);
 #endif
-    return CParameterConnecter::SetOnlyView(bOnly);
+    return CParameterBase::SetOnlyView(bOnly);
 }
 
 void CParameterFreeRDP::SetHost(const QString &szHost)
@@ -269,14 +269,14 @@ void CParameterFreeRDP::SetHost(const QString &szHost)
     freerdp_settings_set_string(m_pSettings,
                                 FreeRDP_ServerHostname,
                                 szHost.toStdString().c_str());
-    CParameterConnecter::SetHost(szHost);
+    CParameterBase::m_Net.SetHost(szHost);
 }
 
 void CParameterFreeRDP::SetPort(quint16 port)
 {
     Q_ASSERT(m_pSettings);
     freerdp_settings_set_uint32(m_pSettings, FreeRDP_ServerPort, port);
-    CParameterConnecter::SetPort(port);
+    CParameterBase::m_Net.SetPort(port);
 }
 
 void CParameterFreeRDP::SetUser(const QString &szUser)
@@ -286,7 +286,7 @@ void CParameterFreeRDP::SetUser(const QString &szUser)
         freerdp_settings_set_string(m_pSettings,
                                     FreeRDP_Username,
                                     szUser.toStdString().c_str());
-    CParameterConnecter::SetUser(szUser);
+    CParameterBase::m_Net.m_User.SetUser(szUser);
 }
 
 void CParameterFreeRDP::SetPassword(const QString &szPassword)
@@ -296,7 +296,7 @@ void CParameterFreeRDP::SetPassword(const QString &szPassword)
         freerdp_settings_set_string(m_pSettings,
                                     FreeRDP_Password,
                                     szPassword.toStdString().c_str());
-    CParameterConnecter::SetPassword(szPassword);
+    CParameterBase::m_Net.m_User.SetPassword(szPassword);
 }
 
 void CParameterFreeRDP::SetDomain(const QString& szDomain)
