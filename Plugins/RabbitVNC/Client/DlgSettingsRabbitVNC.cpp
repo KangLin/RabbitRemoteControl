@@ -53,14 +53,14 @@ void CDlgSettingsRabbitVNC::on_pbOk_clicked()
         m_pPara->SetIce(false);
     }
 
-    m_pPara->SetHost(ui->leServer->text());
-    m_pPara->SetPort(ui->spPort->value());
+    m_pPara->m_Net.SetHost(ui->leServer->text());
+    m_pPara->m_Net.SetPort(ui->spPort->value());
     m_pPara->SetName(ui->leName->text());
-    m_pPara->SetUser(ui->leUserName->text());
-    m_pPara->SetPassword(ui->lePassword->text());
+    m_pPara->m_Net.m_User.SetUser(ui->leUserName->text());
+    m_pPara->m_Net.m_User.SetPassword(ui->lePassword->text());
     
     m_pPara->SetOnlyView(ui->cbOnlyView->isChecked());
-    m_pPara->SetSavePassword(ui->cbSave->isChecked());
+    m_pPara->m_Net.m_User.SetSavePassword(ui->cbSave->isChecked());
     m_pPara->SetShared(ui->cbShared->isChecked());
     m_pPara->SetBufferEndRefresh(!ui->cbRealTimeUpdate->isChecked());
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
@@ -170,15 +170,15 @@ void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
         ui->gpIce->setEnabled(false);
     }
 
-    ui->leServer->setText(m_pPara->GetHost());
-    ui->spPort->setValue(m_pPara->GetPort());
+    ui->leServer->setText(m_pPara->m_Net.GetHost());
+    ui->spPort->setValue(m_pPara->m_Net.GetPort());
     ui->lePeerUser->setText(m_pPara->GetPeerUser());
     
     ui->leName->setText(m_pPara->GetName());
-    ui->leUserName->setText(m_pPara->GetUser());
-    ui->lePassword->setText(m_pPara->GetPassword());
+    ui->leUserName->setText(m_pPara->m_Net.m_User.GetUser());
+    ui->lePassword->setText(m_pPara->m_Net.m_User.GetPassword());
     ui->pbShow->setEnabled(m_pPara->GetParameterClient()->GetViewPassowrd());
-    ui->cbSave->setChecked(m_pPara->GetSavePassword());
+    ui->cbSave->setChecked(m_pPara->m_Net.m_User.GetSavePassword());
     ui->lePassword->setEnabled(ui->cbSave->isChecked());
     if(ui->cbSave->isChecked())
         ui->lePassword->setPlaceholderText(tr("Input password"));

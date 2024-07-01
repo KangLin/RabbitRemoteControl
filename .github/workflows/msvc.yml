@@ -299,7 +299,7 @@ jobs:
           IF /i "${{matrix.BUILD_TYPE}}" == "Release" (
               echo "Build Release ......"
               set BUILD_RABBITVNC=ON
-              set BUILD_LibVNCServer=OFF
+              set BUILD_LibVNCServer=ON
               set BUILD_TigerVNC=OFF
               set BUILD_SERVICE=OFF
           ) else (

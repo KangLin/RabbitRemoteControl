@@ -20,6 +20,7 @@ int CParameterBase::Init()
     m_bShowServerName = true;
     m_bOnlyView = false;
     m_bLocalCursor = true;
+    m_bClipboard = true;
     return 0;
 }
 
@@ -30,7 +31,7 @@ int CParameterBase::onLoad(QSettings &set)
     SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
     SetOnlyView(set.value("OnlyView", GetOnlyView()).toBool());
     SetLocalCursor(set.value("LocalCursor", GetLocalCursor()).toBool());
-
+    SetClipboard(set.value("Clipboard", GetClipboard()).toBool());
     return 0;
 }
 
@@ -41,7 +42,7 @@ int CParameterBase::onSave(QSettings &set)
     set.setValue("ShowServerName", GetShowServerName());
     set.setValue("OnlyView", GetOnlyView());
     set.setValue("LocalCursor", GetLocalCursor());
-
+    set.setValue("Clipboard", GetClipboard());
     return 0;
 }
 
@@ -109,5 +110,18 @@ void CParameterBase::SetLocalCursor(bool cursor)
     if(m_bLocalCursor == cursor)
         return;
     m_bLocalCursor = cursor;
+    SetModified(true);
+}
+
+const bool CParameterBase::GetClipboard() const
+{
+    return m_bClipboard;
+}
+
+void CParameterBase::SetClipboard(bool c)
+{
+    if(m_bClipboard == c)
+        return;
+    m_bClipboard = c;
     SetModified(true);
 }

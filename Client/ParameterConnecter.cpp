@@ -15,29 +15,28 @@ CParameterConnecter::CParameterConnecter(QObject* parent)
     : CParameter(parent),
     m_Parent(nullptr),
     m_pParameterClient(nullptr),
-    m_nPort(0),
-    m_bSavePassword(false),
-    m_bClipboard(true),
     m_eProxyType(emProxy::No),
     m_nProxyPort(1080)
-{}
+{
+    bool check = false;
+    check = connect(this, SIGNAL(sigSetParameterClient()),
+                    this, SLOT(slotSetParameterClient()));
+    Q_ASSERT(check);
+}
 
 CParameterConnecter::CParameterConnecter(
     CParameterConnecter *parent, const QString &szPrefix)
     : CParameter(parent, szPrefix),
       m_Parent(parent),
       m_pParameterClient(nullptr),
-      m_nPort(0),
-      m_bSavePassword(false),
-      m_bClipboard(true),
       m_eProxyType(emProxy::No),
       m_nProxyPort(1080)
 {
-    SetUser(RabbitCommon::CTools::GetCurrentUser());
-
+    bool check = false;
+    check = connect(this, SIGNAL(sigSetParameterClient()),
+                    this, SLOT(slotSetParameterClient()));
+    Q_ASSERT(check);
     if(parent) {
-        bool check = connect(parent, SIGNAL(sigSetParameterClient()),
-                             this, SLOT(slotSetParameterClient()));
         check = connect(parent, SIGNAL(sigSetParameterClient()),
                         this, SIGNAL(sigSetParameterClient()));
         Q_ASSERT(check);
@@ -58,93 +57,14 @@ int CParameterConnecter::SetParameterClient(CParameterClient *p)
     return 0;
 }
 
-int CParameterConnecter::slotSetParameterClient()
+void CParameterConnecter::slotSetParameterClient()
 {
-    return 0;
+    return;
 }
 
 bool CParameterConnecter::GetCheckCompleted()
 {
-    if(GetSavePassword()) return true;
-    return false;
-}
-
-void CParameterConnecter::SetHost(const QString& host)
-{
-    if (m_szHost == host)
-        return;
-    m_szHost = host;
-    SetModified(true);
-}
-
-const QString CParameterConnecter::GetHost() const
-{
-    return m_szHost;
-}
-
-const quint16 CParameterConnecter::GetPort() const
-{
-    return m_nPort;
-}
-
-void CParameterConnecter::SetPort(quint16 port)
-{
-    if(m_nPort == port)
-        return;
-    m_nPort = port;
-    SetModified(true);
-}
-
-const QString CParameterConnecter::GetUser() const
-{
-    return m_szUser;
-}
-
-void CParameterConnecter::SetUser(const QString &szUser)
-{
-    if (m_szUser == szUser)
-        return;
-    m_szUser = szUser;
-    SetModified(true);
-}
-
-const QString CParameterConnecter::GetPassword() const
-{
-    return m_szPassword;
-}
-
-void CParameterConnecter::SetPassword(const QString &szPassword)
-{
-    if(m_szPassword == szPassword)
-        return;
-    m_szPassword = szPassword;
-    SetModified(true);
-}
-
-const bool CParameterConnecter::GetSavePassword() const
-{
-    return m_bSavePassword;
-}
-
-void CParameterConnecter::SetSavePassword(bool save)
-{
-    if (m_bSavePassword == save)
-        return;
-    m_bSavePassword = save;
-    SetModified(true);
-}
-
-const bool CParameterConnecter::GetClipboard() const
-{
-    return m_bClipboard;
-}
-
-void CParameterConnecter::SetClipboard(bool c)
-{
-    if(m_bClipboard == c)
-        return;
-    m_bClipboard = c;
-    SetModified(true);
+    return true;
 }
 
 const CParameterConnecter::emProxy CParameterConnecter::GetProxyType() const
@@ -214,42 +134,17 @@ void CParameterConnecter::SetProxyPassword(const QString &password)
 
 int CParameterConnecter::onLoad(QSettings &set)
 {
-    SetHost(set.value("Host", GetHost()).toString());
-    SetPort(set.value("Port", GetPort()).toUInt());
-    SetUser(set.value("User", GetUser()).toString());
-    SetSavePassword(set.value("SavePassword", GetSavePassword()).toBool());
-    if(GetSavePassword())
-    {
-        QString szPassword;
-        if(!LoadPassword(tr("Password"), "Password", szPassword, set))
-            SetPassword(szPassword);
-    }
-    SetClipboard(set.value("Clipboard", GetClipboard()).toBool());
-    
     SetProxyType(static_cast<emProxy>(set.value("Proxy/Type",
                                     static_cast<int>(GetProxyType())).toInt()));
     SetProxyHost(set.value("Proxy/Host", GetProxyHost()).toString());
     SetProxyPort(set.value("Proxy/Port", GetProxyPort()).toUInt());
     SetProxyUser(set.value("Proxy/User", GetProxyUser()).toString());
-    
-    if(GetSavePassword())
-    {
-        QString szPassword;
-        if(!LoadPassword(tr("Proxy password"), "Proxy/Password", szPassword, set))
-            SetProxyPassword(szPassword);
-    }
-    
+
     return 0;
 }
 
 int CParameterConnecter::onSave(QSettings &set)
 {
-    set.setValue("Host", GetHost());
-    set.setValue("Port", GetPort());
-    set.setValue("User", GetUser());
-    SavePassword("Password", GetPassword(), set, GetSavePassword());
-    set.setValue("Clipboard", GetClipboard());
-    
     set.setValue("Proxy/Type", (int)m_eProxyType);
     set.setValue("Proxy/Host", GetProxyHost());
     set.setValue("Proxy/Port", GetProxyPort());
@@ -294,7 +189,6 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
     CDlgInputPassword d(GetParameterClient()->GetViewPassowrd(), szTitle);
     if(QDialog::Accepted != d.exec())
     {
-        SetSavePassword(false);
         return -1;
     }
 
@@ -347,8 +241,8 @@ int CParameterConnecter::SavePassword(const QString &szKey,
         }
     } else
         e.SetPassword(key.c_str());
-    e.Encode(GetPassword(), encryptPassword);
+    e.Encode(password, encryptPassword);
     set.setValue(szKey, encryptPassword);
-    set.setValue(szKey + "_sum", PasswordSum(GetPassword().toStdString(), key));
+    set.setValue(szKey + "_sum", PasswordSum(password.toStdString(), key));
     return 0;
 }

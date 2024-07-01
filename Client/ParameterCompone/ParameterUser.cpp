@@ -79,18 +79,18 @@ void CParameterUser::SetSavePassword(bool save)
 }
 
 //! [Initialize parameter after set CParameterClient]
-int CParameterUser::slotSetParameterClient()
+void CParameterUser::slotSetParameterClient()
 {
     if(!GetParameterClient()) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;
         Q_ASSERT_X(false, "CParameterUser", szErr.toStdString().c_str());
-        return 0;
+        return;
     }
 
     if(GetParameterClient())
         SetSavePassword(GetParameterClient()->GetSavePassword());
 
-    return 0;
+    return;
 }
 //! [Initialize parameter after set CParameterClient]

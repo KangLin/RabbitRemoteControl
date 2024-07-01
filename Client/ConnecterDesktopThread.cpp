@@ -71,9 +71,9 @@ QString CConnecterDesktopThread::ServerName()
         if(!GetParameter()->GetShowServerName()
                 || CConnecter::ServerName().isEmpty())
         {
-            if(!GetParameter()->GetHost().isEmpty())
-                return GetParameter()->GetHost() + ":"
-                        + QString::number(GetParameter()->GetPort());
+            if(!GetParameter()->m_Net.GetHost().isEmpty())
+                return GetParameter()->m_Net.GetHost() + ":"
+                        + QString::number(GetParameter()->m_Net.GetPort());
         }
     return CConnecter::ServerName();
 }

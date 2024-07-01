@@ -44,18 +44,18 @@ void CDlgGetUserPasswordFreeRDP::showEvent(QShowEvent *event)
     
     ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
     ui->leDomain->setText(szDomain);
-    ui->leUser->setText(m_pParameter->GetUser());
-    ui->lePassword->setText(m_pParameter->GetPassword());
-    ui->cbSavePassword->setChecked(m_pParameter->GetSavePassword());
+    ui->leUser->setText(m_pParameter->m_Net.m_User.GetUser());
+    ui->lePassword->setText(m_pParameter->m_Net.m_User.GetPassword());
+    ui->cbSavePassword->setChecked(m_pParameter->m_Net.m_User.GetSavePassword());
     
 }
 
 void CDlgGetUserPasswordFreeRDP::on_pbOK_clicked()
 {
     Q_ASSERT(m_pParameter);
-    m_pParameter->SetUser(ui->leUser->text());
-    m_pParameter->SetPassword(ui->lePassword->text());
-    m_pParameter->SetSavePassword(ui->cbSavePassword->isChecked());
+    m_pParameter->m_Net.m_User.SetUser(ui->leUser->text());
+    m_pParameter->m_Net.m_User.SetPassword(ui->lePassword->text());
+    m_pParameter->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
     freerdp_settings_set_string(m_pParameter->m_pSettings, FreeRDP_Domain,
                                 ui->leDomain->text().toStdString().c_str());
     emit m_pConnecter->sigUpdateParameters(m_pConnecter);

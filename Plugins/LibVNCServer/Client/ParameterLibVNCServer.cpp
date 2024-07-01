@@ -3,7 +3,7 @@
 CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
     : CParameterBase(parent)
 {
-    SetPort(5900);
+    m_Net.SetPort(5900);
     SetShared(true);
     
     SetClipboard(true);
@@ -15,12 +15,12 @@ CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
 
 int CParameterLibVNCServer::onLoad(QSettings &set)
 {
-    return CParameterConnecter::onLoad(set);
+    return CParameterBase::onLoad(set);
 }
 
 int CParameterLibVNCServer::onSave(QSettings &set)
 {
-    return CParameterConnecter::onSave(set);
+    return CParameterBase::onSave(set);
 }
 
 int CParameterLibVNCServer::GetQualityLevel() const

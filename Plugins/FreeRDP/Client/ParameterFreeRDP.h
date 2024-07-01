@@ -22,15 +22,14 @@ public:
     virtual int onSave(QSettings &set) override;
 
     rdpSettings* m_pSettings;
-
-    // CParameterConnecter interface
+    
 public:
-    virtual void SetHost(const QString &szHost) Q_DECL_OVERRIDE;
-    virtual void SetPort(quint16 port) Q_DECL_OVERRIDE;
-    virtual void SetUser(const QString &szUser) Q_DECL_OVERRIDE;
-    virtual void SetPassword(const QString &szPassword) Q_DECL_OVERRIDE;
-    virtual void SetClipboard(bool c) Q_DECL_OVERRIDE;
-    virtual void SetOnlyView(bool only) Q_DECL_OVERRIDE;
+    virtual void SetHost(const QString &szHost);
+    virtual void SetPort(quint16 port);
+    virtual void SetUser(const QString &szUser);
+    virtual void SetPassword(const QString &szPassword);
+    virtual void SetClipboard(bool c);
+    virtual void SetOnlyView(bool only);
 
     void SetDomain(const QString& szDomain);
     const QString GetDomain() const;
@@ -74,7 +73,7 @@ signals:
     void sigRedirectionMicrophoneParametersChanged();
     void sigRedirectionDrivesChanged(QStringList RedirectionDrive);
     void sigRedirectionPrinterChanged(bool RedirectionPrinter);
-
+    
 private:
     QStringList m_lstDesktopSizes;
 
@@ -88,7 +87,7 @@ private:
     QString m_szRedirectionMicrophoneParameters;
     QStringList m_lstRedirectionDrives;
     Q_PROPERTY(QString RedirectionMicrophoneParameters READ GetRedirectionMicrophoneParameters WRITE SetRedirectionMicrophoneParameters NOTIFY sigRedirectionMicrophoneParametersChanged)
-
+    
 };
 
 #endif // CPARAMETERFREERDP_H

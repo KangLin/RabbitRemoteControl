@@ -6,7 +6,6 @@ CParameterTigerVnc::CParameterTigerVnc(QObject *parent)
 {
     m_Net.SetPort(5900);
 
-    SetPort(5900);
     SetShared(true);
     SetBufferEndRefresh(false);
     SetSupportsDesktopResize(true);
@@ -27,7 +26,7 @@ CParameterTigerVnc::CParameterTigerVnc(QObject *parent)
 
 int CParameterTigerVnc::onLoad(QSettings &set)
 {
-    int nRet = CParameterConnecter::onLoad(set);
+    int nRet = CParameterBase::onLoad(set);
     if(nRet) return nRet;
 
     SetShared(set.value("TigerVNC/Shared", GetShared()).toBool());
@@ -50,7 +49,7 @@ int CParameterTigerVnc::onLoad(QSettings &set)
                               GetSignalServer()).toString());
     SetSignalPort(set.value("ICE/Signal/Port", GetSignalPort()).toUInt());
     SetSignalUser(set.value("ICE/Signal/User", GetSignalUser()).toString());
-    if(GetSavePassword())
+    if(m_Net.m_User.GetSavePassword())
     {
         QString szPassword;
         if(!LoadPassword(tr("Ice signal password"), "ICE/Signal/password",
@@ -63,7 +62,7 @@ int CParameterTigerVnc::onLoad(QSettings &set)
     SetTurnServer(set.value("ICE/Turn/Server", GetTurnServer()).toString());
     SetTurnPort(set.value("ICE/Turn/Port", GetTurnPort()).toUInt());
     SetTurnUser(set.value("ICE/Turn/User", GetTurnUser()).toString());
-    if(GetSavePassword())
+    if(m_Net.m_User.GetSavePassword())
     {
         QString szPassword;
         if(!LoadPassword(tr("Ice turn password"), "ICE/Turn/password",
@@ -76,7 +75,7 @@ int CParameterTigerVnc::onLoad(QSettings &set)
 
 int CParameterTigerVnc::onSave(QSettings &set)
 {
-    int nRet = CParameterConnecter::onSave(set);
+    int nRet = CParameterBase::onSave(set);
     if(nRet) return nRet;
     
     set.setValue("TigerVNC/Shared", GetShared());
@@ -115,7 +114,9 @@ bool CParameterTigerVnc::GetCheckCompleted()
         return true;
     }
     
-    if(GetHost().isEmpty() || GetPort() <= 0 || GetPassword().isEmpty())
+    if(m_Net.GetHost().isEmpty()
+        || m_Net.GetPort() <= 0
+        || m_Net.m_User.GetPassword().isEmpty())
         return false;
     return true;
 }

@@ -214,7 +214,7 @@ jobs:
           if [ '${{matrix.BUILD_TYPE}}' == 'Release' ]; then
               echo "Build Release ......"
               export BUILD_VIEWER_TERMINAL=OFF
-              export BUILD_LibVNCServer=OFF
+              export BUILD_LibVNCServer=ON
               export BUILD_TigerVNC=OFF
               export BUILD_FREERDP=ON
               export BUILD_RABBITVNC=ON

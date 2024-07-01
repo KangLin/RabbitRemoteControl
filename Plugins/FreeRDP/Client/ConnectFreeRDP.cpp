@@ -63,9 +63,9 @@ CConnectFreeRDP::~CConnectFreeRDP()
 
 /*
  * \return 
- * \li < 0: error
- * \li = 0: Use OnProcess (non-Qt event loop)
- * \li > 0: Don't use OnProcess (qt event loop)
+ * \li OnInitReturnValue::Fail: error
+ * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
+ * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
  */
 CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 {
@@ -103,7 +103,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     RedirectionPrinter();
     RedirectionSerial();
 
-    if(m_pParameter->GetHost().isEmpty())
+    if(m_pParameter->m_Net.GetHost().isEmpty())
     {
         QString szErr;
         szErr = tr("The server is empty, please input it");
@@ -300,9 +300,9 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
     BOOL status = freerdp_connect(instance);
     if (status) {
         QString szInfo = tr("Connect to ");
-        szInfo += pThis->m_pParameter->GetHost();
+        szInfo += pThis->m_pParameter->m_Net.GetHost();
         szInfo += ":";
-        szInfo += QString::number(pThis->m_pParameter->GetPort());
+        szInfo += QString::number(pThis->m_pParameter->m_Net.GetPort());
         qInfo(log) << szInfo;
         emit pThis->sigInformation(szInfo);
     } else {
@@ -310,9 +310,9 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
 
         QString szErr;
         szErr = tr("Connect to ");
-        szErr += pThis->m_pParameter->GetHost();
+        szErr += pThis->m_pParameter->m_Net.GetHost();
         szErr += ":";
-        szErr += QString::number(pThis->m_pParameter->GetPort());
+        szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
         szErr += tr(" fail.");
         szErr += " [";
         szErr += QString::number(nErr) + " - ";
@@ -328,9 +328,9 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         {
             nRet = -3;
             QString szErr = tr("Logon to ");
-            szErr += pThis->m_pParameter->GetHost();
+            szErr += pThis->m_pParameter->m_Net.GetHost();
             szErr += ":";
-            szErr += QString::number(pThis->m_pParameter->GetPort());
+            szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
             szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
             emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -339,9 +339,9 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         {
             nRet = -4;
             QString szErr = tr("Logon to ");
-            szErr += pThis->m_pParameter->GetHost();
+            szErr += pThis->m_pParameter->m_Net.GetHost();
             szErr += ":";
-            szErr += QString::number(pThis->m_pParameter->GetPort());
+            szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
             szErr += tr(" fail. Please check password are correct.") + "\n";
             emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -350,9 +350,9 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         {
             nRet = -5;
             QString szErr = tr("Logon to ");
-            szErr += pThis->m_pParameter->GetHost();
+            szErr += pThis->m_pParameter->m_Net.GetHost();
             szErr += ":";
-            szErr += QString::number(pThis->m_pParameter->GetPort());
+            szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
             szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
             emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -361,9 +361,9 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         {
             nRet = -6;
             QString szErr = tr("Logon to ");
-            szErr += pThis->m_pParameter->GetHost();
+            szErr += pThis->m_pParameter->m_Net.GetHost();
             szErr += ":";
-            szErr += QString::number(pThis->m_pParameter->GetPort());
+            szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
             szErr += tr(" connect transport layer fail.") + "\n\n";
             szErr += tr("Please:") + "\n";
             szErr += tr("1. Check for any network related issues") + "\n";
@@ -467,7 +467,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 		return FALSE;
 #endif
     
-    if (pThis->m_pParameter->GetUser().isEmpty()
+    if (pThis->m_pParameter->m_Net.m_User.GetUser().isEmpty()
         && !freerdp_settings_get_bool(settings, FreeRDP_CredentialsFromStdin)
         && !freerdp_settings_get_bool(settings, FreeRDP_SmartcardLogon))
 	{
@@ -482,7 +482,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
     {
         /* Check +auth-only has a username and password. */
-        if (!pThis->m_pParameter->GetPassword().isEmpty())
+        if (!pThis->m_pParameter->m_Net.m_User.GetPassword().isEmpty())
         {
             qCritical(log) << "auth-only, but no password set. Please provide one.";
             return FALSE;
@@ -536,7 +536,7 @@ const char* CConnectFreeRDP::GetTitle(freerdp* instance)
 #if FreeRDP_VERSION_MAJOR >= 3
     name = freerdp_settings_get_server_name(settings);
 #else
-    name = pThis->m_pParameter->GetHost().toStdString().c_str();
+    name = pThis->m_pParameter->m_Net.GetHost().toStdString().c_str();
 #endif
     port = freerdp_settings_get_uint32(settings, FreeRDP_ServerPort);
     
@@ -943,8 +943,8 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
         emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
         if(QDialog::Accepted == nRet)
         {
-            QString szPassword = pThis->m_pParameter->GetPassword();
-            QString szName = pThis->m_pParameter->GetUser();
+            QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
+            QString szName = pThis->m_pParameter->m_Net.m_User.GetUser();
             QString szDomain = freerdp_settings_get_string(
                 pThis->m_pParameter->m_pSettings, FreeRDP_Domain);;
             if(!szDomain.isEmpty() && domain)
@@ -974,8 +974,8 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
         emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
         if(QDialog::Accepted == nRet)
         {
-            QString szPassword = pThis->m_pParameter->GetPassword();
-            QString szName = pThis->m_pParameter->GetUser();
+            QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
+            QString szName = pThis->m_pParameter->m_Net.m_User.GetUser();
             QString szDomain = freerdp_settings_get_string(
                 pThis->m_pParameter->m_pSettings, FreeRDP_Domain);;
             if(!szDomain.isEmpty() && domain)

@@ -89,14 +89,17 @@ CDlgSetFreeRDP::~CDlgSetFreeRDP()
 
 void CDlgSetFreeRDP::on_pbOk_clicked()
 {
-    // Server
     m_pSettings->SetName(ui->leName->text());
+
+    // Server
+    m_pSettings->SetDomain(ui->leDomain->text());
     m_pSettings->SetHost(ui->leServer->text());
     m_pSettings->SetPort(ui->spPort->value());
+
     m_pSettings->SetUser(ui->leUserName->text());
     m_pSettings->SetPassword(ui->lePassword->text());
-    m_pSettings->SetDomain(ui->leDomain->text());
-    m_pSettings->SetSavePassword(ui->cbSavePassword->isChecked());
+    m_pSettings->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
+    
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
     m_pSettings->SetShowServerName(ui->cbShowServerName->isChecked());
@@ -114,11 +117,15 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
                                     FreeRDP_DesktopHeight, height);
     }
 
-    freerdp_settings_set_bool(m_pSettings->m_pSettings, FreeRDP_UseMultimon, ui->cbAllMonitor->isChecked());
+    freerdp_settings_set_bool(m_pSettings->m_pSettings,
+                              FreeRDP_UseMultimon,
+                              ui->cbAllMonitor->isChecked());
     if(ui->cbAllMonitor->isChecked())
     {
         //TODO: complete it
-        freerdp_settings_set_uint32(m_pSettings->m_pSettings, FreeRDP_MonitorCount, QApplication::screens().length());
+        freerdp_settings_set_uint32(m_pSettings->m_pSettings,
+                                    FreeRDP_MonitorCount,
+                                    QApplication::screens().length());
     }
     freerdp_settings_set_uint32(m_pSettings->m_pSettings, FreeRDP_ColorDepth,
                                ui->cbColorDepth->currentData().toInt());
@@ -174,22 +181,24 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
     Q_ASSERT(m_pSettings);
-
-    // Server
+    
     ui->leName->setText(m_pSettings->GetName());
+    
+    // Server
     ui->leDomain->setText(m_pSettings->GetDomain());
-    ui->leServer->setText(m_pSettings->GetHost());
-    ui->spPort->setValue(m_pSettings->GetPort());
-    ui->leUserName->setText(m_pSettings->GetUser());
-    ui->lePassword->setText(m_pSettings->GetPassword());
-    ui->pbShow->setEnabled(m_pSettings->GetParameterClient()->GetViewPassowrd());
+    ui->leServer->setText(m_pSettings->m_Net.GetHost());
+    ui->spPort->setValue(m_pSettings->m_Net.GetPort());
 
-    ui->cbSavePassword->setChecked(m_pSettings->GetSavePassword());
+    ui->leUserName->setText(m_pSettings->m_Net.m_User.GetUser());
+    ui->lePassword->setText(m_pSettings->m_Net.m_User.GetPassword());
+    ui->pbShow->setEnabled(m_pSettings->GetParameterClient()->GetViewPassowrd());
+    ui->cbSavePassword->setChecked(m_pSettings->m_Net.m_User.GetSavePassword());
     ui->lePassword->setEnabled(ui->cbSavePassword->isChecked());
     if(ui->cbSavePassword->isChecked())
         ui->lePassword->setPlaceholderText(tr("Input password"));
     else
         ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
+
     ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
     ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
     ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());

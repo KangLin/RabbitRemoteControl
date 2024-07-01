@@ -17,7 +17,7 @@ CParameter::CParameter(CParameter* parent, const QString& szPrefix)
         parent->AddMember(this);
     } else if(szPrefix.isEmpty()){
         QString szErr = this->metaObject()->className();
-        szErr += "'s parent is null. "
+        szErr += "'s parent and prefix is null. "
                  "use CParameter::CParameter(QObject *parent = nullptr)";
         qWarning(log) << szErr;
         Q_ASSERT_X(false, "CParameter", szErr.toStdString().c_str());

@@ -210,7 +210,6 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
         GetParameter()->SetParameterClient(pPara);
         if(pPara)
         {
-            GetParameter()->SetSavePassword(pPara->GetSavePassword());
             bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
                                  this, SLOT(slotUpdateName()));
             Q_ASSERT(check);

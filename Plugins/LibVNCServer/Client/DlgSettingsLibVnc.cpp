@@ -14,11 +14,11 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
 
     // Server
     ui->leName->setText(m_pPara->GetName());
-    ui->leHost->setText(m_pPara->GetHost());
-    ui->spPort->setValue(m_pPara->GetPort());
-    ui->leUserName->setText(m_pPara->GetUser());
-    ui->lePassword->setText(m_pPara->GetPassword());
-    ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
+    ui->leHost->setText(m_pPara->m_Net.GetHost());
+    ui->spPort->setValue(m_pPara->m_Net.GetPort());
+    ui->leUserName->setText(m_pPara->m_Net.m_User.GetUser());
+    ui->lePassword->setText(m_pPara->m_Net.m_User.GetPassword());
+    ui->cbSavePassword->setChecked(m_pPara->m_Net.m_User.GetSavePassword());
     ui->lePassword->setEnabled(ui->cbSavePassword->isChecked());
     if(ui->cbSavePassword->isChecked())
         ui->lePassword->setPlaceholderText(tr("Input password"));
@@ -104,11 +104,11 @@ void CDlgSettingsLibVnc::on_pbOk_clicked()
     
     // Server
     m_pPara->SetName(ui->leName->text());
-    m_pPara->SetHost(ui->leHost->text());
-    m_pPara->SetPort(ui->spPort->value());
-    m_pPara->SetUser(ui->leUserName->text());
-    m_pPara->SetPassword(ui->lePassword->text());
-    m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
+    m_pPara->m_Net.SetHost(ui->leHost->text());
+    m_pPara->m_Net.SetPort(ui->spPort->value());
+    m_pPara->m_Net.m_User.SetUser(ui->leUserName->text());
+    m_pPara->m_Net.m_User.SetPassword(ui->lePassword->text());
+    m_pPara->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
     m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
     
 //    m_pPara->bSave = ui->cbSave->isChecked();

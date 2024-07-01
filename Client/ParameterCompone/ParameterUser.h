@@ -50,7 +50,7 @@ private:
 
     // CParameterConnecter interface
 protected:
-    virtual int slotSetParameterClient() override;
+    virtual void slotSetParameterClient() override;
 };
 
 #endif // CPARAMETERUSERPASSWORD_H

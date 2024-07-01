@@ -49,6 +49,9 @@ public:
 
     const bool GetLocalCursor() const;
     void SetLocalCursor(bool cursor);
+    
+    virtual const bool GetClipboard() const;
+    virtual void SetClipboard(bool c);
 
 Q_SIGNALS:
     void sigNameChanged(const QString &name = QString());
@@ -63,7 +66,8 @@ private:
 
     bool m_bOnlyView;
     bool m_bLocalCursor;
-
+    bool m_bClipboard;
+    
     // CParameter interface
 protected:
     virtual int onLoad(QSettings &set) override;

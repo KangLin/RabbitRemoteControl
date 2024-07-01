@@ -122,12 +122,14 @@ CConnect::OnInitReturnValue CConnectTigerVnc::OnInit()
     qDebug(log) << "CConnectTigerVnc::OnInit()";
     int nRet = 0;
     
-    //*TODO: remove
+    /*TODO: remove
 #ifdef HAVE_LIBSSH
     nRet = SSHInit();
     if(nRet) return OnInitReturnValue::Fail; // error
-    return OnInitReturnValue::NotUseOnProcess;//*/
+    return OnInitReturnValue::NotUseOnProcess;
 #endif
+    //*/
+    
     if(m_pPara->GetIce())
         nRet = IceInit();
     else

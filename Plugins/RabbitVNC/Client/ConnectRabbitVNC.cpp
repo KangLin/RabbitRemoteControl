@@ -228,7 +228,7 @@ int CConnectRabbitVNC::SocketInit()
             pSock->setProxy(proxy);
         }
 
-        if(m_pPara->GetHost().isEmpty())
+        if(m_pPara->m_Net.GetHost().isEmpty())
         {
             QString szErr;
             szErr = tr("The server is empty, please input it");
@@ -236,7 +236,7 @@ int CConnectRabbitVNC::SocketInit()
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             return -5;
         }
-        pSock->connectToHost(m_pPara->GetHost(), m_pPara->GetPort());
+        pSock->connectToHost(m_pPara->m_Net.GetHost(), m_pPara->m_Net.GetPort());
 
         return nRet;
     } catch (rdr::Exception& e) {
@@ -283,7 +283,7 @@ void CConnectRabbitVNC::slotConnected()
                          << m_pPara->GetPeerUser().toStdString().c_str();
     else
         qInfo(RabbitVNC) << "Connected to"
-                         << m_pPara->GetHost() << ":" << m_pPara->GetPort();
+                         << m_pPara->m_Net.GetHost() << ":" << m_pPara->m_Net.GetPort();
     
     int nRet = SetPara();
     if(nRet)
@@ -306,7 +306,7 @@ void CConnectRabbitVNC::slotConnected()
 void CConnectRabbitVNC::slotDisConnected()
 {
     qInfo(RabbitVNC) << "slotDisConnected to"
-                      << m_pPara->GetHost() << ":" << m_pPara->GetPort();
+                      << m_pPara->m_Net.GetHost() << ":" << m_pPara->m_Net.GetPort();
     // There isn't emit sigDisconnect, because of sigDisconnect is emitted in CConnect::Disconnect()
 }
 
@@ -321,9 +321,9 @@ void CConnectRabbitVNC::slotReadyRead()
         return;
     } catch (rfb::AuthFailureException& e) {
         szErr = tr("Logon to ");
-        szErr += m_pPara->GetHost();
+        szErr += m_pPara->m_Net.GetHost();
         szErr += ":";
-        szErr += QString::number(m_pPara->GetPort());
+        szErr += QString::number(m_pPara->m_Net.GetPort());
         szErr += tr(" fail.");
         QString szMsg = szErr + "\n" + tr("Please check that the username and password are correct.") + "\n";
         emit sigShowMessage(tr("Error"), szMsg, QMessageBox::Critical);
@@ -334,9 +334,9 @@ void CConnectRabbitVNC::slotReadyRead()
     } catch (rfb::ConnFailedException& e) {
         QString szErr;
         szErr = tr("Connect to ");
-        szErr += m_pPara->GetHost();
+        szErr += m_pPara->m_Net.GetHost();
         szErr += ":";
-        szErr += QString::number(m_pPara->GetPort());
+        szErr += QString::number(m_pPara->m_Net.GetPort());
         szErr += tr(" fail.");
         szErr += " [";
         szErr += e.str();
@@ -436,14 +436,14 @@ void CConnectRabbitVNC::getUserPasswd(bool secure, char **user, char **password)
 {
     if(password && !*password)
     {
-        *password = rfb::strDup(m_pPara->GetPassword().toStdString().c_str());
-        if(m_pPara->GetPassword().isEmpty())
+        *password = rfb::strDup(m_pPara->m_Net.m_User.GetPassword().toStdString().c_str());
+        if(m_pPara->m_Net.m_User.GetPassword().isEmpty())
         {
             int nRet = QDialog::Rejected;
             emit sigBlockShowWidget("CDlgGetPasswordRabbitVNC", nRet, m_pPara);
             if(QDialog::Accepted == nRet)
             {
-                *password = rfb::strDup(m_pPara->GetPassword().toStdString().c_str());
+                *password = rfb::strDup(m_pPara->m_Net.m_User.GetPassword().toStdString().c_str());
             }
         }
     }

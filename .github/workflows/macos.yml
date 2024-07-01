@@ -255,13 +255,11 @@ jobs:
         run: |
           if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
               export BUILD_RABBITVNC=ON
-              export BUILD_LibVNCServer=OFF
-              export BUILD_TigerVNC=OFF
+              export BUILD_LibVNCServer=ON
               export BUILD_SERVICE=OFF
           else
               export BUILD_RABBITVNC=ON
               export BUILD_LibVNCServer=ON
-              export BUILD_TigerVNC=ON
               export BUILD_SERVICE=ON
           fi
           cmake ${{github.workspace}} \

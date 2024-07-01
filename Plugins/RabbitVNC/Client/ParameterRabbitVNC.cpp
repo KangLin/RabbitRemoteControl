@@ -4,7 +4,7 @@
 CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent)
     : CParameterBase(parent)
 {
-    SetPort(5900);
+    m_Net.SetPort(5900);
     SetShared(true);
     SetBufferEndRefresh(false);
     SetSupportsDesktopResize(true);
@@ -22,7 +22,7 @@ CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent)
 
 int CParameterRabbitVNC::onLoad(QSettings &set)
 {
-    int nRet = CParameterConnecter::onLoad(set);
+    int nRet = CParameterBase::onLoad(set);
 
     SetShared(set.value("RabbitVNC/Shared", GetShared()).toBool());
     SetBufferEndRefresh(set.value("RabbitVNC/BufferEndRefresh",
@@ -47,7 +47,7 @@ int CParameterRabbitVNC::onLoad(QSettings &set)
 
 int CParameterRabbitVNC::onSave(QSettings &set)
 {
-    int nRet = CParameterConnecter::onSave(set);
+    int nRet = CParameterBase::onSave(set);
     set.setValue("RabbitVNC/Shared", GetShared());
     set.setValue("RabbitVNC/BufferEndRefresh", GetBufferEndRefresh());
     set.setValue("RabbitVNC/SupportsDesktopResize", GetSupportsDesktopResize());
@@ -70,7 +70,9 @@ bool CParameterRabbitVNC::GetCheckCompleted()
         return true;
     }
     
-    if(GetHost().isEmpty() || GetPort() <= 0 || GetPassword().isEmpty())
+    if(m_Net.GetHost().isEmpty()
+        || m_Net.GetPort() <= 0
+        || m_Net.m_User.GetPassword().isEmpty())
         return false;
     return true;
 }

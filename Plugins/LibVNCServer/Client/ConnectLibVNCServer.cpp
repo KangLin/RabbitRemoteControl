@@ -70,7 +70,7 @@ bool CConnectLibVNCServer::InitClient()
     // Set parameters
     m_pClient->programName = strdup(qApp->applicationName().toStdString().c_str());
     // Set server ip and port
-    if(m_pPara->GetHost().isEmpty())
+    if(m_pPara->m_Net.GetHost().isEmpty())
     {
         QString szErr;
         szErr = tr("The server is empty, please input it");
@@ -78,8 +78,8 @@ bool CConnectLibVNCServer::InitClient()
         emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
         return false;
     }
-    m_pClient->serverHost = strdup(m_pPara->GetHost().toStdString().c_str());
-    m_pClient->serverPort = m_pPara->GetPort();
+    m_pClient->serverHost = strdup(m_pPara->m_Net.GetHost().toStdString().c_str());
+    m_pClient->serverPort = m_pPara->m_Net.GetPort();
 
     m_pClient->appData.shareDesktop = m_pPara->GetShared();
     m_pClient->appData.viewOnly = m_pPara->GetOnlyView();
@@ -179,8 +179,8 @@ bool CConnectLibVNCServer::InitClient()
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
             QString szErr;
-            szErr = tr("Connect to %1:%2 fail").arg(m_pPara->GetHost(),
-                                      QString::number(m_pPara->GetPort()));
+            szErr = tr("Connect to %1:%2 fail").arg(m_pPara->m_Net.GetHost(),
+                                      QString::number(m_pPara->m_Net.GetPort()));
             qCritical(LibVNCServer) <<  szErr;
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             return FALSE;
@@ -338,11 +338,11 @@ rfbCredential* CConnectLibVNCServer::cb_get_credential(rfbClient *cl, int creden
     qDebug(LibVNCServer) << "Username and password required for authentication!";
 
     memcpy(c->userCredential.username,
-           pThis->m_pPara->GetUser().toStdString().c_str(),
-           pThis->m_pPara->GetUser().toStdString().length());
+           pThis->m_pPara->m_Net.m_User.GetUser().toStdString().c_str(),
+           pThis->m_pPara->m_Net.m_User.GetUser().toStdString().length());
     memcpy(c->userCredential.password,
-           pThis->m_pPara->GetPassword().toStdString().c_str(),
-           pThis->m_pPara->GetPassword().toStdString().length());
+           pThis->m_pPara->m_Net.m_User.GetPassword().toStdString().c_str(),
+           pThis->m_pPara->m_Net.m_User.GetPassword().toStdString().length());
 
     return c;
 }
@@ -351,14 +351,14 @@ char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
 {
     //LOG_MODEL_ERROR("LibVNCServer", "CConnectLibVnc::cb_get_password");
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
-    QString szPassword = pThis->m_pPara->GetPassword();
+    QString szPassword = pThis->m_pPara->m_Net.m_User.GetPassword();
     if(szPassword.isEmpty())
     {
         int nRet = QDialog::Rejected;
         emit pThis->sigBlockShowWidget("CDlgLibVNCServerPassword", nRet, pThis->m_pPara);
         if(QDialog::Accepted == nRet)
         {
-            szPassword = pThis->m_pPara->GetPassword();    
+            szPassword = pThis->m_pPara->m_Net.m_User.GetPassword();    
         }
         if(szPassword.isEmpty())
             return nullptr;

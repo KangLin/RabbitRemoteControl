@@ -14,7 +14,7 @@ class CDlgDesktopSize : public QDialog
     
 public:
     explicit CDlgDesktopSize(QWidget *parent = nullptr);
-    ~CDlgDesktopSize();
+    virtual ~CDlgDesktopSize();
     
     void SetDesktopSizes(const QStringList& lstSize);
     const QStringList GetDesktopSize();

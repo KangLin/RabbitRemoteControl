@@ -101,12 +101,6 @@
 class CLIENT_EXPORT CParameterConnecter : public CParameter
 {
     Q_OBJECT
-    Q_PROPERTY(QString Host READ GetHost WRITE SetHost)
-    Q_PROPERTY(quint16 Port READ GetPort WRITE SetPort)
-    Q_PROPERTY(QString User READ GetUser WRITE SetUser)
-    Q_PROPERTY(QString Password READ GetPassword WRITE SetPassword)
-    Q_PROPERTY(bool SavePassword READ GetSavePassword WRITE SetSavePassword)
-    Q_PROPERTY(bool Clipboard READ GetClipboard WRITE SetClipboard)
     Q_PROPERTY(emProxy ProxyType READ GetProxyType WRITE SetProxyType)
     Q_PROPERTY(QString ProxyHost READ GetProxyHost WRITE SetProxyHost)
     Q_PROPERTY(qint16 ProxyPort READ GetProxyPort WRITE SetProxyPort)
@@ -144,7 +138,7 @@ protected Q_SLOTS:
      * \~
      * \ref sub_Use_CParameterClient_in_CParameterConnecter
      */
-    virtual int slotSetParameterClient();
+    virtual void slotSetParameterClient();
 
 protected:
     QByteArray PasswordSum(const std::string &password, const std::string &key);
@@ -161,35 +155,8 @@ private:
     CParameterClient* m_pParameterClient;
 
 public:
-    /*!
-     * \brief Check whether the parameters are complete
-     *  to decide whether to open the parameter dialog 
-     * \return 
-     */
     virtual bool GetCheckCompleted();
-    
-    virtual const QString GetHost() const;
-    virtual void SetHost(const QString& szHost);
-    
-    virtual const quint16 GetPort() const;
-    virtual void SetPort(quint16 port);
-    
-    virtual const QString GetUser() const;
-    virtual void SetUser(const QString& szUser);
-    
-    virtual const QString GetPassword() const;
-    virtual void SetPassword(const QString& szPassword);
-    
-    const bool GetSavePassword() const;
-    /*!
-     * \brief Set save password
-     * \param save
-     */
-    void SetSavePassword(bool save);
-    
-    virtual const bool GetClipboard() const;
-    virtual void SetClipboard(bool c);
-    
+        
     enum class emProxy {
         No,
         SocksV4,
@@ -214,15 +181,7 @@ Q_SIGNALS:
     void sigShowServerNameChanged();
 
 private:
-    QString m_szHost;
-    quint16 m_nPort;
-    
-    QString m_szUser;
-    QString m_szPassword;
-    bool m_bSavePassword;
 
-    bool m_bClipboard;
-    
     emProxy m_eProxyType;
     QString m_szProxyHost;
     quint16 m_nProxyPort;
