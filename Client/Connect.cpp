@@ -209,16 +209,18 @@ void CConnect::slotTimeOut()
 {
     //qDebug(log) << "CConnect::slotTimeOut()";
     try {
-        // >= 0 : continue. Call interval
-        // <  0: error or stop
+        // >= 0: continue. Call interval
+        // = -1: stop
+        // < -1: error
         int nTime = OnProcess();
         if(nTime >= 0)
         {
             QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
             return;
         }
-        qCritical(log) << "Process fail:" << nTime;
-        emit sigError(-1, "Process fail or stop");
+        qCritical(log) << "Process fail or stop:" << nTime;
+        if(nTime < -1)
+            emit sigError(nTime, "Process fail or stop");
     } catch(std::exception e) {
         qCritical(log) << "Process fail:" << e.what();
         emit sigError(-2, e.what());

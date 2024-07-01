@@ -3,7 +3,10 @@
 
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     : CParameterBase(parent),
-    m_pSettings(nullptr),
+    m_nWidth(1024),
+    m_nHeight(768),
+    m_nColorDepth(32),
+    m_bUseMultimon(false),
     m_nReconnectInterval(0),
     m_bShowVerifyDiaglog(true),
     m_bRedirectionPrinter(false),
@@ -47,71 +50,61 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
 int CParameterFreeRDP::onLoad(QSettings &set)
 {
     CParameterBase::onLoad(set);
-
-    Q_ASSERT(m_pSettings);
-
-    SetDomain(set.value("FreeRDP/Domain", GetDomain()).toString());
-    UINT32 width, height, colorDepth;
-    width  = set.value("FreeRDP/Width", freerdp_settings_get_uint32(
-                           m_pSettings, FreeRDP_DesktopWidth)).toInt();
-    height = set.value("FreeRDP/Height", freerdp_settings_get_uint32(
-                           m_pSettings, FreeRDP_DesktopHeight)).toInt();
-    colorDepth = set.value("FreeRDP/ColorDepth", freerdp_settings_get_uint32(
-                               m_pSettings, FreeRDP_ColorDepth)).toInt();
-    freerdp_settings_set_uint32(m_pSettings, FreeRDP_DesktopWidth, width);
-    freerdp_settings_set_uint32(m_pSettings, FreeRDP_DesktopHeight, height);
-    freerdp_settings_set_uint32(m_pSettings, FreeRDP_ColorDepth, colorDepth);
-    bool bUseMultimon = set.value("FreeRDP/UseMultimon", freerdp_settings_get_bool(
-                                    m_pSettings, FreeRDP_UseMultimon)).toBool();
-    freerdp_settings_set_bool(m_pSettings, FreeRDP_UseMultimon, bUseMultimon);
     
-    SetDesktopSizes(set.value("FreeRDP/DesktopSizes",
+    set.beginGroup("FreeRDP");
+    SetDomain(set.value("Domain", GetDomain()).toString());
+    SetDesktopWidth(set.value("Width", GetDesktopWidth()).toInt());
+    SetDesktopHeight(set.value("Height", GetDesktopHeight()).toInt());
+    SetColorDepth(set.value("ColorDepth", GetColorDepth()).toInt());
+    SetUseMultimon(set.value("UseMultimon", GetUseMultimon()).toBool());
+    
+    SetDesktopSizes(set.value("DesktopSizes",
                               GetDesktopSizes()).toStringList());
-    SetReconnectInterval(set.value("FreeRDP/ReconnectionInterval",
+    SetReconnectInterval(set.value("ReconnectionInterval",
                                    GetReconnectInterval()).toInt());
     
-    SetShowVerifyDiaglog(set.value("FreeRDP/ShowVerifyDiaglog",
+    SetShowVerifyDiaglog(set.value("ShowVerifyDiaglog",
                                    GetShowVerifyDiaglog()).toBool());
 
-    SetRedirectionPrinter(set.value("FreeRDP/Redirection/Printer",
+    SetRedirectionPrinter(set.value("Redirection/Printer",
                                    GetRedirectionPrinter()).toBool());
-    SetRedirectionSound(static_cast<RedirecionSoundType>(set.value("FreeRDP/Redirection/Sound",
+    SetRedirectionSound(static_cast<RedirecionSoundType>(set.value("Redirection/Sound",
                         static_cast<int>(GetRedirectionSound())).toInt()));
-    SetRedirectionSoundParameters(set.value("FreeRDP/Redirection/Sound/Parameters",
+    SetRedirectionSoundParameters(set.value("Redirection/Sound/Parameters",
                                    GetRedirectionSoundParameters()).toString());
-    SetRedirectionMicrophone(set.value("FreeRDP/Redirection/Microphone",
+    SetRedirectionMicrophone(set.value("Redirection/Microphone",
                                    GetRedirectionMicrophone()).toBool());
-    SetRedirectionMicrophoneParameters(set.value("FreeRDP/Redirection/Microphone/Parameters",
+    SetRedirectionMicrophoneParameters(set.value("Redirection/Microphone/Parameters",
                                    GetRedirectionMicrophoneParameters()).toString());
-    SetRedirectionDrives(set.value("FreeRDP/Redirection/Drive").toStringList());
+    SetRedirectionDrives(set.value("Redirection/Drive").toStringList());
+    set.endGroup();
+    
     return 0;
 }
 
 int CParameterFreeRDP::onSave(QSettings &set)
 {
     CParameterBase::onSave(set);
-
-    set.setValue("FreeRDP/Domain", GetDomain());
-    set.setValue("FreeRDP/Width", freerdp_settings_get_uint32(
-                     m_pSettings, FreeRDP_DesktopWidth));
-    set.setValue("FreeRDP/Height", freerdp_settings_get_uint32(
-                     m_pSettings, FreeRDP_DesktopHeight));
-    set.setValue("FreeRDP/ColorDepth", freerdp_settings_get_uint32(
-                     m_pSettings, FreeRDP_ColorDepth));
-    set.setValue("FreeRDP/UseMultimon", freerdp_settings_get_bool(
-                                            m_pSettings, FreeRDP_UseMultimon));
     
-    set.setValue("FreeRDP/DesktopSizes", GetDesktopSizes());
-    set.setValue("FreeRDP/ReconnectionInterval", GetReconnectInterval());
-    set.setValue("FreeRDP/ShowVerifyDiaglog", GetShowVerifyDiaglog());
+    set.beginGroup("FreeRDP");
+    set.setValue("Domain", GetDomain());
+    set.setValue("Width", GetDesktopWidth());
+    set.setValue("Height", GetDesktopHeight());
+    set.setValue("ColorDepth", GetColorDepth());
+    set.setValue("UseMultimon", GetUseMultimon());
+    
+    set.setValue("DesktopSizes", GetDesktopSizes());
+    set.setValue("ReconnectionInterval", GetReconnectInterval());
+    set.setValue("ShowVerifyDiaglog", GetShowVerifyDiaglog());
 
-    set.setValue("FreeRDP/Redirection/Printer", GetRedirectionPrinter());
-    set.setValue("FreeRDP/Redirection/Sound", static_cast<int>(GetRedirectionSound()));
-    set.setValue("FreeRDP/Redirection/Sound/Parameters", GetRedirectionSoundParameters());
-    set.setValue("FreeRDP/Redirection/Microphone", GetRedirectionMicrophone());
-    set.setValue("FreeRDP/Redirection/Microphone/Parameters", GetRedirectionMicrophoneParameters());
-    set.setValue("FreeRDP/Redirection/Drive", GetRedirectionDrives());
-
+    set.setValue("Redirection/Printer", GetRedirectionPrinter());
+    set.setValue("Redirection/Sound", static_cast<int>(GetRedirectionSound()));
+    set.setValue("Redirection/Sound/Parameters", GetRedirectionSoundParameters());
+    set.setValue("Redirection/Microphone", GetRedirectionMicrophone());
+    set.setValue("Redirection/Microphone/Parameters", GetRedirectionMicrophoneParameters());
+    set.setValue("Redirection/Drive", GetRedirectionDrives());
+    set.endGroup();
+    
     return 0;
 }
 
@@ -126,6 +119,59 @@ int CParameterFreeRDP::SetDesktopSizes(QStringList lstSize)
     return 0;
 }
 
+UINT32 CParameterFreeRDP::GetDesktopWidth() const
+{
+    return m_nWidth;
+}
+
+int CParameterFreeRDP::SetDesktopWidth(UINT32 nWidth)
+{
+    if(m_nWidth == nWidth)
+        return 0;
+    m_nWidth = nWidth;
+    SetModified(true);
+}
+
+UINT32 CParameterFreeRDP::GetDesktopHeight() const
+{
+    return m_nHeight;
+}
+
+int CParameterFreeRDP::SetDesktopHeight(UINT32 nHeight)
+{
+    if(m_nHeight == nHeight)
+        return 0;
+    m_nHeight = nHeight;
+    SetModified(true);
+    return 0;
+}
+
+UINT32 CParameterFreeRDP::GetColorDepth() const
+{
+    return m_nColorDepth;
+}
+
+int CParameterFreeRDP::SetColorDepth(UINT32 color)
+{
+    if(m_nColorDepth == color)
+        return 0;
+    m_nColorDepth = color;
+    SetModified(true);
+}
+
+bool CParameterFreeRDP::GetUseMultimon() const
+{
+    return m_bUseMultimon;
+}
+
+int CParameterFreeRDP::SetUseMultimon(bool bUse)
+{
+    if(m_bUseMultimon == bUse)
+        return 0;
+    m_bUseMultimon = bUse;
+    SetModified(true);
+}
+
 UINT CParameterFreeRDP::GetReconnectInterval() const
 {
     return m_nReconnectInterval;
@@ -133,22 +179,10 @@ UINT CParameterFreeRDP::GetReconnectInterval() const
 
 void CParameterFreeRDP::SetReconnectInterval(UINT newReconnectInterval)
 {
-    Q_ASSERT(newReconnectInterval >= 0);
-    if(newReconnectInterval)
-        freerdp_settings_set_bool(m_pSettings,
-                                  FreeRDP_AutoReconnectionEnabled, true);
-    else
-        freerdp_settings_set_bool(m_pSettings,
-                                  FreeRDP_AutoReconnectionEnabled, false);
-
     if (m_nReconnectInterval == newReconnectInterval)
         return;
 
     m_nReconnectInterval = newReconnectInterval;
-    freerdp_settings_set_uint32(m_pSettings,
-                                FreeRDP_AutoReconnectMaxRetries,
-                                m_nReconnectInterval);
-
     SetModified(true);
     emit sigReconnectIntervalChanged();
 }
@@ -250,66 +284,15 @@ void CParameterFreeRDP::SetRedirectionMicrophoneParameters(const QString &newRed
     emit sigRedirectionMicrophoneParametersChanged();
 }
 
-void CParameterFreeRDP::SetClipboard(bool c)
-{
-    Q_ASSERT(m_pSettings);
-    freerdp_settings_set_bool(m_pSettings, FreeRDP_RedirectClipboard, c);
-    CParameterBase::SetClipboard(c);
-}
-
-void CParameterFreeRDP::SetOnlyView(bool bOnly)
-{
-#if FreeRDP_VERSION_MAJOR >= 3
-    freerdp_settings_set_bool(m_pSettings, FreeRDP_SuspendInput, bOnly);
-#endif
-    return CParameterBase::SetOnlyView(bOnly);
-}
-
-void CParameterFreeRDP::SetHost(const QString &szHost)
-{
-    Q_ASSERT(m_pSettings);
-    freerdp_settings_set_string(m_pSettings,
-                                FreeRDP_ServerHostname,
-                                szHost.toStdString().c_str());
-    CParameterBase::m_Net.SetHost(szHost);
-}
-
-void CParameterFreeRDP::SetPort(quint16 port)
-{
-    Q_ASSERT(m_pSettings);
-    freerdp_settings_set_uint32(m_pSettings, FreeRDP_ServerPort, port);
-    CParameterBase::m_Net.SetPort(port);
-}
-
-void CParameterFreeRDP::SetUser(const QString &szUser)
-{
-    Q_ASSERT(m_pSettings);
-    if(!szUser.isEmpty())
-        freerdp_settings_set_string(m_pSettings,
-                                    FreeRDP_Username,
-                                    szUser.toStdString().c_str());
-    CParameterBase::m_Net.m_User.SetUser(szUser);
-}
-
-void CParameterFreeRDP::SetPassword(const QString &szPassword)
-{
-    Q_ASSERT(m_pSettings);
-    if(!szPassword.isEmpty())
-        freerdp_settings_set_string(m_pSettings,
-                                    FreeRDP_Password,
-                                    szPassword.toStdString().c_str());
-    CParameterBase::m_Net.m_User.SetPassword(szPassword);
-}
-
 void CParameterFreeRDP::SetDomain(const QString& szDomain)
 {
-    Q_ASSERT(m_pSettings);
-    freerdp_settings_set_string(
-        m_pSettings, FreeRDP_Domain, szDomain.toStdString().c_str());
+    if(m_szDomain == szDomain)
+        return;
+    m_szDomain = szDomain;
+    SetModified(true);
 }
 
 const QString CParameterFreeRDP::GetDomain() const
 {
-    Q_ASSERT(m_pSettings);
-    return freerdp_settings_get_string(m_pSettings, FreeRDP_Domain);
+    return m_szDomain;
 }

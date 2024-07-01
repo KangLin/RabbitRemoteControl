@@ -60,6 +60,7 @@ public:
      * \param bDirectConnection:
      *        \li true: 当阻塞事件循环时，可能会造成延迟，所以直接连接信号
      *        \li false: 当一个非阻塞事件循环时
+     *
      * \~english
      * \param pConnecter
      * \param parent
@@ -128,29 +129,33 @@ protected:
     /*!
      * \~chinese 插件连接的具体操作处理
      * \return 
-     *       \li >= 0: 继续。调用间隔时间，单位毫秒
-     *       \li <  0: 错误或停止
+     *       \li >= 0: 继续。再次调用间隔时间，单位毫秒
+     *       \li = -1: 停止
+     *       \li < -1: 错误
      *     
      * \~english Specific operation processing of plug-in connection
      * \return 
      *       \li >= 0: continue, Interval call time (msec)
-     *       \li <  0: error or stop
+     *       \li = -1: stop
+     *       \li < -1: error
      * \~
-     * \see slotTimeOut()
+     * \see Connect() slotTimeOut()
      */
     virtual int OnProcess();
 
 protected Q_SLOTS:
     /*!
      * \~chinese 一个非 Qt 事件处理，它调用 OnProcess()，并根据其返回值开始新的定时器。
-     *   如果 CConnect 没有一个非 Qt 事件循环（就是普通的循环处理），必须重载它，或者 OnInit() 返回值大于 0
+     *   如果 CConnect 没有一个非 Qt 事件循环（就是普通的循环处理），
+     *   可以重载它，或者 OnInit() 返回值大于 0
      *
      * \~english a non-Qt event loop (that is, normal loop processing)，
      *   It call OnProcess(), and start timer.
-     *   If CConnect don not have a non-Qt event loop, must override it, or OnInit() return >0
+     *   If CConnect don not have a non-Qt event loop,
+     *   can override it, or OnInit() return >0
      *
      * \~
-     * \see Connect()
+     * \see Connect() OnProcess()
      */
     virtual void slotTimeOut();
 

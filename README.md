@@ -86,16 +86,29 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
 
+- Remote desktop
+
 |        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
 |--------|:-----:|:--------:|:-----:|:-:|:----:|:---:|
 |vnc     |✓      |✓         |✓      |✓  |      |     |
 |RDP     |✓      |✓         |……     |✓  |      |     |
 |Spice   |       |          |       |   |      |     |
 |Scrcpy  |       |          |       |   |      |     |
+
+- Terminal
+
+|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
+|--------|-------|----------|-------|---|------|-----|
 |Terminal|       |✓         |       |   |      |     |
 |SSH     |       |✓         |       |   |      |     |
 |TELNET  |       |✓         |       |   |      |     |
+
+- File Transfer
+
+|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
+|--------|-------|----------|-------|---|------|-----|
 |FTP     |       |          |       |   |      |     |
+|SFTP    |       |          |       |   |      |     |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
@@ -144,6 +157,7 @@ Legend:
 |TELNET |     | ⭕  | ❌  |✓   | ❌    | ❌    |  ❌    |   |   |    |
 |  SSH  |     | ⭕  | ❌  |✓   |       | ❌     | ❌    |   |    |   |
 |  FTP  |     |     | ❌  |    |       | ❌     |  ❌   |   |   |    |
+| SFTP  |     |     | ❌  |    |       | ❌     |  ❌   |   |   |    |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
@@ -284,6 +298,7 @@ Some of them are:
 |SSH         |      |⭕     |  ❌     |✓       |    |  ❌  |  ❌   |    |    |    |
 |TELNET      |      |⭕     |  ❌     |✓       |❌   |  ❌|   ❌   |    |    |    |
 |FTP         |      |       |  ❌     |        |    |  ❌  |  ❌   |    |    |    |
+|SFTP        |      |       |  ❌     |        |    |  ❌  |  ❌   |    |    |    |
 
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported

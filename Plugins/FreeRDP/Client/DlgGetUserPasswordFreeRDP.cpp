@@ -40,7 +40,7 @@ void CDlgGetUserPasswordFreeRDP::showEvent(QShowEvent *event)
     Q_ASSERT(m_pParameter);
     if(!m_pParameter) return;
     
-    QString szDomain = freerdp_settings_get_string(m_pParameter->m_pSettings, FreeRDP_Domain);
+    QString szDomain = m_pParameter->GetDomain();
     
     ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
     ui->leDomain->setText(szDomain);
@@ -56,8 +56,7 @@ void CDlgGetUserPasswordFreeRDP::on_pbOK_clicked()
     m_pParameter->m_Net.m_User.SetUser(ui->leUser->text());
     m_pParameter->m_Net.m_User.SetPassword(ui->lePassword->text());
     m_pParameter->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
-    freerdp_settings_set_string(m_pParameter->m_pSettings, FreeRDP_Domain,
-                                ui->leDomain->text().toStdString().c_str());
+    m_pParameter->SetDomain(ui->leDomain->text().toStdString().c_str());
     emit m_pConnecter->sigUpdateParameters(m_pConnecter);
     accept();
 }

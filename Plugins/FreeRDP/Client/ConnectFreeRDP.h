@@ -107,6 +107,8 @@ public:
     static BOOL cb_play_bell_sound(rdpContext* context,
                                    const PLAY_SOUND_UPDATE* play_sound);
     static BOOL cb_keyboard_set_indicators(rdpContext* context, UINT16 led_flags);
+    static BOOL cb_keyboard_set_ime_status(rdpContext* context, UINT16 imeId, UINT32 imeState,
+                                        UINT32 imeConvMode);
 
     static UINT32 GetImageFormat(QImage::Format format);
     static const char* GetTitle(freerdp *instance);
@@ -117,7 +119,7 @@ private:
 
     int RedirectionSound();
     int RedirectionMicrophone();
-    int RedirectionDrive();
+    int RedirectionDriver();
     int RedirectionPrinter();
     int RedirectionSerial();
 
@@ -159,7 +161,7 @@ private:
 
     CClipboardFreeRDP m_ClipBoard;
     CCursorFreeRDP m_Cursor;
-    friend CCursorFreeRDP;
+    friend class CCursorFreeRDP;
 };
 
 #endif // CCONNECTFREERDP_H

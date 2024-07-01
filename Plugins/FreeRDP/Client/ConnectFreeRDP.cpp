@@ -28,6 +28,7 @@
 #include <QDebug>
 #include <QApplication>
 #include <QScreen>
+#include <QSslCertificate>
 #include <QInputDialog>
 #include <QMutexLocker>
 #include <QPainter>
@@ -75,7 +76,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
-    m_ClientEntryPoints.settings = m_pParameter->m_pSettings;
+    //m_ClientEntryPoints.settings = m_pParameter->m_pSettings;
     m_ClientEntryPoints.GlobalInit = cbGlobalInit;
 	m_ClientEntryPoints.GlobalUninit = cbGlobalUninit;
     m_ClientEntryPoints.ClientNew = cbClientNew;
@@ -84,25 +85,31 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 	m_ClientEntryPoints.ClientStop = cbClientStop;
     m_ClientEntryPoints.ContextSize = sizeof(ClientContext);
 
-    rdpContext* p = freerdp_client_context_new(&m_ClientEntryPoints);
-	if(p)
+    auto pRdpContext = freerdp_client_context_new(&m_ClientEntryPoints);
+	if(pRdpContext)
     {
-        m_pContext = (ClientContext*)p;
+        m_pContext = (ClientContext*)pRdpContext;
         m_pContext->pThis = this;
     } else {
         qCritical(log) << "freerdp_client_context_new fail";
         return OnInitReturnValue::Fail;
     }
 
-    rdpContext* pRdpContext = (rdpContext*)m_pContext;
-
-    //Load channel
-    RedirectionSound();
-    RedirectionMicrophone();
-    RedirectionDrive();
-    RedirectionPrinter();
-    RedirectionSerial();
-
+    rdpSettings* settings = pRdpContext->settings;
+    if(!settings) {
+        qCritical(log) << "settings is null";
+        return OnInitReturnValue::Fail;
+    }
+    
+#if FreeRDP_VERSION_MAJOR >= 3
+    if (!stream_dump_register_handlers(context, CONNECTION_STATE_MCS_CREATE_REQUEST, FALSE))
+        return -1;
+#endif
+    
+    if(!m_pParameter->GetDomain().isEmpty())
+        freerdp_settings_set_string(
+            settings, FreeRDP_Domain,
+            m_pParameter->GetDomain().toStdString().c_str());
     if(m_pParameter->m_Net.GetHost().isEmpty())
     {
         QString szErr;
@@ -112,13 +119,68 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         emit sigError(-1, szErr.toStdString().c_str());
         return OnInitReturnValue::Fail;
     }
+    auto &net = m_pParameter->m_Net;
+    freerdp_settings_set_string(
+        settings, FreeRDP_ServerHostname,
+        net.GetHost().toStdString().c_str());
+    freerdp_settings_set_uint32(
+        settings, FreeRDP_ServerPort,
+        net.GetPort());
+    
+    auto &user = m_pParameter->m_Net.m_User;
+    if(!user.GetUser().isEmpty())
+        freerdp_settings_set_string(
+            settings, FreeRDP_Username,
+            user.GetUser().toStdString().c_str());
+    if(!user.GetPassword().isEmpty())
+        freerdp_settings_set_string(
+            settings, FreeRDP_Password,
+            user.GetPassword().toStdString().c_str());
+    
+    freerdp_settings_set_bool(
+        settings, FreeRDP_RedirectClipboard, m_pParameter->GetClipboard());
+    
+#if FreeRDP_VERSION_MAJOR >= 3
+    freerdp_settings_set_bool(
+        settings, FreeRDP_SuspendInput, m_pParameter->GetOnlyView);
+#endif
+    
+    freerdp_settings_set_uint32(settings, FreeRDP_DesktopWidth,
+                                m_pParameter->GetDesktopWidth());
+    freerdp_settings_set_uint32(settings, FreeRDP_DesktopHeight,
+                                m_pParameter->GetDesktopHeight());
+    freerdp_settings_set_uint32(settings, FreeRDP_ColorDepth,
+                                m_pParameter->GetColorDepth());
+
+    freerdp_settings_set_bool(settings, FreeRDP_UseMultimon,
+                              m_pParameter->GetUseMultimon());
+    
+    if(m_pParameter->GetReconnectInterval()) {
+        freerdp_settings_set_bool(
+            settings, FreeRDP_AutoReconnectionEnabled, true);
+        freerdp_settings_set_uint32(
+            settings,
+            FreeRDP_AutoReconnectMaxRetries,
+            m_pParameter->GetReconnectInterval());
+    }
+    else
+        freerdp_settings_set_bool(
+            settings, FreeRDP_AutoReconnectionEnabled, false);
+    
+    //Load channel
+    RedirectionSound();
+    RedirectionMicrophone();
+    RedirectionDriver();
+    RedirectionPrinter();
+    RedirectionSerial();
+
     nRet = freerdp_client_start(pRdpContext);
     if(nRet)
     {
         qCritical(log) << "freerdp_client_start fail";
         return OnInitReturnValue::Fail;
     }
-    
+
     return OnInitReturnValue::UseOnProcess;
 }
 
@@ -151,15 +213,17 @@ int CConnectFreeRDP::OnClean()
  * \return 
  *    \li >= 0: continue, Interval call time (msec)
  *    \li  < 0: error or stop
- * \see slotTimeOut()
+ * \see CConnect::Connect() CConnect::slotTimeOut()
  */
 int CConnectFreeRDP::OnProcess()
 {
+    //qDebug(log) << "CConnectFreeRDP::OnProcess()";
     int nRet = 0;
     HANDLE handles[64];
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
-
+    
     do {
+    
         DWORD nCount = 0;
         nCount = freerdp_get_event_handles(pRdpContext, &handles[nCount],
                                               ARRAYSIZE(handles) - nCount);
@@ -247,6 +311,12 @@ void CConnectFreeRDP::slotClipBoardChanged()
 BOOL CConnectFreeRDP::cbGlobalInit()
 {
 	qDebug(log) << "CConnectFreeRdp::OnGlobalInit()";
+    
+#if FreeRDP_VERSION_MAJOR >= 3
+    if (freerdp_handle_signals() != 0)
+        return FALSE;
+#endif
+
 	return TRUE;
 }
 
@@ -270,9 +340,9 @@ BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
     instance->AuthenticateEx = cb_authenticate_ex;
     instance->ChooseSmartcard = cb_choose_smartcard;
 #endif
-    //instance->VerifyX509Certificate = cb_verify_x509_certificate;
-    instance->VerifyCertificateEx = cb_verify_certificate_ex;
-	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;
+    instance->VerifyX509Certificate = cb_verify_x509_certificate;
+    /*instance->VerifyCertificateEx = cb_verify_certificate_ex;
+	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;//*/
 	instance->PresentGatewayMessage = cb_present_gateway_message;
 
 	instance->LogonErrorInfo = cb_logon_error_info;
@@ -306,6 +376,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         qInfo(log) << szInfo;
         emit pThis->sigInformation(szInfo);
     } else {
+        //DWORD dwErrCode = freerdp_error_info(instance);
         UINT32 nErr = freerdp_get_last_error(context);
 
         QString szErr;
@@ -317,12 +388,13 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         szErr += " [";
         szErr += QString::number(nErr) + " - ";
         szErr += freerdp_get_last_error_name(nErr);
-        szErr += "] ";
+        szErr += " (";
         /*szErr += "[";
         szErr += freerdp_get_last_error_category(nErr);
         szErr += "] ";*/
         szErr += freerdp_get_last_error_string(nErr);
-
+        szErr += ")]";
+        
         switch(nErr) {
         case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
         {
@@ -401,6 +473,13 @@ int CConnectFreeRDP::cbClientStop(rdpContext *context)
 }
 
 /**
+ * \~chinese
+ * 连接之前调用。用于加载通道，检查和设置所有参数
+ *
+ * \~english
+ * Called before a connection is established.
+ * Set all configuration options to support and load channels here.
+ * 
  * Callback given to freerdp_connect() to process the pre-connect operations.
  * It will fill the rdp_freerdp structure (instance) with the appropriate options to use for the
  * connection.
@@ -466,44 +545,52 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	if (!freerdp_client_load_addins(channels, instance->context->settings))
 		return FALSE;
 #endif
-    
-    if (pThis->m_pParameter->m_Net.m_User.GetUser().isEmpty()
-        && !freerdp_settings_get_bool(settings, FreeRDP_CredentialsFromStdin)
-        && !freerdp_settings_get_bool(settings, FreeRDP_SmartcardLogon))
-	{
-        // Get system login name
-        QString szUser = RabbitCommon::CTools::Instance()->GetCurrentUser();
-        if(!szUser.isEmpty()){
-            pThis->m_pParameter->SetUser(szUser);
-        }
-        qWarning(log) << "No user name set. - Using login name:" << szUser;
-	}
-
+        
+    // Check authentication parameters
     if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
     {
         /* Check +auth-only has a username and password. */
-        if (!pThis->m_pParameter->m_Net.m_User.GetPassword().isEmpty())
-        {
-            qCritical(log) << "auth-only, but no password set. Please provide one.";
-            return FALSE;
+        auto &user = pThis->m_pParameter->m_Net.m_User;
+        if(!freerdp_settings_get_string(settings, FreeRDP_Username)) {
+            if(user.GetUser().isEmpty()) {
+                if(user.GetUser().isEmpty()) {
+                    // Will be call instance->Authenticate = cb_authenticate
+                    qWarning(log) << "Auth-only, but no user name set. Will be call instance->Authenticate.";
+                    }
+            } else
+                freerdp_settings_set_string(
+                    settings, FreeRDP_Username,
+                    user.GetUser().toStdString().c_str());
+        }
+        if (!freerdp_settings_get_string(settings, FreeRDP_Password)) {
+            if (user.GetPassword().isEmpty()) {
+                // Will be call instance->Authenticate = cb_authenticate
+                qWarning(log) << "auth-only, but no password set. Will be call instance->Authenticate";
+            } else
+                freerdp_settings_set_string(
+                    settings, FreeRDP_Password,
+                    user.GetPassword().toStdString().c_str());
         }
 #if FreeRDP_VERSION_MAJOR >= 3
         if (!freerdp_settings_set_bool(settings, FreeRDP_DeactivateClientDecoding, TRUE))
             return FALSE;
 #endif
         qInfo(log) << "Authentication only. Don't connect to X.";
-    } else {
-		
-	}
+    } else if(freerdp_settings_get_bool(settings, FreeRDP_CredentialsFromStdin)){
+        // Because the pragram is GUI. so don't process it.
+    } else if(freerdp_settings_get_bool(settings, FreeRDP_SmartcardLogon)) {
+        // TODO: add FreeRDP_SmartcardLogon !
+    }
 
-    // Keyboard layout
+    /* TODO: Check Keyboard layout
     UINT32 rc = freerdp_keyboard_init(
                 freerdp_settings_get_uint32(settings, FreeRDP_KeyboardLayout));
     freerdp_settings_set_uint32(settings, FreeRDP_KeyboardLayout, rc);
-
+    //*/
+    
     // Check desktop size, it is set in parameter
-    UINT32 width = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
-    UINT32 height = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
+    UINT32 width = pThis->m_pParameter->GetDesktopWidth();
+    UINT32 height = pThis->m_pParameter->GetDesktopHeight();
     if ((width < 64) || (height < 64) ||
             (width > 4096) || (height > 4096))
     {
@@ -512,7 +599,12 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     } else {
         qInfo(log) << "Init desktop size " <<  width << "*" << height;
     }
-
+    
+    qDebug(log)
+        << "width:" << freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth)
+        << "height:" << freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight)
+        << "ColorDepth:" << freerdp_settings_get_uint32(settings, FreeRDP_ColorDepth);
+    
 	return TRUE;
 }
 
@@ -583,9 +675,9 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
                 emit pThis->sigServerName(title);
         }
     }
+
     int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
     int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
-
     emit pThis->sigSetDesktopSize(desktopWidth, desktopHeight);
 
     pThis->m_Image = QImage(desktopWidth,
@@ -613,7 +705,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 	update->PlaySound = cb_play_bell_sound;
 
 	update->SetKeyboardIndicators = cb_keyboard_set_indicators;
-//	update->SetKeyboardImeStatus = xf_keyboard_set_ime_status;
+	update->SetKeyboardImeStatus = cb_keyboard_set_ime_status;
     
 //    freerdp_keyboard_init_ex(instance->context->settings->KeyboardLayout,
 //	                         instance->context->settings->KeyboardRemappingList);
@@ -945,8 +1037,7 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
         {
             QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
             QString szName = pThis->m_pParameter->m_Net.m_User.GetUser();
-            QString szDomain = freerdp_settings_get_string(
-                pThis->m_pParameter->m_pSettings, FreeRDP_Domain);;
+            QString szDomain = pThis->m_pParameter->GetDomain();
             if(!szDomain.isEmpty() && domain)
                 *domain = _strdup(szDomain.toStdString().c_str());
             if(!szName.isEmpty() && username)
@@ -976,8 +1067,7 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
         {
             QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
             QString szName = pThis->m_pParameter->m_Net.m_User.GetUser();
-            QString szDomain = freerdp_settings_get_string(
-                pThis->m_pParameter->m_pSettings, FreeRDP_Domain);;
+            QString szDomain = pThis->m_pParameter->GetDomain();
             if(!szDomain.isEmpty() && domain)
                 *domain = _strdup(szDomain.toStdString().c_str());
             if(!szName.isEmpty() && username)
@@ -994,9 +1084,20 @@ int CConnectFreeRDP::cb_verify_x509_certificate(freerdp* instance,
                                                const BYTE* data, size_t length,
                                  const char* hostname, UINT16 port, DWORD flags)
 {
+    qDebug(log) << "CConnectFreeRdp::cb_verify_x509_certificate";
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
-
+    
+    QSslCertificate cert(QByteArray((const char*)data, length));
+    
+    return cb_verify_certificate_ex(
+        instance, hostname, port,
+        cert.issuerDisplayName().toStdString().c_str(),
+        cert.subjectDisplayName().toStdString().c_str(),
+        cert.issuerDisplayName().toStdString().c_str(),
+        cert.serialNumber().toStdString().c_str(),
+        flags);
+    
     return 0;
 }
 
@@ -1046,6 +1147,9 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
 
     QString title(tr("Verify certificate"));
     QString message;
+    if(VERIFY_CERT_FLAG_CHANGED & flags) {
+        message += tr("The certificate is changed. the new certificate information:") + "\n";
+    }
     message += szType + tr(": %1:%2").arg(host, QString::number(port)) + "\n";
     message += tr("Common name: ") + common_name + "\n";
     message += tr("Subject: ") + subject + "\n";
@@ -1279,8 +1383,8 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 		return FALSE;
 
     HGDI_WND hwnd = context->gdi->primary->hdc->hwnd;
-    ninvalid = hwnd->ninvalid;
-	cinvalid = hwnd->cinvalid;
+    ninvalid = hwnd->ninvalid; //无效区数量
+	cinvalid = hwnd->cinvalid; //无效区数组
     if (ninvalid < 1)
 		return TRUE;
 
@@ -1303,7 +1407,8 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
         updateRect.setY(extents->top);
         updateRect.setRight(extents->right);
         updateRect.setBottom(extents->bottom);
-        pThis->UpdateBuffer(updateRect.x(), updateRect.y(), updateRect.width(), updateRect.height());
+        pThis->UpdateBuffer(updateRect.x(), updateRect.y(),
+                            updateRect.width(), updateRect.height());
     }
 
 	region16_uninit(&invalidRegion);
@@ -1375,6 +1480,20 @@ BOOL CConnectFreeRDP::cb_keyboard_set_indicators(rdpContext *context, UINT16 led
 
     //TODO: set keyboard indicators
 
+    return TRUE;
+}
+
+/* This function is called to set the IME state */
+BOOL CConnectFreeRDP::cb_keyboard_set_ime_status(
+    rdpContext* context, UINT16 imeId, UINT32 imeState, UINT32 imeConvMode)
+{
+    if (!context)
+        return FALSE;
+    
+    qWarning(log,
+              "KeyboardSetImeStatus(unitId=%04" PRIx16 ", imeState=%08" PRIx32
+              ", imeConvMode=%08" PRIx32 ") ignored",
+              imeId, imeState, imeConvMode);
     return TRUE;
 }
 
@@ -1519,17 +1638,20 @@ int CConnectFreeRDP::RedirectionSound()
     rdpSettings* settings = instance->context->settings;
     Q_ASSERT(settings);
 
-    if(m_pParameter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Disable)
+    if(m_pParameter->GetRedirectionSound()
+        == CParameterFreeRDP::RedirecionSoundType::Disable)
     {
         /* Disable sound */
 		freerdp_settings_set_bool(settings, FreeRDP_AudioPlayback, FALSE);
 		freerdp_settings_set_bool(settings, FreeRDP_RemoteConsoleAudio, FALSE);
         return 0;
-    } else if(m_pParameter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Local)
+    } else if(m_pParameter->GetRedirectionSound()
+               == CParameterFreeRDP::RedirecionSoundType::Local)
     {
         freerdp_settings_set_bool(settings, FreeRDP_AudioPlayback, TRUE);
 		freerdp_settings_set_bool(settings, FreeRDP_AudioCapture, TRUE);
-    } else if(m_pParameter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
+    } else if(m_pParameter->GetRedirectionSound()
+               == CParameterFreeRDP::RedirecionSoundType::Remote)
     {
         freerdp_settings_set_bool(settings, FreeRDP_RemoteConsoleAudio, TRUE);
         return 0;
@@ -1578,7 +1700,8 @@ int CConnectFreeRDP::RedirectionSound()
 
 int CConnectFreeRDP::RedirectionMicrophone()
 {
-    if(m_pParameter->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
+    if(m_pParameter->GetRedirectionSound()
+        == CParameterFreeRDP::RedirecionSoundType::Remote)
         return 0;
     if(!m_pParameter->GetRedirectionMicrophone())
         return 0;
@@ -1620,7 +1743,7 @@ int CConnectFreeRDP::RedirectionMicrophone()
     return 0;
 }
 
-int CConnectFreeRDP::RedirectionDrive()
+int CConnectFreeRDP::RedirectionDriver()
 {
     QStringList lstDrives = m_pParameter->GetRedirectionDrives();
     if(lstDrives.isEmpty())

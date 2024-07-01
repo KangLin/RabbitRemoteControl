@@ -11,7 +11,8 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 
-CFrmViewer::CFrmViewer(QWidget *parent) : QWidget(parent)
+CFrmViewer::CFrmViewer(QWidget *parent)
+    : QWidget(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     //setAttribute(Qt::WA_OpaquePaintEvent);
@@ -88,24 +89,24 @@ void CFrmViewer::paintDesktop()
     default:
         break;
     }
-
-    if(!m_Desktop.isNull())
+    
+    if(m_Desktop.isNull()) return;
+    
+    QPainter painter(this);
+    // Clear background
+    if(KeepAspectRationToWindow == m_AdaptWindows)
     {
-        QPainter painter(this);
-        // Clear background
-        if(KeepAspectRationToWindow == m_AdaptWindows)
-        {
 #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
-            painter.fillRect(rect(), QBrush(palette().color(QPalette::Window)));
+        painter.fillRect(rect(), QBrush(palette().color(QPalette::Window)));
 #else
-            painter.fillRect(rect(), QBrush(palette().color(QPalette::Background)));
+        painter.fillRect(rect(), QBrush(palette().color(QPalette::Background)));
 #endif
-        }
-
-        // 设置平滑模式
-        painter.setRenderHint(QPainter::SmoothPixmapTransform);
-        painter.drawImage(dstRect, m_Desktop);
     }
+    
+    // 设置平滑模式
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+    painter.drawImage(dstRect, m_Desktop);
+    
 }
 
 void CFrmViewer::paintEvent(QPaintEvent *event)

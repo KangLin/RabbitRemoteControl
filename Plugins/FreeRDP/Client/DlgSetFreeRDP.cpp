@@ -93,11 +93,11 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 
     // Server
     m_pSettings->SetDomain(ui->leDomain->text());
-    m_pSettings->SetHost(ui->leServer->text());
-    m_pSettings->SetPort(ui->spPort->value());
+    m_pSettings->m_Net.SetHost(ui->leServer->text());
+    m_pSettings->m_Net.SetPort(ui->spPort->value());
 
-    m_pSettings->SetUser(ui->leUserName->text());
-    m_pSettings->SetPassword(ui->lePassword->text());
+    m_pSettings->m_Net.m_User.SetUser(ui->leUserName->text());
+    m_pSettings->m_Net.m_User.SetPassword(ui->lePassword->text());
     m_pSettings->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
     
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
@@ -111,24 +111,20 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     {
         UINT32 width = szSize.left(index).toInt();
         UINT32 height = szSize.right(szSize.length() - index - 1).toInt();
-        freerdp_settings_set_uint32(m_pSettings->m_pSettings,
-                                    FreeRDP_DesktopWidth, width);
-        freerdp_settings_set_uint32(m_pSettings->m_pSettings,
-                                    FreeRDP_DesktopHeight, height);
+        m_pSettings->SetDesktopWidth(width);
+        m_pSettings->SetDesktopHeight(height);
     }
-
-    freerdp_settings_set_bool(m_pSettings->m_pSettings,
-                              FreeRDP_UseMultimon,
-                              ui->cbAllMonitor->isChecked());
+    
+    m_pSettings->SetUseMultimon(ui->cbAllMonitor->isChecked());
+    
     if(ui->cbAllMonitor->isChecked())
     {
-        //TODO: complete it
+        /*TODO: complete it
         freerdp_settings_set_uint32(m_pSettings->m_pSettings,
                                     FreeRDP_MonitorCount,
-                                    QApplication::screens().length());
+                                    QApplication::screens().length());//*/
     }
-    freerdp_settings_set_uint32(m_pSettings->m_pSettings, FreeRDP_ColorDepth,
-                               ui->cbColorDepth->currentData().toInt());
+    m_pSettings->SetColorDepth(ui->cbColorDepth->currentData().toInt());
     m_pSettings->SetReconnectInterval(ui->sbReconnect->value());
 
     // Redirection
@@ -209,10 +205,8 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
     QString curSize = QString::number(width) + "×" + QString::number(height);
     InsertDesktopSize(width, height);
     UINT32 desktopWidth = 0, desktopHeight = 0;
-    desktopWidth = freerdp_settings_get_uint32(m_pSettings->m_pSettings,
-                                               FreeRDP_DesktopWidth);
-    desktopHeight = freerdp_settings_get_uint32(m_pSettings->m_pSettings,
-                                                FreeRDP_DesktopHeight);
+    desktopWidth = m_pSettings->GetDesktopWidth();
+    desktopHeight = m_pSettings->GetDesktopHeight();
     if(width == desktopWidth && height == desktopHeight)
     {
         ui->rbLocalScreen->setChecked(true);
@@ -224,11 +218,10 @@ void CDlgSetFreeRDP::showEvent(QShowEvent *event)
                 + "×" + QString::number(desktopHeight);
         ui->cbDesktopSize->setCurrentText(curSize);
     }
-    if(freerdp_settings_get_bool(m_pSettings->m_pSettings, FreeRDP_UseMultimon))
+    if(m_pSettings->GetUseMultimon())
         ui->cbAllMonitor->setChecked(true);
     int nIndex = ui->cbColorDepth->findData(
-                freerdp_settings_get_uint32(m_pSettings->m_pSettings,
-                                            FreeRDP_ColorDepth));
+        m_pSettings->GetColorDepth());
     if(-1 != nIndex)
         ui->cbColorDepth->setCurrentIndex(nIndex);
 
@@ -292,7 +285,7 @@ void CDlgSetFreeRDP::on_leServer_editingFinished()
 QRect CDlgSetFreeRDP::GetScreenGeometry()
 {
     QRect r;
-    if(freerdp_settings_get_bool(m_pSettings->m_pSettings, FreeRDP_UseMultimon))
+    if(m_pSettings->GetUseMultimon())
     {
         auto lstScreen = QApplication::screens();
         foreach(auto pScreen, lstScreen)

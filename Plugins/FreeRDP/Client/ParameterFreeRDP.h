@@ -20,22 +20,26 @@ public:
     // CParameter interface
     virtual int onLoad(QSettings &set) override;
     virtual int onSave(QSettings &set) override;
-
-    rdpSettings* m_pSettings;
     
 public:
-    virtual void SetHost(const QString &szHost);
-    virtual void SetPort(quint16 port);
-    virtual void SetUser(const QString &szUser);
-    virtual void SetPassword(const QString &szPassword);
-    virtual void SetClipboard(bool c);
-    virtual void SetOnlyView(bool only);
 
     void SetDomain(const QString& szDomain);
     const QString GetDomain() const;
     
     const QStringList GetDesktopSizes() const;
     int SetDesktopSizes(QStringList size);
+    
+    UINT32 GetDesktopWidth() const;
+    int SetDesktopWidth(UINT32 nWidth);
+    
+    UINT32 GetDesktopHeight() const;
+    int SetDesktopHeight(UINT32 nHeight);
+    
+    UINT32 GetColorDepth() const;
+    int SetColorDepth(UINT32 color);
+    
+    bool GetUseMultimon() const;
+    int SetUseMultimon(bool bUse);
 
     UINT GetReconnectInterval() const;
     void SetReconnectInterval(UINT newReconnectInterval);
@@ -75,8 +79,15 @@ signals:
     void sigRedirectionPrinterChanged(bool RedirectionPrinter);
     
 private:
+    QString m_szDomain;
+    
     QStringList m_lstDesktopSizes;
-
+    UINT32 m_nWidth;
+    UINT32 m_nHeight;
+    
+    UINT32 m_nColorDepth;
+    bool m_bUseMultimon;
+    
     UINT32 m_nReconnectInterval; // Unit: second
     bool m_bShowVerifyDiaglog;
     
