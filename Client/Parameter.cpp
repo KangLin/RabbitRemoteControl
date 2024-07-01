@@ -15,11 +15,11 @@ CParameter::CParameter(CParameter* parent, const QString& szPrefix)
 {
     if(parent) {
         parent->AddMember(this);
-    } else {
+    } else if(szPrefix.isEmpty()){
         QString szErr = this->metaObject()->className();
         szErr += "'s parent is null. "
-                 "Please use CParameter::CParameter(QObject *parent = nullptr)";
-        qCritical(log) << szErr;
+                 "use CParameter::CParameter(QObject *parent = nullptr)";
+        qWarning(log) << szErr;
         Q_ASSERT_X(false, "CParameter", szErr.toStdString().c_str());
     }
     SetPrefix(szPrefix);
@@ -106,8 +106,19 @@ int CParameter::Save(QSettings &set, bool bForce)
     return nRet;
 }
 
-bool CParameter::CheckCompleted()
+bool CParameter::CheckValidity()
 {
+    bool bRet = false;
+    foreach (auto p, m_Member) {
+        bRet = p->onCheckValidity();
+        if(!bRet) break;
+    }
+    return bRet;
+}
+
+bool CParameter::onCheckValidity()
+{
+    qDebug(log) << " Not implemented CParameter::onCheckValidity()";
     return true;
 }
 

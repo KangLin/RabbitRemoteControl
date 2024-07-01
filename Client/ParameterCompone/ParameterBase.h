@@ -56,6 +56,7 @@ Q_SIGNALS:
 
 private:
     int Init();
+
     QString m_szName;
     QString m_szServerName;
     bool m_bShowServerName;

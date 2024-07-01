@@ -243,11 +243,13 @@ int CConnecter::SetParameter(CParameterBase *p)
 {
     if(GetParameter())
         GetParameter()->disconnect(this);
-
+    
+    /*
     if(!qobject_cast<CParameterBase*>(p))
         qWarning(log) << "The parameter("
                       << p->metaObject()->className()
                       << ") must be derived from CParameterBase";
+    //*/
 
     m_pParameter = p;
 

@@ -95,8 +95,8 @@ public:
 
     /*!
      * \~chinese
-     *  检查参数是否设置完成或者有效，以决定是否应用或者保存参数。
-     *  派生类需要根据需要重载此函数，用于检查参数。
+     *  检查参数是否有效，以决定是否应用或者保存参数。
+     *  派生类一般只要重载 onCheckValidity() ，用于检查参数。
      *
      *  通常这种检查在参数设置对话框视图中做检查。所以很少需要调用此函数。
      *
@@ -106,7 +106,7 @@ public:
      * \~english
      *  Check whether the parameter is set or valid to
      *  decide whether to apply or save the parameter.
-     *  The derived class needs to overload this function
+     *  The derived class needs to overload onCheckValidity()
      *  as needed to check the parameters.
      *
      *  Usually this check is done in the Parameter Settings dialog view.
@@ -116,7 +116,7 @@ public:
      *  you need to check whether the parameters are complete or valid
      *  before you can save them.
      */
-    virtual bool CheckCompleted();
+    virtual bool CheckValidity();
     
 Q_SIGNALS:
     /*!
@@ -132,6 +132,20 @@ Q_SIGNALS:
 protected:
     virtual int onLoad(QSettings &set) = 0;
     virtual int onSave(QSettings &set) = 0;
+    /*!
+     * \~chinese
+     * \brief 检查参数是否有效
+     * \return
+     *   - true: 有效
+     *   - false: 无效
+     *   
+     * \~english
+     * \brief Check validity
+     * \return
+     *   - true: valid
+     *   - false: invalid
+     */
+    virtual bool onCheckValidity();
 
     /*!
      * \~chinese
