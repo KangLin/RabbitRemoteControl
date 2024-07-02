@@ -102,8 +102,10 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     }
     
 #if FreeRDP_VERSION_MAJOR >= 3
-    if (!stream_dump_register_handlers(context, CONNECTION_STATE_MCS_CREATE_REQUEST, FALSE))
-        return -1;
+    if (!stream_dump_register_handlers(pRdpContext,
+                                       CONNECTION_STATE_MCS_CREATE_REQUEST,
+                                       FALSE))
+        return OnInitReturnValue::Fail;
 #endif
     
     if(!m_pParameter->GetDomain().isEmpty())
@@ -141,8 +143,9 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         settings, FreeRDP_RedirectClipboard, m_pParameter->GetClipboard());
     
 #if FreeRDP_VERSION_MAJOR >= 3
+    bool bOnlyView = m_pParameter->GetOnlyView();
     freerdp_settings_set_bool(
-        settings, FreeRDP_SuspendInput, m_pParameter->GetOnlyView);
+        settings, FreeRDP_SuspendInput, bOnlyView);
 #endif
     
     freerdp_settings_set_uint32(settings, FreeRDP_DesktopWidth,
@@ -311,12 +314,6 @@ void CConnectFreeRDP::slotClipBoardChanged()
 BOOL CConnectFreeRDP::cbGlobalInit()
 {
 	qDebug(log) << "CConnectFreeRdp::OnGlobalInit()";
-    
-#if FreeRDP_VERSION_MAJOR >= 3
-    if (freerdp_handle_signals() != 0)
-        return FALSE;
-#endif
-
 	return TRUE;
 }
 

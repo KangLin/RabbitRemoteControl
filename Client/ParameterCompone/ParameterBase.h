@@ -44,7 +44,7 @@ public:
 
     CParameterNet m_Net;
 
-    virtual const bool GetOnlyView() const;
+    virtual bool GetOnlyView() const;
     virtual void SetOnlyView(bool only);
 
     const bool GetLocalCursor() const;

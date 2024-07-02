@@ -87,7 +87,7 @@ void CParameterBase::SetShowServerName(bool NewShowServerName)
     emit sigShowServerNameChanged();
 }
 
-const bool CParameterBase::GetOnlyView() const
+bool CParameterBase::GetOnlyView() const
 {
     return m_bOnlyView;
 }
