@@ -128,7 +128,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     freerdp_settings_set_uint32(
         settings, FreeRDP_ServerPort,
         net.GetPort());
-    
+
     auto &user = m_pParameter->m_Net.m_User;
     if(!user.GetUser().isEmpty())
         freerdp_settings_set_string(
@@ -138,7 +138,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         freerdp_settings_set_string(
             settings, FreeRDP_Password,
             user.GetPassword().toStdString().c_str());
-    
+
     freerdp_settings_set_bool(
         settings, FreeRDP_RedirectClipboard, m_pParameter->GetClipboard());
     
@@ -820,6 +820,9 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
     qCritical(log) << "CConnectFreeRdp::cb_authenticate_ex. reason:" << reason;
     if(!instance)
         return FALSE;
+
+    if(!username || !password || !domain) return FALSE;
+
     rdpContext* pContext = (rdpContext*)instance->context;
 #ifdef Q_OS_WINDOWS
     BOOL fSave;
@@ -1012,24 +1015,26 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
 		return FALSE;
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
-    if(username || password || domain)
+    if(!username || !password || !domain) return FALSE;
+    if(*username && *password ) return TRUE;
+
+    int nRet = QDialog::Rejected;
+    emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP",
+                                   nRet, pThis->m_pParameter);
+    if(QDialog::Accepted == nRet)
     {
-        int nRet = QDialog::Rejected;
-        emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
-        if(QDialog::Accepted == nRet)
-        {
-            QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
-            QString szName = pThis->m_pParameter->m_Net.m_User.GetUser();
-            QString szDomain = pThis->m_pParameter->GetDomain();
-            if(!szDomain.isEmpty() && domain)
-                *domain = _strdup(szDomain.toStdString().c_str());
-            if(!szName.isEmpty() && username)
-                *username = _strdup(szName.toStdString().c_str());
-            //if(!szPassword.isEmpty() && password) // 如果加上会触发 FREERDP_ERROR_AUTHENTICATION_FAILED
-                *password = _strdup(szPassword.toStdString().c_str());
-        } else
-            return FALSE;
-    }
+        QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
+        QString szName = pThis->m_pParameter->m_Net.m_User.GetUser();
+        QString szDomain = pThis->m_pParameter->GetDomain();
+        if(!szDomain.isEmpty() && domain)
+            *domain = _strdup(szDomain.toStdString().c_str());
+        if(!szName.isEmpty() && username)
+            *username = _strdup(szName.toStdString().c_str());
+        if(!szPassword.isEmpty() && password)
+            *password = _strdup(szPassword.toStdString().c_str());
+    } else
+        return FALSE;
+
     return TRUE;
 }
 
@@ -1042,24 +1047,25 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
 
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
-    if(username || password)
+    if(!username || !password || !domain) return FALSE;
+    if(*username && *password ) return TRUE;
+    
+    int nRet = QDialog::Rejected;
+    emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
+    if(QDialog::Accepted == nRet)
     {
-        int nRet = QDialog::Rejected;
-        emit pThis->sigBlockShowWidget("CDlgGetUserPasswordFreeRDP", nRet, pThis->m_pParameter);
-        if(QDialog::Accepted == nRet)
-        {
-            QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
-            QString szName = pThis->m_pParameter->m_Net.m_User.GetUser();
-            QString szDomain = pThis->m_pParameter->GetDomain();
-            if(!szDomain.isEmpty() && domain)
-                *domain = _strdup(szDomain.toStdString().c_str());
-            if(!szName.isEmpty() && username)
-                *username = _strdup(szName.toStdString().c_str());
-            //if(!szPassword.isEmpty() && password)
-                *password = _strdup(szPassword.toStdString().c_str());
-        } else
-            return FALSE;
-    }
+        QString szPassword = pThis->m_pParameter->m_Net.m_User.GetPassword();
+        QString szName = pThis->m_pParameter->m_Net.m_User.GetUser();
+        QString szDomain = pThis->m_pParameter->GetDomain();
+        if(!szDomain.isEmpty() && domain)
+            *domain = _strdup(szDomain.toStdString().c_str());
+        if(!szName.isEmpty() && username)
+            *username = _strdup(szName.toStdString().c_str());
+        if(!szPassword.isEmpty() && password)
+            *password = _strdup(szPassword.toStdString().c_str());
+    } else
+        return FALSE;
+
 	return TRUE;
 }
 
