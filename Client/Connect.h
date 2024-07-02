@@ -204,7 +204,7 @@ Q_SIGNALS:
      * \note It differs from sigShowMessage in that sigShowMessage is displayed in a dialog box
      *
      * \~
-     * \see sigShowMessage
+     * \see sigShowMessage SetConnecter CConnecter::sigInformation()
      */
     void sigInformation(const QString& szInfo);
     /*!
@@ -219,7 +219,7 @@ Q_SIGNALS:
      * \note It differs from sigInformation in that sigInformation is not displayed in a dialog box
      *
      * \~
-     * \see sigInformation SetConnecter
+     * \see sigInformation SetConnecter CConnecter::sigShowMessage()
      */
     void sigShowMessage(const QString& szTitle, const QString& szMessage,
                         const QMessageBox::Icon& icon = QMessageBox::Information);

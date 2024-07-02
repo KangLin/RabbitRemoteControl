@@ -85,8 +85,11 @@ private Q_SLOTS:
     virtual void slotShowMessage(const QString& title, const QString& message,
                                  const QMessageBox::Icon& icon);
     /*!
+     * \~chinese 显示信息。暂时在状态栏显示。
+     * \~english
      * \brief Show information
      * \param szInfo
+     * \~
      * \see CConnecter::sigInformation()
      */
     void slotInformation(const QString& szInfo);

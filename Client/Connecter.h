@@ -240,7 +240,7 @@ Q_SIGNALS:
      * \note It differs from sigInformation in that sigInformation is not displayed in a dialog box
      *
      * \~
-     * \see sigInformation Connect::SetConnecter
+     * \see sigInformation Connect::SetConnecter MainWindow::slotShowMessage
      */
     void sigShowMessage(const QString& title, const QString& message,
                         const QMessageBox::Icon& icon = QMessageBox::Information);
