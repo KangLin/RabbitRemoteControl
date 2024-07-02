@@ -166,7 +166,7 @@ jobs:
           )
 
       - name: build tigervnc
-        if: false # ${{ matrix.BUILD_TYPE == 'Debug'}}
+        if: true # ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
@@ -193,7 +193,7 @@ jobs:
           )
 
       - name: Build libvncserver
-        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
+        #if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
@@ -300,7 +300,7 @@ jobs:
               echo "Build Release ......"
               set BUILD_RABBITVNC=ON
               set BUILD_LibVNCServer=ON
-              set BUILD_TigerVNC=OFF
+              set BUILD_TigerVNC=ON
               set BUILD_SERVICE=OFF
           ) else (
               echo "Build Debug ......"

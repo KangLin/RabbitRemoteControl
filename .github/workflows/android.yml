@@ -34,6 +34,7 @@ jobs:
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc"
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
@@ -300,6 +301,9 @@ jobs:
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
               -DBUILD_LibVNCServer=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
+              -DBUILD_RABBITVNC=ON \
+              -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
+              -DBUILD_TigerVNC=ON \
               -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake \
               -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
               -DBUILD_FREERDP=ON

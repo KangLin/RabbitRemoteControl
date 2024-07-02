@@ -40,6 +40,7 @@ jobs:
       VCPKGGITCOMMITID: 007aaced1a9d3245e28a2ba9395dca88ea890db1
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc"
       artifact_name: build_macos
       RabbitRemoteControl_VERSION: v1.0.9
 
@@ -123,7 +124,7 @@ jobs:
           fi
 
       - name: build tigervnc
-        if: false #${{ matrix.BUILD_TYPE == 'Debug' }}
+        #if: false #${{ matrix.BUILD_TYPE == 'Debug' }}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
@@ -256,9 +257,11 @@ jobs:
           if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
               export BUILD_RABBITVNC=ON
               export BUILD_LibVNCServer=ON
+              export BUILD_TigerVNC=ON
               export BUILD_SERVICE=OFF
           else
               export BUILD_RABBITVNC=ON
+              export BUILD_TigerVNC=ON
               export BUILD_LibVNCServer=ON
               export BUILD_SERVICE=ON
           fi

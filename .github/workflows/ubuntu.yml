@@ -153,7 +153,7 @@ jobs:
           fi
 
       - name: build tigervnc
-        if: ${{ matrix.BUILD_TYPE == 'Debug'}}
+        #if: ${{ matrix.BUILD_TYPE == 'Debug'}}
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
@@ -203,6 +203,7 @@ jobs:
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
           RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
+          tigervnc_DIR: ${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           #LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
           QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
           FreeRDP_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
@@ -215,7 +216,7 @@ jobs:
               echo "Build Release ......"
               export BUILD_VIEWER_TERMINAL=OFF
               export BUILD_LibVNCServer=ON
-              export BUILD_TigerVNC=OFF
+              export BUILD_TigerVNC=ON
               export BUILD_FREERDP=ON
               export BUILD_RABBITVNC=ON
           else
