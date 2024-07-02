@@ -11,7 +11,7 @@ CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPre
     SetUser(RabbitCommon::CTools::GetCurrentUser());
 }
 
-int CParameterUser::onLoad(QSettings &set)
+int CParameterUser::OnLoad(QSettings &set)
 {
     set.beginGroup("User");
 
@@ -29,7 +29,7 @@ int CParameterUser::onLoad(QSettings &set)
     return 0;
 }
 
-int CParameterUser::onSave(QSettings &set)
+int CParameterUser::OnSave(QSettings &set)
 {
     set.beginGroup("User");
     set.setValue("Name", GetUser());

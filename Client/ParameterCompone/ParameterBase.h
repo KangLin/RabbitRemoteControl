@@ -70,8 +70,8 @@ private:
     
     // CParameter interface
 protected:
-    virtual int onLoad(QSettings &set) override;
-    virtual int onSave(QSettings &set) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
 };
 
 #endif // CPARAMETERBASE_H

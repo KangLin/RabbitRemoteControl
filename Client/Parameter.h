@@ -25,7 +25,7 @@
  *      \ref sub_Use_CParameterClient
  *      \see CParameterClient
  *           CConnecter::SetParameterClient
- *           CParameterUser::onLoad
+ *           CParameterUser::OnLoad
  *   3. 同时在应用程序、客户端库 (CClient) 和插件内有效。暂时没有使用此类型。
  *
  * \~english
@@ -45,7 +45,7 @@
  *     \ref sub_Use_CParameterClient
  *     \see CParameterClient
  *          CConnecter::SetParameterClient
- *          CParameterUser::onLoad
+ *          CParameterUser::OnLoad
  *  3. Valid in both the application and the Client and the plugin.
  *     This type is not used at this time.
  * \~
@@ -55,11 +55,11 @@
 /*!
  * \~chinese 参数接口
  * \details
- * - 如果你需要自动嵌套调用 CParameter::onLoad 或 CParameter::onSave ，
+ * - 如果你需要自动嵌套调用 CParameter::OnLoad 或 CParameter::OnSave ，
  *   请用构造函数 CParameter(CParameter* parent, const QString& szPrefix) 初始化实例。
  *
  * \~english Parameter interface
- * - If you need to automatically nest calls CParameter::onLoad or CParameter::onSave,
+ * - If you need to automatically nest calls CParameter::OnLoad or CParameter::OnSave,
  *   Please initialize the instance with CParameter(CParameter* parent, const QString& szPrefix).
  * \~
  * \ingroup CLIENT_PARAMETER CLIENT_PLUGIN_API
@@ -130,8 +130,8 @@ Q_SIGNALS:
     void sigChanged();
 
 protected:
-    virtual int onLoad(QSettings &set) = 0;
-    virtual int onSave(QSettings &set) = 0;
+    virtual int OnLoad(QSettings &set) = 0;
+    virtual int OnSave(QSettings &set) = 0;
     /*!
      * \~chinese
      * \brief 检查参数是否有效
@@ -145,7 +145,7 @@ protected:
      *   - true: valid
      *   - false: invalid
      */
-    virtual bool onCheckValidity();
+    virtual bool OnCheckValidity();
 
     /*!
      * \~chinese

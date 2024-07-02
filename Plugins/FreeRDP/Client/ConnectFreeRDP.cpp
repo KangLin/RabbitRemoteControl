@@ -707,20 +707,6 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 	update->SetKeyboardIndicators = cb_keyboard_set_indicators;
 	update->SetKeyboardImeStatus = cb_keyboard_set_ime_status;
     
-//    freerdp_keyboard_init_ex(instance->context->settings->KeyboardLayout,
-//	                         instance->context->settings->KeyboardRemappingList);
-
-//	if (!(xfc->xfDisp = xf_disp_new(xfc)))
-//	{
-//		xf_clipboard_free(xfc->clipboard);
-//		return FALSE;
-//	}
-
-//	EventArgsInit(&e, "xfreerdp");
-//	e.width = settings->DesktopWidth;
-//	e.height = settings->DesktopHeight;
-//	PubSub_OnResizeWindow(context->pubSub, xfc, &e);
-    
 	return TRUE;
 }
 

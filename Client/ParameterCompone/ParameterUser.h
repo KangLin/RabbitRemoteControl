@@ -40,8 +40,8 @@ public:
     void SetSavePassword(bool save);
 
 protected:
-    virtual int onLoad(QSettings &set) override;
-    virtual int onSave(QSettings &set) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
 
 private:
     QString m_szUser;

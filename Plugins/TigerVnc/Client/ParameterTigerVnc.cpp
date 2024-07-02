@@ -24,9 +24,9 @@ CParameterTigerVnc::CParameterTigerVnc(QObject *parent)
     SetTurnPort(3748);
 }
 
-int CParameterTigerVnc::onLoad(QSettings &set)
+int CParameterTigerVnc::OnLoad(QSettings &set)
 {
-    int nRet = CParameterBase::onLoad(set);
+    int nRet = CParameterBase::OnLoad(set);
     if(nRet) return nRet;
 
     SetShared(set.value("TigerVNC/Shared", GetShared()).toBool());
@@ -73,9 +73,9 @@ int CParameterTigerVnc::onLoad(QSettings &set)
     return nRet;
 }
 
-int CParameterTigerVnc::onSave(QSettings &set)
+int CParameterTigerVnc::OnSave(QSettings &set)
 {
-    int nRet = CParameterBase::onSave(set);
+    int nRet = CParameterBase::OnSave(set);
     if(nRet) return nRet;
     
     set.setValue("TigerVNC/Shared", GetShared());
@@ -103,7 +103,7 @@ int CParameterTigerVnc::onSave(QSettings &set)
     return nRet;
 }
 
-bool CParameterTigerVnc::GetCheckCompleted()
+bool CParameterTigerVnc::OnCheckValidity()
 {
     if(GetIce())
     {

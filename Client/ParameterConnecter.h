@@ -122,8 +122,8 @@ public:
 
 protected:
     //! Load parameters from settings
-    virtual int onLoad(QSettings &set) override;
-    virtual int onSave(QSettings &set) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
 
 Q_SIGNALS:
     void sigSetParameterClient();
@@ -155,7 +155,6 @@ private:
     CParameterClient* m_pParameterClient;
 
 public:
-    virtual bool GetCheckCompleted();
         
     enum class emProxy {
         No,

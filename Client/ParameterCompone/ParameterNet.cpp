@@ -7,7 +7,7 @@ CParameterNet::CParameterNet(CParameterConnecter* parent, const QString &szPrefi
     m_User(this)
 {}
 
-int CParameterNet::onLoad(QSettings &set)
+int CParameterNet::OnLoad(QSettings &set)
 {
     set.beginGroup("Net");
     SetHost(set.value("Host", GetHost()).toString());
@@ -16,7 +16,7 @@ int CParameterNet::onLoad(QSettings &set)
     return 0;
 }
 
-int CParameterNet::onSave(QSettings &set)
+int CParameterNet::OnSave(QSettings &set)
 {
     set.beginGroup("Net");
     set.setValue("Host", GetHost());

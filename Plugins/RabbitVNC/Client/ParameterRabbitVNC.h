@@ -10,15 +10,15 @@ public:
     explicit CParameterRabbitVNC(QObject *parent = nullptr);
     
 public:
-    virtual int onLoad(QSettings &set) override;
-    virtual int onSave(QSettings &set) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
     
     /*!
      * \brief Check whether the parameters are complete
      *  to decide whether to open the parameter dialog 
      * \return 
      */
-    virtual bool GetCheckCompleted() override;
+    virtual bool OnCheckValidity() override;
     
     enum COLOR_LEVEL {
         Full,

@@ -69,7 +69,7 @@ int CParameter::Load(QSettings &set)
     if(!GetPrefix().isEmpty())
         set.beginGroup(GetPrefix());
 
-    nRet = onLoad(set);
+    nRet = OnLoad(set);
 
     if(!nRet) {
         foreach (auto p, m_Member) {
@@ -92,7 +92,7 @@ int CParameter::Save(QSettings &set, bool bForce)
     if(!GetPrefix().isEmpty())
         set.beginGroup(GetPrefix());
 
-    nRet = onSave(set);
+    nRet = OnSave(set);
 
     if(!nRet) {
         foreach (auto p, m_Member) {
@@ -110,13 +110,13 @@ bool CParameter::CheckValidity()
 {
     bool bRet = false;
     foreach (auto p, m_Member) {
-        bRet = p->onCheckValidity();
+        bRet = p->OnCheckValidity();
         if(!bRet) break;
     }
     return bRet;
 }
 
-bool CParameter::onCheckValidity()
+bool CParameter::OnCheckValidity()
 {
     qDebug(log) << " Not implemented CParameter::onCheckValidity()";
     return true;

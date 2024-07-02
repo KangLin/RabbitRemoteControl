@@ -31,7 +31,7 @@
  *    Please override CParameterConnecter::slotSetParameterClient and initialize the relevant values in it.
  *    For example, Whether to save the password with the member value of CParameterClient as its initialization value.
  *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
- *    \see CParameterUser::onLoad
+ *    \see CParameterUser::OnLoad
  *
  *
  * \~chinese 客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。
@@ -54,7 +54,7 @@
  *     请重载 CParameterConnecter::slotSetParameterClient 并在其中初始化相关的值。\n
  *     例如：是否保存密码以 CParameterClient 的成员值做为其初始化值。
  *     \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
- *     \see CParameterUser::onLoad
+ *     \see CParameterUser::OnLoad
  *
  * \~
  * \see CClient::CreateConnecter
@@ -76,11 +76,11 @@ protected:
     /*!
      * \see CClient::LoadSettings
      */
-    virtual int onLoad(QSettings &set) override;
+    virtual int OnLoad(QSettings &set) override;
     /*!
      * \see CClient::SaveSettings
      */
-    virtual int onSave(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
 
 public:
     bool GetHookKeyboard() const;

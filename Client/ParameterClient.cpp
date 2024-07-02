@@ -14,7 +14,7 @@ CParameterClient::CParameterClient(QObject *parent)
 CParameterClient::~CParameterClient()
 {}
 
-int CParameterClient::onLoad(QSettings &set)
+int CParameterClient::OnLoad(QSettings &set)
 {
     SetHookKeyboard(set.value("Client/Hook/Keyboard",
                               GetHookKeyboard()).toBool());
@@ -29,7 +29,7 @@ int CParameterClient::onLoad(QSettings &set)
     return 0;
 }
 
-int CParameterClient::onSave(QSettings& set)
+int CParameterClient::OnSave(QSettings& set)
 {
     set.setValue("Client/Hook/Keyboard", GetHookKeyboard());
     set.setValue("Client/Password/Prompty/Type",

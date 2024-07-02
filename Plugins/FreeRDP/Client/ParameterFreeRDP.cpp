@@ -47,9 +47,9 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
                       <<"1920×1200";
 }
 
-int CParameterFreeRDP::onLoad(QSettings &set)
+int CParameterFreeRDP::OnLoad(QSettings &set)
 {
-    CParameterBase::onLoad(set);
+    CParameterBase::OnLoad(set);
     
     set.beginGroup("FreeRDP");
     SetDomain(set.value("Domain", GetDomain()).toString());
@@ -82,9 +82,9 @@ int CParameterFreeRDP::onLoad(QSettings &set)
     return 0;
 }
 
-int CParameterFreeRDP::onSave(QSettings &set)
+int CParameterFreeRDP::OnSave(QSettings &set)
 {
-    CParameterBase::onSave(set);
+    CParameterBase::OnSave(set);
     
     set.beginGroup("FreeRDP");
     set.setValue("Domain", GetDomain());

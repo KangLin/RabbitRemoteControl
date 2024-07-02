@@ -24,7 +24,7 @@ int CParameterBase::Init()
     return 0;
 }
 
-int CParameterBase::onLoad(QSettings &set)
+int CParameterBase::OnLoad(QSettings &set)
 {
     SetName(set.value("Name", GetName()).toString());
     SetServerName(set.value("ServerName", GetServerName()).toString());
@@ -35,7 +35,7 @@ int CParameterBase::onLoad(QSettings &set)
     return 0;
 }
 
-int CParameterBase::onSave(QSettings &set)
+int CParameterBase::OnSave(QSettings &set)
 {
     set.setValue("Name", GetName());
     set.setValue("ServerName", GetServerName());

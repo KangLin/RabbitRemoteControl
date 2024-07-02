@@ -18,8 +18,8 @@ public:
     explicit CParameterFreeRDP(QObject *parent = nullptr);
 
     // CParameter interface
-    virtual int onLoad(QSettings &set) override;
-    virtual int onSave(QSettings &set) override;
+    virtual int OnLoad(QSettings &set) override;
+    virtual int OnSave(QSettings &set) override;
     
 public:
 

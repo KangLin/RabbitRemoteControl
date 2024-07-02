@@ -20,9 +20,9 @@ CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent)
     SetIce(false);
 }
 
-int CParameterRabbitVNC::onLoad(QSettings &set)
+int CParameterRabbitVNC::OnLoad(QSettings &set)
 {
-    int nRet = CParameterBase::onLoad(set);
+    int nRet = CParameterBase::OnLoad(set);
 
     SetShared(set.value("RabbitVNC/Shared", GetShared()).toBool());
     SetBufferEndRefresh(set.value("RabbitVNC/BufferEndRefresh",
@@ -45,9 +45,9 @@ int CParameterRabbitVNC::onLoad(QSettings &set)
     return nRet;
 }
 
-int CParameterRabbitVNC::onSave(QSettings &set)
+int CParameterRabbitVNC::OnSave(QSettings &set)
 {
-    int nRet = CParameterBase::onSave(set);
+    int nRet = CParameterBase::OnSave(set);
     set.setValue("RabbitVNC/Shared", GetShared());
     set.setValue("RabbitVNC/BufferEndRefresh", GetBufferEndRefresh());
     set.setValue("RabbitVNC/SupportsDesktopResize", GetSupportsDesktopResize());
@@ -63,7 +63,7 @@ int CParameterRabbitVNC::onSave(QSettings &set)
     return nRet;
 }
 
-bool CParameterRabbitVNC::GetCheckCompleted()
+bool CParameterRabbitVNC::OnCheckValidity()
 {
     if(GetIce())
     {

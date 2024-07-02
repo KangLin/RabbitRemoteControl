@@ -13,14 +13,14 @@ CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
     SetQualityLevel(5);
 }
 
-int CParameterLibVNCServer::onLoad(QSettings &set)
+int CParameterLibVNCServer::OnLoad(QSettings &set)
 {
-    return CParameterBase::onLoad(set);
+    return CParameterBase::OnLoad(set);
 }
 
-int CParameterLibVNCServer::onSave(QSettings &set)
+int CParameterLibVNCServer::OnSave(QSettings &set)
 {
-    return CParameterBase::onSave(set);
+    return CParameterBase::OnSave(set);
 }
 
 int CParameterLibVNCServer::GetQualityLevel() const

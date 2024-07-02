@@ -62,11 +62,6 @@ void CParameterConnecter::slotSetParameterClient()
     return;
 }
 
-bool CParameterConnecter::GetCheckCompleted()
-{
-    return true;
-}
-
 const CParameterConnecter::emProxy CParameterConnecter::GetProxyType() const
 {
     return m_eProxyType;
@@ -132,7 +127,7 @@ void CParameterConnecter::SetProxyPassword(const QString &password)
     SetModified(true);
 }
 
-int CParameterConnecter::onLoad(QSettings &set)
+int CParameterConnecter::OnLoad(QSettings &set)
 {
     SetProxyType(static_cast<emProxy>(set.value("Proxy/Type",
                                     static_cast<int>(GetProxyType())).toInt()));
@@ -143,7 +138,7 @@ int CParameterConnecter::onLoad(QSettings &set)
     return 0;
 }
 
-int CParameterConnecter::onSave(QSettings &set)
+int CParameterConnecter::OnSave(QSettings &set)
 {
     set.setValue("Proxy/Type", (int)m_eProxyType);
     set.setValue("Proxy/Host", GetProxyHost());
