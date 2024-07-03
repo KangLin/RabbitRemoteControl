@@ -70,7 +70,7 @@
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgLibVNCServerPassword.cpp" line="40"/>
+        <location filename="../../DlgLibVNCServerPassword.cpp" line="41"/>
         <source>Set password for %1</source>
         <translation>为 %1 设置密码</translation>
     </message>

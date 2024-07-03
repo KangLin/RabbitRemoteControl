@@ -148,15 +148,10 @@
     </message>
 </context>
 <context>
-    <name>CParameterConnecter</name>
+    <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterConnecter.cpp" line="262"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="25"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterConnecter.cpp" line="278"/>
-        <source>Proxy password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

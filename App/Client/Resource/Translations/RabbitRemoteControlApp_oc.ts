@@ -4,64 +4,64 @@
 <context>
     <name>CFavoriteView</name>
     <message>
-        <location filename="../../FavoriteView.cpp" line="255"/>
+        <location filename="../../FavoriteView.cpp" line="253"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="256"/>
+        <location filename="../../FavoriteView.cpp" line="254"/>
         <source>Open settings and connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="260"/>
-        <location filename="../../FavoriteView.cpp" line="264"/>
+        <location filename="../../FavoriteView.cpp" line="258"/>
+        <location filename="../../FavoriteView.cpp" line="262"/>
         <source>New group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="30"/>
+        <location filename="../../FavoriteView.cpp" line="28"/>
         <source>Favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="101"/>
-        <location filename="../../FavoriteView.cpp" line="106"/>
+        <location filename="../../FavoriteView.cpp" line="99"/>
+        <location filename="../../FavoriteView.cpp" line="104"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="257"/>
+        <location filename="../../FavoriteView.cpp" line="255"/>
         <source>Delete Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="262"/>
+        <location filename="../../FavoriteView.cpp" line="260"/>
         <source>Delete group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="267"/>
+        <location filename="../../FavoriteView.cpp" line="265"/>
         <source>Add to favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="306"/>
+        <location filename="../../FavoriteView.cpp" line="304"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="306"/>
+        <location filename="../../FavoriteView.cpp" line="304"/>
         <source>Input group name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="311"/>
+        <location filename="../../FavoriteView.cpp" line="309"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="311"/>
+        <location filename="../../FavoriteView.cpp" line="309"/>
         <source>The group [%1] is existed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -430,7 +430,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterDlgSettings.cpp" line="170"/>
+        <location filename="../../ParameterDlgSettings.cpp" line="171"/>
         <source>Open shot screen path</source>
         <translation type="unfinished"></translation>
     </message>
@@ -802,27 +802,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1037"/>
+        <location filename="../../mainwindow.cpp" line="1036"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1038"/>
+        <location filename="../../mainwindow.cpp" line="1037"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1066"/>
+        <location filename="../../mainwindow.cpp" line="1065"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1067"/>
+        <location filename="../../mainwindow.cpp" line="1066"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1095"/>
+        <location filename="../../mainwindow.cpp" line="1094"/>
         <source>Save ScreenShot to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -830,13 +830,23 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="82"/>
+        <location filename="../../main.cpp" line="64"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../main.cpp" line="69"/>
         <source>Rabbit Remote Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="83"/>
+        <location filename="../../main.cpp" line="70"/>
         <source>Kang Lin Studio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../main.cpp" line="130"/>
+        <source>End</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

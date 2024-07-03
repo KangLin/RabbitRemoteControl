@@ -150,14 +150,20 @@
 <context>
     <name>CParameterConnecter</name>
     <message>
-        <location filename="../../ParameterConnecter.cpp" line="262"/>
         <source>Password</source>
-        <translation>密碼</translation>
+        <translation type="vanished">密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterConnecter.cpp" line="278"/>
         <source>Proxy password</source>
-        <translation>代理密碼</translation>
+        <translation type="vanished">代理密碼</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterUser</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="25"/>
+        <source>Password</source>
+        <translation type="unfinished">密碼</translation>
     </message>
 </context>
 </TS>

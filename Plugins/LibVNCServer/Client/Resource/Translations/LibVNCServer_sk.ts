@@ -70,7 +70,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgLibVNCServerPassword.cpp" line="40"/>
+        <location filename="../../DlgLibVNCServerPassword.cpp" line="41"/>
         <source>Set password for %1</source>
         <translation type="unfinished"></translation>
     </message>

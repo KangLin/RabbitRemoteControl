@@ -4,41 +4,47 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="319"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="363"/>
         <source>Logon to </source>
         <translation>登录到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="324"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="368"/>
         <source>Please check that the username and password are correct.</source>
         <translation>检查用户名和密码是否正确。</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="219"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="234"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="325"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="340"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="236"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="251"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="284"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="369"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="384"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="217"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="234"/>
         <source>The proxy server is empty, please input it</source>
         <translation>代理服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="232"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="249"/>
         <source>The server is empty, please input it</source>
         <translation>服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="332"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="279"/>
+        <source>Failed to log in via SSH tunnel:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectTigerVnc.cpp" line="376"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="323"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="336"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="367"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="380"/>
         <source> fail.</source>
         <translation> 失败。</translation>
     </message>
@@ -368,12 +374,12 @@
 <context>
     <name>CParameterTigerVnc</name>
     <message>
-        <location filename="../../ParameterTigerVnc.cpp" line="52"/>
+        <location filename="../../ParameterTigerVnc.cpp" line="55"/>
         <source>Ice signal password</source>
         <translation>Ice 信令密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterTigerVnc.cpp" line="65"/>
+        <location filename="../../ParameterTigerVnc.cpp" line="68"/>
         <source>Ice turn password</source>
         <translation>Turn 服务器密码</translation>
     </message>
