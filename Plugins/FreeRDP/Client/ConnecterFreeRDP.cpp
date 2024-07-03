@@ -10,7 +10,11 @@ CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *parent)
       m_Logger("FreeRDP.Connecter")
 {
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
+
+    //! [Set the parameter]
     SetParameter(&m_ParameterFreeRdp);
+    //! [Set the parameter]
+
     // 在 freerdp_client_context_free 中释放
     //m_ParameterFreeRdp.m_pSettings = freerdp_settings_new(0);
 }

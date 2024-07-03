@@ -25,7 +25,9 @@ protected:
     virtual CConnect *InstanceConnect() override;
 
 private:
+    //! [Initialize parameter]
     CParameterFreeRDP m_ParameterFreeRdp;
+    //! [Initialize parameter]
     QLoggingCategory m_Logger;
 };
 

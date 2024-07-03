@@ -13,48 +13,14 @@
  *   - Plugin accessed via CParameterConnecter::GetParameterClient .
  *   - The application cannot access it,
  *     but the application can be set it via CClient::GetSettingsWidgets .
- *
- * \subsection sub_Use_CParameterClient Use CParameterClient
- * \subsubsection sub_Set_CParameterClient_in_CParameterConnecter Set CParameterClient for CParameterConnecter
- *  - If the parameters of connecter ( CParameterConnecter or it's derived class ) requires a CParameterClient.
- *    - Please instantiate the parameters of connecter in the constructor of the CConnecter or it's derived class.
- *    - Call CConnecter::SetParameter to set the parameters.
- *    - Default set the CParameterClient for the parameters of connecter. See: CClient::CreateConnecter .
- *    - If you are sure to the parameter does not need CParameterClient.
- *      please overload the CConnecter::SetParameterClient in the CConnecter derived class.
- *      don't set it.
- * \subsubsection sub_Use_CParameterClient_in_CParameterConnecter Use CParameterClient in CParameterConnecter
- *  - Use CParameterConnecter::GetParameterClient() get CParameterClient
- *    in the parameters of connecter ( CParameterConnecter or it's derived class )
- *  - The parameters of connecter( CParameterConnecter or it's derived class )
- *    use the value of CParameterClient as its initial value. \n
- *    Please override CParameterConnecter::slotSetParameterClient and initialize the relevant values in it.
- *    For example, Whether to save the password with the member value of CParameterClient as its initialization value.
- *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
- *    \see CParameterUser::OnLoad
- *
+ *   - \ref sub_Use_CParameterClient
  *
  * \~chinese 客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。
  * \details
  * - 此接口仅由客户端库 (CClient) 实例化，插件和客户端库（ CClient ) 使用。
  * - 插件通过 CParameterConnecter::GetParameterClient 访问。
  * - 应用程序不能访问，但是可以通过 CClient::GetSettingsWidgets 进行设置。
- *
- * \subsection sub_Use_CParameterClient 使用客户端库参数 (CParameterClient)
- * \subsubsection sub_Set_CParameterClient_in_CParameterConnecter 为连接参数 ( CParameterConnecter 或其派生类 ) 设置客户端库参数 (CParameterClient)
- *  - 如果连接参数 ( CParameterConnecter 或其派生类 ) 需要客户端库参数 (CParameterClient) 。
- *    - 请在 CConnecter 派生类的构造函数中实例化连接参数。
- *    - 调用 CConnecter::SetParameter 设置参数指针。
- *    - 默认会自动为连接参数设置 CParameterClient 。详见: CClient::CreateConnecter 。
- *    - 如果参数不需要 CParameterClient ，
- *      那请在 CConnecter 派生类重载 CConnecter::SetParameterClient 不设置它。
- * \subsubsection sub_Use_CParameterClient_in_CParameterConnecter 在连接参数 ( CParameterConnecter 或其派生类 ) 中使用客户端库参数 (CParameterClient)
- *   - 在连接参数 ( CParameterConnecter 或其派生类 ) 使用 CParameterConnecter::GetParameterClient() 来得到客户端库参数 (CParameterClient) 。
- *   - 连接参数 ( CParameterConnecter 或其派生类 ) 使用客户端库参数 (CParameterClient) 的值做为其初始值。
- *     请重载 CParameterConnecter::slotSetParameterClient 并在其中初始化相关的值。\n
- *     例如：是否保存密码以 CParameterClient 的成员值做为其初始化值。
- *     \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
- *     \see CParameterUser::OnLoad
+ * - \ref sub_Use_CParameterClient
  *
  * \~
  * \see CClient::CreateConnecter

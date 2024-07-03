@@ -40,6 +40,8 @@
 \details
 + Class relationship
   \image html docs/Image/PluginClientAPI.svg
+- Sequence diagram
+  \image html docs/Image/ClientSequenceDiagram.svg
 + usge:
   - Instance class: CClient m_Client;
     + Handle CClient::Handle::onProcess to get the registered connection plugin
@@ -53,7 +55,8 @@
   - Open the connect: CConnecter::Connect()
   - After receiving the CConnecter::sigConnected signal,
     do connection-related initialization work
-  - After receiving the CConnecter::sigDisconnect signal, Close the connect.
+  - After receiving the CConnecter::sigDisconnect signal,
+    Call CConnecter::DisConnect() to close the connect.
   - Close the connect: CConnecter::DisConnect()
   - After receiving the CConnecter::sigDisconnected signal,
     do connection-related cleanup work,

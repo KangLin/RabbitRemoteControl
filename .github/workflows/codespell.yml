@@ -18,5 +18,5 @@ jobs:
         with:
           check_filenames: true
           path: ${{github.workspace}}
-          skip: "*.lua,*.ts,codespell.yml,vcpkg/,vcpkg/*.*,vcpkg/*"
+          skip: "*.lua,*.ts,codespell.yml,vcpkg/,vcpkg/*.*,vcpkg/*,*.svg"
           ignore_words_list: "spPort,build-in,pIce,splitted,Fo"

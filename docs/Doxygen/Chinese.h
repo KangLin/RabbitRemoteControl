@@ -38,6 +38,8 @@
 \details 
 + 类关系：
   \image html docs/Image/PluginClientAPI.svg
++ 序列图：
+  \image html docs/Image/ClientSequenceDiagram.svg
 + 使用：
   - 实例化类： CClient m_Client;
     + 处理 CClient::Handle::onProcess 得到注册的连接插件
@@ -50,7 +52,8 @@
     + 断连成功信号： CConnecter::sigDisconnected
   - 打开连接： CConnecter::Connect()
   - 接收到 CConnecter::sigConnected 信号后，做连接相关初始化工作
-  - 接收到 CConnecter::sigDisconnect() 信号后，关闭连接。
+  - 接收到 CConnecter::sigDisconnect() 信号后，
+    调用 CConnecter::DisConnect() 关闭连接。
   - 关闭连接： CConnecter::DisConnect()
   - 接收到 CConnecter::sigDisconnected 信号后，做连接相关的清理工作，
    完成后并删除此连接者对象 (必须使用 CConnecter::deleteLater )

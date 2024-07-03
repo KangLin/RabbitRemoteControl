@@ -55,12 +55,30 @@
 /*!
  * \~chinese 参数接口
  * \details
- * - 如果你需要自动嵌套调用 CParameter::OnLoad 或 CParameter::OnSave ，
- *   请用构造函数 CParameter(CParameter* parent, const QString& szPrefix) 初始化实例。
+ * - \ref sub_CParameterConnecter_CATEGORY_USAGE
+ * - 从存储中加载和保存参数
+ *   - 如果要自动嵌套调用 CParameter 类型成员的 OnXXX 函数（例如: OnLoad)，
+ *     在成员实例化时，设置构造函数的 parent 为 CParameter(一般用this） 类型实例。
+ *   - 如果要自己控制 CParameter 类型成员的 OnXXX 函数（例如: OnLoad)，
+ *     在成员实例化时，不设置构造函数的 parent 或者设置为非 CParameter 类型实例。
+ * - 当派生类设置参数时，需要调用 SetModified 。标志参数已改变。
+ * - 检查参数的有效性。调用 CheckValidity()
  *
  * \~english Parameter interface
- * - If you need to automatically nest calls CParameter::OnLoad or CParameter::OnSave,
- *   Please initialize the instance with CParameter(CParameter* parent, const QString& szPrefix).
+ * - \ref sub_CParameterConnecter_CATEGORY_USAGE
+ * - Load and save parameters from storage
+ *   - If you need to automatically nest calls the OnXXX(ag: OnLoad) functions
+ *     of CParameter type member,
+ *     When a CParameter type member is instantiated,
+ *     the constructor sets the parent to a CParameter (usually this) type instance.
+ *   - If you're going to control the OnXXX(ag: OnLoad) functions
+ *     of CParameter type member,
+ *     When a CParameter type member is instantiated,
+ *     the constructor parent is not set or is set non-CParameter type instance.
+ * - When the derived class sets parameters,
+ *   it needs to call SetModified, to flag changed.
+ * - Check whether the parameter is valid, call CheckValidity()
+ *
  * \~
  * \ingroup CLIENT_PARAMETER CLIENT_PLUGIN_API
  */
@@ -70,21 +88,22 @@ class CLIENT_EXPORT CParameter : public QObject
     Q_PROPERTY(bool Modified READ GetModified WRITE SetModified FINAL)
 
 public:
-    explicit CParameter(QObject *parent = nullptr);
     /*!
      * \~english
-     * \brief
-     *  This object, or its derivative,
-     *  is a member of another instance of this class,
-     *  and its Load and Save are automatically called
-     * \param parent An instance of this class or its derivative class
+     * \param parent:
+     *   - An instance of this class or its derivative class, then
+     *     automatically nest calls the OnXXX(ag: OnLoad) functions of member.
+     *   - Is null or non-CParameter instance,
+     *     then don't nest calls the OnXXX(ag: OnLoad) functions of member.
      *
      * \~chinese
-     * \brief 此对象或者其派生对象作为另一个此类对象的实例的成员，则自动调用其 Load 和 Save
-     * \param parent 此类或其派生类的实例
+     * \param parent: 
+     *   - 为 CParameter 实例，则自动调用 CParameter 类型成员的 OnXXX 函数。
+     *   - 为空或者非 CParameter 实例，则不调用 CParameter 类型成员的 OnXXX 函数
      * \param szPrefix 前缀。 \see QSetting::beginGroup
      */
-    explicit CParameter(CParameter* parent, const QString& szPrefix);
+    explicit CParameter(QObject *parent = nullptr,
+                        const QString& szPrefix = QString());
     virtual ~CParameter();
 
     virtual int Load(QString szFile = QString());

@@ -11,23 +11,9 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Connecter")
 
-CParameterConnecter::CParameterConnecter(QObject* parent)
-    : CParameter(parent),
-    m_Parent(nullptr),
-    m_pParameterClient(nullptr),
-    m_eProxyType(emProxy::No),
-    m_nProxyPort(1080)
-{
-    bool check = false;
-    check = connect(this, SIGNAL(sigSetParameterClient()),
-                    this, SLOT(slotSetParameterClient()));
-    Q_ASSERT(check);
-}
-
-CParameterConnecter::CParameterConnecter(
-    CParameterConnecter *parent, const QString &szPrefix)
+CParameterConnecter::CParameterConnecter(QObject *parent, const QString &szPrefix)
     : CParameter(parent, szPrefix),
-      m_Parent(parent),
+      m_Parent(nullptr),
       m_pParameterClient(nullptr),
       m_eProxyType(emProxy::No),
       m_nProxyPort(1080)
@@ -36,8 +22,10 @@ CParameterConnecter::CParameterConnecter(
     check = connect(this, SIGNAL(sigSetParameterClient()),
                     this, SLOT(slotSetParameterClient()));
     Q_ASSERT(check);
-    if(parent) {
-        check = connect(parent, SIGNAL(sigSetParameterClient()),
+    CParameterConnecter* p = qobject_cast<CParameterConnecter*>(parent);
+    if(p) {
+        m_Parent = p;
+        check = connect(m_Parent, SIGNAL(sigSetParameterClient()),
                         this, SIGNAL(sigSetParameterClient()));
         Q_ASSERT(check);
     }

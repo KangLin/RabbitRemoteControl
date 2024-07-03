@@ -7,10 +7,12 @@ Author: Kang Lin kl222@126.com
 
 + Main repository: https://github.com/KangLin/RabbitRemoteControl
 + Mirror repository:
-  - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol/
+  - gitee: https://gitee.com/kl222/RabbitRemoteControl
+  - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
   - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
   - launchpad: https://launchpad.net/rabbitremotecontrol
-  - gitee: https://gitee.com/kl222/RabbitRemoteControl
+  - kde: https://invent.kde.org/kanglin/RabbitRemoteControl
+  - bitbucket: https://bitbucket.org/kl222/rabbitremotecontrol
     
 ### Semantic Versioning:
 

@@ -5,24 +5,15 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter")
 
-CParameter::CParameter(QObject *parent)
+CParameter::CParameter(QObject* parent, const QString& szPrefix)
     : QObject(parent),
-    m_bModified(false)
-{}
-
-CParameter::CParameter(CParameter* parent, const QString& szPrefix)
-    : CParameter(parent)
+    m_bModified(false),
+    m_szPrefix(szPrefix)
 {
-    if(parent) {
-        parent->AddMember(this);
-    } else if(szPrefix.isEmpty()){
-        QString szErr = this->metaObject()->className();
-        szErr += "'s parent and prefix is null. "
-                 "use CParameter::CParameter(QObject *parent = nullptr)";
-        qWarning(log) << szErr;
-        Q_ASSERT_X(false, "CParameter", szErr.toStdString().c_str());
+    CParameter* p = qobject_cast<CParameter*>(parent);
+    if(p) {
+        p->AddMember(this);
     }
-    SetPrefix(szPrefix);
 }
 
 CParameter::~CParameter()

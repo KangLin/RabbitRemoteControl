@@ -287,6 +287,7 @@ protected:
 
 private:
     /*!
+     * \brief Set CParameterClient
      * \note If CParameterConnecter isn't need CParameterClient.
      *       please overload this function.
      * \see CClient::CreateConnecter CParameterConnecter CParameterClient
