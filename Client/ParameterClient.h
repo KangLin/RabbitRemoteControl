@@ -6,6 +6,13 @@
 #include "Parameter.h"
 
 /*!
+ * \~chinese 客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。
+ * \details
+ * - 此接口仅由客户端库 (CClient) 实例化，插件和客户端库（ CClient ) 使用。
+ * - 插件通过 CParameterConnecter::GetParameterClient 访问。
+ * - 应用程序不能访问，但是可以通过 CClient::GetSettingsWidgets 进行设置。
+ * - \ref sub_Use_CParameterClient
+ *
  * \~english The parameters of client
  * \details
  *   - The parameters is valid in the CClient and plugin.
@@ -14,13 +21,6 @@
  *   - The application cannot access it,
  *     but the application can be set it via CClient::GetSettingsWidgets .
  *   - \ref sub_Use_CParameterClient
- *
- * \~chinese 客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。
- * \details
- * - 此接口仅由客户端库 (CClient) 实例化，插件和客户端库（ CClient ) 使用。
- * - 插件通过 CParameterConnecter::GetParameterClient 访问。
- * - 应用程序不能访问，但是可以通过 CClient::GetSettingsWidgets 进行设置。
- * - \ref sub_Use_CParameterClient
  *
  * \~
  * \see CClient::CreateConnecter

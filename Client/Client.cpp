@@ -156,6 +156,7 @@ int CClient::AppendPlugin(CPluginClient *p)
     return 0;
 }
 
+//! [CClient CreateConnecter]
 CConnecter* CClient::CreateConnecter(const QString& id)
 {
     auto it = m_Plugins.find(id);
@@ -179,6 +180,7 @@ CConnecter* CClient::CreateConnecter(const QString& id)
     }
     return nullptr;
 }
+//! [CClient CreateConnecter]
 
 CConnecter* CClient::LoadConnecter(const QString &szFile)
 {

@@ -12,7 +12,7 @@ CParameter::CParameter(QObject* parent, const QString& szPrefix)
 {
     CParameter* p = qobject_cast<CParameter*>(parent);
     if(p) {
-        p->AddMember(this);
+        p->AddCategory(this);
     }
 }
 
@@ -63,7 +63,7 @@ int CParameter::Load(QSettings &set)
     nRet = OnLoad(set);
 
     if(!nRet) {
-        foreach (auto p, m_Member) {
+        foreach (auto p, m_Category) {
             nRet = p->Load(set);
             if(nRet) break;
         }
@@ -86,7 +86,7 @@ int CParameter::Save(QSettings &set, bool bForce)
     nRet = OnSave(set);
 
     if(!nRet) {
-        foreach (auto p, m_Member) {
+        foreach (auto p, m_Category) {
             nRet = p->Save(set);
             if(nRet) break;
         }
@@ -100,7 +100,7 @@ int CParameter::Save(QSettings &set, bool bForce)
 bool CParameter::CheckValidity()
 {
     bool bRet = false;
-    foreach (auto p, m_Member) {
+    foreach (auto p, m_Category) {
         bRet = p->OnCheckValidity();
         if(!bRet) break;
     }
@@ -126,9 +126,9 @@ int CParameter::SetModified(bool bModified)
     return 0;
 }
 
-int CParameter::AddMember(CParameter* p)
+int CParameter::AddCategory(CParameter* p)
 {
-    if(!m_Member.contains(p))
-        m_Member.push_back(p);
+    if(!m_Category.contains(p))
+        m_Category.push_back(p);
     return 0;
 }

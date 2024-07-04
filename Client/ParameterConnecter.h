@@ -19,37 +19,6 @@
  */
 
 /*!
- * \~english
- * \brief the parameters of connecter interface. It only valid in plugin.
- *        
- * \note
- *  - The interface only is implemented and used by plugin.
- *  - The application cannot access it directly,
- *    it can only be set via CConnecter::OpenDialogSettings.
- *  - The plugin can access via CConnecterDesktopThread::GetParameter
- *
- * \details
- * \subsection sub_Use_CParameterClient Use CParameterClient
- * \subsubsection sub_Set_CParameterClient_in_CParameterConnecter Set CParameterClient for CParameterConnecter
- *  - If the parameters of connecter ( CParameterConnecter or it's derived class ) requires a CParameterClient.
- *    - Please instantiate the parameters of connecter in the constructor of the CConnecter or it's derived class. ag:
- *      \snippet Plugins/FreeRDP/Client/ConnecterFreeRDP.h Initialize parameter
- *    - Call CConnecter::SetParameter to set the parameters. ag:
- *      \snippet Plugins/FreeRDP/Client/ConnecterFreeRDP.cpp Set the parameter
- *    - Default set the CParameterClient for the parameters of connecter. See: CClient::CreateConnecter .
- *    - If you are sure to the parameter does not need CParameterClient.
- *      please overload the CConnecter::SetParameterClient in the CConnecter derived class.
- *      don't set it.
- * \subsubsection sub_Use_CParameterClient_in_CParameterConnecter Use CParameterClient in CParameterConnecter
- *  - Use CParameterConnecter::GetParameterClient() get CParameterClient
- *    in the parameters of connecter ( CParameterConnecter or it's derived class )
- *  - The parameters of connecter( CParameterConnecter or it's derived class )
- *    use the value of CParameterClient as its initial value. \n
- *    Please override CParameterConnecter::slotSetParameterClient and initialize the relevant values in it.
- *    For example, Whether to save the password with the member value of CParameterClient as its initialization value.
- *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
- *    \see CParameterUser::OnLoad
- *
  * \~chinese
  * \brief 连接参数接口。仅在插件内有效。
  *  
@@ -59,17 +28,18 @@
  *  - 插件通过 CConnecterDesktopThread::GetParameter 访问
  *
  * \details
- * \subsection sub_Use_CParameterClient 使用客户端库参数 (CParameterClient)
- * \subsubsection sub_Set_CParameterClient_in_CParameterConnecter 为连接参数 ( CParameterConnecter 或其派生类 ) 设置客户端库参数 (CParameterClient)
+ * \section sub_Use_CParameterClient 使用客户端库参数 (CParameterClient)
+ * \subsection sub_Set_CParameterClient_in_CParameterConnecter 为连接参数 ( CParameterConnecter 或其派生类 ) 设置客户端库参数 (CParameterClient)
  *  - 如果连接参数 ( CParameterConnecter 或其派生类 ) 需要客户端库参数 (CParameterClient) 。
  *    - 请在 CConnecter 派生类的构造函数中实例化连接参数。例如：
  *      \snippet Plugins/FreeRDP/Client/ConnecterFreeRDP.h Initialize parameter
  *    - 调用 CConnecter::SetParameter 设置参数指针。例如：
  *      \snippet Plugins/FreeRDP/Client/ConnecterFreeRDP.cpp Set the parameter
  *    - 默认会自动为连接参数设置 CParameterClient 。详见: CClient::CreateConnecter 。
+ *      \snippet Client/Client.cpp CClient CreateConnecter
  *    - 如果参数不需要 CParameterClient ，
  *      那请在 CConnecter 派生类重载 CConnecter::SetParameterClient 不设置它。
- * \subsubsection sub_Use_CParameterClient_in_CParameterConnecter 在连接参数 ( CParameterConnecter 或其派生类 ) 中使用客户端库参数 (CParameterClient)
+ * \subsection sub_Use_CParameterClient_in_CParameterConnecter 在连接参数 ( CParameterConnecter 或其派生类 ) 中使用客户端库参数 (CParameterClient)
  *   - 在连接参数 ( CParameterConnecter 或其派生类 ) 使用 CParameterConnecter::GetParameterClient() 来得到客户端库参数 (CParameterClient) 。
  *   - 连接参数 ( CParameterConnecter 或其派生类 ) 使用客户端库参数 (CParameterClient) 的值做为其初始值。
  *     请重载 CParameterConnecter::slotSetParameterClient 并在其中初始化相关的值。\n
@@ -77,7 +47,7 @@
  *     \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
  *     \see CParameterUser::OnLoad
  *
- * \subsection sub_CParameterConnecter_CATEGORY_USAGE 参数分类使用
+ * \section sub_CParameterConnecter_CATEGORY_USAGE 连接参数分类使用
  *  因为可能会有很多参数，所以需要按参数类型分类。每个分类可以从此类派生出一个单独的类。\n
  *  因为连接参数都有一些基本的参数（例如网络地址等），所以插件的连接参数从 CParameterBase 派生。
  *  而每个分类做为它的成员变量。
@@ -86,10 +56,12 @@
  *  连接参数包括以下几种类型：
  *  - 基本参数 (class CParameterBase : public CParameterConnecter)
  *  - 用户参数 (class CParameterUser : public CParameterConnecter)
- *  - 视频参数 (class CParameterVideo : public CParameterConnecter)
- *  - 音频参数 (class CParameterAudio : public CParameterConnecter)
+ *  - 视频参数 (class CParameterVideo : public CParameter)
+ *  - 音频参数 (class CParameterAudio : public CParameter)
  *
- *  其中 CParameterUser 它需要 CFrmParameterClient ，其它的类型则不需要。
+ *  其中 CParameterBase ， CParameterUser 它需要 CFrmParameterClient ，
+ *  所以必须从 CParameterConnecter 派生。
+ *  其它的类型则不需要，所以从 CParameter 派生。
  *
  *  那么连接参数可以是以上类型的集合：
  *
@@ -97,8 +69,7 @@
  *  class CParameterConnect : public CParameterBase
  *  {
  *  public:
- *      explicit CParameterConnect::CParameterConnect(
- *          CParameterConnecter *parent = nullptr);
+ *      explicit CParameterConnect(CParameterConnecter *parent = nullptr);
  *
  *      CParameterUser m_User;
  *      CParameterVideo m_Video;
@@ -113,9 +84,87 @@
  *  {}
  *  \endcode
  *
- *  \note 当成员实例化时，必须设置构造函数的参数 parent 为 this
+ *  \note 当成员实例化时， CParameterBase ， CParameterUser
+ *   必须设置构造函数的参数 parent 为 CParameterConnecter 的实例（一般设置为 this）。
  * 
  *  - \ref sub_Set_CParameterClient_in_CParameterConnecter
+ *
+ * \~english
+ * \brief the parameters of connecter interface. It only valid in plugin.
+ *        
+ * \note
+ *  - The interface only is implemented and used by plugin.
+ *  - The application cannot access it directly,
+ *    it can only be set via CConnecter::OpenDialogSettings.
+ *  - The plugin can access via CConnecterDesktopThread::GetParameter
+ *
+ * \details
+ * \section sub_Use_CParameterClient Use CParameterClient
+ * \subsection sub_Set_CParameterClient_in_CParameterConnecter Set CParameterClient for CParameterConnecter
+ *  - If the parameters of connecter(CParameterConnecter or it's derived class)
+ *    requires a CParameterClient.
+ *    - Please instantiate the parameters of connecter
+ *      in the constructor of the CConnecter or it's derived class. ag:
+ *      \snippet Plugins/FreeRDP/Client/ConnecterFreeRDP.h Initialize parameter
+ *    - Call CConnecter::SetParameter to set the parameters. ag:
+ *      \snippet Plugins/FreeRDP/Client/ConnecterFreeRDP.cpp Set the parameter
+ *    - Default set the CParameterClient for the parameters of connecter.
+ *      See: CClient::CreateConnecter .
+ *      \snippet Client/Client.cpp CClient CreateConnecter
+ *    - If you are sure to the parameter does not need CParameterClient.
+ *      please overload the CConnecter::SetParameterClient
+ *      in the CConnecter derived class, don't set it.
+ * \subsection sub_Use_CParameterClient_in_CParameterConnecter Use CParameterClient in CParameterConnecter
+ *  - Use CParameterConnecter::GetParameterClient() get CParameterClient
+ *    in the parameters of connecter(CParameterConnecter or it's derived class)
+ *  - The parameters of connecter(CParameterConnecter or it's derived class)
+ *    use the value of CParameterClient as its initial value. \n
+ *    Please override CParameterConnecter::slotSetParameterClient
+ *    and initialize the relevant values in it.\n
+ *    For example, Whether to save the password
+ *    with the member value of CParameterClient as its initialization value.
+ *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
+ *    \see CParameterUser::OnLoad
+ * \section sub_CParameterConnecter_CATEGORY_USAGE CParameterConnecter category
+ *  Because there may be many parameters,
+ *  it is necessary to classify them by parameter category.
+ *  Each category can derive a separate class from this class.
+ *  Each category is then used as a member variable in the derived classes of this class.
+ *
+ *  For example:\n
+ *  Connection parameters include the following categories:
+ *  - Base (class CParameterBase : public CParameterConnecter)
+ *  - User (class CParameterUser : public CParameterConnecter)
+ *  - Video (class CParameterVideo : public CParameter)
+ *  - Audio (class CParameterAudio : public CParameter)
+ *
+ *  CParameterBase, CParameterUser need CFrmParameterClient,
+ *  so that it must derived from CParameterConnecter.
+ *  other is derived from CParameter.
+ *  
+ *  Then the connection parameters can be a combination of the above categories:
+ *
+ *  \code
+ *  class CParameterConnect : public CParameterBase
+ *  {
+ *  public:
+ *      explicit CParameterConnect(CParameterConnecter *parent = nullptr);
+ *
+ *      CParameterUser m_User;
+ *      CParameterVideo m_Video;
+ *      CParameterAudio m_Audio;
+ *  };
+ *
+ *  CParameterConnect::CParameterConnect(CParameterConnecter *parent = nullptr)
+ *   : CParameterBase(parent),
+ *     m_User(this, "Host"),
+ *     m_Video(this),
+ *     m_Audio(this)
+ *  {}
+ *  \endcode
+ *
+ *  \note When a member is instantiated,
+ *   the constructor must set the parent to the instance of CParameterConnecter(this).
  *
  * \~
  * \see CParameterBase

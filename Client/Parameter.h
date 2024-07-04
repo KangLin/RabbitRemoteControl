@@ -18,7 +18,10 @@
  *   参数有以下类型：
  *   1. 仅在插件内有效。
  *      应用程序不能访问，但是可以通过 CConnecter::OpenDialogSettings 进行设置。
- *      \see CParameterConnecter CParameterBase
+ *      \see 
+ *        \ref sub_CParameterConnecter_CATEGORY_USAGE
+ *        CParameterConnecter
+ *        CParameterBase
  *   2. 在客户端库 (CClient) 和插件内有效。\n
  *      应用程序不能访问，但是可以通过 CClient::GetSettingsWidgets 进行设置。\n
  *      客户端 (CClient) 和插件可以直接使用。插件可以以其做为初始化值。
@@ -36,7 +39,10 @@
  *  1. Only valid in the plugin.
  *     The application cannot access it,
  *     but the application can be set it via CConnecter::OpenDialogSettings.
- *     \see CParameterConnecter
+ *      \see 
+ *        \ref sub_CParameterConnecter_CATEGORY_USAGE
+ *        CParameterConnecter
+ *        CParameterBase
  *  2. Valid in the CClient and the plugin.\n
  *     The application cannot access it,
  *     but the application can be set it via CClient::GetSettingsWidgets.\n
@@ -55,29 +61,92 @@
 /*!
  * \~chinese 参数接口
  * \details
- * - \ref sub_CParameterConnecter_CATEGORY_USAGE
- * - 从存储中加载和保存参数
- *   - 如果要自动嵌套调用 CParameter 类型成员的 OnXXX 函数（例如: OnLoad)，
- *     在成员实例化时，设置构造函数的 parent 为 CParameter(一般用this） 类型实例。
- *   - 如果要自己控制 CParameter 类型成员的 OnXXX 函数（例如: OnLoad)，
- *     在成员实例化时，不设置构造函数的 parent 或者设置为非 CParameter 类型实例。
- * - 当派生类设置参数时，需要调用 SetModified 。标志参数已改变。
- * - 检查参数的有效性。调用 CheckValidity()
+ * \section sub_CParameter_CATEGORY_USAGE 参数分类使用
+ *  因为可能会有很多参数，所以需要按参数类型分类来管理。每个分类可以从此类派生出一个单独的类。
+ *  然后每个分类再做为参数的成员变量。
+ *
+ *  例如：\n
+ *  连接参数包括以下几种类型：
+ *  - 视频参数 (class CParameterVideo : public CParameter)
+ *  - 音频参数 (class CParameterAudio : public CParameter)
+ *
+ *  那么连接参数可以是以上类型的集合：
+ *
+ *  \code
+ *  class CParameterConnect : public CParameter
+ *  {
+ *  public:
+ *      explicit CParameterConnect(CParameter *parent = nullptr);
+ *
+ *      CParameterVideo m_Video;
+ *      CParameterAudio m_Audio;
+ *  };
+ *
+ *  CParameterConnect::CParameterConnect(CParameter *parent = nullptr)
+ *   : CParameter(parent),
+ *     m_Video(this),
+ *     m_Audio(this)
+ *  {}
+ *  \endcode
+ *
+ *  \note 当成员实例化时，必须设置构造函数的参数 parent 为 this
+ *
+ * \section CParameter_Functions CParameter 接口功能
+ *  - 从存储中加载和保存参数
+ *    - 如果要自动嵌套调用 CParameter 类型成员的 OnXXX 函数（例如: OnLoad)，
+ *      在成员实例化时，设置构造函数的 parent 为 CParameter(一般用this） 类型实例。
+ *    - 如果要自己控制 CParameter 类型成员的 OnXXX 函数（例如: OnLoad)，
+ *      在成员实例化时，设置构造函数的 parent 为空或者设置为非 CParameter 类型实例。
+ *  - 当派生类设置参数时，需要调用 SetModified 。标志参数已改变。
+ *  - 检查参数的有效性。调用 CheckValidity()
  *
  * \~english Parameter interface
- * - \ref sub_CParameterConnecter_CATEGORY_USAGE
- * - Load and save parameters from storage
- *   - If you need to automatically nest calls the OnXXX(ag: OnLoad) functions
- *     of CParameter type member,
- *     When a CParameter type member is instantiated,
- *     the constructor sets the parent to a CParameter (usually this) type instance.
- *   - If you're going to control the OnXXX(ag: OnLoad) functions
- *     of CParameter type member,
- *     When a CParameter type member is instantiated,
- *     the constructor parent is not set or is set non-CParameter type instance.
- * - When the derived class sets parameters,
- *   it needs to call SetModified, to flag changed.
- * - Check whether the parameter is valid, call CheckValidity()
+ * \section sub_CParameter_CATEGORY_USAGE Parameter category
+ *  Because there may be many parameters,
+ *  it is necessary to classify them by parameter category.
+ *  Each category can derive a separate class from this class.
+ *  Each category is then used as a member variable in the derived classes of this class.
+ *
+ *  For example:\n
+ *  Connection parameters include the following categories:
+ *  - Video (class CParameterVideo : public CParameter)
+ *  - Audio (class CParameterAudio : public CParameter)
+ *
+ *  Then the connection parameters can be a combination of the above categories:
+ *
+ *  \code
+ *  class CParameterConnect : public CParameter
+ *  {
+ *  public:
+ *      explicit CParameterConnect(CParameter *parent = nullptr);
+ *
+ *      CParameterVideo m_Video;
+ *      CParameterAudio m_Audio;
+ *  };
+ *
+ *  CParameterConnect::CParameterConnect(CParameter *parent = nullptr)
+ *   : CParameter(parent),
+ *     m_Video(this),
+ *     m_Audio(this)
+ *  {}
+ *  \endcode
+ *
+ *  \note When a member is instantiated,
+ *   the constructor must set the parent to this
+ *
+ * \section CParameter_Functions CParameter Interface functions
+ *  - Load and save parameters from storage
+ *    - If you need to automatically nest calls the OnXXX(ag: OnLoad) functions
+ *      of CParameter type member,
+ *      When a CParameter type member is instantiated,
+ *      the constructor sets the parent to a CParameter (usually this) type instance.
+ *    - If you're going to control the OnXXX(ag: OnLoad) functions
+ *      of CParameter type member,
+ *      When a CParameter type member is instantiated,
+ *      the constructor parent is set nullptr or non-CParameter type instance.
+ *  - When the derived class sets parameters,
+ *    it needs to call SetModified(), to flag changed.
+ *  - Check whether the parameter is valid, call CheckValidity()
  *
  * \~
  * \ingroup CLIENT_PARAMETER CLIENT_PLUGIN_API
@@ -89,18 +158,21 @@ class CLIENT_EXPORT CParameter : public QObject
 
 public:
     /*!
+     * \~chinese
+     * \param parent: 
+     *   - 为 CParameter 实例，则自动调用 CParameter 类型成员的 OnXXX 函数。
+     *   - 为空或者非 CParameter 实例，则不调用 CParameter 类型成员的 OnXXX 函数
+     *   \see Load(QSettings &set) Save(QSettings &set, bool bForce = true)
+     *
      * \~english
      * \param parent:
      *   - An instance of this class or its derivative class, then
      *     automatically nest calls the OnXXX(ag: OnLoad) functions of member.
      *   - Is null or non-CParameter instance,
      *     then don't nest calls the OnXXX(ag: OnLoad) functions of member.
-     *
-     * \~chinese
-     * \param parent: 
-     *   - 为 CParameter 实例，则自动调用 CParameter 类型成员的 OnXXX 函数。
-     *   - 为空或者非 CParameter 实例，则不调用 CParameter 类型成员的 OnXXX 函数
-     * \param szPrefix 前缀。 \see QSetting::beginGroup
+     *   \see Load(QSettings &set) Save(QSettings &set, bool bForce = true)
+     * \param szPrefix Prefix \see QSetting::beginGroup
+     * \param szPrefix: 前缀。 \see QSetting::beginGroup
      */
     explicit CParameter(QObject *parent = nullptr,
                         const QString& szPrefix = QString());
@@ -108,8 +180,10 @@ public:
 
     virtual int Load(QString szFile = QString());
     virtual int Save(QString szFile = QString(), bool bForce = true);
-
+    
+    //! Load from storage
     virtual int Load(QSettings &set);
+    //! Save to storage
     virtual int Save(QSettings &set, bool bForce = true);
 
     /*!
@@ -188,13 +262,11 @@ protected:
 
 private:
     /*!
+     * \~chinese 此类及其派生类的实例做为实例的成员
      * \~english Instances of this class and its derived classes are
      *           members of the instance
-     *
-     * \~chinese
-     * \brief 此类及其派生类的实例做为实例的成员
      */
-    int AddMember(CParameter* p);
+    int AddCategory(CParameter* p);
     QString GetPrefix() const;
     int SetPrefix(const QString& szPrefix);
 
@@ -210,13 +282,10 @@ private:
     bool m_bModified;
 
     /*!
-     * \~english Instances of this class and its derived classes are
-     *           members of the instance
-     *
-     * \~chinese
-     * \brief 此类及其派生类的实例做为实例的成员
+     * \~chinese 类别
+     * \~english Category
      */
-    QVector<CParameter*> m_Member;
+    QVector<CParameter*> m_Category;
 };
 
 #endif // CPARAMETER_H_KL_2022_07_27
