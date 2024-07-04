@@ -2,6 +2,8 @@
 
 #include "DlgSetFreeRDP.h"
 #include "ui_DlgSetFreeRDP.h"
+#include "ParameterNetUI.h"
+
 #include <QApplication>
 #include <QScreen>
 #include <QFileSystemModel>
@@ -28,18 +30,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     
     // Server
     ui->leDomain->setText(m_pSettings->GetDomain());
-    ui->leServer->setText(m_pSettings->m_Net.GetHost());
-    ui->spPort->setValue(m_pSettings->m_Net.GetPort());
-    
-    ui->leUserName->setText(m_pSettings->m_Net.m_User.GetUser());
-    ui->lePassword->setText(m_pSettings->m_Net.m_User.GetPassword());
-    ui->pbShow->setEnabled(m_pSettings->GetParameterClient()->GetViewPassowrd());
-    ui->cbSavePassword->setChecked(m_pSettings->m_Net.m_User.GetSavePassword());
-    ui->lePassword->setEnabled(ui->cbSavePassword->isChecked());
-    if(ui->cbSavePassword->isChecked())
-        ui->lePassword->setPlaceholderText(tr("Input password"));
-    else
-        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
+    ui->wNet->SetParameter(&m_pSettings->m_Net);
     
     ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
     ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
@@ -163,13 +154,8 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 
     // Server
     m_pSettings->SetDomain(ui->leDomain->text());
-    m_pSettings->m_Net.SetHost(ui->leServer->text());
-    m_pSettings->m_Net.SetPort(ui->spPort->value());
+    ui->wNet->slotAccept();
 
-    m_pSettings->m_Net.m_User.SetUser(ui->leUserName->text());
-    m_pSettings->m_Net.m_User.SetPassword(ui->lePassword->text());
-    m_pSettings->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
-    
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
     m_pSettings->SetShowServerName(ui->cbShowServerName->isChecked());
@@ -245,16 +231,6 @@ void CDlgSetFreeRDP::on_rbLocalScreen_clicked(bool checked)
     if(ui->cbDesktopSize->findText(curSize) == -1)
         ui->cbDesktopSize->addItem(curSize);
     ui->cbDesktopSize->setCurrentText(curSize);
-}
-
-void CDlgSetFreeRDP::on_leServer_editingFinished()
-{
-    auto s = ui->leServer->text().split(":");
-    if(s.size() == 2)
-    {
-        ui->spPort->setValue(s[1].toUInt());
-        ui->leServer->setText(s[0]);
-    }
 }
 
 QRect CDlgSetFreeRDP::GetScreenGeometry()
@@ -387,22 +363,6 @@ int CDlgSetFreeRDP::InsertDesktopSize(int width, int height)
     return 0;
 }
 
-void CDlgSetFreeRDP::on_pbShow_clicked()
-{
-    switch(ui->lePassword->echoMode())
-    {
-    case QLineEdit::Password:
-        ui->lePassword->setEchoMode(QLineEdit::Normal);
-        ui->pbShow->setIcon(QIcon::fromTheme("eye-off"));
-        break;
-    case QLineEdit::Normal:
-        ui->lePassword->setEchoMode(QLineEdit::Password);
-        ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
-        break;
-    default:
-        ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
-    }
-}
 
 void CDlgSetFreeRDP::on_rbAudioDisable_toggled(bool checked)
 {
@@ -419,17 +379,6 @@ void CDlgSetFreeRDP::on_rbAudioRemote_toggled(bool checked)
     ui->leRdpSnd->setEnabled(!checked);
     ui->leAudin->setEnabled(!checked);
     ui->cbAudin->setEnabled(!checked);
-}
-
-void CDlgSetFreeRDP::on_cbSavePassword_stateChanged(int arg1)
-{
-    if(Qt::Checked == arg1) {
-        ui->lePassword->setEnabled(true);
-        ui->lePassword->setPlaceholderText(tr("Input password"));
-    } else {
-        ui->lePassword->setEnabled(false);
-        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
-    }
 }
 
 bool CDlgSetFreeRDP::HasAudioOutput()

@@ -32,7 +32,9 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     ParameterClient.h
     ParameterCompone/ParameterBase.h
     ParameterCompone/ParameterNet.h
+    ParameterCompone/ParameterNetUI.h
     ParameterCompone/ParameterUser.h
+    ParameterCompone/ParameterUserUI.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -63,24 +65,28 @@ list(APPEND CLIENT_SOURCE_FILES
     FrmParameterClient.cpp
     ParameterCompone/ParameterBase.cpp
     ParameterCompone/ParameterNet.cpp
+    ParameterCompone/ParameterNetUI.cpp
     ParameterCompone/ParameterUser.cpp
+    ParameterCompone/ParameterUserUI.cpp
     DlgInputPassword.cpp
     Hook.cpp
     )
 
-if(libssh_FOUND)
-    list(APPEND CLIENT_INSTALL_HEADER_FILES ParameterCompone/ParameterSSH.h)
-    list(APPEND CLIENT_SOURCE_FILES ParameterCompone/ParameterSSH.cpp)
-endif()
-
 set(CLIENT_UI_FILES
     DlgInputPassword.ui
     FrmParameterClient.ui
+    ParameterCompone/ParameterUserUI.ui
+    ParameterCompone/ParameterNetUI.ui
     )
 
 if(WIN32)
     list(APPEND CLIENT_HEADER_FILES Windows/HookWindows.h)
     list(APPEND CLIENT_SOURCE_FILES Windows/HookWindows.cpp)
+endif()
+
+if(libssh_FOUND)
+    list(APPEND CLIENT_INSTALL_HEADER_FILES ParameterCompone/ParameterSSH.h)
+    list(APPEND CLIENT_SOURCE_FILES ParameterCompone/ParameterSSH.cpp)
 endif()
 
 list(APPEND CLIENT_LIBS Channel)

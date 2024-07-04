@@ -7,6 +7,10 @@
   - 使用 [RabbitCommon v2.2.0](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.0)
   - 增加 SSH 隧道
   - 重构参数
+    - 增加 CParameterBase
+    - 增加 CParameterNet
+    - 增加 CParameterUser
+    - 增加 CParameterSSH
 
 ### v0.0.26
 - 使用 RabbitCommon v2

@@ -31,9 +31,6 @@ private:
     CConnecterFreeRDP* m_pConnecter;
     CParameterFreeRDP* m_pParameter;
 
-    // QWidget interface
-protected:
-    virtual void showEvent(QShowEvent *event) override;
 };
 
 Q_DECLARE_METATYPE(CDlgGetUserPasswordFreeRDP)

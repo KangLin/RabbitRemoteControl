@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CParameterUserUI</class>
+ <widget class="QWidget" name="CParameterUserUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>78</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>User</string>
+  </property>
+  <property name="toolTip">
+   <string/>
+  </property>
+  <property name="statusTip">
+   <string/>
+  </property>
+  <property name="whatsThis">
+   <string/>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>User:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="leUser">
+       <property name="placeholderText">
+        <string>Input user name</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lePassword">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Input password</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbShow">
+       <property name="toolTip">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable view password</string>
+       </property>
+       <property name="statusTip">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable view password</string>
+       </property>
+       <property name="whatsThis">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable view password</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset theme="eye-on"/>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSave">
+       <property name="toolTip">
+        <string>Save password</string>
+       </property>
+       <property name="statusTip">
+        <string>Save password</string>
+       </property>
+       <property name="whatsThis">
+        <string>Save password</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset theme="document-save"/>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

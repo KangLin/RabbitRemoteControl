@@ -1,5 +1,6 @@
 #include "DlgGetUserPasswordFreeRDP.h"
 #include "ui_DlgGetUserPasswordFreeRDP.h"
+#include "ParameterNetUI.h"
 
 static int g_CDlgGetUserPasswordFreeRDP = qRegisterMetaType<CDlgGetUserPasswordFreeRDP>();
 
@@ -33,29 +34,18 @@ void CDlgGetUserPasswordFreeRDP::SetConnecter(CConnecter *pConnecter)
     if(!m_pConnecter) return;
 
     m_pParameter = qobject_cast<CParameterFreeRDP*>(m_pConnecter->GetParameter());
-}
-
-void CDlgGetUserPasswordFreeRDP::showEvent(QShowEvent *event)
-{
     Q_ASSERT(m_pParameter);
     if(!m_pParameter) return;
-    
-    QString szDomain = m_pParameter->GetDomain();
-    
+
     ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
-    ui->leDomain->setText(szDomain);
-    ui->leUser->setText(m_pParameter->m_Net.m_User.GetUser());
-    ui->lePassword->setText(m_pParameter->m_Net.m_User.GetPassword());
-    ui->cbSavePassword->setChecked(m_pParameter->m_Net.m_User.GetSavePassword());
-    
+    ui->leDomain->setText(m_pParameter->GetDomain());
+    ui->wUser->SetParameter(&m_pParameter->m_Net.m_User);
 }
 
 void CDlgGetUserPasswordFreeRDP::on_pbOK_clicked()
 {
     Q_ASSERT(m_pParameter);
-    m_pParameter->m_Net.m_User.SetUser(ui->leUser->text());
-    m_pParameter->m_Net.m_User.SetPassword(ui->lePassword->text());
-    m_pParameter->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
+    ui->wUser->slotAccept();
     m_pParameter->SetDomain(ui->leDomain->text().toStdString().c_str());
     emit m_pConnecter->sigUpdateParameters(m_pConnecter);
     accept();

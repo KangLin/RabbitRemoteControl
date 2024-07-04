@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CParameterNetUI</class>
+ <widget class="QWidget" name="CParameterNetUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>73</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Host:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="leHost">
+       <property name="placeholderText">
+        <string> Input host</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Port:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spPort">
+       <property name="maximum">
+        <number>65536</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="CParameterUserUI" name="wUser" native="true"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CParameterUserUI</class>
+   <extends>QWidget</extends>
+   <header location="global">ParameterUserUI.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -7,6 +7,10 @@
   - Use [RabbitCommon v2.2.0](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.0)
   - Add SSH tunnel
   - Refactor parameter
+    - Add CParameterBase
+    - Add CParameterNet
+    - Add CParameterUser
+    - Add CParameterSSH
 
 ### v0.0.26
 - Use RabbitCommon v2
