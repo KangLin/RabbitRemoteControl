@@ -24,20 +24,70 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     
-    ui->cbDesktopSize->addItems(m_pSettings->GetDesktopSizes());
-
+    ui->leName->setText(m_pSettings->GetName());
+    
+    // Server
+    ui->leDomain->setText(m_pSettings->GetDomain());
+    ui->leServer->setText(m_pSettings->m_Net.GetHost());
+    ui->spPort->setValue(m_pSettings->m_Net.GetPort());
+    
+    ui->leUserName->setText(m_pSettings->m_Net.m_User.GetUser());
+    ui->lePassword->setText(m_pSettings->m_Net.m_User.GetPassword());
+    ui->pbShow->setEnabled(m_pSettings->GetParameterClient()->GetViewPassowrd());
+    ui->cbSavePassword->setChecked(m_pSettings->m_Net.m_User.GetSavePassword());
+    ui->lePassword->setEnabled(ui->cbSavePassword->isChecked());
+    if(ui->cbSavePassword->isChecked())
+        ui->lePassword->setPlaceholderText(tr("Input password"));
+    else
+        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
+    
+    ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
+    ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
+    ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
+    
+    // Display
+    // It has to be the first. GetScreenGeometry depends on it
+    ui->cbAllMonitor->setChecked(m_pSettings->GetUseMultimon());
+    UpdateDesktopSize();
     int width = GetScreenGeometry().width();
     int height = GetScreenGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
-    ui->rbLocalScreen->setText(tr("Local screen:") + ": " + curSize);
-    if(ui->cbDesktopSize->findText(curSize) == -1)
-        InsertDesktopSize(width, height);
-    
+    UINT32 desktopWidth = 0, desktopHeight = 0;
+    desktopWidth = m_pSettings->GetDesktopWidth();
+    desktopHeight = m_pSettings->GetDesktopHeight();
+    if(width == desktopWidth && height == desktopHeight)
+    {
+        ui->rbLocalScreen->setChecked(true);
+        ui->cbDesktopSize->setCurrentText(curSize);
+    } else {
+        ui->rbSelect->setChecked(true);
+        curSize = QString::number(desktopWidth) 
+                  + "×" + QString::number(desktopHeight);
+        ui->cbDesktopSize->setCurrentText(curSize);
+    }
+
     ui->cbColorDepth->addItem(tr("8 bits"), 8);
     ui->cbColorDepth->addItem(tr("16 bits"), 16);
     ui->cbColorDepth->addItem(tr("24 bits"), 24);
     ui->cbColorDepth->addItem(tr("32 bits"), 32);
+    int nIndex = ui->cbColorDepth->findData(
+        m_pSettings->GetColorDepth());
+    if(-1 != nIndex)
+        ui->cbColorDepth->setCurrentIndex(nIndex);
 
+    ui->sbReconnect->setValue(m_pSettings->GetReconnectInterval());
+    
+    // Redirection printer
+    ui->cbPrinter->setChecked(m_pSettings->GetRedirectionPrinter());
+    
+    // Redirection audio output
+    ui->gbAudio->setEnabled(HasAudioOutput() || HasAudioInput());
+    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Disable)
+        ui->rbAudioDisable->setChecked(true);
+    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Local)
+        ui->rbAudioLocal->setChecked(true);
+    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
+        ui->rbAudioRemote->setChecked(true);
     QString szRdpSndParameters
                      = tr("- [sys:<sys>,][dev:<dev>,][format:<format>,][rate:<rate>,][channel:<channel>]\n"
                      #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WINRT)
@@ -58,12 +108,23 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->leRdpSnd->setToolTip(szRdpSnd);
     ui->leRdpSnd->setStatusTip(szRdpSnd);
     ui->leRdpSnd->setWhatsThis(szRdpSnd);
-    
+    ui->leRdpSnd->setEnabled(HasAudioOutput());
+    ui->leRdpSnd->setText(m_pSettings->GetRedirectionSoundParameters());
+    // Redirection audio input
     QString szAudin = tr("Options for redirection of audio input:\n") + szRdpSndParameters;
     ui->leAudin->setToolTip(szAudin);
     ui->leAudin->setStatusTip(szAudin);
     ui->leAudin->setWhatsThis(szAudin);
+    ui->leAudin->setText(m_pSettings->GetRedirectionMicrophoneParameters());
+    if(HasAudioInput()) {
+        ui->cbAudin->setChecked(m_pSettings->GetRedirectionMicrophone());
+    } else {
+        ui->cbAudin->setChecked(false);
+        ui->cbAudin->setEnabled(false);
+        ui->leAudin->setEnabled(false);
+    }
     
+    // Drive
     m_pFileModel= new QFileSystemModel();
     m_pFileModel->setNameFilterDisables(false);
     m_pFileModel->setFilter(QDir::Drives | QDir::Dirs | QDir::NoDotAndDotDot);
@@ -73,13 +134,22 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     int count = m_pFileModel->columnCount();
     for(int i = 1; i < count; i++)
         ui->tvDrive->hideColumn(i);
-    
     bool check = connect(ui->tvDrive->selectionModel(),
                          SIGNAL(selectionChanged(const QItemSelection &,
                                                  const QItemSelection &)),
                          this,
                          SLOT(slotSelectionChanged(QItemSelection,QItemSelection)));
     Q_ASSERT(check);
+    QStringList lstDrives = m_pSettings->GetRedirectionDrives();
+    foreach(auto path, lstDrives)
+    {
+        QModelIndex index;
+        if(!path.isEmpty()) {
+            index = m_pFileModel->index(path);
+            ui->tvDrive->setCurrentIndex(index);
+        }
+    }
+    ShowDriveSelected(lstDrives.size());
 }
 
 CDlgSetFreeRDP::~CDlgSetFreeRDP()
@@ -105,6 +175,7 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     m_pSettings->SetShowServerName(ui->cbShowServerName->isChecked());
     
     // Display
+    m_pSettings->SetUseMultimon(ui->cbAllMonitor->isChecked());
     QString szSize = ui->cbDesktopSize->currentText();
     int index = szSize.indexOf("×");
     if(-1 < index)
@@ -113,16 +184,6 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
         UINT32 height = szSize.right(szSize.length() - index - 1).toInt();
         m_pSettings->SetDesktopWidth(width);
         m_pSettings->SetDesktopHeight(height);
-    }
-    
-    m_pSettings->SetUseMultimon(ui->cbAllMonitor->isChecked());
-    
-    if(ui->cbAllMonitor->isChecked())
-    {
-        /*TODO: complete it
-        freerdp_settings_set_uint32(m_pSettings->m_pSettings,
-                                    FreeRDP_MonitorCount,
-                                    QApplication::screens().length());//*/
     }
     m_pSettings->SetColorDepth(ui->cbColorDepth->currentData().toInt());
     m_pSettings->SetReconnectInterval(ui->sbReconnect->value());
@@ -173,92 +234,6 @@ void CDlgSetFreeRDP::on_pbCancel_clicked()
     reject();
 }
 
-void CDlgSetFreeRDP::showEvent(QShowEvent *event)
-{
-    Q_UNUSED(event)
-    Q_ASSERT(m_pSettings);
-    
-    ui->leName->setText(m_pSettings->GetName());
-    
-    // Server
-    ui->leDomain->setText(m_pSettings->GetDomain());
-    ui->leServer->setText(m_pSettings->m_Net.GetHost());
-    ui->spPort->setValue(m_pSettings->m_Net.GetPort());
-
-    ui->leUserName->setText(m_pSettings->m_Net.m_User.GetUser());
-    ui->lePassword->setText(m_pSettings->m_Net.m_User.GetPassword());
-    ui->pbShow->setEnabled(m_pSettings->GetParameterClient()->GetViewPassowrd());
-    ui->cbSavePassword->setChecked(m_pSettings->m_Net.m_User.GetSavePassword());
-    ui->lePassword->setEnabled(ui->cbSavePassword->isChecked());
-    if(ui->cbSavePassword->isChecked())
-        ui->lePassword->setPlaceholderText(tr("Input password"));
-    else
-        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
-
-    ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
-    ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
-    ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
-
-    // Display
-    int width = GetScreenGeometry().width();
-    int height = GetScreenGeometry().height();
-    QString curSize = QString::number(width) + "×" + QString::number(height);
-    InsertDesktopSize(width, height);
-    UINT32 desktopWidth = 0, desktopHeight = 0;
-    desktopWidth = m_pSettings->GetDesktopWidth();
-    desktopHeight = m_pSettings->GetDesktopHeight();
-    if(width == desktopWidth && height == desktopHeight)
-    {
-        ui->rbLocalScreen->setChecked(true);
-        ui->cbDesktopSize->setCurrentText(curSize);
-    } else {
-        ui->rbSelect->setChecked(true);
-        InsertDesktopSize(desktopWidth, desktopHeight);
-        curSize = QString::number(desktopWidth) 
-                + "×" + QString::number(desktopHeight);
-        ui->cbDesktopSize->setCurrentText(curSize);
-    }
-    if(m_pSettings->GetUseMultimon())
-        ui->cbAllMonitor->setChecked(true);
-    int nIndex = ui->cbColorDepth->findData(
-        m_pSettings->GetColorDepth());
-    if(-1 != nIndex)
-        ui->cbColorDepth->setCurrentIndex(nIndex);
-
-    ui->sbReconnect->setValue(m_pSettings->GetReconnectInterval());
-
-    // Redirection
-    ui->cbPrinter->setChecked(m_pSettings->GetRedirectionPrinter());
-    ui->leRdpSnd->setEnabled(HasAudioOutput());
-    ui->gbAudio->setEnabled(HasAudioOutput());
-    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Disable)
-        ui->rbAudioDisable->setChecked(true);
-    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Local)
-        ui->rbAudioLocal->setChecked(true);
-    if(m_pSettings->GetRedirectionSound() == CParameterFreeRDP::RedirecionSoundType::Remote)
-        ui->rbAudioRemote->setChecked(true);
-    ui->leRdpSnd->setText(m_pSettings->GetRedirectionSoundParameters());
-    if(HasAudioInput()) {
-        ui->cbAudin->setChecked(m_pSettings->GetRedirectionMicrophone());
-    } else {
-        ui->cbAudin->setChecked(false);
-        ui->cbAudin->setEnabled(false);
-        ui->leAudin->setEnabled(false);
-    }
-    ui->leAudin->setText(m_pSettings->GetRedirectionMicrophoneParameters());
-
-    QStringList lstDrives = m_pSettings->GetRedirectionDrives();
-    foreach(auto path, lstDrives)
-    {
-        QModelIndex index;
-        if(!path.isEmpty()) {
-            index = m_pFileModel->index(path);
-            ui->tvDrive->setCurrentIndex(index);
-        }
-    }
-    ShowDriveSelected(lstDrives.size());
-}
-
 void CDlgSetFreeRDP::on_rbLocalScreen_clicked(bool checked)
 {
     if(!checked) return;
@@ -285,19 +260,55 @@ void CDlgSetFreeRDP::on_leServer_editingFinished()
 QRect CDlgSetFreeRDP::GetScreenGeometry()
 {
     QRect r;
-    if(m_pSettings->GetUseMultimon())
+    QScreen* pScreen = QApplication::primaryScreen();
+    if(ui->cbAllMonitor->isChecked())
     {
+        //TODO: check this is a virtual geometry
+        r = pScreen->availableVirtualGeometry();
+        /*
         auto lstScreen = QApplication::screens();
         foreach(auto pScreen, lstScreen)
         {
             r = r.united(pScreen->geometry());
-        }
+        }*/
     } else {
-        QScreen* pScreen = QApplication::primaryScreen();
         r = pScreen->geometry();
     }
     return r;
 }
+
+int CDlgSetFreeRDP::UpdateDesktopSize()
+{
+    ui->cbDesktopSize->clear();
+    QStringList lstDesktopSizes;
+    lstDesktopSizes <<"640×480"
+                      <<"800×600"
+                      <<"1024×600"
+                      <<"1024×768"
+                      <<"1280×720"
+                      <<"1280×854"
+                      <<"1280×960"
+                      <<"1280×1024"
+                      <<"1366×768"
+                      <<"1400×1050"
+                      <<"1440×900"
+                      <<"1600×900"
+                      <<"1600×1024"
+                      <<"1600×1200"
+                      <<"1680×1050"
+                      <<"1920×1080"
+                      <<"1920×1200";
+    ui->cbDesktopSize->addItems(lstDesktopSizes);
+    
+    int width = GetScreenGeometry().width();
+    int height = GetScreenGeometry().height();
+    QString curSize = QString::number(width) + "×" + QString::number(height);
+    ui->rbLocalScreen->setText(tr("Local screen:") + ": " + curSize);
+    if(ui->cbDesktopSize->findText(curSize) == -1)
+        InsertDesktopSize(width, height);
+    return 0;
+}
+
 int CDlgSetFreeRDP::InsertDesktopSize(QString szSize)
 {
     int w, h;
@@ -475,4 +486,9 @@ int CDlgSetFreeRDP::ShowDriveSelected(int counts)
 {
     ui->lbDriveSelected->setText(tr("Selected counts: ") + QString::number(counts));
     return 0;
+}
+
+void CDlgSetFreeRDP::on_cbAllMonitor_stateChanged(int arg1)
+{
+    UpdateDesktopSize();
 }

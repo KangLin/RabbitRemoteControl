@@ -41,8 +41,11 @@ private slots:
     void slotSelectionChanged(const QItemSelection &selected,
                               const QItemSelection &deselected);
     
+    void on_cbAllMonitor_stateChanged(int arg1);
+    
 private:
     QRect GetScreenGeometry();
+    int UpdateDesktopSize();
     int InsertDesktopSize(QString szSize);
     int InsertDesktopSize(int width, int height);
     bool HasAudioOutput();
@@ -53,10 +56,7 @@ private:
     Ui::CDlgSetFreeRDP *ui;
     CParameterFreeRDP* m_pSettings;
     QFileSystemModel* m_pFileModel;
-    
-    // QWidget interface
-protected:
-    virtual void showEvent(QShowEvent *event) override;
+
 };
 
 #endif // DLGSETFREERDP_H

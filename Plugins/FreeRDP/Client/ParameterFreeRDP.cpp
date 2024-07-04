@@ -27,24 +27,6 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
         #endif
             ;
     m_szRedirectionMicrophoneParameters = m_szRedirectionSoundParameters;
-    
-    m_lstDesktopSizes <<"640×480"
-                      <<"800×600"
-                      <<"1024×600"
-                      <<"1024×768"
-                      <<"1280×720"
-                      <<"1280×854"
-                      <<"1280×960"
-                      <<"1280×1024"
-                      <<"1366×768"
-                      <<"1400×1050"
-                      <<"1440×900"
-                      <<"1600×900"
-                      <<"1600×1024"
-                      <<"1600×1200"
-                      <<"1680×1050"
-                      <<"1920×1080"
-                      <<"1920×1200";
 }
 
 int CParameterFreeRDP::OnLoad(QSettings &set)
@@ -57,9 +39,6 @@ int CParameterFreeRDP::OnLoad(QSettings &set)
     SetDesktopHeight(set.value("Height", GetDesktopHeight()).toInt());
     SetColorDepth(set.value("ColorDepth", GetColorDepth()).toInt());
     SetUseMultimon(set.value("UseMultimon", GetUseMultimon()).toBool());
-    
-    SetDesktopSizes(set.value("DesktopSizes",
-                              GetDesktopSizes()).toStringList());
     SetReconnectInterval(set.value("ReconnectionInterval",
                                    GetReconnectInterval()).toInt());
     
@@ -93,7 +72,6 @@ int CParameterFreeRDP::OnSave(QSettings &set)
     set.setValue("ColorDepth", GetColorDepth());
     set.setValue("UseMultimon", GetUseMultimon());
     
-    set.setValue("DesktopSizes", GetDesktopSizes());
     set.setValue("ReconnectionInterval", GetReconnectInterval());
     set.setValue("ShowVerifyDiaglog", GetShowVerifyDiaglog());
 
@@ -105,17 +83,6 @@ int CParameterFreeRDP::OnSave(QSettings &set)
     set.setValue("Redirection/Drive", GetRedirectionDrives());
     set.endGroup();
     
-    return 0;
-}
-
-const QStringList CParameterFreeRDP::GetDesktopSizes() const
-{
-    return m_lstDesktopSizes;
-}
-
-int CParameterFreeRDP::SetDesktopSizes(QStringList lstSize)
-{
-    m_lstDesktopSizes = lstSize;
     return 0;
 }
 

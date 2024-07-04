@@ -26,9 +26,6 @@ public:
     void SetDomain(const QString& szDomain);
     const QString GetDomain() const;
     
-    const QStringList GetDesktopSizes() const;
-    int SetDesktopSizes(QStringList size);
-    
     UINT32 GetDesktopWidth() const;
     int SetDesktopWidth(UINT32 nWidth);
     
@@ -81,7 +78,6 @@ signals:
 private:
     QString m_szDomain;
     
-    QStringList m_lstDesktopSizes;
     UINT32 m_nWidth;
     UINT32 m_nHeight;
     
