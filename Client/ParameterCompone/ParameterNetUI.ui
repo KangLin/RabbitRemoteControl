@@ -32,7 +32,7 @@
      <item>
       <widget class="QLineEdit" name="leHost">
        <property name="placeholderText">
-        <string> Input host</string>
+        <string>Input host</string>
        </property>
       </widget>
      </item>

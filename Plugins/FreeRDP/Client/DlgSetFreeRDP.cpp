@@ -27,7 +27,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->setupUi(this);
     
     ui->leName->setText(m_pSettings->GetName());
-    
+
     // Server
     ui->leDomain->setText(m_pSettings->GetDomain());
     ui->wNet->SetParameter(&m_pSettings->m_Net);

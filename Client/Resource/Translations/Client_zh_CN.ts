@@ -159,11 +159,84 @@
     </message>
 </context>
 <context>
+    <name>CParameterNetUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="14"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="28"/>
+        <source>Host:</source>
+        <translation>主机：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="35"/>
+        <source>Input host</source>
+        <translation>输入主机</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNetUI.ui" line="42"/>
+        <source>Port:</source>
+        <translation>端口：</translation>
+    </message>
+</context>
+<context>
     <name>CParameterUser</name>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="25"/>
         <source>Password</source>
-        <translation type="unfinished">密码</translation>
+        <translation>密码</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterUserUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="20"/>
+        <source>User</source>
+        <translation>用户</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="43"/>
+        <source>User:</source>
+        <translation>用户：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="50"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="10"/>
+        <source>Input user name</source>
+        <translation>输入用户名：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="61"/>
+        <source>Password:</source>
+        <translation>密码：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="71"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="11"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="64"/>
+        <source>Input password</source>
+        <translation>输入密码</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="78"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="81"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="84"/>
+        <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
+        <translation>菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="100"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="103"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="106"/>
+        <source>Save password</source>
+        <translation>保存密码</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="66"/>
+        <source>Please checked save password to enable</source>
+        <translation>请选中保存密码按钮</translation>
     </message>
 </context>
 </TS>
