@@ -227,13 +227,12 @@ void CDlgSetFreeRDP::on_pbCancel_clicked()
 void CDlgSetFreeRDP::on_rbLocalScreen_clicked(bool checked)
 {
     if(!checked) return;
-    QScreen* pScreen = QApplication::primaryScreen();
-    int width = pScreen->availableGeometry().width();
-    int height = pScreen->availableGeometry().height();
+    int width = GetScreenGeometry().width();
+    int height = GetScreenGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
-    //ui->rbLocalScreen->setText(tr("Local screen:") + ": " + curSize);
+    ui->rbLocalScreen->setText(tr("Local screen:") + ": " + curSize);
     if(ui->cbDesktopSize->findText(curSize) == -1)
-        ui->cbDesktopSize->addItem(curSize);
+        InsertDesktopSize(width, height);
     ui->cbDesktopSize->setCurrentText(curSize);
 }
 
@@ -451,5 +450,5 @@ int CDlgSetFreeRDP::ShowDriveSelected(int counts)
 
 void CDlgSetFreeRDP::on_cbAllMonitor_stateChanged(int arg1)
 {
-    UpdateDesktopSize();
+    on_rbLocalScreen_clicked(true);
 }
