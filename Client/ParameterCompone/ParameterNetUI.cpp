@@ -29,9 +29,9 @@ int CParameterNetUI::SetParameter(CParameterNet *pParameter)
     return 0;
 }
 
-int CParameterNetUI::slotAccept()
+int CParameterNetUI::slotAccept(bool validity)
 {
-    if(ui->leHost->text().isEmpty()) {
+    if(validity && ui->leHost->text().isEmpty()) {
         QMessageBox::critical(this, tr("Error"),
                               tr("The host is empty. please set it"));
         qCritical(log) << "The host is empty";

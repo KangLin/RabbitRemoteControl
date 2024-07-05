@@ -157,7 +157,7 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 
     // Server
     m_pSettings->SetDomain(ui->leDomain->text());
-    nRet = ui->wNet->slotAccept();
+    nRet = ui->wNet->slotAccept(true);
     if(nRet) return;
 
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());

@@ -13,7 +13,7 @@
  * \~
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CParameterSSH : public CParameterConnecter
+class CLIENT_EXPORT CParameterSSH : public CParameterConnecter
 {
     Q_OBJECT
 public:

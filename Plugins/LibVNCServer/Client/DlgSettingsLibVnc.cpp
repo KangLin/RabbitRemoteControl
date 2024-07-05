@@ -3,36 +3,32 @@
 #include "DlgSettingsLibVnc.h"
 #include "ui_DlgSettingsLibVnc.h"
 #include <QDebug>
+#include "ParameterProxyUI.h"
 
-CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidget *parent) :
+CDlgSettingsLibVnc::CDlgSettingsLibVnc(CParameterLibVNCServer *pPara, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CDlgSettingsLibVnc),
-    m_pPara(&pConnecter->m_Para)
+    m_pPara(pPara),
+    m_uiProxy(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
 
     // Server
     ui->leName->setText(m_pPara->GetName());
-    ui->leHost->setText(m_pPara->m_Net.GetHost());
-    ui->spPort->setValue(m_pPara->m_Net.GetPort());
-    ui->leUserName->setText(m_pPara->m_Net.m_User.GetUser());
-    ui->lePassword->setText(m_pPara->m_Net.m_User.GetPassword());
-    ui->cbSavePassword->setChecked(m_pPara->m_Net.m_User.GetSavePassword());
-    ui->lePassword->setEnabled(ui->cbSavePassword->isChecked());
-    if(ui->cbSavePassword->isChecked())
-        ui->lePassword->setPlaceholderText(tr("Input password"));
-    else
-        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
-    ui->pbShow->setEnabled(m_pPara->GetParameterClient()->GetViewPassowrd());
+    ui->wNet->SetParameter(&m_pPara->m_Net);
+    
     ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
     
     ui->cbShared->setChecked(m_pPara->GetShared());
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
-    //    ui->cbRealTimeUpdate->setChecked(!m_pPara->GetBufferEndRefresh());
     ui->cbLocalCursor->setChecked(m_pPara->GetLocalCursor());
-    //    ui->cbResizeWindows->setChecked(m_pPara->GetSupportsDesktopResize());
     ui->cbClipboard->setChecked(m_pPara->GetClipboard());
+    
+    m_uiProxy = new CParameterProxyUI(ui->tabWidget);
+    m_uiProxy->SetParameter(&m_pPara->m_Proxy);
+    ui->tabWidget->addTab(m_uiProxy, tr("Proxy"));
+    
     
     // Compress
     //    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
@@ -69,26 +65,6 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CConnecterLibVNCServer *pConnecter, QWidg
     ui->cbJPEG->setChecked(m_pPara->GetJpeg());
     ui->spJPEGLevel->setValue(m_pPara->GetQualityLevel());
     
-    // Proxy
-    switch(m_pPara->GetProxyType())
-    {
-    case CParameterConnecter::emProxy::No:
-        ui->rbProxyNo->setChecked(true);
-        break;
-    case CParameterConnecter::emProxy::SocksV4:
-    case CParameterConnecter::emProxy::SocksV5:
-        ui->rbProxySocks->setChecked(true);
-        break;
-    case (CParameterConnecter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
-        ui->rbProxyUltraVncRepeater->setChecked(true);
-        break;
-    default:
-        break;
-    }
-    ui->leProxyServer->setText(m_pPara->GetProxyHost());
-    ui->spProxyPort->setValue(m_pPara->GetProxyPort());
-    ui->leProxyUser->setText(m_pPara->GetProxyUser());
-    ui->leProxyPassword->setText(m_pPara->GetProxyPassword());
 }
 
 CDlgSettingsLibVnc::~CDlgSettingsLibVnc()
@@ -99,25 +75,26 @@ CDlgSettingsLibVnc::~CDlgSettingsLibVnc()
 
 void CDlgSettingsLibVnc::on_pbOk_clicked()
 {
+    int nRet = 0;
+
     if(!m_pPara)
         reject();
     
     // Server
     m_pPara->SetName(ui->leName->text());
-    m_pPara->m_Net.SetHost(ui->leHost->text());
-    m_pPara->m_Net.SetPort(ui->spPort->value());
-    m_pPara->m_Net.m_User.SetUser(ui->leUserName->text());
-    m_pPara->m_Net.m_User.SetPassword(ui->lePassword->text());
-    m_pPara->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
-    m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
     
-//    m_pPara->bSave = ui->cbSave->isChecked();
+    nRet = ui->wNet->slotAccept(true);
+    if(nRet) return;
+   
+    m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
     m_pPara->SetShared(ui->cbShared->isChecked());
     m_pPara->SetOnlyView(ui->cbOnlyView->isChecked());
-//    m_pPara->bBufferEndRefresh = !ui->cbRealTimeUpdate->isChecked();
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
-//    m_pPara->bSupportsDesktopResize = ui->cbResizeWindows->isChecked();
     m_pPara->SetClipboard(ui->cbClipboard->isChecked());
+    
+    nRet = m_uiProxy->slotAccept();
+    if(nRet)
+        return;
     
 //    // Compress
 //    m_pPara->bAutoSelect = ui->cbCompressAutoSelect->isChecked();
@@ -135,18 +112,6 @@ void CDlgSettingsLibVnc::on_pbOk_clicked()
     m_pPara->SetCompressLevel(ui->spCompressLevel->value());
     m_pPara->SetJpeg(ui->cbJPEG->isChecked());
     m_pPara->SetQualityLevel(ui->spJPEGLevel->value());
-    
-    // Proxy
-    if(ui->rbProxyNo->isChecked())
-        m_pPara->SetProxyType(CParameterConnecter::emProxy::No);
-    if(ui->rbProxySocks->isChecked())
-        m_pPara->SetProxyType(CParameterConnecter::emProxy::SocksV5);
-    if(ui->rbProxyUltraVncRepeater->isChecked())
-        m_pPara->SetProxyType( (CParameterConnecter::emProxy)CParameterLibVNCServer::emVncProxy::UltraVncRepeater);
-    m_pPara->SetProxyHost(ui->leProxyServer->text());
-    m_pPara->SetProxyPort(ui->spProxyPort->value());
-    m_pPara->SetProxyUser(ui->leProxyUser->text());
-    m_pPara->SetProxyPassword(ui->leProxyPassword->text());
     
     accept();
 }
@@ -166,41 +131,4 @@ void CDlgSettingsLibVnc::on_cbJPEG_stateChanged(int arg1)
 {
     m_pPara->SetJpeg(arg1);
     ui->spJPEGLevel->setEnabled(m_pPara->GetJpeg());
-}
-
-void CDlgSettingsLibVnc::on_pbShow_clicked()
-{
-    switch(ui->lePassword->echoMode())
-    {
-    case QLineEdit::Password:
-        ui->lePassword->setEchoMode(QLineEdit::Normal);
-        ui->pbShow->setIcon(QIcon::fromTheme("eye-off"));
-        break;
-    case QLineEdit::Normal:
-        ui->lePassword->setEchoMode(QLineEdit::Password);
-        ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
-        break;
-    }
-}
-
-void CDlgSettingsLibVnc::on_leHost_editingFinished()
-{
-    auto s = ui->leHost->text().split(":");
-    if(s.size() == 2)
-    {
-        ui->spPort->setValue(s[1].toUInt());
-        ui->leHost->setText(s[0]);
-    }
-}
-
-void CDlgSettingsLibVnc::on_cbSavePassword_stateChanged(int arg1)
-{
-    if(Qt::Checked == arg1)
-    {
-        ui->lePassword->setEnabled(true);
-        ui->lePassword->setPlaceholderText(tr("Input password"));
-    } else {
-        ui->lePassword->setEnabled(false);
-        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
-    }
 }

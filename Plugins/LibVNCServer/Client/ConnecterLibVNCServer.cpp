@@ -21,7 +21,7 @@ qint16 CConnecterLibVNCServer::Version()
 
 QDialog *CConnecterLibVNCServer::GetDialogSettings(QWidget *parent)
 {
-    return new CDlgSettingsLibVnc(this, parent);
+    return new CDlgSettingsLibVnc(&m_Para, parent);
 }
 
 CConnect* CConnecterLibVNCServer::InstanceConnect()

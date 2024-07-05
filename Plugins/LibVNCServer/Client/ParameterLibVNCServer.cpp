@@ -1,9 +1,11 @@
 #include "ParameterLibVNCServer.h"
 
 CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
-    : CParameterBase(parent)
+    : CParameterBase(parent),
+    m_Proxy(this, "Proxy")
 {
     m_Net.SetPort(5900);
+
     SetShared(true);
     
     SetClipboard(true);

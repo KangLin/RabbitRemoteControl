@@ -22,8 +22,7 @@ protected:
 private:
     CParameterLibVNCServer m_Para;
     
-    friend CConnectLibVNCServer;
-    friend CDlgSettingsLibVnc;
+    friend class CConnectLibVNCServer;
 };
 
 #endif // CCONNECTERLIBVNC_H

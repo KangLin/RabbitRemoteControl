@@ -78,8 +78,9 @@ bool CConnectLibVNCServer::InitClient()
         emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
         return false;
     }
-    m_pClient->serverHost = strdup(m_pPara->m_Net.GetHost().toStdString().c_str());
-    m_pClient->serverPort = m_pPara->m_Net.GetPort();
+    auto &net = m_pPara->m_Net;
+    m_pClient->serverHost = strdup(net.GetHost().toStdString().c_str());
+    m_pClient->serverPort = net.GetPort();
 
     m_pClient->appData.shareDesktop = m_pPara->GetShared();
     m_pClient->appData.viewOnly = m_pPara->GetOnlyView();
@@ -144,16 +145,15 @@ bool CConnectLibVNCServer::InitClient()
     rfbClientSetClientData(m_pClient, (void*)gThis, this);
 
     // Set sock
-    switch(m_pPara->GetProxyType())
+    switch(m_pPara->m_Proxy.GetType())
     {
-    case CParameterConnecter::emProxy::SocksV4:
-        break;
-    case CParameterConnecter::emProxy::SocksV5:
+    case CParameterProxy::TYPE::Socket5:
     {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
-        proxy.setHostName(m_pPara->GetProxyHost());
-        if(m_pPara->GetProxyHost().isEmpty())
+        auto &net = m_pPara->m_Proxy.m_Socket5;
+        proxy.setHostName(net.GetHost());
+        if(net.GetHost().isEmpty())
         {
             QString szErr;
             szErr = tr("The proxy server is empty, please input it");
@@ -161,21 +161,32 @@ bool CConnectLibVNCServer::InitClient()
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             return false;
         }
-        proxy.setPort(m_pPara->GetProxyPort());
-        proxy.setUser(m_pPara->GetProxyUser());
-        proxy.setPassword(m_pPara->GetProxyPassword());
+        proxy.setPort(net.GetPort());
+        auto &user = net.m_User;
+        proxy.setUser(user.GetUser());
+        proxy.setPassword(user.GetPassword());
         m_tcpSocket.setProxy(proxy);
         m_tcpSocket.connectToHost(m_pClient->serverHost, m_pClient->serverPort);
         if (!m_tcpSocket.waitForConnected(3000))
             return FALSE;
         //TODO: The is fail
         m_pClient->sock = m_tcpSocket.socketDescriptor();
+        if(!rfbInitClient(m_pClient, nullptr, nullptr))
+        {
+            QString szErr;
+            szErr = tr("Connect to %1:%2 fail").arg(m_pPara->m_Net.GetHost(),
+                                                    QString::number(m_pPara->m_Net.GetPort()));
+            qCritical(LibVNCServer) <<  szErr;
+            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            return FALSE;
+        }
         break;
     }
+    /*TODO: add UltraVncRepeater
     case (CParameterConnecter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
         m_pClient->destHost = strdup(m_pPara->GetProxyHost().toStdString().c_str());
-        m_pClient->destPort = m_pPara->GetProxyPort();
-    case CParameterConnecter::emProxy::No:
+        m_pClient->destPort = m_pPara->GetProxyPort();*/
+    case CParameterProxy::TYPE::No:
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
             QString szErr;

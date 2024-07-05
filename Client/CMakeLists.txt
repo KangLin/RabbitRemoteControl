@@ -35,6 +35,8 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     ParameterCompone/ParameterNetUI.h
     ParameterCompone/ParameterUser.h
     ParameterCompone/ParameterUserUI.h
+    ParameterCompone/ParameterProxy.h
+    ParameterCompone/ParameterProxyUI.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -68,6 +70,8 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterCompone/ParameterNetUI.cpp
     ParameterCompone/ParameterUser.cpp
     ParameterCompone/ParameterUserUI.cpp
+    ParameterCompone/ParameterProxy.cpp
+    ParameterCompone/ParameterProxyUI.cpp
     DlgInputPassword.cpp
     Hook.cpp
     )
