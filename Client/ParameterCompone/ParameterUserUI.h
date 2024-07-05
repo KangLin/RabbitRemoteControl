@@ -17,7 +17,7 @@ public:
     ~CParameterUserUI();
 
     int SetParameter(CParameterUser* pParameter);
-    void slotAccept();
+    int slotAccept();
     
 private slots:
     void on_pbShow_clicked();

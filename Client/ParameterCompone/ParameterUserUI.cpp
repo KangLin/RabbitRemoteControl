@@ -29,13 +29,13 @@ int CParameterUserUI::SetParameter(CParameterUser *pParameter)
     return 0;
 }
 
-void CParameterUserUI::slotAccept()
+int CParameterUserUI::slotAccept()
 {
-    if(!m_pUser) return;
+    if(!m_pUser) return -1;
     m_pUser->SetUser(ui->leUser->text());
     m_pUser->SetPassword(ui->lePassword->text());
     m_pUser->SetSavePassword(ui->pbSave->isChecked());
-    return;
+    return 0;
 }
 
 void CParameterUserUI::on_pbShow_clicked()

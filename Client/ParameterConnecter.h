@@ -26,9 +26,10 @@
  *  - 仅在插件中实现和使用
  *  - 应用程序不能访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
  *  - 插件通过 CConnecterDesktopThread::GetParameter 访问
+ *  - \ref section_Use_CParameterBase
  *
  * \details
- * \section sub_Use_CParameterClient 使用客户端库参数 (CParameterClient)
+ * \section section_Use_CParameterClient 使用客户端库参数 (CParameterClient)
  * \subsection sub_Set_CParameterClient_in_CParameterConnecter 为连接参数 ( CParameterConnecter 或其派生类 ) 设置客户端库参数 (CParameterClient)
  *  - 如果连接参数 ( CParameterConnecter 或其派生类 ) 需要客户端库参数 (CParameterClient) 。
  *    - 请在 CConnecter 派生类的构造函数中实例化连接参数。例如：
@@ -47,7 +48,7 @@
  *     \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
  *     \see CParameterUser::OnLoad
  *
- * \section sub_CParameterConnecter_CATEGORY_USAGE 连接参数分类使用
+ * \section section_CParameterConnecter_CATEGORY_USAGE 连接参数分类使用
  *  因为可能会有很多参数，所以需要按参数类型分类。每个分类可以从此类派生出一个单独的类。\n
  *  因为连接参数都有一些基本的参数（例如网络地址等），所以插件的连接参数从 CParameterBase 派生。
  *  而每个分类做为它的成员变量。
@@ -97,9 +98,10 @@
  *  - The application cannot access it directly,
  *    it can only be set via CConnecter::OpenDialogSettings.
  *  - The plugin can access via CConnecterDesktopThread::GetParameter
+ *  - \ref section_Use_CParameterBase
  *
  * \details
- * \section sub_Use_CParameterClient Use CParameterClient
+ * \section section_Use_CParameterClient Use CParameterClient
  * \subsection sub_Set_CParameterClient_in_CParameterConnecter Set CParameterClient for CParameterConnecter
  *  - If the parameters of connecter(CParameterConnecter or it's derived class)
  *    requires a CParameterClient.
@@ -125,7 +127,7 @@
  *    with the member value of CParameterClient as its initialization value.
  *    \snippet Client/ParameterCompone/ParameterUser.cpp Initialize parameter after set CParameterClient
  *    \see CParameterUser::OnLoad
- * \section sub_CParameterConnecter_CATEGORY_USAGE CParameterConnecter category
+ * \section section_CParameterConnecter_CATEGORY_USAGE CParameterConnecter category
  *  Because there may be many parameters,
  *  it is necessary to classify them by parameter category.
  *  Each category can derive a separate class from this class.

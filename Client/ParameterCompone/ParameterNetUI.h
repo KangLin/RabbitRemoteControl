@@ -17,7 +17,7 @@ public:
     ~CParameterNetUI();
     
     int SetParameter(CParameterNet* pParameter);
-    void slotAccept();
+    int slotAccept();
     
 private slots:
     void on_leHost_editingFinished();

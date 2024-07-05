@@ -124,7 +124,14 @@
 \ingroup LIBAPI_CLIENT
 \brief Thread module
 \details
-+ Thread module
++ Thread classification
+  - Main thread(UI thread)
+    - CConnecter
+    - CFrmView
+    - CParameter
+  - Work thread
+    - CConnect
++ The module of work thread
   - Blocked: Most control protocol implementation library connections are blocking.
     \see CPluginClient CConnecterDesktopThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.

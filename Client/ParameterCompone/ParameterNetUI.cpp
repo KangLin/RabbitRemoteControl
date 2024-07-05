@@ -1,6 +1,7 @@
 #include "ParameterNetUI.h"
 #include "ui_ParameterNetUI.h"
 #include <QLoggingCategory>
+#include <QMessageBox>
 
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Net.UI")
 
@@ -28,15 +29,20 @@ int CParameterNetUI::SetParameter(CParameterNet *pParameter)
     return 0;
 }
 
-void CParameterNetUI::slotAccept()
-{    
-    if(!ui->leHost->text().isEmpty())
+int CParameterNetUI::slotAccept()
+{
+    if(ui->leHost->text().isEmpty()) {
+        QMessageBox::critical(this, tr("Error"),
+                              tr("The host is empty. please set it"));
         qCritical(log) << "The host is empty";
+        ui->leHost->setFocus();
+        return -1;
+    }
     m_pNet->SetHost(ui->leHost->text());
     m_pNet->SetPort(ui->spPort->value());
     
     ui->wUser->slotAccept();
-    return;
+    return 0;
 }
 
 void CParameterNetUI::on_leHost_editingFinished()

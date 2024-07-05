@@ -112,11 +112,20 @@
 \ingroup LIBAPI_CLIENT
 \brief 线程模型
 \details
-+ 线程模型
++ 线程分类
+  - 主线程（UI线程）
+    - CConnecter
+    - CFrmView
+    - CParameter
+  - 工作线程
+    - CConnect
+
++ 工作线程模型
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
     \see CPluginClient CConnecterDesktopThread
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
     \see CPluginClientThread CConnecterDesktop
+
 + 类关系：
   \image html docs/Image/PluginClientAPI.svg
 

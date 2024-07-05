@@ -1,6 +1,7 @@
 #ifndef CPARAMETERBASE_H
 #define CPARAMETERBASE_H
 
+#pragma once
 #include "ParameterNet.h"
 
 /*!
@@ -8,13 +9,25 @@
  * \brief
  * 连接参数接口。包括基本参数（网络参数等）。
  * 所有插件的连接参数都应从此类派生。
+ * \section section_Use_CParameterBase 使用连接参数
+ *  - 因为插件都有一些公共参数（例如：网络地址等），所以插件参数请从 CParameterBase 派生。
+ *  - 请在 CConnecter 派生类的构造函数中实例化连接参数。
+ *  - 调用 CConnecter::SetParameter 设置参数指针。
+ *  - 因为 CConnecter 实例运行在主线程中（UI线程），所以插件参数实例也在主线程中。
  *
  * \~english
  * \brief
  *  The interface of connecter parameters.
  *  include base parameters(network etc).
- *
  *  All plug-in connection parameters should be derived from this class.
+ * \section section_Use_CParameterBase Use connecter parameter
+ *  - The plugins have some common parameters (e.g., network address, etc.),
+ *    please derive the plugin parameters from CParameterBase.
+ *  - Instantiate the connection parameters in the constructor of
+ *    the derived class of CConnecter.
+ *  - Call CConnecter::SetParameter to set
+ *  - Because CConnecter is running main thread(UI thread),
+ *    so that the parameter is running main thread.
  *
  * \~
  * \ingroup CLIENT_PARAMETER_COMPONE

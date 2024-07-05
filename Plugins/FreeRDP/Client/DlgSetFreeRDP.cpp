@@ -150,11 +150,13 @@ CDlgSetFreeRDP::~CDlgSetFreeRDP()
 
 void CDlgSetFreeRDP::on_pbOk_clicked()
 {
+    int nRet = 0;
     m_pSettings->SetName(ui->leName->text());
 
     // Server
     m_pSettings->SetDomain(ui->leDomain->text());
-    ui->wNet->slotAccept();
+    nRet = ui->wNet->slotAccept();
+    if(nRet) return;
 
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());

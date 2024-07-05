@@ -19,13 +19,13 @@
  *   1. 仅在插件内有效。
  *      应用程序不能访问，但是可以通过 CConnecter::OpenDialogSettings 进行设置。
  *      \see 
- *        \ref sub_CParameterConnecter_CATEGORY_USAGE
+ *        \ref section_CParameterConnecter_CATEGORY_USAGE
  *        CParameterConnecter
  *        CParameterBase
  *   2. 在客户端库 (CClient) 和插件内有效。\n
  *      应用程序不能访问，但是可以通过 CClient::GetSettingsWidgets 进行设置。\n
  *      客户端 (CClient) 和插件可以直接使用。插件可以以其做为初始化值。
- *      \ref sub_Use_CParameterClient
+ *      \ref section_Use_CParameterClient
  *      \see CParameterClient
  *           CConnecter::SetParameterClient
  *           CParameterUser::OnLoad
@@ -40,7 +40,7 @@
  *     The application cannot access it,
  *     but the application can be set it via CConnecter::OpenDialogSettings.
  *      \see 
- *        \ref sub_CParameterConnecter_CATEGORY_USAGE
+ *        \ref section_CParameterConnecter_CATEGORY_USAGE
  *        CParameterConnecter
  *        CParameterBase
  *  2. Valid in the CClient and the plugin.\n
@@ -48,7 +48,7 @@
  *     but the application can be set it via CClient::GetSettingsWidgets.\n
  *     CClient and Plugins can use them directly.
  *     The plugin maybe use them as initialization values.
- *     \ref sub_Use_CParameterClient
+ *     \ref section_Use_CParameterClient
  *     \see CParameterClient
  *          CConnecter::SetParameterClient
  *          CParameterUser::OnLoad
