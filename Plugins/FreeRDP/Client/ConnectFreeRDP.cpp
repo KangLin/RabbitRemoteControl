@@ -215,7 +215,8 @@ int CConnectFreeRDP::OnClean()
  * \~
  * \return 
  *    \li >= 0: continue, Interval call time (msec)
- *    \li  < 0: error or stop
+ *    \li = -1: stop
+ *    \li < -1: error
  * \see CConnect::Connect() CConnect::slotTimeOut()
  */
 int CConnectFreeRDP::OnProcess()

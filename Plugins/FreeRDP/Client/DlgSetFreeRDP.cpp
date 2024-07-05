@@ -16,6 +16,8 @@
 #endif
 
 #include "DlgDesktopSize.h"
+#include <QLoggingCategory>
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Parameter.Dlg")
 
 CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     QDialog(parent),
@@ -242,13 +244,21 @@ QRect CDlgSetFreeRDP::GetScreenGeometry()
     if(ui->cbAllMonitor->isChecked())
     {
         //TODO: check this is a virtual geometry
-        r = pScreen->availableVirtualGeometry();
+        r = pScreen->virtualGeometry();
         /*
         auto lstScreen = QApplication::screens();
+        qDebug(log) << "Screen counts:" << lstScreen.count();
+        int i = 0;
         foreach(auto pScreen, lstScreen)
         {
-            r = r.united(pScreen->geometry());
-        }*/
+            //r = r.united(pScreen->geometry());
+            qDebug(log)
+                << "ID:" << i++
+                << "geometry:" << pScreen->geometry()
+                << "availableGeometry:" << pScreen->availableGeometry()
+                << "virtualGeometry" << pScreen->virtualGeometry()
+                << "availableVirtualGeometry" << pScreen->availableVirtualGeometry();
+        }//*/
     } else {
         r = pScreen->geometry();
     }
