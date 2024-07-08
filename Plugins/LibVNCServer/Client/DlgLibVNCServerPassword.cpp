@@ -39,16 +39,12 @@ void CDlgLibVNCServerPassword::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
     ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
-    ui->leUser->setText(m_pParameter->m_Net.m_User.GetUser());
-    ui->lePassword->setText(m_pParameter->m_Net.m_User.GetPassword());
-    ui->cbSavePassword->setChecked(m_pParameter->m_Net.m_User.GetSavePassword());
+    ui->wUser->SetParameter(&m_pParameter->m_Net.m_User);
 }
 
 void CDlgLibVNCServerPassword::on_pbOK_clicked()
 {
-    m_pParameter->m_Net.m_User.SetUser(ui->leUser->text());
-    m_pParameter->m_Net.m_User.SetPassword(ui->lePassword->text());
-    m_pParameter->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
+    ui->wUser->slotAccept();
     emit m_pConnecter->sigUpdateParameters(m_pConnecter);
     accept();
 }

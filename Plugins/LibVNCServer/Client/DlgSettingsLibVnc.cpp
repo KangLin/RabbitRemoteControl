@@ -27,9 +27,8 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CParameterLibVNCServer *pPara, QWidget *p
     
     m_uiProxy = new CParameterProxyUI(ui->tabWidget);
     m_uiProxy->SetParameter(&m_pPara->m_Proxy);
-    ui->tabWidget->addTab(m_uiProxy, tr("Proxy"));
-    
-    
+    ui->tabWidget->insertTab(1, m_uiProxy, tr("Proxy"));
+        
     // Compress
     //    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
     
