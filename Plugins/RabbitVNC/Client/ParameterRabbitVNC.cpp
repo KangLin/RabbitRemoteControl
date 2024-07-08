@@ -2,7 +2,8 @@
 #include "rfb/encodings.h"
 
 CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent)
-    : CParameterBase(parent)
+    : CParameterBase(parent),
+    m_Proxy(this, "Proxy")
 {
     m_Net.SetPort(5900);
     SetShared(true);

@@ -29,9 +29,6 @@ private:
     CConnecterRabbitVNC* m_pConnecter;
     CParameterRabbitVNC* m_pParameter;
     
-    // QWidget interface
-protected:
-    virtual void showEvent(QShowEvent *event) override;
 };
 Q_DECLARE_METATYPE(CDlgGetPasswordRabbitVNC)
 #endif // DLGGETUSERPASSWORD_H

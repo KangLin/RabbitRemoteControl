@@ -193,17 +193,12 @@ int CConnectRabbitVNC::SocketInit()
 
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
-        switch(m_pPara->GetProxyType())
+        switch(m_pPara->m_Proxy.GetType())
         {
-        case CParameterConnecter::emProxy::SocksV4:
+        case CParameterProxy::TYPE::No:
             break;
-        case CParameterConnecter::emProxy::SocksV5:
+        case CParameterProxy::TYPE::Socket5:
             type = QNetworkProxy::Socks5Proxy;
-            break;
-        case CParameterConnecter::emProxy::Http:
-            type = QNetworkProxy::HttpProxy;
-            break;
-        case CParameterConnecter::emProxy::No:
             break;
         default:
             break;
@@ -211,9 +206,10 @@ int CConnectRabbitVNC::SocketInit()
 
         if(QNetworkProxy::NoProxy != type)
         {
+            auto &net = m_pPara->m_Proxy.m_Socket5;
             QNetworkProxy proxy;
             proxy.setType(type);
-            if(m_pPara->GetProxyHost().isEmpty())
+            if(net.GetHost().isEmpty())
             {
                 QString szErr;
                 szErr = tr("The proxy server is empty, please input it");
@@ -221,14 +217,16 @@ int CConnectRabbitVNC::SocketInit()
                 emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
                 return -4;
             }
-            proxy.setHostName(m_pPara->GetProxyHost());
-            proxy.setPort(m_pPara->GetProxyPort());
-            proxy.setUser(m_pPara->GetProxyUser());
-            proxy.setPassword(m_pPara->GetProxyPassword());
+            proxy.setHostName(net.GetHost());
+            proxy.setPort(net.GetPort());
+            auto &user = net.m_User;
+            proxy.setUser(user.GetUser());
+            proxy.setPassword(user.GetPassword());
             pSock->setProxy(proxy);
         }
-
-        if(m_pPara->m_Net.GetHost().isEmpty())
+        
+        auto &net = m_pPara->m_Net;
+        if(net.GetHost().isEmpty())
         {
             QString szErr;
             szErr = tr("The server is empty, please input it");
@@ -236,7 +234,7 @@ int CConnectRabbitVNC::SocketInit()
             emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
             return -5;
         }
-        pSock->connectToHost(m_pPara->m_Net.GetHost(), m_pPara->m_Net.GetPort());
+        pSock->connectToHost(net.GetHost(), net.GetPort());
 
         return nRet;
     } catch (rdr::Exception& e) {

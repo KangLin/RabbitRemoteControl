@@ -67,8 +67,14 @@
  *
  *  例如：\n
  *  连接参数包括以下几种类型：
- *  - 视频参数 (class CParameterVideo : public CParameter)
- *  - 音频参数 (class CParameterAudio : public CParameter)
+ *  - 视频参数
+ *    \code
+ *    class CParameterVideo : public CParameter
+ *    \endcode
+ *  - 音频参数
+ *    \code
+ *    class CParameterAudio : public CParameter
+ *    \endcode
  *
  *  那么连接参数可以是以上类型的集合：
  *
@@ -109,8 +115,14 @@
  *
  *  For example:\n
  *  Connection parameters include the following categories:
- *  - Video (class CParameterVideo : public CParameter)
- *  - Audio (class CParameterAudio : public CParameter)
+ *  - Video
+ *    \code
+ *    class CParameterVideo : public CParameter
+ *    \endcode
+ *  - Audio
+ *    \code
+ *    class CParameterAudio : public CParameter
+ *    \endcode
  *
  *  Then the connection parameters can be a combination of the above categories:
  *
@@ -177,8 +189,10 @@ public:
     explicit CParameter(QObject *parent = nullptr,
                         const QString& szPrefix = QString());
     virtual ~CParameter();
-
+    
+    //! Load from file
     virtual int Load(QString szFile = QString());
+    //! Save to file
     virtual int Save(QString szFile = QString(), bool bForce = true);
     
     //! Load from storage

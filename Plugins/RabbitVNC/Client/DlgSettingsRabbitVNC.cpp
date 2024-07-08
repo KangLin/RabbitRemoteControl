@@ -1,6 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "DlgSettingsRabbitVNC.h"
+
 #include "ui_DlgSettingsRabbitVNC.h"
 #include "rfb/encodings.h"
 #include <QDebug>
@@ -17,11 +18,14 @@ Q_DECLARE_LOGGING_CATEGORY(RabbitVNC)
 CDlgSettingsRabbitVNC::CDlgSettingsRabbitVNC(CParameterRabbitVNC *pPara, QWidget *parent)
     : QDialog(parent),
     ui(new Ui::CDlgSettingsRabbitVNC),
-    m_pPara(pPara)
+    m_pPara(pPara),
+    m_pParameterProxyUI(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
-    
+    m_pParameterProxyUI = new CParameterProxyUI(ui->tabWidget);
+    ui->tabWidget->insertTab(1, m_pParameterProxyUI, tr("Proxy"));
+
 #ifdef HAVE_ICE
     ui->gpIce->show();
 #else
@@ -53,14 +57,11 @@ void CDlgSettingsRabbitVNC::on_pbOk_clicked()
         m_pPara->SetIce(false);
     }
 
-    m_pPara->m_Net.SetHost(ui->leServer->text());
-    m_pPara->m_Net.SetPort(ui->spPort->value());
     m_pPara->SetName(ui->leName->text());
-    m_pPara->m_Net.m_User.SetUser(ui->leUserName->text());
-    m_pPara->m_Net.m_User.SetPassword(ui->lePassword->text());
-    
+    ui->wNet->slotAccept(true);
+    m_pParameterProxyUI->slotAccept();
+
     m_pPara->SetOnlyView(ui->cbOnlyView->isChecked());
-    m_pPara->m_Net.m_User.SetSavePassword(ui->cbSave->isChecked());
     m_pPara->SetShared(ui->cbShared->isChecked());
     m_pPara->SetBufferEndRefresh(!ui->cbRealTimeUpdate->isChecked());
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
@@ -88,18 +89,6 @@ void CDlgSettingsRabbitVNC::on_pbOk_clicked()
     m_pPara->SetCompressLevel(ui->spCompressLevel->value());
     m_pPara->SetNoJpeg(!ui->cbJPEG->isChecked());
     m_pPara->SetQualityLevel(ui->spJPEGLevel->value());
-    
-    // Proxy
-    if(ui->rbProxyNo->isChecked())
-        m_pPara->SetProxyType(CParameterConnecter::emProxy::No);
-    if(ui->rbProxySocks->isChecked())
-        m_pPara->SetProxyType(CParameterConnecter::emProxy::SocksV5);
-    if(ui->rbHttp->isChecked())
-        m_pPara->SetProxyType(CParameterConnecter::emProxy::Http);
-    m_pPara->SetProxyHost(ui->leProxyServer->text());
-    m_pPara->SetProxyPort(ui->spProxyPort->value());
-    m_pPara->SetProxyUser(ui->leProxyUser->text());
-    m_pPara->SetProxyPassword(ui->leProxyPassword->text());
     
     accept();
 }
@@ -161,8 +150,7 @@ void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
         if(m_pPara->GetIce())
         {
             ui->gpIce->setChecked(true);
-            ui->leServer->setEnabled(false);
-            ui->spPort->setEnabled(false);
+            ui->wNet->setEnabled(false);
         } else {
             ui->gpIce->setChecked(false);
         }
@@ -170,20 +158,11 @@ void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
         ui->gpIce->setEnabled(false);
     }
 
-    ui->leServer->setText(m_pPara->m_Net.GetHost());
-    ui->spPort->setValue(m_pPara->m_Net.GetPort());
     ui->lePeerUser->setText(m_pPara->GetPeerUser());
     
     ui->leName->setText(m_pPara->GetName());
-    ui->leUserName->setText(m_pPara->m_Net.m_User.GetUser());
-    ui->lePassword->setText(m_pPara->m_Net.m_User.GetPassword());
-    ui->pbShow->setEnabled(m_pPara->GetParameterClient()->GetViewPassowrd());
-    ui->cbSave->setChecked(m_pPara->m_Net.m_User.GetSavePassword());
-    ui->lePassword->setEnabled(ui->cbSave->isChecked());
-    if(ui->cbSave->isChecked())
-        ui->lePassword->setPlaceholderText(tr("Input password"));
-    else
-        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));        
+    ui->wNet->SetParameter(&m_pPara->m_Net);
+    
     ui->cbOnlyView->setChecked(m_pPara->GetOnlyView());
     ui->cbShowServerName->setChecked(m_pPara->GetShowServerName());
 
@@ -193,9 +172,11 @@ void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
     ui->cbResizeWindows->setChecked(m_pPara->GetSupportsDesktopResize());
     ui->cbClipboard->setChecked(m_pPara->GetClipboard());
     
+    m_pParameterProxyUI->SetParameter(&m_pPara->m_Proxy);
+
     // Compress
     ui->cbCompressAutoSelect->setChecked(m_pPara->GetAutoSelect());
-        
+    
     switch(m_pPara->GetEncoding())
     {
     case rfb::encodingTight:
@@ -250,69 +231,9 @@ void CDlgSettingsRabbitVNC::showEvent(QShowEvent *event)
         ui->spCompressLevel->setEnabled(m_pPara->GetEnableCompressLevel());
         ui->spJPEGLevel->setEnabled(!m_pPara->GetNoJpeg());
     }
-    
-    // Proxy
-    switch(m_pPara->GetProxyType())
-    {
-    case CParameterConnecter::emProxy::No:
-        ui->rbProxyNo->setChecked(true);
-        break;
-    case CParameterConnecter::emProxy::SocksV4:
-    case CParameterConnecter::emProxy::SocksV5:
-        ui->rbProxySocks->setChecked(true);
-        break;
-    case CParameterConnecter::emProxy::Http:
-        ui->rbHttp->setChecked(true);
-        break;
-    default:
-        break;
-    }
-    ui->leProxyServer->setText(m_pPara->GetProxyHost());
-    ui->spProxyPort->setValue(m_pPara->GetProxyPort());
-    ui->leProxyUser->setText(m_pPara->GetProxyUser());
-    ui->leProxyPassword->setText(m_pPara->GetProxyPassword());
-}
-
-void CDlgSettingsRabbitVNC::on_pbShow_clicked()
-{
-    switch(ui->lePassword->echoMode())
-    {
-    case QLineEdit::Password:
-        ui->lePassword->setEchoMode(QLineEdit::Normal);
-        ui->pbShow->setIcon(QIcon::fromTheme("eye-off"));
-        break;
-    case QLineEdit::Normal:
-        ui->lePassword->setEchoMode(QLineEdit::Password);
-        ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
-        break;
-    }
 }
 
 void CDlgSettingsRabbitVNC::on_gpIce_clicked(bool checked)
 {
-    ui->leServer->setEnabled(!checked);
-    ui->spPort->setEnabled(!checked);
+    ui->wNet->setEnabled(!checked);
 }
-
-void CDlgSettingsRabbitVNC::on_leServer_editingFinished()
-{
-    auto s = ui->leServer->text().split(":");
-    if(s.size() == 2)
-    {
-        ui->spPort->setValue(s[1].toUInt());
-        ui->leServer->setText(s[0]);
-    }
-}
-
-void CDlgSettingsRabbitVNC::on_cbSave_stateChanged(int arg1)
-{
-    if(Qt::Checked == arg1)
-    {
-        ui->lePassword->setEnabled(true);
-        ui->lePassword->setPlaceholderText(tr("Input password"));
-    } else {
-        ui->lePassword->setPlaceholderText(tr("Please checked save password to enable"));
-        ui->lePassword->setEnabled(false);
-    }
-}
-

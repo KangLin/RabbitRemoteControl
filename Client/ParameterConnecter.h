@@ -55,10 +55,22 @@
  *
  *  例如：\n
  *  连接参数包括以下几种类型：
- *  - 基本参数 (class CParameterBase : public CParameterConnecter)
- *  - 用户参数 (class CParameterUser : public CParameterConnecter)
- *  - 视频参数 (class CParameterVideo : public CParameter)
- *  - 音频参数 (class CParameterAudio : public CParameter)
+ *  - 基本参数
+ *    \code
+ *    class CParameterBase : public CParameterConnecter
+ *    \endcode
+ *  - 用户参数
+ *    \code
+ *    class CParameterUser : public CParameterConnecter
+ *    \endcode
+ *  - 视频参数
+ *    \code
+ *    class CParameterVideo : public CParameter
+ *    \endcode
+ *  - 音频参数
+ *    \code
+ *    class CParameterAudio : public CParameter
+ *    \endcode
  *
  *  其中 CParameterBase ， CParameterUser 它需要 CFrmParameterClient ，
  *  所以必须从 CParameterConnecter 派生。
@@ -135,10 +147,22 @@
  *
  *  For example:\n
  *  Connection parameters include the following categories:
- *  - Base (class CParameterBase : public CParameterConnecter)
- *  - User (class CParameterUser : public CParameterConnecter)
- *  - Video (class CParameterVideo : public CParameter)
- *  - Audio (class CParameterAudio : public CParameter)
+ *  - Base
+ *    \code
+ *    class CParameterBase : public CParameterConnecter
+ *    \endcode
+ *  - User
+ *    \code
+ *    class CParameterUser : public CParameterConnecter
+ *    \endcode
+ *  - Video
+ *    \code
+ *    class CParameterVideo : public CParameter
+ *    \endcode
+ *  - Audio
+ *    \code
+ *    class CParameterAudio : public CParameter
+ *    \endcode
  *
  *  CParameterBase, CParameterUser need CFrmParameterClient,
  *  so that it must derived from CParameterConnecter.

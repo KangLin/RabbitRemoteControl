@@ -2,6 +2,7 @@
 #define CParameterRabbitVnc_H
 
 #include "ParameterBase.h"
+#include "ParameterProxy.h"
 
 class CParameterRabbitVNC : public CParameterBase
 {
@@ -12,6 +13,8 @@ public:
 public:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
+    
+    CParameterProxy m_Proxy;
     
     /*!
      * \brief Check whether the parameters are complete

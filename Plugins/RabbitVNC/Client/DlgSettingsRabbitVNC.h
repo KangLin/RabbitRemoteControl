@@ -6,6 +6,7 @@
 #include <QDialog>
 #include "ConnectRabbitVNC.h"
 #include "ParameterRabbitVNC.h"
+#include <ParameterProxyUI.h>
 
 namespace Ui {
 class CDlgSettingsRabbitVNC;
@@ -21,26 +22,16 @@ public:
     
 private slots:
     void on_cbCompressAutoSelect_stateChanged(int arg1);
-
     void on_cbCompress_stateChanged(int arg1);
-    
     void on_cbJPEG_stateChanged(int arg1);
-    
-    void on_pbShow_clicked();
-        
     void on_gpIce_clicked(bool checked);
-    
     void on_pbOk_clicked();
-    
     void on_pbCancel_clicked();
-    
-    void on_leServer_editingFinished();
-    
-    void on_cbSave_stateChanged(int arg1);
     
 private:
     Ui::CDlgSettingsRabbitVNC *ui;
     CParameterRabbitVNC* m_pPara;
+    CParameterProxyUI* m_pParameterProxyUI;
     
     // QWidget interface
 protected:

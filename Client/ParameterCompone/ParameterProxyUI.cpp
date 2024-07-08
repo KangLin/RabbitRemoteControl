@@ -1,5 +1,6 @@
 #include "ParameterProxyUI.h"
 #include <QHBoxLayout>
+#include <QSpacerItem>
 
 CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     : QWidget{parent}
@@ -23,6 +24,10 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
 
     m_uiSocket5 = new CParameterNetUI(this);
     layout()->addWidget(m_uiSocket5);
+    
+    layout()->addItem(new QSpacerItem(0, 0,
+                                      QSizePolicy::Preferred,
+                                      QSizePolicy::Expanding));
 }
 
 void CParameterProxyUI::slotTypeChanged(int nIndex)
