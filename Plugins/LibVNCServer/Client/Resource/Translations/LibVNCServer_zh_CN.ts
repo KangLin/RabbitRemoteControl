@@ -12,7 +12,8 @@
         <location filename="../../ConnectLibVNCServer.cpp" line="65"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="78"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="161"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="185"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="180"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="196"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -27,7 +28,8 @@
         <translation>代理服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="182"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="177"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="193"/>
         <source>Connect to %1:%2 fail</source>
         <translation type="unfinished"></translation>
     </message>
@@ -40,32 +42,29 @@
         <translation>输入密码</translation>
     </message>
     <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="35"/>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="20"/>
         <source>Text</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="47"/>
         <source>User:</source>
-        <translation>用户名：</translation>
+        <translation type="vanished">用户名：</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="vanished">密码：</translation>
+    </message>
+    <message>
+        <source>Save password</source>
+        <translation type="vanished">保存密码</translation>
     </message>
     <message>
         <location filename="../../DlgLibVNCServerPassword.ui" line="61"/>
-        <source>Password:</source>
-        <translation>密码：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="77"/>
-        <source>Save password</source>
-        <translation>保存密码</translation>
-    </message>
-    <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="114"/>
         <source>OK(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgLibVNCServerPassword.ui" line="121"/>
+        <location filename="../../DlgLibVNCServerPassword.ui" line="71"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
@@ -83,148 +82,126 @@
         <translation>设置 LibVnc</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="28"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="58"/>
         <source>Server</source>
         <translation>服务</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="60"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="318"/>
         <source>Server:</source>
-        <translation>服务器：</translation>
+        <translation type="vanished">服务器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="146"/>
         <source>Save password</source>
-        <translation>保存密码</translation>
+        <translation type="vanished">保存密码</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="88"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="346"/>
         <source>User name:</source>
-        <translation>用户名：</translation>
+        <translation type="vanished">用户名：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="189"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="100"/>
         <source>Only view</source>
         <translation>仅查看</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="102"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="360"/>
         <source>Password:</source>
-        <translation>密码：</translation>
+        <translation type="vanished">密码：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="36"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="66"/>
         <source>Name:</source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="43"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="46"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="49"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="73"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="76"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="79"/>
         <source>Connecter name</source>
         <translation>连接名称</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="109"/>
-        <location filename="../../DlgSettingsLibVnc.ui" line="121"/>
-        <location filename="../../DlgSettingsLibVnc.cpp" line="26"/>
-        <location filename="../../DlgSettingsLibVnc.cpp" line="204"/>
         <source>Please checked save password to enable</source>
-        <translation>选择保存密码允许输入</translation>
+        <translation type="vanished">选择保存密码允许输入</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="128"/>
         <source>Menu: Tools→Settings→Client→Password-&amp;gt;Enable view password</source>
-        <translation>菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
+        <translation type="vanished">菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="153"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="93"/>
         <source>Shared</source>
         <translation>共享</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="164"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="111"/>
         <source>Use local cursor</source>
         <translation>用本地光标</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="171"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="118"/>
         <source>Enable clipboard</source>
         <translation>允许剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="182"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="127"/>
         <source>Show server name</source>
         <translation>显示服务名</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="212"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="148"/>
         <source>Compress</source>
         <translation>压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="237"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="173"/>
         <source>0=fast, 9=best</source>
         <translation>0=最快，9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="248"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="184"/>
         <source>Enable JPEG compress</source>
         <translation>允许 JPEG 压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="262"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="198"/>
         <source>0=Worst, 9=best</source>
         <translation>0=最差,9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="411"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="45"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="218"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="154"/>
         <source>Compress level:</source>
         <translation>压缩级别：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="285"/>
+        <location filename="../../DlgSettingsLibVnc.cpp" line="30"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="293"/>
         <source>No</source>
-        <translation>无</translation>
+        <translation type="vanished">无</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="300"/>
-        <source>Socks</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="307"/>
         <source>UltraVNC repeater</source>
-        <translation>UltraVNC 中继</translation>
+        <translation type="vanished">UltraVNC 中继</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="328"/>
         <source>Port:</source>
-        <translation>端口：</translation>
+        <translation type="vanished">端口：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.ui" line="404"/>
+        <location filename="../../DlgSettingsLibVnc.ui" line="38"/>
         <source>Ok(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.cpp" line="24"/>
-        <location filename="../../DlgSettingsLibVnc.cpp" line="201"/>
         <source>Input password</source>
-        <translation>输入密码</translation>
+        <translation type="vanished">输入密码</translation>
     </message>
 </context>
 <context>

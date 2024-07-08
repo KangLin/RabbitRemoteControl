@@ -4,47 +4,47 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="363"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="359"/>
         <source>Logon to </source>
         <translation>登录到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="368"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="364"/>
         <source>Please check that the username and password are correct.</source>
         <translation>检查用户名和密码是否正确。</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="236"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="251"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="284"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="369"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="384"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="231"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="247"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="280"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="365"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="380"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="234"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="229"/>
         <source>The proxy server is empty, please input it</source>
         <translation>代理服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="249"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="245"/>
         <source>The server is empty, please input it</source>
         <translation>服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="279"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="275"/>
         <source>Failed to log in via SSH tunnel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="376"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="372"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="367"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="380"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="363"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="376"/>
         <source> fail.</source>
         <translation> 失败。</translation>
     </message>
@@ -57,37 +57,34 @@
         <translation>输入密码</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="35"/>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="61"/>
         <source>OK(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="42"/>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="71"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="96"/>
         <source>User:</source>
-        <translation>用户：</translation>
+        <translation type="vanished">用户：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="110"/>
         <source>Password:</source>
-        <translation>密码：</translation>
+        <translation type="vanished">密码：</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="126"/>
         <source>Save password</source>
-        <translation>保存密码</translation>
+        <translation type="vanished">保存密码</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="150"/>
+        <location filename="../../DlgGetUserPasswordTigerVNC.ui" line="20"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordTigerVNC.cpp" line="40"/>
+        <location filename="../../DlgGetUserPasswordTigerVNC.cpp" line="37"/>
         <source>Set password for %1</source>
         <translation>为 %1 设置密码</translation>
     </message>
@@ -105,35 +102,29 @@
         <translation>服务器</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="60"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="287"/>
         <source>Server:</source>
-        <translation>服务器：</translation>
+        <translation type="vanished">服务器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="106"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="340"/>
         <source>Password:</source>
-        <translation>密码：</translation>
+        <translation type="vanished">密码：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="92"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="326"/>
         <source>User name:</source>
-        <translation>用户名：</translation>
+        <translation type="vanished">用户名：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="199"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="99"/>
         <source>Support windows resize</source>
         <translation>支持窗口大小改变</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="163"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="63"/>
         <source>Shared</source>
         <translation>共享</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="553"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="355"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
@@ -150,51 +141,43 @@
         <translation>连接名称</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="74"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="280"/>
         <source>Port:</source>
-        <translation>端口：</translation>
+        <translation type="vanished">端口：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="113"/>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="125"/>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="186"/>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="314"/>
         <source>Please checked save password to enable</source>
-        <translation>选择保存密码允许输入</translation>
+        <translation type="vanished">选择保存密码允许输入</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="132"/>
         <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
-        <translation>菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
+        <translation type="vanished">菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="206"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="106"/>
         <source>Real time update</source>
         <translation>实时更新</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="181"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="81"/>
         <source>Show local cursor</source>
         <translation>显示本地光标</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="188"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="88"/>
         <source>Enable clipboard</source>
         <translation>允许剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="156"/>
         <source>Save password</source>
-        <translation>保存密码</translation>
+        <translation type="vanished">保存密码</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="170"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="70"/>
         <source>Only view</source>
         <translation>仅查看</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="222"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="122"/>
         <source>Ice:</source>
         <translation></translation>
     </message>
@@ -203,7 +186,7 @@
         <translation type="vanished">信令用户：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="236"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="136"/>
         <source>Peer user:</source>
         <translation>对端用户：</translation>
     </message>
@@ -216,7 +199,7 @@
         <translation type="vanished">Turn 服务器：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="215"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="115"/>
         <source>Show server name</source>
         <translation>显示服务器名</translation>
     </message>
@@ -229,122 +212,110 @@
         <translation type="vanished">Turn 用户：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="265"/>
         <source>Proxy</source>
-        <translation>代理</translation>
+        <translation type="vanished">代理</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="301"/>
         <source>No</source>
-        <translation>无</translation>
+        <translation type="vanished">无</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="308"/>
-        <source>Socks5</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="315"/>
-        <source>Http</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="366"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="165"/>
         <source>Compress</source>
         <translation>压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="372"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="171"/>
         <source>Color level</source>
         <translation>颜色级别</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="378"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="177"/>
         <source>Full</source>
         <translation>全彩色</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="385"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="184"/>
         <source>Low</source>
         <translation>低</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="392"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="191"/>
         <source>Meduim</source>
         <translation>中</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="399"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="198"/>
         <source>Very low</source>
         <translation>极低</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="421"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="220"/>
         <source>0=fast, 9=best</source>
         <translation>0=最快, 9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="432"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="231"/>
         <source>Enable JPEG compress</source>
         <translation>允许JPEG压缩</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="446"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="245"/>
         <source>0=Worst, 9=best</source>
         <translation>0=最差, 9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="455"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="254"/>
         <source>preferred Encoding</source>
         <translation>首选编码</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="461"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="260"/>
         <source>Tight</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="468"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="267"/>
         <source>Hextile</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="475"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="274"/>
         <source>Raw</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="482"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="281"/>
         <source>ZRLE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="489"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="288"/>
         <source>CoRRE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="496"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="295"/>
         <source>RRE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="503"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="302"/>
         <source>copyRect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="513"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="312"/>
         <source>Compress level:</source>
         <translation>压缩级别</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="520"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="319"/>
         <source>Auto select</source>
         <translation>自动选择</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.ui" line="546"/>
+        <location filename="../../DlgSettingsTigerVnc.ui" line="345"/>
         <source>Ok(&amp;O)</source>
         <translation>确定(&amp;O)</translation>
     </message>
@@ -365,21 +336,19 @@
         <translation type="vanished">请设置域名</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="184"/>
-        <location filename="../../DlgSettingsTigerVnc.cpp" line="311"/>
         <source>Input password</source>
-        <translation>输入密码</translation>
+        <translation type="vanished">输入密码</translation>
     </message>
 </context>
 <context>
     <name>CParameterTigerVnc</name>
     <message>
-        <location filename="../../ParameterTigerVnc.cpp" line="55"/>
+        <location filename="../../ParameterTigerVnc.cpp" line="56"/>
         <source>Ice signal password</source>
         <translation>Ice 信令密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterTigerVnc.cpp" line="68"/>
+        <location filename="../../ParameterTigerVnc.cpp" line="69"/>
         <source>Ice turn password</source>
         <translation>Turn 服务器密码</translation>
     </message>

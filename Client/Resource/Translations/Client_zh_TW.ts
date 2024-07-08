@@ -148,17 +148,6 @@
     </message>
 </context>
 <context>
-    <name>CParameterConnecter</name>
-    <message>
-        <source>Password</source>
-        <translation type="vanished">密碼</translation>
-    </message>
-    <message>
-        <source>Proxy password</source>
-        <translation type="vanished">代理密碼</translation>
-    </message>
-</context>
-<context>
     <name>CParameterNetUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterNetUI.ui" line="14"/>
@@ -179,6 +168,34 @@
         <location filename="../../ParameterCompone/ParameterNetUI.ui" line="42"/>
         <source>Port:</source>
         <translation>端口：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="35"/>
+        <source>Error</source>
+        <translation>錯誤</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="36"/>
+        <source>The host is empty. please set it</source>
+        <translation>主機是空，請設置它。</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterProxyUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="14"/>
+        <source>Type:</source>
+        <translation>類型：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="18"/>
+        <source>No</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="19"/>
+        <source>SockesV5</source>
+        <translation></translation>
     </message>
 </context>
 <context>

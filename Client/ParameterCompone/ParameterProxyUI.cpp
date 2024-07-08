@@ -16,7 +16,7 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     
     m_cbType = new QComboBox(this);
     m_cbType->addItem(tr("No"), (int)CParameterProxy::TYPE::No);
-    m_cbType->addItem(tr("Socket5"), (int)CParameterProxy::TYPE::SockesV5);
+    m_cbType->addItem(tr("SockesV5"), (int)CParameterProxy::TYPE::SockesV5);
     pType->addWidget(m_cbType);
     bCheck = connect(m_cbType, SIGNAL(currentIndexChanged(int)),
                      this, SLOT(slotTypeChanged(int)));

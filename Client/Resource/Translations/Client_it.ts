@@ -169,6 +169,34 @@
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="35"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="36"/>
+        <source>The host is empty. please set it</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CParameterProxyUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="14"/>
+        <source>Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="18"/>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="19"/>
+        <source>Socket5</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CParameterUser</name>

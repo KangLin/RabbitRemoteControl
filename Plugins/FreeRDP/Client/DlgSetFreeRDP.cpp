@@ -230,7 +230,7 @@ void CDlgSetFreeRDP::on_rbLocalScreen_clicked(bool checked)
     int width = GetScreenGeometry().width();
     int height = GetScreenGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
-    ui->rbLocalScreen->setText(tr("Local screen:") + ": " + curSize);
+    ui->rbLocalScreen->setText(tr("Local screen") + ": " + curSize);
     if(ui->cbDesktopSize->findText(curSize) == -1)
         InsertDesktopSize(width, height);
     ui->cbDesktopSize->setCurrentText(curSize);
@@ -290,7 +290,7 @@ int CDlgSetFreeRDP::UpdateDesktopSize()
     int width = GetScreenGeometry().width();
     int height = GetScreenGeometry().height();
     QString curSize = QString::number(width) + "×" + QString::number(height);
-    ui->rbLocalScreen->setText(tr("Local screen:") + ": " + curSize);
+    ui->rbLocalScreen->setText(tr("Local screen") + ": " + curSize);
     if(ui->cbDesktopSize->findText(curSize) == -1)
         InsertDesktopSize(width, height);
     return 0;
