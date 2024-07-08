@@ -208,18 +208,12 @@ int CConnectTigerVnc::SocketInit()
 
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
-        switch(m_pPara->GetProxyType())
+        switch(m_pPara->m_Proxy.GetType())
         {
-        case CParameterConnecter::emProxy::SocksV4:
-            break;
-        case CParameterConnecter::emProxy::SocksV5:
+        case CParameterProxy::TYPE::SockesV5:
             type = QNetworkProxy::Socks5Proxy;
             break;
-        case CParameterConnecter::emProxy::Http:
-            type = QNetworkProxy::HttpProxy;
-            break;
-        case CParameterConnecter::emProxy::No:
-            break;
+        case CParameterProxy::TYPE::No:
         default:
             break;
         }
@@ -228,7 +222,8 @@ int CConnectTigerVnc::SocketInit()
         {
             QNetworkProxy proxy;
             proxy.setType(type);
-            if(m_pPara->GetProxyHost().isEmpty())
+            auto &net = m_pPara->m_Proxy.m_Sockes;
+            if(net.GetHost().isEmpty())
             {
                 QString szErr;
                 szErr = tr("The proxy server is empty, please input it");
@@ -236,10 +231,11 @@ int CConnectTigerVnc::SocketInit()
                 emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
                 return -4;
             }
-            proxy.setHostName(m_pPara->GetProxyHost());
-            proxy.setPort(m_pPara->GetProxyPort());
-            proxy.setUser(m_pPara->GetProxyUser());
-            proxy.setPassword(m_pPara->GetProxyPassword());
+            proxy.setHostName(net.GetHost());
+            proxy.setPort(net.GetPort());
+            auto &user = net.m_User;
+            proxy.setUser(user.GetUser());
+            proxy.setPassword(user.GetPassword());
             pSock->setProxy(proxy);
         }
 

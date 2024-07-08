@@ -13,10 +13,7 @@ public:
     // CParameterConnecter interface
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
-        
-    enum class emVncProxy {
-        UltraVncRepeater = (int) emProxy::User + 1
-    };
+
     bool GetShared() const;
     void SetShared(bool newShared);
     bool GetEnableCompressLevel() const;

@@ -205,11 +205,6 @@
 class CLIENT_EXPORT CParameterConnecter : public CParameter
 {
     Q_OBJECT
-    Q_PROPERTY(emProxy ProxyType READ GetProxyType WRITE SetProxyType)
-    Q_PROPERTY(QString ProxyHost READ GetProxyHost WRITE SetProxyHost)
-    Q_PROPERTY(qint16 ProxyPort READ GetProxyPort WRITE SetProxyPort)
-    Q_PROPERTY(QString ProxyUser READ GetProxyUser WRITE SetProxyUser)
-    Q_PROPERTY(QString ProxyPassword READ GetProxyPassword WRITE SetProxyPassword)
     
 public:
     explicit CParameterConnecter(
@@ -219,11 +214,6 @@ public:
     //! Get CParameterClient
     CParameterClient* GetParameterClient();
     int SetParameterClient(CParameterClient* p);
-
-protected:
-    //! Load parameters from settings
-    virtual int OnLoad(QSettings &set) override;
-    virtual int OnSave(QSettings &set) override;
 
 Q_SIGNALS:
     void sigSetParameterClient();
@@ -253,39 +243,6 @@ private:
      * \see CClient::CreateConnecter CConnecter::SetParameterClient
      */
     CParameterClient* m_pParameterClient;
-
-public:
-        
-    enum class emProxy {
-        No,
-        SocksV4,
-        SocksV5,
-        Http,
-        User = 100
-    };
-    
-    const emProxy GetProxyType() const;
-    void SetProxyType(emProxy type);
-    const QString GetProxyHost() const;
-    void SetProxyHost(const QString& host);
-    const quint16 GetProxyPort() const;
-    void SetProxyPort(quint16 port);
-    const QString GetProxyUser() const;
-    void SetProxyUser(const QString& user);
-    const QString GetProxyPassword() const;
-    void SetProxyPassword(const QString& password);
-        
-Q_SIGNALS:
-    void sigNameChanged(const QString &name = QString());
-    void sigShowServerNameChanged();
-
-private:
-
-    emProxy m_eProxyType;
-    QString m_szProxyHost;
-    quint16 m_nProxyPort;
-    QString m_szProxyUser;
-    QString m_szProxyPassword;    
 };
 
 #endif // CPARAMTERCONNECT_H

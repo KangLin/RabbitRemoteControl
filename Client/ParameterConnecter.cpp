@@ -14,9 +14,7 @@ static Q_LOGGING_CATEGORY(log, "Client.Parameter.Connecter")
 CParameterConnecter::CParameterConnecter(QObject *parent, const QString &szPrefix)
     : CParameter(parent, szPrefix),
       m_Parent(nullptr),
-      m_pParameterClient(nullptr),
-      m_eProxyType(emProxy::No),
-      m_nProxyPort(1080)
+      m_pParameterClient(nullptr)
 {
     bool check = false;
     check = connect(this, SIGNAL(sigSetParameterClient()),
@@ -48,93 +46,6 @@ int CParameterConnecter::SetParameterClient(CParameterClient *p)
 void CParameterConnecter::slotSetParameterClient()
 {
     return;
-}
-
-const CParameterConnecter::emProxy CParameterConnecter::GetProxyType() const
-{
-    return m_eProxyType;
-}
-
-void CParameterConnecter::SetProxyType(emProxy type)
-{
-    if (m_eProxyType == type)
-        return;
-    m_eProxyType = type;
-    SetModified(true);
-}
-
-const QString CParameterConnecter::GetProxyHost() const
-{
-    return m_szProxyHost;
-}
-
-void CParameterConnecter::SetProxyHost(const QString &host)
-{
-    if(m_szProxyHost == host)
-        return;
-    m_szProxyHost = host;
-    SetModified(true);
-}
-
-const quint16 CParameterConnecter::GetProxyPort() const
-{
-    return m_nProxyPort;
-}
-
-void CParameterConnecter::SetProxyPort(quint16 port)
-{
-    if(m_nProxyPort == port)
-        return;
-    m_nProxyPort = port;
-    SetModified(true);
-}
-
-const QString CParameterConnecter::GetProxyUser() const
-{
-    return m_szProxyUser;
-}
-
-void CParameterConnecter::SetProxyUser(const QString &user)
-{
-    if(m_szProxyUser == user)
-        return;
-    m_szProxyUser = user;
-    SetModified(true);
-}
-
-const QString CParameterConnecter::GetProxyPassword() const
-{
-    return m_szProxyPassword;
-}
-
-void CParameterConnecter::SetProxyPassword(const QString &password)
-{
-    if(m_szProxyPassword == password)
-        return;
-    m_szProxyPassword = password;
-    SetModified(true);
-}
-
-int CParameterConnecter::OnLoad(QSettings &set)
-{
-    SetProxyType(static_cast<emProxy>(set.value("Proxy/Type",
-                                    static_cast<int>(GetProxyType())).toInt()));
-    SetProxyHost(set.value("Proxy/Host", GetProxyHost()).toString());
-    SetProxyPort(set.value("Proxy/Port", GetProxyPort()).toUInt());
-    SetProxyUser(set.value("Proxy/User", GetProxyUser()).toString());
-
-    return 0;
-}
-
-int CParameterConnecter::OnSave(QSettings &set)
-{
-    set.setValue("Proxy/Type", (int)m_eProxyType);
-    set.setValue("Proxy/Host", GetProxyHost());
-    set.setValue("Proxy/Port", GetProxyPort());
-    set.setValue("Proxy/User", GetProxyUser());
-    SavePassword("Proxy/Password", GetProxyPassword(), set);
-    
-    return 0;
 }
 
 QByteArray CParameterConnecter::PasswordSum(const std::string &password,

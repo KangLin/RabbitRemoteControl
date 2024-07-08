@@ -6,6 +6,7 @@
 #include <QDialog>
 #include "ConnectTigerVnc.h"
 #include "ParameterTigerVnc.h"
+#include "ParameterProxyUI.h"
 
 namespace Ui {
 class CDlgSettingsTigerVnc;
@@ -20,30 +21,19 @@ public:
     virtual ~CDlgSettingsTigerVnc();
     
 private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
+    void on_pbOK_clicked();
+    void on_pbCancel_clicked();
     
     void on_cbCompressAutoSelect_stateChanged(int arg1);
-
     void on_cbCompress_stateChanged(int arg1);
-    
     void on_cbJPEG_stateChanged(int arg1);
-    
-    void on_pbShow_clicked();
-        
+
     void on_gpIce_clicked(bool checked);
-    
-    void on_leServer_editingFinished();
-    
-    void on_cbSave_stateChanged(int arg1);
     
 private:
     Ui::CDlgSettingsTigerVnc *ui;
     CParameterTigerVnc* m_pPara;
-    
-    // QWidget interface
-protected:
-    virtual void showEvent(QShowEvent *event) override;
+    CParameterProxyUI* m_pProxy;
 };
 
 #endif // DLGSETTINGS_H

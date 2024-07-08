@@ -3,6 +3,7 @@
 
 #include "ParameterBase.h"
 #include "ParameterNet.h"
+#include "ParameterProxy.h"
 
 class CParameterTigerVnc : public CParameterBase
 {
@@ -11,6 +12,8 @@ public:
     explicit CParameterTigerVnc(QObject *parent = nullptr);
     
 public:
+    
+    CParameterProxy m_Proxy;
 
     /*!
      * \brief Check whether the parameters are complete
@@ -97,9 +100,8 @@ protected:
     virtual int OnSave(QSettings &set) override;
 
 private:
-
     QString szServerName;
-
+    
     bool m_bShared;
     bool m_bBufferEndRefresh;
     bool m_bSupportsDesktopResize;

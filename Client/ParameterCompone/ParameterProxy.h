@@ -12,12 +12,12 @@ public:
 
     enum class TYPE{
         No,
-        Socket5
+        SockesV5
     };
     TYPE GetType() const;
     int SetType(TYPE type);
 
-    CParameterNet m_Socket5;
+    CParameterNet m_Sockes;
 
     // CParameter interface
 protected:

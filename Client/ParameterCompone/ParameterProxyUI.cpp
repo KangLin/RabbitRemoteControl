@@ -16,7 +16,7 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
     
     m_cbType = new QComboBox(this);
     m_cbType->addItem(tr("No"), (int)CParameterProxy::TYPE::No);
-    m_cbType->addItem(tr("Socket5"), (int)CParameterProxy::TYPE::Socket5);
+    m_cbType->addItem(tr("Socket5"), (int)CParameterProxy::TYPE::SockesV5);
     pType->addWidget(m_cbType);
     bCheck = connect(m_cbType, SIGNAL(currentIndexChanged(int)),
                      this, SLOT(slotTypeChanged(int)));
@@ -38,7 +38,7 @@ void CParameterProxyUI::slotTypeChanged(int nIndex)
         m_uiSocket5->setVisible(false);
         break;
     }
-    case (int)CParameterProxy::TYPE::Socket5: {
+    case (int)CParameterProxy::TYPE::SockesV5: {
         m_uiSocket5->setVisible(true);
         break;
     }
@@ -49,7 +49,7 @@ int CParameterProxyUI::SetParameter(CParameterProxy *pParameter)
 {
     m_Proxy = pParameter;
     
-    m_uiSocket5->SetParameter(&m_Proxy->m_Socket5);
+    m_uiSocket5->SetParameter(&m_Proxy->m_Sockes);
     
     return 0;
 }
@@ -63,7 +63,7 @@ int CParameterProxyUI::slotAccept()
         nRet = m_uiSocket5->slotAccept(false);
         break;
     }
-    case (int)CParameterProxy::TYPE::Socket5: {
+    case (int)CParameterProxy::TYPE::SockesV5: {
         nRet = m_uiSocket5->slotAccept(true);
         if(nRet) return nRet;
         break;

@@ -33,21 +33,18 @@ void CDlgGetPasswordTigerVNC::SetConnecter(CConnecter *pConnecter)
     if(!m_pConnecter) return;
 
     m_pParameter = qobject_cast<CParameterTigerVnc*>(m_pConnecter->GetParameter());
+
+    ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
+    ui->wUser->SetParameter(&m_pParameter->m_Net.m_User);
 }
 
 void CDlgGetPasswordTigerVNC::showEvent(QShowEvent *event)
 {
-    ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
-    ui->lePassword->setText(m_pParameter->m_Net.m_User.GetPassword());
-    ui->cbSavePassword->setChecked(m_pParameter->m_Net.m_User.GetSavePassword());
-    ui->leUser->setText(m_pParameter->m_Net.m_User.GetUser());
 }
 
 void CDlgGetPasswordTigerVNC::on_pbOK_clicked()
 {
-    m_pParameter->m_Net.m_User.SetUser(ui->leUser->text());
-    m_pParameter->m_Net.m_User.SetPassword(ui->lePassword->text());
-    m_pParameter->m_Net.m_User.SetSavePassword(ui->cbSavePassword->isChecked());
+    ui->wUser->slotAccept();
     emit m_pConnecter->sigUpdateParameters(m_pConnecter);
     accept();
 }

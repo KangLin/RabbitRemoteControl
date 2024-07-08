@@ -2,7 +2,8 @@
 #include "rfb/encodings.h"
 
 CParameterTigerVnc::CParameterTigerVnc(QObject *parent)
-    : CParameterBase(parent)
+    : CParameterBase(parent),
+    m_Proxy(this, "Proxy")
 {
     m_Net.SetPort(5900);
 

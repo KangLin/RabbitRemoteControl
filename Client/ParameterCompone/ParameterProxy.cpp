@@ -3,9 +3,9 @@
 CParameterProxy::CParameterProxy(CParameterConnecter *parent, const QString &szPrefix)
     : CParameterConnecter(parent, szPrefix),
     m_Type(TYPE::No),
-    m_Socket5(parent, "Proxy/Socket5")
+    m_Sockes(parent, "Proxy/SockesV5")
 {
-    m_Socket5.SetPort(1080);
+    m_Sockes.SetPort(1080);
 }
 
 int CParameterProxy::OnLoad(QSettings &set)

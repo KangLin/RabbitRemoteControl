@@ -197,7 +197,7 @@ int CConnectRabbitVNC::SocketInit()
         {
         case CParameterProxy::TYPE::No:
             break;
-        case CParameterProxy::TYPE::Socket5:
+        case CParameterProxy::TYPE::SockesV5:
             type = QNetworkProxy::Socks5Proxy;
             break;
         default:
@@ -206,7 +206,7 @@ int CConnectRabbitVNC::SocketInit()
 
         if(QNetworkProxy::NoProxy != type)
         {
-            auto &net = m_pPara->m_Proxy.m_Socket5;
+            auto &net = m_pPara->m_Proxy.m_Sockes;
             QNetworkProxy proxy;
             proxy.setType(type);
             if(net.GetHost().isEmpty())

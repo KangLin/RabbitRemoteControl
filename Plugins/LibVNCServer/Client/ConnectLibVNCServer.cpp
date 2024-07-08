@@ -147,11 +147,11 @@ bool CConnectLibVNCServer::InitClient()
     // Set sock
     switch(m_pPara->m_Proxy.GetType())
     {
-    case CParameterProxy::TYPE::Socket5:
+    case CParameterProxy::TYPE::SockesV5:
     {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
-        auto &net = m_pPara->m_Proxy.m_Socket5;
+        auto &net = m_pPara->m_Proxy.m_Sockes;
         proxy.setHostName(net.GetHost());
         if(net.GetHost().isEmpty())
         {
