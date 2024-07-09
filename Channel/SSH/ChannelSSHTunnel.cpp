@@ -61,8 +61,8 @@ void CChannelSSHTunnel::run()
 }
 
 CChannelSSHTunnel::CChannelSSHTunnel(
-        QSharedPointer<CParameterChannelSSH> parameter,
-        QObject *parent)
+    QSharedPointer<CParameterChannelSSH> parameter,
+    QObject *parent)
     : CChannel(parent),
     m_Session(NULL),
     m_Channel(NULL),
@@ -127,10 +127,11 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             qCritical(log) << "The parameter is null";
         }
         Q_ASSERT(m_Parameter);
-
+        
         struct ssh_callbacks_struct cb;
-        cb.userdata = this;
-        cb.log_function = cb_log;
+        memset(&cb, 0, sizeof(struct ssh_callbacks_struct));
+        cb.userdata = this,
+        cb.log_function = cb_log;;
         ssh_callbacks_init(&cb);
         ssh_set_callbacks(m_Session, &cb);
         
@@ -183,22 +184,35 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         
         nRet = verifyKnownhost(m_Session, m_Parameter->GetPublicKeyHashType());
         if(nRet) break;
-        //*
-        nRet = authenticationPublicKey(
-            m_Session,
-            m_Parameter->GetUser(),
-            m_Parameter->GetPublicKeyFile(),
-            m_Parameter->GetPrivateKeyFile(),
-            m_Parameter->GetPassphrase());
-        if(nRet) break;//*/
-        /*
-        nRet = authenticationUser(m_Session,
-                                  m_Parameter->GetUser(),
-                                  m_Parameter->GetPassword(),
-                                  m_Parameter->GetPassphrase(),
-                                  m_Parameter->GetAuthenticationMethod());
+        
+        switch(m_Parameter->GetAuthenticationMethod()) {
+        case SSH_AUTH_METHOD_PUBLICKEY:
+        {
+            nRet = authenticationPublicKey(
+                m_Session,
+                m_Parameter->GetUser(),
+                m_Parameter->GetPublicKeyFile(),
+                m_Parameter->GetPrivateKeyFile(),
+                m_Parameter->GetPassphrase());
+            break;
+        }
+        case SSH_AUTH_METHOD_PASSWORD: {
+            nRet = authenticationUser(m_Session,
+                                      m_Parameter->GetUser(),
+                                      m_Parameter->GetPassword(),
+                                      m_Parameter->GetPassphrase(),
+                                      m_Parameter->GetAuthenticationMethod());
+            break;
+        }
+        default:
+            qCritical(log) << "Don't support authentication method"
+                           << m_Parameter->GetAuthenticationMethod();
+            nRet = -1;
+            break;
+        }
+        
         if(nRet) break;
-        //*/
+
         nRet = forward(m_Session);
         if(nRet) break;
 

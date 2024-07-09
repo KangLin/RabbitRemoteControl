@@ -3,7 +3,7 @@
 
 CParameterRabbitVNC::CParameterRabbitVNC(QObject *parent)
     : CParameterBase(parent),
-    m_Proxy(this, "Proxy")
+    m_Proxy(this)
 {
     m_Net.SetPort(5900);
     SetShared(true);

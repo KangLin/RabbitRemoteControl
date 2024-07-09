@@ -4,7 +4,9 @@
 #include "ParameterBase.h"
 #include "freerdp/freerdp.h"
 
+//! [Declare CParameterFreeRDP]
 class CParameterFreeRDP : public CParameterBase
+//! [Declare CParameterFreeRDP]
 {
     Q_OBJECT
     Q_PROPERTY(bool RedirectionPrinter READ GetRedirectionPrinter WRITE SetRedirectionPrinter NOTIFY sigRedirectionPrinterChanged)

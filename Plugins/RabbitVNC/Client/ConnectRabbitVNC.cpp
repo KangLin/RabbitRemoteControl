@@ -195,16 +195,25 @@ int CConnectRabbitVNC::SocketInit()
         // Set sock
         switch(m_pPara->m_Proxy.GetType())
         {
-        case CParameterProxy::TYPE::No:
+        case CParameterProxy::TYPE::None:
             break;
         case CParameterProxy::TYPE::SockesV5:
             type = QNetworkProxy::Socks5Proxy;
             break;
+        case CParameterProxy::TYPE::Application:
+            type = QNetworkProxy::DefaultProxy;
+            break;
         default:
             break;
         }
-
-        if(QNetworkProxy::NoProxy != type)
+        
+        switch(type) {
+        case QNetworkProxy::DefaultProxy:
+        {
+            pSock->setProxy(QNetworkProxy::applicationProxy());
+            break;
+        }
+        case QNetworkProxy::Socks5Proxy:
         {
             auto &net = m_pPara->m_Proxy.m_Sockes;
             QNetworkProxy proxy;
@@ -223,6 +232,10 @@ int CConnectRabbitVNC::SocketInit()
             proxy.setUser(user.GetUser());
             proxy.setPassword(user.GetPassword());
             pSock->setProxy(proxy);
+            break;
+        }
+        default:
+            break;
         }
         
         auto &net = m_pPara->m_Net;

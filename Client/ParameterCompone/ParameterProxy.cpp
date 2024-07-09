@@ -2,10 +2,19 @@
 
 CParameterProxy::CParameterProxy(CParameterConnecter *parent, const QString &szPrefix)
     : CParameterConnecter(parent, szPrefix),
-    m_Type(TYPE::No),
-    m_Sockes(parent, "Proxy/SockesV5")
+    m_Type(TYPE::None),
+    m_Sockes(this, "Proxy/SockesV5"),
+    m_SSH(this, "Proxy/SSH/Tunnel")
 {
     m_Sockes.SetPort(1080);
+    m_Sockes.m_User.SetType(
+        (CParameterUser::TYPE)((int)CParameterUser::TYPE::None
+                               | (int)CParameterUser::TYPE::Password));
+
+    m_SSH.SetPort(22);
+    m_SSH.m_User.SetType(
+        (CParameterUser::TYPE)((int)CParameterUser::TYPE::Password
+                               | (int)CParameterUser::TYPE::PublicKey));
 }
 
 int CParameterProxy::OnLoad(QSettings &set)

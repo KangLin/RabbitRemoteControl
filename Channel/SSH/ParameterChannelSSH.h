@@ -16,9 +16,6 @@ public:
     explicit CParameterChannelSSH(QObject *parent = nullptr);
 
     CParameterChannelSSH(const CParameterChannelSSH& c);
-    
-    virtual int Load(QSettings &set);
-    virtual int Save(QSettings &set);
 
     QString GetServer() const;
     int setServer(const QString &szServer);

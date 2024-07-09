@@ -2,7 +2,7 @@
 
 CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
     : CParameterBase(parent),
-    m_Proxy(this, "Proxy")
+    m_Proxy(this)
 {
     m_Net.SetPort(5900);
 

@@ -23,6 +23,11 @@ private slots:
     void on_pbShow_clicked();
     void on_pbSave_clicked();
     
+    void on_pbBrowsePublicFile_clicked();
+    void on_pbBrowsePrivateFile_clicked();
+    
+    void on_cbType_currentIndexChanged(int index);
+    
 private:
     Ui::CParameterUserUI *ui;
     CParameterUser* m_pUser;

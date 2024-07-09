@@ -186,7 +186,7 @@ bool CConnectLibVNCServer::InitClient()
     case (CParameterConnecter::emProxy) CParameterLibVNCServer::emVncProxy::UltraVncRepeater:
         m_pClient->destHost = strdup(m_pPara->GetProxyHost().toStdString().c_str());
         m_pClient->destPort = m_pPara->GetProxyPort();*/
-    case CParameterProxy::TYPE::No:
+    case CParameterProxy::TYPE::None:
         if(!rfbInitClient(m_pClient, nullptr, nullptr))
         {
             QString szErr;

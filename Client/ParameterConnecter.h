@@ -10,10 +10,11 @@
 /*!
  * \~chinese
  * \defgroup CLIENT_PARAMETER_COMPONE 参数组件
- * \brief 参数组件
+ * \brief 参数组件。
+ * 
  * \~english
  * \defgroup CLIENT_PARAMETER_COMPONE Parameter compone
- * \brief Parameter compone
+ * \brief Parameter compone.
  * \~
  * \ingroup CLIENT_PARAMETER
  */
@@ -25,8 +26,11 @@
  * \note
  *  - 仅在插件中实现和使用
  *  - 应用程序不能访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
- *  - 插件通过 CConnecterDesktopThread::GetParameter 访问
+ *  - 插件通过 CConnecterDesktopThread::GetParameter() 访问连接参数
  *  - \ref section_Use_CParameterBase
+ *  - 需要访问客户端参数的分类，需要从此类派生。
+ *    通过调用 CParameterConnecter::GetParameterClient()
+ *    访问客户端参数(CParameterClient)
  *
  * \details
  * \section section_Use_CParameterClient 使用客户端库参数 (CParameterClient)
@@ -97,9 +101,12 @@
  *  {}
  *  \endcode
  *
- *  \note 当成员实例化时， CParameterBase ， CParameterUser
- *   必须设置构造函数的参数 parent 为 CParameterConnecter 的实例（一般设置为 this）。
- * 
+ *  \note
+ *  - 连接参数必须从 CParameterBase 派生
+ *  - 当成员实例化时， CParameterUser 必须设置构造函数的参数 parent
+ *    为 CParameterConnecter 的实例（一般设置为 this）。
+ *    m_Video ， m_Audio 必须设置构造函数的参数 parent
+ *    为 CParameter 或其派生类的实例（一般设置为 this）。
  *  - \ref sub_Set_CParameterClient_in_CParameterConnecter
  *
  * \~english
@@ -110,6 +117,10 @@
  *  - The application cannot access it directly,
  *    it can only be set via CConnecter::OpenDialogSettings.
  *  - The plugin can access via CConnecterDesktopThread::GetParameter
+ *  - Need access the client parameters(CParameterClient),
+ *    must be derived from the class.
+ *    Access the client parameters(CParameterClient)
+ *    via CParameterConnecter::GetParameterClient()
  *  - \ref section_Use_CParameterBase
  *
  * \details
@@ -189,8 +200,11 @@
  *  {}
  *  \endcode
  *
- *  \note When a member is instantiated,
+ *  \note
+ *  - The connect parameter must be derived from CParameterBase
+ *  - When a member is instantiated,
  *   the constructor must set the parent to the instance of CParameterConnecter(this).
+ *  - \ref sub_Set_CParameterClient_in_CParameterConnecter
  *
  * \~
  * \see CParameterBase

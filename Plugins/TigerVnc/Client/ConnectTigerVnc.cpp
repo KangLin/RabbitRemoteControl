@@ -121,19 +121,20 @@ CConnect::OnInitReturnValue CConnectTigerVnc::OnInit()
 {
     qDebug(log) << "CConnectTigerVnc::OnInit()";
     int nRet = 0;
-    
-    /*TODO: remove
+
 #ifdef HAVE_LIBSSH
-    nRet = SSHInit();
-    if(nRet) return OnInitReturnValue::Fail; // error
-    return OnInitReturnValue::NotUseOnProcess;
+    if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
+        nRet = SSHInit();
+        if(nRet) return OnInitReturnValue::Fail; // error
+        return OnInitReturnValue::NotUseOnProcess;
+    }
 #endif
-    //*/
     
     if(m_pPara->GetIce())
         nRet = IceInit();
     else
         nRet = SocketInit();
+
     if(nRet) return OnInitReturnValue::Fail; // error
     // Don't use OnProcess (qt event loop)
     return OnInitReturnValue::NotUseOnProcess;
@@ -213,12 +214,21 @@ int CConnectTigerVnc::SocketInit()
         case CParameterProxy::TYPE::SockesV5:
             type = QNetworkProxy::Socks5Proxy;
             break;
-        case CParameterProxy::TYPE::No:
+        case CParameterProxy::TYPE::Application:
+            type = QNetworkProxy::DefaultProxy;
+            break;
+        case CParameterProxy::TYPE::None:
         default:
             break;
         }
-
-        if(QNetworkProxy::NoProxy != type)
+        
+        switch(type) {
+        case QNetworkProxy::DefaultProxy:
+        {
+            pSock->setProxy(QNetworkProxy::applicationProxy());
+            break;
+        }
+        case QNetworkProxy::Socks5Proxy:
         {
             QNetworkProxy proxy;
             proxy.setType(type);
@@ -237,6 +247,10 @@ int CConnectTigerVnc::SocketInit()
             proxy.setUser(user.GetUser());
             proxy.setPassword(user.GetPassword());
             pSock->setProxy(proxy);
+            break;
+        }
+        default:
+            break;
         }
 
         if(m_pPara->m_Net.GetHost().isEmpty())
@@ -262,6 +276,25 @@ int CConnectTigerVnc::SSHInit()
 {
 #ifdef HAVE_LIBSSH
     QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
+    auto &ssh = m_pPara->m_Proxy.m_SSH;
+    parameter->setServer(ssh.GetHost());
+    parameter->SetPort(ssh.GetPort());
+    auto &user = ssh.m_User;
+    if(CParameterUser::TYPE::Password == user.GetUsedType()) {
+        parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD);
+        parameter->SetPassword(user.GetPassword());
+    }
+    if(CParameterUser::TYPE::PublicKey == user.GetUsedType()) {
+        parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PUBLICKEY);
+        parameter->SetPublicKeyFile(user.GetPublicKeyFile());
+        parameter->SetPrivateKeyFile(user.GetPrivateKeyFile());
+        parameter->SetPassphrase(user.GetPassphrase());
+    }
+    auto &net = m_pPara->m_Net;
+    parameter->SetRemoteHost(net.GetHost());
+    parameter->SetRemotePort(net.GetPort());
+    
+    
     auto channel = QSharedPointer<CChannelSSHTunnel>(new CChannelSSHTunnel(parameter));
     if(!channel) {
         qCritical(log) << "New CChannelSSHTunnel fail";

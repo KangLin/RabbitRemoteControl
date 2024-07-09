@@ -88,11 +88,6 @@ if(WIN32)
     list(APPEND CLIENT_SOURCE_FILES Windows/HookWindows.cpp)
 endif()
 
-if(libssh_FOUND)
-    list(APPEND CLIENT_INSTALL_HEADER_FILES ParameterCompone/ParameterSSH.h)
-    list(APPEND CLIENT_SOURCE_FILES ParameterCompone/ParameterSSH.cpp)
-endif()
-
 list(APPEND CLIENT_LIBS Channel)
 if(UNIX)
     find_package(X11)

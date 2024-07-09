@@ -1,8 +1,14 @@
 #ifndef CPARAMETERPROXY_H
 #define CPARAMETERPROXY_H
 
-#include <ParameterNet.h>
+#include "ParameterNet.h"
 
+/*!
+ * \brief The proxy parameters
+ *
+ * \~
+ * \ingroup CLIENT_PARAMETER_COMPONE
+ */
 class CLIENT_EXPORT CParameterProxy : public CParameterConnecter
 {
     Q_OBJECT
@@ -11,13 +17,16 @@ public:
                              const QString& szPrefix = QString());
 
     enum class TYPE{
-        No,
-        SockesV5
+        None = 0x01,
+        SockesV5 = 0x02,
+        SSHTunnel = 0x04,
+        Application = 0x08
     };
     TYPE GetType() const;
     int SetType(TYPE type);
 
     CParameterNet m_Sockes;
+    CParameterNet m_SSH;
 
     // CParameter interface
 protected:

@@ -10,14 +10,7 @@ CParameterChannelSSH::CParameterChannelSSH(QObject *parent)
     m_nRemotePort(5900),
     m_szSourceHost("localhost"),
     m_nSourcePort(0)
-{
-    //TODO: remove it
-    m_szServer = "192.168.11.28";
-    m_szPublicKeyFile = "/home/l/.ssh/id_rsa.pub";
-    m_szPrivateKeyFile = "/home/l/.ssh/id_rsa";
-    m_szRemoteHost = "localhost";
-    m_nRemotePort = 5906;
-}
+{}
 
 CParameterChannelSSH::CParameterChannelSSH(const CParameterChannelSSH &c)
 {
@@ -37,51 +30,6 @@ CParameterChannelSSH::CParameterChannelSSH(const CParameterChannelSSH &c)
     
     m_szSourceHost = c.m_szSourceHost;
     m_nSourcePort = c.m_nSourcePort;
-}
-
-int CParameterChannelSSH::Load(QSettings &set)
-{
-    set.beginGroup("SSH/Tunnel");
-    setServer(set.value("Server", GetServer()).toString());
-    SetPort(set.value("Port", GetPort()).toUInt());
-    SetUser(set.value("User", GetUser()).toString());
-    SetAuthenticationMethod(set.value("Authentication/Method",
-                                      GetAuthenticationMethod()).toInt());
-    SetPublicKeyHashType(
-        (ssh_publickey_hash_type)set.value("PublicKey/Hash/Type",
-                                GetPublicKeyHashType()).toInt());
-    SetPublicKeyFile(set.value("Authentication/File/PublicKey",
-                               GetPublicKeyFile()).toString());
-    SetPrivateKeyFile(set.value("Authentication/File/PrivateKey",
-                                GetPrivateKeyFile()).toString());
-    SetPassphrase(set.value("Authentication/Passphrase",
-                            GetPassphrase()).toString());
-    SetRemoteHost(set.value("Remote/Host", GetRemoteHost()).toString());
-    SetRemotePort(set.value("Remote/Port", GetRemotePort()).toUInt());
-    SetSourceHost(set.value("Source/Host", GetSourceHost()).toString());
-    SetSourcePort(set.value("Source/Port", GetSourcePort()).toUInt());
-    set.endGroup();
-    return 0;
-}
-
-int CParameterChannelSSH::Save(QSettings &set)
-{
-    set.beginGroup("SSH/Tunnel");
-    set.setValue("Server", GetServer());
-    set.setValue("Port", GetPort());
-    set.setValue("User", GetUser());
-    //set.setValue("Password", GetPassword());
-    set.setValue("Authentication/Method", GetAuthenticationMethod());
-    set.setValue("Authentication/PublicKey/Hash/Type", GetPublicKeyHashType());
-    set.setValue("Authentication/File/PublicKey", GetPublicKeyFile());
-    set.setValue("Authentication/File/PrivateKey", GetPrivateKeyFile());
-    set.setValue("Authentication/Passphrase", GetPassphrase());
-    set.setValue("Remote/Host", GetRemoteHost());
-    set.setValue("Remote/Port", GetRemotePort());
-    set.setValue("Source/Host", GetSourceHost());
-    set.setValue("Source/Port", GetSourcePort());
-    set.endGroup();
-    return 0;
 }
 
 QString CParameterChannelSSH::GetServer() const

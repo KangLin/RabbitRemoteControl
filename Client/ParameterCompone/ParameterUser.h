@@ -25,6 +25,17 @@ class CLIENT_EXPORT CParameterUser : public CParameterConnecter
 public:
     explicit CParameterUser(CParameterConnecter* parent,
                             const QString& szPrefix = QString());
+    
+    enum class TYPE{
+        None = 0x01,
+        Password = 0x02,
+        PublicKey = 0x04,
+        ALL = None | Password | PublicKey
+    };
+    TYPE GetType() const;
+    int SetType(TYPE type);
+    TYPE GetUsedType() const;
+    int SetUsedType(TYPE type);
 
     virtual const QString GetUser() const;
     virtual void SetUser(const QString& szUser);
@@ -38,16 +49,35 @@ public:
      * \param save
      */
     void SetSavePassword(bool save);
+        
+    QString GetPassphrase() const;
+    int SetPassphrase(const QString passphrase);
+        
+    QString GetPublicKeyFile() const;
+    int SetPublicKeyFile(const QString szFile);
+    
+    QString GetPrivateKeyFile() const;
+    int SetPrivateKeyFile(const QString szFile);
 
 protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
 
 private:
+    TYPE m_Type;
+    TYPE m_UsedType;
+
     QString m_szUser;
+    
+    // Password
     QString m_szPassword;
     bool m_bSavePassword;
-
+    
+    // Public key
+    QString m_szPublicKeyFile;
+    QString m_szPrivateKeyFile;
+    QString m_szPassphrase;
+    
     // CParameterConnecter interface
 protected:
     virtual void slotSetParameterClient() override;
