@@ -16,6 +16,7 @@
 #include <QCheckBox>
 #include <QLoggingCategory>
 #include <QInputDialog>
+#include <QMetaMethod>
 
 static Q_LOGGING_CATEGORY(log, "Client.Connecter.Desktop")
 
@@ -317,18 +318,24 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
     Q_ASSERT(obj);
     if(!obj) return;
     /*
-    if(-1 == obj->metaObject()->indexOfMethod("SetContext"))
+    const QMetaObject* metaObject = obj->metaObject();
+    QStringList methods;
+    for(int i = metaObject->methodOffset(); i < metaObject->methodCount(); ++i)
+        methods << QString::fromLatin1(metaObject->method(i).methodSignature());
+    qCritical(log) << methods;
+    //*/
+    if(-1 == obj->metaObject()->indexOfMethod("SetContext(void*)"))
     {
         qCritical(log) << "The class" << className << "is not method" << "SetContext"
                           << "It must be SetContext and SetConnecter method.";
         Q_ASSERT(false);
     }
-    if(-1 == obj->metaObject()->indexOfMethod("SetConnecter"))
+    if(-1 == obj->metaObject()->indexOfMethod("SetConnecter(CConnecter*)"))
     {
         qCritical(log) << "The class" << className << "is not method" << "SetConnecter"
             << "It must be SetContext and SetConnecter method.";
         Q_ASSERT(false);
-    } //*/
+    } 
     obj->metaObject()->invokeMethod(obj, "SetContext", Q_ARG(void*, pContext));
     obj->metaObject()->invokeMethod(obj, "SetConnecter", Q_ARG(CConnecter*, this));
     if(obj->inherits("QDialog"))

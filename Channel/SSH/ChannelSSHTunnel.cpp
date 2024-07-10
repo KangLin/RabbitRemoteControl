@@ -186,8 +186,10 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         nRet = verifyKnownhost(m_Session);
         if(nRet) break;
         
-        switch(m_Parameter->GetAuthenticationMethod()) {
-        case SSH_AUTH_METHOD_PUBLICKEY:
+        // Authentication
+        // See: https://api.libssh.org/stable/libssh_tutor_authentication.html
+        nRet = -2;
+        if(m_Parameter->GetAuthenticationMethod() & SSH_AUTH_METHOD_PUBLICKEY)
         {
             nRet = authenticationPublicKey(
                 m_Session,
@@ -195,25 +197,19 @@ bool CChannelSSHTunnel::open(OpenMode mode)
                 m_Parameter->GetPublicKeyFile(),
                 m_Parameter->GetPrivateKeyFile(),
                 m_Parameter->GetPassphrase());
-            break;
         }
-        case SSH_AUTH_METHOD_PASSWORD: {
+        if(nRet &&
+            (m_Parameter->GetAuthenticationMethod()
+                     & SSH_AUTH_METHOD_PASSWORD)) {
             nRet = authenticationUser(m_Session,
                                       m_Parameter->GetUser(),
                                       m_Parameter->GetPassword(),
                                       m_Parameter->GetPassphrase(),
                                       m_Parameter->GetAuthenticationMethod());
-            break;
-        }
-        default:
-            qCritical(log) << "Don't support authentication method"
-                           << m_Parameter->GetAuthenticationMethod();
-            nRet = -1;
-            break;
         }
         
         if(nRet) break;
-
+        
         nRet = forward(m_Session);
         if(nRet) break;
 

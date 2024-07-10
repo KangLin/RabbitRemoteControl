@@ -25,6 +25,8 @@ private slots:
     
     void on_pbBrowsePublicFile_clicked();
     void on_pbBrowsePrivateFile_clicked();
+    void on_pbShowPassphrase_clicked();
+    void on_pbSavePassphrase_clicked();
     
     void on_cbType_currentIndexChanged(int index);
     

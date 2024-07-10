@@ -52,7 +52,8 @@ QByteArray CParameterConnecter::PasswordSum(const std::string &password,
                                           const std::string &key)
 {
     QCryptographicHash sum(QCryptographicHash::Md5);
-    sum.addData(password.c_str(), password.length());
+    if(!password.empty())
+        sum.addData(password.c_str(), password.length());
     std::string pw = "RabbitRemoteControl";
     sum.addData(pw.c_str(), pw.length());
     if(!key.empty())
@@ -67,6 +68,8 @@ int CParameterConnecter::LoadPassword(const QString &szTitle,
 {
     QByteArray sum = set.value(szKey + "_sum").toByteArray();
     QByteArray pwByte = set.value(szKey).toByteArray();
+    if(pwByte.isEmpty())
+        return 0;
     RabbitCommon::CEncrypt e;
 
     std::string key;
@@ -135,6 +138,8 @@ int CParameterConnecter::SavePassword(const QString &szKey,
         }
     } else
         e.SetPassword(key.c_str());
+    if(password.isEmpty())
+        return 0;
     e.Encode(password, encryptPassword);
     set.setValue(szKey, encryptPassword);
     set.setValue(szKey + "_sum", PasswordSum(password.toStdString(), key));

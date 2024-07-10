@@ -52,7 +52,10 @@ public:
         
     QString GetPassphrase() const;
     int SetPassphrase(const QString passphrase);
-        
+    
+    bool GetSavePassphrase() const;
+    int SetSavePassphrase(bool bSave);
+
     QString GetPublicKeyFile() const;
     int SetPublicKeyFile(const QString szFile);
     
@@ -77,6 +80,7 @@ private:
     QString m_szPublicKeyFile;
     QString m_szPrivateKeyFile;
     QString m_szPassphrase;
+    bool m_bSavePassphrase;
     
     // CParameterConnecter interface
 protected:

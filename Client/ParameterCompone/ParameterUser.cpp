@@ -8,7 +8,8 @@ CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPre
     : CParameterConnecter(parent, szPrefix),
     m_Type(TYPE::Password),
     m_UsedType(TYPE::Password),
-    m_bSavePassword(false)
+    m_bSavePassword(false),
+    m_bSavePassphrase(false)
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
 }
@@ -36,8 +37,12 @@ int CParameterUser::OnLoad(QSettings &set)
                                GetPublicKeyFile()).toString());
     SetPrivateKeyFile(set.value("PrivateKey",
                                 GetPrivateKeyFile()).toString());
-    SetPassphrase(set.value("Passphrase",
-                            GetPassphrase()).toString());
+    SetSavePassphrase(set.value("SavePassphrase", GetSavePassphrase()).toBool());
+    if(GetSavePassphrase()) {
+        QString szPassword;
+        if(!LoadPassword(tr("Passphrase"), "Passphrase", szPassword, set))
+            SetPassphrase(szPassword);
+    }
     set.endGroup();
     
     set.endGroup();
@@ -62,7 +67,8 @@ int CParameterUser::OnSave(QSettings &set)
     set.beginGroup("File");
     set.setValue("PublicKey", GetPublicKeyFile());
     set.setValue("PrivateKey", GetPrivateKeyFile());
-    set.setValue("Passphrase", GetPassphrase());
+    set.setValue("SavePassphrase", GetSavePassphrase());
+    SavePassword("Passphrase", GetPassphrase(), set, GetSavePassphrase());
     set.endGroup();
     
     set.endGroup();
@@ -149,7 +155,10 @@ void CParameterUser::slotSetParameterClient()
     }
 
     if(GetParameterClient())
+    {   
         SetSavePassword(GetParameterClient()->GetSavePassword());
+        SetSavePassphrase(GetParameterClient()->GetSavePassword());
+    }
 
     return;
 }
@@ -165,6 +174,20 @@ int CParameterUser::SetPassphrase(const QString passphrase)
     if(m_szPassphrase == passphrase)
         return 0;
     m_szPassphrase = passphrase;
+    SetModified(true);
+    return 0;
+}
+
+bool CParameterUser::GetSavePassphrase() const
+{
+    return m_bSavePassphrase;
+}
+
+int CParameterUser::SetSavePassphrase(bool bSave)
+{
+    if(m_bSavePassphrase == bSave)
+        return 0;
+    m_bSavePassphrase = bSave;
     SetModified(true);
     return 0;
 }

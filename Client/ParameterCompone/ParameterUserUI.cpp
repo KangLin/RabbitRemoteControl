@@ -56,6 +56,9 @@ int CParameterUserUI::SetParameter(CParameterUser *pParameter)
     ui->lePublicFile->setText(m_pUser->GetPublicKeyFile());
     ui->lePrivateFile->setText(m_pUser->GetPrivateKeyFile());
     ui->lePassphrase->setText(m_pUser->GetPassphrase());
+    ui->pbSavePassphrase->setChecked(m_pUser->GetSavePassphrase());
+    on_pbSavePassphrase_clicked();
+    ui->pbShowPassphrase->setEnabled(m_pUser->GetParameterClient()->GetViewPassowrd());
 
     return 0;
 }
@@ -73,6 +76,7 @@ int CParameterUserUI::slotAccept()
     m_pUser->SetPublicKeyFile(ui->lePublicFile->text());
     m_pUser->SetPrivateKeyFile(ui->lePrivateFile->text());
     m_pUser->SetPassphrase(ui->lePassphrase->text());
+    m_pUser->SetSavePassphrase(ui->pbSavePassphrase->isChecked());
     
     return 0;
 }
@@ -141,4 +145,36 @@ void CParameterUserUI::on_cbType_currentIndexChanged(int index)
     ui->pbBrowsePrivateFile->setVisible((int)CParameterUser::TYPE::PublicKey & type);
     ui->lbPassphrase->setVisible((int)CParameterUser::TYPE::PublicKey & type);
     ui->lePassphrase->setVisible((int)CParameterUser::TYPE::PublicKey & type);
+    ui->pbShowPassphrase->setVisible((int)CParameterUser::TYPE::PublicKey & type);
+    ui->pbSavePassphrase->setVisible((int)CParameterUser::TYPE::PublicKey & type);
+}
+
+void CParameterUserUI::on_pbShowPassphrase_clicked()
+{
+    switch(ui->lePassphrase->echoMode())
+    {
+    case QLineEdit::Password:
+        ui->lePassphrase->setEchoMode(QLineEdit::Normal);
+        ui->pbShowPassphrase->setIcon(QIcon::fromTheme("eye-off"));
+        break;
+    case QLineEdit::Normal:
+        ui->lePassphrase->setEchoMode(QLineEdit::Password);
+        ui->pbShowPassphrase->setIcon(QIcon::fromTheme("eye-on"));
+        break;
+    default:
+        ui->pbShowPassphrase->setIcon(QIcon::fromTheme("eye-on"));
+    }
+}
+
+void CParameterUserUI::on_pbSavePassphrase_clicked()
+{
+    if(!parent()->inherits("CParameterNetUI")) return;
+    if(ui->pbSavePassphrase->isChecked())
+    {
+        ui->lePassphrase->setEnabled(true);
+        ui->lePassphrase->setPlaceholderText(tr("Input passphrase"));
+    } else {
+        ui->lePassphrase->setPlaceholderText(tr("Please checked save passphrase to enable"));
+        ui->lePassphrase->setEnabled(false);
+    }
 }
