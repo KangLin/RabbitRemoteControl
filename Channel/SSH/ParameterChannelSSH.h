@@ -34,9 +34,6 @@ public:
     
     QString GetPassphrase() const;
     int SetPassphrase(const QString passphrase);
-
-    ssh_publickey_hash_type GetPublicKeyHashType() const;
-    int SetPublicKeyHashType(ssh_publickey_hash_type type);
     
     QString GetPublicKeyFile() const;
     int SetPublicKeyFile(const QString szFile);
@@ -63,7 +60,6 @@ private:
     QString m_szPassword;
     
     int m_nAuthenticationMethod;
-    ssh_publickey_hash_type m_PublicKeyHashType;
     QString m_szPublicKeyFile;
     QString m_szPrivateKeyFile;
     QString m_szPassphrase;

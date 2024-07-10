@@ -6,7 +6,6 @@ CParameterChannelSSH::CParameterChannelSSH(QObject *parent)
     m_nPort(22),
     m_szUser(RabbitCommon::CTools::Instance()->GetCurrentUser()),
     m_nAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD|SSH_AUTH_METHOD_PUBLICKEY),
-    m_PublicKeyHashType(SSH_PUBLICKEY_HASH_SHA1),
     m_nRemotePort(5900),
     m_szSourceHost("localhost"),
     m_nSourcePort(0)
@@ -20,7 +19,6 @@ CParameterChannelSSH::CParameterChannelSSH(const CParameterChannelSSH &c)
     m_szPassword = c.m_szPassword;
     
     m_nAuthenticationMethod = c.m_nAuthenticationMethod;
-    m_PublicKeyHashType = c.m_PublicKeyHashType;
     m_szPublicKeyFile = c.m_szPublicKeyFile;
     m_szPrivateKeyFile = c.m_szPrivateKeyFile;
     m_szPassphrase = c.m_szPassphrase;
@@ -95,17 +93,6 @@ QString CParameterChannelSSH::GetPassphrase() const
 int CParameterChannelSSH::SetPassphrase(const QString passphrase)
 {
     m_szPassphrase = passphrase;
-    return 0;
-}
-
-ssh_publickey_hash_type CParameterChannelSSH::GetPublicKeyHashType() const
-{
-    return m_PublicKeyHashType;
-}
-
-int CParameterChannelSSH::SetPublicKeyHashType(ssh_publickey_hash_type type)
-{
-    m_PublicKeyHashType = type;
     return 0;
 }
 

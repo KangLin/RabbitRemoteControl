@@ -136,6 +136,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         ssh_set_callbacks(m_Session, &cb);
         
         /*
+            See: [ssh_options_set()](https://api.libssh.org/stable/group__libssh__session.html#ga7a801b85800baa3f4e16f5b47db0a73d)
             SSH_LOG_NOLOG: No logging
             SSH_LOG_WARNING: Only warnings
             SSH_LOG_PROTOCOL: High level protocol information
@@ -182,7 +183,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             break;
         }
         
-        nRet = verifyKnownhost(m_Session, m_Parameter->GetPublicKeyHashType());
+        nRet = verifyKnownhost(m_Session);
         if(nRet) break;
         
         switch(m_Parameter->GetAuthenticationMethod()) {
@@ -246,10 +247,9 @@ void CChannelSSHTunnel::close()
     QIODevice::close();
 }
 
-int CChannelSSHTunnel::verifyKnownhost(ssh_session session,
-                                       const ssh_publickey_hash_type type)
+int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
 {
-    int nRet = 0;
+    int nRet = -1;
     QString szErr;
     ssh_key srv_pubkey = NULL;
     nRet = ssh_get_server_publickey(session, &srv_pubkey);
@@ -264,7 +264,7 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session,
     unsigned char *hash = NULL;
     size_t nLen = 0;
     nRet  = ssh_get_publickey_hash(srv_pubkey,
-                                  type,
+                                  SSH_PUBLICKEY_HASH_SHA1,
                                   &hash,
                                   &nLen);
     ssh_key_free(srv_pubkey);
@@ -277,54 +277,79 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session,
     QByteArray baHash((const char*)hash, nLen);
     QString szHash = baHash.toHex(':').toStdString().c_str();
     ssh_clean_pubkey_hash(&hash);
-
+    
+    QMessageBox::StandardButton btRet;
+    bool checkBox = false;
     enum ssh_known_hosts_e state = ssh_session_is_known_server(session);
     switch(state) {
     case SSH_KNOWN_HOSTS_OK:
-        /* OK */
-        
+        nRet = 0;
         break;
     case SSH_KNOWN_HOSTS_CHANGED:
-        szErr = tr("Host key for server changed: it is now:\n");
-        szErr += szHash;
-        szErr += tr("For security reasons, connection will be stopped");
         nRet = -3;
-        emit sigError(nRet, szErr);
+        szErr = tr("Host key for server changed. it is now:") + "\n";
+        szErr += szHash + "\n";
+        szErr += tr("For security reasons, connection will be stopped.") + "\n";
+        szErr += tr("Please look at the OpenSSL documentation on "
+                  "how to add a private CA to the store.");
+        qCritical(log) << szErr;
+        setErrorString(szErr);
         break;
     case SSH_KNOWN_HOSTS_OTHER:
-        szErr = tr("The host key for this server was not found but an other type of key exists.\n");
-        szErr += tr("An attacker might change the default server key to "
-                  "confuse your client into thinking the key does not exist\n");
-        szErr += tr("For security reasons, connection will be stopped");
         nRet = -4;
-        emit sigError(nRet, szErr);
+        szErr = tr("The host key for this server was not found but an other type of key exists.") + "\n";
+        szErr += tr("An attacker might change the default server key to "
+                  "confuse your client into thinking the key does not exist") + "\n";
+        szErr += tr("For security reasons, connection will be stopped.") + "\n";
+        szErr += tr("Please look at the OpenSSL documentation on "
+                    "how to add a private CA to the store.");
+        qCritical(log) << szErr;
+        setErrorString(szErr);
         break;
     case SSH_KNOWN_HOSTS_NOT_FOUND:
-        szErr = tr("Could not find known host file.\n");
+        nRet = -5;
+        szErr = tr("Could not find known host file.") + "\n";
         szErr += tr("If you accept the host key here, the file will be "
-                    "automatically created.\n");
-        szErr += tr("Public key hash: ") + szHash;
-        //TODO: write know host file if accept
-        nRet = ssh_session_update_known_hosts(session);
-        if(nRet)
-        {
-            qCritical(log) << "ssh_session_update_known_hosts fail."
-                           << ssh_get_error(session);
-        }
+                    "automatically created.") + "\n";
+        szErr += tr("Host key hash:") + "\n" + szHash;
+        qDebug(log) << szErr;
+        emit sigBlockShowMessageBox(tr("Error"), szErr,
+                                    QMessageBox::Yes | QMessageBox::No,
+                                    btRet, checkBox);
+        if(QMessageBox::Yes == btRet) {
+            nRet = ssh_session_update_known_hosts(session);
+            if(nRet)
+            {
+                qCritical(log) << "ssh_session_update_known_hosts fail."
+                               << ssh_get_error(session);
+            }
+        } else
+            setErrorString(tr("Reject the host key"));
         break;
     case SSH_KNOWN_HOSTS_UNKNOWN:
-        szErr = tr("The server is unknown. Do you trust the host key?\n");
-        szErr += tr("Public key hash: ") + szHash;
-        //TODO: write know host file if accept
-        nRet = ssh_session_update_known_hosts(session);
-        if (SSH_OK != nRet) {
-            qCritical(log) << "ssh_session_update_known_hosts fail."
-                           << ssh_get_error(session);
-        }
+        nRet = -6;
+        szErr = tr("The server is unknown. Do you trust the host key?") + "\n";
+        szErr += tr("Host key hash:") + "\n" + szHash;
+        qDebug(log) << szErr;
+        emit sigBlockShowMessageBox(tr("Error"), szErr,
+                                    QMessageBox::Yes | QMessageBox::No,
+                                    btRet, checkBox);
+        if(QMessageBox::Yes == btRet) {
+            nRet = ssh_session_update_known_hosts(session);
+            if (SSH_OK != nRet) {
+                qCritical(log) << "ssh_session_update_known_hosts fail."
+                               << ssh_get_error(session);
+            }
+        } else
+            setErrorString(tr("Reject the host key"));
         break;
     case SSH_KNOWN_HOSTS_ERROR:
-        szErr = tr("Error") + ssh_get_error(session);
         nRet = -7;
+        szErr = tr("Error:") + ssh_get_error(session) + "\n";
+        szErr += tr("Host key hash:") + "\n" + szHash + "\n";
+        szErr += tr("Will be stopped.");
+        qCritical(log) << szErr;
+        setErrorString(szErr);
         emit sigError(nRet, szErr);
         break;
     }

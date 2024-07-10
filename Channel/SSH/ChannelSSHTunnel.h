@@ -41,8 +41,7 @@ protected:
     
 private:
     int verifyKnownhost(
-        ssh_session session,
-        const ssh_publickey_hash_type type = SSH_PUBLICKEY_HASH_SHA1);
+        ssh_session session);
     int authenticationUser(ssh_session session,
                            const QString szUser,
                            const QString szPassword,

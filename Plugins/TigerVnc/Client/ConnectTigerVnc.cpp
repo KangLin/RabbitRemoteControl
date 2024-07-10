@@ -238,7 +238,7 @@ int CConnectTigerVnc::SocketInit()
                 QString szErr;
                 szErr = tr("The proxy server is empty, please input it");
                 qCritical(log) << szErr;
-                emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+                emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
                 return -4;
             }
             proxy.setHostName(net.GetHost());
@@ -258,7 +258,7 @@ int CConnectTigerVnc::SocketInit()
             QString szErr;
             szErr = tr("The server is empty, please input it");
             qCritical(log) << szErr;
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             return -5;
         }
         pSock->connectToHost(m_pPara->m_Net.GetHost(), m_pPara->m_Net.GetPort());
@@ -305,12 +305,16 @@ int CConnectTigerVnc::SSHInit()
     if(!channel->open(QIODevice::ReadWrite))
     {
         QString szErr;
-        szErr = tr("Failed to log in via SSH tunnel:");
-        szErr += "(" + m_pPara->m_Net.GetHost();
+        szErr = tr("Failed to open SSH tunnel:");
+        szErr += "(" + m_pPara->m_Proxy.m_SSH.GetHost();
+        szErr += ":";
+        szErr += QString::number(m_pPara->m_Proxy.m_SSH.GetPort());
+        szErr += " - ";
+        szErr += m_pPara->m_Net.GetHost();
         szErr += ":";
         szErr += QString::number(m_pPara->m_Net.GetPort()) + ")";
         QString szMsg = szErr + "\n" + channel->errorString();
-        emit sigShowMessage(tr("Error"), szMsg, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szMsg, QMessageBox::Critical);
         return -2;
     }
 #endif
@@ -331,6 +335,9 @@ int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
     Q_ASSERT(check);
     check = connect(channel.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotChannelError(int, const QString&)));
+    Q_ASSERT(check);
+    check = connect(channel.data(), SIGNAL(sigBlockShowMessageBox(const QString&, const QString&, QMessageBox::StandardButtons, QMessageBox::StandardButton&, bool&, QString)),
+                    this, SIGNAL(sigBlockShowMessageBox(const QString&, const QString&, QMessageBox::StandardButtons, QMessageBox::StandardButton&, bool&, QString)));
     Q_ASSERT(check);
     return 0;
 }
@@ -395,7 +402,7 @@ void CConnectTigerVnc::slotReadyRead()
         szErr += QString::number(m_pPara->m_Net.GetPort());
         szErr += tr(" fail.");
         QString szMsg = szErr + "\n" + tr("Please check that the username and password are correct.") + "\n";
-        emit sigShowMessage(tr("Error"), szMsg, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szMsg, QMessageBox::Critical);
 
         szErr += " [";
         szErr += e.str();
@@ -410,7 +417,7 @@ void CConnectTigerVnc::slotReadyRead()
         szErr += " [";
         szErr += e.str();
         szErr += "]";
-        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
     } catch (rdr::EndOfStream& e) {
         szErr += e.str();
     } catch(rdr::GAIException &e) {
@@ -518,7 +525,7 @@ bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text
     qDebug(log) << title << text;
     QMessageBox::StandardButton nRet = QMessageBox::No;
     bool bCheckBox = 0;
-    emit sigBlockShowMessage(QString(title), QString(text),
+    emit sigBlockShowMessageBox(QString(title), QString(text),
                              QMessageBox::Ok | QMessageBox::No, nRet, bCheckBox);
     if(QMessageBox::Ok == nRet)
         return true;
