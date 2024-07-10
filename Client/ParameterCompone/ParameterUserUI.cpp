@@ -15,6 +15,7 @@ CParameterUserUI::CParameterUserUI(QWidget *parent)
     ui->lePassphrase->setPlaceholderText(tr("Please input the passphrase of private key file"));
     // 调整窗口的初始大小。
     on_cbType_currentIndexChanged(0);
+    on_cbSystemFile_stateChanged(ui->cbSystemFile->isChecked());
 }
 
 CParameterUserUI::~CParameterUserUI()
@@ -147,6 +148,7 @@ void CParameterUserUI::on_cbType_currentIndexChanged(int index)
     ui->lePassphrase->setVisible((int)CParameterUser::TYPE::PublicKey & type);
     ui->pbShowPassphrase->setVisible((int)CParameterUser::TYPE::PublicKey & type);
     ui->pbSavePassphrase->setVisible((int)CParameterUser::TYPE::PublicKey & type);
+    ui->cbSystemFile->setVisible((int)CParameterUser::TYPE::PublicKey & type);
 }
 
 void CParameterUserUI::on_pbShowPassphrase_clicked()
@@ -177,4 +179,12 @@ void CParameterUserUI::on_pbSavePassphrase_clicked()
         ui->lePassphrase->setPlaceholderText(tr("Please checked save passphrase to enable"));
         ui->lePassphrase->setEnabled(false);
     }
+}
+
+void CParameterUserUI::on_cbSystemFile_stateChanged(int arg1)
+{
+    ui->lePublicFile->setEnabled(!ui->cbSystemFile->isChecked());
+    ui->pbBrowsePublicFile->setEnabled(!ui->cbSystemFile->isChecked());
+    ui->lePrivateFile->setEnabled(!ui->cbSystemFile->isChecked());
+    ui->pbBrowsePrivateFile->setEnabled(!ui->cbSystemFile->isChecked());
 }

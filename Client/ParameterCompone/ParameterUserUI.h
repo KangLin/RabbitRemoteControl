@@ -30,6 +30,8 @@ private slots:
     
     void on_cbType_currentIndexChanged(int index);
     
+    void on_cbSystemFile_stateChanged(int arg1);
+    
 private:
     Ui::CParameterUserUI *ui;
     CParameterUser* m_pUser;

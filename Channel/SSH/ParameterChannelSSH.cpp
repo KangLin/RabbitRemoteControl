@@ -6,6 +6,7 @@ CParameterChannelSSH::CParameterChannelSSH(QObject *parent)
     m_nPort(22),
     m_szUser(RabbitCommon::CTools::Instance()->GetCurrentUser()),
     m_nAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD|SSH_AUTH_METHOD_PUBLICKEY),
+    m_bUseSystemFile(true),
     m_nRemotePort(5900),
     m_szSourceHost("localhost"),
     m_nSourcePort(0)
@@ -93,6 +94,19 @@ QString CParameterChannelSSH::GetPassphrase() const
 int CParameterChannelSSH::SetPassphrase(const QString passphrase)
 {
     m_szPassphrase = passphrase;
+    return 0;
+}
+
+bool CParameterChannelSSH::GetUseSystemFile() const
+{
+    return m_bUseSystemFile;
+}
+
+int CParameterChannelSSH::SetUseSystemFile(bool use)
+{
+    if(m_bUseSystemFile == use)
+        return 0;
+    m_bUseSystemFile = use;
     return 0;
 }
 

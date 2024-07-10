@@ -44,24 +44,6 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
-   <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>User:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="leUser">
-       <property name="placeholderText">
-        <string>Input user name</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
@@ -78,6 +60,71 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="6" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="lbPassphrase">
+       <property name="text">
+        <string>Passphrase:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lePassphrase">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+       <property name="placeholderText">
+        <string>Input passphrase</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbShowPassphrase">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset theme="eye-on"/>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbSavePassphrase">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset theme="document-save"/>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>User:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="leUser">
+       <property name="placeholderText">
+        <string>Input user name</string>
        </property>
       </widget>
      </item>
@@ -154,28 +201,7 @@
      </item>
     </layout>
    </item>
-   <item row="3" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QLabel" name="lbPublicFile">
-       <property name="text">
-        <string>Public file:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lePublicFile"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbBrowsePublicFile">
-       <property name="text">
-        <string>Browse</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="4" column="0">
+   <item row="5" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QLabel" name="lbPrivateFile">
@@ -185,7 +211,20 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lePrivateFile"/>
+      <widget class="QLineEdit" name="lePrivateFile">
+       <property name="toolTip">
+        <string>The public and private file is empty, then be use system public and private file.</string>
+       </property>
+       <property name="statusTip">
+        <string>The public and private file is empty, then be use system public and private file.</string>
+       </property>
+       <property name="whatsThis">
+        <string>The public and private file is empty, then be use system public and private file.</string>
+       </property>
+       <property name="placeholderText">
+        <string>The public and private file is empty, then be use system public and private file.</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pbBrowsePrivateFile">
@@ -196,52 +235,49 @@
      </item>
     </layout>
    </item>
-   <item row="5" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_6">
+   <item row="4" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="lbPassphrase">
+      <widget class="QLabel" name="lbPublicFile">
        <property name="text">
-        <string>Passphrase:</string>
+        <string>Public file:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lePassphrase">
-       <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
+      <widget class="QLineEdit" name="lePublicFile">
+       <property name="toolTip">
+        <string>The public and private file is empty, then be use system public and private file.</string>
+       </property>
+       <property name="statusTip">
+        <string>The public and private file is empty, then be use system public and private file.</string>
+       </property>
+       <property name="whatsThis">
+        <string>The public and private file is empty, then be use system public and private file.</string>
        </property>
        <property name="placeholderText">
-        <string>Input passphrase</string>
+        <string>The public and private file is empty, then be use system public and private file.</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbShowPassphrase">
+      <widget class="QPushButton" name="pbBrowsePublicFile">
        <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="eye-on"/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbSavePassphrase">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="icon">
-        <iconset theme="document-save"/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
+        <string>Browse</string>
        </property>
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="3" column="0">
+    <widget class="QCheckBox" name="cbSystemFile">
+     <property name="text">
+      <string>Use system public and private file</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

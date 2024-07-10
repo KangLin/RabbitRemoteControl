@@ -35,6 +35,9 @@ public:
     QString GetPassphrase() const;
     int SetPassphrase(const QString passphrase);
     
+    bool GetUseSystemFile() const;
+    int SetUseSystemFile(bool use);
+    
     QString GetPublicKeyFile() const;
     int SetPublicKeyFile(const QString szFile);
     
@@ -63,6 +66,7 @@ private:
     QString m_szPublicKeyFile;
     QString m_szPrivateKeyFile;
     QString m_szPassphrase;
+    bool m_bUseSystemFile;
     
     QString m_szRemoteHost;
     quint16 m_nRemotePort;

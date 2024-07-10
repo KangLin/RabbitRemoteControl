@@ -49,19 +49,22 @@ public:
      * \param save
      */
     void SetSavePassword(bool save);
-        
-    QString GetPassphrase() const;
-    int SetPassphrase(const QString passphrase);
     
-    bool GetSavePassphrase() const;
-    int SetSavePassphrase(bool bSave);
+    bool GetUseSystemFile() const;
+    int SetUseSystemFile(bool use);
 
     QString GetPublicKeyFile() const;
     int SetPublicKeyFile(const QString szFile);
     
     QString GetPrivateKeyFile() const;
     int SetPrivateKeyFile(const QString szFile);
-
+    
+    QString GetPassphrase() const;
+    int SetPassphrase(const QString passphrase);
+    
+    bool GetSavePassphrase() const;
+    int SetSavePassphrase(bool bSave);
+    
 protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
@@ -77,6 +80,7 @@ private:
     bool m_bSavePassword;
     
     // Public key
+    bool m_bUseSystemFile;
     QString m_szPublicKeyFile;
     QString m_szPrivateKeyFile;
     QString m_szPassphrase;

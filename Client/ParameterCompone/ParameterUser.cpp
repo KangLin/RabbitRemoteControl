@@ -9,6 +9,7 @@ CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPre
     m_Type(TYPE::Password),
     m_UsedType(TYPE::Password),
     m_bSavePassword(false),
+    m_bUseSystemFile(true),
     m_bSavePassphrase(false)
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
@@ -33,6 +34,7 @@ int CParameterUser::OnLoad(QSettings &set)
     
     set.beginGroup("PublicKey");
     set.beginGroup("File");
+    SetUseSystemFile(set.value("UseSystemFile", GetUseSystemFile()).toBool());
     SetPublicKeyFile(set.value("PublicKey",
                                GetPublicKeyFile()).toString());
     SetPrivateKeyFile(set.value("PrivateKey",
@@ -65,6 +67,7 @@ int CParameterUser::OnSave(QSettings &set)
     
     set.beginGroup("PublicKey");
     set.beginGroup("File");
+    set.setValue("UseSystemFile", GetUseSystemFile());
     set.setValue("PublicKey", GetPublicKeyFile());
     set.setValue("PrivateKey", GetPrivateKeyFile());
     set.setValue("SavePassphrase", GetSavePassphrase());
@@ -163,6 +166,20 @@ void CParameterUser::slotSetParameterClient()
     return;
 }
 //! [Initialize parameter after set CParameterClient]
+
+bool CParameterUser::GetUseSystemFile() const
+{
+    return m_bUseSystemFile;
+}
+
+int CParameterUser::SetUseSystemFile(bool use)
+{
+    if(m_bUseSystemFile == use)
+        return 0;
+    m_bUseSystemFile = use;
+    SetModified(true);
+    return 0;
+}
 
 QString CParameterUser::GetPassphrase() const
 {

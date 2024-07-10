@@ -42,7 +42,7 @@ protected:
 private:
     int verifyKnownhost(
         ssh_session session);
-    int authenticationUser(ssh_session session,
+    int authentication(ssh_session session,
                            const QString szUser,
                            const QString szPassword,
                            const QString szPassphrase,

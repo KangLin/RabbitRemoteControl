@@ -186,28 +186,11 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         nRet = verifyKnownhost(m_Session);
         if(nRet) break;
         
-        // Authentication
-        // See: https://api.libssh.org/stable/libssh_tutor_authentication.html
-        nRet = -2;
-        if(m_Parameter->GetAuthenticationMethod() & SSH_AUTH_METHOD_PUBLICKEY)
-        {
-            nRet = authenticationPublicKey(
-                m_Session,
-                m_Parameter->GetUser(),
-                m_Parameter->GetPublicKeyFile(),
-                m_Parameter->GetPrivateKeyFile(),
-                m_Parameter->GetPassphrase());
-        }
-        if(nRet &&
-            (m_Parameter->GetAuthenticationMethod()
-                     & SSH_AUTH_METHOD_PASSWORD)) {
-            nRet = authenticationUser(m_Session,
-                                      m_Parameter->GetUser(),
-                                      m_Parameter->GetPassword(),
-                                      m_Parameter->GetPassphrase(),
-                                      m_Parameter->GetAuthenticationMethod());
-        }
-        
+        nRet = authentication(m_Session,
+                                  m_Parameter->GetUser(),
+                                  m_Parameter->GetPassword(),
+                                  m_Parameter->GetPassphrase(),
+                                  m_Parameter->GetAuthenticationMethod());
         if(nRet) break;
         
         nRet = forward(m_Session);
@@ -353,7 +336,8 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
     return nRet;
 }
 
-int CChannelSSHTunnel::authenticationUser(
+//! \see: https://api.libssh.org/stable/libssh_tutor_authentication.html
+int CChannelSSHTunnel::authentication(
     ssh_session session,
     const QString szUser,
     const QString szPassword,
@@ -369,6 +353,14 @@ int CChannelSSHTunnel::authenticationUser(
     qDebug(log) << "ssh_userauth_none:" << nRet;
     if(SSH_AUTH_SUCCESS == nRet)
         return 0;
+    
+    char *banner = nullptr;
+    banner = ssh_get_issue_banner(session);
+    if (banner)
+    {
+        qDebug(log) << "banner:" << banner;
+        free(banner);
+    }
 
     nServerMethod = ssh_userauth_list(m_Session,
                                       szUser.toStdString().c_str());
@@ -376,16 +368,29 @@ int CChannelSSHTunnel::authenticationUser(
     //*/
 
     if(nServerMethod & nMethod & SSH_AUTH_METHOD_PUBLICKEY) {
-        qDebug(log) << "User authentication: publickey";
-        nRet = ssh_userauth_publickey_auto(session,
-                                           szUser.toStdString().c_str(),
-                                           szPassphrase.toStdString().c_str());
-        if(SSH_AUTH_SUCCESS == nRet)
-            return 0;
-        QString szErr = tr("SSH failed: Error authenticating with publickey:")
-                        + ssh_get_error(m_Session);
-        qCritical(log) << szErr;
-        setErrorString(szErr);
+        
+        if(m_Parameter->GetUseSystemFile()) {
+            qDebug(log) << "User authentication: ssh_userauth_publickey_auto";
+            nRet = ssh_userauth_publickey_auto(session,
+                                               szUser.toStdString().c_str(),
+                                               szPassphrase.toStdString().c_str());
+            if(SSH_AUTH_SUCCESS == nRet)
+                return 0;
+            QString szErr = tr("SSH failed: Error authenticating with publickey:")
+                            + ssh_get_error(m_Session);
+            qCritical(log) << szErr;
+            setErrorString(szErr);
+        } else {
+            qDebug(log) << "User authentication: publickey";
+            nRet = authenticationPublicKey(
+                m_Session,
+                m_Parameter->GetUser(),
+                m_Parameter->GetPublicKeyFile(),
+                m_Parameter->GetPrivateKeyFile(),
+                m_Parameter->GetPassphrase());
+            if(SSH_AUTH_SUCCESS == nRet)
+                return 0;
+        }
     }
 
     if(nServerMethod & nMethod & SSH_AUTH_METHOD_PASSWORD) {
