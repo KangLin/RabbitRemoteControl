@@ -16,7 +16,9 @@
 
 - 编译器
   - [Android SDK](https://developer.android.google.cn/studio?hl=zh-cn)
+    - 当前版本: 9.0
   - [Android NDK](https://developer.android.google.cn/ndk/downloads?hl=en)
+    - 当前版本：20.0.5594570
   - [Java](https://www.java.com/zh-CN/)
 - Qt
   - Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
