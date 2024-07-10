@@ -198,13 +198,13 @@ Q_SIGNALS:
     void sigError(const int nError, const QString &szError = QString());
     /*!
      * \~chinese
-     * \note 它与 sigShowMessage 的区别是 sigShowMessage 用对话框显示
+     * \note 它与 sigShowMessageBox 的区别是 sigShowMessageBox 用对话框显示
      *
      * \~english
-     * \note It differs from sigShowMessage in that sigShowMessage is displayed in a dialog box
+     * \note It differs from sigShowMessageBox in that sigShowMessageBox is displayed in a dialog box
      *
      * \~
-     * \see sigShowMessage SetConnecter CConnecter::sigInformation()
+     * \see sigShowMessageBox SetConnecter CConnecter::sigInformation()
      */
     void sigInformation(const QString& szInfo);
     /*!
@@ -219,9 +219,9 @@ Q_SIGNALS:
      * \note It differs from sigInformation in that sigInformation is not displayed in a dialog box
      *
      * \~
-     * \see sigInformation SetConnecter CConnecter::sigShowMessage()
+     * \see sigInformation SetConnecter CConnecter::sigShowMessageBox()
      */
-    void sigShowMessage(const QString& szTitle, const QString& szMessage,
+    void sigShowMessageBox(const QString& szTitle, const QString& szMessage,
                         const QMessageBox::Icon& icon = QMessageBox::Information);
 
     /*!
@@ -238,15 +238,18 @@ Q_SIGNALS:
      * \param checkBoxContext
      * 
      * \~
-     * \see CConnecter::slotBlockShowMessage() SetConnecter
+     * \see CConnecter::slotBlockShowMessageBox() SetConnecter
      */
-    void sigBlockShowMessage(const QString& szTitle,
+    void sigBlockShowMessageBox(const QString& szTitle,
                              const QString& szMessage,
                              QMessageBox::StandardButtons buttons,
                              QMessageBox::StandardButton& nRet,
                              bool &checkBox,
                              QString checkBoxContext = QString());
     /*!
+     * \~chinese 阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog)
+     *
+     * \~english
      * \brief Block background threads and display input dialogs in foreground threads (QInputDialog)
      * \~
      * \see CConnecter::slotBlockInputDialog() SetConnecter

@@ -63,17 +63,17 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     check = connect(this, SIGNAL(sigSetClipboard(QMimeData*)),
                     pConnecter, SLOT(slotSetClipboard(QMimeData*)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigShowMessage(const QString&, const QString&,
+    check = connect(this, SIGNAL(sigShowMessageBox(const QString&, const QString&,
                                                 const QMessageBox::Icon&)),
-            pConnecter, SIGNAL(sigShowMessage(const QString&, const QString&,
+            pConnecter, SIGNAL(sigShowMessageBox(const QString&, const QString&,
                                               const QMessageBox::Icon&)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigBlockShowMessage(
+    check = connect(this, SIGNAL(sigBlockShowMessageBox(
                               const QString&, const QString&,
                               QMessageBox::StandardButtons,
                               QMessageBox::StandardButton&,
                               bool&, QString)),
-                    pConnecter, SLOT(slotBlockShowMessage(
+                    pConnecter, SLOT(slotBlockShowMessageBox(
                         const QString&, const QString&,
                         QMessageBox::StandardButtons,
                         QMessageBox::StandardButton&,

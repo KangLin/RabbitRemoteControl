@@ -117,7 +117,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         QString szErr;
         szErr = tr("The server is empty, please input it");
         qCritical(log) << szErr;
-        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         emit sigError(-1, szErr.toStdString().c_str());
         return OnInitReturnValue::Fail;
     }
@@ -403,7 +403,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
             szErr += ":";
             szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
             szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
-            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
@@ -414,7 +414,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
             szErr += ":";
             szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
             szErr += tr(" fail. Please check password are correct.") + "\n";
-            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
@@ -425,7 +425,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
             szErr += ":";
             szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
             szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
-            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
@@ -440,13 +440,13 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
             szErr += tr("1. Check for any network related issues") + "\n";
             szErr += tr("2. Check you have proper security settings ('NLA' enabled is required for most connections nowadays)") + "\n";
             szErr += tr("3. Check the certificate is proper (and guacd properly checks that)") + "\n";
-            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
         default:
             nRet = -7;
-            emit pThis->sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         }
 
         qCritical(log) << szErr;
@@ -597,7 +597,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
                         + QString::number(width)
                         + "*" + QString::number(height);
         qCritical(log) << szErr;
-        //emit pThis->sigShowMessage(tr("Error"), szErr);
+        //emit pThis->sigShowMessageBox(tr("Error"), szErr);
         return FALSE;
     } else {
         qInfo(log) << "Init desktop size " <<  width << "*" << height;
@@ -1170,7 +1170,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
     bool bCheckBox = false;
-    emit pThis->sigBlockShowMessage(title, message, buttons, nRet, bCheckBox,
+    emit pThis->sigBlockShowMessageBox(title, message, buttons, nRet, bCheckBox,
                                     tr("Don't show again"));
     pThis->m_pParameter->SetShowVerifyDiaglog(!bCheckBox);
     if(pThis->m_pConnecter)
@@ -1258,7 +1258,7 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     bool bCheckBox = false;
     QMessageBox::StandardButton nRet = QMessageBox::StandardButton::No;
     QMessageBox::StandardButtons buttons = QMessageBox::Yes | QMessageBox::Ignore | QMessageBox::No;
-    emit pThis->sigBlockShowMessage(title, message, buttons, nRet, bCheckBox,
+    emit pThis->sigBlockShowMessageBox(title, message, buttons, nRet, bCheckBox,
                                     tr("Don't show again"));
     pThis->m_pParameter->SetShowVerifyDiaglog(!bCheckBox);
     if(pThis->m_pConnecter)
@@ -1312,7 +1312,7 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
         CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
         QMessageBox::StandardButton nRet = QMessageBox::No;
         bool bCheckBox = false;
-        emit pThis->sigBlockShowMessage(tr("Gateway message"), msgType,
+        emit pThis->sigBlockShowMessageBox(tr("Gateway message"), msgType,
                                         QMessageBox::Yes|QMessageBox::No,
                                         nRet, bCheckBox);
         switch (nRet) {

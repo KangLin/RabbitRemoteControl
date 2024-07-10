@@ -80,9 +80,9 @@ private Q_SLOTS:
      * \brief Use message box display information
      *
      * \~
-     * \see CConnecter::sigShowMessage()
+     * \see CConnecter::sigShowMessageBox()
      */
-    virtual void slotShowMessage(const QString& title, const QString& message,
+    virtual void slotShowMessageBox(const QString& title, const QString& message,
                                  const QMessageBox::Icon& icon);
     /*!
      * \~chinese 显示信息。暂时在状态栏显示。

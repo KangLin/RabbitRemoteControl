@@ -349,7 +349,7 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
     }
 }
 
-void CConnecter::slotBlockShowMessage(const QString &szTitle, const QString &szMessage,
+void CConnecter::slotBlockShowMessageBox(const QString &szTitle, const QString &szMessage,
                                       QMessageBox::StandardButtons buttons,
                                       QMessageBox::StandardButton &nRet,
                                       bool &checkBox,

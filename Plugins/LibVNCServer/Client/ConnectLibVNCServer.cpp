@@ -62,7 +62,7 @@ bool CConnectLibVNCServer::InitClient()
     {
         QString szErr;
         szErr = tr("Protocol version error");
-        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         qCritical(LibVNCServer) << "rfbGetClient fail";
         return false;
     }
@@ -75,7 +75,7 @@ bool CConnectLibVNCServer::InitClient()
         QString szErr;
         szErr = tr("The server is empty, please input it");
         qCritical(LibVNCServer) << szErr;
-        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         return false;
     }
     auto &net = m_pPara->m_Net;
@@ -158,7 +158,7 @@ bool CConnectLibVNCServer::InitClient()
             QString szErr;
             szErr = tr("The proxy server is empty, please input it");
             qCritical(LibVNCServer) << szErr;
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             return false;
         }
         proxy.setPort(net.GetPort());
@@ -177,7 +177,7 @@ bool CConnectLibVNCServer::InitClient()
             szErr = tr("Connect to %1:%2 fail").arg(m_pPara->m_Net.GetHost(),
                                                     QString::number(m_pPara->m_Net.GetPort()));
             qCritical(LibVNCServer) <<  szErr;
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             return FALSE;
         }
         break;
@@ -193,7 +193,7 @@ bool CConnectLibVNCServer::InitClient()
             szErr = tr("Connect to %1:%2 fail").arg(m_pPara->m_Net.GetHost(),
                                       QString::number(m_pPara->m_Net.GetPort()));
             qCritical(LibVNCServer) <<  szErr;
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             return FALSE;
         }
         break;

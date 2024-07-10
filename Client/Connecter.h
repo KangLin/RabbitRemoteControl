@@ -217,15 +217,15 @@ Q_SIGNALS:
 
     /*!
      * \~chinese
-     * \note 它与 sigShowMessage 的区别是 sigShowMessage 用对话框显示
+     * \note 它与 sigShowMessageBox 的区别是 sigShowMessageBox 用对话框显示
      * \brief 中主窗口中显示信息
      *
      * \~english
-     * \note It differs from sigShowMessage in that sigShowMessage is displayed in a dialog box
+     * \note It differs from sigShowMessageBox in that sigShowMessageBox is displayed in a dialog box
      * \brief Show information in main windows 
      * \param szInfo
      * \~
-     * \see sigShowMessage MainWindow::slotInformation()
+     * \see sigShowMessageBox MainWindow::slotInformation()
      */
     void sigInformation(const QString& szInfo);
     /*!
@@ -240,9 +240,9 @@ Q_SIGNALS:
      * \note It differs from sigInformation in that sigInformation is not displayed in a dialog box
      *
      * \~
-     * \see sigInformation Connect::SetConnecter MainWindow::slotShowMessage
+     * \see sigInformation Connect::SetConnecter MainWindow::slotShowMessageBox
      */
-    void sigShowMessage(const QString& title, const QString& message,
+    void sigShowMessageBox(const QString& title, const QString& message,
                         const QMessageBox::Icon& icon = QMessageBox::Information);
 
     /*!
@@ -340,9 +340,9 @@ private Q_SLOTS:
      * \brief Block background threads and display message dialogs in foreground threads (QMessageBox)
      * 
      * \~
-     * \see CConnect::sigBlockShowMessage
+     * \see CConnect::sigBlockShowMessageBox
      */
-    virtual void slotBlockShowMessage(const QString& szTitle,
+    virtual void slotBlockShowMessageBox(const QString& szTitle,
                                       const QString& szMessage,
                                       QMessageBox::StandardButtons buttons,
                                       QMessageBox::StandardButton& nRet,

@@ -223,7 +223,7 @@ int CConnectRabbitVNC::SocketInit()
                 QString szErr;
                 szErr = tr("The proxy server is empty, please input it");
                 qCritical(RabbitVNC) << szErr;
-                emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+                emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
                 return -4;
             }
             proxy.setHostName(net.GetHost());
@@ -244,7 +244,7 @@ int CConnectRabbitVNC::SocketInit()
             QString szErr;
             szErr = tr("The server is empty, please input it");
             qCritical(RabbitVNC) << szErr;
-            emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+            emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             return -5;
         }
         pSock->connectToHost(net.GetHost(), net.GetPort());
@@ -337,7 +337,7 @@ void CConnectRabbitVNC::slotReadyRead()
         szErr += QString::number(m_pPara->m_Net.GetPort());
         szErr += tr(" fail.");
         QString szMsg = szErr + "\n" + tr("Please check that the username and password are correct.") + "\n";
-        emit sigShowMessage(tr("Error"), szMsg, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szMsg, QMessageBox::Critical);
 
         szErr += " [";
         szErr += e.str();
@@ -352,7 +352,7 @@ void CConnectRabbitVNC::slotReadyRead()
         szErr += " [";
         szErr += e.str();
         szErr += "]";
-        emit sigShowMessage(tr("Error"), szErr, QMessageBox::Critical);
+        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
     } catch (rdr::EndOfStream& e) {
         szErr += e.str();
     } catch(rdr::GAIException &e) {
@@ -464,8 +464,8 @@ bool CConnectRabbitVNC::showMsgBox(int flags, const char *title, const char *tex
 {
     qDebug(RabbitVNC) << title << text;
     QMessageBox::StandardButton nRet = QMessageBox::No;
-    bool bCheckBox = 0;
-    emit sigBlockShowMessage(QString(title), QString(text),
+    bool bCheckBox = false;
+    emit sigBlockShowMessageBox(QString(title), QString(text),
                              QMessageBox::Ok | QMessageBox::No, nRet, bCheckBox);
     if(QMessageBox::Ok == nRet)
         return true;

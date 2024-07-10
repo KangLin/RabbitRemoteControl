@@ -718,9 +718,9 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     check = connect(p, SIGNAL(sigError(const int, const QString &)),
                     this, SLOT(slotError(const int, const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigShowMessage(const QString&, const QString&,
+    check = connect(p, SIGNAL(sigShowMessageBox(const QString&, const QString&,
                                              const QMessageBox::Icon&)),
-                   this, SLOT(slotShowMessage(const QString&, const QString&,
+                   this, SLOT(slotShowMessageBox(const QString&, const QString&,
                                              const QMessageBox::Icon&)));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigInformation(const QString&)),
@@ -883,7 +883,7 @@ void MainWindow::slotError(const int nError, const QString &szInfo)
     slotInformation(szInfo);
 }
 
-void MainWindow::slotShowMessage(const QString &title, const QString &message,
+void MainWindow::slotShowMessageBox(const QString &title, const QString &message,
                                  const QMessageBox::Icon &icon)
 {
     slotInformation(message);
