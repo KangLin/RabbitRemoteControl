@@ -3,11 +3,13 @@
 
 #pragma once
 
-#include <Channel.h>
-#include <libssh/libssh.h>
-#include <libssh/callbacks.h>
 #include <QSharedPointer>
+#include <QSocketNotifier>
+#include <QMutex>
 
+#include "Channel.h"
+#include "libssh/libssh.h"
+#include "libssh/callbacks.h"
 #include "ParameterChannelSSH.h"
 #include "channel_export.h"
 
@@ -33,20 +35,19 @@ public:
 public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
-    
-    void run();
+
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
     virtual qint64 writeData(const char *data, qint64 len) override;
     
 private:
-    int verifyKnownhost(
-        ssh_session session);
-    int authentication(ssh_session session,
-                           const QString szUser,
-                           const QString szPassword,
-                           const QString szPassphrase,
-                           const int nMethod = SSH_AUTH_METHOD_PASSWORD);
+    int verifyKnownhost(ssh_session session);
+    int authentication(
+        ssh_session session,
+        const QString szUser,
+        const QString szPassword,
+        const QString szPassphrase,
+        const int nMethod = SSH_AUTH_METHOD_PASSWORD);
     int authenticationPublicKey(
         ssh_session session,
         const QString szUser,
@@ -64,6 +65,16 @@ private:
     ssh_session m_Session;
     ssh_channel m_Channel;
     QSharedPointer<CParameterChannelSSH> m_Parameter;
+    
+    QSocketNotifier* m_pSocketRead;
+    QByteArray m_readData;
+    QMutex m_readMutex;
+    
+    QSocketNotifier* m_pSocketWrite;
+    QByteArray m_writeData;
+    QMutex m_writeMutex;
+    
+    QSocketNotifier* m_pSocketException;
 };
 
 #endif // CCHANNELSSHTUNNEL_H

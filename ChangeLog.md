@@ -11,6 +11,7 @@
     - Add CParameterNet
     - Add CParameterUser
     - Add CParameterSSH
+    - Add CParameterProxy
 
 ### v0.0.26
 - Use RabbitCommon v2

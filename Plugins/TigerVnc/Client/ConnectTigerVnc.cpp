@@ -280,6 +280,7 @@ int CConnectTigerVnc::SSHInit()
     parameter->setServer(ssh.GetHost());
     parameter->SetPort(ssh.GetPort());
     auto &user = ssh.m_User;
+    parameter->SetUser(user.GetUser());
     parameter->SetUseSystemFile(user.GetUseSystemFile());
     if(CParameterUser::TYPE::Password == user.GetUsedType()) {
         parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD);

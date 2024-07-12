@@ -2,63 +2,11 @@
 #include <QLoggingCategory>
 #include <QThread>
 #include <QDateTime>
+#include <QAbstractEventDispatcher>
+#include <QtGlobal>
 
 static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel")
 static Q_LOGGING_CATEGORY(logSSH, "Channel.SSH.log")
-
-class CChannelThread: public QThread
-{
-public:
-    explicit CChannelThread(CChannelSSHTunnel* pChannel);
-    ~CChannelThread();
-protected:
-    virtual void run() override;
-private:
-    CChannelSSHTunnel* m_pChannel;
-};
-
-CChannelThread::CChannelThread(CChannelSSHTunnel *pChannel): QThread()
-{
-    m_pChannel = pChannel;
-}
-
-CChannelThread::~CChannelThread()
-{
-    qDebug(log) << "CChannelThread::~CChannelThread()";
-}
-
-void CChannelThread::run()
-{
-    m_pChannel->run();
-}
-
-void CChannelSSHTunnel::run()
-{
-    int nRet = 0;
-
-    while (ssh_channel_is_open(m_Channel)
-           && !ssh_channel_is_eof(m_Channel)
-           && isOpen()
-           ) {
-        
-        struct timeval timeout = {10, 0};
-        ssh_channel channels[2];
-        channels[0] = m_Channel;
-        channels[1] = NULL;
-        nRet = ssh_channel_select(channels, NULL, NULL, &timeout);
-        if (SSH_OK == nRet || SSH_AGAIN == nRet) {
-            emit readyRead();
-            continue;
-        }
-        
-        QString szErr = "Select error:" + QString::number(nRet) + " " + ssh_get_error(m_Session);
-        qCritical(log) << szErr;
-        emit sigError(nRet, "select exit");
-        break;
-    }
-    
-    qDebug(log) << "The thread exit";
-}
 
 CChannelSSHTunnel::CChannelSSHTunnel(
     QSharedPointer<CParameterChannelSSH> parameter,
@@ -66,27 +14,36 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     : CChannel(parent),
     m_Session(NULL),
     m_Channel(NULL),
-    m_Parameter(parameter)
+    m_Parameter(parameter),
+    m_pSocketRead(nullptr),
+    m_pSocketWrite(nullptr),
+    m_pSocketException(nullptr)
 {
     Q_ASSERT(m_Parameter);
 }
 
 qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
 {
-    if(!m_Channel || !ssh_channel_is_open(m_Channel)) {
-        qCritical(log) << "The channel is not open";
-        return -1;
+    qDebug(log) << "CChannelSSHTunnel::readData:" << maxlen;
+    qint64 nLen = 0;
+    m_readMutex.lock();
+    m_readData.size();
+    nLen = qMin(nLen, maxlen);
+    if(nLen > 0) {
+        memcpy(data, m_readData.data(), nLen);
+        m_readData.remove(0, nLen);
     }
-    return ssh_channel_read_nonblocking(m_Channel, data, maxlen, 0);
+    m_readMutex.unlock();
+    return nLen;
 }
 
 qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
 {
-    if(!m_Channel || !ssh_channel_is_open(m_Channel)) {
-        qCritical(log) << "The channel is not open";
-        return -1;
-    }
-    return ssh_channel_write(m_Channel, data, len);
+    qDebug(log) << "CChannelSSHTunnel::writeData:" << len;
+    m_writeMutex.lock();
+    m_writeData.append(data, len);
+    m_writeMutex.unlock();
+    return len;
 }
 
 void CChannelSSHTunnel::cb_log(ssh_session session,
@@ -209,6 +166,23 @@ void CChannelSSHTunnel::close()
 {
     qDebug(log) << "CChannelSSHTunnel::close()";
 
+    QAbstractEventDispatcher* pDispatcher = QAbstractEventDispatcher::instance();
+    if(m_pSocketRead) {
+        pDispatcher->unregisterSocketNotifier(m_pSocketRead);
+        m_pSocketRead->deleteLater();
+        m_pSocketRead = nullptr;
+    }
+    if(m_pSocketWrite) {
+        pDispatcher->unregisterSocketNotifier(m_pSocketWrite);
+        m_pSocketWrite->deleteLater();
+        m_pSocketWrite = nullptr;
+    }
+    if(m_pSocketException) {
+        pDispatcher->unregisterSocketNotifier(m_pSocketException);
+        m_pSocketException->deleteLater();
+        m_pSocketException = nullptr;
+    }
+    
     if(m_Channel) {
         if(ssh_channel_is_open(m_Channel)) {
             ssh_channel_close(m_Channel);
@@ -348,7 +322,7 @@ int CChannelSSHTunnel::authentication(
     int nServerMethod = nMethod;
     qDebug(log) << "Authentication method:" << nMethod;
     //* Get authentication list from ssh server
-    nRet = ssh_userauth_none(m_Session,
+    nRet = ssh_userauth_none(session,
                              szUser.toStdString().c_str());
     qDebug(log) << "ssh_userauth_none:" << nRet;
     if(SSH_AUTH_SUCCESS == nRet)
@@ -362,7 +336,7 @@ int CChannelSSHTunnel::authentication(
         free(banner);
     }
 
-    nServerMethod = ssh_userauth_list(m_Session,
+    nServerMethod = ssh_userauth_list(session,
                                       szUser.toStdString().c_str());
     qDebug(log) << "ssh_userauth_list:" << nServerMethod;
     //*/
@@ -370,18 +344,18 @@ int CChannelSSHTunnel::authentication(
     if(nServerMethod & nMethod & SSH_AUTH_METHOD_PUBLICKEY) {
         
         if(m_Parameter->GetUseSystemFile()) {
-            qDebug(log) << "User authentication: ssh_userauth_publickey_auto";
+            qDebug(log) << "User authentication with ssh_userauth_publickey_auto";
             nRet = ssh_userauth_publickey_auto(session,
                                                szUser.toStdString().c_str(),
                                                szPassphrase.toStdString().c_str());
             if(SSH_AUTH_SUCCESS == nRet)
                 return 0;
-            QString szErr = tr("SSH failed: Error authenticating with publickey:")
+            QString szErr = tr("SSH failed: Failed authenticating with publickey:")
                             + ssh_get_error(m_Session);
             qCritical(log) << szErr;
             setErrorString(szErr);
         } else {
-            qDebug(log) << "User authentication: publickey";
+            qDebug(log) << "User authentication with publickey";
             nRet = authenticationPublicKey(
                 m_Session,
                 m_Parameter->GetUser(),
@@ -394,13 +368,14 @@ int CChannelSSHTunnel::authentication(
     }
 
     if(nServerMethod & nMethod & SSH_AUTH_METHOD_PASSWORD) {
-        qDebug(log) << "User authentication: password";
-        nRet = ssh_userauth_password(m_Session,
+        qDebug(log) << "User authentication with password";
+        nRet = ssh_userauth_password(session,
                                      szUser.toStdString().c_str(),
                                      szPassword.toStdString().c_str());
         if(nRet) {
-            QString szErr = tr("Error authenticating with password:")
-                            + ssh_get_error(m_Session);
+            QString szErr = tr("Failed authenticating with password. User: ")
+                            + szUser + "; "
+                            + ssh_get_error(session);
             qCritical(log) << szErr;
             setErrorString(szErr);
             return nRet;
@@ -500,18 +475,21 @@ int CChannelSSHTunnel::authenticationPublicKey(
 int CChannelSSHTunnel::forward(ssh_session session)
 {
     int nRet = 0;
-    
+
+    Q_ASSERT(session);
+
     m_Channel = ssh_channel_new(session);
     if(NULL == m_Channel) {
         qCritical(log) << "ssh_channel_new fail." << ssh_get_error(session);
         return -1;
     }
 
-    nRet = ssh_channel_open_forward(m_Channel,
-                                    m_Parameter->GetRemoteHost().toStdString().c_str(),
-                                    m_Parameter->GetRemotePort(),
-                                    m_Parameter->GetSourceHost().toStdString().c_str(),
-                                    m_Parameter->GetSourcePort());
+    nRet = ssh_channel_open_forward(
+        m_Channel,
+        m_Parameter->GetRemoteHost().toStdString().c_str(),
+        m_Parameter->GetRemotePort(),
+        m_Parameter->GetSourceHost().toStdString().c_str(),
+        m_Parameter->GetSourcePort());
     if(SSH_OK != nRet) {
         ssh_channel_free(m_Channel);
         m_Channel = NULL;
@@ -531,12 +509,98 @@ int CChannelSSHTunnel::forward(ssh_session session)
                << "with ssh turnnel:"
                << m_Parameter->GetServer()
                       + ":" + QString::number(m_Parameter->GetPort());
-    
+
     emit sigConnected();
+    //ssh_channel_set_blocking(m_Channel, 0);
+
+    bool check = false;
+    socket_t fd = ssh_get_fd(session);
+    m_pSocketRead = new QSocketNotifier(fd, QSocketNotifier::Read, this);
+    if(m_pSocketRead) {
+        check = connect(
+            m_pSocketRead, &QSocketNotifier::activated,
+            this, [&](int fd) {
+                int nRet = 0;
+                qDebug(log) << "Read socket" << fd;
+                return;
+                if(!m_Channel || !ssh_channel_is_open(m_Channel)
+                    || ssh_channel_is_eof(m_Channel)) {
+                    qCritical(log) << "The channel is not open";
+                    return;
+                }
+                const int nLen = 1024;
+                char buf[nLen];
+                do {
+                    int nRet = ssh_channel_read_nonblocking(m_Channel, buf, nLen, 0);
+                    if(nRet < 0) {
+                        QString szErr;
+                        szErr = "Read data from channel failed:";
+                        szErr += ssh_get_error(session);
+                        qCritical(log) << szErr;
+                        emit sigError(nRet, szErr);
+                        return;
+                    }
+                    m_readMutex.lock();
+                    m_readData.append(buf, nLen);
+                    m_readMutex.unlock();
+                } while(nRet >= nLen);
+                emit this->readyRead();
+            });
+        Q_ASSERT(check);
+    }
     
-    CChannelThread* thread = new CChannelThread(this);
-    Q_ASSERT(connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater())));
-    thread->start();
+    m_pSocketWrite = new QSocketNotifier(fd, QSocketNotifier::Write, this);
+    if(m_pSocketWrite) {
+        check = connect(
+            m_pSocketWrite, &QSocketNotifier::activated,
+            this, [&](int fd){
+                int nRet = 0;
+                qDebug(log) << "Write socket" << fd;
+                return;
+                if(!m_Channel || !ssh_channel_is_open(m_Channel)
+                    || ssh_channel_is_eof(m_Channel)) {
+                    qCritical(log) << "The channel is not open";
+                    return;
+                }
+                m_readMutex.lock();
+                qint64 nLen = m_writeData.size();
+                if(nLen > 0) {
+                    nRet = ssh_channel_write(m_Channel, m_writeData.data(), nLen);
+                    if(nRet > 0) {
+                        m_writeData.remove(0, nRet);
+                    }
+                }
+                if(nRet == nLen) {
+                    m_pSocketWrite->setEnabled(false);
+                }
+                m_readMutex.unlock();
+                if(nRet < 0) {
+                    if(SSH_AGAIN != nRet) {
+                        QString szErr;
+                        szErr = "Write data from channel failed:";
+                        szErr += ssh_get_error(session);
+                        qCritical(log) << szErr;
+                        emit sigError(nRet, szErr);
+                    }
+                }
+            });
+        Q_ASSERT(check);
+    }
+    
+    m_pSocketException = new QSocketNotifier(fd, QSocketNotifier::Exception, this);
+    if(m_pSocketException) {
+        check = connect(
+            m_pSocketException, &QSocketNotifier::activated,
+            this, [&](int) {
+                qDebug(log) << "Exception socket";
+                QString szErr;
+                szErr = "Channel exception:";
+                szErr += ssh_get_error(session);
+                qCritical(log) << szErr;
+                emit sigError(nRet, szErr);
+            });
+        Q_ASSERT(check);
+    }
 
     return nRet;
 }

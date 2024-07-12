@@ -11,6 +11,7 @@
     - 增加 CParameterNet
     - 增加 CParameterUser
     - 增加 CParameterSSH
+    - 增加 CParameterProxy
 
 ### v0.0.26
 - 使用 RabbitCommon v2
