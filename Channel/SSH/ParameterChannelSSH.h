@@ -56,6 +56,9 @@ public:
     quint16 GetSourcePort() const;
     int SetSourcePort(const quint16 nPort);
     
+    QString GetPcapFile() const;
+    int SetPcapFile(const QString& szFile);
+
 private:
     QString m_szServer;
     quint16 m_nPort;
@@ -73,6 +76,8 @@ private:
     
     QString m_szSourceHost;
     quint16 m_nSourcePort;
+    
+    QString m_pcapFile;
 };
 
 #endif // CPARAMETERCHANNELSSH_H

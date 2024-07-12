@@ -78,6 +78,7 @@ int CConnectSSH::Initialize()
     m_pCb = new ssh_callbacks_struct();
     if(m_pCb)
     {
+        memset(m_pCb, 0, sizeof(struct ssh_callbacks_struct));
         m_pCb->userdata = this;
         m_pCb->auth_function = cbAuthCallback;
     }

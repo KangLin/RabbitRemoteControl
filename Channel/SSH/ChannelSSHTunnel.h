@@ -64,6 +64,7 @@ private:
 private:
     ssh_session m_Session;
     ssh_channel m_Channel;
+    ssh_pcap_file m_pcapFile;
     QSharedPointer<CParameterChannelSSH> m_Parameter;
     
     QSocketNotifier* m_pSocketRead;

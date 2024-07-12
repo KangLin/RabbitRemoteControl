@@ -7,7 +7,7 @@ CParameterChannelSSH::CParameterChannelSSH(QObject *parent)
     m_szUser(RabbitCommon::CTools::Instance()->GetCurrentUser()),
     m_nAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD|SSH_AUTH_METHOD_PUBLICKEY),
     m_bUseSystemFile(true),
-    m_nRemotePort(5900),
+    m_nRemotePort(0),
     m_szSourceHost("localhost"),
     m_nSourcePort(0)
 {}
@@ -29,6 +29,8 @@ CParameterChannelSSH::CParameterChannelSSH(const CParameterChannelSSH &c)
     
     m_szSourceHost = c.m_szSourceHost;
     m_nSourcePort = c.m_nSourcePort;
+    
+    m_pcapFile = c.m_pcapFile;
 }
 
 QString CParameterChannelSSH::GetServer() const
@@ -173,5 +175,16 @@ quint16 CParameterChannelSSH::GetSourcePort() const
 int CParameterChannelSSH::SetSourcePort(const quint16 nPort)
 {
     m_nSourcePort = nPort;
+    return 0;
+}
+
+QString CParameterChannelSSH::GetPcapFile() const
+{
+    return m_pcapFile;
+}
+
+int CParameterChannelSSH::SetPcapFile(const QString &szFile)
+{
+    m_pcapFile = szFile;
     return 0;
 }

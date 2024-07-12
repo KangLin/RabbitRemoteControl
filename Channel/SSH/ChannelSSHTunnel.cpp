@@ -14,6 +14,7 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     : CChannel(parent),
     m_Session(NULL),
     m_Channel(NULL),
+    m_pcapFile(NULL),
     m_Parameter(parameter),
     m_pSocketRead(nullptr),
     m_pSocketWrite(nullptr),
@@ -126,7 +127,28 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             setErrorString(szErr);
             break;
         }
-
+        
+        if(!m_Parameter->GetPcapFile().isEmpty())
+        {
+            m_pcapFile = ssh_pcap_file_new();
+            if(m_pcapFile) {
+                if (ssh_pcap_file_open(m_pcapFile,
+                                       m_Parameter->GetPcapFile().toStdString().c_str())
+                    == SSH_ERROR) {
+                    qCritical(log) << "SSH failed: Error opening pcap file: "
+                                   << m_Parameter->GetPcapFile();
+                    ssh_pcap_file_free(m_pcapFile);
+                    m_pcapFile = nullptr;
+                }
+                if(m_pcapFile)
+                    ssh_set_pcap_file(m_Session, m_pcapFile);
+            } else {
+                szErr = tr("SSH failed: ssh_pcap_file_new: ")
+                       + ssh_get_error(m_Session);
+                qCritical(log) << szErr;
+            }
+        }
+        
         nRet = ssh_connect(m_Session);
         if(nRet) {
             szErr = tr("SSH failed: ssh connect ")
@@ -181,6 +203,13 @@ void CChannelSSHTunnel::close()
         pDispatcher->unregisterSocketNotifier(m_pSocketException);
         m_pSocketException->deleteLater();
         m_pSocketException = nullptr;
+    }
+    
+    if(m_pcapFile)
+    {
+        ssh_pcap_file_close(m_pcapFile);
+        ssh_pcap_file_free(m_pcapFile);
+        m_pcapFile = nullptr;
     }
     
     if(m_Channel) {
