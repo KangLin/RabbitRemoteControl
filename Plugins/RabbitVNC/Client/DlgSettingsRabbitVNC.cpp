@@ -41,8 +41,9 @@ CDlgSettingsRabbitVNC::~CDlgSettingsRabbitVNC()
 
 void CDlgSettingsRabbitVNC::on_pbOk_clicked()
 {
+    int nRet = 0;
     if(!m_pPara)
-        reject();
+        return;
     
     // Server
     bool ice = false;
@@ -58,9 +59,12 @@ void CDlgSettingsRabbitVNC::on_pbOk_clicked()
     }
 
     m_pPara->SetName(ui->leName->text());
-    ui->wNet->slotAccept(true);
-    m_pParameterProxyUI->slotAccept();
-
+    
+    nRet = ui->wNet->slotAccept(true);
+    if(nRet) return;
+    nRet = m_pParameterProxyUI->slotAccept();
+    if(nRet) return;
+    
     m_pPara->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pPara->SetShared(ui->cbShared->isChecked());
     m_pPara->SetBufferEndRefresh(!ui->cbRealTimeUpdate->isChecked());

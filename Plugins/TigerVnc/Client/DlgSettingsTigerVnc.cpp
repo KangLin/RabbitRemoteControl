@@ -132,8 +132,9 @@ CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()
 
 void CDlgSettingsTigerVnc::on_pbOK_clicked()
 {
+    int nRet = 0;
     if(!m_pPara)
-        reject();
+        return;
     
     // Server
     bool ice = false;
@@ -148,8 +149,10 @@ void CDlgSettingsTigerVnc::on_pbOK_clicked()
         m_pPara->SetIce(false);
     }
     
-    ui->wNet->slotAccept(true);
-    m_pProxy->slotAccept();
+    nRet = ui->wNet->slotAccept(true);
+    if(nRet) return;
+    nRet = m_pProxy->slotAccept();
+    if(nRet) return;
     
     m_pPara->SetName(ui->leName->text());
     m_pPara->SetShared(ui->cbShared->isChecked());

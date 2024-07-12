@@ -77,7 +77,7 @@ void CDlgSettingsLibVnc::on_pbOk_clicked()
     int nRet = 0;
 
     if(!m_pPara)
-        reject();
+        return;
     
     // Server
     m_pPara->SetName(ui->leName->text());
