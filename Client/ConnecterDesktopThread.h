@@ -30,8 +30,8 @@ class CConnectThread;
  *         2. 实现 GetDialogSettings() ，得到参数对话框
  *         3. 实现 Load(QSettings& set) ，加载参数
  *         4. 实现 Save(QSettings& set) ，保存参数
- *   
- * 
+ *
+ *
  * \~english
  * \brief It starts a background thread by default.
  *        It implements a remote desktop background thread to

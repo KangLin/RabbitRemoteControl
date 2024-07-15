@@ -95,8 +95,8 @@
             E.g. CPluginFreeRDP::Name() 
              \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
     + No-blocking: One background thread handles multiple connections.
-      The connection is non-blocking. E.g. RabbitVNC 
-      - Derive from CPluginClientThread. For example: CPluginRabbitVNC
+      The connection is non-blocking.
+      - Derive from CPluginClientThread.
         + Implement the Qt interface in the class declaration:
           \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.h Qt plugin interface
         + Initialize the operation in the constructor.
@@ -106,15 +106,14 @@
         + Implement properties and functions
           - Plugin name: This name must be the same as the project name (${PROJECT_NAME}).
             The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
-            E.g. CPluginRabbitVNC::Name() 
-             \include Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp
-  - Implement \ref CConnecter. 
+            \include Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp
+  - Implement \ref CConnecter.
     - Implement remote desktop
       - Blocked: Implements a remote desktop background thread to handle
         a remote desktop connection, which can be derived from CConnecterDesktopThread. Eg: CConnecterFreeRDP
         \image html docs/Image/PluginClientBlockSequenceDiagram.svg
       - No-blocking: Implements a background thread to handle multiple remote desktop connections,
-        which can be derived from CConnecterDesktop. Eg: CConnecterRabbitVNC
+        which can be derived from CConnecterDesktop.
         \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
     - Implement remote console, which can be derived from CConnecterTerminal
     - If the above two cannot meet your needs, you  can be derived from CConnecter

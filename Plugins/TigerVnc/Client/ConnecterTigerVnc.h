@@ -7,7 +7,7 @@
 #include "DlgSettingsTigerVnc.h"
 #include "ParameterTigerVnc.h"
 
-class CConnecterTigerVnc : public CConnecterDesktop
+class CConnecterTigerVnc : public CConnecterDesktopThread
 {
     Q_OBJECT
 

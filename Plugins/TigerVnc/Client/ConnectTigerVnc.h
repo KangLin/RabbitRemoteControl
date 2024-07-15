@@ -71,6 +71,7 @@ protected:
     // Please call SetParamter before call Connect
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
+    virtual int OnProcess() override;
     
 private:
     QSharedPointer<CChannel> m_DataChannel;

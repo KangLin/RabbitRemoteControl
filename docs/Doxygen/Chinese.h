@@ -86,15 +86,15 @@
         + 实现属性、函数
           - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginFreeRDP::Name() 
             \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
-    + 如果非阻塞线程模型。一个后台线程处理多个连接。连接是非阻塞的。 例如：RabbitVNC
-      - 从  CPluginClientThread 派生插件。例如： \ref CPluginRabbitVNC
+    + 如果非阻塞线程模型。一个后台线程处理多个连接。连接是非阻塞的。
+      - 从  CPluginClientThread 派生插件。
         + 在类声明中实现Qt接口:
           \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.h Qt plugin interface
         + 在构造函数中初始化操作。例如：初始化资源等
           \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp Initialize resource
         + 在析构函数中释放资源。
         + 实现属性、函数
-          - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginRabbitVNC::Name() 
+          - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。
             \include Plugins/RabbitVNC/Client/PluginRabbitVNC.cpp
   - 实现连接者接口 \ref CConnecter 。
     + 实现远程桌面
@@ -102,7 +102,7 @@
         可以从 \ref CConnecterDesktopThread 派生。例如：\ref CConnecterFreeRDP
         \image html docs/Image/PluginClientBlockSequenceDiagram.svg
       - 如果非阻塞线程模型。实现一个后台线程处理多个远程连接，连接是非阻塞的。
-        可以从 \ref CConnecterDesktop 派生。例如：\ref CConnecterRabbitVNC
+        可以从 \ref CConnecterDesktop 派生。
         \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
     + 实现远程控制台，可以从 \ref CConnecterTerminal 派生
     + 如果上面两个不能满足你的需要，你可以直接从 \ref CConnecter 派生

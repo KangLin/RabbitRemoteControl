@@ -126,7 +126,7 @@ CConnect::OnInitReturnValue CConnectTigerVnc::OnInit()
     if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
         nRet = SSHInit();
         if(nRet) return OnInitReturnValue::Fail; // error
-        return OnInitReturnValue::NotUseOnProcess;
+        return OnInitReturnValue::UseOnProcess;
     }
 #endif
     
@@ -353,6 +353,19 @@ int CConnectTigerVnc::OnClean()
         m_DataChannel->close();
     emit sigDisconnected();
     return 0;
+}
+
+int CConnectTigerVnc::OnProcess()
+{
+    int nRet = 0;
+#ifdef HAVE_LIBSSH
+    if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
+        CChannelSSHTunnel* channel = (CChannelSSHTunnel*)m_DataChannel.data();
+        if(channel)
+            nRet = channel->Process();
+    }
+#endif
+    return nRet;
 }
 
 void CConnectTigerVnc::slotConnected()

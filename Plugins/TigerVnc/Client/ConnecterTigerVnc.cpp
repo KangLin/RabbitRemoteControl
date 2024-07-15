@@ -9,7 +9,7 @@
 static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Connecter")
 
 CConnecterTigerVnc::CConnecterTigerVnc(CPluginClient *parent)
-    : CConnecterDesktop(parent)
+    : CConnecterDesktopThread(parent)
 {
     SetParameter(&m_Para);
 }

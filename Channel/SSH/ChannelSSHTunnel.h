@@ -35,7 +35,10 @@ public:
 public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
-
+    
+    int Process();
+    int ProcessSocket();
+    
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
     virtual qint64 writeData(const char *data, qint64 len) override;
@@ -60,7 +63,7 @@ private:
                        int priority,
                        const char *message,
                        void *userdata);
-
+    
 private:
     ssh_session m_Session;
     ssh_channel m_Channel;

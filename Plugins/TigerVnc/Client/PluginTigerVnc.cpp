@@ -12,7 +12,7 @@ static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Plugin")
 
 static bool initlog = false;
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
-    : CPluginClientThread(parent)
+    : CPluginClient(parent)
 {
     //! [Initialize resource]
 
@@ -53,7 +53,7 @@ const QString CPluginTigerVnc::Protocol() const
     return "RFB";
 }
 
-CConnecterDesktop *CPluginTigerVnc::OnCreateConnecter(const QString &szProtocol)
+CConnecter *CPluginTigerVnc::CreateConnecter(const QString &szProtocol)
 {
     if(Id() == szProtocol)
     {
