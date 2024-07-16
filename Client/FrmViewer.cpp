@@ -197,6 +197,7 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
         event->pos();
 #endif
     if(TranslationMousePoint(pos, pos)) return;
+    //qDebug(log) << "CFrmViewer::mouseMoveEvent" << event->button() << event->buttons() << pos;
     emit sigMouseMoveEvent(event->buttons(), QPoint(pos.x(), pos.y()));
     emit sigMouseMoveEvent(event);
     event->accept();

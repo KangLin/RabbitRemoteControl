@@ -69,7 +69,7 @@ static const unsigned bpsEstimateWindow = 1000;
  * 并具 Socket 不能在不同的线程中调用，所以这里 bDirectConnection 设置成 false
  */
 CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *parent)
-    : CConnect(pConnecter, parent, false),
+    : CConnect(pConnecter, parent),
       m_bpsEstimate(20000000),
       m_updateCount(0),
       m_pPara(nullptr)
@@ -85,8 +85,6 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
 
 CConnectTigerVnc::~CConnectTigerVnc()
 {
-    if(m_DataChannel)
-        m_DataChannel->close();
     qDebug(log) << "CConnectTigerVnc::~CConnectTigerVnc()";
 }
 
@@ -121,20 +119,19 @@ CConnect::OnInitReturnValue CConnectTigerVnc::OnInit()
 {
     qDebug(log) << "CConnectTigerVnc::OnInit()";
     int nRet = 0;
-
-#ifdef HAVE_LIBSSH
-    if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
-        nRet = SSHInit();
-        if(nRet) return OnInitReturnValue::Fail; // error
-        return OnInitReturnValue::UseOnProcess;
-    }
-#endif
     
     if(m_pPara->GetIce())
         nRet = IceInit();
-    else
+    else {
+#ifdef HAVE_LIBSSH
+        if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
+            nRet = SSHInit();
+            if(nRet) return OnInitReturnValue::Fail; // error
+            return OnInitReturnValue::UseOnProcess;
+        }
+#endif
         nRet = SocketInit();
-
+    }
     if(nRet) return OnInitReturnValue::Fail; // error
     // Don't use OnProcess (qt event loop)
     return OnInitReturnValue::NotUseOnProcess;
@@ -296,7 +293,6 @@ int CConnectTigerVnc::SSHInit()
     parameter->SetRemoteHost(net.GetHost());
     parameter->SetRemotePort(net.GetPort());
     
-    
     auto channel = QSharedPointer<CChannelSSHTunnel>(new CChannelSSHTunnel(parameter));
     if(!channel) {
         qCritical(log) << "New CChannelSSHTunnel fail";
@@ -349,8 +345,9 @@ int CConnectTigerVnc::OnClean()
     qDebug(log) << "CConnectTigerVnc::OnClean()";
     close();
     setStreams(nullptr, nullptr);
-    if(m_DataChannel)
+    if(m_DataChannel) {
         m_DataChannel->close();
+    }
     emit sigDisconnected();
     return 0;
 }
@@ -371,11 +368,21 @@ int CConnectTigerVnc::OnProcess()
 void CConnectTigerVnc::slotConnected()
 {
     if(m_pPara->GetIce())
-        qInfo(log) << "Connected to peer" << m_pPara->GetPeerUser();
-    else
-        qInfo(log) << "Connected to"
-                   << m_pPara->m_Net.GetHost() << ":"
-                   << m_pPara->m_Net.GetPort();
+        qInfo(log) << "Connected to peer " + m_pPara->GetPeerUser();
+    else {
+        auto &net = m_pPara->m_Net;
+        QString szInfo = "Connected to "
+                         + net.GetHost() + ":" + QString::number(net.GetPort());
+#ifdef HAVE_LIBSSH
+        if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetType())
+        {
+            auto &ssh = m_pPara->m_Proxy.m_SSH;
+            szInfo += " with ssh turnnel: " + ssh.GetHost()
+                      + ":" + QString::number(ssh.GetPort());
+        }
+#endif
+        qInfo(log) << szInfo;
+    }
     int nRet = SetPara();
     if(nRet)
     {
@@ -396,8 +403,18 @@ void CConnectTigerVnc::slotConnected()
 
 void CConnectTigerVnc::slotDisConnected()
 {
-    qInfo(log) << "slotDisConnected to"
-               << m_pPara->m_Net.GetHost() << ":" << m_pPara->m_Net.GetPort();
+    QString szInfo;
+    szInfo = "slotDisConnected from "
+             + m_pPara->m_Net.GetHost() + ":" + m_pPara->m_Net.GetPort();
+#ifdef HAVE_LIBSSH
+    if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetType())
+    {
+        auto &ssh = m_pPara->m_Proxy.m_SSH;
+        szInfo += " with ssh turnnel: " + ssh.GetHost()
+                  + ":" + QString::number(ssh.GetPort());
+    }
+#endif
+    qInfo(log) << szInfo;
     // There isn't emit sigDisconnect, because of sigDisconnect is emitted in CConnect::Disconnect()
 }
 
@@ -698,7 +715,7 @@ void CConnectTigerVnc::updatePixelFormat()
 bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
 {
     if(!rfb::CConnection::dataRect(r, encoding)) {
-        qCritical(log) << "rfb::CConnection::dataRect fail";
+        qWarning(log) << "rfb::CConnection::dataRect fail";
         return false;
     }
     /*

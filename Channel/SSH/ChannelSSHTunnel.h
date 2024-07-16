@@ -64,6 +64,13 @@ private:
                        const char *message,
                        void *userdata);
     
+    int writeData();
+    
+    int InitSemaphore();
+    int ReadSemphore();
+    int ClearSemphore();
+    int WakeUp();
+   
 private:
     ssh_session m_Session;
     ssh_channel m_Channel;
@@ -79,6 +86,9 @@ private:
     QMutex m_writeMutex;
     
     QSocketNotifier* m_pSocketException;
+
+    int m_eventWriteFD;
+
 };
 
 #endif // CCHANNELSSHTUNNEL_H
