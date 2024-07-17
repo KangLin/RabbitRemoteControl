@@ -6,6 +6,7 @@
 #include <rfb/Logger_stdio.h>
 #include <QDebug>
 #include <QApplication>
+#include <QLoggingCategory>
 #include "RabbitCommonDir.h"
 
 static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Plugin")

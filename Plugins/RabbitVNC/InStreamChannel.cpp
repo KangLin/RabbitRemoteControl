@@ -1,5 +1,6 @@
 #include "InStreamChannel.h"
 #include <stdexcept>
+#include <QLoggingCategory>
 
 Q_LOGGING_CATEGORY(VncStreamChannel, "VNC.Stream.Channel")
 

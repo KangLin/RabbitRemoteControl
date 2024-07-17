@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <QLoggingCategory>
 #include "PluginClient.h"
 
 static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Connecter")

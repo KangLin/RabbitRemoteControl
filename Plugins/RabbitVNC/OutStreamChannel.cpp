@@ -1,6 +1,7 @@
 #include "OutStreamChannel.h"
 
 #include <stdexcept>
+#include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(VncStreamChannel)
 

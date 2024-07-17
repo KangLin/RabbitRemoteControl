@@ -27,7 +27,7 @@
 #include <QMimeData>
 #include <QClipboard>
 #include <QApplication>
-#include <QDebug>
+#include <QLoggingCategory>
 #include <QThread>
 #include <QKeyEvent>
 #include <QMouseEvent>

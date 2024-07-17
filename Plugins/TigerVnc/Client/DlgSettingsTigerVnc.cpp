@@ -5,6 +5,7 @@
 #include "rfb/encodings.h"
 #include <QDebug>
 #include <QMessageBox>
+#include <QLoggingCategory>
 
 #ifdef HAVE_ICE
     #include "Ice.h"

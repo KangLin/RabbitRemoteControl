@@ -268,17 +268,17 @@
 <context>
     <name>CPluginTigerVnc</name>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="42"/>
+        <location filename="../../PluginTigerVnc.cpp" line="43"/>
         <source>TigerVNC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="47"/>
+        <location filename="../../PluginTigerVnc.cpp" line="48"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="48"/>
+        <location filename="../../PluginTigerVnc.cpp" line="49"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>
