@@ -6,6 +6,8 @@
   - Modify debian package
   - Use [RabbitCommon v2.2.6](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.6)
   - Add SSH tunnel
+    - TigerVnc
+  - Modify CChannel::readData CChannel::writeData to thread-safe
   - Refactor parameter
     - Add CParameterBase
     - Add CParameterNet

@@ -212,8 +212,9 @@
         <translation type="vanished">Turn 用户：</translation>
     </message>
     <message>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="30"/>
         <source>Proxy</source>
-        <translation type="vanished">代理</translation>
+        <translation>代理</translation>
     </message>
     <message>
         <source>No</source>

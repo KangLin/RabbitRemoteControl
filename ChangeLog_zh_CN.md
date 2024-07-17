@@ -6,6 +6,8 @@
   - 修改 Debian 打包
   - 使用 [RabbitCommon v2.2.6](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.6)
   - 增加 SSH 隧道
+    - TigerVnc: 修改它增加后台线程处理 SSH 隧道。
+  - 修改 CChannel::readData CChannel::writeData 它为线程安全。
   - 重构参数
     - 增加 CParameterBase
     - 增加 CParameterNet

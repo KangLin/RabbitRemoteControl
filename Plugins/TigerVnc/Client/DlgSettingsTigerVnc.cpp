@@ -24,10 +24,10 @@ CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *p
     ui->setupUi(this);
     
     ui->wNet->SetParameter(&m_pPara->m_Net);
-    
+
     m_pProxy = new CParameterProxyUI(ui->tabWidget);
     m_pProxy->SetParameter(&m_pPara->m_Proxy);
-    ui->tabWidget->insertTab(1, m_pProxy, "Proxy");
+    ui->tabWidget->insertTab(1, m_pProxy, tr("Proxy"));
 
 #ifdef HAVE_ICE
     ui->gpIce->show();

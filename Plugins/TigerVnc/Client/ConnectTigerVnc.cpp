@@ -405,7 +405,8 @@ void CConnectTigerVnc::slotDisConnected()
 {
     QString szInfo;
     szInfo = "slotDisConnected from "
-             + m_pPara->m_Net.GetHost() + ":" + m_pPara->m_Net.GetPort();
+             + m_pPara->m_Net.GetHost() + ":"
+             + QString::number(m_pPara->m_Net.GetPort());
 #ifdef HAVE_LIBSSH
     if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetType())
     {

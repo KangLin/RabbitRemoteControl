@@ -251,6 +251,11 @@
         <source>Auto select</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../DlgSettingsTigerVnc.cpp" line="30"/>
+        <source>Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CParameterTigerVnc</name>
