@@ -30,45 +30,45 @@
     <message>
         <source>Host key for server changed: it is now:
 </source>
-        <translation>服务器公钥键改变：它现在是：
+        <translation type="vanished">服务器公钥键改变：它现在是：
 </translation>
     </message>
     <message>
         <source>For security reasons, connection will be stopped</source>
-        <translation>因为安全原因，连接将停止。</translation>
+        <translation type="vanished">因为安全原因，连接将停止。</translation>
     </message>
     <message>
         <source>The host key for this server was not found but an other type of key exists.
 </source>
-        <translation>服务器公钥键没有发现，但此服务器另一个公钥键已经存在。
+        <translation type="vanished">服务器公钥键没有发现，但此服务器另一个公钥键已经存在。
 </translation>
     </message>
     <message>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist
 </source>
-        <translation>攻击者可能会更改默认服务器密钥，使客户端误以为该密钥不存在
+        <translation type="vanished">攻击者可能会更改默认服务器密钥，使客户端误以为该密钥不存在
 </translation>
     </message>
     <message>
         <source>Could not find known host file.
 </source>
-        <translation>不能发现已知主机文件。
+        <translation type="vanished">不能发现已知主机文件。
 </translation>
     </message>
     <message>
         <source>If you accept the host key here, the file will be automatically created.
 </source>
-        <translation>如果接受，文件将自动建立。
+        <translation type="vanished">如果接受，文件将自动建立。
 </translation>
     </message>
     <message>
         <source>Public key hash: </source>
-        <translation>公钥键哈希值：</translation>
+        <translation type="vanished">公钥键哈希值：</translation>
     </message>
     <message>
         <source>The server is unknown. Do you trust the host key?
 </source>
-        <translation>服务器未知。你信任主机密钥吗？
+        <translation type="vanished">服务器未知。你信任主机密钥吗？
 </translation>
     </message>
     <message>
@@ -77,11 +77,11 @@
     </message>
     <message>
         <source>SSH failed: Error authenticating with publickey:</source>
-        <translation>SSH 失败：使用公钥进行身份验证失败：</translation>
+        <translation type="vanished">SSH 失败：使用公钥进行身份验证失败：</translation>
     </message>
     <message>
         <source>Error authenticating with password:</source>
-        <translation>使用密码进行身份验证时出错：</translation>
+        <translation type="vanished">使用密码进行身份验证时出错：</translation>
     </message>
     <message>
         <source>SSH failed: There is not set public key file.</source>
@@ -110,6 +110,66 @@
     <message>
         <source>SSH failed: open forward.</source>
         <translation>SSH 失败：打开转发。</translation>
+    </message>
+    <message>
+        <source>SSH failed: ssh_pcap_file_new: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host key for server changed. it is now:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For security reasons, connection will be stopped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The host key for this server was not found but an other type of key exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find known host file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you accept the host key here, the file will be automatically created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host key hash:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reject the host key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The server is unknown. Do you trust the host key?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Will be stopped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSH failed: Failed authenticating with publickey:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed authenticating with password. User: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

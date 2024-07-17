@@ -4,27 +4,27 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="88"/>
+        <location filename="../../Connecter.cpp" line="89"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="89"/>
+        <location filename="../../Connecter.cpp" line="90"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="94"/>
+        <location filename="../../Connecter.cpp" line="95"/>
         <source>Server name: </source>
         <translation>服務名：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="95"/>
+        <location filename="../../Connecter.cpp" line="96"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="163"/>
+        <location filename="../../Connecter.cpp" line="164"/>
         <source>Set </source>
         <translation>設置 </translation>
     </message>
@@ -183,17 +183,27 @@
 <context>
     <name>CParameterProxyUI</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="14"/>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="22"/>
         <source>Type:</source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="18"/>
-        <source>No</source>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="30"/>
+        <source>None</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="31"/>
+        <source>Default</source>
+        <translation>默認</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="33"/>
+        <source>SSH Tunnel</source>
+        <translation>SSH 隧道</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="32"/>
         <source>SockesV5</source>
         <translation></translation>
     </message>
@@ -201,8 +211,13 @@
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="25"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="31"/>
         <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="45"/>
+        <source>Passphrase</source>
         <translation>密碼</translation>
     </message>
 </context>
@@ -214,46 +229,136 @@
         <translation>用戶</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="43"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="52"/>
+        <source>Authentication type:</source>
+        <translation>身份認證類型：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="73"/>
+        <source>Passphrase:</source>
+        <translation>密碼：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="83"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="177"/>
+        <source>Input passphrase</source>
+        <translation>輸入密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="120"/>
         <source>User:</source>
         <translation>用戶：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="50"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="10"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="127"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="11"/>
         <source>Input user name</source>
         <translation>輸入用戶名：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="61"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="138"/>
         <source>Password:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="71"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="11"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="64"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="148"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="12"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="108"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="78"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="81"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="84"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="155"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="158"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="161"/>
         <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
         <translation>菜單: 工具→設置→客戶端→密碼-&gt;允許查看密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="100"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="103"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="106"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="180"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="183"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="186"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="66"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="209"/>
+        <source>Private file:</source>
+        <translation>私鑰文件：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="216"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="219"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="250"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="256"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="259"/>
+        <source>The public and private file is empty, then be use system public and private file.</source>
+        <translation>公鑰和私鑰文件都為空，用系統公鑰和私鑰文件。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="232"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
+        <source>Browse</source>
+        <translation>瀏覽</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="243"/>
+        <source>Public file:</source>
+        <translation>公鑰文件：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="275"/>
+        <source>Use system public and private file</source>
+        <translation>用系統公鑰和私鑰文件。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="13"/>
+        <source>Please input the public key file</source>
+        <translation>請輸入公鑰文件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="14"/>
+        <source>Please input the private key file</source>
+        <translation>請輸入私鑰文件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
+        <source>Please input the passphrase of private key file</source>
+        <translation>請輸入私鑰文件的密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="35"/>
+        <source>None</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="39"/>
+        <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="43"/>
+        <source>Public Key</source>
+        <translation>公鑰</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="110"/>
         <source>Please checked save password to enable</source>
         <translation>請選中保存密碼按鈕</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="118"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="127"/>
+        <source>Open public key file</source>
+        <translation>打開公鑰文件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="179"/>
+        <source>Please checked save passphrase to enable</source>
+        <translation>請選中保存密碼，允許輸入</translation>
     </message>
 </context>
 </TS>

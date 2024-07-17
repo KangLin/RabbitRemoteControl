@@ -28,7 +28,7 @@ CParameterProxyUI::CParameterProxyUI(QWidget *parent)
                      this, SLOT(slotTypeChanged(int)));
     Q_ASSERT(bCheck);
     m_cbType->addItem(tr("None"), (int)CParameterProxy::TYPE::None);
-    m_cbType->addItem(tr("Application"), (int)CParameterProxy::TYPE::Application);
+    m_cbType->addItem(tr("Default"), (int)CParameterProxy::TYPE::Default);
     m_cbType->addItem(tr("SockesV5"), (int)CParameterProxy::TYPE::SockesV5);
     m_cbType->addItem(tr("SSH Tunnel"), (int)CParameterProxy::TYPE::SSHTunnel);
     

@@ -4,47 +4,47 @@
 <context>
     <name>CConnectTigerVnc</name>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="359"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="431"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="364"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="436"/>
         <source>Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="231"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="247"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="280"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="365"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="380"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="238"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="258"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="315"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="437"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="452"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="229"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="236"/>
         <source>The proxy server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="245"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="256"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="275"/>
-        <source>Failed to log in via SSH tunnel:</source>
+        <location filename="../../ConnectTigerVnc.cpp" line="306"/>
+        <source>Failed to open SSH tunnel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="372"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="444"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectTigerVnc.cpp" line="363"/>
-        <location filename="../../ConnectTigerVnc.cpp" line="376"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="435"/>
+        <location filename="../../ConnectTigerVnc.cpp" line="448"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>

@@ -840,7 +840,7 @@
     <message>
         <location filename="../../main.cpp" line="64"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>开始</translation>
     </message>
     <message>
         <location filename="../../main.cpp" line="69"/>
@@ -855,7 +855,7 @@
     <message>
         <location filename="../../main.cpp" line="130"/>
         <source>End</source>
-        <translation type="unfinished"></translation>
+        <translation>结束</translation>
     </message>
 </context>
 </TS>

@@ -200,7 +200,7 @@ int CConnectRabbitVNC::SocketInit()
         case CParameterProxy::TYPE::SockesV5:
             type = QNetworkProxy::Socks5Proxy;
             break;
-        case CParameterProxy::TYPE::Application:
+        case CParameterProxy::TYPE::Default:
             type = QNetworkProxy::DefaultProxy;
             break;
         default:

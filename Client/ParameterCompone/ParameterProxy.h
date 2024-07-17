@@ -20,7 +20,7 @@ public:
         None = 0x01,
         SockesV5 = 0x02,
         SSHTunnel = 0x04,
-        Application = 0x08
+        Default = 0x08
     };
     TYPE GetType() const;
     int SetType(TYPE type);

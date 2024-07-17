@@ -40,7 +40,7 @@ int CParameterUserUI::SetParameter(CParameterUser *pParameter)
         nType++;
     }
     if((int)CParameterUser::TYPE::PublicKey & (int)m_pUser->GetType()) {
-        ui->cbType->addItem(tr("PublicKey"), (int)CParameterUser::TYPE::PublicKey);
+        ui->cbType->addItem(tr("Public Key"), (int)CParameterUser::TYPE::PublicKey);
         nType++;
     }
     
