@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include <QLoggingCategory>
 #include <QIODevice>
 #include <QTcpSocket>
 #include <QMessageBox>
 #include "channel_export.h"
+#include <QMutex>
 
 /*!
  * \~chinese
@@ -69,16 +69,28 @@ private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError e);
     void slotConnected();
     void slotDisconnected();
+    void slotReadyRead();
     
-private:
-    QLoggingCategory m_Log;
+private:    
     QTcpSocket* m_pSocket;
+    
+protected:
+    virtual int WakeUp();
+    QByteArray m_readData;
+    QMutex m_readMutex;
+    
+    QByteArray m_writeData;
+    QMutex m_writeMutex;
     
     // QIODevice interface
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
     virtual qint64 writeData(const char *data, qint64 len) override;
     virtual bool isSequential() const override;
+    
+    // QObject interface
+public:
+    virtual bool event(QEvent *event) override;
 };
 
 #endif // CDATACHANNEL_H
