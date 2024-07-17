@@ -38,11 +38,7 @@ public:
     
     int Process();
     int ProcessSocket();
-    
-protected:
-    virtual qint64 readData(char *data, qint64 maxlen) override;
-    virtual qint64 writeData(const char *data, qint64 len) override;
-    
+
 private:
     int verifyKnownhost(ssh_session session);
     int authentication(
@@ -69,7 +65,7 @@ private:
     int InitSemaphore();
     int ReadSemphore();
     int ClearSemphore();
-    int WakeUp();
+    virtual int WakeUp() override;
    
 private:
     ssh_session m_Session;
@@ -78,13 +74,7 @@ private:
     QSharedPointer<CParameterChannelSSH> m_Parameter;
     
     QSocketNotifier* m_pSocketRead;
-    QByteArray m_readData;
-    QMutex m_readMutex;
-    
     QSocketNotifier* m_pSocketWrite;
-    QByteArray m_writeData;
-    QMutex m_writeMutex;
-    
     QSocketNotifier* m_pSocketException;
 
     int m_eventWriteFD;

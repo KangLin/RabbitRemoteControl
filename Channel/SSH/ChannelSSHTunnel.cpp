@@ -29,37 +29,6 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     InitSemaphore();
 }
 
-qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
-{
-    /*
-    qDebug(log) << "CChannelSSHTunnel::readData:"
-                << maxlen << "nLen:" << m_readData.size();//*/
-    qint64 nLen = 0;
-    m_readMutex.lock();
-    nLen = m_readData.size();
-    nLen = qMin(nLen, maxlen);
-    if(nLen > 0) {
-        memcpy(data, m_readData.data(), nLen);
-        m_readData.remove(0, nLen);
-    }
-    m_readMutex.unlock();
-    return nLen;
-}
-
-qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
-{
-    //qDebug(log) << "CChannelSSHTunnel::writeData:" << len;
-    if(nullptr == data || 0 >= len) {
-        qCritical(log) << "writeData fail. len:" << len;
-        return 0;
-    }
-    m_writeMutex.lock();
-    m_writeData.append(data, len);
-    m_writeMutex.unlock();
-    WakeUp();
-    return len;
-}
-
 void CChannelSSHTunnel::cb_log(ssh_session session,
                                int priority,
                                const char *message,
