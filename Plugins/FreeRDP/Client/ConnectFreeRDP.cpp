@@ -50,11 +50,16 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
       m_pParameter(nullptr),
       m_pConnecter(pConnecter),
       m_ClipBoard(this),
-      m_Cursor(this)
+      m_Cursor(this),
+      m_writeEvent(nullptr)
 {
     Q_ASSERT(pConnecter);
     m_pParameter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParameter);
+    
+    m_writeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+    if(!m_writeEvent)
+        qCritical(log) << "CreateEvent failed";
 }
 
 CConnectFreeRDP::~CConnectFreeRDP()
@@ -191,6 +196,11 @@ int CConnectFreeRDP::OnClean()
 {
     qDebug(log) << "CConnectFreeRdp::OnClean()";
     int nRet = 0;
+    if(m_writeEvent && INVALID_HANDLE_VALUE != m_writeEvent)
+    {
+        CloseHandle(m_writeEvent);
+        m_writeEvent = nullptr;
+    }
     if(m_pContext)
     {
         rdpContext* pRdpContext = (rdpContext*)m_pContext;
@@ -237,6 +247,9 @@ int CConnectFreeRDP::OnProcess()
             nRet = -2;
             break;
         }
+        
+        handles[nCount] = m_writeEvent;
+        nCount++;
 
         DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
         if (waitStatus == WAIT_FAILED)

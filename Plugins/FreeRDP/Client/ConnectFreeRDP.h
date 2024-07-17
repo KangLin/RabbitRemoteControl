@@ -156,12 +156,14 @@ private:
     CParameterFreeRDP* m_pParameter;
     CConnecterFreeRDP* m_pConnecter;
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
-        
+
     QImage m_Image;
 
     CClipboardFreeRDP m_ClipBoard;
     CCursorFreeRDP m_Cursor;
     friend class CCursorFreeRDP;
+    
+    HANDLE m_writeEvent;
 };
 
 #endif // CCONNECTFREERDP_H
