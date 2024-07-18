@@ -3,6 +3,7 @@
 #include <QThread>
 #include <QDateTime>
 #include <QAbstractEventDispatcher>
+#include <QScopedArrayPointer>
 #include <QtGlobal>
 #if defined(Q_OS_LINUX)
 #include <sys/eventfd.h>
@@ -27,6 +28,11 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     Q_ASSERT(m_Parameter);
     
     InitSemaphore();
+}
+
+CChannelSSHTunnel::~CChannelSSHTunnel()
+{
+    qDebug(log) << "CChannelSSHTunnel::~CChannelSSHTunnel()";
 }
 
 void CChannelSSHTunnel::cb_log(ssh_session session,
@@ -575,32 +581,6 @@ int CChannelSSHTunnel::forward(ssh_session session)
     return nRet;
 }
 
-int CChannelSSHTunnel::writeData()
-{
-    int nRet = 0;
-    // Write data
-    m_readMutex.lock();
-    qint64 nLen = m_writeData.size();
-    if(nLen > 0) {
-        //qDebug(log) << "Write data to ssh tunnel";
-        nRet = ssh_channel_write(m_Channel, m_writeData.data(), nLen);
-        if(nRet > 0) {
-            m_writeData.remove(0, nRet);
-        }
-    }
-    m_readMutex.unlock();
-    if(nRet < 0) {
-        if(SSH_AGAIN != nRet) {
-            QString szErr;
-            szErr = "Write data from channel failed:";
-            szErr += ssh_get_error(m_Session);
-            qCritical(log) << szErr;
-            return -2;
-        }
-    }
-    return 0;
-}
-
 /*!
  * \return
  *   \li >= 0: continue, Interval call time (msec)
@@ -673,15 +653,13 @@ int CChannelSSHTunnel::Process()
         //qDebug(log) << "There is not data in channel";
         return 0;
     }
-    
-    QSharedPointer<char> buf(new char[nRet]);
+
+    QScopedArrayPointer<char> buf(new char[nRet]);
     nRet = ssh_channel_read_nonblocking(m_Channel, buf.get(), nRet, 0);
     if(nRet > 0) {
         //qDebug(log) << "Read data:" << nRet;
-        m_readMutex.lock();
         m_readData.append(buf.get(), nRet);
-        m_readMutex.unlock();
-        emit this->readyRead();
+        emit readyRead();
     } else if(SSH_AGAIN != nRet){
         QString szErr;
         szErr = "Read data from channel failed. nRet:";
@@ -692,6 +670,50 @@ int CChannelSSHTunnel::Process()
     }
 
     return 0;
+}
+
+int CChannelSSHTunnel::writeData()
+{
+    int nRet = 0;
+    // Write data.
+    // Because is different thread.
+    m_writeMutex.lock();
+    qint64 nLen = m_writeData.size();
+    if(nLen > 0) {
+        //qDebug(log) << "Write data to ssh tunnel";
+        nRet = ssh_channel_write(m_Channel, m_writeData.data(), nLen);
+        if(nRet > 0) {
+            m_writeData.remove(0, nRet);
+        }
+    }
+    m_writeMutex.unlock();
+    if(nRet < 0) {
+        if(SSH_AGAIN != nRet) {
+            QString szErr;
+            szErr = "Write data from channel failed:";
+            szErr += ssh_get_error(m_Session);
+            qCritical(log) << szErr;
+            return -2;
+        }
+    }
+    return 0;
+}
+
+// Because is same thread
+qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
+{
+    /*
+    qDebug(log) << "CChannel::readData:"
+                << maxlen << "nLen:" << m_readData.size();//*/
+    if(m_readData.size() <= 0)
+        return 0;
+    
+    qint64 nLen = qMin((qint64)m_readData.size(), maxlen);
+    if(nLen > 0) {
+        memcpy(data, m_readData.data(), nLen);
+        m_readData.remove(0, nLen);
+    }
+    return nLen;
 }
 
 int CChannelSSHTunnel::ProcessSocket()
@@ -723,9 +745,7 @@ int CChannelSSHTunnel::ProcessSocket()
                         emit sigError(nRet, szErr);
                         return;
                     }
-                    m_readMutex.lock();
                     m_readData.append(buf, nLen);
-                    m_readMutex.unlock();
                 } while(nRet >= nLen);
                 emit this->readyRead();
             });
@@ -745,7 +765,7 @@ int CChannelSSHTunnel::ProcessSocket()
                     qCritical(log) << "The channel is not open";
                     return;
                 }
-                m_readMutex.lock();
+                m_writeMutex.lock();
                 qint64 nLen = m_writeData.size();
                 if(nLen > 0) {
                     nRet = ssh_channel_write(m_Channel, m_writeData.data(), nLen);
@@ -756,7 +776,7 @@ int CChannelSSHTunnel::ProcessSocket()
                 if(nRet == nLen) {
                     m_pSocketWrite->setEnabled(false);
                 }
-                m_readMutex.unlock();
+                m_writeMutex.unlock();
                 if(nRet < 0) {
                     if(SSH_AGAIN != nRet) {
                         QString szErr;

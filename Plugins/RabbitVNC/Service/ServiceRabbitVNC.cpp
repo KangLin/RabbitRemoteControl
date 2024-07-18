@@ -124,9 +124,9 @@ void CServiceRabbitVNC::slotNewConnection()
     qInfo(RabbitVNC) << "New connection:"
                    << pSocket->peerAddress() << ":" << pSocket->peerPort();
     try {
-        QSharedPointer<CChannel> channel(new CChannel(), &QObject::deleteLater);
+        QSharedPointer<CChannel> channel(new CChannel(pSocket), &QObject::deleteLater);
         if(!channel->isOpen())
-            if(!channel->open(pSocket, QIODevice::ReadWrite))
+            if(!channel->open(QIODevice::ReadWrite))
             {
                 qCritical(RabbitVNC) << "Don't open channel";
                 throw std::runtime_error("Don't open channel");

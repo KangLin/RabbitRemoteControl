@@ -177,13 +177,13 @@ int CConnectRabbitVNC::SocketInit()
 {
     int nRet = 0;
     try{
-        m_DataChannel = QSharedPointer<CChannel>(new CChannel());
-        if(!m_DataChannel) return -1;
-        
-        // The pointer is freed by CChannel. see: CChannel::open
         QTcpSocket* pSock = new QTcpSocket(this);
         if(!pSock) return -2;
-        if(!m_DataChannel->open(pSock, QIODevice::ReadWrite))
+
+        m_DataChannel = QSharedPointer<CChannel>(new CChannel(pSock));
+        if(!m_DataChannel) return -1;
+        
+        if(!m_DataChannel->open(QIODevice::ReadWrite))
         {
             qCritical(RabbitVNC) << "Open channel fail";
             return -3;
@@ -622,7 +622,7 @@ bool CConnectRabbitVNC::dataRect(const rfb::Rect &r, int encoding)
 {
     if(!rfb::CConnection::dataRect(r, encoding))
     {
-        qCritical(RabbitVNC) << "rfb::CConnection::dataRect fail";
+        qDebug(RabbitVNC) << "rfb::CConnection::dataRect fail";
         return false;
     }
     /*

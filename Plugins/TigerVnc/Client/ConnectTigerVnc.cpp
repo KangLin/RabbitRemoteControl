@@ -186,19 +186,18 @@ int CConnectTigerVnc::SocketInit()
 {
     int nRet = 0;
     try{
-        m_DataChannel = QSharedPointer<CChannel>(new CChannel());
+        QTcpSocket* pSock = new QTcpSocket(this);
+        if(!pSock)
+            return -2;
+        m_DataChannel = QSharedPointer<CChannel>(new CChannel(pSock));
         if(!m_DataChannel) {
             qCritical(log) << "New CChannel fail";
             return -1;
         }
         
-        QTcpSocket* pSock = new QTcpSocket(this);
-        if(!pSock)
-            return -2;
-
         SetChannelConnect(m_DataChannel);
 
-        if(!m_DataChannel->open(pSock, QIODevice::ReadWrite))
+        if(!m_DataChannel->open(QIODevice::ReadWrite))
         {
             qCritical(log) << "Open channel fail";
             return -3;
@@ -271,6 +270,7 @@ int CConnectTigerVnc::SocketInit()
 
 int CConnectTigerVnc::SSHInit()
 {
+    bool check = false;
 #ifdef HAVE_LIBSSH
     QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
     auto &ssh = m_pPara->m_Proxy.m_SSH;
@@ -300,6 +300,9 @@ int CConnectTigerVnc::SSHInit()
     }
     m_DataChannel = channel;
     SetChannelConnect(m_DataChannel);
+    check = connect(channel.data(), SIGNAL(sigBlockShowMessageBox(const QString&, const QString&, QMessageBox::StandardButtons, QMessageBox::StandardButton&, bool&, QString)),
+                    this, SIGNAL(sigBlockShowMessageBox(const QString&, const QString&, QMessageBox::StandardButtons, QMessageBox::StandardButton&, bool&, QString)));
+    Q_ASSERT(check);    
     if(!channel->open(QIODevice::ReadWrite))
     {
         QString szErr;
@@ -333,9 +336,6 @@ int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
     Q_ASSERT(check);
     check = connect(channel.data(), SIGNAL(sigError(int, const QString&)),
                     this, SLOT(slotChannelError(int, const QString&)));
-    Q_ASSERT(check);
-    check = connect(channel.data(), SIGNAL(sigBlockShowMessageBox(const QString&, const QString&, QMessageBox::StandardButtons, QMessageBox::StandardButton&, bool&, QString)),
-                    this, SIGNAL(sigBlockShowMessageBox(const QString&, const QString&, QMessageBox::StandardButtons, QMessageBox::StandardButton&, bool&, QString)));
     Q_ASSERT(check);
     return 0;
 }
@@ -716,7 +716,7 @@ void CConnectTigerVnc::updatePixelFormat()
 bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
 {
     if(!rfb::CConnection::dataRect(r, encoding)) {
-        qWarning(log) << "rfb::CConnection::dataRect fail";
+        qDebug(log) << "rfb::CConnection::dataRect fail";
         return false;
     }
     /*

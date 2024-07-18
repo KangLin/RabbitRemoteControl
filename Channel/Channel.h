@@ -26,7 +26,12 @@ class CHANNEL_EXPORT CChannel : public QIODevice
     Q_OBJECT
     
 public:
-    explicit CChannel(QObject *parent = nullptr);
+    /*!
+     * \brief CChannel
+     * \param pSocket: Its owner is the caller
+     * \param parent
+     */
+    explicit CChannel(QTcpSocket* pSocket, QObject *parent = nullptr);
     virtual ~CChannel();
     
     /// \~chinese
@@ -34,53 +39,31 @@ public:
     /// \~english
     /// \param pSocket: The Owner is the instance of this class.
     /// 
-    virtual bool open(QTcpSocket* pSocket, OpenMode mode);
+    virtual bool open(OpenMode mode) override;
     virtual void close() override;
 
 Q_SIGNALS:
-    void sigConnected();
-    void sigDisconnected();
-    void sigError(int nErr, const QString& szErr);
-
     /*!
-     * \~chinese
-     * 阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)
-     *
-     * \~english
-     * \brief Block background threads and display message dialogs in foreground threads (QMessageBox)
-     * \param title
-     * \param message
-     * \param buttons
-     * \param nRet
-     * \param checkBox
-     * \param checkBoxContext
-     * 
-     * \~
-     * \see CConnecter::slotBlockShowMessageBox()
+     * \brief emit when the channel is connected.
      */
-    void sigBlockShowMessageBox(const QString& szTitle,
-                                const QString& szMessage,
-                                QMessageBox::StandardButtons buttons,
-                                QMessageBox::StandardButton& nRet,
-                                bool &checkBox,
-                                QString checkBoxContext = QString());
+    void sigConnected();
+    //! emit when the channel is disconnected
+    void sigDisconnected();
+    //! emit when the channel is error
+    void sigError(int nErr, const QString& szErr);
 
 private Q_SLOTS:
     void slotError(QAbstractSocket::SocketError e);
-    void slotConnected();
-    void slotDisconnected();
-    void slotReadyRead();
     
-private:    
+private:
     QTcpSocket* m_pSocket;
     
 protected:
+    explicit CChannel(QObject *parent = nullptr);
     virtual int WakeUp();
-    QByteArray m_readData;
-    QMutex m_readMutex;
     
     QByteArray m_writeData;
-    QMutex m_writeMutex;
+    QMutex m_writeMutex; // 因为写不在同一线程中，所以需要同步
     
     // QIODevice interface
 protected:

@@ -30,6 +30,7 @@ class CHANNEL_EXPORT CChannelSSHTunnel : public CChannel
 public:
     explicit CChannelSSHTunnel(QSharedPointer<CParameterChannelSSH> parameter,
                                QObject *parent = nullptr);
+    virtual ~CChannelSSHTunnel();
 
     // QIODevice interface
 public:
@@ -38,6 +39,34 @@ public:
     
     int Process();
     int ProcessSocket();
+
+Q_SIGNALS:
+    /*!
+     * \~chinese
+     * 阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)
+     *
+     * \~english
+     * \brief Block background threads and display message dialogs in foreground threads (QMessageBox)
+     * \param title
+     * \param message
+     * \param buttons
+     * \param nRet
+     * \param checkBox
+     * \param checkBoxContext
+     * 
+     * \~
+     * \see CConnecter::slotBlockShowMessageBox()
+     */
+    void sigBlockShowMessageBox(const QString& szTitle,
+                                const QString& szMessage,
+                                QMessageBox::StandardButtons buttons,
+                                QMessageBox::StandardButton& nRet,
+                                bool &checkBox,
+                                QString checkBoxContext = QString());
+
+    // QIODevice interface
+protected:
+    virtual qint64 readData(char *data, qint64 maxlen) override;
 
 private:
     int verifyKnownhost(ssh_session session);
@@ -76,7 +105,8 @@ private:
     QSocketNotifier* m_pSocketRead;
     QSocketNotifier* m_pSocketWrite;
     QSocketNotifier* m_pSocketException;
-
+    
+    QByteArray m_readData;
     int m_eventWriteFD;
 
 };
