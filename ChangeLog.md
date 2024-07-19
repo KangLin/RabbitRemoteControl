@@ -14,6 +14,7 @@
     - Add CParameterUser
     - Add CParameterSSH
     - Add CParameterProxy
+  - Update tigervnc to v1.13.90
 
 ### v0.0.26
 - Use RabbitCommon v2

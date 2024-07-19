@@ -10,12 +10,16 @@ CInStreamChannel::CInStreamChannel(CChannel* pDataChannel)
 {
 }
 
-bool CInStreamChannel::fillBuffer(size_t maxSize)
+bool CInStreamChannel::fillBuffer()
 {
     //Q_ASSERT(m_pDataChannel);
     if(!m_pDataChannel || !m_pDataChannel->isOpen()) return false;
 
-    qint64 n = m_pDataChannel->read((char*)end, maxSize);
+    size_t nLen = availSpace();
+    if(nLen <= 0)
+        return false;
+
+    qint64 n = m_pDataChannel->read((char*)end, nLen);
     if (0 == n)
       return false;
 

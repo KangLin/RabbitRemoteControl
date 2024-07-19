@@ -11,7 +11,7 @@ public:
     
 private:
     // rdr::BufferedInStream interface
-    virtual bool fillBuffer(size_t maxSize) override;
+    virtual bool fillBuffer() override;
     
     CChannel* m_pDataChannel;
 };
