@@ -14,8 +14,13 @@
     - 增加 CParameterUser
     - 增加 CParameterSSH
     - 增加 CParameterProxy
-  - 更新 tigervnc 到 v1.13.90
-
+  - TigerVNC: 更新 tigervnc 到 v1.13.90
+    - 以后版本用：https://github.com/kanglin/tigervnc f4927c7abb937e41d7dec5ca33c3b1dc87833ef6 以后的
+    - 以前版本用：https://github.com/kanglin/tigervnc 4d30e637976fa89f405e4299b7b3aad830e8c7b1 以前的
+  - RabbitVNC: 更新 tigervnc 到 v1.13.90
+    - 以后版本用：https://github.com/kanglin/rabbitvnc aa3baf4ab1460c548f1694500d45230119002879 以后的
+    - 以前版本用：https://github.com/kanglin/rabbitvnc 81d5876d80db5b084e885304344630165840c8ee 以前的
+  
 ### v0.0.26
 - 使用 RabbitCommon v2
 - FreeRDP:

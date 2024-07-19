@@ -54,8 +54,7 @@ public:
     virtual void handleClipboardAnnounce(bool available) override;
     virtual void handleClipboardData(const char *data) override;
 
-    virtual void getUserPasswd(bool secure, std::string* user,
-                               std::string* password) override;
+    virtual void getUserPasswd(bool secure, std::string* user, std::string* password) override;
     virtual bool showMsgBox(int flags, const char* title, const char* text) override;
 
 public Q_SLOTS:

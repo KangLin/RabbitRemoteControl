@@ -91,10 +91,7 @@ CConnectTigerVnc::~CConnectTigerVnc()
 int CConnectTigerVnc::SetPara()
 {
     security.setUserPasswdGetter(this);
-
-#ifdef HAVE_GNUTLS
-    rfb::CSecurityTLS::msg = this;
-#endif
+    security.setUseMsgBox(this);
 
     setShared(m_pPara->GetShared());
     supportsLocalCursor = m_pPara->GetLocalCursor();

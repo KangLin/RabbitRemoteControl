@@ -48,17 +48,17 @@ public:
     virtual void framebufferUpdateStart() override;
     virtual void framebufferUpdateEnd() override;
     virtual bool dataRect(const rfb::Rect &r, int encoding) override;
-    virtual void setColourMapEntries(int firstColour, int nColours, rdr::U16* rgbs) override;
+    virtual void setColourMapEntries(int firstColour, int nColours, uint16_t* rgbs) override;
     virtual void bell() override;
     virtual void setCursor(int width, int height, const rfb::Point& hotspot,
-                              const rdr::U8* data) override;
+                              const uint8_t* data) override;
     virtual void setCursorPos(const rfb::Point &pos) override;
     virtual void handleClipboardRequest() override;
     virtual void handleClipboardAnnounce(bool available) override;
-    virtual void handleClipboardData(unsigned int format, const char *data, size_t length) override;
+    virtual void handleClipboardData(const char *data) override;
     
     // rfb::UserPasswdGetter interface
-    virtual void getUserPasswd(bool secure, char** user, char** password) override;
+    virtual void getUserPasswd(bool secure, std::string* user, std::string* password) override;
 
     // rfb::UserMsgBox interface
     virtual bool showMsgBox(int flags, const char *title, const char *text) override;

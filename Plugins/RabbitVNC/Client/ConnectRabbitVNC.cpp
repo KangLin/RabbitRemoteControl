@@ -89,10 +89,7 @@ CConnectRabbitVNC::~CConnectRabbitVNC()
 int CConnectRabbitVNC::SetPara()
 {
     security.setUserPasswdGetter(this);
-
-#ifdef HAVE_GNUTLS
-    rfb::CSecurityTLS::msg = this;
-#endif
+    security.setUseMsgBox(this);
 
     setShared(m_pPara->GetShared());
     supportsLocalCursor = m_pPara->GetLocalCursor();
@@ -410,7 +407,8 @@ void CConnectRabbitVNC::initDone()
 }
 
 void CConnectRabbitVNC::setColourMapEntries(int firstColour,
-                                            int nColours, rdr::U16 *rgbs)
+                                            int nColours,
+                                            uint16_t *rgbs)
 {
     qCritical(RabbitVNC) << "Invalid SetColourMapEntries from server!";
 }
@@ -421,17 +419,17 @@ void CConnectRabbitVNC::bell()
 }
 
 void CConnectRabbitVNC::setCursor(int width, int height,
-                                  const rfb::Point &hotspot, const rdr::U8 *data)
+                                  const rfb::Point &hotspot, const uint8_t *data)
 {
     //qDebug(RabbitVNC) << "CConnectRabbitVnc::setCursor:" << hotspot.x << "," << hotspot.y;
     if ((width == 0) || (height == 0)) {
         QImage cursor(1, 1, QImage::Format_ARGB32);
-        rdr::U8 *buffer = cursor.bits();
+        uint8_t *buffer = cursor.bits();
         memset(buffer, 0, 4);
         emit sigUpdateCursor(QCursor(QPixmap::fromImage(cursor), hotspot.x, hotspot.y));
     } else {
         QImage cursor(width, height, QImage::Format_ARGB32);
-        rdr::U8 *buffer = cursor.bits();
+        uint8_t *buffer = cursor.bits();
         memcpy(buffer, data, width * height * 4);
         emit sigUpdateCursor(QCursor(QPixmap::fromImage(cursor), hotspot.x, hotspot.y));
     }
@@ -443,18 +441,18 @@ void CConnectRabbitVNC::setCursorPos(const rfb::Point &pos)
     emit sigUpdateCursorPosition(QPoint(pos.x, pos.y));
 }
 
-void CConnectRabbitVNC::getUserPasswd(bool secure, char **user, char **password)
+void CConnectRabbitVNC::getUserPasswd(bool secure, std::string *user, std::string *password)
 {
-    if(password && !*password)
+    if(password)
     {
-        *password = rfb::strDup(m_pPara->m_Net.m_User.GetPassword().toStdString().c_str());
+        *password = m_pPara->m_Net.m_User.GetPassword().toStdString();
         if(m_pPara->m_Net.m_User.GetPassword().isEmpty())
         {
             int nRet = QDialog::Rejected;
             emit sigBlockShowWidget("CDlgGetPasswordRabbitVNC", nRet, m_pPara);
             if(QDialog::Accepted == nRet)
             {
-                *password = rfb::strDup(m_pPara->m_Net.m_User.GetPassword().toStdString().c_str());
+                *password = m_pPara->m_Net.m_User.GetPassword().toStdString();
             }
         }
     }
@@ -1022,8 +1020,7 @@ void CConnectRabbitVNC::handleClipboardRequest()
         QString szText = mimeData->text();
         qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardRequest:szText:" << szText;
         try{
-            sendClipboardData(rfb::clipboardUTF8, szText.toStdString().c_str(),
-                              szText.toStdString().size());
+            sendClipboardData(szText.toStdString().c_str());
         } catch (rdr::Exception& e) {
             qCritical(RabbitVNC) << "sendClipboardData fail:" << e.str();
         }
@@ -1031,8 +1028,7 @@ void CConnectRabbitVNC::handleClipboardRequest()
         QString szHtml = mimeData->html();
         qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardRequest:html:" << szHtml;
         try{
-            sendClipboardData(rfb::clipboardHTML, mimeData->html().toStdString().c_str(),
-                              mimeData->html().toStdString().size());
+            sendClipboardData(mimeData->html().toStdString().c_str());
         } catch (rdr::Exception& e) {
             qCritical(RabbitVNC) << "sendClipboardData fail:" << e.str();
         }
@@ -1050,21 +1046,12 @@ void CConnectRabbitVNC::handleClipboardAnnounce(bool available)
         this->requestClipboard();
 }
 
-void CConnectRabbitVNC::handleClipboardData(unsigned int format, const char *data, size_t length)
+void CConnectRabbitVNC::handleClipboardData(const char *data)
 {
     qDebug(RabbitVNC) << "CConnectRabbitVnc::handleClipboardData";
     if(!m_pPara || !m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
 
-    if(rfb::clipboardUTF8 & format) {
-        QMimeData* pData = new QMimeData();
-        pData->setText(QString::fromUtf8(data));
-        emit sigSetClipboard(pData);
-    } else if(rfb::clipboardHTML & format) {
-        QMimeData* pData = new QMimeData();
-        pData->setHtml(data);
-        emit sigSetClipboard(pData);
-        //pClip->setMimeData(pData);
-    } else {
-        qDebug(RabbitVNC) << "Don't implement";
-    }
+    QMimeData* pData = new QMimeData();
+    pData->setText(QString::fromUtf8(data));
+    emit sigSetClipboard(pData);
 }
