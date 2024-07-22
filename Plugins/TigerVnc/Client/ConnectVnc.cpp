@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnectTigerVnc.h"
-#include "ConnecterTigerVnc.h"
+#include "ConnectVnc.h"
+#include "ConnecterDesktopThread.h"
 
 #ifndef WIN32
 #include <string.h>
@@ -50,7 +50,7 @@
     #include "ChannelSSHTunnel.h"
 #endif
 
-static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Connect")
+static Q_LOGGING_CATEGORY(log, "VNC.Connect")
 
 // 8 colours (1 bit per component)
 static const rfb::PixelFormat verylowColourPF(8, 3,false, true, 1, 1, 1, 2, 1, 0);
@@ -68,13 +68,13 @@ static const unsigned bpsEstimateWindow = 1000;
 /* 因为此事件循环为Qt事件循环，不会被阻塞。
  * 并具 Socket 不能在不同的线程中调用，所以这里 bDirectConnection 设置成 false
  */
-CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *parent)
+CConnectVnc::CConnectVnc(CConnecterDesktopThread *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
       m_bpsEstimate(20000000),
       m_updateCount(0),
       m_pPara(nullptr)
 {
-    m_pPara = dynamic_cast<CParameterTigerVnc*>(pConnecter->GetParameter());
+    m_pPara = dynamic_cast<CParameterVnc*>(pConnecter->GetParameter());
     Q_ASSERT(m_pPara);
 
     if(!m_pPara->GetLocalCursor())
@@ -83,12 +83,12 @@ CConnectTigerVnc::CConnectTigerVnc(CConnecterTigerVnc *pConnecter, QObject *pare
     }
 }
 
-CConnectTigerVnc::~CConnectTigerVnc()
+CConnectVnc::~CConnectVnc()
 {
-    qDebug(log) << "CConnectTigerVnc::~CConnectTigerVnc()";
+    qDebug(log) << "CConnectVnc::~CConnectVnc()";
 }
 
-int CConnectTigerVnc::SetPara()
+int CConnectVnc::SetPara()
 {
     security.setUserPasswdGetter(this);
     security.setUseMsgBox(this);
@@ -112,9 +112,9 @@ int CConnectTigerVnc::SetPara()
  * \li = 0: Use OnProcess (non-Qt event loop)
  * \li > 0: Don't use OnProcess (qt event loop)
  */  
-CConnect::OnInitReturnValue CConnectTigerVnc::OnInit()
+CConnect::OnInitReturnValue CConnectVnc::OnInit()
 {
-    qDebug(log) << "CConnectTigerVnc::OnInit()";
+    qDebug(log) << "CConnectVnc::OnInit()";
     int nRet = 0;
     
     if(m_pPara->GetIce())
@@ -134,7 +134,7 @@ CConnect::OnInitReturnValue CConnectTigerVnc::OnInit()
     return OnInitReturnValue::NotUseOnProcess;
 }
 
-int CConnectTigerVnc::IceInit()
+int CConnectVnc::IceInit()
 {
 #ifdef HAVE_ICE
     CIceSignal* pSignal = CICE::Instance()->GetSignal().data();
@@ -179,7 +179,7 @@ int CConnectTigerVnc::IceInit()
     return 0;
 }
 
-int CConnectTigerVnc::SocketInit()
+int CConnectVnc::SocketInit()
 {
     int nRet = 0;
     try{
@@ -265,7 +265,7 @@ int CConnectTigerVnc::SocketInit()
     return nRet;
 }
 
-int CConnectTigerVnc::SSHInit()
+int CConnectVnc::SSHInit()
 {
     bool check = false;
 #ifdef HAVE_LIBSSH
@@ -319,7 +319,7 @@ int CConnectTigerVnc::SSHInit()
     return 0;
 }
 
-int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
+int CConnectVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
 {
     bool check = false;
     check = connect(channel.data(), SIGNAL(sigConnected()),
@@ -337,9 +337,9 @@ int CConnectTigerVnc::SetChannelConnect(QSharedPointer<CChannel> channel)
     return 0;
 }
 
-int CConnectTigerVnc::OnClean()
+int CConnectVnc::OnClean()
 {
-    qDebug(log) << "CConnectTigerVnc::OnClean()";
+    qDebug(log) << "CConnectVnc::OnClean()";
     close();
     setStreams(nullptr, nullptr);
     if(m_DataChannel) {
@@ -349,7 +349,7 @@ int CConnectTigerVnc::OnClean()
     return 0;
 }
 
-int CConnectTigerVnc::OnProcess()
+int CConnectVnc::OnProcess()
 {
     int nRet = 0;
 #ifdef HAVE_LIBSSH
@@ -362,7 +362,7 @@ int CConnectTigerVnc::OnProcess()
     return nRet;
 }
 
-void CConnectTigerVnc::slotConnected()
+void CConnectVnc::slotConnected()
 {
     if(m_pPara->GetIce())
         qInfo(log) << "Connected to peer " + m_pPara->GetPeerUser();
@@ -398,7 +398,7 @@ void CConnectTigerVnc::slotConnected()
     initialiseProtocol();
 }
 
-void CConnectTigerVnc::slotDisConnected()
+void CConnectVnc::slotDisConnected()
 {
     QString szInfo;
     szInfo = "slotDisConnected from "
@@ -416,9 +416,9 @@ void CConnectTigerVnc::slotDisConnected()
     // There isn't emit sigDisconnect, because of sigDisconnect is emitted in CConnect::Disconnect()
 }
 
-void CConnectTigerVnc::slotReadyRead()
+void CConnectVnc::slotReadyRead()
 {
-    //qDebug(log) << "CConnectTigerVnc::slotReadyRead";
+    //qDebug(log) << "CConnectVnc::slotReadyRead";
     QString szErr("processMsg exception: ");
     int nRet = -1;
     try {
@@ -472,17 +472,17 @@ void CConnectTigerVnc::slotReadyRead()
     emit sigDisconnect();
 }
 
-void CConnectTigerVnc::slotChannelError(int nErr, const QString& szErr)
+void CConnectVnc::slotChannelError(int nErr, const QString& szErr)
 {
     qDebug(log) << "Channel error:" << nErr << "-" << szErr;
     emit sigError(nErr, szErr);
     emit sigDisconnected();
 }
 
-void CConnectTigerVnc::initDone()
+void CConnectVnc::initDone()
 {
     Q_ASSERT(m_pPara);
-    qDebug(log) << "CConnectTigerVnc::initDone():name:" << server.name()
+    qDebug(log) << "CConnectVnc::initDone():name:" << server.name()
                      << ";Width:" << server.width()
                      << ";Height:" << server.height();
 
@@ -490,7 +490,7 @@ void CConnectTigerVnc::initDone()
     // mode. See comment in autoSelectFormatAndEncoding. 
     if (server.beforeVersion(3, 8) && m_pPara->GetAutoSelect())
     {
-        m_pPara->SetColorLevel(CParameterTigerVnc::Full);
+        m_pPara->SetColorLevel(CParameterVnc::Full);
         updatePixelFormat();
     }
 
@@ -505,19 +505,19 @@ void CConnectTigerVnc::initDone()
     emit sigConnected();
 }
 
-void CConnectTigerVnc::setColourMapEntries(int firstColour, int nColours, uint16_t *rgbs)
+void CConnectVnc::setColourMapEntries(int firstColour, int nColours, uint16_t *rgbs)
 {
     qCritical(log) << "Invalid SetColourMapEntries from server!";
 }
 
-void CConnectTigerVnc::bell()
+void CConnectVnc::bell()
 {
     qApp->beep();
 }
 
-void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspot, const uint8_t *data)
+void CConnectVnc::setCursor(int width, int height, const rfb::Point &hotspot, const uint8_t *data)
 {
-    //qDebug(log) << "CConnectTigerVnc::setCursor x:" << hotspot.x << ";y:" << hotspot.y;
+    //qDebug(log) << "CConnectVnc::setCursor x:" << hotspot.x << ";y:" << hotspot.y;
     if ((width == 0) || (height == 0)) {
         QImage cursor(1, 1, QImage::Format_ARGB32);
         uint8_t *buffer = cursor.bits();
@@ -531,13 +531,13 @@ void CConnectTigerVnc::setCursor(int width, int height, const rfb::Point &hotspo
     }
 }
 
-void CConnectTigerVnc::setCursorPos(const rfb::Point &pos)
+void CConnectVnc::setCursorPos(const rfb::Point &pos)
 {
-    //qDebug(log) << "CConnectTigerVnc::setCursorPos x:" << pos.x << ";y:" << pos.y;
+    //qDebug(log) << "CConnectVnc::setCursorPos x:" << pos.x << ";y:" << pos.y;
     emit sigUpdateCursorPosition(QPoint(pos.x, pos.y));
 }
 
-void CConnectTigerVnc::getUserPasswd(bool secure, std::string *user, std::string *password)
+void CConnectVnc::getUserPasswd(bool secure, std::string *user, std::string *password)
 {
     if(password)
     {
@@ -545,7 +545,7 @@ void CConnectTigerVnc::getUserPasswd(bool secure, std::string *user, std::string
         if(m_pPara->m_Net.m_User.GetPassword().isEmpty())
         {
             int nRet = QDialog::Rejected;
-            emit sigBlockShowWidget("CDlgGetPasswordTigerVNC", nRet, m_pPara);
+            emit sigBlockShowWidget("CDlgGetPasswordVNC", nRet, m_pPara);
             if(QDialog::Accepted == nRet)
             {
                 *password = m_pPara->m_Net.m_User.GetPassword().toStdString();
@@ -554,7 +554,7 @@ void CConnectTigerVnc::getUserPasswd(bool secure, std::string *user, std::string
     }
 }
 
-bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text)
+bool CConnectVnc::showMsgBox(int flags, const char *title, const char *text)
 {
     qDebug(log) << title << text;
     QMessageBox::StandardButton nRet = QMessageBox::No;
@@ -570,7 +570,7 @@ bool CConnectTigerVnc::showMsgBox(int flags, const char *title, const char *text
 // Here we try to send out a new framebuffer update request so that the
 // next update can be sent out in parallel with us decoding the current
 // one.
-void CConnectTigerVnc::framebufferUpdateStart()
+void CConnectVnc::framebufferUpdateStart()
 {
     CConnection::framebufferUpdateStart();
     
@@ -583,13 +583,13 @@ void CConnectTigerVnc::framebufferUpdateStart()
 // For each rectangle, the FdInStream will have timed the speed
 // of the connection, allowing us to select format and encoding
 // appropriately, and then request another incremental update.
-void CConnectTigerVnc::framebufferUpdateEnd()
+void CConnectVnc::framebufferUpdateEnd()
 {
     unsigned long long elapsed, bps, weight;
     struct timeval now;
     
     rfb::CConnection::framebufferUpdateEnd();
-    //qDebug(log) << "CConnectTigerVnc::framebufferUpdateEnd";
+    //qDebug(log) << "CConnectVnc::framebufferUpdateEnd";
     
     m_updateCount++;
     
@@ -636,9 +636,9 @@ void CConnectTigerVnc::framebufferUpdateEnd()
 //   Note: The system here is fairly arbitrary and should be replaced
 //         with something more intelligent at the server end.
 //
-void CConnectTigerVnc::autoSelectFormatAndEncoding()
+void CConnectVnc::autoSelectFormatAndEncoding()
 {
-    bool newFullColour = m_pPara->GetColorLevel() == CParameterTigerVnc::Full ? true : false;
+    bool newFullColour = m_pPara->GetColorLevel() == CParameterVnc::Full ? true : false;
     int newQualityLevel = m_pPara->GetQualityLevel();
     
     // Always use Tight
@@ -679,14 +679,14 @@ void CConnectTigerVnc::autoSelectFormatAndEncoding()
         else
             qInfo(log, ("Throughput %d kbit/s - full color is now disabled"),
                            (int)m_bpsEstimate / 1000);
-        m_pPara->SetColorLevel(newFullColour ? CParameterTigerVnc::Full : CParameterTigerVnc::Low);
+        m_pPara->SetColorLevel(newFullColour ? CParameterVnc::Full : CParameterVnc::Low);
         updatePixelFormat();
     } 
 }
 
 // requestNewUpdate() requests an update from the server, having set the
 // format and encoding appropriately.
-void CConnectTigerVnc::updatePixelFormat()
+void CConnectVnc::updatePixelFormat()
 {
     Q_ASSERT(m_pPara);
     
@@ -694,16 +694,16 @@ void CConnectTigerVnc::updatePixelFormat()
     rfb::PixelFormat pf;
     
     switch (m_pPara->GetColorLevel()) {
-    case CParameterTigerVnc::Full:
+    case CParameterVnc::Full:
         pf = fullColourPF;
         break;
-    case CParameterTigerVnc::Medium:
+    case CParameterVnc::Medium:
         pf = mediumColourPF;
         break;
-    case CParameterTigerVnc::Low:
+    case CParameterVnc::Low:
         pf = lowColourPF;
         break;
-    case CParameterTigerVnc::VeryLow:
+    case CParameterVnc::VeryLow:
         pf = verylowColourPF;
         break;
     }
@@ -714,14 +714,14 @@ void CConnectTigerVnc::updatePixelFormat()
     setPF(pf);
 }
 
-bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
+bool CConnectVnc::dataRect(const rfb::Rect &r, int encoding)
 {
     if(!rfb::CConnection::dataRect(r, encoding)) {
         qDebug(log) << "rfb::CConnection::dataRect fail";
         return false;
     }
     /*
-    qDebug(TigerVNC, "CConnectTigerVnc::dataRect:%d, %d, %d, %d; %d",
+    qDebug(log, "CConnectVnc::dataRect:%d, %d, %d, %d; %d",
            r.tl.x, r.tl.y, r.width(), r.height(), encoding);//*/
     // 立即更新图像
     if(m_pPara && !m_pPara->GetBufferEndRefresh())
@@ -732,7 +732,7 @@ bool CConnectTigerVnc::dataRect(const rfb::Rect &r, int encoding)
     return true;
 }
 
-void CConnectTigerVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -745,27 +745,27 @@ void CConnectTigerVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
     if(buttons & Qt::MouseButton::RightButton)
         mask |= 0x4;
     /*
-    qDebug(log) << "CConnectTigerVnc::slotMousePressEvent buttons:"
+    qDebug(log) << "CConnectVnc::slotMousePressEvent buttons:"
                      << buttons << pos << mask;//*/
     writer()->writePointerEvent(p, mask);
 }
 
-void CConnectTigerVnc::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
+void CConnectVnc::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
     rfb::Point p(pos.x(), pos.y());
     /*
-    qDebug(log) << "CConnectTigerVnc::slotMouseReleaseEvent button:"
+    qDebug(log) << "CConnectVnc::slotMouseReleaseEvent button:"
                      << button << pos << mask;//*/
     writer()->writePointerEvent(p, mask);
 }
 
-void CConnectTigerVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
 {
     /*
-    qDebug(log) << "CConnectTigerVnc::slotMouseMoveEvent buttons:"
+    qDebug(log) << "CConnectVnc::slotMouseMoveEvent buttons:"
                      << buttons << pos;//*/
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -780,10 +780,10 @@ void CConnectTigerVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
     writer()->writePointerEvent(p, mask);
 }
 
-void CConnectTigerVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
+void CConnectVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
 {
     /*
-    qDebug(log) << "CConnectTigerVnc::slotWheelEvent buttons:"
+    qDebug(log) << "CConnectVnc::slotWheelEvent buttons:"
                      << buttons << pos << angleDelta;//*/
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -810,7 +810,7 @@ void CConnectTigerVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoi
     writer()->writePointerEvent(p, mask);
 }
 
-void CConnectTigerVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
+void CConnectVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
@@ -823,7 +823,7 @@ void CConnectTigerVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifier
         writer()->writeKeyEvent(k, 0, true);
 }
 
-void CConnectTigerVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
+void CConnectVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     if(m_pPara && m_pPara->GetOnlyView()) return;
     if(!writer()) return;
@@ -837,13 +837,13 @@ void CConnectTigerVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifi
 }
 
 /**
- * @brief CConnectTigerVnc::TranslateRfbKey
+ * @brief CConnectVnc::TranslateRfbKey
  * @param inkey
  * @param modifier
  * @return 
  * @see https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#keyevent
  */
-quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
+quint32 CConnectVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 {
     quint32 k = 5000;
     
@@ -1101,18 +1101,18 @@ quint32 CConnectTigerVnc::TranslateRfbKey(quint32 inkey, bool modifier)
     
 }
 
-void CConnectTigerVnc::slotClipBoardChanged()
+void CConnectVnc::slotClipBoardChanged()
 {
-    qDebug(log) << "CConnectTigerVnc::slotClipBoardChanged()";
+    qDebug(log) << "CConnectVnc::slotClipBoardChanged()";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
     announceClipboard(true);
 }
 
-void CConnectTigerVnc::handleClipboardRequest()
+void CConnectVnc::handleClipboardRequest()
 {
-    qDebug(log) << "CConnectTigerVnc::handleClipboardRequest";
+    qDebug(log) << "CConnectVnc::handleClipboardRequest";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
@@ -1122,7 +1122,7 @@ void CConnectTigerVnc::handleClipboardRequest()
     } else if (mimeData->hasText()) {
         QString szText = mimeData->text();
         qDebug(log)
-                << "CConnectTigerVnc::handleClipboardRequest:szText:" << szText;
+                << "CConnectVnc::handleClipboardRequest:szText:" << szText;
         try{
             sendClipboardData(szText.toStdString().c_str());
         } catch (rdr::Exception& e) {
@@ -1131,7 +1131,7 @@ void CConnectTigerVnc::handleClipboardRequest()
     } else if (mimeData->hasHtml()) {
         QString szHtml = mimeData->html();
         qDebug(log)
-                << "CConnectTigerVnc::handleClipboardRequest:html:" << szHtml;
+                << "CConnectVnc::handleClipboardRequest:html:" << szHtml;
         try{
             sendClipboardData(mimeData->html().toStdString().c_str());
         } catch (rdr::Exception& e) {
@@ -1142,17 +1142,17 @@ void CConnectTigerVnc::handleClipboardRequest()
     }
 }
 
-void CConnectTigerVnc::handleClipboardAnnounce(bool available)
+void CConnectVnc::handleClipboardAnnounce(bool available)
 {
-    qDebug(log) << "CConnectTigerVnc::handleClipboardAnnounce";
+    qDebug(log) << "CConnectVnc::handleClipboardAnnounce";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     if(available)
         this->requestClipboard();
 }
 
-void CConnectTigerVnc::handleClipboardData(const char *data)
+void CConnectVnc::handleClipboardData(const char *data)
 {
-    qDebug(log) << "CConnectTigerVnc::handleClipboardData";
+    qDebug(log) << "CConnectVnc::handleClipboardData";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
 
     QMimeData* pData = new QMimeData();

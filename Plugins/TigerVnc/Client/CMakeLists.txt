@@ -10,30 +10,30 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
 endif()
 
 SET(TigerVNC_SOURCE_FILES
-    ParameterTigerVnc.cpp
-    ConnectTigerVnc.cpp
+    ParameterVnc.cpp
+    ConnectVnc.cpp
     FramePixelBuffer.cpp
-    ConnecterTigerVnc.cpp
+    ConnecterVnc.cpp
     PluginTigerVnc.cpp
-    DlgSettingsTigerVnc.cpp
-    DlgGetUserPasswordTigerVNC.cpp
+    DlgSettingsVnc.cpp
+    DlgGetUserPasswordVNC.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/OutStreamChannel.cpp
     )
 SET(TigerVNC_HEADER_FILES
-    ParameterTigerVnc.h
-    ConnectTigerVnc.h
+    ParameterVnc.h
+    ConnectVnc.h
     FramePixelBuffer.h
-    ConnecterTigerVnc.h
+    ConnecterVnc.h
     PluginTigerVnc.h
-    DlgSettingsTigerVnc.h
-    DlgGetUserPasswordTigerVNC.h
+    DlgSettingsVnc.h
+    DlgGetUserPasswordVNC.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/InStreamChannel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/OutStreamChannel.h
     )
 SET(TigerVNC_UI_FILES
-    DlgSettingsTigerVnc.ui
-    DlgGetUserPasswordTigerVNC.ui
+    DlgSettingsVnc.ui
+    DlgGetUserPasswordVNC.ui
     )
 
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}

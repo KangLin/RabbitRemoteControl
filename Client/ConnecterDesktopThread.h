@@ -25,12 +25,9 @@ class CConnectThread;
  * 序列图：\image html docs/Image/PluginClientBlockSequenceDiagram.svg
  *
  * \note 此接口仅由插件实现。 \n
+ *      此接口实例运行在主线程(UI线程)中。 \n
  *      具体的插件需要实现下面接口：
- *         1. 实现 InstanceConnect() ，生成连接对象
- *         2. 实现 GetDialogSettings() ，得到参数对话框
- *         3. 实现 Load(QSettings& set) ，加载参数
- *         4. 实现 Save(QSettings& set) ，保存参数
- *
+ *         1. 实现 InstanceConnect() ，生成连接对象。连接对象运行在后台线程中。
  *
  * \~english
  * \brief It starts a background thread by default.
@@ -51,10 +48,8 @@ class CConnectThread;
  *
  * \note The interface only is implemented by plug-in \n
  *     The specific plug-in needs to implement the following interface. 
- *         1. Implement InstanceConnect()
- *         2. Implement CConnecter::GetDialogSettings(QWidget* parent = nullptr)
- *         3. Implement Load(QSettings& set)
- *         4. Implement Save(QSettings& set)
+ *         1. Implement InstanceConnect() . Generate a connection object.
+ *            The connection object runs in a background thread.
  *
  * \~
  * \see CConnect CConnectThread CConnecter CPluginClient
@@ -97,8 +92,8 @@ protected:
      */
     virtual int Load(QSettings &set) override;
     /*!
-     * \~chinese \brief 保存参数
-     * \~english Accept parameters
+     * \~chinese 保存参数
+     * \~english Save parameters
      */
     virtual int Save(QSettings &set) override;
 

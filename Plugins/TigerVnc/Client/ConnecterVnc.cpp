@@ -1,31 +1,31 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnecterTigerVnc.h"
+#include "ConnecterVnc.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QLoggingCategory>
 #include "PluginClient.h"
 
-static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Connecter")
+static Q_LOGGING_CATEGORY(log, "VNC.Connecter")
 
-CConnecterTigerVnc::CConnecterTigerVnc(CPluginClient *parent)
+CConnecterVnc::CConnecterVnc(CPluginClient *parent)
     : CConnecterDesktopThread(parent)
 {
     SetParameter(&m_Para);
 }
 
-CConnecterTigerVnc::~CConnecterTigerVnc()
+CConnecterVnc::~CConnecterVnc()
 {
-    qDebug(log) << "CConnecterTigerVnc::~CConnecterTigerVnc()";
+    qDebug(log) << "CConnecterVnc::~CConnecterVnc()";
 }
 
-qint16 CConnecterTigerVnc::Version()
+qint16 CConnecterVnc::Version()
 {
     return 0;
 }
 
-QString CConnecterTigerVnc::ServerName()
+QString CConnecterVnc::ServerName()
 {
     if(GetParameter())
         if(!GetParameter()->GetShowServerName()
@@ -45,19 +45,19 @@ QString CConnecterTigerVnc::ServerName()
     return CConnecter::ServerName();
 }
 
-QDialog *CConnecterTigerVnc::GetDialogSettings(QWidget *parent)
+QDialog *CConnecterVnc::GetDialogSettings(QWidget *parent)
 {
-    CDlgSettingsTigerVnc* p = new CDlgSettingsTigerVnc(&m_Para, parent);
+    CDlgSettingsVnc* p = new CDlgSettingsVnc(&m_Para, parent);
     return p;
 }
 
-CConnect* CConnecterTigerVnc::InstanceConnect()
+CConnect* CConnecterVnc::InstanceConnect()
 {
-    CConnectTigerVnc* p = new CConnectTigerVnc(this);
+    CConnectVnc* p = new CConnectVnc(this);
     return p;
 }
 
-const QString CConnecterTigerVnc::Id()
+const QString CConnecterVnc::Id()
 {
     if(m_Para.GetIce())
     {

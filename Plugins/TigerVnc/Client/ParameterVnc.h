@@ -1,15 +1,15 @@
-#ifndef CPARAMETERTIGERVNC_H
-#define CPARAMETERTIGERVNC_H
+#ifndef CPARAMETERVNC_H
+#define CPARAMETERVNC_H
 
 #include "ParameterBase.h"
 #include "ParameterNet.h"
 #include "ParameterProxy.h"
 
-class CParameterTigerVnc : public CParameterBase
+class CParameterVnc : public CParameterBase
 {
     Q_OBJECT
 public:
-    explicit CParameterTigerVnc(QObject *parent = nullptr);
+    explicit CParameterVnc(QObject *parent = nullptr);
     
 public:
     
@@ -126,4 +126,4 @@ private:
     
 };
 
-#endif // CPARAMETERTIGERVNC_H
+#endif // CPARAMETERVNC_H

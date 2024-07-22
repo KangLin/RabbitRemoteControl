@@ -38,7 +38,6 @@ public slots:
 Q_SIGNALS:
     void sigOpenConnect(CConnecterDesktop*);
     void sigCloseconnect(CConnecterDesktop*);
-
 };
 
 #endif // CCONNECTERDESKTOP_H

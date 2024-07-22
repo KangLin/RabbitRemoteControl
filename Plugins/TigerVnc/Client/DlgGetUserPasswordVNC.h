@@ -2,20 +2,20 @@
 #define DLGGETUSERPASSWORD_H
 
 #include <QDialog>
-#include "ConnecterTigerVnc.h"
+#include "ConnecterVnc.h"
 
 namespace Ui {
-class CDlgGetPasswordTigerVNC;
+class CDlgGetPasswordVNC;
 }
 
-class CDlgGetPasswordTigerVNC : public QDialog
+class CDlgGetPasswordVNC : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit CDlgGetPasswordTigerVNC(QWidget *parent = nullptr);
-    virtual ~CDlgGetPasswordTigerVNC();
-    CDlgGetPasswordTigerVNC(const CDlgGetPasswordTigerVNC& dlg);
+    explicit CDlgGetPasswordVNC(QWidget *parent = nullptr);
+    virtual ~CDlgGetPasswordVNC();
+    CDlgGetPasswordVNC(const CDlgGetPasswordVNC& dlg);
     
     Q_INVOKABLE void SetContext(void* pContext);
     Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
@@ -25,13 +25,13 @@ private slots:
     void on_pbCancel_clicked();
     
 private:
-    Ui::CDlgGetPasswordTigerVNC *ui;
-    CConnecterTigerVnc* m_pConnecter;
-    CParameterTigerVnc* m_pParameter;
+    Ui::CDlgGetPasswordVNC *ui;
+    CConnecterVnc* m_pConnecter;
+    CParameterVnc* m_pParameter;
     
     // QWidget interface
 protected:
     virtual void showEvent(QShowEvent *event) override;
 };
-Q_DECLARE_METATYPE(CDlgGetPasswordTigerVNC)
+Q_DECLARE_METATYPE(CDlgGetPasswordVNC)
 #endif // DLGGETUSERPASSWORD_H

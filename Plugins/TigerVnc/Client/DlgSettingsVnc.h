@@ -4,21 +4,21 @@
 #define DLGSETTINGS_H
 
 #include <QDialog>
-#include "ConnectTigerVnc.h"
-#include "ParameterTigerVnc.h"
+#include "ConnectVnc.h"
+#include "ParameterVnc.h"
 #include "ParameterProxyUI.h"
 
 namespace Ui {
-class CDlgSettingsTigerVnc;
+class CDlgSettingsVnc;
 }
 
-class CDlgSettingsTigerVnc : public QDialog
+class CDlgSettingsVnc : public QDialog
 {
     Q_OBJECT
     
 public:
-    explicit CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *parent = nullptr);
-    virtual ~CDlgSettingsTigerVnc();
+    explicit CDlgSettingsVnc(CParameterVnc *pPara, QWidget *parent = nullptr);
+    virtual ~CDlgSettingsVnc();
     
 private slots:
     void on_pbOK_clicked();
@@ -31,8 +31,8 @@ private slots:
     void on_gpIce_clicked(bool checked);
     
 private:
-    Ui::CDlgSettingsTigerVnc *ui;
-    CParameterTigerVnc* m_pPara;
+    Ui::CDlgSettingsVnc *ui;
+    CParameterVnc* m_pPara;
     CParameterProxyUI* m_pProxy;
 };
 

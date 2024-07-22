@@ -4,16 +4,16 @@
 #define CCONNECTERTIGERVNC_H
 
 #include "ConnecterDesktop.h"
-#include "DlgSettingsTigerVnc.h"
-#include "ParameterTigerVnc.h"
+#include "DlgSettingsVnc.h"
+#include "ParameterVnc.h"
 
-class CConnecterTigerVnc : public CConnecterDesktopThread
+class CConnecterVnc : public CConnecterDesktopThread
 {
     Q_OBJECT
 
 public:
-    explicit CConnecterTigerVnc(CPluginClient *parent);
-    virtual ~CConnecterTigerVnc() override;
+    explicit CConnecterVnc(CPluginClient *parent);
+    virtual ~CConnecterVnc() override;
 
     virtual const QString Id() override;
     virtual qint16 Version() override;
@@ -24,7 +24,7 @@ protected:
     virtual QString ServerName() override;
 
 private:
-    CParameterTigerVnc m_Para;
+    CParameterVnc m_Para;
 };
 
 #endif // CCONNECTERTIGERVNC_H

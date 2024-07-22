@@ -123,7 +123,7 @@ public:
      *   \li QDialog::Accepted: 接收
      *   \li QDialog::Rejected: 拒绝
      *   \li -1: 错误
-     *    
+     *
      * \~english
      * \brief Open settings dialog
      * \param parent
@@ -273,10 +273,19 @@ protected:
      * \see OpenDialogSettings
      */
     virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
-
+    /*!
+     * \~chinese \brief 加载参数
+     * \~english \brief Load parameters
+     */
     virtual int Load(QSettings &set) = 0;
+    /*!
+     * \~chinese 保存参数
+     * \~english Save parameters
+     */
     virtual int Save(QSettings &set) = 0;
-
+    /*!
+     * \brief Get parameter
+     */
     virtual CParameterBase* GetParameter();
     /*!
      * \brief Set parameter pointer.

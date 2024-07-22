@@ -1,7 +1,7 @@
-#include "ParameterTigerVnc.h"
+#include "ParameterVnc.h"
 #include "rfb/encodings.h"
 
-CParameterTigerVnc::CParameterTigerVnc(QObject *parent)
+CParameterVnc::CParameterVnc(QObject *parent)
     : CParameterBase(parent),
     m_Proxy(this)
 {
@@ -12,7 +12,7 @@ CParameterTigerVnc::CParameterTigerVnc(QObject *parent)
     SetSupportsDesktopResize(true);
     
     SetAutoSelect(true);
-    SetColorLevel(CParameterTigerVnc::Full);
+    SetColorLevel(CParameterVnc::Full);
     SetEncoding(rfb::encodingTight);
     SetEnableCompressLevel(true);
     SetCompressLevel(2);
@@ -25,26 +25,26 @@ CParameterTigerVnc::CParameterTigerVnc(QObject *parent)
     SetTurnPort(3748);
 }
 
-int CParameterTigerVnc::OnLoad(QSettings &set)
+int CParameterVnc::OnLoad(QSettings &set)
 {
     int nRet = CParameterBase::OnLoad(set);
     if(nRet) return nRet;
 
-    SetShared(set.value("TigerVNC/Shared", GetShared()).toBool());
-    SetBufferEndRefresh(set.value("TigerVNC/BufferEndRefresh",
+    SetShared(set.value("VNC/Shared", GetShared()).toBool());
+    SetBufferEndRefresh(set.value("VNC/BufferEndRefresh",
                                   GetBufferEndRefresh()).toBool());
-    SetSupportsDesktopResize(set.value("TigerVNC/SupportsDesktopResize",
+    SetSupportsDesktopResize(set.value("VNC/SupportsDesktopResize",
                                        GetSupportsDesktopResize()).toBool());
-    SetAutoSelect(set.value("TigerVNC/AutoSelect", GetAutoSelect()).toBool());
-    SetColorLevel(static_cast<COLOR_LEVEL>(set.value("TigerVNC/ColorLevel",
+    SetAutoSelect(set.value("VNC/AutoSelect", GetAutoSelect()).toBool());
+    SetColorLevel(static_cast<COLOR_LEVEL>(set.value("VNC/ColorLevel",
                                                      GetColorLevel()).toInt()));
-    SetEncoding(set.value("TigerVNC/Encoding", GetEncoding()).toInt());
-    SetEnableCompressLevel(set.value("TigerVNC/EnableCompressLevel",
+    SetEncoding(set.value("VNC/Encoding", GetEncoding()).toInt());
+    SetEnableCompressLevel(set.value("VNC/EnableCompressLevel",
                                GetEnableCompressLevel()).toBool());
-    SetCompressLevel(set.value("TigerVNC/CompressLevel",
+    SetCompressLevel(set.value("VNC/CompressLevel",
                                GetCompressLevel()).toInt());
-    SetNoJpeg(set.value("TigerVNC/NoJpeg", GetNoJpeg()).toBool());
-    SetQualityLevel(set.value("TigerVNC/QualityLevel", GetQualityLevel()).toInt());
+    SetNoJpeg(set.value("VNC/NoJpeg", GetNoJpeg()).toBool());
+    SetQualityLevel(set.value("VNC/QualityLevel", GetQualityLevel()).toInt());
     SetIce(set.value("ICE/Enable", GetIce()).toBool());
     SetSignalServer(set.value("ICE/Signal/Server",
                               GetSignalServer()).toString());
@@ -74,21 +74,21 @@ int CParameterTigerVnc::OnLoad(QSettings &set)
     return nRet;
 }
 
-int CParameterTigerVnc::OnSave(QSettings &set)
+int CParameterVnc::OnSave(QSettings &set)
 {
     int nRet = CParameterBase::OnSave(set);
     if(nRet) return nRet;
     
-    set.setValue("TigerVNC/Shared", GetShared());
-    set.setValue("TigerVNC/BufferEndRefresh", GetBufferEndRefresh());
-    set.setValue("TigerVNC/SupportsDesktopResize", GetSupportsDesktopResize());
-    set.setValue("TigerVNC/AutoSelect", GetAutoSelect());
-    set.setValue("TigerVNC/ColorLevel", GetColorLevel());
-    set.setValue("TigerVNC/Encoding", GetEncoding());
-    set.setValue("TigerVNC/EnableCompressLevel", GetEnableCompressLevel());
-    set.setValue("TigerVNC/CompressLevel", GetCompressLevel());
-    set.setValue("TigerVNC/NoJpeg", GetNoJpeg());
-    set.setValue("TigerVNC/QualityLevel", GetQualityLevel());
+    set.setValue("VNC/Shared", GetShared());
+    set.setValue("VNC/BufferEndRefresh", GetBufferEndRefresh());
+    set.setValue("VNC/SupportsDesktopResize", GetSupportsDesktopResize());
+    set.setValue("VNC/AutoSelect", GetAutoSelect());
+    set.setValue("VNC/ColorLevel", GetColorLevel());
+    set.setValue("VNC/Encoding", GetEncoding());
+    set.setValue("VNC/EnableCompressLevel", GetEnableCompressLevel());
+    set.setValue("VNC/CompressLevel", GetCompressLevel());
+    set.setValue("VNC/NoJpeg", GetNoJpeg());
+    set.setValue("VNC/QualityLevel", GetQualityLevel());
     set.setValue("ICE/Enable", GetIce());
     set.setValue("ICE/Signal/Server", GetSignalServer());
     set.setValue("ICE/Signal/Port", GetSignalPort());
@@ -104,7 +104,7 @@ int CParameterTigerVnc::OnSave(QSettings &set)
     return nRet;
 }
 
-bool CParameterTigerVnc::OnCheckValidity()
+bool CParameterVnc::OnCheckValidity()
 {
     if(GetIce())
     {
@@ -122,12 +122,12 @@ bool CParameterTigerVnc::OnCheckValidity()
     return true;
 }
 
-bool CParameterTigerVnc::GetShared() const
+bool CParameterVnc::GetShared() const
 {
     return m_bShared;
 }
 
-void CParameterTigerVnc::SetShared(bool newShared)
+void CParameterVnc::SetShared(bool newShared)
 {
     if(m_bShared == newShared)
         return;
@@ -135,12 +135,12 @@ void CParameterTigerVnc::SetShared(bool newShared)
     SetModified(true);
 }
 
-bool CParameterTigerVnc::GetBufferEndRefresh() const
+bool CParameterVnc::GetBufferEndRefresh() const
 {
     return m_bBufferEndRefresh;
 }
 
-void CParameterTigerVnc::SetBufferEndRefresh(bool newBufferEndRefresh)
+void CParameterVnc::SetBufferEndRefresh(bool newBufferEndRefresh)
 {
     if(m_bBufferEndRefresh == newBufferEndRefresh)
         return;
@@ -148,12 +148,12 @@ void CParameterTigerVnc::SetBufferEndRefresh(bool newBufferEndRefresh)
     SetModified(true);
 }
 
-bool CParameterTigerVnc::GetSupportsDesktopResize() const
+bool CParameterVnc::GetSupportsDesktopResize() const
 {
     return m_bSupportsDesktopResize;
 }
 
-void CParameterTigerVnc::SetSupportsDesktopResize(bool newSupportsDesktopResize)
+void CParameterVnc::SetSupportsDesktopResize(bool newSupportsDesktopResize)
 {
     if(m_bSupportsDesktopResize == newSupportsDesktopResize)
         return;
@@ -161,12 +161,12 @@ void CParameterTigerVnc::SetSupportsDesktopResize(bool newSupportsDesktopResize)
     SetModified(true);
 }
 
-bool CParameterTigerVnc::GetAutoSelect() const
+bool CParameterVnc::GetAutoSelect() const
 {
     return m_bAutoSelect;
 }
 
-void CParameterTigerVnc::SetAutoSelect(bool newAutoSelect)
+void CParameterVnc::SetAutoSelect(bool newAutoSelect)
 {
     if(m_bAutoSelect == newAutoSelect)
         return;
@@ -174,12 +174,12 @@ void CParameterTigerVnc::SetAutoSelect(bool newAutoSelect)
     SetModified(true);
 }
 
-CParameterTigerVnc::COLOR_LEVEL CParameterTigerVnc::GetColorLevel() const
+CParameterVnc::COLOR_LEVEL CParameterVnc::GetColorLevel() const
 {
     return m_nColorLevel;
 }
 
-void CParameterTigerVnc::SetColorLevel(COLOR_LEVEL newColorLevel)
+void CParameterVnc::SetColorLevel(COLOR_LEVEL newColorLevel)
 {
     if(m_nColorLevel == newColorLevel)
         return;
@@ -187,12 +187,12 @@ void CParameterTigerVnc::SetColorLevel(COLOR_LEVEL newColorLevel)
     SetModified(true);
 }
 
-int CParameterTigerVnc::GetEncoding() const
+int CParameterVnc::GetEncoding() const
 {
     return m_nEncoding;
 }
 
-void CParameterTigerVnc::SetEncoding(int newEncoding)
+void CParameterVnc::SetEncoding(int newEncoding)
 {
     if(m_nEncoding == newEncoding)
         return;
@@ -200,12 +200,12 @@ void CParameterTigerVnc::SetEncoding(int newEncoding)
     SetModified(true);
 }
 
-bool CParameterTigerVnc::GetEnableCompressLevel() const
+bool CParameterVnc::GetEnableCompressLevel() const
 {
     return m_bCompressLevel;
 }
 
-void CParameterTigerVnc::SetEnableCompressLevel(bool newCompressLevel)
+void CParameterVnc::SetEnableCompressLevel(bool newCompressLevel)
 {
     if(m_bCompressLevel == newCompressLevel)
         return;
@@ -213,12 +213,12 @@ void CParameterTigerVnc::SetEnableCompressLevel(bool newCompressLevel)
     SetModified(true);
 }
 
-int CParameterTigerVnc::GetCompressLevel() const
+int CParameterVnc::GetCompressLevel() const
 {
     return m_nCompressLevel;
 }
 
-void CParameterTigerVnc::SetCompressLevel(int newCompressLevel)
+void CParameterVnc::SetCompressLevel(int newCompressLevel)
 {
     if(m_nCompressLevel == newCompressLevel)
         return;
@@ -226,12 +226,12 @@ void CParameterTigerVnc::SetCompressLevel(int newCompressLevel)
     SetModified(true);
 }
 
-bool CParameterTigerVnc::GetNoJpeg() const
+bool CParameterVnc::GetNoJpeg() const
 {
     return m_bNoJpeg;
 }
 
-void CParameterTigerVnc::SetNoJpeg(bool newNoJpeg)
+void CParameterVnc::SetNoJpeg(bool newNoJpeg)
 {
     if(m_bNoJpeg == newNoJpeg)
         return;
@@ -239,12 +239,12 @@ void CParameterTigerVnc::SetNoJpeg(bool newNoJpeg)
     SetModified(true);
 }
 
-int CParameterTigerVnc::GetQualityLevel() const
+int CParameterVnc::GetQualityLevel() const
 {
     return m_nQualityLevel;
 }
 
-void CParameterTigerVnc::SetQualityLevel(int newQualityLevel)
+void CParameterVnc::SetQualityLevel(int newQualityLevel)
 {
     if(m_nQualityLevel == newQualityLevel)
         return;
@@ -252,12 +252,12 @@ void CParameterTigerVnc::SetQualityLevel(int newQualityLevel)
     SetModified(true);
 }
 
-bool CParameterTigerVnc::GetIce() const
+bool CParameterVnc::GetIce() const
 {
     return m_bIce;
 }
 
-void CParameterTigerVnc::SetIce(bool newIce)
+void CParameterVnc::SetIce(bool newIce)
 {
     if(m_bIce == newIce)
         return;
@@ -265,12 +265,12 @@ void CParameterTigerVnc::SetIce(bool newIce)
     SetModified(true);
 }
 
-const QString &CParameterTigerVnc::GetSignalServer() const
+const QString &CParameterVnc::GetSignalServer() const
 {
     return m_szSignalServer;
 }
 
-void CParameterTigerVnc::SetSignalServer(const QString &newSignalServer)
+void CParameterVnc::SetSignalServer(const QString &newSignalServer)
 {
     if(m_szSignalServer == newSignalServer)
         return;
@@ -278,12 +278,12 @@ void CParameterTigerVnc::SetSignalServer(const QString &newSignalServer)
     SetModified(true);
 }
 
-quint16 CParameterTigerVnc::GetSignalPort() const
+quint16 CParameterVnc::GetSignalPort() const
 {
     return m_nSignalPort;
 }
 
-void CParameterTigerVnc::SetSignalPort(quint16 newSignalPort)
+void CParameterVnc::SetSignalPort(quint16 newSignalPort)
 {
     if(m_nSignalPort == newSignalPort)
         return;
@@ -291,12 +291,12 @@ void CParameterTigerVnc::SetSignalPort(quint16 newSignalPort)
     SetModified(true);
 }
 
-const QString &CParameterTigerVnc::GetSignalUser() const
+const QString &CParameterVnc::GetSignalUser() const
 {
     return m_szSignalUser;
 }
 
-void CParameterTigerVnc::SetSignalUser(const QString &newSignalUser)
+void CParameterVnc::SetSignalUser(const QString &newSignalUser)
 {
     if(m_szSignalUser == newSignalUser)
         return;
@@ -304,12 +304,12 @@ void CParameterTigerVnc::SetSignalUser(const QString &newSignalUser)
     SetModified(true);
 }
 
-const QString &CParameterTigerVnc::GetSignalPassword() const
+const QString &CParameterVnc::GetSignalPassword() const
 {
     return m_szSignalPassword;
 }
 
-void CParameterTigerVnc::SetSignalPassword(const QString &newSignalPassword)
+void CParameterVnc::SetSignalPassword(const QString &newSignalPassword)
 {
     if(m_szSignalPassword == newSignalPassword)
         return;
@@ -317,12 +317,12 @@ void CParameterTigerVnc::SetSignalPassword(const QString &newSignalPassword)
     SetModified(true);
 }
 
-const QString &CParameterTigerVnc::GetPeerUser() const
+const QString &CParameterVnc::GetPeerUser() const
 {
     return m_szPeerUser;
 }
 
-void CParameterTigerVnc::SetPeerUser(const QString &newPeerUser)
+void CParameterVnc::SetPeerUser(const QString &newPeerUser)
 {
     if(m_szPeerUser == newPeerUser)
         return;
@@ -330,12 +330,12 @@ void CParameterTigerVnc::SetPeerUser(const QString &newPeerUser)
     SetModified(true);
 }
 
-const QString &CParameterTigerVnc::GetStunServer() const
+const QString &CParameterVnc::GetStunServer() const
 {
     return m_szStunServer;
 }
 
-void CParameterTigerVnc::SetStunServer(const QString &newStunServer)
+void CParameterVnc::SetStunServer(const QString &newStunServer)
 {
     if(m_szStunServer == newStunServer)
         return;
@@ -343,12 +343,12 @@ void CParameterTigerVnc::SetStunServer(const QString &newStunServer)
     SetModified(true);
 }
 
-quint16 CParameterTigerVnc::GetStunPort() const
+quint16 CParameterVnc::GetStunPort() const
 {
     return m_nStunPort;
 }
 
-void CParameterTigerVnc::SetStunPort(quint16 newStunPort)
+void CParameterVnc::SetStunPort(quint16 newStunPort)
 {
     if(m_nStunPort == newStunPort)
         return;
@@ -356,12 +356,12 @@ void CParameterTigerVnc::SetStunPort(quint16 newStunPort)
     SetModified(true);
 }
 
-const QString &CParameterTigerVnc::GetTurnServer() const
+const QString &CParameterVnc::GetTurnServer() const
 {
     return m_szTurnServer;
 }
 
-void CParameterTigerVnc::SetTurnServer(const QString &newTurnServer)
+void CParameterVnc::SetTurnServer(const QString &newTurnServer)
 {
     if(m_szTurnServer == newTurnServer)
         return;
@@ -369,12 +369,12 @@ void CParameterTigerVnc::SetTurnServer(const QString &newTurnServer)
     SetModified(true);
 }
 
-quint16 CParameterTigerVnc::GetTurnPort() const
+quint16 CParameterVnc::GetTurnPort() const
 {
     return m_nTurnPort;
 }
 
-void CParameterTigerVnc::SetTurnPort(quint16 newTurnPort)
+void CParameterVnc::SetTurnPort(quint16 newTurnPort)
 {
     if(m_nTurnPort == newTurnPort)
         return;
@@ -382,12 +382,12 @@ void CParameterTigerVnc::SetTurnPort(quint16 newTurnPort)
     SetModified(true);
 }
 
-const QString &CParameterTigerVnc::GetTurnUser() const
+const QString &CParameterVnc::GetTurnUser() const
 {
     return m_szTurnUser;
 }
 
-void CParameterTigerVnc::SetTurnUser(const QString &newTurnUser)
+void CParameterVnc::SetTurnUser(const QString &newTurnUser)
 {
     if(m_szTurnUser == newTurnUser)
         return;
@@ -395,12 +395,12 @@ void CParameterTigerVnc::SetTurnUser(const QString &newTurnUser)
     SetModified(true);
 }
 
-const QString &CParameterTigerVnc::GetTurnPassword() const
+const QString &CParameterVnc::GetTurnPassword() const
 {
     return m_szTurnPassword;
 }
 
-void CParameterTigerVnc::SetTurnPassword(const QString &newTurnPassword)
+void CParameterVnc::SetTurnPassword(const QString &newTurnPassword)
 {
     if(m_szTurnPassword == newTurnPassword)
         return;

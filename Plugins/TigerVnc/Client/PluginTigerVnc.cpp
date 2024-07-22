@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginTigerVnc.h"
-#include "ConnecterTigerVnc.h"
+#include "ConnecterVnc.h"
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
 #include <QDebug>
@@ -40,6 +40,11 @@ CPluginTigerVnc::~CPluginTigerVnc()
 
 const QString CPluginTigerVnc::Name() const
 {
+    return "TigerVNC";
+}
+
+const QString CPluginTigerVnc::DisplayName() const
+{
     return tr("TigerVNC");
 }
 
@@ -58,7 +63,7 @@ CConnecter *CPluginTigerVnc::CreateConnecter(const QString &szProtocol)
 {
     if(Id() == szProtocol)
     {
-        return new CConnecterTigerVnc(this);
+        return new CConnecterVnc(this);
     }
     return nullptr;
 }

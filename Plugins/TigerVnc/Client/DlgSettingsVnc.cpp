@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "DlgSettingsTigerVnc.h"
-#include "ui_DlgSettingsTigerVnc.h"
+#include "DlgSettingsVnc.h"
+#include "ui_DlgSettingsVnc.h"
 #include "rfb/encodings.h"
 #include <QDebug>
 #include <QMessageBox>
@@ -13,11 +13,11 @@
 
 #undef SetPort
 
-static Q_LOGGING_CATEGORY(log, "VNC.Tiger")
+static Q_LOGGING_CATEGORY(log, "VNC.Settings")
 
-CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *parent) :
+CDlgSettingsVnc::CDlgSettingsVnc(CParameterVnc *pPara, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CDlgSettingsTigerVnc),
+    ui(new Ui::CDlgSettingsVnc),
     m_pPara(pPara)
 {
     setAttribute(Qt::WA_DeleteOnClose);
@@ -96,16 +96,16 @@ CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *p
     
     switch(m_pPara->GetColorLevel())
     {
-    case CParameterTigerVnc::Full:
+    case CParameterVnc::Full:
         ui->rbFull->setChecked(true);
         break;
-    case CParameterTigerVnc::Medium:
+    case CParameterVnc::Medium:
         ui->rbMeduim->setChecked(true);
         break;
-    case CParameterTigerVnc::Low:
+    case CParameterVnc::Low:
         ui->rbLow->setChecked(true);
         break;
-    case CParameterTigerVnc::VeryLow:
+    case CParameterVnc::VeryLow:
         ui->rbVeryLow->setChecked(true);
         break;
     }
@@ -125,13 +125,13 @@ CDlgSettingsTigerVnc::CDlgSettingsTigerVnc(CParameterTigerVnc *pPara, QWidget *p
     }
 }
 
-CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()
+CDlgSettingsVnc::~CDlgSettingsVnc()
 {
-    qDebug(log) << "CDlgSettingsTigerVnc::~CDlgSettingsTigerVnc()";
+    qDebug(log) << "CDlgSettingsVnc::~CDlgSettingsVnc()";
     delete ui;
 }
 
-void CDlgSettingsTigerVnc::on_pbOK_clicked()
+void CDlgSettingsVnc::on_pbOK_clicked()
 {
     int nRet = 0;
     if(!m_pPara)
@@ -174,10 +174,10 @@ void CDlgSettingsTigerVnc::on_pbOK_clicked()
     if(ui->rbCopyRect->isChecked()) m_pPara->SetEncoding(rfb::encodingCopyRect);
     if(ui->rbHextile->isChecked()) m_pPara->SetEncoding(rfb::encodingHextile);
     
-    if(ui->rbFull->isChecked()) m_pPara->SetColorLevel(CParameterTigerVnc::Full);
-    if(ui->rbMeduim->isChecked()) m_pPara->SetColorLevel(CParameterTigerVnc::Medium);
-    if(ui->rbLow->isChecked()) m_pPara->SetColorLevel(CParameterTigerVnc::Low);
-    if(ui->rbVeryLow->isChecked()) m_pPara->SetColorLevel(CParameterTigerVnc::VeryLow);
+    if(ui->rbFull->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Full);
+    if(ui->rbMeduim->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Medium);
+    if(ui->rbLow->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Low);
+    if(ui->rbVeryLow->isChecked()) m_pPara->SetColorLevel(CParameterVnc::VeryLow);
 
     m_pPara->SetEnableCompressLevel(ui->cbCompress->isChecked());
     m_pPara->SetCompressLevel(ui->spCompressLevel->value());
@@ -187,12 +187,12 @@ void CDlgSettingsTigerVnc::on_pbOK_clicked()
     accept();
 }
 
-void CDlgSettingsTigerVnc::on_pbCancel_clicked()
+void CDlgSettingsVnc::on_pbCancel_clicked()
 {
     reject();
 }
 
-void CDlgSettingsTigerVnc::on_cbCompressAutoSelect_stateChanged(int arg1)
+void CDlgSettingsVnc::on_cbCompressAutoSelect_stateChanged(int arg1)
 {
     m_pPara->SetAutoSelect(arg1);
     if(m_pPara->GetAutoSelect())
@@ -215,21 +215,21 @@ void CDlgSettingsTigerVnc::on_cbCompressAutoSelect_stateChanged(int arg1)
     }
 }
 
-void CDlgSettingsTigerVnc::on_cbCompress_stateChanged(int arg1)
+void CDlgSettingsVnc::on_cbCompress_stateChanged(int arg1)
 {
     m_pPara->SetCompressLevel(arg1);
     
     ui->spCompressLevel->setEnabled(m_pPara->GetEnableCompressLevel());
 }
 
-void CDlgSettingsTigerVnc::on_cbJPEG_stateChanged(int arg1)
+void CDlgSettingsVnc::on_cbJPEG_stateChanged(int arg1)
 {
     m_pPara->SetNoJpeg(!arg1);
     
     ui->spJPEGLevel->setEnabled(!m_pPara->GetNoJpeg());
 }
 
-void CDlgSettingsTigerVnc::on_gpIce_clicked(bool checked)
+void CDlgSettingsVnc::on_gpIce_clicked(bool checked)
 {
     ui->wNet->setEnabled(!checked);
 }

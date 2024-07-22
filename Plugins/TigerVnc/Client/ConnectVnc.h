@@ -1,7 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCONNECTTIGERVNC_H
-#define CCONNECTTIGERVNC_H
+#ifndef CCONNECTVNC_H
+#define CCONNECTVNC_H
+
+#pragma once
 
 #include "Connect.h"
 #include "ParameterConnecter.h"
@@ -10,13 +12,13 @@
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
 #include "Channel.h"
-#include "ParameterTigerVnc.h"
+#include "ParameterVnc.h"
 #include "../../RabbitVNC/InStreamChannel.h"
 #include "../../RabbitVNC/OutStreamChannel.h"
 #include <QEventLoop>
 
-class CConnecterTigerVnc;
-class CConnectTigerVnc : public CConnect,
+class CConnecterDesktopThread;
+class CConnectVnc : public CConnect,
         public rfb::CConnection,
         public rfb::UserPasswdGetter,
         public rfb::UserMsgBox
@@ -24,9 +26,9 @@ class CConnectTigerVnc : public CConnect,
     Q_OBJECT
 
 public:
-    explicit CConnectTigerVnc(CConnecterTigerVnc* pConnecter,
+    explicit CConnectVnc(CConnecterDesktopThread* pConnecter,
                               QObject *parent = nullptr);
-    virtual ~CConnectTigerVnc() override;
+    virtual ~CConnectVnc() override;
 
 public Q_SLOTS:
     virtual void slotConnected();
@@ -86,7 +88,7 @@ private:
     quint32 TranslateRfbKey(quint32 inkey,bool modifier);   
 
 private:
-    CParameterTigerVnc* m_pPara;
+    CParameterVnc* m_pPara;
     int SetPara();
     void autoSelectFormatAndEncoding();
     void updatePixelFormat();
@@ -98,4 +100,4 @@ private:
     int SSHInit();
 };
 
-#endif // CCONNECTTIGERVNC_H
+#endif // CCONNECTVNC_H
