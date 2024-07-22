@@ -29,10 +29,12 @@ qint64 CChannel::readData(char *data, qint64 maxlen)
     int nRet = 0;
     /*
     qDebug(log) << "CChannel::readData:"
-                << maxlen << "nLen:" << m_readData.size();//*/
+                << maxlen; //*/
     if(m_pSocket)
         nRet = m_pSocket->read(data, maxlen);
-    
+    if(nRet < 0) {
+        setErrorString(m_pSocket->errorString());
+    }
     return nRet;
 }
 

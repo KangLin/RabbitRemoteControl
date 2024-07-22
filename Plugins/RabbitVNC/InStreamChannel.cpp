@@ -22,8 +22,8 @@ bool CInStreamChannel::fillBuffer()
     qint64 n = m_pDataChannel->read((char*)end, nLen);
     if (0 == n)
       return false;
-
-    if(-1 == n)
+    
+    if(0 > n)
     {
         qCritical(VncStreamChannel) << "CInStreamDataChannel::fillBuffer:"
                                     << m_pDataChannel->errorString();

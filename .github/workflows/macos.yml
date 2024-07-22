@@ -57,10 +57,10 @@ jobs:
     
       - name: Make directories
         run: |
+          cmake -E make_directory ${{github.workspace}}/build
           cmake -E make_directory ${{env.SOURCE_DIR}}
           cmake -E make_directory ${{env.TOOSL_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-          cmake -E make_directory ${{github.workspace}}/build
 
       - name: Cache installed
         uses: actions/cache@v3

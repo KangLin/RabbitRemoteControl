@@ -76,10 +76,10 @@ jobs:
 
       - name: Make directories
         run: |
+          cmake -E make_directory ${{github.workspace}}/build
           cmake -E make_directory ${{env.SOURCE_DIR}}
           cmake -E make_directory ${{env.TOOSL_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-          cmake -E make_directory ${{github.workspace}}/build
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
@@ -113,7 +113,7 @@ jobs:
           path: |
             ${{env.INSTALL_DIR}}
           key: install_ubuntu_${{matrix.BUILD_TYPE}}
-
+          
       - name: build FreeRDP
         if: false
         working-directory: ${{env.SOURCE_DIR}}
@@ -287,55 +287,3 @@ jobs:
             ${{github.workspace}}/update_ubuntu.json
             ${{github.workspace}}/version.json
             ${{github.workspace}}/update_linux.xml
-
-#    - name: Upload To Github Release
-#      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }}
-#      uses: softprops/action-gh-release@v1
-#      env:
-#        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-#      with:
-#        prerelease: true
-#        body: |
-#          [:cn: 修改日志](ChangeLog_zh_CN.md) [:cn: 说明](README_zh_CN.md)
-#          [:us: Change log](ChangeLog.md) [:us: README](README.md)
-#        files: |
-#            ${{github.workspace}}/update_linux.xml
-#            ${{github.workspace}}/rabbitremotecontrol_*.deb
-#            ${{github.workspace}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum
-
-#- name: Release
-#  uses: fnkr/github-action-ghr@v1
-#  if: startsWith(github.ref, 'refs/tags/')
-#  env:
-#    GHR_COMPRESS: xz
-#    GHR_PATH: ${{github.workspace}}/rabbitremotecontrol_*.deb
-#    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#    - name: Upload To Github Release
-#      # You may pin to the exact commit or the version.
-#      # uses: xresloader/upload-to-github-release@3ad14478ee4fb9bd65e84c6d496a7d6862892f43
-#      uses: xresloader/upload-to-github-release@v1.3.2
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        # The files or file patterns to upload. You can upload multiple files by split them by semicolon. You can use the glob pattern to find the files.
-#        file: ${{github.workspace}}/rabbitremotecontrol_*.deb;${{github.workspace}}/update_linux.xml # default is 
-#        # The files or file patterns to delete before uploading new files. You can delete multiple files by split them by semicolon. You can use the glob pattern to find the files.
-#        #delete_file: # optional, default is 
-#        # If you need to overwrite existing files, add overwrite: true to the with.
-#        overwrite: true # optional, default is false
-#        # The resultant deployment is a draft Release that only repository collaborators can see. This gives you an opportunity to examine and edit the draft release.
-#        draft: true # optional, default is true
-#        # The resultant deployment is a Prerelease. This gives you an opportunity to examine and edit the prerelease.
-#        prerelease: true # optional, default is false
-#        # With tags: true, your Releases deployment will trigger if and only if the build is a tagged build.
-#        tags: true # optional, default is false
-#        # Only work on these branches(splitted by semicolon), set to nothing to accept all branches.
-#        branches: master # optional, default is 
-#        # With verbose: true, be verbose.
-#        verbose: true # optional, default is false
-#        # Set custom tag name.
-#        #tag_name: 'v${{env.RabbitRemoteControl_VERSION}}'
-#        # If try to update latest release.
-#        #update_latest_release: true # optional, default is false
-#      if: ${{ matrix.BUILD_TYPE == 'Release' && startsWith(github.ref, 'refs/tags/') }} 

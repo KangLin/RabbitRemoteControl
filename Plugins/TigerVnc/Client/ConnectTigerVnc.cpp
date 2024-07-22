@@ -422,8 +422,12 @@ void CConnectTigerVnc::slotReadyRead()
     QString szErr("processMsg exception: ");
     int nRet = -1;
     try {
+        getOutStream()->flush();
+        
+        getOutStream()->cork(true);
         while(processMsg())
             ;
+        getOutStream()->cork(false);
         return;
     } catch (rfb::AuthFailureException& e) {
         szErr = tr("Logon to ");
