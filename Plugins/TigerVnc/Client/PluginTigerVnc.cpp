@@ -59,9 +59,9 @@ const QString CPluginTigerVnc::Protocol() const
     return "RFB";
 }
 
-CConnecter *CPluginTigerVnc::CreateConnecter(const QString &szProtocol)
+CConnecter *CPluginTigerVnc::CreateConnecter(const QString &szID)
 {
-    if(Id() == szProtocol)
+    if(Id() == szID)
     {
         return new CConnecterVnc(this);
     }

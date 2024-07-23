@@ -17,8 +17,8 @@ SET(TigerVNC_SOURCE_FILES
     PluginTigerVnc.cpp
     DlgSettingsVnc.cpp
     DlgGetUserPasswordVNC.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/InStreamChannel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/OutStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
     )
 SET(TigerVNC_HEADER_FILES
     ParameterVnc.h
@@ -28,8 +28,8 @@ SET(TigerVNC_HEADER_FILES
     PluginTigerVnc.h
     DlgSettingsVnc.h
     DlgGetUserPasswordVNC.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/InStreamChannel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/OutStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
     )
 SET(TigerVNC_UI_FILES
     DlgSettingsVnc.ui

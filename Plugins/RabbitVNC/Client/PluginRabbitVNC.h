@@ -8,7 +8,7 @@
 #include "PluginClientThread.h"
 #include <QTranslator>
 
-class CPluginRabbitVNC : public CPluginClientThread
+class CPluginRabbitVNC : public CPluginClient
 {
     Q_OBJECT
     
@@ -32,7 +32,7 @@ public:
     virtual const QString Details() const override;
 
 protected:
-    virtual CConnecterDesktop* OnCreateConnecter(const QString& szProtocol) override;    
+    virtual CConnecter *CreateConnecter(const QString& szID) override;
 };
 
 #endif // CPluginRabbitVnc_H_KL_2021_07_23

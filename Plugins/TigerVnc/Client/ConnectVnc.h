@@ -13,15 +13,16 @@
 #include "rfb/UserMsgBox.h"
 #include "Channel.h"
 #include "ParameterVnc.h"
-#include "../../RabbitVNC/InStreamChannel.h"
-#include "../../RabbitVNC/OutStreamChannel.h"
+#include "../InStreamChannel.h"
+#include "../OutStreamChannel.h"
 #include <QEventLoop>
 
 class CConnecterDesktopThread;
-class CConnectVnc : public CConnect,
-        public rfb::CConnection,
-        public rfb::UserPasswdGetter,
-        public rfb::UserMsgBox
+class CConnectVnc
+    : public CConnect,
+      public rfb::CConnection,
+      public rfb::UserPasswdGetter,
+      public rfb::UserMsgBox
 {
     Q_OBJECT
 

@@ -31,7 +31,7 @@ public:
     virtual const QIcon Icon() const override;
     
 private:
-    virtual CConnecter *CreateConnecter(const QString& szProtocol) override;
+    virtual CConnecter *CreateConnecter(const QString& szID) override;
 };
 
 #endif // CPLUGINTIGERVNC_H_KL_2021_07_23

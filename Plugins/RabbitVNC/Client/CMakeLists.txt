@@ -10,30 +10,30 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
 endif()
 
 SET(RabbitVNC_SOURCE_FILES
-    ParameterRabbitVNC.cpp
-    ConnectRabbitVNC.cpp
-    FramePixelBuffer.cpp
-    ConnecterRabbitVNC.cpp
     PluginRabbitVNC.cpp
-    DlgSettingsRabbitVNC.cpp
-    DlgGetPasswordRabbitVNC.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ParameterVnc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnectVnc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/FramePixelBuffer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnecterVnc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgSettingsVnc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgGetUserPasswordVNC.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/InStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/OutStreamChannel.cpp
     )
 SET(RabbitVNC_HEADER_FILES
-    ParameterRabbitVNC.h
-    ConnectRabbitVNC.h
-    FramePixelBuffer.h
-    ConnecterRabbitVNC.h
     PluginRabbitVNC.h
-    DlgSettingsRabbitVNC.h
-    DlgGetPasswordRabbitVNC.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ParameterVnc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnectVnc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/FramePixelBuffer.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnecterVnc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgSettingsVnc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgGetUserPasswordVNC.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/InStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/OutStreamChannel.h
     )
 SET(RabbitVNC_UI_FILES
-    DlgSettingsRabbitVNC.ui
-    DlgGetPasswordRabbitVNC.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgSettingsVnc.ui
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgGetUserPasswordVNC.ui
     )
 
 #message("RabbitVNC links libraries:${RabbitVNC_SRC_LIBS}")

@@ -2,17 +2,17 @@
 
 #include "PluginRabbitVNC.h"
 #include "RabbitCommonDir.h"
-#include "ConnecterRabbitVNC.h"
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
-
+#include "../../TigerVnc/Client/ConnecterVnc.h"
 #include <QApplication>
+#include <QLoggingCategory>
 
 Q_LOGGING_CATEGORY(RabbitVNC, "RabbitVNC")
 
 static bool initlog = false;
 CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
-    : CPluginClientThread(parent)
+    : CPluginClient(parent)
 {
     //! [Initialize resource]
 
@@ -60,14 +60,15 @@ const QString CPluginRabbitVNC::Protocol() const
     return "RFB";
 }
 
-CConnecterDesktop *CPluginRabbitVNC::OnCreateConnecter(const QString &szProtocol)
+CConnecter *CPluginRabbitVNC::CreateConnecter(const QString &szID)
 {
-    if(Id() == szProtocol)
+    if(Id() == szID)
     {
-        return new CConnecterRabbitVNC(this);
+        return new CConnecterVnc(this);
     }
     return nullptr;
 }
+
 
 const QIcon CPluginRabbitVNC::Icon() const
 {
