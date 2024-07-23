@@ -2,10 +2,9 @@
 
 #include "PluginTigerVnc.h"
 #include "ConnecterVnc.h"
-#include <rfb/LogWriter.h>
-#include <rfb/Logger_stdio.h>
 #include <QLoggingCategory>
 #include "RabbitCommonDir.h"
+#include <QScopedPointer>
 
 static Q_LOGGING_CATEGORY(log, "VNC.Plugin.Tiger")
 
@@ -15,17 +14,7 @@ CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     //! [Initialize resource]
 
     //rfb::SecurityClient::setDefaults();
-    static bool initlog = false;
-    if(!initlog)
-    {
-        rfb::initStdIOLoggers();
-        QString szFile = RabbitCommon::CDir::Instance()->GetDirLog()
-                + QDir::separator()
-                + "TigerVnc.log";
-        rfb::initFileLogger(szFile.toStdString().c_str());
-        rfb::LogWriter::setLogParams("*:stderr:100");
-        initlog = true;
-    }
+    
     //! [Initialize resource]
 }
 

@@ -13,6 +13,8 @@
 #include "rfb/LogWriter.h"
 #include <rfb/util.h>
 #include <rfb/clipboardTypes.h>
+#include <rfb/LogWriter.h>
+#include <rfb/Logger_stdio.h>
 
 // the X11 headers on some systems
 #ifndef XK_VoidSymbol
@@ -51,6 +53,28 @@
 #endif
 
 static Q_LOGGING_CATEGORY(log, "VNC.Connect")
+    static Q_LOGGING_CATEGORY(logVNC, "VNC.Log")
+    
+    class VncLogger: public rfb::Logger
+{
+public:
+    VncLogger(const char *name) : rfb::Logger(name)
+    {}
+    void write(int level, const char *logname, const char *text) override
+    {
+        if (level >= rfb::LogWriter::LEVEL_DEBUG) {
+            qDebug(logVNC) << logname << text;
+        } else if (level >= rfb::LogWriter::LEVEL_INFO) {
+            qInfo(logVNC) << logname << text;
+        } else if (level >= rfb::LogWriter::LEVEL_STATUS) {
+            qWarning(logVNC) << logname << text;
+        } else {
+            qCritical(logVNC) << logname << text;
+        }
+    }
+};
+
+static QScopedPointer<VncLogger> g_logger(new VncLogger("Rabbit"));
 
 // 8 colours (1 bit per component)
 static const rfb::PixelFormat verylowColourPF(8, 3,false, true, 1, 1, 1, 2, 1, 0);
@@ -74,6 +98,22 @@ CConnectVnc::CConnectVnc(CConnecterDesktopThread *pConnecter, QObject *parent)
       m_updateCount(0),
       m_pPara(nullptr)
 {
+    static bool initlog = false;
+    if(!initlog)
+    {
+        //qDebug(log) << "Init vnc log ......";
+        g_logger->registerLogger();
+        rfb::LogWriter::setLogParams("*:Rabbit:100");
+        /*rfb::initStdIOLoggers();
+        rfb::LogWriter::setLogParams("*:stderr:100");
+        QString szFile = RabbitCommon::CDir::Instance()->GetDirLog()
+                + QDir::separator()
+                + "TigerVnc.log";
+        rfb::initFileLogger(szFile.toStdString().c_str());
+        rfb::LogWriter::setLogParams("*:file:100");
+        */
+        initlog = true;
+    }
     m_pPara = dynamic_cast<CParameterVnc*>(pConnecter->GetParameter());
     Q_ASSERT(m_pPara);
 
@@ -505,6 +545,11 @@ void CConnectVnc::initDone()
     emit sigConnected();
 }
 
+void CConnectVnc::resizeFramebuffer()
+{
+    qDebug(log) << "CConnectVnc::resizeFramebuffer";
+}
+
 void CConnectVnc::setColourMapEntries(int firstColour, int nColours, uint16_t *rgbs)
 {
     qCritical(log) << "Invalid SetColourMapEntries from server!";
@@ -541,14 +586,15 @@ void CConnectVnc::getUserPasswd(bool secure, std::string *user, std::string *pas
 {
     if(password)
     {
-        *password = m_pPara->m_Net.m_User.GetPassword().toStdString();
-        if(m_pPara->m_Net.m_User.GetPassword().isEmpty())
+        auto &user = m_pPara->m_Net.m_User;
+        *password = user.GetPassword().toStdString();
+        if(user.GetPassword().isEmpty())
         {
             int nRet = QDialog::Rejected;
             emit sigBlockShowWidget("CDlgGetPasswordVNC", nRet, m_pPara);
             if(QDialog::Accepted == nRet)
             {
-                *password = m_pPara->m_Net.m_User.GetPassword().toStdString();
+                *password = user.GetPassword().toStdString();
             }
         }
     }
@@ -1117,9 +1163,9 @@ void CConnectVnc::handleClipboardRequest()
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
 
-    if (mimeData->hasImage()) {
+    /*if (mimeData->hasImage()) {
         //        setPixmap(qvariant_cast<QPixmap>(mimeData->imageData()));
-    } else if (mimeData->hasText()) {
+    } else */if (mimeData->hasText()) {
         QString szText = mimeData->text();
         qDebug(log)
                 << "CConnectVnc::handleClipboardRequest:szText:" << szText;
@@ -1128,7 +1174,7 @@ void CConnectVnc::handleClipboardRequest()
         } catch (rdr::Exception& e) {
             qCritical(log) << "sendClipboardData exception" << e.str();
         }
-    } else if (mimeData->hasHtml()) {
+    } /*else if (mimeData->hasHtml()) {
         QString szHtml = mimeData->html();
         qDebug(log)
                 << "CConnectVnc::handleClipboardRequest:html:" << szHtml;
@@ -1137,7 +1183,7 @@ void CConnectVnc::handleClipboardRequest()
         } catch (rdr::Exception& e) {
             qCritical(log) << "sendClipboardData exception" << e.str();
         }
-    } else {
+    }*/ else {
         qCritical(log) << "Cannot display data";
     }
 }
@@ -1158,4 +1204,9 @@ void CConnectVnc::handleClipboardData(const char *data)
     QMimeData* pData = new QMimeData();
     pData->setText(QString::fromUtf8(data));
     emit sigSetClipboard(pData);
+}
+
+void CConnectVnc::authSuccess()
+{
+    qDebug(log) << "CConnectVnc::authSuccess";
 }

@@ -45,6 +45,8 @@ public:
 
     // CMsgHandler interface
 public:
+    virtual void authSuccess() override;
+    virtual void resizeFramebuffer() override;
     virtual void framebufferUpdateStart() override;
     virtual void framebufferUpdateEnd() override;
     virtual bool dataRect(const rfb::Rect &r, int encoding) override;

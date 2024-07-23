@@ -38,10 +38,6 @@ void CDlgGetPasswordVNC::SetConnecter(CConnecter *pConnecter)
     ui->wUser->SetParameter(&m_pParameter->m_Net.m_User);
 }
 
-void CDlgGetPasswordVNC::showEvent(QShowEvent *event)
-{
-}
-
 void CDlgGetPasswordVNC::on_pbOK_clicked()
 {
     ui->wUser->slotAccept();

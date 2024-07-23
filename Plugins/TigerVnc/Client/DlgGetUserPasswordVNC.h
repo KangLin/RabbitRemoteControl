@@ -28,10 +28,6 @@ private:
     Ui::CDlgGetPasswordVNC *ui;
     CConnecterVnc* m_pConnecter;
     CParameterVnc* m_pParameter;
-    
-    // QWidget interface
-protected:
-    virtual void showEvent(QShowEvent *event) override;
 };
 Q_DECLARE_METATYPE(CDlgGetPasswordVNC)
 #endif // DLGGETUSERPASSWORD_H
