@@ -548,6 +548,8 @@ void CConnectVnc::initDone()
 void CConnectVnc::resizeFramebuffer()
 {
     qDebug(log) << "CConnectVnc::resizeFramebuffer";
+    //Set viewer frame buffer
+    setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
 }
 
 void CConnectVnc::setColourMapEntries(int firstColour, int nColours, uint16_t *rgbs)
@@ -656,7 +658,7 @@ void CConnectVnc::framebufferUpdateEnd()
     m_bpsEstimate = ((m_bpsEstimate * (1000000 - weight)) +
                      (bps * weight)) / 1000000;
     
-    if(m_pPara && m_pPara->GetBufferEndRefresh())
+    if(m_pPara /*&& m_pPara->GetBufferEndRefresh()*/)
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
         emit sigUpdateRect(img);
@@ -758,24 +760,6 @@ void CConnectVnc::updatePixelFormat()
     pf.print(str, 256);
     qInfo(log) << "Using pixel format" << str;
     setPF(pf);
-}
-
-bool CConnectVnc::dataRect(const rfb::Rect &r, int encoding)
-{
-    if(!rfb::CConnection::dataRect(r, encoding)) {
-        qDebug(log) << "rfb::CConnection::dataRect fail";
-        return false;
-    }
-    /*
-    qDebug(log, "CConnectVnc::dataRect:%d, %d, %d, %d; %d",
-           r.tl.x, r.tl.y, r.width(), r.height(), encoding);//*/
-    // 立即更新图像
-    if(m_pPara && !m_pPara->GetBufferEndRefresh())
-    {
-        const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
-        emit sigUpdateRect(img);
-    }
-    return true;
 }
 
 void CConnectVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)

@@ -49,7 +49,6 @@ public:
     virtual void resizeFramebuffer() override;
     virtual void framebufferUpdateStart() override;
     virtual void framebufferUpdateEnd() override;
-    virtual bool dataRect(const rfb::Rect &r, int encoding) override;
     virtual void setColourMapEntries(int firstColour, int nColours, uint16_t* rgbs) override;
     virtual void bell() override;
     virtual void setCursor(int width, int height, const rfb::Point& hotspot,
