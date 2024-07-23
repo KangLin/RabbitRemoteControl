@@ -4,7 +4,6 @@
 #define CCONNECTERTIGERVNC_H
 
 #include "ConnecterDesktop.h"
-#include "DlgSettingsVnc.h"
 #include "ParameterVnc.h"
 
 class CConnecterVnc : public CConnecterDesktopThread

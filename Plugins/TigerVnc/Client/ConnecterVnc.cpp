@@ -1,11 +1,13 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnecterVnc.h"
+#include "DlgSettingsVnc.h"
+#include "PluginClient.h"
+
 #include <QDebug>
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QLoggingCategory>
-#include "PluginClient.h"
 
 static Q_LOGGING_CATEGORY(log, "VNC.Connecter")
 

@@ -288,9 +288,12 @@ protected:
      */
     virtual CParameterBase* GetParameter();
     /*!
-     * \brief Set parameter pointer.
-     *        Ability to overload this function to set the parameter signal.
-     * \param p
+     * \~chinese 设置参数
+     * \note 在派生类先实例化参数，然后再调用此函数设置参数
+     * \~english Set parameters
+     * \note In the derived class, instantiate the parameters,
+     *       and then call this function to set the parameters
+     * \see \ref section_Use_CParameterBase
      */
     virtual int SetParameter(CParameterBase* p);
 

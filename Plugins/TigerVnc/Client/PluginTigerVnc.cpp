@@ -4,20 +4,18 @@
 #include "ConnecterVnc.h"
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
-#include <QDebug>
-#include <QApplication>
 #include <QLoggingCategory>
 #include "RabbitCommonDir.h"
 
-static Q_LOGGING_CATEGORY(log, "VNC.Tiger.Plugin")
+static Q_LOGGING_CATEGORY(log, "VNC.Plugin.Tiger")
 
-static bool initlog = false;
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     : CPluginClient(parent)
 {
     //! [Initialize resource]
 
     //rfb::SecurityClient::setDefaults();
+    static bool initlog = false;
     if(!initlog)
     {
         rfb::initStdIOLoggers();

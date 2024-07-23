@@ -19,13 +19,13 @@
 #include <QMetaMethod>
 
 static Q_LOGGING_CATEGORY(log, "Client.Connecter.Desktop")
-
+    
 CConnecter::CConnecter(CPluginClient *parent) : QObject(parent),
     m_pPluginClient(parent),
     m_pParameter(nullptr)
 {
     bool check = false;
-
+    
     if(QApplication::clipboard())
     {
         check = connect(QApplication::clipboard(), SIGNAL(dataChanged()),
@@ -76,7 +76,7 @@ const QString CConnecter::Name()
     if(GetParameter() && GetParameter()->GetParameterClient()
         && GetParameter()->GetParameterClient()->GetShowProtocolPrefix())
         szName = Protocol() + ":";
-
+    
     if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
         szName += GetParameter()->GetName();
     else
@@ -110,13 +110,13 @@ void CConnecter::slotSetClipboard(QMimeData* data)
 {    
     QClipboard* pClipboard = QApplication::clipboard();
     if(pClipboard) {
-//        pClipboard->disconnect(this);
-
+        //        pClipboard->disconnect(this);
+        
         pClipboard->setMimeData(data);
-
-//        bool check = connect(pClipboard, SIGNAL(dataChanged()),
-//                             this, SIGNAL(sigClipBoardChanged()));
-//        Q_ASSERT(check);
+        
+        //        bool check = connect(pClipboard, SIGNAL(dataChanged()),
+        //                             this, SIGNAL(sigClipBoardChanged()));
+        //        Q_ASSERT(check);
     }
 }
 
@@ -124,7 +124,7 @@ void CConnecter::slotSetServerName(const QString& szName)
 {
     if(m_szServerName == szName)
         return;
-
+    
     m_szServerName = szName;
     if(GetParameter())
     {
@@ -132,7 +132,7 @@ void CConnecter::slotSetServerName(const QString& szName)
             return;
         GetParameter()->SetServerName(szName);
     }
-
+    
     emit sigUpdateName(Name());
 }
 
@@ -144,7 +144,7 @@ QString CConnecter::ServerName()
         return GetParameter()->m_Net.GetHost()
                + ":" + QString::number(GetParameter()->m_Net.GetPort());
     }
-
+    
     if(m_szServerName.isEmpty() && GetParameter())
         return GetParameter()->GetServerName();
     return m_szServerName;
@@ -221,14 +221,14 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
         return 0;
     } else {
         qCritical(log) << "The CConnecter is not parameters! please create parameters."
-                "and call SetParameter in the "
-                << metaObject()->className() << "::" << metaObject()->className()
-                << "to set the parameters pointer. "
-                "Default set CParameterClient for the parameters of connecter (CParameterConnecter or its derived classes) "
-                "See: CClient::CreateConnecter."
-                "If you are sure the parameter of connecter does not need CParameterClient. "
-                "please overload the SetParameterClient in the"
-                << metaObject()->className() << ". don't set it";
+                          "and call SetParameter in the "
+                       << metaObject()->className() << "::" << metaObject()->className()
+                       << "to set the parameters pointer. "
+                          "Default set CParameterClient for the parameters of connecter (CParameterConnecter or its derived classes) "
+                          "See: CClient::CreateConnecter."
+                          "If you are sure the parameter of connecter does not need CParameterClient. "
+                          "please overload the SetParameterClient in the"
+                       << metaObject()->className() << ". don't set it";
         Q_ASSERT(false);
     }
     return -1;
@@ -236,23 +236,25 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
 
 CParameterBase* CConnecter::GetParameter()
 {
+    if(!m_pParameter)
+    {
+        QString szMsg;
+        szMsg = "Need use SetParameter() to set parameters in ";
+        szMsg += metaObject()->className();
+        szMsg += "::";
+        szMsg += metaObject()->className();
+        Q_ASSERT_X(m_pParameter, "CConnecter",  + szMsg.toStdString().c_str());
+    }
     return m_pParameter;
 }
 
 int CConnecter::SetParameter(CParameterBase *p)
 {
-    if(GetParameter())
-        GetParameter()->disconnect(this);
+    if(m_pParameter)
+        m_pParameter->disconnect(this);
     
-    /*
-    if(!qobject_cast<CParameterBase*>(p))
-        qWarning(log) << "The parameter("
-                      << p->metaObject()->className()
-                      << ") must be derived from CParameterBase";
-    //*/
-
     m_pParameter = p;
-
+    
     if(GetParameter())
     {
         bool check = false;
@@ -285,22 +287,22 @@ QObject* CConnecter::createObject(const QString& className, QObject* parent)
 {
     Q_UNUSED(parent);
     int type =
-        #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-            QMetaType::fromName(className.toStdString().c_str()).id();
-        #else
-            QMetaType::type(className.toStdString().c_str());
-        #endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        QMetaType::fromName(className.toStdString().c_str()).id();
+#else
+        QMetaType::type(className.toStdString().c_str());
+#endif
     if(QMetaType::UnknownType == type)
     {
         qCritical(log) << className << " is QMetaType::UnknownType";
         return nullptr;
     }
     QObject *obj =
-        #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-            (QObject*)QMetaType(type).create();
-        #else
-            (QObject*)QMetaType::create(type);
-        #endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        (QObject*)QMetaType(type).create();
+#else
+        (QObject*)QMetaType::create(type);
+#endif
     if(nullptr == obj)
     {
         qCritical(log) << "QMetaType::create fail: " << type;
@@ -327,13 +329,13 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
     if(-1 == obj->metaObject()->indexOfMethod("SetContext(void*)"))
     {
         qCritical(log) << "The class" << className << "is not method" << "SetContext"
-                          << "It must be SetContext and SetConnecter method.";
+                       << "It must be SetContext and SetConnecter method.";
         Q_ASSERT(false);
     }
     if(-1 == obj->metaObject()->indexOfMethod("SetConnecter(CConnecter*)"))
     {
         qCritical(log) << "The class" << className << "is not method" << "SetConnecter"
-            << "It must be SetContext and SetConnecter method.";
+                       << "It must be SetContext and SetConnecter method.";
         Q_ASSERT(false);
     } 
     obj->metaObject()->invokeMethod(obj, "SetContext", Q_ARG(void*, pContext));
@@ -357,10 +359,10 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
 }
 
 void CConnecter::slotBlockShowMessageBox(const QString &szTitle, const QString &szMessage,
-                                      QMessageBox::StandardButtons buttons,
-                                      QMessageBox::StandardButton &nRet,
-                                      bool &checkBox,
-                                      QString szCheckBoxContext)
+                                         QMessageBox::StandardButtons buttons,
+                                         QMessageBox::StandardButton &nRet,
+                                         bool &checkBox,
+                                         QString szCheckBoxContext)
 {
     QCheckBox* pBox = nullptr;
     QMessageBox msg(QMessageBox::Information,
@@ -383,11 +385,11 @@ void CConnecter::slotBlockInputDialog(const QString &szTitle, const QString &szL
 {
     bool ok = false;
     QString t = QInputDialog::getText(nullptr,
-                                           szTitle,
-                                           szLable,
-                                           QLineEdit::Normal,
-                                           szMessage,
-                                           &ok);
+                                      szTitle,
+                                      szLable,
+                                      QLineEdit::Normal,
+                                      szMessage,
+                                      &ok);
     if(ok && !t.isEmpty())
         szText = t;
 }

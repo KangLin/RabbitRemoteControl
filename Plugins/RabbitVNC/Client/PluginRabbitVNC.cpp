@@ -1,22 +1,24 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginRabbitVNC.h"
-#include "RabbitCommonDir.h"
+
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
+
+#include "RabbitCommonDir.h"
 #include "../../TigerVnc/Client/ConnecterVnc.h"
-#include <QApplication>
+
 #include <QLoggingCategory>
 
 Q_LOGGING_CATEGORY(RabbitVNC, "RabbitVNC")
 
-static bool initlog = false;
 CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
     : CPluginClient(parent)
 {
     //! [Initialize resource]
 
     //rfb::SecurityClient::setDefaults();
+    static bool initlog = false;
     if(!initlog)
     {
         rfb::initStdIOLoggers();

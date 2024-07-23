@@ -5,8 +5,7 @@
 
 #pragma once
 
-#include "PluginClientThread.h"
-#include <QTranslator>
+#include "PluginClient.h"
 
 class CPluginRabbitVNC : public CPluginClient
 {
