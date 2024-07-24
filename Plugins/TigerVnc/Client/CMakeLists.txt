@@ -10,22 +10,22 @@ if(Qt${QT_VERSION_MAJOR}_FOUND)
 endif()
 
 SET(TigerVNC_SOURCE_FILES
+    PluginTigerVnc.cpp
     ParameterVnc.cpp
+    ConnecterVnc.cpp
     ConnectVnc.cpp
     FramePixelBuffer.cpp
-    ConnecterVnc.cpp
-    PluginTigerVnc.cpp
     DlgSettingsVnc.cpp
     DlgGetUserPasswordVNC.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
     )
 SET(TigerVNC_HEADER_FILES
-    ParameterVnc.h
-    ConnectVnc.h
-    FramePixelBuffer.h
-    ConnecterVnc.h
     PluginTigerVnc.h
+    ParameterVnc.h
+    ConnecterVnc.h
+    ConnectVnc.h
+    FramePixelBuffer.h   
     DlgSettingsVnc.h
     DlgGetUserPasswordVNC.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h

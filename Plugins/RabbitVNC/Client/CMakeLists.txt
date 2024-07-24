@@ -2,7 +2,7 @@
 
 project(RabbitVNC)
 
-SET(RabbitVNC_SRC_LIBS Channel RabbitVNC Client)
+SET(RabbitVNC_SRC_LIBS RabbitVNC Client)
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets)
 if(Qt${QT_VERSION_MAJOR}_FOUND)
@@ -12,9 +12,9 @@ endif()
 SET(RabbitVNC_SOURCE_FILES
     PluginRabbitVNC.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ParameterVnc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnecterVnc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnectVnc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/FramePixelBuffer.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnecterVnc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgSettingsVnc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgGetUserPasswordVNC.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/InStreamChannel.cpp
@@ -23,9 +23,9 @@ SET(RabbitVNC_SOURCE_FILES
 SET(RabbitVNC_HEADER_FILES
     PluginRabbitVNC.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ParameterVnc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnecterVnc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnectVnc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/FramePixelBuffer.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/ConnecterVnc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgSettingsVnc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client/DlgGetUserPasswordVNC.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/InStreamChannel.h
@@ -43,7 +43,9 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     SOURCE_FILES ${RabbitVNC_SOURCE_FILES} ${RabbitVNC_HEADER_FILES}
         ${RabbitVNC_UI_FILES} ${RabbitVNC_RCC_FILES}
     PRIVATE_LIBS ${RabbitVNC_SRC_LIBS}
-    PRIVATE_INCLUDE_DIRS $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
+    PRIVATE_INCLUDE_DIRS
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/Client>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc>
     INSTALL_DIR plugins/Client
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client
     )
