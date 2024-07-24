@@ -152,7 +152,13 @@ int CClient::AppendPlugin(CPluginClient *p)
 {
     if(!p) return -1;
     m_Plugins.insert(p->Id(), p);
-    p->InitTranslator();
+    //p->InitTranslator();
+    int val = 0;
+    bool bRet = QMetaObject::invokeMethod(
+        p,
+        "InitTranslator",
+        Qt::DirectConnection,
+        Q_RETURN_ARG(int, val));
     return 0;
 }
 
@@ -162,12 +168,23 @@ CConnecter* CClient::CreateConnecter(const QString& id)
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
     {
+        bool bRet = 0;
         qDebug(log) << "CreateConnecter id:" << id;
-        CConnecter* p = it.value()->CreateConnecter(id);
+        auto plugin = it.value();
+        CConnecter* p = nullptr;
+        //p = plugin->CreateConnecter(id);
+        if(plugin) {
+            bRet = QMetaObject::invokeMethod(
+                plugin,
+                "CreateConnecter",
+                Qt::DirectConnection,
+                Q_RETURN_ARG(CConnecter*, p),
+                Q_ARG(QString, id));
+        }
         //if(p) p->SetParameterClient(&m_ParameterClient);
         if(p) {
             int val = 0;
-            bool bRet = QMetaObject::invokeMethod(
+            bRet = QMetaObject::invokeMethod(
                 p,
                 "SetParameterClient",
                 Qt::DirectConnection,

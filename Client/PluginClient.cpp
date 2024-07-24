@@ -22,6 +22,7 @@ CPluginClient::~CPluginClient()
         RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
 }
 
+//因为 Name() 是重载函数，需要子类化才有，所以此函数不能在构造函数中调用
 int CPluginClient::InitTranslator()
 {
     m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(

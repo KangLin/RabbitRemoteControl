@@ -1,12 +1,11 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPLUGINVIEWER_H_KL_2021_07_23
-#define CPLUGINVIEWER_H_KL_2021_07_23
+#ifndef CPLUGINCLIENT_H_KL_2021_07_23
+#define CPLUGINCLIENT_H_KL_2021_07_23
 
 #pragma once
 
 #include <QIcon>
-#include <QObject>
 #include "Connecter.h"
 #include <QTranslator>
 #include "PluginThread.h"
@@ -104,12 +103,11 @@ private:
      * \see CClient::CreateConnecter CClient::LoadConnecter
      * 
      */
-    virtual CConnecter* CreateConnecter(const QString& szProtocol) = 0;
-    friend class CClient;
+    Q_INVOKABLE virtual CConnecter* CreateConnecter(const QString& szId) = 0;
 
 private:
     QSharedPointer<QTranslator> m_Translator;
-    int InitTranslator();
+    Q_INVOKABLE int InitTranslator();
 
     CPluginThread* m_pThread;
 };
@@ -119,4 +117,4 @@ QT_BEGIN_NAMESPACE
 Q_DECLARE_INTERFACE(CPluginClient, CPluginClient_iid)
 QT_END_NAMESPACE
 
-#endif // CPLUGINVIEWER_H_KL_2021_07_23
+#endif // CPLUGINCLIENT_H_KL_2021_07_23
