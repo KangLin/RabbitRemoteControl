@@ -11,18 +11,12 @@ static Q_LOGGING_CATEGORY(log, "VNC.Plugin.Tiger")
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
     : CPluginClient(parent)
 {
-    //! [Initialize resource]
-
-    //rfb::SecurityClient::setDefaults();
-    
-    //! [Initialize resource]
+    qDebug(log) << "CPluginTigerVnc::CPluginTigerVnc()";
 }
 
 CPluginTigerVnc::~CPluginTigerVnc()
 {
-    //! [Clean resource]
     qDebug(log) << "CPluginTigerVnc::~CPluginTigerVnc()";
-    //! [Clean resource]
 }
 
 const QString CPluginTigerVnc::Name() const

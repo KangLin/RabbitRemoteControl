@@ -30,4 +30,5 @@ private:
     CParameterVnc* m_pParameter;
 };
 Q_DECLARE_METATYPE(CDlgGetPasswordVNC)
+
 #endif // DLGGETUSERPASSWORD_H

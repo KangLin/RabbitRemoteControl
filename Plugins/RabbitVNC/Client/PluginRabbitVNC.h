@@ -11,13 +11,13 @@ class CPluginRabbitVNC : public CPluginClient
 {
     Q_OBJECT
     
-    /// ![Qt plugin interface]
+    //! [Qt plugin interface]
     Q_INTERFACES(CPluginClient)
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
     Q_PLUGIN_METADATA(IID CPluginClient_iid)
 #endif
-    /// ![Qt plugin interface]
+    //! [Qt plugin interface]
     
 public:
     explicit CPluginRabbitVNC(QObject *parent = nullptr);
@@ -30,7 +30,7 @@ public:
     virtual const QIcon Icon() const override;
     virtual const QString Details() const override;
 
-protected:
+private:
     virtual CConnecter *CreateConnecter(const QString& szID) override;
 };
 

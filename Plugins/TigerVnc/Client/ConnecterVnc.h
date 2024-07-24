@@ -3,6 +3,8 @@
 #ifndef CCONNECTERTIGERVNC_H
 #define CCONNECTERTIGERVNC_H
 
+#pragma once
+
 #include "ConnecterDesktop.h"
 #include "ParameterVnc.h"
 

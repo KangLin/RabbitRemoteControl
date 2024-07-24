@@ -2,15 +2,12 @@
 
 #include "PluginRabbitVNC.h"
 
-#include <rfb/LogWriter.h>
-#include <rfb/Logger_stdio.h>
-
 #include "RabbitCommonDir.h"
 #include "../../TigerVnc/Client/ConnecterVnc.h"
 
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(RabbitVNC, "RabbitVNC")
+Q_LOGGING_CATEGORY(log, "RabbitVNC")
 
 CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
     : CPluginClient(parent)
@@ -18,26 +15,14 @@ CPluginRabbitVNC::CPluginRabbitVNC(QObject *parent)
     //! [Initialize resource]
 
     //rfb::SecurityClient::setDefaults();
-    static bool initlog = false;
-    if(!initlog)
-    {
-        rfb::initStdIOLoggers();
 
-        QString szFile = RabbitCommon::CDir::Instance()->GetDirLog()
-                + QDir::separator()
-                + "RabbitVNC.log";
-        rfb::initFileLogger(szFile.toStdString().c_str());
-
-        rfb::LogWriter::setLogParams("*:stderr:100");
-        initlog = true;
-    }
     //! [Initialize resource]
 }
 
 CPluginRabbitVNC::~CPluginRabbitVNC()
 {
     //! [Clean resource]
-    qDebug(RabbitVNC) << "CPluginRabbitVnc::~CPluginRabbitVnc()";
+    qDebug(log) << "CPluginRabbitVnc::~CPluginRabbitVnc()";
     //! [Clean resource]
 }
 
