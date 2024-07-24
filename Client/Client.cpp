@@ -7,9 +7,8 @@
 #include "FrmViewer.h"
 
 #include <QPluginLoader>
-#include <QDebug>
+#include <QKeyEvent>
 #include <QtPlugin>
-#include <QDataStream>
 #include <QFile>
 #include <QApplication>
 #include <QSettings>
