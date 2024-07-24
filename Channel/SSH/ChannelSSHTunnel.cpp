@@ -6,7 +6,11 @@
 #include <QScopedArrayPointer>
 #include <QtGlobal>
 #if defined(Q_OS_LINUX)
-#include <sys/eventfd.h>
+    #include <sys/eventfd.h>
+#endif
+#if defined(Q_OS_WIN)
+    #include <WinSock2.h>
+    //#pragma comment(lib,"ws2_32.lib")
 #endif
 
 static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel")
