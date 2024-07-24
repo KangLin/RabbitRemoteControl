@@ -2,8 +2,9 @@
 
 #include "DlgSettingsLibVnc.h"
 #include "ui_DlgSettingsLibVnc.h"
-#include <QDebug>
-#include "ParameterProxyUI.h"
+
+#include <QLoggingCategory>
+static Q_LOGGING_CATEGORY(log, "LibVNCServer.Setting.Dialog")
 
 CDlgSettingsLibVnc::CDlgSettingsLibVnc(CParameterLibVNCServer *pPara, QWidget *parent) :
     QDialog(parent),
@@ -68,7 +69,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CParameterLibVNCServer *pPara, QWidget *p
 
 CDlgSettingsLibVnc::~CDlgSettingsLibVnc()
 {
-    qDebug() << "CDlgSettingsLibVnc::~CDlgSettingsLibVnc()";
+    qDebug(log) << "CDlgSettingsLibVnc::~CDlgSettingsLibVnc()";
     delete ui;
 }
 

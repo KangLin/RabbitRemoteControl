@@ -3,20 +3,20 @@
 #include "ConnecterLibVNCServer.h"
 
 #include <QLoggingCategory>
-Q_LOGGING_CATEGORY(LibVNCServer, "LibVNCServer")
+static Q_LOGGING_CATEGORY(log, "LibVNCServer")
 
-CPluginLibVNCServer::CPluginLibVNCServer(QObject *parent) : CPluginClient(parent)
-{
-}
+CPluginLibVNCServer::CPluginLibVNCServer(QObject *parent)
+    : CPluginClient(parent)
+{}
 
 CPluginLibVNCServer::~CPluginLibVNCServer()
 {
-    qDebug(LibVNCServer) << "CPluginFactoryLibVNCServer::~CPluginFactoryLibVNCServer()";
+    qDebug(log) << "CPluginFactoryLibVNCServer::~CPluginFactoryLibVNCServer()";
 }
 
 const QString CPluginLibVNCServer::Name() const
 {
-    return tr("LibVNCServer");
+    return "LibVNCServer";
 }
 
 const QString CPluginLibVNCServer::DisplayName() const
@@ -40,9 +40,9 @@ const QIcon CPluginLibVNCServer::Icon() const
     return QIcon::fromTheme("network-wired");
 }
 
-CConnecter *CPluginLibVNCServer::CreateConnecter(const QString &szProtocol)
+CConnecter *CPluginLibVNCServer::CreateConnecter(const QString &szID)
 {
-    if(Id() == szProtocol)
+    if(Id() == szID)
     {   
         return new CConnecterLibVNCServer(this);
     }

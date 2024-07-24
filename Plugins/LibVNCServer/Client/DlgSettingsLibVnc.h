@@ -3,8 +3,11 @@
 #ifndef DLGSETTINGS_H
 #define DLGSETTINGS_H
 
+#pragma once
+
 #include <QDialog>
-#include "ConnecterLibVNCServer.h"
+
+#include "ParameterLibVNCServer.h"
 #include "ParameterProxyUI.h"
 
 namespace Ui {
@@ -28,6 +31,7 @@ private slots:
     
 private:
     Ui::CDlgSettingsLibVnc *ui;
+
     CParameterLibVNCServer* m_pPara;
     CParameterProxyUI* m_uiProxy;
 };

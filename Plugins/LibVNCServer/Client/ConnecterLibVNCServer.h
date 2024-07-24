@@ -1,10 +1,12 @@
 #ifndef CCONNECTERLIBVNC_H
 #define CCONNECTERLIBVNC_H
 
-#include "ConnecterDesktopThread.h"
-#include "ConnectLibVNCServer.h"
+#pragma once
 
-class CDlgSettingsLibVnc;
+#include "ConnecterDesktopThread.h"
+
+#include "ParameterLibVNCServer.h"
+
 class CConnecterLibVNCServer : public CConnecterDesktopThread
 {
     Q_OBJECT
@@ -21,8 +23,6 @@ protected:
     
 private:
     CParameterLibVNCServer m_Para;
-    
-    friend class CConnectLibVNCServer;
 };
 
 #endif // CCONNECTERLIBVNC_H

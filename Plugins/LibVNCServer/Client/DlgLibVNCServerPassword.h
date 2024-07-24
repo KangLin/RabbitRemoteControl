@@ -1,6 +1,8 @@
 #ifndef DLGLIBVNCSERVERPASSWORD_H
 #define DLGLIBVNCSERVERPASSWORD_H
 
+#pragma once
+
 #include <QDialog>
 #include "ConnecterLibVNCServer.h"
 
@@ -24,14 +26,12 @@ private:
     Ui::CDlgLibVNCServerPassword *ui;
     CConnecterLibVNCServer* m_pConnecter;
     CParameterLibVNCServer* m_pParameter;
-    
-    // QWidget interface
-protected:
-    virtual void showEvent(QShowEvent *event) override;
+
 private slots:
     void on_pbOK_clicked();
     void on_pbCancel_clicked();
 };
 
 Q_DECLARE_METATYPE(CDlgLibVNCServerPassword)
+
 #endif // DLGLIBVNCSERVERPASSWORD_H

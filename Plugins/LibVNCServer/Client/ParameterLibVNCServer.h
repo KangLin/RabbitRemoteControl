@@ -1,6 +1,8 @@
 #ifndef CPARAMETERLIBVNCSERVER_H
 #define CPARAMETERLIBVNCSERVER_H
 
+#pragma once
+
 #include <ParameterBase.h>
 #include "ParameterProxy.h"
 

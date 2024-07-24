@@ -1,7 +1,9 @@
 #include "ConnecterLibVNCServer.h"
 #include "DlgSettingsLibVnc.h"
+#include "ConnectLibVNCServer.h"
 #include <QLoggingCategory>
-Q_DECLARE_LOGGING_CATEGORY(LibVNCServer)
+
+static Q_LOGGING_CATEGORY(log, "LibVNCServer.Connecter")
 
 CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginClient *parent)
     : CConnecterDesktopThread(parent)
@@ -11,7 +13,7 @@ CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginClient *parent)
 
 CConnecterLibVNCServer::~CConnecterLibVNCServer()
 {
-    qDebug(LibVNCServer) << "CConnecterLibVNCServer::~CConnecterLibVNCServer()";
+    qDebug(log) << "CConnecterLibVNCServer::~CConnecterLibVNCServer()";
 }
 
 qint16 CConnecterLibVNCServer::Version()

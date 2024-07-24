@@ -1,8 +1,9 @@
 #ifndef CPluginLibVNCServer_H_KL_2021_07_23
 #define CPluginLibVNCServer_H_KL_2021_07_23
 
+#pragma once
+
 #include "PluginClient.h"
-#include <QTranslator>
 
 class CPluginLibVNCServer : public CPluginClient
 {
@@ -24,8 +25,9 @@ public:
     virtual const QString Description() const override;
     virtual const QString Protocol() const override;
     virtual const QIcon Icon() const override;
+
 private:
-    virtual CConnecter *CreateConnecter(const QString &szProtocol) override;
+    virtual CConnecter *CreateConnecter(const QString &szID) override;
 };
 
 #endif // CPluginLibVNCServer_H_KL_2021_07_23

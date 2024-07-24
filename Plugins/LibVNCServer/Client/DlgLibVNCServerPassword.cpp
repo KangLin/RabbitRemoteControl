@@ -33,11 +33,8 @@ void CDlgLibVNCServerPassword::SetConnecter(CConnecter *pConnecter)
     if(!m_pConnecter) return;
 
     m_pParameter = qobject_cast<CParameterLibVNCServer*>(m_pConnecter->GetParameter());
-}
+    if(!m_pParameter) return;
 
-void CDlgLibVNCServerPassword::showEvent(QShowEvent *event)
-{
-    Q_UNUSED(event)
     ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
     ui->wUser->SetParameter(&m_pParameter->m_Net.m_User);
 }

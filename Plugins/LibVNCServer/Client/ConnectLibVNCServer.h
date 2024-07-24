@@ -1,12 +1,13 @@
 #ifndef CCONNECTLIBVNC_H
 #define CCONNECTLIBVNC_H
 
+#pragma once
+
 #include "Connect.h"
 #include "rfb/rfbclient.h"
 #include <QTcpSocket>
-#include "ParameterLibVNCServer.h"
+#include "ConnecterLibVNCServer.h"
 
-class CConnecterLibVNCServer;
 class CConnectLibVNCServer : public CConnect
 {
     Q_OBJECT
