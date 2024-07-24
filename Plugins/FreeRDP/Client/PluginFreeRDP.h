@@ -32,9 +32,6 @@ public:
     
 private:
     virtual CConnecter* CreateConnecter(const QString& szProtocol) override;
-    
-private:
-    QTranslator m_Translator;
 };
 
 #endif // CPluginFreeRdp_H_KL_2021_07_23

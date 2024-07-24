@@ -4,13 +4,14 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.Plugin.Thread")
 
-CPluginClientThread::CPluginClientThread(QObject *parent) : CPluginClient(parent),
+CPluginClientThread::CPluginClientThread(QObject *parent)
+    : CPluginClient(parent),
     m_pThread(nullptr)
 {
     m_pThread = new CPluginThread(); // Note that the parent object pointer cannot be set here.
-               // The object is also deleted when the parent object is destroyed.
     if(m_pThread)
     {
+        // The object is also deleted when the thread finishes executing.
         bool check = connect(m_pThread, SIGNAL(finished()),
                            m_pThread, SLOT(deleteLater()));
         Q_ASSERT(check);

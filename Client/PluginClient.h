@@ -8,19 +8,24 @@
 #include <QIcon>
 #include "Connecter.h"
 #include <QTranslator>
-#include "PluginThread.h"
 
-/**
+/*!
  * \~chinese
- * \brief 客户端插件接口。建立 CConnecter 实例，它由协议插件实现。
- *        可以与 CConnecterDesktopThread 一起使用，用于连接是阻塞模型的。
+ * \brief 客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。
+ *  - 阻塞模型：可以与 CConnecterDesktopThread 一起使用，用于连接是阻塞模型的。
+ *  - 非阻塞模型：CPluginClientThread 与 CConnecterDesktop
+ *    一起可实现一个后台线程处理多个远程桌面连接。(暂时未使用)
  *
  * \~english
  * \brief The plugin interface. Create CConnecter instance.
- *        The interface only is implemented by plug-in.
+ *  - blocking model: The interface only is implemented by plug-in.
  *        It may be used with CConnecterDesktopThread for connection is blocking model.
+ *  - no-blocking model: CPluginClientThread with CConnecterDesktop
+ *    for a single background thread handles multiple remote desktop connections.
+ *    (Not used yet)
+ *
  * \~
- * \see CClient CConnecterDesktopThread CConnecter
+ * \see CClient CConnecterDesktopThread CConnecter CPluginClientThread
  * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CPluginClient : public QObject
@@ -28,29 +33,26 @@ class CLIENT_EXPORT CPluginClient : public QObject
     Q_OBJECT
 
 public:
-    /**
+    /*!
      * \~chinese
-     * \brief 初始化操作。例如：初始化资源等，例如：
-     * \snippet Plugins/TigerVnc/Client/PluginTigerVnc.cpp Initialize resource
-     * \note  派生类必须实现它. 
-     * 
+     * \brief 初始化操作。例如：派生类实现它，初始化插件全局资源等，例如：
+     *
      * \~english
-     * \brief The resources are initialized are loaded here. eg:
-     * \snippet Plugins/TigerVnc/Client/PluginTigerVnc.cpp Initialize resource
-     * \note When the derived class is implemented.
-     * 
+     * \brief When the derived class is implemented,
+     *        The plugin global resources are initialized are loaded here. eg:
+     *
      * \~
-     * \param parent
+     * \snippet Plugins/FreeRDP/Client/PluginFreeRDP.cpp Initialize resource
      */
     explicit CPluginClient(QObject *parent = nullptr);
-    /**
+    /*!
      * \~chinese \brief 派生类实现它，用于释放资源。例如：
      * \~english
      * \brief When the derived class is implemented,
      *        the resources are clean are unloaded here. eg:
      * 
      * \~
-     * \snippet Plugins/TigerVnc/Client/PluginTigerVnc.cpp Clean resource
+     * \snippet Plugins/FreeRDP/Client/PluginFreeRDP.cpp Clean resource
      */
     virtual ~CPluginClient();
     
@@ -84,7 +86,7 @@ public:
     virtual const QString Details() const;
 
 private:
-    /**
+    /*!
      * \~chinese
      * \brief 新建 CConnecter 实例。仅由 CClient 调用
      * \return 返回 CConnecter 指针, 它的所有者是调用者。
@@ -107,9 +109,18 @@ private:
 
 private:
     QSharedPointer<QTranslator> m_Translator;
+    /*!
+     * \~chinese 初始化翻译资源，仅由 CClient 调用。
+     *   因为它调用了 Name() ，所以不能在此类的构造函数中直接调用。
+     *
+     * \~english Initialize the translation resource,
+     *   which is only called by CClient.
+     *   Because it calls Name(),
+     *   So it can't be called directly in the constructor of this class.
+     *
+     * \see CClient::AppendPlugin
+     */
     Q_INVOKABLE int InitTranslator();
-
-    CPluginThread* m_pThread;
 };
 
 QT_BEGIN_NAMESPACE

@@ -4,13 +4,12 @@
 #include "ConnecterFreeRDP.h"
 #include "winpr/wlog.h"
 
-#include <QDebug>
-#include <QApplication>
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Plugin")
-Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
+static Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
 
+//! [Initialize resource]
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
@@ -52,11 +51,15 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     }
     WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 }
+//! [Initialize resource]
 
+//! [Clean resource]
 CPluginFreeRDP::~CPluginFreeRDP()
 {
     qDebug(log) << "CPluginFreeRDP::~CPluginFreeRDP()";
+
 }
+//! [Clean resource]
 
 const QString CPluginFreeRDP::Name() const
 {
