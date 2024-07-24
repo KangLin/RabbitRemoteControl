@@ -44,7 +44,11 @@
         "libjpeg-turbo",
         "libpng",
         "pixman",
-        "libssh"
+        "libssh",
+        {   
+            "name": "ffmpeg",
+            "platform": "!android"
+        }
       ]
     }
   }
