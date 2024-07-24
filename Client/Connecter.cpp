@@ -264,6 +264,11 @@ int CConnecter::SetParameter(CParameterBase *p)
         check = connect(GetParameter(), SIGNAL(sigShowServerNameChanged()),
                         this, SLOT(slotShowServerName()));
         Q_ASSERT(check);
+        check = connect(GetParameter(), &CParameter::sigChanged,
+                        this, [&](){
+            emit this->sigUpdateParameters(this);
+        });
+        Q_ASSERT(check);
     }
     return 0;
 }
@@ -317,8 +322,7 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
 {
     bool check = false;
     QObject *obj = createObject(className);
-    Q_ASSERT(obj);
-    if(!obj) return;
+    Q_ASSERT_X(obj, "Connecter", QString("Create object failed: " + className).toStdString().c_str());
     /*
     const QMetaObject* metaObject = obj->metaObject();
     QStringList methods;
@@ -328,18 +332,17 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
     //*/
     if(-1 == obj->metaObject()->indexOfMethod("SetContext(void*)"))
     {
-        qCritical(log) << "The class" << className << "is not method" << "SetContext"
-                       << "It must be SetContext and SetConnecter method.";
-        Q_ASSERT(false);
+        QString szErr;
+        szErr = "The class " + className + " is not method SetContext. It must be SetContext(void*) method.";
+        qCritical(log) << szErr;
+        Q_ASSERT_X(false, "Connecter", szErr.toStdString().c_str());
     }
-    if(-1 == obj->metaObject()->indexOfMethod("SetConnecter(CConnecter*)"))
-    {
-        qCritical(log) << "The class" << className << "is not method" << "SetConnecter"
-                       << "It must be SetContext and SetConnecter method.";
-        Q_ASSERT(false);
-    } 
     obj->metaObject()->invokeMethod(obj, "SetContext", Q_ARG(void*, pContext));
-    obj->metaObject()->invokeMethod(obj, "SetConnecter", Q_ARG(CConnecter*, this));
+    if(-1 < obj->metaObject()->indexOfMethod("SetConnecter(CConnecter*)"))
+    {
+        obj->metaObject()->invokeMethod(obj, "SetConnecter", Q_ARG(CConnecter*, this));
+    }
+
     if(obj->inherits("QDialog"))
     {
         QDialog* pDlg = qobject_cast<QDialog*>(obj);

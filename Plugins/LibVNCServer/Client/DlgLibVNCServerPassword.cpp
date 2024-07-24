@@ -42,7 +42,7 @@ void CDlgLibVNCServerPassword::SetConnecter(CConnecter *pConnecter)
 void CDlgLibVNCServerPassword::on_pbOK_clicked()
 {
     ui->wUser->slotAccept();
-    emit m_pConnecter->sigUpdateParameters(m_pConnecter);
+    emit m_pParameter->sigChanged();
     accept();
 }
 

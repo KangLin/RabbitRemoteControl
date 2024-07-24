@@ -86,7 +86,7 @@
         + 实现属性、函数
           - 插件名：必须与工程名（翻译资源文件名[.ts]）相同。 例如： \ref CPluginFreeRDP::Name() 
             \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
-    + 如果非阻塞线程模型。一个后台线程处理多个连接。连接是非阻塞的。
+    + 如果非阻塞线程模型。一个后台线程处理多个连接。连接是非阻塞的。(暂时未用)
       - 从  CPluginClientThread 派生插件。
         + 在类声明中实现Qt接口:
           \snippet Plugins/RabbitVNC/Client/PluginRabbitVNC.h Qt plugin interface

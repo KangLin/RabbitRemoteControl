@@ -57,7 +57,6 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
 CPluginFreeRDP::~CPluginFreeRDP()
 {
     qDebug(log) << "CPluginFreeRDP::~CPluginFreeRDP()";
-
 }
 //! [Clean resource]
 

@@ -246,8 +246,15 @@ Q_SIGNALS:
                         const QMessageBox::Icon& icon = QMessageBox::Information);
 
     /*!
+     * \~chinese
+     * \brief 更新参数，通知应用程序保存或显示参数
+     * \note 不要直接使用它，请用 CParameter::sigChanged 触发此信号
+     *
+     * \~english
      * \brief Update parameters, notify application to save or show parameters.
-     * \param pConnecter
+     * \note Don't use it directly. Please use CParameter::sigChanged to emit this signal.
+     * \~
+     * \see SetParameter
      */
     void sigUpdateParameters(CConnecter* pConnecter);
 

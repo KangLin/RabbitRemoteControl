@@ -1,10 +1,11 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CCONNECTERLIBVNC_H
 #define CCONNECTERLIBVNC_H
 
 #pragma once
 
 #include "ConnecterDesktopThread.h"
-
 #include "ParameterLibVNCServer.h"
 
 class CConnecterLibVNCServer : public CConnecterDesktopThread

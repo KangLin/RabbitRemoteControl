@@ -77,7 +77,6 @@ int CParameter::Load(QSettings &set)
 int CParameter::Save(QSettings &set, bool bForce)
 {
     int nRet = 0;
-    if(GetModified()) emit sigChanged();
     if(!GetModified() && !bForce) return 0;
 
     if(!GetPrefix().isEmpty())

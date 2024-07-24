@@ -1186,8 +1186,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     emit pThis->sigBlockShowMessageBox(title, message, buttons, nRet, bCheckBox,
                                     tr("Don't show again"));
     pThis->m_pParameter->SetShowVerifyDiaglog(!bCheckBox);
-    if(pThis->m_pConnecter)
-        emit pThis->m_pConnecter->sigUpdateParameters(pThis->m_pConnecter);
+    emit pThis->m_pParameter->sigChanged();
     /* return 1 to accept and store a certificate, 2 to accept
 	 * a certificate only for this session, 0 otherwise */
     switch(nRet)
@@ -1274,8 +1273,7 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
     emit pThis->sigBlockShowMessageBox(title, message, buttons, nRet, bCheckBox,
                                     tr("Don't show again"));
     pThis->m_pParameter->SetShowVerifyDiaglog(!bCheckBox);
-    if(pThis->m_pConnecter)
-        emit pThis->m_pConnecter->sigUpdateParameters(pThis->m_pConnecter);
+    emit pThis->m_pParameter->sigChanged();
 
     /* return 1 to accept and store a certificate, 2 to accept
          * a certificate only for this session, 0 otherwise */

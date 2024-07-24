@@ -94,7 +94,7 @@
             The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
             E.g. CPluginFreeRDP::Name() 
              \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
-    + No-blocking: One background thread handles multiple connections.
+    + No-blocking: One background thread handles multiple connections.(Not used yet)
       The connection is non-blocking.
       - Derive from CPluginClientThread.
         + Implement the Qt interface in the class declaration:

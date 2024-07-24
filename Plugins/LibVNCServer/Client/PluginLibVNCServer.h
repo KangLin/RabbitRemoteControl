@@ -17,7 +17,7 @@ class CPluginLibVNCServer : public CPluginClient
 public:
     CPluginLibVNCServer(QObject *parent = nullptr);
     virtual ~CPluginLibVNCServer() override;
-    
+
     // CPluginFactory interface
 public:
     virtual const QString Name() const override;

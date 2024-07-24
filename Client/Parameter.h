@@ -228,11 +228,11 @@ public:
 Q_SIGNALS:
     /*!
      * \~chinese 当参数改变时，触发
-     *  通常如果需要，则相应的参数会对应一个改变事件。所以很少需要连接此信号。
+     *  通常如果需要，则相应的参数会对应一个改变事件。
      *
      * \~english emit when the parameter changes
      * Usually if required, the corresponding parameter corresponds to
-     * a change event. So it is rarely necessary to connect this signal.
+     * a change event.
      */
     void sigChanged();
 

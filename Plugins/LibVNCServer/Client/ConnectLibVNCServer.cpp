@@ -368,7 +368,7 @@ char* CConnectLibVNCServer::cb_get_password(rfbClient *client)
         emit pThis->sigBlockShowWidget("CDlgLibVNCServerPassword", nRet, pThis->m_pPara);
         if(QDialog::Accepted == nRet)
         {
-            szPassword = pThis->m_pPara->m_Net.m_User.GetPassword();    
+            szPassword = pThis->m_pPara->m_Net.m_User.GetPassword();
         }
         if(szPassword.isEmpty())
             return nullptr;
