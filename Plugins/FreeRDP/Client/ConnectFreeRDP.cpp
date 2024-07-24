@@ -48,15 +48,10 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
     : CConnect(pConnecter, parent),
       m_pContext(nullptr),
       m_pParameter(nullptr),
-      m_pConnecter(pConnecter),
       m_ClipBoard(this),
       m_Cursor(this),
       m_writeEvent(nullptr)
 {
-    Q_ASSERT(pConnecter);
-    m_pParameter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
-    Q_ASSERT(m_pParameter);
-    
     m_writeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
     if(!m_writeEvent)
         qCritical(log) << "CreateEvent failed";
