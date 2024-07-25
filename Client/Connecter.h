@@ -264,33 +264,6 @@ Q_SIGNALS:
 
 protected:
     /*!
-     * \~chinese
-     * \brief 得到设置对话框
-     * \param parent: 返回窗口的父窗口
-     * \return QDialog*: 插件实现时，此对话框必须设置属性 Qt::WA_DeleteOnClose，
-     *             它的所有者是调用者
-     *
-     * \~english
-     * \brief GetDialogSettings
-     * \param parent: the parent windows of the dialog of return
-     * \return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
-     *         The ownership is caller.
-     *         
-     * \~
-     * \see OpenDialogSettings
-     */
-    virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) = 0;
-    /*!
-     * \~chinese \brief 加载参数
-     * \~english \brief Load parameters
-     */
-    virtual int Load(QSettings &set) = 0;
-    /*!
-     * \~chinese 保存参数
-     * \~english Save parameters
-     */
-    virtual int Save(QSettings &set) = 0;
-    /*!
      * \brief Get parameter
      */
     virtual CParameterBase* GetParameter();
@@ -328,7 +301,36 @@ protected:
     virtual QString ServerName();
 
     static QObject* createObject(const QString &className, QObject* parent = NULL);
-
+    
+private:
+    /*!
+     * \~chinese
+     * \brief 得到设置对话框
+     * \param parent: 返回窗口的父窗口
+     * \return QDialog*: 插件实现时，此对话框必须设置属性 Qt::WA_DeleteOnClose，
+     *             它的所有者是调用者
+     *
+     * \~english
+     * \brief Open settgins dialog
+     * \param parent: the parent windows of the dialog of return
+     * \return QDialog*: then QDialog must set attribute Qt::WA_DeleteOnClose;
+     *         The ownership is caller.
+     *         
+     * \~
+     * \see OpenDialogSettings
+     */
+    virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) = 0;
+    /*!
+     * \~chinese \brief 加载参数
+     * \~english \brief Load parameters
+     */
+    virtual int Load(QSettings &set) = 0;
+    /*!
+     * \~chinese 保存参数
+     * \~english Save parameters
+     */
+    virtual int Save(QSettings &set) = 0;
+    
 private Q_SLOTS:
     void slotShowServerName();
     void slotUpdateName();

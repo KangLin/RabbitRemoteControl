@@ -20,7 +20,7 @@ public:
     virtual qint16 Version() override;
 
 protected:
-    virtual QDialog* GetDialogSettings(QWidget* parent = nullptr) override;
+    virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) override;
     virtual CConnect* InstanceConnect() override;
     virtual QString ServerName() override;
 

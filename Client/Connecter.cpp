@@ -153,7 +153,7 @@ QString CConnecter::ServerName()
 int CConnecter::OpenDialogSettings(QWidget *parent)
 {
     int nRet = -1;
-    QDialog* p = GetDialogSettings(parent);
+    QDialog* p = OnOpenDialogSettings(parent);
     if(p)
     {
         // The dialog is closed when the connect is close.

@@ -21,7 +21,7 @@ qint16 CConnecterLibVNCServer::Version()
     return 0;
 }
 
-QDialog *CConnecterLibVNCServer::GetDialogSettings(QWidget *parent)
+QDialog *CConnecterLibVNCServer::OnOpenDialogSettings(QWidget *parent)
 {
     return new CDlgSettingsLibVnc(&m_Para, parent);
 }

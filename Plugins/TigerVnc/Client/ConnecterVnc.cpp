@@ -47,7 +47,7 @@ QString CConnecterVnc::ServerName()
     return CConnecter::ServerName();
 }
 
-QDialog *CConnecterVnc::GetDialogSettings(QWidget *parent)
+QDialog *CConnecterVnc::OnOpenDialogSettings(QWidget *parent)
 {
     CDlgSettingsVnc* p = new CDlgSettingsVnc(&m_Para, parent);
     return p;

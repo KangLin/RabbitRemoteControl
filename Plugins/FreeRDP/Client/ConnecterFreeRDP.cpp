@@ -29,7 +29,7 @@ qint16 CConnecterFreeRDP::Version()
     return 0;
 }
 
-QDialog* CConnecterFreeRDP::GetDialogSettings(QWidget *parent)
+QDialog* CConnecterFreeRDP::OnOpenDialogSettings(QWidget *parent)
 {
     return new CDlgSetFreeRDP(&m_ParameterFreeRdp, parent);
 }
