@@ -89,13 +89,15 @@ private:
     /*!
      * \~chinese
      * \brief 新建 CConnecter 实例。仅由 CClient 调用
+     * \snippet Client/Client.cpp CClient CreateConnecter
      * \return 返回 CConnecter 指针, 它的所有者是调用者。
      * \note 此函数新建一个堆栈对象指针，
      *       <b>调用者必须负责在用完后释放指针</b>。
      * \param szProtocol 连接协议
      * 
      * \~english
-     * \brief New CConnecter instance. Only is called by CClient 
+     * \brief New CConnecter instance. Only is called by CClient
+     * \snippet Client/Client.cpp CClient CreateConnecter
      * \return Return CConnecter pointer, the owner is caller
      * \note The function new object pointer,
      *       <b>the caller must delete it when don't use it</b>.

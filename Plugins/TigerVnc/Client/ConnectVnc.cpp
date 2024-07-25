@@ -53,9 +53,9 @@
 #endif
 
 static Q_LOGGING_CATEGORY(log, "VNC.Connect")
-    static Q_LOGGING_CATEGORY(logVNC, "VNC.Log")
+static Q_LOGGING_CATEGORY(logVNC, "VNC.Log")
     
-    class VncLogger: public rfb::Logger
+class VncLogger: public rfb::Logger
 {
 public:
     VncLogger(const char *name) : rfb::Logger(name)
@@ -74,7 +74,7 @@ public:
     }
 };
 
-static QScopedPointer<VncLogger> g_logger(new VncLogger("Rabbit"));
+static VncLogger g_logger("Rabbit");
 
 // 8 colours (1 bit per component)
 static const rfb::PixelFormat verylowColourPF(8, 3,false, true, 1, 1, 1, 2, 1, 0);
@@ -89,9 +89,6 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 1
 // Time new bandwidth estimates are weighted against (in ms)
 static const unsigned bpsEstimateWindow = 1000;
 
-/* 因为此事件循环为Qt事件循环，不会被阻塞。
- * 并具 Socket 不能在不同的线程中调用，所以这里 bDirectConnection 设置成 false
- */
 CConnectVnc::CConnectVnc(CConnecterDesktopThread *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
       m_pPara(nullptr)
@@ -99,8 +96,7 @@ CConnectVnc::CConnectVnc(CConnecterDesktopThread *pConnecter, QObject *parent)
     static bool initlog = false;
     if(!initlog)
     {
-        //qDebug(log) << "Init vnc log ......";
-        g_logger->registerLogger();
+        g_logger.registerLogger();
         rfb::LogWriter::setLogParams("*:Rabbit:100");
         /*rfb::initStdIOLoggers();
         rfb::LogWriter::setLogParams("*:stderr:100");
@@ -133,9 +129,12 @@ int CConnectVnc::SetPara()
 
     setShared(m_pPara->GetShared());
     supportsLocalCursor = m_pPara->GetLocalCursor();
+    supportsCursorPosition = m_pPara->GetCursorPosition();
+    supportsDesktopResize = m_pPara->GetSupportsDesktopResize();
+    supportsLEDState = true;
     
     // Set Preferred Encoding
-    setPreferredEncoding(m_pPara->GetEncoding());
+    setPreferredEncoding(m_pPara->GetPreferredEncoding());
     setCompressLevel(m_pPara->GetCompressLevel());
     setQualityLevel(m_pPara->GetQualityLevel());
     
@@ -294,6 +293,11 @@ int CConnectVnc::SocketInit()
         }
         pSock->connectToHost(m_pPara->m_Net.GetHost(), m_pPara->m_Net.GetPort());
         
+        QString serverHost;
+        serverHost = pSock->peerName();
+        qDebug(log) << "Server Host:" << serverHost;
+        setServerName(serverHost.toStdString().c_str());
+        
         return nRet;
     } catch (rdr::Exception& e) {
         qCritical(log) << "SocketInit exception:" << e.str();
@@ -402,6 +406,7 @@ int CConnectVnc::OnProcess()
 
 void CConnectVnc::slotConnected()
 {
+    //qDebug(log) << "CConnectVnc::slotConnected()";
     if(m_pPara->GetIce())
         qInfo(log) << "Connected to peer " + m_pPara->GetPeerUser();
     else {
@@ -439,7 +444,7 @@ void CConnectVnc::slotConnected()
 void CConnectVnc::slotDisConnected()
 {
     QString szInfo;
-    szInfo = "slotDisConnected from "
+    szInfo = "CConnectVnc::slotDisConnected() from "
              + m_pPara->m_Net.GetHost() + ":"
              + QString::number(m_pPara->m_Net.GetPort());
 #ifdef HAVE_LIBSSH
@@ -523,14 +528,6 @@ void CConnectVnc::initDone()
     qDebug(log) << "CConnectVnc::initDone():name:" << server.name()
                      << ";Width:" << server.width()
                      << ";Height:" << server.height();
-
-    // If using AutoSelect with old servers, start in FullColor
-    // mode. See comment in autoSelectFormatAndEncoding. 
-    if (server.beforeVersion(3, 8) && m_pPara->GetAutoSelect())
-    {
-        m_pPara->SetColorLevel(CParameterVnc::Full);
-        updatePixelFormat();
-    }
 
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());

@@ -21,6 +21,7 @@ int CParameterBase::Init()
     m_bOnlyView = false;
     m_bLocalCursor = true;
     m_bClipboard = true;
+    m_bCursorPosition = true;
     return 0;
 }
 
@@ -31,6 +32,7 @@ int CParameterBase::OnLoad(QSettings &set)
     SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
     SetOnlyView(set.value("OnlyView", GetOnlyView()).toBool());
     SetLocalCursor(set.value("LocalCursor", GetLocalCursor()).toBool());
+    SetCursorPosition(set.value("CursorPosition", GetCursorPosition()).toBool());
     SetClipboard(set.value("Clipboard", GetClipboard()).toBool());
     return 0;
 }
@@ -42,6 +44,7 @@ int CParameterBase::OnSave(QSettings &set)
     set.setValue("ShowServerName", GetShowServerName());
     set.setValue("OnlyView", GetOnlyView());
     set.setValue("LocalCursor", GetLocalCursor());
+    set.setValue("CursorPosition", GetCursorPosition());
     set.setValue("Clipboard", GetClipboard());
     return 0;
 }
@@ -110,6 +113,19 @@ void CParameterBase::SetLocalCursor(bool cursor)
     if(m_bLocalCursor == cursor)
         return;
     m_bLocalCursor = cursor;
+    SetModified(true);
+}
+
+const bool CParameterBase::GetCursorPosition() const
+{
+    return m_bCursorPosition;
+}
+
+void CParameterBase::SetCursorPosition(bool pos)
+{
+    if(m_bCursorPosition == pos)
+        return;
+    m_bCursorPosition = pos;
     SetModified(true);
 }
 

@@ -1,5 +1,8 @@
 #include "DlgLibVNCServerPassword.h"
 #include "ui_DlgLibVNCServerPassword.h"
+#include <QLoggingCategory>
+
+static Q_LOGGING_CATEGORY(log, "LibVNCServer.Dialog.GetPassword")
 
 static int g_CDlgGetUserPassword = qRegisterMetaType<CDlgLibVNCServerPassword>();
 
@@ -30,10 +33,16 @@ void CDlgLibVNCServerPassword::SetContext(void *pContext)
 void CDlgLibVNCServerPassword::SetConnecter(CConnecter *pConnecter)
 {
     m_pConnecter = qobject_cast<CConnecterLibVNCServer*>(pConnecter);
-    if(!m_pConnecter) return;
+    if(!m_pConnecter) {
+        qCritical(log) << "The connecter is nullptr";
+        return;
+    }
 
     m_pParameter = qobject_cast<CParameterLibVNCServer*>(m_pConnecter->GetParameter());
-    if(!m_pParameter) return;
+    if(!m_pParameter) {
+        qCritical(log) << "The m_pParameter is nullptr";
+        return;
+    }
 
     ui->lbText->setText(tr("Set password for %1").arg(m_pConnecter->Name()));
     ui->wUser->SetParameter(&m_pParameter->m_Net.m_User);
@@ -41,6 +50,10 @@ void CDlgLibVNCServerPassword::SetConnecter(CConnecter *pConnecter)
 
 void CDlgLibVNCServerPassword::on_pbOK_clicked()
 {
+    if(!m_pParameter) {
+        qCritical(log) << "The m_pParameter is nullptr";
+        return;
+    }
     ui->wUser->slotAccept();
     emit m_pParameter->sigChanged();
     accept();

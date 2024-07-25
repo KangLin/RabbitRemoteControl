@@ -28,6 +28,58 @@
        <string>Server</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_6">
+       <item row="1" column="0">
+        <widget class="CParameterNetUI" name="wNet" native="true"/>
+       </item>
+       <item row="8" column="0">
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="0">
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="2">
+          <widget class="QCheckBox" name="cbResizeWindows">
+           <property name="text">
+            <string>Support windows resize</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="cbRealTimeUpdate">
+           <property name="text">
+            <string>Real time update</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="5" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QCheckBox" name="cbShowServerName">
+           <property name="text">
+            <string>Show server name</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbClipboard">
+           <property name="text">
+            <string>Enable clipboard</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
@@ -51,9 +103,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item row="1" column="0">
-        <widget class="CParameterNetUI" name="wNet" native="true"/>
        </item>
        <item row="2" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -83,40 +132,15 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="cbClipboard">
+          <widget class="QCheckBox" name="cbCursorPosition">
            <property name="text">
-            <string>Enable clipboard</string>
+            <string>Cursor position</string>
            </property>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="4" column="0">
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="2">
-          <widget class="QCheckBox" name="cbResizeWindows">
-           <property name="text">
-            <string>Support windows resize</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="cbRealTimeUpdate">
-           <property name="text">
-            <string>Real time update</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="5" column="0">
-        <widget class="QCheckBox" name="cbShowServerName">
-         <property name="text">
-          <string>Show server name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
+       <item row="7" column="0">
         <widget class="QGroupBox" name="gpIce">
          <property name="title">
           <string>Ice:</string>
@@ -145,24 +169,18 @@
          </layout>
         </widget>
        </item>
-       <item row="7" column="0">
-        <spacer name="verticalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+       <item row="6" column="0">
+        <widget class="QCheckBox" name="cbLedState">
+         <property name="text">
+          <string>Led state</string>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+        </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Compress">
+     <widget class="QWidget" name="Compression">
       <attribute name="title">
-       <string>Compress</string>
+       <string>Compression</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="1" column="1">
@@ -249,11 +267,46 @@
         </layout>
        </item>
        <item row="1" column="0" rowspan="3">
-        <widget class="QGroupBox" name="gpEncodeing">
+        <widget class="QGroupBox" name="gpPreferredEncodeing">
          <property name="title">
           <string>preferred Encoding</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
+          <item row="4" column="0">
+           <widget class="QRadioButton" name="rbCoRRE">
+            <property name="text">
+             <string>CoRRE</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QRadioButton" name="rbZRLE">
+            <property name="text">
+             <string>ZRLE</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QRadioButton" name="rbRRE">
+            <property name="text">
+             <string>RRE</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QRadioButton" name="rbCopyRect">
+            <property name="text">
+             <string>copyRect</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QRadioButton" name="rbHextile">
+            <property name="text">
+             <string>Hextile</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QRadioButton" name="rbTight">
             <property name="text">
@@ -261,14 +314,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QRadioButton" name="rbHextile">
-            <property name="text">
-             <string>Hextile</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
+          <item row="7" column="0">
            <widget class="QRadioButton" name="rbRaw">
             <property name="text">
              <string>Raw</string>
@@ -276,30 +322,9 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QRadioButton" name="rbZRLE">
+           <widget class="QRadioButton" name="rbH264">
             <property name="text">
-             <string>ZRLE</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QRadioButton" name="rbCoRRE">
-            <property name="text">
-             <string>CoRRE</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QRadioButton" name="rbRRE">
-            <property name="text">
-             <string>RRE</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QRadioButton" name="rbCopyRect">
-            <property name="text">
-             <string>copyRect</string>
+             <string>H.264</string>
             </property>
            </widget>
           </item>
@@ -371,7 +396,6 @@
  <tabstops>
   <tabstop>cbShared</tabstop>
   <tabstop>cbLocalCursor</tabstop>
-  <tabstop>cbClipboard</tabstop>
   <tabstop>cbResizeWindows</tabstop>
   <tabstop>cbOnlyView</tabstop>
   <tabstop>pbOK</tabstop>

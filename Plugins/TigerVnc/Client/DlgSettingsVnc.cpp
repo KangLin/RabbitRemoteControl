@@ -63,13 +63,19 @@ CDlgSettingsVnc::CDlgSettingsVnc(CParameterVnc *pPara, QWidget *parent) :
     ui->cbShared->setChecked(m_pPara->GetShared());
     ui->cbRealTimeUpdate->setChecked(!m_pPara->GetBufferEndRefresh());
     ui->cbLocalCursor->setChecked(m_pPara->GetLocalCursor());
+    ui->cbCursorPosition->setChecked(m_pPara->GetCursorPosition());
     ui->cbResizeWindows->setChecked(m_pPara->GetSupportsDesktopResize());
+    ui->cbLedState->setChecked(m_pPara->GetLedState());
     ui->cbClipboard->setChecked(m_pPara->GetClipboard());
     
     // Compress
     ui->cbCompressAutoSelect->setChecked(m_pPara->GetAutoSelect());
-    
-    switch(m_pPara->GetEncoding())
+#ifdef HAVE_H264
+    ui->rbH264->setVisible(true);
+#else
+    ui->rbH264->setVisible(false);
+#endif
+    switch(m_pPara->GetPreferredEncoding())
     {
     case rfb::encodingTight:
         ui->rbTight->setChecked(true);
@@ -92,6 +98,11 @@ CDlgSettingsVnc::CDlgSettingsVnc(CParameterVnc *pPara, QWidget *parent) :
     case rfb::encodingHextile:
         ui->rbHextile->setChecked(true);
         break;
+#ifdef HAVE_H264
+    case rfb::encodingH264:
+        ui->rbH264->setChecked(true);
+        break;
+#endif
     }
     
     switch(m_pPara->GetColorLevel())
@@ -159,31 +170,42 @@ void CDlgSettingsVnc::on_pbOK_clicked()
     m_pPara->SetShared(ui->cbShared->isChecked());
     m_pPara->SetBufferEndRefresh(!ui->cbRealTimeUpdate->isChecked());
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
+    m_pPara->SetCursorPosition(ui->cbCursorPosition->isChecked());
     m_pPara->SetSupportsDesktopResize(ui->cbResizeWindows->isChecked());
+    m_pPara->SetLedState(ui->cbLedState->isChecked());
     m_pPara->SetClipboard(ui->cbClipboard->isChecked());
     m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
     
     // Compress
     m_pPara->SetAutoSelect(ui->cbCompressAutoSelect->isChecked());
-    
-    if(ui->rbTight->isChecked()) m_pPara->SetEncoding(rfb::encodingTight);
-    if(ui->rbRaw->isChecked()) m_pPara->SetEncoding(rfb::encodingRaw);
-    if(ui->rbRRE->isChecked()) m_pPara->SetEncoding(rfb::encodingRRE);
-    if(ui->rbZRLE->isChecked()) m_pPara->SetEncoding(rfb::encodingZRLE);
-    if(ui->rbCoRRE->isChecked()) m_pPara->SetEncoding(rfb::encodingCoRRE);
-    if(ui->rbCopyRect->isChecked()) m_pPara->SetEncoding(rfb::encodingCopyRect);
-    if(ui->rbHextile->isChecked()) m_pPara->SetEncoding(rfb::encodingHextile);
-    
-    if(ui->rbFull->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Full);
-    if(ui->rbMeduim->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Medium);
-    if(ui->rbLow->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Low);
-    if(ui->rbVeryLow->isChecked()) m_pPara->SetColorLevel(CParameterVnc::VeryLow);
-
-    m_pPara->SetEnableCompressLevel(ui->cbCompress->isChecked());
-    m_pPara->SetCompressLevel(ui->spCompressLevel->value());
-    m_pPara->SetNoJpeg(!ui->cbJPEG->isChecked());
-    m_pPara->SetQualityLevel(ui->spJPEGLevel->value());
+    if(m_pPara->GetAutoSelect()) {
+        m_pPara->SetPreferredEncoding(rfb::encodingTight);
+        m_pPara->SetColorLevel(CParameterVnc::Full);
+        m_pPara->SetCompressLevel(2);
+        m_pPara->SetQualityLevel(8);
+    } else {
+        if(ui->rbTight->isChecked()) m_pPara->SetPreferredEncoding(rfb::encodingTight);
+        if(ui->rbRaw->isChecked()) m_pPara->SetPreferredEncoding(rfb::encodingRaw);
+        if(ui->rbRRE->isChecked()) m_pPara->SetPreferredEncoding(rfb::encodingRRE);
+        if(ui->rbZRLE->isChecked()) m_pPara->SetPreferredEncoding(rfb::encodingZRLE);
+        if(ui->rbCoRRE->isChecked()) m_pPara->SetPreferredEncoding(rfb::encodingCoRRE);
+        if(ui->rbCopyRect->isChecked()) m_pPara->SetPreferredEncoding(rfb::encodingCopyRect);
+        if(ui->rbHextile->isChecked()) m_pPara->SetPreferredEncoding(rfb::encodingHextile);
+#ifdef HAVE_H264
+        if(ui->rbH264->isChecked()) m_pPara->SetPreferredEncoding(rfb::encodingH264);
+#endif
         
+        if(ui->rbFull->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Full);
+        if(ui->rbMeduim->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Medium);
+        if(ui->rbLow->isChecked()) m_pPara->SetColorLevel(CParameterVnc::Low);
+        if(ui->rbVeryLow->isChecked()) m_pPara->SetColorLevel(CParameterVnc::VeryLow);
+        
+        m_pPara->SetEnableCompressLevel(ui->cbCompress->isChecked());
+        m_pPara->SetCompressLevel(ui->spCompressLevel->value());
+        m_pPara->SetNoJpeg(!ui->cbJPEG->isChecked());
+        m_pPara->SetQualityLevel(ui->spJPEGLevel->value());
+    }
+    
     accept();
 }
 
@@ -197,21 +219,21 @@ void CDlgSettingsVnc::on_cbCompressAutoSelect_stateChanged(int arg1)
     m_pPara->SetAutoSelect(arg1);
     if(m_pPara->GetAutoSelect())
     {
-        ui->gpEncodeing->setEnabled(false);
+        ui->gpPreferredEncodeing->setEnabled(false);
         ui->gpColorLevel->setEnabled(false);
         ui->cbJPEG->setEnabled(false);
         ui->spJPEGLevel->setEnabled(false);
         ui->cbCompress->setEnabled(false);
         ui->spCompressLevel->setEnabled(false);
     } else {
-        ui->gpEncodeing->setEnabled(true);
+        ui->gpPreferredEncodeing->setEnabled(true);
         ui->gpColorLevel->setEnabled(true);
         ui->cbJPEG->setEnabled(true);
         if(ui->cbJPEG->isChecked())
-            ui->spJPEGLevel->setEnabled(true);
+        ui->spJPEGLevel->setEnabled(true);
         ui->cbCompress->setEnabled(true);
         if(ui->cbCompress->isChecked())
-            ui->spCompressLevel->setEnabled(true);
+        ui->spCompressLevel->setEnabled(true);
     }
 }
 

@@ -70,6 +70,9 @@ public:
     const bool GetLocalCursor() const;
     void SetLocalCursor(bool cursor);
     
+    const bool GetCursorPosition() const;
+    void SetCursorPosition(bool pos);
+    
     virtual const bool GetClipboard() const;
     virtual void SetClipboard(bool c);
 
@@ -86,6 +89,7 @@ private:
 
     bool m_bOnlyView;
     bool m_bLocalCursor;
+    bool m_bCursorPosition;
     bool m_bClipboard;
     
     // CParameter interface

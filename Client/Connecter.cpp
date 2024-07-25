@@ -18,7 +18,7 @@
 #include <QInputDialog>
 #include <QMetaMethod>
 
-static Q_LOGGING_CATEGORY(log, "Client.Connecter.Desktop")
+static Q_LOGGING_CATEGORY(log, "Client.Connecter")
     
 CConnecter::CConnecter(CPluginClient *parent) : QObject(parent),
     m_pPluginClient(parent),

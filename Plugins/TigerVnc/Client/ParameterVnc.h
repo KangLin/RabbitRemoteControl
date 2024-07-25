@@ -38,14 +38,17 @@ public:
     bool GetSupportsDesktopResize() const;
     void SetSupportsDesktopResize(bool newSupportsDesktopResize);
     
+    bool GetLedState() const;
+    void SetLedState(bool state);
+    
     bool GetAutoSelect() const;
     void SetAutoSelect(bool newAutoSelect);
     
     COLOR_LEVEL GetColorLevel() const;
     void SetColorLevel(COLOR_LEVEL newColorLevel);
     
-    int GetEncoding() const;
-    void SetEncoding(int newEncoding);
+    int GetPreferredEncoding() const;
+    void SetPreferredEncoding(int newEncoding);
     
     bool GetEnableCompressLevel() const;
     void SetEnableCompressLevel(bool newCompressLevel);
@@ -105,10 +108,11 @@ private:
     bool m_bShared;
     bool m_bBufferEndRefresh;
     bool m_bSupportsDesktopResize;
+    bool m_bLedState;
 
     bool m_bAutoSelect;
     COLOR_LEVEL m_nColorLevel;
-    int m_nEncoding;
+    int m_nPreferredEncoding;
     bool m_bCompressLevel;
     int m_nCompressLevel;
     bool m_bNoJpeg;

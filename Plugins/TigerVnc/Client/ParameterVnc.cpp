@@ -10,10 +10,11 @@ CParameterVnc::CParameterVnc(QObject *parent)
     SetShared(true);
     SetBufferEndRefresh(false);
     SetSupportsDesktopResize(true);
-    
+    SetLedState(true);
+
     SetAutoSelect(true);
     SetColorLevel(CParameterVnc::Full);
-    SetEncoding(rfb::encodingTight);
+    SetPreferredEncoding(rfb::encodingTight);
     SetEnableCompressLevel(true);
     SetCompressLevel(2);
     SetNoJpeg(false);
@@ -27,81 +28,97 @@ CParameterVnc::CParameterVnc(QObject *parent)
 
 int CParameterVnc::OnLoad(QSettings &set)
 {
-    int nRet = CParameterBase::OnLoad(set);
+    int nRet = 0;
+    nRet = CParameterBase::OnLoad(set);
     if(nRet) return nRet;
-
-    SetShared(set.value("VNC/Shared", GetShared()).toBool());
-    SetBufferEndRefresh(set.value("VNC/BufferEndRefresh",
+    
+    set.beginGroup("VNC");
+    SetShared(set.value("Shared", GetShared()).toBool());
+    SetBufferEndRefresh(set.value("BufferEndRefresh",
                                   GetBufferEndRefresh()).toBool());
-    SetSupportsDesktopResize(set.value("VNC/SupportsDesktopResize",
+    SetSupportsDesktopResize(set.value("SupportsDesktopResize",
                                        GetSupportsDesktopResize()).toBool());
-    SetAutoSelect(set.value("VNC/AutoSelect", GetAutoSelect()).toBool());
-    SetColorLevel(static_cast<COLOR_LEVEL>(set.value("VNC/ColorLevel",
+    SetLedState(set.value("LedState", GetLedState()).toBool());
+    
+    SetAutoSelect(set.value("AutoSelect", GetAutoSelect()).toBool());
+    SetColorLevel(static_cast<COLOR_LEVEL>(set.value("ColorLevel",
                                                      GetColorLevel()).toInt()));
-    SetEncoding(set.value("VNC/Encoding", GetEncoding()).toInt());
-    SetEnableCompressLevel(set.value("VNC/EnableCompressLevel",
+    SetPreferredEncoding(set.value("Encoding", GetPreferredEncoding()).toInt());
+    SetEnableCompressLevel(set.value("EnableCompressLevel",
                                GetEnableCompressLevel()).toBool());
-    SetCompressLevel(set.value("VNC/CompressLevel",
+    SetCompressLevel(set.value("CompressLevel",
                                GetCompressLevel()).toInt());
-    SetNoJpeg(set.value("VNC/NoJpeg", GetNoJpeg()).toBool());
-    SetQualityLevel(set.value("VNC/QualityLevel", GetQualityLevel()).toInt());
-    SetIce(set.value("ICE/Enable", GetIce()).toBool());
-    SetSignalServer(set.value("ICE/Signal/Server",
+    SetNoJpeg(set.value("NoJpeg", GetNoJpeg()).toBool());
+    SetQualityLevel(set.value("QualityLevel", GetQualityLevel()).toInt());
+    set.endGroup();
+    
+    set.beginGroup("ICE");
+    SetIce(set.value("Enable", GetIce()).toBool());
+    SetSignalServer(set.value("Signal/Server",
                               GetSignalServer()).toString());
-    SetSignalPort(set.value("ICE/Signal/Port", GetSignalPort()).toUInt());
-    SetSignalUser(set.value("ICE/Signal/User", GetSignalUser()).toString());
+    SetSignalPort(set.value("Signal/Port", GetSignalPort()).toUInt());
+    SetSignalUser(set.value("Signal/User", GetSignalUser()).toString());
     if(m_Net.m_User.GetSavePassword())
     {
         QString szPassword;
-        if(!LoadPassword(tr("Ice signal password"), "ICE/Signal/password",
+        if(!LoadPassword(tr("Ice signal password"), "Signal/password",
                          szPassword, set))
             SetSignalPassword(szPassword);
     }
-    SetPeerUser(set.value("ICE/Peer/User", GetPeerUser()).toString());
-    SetStunServer(set.value("ICE/Stun/Server", GetStunServer()).toString());
-    SetStunPort(set.value("ICE/Stun/Port", GetStunPort()).toUInt());
-    SetTurnServer(set.value("ICE/Turn/Server", GetTurnServer()).toString());
-    SetTurnPort(set.value("ICE/Turn/Port", GetTurnPort()).toUInt());
-    SetTurnUser(set.value("ICE/Turn/User", GetTurnUser()).toString());
+    SetPeerUser(set.value("Peer/User", GetPeerUser()).toString());
+    SetStunServer(set.value("Stun/Server", GetStunServer()).toString());
+    SetStunPort(set.value("Stun/Port", GetStunPort()).toUInt());
+    SetTurnServer(set.value("Turn/Server", GetTurnServer()).toString());
+    SetTurnPort(set.value("Turn/Port", GetTurnPort()).toUInt());
+    SetTurnUser(set.value("Turn/User", GetTurnUser()).toString());
     if(m_Net.m_User.GetSavePassword())
     {
         QString szPassword;
-        if(!LoadPassword(tr("Ice turn password"), "ICE/Turn/password",
+        if(!LoadPassword(tr("Ice turn password"), "Turn/password",
                          szPassword, set))
             SetTurnPassword(szPassword);
     }
-
-    return nRet;
+    set.endGroup();
+    
+    return 0;
 }
 
 int CParameterVnc::OnSave(QSettings &set)
 {
-    int nRet = CParameterBase::OnSave(set);
+    int nRet = 0;
+    nRet = CParameterBase::OnSave(set);
     if(nRet) return nRet;
+
+    set.beginGroup("VNC");
+    set.setValue("Shared", GetShared());
+    set.setValue("BufferEndRefresh", GetBufferEndRefresh());
+    set.setValue("SupportsDesktopResize", GetSupportsDesktopResize());
+    set.setValue("LedState", GetLedState());
+    set.setValue("AutoSelect", GetAutoSelect());
+    set.setValue("ColorLevel", GetColorLevel());
+    set.setValue("Encoding", GetPreferredEncoding());
+    set.setValue("EnableCompressLevel", GetEnableCompressLevel());
+    set.setValue("CompressLevel", GetCompressLevel());
+    set.setValue("NoJpeg", GetNoJpeg());
+    set.setValue("QualityLevel", GetQualityLevel());
+    set.endGroup();
     
-    set.setValue("VNC/Shared", GetShared());
-    set.setValue("VNC/BufferEndRefresh", GetBufferEndRefresh());
-    set.setValue("VNC/SupportsDesktopResize", GetSupportsDesktopResize());
-    set.setValue("VNC/AutoSelect", GetAutoSelect());
-    set.setValue("VNC/ColorLevel", GetColorLevel());
-    set.setValue("VNC/Encoding", GetEncoding());
-    set.setValue("VNC/EnableCompressLevel", GetEnableCompressLevel());
-    set.setValue("VNC/CompressLevel", GetCompressLevel());
-    set.setValue("VNC/NoJpeg", GetNoJpeg());
-    set.setValue("VNC/QualityLevel", GetQualityLevel());
-    set.setValue("ICE/Enable", GetIce());
-    set.setValue("ICE/Signal/Server", GetSignalServer());
-    set.setValue("ICE/Signal/Port", GetSignalPort());
-    set.setValue("ICE/Signal/User", GetSignalUser());
-    SavePassword("ICE/Signal/password", GetSignalPassword(), set);
-    set.setValue("ICE/Peer/User", GetPeerUser());
-    set.setValue("ICE/Stun/Server", GetStunServer());
-    set.setValue("ICE/Stun/Port", GetStunPort());
-    set.setValue("ICE/Turn/Server", GetTurnServer());
-    set.setValue("ICE/Turn/Port", GetTurnPort());
-    set.setValue("ICE/Turn/User", GetTurnUser());
-    SavePassword("ICE/Turn/password", GetTurnPassword(), set);
-    return nRet;
+    set.beginGroup("ICE");
+    set.setValue("Enable", GetIce());
+    set.setValue("Signal/Server", GetSignalServer());
+    set.setValue("Signal/Port", GetSignalPort());
+    set.setValue("Signal/User", GetSignalUser());
+    SavePassword("Signal/password", GetSignalPassword(), set);
+    set.setValue("Peer/User", GetPeerUser());
+    set.setValue("Stun/Server", GetStunServer());
+    set.setValue("Stun/Port", GetStunPort());
+    set.setValue("Turn/Server", GetTurnServer());
+    set.setValue("Turn/Port", GetTurnPort());
+    set.setValue("Turn/User", GetTurnUser());
+    SavePassword("Turn/password", GetTurnPassword(), set);
+    set.endGroup();
+    
+    return 0;
 }
 
 bool CParameterVnc::OnCheckValidity()
@@ -161,6 +178,19 @@ void CParameterVnc::SetSupportsDesktopResize(bool newSupportsDesktopResize)
     SetModified(true);
 }
 
+bool CParameterVnc::GetLedState() const
+{
+    return m_bLedState;
+}
+
+void CParameterVnc::SetLedState(bool state)
+{
+    if(m_bLedState == state)
+        return;
+    m_bLedState = state;
+    SetModified(true);
+}
+
 bool CParameterVnc::GetAutoSelect() const
 {
     return m_bAutoSelect;
@@ -187,16 +217,16 @@ void CParameterVnc::SetColorLevel(COLOR_LEVEL newColorLevel)
     SetModified(true);
 }
 
-int CParameterVnc::GetEncoding() const
+int CParameterVnc::GetPreferredEncoding() const
 {
-    return m_nEncoding;
+    return m_nPreferredEncoding;
 }
 
-void CParameterVnc::SetEncoding(int newEncoding)
+void CParameterVnc::SetPreferredEncoding(int newEncoding)
 {
-    if(m_nEncoding == newEncoding)
+    if(m_nPreferredEncoding == newEncoding)
         return;
-    m_nEncoding = newEncoding;
+    m_nPreferredEncoding = newEncoding;
     SetModified(true);
 }
 
