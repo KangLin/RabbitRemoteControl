@@ -686,8 +686,13 @@ int CChannelSSHTunnel::writeData()
     if(nLen > 0) {
         //qDebug(log) << "Write data to ssh tunnel";
         nRet = ssh_channel_write(m_Channel, m_writeData.data(), nLen);
-        if(nRet > 0) {
+        if(nRet == nLen)
+            m_writeData.clear();
+        else if(nRet > 0) {
+            qDebug(log) << "CChannelSSHTunnel write Total:" << nLen
+                        << "writed length:" << nRet;
             m_writeData.remove(0, nRet);
+            qDebug(log) << "Channel length:" << m_writeData.size();
         }
     }
     m_writeMutex.unlock();

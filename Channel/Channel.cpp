@@ -72,13 +72,19 @@ bool CChannel::event(QEvent *event)
             m_writeMutex.lock();
             if(m_writeData.size() > 0){
                 nLen = m_pSocket->write(m_writeData.data(), m_writeData.size());
-                if(nLen > 0)
+                if(m_writeData.size() == nLen)
+                    m_writeData.clear();
+                else if(nLen > 0) {
+                    qDebug(log) << "CChannel write Total:" << m_writeData.size()
+                                << "writed length:" << nLen;
                     m_writeData.remove(0, nLen);
+                    qDebug(log) << "Channel length:" << m_writeData.size();
+                }
             }
             m_writeMutex.unlock();
             if(nLen < 0)
             {
-                qDebug(log) << "write fail:" << m_pSocket->error()
+                qDebug(log) << "CChannel write fail:" << m_pSocket->error()
                             << m_pSocket->errorString();
                 emit sigError(m_pSocket->error(), m_pSocket->errorString());
             }
