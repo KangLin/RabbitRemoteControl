@@ -69,7 +69,6 @@ public Q_SLOTS:
     virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
     virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
 
-    
     // CConnect interface
 protected:
     // Please call SetParamter before call Connect
@@ -82,11 +81,6 @@ private:
     QSharedPointer<rdr::InStream> m_InStream;
     QSharedPointer<rdr::OutStream> m_OutStream;
     
-    unsigned long long m_bpsEstimate;
-    unsigned m_updateCount;
-    struct timeval updateStartTime;
-    size_t m_updateStartPos;
-
     quint32 TranslateRfbKey(quint32 inkey,bool modifier);   
 
 private:

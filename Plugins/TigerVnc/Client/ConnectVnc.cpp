@@ -94,8 +94,6 @@ static const unsigned bpsEstimateWindow = 1000;
  */
 CConnectVnc::CConnectVnc(CConnecterDesktopThread *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
-      m_bpsEstimate(20000000),
-      m_updateCount(0),
       m_pPara(nullptr)
 {
     static bool initlog = false;
@@ -620,11 +618,8 @@ bool CConnectVnc::showMsgBox(int flags, const char *title, const char *text)
 // one.
 void CConnectVnc::framebufferUpdateStart()
 {
+    //qDebug(log) << "CConnectVnc::framebufferUpdateStart()";
     CConnection::framebufferUpdateStart();
-    
-    // For bandwidth estimate
-    gettimeofday(&updateStartTime, NULL);
-    m_updateStartPos = m_InStream->pos();
 }
 
 // framebufferUpdateEnd() is called at the end of an update.
@@ -633,103 +628,14 @@ void CConnectVnc::framebufferUpdateStart()
 // appropriately, and then request another incremental update.
 void CConnectVnc::framebufferUpdateEnd()
 {
-    unsigned long long elapsed, bps, weight;
-    struct timeval now;
-    
+    //qDebug(log) << "CConnectVnc::framebufferUpdateEnd()";
     rfb::CConnection::framebufferUpdateEnd();
-    //qDebug(log) << "CConnectVnc::framebufferUpdateEnd";
-    
-    m_updateCount++;
-    
-    // Calculate bandwidth everything managed to maintain during this update
-    gettimeofday(&now, NULL);
-    elapsed = (now.tv_sec - updateStartTime.tv_sec) * 1000000;
-    elapsed += now.tv_usec - updateStartTime.tv_usec;
-    if (elapsed == 0)
-        elapsed = 1;
-    bps = (unsigned long long)(m_InStream->pos() -
-                               m_updateStartPos) * 8 *
-            1000000 / elapsed;
-    // Allow this update to influence things more the longer it took, to a
-    // maximum of 20% of the new value.
-    weight = elapsed * 1000 / bpsEstimateWindow;
-    if (weight > 200000)
-        weight = 200000;
-    m_bpsEstimate = ((m_bpsEstimate * (1000000 - weight)) +
-                     (bps * weight)) / 1000000;
-    
+            
     if(m_pPara /*&& m_pPara->GetBufferEndRefresh()*/)
     {
         const QImage& img = dynamic_cast<CFramePixelBuffer*>(getFramebuffer())->getImage();
         emit sigUpdateRect(img);
     }
-    
-    // Compute new settings based on updated bandwidth values
-    if (m_pPara && m_pPara->GetAutoSelect())
-        autoSelectFormatAndEncoding();
-}
-
-// autoSelectFormatAndEncoding() chooses the format and encoding appropriate
-// to the connection speed:
-//
-//   First we wait for at least one second of bandwidth measurement.
-//
-//   Above 16Mbps (i.e. LAN), we choose the second highest JPEG quality,
-//   which should be perceptually lossless.
-//
-//   If the bandwidth is below that, we choose a more lossy JPEG quality.
-//
-//   If the bandwidth drops below 256 Kbps, we switch to palette mode.
-//
-//   Note: The system here is fairly arbitrary and should be replaced
-//         with something more intelligent at the server end.
-//
-void CConnectVnc::autoSelectFormatAndEncoding()
-{
-    bool newFullColour = m_pPara->GetColorLevel() == CParameterVnc::Full ? true : false;
-    int newQualityLevel = m_pPara->GetQualityLevel();
-    
-    // Always use Tight
-    setPreferredEncoding(rfb::encodingTight);
-    
-    // Select appropriate quality level
-    if (!m_pPara->GetNoJpeg()) {
-        if (m_bpsEstimate > 16000)
-            newQualityLevel = 8;
-        else
-            newQualityLevel = 6;
-        
-        if (newQualityLevel != m_pPara->GetQualityLevel()) {
-            qInfo(log) << "Throughput" << (int)(m_bpsEstimate/1000)
-                            << "kbit/s - changing to quality" << newQualityLevel;
-            m_pPara->SetQualityLevel(newQualityLevel);
-            setQualityLevel(newQualityLevel);
-        }
-    }
-    
-    if (server.beforeVersion(3, 8)) {
-        // Xvnc from TightVNC 1.2.9 sends out FramebufferUpdates with
-        // cursors "asynchronously". If this happens in the middle of a
-        // pixel format change, the server will encode the cursor with
-        // the old format, but the client will try to decode it
-        // according to the new format. This will lead to a
-        // crash. Therefore, we do not allow automatic format change for
-        // old servers.
-        return;
-    }
-    
-    // Select best color level
-    newFullColour = (m_bpsEstimate > 256);
-    if (newFullColour != (0 == m_pPara->GetColorLevel())) {
-        if (newFullColour)
-            qInfo(log, ("Throughput %d kbit/s - full color is now enabled"),
-                           (int)m_bpsEstimate / 1000);
-        else
-            qInfo(log, ("Throughput %d kbit/s - full color is now disabled"),
-                           (int)m_bpsEstimate / 1000);
-        m_pPara->SetColorLevel(newFullColour ? CParameterVnc::Full : CParameterVnc::Low);
-        updatePixelFormat();
-    } 
 }
 
 // requestNewUpdate() requests an update from the server, having set the
