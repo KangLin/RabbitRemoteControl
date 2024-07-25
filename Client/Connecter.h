@@ -180,13 +180,6 @@ public Q_SLOTS:
      * \see sigDisconnected()
      */
     virtual int DisConnect() = 0;
-    
-    //! \~chinese \note 仅由 CConnect::SetConnecter() 使用
-    //! \~english \note The slot only is used by CConnect::SetConnecter()
-    virtual void slotSetClipboard(QMimeData *data);
-    //! \~chinese \note 仅由 CConnect::SetConnecter() 使用
-    //! \~english \note The slot only is used by CConnect::SetConnecter()
-    virtual void slotSetServerName(const QString &szName);
 
 Q_SIGNALS:
     /*!
@@ -214,7 +207,19 @@ Q_SIGNALS:
      */
     void sigUpdateName(const QString& szName);
     void sigError(const int nError, const QString &szError);
-
+    /*!
+     * \~chinese
+     * \brief 更新参数，通知应用程序保存或显示参数
+     * \note 插件不要直接使用它，请用 CParameter::sigChanged 触发此信号
+     *
+     * \~english
+     * \brief Update parameters, notify application to save or show parameters.
+     * \note The plugin don't use it directly.
+     *       Please use CParameter::sigChanged to emit this signal.
+     * \~
+     * \see SetParameter
+     */
+    void sigUpdateParameters(CConnecter* pConnecter);
     /*!
      * \~chinese
      * \note 它与 sigShowMessageBox 的区别是 sigShowMessageBox 用对话框显示
@@ -245,23 +250,6 @@ Q_SIGNALS:
     void sigShowMessageBox(const QString& title, const QString& message,
                         const QMessageBox::Icon& icon = QMessageBox::Information);
 
-    /*!
-     * \~chinese
-     * \brief 更新参数，通知应用程序保存或显示参数
-     * \note 不要直接使用它，请用 CParameter::sigChanged 触发此信号
-     *
-     * \~english
-     * \brief Update parameters, notify application to save or show parameters.
-     * \note Don't use it directly. Please use CParameter::sigChanged to emit this signal.
-     * \~
-     * \see SetParameter
-     */
-    void sigUpdateParameters(CConnecter* pConnecter);
-
-private:
-Q_SIGNALS:
-    void sigClipBoardChanged();
-
 protected:
     /*!
      * \brief Get parameter
@@ -287,6 +275,7 @@ private:
     Q_INVOKABLE virtual int SetParameterClient(CParameterClient* pPara);
 
 protected:
+    Q_INVOKABLE CPluginClient* GetPlugClient() const;
     /*!
      * \~chinese
      * \brief 当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口
@@ -332,6 +321,10 @@ private:
     virtual int Save(QSettings &set) = 0;
     
 private Q_SLOTS:
+    //! \~chinese \note 仅由 CConnect::SetConnecter() 使用
+    //! \~english \note The slot only is used by CConnect::SetConnecter()
+    virtual void slotSetServerName(const QString &szName);
+
     void slotShowServerName();
     void slotUpdateName();
 
@@ -380,8 +373,13 @@ private Q_SLOTS:
                                       QString& szText
                                       );
 
-protected:
-    Q_INVOKABLE CPluginClient* GetPlugClient() const;
+private Q_SLOTS:
+    //! \~chinese \note 仅由 CConnect::SetConnecter() 使用
+    //! \~english \note The slot only is used by CConnect::SetConnecter()
+    virtual void slotSetClipboard(QMimeData *data);
+private:
+Q_SIGNALS:
+    void sigClipBoardChanged();
 
 private:
     QString m_szServerName;
