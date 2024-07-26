@@ -538,7 +538,8 @@ void CConnectVnc::initDone()
 
 void CConnectVnc::resizeFramebuffer()
 {
-    qDebug(log) << "CConnectVnc::resizeFramebuffer";
+    qDebug(log) << "CConnectVnc::resizeFramebuffer"
+                << server.width() << server.height();
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
 }
@@ -657,7 +658,7 @@ void CConnectVnc::updatePixelFormat()
     
     char str[256];
     pf.print(str, 256);
-    qInfo(log) << "Using pixel format" << str;
+    qInfo(log) << "Update pixel format:" << str;
     setPF(pf);
 }
 
@@ -676,7 +677,11 @@ void CConnectVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
     /*
     qDebug(log) << "CConnectVnc::slotMousePressEvent buttons:"
                      << buttons << pos << mask;//*/
-    writer()->writePointerEvent(p, mask);
+    try{
+        writer()->writePointerEvent(p, mask);
+    } catch (rdr::Exception& e) {
+        emit sigError(-1, e.str());
+    }
 }
 
 void CConnectVnc::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
@@ -688,7 +693,11 @@ void CConnectVnc::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
     /*
     qDebug(log) << "CConnectVnc::slotMouseReleaseEvent button:"
                      << button << pos << mask;//*/
-    writer()->writePointerEvent(p, mask);
+    try{
+        writer()->writePointerEvent(p, mask);
+    } catch (rdr::Exception& e) {
+        emit sigError(-1, e.str());
+    }
 }
 
 void CConnectVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
@@ -706,7 +715,12 @@ void CConnectVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
         mask |= 0x2;
     if(buttons & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    writer()->writePointerEvent(p, mask);
+    
+    try{
+        writer()->writePointerEvent(p, mask);
+    } catch (rdr::Exception& e) {
+        emit sigError(-1, e.str());
+    }
 }
 
 void CConnectVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
@@ -736,7 +750,11 @@ void CConnectVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint an
     if(d.x() > 0)
         mask |= 0x40;
     
-    writer()->writePointerEvent(p, mask);
+    try{
+        writer()->writePointerEvent(p, mask);
+    } catch (rdr::Exception& e) {
+        emit sigError(-1, e.str());
+    }
 }
 
 void CConnectVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
@@ -748,8 +766,13 @@ void CConnectVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
         modifier = false;
     //qDebug(log) << "slotKeyPressEvent key:" << key << modifiers;
     uint32_t k = TranslateRfbKey(key, modifier);
-    if(key)
-        writer()->writeKeyEvent(k, 0, true);
+    if(key) {
+        try{
+            writer()->writeKeyEvent(k, 0, true);
+        } catch (rdr::Exception& e) {
+            emit sigError(-1, e.str());
+        }
+    }
 }
 
 void CConnectVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
@@ -761,8 +784,13 @@ void CConnectVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
         modifier = false;
     //qDebug(log) << "slotKeyReleaseEvent key:" << key << modifiers;
     uint32_t k = TranslateRfbKey(key, modifier);
-    if(key)
-        writer()->writeKeyEvent(k, 0, false);
+    if(key) {
+        try{
+               writer()->writeKeyEvent(k, 0, false);
+        } catch (rdr::Exception& e) {
+            emit sigError(-1, e.str());
+        }
+    }
 }
 
 QString CConnectVnc::ConnectInformation()
@@ -784,6 +812,11 @@ QString CConnectVnc::ConnectInformation()
     szInfo += QString("Support cursor position: %1").arg(supportsCursorPosition) + "\n";
     szInfo += QString("Support desktop resize: %1").arg(supportsDesktopResize) + "\n";
     szInfo += QString("Support LED state: %1").arg(supportsLEDState) + "\n";
+    szInfo += QString("Led state: %1").arg(server.ledState()) + "\n";
+    szInfo += QString("Supports QEMU KeyEvent: %1").arg(server.supportsQEMUKeyEvent) + "\n";
+    szInfo += QString("Supports Set Desktop Size: %1").arg(server.supportsSetDesktopSize) + "\n";
+    szInfo += QString("Support fance: %1").arg(server.supportsFence) + "\n";
+    szInfo += QString("Support continue updates: %1").arg(server.supportsContinuousUpdates) + "\n";
 
     return szInfo;
 }
@@ -964,6 +997,9 @@ quint32 CConnectVnc::TranslateRfbKey(quint32 inkey, bool modifier)
         
     case Qt::Key_Super_L: k = XK_Super_L; break;		/* left "windows" key */
     case Qt::Key_Super_R: k = XK_Super_R; break;		/* right "windows" key */
+        
+    case Qt::Key_Hyper_L: k = XK_Hyper_L; break;
+    case Qt::Key_Hyper_R: k = XK_Hyper_R; break;
 
     case Qt::Key_Help: k = XK_Help; break;
     case Qt::Key_Print: k = XK_Print; break;
