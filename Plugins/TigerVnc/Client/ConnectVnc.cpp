@@ -526,6 +526,7 @@ void CConnectVnc::initDone()
 {
     Q_ASSERT(m_pPara);
     qDebug(log, "initDone:\n%s", ConnectInformation().toStdString().c_str());
+    
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
     emit sigServerName(szName);
@@ -538,10 +539,18 @@ void CConnectVnc::initDone()
 
 void CConnectVnc::resizeFramebuffer()
 {
-    qDebug(log) << "CConnectVnc::resizeFramebuffer"
-                << server.width() << server.height();
+    rfb::ModifiablePixelBuffer* buffer = getFramebuffer();
+
+    qDebug(log) << "CConnectVnc::resizeFramebuffer: new:"
+                << server.width() << server.height()
+                << "old:" << buffer->width() << buffer->height();
+
+    if(server.width() == buffer->width() && server.height() == buffer->height())
+        return;
+
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
+    emit sigSetDesktopSize(server.width(), server.height());
 }
 
 void CConnectVnc::setColourMapEntries(int firstColour, int nColours, uint16_t *rgbs)
