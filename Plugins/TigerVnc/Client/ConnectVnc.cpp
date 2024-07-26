@@ -131,7 +131,7 @@ int CConnectVnc::SetPara()
     supportsLocalCursor = m_pPara->GetLocalCursor();
     supportsCursorPosition = m_pPara->GetCursorPosition();
     supportsDesktopResize = m_pPara->GetSupportsDesktopResize();
-    supportsLEDState = true;
+    supportsLEDState = m_pPara->GetLedState();
     
     // Set Preferred Encoding
     setPreferredEncoding(m_pPara->GetPreferredEncoding());
@@ -525,13 +525,9 @@ void CConnectVnc::slotChannelError(int nErr, const QString& szErr)
 void CConnectVnc::initDone()
 {
     Q_ASSERT(m_pPara);
-    qDebug(log) << "CConnectVnc::initDone():name:" << server.name()
-                     << ";Width:" << server.width()
-                     << ";Height:" << server.height();
-
+    qDebug(log, "initDone:\n%s", ConnectInformation().toStdString().c_str());
     emit sigSetDesktopSize(server.width(), server.height());
     QString szName = QString::fromUtf8(server.name());
-
     emit sigServerName(szName);
 
     //Set viewer frame buffer
@@ -767,6 +763,29 @@ void CConnectVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
     uint32_t k = TranslateRfbKey(key, modifier);
     if(key)
         writer()->writeKeyEvent(k, 0, false);
+}
+
+QString CConnectVnc::ConnectInformation()
+{
+    const int len = 128;
+    char buf[len];
+    QString szInfo;
+    szInfo = QString("Desktop name: ") + server.name() + "\n";
+    szInfo += QString("Size: %1 x %2").arg(server.width()).arg(server.height()) + "\n";
+
+    // TRANSLATORS: Will be filled in with a string describing the
+    // protocol pixel format in a fairly language neutral way
+    server.pf().print(buf, len);
+    szInfo += QString("Pixel format: ") + buf + "\n";
+    szInfo += QString("Requested encoding: ") + rfb::encodingName(getPreferredEncoding()) + "\n";
+    szInfo += QString("Protocol version: %1.%2").arg(server.majorVersion).arg(server.minorVersion) + "\n";
+    szInfo += QString("Security method: ") + rfb::secTypeName(csecurity->getType()) + "\n";
+    szInfo += QString("Support local cursor: %1").arg(supportsLocalCursor) + "\n";
+    szInfo += QString("Support cursor position: %1").arg(supportsCursorPosition) + "\n";
+    szInfo += QString("Support desktop resize: %1").arg(supportsDesktopResize) + "\n";
+    szInfo += QString("Support LED state: %1").arg(supportsLEDState) + "\n";
+
+    return szInfo;
 }
 
 /**
@@ -1096,4 +1115,20 @@ void CConnectVnc::handleClipboardData(const char *data)
 void CConnectVnc::authSuccess()
 {
     qDebug(log) << "CConnectVnc::authSuccess";
+}
+
+// setName() is called when the desktop name changes
+void CConnectVnc::setName(const char *name)
+{
+    qDebug(log) << "CConnectVnc::setName:" << name;
+    CConnection::setName(name);
+    QString szName = QString::fromUtf8(server.name());
+    emit sigServerName(szName);
+}
+
+void CConnectVnc::setLEDState(unsigned int state)
+{
+    qDebug(log) << "CConnectVnc::setLEDState" << state;
+    CConnection::setLEDState(state);
+    emit sigUpdateLedState(state);
 }

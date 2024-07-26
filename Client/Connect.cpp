@@ -127,7 +127,10 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
     check = connect(this, SIGNAL(sigUpdateCursorPosition(const QPoint&)),
                     m_pView, SLOT(slotUpdateCursorPosition(const QPoint&)));
     Q_ASSERT(check);
- 
+    check = connect(this, SIGNAL(sigUpdateLedState(unsigned int)),
+                    m_pView, SLOT(slotUpdateLedState(unsigned int)));
+    Q_ASSERT(check);
+
     if(bDirectConnection)
     {
         /* \~chinese 因为连接可能是在另一个线程中的非Qt事件处理，

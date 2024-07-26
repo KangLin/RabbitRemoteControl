@@ -120,6 +120,7 @@ public Q_SLOTS:
      * \param pos
      */
     void slotUpdateCursorPosition(const QPoint& pos);
+    void slotUpdateLedState(unsigned int state);
     void slotSystemCombination();
     
 Q_SIGNALS:

@@ -45,12 +45,14 @@ public:
 
     // CMsgHandler interface
 public:
+    virtual void setName(const char *name) override;
     virtual void authSuccess() override;
     virtual void resizeFramebuffer() override;
     virtual void framebufferUpdateStart() override;
     virtual void framebufferUpdateEnd() override;
     virtual void setColourMapEntries(int firstColour, int nColours, uint16_t* rgbs) override;
     virtual void bell() override;
+    virtual void setLEDState(unsigned int state) override;
     virtual void setCursor(int width, int height, const rfb::Point& hotspot,
                               const uint8_t* data) override;
     virtual void setCursorPos(const rfb::Point &pos) override;
@@ -81,7 +83,8 @@ private:
     QSharedPointer<rdr::InStream> m_InStream;
     QSharedPointer<rdr::OutStream> m_OutStream;
     
-    quint32 TranslateRfbKey(quint32 inkey,bool modifier);   
+    quint32 TranslateRfbKey(quint32 inkey,bool modifier);
+    QString ConnectInformation();
 
 private:
     CParameterVnc* m_pPara;

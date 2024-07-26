@@ -9,6 +9,11 @@
 #include <QCursor>
 #include <QLoggingCategory>
 
+#if ! (defined(WIN32) || defined(__APPLE__))
+#include <X11/XKBlib.h>
+#include <X11/keysymdef.h>
+#endif
+
 static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
@@ -346,6 +351,87 @@ void CFrmViewer::slotUpdateCursor(const QCursor& cursor)
 void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
 {
     cursor().setPos(pos);
+}
+
+void CFrmViewer::slotUpdateLedState(unsigned int state)
+{
+    enum LED_STATE{
+        Unknown = -1,
+        ScrollLock = 1,
+        NumLock = 1 << 1,
+        CapsLock = 1 << 2,
+    };
+    
+    qDebug(log, "Got server LED state: 0x%08x", state);
+      
+    if (!hasFocus())
+        return;
+
+#if defined(WIN32)
+    INPUT input[6];
+    UINT count;
+    UINT ret;
+    
+    memset(input, 0, sizeof(input));
+    count = 0;
+    
+    if (!!(state & ledCapsLock) != !!(GetKeyState(VK_CAPITAL) & 0x1)) {
+        input[count].type = input[count+1].type = INPUT_KEYBOARD;
+        input[count].ki.wVk = input[count+1].ki.wVk = VK_CAPITAL;
+        input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
+        input[count].ki.dwFlags = 0;
+        input[count+1].ki.dwFlags = KEYEVENTF_KEYUP;
+        count += 2;
+    }
+    
+    if (!!(state & ledNumLock) != !!(GetKeyState(VK_NUMLOCK) & 0x1)) {
+        input[count].type = input[count+1].type = INPUT_KEYBOARD;
+        input[count].ki.wVk = input[count+1].ki.wVk = VK_NUMLOCK;
+        input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
+        input[count].ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
+        input[count+1].ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_EXTENDEDKEY;
+        count += 2;
+    }
+    
+    if (!!(state & ledScrollLock) != !!(GetKeyState(VK_SCROLL) & 0x1)) {
+        input[count].type = input[count+1].type = INPUT_KEYBOARD;
+        input[count].ki.wVk = input[count+1].ki.wVk = VK_SCROLL;
+        input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
+        input[count].ki.dwFlags = 0;
+        input[count+1].ki.dwFlags = KEYEVENTF_KEYUP;
+        count += 2;
+    }
+    
+    if (count == 0)
+        return;
+    
+    ret = SendInput(count, input, sizeof(*input));
+    if (ret < count)
+        qCritical(log) << "Failed to update keyboard LED state:" << GetLastError();
+#elif defined(__APPLE__)
+    int ret;
+    
+    ret = cocoa_set_caps_lock_state(state & ledCapsLock);
+    if (ret != 0) {
+        qCritical(log) << "Failed to update keyboard LED state:" << ret;
+        return;
+    }
+    
+    ret = cocoa_set_num_lock_state(state & ledNumLock);
+    if (ret != 0) {
+        qCritical(log) << "Failed to update keyboard LED state:" << ret;
+        return;
+    }
+
+// No support for Scroll Lock //
+
+#else
+    /*    
+    ret = XkbLockModifiers(fl_display, XkbUseCoreKbd, affect, values);
+    if (!ret)
+        qCritical(log) << tr("Failed to update keyboard LED state");
+    */
+#endif
 }
 
 int CFrmViewer::Load(QSettings &set)

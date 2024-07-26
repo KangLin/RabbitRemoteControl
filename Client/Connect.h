@@ -193,6 +193,7 @@ Q_SIGNALS:
     void sigUpdateRect(const QImage& image);
     void sigUpdateCursor(const QCursor& cursor);
     void sigUpdateCursorPosition(const QPoint& pos);
+    void sigUpdateLedState(unsigned int state);
     void sigSetClipboard(QMimeData* data);
 
     void sigError(const int nError, const QString &szError = QString());
