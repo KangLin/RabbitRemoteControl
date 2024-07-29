@@ -5,17 +5,19 @@
 
 #pragma once
 
+#include <QEventLoop>
+
 #include "Connect.h"
+#include "Channel.h"
+#include "ParameterVnc.h"
+
 #include "ParameterConnecter.h"
-#include "network/TcpSocket.h"
+#include "../InStreamChannel.h"
+#include "../OutStreamChannel.h"
+
 #include "rfb/CConnection.h"
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
-#include "Channel.h"
-#include "ParameterVnc.h"
-#include "../InStreamChannel.h"
-#include "../OutStreamChannel.h"
-#include <QEventLoop>
 
 class CConnecterDesktopThread;
 class CConnectVnc
@@ -42,12 +44,12 @@ public Q_SLOTS:
 public:
     // rfb::CConnection callback methods
     virtual void initDone() override;
-
+    virtual void authSuccess() override;
+    virtual void resizeFramebuffer() override;
+    
     // CMsgHandler interface
 public:
     virtual void setName(const char *name) override;
-    virtual void authSuccess() override;
-    virtual void resizeFramebuffer() override;
     virtual void framebufferUpdateStart() override;
     virtual void framebufferUpdateEnd() override;
     virtual void setColourMapEntries(int firstColour, int nColours, uint16_t* rgbs) override;
@@ -56,6 +58,8 @@ public:
     virtual void setCursor(int width, int height, const rfb::Point& hotspot,
                               const uint8_t* data) override;
     virtual void setCursorPos(const rfb::Point &pos) override;
+    virtual void fence(uint32_t flags, unsigned int len, const uint8_t data[]) override;
+
     virtual void handleClipboardRequest() override;
     virtual void handleClipboardAnnounce(bool available) override;
     virtual void handleClipboardData(const char *data) override;
@@ -97,6 +101,7 @@ private:
     
     int IceInit();
     int SSHInit();
+    
 };
 
 #endif // CCONNECTVNC_H

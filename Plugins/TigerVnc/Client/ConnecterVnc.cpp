@@ -4,7 +4,6 @@
 #include "DlgSettingsVnc.h"
 #include "PluginClient.h"
 
-#include <QDebug>
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QLoggingCategory>
@@ -20,6 +19,22 @@ CConnecterVnc::CConnecterVnc(CPluginClient *parent)
 CConnecterVnc::~CConnecterVnc()
 {
     qDebug(log) << "CConnecterVnc::~CConnecterVnc()";
+}
+
+const QString CConnecterVnc::Id()
+{
+    if(m_Para.GetIce())
+    {
+        QString szId = Protocol() + "_" + GetPlugClient()->Name();
+        if(GetParameter())
+        {
+            if(!m_Para.GetPeerUser().isEmpty())
+                szId += + "_" + m_Para.GetPeerUser();
+        }
+        szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
+        return szId;
+    }
+    return CConnecter::Id();
 }
 
 qint16 CConnecterVnc::Version()
@@ -57,20 +72,4 @@ CConnect* CConnecterVnc::InstanceConnect()
 {
     CConnectVnc* p = new CConnectVnc(this);
     return p;
-}
-
-const QString CConnecterVnc::Id()
-{
-    if(m_Para.GetIce())
-    {
-        QString szId = Protocol() + "_" + GetPlugClient()->Name();
-        if(GetParameter())
-        {
-            if(!m_Para.GetPeerUser().isEmpty())
-                szId += + "_" + m_Para.GetPeerUser();
-        }
-        szId = szId.replace(QRegularExpression("[@:/#%!^&*\\.]"), "_");
-        return szId;
-    }
-    return CConnecter::Id();
 }

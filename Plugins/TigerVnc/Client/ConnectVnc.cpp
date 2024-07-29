@@ -15,6 +15,7 @@
 #include <rfb/clipboardTypes.h>
 #include <rfb/LogWriter.h>
 #include <rfb/Logger_stdio.h>
+#include <rfb/fenceTypes.h>
 
 // the X11 headers on some systems
 #ifndef XK_VoidSymbol
@@ -133,6 +134,20 @@ int CConnectVnc::SetPara()
     supportsDesktopResize = m_pPara->GetSupportsDesktopResize();
     supportsLEDState = m_pPara->GetLedState();
     
+    std::list<uint32_t> sec;
+    switch(m_pPara->m_Net.m_User.GetUsedType()) {
+    case CParameterUser::TYPE::None:
+        sec.push_back(rfb::secTypeNone);
+        break;  
+    case CParameterUser::TYPE::OnlyPassword:
+        sec.push_back(rfb::secTypeVncAuth);
+        break;
+    }
+    //*
+    qDebug(log) << "secTypes:" << security.GetEnabledSecTypes() << security.ToString()
+                << "new:" << sec << "Type:" << (int)m_pPara->m_Net.m_User.GetType();//*/
+    this->security.SetSecTypes(sec);
+
     // Set Preferred Encoding
     setPreferredEncoding(m_pPara->GetPreferredEncoding());
     setCompressLevel(m_pPara->GetCompressLevel());
@@ -522,6 +537,9 @@ void CConnectVnc::slotChannelError(int nErr, const QString& szErr)
     emit sigDisconnected();
 }
 
+// initDone() is called when the serverInit message has been received.  At
+// this point we create the desktop window and display it.  We also tell the
+// server the pixel format and encodings to use and request the first update.
 void CConnectVnc::initDone()
 {
     Q_ASSERT(m_pPara);
@@ -533,7 +551,12 @@ void CConnectVnc::initDone()
 
     //Set viewer frame buffer
     setFramebuffer(new CFramePixelBuffer(server.width(), server.height()));
-
+    
+    // Force a switch to the format and encoding we'd like
+    // Set Preferred Encoding
+    setPreferredEncoding(m_pPara->GetPreferredEncoding());
+    updatePixelFormat();
+        
     emit sigConnected();
 }
 
@@ -563,6 +586,13 @@ void CConnectVnc::bell()
     qApp->beep();
 }
 
+void CConnectVnc::setLEDState(unsigned int state)
+{
+    qDebug(log) << "CConnectVnc::setLEDState" << state;
+    CConnection::setLEDState(state);
+    emit sigUpdateLedState(state);
+}
+
 void CConnectVnc::setCursor(int width, int height, const rfb::Point &hotspot, const uint8_t *data)
 {
     //qDebug(log) << "CConnectVnc::setCursor x:" << hotspot.x << ";y:" << hotspot.y;
@@ -583,6 +613,19 @@ void CConnectVnc::setCursorPos(const rfb::Point &pos)
 {
     //qDebug(log) << "CConnectVnc::setCursorPos x:" << pos.x << ";y:" << pos.y;
     emit sigUpdateCursorPosition(QPoint(pos.x, pos.y));
+}
+
+void CConnectVnc::fence(uint32_t flags, unsigned int len, const uint8_t data[])
+{
+    qDebug(log, "CConnectVnc::fence:flags:0x%X; len:%d", flags, len);
+    CMsgHandler::fence(flags, len, data);
+    if (!(flags & rfb::fenceFlagRequest))
+        return;
+    
+    // We handle everything synchronously so we trivially honor these modes
+    flags = flags & (rfb::fenceFlagBlockBefore | rfb::fenceFlagBlockAfter);
+    writer()->writeFence(flags, len, data);
+    return;   
 }
 
 void CConnectVnc::getUserPasswd(bool secure, std::string *user, std::string *password)
@@ -613,6 +656,15 @@ bool CConnectVnc::showMsgBox(int flags, const char *title, const char *text)
     if(QMessageBox::Ok == nRet)
         return true;
     return false;
+}
+
+// setName() is called when the desktop name changes
+void CConnectVnc::setName(const char *name)
+{
+    qDebug(log) << "CConnectVnc::setName:" << name;
+    CConnection::setName(name);
+    QString szName = QString::fromUtf8(server.name());
+    emit sigServerName(szName);
 }
 
 // framebufferUpdateStart() is called at the beginning of an update.
@@ -1160,20 +1212,4 @@ void CConnectVnc::handleClipboardData(const char *data)
 void CConnectVnc::authSuccess()
 {
     qDebug(log) << "CConnectVnc::authSuccess";
-}
-
-// setName() is called when the desktop name changes
-void CConnectVnc::setName(const char *name)
-{
-    qDebug(log) << "CConnectVnc::setName:" << name;
-    CConnection::setName(name);
-    QString szName = QString::fromUtf8(server.name());
-    emit sigServerName(szName);
-}
-
-void CConnectVnc::setLEDState(unsigned int state)
-{
-    qDebug(log) << "CConnectVnc::setLEDState" << state;
-    CConnection::setLEDState(state);
-    emit sigUpdateLedState(state);
 }

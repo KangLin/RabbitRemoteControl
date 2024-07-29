@@ -57,6 +57,7 @@ class CConnectThread;
 class CLIENT_EXPORT CConnecterDesktopThread : public CConnecter
 {
     Q_OBJECT
+
 public:
     explicit CConnecterDesktopThread(CPluginClient *parent = nullptr);
     virtual ~CConnecterDesktopThread();

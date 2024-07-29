@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CCONNECTERTIGERVNC_H
-#define CCONNECTERTIGERVNC_H
+#ifndef CCONNECTERTIGERVNC_H_2024_07_29
+#define CCONNECTERTIGERVNC_H_2024_07_29
 
 #pragma once
 
@@ -28,4 +28,4 @@ private:
     CParameterVnc m_Para;
 };
 
-#endif // CCONNECTERTIGERVNC_H
+#endif // CCONNECTERTIGERVNC_H_2024_07_29

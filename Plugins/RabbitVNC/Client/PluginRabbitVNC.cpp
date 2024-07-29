@@ -39,12 +39,18 @@ const QString CPluginRabbitVNC::DisplayName() const
 const QString CPluginRabbitVNC::Description() const
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
-            + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
+           + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.") + "\n"
+           + tr("The plugin is used RabbitVNC");
 }
 
 const QString CPluginRabbitVNC::Protocol() const
 {
     return "RFB";
+}
+
+const QIcon CPluginRabbitVNC::Icon() const
+{
+    return QIcon::fromTheme("network-wired");
 }
 
 CConnecter *CPluginRabbitVNC::CreateConnecter(const QString &szID)
@@ -54,10 +60,4 @@ CConnecter *CPluginRabbitVNC::CreateConnecter(const QString &szID)
         return new CConnecterVnc(this);
     }
     return nullptr;
-}
-
-
-const QIcon CPluginRabbitVNC::Icon() const
-{
-    return QIcon::fromTheme("network-wired");
 }
