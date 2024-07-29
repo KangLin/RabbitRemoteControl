@@ -9,7 +9,7 @@
 #include <QCursor>
 #include <QLoggingCategory>
 
-#if ! (defined(WIN32) || defined(__APPLE__))
+#if ! (defined(Q_OS_ANDROID) || defined(Q_OS_WIN) || defined(Q_OS_APPLE))
 #include <X11/XKBlib.h>
 #include <X11/keysymdef.h>
 #endif
@@ -367,6 +367,9 @@ void CFrmViewer::slotUpdateLedState(unsigned int state)
     if (!hasFocus())
         return;
 
+    //TODO: implement led
+
+/*
 #if defined(WIN32)
     INPUT input[6];
     UINT count;
@@ -426,12 +429,12 @@ void CFrmViewer::slotUpdateLedState(unsigned int state)
 // No support for Scroll Lock //
 
 #else
-    /*    
     ret = XkbLockModifiers(fl_display, XkbUseCoreKbd, affect, values);
     if (!ret)
         qCritical(log) << tr("Failed to update keyboard LED state");
-    */
+
 #endif
+*/
 }
 
 int CFrmViewer::Load(QSettings &set)

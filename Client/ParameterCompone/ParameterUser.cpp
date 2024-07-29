@@ -6,8 +6,8 @@ static Q_LOGGING_CATEGORY(log, "Client.Parameter.User")
 
 CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPrefix)
     : CParameterConnecter(parent, szPrefix),
-    m_Type(TYPE::Password),
-    m_UsedType(TYPE::Password),
+    m_Type(TYPE::UserPassword),
+    m_UsedType(TYPE::UserPassword),
     m_bSavePassword(false),
     m_bUseSystemFile(true),
     m_bSavePassphrase(false)

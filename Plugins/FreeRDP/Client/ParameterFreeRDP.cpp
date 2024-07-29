@@ -97,6 +97,7 @@ int CParameterFreeRDP::SetDesktopWidth(UINT32 nWidth)
         return 0;
     m_nWidth = nWidth;
     SetModified(true);
+    return 0;
 }
 
 UINT32 CParameterFreeRDP::GetDesktopHeight() const
@@ -124,6 +125,7 @@ int CParameterFreeRDP::SetColorDepth(UINT32 color)
         return 0;
     m_nColorDepth = color;
     SetModified(true);
+    return 0;
 }
 
 bool CParameterFreeRDP::GetUseMultimon() const
@@ -137,6 +139,7 @@ int CParameterFreeRDP::SetUseMultimon(bool bUse)
         return 0;
     m_bUseMultimon = bUse;
     SetModified(true);
+    return 0;
 }
 
 UINT CParameterFreeRDP::GetReconnectInterval() const

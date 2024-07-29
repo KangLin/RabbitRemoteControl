@@ -84,6 +84,10 @@ public Q_SLOTS:
      * \see OnInit() OnProcess() slotTimeOut()
      */
     virtual int Connect();
+    /*!
+     * \~chinese 断开
+     * \~english Disconnect
+     */
     virtual int Disconnect();
 
     /*!

@@ -318,7 +318,7 @@ int CConnectVnc::SSHInit()
     auto &user = ssh.m_User;
     parameter->SetUser(user.GetUser());
     parameter->SetUseSystemFile(user.GetUseSystemFile());
-    if(CParameterUser::TYPE::Password == user.GetUsedType()) {
+    if(CParameterUser::TYPE::UserPassword == user.GetUsedType()) {
         parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD);
         parameter->SetPassword(user.GetPassword());
     }

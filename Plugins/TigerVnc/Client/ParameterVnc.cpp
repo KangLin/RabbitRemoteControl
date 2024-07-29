@@ -7,6 +7,9 @@ CParameterVnc::CParameterVnc(QObject *parent)
 {
     m_Net.SetPort(5900);
 
+    m_Net.m_User.SetType(CParameterUser::TYPE::OnlyPassword);
+    m_Net.m_User.SetUsedType(CParameterUser::TYPE::OnlyPassword);
+
     SetShared(true);
     SetBufferEndRefresh(false);
     SetSupportsDesktopResize(true);

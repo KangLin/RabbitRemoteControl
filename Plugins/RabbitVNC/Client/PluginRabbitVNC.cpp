@@ -61,9 +61,3 @@ const QIcon CPluginRabbitVNC::Icon() const
 {
     return QIcon::fromTheme("network-wired");
 }
-
-const QString CPluginRabbitVNC::Details() const
-{
-    QString szDetails;
-    return szDetails;
-}

@@ -16,11 +16,11 @@ jobs:
       matrix:
         # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.6.2, 5.15.2, 5.12.12]
+        qt_version: [6.7.1, 5.15.2, 5.12.12]
         qt_arch: [clang_64]
         VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
-          - qt_version: 6.6.2
+          - qt_version: 6.7.1
             qt_modules: qtscxml qtmultimedia qtserialport qtimageformats qtwebchannel qtwebsockets qtwebview
 
           - qt_version: 5.15.2
@@ -292,7 +292,7 @@ jobs:
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
 
       - name: Update configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.2' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.7.1' }}
         working-directory: ${{github.workspace}}/build
         run: |
           ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
@@ -302,7 +302,7 @@ jobs:
                "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip;https://sourceforge.net/projects/rabbitRabbitRemoteControl/files/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.6.2' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.7.1' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.artifact_name }}

@@ -1,6 +1,9 @@
 #include "ParameterUserUI.h"
 #include "ui_ParameterUserUI.h"
 #include "QFileDialog"
+#include <QLoggingCategory>
+
+static Q_LOGGING_CATEGORY(log, "Client.Parameter.User.UI")
 
 CParameterUserUI::CParameterUserUI(QWidget *parent)
     : QWidget(parent),
@@ -35,20 +38,29 @@ int CParameterUserUI::SetParameter(CParameterUser *pParameter)
         ui->cbType->addItem(tr("None"), (int)CParameterUser::TYPE::None);
         nType++;
     }
-    if((int)CParameterUser::TYPE::Password & (int)m_pUser->GetType()) {
-        ui->cbType->addItem(tr("Password"), (int)CParameterUser::TYPE::Password);
+    if((int)CParameterUser::TYPE::UserPassword & (int)m_pUser->GetType()) {
+        ui->cbType->addItem(tr("User and Password"), (int)CParameterUser::TYPE::UserPassword);
         nType++;
     }
     if((int)CParameterUser::TYPE::PublicKey & (int)m_pUser->GetType()) {
         ui->cbType->addItem(tr("Public Key"), (int)CParameterUser::TYPE::PublicKey);
         nType++;
     }
+    if((int)CParameterUser::TYPE::OnlyPassword & (int)m_pUser->GetType()) {
+        ui->cbType->addItem(tr("Password"), (int)CParameterUser::TYPE::OnlyPassword);
+        nType++;
+    }
     
     int index = ui->cbType->findData((int)m_pUser->GetUsedType());
-    ui->cbType->setCurrentIndex(index);
+    if(-1 == index) {
+        qDebug(log) << "Forget set use type?";
+    } else
+        ui->cbType->setCurrentIndex(index);
     ui->cbType->setVisible(1 < nType);
     ui->lbType->setVisible(1 < nType);
-
+    
+    qDebug(log) << "CParameterUserUI::SetParameter:" << index;
+    
     ui->lePassword->setText(m_pUser->GetPassword());
     ui->pbSave->setChecked(m_pUser->GetSavePassword());
     on_pbSave_clicked();
@@ -132,11 +144,21 @@ void CParameterUserUI::on_pbBrowsePrivateFile_clicked()
 
 void CParameterUserUI::on_cbType_currentIndexChanged(int index)
 {
+    Q_UNUSED(index);
+    qDebug(log) << "CParameterUserUI::on_cbType_currentIndexChanged:" << index;
+    
     int type = ui->cbType->currentData().toInt();
-    ui->lbPassword->setVisible((int)CParameterUser::TYPE::Password & type);
-    ui->lePassword->setVisible((int)CParameterUser::TYPE::Password & type);
-    ui->pbSave->setVisible((int)CParameterUser::TYPE::Password & type);
-    ui->pbShow->setVisible((int)CParameterUser::TYPE::Password & type);
+    
+    ui->lbUser->setVisible(!((int)CParameterUser::TYPE::OnlyPassword & type));
+    ui->leUser->setVisible(!((int)CParameterUser::TYPE::OnlyPassword & type));
+    
+    bool bVisible = false;
+    bVisible = ((int)CParameterUser::TYPE::UserPassword & type)
+                    | ((int)CParameterUser::TYPE::OnlyPassword & type);
+    ui->lbPassword->setVisible(bVisible);
+    ui->lePassword->setVisible(bVisible);
+    ui->pbSave->setVisible(bVisible);
+    ui->pbShow->setVisible(bVisible);
     
     ui->lbPublicFile->setVisible((int)CParameterUser::TYPE::PublicKey & type);
     ui->lePublicFile->setVisible((int)CParameterUser::TYPE::PublicKey & type);

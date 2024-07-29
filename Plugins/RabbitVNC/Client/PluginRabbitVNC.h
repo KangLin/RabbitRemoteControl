@@ -28,7 +28,6 @@ public:
     virtual const QString Description() const override;
     virtual const QString Protocol() const override;
     virtual const QIcon Icon() const override;
-    virtual const QString Details() const override;
 
 private:
     virtual CConnecter *CreateConnecter(const QString& szID) override;

@@ -5,7 +5,9 @@ CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
     m_Proxy(this)
 {
     m_Net.SetPort(5900);
-
+    m_Net.m_User.SetType(CParameterUser::TYPE::OnlyPassword);
+    m_Net.m_User.SetUsedType(CParameterUser::TYPE::OnlyPassword);
+    
     SetShared(true);
     
     SetClipboard(true);

@@ -2,10 +2,10 @@
 
 #include "PluginTigerVnc.h"
 #include "ConnecterVnc.h"
-#include <QLoggingCategory>
 #include "RabbitCommonDir.h"
 #include <QScopedPointer>
 
+#include <QLoggingCategory>
 static Q_LOGGING_CATEGORY(log, "VNC.Plugin.Tiger")
 
 CPluginTigerVnc::CPluginTigerVnc(QObject *parent)
@@ -32,12 +32,18 @@ const QString CPluginTigerVnc::DisplayName() const
 const QString CPluginTigerVnc::Description() const
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
-            + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
+           + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.") + "\n"
+           + tr("The plugin is used TigerVNC");
 }
 
 const QString CPluginTigerVnc::Protocol() const
 {
     return "RFB";
+}
+
+const QIcon CPluginTigerVnc::Icon() const
+{
+    return QIcon::fromTheme("network-wired");
 }
 
 CConnecter *CPluginTigerVnc::CreateConnecter(const QString &szID)
@@ -47,9 +53,4 @@ CConnecter *CPluginTigerVnc::CreateConnecter(const QString &szID)
         return new CConnecterVnc(this);
     }
     return nullptr;
-}
-
-const QIcon CPluginTigerVnc::Icon() const
-{
-    return QIcon::fromTheme("network-wired");
 }

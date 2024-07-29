@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "PluginLibVNCServer.h"
 #include "RabbitCommonDir.h"
 #include "ConnecterLibVNCServer.h"
@@ -27,7 +29,8 @@ const QString CPluginLibVNCServer::DisplayName() const
 const QString CPluginLibVNCServer::Description() const
 {
     return tr("VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.") + "\n"
-            + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.");
+            + tr("VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.") + "\n"
+           + tr("The plugin is used LibVNCServer");
 }
 
 const QString CPluginLibVNCServer::Protocol() const

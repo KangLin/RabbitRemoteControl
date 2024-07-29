@@ -28,9 +28,10 @@ public:
     
     enum class TYPE{
         None = 0x01,
-        Password = 0x02,
-        PublicKey = 0x04,
-        ALL = None | Password | PublicKey
+        OnlyPassword = 0x02,
+        UserPassword = 0x04,
+        PublicKey = 0x08,
+        ALL = None | UserPassword | PublicKey | OnlyPassword
     };
     TYPE GetType() const;
     int SetType(TYPE type);

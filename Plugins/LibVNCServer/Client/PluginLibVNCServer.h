@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CPluginLibVNCServer_H_KL_2021_07_23
 #define CPluginLibVNCServer_H_KL_2021_07_23
 

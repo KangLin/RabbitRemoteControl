@@ -9,11 +9,11 @@ CParameterProxy::CParameterProxy(CParameterConnecter *parent, const QString &szP
     m_Sockes.SetPort(1080);
     m_Sockes.m_User.SetType(
         (CParameterUser::TYPE)((int)CParameterUser::TYPE::None
-                               | (int)CParameterUser::TYPE::Password));
+                               | (int)CParameterUser::TYPE::UserPassword));
 
     m_SSH.SetPort(22);
     m_SSH.m_User.SetType(
-        (CParameterUser::TYPE)((int)CParameterUser::TYPE::Password
+        (CParameterUser::TYPE)((int)CParameterUser::TYPE::UserPassword
                                | (int)CParameterUser::TYPE::PublicKey));
 }
 
