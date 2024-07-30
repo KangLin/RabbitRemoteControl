@@ -1,11 +1,13 @@
 #include "ParameterNet.h"
 #include "RabbitCommonTools.h"
 
+//! [Constructor]
 CParameterNet::CParameterNet(CParameterConnecter* parent, const QString &szPrefix)
     : CParameterConnecter(parent, szPrefix),
     m_nPort(0),
     m_User(this)
 {}
+//! [Constructor]
 
 int CParameterNet::OnLoad(QSettings &set)
 {

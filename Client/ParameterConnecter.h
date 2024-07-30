@@ -11,10 +11,26 @@
  * \~chinese
  * \defgroup CLIENT_PARAMETER_COMPONE 参数组件
  * \brief 参数组件。
- * 
+ * - 写一个参数组件：
+ *   - 定义参数组件类。例如： CParameterUser 。
+ *   - 增加参数组件界面。例如： CParameterUserUI 。 并增加下面函数：
+ *     - int SetParameter(CParameterUser* pParameter);
+ *     - int slotAccept();
+ *     \snippet Client/ParameterCompone/ParameterUserUI.h Parameter commone functions
+ * - 使用参数组件：
+ *   - 在需要的地方实例化组件类。例如： CParameterNet
+ *     \snippet Client/ParameterCompone/ParameterNet.h Instance user
+ *     \snippet Client/ParameterCompone/ParameterNet.cpp Constructor
+ *   - 在相应界面类
+ *     - CParameterNet::SetParameter 调用实例的 CParameterUser::SetParameter
+ *     - CParameterNet::slotAccept 调用实例的 CParameterUser::slotAccept
+ *     \snippet Client/ParameterCompone/ParameterNet.cpp Set Parameter
+ *     \snippet Client/ParameterCompone/ParameterNet.cpp slotAccept
+ *
  * \~english
  * \defgroup CLIENT_PARAMETER_COMPONE Parameter compone
  * \brief Parameter compone.
+ *
  * \~
  * \ingroup CLIENT_PARAMETER
  */
@@ -22,7 +38,7 @@
 /*!
  * \~chinese
  * \brief 连接参数接口。仅在插件内有效。
- *  
+ *
  * \note
  *  - 仅在插件中实现和使用
  *  - 应用程序不能访问，只能通过 CConnecter::OpenDialogSettings 进行设置。

@@ -52,7 +52,7 @@ void CParameterProxyUI::slotTypeChanged(int nIndex)
 int CParameterProxyUI::SetParameter(CParameterProxy *pParameter)
 {
     m_Proxy = pParameter;
-    m_uiNet->SetParameter(&m_Proxy->m_Sockes);
+    m_uiNet->SetParameter(&m_Proxy->m_SockesV5);
     m_uiSSH->SetParameter(&m_Proxy->m_SSH);
     int index = m_cbType->findData((int)m_Proxy->GetType());
     m_cbType->setCurrentIndex(index);

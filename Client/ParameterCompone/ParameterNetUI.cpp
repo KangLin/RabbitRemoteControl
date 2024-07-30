@@ -18,17 +18,24 @@ CParameterNetUI::~CParameterNetUI()
     delete ui;
 }
 
+//! [Set Parameter]
 int CParameterNetUI::SetParameter(CParameterNet *pParameter)
 {
     if(!pParameter) return -1;
     
     m_pNet = pParameter;
-    ui->wUser->SetParameter(&m_pNet->m_User);
+    
     ui->leHost->setText(m_pNet->GetHost());
     ui->spPort->setValue(m_pNet->GetPort());
+
+    // Call user UI SetParameter
+    ui->wUser->SetParameter(&m_pNet->m_User);
+
     return 0;
 }
+//! [Set Parameter]
 
+//! [slotAccept]
 int CParameterNetUI::slotAccept(bool validity)
 {
     if(validity && ui->leHost->text().isEmpty()) {
@@ -38,12 +45,14 @@ int CParameterNetUI::slotAccept(bool validity)
         ui->leHost->setFocus();
         return -1;
     }
+
     m_pNet->SetHost(ui->leHost->text());
     m_pNet->SetPort(ui->spPort->value());
     
     ui->wUser->slotAccept();
     return 0;
 }
+//! [slotAccept]
 
 void CParameterNetUI::on_leHost_editingFinished()
 {

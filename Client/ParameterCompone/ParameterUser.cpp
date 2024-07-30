@@ -6,13 +6,18 @@ static Q_LOGGING_CATEGORY(log, "Client.Parameter.User")
 
 CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPrefix)
     : CParameterConnecter(parent, szPrefix),
-    m_Type(TYPE::UserPassword),
+    m_Type(QList<TYPE>() << TYPE::UserPassword),
     m_UsedType(TYPE::UserPassword),
     m_bSavePassword(false),
     m_bUseSystemFile(true),
-    m_bSavePassphrase(false)
+    m_bSavePassphrase(false),
+    m_cbConvertTypeToName(nullptr)
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
+    m_TypeName = {tr("None"),
+                  tr("Password"),
+                  tr("Username and password"),
+                  tr("Public key")};
 }
 
 int CParameterUser::OnLoad(QSettings &set)
@@ -21,7 +26,18 @@ int CParameterUser::OnLoad(QSettings &set)
     SetUser(set.value("Name", GetUser()).toString());
     
     set.beginGroup("Authentication");
-    SetType((TYPE)set.value("Type", (int)GetType()).toInt());
+    QStringList type;
+    foreach(auto t, GetType()) {
+        type.push_back(QString::number((int)t));
+    }
+    QStringList vType;
+    vType = set.value("Type", type).toStringList();
+    QList<TYPE> lstType;
+    foreach(auto s, vType)
+    {
+        lstType.push_back((TYPE)s.toInt());
+    }
+    SetType(lstType);
     SetUsedType((TYPE)set.value("Type/Used", (int)GetUsedType()).toInt());
     
     SetSavePassword(set.value("SavePassword", GetSavePassword()).toBool());
@@ -59,7 +75,11 @@ int CParameterUser::OnSave(QSettings &set)
     set.setValue("Name", GetUser());
     
     set.beginGroup("Authentication");
-    set.setValue("Type", (int)GetType());
+    QStringList type;
+    foreach(auto t, GetType()) {
+        type.push_back(QString::number((int)t));
+    }
+    set.setValue("Type", type);
     set.setValue("Type/Used", (int)GetUsedType());
 
     set.setValue("SavePassword", GetSavePassword());
@@ -80,12 +100,12 @@ int CParameterUser::OnSave(QSettings &set)
     return 0;
 }
 
-CParameterUser::TYPE CParameterUser::GetType() const
+QList<CParameterUser::TYPE> CParameterUser::GetType() const
 {
     return m_Type;
 }
 
-int CParameterUser::SetType(TYPE type)
+int CParameterUser::SetType(QList<TYPE> type)
 {
     if(m_Type == type)
         return 0;
@@ -235,4 +255,19 @@ int CParameterUser::SetPrivateKeyFile(const QString szFile)
     m_szPrivateKeyFile = szFile;
     SetModified(true);
     return 0;
+}
+
+QString CParameterUser::ConvertTypeToName(TYPE t)
+{
+    QString name;
+    if(m_cbConvertTypeToName)
+        name = m_cbConvertTypeToName(t);
+    if(name.isEmpty())
+        name = m_TypeName.at((int)t);
+    return name;
+}
+
+void CParameterUser::SetConvertTypeToNameCallBack(std::function<QString (TYPE)> cb)
+{
+    m_cbConvertTypeToName = cb;
 }

@@ -11,8 +11,7 @@
  *  - The interface only is implemented and used by plugin.
  *
  * \~chinese
- * \brief
- *  用户名与密码。此类仅在插件内有效。
+ * \brief 用户名与验证方式。此类仅在插件内有效。
  *
  * \~
  * \see CParameterConnecter
@@ -27,14 +26,13 @@ public:
                             const QString& szPrefix = QString());
     
     enum class TYPE{
-        None = 0x01,
-        OnlyPassword = 0x02,
-        UserPassword = 0x04,
-        PublicKey = 0x08,
-        ALL = None | UserPassword | PublicKey | OnlyPassword
+        None,
+        OnlyPassword,
+        UserPassword,
+        PublicKey
     };
-    TYPE GetType() const;
-    int SetType(TYPE type);
+    QList<TYPE> GetType() const;
+    int SetType(QList<TYPE> type);
     TYPE GetUsedType() const;
     int SetUsedType(TYPE type);
 
@@ -66,12 +64,18 @@ public:
     bool GetSavePassphrase() const;
     int SetSavePassphrase(bool bSave);
     
+    void SetConvertTypeToNameCallBack(std::function<QString(TYPE t)> cb);
+    QString ConvertTypeToName(TYPE t);
+
 protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
-
+    
+    // CParameterConnecter interface
+    virtual void slotSetParameterClient() override;
+    
 private:
-    TYPE m_Type;
+    QList<TYPE> m_Type;
     TYPE m_UsedType;
 
     QString m_szUser;
@@ -87,9 +91,8 @@ private:
     QString m_szPassphrase;
     bool m_bSavePassphrase;
     
-    // CParameterConnecter interface
-protected:
-    virtual void slotSetParameterClient() override;
+    std::function<QString(TYPE t)> m_cbConvertTypeToName;
+    QVector<QString> m_TypeName;
 };
 
 #endif // CPARAMETERUSERPASSWORD_H

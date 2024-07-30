@@ -142,11 +142,14 @@ int CConnectVnc::SetPara()
     case CParameterUser::TYPE::OnlyPassword:
         sec.push_back(rfb::secTypeVncAuth);
         break;
+    case CParameterUser::TYPE::UserPassword:
+        sec.push_back(rfb::secTypePlain);
+    //TODO: add authentication
     }
     //*
     qDebug(log) << "secTypes:" << security.GetEnabledSecTypes() << security.ToString()
-                << "new:" << sec << "Type:" << (int)m_pPara->m_Net.m_User.GetType();//*/
-    this->security.SetSecTypes(sec);
+                << "new:" << sec; // << "Type:" << m_pPara->m_Net.m_User.GetType();//*/
+    security.SetSecTypes(sec);
 
     // Set Preferred Encoding
     setPreferredEncoding(m_pPara->GetPreferredEncoding());
@@ -277,7 +280,7 @@ int CConnectVnc::SocketInit()
         {
             QNetworkProxy proxy;
             proxy.setType(type);
-            auto &net = m_pPara->m_Proxy.m_Sockes;
+            auto &net = m_pPara->m_Proxy.m_SockesV5;
             if(net.GetHost().isEmpty())
             {
                 QString szErr;

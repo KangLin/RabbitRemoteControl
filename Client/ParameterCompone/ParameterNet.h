@@ -34,8 +34,10 @@ public:
     
     virtual const quint16 GetPort() const;
     virtual void SetPort(quint16 port);
-
+    
+    //! [Instance user]
     CParameterUser m_User;
+    //! [Instance user]
 
 protected:
     virtual int OnLoad(QSettings &set) override;

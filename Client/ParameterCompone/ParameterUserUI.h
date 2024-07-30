@@ -15,9 +15,19 @@ class CLIENT_EXPORT CParameterUserUI : public QWidget
 public:
     explicit CParameterUserUI(QWidget *parent = nullptr);
     ~CParameterUserUI();
-
+    
+    //! [Parameter commone functions]
+    /*!
+     * \~chinese 设置参数，并初始化界面
+     * \~english Set the parameters and initialize the user interface
+     */
     int SetParameter(CParameterUser* pParameter);
+    /*!
+     * \~chinese 接受参数
+     * \~english Accept parameters
+     */
     int slotAccept();
+    //! [Parameter commone functions]
     
 private slots:
     void on_pbShow_clicked();

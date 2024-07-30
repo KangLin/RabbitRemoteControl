@@ -25,7 +25,7 @@ public:
     TYPE GetType() const;
     int SetType(TYPE type);
 
-    CParameterNet m_Sockes;
+    CParameterNet m_SockesV5;
     CParameterNet m_SSH;
 
     // CParameter interface

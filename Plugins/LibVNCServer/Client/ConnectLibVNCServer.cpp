@@ -150,7 +150,7 @@ bool CConnectLibVNCServer::InitClient()
     {
         QNetworkProxy proxy;
         proxy.setType(QNetworkProxy::Socks5Proxy);
-        auto &net = m_pPara->m_Proxy.m_Sockes;
+        auto &net = m_pPara->m_Proxy.m_SockesV5;
         proxy.setHostName(net.GetHost());
         if(net.GetHost().isEmpty())
         {

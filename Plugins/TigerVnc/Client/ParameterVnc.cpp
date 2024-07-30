@@ -6,11 +6,20 @@ CParameterVnc::CParameterVnc(QObject *parent)
     m_Proxy(this)
 {
     m_Net.SetPort(5900);
-    
-    m_Net.m_User.SetType((CParameterUser::TYPE)(
-        (int)CParameterUser::TYPE::None
-        | (int)CParameterUser::TYPE::OnlyPassword));
+
+    //TODO: add authentication
+    m_Net.m_User.SetType(QList<CParameterUser::TYPE>()
+        << CParameterUser::TYPE::None
+        << CParameterUser::TYPE::OnlyPassword
+        << CParameterUser::TYPE::UserPassword);
     m_Net.m_User.SetUsedType(CParameterUser::TYPE::OnlyPassword);
+    m_Net.m_User.SetConvertTypeToNameCallBack([](CParameterUser::TYPE t)->QString{
+        if(CParameterUser::TYPE::OnlyPassword == t)
+            return tr("Standard VNC authentication (insecure without encryption)");
+        if(CParameterUser::TYPE::UserPassword == t)
+            return tr("Username and password (insecure without encryption)");
+        return QString();
+    });
 
     SetShared(true);
     SetBufferEndRefresh(false);
