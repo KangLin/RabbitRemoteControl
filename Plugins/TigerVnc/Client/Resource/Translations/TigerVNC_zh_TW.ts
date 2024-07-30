@@ -24,6 +24,10 @@
         <translation type="vanished">服務器為空，請輸入</translation>
     </message>
     <message>
+        <source>Failed to open SSH tunnel:</source>
+        <translation type="vanished">打開 SSH 隧道失敗：</translation>
+    </message>
+    <message>
         <source>Connect to </source>
         <translation type="vanished">連接到 </translation>
     </message>
@@ -35,80 +39,49 @@
 <context>
     <name>CConnectVnc</name>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="232"/>
+        <location filename="../../ConnectVnc.cpp" line="287"/>
         <source>The proxy server is empty, please input it</source>
-        <translation type="unfinished">代理服務器為空，請輸入</translation>
+        <translation>代理服務器為空，請輸入</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="234"/>
-        <location filename="../../ConnectVnc.cpp" line="254"/>
-        <location filename="../../ConnectVnc.cpp" line="315"/>
-        <location filename="../../ConnectVnc.cpp" line="439"/>
-        <location filename="../../ConnectVnc.cpp" line="454"/>
+        <location filename="../../ConnectVnc.cpp" line="289"/>
+        <location filename="../../ConnectVnc.cpp" line="309"/>
+        <location filename="../../ConnectVnc.cpp" line="375"/>
+        <location filename="../../ConnectVnc.cpp" line="500"/>
+        <location filename="../../ConnectVnc.cpp" line="515"/>
         <source>Error</source>
-        <translation type="unfinished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="252"/>
+        <location filename="../../ConnectVnc.cpp" line="307"/>
         <source>The server is empty, please input it</source>
-        <translation type="unfinished">服務器為空，請輸入</translation>
+        <translation>服務器為空，請輸入</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="306"/>
+        <location filename="../../ConnectVnc.cpp" line="366"/>
         <source>Failed to open SSH tunnel:</source>
-        <translation type="unfinished"></translation>
+        <translation>打開 SSH 隧道失敗：</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="433"/>
+        <location filename="../../ConnectVnc.cpp" line="494"/>
         <source>Logon to </source>
-        <translation type="unfinished">登錄到 </translation>
+        <translation>登錄到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="437"/>
-        <location filename="../../ConnectVnc.cpp" line="450"/>
+        <location filename="../../ConnectVnc.cpp" line="498"/>
+        <location filename="../../ConnectVnc.cpp" line="511"/>
         <source> fail.</source>
-        <translation type="unfinished"> 失敗。</translation>
+        <translation> 失敗。</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="438"/>
+        <location filename="../../ConnectVnc.cpp" line="499"/>
         <source>Please check that the username and password are correct.</source>
-        <translation type="unfinished">檢查用戶名和密碼是否正確。</translation>
+        <translation>檢查用戶名和密碼是否正確。</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="446"/>
+        <location filename="../../ConnectVnc.cpp" line="507"/>
         <source>Connect to </source>
-        <translation type="unfinished">連接到 </translation>
-    </message>
-</context>
-<context>
-    <name>CDlgGetPasswordTigerVNC</name>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">輸入密碼</translation>
-    </message>
-    <message>
-        <source>OK(&amp;O)</source>
-        <translation type="vanished">確定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancel(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>User:</source>
-        <translation type="vanished">用戶：</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">密碼：</translation>
-    </message>
-    <message>
-        <source>Save password</source>
-        <translation type="vanished">保存密碼</translation>
-    </message>
-    <message>
-        <source>Set password for %1</source>
-        <translation type="vanished">為 %1 設置密碼</translation>
+        <translation>連接到 </translation>
     </message>
 </context>
 <context>
@@ -116,7 +89,7 @@
     <message>
         <location filename="../../DlgGetUserPasswordVNC.ui" line="14"/>
         <source>Input password</source>
-        <translation type="unfinished">輸入密碼</translation>
+        <translation>輸入密碼</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordVNC.ui" line="20"/>
@@ -126,204 +99,17 @@
     <message>
         <location filename="../../DlgGetUserPasswordVNC.ui" line="61"/>
         <source>OK(&amp;O)</source>
-        <translation type="unfinished">確定(&amp;O)</translation>
+        <translation>確定(&amp;O)</translation>
     </message>
     <message>
         <location filename="../../DlgGetUserPasswordVNC.ui" line="71"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgGetUserPasswordVNC.cpp" line="37"/>
+        <location filename="../../DlgGetUserPasswordVNC.cpp" line="50"/>
         <source>Set password for %1</source>
-        <translation type="unfinished">為 %1 設置密碼</translation>
-    </message>
-</context>
-<context>
-    <name>CDlgSettingsTigerVnc</name>
-    <message>
-        <source>Setting TigerVNC</source>
-        <translation type="vanished">設置 TigerVNC</translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <translation type="vanished">服務器</translation>
-    </message>
-    <message>
-        <source>Server:</source>
-        <translation type="vanished">服務器：</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">密碼：</translation>
-    </message>
-    <message>
-        <source>User name:</source>
-        <translation type="vanished">用戶名：</translation>
-    </message>
-    <message>
-        <source>Support windows resize</source>
-        <translation type="vanished">支持窗口大小改變</translation>
-    </message>
-    <message>
-        <source>Shared</source>
-        <translation type="vanished">共享</translation>
-    </message>
-    <message>
-        <source>Cancel(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="vanished">名稱：</translation>
-    </message>
-    <message>
-        <source>Connecter name</source>
-        <translation type="vanished">連接名稱</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation type="vanished">端口：</translation>
-    </message>
-    <message>
-        <source>Please checked save password to enable</source>
-        <translation type="vanished">選擇保存密碼允許輸入</translation>
-    </message>
-    <message>
-        <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
-        <translation type="vanished">菜單: 工具→設置→客戶端→密碼-&gt;允許查看密碼</translation>
-    </message>
-    <message>
-        <source>Real time update</source>
-        <translation type="vanished">實時更新</translation>
-    </message>
-    <message>
-        <source>Show local cursor</source>
-        <translation type="vanished">顯示本地光標</translation>
-    </message>
-    <message>
-        <source>Enable clipboard</source>
-        <translation type="vanished">允許剪切板</translation>
-    </message>
-    <message>
-        <source>Save password</source>
-        <translation type="vanished">保存密碼</translation>
-    </message>
-    <message>
-        <source>Only view</source>
-        <translation type="vanished">僅查看</translation>
-    </message>
-    <message>
-        <source>Signal user:</source>
-        <translation type="vanished">信令用戶：</translation>
-    </message>
-    <message>
-        <source>Peer user:</source>
-        <translation type="vanished">對端用戶：</translation>
-    </message>
-    <message>
-        <source>Stun server:</source>
-        <translation type="vanished">Stun 服務器：</translation>
-    </message>
-    <message>
-        <source>Turn server:</source>
-        <translation type="vanished">Turn 服務器：</translation>
-    </message>
-    <message>
-        <source>Show server name</source>
-        <translation type="vanished">顯示服務器名</translation>
-    </message>
-    <message>
-        <source>Domain:</source>
-        <translation type="vanished">域名：</translation>
-    </message>
-    <message>
-        <source>Turn user:</source>
-        <translation type="vanished">Turn 用戶：</translation>
-    </message>
-    <message>
-        <source>Proxy</source>
-        <translation type="vanished">代理</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">無</translation>
-    </message>
-    <message>
-        <source>Compress</source>
-        <translation type="vanished">壓縮</translation>
-    </message>
-    <message>
-        <source>Color level</source>
-        <translation type="vanished">顏色級別</translation>
-    </message>
-    <message>
-        <source>Full</source>
-        <translation type="vanished">全彩色</translation>
-    </message>
-    <message>
-        <source>Low</source>
-        <translation type="vanished">低</translation>
-    </message>
-    <message>
-        <source>Meduim</source>
-        <translation type="vanished">中</translation>
-    </message>
-    <message>
-        <source>Very low</source>
-        <translation type="vanished">極低</translation>
-    </message>
-    <message>
-        <source>0=fast, 9=best</source>
-        <translation type="vanished">0=最快, 9=最好</translation>
-    </message>
-    <message>
-        <source>Enable JPEG compress</source>
-        <translation type="vanished">允許JPEG壓縮</translation>
-    </message>
-    <message>
-        <source>0=Worst, 9=best</source>
-        <translation type="vanished">0=最差, 9=最好</translation>
-    </message>
-    <message>
-        <source>preferred Encoding</source>
-        <translation type="vanished">首選編碼</translation>
-    </message>
-    <message>
-        <source>Raw</source>
-        <translation type="vanished">原始</translation>
-    </message>
-    <message>
-        <source>Compress level:</source>
-        <translation type="vanished">壓縮級別</translation>
-    </message>
-    <message>
-        <source>Auto select</source>
-        <translation type="vanished">自動選擇</translation>
-    </message>
-    <message>
-        <source>Ok(&amp;O)</source>
-        <translation type="vanished">確定(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Cancle(&amp;C)</source>
-        <translation type="vanished">取消(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Signal server:</source>
-        <translation type="vanished">信令服務器：</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">錯誤</translation>
-    </message>
-    <message>
-        <source>Please set domain</source>
-        <translation type="vanished">請設置域名</translation>
-    </message>
-    <message>
-        <source>Input password</source>
-        <translation type="vanished">輸入密碼</translation>
+        <translation>為 %1 設置密碼</translation>
     </message>
 </context>
 <context>
@@ -331,179 +117,198 @@
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="14"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>設置</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="28"/>
         <source>Server</source>
-        <translation type="unfinished">服務器</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsVnc.ui" line="36"/>
-        <source>Name:</source>
-        <translation type="unfinished">名稱：</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsVnc.ui" line="43"/>
-        <location filename="../../DlgSettingsVnc.ui" line="46"/>
-        <location filename="../../DlgSettingsVnc.ui" line="49"/>
-        <source>Connecter name</source>
-        <translation type="unfinished">連接名稱</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsVnc.ui" line="63"/>
-        <source>Shared</source>
-        <translation type="unfinished">共享</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsVnc.ui" line="70"/>
-        <source>Only view</source>
-        <translation type="unfinished">僅查看</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSettingsVnc.ui" line="81"/>
-        <source>Show local cursor</source>
-        <translation type="unfinished">顯示本地光標</translation>
+        <translation>服務器</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.ui" line="88"/>
+        <source>Name:</source>
+        <translation>名稱：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="95"/>
+        <location filename="../../DlgSettingsVnc.ui" line="98"/>
+        <location filename="../../DlgSettingsVnc.ui" line="101"/>
+        <source>Connecter name</source>
+        <translation>連接名稱</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="112"/>
+        <source>Shared</source>
+        <translation>共享</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="119"/>
+        <source>Only view</source>
+        <translation>僅查看</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="130"/>
+        <source>Show local cursor</source>
+        <translation>顯示本地光標</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="77"/>
         <source>Enable clipboard</source>
-        <translation type="unfinished">允許剪切板</translation>
+        <translation>允許剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="99"/>
+        <location filename="../../DlgSettingsVnc.ui" line="52"/>
         <source>Support windows resize</source>
-        <translation type="unfinished">支持窗口大小改變</translation>
+        <translation>支持窗口大小改變</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="106"/>
+        <location filename="../../DlgSettingsVnc.ui" line="59"/>
         <source>Real time update</source>
-        <translation type="unfinished">實時更新</translation>
+        <translation>實時更新</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="115"/>
+        <location filename="../../DlgSettingsVnc.ui" line="70"/>
         <source>Show server name</source>
-        <translation type="unfinished">顯示服務器名</translation>
+        <translation>顯示服務器名</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="122"/>
+        <location filename="../../DlgSettingsVnc.ui" line="146"/>
         <source>Ice:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="136"/>
+        <location filename="../../DlgSettingsVnc.ui" line="160"/>
         <source>Peer user:</source>
-        <translation type="unfinished">對端用戶：</translation>
+        <translation>對端用戶：</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="165"/>
         <source>Compress</source>
-        <translation type="unfinished">壓縮</translation>
+        <translation type="obsolete">壓縮</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="171"/>
+        <location filename="../../DlgSettingsVnc.ui" line="189"/>
         <source>Color level</source>
-        <translation type="unfinished">顏色級別</translation>
+        <translation>顏色級別</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="177"/>
+        <location filename="../../DlgSettingsVnc.ui" line="195"/>
         <source>Full</source>
-        <translation type="unfinished">全彩色</translation>
+        <translation>全彩色</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="184"/>
+        <location filename="../../DlgSettingsVnc.ui" line="202"/>
         <source>Low</source>
-        <translation type="unfinished">低</translation>
+        <translation>低</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="191"/>
+        <location filename="../../DlgSettingsVnc.ui" line="209"/>
         <source>Meduim</source>
-        <translation type="unfinished">中</translation>
+        <translation>中</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="198"/>
+        <location filename="../../DlgSettingsVnc.ui" line="216"/>
         <source>Very low</source>
-        <translation type="unfinished">極低</translation>
+        <translation>極低</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="220"/>
+        <location filename="../../DlgSettingsVnc.ui" line="238"/>
         <source>0=fast, 9=best</source>
-        <translation type="unfinished">0=最快, 9=最好</translation>
+        <translation>0=最快, 9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="231"/>
+        <location filename="../../DlgSettingsVnc.ui" line="249"/>
         <source>Enable JPEG compress</source>
-        <translation type="unfinished">允許JPEG壓縮</translation>
+        <translation>允許JPEG壓縮</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="245"/>
+        <location filename="../../DlgSettingsVnc.ui" line="263"/>
         <source>0=Worst, 9=best</source>
-        <translation type="unfinished">0=最差, 9=最好</translation>
+        <translation>0=最差, 9=最好</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="254"/>
+        <location filename="../../DlgSettingsVnc.ui" line="272"/>
         <source>preferred Encoding</source>
-        <translation type="unfinished">首選編碼</translation>
+        <translation>首選編碼</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="260"/>
+        <location filename="../../DlgSettingsVnc.ui" line="313"/>
         <source>Tight</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="267"/>
+        <location filename="../../DlgSettingsVnc.ui" line="306"/>
         <source>Hextile</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="274"/>
+        <location filename="../../DlgSettingsVnc.ui" line="320"/>
         <source>Raw</source>
-        <translation type="unfinished">原始</translation>
+        <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="281"/>
+        <location filename="../../DlgSettingsVnc.ui" line="285"/>
         <source>ZRLE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="288"/>
+        <location filename="../../DlgSettingsVnc.ui" line="137"/>
+        <source>Cursor position</source>
+        <translation>光標位置</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="175"/>
+        <source>Led state</source>
+        <translation>Led 狀態</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="183"/>
+        <source>Compression</source>
+        <translation>壓縮</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="278"/>
         <source>CoRRE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="295"/>
+        <location filename="../../DlgSettingsVnc.ui" line="292"/>
         <source>RRE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="302"/>
+        <location filename="../../DlgSettingsVnc.ui" line="299"/>
         <source>copyRect</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="312"/>
+        <location filename="../../DlgSettingsVnc.ui" line="327"/>
+        <source>H.264</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.ui" line="337"/>
         <source>Compress level:</source>
-        <translation type="unfinished">壓縮級別</translation>
+        <translation>壓縮級別</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="319"/>
+        <location filename="../../DlgSettingsVnc.ui" line="344"/>
         <source>Auto select</source>
-        <translation type="unfinished">自動選擇</translation>
+        <translation>自動選擇</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="345"/>
+        <location filename="../../DlgSettingsVnc.ui" line="370"/>
         <source>Ok(&amp;O)</source>
-        <translation type="unfinished">確定(&amp;O)</translation>
+        <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.ui" line="355"/>
+        <location filename="../../DlgSettingsVnc.ui" line="380"/>
         <source>Cancel(&amp;C)</source>
-        <translation type="unfinished">取消(&amp;C)</translation>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsVnc.cpp" line="30"/>
         <source>Proxy</source>
-        <translation type="unfinished">代理</translation>
+        <translation>代理</translation>
     </message>
 </context>
 <context>
@@ -520,32 +325,56 @@
 <context>
     <name>CParameterVnc</name>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="56"/>
-        <source>Ice signal password</source>
-        <translation type="unfinished">Ice 信令密碼</translation>
+        <location filename="../../ParameterVnc.cpp" line="18"/>
+        <source>Standard VNC authentication (insecure without encryption)</source>
+        <translation>標準VNC驗證（沒有加密，非安全的）</translation>
     </message>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="69"/>
+        <location filename="../../ParameterVnc.cpp" line="20"/>
+        <source>Username and password (insecure without encryption)</source>
+        <translation>用戶名和密碼（沒有加密，非安全的）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterVnc.cpp" line="78"/>
+        <source>Ice signal password</source>
+        <translation>Ice 信令密碼</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterVnc.cpp" line="91"/>
         <source>Ice turn password</source>
-        <translation type="unfinished">Turn 服務器密碼</translation>
+        <translation>Turn 服務器密碼</translation>
     </message>
 </context>
 <context>
     <name>CPluginTigerVnc</name>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="48"/>
+        <location filename="../../PluginTigerVnc.cpp" line="29"/>
         <source>TigerVNC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="53"/>
+        <location filename="../../PluginTigerVnc.cpp" line="34"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="54"/>
+        <location filename="../../PluginTigerVnc.cpp" line="35"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一個使用RFB(遠程幀緩存)協議的程序。</translation>
+    </message>
+    <message>
+        <location filename="../../PluginTigerVnc.cpp" line="36"/>
+        <source>The plugin is used TigerVNC</source>
+        <translation>此插件使用 TigerVNC</translation>
+    </message>
+</context>
+<context>
+    <name>S:</name>
+    <message>
+        <location filename="../../ConnectVnc.cpp" line="868"/>
+        <source></source>
+        <comment>Will be filled in with a string describing the</comment>
+        <translation></translation>
     </message>
 </context>
 </TS>

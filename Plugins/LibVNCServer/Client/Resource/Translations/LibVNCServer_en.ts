@@ -4,32 +4,32 @@
 <context>
     <name>CConnectLibVNCServer</name>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="76"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="75"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="65"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="78"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="161"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="180"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="196"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="64"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="77"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="160"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="179"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="195"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="64"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="63"/>
         <source>Protocol version error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="159"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="158"/>
         <source>The proxy server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="177"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="193"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="176"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="192"/>
         <source>Connect to %1:%2 fail</source>
         <translation type="unfinished"></translation>
     </message>
@@ -57,7 +57,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgLibVNCServerPassword.cpp" line="41"/>
+        <location filename="../../DlgLibVNCServerPassword.cpp" line="47"/>
         <source>Set password for %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -137,7 +137,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsLibVnc.cpp" line="30"/>
+        <location filename="../../DlgSettingsLibVnc.cpp" line="31"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -155,19 +155,23 @@
 <context>
     <name>CPluginLibVNCServer</name>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="19"/>
-        <location filename="../../PluginLibVNCServer.cpp" line="24"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="26"/>
         <source>LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="29"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="31"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="30"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="32"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginLibVNCServer.cpp" line="33"/>
+        <source>The plugin is used LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -107,6 +107,7 @@ jobs:
 #        )
 
       - name: build RabbitVNC
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         env:
           MSYSTEM: MINGW64
@@ -195,7 +196,7 @@ jobs:
             -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
             -DBUILD_FREERDP=ON ^
             -DBUILD_LibVNCServer=ON ^
-            -DBUILD_RABBITVNC=ON ^
+            -DBUILD_RABBITVNC=OFF ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
             -DBUILD_TigerVNC=ON ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^

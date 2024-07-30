@@ -301,7 +301,7 @@ jobs:
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
               -DBUILD_LibVNCServer=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
-              -DBUILD_RABBITVNC=ON \
+              -DBUILD_RABBITVNC=OFF \
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
               -DBUILD_TigerVNC=ON \
               -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake \

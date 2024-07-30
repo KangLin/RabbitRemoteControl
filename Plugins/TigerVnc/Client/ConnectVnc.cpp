@@ -419,6 +419,7 @@ int CConnectVnc::OnProcess()
             nRet = channel->Process();
     }
 #endif
+
     return nRet;
 }
 
@@ -559,7 +560,7 @@ void CConnectVnc::initDone()
     // Set Preferred Encoding
     setPreferredEncoding(m_pPara->GetPreferredEncoding());
     updatePixelFormat();
-        
+    
     emit sigConnected();
 }
 
@@ -620,7 +621,7 @@ void CConnectVnc::setCursorPos(const rfb::Point &pos)
 
 void CConnectVnc::fence(uint32_t flags, unsigned int len, const uint8_t data[])
 {
-    qDebug(log, "CConnectVnc::fence:flags:0x%X; len:%d", flags, len);
+    //qDebug(log, "CConnectVnc::fence:flags:0x%X; len:%d", flags, len);
     CMsgHandler::fence(flags, len, data);
     if (!(flags & rfb::fenceFlagRequest))
         return;

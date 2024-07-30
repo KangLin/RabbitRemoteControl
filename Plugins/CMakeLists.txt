@@ -16,7 +16,7 @@ endif()
 
 ## Desktop
 
-option(BUILD_RABBITVNC "Build RabbitVNC plugin" ON)
+option(BUILD_RABBITVNC "Build RabbitVNC plugin" OFF)
 if(BUILD_RABBITVNC)
     add_subdirectory(RabbitVNC)
 endif()

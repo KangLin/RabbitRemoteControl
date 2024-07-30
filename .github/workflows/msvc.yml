@@ -140,6 +140,7 @@ jobs:
 #          )
 
       - name: build RabbitVNC
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\RabbitVNC (
@@ -297,7 +298,7 @@ jobs:
         run: |
           IF /i "${{matrix.BUILD_TYPE}}" == "Release" (
               echo "Build Release ......"
-              set BUILD_RABBITVNC=ON
+              set BUILD_RABBITVNC=OFF
               set BUILD_LibVNCServer=ON
               set BUILD_TigerVNC=ON
               set BUILD_SERVICE=OFF

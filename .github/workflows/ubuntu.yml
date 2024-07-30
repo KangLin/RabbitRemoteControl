@@ -138,6 +138,7 @@ jobs:
           fi
 
       - name: build RabbitVNC
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ]; then
@@ -218,14 +219,14 @@ jobs:
               export BUILD_LibVNCServer=ON
               export BUILD_TigerVNC=ON
               export BUILD_FREERDP=ON
-              export BUILD_RABBITVNC=ON
+              export BUILD_RABBITVNC=OFF
           else
               echo "Build Debug ......"
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
               export BUILD_LibVNCServer=ON
               export BUILD_TigerVNC=ON
               export BUILD_FREERDP=ON
-              export BUILD_RABBITVNC=ON
+              export BUILD_RABBITVNC=OFF
           fi
           export Qt6_DIR=/usr/lib/`uname-a`-linux-gnu/cmake/Qt6
           ./build_debpackage.sh

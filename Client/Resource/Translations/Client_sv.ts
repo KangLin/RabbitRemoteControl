@@ -170,12 +170,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="35"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="42"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="36"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="43"/>
         <source>The host is empty. please set it</source>
         <translation type="unfinished"></translation>
     </message>
@@ -211,12 +211,28 @@
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="31"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="47"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="45"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
+        <source>Username and password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <source>Public key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="61"/>
         <source>Passphrase</source>
         <translation type="unfinished"></translation>
     </message>
@@ -229,134 +245,119 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="52"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="46"/>
         <source>Authentication type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="73"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="234"/>
         <source>Passphrase:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="83"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="177"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="244"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="208"/>
         <source>Input passphrase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="120"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="67"/>
         <source>User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="127"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="11"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="74"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="14"/>
         <source>Input user name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="138"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="85"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="148"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="12"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="108"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="95"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="125"/>
         <source>Input password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="155"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="158"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="161"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="102"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="105"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="108"/>
         <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="180"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="183"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="186"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="127"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="130"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="133"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="209"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="200"/>
         <source>Private file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="173"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="176"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="179"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="182"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="207"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="210"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="213"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="216"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="219"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="250"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="253"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="256"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="259"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="232"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="189"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="223"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="243"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="166"/>
         <source>Public file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="275"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="154"/>
         <source>Use system public and private file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="13"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="16"/>
         <source>Please input the public key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="14"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="17"/>
         <source>Please input the private key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="18"/>
         <source>Please input the passphrase of private key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="35"/>
-        <source>None</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="39"/>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="43"/>
-        <source>Public Key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="110"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="127"/>
         <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="118"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="127"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="135"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="144"/>
         <source>Open public key file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="179"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="210"/>
         <source>Please checked save passphrase to enable</source>
         <translation type="unfinished"></translation>
     </message>

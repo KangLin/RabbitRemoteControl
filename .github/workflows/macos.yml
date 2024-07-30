@@ -104,6 +104,7 @@ jobs:
 #          fi
 
       - name: build RabbitVNC
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ]; then
@@ -255,12 +256,12 @@ jobs:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
           if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
-              export BUILD_RABBITVNC=ON
+              export BUILD_RABBITVNC=OFF
               export BUILD_LibVNCServer=ON
               export BUILD_TigerVNC=ON
               export BUILD_SERVICE=OFF
           else
-              export BUILD_RABBITVNC=ON
+              export BUILD_RABBITVNC=OFF
               export BUILD_TigerVNC=ON
               export BUILD_LibVNCServer=ON
               export BUILD_SERVICE=ON
