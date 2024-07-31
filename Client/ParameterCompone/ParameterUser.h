@@ -31,16 +31,17 @@ public:
         UserPassword,
         PublicKey
     };
+    Q_ENUM(TYPE)
     QList<TYPE> GetType() const;
     int SetType(QList<TYPE> type);
     TYPE GetUsedType() const;
     int SetUsedType(TYPE type);
 
-    virtual const QString GetUser() const;
-    virtual void SetUser(const QString& szUser);
+    const QString GetUser() const;
+    void SetUser(const QString& szUser);
 
-    virtual const QString GetPassword() const;
-    virtual void SetPassword(const QString& szPassword);
+    const QString GetPassword() const;
+    void SetPassword(const QString& szPassword);
 
     const bool GetSavePassword() const;
     /*!
