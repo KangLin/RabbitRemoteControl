@@ -130,10 +130,10 @@ public Q_SLOTS:
     virtual void slotClipBoardChanged() override;
     
 public Q_SLOTS:
-    virtual void slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos) override;
-    virtual void slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos) override;
-    virtual void slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos) override;
-    virtual void slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta) override;
+    virtual void slotMousePressEvent(QMouseEvent* event, QPoint pos) override;
+    virtual void slotMouseReleaseEvent(QMouseEvent* event, QPoint pos) override;
+    virtual void slotMouseMoveEvent(QMouseEvent* event, QPoint pos) override;
+    virtual void slotWheelEvent(QWheelEvent* event, QPoint pos) override;
     virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
     virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
 

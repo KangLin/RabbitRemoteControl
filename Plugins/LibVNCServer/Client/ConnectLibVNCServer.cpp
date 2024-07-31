@@ -466,74 +466,67 @@ void CConnectLibVNCServer::cb_got_cursor_shape(rfbClient *client,
     }
 }
 
-void CConnectLibVNCServer::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectLibVNCServer::slotMousePressEvent(QMouseEvent *event, QPoint pos)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     //qDebug(log) << "CConnectLibVnc::slotMousePressEvent" << e->button() << e->buttons();
     unsigned char mask = 0;
-    if(buttons & Qt::MouseButton::LeftButton)
+    if(event->button() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(buttons & Qt::MouseButton::MiddleButton)
+    if(event->button() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(buttons & Qt::MouseButton::RightButton)
+    if(event->button() & Qt::MouseButton::RightButton)
         mask |= 0x4;
 
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
-void CConnectLibVNCServer::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
+void CConnectLibVNCServer::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
 {
     if(!m_pClient) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
-    if(button & Qt::MouseButton::LeftButton)
-        mask |= 0x1;
-    if(button & Qt::MouseButton::MiddleButton)
-        mask |= 0x2;
-    if(button & Qt::MouseButton::RightButton)
-        mask |= 0x4;
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
-void CConnectLibVNCServer::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectLibVNCServer::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
 {
     //qDebug(log) << "CConnectLibVnc::slotMouseMoveEvent" << buttons << pos;
     if(!m_pClient) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
-    if(buttons & Qt::MouseButton::LeftButton)
+    if(event->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(buttons & Qt::MouseButton::MiddleButton)
+    if(event->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(buttons & Qt::MouseButton::RightButton)
+    if(event->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
-void CConnectLibVNCServer::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
+void CConnectLibVNCServer::slotWheelEvent(QWheelEvent *event, QPoint pos)
 {
     //qDebug(log) << "CConnectLibVnc::slotWheelEvent" << buttons << pos << angleDelta;
     if(!m_pClient) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
-    
-    if(buttons & Qt::MouseButton::LeftButton)
+    if(event->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(buttons & Qt::MouseButton::MiddleButton)
+    if(event->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(buttons & Qt::MouseButton::RightButton)
+    if(event->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     
-    QPoint p = angleDelta;
-    if(p.y() > 0)
-        mask |= 8;
-    if(p.y() < 0)
-        mask |= 16;
-    if(p.x() < 0)
-        mask |= 32;
-    if(p.x() > 0)
-        mask |= 64;
+    QPoint d = event->angleDelta();
+    if(d.y() > 0)
+        mask |= 0x8;
+    if(d.y() < 0)
+        mask |= 0x10;
+    if(d.x() < 0)
+        mask |= 0x20;
+    if(d.x() > 0)
+        mask |= 0x40;
     
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }

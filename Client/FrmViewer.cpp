@@ -3,7 +3,6 @@
 #include "FrmViewer.h"
 
 #include <QPainter>
-#include <QClipboard>
 #include <QDebug>
 #include <QResizeEvent>
 #include <QCursor>
@@ -174,8 +173,10 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
 #endif
 
     if(TranslationMousePoint(pos, pos)) return;
-    //qDebug(log) << "CFrmViewer::mousePressEvent" << event->button() << event->buttons() << pos;
-    emit sigMousePressEvent(event->buttons(), QPoint(pos.x(), pos.y()));
+    // event->buttons() 产生事件时，按键的状态
+    // event->button() 触发当前事件的按键
+    //qDebug(log) << "CFrmViewer::mousePressEvent" << event << event->button() << event->buttons() << pos;
+    emit sigMousePressEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
@@ -188,8 +189,10 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
         event->pos();
 #endif
     if(TranslationMousePoint(pos, pos)) return;
-    //qDebug(log) << "CFrmViewer::mouseReleaseEvent" << event->button() << event->buttons() << pos;
-    emit sigMouseReleaseEvent(event->button(), QPoint(pos.x(), pos.y()));
+    // event->buttons() 产生事件时，按键的状态
+    // event->button() 触发当前事件的按键
+    //qDebug(log) << "CFrmViewer::mouseReleaseEvent" << event << event->button() << event->buttons() << pos;
+    emit sigMouseReleaseEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
@@ -202,8 +205,10 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
         event->pos();
 #endif
     if(TranslationMousePoint(pos, pos)) return;
+    // event->buttons() 产生事件时，按键的状态
+    // event->button() 触发当前事件的按键
     //qDebug(log) << "CFrmViewer::mouseMoveEvent" << event->button() << event->buttons() << pos;
-    emit sigMouseMoveEvent(event->buttons(), QPoint(pos.x(), pos.y()));
+    emit sigMouseMoveEvent(event, QPoint(pos.x(), pos.y()));
     emit sigMouseMoveEvent(event);
     event->accept();
 }
@@ -217,7 +222,8 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
         event->pos();
 #endif
     if(TranslationMousePoint(pos, pos)) return;
-    emit sigWheelEvent(event->buttons(), QPoint(pos.x(), pos.y()), event->angleDelta());
+    //qDebug(log) << "CFrmViewer::wheelEvent" << event->buttons() << event->angleDelta() << pos;
+    emit sigWheelEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
 

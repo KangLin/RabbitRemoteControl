@@ -727,60 +727,25 @@ void CConnectVnc::updatePixelFormat()
     setPF(pf);
 }
 
-void CConnectVnc::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectVnc::mousePressEvent(QMouseEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
+    
     unsigned char mask = 0;
-    rfb::Point p(pos.x(), pos.y());
-    if(buttons & Qt::MouseButton::LeftButton)
+    if(event->button() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(buttons & Qt::MouseButton::MiddleButton)
+    if(event->button() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(buttons & Qt::MouseButton::RightButton)
-        mask |= 0x4;
-    /*
-    qDebug(log) << "CConnectVnc::slotMousePressEvent buttons:"
-                     << buttons << pos << mask;//*/
-    try{
-        writer()->writePointerEvent(p, mask);
-    } catch (rdr::Exception& e) {
-        emit sigError(-1, e.str());
-    }
-}
-
-void CConnectVnc::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
-{
-    if(!writer()) return;
-    if(m_pPara && m_pPara->GetOnlyView()) return;
-    int mask = 0;
-    rfb::Point p(pos.x(), pos.y());
-    /*
-    qDebug(log) << "CConnectVnc::slotMouseReleaseEvent button:"
-                     << button << pos << mask;//*/
-    try{
-        writer()->writePointerEvent(p, mask);
-    } catch (rdr::Exception& e) {
-        emit sigError(-1, e.str());
-    }
-}
-
-void CConnectVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
-{
-    /*
-    qDebug(log) << "CConnectVnc::slotMouseMoveEvent buttons:"
-                     << buttons << pos;//*/
-    if(!writer()) return;
-    if(m_pPara && m_pPara->GetOnlyView()) return;
-    int mask = 0;
-    rfb::Point p(pos.x(), pos.y());
-    if(buttons & Qt::MouseButton::LeftButton)
-        mask |= 0x1;
-    if(buttons & Qt::MouseButton::MiddleButton)
-        mask |= 0x2;
-    if(buttons & Qt::MouseButton::RightButton)
+    if(event->button() & Qt::MouseButton::RightButton)
         mask |= 0x4;
     
+    QPoint pos = event->pos();
+    rfb::Point p(pos.x(), pos.y());
+
+    /*
+    qDebug(log) << "CConnectVnc::slotMousePressEvent buttons:"
+                << event->buttons() << event->button() << pos << mask;//*/
     try{
         writer()->writePointerEvent(p, mask);
     } catch (rdr::Exception& e) {
@@ -788,24 +753,64 @@ void CConnectVnc::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
     }
 }
 
-void CConnectVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
+void CConnectVnc::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(!writer()) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
+    int mask = 0;
+    QPoint pos = event->pos();
+    rfb::Point p(pos.x(), pos.y());
+    /*
+    qDebug(log) << "CConnectVnc::slotMouseReleaseEvent buttons:"
+                << event->buttons() << event->button() << pos << mask;//*/
+    try{
+        writer()->writePointerEvent(p, mask);
+    } catch (rdr::Exception& e) {
+        emit sigError(-1, e.str());
+    }
+}
+
+void CConnectVnc::mouseMoveEvent(QMouseEvent *event)
+{
+    if(!writer()) return;
+    if(m_pPara && m_pPara->GetOnlyView()) return;
+    int mask = 0;
+    QPoint pos = event->pos();
+    rfb::Point p(pos.x(), pos.y());
+    if(event->buttons() & Qt::MouseButton::LeftButton)
+        mask |= 0x1;
+    if(event->buttons() & Qt::MouseButton::MiddleButton)
+        mask |= 0x2;
+    if(event->buttons() & Qt::MouseButton::RightButton)
+        mask |= 0x4;
+    /*
+    qDebug(log) << "CConnectVnc::slotMouseMoveEvent buttons:"
+                << event->buttons() << event->button() << pos << mask;//*/
+    try{
+        writer()->writePointerEvent(p, mask);
+    } catch (rdr::Exception& e) {
+        emit sigError(-1, e.str());
+    }
+}
+
+// https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#pointerevent
+void CConnectVnc::wheelEvent(QWheelEvent *event)
 {
     /*
     qDebug(log) << "CConnectVnc::slotWheelEvent buttons:"
-                     << buttons << pos << angleDelta;//*/
+                << event->buttons() << event->angleDelta() << pos;//*/
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     int mask = 0;
-    rfb::Point p(pos.x(), pos.y());
-    
-    if(buttons & Qt::MouseButton::LeftButton)
+
+    if(event->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
-    if(buttons & Qt::MouseButton::MiddleButton)
+    if(event->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
-    if(buttons & Qt::MouseButton::RightButton)
+    if(event->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    
-    QPoint d = angleDelta;
+
+    QPoint d = event->angleDelta();
     if(d.y() > 0)
         mask |= 0x8;
     if(d.y() < 0)
@@ -814,7 +819,10 @@ void CConnectVnc::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint an
         mask |= 0x20;
     if(d.x() > 0)
         mask |= 0x40;
-    
+
+    QPoint pos = event->pos();
+    rfb::Point p(pos.x(), pos.y());
+
     try{
         writer()->writePointerEvent(p, mask);
     } catch (rdr::Exception& e) {

@@ -140,20 +140,20 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
          *           it may block the thread, which will cause the keyboard and mouse events to be delayed.
          *           So here use Qt::DirectConnection 
          */
-        check = connect(m_pView, SIGNAL(sigMousePressEvent(Qt::MouseButtons, QPoint)),
-                        this, SLOT(slotMousePressEvent(Qt::MouseButtons, QPoint)),
+        check = connect(m_pView, SIGNAL(sigMousePressEvent(QMouseEvent*, QPoint)),
+                        this, SLOT(slotMousePressEvent(QMouseEvent*, QPoint)),
                         Qt::DirectConnection);
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(Qt::MouseButton, QPoint)),
-                        this, SLOT(slotMouseReleaseEvent(Qt::MouseButton, QPoint)),
+        check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*, QPoint)),
+                        this, SLOT(slotMouseReleaseEvent(QMouseEvent*, QPoint)),
                         Qt::DirectConnection);
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigMouseMoveEvent(Qt::MouseButtons, QPoint)),
-                        this, SLOT(slotMouseMoveEvent(Qt::MouseButtons, QPoint)),
+        check = connect(m_pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*, QPoint)),
+                        this, SLOT(slotMouseMoveEvent(QMouseEvent*, QPoint)),
                         Qt::DirectConnection);
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
-                        this, SLOT(slotWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
+        check = connect(m_pView, SIGNAL(sigWheelEvent(QWheelEvent*, QPoint)),
+                        this, SLOT(slotWheelEvent(QWheelEvent*, QPoint)),
                         Qt::DirectConnection);
         Q_ASSERT(check);
         check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
@@ -165,17 +165,17 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
                         Qt::DirectConnection);
         Q_ASSERT(check);
     } else {
-        check = connect(m_pView, SIGNAL(sigMousePressEvent(Qt::MouseButtons, QPoint)),
-                        this, SLOT(slotMousePressEvent(Qt::MouseButtons, QPoint)));
+        check = connect(m_pView, SIGNAL(sigMousePressEvent(QMouseEvent*, QPoint)),
+                        this, SLOT(slotMousePressEvent(QMouseEvent*, QPoint)));
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(Qt::MouseButton, QPoint)),
-                        this, SLOT(slotMouseReleaseEvent(Qt::MouseButton, QPoint)));
+        check = connect(m_pView, SIGNAL(sigMouseReleaseEvent(QMouseEvent*, QPoint)),
+                        this, SLOT(slotMouseReleaseEvent(QMouseEvent*, QPoint)));
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigMouseMoveEvent(Qt::MouseButtons, QPoint)),
-                        this, SLOT(slotMouseMoveEvent(Qt::MouseButtons, QPoint)));
+        check = connect(m_pView, SIGNAL(sigMouseMoveEvent(QMouseEvent*, QPoint)),
+                        this, SLOT(slotMouseMoveEvent(QMouseEvent*, QPoint)));
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigWheelEvent(Qt::MouseButtons, QPoint, QPoint)),
-                        this, SLOT(slotWheelEvent(Qt::MouseButtons, QPoint, QPoint)));
+        check = connect(m_pView, SIGNAL(sigWheelEvent(QWheelEvent*, QPoint)),
+                        this, SLOT(slotWheelEvent(QWheelEvent*, QPoint)));
         Q_ASSERT(check);
         check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
                         this, SLOT(slotKeyPressEvent(int, Qt::KeyboardModifiers)));
@@ -242,24 +242,32 @@ int CConnect::OnProcess()
     return 0;
 }
 
-void CConnect::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
+void CConnect::slotWheelEvent(QWheelEvent *event, QPoint pos)
 {
-    qDebug(log) << "Need to implement CConnect::slotWheelEvent";
+    QWheelEvent* e = new QWheelEvent(pos, event->delta(), event->buttons(),
+                                     event->modifiers(), event->orientation());
+    QCoreApplication::postEvent(this, e);
 }
 
-void CConnect::slotMouseMoveEvent(Qt::MouseButtons, QPoint)
+void CConnect::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
 {
-    qDebug(log) << "Need to implement CConnect::slotMouseMoveEvent";
+    QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
+                                     event->buttons(), event->modifiers());
+    QCoreApplication::postEvent(this, e);
 }
 
-void CConnect::slotMousePressEvent(Qt::MouseButtons, QPoint)
+void CConnect::slotMousePressEvent(QMouseEvent *event, QPoint pos)
 {
-    qDebug(log) << "Need to implement CConnect::slotMousePressEvent";
+    QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
+                                     event->buttons(), event->modifiers());
+    QCoreApplication::postEvent(this, e);
 }
 
-void CConnect::slotMouseReleaseEvent(Qt::MouseButton, QPoint)
+void CConnect::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
 {
-    qDebug(log) << "Need to implement CConnect::slotMouseReleaseEvent";
+    QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
+                                     event->buttons(), event->modifiers());
+    QCoreApplication::postEvent(this, e);
 }
 
 void CConnect::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
@@ -270,4 +278,39 @@ void CConnect::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
 void CConnect::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
 {
     qDebug(log) << "Need to implement CConnect::slotKeyReleaseEvent";
+}
+
+void CConnect::mouseMoveEvent(QMouseEvent *event)
+{}
+
+void CConnect::mousePressEvent(QMouseEvent *event)
+{}
+
+void CConnect::mouseReleaseEvent(QMouseEvent *event)
+{}
+
+void CConnect::wheelEvent(QWheelEvent *event)
+{}
+
+bool CConnect::event(QEvent *event)
+{
+    //qDebug(log) << "CConnect::event" << event;
+    switch (event->type()) {
+    case QEvent::MouseButtonPress:
+    case QEvent::MouseButtonDblClick:
+        mousePressEvent((QMouseEvent*)event);
+        break;
+    case QEvent::MouseButtonRelease:
+        mouseReleaseEvent((QMouseEvent*)event);
+        break;
+    case QEvent::MouseMove:
+        mouseMoveEvent((QMouseEvent*)event);
+        break;
+    case QEvent::Wheel:
+        wheelEvent((QWheelEvent*)event);
+        break;
+    default:
+        return QObject::event(event);
+    }
+    return true;
 }

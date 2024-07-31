@@ -68,12 +68,14 @@ public:
     virtual bool showMsgBox(int flags, const char* title, const char* text) override;
 
 public Q_SLOTS:
-    virtual void slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos) override;
-    virtual void slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos) override;
-    virtual void slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos) override;
-    virtual void slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta) override;
     virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
     virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
+
+protected:
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void wheelEvent(QWheelEvent *event) override;
 
     // CConnect interface
 protected:

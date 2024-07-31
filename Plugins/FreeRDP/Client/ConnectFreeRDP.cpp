@@ -1524,14 +1524,14 @@ bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
     return true;
 }
 
-void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta)
+void CConnectFreeRDP::slotWheelEvent(QWheelEvent *event, QPoint pos)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotWheelEvent" << buttons << pos;
+    //qDebug(log) << "CConnectFreeRDP::slotWheelEvent" << event->buttons() << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
     UINT16 flags = 0;
-    QPoint p = angleDelta;
+    QPoint p = event->angleDelta();
     if(p.y() > 0)
     {
         flags |= PTR_FLAGS_WHEEL | p.y();
@@ -1563,47 +1563,47 @@ void CConnectFreeRDP::slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoin
 }
 
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
-void CConnectFreeRDP::slotMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectFreeRDP::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotMouseMoveEvent" << buttons << pos;
+    //qDebug(log) << "CConnectFreeRDP::slotMouseMoveEvent" << event->buttons() << event->button() << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
     SendMouseEvent(flags, pos);
 }
 
-void CConnectFreeRDP::slotMousePressEvent(Qt::MouseButtons buttons, QPoint pos)
+void CConnectFreeRDP::slotMousePressEvent(QMouseEvent *event, QPoint pos)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotMousePressEvent" << buttons << pos;
+    //qDebug(log) << "CConnectFreeRDP::slotMousePressEvent" << event->buttons() << event->button() << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_DOWN;
-    if(buttons & Qt::MouseButton::LeftButton)
+    if(event->button() & Qt::MouseButton::LeftButton)
     {
         flags |= PTR_FLAGS_BUTTON1;
-    } else if(buttons & Qt::MouseButton::RightButton)
+    } else if(event->button() & Qt::MouseButton::RightButton)
     {   
         flags |= PTR_FLAGS_BUTTON2;
-    } else if(buttons & Qt::MouseButton::MiddleButton)
+    } else if(event->button() & Qt::MouseButton::MiddleButton)
     {
         flags |= PTR_FLAGS_BUTTON3;
     }
     SendMouseEvent(flags, pos);    
 }
 
-void CConnectFreeRDP::slotMouseReleaseEvent(Qt::MouseButton button, QPoint pos)
+void CConnectFreeRDP::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotMouseReleaseEvent" << button << pos;
+    //qDebug(log) << "CConnectFreeRDP::slotMouseReleaseEvent" << event->buttons() << event->button() << pos;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = 0;
-    if(button & Qt::MouseButton::LeftButton)
+    if(event->button() & Qt::MouseButton::LeftButton)
     {
         flags |= PTR_FLAGS_BUTTON1;
-    } else if(button & Qt::MouseButton::MiddleButton)
+    } else if(event->button() & Qt::MouseButton::MiddleButton)
     {
         flags |= PTR_FLAGS_BUTTON3;
-    } else if(button & Qt::MouseButton::RightButton)
+    } else if(event->button() & Qt::MouseButton::RightButton)
     {
         flags |= PTR_FLAGS_BUTTON2;
     }

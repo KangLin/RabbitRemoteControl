@@ -124,14 +124,14 @@ public Q_SLOTS:
     void slotSystemCombination();
     
 Q_SIGNALS:
-    void sigMousePressEvent(Qt::MouseButtons, QPoint);
-    void sigMouseReleaseEvent(Qt::MouseButton, QPoint);
-    void sigMouseMoveEvent(Qt::MouseButtons buttons, QPoint pos);
-    void sigMouseMoveEvent(QMouseEvent *event);
-    void sigWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta);
+    void sigMousePressEvent(QMouseEvent* event, QPoint pos);
+    void sigMouseReleaseEvent(QMouseEvent* event, QPoint pos);
+    void sigMouseMoveEvent(QMouseEvent* event, QPoint pos);
+    void sigMouseMoveEvent(QMouseEvent* event);
+    void sigWheelEvent(QWheelEvent *event, QPoint pos);
     void sigKeyPressEvent(int key, Qt::KeyboardModifiers modify);
     void sigKeyReleaseEvent(int key, Qt::KeyboardModifiers modify);
-    
+
     // Please use CConnecter::sigServerName
     void sigServerName(const QString &szName);
 
@@ -157,7 +157,6 @@ private:
     void paintDesktop();
     int TranslationMousePoint(QPointF inPos, QPointF &outPos);
     QRectF GetAspectRationRect();
-
 };
 
 #endif // #ifdef USE_FROM_OPENGL

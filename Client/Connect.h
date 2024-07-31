@@ -284,15 +284,25 @@ Q_SIGNALS:
     void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
 
 public Q_SLOTS:
-    virtual void slotMousePressEvent(Qt::MouseButtons, QPoint);
-    virtual void slotMouseReleaseEvent(Qt::MouseButton, QPoint);
-    virtual void slotMouseMoveEvent(Qt::MouseButtons, QPoint);
-    virtual void slotWheelEvent(Qt::MouseButtons buttons, QPoint pos, QPoint angleDelta);
+    virtual void slotMousePressEvent(QMouseEvent* event, QPoint pos);
+    virtual void slotMouseReleaseEvent(QMouseEvent* event, QPoint pos);
+    virtual void slotMouseMoveEvent(QMouseEvent* event, QPoint pos);
+    virtual void slotWheelEvent(QWheelEvent* event, QPoint pos);
     virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers);
     virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers);
+    
+protected:
+    virtual void mousePressEvent(QMouseEvent *event);
+    virtual void mouseReleaseEvent(QMouseEvent *event);
+    virtual void mouseMoveEvent(QMouseEvent *event);
+    virtual void wheelEvent(QWheelEvent *event);
 
 private:
     CFrmViewer* m_pView;
+    
+    // QObject interface
+public:
+    virtual bool event(QEvent *event) override;
 };
 
 #endif // CCONNECT_H

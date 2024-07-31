@@ -40,8 +40,10 @@ int CConnecterDesktopThread::Connect()
     qDebug(log) << "CConnecterDesktopThread::Connect()";
     int nRet = 0;
     m_pThread = new CConnectThread(this);
-    if(!m_pThread)
+    if(!m_pThread) {
+        qCritical(log) << "new CConnectThread fail";
         return -2;
+    }
     bool check = false;
     check = connect(m_pThread, SIGNAL(finished()),
                     m_pThread, SLOT(deleteLater()));
@@ -108,4 +110,3 @@ int CConnecterDesktopThread::Save(QSettings &set)
         GetParameter()->Save(set);
     return nRet;
 }
-
