@@ -353,7 +353,7 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
             {
                 CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
                 if(focus) {
-                    emit focus->sigKeyPressEvent(key, keyEvent->modifiers());
+                    emit focus->sigKeyPressEvent(keyEvent);
                     return true;
                 }
             }
@@ -361,7 +361,7 @@ bool CClient::eventFilter(QObject *watched, QEvent *event)
             {
                 CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
                 if(focus) {
-                    emit focus->sigKeyReleaseEvent(key, keyEvent->modifiers());
+                    emit focus->sigKeyReleaseEvent(keyEvent);
                     return true;
                 }
             }

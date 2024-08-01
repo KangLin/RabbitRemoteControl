@@ -830,16 +830,16 @@ void CConnectVnc::wheelEvent(QWheelEvent *event)
     }
 }
 
-void CConnectVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
+void CConnectVnc::keyPressEvent(QKeyEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     bool modifier = true;
-    if (modifiers == Qt::NoModifier)
+    if (event->modifiers() == Qt::NoModifier)
         modifier = false;
     //qDebug(log) << "slotKeyPressEvent key:" << key << modifiers;
-    uint32_t k = TranslateRfbKey(key, modifier);
-    if(key) {
+    uint32_t k = TranslateRfbKey(event->key(), modifier);
+    if(event->key()) {
         try{
             writer()->writeKeyEvent(k, 0, true);
         } catch (rdr::Exception& e) {
@@ -848,16 +848,16 @@ void CConnectVnc::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
     }
 }
 
-void CConnectVnc::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
+void CConnectVnc::keyReleaseEvent(QKeyEvent *event)
 {
     if(m_pPara && m_pPara->GetOnlyView()) return;
     if(!writer()) return;
     bool modifier = true;
-    if (modifiers == Qt::NoModifier)
+    if (event->modifiers() == Qt::NoModifier)
         modifier = false;
     //qDebug(log) << "slotKeyReleaseEvent key:" << key << modifiers;
-    uint32_t k = TranslateRfbKey(key, modifier);
-    if(key) {
+    uint32_t k = TranslateRfbKey(event->key(), modifier);
+    if(event->key()) {
         try{
                writer()->writeKeyEvent(k, 0, false);
         } catch (rdr::Exception& e) {

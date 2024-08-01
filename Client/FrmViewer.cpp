@@ -3,7 +3,7 @@
 #include "FrmViewer.h"
 
 #include <QPainter>
-#include <QDebug>
+#include <QKeyEvent>
 #include <QResizeEvent>
 #include <QCursor>
 #include <QLoggingCategory>
@@ -13,6 +13,7 @@
 #include <X11/keysymdef.h>
 #endif
 
+#undef KeyPress
 static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
@@ -230,26 +231,26 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
     //qDebug(log) << "CFrmViewer::keyPressEvent" << event;
-    emit sigKeyPressEvent(event->key(), event->modifiers());
+    emit sigKeyPressEvent(event);
     event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
     //qDebug(log) << "CFrmViewer::keyReleaseEvent" << event;
-    emit sigKeyReleaseEvent(event->key(), event->modifiers());
+    emit sigKeyReleaseEvent(event);
     event->accept();
 }
 
 void CFrmViewer::slotSystemCombination()
 {
     // Send ctl+alt+del
-    emit sigKeyPressEvent(Qt::Key_Control, Qt::NoModifier);
-    emit sigKeyPressEvent(Qt::Key_Alt, Qt::NoModifier);
-    emit sigKeyPressEvent(Qt::Key_Delete, Qt::NoModifier);
-    emit sigKeyPressEvent(Qt::Key_Control, Qt::NoModifier);
-    emit sigKeyPressEvent(Qt::Key_Alt, Qt::NoModifier);
-    emit sigKeyPressEvent(Qt::Key_Delete, Qt::NoModifier);
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::NoModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::NoModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::NoModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::NoModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier));    
 }
 
 QSize CFrmViewer::GetDesktopSize()

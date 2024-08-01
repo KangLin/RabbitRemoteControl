@@ -156,12 +156,12 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
                         this, SLOT(slotWheelEvent(QWheelEvent*, QPoint)),
                         Qt::DirectConnection);
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
-                        this, SLOT(slotKeyPressEvent(int, Qt::KeyboardModifiers)),
+        check = connect(m_pView, SIGNAL(sigKeyPressEvent(QKeyEvent*)),
+                        this, SLOT(slotKeyPressEvent(QKeyEvent*)),
                         Qt::DirectConnection);
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(int, Qt::KeyboardModifiers)),
-                        this, SLOT(slotKeyReleaseEvent(int, Qt::KeyboardModifiers)),
+        check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
+                        this, SLOT(slotKeyReleaseEvent(QKeyEvent*)),
                         Qt::DirectConnection);
         Q_ASSERT(check);
     } else {
@@ -177,11 +177,11 @@ int CConnect::SetViewer(CFrmViewer *pView, bool bDirectConnection)
         check = connect(m_pView, SIGNAL(sigWheelEvent(QWheelEvent*, QPoint)),
                         this, SLOT(slotWheelEvent(QWheelEvent*, QPoint)));
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigKeyPressEvent(int, Qt::KeyboardModifiers)),
-                        this, SLOT(slotKeyPressEvent(int, Qt::KeyboardModifiers)));
+        check = connect(m_pView, SIGNAL(sigKeyPressEvent(QKeyEvent*)),
+                        this, SLOT(slotKeyPressEvent(QKeyEvent*)));
         Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(int, Qt::KeyboardModifiers)),
-                        this, SLOT(slotKeyReleaseEvent(int, Qt::KeyboardModifiers)));
+        check = connect(m_pView, SIGNAL(sigKeyReleaseEvent(QKeyEvent*)),
+                        this, SLOT(slotKeyReleaseEvent(QKeyEvent*)));
         Q_ASSERT(check);
     }
     
@@ -270,31 +270,53 @@ void CConnect::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
     QCoreApplication::postEvent(this, e);
 }
 
-void CConnect::slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers)
+void CConnect::slotKeyPressEvent(QKeyEvent *event)
 {
-    qDebug(log) << "Need to implement CConnect::slotKeyPressEvent";
+    QKeyEvent* e = new QKeyEvent(event->type(), event->key(),
+                                 event->modifiers(), event->text());
+    QCoreApplication::postEvent(this, e);
 }
 
-void CConnect::slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers)
+void CConnect::slotKeyReleaseEvent(QKeyEvent *event)
 {
-    qDebug(log) << "Need to implement CConnect::slotKeyReleaseEvent";
+    QKeyEvent* e = new QKeyEvent(event->type(), event->key(),
+                                 event->modifiers(), event->text());
+    QCoreApplication::postEvent(this, e);
 }
 
 void CConnect::mouseMoveEvent(QMouseEvent *event)
-{}
+{
+    qDebug(log) << "Need to implement CConnect::mouseMoveEvent";
+}
 
 void CConnect::mousePressEvent(QMouseEvent *event)
-{}
+{
+    qDebug(log) << "Need to implement CConnect::mousePressEvent";
+}
 
 void CConnect::mouseReleaseEvent(QMouseEvent *event)
-{}
+{
+    qDebug(log) << "Need to implement CConnect::mouseReleaseEvent";
+}
 
 void CConnect::wheelEvent(QWheelEvent *event)
-{}
+{
+    qDebug(log) << "Need to implement CConnect::wheelEvent";
+}
+
+void CConnect::keyPressEvent(QKeyEvent *event)
+{
+    qDebug(log) << "Need to implement CConnect::keyPressEvent";
+}
+
+void CConnect::keyReleaseEvent(QKeyEvent *event)
+{
+    qDebug(log) << "Need to implement CConnect::keyReleaseEvent";
+}
 
 bool CConnect::event(QEvent *event)
 {
-    //qDebug(log) << "CConnect::event" << event;
+    qDebug(log) << "CConnect::event" << event;
     switch (event->type()) {
     case QEvent::MouseButtonPress:
     case QEvent::MouseButtonDblClick:
@@ -309,8 +331,15 @@ bool CConnect::event(QEvent *event)
     case QEvent::Wheel:
         wheelEvent((QWheelEvent*)event);
         break;
+    case QEvent::KeyPress:
+        keyPressEvent((QKeyEvent*)event);
+        break;
+    case QEvent::KeyRelease:
+        keyReleaseEvent((QKeyEvent*)event);
+        break;
     default:
         return QObject::event(event);
     }
+    event->accept();
     return true;
 }

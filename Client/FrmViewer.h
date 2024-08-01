@@ -129,8 +129,8 @@ Q_SIGNALS:
     void sigMouseMoveEvent(QMouseEvent* event, QPoint pos);
     void sigMouseMoveEvent(QMouseEvent* event);
     void sigWheelEvent(QWheelEvent *event, QPoint pos);
-    void sigKeyPressEvent(int key, Qt::KeyboardModifiers modify);
-    void sigKeyReleaseEvent(int key, Qt::KeyboardModifiers modify);
+    void sigKeyPressEvent(QKeyEvent *event);
+    void sigKeyReleaseEvent(QKeyEvent *event);
 
     // Please use CConnecter::sigServerName
     void sigServerName(const QString &szName);

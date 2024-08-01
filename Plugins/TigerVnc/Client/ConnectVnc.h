@@ -67,15 +67,13 @@ public:
     virtual void getUserPasswd(bool secure, std::string* user, std::string* password) override;
     virtual bool showMsgBox(int flags, const char* title, const char* text) override;
 
-public Q_SLOTS:
-    virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
-    virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
-
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
 
     // CConnect interface
 protected:

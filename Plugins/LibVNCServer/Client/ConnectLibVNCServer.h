@@ -33,8 +33,8 @@ public Q_SLOTS:
     virtual void slotMouseReleaseEvent(QMouseEvent* event, QPoint pos) override;
     virtual void slotMouseMoveEvent(QMouseEvent* event, QPoint pos) override;
     virtual void slotWheelEvent(QWheelEvent* event, QPoint pos) override;
-    virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers) override;
-    virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers) override;
+    virtual void slotKeyPressEvent(QKeyEvent *event) override;
+    virtual void slotKeyReleaseEvent(QKeyEvent *event) override;
 
 private:
     virtual OnInitReturnValue OnInit() override;

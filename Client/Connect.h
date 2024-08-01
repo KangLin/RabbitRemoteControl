@@ -284,18 +284,24 @@ Q_SIGNALS:
     void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
 
 public Q_SLOTS:
+    // \~chinese 以下函数在 Connecter 线程（主线程）中调用
+    // \~english The following functions are called in the Connecter thread(main thread)
     virtual void slotMousePressEvent(QMouseEvent* event, QPoint pos);
     virtual void slotMouseReleaseEvent(QMouseEvent* event, QPoint pos);
     virtual void slotMouseMoveEvent(QMouseEvent* event, QPoint pos);
     virtual void slotWheelEvent(QWheelEvent* event, QPoint pos);
-    virtual void slotKeyPressEvent(int key, Qt::KeyboardModifiers modifiers);
-    virtual void slotKeyReleaseEvent(int key, Qt::KeyboardModifiers modifiers);
+    virtual void slotKeyPressEvent(QKeyEvent *event);
+    virtual void slotKeyReleaseEvent(QKeyEvent *event);
     
 protected:
+    // \~chinese 以下函数在 Connect 线程（后台线程）中调用
+    // \~english The following functions are called in the Connect thread(background thread)
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void wheelEvent(QWheelEvent *event);
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void keyReleaseEvent(QKeyEvent *event);
 
 private:
     CFrmViewer* m_pView;
