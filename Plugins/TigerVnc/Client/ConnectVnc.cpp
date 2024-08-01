@@ -820,7 +820,13 @@ void CConnectVnc::wheelEvent(QWheelEvent *event)
     if(d.x() > 0)
         mask |= 0x40;
 
-    QPoint pos = event->pos();
+    QPointF pos;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    pos = event->position();
+#else
+    pos = event->pos();
+#endif
+
     rfb::Point p(pos.x(), pos.y());
 
     try{
@@ -1164,7 +1170,7 @@ quint32 CConnectVnc::TranslateRfbKey(quint32 inkey, bool modifier)
 
 void CConnectVnc::slotClipBoardChanged()
 {
-    qDebug(log) << "CConnectVnc::slotClipBoardChanged()";
+    //qDebug(log) << "CConnectVnc::slotClipBoardChanged()";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     QClipboard* pClip = QApplication::clipboard();
     if(pClip->ownsClipboard()) return;
@@ -1173,7 +1179,7 @@ void CConnectVnc::slotClipBoardChanged()
 
 void CConnectVnc::handleClipboardRequest()
 {
-    qDebug(log) << "CConnectVnc::handleClipboardRequest";
+    //qDebug(log) << "CConnectVnc::handleClipboardRequest";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     const QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimeData = clipboard->mimeData();
@@ -1205,7 +1211,7 @@ void CConnectVnc::handleClipboardRequest()
 
 void CConnectVnc::handleClipboardAnnounce(bool available)
 {
-    qDebug(log) << "CConnectVnc::handleClipboardAnnounce";
+    //qDebug(log) << "CConnectVnc::handleClipboardAnnounce";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
     if(available)
         this->requestClipboard();
@@ -1213,7 +1219,7 @@ void CConnectVnc::handleClipboardAnnounce(bool available)
 
 void CConnectVnc::handleClipboardData(const char *data)
 {
-    qDebug(log) << "CConnectVnc::handleClipboardData";
+    //qDebug(log) << "CConnectVnc::handleClipboardData";
     if(!m_pPara->GetClipboard() || !getOutStream() || !writer()) return;
 
     QMimeData* pData = new QMimeData();

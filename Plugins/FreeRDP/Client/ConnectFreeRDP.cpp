@@ -1542,7 +1542,12 @@ void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
     UINT16 flags = 0;
-    QPoint pos = event->pos();
+    QPointF pos;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    pos = event->position();
+#else
+    pos = event->pos();
+#endif
     QPoint p = event->angleDelta();
     if(p.y() > 0)
     {

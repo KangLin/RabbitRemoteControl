@@ -9,6 +9,7 @@
 #include <QClipboard>
 #include <QTimer>
 #include <QLoggingCategory>
+#include <QWheelEvent>
 
 static Q_LOGGING_CATEGORY(log, "Client.Connect")
 
@@ -244,8 +245,15 @@ int CConnect::OnProcess()
 
 void CConnect::slotWheelEvent(QWheelEvent *event, QPoint pos)
 {
-    QWheelEvent* e = new QWheelEvent(pos, event->delta(), event->buttons(),
-                                     event->modifiers(), event->orientation());
+    QWheelEvent* e = new QWheelEvent(
+        pos,
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0,0)
+        event->globalPosition(),
+#else
+        event->globalPos(),
+#endif
+        event->pixelDelta(), event->angleDelta(), event->buttons(),
+        event->modifiers(), event->phase(), event->inverted(), event->source());
     QCoreApplication::postEvent(this, e);
     WakeUp();
 }
