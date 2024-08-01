@@ -16,6 +16,8 @@
     - Add CParameterProxy
   - TigerVNC: Update tigervnc to v1.13.90
   - RabbitVNC: Update tigervnc to v1.13.90
+  - FreeRDP: The synchronization keyboard and mouse event is sent in the background thread.
+    Fix: the 10. in [ISSUES #20](https://github.com/KangLin/RabbitRemoteControl/issues/20)
 
 ### v0.0.26
 - Use RabbitCommon v2

@@ -129,13 +129,14 @@ private:
 public Q_SLOTS:
     virtual void slotClipBoardChanged() override;
     
-public Q_SLOTS:
-    virtual void slotMousePressEvent(QMouseEvent* event, QPoint pos) override;
-    virtual void slotMouseReleaseEvent(QMouseEvent* event, QPoint pos) override;
-    virtual void slotMouseMoveEvent(QMouseEvent* event, QPoint pos) override;
-    virtual void slotWheelEvent(QWheelEvent* event, QPoint pos) override;
-    virtual void slotKeyPressEvent(QKeyEvent *event) override;
-    virtual void slotKeyReleaseEvent(QKeyEvent *event) override;
+protected:
+    virtual void mousePressEvent(QMouseEvent* event) override;
+    virtual void mouseReleaseEvent(QMouseEvent* event) override;
+    virtual void mouseMoveEvent(QMouseEvent* event) override;
+    virtual void wheelEvent(QWheelEvent* event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    virtual void WakeUp() override;
 
 private:
     // CConnect interface

@@ -54,9 +54,6 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
 {
     m_pParameter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParameter);
-    m_writeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-    if(!m_writeEvent)
-        qCritical(log) << "CreateEvent failed";
 }
 
 CConnectFreeRDP::~CConnectFreeRDP()
@@ -74,7 +71,11 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 {
     qDebug(log) << "CConnectFreeRdp::OnInit()";
     int nRet = 0;
-
+    
+    m_writeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+    if(!m_writeEvent)
+        qCritical(log) << "CreateEvent failed";
+    
     ZeroMemory(&m_ClientEntryPoints, sizeof(RDP_CLIENT_ENTRY_POINTS));
 	m_ClientEntryPoints.Version = RDP_CLIENT_INTERFACE_VERSION;
 	m_ClientEntryPoints.Size = sizeof(RDP_CLIENT_ENTRY_POINTS);
@@ -193,7 +194,7 @@ int CConnectFreeRDP::OnClean()
 {
     qDebug(log) << "CConnectFreeRdp::OnClean()";
     int nRet = 0;
-    if(m_writeEvent && INVALID_HANDLE_VALUE != m_writeEvent)
+    if(m_writeEvent)
     {
         CloseHandle(m_writeEvent);
         m_writeEvent = nullptr;
@@ -249,6 +250,9 @@ int CConnectFreeRDP::OnProcess()
         nCount++;
 
         DWORD waitStatus = WaitForMultipleObjects(nCount, handles, FALSE, 500);
+
+        ResetEvent(m_writeEvent);
+
         if (waitStatus == WAIT_FAILED)
         {
             qCritical(log) << "WaitForMultipleObjects: WAIT_FAILED";
@@ -258,10 +262,11 @@ int CConnectFreeRDP::OnProcess()
 
         if(waitStatus == WAIT_TIMEOUT)
         {
+            //qDebug(log) << "WaitForMultipleObjects timeout";
             nRet = 0;
             break;
         }
-
+        
         if (!freerdp_check_event_handles(pRdpContext))
         {
             nRet = -5;
@@ -1505,6 +1510,12 @@ BOOL CConnectFreeRDP::cb_keyboard_set_ime_status(
     return TRUE;
 }
 
+void CConnectFreeRDP::WakeUp()
+{
+    //qDebug(log) << "CConnectFreeRDP::WakeUp()";
+    SetEvent(m_writeEvent);
+}
+
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
 bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
 {
@@ -1524,13 +1535,14 @@ bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
     return true;
 }
 
-void CConnectFreeRDP::slotWheelEvent(QWheelEvent *event, QPoint pos)
+void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotWheelEvent" << event->buttons() << pos;
+    //qDebug(log) << "CConnectFreeRDP::wheelEvent" << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
     UINT16 flags = 0;
+    QPoint pos = event->pos();
     QPoint p = event->angleDelta();
     if(p.y() > 0)
     {
@@ -1563,18 +1575,18 @@ void CConnectFreeRDP::slotWheelEvent(QWheelEvent *event, QPoint pos)
 }
 
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
-void CConnectFreeRDP::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
+void CConnectFreeRDP::mouseMoveEvent(QMouseEvent *event)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotMouseMoveEvent" << event->buttons() << event->button() << pos;
+    //qDebug(log) << "CConnectFreeRDP::mouseMoveEvent" << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
-    SendMouseEvent(flags, pos);
+    SendMouseEvent(flags, event->pos());
 }
 
-void CConnectFreeRDP::slotMousePressEvent(QMouseEvent *event, QPoint pos)
+void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotMousePressEvent" << event->buttons() << event->button() << pos;
+    //qDebug(log) << "CConnectFreeRDP::mousePressEvent" << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_DOWN;
@@ -1588,12 +1600,12 @@ void CConnectFreeRDP::slotMousePressEvent(QMouseEvent *event, QPoint pos)
     {
         flags |= PTR_FLAGS_BUTTON3;
     }
-    SendMouseEvent(flags, pos);    
+    SendMouseEvent(flags, event->pos());
 }
 
-void CConnectFreeRDP::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
+void CConnectFreeRDP::mouseReleaseEvent(QMouseEvent *event)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotMouseReleaseEvent" << event->buttons() << event->button() << pos;
+    //qDebug(log) << "CConnectFreeRDP::mouseReleaseEvent" << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = 0;
@@ -1607,12 +1619,12 @@ void CConnectFreeRDP::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
     {
         flags |= PTR_FLAGS_BUTTON2;
     }
-    SendMouseEvent(flags, pos);    
+    SendMouseEvent(flags, event->pos());
 }
 
-void CConnectFreeRDP::slotKeyPressEvent(QKeyEvent *event)
+void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotKeyPressEvent";
+    //qDebug(log) << "CConnectFreeRDP::keyPressEvent" << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
@@ -1625,9 +1637,9 @@ void CConnectFreeRDP::slotKeyPressEvent(QKeyEvent *event)
 #endif
 }
 
-void CConnectFreeRDP::slotKeyReleaseEvent(QKeyEvent *event)
+void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
 {
-    //qDebug(log) << "CConnectFreeRDP::slotKeyReleaseEvent";
+    //qDebug(log) << "CConnectFreeRDP::keyReleaseEvent" << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());

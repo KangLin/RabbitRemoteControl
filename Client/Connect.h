@@ -292,7 +292,8 @@ public Q_SLOTS:
     virtual void slotWheelEvent(QWheelEvent* event, QPoint pos);
     virtual void slotKeyPressEvent(QKeyEvent *event);
     virtual void slotKeyReleaseEvent(QKeyEvent *event);
-    
+    virtual void WakeUp();
+
 protected:
     // \~chinese 以下函数在 Connect 线程（后台线程）中调用
     // \~english The following functions are called in the Connect thread(background thread)

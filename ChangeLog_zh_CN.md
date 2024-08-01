@@ -20,7 +20,8 @@
   - RabbitVNC: 更新 tigervnc 到 v1.13.90
     - 以后版本用：https://github.com/kanglin/rabbitvnc aa3baf4ab1460c548f1694500d45230119002879 以后的
     - 以前版本用：https://github.com/kanglin/rabbitvnc 81d5876d80db5b084e885304344630165840c8ee 以前的
-  
+  - FreeRDP: 修复因为键盘、鼠标事件不在后台线程中发送引起的连接中断问题。 [ISSUES #20](https://github.com/KangLin/RabbitRemoteControl/issues/20) 第 10 点
+
 ### v0.0.26
 - 使用 RabbitCommon v2
 - FreeRDP:

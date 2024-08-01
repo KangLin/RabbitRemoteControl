@@ -247,6 +247,7 @@ void CConnect::slotWheelEvent(QWheelEvent *event, QPoint pos)
     QWheelEvent* e = new QWheelEvent(pos, event->delta(), event->buttons(),
                                      event->modifiers(), event->orientation());
     QCoreApplication::postEvent(this, e);
+    WakeUp();
 }
 
 void CConnect::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
@@ -254,6 +255,7 @@ void CConnect::slotMouseMoveEvent(QMouseEvent *event, QPoint pos)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
                                      event->buttons(), event->modifiers());
     QCoreApplication::postEvent(this, e);
+    WakeUp();
 }
 
 void CConnect::slotMousePressEvent(QMouseEvent *event, QPoint pos)
@@ -261,6 +263,7 @@ void CConnect::slotMousePressEvent(QMouseEvent *event, QPoint pos)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
                                      event->buttons(), event->modifiers());
     QCoreApplication::postEvent(this, e);
+    WakeUp();
 }
 
 void CConnect::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
@@ -268,6 +271,7 @@ void CConnect::slotMouseReleaseEvent(QMouseEvent *event, QPoint pos)
     QMouseEvent* e = new QMouseEvent(event->type(), pos, event->button(),
                                      event->buttons(), event->modifiers());
     QCoreApplication::postEvent(this, e);
+    WakeUp();
 }
 
 void CConnect::slotKeyPressEvent(QKeyEvent *event)
@@ -275,6 +279,7 @@ void CConnect::slotKeyPressEvent(QKeyEvent *event)
     QKeyEvent* e = new QKeyEvent(event->type(), event->key(),
                                  event->modifiers(), event->text());
     QCoreApplication::postEvent(this, e);
+    WakeUp();
 }
 
 void CConnect::slotKeyReleaseEvent(QKeyEvent *event)
@@ -282,6 +287,7 @@ void CConnect::slotKeyReleaseEvent(QKeyEvent *event)
     QKeyEvent* e = new QKeyEvent(event->type(), event->key(),
                                  event->modifiers(), event->text());
     QCoreApplication::postEvent(this, e);
+    WakeUp();
 }
 
 void CConnect::mouseMoveEvent(QMouseEvent *event)
@@ -314,9 +320,12 @@ void CConnect::keyReleaseEvent(QKeyEvent *event)
     qDebug(log) << "Need to implement CConnect::keyReleaseEvent";
 }
 
+void CConnect::WakeUp()
+{}
+
 bool CConnect::event(QEvent *event)
 {
-    qDebug(log) << "CConnect::event" << event;
+    //qDebug(log) << "CConnect::event" << event;
     switch (event->type()) {
     case QEvent::MouseButtonPress:
     case QEvent::MouseButtonDblClick:
@@ -340,6 +349,7 @@ bool CConnect::event(QEvent *event)
     default:
         return QObject::event(event);
     }
+
     event->accept();
     return true;
 }
