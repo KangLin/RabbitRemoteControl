@@ -423,6 +423,17 @@ int CConnectVnc::OnProcess()
     return nRet;
 }
 
+void CConnectVnc::WakeUp()
+{
+#ifdef HAVE_LIBSSH
+    if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
+        CChannelSSHTunnel* channel = (CChannelSSHTunnel*)m_DataChannel.data();
+        if(channel)
+            channel->WakeUp();
+    }
+#endif
+}
+
 void CConnectVnc::slotConnected()
 {
     //qDebug(log) << "CConnectVnc::slotConnected()";

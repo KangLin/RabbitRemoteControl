@@ -38,6 +38,7 @@ public:
     virtual void close() override;
     
     int Process();
+    virtual void WakeUp();
 
 Q_SIGNALS:
     /*!
@@ -92,7 +93,6 @@ private:
     int InitSemaphore();
     int ReadSemphore();
     int ClearSemphore();
-    virtual int WakeUp();
    
 private:
     ssh_session m_Session;

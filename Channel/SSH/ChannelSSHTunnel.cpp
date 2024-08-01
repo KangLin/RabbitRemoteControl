@@ -90,7 +90,7 @@ int CChannelSSHTunnel::ClearSemphore()
     return 0;    
 }
 
-int CChannelSSHTunnel::WakeUp()
+void CChannelSSHTunnel::WakeUp()
 {
     // wake up
 #if defined(Q_OS_LINUX)
@@ -98,7 +98,7 @@ int CChannelSSHTunnel::WakeUp()
         eventfd_write(m_eventWriteFD, 1);
     //qDebug(log) << "CChannelSSHTunnel::writeData: wake up";
 #endif
-    return 0;
+    return;
 }
 
 bool CChannelSSHTunnel::open(OpenMode mode)
