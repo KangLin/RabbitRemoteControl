@@ -60,20 +60,12 @@ private:
     
 protected:
     explicit CChannel(QObject *parent = nullptr);
-    virtual int WakeUp();
-    
-    QByteArray m_writeData;
-    QMutex m_writeMutex; // 因为写不在同一线程中，所以需要同步
-    
+
     // QIODevice interface
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
     virtual qint64 writeData(const char *data, qint64 len) override;
     virtual bool isSequential() const override;
-    
-    // QObject interface
-public:
-    virtual bool event(QEvent *event) override;
 };
 
 #endif // CDATACHANNEL_H

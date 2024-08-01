@@ -602,7 +602,6 @@ int CChannelSSHTunnel::Process()
         return -1;
     }
     
-    nRet = writeData();
     if(nRet) return nRet;
     
     struct timeval timeout = {0, 50000};
@@ -629,8 +628,6 @@ int CChannelSSHTunnel::Process()
     if(FD_ISSET(m_eventWriteFD, &set)) {
         nRet = ReadSemphore();
         if(nRet) return -4;    
-        nRet = writeData();
-        if(nRet) return -5;
     }
 
     if(!channels[0]){
@@ -676,38 +673,6 @@ int CChannelSSHTunnel::Process()
     return 0;
 }
 
-int CChannelSSHTunnel::writeData()
-{
-    int nRet = 0;
-    // Write data.
-    // Because is different thread.
-    m_writeMutex.lock();
-    qint64 nLen = m_writeData.size();
-    if(nLen > 0) {
-        //qDebug(log) << "Write data to ssh tunnel";
-        nRet = ssh_channel_write(m_Channel, m_writeData.data(), nLen);
-        if(nRet == nLen)
-            m_writeData.clear();
-        else if(nRet > 0) {
-            qDebug(log) << "CChannelSSHTunnel write Total:" << nLen
-                        << "writed length:" << nRet;
-            m_writeData.remove(0, nRet);
-            qDebug(log) << "Channel length:" << m_writeData.size();
-        }
-    }
-    m_writeMutex.unlock();
-    if(nRet < 0) {
-        if(SSH_AGAIN != nRet) {
-            QString szErr;
-            szErr = "Write data from channel failed:";
-            szErr += ssh_get_error(m_Session);
-            qCritical(log) << szErr;
-            return -2;
-        }
-    }
-    return 0;
-}
-
 // Because is same thread
 qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
 {
@@ -725,6 +690,38 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
     return nLen;
 }
 
+qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
+{
+    qint64 nRet = 0;
+
+    if(!data || len <= 0)
+        return 0;
+
+    if(!m_Channel || !ssh_channel_is_open(m_Channel) || ssh_channel_is_eof(m_Channel))
+    {
+        QString szErr;
+        szErr = "The channel is not opened";
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return -1;
+    }
+
+    nRet = ssh_channel_write(m_Channel, data, len);
+    if(nRet < 0) {
+        if(SSH_AGAIN == nRet)
+            return 0;
+
+        QString szErr;
+        szErr = "Write data from channel failed:";
+        szErr += ssh_get_error(m_Session);
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return -2;
+    }
+    return nRet;
+}
+
+/*
 int CChannelSSHTunnel::ProcessSocket()
 {
     int nRet = 0;
@@ -816,3 +813,4 @@ int CChannelSSHTunnel::ProcessSocket()
     
     return nRet;
 }
+*/

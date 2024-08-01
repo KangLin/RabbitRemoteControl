@@ -38,7 +38,6 @@ public:
     virtual void close() override;
     
     int Process();
-    int ProcessSocket();
 
 Q_SIGNALS:
     /*!
@@ -67,6 +66,7 @@ Q_SIGNALS:
     // QIODevice interface
 protected:
     virtual qint64 readData(char *data, qint64 maxlen) override;
+    virtual qint64 writeData(const char *data, qint64 len) override;
 
 private:
     int verifyKnownhost(ssh_session session);
@@ -89,12 +89,10 @@ private:
                        const char *message,
                        void *userdata);
     
-    int writeData();
-    
     int InitSemaphore();
     int ReadSemphore();
     int ClearSemphore();
-    virtual int WakeUp() override;
+    virtual int WakeUp();
    
 private:
     ssh_session m_Session;

@@ -46,52 +46,12 @@ qint64 CChannel::writeData(const char *data, qint64 len)
         return 0;
     }
     
-    // 因为写不在同一线程中，所以需要同步
-    m_writeMutex.lock();
-    m_writeData.append(data, len);
-    m_writeMutex.unlock();
-    
-    WakeUp();
-    
-    return len;
-}
-
-int CChannel::WakeUp()
-{
-    QCoreApplication::postEvent(this, new QEvent(QEvent::User));
-    return 0;
-}
-
-bool CChannel::event(QEvent *event)
-{
-    //qDebug(log) << "CChannel::event:" << event;
-    if(QEvent::User == event->type()) {
-        if(m_pSocket)
-        {
-            int nLen = 0;
-            m_writeMutex.lock();
-            if(m_writeData.size() > 0){
-                nLen = m_pSocket->write(m_writeData.data(), m_writeData.size());
-                if(m_writeData.size() == nLen)
-                    m_writeData.clear();
-                else if(nLen > 0) {
-                    qDebug(log) << "CChannel write Total:" << m_writeData.size()
-                                << "writed length:" << nLen;
-                    m_writeData.remove(0, nLen);
-                    qDebug(log) << "Channel length:" << m_writeData.size();
-                }
-            }
-            m_writeMutex.unlock();
-            if(nLen < 0)
-            {
-                qDebug(log) << "CChannel write fail:" << m_pSocket->error()
-                            << m_pSocket->errorString();
-                emit sigError(m_pSocket->error(), m_pSocket->errorString());
-            }
-        }
-        return true;
-    }
-    return QIODevice::event(event);
+    int nRet = 0;
+    if(m_pSocket)
+        nRet = m_pSocket->write(data, len);
+    if(nRet < 0)
+        setErrorString(m_pSocket->errorString());
+    return nRet;
 }
 
 bool CChannel::isSequential() const
