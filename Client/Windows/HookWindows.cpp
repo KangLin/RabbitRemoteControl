@@ -1,7 +1,7 @@
 #include "HookWindows.h"
 #include "FrmViewer.h"
 #include <QApplication>
-
+#include <QKeyEvent>
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Client.Hook.Windows")
@@ -97,9 +97,9 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
             if (self && self->parentWidget()->window()->winId() == foreground_window)
             {
                 if(wparam == WM_KEYDOWN || wparam == WM_SYSKEYDOWN)
-                    emit self->sigKeyPressEvent(key, keyMdf);
+                    emit self->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, key, keyMdf));
                 if(wparam == WM_KEYUP || wparam == WM_SYSKEYUP)
-                    emit self->sigKeyReleaseEvent(key, Qt::NoModifier);
+                    emit self->sigKeyReleaseEvent(new QKeyEvent(QKeyEvent::KeyRelease, key, Qt::NoModifier));
                 /*
                 qDebug(log) << "process vkCode:" << hook->vkCode
                                           << "scanCode:" << hook->scanCode
