@@ -5,9 +5,6 @@
   - add OnInitReturnValue in CConnect
   - Modify debian package
   - Use [RabbitCommon v2.2.6](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.6)
-  - Add SSH tunnel
-    - TigerVnc
-  - Modify CChannel::readData CChannel::writeData to thread-safe
   - Refactor parameter
     - Add CParameterBase
     - Add CParameterNet
@@ -18,7 +15,14 @@
   - RabbitVNC: Update tigervnc to v1.13.90
   - FreeRDP: The synchronization keyboard and mouse event is sent in the background thread.
     Fix: the 10. in [ISSUES #20](https://github.com/KangLin/RabbitRemoteControl/issues/20)
-
+  - LibVNCServer: The synchronization keyboard and mouse event is sent in the background thread.
+  - Channel:
+    - add CChannelSSHTunnel
+    - add CSSHTunnelThread and CChannelSSHTunnelForward
+    - Add SSH tunnel
+      - TigerVnc
+      - LibVNCServer
+   
 ### v0.0.26
 - Use RabbitCommon v2
 - FreeRDP:

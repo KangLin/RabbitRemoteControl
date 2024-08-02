@@ -5,9 +5,12 @@
   - 在 CConnect 中增加 OnInitReturnValue
   - 修改 Debian 打包
   - 使用 [RabbitCommon v2.2.6](https://github.com/KangLin/RabbitCommon/releases/tag/v2.2.6)
-  - 增加 SSH 隧道
-    - TigerVnc: 修改它增加后台线程处理 SSH 隧道。
-  - 修改 CChannel::readData CChannel::writeData 它为线程安全。
+  - 通道
+    - 增加 CChannelSSHTunnel
+    - 增加 CSSHTunnelThread and CChannelSSHTunnelForward
+    - 增加 SSH 隧道
+      - TigerVnc: 修改它增加后台线程处理 SSH 隧道。
+      - LibVNCServer
   - 重构参数
     - 增加 CParameterBase
     - 增加 CParameterNet
@@ -21,6 +24,7 @@
     - 以后版本用：https://github.com/kanglin/rabbitvnc aa3baf4ab1460c548f1694500d45230119002879 以后的
     - 以前版本用：https://github.com/kanglin/rabbitvnc 81d5876d80db5b084e885304344630165840c8ee 以前的
   - FreeRDP: 修复因为键盘、鼠标事件不在后台线程中发送引起的连接中断问题。 [ISSUES #20](https://github.com/KangLin/RabbitRemoteControl/issues/20) 第 10 点
+  - LibVNCServer: 修复因为键盘、鼠标事件不在后台线程中发送引起的连接中断问题。
 
 ### v0.0.26
 - 使用 RabbitCommon v2

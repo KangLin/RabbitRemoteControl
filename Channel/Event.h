@@ -3,7 +3,17 @@
 
 #include <QObject>
 
-class CEvent : public QObject
+#if defined(Q_OS_WIN)
+    #include <WinSock2.h>
+#else
+    #define SOCKET int
+#endif
+
+#include "channel_export.h"
+
+namespace Channel {
+
+class CHANNEL_EXPORT CEvent : public QObject
 {
     Q_OBJECT
 public:
@@ -13,15 +23,20 @@ public:
     int Reset();
     int WakeUp();
     
-    int GetFd();
+    SOCKET GetFd();
+    
+    static int SetSocketNonBlocking(SOCKET fd);
+    static int SetSocketBlocking(SOCKET fd, bool block);
+    static bool EnableNagles(SOCKET fd, bool enable);
 
 private:
-    int fd[2];
+    SOCKET fd[2];
     
     int Init();
     int Clear();
-    int CreateSocketPair(int fd[2]);
-    int SetSocketNonBlocking(int fd);
+    int CreateSocketPair(SOCKET fd[2]);
 };
+
+} //namespace RabbitCommon
 
 #endif // CSEMAPHORE_H

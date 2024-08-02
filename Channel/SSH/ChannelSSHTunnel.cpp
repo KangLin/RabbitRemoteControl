@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "ChannelSSHTunnel.h"
 #include <QLoggingCategory>
 #include <QThread>
@@ -55,10 +57,9 @@ void CChannelSSHTunnel::cb_log(ssh_session session,
     }   
 }
 
-void CChannelSSHTunnel::WakeUp()
+int CChannelSSHTunnel::WakeUp()
 {
-    m_Semaphore.WakeUp();
-    return;
+    return m_Event.WakeUp();
 }
 
 bool CChannelSSHTunnel::open(OpenMode mode)
@@ -74,6 +75,10 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         setErrorString(szErr);
         return false;
     }
+    
+    /*
+    int value = 1;
+    ssh_options_set(m_Session, SSH_OPTIONS_NODELAY, (const void*)&value);//*/
 
     do{
         if(!m_Parameter) {
@@ -557,47 +562,55 @@ int CChannelSSHTunnel::Process()
     
     if(!m_Channel || !ssh_channel_is_open(m_Channel)
         || ssh_channel_is_eof(m_Channel)) {
-        qCritical(log) << "The channel is not open";
+        QString szErr = "The channel is not open";
+        qCritical(log) << szErr;
+        setErrorString(szErr);
         return -1;
     }
     
-    if(nRet) return nRet;
-    
-    struct timeval timeout = {0, 1000000};
+    struct timeval timeout = {0, 50000};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;
     
     fd_set set;
     FD_ZERO(&set);
-    int fd = m_Semaphore.GetFd();
-    if(-1 != fd)
+    socket_t fd = m_Event.GetFd();
+    if(SSH_INVALID_SOCKET != fd)
         FD_SET(fd, &set);
     
     //qDebug(log) << "ssh_select:";
     nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
     //qDebug(log) << "ssh_select end:" << nRet;
-    if (SSH_EINTR == nRet) return 0;
     if(nRet < 0) {
         QString szErr;
         szErr = "ssh_channel_select failed: " + QString::number(nRet);
         szErr += ssh_get_error(m_Session);
         qCritical(log) << szErr;
+        setErrorString(szErr);
         return -3;
     }
     
+    /*
+    if(0 == nRet)
+    {
+        qDebug(log) << "Time out";
+    }//*/
+
     if(FD_ISSET(fd, &set)) {
-        nRet = m_Semaphore.Reset();
+        //qDebug(log) << "fires event";
+        nRet = m_Event.Reset();
         if(nRet) return -4;    
     }
 
-    if(!channels[0]){
+    if(!channels[0]) {
         qDebug(log) << "There is not channel";
         return 0;
     }
 
     if(ssh_channel_is_eof(m_Channel)) {
         qWarning(log) << "Channel is eof";
+        setErrorString(tr("The channel is eof"));
         return -1;
     }
     
@@ -608,6 +621,7 @@ int CChannelSSHTunnel::Process()
         szErr = "ssh_channel_poll failed. nRet:";
         szErr += QString::number(nRet);
         szErr += ssh_get_error(m_Session);
+        setErrorString(szErr);
         qCritical(log) << szErr;
         return -6;
     }

@@ -8,6 +8,10 @@ CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
     m_Net.m_User.SetType(QList<CParameterUser::TYPE>() << CParameterUser::TYPE::OnlyPassword);
     m_Net.m_User.SetUsedType(CParameterUser::TYPE::OnlyPassword);
     
+    m_Proxy.SetType(
+        QList<CParameterProxy::TYPE>() << CParameterProxy::TYPE::None
+                                       << CParameterProxy::TYPE::SSHTunnel);
+    
     SetShared(true);
     
     SetClipboard(true);

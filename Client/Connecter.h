@@ -109,10 +109,15 @@ public:
      * \~chinese
      * \brief 得到显示视图
      * \return CFrmViewer*: 视图指针。它的所有者是本类或其派生类的实例
+     * \note 视图属性 Enabled 默认为 false. 需要在 sigConnected() 时改为 true
      *
      * \~english
      * \brief Get Viewer
      * \return CFrmViewer*: the ownership is a instance of this class or its derivative class
+     * \note The view property Enabled defaults to false. Changed to True when required to Sigconekde().
+     *
+     * \~
+     * \see sigConnected CFrmViewer::CFrmViewer
      */
     virtual QWidget* GetViewer() = 0;
     /*!
@@ -183,8 +188,16 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     /*!
-     * \~chinese 连接成功信号。仅由插件触发
-     * \~english Successful connection signal. Triggered only by plugins
+     * \~chinese 连接成功信号。仅由插件触发。
+     *   应用程序需要在此时设置视图属性 Enabled 为 true 。允许接收键盘和鼠标事件
+     *
+     * \~english Successful connection signal. Triggered only by plugins.
+     *   The application needs to set the view property Enabled to true at this point.
+     *   enable accept keyboard and mouse event
+     *
+     * \~
+     * \see MainWindow::slotConnected() GetViewer() CFrmViewer::CFrmViewer
+     * \snippet App/Client/mainwindow.cpp MainWindow slotConnected
      */
     void sigConnected();
     /*!

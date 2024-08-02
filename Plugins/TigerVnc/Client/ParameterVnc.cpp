@@ -8,19 +8,15 @@ CParameterVnc::CParameterVnc(QObject *parent)
     m_Net.SetPort(5900);
 
     //TODO: add authentication
-    m_Net.m_User.SetType(QList<CParameterUser::TYPE>()
+    auto &user = m_Net.m_User;
+    user.SetType(QList<CParameterUser::TYPE>()
         << CParameterUser::TYPE::None
         << CParameterUser::TYPE::OnlyPassword
         << CParameterUser::TYPE::UserPassword);
-    m_Net.m_User.SetUsedType(CParameterUser::TYPE::OnlyPassword);
-    m_Net.m_User.SetConvertTypeToNameCallBack([](CParameterUser::TYPE t)->QString{
-        if(CParameterUser::TYPE::OnlyPassword == t)
-            return tr("Standard VNC authentication (insecure without encryption)");
-        if(CParameterUser::TYPE::UserPassword == t)
-            return tr("Username and password (insecure without encryption)");
-        return QString();
-    });
-
+    user.SetUsedType(CParameterUser::TYPE::OnlyPassword);
+    user.SetTypeName(CParameterUser::TYPE::OnlyPassword, tr("Standard VNC authentication (insecure without encryption)"));
+    user.SetTypeName(CParameterUser::TYPE::UserPassword, tr("Username and password (insecure without encryption)"));
+    
     SetShared(true);
     SetBufferEndRefresh(false);
     SetSupportsDesktopResize(true);

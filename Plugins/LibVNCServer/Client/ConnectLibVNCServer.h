@@ -6,7 +6,13 @@
 #include "Connect.h"
 #include "rfb/rfbclient.h"
 #include <QTcpSocket>
+#include <QTcpServer>
 #include "ConnecterLibVNCServer.h"
+#include "Event.h"
+
+#ifdef HAVE_LIBSSH
+#include "SSHTunnelThread.h"
+#endif
 
 class CConnectLibVNCServer : public CConnect
 {
@@ -29,28 +35,37 @@ public:
     
 public Q_SLOTS:
     virtual void slotClipBoardChanged() override;
-    virtual void slotMousePressEvent(QMouseEvent* event, QPoint pos) override;
-    virtual void slotMouseReleaseEvent(QMouseEvent* event, QPoint pos) override;
-    virtual void slotMouseMoveEvent(QMouseEvent* event, QPoint pos) override;
-    virtual void slotWheelEvent(QWheelEvent* event, QPoint pos) override;
-    virtual void slotKeyPressEvent(QKeyEvent *event) override;
-    virtual void slotKeyReleaseEvent(QKeyEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent* event) override;
+    virtual void mouseReleaseEvent(QMouseEvent* event) override;
+    virtual void mouseMoveEvent(QMouseEvent* event) override;
+    virtual void wheelEvent(QWheelEvent* event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
+    
+    void slotConnectServer(quint16 nPort);
 
 private:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
+    virtual int WakeUp() override;
 
     int OnSize();
-    bool InitClient();
 
 private:
     rfbClient* m_pClient;
     QImage m_Image;
 
 private:    
-    CParameterLibVNCServer* m_pPara;
+    CParameterLibVNCServer* m_pParameter;
     QTcpSocket m_tcpSocket;
+    QTcpServer m_Server;
+    QTcpSocket* m_pConnect;
+    
+    Channel::CEvent m_Event;
+#ifdef HAVE_LIBSSH
+    CSSHTunnelThread* m_pThread;
+#endif
 };
 
 #endif // CCONNECTLIBVNC_H

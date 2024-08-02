@@ -38,7 +38,7 @@ public:
     //! [Instance user]
     CParameterUser m_User;
     //! [Instance user]
-
+    
 protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
@@ -46,7 +46,12 @@ protected:
 private:
     QString m_szHost;
     quint16 m_nPort;
-
+    
+public:
+    int SetPrompt(const QString szPrompt);
+    QString GetPrompt();
+private:
+    QString m_szPrompt;    
 };
 
 #endif // CPARAMETERNET_H

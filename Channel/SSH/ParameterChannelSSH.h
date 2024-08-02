@@ -1,11 +1,15 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CPARAMETERCHANNELSSH_H
 #define CPARAMETERCHANNELSSH_H
 
 #pragma once
 
+#include "libssh/libssh.h"
+
 #include <QObject>
 #include <QSettings>
-#include "libssh/libssh.h"
+
 #include "channel_export.h"
 
 class CHANNEL_EXPORT CParameterChannelSSH : public QObject
@@ -21,7 +25,7 @@ public:
     int setServer(const QString &szServer);
     
     quint16 GetPort() const;
-    int SetPort(const quint16 nPort);
+    int setPort(const quint16 nPort);
     
     QString GetUser() const;
     int SetUser(const QString &szUser);

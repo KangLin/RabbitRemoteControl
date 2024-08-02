@@ -65,7 +65,7 @@ public:
     bool GetSavePassphrase() const;
     int SetSavePassphrase(bool bSave);
     
-    void SetConvertTypeToNameCallBack(std::function<QString(TYPE t)> cb);
+    int SetTypeName(TYPE t, const QString& szName);
     QString ConvertTypeToName(TYPE t);
 
 protected:
@@ -92,8 +92,7 @@ private:
     QString m_szPassphrase;
     bool m_bSavePassphrase;
     
-    std::function<QString(TYPE t)> m_cbConvertTypeToName;
-    QVector<QString> m_TypeName;
+    QMap<TYPE, QString> m_TypeName;
 };
 
 #endif // CPARAMETERUSERPASSWORD_H

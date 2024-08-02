@@ -14,8 +14,8 @@ include(CheckFunctionExists)
 check_include_file("sys/eventfd.h" HAVE_EVENTFD_INCLUDE)
 check_function_exists("eventfd" HAVE_EVENTFD)
 
-if(HAVE_EVENTFD)
-   list(APPEND PRIVATE_DEFINITIONS HAVE_EVENTFD)
+if(HAVE_EVENTFD AND HAVE_EVENTFD_INCLUDE)
+   list(APPEND CHANNEL_DEFINITIONS HAVE_EVENTFD)
 endif()
 
 list(APPEND CHANNEL_QT_COMPONENTS Core)
@@ -40,12 +40,17 @@ if(libssh_FOUND)
     list(APPEND CHANNEL_SRC_INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/SSH)
     list(APPEND CHANNEL_INSTALL_HEADER_FILES
-        SSH/ChannelSSHTunnel.h
         SSH/ParameterChannelSSH.h
+        SSH/ChannelSSHTunnel.h
+        SSH/SSHTunnelThread.h
         )
+    list(APPEND CHANNEL_HEADER_FILES
+        SSH/ChannelSSHTunnelForward.h)
     list(APPEND CHANNEL_SOURCE_FILES
-        SSH/ChannelSSHTunnel.cpp
         SSH/ParameterChannelSSH.cpp
+        SSH/ChannelSSHTunnel.cpp
+        SSH/ChannelSSHTunnelForward.cpp
+        SSH/SSHTunnelThread.cpp
         )
 endif()
 

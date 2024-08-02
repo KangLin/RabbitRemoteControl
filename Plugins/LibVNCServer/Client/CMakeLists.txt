@@ -62,9 +62,15 @@ SET(UI_FILES
     DlgLibVNCServerPassword.ui
     )
 
+if(MSVC)
+    # for std::min
+    list(APPEND LIBVNCSERVER_PRIVATE_DEFINITIONS NOMINMAX)
+endif()
+
 if(_LibvncIncludeDir)
     ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
         ISPLUGIN
+        PRIVATE_DEFINITIONS ${LIBVNCSERVER_PRIVATE_DEFINITIONS}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_libvncLibs}
         PRIVATE_INCLUDE_DIRS ${_LibvncIncludeDir}
@@ -75,6 +81,7 @@ if(_LibvncIncludeDir)
 else()
     ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
         ISPLUGIN
+        PRIVATE_DEFINITIONS ${LIBVNCSERVER_PRIVATE_DEFINITIONS}
         SOURCE_FILES ${SOURCE_FILES} ${HEADER_FILES} ${UI_FILES} ${RCC_FILES}
         PRIVATE_LIBS ${_libvncLibs}
         INSTALL_DIR plugins/Client

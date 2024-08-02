@@ -10,14 +10,13 @@ CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPre
     m_UsedType(TYPE::UserPassword),
     m_bSavePassword(false),
     m_bUseSystemFile(true),
-    m_bSavePassphrase(false),
-    m_cbConvertTypeToName(nullptr)
+    m_bSavePassphrase(false)    
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
-    m_TypeName = {tr("None"),
-                  tr("Password"),
-                  tr("Username and password"),
-                  tr("Public key")};
+    m_TypeName = {{TYPE::None, tr("None")},
+                  {TYPE::OnlyPassword, tr("Password")},
+                  {TYPE::UserPassword, tr("Username and password")},
+                  {TYPE::PublicKey, tr("Public key")}};
 }
 
 int CParameterUser::OnLoad(QSettings &set)
@@ -259,15 +258,11 @@ int CParameterUser::SetPrivateKeyFile(const QString szFile)
 
 QString CParameterUser::ConvertTypeToName(TYPE t)
 {
-    QString name;
-    if(m_cbConvertTypeToName)
-        name = m_cbConvertTypeToName(t);
-    if(name.isEmpty())
-        name = m_TypeName.at((int)t);
-    return name;
+    return m_TypeName[t];
 }
 
-void CParameterUser::SetConvertTypeToNameCallBack(std::function<QString (TYPE)> cb)
+int CParameterUser::SetTypeName(TYPE t, const QString& szName)
 {
-    m_cbConvertTypeToName = cb;
+    m_TypeName[t] = szName;
+    return 0;
 }

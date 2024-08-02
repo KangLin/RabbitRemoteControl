@@ -44,8 +44,6 @@ void CConnectThread::run()
         nRet = pConnect->Connect();
         if(nRet)
             emit pConnect->sigDisconnect();
-        else
-            emit pConnect->sigConnected();
     }
 
     exec();

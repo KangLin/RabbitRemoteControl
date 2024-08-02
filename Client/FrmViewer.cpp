@@ -29,6 +29,11 @@ CFrmViewer::CFrmViewer(QWidget *parent)
     setMouseTracking(true);
     setFocusPolicy(Qt::WheelFocus);
     setFocus();
+
+    // When the connecter is not connected, don't accept keyboard and mouse event
+    // When the CConnecter::sigConnected() set true. accept keyboard and mouse event
+    // \see CConnecter::sigConnected()
+    setEnabled(false);
 }
 
 CFrmViewer::~CFrmViewer()

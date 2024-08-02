@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include "ParameterChannelSSH.h"
 #include "RabbitCommonTools.h"
 
@@ -49,7 +51,7 @@ quint16 CParameterChannelSSH::GetPort() const
     return m_nPort;
 }
 
-int CParameterChannelSSH::SetPort(const quint16 nPort)
+int CParameterChannelSSH::setPort(const quint16 nPort)
 {
     m_nPort = nPort;
     return 0;

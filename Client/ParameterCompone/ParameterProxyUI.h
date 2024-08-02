@@ -22,7 +22,7 @@ private:
     QLabel* m_lbType;
     QComboBox* m_cbType;
     
-    CParameterNetUI* m_uiNet;
+    CParameterNetUI* m_uiSockesV5;
     CParameterNetUI* m_uiSSH;
     
     CParameterProxy* m_Proxy;

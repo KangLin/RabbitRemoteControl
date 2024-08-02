@@ -328,8 +328,10 @@ void CConnect::keyReleaseEvent(QKeyEvent *event)
     qDebug(log) << "Need to implement CConnect::keyReleaseEvent";
 }
 
-void CConnect::WakeUp()
-{}
+int CConnect::WakeUp()
+{
+    return 0;
+}
 
 bool CConnect::event(QEvent *event)
 {

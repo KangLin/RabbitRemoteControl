@@ -42,6 +42,7 @@ jobs:
         env:
           PATH: C:\msys64\usr\bin
         run: | 
+          C:\msys64\usr\bin\pacman.exe -Syu --noconfirm
           C:\msys64\usr\bin\pacman.exe -S --noconfirm ^
             mingw-w64-x86_64-cmake ^
             mingw-w64-x86_64-make ^

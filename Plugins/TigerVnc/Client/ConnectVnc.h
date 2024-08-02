@@ -81,7 +81,7 @@ protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
-    virtual void WakeUp() override;
+    virtual int WakeUp() override;
 
 private:
     QSharedPointer<CChannel> m_DataChannel;

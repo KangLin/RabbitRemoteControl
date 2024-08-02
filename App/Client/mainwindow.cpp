@@ -762,6 +762,8 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
 
     if(!p->Name().isEmpty())
         slotInformation(tr("Connecting to ") + p->Name());
+
+    //* Show view. \see: slotConnected()
     if(m_pView)
     {
         m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
@@ -770,27 +772,41 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
         //qDebug(log) << "View:" << p->GetViewer();
     }
 
-    m_Connecters.push_back(p);
+    m_Connecters.push_back(p);//*/
 
     p->Connect();
 
     return 0;
 }
 
+//! [MainWindow slotConnected]
+/*!
+ * \brief When connected. enable accept keyboard and mouse event in view
+ */
 void MainWindow::slotConnected()
 {
     CConnecter* p = dynamic_cast<CConnecter*>(sender());
     if(!p) return;
 
-//    if(m_pView)
-//    {
-//        m_pView->AddView(p->GetViewer());
-//    }
-//    m_Connecters.push_back(p);
+    p->GetViewer()->setEnabled(true);
+
+    /* If you put it here, when connected, the view is not displayed.
+       So put it in the connect() display view.
+       See: Connect(CConnecter *p, bool set, QString szFile)
+     */
+    /*
+    if(m_pView)
+    {
+        m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
+        m_pView->AddView(p->GetViewer());
+        m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
+    }
+    m_Connecters.push_back(p);//*/
 
     slotInformation(tr("Connected to ") + p->Name());
     qDebug(log) << "MainWindow::slotConnected()" << p->Name();
 }
+//! [MainWindow slotConnected]
 
 void MainWindow::slotCloseView(const QWidget* pView)
 {

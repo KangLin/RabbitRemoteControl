@@ -725,6 +725,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 	update->SetKeyboardIndicators = cb_keyboard_set_indicators;
 	update->SetKeyboardImeStatus = cb_keyboard_set_ime_status;
     
+    emit pThis->sigConnected();
 	return TRUE;
 }
 
@@ -1510,10 +1511,11 @@ BOOL CConnectFreeRDP::cb_keyboard_set_ime_status(
     return TRUE;
 }
 
-void CConnectFreeRDP::WakeUp()
+int CConnectFreeRDP::WakeUp()
 {
     //qDebug(log) << "CConnectFreeRDP::WakeUp()";
     SetEvent(m_writeEvent);
+    return 0;
 }
 
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17

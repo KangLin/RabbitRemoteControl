@@ -176,7 +176,7 @@ CConnect::OnInitReturnValue CConnectVnc::OnInit()
         nRet = IceInit();
     else {
 #ifdef HAVE_LIBSSH
-        if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
+        if(m_pPara->m_Proxy.GetUsedType() == CParameterProxy::TYPE::SSHTunnel) {
             nRet = SSHInit();
             if(nRet) return OnInitReturnValue::Fail; // error
             return OnInitReturnValue::UseOnProcess;
@@ -257,7 +257,7 @@ int CConnectVnc::SocketInit()
 
         QNetworkProxy::ProxyType type = QNetworkProxy::NoProxy;
         // Set sock
-        switch(m_pPara->m_Proxy.GetType())
+        switch(m_pPara->m_Proxy.GetUsedType())
         {
         case CParameterProxy::TYPE::SockesV5:
             type = QNetworkProxy::Socks5Proxy;
@@ -332,7 +332,7 @@ int CConnectVnc::SSHInit()
     QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
     auto &ssh = m_pPara->m_Proxy.m_SSH;
     parameter->setServer(ssh.GetHost());
-    parameter->SetPort(ssh.GetPort());
+    parameter->setPort(ssh.GetPort());
     auto &user = ssh.m_User;
     parameter->SetUser(user.GetUser());
     parameter->SetUseSystemFile(user.GetUseSystemFile());
@@ -413,7 +413,7 @@ int CConnectVnc::OnProcess()
 {
     int nRet = 0;
 #ifdef HAVE_LIBSSH
-    if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
+    if(m_pPara->m_Proxy.GetUsedType() == CParameterProxy::TYPE::SSHTunnel) {
         CChannelSSHTunnel* channel = (CChannelSSHTunnel*)m_DataChannel.data();
         if(channel)
             nRet = channel->Process();
@@ -423,15 +423,16 @@ int CConnectVnc::OnProcess()
     return nRet;
 }
 
-void CConnectVnc::WakeUp()
+int CConnectVnc::WakeUp()
 {
 #ifdef HAVE_LIBSSH
-    if(m_pPara->m_Proxy.GetType() == CParameterProxy::TYPE::SSHTunnel) {
+    if(m_pPara->m_Proxy.GetUsedType() == CParameterProxy::TYPE::SSHTunnel) {
         CChannelSSHTunnel* channel = (CChannelSSHTunnel*)m_DataChannel.data();
         if(channel)
             channel->WakeUp();
     }
 #endif
+    return 0;
 }
 
 void CConnectVnc::slotConnected()
@@ -444,7 +445,7 @@ void CConnectVnc::slotConnected()
         QString szInfo = "Connected to "
                          + net.GetHost() + ":" + QString::number(net.GetPort());
 #ifdef HAVE_LIBSSH
-        if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetType())
+        if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetUsedType())
         {
             auto &ssh = m_pPara->m_Proxy.m_SSH;
             szInfo += " with ssh turnnel: " + ssh.GetHost()
@@ -478,7 +479,7 @@ void CConnectVnc::slotDisConnected()
              + m_pPara->m_Net.GetHost() + ":"
              + QString::number(m_pPara->m_Net.GetPort());
 #ifdef HAVE_LIBSSH
-    if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetType())
+    if(CParameterProxy::TYPE::SSHTunnel == m_pPara->m_Proxy.GetUsedType())
     {
         auto &ssh = m_pPara->m_Proxy.m_SSH;
         szInfo += " with ssh turnnel: " + ssh.GetHost()
@@ -851,36 +852,36 @@ void CConnectVnc::keyPressEvent(QKeyEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
-    bool modifier = true;
-    if (event->modifiers() == Qt::NoModifier)
-        modifier = false;
+    bool modifier = false;
+    if (event->modifiers() & Qt::ShiftModifier)
+        modifier = true;
     //qDebug(log) << "slotKeyPressEvent key:" << key << modifiers;
     uint32_t k = TranslateRfbKey(event->key(), modifier);
-    if(event->key()) {
-        try{
-            writer()->writeKeyEvent(k, 0, true);
-        } catch (rdr::Exception& e) {
-            emit sigError(-1, e.str());
-        }
+    
+    try{
+        writer()->writeKeyEvent(k, 0, true);
+    } catch (rdr::Exception& e) {
+        emit sigError(-1, e.str());
     }
+    
 }
 
 void CConnectVnc::keyReleaseEvent(QKeyEvent *event)
 {
     if(m_pPara && m_pPara->GetOnlyView()) return;
     if(!writer()) return;
-    bool modifier = true;
-    if (event->modifiers() == Qt::NoModifier)
-        modifier = false;
+    bool modifier = false;
+    if (event->modifiers() & Qt::ShiftModifier)
+        modifier = true;
     //qDebug(log) << "slotKeyReleaseEvent key:" << key << modifiers;
     uint32_t k = TranslateRfbKey(event->key(), modifier);
-    if(event->key()) {
-        try{
-               writer()->writeKeyEvent(k, 0, false);
-        } catch (rdr::Exception& e) {
-            emit sigError(-1, e.str());
-        }
+    
+    try{
+        writer()->writeKeyEvent(k, 0, false);
+    } catch (rdr::Exception& e) {
+        emit sigError(-1, e.str());
     }
+    
 }
 
 QString CConnectVnc::ConnectInformation()

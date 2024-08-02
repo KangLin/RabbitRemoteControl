@@ -17,16 +17,22 @@ public:
                              const QString& szPrefix = QString());
 
     enum class TYPE{
-        None = 0x01,
-        SockesV5 = 0x02,
-        SSHTunnel = 0x04,
-        Default = 0x08
+        None = 0,
+        Default,
+        SockesV5,
+        SSHTunnel,
     };
-    TYPE GetType() const;
-    int SetType(TYPE type);
+    Q_ENUM(TYPE)
+    QList<TYPE> GetType() const;
+    int SetType(QList<TYPE> type);
+    TYPE GetUsedType() const;
+    int SetUsedType(TYPE type);
 
     CParameterNet m_SockesV5;
     CParameterNet m_SSH;
+    
+    int SetTypeName(TYPE t, const QString& szName);
+    QString ConvertTypeToName(TYPE t);
 
     // CParameter interface
 protected:
@@ -34,7 +40,10 @@ protected:
     virtual int OnSave(QSettings &set) override;
 
 private:
-    TYPE m_Type;
+    QList<TYPE> m_Type;
+    TYPE m_UsedType;
+
+    QMap<TYPE, QString> m_TypeName;
 };
 
 #endif // CPARAMETERPROXY_H

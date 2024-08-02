@@ -5,7 +5,8 @@
 CParameterNet::CParameterNet(CParameterConnecter* parent, const QString &szPrefix)
     : CParameterConnecter(parent, szPrefix),
     m_nPort(0),
-    m_User(this)
+    m_User(this),
+    m_szPrompt(tr("The host is empty. please set it"))
 {}
 //! [Constructor]
 
@@ -53,3 +54,13 @@ void CParameterNet::SetPort(quint16 port)
     SetModified(true);
 }
 
+int CParameterNet::SetPrompt(const QString szPrompt)
+{
+    m_szPrompt = szPrompt;
+    return 0;
+}
+
+QString CParameterNet::GetPrompt()
+{
+    return m_szPrompt;
+}

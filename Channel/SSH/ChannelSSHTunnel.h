@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CCHANNELSSHTUNNEL_H
 #define CCHANNELSSHTUNNEL_H
 
@@ -7,11 +9,11 @@
 #include <QSocketNotifier>
 #include <QMutex>
 
-#include "Channel.h"
 #include "libssh/libssh.h"
 #include "libssh/callbacks.h"
+
+#include "Channel.h"
 #include "ParameterChannelSSH.h"
-#include "channel_export.h"
 #include "Event.h"
 
 /*!
@@ -39,7 +41,7 @@ public:
     virtual void close() override;
     
     int Process();
-    virtual void WakeUp();
+    virtual int WakeUp();
 
 Q_SIGNALS:
     /*!
@@ -91,9 +93,11 @@ private:
                        const char *message,
                        void *userdata);
 
-private:
+protected:
     ssh_session m_Session;
     ssh_channel m_Channel;
+
+private:
     ssh_pcap_file m_pcapFile;
     QSharedPointer<CParameterChannelSSH> m_Parameter;
     
@@ -101,7 +105,7 @@ private:
     QSocketNotifier* m_pSocketWrite;
     QSocketNotifier* m_pSocketException;
     
-    CEvent m_Semaphore;
+    Channel::CEvent m_Event;
 };
 
 #endif // CCHANNELSSHTUNNEL_H

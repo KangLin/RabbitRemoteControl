@@ -40,7 +40,7 @@ int CParameterNetUI::slotAccept(bool validity)
 {
     if(validity && ui->leHost->text().isEmpty()) {
         QMessageBox::critical(this, tr("Error"),
-                              tr("The host is empty. please set it"));
+                              m_pNet->GetPrompt());
         qCritical(log) << "The host is empty";
         ui->leHost->setFocus();
         return -1;
