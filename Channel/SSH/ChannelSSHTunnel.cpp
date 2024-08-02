@@ -655,20 +655,7 @@ int CChannelSSHTunnel::Process()
         return 0;
     }
 
-    QScopedArrayPointer<char> buf(new char[nRet]);
-    nRet = ssh_channel_read_nonblocking(m_Channel, buf.get(), nRet, 0);
-    if(nRet > 0) {
-        //qDebug(log) << "Read data:" << nRet;
-        m_readData.append(buf.get(), nRet);
-        emit readyRead();
-    } else if(SSH_AGAIN != nRet){
-        QString szErr;
-        szErr = "Read data from channel failed. nRet:";
-        szErr += QString::number(nRet);
-        szErr += ssh_get_error(m_Session);
-        qCritical(log) << szErr;
-        return -7;
-    }
+    emit readyRead();
 
     return 0;
 }
@@ -676,26 +663,68 @@ int CChannelSSHTunnel::Process()
 // Because is same thread
 qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
 {
+    qint64 nRet = 0;
+    
     /*
     qDebug(log) << "CChannel::readData:"
                 << maxlen << "nLen:" << m_readData.size();//*/
-    if(m_readData.size() <= 0)
-        return 0;
     
-    qint64 nLen = qMin((qint64)m_readData.size(), maxlen);
-    if(nLen > 0) {
-        memcpy(data, m_readData.data(), nLen);
-        m_readData.remove(0, nLen);
+    Q_ASSERT(data && maxlen > 0);
+    
+    if(!m_Channel || !ssh_channel_is_open(m_Channel))
+    {
+        QString szErr;
+        szErr = "The channel is not opened";
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return -1;
     }
-    return nLen;
+    /*
+    if(ssh_channel_is_eof(m_Channel))
+    {
+        QString szErr;
+        szErr = "The channel is eof";
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return -2;
+    }
+    
+    nRet = ssh_channel_poll(m_Channel, 0);
+    //qDebug(log) << "ssh_channel_poll:" << nRet;
+    if(nRet < 0) {
+        QString szErr;
+        szErr = "ssh_channel_poll failed. nRet:";
+        szErr += QString::number(nRet);
+        szErr += ssh_get_error(m_Session);
+        qCritical(log) << szErr;
+        return nRet;
+    }
+    if(nRet == 0) {
+        //qDebug(log) << "There is not data in channel";
+        return 0;
+    }//*/
+    
+    nRet = ssh_channel_read_nonblocking(m_Channel, data, maxlen, 0);
+    if(SSH_AGAIN == nRet) {
+        emit readyRead();
+        return 0;
+    } else if(0 > nRet) {
+        QString szErr;
+        szErr = "Read data from channel failed. nRet:";
+        szErr += QString::number(nRet);
+        szErr += ssh_get_error(m_Session);
+        qCritical(log) << szErr;
+        return nRet;
+    }
+    
+    return nRet;
 }
 
 qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
 {
     qint64 nRet = 0;
 
-    if(!data || len <= 0)
-        return 0;
+    Q_ASSERT(data && len > 0);
 
     if(!m_Channel || !ssh_channel_is_open(m_Channel) || ssh_channel_is_eof(m_Channel))
     {
