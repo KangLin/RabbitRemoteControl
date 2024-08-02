@@ -26,12 +26,9 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     m_Parameter(parameter),
     m_pSocketRead(nullptr),
     m_pSocketWrite(nullptr),
-    m_pSocketException(nullptr),
-    m_eventWriteFD(-1)
+    m_pSocketException(nullptr)
 {
     Q_ASSERT(m_Parameter);
-    
-    InitSemaphore();
 }
 
 CChannelSSHTunnel::~CChannelSSHTunnel()
@@ -58,46 +55,9 @@ void CChannelSSHTunnel::cb_log(ssh_session session,
     }   
 }
 
-int CChannelSSHTunnel::InitSemaphore()
-{
-#if defined(Q_OS_LINUX)
-    m_eventWriteFD = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC | EFD_SEMAPHORE);
-#endif
-    return 0;
-}
-
-int CChannelSSHTunnel::ReadSemphore()
-{
-#if defined(Q_OS_LINUX)
-    
-    eventfd_t value;
-    eventfd_read(m_eventWriteFD, &value);
-    //qDebug(log) << "read eventfd:" << value;
-    
-#endif
-    return 0;
-}
-
-int CChannelSSHTunnel::ClearSemphore()
-{
-#if defined(Q_OS_LINUX)
-    if(-1 != m_eventWriteFD)
-    {
-        ::close(m_eventWriteFD);
-        m_eventWriteFD = -1;
-    }
-#endif
-    return 0;    
-}
-
 void CChannelSSHTunnel::WakeUp()
 {
-    // wake up
-#if defined(Q_OS_LINUX)
-    if(-1 != m_eventWriteFD)
-        eventfd_write(m_eventWriteFD, 1);
-    //qDebug(log) << "CChannelSSHTunnel::writeData: wake up";
-#endif
+    m_Semaphore.WakeUp();
     return;
 }
 
@@ -224,7 +184,6 @@ void CChannelSSHTunnel::close()
     qDebug(log) << "CChannelSSHTunnel::close()";
     
     WakeUp();
-    ClearSemphore();
 
     /*
     QAbstractEventDispatcher* pDispatcher = QAbstractEventDispatcher::instance();
@@ -604,18 +563,20 @@ int CChannelSSHTunnel::Process()
     
     if(nRet) return nRet;
     
-    struct timeval timeout = {0, 50000};
+    struct timeval timeout = {0, 1000000};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;
     
     fd_set set;
     FD_ZERO(&set);
-    if(-1 != m_eventWriteFD)
-        FD_SET(m_eventWriteFD, &set);
+    int fd = m_Semaphore.GetFd();
+    if(-1 != fd)
+        FD_SET(fd, &set);
     
-    nRet = ssh_select(channels, channel_out, m_eventWriteFD + 1, &set, &timeout);
-    //qDebug(log) << "ssh_select:" << nRet << QDateTime::currentDateTime();
+    //qDebug(log) << "ssh_select:";
+    nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
+    //qDebug(log) << "ssh_select end:" << nRet;
     if (SSH_EINTR == nRet) return 0;
     if(nRet < 0) {
         QString szErr;
@@ -625,8 +586,8 @@ int CChannelSSHTunnel::Process()
         return -3;
     }
     
-    if(FD_ISSET(m_eventWriteFD, &set)) {
-        nRet = ReadSemphore();
+    if(FD_ISSET(fd, &set)) {
+        nRet = m_Semaphore.Reset();
         if(nRet) return -4;    
     }
 

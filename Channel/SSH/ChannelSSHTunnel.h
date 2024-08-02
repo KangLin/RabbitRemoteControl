@@ -12,6 +12,7 @@
 #include "libssh/callbacks.h"
 #include "ParameterChannelSSH.h"
 #include "channel_export.h"
+#include "Event.h"
 
 /*!
  * \~chinese
@@ -89,10 +90,6 @@ private:
                        int priority,
                        const char *message,
                        void *userdata);
-    
-    int InitSemaphore();
-    int ReadSemphore();
-    int ClearSemphore();
 
 private:
     ssh_session m_Session;
@@ -104,9 +101,7 @@ private:
     QSocketNotifier* m_pSocketWrite;
     QSocketNotifier* m_pSocketException;
     
-    QByteArray m_readData;
-    int m_eventWriteFD;
-
+    CEvent m_Semaphore;
 };
 
 #endif // CCHANNELSSHTUNNEL_H

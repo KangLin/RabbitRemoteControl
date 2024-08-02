@@ -7,14 +7,27 @@ set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
 project(Channel LANGUAGES CXX)
 
+include(CheckIncludeFile)
+include(CheckIncludeFileCXX)
+include(CheckFunctionExists)
+
+check_include_file("sys/eventfd.h" HAVE_EVENTFD_INCLUDE)
+check_function_exists("eventfd" HAVE_EVENTFD)
+
+if(HAVE_EVENTFD)
+   list(APPEND PRIVATE_DEFINITIONS HAVE_EVENTFD)
+endif()
+
 list(APPEND CHANNEL_QT_COMPONENTS Core)
 
 list(APPEND CHANNEL_INSTALL_HEADER_FILES
     Channel.h
+    Event.h
     )
 
 list(APPEND CHANNEL_SOURCE_FILES
     Channel.cpp
+    Event.cpp
     )
 
 find_package(libssh)
