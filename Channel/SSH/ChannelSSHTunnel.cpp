@@ -669,7 +669,9 @@ qint64 CChannelSSHTunnel::readData(char *data, qint64 maxlen)
     qDebug(log) << "CChannel::readData:"
                 << maxlen << "nLen:" << m_readData.size();//*/
     
-    Q_ASSERT(data && maxlen > 0);
+    Q_ASSERT(data && maxlen >= 0);
+    if(!(data && maxlen >= 0))
+        return 0;
     
     if(!m_Channel || !ssh_channel_is_open(m_Channel))
     {
@@ -724,7 +726,9 @@ qint64 CChannelSSHTunnel::writeData(const char *data, qint64 len)
 {
     qint64 nRet = 0;
 
-    Q_ASSERT(data && len > 0);
+    Q_ASSERT(data && len >= 0);
+    if(!(data && len >= 0))
+        return 0;
 
     if(!m_Channel || !ssh_channel_is_open(m_Channel) || ssh_channel_is_eof(m_Channel))
     {
@@ -761,76 +765,30 @@ int CChannelSSHTunnel::ProcessSocket()
         check = connect(
             m_pSocketRead, &QSocketNotifier::activated,
             this, [&](int fd) {
-                int nRet = 0;
-                qDebug(log) << "Read socket" << fd;
-                if(!m_Channel || !ssh_channel_is_open(m_Channel)
-                    || ssh_channel_is_eof(m_Channel)) {
-                    qCritical(log) << "The channel is not open";
-                    return;
-                }
-                const int nLen = 1024;
-                char buf[nLen];
-                do {
-                    int nRet = ssh_channel_read_nonblocking(m_Channel, buf, nLen, 0);
-                    if(nRet < 0) {
-                        QString szErr;
-                        szErr = "Read data from channel failed:";
-                        szErr += ssh_get_error(m_Session);
-                        qCritical(log) << szErr;
-                        emit sigError(nRet, szErr);
-                        return;
-                    }
-                    m_readData.append(buf, nLen);
-                } while(nRet >= nLen);
+                qDebug(log) << "QSocketNotifier::activated: read";
+                Q_UNUSED(fd)
                 emit this->readyRead();
             });
         Q_ASSERT(check);
     }
     
-    m_pSocketWrite = new QSocketNotifier(fd, QSocketNotifier::Write, this);
-    if(m_pSocketWrite) {
-        check = connect(
-            m_pSocketWrite, &QSocketNotifier::activated,
-            this, [&](int fd){
-                int nRet = 0;
-                qDebug(log) << "Write socket" << fd;
-                return;
-                if(!m_Channel || !ssh_channel_is_open(m_Channel)
-                    || ssh_channel_is_eof(m_Channel)) {
-                    qCritical(log) << "The channel is not open";
-                    return;
-                }
-                m_writeMutex.lock();
-                qint64 nLen = m_writeData.size();
-                if(nLen > 0) {
-                    nRet = ssh_channel_write(m_Channel, m_writeData.data(), nLen);
-                    if(nRet > 0) {
-                        m_writeData.remove(0, nRet);
-                    }
-                }
-                if(nRet == nLen) {
-                    m_pSocketWrite->setEnabled(false);
-                }
-                m_writeMutex.unlock();
-                if(nRet < 0) {
-                    if(SSH_AGAIN != nRet) {
-                        QString szErr;
-                        szErr = "Write data from channel failed:";
-                        szErr += ssh_get_error(m_Session);
-                        qCritical(log) << szErr;
-                        emit sigError(nRet, szErr);
-                    }
-                }
-            });
-        Q_ASSERT(check);
-    }
+    // m_pSocketWrite = new QSocketNotifier(fd, QSocketNotifier::Write, this);
+    // if(m_pSocketWrite) {
+    //     check = connect(
+    //         m_pSocketWrite, &QSocketNotifier::activated,
+    //         this, [&](int fd){
+    //             Q_UNUSED(fd)
+    //             qDebug(log) << "QSocketNotifier::activated: write";
+    //         });
+    //     Q_ASSERT(check);
+    // }
     
     m_pSocketException = new QSocketNotifier(fd, QSocketNotifier::Exception, this);
     if(m_pSocketException) {
         check = connect(
             m_pSocketException, &QSocketNotifier::activated,
             this, [&](int) {
-                qDebug(log) << "Exception socket";
+                qDebug(log) << "QSocketNotifier::activated: Exception";
                 QString szErr;
                 szErr = "Channel exception:";
                 szErr += ssh_get_error(m_Session);
@@ -842,4 +800,4 @@ int CChannelSSHTunnel::ProcessSocket()
     
     return nRet;
 }
-*/
+//*/

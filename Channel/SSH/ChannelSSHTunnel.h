@@ -93,7 +93,7 @@ private:
     int InitSemaphore();
     int ReadSemphore();
     int ClearSemphore();
-   
+
 private:
     ssh_session m_Session;
     ssh_channel m_Channel;
