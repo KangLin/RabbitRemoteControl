@@ -13,16 +13,16 @@ SET(SOURCE_FILES
     ServiceRabbitVNC.cpp
     Connection.cpp
     FrmParameterRabbitVNC.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/InStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/OutStreamChannel.cpp
     )
 SET(HEADER_FILES
     ParameterServiceRabbitVNC.h
     PluginServiceRabbitVNC.h
     ServiceRabbitVNC.h
     Connection.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/InStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../TigerVnc/OutStreamChannel.h
     )
 
 if(WITH_GUI)

@@ -202,7 +202,7 @@ jobs:
             -DBUILD_TigerVNC=ON ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
             -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel ^
-            -DBUILD_SERVICE=ON ^
+            -DBUILD_SERVICE=OFF ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
           cmake --build . --config ${{ matrix.BUILD_TYPE }}

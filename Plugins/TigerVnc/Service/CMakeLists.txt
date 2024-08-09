@@ -12,16 +12,16 @@ SET(SOURCE_FILES
     PluginServiceTigerVNC.cpp
     ServiceTigerVNC.cpp
     Connection.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/InStreamChannel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/OutStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.cpp
     )
 SET(HEADER_FILES
     ParameterServiceTigerVNC.h
     PluginServiceTigerVNC.h
     ServiceTigerVNC.h
     Connection.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/InStreamChannel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../RabbitVNC/OutStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../InStreamChannel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../OutStreamChannel.h
     )
 SET(UI_FILES
     )
