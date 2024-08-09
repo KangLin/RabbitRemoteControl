@@ -148,6 +148,14 @@
     </message>
 </context>
 <context>
+    <name>CParameterNet</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterNet.cpp" line="9"/>
+        <source>The host is empty. please set it</source>
+        <translation type="unfinished">主機是空，請設置它。</translation>
+    </message>
+</context>
+<context>
     <name>CParameterNetUI</name>
     <message>
         <location filename="../../ParameterCompone/ParameterNetUI.ui" line="14"/>
@@ -175,9 +183,41 @@
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="43"/>
         <source>The host is empty. please set it</source>
-        <translation>主機是空，請設置它。</translation>
+        <translation type="vanished">主機是空，請設置它。</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterProxy</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="10"/>
+        <source>None</source>
+        <translation type="unfinished">無</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="11"/>
+        <source>Default</source>
+        <translation type="unfinished">默認</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="12"/>
+        <source>Sockes V5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="13"/>
+        <source>SSH tunnel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="21"/>
+        <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterProxy.cpp" line="28"/>
+        <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -211,28 +251,28 @@
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
         <source>None</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="47"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="46"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
         <source>Username and password</source>
         <translation>用戶名和密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
         <source>Public key</source>
         <translation>公鑰</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="61"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="60"/>
         <source>Passphrase</source>
         <translation>密碼</translation>
     </message>

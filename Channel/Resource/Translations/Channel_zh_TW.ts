@@ -4,114 +4,119 @@
 <context>
     <name>CChannelSSHTunnel</name>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="112"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="74"/>
         <source>SSH failed: ssh_new.</source>
         <translation>SSH 失敗： ssh_new .</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="146"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="112"/>
         <source>SSH failed: Set host fail. host:</source>
         <translation>SSH 失敗： 設置主機失敗。主機：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="158"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="124"/>
         <source>SSH failed: Set port fail. port:</source>
         <translation>SSH 失敗： 設置端口失敗。端口：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="181"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="147"/>
         <source>SSH failed: ssh_pcap_file_new: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="189"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="155"/>
         <source>SSH failed: ssh connect </source>
         <translation>SSH 失敗： ssh 連接</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="278"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="243"/>
         <source>SSH failed: Get server public key.</source>
         <translation>SSH 失敗： 得到服務器公鑰錯誤。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="293"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="258"/>
         <source>SSH failed: Get public key hash value fail.</source>
         <translation>SSH 失敗： 得到公鑰哈希值失敗。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="311"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="276"/>
         <source>Host key for server changed. it is now:</source>
         <translation>服務端主機密鑰改變。它現在是：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="313"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="324"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="278"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="289"/>
         <source>For security reasons, connection will be stopped.</source>
         <translation>因為安全原因，連接將停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="314"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="325"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="279"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="290"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>請查看 OpenSSL 文檔，關於增加私有證書到存儲。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="321"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="286"/>
         <source>The host key for this server was not found but an other type of key exists.</source>
         <translation>服務端主機密鑰未發現，但是另一個健已存在。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="322"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="287"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
         <translation>攻擊者可能會更改默認服務器密鑰，使客戶端誤以為該密鑰不存在</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="332"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="297"/>
         <source>Could not find known host file.</source>
         <translation>未能發現已知主機的文件</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="333"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="298"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
         <translation>如果您在此處接受主機密鑰，則將自動創建該文件。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="300"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="318"/>
         <location filename="../../SSH/ChannelSSHTunnel.cpp" line="335"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="353"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="370"/>
         <source>Host key hash:</source>
         <translation>主機密鑰哈希值：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="348"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="365"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="313"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="330"/>
         <source>Reject the host key</source>
         <translation>拒絕主機密鑰</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="352"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="317"/>
         <source>The server is unknown. Do you trust the host key?</source>
         <translation>服務器未知。您信任主機密鑰嗎？</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="369"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="334"/>
         <source>Error:</source>
         <translation>錯誤：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="371"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="336"/>
         <source>Will be stopped.</source>
         <translation>將停止。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="421"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="387"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
         <translation>SSH 失敗：使用公鑰進行身份驗證失敗：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="444"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="410"/>
         <source>Failed authenticating with password. User: </source>
         <translation>用戶密碼進行身份驗證失敗。用戶：</translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="615"/>
+        <source>The channel is eof</source>
+        <translation>通道已結束</translation>
     </message>
     <message>
         <source>Host key for server changed: it is now:
@@ -158,8 +163,8 @@
 </translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="337"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="355"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="302"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="320"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
@@ -172,41 +177,49 @@
         <translation type="vanished">使用密碼進行身份驗證時出錯：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="471"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="437"/>
         <source>SSH failed: There is not set public key file.</source>
         <translation>SSH失敗：未設置公鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="480"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="446"/>
         <source>SSH failed: Import public key fail.</source>
         <translation>SSH失敗：導入公鑰失敗。</translation>
     </message>
     <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="448"/>
         <location filename="../../SSH/ChannelSSHTunnel.cpp" line="482"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="516"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
         <translation>文件不存在或權限被拒絕：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="494"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="527"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="460"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="493"/>
         <source>SSH failed: Authentication failed. User:</source>
         <translation>SSH 失敗：身份驗證失敗。用戶：</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="503"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="469"/>
         <source>SSH failed: There is not set private key file.</source>
         <translation>SSH 失敗：未設置私鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="514"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="480"/>
         <source>SSH failed: Import private key fail.</source>
         <translation>SSH 失敗：導入私鑰失敗。</translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="566"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="532"/>
         <source>SSH failed: open forward.</source>
         <translation>SSH 失敗：打開轉發。</translation>
+    </message>
+</context>
+<context>
+    <name>CChannelSSHTunnelForward</name>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="310"/>
+        <source>The channel is eof</source>
+        <translation>通道已結束</translation>
     </message>
 </context>
 <context>

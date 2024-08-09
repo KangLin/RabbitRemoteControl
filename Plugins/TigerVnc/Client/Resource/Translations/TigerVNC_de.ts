@@ -12,8 +12,8 @@
         <location filename="../../ConnectVnc.cpp" line="289"/>
         <location filename="../../ConnectVnc.cpp" line="309"/>
         <location filename="../../ConnectVnc.cpp" line="375"/>
-        <location filename="../../ConnectVnc.cpp" line="500"/>
-        <location filename="../../ConnectVnc.cpp" line="515"/>
+        <location filename="../../ConnectVnc.cpp" line="513"/>
+        <location filename="../../ConnectVnc.cpp" line="528"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -28,23 +28,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="494"/>
+        <location filename="../../ConnectVnc.cpp" line="507"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="498"/>
         <location filename="../../ConnectVnc.cpp" line="511"/>
+        <location filename="../../ConnectVnc.cpp" line="524"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="499"/>
+        <location filename="../../ConnectVnc.cpp" line="512"/>
         <source>Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="507"/>
+        <location filename="../../ConnectVnc.cpp" line="520"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
@@ -275,22 +275,22 @@
 <context>
     <name>CParameterVnc</name>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="18"/>
+        <location filename="../../ParameterVnc.cpp" line="16"/>
         <source>Standard VNC authentication (insecure without encryption)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="20"/>
+        <location filename="../../ParameterVnc.cpp" line="17"/>
         <source>Username and password (insecure without encryption)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="78"/>
+        <location filename="../../ParameterVnc.cpp" line="73"/>
         <source>Ice signal password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="91"/>
+        <location filename="../../ParameterVnc.cpp" line="86"/>
         <source>Ice turn password</source>
         <translation type="unfinished"></translation>
     </message>

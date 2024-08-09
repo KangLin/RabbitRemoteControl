@@ -4,32 +4,38 @@
 <context>
     <name>CConnectLibVNCServer</name>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="75"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="158"/>
         <source>The server is empty, please input it</source>
         <translation>服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="64"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="77"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="80"/>
         <location filename="../../ConnectLibVNCServer.cpp" line="160"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="179"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="195"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="173"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="63"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="79"/>
         <source>Protocol version error</source>
         <translation>协议版本错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="158"/>
-        <source>The proxy server is empty, please input it</source>
-        <translation>代理服务器为空，请输入</translation>
+        <location filename="../../ConnectLibVNCServer.cpp" line="927"/>
+        <source>Connect to local socket server %1:%2</source>
+        <translation>连接本地 socket 服务 %1:%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="176"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="192"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="933"/>
+        <source> fail</source>
+        <translation>失败</translation>
+    </message>
+    <message>
+        <source>The proxy server is empty, please input it</source>
+        <translation type="vanished">代理服务器为空，请输入</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="170"/>
         <source>Connect to %1:%2 fail</source>
         <translation>连接到 %1:%2 失败</translation>
     </message>
