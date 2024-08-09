@@ -321,17 +321,18 @@ int CConnectLibVNCServer::OnProcess()
     struct timeval timeout = {0, 50000};
     fd_set set;
     FD_ZERO(&set);
-    rfbSocket fd = RFB_INVALID_SOCKET;
     if(RFB_INVALID_SOCKET != m_pClient->sock)
     {
-        fd = m_pClient->sock;
         FD_SET(m_pClient->sock, &set);
     }
     rfbSocket eventFd = m_Event.GetFd();
     if(RFB_INVALID_SOCKET != eventFd)
+    {
         FD_SET(eventFd, &set);
-    fd = std::max(fd, m_pClient->sock);
-    //qDebug(log) << "select m_pClient->sock:" << (int)m_pClient->sock << "fd:" << fd << "event:" << eventFd;
+    }
+    rfbSocket fd = RFB_INVALID_SOCKET;
+    fd = std::max(eventFd, m_pClient->sock);
+    //qDebug(log) << "fd:" << fd << "select m_pClient->sock:" << (int)m_pClient->sock << "event:" << eventFd;
     nRet = select(fd + 1, &set, NULL, NULL, &timeout);
     //qDebug(log) << "select end";
     if (nRet < 0) {
@@ -345,13 +346,14 @@ int CConnectLibVNCServer::OnProcess()
         return 0;
     }//*/
 
-    if(FD_ISSET(eventFd, &set))
+    if(RFB_INVALID_SOCKET != eventFd && FD_ISSET(eventFd, &set))
     {
         //qDebug(log) << "fires event";
         m_Event.Reset();
     }
 
-    if(FD_ISSET(m_pClient->sock, &set)) {
+    if(RFB_INVALID_SOCKET != m_pClient->sock
+        && FD_ISSET(m_pClient->sock, &set)) {
         //qDebug(log) << "HandleRFBServerMessage";
         if(!HandleRFBServerMessage(m_pClient))
         {
@@ -359,7 +361,7 @@ int CConnectLibVNCServer::OnProcess()
             return -2;
         }
     }
-
+    
     return 0;
 }
 
