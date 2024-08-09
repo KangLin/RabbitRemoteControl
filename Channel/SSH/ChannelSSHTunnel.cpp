@@ -166,10 +166,10 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         if(nRet) break;
         
         nRet = authentication(m_Session,
-                                  m_Parameter->GetUser(),
-                                  m_Parameter->GetPassword(),
-                                  m_Parameter->GetPassphrase(),
-                                  m_Parameter->GetAuthenticationMethod());
+                              m_Parameter->GetUser(),
+                              m_Parameter->GetPassword(),
+                              m_Parameter->GetPassphrase(),
+                              m_Parameter->GetAuthenticationMethod());
         if(nRet) break;
         
         nRet = forward(m_Session);
@@ -352,6 +352,7 @@ int CChannelSSHTunnel::authentication(
 {
     int nRet = 0;
     int nServerMethod = nMethod;
+
     qDebug(log) << "Authentication method:" << nMethod;
     //* Get authentication list from ssh server
     nRet = ssh_userauth_none(session,

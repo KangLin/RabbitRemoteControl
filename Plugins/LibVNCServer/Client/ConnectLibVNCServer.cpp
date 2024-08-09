@@ -262,7 +262,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         if(!m_pThread)
             return OnInitReturnValue::Fail;
         bool check = connect(m_pThread, SIGNAL(sigServer(quint16)),
-                                   this, SLOT(slotConnectServer(quint16)));
+                                   this, SLOT(slotConnectProxyServer(quint16)));
         Q_ASSERT(check);
         check = connect(m_pThread, SIGNAL(sigError(int,QString)),
                         this, SIGNAL(sigError(int,QString)));
@@ -919,7 +919,7 @@ void CConnectLibVNCServer::keyReleaseEvent(QKeyEvent *event)
 }
 
 //! [connect local socket server]
-void CConnectLibVNCServer::slotConnectServer(quint16 nPort)
+void CConnectLibVNCServer::slotConnectProxyServer(quint16 nPort)
 {
     QString szErr;
     qDebug(log) << "CConnectLibVNCServer::slotConnectServer";

@@ -42,7 +42,7 @@ public Q_SLOTS:
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     
-    void slotConnectServer(quint16 nPort);
+    void slotConnectProxyServer(quint16 nPort);
 
 private:
     virtual OnInitReturnValue OnInit() override;

@@ -162,7 +162,7 @@ int CChannelSSHTunnelForward::ReadConnect()
         qDebug(log) << "The connector is invalid";
         return 0;
     }
-
+    //qDebug(log) << "CChannelSSHTunnelForward::ReadConnect()";
     do {
         nRet = recv(m_Connector, buf, nLen, 0);
         if(nRet < 0)
