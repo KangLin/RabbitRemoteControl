@@ -59,13 +59,6 @@ CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, Q
 CConnectLibVNCServer::~CConnectLibVNCServer()
 {
     qDebug(log) << "CConnectLibVNCServer::~CConnectLibVNCServer()";
-#ifdef HAVE_LIBSSH
-    if(m_pThread){
-        m_pThread->m_bExit;
-        m_pThread->exit();
-        m_pThread->deleteLater();
-    }
-#endif
 }
 
 /*
@@ -287,7 +280,10 @@ int CConnectLibVNCServer::OnClean()
 {
     qDebug(log) << "CConnectLibVNCServer::OnClean()";
     if(m_pThread)
-        m_pThread->m_bExit = true;
+    {
+        m_pThread->Exit();
+        m_pThread = nullptr;
+    }
     if(m_pClient)
     {
         m_tcpSocket.close();

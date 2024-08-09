@@ -8,7 +8,14 @@
 #include "ParameterChannelSSH.h"
 
 /*!
- * \brief The CSSHTunnelThread class
+ * \~chinese 实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。
+ * \note 当线程完成后，会自动删除实例对象。
+ *
+ * \~english Data is forwarded over a local socket and SSH tunnel.
+ *  It is suitable for cases where the library
+ *  does not implement a transport layer interface, only socket.
+ * \note When the thread finished, the thread will be deleted.
+ *
  * \~
  * \snippet Plugins/LibVNCServer/Client/ConnectLibVNCServer.cpp Use SSH Tunnel
  * \see CChannelSSHTunnelForward
@@ -22,8 +29,8 @@ public:
     virtual ~CSSHTunnelThread();
     
     void run() override;
-
-    bool m_bExit;
+    
+    void Exit();
     
 Q_SIGNALS:
     /*!
@@ -39,6 +46,7 @@ Q_SIGNALS:
     
 private:
     QSharedPointer<CParameterChannelSSH> m_Parameter;
+    bool m_bExit;
 };
 
 #endif // CSSHTUNNELTHREAD_H

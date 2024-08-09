@@ -21,6 +21,7 @@ CChannelSSHTunnelForward::CChannelSSHTunnelForward(
     m_Connector(SSH_INVALID_SOCKET),
     m_pBuffer(nullptr)
 {
+    qDebug(log) << "ChannelSSHTunnelForward::ChannelSSHTunnelForward()";
     m_pBuffer = new char[m_BufferLength];
 }
 
@@ -140,7 +141,7 @@ int CChannelSSHTunnelForward::AcceptConnect()
         if(EAGAIN == errno || EWOULDBLOCK == errno)
             return 0;
         else {
-            QString szErr =  "The server accpet is fail:";
+            QString szErr =  "The server accept is fail:";
             szErr += QString::number(errno)
                      + " [" + strerror(errno) + "]";
             qCritical(log) << szErr;

@@ -30,6 +30,7 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     m_pSocketWrite(nullptr),
     m_pSocketException(nullptr)
 {
+    qDebug(log) << "CChannelSSHTunnel::CChannelSSHTunnel()";
     Q_ASSERT(m_Parameter);
 }
 

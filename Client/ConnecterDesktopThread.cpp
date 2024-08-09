@@ -44,11 +44,7 @@ int CConnecterDesktopThread::Connect()
         qCritical(log) << "new CConnectThread fail";
         return -2;
     }
-    bool check = false;
-    check = connect(m_pThread, SIGNAL(finished()),
-                    m_pThread, SLOT(deleteLater()));
-    Q_ASSERT(check);
-
+    
     m_pThread->start();
     
     return nRet;
@@ -61,7 +57,7 @@ int CConnecterDesktopThread::DisConnect()
     if(m_pThread)
     {
         m_pThread->quit();
-        //Don't delete m_pThread, See CConnecterDesktopThread::Connect()
+        //Don't delete m_pThread, See CConnectThread
         m_pThread = nullptr;
     }
     return nRet;

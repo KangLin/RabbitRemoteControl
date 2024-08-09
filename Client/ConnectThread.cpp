@@ -10,7 +10,12 @@ CConnectThread::CConnectThread(CConnecterDesktopThread *pConnect)
                  // The object is also deleted when the parent object (CConnecterDesktopThread) is destroyed.
                  // See also: CConnecterDesktopThread::Connect()
     m_pConnecter(pConnect)
-{}
+{
+    bool check = false;
+    check = connect(this, SIGNAL(finished()),
+                         this, SLOT(deleteLater()));
+    Q_ASSERT(check);
+}
 
 CConnectThread::~CConnectThread()
 {

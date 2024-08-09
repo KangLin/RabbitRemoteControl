@@ -61,13 +61,6 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter, QObject *parent)
 CConnectFreeRDP::~CConnectFreeRDP()
 {
     qDebug(log) << "CConnectFreeRdp::~CConnectFreeRdp()";
-#ifdef HAVE_LIBSSH
-    if(m_pThread){
-        m_pThread->m_bExit;
-        m_pThread->exit();
-        m_pThread->deleteLater();
-    }
-#endif
 }
 
 /*
@@ -258,7 +251,10 @@ int CConnectFreeRDP::OnClean()
     int nRet = 0;
 #ifdef HAVE_LIBSSH
     if(m_pThread)
-        m_pThread->m_bExit = true;
+    {
+        m_pThread->Exit();
+        m_pThread = nullptr;
+    }
 #endif
     if(m_writeEvent)
     {

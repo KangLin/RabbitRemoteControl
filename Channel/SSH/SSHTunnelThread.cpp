@@ -12,11 +12,22 @@ CSSHTunnelThread::CSSHTunnelThread(QSharedPointer<CParameterChannelSSH> paramete
     : QThread(nullptr),
     m_bExit(false),
     m_Parameter(parameter)
-{}
+{
+    qDebug(log) << "CSSHTunnelThread::CSSHTunnelThread";
+    bool check = false;
+    check = connect(this, SIGNAL(finished()),
+                    this, SLOT(deleteLater()));
+    Q_ASSERT(check);
+}
 
 CSSHTunnelThread::~CSSHTunnelThread()
 {
     qDebug(log) << "CSSHTunnelThread::~CSSHTunnelThread";
+}
+
+void CSSHTunnelThread::Exit()
+{
+    m_bExit = true;
 }
 
 void CSSHTunnelThread::run()
@@ -26,26 +37,30 @@ void CSSHTunnelThread::run()
     CChannelSSHTunnelForward* p = new CChannelSSHTunnelForward(m_Parameter);
     if(!p)
         return;
-
-    bool check = connect(p, SIGNAL(sigServer(quint16)),
-                         this, SIGNAL(sigServer(quint16)));
-    Q_ASSERT(check);
-    if(!p->open(QIODevice::ReadWrite)) {
-        delete p;
-        return;
-    }
-
-    while (!m_bExit && nRet >= 0) {
-        nRet = p->Process();
-        if(nRet) {
-            qCritical(log) << "Process fail" << p->errorString();
-            emit sigError(nRet, p->errorString());
-            emit sigDisconnect();
+    
+    do{
+        bool check = connect(p, SIGNAL(sigServer(quint16)),
+                             this, SIGNAL(sigServer(quint16)));
+        Q_ASSERT(check);
+        if(!p->open(QIODevice::ReadWrite)) {
             break;
         }
-    }
-
-    p->close();
-    delete p;
+        
+        while (!m_bExit && nRet >= 0) {
+            nRet = p->Process();
+            if(nRet) {
+                qCritical(log) << "Process fail" << p->errorString();
+                break;
+            }
+        }
+        
+        p->close();
+    } while(0);
+    
+    if(nRet)
+        emit sigError(nRet, p->errorString());
+    
+    emit sigDisconnect();
+    p->deleteLater();
     qDebug(log) << "CSSHTunnelThread end";
 }

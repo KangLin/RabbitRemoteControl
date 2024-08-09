@@ -16,6 +16,7 @@ CChannel::CChannel(QTcpSocket *pSocket, QObject *parent)
     : QIODevice(parent),
       m_pSocket(pSocket)
 {
+    qDebug(log) << "CChannel::CChannel";
     Q_ASSERT(m_pSocket);
 }
 

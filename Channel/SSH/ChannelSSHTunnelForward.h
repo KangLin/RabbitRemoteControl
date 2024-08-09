@@ -7,7 +7,13 @@
 
 /*!
  * \~chinese 包括 SSH 隧道和用于转发数据的本地 SOCKET 服务。
+ * 实现通过本地 SOCKET 与 SSH 隧道转发数据。适用于库没有实现传输层接口，只有 socket 的情况。
+ * 
  * \~english Includes SSH tunneling and a local socket service for forwarding data.
+ *  Data is forwarded over a local socket and SSH tunnel.
+ *  It is suitable for cases where the library
+ *  does not implement a transport layer interface, only socket.
+ *  
  * \~
  * \note It is only used in CSSHTunnelThread
  * \see CSSHTunnelThread
