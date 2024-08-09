@@ -38,6 +38,9 @@ private:
     int AcceptConnect();
     int ReadConnect();
     int SSHReadyRead();
+    
+    char* m_pBuffer;
+    const int m_BufferLength = 1024;
 };
 
 #endif // CHANNELSSHTUNNELFORWARD_H

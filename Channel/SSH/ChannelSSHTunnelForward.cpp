@@ -18,13 +18,17 @@ CChannelSSHTunnelForward::CChannelSSHTunnelForward(
     QSharedPointer<CParameterChannelSSH> parameter, QObject *parent)
     : CChannelSSHTunnel{parameter, parent},
     m_Server(SSH_INVALID_SOCKET),
-    m_Connector(SSH_INVALID_SOCKET)
+    m_Connector(SSH_INVALID_SOCKET),
+    m_pBuffer(nullptr)
 {
+    m_pBuffer = new char[m_BufferLength];
 }
 
 CChannelSSHTunnelForward::~CChannelSSHTunnelForward()
 {
     qDebug(log) << "ChannelSSHTunnelForward::~ChannelSSHTunnelForward()";
+    if(m_pBuffer)
+        delete []m_pBuffer;
 }
 
 bool CChannelSSHTunnelForward::open(OpenMode mode)
@@ -154,17 +158,20 @@ int CChannelSSHTunnelForward::AcceptConnect()
 
 int CChannelSSHTunnelForward::ReadConnect()
 {
-    const int nLen = 1024;
-    char buf[nLen];
     int nRet = 0;
     
     if(SSH_INVALID_SOCKET == m_Connector) {
         qDebug(log) << "The connector is invalid";
         return 0;
     }
+    
+    Q_ASSERT(m_pBuffer);
+    if(!m_pBuffer)
+        return -1;
+    
     //qDebug(log) << "CChannelSSHTunnelForward::ReadConnect()";
     do {
-        nRet = recv(m_Connector, buf, nLen, 0);
+        nRet = recv(m_Connector, m_pBuffer, m_BufferLength, 0);
         if(nRet < 0)
         {
             /*
@@ -182,7 +189,7 @@ int CChannelSSHTunnelForward::ReadConnect()
             }
         }
         if(nRet > 0) {
-            int n = write(buf, nRet);
+            int n = write(m_pBuffer, nRet);
             if(n < 0) {
                 QString szErr = "write ssh tunnel fail:" + errorString();
                 qCritical(log) << szErr;
@@ -190,23 +197,25 @@ int CChannelSSHTunnelForward::ReadConnect()
                 return -1;
             }
         }
-    } while(nLen == nRet);
+    } while(m_BufferLength == nRet);
     return 0;
 }
 
 int CChannelSSHTunnelForward::SSHReadyRead()
 {
-    const int nLen = 1024;
-    char buf[nLen];
     int nRet = 0;
-    
+
     if(SSH_INVALID_SOCKET == m_Connector) {
         //qDebug(log) << "The connector is invalid";
         return 0;
     }
     
+    Q_ASSERT(m_pBuffer);
+    if(!m_pBuffer)
+        return -1;
+    
     do {
-        nRet = read(buf, nLen);
+        nRet = read(m_pBuffer, m_BufferLength);
         if(nRet < 0) {
             QString szErr = "read data from ssh tunnel fail:" + errorString();
             qCritical(log) << szErr;
@@ -214,7 +223,7 @@ int CChannelSSHTunnelForward::SSHReadyRead()
             return nRet;
         }
         if(nRet > 0) {
-            int n = send(m_Connector, buf, nRet, 0);
+            int n = send(m_Connector, m_pBuffer, nRet, 0);
             if(n < 0) {
                 //qCritical(log) << "send to socket fail" << errno;
                 if(EAGAIN == errno || EWOULDBLOCK == errno)
@@ -228,7 +237,7 @@ int CChannelSSHTunnelForward::SSHReadyRead()
                 }
             }
         }
-    } while(nLen == nRet);
+    } while(m_BufferLength == nRet);
     return 0;
 }
 
@@ -244,7 +253,7 @@ int CChannelSSHTunnelForward::Process()
         return -1;
     }
         
-    struct timeval timeout = {0, 5000000};
+    struct timeval timeout = {0, 50000};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;
