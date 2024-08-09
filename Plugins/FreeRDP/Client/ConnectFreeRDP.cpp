@@ -42,15 +42,17 @@
 #endif
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
-
-CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
-                                 QObject *parent)
+    
+CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
-      m_pContext(nullptr),
-      m_pParameter(nullptr),
-      m_ClipBoard(this),
-      m_Cursor(this),
-      m_writeEvent(nullptr)
+    m_pContext(nullptr),
+    m_pParameter(nullptr),
+    m_ClipBoard(this),
+    m_Cursor(this),
+    m_writeEvent(nullptr)
+#ifdef HAVE_LIBSSH
+    ,m_pThread(nullptr)
+#endif
 {
     m_pParameter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParameter);
@@ -59,6 +61,13 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter,
 CConnectFreeRDP::~CConnectFreeRDP()
 {
     qDebug(log) << "CConnectFreeRdp::~CConnectFreeRdp()";
+#ifdef HAVE_LIBSSH
+    if(m_pThread){
+        m_pThread->m_bExit;
+        m_pThread->exit();
+        m_pThread->deleteLater();
+    }
+#endif
 }
 
 /*
@@ -111,27 +120,6 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         return OnInitReturnValue::Fail;
 #endif
     
-    if(!m_pParameter->GetDomain().isEmpty())
-        freerdp_settings_set_string(
-            settings, FreeRDP_Domain,
-            m_pParameter->GetDomain().toStdString().c_str());
-    if(m_pParameter->m_Net.GetHost().isEmpty())
-    {
-        QString szErr;
-        szErr = tr("The server is empty, please input it");
-        qCritical(log) << szErr;
-        emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
-        emit sigError(-1, szErr.toStdString().c_str());
-        return OnInitReturnValue::Fail;
-    }
-    auto &net = m_pParameter->m_Net;
-    freerdp_settings_set_string(
-        settings, FreeRDP_ServerHostname,
-        net.GetHost().toStdString().c_str());
-    freerdp_settings_set_uint32(
-        settings, FreeRDP_ServerPort,
-        net.GetPort());
-
     auto &user = m_pParameter->m_Net.m_User;
     if(!user.GetUser().isEmpty())
         freerdp_settings_set_string(
@@ -179,13 +167,87 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     RedirectionDriver();
     RedirectionPrinter();
     RedirectionSerial();
-
-    nRet = freerdp_client_start(pRdpContext);
-    if(nRet)
+    
+    // Set proxy
+    switch(m_pParameter->m_Proxy.GetUsedType())
     {
-        qCritical(log) << "freerdp_client_start fail";
-        return OnInitReturnValue::Fail;
+    case CParameterProxy::TYPE::None:
+    {
+        if(!m_pParameter->GetDomain().isEmpty())
+            freerdp_settings_set_string(
+                settings, FreeRDP_Domain,
+                m_pParameter->GetDomain().toStdString().c_str());
+        if(m_pParameter->m_Net.GetHost().isEmpty())
+        {
+            QString szErr;
+            szErr = tr("The server is empty, please input it");
+            qCritical(log) << szErr;
+            emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
+            emit sigError(-1, szErr.toStdString().c_str());
+            return OnInitReturnValue::Fail;
+        }
+        auto &net = m_pParameter->m_Net;
+        freerdp_settings_set_string(
+            settings, FreeRDP_ServerHostname,
+            net.GetHost().toStdString().c_str());
+        freerdp_settings_set_uint32(
+            settings, FreeRDP_ServerPort,
+            net.GetPort());
+        
+        nRet = freerdp_client_start(pRdpContext);
+        if(nRet)
+        {
+            qCritical(log) << "freerdp_client_start fail";
+            return OnInitReturnValue::Fail;
+        }
+        break;
     }
+#ifdef HAVE_LIBSSH
+    case CParameterProxy::TYPE::SSHTunnel:
+    {
+        // Set SSH parameters
+        QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
+        auto &ssh = m_pParameter->m_Proxy.m_SSH;
+        parameter->setServer(ssh.GetHost());
+        parameter->setPort(ssh.GetPort());
+        auto &user = ssh.m_User;
+        parameter->SetUser(user.GetUser());
+        parameter->SetUseSystemFile(user.GetUseSystemFile());
+        if(CParameterUser::TYPE::UserPassword == user.GetUsedType()) {
+            parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PASSWORD);
+            parameter->SetPassword(user.GetPassword());
+        }
+        if(CParameterUser::TYPE::PublicKey == user.GetUsedType()) {
+            parameter->SetAuthenticationMethod(SSH_AUTH_METHOD_PUBLICKEY);
+            parameter->SetPublicKeyFile(user.GetPublicKeyFile());
+            parameter->SetPrivateKeyFile(user.GetPrivateKeyFile());
+            parameter->SetPassphrase(user.GetPassphrase());
+        }
+        auto &net = m_pParameter->m_Net;
+        parameter->SetRemoteHost(net.GetHost());
+        parameter->SetRemotePort(net.GetPort());
+        
+        // Start ssh thread
+        if(!m_pThread)
+            m_pThread = new CSSHTunnelThread(parameter);
+        if(!m_pThread)
+            return OnInitReturnValue::Fail;
+        bool check = connect(m_pThread, SIGNAL(sigServer(quint16)),
+                             this, SLOT(slotConnectProxyServer(quint16)));
+        Q_ASSERT(check);
+        check = connect(m_pThread, SIGNAL(sigError(int,QString)),
+                        this, SIGNAL(sigError(int,QString)));
+        Q_ASSERT(check);
+        check = connect(m_pThread, SIGNAL(sigDisconnect()),
+                        this, SIGNAL(sigDisconnect()));
+        Q_ASSERT(check);
+        m_pThread->start();
+        break;
+    }
+#endif
+    default:
+        break;
+    };
 
     return OnInitReturnValue::UseOnProcess;
 }
@@ -194,6 +256,10 @@ int CConnectFreeRDP::OnClean()
 {
     qDebug(log) << "CConnectFreeRdp::OnClean()";
     int nRet = 0;
+#ifdef HAVE_LIBSSH
+    if(m_pThread)
+        m_pThread->m_bExit = true;
+#endif
     if(m_writeEvent)
     {
         CloseHandle(m_writeEvent);
@@ -234,6 +300,11 @@ int CConnectFreeRDP::OnProcess()
     HANDLE handles[64];
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
     
+    if(nullptr == freerdp_settings_get_string(pRdpContext->settings, FreeRDP_ServerHostname))
+    {
+        return 50;
+    }
+
     do {
     
         DWORD nCount = 0;
@@ -379,14 +450,33 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
     freerdp* instance = freerdp_client_get_instance(context);
     if(!instance)
         return -2;
-
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+    auto settings = context->settings;
+    
+    QString szHost;
+    quint16 nPort;
+    szHost = freerdp_settings_get_string(settings, FreeRDP_ServerHostname);
+    nPort = freerdp_settings_get_uint32(settings, FreeRDP_ServerPort);
+    QString szServer;
+    auto &net = pThis->m_pParameter->m_Net;
+    szServer = net.GetHost() + ":" + QString::number(net.GetPort());
+    auto &proxy = pThis->m_pParameter->m_Proxy;
+    switch(proxy.GetUsedType()) {
+    case CParameterProxy::TYPE::SSHTunnel:
+    {
+        auto &sshNet = proxy.m_SSH;
+        szServer = szHost + ":" + QString::number(nPort)
+                   + " <-> " + sshNet.GetHost() + ":" + QString::number(sshNet.GetPort())
+                   + " <-> " + szServer;
+        break;
+    }
+    default:
+        break;
+    }
+        
     BOOL status = freerdp_connect(instance);
     if (status) {
-        QString szInfo = tr("Connect to ");
-        szInfo += pThis->m_pParameter->m_Net.GetHost();
-        szInfo += ":";
-        szInfo += QString::number(pThis->m_pParameter->m_Net.GetPort());
+        QString szInfo = tr("Connect to ") + szServer;
         qInfo(log) << szInfo;
         emit pThis->sigInformation(szInfo);
     } else {
@@ -394,11 +484,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         UINT32 nErr = freerdp_get_last_error(context);
 
         QString szErr;
-        szErr = tr("Connect to ");
-        szErr += pThis->m_pParameter->m_Net.GetHost();
-        szErr += ":";
-        szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
-        szErr += tr(" fail.");
+        szErr = tr("Connect to ") + szServer + tr(" fail.");
         szErr += "\n[";
         szErr += QString::number(nErr) + " - ";
         szErr += freerdp_get_last_error_name(nErr);
@@ -413,10 +499,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
         {
             nRet = -3;
-            QString szErr = tr("Logon to ");
-            szErr += pThis->m_pParameter->m_Net.GetHost();
-            szErr += ":";
-            szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
+            QString szErr = tr("Logon to ") + szServer;
             szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
             emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -424,10 +507,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
         {
             nRet = -4;
-            QString szErr = tr("Logon to ");
-            szErr += pThis->m_pParameter->m_Net.GetHost();
-            szErr += ":";
-            szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
+            QString szErr = tr("Logon to ") + szServer;
             szErr += tr(" fail. Please check password are correct.") + "\n";
             emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -435,10 +515,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
         {
             nRet = -5;
-            QString szErr = tr("Logon to ");
-            szErr += pThis->m_pParameter->m_Net.GetHost();
-            szErr += ":";
-            szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
+            QString szErr = tr("Logon to ") + szServer;
             szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
             emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
@@ -446,10 +523,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
         {
             nRet = -6;
-            QString szErr = tr("Logon to ");
-            szErr += pThis->m_pParameter->m_Net.GetHost();
-            szErr += ":";
-            szErr += QString::number(pThis->m_pParameter->m_Net.GetPort());
+            QString szErr = tr("Logon to ") + szServer;
             szErr += tr(" connect transport layer fail.") + "\n\n";
             szErr += tr("Please:") + "\n";
             szErr += tr("1. Check for any network related issues") + "\n";
@@ -1874,4 +1948,28 @@ int CConnectFreeRDP::RedirectionSerial()
     }
 
     return 0;
+}
+
+void CConnectFreeRDP::slotConnectProxyServer(quint16 nPort)
+{
+    qDebug(log) << "CConnectFreeRDP::slotConnectProxyServer" << nPort;
+    rdpContext* pContext = (rdpContext*)m_pContext;
+    rdpSettings* settings = pContext->settings;
+    if(!settings) {
+        qCritical(log) << "settings is null";
+    }
+
+    freerdp_settings_set_string(
+        settings, FreeRDP_ServerHostname,
+        "127.0.0.1");
+    freerdp_settings_set_uint32(
+        settings, FreeRDP_ServerPort,
+        nPort);
+    
+    int nRet = freerdp_client_start(pContext);
+    if(nRet)
+    {
+        qCritical(log) << "freerdp_client_start fail";
+    }
+    qDebug(log) << "CConnectFreeRDP::slotConnectProxyServer end";
 }

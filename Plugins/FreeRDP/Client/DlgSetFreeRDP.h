@@ -3,11 +3,12 @@
 #ifndef DLGSETFREERDP_H
 #define DLGSETFREERDP_H
 
+#include <QFileSystemModel>
+#include <QItemSelection>
 #include <QDialog>
 #include "freerdp/freerdp.h"
 #include "ConnecterFreeRDP.h"
-#include <QFileSystemModel>
-#include <QItemSelection>
+#include "ParameterProxyUI.h"
 
 namespace Ui {
 class CDlgSetFreeRDP;
@@ -51,7 +52,8 @@ private:
     Ui::CDlgSetFreeRDP *ui;
     CParameterFreeRDP* m_pSettings;
     QFileSystemModel* m_pFileModel;
-
+    
+    CParameterProxyUI* m_pProxy;
 };
 
 #endif // DLGSETFREERDP_H

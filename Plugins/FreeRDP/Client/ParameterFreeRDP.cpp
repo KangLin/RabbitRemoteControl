@@ -11,10 +11,15 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     m_bShowVerifyDiaglog(true),
     m_bRedirectionPrinter(false),
     m_nRedirectionSound(RedirecionSoundType::Disable),
-    m_bRedirectionMicrophone(false)
+    m_bRedirectionMicrophone(false),
+    m_Proxy(this)
 {
     m_Net.SetPort(3389);
-
+    
+    m_Proxy.SetType(
+        QList<CParameterProxy::TYPE>() << CParameterProxy::TYPE::None
+                                       << CParameterProxy::TYPE::SSHTunnel);
+    
     m_szRedirectionSoundParameters = 
         #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN) || defined(Q_OS_WIN32) || defined(Q_OS_WINRT)
             "sys:winmm"

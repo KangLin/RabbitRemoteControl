@@ -38,6 +38,10 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
     ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
     
+    m_pProxy = new CParameterProxyUI(ui->tabWidget);
+    m_pProxy->SetParameter(&m_pSettings->m_Proxy);
+    ui->tabWidget->insertTab(1, m_pProxy, tr("Proxy"));
+    
     // Display
     // It has to be the first. GetScreenGeometry depends on it
     ui->cbAllMonitor->setChecked(m_pSettings->GetUseMultimon());
@@ -159,7 +163,10 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     m_pSettings->SetDomain(ui->leDomain->text());
     nRet = ui->wNet->slotAccept(true);
     if(nRet) return;
-
+    
+    nRet = m_pProxy->slotAccept();
+    if(nRet) return;
+    
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
     m_pSettings->SetShowServerName(ui->cbShowServerName->isChecked());

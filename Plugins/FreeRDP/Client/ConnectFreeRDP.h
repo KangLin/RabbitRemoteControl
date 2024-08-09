@@ -10,6 +10,10 @@
 #include "CursorFreeRDP.h"
 #include <QSharedPointer>
 
+#ifdef HAVE_LIBSSH
+#include "SSHTunnelThread.h"
+#endif
+
 class CConnectFreeRDP : public CConnect
 {
     Q_OBJECT
@@ -165,6 +169,12 @@ private:
     friend class CCursorFreeRDP;
     
     HANDLE m_writeEvent;
+    
+#ifdef HAVE_LIBSSH
+    CSSHTunnelThread* m_pThread;
+#endif
+private Q_SLOTS:
+    void slotConnectProxyServer(quint16 nPort);
 };
 
 #endif // CCONNECTFREERDP_H

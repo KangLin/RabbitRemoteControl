@@ -2,6 +2,7 @@
 #define CPARAMETERFREERDP_H
 
 #include "ParameterBase.h"
+#include "ParameterProxy.h"
 #include "freerdp/freerdp.h"
 
 //! [Declare CParameterFreeRDP]
@@ -67,6 +68,8 @@ public:
     const QString &GetRedirectionMicrophoneParameters() const;
     void SetRedirectionMicrophoneParameters(const QString &newRedirectionMicrophoneParameters);
     
+    CParameterProxy m_Proxy;
+
 signals:
     void sigReconnectIntervalChanged();
     
