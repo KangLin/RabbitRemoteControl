@@ -598,7 +598,7 @@ int CChannelSSHTunnel::Process()
         qDebug(log) << "Time out";
     }//*/
 
-    if(FD_ISSET(fd, &set)) {
+    if(SSH_INVALID_SOCKET != fd && FD_ISSET(fd, &set)) {
         //qDebug(log) << "fires event";
         nRet = m_Event.Reset();
         if(nRet) return -4;    

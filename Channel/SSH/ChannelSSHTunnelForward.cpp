@@ -236,7 +236,7 @@ int CChannelSSHTunnelForward::Process()
 {
     int nRet = 0;
     
-    if(!m_Channel || !ssh_channel_is_open(m_Channel)
+    if(!m_Session || !m_Channel || !ssh_channel_is_open(m_Channel)
         || ssh_channel_is_eof(m_Channel)) {
         QString szErr = "The channel is not open";
         qCritical(log) << szErr;
@@ -244,7 +244,7 @@ int CChannelSSHTunnelForward::Process()
         return -1;
     }
         
-    struct timeval timeout = {0, 50000};
+    struct timeval timeout = {0, 5000000};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;
@@ -252,17 +252,22 @@ int CChannelSSHTunnelForward::Process()
     fd_set set;
     FD_ZERO(&set);
     socket_t fd = SSH_INVALID_SOCKET;
-    
+    socket_t fdSSH = ssh_get_fd(m_Session);
     //qDebug(log) << "ssh_select:" << m_Server << m_Connector;
     if(SSH_INVALID_SOCKET != m_Server) {
         //qDebug(log) << "server listen";
+        FD_SET(m_Server, &set);
         fd = m_Server;
-        FD_SET(fd, &set);
         nRet = select(fd + 1, &set, NULL, NULL, &timeout);
     } else if(SSH_INVALID_SOCKET != m_Connector) {
         //qDebug(log) << "recv connect";
+        FD_SET(m_Connector, &set);
         fd = m_Connector;
-        FD_SET(fd, &set);
+        if(SSH_INVALID_SOCKET != fdSSH)
+        {
+            FD_SET(fdSSH, &set);
+            fd = std::max(fd, fdSSH);
+        }        
         nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
     }
     //qDebug(log) << "ssh_select end:" << nRet;
@@ -275,19 +280,16 @@ int CChannelSSHTunnelForward::Process()
         setErrorString(szErr);
         return nRet;
     }
-
-    if(FD_ISSET(fd, &set))
-    {
-        //qDebug(log) << "recv socket" << m_Server << m_Connector;
-        if(SSH_INVALID_SOCKET != m_Server) {
-            nRet = AcceptConnect();
-            return nRet;
-        } else if(SSH_INVALID_SOCKET != m_Connector) {
-            nRet = ReadConnect();
-            if(nRet) return nRet;
-        }
-    }
     
+    //qDebug(log) << "recv socket" << m_Server << m_Connector;
+    if(SSH_INVALID_SOCKET != m_Server && FD_ISSET(m_Server, &set)) {
+        nRet = AcceptConnect();
+        return nRet;
+    } else if(SSH_INVALID_SOCKET != m_Connector && FD_ISSET(m_Connector, &set)) {
+        nRet = ReadConnect();
+        if(nRet) return nRet;
+    }
+
     if(!channels[0]){
         qDebug(log) << "There is not channel";
         return 0;
