@@ -43,8 +43,10 @@ static void rfbQtClientLog(const char *format, ...)
 CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, QObject *parent)
     : CConnect(pConnecter, parent),
     m_pClient(nullptr),
-    m_pParameter(dynamic_cast<CParameterLibVNCServer*>(pConnecter->GetParameter())),
-    m_pThread(nullptr)
+    m_pParameter(dynamic_cast<CParameterLibVNCServer*>(pConnecter->GetParameter()))
+#ifdef HAVE_LIBSSH
+    ,m_pThread(nullptr)
+#endif
 {
     rfbClientLog = rfbQtClientLog;
 
@@ -57,11 +59,13 @@ CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, Q
 CConnectLibVNCServer::~CConnectLibVNCServer()
 {
     qDebug(log) << "CConnectLibVNCServer::~CConnectLibVNCServer()";
+#ifdef HAVE_LIBSSH
     if(m_pThread){
         m_pThread->m_bExit;
         m_pThread->exit();
         m_pThread->deleteLater();
     }
+#endif
 }
 
 /*
@@ -251,7 +255,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         auto &net = m_pParameter->m_Net;
         parameter->SetRemoteHost(net.GetHost());
         parameter->SetRemotePort(net.GetPort());
-        
+
         // Start ssh thread
         if(!m_pThread)
             m_pThread = new CSSHTunnelThread(parameter);
@@ -267,6 +271,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
                         this, SIGNAL(sigDisconnect()));
         Q_ASSERT(check);
         m_pThread->start();
+        
         return OnInitReturnValue::UseOnProcess;
     }
 #endif

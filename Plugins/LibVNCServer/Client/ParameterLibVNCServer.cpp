@@ -1,8 +1,7 @@
 #include "ParameterLibVNCServer.h"
 
 CParameterLibVNCServer::CParameterLibVNCServer(QObject *parent)
-    : CParameterBase(parent),
-    m_Proxy(this)
+    : CParameterBase(parent)
 {
     m_Net.SetPort(5900);
     m_Net.m_User.SetType(QList<CParameterUser::TYPE>() << CParameterUser::TYPE::OnlyPassword);

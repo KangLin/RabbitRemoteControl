@@ -3,6 +3,7 @@
 
 #pragma once
 #include "ParameterNet.h"
+#include "ParameterProxy.h"
 
 /*!
  * \~chinese
@@ -63,6 +64,7 @@ public:
     void SetShowServerName(bool NewShowServerName);
 
     CParameterNet m_Net;
+    CParameterProxy m_Proxy;
 
     virtual bool GetOnlyView() const;
     virtual void SetOnlyView(bool only);

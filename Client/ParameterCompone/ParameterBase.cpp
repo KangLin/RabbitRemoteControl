@@ -2,7 +2,8 @@
 
 CParameterBase::CParameterBase(QObject* parent)
     : CParameterConnecter(parent),
-    m_Net(this)
+    m_Net(this),
+    m_Proxy(this)
 {
     Init();
 }

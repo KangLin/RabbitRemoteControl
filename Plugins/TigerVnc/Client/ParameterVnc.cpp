@@ -2,8 +2,7 @@
 #include "rfb/encodings.h"
 
 CParameterVnc::CParameterVnc(QObject *parent)
-    : CParameterBase(parent),
-    m_Proxy(this)
+    : CParameterBase(parent)
 {
     m_Net.SetPort(5900);
 

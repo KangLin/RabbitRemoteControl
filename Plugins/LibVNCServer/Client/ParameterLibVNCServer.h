@@ -4,7 +4,6 @@
 #pragma once
 
 #include <ParameterBase.h>
-#include "ParameterProxy.h"
 
 class CParameterLibVNCServer : public CParameterBase
 {
@@ -27,8 +26,6 @@ public:
     int GetQualityLevel() const;
     void SetQualityLevel(int newQualityLevel);
     
-    CParameterProxy m_Proxy;
-
 private:
     bool m_bShared;
     bool m_bCompressLevel;

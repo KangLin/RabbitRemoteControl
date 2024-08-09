@@ -3,7 +3,6 @@
 
 #include "ParameterBase.h"
 #include "ParameterNet.h"
-#include "ParameterProxy.h"
 
 class CParameterVnc : public CParameterBase
 {
@@ -12,8 +11,6 @@ public:
     explicit CParameterVnc(QObject *parent = nullptr);
     
 public:
-    
-    CParameterProxy m_Proxy;
 
     /*!
      * \brief Check whether the parameters are complete
