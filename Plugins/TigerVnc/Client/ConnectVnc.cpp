@@ -125,9 +125,6 @@ CConnectVnc::~CConnectVnc()
 
 int CConnectVnc::SetPara()
 {
-    security.setUserPasswdGetter(this);
-    security.setUseMsgBox(this);
-
     setShared(m_pPara->GetShared());
     supportsLocalCursor = m_pPara->GetLocalCursor();
     supportsCursorPosition = m_pPara->GetCursorPosition();
@@ -662,7 +659,12 @@ void CConnectVnc::getUserPasswd(bool secure, std::string *user, std::string *pas
     }
 }
 
-bool CConnectVnc::showMsgBox(int flags, const char *title, const char *text)
+int CConnectVnc::getX509File(std::string *ca, std::string *crl)
+{
+    return 0;
+}
+
+bool CConnectVnc::showMsgBox(rfb::MsgBoxFlags flags, const char *title, const char *text)
 {
     qDebug(log) << title << text;
     QMessageBox::StandardButton nRet = QMessageBox::No;

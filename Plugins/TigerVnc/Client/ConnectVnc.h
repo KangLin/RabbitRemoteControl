@@ -22,9 +22,7 @@
 class CConnecterDesktopThread;
 class CConnectVnc
     : public CConnect,
-      public rfb::CConnection,
-      public rfb::UserPasswdGetter,
-      public rfb::UserMsgBox
+      public rfb::CConnection
 {
     Q_OBJECT
 
@@ -47,6 +45,10 @@ public:
     virtual void authSuccess() override;
     virtual void resizeFramebuffer() override;
     
+    virtual void getUserPasswd(bool secure, std::string* user, std::string* password) override;
+    virtual int getX509File(std::string *ca, std::string *crl) override;
+    virtual bool showMsgBox(rfb::MsgBoxFlags flags, const char* title, const char* text) override;
+    
     // CMsgHandler interface
 public:
     virtual void setName(const char *name) override;
@@ -63,9 +65,6 @@ public:
     virtual void handleClipboardRequest() override;
     virtual void handleClipboardAnnounce(bool available) override;
     virtual void handleClipboardData(const char *data) override;
-
-    virtual void getUserPasswd(bool secure, std::string* user, std::string* password) override;
-    virtual bool showMsgBox(int flags, const char* title, const char* text) override;
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -102,7 +101,7 @@ private:
     
     int IceInit();
     int SSHInit();
-    
+
 };
 
 #endif // CCONNECTVNC_H
