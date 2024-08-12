@@ -66,9 +66,9 @@ public:
     CParameterNet m_Net;
     CParameterProxy m_Proxy;
 
-    virtual bool GetOnlyView() const;
-    virtual void SetOnlyView(bool only);
-
+    bool GetOnlyView() const;
+    void SetOnlyView(bool only);
+    
     const bool GetLocalCursor() const;
     void SetLocalCursor(bool cursor);
     
@@ -77,6 +77,12 @@ public:
     
     virtual const bool GetClipboard() const;
     virtual void SetClipboard(bool c);
+    
+    bool GetSupportsDesktopResize() const;
+    void SetSupportsDesktopResize(bool newSupportsDesktopResize);
+    
+    bool GetLedState() const;
+    void SetLedState(bool state);
 
 Q_SIGNALS:
     void sigNameChanged(const QString &name = QString());
@@ -86,14 +92,16 @@ private:
     int Init();
 
     QString m_szName;
+    
     QString m_szServerName;
     bool m_bShowServerName;
-
     bool m_bOnlyView;
     bool m_bLocalCursor;
     bool m_bCursorPosition;
     bool m_bClipboard;
-    
+    bool m_bSupportsDesktopResize;
+    bool m_bLedState;
+
     // CParameter interface
 protected:
     virtual int OnLoad(QSettings &set) override;

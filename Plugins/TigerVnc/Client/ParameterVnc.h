@@ -7,6 +7,7 @@
 class CParameterVnc : public CParameterBase
 {
     Q_OBJECT
+
 public:
     explicit CParameterVnc(QObject *parent = nullptr);
     
@@ -28,16 +29,10 @@ public:
 
     bool GetShared() const;
     void SetShared(bool newShared);
-    
+
     bool GetBufferEndRefresh() const;
     void SetBufferEndRefresh(bool newBufferEndRefresh);
-    
-    bool GetSupportsDesktopResize() const;
-    void SetSupportsDesktopResize(bool newSupportsDesktopResize);
-    
-    bool GetLedState() const;
-    void SetLedState(bool state);
-    
+
     bool GetAutoSelect() const;
     void SetAutoSelect(bool newAutoSelect);
     
@@ -104,8 +99,6 @@ private:
     
     bool m_bShared;
     bool m_bBufferEndRefresh;
-    bool m_bSupportsDesktopResize;
-    bool m_bLedState;
 
     bool m_bAutoSelect;
     COLOR_LEVEL m_nColorLevel;

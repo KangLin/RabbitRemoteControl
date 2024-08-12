@@ -16,18 +16,16 @@ CParameterVnc::CParameterVnc(QObject *parent)
     user.SetTypeName(CParameterUser::TYPE::OnlyPassword, tr("Standard VNC authentication (insecure without encryption)"));
     user.SetTypeName(CParameterUser::TYPE::UserPassword, tr("Username and password (insecure without encryption)"));
     
-    SetShared(true);
-    SetBufferEndRefresh(false);
-    SetSupportsDesktopResize(true);
-    SetLedState(true);
-
-    SetAutoSelect(true);
-    SetColorLevel(CParameterVnc::Full);
-    SetPreferredEncoding(rfb::encodingTight);
-    SetEnableCompressLevel(true);
-    SetCompressLevel(2);
-    SetNoJpeg(false);
-    SetQualityLevel(8);
+    m_bShared = true;
+    m_bBufferEndRefresh = false;
+    
+    m_bAutoSelect = true;
+    m_nColorLevel = CParameterVnc::Full;
+    m_nPreferredEncoding = rfb::encodingTight;
+    m_bCompressLevel = true;
+    m_nCompressLevel = 2;
+    m_bNoJpeg = false;
+    m_nQualityLevel = 8;
     
     SetIce(false);
     SetSignalPort(5222);
@@ -45,9 +43,6 @@ int CParameterVnc::OnLoad(QSettings &set)
     SetShared(set.value("Shared", GetShared()).toBool());
     SetBufferEndRefresh(set.value("BufferEndRefresh",
                                   GetBufferEndRefresh()).toBool());
-    SetSupportsDesktopResize(set.value("SupportsDesktopResize",
-                                       GetSupportsDesktopResize()).toBool());
-    SetLedState(set.value("LedState", GetLedState()).toBool());
     
     SetAutoSelect(set.value("AutoSelect", GetAutoSelect()).toBool());
     SetColorLevel(static_cast<COLOR_LEVEL>(set.value("ColorLevel",
@@ -101,8 +96,6 @@ int CParameterVnc::OnSave(QSettings &set)
     set.beginGroup("VNC");
     set.setValue("Shared", GetShared());
     set.setValue("BufferEndRefresh", GetBufferEndRefresh());
-    set.setValue("SupportsDesktopResize", GetSupportsDesktopResize());
-    set.setValue("LedState", GetLedState());
     set.setValue("AutoSelect", GetAutoSelect());
     set.setValue("ColorLevel", GetColorLevel());
     set.setValue("Encoding", GetPreferredEncoding());
@@ -171,32 +164,6 @@ void CParameterVnc::SetBufferEndRefresh(bool newBufferEndRefresh)
     if(m_bBufferEndRefresh == newBufferEndRefresh)
         return;
     m_bBufferEndRefresh = newBufferEndRefresh;
-    SetModified(true);
-}
-
-bool CParameterVnc::GetSupportsDesktopResize() const
-{
-    return m_bSupportsDesktopResize;
-}
-
-void CParameterVnc::SetSupportsDesktopResize(bool newSupportsDesktopResize)
-{
-    if(m_bSupportsDesktopResize == newSupportsDesktopResize)
-        return;
-    m_bSupportsDesktopResize = newSupportsDesktopResize;
-    SetModified(true);
-}
-
-bool CParameterVnc::GetLedState() const
-{
-    return m_bLedState;
-}
-
-void CParameterVnc::SetLedState(bool state)
-{
-    if(m_bLedState == state)
-        return;
-    m_bLedState = state;
     SetModified(true);
 }
 

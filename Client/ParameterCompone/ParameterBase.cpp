@@ -21,8 +21,10 @@ int CParameterBase::Init()
     m_bShowServerName = true;
     m_bOnlyView = false;
     m_bLocalCursor = true;
-    m_bClipboard = true;
     m_bCursorPosition = true;
+    m_bClipboard = true;
+    m_bSupportsDesktopResize = true;
+    m_bLedState = true;
     return 0;
 }
 
@@ -35,6 +37,9 @@ int CParameterBase::OnLoad(QSettings &set)
     SetLocalCursor(set.value("LocalCursor", GetLocalCursor()).toBool());
     SetCursorPosition(set.value("CursorPosition", GetCursorPosition()).toBool());
     SetClipboard(set.value("Clipboard", GetClipboard()).toBool());
+    SetSupportsDesktopResize(set.value("SupportsDesktopResize",
+                                       GetSupportsDesktopResize()).toBool());
+    SetLedState(set.value("LedState", GetLedState()).toBool());
     return 0;
 }
 
@@ -47,6 +52,8 @@ int CParameterBase::OnSave(QSettings &set)
     set.setValue("LocalCursor", GetLocalCursor());
     set.setValue("CursorPosition", GetCursorPosition());
     set.setValue("Clipboard", GetClipboard());
+    set.setValue("SupportsDesktopResize", GetSupportsDesktopResize());
+    set.setValue("LedState", GetLedState());
     return 0;
 }
 
@@ -140,5 +147,31 @@ void CParameterBase::SetClipboard(bool c)
     if(m_bClipboard == c)
         return;
     m_bClipboard = c;
+    SetModified(true);
+}
+
+bool CParameterBase::GetSupportsDesktopResize() const
+{
+    return m_bSupportsDesktopResize;
+}
+
+void CParameterBase::SetSupportsDesktopResize(bool newSupportsDesktopResize)
+{
+    if(m_bSupportsDesktopResize == newSupportsDesktopResize)
+        return;
+    m_bSupportsDesktopResize = newSupportsDesktopResize;
+    SetModified(true);
+}
+
+bool CParameterBase::GetLedState() const
+{
+    return m_bLedState;
+}
+
+void CParameterBase::SetLedState(bool state)
+{
+    if(m_bLedState == state)
+        return;
+    m_bLedState = state;
     SetModified(true);
 }
