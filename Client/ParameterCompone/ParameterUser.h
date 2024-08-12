@@ -29,6 +29,12 @@ public:
         None,
         OnlyPassword,
         UserPassword,
+        /* X509.
+         * See: 
+         * - [rfc5280](https://www.rfc-editor.org/rfc/rfc5280)
+         * - [X.509 证书](https://learn.microsoft.com/zh-cn/azure/iot-hub/reference-x509-certificates)
+         * - [X.509 公钥证书的格式标准](https://linianhui.github.io/information-security/05-x.509/)
+         */
         PublicKey
     };
     Q_ENUM(TYPE)
