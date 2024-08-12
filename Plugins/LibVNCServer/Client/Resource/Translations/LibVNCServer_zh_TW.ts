@@ -31,10 +31,6 @@
         <translation>失敗</translation>
     </message>
     <message>
-        <source>The proxy server is empty, please input it</source>
-        <translation type="vanished">代理服務器為空，請輸入</translation>
-    </message>
-    <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="170"/>
         <source>Connect to %1:%2 fail</source>
         <translation>連接到 %1:%2 失敗</translation>

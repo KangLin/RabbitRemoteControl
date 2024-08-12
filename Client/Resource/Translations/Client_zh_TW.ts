@@ -152,7 +152,7 @@
     <message>
         <location filename="../../ParameterCompone/ParameterNet.cpp" line="9"/>
         <source>The host is empty. please set it</source>
-        <translation type="unfinished">主機是空，請設置它。</translation>
+        <translation>主機是空，請設置它。</translation>
     </message>
 </context>
 <context>
@@ -182,42 +182,38 @@
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
-    <message>
-        <source>The host is empty. please set it</source>
-        <translation type="vanished">主機是空，請設置它。</translation>
-    </message>
 </context>
 <context>
     <name>CParameterProxy</name>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="10"/>
         <source>None</source>
-        <translation type="unfinished">無</translation>
+        <translation>無</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="11"/>
         <source>Default</source>
-        <translation type="unfinished">默認</translation>
+        <translation>默認</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="12"/>
         <source>Sockes V5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="13"/>
         <source>SSH tunnel</source>
-        <translation type="unfinished"></translation>
+        <translation>SSH 隧道</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="21"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
-        <translation type="unfinished"></translation>
+        <translation>在&quot;代理-&gt;SockesV5&quot;中主機為空。請設置。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="28"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
-        <translation type="unfinished"></translation>
+        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機為空。請設置。</translation>
     </message>
 </context>
 <context>
