@@ -29,13 +29,19 @@ public:
         None,
         OnlyPassword,
         UserPassword,
-        /* X509.
-         * See: 
+        PublicKey,
+        /*!
+         *  Internet X.509 Public Key Infrastructure Certificate
+             and Certificate Revocation List (CRL) Profile
+         * \see
          * - [rfc5280](https://www.rfc-editor.org/rfc/rfc5280)
          * - [X.509 证书](https://learn.microsoft.com/zh-cn/azure/iot-hub/reference-x509-certificates)
          * - [X.509 公钥证书的格式标准](https://linianhui.github.io/information-security/05-x.509/)
          */
-        PublicKey
+        OnlyPasswordX509None,
+        OnlyPasswordX509,
+        UserPasswordX509None,
+        UserPasswordX509
     };
     Q_ENUM(TYPE)
     QList<TYPE> GetType() const;
@@ -71,6 +77,12 @@ public:
     bool GetSavePassphrase() const;
     int SetSavePassphrase(bool bSave);
     
+    QString GetCAFile() const;
+    int SetCAFile(const QString& ca);
+    
+    QString GetCRLFile() const;
+    int SetCRLFile(const QString& crl);
+    
     int SetTypeName(TYPE t, const QString& szName);
     QString ConvertTypeToName(TYPE t);
 
@@ -97,6 +109,9 @@ private:
     QString m_szPrivateKeyFile;
     QString m_szPassphrase;
     bool m_bSavePassphrase;
+    
+    QString m_szCAFile;
+    QString m_szCRLFile;
     
     QMap<TYPE, QString> m_TypeName;
 };

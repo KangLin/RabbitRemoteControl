@@ -42,6 +42,10 @@ private slots:
     
     void on_cbSystemFile_stateChanged(int arg1);
     
+    void on_pbBrowseCAFile_clicked();
+    
+    void on_pbBrowseCRLFile_clicked();
+    
 private:
     Ui::CParameterUserUI *ui;
     CParameterUser* m_pUser;

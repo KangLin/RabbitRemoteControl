@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>239</height>
+    <height>291</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,12 +32,6 @@
    <string/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
@@ -268,6 +262,48 @@
        </property>
        <property name="checkable">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="7" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <widget class="QLabel" name="lbCAFile">
+       <property name="text">
+        <string>CA file:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="leCAFile"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbBrowseCAFile">
+       <property name="text">
+        <string>Browse</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="8" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <widget class="QLabel" name="lbCRLFile">
+       <property name="text">
+        <string>CRL file:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="leCRLFile"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbBrowseCRLFile">
+       <property name="text">
+        <string>Browse</string>
        </property>
       </widget>
      </item>

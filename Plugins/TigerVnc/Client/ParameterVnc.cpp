@@ -9,12 +9,21 @@ CParameterVnc::CParameterVnc(QObject *parent)
     //TODO: add authentication
     auto &user = m_Net.m_User;
     user.SetType(QList<CParameterUser::TYPE>()
-        << CParameterUser::TYPE::None
-        << CParameterUser::TYPE::OnlyPassword
-        << CParameterUser::TYPE::UserPassword);
+                 << CParameterUser::TYPE::None
+                 << CParameterUser::TYPE::OnlyPassword
+                 << CParameterUser::TYPE::OnlyPasswordX509None
+                 << CParameterUser::TYPE::OnlyPasswordX509
+                 << CParameterUser::TYPE::UserPassword
+                 << CParameterUser::TYPE::UserPasswordX509None
+                 << CParameterUser::TYPE::UserPasswordX509
+                 );
     user.SetUsedType(CParameterUser::TYPE::OnlyPassword);
     user.SetTypeName(CParameterUser::TYPE::OnlyPassword, tr("Standard VNC authentication (insecure without encryption)"));
     user.SetTypeName(CParameterUser::TYPE::UserPassword, tr("Username and password (insecure without encryption)"));
+    user.SetTypeName(CParameterUser::TYPE::OnlyPasswordX509, tr("Standard VNC authentication (secure with x509 encryption)"));
+    user.SetTypeName(CParameterUser::TYPE::OnlyPasswordX509None, tr("Standard VNC authentication (secure with x509 none encryption)"));
+    user.SetTypeName(CParameterUser::TYPE::UserPasswordX509, tr("Username and password (secure with x509 encryption)"));
+    user.SetTypeName(CParameterUser::TYPE::UserPasswordX509None, tr("Username and password (secure with x509 none encryption)"));
     
     m_bShared = true;
     m_bBufferEndRefresh = false;

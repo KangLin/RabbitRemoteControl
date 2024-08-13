@@ -141,6 +141,19 @@ int CConnectVnc::SetPara()
         break;
     case CParameterUser::TYPE::UserPassword:
         sec.push_back(rfb::secTypePlain);
+        break;
+    case CParameterUser::TYPE::OnlyPasswordX509None:
+        sec.push_back(rfb::secTypeTLSVnc);
+        break;
+    case CParameterUser::TYPE::OnlyPasswordX509:
+        sec.push_back(rfb::secTypeX509Vnc);
+        break;
+    case CParameterUser::TYPE::UserPasswordX509None:
+        sec.push_back(rfb::secTypeTLSPlain);
+        break;
+    case CParameterUser::TYPE::UserPasswordX509:
+        sec.push_back(rfb::secTypeX509Plain);
+        break;
     //TODO: add authentication
     }
     //*
@@ -661,6 +674,11 @@ void CConnectVnc::getUserPasswd(bool secure, std::string *user, std::string *pas
 
 int CConnectVnc::getX509File(std::string *ca, std::string *crl)
 {
+    auto &user = m_pPara->m_Net.m_User;
+    if(ca)
+        *ca = user.GetCAFile().toStdString().c_str();
+    if(crl)
+        *crl = user.GetCRLFile().toStdString().c_str();
     return 0;
 }
 
@@ -668,10 +686,20 @@ bool CConnectVnc::showMsgBox(rfb::MsgBoxFlags flags, const char *title, const ch
 {
     qDebug(log) << title << text;
     QMessageBox::StandardButton nRet = QMessageBox::No;
+    QMessageBox::StandardButtons fgBtn = 0;
     bool bCheckBox = 0;
+    if((int)flags & (int)rfb::MsgBoxFlags::M_OK)
+        fgBtn |= QMessageBox::Ok;
+        
+    if((int)flags & (int)rfb::MsgBoxFlags::M_OKCANCEL)
+        fgBtn |= QMessageBox::Ok | QMessageBox::Cancel;
+    if((int)flags & (int)rfb::MsgBoxFlags::M_YESNO)
+        fgBtn |= QMessageBox::Yes | QMessageBox::No;
+
     emit sigBlockShowMessageBox(QString(title), QString(text),
-                             QMessageBox::Ok | QMessageBox::No, nRet, bCheckBox);
-    if(QMessageBox::Ok == nRet)
+                             fgBtn, nRet, bCheckBox);
+    if(QMessageBox::Ok == nRet
+        || QMessageBox::Yes == nRet)
         return true;
     return false;
 }

@@ -14,9 +14,14 @@ CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPre
 {
     SetUser(RabbitCommon::CTools::GetCurrentUser());
     m_TypeName = {{TYPE::None, tr("None")},
-                  {TYPE::OnlyPassword, tr("Password")},
-                  {TYPE::UserPassword, tr("Username and password")},
-                  {TYPE::PublicKey, tr("Public key")}};
+        {TYPE::OnlyPassword, tr("Password")},
+        {TYPE::UserPassword, tr("Username and password")},
+        {TYPE::PublicKey, tr("Public key")},
+        {TYPE::OnlyPasswordX509None, tr("Password with X509 none")},
+        {TYPE::OnlyPasswordX509, tr("Password with X509")},
+        {TYPE::UserPasswordX509None, tr("Username and password with X509 none")},
+        {TYPE::UserPasswordX509, tr("Username and password with X509")}
+    };
 }
 
 int CParameterUser::OnLoad(QSettings &set)
@@ -60,6 +65,10 @@ int CParameterUser::OnLoad(QSettings &set)
         if(!LoadPassword(tr("Passphrase"), "Passphrase", szPassword, set))
             SetPassphrase(szPassword);
     }
+    
+    SetCAFile(set.value("CA", GetCAFile()).toString());
+    SetCRLFile(set.value("CRL", GetCRLFile()).toString());
+    
     set.endGroup();
     
     set.endGroup();
@@ -91,6 +100,10 @@ int CParameterUser::OnSave(QSettings &set)
     set.setValue("PrivateKey", GetPrivateKeyFile());
     set.setValue("SavePassphrase", GetSavePassphrase());
     SavePassword("Passphrase", GetPassphrase(), set, GetSavePassphrase());
+    
+    set.setValue("CA", GetCAFile());
+    set.setValue("CRL", GetCRLFile());
+    
     set.endGroup();
     
     set.endGroup();
@@ -252,6 +265,34 @@ int CParameterUser::SetPrivateKeyFile(const QString szFile)
     if(m_szPrivateKeyFile == szFile)
         return 0;
     m_szPrivateKeyFile = szFile;
+    SetModified(true);
+    return 0;
+}
+
+QString CParameterUser::GetCAFile() const
+{
+    return m_szCAFile;
+}
+
+int CParameterUser::SetCAFile(const QString &ca)
+{
+    if(m_szCAFile == ca)
+        return 0;
+    m_szCAFile = ca;
+    SetModified(true);
+    return 0;
+}
+
+QString CParameterUser::GetCRLFile() const
+{
+    return m_szCRLFile;
+}
+
+int CParameterUser::SetCRLFile(const QString &crl)
+{
+    if(m_szCRLFile == crl)
+        return 0;
+    m_szCRLFile = crl;
     SetModified(true);
     return 0;
 }

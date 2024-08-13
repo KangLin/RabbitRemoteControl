@@ -34,26 +34,7 @@ int CParameterUserUI::SetParameter(CParameterUser *pParameter)
     ui->leUser->setText(m_pUser->GetUser());
     
     for(auto t: m_pUser->GetType()) {
-        if(CParameterUser::TYPE::None == t) {
-            ui->cbType->addItem(
-                m_pUser->ConvertTypeToName(CParameterUser::TYPE::None),
-                (int)CParameterUser::TYPE::None);
-        }
-        if(CParameterUser::TYPE::OnlyPassword == t) {
-            ui->cbType->addItem(
-                m_pUser->ConvertTypeToName(CParameterUser::TYPE::OnlyPassword),
-                (int)CParameterUser::TYPE::OnlyPassword);
-        }
-        if(CParameterUser::TYPE::UserPassword == t) {
-            ui->cbType->addItem(
-                m_pUser->ConvertTypeToName(CParameterUser::TYPE::UserPassword),
-                (int)CParameterUser::TYPE::UserPassword);
-        }
-        if(CParameterUser::TYPE::PublicKey == t) {
-            ui->cbType->addItem(
-                m_pUser->ConvertTypeToName(CParameterUser::TYPE::PublicKey),
-                (int)CParameterUser::TYPE::PublicKey);
-        }
+        ui->cbType->addItem(m_pUser->ConvertTypeToName(t), (int)t);
     }
     
     int index = ui->cbType->findData((int)m_pUser->GetUsedType());
@@ -131,7 +112,10 @@ void CParameterUserUI::on_pbSave_clicked()
 
 void CParameterUserUI::on_pbBrowsePublicFile_clicked()
 {
-    QString dir("~/.ssh");
+    QString dir;
+#if defined(Q_OS_LINUX)
+    dir = "~/.ssh";
+#endif
     QString szFile = QFileDialog::getOpenFileName(this, tr("Open public key file"), dir);
     if(szFile.isEmpty())
         return;
@@ -140,7 +124,10 @@ void CParameterUserUI::on_pbBrowsePublicFile_clicked()
 
 void CParameterUserUI::on_pbBrowsePrivateFile_clicked()
 {
-    QString dir("~/.ssh");
+    QString dir;
+#if defined(Q_OS_LINUX)
+    dir = "~/.ssh";
+#endif
     QString szFile = QFileDialog::getOpenFileName(this, tr("Open public key file"), dir);
     if(szFile.isEmpty())
         return;
@@ -154,32 +141,44 @@ void CParameterUserUI::on_cbType_currentIndexChanged(int index)
     
     CParameterUser::TYPE type = static_cast<CParameterUser::TYPE>(ui->cbType->currentData().toInt());
     bool bUser = false;
-    bUser = !((CParameterUser::TYPE::OnlyPassword == type)
-              ||(CParameterUser::TYPE::None == type));
+    bUser = !(CParameterUser::TYPE::OnlyPassword == type
+              || CParameterUser::TYPE::None == type
+              || CParameterUser::TYPE::OnlyPasswordX509 == type
+              || CParameterUser::TYPE::OnlyPasswordX509None == type);
     ui->lbUser->setVisible(bUser);
     ui->leUser->setVisible(bUser);
     
     bool bPassword = false;
-    bPassword = (CParameterUser::TYPE::UserPassword == type)
-                    || (CParameterUser::TYPE::OnlyPassword == type);
+    bPassword = !(CParameterUser::TYPE::None == type
+                  || CParameterUser::TYPE::PublicKey == type);
     ui->lbPassword->setVisible(bPassword);
     ui->lePassword->setVisible(bPassword);
     ui->pbSave->setVisible(bPassword);
     ui->pbShow->setVisible(bPassword);
     
-    bool bpublicKey = false;
-    bpublicKey = CParameterUser::TYPE::PublicKey == type;
-    ui->lbPublicFile->setVisible(bpublicKey);
-    ui->lePublicFile->setVisible(bpublicKey);
-    ui->pbBrowsePublicFile->setVisible(bpublicKey);
-    ui->lbPrivateFile->setVisible(bpublicKey);
-    ui->lePrivateFile->setVisible(bpublicKey);
-    ui->pbBrowsePrivateFile->setVisible(bpublicKey);
-    ui->lbPassphrase->setVisible(bpublicKey);
-    ui->lePassphrase->setVisible(bpublicKey);
-    ui->pbShowPassphrase->setVisible(bpublicKey);
-    ui->pbSavePassphrase->setVisible(bpublicKey);
-    ui->cbSystemFile->setVisible(bpublicKey);
+    bool bPublicKey = false;
+    bPublicKey = CParameterUser::TYPE::PublicKey == type;
+    ui->lbPublicFile->setVisible(bPublicKey);
+    ui->lePublicFile->setVisible(bPublicKey);
+    ui->pbBrowsePublicFile->setVisible(bPublicKey);
+    ui->lbPrivateFile->setVisible(bPublicKey);
+    ui->lePrivateFile->setVisible(bPublicKey);
+    ui->pbBrowsePrivateFile->setVisible(bPublicKey);
+    ui->lbPassphrase->setVisible(bPublicKey);
+    ui->lePassphrase->setVisible(bPublicKey);
+    ui->pbShowPassphrase->setVisible(bPublicKey);
+    ui->pbSavePassphrase->setVisible(bPublicKey);
+    ui->cbSystemFile->setVisible(bPublicKey);
+    
+    bool bCA = false;
+    bCA = CParameterUser::TYPE::OnlyPasswordX509 == type
+          || CParameterUser::TYPE::UserPasswordX509 == type;
+    ui->lbCAFile->setVisible(bCA);
+    ui->leCAFile->setVisible(bCA);
+    ui->pbBrowseCAFile->setVisible(bCA);
+    ui->lbCRLFile->setVisible(bCA);
+    ui->leCRLFile->setVisible(bCA);
+    ui->pbBrowseCRLFile->setVisible(bCA);
 }
 
 void CParameterUserUI::on_pbShowPassphrase_clicked()
@@ -218,4 +217,28 @@ void CParameterUserUI::on_cbSystemFile_stateChanged(int arg1)
     ui->pbBrowsePublicFile->setEnabled(!ui->cbSystemFile->isChecked());
     ui->lePrivateFile->setEnabled(!ui->cbSystemFile->isChecked());
     ui->pbBrowsePrivateFile->setEnabled(!ui->cbSystemFile->isChecked());
+}
+
+void CParameterUserUI::on_pbBrowseCAFile_clicked()
+{
+    QString dir;
+#if defined(Q_OS_LINUX)
+    dir = "~/.vnc";
+#endif
+    QString szFile = QFileDialog::getOpenFileName(this, tr("Open X509 certificate authentication file"), dir);
+    if(szFile.isEmpty())
+        return;
+    ui->leCAFile->setText(szFile);
+}
+
+void CParameterUserUI::on_pbBrowseCRLFile_clicked()
+{
+    QString dir;
+#if defined(Q_OS_LINUX)
+    dir = "~/.vnc";
+#endif
+    QString szFile = QFileDialog::getOpenFileName(this, tr("Open X509 Certificate Revocation List file"), dir);
+    if(szFile.isEmpty())
+        return;
+    ui->leCRLFile->setText(szFile);
 }
