@@ -1552,17 +1552,17 @@ BOOL CConnectFreeRDP::cb_keyboard_set_indicators(rdpContext *context, UINT16 led
     qDebug(log) << "CConnectFreeRDP::cb_keyboard_set_indicators";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
-
-    int state = Qt::Key_unknown;
+    
+    int state = CFrmViewer::LED_STATE::Unknown;
 
     if (led_flags & KBD_SYNC_NUM_LOCK)
-        state |= Qt::Key_NumLock;
+        state |= CFrmViewer::LED_STATE::NumLock;
     if (led_flags & KBD_SYNC_CAPS_LOCK)
-        state |= Qt::Key_CapsLock;
+        state |= CFrmViewer::LED_STATE::CapsLock;
     if (led_flags & KBD_SYNC_SCROLL_LOCK)
-        state |= Qt::Key_ScrollLock;
-
-    //TODO: set keyboard indicators
+        state |= CFrmViewer::LED_STATE::ScrollLock;
+    
+    emit pThis->sigUpdateLedState(state);
 
     return TRUE;
 }

@@ -8,9 +8,13 @@
 #include <QCursor>
 #include <QLoggingCategory>
 
-#if ! (defined(Q_OS_ANDROID) || defined(Q_OS_WIN) || defined(Q_OS_APPLE))
-#include <X11/XKBlib.h>
-#include <X11/keysymdef.h>
+#if defined(Q_OS_WIN)
+    #include <Windows.h>
+#elif ! (defined(Q_OS_ANDROID) || defined(Q_OS_WIN) || defined(Q_OS_APPLE))
+    #include <X11/Xlib.h>
+    #include <X11/XKBlib.h>
+    #define XK_MISCELLANY
+    #include <X11/keysymdef.h>
 #endif
 
 #undef KeyPress
@@ -365,23 +369,62 @@ void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
     cursor().setPos(pos);
 }
 
-void CFrmViewer::slotUpdateLedState(unsigned int state)
+#if ! (defined(WIN32) || defined(__APPLE__))
+unsigned int getModifierMask(unsigned int keysym)
 {
-    enum LED_STATE{
-        Unknown = -1,
-        ScrollLock = 1,
-        NumLock = 1 << 1,
-        CapsLock = 1 << 2,
-    };
+    XkbDescPtr xkb;
+    unsigned int mask, keycode;
+    XkbAction *act;
     
+    mask = 0;
+    Display *dpy = XOpenDisplay(0);
+    xkb = XkbGetMap(dpy, XkbAllComponentsMask, XkbUseCoreKbd);
+    if (xkb == nullptr)
+        return 0;
+    
+    for (keycode = xkb->min_key_code; keycode <= xkb->max_key_code; keycode++) {
+        unsigned int state_out;
+        KeySym ks;
+        
+        XkbTranslateKeyCode(xkb, keycode, 0, &state_out, &ks);
+        if (ks == NoSymbol)
+            continue;
+        
+        if (ks == keysym)
+            break;
+    }
+    
+    // KeySym not mapped?
+    if (keycode > xkb->max_key_code)
+        goto out;
+    
+    act = XkbKeyAction(xkb, keycode, 0);
+    if (act == nullptr)
+        goto out;
+    if (act->type != XkbSA_LockMods)
+        goto out;
+    
+    if (act->mods.flags & XkbSA_UseModMapMods)
+        mask = xkb->map->modmap[keycode];
+    else
+        mask = act->mods.mask;
+
+out:
+    XkbFreeKeyboard(xkb, XkbAllComponentsMask, True);
+    
+    return mask;
+}
+#endif
+
+void CFrmViewer::slotUpdateLedState(unsigned int state)
+{    
     qDebug(log, "Got server LED state: 0x%08x", state);
       
     if (!hasFocus())
         return;
 
-    //TODO: implement led
+    //TODO: test led
 
-/*
 #if defined(WIN32)
     INPUT input[6];
     UINT count;
@@ -390,28 +433,28 @@ void CFrmViewer::slotUpdateLedState(unsigned int state)
     memset(input, 0, sizeof(input));
     count = 0;
     
-    if (!!(state & ledCapsLock) != !!(GetKeyState(VK_CAPITAL) & 0x1)) {
+    if (!!(state & CapsLock) != !!(GetKeyState(VK_CAPITAL) & 0x1)) {
         input[count].type = input[count+1].type = INPUT_KEYBOARD;
         input[count].ki.wVk = input[count+1].ki.wVk = VK_CAPITAL;
-        input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
+        //input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
         input[count].ki.dwFlags = 0;
         input[count+1].ki.dwFlags = KEYEVENTF_KEYUP;
         count += 2;
     }
     
-    if (!!(state & ledNumLock) != !!(GetKeyState(VK_NUMLOCK) & 0x1)) {
+    if (!!(state & NumLock) != !!(GetKeyState(VK_NUMLOCK) & 0x1)) {
         input[count].type = input[count+1].type = INPUT_KEYBOARD;
         input[count].ki.wVk = input[count+1].ki.wVk = VK_NUMLOCK;
-        input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
+        //input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
         input[count].ki.dwFlags = KEYEVENTF_EXTENDEDKEY;
         input[count+1].ki.dwFlags = KEYEVENTF_KEYUP | KEYEVENTF_EXTENDEDKEY;
         count += 2;
     }
     
-    if (!!(state & ledScrollLock) != !!(GetKeyState(VK_SCROLL) & 0x1)) {
+    if (!!(state & ScrollLock) != !!(GetKeyState(VK_SCROLL) & 0x1)) {
         input[count].type = input[count+1].type = INPUT_KEYBOARD;
         input[count].ki.wVk = input[count+1].ki.wVk = VK_SCROLL;
-        input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
+        //input[count].ki.wScan = input[count+1].ki.wScan = SCAN_FAKE;
         input[count].ki.dwFlags = 0;
         input[count+1].ki.dwFlags = KEYEVENTF_KEYUP;
         count += 2;
@@ -424,29 +467,38 @@ void CFrmViewer::slotUpdateLedState(unsigned int state)
     if (ret < count)
         qCritical(log) << "Failed to update keyboard LED state:" << GetLastError();
 #elif defined(__APPLE__)
-    int ret;
-    
-    ret = cocoa_set_caps_lock_state(state & ledCapsLock);
-    if (ret != 0) {
-        qCritical(log) << "Failed to update keyboard LED state:" << ret;
-        return;
-    }
-    
-    ret = cocoa_set_num_lock_state(state & ledNumLock);
-    if (ret != 0) {
-        qCritical(log) << "Failed to update keyboard LED state:" << ret;
-        return;
-    }
 
 // No support for Scroll Lock //
 
-#else
-    ret = XkbLockModifiers(fl_display, XkbUseCoreKbd, affect, values);
+#elif defined(Q_OS_LINUX)
+    unsigned int affect, values;
+    unsigned int mask;
+    
+    Bool ret;
+    
+    affect = values = 0;
+    
+    affect |= LockMask;
+    if (state & CapsLock)
+        values |= LockMask;
+    
+    mask = getModifierMask(XK_Num_Lock);
+    affect |= mask;
+    if (state & NumLock)
+        values |= mask;
+    
+    mask = getModifierMask(XK_Scroll_Lock);
+    affect |= mask;
+    if (state & ScrollLock)
+        values |= mask;
+    Display *dpy = XOpenDisplay(0);
+    ret = XkbLockModifiers(dpy, XkbUseCoreKbd, affect, values);
     if (!ret)
         qCritical(log) << tr("Failed to update keyboard LED state");
-
+    XFlush(dpy);
+    XCloseDisplay(dpy);
 #endif
-*/
+
 }
 
 int CFrmViewer::Load(QSettings &set)

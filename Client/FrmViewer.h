@@ -89,7 +89,15 @@ public:
     virtual int Save(QSettings &set);
 
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
-
+    
+    enum LED_STATE{
+        Unknown = -1,
+        ScrollLock = 1,
+        NumLock = 1 << 1,
+        CapsLock = 1 << 2,
+    };
+    Q_ENUMS(LED_STATE)
+    
 public Q_SLOTS:
     /*!
      * \brief Update desktop size
