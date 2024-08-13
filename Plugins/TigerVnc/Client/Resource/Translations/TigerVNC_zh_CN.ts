@@ -4,47 +4,47 @@
 <context>
     <name>CConnectVnc</name>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="287"/>
+        <location filename="../../ConnectVnc.cpp" line="297"/>
         <source>The proxy server is empty, please input it</source>
         <translation>代理服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="289"/>
-        <location filename="../../ConnectVnc.cpp" line="309"/>
-        <location filename="../../ConnectVnc.cpp" line="375"/>
-        <location filename="../../ConnectVnc.cpp" line="513"/>
-        <location filename="../../ConnectVnc.cpp" line="528"/>
+        <location filename="../../ConnectVnc.cpp" line="299"/>
+        <location filename="../../ConnectVnc.cpp" line="319"/>
+        <location filename="../../ConnectVnc.cpp" line="385"/>
+        <location filename="../../ConnectVnc.cpp" line="523"/>
+        <location filename="../../ConnectVnc.cpp" line="538"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="307"/>
+        <location filename="../../ConnectVnc.cpp" line="317"/>
         <source>The server is empty, please input it</source>
         <translation>服务器为空，请输入</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="366"/>
+        <location filename="../../ConnectVnc.cpp" line="376"/>
         <source>Failed to open SSH tunnel:</source>
         <translation>打开 SSH 隧道失败：</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="507"/>
+        <location filename="../../ConnectVnc.cpp" line="517"/>
         <source>Logon to </source>
         <translation>登录到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="511"/>
-        <location filename="../../ConnectVnc.cpp" line="524"/>
+        <location filename="../../ConnectVnc.cpp" line="521"/>
+        <location filename="../../ConnectVnc.cpp" line="534"/>
         <source> fail.</source>
         <translation> 失败。</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="512"/>
+        <location filename="../../ConnectVnc.cpp" line="522"/>
         <source>Please check that the username and password are correct.</source>
         <translation>检查用户名和密码是否正确。</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="520"/>
+        <location filename="../../ConnectVnc.cpp" line="530"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>
@@ -286,22 +286,42 @@
 <context>
     <name>CParameterVnc</name>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="16"/>
+        <location filename="../../ParameterVnc.cpp" line="21"/>
         <source>Standard VNC authentication (insecure without encryption)</source>
         <translation>标准VNC验证（没有加密，非安全的）</translation>
     </message>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="17"/>
+        <location filename="../../ParameterVnc.cpp" line="22"/>
         <source>Username and password (insecure without encryption)</source>
         <translation>用户名和密码（没有加密，非安全的）</translation>
     </message>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="73"/>
+        <location filename="../../ParameterVnc.cpp" line="23"/>
+        <source>Standard VNC authentication (secure with x509 encryption)</source>
+        <translation>标准VNC验证（X509 认证加密，安全的）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterVnc.cpp" line="24"/>
+        <source>Standard VNC authentication (secure with x509 none encryption)</source>
+        <translation>标准VNC验证（X509 匿名加密，安全的）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterVnc.cpp" line="25"/>
+        <source>Username and password (secure with x509 encryption)</source>
+        <translation>用户名和密码（X509 认证加密，安全的）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterVnc.cpp" line="26"/>
+        <source>Username and password (secure with x509 none encryption)</source>
+        <translation>用户名和密码（X509 匿名加密，安全的）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterVnc.cpp" line="77"/>
         <source>Ice signal password</source>
         <translation>Ice 信令密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterVnc.cpp" line="86"/>
+        <location filename="../../ParameterVnc.cpp" line="90"/>
         <source>Ice turn password</source>
         <translation>Turn 服务器密码</translation>
     </message>

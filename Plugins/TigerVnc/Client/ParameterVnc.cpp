@@ -24,7 +24,7 @@ CParameterVnc::CParameterVnc(QObject *parent)
     user.SetTypeName(CParameterUser::TYPE::OnlyPasswordX509None, tr("Standard VNC authentication (secure with x509 none encryption)"));
     user.SetTypeName(CParameterUser::TYPE::UserPasswordX509, tr("Username and password (secure with x509 encryption)"));
     user.SetTypeName(CParameterUser::TYPE::UserPasswordX509None, tr("Username and password (secure with x509 none encryption)"));
-    
+
     m_bShared = true;
     m_bBufferEndRefresh = false;
     

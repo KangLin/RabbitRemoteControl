@@ -253,7 +253,7 @@
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="46"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="51"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
@@ -268,7 +268,27 @@
         <translation>公鑰</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="60"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <source>Password with X509 none</source>
+        <translation>密碼（使用 X509 匿名認證加密）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
+        <source>Password with X509</source>
+        <translation>密碼（使用 X509 認證加密）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
+        <source>Username and password with X509 none</source>
+        <translation>用戶名和密碼（使用 X509 匿名認證加密）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
+        <source>Username and password with X509</source>
+        <translation>用戶名和密碼（使用 X509 認證加密）</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="65"/>
         <source>Passphrase</source>
         <translation>密碼</translation>
     </message>
@@ -281,88 +301,100 @@
         <translation>用戶</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="46"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="40"/>
         <source>Authentication type:</source>
         <translation>身份認證類型：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="234"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="228"/>
         <source>Passphrase:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="244"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="208"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="238"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="207"/>
         <source>Input passphrase</source>
         <translation>輸入密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="67"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="61"/>
         <source>User:</source>
         <translation>用戶：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="74"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="68"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="14"/>
         <source>Input user name</source>
         <translation>輸入用戶名：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="85"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="79"/>
         <source>Password:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="95"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="89"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="15"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="125"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="106"/>
         <source>Input password</source>
         <translation>輸入密碼</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="96"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="99"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="102"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="105"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="108"/>
         <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
         <translation>菜單: 工具→設置→客戶端→密碼-&gt;允許查看密碼</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="121"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="124"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="127"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="130"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="133"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="200"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="194"/>
         <source>Private file:</source>
         <translation>私鑰文件：</translation>
     </message>
     <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="275"/>
+        <source>CA file:</source>
+        <translation>驗證證書文件：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="296"/>
+        <source>CRL file:</source>
+        <translation>證書吊銷列表：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="167"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="170"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="173"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="176"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="179"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="182"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="201"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="204"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="207"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="210"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="213"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="216"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
         <translation>公鑰和私鑰文件都為空，用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="189"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="223"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="183"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="217"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="306"/>
         <source>Browse</source>
         <translation>瀏覽</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="166"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="160"/>
         <source>Public file:</source>
         <translation>公鑰文件：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="154"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="148"/>
         <source>Use system public and private file</source>
         <translation>用系統公鑰和私鑰文件。</translation>
     </message>
@@ -382,20 +414,30 @@
         <translation>請輸入私鑰文件的密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="127"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="108"/>
         <source>Please checked save password to enable</source>
         <translation>請選中保存密碼按鈕</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="135"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="144"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="119"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="131"/>
         <source>Open public key file</source>
         <translation>打開公鑰文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="210"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="209"/>
         <source>Please checked save passphrase to enable</source>
         <translation>請選中保存密碼，允許輸入</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="228"/>
+        <source>Open X509 certificate authentication file</source>
+        <translation>打開 X509 認證證書文件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="240"/>
+        <source>Open X509 Certificate Revocation List file</source>
+        <translation>打開 X509 證書吊銷列表文件</translation>
     </message>
 </context>
 </TS>

@@ -686,7 +686,7 @@ bool CConnectVnc::showMsgBox(rfb::MsgBoxFlags flags, const char *title, const ch
 {
     qDebug(log) << title << text;
     QMessageBox::StandardButton nRet = QMessageBox::No;
-    QMessageBox::StandardButtons fgBtn = 0;
+    QMessageBox::StandardButtons fgBtn = QMessageBox::No;
     bool bCheckBox = 0;
     if((int)flags & (int)rfb::MsgBoxFlags::M_OK)
         fgBtn |= QMessageBox::Ok;
