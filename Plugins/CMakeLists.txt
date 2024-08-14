@@ -26,7 +26,7 @@ if(BUILD_TigerVNC)
     add_subdirectory(TigerVnc)
 endif()
 
-option(BUILD_LibVNCServer "Build LibVNCServer plugin" ON)
+option(BUILD_LibVNCServer "Build LibVNCServer plugin" OFF)
 if(BUILD_LibVNCServer)
     add_subdirectory(LibVNCServer)
 endif()

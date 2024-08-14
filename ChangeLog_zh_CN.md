@@ -10,7 +10,8 @@
     - 增加 CSSHTunnelThread and CChannelSSHTunnelForward
     - 增加 SSH 隧道
       - TigerVnc: 修改它增加后台线程处理 SSH 隧道。
-      - LibVNCServer
+      - LibVNCServer: 使用本地 SOCKET 转发使用 SSH 隧道。
+      - FreeRDP: 使用本地 SOCKET 转发使用 SSH 隧道。
   - 重构参数
     - 增加 CParameterBase
     - 增加 CParameterNet

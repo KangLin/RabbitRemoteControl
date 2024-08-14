@@ -225,7 +225,7 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
 
 void CFrmViewer::wheelEvent(QWheelEvent *event)
 {
-    QPointF pos = 
+    QPointF pos =
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
         event->position();
 #else
@@ -369,7 +369,7 @@ void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
     cursor().setPos(pos);
 }
 
-#if ! (defined(WIN32) || defined(__APPLE__))
+#if ! (defined(Q_OS_WIN) || defined(Q_OS_APPLE) || defined(Q_OS_ANDROID) || defined(__APPLE__))
 unsigned int getModifierMask(unsigned int keysym)
 {
     XkbDescPtr xkb;
@@ -466,11 +466,12 @@ void CFrmViewer::slotUpdateLedState(unsigned int state)
     ret = SendInput(count, input, sizeof(*input));
     if (ret < count)
         qCritical(log) << "Failed to update keyboard LED state:" << GetLastError();
-#elif defined(__APPLE__)
+#elif defined(Q_OS_APPLE)
 
-// No support for Scroll Lock //
+    // No support for Scroll Lock //
+    ;
 
-#elif defined(Q_OS_LINUX)
+#elif defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID) && !defined(Q_OS_APPLE)
     unsigned int affect, values;
     unsigned int mask;
     

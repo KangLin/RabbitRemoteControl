@@ -5,7 +5,7 @@ name: build
 env:
   artifact_path: artifact_path
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  RabbitRemoteControl_VERSION: v0.0.26
+  RabbitRemoteControl_VERSION: v0.0.27
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
   deploy:
     #if: ${{ startsWith(github.ref, 'refs/tags/') }}
     runs-on: ubuntu-latest
-    needs: [ubuntu, msvc, doxygen, android, macos]
+    needs: [ubuntu, msvc, doxygen, macos]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3

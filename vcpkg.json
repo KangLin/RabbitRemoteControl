@@ -1,6 +1,6 @@
 {
   "name": "rabbitremotecontrol",
-  "version-string": "0.0.23",
+  "version-string": "0.0.27",
   "license": "GPL-3.0",
   "homepage": "https://github.com/KangLin/RabbitRemoteControl",
    
@@ -45,10 +45,7 @@
         "libpng",
         "pixman",
         "libssh",
-        {   
-            "name": "ffmpeg",
-            "platform": "!android"
-        }
+        "ffmpeg"
       ]
     }
   }

@@ -23,7 +23,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
-      RabbitRemoteControl_VERSION: 0.0.26
+      RabbitRemoteControl_VERSION: 0.0.27
       artifact_name: build_ubuntu
 
     # Map the job outputs to step outputs
@@ -216,17 +216,7 @@ jobs:
           if [ '${{matrix.BUILD_TYPE}}' == 'Release' ]; then
               echo "Build Release ......"
               export BUILD_VIEWER_TERMINAL=OFF
-              export BUILD_LibVNCServer=ON
-              export BUILD_TigerVNC=ON
-              export BUILD_FREERDP=ON
-              export BUILD_RABBITVNC=OFF
-          else
-              echo "Build Debug ......"
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
-              export BUILD_LibVNCServer=ON
-              export BUILD_TigerVNC=ON
-              export BUILD_FREERDP=ON
-              export BUILD_RABBITVNC=OFF
           fi
           export Qt6_DIR=/usr/lib/`uname-a`-linux-gnu/cmake/Qt6
           ./build_debpackage.sh

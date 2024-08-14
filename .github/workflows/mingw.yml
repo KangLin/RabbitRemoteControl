@@ -25,7 +25,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      RabbitRemoteControl_VERSION: v0.0.26
+      RabbitRemoteControl_VERSION: v0.0.27
       artifact_name: build_mingw
 
     # Map the job outputs to step outputs
@@ -48,8 +48,13 @@ jobs:
             mingw-w64-x86_64-make ^
             mingw-w64-x86_64-nsis ^
             mingw-w64-x86_64-gcc ^
-            mingw-w64-x86_64-qt5 ^
-            mingw-w64-x86_64-qtwebkit ^
+            mingw-w64-x86_64-qt6 ^
+            mingw-w64-x86_64-qt6-base ^
+            mingw-w64-x86_64-qt6-5compat ^
+            mingw-w64-x86_64-qt6-scxml ^
+            mingw-w64-x86_64-qt6-multimedia ^
+            mingw-w64-x86_64-qt6-serialport ^
+            mingw-w64-x86_64-qt6-translations ^
             mingw-w64-x86_64-zlib ^
             mingw-w64-x86_64-openssl ^
             mingw-w64-x86_64-libvncserver ^
@@ -145,6 +150,7 @@ jobs:
           )
 
       - name: build libdatachannel
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         env:
           MSYSTEM: MINGW64
@@ -164,6 +170,7 @@ jobs:
           )
         
       - name: build QtService
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         env:
           MSYSTEM: MINGW64
@@ -199,7 +206,6 @@ jobs:
             -DBUILD_LibVNCServer=ON ^
             -DBUILD_RABBITVNC=OFF ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
-            -DBUILD_TigerVNC=ON ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake ^
             -Dlibdatachannel_DIR=${{env.INSTALL_DIR}}/share/cmake/libdatachannel ^
             -DBUILD_SERVICE=OFF ^

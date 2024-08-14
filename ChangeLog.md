@@ -20,9 +20,10 @@
     - add CChannelSSHTunnel
     - add CSSHTunnelThread and CChannelSSHTunnelForward
     - Add SSH tunnel
-      - TigerVnc
-      - LibVNCServer
-   
+      - TigerVnc: Modify it to add background threads to handle SSH tunnels.
+      - LibVNCServer: Use local socket forwarding using SSH tunneling.
+      - FreeRDP: Use local socket forwarding using SSH tunneling.
+
 ### v0.0.26
 - Use RabbitCommon v2
 - FreeRDP:

@@ -67,7 +67,7 @@ Source root
 
 ### Module
 
-- [rabbitremotecontrol.sourceforge.io](https://rabbitremotecontrol.sourceforge.io/v0.0.26/English/html/modules.html)
+- [rabbitremotecontrol.sourceforge.io](https://rabbitremotecontrol.sourceforge.io/v0.0.27/English/html/modules.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/modules.html)
 
 ### Icon theme

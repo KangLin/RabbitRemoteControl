@@ -42,7 +42,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      VCPKGGITCOMMITID: 8ae59b5b1329a51875abc71d528da93d9c3e8972
+      VCPKGGITCOMMITID: a4cfba036f013aea0347c3efc335186754b696b3
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
@@ -52,7 +52,7 @@ jobs:
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: qtwebengine ${{matrix.qt_modules}}
       artifact_name: build_msvc
-      RabbitRemoteControl_VERSION: v0.0.26
+      RabbitRemoteControl_VERSION: v0.0.27
 
     # Map the job outputs to step outputs
     outputs:
@@ -299,13 +299,9 @@ jobs:
           IF /i "${{matrix.BUILD_TYPE}}" == "Release" (
               echo "Build Release ......"
               set BUILD_RABBITVNC=OFF
-              set BUILD_LibVNCServer=ON
-              set BUILD_TigerVNC=ON
               set BUILD_SERVICE=OFF
           ) else (
               echo "Build Debug ......"
-              set BUILD_LibVNCServer=ON
-              set BUILD_TigerVNC=ON
               set BUILD_SERVICE=ON
           )
           cd ${{github.workspace}}/build
