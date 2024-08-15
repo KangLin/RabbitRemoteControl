@@ -65,7 +65,9 @@ Source root
 - [Linux](../Compile/Linux.md)
 - [Windows](../Compile/Windows.md)
 
-### [Module](topics.html)
+### Topics
+
+[Topics]((topics.html)
 
 ### Icon theme
 
