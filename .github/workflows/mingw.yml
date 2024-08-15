@@ -48,13 +48,7 @@ jobs:
             mingw-w64-x86_64-make ^
             mingw-w64-x86_64-nsis ^
             mingw-w64-x86_64-gcc ^
-            mingw-w64-x86_64-qt6 ^
-            mingw-w64-x86_64-qt6-base ^
-            mingw-w64-x86_64-qt6-5compat ^
-            mingw-w64-x86_64-qt6-scxml ^
-            mingw-w64-x86_64-qt6-multimedia ^
-            mingw-w64-x86_64-qt6-serialport ^
-            mingw-w64-x86_64-qt6-translations ^
+            mingw-w64-x86_64-qt5 ^
             mingw-w64-x86_64-zlib ^
             mingw-w64-x86_64-openssl ^
             mingw-w64-x86_64-libvncserver ^

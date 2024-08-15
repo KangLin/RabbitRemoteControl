@@ -30,7 +30,7 @@ jobs:
 
     env:
       RabbitRemoteControl_VERSION: v0.0.27
-      VCPKGGITCOMMITID: a4cfba036f013aea0347c3efc335186754b696b3
+      VCPKGGITCOMMITID: 9a6da16845eca8d6ed70be416c1acbd206894c7f
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
@@ -56,6 +56,7 @@ jobs:
 
       - name: make directory
         run: |
+          cmake --version
           cmake -E make_directory ${{env.SOURCE_DIR}}
           cmake -E make_directory ${{env.TOOSL_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
@@ -133,7 +134,9 @@ jobs:
             ${Qt6_DIR}/bin/qt-cmake .. \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
+                -DANDROID_ABI=${{env.ANDROID_ABI}} \
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
                 -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
@@ -172,8 +175,6 @@ jobs:
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed \
                 -DANDROID_ABI=${{env.ANDROID_ABI}} \
-                -DVCPKG_VERBOSE=ON \
-                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed \
                 -DWITH_OPENSSL=ON \
                 -DWITH_GCRYPT=OFF \
                 -DWITH_EXAMPLES=OFF \
@@ -195,6 +196,7 @@ jobs:
 #                -DOpenSSL_ROOT_DIR=${{env.RUNVCPKG_VCPKG_INSTALLATION_ROOT}}/installed/${{env.RUNVCPKG_VCPKG_TRIPLET_OUT}} \
 #                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
 #                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
+#                -DBUILD_SHARED_LIBS=OFF \
 #                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
 #                -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake \
 #                -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
@@ -218,19 +220,20 @@ jobs:
               cd ${{env.SOURCE_DIR}}/tigervnc
               cmake -E make_directory build
               cd build
-              ${Qt6_DIR}/bin/qt-cmake .. \
+              cmake .. \
                   -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                   -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                  -DBUILD_SHARED_LIBS=OFF \
                   -DCMAKE_VERBOSE_MAKEFILE=ON \
-                  -DCMAKE_MAKE_PROGRAM=ninja \
-                  -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                  -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                  -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                   -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
                   -DVCPKG_VERBOSE=ON \
                   -DVCPKG_TRACE_FIND_PACKAGE=ON \
                   -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
                   -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
                   -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/tigervnc/vcpkg_installed \
+                  -DANDROID_ABI=${{env.ANDROID_ABI}} \
+                  -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \
                   -DBUILD_TESTS=OFF \
                   -DBUILD_VIEWER=OFF
               cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
@@ -251,6 +254,7 @@ jobs:
             ${Qt6_DIR}/bin/qt-cmake .. \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
+                -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
                 -DCMAKE_AUTOGEN_VERBOSE=ON \
                 -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \

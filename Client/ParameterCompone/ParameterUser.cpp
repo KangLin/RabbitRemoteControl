@@ -199,6 +199,7 @@ void CParameterUser::slotSetParameterClient()
 }
 //! [Initialize parameter after set CParameterClient]
 
+//! Get use system file
 bool CParameterUser::GetUseSystemFile() const
 {
     return m_bUseSystemFile;
