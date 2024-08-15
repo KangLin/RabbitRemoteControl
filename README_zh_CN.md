@@ -327,19 +327,19 @@
         - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/RabbitRemoteControl_v0.0.27_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum)
         - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/RabbitRemoteControl_v0.0.27_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum/download)
   - Ubuntu:
-    + rabbitremotecontrol_0.0.26_amd64.deb
+    + rabbitremotecontrol_0.0.27_amd64.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.26_amd64.deb
+          sudo apt install ./rabbitremotecontrol_0.0.27_amd64.deb
           
           # 如要你是在老的 ubuntu 发行版本上，你需要用下列命令替换：
-          # sudo dpkg -i rabbitremotecontrol_0.0.26_amd64.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.27_amd64.deb
           # sudo apt-get install -f # 安装依赖
 
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.26_amd64.deb)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.26_amd64.deb/download)
-    + md5 校验文件: rabbitremotecontrol_0.0.26_amd64.deb.md5sum
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.26_amd64.deb.md5sum)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.26_amd64.deb.md5sum/download)
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb/download)
+    + md5 校验文件: rabbitremotecontrol_0.0.27_amd64.deb.md5sum
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb.md5sum)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb.md5sum/download)
 
 ## [开发](docs/Doxygen/Develop_zh_CN.md)
 

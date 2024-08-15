@@ -340,19 +340,19 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
         - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/RabbitRemoteControl_v0.0.27_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum)
         - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/RabbitRemoteControl_v0.0.27_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum/download)
   - Ubuntu:
-    + rabbitremotecontrol_0.0.26_amd64.deb
+    + rabbitremotecontrol_0.0.27_amd64.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.26_amd64.deb
+          sudo apt install ./rabbitremotecontrol_0.0.27_amd64.deb
           
           # If you're on an older ubuntu distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.26_amd64.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.27_amd64.deb
           # sudo apt-get install -f # Install dependencies
 
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.26_amd64.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.26_amd64.deb/download)
-    + MD5SUM file: rabbitremotecontrol_0.0.26_amd64.deb.md5sum
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.26_amd64.deb.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.26_amd64.deb.md5sum/download)
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb/download)
+    + MD5SUM file: rabbitremotecontrol_0.0.27_amd64.deb.md5sum
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb.md5sum/download)
 
 ## [Development](docs/Doxygen/Develop.md)
 

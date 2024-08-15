@@ -1,6 +1,6 @@
 rabbitremotecontrol (0.0.27) unstable; urgency=medium
 
-    * Modify ci
+    * Modify deploy.sh
     * FrmViewer: modify led state
     * Modify translations
     * TigerVNC: add x509 authentication
@@ -215,4 +215,4 @@ rabbitremotecontrol (0.0.27) unstable; urgency=medium
     * Modify screenshot
     * CI: modify build.yml
 
- -- Kang Lin <kl222@126.com>  Wed, 14 Aug 2024 17:02:53 +0800
+ -- Kang Lin <kl222@126.com>  Thu, 15 Aug 2024 08:36:40 +0800

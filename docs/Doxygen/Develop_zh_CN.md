@@ -67,10 +67,7 @@
 - [Linux](../Compile/Linux_zh_CN.md)
 - [Windows](../Compile/Windows_zh_CN.md)
 
-### 模块
-
-- [rabbitremotecontrol.sourceforge.io](modules.html)
-- [github.io](modules.html)
+### [模块](topics.html)
 
 ### 图标主题
 
