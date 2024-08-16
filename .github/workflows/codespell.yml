@@ -19,4 +19,4 @@ jobs:
           check_filenames: true
           path: ${{github.workspace}}
           skip: "*.lua,*.ts,codespell.yml,vcpkg/,vcpkg/*.*,vcpkg/*,*.svg,debian/changelog"
-          ignore_words_list: "spPort,build-in,pIce,splitted,Fo"
+          ignore_words_list: "spPort,build-in,pIce,splitted,Fo,pAdd"

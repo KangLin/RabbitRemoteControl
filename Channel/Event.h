@@ -29,6 +29,8 @@ public:
     static int SetSocketBlocking(SOCKET fd, bool block);
     static bool EnableNagles(SOCKET fd, bool enable);
 
+    static QString GetAddress(void* address);
+
 private:
     SOCKET fd[2];
     
