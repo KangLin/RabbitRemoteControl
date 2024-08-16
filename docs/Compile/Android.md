@@ -36,7 +36,7 @@
 
 参见：[编译集成](../../.github/workflows/android.yml)
 
-### 依赖库
+#### 依赖库
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
 - [可选] RFB
@@ -55,13 +55,91 @@
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [可选] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
 
+##### 设置全局变量
+
+- windows
+
+      set INSTALL_DIR=`pwd`/install
+      set VCPKG_ROOT=/data/vcpkg
+      set VCPKG_TARGET_TRIPLET=x64-android
+      set ANDROID_ABI=x86_64
+      set ANDROID_PLATFORM=android-23
+      set ANDROID_NATIVE_API_LEVEL=23
+      set ANDROID_NDK_HOME=
+      set BUILD_TYPE=Release
+
+  引用变量使用 %% 。例如： %BUILD_TYPE%
+  
+- ubuntu
+
+      export INSTALL_DIR=`pwd`/install
+      export VCPKG_ROOT=/data/vcpkg
+      export VCPKG_TARGET_TRIPLET=x64-android
+      export ANDROID_ABI=x86_64
+      export ANDROID_PLATFORM=android-23
+      export ANDROID_NATIVE_API_LEVEL=23
+      export ANDROID_NDK_HOME=
+      export BUILD_TYPE=Release
+      
+引用变量使用 ${} 。例如： ${BUILD_TYPE}
+
+- CMAKE android 参数说明：https://developer.android.google.cn/ndk/guides/cmake
+  + ANDROID_ABI: 可取下列值：
+    目标 ABI。如果未指定目标 ABI，则 CMake 默认使用 armeabi-v7a。  
+    有效的目标名称为：
+    - armeabi：带软件浮点运算并基于 ARMv5TE 的 CPU。
+    - armeabi-v7a：带硬件 FPU 指令 (VFPv3_D16) 并基于 ARMv7 的设备。
+    - armeabi-v7a with NEON：与 armeabi-v7a 相同，但启用 NEON 浮点指令。这相当于设置 -DANDROID_ABI=armeabi-v7a 和 -DANDROID_ARM_NEON=ON。
+    - arm64-v8a：ARMv8 AArch64 指令集。
+    - x86：IA-32 指令集。
+    - x86_64 - 用于 x86-64 架构的指令集。
+  + ANDROID_NDK <path> 主机上安装的 NDK 根目录的绝对路径
+  + ANDROID_PLATFORM: 如需平台名称和对应 Android 系统映像的完整列表，请参阅 [Android NDK 原生 API](https://developer.android.google.cn/ndk/guides/stable_apis.html)
+  + ANDROID_ARM_MODE
+  + ANDROID_ARM_NEON
+  + ANDROID_STL: 指定 CMake 应使用的 STL
+    - c++_shared: 使用 libc++ 动态库
+    - c++_static: 使用 libc++ 静态库
+    - none: 没有 C++ 库支持
+    - system: 用系统的 STL
+
+##### 编译 TigerVNC
+
+- 下载源码： `git clone https://github.com/KangLin/tigervnc`
+- cmake 配置
+    
+      cmake .. \
+         -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+         -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+         -DBUILD_SHARED_LIBS=OFF \
+         -DCMAKE_VERBOSE_MAKEFILE=ON \
+         -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
+         -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+         -DVCPKG_VERBOSE=ON \
+         -DVCPKG_TRACE_FIND_PACKAGE=ON \
+         -DVCPKG_TARGET_TRIPLET=${VCPKG_TARGET_TRIPLET} \
+         -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
+         -DVCPKG_INSTALLED_DIR=${INSTALL_DIR}/tigervnc/vcpkg_installed \
+         -DANDROID_ABI=${ANDROID_ABI} \
+         -DANDROID_PLATFORM=${ANDROID_PLATFORM} \
+         -DBUILD_TESTS=OFF \
+         -DBUILD_VIEWER=OFF
+
+- 编译
+
+      cmake --build .
+      
+- 安装
+
+      cmake --install .
+
 #### 玉兔公共库
 此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
 -DRabbitCommon_DIR=[RabbitCommon 安装目录]
 
     git clone https://github.com/KangLin/RabbitCommon.git
 
-### 编译本项目
+#### 编译本项目
 - 项目位置：[https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - 下载源码
 
@@ -98,15 +176,31 @@
 - 编译
   - 命令行编译
     - 设置环境变量
+      - ubuntu
 
-          set JAVA_HOME=
-          set ANDROID_SDK_ROOT=
-          set ANDROID_NDK_ROOT=
-          set ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
-          set VCPKG_ROOT=
-          set CMAKE_ROOT=
-          set NINJA_ROOT=
-          set PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+            export JAVA_HOME=
+            export ANDROID_SDK_ROOT=
+            export ANDROID_NDK_ROOT=
+            export ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
+            export CMAKE_ROOT=
+            export NINJA_ROOT=
+            export PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+            export VCPKG_ROOT=
+            export VCPKG_TARGET_TRIPLET=x64-android
+            export BUILD_TYPE=Release
+
+      - windows
+
+            set JAVA_HOME=
+            set ANDROID_SDK_ROOT=
+            set ANDROID_NDK_ROOT=
+            set ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
+            set CMAKE_ROOT=
+            set NINJA_ROOT=
+            set PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+            set VCPKG_ROOT=
+            set VCPKG_TARGET_TRIPLET=x64-android
+            set BUILD_TYPE=Release
 
     - 编译
 
@@ -115,7 +209,7 @@
               -DCMARK_SHARED=OFF \
               -DCMARK_TESTS=OFF \
               -DCMARK_STATIC=ON \
-              -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
+              -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
               -DCMAKE_AUTOGEN_VERBOSE=ON \
               -DQT_CHAINLOAD_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
               -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
@@ -123,11 +217,13 @@
               -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
               -DVCPKG_TRACE_FIND_PACKAGE=ON \
               -DVCPKG_VERBOSE=ON \
+              -DRABBIT_ENABLE_INSTALL_DEPENDENT=ON \
               -DRABBIT_ENABLE_INSTALL_QT=ON \
+              -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=ON \
               -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
               -DQT_ANDROID_SIGN_APK=ON \
               -DQT_ENABLE_VERBOSE_DEPLOYMENT=ON \
-              -DQt6_DIR=  \
+              -DVCPKG_TRACE_FIND_PACKAGE=ON \
               -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
               [Depend libraries ......]
@@ -135,17 +231,29 @@
 
   - 使用 CMakePreset
     - 设置环境变量
+      - windows
+      
+            set JAVA_HOME=
+            set ANDROID_SDK_ROOT=
+            set ANDROID_NDK_ROOT=
+            set ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
+            set VCPKG_ROOT=
+            set CMAKE_ROOT=
+            set NINJA_ROOT=
+            set PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+            set QT_ROOT=
+          
+      - ubuntu
 
-          set JAVA_HOME=
-          set ANDROID_SDK_ROOT=
-          set ANDROID_NDK_ROOT=
-          set ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
-          set VCPKG_ROOT=
-          set CMAKE_ROOT=
-          set NINJA_ROOT=
-          set PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
-          set QT_ROOT=
-
+            export JAVA_HOME=
+            export ANDROID_SDK_ROOT=
+            export ANDROID_NDK_ROOT=
+            export ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
+            export VCPKG_ROOT=
+            export CMAKE_ROOT=
+            export NINJA_ROOT=
+            export PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+            export QT_ROOT=
     - 编译
 
           cd RabbitRemoteControl

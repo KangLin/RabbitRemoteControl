@@ -52,7 +52,7 @@ bool CChannelSSHTunnelForward::open(OpenMode mode)
     }
     
     Channel::CEvent::SetSocketNonBlocking(m_Server);
-    Channel::CEvent::EnableNagles(m_Server, false);
+    //Channel::CEvent::EnableNagles(m_Server, false);
     
     do {
         struct sockaddr_in listen_addr;
@@ -127,7 +127,7 @@ int CChannelSSHTunnelForward::CloseSocket(socket_t &s)
 int CChannelSSHTunnelForward::AcceptConnect()
 {
     //qDebug(log) << "CChannelSSHTunnelForward::AcceptConnect()";
-    if(m_Server < 0) return 0;
+    if(SSH_INVALID_SOCKET == m_Server) return 0;
     
     struct sockaddr_in connect_addr;
     memset(&connect_addr, 0, sizeof(connect_addr));
@@ -151,7 +151,7 @@ int CChannelSSHTunnelForward::AcceptConnect()
     }
     qDebug(log) << "accept from:" << inet_ntoa(connect_addr.sin_addr) << ntohs(connect_addr.sin_port);
     Channel::CEvent::SetSocketNonBlocking(m_Connector);
-    Channel::CEvent::EnableNagles(m_Connector, false);
+    //Channel::CEvent::EnableNagles(m_Connector, false);
     CloseSocket(m_Server);
     m_Server = SSH_INVALID_SOCKET;
     return 0;

@@ -77,10 +77,6 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         return false;
     }
     
-    /*
-    int value = 1;
-    ssh_options_set(m_Session, SSH_OPTIONS_NODELAY, (const void*)&value);//*/
-
     do{
         if(!m_Parameter) {
             qCritical(log) << "The parameter is null";
@@ -94,6 +90,10 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         ssh_callbacks_init(&cb);
         ssh_set_callbacks(m_Session, &cb);
         
+        /*
+        int value = 1;
+        ssh_options_set(m_Session, SSH_OPTIONS_NODELAY, (const void*)&value);//*/
+
         /*
             See: [ssh_options_set()](https://api.libssh.org/stable/group__libssh__session.html#ga7a801b85800baa3f4e16f5b47db0a73d)
             SSH_LOG_NOLOG: No logging

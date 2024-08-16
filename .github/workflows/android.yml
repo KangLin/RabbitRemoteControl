@@ -161,20 +161,20 @@ jobs:
             #git checkout -b 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa 5deb43e2837e05e5e24bd2bfb458ae6ba930bdaa
             cmake -E make_directory build
             cd build
-            ${Qt6_DIR}/bin/qt-cmake .. \
+            cmake .. \
                 -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_SHARED_LIBS=OFF \
                 -DCMAKE_VERBOSE_MAKEFILE=ON \
-                -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
-                -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
+                -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
                 -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
+                -DVCPKG_VERBOSE=ON \
+                -DVCPKG_TRACE_FIND_PACKAGE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} \
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
-                -DVCPKG_TRACE_FIND_PACKAGE=ON \
-                -DVCPKG_VERBOSE=ON \
-                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/libvncserver/vcpkg_installed \
+                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/LibVNCServer/vcpkg_installed \
                 -DANDROID_ABI=${{env.ANDROID_ABI}} \
+                -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \
                 -DWITH_OPENSSL=ON \
                 -DWITH_GCRYPT=OFF \
                 -DWITH_EXAMPLES=OFF \
@@ -289,8 +289,8 @@ jobs:
               -DCMARK_TESTS=OFF \
               -DCMARK_STATIC=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-              -DCMAKE_MAKE_PROGRAM=ninja \
               -DCMAKE_AUTOGEN_VERBOSE=ON \
+              -DCMAKE_MAKE_PROGRAM=ninja \
               -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
               -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
               -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
