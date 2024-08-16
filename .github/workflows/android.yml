@@ -30,7 +30,7 @@ jobs:
 
     env:
       RabbitRemoteControl_VERSION: v0.0.27
-      VCPKGGITCOMMITID: 2983a790bb019f83f5e2954d3c47de7b4f7f9c31
+      VCPKGGITCOMMITID: 73964f854d0d6424f335e9515b61b3a2dad5e15b
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
@@ -283,9 +283,6 @@ jobs:
           QT_ANDROID_KEYSTORE_ALIAS: rabbitcommon
           QT_ANDROID_KEYSTORE_STORE_PASS: ${{secrets.STOREPASS}}
         run: |
-          cd ${VCPKG_ROOT}
-          ./vcpkg update
-          cd ${{github.workspace}}/build
           sudo chmod 777 ${Qt6_DIR}/bin/qt-cmake
           ${Qt6_DIR}/bin/qt-cmake .. \
               -DCMARK_SHARED=OFF \
