@@ -130,7 +130,8 @@ public Q_SLOTS:
     void slotUpdateCursorPosition(const QPoint& pos);
     void slotUpdateLedState(unsigned int state);
     void slotSystemCombination();
-    
+    void slotConnected();
+
 Q_SIGNALS:
     void sigMousePressEvent(QMouseEvent* event, QPoint pos);
     void sigMouseReleaseEvent(QMouseEvent* event, QPoint pos);

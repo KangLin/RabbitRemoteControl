@@ -327,6 +327,11 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
     return;
 }
 
+void CFrmViewer::slotConnected()
+{
+    setEnabled(true);
+}
+
 void CFrmViewer::slotSetName(const QString& szName)
 {
     this->setWindowTitle(szName);

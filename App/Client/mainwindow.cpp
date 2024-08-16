@@ -788,8 +788,6 @@ void MainWindow::slotConnected()
     CConnecter* p = dynamic_cast<CConnecter*>(sender());
     if(!p) return;
 
-    p->GetViewer()->setEnabled(true);
-
     /* If you put it here, when connected, the view is not displayed.
        So put it in the connect() display view.
        See: Connect(CConnecter *p, bool set, QString szFile)
