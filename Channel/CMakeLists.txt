@@ -10,12 +10,19 @@ project(Channel LANGUAGES CXX)
 include(CheckIncludeFile)
 include(CheckIncludeFileCXX)
 include(CheckFunctionExists)
+include(CheckSymbolExists)
+include(CheckCXXSymbolExists)
 
 check_include_file("sys/eventfd.h" HAVE_EVENTFD_INCLUDE)
 check_function_exists("eventfd" HAVE_EVENTFD)
 
 if(HAVE_EVENTFD AND HAVE_EVENTFD_INCLUDE)
    list(APPEND CHANNEL_DEFINITIONS HAVE_EVENTFD)
+endif()
+
+check_symbol_exists(AF_UNIX "socket.h" HAVE_UNIX_DOMAIN_SOCKET)
+if(HAVE_UNIX_DOMAIN_SOCKET)
+    list(APPEND CHANNEL_DEFINITIONS HAVE_UNIX_DOMAIN_SOCKET)
 endif()
 
 if(MSVC)

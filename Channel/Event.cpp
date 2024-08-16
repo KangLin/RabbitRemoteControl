@@ -1,4 +1,7 @@
 #include <QLoggingCategory>
+#include <QStandardPaths>
+#include <QThread>
+#include <QDir>
 
 #if defined(Q_OS_WIN)
     #define close closesocket
@@ -15,7 +18,9 @@
     #include <netinet/tcp.h>
     #include <arpa/inet.h>
     #include <ifaddrs.h>
-
+    #if defined(HAVE_UNIX_DOMAIN_SOCKET)
+        #include <sys/un.h>
+    #endif
     #define INVALID_SOCKET -1
     #define SOCKET_ERROR -1
 #endif
@@ -44,6 +49,7 @@ CEvent::~CEvent()
 int CEvent::Init()
 {
 #if HAVE_EVENTFD
+    qDebug(log) << "Use eventfd";
     fd[0] = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC | EFD_SEMAPHORE);
 #else
     return CreateSocketPair(fd);
@@ -85,8 +91,10 @@ int CEvent::Reset()
     const int len = 1;
     char buf[len];
     nRet = recv(fd[0], buf, len, 0);
-    if(nRet >= 0)
+    if(nRet >= 0) {
+        //qDebug(log) << "recv" << nRet;
         return 0;
+    }
     if(nRet < 0) {
         if(EAGAIN == errno || EWOULDBLOCK == errno)
             return 0;
@@ -142,15 +150,35 @@ int CEvent::CreateSocketPair(SOCKET fd[])
     SOCKET listener = INVALID_SOCKET;
     SOCKET connector = INVALID_SOCKET;
     SOCKET acceptor = INVALID_SOCKET;
-    struct sockaddr_in listen_addr;
-    struct sockaddr_in connect_addr;
     socklen_t size;
     
     if (!fd) {
         qCritical(log) << "The fd is null";
         return -1;
     }
+
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+    qDebug(log) << "Use unix domain socket";
+    struct sockaddr_un listen_addr;
+    struct sockaddr_un connect_addr;
+    QString szUnixDomianSocket
+        = QStandardPaths::writableLocation(
+              QStandardPaths::TempLocation)
+          + QDir::separator()
+          + "RRC_" + QString::number((long)QThread::currentThreadId()) + ".socket";
+    QDir f(szUnixDomianSocket);
+    if(f.exists())
+        f.remove(szUnixDomianSocket);
+    family = AF_UNIX;
+#else
+    struct sockaddr_in listen_addr;
+    struct sockaddr_in connect_addr;
+#endif
     
+    size = sizeof(listen_addr);
+    memset(&listen_addr, 0, sizeof(listen_addr));
+    memset(&connect_addr, 0, sizeof(connect_addr));
+
     listener = socket(family, type, 0);
     if (INVALID_SOCKET == listener) {
         qCritical(log) << "Create server socket fail:" << errno << "[" << strerror(errno) << "]";
@@ -158,14 +186,39 @@ int CEvent::CreateSocketPair(SOCKET fd[])
     }
     
     do {
-        memset(&listen_addr, 0, sizeof(listen_addr));
+
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+        listen_addr.sun_family = AF_UNIX;
+        strcpy(listen_addr.sun_path, szUnixDomianSocket.toStdString().c_str());
+#else
         listen_addr.sin_family = AF_INET;
         listen_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
         listen_addr.sin_port = 0;	/* kernel chooses port.	 */
+#endif
         if (-1 == bind(listener, (struct sockaddr *) &listen_addr, sizeof (listen_addr)))
+        {
+            qCritical(log) << "bind fail:" << strerror(errno);
             break;
+        }
         if (-1 == listen(listener, 1))
+        {
+            qCritical(log) << "listen fail:" << strerror(errno);
             break;
+        }
+
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+        qDebug(log) << "unix domain socket listener:" << listen_addr.sun_path;
+#else
+        /* We want to find out the port number to connect to.  */
+        if (-1 == getsockname(listener, (struct sockaddr *) &listen_addr, &size))
+        {
+            qCritical(log) << "Get listen socket address fail";
+            break;
+        }
+        if (size != sizeof (listen_addr))
+            break;
+        qDebug(log) << "listener port:" << ntohs(listen_addr.sin_port);
+#endif
         
         connector = socket(family, type, 0);
         if (INVALID_SOCKET == connector) {
@@ -173,43 +226,52 @@ int CEvent::CreateSocketPair(SOCKET fd[])
             break;
         }
         
-        memset(&connect_addr, 0, sizeof(connect_addr));
-        
-        /* We want to find out the port number to connect to.  */
-        size = sizeof(connect_addr);
-        if (-1 == getsockname(listener, (struct sockaddr *) &connect_addr, &size))
+        if (-1 == ::connect(connector, (struct sockaddr *) &listen_addr, size)) {
+            qDebug(log) << "connect fail:" << strerror(errno);
             break;
-        if (size != sizeof (connect_addr))
-            break;
-        qDebug(log) << "listener port:" << ntohs(connect_addr.sin_port);
-        if (-1 == ::connect(connector, (struct sockaddr *) &connect_addr,
-                    sizeof(connect_addr)))
-            break;
-        
-        size = sizeof(listen_addr);
+        }
+
         acceptor = accept(listener, (struct sockaddr *) &listen_addr, &size);
         if (INVALID_SOCKET == acceptor)
+        {
+            qDebug(log) << "accept fail:" << strerror(errno);
             break;
+        }
+        
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+        qDebug(log) << "accept fd:" << acceptor << "connect fd:" << connector;
+#else
         if (size != sizeof(listen_addr))
             break;
         qDebug(log) << "accept port:" << ntohs(listen_addr.sin_port) << "fd:" << acceptor;
         /* Now check we are talking to ourself by matching port and host on the
 	       two sockets.	 */
-        if (getsockname(connector, (struct sockaddr *) &connect_addr, &size) == -1)
+        if (getsockname(connector, (struct sockaddr *) &connect_addr, &size) == -1) {
+            qCritical(log) << "Get connector socket address fail";
             break;
+        }
         qDebug(log) << "Connector port:" << ntohs(connect_addr.sin_port) << "fd:" << connector;
         if (size != sizeof (connect_addr)
             || listen_addr.sin_family != connect_addr.sin_family
             || listen_addr.sin_addr.s_addr != connect_addr.sin_addr.s_addr
-            || listen_addr.sin_port != connect_addr.sin_port)
+            || listen_addr.sin_port != connect_addr.sin_port) {
+            qCritical(log) << "Accept address"
+                           << ntohs(listen_addr.sin_port)
+                           << "is not same connect address"
+                           << ntohs(connect_addr.sin_port);
             break;
+        }
         close(listener);
+#endif
+        
         fd[0] = connector;
         fd[1] = acceptor;
+#if !defined(HAVE_UNIX_DOMAIN_SOCKET)
         SetSocketNonBlocking(fd[0]);
         SetSocketNonBlocking(fd[1]);
         EnableNagles(fd[0], false);
         EnableNagles(fd[1], false);
+#endif
         return 0;
     } while(0);
 
