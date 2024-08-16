@@ -102,7 +102,7 @@ rabbitremotecontrol (0.0.27) unstable; urgency=medium
     * Refactor parameter: rename functions
     * Refactor parameter: modify freerdp parameters
     * Refactor parameter: modify base parameters
-    * Refactor paramter: add check validity in CParamter
+    * Refactor parameter: add check validity in CParameter
     * Refactor parameter: modify CParameterBase
     * Refactor: modify CParameterBase
     * Fix typo
@@ -159,7 +159,7 @@ rabbitremotecontrol (0.0.27) unstable; urgency=medium
     * CI: copy vcpkg dll to install\bin
     * CI: modify doxygen
     * FIX: copy dll to install\bin in msvc.yml
-    * Debain: Modify control file
+    * Debian: Modify control file
     * Modify vcpkg.json
     * CI: modify ci
     * Android: set QT_ANDROID_EXTRA_PLUGINS to install plugins
