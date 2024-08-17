@@ -42,6 +42,9 @@ void CSSHTunnelThread::run()
         bool check = connect(p, SIGNAL(sigServer(quint16)),
                              this, SIGNAL(sigServer(quint16)));
         Q_ASSERT(check);
+        check = connect(p, SIGNAL(sigServer(QString)),
+                             this, SIGNAL(sigServer(QString)));
+        Q_ASSERT(check);
         if(!p->open(QIODevice::ReadWrite)) {
             break;
         }

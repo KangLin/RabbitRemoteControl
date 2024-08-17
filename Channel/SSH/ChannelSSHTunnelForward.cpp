@@ -1,10 +1,21 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QLoggingCategory>
-
-#include "ChannelSSHTunnelForward.h"
+#include <QStandardPaths>
+#include <QThread>
+#include <QDir>
 
 #if defined(Q_OS_WIN)
+    #if defined(HAVE_UNIX_DOMAIN_SOCKET)
+        #include <WinSock2.h>
+        /* [AF_UNIX comes to Windows](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/)
+                 * How can I write a Windows AF_UNIX app?
+                 *   - Download the Windows Insiders SDK for the Windows build 17061 — available here.
+                 *   - Check whether your Windows build has support for unix socket by running “sc query afunix” from a Windows admin command prompt.
+                 *   - #include <afunix.h> in your Windows application and write a Windows unix socket winsock application as you would write any other unix socket application, but, using Winsock API’s.
+                 */
+        #include <afunix.h>
+    #endif
     #define socklen_t int
 #else
     #include <arpa/inet.h>
@@ -12,12 +23,14 @@
     #include <netinet/tcp.h>
 #endif
 
+#include "ChannelSSHTunnelForward.h"
+
 static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel.Forward")
 
 CChannelSSHTunnelForward::CChannelSSHTunnelForward(
     QSharedPointer<CParameterChannelSSH> parameter, QObject *parent)
     : CChannelSSHTunnel{parameter, parent},
-    m_Server(SSH_INVALID_SOCKET),
+    m_Listen(SSH_INVALID_SOCKET),
     m_Connector(SSH_INVALID_SOCKET),
     m_pBuffer(nullptr)
 {
@@ -43,56 +56,92 @@ bool CChannelSSHTunnelForward::open(OpenMode mode)
     if(!bRet)
         return false;
 
-    m_Server = socket(family, type, 0);
-    if(SSH_INVALID_SOCKET == m_Server) {
-        szErr = "Create server socket fail:" + QString::number(errno);
+    socklen_t size = 0;
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+    struct sockaddr_un listen_addr;
+    QString szPath;
+    QString szUnixDomainSocket;
+    memset(&listen_addr, 0, sizeof(listen_addr));
+    szPath = QStandardPaths::writableLocation(
+                 QStandardPaths::TempLocation)
+             + QDir::separator() + "RabbitRemoteControl";
+    auto now = std::chrono::system_clock::now();
+    auto tick = std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch()).count();
+    szUnixDomainSocket = szPath + QDir::separator() + "RRC_" + QString::number(tick) + "_"
+                         + QString::number((unsigned long)QThread::currentThreadId()) + ".socket";
+    QDir p(szPath);
+    if(!p.exists())
+        p.mkpath(szPath);
+    QDir f(szUnixDomainSocket);
+    if(f.exists())
+        f.remove(szUnixDomainSocket);
+    size = sizeof(sockaddr_un::sun_path);
+    if(szUnixDomainSocket.size() > size)
+    {
+        qCritical(log) << "The unix domain socket length greater then" << size;
+        return -2;
+    }
+    family = AF_UNIX;
+    memset(&listen_addr, 0, sizeof(listen_addr));
+    listen_addr.sun_family = AF_UNIX;
+    strcpy(listen_addr.sun_path, szUnixDomainSocket.toStdString().c_str());
+#else
+    struct sockaddr_in listen_addr;
+    memset(&listen_addr, 0, sizeof(listen_addr));
+    listen_addr.sin_family = AF_INET;
+    listen_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    listen_addr.sin_port = 0;	/* kernel chooses port.	 */
+#endif
+
+    m_Listen = socket(family, type, 0);
+    if(SSH_INVALID_SOCKET == m_Listen) {
+        szErr = "Create socket fail:" + QString::number(errno);
         qCritical(log) << szErr;
         setErrorString(szErr);
         return false;
     }
-    
-    Channel::CEvent::SetSocketNonBlocking(m_Server);
+
+    Channel::CEvent::SetSocketNonBlocking(m_Listen);
     //Channel::CEvent::EnableNagles(m_Server, false);
     
     do {
-        struct sockaddr_in listen_addr;
-        socklen_t size = 0;
-        memset(&listen_addr, 0, sizeof(listen_addr));
-        listen_addr.sin_family = AF_INET;
-        listen_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-        listen_addr.sin_port = 0;	/* kernel chooses port.	 */
-        if (bind(m_Server, (struct sockaddr *) &listen_addr, sizeof (listen_addr))
+        if (bind(m_Listen, (struct sockaddr *) &listen_addr, sizeof(listen_addr))
             == -1) {
-            szErr = "Server bind fail:" + QString::number(errno);
+            szErr = "bind fail:" + Channel::CEvent::GetAddress(&listen_addr)
+                    + " - " + QString::number(errno);
             qCritical(log) << szErr;
             setErrorString(szErr);
             bRet = false;
             break;
         }
-        if (listen(m_Server, 1) == -1) {
-            szErr = "Server listen fail:" + QString::number(errno);
+        if (listen(m_Listen, 1) == -1) {
+            szErr = "listen fail:" + Channel::CEvent::GetAddress(&listen_addr)
+                    + " - " + QString::number(errno);
             qCritical(log) << szErr;
             setErrorString(szErr);
             bRet = false;
             break;
         }
-        
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+        emit sigServer(szUnixDomainSocket);
+#else
         /* We want to find out the port number to connect to.  */
         size = sizeof(listen_addr);
-        if (getsockname(m_Server, (struct sockaddr *) &listen_addr, &size) == -1)
+        if (getsockname(m_Listen, (struct sockaddr *) &listen_addr, &size) == -1)
         {
             bRet = false;
             break;
         }
         if (size != sizeof (listen_addr))
             break;
-        qDebug(log) << "listener in:" << inet_ntoa(listen_addr.sin_addr) << ntohs(listen_addr.sin_port);
         emit sigServer(ntohs(listen_addr.sin_port));
+#endif
+        qDebug(log) << "listener in:" << Channel::CEvent::GetAddress(&listen_addr);
     } while(0);
     
     if(!bRet) {
-        CloseSocket(m_Server);
-        m_Server = SSH_INVALID_SOCKET;
+        CloseSocket(m_Listen);
+        m_Listen = SSH_INVALID_SOCKET;
     }
 
     return bRet;
@@ -101,8 +150,8 @@ bool CChannelSSHTunnelForward::open(OpenMode mode)
 void CChannelSSHTunnelForward::close()
 {
     qDebug(log) << "CChannelSSHTunnelForward::close()";
-    if(SSH_INVALID_SOCKET != m_Server)
-        CloseSocket(m_Server);
+    if(SSH_INVALID_SOCKET != m_Listen)
+        CloseSocket(m_Listen);
     if(SSH_INVALID_SOCKET != m_Connector)
         CloseSocket(m_Connector);
     CChannelSSHTunnel::close();
@@ -127,12 +176,15 @@ int CChannelSSHTunnelForward::CloseSocket(socket_t &s)
 int CChannelSSHTunnelForward::AcceptConnect()
 {
     //qDebug(log) << "CChannelSSHTunnelForward::AcceptConnect()";
-    if(SSH_INVALID_SOCKET == m_Server) return 0;
-    
+    if(SSH_INVALID_SOCKET == m_Listen) return 0;
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+    struct sockaddr_un connect_addr;
+#else
     struct sockaddr_in connect_addr;
+#endif
     memset(&connect_addr, 0, sizeof(connect_addr));
     socklen_t size = sizeof(connect_addr);
-    m_Connector = accept(m_Server,  (struct sockaddr *) &connect_addr, &size);
+    m_Connector = accept(m_Listen, (struct sockaddr *)&connect_addr, &size);
     if(SSH_INVALID_SOCKET == m_Connector)
     {
         /*
@@ -142,18 +194,18 @@ int CChannelSSHTunnelForward::AcceptConnect()
             return 0;
         else {
             QString szErr =  "The server accept is fail:";
-            szErr += QString::number(errno)
-                     + " [" + strerror(errno) + "]";
+            szErr += QString::number(errno) + " [" + strerror(errno) + "]";
             qCritical(log) << szErr;
             setErrorString(szErr);
             return errno;
         }
     }
-    qDebug(log) << "accept from:" << inet_ntoa(connect_addr.sin_addr) << ntohs(connect_addr.sin_port);
+    qDebug(log) << "accept from:" << Channel::CEvent::GetAddress(&connect_addr)
+                << "Connector fd:" << m_Connector;
     Channel::CEvent::SetSocketNonBlocking(m_Connector);
     //Channel::CEvent::EnableNagles(m_Connector, false);
-    CloseSocket(m_Server);
-    m_Server = SSH_INVALID_SOCKET;
+    CloseSocket(m_Listen);
+    m_Listen = SSH_INVALID_SOCKET;
     return 0;
 }
 
@@ -183,7 +235,7 @@ int CChannelSSHTunnelForward::ReadConnect()
             else {
                 QString szErr = "read data from socket fail:"
                                 + QString::number(errno) + " - " + strerror(errno)
-                                + " m_Server:" + QString::number(m_Server);
+                                + " m_Server:" + QString::number(m_Listen);
                 qCritical(log) << szErr;
                 setErrorString(szErr);
                 return errno;
@@ -230,8 +282,8 @@ int CChannelSSHTunnelForward::SSHReadyRead()
                 if(EAGAIN == errno || EWOULDBLOCK == errno)
                     return 0;
                 else {
-                    QString szErr = "send to socket fail:" + QString::number(errno)
-                                    + " - " + strerror(errno);
+                    QString szErr = "send to socket fail, connector fd:" + QString::number(m_Connector)
+                                    + " - [" + QString::number(errno) + "] - " + strerror(errno);
                     qCritical(log) << szErr;
                     setErrorString(szErr);
                     return errno;
@@ -264,10 +316,10 @@ int CChannelSSHTunnelForward::Process()
     socket_t fd = SSH_INVALID_SOCKET;
     socket_t fdSSH = ssh_get_fd(m_Session);
     //qDebug(log) << "ssh_select:" << m_Server << m_Connector;
-    if(SSH_INVALID_SOCKET != m_Server) {
+    if(SSH_INVALID_SOCKET != m_Listen) {
         //qDebug(log) << "server listen";
-        FD_SET(m_Server, &set);
-        fd = m_Server;
+        FD_SET(m_Listen, &set);
+        fd = m_Listen;
         nRet = select(fd + 1, &set, NULL, NULL, &timeout);
     } else if(SSH_INVALID_SOCKET != m_Connector) {
         //qDebug(log) << "recv connect";
@@ -292,7 +344,7 @@ int CChannelSSHTunnelForward::Process()
     }
     
     //qDebug(log) << "recv socket" << m_Server << m_Connector;
-    if(SSH_INVALID_SOCKET != m_Server && FD_ISSET(m_Server, &set)) {
+    if(SSH_INVALID_SOCKET != m_Listen && FD_ISSET(m_Listen, &set)) {
         nRet = AcceptConnect();
         return nRet;
     } else if(SSH_INVALID_SOCKET != m_Connector && FD_ISSET(m_Connector, &set)) {

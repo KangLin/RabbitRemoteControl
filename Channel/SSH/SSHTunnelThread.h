@@ -41,6 +41,7 @@ Q_SIGNALS:
      * \snippet Plugins/LibVNCServer/Client/ConnectLibVNCServer.cpp connect local socket server
      */
     void sigServer(quint16 nPort);
+    void sigServer(QString szUnixDomainSocket);
     void sigError(const int nError, const QString &szError = QString());
     void sigDisconnect();
     

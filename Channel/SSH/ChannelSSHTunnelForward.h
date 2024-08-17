@@ -35,9 +35,10 @@ public:
     
 Q_SIGNALS:
     void sigServer(quint16 nPort);
+    void sigServer(QString szUnixDomainSocket);
 
 private:
-    socket_t m_Server;
+    socket_t m_Listen;
     socket_t m_Connector;
     
     int CloseSocket(socket_t &s);
