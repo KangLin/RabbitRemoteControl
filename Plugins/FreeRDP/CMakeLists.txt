@@ -30,21 +30,20 @@ if(BUILD_CLIENT)
     add_subdirectory(Client)
 endif()
 
-find_package(FreeRDP-Shadow ${FreeRDP_VERSION})
-message("FreeRDP-Shadow_FOUND:${FreeRDP-Shadow_VERSION}")
-
-find_package(FreeRDP-Server ${FreeRDP_VERSION})
-message("FreeRDP-Server_FOUND:${FreeRDP-Server_VERSION}")
-
-if(NOT (FreeRDP-Shadow_FOUND AND FreeRDP-Server_FOUND))
-    message("Don't find FreeRDP server\n"
-            "Set:\n"
-            "    -DFreeRDP-Server_DIR=\n"
-            "    -DFreeRDP-Shadow_DIR="
-    )
-    return()
-endif()
-
 if(BUILD_SERVICE)
+    find_package(FreeRDP-Shadow ${FreeRDP_VERSION})
+    message("FreeRDP-Shadow_FOUND:${FreeRDP-Shadow_VERSION}")
+
+    find_package(FreeRDP-Server ${FreeRDP_VERSION})
+    message("FreeRDP-Server_FOUND:${FreeRDP-Server_VERSION}")
+
+    if(NOT (FreeRDP-Shadow_FOUND AND FreeRDP-Server_FOUND))
+        message("Don't find FreeRDP server\n"
+                "Set:\n"
+                "    -DFreeRDP-Server_DIR=\n"
+                "    -DFreeRDP-Shadow_DIR="
+        )
+        return()
+    endif()
     add_subdirectory(Service)
 endif(BUILD_SERVICE)
