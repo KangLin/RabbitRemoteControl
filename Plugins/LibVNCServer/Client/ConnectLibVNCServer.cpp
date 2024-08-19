@@ -254,8 +254,8 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
             m_pThread = new CSSHTunnelThread(parameter);
         if(!m_pThread)
             return OnInitReturnValue::Fail;
-        bool check = connect(m_pThread, SIGNAL(sigServer(quint16)),
-                             this, SLOT(slotConnectProxyServer(quint16)));
+        bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),
+                             this, SLOT(slotConnectProxyServer(QString, quint16)));
         Q_ASSERT(check);
 #if defined(HAVE_UNIX_DOMAIN_SOCKET) && defined(Q_OS_UNIX)
         check = connect(m_pThread, SIGNAL(sigServer(QString)),
@@ -922,12 +922,12 @@ void CConnectLibVNCServer::keyReleaseEvent(QKeyEvent *event)
 }
 
 //! [connect local socket server]
-void CConnectLibVNCServer::slotConnectProxyServer(quint16 nPort)
+void CConnectLibVNCServer::slotConnectProxyServer(QString szHost, quint16 nPort)
 {
     QString szErr;
     qDebug(log) << "CConnectLibVNCServer::slotConnectServer" << nPort;
     // Set server ip and port
-    m_pClient->serverHost = strdup("127.0.0.1");
+    m_pClient->serverHost = strdup(szHost.toStdString().c_str());
     m_pClient->serverPort = nPort;
     szErr = tr("Connect to local socket server %1:%2")
                 .arg(m_pClient->serverHost,

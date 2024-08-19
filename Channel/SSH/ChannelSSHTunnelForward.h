@@ -34,7 +34,7 @@ public:
     virtual int Process();
     
 Q_SIGNALS:
-    void sigServer(quint16 nPort);
+    void sigServer(QString szHost, quint16 nPort);
     void sigServer(QString szUnixDomainSocket);
 
 private:

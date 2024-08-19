@@ -39,8 +39,8 @@ void CSSHTunnelThread::run()
         return;
     
     do{
-        bool check = connect(p, SIGNAL(sigServer(quint16)),
-                             this, SIGNAL(sigServer(quint16)));
+        bool check = connect(p, SIGNAL(sigServer(QString, quint16)),
+                             this, SIGNAL(sigServer(QString, quint16)));
         Q_ASSERT(check);
         check = connect(p, SIGNAL(sigServer(QString)),
                              this, SIGNAL(sigServer(QString)));

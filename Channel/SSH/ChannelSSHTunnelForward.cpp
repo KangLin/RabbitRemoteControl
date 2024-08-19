@@ -137,7 +137,7 @@ bool CChannelSSHTunnelForward::open(OpenMode mode)
         }
         if (size != sizeof (listen_addr))
             break;
-        emit sigServer(ntohs(listen_addr.sin_port));
+        emit sigServer(inet_ntoa(listen_addr.sin_addr), ntohs(listen_addr.sin_port));
 #endif
         qDebug(log) << "listener in:" << Channel::CEvent::GetAddress(&listen_addr);
     } while(0);

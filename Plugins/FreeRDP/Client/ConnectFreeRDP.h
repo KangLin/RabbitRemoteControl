@@ -174,7 +174,7 @@ private:
     CSSHTunnelThread* m_pThread;
 #endif
 private Q_SLOTS:
-    void slotConnectProxyServer(quint16 nPort);
+    void slotConnectProxyServer(QString szHost, quint16 nPort);
 };
 
 #endif // CCONNECTFREERDP_H

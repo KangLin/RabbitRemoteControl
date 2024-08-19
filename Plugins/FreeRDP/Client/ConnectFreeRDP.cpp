@@ -225,8 +225,8 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
             m_pThread = new CSSHTunnelThread(parameter);
         if(!m_pThread)
             return OnInitReturnValue::Fail;
-        bool check = connect(m_pThread, SIGNAL(sigServer(quint16)),
-                             this, SLOT(slotConnectProxyServer(quint16)));
+        bool check = connect(m_pThread, SIGNAL(sigServer(QString, quint16)),
+                             this, SLOT(slotConnectProxyServer(QString, quint16)));
         Q_ASSERT(check);
         check = connect(m_pThread, SIGNAL(sigError(int,QString)),
                         this, SIGNAL(sigError(int,QString)));
@@ -1946,7 +1946,7 @@ int CConnectFreeRDP::RedirectionSerial()
     return 0;
 }
 
-void CConnectFreeRDP::slotConnectProxyServer(quint16 nPort)
+void CConnectFreeRDP::slotConnectProxyServer(QString szHost, quint16 nPort)
 {
     qDebug(log) << "CConnectFreeRDP::slotConnectProxyServer" << nPort;
     rdpContext* pContext = (rdpContext*)m_pContext;
@@ -1957,7 +1957,7 @@ void CConnectFreeRDP::slotConnectProxyServer(quint16 nPort)
 
     freerdp_settings_set_string(
         settings, FreeRDP_ServerHostname,
-        "127.0.0.1");
+        szHost.toStdString().c_str());
     freerdp_settings_set_uint32(
         settings, FreeRDP_ServerPort,
         nPort);
