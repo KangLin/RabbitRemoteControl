@@ -581,7 +581,7 @@ int CChannelSSHTunnel::Process()
     if(SSH_INVALID_SOCKET != fd)
         FD_SET(fd, &set);
     
-    //qDebug(log) << "ssh_select:";
+    //qDebug(log) << "ssh_select:" << fd;
     nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
     //qDebug(log) << "ssh_select end:" << nRet;
     if(nRet < 0) {

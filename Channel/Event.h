@@ -23,7 +23,7 @@ public:
     int Reset();
     int WakeUp();
     
-    SOCKET GetFd();
+    qintptr GetFd();
     
     static int SetSocketNonBlocking(SOCKET fd);
     static int SetSocketBlocking(SOCKET fd, bool block);
@@ -32,11 +32,11 @@ public:
     static QString GetAddress(void* address);
 
 private:
-    SOCKET fd[2];
+    qintptr fd[2];
     
     int Init();
     int Clear();
-    int CreateSocketPair(SOCKET fd[2]);
+    int CreateSocketPair(qintptr fd[]);
 };
 
 } //namespace RabbitCommon

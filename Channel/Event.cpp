@@ -3,9 +3,11 @@
 #include <QThread>
 #include <QDir>
 
+#include <chrono>
+#include "Event.h"
+
 #if defined(Q_OS_WIN)
     #if defined(HAVE_UNIX_DOMAIN_SOCKET)
-        #include <WinSock2.h>
         /* [AF_UNIX comes to Windows](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/)
          * How can I write a Windows AF_UNIX app?
          *   - Download the Windows Insiders SDK for the Windows build 17061 — available here.
@@ -34,9 +36,6 @@
     #define INVALID_SOCKET -1
     #define SOCKET_ERROR -1
 #endif
-
-#include <chrono>
-#include "Event.h"
 
 namespace Channel {
 
@@ -149,12 +148,12 @@ int CEvent::WakeUp()
     return nRet;
 }
 
-SOCKET CEvent::GetFd()
+qintptr CEvent::GetFd()
 {
     return fd[0];
 }
 
-int CEvent::CreateSocketPair(SOCKET fd[])
+int CEvent::CreateSocketPair(qintptr fd[])
 {
     int family = AF_INET;
     int type = SOCK_STREAM;
@@ -269,15 +268,15 @@ int CEvent::CreateSocketPair(SOCKET fd[])
                         << GetAddress(&listen_addr);
             break;
         }
+        qDebug(log) << "accept:" << GetAddress(&listen_addr)
+                    << "accept fd:" << acceptor << "connect fd:" << connector;
+#if !defined(HAVE_UNIX_DOMAIN_SOCKET)
         if (sizeof(listen_addr) != size) {
             qCritical(log) << "accept return size greater then supplied to the call:"
                            << "return size:" << size
                            << "call size:" << sizeof(listen_addr);
             break;
         }
-        qDebug(log) << "accept:" << GetAddress(&listen_addr)
-                    << "accept fd:" << acceptor << "connect fd:" << connector;
-#if !defined(HAVE_UNIX_DOMAIN_SOCKET)
         /* Now check we are talking to ourself by matching port and host on the
 	       two sockets.	 */
         if (getsockname(connector, (struct sockaddr *) &connect_addr, &size) == -1) {
