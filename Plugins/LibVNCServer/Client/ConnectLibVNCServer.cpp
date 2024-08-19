@@ -255,8 +255,13 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         if(!m_pThread)
             return OnInitReturnValue::Fail;
         bool check = connect(m_pThread, SIGNAL(sigServer(quint16)),
-                                   this, SLOT(slotConnectProxyServer(quint16)));
+                             this, SLOT(slotConnectProxyServer(quint16)));
         Q_ASSERT(check);
+#if defined(HAVE_UNIX_DOMAIN_SOCKET) && defined(Q_OS_UNIX)
+        check = connect(m_pThread, SIGNAL(sigServer(QString)),
+                        this, SLOT(slotConnectProxyServer(QString)));
+        Q_ASSERT(check);
+#endif
         check = connect(m_pThread, SIGNAL(sigError(int,QString)),
                         this, SIGNAL(sigError(int,QString)));
         Q_ASSERT(check);
@@ -920,7 +925,7 @@ void CConnectLibVNCServer::keyReleaseEvent(QKeyEvent *event)
 void CConnectLibVNCServer::slotConnectProxyServer(quint16 nPort)
 {
     QString szErr;
-    qDebug(log) << "CConnectLibVNCServer::slotConnectServer";
+    qDebug(log) << "CConnectLibVNCServer::slotConnectServer" << nPort;
     // Set server ip and port
     m_pClient->serverHost = strdup("127.0.0.1");
     m_pClient->serverPort = nPort;
@@ -944,4 +949,31 @@ void CConnectLibVNCServer::slotConnectProxyServer(quint16 nPort)
     emit sigInformation(szInfo);
     emit sigConnected();
 }
+
+#if defined(HAVE_UNIX_DOMAIN_SOCKET) && defined(Q_OS_UNIX)
+void CConnectLibVNCServer::slotConnectProxyServer(QString szFile)
+{
+    QString szErr;
+    qDebug(log) << "CConnectLibVNCServer::slotConnectServer" << szFile;
+    // Set server ip and port
+    m_pClient->serverHost = strdup(szFile.toStdString().c_str());
+    szErr = tr("Connect to local socket server ") + szFile;
+    qDebug(log) << szErr;
+    if(!rfbInitClient(m_pClient, nullptr, nullptr))
+    {
+        szErr += + " " + tr("fail");
+        qCritical(log) << szErr;
+        //emit sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
+        return;
+    }
+    
+    QString szInfo = QString("Connect to ") + m_pClient->desktopName;
+    qInfo(log) << szInfo;
+    
+    emit sigSetDesktopSize(m_pClient->width, m_pClient->height);
+    emit sigServerName(m_pClient->desktopName);
+    emit sigInformation(szInfo);
+    emit sigConnected();
+}
+#endif
 //! [connect local socket server]

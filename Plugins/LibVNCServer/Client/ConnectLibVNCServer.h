@@ -43,6 +43,9 @@ public Q_SLOTS:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     
     void slotConnectProxyServer(quint16 nPort);
+#if defined(HAVE_UNIX_DOMAIN_SOCKET) && defined(Q_OS_UNIX)
+    void slotConnectProxyServer(QString szFile);
+#endif
 
 private:
     virtual OnInitReturnValue OnInit() override;

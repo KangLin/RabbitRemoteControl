@@ -21,6 +21,9 @@
     #include <arpa/inet.h>
     #include <sys/socket.h>
     #include <netinet/tcp.h>
+    #if defined(HAVE_UNIX_DOMAIN_SOCKET)
+        #include <sys/un.h>
+    #endif
 #endif
 
 #include "ChannelSSHTunnelForward.h"
