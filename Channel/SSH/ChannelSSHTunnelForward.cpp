@@ -32,7 +32,7 @@ static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel.Forward")
 
 CChannelSSHTunnelForward::CChannelSSHTunnelForward(
     QSharedPointer<CParameterChannelSSH> parameter, QObject *parent)
-    : CChannelSSHTunnel{parameter, parent},
+    : CChannelSSHTunnel{parameter, false, parent},
     m_Listen(SSH_INVALID_SOCKET),
     m_Connector(SSH_INVALID_SOCKET),
     m_pBuffer(nullptr)

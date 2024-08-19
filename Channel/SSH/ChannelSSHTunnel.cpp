@@ -19,8 +19,9 @@ static Q_LOGGING_CATEGORY(log, "Channel.SSH.Tunnel")
 static Q_LOGGING_CATEGORY(logSSH, "Channel.SSH.log")
 
 CChannelSSHTunnel::CChannelSSHTunnel(
-    QSharedPointer<CParameterChannelSSH> parameter,
-    QObject *parent)
+        QSharedPointer<CParameterChannelSSH> parameter,
+        bool bWakeUp,
+        QObject *parent)
     : CChannel(parent),
     m_Session(NULL),
     m_Channel(NULL),
@@ -28,15 +29,20 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     m_Parameter(parameter),
     m_pSocketRead(nullptr),
     m_pSocketWrite(nullptr),
-    m_pSocketException(nullptr)
+    m_pSocketException(nullptr),
+    m_pEvent(nullptr)
 {
     qDebug(log) << "CChannelSSHTunnel::CChannelSSHTunnel()";
     Q_ASSERT(m_Parameter);
+    if(bWakeUp)
+        m_pEvent = new Channel::CEvent(this);
 }
 
 CChannelSSHTunnel::~CChannelSSHTunnel()
 {
     qDebug(log) << "CChannelSSHTunnel::~CChannelSSHTunnel()";
+    if(m_pEvent)
+        delete m_pEvent;
 }
 
 void CChannelSSHTunnel::cb_log(ssh_session session,
@@ -60,7 +66,8 @@ void CChannelSSHTunnel::cb_log(ssh_session session,
 
 int CChannelSSHTunnel::WakeUp()
 {
-    return m_Event.WakeUp();
+    if(!m_pEvent) return 0;
+    return m_pEvent->WakeUp();
 }
 
 bool CChannelSSHTunnel::open(OpenMode mode)
@@ -577,7 +584,9 @@ int CChannelSSHTunnel::Process()
     
     fd_set set;
     FD_ZERO(&set);
-    socket_t fd = m_Event.GetFd();
+    socket_t fd = SSH_INVALID_SOCKET;
+    if(m_pEvent)
+        fd = m_pEvent->GetFd();
     if(SSH_INVALID_SOCKET != fd)
         FD_SET(fd, &set);
     
@@ -601,8 +610,10 @@ int CChannelSSHTunnel::Process()
 
     if(SSH_INVALID_SOCKET != fd && FD_ISSET(fd, &set)) {
         //qDebug(log) << "fires event";
-        nRet = m_Event.Reset();
-        if(nRet) return -4;    
+        if(m_pEvent) {
+            nRet = m_pEvent->Reset();
+            if(nRet) return -4;
+        }
     }
 
     if(!channels[0]) {

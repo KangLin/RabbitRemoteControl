@@ -32,6 +32,7 @@ class CHANNEL_EXPORT CChannelSSHTunnel : public CChannel
 
 public:
     explicit CChannelSSHTunnel(QSharedPointer<CParameterChannelSSH> parameter,
+                               bool bWakeUp = true,
                                QObject *parent = nullptr);
     virtual ~CChannelSSHTunnel();
 
@@ -105,7 +106,7 @@ private:
     QSocketNotifier* m_pSocketWrite;
     QSocketNotifier* m_pSocketException;
     
-    Channel::CEvent m_Event;
+    Channel::CEvent* m_pEvent;
 };
 
 #endif // CCHANNELSSHTUNNEL_H
