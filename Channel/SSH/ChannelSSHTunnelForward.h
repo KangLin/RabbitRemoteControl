@@ -33,6 +33,11 @@ public:
     virtual void close() override;
     virtual int Process();
     
+    enum class SOCKET_TYPE{
+        UnixSocket,
+        Socket
+    };
+
 Q_SIGNALS:
     void sigServer(QString szHost, quint16 nPort);
     void sigServer(QString szUnixDomainSocket);
@@ -41,11 +46,16 @@ private:
     socket_t m_Listen;
     socket_t m_Connector;
     
+    SOCKET_TYPE m_SocketType;
+    
     int CloseSocket(socket_t &s);
     int AcceptConnect();
     int ReadConnect();
     int SSHReadyRead();
-    
+    int OpenSocket();
+#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+    int OpenUnixSocket();
+#endif
     char* m_pBuffer;
     const int m_BufferLength = 1024;
 };

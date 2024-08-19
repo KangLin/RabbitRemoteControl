@@ -48,19 +48,85 @@ CChannelSSHTunnelForward::~CChannelSSHTunnelForward()
         delete []m_pBuffer;
 }
 
-bool CChannelSSHTunnelForward::open(OpenMode mode)
+int CChannelSSHTunnelForward::OpenSocket()
 {
+    int nRet = 0;
     bool bRet = false;
     int family = AF_INET;
     int type = SOCK_STREAM;
     QString szErr;
-
-    bRet = CChannelSSHTunnel::open(mode);
-    if(!bRet)
-        return false;
-
+    
     socklen_t size = 0;
+    struct sockaddr_in listen_addr;
+    memset(&listen_addr, 0, sizeof(listen_addr));
+    listen_addr.sin_family = AF_INET;
+    listen_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    listen_addr.sin_port = 0;	/* kernel chooses port.	 */
+    
+    m_Listen = socket(family, type, 0);
+    if(SSH_INVALID_SOCKET == m_Listen) {
+        szErr = "Create socket fail:" + QString::number(errno);
+        qCritical(log) << szErr;
+        setErrorString(szErr);
+        return false;
+    }
+    
+    Channel::CEvent::SetSocketNonBlocking(m_Listen);
+    //Channel::CEvent::EnableNagles(m_Server, false);
+    
+    do {
+        if (bind(m_Listen, (struct sockaddr *) &listen_addr, sizeof(listen_addr))
+            == -1) {
+            szErr = "bind fail:" + QString(inet_ntoa(listen_addr.sin_addr))
+                    + QString(":") + QString::number(ntohs(listen_addr.sin_port))
+                    + " - " + QString::number(errno);
+            qCritical(log) << szErr;
+            setErrorString(szErr);
+            bRet = false;
+            break;
+        }
+        if (listen(m_Listen, 1) == -1) {
+            szErr = "listen fail:" + QString(inet_ntoa(listen_addr.sin_addr))
+                    + QString(":") + QString::number(ntohs(listen_addr.sin_port))
+                    + " - " + QString::number(errno);
+            qCritical(log) << szErr;
+            setErrorString(szErr);
+            bRet = false;
+            break;
+        }
+        /* We want to find out the port number to connect to.  */
+        size = sizeof(listen_addr);
+        if (getsockname(m_Listen, (struct sockaddr *) &listen_addr, &size) == -1)
+        {
+            bRet = false;
+            break;
+        }
+        if (size != sizeof (listen_addr))
+            break;
+        qDebug(log) << "listener in:"
+                    << inet_ntoa(listen_addr.sin_addr)
+                           + QString(":") + QString::number(ntohs(listen_addr.sin_port));
+        emit sigServer(inet_ntoa(listen_addr.sin_addr), ntohs(listen_addr.sin_port));
+        return 0;
+    } while(0);
+    
+    if(!bRet) {
+        CloseSocket(m_Listen);
+        m_Listen = SSH_INVALID_SOCKET;
+    }
+    
+    return -1;
+}
+
 #if defined(HAVE_UNIX_DOMAIN_SOCKET)
+int CChannelSSHTunnelForward::OpenUnixSocket()
+{
+    bool bRet = false;
+    int family = AF_UNIX;
+    int type = SOCK_STREAM;
+    QString szErr;
+    
+    socklen_t size = 0;
     struct sockaddr_un listen_addr;
     QString szPath;
     QString szUnixDomainSocket;
@@ -84,18 +150,10 @@ bool CChannelSSHTunnelForward::open(OpenMode mode)
         qCritical(log) << "The unix domain socket length greater then" << size;
         return -2;
     }
-    family = AF_UNIX;
     memset(&listen_addr, 0, sizeof(listen_addr));
     listen_addr.sun_family = AF_UNIX;
     strcpy(listen_addr.sun_path, szUnixDomainSocket.toStdString().c_str());
-#else
-    struct sockaddr_in listen_addr;
-    memset(&listen_addr, 0, sizeof(listen_addr));
-    listen_addr.sin_family = AF_INET;
-    listen_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-    listen_addr.sin_port = 0;	/* kernel chooses port.	 */
-#endif
-
+    
     m_Listen = socket(family, type, 0);
     if(SSH_INVALID_SOCKET == m_Listen) {
         szErr = "Create socket fail:" + QString::number(errno);
@@ -103,14 +161,14 @@ bool CChannelSSHTunnelForward::open(OpenMode mode)
         setErrorString(szErr);
         return false;
     }
-
+    
     Channel::CEvent::SetSocketNonBlocking(m_Listen);
     //Channel::CEvent::EnableNagles(m_Server, false);
     
     do {
         if (bind(m_Listen, (struct sockaddr *) &listen_addr, sizeof(listen_addr))
             == -1) {
-            szErr = "bind fail:" + Channel::CEvent::GetAddress(&listen_addr)
+            szErr = "bind fail:" + QString(listen_addr.sun_path)
                     + " - " + QString::number(errno);
             qCritical(log) << szErr;
             setErrorString(szErr);
@@ -118,34 +176,38 @@ bool CChannelSSHTunnelForward::open(OpenMode mode)
             break;
         }
         if (listen(m_Listen, 1) == -1) {
-            szErr = "listen fail:" + Channel::CEvent::GetAddress(&listen_addr)
+            szErr = "listen fail:" + QString(listen_addr.sun_path)
                     + " - " + QString::number(errno);
             qCritical(log) << szErr;
             setErrorString(szErr);
             bRet = false;
             break;
         }
-#if defined(HAVE_UNIX_DOMAIN_SOCKET)
+
         emit sigServer(szUnixDomainSocket);
-#else
-        /* We want to find out the port number to connect to.  */
-        size = sizeof(listen_addr);
-        if (getsockname(m_Listen, (struct sockaddr *) &listen_addr, &size) == -1)
-        {
-            bRet = false;
-            break;
-        }
-        if (size != sizeof (listen_addr))
-            break;
-        emit sigServer(inet_ntoa(listen_addr.sin_addr), ntohs(listen_addr.sin_port));
-#endif
-        qDebug(log) << "listener in:" << Channel::CEvent::GetAddress(&listen_addr);
+        qDebug(log) << "listener in:" << listen_addr.sun_path;
+        return 0;
     } while(0);
     
     if(!bRet) {
         CloseSocket(m_Listen);
         m_Listen = SSH_INVALID_SOCKET;
     }
+    
+    return -1;
+}
+#endif
+
+bool CChannelSSHTunnelForward::open(OpenMode mode)
+{
+    bool bRet = false;
+
+    bRet = CChannelSSHTunnel::open(mode);
+    if(!bRet)
+        return false;
+
+    int nRet = OpenSocket();
+    if(nRet) return false;
 
     return bRet;
 }
@@ -203,8 +265,7 @@ int CChannelSSHTunnelForward::AcceptConnect()
             return errno;
         }
     }
-    qDebug(log) << "accept from:" << Channel::CEvent::GetAddress(&connect_addr)
-                << "Connector fd:" << m_Connector;
+    qDebug(log) << "accept connector fd:" << m_Connector;
     Channel::CEvent::SetSocketNonBlocking(m_Connector);
     //Channel::CEvent::EnableNagles(m_Connector, false);
     CloseSocket(m_Listen);
