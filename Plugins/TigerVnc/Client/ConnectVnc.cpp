@@ -125,6 +125,17 @@ CConnectVnc::~CConnectVnc()
 
 int CConnectVnc::SetPara()
 {
+    QDir d(os::getvncconfigdir());
+    if(!d.exists())
+        d.mkpath(os::getvncconfigdir());
+    QDir dstat(os::getvncstatedir());
+    if(!dstat.exists())
+        dstat.mkpath(os::getvncstatedir());
+    QDir dvnc(os::getvncdatadir());
+    if(!dvnc.exists())
+        dvnc.mkpath(os::getvncdatadir());
+    
+    setServerName(m_pPara->m_Net.GetHost().toStdString().c_str());
     setShared(m_pPara->GetShared());
     supportsLocalCursor = m_pPara->GetLocalCursor();
     supportsCursorPosition = m_pPara->GetCursorPosition();
