@@ -1,0 +1,228 @@
+# https://snapcraft.io/docs/the-snap-format
+
+name: rabbitremotecontrol
+base: core24 # the base snap is the execution environment for this snap
+version: '0.0.27'
+icon: snap//opt/RabbitRemoteControl/share/pixmaps/org.Rabbit.RemoteControl.svg
+type: app
+summary: Rabbit remote control # 79 char long summary
+description: |
+  Rabbit remote control is  is a cross-platform,
+  multi-protocol remote control software.
+  .
+  Allows you to use any device and system in anywhere and remotely manage
+  any device and system in any way. 
+  .
+  It include remote desktop, remote terminal etc remote control functions.
+  .
+  Author: Kang Lin <kl222@126.com>
+  .
+  Donation:
+  .
+  https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
+  .
+  https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png
+  .
+  https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+      
+parts:
+  rabbitcommon:
+    # see: https://snapcraft.io/docs/supported-plugins
+    plugin: dump
+    source: https://github.com/KangLin/RabbitCommon.git
+    source-type: git
+    source-branch: master
+    source-depth: 1
+    organize:
+      '*': RabbitCommon/
+    prime:
+      - -*
+
+  freerdp:
+    plugin: cmake
+    source: https://github.com/FreeRDP/FreeRDP.git
+    source-type: git
+    source-tag: 3.7.0
+    source-depth: 1
+    build-packages:
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - xorg-dev
+      - libx11-xcb-dev
+      - libx11-dev
+      - libxfixes-dev
+      - libxcb-randr0-dev
+      - libxcb-shm0-dev
+      - libxcb-xinerama0-dev
+      - libxcb-composite0-dev
+      - libxcomposite-dev
+      - libxinerama-dev
+      - libxcb1-dev
+      - libx11-xcb-dev
+      - libxcb-xfixes0-dev
+      - libpam0g-dev
+      - libutf8proc-dev
+      - libusb-1.0-0-dev
+      - libcjson-dev
+      - libkrb5-dev
+      - libicu-dev
+      - libcairo-ocaml-dev
+      - libcups2-dev
+      # ffmpeg
+      - libavcodec-dev
+      - libavutil-dev
+      - libswresample-dev
+      - libresample1-dev
+      - libswscale-dev
+      - gettext
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DWITH_CLIENT=OFF
+      - -DWITH_PLATFORM_SERVER=OFF
+    stage:
+      - usr/local/include
+      - usr/local/lib
+    prime:
+      - lib/**/*.so*
+
+  tigervnc:
+    plugin: cmake
+    source: https://github.com/KangLin/tigervnc.git
+    source-type: git
+    source-branch: master
+    source-depth: 1
+    build-packages:
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - xorg-dev
+      - libx11-xcb-dev
+      - libx11-dev
+      - libxfixes-dev
+      - libxcb-randr0-dev
+      - libxcb-shm0-dev
+      - libxcb-xinerama0-dev
+      - libxcb-composite0-dev
+      - libxcomposite-dev
+      - libxinerama-dev
+      - libxcb1-dev
+      - libx11-xcb-dev
+      - libxcb-xfixes0-dev
+      - libpixman-1-dev
+      - libpam0g-dev
+      - libutf8proc-dev
+      - libusb-1.0-0-dev
+      - gettext
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_TESTS=OFF
+      - -DBUILD_VIEWER=OFF
+    stage:
+      - usr/local/include
+      - usr/local/lib
+    prime:
+      - -*
+
+  rabbitremotecontrol:
+    # See 'snapcraft plugins'
+    # see: https://snapcraft.io/docs/supported-plugins
+    plugin: cmake # See: https://snapcraft.io/docs/cmake-plugin
+    source: .
+    after:
+      - tigervnc
+      - rabbitcommon
+      - freerdp
+    build-packages:
+      - qt6-tools-dev
+      - qt6-tools-dev-tools
+      - qt6-base-dev
+      - qt6-base-dev-tools
+      - qt6-qpa-plugins
+      - libqt6svg6-dev
+      - qt6-l10n-tools
+      - qt6-translations-l10n
+      - qt6-scxml-dev
+      - qt6-multimedia-dev
+      - libqt6serialport6-dev
+      - qt6-webengine-dev
+      - qt6-webengine-dev-tools
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - xorg-dev
+      - libx11-xcb-dev
+      - libx11-dev
+      - libxfixes-dev
+      - libxcb-randr0-dev
+      - libxcb-shm0-dev
+      - libxcb-xinerama0-dev
+      - libxcb-composite0-dev
+      - libxcomposite-dev
+      - libxinerama-dev
+      - libxcb1-dev
+      - libx11-xcb-dev
+      - libxcb-xfixes0-dev
+      - libpixman-1-dev
+      - libpam0g-dev
+      - libutf8proc-dev
+      - libfuse3-dev
+      - libusb-1.0-0-dev
+      - libvncserver-dev
+      - libssh-dev
+      - libtelnet-dev
+      - git
+      - cmark
+      - gettext
+    stage-packages:
+      - libssh-4
+      - libgnutls30
+      - libjpeg8
+      - libpixman-1-0
+      - libqt6core6
+      - libqt6gui6
+      - libqt6multimedia6
+      - libqt6network6
+      - libqt6printsupport6
+      - libqt6statemachine6
+      - libqt6webenginewidgets6
+      - libqt6widgets6
+      - libqt6xml6
+      - libc6
+      - libgcc-s1
+      - libstdc++6
+      - libssl3
+      - zlib1g
+    cmake-parameters:
+      # See: https://snapcraft.io/docs/parts-environment-variables
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DRabbitCommon_DIR=$CRAFT_STAGE/RabbitCommon/
+      - -DTigerVnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
+      - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
+    override-stage: |
+      snapcraftctl stage
+      sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_STAGE/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+    prime:
+      - usr/lib/**/*.so*
+      - opt/RabbitRemoteControl
+      - -opt/RabbitRemoteControl/bin/cmark
+      - -opt/RabbitRemoteControl/include
+      - -opt/RabbitRemoteControl/lib/cmake
+      - -opt/RabbitRemoteControl/lib/pkgconfig
+      - -opt/RabbitRemoteControl/lib/*.a
+
+# apps:
+#  rabbitremotecontrol:
+#    command: desktop-launch $SNAP/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
+#    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+#    environment:
+#      - LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/SerialPortAssistant/lib/$SNAPCRAFT_ARCH_TRIPLET
+#    plugins:
+#      - desktop
+#      - desktop-legacy
+#      - network
+#      - opengl
+#      - cups-control
+#      - audio-playback
+#    slots:
+#      - mpris

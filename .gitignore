@@ -1,7 +1,7 @@
 debian/files
 debian/rabbitremotecontrol
 debian/.debhelper/
-
+*.snap
 # C++ objects and libs
 *.slo
 *.lo

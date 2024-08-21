@@ -61,6 +61,7 @@ sed -i "s/rabbitremotecontrol_[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol_${DE
 sed -i "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/<VERSION>.*</<VERSION>${DEBIAN_VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/          \"version\":[[:blank:]]*\"v\?[0-9]\+\.[0-9]\+\.[0-9]\+\"/          \"version\":\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
+sed -i "s/version:.*'[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
 
 CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
 CHANGLOG_FILE=${SOURCE_DIR}/debian/changelog
