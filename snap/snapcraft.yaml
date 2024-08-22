@@ -27,7 +27,9 @@ description: |
 
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
-      
+
+# lifecycle: https://snapcraft.io/docs/parts-lifecycle
+# Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
 parts:
   rabbitcommon:
     # see: https://snapcraft.io/docs/supported-plugins
@@ -86,7 +88,7 @@ parts:
       - usr/local/include
       - usr/local/lib
     prime:
-      - lib/**/*.so*
+      - usr/local/lib/**/*.so*
 
   tigervnc:
     plugin: cmake
@@ -202,27 +204,41 @@ parts:
     override-stage: |
       snapcraftctl stage
       sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_STAGE/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+      cd $CRAFT_STAGE/opt/RabbitRemoteControl/bin
+      if [ ! -f rabbitremotecontrol ]; then
+          ln -s RabbitRemoteControlApp rabbitremotecontrol
+      fi
+    organize:
+      usr/lib/$SNAPCRAFT_ARCH_TRIPLET/**/*.so*: /usr/lib/$SNAPCRAFT_ARCH_TRIPLET
     prime:
-      - usr/lib/**/*.so*
-      - opt/RabbitRemoteControl
       - -opt/RabbitRemoteControl/bin/cmark
       - -opt/RabbitRemoteControl/include
       - -opt/RabbitRemoteControl/lib/cmake
       - -opt/RabbitRemoteControl/lib/pkgconfig
       - -opt/RabbitRemoteControl/lib/*.a
 
-# apps:
-#  rabbitremotecontrol:
-#    command: desktop-launch $SNAP/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
-#    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
-#    environment:
-#      - LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/SerialPortAssistant/lib/$SNAPCRAFT_ARCH_TRIPLET
-#    plugins:
-#      - desktop
-#      - desktop-legacy
-#      - network
-#      - opengl
-#      - cups-control
-#      - audio-playback
-#    slots:
-#      - mpris
+apps:
+ rabbitremotecontrol:
+   command-chain:
+     - snap/command-chain/desktop-launch
+   command: opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
+   # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
+   desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+   environment:
+     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/local/lib/$SNAPCRAFT_ARCH_TRIPLET
+     PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
+     DISABLE_WAYLAND: 1
+   # List extensions, run `snapcraft extensions`
+   extensions:
+     - gnome
+   # See: https://snapcraft.io/docs/supported-interfaces
+   plugs:
+     - network
+     - network-status
+     - network-control
+     - network-bind
+     - network-manager
+     - opengl
+     - cups
+     - cups-control
+     - audio-playback
