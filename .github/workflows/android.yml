@@ -26,11 +26,13 @@ jobs:
             VCPKG_TARGET_TRIPLET: x64-android
             ANDROID_ABI: x86_64
 
+    # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
+    # See: https://github.com/actions/runner-images/
     runs-on: ubuntu-latest
 
     env:
       RabbitRemoteControl_VERSION: v0.0.27
-      VCPKGGITCOMMITID: 73964f854d0d6424f335e9515b61b3a2dad5e15b
+      VCPKGGITCOMMITID: 3508985146f1b1d248c67ead13f8f54be5b4f5da
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux

@@ -202,14 +202,12 @@ parts:
       - -DTigerVnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
       - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
     override-stage: |
-      snapcraftctl stage
-      sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_STAGE/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
-      cd $CRAFT_STAGE/opt/RabbitRemoteControl/bin
+      sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+      cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
       if [ ! -f rabbitremotecontrol ]; then
           ln -s RabbitRemoteControlApp rabbitremotecontrol
       fi
-    organize:
-      usr/lib/$SNAPCRAFT_ARCH_TRIPLET/**/*.so*: /usr/lib/$SNAPCRAFT_ARCH_TRIPLET
+      snapcraftctl stage
     prime:
       - -opt/RabbitRemoteControl/bin/cmark
       - -opt/RabbitRemoteControl/include
@@ -219,9 +217,7 @@ parts:
 
 apps:
  rabbitremotecontrol:
-   command-chain:
-     - snap/command-chain/desktop-launch
-   command: opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
+   command: snap/command-chain/desktop-launch $SNAP/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
    environment:
