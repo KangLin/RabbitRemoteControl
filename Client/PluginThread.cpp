@@ -1,7 +1,6 @@
 #include "PluginThread.h"
 #include "ManageConnect.h"
 
-#include <QTimer>
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Client.Plugin.Thread")
