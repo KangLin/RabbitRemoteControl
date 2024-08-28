@@ -241,10 +241,10 @@
             set ANDROID_SDK_ROOT=
             set ANDROID_NDK_ROOT=
             set ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
-            set VCPKG_ROOT=
             set CMAKE_ROOT=
             set NINJA_ROOT=
             set PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+            set VCPKG_ROOT=
             set QT_ROOT=
           
       - ubuntu
@@ -253,11 +253,12 @@
             export ANDROID_SDK_ROOT=
             export ANDROID_NDK_ROOT=
             export ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
-            export VCPKG_ROOT=
             export CMAKE_ROOT=
             export NINJA_ROOT=
             export PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
+            export VCPKG_ROOT=
             export QT_ROOT=
+
     - 编译
 
           cd RabbitRemoteControl

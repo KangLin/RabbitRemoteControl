@@ -41,6 +41,7 @@ jobs:
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       artifact_name: build_android
+      ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/26.3.11579264
       ANDROID_PLATFORM: android-23
       ANDROID_NATIVE_API_LEVEL: 23
       ANDROID_ABI: ${{matrix.ANDROID_ABI}}
@@ -292,7 +293,6 @@ jobs:
               -DCMARK_STATIC=ON \
               -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
               -DCMAKE_AUTOGEN_VERBOSE=ON \
-              -DCMAKE_MAKE_PROGRAM=ninja \
               -DQT_CHAINLOAD_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake \
               -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${ANDROID_NDK_HOME}/build/cmake/android.toolchain.cmake \
               -DVCPKG_TARGET_TRIPLET=${{env.VCPKG_TARGET_TRIPLET}} \
@@ -310,7 +310,7 @@ jobs:
               -DBUILD_LibVNCServer=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
-              -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake \
+              -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
               -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
               -DBUILD_FREERDP=ON
           cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target all

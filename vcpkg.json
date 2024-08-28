@@ -10,6 +10,7 @@
   ],
 
   "default-features": [
+    "freerdp",
     "vnc"
   ],
 
