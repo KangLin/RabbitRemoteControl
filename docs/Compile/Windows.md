@@ -250,6 +250,10 @@ Source-code location: https://github.com/KangLin/tigervnc
 - If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   + X_VCPKG_APPLOCAL_DEPS_INSTALL: ON #When installing, copy the dependent libraries to the installation directory
+  + VCPKG_MANIFEST_FEATURES: This variable can be set to a list of features to activate when installing from your manifest.
+      Note: All vcpkg-affecting variables must be defined before the first project() directive such as in a CMakePresets.json's "cacheVariables" map, via the command line, or set() statements.
+      So don't place it in CMakeLists.txt of the project.
+      See: https://learn.microsoft.com/vcpkg/users/buildsystems/cmake-integration#settings-reference
 - Compile
   + Compile from the command-line
 

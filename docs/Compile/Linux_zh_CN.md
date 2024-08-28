@@ -279,6 +279,7 @@
   
 - 如果使用 vcpkg，增加下面参数
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+  + VCPKG_MANIFEST_FEATURES: vcpkg 中的清单功能
 
 - 编译
   + 命令行编译

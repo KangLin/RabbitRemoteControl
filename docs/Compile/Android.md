@@ -173,6 +173,10 @@
 - 如果使用 vcpkg，增加下面参数
   - CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
   - X_VCPKG_APPLOCAL_DEPS_INSTALL: ON  #安装时，把把依赖库的复制到安装目录中
+  - VCPKG_MANIFEST_FEATURES: vcpkg 中的清单功能。
+        如果它要放到CMakeLists.txt文件中，则必须入在最顶端 project 之前才能生效。
+        所以本项目中从环境变量中传入。
+        参见： https://learn.microsoft.com/vcpkg/users/buildsystems/cmake-integration#settings-reference
 - 编译
   - 命令行编译
     - 设置环境变量
