@@ -148,6 +148,14 @@
     </message>
 </context>
 <context>
+    <name>CFrmViewer</name>
+    <message>
+        <location filename="../../FrmViewer.cpp" line="503"/>
+        <source>Failed to update keyboard LED state</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CParameterNet</name>
     <message>
         <location filename="../../ParameterCompone/ParameterNet.cpp" line="9"/>

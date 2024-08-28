@@ -536,29 +536,34 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>CPluginFreeRDP</name>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="70"/>
+        <location filename="../../PluginFreeRDP.cpp" line="74"/>
         <source>Free remote desktop</source>
         <translation>自由远程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="75"/>
+        <location filename="../../PluginFreeRDP.cpp" line="79"/>
         <source>RDP(Windows remote desktop Protocol): Access remote desktops such as windows.</source>
         <translation>RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="94"/>
-        <source>- FreeRDP version:</source>
-        <translation>- FreeRDP 版本：</translation>
+        <location filename="../../PluginFreeRDP.cpp" line="98"/>
+        <source>FreeRDP</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="97"/>
-        <source>- Build version:</source>
-        <translation>- 编译版本：</translation>
+        <location filename="../../PluginFreeRDP.cpp" line="100"/>
+        <source>version: </source>
+        <translation>版本号：</translation>
     </message>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="103"/>
-        <source>- Build date:</source>
-        <translation>- 编译日期：</translation>
+        <source>Build version: </source>
+        <translation>编译版本号：</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="109"/>
+        <source>Build date: </source>
+        <translation>编译日期：</translation>
     </message>
 </context>
 </TS>

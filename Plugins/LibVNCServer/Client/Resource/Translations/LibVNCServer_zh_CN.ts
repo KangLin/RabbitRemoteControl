@@ -21,14 +21,24 @@
         <translation>协议版本错误</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="927"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="932"/>
         <source>Connect to local socket server %1:%2</source>
         <translation>连接本地 socket 服务 %1:%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="933"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="938"/>
         <source> fail</source>
         <translation>失败</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="960"/>
+        <source>Connect to local socket server </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="964"/>
+        <source>fail</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="170"/>
@@ -157,22 +167,22 @@
 <context>
     <name>CPluginLibVNCServer</name>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="26"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="28"/>
         <source>LibVNCServer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="31"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="33"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虚拟网络控制台）：访问远程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="32"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="34"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一个使用 RFB（远程帧缓存)协议的程序集</translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="33"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="35"/>
         <source>The plugin is used LibVNCServer</source>
         <translation>此插件使用 LibVNCServer</translation>
     </message>

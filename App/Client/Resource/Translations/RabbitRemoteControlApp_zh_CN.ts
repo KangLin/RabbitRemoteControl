@@ -786,27 +786,27 @@
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="806"/>
+        <location filename="../../mainwindow.cpp" line="804"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="864"/>
+        <location filename="../../mainwindow.cpp" line="862"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令状态：连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="873"/>
+        <location filename="../../mainwindow.cpp" line="871"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="910"/>
+        <location filename="../../mainwindow.cpp" line="908"/>
         <source>Use message box to display information</source>
         <translation>使用消息框显示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1110"/>
+        <location filename="../../mainwindow.cpp" line="1108"/>
         <source>Save ScreenShot to </source>
         <translation>保存截屏到 </translation>
     </message>
@@ -815,22 +815,22 @@
         <translation type="vanished">错误</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1052"/>
+        <location filename="../../mainwindow.cpp" line="1050"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1053"/>
+        <location filename="../../mainwindow.cpp" line="1051"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1081"/>
+        <location filename="../../mainwindow.cpp" line="1079"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1082"/>
+        <location filename="../../mainwindow.cpp" line="1080"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>

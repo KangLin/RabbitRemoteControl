@@ -782,47 +782,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="806"/>
+        <location filename="../../mainwindow.cpp" line="804"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="864"/>
+        <location filename="../../mainwindow.cpp" line="862"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="873"/>
+        <location filename="../../mainwindow.cpp" line="871"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="910"/>
+        <location filename="../../mainwindow.cpp" line="908"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1052"/>
+        <location filename="../../mainwindow.cpp" line="1050"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1053"/>
+        <location filename="../../mainwindow.cpp" line="1051"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1081"/>
+        <location filename="../../mainwindow.cpp" line="1079"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1082"/>
+        <location filename="../../mainwindow.cpp" line="1080"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1110"/>
+        <location filename="../../mainwindow.cpp" line="1108"/>
         <source>Save ScreenShot to </source>
         <translation type="unfinished"></translation>
     </message>

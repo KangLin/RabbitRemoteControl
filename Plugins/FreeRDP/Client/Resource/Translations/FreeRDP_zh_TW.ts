@@ -352,6 +352,13 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>重連接次數</translation>
     </message>
     <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="194"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="240"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="300"/>
+        <source>Local screen</source>
+        <translation>本地屏幕</translation>
+    </message>
+    <message>
         <location filename="../../DlgSetFreeRDP.ui" line="231"/>
         <source>...</source>
         <translation></translation>
@@ -408,13 +415,6 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <location filename="../../DlgSetFreeRDP.ui" line="296"/>
         <source>Printer: Redirection the local printers to the remote computer</source>
         <translation>打印機：重定向本地打印機到遠程計算機上</translation>
-    </message>
-    <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="194"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="240"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="300"/>
-        <source>Local screen</source>
-        <translation>本地屏幕</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="306"/>
@@ -536,29 +536,34 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>CPluginFreeRDP</name>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="70"/>
+        <location filename="../../PluginFreeRDP.cpp" line="74"/>
         <source>Free remote desktop</source>
         <translation>自由遠程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="75"/>
+        <location filename="../../PluginFreeRDP.cpp" line="79"/>
         <source>RDP(Windows remote desktop Protocol): Access remote desktops such as windows.</source>
         <translation>RDP（ Windows 遠程桌面協議）：訪問 Windows 遠程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="94"/>
-        <source>- FreeRDP version:</source>
-        <translation>- FreeRDP 版本：</translation>
+        <location filename="../../PluginFreeRDP.cpp" line="98"/>
+        <source>FreeRDP</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="97"/>
-        <source>- Build version:</source>
-        <translation>- 編譯版本：</translation>
+        <location filename="../../PluginFreeRDP.cpp" line="100"/>
+        <source>version: </source>
+        <translation>版本號：</translation>
     </message>
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="103"/>
-        <source>- Build date:</source>
-        <translation>- 編譯日期：</translation>
+        <source>Build version: </source>
+        <translation>編譯版本號：</translation>
+    </message>
+    <message>
+        <location filename="../../PluginFreeRDP.cpp" line="109"/>
+        <source>Build date: </source>
+        <translation>編譯日期：</translation>
     </message>
 </context>
 </TS>

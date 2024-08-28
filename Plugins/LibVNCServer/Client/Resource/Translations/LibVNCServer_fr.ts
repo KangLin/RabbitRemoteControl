@@ -21,13 +21,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="927"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="932"/>
         <source>Connect to local socket server %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="933"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="938"/>
         <source> fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="960"/>
+        <source>Connect to local socket server </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnectLibVNCServer.cpp" line="964"/>
+        <source>fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -157,22 +167,22 @@
 <context>
     <name>CPluginLibVNCServer</name>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="26"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="28"/>
         <source>LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="31"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="33"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="32"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="34"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginLibVNCServer.cpp" line="33"/>
+        <location filename="../../PluginLibVNCServer.cpp" line="35"/>
         <source>The plugin is used LibVNCServer</source>
         <translation type="unfinished"></translation>
     </message>
