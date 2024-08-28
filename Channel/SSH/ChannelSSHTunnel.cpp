@@ -33,6 +33,7 @@ CChannelSSHTunnel::CChannelSSHTunnel(
     m_pEvent(nullptr)
 {
     qDebug(log) << "CChannelSSHTunnel::CChannelSSHTunnel()";
+    qDebug(log) << "libssh version:" << ssh_version(0);
     Q_ASSERT(m_Parameter);
     if(bWakeUp)
         m_pEvent = new Channel::CEvent(this);
@@ -43,6 +44,11 @@ CChannelSSHTunnel::~CChannelSSHTunnel()
     qDebug(log) << "CChannelSSHTunnel::~CChannelSSHTunnel()";
     if(m_pEvent)
         delete m_pEvent;
+}
+
+QString CChannelSSHTunnel::GetDetails()
+{
+    return tr("- libssh version: ") + ssh_version(0);
 }
 
 void CChannelSSHTunnel::cb_log(ssh_session session,

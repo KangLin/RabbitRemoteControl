@@ -41,6 +41,7 @@ public:
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
     
+    virtual QString GetDetails() override;
     int Process();
     virtual int WakeUp();
 

@@ -41,6 +41,8 @@ public:
     /// 
     virtual bool open(OpenMode mode) override;
     virtual void close() override;
+    
+    virtual QString GetDetails();
 
 Q_SIGNALS:
     /*!

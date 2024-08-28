@@ -103,3 +103,8 @@ void CChannel::close()
         m_pSocket->close();
     QIODevice::close();
 }
+
+QString CChannel::GetDetails()
+{
+    return QString();
+}

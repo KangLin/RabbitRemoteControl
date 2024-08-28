@@ -3,7 +3,9 @@
 #include "PluginLibVNCServer.h"
 #include "RabbitCommonDir.h"
 #include "ConnecterLibVNCServer.h"
-
+#ifdef HAVE_LIBSSH
+    #include "ChannelSSHTunnel.h"
+#endif
 #include <QLoggingCategory>
 static Q_LOGGING_CATEGORY(log, "LibVNCServer")
 
@@ -41,6 +43,18 @@ const QString CPluginLibVNCServer::Protocol() const
 const QIcon CPluginLibVNCServer::Icon() const
 {
     return QIcon::fromTheme("network-wired");
+}
+
+const QString CPluginLibVNCServer::Details() const
+{
+    QString szDetails;
+#ifdef HAVE_LIBSSH
+    szDetails += "\n";
+    QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
+    CChannelSSHTunnel channel(parameter);
+    szDetails += channel.GetDetails();
+#endif
+    return szDetails;
 }
 
 CConnecter *CPluginLibVNCServer::CreateConnecter(const QString &szID)

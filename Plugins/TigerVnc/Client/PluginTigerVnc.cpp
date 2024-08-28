@@ -3,7 +3,10 @@
 #include "PluginTigerVnc.h"
 #include "ConnecterVnc.h"
 #include "RabbitCommonDir.h"
-#include <QScopedPointer>
+
+#ifdef HAVE_LIBSSH
+    #include "ChannelSSHTunnel.h"
+#endif
 
 #include <QLoggingCategory>
 static Q_LOGGING_CATEGORY(log, "VNC.Plugin.Tiger")
@@ -44,6 +47,18 @@ const QString CPluginTigerVnc::Protocol() const
 const QIcon CPluginTigerVnc::Icon() const
 {
     return QIcon::fromTheme("network-wired");
+}
+
+const QString CPluginTigerVnc::Details() const
+{
+    QString szDetails;
+#ifdef HAVE_LIBSSH
+    szDetails += "\n";
+    QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
+    CChannelSSHTunnel channel(parameter);
+    szDetails += channel.GetDetails();
+#endif
+    return szDetails;
 }
 
 CConnecter *CPluginTigerVnc::CreateConnecter(const QString &szID)

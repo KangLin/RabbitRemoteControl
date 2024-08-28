@@ -6,6 +6,10 @@
 
 #include <QLoggingCategory>
 
+#ifdef HAVE_LIBSSH
+    #include "ChannelSSHTunnel.h"
+#endif
+
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Plugin")
 static Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
 
@@ -91,21 +95,31 @@ const QIcon CPluginFreeRDP::Icon() const
 const QString CPluginFreeRDP::Details() const
 {
     QString szDetails;
-    szDetails = tr("- FreeRDP version:");
+    szDetails = "- " + tr("FreeRDP");
+    szDetails += "\n";
+    szDetails += "  - " + tr("version: ");
     szDetails += freerdp_get_version_string();
     szDetails += "\n";
-    szDetails += tr("- Build version:");
+    szDetails += "  - " + tr("Build version: ");
     szDetails += freerdp_get_build_revision();
     szDetails += ":";
     szDetails += freerdp_get_build_revision();
     szDetails += "\n";
 #if FreeRDP_VERSION_MAJOR < 3
-    szDetails += tr("- Build date:");
+    szDetails += "  - " + tr("Build date: ");
     szDetails += freerdp_get_build_date();
     szDetails += "\n";
 #endif
-    szDetails += "- ";
+    szDetails += "  - ";
     szDetails += freerdp_get_build_config();
+
+#ifdef HAVE_LIBSSH
+    szDetails += "\n";
+    QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
+    CChannelSSHTunnel channel(parameter);
+    szDetails += channel.GetDetails();
+#endif
+
     return szDetails;
 }
 
