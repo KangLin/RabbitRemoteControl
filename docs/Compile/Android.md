@@ -147,7 +147,7 @@
 
 - CMake 参数
   - QT_ROOT: Qt 安装位置
-  - Qt6_ROOT: 与 QT_ROOT 相同
+  - Qt6_DIR: 与 QT_ROOT 相同
   - RabbitCommon_DIR：RabbitCommon 源码位置
   - BUILD_CLIENT: 编译客户端。默认为 ON
   - BUILD_SERVICE: 编译服务器端。默认依赖是否有 QtService
@@ -175,7 +175,7 @@
   - X_VCPKG_APPLOCAL_DEPS_INSTALL: ON  #安装时，把把依赖库的复制到安装目录中
   - VCPKG_MANIFEST_FEATURES: vcpkg 中的清单功能。
         如果它要放到CMakeLists.txt文件中，则必须入在最顶端 project 之前才能生效。
-        所以本项目中从环境变量中传入。
+        所以本项目中从环境变量或 CMake 参数传入。
         参见： https://learn.microsoft.com/vcpkg/users/buildsystems/cmake-integration#settings-reference
 - 编译
   - 命令行编译
@@ -263,7 +263,10 @@
 
           cd RabbitRemoteControl
           cmake --list-presets                             ;查看 presets
-          cmake --preset "android-x86_64-qt6"
+          cmake --preset "android-x86_64-qt6" \
+              -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+              -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
+              [Depend libraries ......]
           cmake --build --preset "android-x86_64-qt6"
 
 - 参见：

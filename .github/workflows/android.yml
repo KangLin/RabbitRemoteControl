@@ -329,7 +329,9 @@ jobs:
           cmake --preset "android-${{env.ANDROID_ABI}}-qt6" \
             -DQT_HOST_PATH=${Qt6_DIR}/../gcc_64 \
             -DQT_ANDROID_SIGN_APK=ON \
-            -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools
+            -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
+            -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
+            -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           cmake --build --preset "android-${{env.ANDROID_ABI}}-qt6"
 
       - name: Update configure file
