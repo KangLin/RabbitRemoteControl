@@ -313,7 +313,10 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
         szErr += tr("Host key hash:") + "\n" + szHash;
         qDebug(log) << szErr;
         emit sigBlockShowMessageBox(tr("Error"), szErr,
-                                    QMessageBox::Yes | QMessageBox::No,
+#ifndef Q_OS_ANDROID
+                                    QMessageBox::Yes |
+#endif
+                                    QMessageBox::No | QMessageBox::Ignore,
                                     btRet, checkBox);
         if(QMessageBox::Yes == btRet) {
             nRet = ssh_session_update_known_hosts(session);
@@ -322,7 +325,9 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
                 qCritical(log) << "ssh_session_update_known_hosts fail."
                                << ssh_get_error(session);
             }
-        } else
+        } if(QMessageBox::Ignore == btRet)
+            nRet = 0;
+        else
             setErrorString(tr("Reject the host key"));
         break;
     case SSH_KNOWN_HOSTS_UNKNOWN:
@@ -331,7 +336,10 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
         szErr += tr("Host key hash:") + "\n" + szHash;
         qDebug(log) << szErr;
         emit sigBlockShowMessageBox(tr("Error"), szErr,
-                                    QMessageBox::Yes | QMessageBox::No,
+#ifndef Q_OS_ANDROID
+                                    QMessageBox::Yes |
+#endif
+                                    QMessageBox::No | QMessageBox::Ignore,
                                     btRet, checkBox);
         if(QMessageBox::Yes == btRet) {
             nRet = ssh_session_update_known_hosts(session);
@@ -339,7 +347,9 @@ int CChannelSSHTunnel::verifyKnownhost(ssh_session session)
                 qCritical(log) << "ssh_session_update_known_hosts fail."
                                << ssh_get_error(session);
             }
-        } else
+        } if(QMessageBox::Ignore == btRet)
+            nRet = 0;
+        else
             setErrorString(tr("Reject the host key"));
         break;
     case SSH_KNOWN_HOSTS_ERROR:
