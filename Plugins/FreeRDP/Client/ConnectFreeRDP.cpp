@@ -711,7 +711,7 @@ const char* CConnectFreeRDP::GetTitle(freerdp* instance)
     
     windowTitle = freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
     if (windowTitle)
-        return _strdup(windowTitle);
+        return windowTitle;
 
 #if FreeRDP_VERSION_MAJOR >= 3
     name = freerdp_settings_get_server_name(settings);
@@ -752,13 +752,14 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     {
         WCHAR* windowTitle = NULL;
 #if FreeRDP_VERSION_MAJOR >= 3
-        windowTitle = ConvertUtf8ToWCharAlloc(settings->WindowTitle, NULL);
+        windowTitle = ConvertUtf8ToWCharAlloc(pWindowTitle, NULL);
 #else
-        ConvertToUnicode(CP_UTF8, 0, settings->WindowTitle, -1, &windowTitle, 0);
+        ConvertToUnicode(CP_UTF8, 0, pWindowTitle, -1, &windowTitle, 0);
 #endif
         if(windowTitle)
         {
             QString title = QString::fromUtf16((const char16_t*)windowTitle);
+            delete windowTitle;
             if(pThis->m_pParameter->GetServerName().isEmpty())
                 emit pThis->sigServerName(title);
         }
