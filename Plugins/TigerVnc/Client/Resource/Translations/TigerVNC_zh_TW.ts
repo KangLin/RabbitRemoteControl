@@ -4,47 +4,47 @@
 <context>
     <name>CConnectVnc</name>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="297"/>
+        <location filename="../../ConnectVnc.cpp" line="308"/>
         <source>The proxy server is empty, please input it</source>
         <translation>代理服務器為空，請輸入</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="299"/>
-        <location filename="../../ConnectVnc.cpp" line="319"/>
-        <location filename="../../ConnectVnc.cpp" line="385"/>
-        <location filename="../../ConnectVnc.cpp" line="523"/>
-        <location filename="../../ConnectVnc.cpp" line="538"/>
+        <location filename="../../ConnectVnc.cpp" line="310"/>
+        <location filename="../../ConnectVnc.cpp" line="330"/>
+        <location filename="../../ConnectVnc.cpp" line="396"/>
+        <location filename="../../ConnectVnc.cpp" line="534"/>
+        <location filename="../../ConnectVnc.cpp" line="549"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="317"/>
+        <location filename="../../ConnectVnc.cpp" line="328"/>
         <source>The server is empty, please input it</source>
         <translation>服務器為空，請輸入</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="376"/>
+        <location filename="../../ConnectVnc.cpp" line="387"/>
         <source>Failed to open SSH tunnel:</source>
         <translation>打開 SSH 隧道失敗：</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="517"/>
+        <location filename="../../ConnectVnc.cpp" line="528"/>
         <source>Logon to </source>
         <translation>登錄到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="521"/>
-        <location filename="../../ConnectVnc.cpp" line="534"/>
+        <location filename="../../ConnectVnc.cpp" line="532"/>
+        <location filename="../../ConnectVnc.cpp" line="545"/>
         <source> fail.</source>
         <translation> 失敗。</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="522"/>
+        <location filename="../../ConnectVnc.cpp" line="533"/>
         <source>Please check that the username and password are correct.</source>
         <translation>檢查用戶名和密碼是否正確。</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="530"/>
+        <location filename="../../ConnectVnc.cpp" line="541"/>
         <source>Connect to </source>
         <translation>連接到 </translation>
     </message>
@@ -329,22 +329,22 @@
 <context>
     <name>CPluginTigerVnc</name>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="29"/>
+        <location filename="../../PluginTigerVnc.cpp" line="32"/>
         <source>TigerVNC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="34"/>
+        <location filename="../../PluginTigerVnc.cpp" line="37"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
         <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="35"/>
+        <location filename="../../PluginTigerVnc.cpp" line="38"/>
         <source>VNC is a set of programs using the RFB (Remote Frame Buffer) protocol.</source>
         <translation>VNC 是一個使用RFB(遠程幀緩存)協議的程序。</translation>
     </message>
     <message>
-        <location filename="../../PluginTigerVnc.cpp" line="36"/>
+        <location filename="../../PluginTigerVnc.cpp" line="39"/>
         <source>The plugin is used TigerVNC</source>
         <translation>此插件使用 TigerVNC</translation>
     </message>
