@@ -155,6 +155,7 @@ jobs:
           fi
 
       - name: Build libvncserver
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer ]; then
@@ -307,7 +308,6 @@ jobs:
               -DVCPKG_TRACE_FIND_PACKAGE=ON \
               -DQt6LinguistTools_DIR=${Qt6_DIR}/../gcc_64/lib/cmake/Qt6LinguistTools \
               -DCMAKE_INSTALL_PREFIX=`pwd`/install \
-              -DBUILD_LibVNCServer=ON \
               -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" \
               -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC \
               -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
