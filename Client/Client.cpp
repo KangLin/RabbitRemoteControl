@@ -1,11 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "Client.h"
-#include "RabbitCommonDir.h"
-#include "RabbitCommonTools.h"
-#include "FrmParameterClient.h"
-#include "FrmViewer.h"
-
 #include <QPluginLoader>
 #include <QKeyEvent>
 #include <QtPlugin>
@@ -13,6 +7,13 @@
 #include <QApplication>
 #include <QSettings>
 #include <QLoggingCategory>
+
+#include "Client.h"
+#include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
+#include "FrmParameterClient.h"
+#include "FrmViewer.h"
+#include "Channel.h"
 
 static Q_LOGGING_CATEGORY(log, "Client")
 
@@ -27,9 +28,10 @@ CClient::CClient(QObject *parent) : QObject(parent),
     qApp->installEventFilter(this);
 
     m_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
-        "Client",
-        RabbitCommon::CTools::TranslationType::Library);
-
+        "Client", RabbitCommon::CTools::TranslationType::Library);
+    
+    CChannel::InitTranslation();
+    
     LoadPlugins();
 
     check = connect(&m_ParameterClient, SIGNAL(sigHookKeyboardChanged()),
@@ -44,8 +46,12 @@ CClient::~CClient()
 {
     qDebug(log) << "CClient::~CClient()";
     qApp->installEventFilter(nullptr);
-    RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
 
+    if(m_Translator)
+        RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
+    
+    CChannel::RemoveTranslation();
+    
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_Client);
 //#endif

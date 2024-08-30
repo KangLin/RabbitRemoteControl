@@ -4,8 +4,12 @@
 #include <QtGlobal>
 #include <QCoreApplication>
 #include <QLoggingCategory>
+#include <QTranslator>
+#include "RabbitCommonTools.h"
 
 static Q_LOGGING_CATEGORY(log, "Channel")
+
+QSharedPointer<QTranslator> g_Translator = nullptr;
 
 CChannel::CChannel(QObject *parent)
     : QIODevice(parent),
@@ -107,4 +111,19 @@ void CChannel::close()
 QString CChannel::GetDetails()
 {
     return QString();
+}
+
+int CChannel::InitTranslation()
+{
+    if(!g_Translator)
+        g_Translator = RabbitCommon::CTools::Instance()->InstallTranslator(
+            "Channel", RabbitCommon::CTools::TranslationType::Library);
+    return 0;
+}
+
+int CChannel::RemoveTranslation()
+{
+    if(g_Translator)
+        RabbitCommon::CTools::Instance()->RemoveTranslator(g_Translator);
+    return 0;
 }

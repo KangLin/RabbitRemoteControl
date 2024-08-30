@@ -8,8 +8,8 @@
 #include <QIODevice>
 #include <QTcpSocket>
 #include <QMessageBox>
-#include "channel_export.h"
 #include <QMutex>
+#include "channel_export.h"
 
 /*!
  * \~chinese
@@ -43,6 +43,9 @@ public:
     virtual void close() override;
     
     virtual QString GetDetails();
+    
+    static int InitTranslation();
+    static int RemoveTranslation();
 
 Q_SIGNALS:
     /*!
@@ -59,7 +62,7 @@ private Q_SLOTS:
     
 private:
     QTcpSocket* m_pSocket;
-    
+
 protected:
     explicit CChannel(QObject *parent = nullptr);
 
