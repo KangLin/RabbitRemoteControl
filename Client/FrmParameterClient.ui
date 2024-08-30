@@ -7,21 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>364</height>
+    <height>388</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Client</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QCheckBox" name="cbHookKeyboard">
-     <property name="text">
-      <string>Hook: capture system key</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
+   <item row="2" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label">
@@ -48,7 +41,64 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0">
+   <item row="6" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Connecter name</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="cbShowPrefix">
+        <property name="text">
+         <string>Show protocol prefix in name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="cbShowIPPort">
+        <property name="text">
+         <string>Only show ip:port in name</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QCheckBox" name="cbHookKeyboard">
+     <property name="text">
+      <string>Hook: capture system key</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Password</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QCheckBox" name="cbSavePassword">
+          <property name="text">
+           <string>Save password</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cbEnableViewPassword">
+          <property name="text">
+           <string>Enable view password</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="4" column="0">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
       <string>Key used to encrypt saved password:</string>
@@ -145,53 +195,10 @@
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Password</string>
+    <widget class="QCheckBox" name="cbEnableUserName">
+     <property name="text">
+      <string>Enable use the system user as the user</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
-        <item>
-         <widget class="QCheckBox" name="cbSavePassword">
-          <property name="text">
-           <string>Save password</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="cbEnableViewPassword">
-          <property name="text">
-           <string>Enable view password</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Connecter name</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="cbShowPrefix">
-        <property name="text">
-         <string>Show protocol prefix in name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="cbShowIPPort">
-        <property name="text">
-         <string>Only show ip:port in name</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
   </layout>

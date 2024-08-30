@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.0.28
+- Client parameters
+  - Added the ability to automatically use the system username as the username
+  - Add zoom viewer
+
 ### v0.0.27
 - Client:
   - add OnInitReturnValue in CConnect

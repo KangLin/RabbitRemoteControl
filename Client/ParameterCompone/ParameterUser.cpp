@@ -12,7 +12,6 @@ CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPre
     m_bUseSystemFile(true),
     m_bSavePassphrase(false)    
 {
-    SetUser(RabbitCommon::CTools::GetCurrentUser());
     m_TypeName = {{TYPE::None, tr("None")},
         {TYPE::OnlyPassword, tr("Password")},
         {TYPE::UserPassword, tr("Username and password")},
@@ -190,7 +189,9 @@ void CParameterUser::slotSetParameterClient()
     }
 
     if(GetParameterClient())
-    {   
+    {
+        if(GetParameterClient()->GetEnableSystemUserToUser())
+            SetUser(RabbitCommon::CTools::GetCurrentUser());
         SetSavePassword(GetParameterClient()->GetSavePassword());
         SetSavePassphrase(GetParameterClient()->GetSavePassword());
     }

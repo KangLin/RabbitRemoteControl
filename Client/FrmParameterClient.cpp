@@ -9,7 +9,8 @@ CFrmParameterClient::CFrmParameterClient(CParameterClient *pParameter, QWidget *
     ui->setupUi(this);
 
     ui->cbHookKeyboard->setChecked(m_pPara->GetHookKeyboard());
-    
+    ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());
+
     ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-original"),
                             tr("Original"),
                             (int)CFrmViewer::ADAPT_WINDOWS::Original);
@@ -53,6 +54,7 @@ CFrmParameterClient::~CFrmParameterClient()
 void CFrmParameterClient::slotAccept()
 {
     m_pPara->SetHookKeyboard(ui->cbHookKeyboard->isChecked());
+    m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
     m_pPara->SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
     
     m_pPara->SetEncryptKey(ui->leEncryptKey->text());

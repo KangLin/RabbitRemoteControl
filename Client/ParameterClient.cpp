@@ -2,14 +2,15 @@
 
 CParameterClient::CParameterClient(QObject *parent)
     : CParameter(parent),
-      m_bHookKeyboard(true),
-      m_bSavePassword(false),
-      m_PromptType(PromptType::No),
-      m_nPromptCount(0),
-      m_bViewPassowrd(false),
-      m_bShowProtocolPrefix(false),
-      m_bShowIpPortInName(false),
-      m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow)
+    m_bHookKeyboard(true),
+    m_bEnableSystemUserToUser(true),
+    m_bSavePassword(false),
+    m_PromptType(PromptType::No),
+    m_nPromptCount(0),
+    m_bViewPassowrd(false),
+    m_bShowProtocolPrefix(false),
+    m_bShowIpPortInName(false),
+    m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow)
 {}
 
 CParameterClient::~CParameterClient()
@@ -19,6 +20,8 @@ int CParameterClient::OnLoad(QSettings &set)
 {
     SetHookKeyboard(set.value("Client/Hook/Keyboard",
                               GetHookKeyboard()).toBool());
+    SetEnableSystemUserToUser(set.value("Client/UserName/Enable",
+                                GetEnableSystemUserToUser()).toBool());
     SetPromptType(static_cast<PromptType>(
                     set.value("Client/Password/Prompty/Type",
                               static_cast<int>(GetPromptType())).toInt()
@@ -35,6 +38,7 @@ int CParameterClient::OnLoad(QSettings &set)
 int CParameterClient::OnSave(QSettings& set)
 {
     set.setValue("Client/Hook/Keyboard", GetHookKeyboard());
+    set.setValue("Client/UserName/Enable", GetEnableSystemUserToUser());
     set.setValue("Client/Password/Prompty/Type",
                  static_cast<int>(GetPromptType()));
     set.setValue("Client/Password/Save", GetSavePassword());
@@ -57,6 +61,19 @@ void CParameterClient::SetHookKeyboard(bool newHookKeyboard)
     SetModified(true);
     m_bHookKeyboard = newHookKeyboard;
     emit sigHookKeyboardChanged();
+}
+
+bool CParameterClient::GetEnableSystemUserToUser() const
+{
+    return m_bEnableSystemUserToUser;
+}
+
+void CParameterClient::SetEnableSystemUserToUser(bool enable)
+{
+    if(m_bEnableSystemUserToUser == enable)
+        return;
+    m_bEnableSystemUserToUser = enable;
+    SetModified(true);
 }
 
 const QString &CParameterClient::GetEncryptKey() const

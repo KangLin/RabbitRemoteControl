@@ -59,7 +59,12 @@ private:
     Q_PROPERTY(bool HookKeyboard READ GetHookKeyboard WRITE SetHookKeyboard
                NOTIFY sigHookKeyboardChanged)
     
-
+    // Enable use the system user as the user
+public:
+    bool GetEnableSystemUserToUser() const;
+    void SetEnableSystemUserToUser(bool enable);
+private:
+    bool m_bEnableSystemUserToUser;
     //////////////// Password ////////////////
 
 public:
