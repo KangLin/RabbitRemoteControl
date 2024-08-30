@@ -1,4 +1,7 @@
 #include "ParameterBase.h"
+#include <QLoggingCategory>
+
+static Q_LOGGING_CATEGORY(log, "Client.Parameter.Base")
 
 CParameterBase::CParameterBase(QObject* parent)
     : CParameterConnecter(parent),
@@ -25,6 +28,8 @@ int CParameterBase::Init()
     m_bClipboard = true;
     m_bSupportsDesktopResize = true;
     m_bLedState = true;
+    m_AdaptWindows = CFrmViewer::ADAPT_WINDOWS::ZoomToWindow;
+    m_dbZoomFactor = 1;
     return 0;
 }
 
@@ -40,6 +45,9 @@ int CParameterBase::OnLoad(QSettings &set)
     SetSupportsDesktopResize(set.value("SupportsDesktopResize",
                                        GetSupportsDesktopResize()).toBool());
     SetLedState(set.value("LedState", GetLedState()).toBool());
+    SetZoomFactor(set.value("Viewer/ZoomFactor", GetZoomFactor()).toDouble());
+    SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptType",
+                         (int)GetParameterClient()->GetAdaptWindows()).toInt());
     return 0;
 }
 
@@ -54,6 +62,8 @@ int CParameterBase::OnSave(QSettings &set)
     set.setValue("Clipboard", GetClipboard());
     set.setValue("SupportsDesktopResize", GetSupportsDesktopResize());
     set.setValue("LedState", GetLedState());
+    set.setValue("Viewer/ZoomFactor", GetZoomFactor());
+    set.setValue("Viewer/AdaptType", (int)GetAdaptWindows());
     return 0;
 }
 
@@ -174,4 +184,50 @@ void CParameterBase::SetLedState(bool state)
         return;
     m_bLedState = state;
     SetModified(true);
+}
+
+CFrmViewer::ADAPT_WINDOWS CParameterBase::GetAdaptWindows()
+{
+    return m_AdaptWindows;
+}
+
+void CParameterBase::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
+{
+    if(m_AdaptWindows == aw)
+        return;
+    m_AdaptWindows = aw;
+    SetModified(true);
+    emit sigAdaptWindowsChanged(m_AdaptWindows);
+}
+
+double CParameterBase::GetZoomFactor() const
+{
+    return m_dbZoomFactor;
+}
+
+void CParameterBase::SetZoomFactor(double newZoomFactor)
+{
+    if(m_dbZoomFactor == newZoomFactor)
+        return;
+    m_dbZoomFactor = newZoomFactor;
+    SetModified(true);
+    emit sigZoomFactorChanged(m_dbZoomFactor);
+    return;
+}
+
+void CParameterBase::slotSetParameterClient()
+{
+    if(!GetParameterClient()) {
+        QString szErr = "The CParameterClient is null";
+        qCritical(log) << szErr;
+        Q_ASSERT_X(false, "CParameterBase", szErr.toStdString().c_str());
+        return;
+    }
+    
+    if(GetParameterClient())
+    {   
+        SetAdaptWindows(GetParameterClient()->GetAdaptWindows());
+    }
+    
+    return;
 }

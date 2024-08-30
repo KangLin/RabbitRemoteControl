@@ -46,7 +46,7 @@
 class CLIENT_EXPORT CFrmViewer : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(double ZoomFactor READ GetZoomFactor WRITE SetZoomFactor)
+    Q_PROPERTY(double ZoomFactor READ GetZoomFactor WRITE slotSetZoomFactor)
 
 public:
     explicit CFrmViewer(QWidget *parent = nullptr);
@@ -56,7 +56,7 @@ public:
      * \~chinese 窗口适配枚举常量
      * \~english The ADAPT_WINDOWS enum
      */
-    enum ADAPT_WINDOWS {
+    enum class ADAPT_WINDOWS {
         Disable = 0,                  ///< \~english Disable adapt windows
                                       ///< \~chinese 禁用适配窗口
         Auto = 1,
@@ -71,7 +71,7 @@ public:
         KeepAspectRationToWindow = 6, ///< \~english Keep desktop aspectration adapt to windows
                                       ///< \~chinese 保持长宽比缩放到窗口大小,窗口是固定的
     };
-    void SetAdaptWindows(ADAPT_WINDOWS aw = Original);
+    Q_ENUMS(ADAPT_WINDOWS)
     ADAPT_WINDOWS GetAdaptWindows();
     
     /*!
@@ -82,11 +82,8 @@ public:
      * \return 
      */
     double GetZoomFactor() const;
-    int SetZoomFactor(double newZoomFactor);
-    QSize GetDesktopSize();
 
-    virtual int Load(QSettings &set);
-    virtual int Save(QSettings &set);
+    QSize GetDesktopSize();
 
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
     
@@ -99,6 +96,10 @@ public:
     Q_ENUMS(LED_STATE)
     
 public Q_SLOTS:
+    void slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = ADAPT_WINDOWS::Original);
+    int slotSetZoomFactor(double newZoomFactor);
+    
+    /*================== Internal calls ==================*/
     /*!
      * \brief Update desktop size
      * \param width

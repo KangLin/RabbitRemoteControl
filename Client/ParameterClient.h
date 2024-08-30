@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Parameter.h"
+#include "FrmViewer.h"
 
 /*!
  * \~chinese 客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。
@@ -134,6 +135,14 @@ private:
     bool m_bShowIpPortInName;
     Q_PROPERTY(bool ShowIpPortInName READ GetShowIpPortInName WRITE SetShowIpPortInName NOTIFY sigSHowIpPortInNameChanged)
 
+public:
+    CFrmViewer::ADAPT_WINDOWS GetAdaptWindows();
+    void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw);
+Q_SIGNALS:
+    void sigAdaptWindowsChanged();
+private:
+    CFrmViewer::ADAPT_WINDOWS m_AdaptWindows;
+    Q_PROPERTY(CFrmViewer::ADAPT_WINDOWS AdaptWindows READ GetAdaptWindows WRITE SetAdaptWindows NOTIFY sigAdaptWindowsChanged)
 };
 
 #endif // CPARAMETERVIEWER_H

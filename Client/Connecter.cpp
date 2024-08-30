@@ -269,6 +269,15 @@ int CConnecter::SetParameter(CParameterBase *p)
             emit this->sigUpdateParameters(this);
         });
         Q_ASSERT(check);
+        CFrmViewer* pViewer = qobject_cast<CFrmViewer*>(GetViewer());
+        if(pViewer) {
+            check = connect(GetParameter(), SIGNAL(sigZoomFactorChanged(double)),
+                            pViewer, SLOT(slotSetZoomFactor(double)));
+            Q_ASSERT(check);
+            check = connect(GetParameter(), SIGNAL(sigAdaptWindowsChanged(CFrmViewer::ADAPT_WINDOWS)),
+                            pViewer, SLOT(slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS)));
+            Q_ASSERT(check);
+        }
     }
     return 0;
 }

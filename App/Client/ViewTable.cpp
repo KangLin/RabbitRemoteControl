@@ -62,7 +62,7 @@ void CViewTable::slotCurrentChanged(int index)
     {
         emit sigAdaptWindows(pView->AdaptWindows());
     } else // is terminal windows
-        emit sigAdaptWindows(CFrmViewer::Disable);
+        emit sigAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Disable);
 }
 
 void CViewTable::slotTabCloseRequested(int index)
@@ -202,10 +202,10 @@ void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
         pView = qobject_cast<CFrmViewer*>(p);
         if(pView)
         {
-            if(CFrmViewer::Auto == aw)
-                pView->SetAdaptWindows(pView->GetAdaptWindows());
+            if(CFrmViewer::ADAPT_WINDOWS::Auto == aw)
+                pView->slotSetAdaptWindows(pView->GetAdaptWindows());
             else
-                pView->SetAdaptWindows(aw);
+                pView->slotSetAdaptWindows(aw);
         }
     } else {
         CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
@@ -229,7 +229,7 @@ void CViewTable::slotZoomFactor(double v)
     if(!pScroll) return;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return;
-    pView->SetZoomFactor(v);
+    pView->slotSetZoomFactor(v);
 }
 
 void CViewTable::slotZoomIn()
@@ -238,7 +238,7 @@ void CViewTable::slotZoomIn()
     if(!pScroll) return;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return;
-    pView->SetZoomFactor(pView->GetZoomFactor() + 0.1);
+    pView->slotSetZoomFactor(pView->GetZoomFactor() + 0.1);
 }
 
 void CViewTable::slotZoomOut()
@@ -247,7 +247,7 @@ void CViewTable::slotZoomOut()
     if(!pScroll) return;
     CFrmViewer* pView = pScroll->GetViewer();
     if(!pView) return;
-    pView->SetZoomFactor(pView->GetZoomFactor() - 0.1);
+    pView->slotSetZoomFactor(pView->GetZoomFactor() - 0.1);
 }
 
 QWidget *CViewTable::GetViewer(int index)

@@ -10,6 +10,22 @@ CFrmParameterClient::CFrmParameterClient(CParameterClient *pParameter, QWidget *
 
     ui->cbHookKeyboard->setChecked(m_pPara->GetHookKeyboard());
     
+    ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-original"),
+                            tr("Original"),
+                            (int)CFrmViewer::ADAPT_WINDOWS::Original);
+    /*ui->cbViewZoom->addItem(tr("Original Center"),
+                            (int)CFrmViewer::ADAPT_WINDOWS::OriginalCenter);*/
+    ui->cbViewZoom->addItem(QIcon::fromTheme("zoom"), tr("Zoom"),
+                            (int)CFrmViewer::ADAPT_WINDOWS::Zoom);
+    ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-fit-best"),
+                            tr("Zoom to window"),
+                            (int)CFrmViewer::ADAPT_WINDOWS::ZoomToWindow);
+    ui->cbViewZoom->addItem(tr("Keep desktop aspectration adapt to windows"),
+                            (int)CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow);
+    int nIndex = ui->cbViewZoom->findData((int)m_pPara->GetAdaptWindows());
+    if(-1 != nIndex)
+        ui->cbViewZoom->setCurrentIndex(nIndex);
+
     ui->leEncryptKey->setText(m_pPara->GetEncryptKey());
     ui->cbSavePassword->setChecked(m_pPara->GetSavePassword());
     ui->cbEnableViewPassword->setChecked(m_pPara->GetViewPassowrd());
@@ -37,6 +53,7 @@ CFrmParameterClient::~CFrmParameterClient()
 void CFrmParameterClient::slotAccept()
 {
     m_pPara->SetHookKeyboard(ui->cbHookKeyboard->isChecked());
+    m_pPara->SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
     
     m_pPara->SetEncryptKey(ui->leEncryptKey->text());
     m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());

@@ -8,7 +8,8 @@ CParameterClient::CParameterClient(QObject *parent)
       m_nPromptCount(0),
       m_bViewPassowrd(false),
       m_bShowProtocolPrefix(false),
-      m_bShowIpPortInName(false)
+      m_bShowIpPortInName(false),
+      m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow)
 {}
 
 CParameterClient::~CParameterClient()
@@ -26,6 +27,8 @@ int CParameterClient::OnLoad(QSettings &set)
     SetViewPassowrd(set.value("Client/Password/View", GetViewPassowrd()).toBool());
     SetShowProtocolPrefix(set.value("Client/Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
     SetShowIpPortInName(set.value("Client/Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
+    SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Client/Viewer/AdaptWindows",
+                                         (int)GetAdaptWindows()).toInt());
     return 0;
 }
 
@@ -38,6 +41,7 @@ int CParameterClient::OnSave(QSettings& set)
     set.setValue("Client/Password/View", GetViewPassowrd());
     set.setValue("Client/Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
     set.setValue("Client/Connecter/Name/ShowIpPort", GetShowIpPortInName());
+    set.setValue("Client/Viewer/AdaptWindows", (int)GetAdaptWindows());
     return 0;
 }
 
@@ -149,4 +153,18 @@ void CParameterClient::SetShowIpPortInName(bool bShowIpPortInName)
     m_bShowIpPortInName = bShowIpPortInName;
     SetModified(true);
     emit sigSHowIpPortInNameChanged();
+}
+
+CFrmViewer::ADAPT_WINDOWS CParameterClient::GetAdaptWindows()
+{
+    return m_AdaptWindows;
+}
+
+void CParameterClient::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
+{
+    if(m_AdaptWindows == aw)
+        return;
+    m_AdaptWindows = aw;
+    SetModified(true);
+    emit sigAdaptWindowsChanged();
 }

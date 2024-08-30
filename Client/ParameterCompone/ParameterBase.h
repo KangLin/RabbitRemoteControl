@@ -102,10 +102,31 @@ private:
     bool m_bSupportsDesktopResize;
     bool m_bLedState;
 
+    // Viewer
+public:
+    CFrmViewer::ADAPT_WINDOWS GetAdaptWindows();
+    void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw);
+Q_SIGNALS:
+    void sigAdaptWindowsChanged(CFrmViewer::ADAPT_WINDOWS aw);
+private:
+    CFrmViewer::ADAPT_WINDOWS m_AdaptWindows;
+    Q_PROPERTY(CFrmViewer::ADAPT_WINDOWS AdaptWindows READ GetAdaptWindows WRITE SetAdaptWindows NOTIFY sigAdaptWindowsChanged)
+public:
+    double GetZoomFactor() const;
+    void SetZoomFactor(double newZoomFactor);
+Q_SIGNALS:
+    void sigZoomFactorChanged(double newZoomFactor);
+private:
+    double m_dbZoomFactor;
+    Q_PROPERTY(double ZoomFactor READ GetZoomFactor WRITE SetZoomFactor NOTIFY sigZoomFactorChanged)
+
     // CParameter interface
 protected:
     virtual int OnLoad(QSettings &set) override;
     virtual int OnSave(QSettings &set) override;
+    
+    // CParameterConnecter interface
+    virtual void slotSetParameterClient() override;
 };
 
 #endif // CPARAMETERBASE_H

@@ -483,7 +483,7 @@ void MainWindow::on_actionZoom_window_to_remote_desktop_triggered()
 void MainWindow::on_actionZoomToWindow_Z_triggered()
 {
     if(!m_pView) return;
-    m_pView->SetAdaptWindows(CFrmViewer::ZoomToWindow);
+    m_pView->SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow);
     // because it may be called from CFrFullScreenToolBar::m_ToolBar
     ui->actionZoomToWindow_Z->setChecked(true);
     if(m_ptbZoom)
@@ -493,7 +493,7 @@ void MainWindow::on_actionZoomToWindow_Z_triggered()
 void MainWindow::on_actionKeep_aspect_ration_to_windows_K_triggered()
 {
     if(!m_pView) return;
-    m_pView->SetAdaptWindows(CFrmViewer::KeepAspectRationToWindow);
+    m_pView->SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow);
     // because it may be called from CFrFullScreenToolBar::m_ToolBar
     ui->actionKeep_aspect_ration_to_windows_K->setChecked(true);
     if(m_ptbZoom)
@@ -509,7 +509,7 @@ void MainWindow::on_actionOriginal_O_triggered()
 {
     qDebug(log) << "on_actionOriginal_O_triggered()";
     if(!m_pView) return;
-    m_pView->SetAdaptWindows(CFrmViewer::Original);
+    m_pView->SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Original);
     // because it may be called from CFrFullScreenToolBar::m_ToolBar
     ui->actionOriginal_O->setChecked(true);
     if(m_psbZoomFactor)
@@ -526,7 +526,7 @@ void MainWindow::on_actionZoom_In_triggered()
     ui->actionZoom_In->setChecked(true);
     if(m_psbZoomFactor)
         m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
-    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+    m_pView->SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);
     if(m_ptbZoom)
         m_ptbZoom->setIcon(ui->actionZoom_In->icon());
 }
@@ -539,7 +539,7 @@ void MainWindow::on_actionZoom_Out_triggered()
     ui->actionZoom_Out->setChecked(true);
     if(m_psbZoomFactor)
         m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
-    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+    m_pView->SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);
     if(m_ptbZoom)
         m_ptbZoom->setIcon(ui->actionZoom_Out->icon());
 }
@@ -547,7 +547,7 @@ void MainWindow::on_actionZoom_Out_triggered()
 void MainWindow::slotZoomFactor(int v)
 {
     m_pView->slotZoomFactor(((double)v) / 100);
-    m_pView->SetAdaptWindows(CFrmViewer::Zoom);
+    m_pView->SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);
 }
 
 void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
@@ -556,28 +556,28 @@ void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
         return;
     EnableMenu(true);
     switch (aw) {
-    case CFrmViewer::Auto:
-    case CFrmViewer::Original:
+    case CFrmViewer::ADAPT_WINDOWS::Auto:
+    case CFrmViewer::ADAPT_WINDOWS::Original:
         ui->actionOriginal_O->setChecked(true);
         if(m_ptbZoom)
             m_ptbZoom->setIcon(ui->actionOriginal_O->icon());
         break;
-    case CFrmViewer::ZoomToWindow:
+    case CFrmViewer::ADAPT_WINDOWS::ZoomToWindow:
         ui->actionZoomToWindow_Z->setChecked(true);
         if(m_ptbZoom)
             m_ptbZoom->setIcon(ui->actionZoomToWindow_Z->icon());
         break;
-    case CFrmViewer::KeepAspectRationToWindow:
+    case CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow:
         ui->actionKeep_aspect_ration_to_windows_K->setChecked(true);
         if(m_ptbZoom)
             m_ptbZoom->setIcon(ui->actionKeep_aspect_ration_to_windows_K->icon());
         break;
-    case CFrmViewer::Zoom:
+    case CFrmViewer::ADAPT_WINDOWS::Zoom:
         ui->actionZoom_Out->setChecked(true);
         if(m_ptbZoom)
             m_ptbZoom->setIcon(QIcon::fromTheme("zoom"));
         break;
-    case CFrmViewer::Disable:
+    case CFrmViewer::ADAPT_WINDOWS::Disable:
         if(m_ptbZoom)
             m_ptbZoom->setIcon(QIcon::fromTheme("zoom"));
         EnableMenu(false);
@@ -766,7 +766,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     //* Show view. \see: slotConnected()
     if(m_pView)
     {
-        m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
+        m_pView->SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Auto, p->GetViewer());
         m_pView->AddView(p->GetViewer());
         m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
         //qDebug(log) << "View:" << p->GetViewer();

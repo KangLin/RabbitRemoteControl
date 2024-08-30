@@ -14,6 +14,40 @@
    <string>Client</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QCheckBox" name="cbHookKeyboard">
+     <property name="text">
+      <string>Hook: capture system key</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Viewer zoom:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cbViewZoom">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item row="2" column="0">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
@@ -24,6 +58,12 @@
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="label_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Encrypt key:</string>
           </property>
@@ -45,17 +85,29 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset theme="eye-on">
-            <normaloff>.</normaloff>.</iconset>
+           <iconset theme="eye-on"/>
           </property>
          </widget>
         </item>
        </layout>
       </item>
-      <item row="2" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item row="1" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Prompt type:</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QRadioButton" name="rbPromptNo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>No</string>
           </property>
@@ -63,6 +115,12 @@
         </item>
         <item>
          <widget class="QRadioButton" name="rbPromptFirst">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>First</string>
           </property>
@@ -70,6 +128,12 @@
         </item>
         <item>
          <widget class="QRadioButton" name="rbPromptAlways">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Always</string>
           </property>
@@ -77,51 +141,7 @@
         </item>
        </layout>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Prompt type:</string>
-        </property>
-       </widget>
-      </item>
      </layout>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Connecter name</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QCheckBox" name="cbShowPrefix">
-        <property name="text">
-         <string>Show protocol prefix in name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="cbShowIPPort">
-        <property name="text">
-         <string>Only show ip:port in name</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QCheckBox" name="cbHookKeyboard">
-     <property name="text">
-      <string>Hook: capture system key</string>
-     </property>
     </widget>
    </item>
    <item row="3" column="0">
@@ -151,18 +171,28 @@
      </layout>
     </widget>
    </item>
-   <item row="5" column="0">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+   <item row="4" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Connecter name</string>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="cbShowPrefix">
+        <property name="text">
+         <string>Show protocol prefix in name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="cbShowIPPort">
+        <property name="text">
+         <string>Only show ip:port in name</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>

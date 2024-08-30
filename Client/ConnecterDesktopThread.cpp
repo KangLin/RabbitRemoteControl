@@ -80,16 +80,14 @@ int CConnecterDesktopThread::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());
-    Q_ASSERT(m_pView);
-    if(m_pView)
-    {   
-        nRet = m_pView->Load(set);
-        if(nRet) return nRet;
-    }
-
     if(GetParameter())
         nRet = GetParameter()->Load(set);
-        
+    Q_ASSERT(m_pView);
+    if(m_pView)
+    {
+        m_pView->slotSetAdaptWindows(GetParameter()->GetAdaptWindows());
+        m_pView->slotSetZoomFactor(GetParameter()->GetZoomFactor());
+    }
     return nRet;
 }
 
@@ -97,12 +95,13 @@ int CConnecterDesktopThread::Save(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());
-    if(m_pView)
-    {
-        nRet = m_pView->Save(set);
-        if(nRet) return nRet;
-    }
-    if(GetParameter())
+    if(GetParameter()) {
+        if(m_pView)
+        {
+            GetParameter()->SetAdaptWindows(m_pView->GetAdaptWindows());
+            GetParameter()->SetZoomFactor(m_pView->GetZoomFactor());
+        }
         GetParameter()->Save(set);
+    }
     return nRet;
 }

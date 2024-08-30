@@ -27,8 +27,8 @@ CFrmViewer::CFrmViewer(QWidget *parent)
     //setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
 
-    SetAdaptWindows(ZoomToWindow);
-    SetZoomFactor(1);
+    slotSetAdaptWindows(ADAPT_WINDOWS::ZoomToWindow);
+    slotSetZoomFactor(1);
     
     setMouseTracking(true);
     setFocusPolicy(Qt::WheelFocus);
@@ -84,18 +84,18 @@ void CFrmViewer::paintDesktop()
     QRectF dstRect = rect();
     
     switch (m_AdaptWindows) {
-    case Disable:
-    case Auto:
-    case ZoomToWindow:
-    case Original:
+    case ADAPT_WINDOWS::Disable:
+    case ADAPT_WINDOWS::Auto:
+    case ADAPT_WINDOWS::ZoomToWindow:
+    case ADAPT_WINDOWS::Original:
         break;
-    case OriginalCenter:
+    case ADAPT_WINDOWS::OriginalCenter:
         dstRect.setLeft((rect().width() - m_DesktopSize.width()) >> 1);
         dstRect.setTop((rect().height() - m_DesktopSize.height()) >> 1);
         dstRect.setWidth(m_DesktopSize.width());
         dstRect.setHeight(m_DesktopSize.height());
         break;
-    case KeepAspectRationToWindow:
+    case ADAPT_WINDOWS::KeepAspectRationToWindow:
     {
         dstRect = GetAspectRationRect();
         break;
@@ -108,7 +108,7 @@ void CFrmViewer::paintDesktop()
     
     QPainter painter(this);
     // Clear background
-    if(KeepAspectRationToWindow == m_AdaptWindows)
+    if(ADAPT_WINDOWS::KeepAspectRationToWindow == m_AdaptWindows)
     {
 #if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
         painter.fillRect(rect(), QBrush(palette().color(QPalette::Window)));
@@ -141,20 +141,20 @@ int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
     //qDebug(log) << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
 
     switch (m_AdaptWindows) {
-    case Auto:
-    case Original:
-    case OriginalCenter:
+    case ADAPT_WINDOWS::Auto:
+    case ADAPT_WINDOWS::Original:
+    case ADAPT_WINDOWS::OriginalCenter:
         outPos = inPos;
         break;
-    case Zoom:
+    case ADAPT_WINDOWS::Zoom:
         outPos.setX(inPos.x() / GetZoomFactor());
         outPos.setY(inPos.y() / GetZoomFactor());
         break;
-    case ZoomToWindow:
+    case ADAPT_WINDOWS::ZoomToWindow:
         outPos.setX(m_DesktopSize.width() * inPos.x() / width());
         outPos.setY(m_DesktopSize.height() * inPos.y() / height());
         break;
-    case KeepAspectRationToWindow:
+    case ADAPT_WINDOWS::KeepAspectRationToWindow:
     {
         QRectF r = GetAspectRationRect();
         if(inPos.x() < r.left()
@@ -272,7 +272,7 @@ double CFrmViewer::GetZoomFactor() const
     return m_dbZoomFactor;
 }
 
-int CFrmViewer::SetZoomFactor(double newZoomFactor)
+int CFrmViewer::slotSetZoomFactor(double newZoomFactor)
 {
     if(newZoomFactor < 0) return -1;
     if (qFuzzyCompare(m_dbZoomFactor, newZoomFactor))
@@ -289,16 +289,16 @@ int CFrmViewer::ReSize(int width, int height)
     return 0;
 }
 
-void CFrmViewer::SetAdaptWindows(ADAPT_WINDOWS aw)
+void CFrmViewer::slotSetAdaptWindows(ADAPT_WINDOWS aw)
 {
     m_AdaptWindows = aw;
     if(!m_Desktop.isNull())
     {
         switch (m_AdaptWindows) {
-        case Original:
-        case OriginalCenter:
-            SetZoomFactor(1);
-        case Zoom:
+        case ADAPT_WINDOWS::Original:
+        case ADAPT_WINDOWS::OriginalCenter:
+            slotSetZoomFactor(1);
+        case ADAPT_WINDOWS::Zoom:
             ReSize(m_DesktopSize.width(), m_DesktopSize.height());
             break;
         default:
@@ -319,9 +319,9 @@ void CFrmViewer::slotSetDesktopSize(int width, int height)
     m_DesktopSize = QSize(width, height);
     m_Desktop = QImage(width, height, QImage::Format_RGB32);
     
-    if(Original == m_AdaptWindows
-            || OriginalCenter == m_AdaptWindows
-            || Zoom == m_AdaptWindows)
+    if(ADAPT_WINDOWS::Original == m_AdaptWindows
+        || ADAPT_WINDOWS::OriginalCenter == m_AdaptWindows
+        || ADAPT_WINDOWS::Zoom == m_AdaptWindows)
         ReSize(width, height);
 
     return;
@@ -505,20 +505,6 @@ void CFrmViewer::slotUpdateLedState(unsigned int state)
     XCloseDisplay(dpy);
 #endif
 
-}
-
-int CFrmViewer::Load(QSettings &set)
-{
-    SetZoomFactor(set.value("Viewer/ZoomFactor", GetZoomFactor()).toDouble());
-    SetAdaptWindows(static_cast<ADAPT_WINDOWS>(set.value("Viewer/AdaptType", GetAdaptWindows()).toInt()));
-    return 0;
-}
-
-int CFrmViewer::Save(QSettings &set)
-{
-    set.setValue("Viewer/ZoomFactor", GetZoomFactor());
-    set.setValue("Viewer/AdaptType", GetAdaptWindows());
-    return 0;
 }
 
 QImage CFrmViewer::GrabImage(int x, int y, int w, int h)

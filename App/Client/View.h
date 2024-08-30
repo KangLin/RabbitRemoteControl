@@ -38,7 +38,7 @@ public:
     /// The QWidget* pView must is same as CConnecter::GetViewer()
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle, const QIcon& icon, const QString& szToolTip) = 0;
     /// The QWidget* pView must is same as CConnecter::GetViewer()
-    virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::Auto, QWidget* pView = nullptr) = 0;
+    virtual void SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::ADAPT_WINDOWS::Auto, QWidget* pView = nullptr) = 0;
     
     virtual double GetZoomFactor() = 0;
     /*!
