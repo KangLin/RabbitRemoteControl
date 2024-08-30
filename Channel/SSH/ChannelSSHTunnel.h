@@ -68,6 +68,24 @@ Q_SIGNALS:
                                 QMessageBox::StandardButton& nRet,
                                 bool &checkBox,
                                 QString checkBoxContext = QString());
+    /*!
+     * \~chinese
+     * 阻塞后台线程，并在前台线程中显示窗口。
+     *
+     * \~english
+     * \brief Blocks the background thread and displays the window in the foreground thread.
+     * \param className: show windows class name
+     *        The class must have follower public functions:
+     *            Q_INVOKABLE void SetContext(void* pContext);
+     *            Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
+     * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
+     *              Otherwise, ignore
+     * \param pContext: pass context to CConnecter::slotBlockShowWidget()
+     *
+     * \~
+     * \see CConnecter::slotBlockShowWidget() SetConnecter
+     */
+    void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
 
     // QIODevice interface
 protected:

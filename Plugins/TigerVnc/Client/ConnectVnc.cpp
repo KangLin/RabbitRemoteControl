@@ -380,7 +380,10 @@ int CConnectVnc::SSHInit()
     SetChannelConnect(m_DataChannel);
     check = connect(channel.data(), SIGNAL(sigBlockShowMessageBox(const QString&, const QString&, QMessageBox::StandardButtons, QMessageBox::StandardButton&, bool&, QString)),
                     this, SIGNAL(sigBlockShowMessageBox(const QString&, const QString&, QMessageBox::StandardButtons, QMessageBox::StandardButton&, bool&, QString)));
-    Q_ASSERT(check);    
+    Q_ASSERT(check);
+    check = connect(channel.data(), SIGNAL(sigBlockShowWidget(const QString&, int&, void*)),
+                    this, SIGNAL(sigBlockShowWidget(const QString&, int&, void*)));
+    Q_ASSERT(check);
     if(!channel->open(QIODevice::ReadWrite))
     {
         QString szErr;

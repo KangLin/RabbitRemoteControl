@@ -69,13 +69,19 @@ if(libssh_FOUND)
         SSH/SSHTunnelThread.h
         )
     list(APPEND CHANNEL_HEADER_FILES
-        SSH/ChannelSSHTunnelForward.h)
+        SSH/ChannelSSHTunnelForward.h
+        )
     list(APPEND CHANNEL_SOURCE_FILES
         SSH/ParameterChannelSSH.cpp
         SSH/ChannelSSHTunnel.cpp
         SSH/ChannelSSHTunnelForward.cpp
         SSH/SSHTunnelThread.cpp
         )
+    if(WITH_GUI)
+        list(APPEND CHANNEL_SOURCE_FILES SSH/DlgUserPassword.cpp)
+        list(APPEND CHANNEL_INSTALL_HEADER_FILES SSH/DlgUserPassword.h)
+        list(APPEND CHANNEL_UIS SSH/DlgUserPassword.ui)
+    endif()
 endif()
 
 find_package(LibDataChannel)
@@ -122,7 +128,6 @@ if(LibDataChannel_FOUND)
     endif()
 
     if(WITH_GUI)
-        list(APPEND CHANNEL_QT_COMPONENTS Gui Widgets)
         list(APPEND CHANNEL_SOURCE_FILES ICE/FrmParameterICE.cpp)
         list(APPEND CHANNEL_INSTALL_HEADER_FILES ICE/FrmParameterICE.h)
         list(APPEND CHANNEL_UIS ICE/FrmParameterICE.ui)
@@ -132,7 +137,9 @@ endif()
 list(APPEND CHANNEL_HEADER_FILES ${CHANNEL_INSTALL_HEADER_FILES})
 
 list(APPEND CHANNEL_RCC_FILES)
-
+if(WITH_GUI)
+    list(APPEND CHANNEL_QT_COMPONENTS Gui Widgets)
+endif()
 list(APPEND CHANNEL_QT_COMPONENTS Widgets Network)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS ${CHANNEL_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)

@@ -179,6 +179,20 @@ bool CChannelSSHTunnel::open(OpenMode mode)
         nRet = verifyKnownhost(m_Session);
         if(nRet) break;
         
+        if(((m_Parameter->GetPassword().isEmpty()
+              || m_Parameter->GetUser().isEmpty())
+             && m_Parameter->GetAuthenticationMethod() == SSH_AUTH_METHOD_PASSWORD)
+            || (m_Parameter->GetAuthenticationMethod() == SSH_AUTH_METHOD_PUBLICKEY
+                && m_Parameter->GetPassphrase().isEmpty())
+            ) {
+            emit sigBlockShowWidget("CDlgUserPassword", nRet, m_Parameter.data());
+            if(QDialog::Accepted != nRet)
+            {
+                setErrorString(tr("User cancel"));
+                return -1;
+            }
+        }
+        
         nRet = authentication(m_Session,
                               m_Parameter->GetUser(),
                               m_Parameter->GetPassword(),
@@ -399,7 +413,6 @@ int CChannelSSHTunnel::authentication(
     //*/
 
     if(nServerMethod & nMethod & SSH_AUTH_METHOD_PUBLICKEY) {
-        
         if(m_Parameter->GetUseSystemFile()) {
             qDebug(log) << "User authentication with ssh_userauth_publickey_auto";
             nRet = ssh_userauth_publickey_auto(session,
@@ -426,6 +439,7 @@ int CChannelSSHTunnel::authentication(
 
     if(nServerMethod & nMethod & SSH_AUTH_METHOD_PASSWORD) {
         qDebug(log) << "User authentication with password";
+
         nRet = ssh_userauth_password(session,
                                      szUser.toStdString().c_str(),
                                      szPassword.toStdString().c_str());
