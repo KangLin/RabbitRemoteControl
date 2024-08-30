@@ -21,7 +21,8 @@ CFrmParameterClient::CFrmParameterClient(CParameterClient *pParameter, QWidget *
     ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-fit-best"),
                             tr("Zoom to window"),
                             (int)CFrmViewer::ADAPT_WINDOWS::ZoomToWindow);
-    ui->cbViewZoom->addItem(tr("Keep desktop aspectration adapt to windows"),
+    ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-aspect-ratio"),
+                            tr("Keep desktop aspectration adapt to windows"),
                             (int)CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow);
     int nIndex = ui->cbViewZoom->findData((int)m_pPara->GetAdaptWindows());
     if(-1 != nIndex)

@@ -82,68 +82,98 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="100"/>
+        <location filename="../../FrmParameterClient.ui" line="184"/>
         <source>Connecter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="106"/>
+        <location filename="../../FrmParameterClient.ui" line="190"/>
         <source>Show protocol prefix in name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="113"/>
+        <location filename="../../FrmParameterClient.ui" line="197"/>
         <source>Only show ip:port in name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="123"/>
+        <location filename="../../FrmParameterClient.ui" line="20"/>
         <source>Hook: capture system key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="130"/>
+        <location filename="../../FrmParameterClient.ui" line="61"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="138"/>
+        <location filename="../../FrmParameterClient.ui" line="69"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="145"/>
+        <location filename="../../FrmParameterClient.ui" line="76"/>
         <source>Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
+        <location filename="../../FrmParameterClient.ui" line="54"/>
+        <source>Enable use the system user as the user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="35"/>
+        <source>Viewer zoom:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="88"/>
         <source>Key used to encrypt saved password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="28"/>
+        <location filename="../../FrmParameterClient.ui" line="102"/>
         <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="60"/>
+        <location filename="../../FrmParameterClient.ui" line="146"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="67"/>
+        <location filename="../../FrmParameterClient.ui" line="159"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="74"/>
+        <location filename="../../FrmParameterClient.ui" line="172"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="83"/>
+        <location filename="../../FrmParameterClient.ui" line="133"/>
         <source>Prompt type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="15"/>
+        <source>Original</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="19"/>
+        <source>Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="22"/>
+        <source>Zoom to window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="24"/>
+        <source>Keep desktop aspectration adapt to windows</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -255,48 +285,48 @@
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="15"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="51"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="50"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
         <source>Username and password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
         <source>Public key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
         <source>Password with X509 none</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
         <source>Password with X509</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
         <source>Username and password with X509 none</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
         <source>Username and password with X509</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="65"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="64"/>
         <source>Passphrase</source>
         <translation type="unfinished"></translation>
     </message>

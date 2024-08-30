@@ -82,69 +82,99 @@
         <translation>客戶端</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="100"/>
+        <location filename="../../FrmParameterClient.ui" line="184"/>
         <source>Connecter name</source>
         <translation>連接名</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="106"/>
+        <location filename="../../FrmParameterClient.ui" line="190"/>
         <source>Show protocol prefix in name</source>
         <translation>在連接名中顯示協議前綴</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="113"/>
+        <location filename="../../FrmParameterClient.ui" line="197"/>
         <source>Only show ip:port in name</source>
         <translation>在連接名中僅顯示 IP:PORT</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="123"/>
+        <location filename="../../FrmParameterClient.ui" line="20"/>
         <source>Hook: capture system key</source>
         <translation>掛鉤：捕獲系統鍵</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="130"/>
+        <location filename="../../FrmParameterClient.ui" line="61"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="138"/>
+        <location filename="../../FrmParameterClient.ui" line="69"/>
         <source>Save password</source>
         <translation>保存密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="145"/>
+        <location filename="../../FrmParameterClient.ui" line="76"/>
         <source>Enable view password</source>
         <translation>允許查看密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
+        <location filename="../../FrmParameterClient.ui" line="54"/>
+        <source>Enable use the system user as the user</source>
+        <translation>允許使用系統用戶作為用戶</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="35"/>
+        <source>Viewer zoom:</source>
+        <translation>縮放視圖：</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="88"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密鍵用於加密碼保存的密碼</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="28"/>
+        <location filename="../../FrmParameterClient.ui" line="102"/>
         <source>Encrypt key:</source>
         <translation>加密鍵</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="60"/>
+        <location filename="../../FrmParameterClient.ui" line="146"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="67"/>
+        <location filename="../../FrmParameterClient.ui" line="159"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="74"/>
+        <location filename="../../FrmParameterClient.ui" line="172"/>
         <source>Always</source>
         <translation>總是</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="83"/>
+        <location filename="../../FrmParameterClient.ui" line="133"/>
         <source>Prompt type:</source>
         <translation>提示類型</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="15"/>
+        <source>Original</source>
+        <translation>原始</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="19"/>
+        <source>Zoom</source>
+        <translation>縮放</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="22"/>
+        <source>Zoom to window</source>
+        <translation>縮放到窗口大小</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="24"/>
+        <source>Keep desktop aspectration adapt to windows</source>
+        <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
 </context>
 <context>
@@ -152,7 +182,7 @@
     <message>
         <location filename="../../FrmViewer.cpp" line="503"/>
         <source>Failed to update keyboard LED state</source>
-        <translation type="unfinished"></translation>
+        <translation>更新鍵盤 LED 狀態失敗</translation>
     </message>
 </context>
 <context>
@@ -255,48 +285,48 @@
 <context>
     <name>CParameterUser</name>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="15"/>
         <source>None</source>
         <translation>無</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="51"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="16"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="50"/>
         <source>Password</source>
         <translation>密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
         <source>Username and password</source>
         <translation>用戶名和密碼</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
         <source>Public key</source>
         <translation>公鑰</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="19"/>
         <source>Password with X509 none</source>
         <translation>密碼（使用 X509 匿名認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="20"/>
         <source>Password with X509</source>
         <translation>密碼（使用 X509 認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
         <source>Username and password with X509 none</source>
         <translation>用戶名和密碼（使用 X509 匿名認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="23"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
         <source>Username and password with X509</source>
         <translation>用戶名和密碼（使用 X509 認證加密）</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUser.cpp" line="65"/>
+        <location filename="../../ParameterCompone/ParameterUser.cpp" line="64"/>
         <source>Passphrase</source>
         <translation>密碼</translation>
     </message>
