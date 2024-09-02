@@ -11,9 +11,9 @@
     <message>
         <location filename="../../ConnectVnc.cpp" line="310"/>
         <location filename="../../ConnectVnc.cpp" line="330"/>
-        <location filename="../../ConnectVnc.cpp" line="396"/>
-        <location filename="../../ConnectVnc.cpp" line="534"/>
-        <location filename="../../ConnectVnc.cpp" line="549"/>
+        <location filename="../../ConnectVnc.cpp" line="399"/>
+        <location filename="../../ConnectVnc.cpp" line="537"/>
+        <location filename="../../ConnectVnc.cpp" line="552"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -23,28 +23,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="387"/>
+        <location filename="../../ConnectVnc.cpp" line="390"/>
         <source>Failed to open SSH tunnel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="528"/>
+        <location filename="../../ConnectVnc.cpp" line="531"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="532"/>
-        <location filename="../../ConnectVnc.cpp" line="545"/>
+        <location filename="../../ConnectVnc.cpp" line="535"/>
+        <location filename="../../ConnectVnc.cpp" line="548"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="533"/>
+        <location filename="../../ConnectVnc.cpp" line="536"/>
         <source>Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="541"/>
+        <location filename="../../ConnectVnc.cpp" line="544"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>

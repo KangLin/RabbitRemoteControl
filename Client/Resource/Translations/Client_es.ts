@@ -172,7 +172,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="24"/>
+        <location filename="../../FrmParameterClient.cpp" line="25"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation type="unfinished"></translation>
     </message>

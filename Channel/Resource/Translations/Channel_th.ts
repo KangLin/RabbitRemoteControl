@@ -34,135 +34,140 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="256"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="191"/>
+        <source>User cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="270"/>
         <source>SSH failed: Get server public key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="271"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="285"/>
         <source>SSH failed: Get public key hash value fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="289"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="303"/>
         <source>Host key for server changed. it is now:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="291"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="302"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="305"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="316"/>
         <source>For security reasons, connection will be stopped.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="292"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="303"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="306"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="317"/>
         <source>Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="299"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="313"/>
         <source>The host key for this server was not found but an other type of key exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="300"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="314"/>
         <source>An attacker might change the default server key to confuse your client into thinking the key does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="310"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="324"/>
         <source>Could not find known host file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="311"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="325"/>
         <source>If you accept the host key here, the file will be automatically created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="313"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="336"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="358"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="327"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="350"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="372"/>
         <source>Host key hash:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="315"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="338"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="329"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="352"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="331"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="353"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="345"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="367"/>
         <source>Reject the host key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="335"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="349"/>
         <source>The server is unknown. Do you trust the host key?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="357"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="371"/>
         <source>Error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="359"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="373"/>
         <source>Will be stopped.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="410"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="423"/>
         <source>SSH failed: Failed authenticating with publickey:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="433"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="447"/>
         <source>Failed authenticating with password. User: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="460"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="474"/>
         <source>SSH failed: There is not set public key file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="469"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="483"/>
         <source>SSH failed: Import public key fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="471"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="505"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="485"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="519"/>
         <source>The file doesn&apos;t exist or permission denied:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="483"/>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="516"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="497"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="530"/>
         <source>SSH failed: Authentication failed. User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="492"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="506"/>
         <source>SSH failed: There is not set private key file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="503"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="517"/>
         <source>SSH failed: Import private key fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="555"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="569"/>
         <source>SSH failed: open forward.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="642"/>
+        <location filename="../../SSH/ChannelSSHTunnel.cpp" line="656"/>
         <source>The channel is eof</source>
         <translation type="unfinished"></translation>
     </message>
@@ -172,6 +177,44 @@
     <message>
         <location filename="../../SSH/ChannelSSHTunnelForward.cpp" line="426"/>
         <source>The channel is eof</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CDlgUserPassword</name>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="22"/>
+        <source>Host:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="37"/>
+        <source>User:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.ui" line="53"/>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="35"/>
+        <source>Set SSH user and password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="40"/>
+        <source>Set SSH passphrase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../SSH/DlgUserPassword.cpp" line="44"/>
+        <source>SSH host: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

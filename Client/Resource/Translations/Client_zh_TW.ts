@@ -172,7 +172,7 @@
         <translation>縮放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="24"/>
+        <location filename="../../FrmParameterClient.cpp" line="25"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
