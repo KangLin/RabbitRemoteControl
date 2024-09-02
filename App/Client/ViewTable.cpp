@@ -273,7 +273,7 @@ int CViewTable::GetViewIndex(QWidget *pView)
     return -1;
 }
 
-// @note The return QWidget* must is same as CConnecter::GetViewer()
+// \note The return QWidget* must is same as CConnecter::GetViewer()
 QWidget* CViewTable::GetCurrentView()
 {
     QWidget* pView = m_pTab->currentWidget();

@@ -8,9 +8,9 @@
 #include "View.h"
 
 class MainWindow;
-/**
- * @brief The CViewTable class
- * @ingroup ViewApi
+/*!
+ * \brief The CViewTable class
+ * \ingroup ViewApi
  */
 class CViewTable : public CView
 {

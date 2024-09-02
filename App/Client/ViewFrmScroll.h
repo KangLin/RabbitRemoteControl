@@ -7,12 +7,12 @@
 #include <QScrollArea>
 #include <QMouseEvent>
 
-/**
- * @brief The CFrmViewScroll class
+/*!
+ * \brief The CFrmViewScroll class
  *        This class is only used for GUI views.
  *        Not used in the terminal view,
  *        the terminal view comes with a scroll bar 
- * @ingroup ViewApi
+ * \ingroup ViewApi
  */
 class CViewFrmScroll : public QScrollArea
 {
