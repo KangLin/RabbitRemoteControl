@@ -369,7 +369,7 @@ void MainWindow::on_actionUpdate_triggered()
 
 void MainWindow::on_actionFull_screen_F_triggered()
 {
-    CView* pTab = dynamic_cast<CView*>(this->centralWidget());
+    CView* pTab = qobject_cast<CView*>(this->centralWidget());
     if(pTab)
     {
         pTab->SetFullScreen(!isFullScreen());

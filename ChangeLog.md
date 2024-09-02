@@ -4,6 +4,7 @@
 - Client parameters
   - Added the ability to automatically use the system username as the username
   - Add zoom viewer
+- App: remove border when full screen
 
 ### v0.0.27
 - Client:

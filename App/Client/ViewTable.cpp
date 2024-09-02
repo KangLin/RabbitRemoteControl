@@ -1,6 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ViewTable.h"
 #include <QResizeEvent>
 #include <QTabBar>
 #include <QStyleOption>
@@ -8,8 +7,11 @@
 #include <QScrollBar>
 #include <QFileInfo>
 #include <QDir>
-
+#include <QLoggingCategory>
 #include "mainwindow.h"
+#include "ViewTable.h"
+
+static Q_LOGGING_CATEGORY(log, "App.View.Table")
 
 CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab(nullptr)
@@ -147,8 +149,12 @@ int CViewTable::SetFullScreen(bool bFull)
     ShowTabBar(!bFull);
     if(bFull)
     {
+        m_szStyleSheet = m_pTab->styleSheet();
+        //qDebug(log) << m_szStyleSheet;
+        m_pTab->setStyleSheet("QTabWidget::pane{top:0px;left:0px;border:none;}");
         m_pTab->showFullScreen();
     } else {
+        m_pTab->setStyleSheet(m_szStyleSheet);
         m_pTab->showNormal();
     }
     return 0;

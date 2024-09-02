@@ -49,6 +49,7 @@ private Q_SLOTS:
     
 private:
     QTabWidget* m_pTab;
+    QString m_szStyleSheet;
     MainWindow* m_pMainWindow;
 
     QWidget* GetViewer(int index);
