@@ -52,7 +52,7 @@
 
 |默认样式|黑绿样式|黑色样式|白色样式|
 |:-------:|:------:|:-------:|:------:|
-|![默认样式](docs/Image/Screenshot/DefaultStyle.png)|![黑绿样式](docs/Image/Screenshot/MainWindows.png)|![黑色样式](docs/Image/Screenshot/black.png)|![白色样式](docs/Image/Screenshot/white.png)|
+|![默认样式](docs/Image/Screenshot/DefaultStyle.png)|![黑绿样式](docs/Image/Screenshot/Green.png)|![黑色样式](docs/Image/Screenshot/black.png)|![白色样式](docs/Image/Screenshot/white.png)|
 
 ### 项目位置
 
