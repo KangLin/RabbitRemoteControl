@@ -1,10 +1,15 @@
 # https://snapcraft.io/docs/the-snap-format
-
+# How Snapcraft builds snaps: https://snapcraft.io/docs/how-snapcraft-builds
+# Snapcraft.yaml schema: https://snapcraft.io/docs/snapcraft-yaml-schema
 name: rabbitremotecontrol
-base: core24 # the base snap is the execution environment for this snap
+base: core22 # the base snap is the execution environment for this snap
 version: '0.0.27'
-icon: snap//opt/RabbitRemoteControl/share/pixmaps/org.Rabbit.RemoteControl.svg
 type: app
+license: GPL-3.0+
+contact: kl222@126.com
+donation:
+  - https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
+issues: https://github.com/KangLin/RabbitRemoteControl/issues
 summary: Rabbit remote control # 79 char long summary
 description: |
   Rabbit remote control is  is a cross-platform,
@@ -26,14 +31,18 @@ description: |
   https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
 
 grade: devel # must be 'stable' to release into candidate/stable channels
+# Confinement levels: https://snapcraft.io/docs/classic-confinement#heading--levels
+# Classic confinement: https://snapcraft.io/docs/classic-confinement
 confinement: devmode # use 'strict' once you have the right plugs and slots
 
 # lifecycle: https://snapcraft.io/docs/parts-lifecycle
 # Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
+# Part directives: https://snapcraft.io/docs/snapcraft-yaml-schema#part-directives
 parts:
   rabbitcommon:
     # see: https://snapcraft.io/docs/supported-plugins
-    plugin: dump
+    # See 'snapcraft plugins'
+    plugin: dump # See: https://snapcraft.io/docs/dump-plugin
     source: https://github.com/KangLin/RabbitCommon.git
     source-type: git
     source-branch: master
@@ -44,6 +53,8 @@ parts:
       - -*
 
   freerdp:
+    # see: https://snapcraft.io/docs/supported-plugins
+    # See 'snapcraft plugins'
     plugin: cmake
     source: https://github.com/FreeRDP/FreeRDP.git
     source-type: git
@@ -81,6 +92,7 @@ parts:
       - libswscale-dev
       - gettext
     cmake-parameters:
+      # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DWITH_CLIENT=OFF
       - -DWITH_PLATFORM_SERVER=OFF
@@ -137,19 +149,14 @@ parts:
       - rabbitcommon
       - freerdp
     build-packages:
-      - qt6-tools-dev
-      - qt6-tools-dev-tools
-      - qt6-base-dev
-      - qt6-base-dev-tools
-      - qt6-qpa-plugins
-      - libqt6svg6-dev
-      - qt6-l10n-tools
-      - qt6-translations-l10n
-      - qt6-scxml-dev
-      - qt6-multimedia-dev
-      - libqt6serialport6-dev
-      - qt6-webengine-dev
-      - qt6-webengine-dev-tools
+      - qttools5-dev
+      - qtbase5-dev
+      - libqt5scxml5-dev
+      - libqt5serialport5-dev
+      - qtwebengine5-dev
+      - qtwebengine5-dev-tools
+      - libqt5svg5-dev
+      - qtmultimedia5-dev
       - libxkbcommon-dev
       - libxkbcommon-x11-dev
       - xorg-dev
@@ -181,15 +188,14 @@ parts:
       - libgnutls30
       - libjpeg8
       - libpixman-1-0
-      - libqt6core6
-      - libqt6gui6
-      - libqt6multimedia6
-      - libqt6network6
-      - libqt6printsupport6
-      - libqt6statemachine6
-      - libqt6webenginewidgets6
-      - libqt6widgets6
-      - libqt6xml6
+      - libqt5scxml5
+      - libqt5serialport5
+      - libqt5webengine5
+      - libqt5webengine-data
+      - libqt5webenginecore5
+      - libqt5webenginewidgets5
+      - libqt5svg5
+      - libqt5multimedia5
       - libc6
       - libgcc-s1
       - libstdc++6
@@ -226,7 +232,7 @@ apps:
      DISABLE_WAYLAND: 1
    # List extensions, run `snapcraft extensions`
    extensions:
-     - gnome
+     - kde-neon
    # See: https://snapcraft.io/docs/supported-interfaces
    plugs:
      - network
