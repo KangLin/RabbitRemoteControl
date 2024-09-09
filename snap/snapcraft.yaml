@@ -244,10 +244,6 @@ parts:
       - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
     override-stage: |
       sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
-      cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
-      if [ ! -f rabbitremotecontrol ]; then
-          ln -s RabbitRemoteControlApp rabbitremotecontrol
-      fi
       snapcraftctl stage
     prime:
       - -opt/RabbitRemoteControl/bin/cmark
