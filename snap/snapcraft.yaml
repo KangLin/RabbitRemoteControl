@@ -106,26 +106,68 @@ parts:
       - libkrb5-dev
       - libpkcs11-helper1-dev
     stage-packages:
-      - libffi7
-      - libusb-1.0-0
-      - libzvbi0
-      - x11-utils
-      - libfuse3-3
-      - libkrb5-3
-      - libpkcs11-helper1
-      - libswscale5
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - xorg-dev
+      - libx11-xcb-dev
+      - libx11-dev
+      - libxfixes-dev
+      - libxcb-randr0-dev
+      - libxcb-shm0-dev
+      - libxcb-xinerama0-dev
+      - libxcb-composite0-dev
+      - libxcomposite-dev
+      - libxinerama-dev
+      - libxcb1-dev
+      - libx11-xcb-dev
+      - libxcb-xfixes0-dev
+      - libpam0g-dev
+      - libutf8proc-dev
+      - libusb-1.0-0-dev
+      - libcjson-dev
+      - libkrb5-dev
+      - libicu-dev
+      - libcairo-ocaml-dev
+      - libcups2-dev
+      # ffmpeg
+      - libavcodec-dev
+      - libavutil-dev
+      - libswresample-dev
+      - libresample1-dev
+      - libswscale-dev
+      - gettext
+      - libasound2-dev
+      - libcups2-dev
+      - libffi-dev
+      - libnacl-dev
+      - libpcsclite-dev
+      - libpulse-dev
+      - libsecret-1-dev
+      - libssl-dev
+      - libusb-1.0-0-dev
+      - libxkbfile-dev
+      - libxv-dev
+      - libfuse3-dev
+      - libkrb5-dev
+      - libpkcs11-helper1-dev
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
+      - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
       - -DWITH_CLIENT=OFF
       - -DWITH_PLATFORM_SERVER=OFF
       - -DWITH_LIBSYSTEMD=off
-    stage:
-      - usr/local/include
-      - usr/local/lib
-      - usr/local/bin
     prime:
-      - usr/local/lib/**/*.so*
+      - -usr/include
+      - -usr/lib/cmake
+      - -usr/lib/pkgconfig
+      - -usr/share/doc
+      - -usr/share/doc-base
+      - -usr/share/pkgconfig
+      - -usr/lib/pkgconfig
+      - -usr/lib/*/pkgconfig
+      - -usr/lib/*.a
+      - -usr/lib/**/*.a
 
   tigervnc:
     plugin: cmake
@@ -226,6 +268,7 @@ parts:
       - libqt5svg5
       - libqt5xml5
       - libqt5multimedia5
+      - qttranslations5-l10n
       - libc6
       - libgcc-s1
       - libstdc++6
@@ -237,12 +280,16 @@ parts:
       - -DRabbitCommon_DIR=$CRAFT_STAGE/RabbitCommon/
       - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
       - -Dtigervnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
-      - -DFreeRDP-Client_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Client3
-      - -DFreeRDP_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP3
-      - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
-      - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
-      - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
+#      - -DFreeRDP-Client_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Client3
+#      - -DFreeRDP_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP3
+#      - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
+#      - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
+#      - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
     override-stage: |
+      cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
+      if [ ! -f rabbitremotecontrol ]; then
+          ln -s RabbitRemoteControlApp rabbitremotecontrol
+      fi
       sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
       snapcraftctl stage
     prime:
@@ -258,7 +305,7 @@ apps:
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
    environment:
-     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/local/lib:$SNAP/usr/local/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/local/lib/freerdp3/proxy
+     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET
      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
    # List extensions, run `snapcraft extensions`
    extensions:
