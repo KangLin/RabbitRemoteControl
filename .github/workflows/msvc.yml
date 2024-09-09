@@ -331,12 +331,7 @@ jobs:
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^
             -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
-            -DBUILD_FREERDP=ON ^
-            -DFreeRDP_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ^
-            -DFreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client2 ^
-            -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR2 ^
-            -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2 ^
-            -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
+            -DBUILD_FREERDP=ON
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"

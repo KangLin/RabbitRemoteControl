@@ -91,14 +91,39 @@ parts:
       - libresample1-dev
       - libswscale-dev
       - gettext
+      - libasound2-dev
+      - libcups2-dev
+      - libffi-dev
+      - libnacl-dev
+      - libpcsclite-dev
+      - libpulse-dev
+      - libsecret-1-dev
+      - libssl-dev
+      - libusb-1.0-0-dev
+      - libxkbfile-dev
+      - libxv-dev
+      - libfuse3-dev
+      - libkrb5-dev
+      - libpkcs11-helper1-dev
+    stage-packages:
+      - libffi7
+      - libusb-1.0-0
+      - libzvbi0
+      - x11-utils
+      - libfuse3-3
+      - libkrb5-3
+      - libpkcs11-helper1
+      - libswscale5
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DWITH_CLIENT=OFF
       - -DWITH_PLATFORM_SERVER=OFF
+      - -DWITH_LIBSYSTEMD=off
     stage:
       - usr/local/include
       - usr/local/lib
+      - usr/local/bin
     prime:
       - usr/local/lib/**/*.so*
 
@@ -177,7 +202,6 @@ parts:
       - libutf8proc-dev
       - libfuse3-dev
       - libusb-1.0-0-dev
-      - libvncserver-dev
       - libssh-dev
       - libtelnet-dev
       - git
@@ -188,6 +212,11 @@ parts:
       - libgnutls30
       - libjpeg8
       - libpixman-1-0
+      - libqt5core5a
+      - libqt5dbus5
+      - libqt5gui5
+      - libqt5widgets5
+      - libqt5x11extras5
       - libqt5scxml5
       - libqt5serialport5
       - libqt5webengine5
@@ -195,6 +224,7 @@ parts:
       - libqt5webenginecore5
       - libqt5webenginewidgets5
       - libqt5svg5
+      - libqt5xml5
       - libqt5multimedia5
       - libc6
       - libgcc-s1
@@ -205,8 +235,13 @@ parts:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DRabbitCommon_DIR=$CRAFT_STAGE/RabbitCommon/
-      - -DTigerVnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
       - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
+      - -Dtigervnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
+      - -DFreeRDP-Client_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Client3
+      - -DFreeRDP_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP3
+      - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
+      - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
+      - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
     override-stage: |
       sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
       cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
@@ -227,9 +262,8 @@ apps:
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
    environment:
-     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/local/lib/$SNAPCRAFT_ARCH_TRIPLET
+     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/local/lib:$SNAP/usr/local/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/usr/local/lib/freerdp3/proxy
      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
-     DISABLE_WAYLAND: 1
    # List extensions, run `snapcraft extensions`
    extensions:
      - kde-neon
@@ -243,4 +277,22 @@ apps:
      - opengl
      - cups
      - cups-control
+     - serial-port
+     - alsa
      - audio-playback
+     - audio-record
+     - avahi-observe
+     - browser-support
+     - home
+     - media-hub
+     - mount-observe
+     - optical-drive
+     - password-manager-service
+     - process-control
+     - raw-usb
+     - removable-media
+     - screen-inhibit-control
+     - ssh-keys
+     - ssh-public-keys
+     - unity7
+
