@@ -61,95 +61,39 @@ parts:
     source-tag: 3.7.0
     source-depth: 1
     build-packages:
-      - libxkbcommon-dev
-      - libxkbcommon-x11-dev
-      - xorg-dev
-      - libx11-xcb-dev
-      - libx11-dev
-      - libxfixes-dev
-      - libxcb-randr0-dev
-      - libxcb-shm0-dev
-      - libxcb-xinerama0-dev
-      - libxcb-composite0-dev
-      - libxcomposite-dev
-      - libxinerama-dev
-      - libxcb1-dev
-      - libx11-xcb-dev
-      - libxcb-xfixes0-dev
+      - libssl-dev
+      - libcrypt-dev
+      - libfuse3-dev
       - libpam0g-dev
       - libutf8proc-dev
       - libusb-1.0-0-dev
       - libcjson-dev
       - libkrb5-dev
       - libicu-dev
-      - libcairo-ocaml-dev
       - libcups2-dev
-      # ffmpeg
+      - libpkcs11-helper1-dev
       - libavcodec-dev
-      - libavutil-dev
-      - libswresample-dev
       - libresample1-dev
       - libswscale-dev
-      - gettext
-      - libasound2-dev
-      - libcups2-dev
-      - libffi-dev
-      - libnacl-dev
-      - libpcsclite-dev
-      - libpulse-dev
-      - libsecret-1-dev
-      - libssl-dev
-      - libusb-1.0-0-dev
-      - libxkbfile-dev
-      - libxv-dev
-      - libfuse3-dev
-      - libkrb5-dev
-      - libpkcs11-helper1-dev
     stage-packages:
-      - libxkbcommon-dev
-      - libxkbcommon-x11-dev
-      - xorg-dev
-      - libx11-xcb-dev
-      - libx11-dev
-      - libxfixes-dev
-      - libxcb-randr0-dev
-      - libxcb-shm0-dev
-      - libxcb-xinerama0-dev
-      - libxcb-composite0-dev
-      - libxcomposite-dev
-      - libxinerama-dev
-      - libxcb1-dev
-      - libx11-xcb-dev
-      - libxcb-xfixes0-dev
-      - libpam0g-dev
-      - libutf8proc-dev
-      - libusb-1.0-0-dev
-      - libcjson-dev
-      - libkrb5-dev
-      - libicu-dev
-      - libcairo-ocaml-dev
-      - libcups2-dev
-      # ffmpeg
-      - libavcodec-dev
-      - libavutil-dev
-      - libswresample-dev
-      - libresample1-dev
-      - libswscale-dev
-      - gettext
-      - libasound2-dev
-      - libcups2-dev
-      - libffi-dev
-      - libnacl-dev
-      - libpcsclite-dev
-      - libpulse-dev
-      - libsecret-1-dev
-      - libssl-dev
-      - libusb-1.0-0-dev
-      - libxkbfile-dev
-      - libxv-dev
-      - libfuse3-dev
-      - libkrb5-dev
-      - libpkcs11-helper1-dev
+      - libfuse3-3
+      - libpam0g
+      - libutf8proc2
+      - libusb-1.0-0
+      - libcjson1
+      - libkrb5-3
+      - icu-devtools
+      - libcups2
+      - libcupsimage2
+      - libgssapi-krb5-2
+      - libgssrpc4
+      - libkadm5srv-mit12
+      - libkadm5clnt-mit12
+      - libjs-jquery
+      - libswscale5
+      - x11-utils
+      - libkrb5-3
+      - libpkcs11-helper1
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_INSTALL_PREFIX=/usr
@@ -161,13 +105,12 @@ parts:
       - -usr/include
       - -usr/lib/cmake
       - -usr/lib/pkgconfig
-      - -usr/share/doc
-      - -usr/share/doc-base
-      - -usr/share/pkgconfig
-      - -usr/lib/pkgconfig
       - -usr/lib/*/pkgconfig
       - -usr/lib/*.a
       - -usr/lib/**/*.a
+      - -usr/share/doc
+      - -usr/share/doc-base
+      - -usr/share/pkgconfig
 
   tigervnc:
     plugin: cmake
@@ -216,64 +159,42 @@ parts:
       - rabbitcommon
       - freerdp
     build-packages:
+      - libcmark-dev
+      - cmark
+      - libssl-dev
+      - libcrypt-dev
       - qttools5-dev
       - qtbase5-dev
       - libqt5scxml5-dev
       - libqt5serialport5-dev
       - qtwebengine5-dev
       - qtwebengine5-dev-tools
+      - qtwebengine5-private-dev
       - libqt5svg5-dev
       - qtmultimedia5-dev
-      - libxkbcommon-dev
-      - libxkbcommon-x11-dev
-      - xorg-dev
-      - libx11-xcb-dev
-      - libx11-dev
-      - libxfixes-dev
-      - libxcb-randr0-dev
-      - libxcb-shm0-dev
-      - libxcb-xinerama0-dev
-      - libxcb-composite0-dev
-      - libxcomposite-dev
-      - libxinerama-dev
-      - libxcb1-dev
-      - libx11-xcb-dev
-      - libxcb-xfixes0-dev
-      - libpixman-1-dev
-      - libpam0g-dev
-      - libutf8proc-dev
-      - libfuse3-dev
-      - libusb-1.0-0-dev
+      - libvncserver-dev
       - libssh-dev
       - libtelnet-dev
-      - git
-      - cmark
-      - gettext
     stage-packages:
-      - libssh-4
-      - libgnutls30
-      - libjpeg8
-      - libpixman-1-0
-      - libqt5core5a
-      - libqt5dbus5
-      - libqt5gui5
-      - libqt5widgets5
-      - libqt5x11extras5
+      - libcmark0.30.2
+      - libopengl0
+      - libglu1-mesa
+      - libssl3
+      - libcrypt1
       - libqt5scxml5
       - libqt5serialport5
       - libqt5webengine5
-      - libqt5webengine-data
-      - libqt5webenginecore5
       - libqt5webenginewidgets5
       - libqt5svg5
       - libqt5xml5
       - libqt5multimedia5
-      - qttranslations5-l10n
       - libc6
       - libgcc-s1
       - libstdc++6
-      - libssl3
       - zlib1g
+      - libssh-4
+      - libvncserver1
+      - libvncclient1
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
@@ -292,7 +213,11 @@ parts:
       fi
       sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
       snapcraftctl stage
+    # organize:
+    #   usr/share/qt5/resources: opt/RabbitRemoteControl/bin
+    #   usr/share/qt5/translations: opt/RabbitRemoteControl/bin
     prime:
+      - -usr/bin/cmark
       - -opt/RabbitRemoteControl/bin/cmark
       - -opt/RabbitRemoteControl/include
       - -opt/RabbitRemoteControl/lib/cmake
@@ -301,11 +226,12 @@ parts:
 
 apps:
  rabbitremotecontrol:
-   command: snap/command-chain/desktop-launch $SNAP/opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
+   command: opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
    environment:
      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET
+     QTWEBENGINEPROCESS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/qt5/libexec
      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
    # List extensions, run `snapcraft extensions`
    extensions:
