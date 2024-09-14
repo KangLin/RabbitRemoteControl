@@ -35,7 +35,7 @@ jobs:
   deploy:
     #if: ${{ startsWith(github.ref, 'refs/tags/') }}
     runs-on: ubuntu-latest
-    needs: [ubuntu, msvc, doxygen, macos]
+    needs: [ubuntu, msvc, doxygen, android, macos]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -47,12 +47,14 @@ jobs:
         with:
           name: ${{ needs.ubuntu.outputs.name }}
           path: ${{ env.artifact_path }}
+          merge-multiple: true
 
       - name: Download msvc
         uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.msvc.outputs.name }}
+          pattern: ${{ needs.msvc.outputs.name }}_*
           path: ${{ env.artifact_path }}
+          merge-multiple: true
 
       - name: Download mingw
         if: false
@@ -60,24 +62,28 @@ jobs:
         with:
           name: ${{ needs.mingw.outputs.name }}
           path: ${{ env.artifact_path }}
+          merge-multiple: true
 
       - name: Download macos
         uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.macos.outputs.name }}
+          pattern: ${{ needs.macos.outputs.name }}_*
           path: ${{ env.artifact_path }}
+          merge-multiple: true
 
       - name: Download android
         uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.android.outputs.name }}
+          pattern: ${{ needs.android.outputs.name }}_*
           path: ${{ env.artifact_path }}
+          merge-multiple: true
 
       - name: Download doxygen
         uses: actions/download-artifact@v4
         with:
           name: ${{ needs.doxygen.outputs.name }}
           path: ${{ env.artifact_path }}
+          merge-multiple: true
       
       - name: Process configure file
         run: |
