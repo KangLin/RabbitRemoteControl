@@ -233,6 +233,8 @@
               [Depend libraries ......]
           cmake --build . --verbose --config Release --target all
 
+    - 参见：
+      - [编译集成 android.yml](../../.github/workflows/android.yml)
   - 使用 CMakePreset
     - 设置环境变量
       - windows
@@ -269,6 +271,13 @@
               [Depend libraries ......]
           cmake --build --preset "android-x86_64-qt6"
 
-- 参见：
-  - [CMakePreset.json](../../CMakePreset.json)
-  - [编译集成 android.yml](../../.github/workflows/android.yml)
+    - 参见：
+      - [CMakePreset.json](../../CMakePreset.json)
+  - 使用 QtCreator 编译
+  
+    因为 QtCreator 14 中对 VCPKG ，在 Android 上支持不完善，
+    所以需要通过设置  QT_CREATOR_SKIP_VCPKG_SETUP=ON，来关闭 VCPKG。
+    当然，也可以关闭 CMake 包管理器：
+    Qt Creator’s Options -> Build & Run -> CMake and then
+    uncheck “Package manager auto-setup”.
+    - 参见：[Qt Creator: CMake package-manager auto-setup](https://www.qt.io/blog/qt-creator-cmake-package-manager-auto-setup)
