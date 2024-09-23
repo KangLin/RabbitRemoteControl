@@ -1,13 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "Connecter.h"
-#include "PluginClient.h"
-#include "RabbitCommonDir.h"
-#ifdef BUILD_QUIWidget
-    #include "QUIWidget/QUIWidget.h"
-#endif
-#include "ParameterNet.h"
-
 #include <QClipboard>
 #include <QApplication>
 #include <QDebug>
@@ -17,6 +9,12 @@
 #include <QLoggingCategory>
 #include <QInputDialog>
 #include <QMetaMethod>
+
+#include "Connecter.h"
+#include "PluginClient.h"
+#include "RabbitCommonDir.h"
+#include "RabbitCommonTools.h"
+#include "ParameterNet.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Connecter")
     
@@ -162,18 +160,8 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
         Q_ASSERT(check);
         p->setWindowIcon(this->Icon());
         p->setWindowTitle(tr("Set ") + GetPlugClient()->DisplayName());
-#ifdef BUILD_QUIWidget
-        QUIWidget* quiwidget = new QUIWidget();
-        quiwidget->setMainWidget(p);
-        check = connect(p, SIGNAL(accepted()), quiwidget, SLOT(accept()));
-        Q_ASSERT(check);
-        check = connect(p, SIGNAL(rejected()), quiwidget, SLOT(reject()));
-        Q_ASSERT(check);
-        p = quiwidget;
-#endif
-        
         p->setAttribute(Qt::WA_DeleteOnClose);
-        nRet = p->exec();
+        nRet = RC_SHOW_WINDOW(p);
     } else {
         qCritical(log) << "The Protocol [" << Protocol() << "] don't settings dialog";
     }
@@ -359,14 +347,14 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
         check = connect(this, SIGNAL(sigDisconnected()),
                         pDlg, SLOT(reject()));
         Q_ASSERT(check);
-        nRet = pDlg->exec();
+        RC_SHOW_WINDOW(pDlg);
     } else if(obj->inherits("QWidget")) {
         QWidget* pWdg = qobject_cast<QWidget*>(obj);
         pWdg->setAttribute(Qt::WA_DeleteOnClose);
         check = connect(this, SIGNAL(sigDisconnected()),
                         pWdg, SLOT(close()));
         Q_ASSERT(check);
-        pWdg->show();
+        RC_SHOW_WINDOW(pWdg);
     }
 }
 
@@ -386,7 +374,7 @@ void CConnecter::slotBlockShowMessageBox(const QString &szTitle, const QString &
             pBox->setCheckable(true);
         msg.setCheckBox(pBox);
     }
-    nRet = (QMessageBox::StandardButton)msg.exec();
+    nRet = (QMessageBox::StandardButton)RC_SHOW_WINDOW(&msg);
     if(pBox)
         checkBox = pBox->isChecked();
 }

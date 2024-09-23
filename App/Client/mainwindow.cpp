@@ -908,7 +908,7 @@ void MainWindow::slotShowMessageBox(const QString &title, const QString &message
     QCheckBox* cb = new QCheckBox(tr("Use message box to display information"), this);
     cb->setChecked(true);
     msg.setCheckBox(cb);
-    msg.exec();
+    RC_SHOW_WINDOW(&msg);
     if(!cb->isChecked())
     {
         m_Parameter.SetMessageBoxDisplayInformation(false);
@@ -1129,7 +1129,7 @@ void MainWindow::on_actionScreenshot_triggered()
 void MainWindow::on_actionSettings_triggered()
 {
     CParameterDlgSettings set(&m_Parameter, m_Client.GetSettingsWidgets(this), this);
-    if(CParameterDlgSettings::Accepted == set.exec())
+    if(CParameterDlgSettings::Accepted == RC_SHOW_WINDOW(&set))
     {
         m_Client.SaveSettings();
         m_Parameter.Save();
@@ -1223,7 +1223,7 @@ void MainWindow::on_actionOpenListConnections_triggered()
         check = connect(p, SIGNAL(destroyed()), &d, SLOT(reject()));
         d.setLayout(pLayout);
     }
-    d.exec();
+    RC_SHOW_WINDOW(&d);
 }
 
 void MainWindow::on_actionAdd_to_favorite_triggered()
