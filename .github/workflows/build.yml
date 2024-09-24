@@ -1,11 +1,12 @@
 # Author: Kang Lin<kl222@126.com>
-
+# workflow syntax: https://docs.github.com/actions/writing-workflows/workflow-syntax-for-github-actions
 name: build
 
 env:
   artifact_path: artifact_path
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   RabbitRemoteControl_VERSION: v0.0.27
+  RabbitRemoteControl_VERSION_PRE: v0.0.26
 
 on:
   push:
@@ -93,10 +94,22 @@ jobs:
               "${{ env.artifact_path }}" "${{ env.artifact_path }}/version.json"
           rm ${{ env.artifact_path }}/*.json
 
-      - name: Make Note.md file
+      - name: Make Note.md file for include change log file
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           echo "[:us: Change log](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/ChangeLog.md)" > ${{github.workspace}}/Note.md
           echo "[:cn: 修改日志](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/ChangeLog_zh_CN.md)" >> ${{github.workspace}}/Note.md
+          echo "" >> ${{github.workspace}}/Note.md
+          echo "Full Change: [${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}})" >> ${{github.workspace}}/Note.md
+
+      - name: Make Note.md file for include chanag
+        if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          echo "**This release is for development purposes and is for testing purposes only**" >> ${{github.workspace}}/Note.md
+          echo "Commit: [${{github.sha}}](https://github.com/KangLin/RabbitRemoteControl/commit/${{github.sha}})" >> ${{github.workspace}}/Note.md
+
+      - name: Make Note.md file for include artifact md5sum
+        run: |
           echo "" >> ${{github.workspace}}/Note.md
           echo "File checksum:" >> ${{github.workspace}}/Note.md
           cd ${{ env.artifact_path }}
@@ -113,8 +126,21 @@ jobs:
               fi
           done
 
+      # See: [访问有关工作流运行的上下文信息](https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#github-context)
       - name: Upload To Github Release
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes-file ${{github.workspace}}/Note.md
           gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json
+
+      - name: Upload To Github Release
+        if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+        continue-on-error: true
+        run: |
+          gh release delete ${{ github.ref_name }} -y --cleanup-tag
+
+      - name: Upload To Github Release
+        if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          gh release create ${{ github.ref_name }} --prerelease --title "Recently developed build - ${{ github.ref_name }}" --notes-file ${{github.workspace}}/Note.md
+          gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json --clobber
