@@ -66,7 +66,7 @@ int CParameterProxyUI::SetParameter(CParameterProxy *pParameter)
     return 0;
 }
 
-int CParameterProxyUI::slotAccept()
+int CParameterProxyUI::slotAccept(bool validity)
 {
     int nRet = 0;
     int type = m_cbType->currentData().toInt();

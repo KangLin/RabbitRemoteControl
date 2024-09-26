@@ -144,7 +144,7 @@
  *  \endcode
  *
  *  \note When a member is instantiated,
- *   the constructor must set the parent to this
+ *   the constructor must set the parent to *this*
  *
  * \section CParameter_Functions CParameter Interface functions
  *  - Load and save parameters from storage
@@ -202,26 +202,24 @@ public:
 
     /*!
      * \~chinese
-     *  检查参数是否有效，以决定是否应用或者保存参数。
-     *  派生类一般只要重载 onCheckValidity() ，用于检查参数。
-     *
-     *  通常这种检查在参数设置对话框视图中做检查。所以很少需要调用此函数。
+     *  检查参数是否有效，以决定是否使用或者保存参数。
+     *  派生类一般只要重载 OnCheckValidity() ，用于检查参数。
      *
      *  例如：用于在参数设置对话框时，需要先检查参数是否完成或者有效，才能确定保存。
-     *  否则提示参数无效。
+     *
+     *  \snippet Client/WakeOnLan/ConnectWakeOnLan.cpp Check parameters is validity
      *
      * \~english
-     *  Check whether the parameter is set or valid to
-     *  decide whether to apply or save the parameter.
-     *  The derived class needs to overload onCheckValidity()
-     *  as needed to check the parameters.
+     *  Check whether the parameter is valid to
+     *  decide whether to use or save the parameter.\n
+     *  Derived classes typically simply overload OnCheckValidity()
+     *  to check the parameters.
      *
-     *  Usually this check is done in the Parameter Settings dialog view.
-     *  So this function is rarely called in person.
+     *  For example, when setting the parameters in the dialog,
+     *  you need to check whether the parameters are complete
+     *  or valid before you can save them.
      *
-     *  For example, when setting the parameters in the dialog box,
-     *  you need to check whether the parameters are complete or valid
-     *  before you can save them.
+     *  \snippet Client/WakeOnLan/ConnectWakeOnLan.cpp Check parameters is validity
      */
     virtual bool CheckValidity();
     

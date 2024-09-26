@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
-#ifndef CPARAMTERCONNECT_H
-#define CPARAMTERCONNECT_H
+#ifndef CparameterCONNECT_H
+#define CparameterCONNECT_H
 
 #pragma once
 
@@ -15,22 +15,37 @@
  *   - 定义参数组件类。例如： CParameterUser 。
  *   - 增加参数组件界面。例如： CParameterUserUI 。 并增加下面函数：
  *     - int SetParameter(CParameterUser* pParameter);
- *     - int slotAccept();
+ *     - int slotAccept(bool validity = false);
  *     \snippet Client/ParameterCompone/ParameterUserUI.h Parameter commone functions
  * - 使用参数组件：
  *   - 在需要的地方实例化组件类。例如： CParameterNet
  *     \snippet Client/ParameterCompone/ParameterNet.h Instance user
  *     \snippet Client/ParameterCompone/ParameterNet.cpp Constructor
  *   - 在相应界面类
- *     - CParameterNet::SetParameter 调用实例的 CParameterUser::SetParameter
- *     - CParameterNet::slotAccept 调用实例的 CParameterUser::slotAccept
- *     \snippet Client/ParameterCompone/ParameterNet.cpp Set Parameter
- *     \snippet Client/ParameterCompone/ParameterNet.cpp slotAccept
+ *     - CParameterNetUI::SetParameter 调用实例的 CParameterUserUI::SetParameter
+ *     \snippet Client/ParameterCompone/ParameterNetUI.cpp Set Parameter
+ *     - CParameterNetUI::slotAccept 调用实例的 CParameterUserUI::slotAccept
+ *     \snippet Client/ParameterCompone/ParameterNetUI.cpp slotAccept
  *
  * \~english
  * \defgroup CLIENT_PARAMETER_COMPONE Parameter compone
  * \brief Parameter compone.
- *
+ * - Write a parameter compone
+ *   - Defined the parameter compone class. eg: CParameterUser
+ *   - Add the parameter compone UI. eg: CParameterUserUI .
+ *     and add the follow functions:
+ *     - int SetParameter(CParameterUser* pParameter);
+ *     - int slotAccept(bool validity = false);
+ *     \snippet Client/ParameterCompone/ParameterUserUI.h Parameter commone functions
+ * - Use a parameter compone
+ *   - Instance the parameter compone class. eg: CParameterNet
+ *     \snippet Client/ParameterCompone/ParameterNet.h Instance user
+ *     \snippet Client/ParameterCompone/ParameterNet.cpp Constructor
+ *   - Call SetParameter and slotAccept
+ *     - CParameterNetUI::SetParameter call CParameterUserUI::SetParameter
+ *     \snippet Client/ParameterCompone/ParameterNetUI.cpp Set Parameter
+ *     - CParameterNetUI::slotAccept call CParameterUserUI::slotAccept
+ *     \snippet Client/ParameterCompone/ParameterNetUI.cpp slotAccept
  * \~
  * \ingroup CLIENT_PARAMETER
  */
@@ -276,4 +291,4 @@ private:
     CParameterClient* m_pParameterClient;
 };
 
-#endif // CPARAMTERCONNECT_H
+#endif // CparameterCONNECT_H

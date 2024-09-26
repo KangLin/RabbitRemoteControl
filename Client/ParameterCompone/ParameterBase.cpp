@@ -4,9 +4,9 @@
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Base")
 
 CParameterBase::CParameterBase(QObject* parent)
-    : CParameterConnecter(parent),
-    m_Net(this),
-    m_Proxy(this)
+    : CParameterConnecter(parent)
+    , m_Net(this)
+    , m_Proxy(this)
 {
     Init();
 }

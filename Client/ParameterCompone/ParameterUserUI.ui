@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>291</height>
+    <height>305</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -32,6 +32,21 @@
    <string/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>6</number>
+   </property>
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
@@ -83,7 +98,7 @@
      <item>
       <widget class="QLineEdit" name="lePassword">
        <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
+        <enum>QLineEdit::EchoMode::Password</enum>
        </property>
        <property name="placeholderText">
         <string>Input password</string>
@@ -118,13 +133,13 @@
      <item>
       <widget class="QPushButton" name="pbSave">
        <property name="toolTip">
-        <string>Save password</string>
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable Save password</string>
        </property>
        <property name="statusTip">
-        <string>Save password</string>
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable Save password</string>
        </property>
        <property name="whatsThis">
-        <string>Save password</string>
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable Save password</string>
        </property>
        <property name="text">
         <string/>
@@ -232,7 +247,7 @@
      <item>
       <widget class="QLineEdit" name="lePassphrase">
        <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
+        <enum>QLineEdit::EchoMode::Password</enum>
        </property>
        <property name="placeholderText">
         <string>Input passphrase</string>
@@ -241,6 +256,15 @@
      </item>
      <item>
       <widget class="QPushButton" name="pbShowPassphrase">
+       <property name="toolTip">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable view password</string>
+       </property>
+       <property name="statusTip">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable view password</string>
+       </property>
+       <property name="whatsThis">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable view password</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -254,6 +278,15 @@
      </item>
      <item>
       <widget class="QPushButton" name="pbSavePassphrase">
+       <property name="toolTip">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable Save password</string>
+       </property>
+       <property name="statusTip">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable Save password</string>
+       </property>
+       <property name="whatsThis">
+        <string>Menu: Tools→Settings→Client→Password-&gt;Enable Save password</string>
+       </property>
        <property name="text">
         <string/>
        </property>

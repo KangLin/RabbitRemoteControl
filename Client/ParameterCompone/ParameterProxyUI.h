@@ -6,14 +6,35 @@
 #include "ParameterProxy.h"
 #include "ParameterNetUI.h"
 
+/*!
+ * \brief The proxy parameter UI
+ * \see CParameterProxy CLIENT_PARAMETER_COMPONE
+ * \ingroup CLIENT_PARAMETER_COMPONE
+ */
 class CLIENT_EXPORT CParameterProxyUI : public QWidget
 {
     Q_OBJECT
 public:
     explicit CParameterProxyUI(QWidget *parent = nullptr);
 
+    /*!
+     * \~chinese 设置参数，并初始化界面
+     * \~english Set the parameters and initialize the user interface
+     */
     int SetParameter(CParameterProxy* pParameter);
-    int slotAccept();
+    /*!
+     * \~chinese 接受参数
+     * \param validity: 标志是否检查参数
+     *    - true: 检查参数
+     *    - false: 不检查参数
+     * \return 成功返回 0 。其它值为失败。
+     * \~english Accept parameters
+     * \param validity
+     *    - true: Check parameters
+     *    - false: Not check parameters
+     * \return 0 is success. otherwise is fail
+     */
+    int slotAccept(bool validity = false);
     
 private Q_SLOTS:
     void slotTypeChanged(int nIndex);

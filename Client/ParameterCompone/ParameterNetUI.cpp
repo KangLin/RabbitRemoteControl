@@ -30,6 +30,8 @@ int CParameterNetUI::SetParameter(CParameterNet *pParameter)
 
     // Call user UI SetParameter
     ui->wUser->SetParameter(&m_pNet->m_User);
+    // Call wake on lan UI SetParameter
+    ui->wWakeOnLan->SetParameter(&m_pNet->m_WakeOnLan);
 
     return 0;
 }
@@ -38,6 +40,7 @@ int CParameterNetUI::SetParameter(CParameterNet *pParameter)
 //! [slotAccept]
 int CParameterNetUI::slotAccept(bool validity)
 {
+    int nRet = 0;
     if(validity && ui->leHost->text().isEmpty()) {
         QMessageBox::critical(this, tr("Error"),
                               m_pNet->GetPrompt());
@@ -50,7 +53,8 @@ int CParameterNetUI::slotAccept(bool validity)
     m_pNet->SetPort(ui->spPort->value());
     
     ui->wUser->slotAccept();
-    return 0;
+    nRet = ui->wWakeOnLan->slotAccept(validity);
+    return nRet;
 }
 //! [slotAccept]
 

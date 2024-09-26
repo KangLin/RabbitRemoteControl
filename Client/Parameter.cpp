@@ -103,6 +103,8 @@ bool CParameter::CheckValidity()
         bRet = p->OnCheckValidity();
         if(!bRet) break;
     }
+    if(bRet)
+        bRet = OnCheckValidity();
     return bRet;
 }
 

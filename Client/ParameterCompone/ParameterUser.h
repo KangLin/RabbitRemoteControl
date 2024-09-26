@@ -7,14 +7,15 @@
  * \~english
  * \brief It contains user and password
  *        It only valid in plugin.
+ *        It's UI is CParameterUserUI.
  * \note
  *  - The interface only is implemented and used by plugin.
  *
  * \~chinese
- * \brief 用户名与验证方式。此类仅在插件内有效。
+ * \brief 用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI
  *
  * \~
- * \see CParameterConnecter
+ * \see CParameterConnecter CParameterUserUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
 class CLIENT_EXPORT CParameterUser : public CParameterConnecter

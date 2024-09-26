@@ -4,9 +4,10 @@
 #include "ParameterNet.h"
 
 /*!
- * \brief The proxy parameters
+ * \brief The proxy parameters. Its UI is CParameterProxyUI
  *
  * \~
+ * \see CParameterProxyUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
 class CLIENT_EXPORT CParameterProxy : public CParameterConnecter

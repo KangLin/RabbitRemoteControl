@@ -67,7 +67,7 @@ Source root
 
 ### Topics
 
-[Topics]((topics.html)
+[Topics](topics.html)
 
 ### Icon theme
 

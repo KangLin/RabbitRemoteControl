@@ -69,7 +69,7 @@
 
 ### 模块
 
-[Topics]((topics.html)
+[Topics](topics.html)
 
 ### 图标主题
 

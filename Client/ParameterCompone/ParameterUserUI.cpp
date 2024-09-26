@@ -62,7 +62,7 @@ int CParameterUserUI::SetParameter(CParameterUser *pParameter)
     return 0;
 }
 
-int CParameterUserUI::slotAccept()
+int CParameterUserUI::slotAccept(bool validity)
 {
     if(!m_pUser) return -1;
     

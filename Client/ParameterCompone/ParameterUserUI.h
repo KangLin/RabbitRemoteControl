@@ -8,6 +8,11 @@ namespace Ui {
 class CParameterUserUI;
 }
 
+/*!
+ * \brief The user parameters UI
+ * \see CParameterUser
+ * \ingroup CLIENT_PARAMETER_COMPONE
+ */
 class CLIENT_EXPORT CParameterUserUI : public QWidget
 {
     Q_OBJECT
@@ -24,9 +29,17 @@ public:
     int SetParameter(CParameterUser* pParameter);
     /*!
      * \~chinese 接受参数
+     * \param validity: 标志是否检查参数
+     *    - true: 检查参数
+     *    - false: 不检查参数
+     * \return 成功返回 0 。其它值为失败。
      * \~english Accept parameters
+     * \param validity
+     *    - true: Check parameters
+     *    - false: Not check parameters
+     * \return 0 is success. otherwise is fail
      */
-    int slotAccept();
+    int slotAccept(bool validity = false);
     //! [Parameter commone functions]
     
 private slots:
