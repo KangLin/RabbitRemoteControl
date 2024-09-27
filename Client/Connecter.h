@@ -19,8 +19,6 @@
 #include "ParameterBase.h"
 
 class CPluginClient;
-class CConnect;
-class CClient;
 
 /*!
  * \~chinese
@@ -212,6 +210,8 @@ Q_SIGNALS:
     /*!
      * \~chinese 断开连接成功信号。仅由插件触发
      * \~english Successful disconnection signal. Triggered only by plugins
+     * \~
+     * \see Disconnect
      */
     void sigDisconnected();
     /*!
@@ -219,6 +219,10 @@ Q_SIGNALS:
      * \~english \note The name is changed. This signal is only triggered by this class 
      */
     void sigUpdateName(const QString& szName);
+    /*!
+     * \~chinese 当有错误产生时触发
+     * \~english Triggered when an error is generated
+     */
     void sigError(const int nError, const QString &szError);
     /*!
      * \~chinese
@@ -265,16 +269,24 @@ Q_SIGNALS:
 
 protected:
     /*!
-     * \brief Get parameter
+     * \~chinese 得到参数。它仅由插件使用。所以这里设置为保护成员。
+     *           可以在其派生类中重载它为公有函数，以方便插件使用。
+     *
+     * \~english Get parameter. Used only the plugin. so set protected in here.
+     *        Overload it as a public function in the derived class.
      */
     virtual CParameterBase* GetParameter();
     /*!
      * \~chinese 设置参数
-     * \note 在派生类先实例化参数，然后再调用此函数设置参数
+     * \note 在派生类中先实例化参数，然后在其构造函数中调用此函数设置参数。
+     *
      * \~english Set parameters
-     * \note In the derived class, instantiate the parameters,
-     *       and then call this function to set the parameters
+     * \note  Instantiate a parameter in a derived class,
+     *      and then call this function in its constructor to set the parameter.
+     *
+     * \~
      * \see \ref section_Use_CParameterBase
+     * \see SetParameterClient
      */
     virtual int SetParameter(CParameterBase* p);
 
@@ -334,8 +346,8 @@ private:
     virtual int Save(QSettings &set) = 0;
     
 private Q_SLOTS:
-    //! \~chinese \note 仅由 CConnect::SetConnecter() 使用
-    //! \~english \note The slot only is used by CConnect::SetConnecter()
+    //! \~chinese \note 仅由 CConnectDesktop::SetConnecter() 使用
+    //! \~english \note The slot only is used by CConnectDesktop::SetConnecter()
     virtual void slotSetServerName(const QString &szName);
 
     void slotShowServerName();

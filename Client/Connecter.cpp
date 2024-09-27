@@ -215,7 +215,7 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
                           "Default set CParameterClient for the parameters of connecter (CParameterConnecter or its derived classes) "
                           "See: CClient::CreateConnecter."
                           "If you are sure the parameter of connecter does not need CParameterClient. "
-                          "please overload the SetParameterClient in the"
+                          "Please overload the SetParameterClient in the"
                        << metaObject()->className() << ". don't set it";
         Q_ASSERT(false);
     }

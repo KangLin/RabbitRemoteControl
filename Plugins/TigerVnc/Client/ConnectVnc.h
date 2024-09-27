@@ -7,7 +7,7 @@
 
 #include <QEventLoop>
 
-#include "Connect.h"
+#include "ConnectDesktop.h"
 #include "Channel.h"
 #include "ParameterVnc.h"
 
@@ -21,7 +21,7 @@
 
 class CConnecterDesktopThread;
 class CConnectVnc
-    : public CConnect,
+    : public CConnectDesktop,
       public rfb::CConnection
 {
     Q_OBJECT
@@ -80,6 +80,7 @@ protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
+    // CConnectDesktop interface
     virtual int WakeUp() override;
 
 private:

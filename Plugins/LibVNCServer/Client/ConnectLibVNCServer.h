@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "Connect.h"
+#include "ConnectDesktop.h"
 #include "rfb/rfbclient.h"
 #include <QTcpSocket>
 #include <QTcpServer>
@@ -14,7 +14,7 @@
 #include "SSHTunnelThread.h"
 #endif
 
-class CConnectLibVNCServer : public CConnect
+class CConnectLibVNCServer : public CConnectDesktop
 {
     Q_OBJECT
 

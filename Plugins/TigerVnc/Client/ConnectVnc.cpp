@@ -91,7 +91,7 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 1
 static const unsigned bpsEstimateWindow = 1000;
 
 CConnectVnc::CConnectVnc(CConnecterDesktopThread *pConnecter, QObject *parent)
-    : CConnect(pConnecter, parent),
+    : CConnectDesktop(pConnecter, parent),
       m_pPara(nullptr)
 {
     static bool initlog = false;
@@ -183,11 +183,11 @@ int CConnectVnc::SetPara()
 }
 
 /*
- * \return 
- * \li < 0: error
- * \li = 0: Use OnProcess (non-Qt event loop)
- * \li > 0: Don't use OnProcess (qt event loop)
- */  
+ * \return
+ * \li OnInitReturnValue::Fail: error
+ * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
+ * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
+ */
 CConnect::OnInitReturnValue CConnectVnc::OnInit()
 {
     qDebug(log) << "CConnectVnc::OnInit()";
@@ -433,6 +433,19 @@ int CConnectVnc::OnClean()
     return 0;
 }
 
+/*!
+ * \~chinese 插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。
+ *
+ * \~english Specific operation processing of plug-in connection.
+ *           Because of it is a non-Qt event loop, so wait in here.
+ *
+ * \~
+ * \return
+ *    \li >= 0: continue, Interval call time (msec)
+ *    \li = -1: stop
+ *    \li < -1: error
+ * \see CConnect::Connect() CConnect::slotTimeOut()
+ */
 int CConnectVnc::OnProcess()
 {
     int nRet = 0;
@@ -511,7 +524,6 @@ void CConnectVnc::slotDisConnected()
     }
 #endif
     qInfo(log) << szInfo;
-    // There isn't emit sigDisconnect, because of sigDisconnect is emitted in CConnect::Disconnect()
 }
 
 void CConnectVnc::slotReadyRead()

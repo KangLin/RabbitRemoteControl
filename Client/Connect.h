@@ -5,15 +5,8 @@
 
 #pragma once
 
-#include <QPoint>
-#include <QtPlugin>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <QWheelEvent>
-#include "Connecter.h"
-#include <QMimeData>
-#include "FrmViewer.h"
 #include <QMessageBox>
+#include "Connecter.h"
 
 /*!
  * \~chinese
@@ -23,26 +16,26 @@
  *     当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。
  * \note
  *  - 这个接口仅由插件实现。
- *  - 它的实例在后台线程中。
+ *  - 如果是异步的（有后台线程），它的实例在后台线程中。
  *  - 具体的插件需要实现下面接口：
  *     - OnInit()
  *     - OnClean()
  *     - OnProcess()
- *     - slotClipBoardChanged()
  * 
  * \~english
  * \brief Connect interface. It is implemented by the Protocol plugin.
- *      It starts a timer by default to start a non-Qt event loop (that is, normal loop processing) .
+ *      It starts a timer by default to start a non-Qt event loop
+ *      (that is, normal loop processing) .
  *      See Connect(), slotTimeOut(), OnProcess() for details.
  *      Of course, it still supports Qt events (the signal-slot mechanism of QObject).
  * \note
  *  - The interface only is implemented by plug-in.
- *  - Its instance is in a background thread.
+ *  - If it's asynchronous (with a background thread),
+ *    its instance is in a background thread.
  *  - The plug-in needs to implement the following interface.
  *     - OnInit()
  *     - OnClean()
  *     - OnProcess()
- *     - slotClipBoardChanged()
  *
  * \~
  * \see CConnecterDesktopThread CFrmViewer
@@ -57,48 +50,48 @@ public:
      * \~chinese
      * \param pConnecter
      * \param parent
-     * \param bDirectConnection:
-     *        \li true: 当阻塞事件循环时，可能会造成延迟，所以直接连接信号
-     *        \li false: 当一个非阻塞事件循环时
      *
      * \~english
      * \param pConnecter
      * \param parent
-     * \param bDirectConnection:
-     *        \li true: when connect is non-Qt event and it can block event loop
-     *        \li false: The connect is Qt event and it isn't block event loop
      */
     explicit CConnect(CConnecter* pConnecter,
-                      QObject *parent = nullptr,
-                      bool bDirectConnection = true);
+                      QObject *parent = nullptr);
     virtual ~CConnect() override;
 
-public Q_SLOTS:   
+public Q_SLOTS:
     /*!
      * \~chinese 开始连接。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件
+     * \note
+     * - 如果连接是异步的，则会在成功后触发 sigConnected() 。失败则触发 sigError() 。
+     * - 如果连接是同步的，则在此函数成功调用后，触发 sigConnected() 。失败则触发 sigError() 。
+     *
      * \~english Start connect. Based on the OnInit() return value,
      *           decide whether to start the timer to support no-qt event
+     * \note
+     * - If the connection is asynchronous,
+     *   sigConnected() is triggered upon success. Failure triggers sigError().
+     * - If the connection is synchronous,
+     *   sigConnected() is triggered after this function is successfully called.
+     *    Failure triggers sigError().
      *
      * \~
      * \return 0: success; other error
+     * \see sigConnected() sigError()
      * \see OnInit() OnProcess() slotTimeOut()
      */
     virtual int Connect();
     /*!
      * \~chinese 断开
      * \~english Disconnect
+     * \~
+     * \return 0: success; other error
+     * \see sigDisconnected()
      */
     virtual int Disconnect();
 
-    /*!
-     * \~chinese 当剪切板发生改变时调用
-     * \~english Be called when the clip board change
-     */
-    virtual void slotClipBoardChanged() = 0;
-
 protected:
     virtual int SetConnecter(CConnecter* pConnecter);
-    virtual int SetViewer(CFrmViewer* pView, bool bDirectConnection);
 
     enum class OnInitReturnValue{
         Fail = -1,
@@ -164,49 +157,43 @@ protected Q_SLOTS:
     virtual void slotTimeOut();
 
 Q_SIGNALS:
+    /*!
+     * \~chinese 当插件连接成功后触发。仅由插件触发
+     * \~english Emitted when the plugin is successfully connected.
+     *           Emitted only by plugins
+     * \see Connect
+     */
     void sigConnected();
     /*!
      * \~chinese 通知用户断开连接。仅由插件触发。
      *    当从插件中需要要断开连接时触发。例如：对端断开连接、重置连接或者连接出错。
      *
-     * \~english Notify the user to disconnect. Triggered only by plugins
-     *    Emit when you need to disconnect from the plug-in.
+     * \~english Notify the user to call disconnect. Emitted only by plugins
+     *    Emitted when you need to disconnect from the plug-in.
      *    For example, the peer disconnect or reset the connection
      *    or the connection is error
      */
     void sigDisconnect();
+    /*!
+     * \~chinese 断开连接成功信号。仅由插件触发
+     * \~english Successful disconnection signal. Triggered only by plugins
+     * \~
+     * \see Disconnect
+     */
     void sigDisconnected();
-
-    void sigSetDesktopSize(int width, int height);
-    void sigServerName(const QString& szName);
-    
     /*!
-     * \~chinese 通知视图，图像更新
-     * \param r: 更新图像的矩形
-     * \param image: 包含更新矩形的图像
-     *
-     * \~english Notify the CFrmView update image
-     * \param r: update rectangle
-     * \param image: An image that contains an update rectangle
+     * \~chinese 当有错误产生时触发
+     * \~english Triggered when an error is generated
      */
-    void sigUpdateRect(const QRect& r, const QImage& image);
-    /*!
-     * \brief Notify the CFrmView update image
-     * \param image
-     */
-    void sigUpdateRect(const QImage& image);
-    void sigUpdateCursor(const QCursor& cursor);
-    void sigUpdateCursorPosition(const QPoint& pos);
-    void sigUpdateLedState(unsigned int state);
-    void sigSetClipboard(QMimeData* data);
-
     void sigError(const int nError, const QString &szError = QString());
     /*!
-     * \~chinese
+     * \~chinese 从后台线程中触发在主线程中显示信息，不阻塞后台线程
      * \note 它与 sigShowMessageBox 的区别是 sigShowMessageBox 用对话框显示
      *
-     * \~english
-     * \note It differs from sigShowMessageBox in that sigShowMessageBox is displayed in a dialog box
+     * \~english Triggering from a background thread displays information
+     *           in the main thread without blocking the background thread
+     * \note It differs from sigShowMessageBox in that sigShowMessageBox
+     *       is displayed in a dialog box
      *
      * \~
      * \see sigShowMessageBox SetConnecter CConnecter::sigInformation()
@@ -221,7 +208,8 @@ Q_SIGNALS:
      * \brief Trigger the display of a message dialog (QMessageBox)
      *        in the main thread from a background thread
      *        without blocking the background thread
-     * \note It differs from sigInformation in that sigInformation is not displayed in a dialog box
+     * \note It differs from sigInformation in that sigInformation
+     *       is not displayed in a dialog box
      *
      * \~
      * \see sigInformation SetConnecter CConnecter::sigShowMessageBox()
@@ -234,7 +222,8 @@ Q_SIGNALS:
      * 阻塞后台线程，并在前台线程中显示消息对话框(QMessageBox)
      *
      * \~english
-     * \brief Block background threads and display message dialogs in foreground threads (QMessageBox)
+     * \brief Block background threads and display message dialogs
+     *        in foreground threads (QMessageBox)
      * \param title
      * \param message
      * \param buttons
@@ -255,7 +244,8 @@ Q_SIGNALS:
      * \~chinese 阻塞后台线程，并在前台线程中显示输入对话框 (QInputDialog)
      *
      * \~english
-     * \brief Block background threads and display input dialogs in foreground threads (QInputDialog)
+     * \brief Block background threads and display input dialogs
+     *        in foreground threads (QInputDialog)
      * \~
      * \see CConnecter::slotBlockInputDialog() SetConnecter
      */
@@ -269,47 +259,20 @@ Q_SIGNALS:
      * 阻塞后台线程，并在前台线程中显示窗口。
      *
      * \~english
-     * \brief Blocks the background thread and displays the window in the foreground thread.
+     * \brief Blocks the background thread and displays the window
+     *        in the foreground thread.
      * \param className: show windows class name
      *        The class must have follower public functions:
      *            Q_INVOKABLE void SetContext(void* pContext);
      *            Q_INVOKABLE void SetConnecter(CConnecter *pConnecter);
-     * \param nRet: If className is QDialog derived class, QDialog::exec() return value.
-     *              Otherwise, ignore
+     * \param nRet: If className is QDialog derived class,
+     *              QDialog::exec() return value. Otherwise, ignore
      * \param pContext: pass context to CConnecter::slotBlockShowWidget()
      *
      * \~
      * \see CConnecter::slotBlockShowWidget() SetConnecter
      */
     void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
-
-public Q_SLOTS:
-    // \~chinese 以下函数在 Connecter 线程（主线程）中调用
-    // \~english The following functions are called in the Connecter thread(main thread)
-    virtual void slotMousePressEvent(QMouseEvent* event, QPoint pos);
-    virtual void slotMouseReleaseEvent(QMouseEvent* event, QPoint pos);
-    virtual void slotMouseMoveEvent(QMouseEvent* event, QPoint pos);
-    virtual void slotWheelEvent(QWheelEvent* event, QPoint pos);
-    virtual void slotKeyPressEvent(QKeyEvent *event);
-    virtual void slotKeyReleaseEvent(QKeyEvent *event);
-
-protected:
-    virtual int WakeUp();
-    // \~chinese 以下函数在 Connect 线程（后台线程）中调用
-    // \~english The following functions are called in the Connect thread(background thread)
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void mouseReleaseEvent(QMouseEvent *event);
-    virtual void mouseMoveEvent(QMouseEvent *event);
-    virtual void wheelEvent(QWheelEvent *event);
-    virtual void keyPressEvent(QKeyEvent *event);
-    virtual void keyReleaseEvent(QKeyEvent *event);
-
-private:
-    CFrmViewer* m_pView;
-    
-    // QObject interface
-public:
-    virtual bool event(QEvent *event) override;
 };
 
 #endif // CCONNECT_H

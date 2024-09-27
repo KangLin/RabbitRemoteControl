@@ -113,17 +113,19 @@
 \brief 线程模型
 \details
 + 线程分类
-  - 主线程（UI线程）
+  - 主线程（UI线程）。以下类在主线程中：
     - CConnecter
     - CFrmView
     - CParameter
-  - 工作线程
+  - 工作线程。以下类在工作线程中：
     - CConnect
 
 + 工作线程模型
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
+         每个连接者启动一个后台线程。
     \see CPluginClient CConnecterDesktopThread
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
+    插件启动一个线程，连接者重用此线程，它不再启动线程。
     \see CPluginClientThread CConnecterDesktop
 
 + 类关系：

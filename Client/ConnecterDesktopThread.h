@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Connect.h"
+#include "ConnectDesktop.h"
 #include "ParameterBase.h"
 #include "FrmViewer.h"
 
@@ -13,7 +13,7 @@ class CConnectThread;
 
 /**
  * \~chinese
- * \brief 它默认启动一个后台线程。实现一个远程桌面后台线程处理一个远程桌面连接。
+ * \brief 默认启动一个后台线程。实现一个后台线程处理一个连接。
  *        可与插件接口从 CPluginClient 派生的插件一起使用，用于连接是阻塞模型的。
  * \details
  * 原理：在 Connect() 中启动一个后台线程 CConnectThread 。
@@ -31,8 +31,7 @@ class CConnectThread;
  *
  * \~english
  * \brief It starts a background thread by default.
- *        It implements a remote desktop background thread to
- *        handle a remote desktop connection.
+ *        It implements a background thread to handle a connection.
  *        Can be used with plugins whose plugin interface
  *        derives from CPluginClient for connection is blocking model.
  * \details 
@@ -74,6 +73,9 @@ public:
      */
     virtual CConnect* InstanceConnect() = 0;
 
+    /*!
+     * \brief Get parameter
+     */
     virtual CParameterBase* GetParameter() override;
 
 public Q_SLOTS:
@@ -87,6 +89,9 @@ public Q_SLOTS:
     virtual int DisConnect() override;
 
 protected:
+    virtual QString ServerName() override;
+    
+private:
     /*!
      * \~chinese \brief 加载参数
      * \~english \brief Load parameters
@@ -98,8 +103,6 @@ protected:
      */
     virtual int Save(QSettings &set) override;
 
-    virtual QString ServerName() override;
-    
 private:
     CConnectThread* m_pThread;
     CFrmViewer *m_pView;

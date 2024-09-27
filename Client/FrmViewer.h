@@ -24,23 +24,23 @@
 /**
  * \~chinese
  * \brief 
- * 用于显示从 CConnect 输出的图像，和向 CConnect 发送键盘、鼠标事件。
- * - 当新的输出图像从 CConnect 输出时，它调用 \ref slotUpdateRect 更新显示。
+ * 用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。
+ * - 当新的输出图像从 CConnectDesktop 输出时，它调用 \ref slotUpdateRect 更新显示。
  * - 当鼠标更新时，调用 \ref slotUpdateCursor ；位置更新时，调用 \ref slotUpdateCursorPosition
  *
  * \~english
  * \brief 
- * A widget which displays output image from a CConnect
+ * A widget which displays output image from a CConnectDesktop
  * and sends input keypresses and mouse activity
- * to the CConnect.
+ * to the CConnectDesktop.
  *
- * - When the viewer receives new image output from the CConnect,
+ * - When the viewer receives new image output from the CConnectDesktop,
  *   it will update the display by calling \ref slotUpdateRect.
  * - When the mouse update, then call \ref slotUpdateCursor ;
  *   if update position, then call \ref slotUpdateCursorPosition
  * 
  *\~
- * \see  CConnecter CConnect
+ * \see  CConnecter CConnectDesktop
  * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CFrmViewer : public QWidget
@@ -104,7 +104,7 @@ public Q_SLOTS:
      * \brief Update desktop size
      * \param width
      * \param height
-     * \note The plugin is use CConnect::sigSetDesktopSize
+     * \note The plugin is use CConnectDesktop::sigSetDesktopSize
      */
     void slotSetDesktopSize(int width, int height);
     /*!

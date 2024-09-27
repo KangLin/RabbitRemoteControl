@@ -21,9 +21,9 @@ public:
 public Q_SLOTS:
     void slotConnect(CConnecterDesktop *pConnecter);
     void slotDisconnect(CConnecterDesktop* pConnecter);
-    
+
 private:
-    QMap<CConnecterDesktop*, CConnect*> m_Connects;    
+    QMap<CConnecterDesktop*, CConnect*> m_Connects;
 };
 
 #endif // CMANAGECONNECT_H

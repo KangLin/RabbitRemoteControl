@@ -41,7 +41,7 @@ static void rfbQtClientLog(const char *format, ...)
 }
 
 CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, QObject *parent)
-    : CConnect(pConnecter, parent),
+    : CConnectDesktop(pConnecter, parent),
     m_pClient(nullptr),
     m_pParameter(dynamic_cast<CParameterLibVNCServer*>(pConnecter->GetParameter()))
 #ifdef HAVE_LIBSSH
@@ -62,10 +62,10 @@ CConnectLibVNCServer::~CConnectLibVNCServer()
 }
 
 /*
- * return
- *  < 0: error
- *  = 0: Use OnProcess (non-Qt event loop)
- *  > 0: Don't use OnProcess (qt event loop)
+ * \return
+ * \li OnInitReturnValue::Fail: error
+ * \li OnInitReturnValue::UseOnProcess: Use OnProcess (non-Qt event loop)
+ * \li OnInitReturnValue::NotUseOnProcess: Don't use OnProcess (qt event loop)
  */
 CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
 {
@@ -301,13 +301,16 @@ int CConnectLibVNCServer::OnClean()
 
 /*!
  * \~chinese 插件连接的具体操作处理。因为此插件是非Qt事件，所以在此函数中等待。
+ *
  * \~english Specific operation processing of plug-in connection.
  *           Because of it is a non-Qt event loop, so wait in here.
+ *
  * \~
  * \return
- *       \li >= 0: continue, Interval call time (msec)
- *       \li < 0: error or stop
- * \see slotTimeOut()
+ *    \li >= 0: continue, Interval call time (msec)
+ *    \li = -1: stop
+ *    \li < -1: error
+ * \see CConnect::Connect() CConnect::slotTimeOut()
  */
 int CConnectLibVNCServer::OnProcess()
 {

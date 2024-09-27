@@ -68,7 +68,7 @@ QDialog *CConnecterVnc::OnOpenDialogSettings(QWidget *parent)
     return p;
 }
 
-CConnect* CConnecterVnc::InstanceConnect()
+CConnect *CConnecterVnc::InstanceConnect()
 {
     CConnectVnc* p = new CConnectVnc(this);
     return p;

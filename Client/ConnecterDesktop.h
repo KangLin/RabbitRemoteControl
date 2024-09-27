@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef CCONNECTERDESKTOP_H
 #define CCONNECTERDESKTOP_H
 

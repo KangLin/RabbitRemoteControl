@@ -7,6 +7,7 @@
 - App: remove border when full screen
 - Client:
   - Add wake on lan
+  - Add CConnectDesktop
 
 ### v0.0.27
 - Client:

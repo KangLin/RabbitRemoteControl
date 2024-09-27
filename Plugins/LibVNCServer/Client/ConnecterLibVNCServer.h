@@ -20,7 +20,7 @@ public:
 
 protected:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-    virtual CConnect* InstanceConnect() override;
+    virtual CConnect *InstanceConnect() override;
     
 private:
     CParameterLibVNCServer m_Para;

@@ -25,11 +25,11 @@ CConnectThread::~CConnectThread()
 /*!
  * \~chinese
  *   - 调用 CConnecterDesktopThread::InstanceConnect 实例化 CConnect
- *   - 调用 CConnect::Connect 开始一个连接
+ *   - 调用 CConnect::Connect() 开始一个连接
  *   - 进入事件循环
  * \~english
  *   - Call CConnecterDesktopThread::InstanceConnect to instantiate CConnect
- *   - Call CConnect::Connect start a connect
+ *   - Call CConnect::Connect() start a connect
  *   - Enter event loop
  */
 void CConnectThread::run()

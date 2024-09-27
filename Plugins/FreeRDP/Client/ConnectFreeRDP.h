@@ -3,7 +3,7 @@
 #ifndef CCONNECTFREERDP_H
 #define CCONNECTFREERDP_H
 
-#include "Connect.h"
+#include "ConnectDesktop.h"
 #include "freerdp/freerdp.h"
 #include "ClipboardFreeRDP.h"
 #include "ConnecterFreeRDP.h"
@@ -14,7 +14,7 @@
 #include "SSHTunnelThread.h"
 #endif
 
-class CConnectFreeRDP : public CConnect
+class CConnectFreeRDP : public CConnectDesktop
 {
     Q_OBJECT
 
@@ -129,7 +129,7 @@ private:
 
     bool SendMouseEvent(UINT16 flags, QPoint pos);
 
-    // CConnect interface
+    // CConnectDesktop interface
 public Q_SLOTS:
     virtual void slotClipBoardChanged() override;
     

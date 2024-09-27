@@ -3,19 +3,15 @@
 #include "ConnectWakeOnLan.h"
 #include "ConnecterDesktopThread.h"
 
-CConnectWakeOnLan::CConnectWakeOnLan(
-    CConnecter *pConnecter, QObject *parent, bool bDirectConnection)
-    : CConnect{pConnecter, parent, bDirectConnection}
+CConnectWakeOnLan::CConnectWakeOnLan(CConnecterDesktopThread *pConnecter, QObject *parent)
+    : CConnect{pConnecter, parent}
     , m_pParameter(nullptr)
     , m_nRepeat(0)
     , m_tmStart(QTime::currentTime())
 {
-    m_pParameter = qobject_cast<CConnecterDesktopThread*>(pConnecter)->GetParameter();
+    Q_ASSERT(pConnecter);
+    m_pParameter = pConnecter->GetParameter();
     Q_ASSERT(m_pParameter);
-}
-
-void CConnectWakeOnLan::slotClipBoardChanged()
-{
 }
 
 int CConnectWakeOnLan::SetConnecter(CConnecter *pConnecter)
@@ -23,13 +19,8 @@ int CConnectWakeOnLan::SetConnecter(CConnecter *pConnecter)
     return 0;
 }
 
-int CConnectWakeOnLan::SetViewer(CFrmViewer *pView, bool bDirectConnection)
-{
-    return 0;
-}
-
 //! [Check parameters is validity]
-CConnect::OnInitReturnValue CConnectWakeOnLan::OnInit()
+CConnectDesktop::OnInitReturnValue CConnectWakeOnLan::OnInit()
 {
     auto &wol = m_pParameter->m_Net.m_WakeOnLan;
     if(!wol.GetEnable() || !wol.CheckValidity())

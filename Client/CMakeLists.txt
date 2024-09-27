@@ -46,6 +46,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
 list(APPEND CLIENT_HEADER_FILES
     ${CLIENT_INSTALL_HEADER_FILES}
     Connect.h
+    ConnectDesktop.h
     ConnectThread.h
     PluginThread.h
     ManageConnect.h
@@ -58,6 +59,7 @@ list(APPEND CLIENT_HEADER_FILES
 list(APPEND CLIENT_SOURCE_FILES
     Connecter.cpp
     Connect.cpp
+    ConnectDesktop.cpp
     Client.cpp
     ManageConnect.cpp
     PluginClient.cpp
