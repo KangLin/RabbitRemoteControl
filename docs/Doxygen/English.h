@@ -70,9 +70,11 @@
 \details
 + Thread module
   - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPluginClient CConnecterDesktopThread
+    \see CPluginClient CConnecterThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
-    \see CPluginClientThread CConnecterDesktop
+    - The plugin does not have a background thread, and all connections use the main thread
+    - The plugin has a background thread, and all connections use the same background thread
+      \see CPluginClientThread CConnecterDesktop
 + Class relationship
   \image html docs/Image/PluginClientAPI.svg
 + Sequence diagram
@@ -110,7 +112,7 @@
   - Implement \ref CConnecter.
     - Implement remote desktop
       - Blocked: Implements a remote desktop background thread to handle
-        a remote desktop connection, which can be derived from CConnecterDesktopThread. Eg: CConnecterFreeRDP
+        a remote desktop connection, which can be derived from CConnecterThread. Eg: CConnecterFreeRDP
         \image html docs/Image/PluginClientBlockSequenceDiagram.svg
       - No-blocking: Implements a background thread to handle multiple remote desktop connections,
         which can be derived from CConnecterDesktop.
@@ -132,7 +134,7 @@
     - CConnect
 + The module of work thread
   - Blocked: Most control protocol implementation library connections are blocking.
-    \see CPluginClient CConnecterDesktopThread
+    \see CPluginClient CConnecterThread
   - No-blocking: eg: qt event. A thread can handle multiple connections.
     \see CPluginClientThread CConnecterDesktop
 + Class relationship

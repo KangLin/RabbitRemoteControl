@@ -4,12 +4,12 @@
 #define CCONNECTERFREERDP_H
 
 #include "Connecter.h"
-#include "ConnecterDesktopThread.h"
+#include "ConnecterThread.h"
 #include "ParameterFreeRDP.h"
 
 #include <QLoggingCategory>
 
-class CConnecterFreeRDP : public CConnecterDesktopThread
+class CConnecterFreeRDP : public CConnecterThread
 {
     Q_OBJECT
 public:

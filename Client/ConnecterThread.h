@@ -52,14 +52,15 @@ class CConnectThread;
  *
  * \~
  * \see CConnect CConnectThread CConnecter CPluginClient
+ * \ingroup CLIENT_PLUGIN_API
  */
-class CLIENT_EXPORT CConnecterDesktopThread : public CConnecter
+class CLIENT_EXPORT CConnecterThread : public CConnecter
 {
     Q_OBJECT
 
 public:
-    explicit CConnecterDesktopThread(CPluginClient *parent = nullptr);
-    virtual ~CConnecterDesktopThread();
+    explicit CConnecterThread(CPluginClient *parent = nullptr);
+    virtual ~CConnecterThread();
 
     virtual QWidget* GetViewer() override;
 

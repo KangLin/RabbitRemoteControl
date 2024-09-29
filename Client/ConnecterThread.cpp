@@ -1,19 +1,19 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnecterDesktopThread.h"
+#include "ConnecterThread.h"
 #include <QDebug>
 #include "ConnectThread.h"
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Client.Connecter.DesktopThread")
 
-CConnecterDesktopThread::CConnecterDesktopThread(CPluginClient *parent)
+CConnecterThread::CConnecterThread(CPluginClient *parent)
     : CConnecter(parent),
       m_pThread(nullptr),
       m_pView(new CFrmViewer())
 {}
 
-CConnecterDesktopThread::~CConnecterDesktopThread()
+CConnecterThread::~CConnecterThread()
 {
     if(m_pView)
     {
@@ -21,23 +21,23 @@ CConnecterDesktopThread::~CConnecterDesktopThread()
         m_pView = nullptr;
     }
     
-    qDebug(log) << "CConnecterDesktopThread::~CConnecterDesktopThread()";
+    qDebug(log) << "CConnecterThread::~CConnecterThread()";
     //qDebug(log) << this << this->metaObject()->className();
 }
 
-QWidget *CConnecterDesktopThread::GetViewer()
+QWidget *CConnecterThread::GetViewer()
 {
     return m_pView;
 }
 
-CParameterBase *CConnecterDesktopThread::GetParameter()
+CParameterBase *CConnecterThread::GetParameter()
 {
     return CConnecter::GetParameter();
 }
 
-int CConnecterDesktopThread::Connect()
+int CConnecterThread::Connect()
 {
-    qDebug(log) << "CConnecterDesktopThread::Connect()";
+    qDebug(log) << "CConnecterThread::Connect()";
     int nRet = 0;
     m_pThread = new CConnectThread(this);
     if(!m_pThread) {
@@ -50,9 +50,9 @@ int CConnecterDesktopThread::Connect()
     return nRet;
 }
 
-int CConnecterDesktopThread::DisConnect()
+int CConnecterThread::DisConnect()
 {
-    qDebug(log) << "CConnecterDesktopThread::DisConnect()";
+    qDebug(log) << "CConnecterThread::DisConnect()";
     int nRet = 0;
     if(m_pThread)
     {
@@ -63,7 +63,7 @@ int CConnecterDesktopThread::DisConnect()
     return nRet;
 }
 
-QString CConnecterDesktopThread::ServerName()
+QString CConnecterThread::ServerName()
 {
     if(GetParameter())
         if(!GetParameter()->GetShowServerName()
@@ -76,7 +76,7 @@ QString CConnecterDesktopThread::ServerName()
     return CConnecter::ServerName();
 }
 
-int CConnecterDesktopThread::Load(QSettings &set)
+int CConnecterThread::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());
@@ -91,7 +91,7 @@ int CConnecterDesktopThread::Load(QSettings &set)
     return nRet;
 }
 
-int CConnecterDesktopThread::Save(QSettings &set)
+int CConnecterThread::Save(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());

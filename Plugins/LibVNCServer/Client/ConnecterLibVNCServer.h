@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include "ConnecterDesktopThread.h"
+#include "ConnecterThread.h"
 #include "ParameterLibVNCServer.h"
 
-class CConnecterLibVNCServer : public CConnecterDesktopThread
+class CConnecterLibVNCServer : public CConnecterThread
 {
     Q_OBJECT
 public:

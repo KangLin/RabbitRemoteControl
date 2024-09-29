@@ -23,7 +23,7 @@
  * \brief Remote desktop connect interface. It is implemented by the Protocol plugin.
  *
  * \~
- * \see CConnecterDesktopThread CFrmViewer
+ * \see CConnecterThread CFrmViewer
  * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CConnectDesktop : public CConnect

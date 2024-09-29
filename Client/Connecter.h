@@ -22,7 +22,7 @@ class CPluginClient;
 
 /*!
  * \~chinese
- * \brief 描述连接者应用接口。
+ * \brief 连接者应用接口。
  * \note
  *   - 此类是用户使用接口，由插件实现。
  *   - 它的实例在主线程中。
@@ -30,7 +30,7 @@ class CPluginClient;
  * 序列图：\image html docs/Image/PluginClientSequenceDiagram.svg
  *  已经提供以下类型的基本实现：
  *  1. 桌面类连接：  
- *     1.1. 用于连接是阻塞模型(一个线程处理一个连接)： \ref CConnecterDesktopThread  
+ *     1.1. 用于连接是阻塞模型(一个线程处理一个连接)： \ref CConnecterThread
  *     1.2. 用于连接是非阻塞模型(一个线程处理多个连接)： \ref CConnecterDesktop  
  *  2. 控制台类连接：\ref CConnecterTerminal
  *  
@@ -45,7 +45,7 @@ class CPluginClient;
  * Basic implementations of the following types have been provided:     
  *   1. Desktop type:  
  *      1.1. The connection used is the blocking model
- *           (One thread handles one connection): \ref CConnecterDesktopThread  
+ *           (One thread handles one connection): \ref CConnecterThread
  *      1.2. The connection is a non-blocking model
  *           (One thread handles multiple connections): \ref CConnecterDesktop  
  *   2. Termianal type: \ref CConnecterTerminal
@@ -80,6 +80,7 @@ public:
     explicit CConnecter(CPluginClient *parent);
     virtual ~CConnecter();
     
+    //! Identity
     virtual const QString Id();
     /*!
      * \~chinese
@@ -98,21 +99,23 @@ public:
      * \see ServerName()
      */
     virtual const QString Name();
+    //! Description
     virtual const QString Description();
+    //! Protocol
     virtual const QString Protocol() const;
+    //! Version
     virtual qint16 Version() = 0;
+    //! Icon
     virtual const QIcon Icon() const;
 
     /*!
      * \~chinese
      * \brief 得到显示视图
-     * \return CFrmViewer*: 视图指针。它的所有者是本类或其派生类的实例
-     * \note 视图属性 Enabled 默认为 false. 需要在 sigConnected() 时改为 true
+     * \return QWidget*: 视图指针。它的所有者是本类或其派生类的实例
      *
      * \~english
      * \brief Get Viewer
-     * \return CFrmViewer*: the ownership is a instance of this class or its derivative class
-     * \note The view property Enabled defaults to false. Changed to True when required to Sigconekde().
+     * \return QWidget*: the ownership is a instance of this class or its derivative class
      *
      * \~
      * \see sigConnected CFrmViewer::CFrmViewer
@@ -215,15 +218,15 @@ Q_SIGNALS:
      */
     void sigDisconnected();
     /*!
-     * \~chinese \note 名称更新。此信号仅由本类触发
-     * \~english \note The name is changed. This signal is only triggered by this class 
-     */
-    void sigUpdateName(const QString& szName);
-    /*!
      * \~chinese 当有错误产生时触发
      * \~english Triggered when an error is generated
      */
     void sigError(const int nError, const QString &szError);
+    /*!
+     * \~chinese \note 名称更新。此信号仅由本类触发
+     * \~english \note The name is changed. This signal is only triggered by this class
+     */
+    void sigUpdateName(const QString& szName);
     /*!
      * \~chinese
      * \brief 更新参数，通知应用程序保存或显示参数

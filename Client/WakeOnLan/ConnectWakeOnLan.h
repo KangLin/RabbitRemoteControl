@@ -5,7 +5,7 @@
 
 #include <QTime>
 #include "Connect.h"
-#include "ConnecterDesktopThread.h"
+#include "ConnecterThread.h"
 #include "ParameterWakeOnLan.h"
 #include "WakeOnLanQt.h"
 
@@ -13,7 +13,7 @@ class CConnectWakeOnLan : public CConnect
 {
     Q_OBJECT
 public:
-    explicit CConnectWakeOnLan(CConnecterDesktopThread* pConnecter,
+    explicit CConnectWakeOnLan(CConnecterThread* pConnecter,
                                QObject *parent = nullptr);
 
 protected:

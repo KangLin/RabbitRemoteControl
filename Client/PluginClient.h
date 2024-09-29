@@ -12,20 +12,20 @@
 /*!
  * \~chinese
  * \brief 客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。
- *  - 阻塞模型：可以与 CConnecterDesktopThread 一起使用，用于连接是阻塞模型的。
+ *  - 阻塞模型：可以与 CConnecterThread 一起使用，用于连接是阻塞模型的。
  *  - 非阻塞模型：CPluginClientThread 与 CConnecterDesktop
  *    一起可实现一个后台线程处理多个远程桌面连接。(暂时未使用)
  *
  * \~english
  * \brief The plugin interface. Create CConnecter instance.
  *  - blocking model: The interface only is implemented by plug-in.
- *        It may be used with CConnecterDesktopThread for connection is blocking model.
+ *        It may be used with CConnecterThread for connection is blocking model.
  *  - no-blocking model: CPluginClientThread with CConnecterDesktop
  *    for a single background thread handles multiple remote desktop connections.
  *    (Not used yet)
  *
  * \~
- * \see CClient CConnecterDesktopThread CConnecter CPluginClientThread
+ * \see CClient CConnecterThread CConnecter CPluginClientThread
  * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CPluginClient : public QObject

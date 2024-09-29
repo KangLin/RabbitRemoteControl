@@ -3,7 +3,7 @@
 #ifndef CCONNECTERDESKTOP_H
 #define CCONNECTERDESKTOP_H
 
-#include "ConnecterDesktopThread.h"
+#include "ConnecterThread.h"
 
 /**
  * \~chinese
@@ -24,8 +24,9 @@
  * 
  * \~
  * \see CPluginClientThread CPluginThread CManageConnect
+ * \ingroup CLIENT_PLUGIN_API
  */
-class CLIENT_EXPORT CConnecterDesktop : public CConnecterDesktopThread
+class CLIENT_EXPORT CConnecterDesktop : public CConnecterThread
 {
     Q_OBJECT
 

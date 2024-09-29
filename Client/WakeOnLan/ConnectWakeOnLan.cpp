@@ -1,9 +1,8 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectWakeOnLan.h"
-#include "ConnecterDesktopThread.h"
 
-CConnectWakeOnLan::CConnectWakeOnLan(CConnecterDesktopThread *pConnecter, QObject *parent)
+CConnectWakeOnLan::CConnectWakeOnLan(CConnecterThread *pConnecter, QObject *parent)
     : CConnect{pConnecter, parent}
     , m_pParameter(nullptr)
     , m_nRepeat(0)

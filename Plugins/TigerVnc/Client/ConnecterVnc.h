@@ -8,7 +8,7 @@
 #include "ConnecterDesktop.h"
 #include "ParameterVnc.h"
 
-class CConnecterVnc : public CConnecterDesktopThread
+class CConnecterVnc : public CConnecterThread
 {
     Q_OBJECT
 

@@ -19,7 +19,7 @@
 #include "rfb/UserPasswdGetter.h"
 #include "rfb/UserMsgBox.h"
 
-class CConnecterDesktopThread;
+class CConnecterThread;
 class CConnectVnc
     : public CConnectDesktop,
       public rfb::CConnection
@@ -27,7 +27,7 @@ class CConnectVnc
     Q_OBJECT
 
 public:
-    explicit CConnectVnc(CConnecterDesktopThread* pConnecter,
+    explicit CConnectVnc(CConnecterThread* pConnecter,
                               QObject *parent = nullptr);
     virtual ~CConnectVnc() override;
 

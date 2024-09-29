@@ -57,7 +57,7 @@
  * \note
  *  - 仅在插件中实现和使用
  *  - 应用程序不能访问，只能通过 CConnecter::OpenDialogSettings 进行设置。
- *  - 插件通过 CConnecterDesktopThread::GetParameter() 访问连接参数
+ *  - 插件通过 CConnecterThread::GetParameter() 访问连接参数
  *  - \ref section_Use_CParameterBase
  *  - 需要访问客户端参数 (CFrmParameterClient) 的分类，需要从此类派生。
  *    通过调用 CParameterConnecter::GetParameterClient()
@@ -148,7 +148,7 @@
  *  - The interface only is implemented and used by plugin.
  *  - The application cannot access it directly,
  *    it can only be set via CConnecter::OpenDialogSettings.
- *  - The plugin can access via CConnecterDesktopThread::GetParameter
+ *  - The plugin can access via CConnecterThread::GetParameter
  *  - Need access the client parameters(CParameterClient),
  *    must be derived from the class.
  *    Access the client parameters(CParameterClient)

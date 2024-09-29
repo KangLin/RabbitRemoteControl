@@ -66,8 +66,10 @@
 
 + 线程模型：
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
-    \see CPluginClient CConnecterDesktopThread
+    \see CPluginClient CConnecterThread
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
+    - 插件没有后台线程，所有连接使用主线程
+    - 插件有一个后台线程，所有连接使用同一个后台线程
     \see CPluginClientThread CConnecterDesktop
 + 类关系：
   \image html docs/Image/PluginClientAPI.svg
@@ -99,7 +101,7 @@
   - 实现连接者接口 \ref CConnecter 。
     + 实现远程桌面
       - 如果是阻塞线程模型。实现一个后台线程处理一个远程连接，连接是阻塞的。
-        可以从 \ref CConnecterDesktopThread 派生。例如：\ref CConnecterFreeRDP
+        可以从 \ref CConnecterThread 派生。例如：\ref CConnecterFreeRDP
         \image html docs/Image/PluginClientBlockSequenceDiagram.svg
       - 如果非阻塞线程模型。实现一个后台线程处理多个远程连接，连接是非阻塞的。
         可以从 \ref CConnecterDesktop 派生。
@@ -123,7 +125,7 @@
 + 工作线程模型
   - 阻塞：大多数控制协议实现库连接都是阻塞的。所以需要一个线程处理一个连接。
          每个连接者启动一个后台线程。
-    \see CPluginClient CConnecterDesktopThread
+    \see CPluginClient CConnecterThread
   - 非阻塞：例如Qt事件。一个线程可以处理多个连接。
     插件启动一个线程，连接者重用此线程，它不再启动线程。
     \see CPluginClientThread CConnecterDesktop

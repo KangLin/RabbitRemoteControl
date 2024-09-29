@@ -6,7 +6,7 @@
 static Q_LOGGING_CATEGORY(log, "Client.Connecter.Desktop")
 
 CConnecterDesktop::CConnecterDesktop(CPluginClient *parent)
-    : CConnecterDesktopThread(parent)
+    : CConnecterThread(parent)
 {
 }
 

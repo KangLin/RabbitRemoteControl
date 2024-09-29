@@ -7,7 +7,7 @@
 
 //! [Set the parameter]
 CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *parent)
-    : CConnecterDesktopThread(parent),
+    : CConnecterThread(parent),
       m_Logger("FreeRDP.Connecter")
 {
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);

@@ -38,7 +38,7 @@
  *     - OnProcess()
  *
  * \~
- * \see CConnecterDesktopThread CFrmViewer
+ * \see CConnecterThread CFrmViewer
  * \ingroup CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CConnect : public QObject

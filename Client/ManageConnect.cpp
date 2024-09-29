@@ -1,5 +1,5 @@
 #include "ManageConnect.h"
-#include "ConnecterDesktopThread.h"
+#include "ConnecterThread.h"
 
 #include <QLoggingCategory>
 

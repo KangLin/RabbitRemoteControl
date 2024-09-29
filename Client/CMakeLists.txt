@@ -25,7 +25,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     Client.h
     PluginClient.h
     PluginClientThread.h
-    ConnecterDesktopThread.h
+    ConnecterThread.h
     ConnecterDesktop.h
     Parameter.h
     ParameterConnecter.h
@@ -64,7 +64,7 @@ list(APPEND CLIENT_SOURCE_FILES
     ManageConnect.cpp
     PluginClient.cpp
     PluginClientThread.cpp
-    ConnecterDesktopThread.cpp
+    ConnecterThread.cpp
     ConnecterDesktop.cpp
     ConnectThread.cpp
     PluginThread.cpp

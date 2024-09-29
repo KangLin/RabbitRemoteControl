@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectVnc.h"
-#include "ConnecterDesktopThread.h"
+#include "ConnecterThread.h"
 
 #ifndef WIN32
 #include <string.h>
@@ -90,7 +90,7 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 1
 // Time new bandwidth estimates are weighted against (in ms)
 static const unsigned bpsEstimateWindow = 1000;
 
-CConnectVnc::CConnectVnc(CConnecterDesktopThread *pConnecter, QObject *parent)
+CConnectVnc::CConnectVnc(CConnecterThread *pConnecter, QObject *parent)
     : CConnectDesktop(pConnecter, parent),
       m_pPara(nullptr)
 {

@@ -8,6 +8,7 @@
 - 客户端：
   - 增加局域网唤醒设备
   - 增加 CConnectDesktop
+  - 重命名 CConnecterDesktopThread 为 CConnecterThread
 
 ### v0.0.27
 - 客户端接口:

@@ -5,10 +5,10 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.ConnectThread")
     
-CConnectThread::CConnectThread(CConnecterDesktopThread *pConnect)
+CConnectThread::CConnectThread(CConnecterThread *pConnect)
     : QThread(), // Note that the parent object pointer cannot be set here.
-                 // The object is also deleted when the parent object (CConnecterDesktopThread) is destroyed.
-                 // See also: CConnecterDesktopThread::Connect()
+                 // The object is also deleted when the parent object (CConnecterThread) is destroyed.
+                 // See also: CConnecterThread::Connect()
     m_pConnecter(pConnect)
 {
     bool check = false;
@@ -24,11 +24,11 @@ CConnectThread::~CConnectThread()
 
 /*!
  * \~chinese
- *   - 调用 CConnecterDesktopThread::InstanceConnect 实例化 CConnect
+ *   - 调用 CConnecterThread::InstanceConnect 实例化 CConnect
  *   - 调用 CConnect::Connect() 开始一个连接
  *   - 进入事件循环
  * \~english
- *   - Call CConnecterDesktopThread::InstanceConnect to instantiate CConnect
+ *   - Call CConnecterThread::InstanceConnect to instantiate CConnect
  *   - Call CConnect::Connect() start a connect
  *   - Enter event loop
  */
