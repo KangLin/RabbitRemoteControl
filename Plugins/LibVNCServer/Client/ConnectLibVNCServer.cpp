@@ -40,8 +40,8 @@ static void rfbQtClientLog(const char *format, ...)
     qDebug(logger) << buf;
 }
 
-CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter, QObject *parent)
-    : CConnectDesktop(pConnecter, parent),
+CConnectLibVNCServer::CConnectLibVNCServer(CConnecterLibVNCServer *pConnecter)
+    : CConnectDesktop(pConnecter),
     m_pClient(nullptr),
     m_pParameter(dynamic_cast<CParameterLibVNCServer*>(pConnecter->GetParameter()))
 #ifdef HAVE_LIBSSH

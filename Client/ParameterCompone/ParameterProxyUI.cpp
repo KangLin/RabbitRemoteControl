@@ -3,7 +3,7 @@
 #include <QSpacerItem>
 
 CParameterProxyUI::CParameterProxyUI(QWidget *parent)
-    : QWidget(parent),
+    : CParameterUI(parent),
     m_uiSockesV5(nullptr),
     m_uiSSH(nullptr)
 {
@@ -49,9 +49,11 @@ void CParameterProxyUI::slotTypeChanged(int nIndex)
 
 }
 
-int CParameterProxyUI::SetParameter(CParameterProxy *pParameter)
+int CParameterProxyUI::SetParameter(CParameter *pParameter)
 {
-    m_Proxy = pParameter;
+    m_Proxy = qobject_cast<CParameterProxy*>(pParameter);
+    if(!m_Proxy)
+        return -1;
     m_uiSockesV5->SetParameter(&m_Proxy->m_SockesV5);
     m_uiSSH->SetParameter(&m_Proxy->m_SSH);
     
@@ -66,19 +68,42 @@ int CParameterProxyUI::SetParameter(CParameterProxy *pParameter)
     return 0;
 }
 
-int CParameterProxyUI::slotAccept(bool validity)
+bool CParameterProxyUI::CheckValidity(bool validity)
+{
+    bool bRet = true;
+    int type = m_cbType->currentData().toInt();
+    switch(type)
+    {
+    case (int)CParameterProxy::TYPE::SockesV5: {
+        bRet = m_uiSockesV5->CheckValidity(validity);
+        if(!bRet) return bRet;
+        break;
+    }
+    case (int)CParameterProxy::TYPE::SSHTunnel: {
+        bRet = m_uiSSH->CheckValidity(validity);
+        if(!bRet) return bRet;
+        break;
+    }
+    default:
+        break;
+    }
+
+    return bRet;
+}
+
+int CParameterProxyUI::Accept()
 {
     int nRet = 0;
     int type = m_cbType->currentData().toInt();
     switch(type)
     {
     case (int)CParameterProxy::TYPE::SockesV5: {
-        nRet = m_uiSockesV5->slotAccept(true);
+        nRet = m_uiSockesV5->Accept();
         if(nRet) return nRet;
         break;
     }
     case (int)CParameterProxy::TYPE::SSHTunnel: {
-        nRet = m_uiSSH->slotAccept(true);
+        nRet = m_uiSSH->Accept();
         if(nRet) return nRet;
         break;
     }

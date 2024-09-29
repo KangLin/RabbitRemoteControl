@@ -30,7 +30,7 @@ CPluginClientThread::~CPluginClientThread()
 CConnecter *CPluginClientThread::CreateConnecter(const QString &szProtocol)
 {
     qDebug(log) << "CPluginClientThread::CreateConnecter()" << szProtocol;
-    CConnecterDesktop* pConnecter = OnCreateConnecter(szProtocol);
+    CConnecterConnect* pConnecter = OnCreateConnecter(szProtocol);
     if(!pConnecter) return nullptr;
     
     if(nullptr == m_pThread)
@@ -39,11 +39,11 @@ CConnecter *CPluginClientThread::CreateConnecter(const QString &szProtocol)
         return nullptr;
     }
 
-    bool check = connect(pConnecter, SIGNAL(sigOpenConnect(CConnecterDesktop*)),
-                         m_pThread, SIGNAL(sigConnect(CConnecterDesktop*)));
+    bool check = connect(pConnecter, SIGNAL(sigOpenConnect(CConnecterConnect*)),
+                         m_pThread, SIGNAL(sigConnect(CConnecterConnect*)));
     Q_ASSERT(check);
-    check = connect(pConnecter, SIGNAL(sigCloseconnect(CConnecterDesktop*)),
-                    m_pThread, SIGNAL(sigDisconnect(CConnecterDesktop*)));
+    check = connect(pConnecter, SIGNAL(sigCloseconnect(CConnecterConnect*)),
+                    m_pThread, SIGNAL(sigDisconnect(CConnecterConnect*)));
     Q_ASSERT(check);
     
     return pConnecter;

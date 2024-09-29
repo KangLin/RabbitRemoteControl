@@ -11,7 +11,7 @@
  * \see CParameterProxy CLIENT_PARAMETER_COMPONE
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterProxyUI : public QWidget
+class CLIENT_EXPORT CParameterProxyUI : public CParameterUI
 {
     Q_OBJECT
 public:
@@ -21,7 +21,8 @@ public:
      * \~chinese 设置参数，并初始化界面
      * \~english Set the parameters and initialize the user interface
      */
-    int SetParameter(CParameterProxy* pParameter);
+    int SetParameter(CParameter* pParameter);
+    bool CheckValidity(bool validity = false);
     /*!
      * \~chinese 接受参数
      * \param validity: 标志是否检查参数
@@ -34,7 +35,7 @@ public:
      *    - false: Not check parameters
      * \return 0 is success. otherwise is fail
      */
-    int slotAccept(bool validity = false);
+    int Accept();
     
 private Q_SLOTS:
     void slotTypeChanged(int nIndex);

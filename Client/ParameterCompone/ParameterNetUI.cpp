@@ -6,7 +6,7 @@
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.Net.UI")
 
 CParameterNetUI::CParameterNetUI(QWidget *parent)
-    : QWidget(parent),
+    : CParameterUI(parent),
     ui(new Ui::CParameterNetUI),
     m_pNet(nullptr)
 {
@@ -19,44 +19,49 @@ CParameterNetUI::~CParameterNetUI()
 }
 
 //! [Set Parameter]
-int CParameterNetUI::SetParameter(CParameterNet *pParameter)
+int CParameterNetUI::SetParameter(CParameter *pParameter)
 {
     if(!pParameter) return -1;
     
-    m_pNet = pParameter;
+    m_pNet = qobject_cast<CParameterNet*>(pParameter);
     
     ui->leHost->setText(m_pNet->GetHost());
     ui->spPort->setValue(m_pNet->GetPort());
 
     // Call user UI SetParameter
     ui->wUser->SetParameter(&m_pNet->m_User);
-    // Call wake on lan UI SetParameter
-    ui->wWakeOnLan->SetParameter(&m_pNet->m_WakeOnLan);
 
     return 0;
 }
 //! [Set Parameter]
 
-//! [slotAccept]
-int CParameterNetUI::slotAccept(bool validity)
+//! [Check validity]
+bool CParameterNetUI::CheckValidity(bool validity)
 {
-    int nRet = 0;
     if(validity && ui->leHost->text().isEmpty()) {
         QMessageBox::critical(this, tr("Error"),
                               m_pNet->GetPrompt());
-        qCritical(log) << "The host is empty";
+        qCritical(log) << "The host is empty" << m_pNet->GetPrompt();
         ui->leHost->setFocus();
-        return -1;
+        return false;
     }
+    return true;
+}
+//! [Check validity]
+
+//! [Accept]
+int CParameterNetUI::Accept()
+{
+    int nRet = 0;
 
     m_pNet->SetHost(ui->leHost->text());
     m_pNet->SetPort(ui->spPort->value());
     
-    ui->wUser->slotAccept();
-    nRet = ui->wWakeOnLan->slotAccept(validity);
+    // Accept user UI parameters
+    ui->wUser->Accept();
     return nRet;
 }
-//! [slotAccept]
+//! [Accept]
 
 void CParameterNetUI::on_leHost_editingFinished()
 {

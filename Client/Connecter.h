@@ -24,34 +24,33 @@ class CPluginClient;
  * \~chinese
  * \brief 连接者应用接口。
  * \note
- *   - 此类是用户使用接口，由插件实现。
+ *   - 此接口仅由是用户使用。它由插件实现。
  *   - 它的实例在主线程中。
  * \details 
  * 序列图：\image html docs/Image/PluginClientSequenceDiagram.svg
- *  已经提供以下类型的基本实现：
- *  1. 桌面类连接：  
- *     1.1. 用于连接是阻塞模型(一个线程处理一个连接)： \ref CConnecterThread
- *     1.2. 用于连接是非阻塞模型(一个线程处理多个连接)： \ref CConnecterDesktop  
+ *  已经提供以下类型的基本实现：\n
+ *  1. 桌面类连接： \n
+ *     1.1. 用于连接是阻塞模型(一个线程处理一个连接)： \ref CConnecterThread \n
+ *     1.2. 用于连接是非阻塞模型(一个线程处理多个连接)： \ref CConnecterDesktop \n
  *  2. 控制台类连接：\ref CConnecterTerminal
- *  
+ *
  * \~english
  * \brief Connecter interface
  * \note
- *   - The class is a interface used by Use UI.
- *     It is implemented by the Protocol plugin.
+ *   - This interface is only used by users. It is implemented by plugins.
  *   - Its instance is in the main thread.
  * \details
  * Sequen diagram: \image html docs/Image/PluginClientSequenceDiagram.svg
- * Basic implementations of the following types have been provided:     
- *   1. Desktop type:  
+ * Basic implementations of the following types have been provided: \n
+ *   1. Desktop type: \n
  *      1.1. The connection used is the blocking model
- *           (One thread handles one connection): \ref CConnecterThread
+ *           (One thread handles one connection): \ref CConnecterThread \n
  *      1.2. The connection is a non-blocking model
- *           (One thread handles multiple connections): \ref CConnecterDesktop  
+ *           (One thread handles multiple connections): \ref CConnecterDesktop \n
  *   2. Termianal type: \ref CConnecterTerminal
- * 
+ *
  * \~
- * \see CPluginClient CFrmViewer
+ * \see CPluginClient
  * \ingroup CLIENT_API CLIENT_PLUGIN_API
  */
 class CLIENT_EXPORT CConnecter : public QObject
@@ -61,13 +60,13 @@ class CLIENT_EXPORT CConnecter : public QObject
 public:
     /*!
      * \~chinese
-     * \param parent: 此指针必须是相应的 CPluginClient 派生类的实例指针
+     * \param plugin: 此指针必须是相应的 CPluginClient 派生类的实例指针
      * \note 如果参数( CParameterConnecter 或其派生类）需要 CParameterClient 。
      *       请在其派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
      *       如果参数不需要 CParameterClient ，那请在其派生类重载 CConnecter::SetParameterClient 。
      *
      * \~english
-     * \param parent: The parent pointer must be specified as
+     * \param plugin: The plugin pointer must be specified as
      *        the corresponding CPluginClient derived class
      * \note If the parameters( CParameterConnecter or its derived class) requires a CParameterClient .
      *       Please instantiate the parameters and call CConnecter::SetParameter in the derived class to set the parameters pointer.
@@ -77,7 +76,7 @@ public:
      * \see CClient::CreateConnecter SetParameterClient SetParameter
      *      CParameterConnecter CParameterClient
      */
-    explicit CConnecter(CPluginClient *parent);
+    explicit CConnecter(CPluginClient *plugin);
     virtual ~CConnecter();
     
     //! Identity
@@ -204,24 +203,22 @@ Q_SIGNALS:
     /*!
      * \~chinese 通知用户断开连接。仅由插件触发。
      *    当从插件中需要要断开连接时触发。例如：对端断开连接、重置连接或者连接出错。
+     *    当应用接收到此信号后，调用 DisConnect() 关闭连接。
      * \~english Notify the user to disconnect. Triggered only by plugins
      *    Emit when you need to disconnect from the plug-in.
      *    For example, the peer disconnect or reset the connection
-     *    or the connection is error
+     *    or the connection is error.
+     *    When the applicatioin receive the signal,
+     *    call DisConnect() to close connect
      */
     void sigDisconnect();
     /*!
      * \~chinese 断开连接成功信号。仅由插件触发
      * \~english Successful disconnection signal. Triggered only by plugins
      * \~
-     * \see Disconnect
+     * \see Disconnect()
      */
     void sigDisconnected();
-    /*!
-     * \~chinese 当有错误产生时触发
-     * \~english Triggered when an error is generated
-     */
-    void sigError(const int nError, const QString &szError);
     /*!
      * \~chinese \note 名称更新。此信号仅由本类触发
      * \~english \note The name is changed. This signal is only triggered by this class
@@ -240,6 +237,11 @@ Q_SIGNALS:
      * \see SetParameter
      */
     void sigUpdateParameters(CConnecter* pConnecter);
+    /*!
+     * \~chinese 当有错误产生时触发。
+     * \~english Triggered when an error is generated
+     */
+    void sigError(const int nError, const QString &szError);
     /*!
      * \~chinese
      * \note 它与 sigShowMessageBox 的区别是 sigShowMessageBox 用对话框显示
@@ -281,15 +283,15 @@ protected:
     virtual CParameterBase* GetParameter();
     /*!
      * \~chinese 设置参数
-     * \note 在派生类中先实例化参数，然后在其构造函数中调用此函数设置参数。
+     * \note 在派生类的构造函数中先实例化参数，然后在其构造函数中调用此函数设置参数。
      *
      * \~english Set parameters
-     * \note  Instantiate a parameter in a derived class,
+     * \note  Instantiate a parameter in a derived class constructor,
      *      and then call this function in its constructor to set the parameter.
      *
      * \~
      * \see \ref section_Use_CParameterBase
-     * \see SetParameterClient
+     * \see SetParameterClient()
      */
     virtual int SetParameter(CParameterBase* p);
 

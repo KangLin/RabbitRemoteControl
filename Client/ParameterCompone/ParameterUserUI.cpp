@@ -6,7 +6,7 @@
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.User.UI")
 
 CParameterUserUI::CParameterUserUI(QWidget *parent)
-    : QWidget(parent),
+    : CParameterUI(parent),
     ui(new Ui::CParameterUserUI),
     m_pUser(nullptr)
 {
@@ -26,9 +26,9 @@ CParameterUserUI::~CParameterUserUI()
     delete ui;
 }
 
-int CParameterUserUI::SetParameter(CParameterUser *pParameter)
+int CParameterUserUI::SetParameter(CParameter *pParameter)
 {
-    m_pUser = pParameter;
+    m_pUser = qobject_cast<CParameterUser*>(pParameter);
     if(!m_pUser) return -1;
     
     ui->leUser->setText(m_pUser->GetUser());
@@ -62,7 +62,7 @@ int CParameterUserUI::SetParameter(CParameterUser *pParameter)
     return 0;
 }
 
-int CParameterUserUI::slotAccept(bool validity)
+int CParameterUserUI::Accept()
 {
     if(!m_pUser) return -1;
     

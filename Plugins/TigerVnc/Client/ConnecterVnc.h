@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "ConnecterDesktop.h"
+#include "ConnecterThread.h"
 #include "ParameterVnc.h"
 
 class CConnecterVnc : public CConnecterThread
@@ -13,7 +13,7 @@ class CConnecterVnc : public CConnecterThread
     Q_OBJECT
 
 public:
-    explicit CConnecterVnc(CPluginClient *parent);
+    explicit CConnecterVnc(CPluginClient *plugin);
     virtual ~CConnecterVnc() override;
 
     virtual const QString Id() override;

@@ -6,27 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>403</width>
-    <height>189</height>
+    <width>363</width>
+    <height>181</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_3">
    <property name="leftMargin">
     <number>0</number>
    </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
    <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
-   <property name="spacing">
     <number>0</number>
    </property>
    <item row="0" column="0">
@@ -34,28 +25,16 @@
      <property name="title">
       <string>Wake on lan</string>
      </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
      <property name="checkable">
       <bool>true</bool>
      </property>
      <property name="checked">
       <bool>false</bool>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <property name="leftMargin">
-       <number>9</number>
-      </property>
-      <property name="topMargin">
-       <number>9</number>
-      </property>
-      <property name="rightMargin">
-       <number>9</number>
-      </property>
-      <property name="bottomMargin">
-       <number>9</number>
-      </property>
-      <property name="spacing">
-       <number>6</number>
-      </property>
+     <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
@@ -79,17 +58,20 @@
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Board address:</string>
+           <string>Broadcast address:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="leBroadcastAddress">
-          <property name="inputMask">
-           <string/>
+         <widget class="QComboBox" name="cbBroadcastAddress">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-          <property name="text">
-           <string/>
+          <property name="editable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -217,8 +199,20 @@
         </item>
         <item>
          <widget class="QLabel" name="label_7">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>ms</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::TextFormat::AutoText</enum>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
           </property>
          </widget>
         </item>

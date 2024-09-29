@@ -85,22 +85,11 @@ if(ANDROID)
         )
 endif()
 
-if(Log4Qt_FOUND)
-    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf)
-        configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.debug.conf
-            ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_log4qt.conf
-            COPYONLY)
-    endif()
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_log4qt.conf
-        DESTINATION etc
-        COMPONENT Application)
-else()
-    if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini)
-        configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
-            ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini
-            COPYONLY)
-    endif()
-    INSTALL(FILES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
+if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini)
+    configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
+        ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini
+        COPYONLY)
+    INSTALL_FILE(SOURCES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
         DESTINATION etc
         COMPONENT Application)
 endif()

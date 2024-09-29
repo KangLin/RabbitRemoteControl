@@ -43,8 +43,8 @@
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
     
-CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter, QObject *parent)
-    : CConnectDesktop(pConnecter, parent),
+CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
+    : CConnectDesktop(pConnecter),
     m_pContext(nullptr),
     m_pParameter(nullptr),
     m_ClipBoard(this),

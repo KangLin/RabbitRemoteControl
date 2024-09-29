@@ -34,21 +34,18 @@ public:
     /*!
      * \~chinese
      * \param pConnecter
-     * \param parent
      * \param bDirectConnection:
      *        \li true: 当阻塞事件循环时，可能会造成延迟，所以直接连接信号
      *        \li false: 当一个非阻塞事件循环时
      *
      * \~english
      * \param pConnecter
-     * \param parent
      * \param bDirectConnection:
      *        \li true: when connect is non-Qt event and it can block event loop
      *        \li false: The connect is Qt event and it isn't block event loop
      */
     explicit CConnectDesktop(CConnecter* pConnecter,
-                      QObject *parent = nullptr,
-                      bool bDirectConnection = true);
+                             bool bDirectConnection = true);
     virtual ~CConnectDesktop() override;
 
 public Q_SLOTS:   
@@ -58,9 +55,9 @@ public Q_SLOTS:
      */
     virtual void slotClipBoardChanged() = 0;
 
-protected:
-    virtual int SetConnecter(CConnecter* pConnecter);
-    virtual int SetViewer(CFrmViewer* pView, bool bDirectConnection);
+private:
+    int SetConnecter(CConnecter* pConnecter);
+    int SetViewer(CFrmViewer* pView, bool bDirectConnection);
 
 Q_SIGNALS:
     void sigSetDesktopSize(int width, int height);
@@ -87,8 +84,8 @@ Q_SIGNALS:
     void sigSetClipboard(QMimeData* data);
 
 public Q_SLOTS:
-    // \~chinese 以下函数在 Connecter 线程（主线程）中调用
-    // \~english The following functions are called in the Connecter thread(main thread)
+    // \~chinese 以下函数在 CFrmView 线程（主线程）中调用
+    // \~english The following functions are called in the CFrmView thread(main thread)
     virtual void slotMousePressEvent(QMouseEvent* event, QPoint pos);
     virtual void slotMouseReleaseEvent(QMouseEvent* event, QPoint pos);
     virtual void slotMouseMoveEvent(QMouseEvent* event, QPoint pos);
@@ -110,9 +107,6 @@ protected:
     virtual void wheelEvent(QWheelEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void keyReleaseEvent(QKeyEvent *event);
-
-private:
-    CFrmViewer* m_pView;
     
     // QObject interface
 public:

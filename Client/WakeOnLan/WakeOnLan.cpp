@@ -18,7 +18,7 @@ void CWakeOnLan::SetBroadcastAddress(const std::string &szBroadcastAddress) {
 	m_szBroadcastAddress = szBroadcastAddress;
 }
 
-void CWakeOnLan::SetBroadcastAddress(
+std::string CWakeOnLan::SetBroadcastAddress(
     const std::string &szIP, const std::string &szMask) {
     in_addr_t ip = inet_addr(szIP.c_str());
     in_addr_t mask = inet_addr(szMask.c_str());
@@ -28,7 +28,10 @@ void CWakeOnLan::SetBroadcastAddress(
     char* pBroadcast = (char*)&broadcast;
     for (int i = 0; i < 4; i++)
         pBroadcast[i] = ~ pMask[i] | pIP[i];
-    SetBroadcastAddress(inet_ntoa((struct in_addr&)broadcast));
+    std::string szBroadcast = inet_ntoa((struct in_addr&)broadcast);
+    if(!szBroadcast.empty())
+        SetBroadcastAddress(szBroadcast);
+    return szBroadcast;
 }
 
 bool CWakeOnLan::StringToArray(
@@ -50,7 +53,8 @@ bool CWakeOnLan::StringToArray(
                    &tempMACAddress[1], &tempMACAddress[2], &tempMACAddress[3],
                    &tempMACAddress[4], &tempMACAddress[5]);
 	if (j == 6) {
-		for (uint8_t i = 0; i < sizeof(tempMACAddress) / sizeof(*tempMACAddress); i++)
+		for (uint8_t i = 0;
+             i < sizeof(tempMACAddress) / sizeof(*tempMACAddress); i++)
 			mac[i] = (uint8_t)tempMACAddress[i];
 
 		return true;
@@ -96,7 +100,8 @@ bool CWakeOnLan::SendSecureMagicPacket(
 	if (!res2)
 		return false;
 
-	return SendSecureMagicPacket(macAddress, sizeof(macAddress), secureOn, sizeof(secureOn), portNum);
+	return SendSecureMagicPacket(macAddress, sizeof(macAddress),
+                                 secureOn, sizeof(secureOn), portNum);
 }
 
 bool CWakeOnLan::SendMagicPacket(uint8_t* pMacAddress,

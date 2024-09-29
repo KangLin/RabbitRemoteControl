@@ -12,7 +12,7 @@ class CConnecterLibVNCServer : public CConnecterThread
 {
     Q_OBJECT
 public:
-    explicit CConnecterLibVNCServer(CPluginClient *parent);
+    explicit CConnecterLibVNCServer(CPluginClient *plugin);
     virtual ~CConnecterLibVNCServer() override;
 
 public:

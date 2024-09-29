@@ -7,7 +7,6 @@ CParameterNet::CParameterNet(CParameterConnecter* parent, const QString &szPrefi
     , m_nPort(0)
     , m_User(this)
     , m_szPrompt(tr("The host is empty. please set it"))
-    , m_WakeOnLan(this)
 {}
 //! [Constructor]
 

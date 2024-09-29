@@ -5,10 +5,10 @@
 #include "ConnectThread.h"
 #include <QLoggingCategory>
 
-static Q_LOGGING_CATEGORY(log, "Client.Connecter.DesktopThread")
+static Q_LOGGING_CATEGORY(log, "Client.Connecter.Thread")
 
-CConnecterThread::CConnecterThread(CPluginClient *parent)
-    : CConnecter(parent),
+CConnecterThread::CConnecterThread(CPluginClient *plugin)
+    : CConnecterConnect(plugin),
       m_pThread(nullptr),
       m_pView(new CFrmViewer())
 {}
@@ -28,11 +28,6 @@ CConnecterThread::~CConnecterThread()
 QWidget *CConnecterThread::GetViewer()
 {
     return m_pView;
-}
-
-CParameterBase *CConnecterThread::GetParameter()
-{
-    return CConnecter::GetParameter();
 }
 
 int CConnecterThread::Connect()
@@ -79,15 +74,13 @@ QString CConnecterThread::ServerName()
 int CConnecterThread::Load(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(GetParameter());
-    if(GetParameter())
-        nRet = GetParameter()->Load(set);
     Q_ASSERT(m_pView);
-    if(m_pView)
+    if(m_pView && GetParameter())
     {
         m_pView->slotSetAdaptWindows(GetParameter()->GetAdaptWindows());
         m_pView->slotSetZoomFactor(GetParameter()->GetZoomFactor());
     }
+    nRet = CConnecterConnect::Load(set);
     return nRet;
 }
 
@@ -95,13 +88,11 @@ int CConnecterThread::Save(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());
-    if(GetParameter()) {
-        if(m_pView)
-        {
-            GetParameter()->SetAdaptWindows(m_pView->GetAdaptWindows());
-            GetParameter()->SetZoomFactor(m_pView->GetZoomFactor());
-        }
-        GetParameter()->Save(set);
+    if(GetParameter() && m_pView)
+    {
+        GetParameter()->SetAdaptWindows(m_pView->GetAdaptWindows());
+        GetParameter()->SetZoomFactor(m_pView->GetZoomFactor());
     }
+    nRet = CConnecterConnect::Save(set);
     return nRet;
 }

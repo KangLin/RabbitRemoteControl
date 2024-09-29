@@ -5,6 +5,7 @@
 
 #include <QWidget>
 #include "ParameterWakeOnLan.h"
+#include "ParameterUI.h"
 
 namespace Ui {
 class CParameterWakeOnLanUI;
@@ -15,7 +16,7 @@ class CParameterWakeOnLanUI;
  * \see CParameterWakeOnLan
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterWakeOnLanUI : public QWidget
+class CLIENT_EXPORT CParameterWakeOnLanUI : public CParameterUI
 {
     Q_OBJECT
 
@@ -23,12 +24,12 @@ public:
     explicit CParameterWakeOnLanUI(QWidget *parent = nullptr);
     ~CParameterWakeOnLanUI();
 
-    //! [Parameter commone functions]
     /*!
      * \~chinese 设置参数，并初始化界面
      * \~english Set the parameters and initialize the user interface
      */
-    int SetParameter(CParameterWakeOnLan* pParameter);
+    int SetParameter(CParameter* pParameter);
+    bool CheckValidity(bool validity);
     /*!
      * \~chinese 接受参数
      * \param validity: 标志是否检查参数
@@ -40,12 +41,12 @@ public:
      *    - false: Not check parameters
      * \return 0 is success. otherwise is fail
      */
-    int slotAccept(bool validity = false);
-    //! [Parameter commone functions]
+    int Accept();
 
 private slots:
     void on_pbShow_clicked();
     void on_pbSave_clicked();
+    //void on_cbBroadcastAddress_editTextChanged(const QString &arg1);
 
 private:
     Ui::CParameterWakeOnLanUI *ui;

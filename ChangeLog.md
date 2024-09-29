@@ -8,6 +8,8 @@
 - Client:
   - Add wake on lan
   - Add CConnectDesktop
+  - Rename CConnecterDesktop to CConnecterConnect
+  - Add CParameterUI
   - Rename CConnecterDesktopThread to CConnecterThread
 
 ### v0.0.27

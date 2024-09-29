@@ -1,9 +1,12 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "ConnectWakeOnLan.h"
+#include <QLoggingCategory>
 
-CConnectWakeOnLan::CConnectWakeOnLan(CConnecterThread *pConnecter, QObject *parent)
-    : CConnect{pConnecter, parent}
+static Q_LOGGING_CATEGORY(log, "WOL")
+CConnectWakeOnLan::CConnectWakeOnLan(
+    CConnecterConnect *pConnecter, QObject *parent)
+    : CConnect{nullptr}
     , m_pParameter(nullptr)
     , m_nRepeat(0)
     , m_tmStart(QTime::currentTime())
@@ -13,18 +16,14 @@ CConnectWakeOnLan::CConnectWakeOnLan(CConnecterThread *pConnecter, QObject *pare
     Q_ASSERT(m_pParameter);
 }
 
-int CConnectWakeOnLan::SetConnecter(CConnecter *pConnecter)
+CConnectWakeOnLan::~CConnectWakeOnLan()
 {
-    return 0;
+    qDebug(log) << "CConnectWakeOnLan::~CConnectWakeOnLan()";
 }
 
 //! [Check parameters is validity]
-CConnectDesktop::OnInitReturnValue CConnectWakeOnLan::OnInit()
+CConnect::OnInitReturnValue CConnectWakeOnLan::OnInit()
 {
-    auto &wol = m_pParameter->m_Net.m_WakeOnLan;
-    if(!wol.GetEnable() || !wol.CheckValidity())
-        return OnInitReturnValue::Fail;
-
     m_tmStart = QTime::currentTime();
     return OnInitReturnValue::UseOnProcess;
 }
@@ -52,12 +51,26 @@ int CConnectWakeOnLan::OnClean()
 */
 int CConnectWakeOnLan::OnProcess()
 {
-    int nRet = -1;
-    auto &wol = m_pParameter->m_Net.m_WakeOnLan;
-
+    if(!m_pParameter) return -1;
+    auto &wol = m_pParameter->m_WakeOnLan;
     do {
-        if(m_tmStart.secsTo(QTime::currentTime()) >= wol.GetDelay()) break;
-        if(wol.GetRepeat() > m_nRepeat++) break;
+        int t = m_tmStart.secsTo(QTime::currentTime());
+        //*
+        qDebug(log) << "Delay:" << wol.GetDelay() << "Start:" << m_tmStart
+                    << "Current:" << QTime::currentTime() << t
+                    << "Repeat:" << m_nRepeat;//*/
+
+        if(t >= wol.GetDelay()) {
+            qDebug(log) << "Time out";
+            break;
+        }
+        if(wol.GetRepeat() <= m_nRepeat++) {
+            int n = wol.GetDelay() - t;
+            qDebug(log) << "n:" << n;
+            if(n > 0)
+                return n * 1000;
+            break;
+        }
         m_Wol.SetBroadcastAddress(wol.GetBroadcastAddress());
         if(wol.GetPassword().isEmpty())
             m_Wol.SendMagicPacket(wol.GetMac());
@@ -65,6 +78,6 @@ int CConnectWakeOnLan::OnProcess()
             m_Wol.SendSecureMagicPacket(wol.GetMac(), wol.GetPassword());
         return wol.GetInterval();
     } while(0);
-    emit sigDisconnect();
-    return nRet;
+    qDebug(log) << "Stop";
+    return -1;
 }

@@ -13,7 +13,7 @@ class CWakeOnLan {
     CWakeOnLan(const std::string& szBroadcastAddress = "255.255.255.255");
 
 	void SetBroadcastAddress(const std::string& szBroadcastAddress = "255.255.255.255");
-    void SetBroadcastAddress(const std::string& szIP, const std::string& szMask);
+    std::string SetBroadcastAddress(const std::string& szIP, const std::string& szMask);
 
 	bool StringToArray(/*[out]*/uint8_t* mac, /*[in]*/const char* szMac);
 

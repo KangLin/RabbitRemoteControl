@@ -98,7 +98,7 @@ int CParameter::Save(QSettings &set, bool bForce)
 
 bool CParameter::CheckValidity()
 {
-    bool bRet = false;
+    bool bRet = true;
     foreach (auto p, m_Category) {
         bRet = p->OnCheckValidity();
         if(!bRet) break;

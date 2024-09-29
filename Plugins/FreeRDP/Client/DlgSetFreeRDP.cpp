@@ -38,6 +38,8 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
     ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
     
+    ui->wgWakeOnLan->SetParameter(&m_pSettings->m_WakeOnLan);
+
     m_pProxy = new CParameterProxyUI(ui->tabWidget);
     m_pProxy->SetParameter(&m_pSettings->m_Proxy);
     ui->tabWidget->insertTab(1, m_pProxy, tr("Proxy"));
@@ -157,16 +159,27 @@ CDlgSetFreeRDP::~CDlgSetFreeRDP()
 void CDlgSetFreeRDP::on_pbOk_clicked()
 {
     int nRet = 0;
+
+    if(!ui->wNet->CheckValidity(true))
+        return;
+    if(!m_pProxy->CheckValidity(true))
+        return;
+    if(!ui->wgWakeOnLan->CheckValidity(true))
+        return;
+
     m_pSettings->SetName(ui->leName->text());
 
     // Server
     m_pSettings->SetDomain(ui->leDomain->text());
-    nRet = ui->wNet->slotAccept(true);
+    nRet = ui->wNet->Accept();
     if(nRet) return;
     
-    nRet = m_pProxy->slotAccept();
+    nRet = m_pProxy->Accept();
     if(nRet) return;
-    
+
+    nRet = ui->wgWakeOnLan->Accept();
+    if(nRet) return;
+
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
     m_pSettings->SetShowServerName(ui->cbShowServerName->isChecked());

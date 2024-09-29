@@ -27,8 +27,7 @@ class CConnectVnc
     Q_OBJECT
 
 public:
-    explicit CConnectVnc(CConnecterThread* pConnecter,
-                              QObject *parent = nullptr);
+    explicit CConnectVnc(CConnecterThread* pConnecter);
     virtual ~CConnectVnc() override;
 
 public Q_SLOTS:

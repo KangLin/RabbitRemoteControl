@@ -19,7 +19,7 @@ class CConnectLibVNCServer : public CConnectDesktop
     Q_OBJECT
 
 public:
-    explicit CConnectLibVNCServer(CConnecterLibVNCServer* pConnecter = nullptr, QObject *parent = nullptr);
+    explicit CConnectLibVNCServer(CConnecterLibVNCServer* pConnecter);
     virtual ~CConnectLibVNCServer() override;
     
     static rfbBool cb_resize(rfbClient* client);

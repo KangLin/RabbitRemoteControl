@@ -6,10 +6,8 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.Connect")
 
-CConnect::CConnect(CConnecter *pConnecter, QObject *parent)
-    : QObject(parent)
+CConnect::CConnect(CConnecter *pConnecter) : QObject()
 {
-    Q_ASSERT(pConnecter);
     SetConnecter(pConnecter);
 }
 
@@ -20,7 +18,7 @@ CConnect::~CConnect()
 
 int CConnect::SetConnecter(CConnecter* pConnecter)
 {
-    Q_ASSERT(pConnecter);
+    qDebug(log) << "CConnect::SetConnecter" << pConnecter;
     if(!pConnecter) return -1;
     
     bool check = false;
@@ -39,10 +37,11 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
     check = connect(this, SIGNAL(sigInformation(const QString&)),
                     pConnecter, SIGNAL(sigInformation(const QString&)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigShowMessageBox(const QString&, const QString&,
-                                                const QMessageBox::Icon&)),
-            pConnecter, SIGNAL(sigShowMessageBox(const QString&, const QString&,
-                                              const QMessageBox::Icon&)));
+    check = connect(
+        this, SIGNAL(sigShowMessageBox(const QString&, const QString&,
+                                 const QMessageBox::Icon&)),
+        pConnecter, SIGNAL(sigShowMessageBox(const QString&, const QString&,
+                                 const QMessageBox::Icon&)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigBlockShowMessageBox(
                               const QString&, const QString&,
@@ -66,9 +65,11 @@ int CConnect::SetConnecter(CConnecter* pConnecter)
                                                           QString&)),
                     Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigBlockShowWidget(const QString&, int&, void*)),
-                    pConnecter, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
-                    Qt::BlockingQueuedConnection);
+    check = connect(
+        this,
+        SIGNAL(sigBlockShowWidget(const QString&, int&, void*)),
+        pConnecter, SLOT(slotBlockShowWidget(const QString&, int&, void*)),
+        Qt::BlockingQueuedConnection);
     Q_ASSERT(check);
     return 0;
 }
@@ -106,9 +107,11 @@ void CConnect::slotTimeOut()
             QTimer::singleShot(nTime, this, SLOT(slotTimeOut()));
             return;
         }
-        qCritical(log) << "Process fail or stop:" << nTime;
-        if(nTime < -1)
+        qDebug(log) << "Process fail(< -1) or stop(= -1):" << nTime;
+        if(nTime < -1) {
+            qCritical(log) << "Process fail:"  << nTime;
             emit sigError(nTime, "Process fail or stop");
+        }
     } catch(std::exception e) {
         qCritical(log) << "Process fail:" << e.what();
         emit sigError(-2, e.what());

@@ -147,7 +147,12 @@ void CDlgSettingsVnc::on_pbOK_clicked()
     int nRet = 0;
     if(!m_pPara)
         return;
-    
+
+    if(!ui->wNet->CheckValidity(true))
+        return;
+    if(!m_pProxy->CheckValidity(true))
+        return;
+
     // Server
     bool ice = false;
 #ifdef HAVE_ICE
@@ -160,10 +165,10 @@ void CDlgSettingsVnc::on_pbOK_clicked()
     } else {
         m_pPara->SetIce(false);
     }
-    
-    nRet = ui->wNet->slotAccept(true);
+
+    nRet = ui->wNet->Accept();
     if(nRet) return;
-    nRet = m_pProxy->slotAccept();
+    nRet = m_pProxy->Accept();
     if(nRet) return;
     
     m_pPara->SetName(ui->leName->text());

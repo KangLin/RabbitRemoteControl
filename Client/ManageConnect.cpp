@@ -1,6 +1,4 @@
 #include "ManageConnect.h"
-#include "ConnecterThread.h"
-
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "Client.MangeConnect")
@@ -18,7 +16,7 @@ CManageConnect::~CManageConnect()
     }
 }
 
-void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
+void CManageConnect::slotConnect(CConnecterConnect *pConnecter)
 {
     int nRet = 0;
     qDebug(log) << "CManageConnect::slotConnect()";
@@ -37,7 +35,7 @@ void CManageConnect::slotConnect(CConnecterDesktop *pConnecter)
         emit pConnecter->sigDisconnect();
 }
 
-void CManageConnect::slotDisconnect(CConnecterDesktop *pConnecter)
+void CManageConnect::slotDisconnect(CConnecterConnect *pConnecter)
 {
     qDebug(log) << "CManageConnect::slotDisconnect()";
     auto it = m_Connects.find(pConnecter);
@@ -46,4 +44,5 @@ void CManageConnect::slotDisconnect(CConnecterDesktop *pConnecter)
     m_Connects.remove(pConnecter);
     pConnect->Disconnect();
     pConnect->deleteLater();
+    emit pConnecter->sigDisconnected();
 }

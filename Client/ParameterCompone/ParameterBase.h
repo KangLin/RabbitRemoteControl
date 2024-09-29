@@ -4,6 +4,7 @@
 #pragma once
 #include "ParameterNet.h"
 #include "ParameterProxy.h"
+#include "ParameterWakeOnLan.h"
 
 /*!
  * \~chinese
@@ -65,6 +66,7 @@ public:
 
     CParameterNet m_Net;
     CParameterProxy m_Proxy;
+    CParameterWakeOnLan m_WakeOnLan;
 
     bool GetOnlyView() const;
     void SetOnlyView(bool only);

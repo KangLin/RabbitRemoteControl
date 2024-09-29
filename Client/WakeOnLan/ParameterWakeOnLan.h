@@ -42,10 +42,14 @@ public:
     const int GetRepeat() const;
     int SetRepeat(int nRepeat);
 
+    //! Unit: ms
     const int GetInterval() const;
+    //! Unit: ms
     int SetInterval(int nInterval);
 
+    //! Unit: s
     const int GetDelay() const;
+    //! Unit: s
     int SetDelay(int nDelay);
 
 private:
@@ -57,8 +61,8 @@ private:
     bool m_bSavePassword;
 
     int m_nRepeat;
-    int m_nInterval;
-    int m_nDelay;
+    int m_nInterval; //! Unit: ms
+    int m_nDelay;    //! Unit: s
 
     // CParameter interface
 protected:

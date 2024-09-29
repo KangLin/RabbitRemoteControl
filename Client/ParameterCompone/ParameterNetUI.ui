@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>73</height>
+    <height>78</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,9 +20,6 @@
    <property name="rightMargin">
     <number>0</number>
    </property>
-   <item row="1" column="0">
-    <widget class="CParameterUserUI" name="wUser" native="true"/>
-   </item>
    <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -55,8 +52,8 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0">
-    <widget class="CParameterWakeOnLanUI" name="wWakeOnLan" native="true"/>
+   <item row="1" column="0">
+    <widget class="CParameterUserUI" name="wUser" native="true"/>
    </item>
   </layout>
  </widget>
@@ -65,12 +62,6 @@
    <class>CParameterUserUI</class>
    <extends>QWidget</extends>
    <header location="global">ParameterUserUI.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>CParameterWakeOnLanUI</class>
-   <extends>QWidget</extends>
-   <header location="global">ParameterWakeOnLanUI.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

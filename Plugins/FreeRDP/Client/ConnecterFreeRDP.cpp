@@ -6,8 +6,8 @@
 #include "DlgSetFreeRDP.h"
 
 //! [Set the parameter]
-CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *parent)
-    : CConnecterThread(parent),
+CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *plugin)
+    : CConnecterThread(plugin),
       m_Logger("FreeRDP.Connecter")
 {
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);

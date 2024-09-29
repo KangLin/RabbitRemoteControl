@@ -10,7 +10,8 @@
 #endif
 #include "ParameterWakeOnLan.h"
 
-CParameterWakeOnLan::CParameterWakeOnLan(CParameterConnecter *parent, const QString &szPrefix)
+CParameterWakeOnLan::CParameterWakeOnLan(
+    CParameterConnecter *parent, const QString &szPrefix)
     : CParameterConnecter{parent, szPrefix}
     , m_bEnable(false)
     , m_szBoardcastAddress("255.255.255.255")
@@ -27,7 +28,8 @@ int CParameterWakeOnLan::OnLoad(QSettings &set)
     set.beginGroup("WakeOnLan");
     SetEnable(set.value("Enable", GetEnable()).toBool());
     SetMac(set.value("Mac", GetMac()).toString());
-    SetBroadcastAddress(set.value("BoardAddress", GetBroadcastAddress()).toString());
+    SetBroadcastAddress(
+        set.value("BoardAddress", GetBroadcastAddress()).toString());
     SetPort(set.value("Port", GetPort()).toUInt());
     SetPassword(set.value("Password", GetPassword()).toString());
     SetSavePassword(set.value("Password/Save", GetSavePassword()).toBool());
@@ -58,21 +60,22 @@ int CParameterWakeOnLan::OnSave(QSettings &set)
 bool CParameterWakeOnLan::OnCheckValidity()
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QRegExp rxMac("/^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$/");
+    QRegExp rxMac("^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
     QRegExpValidator macValidator(rxMac, this);
     QRegExp rxIP("^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$");
     QRegExpValidator ipValidator(rxIP, this);
-    QRegExp rxPassword("\w{6}|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegExp rxPassword("(.{6})?|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
     QRegExpValidator passwordValidator(rxPassword, this);
 #else
-    QRegularExpression rxMac("/^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$/");
+    QRegularExpression rxMac("^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
     QRegularExpressionValidator macValidator(rxMac, this);
     QRegularExpression rxIP("^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$");
     QRegularExpressionValidator ipValidator(rxIP, this);
-    QRegularExpression rxPassword("\w{6}|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegularExpression rxPassword("(.{6})?|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
     QRegularExpressionValidator passwordValidator(rxPassword, this);
 #endif
-
+    if(!GetEnable())
+        return false;
     QString szMac = GetMac();
     int pos = 0;
     if(QValidator::Acceptable != macValidator.validate(szMac, pos))
@@ -81,7 +84,9 @@ bool CParameterWakeOnLan::OnCheckValidity()
     if(QValidator::Acceptable != ipValidator.validate(szBroadAddress, pos))
         return false;
     QString szPassword = GetPassword();
-    if(QValidator::Acceptable != passwordValidator.validate(szPassword, pos));
+    if(QValidator::Acceptable != passwordValidator.validate(szPassword, pos))
+        return false;
+
     return true;
 }
 

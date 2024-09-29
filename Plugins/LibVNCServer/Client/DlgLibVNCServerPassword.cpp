@@ -54,7 +54,7 @@ void CDlgLibVNCServerPassword::on_pbOK_clicked()
         qCritical(log) << "The m_pParameter is nullptr";
         return;
     }
-    ui->wUser->slotAccept();
+    ui->wUser->Accept();
     emit m_pParameter->sigChanged();
     accept();
 }

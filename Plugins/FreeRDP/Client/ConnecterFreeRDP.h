@@ -13,7 +13,7 @@ class CConnecterFreeRDP : public CConnecterThread
 {
     Q_OBJECT
 public:
-    explicit CConnecterFreeRDP(CPluginClient *parent = nullptr);
+    explicit CConnecterFreeRDP(CPluginClient *plugin);
     virtual ~CConnecterFreeRDP() override;
 
 public:

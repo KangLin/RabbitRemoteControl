@@ -5,8 +5,8 @@
 
 static Q_LOGGING_CATEGORY(log, "LibVNCServer.Connecter")
 
-CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginClient *parent)
-    : CConnecterThread(parent)
+CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginClient *plugin)
+    : CConnecterThread(plugin)
 {
     SetParameter(&m_Para);
 }

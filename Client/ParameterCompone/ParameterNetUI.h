@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ParameterNet.h"
+#include "ParameterUI.h"
 
 namespace Ui {
 class CParameterNetUI;
@@ -13,7 +14,7 @@ class CParameterNetUI;
  * \see CParameterNet
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterNetUI : public QWidget
+class CLIENT_EXPORT CParameterNetUI : public CParameterUI
 {
     Q_OBJECT
 
@@ -26,7 +27,7 @@ public:
      * \~chinese 设置参数，并初始化界面
      * \~english Set the parameters and initialize the user interface
      */
-    int SetParameter(CParameterNet* pParameter);
+    int SetParameter(CParameter* pParameter);
     /*!
      * \~chinese 接受参数
      * \param validity: 标志是否检查参数
@@ -39,7 +40,8 @@ public:
      *    - false: Not check parameters
      * \return 0 is success. otherwise is fail
      */
-    int slotAccept(bool validity = false);
+    int Accept();
+    bool CheckValidity(bool validity = false);
     //! [Parameter commone functions]
     
 private slots:

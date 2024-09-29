@@ -15,7 +15,7 @@
  * \defgroup CLIENT_PARAMETER 参数接口
  * \brief 参数接口
  * \details
- *   参数有以下类型：
+ * - 参数有以下类型：
  *   1. 仅在插件内有效。
  *      应用程序不能访问，但是可以通过 CConnecter::OpenDialogSettings 进行设置。
  *      \see 
@@ -30,30 +30,32 @@
  *           CConnecter::SetParameterClient
  *           CParameterUser::OnLoad
  *   3. 同时在应用程序、客户端库 (CClient) 和插件内有效。暂时没有使用此类型。
+ * - 参数界面： CParameterUI
  *
  * \~english
  * \defgroup CLIENT_PARAMETER Parameter interface
  * \brief Parameter interface
  * \details
- *  The parameter has the following type:
- *  1. Only valid in the plugin.
- *     The application cannot access it,
- *     but the application can be set it via CConnecter::OpenDialogSettings.
+ * - The parameter has the following type:
+ *   1. Only valid in the plugin.
+ *      The application cannot access it,
+ *      but the application can be set it via CConnecter::OpenDialogSettings.
  *      \see 
  *        \ref section_CParameterConnecter_CATEGORY_USAGE
  *        CParameterConnecter
  *        CParameterBase
- *  2. Valid in the CClient and the plugin.\n
- *     The application cannot access it,
- *     but the application can be set it via CClient::GetSettingsWidgets.\n
- *     CClient and Plugins can use them directly.
- *     The plugin maybe use them as initialization values.
- *     \ref section_Use_CParameterClient
- *     \see CParameterClient
- *          CConnecter::SetParameterClient
- *          CParameterUser::OnLoad
- *  3. Valid in both the application and the Client and the plugin.
- *     This type is not used at this time.
+ *   2. Valid in the CClient and the plugin.\n
+ *      The application cannot access it,
+ *      but the application can be set it via CClient::GetSettingsWidgets.\n
+ *      CClient and Plugins can use them directly.
+ *      The plugin maybe use them as initialization values.
+ *      \ref section_Use_CParameterClient
+ *      \see CParameterClient
+ *           CConnecter::SetParameterClient
+ *           CParameterUser::OnLoad
+ *   3. Valid in both the application and the Client and the plugin.
+ *      This type is not used at this time.
+ * - CParameterUI
  * \~
  * \ingroup LIBAPI_CLIENT
  */

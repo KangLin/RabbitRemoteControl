@@ -80,10 +80,15 @@ void CDlgSettingsLibVnc::on_pbOk_clicked()
     if(!m_pPara)
         return;
     
+    if(!ui->wNet->CheckValidity(true))
+        return;
+    if(!m_uiProxy->CheckValidity(true))
+        return;
+
     // Server
     m_pPara->SetName(ui->leName->text());
     
-    nRet = ui->wNet->slotAccept(true);
+    nRet = ui->wNet->Accept();
     if(nRet) return;
    
     m_pPara->SetShowServerName(ui->cbShowServerName->isChecked());
@@ -92,7 +97,7 @@ void CDlgSettingsLibVnc::on_pbOk_clicked()
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
     m_pPara->SetClipboard(ui->cbClipboard->isChecked());
     
-    nRet = m_uiProxy->slotAccept();
+    nRet = m_uiProxy->Accept();
     if(nRet)
         return;
     

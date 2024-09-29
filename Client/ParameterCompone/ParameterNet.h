@@ -4,7 +4,6 @@
 #include <QObject>
 
 #include "ParameterUser.h"
-#include "ParameterWakeOnLan.h"
 
 /*!
  * \~english
@@ -41,7 +40,6 @@ public:
     //! [Instance user]
     CParameterUser m_User;
     //! [Instance user]
-    CParameterWakeOnLan m_WakeOnLan;
     
 protected:
     virtual int OnLoad(QSettings &set) override;

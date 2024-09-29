@@ -5,9 +5,7 @@
 
 #pragma once
 
-#include "ConnectDesktop.h"
-#include "ParameterBase.h"
-#include "FrmViewer.h"
+#include "ConnecterConnect.h"
 
 class CConnectThread;
 
@@ -51,42 +49,32 @@ class CConnectThread;
  *            The connection object runs in a background thread.
  *
  * \~
- * \see CConnect CConnectThread CConnecter CPluginClient
+ * \see CConnect CConnectThread CConnecter CPluginClient CFrmViewer
  * \ingroup CLIENT_PLUGIN_API
  */
-class CLIENT_EXPORT CConnecterThread : public CConnecter
+class CLIENT_EXPORT CConnecterThread : public CConnecterConnect
 {
     Q_OBJECT
 
 public:
-    explicit CConnecterThread(CPluginClient *parent = nullptr);
+    explicit CConnecterThread(CPluginClient *plugin);
     virtual ~CConnecterThread();
 
     virtual QWidget* GetViewer() override;
 
-    /*!
-     * \~chinese
-     * 新建 CConnect 对象。它的所有者是调用者，
-     * 如果调用者不再使用它，调用者必须负责释放它。
-     * 
-     * \~english New connect. the ownership is caller.
-     *        if don't use, the caller must delete it.
-     */
-    virtual CConnect* InstanceConnect() = 0;
-
-    /*!
-     * \brief Get parameter
-     */
-    virtual CParameterBase* GetParameter() override;
-
 public Q_SLOTS:
     /*!
-     * \~chinese 启动一个后台线程，并建立 CConnect 实例
+     * \~chinese 启动一个后台线程，并建立 CConnect 实例。在 CConnect 中触发 sigConnected()
      * \~english Start a background thread, and create an instance of CConnect .
      * \~
      * \see CConnectThread
      */
     virtual int Connect() override;
+    /*!
+     *  emit sigConnected() in CConnectThread::run()
+     * \~
+     * \see CConnectThread CConnectThread::run()
+     */
     virtual int DisConnect() override;
 
 protected:

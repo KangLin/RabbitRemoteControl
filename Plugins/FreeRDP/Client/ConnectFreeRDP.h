@@ -19,8 +19,7 @@ class CConnectFreeRDP : public CConnectDesktop
     Q_OBJECT
 
 public:
-    explicit CConnectFreeRDP(CConnecterFreeRDP* pConnecter = nullptr,
-                             QObject *parent = nullptr);
+    explicit CConnectFreeRDP(CConnecterFreeRDP* pConnecter);
     virtual ~CConnectFreeRDP() override;
 
     static BOOL cbGlobalInit();

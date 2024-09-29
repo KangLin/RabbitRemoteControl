@@ -15,9 +15,11 @@ void CWakeOnLanQt::SetBroadcastAddress(const QString &szBroadcastAddress)
     CWakeOnLan::SetBroadcastAddress(szBroadcastAddress.toStdString());
 }
 
-void CWakeOnLanQt::SetBroadcastAddress(const QString &szIP, const QString &szMask)
+QString CWakeOnLanQt::SetBroadcastAddress(
+    const QString &szIP, const QString &szMask)
 {
-    CWakeOnLan::SetBroadcastAddress(szIP.toStdString(), szMask.toStdString());
+    return CWakeOnLan::SetBroadcastAddress(
+               szIP.toStdString(), szMask.toStdString()).c_str();
 }
 
 bool CWakeOnLanQt::SendMagicPacket(const QString &szMac, uint16_t portNum) {

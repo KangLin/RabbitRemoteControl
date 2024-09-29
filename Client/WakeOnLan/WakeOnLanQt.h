@@ -15,7 +15,7 @@ public:
                  QObject *parent=nullptr);
 
     void SetBroadcastAddress(const QString& szBroadcastAddress = "255.255.255.255");
-    void SetBroadcastAddress(const QString& szIP, const QString& szMask);
+    QString SetBroadcastAddress(const QString& szIP, const QString& szMask);
 
     /*!
      * \brief SendMagicPacket

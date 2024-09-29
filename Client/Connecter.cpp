@@ -12,14 +12,13 @@
 
 #include "Connecter.h"
 #include "PluginClient.h"
-#include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 #include "ParameterNet.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Connecter")
     
-CConnecter::CConnecter(CPluginClient *parent) : QObject(parent),
-    m_pPluginClient(parent),
+CConnecter::CConnecter(CPluginClient *plugin) : QObject(plugin),
+    m_pPluginClient(plugin),
     m_pParameter(nullptr)
 {
     bool check = false;
@@ -48,7 +47,8 @@ const QString CConnecter::Id()
             szId += "_" + GetParameter()->m_Net.GetHost()
                     + "_" + QString::number(GetParameter()->m_Net.GetPort());
     }
-    szId = szId.replace(QRegularExpression("[-@:/#%!^&*\\.]"), "_");
+    QRegularExpression exp("[-@:/#%!^&*\\.]");
+    szId = szId.replace(exp, "_");
     return szId;
 }
 
@@ -150,7 +150,7 @@ QString CConnecter::ServerName()
 
 int CConnecter::OpenDialogSettings(QWidget *parent)
 {
-    int nRet = -1;
+    int nRet = QDialog::Accepted;
     QDialog* p = OnOpenDialogSettings(parent);
     if(p)
     {

@@ -252,7 +252,7 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../DlgDesktopSize.ui" line="14"/>
         <source>Edit screen resolution</source>
-        <translation>编译屏幕分辨率</translation>
+        <translation>编辑屏幕分辨率</translation>
     </message>
     <message>
         <location filename="../../DlgDesktopSize.ui" line="31"/>

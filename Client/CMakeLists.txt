@@ -21,13 +21,14 @@ endif()
 
 list(APPEND CLIENT_INSTALL_HEADER_FILES
     FrmViewer.h
-    Connecter.h
     Client.h
     PluginClient.h
     PluginClientThread.h
+    Connecter.h
+    ConnecterConnect.h
     ConnecterThread.h
-    ConnecterDesktop.h
     Parameter.h
+    ParameterUI.h
     ParameterConnecter.h
     ParameterClient.h
     ParameterCompone/ParameterBase.h
@@ -48,6 +49,7 @@ list(APPEND CLIENT_HEADER_FILES
     Connect.h
     ConnectDesktop.h
     ConnectThread.h
+    ConnectMulti.h
     PluginThread.h
     ManageConnect.h
     DlgInputPassword.h
@@ -57,18 +59,20 @@ list(APPEND CLIENT_HEADER_FILES
     )
 
 list(APPEND CLIENT_SOURCE_FILES
-    Connecter.cpp
-    Connect.cpp
-    ConnectDesktop.cpp
     Client.cpp
-    ManageConnect.cpp
     PluginClient.cpp
     PluginClientThread.cpp
-    ConnecterThread.cpp
-    ConnecterDesktop.cpp
-    ConnectThread.cpp
     PluginThread.cpp
+    ManageConnect.cpp
+    Connecter.cpp
+    ConnecterConnect.cpp
+    ConnecterThread.cpp
+    ConnectThread.cpp
+    ConnectMulti.cpp
+    Connect.cpp
+    ConnectDesktop.cpp
     Parameter.cpp
+    ParameterUI.cpp
     ParameterConnecter.cpp
     ParameterClient.cpp
     FrmParameterClient.cpp

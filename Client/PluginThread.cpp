@@ -24,11 +24,11 @@ void CPluginThread::run()
     qDebug(log) << "CConnecterThread::run() start";
     CManageConnect mc;
     bool check = false;
-    check = connect(this, SIGNAL(sigConnect(CConnecterDesktop*)),
-                    &mc, SLOT(slotConnect(CConnecterDesktop*)));
+    check = connect(this, SIGNAL(sigConnect(CConnecterConnect*)),
+                    &mc, SLOT(slotConnect(CConnecterConnect*)));
     Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigDisconnect(CConnecterDesktop*)),
-                    &mc, SLOT(slotDisconnect(CConnecterDesktop*)));
+    check = connect(this, SIGNAL(sigDisconnect(CConnecterConnect*)),
+                    &mc, SLOT(slotDisconnect(CConnecterConnect*)));
     Q_ASSERT(check);
     
     exec();

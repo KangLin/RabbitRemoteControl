@@ -90,8 +90,8 @@ static const rfb::PixelFormat fullColourPF(32, 24, false, true, 255, 255, 255, 1
 // Time new bandwidth estimates are weighted against (in ms)
 static const unsigned bpsEstimateWindow = 1000;
 
-CConnectVnc::CConnectVnc(CConnecterThread *pConnecter, QObject *parent)
-    : CConnectDesktop(pConnecter, parent),
+CConnectVnc::CConnectVnc(CConnecterThread *pConnecter)
+    : CConnectDesktop(pConnecter),
       m_pPara(nullptr)
 {
     static bool initlog = false;
@@ -429,7 +429,6 @@ int CConnectVnc::OnClean()
     if(m_DataChannel) {
         m_DataChannel->close();
     }
-    emit sigDisconnected();
     return 0;
 }
 
@@ -586,7 +585,7 @@ void CConnectVnc::slotChannelError(int nErr, const QString& szErr)
 {
     qDebug(log) << "Channel error:" << nErr << "-" << szErr;
     emit sigError(nErr, szErr);
-    emit sigDisconnected();
+    emit sigDisconnect();
 }
 
 // initDone() is called when the serverInit message has been received.  At

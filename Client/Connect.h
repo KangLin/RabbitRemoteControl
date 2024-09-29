@@ -10,7 +10,7 @@
 
 /*!
  * \~chinese
- * \brief 具体连接接口。它由协议插件实现。
+ * \brief 连接接口。它由协议插件实现。
  *     它默认启动一个定时器来开启一个非 Qt 事件循环（就是普通的循环处理）。
  *     详见： Connect()、 slotTimeOut()、 OnProcess() 。
  *     当然，它仍然支持 Qt 事件（QObject 的 信号 － 槽 机制）。
@@ -55,29 +55,29 @@ public:
      * \param pConnecter
      * \param parent
      */
-    explicit CConnect(CConnecter* pConnecter,
-                      QObject *parent = nullptr);
+    explicit CConnect(CConnecter* pConnecter);
     virtual ~CConnect() override;
 
 public Q_SLOTS:
     /*!
      * \~chinese 开始连接。根据　OnInit()　返回值来决定是否开始定时器来支持非 qt 事件
      * \note
-     * - 如果连接是异步的，则会在成功后触发 sigConnected() 。失败则触发 sigError() 。
-     * - 如果连接是同步的，则在此函数成功调用后，触发 sigConnected() 。失败则触发 sigError() 。
+     * - 如果连接是异步的，连接成功后触发 sigConnected() 。
+     * - 如果连接是同步的，则在此函数成功调用后，触发 sigConnected() 。
      *
      * \~english Start connect. Based on the OnInit() return value,
      *           decide whether to start the timer to support no-qt event
      * \note
      * - If the connection is asynchronous,
-     *   sigConnected() is triggered upon success. Failure triggers sigError().
+     *   sigConnected() is triggered after the connect is success.
      * - If the connection is synchronous,
      *   sigConnected() is triggered after this function is successfully called.
-     *    Failure triggers sigError().
      *
      * \~
-     * \return 0: success; other error
-     * \see sigConnected() sigError()
+     * \return
+     *   - = 0: success
+     *   - < 0: error
+     * \see sigConnected()
      * \see OnInit() OnProcess() slotTimeOut()
      */
     virtual int Connect();
@@ -91,9 +91,7 @@ public Q_SLOTS:
     virtual int Disconnect();
 
 protected:
-    virtual int SetConnecter(CConnecter* pConnecter);
-
-    enum class OnInitReturnValue{
+    enum class OnInitReturnValue {
         Fail = -1,
         Success = 0,
         UseOnProcess = Success,
@@ -273,6 +271,9 @@ Q_SIGNALS:
      * \see CConnecter::slotBlockShowWidget() SetConnecter
      */
     void sigBlockShowWidget(const QString& className, int &nRet, void* pContext);
+
+private:
+    int SetConnecter(CConnecter* pConnecter);
 };
 
 #endif // CCONNECT_H

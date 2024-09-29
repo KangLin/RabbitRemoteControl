@@ -5,19 +5,19 @@
 
 #pragma once
 
-#include "ConnectThread.h"
-#include "ConnecterDesktop.h"
+#include <QThread>
+#include "ConnecterConnect.h"
 
 /*!
- * \~chinese 一个线程处理多个连接者 CConnecterDesktop 。
+ * \~chinese 一个线程处理多个连接者 CConnecterConnect 。
  *           一个连接者对应一个连接，也就是一个线程处理多个连接。
  *           此类仅用于 CPluginClientThread
  *           由插件使用。
- * \~english One thread handles multiple CConnecterDesktop.
+ * \~english One thread handles multiple CConnecterConnect.
  *           only used by CPluginClientThread.
  *           Be used by plugin.
  * \~
- * \see CPluginClientThread CManageConnect CConnecterDesktop
+ * \see CPluginClientThread CManageConnect CConnecterConnect
  * \ingroup LIBAPI_THREAD
  */
 class CLIENT_EXPORT CPluginThread : public QThread
@@ -29,8 +29,8 @@ public:
     virtual ~CPluginThread();
 
 Q_SIGNALS:
-    void sigConnect(CConnecterDesktop*);
-    void sigDisconnect(CConnecterDesktop*);
+    void sigConnect(CConnecterConnect*);
+    void sigDisconnect(CConnecterConnect*);
 
 protected:
     virtual void run() override;
