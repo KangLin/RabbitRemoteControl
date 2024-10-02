@@ -11,6 +11,9 @@ CParameterNetUI::CParameterNetUI(QWidget *parent)
     m_pNet(nullptr)
 {
     ui->setupUi(this);
+    connect(ui->leHost, &QLineEdit::editingFinished, this, [&](){
+        emit sigHostChanged(ui->leHost->text());
+    });
 }
 
 CParameterNetUI::~CParameterNetUI()

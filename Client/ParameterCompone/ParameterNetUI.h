@@ -43,7 +43,10 @@ public:
     int Accept();
     bool CheckValidity(bool validity = false);
     //! [Parameter commone functions]
-    
+
+Q_SIGNALS:
+    void sigHostChanged(const QString& szHost);
+
 private slots:
     void on_leHost_editingFinished();
     

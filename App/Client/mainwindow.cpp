@@ -7,7 +7,6 @@
 #endif
 #include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
-#include "FrmStyle.h"
 
 #ifdef HAVE_ABOUT
 #include "DlgAbout.h"

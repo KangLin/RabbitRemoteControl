@@ -69,6 +69,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [OPTIONAL] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 - [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [OPTIONAL] QtService: https://github.com/KangLin/qt-solutions/
+- [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
 
 #### RabbitCommon
 This library is placed in the same directory level as the project by default.
@@ -209,14 +210,29 @@ Source-code location: https://github.com/KangLin/tigervnc
 - Compile from source code
   + Source-code location: https://github.com/KangLin/qt-solutions/
   
-        ~$ git clone https://github.com/KangLin/qt-solutions.git
-        ~$ cd qt-solutions
-        ~/qt-solutions$ mkdir build
-        ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
-        ~/qt-solutions/build$ cmake --build . --config Release --target install
+        git clone https://github.com/KangLin/qt-solutions.git
+        cd qt-solutions
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
+        cmake --build . --config Release --target install
         
   + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
+
+### PcapPlusPlus
+
+- Compile from source code
+  + Source-code location: https://github.com/seladb/PcapPlusPlus
+  + Specify the CMake parameters: -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
+
+        git clone https://github.com/seladb/PcapPlusPlus.git
+
+- Use vcpkg
+  + Source-code location: https://github.com/microsoft/vcpkg/
+
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        vcpkg install pcapplusplus
 
 ### Compile this project
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
@@ -248,6 +264,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   + QtService_DIR: [QtService installation path]/lib/cmake/QtService
 - If using vcpkg, please set the CMake parameters:
+  + Because of using vcpkg manifest mode, so the depend libraries in `vcpkg.json`
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
   + X_VCPKG_APPLOCAL_DEPS_INSTALL: ON #When installing, copy the dependent libraries to the installation directory
   + VCPKG_MANIFEST_FEATURES: This variable can be set to a list of features to activate when installing from your manifest.

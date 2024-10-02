@@ -97,7 +97,12 @@ void CViewTable::slotSystemCombination()
 int CViewTable::AddView(QWidget *pView)
 {
     int nIndex = -1;
-
+    if(!pView)
+    {
+        qCritical(log) << "CViewTable::AddView: The pView is nullptr";
+        return -1;
+    }
+    //qDebug(log) << "CViewTable::AddView: Window title:" << pView->windowTitle();
     CFrmViewer* p = qobject_cast<CFrmViewer*>(pView);
     if(p)
     {
@@ -129,7 +134,11 @@ int CViewTable::RemoveView(QWidget *pView)
 void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle,
                                 const QIcon &icon, const QString &szToolTip)
 {
-    if(!pView) return;
+    if(!pView) {
+        qCritical(log) << "CViewTable::SetWidowsTitle: The pView is nullptr";
+        return;
+    }
+    //qDebug(log) << "CViewTable::SetWidowsTitle: Window title:" << szTitle;
     pView->setWindowTitle(szTitle);
     int nIndex = GetViewIndex(pView);
     m_pTab->setTabText(nIndex, szTitle);

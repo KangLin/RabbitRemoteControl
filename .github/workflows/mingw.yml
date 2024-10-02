@@ -116,7 +116,7 @@ jobs:
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\RabbitVNC (
-            git clone https://github.com/KangLin/RabbitVNC.git 
+            git clone --depth=1 https://github.com/KangLin/RabbitVNC.git
             cd RabbitVNC
             cmake -E make_directory build
             cd build
@@ -134,7 +134,7 @@ jobs:
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
-            git clone https://github.com/KangLin/tigervnc.git 
+            git clone --depth=1 https://github.com/KangLin/tigervnc.git
             cd tigervnc
             cmake -E make_directory build
             cd build
@@ -153,7 +153,7 @@ jobs:
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibDataChannel (
-            git clone -b v0.21.1 https://github.com/paullouisageneau/libdatachannel.git
+            git clone -b v0.21.1 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
             cd libdatachannel
             git submodule update --init --recursive
             cmake -E make_directory build
@@ -173,7 +173,7 @@ jobs:
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}/lib/cmake/QtService (
-            git clone "https://github.com/KangLin/qt-solutions.git"
+            git clone --depth=1 "https://github.com/KangLin/qt-solutions.git"
             cd qt-solutions/qtservice
             cmake -E make_directory build
             cd build
@@ -208,12 +208,12 @@ jobs:
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DCMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
           cmake --build . --config ${{ matrix.BUILD_TYPE }}
-          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
 
       - name: Package
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{github.workspace}}/build
         run: |
+          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           move /Y install\plugins\*crypto*.dll install\bin
           move /Y install\plugins\*ssl*.dll install\bin
           copy /Y C:\msys64\mingw64\bin\*.dll install\bin

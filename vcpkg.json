@@ -11,7 +11,8 @@
 
   "default-features": [
     "freerdp",
-    "vnc"
+    "vnc",
+    "wol"
   ],
 
   "features": {
@@ -47,6 +48,13 @@
         "libssh",
         "ffmpeg"
       ]
+    },
+
+    "wol" : {
+        "description": "Wake on lan",
+        "dependencies": [
+            "pcapplusplus"
+        ]
     }
   }
 }

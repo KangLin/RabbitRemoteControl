@@ -30,6 +30,7 @@ int CParameterWakeOnLan::OnLoad(QSettings &set)
     SetMac(set.value("Mac", GetMac()).toString());
     SetBroadcastAddress(
         set.value("BoardAddress", GetBroadcastAddress()).toString());
+    SetNetworkInterface(set.value("NetworkInterface", GetNetworkInterface()).toString());
     SetPort(set.value("Port", GetPort()).toUInt());
     SetPassword(set.value("Password", GetPassword()).toString());
     SetSavePassword(set.value("Password/Save", GetSavePassword()).toBool());
@@ -47,6 +48,7 @@ int CParameterWakeOnLan::OnSave(QSettings &set)
     set.setValue("Enable", GetEnable());
     set.setValue("Mac", GetMac());
     set.setValue("BoardAddress", GetBroadcastAddress());
+    set.setValue("NetworkInterface", GetNetworkInterface());
     set.setValue("Port", GetPort());
     set.setValue("Password", GetPassword());
     set.setValue("Password/Save", GetSavePassword());
@@ -136,6 +138,20 @@ int CParameterWakeOnLan::SetBroadcastAddress(const QString &szBroadcastAddress)
     if(m_szBoardcastAddress == szBroadcastAddress)
         return 0;
     m_szBoardcastAddress = szBroadcastAddress;
+    SetModified(true);
+    return 0;
+}
+
+const QString CParameterWakeOnLan::GetNetworkInterface() const
+{
+    return m_szNetworkInteface;
+}
+
+int CParameterWakeOnLan::SetNetworkInterface(const QString& szName)
+{
+    if(m_szNetworkInteface == szName)
+        return 0;
+    m_szNetworkInteface = szName;
     SetModified(true);
     return 0;
 }

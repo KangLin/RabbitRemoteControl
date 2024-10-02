@@ -1,8 +1,9 @@
 # Author: Kang Lin <kl222@126.com>
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
 project(Client LANGUAGES CXX)
@@ -118,6 +119,18 @@ if(UNIX)
     endif()
 endif()
 
+find_package(PcapPlusPlus)
+if(PcapPlusPlus_FOUND)
+    message(STATUS "Using Pcap++ ${PcapPlusPlus_VERSION}")
+    message(STATUS "Include dir: ${PcapPlusPlus_INCLUDE_DIR}")
+    list(APPEND CLIENT_DEFINITIONS HAVE_PCAPPLUSPLUS)
+    list(APPEND CLIENT_LIBS PcapPlusPlus::Pcap++)
+else()
+    message("Don't PcapPlusPlus. "
+        "Please build and install from git clone https://github.com/seladb/PcapPlusPlus . "
+        "And set PcapPlusPlus_DIR to install root directory")
+endif()
+
 SET(VIEWER_QT_COMPONENTS Core Gui Widgets)
 if(ANDROID)
     SET(VIEWER_QT_COMPONENTS ${VIEWER_QT_COMPONENTS} AndroidExtras)
@@ -142,8 +155,10 @@ ADD_TARGET(NAME ${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/WakeOnLan
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     INSTALL_HEADER_FILES ${CLIENT_INSTALL_HEADER_FILES}
+    PRIVATE_LIBS ${CLIENT_PRIVATE_LIBS}
     LIBS ${CLIENT_LIBS}
     VERSION ${RabbitRemoteControl_VERSION}
+    PRIVATE_DEFINITIONS ${CLIENT_PRIVATE_DEFINITIONS}
     DEFINITIONS ${CLIENT_DEFINITIONS}
     INSTALL_EXPORT_NAME ${PROJECT_NAME}Targets
     INSTALL_NAMESPACE RabbitRemoteControl

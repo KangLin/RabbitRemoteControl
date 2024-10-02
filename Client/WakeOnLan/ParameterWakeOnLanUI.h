@@ -43,10 +43,15 @@ public:
      */
     int Accept();
 
+public Q_SLOTS:
+    void slotHostChanged(const QString& szHost);
 private slots:
     void on_pbShow_clicked();
     void on_pbSave_clicked();
-    //void on_cbBroadcastAddress_editTextChanged(const QString &arg1);
+    void on_cbNetworkInterface_currentIndexChanged(int index);
+
+private:
+    QString GetSubNet(const QString& szIP, const QString& szMask);
 
 private:
     Ui::CParameterWakeOnLanUI *ui;

@@ -2,13 +2,14 @@
 
 #include "ConnecterFreeRDP.h"
 #include "ConnectFreeRDP.h"
-#include <QInputDialog>
 #include "DlgSetFreeRDP.h"
+#include <QInputDialog>
+#include <QLoggingCategory>
 
+static Q_LOGGING_CATEGORY(log, "FreeRDP.Connecter")
 //! [Set the parameter]
 CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *plugin)
-    : CConnecterThread(plugin),
-      m_Logger("FreeRDP.Connecter")
+    : CConnecterThread(plugin)
 {
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 
@@ -22,7 +23,7 @@ CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *plugin)
 
 CConnecterFreeRDP::~CConnecterFreeRDP()
 {
-    qDebug(m_Logger) << "CConnecterFreeRdp::~CConnecterFreeRdp()";
+    qDebug(log) << "CConnecterFreeRdp::~CConnecterFreeRdp()";
 }
 
 qint16 CConnecterFreeRDP::Version()
@@ -41,7 +42,7 @@ CConnect* CConnecterFreeRDP::InstanceConnect()
         CConnectFreeRDP* p = new CConnectFreeRDP(this);
         return p;
     } catch(...) {
-        qDebug(m_Logger) << "CConnecterFreeRDP::InstanceConnect() exception";
+        qDebug(log) << "CConnecterFreeRDP::InstanceConnect() exception";
         return nullptr;
     }
 }

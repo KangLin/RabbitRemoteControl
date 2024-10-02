@@ -39,6 +39,7 @@ void CParameterNet::SetHost(const QString& host)
         return;
     m_szHost = host;
     SetModified(true);
+    emit sigHostChanged(m_szHost);
 }
 
 const quint16 CParameterNet::GetPort() const

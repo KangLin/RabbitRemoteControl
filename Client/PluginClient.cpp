@@ -1,7 +1,6 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include "PluginClient.h"
-#include "RabbitCommonDir.h"
 #include "RabbitCommonTools.h"
 
 #include <QLocale>

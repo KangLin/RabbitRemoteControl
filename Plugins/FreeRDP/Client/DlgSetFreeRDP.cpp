@@ -37,7 +37,11 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->cbOnlyView->setChecked(m_pSettings->GetOnlyView());
     ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
     ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
-    
+
+    connect(ui->wNet, &CParameterNetUI::sigHostChanged,
+            this, [&](const QString& host){
+                ui->wgWakeOnLan->slotHostChanged(host);
+            });
     ui->wgWakeOnLan->SetParameter(&m_pSettings->m_WakeOnLan);
 
     m_pProxy = new CParameterProxyUI(ui->tabWidget);

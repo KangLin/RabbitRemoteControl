@@ -99,6 +99,7 @@ Prior versions don't have CMake support.
 - [OPTIONAL] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 - [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [OPTIONAL] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
+- [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
 
 #### RabbitCommon
 This library is placed in the same directory level as the project by default.
@@ -118,7 +119,7 @@ If not, you must specify the CMake parameters:
         ~$ git clone https://github.com/microsoft/vcpkg.git
         ~$ cd vcpkg
         ~/vcpkg$ ./bootstrap-vcpkg.sh
-        ~/vcpkg$ vcpkg install freerdp
+        ~/vcpkg$ ./vcpkg install freerdp
 
   + Specify the CMake parameters:
     -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
@@ -187,7 +188,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
         ~$ git clone https://github.com/microsoft/vcpkg.git
         ~$ cd vcpkg
-        ~/vcpkg$ vcpkg install libdatachannel
+        ~/vcpkg$ ./vcpkg install libdatachannel
       
   + Specify the CMake parameters:
     -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
@@ -238,7 +239,7 @@ Source-code location: https://github.com/KangLin/tigervnc
  
         ~$ git clone https://github.com/microsoft/vcpkg.git
         ~$ cd vcpkg
-        ~/vcpkg$ vcpkg install libssh
+        ~/vcpkg$ ./vcpkg install libssh
 
   + Specify the CMake parameters:
   -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
@@ -259,7 +260,32 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~/qt-solutions/build$ cmake --build . --config Release --target install
   
   + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
-  
+
+### PcapPlusPlus
+
+- Compile from source code
+  + Source-code location: https://github.com/seladb/PcapPlusPlus
+  + Specify the CMake parameters: -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
+
+        ~$ git clone https://github.com/seladb/PcapPlusPlus.git
+
+- Use vcpkg
+  + Source-code location: https://github.com/microsoft/vcpkg/
+
+        ~$ git clone https://github.com/microsoft/vcpkg.git
+        ~$ cd vcpkg
+        ~/vcpkg$ ./vcpkg install pcapplusplus
+
+#### libpcap
+
+It is depended by PcapPlusPlus
+
+- Use the system-packaged development library
+
+      ~$ sudo apt install libpcap-dev
+
+- Sourc-code location: https://github.com/the-tcpdump-group/libpcap
+
 ### Compile this project
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - Download the source code:
@@ -288,8 +314,9 @@ Source-code location: https://github.com/KangLin/tigervnc
   + QXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
   + qtermwidget5_DIR: [qtermwidget installation path]/lib/cmake/qtermwidget5
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
-  + QtService_DIR:[QtService installation path]/lib/cmake/QtService
-  
+  + QtService_DIR: [QtService installation path]/lib/cmake/QtService
+  + PcapPlusPlus_DIR: [PcapPlusPlus install path]/lib/cmake/pcapplusplus
+
 - If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
@@ -299,7 +326,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 
           ~$ cd RabbitRemoteControl
           ~/RabbitRemoteControl$ mkdir build
-          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
+          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install [...]
           ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
 
     -  If using vcpkg

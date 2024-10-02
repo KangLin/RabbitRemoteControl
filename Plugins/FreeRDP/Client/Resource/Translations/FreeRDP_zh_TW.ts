@@ -326,185 +326,185 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>服務器</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="77"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="167"/>
         <source>Only View</source>
         <translation>僅查看</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="88"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="70"/>
         <source>Domain:</source>
         <translation>域名：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="145"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="114"/>
         <source>Reconnect count:</source>
         <translation>重連接次數：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="158"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="164"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="127"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="133"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect count&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: 重連接次數：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="161"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="130"/>
         <source>Reconnect count</source>
         <translation>重連接次數</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="194"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="240"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="300"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="197"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="253"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="313"/>
         <source>Local screen</source>
         <translation>本地屏幕</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="231"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="234"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="281"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="284"/>
         <source>Local resource</source>
         <translation>本地資源</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="352"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="355"/>
         <source>Selected:</source>
         <translation>選擇的：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="359"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="362"/>
         <source>Clear all</source>
         <translation>清除全部</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="371"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="374"/>
         <source>Audio</source>
         <translation>音頻</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="377"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="380"/>
         <source>Play remote audio</source>
         <translation>播放音頻</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="383"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="386"/>
         <source>On this computer</source>
         <translation>在此計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="396"/>
         <source>On remote computer</source>
         <translation>在遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="403"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="406"/>
         <source>Disable</source>
         <translation>禁止</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="416"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="419"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation>在遠程計算機上使用本計算機的麥克風</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="287"/>
         <location filename="../../DlgSetFreeRDP.ui" line="290"/>
         <location filename="../../DlgSetFreeRDP.ui" line="293"/>
         <location filename="../../DlgSetFreeRDP.ui" line="296"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="299"/>
         <source>Printer: Redirection the local printers to the remote computer</source>
         <translation>打印機：重定向本地打印機到遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="306"/>
         <location filename="../../DlgSetFreeRDP.ui" line="309"/>
         <location filename="../../DlgSetFreeRDP.ui" line="312"/>
         <location filename="../../DlgSetFreeRDP.ui" line="315"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="318"/>
         <source>Clipboard: Redirection the clipboard</source>
         <translation>剪切板：重定向剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="322"/>
         <location filename="../../DlgSetFreeRDP.ui" line="325"/>
         <location filename="../../DlgSetFreeRDP.ui" line="328"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="331"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation>重定向下列選中的驅動器到遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="331"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="334"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation>驅動器：重定向下列選中的驅動器到遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="115"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="84"/>
         <source>Name:</source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="122"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="125"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="128"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="91"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="94"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="97"/>
         <source>Connecter name</source>
         <translation>連接名稱</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="70"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="160"/>
         <source>Show server name</source>
         <translation>顯示服務器名</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="180"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="183"/>
         <source>Display</source>
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="186"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="189"/>
         <source>Remote desktop size:</source>
         <translation>遠程桌面尺寸：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="205"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="208"/>
         <source>Select size:</source>
         <translation>選擇尺寸：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="240"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="243"/>
         <source>Use all local monitors for remote sessions</source>
         <translation>將本地所有監視器用於遠程會話</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="252"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="255"/>
         <source>Remote color depth:</source>
         <translation>遠程顏色深度：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="43"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
         <source>Proxy</source>
         <translation>代理</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="66"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="68"/>
         <source>8 bits</source>
         <translation>8 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="67"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="69"/>
         <source>16 bits</source>
         <translation>16 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="68"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="70"/>
         <source>24 bits</source>
         <translation>24 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="69"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="71"/>
         <source>32 bits</source>
         <translation>32 比特</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="89"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="91"/>
         <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
 - sys:winmm- sys:ios
 - sys:mac- sys:opensles- sys:alsa
@@ -514,21 +514,21 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="104"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="106"/>
         <source>Options for redirection of audio output:
 </source>
         <translation>重定向音頻輸出的選項:
 </translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="111"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="113"/>
         <source>Options for redirection of audio input:
 </source>
         <translation>重定向音頻輸入的選項:
 </translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="454"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="467"/>
         <source>Selected counts: </source>
         <translation>選擇數： </translation>
     </message>

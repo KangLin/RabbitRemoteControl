@@ -2,6 +2,14 @@
 
 #include "ConnectWakeOnLan.h"
 #include <QLoggingCategory>
+#ifdef HAVE_PCAPPLUSPLUS
+    #include <MacAddress.h>
+    #include <Logger.h>
+    #include <PcapPlusPlusVersion.h>
+    #include <PcapLiveDeviceList.h>
+    #include <PcapLiveDevice.h>
+    #include <NetworkUtils.h>
+#endif
 
 static Q_LOGGING_CATEGORY(log, "WOL")
 CConnectWakeOnLan::CConnectWakeOnLan(
@@ -76,8 +84,56 @@ int CConnectWakeOnLan::OnProcess()
             m_Wol.SendMagicPacket(wol.GetMac());
         else
             m_Wol.SendSecureMagicPacket(wol.GetMac(), wol.GetPassword());
-        return wol.GetInterval();
+
+        QString szMac = GetMac(
+            m_pParameter->m_Net.GetHost(),
+            m_pParameter->m_WakeOnLan.GetNetworkInterface(),
+            wol.GetInterval());
+        if(szMac.isEmpty())
+            return wol.GetInterval();
+        return 0;
     } while(0);
     qDebug(log) << "Stop";
+    m_nRepeat = 0;
     return -1;
+}
+
+QString CConnectWakeOnLan::GetMac(const QString& szTargetIp, const QString &szSourceIp, int nTimeout)
+{
+#ifdef HAVE_PCAPPLUSPLUS
+    pcpp::MacAddress sourceMac;
+    pcpp::IPv4Address sourceIP(szSourceIp.toStdString());
+    pcpp::IPv4Address targetIP(szTargetIp.toStdString());
+    pcpp::PcapLiveDevice* dev = nullptr;
+    dev = pcpp::PcapLiveDeviceList::getInstance()
+              .getPcapLiveDeviceByIpOrName(szSourceIp.toStdString());
+    if (dev == nullptr) {
+        qCritical(log)
+            << "Couldn't find interface by provided IP address or name" << szSourceIp;
+        return QString();
+    }
+    double arpResponseTimeMS = 0;
+    if(!pcpp::IPv4Address::isValidIPv4Address(szSourceIp.toStdString()))
+        sourceIP = dev->getIPv4Address();
+    sourceMac = dev->getMacAddress();
+    if(!pcpp::IPv4Address::isValidIPv4Address(szTargetIp.toStdString())) {
+        qCritical(log) << "Target ip is invalid:" << szTargetIp;
+        return QString();
+    }
+    // suppressing errors to avoid cluttering stdout
+    pcpp::Logger::getInstance().suppressLogs();
+    pcpp::MacAddress result = pcpp::NetworkUtils::getInstance().getMacAddress(
+        targetIP, dev, arpResponseTimeMS, sourceMac, sourceIP, nTimeout);
+    // failed fetching MAC address
+    if (result == pcpp::MacAddress::Zero)
+    {
+        // PcapPlusPlus logger saves the last internal error message
+        qCritical(log) << pcpp::Logger::getInstance().getLastError().c_str();
+        return QString();
+    }
+    qDebug(log) << "Mac:" << result.toString().c_str();
+    // Succeeded fetching MAC address
+    return result.toString().c_str();
+#endif
+    return QString();
 }

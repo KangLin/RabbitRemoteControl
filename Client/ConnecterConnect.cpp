@@ -21,28 +21,9 @@ CParameterBase *CConnecterConnect::GetParameter()
     return CConnecter::GetParameter();
 }
 
-int CConnecterConnect::Load(QSettings &set)
-{
-    int nRet = 0;
-    Q_ASSERT(GetParameter());
-    if(GetParameter())
-        nRet = GetParameter()->Load(set);
-    return nRet;
-}
-
-int CConnecterConnect::Save(QSettings &set)
-{
-    int nRet = 0;
-    Q_ASSERT(GetParameter());
-    if(GetParameter()) {
-        GetParameter()->Save(set);
-    }
-    return nRet;
-}
-
 int CConnecterConnect::Connect()
 {
-    qDebug(log) << "CConnecterDesktop::Connect";
+    qDebug(log) << "CConnecterConnect::Connect";
     CPluginClientThread* pPlug
         = qobject_cast<CPluginClientThread*>(GetPlugClient());
     if(pPlug)
@@ -60,7 +41,7 @@ int CConnecterConnect::Connect()
 
 int CConnecterConnect::DisConnect()
 {
-    qDebug(log) << "CConnecterDesktop::DisConnect";
+    qDebug(log) << "CConnecterConnect::DisConnect";
     CPluginClientThread* pPlug
         = qobject_cast<CPluginClientThread*>(GetPlugClient());
     if(pPlug)
@@ -68,6 +49,7 @@ int CConnecterConnect::DisConnect()
     else {
         if(m_pConnect) {
             int nRet = m_pConnect->Disconnect();
+            m_pConnect->deleteLater();
             emit sigDisconnected();
             return nRet;
         }

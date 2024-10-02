@@ -54,6 +54,7 @@
 - [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [可选] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
+- [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
 
 ##### 设置全局变量
 
@@ -171,6 +172,7 @@
   - libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   - QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
 - 如果使用 vcpkg，增加下面参数
+  - 因为使用了 vcpkg 清单模式，所以依赖库在 `vcpkg.json` 中。
   - CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
   - X_VCPKG_APPLOCAL_DEPS_INSTALL: ON  #安装时，把把依赖库的复制到安装目录中
   - VCPKG_MANIFEST_FEATURES: vcpkg 中的清单功能。

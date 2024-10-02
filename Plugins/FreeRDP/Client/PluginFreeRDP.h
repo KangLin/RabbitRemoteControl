@@ -31,7 +31,7 @@ public:
     virtual const QString Details() const override;
     
 private:
-    virtual CConnecter* CreateConnecter(const QString& szProtocol) override;
+    virtual CConnecter* CreateConnecter(const QString& szId) override;
 };
 
 #endif // CPluginFreeRdp_H_KL_2021_07_23

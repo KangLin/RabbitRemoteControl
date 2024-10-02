@@ -324,185 +324,185 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="77"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="167"/>
         <source>Only View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="88"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="70"/>
         <source>Domain:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="145"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="114"/>
         <source>Reconnect count:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="158"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="164"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="127"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="133"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect count&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="161"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="130"/>
         <source>Reconnect count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="194"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="240"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="300"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="197"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="253"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="313"/>
         <source>Local screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="231"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="234"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="281"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="284"/>
         <source>Local resource</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="352"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="355"/>
         <source>Selected:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="359"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="362"/>
         <source>Clear all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="371"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="374"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="377"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="380"/>
         <source>Play remote audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="383"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="386"/>
         <source>On this computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="396"/>
         <source>On remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="403"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="406"/>
         <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="416"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="419"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="287"/>
         <location filename="../../DlgSetFreeRDP.ui" line="290"/>
         <location filename="../../DlgSetFreeRDP.ui" line="293"/>
         <location filename="../../DlgSetFreeRDP.ui" line="296"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="299"/>
         <source>Printer: Redirection the local printers to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="306"/>
         <location filename="../../DlgSetFreeRDP.ui" line="309"/>
         <location filename="../../DlgSetFreeRDP.ui" line="312"/>
         <location filename="../../DlgSetFreeRDP.ui" line="315"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="318"/>
         <source>Clipboard: Redirection the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="322"/>
         <location filename="../../DlgSetFreeRDP.ui" line="325"/>
         <location filename="../../DlgSetFreeRDP.ui" line="328"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="331"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="331"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="334"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="115"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="84"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="122"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="125"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="128"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="91"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="94"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="97"/>
         <source>Connecter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="70"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="160"/>
         <source>Show server name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="180"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="183"/>
         <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="186"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="189"/>
         <source>Remote desktop size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="205"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="208"/>
         <source>Select size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="240"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="243"/>
         <source>Use all local monitors for remote sessions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="252"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="255"/>
         <source>Remote color depth:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="43"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="45"/>
         <source>Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="66"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="68"/>
         <source>8 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="67"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="69"/>
         <source>16 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="68"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="70"/>
         <source>24 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="69"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="71"/>
         <source>32 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="89"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="91"/>
         <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
 - sys:winmm- sys:ios
 - sys:mac- sys:opensles- sys:alsa
@@ -512,19 +512,19 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="104"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="106"/>
         <source>Options for redirection of audio output:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="111"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="113"/>
         <source>Options for redirection of audio input:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="454"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="467"/>
         <source>Selected counts: </source>
         <translation type="unfinished"></translation>
     </message>

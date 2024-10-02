@@ -105,6 +105,8 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     case CParameterApp::SystemTrayIconMenuType::Remote:
         ui->rbSystemTrayIconRemote->setChecked(true);
         break;
+    default:
+        break;
     }
     ui->cbShowSystemTrayIcon->setChecked(m_pParameters->GetEnableSystemTrayIcon());
     

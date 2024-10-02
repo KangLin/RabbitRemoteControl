@@ -41,6 +41,9 @@ message(STATUS "BUILD_TigerVNC:${BUILD_TigerVNC}")
 message(STATUS "BUILD_LibVNCServer:${BUILD_LibVNCServer}")
 message(STATUS "BUILD_FREERDP:${BUILD_FREERDP}")
 
+## Tools
+add_subdirectory(WakeOnLan)
+
 ## Terminal
 
 if(BUILD_CLIENT_TERMINAL)

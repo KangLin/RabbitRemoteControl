@@ -7,8 +7,6 @@
 #include "ConnecterThread.h"
 #include "ParameterFreeRDP.h"
 
-#include <QLoggingCategory>
-
 class CConnecterFreeRDP : public CConnecterThread
 {
     Q_OBJECT
@@ -28,7 +26,6 @@ private:
     //! [Initialize parameter]
     CParameterFreeRDP m_ParameterFreeRdp;
     //! [Initialize parameter]
-    QLoggingCategory m_Logger;
 };
 
 #endif // CCONNECTERFREERDP_H

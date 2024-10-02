@@ -30,9 +30,11 @@ class CPluginClient;
  * 序列图：\image html docs/Image/PluginClientSequenceDiagram.svg
  *  已经提供以下类型的基本实现：\n
  *  1. 桌面类连接： \n
- *     1.1. 用于连接是阻塞模型(一个线程处理一个连接)： \ref CConnecterThread \n
- *     1.2. 用于连接是非阻塞模型(一个线程处理多个连接)： \ref CConnecterDesktop \n
- *  2. 控制台类连接：\ref CConnecterTerminal
+ *     1.1. 用于连接是阻塞模型(一个后台线程处理一个连接)： \ref CConnecterThread \n
+ *     1.2. 用于连接是非阻塞模型(一个后台线程处理多个连接)： \ref CConnecterConnect \n
+ *  2. 工具类： \n
+ *     2.1. 用于连接是非阻塞模型（在主线程）： \ref CConnecterConnect \n
+ *  3. 控制台类连接：\ref CConnecterTerminal
  *
  * \~english
  * \brief Connecter interface
@@ -44,10 +46,12 @@ class CPluginClient;
  * Basic implementations of the following types have been provided: \n
  *   1. Desktop type: \n
  *      1.1. The connection used is the blocking model
- *           (One thread handles one connection): \ref CConnecterThread \n
+ *           (a blackground thread handles one connection): \ref CConnecterThread \n
  *      1.2. The connection is a non-blocking model
- *           (One thread handles multiple connections): \ref CConnecterDesktop \n
- *   2. Termianal type: \ref CConnecterTerminal
+ *           (a blackground thread handles multiple connections): \ref CConnecterConnect \n
+ *   2. Tool type: \n
+ *      2.1. The connection is a non-blocking model(in main thread): \ref CConnecterConnect \n
+ *   3. Termianal type: \ref CConnecterTerminal
  *
  * \~
  * \see CPluginClient
@@ -339,16 +343,18 @@ private:
      * \see OpenDialogSettings
      */
     virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) = 0;
+
+protected:
     /*!
      * \~chinese \brief 加载参数
      * \~english \brief Load parameters
      */
-    virtual int Load(QSettings &set) = 0;
+    virtual int Load(QSettings &set);
     /*!
      * \~chinese 保存参数
      * \~english Save parameters
      */
-    virtual int Save(QSettings &set) = 0;
+    virtual int Save(QSettings &set);
     
 private Q_SLOTS:
     //! \~chinese \note 仅由 CConnectDesktop::SetConnecter() 使用

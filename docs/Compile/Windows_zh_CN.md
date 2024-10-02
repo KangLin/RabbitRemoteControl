@@ -67,6 +67,7 @@
 - [可选] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [可选] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
+- [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
 
 #### 玉兔公共库
 此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
@@ -202,14 +203,29 @@
 - 从源码编译
   + 源码位置：: https://github.com/KangLin/qt-solutions/
   
-        ~$ git clone https://github.com/KangLin/qt-solutions.git
-        ~$ cd qt-solutions
-        ~/qt-solutions$ mkdir build
-        ~/qt-solutions$ cd build
-        ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
-        ~/qt-solutions/build$ cmake --build . --config Release --target install
+        git clone https://github.com/KangLin/qt-solutions.git
+        cd qt-solutions
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
+        cmake --build . --config Release --target install
         
   + 指定 CMake 参数: -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
+
+### PcapPlusPlus
+
+- 从源码编译
+  + 源码位置： https://github.com/seladb/PcapPlusPlus
+  + 指定 CMake 参数: -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
+
+        git clone https://github.com/seladb/PcapPlusPlus.git
+
+- 使用 vcpkg
+  + 源码位置: https://github.com/microsoft/vcpkg/
+
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        vcpkg install pcapplusplus
 
 ### 编译本项目
 - 项目位置：[https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
@@ -241,6 +257,7 @@
   + libssh_DIR: [libssh 安装目录]/lib/cmake/libssh
   + QtService_DIR: [QtService 安装目录]/lib/cmake/QtService
 - 如果使用 vcpkg，增加下面参数
+  + 因为使用了 vcpkg 清单模式，所以依赖库在 `vcpkg.json` 中。
   + CMAKE_TOOLCHAIN_FILE: [vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
   + X_VCPKG_APPLOCAL_DEPS_INSTALL: ON  #安装时，把把依赖库的复制到安装目录中
   + VCPKG_MANIFEST_FEATURES: vcpkg 中的清单功能。

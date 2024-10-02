@@ -70,18 +70,6 @@ Q_SIGNALS:
     void sigOpenConnect(CConnecterConnect*);
     void sigCloseconnect(CConnecterConnect*);
 
-protected:
-    /*!
-     * \~chinese \brief 加载参数
-     * \~english \brief Load parameters
-     */
-    virtual int Load(QSettings &set) override;
-    /*!
-     * \~chinese 保存参数
-     * \~english Save parameters
-     */
-    virtual int Save(QSettings &set) override;
-
 private:
     CConnect* m_pConnect;
 };

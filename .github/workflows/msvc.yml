@@ -44,7 +44,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
       TOOSL_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
-      VCPKGGITCOMMITID: 110c50d4700794d87d95138cd8c1b3bbfee9bab5
+      VCPKGGITCOMMITID: 7adc2e4d49e8d0efc07a369079faa6bc3dbb90f3
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
@@ -146,7 +146,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\RabbitVNC (
-            git clone https://github.com/KangLin/RabbitVNC.git 
+            git clone --depth=1 https://github.com/KangLin/RabbitVNC.git
             cd RabbitVNC
             cmake -E make_directory build
             cd build
@@ -173,7 +173,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\tigervnc (
-            git clone https://github.com/KangLin/tigervnc.git 
+            git clone --depth=1 https://github.com/KangLin/tigervnc.git
             cd tigervnc
             cmake -E make_directory build
             cd build
@@ -200,7 +200,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibVNCServer (
-            git clone https://github.com/KangLin/libvncserver.git
+            git clone --depth=1 https://github.com/KangLin/libvncserver.git
             #git clone https://github.com/LibVNC/libvncserver.git
             cd libvncserver
             cmake -E make_directory build
@@ -261,7 +261,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\QtService (
-            git clone "https://github.com/KangLin/qt-solutions.git"
+            git clone --depth=1 "https://github.com/KangLin/qt-solutions.git"
             cd qt-solutions/qtservice
             cmake -E make_directory build
             cd build

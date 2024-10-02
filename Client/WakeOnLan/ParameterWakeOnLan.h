@@ -26,6 +26,9 @@ public:
     const QString GetBroadcastAddress() const;
     int SetBroadcastAddress(const QString& szBroadcastAddress);
 
+    const QString GetNetworkInterface() const;
+    int SetNetworkInterface(const QString& szName);
+
     const quint16 GetPort() const;
     int SetPort(quint16 port);
 
@@ -56,6 +59,7 @@ private:
     bool m_bEnable;
     QString m_szMac;
     QString m_szBoardcastAddress;
+    QString m_szNetworkInteface;
     quint16 m_nPort;
     QString m_szPassword;
     bool m_bSavePassword;

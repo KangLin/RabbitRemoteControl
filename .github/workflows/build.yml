@@ -20,6 +20,7 @@ jobs:
     uses: ./.github/workflows/msvc.yml
 
   mingw:
+    if: false
     uses: ./.github/workflows/mingw.yml
 
   macos:
@@ -137,10 +138,10 @@ jobs:
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         continue-on-error: true
         run: |
-          gh release delete ${{ github.ref_name }} -y --cleanup-tag
+          gh release delete test_${{ github.ref_name }} -y --cleanup-tag
 
       - name: Upload To Github Release
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         run: |
-          gh release create ${{ github.ref_name }} --prerelease --title "Recently developed build - ${{ github.ref_name }}" --notes-file ${{github.workspace}}/Note.md
-          gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json --clobber
+          gh release create test_${{ github.ref_name }} --latest=false --title "Recently developed build - ${{ github.ref_name }}" --notes-file ${{github.workspace}}/Note.md
+          gh release upload test_${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json --clobber

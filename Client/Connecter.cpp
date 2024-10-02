@@ -47,7 +47,7 @@ const QString CConnecter::Id()
             szId += "_" + GetParameter()->m_Net.GetHost()
                     + "_" + QString::number(GetParameter()->m_Net.GetPort());
     }
-    QRegularExpression exp("[-@:/#%!^&*\\.]");
+    QRegularExpression exp("[-@:/#%!^&* \\.]");
     szId = szId.replace(exp, "_");
     return szId;
 }
@@ -190,6 +190,25 @@ int CConnecter::Save(QString szFile)
     }    
     QSettings set(szFile, QSettings::IniFormat);
     return Save(set);
+}
+
+int CConnecter::Load(QSettings &set)
+{
+    int nRet = 0;
+    Q_ASSERT(GetParameter());
+    if(GetParameter())
+        nRet = GetParameter()->Load(set);
+    return nRet;
+}
+
+int CConnecter::Save(QSettings &set)
+{
+    int nRet = 0;
+    Q_ASSERT(GetParameter());
+    if(GetParameter()) {
+        GetParameter()->Save(set);
+    }
+    return nRet;
 }
 
 int CConnecter::SetParameterClient(CParameterClient* pPara)
