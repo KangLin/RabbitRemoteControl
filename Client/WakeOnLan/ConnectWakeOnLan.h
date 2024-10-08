@@ -22,6 +22,7 @@ protected:
 
 private:
     QString GetMac(const QString& szTargetIp, const QString& szSourceIp, int nTimeout);
+    void ListInterfaces();
 
 private:
     CWakeOnLanQt m_Wol;

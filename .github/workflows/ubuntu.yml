@@ -231,6 +231,7 @@ jobs:
           FreeRDP_Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
           FreeRDP_Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
           FreeRDP_Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
+          PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
         run: |
           if [ '${{matrix.BUILD_TYPE}}' == 'Release' ]; then
               echo "Build Release ......"

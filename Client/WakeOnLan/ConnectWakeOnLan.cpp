@@ -106,7 +106,7 @@ QString CConnectWakeOnLan::GetMac(const QString& szTargetIp, const QString &szSo
     pcpp::IPv4Address targetIP(szTargetIp.toStdString());
     pcpp::PcapLiveDevice* dev = nullptr;
     dev = pcpp::PcapLiveDeviceList::getInstance()
-              .getPcapLiveDeviceByIpOrName(szSourceIp.toStdString());
+              .getPcapLiveDeviceByIp(sourceIP);
     if (dev == nullptr) {
         qCritical(log)
             << "Couldn't find interface by provided IP address or name" << szSourceIp;
@@ -136,4 +136,21 @@ QString CConnectWakeOnLan::GetMac(const QString& szTargetIp, const QString &szSo
     return result.toString().c_str();
 #endif
     return QString();
+}
+
+void CConnectWakeOnLan::ListInterfaces()
+{
+    #ifdef HAVE_PCAPPLUSPLUS
+    const std::vector<pcpp::PcapLiveDevice*>& devList =
+        pcpp::PcapLiveDeviceList::getInstance().getPcapLiveDevicesList();
+
+    qDebug(log) << "Network interfaces:";
+    for (const auto& dev : devList)
+    {
+        qDebug(log) << "    -> Name: '"
+                    << dev->getName().c_str() << "'   IP address: "
+                    << dev->getIPv4Address().toString().c_str();
+    }
+    #endif
+    return;
 }
