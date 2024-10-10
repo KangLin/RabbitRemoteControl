@@ -118,6 +118,7 @@ public:
 
 private:
     UINT32 GetImageFormat();
+    BOOL CreateImage(rdpContext* context);
     BOOL UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h);
 
     int RedirectionSound();

@@ -769,17 +769,11 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
     int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
     emit pThis->sigSetDesktopSize(desktopWidth, desktopHeight);
 
-    pThis->m_Image = QImage(desktopWidth,
-                            desktopHeight,
-                            QImage::Format_ARGB32);
-
-    // Init gdi format
-    if (!gdi_init_ex(instance, pThis->GetImageFormat(),
-                     0, pThis->m_Image.bits(), nullptr))
-	{
-        qCritical(log) << "gdi_init fail";
+    if (!gdi_init(instance, PIXEL_FORMAT_BGRA32))
         return FALSE;
-    }
+
+    if(!pThis->CreateImage(instance->context))
+        return FALSE;
 
     Q_ASSERT(instance->context->cache);
 
@@ -899,6 +893,20 @@ UINT32 CConnectFreeRDP::GetImageFormat(QImage::Format format)
 UINT32 CConnectFreeRDP::GetImageFormat()
 {
     return GetImageFormat(m_Image.format());
+}
+
+BOOL CConnectFreeRDP::CreateImage(rdpContext *context)
+{
+    Q_ASSERT(context);
+    ClientContext* pContext = (ClientContext*)context;
+    CConnectFreeRDP* pThis = pContext->pThis;
+    rdpGdi* gdi = context->gdi;
+    Q_ASSERT(pThis && gdi);
+    pThis->m_Image = QImage(gdi->primary_buffer,
+                            static_cast<int>(gdi->width),
+                            static_cast<int>(gdi->height),
+                            QImage::Format_ARGB32);
+    return TRUE;
 }
 
 #if FreeRDP_VERSION_MAJOR >= 3
@@ -1522,14 +1530,12 @@ BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
     int desktopWidth = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
     int desktopHeight = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
 
-    emit pThis->sigSetDesktopSize(desktopWidth, desktopHeight);
+    if(!gdi_resize(context->gdi, desktopWidth, desktopHeight))
+        return FALSE;
+    if(!pThis->CreateImage(context))
+        return FALSE;
 
-    pThis->m_Image = QImage(desktopWidth,
-                            desktopHeight,
-                            QImage::Format_ARGB32);
-    if (!gdi_resize_ex(context->gdi, desktopWidth, desktopHeight, 0,
-	                   pThis->GetImageFormat(), pThis->m_Image.bits(), NULL))
-		return FALSE;
+    emit pThis->sigSetDesktopSize(desktopWidth, desktopHeight);
     pThis->UpdateBuffer(0, 0, desktopWidth, desktopHeight);
     return TRUE;
 }
