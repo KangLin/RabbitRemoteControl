@@ -771,7 +771,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 
     pThis->m_Image = QImage(desktopWidth,
                             desktopHeight,
-                            QImage::Format_RGB32);
+                            QImage::Format_ARGB32);
 
     // Init gdi format
     if (!gdi_init_ex(instance, pThis->GetImageFormat(),
@@ -1526,9 +1526,9 @@ BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 
     pThis->m_Image = QImage(desktopWidth,
                             desktopHeight,
-                            QImage::Format_RGB32);
+                            QImage::Format_ARGB32);
     if (!gdi_resize_ex(context->gdi, desktopWidth, desktopHeight, 0,
-	                   context->gdi->dstFormat, pThis->m_Image.bits(), NULL))
+	                   pThis->GetImageFormat(), pThis->m_Image.bits(), NULL))
 		return FALSE;
     pThis->UpdateBuffer(0, 0, desktopWidth, desktopHeight);
     return TRUE;
