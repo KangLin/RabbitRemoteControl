@@ -1436,12 +1436,18 @@ BOOL CConnectFreeRDP::cb_begin_paint(rdpContext *context)
 
 BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
 {
-    if(x > m_Image.width() || y > m_Image.height())
+    if(x > m_Image.width() || y > m_Image.height()) {
+        qCritical(log) << "The width and height out of range."
+                       << "Image width:" << m_Image.width()
+                       << "Image height:" << m_Image.height()
+                       << "w:" << w << "h:" << h;
         return FALSE;
+    }
 
     QRect rect(x, y, w, h);
-    //qDebug(log) << "Update:" << rect;
-    emit sigUpdateRect(rect, m_Image);
+    QImage img = m_Image.copy(rect);
+    //qDebug(log) << "Image:" << rect << img.rect() << img;
+    emit sigUpdateRect(rect, img);
     return TRUE;
 }
 
@@ -1477,6 +1483,12 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 
 	for (i = 0; i < ninvalid; i++)
 	{
+        if(cinvalid[i].null)
+        {
+            qWarning(log) << "is null region" << cinvalid[i].x << cinvalid[i].y
+                          << cinvalid[i].w << cinvalid[i].h;
+            continue;
+        }
 		invalidRect.left = cinvalid[i].x;
 		invalidRect.top = cinvalid[i].y;
 		invalidRect.right = cinvalid[i].x + cinvalid[i].w;
@@ -1487,13 +1499,10 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 	if (!region16_is_empty(&invalidRegion))
 	{
 		extents = region16_extents(&invalidRegion);
-        QRect updateRect;
-        updateRect.setX(extents->left);
-        updateRect.setY(extents->top);
-        updateRect.setRight(extents->right);
-        updateRect.setBottom(extents->bottom);
-        pThis->UpdateBuffer(updateRect.x(), updateRect.y(),
-                            updateRect.width(), updateRect.height());
+        pThis->UpdateBuffer(extents->left,
+                            extents->top,
+                            extents->right - extents->left,
+                            extents->bottom - extents->top);
     }
 
 	region16_uninit(&invalidRegion);

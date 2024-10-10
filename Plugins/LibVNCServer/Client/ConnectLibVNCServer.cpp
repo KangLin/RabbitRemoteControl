@@ -398,9 +398,13 @@ rfbBool CConnectLibVNCServer::cb_resize(rfbClient* client)
 
 void CConnectLibVNCServer::cb_update(rfbClient *client, int x, int y, int w, int h)
 {
+    if(0 == w || 0 == h)
+        return;
     //qDebug(LibVNCServer, "CConnectLibVnc::cb_update:(%d, %d, %d, %d)", x, y, w, h);
     CConnectLibVNCServer* pThis = (CConnectLibVNCServer*)rfbClientGetClientData(client, (void*)gThis);
-    emit pThis->sigUpdateRect(QRect(x, y, w, h), pThis->m_Image);
+    QRect rect(x, y, w, h);
+    QImage img = pThis->m_Image.copy(rect);
+    emit pThis->sigUpdateRect(rect, img);
 }
 
 void CConnectLibVNCServer::cb_got_selection(rfbClient *client, const char *text, int len)

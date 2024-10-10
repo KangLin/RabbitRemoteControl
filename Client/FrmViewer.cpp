@@ -348,6 +348,12 @@ void CFrmViewer::slotUpdateRect(const QImage& image)
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
 {
+#if DEBUG
+    if(r.width() != image.rect().width() || r.height() != image.rect().height())
+    {
+        qWarning(log) << "Image is error";
+    }
+#endif
     //qDebug(log) << "void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)" << r << image;
     if(m_Desktop.isNull() || m_Desktop.rect() == r)
     {
@@ -357,8 +363,8 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
     else
     {
         QPainter painter(&m_Desktop);
-        painter.drawImage(r, image, r);
-        //qDebug(log) << "Update image size isn't same old image size" << r << image;
+        painter.drawImage(r, image);
+        //qDebug(log) << "Update image size isn't same old image size" << r << image.rect() << image;
     }
 
     update();
