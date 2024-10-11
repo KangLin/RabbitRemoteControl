@@ -1,6 +1,8 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(FreeRDP)
+project(FreeRDP
+    DESCRIPTION "FreeRDP client plugin"
+    )
 
 SET(FreeRDP_LIBS freerdp-client freerdp winpr Client)
 

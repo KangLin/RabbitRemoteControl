@@ -1,6 +1,8 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(LibVNCServer)
+project(LibVNCServer
+    DESCRIPTION "LibVNCServer service plugin"
+    )
 
 find_package(LibVNCServer)
 if(LibVNCServer_FOUND)

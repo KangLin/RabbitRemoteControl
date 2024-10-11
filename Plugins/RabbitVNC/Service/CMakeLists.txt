@@ -1,6 +1,8 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(RabbitVNC)
+project(RabbitVNC
+    DESCRIPTION "RabbitVNC server plugin"
+    )
 set(CMAKE_CXX_STANDARD 17)
 
 if(NOT TARGET Service)

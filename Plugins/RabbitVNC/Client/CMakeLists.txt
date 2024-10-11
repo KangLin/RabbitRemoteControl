@@ -1,6 +1,8 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(RabbitVNC)
+project(RabbitVNC
+    DESCRIPTION "RabbitVNC client plugin"
+    )
 
 SET(RabbitVNC_SRC_LIBS RabbitVNC Client)
 

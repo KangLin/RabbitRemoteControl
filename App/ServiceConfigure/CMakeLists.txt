@@ -5,7 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
-project(RabbitRemoteControlServiceConfigure LANGUAGES CXX)
+project(RabbitRemoteControlServiceConfigure
+    LANGUAGES CXX
+    DESCRIPTION "Rabbit remote control service configure application"
+    )
 
 if(WIN32)
     set(RabbitRemoteControlServiceConfigure_RCC_FILES Resource/App.rc)

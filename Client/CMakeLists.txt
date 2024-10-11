@@ -6,7 +6,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "verbose")
 
-project(Client LANGUAGES CXX)
+project(Client
+    LANGUAGES CXX
+    DESCRIPTION "Client library"
+    )
 
 option(USE_FROM_OPENGL "Use opengl from" OFF)
 if(USE_FROM_OPENGL)

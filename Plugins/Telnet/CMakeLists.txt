@@ -1,6 +1,7 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(Telnet)
+project(Telnet
+    DESCRIPTION "Telnet plugin")
 
 set(_telnet_libs Terminal)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Network Widgets)

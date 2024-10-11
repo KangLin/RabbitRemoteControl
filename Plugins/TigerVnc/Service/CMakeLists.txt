@@ -1,6 +1,9 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(TigerVNC)
+project(TigerVNC
+    DESCRIPTION "TigerVNC service plugin"
+    )
+
 set(CMAKE_CXX_STANDARD 17)
 
 if(NOT TARGET Service)

@@ -1,6 +1,8 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(FreeRDP)
+project(FreeRDP
+    DESCRIPTION "FreeRDP service plugin"
+    )
 
 SET(SRC_LIBS freerdp-server freerdp-shadow
     freerdp-shadow-subsystem freerdp-client freerdp Service)

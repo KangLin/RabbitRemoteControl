@@ -1,6 +1,9 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(RabbitRemoteControlApp LANGUAGES CXX)
+project(RabbitRemoteControlApp
+    LANGUAGES CXX
+    DESCRIPTION "Rabbit remote control client application"
+    )
 
 set(SOURCE_FILES
     main.cpp

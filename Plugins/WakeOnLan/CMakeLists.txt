@@ -1,6 +1,8 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(WakeOnLan)
+project(WakeOnLan
+    DESCRIPTION "Wake on lan plugin"
+    )
 
 SET(WakeOnLan_LIBS Client)
 

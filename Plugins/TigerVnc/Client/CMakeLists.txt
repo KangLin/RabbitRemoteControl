@@ -1,6 +1,8 @@
 # Author: Kang Lin <kl222@126.com>
 
-project(TigerVNC)
+project(TigerVNC
+    DESCRIPTION "TigerVNC client plugin"
+    )
 
 SET(TigerVNC_SRC_LIBS tigervnc Client)
 

@@ -10,7 +10,9 @@ if(NOT QtService_FOUND)
     return()
 endif()
 
-project(Service LANGUAGES CXX)
+project(Service LANGUAGES CXX
+    DESCRIPTION "Service library"
+    )
 
 set(Service_LIBS QtService Channel)
 
