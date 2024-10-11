@@ -26,7 +26,7 @@ const QString CPluginWakeOnLan::Protocol() const
 
 const QString CPluginWakeOnLan::Name() const
 {
-    return "Wake on lan";
+    return "WakeOnLan";
 }
 
 const QString CPluginWakeOnLan::DisplayName() const

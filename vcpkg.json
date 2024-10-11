@@ -45,8 +45,7 @@
         "libjpeg-turbo",
         "libpng",
         "pixman",
-        "libssh",
-        "ffmpeg"
+        "libssh"
       ]
     },
 

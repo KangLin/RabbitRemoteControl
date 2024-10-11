@@ -16,7 +16,7 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.6.3]
+        qt_version: [6.6.2]
         include:
           - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
@@ -32,7 +32,7 @@ jobs:
 
     env:
       RabbitRemoteControl_VERSION: v0.0.27
-      VCPKGGITCOMMITID: 2ddc10c8afa00a762a69f21f6427849fe906ede0
+      VCPKGGITCOMMITID: 9558037875497b9db8cf38fcd7db68ec661bffe7
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
