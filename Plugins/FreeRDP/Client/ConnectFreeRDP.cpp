@@ -1464,7 +1464,7 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
     //qDebug(log) << "CConnectFreeRdp::cb_end_paint";
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
-    int ninvalid;
+    INT32 ninvalid;
     HGDI_RGN cinvalid;
     REGION16 invalidRegion;
     RECTANGLE_16 invalidRect;
@@ -1480,6 +1480,10 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
     
     if (!hdc || !hdc->hwnd || !hdc->hwnd->invalid)
 		return FALSE;
+
+    rdpGdi* gdi = context->gdi;
+    if (gdi->suppressOutput)
+        return TRUE;
 
     HGDI_WND hwnd = context->gdi->primary->hdc->hwnd;
     ninvalid = hwnd->ninvalid; //无效区数量
@@ -1507,6 +1511,7 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 	if (!region16_is_empty(&invalidRegion))
 	{
 		extents = region16_extents(&invalidRegion);
+        //qDebug(log) << extents->left << extents->top << extents->right << extents->bottom;
         pThis->UpdateBuffer(extents->left,
                             extents->top,
                             extents->right - extents->left,

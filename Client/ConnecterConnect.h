@@ -9,8 +9,9 @@
 /*!
  * \~chinese 插件的连接者接口，此接口仅由插件使用。
  *   所有的需要 CConnect 的插件连接者均需要从此接口派生。
- *   - 默认实例化 CConnect* ,并调用 CConnect::Connect() 和 CConnect::Disconnect()
+ *   - 默认实例化 CConnect* , 并调用 CConnect::Connect() 和 CConnect::Disconnect()
  *   - 客户端插件接口由 CPluginClientThread 派生，则实现一个后台线程处理多个连接。
+ *   - 客户端插件接口不是由 CPluginClientThread 派生，则实现在主线程处理一个连接。
  *
  * \~english The connector interface of the plug-in,
  *           which is only used by the plug-in.
@@ -20,6 +21,8 @@
  *    and CConnect::Disconnect()
  *  - The plugin interface is derived from CPluginClientThread,
  *    Implements a background thread to handle multiple connections.
+ *  - The plugin interface is not derived from CPluginClientThread,
+ *    Implements handle a connection in main thread.
  *
  * \~
  * \see CConnect
