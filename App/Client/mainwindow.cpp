@@ -315,7 +315,7 @@ void MainWindow::on_actionAbout_triggered()
     });
     if(!szInfo.isEmpty())
         szInfo = tr("### Plugin") + "\n" + szInfo;
-    qDebug(log) << "Info:" << szInfo;
+    qDebug(log) << "Info:" << szInfo.toStdString().c_str();
     about->m_szDetails = szInfo;
     if(about->isHidden())
     {
