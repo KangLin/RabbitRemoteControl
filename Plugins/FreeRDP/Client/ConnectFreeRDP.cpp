@@ -20,6 +20,7 @@
 #include "freerdp/channels/rdpgfx.h"
 #include "freerdp/channels/cliprdr.h"
 #include "freerdp/client/cmdline.h"
+#include <freerdp/gdi/video.h>
 
 #include "RabbitCommonTools.h"
 #include "ConvertKeyCode.h"
@@ -105,7 +106,16 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         qCritical(log) << "settings is null";
         return OnInitReturnValue::Fail;
     }
-    
+
+    char* argv[]= {(char*)QApplication::applicationFilePath().toStdString().c_str()};
+    int argc = sizeof(argv) / sizeof(char*);
+    nRet = freerdp_client_settings_parse_command_line(settings, argc, argv, TRUE);
+    if (nRet)
+    {
+        nRet = freerdp_client_settings_command_line_status_print(settings, nRet, argc, argv);
+        return OnInitReturnValue::Fail;
+    }
+
 #if FreeRDP_VERSION_MAJOR >= 3
     if (!stream_dump_register_handlers(pRdpContext,
                                        CONNECTION_STATE_MCS_CREATE_REQUEST,
@@ -838,13 +848,31 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
         qDebug(log) << "channel" << e->name << "connected";
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParameter->GetClipboard());
-    } else {
+    }
 #if FreeRDP_VERSION_MAJOR >= 3
+    else
         freerdp_client_OnChannelConnectedEventHandler(pContext, e);
 #else
+    else if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
+    {
+        if (freerdp_settings_get_bool(pContext->settings, FreeRDP_SoftwareGdi)) {
+            rdpGdi* gdi = pContext->gdi;
+            // See: https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpegfx/da5c75f9-cd99-450c-98c4-014a496942b0
+            gdi_graphics_pipeline_init(gdi, (RdpgfxClientContext*) e->pInterface);
+        }
+        else
+            qDebug(log, "Unimplemented: channel %s connected but libfreerdp is in HardwareGdi mode\n", e->name);
+    }
+    else if (strcmp(e->name, GEOMETRY_DVC_CHANNEL_NAME) == 0)
+    {
+        gdi_video_geometry_init(pContext->gdi, (GeometryClientContext*)e->pInterface);
+    }
+    else if (strcmp(e->name, VIDEO_DATA_DVC_CHANNEL_NAME) == 0)
+    {
+        gdi_video_data_init(pContext->gdi, (VideoClientContext*)e->pInterface);
+    } else
         qDebug(log) << "Unimplemented: channel" << e->name << "connected but we can’t use it";
 #endif
-    }
 }
 
 void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
@@ -860,13 +888,24 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
 		qDebug(log) << "channel" << e->name << "disconnected";
         pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParameter->GetClipboard());
-	} else {
+	}
 #if FreeRDP_VERSION_MAJOR >= 3
+    else
         freerdp_client_OnChannelDisconnectedEventHandler(pContext, e);
 #else
+    else if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0)
+    {
+        if (freerdp_settings_get_bool(pContext->settings, FreeRDP_SoftwareGdi)) {
+            rdpGdi* gdi = pContext->gdi;
+            gdi_graphics_pipeline_uninit(gdi, (RdpgfxClientContext*) e->pInterface);
+        }
+        else
+            qDebug(log, "Unimplemented: channel %s connected but libfreerdp is in HardwareGdi mode\n", e->name);
+    }
+    else
         qDebug(log) << "Unimplemented: channel" << e->name << "disconnected but we can’t use it";
 #endif
-	}
+
 }
 
 UINT32 CConnectFreeRDP::GetImageFormat(QImage::Format format)
