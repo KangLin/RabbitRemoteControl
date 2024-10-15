@@ -47,7 +47,6 @@ Q_LOGGING_CATEGORY(App, "App")
 
 int main(int argc, char *argv[])
 {
-    RabbitCommon::CTools::EnableCoreDump();
     int nRet = 0;
     QApplication::setApplicationVersion(RabbitRemoteControl_VERSION);
     QApplication::setApplicationName("RabbitRemoteControlService");
