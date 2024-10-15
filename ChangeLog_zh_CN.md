@@ -8,8 +8,9 @@
 - 客户端：
   - 增加局域网唤醒设备
   - 增加 CConnectDesktop
-  - 重命名 CConnecterDesktop 为 CConnecterConnect
+  - 增加 CClient::Details()
   - 增加 CParameterUI
+  - 重命名 CConnecterDesktop 为 CConnecterConnect
   - 重命名 CConnecterDesktopThread 为 CConnecterThread
 -  FreeRDP: 预设默认参数
   - 修复图像有波纹 [#27](https://github.com/KangLin/RabbitRemoteControl/issues/27) [#21](https://github.com/KangLin/RabbitRemoteControl/issues/27)  

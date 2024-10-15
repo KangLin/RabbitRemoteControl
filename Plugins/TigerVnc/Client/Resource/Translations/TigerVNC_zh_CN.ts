@@ -12,8 +12,8 @@
         <location filename="../../ConnectVnc.cpp" line="310"/>
         <location filename="../../ConnectVnc.cpp" line="330"/>
         <location filename="../../ConnectVnc.cpp" line="399"/>
-        <location filename="../../ConnectVnc.cpp" line="537"/>
-        <location filename="../../ConnectVnc.cpp" line="552"/>
+        <location filename="../../ConnectVnc.cpp" line="548"/>
+        <location filename="../../ConnectVnc.cpp" line="563"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -28,23 +28,23 @@
         <translation>打开 SSH 隧道失败：</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="531"/>
+        <location filename="../../ConnectVnc.cpp" line="542"/>
         <source>Logon to </source>
         <translation>登录到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="535"/>
-        <location filename="../../ConnectVnc.cpp" line="548"/>
+        <location filename="../../ConnectVnc.cpp" line="546"/>
+        <location filename="../../ConnectVnc.cpp" line="559"/>
         <source> fail.</source>
         <translation> 失败。</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="536"/>
+        <location filename="../../ConnectVnc.cpp" line="547"/>
         <source>Please check that the username and password are correct.</source>
         <translation>检查用户名和密码是否正确。</translation>
     </message>
     <message>
-        <location filename="../../ConnectVnc.cpp" line="544"/>
+        <location filename="../../ConnectVnc.cpp" line="555"/>
         <source>Connect to </source>
         <translation>连接到 </translation>
     </message>

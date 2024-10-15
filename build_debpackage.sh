@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -f /usr/lib/`uname -a`-linux-gnu/cmake/Qt6 -a -z "$QT_ROOT" ]; then
+    QT_ROOT=/usr/lib/`uname -a`-linux-gnu/cmake/Qt6
+fi
+
 if [ -n "$1" -a -z "$QT_ROOT" ]; then
 	export QT_ROOT=$1
 fi

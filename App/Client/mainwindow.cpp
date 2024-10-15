@@ -304,19 +304,7 @@ void MainWindow::on_actionAbout_triggered()
     about->m_AppIcon = p.toImage();
     about->m_szCopyrightStartTime = "2020";
     about->m_szVersionRevision = RabbitRemoteControl_REVISION;
-    QString szInfo;
-    
-    m_Client.EnumPlugins([&szInfo](const QString& id, CPluginClient* pPlugin)->int{
-        szInfo += "#### " + pPlugin->DisplayName() + "\n"
-                  + pPlugin->Description() + "\n\r";
-        if(!pPlugin->Details().isEmpty())
-            szInfo += pPlugin->Details() + "\n";
-        return 0;
-    });
-    if(!szInfo.isEmpty())
-        szInfo = tr("### Plugin") + "\n" + szInfo;
-    qDebug(log) << "Info:" << szInfo.toStdString().c_str();
-    about->m_szDetails = szInfo;
+    about->m_szDetails = m_Client.Details();
     if(about->isHidden())
     {
 #ifdef BUILD_QUIWidget

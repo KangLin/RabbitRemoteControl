@@ -169,6 +169,8 @@ public:
             std::function<int(const QString& id, CPluginClient* pPlug)> cb);
 #endif
 
+    const QString Details() const;
+
 private:
     int LoadPlugins();
     int FindPlugins(QDir dir, QStringList filters);
@@ -183,6 +185,7 @@ private:
     QSharedPointer<QTranslator> m_Translator;
     QSharedPointer<CHook> m_Hook;
     CParameterClient m_ParameterClient;
+    QString m_szDetails;
 
 public:
     // QObject interface

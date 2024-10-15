@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>CClient</name>
+    <message>
+        <location filename="../../Client.cpp" line="121"/>
+        <source>### Plugins</source>
+        <translation>### 插件</translation>
+    </message>
+    <message>
+        <location filename="../../Client.cpp" line="206"/>
+        <source>Version:</source>
+        <translation>版本：</translation>
+    </message>
+</context>
+<context>
     <name>CConnecter</name>
     <message>
         <location filename="../../Connecter.cpp" line="87"/>
@@ -180,7 +193,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="503"/>
+        <location filename="../../FrmViewer.cpp" line="509"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新键盘 LED 状态失败</translation>
     </message>
@@ -216,7 +229,7 @@
         <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="42"/>
+        <location filename="../../ParameterCompone/ParameterNetUI.cpp" line="45"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -344,16 +357,6 @@
         <translation>身份认证类型：</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="136"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="139"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="142"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
-        <source>Menu: Tools→Settings→Client→Password-&gt;Enable Save password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="243"/>
         <source>Passphrase:</source>
         <translation>密码：</translation>
@@ -388,20 +391,6 @@
         <translation>输入密码</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="260"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
-        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
-        <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
-        <translation>菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
-    </message>
-    <message>
-        <source>Save password</source>
-        <translation type="vanished">保存密码</translation>
-    </message>
-    <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="209"/>
         <source>Private file:</source>
         <translation>私钥文件：</translation>
@@ -427,6 +416,26 @@
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
         <translation>公钥和私钥文件都为空，用系统公钥和私钥文件。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="114"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="117"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="260"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
+        <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
+        <translation>菜单: 工具→设置→客户端→密码→允许查看密码</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="136"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="139"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="142"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="282"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
+        <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
+        <source>Menu: Tools→Settings→Client→Password→Enable Save password</source>
+        <translation>菜单：工具→设置→客户端→密码→允许保存密码</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="198"/>
@@ -498,99 +507,104 @@
     <message>
         <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="26"/>
         <source>Wake on lan</source>
-        <translation type="unfinished"></translation>
+        <translation>局域网唤醒</translation>
     </message>
     <message>
         <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="43"/>
         <source>Mac:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="61"/>
+        <source>Network Interface:</source>
+        <translation>网络接口：</translation>
+    </message>
+    <message>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="82"/>
         <source>Broadcast address:</source>
-        <translation type="unfinished"></translation>
+        <translation>广播地址：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="81"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="92"/>
         <source>Port:</source>
-        <translation type="unfinished">端口：</translation>
+        <translation>端口：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="108"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="119"/>
         <source>Password:</source>
-        <translation type="unfinished">密码：</translation>
+        <translation>密码：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="118"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="186"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="129"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="189"/>
         <source>A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>长度为 6 的密码或六字节十六进制</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="125"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="128"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="131"/>
-        <source>Menu: Tools→Settings→Client→Password-&gt;Enable view password</source>
-        <translation type="unfinished">菜单: 工具→设置→客户端→密码-&gt;允许查看密码</translation>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="136"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="139"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="142"/>
+        <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
+        <translation>菜单: 工具→设置→客户端→密码→允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="147"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="150"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="153"/>
-        <source>Menu: Tools→Settings→Client→Password-&gt;Enable Save password</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="158"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="161"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="164"/>
+        <source>Menu: Tools→Settings→Client→Password→Enable Save password</source>
+        <translation>菜单：工具→设置→客户端→密码→允许保存密码</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="179"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="190"/>
         <source>Repeat:</source>
-        <translation type="unfinished"></translation>
+        <translation>重复：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="189"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="200"/>
         <source>Interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>间隔：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="209"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="220"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>毫秒</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="222"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="233"/>
         <source>Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>延迟：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="236"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="247"/>
         <source>s</source>
-        <translation type="unfinished"></translation>
+        <translation>秒</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="116"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="126"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="137"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="118"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="128"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="139"/>
         <source>Error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="117"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="119"/>
         <source>The broadcast address is error</source>
-        <translation type="unfinished"></translation>
+        <translation>广播地址错误</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="127"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="129"/>
         <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>密码错误。长度为 6 的密码或六字节十六进制</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="138"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="140"/>
         <source>The mac address is error</source>
-        <translation type="unfinished"></translation>
+        <translation>MAC 地址错误</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="192"/>
+        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="195"/>
         <source>Please checked save password to enable</source>
-        <translation type="unfinished">请选中保存密码按钮</translation>
+        <translation>请选中保存密码按钮</translation>
     </message>
 </context>
 </TS>

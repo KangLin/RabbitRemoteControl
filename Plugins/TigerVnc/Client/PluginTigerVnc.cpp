@@ -49,11 +49,15 @@ const QIcon CPluginTigerVnc::Icon() const
     return QIcon::fromTheme("network-wired");
 }
 
+const QString CPluginTigerVnc::Version() const
+{
+    return PluginTigerVNC_VERSION;
+}
+
 const QString CPluginTigerVnc::Details() const
 {
     QString szDetails;
 #ifdef HAVE_LIBSSH
-    szDetails += "\n";
     QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
     CChannelSSHTunnel channel(parameter);
     szDetails += channel.GetDetails();

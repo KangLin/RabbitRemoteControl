@@ -21,22 +21,22 @@
         <translation>協議版本錯誤</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="932"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="939"/>
         <source>Connect to local socket server %1:%2</source>
         <translation>連接本地 socket 服務 %1:%2</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="938"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="945"/>
         <source> fail</source>
         <translation>失敗</translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="960"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="967"/>
         <source>Connect to local socket server </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="964"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="971"/>
         <source>fail</source>
         <translation type="unfinished"></translation>
     </message>

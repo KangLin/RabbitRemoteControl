@@ -18,7 +18,11 @@
 #ifdef HAVE_PCAPPLUSPLUS
     #include <Logger.h>
     static Q_LOGGING_CATEGORY(logPcpp, "WOL.PCPP")
-    void Pcpp_Logger(pcpp::Logger::LogLevel logLevel, const std::string& logMessage, const std::string& file, const std::string& method, const int line)
+    void Pcpp_Logger(pcpp::Logger::LogLevel logLevel,
+                     const std::string& logMessage,
+                     const std::string& file,
+                     const std::string& method,
+                     const int line)
     {
         switch(logLevel)
         {
@@ -47,7 +51,8 @@ CClient::CClient(QObject *parent) : QObject(parent),
 
 #ifdef HAVE_PCAPPLUSPLUS
     pcpp::Logger::getInstance().setLogPrinter(Pcpp_Logger);
-    pcpp::Logger::getInstance().setAllModulesToLogLevel(pcpp::Logger::LogLevel::Debug);
+    pcpp::Logger::getInstance().setAllModulesToLogLevel(
+        pcpp::Logger::LogLevel::Debug);
 #endif
 
     qApp->installEventFilter(this);
@@ -84,6 +89,7 @@ CClient::~CClient()
 
 int CClient::LoadPlugins()
 {
+    int nRet = 0;
     foreach (QObject *plugin, QPluginLoader::staticInstances())
     {
         CPluginClient* p = qobject_cast<CPluginClient*>(plugin);
@@ -106,11 +112,16 @@ int CClient::LoadPlugins()
 
     QStringList filters;
 #if defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
-        filters << "*PluginClient*.dll";
+    filters << "*PluginClient*.dll";
 #else
-        filters << "*PluginClient*.so";
+    filters << "*PluginClient*.so";
 #endif
-    return FindPlugins(szPath, filters);
+    nRet = FindPlugins(szPath, filters);
+    if(!m_szDetails.isEmpty())
+        m_szDetails = tr("### Plugins") + "\n" + m_szDetails;
+
+    qDebug(log) << ("Client details:\n" + Details()).toStdString().c_str();
+    return nRet;
 }
 
 int CClient::FindPlugins(QDir dir, QStringList filters)
@@ -189,6 +200,13 @@ int CClient::AppendPlugin(CPluginClient *p)
         "InitTranslator",
         Qt::DirectConnection,
         Q_RETURN_ARG(int, val));
+
+    m_szDetails += "#### " + p->DisplayName() + "\n"
+              + tr("Version:") + " " + p->Version() + "  \n"
+              + p->Description() + "\n";
+    if(!p->Details().isEmpty())
+        m_szDetails += p->Details() + "\n";
+
     return 0;
 }
 
@@ -340,6 +358,11 @@ int CClient::EnumPlugins(std::function<int(const QString &, CPluginClient *)> cb
     return nRet;
 }
 #endif
+
+const QString CClient::Details() const
+{
+    return m_szDetails;
+}
 
 void CClient::slotHookKeyboardChanged()
 {

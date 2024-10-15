@@ -38,6 +38,9 @@ SET(TigerVNC_UI_FILES
     DlgGetUserPasswordVNC.ui
     )
 
+list(APPEND TIGERVNC_DEFINITIONS
+    PluginTigerVNC_VERSION="${RabbitRemoteControl_VERSION}")
+
 ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     ISPLUGIN
     VERSION ${RabbitRemoteControl_VERSION}

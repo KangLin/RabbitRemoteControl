@@ -74,6 +74,8 @@ public:
     /// \~chinese 描述
     /// \~english Plugin description.
     virtual const QString Description() const = 0;
+    //! Version
+    virtual const QString Version() const = 0;
     virtual const QIcon Icon() const;
     /*!
      * \~chinese 显示更多细节。

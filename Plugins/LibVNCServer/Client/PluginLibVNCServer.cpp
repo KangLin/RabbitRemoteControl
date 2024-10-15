@@ -45,11 +45,15 @@ const QIcon CPluginLibVNCServer::Icon() const
     return QIcon::fromTheme("network-wired");
 }
 
+const QString CPluginLibVNCServer::Version() const
+{
+    return PluginLibVNCServer_VERSION;
+}
+
 const QString CPluginLibVNCServer::Details() const
 {
     QString szDetails;
 #ifdef HAVE_LIBSSH
-    szDetails += "\n";
     QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
     CChannelSSHTunnel channel(parameter);
     szDetails += channel.GetDetails();

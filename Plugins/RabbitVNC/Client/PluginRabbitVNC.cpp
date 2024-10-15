@@ -53,6 +53,11 @@ const QIcon CPluginRabbitVNC::Icon() const
     return QIcon::fromTheme("network-wired");
 }
 
+const QString CPluginRabbitVNC::Version() const
+{
+    return PluginRabbitVNC_VERSION;
+}
+
 CConnecter *CPluginRabbitVNC::CreateConnecter(const QString &szID)
 {
     if(Id() == szID)

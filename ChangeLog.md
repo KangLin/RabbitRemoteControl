@@ -8,8 +8,9 @@
 - Client:
   - Add wake on lan
   - Add CConnectDesktop
-  - Rename CConnecterDesktop to CConnecterConnect
+  - Add CClient::Details()
   - Add CParameterUI
+  - Rename CConnecterDesktop to CConnecterConnect
   - Rename CConnecterDesktopThread to CConnecterThread
 -  FreeRDP: prepare default settings    
   - Fix ripple [#27](https://github.com/KangLin/RabbitRemoteControl/issues/27) [#21](https://github.com/KangLin/RabbitRemoteControl/issues/27)  

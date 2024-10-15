@@ -44,6 +44,11 @@ const QIcon CPluginWakeOnLan::Icon() const
     return QIcon::fromTheme("tools");
 }
 
+const QString CPluginWakeOnLan::Version() const
+{
+    return PluginWakeOnLan_VERSION;
+}
+
 const QString CPluginWakeOnLan::Details() const
 {
     QString szDetails;

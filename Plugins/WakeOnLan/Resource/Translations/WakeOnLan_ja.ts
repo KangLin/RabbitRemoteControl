@@ -2,11 +2,39 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP">
 <context>
+    <name>CFrmWakeOnLan</name>
+    <message>
+        <location filename="../../FrmWakeOnLan.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmWakeOnLan.ui" line="35"/>
+        <source>OK(&amp;O)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmWakeOnLan.ui" line="42"/>
+        <source>Cancel(&amp;C)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CPluginWakeOnLan</name>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="27"/>
-        <location filename="../../PluginWakeOnLan.cpp" line="32"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="34"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="39"/>
         <source>Wake on lan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginWakeOnLan.cpp" line="58"/>
+        <source>version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginWakeOnLan.cpp" line="61"/>
+        <source>Pcap lib version info: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

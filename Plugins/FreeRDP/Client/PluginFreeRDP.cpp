@@ -19,7 +19,6 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
 {
     qInfo(log) << "FreeRDP version:" << freerdp_get_version_string()
                         << "revision:" << freerdp_get_build_revision();
-    qDebug(log) << Details();
 
     static wLogCallbacks* pCbLog = new wLogCallbacks;
     BOOL bRet = WLog_SetLogAppenderType(WLog_GetRoot(), WLOG_APPENDER_CALLBACK);
@@ -89,6 +88,11 @@ const QIcon CPluginFreeRDP::Icon() const
     return QIcon::fromTheme("windows");
 }
 
+const QString CPluginFreeRDP::Version() const
+{
+    return PluginFreeDP_VERSION;
+}
+
 /*!
  * \brief Show the plugin depends on the freerdp version 
  */
@@ -114,7 +118,6 @@ const QString CPluginFreeRDP::Details() const
     szDetails += freerdp_get_build_config();
 
 #ifdef HAVE_LIBSSH
-    szDetails += "\n";
     QSharedPointer<CParameterChannelSSH> parameter(new CParameterChannelSSH());
     CChannelSSHTunnel channel(parameter);
     szDetails += channel.GetDetails();
