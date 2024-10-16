@@ -92,10 +92,10 @@ if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini)
     configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
         ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini
         COPYONLY)
-    INSTALL_FILE(SOURCES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
-        DESTINATION etc
-        COMPONENT Application)
 endif()
+INSTALL_FILE(SOURCES ${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
+    DESTINATION etc
+    COMPONENT Application)
 
 if(WIN32)
     install(FILES Resource/icons/rabbit-green/ico/app.ico
