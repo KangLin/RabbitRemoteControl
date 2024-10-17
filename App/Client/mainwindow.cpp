@@ -42,20 +42,22 @@
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "App.MainWindow")
+static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-      m_pDockListConnects(nullptr),
-      m_pSignalStatus(nullptr),
-      ui(new Ui::MainWindow),
-      m_pView(nullptr),
-      m_pFullScreenToolBar(nullptr),
-      m_ptbZoom(nullptr),
-      m_psbZoomFactor(nullptr),
-      m_pGBViewZoom(nullptr),
-      m_pRecentMenu(nullptr),
-      m_pDockFavorite(nullptr),
-      m_pFavoriteView(nullptr)
+    m_pDockListConnects(nullptr),
+    m_pSignalStatus(nullptr),
+    ui(new Ui::MainWindow),
+    m_pScreenShot(nullptr),
+    m_pView(nullptr),
+    m_pFullScreenToolBar(nullptr),
+    m_ptbZoom(nullptr),
+    m_psbZoomFactor(nullptr),
+    m_pGBViewZoom(nullptr),
+    m_pRecentMenu(nullptr),
+    m_pDockFavorite(nullptr),
+    m_pFavoriteView(nullptr)
 {
     bool check = false;
 
@@ -158,6 +160,14 @@ MainWindow::MainWindow(QWidget *parent)
                         this, SLOT(slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)));
 #endif
         Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigRecordVideoStatus(CFrmViewer::RecordVideoStatus)),
+                        this, SLOT(slotRecordVideoStatus(CFrmViewer::RecordVideoStatus)));
+        Q_ASSERT(check);
+        check = connect(m_pView, &CView::sigRecordVideoError,
+                        this, [&](int nRet, QString szText) {
+                            slotError(nRet, szText);
+                            on_actionRecordVideo_triggered(false);
+                        });
         this->setCentralWidget(m_pView);
     }
 
@@ -209,6 +219,29 @@ MainWindow::MainWindow(QWidget *parent)
         m_pGBViewZoom->setEnabled(false);
     }
     ui->actionZoomToWindow_Z->setChecked(true);
+
+    m_pScreenShot = new QToolButton(ui->toolBar);
+    m_pScreenShot->setPopupMode(QToolButton::InstantPopup);
+    QAction* pAction = ui->actionScreenshot;
+    m_pScreenShot->setIcon(pAction->icon());
+    m_pScreenShot->setText(pAction->text());
+    m_pScreenShot->setToolTip(pAction->toolTip());
+    m_pScreenShot->setStatusTip(pAction->statusTip());
+    m_pScreenShot->setCheckable(pAction->isCheckable());
+    m_pScreenShot->setChecked(pAction->isChecked());
+    m_pScreenShot->addAction(ui->actionScreenshot);
+    m_pScreenShot->addAction(ui->actionRecordVideo);
+    check = connect(m_pScreenShot, &QToolButton::triggered,
+                    this, [&](QAction* pAction) {
+        m_pScreenShot->setIcon(pAction->icon());
+        m_pScreenShot->setText(pAction->text());
+        m_pScreenShot->setToolTip(pAction->toolTip());
+        m_pScreenShot->setStatusTip(pAction->statusTip());
+        m_pScreenShot->setCheckable(pAction->isCheckable());
+        m_pScreenShot->setChecked(pAction->isChecked());
+    });
+    Q_ASSERT(check);
+    ui->toolBar->insertWidget(ui->actionSettings, m_pScreenShot);
 
     EnableMenu(false);
 
@@ -364,6 +397,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
     if(isFullScreen())
     {
+        qDebug(log) << "Exit full screen";
         ui->actionFull_screen_F->setIcon(QIcon::fromTheme("view-fullscreen"));
         ui->actionFull_screen_F->setText(tr("Full screen(&F)"));
         ui->actionFull_screen_F->setToolTip(tr("Full screen"));
@@ -397,6 +431,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
         return;
     }
 
+    qDebug(log) << "Entry full screen";
     emit sigFullScreen();
     //setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     this->showFullScreen();
@@ -455,6 +490,9 @@ void MainWindow::on_actionFull_screen_F_triggered()
                         SLOT(on_actionTabBar_B_toggled(bool)));
         Q_ASSERT(check);
     }
+
+    emit sigRecordVideoStatus(ui->actionRecordVideo);
+
     m_pFullScreenToolBar->show();
 }
 
@@ -582,10 +620,13 @@ void MainWindow::EnableMenu(bool bEnable)
         m_ptbZoom->setEnabled(bEnable);
     if(m_psbZoomFactor)
         m_psbZoomFactor->setEnabled(bEnable);
+    if(m_pScreenShot)
+        m_pScreenShot->setEnabled(bEnable);
     ui->actionClone->setEnabled(bEnable);
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionCurrent_connect_parameters->setEnabled(bEnable);
     ui->actionScreenshot->setEnabled(bEnable);
+    ui->actionRecordVideo->setEnabled(bEnable);
     ui->actionDisconnect_D->setEnabled(bEnable);
 }
 
@@ -1086,7 +1127,8 @@ void MainWindow::on_actionScreenshot_triggered()
     if(!m_pView || !m_pView->GetCurrentView()) return;
     QString szFile = m_Parameter.GetScreenShotPath()
             + QDir::separator()
-            + QDateTime::currentDateTime().toLocalTime().toString("yyyy_MM_dd_hh_mm_ss_zzz")
+            + QDateTime::currentDateTime().toLocalTime()
+                           .toString("yyyy_MM_dd_hh_mm_ss_zzz")
             + ".jpg";
     if(szFile.isEmpty()) return;
     int nRet = m_pView->ScreenShot(szFile, m_Parameter.GetScreenShot());
@@ -1110,6 +1152,71 @@ void MainWindow::on_actionScreenshot_triggered()
         }
     }
     return ;
+}
+
+void MainWindow::on_actionRecordVideo_triggered(bool checked)
+{
+    QAction* pAction = ui->actionRecordVideo;
+
+    qDebug(logRecord) << "MainWindow::on_actionRecordVideo_triggered()"
+                      << "Enable:" << pAction->isEnabled()
+                      << "Checked:" << checked;
+
+    if(!m_pView || !m_pView->GetCurrentView()) return;
+
+    if(!pAction->isEnabled()) return;
+
+    if(checked) {
+        QString szFile = m_Parameter.GetScreenShotPath()
+        + QDir::separator()
+            + QDateTime::currentDateTime().toLocalTime()
+                  .toString("yyyy_MM_dd_hh_mm_ss_zzz")
+            + ".mp4";
+        if(szFile.isEmpty()) return;
+        m_pView->slotRecordVideoStart(szFile);
+        return;
+    }
+
+    m_pView->slotRecordVideoStop();
+    return;
+}
+
+void MainWindow::slotRecordVideoStatus(CFrmViewer::RecordVideoStatus status)
+{
+    qDebug(logRecord) << "MainWindow::slotRecordVideoStatus()" << status;
+    QIcon icon = QIcon::fromTheme("media-record");
+    QString szTitle = tr("Record video");
+    QAction* pAction = ui->actionRecordVideo;
+    switch(status) {
+    case CFrmViewer::RecordVideoStatus::NO:
+        szTitle = tr("Record video");
+        pAction->setEnabled(false);
+        pAction->setChecked(false);
+        break;
+    case CFrmViewer::RecordVideoStatus::Recording:
+        icon = QIcon::fromTheme("media-playback-stop");
+        szTitle = tr("Stop record video");
+        pAction->setChecked(true);
+        pAction->setEnabled(true);
+        break;
+    case CFrmViewer::RecordVideoStatus::Error:
+        on_actionRecordVideo_triggered(false);
+    case CFrmViewer::RecordVideoStatus::Stop:
+        szTitle = tr("Start record video");
+        icon = QIcon::fromTheme("media-playback-start");
+        pAction->setChecked(false);
+        pAction->setEnabled(true);
+        break;
+    default:
+        pAction->setEnabled(false);
+    }
+
+    pAction->setIcon(icon);
+    pAction->setText(szTitle);
+    pAction->setToolTip(szTitle);
+    pAction->setStatusTip(szTitle);
+    pAction->setWhatsThis(szTitle);
+    emit sigRecordVideoStatus(pAction);
 }
 
 // [Get the widget that settings client parameters]

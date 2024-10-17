@@ -14,8 +14,7 @@
    <string>Rabbit Remote Control</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="app">
-    <normaloff>.</normaloff>.</iconset>
+   <iconset theme="app"/>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
@@ -24,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -43,8 +42,7 @@
       <string>Zoom</string>
      </property>
      <property name="icon">
-      <iconset theme="zoom">
-       <normaloff>.</normaloff>.</iconset>
+      <iconset theme="zoom"/>
      </property>
      <addaction name="actionZoom_window_to_remote_desktop"/>
      <addaction name="actionZoomToWindow_Z"/>
@@ -71,8 +69,7 @@
       <string>Connect(&amp;C)</string>
      </property>
      <property name="icon">
-      <iconset theme="network-wired">
-       <normaloff>.</normaloff>.</iconset>
+      <iconset theme="network-wired"/>
      </property>
     </widget>
     <addaction name="menuConnect_C"/>
@@ -92,6 +89,7 @@
      <string>Tools(&amp;T)</string>
     </property>
     <addaction name="actionScreenshot"/>
+    <addaction name="actionRecordVideo"/>
     <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
@@ -121,7 +119,6 @@
    <addaction name="actionFull_screen_F"/>
    <addaction name="actionTabBar_B"/>
    <addaction name="separator"/>
-   <addaction name="actionScreenshot"/>
    <addaction name="actionCurrent_connect_parameters"/>
    <addaction name="actionSettings"/>
    <addaction name="separator"/>
@@ -129,8 +126,7 @@
   </widget>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="help-about"/>
    </property>
    <property name="text">
     <string>About(&amp;A)</string>
@@ -150,8 +146,7 @@
   </action>
   <action name="actionUpdate">
    <property name="icon">
-    <iconset theme="system-software-update">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="system-software-update"/>
    </property>
    <property name="text">
     <string>Update(&amp;U)</string>
@@ -194,8 +189,7 @@
   </action>
   <action name="actionFull_screen_F">
    <property name="icon">
-    <iconset theme="view-fullscreen">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="view-fullscreen"/>
    </property>
    <property name="text">
     <string>Full screen(&amp;F)</string>
@@ -221,8 +215,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-original">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-original"/>
    </property>
    <property name="text">
     <string>Original size(&amp;O)</string>
@@ -245,8 +238,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-fit-best">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-fit-best"/>
    </property>
    <property name="text">
     <string>Zoom to window(&amp;Z)</string>
@@ -292,8 +284,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset theme="window-close">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="window-close"/>
    </property>
    <property name="text">
     <string>Exit(&amp;E)</string>
@@ -313,8 +304,7 @@
   </action>
   <action name="actionDisconnect_D">
    <property name="icon">
-    <iconset theme="network-wireless">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="network-wireless"/>
    </property>
    <property name="text">
     <string>Disconnect(&amp;D)</string>
@@ -334,8 +324,7 @@
   </action>
   <action name="actionOpenRRCFile">
    <property name="icon">
-    <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="document-open"/>
    </property>
    <property name="text">
     <string>Open(&amp;O) rabbit remote control file</string>
@@ -366,8 +355,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="tabbar">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="tabbar"/>
    </property>
    <property name="text">
     <string>TabBar(&amp;B)</string>
@@ -390,8 +378,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-in">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-in"/>
    </property>
    <property name="text">
     <string>Zoom In</string>
@@ -408,8 +395,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="zoom-out">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="zoom-out"/>
    </property>
    <property name="text">
     <string>Zoom Out</string>
@@ -423,8 +409,7 @@
   </action>
   <action name="actionZoom_window_to_remote_desktop">
    <property name="icon">
-    <iconset theme="folder-remote">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="folder-remote"/>
    </property>
    <property name="text">
     <string>Zoom window to remote desktop</string>
@@ -438,8 +423,7 @@
   </action>
   <action name="actionScreenshot">
    <property name="icon">
-    <iconset theme="camera-photo">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="camera-photo"/>
    </property>
    <property name="text">
     <string>Screenshot</string>
@@ -456,8 +440,7 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="emblem-system">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="emblem-system"/>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -471,8 +454,7 @@
   </action>
   <action name="actionCurrent_connect_parameters">
    <property name="icon">
-    <iconset theme="system-settings">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="system-settings"/>
    </property>
    <property name="text">
     <string>Current connect parameters</string>
@@ -489,8 +471,7 @@
   </action>
   <action name="actionClone">
    <property name="icon">
-    <iconset theme="edit-copy">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="edit-copy"/>
    </property>
    <property name="text">
     <string>Clone current connect</string>
@@ -504,8 +485,7 @@
   </action>
   <action name="actionAdd_to_favorite">
    <property name="icon">
-    <iconset theme="emblem-favorite">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="emblem-favorite"/>
    </property>
    <property name="text">
     <string>Add to favorite</string>
@@ -522,8 +502,7 @@
   </action>
   <action name="actionOpenListConnections">
    <property name="icon">
-    <iconset theme="folder-open">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="folder-open"/>
    </property>
    <property name="text">
     <string>Open the list of connections(&amp;O)</string>
@@ -546,8 +525,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="menu">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="menu"/>
    </property>
    <property name="text">
     <string>Main menu bar(&amp;M)</string>
@@ -583,6 +561,17 @@
    </property>
    <property name="whatsThis">
     <string>Status bar</string>
+   </property>
+  </action>
+  <action name="actionRecordVideo">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="media-record"/>
+   </property>
+   <property name="text">
+    <string>Record video</string>
    </property>
   </action>
  </widget>

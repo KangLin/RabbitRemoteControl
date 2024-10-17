@@ -17,11 +17,19 @@
     #include <X11/keysymdef.h>
 #endif
 
+#include "RecordVideo.h"
+
 #undef KeyPress
+
 static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
+static Q_LOGGING_CATEGORY(logRecord, "Client.FrmViewer.Record")
+
+int g_FrmViewerRecordVideoStatus = qRegisterMetaType<CFrmViewer::RecordVideoStatus>();
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
+    , m_RecordVideoStatus(RecordVideoStatus::Stop)
+    , m_pRecordVideo(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     //setAttribute(Qt::WA_OpaquePaintEvent);
@@ -43,6 +51,7 @@ CFrmViewer::CFrmViewer(QWidget *parent)
 CFrmViewer::~CFrmViewer()
 {
     qDebug(log) << "CFrmViewer::~CFrmViewer()";
+    slotRecordVideoStop();
 }
 
 QRectF CFrmViewer::GetAspectRationRect()
@@ -132,6 +141,9 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
         qDebug() << "CFrmViewer is hidden";
         return;
     }
+
+    if(m_pRecordVideo && RecordVideoStatus::Recording == m_RecordVideoStatus )
+        emit m_pRecordVideo->sigUpdate(m_Desktop);
 
     paintDesktop();
 }
@@ -521,4 +533,57 @@ QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
     if(-1 == w)
         height = m_DesktopSize.height();
     return m_Desktop.copy(x, y, width, height);
+}
+
+void CFrmViewer::slotRecordVideoStart(const QString &szFile)
+{
+    qDebug(logRecord) << "CFrmViewer::slotRecordVideoStart()" << szFile;
+    if(m_pRecordVideo) {
+        m_pRecordVideo->exit();
+    }
+
+    m_pRecordVideo = new CRecordVideoThread();
+    if(m_pRecordVideo) {
+        bool check = false;
+        check = connect(
+            m_pRecordVideo,
+            &CRecordVideoThread::sigStatusChanged,
+            this, [&](CFrmViewer::RecordVideoStatus status){
+                m_RecordVideoStatus = status;
+                emit sigRecordVideoStatusChanged(m_RecordVideoStatus);
+            });
+        Q_ASSERT(check);
+        check = connect(m_pRecordVideo,
+                        SIGNAL(sigError(int,QString)),
+                        this, SIGNAL(sigRecordVideoError(int,QString)));
+        Q_ASSERT(check);
+    } else {
+        qCritical(log) << "Create record video thread fail";
+        emit sigRecordVideoStatusChanged(RecordVideoStatus::Error);
+        return;
+    }
+
+    m_pRecordVideo->SetFile(szFile);
+    m_pRecordVideo->start();
+    m_RecordVideoStatus = RecordVideoStatus::Starting;
+    emit sigRecordVideoStatusChanged(m_RecordVideoStatus);
+}
+
+void CFrmViewer::slotRecordVideoStop()
+{
+    qDebug(logRecord) << "CFrmViewer::slotRecordVideoStop()";
+    if(!m_pRecordVideo) return;
+
+    m_pRecordVideo->exit();
+    m_RecordVideoStatus = RecordVideoStatus::Stopping;
+    emit sigRecordVideoStatusChanged(m_RecordVideoStatus);
+
+    // Don't delete it. See: CRecordVideoThread
+    m_pRecordVideo = nullptr;
+}
+
+CFrmViewer::RecordVideoStatus CFrmViewer::GetRecordVideoStatus()
+{
+    qDebug(logRecord) << "CFrmViewer::GetRecordVideoStatus()" << m_RecordVideoStatus;
+    return m_RecordVideoStatus;
 }

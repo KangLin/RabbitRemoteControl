@@ -7,9 +7,11 @@
 static Q_LOGGING_CATEGORY(log, "Client.ConnectThread")
 
 CConnectThread::CConnectThread(CConnecterThread *pConnect)
-    : QThread(), // Note that the parent object pointer cannot be set here.
-                 // The object is also deleted when the parent object (CConnecterThread) is destroyed.
-                 // See also: CConnecterThread::Connect()
+    // Note that the parent object pointer cannot be set here.
+    // If set the parent, the object is also deleted
+    // when the parent object (CConnecterThread) is destroyed.
+    // Because it is deleted when it is finished.
+    : QThread(),
     m_pConnecter(pConnect)
 {
     bool check = false;
