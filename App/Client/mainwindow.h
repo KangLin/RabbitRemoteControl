@@ -97,6 +97,8 @@ private Q_SLOTS:
     void slotUpdateName();
 
     void on_actionScreenshot_triggered();
+    void on_actionRecordVideo_triggered();
+    void slotRecordVideoStatus(CView::RecordVideo status);
     void on_actionSettings_triggered();
     void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
@@ -192,7 +194,7 @@ private Q_SLOTS:
     void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
     void slotEnableSystemTrayIcon();
-    
+
 private:
     QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };

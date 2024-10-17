@@ -158,6 +158,9 @@ MainWindow::MainWindow(QWidget *parent)
                         this, SLOT(slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)));
 #endif
         Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(sigRecordVideoStatus(CView::RecordVideo)),
+                        this, SLOT(slotRecordVideoStatus(CView::RecordVideo)));
+        Q_ASSERT(check);
         this->setCentralWidget(m_pView);
     }
 
@@ -586,6 +589,7 @@ void MainWindow::EnableMenu(bool bEnable)
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionCurrent_connect_parameters->setEnabled(bEnable);
     ui->actionScreenshot->setEnabled(bEnable);
+    ui->actionRecordVideo->setEnabled(bEnable);
     ui->actionDisconnect_D->setEnabled(bEnable);
 }
 
@@ -1086,7 +1090,8 @@ void MainWindow::on_actionScreenshot_triggered()
     if(!m_pView || !m_pView->GetCurrentView()) return;
     QString szFile = m_Parameter.GetScreenShotPath()
             + QDir::separator()
-            + QDateTime::currentDateTime().toLocalTime().toString("yyyy_MM_dd_hh_mm_ss_zzz")
+            + QDateTime::currentDateTime().toLocalTime()
+                           .toString("yyyy_MM_dd_hh_mm_ss_zzz")
             + ".jpg";
     if(szFile.isEmpty()) return;
     int nRet = m_pView->ScreenShot(szFile, m_Parameter.GetScreenShot());
@@ -1110,6 +1115,57 @@ void MainWindow::on_actionScreenshot_triggered()
         }
     }
     return ;
+}
+
+void MainWindow::on_actionRecordVideo_triggered()
+{
+    if(!m_pView || !m_pView->GetCurrentView()) return;
+
+    QAction* pAction = ui->actionRecordVideo;
+    if(!pAction->isEnabled()) return;
+
+    if(pAction->isChecked()) {
+        m_pView->slotRecordVideoStop();
+        return;
+    }
+
+    QString szFile = m_Parameter.GetScreenShotPath()
+                     + QDir::separator()
+                     + QDateTime::currentDateTime().toLocalTime()
+                           .toString("yyyy_MM_dd_hh_mm_ss_zzz")
+                     + ".mp4";
+    if(szFile.isEmpty()) return;
+    m_pView->slotRecordVideoStart(szFile);
+}
+
+void MainWindow::slotRecordVideoStatus(CView::RecordVideo status)
+{
+    QIcon icon = QIcon::fromTheme("media-record");
+    QString szTitle = tr("Record video");
+    QAction* pAction = ui->actionRecordVideo;
+    switch(status) {
+    case CView::RecordVideo::NO:
+        szTitle = tr("Record video");
+        pAction->setEnabled(false);
+        pAction->setChecked(false);
+        break;
+    case CView::RecordVideo::Recording:
+        icon = QIcon::fromTheme("media-playback-stop");
+        szTitle = tr("Stop");
+        pAction->setChecked(true);
+        break;
+    case CView::RecordVideo::Stop:
+        szTitle = tr("Start");
+        icon = QIcon::fromTheme("media-playback-start");
+        pAction->setChecked(false);
+        break;
+    }
+
+    pAction->setIcon(icon);
+    pAction->setText(szTitle);
+    pAction->setToolTip(szTitle);
+    pAction->setStatusTip(szTitle);
+    pAction->setWhatsThis(szTitle);
 }
 
 // [Get the widget that settings client parameters]

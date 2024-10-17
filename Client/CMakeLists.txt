@@ -46,6 +46,7 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     WakeOnLan/WakeOnLanQt.h
     WakeOnLan/ParameterWakeOnLan.h
     WakeOnLan/ParameterWakeOnLanUI.h
+    RecordVideo.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -94,6 +95,7 @@ list(APPEND CLIENT_SOURCE_FILES
     WakeOnLan/ConnectWakeOnLan.cpp
     DlgInputPassword.cpp
     Hook.cpp
+    RecordVideo.cpp
     )
 
 set(CLIENT_UI_FILES

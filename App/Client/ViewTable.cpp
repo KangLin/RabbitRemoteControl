@@ -65,6 +65,16 @@ void CViewTable::slotCurrentChanged(int index)
         emit sigAdaptWindows(pView->AdaptWindows());
     } else // is terminal windows
         emit sigAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Disable);
+
+    CFrmViewer* pFrmViewer = pView->GetViewer();
+    RecordVideo status = RecordVideo::NO;
+    if(pFrmViewer) {
+        if(pFrmViewer->GetRecordVideoStatus())
+            status = RecordVideo::Recording;
+        else
+            status = RecordVideo::Stop;
+    }
+    emit sigRecordVideoStatus(status);
 }
 
 void CViewTable::slotTabCloseRequested(int index)
@@ -329,4 +339,26 @@ QSize CViewTable::GetDesktopSize()
     m_pTab->resize(pScroll->frameSize());
     resize(m_pTab->frameSize());
     return frameSize();
+}
+
+void CViewTable::slotRecordVideoStart(const QString &szFile, bool bRemoteDesktop)
+{
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
+    if(!pScroll) return;
+    CFrmViewer* pView = pScroll->GetViewer();
+    if(!pView) return;
+    int nRet = pView->RecordVideoStart(szFile);
+    if(nRet) return;
+    emit sigRecordVideoStatus(RecordVideo::Recording);
+}
+
+void CViewTable::slotRecordVideoStop()
+{
+    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
+    if(!pScroll) return;
+    CFrmViewer* pView = pScroll->GetViewer();
+    if(!pView) return;
+    int nRet = pView->RecordVideoStop();
+    if(nRet) return;
+    emit sigRecordVideoStatus(RecordVideo::Stop);
 }

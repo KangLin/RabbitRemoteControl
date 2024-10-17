@@ -22,6 +22,7 @@ static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
+    , m_bRecordVideo(false)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     //setAttribute(Qt::WA_OpaquePaintEvent);
@@ -132,6 +133,8 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
         qDebug() << "CFrmViewer is hidden";
         return;
     }
+
+    emit m_RecordVideo.sigUpdate(m_Desktop);
 
     paintDesktop();
 }
@@ -521,4 +524,31 @@ QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
     if(-1 == w)
         height = m_DesktopSize.height();
     return m_Desktop.copy(x, y, width, height);
+}
+
+int CFrmViewer::RecordVideoStart(const QString &szFile)
+{
+    int nRet = 0;
+
+    nRet = m_RecordVideo.Start(szFile);
+    if(nRet)
+        return nRet;
+
+    m_bRecordVideo = true;
+    return nRet;
+}
+
+int CFrmViewer::RecordVideoStop()
+{
+    int nRet = 0;
+    nRet = m_RecordVideo.Stop();
+    if(nRet)
+        return nRet;
+    m_bRecordVideo = false;
+    return nRet;
+}
+
+bool CFrmViewer::GetRecordVideoStatus()
+{
+    return m_bRecordVideo;
 }

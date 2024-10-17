@@ -21,6 +21,8 @@
 #include <QSettings>
 #include <QMutex>
 
+#include "RecordVideo.h"
+
 /**
  * \~chinese
  * \brief 
@@ -86,7 +88,10 @@ public:
     QSize GetDesktopSize();
 
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
-    
+    virtual int RecordVideoStart(const QString& szFile);
+    virtual int RecordVideoStop();
+    virtual bool GetRecordVideoStatus();
+
     enum LED_STATE{
         Unknown = -1,
         ScrollLock = 1,
@@ -94,7 +99,7 @@ public:
         CapsLock = 1 << 2,
     };
     Q_ENUMS(LED_STATE)
-    
+
 public Q_SLOTS:
     void slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = ADAPT_WINDOWS::Original);
     int slotSetZoomFactor(double newZoomFactor);
@@ -162,7 +167,10 @@ private:
 
     ADAPT_WINDOWS m_AdaptWindows;
     double m_dbZoomFactor;
-    
+
+    CRecordVideo m_RecordVideo;
+    bool m_bRecordVideo;
+
     int ReSize(int width, int height);
     void paintDesktop();
     int TranslationMousePoint(QPointF inPos, QPointF &outPos);
