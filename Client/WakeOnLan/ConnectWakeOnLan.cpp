@@ -98,7 +98,8 @@ int CConnectWakeOnLan::OnProcess()
     return -1;
 }
 
-QString CConnectWakeOnLan::GetMac(const QString& szTargetIp, const QString &szSourceIp, int nTimeout)
+QString CConnectWakeOnLan::GetMac(const QString& szTargetIp,
+                                  const QString &szSourceIp, int nTimeout)
 {
 #ifdef HAVE_PCAPPLUSPLUS
     pcpp::MacAddress sourceMac;

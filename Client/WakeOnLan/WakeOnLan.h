@@ -8,6 +8,9 @@
 #include <stdint.h>
 #include <string>
 
+/*!
+ * \brief Wake on lan
+ */
 class CWakeOnLan {
    public:
     CWakeOnLan(const std::string& szBroadcastAddress = "255.255.255.255");
@@ -64,6 +67,14 @@ class CWakeOnLan {
                                    size_t sizeOfSecureOn);
 
 protected:
+    /*!
+     * \brief Send Packet
+     * \param data
+     * \param size
+     * \param addr
+     * \param port
+     * \return 0: Success; other fail
+     */
     virtual int SendPacket(const char* data, int64_t size, std::string addr, uint16_t port) = 0;
 
 private:
