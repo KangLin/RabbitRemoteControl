@@ -89,7 +89,7 @@ if(ANDROID)
 endif()
 
 if(NOT EXISTS ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini)
-    configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt.ini
+    configure_file(${CMAKE_SOURCE_DIR}/etc/RabbitRemoteControl_logqt_debug.ini
         ${CMAKE_BINARY_DIR}/etc/RabbitRemoteControl_logqt.ini
         COPYONLY)
 endif()
