@@ -64,6 +64,7 @@ private:
     CClient m_Client;
     QMap<CConnecter*, QString> m_ConfigureFiles;
     QVector<CConnecter*> m_Connecters;
+    QAction* m_pActionConnect;
     
     ///////// Disconnect /////////
 private Q_SLOTS:
@@ -146,8 +147,9 @@ private Q_SLOTS:
     ///////// Zoom ///////// 
 private:
     QToolButton* m_ptbZoom;
-    QSpinBox* m_psbZoomFactor;
+    QAction* m_pActionZoom;
     QActionGroup* m_pGBViewZoom;
+    QSpinBox* m_psbZoomFactor;
 private Q_SLOTS:
     void on_actionZoom_window_to_remote_desktop_triggered();
     void on_actionOriginal_O_changed();

@@ -61,11 +61,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     
-    RabbitCommon::CTools::AddStyleMenu(ui->menuTools);
-    ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
-
     setFocusPolicy(Qt::NoFocus);
-
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     setAcceptDrops(true);
 
@@ -115,6 +111,9 @@ MainWindow::MainWindow(QWidget *parent)
         tabifyDockWidget(m_pDockFavorite, m_pDockListConnects);
     }
 
+    RabbitCommon::CTools::AddStyleMenu(ui->menuTools);
+    ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
+
     m_pRecentMenu = new RabbitCommon::CRecentMenu(tr("Recently connected"),
                                   QIcon::fromTheme("document-open-recent"),
                                                   this);
@@ -142,28 +141,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionUpdate->setIcon(updater.windowIcon());
 #endif
 
-    //TODO: Change view
-    m_pView = new CViewTable(this);
-    if(m_pView)
-    {
-        m_pView->setFocusPolicy(Qt::NoFocus);
-        check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
-                        this, SLOT(slotCloseView(const QWidget*)));
-        Q_ASSERT(check);
-#ifdef USE_FROM_OPENGL
-        check = connect(m_pView, SIGNAL(sigAdaptWindows(const CFrmViewerOpenGL::ADAPT_WINDOWS)),
-                        this, SLOT(slotAdaptWindows(const CFrmViewerOpenGL::ADAPT_WINDOWS)));
-#else
-        check = connect(m_pView, SIGNAL(sigAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)),
-                        this, SLOT(slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)));
-#endif
-        Q_ASSERT(check);
-        this->setCentralWidget(m_pView);
-    }
-
-    m_Client.EnumPlugins(this);
-    m_Client.LoadSettings();
-
     QToolButton* tbConnect = new QToolButton(ui->toolBar);
     tbConnect->setFocusPolicy(Qt::NoFocus);
     tbConnect->setPopupMode(QToolButton::InstantPopup);
@@ -173,7 +150,7 @@ MainWindow::MainWindow(QWidget *parent)
     tbConnect->setText(tr("Connect"));
     tbConnect->setToolTip(tr("Connect"));
     tbConnect->setStatusTip(tr("Connect"));
-    ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
+    m_pActionConnect = ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
 
     m_ptbZoom = new QToolButton(ui->toolBar);
     m_ptbZoom->setPopupMode(QToolButton::InstantPopup);
@@ -184,7 +161,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ptbZoom->setStatusTip(tr("Zoom"));
     m_ptbZoom->setToolTip(tr("Zoom"));
     m_ptbZoom->setEnabled(false);
-    ui->toolBar->insertWidget(ui->actionTabBar_B, m_ptbZoom);
+    m_pActionZoom = ui->toolBar->insertWidget(ui->actionTabBar_B, m_ptbZoom);
 
     m_psbZoomFactor = new QSpinBox(ui->toolBar);
     m_psbZoomFactor->setRange(0, 9999999);
@@ -211,9 +188,30 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionZoomToWindow_Z->setChecked(true);
 
     EnableMenu(false);
-
     //TODO: complete the function
     ui->actionZoom_window_to_remote_desktop->setVisible(false);
+
+    //TODO: Change view
+    m_pView = new CViewTable(this);
+    if(m_pView)
+    {
+        m_pView->setFocusPolicy(Qt::NoFocus);
+        check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
+                        this, SLOT(slotCloseView(const QWidget*)));
+        Q_ASSERT(check);
+#ifdef USE_FROM_OPENGL
+        check = connect(m_pView, SIGNAL(sigAdaptWindows(const CFrmViewerOpenGL::ADAPT_WINDOWS)),
+                        this, SLOT(slotAdaptWindows(const CFrmViewerOpenGL::ADAPT_WINDOWS)));
+#else
+        check = connect(m_pView, SIGNAL(sigAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)),
+                        this, SLOT(slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS)));
+#endif
+        Q_ASSERT(check);
+        this->setCentralWidget(m_pView);
+    }
+
+    m_Client.EnumPlugins(this);
+    m_Client.LoadSettings();
 
     check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
                     this, SLOT(slotShortCut()));

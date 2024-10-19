@@ -36,7 +36,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     setFocusPolicy(Qt::NoFocus);
 
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
-    
+    m_ToolBar.addSeparator();
     m_pNail = m_ToolBar.addAction(QIcon::fromTheme("nail"), tr("Nail"),
                                   this, SLOT(slotNail()));
     m_pNail->setCheckable(true);
@@ -44,11 +44,8 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     m_pNail->setToolTip(tr("Nail"));
     m_pNail->setStatusTip(tr("Nail"));
     m_ToolBar.addSeparator();
-    QAction* pFull = m_ToolBar.addAction(QIcon::fromTheme("view-restore"),
-                        tr("Full"), this, SIGNAL(sigExitFullScreen()));
-    pFull->setToolTip(tr("Full"));
-    pFull->setStatusTip(tr("Full"));
-    
+    m_ToolBar.addAction(m_pMain->ui->actionFull_screen_F);
+
     m_ToolBar.addSeparator();
     m_pGBViewZoom = new QActionGroup(this);
     QAction* pZoomToWindow = m_ToolBar.addAction(QIcon::fromTheme("zoom-fit-best"),
@@ -89,25 +86,19 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     pZoomOut->setChecked(m_pMain->ui->actionZoom_Out->isChecked());
 
     m_ToolBar.addSeparator();
-    m_ToolBar.addAction(QIcon::fromTheme("camera-photo"), tr("ScreenShot"),
-                        m_pMain, SLOT(on_actionScreenshot_triggered()));
-    m_ToolBar.addAction(QIcon::fromTheme("emblem-favorite"), tr("Add to favorite"),
-                        m_pMain, SLOT(on_actionAdd_to_favorite_triggered()));
+    m_ToolBar.addAction(m_pMain->ui->actionScreenshot);
+    //m_ToolBar.addAction(m_pMain->ui->actionTabBar_B);
+    //*
     m_pShowTabBar = m_ToolBar.addAction(QIcon::fromTheme("tabbar"), tr("TabBar"),
                                         this, SLOT(slotShowTabBar()));
     m_pShowTabBar->setCheckable(true);
     m_pShowTabBar->setStatusTip(tr("Tab bar"));
     m_pShowTabBar->setToolTip(tr("Tab bar"));
-    QAction* pDisconnect = m_ToolBar.addAction(QIcon::fromTheme("network-wireless"),
-                        tr("Disconnect"), this, SIGNAL(sigDisconnect()));
-    pDisconnect->setToolTip(tr("Disconnect"));
-    pDisconnect->setStatusTip(tr("Disconnect"));
+    //*/
+    m_ToolBar.addAction(m_pMain->ui->actionDisconnect_D);
     m_ToolBar.addSeparator();
-    QAction* pExit = m_ToolBar.addAction(QIcon::fromTheme("window-close"),
-                        tr("Exit"), this, SIGNAL(sigExit()));
-    pExit->setToolTip(tr("Exit"));
-    pExit->setStatusTip(tr("Exit"));
-    
+    m_ToolBar.addAction(m_pMain->ui->actionExit_E);
+
     m_ToolBar.show();
 
     check = connect(&m_Timer, SIGNAL(timeout()),
@@ -122,6 +113,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
 CFrmFullScreenToolBar::~CFrmFullScreenToolBar()
 {
     qDebug(log) << "CFrmFullScreenToolBar::~CFrmFullScreenToolBar()";
+
     m_Timer.stop();
     delete ui;
 }
