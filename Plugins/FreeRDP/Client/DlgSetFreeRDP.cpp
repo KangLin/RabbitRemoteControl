@@ -42,7 +42,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
             this, [&](const QString& host){
                 ui->wgWakeOnLan->slotHostChanged(host);
             });
-    ui->wgWakeOnLan->SetParameter(&m_pSettings->m_WakeOnLan);
+    ui->wgWakeOnLan->SetParameter(m_pSettings);
 
     m_pProxy = new CParameterProxyUI(ui->tabWidget);
     m_pProxy->SetParameter(&m_pSettings->m_Proxy);

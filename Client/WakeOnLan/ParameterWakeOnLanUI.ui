@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>363</width>
-    <height>212</height>
+    <width>403</width>
+    <height>223</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,6 +48,13 @@
          <widget class="QLineEdit" name="leMac">
           <property name="inputMask">
            <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbLookup">
+          <property name="text">
+           <string>Lookup</string>
           </property>
          </widget>
         </item>

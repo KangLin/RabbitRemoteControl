@@ -4,7 +4,7 @@
 #define PARAMETERWAKEONLANUI_H
 
 #include <QWidget>
-#include "ParameterWakeOnLan.h"
+#include "ParameterBase.h"
 #include "ParameterUI.h"
 
 namespace Ui {
@@ -49,13 +49,14 @@ private slots:
     void on_pbShow_clicked();
     void on_pbSave_clicked();
     void on_cbNetworkInterface_currentIndexChanged(int index);
+    void on_pbLookup_clicked();
 
 private:
     QString GetSubNet(const QString& szIP, const QString& szMask);
 
 private:
     Ui::CParameterWakeOnLanUI *ui;
-    CParameterWakeOnLan* m_pWakeOnLan;
+    CParameterBase* m_pParameter;
 };
 
 #endif // PARAMETERWAKEONLANUI_H

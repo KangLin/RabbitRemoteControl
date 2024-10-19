@@ -15,13 +15,14 @@ public:
                                QObject *parent = nullptr);
     virtual ~CConnectWakeOnLan();
 
+    static QString GetMac(const QString& szTargetIp, const QString& szSourceIp, int nTimeout);
+
 protected:
     virtual OnInitReturnValue OnInit() override;
     virtual int OnClean() override;
     virtual int OnProcess() override;
 
-private:
-    QString GetMac(const QString& szTargetIp, const QString& szSourceIp, int nTimeout);
+private:   
     void ListInterfaces();
 
 private:

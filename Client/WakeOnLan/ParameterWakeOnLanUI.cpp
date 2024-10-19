@@ -13,12 +13,14 @@
 #include <QLoggingCategory>
 #include "ParameterWakeOnLanUI.h"
 #include "ui_ParameterWakeOnLanUI.h"
+#include "ConnectWakeOnLan.h"
 
 static Q_LOGGING_CATEGORY(log, "WOL.Parameter.UI")
 
 CParameterWakeOnLanUI::CParameterWakeOnLanUI(QWidget *parent)
     : CParameterUI(parent)
     , ui(new Ui::CParameterWakeOnLanUI)
+    ,m_pParameter(nullptr)
 {
     ui->setupUi(this);
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -71,21 +73,22 @@ CParameterWakeOnLanUI::~CParameterWakeOnLanUI()
 
 int CParameterWakeOnLanUI::SetParameter(CParameter *pParameter)
 {
-    m_pWakeOnLan = qobject_cast<CParameterWakeOnLan*>(pParameter);
-    if(!m_pWakeOnLan) return -1;
+    m_pParameter = qobject_cast<CParameterBase*>(pParameter);
+    if(!m_pParameter) return -1;
 
-    ui->gbWakeOnLan->setChecked(m_pWakeOnLan->GetEnable());
-    ui->leMac->setText(m_pWakeOnLan->GetMac());
-    ui->cbNetworkInterface->setCurrentText(m_pWakeOnLan->GetNetworkInterface());
-    ui->leBroadcastAddress->setText(m_pWakeOnLan->GetBroadcastAddress());
-    ui->sbPort->setValue(m_pWakeOnLan->GetPort());
-    ui->lePassword->setText(m_pWakeOnLan->GetPassword());
-    ui->pbSave->setChecked(m_pWakeOnLan->GetSavePassword());
+    auto wol = &m_pParameter->m_WakeOnLan;
+    ui->gbWakeOnLan->setChecked(wol->GetEnable());
+    ui->leMac->setText(wol->GetMac());
+    ui->cbNetworkInterface->setCurrentText(wol->GetNetworkInterface());
+    ui->leBroadcastAddress->setText(wol->GetBroadcastAddress());
+    ui->sbPort->setValue(wol->GetPort());
+    ui->lePassword->setText(wol->GetPassword());
+    ui->pbSave->setChecked(wol->GetSavePassword());
     on_pbSave_clicked();
-    ui->pbShow->setEnabled(m_pWakeOnLan->GetParameterClient()->GetViewPassowrd());
-    ui->sbRepeat->setValue(m_pWakeOnLan->GetRepeat());
-    ui->sbInterval->setValue(m_pWakeOnLan->GetInterval());
-    ui->sbDelay->setValue(m_pWakeOnLan->GetDelay());
+    ui->pbShow->setEnabled(wol->GetParameterClient()->GetViewPassowrd());
+    ui->sbRepeat->setValue(wol->GetRepeat());
+    ui->sbInterval->setValue(wol->GetInterval());
+    ui->sbDelay->setValue(wol->GetDelay());
     return 0;
 }
 
@@ -147,18 +150,19 @@ bool CParameterWakeOnLanUI::CheckValidity(bool validity)
 
 int CParameterWakeOnLanUI::Accept()
 {
-    if(!m_pWakeOnLan) return -1;
+    if(!m_pParameter) return -1;
 
-    m_pWakeOnLan->SetEnable(ui->gbWakeOnLan->isChecked());
-    m_pWakeOnLan->SetMac(ui->leMac->text());
-    m_pWakeOnLan->SetNetworkInterface(ui->cbNetworkInterface->currentText());
-    m_pWakeOnLan->SetBroadcastAddress(ui->leBroadcastAddress->text());
-    m_pWakeOnLan->SetPort(ui->sbPort->value());
-    m_pWakeOnLan->SetPassword(ui->lePassword->text());
-    m_pWakeOnLan->SetSavePassword(ui->pbSave->isChecked());
-    m_pWakeOnLan->SetRepeat(ui->sbRepeat->value());
-    m_pWakeOnLan->SetInterval(ui->sbInterval->value());
-    m_pWakeOnLan->SetDelay(ui->sbDelay->value());
+    auto wol = &m_pParameter->m_WakeOnLan;
+    wol->SetEnable(ui->gbWakeOnLan->isChecked());
+    wol->SetMac(ui->leMac->text());
+    wol->SetNetworkInterface(ui->cbNetworkInterface->currentText());
+    wol->SetBroadcastAddress(ui->leBroadcastAddress->text());
+    wol->SetPort(ui->sbPort->value());
+    wol->SetPassword(ui->lePassword->text());
+    wol->SetSavePassword(ui->pbSave->isChecked());
+    wol->SetRepeat(ui->sbRepeat->value());
+    wol->SetInterval(ui->sbInterval->value());
+    wol->SetDelay(ui->sbDelay->value());
 
     return 0;
 }
@@ -251,4 +255,17 @@ QString CParameterWakeOnLanUI::GetSubNet(const QString& szIP, const QString& szM
     std::string szSubNet = inet_ntoa((struct in_addr&)subNet);
     qDebug(log) << "SubNet:" << szSubNet.c_str();
     return szSubNet.c_str();
+}
+
+void CParameterWakeOnLanUI::on_pbLookup_clicked()
+{
+    qDebug(log) << "CParameterWakeOnLanUI::on_pbLookup_clicked()";
+    if(!m_pParameter) return;
+    auto wol = &m_pParameter->m_WakeOnLan;
+    auto net = &m_pParameter->m_Net;
+
+    QString szMac = CConnectWakeOnLan::GetMac(
+        net->GetHost(), wol->GetNetworkInterface(), 1000);
+    if(szMac.isEmpty()) return;
+    ui->leMac->setText(szMac);
 }
