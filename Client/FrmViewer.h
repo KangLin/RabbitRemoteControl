@@ -21,6 +21,8 @@
 #include <QSettings>
 #include <QMutex>
 
+class CRecordVideoThread;
+
 /**
  * \~chinese
  * \brief 
@@ -71,7 +73,7 @@ public:
         KeepAspectRationToWindow = 6, ///< \~english Keep desktop aspectration adapt to windows
                                       ///< \~chinese 保持长宽比缩放到窗口大小,窗口是固定的
     };
-    Q_ENUMS(ADAPT_WINDOWS)
+    Q_ENUM(ADAPT_WINDOWS)
     ADAPT_WINDOWS GetAdaptWindows();
     
     /*!
@@ -85,16 +87,14 @@ public:
 
     QSize GetDesktopSize();
 
-    virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
-    
     enum LED_STATE{
         Unknown = -1,
         ScrollLock = 1,
         NumLock = 1 << 1,
         CapsLock = 1 << 2,
     };
-    Q_ENUMS(LED_STATE)
-    
+    Q_ENUM(LED_STATE)
+
 public Q_SLOTS:
     void slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = ADAPT_WINDOWS::Original);
     int slotSetZoomFactor(double newZoomFactor);
@@ -162,11 +162,34 @@ private:
 
     ADAPT_WINDOWS m_AdaptWindows;
     double m_dbZoomFactor;
-    
+
     int ReSize(int width, int height);
     void paintDesktop();
     int TranslationMousePoint(QPointF inPos, QPointF &outPos);
     QRectF GetAspectRationRect();
+
+public:
+    virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
+
+    enum class RecordVideoStatus {
+        NO,        //! not support record video
+        Starting,
+        Recording,
+        Stopping,
+        Stop,
+        Error
+    };
+    Q_ENUM(RecordVideoStatus)
+    virtual RecordVideoStatus GetRecordVideoStatus();
+public Q_SLOTS:
+    virtual void slotRecordVideoStart(const QString& szFile);
+    virtual void slotRecordVideoStop();
+Q_SIGNALS:
+    void sigRecordVideoStatusChanged(CFrmViewer::RecordVideoStatus status);
+    void sigRecordVideoError(int nRet, QString szText);
+private:
+    CRecordVideoThread* m_pRecordVideo;
+    RecordVideoStatus m_RecordVideoStatus;
 };
 
 #endif // #ifdef USE_FROM_OPENGL

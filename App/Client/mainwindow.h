@@ -99,10 +99,17 @@ private Q_SLOTS:
     void slotUpdateName(const QString& szName);
     void slotUpdateName();
 
-    void on_actionScreenshot_triggered();
     void on_actionSettings_triggered();
     void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
+
+    void on_actionScreenshot_triggered();
+    void on_actionRecordVideo_triggered(bool checked);
+    void slotRecordVideoStatus(CFrmViewer::RecordVideoStatus status);
+public:
+    QToolButton* m_pScreenShot;
+Q_SIGNALS:
+    void sigRecordVideoStatus(QAction* pAction);
 
     ///////// ICE signal /////////
 private:
@@ -146,8 +153,8 @@ private:
 private Q_SLOTS:
     void on_actionFull_screen_F_triggered();
 
-    ///////// Zoom ///////// 
-private:
+    ///////// Zoom /////////
+public:
     QToolButton* m_ptbZoom;
     QAction* m_pActionZoom;
     QActionGroup* m_pGBViewZoom;
@@ -196,7 +203,7 @@ private Q_SLOTS:
     void slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
     void slotSystemTrayIconTypeChanged();
     void slotEnableSystemTrayIcon();
-    
+
 private:
     QSharedPointer<QSystemTrayIcon> m_TrayIcon;
 };

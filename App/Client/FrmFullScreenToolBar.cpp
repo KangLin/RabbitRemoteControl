@@ -12,6 +12,7 @@
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "App.MainWindow.FullScreen")
+static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.FullScreen.Record")
 
 CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent) :
     QWidget(parent,
@@ -25,6 +26,7 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     ),
     ui(new Ui::CFrmFullScreenToolBar),
     m_ToolBar(this),
+    m_pRecordVideo(nullptr),
     m_pMain(pMain),
     m_TimeOut(3000),
     m_isHide(false)
@@ -59,7 +61,8 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
                   SLOT(on_actionKeep_aspect_ration_to_windows_K_triggered()));
     m_pGBViewZoom->addAction(pZoomKeepAspectRationToWindow);
     pZoomKeepAspectRationToWindow->setCheckable(true);
-    pZoomKeepAspectRationToWindow->setChecked(m_pMain->ui->actionKeep_aspect_ration_to_windows_K->isChecked());
+    pZoomKeepAspectRationToWindow->setChecked(
+        m_pMain->ui->actionKeep_aspect_ration_to_windows_K->isChecked());
     QAction* pZoomOrigin = m_ToolBar.addAction(QIcon::fromTheme("zoom-original"),
                     tr("Origin"), m_pMain, SLOT(on_actionOriginal_O_triggered()));
     m_pGBViewZoom->addAction(pZoomOrigin);
@@ -84,17 +87,33 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     m_pGBViewZoom->addAction(pZoomOut);
     pZoomOut->setCheckable(true);
     pZoomOut->setChecked(m_pMain->ui->actionZoom_Out->isChecked());
-
     m_ToolBar.addSeparator();
-    m_ToolBar.addAction(m_pMain->ui->actionScreenshot);
+
+    m_ToolBar.addAction(QIcon::fromTheme("camera-photo"), tr("ScreenShot"),
+                        m_pMain, SLOT(on_actionScreenshot_triggered()));
+    m_pRecordVideo = m_ToolBar.addAction(
+        QIcon::fromTheme("media-record"),
+        tr("Record video"),
+        m_pMain, SLOT(on_actionRecordVideo_triggered(bool)));
+    check = connect(m_pMain, &MainWindow::sigRecordVideoStatus,
+                    this, [&](QAction* pAction){
+                        qDebug(logRecord) << "Receive MainWindow::sigRecordVideoStatus";
+                        m_pRecordVideo->setText(pAction->text());
+                        m_pRecordVideo->setIcon(pAction->icon());
+                        m_pRecordVideo->setEnabled(pAction->isEnabled());
+                        m_pRecordVideo->setCheckable(pAction->isCheckable());
+                        m_pRecordVideo->setChecked(pAction->isChecked());
+                    });
+    Q_ASSERT(check);
+    m_ToolBar.addSeparator();
+
     //m_ToolBar.addAction(m_pMain->ui->actionTabBar_B);
-    //*
     m_pShowTabBar = m_ToolBar.addAction(QIcon::fromTheme("tabbar"), tr("TabBar"),
                                         this, SLOT(slotShowTabBar()));
     m_pShowTabBar->setCheckable(true);
     m_pShowTabBar->setStatusTip(tr("Tab bar"));
     m_pShowTabBar->setToolTip(tr("Tab bar"));
-    //*/
+
     m_ToolBar.addAction(m_pMain->ui->actionDisconnect_D);
     m_ToolBar.addSeparator();
     m_ToolBar.addAction(m_pMain->ui->actionExit_E);
