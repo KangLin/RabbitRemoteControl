@@ -246,7 +246,7 @@ jobs:
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
         working-directory: ${{github.workspace}}
-        #continue-on-error: true
+        continue-on-error: true
         run: |
           #sudo apt update -y -qq
           #sudo apt-get install -y -qq xvfb xpra
@@ -260,9 +260,11 @@ jobs:
           export QT_XCB_GL_INTEGRATION=none
           MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum|awk '{print $1}'`
           echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb: ${MD5SUM}"
-          #ulimit -c unlimited
-          #echo "# sudo sysctl -w kernel.core_pattern=core"
-          #sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
+          echo "Enable core dump ......"
+          ulimit -c unlimited
+          echo "# sudo sysctl -w kernel.core_pattern=core"
+          sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
+          echo "Generate update configure file ......"
           /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
             -f "${{github.workspace}}/update_ubuntu.json" \
             --foc 1 \
@@ -274,6 +276,7 @@ jobs:
       - name: Update version configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
         working-directory: ${{github.workspace}}
+        continue-on-error: true
         run: |
           sudo Xvfb :99 -ac &
           export DISPLAY=:99.0
@@ -282,10 +285,11 @@ jobs:
                --foc 0 \
                --pv ${{env.RabbitRemoteControl_VERSION}}
 
-      - name: dump core
-        if: false
+      - name: Debug core dump
+        if: true
         working-directory: ${{github.workspace}}
         run: |
+          sudo apt install gdb -y -qq
           gdb /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp core
 
       - name: Update artifact
