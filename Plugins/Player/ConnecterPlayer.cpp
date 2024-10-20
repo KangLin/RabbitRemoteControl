@@ -4,24 +4,17 @@
 #include "ConnecterPlayer.h"
 #include "ConnectPlayer.h"
 #include "DlgPlayer.h"
+#include "PluginClient.h"
 
 static Q_LOGGING_CATEGORY(log, "Player.Connecter")
-
-class CMyMenu: public QMenu
-{
-public:
-    CMyMenu(const QString &title, QWidget *parent = nullptr) : QMenu(title, parent){}
-    ~CMyMenu()
-    {
-        qDebug(log) << "CMyMenu::~CMyMenu()";
-    }
-};
 
 CConneterPlayer::CConneterPlayer(CPluginClient *plugin) : CConnecterThread(plugin)
 {
     SetParameter(&m_Parameters);
-    m_pMenu = new CMyMenu(tr("Player"));
-    m_pMenu->setIcon(QIcon::fromTheme("media-player"));
+    m_pMenu = new QMenu(plugin->DisplayName());
+    m_pMenu->setToolTip(plugin->DisplayName());
+    m_pMenu->setStatusTip(plugin->DisplayName());
+    m_pMenu->setIcon(Icon());
     m_pMenu->addAction(QIcon::fromTheme("media-playback-start"), tr("Start"),
                        this, SIGNAL(sigStart()));
     m_pMenu->addAction(QIcon::fromTheme("media-playback-stop"), tr("Stop"),

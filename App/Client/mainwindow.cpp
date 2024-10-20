@@ -647,6 +647,8 @@ void MainWindow::EnableMenu(bool bEnable)
                 ptbPlugin->setPopupMode(QToolButton::InstantPopup);
                 ptbPlugin->setIcon(m->icon());
                 ptbPlugin->setText(m->title());
+                ptbPlugin->setToolTip(m->toolTip());
+                ptbPlugin->setStatusTip(m->statusTip());
                 m_pActionPluginToolBar = ui->toolBar->insertWidget(ui->actionFull_screen_F, ptbPlugin);
             }
         }
