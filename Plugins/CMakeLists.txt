@@ -43,6 +43,7 @@ message(STATUS "BUILD_FREERDP:${BUILD_FREERDP}")
 
 ## Tools
 add_subdirectory(WakeOnLan)
+add_subdirectory(Player)
 
 ## Terminal
 

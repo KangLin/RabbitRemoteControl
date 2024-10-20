@@ -12,16 +12,15 @@
   "default-features": [
     "freerdp",
     "vnc",
-    "wol"
+    "wol",
+    "ffmpeg"
   ],
 
   "features": {
     "freerdp": {
       "description": "freerdp",
       "dependencies": [
-        {
-          "name": "freerdp"
-        }
+          "freerdp"
       ]
     },
 

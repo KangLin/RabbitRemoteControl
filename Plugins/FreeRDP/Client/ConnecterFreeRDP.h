@@ -3,7 +3,6 @@
 #ifndef CCONNECTERFREERDP_H
 #define CCONNECTERFREERDP_H
 
-#include "Connecter.h"
 #include "ConnecterThread.h"
 #include "ParameterFreeRDP.h"
 

@@ -15,6 +15,8 @@
 -  FreeRDP: prepare default settings    
   - Fix ripple [#27](https://github.com/KangLin/RabbitRemoteControl/issues/27) [#21](https://github.com/KangLin/RabbitRemoteControl/issues/27)  
     Because of the default is not set FreeRDP_SupportGraphicsPipeline feature
+- Plugin
+  - Add player
 
 ### v0.0.27
 - Client:

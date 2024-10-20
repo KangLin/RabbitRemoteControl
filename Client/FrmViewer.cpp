@@ -341,6 +341,10 @@ void CFrmViewer::slotSetName(const QString& szName)
 void CFrmViewer::slotUpdateRect(const QImage& image)
 {
     //qDebug(log) << "void CFrmViewer::slotUpdateRect(const QImage& image)" << image;
+    m_Desktop = image;
+    update();
+    return;
+
     QPainter painter(&m_Desktop);
     painter.drawImage(image.rect(), image);
     update();

@@ -79,7 +79,7 @@
   - 生成插件目标名称格式为： PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
   - 实现插件接口 CPluginClient
-    + 如果是阻塞线程模型。一个后台线程处理一个连接。连接是阻塞的。例如：FreeRDP
+    + 如果没有后台线程，或者是阻塞线程模型（一个后台线程处理一个连接。连接是阻塞的）。例如：FreeRDP
       - 从 CPluginClient 派生插件。例如： \ref CPluginFreeRDP
         + 在类声明中实现Qt接口:
           \snippet Plugins/FreeRDP/Client/PluginFreeRDP.h Qt plugin interface
@@ -103,7 +103,7 @@
       - 如果是阻塞线程模型。实现一个后台线程处理一个远程连接，连接是阻塞的。
         可以从 \ref CConnecterThread 派生。例如：\ref CConnecterFreeRDP
         \image html docs/Image/PluginClientBlockSequenceDiagram.svg
-      - 如果非阻塞线程模型。实现一个后台线程处理多个远程连接，连接是非阻塞的。
+      - 如果没有后台线程，或者是非阻塞线程模型(实现一个后台线程处理多个远程连接，连接是非阻塞的)。
         可以从 \ref CConnecterDesktop 派生。
         \image html docs/Image/PluginClientNoBlockSequenDiagram.svg
     + 实现远程控制台，可以从 \ref CConnecterTerminal 派生

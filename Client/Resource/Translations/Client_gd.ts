@@ -9,7 +9,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="206"/>
+        <location filename="../../Client.cpp" line="205"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>

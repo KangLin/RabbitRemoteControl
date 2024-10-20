@@ -82,8 +82,9 @@
 + Write a plugin:
   - The format of the generated plug-in target name is: PluginClient${PROJECT_NAME}
     \include Plugins/FreeRDP/Client/CMakeLists.txt
-  - Implement CPluginClient. 
-    + Blocked: A background thread handles a connection. The connection is blocked.
+  - Implement CPluginClient.
+    + No background thread or Blocked background thread
+      (A background thread handles a connection. The connection is blocked.).
       E.g. FreeRDP
       - Derive from CPluginClient. For example: CPluginFreeRDP 
         + Implement the Qt interface in the class declaration:
@@ -96,7 +97,7 @@
             The translation file (${PROJECT_NAME}_*.ts)) name is associated with it. 
             E.g. CPluginFreeRDP::Name() 
              \include Plugins/FreeRDP/Client/PluginFreeRDP.cpp
-    + No-blocking: One background thread handles multiple connections.(Not used yet)
+    + No-blocking background thread: One background thread handles multiple connections.(Not used yet)
       The connection is non-blocking.
       - Derive from CPluginClientThread.
         + Implement the Qt interface in the class declaration:

@@ -15,6 +15,8 @@
 -  FreeRDP: 预设默认参数
   - 修复图像有波纹 [#27](https://github.com/KangLin/RabbitRemoteControl/issues/27) [#21](https://github.com/KangLin/RabbitRemoteControl/issues/27)  
     原因是没有启用 FreeRDP_SupportGraphicsPipeline 功能。
+- 插件：
+  - 增加播放器
 
 ### v0.0.27
 - 客户端接口:

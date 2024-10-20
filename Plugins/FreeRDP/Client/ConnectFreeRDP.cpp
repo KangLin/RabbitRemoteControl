@@ -55,7 +55,7 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     ,m_pThread(nullptr)
 #endif
 {
-    m_pParameter = dynamic_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
+    m_pParameter = qobject_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParameter);
 }
 

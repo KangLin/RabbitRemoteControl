@@ -81,69 +81,58 @@
         <translation>钉住</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="48"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="49"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="50"/>
         <source>Full</source>
-        <translation>关闭全屏</translation>
+        <translation type="vanished">关闭全屏</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="55"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="52"/>
         <source>Zoom to windows</source>
         <translation>远程桌面缩放到客户端窗口大小</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="61"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="58"/>
         <source>Keep aspect ration zoom to window</source>
         <translation>远程桌面保持纵横比缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="67"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="64"/>
         <source>Origin</source>
         <translation>远程桌面还原到原始大小</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="72"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="69"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="86"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="83"/>
         <source>Zoom Out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="92"/>
         <source>ScreenShot</source>
-        <translation>截屏</translation>
+        <translation type="vanished">截屏</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="94"/>
         <source>Add to favorite</source>
-        <translation>增加到收藏夹</translation>
+        <translation type="vanished">增加到收藏夹</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="107"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="108"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="109"/>
         <source>Exit</source>
-        <translation>退出</translation>
+        <translation type="vanished">退出</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="102"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="103"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="104"/>
         <source>Disconnect</source>
-        <translation>关闭连接</translation>
+        <translation type="vanished">关闭连接</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="96"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="92"/>
         <source>TabBar</source>
         <translation>标签条</translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="99"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="100"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="95"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="96"/>
         <source>Tab bar</source>
         <translation>标签条</translation>
     </message>
@@ -454,9 +443,9 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="43"/>
-        <location filename="../../mainwindow.cpp" line="183"/>
-        <location filename="../../mainwindow.cpp" line="184"/>
-        <location filename="../../mainwindow.cpp" line="185"/>
+        <location filename="../../mainwindow.cpp" line="160"/>
+        <location filename="../../mainwindow.cpp" line="161"/>
+        <location filename="../../mainwindow.cpp" line="162"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
@@ -492,7 +481,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="201"/>
-        <location filename="../../mainwindow.cpp" line="368"/>
+        <location filename="../../mainwindow.cpp" line="366"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -708,7 +697,7 @@
         <translation>连接(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="118"/>
+        <location filename="../../mainwindow.cpp" line="117"/>
         <source>Recently connected</source>
         <translation>最近连接</translation>
     </message>
@@ -718,9 +707,9 @@
         <translation>断开连接(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="173"/>
-        <location filename="../../mainwindow.cpp" line="174"/>
-        <location filename="../../mainwindow.cpp" line="175"/>
+        <location filename="../../mainwindow.cpp" line="150"/>
+        <location filename="../../mainwindow.cpp" line="151"/>
+        <location filename="../../mainwindow.cpp" line="152"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
@@ -729,9 +718,9 @@
         <location filename="../../mainwindow.ui" line="207"/>
         <location filename="../../mainwindow.ui" line="210"/>
         <location filename="../../mainwindow.ui" line="213"/>
+        <location filename="../../mainwindow.cpp" line="367"/>
+        <location filename="../../mainwindow.cpp" line="368"/>
         <location filename="../../mainwindow.cpp" line="369"/>
-        <location filename="../../mainwindow.cpp" line="370"/>
-        <location filename="../../mainwindow.cpp" line="371"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -740,20 +729,20 @@
         <translation type="vanished">ICE 信令状态</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="405"/>
+        <location filename="../../mainwindow.cpp" line="403"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
+        <location filename="../../mainwindow.cpp" line="404"/>
+        <location filename="../../mainwindow.cpp" line="405"/>
         <location filename="../../mainwindow.cpp" line="406"/>
-        <location filename="../../mainwindow.cpp" line="407"/>
-        <location filename="../../mainwindow.cpp" line="408"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="643"/>
-        <location filename="../../mainwindow.cpp" line="661"/>
+        <location filename="../../mainwindow.cpp" line="641"/>
+        <location filename="../../mainwindow.cpp" line="659"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
@@ -761,12 +750,12 @@
         <location filename="../../mainwindow.ui" line="347"/>
         <location filename="../../mainwindow.ui" line="350"/>
         <location filename="../../mainwindow.ui" line="353"/>
-        <location filename="../../mainwindow.cpp" line="653"/>
+        <location filename="../../mainwindow.cpp" line="651"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="254"/>
+        <location filename="../../mainwindow.cpp" line="252"/>
         <source>ICE signal status</source>
         <translation>ICE 信令状态</translation>
     </message>
@@ -775,37 +764,37 @@
         <translation type="vanished">### 插件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="655"/>
+        <location filename="../../mainwindow.cpp" line="653"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="751"/>
+        <location filename="../../mainwindow.cpp" line="749"/>
         <source>Connecting to </source>
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="791"/>
+        <location filename="../../mainwindow.cpp" line="789"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="849"/>
+        <location filename="../../mainwindow.cpp" line="847"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令状态：连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="858"/>
+        <location filename="../../mainwindow.cpp" line="856"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="895"/>
+        <location filename="../../mainwindow.cpp" line="893"/>
         <source>Use message box to display information</source>
         <translation>使用消息框显示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1095"/>
+        <location filename="../../mainwindow.cpp" line="1093"/>
         <source>Save ScreenShot to </source>
         <translation>保存截屏到 </translation>
     </message>
@@ -814,22 +803,22 @@
         <translation type="vanished">错误</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1037"/>
+        <location filename="../../mainwindow.cpp" line="1035"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1038"/>
+        <location filename="../../mainwindow.cpp" line="1036"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1066"/>
+        <location filename="../../mainwindow.cpp" line="1064"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1067"/>
+        <location filename="../../mainwindow.cpp" line="1065"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>
@@ -837,22 +826,22 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../main.cpp" line="64"/>
+        <location filename="../../main.cpp" line="62"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="69"/>
+        <location filename="../../main.cpp" line="67"/>
         <source>Rabbit Remote Control</source>
         <translation>玉兔远程控制</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="70"/>
+        <location filename="../../main.cpp" line="68"/>
         <source>Kang Lin Studio</source>
         <translation>康林工作室</translation>
     </message>
     <message>
-        <location filename="../../main.cpp" line="130"/>
+        <location filename="../../main.cpp" line="128"/>
         <source>End</source>
         <translation>结束</translation>
     </message>

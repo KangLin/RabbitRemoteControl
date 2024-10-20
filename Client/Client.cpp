@@ -165,7 +165,7 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
                 if(m_Plugins.find(p->Id()) == m_Plugins.end())
                 {
                     qInfo(log) << "Success: Load plugin"
-                                  << p->Name() << ":" << szPlugins;
+                                  << p->Name() << "from" << szPlugins;
                     AppendPlugin(p);
                 }
                 else
@@ -173,8 +173,10 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
             }
         }else{
             QString szMsg;
-            szMsg = "load plugin error: " + loader.errorString();
-            qCritical(log) << szMsg;
+            szMsg = "Error: Load plugin fail from " + szPlugins;
+            if(!loader.errorString().isEmpty())
+                szMsg += "; Error: " + loader.errorString();
+            qCritical(log) << szMsg.toStdString().c_str();
         }
     }
 
