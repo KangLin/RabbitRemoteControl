@@ -9,12 +9,6 @@
 
 static Q_LOGGING_CATEGORY(log, "Player.Connect")
 
-class CMaySink : public QVideoSink
-{
-public:
-    CMaySink(QObject *parent = nullptr):QVideoSink(parent) {}
-};
-
 CConnectPlayer::CConnectPlayer(CConneterPlayer* pConnecter)
     : CConnectDesktop(pConnecter)
     , m_pCamera(nullptr)
@@ -32,6 +26,11 @@ CConnectPlayer::CConnectPlayer(CConneterPlayer* pConnecter)
                         f.paint(&painter, rect, option);
                         emit this->sigUpdateRect(img);
                     });
+    Q_ASSERT(check);
+    check = connect(pConnecter, SIGNAL(sigStart()), this, SLOT(slotStart()));
+    Q_ASSERT(check);
+    check = connect(pConnecter, SIGNAL(sigStop()), this , SLOT(slotStop()));
+    Q_ASSERT(check);
 }
 
 CConnectPlayer::~CConnectPlayer()
@@ -39,6 +38,12 @@ CConnectPlayer::~CConnectPlayer()
 }
 
 CConnect::OnInitReturnValue CConnectPlayer::OnInit()
+{
+    slotStart();
+    return OnInitReturnValue::NotUseOnProcess;
+};
+
+void CConnectPlayer::slotStart()
 {
     if(m_pParameters->GetEnableAudioInput()) {
         m_AudioInput.setDevice(QMediaDevices::audioInputs().at(m_pParameters->GetAudioInput()));
@@ -80,22 +85,30 @@ CConnect::OnInitReturnValue CConnectPlayer::OnInit()
     default:
         break;
     }
-
-    return OnInitReturnValue::NotUseOnProcess;
 }
 
 int CConnectPlayer::OnClean()
 {
-    int nRet = 0;
+    slotStop();
+    return 0;
+}
+
+void CConnectPlayer::slotStop()
+{
     switch (m_pParameters->GetType()) {
     case CParameterPlayer::TYPE::Camera:
-        m_pCamera->stop();
+        if(m_pCamera)
+            m_pCamera->stop();
         break;
     case CParameterPlayer::TYPE::Url:
         m_Player.stop();
         break;
     }
-    return nRet;
+
+    if(m_pCamera) {
+        delete m_pCamera;
+        m_pCamera = nullptr;
+    }
 }
 
 void CConnectPlayer::slotClipBoardChanged()

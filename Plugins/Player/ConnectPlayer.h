@@ -26,6 +26,10 @@ public:
     explicit CConnectPlayer(CConneterPlayer* pConnecter);
     virtual ~CConnectPlayer();
 
+public Q_SLOTS:
+    virtual void slotStart();
+    virtual void slotStop();
+
     // CConnectDesktop interface
     virtual void slotClipBoardChanged() override;
 

@@ -60,7 +60,8 @@ void CDlgPlayer::accept()
         m_pParameters->SetName(tr("Camera: ") + QMediaDevices::videoInputs().at(m_pParameters->GetCamera()).description());
         break;
     case CParameterPlayer::TYPE::Url:
-        m_pParameters->SetName(tr("Url: ") + m_pParameters->GetUrl());
+        QFileInfo fi(m_pParameters->GetUrl());
+        m_pParameters->SetName(tr("Url: ") + fi.fileName());
         break;
     }
 

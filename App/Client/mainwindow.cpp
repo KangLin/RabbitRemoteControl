@@ -45,17 +45,19 @@ static Q_LOGGING_CATEGORY(log, "App.MainWindow")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-      m_pDockListConnects(nullptr),
-      m_pSignalStatus(nullptr),
-      ui(new Ui::MainWindow),
-      m_pView(nullptr),
-      m_pFullScreenToolBar(nullptr),
-      m_ptbZoom(nullptr),
-      m_psbZoomFactor(nullptr),
-      m_pGBViewZoom(nullptr),
-      m_pRecentMenu(nullptr),
-      m_pDockFavorite(nullptr),
-      m_pFavoriteView(nullptr)
+    m_pActionPluginMenu(nullptr),
+    m_pActionPluginToolBar(nullptr),
+    m_pDockListConnects(nullptr),
+    m_pSignalStatus(nullptr),
+    ui(new Ui::MainWindow),
+    m_pView(nullptr),
+    m_pFullScreenToolBar(nullptr),
+    m_ptbZoom(nullptr),
+    m_psbZoomFactor(nullptr),
+    m_pGBViewZoom(nullptr),
+    m_pRecentMenu(nullptr),
+    m_pDockFavorite(nullptr),
+    m_pFavoriteView(nullptr)
 {
     bool check = false;
 
@@ -585,6 +587,37 @@ void MainWindow::EnableMenu(bool bEnable)
     ui->actionCurrent_connect_parameters->setEnabled(bEnable);
     ui->actionScreenshot->setEnabled(bEnable);
     ui->actionDisconnect_D->setEnabled(bEnable);
+
+    if(m_pView && bEnable)
+    {
+        auto pWin = m_pView->GetCurrentView();
+        for(auto c : m_Connecters)
+        {
+            if(c->GetViewer() == pWin)
+            {
+                auto m = c->GetMenu(ui->menuTools);
+                if(m_pActionPluginMenu) {
+                    qDebug(log) << "remove action m_pActionPluginMenu";
+                    ui->menuTools->removeAction(m_pActionPluginMenu);
+                    m_pActionPluginMenu = nullptr;
+                }
+                if(m_pActionPluginToolBar) {
+                    qDebug(log) << "remove action m_pActionPluginToolBar";
+                    ui->toolBar->removeAction(m_pActionPluginToolBar);
+                    delete m_pActionPluginToolBar;
+                    m_pActionPluginToolBar = nullptr;
+                }
+                if(!m) return;
+                m_pActionPluginMenu = ui->menuTools->addMenu(m);
+                QToolButton* ptbPlugin = new QToolButton();
+                ptbPlugin->setMenu(m);
+                ptbPlugin->setPopupMode(QToolButton::InstantPopup);
+                ptbPlugin->setIcon(m->icon());
+                ptbPlugin->setText(m->title());
+                m_pActionPluginToolBar = ui->toolBar->insertWidget(ui->actionFull_screen_F, ptbPlugin);
+            }
+        }
+    }
 }
 
 void MainWindow::on_actionExit_E_triggered()

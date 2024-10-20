@@ -17,14 +17,20 @@ public:
     // CConnecter interface
 public:
     virtual qint16 Version() override;
+    virtual QMenu *GetMenu(QWidget *parent = nullptr) override;
     // CConnecterConnect interface
     virtual CConnect *InstanceConnect() override;
+
+Q_SIGNALS:
+    void sigStart();
+    void sigStop();
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
 
 private:
     CParameterPlayer m_Parameters;
+    QMenu* m_pMenu;
 };
 
 #endif // CONNETERPLAYER_H

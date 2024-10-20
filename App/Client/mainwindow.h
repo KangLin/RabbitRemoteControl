@@ -65,6 +65,8 @@ private:
     QMap<CConnecter*, QString> m_ConfigureFiles;
     QVector<CConnecter*> m_Connecters;
     QAction* m_pActionConnect;
+    QAction* m_pActionPluginMenu;
+    QAction* m_pActionPluginToolBar;
     
     ///////// Disconnect /////////
 private Q_SLOTS:

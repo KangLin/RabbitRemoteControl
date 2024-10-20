@@ -168,6 +168,11 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
     return nRet;
 }
 
+QMenu* CConnecter::GetMenu(QWidget* parent)
+{
+    return nullptr;
+}
+
 int CConnecter::Load(QString szFile)
 {
     Q_ASSERT(!szFile.isEmpty());

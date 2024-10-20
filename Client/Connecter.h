@@ -14,6 +14,7 @@
 #include <QMimeData>
 #include <QSettings>
 #include <QMessageBox>
+#include <QMenu>
 
 #include "client_export.h"
 #include "ParameterBase.h"
@@ -142,7 +143,8 @@ public:
      *   \li -1: error
      */
     virtual int OpenDialogSettings(QWidget* parent = nullptr);
-    
+    virtual QMenu* GetMenu(QWidget* parent = nullptr);
+
     /*!
      * \~chinese \brief 从文件中加载参数
      * \~english \brief Load parameters from file
