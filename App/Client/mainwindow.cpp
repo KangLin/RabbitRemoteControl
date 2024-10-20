@@ -569,6 +569,7 @@ void MainWindow::slotZoomFactor(int v)
 
 void MainWindow::slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw)
 {
+    qDebug(log) << "MainWindow::slotAdaptWindows()" << aw;
     if(!m_pView)
         return;
     EnableMenu(true);
@@ -623,34 +624,38 @@ void MainWindow::EnableMenu(bool bEnable)
 
     if(m_pView && bEnable)
     {
-        auto pWin = m_pView->GetCurrentView();
-        for(auto c : m_Connecters)
+        slotLoadPluginMenu();
+    }
+}
+
+void MainWindow::slotLoadPluginMenu()
+{
+    auto pWin = m_pView->GetCurrentView();
+    if(m_pActionPluginMenu) {
+        ui->menuTools->removeAction(m_pActionPluginMenu);
+        m_pActionPluginMenu = nullptr;
+    }
+    if(m_pActionPluginToolBar) {
+        ui->toolBar->removeAction(m_pActionPluginToolBar);
+        delete m_pActionPluginToolBar;
+        m_pActionPluginToolBar = nullptr;
+    }
+    for(auto c : m_Connecters)
+    {
+        if(c->GetViewer() == pWin)
         {
-            if(c->GetViewer() == pWin)
-            {
-                auto m = c->GetMenu(ui->menuTools);
-                if(m_pActionPluginMenu) {
-                    qDebug(log) << "remove action m_pActionPluginMenu";
-                    ui->menuTools->removeAction(m_pActionPluginMenu);
-                    m_pActionPluginMenu = nullptr;
-                }
-                if(m_pActionPluginToolBar) {
-                    qDebug(log) << "remove action m_pActionPluginToolBar";
-                    ui->toolBar->removeAction(m_pActionPluginToolBar);
-                    delete m_pActionPluginToolBar;
-                    m_pActionPluginToolBar = nullptr;
-                }
-                if(!m) return;
-                m_pActionPluginMenu = ui->menuTools->addMenu(m);
-                QToolButton* ptbPlugin = new QToolButton();
-                ptbPlugin->setMenu(m);
-                ptbPlugin->setPopupMode(QToolButton::InstantPopup);
-                ptbPlugin->setIcon(m->icon());
-                ptbPlugin->setText(m->title());
-                ptbPlugin->setToolTip(m->toolTip());
-                ptbPlugin->setStatusTip(m->statusTip());
-                m_pActionPluginToolBar = ui->toolBar->insertWidget(ui->actionFull_screen_F, ptbPlugin);
-            }
+            qDebug(log) << "Load plugin menu";
+            auto m = c->GetMenu(ui->menuTools);
+            if(!m) return;
+            m_pActionPluginMenu = ui->menuTools->addMenu(m);
+            QToolButton* ptbPlugin = new QToolButton();
+            ptbPlugin->setMenu(m);
+            ptbPlugin->setPopupMode(QToolButton::InstantPopup);
+            ptbPlugin->setIcon(m->icon());
+            ptbPlugin->setText(m->title());
+            ptbPlugin->setToolTip(m->toolTip());
+            ptbPlugin->setStatusTip(m->statusTip());
+            m_pActionPluginToolBar = ui->toolBar->insertWidget(ui->actionFull_screen_F, ptbPlugin);
         }
     }
 }
@@ -840,6 +845,8 @@ void MainWindow::slotConnected()
 {
     CConnecter* p = dynamic_cast<CConnecter*>(sender());
     if(!p) return;
+
+    slotLoadPluginMenu();
 
     /* If you put it here, when connected, the view is not displayed.
        So put it in the connect() display view.

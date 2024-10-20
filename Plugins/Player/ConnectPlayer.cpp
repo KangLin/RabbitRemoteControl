@@ -40,6 +40,7 @@ CConnectPlayer::~CConnectPlayer()
 CConnect::OnInitReturnValue CConnectPlayer::OnInit()
 {
     slotStart();
+    emit sigConnected();
     return OnInitReturnValue::NotUseOnProcess;
 };
 
@@ -90,6 +91,7 @@ void CConnectPlayer::slotStart()
 int CConnectPlayer::OnClean()
 {
     slotStop();
+    emit sigDisconnected();
     return 0;
 }
 
