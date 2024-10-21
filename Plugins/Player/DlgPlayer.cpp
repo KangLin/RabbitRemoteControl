@@ -11,6 +11,8 @@
 #include <QLoggingCategory>
 #include <QScreen>
 #include <QGuiApplication>
+#include <QWindowCapture>
+#include <QCapturableWindow>
 #include "DlgPlayer.h"
 #include "ui_DlgPlayer.h"
 
@@ -135,8 +137,16 @@ void CDlgPlayer::on_cmbType_currentIndexChanged(int index)
         ui->cmbScreens->setVisible(true);
         break;
     case CParameterPlayer::TYPE::CaptureWindow:
+    {
+        ui->cmbWindows->clear();
+        auto lstWin = QWindowCapture::capturableWindows();
+        foreach(auto w, lstWin) {
+            qDebug(log) << w.description();
+            ui->cmbWindows->addItem(w.description());
+        }
         ui->cmbWindows->setVisible(true);
         break;
+    }
     default:
         break;
     }
