@@ -67,10 +67,10 @@ private:
     QAction* m_pActionConnect;
 
 private Q_SLOTS:
-    void slotLoadPluginMenu();
+    void slotLoadConnecterMenu();
 private:
-    QAction* m_pActionPluginMenu;
-    QAction* m_pActionPluginToolBar;
+    QAction* m_pActionConnecterMenu;
+    QAction* m_pActionConnecterToolBar;
     
     ///////// Disconnect /////////
 private Q_SLOTS:

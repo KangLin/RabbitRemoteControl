@@ -8,7 +8,9 @@
 
 static Q_LOGGING_CATEGORY(log, "Player.Connecter")
 
-CConneterPlayer::CConneterPlayer(CPluginClient *plugin) : CConnecterThread(plugin)
+CConneterPlayer::CConneterPlayer(CPluginClient *plugin)
+    : CConnecterThread(plugin)
+    , m_pMenu(nullptr)
 {
     SetParameter(&m_Parameters);
     m_pMenu = new QMenu(plugin->DisplayName());
@@ -24,6 +26,8 @@ CConneterPlayer::CConneterPlayer(CPluginClient *plugin) : CConnecterThread(plugi
 CConneterPlayer::~CConneterPlayer()
 {
     qDebug(log) << "CConneterPlayer::~CConneterPlayer()";
+    if(m_pMenu)
+        delete m_pMenu;
 }
 
 qint16 CConneterPlayer::Version()

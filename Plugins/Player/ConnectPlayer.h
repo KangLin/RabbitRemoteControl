@@ -6,11 +6,11 @@
 #pragma once
 
 #include <QtGlobal>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+
 #include <QMediaCaptureSession>
 #include <QMediaPlayer>
 #include <QVideoSink>
-#endif
+
 #include <QAudioOutput>
 #include <QAudioInput>
 #include <QCamera>

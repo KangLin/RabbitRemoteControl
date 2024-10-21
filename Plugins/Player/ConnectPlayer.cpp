@@ -77,7 +77,7 @@ void CConnectPlayer::slotStart()
         m_Player.setVideoSink(&m_VideoSink);
         bool check = connect(&m_Player, &QMediaPlayer::positionChanged,
                              this, [&](qint64 position) {
-            emit sigInformation(tr("Postion: ") + QString::number(position));
+            emit sigInformation(tr("Position: ") + QString::number(position));
         });
         Q_ASSERT(check);
         m_Player.play();

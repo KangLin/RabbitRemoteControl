@@ -46,8 +46,8 @@ static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-    m_pActionPluginMenu(nullptr),
-    m_pActionPluginToolBar(nullptr),
+    m_pActionConnecterMenu(nullptr),
+    m_pActionConnecterToolBar(nullptr),
     m_pDockListConnects(nullptr),
     m_pSignalStatus(nullptr),
     ui(new Ui::MainWindow),
@@ -624,30 +624,30 @@ void MainWindow::EnableMenu(bool bEnable)
 
     if(m_pView && bEnable)
     {
-        slotLoadPluginMenu();
+        slotLoadConnecterMenu();
     }
 }
 
-void MainWindow::slotLoadPluginMenu()
+void MainWindow::slotLoadConnecterMenu()
 {
     auto pWin = m_pView->GetCurrentView();
-    if(m_pActionPluginMenu) {
-        ui->menuTools->removeAction(m_pActionPluginMenu);
-        m_pActionPluginMenu = nullptr;
+    if(m_pActionConnecterMenu) {
+        ui->menuTools->removeAction(m_pActionConnecterMenu);
+        m_pActionConnecterMenu = nullptr;
     }
-    if(m_pActionPluginToolBar) {
-        ui->toolBar->removeAction(m_pActionPluginToolBar);
-        delete m_pActionPluginToolBar;
-        m_pActionPluginToolBar = nullptr;
+    if(m_pActionConnecterToolBar) {
+        ui->toolBar->removeAction(m_pActionConnecterToolBar);
+        delete m_pActionConnecterToolBar;
+        m_pActionConnecterToolBar = nullptr;
     }
-    for(auto c : m_Connecters)
+    foreach(auto c, m_Connecters)
     {
         if(c->GetViewer() == pWin)
         {
             qDebug(log) << "Load plugin menu";
             auto m = c->GetMenu(ui->menuTools);
             if(!m) return;
-            m_pActionPluginMenu = ui->menuTools->addMenu(m);
+            m_pActionConnecterMenu = ui->menuTools->addMenu(m);
             QToolButton* ptbPlugin = new QToolButton();
             ptbPlugin->setMenu(m);
             ptbPlugin->setPopupMode(QToolButton::InstantPopup);
@@ -655,7 +655,7 @@ void MainWindow::slotLoadPluginMenu()
             ptbPlugin->setText(m->title());
             ptbPlugin->setToolTip(m->toolTip());
             ptbPlugin->setStatusTip(m->statusTip());
-            m_pActionPluginToolBar = ui->toolBar->insertWidget(ui->actionFull_screen_F, ptbPlugin);
+            m_pActionConnecterToolBar = ui->toolBar->insertWidget(ui->actionFull_screen_F, ptbPlugin);
         }
     }
 }
@@ -846,7 +846,7 @@ void MainWindow::slotConnected()
     CConnecter* p = dynamic_cast<CConnecter*>(sender());
     if(!p) return;
 
-    slotLoadPluginMenu();
+    slotLoadConnecterMenu();
 
     /* If you put it here, when connected, the view is not displayed.
        So put it in the connect() display view.

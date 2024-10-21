@@ -43,7 +43,9 @@ message(STATUS "BUILD_FREERDP:${BUILD_FREERDP}")
 
 ## Tools
 add_subdirectory(WakeOnLan)
-add_subdirectory(Player)
+if(QT_VERSION GREATER_EQUAL "6.6.0")
+    add_subdirectory(Player)
+endif()
 
 ## Terminal
 
