@@ -45,6 +45,7 @@ private Q_SLOTS:
     void slotEnableAudioOutput(bool bEnable);
 
 private:
+    QRect m_Video;
     QMediaPlayer m_Player;
     QMediaCaptureSession m_CaptureSessioin;
     QVideoSink m_VideoSink;

@@ -18,12 +18,17 @@ CConnectPlayer::CConnectPlayer(CConneterPlayer* pConnecter)
     check = connect(
         &m_VideoSink, &QVideoSink::videoFrameChanged,
         this, [&](const QVideoFrame &frame){
-            QRect rect(0, 0, frame.width(), frame.height());
+            if(m_Video.width() != frame.width()
+                || m_Video.height() != frame.height())
+            {
+                m_Video = QRect(0, 0, frame.width(), frame.height());
+                emit sigSetDesktopSize(m_Video.width(), m_Video.height());
+            }
             QImage img(frame.width(), frame.height(), QImage::Format_ARGB32);
             QPainter painter(&img);
             const QVideoFrame::PaintOptions option;
             QVideoFrame f = frame;
-            f.paint(&painter, rect, option);
+            f.paint(&painter, m_Video, option);
             qDebug(log) << "QVideoSink::videoFrameChanged" << frame << img;
             emit this->sigUpdateRect(img);
         });
