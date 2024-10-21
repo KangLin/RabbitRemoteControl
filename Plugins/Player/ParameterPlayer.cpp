@@ -8,6 +8,8 @@ CParameterPlayer::CParameterPlayer(QObject *parent)
     , m_nCamera(-1)
     , m_nAudioInput(-1)
     , m_bEnableAudioInput(true)
+    , m_bAudioInputMuted(false)
+    , m_fAudioInputVolume(100)
     , m_nAudioOutput(-1)
     , m_bEnableAudioOutput(true)
     , m_bAudioOutputMuted(false)
@@ -67,6 +69,7 @@ int CParameterPlayer::SetAudioInput(int nIndex)
         return 0;
     m_nAudioInput = nIndex;
     SetModified(true);
+    emit sigAudioInput(m_nAudioInput);
     return 0;
 }
 
@@ -82,6 +85,36 @@ int CParameterPlayer::SetEnableAudioInput(bool bEnable)
     m_bEnableAudioInput = bEnable;
     SetModified(true);
     emit sigEnableAudioInput(m_bEnableAudioInput);
+    return 0;
+}
+
+const bool CParameterPlayer::GetAudioInputMuted() const
+{
+    return m_bAudioInputMuted;
+}
+
+int CParameterPlayer::SetAudioInputMuted(bool bMuted)
+{
+    if(m_bAudioInputMuted == bMuted)
+        return 0;
+    m_bAudioInputMuted = bMuted;
+    SetModified(true);
+    emit sigAudioInputMuted(m_bAudioInputMuted);
+    return 0;
+}
+
+const float CParameterPlayer::GetAudioInputVolume() const
+{
+    return m_fAudioInputVolume;
+}
+
+int CParameterPlayer::SetAudioInputVolume(float fVolume)
+{
+    if(m_fAudioInputVolume == fVolume)
+        return 0;
+    m_fAudioInputVolume = fVolume;
+    SetModified(true);
+    emit sigAudioInputVolume(m_fAudioInputVolume);
     return 0;
 }
 
@@ -154,6 +187,8 @@ int CParameterPlayer::OnLoad(QSettings &set)
     set.beginGroup("Audio/Input");
     SetAudioInput(set.value("Device", GetAudioInput()).toInt());
     SetEnableAudioInput(set.value("Enable", GetEnableAudioInput()).toBool());
+    SetAudioInputMuted(set.value("Muted", GetAudioInputMuted()).toBool());
+    SetAudioInputVolume(set.value("Volume", GetAudioInputVolume()).toBool());
     set.endGroup();
 
     set.beginGroup("Audio/Output");
@@ -177,6 +212,8 @@ int CParameterPlayer::OnSave(QSettings &set)
     set.beginGroup("Audio/Input");
     set.setValue("Device", GetAudioInput());
     set.setValue("Enable", GetEnableAudioInput());
+    set.setValue("Muted", GetAudioInputMuted());
+    set.setValue("Volume", GetAudioInputVolume());
     set.endGroup();
 
     set.beginGroup("Audio/Output");

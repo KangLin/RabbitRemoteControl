@@ -18,13 +18,13 @@ CConnectPlayer::CConnectPlayer(CConneterPlayer* pConnecter)
     check = connect(
         &m_VideoSink, &QVideoSink::videoFrameChanged,
         this, [&](const QVideoFrame &frame){
-            //qDebug(log) << "QVideoSink::videoFrameChanged" << frame;
             QRect rect(0, 0, frame.width(), frame.height());
             QImage img(frame.width(), frame.height(), QImage::Format_ARGB32);
             QPainter painter(&img);
             const QVideoFrame::PaintOptions option;
             QVideoFrame f = frame;
             f.paint(&painter, rect, option);
+            qDebug(log) << "QVideoSink::videoFrameChanged" << frame << img;
             emit this->sigUpdateRect(img);
         });
     Q_ASSERT(check);
@@ -126,9 +126,24 @@ void CConnectPlayer::slotEnableAudioInput(bool bEnable)
 {
     if(bEnable && -1 < m_pParameters->GetAudioInput()
         && m_pParameters->GetAudioInput() < QMediaDevices::audioInputs().size()) {
-            m_AudioInput.setDevice(QMediaDevices::audioInputs()
-                                       .at(m_pParameters->GetAudioInput()));
+        m_AudioInput.setDevice(QMediaDevices::audioInputs()
+                                   .at(m_pParameters->GetAudioInput()));
         m_CaptureSessioin.setAudioInput(&m_AudioInput);
+
+        bool check = connect(m_pParameters,
+                             &CParameterPlayer::sigAudioInputMuted,
+                             &m_AudioInput, &QAudioInput::setMuted);
+        Q_ASSERT(check);
+        check = connect(m_pParameters, &CParameterPlayer::sigAudioInputVolume,
+                        &m_AudioInput, &QAudioInput::setVolume);
+        Q_ASSERT(check);
+        check = connect(m_pParameters, &CParameterPlayer::sigAudioInput,
+                        this, [&](int nIndex) {
+                            if(-1 < nIndex
+                                && nIndex < QMediaDevices::audioInputs().size())
+                                m_AudioInput.setDevice(
+                                    QMediaDevices::audioInputs().at(nIndex));
+                        });
     } else {
         m_CaptureSessioin.setAudioInput(nullptr);
     }
@@ -154,9 +169,10 @@ void CConnectPlayer::slotEnableAudioOutput(bool bEnable)
         Q_ASSERT(check);
         check = connect(m_pParameters, &CParameterPlayer::sigAudioOutput,
                         this, [&](int nIndex) {
-                            m_AudioOutput.setDevice(
-                                QMediaDevices::audioOutputs()
-                                    .at(m_pParameters->GetAudioOutput()));
+                            if(-1 < nIndex
+                                && nIndex < QMediaDevices::audioOutputs().size())
+                                m_AudioOutput.setDevice(
+                                    QMediaDevices::audioOutputs().at(nIndex));
                         });
         switch (m_pParameters->GetType()) {
         case CParameterPlayer::TYPE::Camera:

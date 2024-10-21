@@ -1,13 +1,19 @@
+// Author: Kang Lin <kl222@126.com>
+
 #include <QCamera>
 #include <QCameraDevice>
 #include <QMediaDevices>
 #include <QAudioDevice>
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QMediaRecorder>
+#include <QMediaFormat>
+#include <QLoggingCategory>
 
 #include "DlgPlayer.h"
 #include "ui_DlgPlayer.h"
 
+static Q_LOGGING_CATEGORY(log, "Player.Connect")
 CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::CDlgPlayer)
@@ -34,18 +40,24 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     ui->gbAudioInput->setCheckable(true);
     if(QMediaDevices::audioInputs().size() > 0)
         ui->gbAudioInput->setChecked(m_pParameters->GetEnableAudioInput());
-    else
+    else {
+        ui->gbAudioInput->setEnabled(false);
         ui->gbAudioInput->setChecked(false);
+    }
     if(m_pParameters->GetAudioInput() != -1)
         ui->cmbAudioInput->setCurrentIndex(m_pParameters->GetAudioInput());
+    ui->cbAudioInputMuted->setChecked(m_pParameters->GetAudioInputMuted());
+    ui->dsAudioInputVolume->setValue(m_pParameters->GetAudioInputVolume());
 
     foreach(auto ao, QMediaDevices::audioOutputs())
         ui->cmbAudioOutput->addItem(ao.description());
     ui->gbAudioOutput->setCheckable(true);
     if(QMediaDevices::audioOutputs().size() > 0)
         ui->gbAudioOutput->setChecked(m_pParameters->GetEnableAudioOutput());
-    else
+    else {
+        ui->gbAudioOutput->setEnabled(false);
         ui->gbAudioOutput->setChecked(false);
+    }
     if(m_pParameters->GetAudioOutput() != -1)
         ui->cmbAudioOutput->setCurrentIndex(m_pParameters->GetAudioOutput());
     ui->cbAudioOutputMuted->setCheckable(true);
@@ -81,6 +93,8 @@ void CDlgPlayer::accept()
 
     m_pParameters->SetEnableAudioInput(ui->gbAudioInput->isChecked());
     m_pParameters->SetAudioInput(ui->cmbAudioInput->currentIndex());
+    m_pParameters->SetAudioInputMuted(ui->cbAudioInputMuted->isChecked());
+    m_pParameters->SetAudioInputVolume(ui->dsAudioInputVolume->value());
     m_pParameters->SetEnableAudioOutput(ui->gbAudioOutput->isChecked());
     m_pParameters->SetAudioOutput(ui->cmbAudioOutput->currentIndex());
     m_pParameters->SetAudioOutputMuted(ui->cbAudioOutputMuted->isChecked());
@@ -104,7 +118,14 @@ void CDlgPlayer::on_cmbType_currentIndexChanged(int index)
 
 void CDlgPlayer::on_pbUrlBrowse_clicked()
 {
-    QString szFilter(tr("Video files(*.mp4 *.avi);;Audio files(*.mp3);;All files(*.*)"));
+    /*
+    QMediaRecorder recorder;
+    auto formats = recorder.mediaFormat().supportedFileFormats(QMediaFormat::Decode);
+    qDebug(log) << "Support file formats:" << formats;
+    foreach(auto f, formats) {
+        qDebug(log) << "File format name:" << QMediaFormat::fileFormatName(f);
+    } //*/
+    QString szFilter(tr("Media files(* wmv *.aac *.WebM *.mtk *.ogg *.mp4 *.mov *.avi);;All files(*.*)"));
     QString szFile = QFileDialog::getOpenFileName(
         this, tr("Open file"),
         QStandardPaths::writableLocation(QStandardPaths::MoviesLocation),

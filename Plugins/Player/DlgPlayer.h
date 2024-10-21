@@ -1,3 +1,5 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef DLGPLAYER_H
 #define DLGPLAYER_H
 

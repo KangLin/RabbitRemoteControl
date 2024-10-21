@@ -27,11 +27,26 @@ public:
 
     const int GetAudioInput() const;
     int SetAudioInput(int nIndex);
+Q_SIGNALS:
+    void sigAudioInput(int nIndex);
 
+public:
     const bool GetEnableAudioInput() const;
     int SetEnableAudioInput(bool bEnable);
 Q_SIGNALS:
     void sigEnableAudioInput(bool bEnable);
+
+public:
+    const bool GetAudioInputMuted() const;
+    int SetAudioInputMuted(bool bMuted);
+Q_SIGNALS:
+    void sigAudioInputMuted(bool bMuted);
+
+public:
+    const float GetAudioInputVolume() const;
+    int SetAudioInputVolume(float fVolume);
+Q_SIGNALS:
+    void sigAudioInputVolume(float fVolume);
 
 public:
     const int GetAudioOutput() const;
@@ -63,6 +78,8 @@ private:
     int m_nCamera;
     int m_nAudioInput;
     bool m_bEnableAudioInput;
+    bool m_bAudioInputMuted;
+    float m_fAudioInputVolume;
     int m_nAudioOutput;
     bool m_bEnableAudioOutput;
     bool m_bAudioOutputMuted;
