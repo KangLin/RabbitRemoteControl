@@ -13,7 +13,9 @@ public:
 
     enum class TYPE {
         Camera,
-        Url
+        Url,
+        CaptureScreen,
+        CaptureWindow
     };
     Q_ENUM(TYPE)
     const TYPE GetType() const;
@@ -85,6 +87,11 @@ private:
     bool m_bAudioOutputMuted;
     float m_fAudioOutputVolume;
 
+public:
+    const int GetScreen() const;
+    int SetScreen(int nIndex);
+private:
+    int m_nScreen;
 
     // CParameter interface
 protected:

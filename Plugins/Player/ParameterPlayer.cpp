@@ -14,6 +14,7 @@ CParameterPlayer::CParameterPlayer(QObject *parent)
     , m_bEnableAudioOutput(true)
     , m_bAudioOutputMuted(false)
     , m_fAudioOutputVolume(100)
+    , m_nScreen(-1)
 {}
 
 const CParameterPlayer::TYPE CParameterPlayer::GetType() const
@@ -224,5 +225,19 @@ int CParameterPlayer::OnSave(QSettings &set)
     set.endGroup();
 
     set.endGroup();
+    return 0;
+}
+
+const int CParameterPlayer::GetScreen() const
+{
+    return m_nScreen;
+}
+
+int CParameterPlayer::SetScreen(int nIndex)
+{
+    if(m_nScreen == nIndex)
+        return 0;
+    m_nScreen = nIndex;
+    SetModified(true);
     return 0;
 }

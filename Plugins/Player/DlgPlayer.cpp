@@ -9,7 +9,8 @@
 #include <QMediaRecorder>
 #include <QMediaFormat>
 #include <QLoggingCategory>
-
+#include <QScreen>
+#include <QGuiApplication>
 #include "DlgPlayer.h"
 #include "ui_DlgPlayer.h"
 
@@ -26,6 +27,8 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     }
     ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
     ui->cmbType->addItem(tr("Url"), (int)CParameterPlayer::TYPE::Url);
+    ui->cmbType->addItem(tr("Capture screen"), (int)CParameterPlayer::TYPE::CaptureScreen);
+    ui->cmbType->addItem(tr("Capture window"), (int)CParameterPlayer::TYPE::CaptureWindow);
     int nIndex = ui->cmbType->findData((int)m_pParameters->GetType());
     ui->cmbType->setCurrentIndex(nIndex);
 
@@ -63,6 +66,14 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     ui->cbAudioOutputMuted->setCheckable(true);
     ui->cbAudioOutputMuted->setChecked(m_pParameters->GetAudioOutputMuted());
     ui->dsAudioOutputVolume->setValue(m_pParameters->GetAudioOutputVolume());
+
+    auto lstScreens = QGuiApplication::screens();
+    for(int i = 0; i < lstScreens.size(); i++)
+        ui->cmbScreens->addItem(tr("Screen:") + QString::number(i), i);
+    nIndex = m_pParameters->GetScreen();
+    if(-1 < nIndex && nIndex < lstScreens.size()) {
+        ui->cmbScreens->setCurrentIndex(nIndex);
+    }
 }
 
 CDlgPlayer::~CDlgPlayer()
@@ -99,20 +110,35 @@ void CDlgPlayer::accept()
     m_pParameters->SetAudioOutput(ui->cmbAudioOutput->currentIndex());
     m_pParameters->SetAudioOutputMuted(ui->cbAudioOutputMuted->isChecked());
     m_pParameters->SetAudioOutputVolume(ui->dsAudioOutputVolume->value());
+    m_pParameters->SetScreen(ui->cmbScreens->currentIndex());
 
     QDialog::accept();
 }
 
 void CDlgPlayer::on_cmbType_currentIndexChanged(int index)
 {
-    if(index == (int)CParameterPlayer::TYPE::Camera) {
+    ui->cmbCamera->setVisible(false);
+    ui->leUrl->setVisible(false);
+    ui->pbUrlBrowse->setVisible(false);
+    ui->cmbScreens->setVisible(false);
+    ui->cmbWindows->setVisible(false);
+
+    switch((CParameterPlayer::TYPE) index) {
+    case CParameterPlayer::TYPE::Camera:
         ui->cmbCamera->setVisible(true);
-        ui->leUrl->setVisible(false);
-        ui->pbUrlBrowse->setVisible(false);
-    } else {
-        ui->cmbCamera->setVisible(false);
+        break;
+    case CParameterPlayer::TYPE::Url:
         ui->leUrl->setVisible(true);
         ui->pbUrlBrowse->setVisible(true);
+        break;
+    case CParameterPlayer::TYPE::CaptureScreen:
+        ui->cmbScreens->setVisible(true);
+        break;
+    case CParameterPlayer::TYPE::CaptureWindow:
+        ui->cmbWindows->setVisible(true);
+        break;
+    default:
+        break;
     }
 }
 
