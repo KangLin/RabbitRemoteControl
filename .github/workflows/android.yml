@@ -16,7 +16,7 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.6.2]
+        qt_version: [6.8.0]
         include:
           - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
@@ -91,14 +91,14 @@ jobs:
         run: |
           vcpkg install --triplet ${{matrix.VCPKG_TARGET_TRIPLET}} --x-feature=vnc
 
-      - name: Install Qt of gcc_64
+      - name: Install Qt of linux_gcc_64
         uses: jurplel/install-qt-action@v3
         with:
           dir: '${{env.TOOSL_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
           #host: 'linux'
           target: 'desktop'
-          arch: 'gcc_64'
+          arch: 'linux_gcc_64'
           set-env: false
           cache: true
           cache-key-prefix: cached_qt
@@ -286,6 +286,7 @@ jobs:
           QT_ANDROID_KEYSTORE_PATH: ${{env.SOURCE_DIR}}/RabbitCommon/RabbitCommon.keystore
           QT_ANDROID_KEYSTORE_ALIAS: rabbitcommon
           QT_ANDROID_KEYSTORE_STORE_PASS: ${{secrets.STOREPASS}}
+          JAVA_HOME: ${{env.JAVA_HOME_17_X64}}
         run: |
           sudo chmod 777 ${Qt6_DIR}/bin/qt-cmake
           ${Qt6_DIR}/bin/qt-cmake .. \
