@@ -15,7 +15,7 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
 {
     ui->setupUi(this);
 
-    for (const QCameraDevice &cameraDevice : QMediaDevices::videoInputs()) {
+    foreach(const QCameraDevice &cameraDevice, QMediaDevices::videoInputs()) {
         ui->cmbCamera->addItem(cameraDevice.description());
     }
     ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
@@ -24,21 +24,30 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     ui->cmbType->setCurrentIndex(nIndex);
 
     ui->leUrl->setText(m_pParameters->GetUrl());
-    ui->cmbCamera->setCurrentIndex(m_pParameters->GetCamera());
+    if(m_pParameters->GetCamera() != -1)
+        ui->cmbCamera->setCurrentIndex(m_pParameters->GetCamera());
 
-    for(auto ai : QMediaDevices::audioInputs())
+    foreach(auto ai, QMediaDevices::audioInputs())
     {
         ui->cmbAudioInput->addItem(ai.description());
     }
     ui->gbAudioInput->setCheckable(true);
-    ui->gbAudioInput->setChecked(m_pParameters->GetEnableAudioInput());
-    ui->cmbAudioInput->setCurrentIndex(m_pParameters->GetAudioInput());
+    if(QMediaDevices::audioInputs().size() > 0)
+        ui->gbAudioInput->setChecked(m_pParameters->GetEnableAudioInput());
+    else
+        ui->gbAudioInput->setChecked(false);
+    if(m_pParameters->GetAudioInput() != -1)
+        ui->cmbAudioInput->setCurrentIndex(m_pParameters->GetAudioInput());
 
-    for(auto ao : QMediaDevices::audioOutputs())
+    foreach(auto ao, QMediaDevices::audioOutputs())
         ui->cmbAudioOutput->addItem(ao.description());
     ui->gbAudioOutput->setCheckable(true);
-    ui->gbAudioOutput->setChecked(m_pParameters->GetEnableAudioOutput());
-    ui->cmbAudioOutput->setCurrentIndex(m_pParameters->GetAudioOutput());
+    if(QMediaDevices::audioOutputs().size() > 0)
+        ui->gbAudioOutput->setChecked(m_pParameters->GetEnableAudioOutput());
+    else
+        ui->gbAudioOutput->setChecked(false);
+    if(m_pParameters->GetAudioOutput() != -1)
+        ui->cmbAudioOutput->setCurrentIndex(m_pParameters->GetAudioOutput());
     ui->cbAudioOutputMuted->setCheckable(true);
     ui->cbAudioOutputMuted->setChecked(m_pParameters->GetAudioOutputMuted());
     ui->dsAudioOutputVolume->setValue(m_pParameters->GetAudioOutputVolume());
@@ -56,9 +65,14 @@ void CDlgPlayer::accept()
     m_pParameters->SetUrl(ui->leUrl->text());
     m_pParameters->SetCamera(ui->cmbCamera->currentIndex());
     switch(m_pParameters->GetType()) {
-    case CParameterPlayer::TYPE::Camera:
-        m_pParameters->SetName(tr("Camera: ") + QMediaDevices::videoInputs().at(m_pParameters->GetCamera()).description());
+    case CParameterPlayer::TYPE::Camera: {
+        int nIndex = m_pParameters->GetCamera();
+        if(-1 < nIndex && nIndex < QMediaDevices::videoInputs().size())
+            m_pParameters->SetName(
+                tr("Camera: ")
+                + QMediaDevices::videoInputs().at(nIndex).description());
         break;
+    }
     case CParameterPlayer::TYPE::Url:
         QFileInfo fi(m_pParameters->GetUrl());
         m_pParameters->SetName(tr("Url: ") + fi.fileName());
@@ -98,4 +112,3 @@ void CDlgPlayer::on_pbUrlBrowse_clicked()
     if(!szFile.isEmpty())
         ui->leUrl->setText(szFile);
 }
-

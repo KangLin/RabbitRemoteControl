@@ -39,6 +39,7 @@ protected:
     virtual int OnClean() override;
 
 private Q_SLOTS:
+    void slotEnableAudioInput(bool bEnable);
     void slotEnableAudioOutput(bool bEnable);
 
 private:

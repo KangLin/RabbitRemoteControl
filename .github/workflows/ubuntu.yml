@@ -107,7 +107,7 @@ jobs:
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse3-dev libusb-1.0-0-dev \
               libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev \
-              libpcap-dev
+              libpcap-dev libcups2-dev
 
       - name: Cache installed
         uses: actions/cache@v3

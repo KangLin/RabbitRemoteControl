@@ -5,10 +5,10 @@
 CParameterPlayer::CParameterPlayer(QObject *parent)
     : CParameterBase{parent}
     , m_Type(TYPE::Camera)
-    , m_nCamera(0)
-    , m_nAudioInput(0)
+    , m_nCamera(-1)
+    , m_nAudioInput(-1)
     , m_bEnableAudioInput(true)
-    , m_nAudioOutput(0)
+    , m_nAudioOutput(-1)
     , m_bEnableAudioOutput(true)
     , m_bAudioOutputMuted(false)
     , m_fAudioOutputVolume(100)
@@ -81,6 +81,7 @@ int CParameterPlayer::SetEnableAudioInput(bool bEnable)
         return 0;
     m_bEnableAudioInput = bEnable;
     SetModified(true);
+    emit sigEnableAudioInput(m_bEnableAudioInput);
     return 0;
 }
 

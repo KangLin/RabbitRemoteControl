@@ -28,7 +28,7 @@ jobs:
 
     # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     env:
       RabbitRemoteControl_VERSION: v0.0.27

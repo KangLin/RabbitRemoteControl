@@ -30,7 +30,10 @@ public:
 
     const bool GetEnableAudioInput() const;
     int SetEnableAudioInput(bool bEnable);
+Q_SIGNALS:
+    void sigEnableAudioInput(bool bEnable);
 
+public:
     const int GetAudioOutput() const;
     int SetAudioOutput(int nIndex);
 Q_SIGNALS:
