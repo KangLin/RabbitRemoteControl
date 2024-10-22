@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f /usr/lib/`uname -a`-linux-gnu/cmake/Qt6 -a -z "$QT_ROOT" ]; then
+if [ -f "/usr/lib/`uname -a`-linux-gnu/cmake/Qt6" -a -z "$QT_ROOT" ]; then
     QT_ROOT=/usr/lib/`uname -a`-linux-gnu/cmake/Qt6
 fi
 
