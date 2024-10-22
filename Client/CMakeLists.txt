@@ -42,11 +42,12 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     ParameterCompone/ParameterUserUI.h
     ParameterCompone/ParameterProxy.h
     ParameterCompone/ParameterProxyUI.h
+    ParameterCompone/ParameterRecord.h
+    ParameterCompone/ParameterRecordUI.h
     WakeOnLan/WakeOnLan.h
     WakeOnLan/WakeOnLanQt.h
     WakeOnLan/ParameterWakeOnLan.h
     WakeOnLan/ParameterWakeOnLanUI.h
-    RecordVideo.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -88,6 +89,8 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterCompone/ParameterUserUI.cpp
     ParameterCompone/ParameterProxy.cpp
     ParameterCompone/ParameterProxyUI.cpp
+    ParameterCompone/ParameterRecord.cpp
+    ParameterCompone/ParameterRecordUI.cpp
     WakeOnLan/ParameterWakeOnLan.cpp
     WakeOnLan/ParameterWakeOnLanUI.cpp
     WakeOnLan/WakeOnLan.cpp
@@ -95,7 +98,6 @@ list(APPEND CLIENT_SOURCE_FILES
     WakeOnLan/ConnectWakeOnLan.cpp
     DlgInputPassword.cpp
     Hook.cpp
-    RecordVideo.cpp
     )
 
 set(CLIENT_UI_FILES
@@ -103,6 +105,7 @@ set(CLIENT_UI_FILES
     FrmParameterClient.ui
     ParameterCompone/ParameterUserUI.ui
     ParameterCompone/ParameterNetUI.ui
+    ParameterCompone/ParameterRecordUI.ui
     WakeOnLan/ParameterWakeOnLanUI.ui
     )
 
@@ -140,7 +143,7 @@ else()
         "And set PcapPlusPlus_DIR to install root directory")
 endif()
 
-SET(VIEWER_QT_COMPONENTS Core Gui Widgets)
+SET(VIEWER_QT_COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets)
 if(ANDROID)
     SET(VIEWER_QT_COMPONENTS ${VIEWER_QT_COMPONENTS} AndroidExtras)
 endif()
@@ -158,6 +161,12 @@ list(APPEND CLIENT_LIBS ${CLIENT_QT_LIBRARIES})
 message("CLIENT_LIBS: ${CLIENT_LIBS}")
 list(APPEND CLIENT_DEFINITIONS
     RabbitRemoteControl_VERSION="${RabbitRemoteControl_VERSION}")
+if(QT_VERSION GREATER_EQUAL "6.2.4")
+    list(APPEND CLIENT_DEFINITIONS HAVE_QT6_MULTIMEDIA)
+endif()
+if(QT_VERSION GREATER_EQUAL "6.8.0")
+    list(APPEND CLIENT_DEFINITIONS HAVE_QT6_RECORD)
+endif()
 ADD_TARGET(NAME ${PROJECT_NAME}
     SOURCE_FILES ${CLIENT_SOURCE_FILES} ${CLIENT_HEADER_FILES} ${CLIENT_UI_FILES}
     INCLUDE_DIRS

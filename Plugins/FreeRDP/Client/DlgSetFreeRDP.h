@@ -9,6 +9,7 @@
 #include "freerdp/freerdp.h"
 #include "ConnecterFreeRDP.h"
 #include "ParameterProxyUI.h"
+#include "ParameterRecordUI.h"
 
 namespace Ui {
 class CDlgSetFreeRDP;
@@ -53,7 +54,8 @@ private:
     CParameterFreeRDP* m_pSettings;
     QFileSystemModel* m_pFileModel;
     
-    CParameterProxyUI* m_pProxy;
+    CParameterProxyUI* m_pProxyUI;
+    CParameterRecordUI* m_pRecordUI;
 };
 
 #endif // DLGSETFREERDP_H

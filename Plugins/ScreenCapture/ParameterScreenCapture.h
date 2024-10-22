@@ -39,8 +39,6 @@ public:
     const QCapturableWindow GetWindow() const;
     int SetWindow(QCapturableWindow w);
 
-    CParameterRecord m_Record;
-
 private:
     TARGET m_Target;
     OPERATE m_Operate;

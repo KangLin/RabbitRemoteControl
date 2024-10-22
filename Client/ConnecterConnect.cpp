@@ -9,6 +9,33 @@ CConnecterConnect::CConnecterConnect(CPluginClient *plugin)
     , m_pConnect(nullptr)
 {
     qDebug(log) << "CConnecterConnect::CConnecterConnect";
+    m_Menu.setIcon(plugin->Icon());
+    m_Menu.setTitle(plugin->DisplayName());
+    m_Menu.setToolTip(plugin->DisplayName());
+    m_Menu.setStatusTip(plugin->DisplayName());
+    m_Menu.addAction(QIcon::fromTheme("camera-photo"), tr("ScreenShot"),
+                     this, SIGNAL(sigSceenShot()));
+#if HAVE_QT6_RECORD
+    QAction* pRecord = m_Menu.addAction(
+        QIcon::fromTheme("media-record"), tr("Record"),
+        this, [&](){
+            QAction* pRecord = qobject_cast<QAction*>(sender());
+            if(pRecord)
+            {
+                bool checked = pRecord->isChecked();
+                if(checked) {
+                    pRecord->setIcon(QIcon::fromTheme("media-playback-stop"));
+                    pRecord->setText(tr("Stop record"));
+                }
+                else {
+                    pRecord->setIcon(QIcon::fromTheme("media-playback-start"));
+                    pRecord->setText(tr("Start record"));
+                }
+                emit sigRecord(checked);
+            }
+        });
+    pRecord->setCheckable(true);
+#endif
 }
 
 CConnecterConnect::~CConnecterConnect()
@@ -55,4 +82,11 @@ int CConnecterConnect::DisConnect()
         }
     }
     return 0;
+}
+
+QMenu *CConnecterConnect::GetMenu(QWidget *parent)
+{
+    if(m_Menu.actions().isEmpty())
+        return nullptr;
+    return &m_Menu;
 }

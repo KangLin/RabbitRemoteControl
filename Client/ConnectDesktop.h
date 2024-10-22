@@ -11,9 +11,36 @@
 #include <QWheelEvent>
 #include <QMimeData>
 #include <QMessageBox>
+#include <QEvent>
+
+#if HAVE_QT6_MULTIMEDIA
+    #include <QMediaCaptureSession>
+    #include <QMediaRecorder>
+#endif
+#if HAVE_QT6_RECORD
+    #include <QVideoFrameInput>
+    #include <QAudioBufferInput>    
+#endif
+#include "ParameterRecord.h"
 
 #include "FrmViewer.h"
 #include "Connect.h"
+
+#define TypeRecordVideo ((int)QEvent::User + 1)
+class QRecordVideoEvent : public QEvent
+{
+public:
+    QRecordVideoEvent(const QImage& img): QEvent((QEvent::Type)TypeRecordVideo)
+    {
+        m_Image = img;
+    }
+    QImage GetImage()
+    {
+        return m_Image;
+    }
+private:
+    QImage m_Image;
+};
 
 /*!
  * \~chinese
@@ -111,6 +138,26 @@ protected:
     // QObject interface
 public:
     virtual bool event(QEvent *event) override;
+
+private Q_SLOTS:
+    void slotScreenShot();
+    void slotRecord(bool bRecord);
+    void slotRecordVideo(const QImage& img);
+Q_SIGNALS:
+    void sigRecordVideo(bool bRecord);
+    void sigScreenShot(const QString& szFile);
+private:
+    void RecordVideo(QRecordVideoEvent *event);
+    CParameterBase* m_pParameter;
+#if HAVE_QT6_MULTIMEDIA
+    QMediaCaptureSession m_CaptureSession;
+    QMediaRecorder m_Recorder;
+#endif
+#if HAVE_QT6_RECORD
+    QVideoFrameInput m_VideoFrameInput;
+    QAudioBufferInput m_AudioBufferInput;
+#endif
+    CParameterRecord m_Parameter;
 };
 
 #endif // __CCONNECTDESKTOP_H_2024_09_27__

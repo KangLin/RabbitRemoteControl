@@ -39,7 +39,7 @@ void CConnectThread::run()
 {
     qDebug(log) << "CConnectThread::run() start";
 
-    CConnectMulti cm(this);
+    CConnectMulti cm;
     int nRet = cm.Init(m_pConnecter);
     if(nRet)
         emit m_pConnecter->sigDisconnect();

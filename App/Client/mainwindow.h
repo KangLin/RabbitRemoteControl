@@ -107,14 +107,6 @@ private Q_SLOTS:
     void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
 
-    void on_actionScreenshot_triggered();
-    void on_actionRecordVideo_triggered(bool checked);
-    void slotRecordVideoStatus(CFrmViewer::RecordVideoStatus status);
-public:
-    QToolButton* m_pScreenShot;
-Q_SIGNALS:
-    void sigRecordVideoStatus(QAction* pAction);
-
     ///////// ICE signal /////////
 private:
     QPushButton * m_pSignalStatus;

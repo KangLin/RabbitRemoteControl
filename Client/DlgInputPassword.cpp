@@ -56,5 +56,7 @@ void CDlgInputPassword::on_pbShow_clicked()
         ui->lePassword->setEchoMode(QLineEdit::Password);
         ui->pbShow->setIcon(QIcon::fromTheme("eye-on"));
         break;
+    default:
+        break;
     }
 }

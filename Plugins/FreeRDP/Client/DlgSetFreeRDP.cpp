@@ -20,10 +20,12 @@
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Parameter.Dlg")
 
 CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::CDlgSetFreeRDP),
-    m_pSettings(pSettings),
-    m_pFileModel(nullptr)
+    QDialog(parent)
+    , ui(new Ui::CDlgSetFreeRDP)
+    , m_pSettings(pSettings)
+    , m_pFileModel(nullptr)
+    , m_pProxyUI(nullptr)
+    , m_pRecordUI(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
@@ -44,10 +46,14 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
             });
     ui->wgWakeOnLan->SetParameter(&m_pSettings->m_WakeOnLan);
 
-    m_pProxy = new CParameterProxyUI(ui->tabWidget);
-    m_pProxy->SetParameter(&m_pSettings->m_Proxy);
-    ui->tabWidget->insertTab(1, m_pProxy, tr("Proxy"));
+    m_pProxyUI = new CParameterProxyUI(ui->tabWidget);
+    m_pProxyUI->SetParameter(&m_pSettings->m_Proxy);
+    ui->tabWidget->insertTab(1, m_pProxyUI, m_pProxyUI->windowIcon(), tr("Proxy"));
     
+    m_pRecordUI = new CParameterRecordUI(ui->tabWidget);
+    m_pRecordUI->SetParameter(&m_pSettings->m_Record);
+    ui->tabWidget->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), tr("Record"));
+
     // Display
     // It has to be the first. GetScreenGeometry depends on it
     ui->cbAllMonitor->setChecked(m_pSettings->GetUseMultimon());
@@ -164,12 +170,22 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 {
     int nRet = 0;
 
-    if(!ui->wNet->CheckValidity(true))
+    if(!ui->wNet->CheckValidity(true)) {
+        ui->tabWidget->setCurrentIndex(0);
         return;
-    if(!m_pProxy->CheckValidity(true))
+    }
+    if(!m_pProxyUI->CheckValidity(true)) {
+        ui->tabWidget->setCurrentWidget(m_pProxyUI);
         return;
-    if(!ui->wgWakeOnLan->CheckValidity(true))
+    }
+    if(!m_pRecordUI->CheckValidity(true)) {
+        ui->tabWidget->setCurrentWidget(m_pRecordUI);
         return;
+    }
+    if(!ui->wgWakeOnLan->CheckValidity(true)) {
+        ui->tabWidget->setCurrentIndex(0);
+        return;
+    }
 
     m_pSettings->SetName(ui->leName->text());
 
@@ -178,7 +194,10 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     nRet = ui->wNet->Accept();
     if(nRet) return;
     
-    nRet = m_pProxy->Accept();
+    nRet = m_pProxyUI->Accept();
+    if(nRet) return;
+
+    nRet = m_pRecordUI->Accept();
     if(nRet) return;
 
     nRet = ui->wgWakeOnLan->Accept();

@@ -4,6 +4,7 @@
 
 #include "DlgCapture.h"
 #include "ui_DlgCapture.h"
+#include "ParameterRecordUI.h"
 
 static Q_LOGGING_CATEGORY(log, "Screen.Capture.Dialog")
 CDlgCapture::CDlgCapture(CParameterScreenCapture *pPara, QWidget *parent)
@@ -52,9 +53,9 @@ CDlgCapture::CDlgCapture(CParameterScreenCapture *pPara, QWidget *parent)
         break;
     }
 
-    auto &record = m_pParameters->m_Record;
-    ui->cbRecordEnable->setChecked(record.GetEnable());
-    ui->lePath->setText(record.GetPath());
+    m_pRecordUI = new CParameterRecordUI(ui->objTab);
+    m_pRecordUI->SetParameter(&m_pParameters->m_Record);
+    ui->objTab->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), m_pRecordUI->windowTitle());
 }
 
 CDlgCapture::~CDlgCapture()
@@ -64,6 +65,13 @@ CDlgCapture::~CDlgCapture()
 
 void CDlgCapture::accept()
 {
+    int nRet = 0;
+    nRet = m_pRecordUI->CheckValidity(true);
+    if(nRet) {
+        ui->objTab->setCurrentWidget(m_pRecordUI);
+        return;
+    }
+
     if(ui->rbScreen->isChecked())
         m_pParameters->SetTarget(CParameterScreenCapture::TARGET::Screen);
     else if(ui->rbWindow->isChecked())
@@ -83,29 +91,10 @@ void CDlgCapture::accept()
     if(-1 < nIndex && nIndex < m_Windows.size())
         m_pParameters->SetWindow(m_Windows.at(nIndex));
 
-    auto &record = m_pParameters->m_Record;
-    record.SetEnable(ui->cbRecordEnable->isChecked());
-    record.SetPath(ui->lePath->text());
-    QString szFile = record.GetPath()
-                     + QDir::separator()
-                     + QDateTime::currentDateTime().toLocalTime()
-                           .toString("yyyy_MM_dd_hh_mm_ss_zzz");
-    if(ui->rbShot->isChecked())
-        szFile += ".png";
-    else if(ui->rbRecord->isChecked())
-        szFile += ".mp4";
-    record.SetUrl(szFile);
+    nRet = m_pRecordUI->Accept();
+    if(nRet)
+        return;
 
     QDialog::accept();
 }
 
-void CDlgCapture::on_pbPathBrowe_clicked()
-{
-    QString szPath;
-    szPath = QFileDialog::getExistingDirectory(
-        this, tr("Open path"),
-        m_pParameters->m_Record.GetPath());
-    if(szPath.isEmpty())
-        return;
-    ui->lePath->setText(szPath);
-}

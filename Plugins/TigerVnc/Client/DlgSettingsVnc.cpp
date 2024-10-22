@@ -25,9 +25,9 @@ CDlgSettingsVnc::CDlgSettingsVnc(CParameterVnc *pPara, QWidget *parent) :
     
     ui->wNet->SetParameter(&m_pPara->m_Net);
 
-    m_pProxy = new CParameterProxyUI(ui->tabWidget);
-    m_pProxy->SetParameter(&m_pPara->m_Proxy);
-    ui->tabWidget->insertTab(1, m_pProxy, tr("Proxy"));
+    m_pProxyUI = new CParameterProxyUI(ui->tabWidget);
+    m_pProxyUI->SetParameter(&m_pPara->m_Proxy);
+    ui->tabWidget->insertTab(1, m_pProxyUI, tr("Proxy"));
 
 #ifdef HAVE_ICE
     ui->gpIce->show();
@@ -148,10 +148,15 @@ void CDlgSettingsVnc::on_pbOK_clicked()
     if(!m_pPara)
         return;
 
-    if(!ui->wNet->CheckValidity(true))
+    if(!ui->wNet->CheckValidity(true)) {
+        ui->tabWidget->setCurrentIndex(0);
         return;
-    if(!m_pProxy->CheckValidity(true))
+    }
+
+    if(!m_pProxyUI->CheckValidity(true)) {
+        ui->tabWidget->setCurrentWidget(m_pProxyUI);
         return;
+    }
 
     // Server
     bool ice = false;
@@ -168,7 +173,7 @@ void CDlgSettingsVnc::on_pbOK_clicked()
 
     nRet = ui->wNet->Accept();
     if(nRet) return;
-    nRet = m_pProxy->Accept();
+    nRet = m_pProxyUI->Accept();
     if(nRet) return;
     
     m_pPara->SetName(ui->leName->text());

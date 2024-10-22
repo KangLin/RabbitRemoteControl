@@ -132,41 +132,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Record">
-      <attribute name="title">
-       <string>Record</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_5">
-       <item row="0" column="0">
-        <widget class="QCheckBox" name="cbRecordEnable">
-         <property name="text">
-          <string>Enable</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Path:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lePath"/>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pbPathBrowe">
-           <property name="text">
-            <string>Browe</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
     </widget>
    </item>
    <item row="1" column="0">

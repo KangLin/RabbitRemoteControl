@@ -1,7 +1,7 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QLoggingCategory>
-
+#include <QApplication>
 #include "ScreenCapture.h"
 #include "DlgCapture.h"
 #include "RabbitCommonTools.h"
@@ -21,52 +21,64 @@ CScreenCapture::CScreenCapture(CPluginClient *plugin)
     m_Menu.setStatusTip(szTitle);
     m_Menu.setWhatsThis(szTitle);
     m_Menu.setIcon(plugin->Icon());
-    check = m_Menu.addAction(QIcon::fromTheme("media-playback-start"), tr("Start"),
-                     this, SLOT(slotStart()));
+    check = m_Menu.addAction(
+        QIcon::fromTheme("media-playback-start"), tr("Start"),
+        this, SLOT(slotStart()));
     Q_ASSERT(check);
-    check = m_Menu.addAction(QIcon::fromTheme("media-playback-stop"), tr("Stop"),
-                     this, SLOT(slotStop()));
+    check = m_Menu.addAction(
+        QIcon::fromTheme("media-playback-stop"), tr("Stop"),
+        this, SLOT(slotStop()));
     Q_ASSERT(check);
 
-    check = connect(&m_ScreenCapture, &QScreenCapture::errorOccurred,
-                    this, [&](QScreenCapture::Error error, const QString &errorString){
-                        qDebug(log) << "Capture screen error occurred:" << error << errorString;
-                        emit sigError(error, errorString);
-                    });
+    check = connect(
+        &m_ScreenCapture, &QScreenCapture::errorOccurred,
+        this, [&](QScreenCapture::Error error, const QString &errorString){
+            qDebug(log) << "Capture screen error occurred:" << error << errorString;
+            slotStop();
+            emit sigError(error, errorString);
+        });
     Q_ASSERT(check);
-    check = connect(&m_WindowCapture, &QWindowCapture::errorOccurred,
-                    this, [&](QWindowCapture::Error error, const QString &errorString){
-        qDebug(log) << "Capture windows error occurred:" << error << errorString;
-        emit sigError(error, errorString);
-    });
+    check = connect(
+        &m_WindowCapture, &QWindowCapture::errorOccurred,
+        this, [&](QWindowCapture::Error error, const QString &errorString){
+            qDebug(log) << "Capture windows error occurred:" << error << errorString;
+            slotStop();
+            emit sigError(error, errorString);
+        });
     Q_ASSERT(check);
-    check = connect(&m_ImageCapture, &QImageCapture::imageSaved,
-                    this, [&](int id, const QString &fileName) {
-        qDebug(log) << "Capture image to file:" << fileName;
-                    });
+    check = connect(
+        &m_ImageCapture, &QImageCapture::imageSaved,
+        this, [&](int id, const QString &fileName) {
+            qDebug(log) << "Capture image to file:" << fileName;
+        });
     Q_ASSERT(check);
-    check = connect(&m_Recorder, &QMediaRecorder::errorOccurred,
-                    this, [&](QMediaRecorder::Error error, const QString &errorString) {
-        qDebug(log) << "Recorder error occurred:" << error << errorString;
-        emit sigError(error, errorString);
-    });
+    check = connect(
+        &m_Recorder, &QMediaRecorder::errorOccurred,
+        this, [&](QMediaRecorder::Error error, const QString &errorString) {
+            qDebug(log) << "Recorder error occurred:" << error << errorString;
+            slotStop();
+            emit sigError(error, errorString);
+        });
     Q_ASSERT(check);
-    check = connect(&m_ImageCapture, &QImageCapture::errorOccurred,
-                    this, [&](int id, QImageCapture::Error error, const QString &errorString) {
-        qDebug(log) << "Capture image error occurred:" << id << error << errorString;
-        emit sigError(error, errorString);
-    });
+    check = connect(
+        &m_ImageCapture, &QImageCapture::errorOccurred,
+        this, [&](int id, QImageCapture::Error error, const QString &errorString) {
+            qDebug(log) << "Capture image error occurred:" << id << error << errorString;
+            slotStop();
+            emit sigError(error, errorString);
+        });
     Q_ASSERT(check);
-    check = connect(&m_ImageCapture, &QImageCapture::imageCaptured,
-                    this, [&](int id, const QImage &image){
-        qDebug(log) << "Capture image:" << id << image;
-        QString szFile = m_Parameter.m_Record.GetUrl();
-        if(image.save(szFile))
-            qDebug(log) << "Capture image to file:" << szFile;
-        else
-            qCritical(log) << "Capture image save to file fail." << szFile;
-        slotStop();
-    });
+    check = connect(
+        &m_ImageCapture, &QImageCapture::imageCaptured,
+        this, [&](int id, const QImage &image){
+            qDebug(log) << "Capture image:" << id << image;
+            QString szFile = m_Parameter.m_Record.GetImageFile(true);
+            if(image.save(szFile, "PNG"))
+                qDebug(log) << "Capture image to file:" << szFile;
+            else
+                qCritical(log) << "Capture image save to file fail." << szFile;
+            slotStop();
+        });
     Q_ASSERT(check);
 }
 
@@ -108,6 +120,7 @@ QMenu *CScreenCapture::GetMenu(QWidget *parent)
 
 int CScreenCapture::slotStart()
 {
+    qDebug(log) << "CScreenCapture::slotStart()";
     int nRet = 0;
     CDlgCapture dlg(&m_Parameter);
     nRet = RC_SHOW_WINDOW(&dlg);
@@ -116,8 +129,8 @@ int CScreenCapture::slotStart()
 
     int nIndex = m_Parameter.GetScreen();
     if(m_Parameter.GetTarget() == CParameterScreenCapture::TARGET::Screen
-        && -1 < nIndex && nIndex < QGuiApplication::screens().size()) {
-        m_ScreenCapture.setScreen(QGuiApplication::screens().at(nIndex));
+        && -1 < nIndex && nIndex < QApplication::screens().size()) {
+        m_ScreenCapture.setScreen(QApplication::screens().at(nIndex));
         m_CaptureSessioin.setScreenCapture(&m_ScreenCapture);
         m_ScreenCapture.start();
     }else
@@ -132,11 +145,9 @@ int CScreenCapture::slotStart()
 
     if(m_Parameter.GetOperate() == CParameterScreenCapture::OPERATE::Record) {
         m_CaptureSessioin.setRecorder(&m_Recorder);
-        QString szUrl = m_Parameter.m_Record.GetUrl();
-        if(!szUrl.isEmpty())
-            m_Recorder.setOutputLocation(QUrl::fromLocalFile(szUrl));
+        m_Parameter.m_Record >> m_Recorder;
         m_Recorder.record();
-        qDebug(log) << "Record to file:" << szUrl;
+        qDebug(log) << "Record to file:" << m_Recorder.outputLocation();
     }
     else
         m_CaptureSessioin.setRecorder(nullptr);
@@ -156,6 +167,7 @@ int CScreenCapture::slotStart()
 
 int CScreenCapture::slotStop()
 {
+    qDebug(log) << "CScreenCapture::slotStop()";
     if(m_Parameter.GetTarget() == CParameterScreenCapture::TARGET::Screen)
         m_ScreenCapture.stop();
     if(m_Parameter.GetTarget() == CParameterScreenCapture::TARGET::Window)

@@ -33,7 +33,7 @@ private slots:
 private:
     Ui::CDlgSettingsVnc *ui;
     CParameterVnc* m_pPara;
-    CParameterProxyUI* m_pProxy;
+    CParameterProxyUI* m_pProxyUI;
 };
 
 #endif // DLGSETTINGS_H

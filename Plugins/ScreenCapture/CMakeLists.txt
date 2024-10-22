@@ -11,7 +11,6 @@ SET(ScreenCapture_SOURCE_FILES
     ScreenCapture.cpp
     DlgCapture.cpp
     ParameterScreenCapture.cpp
-    ParameterRecord.cpp
     )
 
 SET(ScreenCapture_HEADER_FILES
@@ -19,7 +18,6 @@ SET(ScreenCapture_HEADER_FILES
     ScreenCapture.h
     DlgCapture.h
     ParameterScreenCapture.h
-    ParameterRecord.h
     )
 
 SET(ScreenCapture_UI_FILES
@@ -49,8 +47,3 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
     )
-
-target_sources(PluginClientScreenCapture
-  PRIVATE
-    ParameterRecord.h ParameterRecord.cpp
-)

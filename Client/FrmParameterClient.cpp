@@ -1,13 +1,67 @@
 #include "FrmParameterClient.h"
 #include "ui_FrmParameterClient.h"
 
-CFrmParameterClient::CFrmParameterClient(CParameterClient *pParameter, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::CFrmParameterClient),
-    m_pPara(pParameter)
+CFrmParameterClient::CFrmParameterClient(QWidget *parent) :
+    CParameterUI(parent),
+    ui(new Ui::CFrmParameterClient)
 {
     ui->setupUi(this);
+}
 
+CFrmParameterClient::~CFrmParameterClient()
+{
+    delete ui;
+}
+
+int CFrmParameterClient::Accept()
+{
+    if(m_pPara)
+        return -1;
+    m_pPara->SetHookKeyboard(ui->cbHookKeyboard->isChecked());
+    m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
+    m_pPara->SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
+    
+    m_pPara->SetEncryptKey(ui->leEncryptKey->text());
+    m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
+    m_pPara->SetViewPassowrd(ui->cbEnableViewPassword->isChecked());
+    if(ui->rbPromptAlways->isChecked())
+        m_pPara->SetPromptType(CParameterClient::PromptType::Always);
+    if(ui->rbPromptFirst->isChecked())
+        m_pPara->SetPromptType(CParameterClient::PromptType::First);
+    if(ui->rbPromptNo->isChecked())
+        m_pPara->SetPromptType(CParameterClient::PromptType::No);
+    m_pPara->SetShowProtocolPrefix(ui->cbShowPrefix->isChecked());
+    m_pPara->SetShowIpPortInName(ui->cbShowIPPort->isChecked());
+    return 0;
+}
+
+void CFrmParameterClient::on_cbEnableViewPassword_clicked(bool checked)
+{
+    ui->pbEncryptKey->setEnabled(checked);
+}
+
+void CFrmParameterClient::on_pbEncryptKey_clicked()
+{
+    switch(ui->leEncryptKey->echoMode())
+    {
+    case QLineEdit::Password:
+        ui->leEncryptKey->setEchoMode(QLineEdit::Normal);
+        ui->pbEncryptKey->setIcon(QIcon::fromTheme("eye-off"));
+        break;
+    case QLineEdit::Normal:
+        ui->leEncryptKey->setEchoMode(QLineEdit::Password);
+        ui->pbEncryptKey->setIcon(QIcon::fromTheme("eye-on"));
+        break;
+    default:
+        break;
+    }
+}
+
+int CFrmParameterClient::SetParameter(CParameter *pParameter)
+{
+    m_pPara = qobject_cast<CParameterClient*>(pParameter);
+    if(m_pPara)
+        return -1;
     ui->cbHookKeyboard->setChecked(m_pPara->GetHookKeyboard());
     ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());
 
@@ -45,50 +99,5 @@ CFrmParameterClient::CFrmParameterClient(CParameterClient *pParameter, QWidget *
     }
     ui->cbShowPrefix->setChecked(m_pPara->GetShowProtocolPrefix());
     ui->cbShowIPPort->setChecked(m_pPara->GetShowIpPortInName());
-}
-
-CFrmParameterClient::~CFrmParameterClient()
-{
-    delete ui;
-}
-
-void CFrmParameterClient::slotAccept()
-{
-    m_pPara->SetHookKeyboard(ui->cbHookKeyboard->isChecked());
-    m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
-    m_pPara->SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
-    
-    m_pPara->SetEncryptKey(ui->leEncryptKey->text());
-    m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
-    m_pPara->SetViewPassowrd(ui->cbEnableViewPassword->isChecked());
-    if(ui->rbPromptAlways->isChecked())
-        m_pPara->SetPromptType(CParameterClient::PromptType::Always);
-    if(ui->rbPromptFirst->isChecked())
-        m_pPara->SetPromptType(CParameterClient::PromptType::First);
-    if(ui->rbPromptNo->isChecked())
-        m_pPara->SetPromptType(CParameterClient::PromptType::No);
-    m_pPara->SetShowProtocolPrefix(ui->cbShowPrefix->isChecked());
-    m_pPara->SetShowIpPortInName(ui->cbShowIPPort->isChecked());
-}
-
-void CFrmParameterClient::on_cbEnableViewPassword_clicked(bool checked)
-{
-    ui->pbEncryptKey->setEnabled(checked);
-}
-
-void CFrmParameterClient::on_pbEncryptKey_clicked()
-{
-    switch(ui->leEncryptKey->echoMode())
-    {
-    case QLineEdit::Password:
-        ui->leEncryptKey->setEchoMode(QLineEdit::Normal);
-        ui->pbEncryptKey->setIcon(QIcon::fromTheme("eye-off"));
-        break;
-    case QLineEdit::Normal:
-        ui->leEncryptKey->setEchoMode(QLineEdit::Password);
-        ui->pbEncryptKey->setIcon(QIcon::fromTheme("eye-on"));
-        break;
-    default:
-        break;
-    }
+    return 0;
 }

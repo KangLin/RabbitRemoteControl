@@ -2,7 +2,6 @@
 
 CParameterScreenCapture::CParameterScreenCapture(QObject *parent)
     : CParameterBase{parent}
-    , m_Record(this)
     , m_Target(TARGET::Screen)
     , m_Operate(OPERATE::Shot)
     , m_nScreen(-1)

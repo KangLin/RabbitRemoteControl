@@ -171,25 +171,13 @@ private:
 public:
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
 
-    enum class RecordVideoStatus {
-        NO,        //! not support record video
-        Starting,
-        Recording,
-        Stopping,
-        Stop,
-        Error
-    };
-    Q_ENUM(RecordVideoStatus)
-    virtual RecordVideoStatus GetRecordVideoStatus();
 public Q_SLOTS:
-    virtual void slotRecordVideoStart(const QString& szFile);
-    virtual void slotRecordVideoStop();
+    void slotScreenShot(const QString& szFile);
+    void slotRecordVideo(bool bRecord);
 Q_SIGNALS:
-    void sigRecordVideoStatusChanged(CFrmViewer::RecordVideoStatus status);
-    void sigRecordVideoError(int nRet, QString szText);
+    void sigRecordVideo(const QImage& img);
 private:
-    CRecordVideoThread* m_pRecordVideo;
-    RecordVideoStatus m_RecordVideoStatus;
+    bool m_bRecordVideo;
 };
 
 #endif // #ifdef USE_FROM_OPENGL

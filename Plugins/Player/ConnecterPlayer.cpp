@@ -11,24 +11,18 @@ static Q_LOGGING_CATEGORY(log, "Player.Connecter")
 
 CConneterPlayer::CConneterPlayer(CPluginClient *plugin)
     : CConnecterThread(plugin)
-    , m_pMenu(nullptr)
 {
     SetParameter(&m_Parameters);
-    m_pMenu = new QMenu(plugin->DisplayName());
-    m_pMenu->setToolTip(plugin->DisplayName());
-    m_pMenu->setStatusTip(plugin->DisplayName());
-    m_pMenu->setIcon(Icon());
-    m_pMenu->addAction(QIcon::fromTheme("media-playback-start"), tr("Start"),
+    m_Menu.clear();
+    m_Menu.addAction(QIcon::fromTheme("media-playback-start"), tr("Start"),
                        this, SIGNAL(sigStart()));
-    m_pMenu->addAction(QIcon::fromTheme("media-playback-stop"), tr("Stop"),
+    m_Menu.addAction(QIcon::fromTheme("media-playback-stop"), tr("Stop"),
                        this, SIGNAL(sigStop()));
 }
 
 CConneterPlayer::~CConneterPlayer()
 {
     qDebug(log) << "CConneterPlayer::~CConneterPlayer()";
-    if(m_pMenu)
-        delete m_pMenu;
 }
 
 qint16 CConneterPlayer::Version()
@@ -48,8 +42,14 @@ CConnect *CConneterPlayer::InstanceConnect()
     return p;
 }
 
-QMenu *CConneterPlayer::GetMenu(QWidget *parent)
+#if HAVE_QVideoWidget
+QWidget *CConneterPlayer::GetViewer()
 {
-    qDebug(log) << "CConneterPlayer::GetMenu()";
-    return m_pMenu;
+    return &m_Video;
 }
+
+QVideoSink *CConneterPlayer::GetVideoSink()
+{
+    return m_Video.videoSink();
+}
+#endif

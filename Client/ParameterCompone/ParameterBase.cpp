@@ -8,6 +8,7 @@ CParameterBase::CParameterBase(QObject* parent)
     , m_Net(this)
     , m_Proxy(this)
     , m_WakeOnLan(this)
+    , m_Record(this)
 {
     Init();
 }
@@ -16,7 +17,9 @@ CParameterBase::CParameterBase(CParameterConnecter* parent,
                                const QString& szPrefix)
     : CParameterConnecter(parent, szPrefix)
     , m_Net(this)
+    , m_Proxy(this)
     , m_WakeOnLan(this)
+    , m_Record(this)
 {
     Init();
 }
@@ -48,8 +51,10 @@ int CParameterBase::OnLoad(QSettings &set)
                                        GetSupportsDesktopResize()).toBool());
     SetLedState(set.value("LedState", GetLedState()).toBool());
     SetZoomFactor(set.value("Viewer/ZoomFactor", GetZoomFactor()).toDouble());
-    SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptType",
-                         (int)GetParameterClient()->GetAdaptWindows()).toInt());
+    SetAdaptWindows(
+        (CFrmViewer::ADAPT_WINDOWS)
+        set.value("Viewer/AdaptType",
+                  (int)GetParameterClient()->GetAdaptWindows()).toInt());
     return 0;
 }
 
@@ -219,17 +224,17 @@ void CParameterBase::SetZoomFactor(double newZoomFactor)
 
 void CParameterBase::slotSetParameterClient()
 {
-    if(!GetParameterClient()) {
+    CParameterClient* pClient = GetParameterClient();
+    if(!pClient) {
         QString szErr = "The CParameterClient is null";
         qCritical(log) << szErr;
         Q_ASSERT_X(false, "CParameterBase", szErr.toStdString().c_str());
         return;
     }
-    
-    if(GetParameterClient())
-    {   
-        SetAdaptWindows(GetParameterClient()->GetAdaptWindows());
-    }
-    
+
+    SetAdaptWindows(pClient->GetAdaptWindows());
+
+    m_Record = pClient->m_Record;
+
     return;
 }

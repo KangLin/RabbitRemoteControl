@@ -4,8 +4,15 @@
 #include <QObject>
 #include <QImage>
 #include <QThread>
-#include "FrmViewer.h"
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    #include <QMediaCaptureSession>
+    #include <QMediaRecorder>
+    #include <QVideoFrameInput>
+    #include <QAudioBufferInput>
+    #include "ParameterRecord.h"
+#endif
 
+#include "FrmViewer.h"
 #include "client_export.h"
 
 /*!
@@ -46,15 +53,23 @@ class CLIENT_EXPORT CRecordVideo : public QObject
 public:
     explicit CRecordVideo(QObject *parent = nullptr);
 
+public Q_SLOTS:
     int Start(const QString& szFile);
     int Stop();
-
-public Q_SLOTS:
     void slotUpdate(QImage img);
 
 Q_SIGNALS:
     void sigStatusChanged(CFrmViewer::RecordVideoStatus status);
     void sigError(int nRet, QString szText);
+
+private:
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    QMediaCaptureSession m_CaptureSession;
+    QMediaRecorder m_Recorder;
+    QVideoFrameInput m_VideoFrameInput;
+    QAudioBufferInput m_AudioBufferInput;
+    CParameterRecord m_Parameter;
+#endif
 };
 
 #endif // RECORDVIDEO_H

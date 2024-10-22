@@ -25,7 +25,7 @@ const QString CPluginScreenCapture::DisplayName() const
 
 const QString CPluginScreenCapture::Description() const
 {
-    return tr("Capture or recored screen and window");
+    return tr("Capture or record screen and window. This is a sample example.");
 }
 
 const QString CPluginScreenCapture::Version() const

@@ -88,8 +88,6 @@
     <property name="title">
      <string>Tools(&amp;T)</string>
     </property>
-    <addaction name="actionScreenshot"/>
-    <addaction name="actionRecordVideo"/>
     <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>

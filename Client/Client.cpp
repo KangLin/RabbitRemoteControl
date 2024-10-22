@@ -14,6 +14,9 @@
 #include "FrmParameterClient.h"
 #include "FrmViewer.h"
 #include "Channel.h"
+#include "ParameterRecord.h"
+#include "ParameterRecordUI.h"
+
 
 #ifdef HAVE_PCAPPLUSPLUS
     #include <Logger.h>
@@ -318,18 +321,18 @@ QList<QWidget*> CClient::GetSettingsWidgets(QWidget* parent)
 {
     QList<QWidget*> lstWidget;
 
-    QWidget* p = new CFrmParameterClient(&m_ParameterClient, parent);
+    CFrmParameterClient* p = new CFrmParameterClient(parent);
     if(p) {
-        int idx = p->metaObject()->indexOfSlot("slotAccept()");
-        if(-1 == idx) {
-            QString szErr = "Class ";
-            szErr += p->metaObject()->className();
-            szErr += " hasn't slot slotAccept(), please add it.";
-            Q_ASSERT_X(false, "Client", szErr.toStdString().c_str());
-        }
-
+        p->SetParameter(&m_ParameterClient);
         lstWidget.push_back(p);
     }
+
+    CParameterRecordUI* pRecord = new CParameterRecordUI(parent);
+    if(pRecord) {
+        pRecord->SetParameter(&m_ParameterClient.m_Record);
+        lstWidget.push_back(pRecord);
+    }
+
     return lstWidget;
 }
 

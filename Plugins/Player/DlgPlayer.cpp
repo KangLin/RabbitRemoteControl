@@ -11,8 +11,8 @@
 #include <QLoggingCategory>
 #include <QScreen>
 #include <QGuiApplication>
-#include <QWindowCapture>
-#include <QCapturableWindow>
+#include <QMessageBox>
+
 #include "DlgPlayer.h"
 #include "ui_DlgPlayer.h"
 
@@ -23,21 +23,6 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     , m_pParameters(pPara)
 {
     ui->setupUi(this);
-
-    foreach(const QCameraDevice &cameraDevice, QMediaDevices::videoInputs()) {
-        ui->cmbCamera->addItem(cameraDevice.description());
-    }
-    if(QMediaDevices::videoInputs().size() > 0)
-        ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
-    ui->cmbType->addItem(tr("Url"), (int)CParameterPlayer::TYPE::Url);
-    int nIndex = ui->cmbType->findData((int)m_pParameters->GetType());
-    if(-1 != nIndex)
-        ui->cmbType->setCurrentIndex(nIndex);
-    on_cmbType_currentIndexChanged(nIndex);
-
-    ui->leUrl->setText(m_pParameters->GetUrl());
-    if(m_pParameters->GetCamera() != -1)
-        ui->cmbCamera->setCurrentIndex(m_pParameters->GetCamera());
 
     foreach(auto ai, QMediaDevices::audioInputs())
     {
@@ -69,6 +54,29 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     ui->cbAudioOutputMuted->setCheckable(true);
     ui->cbAudioOutputMuted->setChecked(m_pParameters->GetAudioOutputMuted());
     ui->dsAudioOutputVolume->setValue(m_pParameters->GetAudioOutputVolume());
+
+    if(QMediaDevices::videoInputs().size() > 0)
+    {
+        ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
+        foreach(const QCameraDevice &cameraDevice, QMediaDevices::videoInputs()) {
+            ui->cmbCamera->addItem(cameraDevice.description());
+        }
+        if(m_pParameters->GetCamera() > -1)
+            ui->cmbCamera->setCurrentIndex(m_pParameters->GetCamera());
+    }
+
+    ui->cmbType->addItem(tr("Url"), (int)CParameterPlayer::TYPE::Url);
+    ui->leUrl->setText(m_pParameters->GetUrl());
+
+    int nIndex = ui->cmbType->findData((int)m_pParameters->GetType());
+    if(-1 < nIndex) {
+        ui->cmbType->setCurrentIndex(nIndex);
+        on_cmbType_currentIndexChanged(nIndex);
+    }
+
+    m_pRecordUI = new CParameterRecordUI(ui->tabWidget);
+    m_pRecordUI->SetParameter(&m_pParameters->m_Record);
+    ui->tabWidget->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), m_pRecordUI->windowTitle());
 }
 
 CDlgPlayer::~CDlgPlayer()
@@ -78,6 +86,23 @@ CDlgPlayer::~CDlgPlayer()
 
 void CDlgPlayer::accept()
 {
+    int nRet = 0;
+
+    if((ui->cmbType->currentData().value<CParameterPlayer::TYPE>()
+         == CParameterPlayer::TYPE::Url) && ui->leUrl->text().isEmpty()) {
+        ui->leUrl->setFocus();
+        ui->tabWidget->setCurrentIndex(0);
+        QString szErr = tr("The url is empty. please set!");
+        QMessageBox::critical(this, tr("Error"), szErr);
+        qCritical(log) << szErr;
+        return;
+    }
+
+    if(!m_pRecordUI->CheckValidity(true)) {
+        ui->tabWidget->setCurrentWidget(m_pRecordUI);
+        return;
+    }
+
     m_pParameters->SetType(
         ui->cmbType->currentData().value<CParameterPlayer::TYPE>());
     m_pParameters->SetUrl(ui->leUrl->text());
@@ -106,6 +131,10 @@ void CDlgPlayer::accept()
     m_pParameters->SetAudioOutputMuted(ui->cbAudioOutputMuted->isChecked());
     m_pParameters->SetAudioOutputVolume(ui->dsAudioOutputVolume->value());
 
+    nRet = m_pRecordUI->Accept();
+    if(nRet)
+        return;
+
     QDialog::accept();
 }
 
@@ -115,13 +144,17 @@ void CDlgPlayer::on_cmbType_currentIndexChanged(int index)
     ui->leUrl->setVisible(false);
     ui->pbUrlBrowse->setVisible(false);
 
-    switch((CParameterPlayer::TYPE) index) {
+    CParameterPlayer::TYPE type
+        = (CParameterPlayer::TYPE)ui->cmbType->itemData(index).toInt();
+    switch(type) {
     case CParameterPlayer::TYPE::Camera:
         ui->cmbCamera->setVisible(true);
+        ui->gbAudioInput->setChecked(true);
         break;
     case CParameterPlayer::TYPE::Url:
         ui->leUrl->setVisible(true);
         ui->pbUrlBrowse->setVisible(true);
+        ui->gbAudioInput->setChecked(false);
         break;
     default:
         break;

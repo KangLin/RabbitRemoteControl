@@ -7,5 +7,15 @@ CParameterUI::CParameterUI(QWidget *parent)
 bool CParameterUI::CheckValidity(bool validity)
 {
     Q_UNUSED(validity)
-    return 0;
+    return true;
+}
+
+void CParameterUI::slotSetParameter(CParameter *pParameter)
+{
+    SetParameter(pParameter);
+}
+
+void CParameterUI::slotAccept()
+{
+    Accept();
 }

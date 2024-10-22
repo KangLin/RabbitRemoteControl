@@ -3,6 +3,8 @@
 #ifndef CONNECTERCONNECT_H
 #define CONNECTERCONNECT_H
 
+#include <QMenu>
+
 #include "Connecter.h"
 #include "Connect.h"
 
@@ -69,12 +71,18 @@ public Q_SLOTS:
      */
     virtual int DisConnect() override;
 
+    virtual QMenu *GetMenu(QWidget *parent) override;
+
 Q_SIGNALS:
     void sigOpenConnect(CConnecterConnect*);
     void sigCloseconnect(CConnecterConnect*);
+    void sigSceenShot();
+    void sigRecord(bool bRecord);
 
 private:
     CConnect* m_pConnect;
+protected:
+    QMenu m_Menu;
 };
 
 #endif // CONNECTERCONNECT_H

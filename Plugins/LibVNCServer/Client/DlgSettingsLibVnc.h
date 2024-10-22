@@ -33,7 +33,7 @@ private:
     Ui::CDlgSettingsLibVnc *ui;
 
     CParameterLibVNCServer* m_pPara;
-    CParameterProxyUI* m_uiProxy;
+    CParameterProxyUI* m_pProxyUI;
 };
 
 #endif // DLGSETTINGS_H

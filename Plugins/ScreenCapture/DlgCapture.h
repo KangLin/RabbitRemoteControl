@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QCapturableWindow>
 #include "ParameterScreenCapture.h"
+#include "ParameterRecordUI.h"
 
 namespace Ui {
 class CDlgCapture;
@@ -21,12 +22,12 @@ private:
     Ui::CDlgCapture *ui;
     CParameterScreenCapture* m_pParameters;
     QList<QCapturableWindow> m_Windows;
+    CParameterRecordUI* m_pRecordUI;
 
     // QDialog interface
 public slots:
     virtual void accept() override;
-private slots:
-    void on_pbPathBrowe_clicked();
+
 };
 
 #endif // DLGCAPTURE_H

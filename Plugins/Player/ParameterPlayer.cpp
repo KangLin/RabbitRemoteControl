@@ -4,7 +4,7 @@
 
 CParameterPlayer::CParameterPlayer(QObject *parent)
     : CParameterBase{parent}
-    , m_Type(TYPE::Camera)
+    , m_Type(TYPE::Url)
     , m_nCamera(-1)
     , m_nAudioInput(-1)
     , m_bEnableAudioInput(true)

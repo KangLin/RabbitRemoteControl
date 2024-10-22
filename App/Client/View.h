@@ -59,13 +59,6 @@ Q_SIGNALS:
     //! \note The QWidget* pView must is same as CConnecter::GetViewer()
     void sigCloseView(const QWidget* pView);
     void sigAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
-
-public Q_SLOTS:
-    virtual void slotRecordVideoStart(const QString& szFile, bool bRemoteDesktop = true) = 0;
-    virtual void slotRecordVideoStop() = 0;
-Q_SIGNALS:
-    void sigRecordVideoStatus(CFrmViewer::RecordVideoStatus status);
-    void sigRecordVideoError(int nRet, QString szText);
 };
 
 #endif // CVIEW_H

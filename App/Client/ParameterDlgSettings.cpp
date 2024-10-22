@@ -26,7 +26,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
     // [connect accepted to slotAccept of widget]
     foreach(auto p, wViewer)
     {
-        ui->tabWidget->addTab(p, p->windowTitle());
+        ui->tabWidget->addTab(p, p->windowIcon(), p->windowTitle());
         bool check = false;
         check = connect(this, SIGNAL(accepted()), p, SLOT(slotAccept()));
         if(!check)

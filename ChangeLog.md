@@ -10,13 +10,15 @@
   - Add CConnectDesktop
   - Add CClient::Details()
   - Add CParameterUI
+  - Add CConnecter::QMenu* GetMenu(QWidget* parent = nullptr)
   - Rename CConnecterDesktop to CConnecterConnect
   - Rename CConnecterDesktopThread to CConnecterThread
 -  FreeRDP: prepare default settings    
   - Fix ripple [#27](https://github.com/KangLin/RabbitRemoteControl/issues/27) [#21](https://github.com/KangLin/RabbitRemoteControl/issues/27)  
     Because of the default is not set FreeRDP_SupportGraphicsPipeline feature
 - Plugin
-  - Add player
+  - Add player. need Qt >= 6.6.0 , record need Qt >= 6.8.0 .
+  - Add capture screen or window. need Qt >= 6.6.0 , record need Qt >= 6.8.0 .
 
 ### v0.0.27
 - Client:

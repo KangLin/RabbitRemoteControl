@@ -35,12 +35,6 @@ public:
     virtual double GetZoomFactor() override;
     virtual QSize GetDesktopSize() override;
 
-public Q_SLOTS:
-    virtual void slotRecordVideoStart(const QString &szFile, bool bRemoteDesktop) override;
-    virtual void slotRecordVideoStop() override;
-private Q_SLOTS:
-    void slotRecordVideoStatusChanged(CFrmViewer::RecordVideoStatus status);
-
 private Q_SLOTS:
     void slotCurrentChanged(int index);
     void slotTabCloseRequested(int index);

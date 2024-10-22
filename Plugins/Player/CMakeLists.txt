@@ -12,6 +12,7 @@ SET(Player_SOURCE_FILES
     ParameterPlayer.cpp
     ConnectPlayer.cpp
     DlgPlayer.cpp
+    FrmPlayer.cpp
     )
 
 SET(Player_HEADER_FILES
@@ -20,6 +21,7 @@ SET(Player_HEADER_FILES
     ParameterPlayer.h
     ConnectPlayer.h
     DlgPlayer.h
+    FrmPlayer.h
     )
 
 SET(Player_UI_FILES
@@ -27,9 +29,10 @@ SET(Player_UI_FILES
     )
 
 SET(Player_DEFINITIONS
-)
+    HAVE_QVideoWidget
+    )
 
-set(Player_QT_COMPONENTS Widgets MultimediaWidgets)
+set(Player_QT_COMPONENTS Widgets Multimedia MultimediaWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${Player_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${Player_QT_COMPONENTS})

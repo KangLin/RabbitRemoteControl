@@ -3,6 +3,14 @@
 #ifndef CONNETERPLAYER_H
 #define CONNETERPLAYER_H
 
+#pragma once
+
+#include <QMenu>
+
+#if HAVE_QVideoWidget
+#include "FrmPlayer.h"
+#endif
+
 #include "ConnecterThread.h"
 #include "ParameterPlayer.h"
 
@@ -17,7 +25,6 @@ public:
     // CConnecter interface
 public:
     virtual qint16 Version() override;
-    virtual QMenu *GetMenu(QWidget *parent = nullptr) override;
     // CConnecterConnect interface
     virtual CConnect *InstanceConnect() override;
 
@@ -30,7 +37,14 @@ private:
 
 private:
     CParameterPlayer m_Parameters;
-    QMenu* m_pMenu;
+
+#if HAVE_QVideoWidget
+    QVideoWidget m_Video;
+public:
+    virtual QWidget *GetViewer() override;
+    QVideoSink *GetVideoSink();
+#endif
+
 };
 
 #endif // CONNETERPLAYER_H

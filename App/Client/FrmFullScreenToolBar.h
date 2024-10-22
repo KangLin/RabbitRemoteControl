@@ -54,7 +54,6 @@ private:
     QToolBar m_ToolBar;
     QActionGroup* m_pGBViewZoom;
     QAction* m_pNail;
-    QAction* m_pRecordVideo;
     MainWindow* m_pMain;
     QTimer m_Timer;
     int m_TimeOut;

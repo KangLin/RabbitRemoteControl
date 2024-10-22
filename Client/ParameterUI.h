@@ -40,6 +40,10 @@ public:
      * \return 0 is success. otherwise is fail
      */
     virtual int Accept() = 0;
+
+public Q_SLOTS:
+    virtual void slotSetParameter(CParameter* pParameter);
+    virtual void slotAccept();
 };
 
 #endif // PARAMETERUI_H

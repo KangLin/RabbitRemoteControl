@@ -10,7 +10,7 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CParameterLibVNCServer *pPara, QWidget *p
     QDialog(parent),
     ui(new Ui::CDlgSettingsLibVnc),
     m_pPara(pPara),
-    m_uiProxy(nullptr)
+    m_pProxyUI(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
@@ -26,9 +26,9 @@ CDlgSettingsLibVnc::CDlgSettingsLibVnc(CParameterLibVNCServer *pPara, QWidget *p
     ui->cbLocalCursor->setChecked(m_pPara->GetLocalCursor());
     ui->cbClipboard->setChecked(m_pPara->GetClipboard());
     
-    m_uiProxy = new CParameterProxyUI(ui->tabWidget);
-    m_uiProxy->SetParameter(&m_pPara->m_Proxy);
-    ui->tabWidget->insertTab(1, m_uiProxy, tr("Proxy"));
+    m_pProxyUI = new CParameterProxyUI(ui->tabWidget);
+    m_pProxyUI->SetParameter(&m_pPara->m_Proxy);
+    ui->tabWidget->insertTab(1, m_pProxyUI, tr("Proxy"));
         
     // Compress
     //    ui->cbCompressAutoSelect->setChecked(m_pPara->bAutoSelect);
@@ -80,10 +80,14 @@ void CDlgSettingsLibVnc::on_pbOk_clicked()
     if(!m_pPara)
         return;
     
-    if(!ui->wNet->CheckValidity(true))
+    if(!ui->wNet->CheckValidity(true)) {
+        ui->tabWidget->setCurrentIndex(0);
         return;
-    if(!m_uiProxy->CheckValidity(true))
+    }
+    if(!m_pProxyUI->CheckValidity(true)) {
+        ui->tabWidget->setCurrentWidget(m_pProxyUI);
         return;
+    }
 
     // Server
     m_pPara->SetName(ui->leName->text());
@@ -97,7 +101,7 @@ void CDlgSettingsLibVnc::on_pbOk_clicked()
     m_pPara->SetLocalCursor(ui->cbLocalCursor->isChecked());
     m_pPara->SetClipboard(ui->cbClipboard->isChecked());
     
-    nRet = m_uiProxy->Accept();
+    nRet = m_pProxyUI->Accept();
     if(nRet)
         return;
     

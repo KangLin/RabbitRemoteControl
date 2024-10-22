@@ -10,6 +10,13 @@
 #include <QMediaCaptureSession>
 #include <QMediaPlayer>
 #include <QVideoSink>
+#include <QMediaRecorder>
+
+#if HAVE_QT6_RECORD
+#include <QVideoFrameInput>
+#include <QAudioBufferInput>
+#include <QAudioBufferOutput>
+#endif
 
 #include <QAudioOutput>
 #include <QAudioInput>
@@ -41,17 +48,29 @@ protected:
 private Q_SLOTS:
     void slotEnableAudioInput(bool bEnable);
     void slotEnableAudioOutput(bool bEnable);
+    void slotPositionChanged(qint64 pos);
+    void slotDurationChanged(qint64 duration);
 
 private:
     QRect m_Video;
+    QCamera* m_pCamera;
     QMediaPlayer m_Player;
     QMediaCaptureSession m_CaptureSessioin;
+    QMediaRecorder m_Recorder;
     QVideoSink m_VideoSink;
-    QCamera* m_pCamera;
+
+#if HAVE_QT6_RECORD
+    QVideoFrameInput m_VideoFrameInput;
+    QAudioBufferInput m_AudioBufferInput;
+    QAudioBufferOutput m_AudioBufferOutput;
+#endif
+
     QAudioOutput m_AudioOutput;
     QAudioInput m_AudioInput;
 
     CParameterPlayer* m_pParameters;
+    qint64 m_nPosition;
+    qint64 m_nDuration;
 };
 
 #endif // CONNECTPLAYER_H

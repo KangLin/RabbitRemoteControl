@@ -5,6 +5,7 @@
 
 #include "Parameter.h"
 #include "FrmViewer.h"
+#include "ParameterRecord.h"
 
 /*!
  * \~chinese 客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。
@@ -148,6 +149,9 @@ Q_SIGNALS:
 private:
     CFrmViewer::ADAPT_WINDOWS m_AdaptWindows;
     Q_PROPERTY(CFrmViewer::ADAPT_WINDOWS AdaptWindows READ GetAdaptWindows WRITE SetAdaptWindows NOTIFY sigAdaptWindowsChanged)
+
+public:
+    CParameterRecord m_Record;
 };
 
 #endif // CPARAMETERVIEWER_H

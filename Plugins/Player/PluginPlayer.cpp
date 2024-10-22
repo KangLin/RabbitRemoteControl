@@ -24,7 +24,7 @@ const QString CPluginPlayer::DisplayName() const
 
 const QString CPluginPlayer::Description() const
 {
-    return tr("Player: play media files. play or recored camera, network media stream.");
+    return tr("Player: play media files. play or record camera, network media stream.");
 }
 
 const QString CPluginPlayer::Version() const

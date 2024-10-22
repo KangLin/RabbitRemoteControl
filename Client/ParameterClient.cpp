@@ -1,16 +1,17 @@
 #include "ParameterClient.h"
 
 CParameterClient::CParameterClient(QObject *parent)
-    : CParameter(parent),
-    m_bHookKeyboard(true),
-    m_bEnableSystemUserToUser(true),
-    m_bSavePassword(false),
-    m_PromptType(PromptType::No),
-    m_nPromptCount(0),
-    m_bViewPassowrd(false),
-    m_bShowProtocolPrefix(false),
-    m_bShowIpPortInName(false),
-    m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow)
+    : CParameter(parent)
+    , m_bHookKeyboard(true)
+    , m_bEnableSystemUserToUser(true)
+    , m_bSavePassword(false)
+    , m_PromptType(PromptType::No)
+    , m_nPromptCount(0)
+    , m_bViewPassowrd(false)
+    , m_bShowProtocolPrefix(false)
+    , m_bShowIpPortInName(false)
+    , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow)
+    , m_Record(this)
 {}
 
 CParameterClient::~CParameterClient()

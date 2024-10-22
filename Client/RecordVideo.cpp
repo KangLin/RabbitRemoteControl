@@ -1,5 +1,7 @@
-#include "RecordVideo.h"
 #include <QLoggingCategory>
+#include <QUrl>
+#include <QVideoFrame>
+#include "RecordVideo.h"
 
 static Q_LOGGING_CATEGORY(log, "Record.Video")
 static Q_LOGGING_CATEGORY(logThread, "Record.Video.Thread")
@@ -60,14 +62,31 @@ void CRecordVideoThread::run()
 CRecordVideo::CRecordVideo(QObject *parent)
     : QObject{parent}
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    bool check = connect(
+        &m_Recorder, &QMediaRecorder::errorOccurred,
+        this, [&](QMediaRecorder::Error error, const QString &errorString) {
+            qDebug(log) << "Recorder error occurred:" << error << errorString;
+            Stop();
+            emit sigError(error, errorString);
+        });
+    Q_ASSERT(check);
+#endif
 }
 
 int CRecordVideo::Start(const QString &szFile)
 {
     int nRet = 0;
     qDebug(log) << "Start";
-    //TODO: Initial video parameters and resource
-
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    m_Parameter.SetEnable(true);
+    m_Parameter >> m_Recorder;
+    m_CaptureSession.setVideoFrameInput(&m_VideoFrameInput);
+    //m_CaptureSession.setAudioBufferInput(&m_AudioBufferInput);
+    m_CaptureSession.setRecorder(&m_Recorder);
+    m_Recorder.setOutputLocation(QUrl::fromLocalFile(m_Parameter.GetFile(true)));
+    m_Recorder.record();
+#endif
     return nRet;
 }
 
@@ -75,7 +94,12 @@ int CRecordVideo::Stop()
 {
     int nRet = 0;
     qDebug(log) << "Stop";
-    //TODO: Clean resource
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    m_Recorder.stop();
+    m_CaptureSession.setVideoFrameInput(nullptr);
+    m_CaptureSession.setAudioBufferInput(nullptr);
+    m_CaptureSession.setRecorder(nullptr);
+#endif
 
     return nRet;
 }
@@ -83,7 +107,13 @@ int CRecordVideo::Stop()
 void CRecordVideo::slotUpdate(QImage img)
 {
     qDebug(log) << "Update image";
-    //TODO: save video to file
-    QThread::sleep(3);
-    emit sigError(3, "record video error");
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    QVideoFrame frame(img);
+    bool bRet = m_VideoFrameInput.sendVideoFrame(frame);
+    if(!bRet) {
+        //TODO: 放入未成功发送队列，
+        //    当 QVideoFrameInput::readyToSendVideoFrame() 时，再发送
+        qDebug(log) << "m_VideoFrameInput.sendVideoFrame fail";
+    }
+#endif
 }

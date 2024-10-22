@@ -5,6 +5,7 @@
 
 #include <QDialog>
 #include "ParameterPlayer.h"
+#include "ParameterRecordUI.h"
 
 namespace Ui {
 class CDlgPlayer;
@@ -21,6 +22,7 @@ public:
 private:
     Ui::CDlgPlayer *ui;
     CParameterPlayer* m_pParameters;
+    CParameterRecordUI* m_pRecordUI;
 
     // QDialog interface
 public slots:

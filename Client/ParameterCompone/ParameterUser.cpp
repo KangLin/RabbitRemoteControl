@@ -5,12 +5,12 @@
 static Q_LOGGING_CATEGORY(log, "Client.Parameter.User")
 
 CParameterUser::CParameterUser(CParameterConnecter *parent, const QString &szPrefix)
-    : CParameterConnecter(parent, szPrefix),
-    m_Type(QList<TYPE>() << TYPE::UserPassword),
-    m_UsedType(TYPE::UserPassword),
-    m_bSavePassword(false),
-    m_bUseSystemFile(true),
-    m_bSavePassphrase(false)    
+    : CParameterConnecter(parent, szPrefix)
+    , m_Type(QList<TYPE>() << TYPE::UserPassword)
+    , m_UsedType(TYPE::UserPassword)
+    , m_bSavePassword(false)
+    , m_bUseSystemFile(true)
+    , m_bSavePassphrase(false)
 {
     m_TypeName = {{TYPE::None, tr("None")},
         {TYPE::OnlyPassword, tr("Password")},

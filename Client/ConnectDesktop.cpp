@@ -5,8 +5,10 @@
 #include <QTimer>
 #include <QLoggingCategory>
 #include <QWheelEvent>
+#include <QVideoFrame>
 
 #include "ConnectDesktop.h"
+#include "ConnecterConnect.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Connect.Desktop")
 
@@ -17,6 +19,7 @@ int g_QMessageBox_Icon = qRegisterMetaType<Qt::MouseButton>("QMessageBox::Icon")
 
 CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
     : CConnect(pConnecter)
+    , m_pParameter(nullptr)
 {
     if(pConnecter) {
         CFrmViewer* pView = qobject_cast<CFrmViewer*>(pConnecter->GetViewer());
@@ -26,6 +29,17 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
             qWarning(log) << "pConnecter->GetViewer() is not CFrmView";
         SetConnecter(pConnecter);
     }
+
+#if HAVE_QT6_MULTIMEDIA
+    bool check = connect(
+        &m_Recorder, &QMediaRecorder::errorOccurred,
+        this, [&](QMediaRecorder::Error error, const QString &errorString) {
+            qDebug(log) << "Recorder error occurred:" << error << errorString;
+            slotRecord(false);
+            emit sigError(error, errorString);
+        });
+    Q_ASSERT(check);
+#endif
 }
 
 CConnectDesktop::~CConnectDesktop()
@@ -49,6 +63,16 @@ int CConnectDesktop::SetConnecter(CConnecter* pConnecter)
     check = connect(this, SIGNAL(sigSetClipboard(QMimeData*)),
                     pConnecter, SLOT(slotSetClipboard(QMimeData*)));
     Q_ASSERT(check);
+    CConnecterConnect* p = qobject_cast<CConnecterConnect*>(pConnecter);
+    if(p) {
+        m_pParameter = p->GetParameter();
+        check = connect(p, SIGNAL(sigSceenShot()),
+                        this, SLOT(slotScreenShot()));
+        Q_ASSERT(check);
+        check = connect(p, SIGNAL(sigRecord(bool)),
+                        this, SLOT(slotRecord(bool)));
+        Q_ASSERT(check);
+    }
     return 0;
 }
 
@@ -81,6 +105,16 @@ int CConnectDesktop::SetViewer(CFrmViewer *pView, bool bDirectConnection)
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigUpdateLedState(unsigned int)),
                     pView, SLOT(slotUpdateLedState(unsigned int)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigScreenShot(const QString&)),
+                    pView, SLOT(slotScreenShot(const QString&)));
+    Q_ASSERT(check);
+    check = connect(this, SIGNAL(sigRecordVideo(bool)),
+                    pView, SLOT(slotRecordVideo(bool)));
+    Q_ASSERT(check);
+    check = connect(pView, SIGNAL(sigRecordVideo(QImage)),
+                    this, SLOT(slotRecordVideo(QImage)),
+                    Qt::DirectConnection);
     Q_ASSERT(check);
 
     if(bDirectConnection)
@@ -144,7 +178,7 @@ void CConnectDesktop::slotWheelEvent(QWheelEvent *event, QPoint pos)
 {
     QWheelEvent* e = new QWheelEvent(
         pos,
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0,0)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
         event->globalPosition(),
 #else
         event->globalPos(),
@@ -253,10 +287,68 @@ bool CConnectDesktop::event(QEvent *event)
     case QEvent::KeyRelease:
         keyReleaseEvent((QKeyEvent*)event);
         break;
+    case TypeRecordVideo:
+        RecordVideo((QRecordVideoEvent*)event);
+        break;
     default:
         return QObject::event(event);
     }
 
     event->accept();
     return true;
+}
+
+void CConnectDesktop::slotRecord(bool bRecord)
+{
+#if HAVE_QT6_MULTIMEDIA
+    if(bRecord) {
+        m_pParameter->m_Record >> m_Recorder;
+#if HAVE_QT6_RECORD
+        m_CaptureSession.setVideoFrameInput(&m_VideoFrameInput);
+        //m_CaptureSession.setAudioBufferInput(&m_AudioBufferInput);
+#endif
+        m_CaptureSession.setRecorder(&m_Recorder);
+        m_Recorder.setOutputLocation(QUrl::fromLocalFile(m_Parameter.GetFile(true)));
+        m_Recorder.record();
+    } else {
+        m_Recorder.stop();
+#if HAVE_QT6_RECORD
+        m_CaptureSession.setVideoFrameInput(nullptr);
+        m_CaptureSession.setAudioBufferInput(nullptr);
+#endif
+        m_CaptureSession.setRecorder(nullptr);
+    }
+    emit sigRecordVideo(bRecord);
+#endif
+}
+
+void CConnectDesktop::slotRecordVideo(const QImage &img)
+{
+    QRecordVideoEvent* e = new QRecordVideoEvent(img);
+    QCoreApplication::postEvent(this, e);
+    WakeUp();
+}
+
+void CConnectDesktop::RecordVideo(QRecordVideoEvent *e)
+{
+    qDebug(log) << "Update image";
+    if(!e) return;
+#if HAVE_QT6_RECORD
+    QVideoFrame frame(e->GetImage());
+    bool bRet = m_VideoFrameInput.sendVideoFrame(frame);
+    if(!bRet) {
+        //TODO: 放入未成功发送队列，
+        //    当 QVideoFrameInput::readyToSendVideoFrame() 时，再发送
+        qDebug(log) << "m_VideoFrameInput.sendVideoFrame fail";
+    }
+#endif
+}
+
+void CConnectDesktop::slotScreenShot()
+{
+    if(!m_pParameter)
+        return;
+    QString szFile;
+    szFile = m_pParameter->m_Record.GetImageFile(true);
+    emit sigScreenShot(szFile);
 }

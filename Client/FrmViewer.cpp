@@ -17,19 +17,13 @@
     #include <X11/keysymdef.h>
 #endif
 
-#include "RecordVideo.h"
-
 #undef KeyPress
 
 static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
 static Q_LOGGING_CATEGORY(logRecord, "Client.FrmViewer.Record")
 
-int g_FrmViewerRecordVideoStatus = qRegisterMetaType<CFrmViewer::RecordVideoStatus>();
-
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
-    , m_RecordVideoStatus(RecordVideoStatus::Stop)
-    , m_pRecordVideo(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     //setAttribute(Qt::WA_OpaquePaintEvent);
@@ -51,7 +45,6 @@ CFrmViewer::CFrmViewer(QWidget *parent)
 CFrmViewer::~CFrmViewer()
 {
     qDebug(log) << "CFrmViewer::~CFrmViewer()";
-    slotRecordVideoStop();
 }
 
 QRectF CFrmViewer::GetAspectRationRect()
@@ -84,12 +77,6 @@ QRectF CFrmViewer::GetAspectRationRect()
 
 void CFrmViewer::paintDesktop()
 {
-    if(this->isHidden())
-    {
-        qDebug(log) << "CFrmViewer is hidden";
-        return;
-    }
-
     QRectF dstRect = rect();
     
     switch (m_AdaptWindows) {
@@ -124,7 +111,7 @@ void CFrmViewer::paintDesktop()
 #else
         painter.fillRect(rect(), QBrush(palette().color(QPalette::Background)));
 #endif
-    }
+    } //*/
     
     // 设置平滑模式
     painter.setRenderHint(QPainter::SmoothPixmapTransform);
@@ -136,14 +123,6 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
 {
     //qqDebug(log) << "CFrmViewer::paintEvent";
     Q_UNUSED(event)
-    if(this->isHidden())
-    {
-        qDebug() << "CFrmViewer is hidden";
-        return;
-    }
-
-    if(m_pRecordVideo && RecordVideoStatus::Recording == m_RecordVideoStatus )
-        emit m_pRecordVideo->sigUpdate(m_Desktop);
 
     paintDesktop();
 }
@@ -354,12 +333,12 @@ void CFrmViewer::slotUpdateRect(const QImage& image)
 {
     //qDebug(log) << "void CFrmViewer::slotUpdateRect(const QImage& image)" << image;
     m_Desktop = image;
+
+    if(m_bRecordVideo)
+        emit sigRecordVideo(m_Desktop);
+
     update();
     return;
-
-    QPainter painter(&m_Desktop);
-    painter.drawImage(image.rect(), image);
-    update();
 }
 
 void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
@@ -382,6 +361,9 @@ void CFrmViewer::slotUpdateRect(const QRect& r, const QImage& image)
         painter.drawImage(r, image);
         //qDebug(log) << "Update image size isn't same old image size" << r << image.rect() << image;
     }
+
+    if(m_bRecordVideo)
+        emit sigRecordVideo(m_Desktop);
 
     update();
 }
@@ -526,7 +508,6 @@ void CFrmViewer::slotUpdateLedState(unsigned int state)
     XFlush(dpy);
     XCloseDisplay(dpy);
 #endif
-
 }
 
 QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
@@ -539,55 +520,19 @@ QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
     return m_Desktop.copy(x, y, width, height);
 }
 
-void CFrmViewer::slotRecordVideoStart(const QString &szFile)
+void CFrmViewer::slotScreenShot(const QString &szFile)
 {
-    qDebug(logRecord) << "CFrmViewer::slotRecordVideoStart()" << szFile;
-    if(m_pRecordVideo) {
-        m_pRecordVideo->exit();
-    }
-
-    m_pRecordVideo = new CRecordVideoThread();
-    if(m_pRecordVideo) {
-        bool check = false;
-        check = connect(
-            m_pRecordVideo,
-            &CRecordVideoThread::sigStatusChanged,
-            this, [&](CFrmViewer::RecordVideoStatus status){
-                m_RecordVideoStatus = status;
-                emit sigRecordVideoStatusChanged(m_RecordVideoStatus);
-            });
-        Q_ASSERT(check);
-        check = connect(m_pRecordVideo,
-                        SIGNAL(sigError(int,QString)),
-                        this, SIGNAL(sigRecordVideoError(int,QString)));
-        Q_ASSERT(check);
-    } else {
-        qCritical(log) << "Create record video thread fail";
-        emit sigRecordVideoStatusChanged(RecordVideoStatus::Error);
+    if(szFile.isEmpty()) {
+        qCritical(log) << "File name is empty";
         return;
     }
-
-    m_pRecordVideo->SetFile(szFile);
-    m_pRecordVideo->start();
-    m_RecordVideoStatus = RecordVideoStatus::Starting;
-    emit sigRecordVideoStatusChanged(m_RecordVideoStatus);
+    if(m_Desktop.save(szFile))
+        qDebug(log) << "Success: save screenshot to" << szFile;
+    else
+        qCritical(log) << "Fail: save screenshot to" << szFile;
 }
 
-void CFrmViewer::slotRecordVideoStop()
+void CFrmViewer::slotRecordVideo(bool bRecord)
 {
-    qDebug(logRecord) << "CFrmViewer::slotRecordVideoStop()";
-    if(!m_pRecordVideo) return;
-
-    m_pRecordVideo->exit();
-    m_RecordVideoStatus = RecordVideoStatus::Stopping;
-    emit sigRecordVideoStatusChanged(m_RecordVideoStatus);
-
-    // Don't delete it. See: CRecordVideoThread
-    m_pRecordVideo = nullptr;
-}
-
-CFrmViewer::RecordVideoStatus CFrmViewer::GetRecordVideoStatus()
-{
-    qDebug(logRecord) << "CFrmViewer::GetRecordVideoStatus()" << m_RecordVideoStatus;
-    return m_RecordVideoStatus;
+    m_bRecordVideo = bRecord;
 }
