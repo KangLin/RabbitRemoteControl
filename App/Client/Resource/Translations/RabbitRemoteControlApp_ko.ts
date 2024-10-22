@@ -74,45 +74,55 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="40"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="44"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="45"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="42"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="46"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="47"/>
         <source>Nail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="52"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="54"/>
         <source>Zoom to windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="58"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="60"/>
         <source>Keep aspect ration zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="64"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="67"/>
         <source>Origin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="69"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="72"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="83"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="86"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmFullScreenToolBar.cpp" line="92"/>
+        <source>ScreenShot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="96"/>
+        <source>Record video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="111"/>
         <source>TabBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="95"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="96"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="114"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="115"/>
         <source>Tab bar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -412,382 +422,399 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="32"/>
+        <location filename="../../mainwindow.ui" line="31"/>
         <source>Help(&amp;H)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="39"/>
+        <location filename="../../mainwindow.ui" line="38"/>
         <source>View(&amp;V)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="43"/>
-        <location filename="../../mainwindow.cpp" line="160"/>
-        <location filename="../../mainwindow.cpp" line="161"/>
-        <location filename="../../mainwindow.cpp" line="162"/>
+        <location filename="../../mainwindow.ui" line="42"/>
+        <location filename="../../mainwindow.cpp" line="164"/>
+        <location filename="../../mainwindow.cpp" line="165"/>
+        <location filename="../../mainwindow.cpp" line="166"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="67"/>
+        <location filename="../../mainwindow.ui" line="65"/>
         <source>Remote(&amp;R)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="71"/>
+        <location filename="../../mainwindow.ui" line="69"/>
         <source>Connect(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="92"/>
+        <location filename="../../mainwindow.ui" line="89"/>
         <source>Tools(&amp;T)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="107"/>
+        <location filename="../../mainwindow.ui" line="105"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="136"/>
+        <location filename="../../mainwindow.ui" line="132"/>
         <source>About(&amp;A)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="139"/>
-        <location filename="../../mainwindow.ui" line="142"/>
-        <location filename="../../mainwindow.ui" line="145"/>
-        <location filename="../../mainwindow.ui" line="148"/>
+        <location filename="../../mainwindow.ui" line="135"/>
+        <location filename="../../mainwindow.ui" line="138"/>
+        <location filename="../../mainwindow.ui" line="141"/>
+        <location filename="../../mainwindow.ui" line="144"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="160"/>
-        <location filename="../../mainwindow.ui" line="163"/>
-        <location filename="../../mainwindow.ui" line="166"/>
-        <location filename="../../mainwindow.ui" line="169"/>
+        <location filename="../../mainwindow.ui" line="155"/>
+        <location filename="../../mainwindow.ui" line="158"/>
+        <location filename="../../mainwindow.ui" line="161"/>
+        <location filename="../../mainwindow.ui" line="164"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="183"/>
-        <location filename="../../mainwindow.ui" line="186"/>
-        <location filename="../../mainwindow.ui" line="189"/>
-        <location filename="../../mainwindow.ui" line="192"/>
+        <location filename="../../mainwindow.ui" line="178"/>
+        <location filename="../../mainwindow.ui" line="181"/>
+        <location filename="../../mainwindow.ui" line="184"/>
+        <location filename="../../mainwindow.ui" line="187"/>
         <source>ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="231"/>
-        <location filename="../../mainwindow.ui" line="234"/>
-        <location filename="../../mainwindow.ui" line="237"/>
-        <location filename="../../mainwindow.ui" line="240"/>
+        <location filename="../../mainwindow.ui" line="224"/>
+        <location filename="../../mainwindow.ui" line="227"/>
+        <location filename="../../mainwindow.ui" line="230"/>
+        <location filename="../../mainwindow.ui" line="233"/>
         <source>Original size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="275"/>
+        <location filename="../../mainwindow.ui" line="267"/>
         <source>Keep aspect ration zoom to window(&amp;K)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="278"/>
-        <location filename="../../mainwindow.ui" line="281"/>
-        <location filename="../../mainwindow.ui" line="284"/>
-        <location filename="../../mainwindow.ui" line="287"/>
+        <location filename="../../mainwindow.ui" line="270"/>
+        <location filename="../../mainwindow.ui" line="273"/>
+        <location filename="../../mainwindow.ui" line="276"/>
+        <location filename="../../mainwindow.ui" line="279"/>
         <source>Keep aspect ration zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="293"/>
+        <location filename="../../mainwindow.ui" line="296"/>
+        <location filename="../../mainwindow.ui" line="299"/>
         <location filename="../../mainwindow.ui" line="302"/>
-        <location filename="../../mainwindow.ui" line="305"/>
-        <location filename="../../mainwindow.ui" line="308"/>
-        <location filename="../../mainwindow.ui" line="311"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="323"/>
-        <location filename="../../mainwindow.ui" line="326"/>
-        <location filename="../../mainwindow.ui" line="329"/>
-        <location filename="../../mainwindow.ui" line="332"/>
+        <location filename="../../mainwindow.ui" line="313"/>
+        <location filename="../../mainwindow.ui" line="316"/>
+        <location filename="../../mainwindow.ui" line="319"/>
+        <location filename="../../mainwindow.ui" line="322"/>
         <source>Disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="344"/>
+        <location filename="../../mainwindow.ui" line="333"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="373"/>
+        <location filename="../../mainwindow.ui" line="361"/>
         <source>TabBar(&amp;B)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="376"/>
-        <location filename="../../mainwindow.ui" line="379"/>
-        <location filename="../../mainwindow.ui" line="382"/>
-        <location filename="../../mainwindow.ui" line="385"/>
+        <location filename="../../mainwindow.ui" line="364"/>
+        <location filename="../../mainwindow.ui" line="367"/>
+        <location filename="../../mainwindow.ui" line="370"/>
+        <location filename="../../mainwindow.ui" line="373"/>
         <source>TabBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="529"/>
-        <location filename="../../mainwindow.ui" line="532"/>
-        <location filename="../../mainwindow.ui" line="535"/>
-        <location filename="../../mainwindow.ui" line="538"/>
-        <location filename="../../mainwindow.ui" line="541"/>
+        <location filename="../../mainwindow.ui" line="508"/>
+        <location filename="../../mainwindow.ui" line="511"/>
+        <location filename="../../mainwindow.ui" line="514"/>
+        <location filename="../../mainwindow.ui" line="517"/>
+        <location filename="../../mainwindow.ui" line="520"/>
         <source>Open the list of connections(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="553"/>
+        <location filename="../../mainwindow.ui" line="531"/>
         <source>Main menu bar(&amp;M)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="556"/>
-        <location filename="../../mainwindow.ui" line="559"/>
-        <location filename="../../mainwindow.ui" line="562"/>
-        <location filename="../../mainwindow.ui" line="565"/>
+        <location filename="../../mainwindow.ui" line="534"/>
+        <location filename="../../mainwindow.ui" line="537"/>
+        <location filename="../../mainwindow.ui" line="540"/>
+        <location filename="../../mainwindow.ui" line="543"/>
         <source>Main menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="576"/>
-        <location filename="../../mainwindow.ui" line="579"/>
-        <location filename="../../mainwindow.ui" line="582"/>
-        <location filename="../../mainwindow.ui" line="585"/>
+        <location filename="../../mainwindow.ui" line="554"/>
+        <location filename="../../mainwindow.ui" line="557"/>
+        <location filename="../../mainwindow.ui" line="560"/>
+        <location filename="../../mainwindow.ui" line="563"/>
         <source>Status bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="573"/>
+        <location filename="../../mainwindow.ui" line="574"/>
+        <location filename="../../mainwindow.cpp" line="1220"/>
+        <location filename="../../mainwindow.cpp" line="1224"/>
+        <source>Record video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="551"/>
         <source>Status bar(&amp;S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="157"/>
+        <location filename="../../mainwindow.ui" line="152"/>
         <source>Update(&amp;U)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="180"/>
+        <location filename="../../mainwindow.ui" line="175"/>
         <source>ToolBar(&amp;T)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="201"/>
-        <location filename="../../mainwindow.cpp" line="366"/>
+        <location filename="../../mainwindow.ui" line="195"/>
+        <location filename="../../mainwindow.cpp" line="394"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../mainwindow.ui" line="198"/>
+        <location filename="../../mainwindow.ui" line="201"/>
         <location filename="../../mainwindow.ui" line="204"/>
         <location filename="../../mainwindow.ui" line="207"/>
-        <location filename="../../mainwindow.ui" line="210"/>
-        <location filename="../../mainwindow.ui" line="213"/>
-        <location filename="../../mainwindow.cpp" line="367"/>
-        <location filename="../../mainwindow.cpp" line="368"/>
-        <location filename="../../mainwindow.cpp" line="369"/>
+        <location filename="../../mainwindow.cpp" line="395"/>
+        <location filename="../../mainwindow.cpp" line="396"/>
+        <location filename="../../mainwindow.cpp" line="397"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="228"/>
+        <location filename="../../mainwindow.ui" line="221"/>
         <source>Original size(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="252"/>
+        <location filename="../../mainwindow.ui" line="244"/>
         <source>Zoom to window(&amp;Z)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="255"/>
-        <location filename="../../mainwindow.ui" line="258"/>
-        <location filename="../../mainwindow.ui" line="261"/>
-        <location filename="../../mainwindow.ui" line="264"/>
+        <location filename="../../mainwindow.ui" line="247"/>
+        <location filename="../../mainwindow.ui" line="250"/>
+        <location filename="../../mainwindow.ui" line="253"/>
+        <location filename="../../mainwindow.ui" line="256"/>
         <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="299"/>
+        <location filename="../../mainwindow.ui" line="290"/>
         <source>Exit(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="117"/>
+        <location filename="../../mainwindow.cpp" line="121"/>
         <source>Recently connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="320"/>
+        <location filename="../../mainwindow.ui" line="310"/>
         <source>Disconnect(&amp;D)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="341"/>
+        <location filename="../../mainwindow.ui" line="330"/>
         <source>Open(&amp;O) rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="358"/>
+        <location filename="../../mainwindow.ui" line="347"/>
         <source>Send Ctl+Alt+Del</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="397"/>
-        <location filename="../../mainwindow.ui" line="400"/>
-        <location filename="../../mainwindow.ui" line="403"/>
+        <location filename="../../mainwindow.ui" line="384"/>
+        <location filename="../../mainwindow.ui" line="387"/>
+        <location filename="../../mainwindow.ui" line="390"/>
         <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="401"/>
+        <location filename="../../mainwindow.ui" line="404"/>
+        <location filename="../../mainwindow.ui" line="407"/>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="429"/>
+        <location filename="../../mainwindow.ui" line="432"/>
+        <location filename="../../mainwindow.ui" line="435"/>
+        <location filename="../../mainwindow.ui" line="438"/>
+        <source>Screenshot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="446"/>
+        <location filename="../../mainwindow.ui" line="449"/>
+        <location filename="../../mainwindow.ui" line="452"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="460"/>
+        <location filename="../../mainwindow.ui" line="463"/>
+        <location filename="../../mainwindow.ui" line="466"/>
+        <location filename="../../mainwindow.ui" line="469"/>
+        <source>Current connect parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="477"/>
+        <location filename="../../mainwindow.ui" line="480"/>
+        <location filename="../../mainwindow.ui" line="483"/>
+        <source>Clone current connect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="491"/>
+        <location filename="../../mainwindow.ui" line="494"/>
+        <location filename="../../mainwindow.ui" line="497"/>
+        <location filename="../../mainwindow.ui" line="500"/>
+        <source>Add to favorite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="415"/>
         <location filename="../../mainwindow.ui" line="418"/>
         <location filename="../../mainwindow.ui" line="421"/>
-        <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="445"/>
-        <location filename="../../mainwindow.ui" line="448"/>
-        <location filename="../../mainwindow.ui" line="451"/>
-        <location filename="../../mainwindow.ui" line="454"/>
-        <source>Screenshot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="463"/>
-        <location filename="../../mainwindow.ui" line="466"/>
-        <location filename="../../mainwindow.ui" line="469"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="478"/>
-        <location filename="../../mainwindow.ui" line="481"/>
-        <location filename="../../mainwindow.ui" line="484"/>
-        <location filename="../../mainwindow.ui" line="487"/>
-        <source>Current connect parameters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="496"/>
-        <location filename="../../mainwindow.ui" line="499"/>
-        <location filename="../../mainwindow.ui" line="502"/>
-        <source>Clone current connect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="511"/>
-        <location filename="../../mainwindow.ui" line="514"/>
-        <location filename="../../mainwindow.ui" line="517"/>
-        <location filename="../../mainwindow.ui" line="520"/>
-        <source>Add to favorite</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.ui" line="430"/>
-        <location filename="../../mainwindow.ui" line="433"/>
-        <location filename="../../mainwindow.ui" line="436"/>
         <source>Zoom window to remote desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="150"/>
-        <location filename="../../mainwindow.cpp" line="151"/>
-        <location filename="../../mainwindow.cpp" line="152"/>
+        <location filename="../../mainwindow.cpp" line="154"/>
+        <location filename="../../mainwindow.cpp" line="155"/>
+        <location filename="../../mainwindow.cpp" line="156"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="403"/>
+        <location filename="../../mainwindow.cpp" line="432"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="404"/>
-        <location filename="../../mainwindow.cpp" line="405"/>
-        <location filename="../../mainwindow.cpp" line="406"/>
+        <location filename="../../mainwindow.cpp" line="433"/>
+        <location filename="../../mainwindow.cpp" line="434"/>
+        <location filename="../../mainwindow.cpp" line="435"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="641"/>
-        <location filename="../../mainwindow.cpp" line="659"/>
+        <location filename="../../mainwindow.cpp" line="714"/>
+        <location filename="../../mainwindow.cpp" line="732"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="347"/>
-        <location filename="../../mainwindow.ui" line="350"/>
-        <location filename="../../mainwindow.ui" line="353"/>
-        <location filename="../../mainwindow.cpp" line="651"/>
+        <location filename="../../mainwindow.ui" line="336"/>
+        <location filename="../../mainwindow.ui" line="339"/>
+        <location filename="../../mainwindow.ui" line="342"/>
+        <location filename="../../mainwindow.cpp" line="724"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="252"/>
+        <location filename="../../mainwindow.cpp" line="279"/>
         <source>ICE signal status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="653"/>
+        <location filename="../../mainwindow.cpp" line="726"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="749"/>
+        <location filename="../../mainwindow.cpp" line="822"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="789"/>
+        <location filename="../../mainwindow.cpp" line="864"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="847"/>
+        <location filename="../../mainwindow.cpp" line="922"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="856"/>
+        <location filename="../../mainwindow.cpp" line="931"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="893"/>
+        <location filename="../../mainwindow.cpp" line="968"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1035"/>
+        <location filename="../../mainwindow.cpp" line="1110"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1036"/>
+        <location filename="../../mainwindow.cpp" line="1111"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1064"/>
+        <location filename="../../mainwindow.cpp" line="1139"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1065"/>
+        <location filename="../../mainwindow.cpp" line="1140"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1093"/>
+        <location filename="../../mainwindow.cpp" line="1169"/>
         <source>Save ScreenShot to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="1230"/>
+        <source>Stop record video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="1237"/>
+        <source>Start record video</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

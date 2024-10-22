@@ -29,7 +29,7 @@ SET(Player_UI_FILES
 SET(Player_DEFINITIONS
 )
 
-set(Player_QT_COMPONENTS Widgets Multimedia)
+set(Player_QT_COMPONENTS Widgets MultimediaWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${Player_QT_COMPONENTS})
 if(Qt${QT_VERSION_MAJOR}_FOUND)
     FOREACH(_COMPONENT ${Player_QT_COMPONENTS})
@@ -42,7 +42,7 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     PRIVATE_LIBS ${Player_LIBS}
     PRIVATE_INCLUDE_DIRS ${Player_INCLUDE_DIR}
     PRIVATE_DEFINITIONS ${Player_DEFINITIONS}
-       PluginPLayer_VERSION="${RabbitRemoteControl_VERSION}"
+       PLayer_VERSION="${RabbitRemoteControl_VERSION}"
     PRIVATE_OPTIONS ${Player_OPTIONS}
     INSTALL_DIR plugins/Client
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client

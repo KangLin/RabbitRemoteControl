@@ -9,7 +9,7 @@ CPluginPlayer::CPluginPlayer(QObject *parent)
 
 const QString CPluginPlayer::Protocol() const
 {
-    return "Player";
+    return "Tool";
 }
 
 const QString CPluginPlayer::Name() const
@@ -24,12 +24,12 @@ const QString CPluginPlayer::DisplayName() const
 
 const QString CPluginPlayer::Description() const
 {
-    return tr("Player");
+    return tr("Player: play media files. play or recored camera, network media stream.");
 }
 
 const QString CPluginPlayer::Version() const
 {
-    return PluginPLayer_VERSION;
+    return PLayer_VERSION;
 }
 
 CConnecter *CPluginPlayer::CreateConnecter(const QString &szId)

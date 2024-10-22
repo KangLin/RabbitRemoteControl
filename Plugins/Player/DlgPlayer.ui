@@ -46,12 +46,6 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="cmbScreens"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="cmbWindows"/>
-         </item>
-         <item>
           <widget class="QLineEdit" name="leUrl"/>
          </item>
          <item>

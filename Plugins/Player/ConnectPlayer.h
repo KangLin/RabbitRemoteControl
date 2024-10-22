@@ -15,8 +15,6 @@
 #include <QAudioInput>
 #include <QCamera>
 
-#include <QScreenCapture>
-
 #include "ConnectDesktop.h"
 #include "ConnecterPlayer.h"
 
@@ -52,7 +50,6 @@ private:
     QCamera* m_pCamera;
     QAudioOutput m_AudioOutput;
     QAudioInput m_AudioInput;
-    QScreenCapture m_ScreenCapture;
 
     CParameterPlayer* m_pParameters;
 };

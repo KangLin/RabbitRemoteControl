@@ -27,12 +27,13 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     foreach(const QCameraDevice &cameraDevice, QMediaDevices::videoInputs()) {
         ui->cmbCamera->addItem(cameraDevice.description());
     }
-    ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
+    if(QMediaDevices::videoInputs().size() > 0)
+        ui->cmbType->addItem(tr("Camera"), (int)CParameterPlayer::TYPE::Camera);
     ui->cmbType->addItem(tr("Url"), (int)CParameterPlayer::TYPE::Url);
-    ui->cmbType->addItem(tr("Capture screen"), (int)CParameterPlayer::TYPE::CaptureScreen);
-    ui->cmbType->addItem(tr("Capture window"), (int)CParameterPlayer::TYPE::CaptureWindow);
     int nIndex = ui->cmbType->findData((int)m_pParameters->GetType());
-    ui->cmbType->setCurrentIndex(nIndex);
+    if(-1 != nIndex)
+        ui->cmbType->setCurrentIndex(nIndex);
+    on_cmbType_currentIndexChanged(nIndex);
 
     ui->leUrl->setText(m_pParameters->GetUrl());
     if(m_pParameters->GetCamera() != -1)
@@ -68,14 +69,6 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
     ui->cbAudioOutputMuted->setCheckable(true);
     ui->cbAudioOutputMuted->setChecked(m_pParameters->GetAudioOutputMuted());
     ui->dsAudioOutputVolume->setValue(m_pParameters->GetAudioOutputVolume());
-
-    auto lstScreens = QGuiApplication::screens();
-    for(int i = 0; i < lstScreens.size(); i++)
-        ui->cmbScreens->addItem(tr("Screen:") + QString::number(i), i);
-    nIndex = m_pParameters->GetScreen();
-    if(-1 < nIndex && nIndex < lstScreens.size()) {
-        ui->cmbScreens->setCurrentIndex(nIndex);
-    }
 }
 
 CDlgPlayer::~CDlgPlayer()
@@ -112,7 +105,6 @@ void CDlgPlayer::accept()
     m_pParameters->SetAudioOutput(ui->cmbAudioOutput->currentIndex());
     m_pParameters->SetAudioOutputMuted(ui->cbAudioOutputMuted->isChecked());
     m_pParameters->SetAudioOutputVolume(ui->dsAudioOutputVolume->value());
-    m_pParameters->SetScreen(ui->cmbScreens->currentIndex());
 
     QDialog::accept();
 }
@@ -122,8 +114,6 @@ void CDlgPlayer::on_cmbType_currentIndexChanged(int index)
     ui->cmbCamera->setVisible(false);
     ui->leUrl->setVisible(false);
     ui->pbUrlBrowse->setVisible(false);
-    ui->cmbScreens->setVisible(false);
-    ui->cmbWindows->setVisible(false);
 
     switch((CParameterPlayer::TYPE) index) {
     case CParameterPlayer::TYPE::Camera:
@@ -133,20 +123,6 @@ void CDlgPlayer::on_cmbType_currentIndexChanged(int index)
         ui->leUrl->setVisible(true);
         ui->pbUrlBrowse->setVisible(true);
         break;
-    case CParameterPlayer::TYPE::CaptureScreen:
-        ui->cmbScreens->setVisible(true);
-        break;
-    case CParameterPlayer::TYPE::CaptureWindow:
-    {
-        ui->cmbWindows->clear();
-        auto lstWin = QWindowCapture::capturableWindows();
-        foreach(auto w, lstWin) {
-            qDebug(log) << w.description();
-            ui->cmbWindows->addItem(w.description());
-        }
-        ui->cmbWindows->setVisible(true);
-        break;
-    }
     default:
         break;
     }

@@ -5,6 +5,7 @@
 #include "ConnectPlayer.h"
 #include "DlgPlayer.h"
 #include "PluginClient.h"
+#include "RabbitCommonTools.h"
 
 static Q_LOGGING_CATEGORY(log, "Player.Connecter")
 

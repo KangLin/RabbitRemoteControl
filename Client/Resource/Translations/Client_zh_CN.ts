@@ -9,7 +9,7 @@
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="205"/>
+        <location filename="../../Client.cpp" line="207"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
@@ -193,7 +193,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="509"/>
+        <location filename="../../FrmViewer.cpp" line="525"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新键盘 LED 状态失败</translation>
     </message>

@@ -9,7 +9,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="205"/>
+        <location filename="../../Client.cpp" line="207"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -193,7 +193,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="509"/>
+        <location filename="../../FrmViewer.cpp" line="525"/>
         <source>Failed to update keyboard LED state</source>
         <translation type="unfinished"></translation>
     </message>

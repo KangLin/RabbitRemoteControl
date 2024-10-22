@@ -29,7 +29,7 @@ CConnectPlayer::CConnectPlayer(CConneterPlayer* pConnecter)
             const QVideoFrame::PaintOptions option;
             QVideoFrame f = frame;
             f.paint(&painter, m_Video, option);
-            qDebug(log) << "QVideoSink::videoFrameChanged" << frame << img;
+            //qDebug(log) << "QVideoSink::videoFrameChanged" << frame << img;
             emit this->sigUpdateRect(img);
         });
     Q_ASSERT(check);
@@ -93,20 +93,6 @@ void CConnectPlayer::slotStart()
         m_Player.play();
         break;
     }
-    case CParameterPlayer::TYPE::CaptureScreen: {
-        int nIndex = m_pParameters->GetScreen();
-        if(nIndex < 0 || nIndex > QGuiApplication::screens().size()) {
-            qCritical(log) << "The screen out of range. nIndex:" << nIndex
-                           << "Screens:" << QGuiApplication::screens().size();
-            break;
-        }
-        QScreen* pScreen = QGuiApplication::screens().at(nIndex);
-        m_ScreenCapture.setScreen(pScreen);
-        m_CaptureSessioin.setScreenCapture(&m_ScreenCapture);
-        m_CaptureSessioin.setVideoSink(&m_VideoSink);
-        m_ScreenCapture.start();
-        break;
-    }
     default:
         break;
     }
@@ -129,8 +115,7 @@ void CConnectPlayer::slotStop()
     case CParameterPlayer::TYPE::Url:
         m_Player.stop();
         break;
-    case CParameterPlayer::TYPE::CaptureScreen:
-        m_ScreenCapture.stop();
+    default:
         break;
     }
 

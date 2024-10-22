@@ -13,9 +13,7 @@ public:
 
     enum class TYPE {
         Camera,
-        Url,
-        CaptureScreen,
-        CaptureWindow
+        Url
     };
     Q_ENUM(TYPE)
     const TYPE GetType() const;
