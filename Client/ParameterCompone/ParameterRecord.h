@@ -4,7 +4,6 @@
 #define PARAMETERRECORD_H
 
 #pragma once
-#include <QtGlobal>
 
 #if HAVE_QT6_MULTIMEDIA
     #include <QMediaFormat>

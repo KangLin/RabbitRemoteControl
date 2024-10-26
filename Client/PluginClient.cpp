@@ -1,13 +1,13 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "PluginClient.h"
-#include "RabbitCommonTools.h"
-
 #include <QLocale>
 #include <QDebug>
 #include <QApplication>
 #include <QDir>
 #include <QLoggingCategory>
+
+#include "PluginClient.h"
+#include "RabbitCommonTools.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Plugin")
 

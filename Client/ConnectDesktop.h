@@ -26,7 +26,7 @@
 #include "FrmViewer.h"
 #include "Connect.h"
 
-#define TypeRecordVideo ((int)QEvent::User + 1)
+#define TypeRecordVideo (QEvent::User + 1)
 class QRecordVideoEvent : public QEvent
 {
 public:
