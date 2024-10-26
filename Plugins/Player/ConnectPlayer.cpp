@@ -161,7 +161,7 @@ void CConnectPlayer::slotStart()
             m_pParameters->m_Record >> m_Recorder;
             m_CaptureSessioin.setRecorder(&m_Recorder);
             m_Recorder.record();
-            qDebug(log) << "Record to file:" << m_Recorder.outputLocation();
+            qDebug(log) << "Record to file:" << m_Recorder.actualLocation();
         }
         if(!m_pCamera) {
             const QList<QCameraDevice> cameras = QMediaDevices::videoInputs();
@@ -194,7 +194,7 @@ void CConnectPlayer::slotStart()
             record >> m_Recorder;
             m_CaptureSessioin.setRecorder(&m_Recorder);
             m_Recorder.record();
-            qDebug(log) << "Record to file:" << m_Recorder.outputLocation();
+            qDebug(log) << "Record to file:" << m_Recorder.actualLocation();
 #else
             qWarning(log) << "Player isn't support record. qt version"
                           << QT_VERSION_STR << "less than 6.8.0";

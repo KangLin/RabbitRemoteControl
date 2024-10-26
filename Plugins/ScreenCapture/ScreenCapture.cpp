@@ -60,6 +60,16 @@ CScreenCapture::CScreenCapture(CPluginClient *plugin)
             emit sigError(error, errorString);
         });
     Q_ASSERT(check);
+    check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
+                    this, [&](QMediaRecorder::RecorderState state){
+                        qDebug(log) << "Recorder state changed:" << state;
+                    });
+    Q_ASSERT(check);
+    check = connect(&m_Recorder, &QMediaRecorder::actualLocationChanged,
+                    this, [&](const QUrl &location){
+                        qInfo(log) << "Recorder actual location changed:" << location;
+                    });
+    Q_ASSERT(check);
     check = connect(
         &m_ImageCapture, &QImageCapture::errorOccurred,
         this, [&](int id, QImageCapture::Error error, const QString &errorString) {
@@ -147,7 +157,7 @@ int CScreenCapture::slotStart()
         m_CaptureSessioin.setRecorder(&m_Recorder);
         m_Parameter.m_Record >> m_Recorder;
         m_Recorder.record();
-        qDebug(log) << "Record to file:" << m_Recorder.outputLocation();
+        qDebug(log) << "Record to file:" << m_Recorder.actualLocation();
     }
     else
         m_CaptureSessioin.setRecorder(nullptr);

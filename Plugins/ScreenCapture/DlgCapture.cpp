@@ -66,8 +66,8 @@ CDlgCapture::~CDlgCapture()
 void CDlgCapture::accept()
 {
     int nRet = 0;
-    nRet = m_pRecordUI->CheckValidity(true);
-    if(nRet) {
+
+    if(!m_pRecordUI->CheckValidity(true)) {
         ui->objTab->setCurrentWidget(m_pRecordUI);
         return;
     }

@@ -24,6 +24,7 @@ static Q_LOGGING_CATEGORY(logRecord, "Client.FrmViewer.Record")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
+    , m_bRecordVideo(false)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     //setAttribute(Qt::WA_OpaquePaintEvent);

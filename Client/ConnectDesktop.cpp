@@ -39,6 +39,16 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
             emit sigError(error, errorString);
         });
     Q_ASSERT(check);
+    check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
+                    this, [&](QMediaRecorder::RecorderState state){
+                        qDebug(log) << "Recorder state changed:" << state;
+                    });
+    Q_ASSERT(check);
+    check = connect(&m_Recorder, &QMediaRecorder::actualLocationChanged,
+                    this, [&](const QUrl &location){
+                        qInfo(log) << "Recorder actual location changed:" << location;
+                    });
+    Q_ASSERT(check);
 #endif
 }
 
@@ -334,6 +344,10 @@ void CConnectDesktop::RecordVideo(QRecordVideoEvent *e)
     qDebug(log) << "Update image";
     if(!e) return;
 #if HAVE_QT6_RECORD
+    if(!m_Recorder.isAvailable()) {
+        qCritical(log) << "Recorder is inavailable";
+        return;
+    }
     QVideoFrame frame(e->GetImage());
     bool bRet = m_VideoFrameInput.sendVideoFrame(frame);
     if(!bRet) {
