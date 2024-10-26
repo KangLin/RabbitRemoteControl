@@ -17,14 +17,13 @@ jobs:
         include:
           - qt_version: 6.8.0
             qt_arch: win64_msvc2022_64
-            qt_modules: qtscxml qtmultimedia qtimageformats qtwebchannel qtpositioning qtserialport qt5compat
+            qt_modules: qtscxml qtmultimedia qtimageformats qtserialport qt5compat
             CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
             
           - qt_version: 5.15.2
             qt_arch: win64_msvc2019_64
-            qt_modules: qtwebengine
             CMAKE_GENERATOR_PLATFORM: x64
             VCPKG_TARGET_TRIPLET: x64-windows
             VCPKG_PLATFORM_TOOLSET: v143
@@ -32,7 +31,6 @@ jobs:
 
           - qt_version: 5.12.12
             qt_arch: win32_msvc2017
-            qt_modules: qtwebengine
             CMAKE_GENERATOR_PLATFORM: Win32
             VCPKG_TARGET_TRIPLET: x86-windows
             VCPKG_PLATFORM_TOOLSET: v143

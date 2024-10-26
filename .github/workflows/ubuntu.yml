@@ -99,7 +99,6 @@ jobs:
               qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
               libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
               qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev \
-              qt6-webengine-dev qt6-webengine-dev-tools \
               libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
               libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
               libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \

@@ -21,13 +21,11 @@ jobs:
         VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
           - qt_version: 6.8.0
-            qt_modules: qtscxml qtmultimedia qtserialport qtwebchannel qtpositioning qt5compat
+            qt_modules: qtscxml qtmultimedia qtserialport qt5compat
 
           - qt_version: 5.15.2
-            qt_modules: qtwebengine
 
           - qt_version: 5.12.12
-            qt_modules: qtwebengine
 
     # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
     # See: https://github.com/actions/runner-images/tree/main

@@ -75,6 +75,8 @@ parts:
       - libavcodec-dev
       - libresample1-dev
       - libswscale-dev
+      - libpcap-dev
+      - libcups2-dev
     stage-packages:
       - libfuse3-3
       - libpam0g
@@ -167,9 +169,6 @@ parts:
       - qtbase5-dev
       - libqt5scxml5-dev
       - libqt5serialport5-dev
-      - qtwebengine5-dev
-      - qtwebengine5-dev-tools
-      - qtwebengine5-private-dev
       - libqt5svg5-dev
       - qtmultimedia5-dev
       - libvncserver-dev
@@ -183,8 +182,6 @@ parts:
       - libcrypt1
       - libqt5scxml5
       - libqt5serialport5
-      - libqt5webengine5
-      - libqt5webenginewidgets5
       - libqt5svg5
       - libqt5xml5
       - libqt5multimedia5
@@ -231,7 +228,6 @@ apps:
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
    environment:
      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET
-     QTWEBENGINEPROCESS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/qt5/libexec
      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
    # List extensions, run `snapcraft extensions`
    extensions:

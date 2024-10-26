@@ -189,7 +189,7 @@ bool CChannelSSHTunnel::open(OpenMode mode)
             if(QDialog::Accepted != nRet)
             {
                 setErrorString(tr("User cancel"));
-                return -1;
+                return false;
             }
         }
         
