@@ -26,11 +26,11 @@
       - Visual Studio 2022
     * Visual Studio 各版本密钥：https://github.com/KangLin/Documents/blob/master/c/VisualStudioKey.md
     * 当前使用版本：VS 2017
-    
 - Windows SDK：https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
     根据你的操作系统安装相应的 SDK。 CDB必须要安装，QT调试需要。
 - [可选] Windows Driver Kit：https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
-   
+- DirectX: https://support.microsoft.com/zh-cn/topic/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84-directx-d1f5ffa5-dae2-246c-91b1-ee1e973ed8c2  
+  运行 Qt 需要
 - Qt
   + Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
     当前使用版本：Qt 6.7.0
@@ -42,6 +42,7 @@
   版本: 3.27.0
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
+- vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)
 
 ### 编译
 
@@ -50,6 +51,7 @@
 ### 依赖库
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+- [必选] [Openssl:](https://github.com/openssl/openssl) 运行 Qt 需要
 - [可选] RFB
   + [可选] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
@@ -68,6 +70,7 @@
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [可选] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
 - [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
+- [可选] [FFMPEG:](https://ffmpeg.org/) 多媒体功能需要
 
 #### 玉兔公共库
 此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:

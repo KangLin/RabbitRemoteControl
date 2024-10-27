@@ -75,6 +75,10 @@ Prior versions don't have CMake support.
 
       ~$ sudo apt install qtcreator
 
+- OpenGL: Required to run Qt.
+
+      ~$ sudo apt install libglu1-mesa-dev
+      
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 
       ~$ sudo apt install doxygen
@@ -82,6 +86,7 @@ Prior versions don't have CMake support.
 ### Library dependencies
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+- [MUST] [Openssl:](https://github.com/openssl/openssl) Required to run Qt.
 - [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [OPTIONAL] RFB
   + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
@@ -100,6 +105,7 @@ Prior versions don't have CMake support.
 - [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [OPTIONAL] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
 - [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
+- [OPTIONAL] [FFMPEG:](https://ffmpeg.org/) Multimedia capabilities required
 
 #### RabbitCommon
 This library is placed in the same directory level as the project by default.

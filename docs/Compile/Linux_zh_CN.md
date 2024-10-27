@@ -66,11 +66,15 @@
   + Qt6: 当前版本：6.4.2
     + 系统自带：
 
-          ~$ sudo apt install qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev qt6-webengine-dev qt6-webengine-dev-tools
+          ~$ sudo apt install qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
 
 - [可选] IDE: Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
       ~$ sudo apt install qtcreator
+
+- OpenGL: 运行 Qt 需要
+
+      ~$ sudo apt install libglu1-mesa-dev
 
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 
@@ -79,6 +83,7 @@
 ### 依赖库
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+- [必选] [Openssl:](https://github.com/openssl/openssl) 运行 Qt 需要
 - [可选] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [可选] RFB
   + [可选] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
@@ -97,6 +102,7 @@
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [可选] QtService: https://github.com/KangLin/qt-solutions/
 - [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
+- [可选] [FFMPEG:](https://ffmpeg.org/) 多媒体功能需要
 
 #### 玉兔公共库
 此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
@@ -340,7 +346,6 @@
     ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev \
         qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev \
         libqtermwidget5-0-dev
-
     # 安装 X 开发库
     ~$ sudo apt install libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
         libx11-dev libxfixes-dev

@@ -32,6 +32,7 @@
   版本: 3.27.0
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - [ninja](https://ninja-build.org/)
+- vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)
 
 ### 编译
 
@@ -40,6 +41,7 @@
 #### 依赖库
 
 - [必选] 玉兔公共库: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+- [必选] [Openssl for Qt:](https://github.com/KDAB/android_openssl) 运行 Qt 需要
 - [可选] RFB
   - [可选] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   - [可选] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
@@ -56,6 +58,7 @@
 - [可选] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [可选] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
 - [可选] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
+- [可选] [FFMPEG:](https://ffmpeg.org/) 多媒体功能需要
 
 ##### 设置全局变量
 

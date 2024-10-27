@@ -28,11 +28,11 @@ Prior versions don't have CMake support.
       - Visual Studio 2022
     * Visual Studio Key：https://github.com/KangLin/Documents/blob/master/c/VisualStudioKey.md
     * Current version：VS 2017
-
 - Windows SDK: https://developer.microsoft.com/en-us/windows/downloads/sdk-archive  
     Install the SDK that corresponds to your operating system. (CDB must be installed, and Qt debugging is required.)
 - [OPTIONAL] Windows Driver Kit: https://docs.microsoft.com/zh-cn/windows-hardware/drivers/download-the-wdk
-
+- DirectX: https://support.microsoft.com/zh-cn/topic/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84-directx-d1f5ffa5-dae2-246c-91b1-ee1e973ed8c2  
+  Required to run Qt.
 - Qt
   + Qt (official release): https://download.qt.io/official_releases/qt/  
     Current version: Qt 6.7.0
@@ -44,6 +44,7 @@ Prior versions don't have CMake support.
   Version: 3.27.0
 - Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 - Nsis: [https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
+- vcpkg: [https://github.com/microsoft/vcpkg](https://github.com/microsoft/vcpkg)
 
 ### Compilation
 
@@ -52,6 +53,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 ### Library dependencies
 
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
+- [MUST] [Openssl:](https://github.com/openssl/openssl) Required to run Qt.
 - [OPTIONAL] RFB
   + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
@@ -70,6 +72,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [OPTIONAL] QtService: https://github.com/KangLin/qt-solutions/
 - [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
+- [OPTIONAL] [FFMPEG:](https://ffmpeg.org/) Multimedia capabilities required
 
 #### RabbitCommon
 This library is placed in the same directory level as the project by default.
