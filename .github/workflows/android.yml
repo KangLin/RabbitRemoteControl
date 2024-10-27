@@ -16,7 +16,7 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.8.0]
+        qt_version: [6.8.0, 6.6.3]
         include:
           - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
@@ -93,12 +93,26 @@ jobs:
 
       - name: Install Qt of linux_gcc_64
         uses: jurplel/install-qt-action@v3
+        if: ${{ matrix.qt_version == '6.8.0' }}
         with:
           dir: '${{env.TOOSL_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
           #host: 'linux'
           target: 'desktop'
-          arch: 'linux_gcc_64' #arch: 'gcc_64'
+          arch: 'linux_gcc_64'
+          set-env: false
+          cache: true
+          cache-key-prefix: cached_qt
+
+      - name: Install Qt of linux_gcc_64
+        uses: jurplel/install-qt-action@v3
+        if: ${{  matrix.qt_version == '6.6.3' }}
+        with:
+          dir: '${{env.TOOSL_DIR}}/qt' # optional
+          version: '${{matrix.qt_version}}'
+          #host: 'linux'
+          target: 'desktop'
+          arch: 'gcc_64'
           set-env: false
           cache: true
           cache-key-prefix: cached_qt
