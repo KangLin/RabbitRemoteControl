@@ -1,40 +1,54 @@
+// Author: Kang Lin <kl222@126.com>
+
 #ifndef FRMPLAYER_H
 #define FRMPLAYER_H
 
 #include <QVideoWidget>
 #include <QToolBar>
-#include <QTimer>
-#include <QTime>
+#include <QSlider>
+#include <QProgressBar>
+#include <QLabel>
+#include "ParameterPlayer.h"
 
-class CFrmPlayer : public QVideoWidget
+class CFrmPlayer : public QWidget
 {
     Q_OBJECT
+
 public:
     CFrmPlayer(QWidget *parent = nullptr);
     virtual ~CFrmPlayer();
 
+    QVideoSink* videoSink();
+    int SetParameter(CParameterPlayer* pParameter);
+
+    QAction* m_paStart;
+    QAction* m_paPause;
+    QAction* m_paRecord;
+    QAction* m_paRecordPause;
+    QAction* m_paMuted;
+    QAction* m_paVolume;
+
+public Q_SLOTS:
+    void slotPositionChanged(qint64 pos, qint64 duration);
+Q_SIGNALS:
+    void sigChangePosition(qint64 pos);
+
 protected:
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    virtual void enterEvent(QEnterEvent *event) override;
-#else
-    virtual  void enterEvent(QEvent *event) override;
-#endif
-    virtual void leaveEvent(QEvent *event) override;
 
 private Q_SLOTS:
-    void slotTimeout();
+    void slotAudioMuted(bool bMuted);
+    void slotAduioVolume(int volume);
+    void slotStart(bool bStart);
 
 private:
+    QVideoWidget m_VideoWidget;
     QToolBar m_ToolBar;
-    QTimer m_Timer;
-    int m_nInterval;
-    QTime m_Start;
-
+    QSlider m_pbVideo;
+    bool m_bMoveVideo;
+    QSlider m_pbVolume;
+    CParameterPlayer* m_pParameter;
+    QLabel* m_pLabel;
 };
 
 #endif // FRMPLAYER_H

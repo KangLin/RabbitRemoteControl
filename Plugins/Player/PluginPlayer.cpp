@@ -36,7 +36,7 @@ CConnecter *CPluginPlayer::CreateConnecter(const QString &szId)
 {
     CConnecter* p = nullptr;
     if(this->Id() == szId)
-        p = new CConneterPlayer(this);
+        p = new CConnecterPlayer(this);
     return p;
 }
 

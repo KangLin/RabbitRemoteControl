@@ -344,7 +344,7 @@ void CConnectDesktop::RecordVideo(QRecordVideoEvent *e)
     qDebug(log) << "Update image";
     if(!e) return;
 #if HAVE_QT6_RECORD
-    if(!m_Recorder.isAvailable()) {
+    if(QMediaRecorder::RecordingState != m_Recorder.recorderState()) {
         qCritical(log) << "Recorder is inavailable";
         return;
     }

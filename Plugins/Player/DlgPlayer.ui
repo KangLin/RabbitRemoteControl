@@ -72,7 +72,7 @@
          <item>
           <widget class="QGroupBox" name="gbAudioInput">
            <property name="title">
-            <string>AudioInput</string>
+            <string>Audio input</string>
            </property>
            <property name="checkable">
             <bool>true</bool>

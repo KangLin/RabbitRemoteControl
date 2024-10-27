@@ -30,12 +30,13 @@ class CConnectPlayer : public CConnectDesktop
     Q_OBJECT
 
 public:
-    explicit CConnectPlayer(CConneterPlayer* pConnecter);
+    explicit CConnectPlayer(CConnecterPlayer* pConnecter);
     virtual ~CConnectPlayer();
 
 public Q_SLOTS:
     virtual void slotStart();
     virtual void slotStop();
+    virtual void slotRecord(bool bRecord) override;
 
     // CConnectDesktop interface
     virtual void slotClipBoardChanged() override;
@@ -50,6 +51,8 @@ private Q_SLOTS:
     void slotEnableAudioOutput(bool bEnable);
     void slotPositionChanged(qint64 pos);
     void slotDurationChanged(qint64 duration);
+Q_SIGNALS:
+    void sigPositionChanged(qint64 pos, qint64 duration);
 
 private:
     QRect m_Video;

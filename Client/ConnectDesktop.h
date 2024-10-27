@@ -141,7 +141,7 @@ public:
 
 private Q_SLOTS:
     void slotScreenShot();
-    void slotRecord(bool bRecord);
+    virtual void slotRecord(bool bRecord);
     void slotRecordVideo(const QImage& img);
 Q_SIGNALS:
     void sigRecordVideo(bool bRecord);

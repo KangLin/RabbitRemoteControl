@@ -321,7 +321,7 @@ CParameterRecord& operator >> (CParameterRecord& para, QMediaRecorder& recorder)
     recorder.setQuality(para.GetQuality());
 #endif
 
-    if(!para.GetFile().isEmpty())
+    if(!para.GetFile(true).isEmpty())
         recorder.setOutputLocation(QUrl::fromLocalFile(para.GetFile(true)));
     return para;
 }

@@ -4,7 +4,6 @@
 #define PARAMETERPLAYER_H
 
 #include "ParameterBase.h"
-#include "ParameterRecord.h"
 
 class CParameterPlayer : public CParameterBase
 {

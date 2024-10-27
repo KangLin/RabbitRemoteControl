@@ -6,7 +6,8 @@
 #pragma once
 
 #include <QMenu>
-
+#include <QMediaPlayer>
+#include <QMediaRecorder>
 #if HAVE_QVideoWidget
 #include "FrmPlayer.h"
 #endif
@@ -14,13 +15,13 @@
 #include "ConnecterThread.h"
 #include "ParameterPlayer.h"
 
-class CConneterPlayer : public CConnecterThread
+class CConnecterPlayer : public CConnecterThread
 {
     Q_OBJECT
 
 public:
-    explicit CConneterPlayer(CPluginClient *plugin);
-    virtual ~CConneterPlayer();
+    explicit CConnecterPlayer(CPluginClient *plugin);
+    virtual ~CConnecterPlayer();
 
     // CConnecter interface
 public:
@@ -29,8 +30,13 @@ public:
     virtual CConnect *InstanceConnect() override;
 
 Q_SIGNALS:
-    void sigStart();
-    void sigStop();
+    void sigStart(bool bStart);
+    void sigPause(bool bPause);
+    void sigRecordPause(bool bPause);
+    void sigPositionChanged(qint64 pos, qint64 duration);
+    void sigChangePosition(qint64 pos);
+    void sigPlaybackStateChanged(QMediaPlayer::PlaybackState state);
+    void sigRecordStateChanged(QMediaRecorder::RecorderState state);
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
@@ -39,7 +45,7 @@ private:
     CParameterPlayer m_Parameters;
 
 #if HAVE_QVideoWidget
-    QVideoWidget m_Video;
+    CFrmPlayer m_Player;
 public:
     virtual QWidget *GetViewer() override;
     QVideoSink *GetVideoSink();
