@@ -27,6 +27,8 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 {
     bool check = false;
 
+    m_VideoWidget.installEventFilter(this);
+
     m_paStart = m_ToolBar.addAction(
         QIcon::fromTheme("media-playback-start"), tr("Start"));
     m_paStart->setCheckable(true);
@@ -182,7 +184,6 @@ void CFrmPlayer::slotPositionChanged(qint64 pos, qint64 duration)
 
 void CFrmPlayer::resizeEvent(QResizeEvent *event)
 {
-    QWidget::resizeEvent(event);
     qDebug(log) << "CFrmPlayer::resizeEvent()" << event;
     QSize s = event->size();
     m_VideoWidget.move(0, 0);
@@ -193,6 +194,7 @@ void CFrmPlayer::resizeEvent(QResizeEvent *event)
     int top = s.height() - m_ToolBar.frameGeometry().height();
     m_ToolBar.move(left, top);
     m_ToolBar.resize(s.width(), m_ToolBar.height());
+    QWidget::resizeEvent(event);
 }
 
 void CFrmPlayer::slotStart(bool bStart)
@@ -215,4 +217,57 @@ void CFrmPlayer::slotStart(bool bStart)
         m_paRecord->setEnabled(false);
         m_paRecordPause->setEnabled(false);
     }
+}
+
+bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
+{
+    //qDebug(log) << __FUNCTION__ << event;
+    if(&m_VideoWidget == watched)
+    {
+        switch(event->type()){
+        case QEvent::MouseMove:
+            qDebug(log) << "Mouse move";
+            break;
+        case QEvent::MouseButtonRelease:
+            m_paPause->trigger();
+            break;
+        case QEvent::MouseButtonDblClick: {
+            m_VideoWidget.setFullScreen(!m_VideoWidget.isFullScreen());
+            if(!m_VideoWidget.isFullScreen()) {
+                QSize s = size();
+                m_VideoWidget.move(0, 0);
+                QRect rect(0, 0, s.width(), s.height() - m_ToolBar.frameGeometry().height());
+                m_VideoWidget.setGeometry(rect);
+            }
+            break;
+        }
+        case QEvent::KeyRelease:
+        {
+            QKeyEvent* k = (QKeyEvent*)(event);
+            switch(k->key())
+            {
+            case Qt::Key_Escape:
+                if(m_VideoWidget.isFullScreen()) {
+                    m_VideoWidget.setFullScreen(false);
+                    QSize s = size();
+                    m_VideoWidget.move(0, 0);
+                    QRect rect(0, 0, s.width(), s.height() - m_ToolBar.frameGeometry().height());
+                    m_VideoWidget.setGeometry(rect);
+                }
+                break;
+            case Qt::Key_Enter:
+            case Qt::Key_Space:
+                m_paPause->trigger();
+                break;
+            default:
+                break;
+            }
+            break;
+        }
+        default:
+            return false;
+        }
+        return true;
+    }
+    return false;
 }

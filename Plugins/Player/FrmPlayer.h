@@ -28,6 +28,9 @@ public:
     QAction* m_paMuted;
     QAction* m_paVolume;
 
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
+
 public Q_SLOTS:
     void slotPositionChanged(qint64 pos, qint64 duration);
 Q_SIGNALS:
