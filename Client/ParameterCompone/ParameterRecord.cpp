@@ -20,6 +20,7 @@ CParameterRecord::CParameterRecord(QObject *parent, const QString &szPrefix)
 #endif
     , m_VideoFrameRate(0)
     , m_AudioSampleRate(-1)
+    , m_EndAction(ENDACTION::No)
 {
     m_szPath = RabbitCommon::CDir::Instance()->GetDirUserImage()
         + QDir::separator()
@@ -77,6 +78,20 @@ void CParameterRecord::SetEnableAudio(bool newEnableAudio)
     emit sigEnableAudioChanged();
 }
 
+CParameterRecord::ENDACTION CParameterRecord::GetEndAction() const
+{
+    return m_EndAction;
+}
+
+void CParameterRecord::SetEndAction(ENDACTION newEndAction)
+{
+    if (m_EndAction == newEndAction)
+        return;
+    m_EndAction = newEndAction;
+    SetModified(true);
+    emit sigEndActionChanged();
+}
+
 int CParameterRecord::OnLoad(QSettings &set)
 {
     set.beginGroup("Record");
@@ -89,15 +104,17 @@ int CParameterRecord::OnLoad(QSettings &set)
     SetFileFormat((QMediaFormat::FileFormat)
                   set.value("FileFormat", (int)GetFileFormat()).toInt());
     SetVideoCodec((QMediaFormat::VideoCodec)
-                  set.value("VideoCodec", (int)GetVideoCodec()).toInt());
+                  set.value("Video/Codec", (int)GetVideoCodec()).toInt());
     SetAudioCodec((QMediaFormat::AudioCodec)
-                  set.value("AudioCodec", (int)GetAudioCodec()).toInt());
+                  set.value("Audio/Codec", (int)GetAudioCodec()).toInt());
     SetQuality((QMediaRecorder::Quality)
                set.value("Quality", GetQuality()).toInt());
     SetEncodingMode((QMediaRecorder::EncodingMode)
                     set.value("EncodingMode", GetEncodingMode()).toInt());
 #endif
-
+    SetAudioSampleRate(set.value("Audio/SampleRate", GetAudioSampleRate()).toInt());
+    SetVideoFrameRate(set.value("Video/FrameRate", GetVideoFrameRate()).toInt());
+    SetEndAction((ENDACTION)set.value("EndAction", GetEndAction()).toInt());
     set.endGroup();
     return 0;
 }
@@ -112,12 +129,14 @@ int CParameterRecord::OnSave(QSettings &set)
     set.setValue("Path", GetPath());
 #if HAVE_QT6_MULTIMEDIA
     set.setValue("FileFormat", (int)GetFileFormat());
-    set.setValue("VideoCodec", (int)GetVideoCodec());
-    set.setValue("AudioCodec", (int)GetAudioCodec());
+    set.setValue("Video/Codec", (int)GetVideoCodec());
+    set.setValue("Audio/Codec", (int)GetAudioCodec());
     set.setValue("Quality", (int)GetQuality());
     set.setValue("EncodingMode", GetEncodingMode());
 #endif
-
+    set.setValue("Audio/SampleRate", GetAudioSampleRate());
+    set.setValue("Video/FrameRate", GetVideoFrameRate());
+    set.setValue("EndAction", (int)GetEndAction());
     set.endGroup();
     return 0;
 }

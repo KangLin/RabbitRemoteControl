@@ -86,6 +86,19 @@ int CParameterRecordUI::SetParameter(CParameter *pParameter)
 #endif
     ui->dsbFrameRate->setValue(m_pParameters->GetVideoFrameRate());
     ui->sbSampleRate->setValue(m_pParameters->GetAudioSampleRate());
+
+    switch(m_pParameters->GetEndAction()) {
+    case CParameterRecord::ENDACTION::No:
+        ui->rbNoAction->setChecked(true);
+        break;
+    case CParameterRecord::ENDACTION::OpenFile:
+        ui->rbOpenFile->setChecked(true);
+        break;
+    case CParameterRecord::ENDACTION::OpenFolder:
+        ui->rbOpenFolder->setChecked(true);
+        break;
+    }
+
     return 0;
 }
 
@@ -120,6 +133,12 @@ int CParameterRecordUI::Accept()
     m_pParameters->SetVideoFrameRate(ui->dsbFrameRate->value());
     m_pParameters->SetAudioSampleRate(ui->sbSampleRate->value());
 
+    if(ui->rbNoAction->isChecked())
+        m_pParameters->SetEndAction(CParameterRecord::ENDACTION::No);
+    else if(ui->rbOpenFile->isChecked())
+        m_pParameters->SetEndAction(CParameterRecord::ENDACTION::OpenFile);
+    else if(ui->rbOpenFolder->isChecked())
+        m_pParameters->SetEndAction(CParameterRecord::ENDACTION::OpenFolder);
     return 0;
 }
 

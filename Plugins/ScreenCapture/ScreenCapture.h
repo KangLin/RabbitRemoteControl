@@ -47,6 +47,7 @@ private:
     QMediaCaptureSession m_CaptureSessioin;
     QMediaRecorder m_Recorder;
     QImageCapture m_ImageCapture;
+    QString m_szRecordFile;
 
 };
 

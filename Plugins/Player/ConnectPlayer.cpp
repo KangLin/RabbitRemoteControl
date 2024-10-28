@@ -4,6 +4,7 @@
 #include <QMediaDevices>
 #include <QPainter>
 #include <QAudioDevice>
+#include <QDesktopServices>
 
 #include "ConnectPlayer.h"
 
@@ -62,17 +63,18 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
     Q_ASSERT(check);
 
 #if HAVE_QT6_RECORD
-    check = connect(&m_AudioBufferOutput, &QAudioBufferOutput::audioBufferReceived,
-                    this, [&](const QAudioBuffer &buffer){
-                        if(QMediaRecorder::RecordingState != m_Recorder.recorderState())
-                            return;
-                        bool bRet = m_AudioBufferInput.sendAudioBuffer(buffer);
-                        if(!bRet) {
-                            //TODO: 放入未成功发送队列，
-                            //    当 QVideoFrameInput::readyToSendVideoFrame() 时，再发送
-                            qDebug(log) << "m_AudioBufferInput.sendAudioBuffer fail";
-                        }
-                    });
+    check = connect(
+        &m_AudioBufferOutput, &QAudioBufferOutput::audioBufferReceived,
+        this, [&](const QAudioBuffer &buffer){
+            if(QMediaRecorder::RecordingState != m_Recorder.recorderState())
+                return;
+            bool bRet = m_AudioBufferInput.sendAudioBuffer(buffer);
+            if(!bRet) {
+                //TODO: 放入未成功发送队列，
+                //    当 QVideoFrameInput::readyToSendVideoFrame() 时，再发送
+                qDebug(log) << "m_AudioBufferInput.sendAudioBuffer fail";
+            }
+        });
     Q_ASSERT(check);
 #endif
 
@@ -84,45 +86,47 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
                             slotStop();
                     });
     Q_ASSERT(check);
-    check = connect(pConnecter, &CConnecterPlayer::sigPause,
-                    this, [&](bool bPause){
-                        switch (m_pParameters->GetType()) {
-                        case CParameterPlayer::TYPE::Camera:
-                            if(bPause) {
-                                if(m_pCamera->isActive())
-                                    m_pCamera->stop();
-                            }
-                            else {
-                                if(!m_pCamera->isActive())
-                                    m_pCamera->start();
-                            }
-                            break;
-                        case CParameterPlayer::TYPE::Url:
-                            if(bPause) {
-                                if(QMediaPlayer::PlayingState == m_Player.playbackState())
-                                    m_Player.pause();
-                            }
-                            else {
-                                if(QMediaPlayer::PausedState == m_Player.playbackState())
-                                    m_Player.play();
-                            }
-                            break;
-                        }
-                    });
+    check = connect(
+        pConnecter, &CConnecterPlayer::sigPause,
+        this, [&](bool bPause){
+            switch (m_pParameters->GetType()) {
+            case CParameterPlayer::TYPE::Camera:
+                if(bPause) {
+                    if(m_pCamera->isActive())
+                        m_pCamera->stop();
+                }
+                else {
+                    if(!m_pCamera->isActive())
+                        m_pCamera->start();
+                }
+                break;
+            case CParameterPlayer::TYPE::Url:
+                if(bPause) {
+                    if(QMediaPlayer::PlayingState == m_Player.playbackState())
+                        m_Player.pause();
+                }
+                else {
+                    if(QMediaPlayer::PausedState == m_Player.playbackState())
+                        m_Player.play();
+                }
+                break;
+            }
+        });
     Q_ASSERT(check);
     check = connect(pConnecter, &CConnecterPlayer::sigRecord,
                     this, &CConnectPlayer::slotRecord);
     Q_ASSERT(check);
-    check = connect(pConnecter, &CConnecterPlayer::sigRecordPause,
-                    this, [&](bool bPause){
-                        if(bPause) {
-                            if(m_Recorder.recorderState() == QMediaRecorder::RecordingState)
-                                m_Recorder.pause();
-                        } else {
-                            if(m_Recorder.recorderState() == QMediaRecorder::PausedState)
-                                m_Recorder.record();
-                        }
-                    });
+    check = connect(
+        pConnecter, &CConnecterPlayer::sigRecordPause,
+        this, [&](bool bPause){
+            if(bPause) {
+                if(m_Recorder.recorderState() == QMediaRecorder::RecordingState)
+                    m_Recorder.pause();
+            } else {
+                if(m_Recorder.recorderState() == QMediaRecorder::PausedState)
+                    m_Recorder.record();
+            }
+        });
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigPositionChanged(qint64, qint64)),
                     pConnecter, SIGNAL(sigPositionChanged(qint64, qint64)));
@@ -151,18 +155,35 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
         qDebug(log) << "Recorder duratioin:" << duration;
     });
     Q_ASSERT(check); //*/
-    check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
-                    this, [&](QMediaRecorder::RecorderState state){
-                        qDebug(log) << "Recorder state changed:" << state;
-                    });
+    check = connect(
+        &m_Recorder, &QMediaRecorder::recorderStateChanged,
+        this, [&](QMediaRecorder::RecorderState state){
+            qDebug(log) << "Recorder state changed:" << state;
+            if(QMediaRecorder::StoppedState == state)
+                switch(m_pParameters->m_Record.GetEndAction())
+                {
+                case CParameterRecord::ENDACTION::OpenFile:
+                    QDesktopServices::openUrl(QUrl::fromLocalFile(m_szRecordFile));
+                    break;
+                case CParameterRecord::ENDACTION::OpenFolder: {
+                    QFileInfo fi(m_szRecordFile);
+                    QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
+                    break;
+                }
+                default:
+                    break;
+                }
+        });
     Q_ASSERT(check);
     check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
                     pConnecter, &CConnecterPlayer::sigRecordStateChanged);
     Q_ASSERT(check);
-    check = connect(&m_Recorder, &QMediaRecorder::actualLocationChanged,
-                    this, [&](const QUrl &location){
-                        qInfo(log) << "Recorder actual location changed:" << location;
-                    });
+    check = connect(
+        &m_Recorder, &QMediaRecorder::actualLocationChanged,
+        this, [&](const QUrl &location){
+            qInfo(log) << "Recorder actual location changed:" << location;
+            m_szRecordFile = location.toLocalFile();
+        });
     Q_ASSERT(check);
 
     check = connect(

@@ -2,12 +2,13 @@
 
 #include <QLoggingCategory>
 #include <QApplication>
+#include <QDesktopServices>
 #include "ScreenCapture.h"
 #include "DlgCapture.h"
 #include "RabbitCommonTools.h"
 #include "PluginClient.h"
 
-static Q_LOGGING_CATEGORY(log, "Screen.Capture.Connect")
+static Q_LOGGING_CATEGORY(log, "Screen.Capture")
 CScreenCapture::CScreenCapture(CPluginClient *plugin)
     : CConnecter(plugin)
     , m_pWidget(new QVideoWidget())
@@ -50,6 +51,22 @@ CScreenCapture::CScreenCapture(CPluginClient *plugin)
         &m_ImageCapture, &QImageCapture::imageSaved,
         this, [&](int id, const QString &fileName) {
             qDebug(log) << "Capture image to file:" << fileName;
+            switch(m_Parameter.m_Record.GetEndAction())
+            {
+            case CParameterRecord::ENDACTION::OpenFile: {
+                bool bRet = QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+                if(!bRet)
+                    qCritical(log) << "Fail: Open capture image file" << fileName;
+                break;
+            }
+            case CParameterRecord::ENDACTION::OpenFolder: {
+                QFileInfo fi(fileName);
+                QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
+                break;
+            }
+            default:
+                break;
+            }
         });
     Q_ASSERT(check);
     check = connect(
@@ -60,15 +77,32 @@ CScreenCapture::CScreenCapture(CPluginClient *plugin)
             emit sigError(error, errorString);
         });
     Q_ASSERT(check);
-    check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
-                    this, [&](QMediaRecorder::RecorderState state){
-                        qDebug(log) << "Recorder state changed:" << state;
-                    });
+    check = connect(
+        &m_Recorder, &QMediaRecorder::recorderStateChanged,
+        this, [&](QMediaRecorder::RecorderState state){
+            qDebug(log) << "Recorder state changed:" << state;
+            if(QMediaRecorder::StoppedState == state)
+                switch(m_Parameter.m_Record.GetEndAction())
+                {
+                case CParameterRecord::ENDACTION::OpenFile:
+                    QDesktopServices::openUrl(QUrl::fromLocalFile(m_szRecordFile));
+                    break;
+                case CParameterRecord::ENDACTION::OpenFolder: {
+                    QFileInfo fi(m_szRecordFile);
+                    QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
+                    break;
+                }
+                default:
+                    break;
+                }
+        });
     Q_ASSERT(check);
-    check = connect(&m_Recorder, &QMediaRecorder::actualLocationChanged,
-                    this, [&](const QUrl &location){
-                        qInfo(log) << "Recorder actual location changed:" << location;
-                    });
+    check = connect(
+        &m_Recorder, &QMediaRecorder::actualLocationChanged,
+        this, [&](const QUrl &location){
+            qInfo(log) << "Recorder actual location changed:" << location;
+            m_szRecordFile = location.toLocalFile();
+        });
     Q_ASSERT(check);
     check = connect(
         &m_ImageCapture, &QImageCapture::errorOccurred,

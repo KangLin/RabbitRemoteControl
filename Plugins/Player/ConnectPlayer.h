@@ -74,6 +74,9 @@ private:
     CParameterPlayer* m_pParameters;
     qint64 m_nPosition;
     qint64 m_nDuration;
+
+    QString m_szRecordFile;
+
 };
 
 #endif // CONNECTPLAYER_H

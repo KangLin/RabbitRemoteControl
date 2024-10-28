@@ -64,12 +64,23 @@ public:
     bool GetEnableAudio() const;
     void SetEnableAudio(bool newEnableAudio);
 
+    enum ENDACTION {
+        No,
+        OpenFile,
+        OpenFolder
+    };
+    Q_ENUM(ENDACTION)
+
+    CParameterRecord::ENDACTION GetEndAction() const;
+    void SetEndAction(ENDACTION newEndAction);
+
 Q_SIGNALS:
     void sigQualityChanged();
     void sigEncodingModeChanged();
     void sigImageFileChanged();
     void sigEnableVideoChanged();
     void sigEnableAudioChanged();
+    void sigEndActionChanged();
 
 private:
     bool m_bEnable;
@@ -90,6 +101,8 @@ private:
 
     qreal m_VideoFrameRate;
     int m_AudioSampleRate;
+
+    ENDACTION m_EndAction;
 
 protected:
     virtual int OnLoad(QSettings &set) override;
