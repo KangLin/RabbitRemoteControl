@@ -448,3 +448,50 @@ and then run ldconfig to add the dependent library to the system.
 
 See: [Compile integration](../../.github/workflows/ubuntu.yml)
 
+- snap
+  - build
+    - Parts lifecycle: https://snapcraft.io/docs/parts-lifecycle
+    - https://snapcraft.io/docs/how-snapcraft-builds  
+     Each of these lifecycle steps can be run from the command line,
+     and the command can be part specific or apply to all parts in a project.
+
+          snapcraft pull [<part-name>]
+          snapcraft build [<part-name>]
+          snapcraft stage [<part-name>]
+          snapcraft prime [<part-name>]
+          snapcraft pack or snapcraft
+        
+    - Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
+      The following commands enable you to step into this encapsulated environment:
+      - --shell: builds your snap to the lifecycle step prior to that specified and opens a shell into the environment (e.g. running snapcraft prime --shell will run up to the stage step and open a shell).
+      - --shell-after: builds your snap to the lifecycle step specified and opens a shell into the environment. (eg. running snapcraft prime --shell-after will run up to the prime step and then drop into a shell).
+      - --debug, opens a shell inside the environment after an error occurs.  
+        For example, to open a shell just before the prime phase, use the following command:
+    
+            $ snapcraft prime --shell
+            Using 'snap/snapcraft.yaml': Project assets will be searched for from
+            the 'snap' directory.
+            Launching a VM.
+            Launched: snapcraft-test
+            [...]
+            Pulling part-test
+            Building part-test
+            Staging part-test
+            snapcraft-test #
+    
+    - build clean
+    
+          snapcraft clean
+        
+  - Test
+    - Use --devmode
+
+          snap install ./rabbitremotecontrol_0.0.27_amd64.snap --devmode
+ 
+    - Run
+ 
+          rabbitremotecontrol
+
+    - Remove
+
+          snap remove rabbitremotecontrol

@@ -1,3 +1,8 @@
+*.deb
+*.exe
+*.apk
+update*.xml
+update*.json
 debian/files
 debian/rabbitremotecontrol
 debian/.debhelper/

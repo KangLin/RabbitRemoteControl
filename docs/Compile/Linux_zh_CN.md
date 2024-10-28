@@ -335,7 +335,7 @@
 
 ### 编译
 
-- Ubuntu
+#### Ubuntu
 
     ```bash
     # 安装开发工具软件包
@@ -407,3 +407,50 @@
     ```
 
 参见：[编译集成](../../.github/workflows/ubuntu.yml)
+
+#### snap
+- 编译: 
+  - Parts 生命周期: https://snapcraft.io/docs/parts-lifecycle
+  - https://snapcraft.io/docs/how-snapcraft-builds
+        
+        ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+        ~$ cd RabbitRemoteControl
+        ~$ snapcraft -v 
+
+    这些生命周期步骤中的每一个都可以从命令行运行，
+    并且该命令可以是特定于部件的命令，也可以是应用于项目中的所有部件的命令。
+    
+    ```
+    snapcraft pull [<part-name>]
+    snapcraft build [<part-name>]
+    snapcraft stage [<part-name>]
+    snapcraft prime [<part-name>]
+    snapcraft pack or snapcraft
+    ```
+
+  - 迭代构建: https://snapcraft.io/docs/iterating-over-a-build
+    通过以下命令，您可以单步执行此封装环境：
+    - --shell：将快照构建到指定之前的生命周期步骤，并在环境中打开一个 shell
+      例如，运行 snapcraft prime --shell 将运行到暂存步骤并打开一个 shell）。
+    - --shell-after：构建对指定生命周期步骤的快照，并在环境中打开 shell。
+     （例如，运行 snapcraft prime --shell-after 将运行到 prime 步骤，然后进入 shell）。
+    - --debug 在发生错误后在环境中打开一个 shell。
+
+          $ snapcraft prime --shell -v --debug
+
+  - 清理编译
+  
+        snapcraft clean
+    
+- 调试
+  - 开发模式安装 （--devmode）。未签名的。
+
+        snap install ./rabbitremotecontrol_0.0.27_amd64.snap --devmode 
+
+  - 运行
+
+        rabbitremotecontrol
+
+  - 卸载
+
+        snap remove rabbitremotecontrol

@@ -58,7 +58,7 @@ parts:
     plugin: cmake
     source: https://github.com/FreeRDP/FreeRDP.git
     source-type: git
-    source-tag: 3.7.0
+    source-tag: 3.9.0
     source-depth: 1
     build-packages:
       - libssl-dev
@@ -70,13 +70,15 @@ parts:
       - libcjson-dev
       - libkrb5-dev
       - libicu-dev
-      - libcups2-dev
       - libpkcs11-helper1-dev
+      # ffmpeg development headers and libraries
       - libavcodec-dev
+      - libavformat-dev
       - libresample1-dev
       - libswscale-dev
-      - libpcap-dev
-      - libcups2-dev
+      # PulseAudio client development headers and libraries
+      - libpulse-dev
+      - libcups2-dev # print development headers and libraries
     stage-packages:
       - libfuse3-3
       - libpam0g
@@ -96,6 +98,7 @@ parts:
       - x11-utils
       - libkrb5-3
       - libpkcs11-helper1
+      - libpulse0 # PulseAudio client runtime libraries
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_INSTALL_PREFIX=/usr
@@ -103,6 +106,11 @@ parts:
       - -DWITH_CLIENT=OFF
       - -DWITH_PLATFORM_SERVER=OFF
       - -DWITH_LIBSYSTEMD=off
+      - -DWITH_MANPAGES=OFF
+      - -DWITH_SAMPLE=OFF
+      - -DWITH_CLIENT_SDL=OFF
+      - -DWITH_PROXY_MODULES=OFF
+      - -DWITH_KRB5=OFF
     prime:
       - -usr/include
       - -usr/lib/cmake
@@ -141,6 +149,8 @@ parts:
       - libutf8proc-dev
       - libusb-1.0-0-dev
       - gettext
+    stage-packages:
+      - libpixman-1-0
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_TESTS=OFF
@@ -151,6 +161,15 @@ parts:
     prime:
       - -*
 
+  # qt:
+  #   plugin: nil
+  #   override-stage: |
+  #     pip install -U pip
+  #     pip install aqtinstall
+  #     aqt install-qt linux desktop 6.8.0 linux_gcc_64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
+  #     env
+  #     snapcraftctl stage
+
   rabbitremotecontrol:
     # See 'snapcraft plugins'
     # see: https://snapcraft.io/docs/supported-plugins
@@ -160,34 +179,43 @@ parts:
       - tigervnc
       - rabbitcommon
       - freerdp
+#      - qt
     build-packages:
       - libcmark-dev
       - cmark
+      # opengl development headers and libraries
+      - libglx-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      # vulkan development headers and libraries
+      - libvulkan-dev
+      # openssl development headers and libraries
       - libssl-dev
       - libcrypt-dev
-      - qttools5-dev
-      - qtbase5-dev
-      - libqt5scxml5-dev
-      - libqt5serialport5-dev
-      - libqt5svg5-dev
-      - qtmultimedia5-dev
+      # PulseAudio client development headers and libraries
+      - libpulse-dev
+      - libcups2-dev # print development headers and libraries
       - libvncserver-dev
       - libssh-dev
       - libtelnet-dev
+      - libpcap-dev
     stage-packages:
       - libcmark0.30.2
-      - libopengl0
+      # opengl runtime libraries
+      - libglx0
+      - libgl1
       - libglu1-mesa
+      # vulkan runtime libraries
+      - libvulkan1
+      # openssl runtime libraries
       - libssl3
       - libcrypt1
-      - libqt5scxml5
-      - libqt5serialport5
-      - libqt5svg5
-      - libqt5xml5
-      - libqt5multimedia5
+      # c and c++
       - libc6
       - libgcc-s1
       - libstdc++6
+      # PulseAudio client runtime libraries
+      - libpulse0
       - zlib1g
       - libssh-4
       - libvncserver1
@@ -196,6 +224,11 @@ parts:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DRabbitCommon_DIR=$CRAFT_STAGE/RabbitCommon/
+#      - -DQT_ROOT=$CRAFT_STAGE/6.8.0/gcc_64
+#      - -DQT_DIR=$CRAFT_STAGE/6.8.0/gcc_64/lib/cmake/Qt6
+#      - -DQt6_ROOT=$CRAFT_STAGE/6.8.0/gcc_64
+#      - -DQt6_DIR=$CRAFT_STAGE/6.8.0/gcc_64/lib/cmake/Qt6
+      - -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
       - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
       - -Dtigervnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
 #      - -DFreeRDP-Client_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Client3
@@ -203,6 +236,14 @@ parts:
 #      - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
 #      - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
 #      - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
+    # override-build: |
+    #   env
+    #   echo "--------------------------"
+    #   export LD_LIBRARY_PATH=$CRAFT_STAGE/6.8.0/gcc_64/lib:$LD_LIBRARY_PATH
+    #   export CMAKE_PREFIX_PATH="$CRAFT_STAGE/6.8.0/gcc_64;$CRAFT_STAGE;/usr"
+    #   export CMAKE_FIND_ROOT_PATH="$CRAFT_STAGE;/usr"
+    #   env
+    #   snapcraftctl build
     override-stage: |
       cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
       if [ ! -f rabbitremotecontrol ]; then
@@ -227,7 +268,7 @@ apps:
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
    environment:
-     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET
+     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/6.8.0/gcc_64/lib
      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
    # List extensions, run `snapcraft extensions`
    extensions:
@@ -260,4 +301,3 @@ apps:
      - ssh-keys
      - ssh-public-keys
      - unity7
-
