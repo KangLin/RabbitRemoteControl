@@ -76,12 +76,12 @@
 - [ ] IPHONE
 - [ ] WINCE
 
+详见：[Qt5 支持平台](https://doc.qt.io/qt-5/supported-platforms.html)、[Qt6 支持平台](https://doc.qt.io/qt-6/supported-platforms.html)。
+
 未选中的操作系统是因为本人没有设备，所以没有做编译与测试。请有设备的朋友自行测试。
 欢迎有兴趣，有能力的朋友参与项目的开发。
 
 如果你想为本人捐赠开发设备，请联系：kl222@126.com
-
-详见：[Qt5 支持平台](https://doc.qt.io/qt-5/supported-platforms.html)、[Qt6 支持平台](https://doc.qt.io/qt-6/supported-platforms.html)。
 
 - 远程桌面
 
@@ -107,6 +107,14 @@
 |FTP     |       |          |       |   |      |     |
 |SFTP    |       |          |       |   |      |     |
 
+- 工具
+
+|            |Windows|Unix/linux|Android|MAC|
+|------------|-------|----------|-------|---|
+|播放器       |✓      |✓         |✓      |✓  |
+|局域网唤醒主机 |✓      |✓         |✓      |✓  |
+|截屏         |✓      |✓         |❌      |✓  |
+
 图例：  
  ✓ :  完成; …… : 正在工作;  ⭕  : 未完成; 空：未开始; ❌: 不支持
 
@@ -125,7 +133,7 @@
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] 终端
 - [x] SSH: [https://www.rfc-editor.org/info/rfc4251](https://www.rfc-editor.org/info/rfc4251)
-  - [libssh](https://api.libssh.org/stable/index.html)
+  - [x] [libssh](https://api.libssh.org/stable/index.html)
 - [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)
 - [ ] FTP（文件传输协议）: [https://www.rfc-editor.org/info/rfc959](https://www.rfc-editor.org/info/rfc959)

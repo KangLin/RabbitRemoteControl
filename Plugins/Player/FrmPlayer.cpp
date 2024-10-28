@@ -186,15 +186,20 @@ void CFrmPlayer::resizeEvent(QResizeEvent *event)
 {
     qDebug(log) << "CFrmPlayer::resizeEvent()" << event;
     QSize s = event->size();
+    AdjustCompone(s);
+    QWidget::resizeEvent(event);
+}
+
+int CFrmPlayer::AdjustCompone(const QSize &s)
+{
     m_VideoWidget.move(0, 0);
     QRect rect(0, 0, s.width(), s.height() - m_ToolBar.frameGeometry().height());
     m_VideoWidget.setGeometry(rect);
-    //m_VideoWidget.setGeometry(0, 0, s.width(), s.height());
-    int left = 0;//(s.width() - m_ToolBar.frameGeometry().width()) >> 1;
+    int left = 0;
     int top = s.height() - m_ToolBar.frameGeometry().height();
     m_ToolBar.move(left, top);
     m_ToolBar.resize(s.width(), m_ToolBar.height());
-    QWidget::resizeEvent(event);
+    return 0;
 }
 
 void CFrmPlayer::slotStart(bool bStart)
@@ -235,9 +240,7 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
             m_VideoWidget.setFullScreen(!m_VideoWidget.isFullScreen());
             if(!m_VideoWidget.isFullScreen()) {
                 QSize s = size();
-                m_VideoWidget.move(0, 0);
-                QRect rect(0, 0, s.width(), s.height() - m_ToolBar.frameGeometry().height());
-                m_VideoWidget.setGeometry(rect);
+                AdjustCompone(s);
             }
             break;
         }
@@ -250,9 +253,7 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
                 if(m_VideoWidget.isFullScreen()) {
                     m_VideoWidget.setFullScreen(false);
                     QSize s = size();
-                    m_VideoWidget.move(0, 0);
-                    QRect rect(0, 0, s.width(), s.height() - m_ToolBar.frameGeometry().height());
-                    m_VideoWidget.setGeometry(rect);
+                    AdjustCompone(s);
                 }
                 break;
             case Qt::Key_Enter:

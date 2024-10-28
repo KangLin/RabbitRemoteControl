@@ -77,12 +77,12 @@ It include remote desktop, remote terminal etc remote control functions.
 - [ ] IPHONE
 - [ ] WINCE
 
+See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
+
 I have no devices so I did not compile and test. Please test by yourself if you have devices.
 Interested and capable friends are welcome to participate in the development of the project.
 
 If you want to donate the developed devices for me, please contact: (email: kl222@126.com)
-
-See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
 
 - Remote desktop
 
@@ -108,6 +108,14 @@ See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.q
 |FTP     |       |          |       |   |      |     |
 |SFTP    |       |          |       |   |      |     |
 
+- Tool
+
+|           |Windows|Unix/linux|Android|MAC|
+|-----------|-------|----------|-------|---|
+|Player     |✓      |✓         |✓      |✓  |
+|Wake on lan|✓      |✓         |✓      |✓  |
+|Screenshot |✓      |✓         |❌      |✓  |
+
 Legend:  
  ✓ : completed; … : working; ⭕ : not completed; Empty: not started; ❌: not supported
 
@@ -126,7 +134,7 @@ Legend:
 - [x] RDP(Remote desktop protocol): [https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation](https://github.com/FreeRDP/FreeRDP/wiki/Reference-Documentation)
 - [ ] Spice: [https://www.spice-space.org/](https://www.spice-space.org/)
 - [x] SSH: [https://www.rfc-editor.org/info/rfc4251](https://www.rfc-editor.org/info/rfc4251)
-  - [libssh](https://api.libssh.org/stable/index.html)
+  - [x] [libssh](https://api.libssh.org/stable/index.html)
 - [x] TELNET: [https://www.rfc-editor.org/info/rfc318](https://www.rfc-editor.org/info/rfc318)
 - [x] Terminal
 - [ ] scrcpy: [https://github.com/Genymobile/scrcpy](https://github.com/Genymobile/scrcpy)

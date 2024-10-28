@@ -52,6 +52,8 @@ private:
     QSlider m_pbVolume;
     CParameterPlayer* m_pParameter;
     QLabel* m_pLabel;
+
+    int AdjustCompone(const QSize &s);
 };
 
 #endif // FRMPLAYER_H
