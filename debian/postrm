@@ -27,7 +27,8 @@ case "$1" in
         rm -fr /usr/share/pixmaps/org.Rabbit.RemoteControl.svg
         rm -fr /usr/share/applications/org.Rabbit.RemoteControl.Service.Configure.desktop
         rm -fr /usr/share/pixmaps/org.Rabbit.RemoteControl.Service.Configure.svg
-        rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf        
+        rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
+        rm -fr /usr/bin/rabbitremotecontrol
         ldconfig
     ;;
 
