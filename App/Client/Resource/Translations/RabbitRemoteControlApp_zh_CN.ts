@@ -117,7 +117,7 @@
     <message>
         <location filename="../../FrmFullScreenToolBar.cpp" line="96"/>
         <source>Record video</source>
-        <translation type="unfinished"></translation>
+        <translation>录制视频</translation>
     </message>
     <message>
         <source>Add to favorite</source>
@@ -625,7 +625,7 @@
         <location filename="../../mainwindow.cpp" line="1220"/>
         <location filename="../../mainwindow.cpp" line="1224"/>
         <source>Record video</source>
-        <translation type="unfinished"></translation>
+        <translation>录制视频</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="551"/>
@@ -814,12 +814,12 @@
     <message>
         <location filename="../../mainwindow.cpp" line="1230"/>
         <source>Stop record video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">停止录制视频</translation>
     </message>
     <message>
         <location filename="../../mainwindow.cpp" line="1237"/>
         <source>Start record video</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">开始录制视频</translation>
     </message>
     <message>
         <source>Error</source>

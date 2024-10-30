@@ -366,12 +366,12 @@ jobs:
         working-directory: ${{github.workspace}}\build
         run: |
           install\bin\RabbitRemoteControlApp.exe ^
-                -f "update_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" ^
+                -f "update_msvc_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" ^
                 --foc 1 ^
                 -u https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe ^
                 --pf RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe ^
                 -m "${{env.RabbitRemoteControl_VERSION}}"
-          RENAME update_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json.xml update_windows.xml
+          RENAME update_msvc_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json.xml update_windows.xml
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version != '5.15.2' }}
@@ -380,7 +380,7 @@ jobs:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}
           path: |
             ${{github.workspace}}\build\RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe
-            ${{github.workspace}}\build\update_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json
+            ${{github.workspace}}\build\update_msvc_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json
 
       - name: Update artifact update_windows.xml
         if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.8.0' }}

@@ -41,7 +41,7 @@ Rabbit Remote Control is a open-source, cross-platform, multi-protocol remote co
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
-It include remote desktop, remote terminal etc remote control functions.
+It include remote desktop, remote terminal, player etc remote control functions.
 
 ### Screenshot
 

@@ -14,12 +14,12 @@
     <message>
         <location filename="../../PluginScreenCapture.cpp" line="23"/>
         <source>Capture screen</source>
-        <translation type="unfinished"></translation>
+        <translation>捕獲屏幕</translation>
     </message>
     <message>
         <location filename="../../PluginScreenCapture.cpp" line="28"/>
         <source>Capture or recored screen and window</source>
-        <translation type="unfinished"></translation>
+        <translation>捕獲或錄製屏幕和窗口</translation>
     </message>
 </context>
 </TS>

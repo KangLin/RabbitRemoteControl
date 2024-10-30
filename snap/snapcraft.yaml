@@ -164,13 +164,20 @@ parts:
   qt:
     plugin: nil # See: https://snapcraft.io/docs/nil-plugin
     stage-packages:
+      - python3-pip*
       - cpio
     override-stage: |
       pip install -U pip
       pip install aqtinstall
-      aqt install-qt linux desktop 6.8.0 linux_gcc_64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
-      ./6.8.0/gcc_64/bin/qmake -query
-      ln -s 6.8.0/gcc_64 qt
+      # See: https://ddalcino.github.io/aqt-list-server/
+      if [ "`uname -m`" == "x86_64" ]; then
+          aqt install-qt linux desktop 6.8.0 linux_gcc_64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
+          ./6.8.0/gcc_64/bin/qmake -query
+          ln -s 6.8.0/gcc_64 qt
+      elif [ "`uname -m`" == "aarch64" ]; then
+          aqt install-qt linux_arm64 desktop 6.8.0 linux_gcc_arm64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
+          ln -s 6.8.0/arm64 qt
+      fi
       snapcraftctl stage
     override-prime: |
       echo "override-prime"
@@ -178,8 +185,12 @@ parts:
       echo "`pwd`"
       mkdir -p qt
       cp -r $CRAFT_STAGE/qt/translations qt
+      find $CRAFT_STAGE/qt/ -name 'qt.conf' | cpio -pdm .
       find $CRAFT_STAGE/qt/ -name '*.so*' | cpio -pdm .
       cp -r root/stage/qt .
+      if [ -d qt/qml ]; then
+          rm -fr qt/qml
+      fi
       rm -fr root
 
   rabbitremotecontrol:
@@ -256,6 +267,12 @@ parts:
     override-stage: |
       cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
       sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+      cat << EOF > "qt.conf"
+      [Paths]
+      Libraries=../../../qt/lib
+      Plugins=../../../qt/plugins
+      Translations=../../../qt/translations
+      EOF
       snapcraftctl stage
     prime:
       - -usr/bin/cmark
@@ -273,7 +290,6 @@ apps:
    environment:
      LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/qt/lib
      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
-     QT_INSTALL_PREFIX: $SNAP/qt
    # List extensions, run `snapcraft extensions`
    extensions:
      - kde-neon

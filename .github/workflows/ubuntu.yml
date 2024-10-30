@@ -93,7 +93,7 @@ jobs:
           sudo apt-get update -y
           sudo apt-get upgrade -y
           sudo apt install -y -q cmake build-essential xvfb xpra \
-              libglu1-mesa-dev libpulse-mainloop-glib0 \
+              libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev \
               cmake debhelper fakeroot graphviz \
               qt6-tools-dev qt6-tools-dev-tools \
               qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
@@ -106,7 +106,8 @@ jobs:
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse3-dev libusb-1.0-0-dev \
               libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev \
-              libpcap-dev libcups2-dev
+              libpcap-dev libcups2-dev \
+              libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -135,7 +136,7 @@ jobs:
                 -DWITH_KRB5=OFF \
                 -DWITH_MANPAGES=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install/strip
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           fi
 
       - name: build RabbitVNC
@@ -167,7 +168,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
       - name: build libdatachannel
@@ -181,7 +182,7 @@ jobs:
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
       - name: build QtService
@@ -197,7 +198,7 @@ jobs:
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
       - name: pcapplusplus
@@ -214,7 +215,7 @@ jobs:
                 -DPCAPPP_BUILD_TESTS=OFF \
                 -DPCAPPP_BUILD_TUTORIALS=OFF
             cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
       - name: build_debpackage.sh
@@ -225,11 +226,11 @@ jobs:
           tigervnc_DIR: ${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           #LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
           QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
-          FreeRDP_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
-          WinPR_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/WinPR3
-          FreeRDP_Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
-          FreeRDP_Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
-          FreeRDP_Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
+          #FreeRDP_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
+          #WinPR_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/WinPR3
+          #FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
+          #FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
+          #FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
           PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
         run: |
           if [ '${{matrix.BUILD_TYPE}}' == 'Release' ]; then
@@ -255,7 +256,7 @@ jobs:
           sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb
           #echo "ls -l /opt/RabbitRemoteControl/bin/"
           #ls -l /opt/RabbitRemoteControl/bin/
-          echo "Update update_linux.xml ......"
+          echo "Update update_linux.json ......"
           export QT_XCB_GL_INTEGRATION=none
           MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum|awk '{print $1}'`
           echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb: ${MD5SUM}"
