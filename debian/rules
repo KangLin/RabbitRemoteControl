@@ -117,19 +117,19 @@ override_dh_auto_configure:
 override_dh_auto_build:
 #	dh_auto_build --parallel -B$(BUILD_DIR)
 	cmake  --build $(BUILD_DIR) --config Release \
-		--parallel $(if "`cat /proc/cpuinfo |grep 'processor' |wc -l`", `cat /proc/cpuinfo |grep 'processor' |wc -l`, 1)
+		--parallel $(nproc)
 
 override_dh_auto_install:
-	cmake --install $(BUILD_DIR) --config Release --strip \
+	cmake --install $(BUILD_DIR) --config Release \
 		--component DependLibraries \
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
-	cmake --install $(BUILD_DIR) --config Release --strip \
+	cmake --install $(BUILD_DIR) --config Release \
 		--component Runtime \
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
-	cmake --install $(BUILD_DIR) --config Release --strip \
+	cmake --install $(BUILD_DIR) --config Release \
 		--component Application \
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl	
-	cmake --install $(BUILD_DIR) --config Release --strip \
+	cmake --install $(BUILD_DIR) --config Release \
 		--component Plugin \
 		--prefix $(PACKAGE_DIR)/opt/RabbitRemoteControl
 

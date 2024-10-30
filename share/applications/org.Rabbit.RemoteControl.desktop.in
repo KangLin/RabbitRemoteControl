@@ -3,9 +3,9 @@
 [Desktop Entry]
 Type=Application
 Icon=@APP_ICON_NAME@
-TryExec=/opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh
-Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh
-Path=/opt/RabbitRemoteControl
+TryExec=RabbitRemoteControlApp
+Exec=RabbitRemoteControlApp
+Path=@CMAKE_INSTALL_PREFIX@/bin
 Terminal=false
 StartupNotify=true
 

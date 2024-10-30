@@ -1,6 +1,7 @@
 *.deb
 *.exe
 *.apk
+*.AppImage
 update*.xml
 update*.json
 debian/files
@@ -43,8 +44,8 @@ ui_*.h
 *.qmlc
 *.jsc
 Makefile*
-*build-*
-*build_*
+*build-*/
+*build_*/
 *.qm
 *.prl
 
