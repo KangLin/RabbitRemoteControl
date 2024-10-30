@@ -468,7 +468,7 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
       - --debug, opens a shell inside the environment after an error occurs.  
         For example, to open a shell just before the prime phase, use the following command:
     
-            $ snapcraft prime --shell
+            $ snapcraft prime -v --debug --shell
             Using 'snap/snapcraft.yaml': Project assets will be searched for from
             the 'snap' directory.
             Launching a VM.
