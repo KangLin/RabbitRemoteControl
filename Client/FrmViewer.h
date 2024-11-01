@@ -172,7 +172,6 @@ public:
     virtual QImage GrabImage(int x = 0, int y = 0, int w = -1, int h = -1);
 
 public Q_SLOTS:
-    void slotScreenShot(const QString& szFile);
     void slotRecordVideo(bool bRecord);
 Q_SIGNALS:
     void sigRecordVideo(const QImage& img);

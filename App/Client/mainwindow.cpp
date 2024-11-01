@@ -306,23 +306,7 @@ void MainWindow::on_actionAbout_triggered()
     about->m_szCopyrightStartTime = "2020";
     about->m_szVersionRevision = RabbitRemoteControl_REVISION;
     about->m_szDetails = m_Client.Details();
-    if(about->isHidden())
-    {
-#ifdef BUILD_QUIWidget
-        QUIWidget quiwidget;
-        quiwidget.setMainWidget(about);
-        quiwidget.setPixmap(QUIWidget::Lab_Ico, ":/image/App");
-    #if defined (Q_OS_ANDROID)
-        quiwidget.showMaximized();
-    #endif
-        quiwidget.exec();
-#else
-    #if defined (Q_OS_ANDROID)
-        about->showMaximized();
-    #endif
-        about->exec();
-#endif
-    }
+    RC_SHOW_WINDOW(about);
 #endif
 }
 
@@ -337,21 +321,7 @@ void MainWindow::on_actionUpdate_triggered()
     QPixmap p = icon.pixmap(*sizeList.begin());
     m_pfrmUpdater->SetTitle(p.toImage());
     m_pfrmUpdater->SetInstallAutoStartup();
-#ifdef BUILD_QUIWidget
-    QUIWidget* pQuiwidget = new QUIWidget(nullptr, true);
-    pQuiwidget->setMainWidget(m_pfrmUpdater);
-#if defined (Q_OS_ANDROID)
-    pQuiwidget->showMaximized();
-#else
-    pQuiwidget->show();
-#endif 
-#else
-#if defined (Q_OS_ANDROID)
-    m_pfrmUpdater->showMaximized();
-#else
-    m_pfrmUpdater->show();
-#endif 
-#endif
+    RC_SHOW_WINDOW(m_pfrmUpdater);
 #endif
 }
 

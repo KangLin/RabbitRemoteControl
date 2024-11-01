@@ -11,7 +11,6 @@
 #include <QWheelEvent>
 #include <QMimeData>
 #include <QMessageBox>
-#include <QEvent>
 
 #if HAVE_QT6_MULTIMEDIA
     #include <QMediaCaptureSession>
@@ -26,21 +25,7 @@
 #include "FrmViewer.h"
 #include "Connect.h"
 
-#define TypeRecordVideo (QEvent::User + 1)
-class QRecordVideoEvent : public QEvent
-{
-public:
-    QRecordVideoEvent(const QImage& img): QEvent((QEvent::Type)TypeRecordVideo)
-    {
-        m_Image = img;
-    }
-    QImage GetImage()
-    {
-        return m_Image;
-    }
-private:
-    QImage m_Image;
-};
+class QRecordVideoEvent;
 
 /*!
  * \~chinese
@@ -75,7 +60,8 @@ public:
                              bool bDirectConnection = true);
     virtual ~CConnectDesktop() override;
 
-public Q_SLOTS:   
+public Q_SLOTS:
+    virtual int Disconnect() override;
     /*!
      * \~chinese 当剪切板发生改变时调用
      * \~english Be called when the clip board change
@@ -140,12 +126,12 @@ public:
     virtual bool event(QEvent *event) override;
 
 private Q_SLOTS:
-    void slotScreenShot();
+    // connect menu
     virtual void slotRecord(bool bRecord);
+    // connect CFrmView
     void slotRecordVideo(const QImage& img);
 Q_SIGNALS:
     void sigRecordVideo(bool bRecord);
-    void sigScreenShot(const QString& szFile);
 private:
     void RecordVideo(QRecordVideoEvent *event);
     CParameterBase* m_pParameter;

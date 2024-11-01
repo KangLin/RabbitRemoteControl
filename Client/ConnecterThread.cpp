@@ -1,6 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
 #include <QLoggingCategory>
+#include <QDesktopServices>
+#include <QUrl>
+
 #include "ConnecterThread.h"
 #include "ConnectThread.h"
 #include "PluginClient.h"
@@ -12,32 +15,31 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
       m_pThread(nullptr),
       m_pView(new CFrmViewer())
 {
+    bool check = false;
     m_Menu.setIcon(plugin->Icon());
     m_Menu.setTitle(plugin->DisplayName());
     m_Menu.setToolTip(plugin->DisplayName());
     m_Menu.setStatusTip(plugin->DisplayName());
     m_Menu.addAction(QIcon::fromTheme("camera-photo"), tr("ScreenShot"),
-                     this, SIGNAL(sigSceenShot()));
+                     this, [&](){
+        if(!GetParameter() || !m_pView)
+            return;
+        auto &record = GetParameter()->m_Record;
+        QString szFile = record.GetImageFile(true);
+        bool bRet = m_pView->GrabImage().save(szFile);
+        if(bRet)
+            qDebug(log) << "Success: save screenshot to" << szFile;
+        else
+            qCritical(log) << "Fail: save screenshot to" << szFile;
+        if(record.GetEnable() != CParameterRecord::ENDACTION::No)
+            QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
+    });
 #if HAVE_QT6_RECORD
     QAction* pRecord = m_Menu.addAction(
-        QIcon::fromTheme("media-record"), tr("Record"),
-        this, [&](){
-            QAction* pRecord = qobject_cast<QAction*>(sender());
-            if(pRecord)
-            {
-                bool checked = pRecord->isChecked();
-                if(checked) {
-                    pRecord->setIcon(QIcon::fromTheme("media-playback-stop"));
-                    pRecord->setText(tr("Stop record"));
-                }
-                else {
-                    pRecord->setIcon(QIcon::fromTheme("media-playback-start"));
-                    pRecord->setText(tr("Start record"));
-                }
-                emit sigRecord(checked);
-            }
-        });
+        QIcon::fromTheme("media-record"), tr("Record"));
     pRecord->setCheckable(true);
+    check = connect(pRecord, SIGNAL(toggled(bool)), this, SLOT(slotRecord(bool)));
+    Q_ASSERT(check);
 #endif
 }
 
@@ -131,3 +133,30 @@ QMenu *CConnecterThread::GetMenu(QWidget *parent)
         return nullptr;
     return &m_Menu;
 }
+
+void CConnecterThread::slotRecord(bool checked)
+{
+    qDebug(log) << __FUNCTION__ << checked;
+    QAction* pRecord = qobject_cast<QAction*>(sender());
+    if(pRecord)
+    {
+        if(checked) {
+            pRecord->setIcon(QIcon::fromTheme("media-playback-stop"));
+            pRecord->setText(tr("Stop record"));
+        }
+        else {
+            pRecord->setIcon(QIcon::fromTheme("media-playback-start"));
+            pRecord->setText(tr("Start record"));
+        }
+        emit sigRecord(checked);
+    }
+}
+
+#if HAVE_QT6_RECORD
+void CConnecterThread::slotRecorderStateChanged(
+    QMediaRecorder::RecorderState state)
+{
+    if(QMediaRecorder::StoppedState == state)
+        slotRecord(false);
+}
+#endif

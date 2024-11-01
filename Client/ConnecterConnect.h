@@ -74,8 +74,6 @@ public Q_SLOTS:
 Q_SIGNALS:
     void sigOpenConnect(CConnecterConnect*);
     void sigCloseconnect(CConnecterConnect*);
-    void sigSceenShot();
-    void sigRecord(bool bRecord);
 
 private:
     CConnect* m_pConnect;

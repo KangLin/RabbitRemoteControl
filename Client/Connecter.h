@@ -150,7 +150,7 @@ public:
      * \~english \brief Load parameters from file
      */
     virtual int Load(QString szFile = QString());
-    
+
     /*!
      * \~chinese \brief 保存参数到文件中
      * \param szFile: 文件名。当为空时，使用上次使用过的文件。
@@ -158,7 +158,7 @@ public:
      * \param szFile: When it is empty, the file used last time is used.
      */
     virtual int Save(QString szFile = QString());
-    
+
 public Q_SLOTS:
     /**
      * \~chinese

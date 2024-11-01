@@ -77,10 +77,18 @@ public Q_SLOTS:
      */
     virtual int DisConnect() override;
     virtual QMenu *GetMenu(QWidget *parent) override;
+#if HAVE_QT6_RECORD
+    void slotRecorderStateChanged(QMediaRecorder::RecorderState state);
+#endif
+Q_SIGNALS:
+    void sigRecord(bool bRecord);
 
 protected:
     virtual QString ServerName() override;
     QMenu m_Menu;
+
+private Q_SLOTS:
+    void slotRecord(bool checked);
 
 private:
     /*!

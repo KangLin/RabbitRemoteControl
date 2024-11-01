@@ -260,7 +260,7 @@ void CConnectPlayer::slotStart()
         break;
     }
 
-    slotRecord(m_pParameters->m_Record.GetEnable());
+    //slotRecord(m_pParameters->m_Record.GetEnable());
 }
 
 int CConnectPlayer::OnClean()

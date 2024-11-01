@@ -521,18 +521,6 @@ QImage CFrmViewer::GrabImage(int x, int y, int w, int h)
     return m_Desktop.copy(x, y, width, height);
 }
 
-void CFrmViewer::slotScreenShot(const QString &szFile)
-{
-    if(szFile.isEmpty()) {
-        qCritical(log) << "File name is empty";
-        return;
-    }
-    if(m_Desktop.save(szFile))
-        qDebug(log) << "Success: save screenshot to" << szFile;
-    else
-        qCritical(log) << "Fail: save screenshot to" << szFile;
-}
-
 void CFrmViewer::slotRecordVideo(bool bRecord)
 {
     m_bRecordVideo = bRecord;

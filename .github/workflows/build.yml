@@ -57,7 +57,7 @@ jobs:
       - name: Download appimage
         uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.appimage.outputs.name }}_*
+          name: ${{ needs.appimage.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 

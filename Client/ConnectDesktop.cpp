@@ -6,11 +6,28 @@
 #include <QLoggingCategory>
 #include <QWheelEvent>
 #include <QVideoFrame>
+#include <QDesktopServices>
 
 #include "ConnectDesktop.h"
-#include "ConnecterConnect.h"
+#include "ConnecterThread.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Connect.Desktop")
+
+#define TypeRecordVideo (QEvent::User + 1)
+class QRecordVideoEvent : public QEvent
+{
+public:
+    QRecordVideoEvent(const QImage& img): QEvent((QEvent::Type)TypeRecordVideo)
+    {
+        m_Image = img;
+    }
+    QImage GetImage()
+    {
+        return m_Image;
+    }
+private:
+    QImage m_Image;
+};
 
 int g_QtKeyboardModifiers = qRegisterMetaType<Qt::KeyboardModifiers>("KeyboardModifiers");
 int g_QtMouseButtons = qRegisterMetaType<Qt::MouseButtons>("MouseButtons");
@@ -39,10 +56,31 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
             emit sigError(error, errorString);
         });
     Q_ASSERT(check);
-    check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
-                    this, [&](QMediaRecorder::RecorderState state){
-                        qDebug(log) << "Recorder state changed:" << state;
-                    });
+    check = connect(
+        &m_Recorder, &QMediaRecorder::recorderStateChanged,
+        this, [&](QMediaRecorder::RecorderState state){
+            qDebug(log) << "Recorder state changed:" << state;
+            if(QMediaRecorder::StoppedState == state)
+            {
+                slotRecord(false);
+                if(m_pParameter) {
+                    switch(m_pParameter->m_Record.GetEndAction())
+                    {
+                    case CParameterRecord::ENDACTION::OpenFile:
+                        QDesktopServices::openUrl(m_Recorder.actualLocation());
+                        break;
+                    case CParameterRecord::ENDACTION::OpenFolder: {
+                        QFileInfo fi(m_Recorder.actualLocation().toLocalFile());
+                        QDesktopServices::openUrl(
+                            QUrl::fromLocalFile(fi.absolutePath()));
+                        break;
+                    }
+                    default:
+                        break;
+                    }
+                }
+            }
+        });
     Q_ASSERT(check);
     check = connect(&m_Recorder, &QMediaRecorder::actualLocationChanged,
                     this, [&](const QUrl &location){
@@ -73,15 +111,19 @@ int CConnectDesktop::SetConnecter(CConnecter* pConnecter)
     check = connect(this, SIGNAL(sigSetClipboard(QMimeData*)),
                     pConnecter, SLOT(slotSetClipboard(QMimeData*)));
     Q_ASSERT(check);
-    CConnecterConnect* p = qobject_cast<CConnecterConnect*>(pConnecter);
+    CConnecterThread* p = qobject_cast<CConnecterThread*>(pConnecter);
     if(p) {
         m_pParameter = p->GetParameter();
-        check = connect(p, SIGNAL(sigSceenShot()),
-                        this, SLOT(slotScreenShot()));
-        Q_ASSERT(check);
         check = connect(p, SIGNAL(sigRecord(bool)),
                         this, SLOT(slotRecord(bool)));
         Q_ASSERT(check);
+#if HAVE_QT6_MULTIMEDIA
+        check = connect(
+            &m_Recorder,
+            SIGNAL(recorderStateChanged(QMediaRecorder::RecorderState)),
+            p, SLOT(slotRecorderStateChanged(QMediaRecorder::RecorderState)));
+        Q_ASSERT(check);
+#endif
     }
     return 0;
 }
@@ -115,9 +157,6 @@ int CConnectDesktop::SetViewer(CFrmViewer *pView, bool bDirectConnection)
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigUpdateLedState(unsigned int)),
                     pView, SLOT(slotUpdateLedState(unsigned int)));
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigScreenShot(const QString&)),
-                    pView, SLOT(slotScreenShot(const QString&)));
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigRecordVideo(bool)),
                     pView, SLOT(slotRecordVideo(bool)));
@@ -310,8 +349,11 @@ bool CConnectDesktop::event(QEvent *event)
 
 void CConnectDesktop::slotRecord(bool bRecord)
 {
+    qDebug(log) << __FUNCTION__ << bRecord;
 #if HAVE_QT6_MULTIMEDIA
     if(bRecord) {
+        if(QMediaRecorder::RecordingState == m_Recorder.recorderState())
+            return;
         m_pParameter->m_Record >> m_Recorder;
 #if HAVE_QT6_RECORD
         m_CaptureSession.setVideoFrameInput(&m_VideoFrameInput);
@@ -335,6 +377,7 @@ void CConnectDesktop::slotRecord(bool bRecord)
 void CConnectDesktop::slotRecordVideo(const QImage &img)
 {
     QRecordVideoEvent* e = new QRecordVideoEvent(img);
+    if(!e) return;
     QCoreApplication::postEvent(this, e);
     WakeUp();
 }
@@ -358,11 +401,8 @@ void CConnectDesktop::RecordVideo(QRecordVideoEvent *e)
 #endif
 }
 
-void CConnectDesktop::slotScreenShot()
+int CConnectDesktop::Disconnect()
 {
-    if(!m_pParameter)
-        return;
-    QString szFile;
-    szFile = m_pParameter->m_Record.GetImageFile(true);
-    emit sigScreenShot(szFile);
+    slotRecord(false);
+    return CConnect::Disconnect();
 }
