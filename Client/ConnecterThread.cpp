@@ -96,13 +96,8 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     m_psbZoomFactor->setEnabled(false);
     m_psbZoomFactor->setFocusPolicy(Qt::NoFocus);
     check = connect(
-        m_psbZoomFactor, &QSpinBox::valueChanged,
-        this, [&](int v)
-        {
-            if(!m_pScroll || !m_pView) return;
-            m_pView->slotSetZoomFactor(((double)v) / 100);
-            m_pScroll->slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);
-        });
+        m_psbZoomFactor, SIGNAL(valueChanged(int)),
+        this, SLOT(slotValueChanged(int)));
     Q_ASSERT(check);
     QWidgetAction* pFactor = new QWidgetAction(pMenuZoom);
     pFactor->setDefaultWidget(m_psbZoomFactor);
@@ -234,3 +229,10 @@ void CConnecterThread::slotRecorderStateChanged(
         slotRecord(false);
 }
 #endif
+
+void CConnecterThread::slotValueChanged(int v)
+{
+    if(!m_pScroll || !m_pView) return;
+    m_pView->slotSetZoomFactor(((double)v) / 100);
+    m_pScroll->slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);
+}

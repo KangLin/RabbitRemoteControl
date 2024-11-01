@@ -164,7 +164,7 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed \
                 -DBUILD_TESTS=OFF \
                 -DBUILD_VIEWER=OFF
-            cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --parallel $(nproc) --verbose --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -197,7 +197,7 @@ jobs:
                 -DWITH_GCRYPT=OFF \
                 -DWITH_EXAMPLES=OFF \
                 -DWITH_TESTS=OFF
-            cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --parallel $(nproc) --verbose --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -205,7 +205,7 @@ jobs:
 #      working-directory: ${{env.SOURCE_DIR}}
 #      run: |
 #        if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP2 ]; then
-#            git clone -b 2.5.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
+#            git clone -b 3.9.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
 #            cd FreeRDP
 #            git submodule update --init --recursive
 #            cmake -E make_directory build
@@ -225,7 +225,7 @@ jobs:
 #                -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/FreeRDP/vcpkg_installed \
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --parallel $(nproc) --config ${{matrix.BUILD_TYPE}}
 #            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #        fi
 
@@ -254,7 +254,7 @@ jobs:
                   -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}} \
                   -DBUILD_TESTS=OFF \
                   -DBUILD_VIEWER=OFF
-              cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }}
+              cmake --build . --parallel $(nproc) --verbose --config ${{ matrix.BUILD_TYPE }}
               cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -285,7 +285,7 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/qxmpp/vcpkg_installed \
                 -DBUILD_EXAMPLES=OFF \
                 -DBUILD_TESTS=OFF
-            cmake --build . --verbose --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --parallel $(nproc) --verbose --config ${{matrix.BUILD_TYPE}}
             cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target install
           fi
 
@@ -329,7 +329,7 @@ jobs:
               -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc \
               -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp \
               -DBUILD_FREERDP=ON
-          cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target all
+          cmake --build . --parallel $(nproc) --verbose --config ${{matrix.BUILD_TYPE}} --target all
           APK_FILE=`find . -name "android-*.apk"`
           cp $APK_FILE RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_${{matrix.BUILD_TYPE}}.apk
 

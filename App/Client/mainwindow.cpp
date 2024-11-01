@@ -12,7 +12,7 @@
 #include "DlgAbout.h"
 #endif
 #ifdef BUILD_QUIWidget
-    #include "QUIWidget/QUIWidget.h"
+#include "QUIWidget/QUIWidget.h"
 #endif
 
 #include "Connecter.h"
@@ -21,7 +21,7 @@
 #include "FrmListConnects.h"
 
 #ifdef HAVE_ICE
-    #include "Ice.h"
+#include "Ice.h"
 #endif
 
 #include <QGridLayout>
@@ -118,7 +118,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
 
     m_pRecentMenu = new RabbitCommon::CRecentMenu(tr("Recently connected"),
-                                  QIcon::fromTheme("document-open-recent"),
+                                                  QIcon::fromTheme("document-open-recent"),
                                                   this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotOpenFile(const QString&)));
@@ -127,7 +127,7 @@ MainWindow::MainWindow(QWidget *parent)
                     m_pRecentMenu, SLOT(setMaxCount(int)));
     Q_ASSERT(check);
     QAction* pRecentAction = ui->menuRemote->insertMenu(
-                ui->actionOpenListConnections, m_pRecentMenu);
+        ui->actionOpenListConnections, m_pRecentMenu);
     pRecentAction->setStatusTip(pRecentAction->text());
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
     tbRecent->setFocusPolicy(Qt::NoFocus);
@@ -223,7 +223,7 @@ MainWindow::MainWindow(QWidget *parent)
         QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                       QSettings::IniFormat);
         QByteArray geometry
-                = set.value("MainWindow/Status/Geometry").toByteArray();
+            = set.value("MainWindow/Status/Geometry").toByteArray();
         if(!geometry.isEmpty())
             restoreGeometry(geometry);
         QByteArray state = set.value("MainWindow/Status/State").toByteArray();
@@ -362,11 +362,11 @@ void MainWindow::on_actionFull_screen_F_triggered()
     QScreen* pScreen = qApp->primaryScreen();
     if(pScreen) {
         qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
-                    << "availableGeometry:" << pScreen->availableGeometry();
+        << "availableGeometry:" << pScreen->availableGeometry();
         m_pFullScreenToolBar->move(pScreen->geometry().left()
-                           + (pScreen->geometry().width()
-                           - m_pFullScreenToolBar->frameGeometry().width()) / 2,
-                           pScreen->geometry().top());
+                                       + (pScreen->geometry().width()
+                                          - m_pFullScreenToolBar->frameGeometry().width()) / 2,
+                                   pScreen->geometry().top());
     }
     bool check = connect(m_pFullScreenToolBar, SIGNAL(sigExitFullScreen()),
                          this, SLOT(on_actionFull_screen_F_triggered()));
@@ -392,27 +392,26 @@ void MainWindow::on_actionFull_screen_F_triggered()
 void MainWindow::slotCurrentViewChanged(const QWidget* pView)
 {
     qDebug(log) << __FUNCTION__;
-    if(!m_pView || !pView)
-        return;
-    EnableMenu(true);
+    if(m_pView && pView) {
+        EnableMenu(true);
+    } else
+        EnableMenu(false);
 }
 
 void MainWindow::EnableMenu(bool bEnable)
 {
+    qDebug(log) << __FUNCTION__ << bEnable;
     ui->actionClone->setEnabled(bEnable);
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionCurrent_connect_parameters->setEnabled(bEnable);
     ui->actionDisconnect_D->setEnabled(bEnable);
-
-    if(m_pView && bEnable)
-    {
-        slotLoadConnecterMenu();
-    }
+    slotLoadConnecterMenu();
 }
 
 void MainWindow::slotLoadConnecterMenu()
 {
-    auto pWin = m_pView->GetCurrentView();
+    qDebug(log) << __FUNCTION__;
+
     if(m_pActionConnecterMenu) {
         ui->menuTools->removeAction(m_pActionConnecterMenu);
         m_pActionConnecterMenu = nullptr;
@@ -421,6 +420,14 @@ void MainWindow::slotLoadConnecterMenu()
         ui->toolBar->removeAction(m_pActionConnecterToolBar);
         delete m_pActionConnecterToolBar;
         m_pActionConnecterToolBar = nullptr;
+    }
+
+    if(!m_pView)
+        return;
+    auto pWin = m_pView->GetCurrentView();
+    if(!pWin) {
+        qCritical(log) << "The current view is empty";
+        return;
     }
     foreach(auto c, m_Connecters)
     {
@@ -503,9 +510,9 @@ void MainWindow::slotOpenFile(const QString& szFile, bool bOpenSettings)
 void MainWindow::on_actionOpenRRCFile_triggered()
 {
     QString szFile = QFileDialog::getOpenFileName(this,
-                     tr("Open rabbit remote control file"),
-                     RabbitCommon::CDir::Instance()->GetDirUserData(), 
-                     tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
+                                                  tr("Open rabbit remote control file"),
+                                                  RabbitCommon::CDir::Instance()->GetDirUserData(),
+                                                  tr("Rabbit remote control Files (*.rrc);;All files(*.*)"));
     if(szFile.isEmpty()) return;
 
     CConnecter* p = m_Client.LoadConnecter(szFile);
@@ -543,7 +550,7 @@ void MainWindow::slotConnect()
  */
 int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
 {
-    qDebug(log) << "MainWindow::Connect: set:" << set << "File:" << szFile;
+    qDebug(log) << "MainWindow::Connect: set:" << set << "; File:" << szFile;
     bool bSave = false; //whether is save configure file
     Q_ASSERT(p);
     bool check = connect(p, SIGNAL(sigConnected()),
@@ -553,15 +560,15 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
                     this, SLOT(slotDisconnect()));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigDisconnected()),
-                             this, SLOT(slotDisconnected()));
+                    this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigError(const int, const QString &)),
                     this, SLOT(slotError(const int, const QString&)));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigShowMessageBox(const QString&, const QString&,
-                                             const QMessageBox::Icon&)),
-                   this, SLOT(slotShowMessageBox(const QString&, const QString&,
-                                             const QMessageBox::Icon&)));
+                                                const QMessageBox::Icon&)),
+                    this, SLOT(slotShowMessageBox(const QString&, const QString&,
+                                            const QMessageBox::Icon&)));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigInformation(const QString&)),
                     this, SLOT(slotInformation(const QString&)));
@@ -570,7 +577,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
                     this, SLOT(slotUpdateName(const QString&)));
     Q_ASSERT(check);
     check = connect(p, SIGNAL(sigUpdateParameters(CConnecter*)),
-                         this, SLOT(slotUpdateParameters(CConnecter*)));
+                    this, SLOT(slotUpdateParameters(CConnecter*)));
     Q_ASSERT(check);
 
     if(set)
@@ -589,9 +596,9 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
 
     if(szFile.isEmpty())
         szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                    + QDir::separator()
-                    + p->Id()
-                    + ".rrc";
+                 + QDir::separator()
+                 + p->Id()
+                 + ".rrc";
     m_ConfigureFiles[p] = szFile;
 
     int nRet = 0;
@@ -627,8 +634,6 @@ void MainWindow::slotConnected()
     CConnecter* p = dynamic_cast<CConnecter*>(sender());
     if(!p) return;
 
-    slotLoadConnecterMenu();
-
     /* If you put it here, when connected, the view is not displayed.
        So put it in the connect() display view.
        See: Connect(CConnecter *p, bool set, QString szFile)
@@ -641,6 +646,8 @@ void MainWindow::slotConnected()
         m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
     }
     m_Connecters.push_back(p);//*/
+
+    slotLoadConnecterMenu();
 
     slotInformation(tr("Connected to ") + p->Name());
     qDebug(log) << "MainWindow::slotConnected()" << p->Name();
@@ -738,15 +745,17 @@ void MainWindow::slotError(const int nError, const QString &szInfo)
     slotInformation(szInfo);
 }
 
-void MainWindow::slotShowMessageBox(const QString &title, const QString &message,
-                                 const QMessageBox::Icon &icon)
+void MainWindow::slotShowMessageBox(
+    const QString &title, const QString &message,
+    const QMessageBox::Icon &icon)
 {
     slotInformation(message);
     if(!m_Parameter.GetMessageBoxDisplayInformation())
         return;
     
     QMessageBox msg(icon, title, message, QMessageBox::Ok, this);
-    QCheckBox* cb = new QCheckBox(tr("Use message box to display information"), this);
+    QCheckBox* cb = new QCheckBox(
+        tr("Use message box to display information"), this);
     cb->setChecked(true);
     msg.setCheckBox(cb);
     RC_SHOW_WINDOW(&msg);
@@ -786,7 +795,7 @@ int MainWindow::onProcess(const QString &id, CPluginClient *pPlug)
     Q_UNUSED(id);
     // Connect menu and toolbar
     QAction* p = ui->menuConnect_C->addAction(pPlug->Protocol()
-                                              + ": " + pPlug->DisplayName(),
+                                                  + ": " + pPlug->DisplayName(),
                                               this, SLOT(slotConnect()));
     p->setToolTip(pPlug->Description());
     p->setStatusTip(pPlug->Description());
@@ -852,7 +861,7 @@ int MainWindow::LoadConnectLasterClose()
 int MainWindow::SaveConnectLasterClose()
 {
     QFile f(RabbitCommon::CDir::Instance()->GetDirUserConfig()
-                  + QDir::separator() + "LasterClose.dat");
+            + QDir::separator() + "LasterClose.dat");
     f.open(QFile::WriteOnly);
     if(m_Parameter.GetOpenLasterClose())
     {
@@ -889,9 +898,9 @@ void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
     {
         if( QMessageBox::StandardButton::Yes
             == QMessageBox::information(this, tr("Hide menu bar"),
-                tr("The menu bar will be hidden, the tool bar must be showed."),
-                     QMessageBox::StandardButton::Yes
-                     | QMessageBox::StandardButton::No))
+                                        tr("The menu bar will be hidden, the tool bar must be showed."),
+                                        QMessageBox::StandardButton::Yes
+                                            | QMessageBox::StandardButton::No))
         {
             ui->actionToolBar_T->setChecked(true);
         } else
@@ -918,9 +927,9 @@ void MainWindow::on_actionToolBar_T_toggled(bool checked)
     {
         if( QMessageBox::StandardButton::Yes
             == QMessageBox::information(this, tr("Hide tool bar"),
-                tr("The tool bar will be hidden, the menu bar must be showed."),
-                QMessageBox::StandardButton::Yes
-                | QMessageBox::StandardButton::No))
+                                        tr("The tool bar will be hidden, the menu bar must be showed."),
+                                        QMessageBox::StandardButton::Yes
+                                            | QMessageBox::StandardButton::No))
         {
             ui->actionMain_menu_bar_M->setChecked(true);
         } else
@@ -954,18 +963,14 @@ void MainWindow::slotShortCut()
         setFocusPolicy(Qt::WheelFocus);
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
         ui->actionFull_screen_F->setShortcut(
-                    QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
-                                 QKeyCombination(Qt::Key_F)));
+            QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
+                         QKeyCombination(Qt::Key_F)));
         ui->actionScreenshot->setShortcut(
-                    QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
-                                 QKeyCombination(Qt::Key_S)));
+            QKeySequence(QKeyCombination(Qt::CTRL, Qt::Key_R),
+                         QKeyCombination(Qt::Key_S)));
 #else
         ui->actionFull_screen_F->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_F));
         ui->actionScreenshot->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_S));
-        ui->actionZoom_In->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_Plus));
-        ui->actionZoom_Out->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_Minus));
-        ui->actionOriginal_O->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_O));
-        ui->actionZoomToWindow_Z->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R, Qt::Key_W));
 #endif
     } else {
         setFocusPolicy(Qt::NoFocus);
@@ -997,7 +1002,7 @@ void MainWindow::on_actionOpenListConnections_triggered()
     CFrmListConnects* p = new CFrmListConnects(&m_Client, false);
     if(!p) return;
     bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
-                    this, SLOT(slotOpenFile(const QString&, bool)));
+                         this, SLOT(slotOpenFile(const QString&, bool)));
     Q_ASSERT(check);
 
     QDialog d;
@@ -1100,10 +1105,11 @@ void MainWindow::slotSystemTrayIconTypeChanged()
     m_TrayIcon = QSharedPointer<QSystemTrayIcon>(new QSystemTrayIcon(this));
     if(QSystemTrayIcon::isSystemTrayAvailable())
     {
-        bool check = connect(m_TrayIcon.data(),
-                             SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                             this,
-                             SLOT(slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
+        bool check = connect(
+            m_TrayIcon.data(),
+            SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            this,
+            SLOT(slotSystemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
         Q_ASSERT(check);
         m_TrayIcon->setIcon(this->windowIcon());
         m_TrayIcon->setToolTip(windowTitle());

@@ -99,7 +99,7 @@ jobs:
 #                -DWITH_KRB5=OFF \
 #                -DWITH_MANPAGES=OFF \
 #                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
-#            cmake --build . --config ${{matrix.BUILD_TYPE}}
+#            cmake --build . --config ${{matrix.BUILD_TYPE}} --parallel $(nproc)
 #            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
 #          fi
 
@@ -120,7 +120,7 @@ jobs:
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -141,7 +141,7 @@ jobs:
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}               
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -167,7 +167,7 @@ jobs:
                 -DWITH_GCRYPT=OFF \
                 -DWITH_EXAMPLES=OFF \
                 -DWITH_TESTS=OFF
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -218,7 +218,7 @@ jobs:
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}                
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build . --config ${{matrix.BUILD_TYPE}} --parallel $(nproc)
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           fi
 
@@ -242,7 +242,7 @@ jobs:
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON \
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}                
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -283,7 +283,7 @@ jobs:
               -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR2 \
               -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2 \
               -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
-          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install --parallel $(nproc)
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
 
       - name: Update configure file

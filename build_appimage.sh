@@ -46,7 +46,7 @@ cmake "$REPO_ROOT" \
   -DBUILD_QUIWidget=OFF \
   -DBUILD_APP=ON \
   -DBUILD_FREERDP=ON
-cmake --build . -j$(nproc)
+cmake --build . --parallel $(nproc)
 cmake --install . --config Release --component DependLibraries --prefix $INSTALL_DIR
 cmake --install . --config Release --component Runtime --prefix ${INSTALL_DIR}
 cmake --install . --config Release --component Application --prefix ${INSTALL_DIR}

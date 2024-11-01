@@ -164,7 +164,9 @@ parts:
   qt:
     plugin: nil # See: https://snapcraft.io/docs/nil-plugin
     stage-packages:
-      - python3-pip*
+      - python3-pip
+      - python3-pip-whl
+      - python3-pipdeptree
       - cpio
     override-stage: |
       pip install -U pip

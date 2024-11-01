@@ -90,6 +90,7 @@ protected:
 
 private Q_SLOTS:
     void slotRecord(bool checked);
+    void slotValueChanged(int v);
 
 private:
     /*!

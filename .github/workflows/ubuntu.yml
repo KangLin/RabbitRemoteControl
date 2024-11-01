@@ -135,7 +135,7 @@ jobs:
                 -DWITH_CLIENT_SDL=OFF \
                 -DWITH_KRB5=OFF \
                 -DWITH_MANPAGES=OFF
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
+            cmake --build .--parallel $(nproc) --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           fi
 
@@ -151,7 +151,7 @@ jobs:
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build .--parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -167,7 +167,7 @@ jobs:
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
                 -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build .--parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -181,7 +181,7 @@ jobs:
             cmake -E make_directory build
             cd build
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build .--parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -197,7 +197,7 @@ jobs:
             export Qt6_DIR=/usr/lib/`uname -a`-linux-gnu/cmake/Qt6
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build .--parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
@@ -214,7 +214,7 @@ jobs:
                 -DPCAPPP_BUILD_EXAMPLES=OFF \
                 -DPCAPPP_BUILD_TESTS=OFF \
                 -DPCAPPP_BUILD_TUTORIALS=OFF
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
+            cmake --build . --parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           fi
 
