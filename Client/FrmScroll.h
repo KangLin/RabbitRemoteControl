@@ -19,12 +19,13 @@ class CFrmScroll : public QScrollArea
 public:
     explicit CFrmScroll(CFrmViewer* pView, QWidget *parent = nullptr);
     virtual ~CFrmScroll();
-    
-    void SetAdaptWindows(
-        CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::ADAPT_WINDOWS::Original);
+
     CFrmViewer::ADAPT_WINDOWS AdaptWindows();
-    
     CFrmViewer* GetViewer();
+
+public Q_SLOTS:
+    void slotSetAdaptWindows(
+        CFrmViewer::ADAPT_WINDOWS aw = CFrmViewer::ADAPT_WINDOWS::Original);
 
 private Q_SLOTS:
     void slotMouseMoveEvent(QMouseEvent *event);

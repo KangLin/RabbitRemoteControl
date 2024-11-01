@@ -149,23 +149,8 @@ private:
 private Q_SLOTS:
     void on_actionFull_screen_F_triggered();
 
-    ///////// Zoom /////////
-public:
-    QToolButton* m_ptbZoom;
-    QAction* m_pActionZoom;
-    QActionGroup* m_pGBViewZoom;
-    QSpinBox* m_psbZoomFactor;
 private Q_SLOTS:
-    void on_actionZoom_window_to_remote_desktop_triggered();
-    void on_actionOriginal_O_changed();
-    void on_actionOriginal_O_triggered();
-    void on_actionZoom_In_triggered();
-    void on_actionZoom_Out_triggered();
-    void slotZoomFactor(int v);
-    void on_actionZoomToWindow_Z_triggered();
-    void on_actionKeep_aspect_ration_to_windows_K_triggered();
-    void slotAdaptWindows(const CFrmViewer::ADAPT_WINDOWS aw);
-
+    void slotCurrentViewChanged(const QWidget* pView);
     ///////// Recent open ///////// 
 private:
     RabbitCommon::CRecentMenu* m_pRecentMenu;

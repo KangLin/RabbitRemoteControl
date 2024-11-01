@@ -24,8 +24,6 @@ else()
 endif()
 
 list(APPEND CLIENT_INSTALL_HEADER_FILES
-    FrmViewer.h
-    FrmScroll.h
     Client.h
     PluginClient.h
     PluginClientThread.h
@@ -53,6 +51,8 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
 
 list(APPEND CLIENT_HEADER_FILES
     ${CLIENT_INSTALL_HEADER_FILES}
+    FrmViewer.h
+    FrmScroll.h
     Connect.h
     ConnectDesktop.h
     ConnectThread.h

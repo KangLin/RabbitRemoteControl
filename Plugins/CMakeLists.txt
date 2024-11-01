@@ -42,7 +42,10 @@ message(STATUS "BUILD_LibVNCServer:${BUILD_LibVNCServer}")
 message(STATUS "BUILD_FREERDP:${BUILD_FREERDP}")
 
 ## Tools
-add_subdirectory(WakeOnLan)
+option(BUILD_WakeOnLan "Build wake on lan plugin" ON)
+if(BUILD_WakeOnLan)
+    add_subdirectory(WakeOnLan)
+endif()
 if(QT_VERSION GREATER_EQUAL "6.2.4")
     option(BUILD_PLAYER "Build player plugin" ON)
     if(BUILD_PLAYER)

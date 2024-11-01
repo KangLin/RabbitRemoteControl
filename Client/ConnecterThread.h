@@ -4,8 +4,9 @@
 #define CCONNECTERBACKTHREAD_H
 
 #pragma once
-
+#include <QSpinBox>
 #include "ConnecterConnect.h"
+#include "FrmScroll.h"
 
 class CConnectThread;
 
@@ -105,6 +106,8 @@ private:
 private:
     CConnectThread* m_pThread;
     CFrmViewer *m_pView;
+    CFrmScroll* m_pScroll;
+    QSpinBox* m_psbZoomFactor;
 };
 
 #endif // CCONNECTERBACKTHREAD_H

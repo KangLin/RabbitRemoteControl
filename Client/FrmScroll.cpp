@@ -1,11 +1,14 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QScrollBar>
+#include <QLoggingCategory>
+
 #include "FrmScroll.h"
 
-#include <QScrollBar>
-
+static Q_LOGGING_CATEGORY(log, "Client.FrmScroll")
 CFrmScroll::CFrmScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
 {
+    qDebug(log) << __FUNCTION__;
     setFocusPolicy(Qt::NoFocus);
     if(pView)
     {
@@ -19,16 +22,15 @@ CFrmScroll::CFrmScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
     setAlignment(Qt::AlignCenter);
     //setBackgroundRole(QPalette::Dark);
     setWidgetResizable(false);
+    slotSetAdaptWindows(GetViewer()->GetAdaptWindows());
 }
 
 CFrmScroll::~CFrmScroll()
 {
-    //qDebug() << "CFrmViewScroll::~CFrmViewScroll()";
-    QWidget* pView = takeWidget();
-    Q_UNUSED(pView);
+    qDebug(log) << __FUNCTION__;
 }
 
-void CFrmScroll::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
+void CFrmScroll::slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)
 {
     CFrmViewer* pView = qobject_cast<CFrmViewer*>(widget());
     if(!pView) return;

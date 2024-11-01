@@ -37,23 +37,7 @@
     <property name="title">
      <string>View(&amp;V)</string>
     </property>
-    <widget class="QMenu" name="menuZoom">
-     <property name="title">
-      <string>Zoom</string>
-     </property>
-     <property name="icon">
-      <iconset theme="zoom"/>
-     </property>
-     <addaction name="actionZoom_window_to_remote_desktop"/>
-     <addaction name="actionZoomToWindow_Z"/>
-     <addaction name="actionKeep_aspect_ration_to_windows_K"/>
-     <addaction name="actionOriginal_O"/>
-     <addaction name="actionZoom_In"/>
-     <addaction name="actionZoom_Out"/>
-    </widget>
     <addaction name="actionFull_screen_F"/>
-    <addaction name="menuZoom"/>
-    <addaction name="separator"/>
     <addaction name="actionTabBar_B"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatus_bar_S"/>
@@ -205,78 +189,6 @@
     <string>Full screen</string>
    </property>
   </action>
-  <action name="actionOriginal_O">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="zoom-original"/>
-   </property>
-   <property name="text">
-    <string>Original size(&amp;O)</string>
-   </property>
-   <property name="iconText">
-    <string>Original size</string>
-   </property>
-   <property name="toolTip">
-    <string>Original size</string>
-   </property>
-   <property name="statusTip">
-    <string>Original size</string>
-   </property>
-   <property name="whatsThis">
-    <string>Original size</string>
-   </property>
-  </action>
-  <action name="actionZoomToWindow_Z">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="zoom-fit-best"/>
-   </property>
-   <property name="text">
-    <string>Zoom to window(&amp;Z)</string>
-   </property>
-   <property name="iconText">
-    <string>Zoom to window</string>
-   </property>
-   <property name="toolTip">
-    <string>Zoom to window</string>
-   </property>
-   <property name="statusTip">
-    <string>Zoom to window</string>
-   </property>
-   <property name="whatsThis">
-    <string>Zoom to window</string>
-   </property>
-  </action>
-  <action name="actionKeep_aspect_ration_to_windows_K">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="zoom-aspect-ratio"/>
-   </property>
-   <property name="text">
-    <string>Keep aspect ration zoom to window(&amp;K)</string>
-   </property>
-   <property name="iconText">
-    <string>Keep aspect ration zoom to window</string>
-   </property>
-   <property name="toolTip">
-    <string>Keep aspect ration zoom to window</string>
-   </property>
-   <property name="statusTip">
-    <string>Keep aspect ration zoom to window</string>
-   </property>
-   <property name="whatsThis">
-    <string>Keep aspect ration zoom to window</string>
-   </property>
-  </action>
   <action name="actionExit_E">
    <property name="checkable">
     <bool>false</bool>
@@ -369,40 +281,6 @@
    </property>
    <property name="whatsThis">
     <string>TabBar</string>
-   </property>
-  </action>
-  <action name="actionZoom_In">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="zoom-in"/>
-   </property>
-   <property name="text">
-    <string>Zoom In</string>
-   </property>
-   <property name="statusTip">
-    <string>Zoom In</string>
-   </property>
-   <property name="whatsThis">
-    <string>Zoom In</string>
-   </property>
-  </action>
-  <action name="actionZoom_Out">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset theme="zoom-out"/>
-   </property>
-   <property name="text">
-    <string>Zoom Out</string>
-   </property>
-   <property name="statusTip">
-    <string>Zoom Out</string>
-   </property>
-   <property name="whatsThis">
-    <string>Zoom Out</string>
    </property>
   </action>
   <action name="actionZoom_window_to_remote_desktop">

@@ -39,10 +39,12 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
     , m_pParameter(nullptr)
 {
     if(pConnecter) {
-        CFrmViewer* pView = qobject_cast<CFrmViewer*>(pConnecter->GetViewer());
-        if(pView)
-            SetViewer(pView, bDirectConnection);
-        else
+        CFrmScroll* pScroll = qobject_cast<CFrmScroll*>(pConnecter->GetViewer());
+        if(pScroll) {
+            CFrmViewer* pView = pScroll->GetViewer();
+            if(pView)
+                SetViewer(pView, bDirectConnection);
+        } else
             qWarning(log) << "pConnecter->GetViewer() is not CFrmView";
         SetConnecter(pConnecter);
     }

@@ -48,11 +48,6 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
 
 CViewTable::~CViewTable()
 {
-    for(int i = 0; i < m_pTab->count(); i++)
-    {
-        CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(i));
-        if(pScroll) delete pScroll;
-    }
     if(m_pTab)
         delete m_pTab;
 }
@@ -60,23 +55,14 @@ CViewTable::~CViewTable()
 void CViewTable::slotCurrentChanged(int index)
 {
     qDebug(log) << "CViewTable::slotCurrentChanged";
-    CViewFrmScroll* pView = qobject_cast<CViewFrmScroll*>(GetViewer(index));
-    if(pView)
-    {
-        emit sigAdaptWindows(pView->AdaptWindows());
-    } else // is terminal windows
-        emit sigAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Disable);
+    emit sigCurrentChanged(GetViewer(index));
 }
 
 void CViewTable::slotTabCloseRequested(int index)
 {
     QWidget* pView = GetViewer(index);
     if(!pView) return;
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(pView);
-    if(pScroll)
-        emit sigCloseView(pScroll->GetViewer());
-    else
-        emit sigCloseView(pView);
+    emit sigCloseView(pView);
 }
 
 void CViewTable::slotTabPositionChanged()
@@ -104,18 +90,7 @@ int CViewTable::AddView(QWidget *pView)
         return -1;
     }
     //qDebug(log) << "CViewTable::AddView: Window title:" << pView->windowTitle();
-    CFrmViewer* p = qobject_cast<CFrmViewer*>(pView);
-    if(p)
-    {
-        CViewFrmScroll* pScroll = new CViewFrmScroll(p, m_pTab);
-        if(pScroll)
-        {
-            pScroll->SetAdaptWindows(p->GetAdaptWindows());
-            pScroll->setFocusPolicy(Qt::NoFocus);
-            nIndex = m_pTab->addTab(pScroll, p->windowTitle());
-        }
-    } else
-        nIndex = m_pTab->addTab(pView, pView->windowTitle());
+    nIndex = m_pTab->addTab(pView, pView->windowTitle());
     m_pTab->setCurrentIndex(nIndex);
 
     return 0;
@@ -125,10 +100,8 @@ int CViewTable::RemoveView(QWidget *pView)
 {
     int nIndex = GetViewIndex(pView);
     if(-1 == nIndex) return 0;
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(nIndex));
     // Note: The following order cannot be changed
     m_pTab->removeTab(nIndex);
-    if(pScroll) delete pScroll;
     return 0;
 }
 
@@ -176,96 +149,6 @@ int CViewTable::ShowTabBar(bool bShow)
     return 0;
 }
 
-int CViewTable::ScreenShot(const QString &szFile, bool bRemoteDesktop)
-{
-    QFileInfo fi(szFile);
-    QString ext = fi.suffix().toUpper();
-    QDir d;
-    if(!d.exists(fi.path()))
-        d.mkpath(fi.path());
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
-    if(!pScroll) return -1;
-    CFrmViewer* pView = pScroll->GetViewer();
-    if(!pView) return -2;
-    if(bRemoteDesktop)
-    {
-        QImage img = pView->GrabImage();
-        if(img.save(szFile, ext.toStdString().c_str()))
-            return 0;
-        return -3;
-    }
-    
-    int w = pScroll->size().width();
-    int h = pScroll->size().height();
-    QScrollBar* pHBar = pScroll->horizontalScrollBar();
-    QScrollBar* pVBar = pScroll->verticalScrollBar();
-    if(pHBar && pHBar->isVisible()) h -= pHBar->height();
-    if(pVBar && pVBar->isVisible()) w -= pVBar->width();
-    QPixmap pixmap(QSize(w, h));
-    pScroll->render(&pixmap);
-    if(pixmap.toImage().save(szFile, ext.toStdString().c_str()))
-    {
-        return 0;
-    }
-    return -4;
-}
-
-void CViewTable::SetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw, QWidget* p)
-{
-    CFrmViewer* pView = nullptr;
-    if(p)
-    {
-        pView = qobject_cast<CFrmViewer*>(p);
-        if(pView)
-        {
-            if(CFrmViewer::ADAPT_WINDOWS::Auto == aw)
-                pView->slotSetAdaptWindows(pView->GetAdaptWindows());
-            else
-                pView->slotSetAdaptWindows(aw);
-        }
-    } else {
-        CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
-        if(pScroll)
-            pScroll->SetAdaptWindows(aw);
-    }
-}
-
-double CViewTable::GetZoomFactor()
-{
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
-    if(!pScroll) return -1;
-    CFrmViewer* pView = pScroll->GetViewer();
-    if(!pView) return -1;
-    return pView->GetZoomFactor();
-}
-
-void CViewTable::slotZoomFactor(double v)
-{
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
-    if(!pScroll) return;
-    CFrmViewer* pView = pScroll->GetViewer();
-    if(!pView) return;
-    pView->slotSetZoomFactor(v);
-}
-
-void CViewTable::slotZoomIn()
-{
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
-    if(!pScroll) return;
-    CFrmViewer* pView = pScroll->GetViewer();
-    if(!pView) return;
-    pView->slotSetZoomFactor(pView->GetZoomFactor() + 0.1);
-}
-
-void CViewTable::slotZoomOut()
-{
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
-    if(!pScroll) return;
-    CFrmViewer* pView = pScroll->GetViewer();
-    if(!pView) return;
-    pView->slotSetZoomFactor(pView->GetZoomFactor() - 0.1);
-}
-
 QWidget *CViewTable::GetViewer(int index)
 {
     if(index < 0 || index >= m_pTab->count())
@@ -281,10 +164,6 @@ int CViewTable::GetViewIndex(QWidget *pView)
         QWidget* p = GetViewer(i);
         if(p == pView)
             return i;
-        CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(p);
-        if(pScroll)
-            if(pScroll->GetViewer() == pView)
-                return i;
     }
     return -1;
 }
@@ -294,9 +173,6 @@ QWidget* CViewTable::GetCurrentView()
 {
     QWidget* pView = m_pTab->currentWidget();
     if(!pView) return pView;
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(pView);
-    if(pScroll)
-        return pScroll->GetViewer();
     return pView;
 }
 
@@ -310,24 +186,5 @@ void CViewTable::resizeEvent(QResizeEvent *event)
 
 QSize CViewTable::GetDesktopSize()
 {
-    QSize s;
-    CViewFrmScroll* pScroll = qobject_cast<CViewFrmScroll*>(GetViewer(m_pTab->currentIndex()));
-    if(!pScroll) return s;
-    CFrmViewer* pView = pScroll->GetViewer();
-    if(!pView) return s;
-    s = pView->GetDesktopSize();
-//    int marginW = pView->style()->pixelMetric(
-//                QStyle::PM_FocusFrameHMargin) << 1;
-//    int marginH = pView->style()->pixelMetric(
-//                QStyle::PM_FocusFrameVMargin) << 1;
-//    QMargins cm = pView->contentsMargins();
-//    s.setWidth(marginW + cm.left() + cm.right() + s.width());
-//    s.setHeight(marginH + cm.top() + cm.bottom() + s.height());
-//    pView->resize(s);
-    pScroll->resize(pView->frameSize());
-//    QStyleOptionTabWidgetFrame option;
-//    s = m_pTab->style()->sizeFromContents(QStyle::CT_TabWidget, &option, s);
-    m_pTab->resize(pScroll->frameSize());
-    resize(m_pTab->frameSize());
     return frameSize();
 }
