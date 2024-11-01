@@ -76,10 +76,12 @@ public Q_SLOTS:
      * \see CConnectThread CConnectThread::run()
      */
     virtual int DisConnect() override;
+    virtual QMenu *GetMenu(QWidget *parent) override;
 
 protected:
     virtual QString ServerName() override;
-    
+    QMenu m_Menu;
+
 private:
     /*!
      * \~chinese \brief 加载参数

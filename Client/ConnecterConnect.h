@@ -71,8 +71,6 @@ public Q_SLOTS:
      */
     virtual int DisConnect() override;
 
-    virtual QMenu *GetMenu(QWidget *parent) override;
-
 Q_SIGNALS:
     void sigOpenConnect(CConnecterConnect*);
     void sigCloseconnect(CConnecterConnect*);
@@ -81,8 +79,6 @@ Q_SIGNALS:
 
 private:
     CConnect* m_pConnect;
-protected:
-    QMenu m_Menu;
 };
 
 #endif // CONNECTERCONNECT_H

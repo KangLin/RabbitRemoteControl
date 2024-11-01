@@ -3,9 +3,9 @@
 #ifndef CVIEWFRMSCROLL_H
 #define CVIEWFRMSCROLL_H
 
-#include "FrmViewer.h"
 #include <QScrollArea>
 #include <QMouseEvent>
+#include "FrmViewer.h"
 
 /*!
  * \brief The CFrmViewScroll class

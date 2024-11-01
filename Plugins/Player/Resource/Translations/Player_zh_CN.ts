@@ -98,7 +98,7 @@
     <message>
         <location filename="../../DlgPlayer.ui" line="235"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>视频</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.ui" line="246"/>

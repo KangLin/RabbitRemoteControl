@@ -191,17 +191,16 @@ jobs:
       - name: build_appimage.sh
         env:
           RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
-          # RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
-          # tigervnc_DIR: ${{env.INSTALL_DIR}}/lib/cmake/tigervnc
+          RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
+          tigervnc_DIR: ${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           # LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
-          # QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
-          # FreeRDP_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
-          # WinPR_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/WinPR3
-          # FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
-          # FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
-          # FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
-          # PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
-          CMAKE_PREFIX_PATH: ${{env.INSTALL_DIR}}/lib/
+          QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
+          FreeRDP_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
+          WinPR_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/WinPR3
+          FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
+          FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
+          FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
+          PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
           BUILD_FREERDP: ON
         run: |
           if [ '${{matrix.BUILD_TYPE}}' == 'Release' ]; then
@@ -216,7 +215,7 @@ jobs:
 
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
-        continue-on-error: true
+        # continue-on-error: true
         run: |
           #sudo apt update -y -qq
           #sudo apt-get install -y -qq xvfb xpra

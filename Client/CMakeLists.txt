@@ -25,6 +25,7 @@ endif()
 
 list(APPEND CLIENT_INSTALL_HEADER_FILES
     FrmViewer.h
+    FrmScroll.h
     Client.h
     PluginClient.h
     PluginClientThread.h
@@ -77,6 +78,7 @@ list(APPEND CLIENT_SOURCE_FILES
     ConnectMulti.cpp
     Connect.cpp
     ConnectDesktop.cpp
+    FrmScroll.cpp
     Parameter.cpp
     ParameterUI.cpp
     ParameterConnecter.cpp
