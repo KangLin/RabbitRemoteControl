@@ -65,7 +65,7 @@ jobs:
               libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
               libxcb-* \
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
-              libfuse-dev libusb-1.0-0-dev libpcap-dev libcups2-dev \
+              libfuse-dev libfuse3-dev libusb-1.0-0-dev libpcap-dev libcups2-dev \
               libavcodec-dev libavformat-dev libresample1-dev libswscale-dev \
               libvncserver-dev libssh-dev libtelnet-dev
 

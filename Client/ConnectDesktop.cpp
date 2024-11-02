@@ -66,6 +66,7 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
             {
                 slotRecord(false);
                 if(m_pParameter) {
+                    qDebug(log) << "End action:" << m_pParameter->m_Record.GetEndAction();
                     switch(m_pParameter->m_Record.GetEndAction())
                     {
                     case CParameterRecord::ENDACTION::OpenFile:

@@ -4,9 +4,9 @@
 #define DLGSETTINGS_H
 
 #include <QDialog>
-#include "ConnectVnc.h"
 #include "ParameterVnc.h"
 #include "ParameterProxyUI.h"
+#include "ParameterRecordUI.h"
 
 namespace Ui {
 class CDlgSettingsVnc;
@@ -34,6 +34,7 @@ private:
     Ui::CDlgSettingsVnc *ui;
     CParameterVnc* m_pPara;
     CParameterProxyUI* m_pProxyUI;
+    CParameterRecordUI* m_pRecordUI;
 };
 
 #endif // DLGSETTINGS_H

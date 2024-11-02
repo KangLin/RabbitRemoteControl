@@ -1,11 +1,10 @@
 // Author: Kang Lin <kl222@126.com>
 
+#include <QMessageBox>
+#include <QLoggingCategory>
 #include "DlgSettingsVnc.h"
 #include "ui_DlgSettingsVnc.h"
 #include "rfb/encodings.h"
-#include <QDebug>
-#include <QMessageBox>
-#include <QLoggingCategory>
 
 #ifdef HAVE_ICE
     #include "Ice.h"
@@ -22,12 +21,16 @@ CDlgSettingsVnc::CDlgSettingsVnc(CParameterVnc *pPara, QWidget *parent) :
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
-    
+
     ui->wNet->SetParameter(&m_pPara->m_Net);
 
     m_pProxyUI = new CParameterProxyUI(ui->tabWidget);
     m_pProxyUI->SetParameter(&m_pPara->m_Proxy);
     ui->tabWidget->insertTab(1, m_pProxyUI, tr("Proxy"));
+
+    m_pRecordUI = new CParameterRecordUI(ui->tabWidget);
+    m_pRecordUI->SetParameter(&m_pPara->m_Record);
+    ui->tabWidget->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), tr("Record"));
 
 #ifdef HAVE_ICE
     ui->gpIce->show();
@@ -158,6 +161,11 @@ void CDlgSettingsVnc::on_pbOK_clicked()
         return;
     }
 
+    if(!m_pRecordUI->CheckValidity(true)) {
+        ui->tabWidget->setCurrentWidget(m_pRecordUI);
+        return;
+    }
+
     // Server
     bool ice = false;
 #ifdef HAVE_ICE
@@ -175,7 +183,9 @@ void CDlgSettingsVnc::on_pbOK_clicked()
     if(nRet) return;
     nRet = m_pProxyUI->Accept();
     if(nRet) return;
-    
+    nRet = m_pRecordUI->Accept();
+    if(nRet) return;
+
     m_pPara->SetName(ui->leName->text());
     m_pPara->SetShared(ui->cbShared->isChecked());
     m_pPara->SetBufferEndRefresh(!ui->cbRealTimeUpdate->isChecked());

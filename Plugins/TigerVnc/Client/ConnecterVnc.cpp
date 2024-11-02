@@ -3,6 +3,7 @@
 #include "ConnecterVnc.h"
 #include "DlgSettingsVnc.h"
 #include "PluginClient.h"
+#include "ConnectVnc.h"
 
 #include <QMessageBox>
 #include <QRegularExpression>
