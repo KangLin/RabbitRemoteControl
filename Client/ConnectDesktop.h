@@ -125,6 +125,7 @@ protected:
 public:
     virtual bool event(QEvent *event) override;
 
+    ///////// Record video /////////
 private Q_SLOTS:
     // connect menu
     virtual void slotRecord(bool bRecord);
@@ -134,7 +135,7 @@ Q_SIGNALS:
     void sigRecordVideo(bool bRecord);
 private:
     void RecordVideo(QRecordVideoEvent *event);
-    CParameterBase* m_pParameter;
+    CParameterRecord* m_pParameterRecord;
 #if HAVE_QT6_MULTIMEDIA
     QMediaCaptureSession m_CaptureSession;
     QMediaRecorder m_Recorder;
@@ -143,7 +144,6 @@ private:
     QVideoFrameInput m_VideoFrameInput;
     QAudioBufferInput m_AudioBufferInput;
 #endif
-    CParameterRecord m_Parameter;
 };
 
 #endif // __CCONNECTDESKTOP_H_2024_09_27__

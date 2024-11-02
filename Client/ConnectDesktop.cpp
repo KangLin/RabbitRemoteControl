@@ -36,7 +36,7 @@ int g_QMessageBox_Icon = qRegisterMetaType<Qt::MouseButton>("QMessageBox::Icon")
 
 CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
     : CConnect(pConnecter)
-    , m_pParameter(nullptr)
+    , m_pParameterRecord(nullptr)
 {
     if(pConnecter) {
         CFrmScroll* pScroll = qobject_cast<CFrmScroll*>(pConnecter->GetViewer());
@@ -65,9 +65,9 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
             if(QMediaRecorder::StoppedState == state)
             {
                 slotRecord(false);
-                if(m_pParameter) {
-                    qDebug(log) << "End action:" << m_pParameter->m_Record.GetEndAction();
-                    switch(m_pParameter->m_Record.GetEndAction())
+                if(m_pParameterRecord) {
+                    qDebug(log) << "End action:" << m_pParameterRecord->GetEndAction();
+                    switch(m_pParameterRecord->GetEndAction())
                     {
                     case CParameterRecord::ENDACTION::OpenFile:
                         QDesktopServices::openUrl(m_Recorder.actualLocation());
@@ -116,7 +116,7 @@ int CConnectDesktop::SetConnecter(CConnecter* pConnecter)
     Q_ASSERT(check);
     CConnecterThread* p = qobject_cast<CConnecterThread*>(pConnecter);
     if(p) {
-        m_pParameter = p->GetParameter();
+        m_pParameterRecord = &p->GetParameter()->m_Record;
         check = connect(p, SIGNAL(sigRecord(bool)),
                         this, SLOT(slotRecord(bool)));
         Q_ASSERT(check);
@@ -357,13 +357,13 @@ void CConnectDesktop::slotRecord(bool bRecord)
     if(bRecord) {
         if(QMediaRecorder::RecordingState == m_Recorder.recorderState())
             return;
-        m_pParameter->m_Record >> m_Recorder;
+        (*m_pParameterRecord) >> m_Recorder;
 #if HAVE_QT6_RECORD
         m_CaptureSession.setVideoFrameInput(&m_VideoFrameInput);
         //m_CaptureSession.setAudioBufferInput(&m_AudioBufferInput);
 #endif
         m_CaptureSession.setRecorder(&m_Recorder);
-        m_Recorder.setOutputLocation(QUrl::fromLocalFile(m_Parameter.GetFile(true)));
+        m_Recorder.setOutputLocation(QUrl::fromLocalFile(m_pParameterRecord->GetFile(true)));
         m_Recorder.record();
     } else {
         m_Recorder.stop();
