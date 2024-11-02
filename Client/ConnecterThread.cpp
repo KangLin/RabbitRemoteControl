@@ -29,6 +29,81 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     m_Menu.setTitle(plugin->DisplayName());
     m_Menu.setToolTip(plugin->DisplayName());
     m_Menu.setStatusTip(plugin->DisplayName());
+
+    QMenu* pMenuZoom = new QMenu(&m_Menu);
+    pMenuZoom->setTitle(tr("Zoom"));
+    pMenuZoom->setIcon(QIcon::fromTheme("zoom"));
+    m_Menu.addMenu(pMenuZoom);
+    m_pZoomToWindow = pMenuZoom->addAction(
+        QIcon::fromTheme("zoom-fit-best"), tr("Zoom to window"));
+    m_pZoomToWindow->setCheckable(true);
+    check = connect(m_pZoomToWindow, &QAction::toggled, this,
+                    [&](){
+                        m_pScroll->slotSetAdaptWindows(
+                            CFrmViewer::ADAPT_WINDOWS::ZoomToWindow);
+                    });
+    Q_ASSERT(check);
+    m_pZoomAspectRatio = pMenuZoom->addAction(
+        QIcon::fromTheme("zoom-aspect-ratio"),
+        tr("Keep aspect ration to windows"));
+    m_pZoomAspectRatio->setCheckable(true);
+    check = connect(m_pZoomAspectRatio, &QAction::toggled, this,
+                    [&](){
+                        m_pScroll->slotSetAdaptWindows(
+                            CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow);
+                    });
+    Q_ASSERT(check);
+    m_pZoomOriginal = pMenuZoom->addAction(
+        QIcon::fromTheme("zoom-original"), tr("Original"));
+    m_pZoomOriginal->setCheckable(true);
+    check = connect(m_pZoomOriginal, &QAction::toggled, this,
+                    [&](){
+                        m_pScroll->slotSetAdaptWindows(
+                            CFrmViewer::ADAPT_WINDOWS::Original);
+                    });
+    Q_ASSERT(check);
+    m_pZoomIn = pMenuZoom->addAction(QIcon::fromTheme("zoom-in"), tr("Zoom in"));
+    m_pZoomIn->setCheckable(true);
+    check = connect(
+        m_pZoomIn, &QAction::toggled, this,
+        [&](){
+            if(m_psbZoomFactor)
+                m_psbZoomFactor->setValue((m_pView->GetZoomFactor() + 0.1) * 100);
+        });
+    Q_ASSERT(check);
+    m_pZoomOut = pMenuZoom->addAction(
+        QIcon::fromTheme("zoom-out"), tr("Zoom out"));
+    m_pZoomOut->setCheckable(true);
+    check = connect(
+        m_pZoomOut, &QAction::toggled, this,
+        [&](){
+            if(m_psbZoomFactor)
+                m_psbZoomFactor->setValue((m_pView->GetZoomFactor() - 0.1) * 100);
+        });
+    Q_ASSERT(check);
+    QActionGroup* pGBViewZoom = new QActionGroup(this);
+    if(pGBViewZoom) {
+        pGBViewZoom->addAction(m_pZoomToWindow);
+        pGBViewZoom->addAction(m_pZoomAspectRatio);
+        pGBViewZoom->addAction(m_pZoomOriginal);
+        pGBViewZoom->addAction(m_pZoomIn);
+        pGBViewZoom->addAction(m_pZoomOut);
+    }
+    m_psbZoomFactor = new QSpinBox(pMenuZoom);
+    m_psbZoomFactor->setRange(0, 9999999);
+    m_psbZoomFactor->setValue(100);
+    m_psbZoomFactor->setSuffix("%");
+    m_psbZoomFactor->setEnabled(false);
+    m_psbZoomFactor->setFocusPolicy(Qt::NoFocus);
+    check = connect(
+        m_psbZoomFactor, SIGNAL(valueChanged(int)),
+        this, SLOT(slotValueChanged(int)));
+    Q_ASSERT(check);
+    QWidgetAction* pFactor = new QWidgetAction(pMenuZoom);
+    pFactor->setDefaultWidget(m_psbZoomFactor);
+    pMenuZoom->insertAction(m_pZoomOut, pFactor);
+
+    m_Menu.addSeparator();
     m_Menu.addAction(QIcon::fromTheme("camera-photo"), tr("ScreenShot"),
                      this, [&](){
                          if(!GetParameter() || !m_pView)
@@ -51,67 +126,11 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     Q_ASSERT(check);
 #endif
     m_Menu.addSeparator();
-    QMenu* pMenuZoom = new QMenu(&m_Menu);
-    pMenuZoom->setTitle(tr("Zoom"));
-    pMenuZoom->setIcon(QIcon::fromTheme("zoom"));
-    m_Menu.addMenu(pMenuZoom);
 
-    QAction* pZoomToWindow = pMenuZoom->addAction(
-        QIcon::fromTheme("zoom-fit-best"), tr("Zoom to window"),
-        [&](){
-            m_pScroll->slotSetAdaptWindows(
-                CFrmViewer::ADAPT_WINDOWS::ZoomToWindow);
-        });
-    QAction* pZoomAspectRatio = pMenuZoom->addAction(
-        QIcon::fromTheme("zoom-aspect-ratio"), tr("Keep aspect ration to windows"),
-        [&](){
-            m_pScroll->slotSetAdaptWindows(
-                CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow);
-        });
-    QAction* pZoomOriginal = pMenuZoom->addAction(
-        QIcon::fromTheme("zoom-original"), tr("Original"),
-        [&](){
-            if(m_psbZoomFactor)
-                m_psbZoomFactor->setValue(100);
-            m_pScroll->slotSetAdaptWindows(
-                CFrmViewer::ADAPT_WINDOWS::Original);
-        });
-    QAction* pZoomIn = pMenuZoom->addAction(
-        QIcon::fromTheme("zoom-in"), tr("Zoom in"),
-        [&](){
-            if(m_psbZoomFactor)
-                m_psbZoomFactor->setValue((m_pView->GetZoomFactor() + 0.1) * 100);
-        });
-    QAction* pZoomOut = pMenuZoom->addAction(
-        QIcon::fromTheme("zoom-out"), tr("Zoom out"),
-        [&](){
-            if(m_psbZoomFactor)
-                m_psbZoomFactor->setValue((m_pView->GetZoomFactor() - 0.1) * 100);
-        });
-
-    m_psbZoomFactor = new QSpinBox(pMenuZoom);
-    m_psbZoomFactor->setRange(0, 9999999);
-    m_psbZoomFactor->setValue(100);
-    m_psbZoomFactor->setSuffix("%");
-    m_psbZoomFactor->setEnabled(false);
-    m_psbZoomFactor->setFocusPolicy(Qt::NoFocus);
-    check = connect(
-        m_psbZoomFactor, SIGNAL(valueChanged(int)),
-        this, SLOT(slotValueChanged(int)));
-    Q_ASSERT(check);
-    QWidgetAction* pFactor = new QWidgetAction(pMenuZoom);
-    pFactor->setDefaultWidget(m_psbZoomFactor);
-    pMenuZoom->insertAction(pZoomOut, pFactor);
-
-    QActionGroup* pGBViewZoom = new QActionGroup(this);
-    if(pGBViewZoom) {
-        pGBViewZoom->addAction(pZoomToWindow);
-        pGBViewZoom->addAction(pZoomAspectRatio);
-        pGBViewZoom->addAction(pZoomOriginal);
-        pGBViewZoom->addAction(pZoomIn);
-        pGBViewZoom->addAction(pZoomOut);
-    }
-    pZoomToWindow->setChecked(true);
+    m_Menu.addAction(QIcon::fromTheme("system-settings"), tr("Settings"),
+                     this, [&](){
+                         OpenDialogSettings();
+                     });
 }
 
 CConnecterThread::~CConnecterThread()
@@ -174,12 +193,22 @@ int CConnecterThread::Load(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(m_pView);
+    nRet = CConnecterConnect::Load(set);
     if(m_pView && GetParameter())
     {
-        m_pView->slotSetAdaptWindows(GetParameter()->GetAdaptWindows());
         m_pView->slotSetZoomFactor(GetParameter()->GetZoomFactor());
+        if(m_psbZoomFactor)
+            m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
+        CFrmViewer::ADAPT_WINDOWS aw = GetParameter()->GetAdaptWindows();
+        if(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow == aw)
+            m_pZoomToWindow->setChecked(true);
+        else if(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow == aw)
+            m_pZoomAspectRatio->setChecked(true);
+        else if(CFrmViewer::ADAPT_WINDOWS::Original == aw)
+            m_pZoomOriginal->setChecked(true);
+        else if(CFrmViewer::ADAPT_WINDOWS::Zoom == aw)
+            m_pZoomIn->setChecked(true);
     }
-    nRet = CConnecterConnect::Load(set);
     return nRet;
 }
 

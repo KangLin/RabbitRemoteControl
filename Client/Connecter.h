@@ -143,6 +143,9 @@ public:
      *   \li -1: error
      */
     virtual int OpenDialogSettings(QWidget* parent = nullptr);
+    /*!
+     * \brief Get operate menu
+     */
     virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
     /*!

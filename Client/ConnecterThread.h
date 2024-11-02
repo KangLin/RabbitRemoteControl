@@ -62,6 +62,7 @@ public:
     virtual ~CConnecterThread();
 
     virtual QWidget* GetViewer() override;
+    virtual QMenu *GetMenu(QWidget *parent) override;
 
 public Q_SLOTS:
     /*!
@@ -77,20 +78,27 @@ public Q_SLOTS:
      * \see CConnectThread CConnectThread::run()
      */
     virtual int DisConnect() override;
-    virtual QMenu *GetMenu(QWidget *parent) override;
+
 #if HAVE_QT6_RECORD
     void slotRecorderStateChanged(QMediaRecorder::RecorderState state);
 #endif
 Q_SIGNALS:
+    /*! emit by record menu in the class
+     *  \see slotRecord
+     */
     void sigRecord(bool bRecord);
+private Q_SLOTS:
+    /*!
+     * \brief Record action
+     * \param checked
+     */
+    void slotRecord(bool checked);
+    //! emit by zoom menu in the class
+    void slotValueChanged(int v);
 
 protected:
     virtual QString ServerName() override;
     QMenu m_Menu;
-
-private Q_SLOTS:
-    void slotRecord(bool checked);
-    void slotValueChanged(int v);
 
 private:
     /*!
@@ -108,6 +116,12 @@ private:
     CConnectThread* m_pThread;
     CFrmViewer *m_pView;
     CFrmScroll* m_pScroll;
+
+    QAction* m_pZoomToWindow;
+    QAction* m_pZoomAspectRatio;
+    QAction* m_pZoomOriginal;
+    QAction* m_pZoomIn;
+    QAction* m_pZoomOut;
     QSpinBox* m_psbZoomFactor;
 };
 
