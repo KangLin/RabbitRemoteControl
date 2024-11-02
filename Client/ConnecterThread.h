@@ -92,7 +92,7 @@ private Q_SLOTS:
      * \brief Record action
      * \param checked
      */
-    void slotRecord(bool checked);
+    virtual void slotRecord(bool checked);
     //! emit by zoom menu in the class
     void slotValueChanged(int v);
 
@@ -117,12 +117,16 @@ private:
     CFrmViewer *m_pView;
     CFrmScroll* m_pScroll;
 
+protected:
+    QAction* m_pMenuZoom;
     QAction* m_pZoomToWindow;
     QAction* m_pZoomAspectRatio;
     QAction* m_pZoomOriginal;
     QAction* m_pZoomIn;
     QAction* m_pZoomOut;
     QSpinBox* m_psbZoomFactor;
+    QAction* m_pScreenShot;
+    QAction* m_pRecord;
 };
 
 #endif // CCONNECTERBACKTHREAD_H

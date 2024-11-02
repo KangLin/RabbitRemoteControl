@@ -33,7 +33,7 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     QMenu* pMenuZoom = new QMenu(&m_Menu);
     pMenuZoom->setTitle(tr("Zoom"));
     pMenuZoom->setIcon(QIcon::fromTheme("zoom"));
-    m_Menu.addMenu(pMenuZoom);
+    m_pMenuZoom = m_Menu.addMenu(pMenuZoom);
     m_pZoomToWindow = pMenuZoom->addAction(
         QIcon::fromTheme("zoom-fit-best"), tr("Zoom to window"));
     m_pZoomToWindow->setCheckable(true);
@@ -103,29 +103,29 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     pFactor->setDefaultWidget(m_psbZoomFactor);
     pMenuZoom->insertAction(m_pZoomOut, pFactor);
 
-    m_Menu.addSeparator();
-    m_Menu.addAction(QIcon::fromTheme("camera-photo"), tr("ScreenShot"),
-                     this, [&](){
-                         if(!GetParameter() || !m_pView)
-                             return;
-                         auto &record = GetParameter()->m_Record;
-                         QString szFile = record.GetImageFile(true);
-                         bool bRet = m_pView->GrabImage().save(szFile);
-                         if(bRet)
-                             qDebug(log) << "Success: save screenshot to" << szFile;
-                         else
-                             qCritical(log) << "Fail: save screenshot to" << szFile;
-                         if(record.GetEnable() != CParameterRecord::ENDACTION::No)
-                             QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
-                     });
+    m_pScreenShot = m_Menu.addAction(
+        QIcon::fromTheme("camera-photo"), tr("ScreenShot"),
+        this, [&](){
+            if(!GetParameter() || !m_pView)
+                return;
+            auto &record = GetParameter()->m_Record;
+            QString szFile = record.GetImageFile(true);
+            bool bRet = m_pView->GrabImage().save(szFile);
+            if(bRet)
+                qDebug(log) << "Success: save screenshot to" << szFile;
+            else
+                qCritical(log) << "Fail: save screenshot to" << szFile;
+            if(record.GetEnable() != CParameterRecord::ENDACTION::No)
+                QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
+        });
 #if HAVE_QT6_RECORD
-    QAction* pRecord = m_Menu.addAction(
+    m_pRecord = m_Menu.addAction(
         QIcon::fromTheme("media-record"), tr("Record"));
-    pRecord->setCheckable(true);
-    check = connect(pRecord, SIGNAL(toggled(bool)), this, SLOT(slotRecord(bool)));
+    m_pRecord->setCheckable(true);
+    check = connect(m_pRecord, SIGNAL(toggled(bool)),
+                    this, SLOT(slotRecord(bool)));
     Q_ASSERT(check);
 #endif
-    m_Menu.addSeparator();
 
     m_Menu.addAction(QIcon::fromTheme("system-settings"), tr("Settings"),
                      this, [&](){
