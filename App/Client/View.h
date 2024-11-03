@@ -26,7 +26,8 @@ class CView : public QWidget
     Q_OBJECT
 public:
     explicit CView(QWidget *parent = nullptr);
-    
+    virtual ~CView();
+
     //! \note QWidget* pView must is same as CConnecter::GetViewer()
     virtual int AddView(QWidget* pView) = 0;
     //! \note QWidget* pView must is same as CConnecter::GetViewer()

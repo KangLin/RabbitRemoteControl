@@ -11,6 +11,7 @@ static Q_LOGGING_CATEGORY(log, "Player.Connecter")
 CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     : CConnecterThread(plugin)
 {
+    qDebug(log) << __FUNCTION__;
     bool check = false;
     SetParameter(&m_Parameters);
 
@@ -22,33 +23,36 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     m_Menu.addAction(m_pSettings);
 
     check = connect(m_Player.m_paStart, SIGNAL(toggled(bool)),
-                     this, SIGNAL(sigStart(bool)));
+                    this, SIGNAL(sigStart(bool)));
     Q_ASSERT(check);
-    check = connect(this, &CConnecterPlayer::sigPlaybackStateChanged,
-                    this, [&](QMediaPlayer::PlaybackState state){
-                        if(QMediaPlayer::StoppedState == state && m_Player.m_paStart->isChecked())
-                            m_Player.m_paStart->setChecked(false);
-                    });
+    check = connect(
+        this, &CConnecterPlayer::sigPlaybackStateChanged,
+        this, [&](QMediaPlayer::PlaybackState state){
+            if(QMediaPlayer::StoppedState == state
+                && m_Player.m_paStart->isChecked())
+                m_Player.m_paStart->setChecked(false);
+        });
     Q_ASSERT(check);
     check = connect(m_Player.m_paPause, SIGNAL(toggled(bool)),
-                         this, SIGNAL(sigPause(bool)));
+                    this, SIGNAL(sigPause(bool)));
     Q_ASSERT(check);
     check = connect(m_Player.m_paRecord, SIGNAL(toggled(bool)),
                     this ,SIGNAL(sigRecord(bool)));
     Q_ASSERT(check);
     check = connect(this, &CConnecterPlayer::sigRecordStateChanged,
                     this, [&](QMediaRecorder::RecorderState state){
-        if(QMediaRecorder::StoppedState == state && m_Player.m_paRecord->isCheckable())
-            m_Player.m_paRecord->setChecked(false);
-    });
+                        if(QMediaRecorder::StoppedState == state
+                            && m_Player.m_paRecord->isCheckable())
+                            m_Player.m_paRecord->setChecked(false);
+                    });
     Q_ASSERT(check);
     check = connect(m_Player.m_paRecordPause, SIGNAL(toggled(bool)),
                     this, SIGNAL(sigRecordPause(bool)));
     Q_ASSERT(check);
     check = connect(this, &CConnecterPlayer::sigConnected,
                     this, [&](){
-        m_Player.SetParameter(&m_Parameters);
-    });
+                        m_Player.SetParameter(&m_Parameters);
+                    });
     Q_ASSERT(check);
     check = connect(this, SIGNAL(sigPositionChanged(qint64, qint64)),
                     &m_Player, SLOT(slotPositionChanged(qint64, qint64)));
@@ -61,7 +65,7 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
 
 CConnecterPlayer::~CConnecterPlayer()
 {
-    qDebug(log) << "CConneterPlayer::~CConneterPlayer()";
+    qDebug(log) << __FUNCTION__;
 }
 
 qint16 CConnecterPlayer::Version()

@@ -22,6 +22,8 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
     , m_nDuration(0)
 {
     bool check = false;
+    qDebug(log) << __FUNCTION__;
+
     m_pParameters = qobject_cast<CParameterPlayer*>(pConnecter->GetParameter());
 
 #if HAVE_QVideoWidget
@@ -214,13 +216,34 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
 
 CConnectPlayer::~CConnectPlayer()
 {
-    qDebug(log) << "CConnectPlayer::~CConnectPlayer()";
+    qDebug(log) << __FUNCTION__;
 }
 
 CConnect::OnInitReturnValue CConnectPlayer::OnInit()
 {
     qDebug(log) << "CConnectPlayer::OnInit()";
     //slotStart();
+    switch (m_pParameters->GetType()) {
+    case CParameterPlayer::TYPE::Camera: {
+        if(!m_pCamera) {
+            const QList<QCameraDevice> cameras = QMediaDevices::videoInputs();
+            if(cameras.isEmpty()
+                || -1 > m_pParameters->GetCamera()
+                || m_pParameters->GetCamera() > QMediaDevices::videoInputs().size())
+                break;
+            emit sigServerName(cameras.at(m_pParameters->GetCamera()).description());
+        }
+        break;
+    }
+    case CParameterPlayer::TYPE::Url: {
+        QString szFile = m_pParameters->GetUrl();
+        QFileInfo fi(szFile);
+        emit sigServerName(fi.fileName());
+        break;
+    }
+    default:
+        break;
+    }
     emit sigConnected();
     return OnInitReturnValue::NotUseOnProcess;
 }
@@ -240,6 +263,7 @@ void CConnectPlayer::slotStart()
                 || m_pParameters->GetCamera() > QMediaDevices::videoInputs().size())
                 break;
             m_pCamera = new QCamera(cameras.at(m_pParameters->GetCamera()));
+            emit sigServerName(cameras.at(m_pParameters->GetCamera()).description());
         }
         if(m_pCamera) {
             m_CaptureSessioin.setVideoSink(&m_VideoSink);
@@ -249,7 +273,10 @@ void CConnectPlayer::slotStart()
         break;
     }
     case CParameterPlayer::TYPE::Url: {
-        m_Player.setSource(QUrl::fromLocalFile(m_pParameters->GetUrl()));
+        QString szFile = m_pParameters->GetUrl();
+        QFileInfo fi(szFile);
+        emit sigServerName(fi.fileName());
+        m_Player.setSource(QUrl::fromLocalFile(szFile));
         m_Player.setVideoSink(&m_VideoSink);
         m_Player.play();
         m_nPosition = m_Player.position();

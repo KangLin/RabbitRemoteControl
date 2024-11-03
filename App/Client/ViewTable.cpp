@@ -17,6 +17,7 @@ static Q_LOGGING_CATEGORY(logRecord, "App.View.Table.Record")
 CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab(nullptr)
 {
+    qDebug(log) << __FUNCTION__;
     bool check = false;
     setFocusPolicy(Qt::NoFocus);
 
@@ -48,6 +49,7 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
 
 CViewTable::~CViewTable()
 {
+    qDebug(log) << __FUNCTION__;
     if(m_pTab)
         delete m_pTab;
 }

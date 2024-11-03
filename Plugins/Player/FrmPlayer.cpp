@@ -27,6 +27,8 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 {
     bool check = false;
 
+    qDebug(log) << __FUNCTION__;
+
     m_VideoWidget.installEventFilter(this);
 
     m_paStart = m_ToolBar.addAction(
