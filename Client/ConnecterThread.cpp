@@ -21,14 +21,10 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     , m_psbZoomFactor(nullptr)
 {
     bool check = false;
+    qDebug(log) << __FUNCTION__;
 
     m_pView = new CFrmViewer();
     m_pScroll = new CFrmScroll(m_pView);
-
-    m_Menu.setIcon(plugin->Icon());
-    m_Menu.setTitle(plugin->DisplayName());
-    m_Menu.setToolTip(plugin->DisplayName());
-    m_Menu.setStatusTip(plugin->DisplayName());
 
     QMenu* pMenuZoom = new QMenu(&m_Menu);
     pMenuZoom->setTitle(tr("Zoom"));
@@ -103,8 +99,11 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     pFactor->setDefaultWidget(m_psbZoomFactor);
     pMenuZoom->insertAction(m_pZoomOut, pFactor);
 
-    m_pScreenShot = m_Menu.addAction(
-        QIcon::fromTheme("camera-photo"), tr("ScreenShot"),
+    m_Menu.addSeparator();
+    m_pScreenShot =  new QAction(QIcon::fromTheme("camera-photo"),
+                                tr("ScreenShot"), this);
+    check = connect(
+        m_pScreenShot, &QAction::triggered,
         this, [&](){
             if(!GetParameter() || !m_pView)
                 return;
@@ -118,19 +117,19 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
             if(record.GetEnable() != CParameterRecord::ENDACTION::No)
                 QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
         });
+    Q_ASSERT(check);
+    m_Menu.addAction(m_pScreenShot);
 #if HAVE_QT6_RECORD
-    m_pRecord = m_Menu.addAction(
-        QIcon::fromTheme("media-record"), tr("Record"));
+    m_pRecord = new QAction(QIcon::fromTheme("media-record"), tr("Record"), this);
     m_pRecord->setCheckable(true);
     check = connect(m_pRecord, SIGNAL(toggled(bool)),
                     this, SLOT(slotRecord(bool)));
     Q_ASSERT(check);
+    m_Menu.addAction(m_pRecord);
 #endif
 
-    m_Menu.addAction(QIcon::fromTheme("system-settings"), tr("Settings"),
-                     this, [&](){
-                         OpenDialogSettings();
-                     });
+    m_Menu.addSeparator();
+    m_Menu.addAction(m_pSettings);
 }
 
 CConnecterThread::~CConnecterThread()
@@ -150,7 +149,7 @@ QWidget *CConnecterThread::GetViewer()
 
 int CConnecterThread::Connect()
 {
-    qDebug(log) << "CConnecterThread::Connect()";
+    qDebug(log) << __FUNCTION__;
     int nRet = 0;
     m_pThread = new CConnectThread(this);
     if(!m_pThread) {
@@ -165,7 +164,7 @@ int CConnecterThread::Connect()
 
 int CConnecterThread::DisConnect()
 {
-    qDebug(log) << "CConnecterThread::DisConnect()";
+    qDebug(log) << __FUNCTION__;
     int nRet = 0;
     if(m_pThread)
     {
@@ -223,13 +222,6 @@ int CConnecterThread::Save(QSettings &set)
     }
     nRet = CConnecterConnect::Save(set);
     return nRet;
-}
-
-QMenu *CConnecterThread::GetMenu(QWidget *parent)
-{
-    if(m_Menu.actions().isEmpty())
-        return nullptr;
-    return &m_Menu;
 }
 
 void CConnecterThread::slotRecord(bool checked)

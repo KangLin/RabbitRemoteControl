@@ -8,8 +8,12 @@ CFrmWakeOnLan::CFrmWakeOnLan(QWidget *parent)
     , ui(new Ui::CFrmWakeOnLan)
     , m_pParameter(nullptr)
 {
-    ui->setupUi(this);
     bool check = false;
+
+    ui->setupUi(this);
+    setWindowTitle(tr("Wake on lan"));
+    setWindowIcon(QIcon::fromTheme("tools"));
+
     check = connect(ui->pbCancel, SIGNAL(clicked()), this, SIGNAL(sigCancel()));
     Q_ASSERT(check);
 }

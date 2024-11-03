@@ -62,7 +62,6 @@ public:
     virtual ~CConnecterThread();
 
     virtual QWidget* GetViewer() override;
-    virtual QMenu *GetMenu(QWidget *parent) override;
 
 public Q_SLOTS:
     /*!
@@ -98,7 +97,6 @@ private Q_SLOTS:
 
 protected:
     virtual QString ServerName() override;
-    QMenu m_Menu;
 
 private:
     /*!
@@ -127,6 +125,7 @@ protected:
     QSpinBox* m_psbZoomFactor;
     QAction* m_pScreenShot;
     QAction* m_pRecord;
+
 };
 
 #endif // CCONNECTERBACKTHREAD_H

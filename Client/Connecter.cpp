@@ -29,6 +29,19 @@ CConnecter::CConnecter(CPluginClient *plugin) : QObject(plugin),
                         this, SIGNAL(sigClipBoardChanged()));
         Q_ASSERT(check);
     }
+
+    m_Menu.setIcon(plugin->Icon());
+    m_Menu.setTitle(plugin->DisplayName());
+    m_Menu.setToolTip(plugin->DisplayName());
+    m_Menu.setStatusTip(plugin->DisplayName());
+
+    m_pSettings = new QAction(QIcon::fromTheme("system-settings"),
+                              tr("Settings"), this);
+    check = connect(m_pSettings, &QAction::triggered,
+                    this, [&](){
+                        OpenDialogSettings();
+                    });
+    Q_ASSERT(check);
 }
 
 CConnecter::~CConnecter()
@@ -170,7 +183,9 @@ int CConnecter::OpenDialogSettings(QWidget *parent)
 
 QMenu* CConnecter::GetMenu(QWidget* parent)
 {
-    return nullptr;
+    if(m_Menu.actions().isEmpty())
+        return nullptr;
+    return &m_Menu;
 }
 
 int CConnecter::Load(QString szFile)

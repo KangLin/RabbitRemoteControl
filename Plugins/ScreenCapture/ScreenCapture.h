@@ -26,7 +26,7 @@ public:
 public:
     virtual qint16 Version() override;
     virtual QWidget *GetViewer() override;
-    virtual QMenu *GetMenu(QWidget *parent) override;
+
 public Q_SLOTS:
     virtual int Connect() override;
     virtual int DisConnect() override;
@@ -37,8 +37,6 @@ private Q_SLOTS:
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
-
-    QMenu m_Menu;
 
     QVideoWidget* m_pWidget;
     CParameterScreenCapture m_Parameter;

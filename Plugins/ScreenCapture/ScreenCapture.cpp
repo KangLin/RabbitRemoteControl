@@ -157,11 +157,6 @@ int CScreenCapture::DisConnect()
     return nRet;
 }
 
-QMenu *CScreenCapture::GetMenu(QWidget *parent)
-{
-    return &m_Menu;
-}
-
 int CScreenCapture::slotStart()
 {
     qDebug(log) << "CScreenCapture::slotStart()";

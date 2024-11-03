@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Screen capture</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0">

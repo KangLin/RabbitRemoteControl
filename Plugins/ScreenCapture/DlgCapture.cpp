@@ -14,6 +14,9 @@ CDlgCapture::CDlgCapture(CParameterScreenCapture *pPara, QWidget *parent)
 {
     ui->setupUi(this);
 
+    setWindowTitle(tr("Screen capture"));
+    setWindowIcon(QIcon::fromTheme("camera-photo"));
+
     auto screens = QGuiApplication::screens();
     ui->sbScreen->setMinimum(0);
     ui->sbScreen->setMaximum(screens.size() - 1);

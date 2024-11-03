@@ -422,6 +422,10 @@ private:
 Q_SIGNALS:
     void sigClipBoardChanged();
 
+protected:
+    QMenu m_Menu;
+    QAction* m_pSettings;
+
 private:
     QString m_szServerName;
 

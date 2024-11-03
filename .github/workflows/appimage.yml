@@ -253,7 +253,7 @@ jobs:
 
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
-        continue-on-error: true
+        #continue-on-error: true
         run: |
           #sudo apt update -y -qq
           #sudo apt-get install -y -qq xvfb xpra
@@ -292,4 +292,3 @@ jobs:
           path: |
             ${{github.workspace}}/RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_*.AppImage
             ${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json
-            ${{github.workspace}}/version.json

@@ -17,6 +17,7 @@ CConnecterWakeOnLan::CConnecterWakeOnLan(CPluginClient *plugin)
     m_pView = new CFrmWakeOnLan();
     if(m_pView)
         m_pView->setWindowTitle(plugin->Name());
+    m_Menu.addAction(m_pSettings);
 }
 
 CConnecterWakeOnLan::~CConnecterWakeOnLan()

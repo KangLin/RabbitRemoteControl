@@ -14,12 +14,13 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     bool check = false;
     SetParameter(&m_Parameters);
 
-    m_Menu.removeAction(m_pMenuZoom);
-    m_Menu.removeAction(m_pScreenShot);
-    m_Menu.removeAction(m_pRecord);
+    m_Menu.clear();
 
     m_Menu.addAction(m_Player.m_paStart);
     m_Menu.addAction(m_Player.m_paPause);
+    m_Menu.addSeparator();
+    m_Menu.addAction(m_pSettings);
+
     check = connect(m_Player.m_paStart, SIGNAL(toggled(bool)),
                      this, SIGNAL(sigStart(bool)));
     Q_ASSERT(check);
