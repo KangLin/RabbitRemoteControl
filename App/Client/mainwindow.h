@@ -68,6 +68,8 @@ private:
 
 private Q_SLOTS:
     void slotLoadConnecterMenu();
+    void slotCustomContextMenuRequested(const QPoint &pos);
+
 private:
     QAction* m_pActionConnecterMenu;
     QAction* m_pActionConnecterToolBar;

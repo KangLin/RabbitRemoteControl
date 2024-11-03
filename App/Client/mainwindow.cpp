@@ -169,6 +169,9 @@ MainWindow::MainWindow(QWidget *parent)
         check = connect(m_pView, SIGNAL(sigCurrentChanged(const QWidget*)),
                         this, SLOT(slotCurrentViewChanged(const QWidget*)));
         Q_ASSERT(check);
+        check = connect(m_pView, SIGNAL(customContextMenuRequested(const QPoint&)),
+                        this, SLOT(slotCustomContextMenuRequested(const QPoint&)));
+        Q_ASSERT(check);
         this->setCentralWidget(m_pView);
     }
 
@@ -445,6 +448,27 @@ void MainWindow::slotLoadConnecterMenu()
             ptbPlugin->setToolTip(m->toolTip());
             ptbPlugin->setStatusTip(m->statusTip());
             m_pActionConnecterToolBar = ui->toolBar->insertWidget(ui->actionFull_screen_F, ptbPlugin);
+        }
+    }
+}
+
+void MainWindow::slotCustomContextMenuRequested(const QPoint &pos)
+{
+    if(!m_pView)
+        return;
+    auto pWin = m_pView->GetCurrentView();
+    if(!pWin) {
+        qCritical(log) << "The current view is empty";
+        return;
+    }
+    foreach(auto c, m_Connecters)
+    {
+        if(c->GetViewer() == pWin)
+        {
+            qDebug(log) << "Load plugin menu";
+            auto m = c->GetMenu(ui->menuTools);
+            if(!m) return;
+            m->exec(mapToGlobal(pos));
         }
     }
 }

@@ -26,6 +26,7 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab->setUsesScrollButtons(true);
     m_pTab->setMovable(true);
     m_pTab->setFocusPolicy(Qt::NoFocus);
+    m_pTab->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
     if(this->parent())
     {
         MainWindow* p = dynamic_cast<MainWindow*>(this->parent());
@@ -44,6 +45,10 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
     Q_ASSERT(check);
     check = connect(m_pTab, SIGNAL(currentChanged(int)),
             this, SLOT(slotCurrentChanged(int)));
+    Q_ASSERT(check);
+    check = connect(m_pTab->tabBar(),
+                    SIGNAL(customContextMenuRequested(const QPoint&)),
+                    this, SIGNAL(customContextMenuRequested(const QPoint&)));
     Q_ASSERT(check);
 }
 
