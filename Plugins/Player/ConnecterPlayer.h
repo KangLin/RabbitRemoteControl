@@ -33,6 +33,9 @@ Q_SIGNALS:
     void sigStart(bool bStart);
     void sigPause(bool bPause);
     void sigChangePosition(qint64 pos);
+    void sigScreenShot();
+public Q_SLOTS:
+    virtual void slotScreenShot() override;
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;

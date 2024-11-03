@@ -388,6 +388,7 @@ void CConnectDesktop::slotRecord(bool bRecord)
 void CConnectDesktop::slotRecordPause(bool bPause)
 {
     qDebug(log) << __FUNCTION__ << bPause;
+#if HAVE_QT6_MULTIMEDIA
     if(bPause) {
         if(m_Recorder.recorderState() == QMediaRecorder::RecordingState)
             m_Recorder.pause();
@@ -395,7 +396,9 @@ void CConnectDesktop::slotRecordPause(bool bPause)
         if(m_Recorder.recorderState() == QMediaRecorder::PausedState)
             m_Recorder.record();
     }
+#endif
 }
+
 void CConnectDesktop::slotRecordVideo(const QImage &img)
 {
     QRecordVideoEvent* e = new QRecordVideoEvent(img);

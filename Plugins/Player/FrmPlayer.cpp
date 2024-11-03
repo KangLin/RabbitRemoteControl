@@ -78,6 +78,10 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     m_ToolBar.addWidget(m_pLabel);
     m_ToolBar.addSeparator();
 
+    m_paScreenShot = m_ToolBar.addAction(
+        QIcon::fromTheme("camera-photo"), tr("ScreenShot"));
+    m_paScreenShot->setEnabled(false);
+
     m_paRecord = m_ToolBar.addAction(
         QIcon::fromTheme("media-record"), tr("Record"));
     m_paRecord->setCheckable(true);
@@ -216,6 +220,7 @@ void CFrmPlayer::slotStart(bool bStart)
         m_paRecord->setChecked(false);
         m_paRecordPause->setEnabled(true);
         m_paRecordPause->setChecked(false);
+        m_paScreenShot->setEnabled(true);
     } else {
         p->setIcon(QIcon::fromTheme("media-playback-start"));
         p->setText(tr("Start"));
@@ -225,6 +230,7 @@ void CFrmPlayer::slotStart(bool bStart)
         m_paRecord->setChecked(false);
         m_paRecordPause->setEnabled(false);
         m_paRecordPause->setChecked(false);
+        m_paScreenShot->setEnabled(false);
     }
 }
 

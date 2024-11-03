@@ -25,6 +25,7 @@ public:
     QAction* m_paPause;
     QAction* m_paRecord;
     QAction* m_paRecordPause;
+    QAction* m_paScreenShot;
     QAction* m_paMuted;
     QAction* m_paVolume;
 

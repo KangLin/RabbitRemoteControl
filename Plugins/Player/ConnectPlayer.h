@@ -47,6 +47,7 @@ protected:
     virtual int OnClean() override;
 
 private Q_SLOTS:
+    void slotVideoFrameChanged(const QVideoFrame &frame);
     void slotEnableAudioInput(bool bEnable);
     void slotEnableAudioOutput(bool bEnable);
     void slotPositionChanged(qint64 pos);
@@ -59,6 +60,7 @@ private:
     QCamera* m_pCamera;
     QMediaPlayer m_Player;
     QVideoSink m_VideoSink;
+    bool m_bScreenShot;
 
 #if HAVE_QT6_RECORD
     QAudioBufferOutput m_AudioBufferOutput;

@@ -100,23 +100,10 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     pMenuZoom->insertAction(m_pZoomOut, pFactor);
 
     m_Menu.addSeparator();
-    m_pScreenShot =  new QAction(QIcon::fromTheme("camera-photo"),
-                                tr("ScreenShot"), this);
-    check = connect(
-        m_pScreenShot, &QAction::triggered,
-        this, [&](){
-            if(!GetParameter() || !m_pView)
-                return;
-            auto &record = GetParameter()->m_Record;
-            QString szFile = record.GetImageFile(true);
-            bool bRet = m_pView->GrabImage().save(szFile);
-            if(bRet)
-                qDebug(log) << "Success: save screenshot to" << szFile;
-            else
-                qCritical(log) << "Fail: save screenshot to" << szFile;
-            if(record.GetEnable() != CParameterRecord::ENDACTION::No)
-                QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
-        });
+    m_pScreenShot = new QAction(QIcon::fromTheme("camera-photo"),
+                                tr("ScreenShot"));
+    check = connect(m_pScreenShot, SIGNAL(triggered()),
+                    this, SLOT(slotScreenShot()));
     Q_ASSERT(check);
     m_Menu.addAction(m_pScreenShot);
 #if HAVE_QT6_RECORD
@@ -268,4 +255,19 @@ void CConnecterThread::slotValueChanged(int v)
     if(!m_pScroll || !m_pView) return;
     m_pView->slotSetZoomFactor(((double)v) / 100);
     m_pScroll->slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);
+}
+
+void CConnecterThread::slotScreenShot()
+{
+    if(!GetParameter() || !m_pView)
+        return;
+    auto &record = GetParameter()->m_Record;
+    QString szFile = record.GetImageFile(true);
+    bool bRet = m_pView->GrabImage().save(szFile);
+    if(bRet)
+        qDebug(log) << "Success: save screenshot to" << szFile;
+    else
+        qCritical(log) << "Fail: save screenshot to" << szFile;
+    if(record.GetEnable() != CParameterRecord::ENDACTION::No)
+        QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
 }

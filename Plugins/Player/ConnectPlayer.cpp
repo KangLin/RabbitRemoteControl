@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QAudioDevice>
 #include <QDesktopServices>
-
+#include <QImage>
 #include "ConnectPlayer.h"
 
 static Q_LOGGING_CATEGORY(log, "Player.Connect")
@@ -13,6 +13,7 @@ static Q_LOGGING_CATEGORY(log, "Player.Connect")
 CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
     : CConnectDesktop(pConnecter)
     , m_pCamera(nullptr)
+    , m_bScreenShot(false)
 #if HAVE_QT6_RECORD
     , m_AudioBufferOutput(this)
 #endif
@@ -31,35 +32,8 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
 #endif
 
     check = connect(
-        &m_VideoSink, &QVideoSink::videoFrameChanged,
-        this, [&](const QVideoFrame &frame){
-#ifndef HAVE_QVideoWidget
-            if(m_Video.width() != frame.width()
-                || m_Video.height() != frame.height())
-            {
-                m_Video = QRect(0, 0, frame.width(), frame.height());
-                emit sigSetDesktopSize(m_Video.width(), m_Video.height());
-            }
-            QImage img(frame.width(), frame.height(), QImage::Format_ARGB32);
-            QPainter painter(&img);
-            const QVideoFrame::PaintOptions option;
-            QVideoFrame f = frame;
-            f.paint(&painter, m_Video, option);
-            //qDebug(log) << "QVideoSink::videoFrameChanged" << frame << img;
-            emit this->sigUpdateRect(img);
-#endif \
-        //qDebug(log) << "QVideoSink::videoFrameChanged" << frame;
-#if defined(HAVE_QT6_RECORD) && defined(HAVE_QVideoWidget)
-            if(QMediaRecorder::RecordingState == m_Recorder.recorderState()) {
-                bool bRet = m_VideoFrameInput.sendVideoFrame(frame);
-                if(!bRet) {
-                    //TODO: 放入未成功发送队列，
-                    //    当 QVideoFrameInput::readyToSendVideoFrame() 时，再发送
-                    qDebug(log) << "m_VideoFrameInput.sendVideoFrame fail";
-                }
-            }
-#endif
-        });
+        &m_VideoSink, SIGNAL(videoFrameChanged(const QVideoFrame&)),
+        this, SLOT(slotVideoFrameChanged(QVideoFrame)));
     Q_ASSERT(check);
 
 #if HAVE_QT6_RECORD
@@ -164,6 +138,13 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
                     pConnecter, &CConnecterPlayer::slotRecordStateChanged);
     Q_ASSERT(check);
 #endif
+
+    check = connect(pConnecter, &CConnecterPlayer::sigScreenShot,
+                    this, [&](){
+                        m_bScreenShot = true;
+                    });
+    Q_ASSERT(check);
+
 }
 
 CConnectPlayer::~CConnectPlayer()
@@ -174,7 +155,8 @@ CConnectPlayer::~CConnectPlayer()
 CConnect::OnInitReturnValue CConnectPlayer::OnInit()
 {
     qDebug(log) << "CConnectPlayer::OnInit()";
-    //slotStart();
+
+    // emit sigServerName
     switch (m_pParameters->GetType()) {
     case CParameterPlayer::TYPE::Camera: {
         if(!m_pCamera) {
@@ -196,6 +178,7 @@ CConnect::OnInitReturnValue CConnectPlayer::OnInit()
     default:
         break;
     }
+
     emit sigConnected();
     return OnInitReturnValue::NotUseOnProcess;
 }
@@ -335,6 +318,67 @@ void CConnectPlayer::slotRecord(bool bRecord)
 
 void CConnectPlayer::slotClipBoardChanged()
 {
+}
+
+void CConnectPlayer::slotVideoFrameChanged(const QVideoFrame &frame)
+{
+#ifndef HAVE_QVideoWidget
+    if(m_Video.width() != frame.width()
+        || m_Video.height() != frame.height())
+    {
+        m_Video = QRect(0, 0, frame.width(), frame.height());
+        emit sigSetDesktopSize(m_Video.width(), m_Video.height());
+    }
+    QImage img(frame.width(), frame.height(), QImage::Format_ARGB32);
+    QPainter painter(&img);
+    const QVideoFrame::PaintOptions option;
+    QVideoFrame f = frame;
+    f.paint(&painter, m_Video, option);
+    //qDebug(log) << "QVideoSink::videoFrameChanged" << frame << img;
+    emit this->sigUpdateRect(img);
+#endif
+    //qDebug(log) << "QVideoSink::videoFrameChanged" << frame;
+    if(m_bScreenShot) {
+        m_bScreenShot = false;
+        QImage image = frame.toImage();
+        if(!image.isNull()) {
+            QString szFile = m_pParameters->m_Record.GetImageFile(true);
+            if(!image.save(szFile, "PNG"))
+            {
+                qCritical(log) << "Capture image save to file fail." << szFile;
+                return;
+            }
+            qDebug(log) << "Capture image to file:" << szFile;
+            qDebug(log) << "End action:" << m_pParameters->m_Record.GetEndAction();
+            switch(m_pParameters->m_Record.GetEndAction())
+            {
+            case CParameterRecord::ENDACTION::OpenFile: {
+                bool bRet = QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
+                if(!bRet)
+                    qCritical(log) << "Fail: Open capture image file" << szFile;
+                break;
+            }
+            case CParameterRecord::ENDACTION::OpenFolder: {
+                QFileInfo fi(szFile);
+                QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
+                break;
+            }
+            default:
+                break;
+            }
+        }
+    }
+
+#if defined(HAVE_QT6_RECORD) && defined(HAVE_QVideoWidget)
+    if(QMediaRecorder::RecordingState == m_Recorder.recorderState()) {
+        bool bRet = m_VideoFrameInput.sendVideoFrame(frame);
+        if(!bRet) {
+            //TODO: 放入未成功发送队列，
+            //    当 QVideoFrameInput::readyToSendVideoFrame() 时，再发送
+            qDebug(log) << "m_VideoFrameInput.sendVideoFrame fail";
+        }
+    }
+#endif
 }
 
 void CConnectPlayer::slotEnableAudioInput(bool bEnable)

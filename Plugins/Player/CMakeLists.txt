@@ -28,9 +28,10 @@ SET(Player_UI_FILES
     DlgPlayer.ui
     )
 
-SET(Player_DEFINITIONS
-    HAVE_QVideoWidget
-    )
+option(WITH_QVideoWidget "Use QVideoWidget" ON)
+if(WITH_QVideoWidget)
+    list(APPEND Player_DEFINITIONS HAVE_QVideoWidget)
+endif()
 
 set(Player_QT_COMPONENTS Widgets Multimedia MultimediaWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${Player_QT_COMPONENTS})

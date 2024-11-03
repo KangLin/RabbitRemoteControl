@@ -21,9 +21,12 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     m_Menu.addAction(m_Player.m_paPause);
     m_Menu.addAction(m_Player.m_paRecord);
     m_Menu.addAction(m_Player.m_paRecordPause);
+    m_Menu.addAction(m_Player.m_paScreenShot);
     m_Menu.addSeparator();
     m_Menu.addAction(m_pSettings);
-
+    check = connect(this, &CConnecterPlayer::sigConnected,
+                    m_Player.m_paStart, &QAction::toggle);
+    Q_ASSERT(check);
     check = connect(m_Player.m_paStart, SIGNAL(toggled(bool)),
                     this, SIGNAL(sigStart(bool)));
     Q_ASSERT(check);
@@ -35,6 +38,9 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     Q_ASSERT(check);
     check = connect(m_Player.m_paRecordPause, SIGNAL(toggled(bool)),
                     m_pRecordPause, SIGNAL(toggled(bool)));
+    Q_ASSERT(check);
+    check = connect(m_Player.m_paScreenShot, &QAction::triggered,
+                    m_pScreenShot, &QAction::triggered);
     Q_ASSERT(check);
     check = connect(this, &CConnecterPlayer::sigConnected,
                     this, [&](){
@@ -48,6 +54,9 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     QAction* pStart = m_Menu.addAction(
         QIcon::fromTheme("media-playback-start"), tr("Start"));
     pStart->setCheckable(true);
+    check = connect(this, &CConnecterPlayer::sigConnected,
+                    pStart, &QAction::toggle);
+    Q_ASSERT(check);
     check = connect(pStart, &QAction::toggled,
                     this, [&](bool checked){
                         QAction* p = qobject_cast<QAction*>(sender());
@@ -61,6 +70,7 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
                             m_pRecord->setChecked(false);
                             m_pRecordPause->setEnabled(true);
                             m_pRecordPause->setChecked(false);
+                            m_pScreenShot->setEnabled(true);
                         } else {
                             p->setIcon(QIcon::fromTheme("media-playback-start"));
                             p->setText(tr("Start"));
@@ -70,6 +80,7 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
                             m_pRecord->setChecked(false);
                             m_pRecordPause->setEnabled(false);
                             m_pRecordPause->setChecked(false);
+                            m_pScreenShot->setEnabled(false);
                         }
                         emit sigStart(checked);
                     });
@@ -82,6 +93,7 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecord);
     m_Menu.addAction(m_pRecordPause);
+    m_Menu.addAction(m_pScreenShot);
     m_Menu.addSeparator();
     m_Menu.addAction(m_pSettings);
 #endif
@@ -107,6 +119,11 @@ CConnect *CConnecterPlayer::InstanceConnect()
 {
     CConnect* p = new CConnectPlayer(this);
     return p;
+}
+
+void CConnecterPlayer::slotScreenShot()
+{
+    emit sigScreenShot();
 }
 
 #if HAVE_QVideoWidget

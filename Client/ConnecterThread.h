@@ -78,6 +78,7 @@ public Q_SLOTS:
      */
     virtual int DisConnect() override;
 
+    virtual void slotScreenShot();
 #if HAVE_QT6_RECORD
     void slotRecorderStateChanged(QMediaRecorder::RecorderState state);
 #endif

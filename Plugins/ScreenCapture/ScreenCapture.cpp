@@ -47,28 +47,7 @@ CScreenCapture::CScreenCapture(CPluginClient *plugin)
             emit sigError(error, errorString);
         });
     Q_ASSERT(check);
-    check = connect(
-        &m_ImageCapture, &QImageCapture::imageSaved,
-        this, [&](int id, const QString &fileName) {
-            qDebug(log) << "Capture image to file:" << fileName;
-            switch(m_Parameter.m_Record.GetEndAction())
-            {
-            case CParameterRecord::ENDACTION::OpenFile: {
-                bool bRet = QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
-                if(!bRet)
-                    qCritical(log) << "Fail: Open capture image file" << fileName;
-                break;
-            }
-            case CParameterRecord::ENDACTION::OpenFolder: {
-                QFileInfo fi(fileName);
-                QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
-                break;
-            }
-            default:
-                break;
-            }
-        });
-    Q_ASSERT(check);
+
     check = connect(
         &m_Recorder, &QMediaRecorder::errorOccurred,
         this, [&](QMediaRecorder::Error error, const QString &errorString) {
@@ -117,11 +96,29 @@ CScreenCapture::CScreenCapture(CPluginClient *plugin)
         this, [&](int id, const QImage &image){
             qDebug(log) << "Capture image:" << id << image;
             QString szFile = m_Parameter.m_Record.GetImageFile(true);
-            if(image.save(szFile, "PNG"))
-                qDebug(log) << "Capture image to file:" << szFile;
-            else
+            if(!image.save(szFile, "PNG"))
+            {
                 qCritical(log) << "Capture image save to file fail." << szFile;
-            slotStop();
+                slotStop();
+                return;
+            }
+            qDebug(log) << "Capture image to file:" << szFile;
+            switch(m_Parameter.m_Record.GetEndAction())
+            {
+            case CParameterRecord::ENDACTION::OpenFile: {
+                bool bRet = QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
+                if(!bRet)
+                    qCritical(log) << "Fail: Open capture image file" << szFile;
+                break;
+            }
+            case CParameterRecord::ENDACTION::OpenFolder: {
+                QFileInfo fi(szFile);
+                QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
+                break;
+            }
+            default:
+                break;
+            }
         });
     Q_ASSERT(check);
 }
@@ -193,7 +190,6 @@ int CScreenCapture::slotStart()
 
     if(m_Parameter.GetOperate() == CParameterScreenCapture::OPERATE::Shot) {
         m_CaptureSessioin.setImageCapture(&m_ImageCapture);
-        //m_ImageCapture.captureToFile(m_Parameter.m_Record.GetUrl());
         m_ImageCapture.capture();
     } else
         m_CaptureSessioin.setImageCapture(nullptr);

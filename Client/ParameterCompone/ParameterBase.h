@@ -47,7 +47,8 @@ class CLIENT_EXPORT CParameterBase : public CParameterConnecter
     Q_OBJECT
     Q_PROPERTY(QString Name READ GetName WRITE SetName NOTIFY sigNameChanged)
     Q_PROPERTY(QString ServerName READ GetServerName WRITE SetServerName)
-    Q_PROPERTY(bool ShowServerName READ GetShowServerName WRITE SetShowServerName NOTIFY sigShowServerNameChanged)
+    Q_PROPERTY(bool ShowServerName READ GetShowServerName
+                   WRITE SetShowServerName NOTIFY sigShowServerNameChanged)
     Q_PROPERTY(bool OnlyView READ GetOnlyView WRITE SetOnlyView)
     Q_PROPERTY(bool LocalCursor READ GetLocalCursor WRITE SetLocalCursor)
 

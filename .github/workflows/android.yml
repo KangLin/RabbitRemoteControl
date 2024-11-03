@@ -106,7 +106,7 @@ jobs:
 
       - name: Install Qt of linux_gcc_64
         uses: jurplel/install-qt-action@v3
-        if: ${{  matrix.qt_version == '6.6.3' }}
+        if: ${{  matrix.qt_version == '6.6.2' }}
         with:
           dir: '${{env.TOOSL_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
