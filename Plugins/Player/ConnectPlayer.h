@@ -58,13 +58,9 @@ private:
     QRect m_Video;
     QCamera* m_pCamera;
     QMediaPlayer m_Player;
-    QMediaCaptureSession m_CaptureSessioin;
-    QMediaRecorder m_Recorder;
     QVideoSink m_VideoSink;
 
 #if HAVE_QT6_RECORD
-    QVideoFrameInput m_VideoFrameInput;
-    QAudioBufferInput m_AudioBufferInput;
     QAudioBufferOutput m_AudioBufferOutput;
 #endif
 
@@ -76,7 +72,6 @@ private:
     qint64 m_nDuration;
 
     QString m_szRecordFile;
-
 };
 
 #endif // CONNECTPLAYER_H

@@ -14,8 +14,6 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
     : CConnectDesktop(pConnecter)
     , m_pCamera(nullptr)
 #if HAVE_QT6_RECORD
-    , m_VideoFrameInput(this)
-    , m_AudioBufferInput(this)
     , m_AudioBufferOutput(this)
 #endif
     , m_nPosition(0)
@@ -51,7 +49,7 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
             emit this->sigUpdateRect(img);
 #endif \
         //qDebug(log) << "QVideoSink::videoFrameChanged" << frame;
-#if HAVE_QT6_RECORD
+#if defined(HAVE_QT6_RECORD) && defined(HAVE_QVideoWidget)
             if(QMediaRecorder::RecordingState == m_Recorder.recorderState()) {
                 bool bRet = m_VideoFrameInput.sendVideoFrame(frame);
                 if(!bRet) {
@@ -115,23 +113,14 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
             }
         });
     Q_ASSERT(check);
-    check = connect(pConnecter, &CConnecterPlayer::sigRecord,
-                    this, &CConnectPlayer::slotRecord);
+
+    check = connect(
+        &m_Player, SIGNAL(positionChanged(qint64)),
+        this, SLOT(slotPositionChanged(qint64)));
     Q_ASSERT(check);
     check = connect(
-        pConnecter, &CConnecterPlayer::sigRecordPause,
-        this, [&](bool bPause){
-            if(bPause) {
-                if(m_Recorder.recorderState() == QMediaRecorder::RecordingState)
-                    m_Recorder.pause();
-            } else {
-                if(m_Recorder.recorderState() == QMediaRecorder::PausedState)
-                    m_Recorder.record();
-            }
-        });
-    Q_ASSERT(check);
-    check = connect(this, SIGNAL(sigPositionChanged(qint64, qint64)),
-                    pConnecter, SIGNAL(sigPositionChanged(qint64, qint64)));
+        &m_Player, SIGNAL(durationChanged(qint64)),
+        this, SLOT(slotDurationChanged(qint64)));
     Q_ASSERT(check);
     check = connect(pConnecter, SIGNAL(sigChangePosition(qint64)),
                     &m_Player, SLOT(setPosition(qint64)));
@@ -143,43 +132,6 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
                     this, &CConnectPlayer::slotEnableAudioOutput);
     Q_ASSERT(check);
 
-    check = connect(
-        &m_Recorder, &QMediaRecorder::errorOccurred,
-        this, [&](QMediaRecorder::Error error, const QString &errorString) {
-            qCritical(log) << "Recorder error occurred:" << error << errorString;
-            slotStop();
-            emit sigError(error, errorString);
-        });
-    Q_ASSERT(check);
-    /*
-    check = connect(&m_Recorder, &QMediaRecorder::durationChanged,
-                    this, [&](qint64 duration){
-        qDebug(log) << "Recorder duratioin:" << duration;
-    });
-    Q_ASSERT(check); //*/
-    check = connect(
-        &m_Recorder, &QMediaRecorder::recorderStateChanged,
-        this, [&](QMediaRecorder::RecorderState state){
-            qDebug(log) << "Recorder state changed:" << state;
-            if(QMediaRecorder::StoppedState == state)
-                switch(m_pParameters->m_Record.GetEndAction())
-                {
-                case CParameterRecord::ENDACTION::OpenFile:
-                    QDesktopServices::openUrl(QUrl::fromLocalFile(m_szRecordFile));
-                    break;
-                case CParameterRecord::ENDACTION::OpenFolder: {
-                    QFileInfo fi(m_szRecordFile);
-                    QDesktopServices::openUrl(QUrl::fromLocalFile(fi.absolutePath()));
-                    break;
-                }
-                default:
-                    break;
-                }
-        });
-    Q_ASSERT(check);
-    check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
-                    pConnecter, &CConnecterPlayer::sigRecordStateChanged);
-    Q_ASSERT(check);
     check = connect(
         &m_Recorder, &QMediaRecorder::actualLocationChanged,
         this, [&](const QUrl &location){
@@ -201,17 +153,17 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
                         qDebug(log) << "Player state changed:" << state;
                     });
     Q_ASSERT(check);
+#if HAVE_QVideoWidget
     check = connect(&m_Player, &QMediaPlayer::playbackStateChanged,
-                    pConnecter, &CConnecterPlayer::sigPlaybackStateChanged);
+                    pConnecter, &CConnecterPlayer::slotPlaybackStateChanged);
     Q_ASSERT(check);
-    check = connect(
-        &m_Player, SIGNAL(positionChanged(qint64)),
-        this, SLOT(slotPositionChanged(qint64)));
+    check = connect(this, SIGNAL(sigPositionChanged(qint64,qint64)),
+                    pConnecter, SLOT(slotPositionChanged(qint64,qint64)));
     Q_ASSERT(check);
-    check = connect(
-        &m_Player, SIGNAL(durationChanged(qint64)),
-        this, SLOT(slotDurationChanged(qint64)));
+    check = connect(&m_Recorder, &QMediaRecorder::recorderStateChanged,
+                    pConnecter, &CConnecterPlayer::slotRecordStateChanged);
     Q_ASSERT(check);
+#endif
 }
 
 CConnectPlayer::~CConnectPlayer()
@@ -266,8 +218,8 @@ void CConnectPlayer::slotStart()
             emit sigServerName(cameras.at(m_pParameters->GetCamera()).description());
         }
         if(m_pCamera) {
-            m_CaptureSessioin.setVideoSink(&m_VideoSink);
-            m_CaptureSessioin.setCamera(m_pCamera);
+            m_CaptureSession.setVideoSink(&m_VideoSink);
+            m_CaptureSession.setCamera(m_pCamera);
             m_pCamera->start();
         }
         break;
@@ -286,8 +238,6 @@ void CConnectPlayer::slotStart()
     default:
         break;
     }
-
-    //slotRecord(m_pParameters->m_Record.GetEnable());
 }
 
 int CConnectPlayer::OnClean()
@@ -305,7 +255,7 @@ void CConnectPlayer::slotStop()
     case CParameterPlayer::TYPE::Camera:
         if(m_pCamera)
             m_pCamera->stop();
-        m_CaptureSessioin.setVideoSink(nullptr);
+        m_CaptureSession.setVideoSink(nullptr);
         break;
     case CParameterPlayer::TYPE::Url:
         m_Player.stop();
@@ -335,7 +285,7 @@ void CConnectPlayer::slotRecord(bool bRecord)
         switch (m_pParameters->GetType()) {
         case CParameterPlayer::TYPE::Camera: {
             m_pParameters->m_Record >> m_Recorder;
-            m_CaptureSessioin.setRecorder(&m_Recorder);
+            m_CaptureSession.setRecorder(&m_Recorder);
             m_Recorder.record();
             //qDebug(log) << "Record to file:" << m_Recorder.actualLocation();
             break;
@@ -345,15 +295,15 @@ void CConnectPlayer::slotRecord(bool bRecord)
 #if HAVE_QT6_RECORD
             if(record.GetEnableAudio()) {
                 m_Player.setAudioBufferOutput(&m_AudioBufferOutput);
-                m_CaptureSessioin.setAudioBufferInput(&m_AudioBufferInput);
+                m_CaptureSession.setAudioBufferInput(&m_AudioBufferInput);
             } else
                 qDebug(log) << "Record: disable audio";
             if(record.GetEnableVideo())
-                m_CaptureSessioin.setVideoFrameInput(&m_VideoFrameInput);
+                m_CaptureSession.setVideoFrameInput(&m_VideoFrameInput);
             else
                 qDebug(log) << "Record: disable video";
             record >> m_Recorder;
-            m_CaptureSessioin.setRecorder(&m_Recorder);
+            m_CaptureSession.setRecorder(&m_Recorder);
             m_Recorder.record();
             //qDebug(log) << "Record to file:" << m_Recorder.actualLocation();
 #else
@@ -366,15 +316,18 @@ void CConnectPlayer::slotRecord(bool bRecord)
         default:
             break;
         }
+#ifndef HAVE_QVideoWidget
+        emit sigRecordVideo(bRecord);
+#endif
         return;
     }
 
     if(QMediaRecorder::StoppedState != m_Recorder.recorderState()) {
         m_Recorder.stop();
-        m_CaptureSessioin.setRecorder(nullptr);
+        m_CaptureSession.setRecorder(nullptr);
 #if HAVE_QT6_RECORD
-        m_CaptureSessioin.setVideoFrameInput(nullptr);
-        m_CaptureSessioin.setAudioBufferInput(nullptr);
+        m_CaptureSession.setVideoFrameInput(nullptr);
+        m_CaptureSession.setAudioBufferInput(nullptr);
         m_Player.setAudioBufferOutput(nullptr);
 #endif
     }
@@ -392,7 +345,7 @@ void CConnectPlayer::slotEnableAudioInput(bool bEnable)
                                    .at(m_pParameters->GetAudioInput()));
         m_AudioInput.setMuted(m_pParameters->GetAudioInputMuted());
         m_AudioInput.setVolume(m_pParameters->GetAudioInputVolume());
-        m_CaptureSessioin.setAudioInput(&m_AudioInput);
+        m_CaptureSession.setAudioInput(&m_AudioInput);
 
         bool check = connect(m_pParameters,
                              &CParameterPlayer::sigAudioInputMuted,
@@ -410,8 +363,8 @@ void CConnectPlayer::slotEnableAudioInput(bool bEnable)
                         });
         Q_ASSERT(check);
     } else {
-        qDebug(log) << "m_CaptureSessioin: disable audio input";
-        m_CaptureSessioin.setAudioInput(nullptr);
+        qDebug(log) << "m_CaptureSession: disable audio input";
+        m_CaptureSession.setAudioInput(nullptr);
     }
 }
 
@@ -444,7 +397,7 @@ void CConnectPlayer::slotEnableAudioOutput(bool bEnable)
         Q_ASSERT(check);
         switch (m_pParameters->GetType()) {
         case CParameterPlayer::TYPE::Camera:
-            m_CaptureSessioin.setAudioOutput(&m_AudioOutput);
+            m_CaptureSession.setAudioOutput(&m_AudioOutput);
             break;
         case CParameterPlayer::TYPE::Url:
             m_Player.setAudioOutput(&m_AudioOutput);
@@ -454,7 +407,7 @@ void CConnectPlayer::slotEnableAudioOutput(bool bEnable)
         }
     } else {
         m_Player.setAudioOutput(nullptr);
-        m_CaptureSessioin.setAudioOutput(nullptr);
+        m_CaptureSession.setAudioOutput(nullptr);
         m_AudioOutput.disconnect();
     }
 }

@@ -32,11 +32,7 @@ public:
 Q_SIGNALS:
     void sigStart(bool bStart);
     void sigPause(bool bPause);
-    void sigRecordPause(bool bPause);
-    void sigPositionChanged(qint64 pos, qint64 duration);
     void sigChangePosition(qint64 pos);
-    void sigPlaybackStateChanged(QMediaPlayer::PlaybackState state);
-    void sigRecordStateChanged(QMediaRecorder::RecorderState state);
 
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
@@ -49,6 +45,12 @@ private:
 public:
     virtual QWidget *GetViewer() override;
     QVideoSink *GetVideoSink();
+public Q_SLOTS:
+    void slotPositionChanged(qint64 pos, qint64 duration);
+    void slotPlaybackStateChanged(QMediaPlayer::PlaybackState state);
+    void slotRecordStateChanged(QMediaRecorder::RecorderState state);
+#else
+    QAction* m_pPause;
 #endif
 
 };

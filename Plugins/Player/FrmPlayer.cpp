@@ -129,7 +129,6 @@ int CFrmPlayer::SetParameter(CParameterPlayer* pParameter)
 
     m_paMuted->setChecked(m_pParameter->GetAudioOutputMuted());
     m_pbVolume.setValue(m_pParameter->GetAudioOutputVolume());
-    m_paRecord->setChecked(m_pParameter->m_Record.GetEnable());
     return 0;
 }
 
@@ -214,15 +213,18 @@ void CFrmPlayer::slotStart(bool bStart)
         m_paPause->setEnabled(true);
         m_paPause->setChecked(false);
         m_paRecord->setEnabled(true);
-        m_paRecord->setChecked(m_pParameter->m_Record.GetEnable());
+        m_paRecord->setChecked(false);
         m_paRecordPause->setEnabled(true);
         m_paRecordPause->setChecked(false);
     } else {
         p->setIcon(QIcon::fromTheme("media-playback-start"));
         p->setText(tr("Start"));
         m_paPause->setEnabled(false);
+        m_paPause->setChecked(false);
         m_paRecord->setEnabled(false);
+        m_paRecord->setChecked(false);
         m_paRecordPause->setEnabled(false);
+        m_paRecordPause->setChecked(false);
     }
 }
 

@@ -12,6 +12,7 @@
 #include "ConnecterThread.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Connect.Desktop")
+static Q_LOGGING_CATEGORY(logMouse, "Client.Connect.Desktop.Mouse")
 
 #define TypeRecordVideo (QEvent::User + 1)
 class QRecordVideoEvent : public QEvent
@@ -290,32 +291,32 @@ void CConnectDesktop::slotKeyReleaseEvent(QKeyEvent *event)
 
 void CConnectDesktop::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug(log) << "Need to implement CConnectDesktop::mouseMoveEvent";
+    qDebug(logMouse) << "Need to implement CConnectDesktop::mouseMoveEvent";
 }
 
 void CConnectDesktop::mousePressEvent(QMouseEvent *event)
 {
-    qDebug(log) << "Need to implement CConnectDesktop::mousePressEvent";
+    qDebug(logMouse) << "Need to implement CConnectDesktop::mousePressEvent";
 }
 
 void CConnectDesktop::mouseReleaseEvent(QMouseEvent *event)
 {
-    qDebug(log) << "Need to implement CConnectDesktop::mouseReleaseEvent";
+    qDebug(logMouse) << "Need to implement CConnectDesktop::mouseReleaseEvent";
 }
 
 void CConnectDesktop::wheelEvent(QWheelEvent *event)
 {
-    qDebug(log) << "Need to implement CConnectDesktop::wheelEvent";
+    qDebug(logMouse) << "Need to implement CConnectDesktop::wheelEvent";
 }
 
 void CConnectDesktop::keyPressEvent(QKeyEvent *event)
 {
-    qDebug(log) << "Need to implement CConnectDesktop::keyPressEvent";
+    qDebug(logMouse) << "Need to implement CConnectDesktop::keyPressEvent";
 }
 
 void CConnectDesktop::keyReleaseEvent(QKeyEvent *event)
 {
-    qDebug(log) << "Need to implement CConnectDesktop::keyReleaseEvent";
+    qDebug(logMouse) << "Need to implement CConnectDesktop::keyReleaseEvent";
 }
 
 int CConnectDesktop::WakeUp()
