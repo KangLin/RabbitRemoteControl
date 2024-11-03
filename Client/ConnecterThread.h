@@ -86,6 +86,7 @@ Q_SIGNALS:
      *  \see slotRecord
      */
     void sigRecord(bool bRecord);
+    void sigRecordPause(bool bPause);
 private Q_SLOTS:
     /*!
      * \brief Record action
@@ -125,7 +126,7 @@ protected:
     QSpinBox* m_psbZoomFactor;
     QAction* m_pScreenShot;
     QAction* m_pRecord;
-
+    QAction* m_pRecordPause;
 };
 
 #endif // CCONNECTERBACKTHREAD_H

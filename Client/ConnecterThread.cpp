@@ -126,6 +126,14 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
                     this, SLOT(slotRecord(bool)));
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecord);
+    m_pRecordPause = new QAction(QIcon::fromTheme("media-playback-pause"),
+                                 tr("Record pause"), this);
+    m_pRecordPause->setCheckable(true);
+    m_pRecordPause->setEnabled(false);
+    check = connect(m_pRecordPause, SIGNAL(toggled(bool)),
+                    this, SIGNAL(sigRecordPause(bool)));
+    Q_ASSERT(check);
+    m_Menu.addAction(m_pRecordPause);
 #endif
 
     m_Menu.addSeparator();
@@ -238,6 +246,7 @@ void CConnecterThread::slotRecord(bool checked)
             pRecord->setIcon(QIcon::fromTheme("media-playback-start"));
             pRecord->setText(tr("Start record"));
         }
+        m_pRecordPause->setEnabled(checked);
         emit sigRecord(checked);
     }
 }
@@ -247,7 +256,10 @@ void CConnecterThread::slotRecorderStateChanged(
     QMediaRecorder::RecorderState state)
 {
     if(QMediaRecorder::StoppedState == state)
+    {
         slotRecord(false);
+        m_pRecordPause->setChecked(false);
+    }
 }
 #endif
 

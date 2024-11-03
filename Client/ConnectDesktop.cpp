@@ -37,6 +37,10 @@ int g_QMessageBox_Icon = qRegisterMetaType<Qt::MouseButton>("QMessageBox::Icon")
 CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
     : CConnect(pConnecter)
     , m_pParameterRecord(nullptr)
+#if HAVE_QT6_RECORD
+    , m_VideoFrameInput(this)
+    , m_AudioBufferInput(this)
+#endif
 {
     if(pConnecter) {
         CFrmScroll* pScroll = qobject_cast<CFrmScroll*>(pConnecter->GetViewer());
@@ -121,6 +125,9 @@ int CConnectDesktop::SetConnecter(CConnecter* pConnecter)
                         this, SLOT(slotRecord(bool)));
         Q_ASSERT(check);
 #if HAVE_QT6_MULTIMEDIA
+        check = connect(p, SIGNAL(sigRecordPause(bool)),
+                        this, SLOT(slotRecordPause(bool)));
+        Q_ASSERT(check);
         check = connect(
             &m_Recorder,
             SIGNAL(recorderStateChanged(QMediaRecorder::RecorderState)),
@@ -377,6 +384,17 @@ void CConnectDesktop::slotRecord(bool bRecord)
 #endif
 }
 
+void CConnectDesktop::slotRecordPause(bool bPause)
+{
+    qDebug(log) << __FUNCTION__ << bPause;
+    if(bPause) {
+        if(m_Recorder.recorderState() == QMediaRecorder::RecordingState)
+            m_Recorder.pause();
+    } else {
+        if(m_Recorder.recorderState() == QMediaRecorder::PausedState)
+            m_Recorder.record();
+    }
+}
 void CConnectDesktop::slotRecordVideo(const QImage &img)
 {
     QRecordVideoEvent* e = new QRecordVideoEvent(img);

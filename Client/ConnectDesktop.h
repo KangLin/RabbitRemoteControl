@@ -129,6 +129,7 @@ public:
 private Q_SLOTS:
     // connect menu
     virtual void slotRecord(bool bRecord);
+    virtual void slotRecordPause(bool bPause);
     // connect CFrmView
     void slotRecordVideo(const QImage& img);
 Q_SIGNALS:
@@ -136,6 +137,8 @@ Q_SIGNALS:
 private:
     void RecordVideo(QRecordVideoEvent *event);
     CParameterRecord* m_pParameterRecord;
+
+protected:
 #if HAVE_QT6_MULTIMEDIA
     QMediaCaptureSession m_CaptureSession;
     QMediaRecorder m_Recorder;
