@@ -23,7 +23,6 @@ jobs:
     uses: ./.github/workflows/msvc.yml
 
   mingw:
-    if: false
     uses: ./.github/workflows/mingw.yml
 
   macos:
@@ -51,13 +50,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ needs.ubuntu.outputs.name }}
-          path: ${{ env.artifact_path }}
-          merge-multiple: true
-
-      - name: Download appimage
-        uses: actions/download-artifact@v4
-        with:
-          name: ${{ needs.appimage.outputs.name }}_*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
@@ -96,7 +88,14 @@ jobs:
           name: ${{ needs.doxygen.outputs.name }}
           path: ${{ env.artifact_path }}
           merge-multiple: true
-      
+
+      - name: Download appimage
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.appimage.outputs.name }}_*
+          path: ${{ env.artifact_path }}
+          merge-multiple: true
+
       - name: Process configure file
         run: |
           git clone https://github.com/KangLin/RabbitCommon.git
