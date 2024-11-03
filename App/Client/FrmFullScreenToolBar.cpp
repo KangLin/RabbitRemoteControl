@@ -26,6 +26,8 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     ),
     ui(new Ui::CFrmFullScreenToolBar),
     m_ToolBar(this),
+    m_pConnecterMenu(nullptr),
+    m_pNail(nullptr),
     m_pMain(pMain),
     m_TimeOut(3000),
     m_isHide(false)
@@ -48,7 +50,10 @@ CFrmFullScreenToolBar::CFrmFullScreenToolBar(MainWindow *pMain, QWidget *parent)
     m_ToolBar.addAction(m_pMain->ui->actionFull_screen_F);
 
     m_ToolBar.addSeparator();
-
+    if(m_pMain->m_pActionConnecterMenu) {
+        m_pConnecterMenu = m_pMain->m_pActionConnecterMenu;
+        m_ToolBar.addAction(m_pConnecterMenu);
+    }
     //m_ToolBar.addAction(m_pMain->ui->actionTabBar_B);
     m_pShowTabBar = m_ToolBar.addAction(QIcon::fromTheme("tabbar"), tr("TabBar"),
                                         this, SLOT(slotShowTabBar()));
@@ -164,4 +169,13 @@ void CFrmFullScreenToolBar::slotNail()
 {
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure());
     set.setValue("FullScreen/Nail", m_pNail->isChecked());
+}
+
+void CFrmFullScreenToolBar::slotConnecterMenuChanged(QAction* pAction)
+{
+    if(m_pConnecterMenu) {
+        m_ToolBar.removeAction(m_pConnecterMenu);
+        m_pConnecterMenu = pAction;
+        m_ToolBar.insertAction(m_pShowTabBar, m_pConnecterMenu);
+    }
 }

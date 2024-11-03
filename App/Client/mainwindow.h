@@ -69,11 +69,12 @@ private:
 private Q_SLOTS:
     void slotLoadConnecterMenu();
     void slotCustomContextMenuRequested(const QPoint &pos);
+Q_SIGNALS:
+    void sigConnecterMenuChanged(QAction* pAction);
 
-private:
+public:
     QAction* m_pActionConnecterMenu;
-    QAction* m_pActionConnecterToolBar;
-    
+
     ///////// Disconnect /////////
 private Q_SLOTS:
     void on_actionDisconnect_D_triggered();

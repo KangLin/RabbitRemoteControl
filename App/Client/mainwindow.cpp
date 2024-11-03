@@ -47,15 +47,11 @@ static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
     m_pActionConnecterMenu(nullptr),
-    m_pActionConnecterToolBar(nullptr),
     m_pDockListConnects(nullptr),
     m_pSignalStatus(nullptr),
     ui(new Ui::MainWindow),
     m_pView(nullptr),
     m_pFullScreenToolBar(nullptr),
-    // m_ptbZoom(nullptr),
-    // m_psbZoomFactor(nullptr),
-    // m_pGBViewZoom(nullptr),
     m_pRecentMenu(nullptr),
     m_pDockFavorite(nullptr),
     m_pFavoriteView(nullptr)
@@ -366,10 +362,11 @@ void MainWindow::on_actionFull_screen_F_triggered()
     if(pScreen) {
         qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
         << "availableGeometry:" << pScreen->availableGeometry();
-        m_pFullScreenToolBar->move(pScreen->geometry().left()
-                                       + (pScreen->geometry().width()
-                                          - m_pFullScreenToolBar->frameGeometry().width()) / 2,
-                                   pScreen->geometry().top());
+        m_pFullScreenToolBar->move(
+            pScreen->geometry().left()
+                + (pScreen->geometry().width()
+                   - m_pFullScreenToolBar->frameGeometry().width()) / 2,
+            pScreen->geometry().top());
     }
     bool check = connect(m_pFullScreenToolBar, SIGNAL(sigExitFullScreen()),
                          this, SLOT(on_actionFull_screen_F_triggered()));
@@ -380,7 +377,10 @@ void MainWindow::on_actionFull_screen_F_triggered()
     check = connect(m_pFullScreenToolBar, SIGNAL(sigDisconnect()),
                     this, SLOT(on_actionDisconnect_D_triggered()));
     Q_ASSERT(check);
-
+    check = connect(this, SIGNAL(sigConnecterMenuChanged(QAction*)),
+                    m_pFullScreenToolBar,
+                    SLOT(slotConnecterMenuChanged(QAction*)));
+    Q_ASSERT(check);
     CViewTable* p = dynamic_cast<CViewTable*>(pTab);
     if(p)
     {
@@ -417,12 +417,8 @@ void MainWindow::slotLoadConnecterMenu()
 
     if(m_pActionConnecterMenu) {
         ui->menuTools->removeAction(m_pActionConnecterMenu);
+        ui->toolBar->removeAction(m_pActionConnecterMenu);
         m_pActionConnecterMenu = nullptr;
-    }
-    if(m_pActionConnecterToolBar) {
-        ui->toolBar->removeAction(m_pActionConnecterToolBar);
-        delete m_pActionConnecterToolBar;
-        m_pActionConnecterToolBar = nullptr;
     }
 
     if(!m_pView)
@@ -440,14 +436,8 @@ void MainWindow::slotLoadConnecterMenu()
             auto m = c->GetMenu(ui->menuTools);
             if(!m) return;
             m_pActionConnecterMenu = ui->menuTools->addMenu(m);
-            QToolButton* ptbPlugin = new QToolButton();
-            ptbPlugin->setMenu(m);
-            ptbPlugin->setPopupMode(QToolButton::InstantPopup);
-            ptbPlugin->setIcon(m->icon());
-            ptbPlugin->setText(m->title());
-            ptbPlugin->setToolTip(m->toolTip());
-            ptbPlugin->setStatusTip(m->statusTip());
-            m_pActionConnecterToolBar = ui->toolBar->insertWidget(ui->actionFull_screen_F, ptbPlugin);
+            ui->toolBar->insertAction(ui->actionFull_screen_F, m_pActionConnecterMenu);
+            emit sigConnecterMenuChanged(m_pActionConnecterMenu);
         }
     }
 }

@@ -33,6 +33,7 @@ private Q_SLOTS:
     void slotTimeOut();
     void slotNail();
     void slotShowTabBar();
+    void slotConnecterMenuChanged(QAction* pAction);
     
 protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
@@ -52,7 +53,7 @@ private:
     
     QPointF m_Pos;
     QToolBar m_ToolBar;
-    QActionGroup* m_pGBViewZoom;
+    QAction* m_pConnecterMenu;
     QAction* m_pNail;
     MainWindow* m_pMain;
     QTimer m_Timer;
