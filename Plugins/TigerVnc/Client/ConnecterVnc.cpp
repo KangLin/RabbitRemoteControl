@@ -14,12 +14,12 @@ static Q_LOGGING_CATEGORY(log, "VNC.Connecter")
 CConnecterVnc::CConnecterVnc(CPluginClient *plugin)
     : CConnecterThread(plugin)
 {
-    SetParameter(&m_Para);
+    qDebug(log) << __FUNCTION__;
 }
 
 CConnecterVnc::~CConnecterVnc()
 {
-    qDebug(log) << "CConnecterVnc::~CConnecterVnc()";
+    qDebug(log) << __FUNCTION__;
 }
 
 const QString CConnecterVnc::Id()
@@ -73,4 +73,17 @@ CConnect *CConnecterVnc::InstanceConnect()
 {
     CConnectVnc* p = new CConnectVnc(this);
     return p;
+}
+
+int CConnecterVnc::OnInitial()
+{
+    qDebug(log) << __FUNCTION__;
+    SetParameter(&m_Para);
+    return 0;
+}
+
+int CConnecterVnc::OnClean()
+{
+    qDebug(log) << __FUNCTION__;
+    return 0;
 }

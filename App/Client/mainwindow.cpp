@@ -600,7 +600,7 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
         switch(nRet)
         {
         case QDialog::Rejected:
-            p->deleteLater();
+            m_Client.DeleteConnecter(p);
             return 0;
         case QDialog::Accepted:
             bSave = true;
@@ -713,7 +713,7 @@ void MainWindow::slotDisconnected()
             m_pView->RemoveView(c->GetViewer());
             m_Connecters.removeAll(c);
             m_ConfigureFiles.remove(c);
-            c->deleteLater();
+            m_Client.DeleteConnecter(c);
             return;
         }
     }

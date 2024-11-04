@@ -21,11 +21,14 @@ class CScreenCapture : public CConnecter
     Q_OBJECT
 public:
     explicit CScreenCapture(CPluginClient *plugin);
+    virtual ~CScreenCapture();
 
     // CConnecter interface
 public:
     virtual qint16 Version() override;
     virtual QWidget *GetViewer() override;
+    virtual int OnInitial() override;
+    virtual int OnClean() override;
 
 public Q_SLOTS:
     virtual int Connect() override;

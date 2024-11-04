@@ -231,6 +231,24 @@ int CConnecter::Save(QSettings &set)
     return nRet;
 }
 
+int CConnecter::Initial(CParameterClient* pPara)
+{
+    qDebug(log) << __FUNCTION__;
+    int nRet = 0;
+    nRet = OnInitial();
+    if(nRet) return nRet;
+    nRet = SetParameterClient(pPara);
+    return nRet;
+}
+
+int CConnecter::Clean()
+{
+    qDebug(log) << __FUNCTION__;
+    int nRet = 0;
+    nRet = OnClean();
+    return nRet;
+}
+
 int CConnecter::SetParameterClient(CParameterClient* pPara)
 {
     if(GetParameter())

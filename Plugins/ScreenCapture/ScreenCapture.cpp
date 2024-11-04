@@ -11,11 +11,30 @@
 static Q_LOGGING_CATEGORY(log, "Screen.Capture")
 CScreenCapture::CScreenCapture(CPluginClient *plugin)
     : CConnecter(plugin)
-    , m_pWidget(new QVideoWidget())
+    , m_pWidget(nullptr)
 {
-    bool check = false;
-    SetParameter(&m_Parameter);
+    qDebug(log) << __FUNCTION__;
+}
 
+CScreenCapture::~CScreenCapture()
+{
+    qDebug(log) << __FUNCTION__;
+}
+
+qint16 CScreenCapture::Version()
+{
+    return 0;
+}
+
+int CScreenCapture::OnInitial()
+{
+    qDebug(log) << __FUNCTION__;
+    Q_ASSERT(!m_pWidget);
+    m_pWidget = new QVideoWidget();
+    SetParameter(&m_Parameter);
+    bool check = false;
+
+    CPluginClient* plugin = GetPlugClient();
     QString szTitle(plugin->DisplayName());
     m_Menu.setTitle(szTitle);
     m_Menu.setToolTip(szTitle);
@@ -121,16 +140,19 @@ CScreenCapture::CScreenCapture(CPluginClient *plugin)
             }
         });
     Q_ASSERT(check);
+    return 0;
 }
 
-qint16 CScreenCapture::Version()
+int CScreenCapture::OnClean()
 {
+    if(m_pWidget)
+        delete m_pWidget;
     return 0;
 }
 
 QWidget *CScreenCapture::GetViewer()
 {
-    return m_pWidget; // new CDlgCapture(&m_Parameter);
+    return m_pWidget;
 }
 
 QDialog *CScreenCapture::OnOpenDialogSettings(QWidget *parent)

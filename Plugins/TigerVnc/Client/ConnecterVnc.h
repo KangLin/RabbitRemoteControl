@@ -18,6 +18,8 @@ public:
 
     virtual const QString Id() override;
     virtual qint16 Version() override;
+    virtual int OnInitial() override;
+    virtual int OnClean() override;
 
 protected:
     virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) override;

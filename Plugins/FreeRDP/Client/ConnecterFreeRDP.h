@@ -15,6 +15,8 @@ public:
 
 public:
     virtual qint16 Version() override;
+    virtual int OnInitial() override;
+    virtual int OnClean() override;
     
 protected:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;

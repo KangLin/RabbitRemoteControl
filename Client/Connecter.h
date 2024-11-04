@@ -148,20 +148,6 @@ public:
      */
     virtual QMenu* GetMenu(QWidget* parent = nullptr);
 
-    /*!
-     * \~chinese \brief 从文件中加载参数
-     * \~english \brief Load parameters from file
-     */
-    virtual int Load(QString szFile = QString());
-
-    /*!
-     * \~chinese \brief 保存参数到文件中
-     * \param szFile: 文件名。当为空时，使用上次使用过的文件。
-     * \~english Accept parameters to file
-     * \param szFile: When it is empty, the file used last time is used.
-     */
-    virtual int Save(QString szFile = QString());
-
 public Q_SLOTS:
     /**
      * \~chinese
@@ -283,6 +269,26 @@ Q_SIGNALS:
 
 protected:
     /*!
+     * \brief Initial
+     * \~
+     * \see CClient::CreateConnecter
+     */
+    Q_INVOKABLE virtual int Initial(CParameterClient *pPara);
+    /*!
+     * \brief Clean
+     */
+    Q_INVOKABLE virtual int Clean();
+    /*!
+     * \~chinese
+     * 在派生类中调用　SetParameter()　设置参数指针，和其它需要的初始化工作。
+     * \~english
+     * \brief Call SetParameter() in the function
+     * \~
+     * \see CClient::CreateConnecter
+     */
+    virtual int OnInitial() = 0;
+    virtual int OnClean() = 0;
+    /*!
      * \~chinese 得到参数。它仅由插件使用。所以这里设置为保护成员。
      *           可以在其派生类中重载它为公有函数，以方便插件使用。
      *
@@ -292,15 +298,16 @@ protected:
     virtual CParameterBase* GetParameter();
     /*!
      * \~chinese 设置参数
-     * \note 在派生类的构造函数中先实例化参数，然后在其构造函数中调用此函数设置参数。
+     * \note 在派生类的构造函数（或者　OnInitial()　）中先实例化参数，
+     *       然后在　OnInitial()　中调用此函数设置参数。
      *
      * \~english Set parameters
      * \note  Instantiate a parameter in a derived class constructor,
-     *      and then call this function in its constructor to set the parameter.
+     *      and then call this function in its OnInitial() to set the parameter.
      *
      * \~
      * \see \ref section_Use_CParameterBase
-     * \see SetParameterClient()
+     * \see SetParameterClient() CClient::CreateConnecter
      */
     virtual int SetParameter(CParameterBase* p);
 
@@ -311,7 +318,7 @@ private:
      *       please overload this function.
      * \see CClient::CreateConnecter CParameterConnecter CParameterClient
      */
-    Q_INVOKABLE virtual int SetParameterClient(CParameterClient* pPara);
+    virtual int SetParameterClient(CParameterClient* pPara);
 
 protected:
     Q_INVOKABLE CPluginClient* GetPlugClient() const;
@@ -360,7 +367,23 @@ protected:
      * \~english Save parameters
      */
     virtual int Save(QSettings &set);
-    
+    /*!
+     * \~chinese \brief 从文件中加载参数
+     * \~english \brief Load parameters from file
+     * \~
+     * \see CClient::LoadConnecter
+     */
+    Q_INVOKABLE virtual int Load(QString szFile = QString());
+    /*!
+     * \~chinese \brief 保存参数到文件中
+     * \param szFile: 文件名。
+     * \~english Save parameters to file
+     * \param szFile: File name.
+     * \~
+     * \see CClient::SaveConnecter
+     */
+    Q_INVOKABLE virtual int Save(QString szFile = QString());
+
 private Q_SLOTS:
     //! \~chinese \note 仅由 CConnectDesktop::SetConnecter() 使用
     //! \~english \note The slot only is used by CConnectDesktop::SetConnecter()

@@ -28,6 +28,8 @@ public:
     virtual qint16 Version() override;
     // CConnecterConnect interface
     virtual CConnect *InstanceConnect() override;
+    virtual int OnInitial() override;
+    virtual int OnClean() override;
 
 Q_SIGNALS:
     void sigStart(bool bStart);

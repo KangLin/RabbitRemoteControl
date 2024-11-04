@@ -16,15 +16,27 @@ static Q_LOGGING_CATEGORY(log, "Client.Connecter.Thread")
 CConnecterThread::CConnecterThread(CPluginClient *plugin)
     : CConnecterConnect(plugin)
     , m_pThread(nullptr)
-    , m_pView(nullptr)
+    , m_pFrmViewer(nullptr)
     , m_pScroll(nullptr)
     , m_psbZoomFactor(nullptr)
 {
-    bool check = false;
     qDebug(log) << __FUNCTION__;
+}
 
-    m_pView = new CFrmViewer();
-    m_pScroll = new CFrmScroll(m_pView);
+CConnecterThread::~CConnecterThread()
+{
+    qDebug(log) << __FUNCTION__;
+}
+
+int CConnecterThread::Initial(CParameterClient *pPara)
+{
+    qDebug(log) << __FUNCTION__;
+    int nRet = 0;
+    bool check = false;
+
+    Q_ASSERT(!(m_pFrmViewer && m_pScroll));
+    m_pFrmViewer = new CFrmViewer();
+    m_pScroll = new CFrmScroll(m_pFrmViewer);
 
     QMenu* pMenuZoom = new QMenu(&m_Menu);
     pMenuZoom->setTitle(tr("Zoom"));
@@ -64,7 +76,7 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
         m_pZoomIn, &QAction::toggled, this,
         [&](){
             if(m_psbZoomFactor)
-                m_psbZoomFactor->setValue((m_pView->GetZoomFactor() + 0.1) * 100);
+                m_psbZoomFactor->setValue((m_pFrmViewer->GetZoomFactor() + 0.1) * 100);
         });
     Q_ASSERT(check);
     m_pZoomOut = pMenuZoom->addAction(
@@ -74,7 +86,7 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
         m_pZoomOut, &QAction::toggled, this,
         [&](){
             if(m_psbZoomFactor)
-                m_psbZoomFactor->setValue((m_pView->GetZoomFactor() - 0.1) * 100);
+                m_psbZoomFactor->setValue((m_pFrmViewer->GetZoomFactor() - 0.1) * 100);
         });
     Q_ASSERT(check);
     QActionGroup* pGBViewZoom = new QActionGroup(this);
@@ -125,16 +137,22 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
 
     m_Menu.addSeparator();
     m_Menu.addAction(m_pSettings);
+
+    nRet = CConnecter::Initial(pPara);
+    return nRet;
 }
 
-CConnecterThread::~CConnecterThread()
+int CConnecterThread::Clean()
 {
     qDebug(log) << __FUNCTION__;
+    int nRet = 0;
+    nRet = CConnecter::Clean();
     if(m_pScroll)
     {
         delete m_pScroll;
         m_pScroll = nullptr;
     }
+    return nRet;
 }
 
 QWidget *CConnecterThread::GetViewer()
@@ -186,13 +204,13 @@ QString CConnecterThread::ServerName()
 int CConnecterThread::Load(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(m_pView);
+    Q_ASSERT(m_pFrmViewer);
     nRet = CConnecterConnect::Load(set);
-    if(m_pView && GetParameter())
+    if(m_pFrmViewer && GetParameter())
     {
-        m_pView->slotSetZoomFactor(GetParameter()->GetZoomFactor());
+        m_pFrmViewer->slotSetZoomFactor(GetParameter()->GetZoomFactor());
         if(m_psbZoomFactor)
-            m_psbZoomFactor->setValue(m_pView->GetZoomFactor() * 100);
+            m_psbZoomFactor->setValue(m_pFrmViewer->GetZoomFactor() * 100);
         CFrmViewer::ADAPT_WINDOWS aw = GetParameter()->GetAdaptWindows();
         if(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow == aw)
             m_pZoomToWindow->setChecked(true);
@@ -210,10 +228,10 @@ int CConnecterThread::Save(QSettings &set)
 {
     int nRet = 0;
     Q_ASSERT(GetParameter());
-    if(GetParameter() && m_pView)
+    if(GetParameter() && m_pFrmViewer)
     {
-        GetParameter()->SetAdaptWindows(m_pView->GetAdaptWindows());
-        GetParameter()->SetZoomFactor(m_pView->GetZoomFactor());
+        GetParameter()->SetAdaptWindows(m_pFrmViewer->GetAdaptWindows());
+        GetParameter()->SetZoomFactor(m_pFrmViewer->GetZoomFactor());
     }
     nRet = CConnecterConnect::Save(set);
     return nRet;
@@ -252,18 +270,18 @@ void CConnecterThread::slotRecorderStateChanged(
 
 void CConnecterThread::slotValueChanged(int v)
 {
-    if(!m_pScroll || !m_pView) return;
-    m_pView->slotSetZoomFactor(((double)v) / 100);
+    if(!m_pScroll || !m_pFrmViewer) return;
+    m_pFrmViewer->slotSetZoomFactor(((double)v) / 100);
     m_pScroll->slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS::Zoom);
 }
 
 void CConnecterThread::slotScreenShot()
 {
-    if(!GetParameter() || !m_pView)
+    if(!GetParameter() || !m_pFrmViewer)
         return;
     auto &record = GetParameter()->m_Record;
     QString szFile = record.GetImageFile(true);
-    bool bRet = m_pView->GrabImage().save(szFile);
+    bool bRet = m_pFrmViewer->GrabImage().save(szFile);
     if(bRet)
         qDebug(log) << "Success: save screenshot to" << szFile;
     else

@@ -12,21 +12,37 @@ CConnecterWakeOnLan::CConnecterWakeOnLan(CPluginClient *plugin)
     , m_pView(nullptr)
     , m_pConnect(nullptr)
 {
+    qDebug(log) << __FUNCTION__;
     m_Parameter.m_WakeOnLan.SetEnable(true);
-    SetParameter(&m_Parameter);
-    m_pView = new CFrmWakeOnLan();
-    if(m_pView)
-        m_pView->setWindowTitle(plugin->Name());
-    m_Menu.addAction(m_pSettings);
 }
 
 CConnecterWakeOnLan::~CConnecterWakeOnLan()
 {
-    qDebug(log) << "CConnecterWakeOnLan::~CConnecterWakeOnLan()";
+    qDebug(log) << __FUNCTION__;
 }
 
 qint16 CConnecterWakeOnLan::Version()
 {
+    return 0;
+}
+
+int CConnecterWakeOnLan::OnInitial()
+{
+    qDebug(log) << __FUNCTION__;
+    SetParameter(&m_Parameter);
+    CPluginClient* plugin = GetPlugClient();
+    m_pView = new CFrmWakeOnLan();
+    if(m_pView)
+        m_pView->setWindowTitle(plugin->Name());
+    m_Menu.addAction(m_pSettings);
+    return 0;
+}
+
+int CConnecterWakeOnLan::OnClean()
+{
+    qDebug(log) << __FUNCTION__;
+    if(m_pView)
+        delete m_pView;
     return 0;
 }
 

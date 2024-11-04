@@ -61,6 +61,8 @@ public:
     explicit CConnecterThread(CPluginClient *plugin);
     virtual ~CConnecterThread();
 
+    virtual int Initial(CParameterClient *pPara) override;
+    virtual int Clean() override;
     virtual QWidget* GetViewer() override;
 
 public Q_SLOTS:
@@ -114,7 +116,7 @@ private:
 
 private:
     CConnectThread* m_pThread;
-    CFrmViewer *m_pView;
+    CFrmViewer *m_pFrmViewer;
     CFrmScroll* m_pScroll;
 
 protected:

@@ -12,6 +12,21 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     : CConnecterThread(plugin)
 {
     qDebug(log) << __FUNCTION__;
+}
+
+CConnecterPlayer::~CConnecterPlayer()
+{
+    qDebug(log) << __FUNCTION__;
+}
+
+qint16 CConnecterPlayer::Version()
+{
+    return 0;
+}
+
+int CConnecterPlayer::OnInitial()
+{
+    qDebug(log) << __FUNCTION__;
     bool check = false;
     SetParameter(&m_Parameters);
 
@@ -100,15 +115,12 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     m_Menu.addSeparator();
     m_Menu.addAction(m_pSettings);
 #endif
+    return 0;
 }
 
-CConnecterPlayer::~CConnecterPlayer()
+int CConnecterPlayer::OnClean()
 {
     qDebug(log) << __FUNCTION__;
-}
-
-qint16 CConnecterPlayer::Version()
-{
     return 0;
 }
 

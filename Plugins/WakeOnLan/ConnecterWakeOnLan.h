@@ -23,6 +23,8 @@ public:
     virtual const QString Name() override;
     virtual qint16 Version() override;
     virtual QWidget *GetViewer() override;
+    virtual int OnInitial() override;
+    virtual int OnClean() override;
 
     // CConnecter interface
 public slots:
