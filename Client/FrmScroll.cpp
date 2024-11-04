@@ -13,6 +13,7 @@ CFrmScroll::CFrmScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
     if(pView)
     {
         setWidget(pView);
+        pView->show();
         bool check = connect(pView,
                              SIGNAL(sigMouseMoveEvent(QMouseEvent*)),
                              this,

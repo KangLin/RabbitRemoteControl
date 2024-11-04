@@ -28,6 +28,7 @@ public:
     QAction* m_paScreenShot;
     QAction* m_paMuted;
     QAction* m_paVolume;
+    QAction* m_paSettings;
 
 public:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;

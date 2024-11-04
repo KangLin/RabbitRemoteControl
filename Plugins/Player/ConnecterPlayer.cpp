@@ -23,7 +23,7 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     m_Menu.addAction(m_Player.m_paRecordPause);
     m_Menu.addAction(m_Player.m_paScreenShot);
     m_Menu.addSeparator();
-    m_Menu.addAction(m_pSettings);
+    m_Menu.addAction(m_Player.m_paSettings);
     check = connect(this, &CConnecterPlayer::sigConnected,
                     m_Player.m_paStart, &QAction::toggle);
     Q_ASSERT(check);
@@ -41,6 +41,9 @@ CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     Q_ASSERT(check);
     check = connect(m_Player.m_paScreenShot, &QAction::triggered,
                     m_pScreenShot, &QAction::triggered);
+    Q_ASSERT(check);
+    check = connect(m_Player.m_paSettings, &QAction::triggered,
+                    m_pSettings, &QAction::trigger);
     Q_ASSERT(check);
     check = connect(this, &CConnecterPlayer::sigConnected,
                     this, [&](){

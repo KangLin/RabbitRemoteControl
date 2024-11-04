@@ -28,8 +28,10 @@ CFrmViewer::CFrmViewer(QWidget *parent)
 {
     qDebug(log) << __FUNCTION__;
     setAttribute(Qt::WA_DeleteOnClose);
+    //qDebug(log) << "autoFillBackground:" << autoFillBackground();
+    //setAutoFillBackground(true);
     //setAttribute(Qt::WA_OpaquePaintEvent);
-    setAttribute(Qt::WA_NoSystemBackground);
+    //setAttribute(Qt::WA_NoSystemBackground);
 
     slotSetAdaptWindows(ADAPT_WINDOWS::ZoomToWindow);
     slotSetZoomFactor(1);

@@ -98,6 +98,9 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     m_paRecordPause->setCheckable(true);
     m_paRecordPause->setEnabled(false);
 
+    m_paSettings = m_ToolBar.addAction(
+        QIcon::fromTheme("system-settings"), tr("Settings"));
+
     m_paMuted = m_ToolBar.addAction(
         QIcon::fromTheme("audio-volume-medium"), tr("Audio"));
     m_paMuted->setCheckable(true);
