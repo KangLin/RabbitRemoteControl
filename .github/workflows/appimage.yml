@@ -248,8 +248,8 @@ jobs:
               --deploy-deps-only=AppDir/usr/lib/`uname -m`-linux-gnu \
               --plugin qt \
               --output appimage
-          mv Rabbit_Remote_Control-`uname -m`.AppImage ../RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage
-          md5sum ../RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage > ../RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage.md5sum
+          mv Rabbit_Remote_Control-`uname -m`.AppImage ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage
+          md5sum ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage > ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage.md5sum
 
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
@@ -262,17 +262,17 @@ jobs:
           echo "Update update_linux.json ......"
           export QT_XCB_GL_INTEGRATION=none
           ARCH=`uname -m`
-          MD5SUM=`cat RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage.md5sum|awk '{print $1}'`
-          echo "MD5SUM RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage: ${MD5SUM}"
+          MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage.md5sum|awk '{print $1}'`
+          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage: ${MD5SUM}"
           echo "Enable core dump ......"
           ulimit -c unlimited
           echo "# sudo sysctl -w kernel.core_pattern=core"
           sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
           echo "Generate update configure file ......"
-          ./RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
+          ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
             -f "${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \
             --foc 1 \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage" \
             --md5 "${MD5SUM}" \
             -m "v${{env.RabbitRemoteControl_VERSION}}"
 
@@ -288,7 +288,7 @@ jobs:
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}
+          name: ${{ env.artifact_name }}
           path: |
-            ${{github.workspace}}/RabbitRemoteControl${{env.RabbitRemoteControl_VERSION}}_*.AppImage
+            ${{github.workspace}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_*.AppImage
             ${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json
