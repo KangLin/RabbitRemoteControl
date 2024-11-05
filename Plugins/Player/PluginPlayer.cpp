@@ -48,9 +48,9 @@ const QIcon CPluginPlayer::Icon() const
 const QString CPluginPlayer::Details() const
 {
     QString szDetails;
-    szDetails = "-  " + tr("Qt version:") + "\n";
-    szDetails += "  -  " + tr("Compile version: ") + QT_VERSION_STR + "\n";
-    szDetails += "  -  " +  tr("Runtime version: ") + qVersion() + "\n";
+    szDetails = "- " + tr("Qt version:") + "\n";
+    szDetails += "  - " + tr("Compile version: ") + QT_VERSION_STR + "\n";
+    szDetails += "  - " +  tr("Runtime version: ") + qVersion() + "\n";
 #ifdef HAVE_QVideoWidget
     szDetails += "- " + tr("Use QVideoWidget");
 #endif
