@@ -58,7 +58,6 @@ int CParameterRecordUI::SetParameter(CParameter *pParameter)
     m_pParameters = qobject_cast<CParameterRecord*>(pParameter);
     if(!m_pParameters)
         return 1;
-    ui->gbRecord->setChecked(m_pParameters->GetEnable());
     ui->gbVideo->setChecked(m_pParameters->GetEnableVideo());
     ui->gbAudio->setChecked(m_pParameters->GetEnableAudio());
     ui->leFolder->setText(m_pParameters->GetPath());
@@ -104,7 +103,6 @@ int CParameterRecordUI::SetParameter(CParameter *pParameter)
 
 int CParameterRecordUI::Accept()
 {
-    m_pParameters->SetEnable(ui->gbRecord->isChecked());
     m_pParameters->SetEnableVideo(ui->gbVideo->isChecked());
     m_pParameters->SetEnableAudio(ui->gbAudio->isChecked());
     m_pParameters->SetPath(ui->leFolder->text());

@@ -272,6 +272,7 @@ jobs:
           ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
             -f "${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \
             --foc 1 \
+            --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage" \
             --md5 "${MD5SUM}" \
             -m "v${{env.RabbitRemoteControl_VERSION}}"

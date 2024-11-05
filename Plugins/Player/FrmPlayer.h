@@ -23,8 +23,10 @@ public:
 
     QAction* m_paStart;
     QAction* m_paPause;
+#if HAVE_QT6_RECORD
     QAction* m_paRecord;
     QAction* m_paRecordPause;
+#endif
     QAction* m_paScreenShot;
     QAction* m_paMuted;
     QAction* m_paVolume;

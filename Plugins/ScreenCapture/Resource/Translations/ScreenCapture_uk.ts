@@ -4,8 +4,50 @@
 <context>
     <name>CDlgCapture</name>
     <message>
-        <location filename="../../DlgCapture.ui" line="14"/>
-        <source>Dialog</source>
+        <location filename="../../DlgCapture.ui" line="20"/>
+        <location filename="../../DlgCapture.cpp" line="17"/>
+        <source>Screen capture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgCapture.ui" line="30"/>
+        <location filename="../../DlgCapture.ui" line="65"/>
+        <source>Target</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgCapture.ui" line="36"/>
+        <source>Operate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgCapture.ui" line="42"/>
+        <source>Shot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgCapture.ui" line="49"/>
+        <source>Record</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgCapture.ui" line="73"/>
+        <source>Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgCapture.ui" line="100"/>
+        <source>Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgCapture.ui" line="119"/>
+        <source>Custom rectangle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgCapture.ui" line="126"/>
+        <source>Customize</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -18,7 +60,20 @@
     </message>
     <message>
         <location filename="../../PluginScreenCapture.cpp" line="28"/>
-        <source>Capture or recored screen and window</source>
+        <source>Capture or record screen and window. This is a sample example.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CScreenCapture</name>
+    <message>
+        <location filename="../../ScreenCapture.cpp" line="45"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ScreenCapture.cpp" line="49"/>
+        <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

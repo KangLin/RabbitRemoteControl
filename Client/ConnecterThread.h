@@ -81,21 +81,8 @@ public Q_SLOTS:
     virtual int DisConnect() override;
 
     virtual void slotScreenShot();
-#if HAVE_QT6_RECORD
-    void slotRecorderStateChanged(QMediaRecorder::RecorderState state);
-#endif
-Q_SIGNALS:
-    /*! emit by record menu in the class
-     *  \see slotRecord
-     */
-    void sigRecord(bool bRecord);
-    void sigRecordPause(bool bPause);
+
 private Q_SLOTS:
-    /*!
-     * \brief Record action
-     * \param checked
-     */
-    virtual void slotRecord(bool checked);
     //! emit by zoom menu in the class
     void slotValueChanged(int v);
 
@@ -128,8 +115,26 @@ protected:
     QAction* m_pZoomOut;
     QSpinBox* m_psbZoomFactor;
     QAction* m_pScreenShot;
+
+#if HAVE_QT6_RECORD
+protected:
     QAction* m_pRecord;
     QAction* m_pRecordPause;
+public Q_SLOTS:
+    void slotRecorderStateChanged(QMediaRecorder::RecorderState state);
+Q_SIGNALS:
+    /*! emit by record menu in the class
+     *  \see slotRecord
+     */
+    void sigRecord(bool bRecord);
+    void sigRecordPause(bool bPause);
+private Q_SLOTS:
+    /*!
+     * \brief Record action
+     * \param checked
+     */
+    virtual void slotRecord(bool checked);
+#endif
 };
 
 #endif // CCONNECTERBACKTHREAD_H

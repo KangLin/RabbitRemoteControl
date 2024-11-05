@@ -20,8 +20,9 @@ public:
     explicit CParameterRecord(QObject *parent = nullptr,
                               const QString& szPrefix = QString());
 
-    const bool GetEnable() const;
-    int SetEnable(bool bEnable);
+    const QString GetPath() const;
+    int SetPath(const QString& szPath);
+
     /*! \param bAuto:
      *         - true: Automatically generated
      *         - false: use the value of SetFile()
@@ -33,8 +34,8 @@ public:
     QString GetImageFile(bool bAuto = false);
     void SetImageFile(const QString &newImageFile);
 
-    const QString GetPath() const;
-    int SetPath(const QString& szPath);
+    QString GetImagePath() const;
+    void SetImagePath(const QString &newImagePath);
 
 #if HAVE_QT6_MULTIMEDIA
     const QMediaFormat::FileFormat GetFileFormat() const;
@@ -82,13 +83,15 @@ Q_SIGNALS:
     void sigEnableAudioChanged();
     void sigEndActionChanged();
 
+    void ImagePathChanged();
+
 private:
-    bool m_bEnable;
     bool m_bEnableVideo;
     bool m_bEnableAudio;
     QString m_szFile;
-    QString m_szImageFile;
     QString m_szPath;
+    QString m_szImageFile;
+    QString m_szImagePath;
 
 #if HAVE_QT6_MULTIMEDIA
     QMediaFormat::FileFormat m_FileFormat;

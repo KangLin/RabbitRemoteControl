@@ -34,8 +34,10 @@ int CConnecterPlayer::OnInitial()
 #ifdef HAVE_QVideoWidget
     m_Menu.addAction(m_Player.m_paStart);
     m_Menu.addAction(m_Player.m_paPause);
+#if HAVE_QT6_RECORD
     m_Menu.addAction(m_Player.m_paRecord);
     m_Menu.addAction(m_Player.m_paRecordPause);
+#endif
     m_Menu.addAction(m_Player.m_paScreenShot);
     m_Menu.addSeparator();
     m_Menu.addAction(m_Player.m_paSettings);
@@ -48,12 +50,14 @@ int CConnecterPlayer::OnInitial()
     check = connect(m_Player.m_paPause, SIGNAL(toggled(bool)),
                     this, SIGNAL(sigPause(bool)));
     Q_ASSERT(check);
+#if HAVE_QT6_RECORD
     check = connect(m_Player.m_paRecord, SIGNAL(toggled(bool)),
                     m_pRecord ,SIGNAL(toggled(bool)));
     Q_ASSERT(check);
     check = connect(m_Player.m_paRecordPause, SIGNAL(toggled(bool)),
                     m_pRecordPause, SIGNAL(toggled(bool)));
     Q_ASSERT(check);
+#endif
     check = connect(m_Player.m_paScreenShot, &QAction::triggered,
                     m_pScreenShot, &QAction::triggered);
     Q_ASSERT(check);
@@ -84,21 +88,25 @@ int CConnecterPlayer::OnInitial()
                             p->setText(tr("Stop"));
                             m_pPause->setEnabled(true);
                             m_pPause->setChecked(false);
+                            m_pScreenShot->setEnabled(true);
+#if HAVE_QT6_RECORD
                             m_pRecord->setEnabled(true);
                             m_pRecord->setChecked(false);
                             m_pRecordPause->setEnabled(true);
                             m_pRecordPause->setChecked(false);
-                            m_pScreenShot->setEnabled(true);
+#endif
                         } else {
                             p->setIcon(QIcon::fromTheme("media-playback-start"));
                             p->setText(tr("Start"));
                             m_pPause->setEnabled(false);
                             m_pPause->setChecked(false);
+                            m_pScreenShot->setEnabled(false);
+#if HAVE_QT6_RECORD
                             m_pRecord->setEnabled(false);
                             m_pRecord->setChecked(false);
                             m_pRecordPause->setEnabled(false);
                             m_pRecordPause->setChecked(false);
-                            m_pScreenShot->setEnabled(false);
+#endif
                         }
                         emit sigStart(checked);
                     });
@@ -109,8 +117,10 @@ int CConnecterPlayer::OnInitial()
     check = connect(m_pPause, SIGNAL(toggled(bool)),
                     this, SIGNAL(sigPause(bool)));
     Q_ASSERT(check);
+#if HAVE_QT6_RECORD
     m_Menu.addAction(m_pRecord);
     m_Menu.addAction(m_pRecordPause);
+#endif
     m_Menu.addAction(m_pScreenShot);
     m_Menu.addSeparator();
     m_Menu.addAction(m_pSettings);
@@ -164,10 +174,14 @@ void CConnecterPlayer::slotPlaybackStateChanged(QMediaPlayer::PlaybackState stat
         m_Player.m_paStart->setChecked(false);
 }
 
+#if HAVE_QT6_RECORD
 void CConnecterPlayer::slotRecordStateChanged(QMediaRecorder::RecorderState state)
 {
+
     if(QMediaRecorder::StoppedState == state
         && m_Player.m_paRecord->isCheckable())
         m_Player.m_paRecord->setChecked(false);
 }
+#endif
+
 #endif

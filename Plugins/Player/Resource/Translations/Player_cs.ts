@@ -4,26 +4,27 @@
 <context>
     <name>CConnectPlayer</name>
     <message>
-        <location filename="../../ConnectPlayer.cpp" line="89"/>
-        <source>Position: </source>
+        <location filename="../../ConnectPlayer.cpp" line="444"/>
+        <source>Progress: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>CConneterPlayer</name>
+    <name>CConnecterPlayer</name>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="22"/>
+        <location filename="../../ConnecterPlayer.cpp" line="77"/>
+        <location filename="../../ConnecterPlayer.cpp" line="100"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="24"/>
+        <location filename="../../ConnecterPlayer.cpp" line="88"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="26"/>
-        <source>Capture</source>
+        <location filename="../../ConnecterPlayer.cpp" line="115"/>
+        <source>pause</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -35,140 +36,141 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="24"/>
+        <location filename="../../DlgPlayer.ui" line="34"/>
         <source>Input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="27"/>
-        <location filename="../../DlgPlayer.ui" line="30"/>
+        <location filename="../../DlgPlayer.ui" line="37"/>
+        <location filename="../../DlgPlayer.ui" line="40"/>
         <source>Input parameters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="60"/>
-        <location filename="../../DlgPlayer.ui" line="224"/>
+        <location filename="../../DlgPlayer.ui" line="64"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="71"/>
-        <source>AudioInput</source>
+        <location filename="../../DlgPlayer.ui" line="75"/>
+        <source>Audio input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="85"/>
-        <location filename="../../DlgPlayer.ui" line="125"/>
+        <location filename="../../DlgPlayer.ui" line="89"/>
+        <location filename="../../DlgPlayer.ui" line="129"/>
         <source>Muted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="92"/>
-        <location filename="../../DlgPlayer.ui" line="132"/>
+        <location filename="../../DlgPlayer.ui" line="96"/>
+        <location filename="../../DlgPlayer.ui" line="136"/>
         <source>Volume:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="111"/>
+        <location filename="../../DlgPlayer.ui" line="115"/>
         <source>Audio output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.ui" line="170"/>
-        <location filename="../../DlgPlayer.ui" line="182"/>
-        <source>Record</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="173"/>
-        <location filename="../../DlgPlayer.ui" line="176"/>
-        <source>Record parameters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="193"/>
-        <source>Record file format:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="214"/>
-        <source>Record folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="235"/>
-        <source>Video</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="246"/>
-        <location filename="../../DlgPlayer.ui" line="321"/>
-        <source>Encode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="267"/>
-        <source>frame rate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="288"/>
-        <source>Quality:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="310"/>
-        <source>Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.ui" line="342"/>
-        <source>Sample rate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.cpp" line="30"/>
+        <location filename="../../DlgPlayer.cpp" line="60"/>
         <source>Camera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="31"/>
+        <location filename="../../DlgPlayer.cpp" line="68"/>
         <source>Url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="32"/>
-        <source>Capture screen</source>
+        <location filename="../../DlgPlayer.cpp" line="95"/>
+        <source>The url is empty. please set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="33"/>
-        <source>Capture window</source>
+        <location filename="../../DlgPlayer.cpp" line="96"/>
+        <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="74"/>
-        <source>Screen:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../DlgPlayer.cpp" line="97"/>
+        <location filename="../../DlgPlayer.cpp" line="115"/>
         <source>Camera: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="103"/>
+        <location filename="../../DlgPlayer.cpp" line="121"/>
         <source>Url: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="164"/>
+        <location filename="../../DlgPlayer.cpp" line="173"/>
         <source>Media files(* wmv *.aac *.WebM *.mtk *.ogg *.mp4 *.mov *.avi);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgPlayer.cpp" line="166"/>
+        <location filename="../../DlgPlayer.cpp" line="175"/>
         <source>Open file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CFrmPlayer</name>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="37"/>
+        <location filename="../../FrmPlayer.cpp" line="234"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="44"/>
+        <source>pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="49"/>
+        <source>Backward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="71"/>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="84"/>
+        <source>ScreenShot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="99"/>
+        <source>Record pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="89"/>
+        <source>Record</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="105"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="108"/>
+        <location filename="../../FrmPlayer.cpp" line="155"/>
+        <source>Audio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="152"/>
+        <source>Muted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../FrmPlayer.cpp" line="222"/>
+        <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -181,7 +183,27 @@
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="27"/>
-        <source>Player: play media files. play and recored camera, network media stream.</source>
+        <source>Player: play media files. play or record camera, network media stream.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="51"/>
+        <source>Qt version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="52"/>
+        <source>Compile version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="53"/>
+        <source>Runtime version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="55"/>
+        <source>Use QVideoWidget</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -15,33 +15,7 @@ public:
 public Q_SLOTS:
     virtual int Load();
     virtual int Save();
-    
-public:
-    bool GetScreenShot() const;
-    void SetScreenShot(bool newScreenShot);
-    const QString &GetScreenShotPath() const;
-    void SetScreenShotPath(const QString& path);
-Q_SIGNALS:
-    void sigScreenShotChanged();
-private:
-    bool m_bScreenShot;
-    QString m_szScreenShotPath;
-    Q_PROPERTY(bool ScreenShot READ GetScreenShot WRITE SetScreenShot NOTIFY sigScreenShotChanged)
 
-public:
-    enum ScreenShotEndAction {
-        NoAction,
-        OpenFolder,
-        OpenFile
-    };
-    ScreenShotEndAction GetScreenShotEndAction() const;
-    void SetScreenShotEndAction(ScreenShotEndAction newScreenShotEndAction);    
-Q_SIGNALS:
-    void sigScreenShotEndActionChanged();
-private:
-    ScreenShotEndAction m_ScreenShotEndAction;
-    Q_PROPERTY(ScreenShotEndAction ScreenShotEndAction READ GetScreenShotEndAction WRITE SetScreenShotEndAction NOTIFY sigScreenShotEndActionChanged)
-    
 public:    
     bool GetReceiveShortCut() const;
     void SetReceiveShortCut(bool newReceiveShortCut);   

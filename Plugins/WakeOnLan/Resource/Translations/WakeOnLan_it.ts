@@ -5,7 +5,8 @@
     <name>CFrmWakeOnLan</name>
     <message>
         <location filename="../../FrmWakeOnLan.ui" line="14"/>
-        <source>Form</source>
+        <location filename="../../FrmWakeOnLan.cpp" line="14"/>
+        <source>Wake on lan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

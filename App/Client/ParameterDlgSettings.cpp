@@ -6,7 +6,7 @@
 #include "RabbitCommonDir.h"
 
 #ifdef HAVE_ICE
-    #include "Ice.h"
+#include "Ice.h"
 #endif
 
 #include <QFileDialog>
@@ -15,8 +15,8 @@
 static Q_LOGGING_CATEGORY(log, "App.MainWindow.Parameter")
 
 CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
-        QList<QWidget *> wViewer,
-        QWidget *parent) :
+                                             QList<QWidget *> wViewer,
+                                             QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CParameterDlgSettings),
     m_pParameters(pPara)
@@ -32,7 +32,7 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
         if(!check)
         {
             qCritical(log) << "Class" << p->metaObject()->className()
-                            << "must has slot slotAccept(), please add it";
+            << "must has slot slotAccept(), please add it";
         }
         Q_ASSERT(check);
     }
@@ -49,26 +49,12 @@ CParameterDlgSettings::CParameterDlgSettings(CParameterApp *pPara,
         if(!check)
         {
             qCritical(log) << "Class" << pWidget->metaObject()->className()
-                            << "must has slot slotAccept(), please add it";
+            << "must has slot slotAccept(), please add it";
         }
         Q_ASSERT(check);
     }
 #endif
-    
-    ui->leShotScreenSavepath->setText(m_pParameters->GetScreenShotPath());
-    ui->cbShotRemoteDesktop->setChecked(m_pParameters->GetScreenShot());
-    switch (m_pParameters->GetScreenShotEndAction()) {
-    case CParameterApp::NoAction:
-        ui->rbShotScreenNoAction->setChecked(true);
-        break;
-    case CParameterApp::OpenFile:
-        ui->rbShotScreenOpenFile->setChecked(true);
-        break;
-    case CParameterApp::OpenFolder:
-        ui->rbShotScreenOpenFolder->setChecked(true);
-        break;    
-    }
-    
+
     ui->cbReciverShortCut->setChecked(m_pParameters->GetReceiveShortCut());
     ui->cbSaveMainWindowStatus->setChecked(m_pParameters->GetSaveMainWindowStatus());
     ui->cbResumLasterClose->setChecked(m_pParameters->GetOpenLasterClose());
@@ -122,16 +108,7 @@ CParameterDlgSettings::~CParameterDlgSettings()
 void CParameterDlgSettings::on_pbOk_clicked()
 {
     if(!m_pParameters) return;
-    
-    m_pParameters->SetScreenShot(ui->cbShotRemoteDesktop->isChecked());
-    m_pParameters->SetScreenShotPath(ui->leShotScreenSavepath->text());
-    if(ui->rbShotScreenNoAction->isChecked())
-        m_pParameters->SetScreenShotEndAction(CParameterApp::NoAction);
-    if(ui->rbShotScreenOpenFile->isChecked())
-        m_pParameters->SetScreenShotEndAction(CParameterApp::OpenFile);
-    if(ui->rbShotScreenOpenFolder->isChecked())
-        m_pParameters->SetScreenShotEndAction(CParameterApp::OpenFolder);
-    
+
     m_pParameters->SetReceiveShortCut(ui->cbReciverShortCut->isChecked());
     m_pParameters->SetSaveMainWindowStatus(ui->cbSaveMainWindowStatus->isChecked());
     m_pParameters->SetOpenLasterClose(ui->cbResumLasterClose->isChecked());
@@ -165,16 +142,6 @@ void CParameterDlgSettings::on_pbOk_clicked()
 void CParameterDlgSettings::on_pbNo_clicked()
 {
     reject();
-}
-
-void CParameterDlgSettings::on_pbScreenShotBrowser_clicked()
-{
-    QString szPath = QFileDialog::getExistingDirectory(this,
-                                                    tr("Open shot screen path"),
-                                              ui->leShotScreenSavepath->text());
-    if(szPath.isEmpty())
-        return;
-    ui->leShotScreenSavepath->setText(szPath);
 }
 
 void CParameterDlgSettings::on_cbShowSystemTrayIcon_toggled(bool checked)

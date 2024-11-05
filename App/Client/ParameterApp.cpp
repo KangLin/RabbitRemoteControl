@@ -7,8 +7,6 @@
 #endif
 
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
-    m_bScreenShot(false),
-    m_ScreenShotEndAction(NoAction),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
     m_TabPosition(QTabWidget::North),
@@ -24,9 +22,6 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bMenuBar(true),
     m_bMessageBoxDisplayInfomation(true)
 {
-    m_szScreenShotPath = RabbitCommon::CDir::Instance()->GetDirUserImage()
-            + QDir::separator()
-            + "ScreenShot";
 }
 
 CParameterApp::~CParameterApp()
@@ -46,14 +41,6 @@ int CParameterApp::Load()
 {
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
-
-    SetScreenShot(set.value("ShotScreen/ShotScreen/Desktop",
-                            GetScreenShot()).toBool());
-    SetScreenShotPath(set.value("ShotScreen/ShotScreen/Path",
-                                GetScreenShotPath()).toString());
-    SetScreenShotEndAction(static_cast<ScreenShotEndAction>(
-                               set.value("ShotScreen/Action",
-                                         GetScreenShotEndAction()).toInt()));
 
     SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt",
                                  GetReceiveShortCut()).toBool());
@@ -106,9 +93,6 @@ int CParameterApp::Save()
     QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
                   QSettings::IniFormat);
 
-    set.setValue("ShotScreen/ShotScreen/Desktop", GetScreenShot());
-    set.setValue("ShotScreen/ShotScreen/Path", GetScreenShotPath());
-    set.setValue("ShotScreen/Action", GetScreenShotEndAction());
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
     set.setValue("MainWindow/View/TabView/Tab/Position", GetTabPosition());
@@ -255,42 +239,6 @@ void CParameterApp::SetFavoriteEdit(bool newFavoriteEdit)
 {
     m_bFavoriteEdit = newFavoriteEdit;
     emit sigFavoriteEditChanged(m_bFavoriteEdit);
-}
-
-bool CParameterApp::GetScreenShot() const
-{
-    return m_bScreenShot;
-}
-
-void CParameterApp::SetScreenShot(bool newScreenShot)
-{
-    if (m_bScreenShot == newScreenShot)
-        return;
-    m_bScreenShot = newScreenShot;
-    emit sigScreenShotChanged();
-}
-
-const QString& CParameterApp::GetScreenShotPath() const
-{
-    return m_szScreenShotPath;
-}
-
-void CParameterApp::SetScreenShotPath(const QString &path)
-{
-    m_szScreenShotPath = path;
-}
-
-CParameterApp::ScreenShotEndAction CParameterApp::GetScreenShotEndAction() const
-{
-    return m_ScreenShotEndAction;
-}
-
-void CParameterApp::SetScreenShotEndAction(ScreenShotEndAction newScreenShotEndAction)
-{
-    if (m_ScreenShotEndAction == newScreenShotEndAction)
-        return;
-    m_ScreenShotEndAction = newScreenShotEndAction;
-    emit sigScreenShotEndActionChanged();
 }
 
 bool CParameterApp::GetStatusBar() const

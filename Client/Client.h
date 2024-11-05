@@ -189,7 +189,7 @@ private:
     qint8 m_FileVersion;
     QSharedPointer<QTranslator> m_Translator;
     QSharedPointer<CHook> m_Hook;
-    CParameterClient m_ParameterClient;
+    CParameterClient* m_pParameterClient;
     QString m_szDetails;
 
 public:

@@ -13,8 +13,10 @@ static Q_LOGGING_CATEGORY(log, "FrmPlayer")
 CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     , m_paStart(nullptr)
     , m_paPause(nullptr)
+#if HAVE_QT6_RECORD
     , m_paRecord(nullptr)
     , m_paRecordPause(nullptr)
+#endif
     , m_paMuted(nullptr)
     , m_paVolume(nullptr)
     , m_VideoWidget(this)
@@ -82,6 +84,7 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
         QIcon::fromTheme("camera-photo"), tr("ScreenShot"));
     m_paScreenShot->setEnabled(false);
 
+#if HAVE_QT6_RECORD
     m_paRecord = m_ToolBar.addAction(
         QIcon::fromTheme("media-record"), tr("Record"));
     m_paRecord->setCheckable(true);
@@ -92,11 +95,11 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
             m_paRecordPause->setChecked(false);
     });
     Q_ASSERT(check);
-
     m_paRecordPause = m_ToolBar.addAction(
         QIcon::fromTheme("media-playback-pause"), tr("Record pause"));
     m_paRecordPause->setCheckable(true);
     m_paRecordPause->setEnabled(false);
+#endif
 
     m_paSettings = m_ToolBar.addAction(
         QIcon::fromTheme("system-settings"), tr("Settings"));
@@ -219,21 +222,25 @@ void CFrmPlayer::slotStart(bool bStart)
         p->setText(tr("Stop"));
         m_paPause->setEnabled(true);
         m_paPause->setChecked(false);
+        m_paScreenShot->setEnabled(true);
+#if HAVE_QT6_RECORD
         m_paRecord->setEnabled(true);
         m_paRecord->setChecked(false);
         m_paRecordPause->setEnabled(true);
         m_paRecordPause->setChecked(false);
-        m_paScreenShot->setEnabled(true);
+#endif
     } else {
         p->setIcon(QIcon::fromTheme("media-playback-start"));
         p->setText(tr("Start"));
         m_paPause->setEnabled(false);
         m_paPause->setChecked(false);
+        m_paScreenShot->setEnabled(false);
+#if HAVE_QT6_RECORD
         m_paRecord->setEnabled(false);
         m_paRecord->setChecked(false);
         m_paRecordPause->setEnabled(false);
         m_paRecordPause->setChecked(false);
-        m_paScreenShot->setEnabled(false);
+#endif
     }
 }
 

@@ -4,12 +4,12 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="121"/>
+        <location filename="../../Client.cpp" line="124"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="207"/>
+        <location filename="../../Client.cpp" line="210"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
@@ -17,29 +17,92 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="87"/>
+        <location filename="../../Connecter.cpp" line="39"/>
+        <source>Settings</source>
+        <translation>設置</translation>
+    </message>
+    <message>
+        <location filename="../../Connecter.cpp" line="100"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="88"/>
+        <location filename="../../Connecter.cpp" line="101"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="93"/>
+        <location filename="../../Connecter.cpp" line="106"/>
         <source>Server name: </source>
         <translation>服務名：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="94"/>
+        <location filename="../../Connecter.cpp" line="107"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="162"/>
+        <location filename="../../Connecter.cpp" line="175"/>
         <source>Set </source>
         <translation>設置 </translation>
+    </message>
+</context>
+<context>
+    <name>CConnecterThread</name>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="42"/>
+        <source>Zoom</source>
+        <translation>縮放</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="46"/>
+        <source>Zoom to window</source>
+        <translation>縮放到窗口大小</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="56"/>
+        <source>Keep aspect ration to windows</source>
+        <translation>保持高寬比縮放</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="65"/>
+        <source>Original</source>
+        <translation>原始</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="73"/>
+        <source>Zoom in</source>
+        <translation>放大</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="83"/>
+        <source>Zoom out</source>
+        <translation>縮小</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="116"/>
+        <source>ScreenShot</source>
+        <translation>截圖</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="122"/>
+        <source>Record</source>
+        <translation>錄製</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="129"/>
+        <source>Record pause</source>
+        <translation>暫停錄製</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="249"/>
+        <source>Stop record</source>
+        <translation>停止錄製</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="253"/>
+        <source>Start record</source>
+        <translation>開始錄製</translation>
     </message>
 </context>
 <context>
@@ -170,22 +233,22 @@
         <translation>提示類型</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="15"/>
+        <location filename="../../FrmParameterClient.cpp" line="69"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="19"/>
+        <location filename="../../FrmParameterClient.cpp" line="73"/>
         <source>Zoom</source>
         <translation>縮放</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="22"/>
+        <location filename="../../FrmParameterClient.cpp" line="76"/>
         <source>Zoom to window</source>
         <translation>縮放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="25"/>
+        <location filename="../../FrmParameterClient.cpp" line="79"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation>保持桌面的高寬比縮放到窗口大小</translation>
     </message>
@@ -193,7 +256,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="525"/>
+        <location filename="../../FrmViewer.cpp" line="511"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新鍵盤 LED 狀態失敗</translation>
     </message>
@@ -293,6 +356,126 @@
         <location filename="../../ParameterCompone/ParameterProxyUI.cpp" line="32"/>
         <source>SockesV5</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>CParameterRecord</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecord.cpp" line="29"/>
+        <location filename="../../ParameterCompone/ParameterRecord.cpp" line="39"/>
+        <source>RabbitRemoteControl</source>
+        <translation>玉兔遠程控製</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecord.cpp" line="30"/>
+        <source>Record</source>
+        <translation>錄製</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecord.cpp" line="40"/>
+        <source>ScreenShot</source>
+        <translation>截圖</translation>
+    </message>
+</context>
+<context>
+    <name>CParameterRecordUI</name>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="14"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="18"/>
+        <source>Record</source>
+        <translation>錄製</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="31"/>
+        <source>Folder:</source>
+        <translation>錄製</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="41"/>
+        <source>Browse</source>
+        <translation>瀏覽</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="52"/>
+        <source>File format:</source>
+        <translation>文件格式：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="73"/>
+        <source>EncodingMode::</source>
+        <translation>編碼模式：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="94"/>
+        <source>Quality:</source>
+        <translation>質量：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="115"/>
+        <source>Video</source>
+        <translation>視頻</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="126"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="177"/>
+        <source>Encode:</source>
+        <translation>編碼：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="147"/>
+        <source>frame rate:</source>
+        <translation>幀率：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="154"/>
+        <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
+        <translation>值為 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="166"/>
+        <source>Audio</source>
+        <translation>音頻</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="198"/>
+        <source>Sample rate:</source>
+        <translation>采樣率：</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="205"/>
+        <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
+        <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="218"/>
+        <source>HZ</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="232"/>
+        <source>After the end of the action</source>
+        <translation>結束之後的動作</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="244"/>
+        <source>No action</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="260"/>
+        <source>Open folder</source>
+        <translation>打開文件夾</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="273"/>
+        <source>Open file</source>
+        <translation>打開文件</translation>
+    </message>
+    <message>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="147"/>
+        <source>Open path</source>
+        <translation>打開文件夾</translation>
     </message>
 </context>
 <context>
@@ -501,10 +684,6 @@
     <name>CParameterWakeOnLanUI</name>
     <message>
         <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="26"/>
         <source>Wake on lan</source>
         <translation>局域網喚醒</translation>

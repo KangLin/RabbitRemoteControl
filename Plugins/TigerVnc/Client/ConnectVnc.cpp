@@ -1087,7 +1087,7 @@ quint32 CConnectVnc::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_Execute: k = XK_Execute; break;
     case Qt::Key_Undo: k = XK_Undo; break;
     case Qt::Key_Redo: k = XK_Redo; break;
-    case Qt::Key_Menu: k = XK_Menu;break;
+    case Qt::Key_Menu: k = XK_Menu; break;
     case Qt::Key_Find: k = XK_Find; break;
     case Qt::Key_Exit:	 
     case Qt::Key_Cancel:
@@ -1107,7 +1107,7 @@ quint32 CConnectVnc::TranslateRfbKey(quint32 inkey, bool modifier)
     case Qt::Key_F9: k = XK_F9; break;
     case Qt::Key_F10: k = XK_F10; break;
     case Qt::Key_F11: k = XK_F11; break;
-    case Qt::Key_F12: k =  XK_F12; break;
+    case Qt::Key_F12: k = XK_F12; break;
     case Qt::Key_F13: k = XK_F13; break;
     case Qt::Key_F14: k = XK_F14; break;
     case Qt::Key_F15: k = XK_F15; break;

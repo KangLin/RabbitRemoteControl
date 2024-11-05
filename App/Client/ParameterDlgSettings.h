@@ -22,7 +22,6 @@ private slots:
     void on_pbOk_clicked();
     void on_pbNo_clicked();
 
-    void on_pbScreenShotBrowser_clicked();
     void on_cbShowSystemTrayIcon_toggled(bool checked);
    
 private:

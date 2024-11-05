@@ -10,13 +10,6 @@
 #include <QMediaCaptureSession>
 #include <QMediaPlayer>
 #include <QVideoSink>
-#include <QMediaRecorder>
-
-#if HAVE_QT6_RECORD
-#include <QVideoFrameInput>
-#include <QAudioBufferInput>
-#include <QAudioBufferOutput>
-#endif
 
 #include <QAudioOutput>
 #include <QAudioInput>
@@ -36,7 +29,9 @@ public:
 public Q_SLOTS:
     virtual void slotStart();
     virtual void slotStop();
+#if HAVE_QT6_RECORD
     virtual void slotRecord(bool bRecord) override;
+#endif
 
     // CConnectDesktop interface
     virtual void slotClipBoardChanged() override;
@@ -61,10 +56,6 @@ private:
     QMediaPlayer m_Player;
     QVideoSink m_VideoSink;
     bool m_bScreenShot;
-
-#if HAVE_QT6_RECORD
-    QAudioBufferOutput m_AudioBufferOutput;
-#endif
 
     QAudioOutput m_AudioOutput;
     QAudioInput m_AudioInput;

@@ -64,20 +64,30 @@ CClient::CClient(QObject *parent) : QObject(parent),
         "Client", RabbitCommon::CTools::TranslationType::Library);
     
     CChannel::InitTranslation();
-    
+
     LoadPlugins();
 
-    check = connect(&m_ParameterClient, SIGNAL(sigHookKeyboardChanged()),
-                    this, SLOT(slotHookKeyboardChanged()));
-    Q_ASSERT(check);
-    // TODO: Disable it ?
-    if(m_ParameterClient.GetHookKeyboard())
-        m_Hook = QSharedPointer<CHook>(CHook::GetHook());
+    m_pParameterClient = new CParameterClient();
+    if(m_pParameterClient) {
+        check = connect(m_pParameterClient, SIGNAL(sigHookKeyboardChanged()),
+                        this, SLOT(slotHookKeyboardChanged()));
+        Q_ASSERT(check);
+        // TODO: Disable it ?
+        if(m_pParameterClient->GetHookKeyboard())
+            m_Hook = QSharedPointer<CHook>(CHook::GetHook());
+    } else {
+        qCritical(log) << "new CParameterClient() fail";
+        Q_ASSERT(m_pParameterClient);
+    }
 }
 
 CClient::~CClient()
 {
     qDebug(log) << "CClient::~CClient()";
+
+    if(m_pParameterClient)
+        delete m_pParameterClient;
+
     qApp->installEventFilter(nullptr);
 
     if(m_Translator)
@@ -236,13 +246,13 @@ CConnecter* CClient::CreateConnecter(const QString& id)
         }
         if(p) {
             int val = 0;
-            //p->Initial(&m_ParameterClient);
+            //p->Initial(m_ParameterClient);
             bRet = QMetaObject::invokeMethod(
                 p,
                 "Initial",
                 Qt::DirectConnection,
                 Q_RETURN_ARG(int, val),
-                Q_ARG(CParameterClient*, &m_ParameterClient));
+                Q_ARG(CParameterClient*, m_pParameterClient));
             if(!bRet|| val) {
                 qCritical(log) << "Connecter initial fail" << bRet << val;
                 DeleteConnecter(p);
@@ -352,12 +362,12 @@ int CClient::SaveConnecter(QString szFile, CConnecter *pConnecter)
 
 int CClient::LoadSettings(QString szFile)
 {
-    return m_ParameterClient.CParameter::Load(szFile);
+    return m_pParameterClient->CParameter::Load(szFile);
 }
 
 int CClient::SaveSettings(QString szFile)
 {
-    return m_ParameterClient.CParameter::Save(szFile);
+    return m_pParameterClient->CParameter::Save(szFile);
 }
 
 QList<QWidget*> CClient::GetSettingsWidgets(QWidget* parent)
@@ -366,13 +376,13 @@ QList<QWidget*> CClient::GetSettingsWidgets(QWidget* parent)
 
     CFrmParameterClient* p = new CFrmParameterClient(parent);
     if(p) {
-        p->SetParameter(&m_ParameterClient);
+        p->SetParameter(m_pParameterClient);
         lstWidget.push_back(p);
     }
 
     CParameterRecordUI* pRecord = new CParameterRecordUI(parent);
     if(pRecord) {
-        pRecord->SetParameter(&m_ParameterClient.m_Record);
+        pRecord->SetParameter(&m_pParameterClient->m_Record);
         lstWidget.push_back(pRecord);
     }
 
@@ -414,7 +424,7 @@ const QString CClient::Details() const
 
 void CClient::slotHookKeyboardChanged()
 {
-    if(m_ParameterClient.GetHookKeyboard())
+    if(m_pParameterClient->GetHookKeyboard())
     {
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
     } else {

@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
-    <height>354</height>
+    <width>468</width>
+    <height>374</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Record</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <item row="0" column="0">
@@ -20,7 +20,7 @@
       <string>Record</string>
      </property>
      <property name="checkable">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <layout class="QGridLayout" name="gridLayout_5">
       <item row="0" column="0">

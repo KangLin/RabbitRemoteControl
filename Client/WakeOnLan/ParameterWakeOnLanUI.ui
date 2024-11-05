@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>363</width>
-    <height>212</height>
+    <width>403</width>
+    <height>223</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Wake on lan</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <property name="leftMargin">

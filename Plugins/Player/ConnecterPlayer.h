@@ -35,6 +35,8 @@ Q_SIGNALS:
     void sigStart(bool bStart);
     void sigPause(bool bPause);
     void sigChangePosition(qint64 pos);
+
+Q_SIGNALS:
     void sigScreenShot();
 public Q_SLOTS:
     virtual void slotScreenShot() override;
@@ -53,7 +55,9 @@ public:
 public Q_SLOTS:
     void slotPositionChanged(qint64 pos, qint64 duration);
     void slotPlaybackStateChanged(QMediaPlayer::PlaybackState state);
+#if HAVE_QT6_RECORD
     void slotRecordStateChanged(QMediaRecorder::RecorderState state);
+#endif
 #else
     QAction* m_pPause;
 #endif

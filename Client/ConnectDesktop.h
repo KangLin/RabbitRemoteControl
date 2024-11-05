@@ -11,16 +11,16 @@
 #include <QWheelEvent>
 #include <QMimeData>
 #include <QMessageBox>
-
 #if HAVE_QT6_MULTIMEDIA
     #include <QMediaCaptureSession>
-    #include <QMediaRecorder>
 #endif
 #if HAVE_QT6_RECORD
     #include <QVideoFrameInput>
-    #include <QAudioBufferInput>    
+    #include <QAudioBufferInput>
+    #include <QAudioBufferOutput>
+    #include <QMediaRecorder>
+    #include "ParameterRecord.h"
 #endif
-#include "ParameterRecord.h"
 
 #include "FrmViewer.h"
 #include "Connect.h"
@@ -61,7 +61,9 @@ public:
     virtual ~CConnectDesktop() override;
 
 public Q_SLOTS:
+#if HAVE_QT6_RECORD
     virtual int Disconnect() override;
+#endif
     /*!
      * \~chinese 当剪切板发生改变时调用
      * \~english Be called when the clip board change
@@ -125,6 +127,7 @@ protected:
 public:
     virtual bool event(QEvent *event) override;
 
+#if HAVE_QT6_RECORD
     ///////// Record video /////////
 private Q_SLOTS:
     // connect menu
@@ -139,13 +142,13 @@ private:
     CParameterRecord* m_pParameterRecord;
 
 protected:
-#if HAVE_QT6_MULTIMEDIA
-    QMediaCaptureSession m_CaptureSession;
-    QMediaRecorder m_Recorder;
-#endif
-#if HAVE_QT6_RECORD
     QVideoFrameInput m_VideoFrameInput;
     QAudioBufferInput m_AudioBufferInput;
+    QAudioBufferOutput m_AudioBufferOutput;
+    QMediaRecorder m_Recorder;
+#endif
+#if HAVE_QT6_MULTIMEDIA
+    QMediaCaptureSession m_CaptureSession;
 #endif
 };
 

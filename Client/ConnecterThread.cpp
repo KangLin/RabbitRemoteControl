@@ -237,6 +237,7 @@ int CConnecterThread::Save(QSettings &set)
     return nRet;
 }
 
+#if HAVE_QT6_RECORD
 void CConnecterThread::slotRecord(bool checked)
 {
     qDebug(log) << __FUNCTION__ << checked;
@@ -256,7 +257,6 @@ void CConnecterThread::slotRecord(bool checked)
     }
 }
 
-#if HAVE_QT6_RECORD
 void CConnecterThread::slotRecorderStateChanged(
     QMediaRecorder::RecorderState state)
 {
@@ -286,6 +286,6 @@ void CConnecterThread::slotScreenShot()
         qDebug(log) << "Success: save screenshot to" << szFile;
     else
         qCritical(log) << "Fail: save screenshot to" << szFile;
-    if(record.GetEnable() != CParameterRecord::ENDACTION::No)
+    if(record.GetEndAction() != CParameterRecord::ENDACTION::No)
         QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
 }
