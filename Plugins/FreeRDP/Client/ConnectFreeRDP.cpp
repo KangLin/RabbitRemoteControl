@@ -260,6 +260,8 @@ int CConnectFreeRDP::OnClean()
 {
     qDebug(log) << __FUNCTION__;
     int nRet = 0;
+    WakeUp();
+
 #ifdef HAVE_LIBSSH
     if(m_pThread)
     {

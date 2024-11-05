@@ -40,12 +40,6 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     ui->cbClipboard->setChecked(m_pSettings->GetClipboard());
     ui->cbShowServerName->setChecked(m_pSettings->GetShowServerName());
 
-    connect(ui->wNet, &CParameterNetUI::sigHostChanged,
-            this, [&](const QString& host){
-                ui->wgWakeOnLan->slotHostChanged(host);
-            });
-    ui->wgWakeOnLan->SetParameter(&m_pSettings->m_WakeOnLan);
-
     m_pProxyUI = new CParameterProxyUI(ui->tabWidget);
     m_pProxyUI->SetParameter(&m_pSettings->m_Proxy);
     ui->tabWidget->insertTab(1, m_pProxyUI, m_pProxyUI->windowIcon(), tr("Proxy"));
@@ -182,10 +176,6 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
         ui->tabWidget->setCurrentWidget(m_pRecordUI);
         return;
     }
-    if(!ui->wgWakeOnLan->CheckValidity(true)) {
-        ui->tabWidget->setCurrentIndex(0);
-        return;
-    }
 
     m_pSettings->SetName(ui->leName->text());
 
@@ -198,9 +188,6 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     if(nRet) return;
 
     nRet = m_pRecordUI->Accept();
-    if(nRet) return;
-
-    nRet = ui->wgWakeOnLan->Accept();
     if(nRet) return;
 
     m_pSettings->SetOnlyView(ui->cbOnlyView->isChecked());

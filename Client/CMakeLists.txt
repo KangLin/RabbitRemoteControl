@@ -56,7 +56,6 @@ list(APPEND CLIENT_HEADER_FILES
     Connect.h
     ConnectDesktop.h
     ConnectThread.h
-    ConnectMulti.h
     PluginThread.h
     ManageConnect.h
     DlgInputPassword.h
@@ -75,7 +74,6 @@ list(APPEND CLIENT_SOURCE_FILES
     ConnecterConnect.cpp
     ConnecterThread.cpp
     ConnectThread.cpp
-    ConnectMulti.cpp
     Connect.cpp
     ConnectDesktop.cpp
     FrmScroll.cpp

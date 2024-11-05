@@ -2,7 +2,6 @@
 
 #include "ConnectThread.h"
 #include <QLoggingCategory>
-#include "ConnectMulti.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.ConnectThread")
 
@@ -39,17 +38,6 @@ void CConnectThread::run()
 {
     qDebug(log) << "CConnectThread::run() start";
 
-    CConnectMulti cm;
-    int nRet = cm.Init(m_pConnecter);
-    if(nRet)
-        emit m_pConnecter->sigDisconnect();
-
-    exec();
-
-    cm.Clean();
-    emit m_pConnecter->sigDisconnected();
-
-    /*
     Q_ASSERT(m_pConnecter);
     int nRet = 0;
     CConnect* pConnect = m_pConnecter->InstanceConnect();
@@ -73,7 +61,6 @@ void CConnectThread::run()
     }
 
     emit m_pConnecter->sigDisconnected();
-    //*/
 
     qDebug(log) << "CConnectThread::run() end";
 }
