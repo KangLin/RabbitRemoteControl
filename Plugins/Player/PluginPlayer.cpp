@@ -24,7 +24,11 @@ const QString CPluginPlayer::DisplayName() const
 
 const QString CPluginPlayer::Description() const
 {
-    return tr("Player: play media files. play or record camera, network media stream.");
+    QString szText = tr("Player: play media files or camera.");
+    #ifdef HAVE_QT6_RECORD
+    szText += tr(" Record camera or media stream.");
+    #endif
+    return szText;
 }
 
 const QString CPluginPlayer::Version() const
