@@ -42,7 +42,7 @@ const QString CPluginLibVNCServer::Protocol() const
 
 const QIcon CPluginLibVNCServer::Icon() const
 {
-    return QIcon::fromTheme("network-wired");
+    return QIcon::fromTheme("libvnc");
 }
 
 const QString CPluginLibVNCServer::Version() const

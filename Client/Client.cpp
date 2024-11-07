@@ -17,31 +17,6 @@
 #include "ParameterRecord.h"
 #include "ParameterRecordUI.h"
 
-
-#ifdef HAVE_PCAPPLUSPLUS
-    #include <Logger.h>
-    static Q_LOGGING_CATEGORY(logPcpp, "WOL.PCPP")
-    void Pcpp_Logger(pcpp::Logger::LogLevel logLevel,
-                     const std::string& logMessage,
-                     const std::string& file,
-                     const std::string& method,
-                     const int line)
-    {
-        switch(logLevel)
-        {
-        case pcpp::Logger::LogLevel::Debug:
-            qDebug(logPcpp) << logMessage.c_str();
-            break;
-        case pcpp::Logger::LogLevel::Info:
-            qInfo(logPcpp) << logMessage.c_str();
-            break;
-        case pcpp::Logger::LogLevel::Error:
-            qCritical(logPcpp) << logMessage.c_str();
-            break;
-        }
-    }
-#endif
-
 static Q_LOGGING_CATEGORY(log, "Client")
 
 CClient::CClient(QObject *parent) : QObject(parent),
@@ -51,12 +26,6 @@ CClient::CClient(QObject *parent) : QObject(parent),
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_INIT_RESOURCE(translations_Client);
 //#endif
-
-#ifdef HAVE_PCAPPLUSPLUS
-    pcpp::Logger::getInstance().setLogPrinter(Pcpp_Logger);
-    pcpp::Logger::getInstance().setAllModulesToLogLevel(
-        pcpp::Logger::LogLevel::Debug);
-#endif
 
     qApp->installEventFilter(this);
 

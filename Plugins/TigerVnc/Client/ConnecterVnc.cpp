@@ -47,7 +47,7 @@ QString CConnecterVnc::ServerName()
 {
     if(GetParameter())
         if(!GetParameter()->GetShowServerName()
-                || CConnecter::ServerName().isEmpty())
+                || CConnecterConnect::ServerName().isEmpty())
     {
         if(m_Para.GetIce())
         {
@@ -60,7 +60,7 @@ QString CConnecterVnc::ServerName()
                + QString::number(GetParameter()->m_Net.GetPort());
         }
     }
-    return CConnecter::ServerName();
+    return CConnecterConnect::ServerName();
 }
 
 QDialog *CConnecterVnc::OnOpenDialogSettings(QWidget *parent)

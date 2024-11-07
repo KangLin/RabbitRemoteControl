@@ -4,7 +4,6 @@
 #include <QApplication>
 #include <QDebug>
 #include <QGenericArgument>
-#include <QRegularExpression>
 #include <QCheckBox>
 #include <QLoggingCategory>
 #include <QInputDialog>
@@ -37,10 +36,7 @@ CConnecter::CConnecter(CPluginClient *plugin) : QObject(plugin),
 
     m_pSettings = new QAction(QIcon::fromTheme("system-settings"),
                               tr("Settings"), this);
-    check = connect(m_pSettings, &QAction::triggered,
-                    this, [&](){
-                        OpenDialogSettings();
-                    });
+    check = connect(m_pSettings, SIGNAL(triggered()), this, SLOT(slotSettings()));
     Q_ASSERT(check);
 }
 
@@ -52,47 +48,12 @@ CConnecter::~CConnecter()
 const QString CConnecter::Id()
 {
     QString szId = Protocol() + "_" + GetPlugClient()->Name();
-    if(GetParameter())
-    {
-        if(!GetParameter()->GetName().isEmpty())
-            szId += "_" + GetParameter()->GetName();
-        if(!GetParameter()->m_Net.GetHost().isEmpty())
-            szId += "_" + GetParameter()->m_Net.GetHost()
-                    + "_" + QString::number(GetParameter()->m_Net.GetPort());
-    }
-    QRegularExpression exp("[-@:/#%!^&* \\.]");
-    szId = szId.replace(exp, "_");
     return szId;
 }
 
-/*!
- * \~chinese
- * \brief 显示顺序：
- *        - 用户参数设置的名称
- *        - 如果允许，远程服务名。
- *        - 远程地址
- *
- * \~english
- *  Display order:
- *  - User parameter Name()
- *  - if enable, Server name
- *  - Host and port
- *  
- * \~
- * \see ServerName()
- */
 const QString CConnecter::Name()
 {
-    QString szName;
-    if(GetParameter() && GetParameter()->GetParameterClient()
-        && GetParameter()->GetParameterClient()->GetShowProtocolPrefix())
-        szName = Protocol() + ":";
-    
-    if(GetParameter() && !(GetParameter()->GetName().isEmpty()))
-        szName += GetParameter()->GetName();
-    else
-        szName += ServerName();
-    return szName;
+    return GetPlugClient()->Name();
 }
 
 const QString CConnecter::Description()
@@ -103,7 +64,6 @@ const QString CConnecter::Description()
            + " - " + GetPlugClient()->DisplayName()
 #endif
            + "\n"
-           + tr("Server name: ") + ServerName() + "\n"
            + tr("Description: ") + GetPlugClient()->Description();
 }
 
@@ -129,36 +89,6 @@ void CConnecter::slotSetClipboard(QMimeData* data)
         //                             this, SIGNAL(sigClipBoardChanged()));
         //        Q_ASSERT(check);
     }
-}
-
-void CConnecter::slotSetServerName(const QString& szName)
-{
-    if(m_szServerName == szName)
-        return;
-    
-    m_szServerName = szName;
-    if(GetParameter())
-    {
-        if(GetParameter()->GetServerName() == szName)
-            return;
-        GetParameter()->SetServerName(szName);
-    }
-    
-    emit sigUpdateName(Name());
-}
-
-QString CConnecter::ServerName()
-{
-    if(GetParameter() && GetParameter()->GetParameterClient()
-        && GetParameter()->GetParameterClient()->GetShowIpPortInName())
-    {
-        return GetParameter()->m_Net.GetHost()
-               + ":" + QString::number(GetParameter()->m_Net.GetPort());
-    }
-    
-    if(m_szServerName.isEmpty() && GetParameter())
-        return GetParameter()->GetServerName();
-    return m_szServerName;
 }
 
 int CConnecter::OpenDialogSettings(QWidget *parent)
@@ -215,30 +145,27 @@ int CConnecter::Save(QString szFile)
 int CConnecter::Load(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(GetParameter());
-    if(GetParameter())
-        nRet = GetParameter()->Load(set);
+    Q_ASSERT(m_pParameter);
+    if(m_pParameter)
+        nRet = m_pParameter->Load(set);
     return nRet;
 }
 
 int CConnecter::Save(QSettings &set)
 {
     int nRet = 0;
-    Q_ASSERT(GetParameter());
-    if(GetParameter()) {
-        GetParameter()->Save(set);
+    Q_ASSERT(m_pParameter);
+    if(m_pParameter) {
+        m_pParameter->Save(set);
     }
     return nRet;
 }
 
 int CConnecter::Initial(CParameterClient* pPara)
 {
+    Q_UNUSED(pPara);
     qDebug(log) << __FUNCTION__;
-    int nRet = 0;
-    nRet = OnInitial();
-    if(nRet) return nRet;
-    nRet = SetParameterClient(pPara);
-    return nRet;
+    return OnInitial();
 }
 
 int CConnecter::Clean()
@@ -249,82 +176,19 @@ int CConnecter::Clean()
     return nRet;
 }
 
-int CConnecter::SetParameterClient(CParameterClient* pPara)
-{
-    if(GetParameter())
-    {
-        GetParameter()->SetParameterClient(pPara);
-        if(pPara)
-        {
-            bool check = connect(pPara, SIGNAL(sigShowProtocolPrefixChanged()),
-                                 this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-            check = connect(pPara, SIGNAL(sigSHowIpPortInNameChanged()),
-                            this, SLOT(slotUpdateName()));
-            Q_ASSERT(check);
-        }
-        return 0;
-    } else {
-        qCritical(log) << "The CConnecter is not parameters! please create parameters."
-                          "and call SetParameter in the "
-                       << metaObject()->className() << "::" << metaObject()->className()
-                       << "to set the parameters pointer. "
-                          "Default set CParameterClient for the parameters of connecter (CParameterConnecter or its derived classes) "
-                          "See: CClient::CreateConnecter."
-                          "If you are sure the parameter of connecter does not need CParameterClient. "
-                          "Please overload the SetParameterClient in the"
-                       << metaObject()->className() << ". don't set it";
-        Q_ASSERT(false);
-    }
-    return -1;
-}
-
-CParameterBase* CConnecter::GetParameter()
-{
-    if(!m_pParameter)
-    {
-        QString szMsg;
-        szMsg = "Need use SetParameter() to set parameters in ";
-        szMsg += metaObject()->className();
-        szMsg += "::";
-        szMsg += metaObject()->className();
-        Q_ASSERT_X(m_pParameter, "CConnecter",  + szMsg.toStdString().c_str());
-    }
-    return m_pParameter;
-}
-
-int CConnecter::SetParameter(CParameterBase *p)
+int CConnecter::SetParameter(CParameter *p)
 {
     if(m_pParameter)
         m_pParameter->disconnect(this);
-    
+
     m_pParameter = p;
-    
-    if(GetParameter())
-    {
-        bool check = false;
-        check = connect(GetParameter(), SIGNAL(sigNameChanged()),
-                        this, SLOT(slotUpdateName()));
-        Q_ASSERT(check);
-        check = connect(GetParameter(), SIGNAL(sigShowServerNameChanged()),
-                        this, SLOT(slotShowServerName()));
-        Q_ASSERT(check);
-        check = connect(GetParameter(), &CParameter::sigChanged,
-                        this, [&](){
-            emit this->sigUpdateParameters(this);
-        });
-        Q_ASSERT(check);
-        CFrmViewer* pViewer = qobject_cast<CFrmViewer*>(GetViewer());
-        if(pViewer) {
-            check = connect(GetParameter(), SIGNAL(sigZoomFactorChanged(double)),
-                            pViewer, SLOT(slotSetZoomFactor(double)));
-            Q_ASSERT(check);
-            check = connect(GetParameter(), SIGNAL(sigAdaptWindowsChanged(CFrmViewer::ADAPT_WINDOWS)),
-                            pViewer, SLOT(slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS)));
-            Q_ASSERT(check);
-        }
-    }
+
     return 0;
+}
+
+CParameter* CConnecter::GetParameter()
+{
+    return m_pParameter;
 }
 
 CPluginClient* CConnecter::GetPlugClient() const
@@ -449,4 +313,9 @@ void CConnecter::slotBlockInputDialog(const QString &szTitle, const QString &szL
                                       &ok);
     if(ok && !t.isEmpty())
         szText = t;
+}
+
+void CConnecter::slotSettings()
+{
+    OpenDialogSettings();
 }

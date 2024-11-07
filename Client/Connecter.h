@@ -67,14 +67,17 @@ public:
      * \~chinese
      * \param plugin: 此指针必须是相应的 CPluginClient 派生类的实例指针
      * \note 如果参数( CParameterConnecter 或其派生类）需要 CParameterClient 。
-     *       请在其派生类的构造函数中实例化参数，并调用 CConnecter::SetParameter 设置参数指针。
-     *       如果参数不需要 CParameterClient ，那请在其派生类重载 CConnecter::SetParameterClient 。
+     *       请在其派生类的构造函数（或者　OnInitial()　）中实例化参数，
+     *       并在　OnInitial()　调用 CConnecter::SetParameter 设置参数指针。
+     *       如果参数不需要 CParameterClient ，
+     *       那请在其派生类重载 CConnecter::SetParameterClient 。
      *
      * \~english
      * \param plugin: The plugin pointer must be specified as
      *        the corresponding CPluginClient derived class
      * \note If the parameters( CParameterConnecter or its derived class) requires a CParameterClient .
-     *       Please instantiate the parameters and call CConnecter::SetParameter in the derived class to set the parameters pointer.
+     *       Please instantiate the parameters and call CConnecter::SetParameter
+     *       in the derived class( or OnInitial() ) to set the parameters pointer.
      *       If you are sure the parameter does not need CParameterClient.
      *       please overload the CConnecter::SetParameterClient in the derived class. don't set it.
      * \~
@@ -86,22 +89,7 @@ public:
     
     //! Identity
     virtual const QString Id();
-    /*!
-     * \~chinese
-     * \brief 显示顺序：
-     *        - 用户参数设置的名称
-     *        - 如果允许，远程服务名。
-     *        - 远程地址
-     *
-     * \~english
-     *  Display order:
-     *  - User parameter Name()
-     *  - if enable, Server name
-     *  - Host and port
-     *  
-     * \~
-     * \see ServerName()
-     */
+    //! Name
     virtual const QString Name();
     //! Description
     virtual const QString Description();
@@ -269,33 +257,31 @@ Q_SIGNALS:
 
 protected:
     /*!
-     * \brief Initial
+     * \brief Initial parameters and resource
      * \~
-     * \see CClient::CreateConnecter
+     * \see CClient::CreateConnecter OnInitial
      */
     Q_INVOKABLE virtual int Initial(CParameterClient *pPara);
     /*!
-     * \brief Clean
+     * \brief Clean parameters and resource
+     * \see CClient::DeleteConnecter OnClean
      */
     Q_INVOKABLE virtual int Clean();
     /*!
      * \~chinese
-     * 在派生类中调用　SetParameter()　设置参数指针，和其它需要的初始化工作。
+     *   插件实现。在派生类中调用　SetParameter()　设置参数指针，和其它需要的初始化工作。
      * \~english
-     * \brief Call SetParameter() in the function
+     * \brief It is implemented by plugins.
+     *   Call SetParameter() to initial resource in the function.
      * \~
-     * \see CClient::CreateConnecter
+     * \see Initial
      */
     virtual int OnInitial() = 0;
-    virtual int OnClean() = 0;
     /*!
-     * \~chinese 得到参数。它仅由插件使用。所以这里设置为保护成员。
-     *           可以在其派生类中重载它为公有函数，以方便插件使用。
-     *
-     * \~english Get parameter. Used only the plugin. so set protected in here.
-     *        Overload it as a public function in the derived class.
+     * \brief Clean parameters and resource
+     * \see Clean
      */
-    virtual CParameterBase* GetParameter();
+    virtual int OnClean() = 0;
     /*!
      * \~chinese 设置参数
      * \note 在派生类的构造函数（或者　OnInitial()　）中先实例化参数，
@@ -309,31 +295,11 @@ protected:
      * \see \ref section_Use_CParameterBase
      * \see SetParameterClient() CClient::CreateConnecter
      */
-    virtual int SetParameter(CParameterBase* p);
-
-private:
-    /*!
-     * \brief Set CParameterClient
-     * \note If CParameterConnecter isn't need CParameterClient.
-     *       please overload this function.
-     * \see CClient::CreateConnecter CParameterConnecter CParameterClient
-     */
-    virtual int SetParameterClient(CParameterClient* pPara);
+    virtual int SetParameter(CParameter* p);
+    CParameter* GetParameter();
 
 protected:
     Q_INVOKABLE CPluginClient* GetPlugClient() const;
-    /*!
-     * \~chinese
-     * \brief 当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口
-     * \return 返回服务名
-     * 
-     * \~english
-     * \brief Current connect server name
-     *        (remote desktop name, if not present, then IP:PORT).
-     *        eg: Server name or Ip:Port 
-     * \return Current connect server name.
-     */
-    virtual QString ServerName();
 
     static QObject* createObject(const QString &className, QObject* parent = NULL);
     
@@ -385,10 +351,6 @@ protected:
     Q_INVOKABLE virtual int Save(QString szFile = QString());
 
 private Q_SLOTS:
-    //! \~chinese \note 仅由 CConnectDesktop::SetConnecter() 使用
-    //! \~english \note The slot only is used by CConnectDesktop::SetConnecter()
-    virtual void slotSetServerName(const QString &szName);
-
     void slotShowServerName();
     void slotUpdateName();
 
@@ -448,14 +410,14 @@ Q_SIGNALS:
 protected:
     QMenu m_Menu;
     QAction* m_pSettings;
+private Q_SLOTS:
+    virtual void slotSettings();
 
 private:
-    QString m_szServerName;
-
     CPluginClient* m_pPluginClient;
 
     // The owner is a derived class of this class
-    CParameterBase* m_pParameter;
+    CParameter* m_pParameter;
 };
 
 #endif // CCONNECTER_H

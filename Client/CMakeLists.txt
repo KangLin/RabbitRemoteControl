@@ -43,10 +43,6 @@ list(APPEND CLIENT_INSTALL_HEADER_FILES
     ParameterCompone/ParameterProxyUI.h
     ParameterCompone/ParameterRecord.h
     ParameterCompone/ParameterRecordUI.h
-    WakeOnLan/WakeOnLan.h
-    WakeOnLan/WakeOnLanQt.h
-    WakeOnLan/ParameterWakeOnLan.h
-    WakeOnLan/ParameterWakeOnLanUI.h
     )
 
 list(APPEND CLIENT_HEADER_FILES
@@ -61,7 +57,6 @@ list(APPEND CLIENT_HEADER_FILES
     DlgInputPassword.h
     Hook.h
     FrmParameterClient.h
-    WakeOnLan/ConnectWakeOnLan.h
     )
 
 list(APPEND CLIENT_SOURCE_FILES
@@ -91,11 +86,6 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterCompone/ParameterProxyUI.cpp
     ParameterCompone/ParameterRecord.cpp
     ParameterCompone/ParameterRecordUI.cpp
-    WakeOnLan/ParameterWakeOnLan.cpp
-    WakeOnLan/ParameterWakeOnLanUI.cpp
-    WakeOnLan/WakeOnLan.cpp
-    WakeOnLan/WakeOnLanQt.cpp
-    WakeOnLan/ConnectWakeOnLan.cpp
     DlgInputPassword.cpp
     Hook.cpp
     )
@@ -106,7 +96,6 @@ set(CLIENT_UI_FILES
     ParameterCompone/ParameterUserUI.ui
     ParameterCompone/ParameterNetUI.ui
     ParameterCompone/ParameterRecordUI.ui
-    WakeOnLan/ParameterWakeOnLanUI.ui
     )
 
 if(WIN32)
@@ -171,7 +160,6 @@ ADD_TARGET(NAME ${PROJECT_NAME}
     INCLUDE_DIRS
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ParameterCompone
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/WakeOnLan
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
     INSTALL_HEADER_FILES ${CLIENT_INSTALL_HEADER_FILES}
     PRIVATE_LIBS ${CLIENT_PRIVATE_LIBS}

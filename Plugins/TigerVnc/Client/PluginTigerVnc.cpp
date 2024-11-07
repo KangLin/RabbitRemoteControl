@@ -46,7 +46,7 @@ const QString CPluginTigerVnc::Protocol() const
 
 const QIcon CPluginTigerVnc::Icon() const
 {
-    return QIcon::fromTheme("network-wired");
+    return QIcon::fromTheme("vnc");
 }
 
 const QString CPluginTigerVnc::Version() const

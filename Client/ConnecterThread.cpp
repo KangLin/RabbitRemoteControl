@@ -138,7 +138,7 @@ int CConnecterThread::Initial(CParameterClient *pPara)
     m_Menu.addSeparator();
     m_Menu.addAction(m_pSettings);
 
-    nRet = CConnecter::Initial(pPara);
+    nRet = CConnecterConnect::Initial(pPara);
     return nRet;
 }
 
@@ -192,13 +192,13 @@ QString CConnecterThread::ServerName()
 {
     if(GetParameter())
         if(!GetParameter()->GetShowServerName()
-            || CConnecter::ServerName().isEmpty())
+            || CConnecterConnect::ServerName().isEmpty())
         {
             if(!GetParameter()->m_Net.GetHost().isEmpty())
                 return GetParameter()->m_Net.GetHost() + ":"
                        + QString::number(GetParameter()->m_Net.GetPort());
         }
-    return CConnecter::ServerName();
+    return CConnecterConnect::ServerName();
 }
 
 int CConnecterThread::Load(QSettings &set)

@@ -7,7 +7,6 @@ CParameterBase::CParameterBase(QObject* parent)
     : CParameterConnecter(parent)
     , m_Net(this)
     , m_Proxy(this)
-    , m_WakeOnLan(this)
     , m_Record(this)
 {
     Init();
@@ -18,7 +17,6 @@ CParameterBase::CParameterBase(CParameterConnecter* parent,
     : CParameterConnecter(parent, szPrefix)
     , m_Net(this)
     , m_Proxy(this)
-    , m_WakeOnLan(this)
     , m_Record(this)
 {
     Init();

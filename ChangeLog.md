@@ -19,7 +19,9 @@
 - Plugin
   - Add player. need Qt >= 6.6.0 , record need Qt >= 6.8.0 .
   - Add capture screen or window. need Qt >= 6.6.0 , record need Qt >= 6.8.0 .
-- Add snap package
+- Package
+  - Add snap
+  - Add AppImage
 
 ### v0.0.27
 - Client:

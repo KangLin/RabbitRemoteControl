@@ -107,14 +107,16 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
     check = connect(
         &m_Player, &QMediaPlayer::errorOccurred,
         this, [&](QMediaPlayer::Error error, const QString &errorString){
-            qCritical(log) << "Player error occurred:" << error << errorString;
+            qCritical(log) << "Player error occurred:" << error << errorString
+                           << m_Player.source();
             slotStop();
             emit sigError(error, errorString);
         });
     Q_ASSERT(check);
     check = connect(&m_Player, &QMediaPlayer::playbackStateChanged,
                     this, [&](QMediaPlayer::PlaybackState state){
-                        qDebug(log) << "Player state changed:" << state;
+                        qDebug(log) << "Player state changed:" << state
+                                    << m_Player.source();
                     });
     Q_ASSERT(check);
 #if HAVE_QVideoWidget
@@ -187,7 +189,10 @@ void CConnectPlayer::slotStart()
         QString szFile = m_pParameters->GetUrl();
         QFileInfo fi(szFile);
         emit sigServerName(fi.fileName());
-        m_Player.setSource(QUrl::fromLocalFile(szFile));
+        QUrl url(szFile);
+        if(url.isRelative())
+            url = QUrl::fromLocalFile(szFile);
+        m_Player.setSource(url);
         m_Player.setVideoSink(&m_VideoSink);
 #if HAVE_QT6_RECORD
         if(m_pParameters->m_Record.GetEnableAudio())
@@ -441,7 +446,7 @@ void CConnectPlayer::slotPositionChanged(qint64 pos)
         szStr = currentTime.toString(format) + " / " + totalTime.toString(format);
         emit sigPositionChanged(m_nPosition, m_nDuration);
     }
-    emit sigInformation(tr("Progress: ") + szStr);
+    //emit sigInformation(tr("Progress: ") + szStr);
 }
 
 void CConnectPlayer::slotDurationChanged(qint64 duration)

@@ -425,7 +425,7 @@ void MainWindow::slotLoadConnecterMenu()
         return;
     auto pWin = m_pView->GetCurrentView();
     if(!pWin) {
-        qCritical(log) << "The current view is empty";
+        qDebug(log) << "The current view is empty";
         return;
     }
     foreach(auto c, m_Connecters)
@@ -448,7 +448,7 @@ void MainWindow::slotCustomContextMenuRequested(const QPoint &pos)
         return;
     auto pWin = m_pView->GetCurrentView();
     if(!pWin) {
-        qCritical(log) << "The current view is empty";
+        qDebug(log) << "The current view is empty";
         return;
     }
     foreach(auto c, m_Connecters)

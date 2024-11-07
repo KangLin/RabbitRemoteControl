@@ -58,16 +58,17 @@ public:
      * \brief 新建 CConnecter 指针，所有者是调用者。
      *        <b>当不在使用时，调用者必调用　DeteleConnecter()　须释放指针</b>。
      *        调用者必须连接信号 CConnecter::sigDisconnected 。
-     *        释放指针 ( CConnecter::deleteLater )
+     *        释放指针 ( DeleteConnecter() )
      * \param id 插件 ID
      * \~english New CConnecter pointer, the owner is caller.
      *           <b>The caller must be call CConnecter::sigDisconnected() to delete it,
      *              when isn't need it</b>.
      *           The caller must connect CConnecter::sigDisconnected,
-     *           then delete it( CConnecter::deleteLater )
+     *           then delete it( DeleteConnecter() )
      * \param id Plugin ID
      * \~
      * \callgraph
+     * \see DeleteConnecter
      */
     virtual CConnecter* CreateConnecter(const QString &id);
     /*!
@@ -76,15 +77,16 @@ public:
     virtual int DeleteConnecter(CConnecter* p);
 
     /*! \~chinese 从文件中新建 CConnecter 指针，所有者是调用者。
-     *          <b>当不再使用时，调用者必须负责删除此指针</b>。
+     *          <b>当不再使用时，调用者必须负责调用　DeleteConnecter() 删除此指针</b>。
      *          调用者必须连接信号 CConnecter::sigDisconnected 。
-     *          释放指针( CConnecter::deleteLater )
+     *          释放指针( DeleteConnecter() )
      * \~english New CConnecter pointer from file, the owner is caller.
-     *          <b>The caller must delete it, when isn't need it</b>.
+     *          <b>The caller must delete it(call DeleteConnecter()), when isn't need it</b>.
      *          The caller must connect CConnecter::sigDisconnected,
-     *          then delete it ( CConnecter::deleteLater )
+     *          then delete it ( DeleteConnecter() )
      * \~
      * \callgraph
+     * \see DeleteConnecter
      */
     virtual CConnecter* LoadConnecter(const QString& szFile);
 
