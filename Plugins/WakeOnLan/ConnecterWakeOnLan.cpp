@@ -2,18 +2,26 @@
 
 #include <QLoggingCategory>
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 #include <QRegularExpression>
-#include "ConnecterWakeOnLan.h"
+#include <QPushButton>
+#include <QtGlobal>
+
+#include "RabbitCommonTools.h"
 #include "PluginClient.h"
+#include "ConnectWakeOnLan.h"
+#include "ConnecterWakeOnLan.h"
+#include "ParameterWakeOnLanUI.h"
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Connecter")
 CConnecterWakeOnLan::CConnecterWakeOnLan(CPluginClient *plugin)
     : CConnecterConnect(plugin)
     , m_pView(nullptr)
+    , m_pModel(nullptr)
+    , m_pParameterClient(nullptr)
     , m_pConnect(nullptr)
 {
     qDebug(log) << __FUNCTION__;
-    m_Parameter.m_WakeOnLan.SetEnable(true);
 }
 
 CConnecterWakeOnLan::~CConnecterWakeOnLan()
@@ -29,12 +37,52 @@ qint16 CConnecterWakeOnLan::Version()
 int CConnecterWakeOnLan::OnInitial()
 {
     qDebug(log) << __FUNCTION__;
-    SetParameter(&m_Parameter);
+    bool check = false;
     CPluginClient* plugin = GetPlugClient();
-    m_pView = new CFrmWakeOnLan();
-    if(m_pView)
-        m_pView->setWindowTitle(plugin->Name());
-    m_Menu.addAction(m_pSettings);
+    m_pModel = new CWakeOnLanModel(this);
+    if(!m_pModel)
+        return -1;
+    m_pView = new CFrmWakeOnLan(m_pModel);
+    if(!m_pView) return -2;
+    m_pView->setWindowTitle(plugin->Name());
+    check = connect(m_pView, &CFrmWakeOnLan::customContextMenuRequested,
+                    this, [&](const QPoint &pos){
+                        m_Menu.exec(m_pView->mapToGlobal(pos));
+                    });
+    Q_ASSERT(check);
+    m_Menu.addAction(QIcon::fromTheme("list-add"), tr("Add"),
+                     this, SLOT(slotAdd()));
+    m_Menu.addAction(QIcon::fromTheme("list-remove"), tr("Remove"),
+                     m_pView, SLOT(slotRemoveRow()));
+    m_Menu.addAction(
+        QIcon::fromTheme("mac"), tr("Get mac address"),
+        this, [&](){
+            if(!m_pModel || !m_pView)
+                return;
+            CParameterWakeOnLan* p = m_pModel->GetData(m_pView->GetCurrentIndex());
+            p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
+
+            CConnectWakeOnLan c(this);
+            QString szMac = c.GetMac(p->m_Net.GetHost(),
+                                     p->GetNetworkInterface(),
+                                     p->GetDelay());
+            if(szMac.isEmpty()) {
+                p->SetHostState(CParameterWakeOnLan::HostState::Offline);
+            } else {
+                p->SetMac(szMac);
+                p->SetHostState(CParameterWakeOnLan::HostState::Online);
+            }
+            emit sigGetMac(p);
+        });
+    m_Menu.addAction(
+        QIcon::fromTheme("lan"), tr("Wake on lan"),
+        this, [&](){
+            if(!m_pModel || !m_pView)
+                return;
+            CParameterWakeOnLan* p = m_pModel->GetData(m_pView->GetCurrentIndex());
+            p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
+            emit sigWakeOnLan(p);
+        });
     return 0;
 }
 
@@ -43,6 +91,8 @@ int CConnecterWakeOnLan::OnClean()
     qDebug(log) << __FUNCTION__;
     if(m_pView)
         delete m_pView;
+    if(m_pModel)
+        delete m_pModel;
     return 0;
 }
 
@@ -53,35 +103,12 @@ QWidget *CConnecterWakeOnLan::GetViewer()
 
 QDialog *CConnecterWakeOnLan::OnOpenDialogSettings(QWidget *parent)
 {
-    QDialog* pDlg = new QDialog(parent);
-    QHBoxLayout* pLayout = new QHBoxLayout(pDlg);
-    pDlg->setLayout(pLayout);
-
-    CFrmWakeOnLan *pView = new CFrmWakeOnLan();
-    if(pView) {
-        pView->SetParameter(&m_Parameter.m_WakeOnLan);
-        pLayout->addWidget(pView);
-        bool check = connect(pView, SIGNAL(sigOk()), pDlg, SLOT(accept()));
-        Q_ASSERT(check);
-        check = connect(pView, SIGNAL(sigCancel()), pDlg, SLOT(reject()));
-        Q_ASSERT(check);
-    }
-
-    return pDlg;
+    return nullptr;
 }
 
 const QString CConnecterWakeOnLan::Id()
 {
     QString szId = Protocol() + "_" + GetPlugClient()->Name();
-    if(GetParameter())
-    {
-        if(!GetParameter()->GetName().isEmpty())
-            szId += "_" + GetParameter()->GetName();
-        if(!GetParameter()->m_WakeOnLan.GetMac().isEmpty())
-            szId += "_" + GetParameter()->m_WakeOnLan.GetMac();
-    }
-    QRegularExpression exp("[-@:/#%!^&* \\.]");
-    szId = szId.replace(exp, "_");
     return szId;
 }
 
@@ -91,39 +118,52 @@ const QString CConnecterWakeOnLan::Name()
     if(GetParameter() && GetParameter()->GetParameterClient()
         && GetParameter()->GetParameterClient()->GetShowProtocolPrefix())
         szName = Protocol() + ":";
-    if(GetParameter()->m_WakeOnLan.GetMac().isEmpty())
-        return szName + GetPlugClient()->Name();
-    return szName + GetParameter()->m_WakeOnLan.GetMac();
+    szName += GetPlugClient()->Name();
+    return szName;
 }
 
 int CConnecterWakeOnLan::Connect()
 {
-    m_pConnect = new CConnectWakeOnLan(this);
-    bool check = false;
-    if(m_pView) {
-        m_pView->SetParameter(&m_Parameter.m_WakeOnLan);
-        if(m_pConnect) {
-            check = connect(m_pView, SIGNAL(sigOk()), m_pConnect, SLOT(Connect()));
-            Q_ASSERT(check);
-        }
-        check = connect(m_pView, SIGNAL(sigCancel()), this, SIGNAL(sigDisconnect()));
-        Q_ASSERT(check);
-    }
     emit sigConnected();
     return 0;
 }
 
 int CConnecterWakeOnLan::DisConnect()
 {
-    if(m_pConnect) {
-        m_pConnect->Disconnect();
-        m_pConnect->deleteLater();
-        emit sigDisconnected();
-    }
+    emit sigDisconnected();
     return 0;
 }
 
 CConnect *CConnecterWakeOnLan::InstanceConnect()
 {
     return nullptr;
+}
+
+int CConnecterWakeOnLan::SetParameterClient(CParameterClient *pPara)
+{
+    m_pParameterClient = pPara;
+    return 0;
+}
+
+int CConnecterWakeOnLan::Load(QSettings &set)
+{
+    if(!m_pModel) return -1;
+    return m_pModel->Load(set);
+}
+
+int CConnecterWakeOnLan::Save(QSettings &set)
+{
+    if(!m_pModel) return -1;
+    return m_pModel->Save(set);
+}
+
+void CConnecterWakeOnLan::slotAdd()
+{
+    QSharedPointer<CParameterWakeOnLan> para(new CParameterWakeOnLan());
+    para->SetParameterClient(m_pParameterClient);
+    CParameterWakeOnLanUI dlg;
+    dlg.SetParameter(para.data());
+    int nRet = RC_SHOW_WINDOW(&dlg);
+    if(QDialog::Accepted == nRet)
+        m_pModel->AddItem(para);
 }

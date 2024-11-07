@@ -16,26 +16,30 @@
 
 static Q_LOGGING_CATEGORY(log, "WOL.Parameter.UI")
 
+#define RegularIp "^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$"
+#define RegularMac "^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$"
+#define RegularPassword "(.{6})?|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$"
 CParameterWakeOnLanUI::CParameterWakeOnLanUI(QWidget *parent)
-    : CParameterUI(parent)
+    : QDialog(parent)
     , ui(new Ui::CParameterWakeOnLanUI)
 {
     ui->setupUi(this);
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QRegExp rxMac("^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegExp rxMac(RegularMac);
     QRegExpValidator* macValidator = new QRegExpValidator(rxMac, this);
-    QRegExp rxIP("^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$");
+    QRegExp rxIP(RegularIp);
     QRegExpValidator* ipValidator = new QRegExpValidator(rxIP, this);
-    QRegExp rxPassword("(.{6})?|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegExp rxPassword(RegularPassword);
     QRegExpValidator* passwordValidator = new QRegExpValidator(rxPassword, this);
 #else
-    QRegularExpression rxMac("^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegularExpression rxMac(RegularMac);
     QRegularExpressionValidator* macValidator = new QRegularExpressionValidator(rxMac, this);
-    QRegularExpression rxIP("^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$");
+    QRegularExpression rxIP(RegularIp);
     QRegularExpressionValidator* ipValidator = new QRegularExpressionValidator(rxIP, this);
-    QRegularExpression rxPassword("(.{6})?|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegularExpression rxPassword(RegularPassword);
     QRegularExpressionValidator* passwordValidator = new QRegularExpressionValidator(rxPassword, this);
 #endif
+    ui->leIP->setValidator(ipValidator);
     ui->leMac->setValidator(macValidator);
     ui->leMac->setPlaceholderText("FF:FF:FF:FF:FF:FF");
     ui->lePassword->setValidator(passwordValidator);
@@ -74,6 +78,7 @@ int CParameterWakeOnLanUI::SetParameter(CParameter *pParameter)
     m_pWakeOnLan = qobject_cast<CParameterWakeOnLan*>(pParameter);
     if(!m_pWakeOnLan) return -1;
 
+    ui->leIP->setText(m_pWakeOnLan->m_Net.GetHost());
     ui->gbWakeOnLan->setChecked(m_pWakeOnLan->GetEnable());
     ui->leMac->setText(m_pWakeOnLan->GetMac());
     ui->cbNetworkInterface->setCurrentText(m_pWakeOnLan->GetNetworkInterface());
@@ -92,26 +97,33 @@ int CParameterWakeOnLanUI::SetParameter(CParameter *pParameter)
 bool CParameterWakeOnLanUI::CheckValidity(bool validity)
 {
     if(!validity) return true;
-    if(!ui->gbWakeOnLan->isChecked()) return true;
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QRegExp rxMac("^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegExp rxMac(RegularMac);
     QRegExpValidator macValidator(rxMac, this);
-    QRegExp rxIP("^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$");
+    QRegExp rxIP(RegularIp);
     QRegExpValidator ipValidator(rxIP, this);
-    QRegExp rxPassword("(.{6})?|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegExp rxPassword(RegularPassword);
     QRegExpValidator passwordValidator(rxPassword, this);
 #else
-    QRegularExpression rxMac("^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegularExpression rxMac(RegularMac);
     QRegularExpressionValidator macValidator(rxMac, this);
-    QRegularExpression rxIP("^((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)$");
+    QRegularExpression rxIP(RegularIp);
     QRegularExpressionValidator ipValidator(rxIP, this);
-    QRegularExpression rxPassword("(.{6})?|^[A-Fa-f0-9]{2}(-[A-Fa-f0-9]{2}){5}$|^[A-Fa-f0-9]{2}(:[A-Fa-f0-9]{2}){5}$");
+    QRegularExpression rxPassword(RegularPassword);
     QRegularExpressionValidator passwordValidator(rxPassword, this);
 #endif
 
-    QValidator::State state = QValidator::Invalid;
     int pos = 0;
+    QString szIp = ui->leIP->text();
+    if(QValidator::Acceptable != ipValidator.validate(szIp, pos))
+    {
+        QMessageBox::critical(this, tr("Error"),
+                              tr("The ip address is error"));
+        qCritical(log) << "The ip address is error";
+        ui->leIP->setFocus();
+        return false;
+    }
     QString szBroadAddress = ui->leBroadcastAddress->text();
     if(QValidator::Acceptable != ipValidator.validate(szBroadAddress, pos))
     {
@@ -149,6 +161,7 @@ int CParameterWakeOnLanUI::Accept()
 {
     if(!m_pWakeOnLan) return -1;
 
+    m_pWakeOnLan->m_Net.SetHost(ui->leIP->text());
     m_pWakeOnLan->SetEnable(ui->gbWakeOnLan->isChecked());
     m_pWakeOnLan->SetMac(ui->leMac->text());
     m_pWakeOnLan->SetNetworkInterface(ui->cbNetworkInterface->currentText());
@@ -251,4 +264,18 @@ QString CParameterWakeOnLanUI::GetSubNet(const QString& szIP, const QString& szM
     std::string szSubNet = inet_ntoa((struct in_addr&)subNet);
     qDebug(log) << "SubNet:" << szSubNet.c_str();
     return szSubNet.c_str();
+}
+
+void CParameterWakeOnLanUI::on_pbOK_clicked()
+{
+    if(!CheckValidity(false))
+        return;
+    int nRet = Accept();
+    if(nRet) return;
+    accept();
+}
+
+void CParameterWakeOnLanUI::on_pbCancel_clicked()
+{
+    reject();
 }

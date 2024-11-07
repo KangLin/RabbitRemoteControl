@@ -10,10 +10,11 @@
 #endif
 #include "ParameterWakeOnLan.h"
 
-CParameterWakeOnLan::CParameterWakeOnLan(
-    CParameterConnecter *parent, const QString &szPrefix)
-    : CParameterConnecter{parent, szPrefix}
+CParameterWakeOnLan::CParameterWakeOnLan(QObject *parent)
+    : CParameterConnecter(parent)
+    , m_Net(this)
     , m_bEnable(false)
+    , m_HostState(HostState::Offline)
     , m_szBoardcastAddress("255.255.255.255")
     , m_nPort(9)
     , m_bSavePassword(false)
@@ -238,4 +239,17 @@ int CParameterWakeOnLan::SetDelay(int nDelay)
     m_nDelay = nDelay;
     SetModified(true);
     return 0;
+}
+
+CParameterWakeOnLan::HostState CParameterWakeOnLan::GetHostState() const
+{
+    return m_HostState;
+}
+
+void CParameterWakeOnLan::SetHostState(HostState newHostState)
+{
+    if (m_HostState == newHostState)
+        return;
+    m_HostState = newHostState;
+    emit sigHostStateChanged();
 }

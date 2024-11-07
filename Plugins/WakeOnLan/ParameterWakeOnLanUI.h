@@ -3,7 +3,7 @@
 #ifndef PARAMETERWAKEONLANUI_H
 #define PARAMETERWAKEONLANUI_H
 
-#include <QWidget>
+#include <QDialog>
 #include "ParameterWakeOnLan.h"
 #include "ParameterUI.h"
 
@@ -16,7 +16,7 @@ class CParameterWakeOnLanUI;
  * \see CParameterWakeOnLan
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterWakeOnLanUI : public CParameterUI
+class CParameterWakeOnLanUI : public QDialog
 {
     Q_OBJECT
 
@@ -49,6 +49,10 @@ private slots:
     void on_pbShow_clicked();
     void on_pbSave_clicked();
     void on_cbNetworkInterface_currentIndexChanged(int index);
+
+    void on_pbOK_clicked();
+
+    void on_pbCancel_clicked();
 
 private:
     QString GetSubNet(const QString& szIP, const QString& szMask);

@@ -9,17 +9,30 @@ SET(WakeOnLan_LIBS Client)
 SET(WakeOnLan_SOURCE_FILES
     PluginWakeOnLan.cpp
     ConnecterWakeOnLan.cpp
+    ParameterWakeOnLan.cpp
+    ParameterWakeOnLanUI.cpp
+    WakeOnLan.cpp
+    WakeOnLanQt.cpp
+    ConnectWakeOnLan.cpp
     FrmWakeOnLan.cpp
+    WakeOnLanModel.cpp
     )
 
 SET(WakeOnLan_HEADER_FILES
     PluginWakeOnLan.h
     ConnecterWakeOnLan.h
     FrmWakeOnLan.h
+    WakeOnLanModel.h
+    WakeOnLan.h
+    WakeOnLanQt.h
+    ParameterWakeOnLan.h
+    ParameterWakeOnLanUI.h
+    ConnectWakeOnLan.h
     )
 
 SET(WakeOnLan_UI_FILES
     FrmWakeOnLan.ui
+    ParameterWakeOnLanUI.ui
     )
 
 set(WakeOnLan_QT_COMPONENTS Core Gui Widgets)

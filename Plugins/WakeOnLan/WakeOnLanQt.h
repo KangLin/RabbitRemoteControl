@@ -3,11 +3,11 @@
 #ifndef WAKEONLANQT_H
 #define WAKEONLANQT_H
 
-#include "WakeOnLan.h"
 #include <QHostAddress>
-#include "client_export.h"
 
-class CLIENT_EXPORT CWakeOnLanQt : public QObject, protected CWakeOnLan
+#include "WakeOnLan.h"
+
+class CWakeOnLanQt : public QObject, protected CWakeOnLan
 {
     Q_OBJECT
 public:

@@ -7,12 +7,39 @@
 #ifdef HAVE_PCAPPLUSPLUS
     #include "PcapPlusPlusVersion.h"
     #include "PcapDevice.h"
+    #include <Logger.h>
+    static Q_LOGGING_CATEGORY(logPcpp, "WOL.PCPP")
+    void Pcpp_Logger(pcpp::Logger::LogLevel logLevel,
+                     const std::string& logMessage,
+                     const std::string& file,
+                     const std::string& method,
+                     const int line)
+    {
+        switch(logLevel)
+        {
+        case pcpp::Logger::LogLevel::Debug:
+            qDebug(logPcpp) << logMessage.c_str();
+            break;
+        case pcpp::Logger::LogLevel::Info:
+            qInfo(logPcpp) << logMessage.c_str();
+            break;
+        case pcpp::Logger::LogLevel::Error:
+            qCritical(logPcpp) << logMessage.c_str();
+            break;
+        }
+    }
 #endif
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Plugin")
 CPluginWakeOnLan::CPluginWakeOnLan(QObject *parent)
     : CPluginClient{parent}
-{}
+{
+#ifdef HAVE_PCAPPLUSPLUS
+    pcpp::Logger::getInstance().setLogPrinter(Pcpp_Logger);
+    pcpp::Logger::getInstance().setAllModulesToLogLevel(
+        pcpp::Logger::LogLevel::Debug);
+#endif
+}
 
 CPluginWakeOnLan::~CPluginWakeOnLan()
 {
@@ -41,7 +68,7 @@ const QString CPluginWakeOnLan::Description() const
 
 const QIcon CPluginWakeOnLan::Icon() const
 {
-    return QIcon::fromTheme("tools");
+    return QIcon::fromTheme("lan");
 }
 
 const QString CPluginWakeOnLan::Version() const

@@ -4,14 +4,14 @@
 #define CONNECTWAKEONLAN_H
 
 #include <QTime>
-#include "ConnecterConnect.h"
 #include "WakeOnLanQt.h"
+#include "ConnecterWakeOnLan.h"
 
 class CLIENT_EXPORT CConnectWakeOnLan : public CConnect
 {
     Q_OBJECT
 public:
-    explicit CConnectWakeOnLan(CConnecterConnect* pConnecter,
+    explicit CConnectWakeOnLan(CConnecterWakeOnLan* pConnecter,
                                QObject *parent = nullptr);
     virtual ~CConnectWakeOnLan();
 
@@ -20,13 +20,13 @@ protected:
     virtual int OnClean() override;
     virtual int OnProcess() override;
 
-private:
+public:
     QString GetMac(const QString& szTargetIp, const QString& szSourceIp, int nTimeout);
     void ListInterfaces();
 
 private:
     CWakeOnLanQt m_Wol;
-    CParameterBase* m_pParameter;
+    CParameterWakeOnLan* m_pParameter;
     int m_nRepeat;
     QTime m_tmStart;
 };

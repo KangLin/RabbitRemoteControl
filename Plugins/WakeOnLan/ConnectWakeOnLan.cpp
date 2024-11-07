@@ -1,6 +1,5 @@
 // Author: Kang Lin <kl222@126.com>
 
-#include "ConnectWakeOnLan.h"
 #include <QLoggingCategory>
 #ifdef HAVE_PCAPPLUSPLUS
     #include <MacAddress.h>
@@ -11,17 +10,19 @@
     #include <NetworkUtils.h>
 #endif
 
+#include "ConnectWakeOnLan.h"
+
 static Q_LOGGING_CATEGORY(log, "WOL")
-CConnectWakeOnLan::CConnectWakeOnLan(
-    CConnecterConnect *pConnecter, QObject *parent)
+CConnectWakeOnLan::CConnectWakeOnLan(CConnecterWakeOnLan *pConnecter,
+                                     QObject *parent)
     : CConnect{nullptr}
     , m_pParameter(nullptr)
     , m_nRepeat(0)
     , m_tmStart(QTime::currentTime())
 {
     Q_ASSERT(pConnecter);
-    m_pParameter = pConnecter->GetParameter();
-    Q_ASSERT(m_pParameter);
+    m_pParameter = qobject_cast<CParameterWakeOnLan*>(pConnecter->GetParameter());
+    //    Q_ASSERT(m_pParameter);
 }
 
 CConnectWakeOnLan::~CConnectWakeOnLan()
@@ -60,7 +61,7 @@ int CConnectWakeOnLan::OnClean()
 int CConnectWakeOnLan::OnProcess()
 {
     if(!m_pParameter) return -1;
-    auto &wol = m_pParameter->m_WakeOnLan;
+    auto &wol = *m_pParameter;
     do {
         int t = m_tmStart.secsTo(QTime::currentTime());
         //*
@@ -87,7 +88,7 @@ int CConnectWakeOnLan::OnProcess()
 
         QString szMac = GetMac(
             m_pParameter->m_Net.GetHost(),
-            m_pParameter->m_WakeOnLan.GetNetworkInterface(),
+            m_pParameter->GetNetworkInterface(),
             wol.GetInterval());
         if(szMac.isEmpty())
             return wol.GetInterval();
@@ -100,47 +101,54 @@ int CConnectWakeOnLan::OnProcess()
 
 QString CConnectWakeOnLan::GetMac(const QString& szTargetIp, const QString &szSourceIp, int nTimeout)
 {
+    qDebug(log) << __FUNCTION__ << szTargetIp << szSourceIp << nTimeout;
 #ifdef HAVE_PCAPPLUSPLUS
     pcpp::MacAddress sourceMac;
     pcpp::IPv4Address sourceIP(szSourceIp.toStdString());
     pcpp::IPv4Address targetIP(szTargetIp.toStdString());
     pcpp::PcapLiveDevice* dev = nullptr;
-    dev = pcpp::PcapLiveDeviceList::getInstance()
-              .getPcapLiveDeviceByIp(sourceIP);
-    if (dev == nullptr) {
-        qCritical(log)
+    try{
+        dev = pcpp::PcapLiveDeviceList::getInstance().getPcapLiveDeviceByIp(sourceIP);
+        if (dev == nullptr) {
+            qCritical(log)
             << "Couldn't find interface by provided IP address or name" << szSourceIp;
-        return QString();
+            return QString();
+        }
+        double arpResponseTimeMS = 0;
+        if(!pcpp::IPv4Address::isValidIPv4Address(szSourceIp.toStdString()))
+            sourceIP = dev->getIPv4Address();
+        sourceMac = dev->getMacAddress();
+        if(!pcpp::IPv4Address::isValidIPv4Address(szTargetIp.toStdString())) {
+            qCritical(log) << "Target ip is invalid:" << szTargetIp;
+            return QString();
+        }
+        // suppressing errors to avoid cluttering stdout
+        pcpp::Logger::getInstance().suppressLogs();
+        pcpp::MacAddress result = pcpp::NetworkUtils::getInstance().getMacAddress(
+            targetIP, dev, arpResponseTimeMS, sourceMac, sourceIP, nTimeout);
+        // failed fetching MAC address
+        if (result == pcpp::MacAddress::Zero)
+        {
+            // PcapPlusPlus logger saves the last internal error message
+            qCritical(log) << pcpp::Logger::getInstance().getLastError().c_str();
+            return QString();
+        }
+        qDebug(log) << "Mac:" << result.toString().c_str();
+        // Succeeded fetching MAC address
+        return result.toString().c_str();
+    } catch(std::exception e) {
+        qDebug(log) << "std::exception" << e.what();
+    } catch(...) {
+        qDebug(log) << "Exception";
     }
-    double arpResponseTimeMS = 0;
-    if(!pcpp::IPv4Address::isValidIPv4Address(szSourceIp.toStdString()))
-        sourceIP = dev->getIPv4Address();
-    sourceMac = dev->getMacAddress();
-    if(!pcpp::IPv4Address::isValidIPv4Address(szTargetIp.toStdString())) {
-        qCritical(log) << "Target ip is invalid:" << szTargetIp;
-        return QString();
-    }
-    // suppressing errors to avoid cluttering stdout
-    pcpp::Logger::getInstance().suppressLogs();
-    pcpp::MacAddress result = pcpp::NetworkUtils::getInstance().getMacAddress(
-        targetIP, dev, arpResponseTimeMS, sourceMac, sourceIP, nTimeout);
-    // failed fetching MAC address
-    if (result == pcpp::MacAddress::Zero)
-    {
-        // PcapPlusPlus logger saves the last internal error message
-        qCritical(log) << pcpp::Logger::getInstance().getLastError().c_str();
-        return QString();
-    }
-    qDebug(log) << "Mac:" << result.toString().c_str();
-    // Succeeded fetching MAC address
-    return result.toString().c_str();
+
 #endif
     return QString();
 }
 
 void CConnectWakeOnLan::ListInterfaces()
 {
-    #ifdef HAVE_PCAPPLUSPLUS
+#ifdef HAVE_PCAPPLUSPLUS
     const std::vector<pcpp::PcapLiveDevice*>& devList =
         pcpp::PcapLiveDeviceList::getInstance().getPcapLiveDevicesList();
 
@@ -151,6 +159,6 @@ void CConnectWakeOnLan::ListInterfaces()
                     << dev->getName().c_str() << "'   IP address: "
                     << dev->getIPv4Address().toString().c_str();
     }
-    #endif
+#endif
     return;
 }

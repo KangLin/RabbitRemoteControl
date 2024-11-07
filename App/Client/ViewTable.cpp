@@ -44,7 +44,7 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
                     this, SLOT(slotTabCloseRequested(int)));
     Q_ASSERT(check);
     check = connect(m_pTab, SIGNAL(currentChanged(int)),
-            this, SLOT(slotCurrentChanged(int)));
+                    this, SLOT(slotCurrentChanged(int)));
     Q_ASSERT(check);
     check = connect(m_pTab->tabBar(),
                     SIGNAL(customContextMenuRequested(const QPoint&)),

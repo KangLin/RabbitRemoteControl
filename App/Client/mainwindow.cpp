@@ -458,7 +458,7 @@ void MainWindow::slotCustomContextMenuRequested(const QPoint &pos)
             qDebug(log) << "Load plugin menu";
             auto m = c->GetMenu(ui->menuTools);
             if(!m) return;
-            m->exec(mapToGlobal(pos));
+            m->exec(m_pView->mapToGlobal(pos));
         }
     }
 }

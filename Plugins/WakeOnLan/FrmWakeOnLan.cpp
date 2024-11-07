@@ -3,19 +3,41 @@
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.CFrmWakeOnLan")
-CFrmWakeOnLan::CFrmWakeOnLan(QWidget *parent)
-    : CParameterUI(parent)
+CFrmWakeOnLan::CFrmWakeOnLan(CWakeOnLanModel *pModel, QWidget *parent)
+    : QWidget(parent)
     , ui(new Ui::CFrmWakeOnLan)
-    , m_pParameter(nullptr)
 {
     bool check = false;
-
     ui->setupUi(this);
-    setWindowTitle(tr("Wake on lan"));
-    setWindowIcon(QIcon::fromTheme("tools"));
-
-    check = connect(ui->pbCancel, SIGNAL(clicked()), this, SIGNAL(sigCancel()));
+    ui->tableView->setModel(pModel);
+    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
+    check = connect(ui->tableView,
+                    SIGNAL(customContextMenuRequested(const QPoint&)),
+                    this, SIGNAL(customContextMenuRequested(const QPoint&)));
     Q_ASSERT(check);
+    setWindowTitle(tr("Wake on lan"));
+    setWindowIcon(QIcon::fromTheme("lan"));
+
+    check = connect(
+        ui->tableView->horizontalHeader(),
+        &QHeaderView::sectionClicked,
+        this, [&](int c){
+            if(1 == c) {
+                ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
+            }
+            else {
+                ui->tableView->horizontalHeader()->setSortIndicatorShown(false);
+            }
+        });
+    Q_ASSERT(check);
+    check = connect(ui->tableView->horizontalHeader(),
+                    &QHeaderView::sortIndicatorChanged,
+                    this, [&](int logicalIndex, Qt::SortOrder order){
+                        if(1 == logicalIndex)
+                            ui->tableView->model()->sort(1, order);
+                    });
+    Q_ASSERT(check);
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 CFrmWakeOnLan::~CFrmWakeOnLan()
@@ -24,27 +46,15 @@ CFrmWakeOnLan::~CFrmWakeOnLan()
     delete ui;
 }
 
-void CFrmWakeOnLan::on_pbOK_clicked()
+void CFrmWakeOnLan::slotRemoveRow()
 {
-    int nRet = Accept();
-    if(nRet) return;
-    emit sigOk();
+    QModelIndex index = ui->tableView->currentIndex();
+    if(!index.isValid())
+        return;
+    ui->tableView->model()->removeRow(index.row());
 }
 
-int CFrmWakeOnLan::SetParameter(CParameter *pParameter)
+QModelIndex CFrmWakeOnLan::GetCurrentIndex()
 {
-    int nRet = 0;
-    m_pParameter = qobject_cast<CParameterWakeOnLan*>(pParameter);
-    if(m_pParameter)
-        nRet = ui->wdgWakeOnLan->SetParameter(m_pParameter);
-    return nRet;
-}
-
-int CFrmWakeOnLan::Accept()
-{
-    bool bRet = 0;
-    bRet = ui->wdgWakeOnLan->CheckValidity(true);
-    if(!bRet) return -1;
-    int nRet = ui->wdgWakeOnLan->Accept();
-    return nRet;
+    return ui->tableView->currentIndex();
 }

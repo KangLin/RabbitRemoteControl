@@ -4,18 +4,18 @@
 #define PARAMETERWAKEONLAN_H
 
 #include "ParameterConnecter.h"
+#include "ParameterNet.h"
 
 /*!
  * \brief The wake on lan parameters. it's UI is CParameterWakeOnLanUI
  * \see CParameterWakeOnLanUI
  * \ingroup CLIENT_PARAMETER_COMPONE
  */
-class CLIENT_EXPORT CParameterWakeOnLan : public CParameterConnecter
+class CParameterWakeOnLan : public CParameterConnecter
 {
     Q_OBJECT
 public:
-    explicit CParameterWakeOnLan(CParameterConnecter* parent,
-                                 const QString& szPrefix = QString());
+    explicit CParameterWakeOnLan(QObject* parent = nullptr);
 
     const bool GetEnable() const;
     int SetEnable(bool bEnable);
@@ -55,8 +55,24 @@ public:
     //! Unit: s
     int SetDelay(int nDelay);
 
+    CParameterNet m_Net;
+
+    enum class HostState{
+        Online,
+        GetMac,
+        WakeOnLan,
+        Offline
+    };
+
+    HostState GetHostState() const;
+    void SetHostState(HostState newHostState);
+
+signals:
+    void sigHostStateChanged();
+
 private:
     bool m_bEnable;
+    HostState m_HostState;
     QString m_szMac;
     QString m_szBoardcastAddress;
     QString m_szNetworkInteface;

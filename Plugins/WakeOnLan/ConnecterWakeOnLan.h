@@ -4,11 +4,12 @@
 #define CONNECTERWAKEONLAN_H
 
 #pragma once
-#include "ConnecterConnect.h"
-#include "ParameterBase.h"
-#include "FrmWakeOnLan.h"
-#include "ConnectWakeOnLan.h"
 
+#include "ConnecterConnect.h"
+#include "FrmWakeOnLan.h"
+
+
+class CConnectWakeOnLan;
 class CConnecterWakeOnLan : public CConnecterConnect
 {
     Q_OBJECT
@@ -30,16 +31,32 @@ public:
 public slots:
     virtual int Connect() override;
     virtual int DisConnect() override;
+
     // CConnecterConnect interface
 public:
     virtual CConnect *InstanceConnect() override;
 
+Q_SIGNALS:
+    void sigGetMac(CParameterWakeOnLan* p);
+    void sigWakeOnLan(CParameterWakeOnLan* p);
+
 private:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
+    virtual int SetParameterClient(CParameterClient* pPara) override;
 
-    CParameterBase m_Parameter;
     CFrmWakeOnLan* m_pView;
+    CWakeOnLanModel* m_pModel;
     CConnectWakeOnLan* m_pConnect;
+    CParameterClient* m_pParameterClient;
+
+private Q_SLOTS:
+    void slotAdd();
+    void slotRemove();
+
+    // CConnecter interface
+protected:
+    virtual int Load(QSettings &set) override;
+    virtual int Save(QSettings &set) override;
 };
 
 #endif // CONNECTERWAKEONLAN_H
