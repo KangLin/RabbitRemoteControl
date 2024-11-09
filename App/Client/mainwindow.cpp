@@ -254,11 +254,13 @@ void MainWindow::on_actionAbout_triggered()
 #ifdef HAVE_ABOUT
     CDlgAbout *about = new CDlgAbout(this);
     QIcon icon = QIcon::fromTheme("app");
-    if(icon.isNull()) return;
-    auto sizeList = icon.availableSizes();
-    if(sizeList.isEmpty()) return;
-    QPixmap p = icon.pixmap(*sizeList.begin());
-    about->m_AppIcon = p.toImage();
+    if(!icon.isNull()) {
+        auto sizeList = icon.availableSizes();
+        if(!sizeList.isEmpty()) {
+            QPixmap p = icon.pixmap(*sizeList.begin());
+            about->m_AppIcon = p.toImage();
+        }
+    }
     about->m_szCopyrightStartTime = "2020";
     about->m_szVersionRevision = RabbitRemoteControl_REVISION;
     about->m_szDetails = m_Client.Details();
@@ -271,11 +273,13 @@ void MainWindow::on_actionUpdate_triggered()
 #ifdef HAVE_UPDATE
     CFrmUpdater* m_pfrmUpdater = new CFrmUpdater();
     QIcon icon = QIcon::fromTheme("app");
-    if(icon.isNull()) return;
-    auto sizeList = icon.availableSizes();
-    if(sizeList.isEmpty()) return;
-    QPixmap p = icon.pixmap(*sizeList.begin());
-    m_pfrmUpdater->SetTitle(p.toImage());
+    if(!icon.isNull()) {
+        auto sizeList = icon.availableSizes();
+        if(!sizeList.isEmpty()) {
+            QPixmap p = icon.pixmap(*sizeList.begin());
+            m_pfrmUpdater->SetTitle(p.toImage());
+        }
+    }
     m_pfrmUpdater->SetInstallAutoStartup();
     RC_SHOW_WINDOW(m_pfrmUpdater);
 #endif
