@@ -13,7 +13,7 @@ SET(WakeOnLan_SOURCE_FILES
     ParameterWakeOnLanUI.cpp
     WakeOnLan.cpp
     WakeOnLanQt.cpp
-    ConnectWakeOnLan.cpp
+    Arp.cpp
     FrmWakeOnLan.cpp
     WakeOnLanModel.cpp
     )
@@ -27,7 +27,7 @@ SET(WakeOnLan_HEADER_FILES
     WakeOnLanQt.h
     ParameterWakeOnLan.h
     ParameterWakeOnLanUI.h
-    ConnectWakeOnLan.h
+    Arp.h
     )
 
 SET(WakeOnLan_UI_FILES

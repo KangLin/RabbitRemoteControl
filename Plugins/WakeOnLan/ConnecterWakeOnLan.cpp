@@ -9,9 +9,9 @@
 
 #include "RabbitCommonTools.h"
 #include "PluginClient.h"
-#include "ConnectWakeOnLan.h"
-#include "ConnecterWakeOnLan.h"
+
 #include "ParameterWakeOnLanUI.h"
+#include "ConnecterWakeOnLan.h"
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Connecter")
 CConnecterWakeOnLan::CConnecterWakeOnLan(CPluginClient *plugin)
@@ -19,7 +19,6 @@ CConnecterWakeOnLan::CConnecterWakeOnLan(CPluginClient *plugin)
     , m_pView(nullptr)
     , m_pModel(nullptr)
     , m_pParameterClient(nullptr)
-    , m_pConnect(nullptr)
 {
     qDebug(log) << __FUNCTION__;
 }
@@ -59,30 +58,30 @@ int CConnecterWakeOnLan::OnInitial()
         this, [&](){
             if(!m_pModel || !m_pView)
                 return;
-            CParameterWakeOnLan* p = m_pModel->GetData(m_pView->GetCurrentIndex());
-            p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
-
-            CConnectWakeOnLan c(this);
-            QString szMac = c.GetMac(p->m_Net.GetHost(),
-                                     p->GetNetworkInterface(),
-                                     p->GetDelay());
-            if(szMac.isEmpty()) {
-                p->SetHostState(CParameterWakeOnLan::HostState::Offline);
-            } else {
-                p->SetMac(szMac);
-                p->SetHostState(CParameterWakeOnLan::HostState::Online);
-            }
-            emit sigGetMac(p);
+            QSharedPointer<CParameterWakeOnLan> p
+                = m_pModel->GetData(m_pView->GetCurrentIndex());
+            if(m_Arp.GetMac(p))
+                p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
         });
     m_Menu.addAction(
         QIcon::fromTheme("lan"), tr("Wake on lan"),
         this, [&](){
             if(!m_pModel || !m_pView)
                 return;
-            CParameterWakeOnLan* p = m_pModel->GetData(m_pView->GetCurrentIndex());
-            p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
-            emit sigWakeOnLan(p);
+            QSharedPointer<CParameterWakeOnLan> p
+                = m_pModel->GetData(m_pView->GetCurrentIndex());
+            if(!m_Arp.WakeOnLan(p))
+                p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
         });
+    m_Menu.addAction(QIcon::fromTheme("system-settings"), tr("Settings"),
+                     this, [&](){
+                         QSharedPointer<CParameterWakeOnLan> para
+                             = m_pModel->GetData(m_pView->GetCurrentIndex());
+                         if(!para) return;
+                         CParameterWakeOnLanUI dlg;
+                         dlg.SetParameter(para.data());
+                         int nRet = RC_SHOW_WINDOW(&dlg);
+                     });
     return 0;
 }
 
@@ -148,7 +147,7 @@ int CConnecterWakeOnLan::SetParameterClient(CParameterClient *pPara)
 int CConnecterWakeOnLan::Load(QSettings &set)
 {
     if(!m_pModel) return -1;
-    return m_pModel->Load(set);
+    return m_pModel->Load(set, m_pParameterClient);
 }
 
 int CConnecterWakeOnLan::Save(QSettings &set)

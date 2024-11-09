@@ -12,7 +12,6 @@
 #include "Connecter.h"
 #include "PluginClient.h"
 #include "RabbitCommonTools.h"
-#include "ParameterNet.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Connecter")
     

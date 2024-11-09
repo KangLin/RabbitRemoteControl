@@ -7,9 +7,8 @@
 
 #include "ConnecterConnect.h"
 #include "FrmWakeOnLan.h"
+#include "Arp.h"
 
-
-class CConnectWakeOnLan;
 class CConnecterWakeOnLan : public CConnecterConnect
 {
     Q_OBJECT
@@ -46,7 +45,7 @@ private:
 
     CFrmWakeOnLan* m_pView;
     CWakeOnLanModel* m_pModel;
-    CConnectWakeOnLan* m_pConnect;
+    CArp m_Arp;
     CParameterClient* m_pParameterClient;
 
 private Q_SLOTS:

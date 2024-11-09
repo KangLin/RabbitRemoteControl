@@ -20,12 +20,19 @@ public:
     const bool GetEnable() const;
     int SetEnable(bool bEnable);
 
+    // Target IP
+    CParameterNet m_Net;
+
     const QString GetMac() const;
     int SetMac(const QString &szMac);
 
     const QString GetBroadcastAddress() const;
     int SetBroadcastAddress(const QString& szBroadcastAddress);
 
+    /*!
+     * \brief Get network interface.
+     * \return Source IP
+     */
     const QString GetNetworkInterface() const;
     int SetNetworkInterface(const QString& szName);
 
@@ -50,12 +57,10 @@ public:
     //! Unit: ms
     int SetInterval(int nInterval);
 
-    //! Unit: s
-    const int GetDelay() const;
-    //! Unit: s
-    int SetDelay(int nDelay);
-
-    CParameterNet m_Net;
+    //! Unit: ms
+    const int GetTimeOut() const;
+    //! Unit: ms
+    int SetTimeOut(int nTimeout);
 
     enum class HostState{
         Online,
@@ -82,7 +87,7 @@ private:
 
     int m_nRepeat;
     int m_nInterval; //! Unit: ms
-    int m_nDelay;    //! Unit: s
+    int m_nTimeOut;    //! Unit: ms
 
     // CParameter interface
 protected:

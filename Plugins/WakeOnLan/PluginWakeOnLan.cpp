@@ -38,6 +38,8 @@ CPluginWakeOnLan::CPluginWakeOnLan(QObject *parent)
     pcpp::Logger::getInstance().setLogPrinter(Pcpp_Logger);
     pcpp::Logger::getInstance().setAllModulesToLogLevel(
         pcpp::Logger::LogLevel::Debug);
+    // suppressing errors to avoid cluttering stdout
+    pcpp::Logger::getInstance().suppressLogs();
 #endif
 }
 

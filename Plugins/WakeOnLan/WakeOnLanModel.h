@@ -15,10 +15,10 @@ public:
     virtual ~CWakeOnLanModel();
 
     int AddItem(QSharedPointer<CParameterWakeOnLan> para);
-    int Load(QSettings &set);
+    int Load(QSettings &set, CParameterClient *pClient);
     int Save(QSettings &set);
 
-    CParameterWakeOnLan* GetData(const QModelIndex &index);
+    QSharedPointer<CParameterWakeOnLan> GetData(const QModelIndex &index);
 
     // QAbstractItemModel interface
 public:

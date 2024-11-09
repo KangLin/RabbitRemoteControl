@@ -224,7 +224,7 @@ void CWakeOnLanModel::sort(int column, Qt::SortOrder order)
     endResetModel();
 }
 
-int CWakeOnLanModel::Load(QSettings &set)
+int CWakeOnLanModel::Load(QSettings &set, CParameterClient* pClient)
 {
     int nRet = 0;
     int count = 0;
@@ -236,6 +236,7 @@ int CWakeOnLanModel::Load(QSettings &set)
             nRet = -1;
             break;
         }
+        p->SetParameterClient(pClient);
         set.beginGroup("Host" + QString::number(i));
         nRet = p->Load(set);
         set.endGroup();
@@ -277,9 +278,9 @@ void CWakeOnLanModel::slotHostStateChanged()
     }
 }
 
-CParameterWakeOnLan* CWakeOnLanModel::GetData(const QModelIndex &index)
+QSharedPointer<CParameterWakeOnLan> CWakeOnLanModel::GetData(const QModelIndex &index)
 {
     if(index.row() < 0 || index.row() > m_Data.size())
         return nullptr;
-    return m_Data.at(index.row()).data();
+    return m_Data.at(index.row());
 }

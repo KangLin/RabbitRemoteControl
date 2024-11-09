@@ -90,7 +90,7 @@ int CParameterWakeOnLanUI::SetParameter(CParameter *pParameter)
     ui->pbShow->setEnabled(m_pWakeOnLan->GetParameterClient()->GetViewPassowrd());
     ui->sbRepeat->setValue(m_pWakeOnLan->GetRepeat());
     ui->sbInterval->setValue(m_pWakeOnLan->GetInterval());
-    ui->sbDelay->setValue(m_pWakeOnLan->GetDelay());
+    ui->sbTimeOut->setValue(m_pWakeOnLan->GetTimeOut());
     return 0;
 }
 
@@ -171,7 +171,7 @@ int CParameterWakeOnLanUI::Accept()
     m_pWakeOnLan->SetSavePassword(ui->pbSave->isChecked());
     m_pWakeOnLan->SetRepeat(ui->sbRepeat->value());
     m_pWakeOnLan->SetInterval(ui->sbInterval->value());
-    m_pWakeOnLan->SetDelay(ui->sbDelay->value());
+    m_pWakeOnLan->SetTimeOut(ui->sbTimeOut->value());
 
     return 0;
 }

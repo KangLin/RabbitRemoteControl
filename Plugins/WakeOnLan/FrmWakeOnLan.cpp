@@ -38,6 +38,18 @@ CFrmWakeOnLan::CFrmWakeOnLan(CWakeOnLanModel *pModel, QWidget *parent)
                     });
     Q_ASSERT(check);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    //必须在 setModel 后,才能应用
+    /*第二个参数可以为：
+    QHeaderView::Interactive     ：0 用户可设置，也可被程序设置成默认大小
+    QHeaderView::Fixed           ：2 用户不可更改列宽
+    QHeaderView::Stretch         ：1 根据空间，自动改变列宽，用户与程序不能改变列宽
+    QHeaderView::ResizeToContents：3 根据内容改变列宽，用户与程序不能改变列宽
+    */
+    ui->tableView->horizontalHeader()->setSectionResizeMode(
+        QHeaderView::Interactive);
+    //以下设置列宽函数必须要数据加载完成后使用,才能应用
+    //See: https://blog.csdn.net/qq_40450386/article/details/86083759
+    //ui->tableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
 }
 
 CFrmWakeOnLan::~CFrmWakeOnLan()

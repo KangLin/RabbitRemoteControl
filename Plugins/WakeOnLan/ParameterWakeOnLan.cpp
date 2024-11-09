@@ -20,7 +20,7 @@ CParameterWakeOnLan::CParameterWakeOnLan(QObject *parent)
     , m_bSavePassword(false)
     , m_nRepeat(3)
     , m_nInterval(500)
-    , m_nDelay(180)
+    , m_nTimeOut(1000)
 {}
 
 int CParameterWakeOnLan::OnLoad(QSettings &set)
@@ -37,7 +37,7 @@ int CParameterWakeOnLan::OnLoad(QSettings &set)
     SetSavePassword(set.value("Password/Save", GetSavePassword()).toBool());
     SetRepeat(set.value("Repeat", GetRepeat()).toInt());
     SetInterval(set.value("Interval", GetInterval()).toInt());
-    SetDelay(set.value("Delay", GetDelay()).toInt());
+    SetTimeOut(set.value("TimeOut", GetTimeOut()).toInt());
     set.endGroup();
     return nRet;
 }
@@ -55,7 +55,7 @@ int CParameterWakeOnLan::OnSave(QSettings &set)
     set.setValue("Password/Save", GetSavePassword());
     set.setValue("Repeat", GetRepeat());
     set.setValue("Interval", GetInterval());
-    set.setValue("Delay", GetDelay());
+    set.setValue("TimeOut", GetTimeOut());
     set.endGroup();
     return nRet;
 }
@@ -227,16 +227,16 @@ int CParameterWakeOnLan::SetInterval(int nInterval)
     return 0;
 }
 
-const int CParameterWakeOnLan::GetDelay() const
+const int CParameterWakeOnLan::GetTimeOut() const
 {
-    return m_nDelay;
+    return m_nTimeOut;
 }
 
-int CParameterWakeOnLan::SetDelay(int nDelay)
+int CParameterWakeOnLan::SetTimeOut(int nTimeout)
 {
-    if(m_nDelay == nDelay)
+    if(m_nTimeOut == nTimeout)
         return 0;
-    m_nDelay = nDelay;
+    m_nTimeOut = nTimeout;
     SetModified(true);
     return 0;
 }
