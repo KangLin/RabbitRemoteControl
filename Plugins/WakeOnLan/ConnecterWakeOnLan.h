@@ -51,7 +51,6 @@ private:
 
 private Q_SLOTS:
     void slotAdd();
-    void slotRemove();
 
     // CConnecter interface
 protected:

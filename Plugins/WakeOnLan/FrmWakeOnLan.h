@@ -3,7 +3,6 @@
 
 #include <QWidget>
 
-#include "ParameterWakeOnLan.h"
 #include "WakeOnLanModel.h"
 
 namespace Ui {

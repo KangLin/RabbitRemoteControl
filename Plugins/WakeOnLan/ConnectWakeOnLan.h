@@ -7,7 +7,7 @@
 #include "WakeOnLanQt.h"
 #include "ConnecterWakeOnLan.h"
 
-class CLIENT_EXPORT CConnectWakeOnLan : public CConnect
+class CConnectWakeOnLan : public CConnect
 {
     Q_OBJECT
 public:
