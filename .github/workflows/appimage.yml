@@ -63,6 +63,7 @@ jobs:
               libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
               libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
               libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
+              libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev  \
               libxcb-* \
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse-dev libfuse3-dev libusb-1.0-0-dev libpcap-dev libcups2-dev \

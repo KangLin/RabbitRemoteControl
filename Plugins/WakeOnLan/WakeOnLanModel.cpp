@@ -1,4 +1,5 @@
 #include <QLoggingCategory>
+#include <QIcon>
 #include "WakeOnLanModel.h"
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Model")
