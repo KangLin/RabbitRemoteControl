@@ -279,3 +279,8 @@ void CParameterWakeOnLanUI::on_pbCancel_clicked()
 {
     reject();
 }
+
+void CParameterWakeOnLanUI::on_leIP_editingFinished()
+{
+    slotHostChanged(ui->leIP->text());
+}

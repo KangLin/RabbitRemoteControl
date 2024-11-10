@@ -1,6 +1,9 @@
 #include <QLoggingCategory>
 #include <QIcon>
+#include <QNetworkInterface>
+
 #include "WakeOnLanModel.h"
+#include "ParameterWakeOnLanUI.h"
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Model")
 CWakeOnLanModel::CWakeOnLanModel(QObject *parent)
@@ -147,7 +150,33 @@ bool CWakeOnLanModel::setData(const QModelIndex &index, const QVariant &value, i
         return false;
     auto p = m_Data.at(r);
     if(1 == c)
+    {
         p->m_Net.SetHost(value.toString());
+        foreach(auto iface, QNetworkInterface::allInterfaces()) {
+            //qDebug(log) << iface;
+            auto entry = iface.addressEntries();
+            if(iface.flags() & QNetworkInterface::IsLoopBack)
+                continue;
+            if(!(iface.flags() & QNetworkInterface::CanBroadcast))
+                continue;
+            QString szBroadcast;
+            foreach(auto e, entry) {
+                if(!e.broadcast().isNull()) {
+                    if(CParameterWakeOnLanUI::GetSubNet(
+                            p->m_Net.GetHost(),
+                            e.netmask().toString())
+                        == CParameterWakeOnLanUI::GetSubNet(
+                            e.ip().toString(),
+                            e.netmask().toString()))
+                    {
+                        p->SetNetworkInterface(e.ip().toString());
+                        p->SetBroadcastAddress(e.broadcast().toString());
+                        break;
+                    }
+                }
+            }
+        }
+    }
     else if(2 == c)
         p->SetMac(value.toString());
     else if(3 == c)

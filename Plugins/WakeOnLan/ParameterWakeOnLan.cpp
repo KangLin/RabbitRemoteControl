@@ -8,6 +8,7 @@
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
 #endif
+
 #include "ParameterWakeOnLan.h"
 
 CParameterWakeOnLan::CParameterWakeOnLan(QObject *parent)
