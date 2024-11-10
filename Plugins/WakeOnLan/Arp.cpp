@@ -9,6 +9,9 @@
     #include <PcapFilter.h>
     #ifdef _MSC_VER
         #include <SystemUtils.h>
+        #include <winsock.h>
+    #else
+        #include <arpa/inet.h>
     #endif
 #endif
 
@@ -118,8 +121,8 @@ static void cbArpPacketReceived(pcpp::RawPacket* rawPacket,
         return;
 
     // verify it's the right ARP response
-    if (arpReplyLayer->getArpHeader()->hardwareType != hostToNet16(1) /* Ethernet */
-        || arpReplyLayer->getArpHeader()->protocolType != hostToNet16(PCPP_ETHERTYPE_IP))
+    if (arpReplyLayer->getArpHeader()->hardwareType != htons(1) /* Ethernet */
+        || arpReplyLayer->getArpHeader()->protocolType != htons(PCPP_ETHERTYPE_IP))
         return;
 
     // get the data from the main thread
@@ -163,7 +166,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para,
     pcpp::PcapLiveDevice* device = nullptr;
     try{
         if(!pcpp::IPv4Address::isValidIPv4Address(szTargetIp)) {
-            qCritical(log) << "Target ip is invalid:" << szTargetIp;
+            qCritical(log) << "Target ip is invalid:" << szTargetIp.c_str();
             return -1;
         }
 
@@ -172,7 +175,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para,
         if (device == nullptr) {
             qCritical(log)
                 << "Couldn't find interface by provided IP address or name"
-                << szSourceIp;
+                << szSourceIp.c_str();
             return -2;
         }
 
@@ -185,7 +188,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para,
 
         if(!device->isOpened())
             if(!device->open()) {
-                qCritical(log) << "Open device fail" << szSourceIp;
+                qCritical(log) << "Open device fail" << szSourceIp.c_str();
                 return -3;
             }
 
