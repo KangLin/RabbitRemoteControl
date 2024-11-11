@@ -20,7 +20,7 @@ jobs:
 
     # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     env:
       BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
@@ -114,7 +114,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
-            git clone -b 3.9.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
+            git clone -b 3.9.0 https://github.com/FreeRDP/FreeRDP.git
             # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
             git submodule update --init --recursive

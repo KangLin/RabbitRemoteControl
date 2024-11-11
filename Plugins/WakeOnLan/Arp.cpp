@@ -249,6 +249,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
         if(!m_Timer.isActive())
             m_Timer.start();
 
+        return 0;
     } catch(std::exception e) {
         qDebug(log) << "std::exception" << e.what();
     } catch(...) {
@@ -257,7 +258,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
 #else
     qDebug(log) << "There is not pcapplusplus";
 #endif
-    return 0;
+    return -10;
 }
 
 void CArp::ListInterfaces()

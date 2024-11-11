@@ -101,7 +101,7 @@ jobs:
 #      working-directory: ${{env.SOURCE_DIR}}
 #      run: |
 #        IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\LibDataChannel (
-#          git clone -b v0.15.5 https://github.com/paullouisageneau/libdatachannel.git
+#          git clone -b v0.22.2 https://github.com/paullouisageneau/libdatachannel.git
 #          cd libdatachannel
 #          git submodule update --init --recursive
 #          cmake -E make_directory build

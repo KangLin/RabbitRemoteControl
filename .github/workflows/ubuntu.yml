@@ -18,7 +18,7 @@ jobs:
 
     # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     env:
       BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
@@ -105,7 +105,7 @@ jobs:
               libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse3-dev libusb-1.0-0-dev \
-              libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev \
+              libvncserver-dev libssh-dev libtelnet-dev freerdp3-dev \
               libpcap-dev libcups2-dev \
               libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
 
@@ -173,9 +173,10 @@ jobs:
 
       - name: build libdatachannel
         working-directory: ${{env.SOURCE_DIR}}
+        if: false
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibDataChannel ]; then
-            git clone -b v0.17.8 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
+            git clone -b v0.22.2 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
             cd libdatachannel
             git submodule update --init --recursive
             cmake -E make_directory build

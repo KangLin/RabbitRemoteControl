@@ -175,7 +175,7 @@ jobs:
 #        working-directory: ${{env.SOURCE_DIR}}
 #        run: |
 #          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibDataChannel ]; then
-#            git clone -b v0.17.8 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
+#            git clone -b v0.22.2 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
 #            cd libdatachannel
 #            git submodule update --init --recursive
 #            cmake -E make_directory build
