@@ -94,6 +94,7 @@ parts:
       - libjs-jquery
       - libswscale5
       - libkrb5-3
+      - libxkbfile1
       - libpulse0 # PulseAudio client runtime libraries
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
