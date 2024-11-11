@@ -40,7 +40,7 @@ jobs:
       VCPKGGITCOMMITID: 9f5925e81bbcd9c8c34cc7a8bd25e3c557b582b2
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
-      VCPKG_MANIFEST_FEATURES: "freerdp;vnc"
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
       artifact_name: build_macos
       RabbitRemoteControl_VERSION: v0.0.27
 
@@ -253,7 +253,7 @@ jobs:
       - name: Build RabbitRemoteControl
         working-directory: ${{github.workspace}}/build
         env:
-          RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
+          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
           if [ "${{ matrix.BUILD_TYPE }}" == "Release" ]; then
               export BUILD_SERVICE=OFF

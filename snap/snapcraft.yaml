@@ -248,7 +248,7 @@ parts:
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
-      - -DRabbitCommon_DIR=$CRAFT_STAGE/RabbitCommon/
+      - -DRabbitCommon_ROOT=$CRAFT_STAGE/RabbitCommon/
       - -DQT_ROOT=$CRAFT_STAGE/qt
       - -DQT_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
       - -DQt6_ROOT=$CRAFT_STAGE/qt

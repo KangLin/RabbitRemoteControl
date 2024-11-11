@@ -110,7 +110,7 @@ Prior versions don't have CMake support.
 #### RabbitCommon
 This library is placed in the same directory level as the project by default.
 If not, you must specify the CMake parameters:
--DRabbitCommon_DIR=[RabbitCommon installation path]
+-DRabbitCommon_ROOT=[RabbitCommon installation path]
 
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
 
@@ -299,7 +299,7 @@ It is depended by PcapPlusPlus
       ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
 
 - The CMake parameters:
-  + RabbitCommon_DIR: RabbitCommon source code location
+  + RabbitCommon_ROOT: RabbitCommon source code location
   + BUILD_CLIENT: Compile client. the default is ON
   + BUILD_SERVICE: Compile service. the default dependency is whether there is a QtService
   + BUILD_PLUGINS: Compile plugins. the default is ON
@@ -358,7 +358,7 @@ It is depended by PcapPlusPlus
         
     - Use build_debpackage.sh
 
-          ./build_debpackage.sh $QT_ROOT $RabbitCommon_DIR
+          ./build_debpackage.sh $QT_ROOT $RabbitCommon_ROOT
 
 - Run
   + The application is installed in install/bin

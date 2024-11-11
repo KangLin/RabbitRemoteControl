@@ -71,7 +71,7 @@ jobs:
     - name: build doxygen
       working-directory: ${{github.workspace}}
       env:
-        RabbitCommon_DIR: ${{env.SOURCE_DIR}}/RabbitCommon
+        RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         BUILD_DOCS: ON
       run: |
         cmake -E make_directory ${{github.workspace}}/build

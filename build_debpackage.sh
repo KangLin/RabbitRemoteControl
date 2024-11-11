@@ -8,20 +8,20 @@ if [ -n "$1" -a -z "$QT_ROOT" ]; then
 	export QT_ROOT=$1
 fi
 if [ -z "$QT_ROOT" ]; then
-	echo "$0 QT_ROOT RabbitCommon_DIR"
+	echo "$0 QT_ROOT RabbitCommon_ROOT"
     exit -1
 fi
 
-if [ -n "$2" -a -z "$RabbitCommon_DIR" ]; then
-	export RabbitCommon_DIR=$2
+if [ -n "$2" -a -z "$RabbitCommon_ROOT" ]; then
+	export RabbitCommon_ROOT=$2
 fi
 
-if [ -z "$RabbitCommon_DIR" ]; then
-	export RabbitCommon_DIR=`pwd`/../RabbitCommon
+if [ -z "$RabbitCommon_ROOT" ]; then
+	export RabbitCommon_ROOT=`pwd`/../RabbitCommon
 fi
 
-if [ ! -d "$RabbitCommon_DIR" ]; then
-	echo "$0 QT_ROOT RabbitCommon_DIR"
+if [ ! -d "$RabbitCommon_ROOT" ]; then
+	echo "$0 QT_ROOT RabbitCommon_ROOT"
 fi
 
 if [ -z "$BUILD_TYPE" ]; then

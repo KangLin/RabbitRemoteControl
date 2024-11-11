@@ -77,7 +77,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 #### RabbitCommon
 This library is placed in the same directory level as the project by default.
 If not, you must specify the CMake parameters:
--DRabbitCommon_DIR=[RabbitCommon installation path]
+-DRabbitCommon_ROOT=[RabbitCommon installation path]
 
     git clone https://github.com/KangLin/RabbitCommon.git
 
@@ -244,7 +244,7 @@ Source-code location: https://github.com/KangLin/tigervnc
       git clone https://github.com/KangLin/RabbitRemoteControl.git
 
 - The CMake parameters:
-  + RabbitCommon_DIR: RabbitCommon source-code location
+  + RabbitCommon_ROOT: RabbitCommon source-code location
   + BUILD_CLIENT: Compile client. the default is ON
   + BUILD_SERVICE: Compile service. the default dependency is whether there is a QtService
   + BUILD_PLUGINS: Compile plugins. the default is ON

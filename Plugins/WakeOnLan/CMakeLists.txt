@@ -8,19 +8,20 @@ find_package(PcapPlusPlus)
 if(PcapPlusPlus_FOUND)
     if(PcapPlusPlus_VERSION VERSION_LESS 24.09)
         message("Found PcapPlusPlus ${PcapPlusPlus_VERSION} less 24.09. Please version >=24.09 . "
-        "Please build and install from git clone https://github.com/seladb/PcapPlusPlus.git . ")
+        "Please build and install from https://github.com/seladb/PcapPlusPlus.git . ")
     endif()
-    #message(STATUS "Using Pcap++ ${PcapPlusPlus_VERSION}")
-    #message(STATUS "Include dir: ${PcapPlusPlus_INCLUDE_DIR}")
-    list(APPEND CLIENT_DEFINITIONS HAVE_PCAPPLUSPLUS)
-    list(APPEND CLIENT_LIBS PcapPlusPlus::Pcap++)
+    message(STATUS "Using Pcap++ ${PcapPlusPlus_VERSION}")
+    message(STATUS "Include dir: ${PcapPlusPlus_INCLUDE_DIR}")
+    list(APPEND WakeOnLan_DEFINITIONS HAVE_PCAPPLUSPLUS)
+    list(APPEND WakeOnLan_LIBS PcapPlusPlus::Pcap++)
 else()
-    message("Don't PcapPlusPlus. "
-        "Please build and install from git clone https://github.com/seladb/PcapPlusPlus.git . "
+    message("There is no PcapPlusPlus. "
+        "Please build and install from "
+        "'git clone https://github.com/seladb/PcapPlusPlus.git ${CMAKE_SOURCE_DIR}/../PcapPlusPlus' "
         "And set PcapPlusPlus_ROOT to install root directory")
 endif()
 
-SET(WakeOnLan_LIBS Client)
+list(APPEND WakeOnLan_LIBS Client)
 
 SET(WakeOnLan_SOURCE_FILES
     PluginWakeOnLan.cpp
@@ -64,6 +65,7 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     PRIVATE_LIBS ${WakeOnLan_LIBS}
     PRIVATE_INCLUDE_DIRS ${WakeOnLan_INCLUDE_DIR} ${WinPR_INCLUDE_DIR}
     PRIVATE_DEFINITIONS PluginWakeOnLan_VERSION="${RabbitRemoteControl_VERSION}"
+    DEFINITIONS ${WakeOnLan_DEFINITIONS}
     PRIVATE_OPTIONS ${WakeOnLan_OPTIONS}
     INSTALL_DIR plugins/Client
     OUTPUT_DIR ${CMAKE_BINARY_DIR}/plugins/Client

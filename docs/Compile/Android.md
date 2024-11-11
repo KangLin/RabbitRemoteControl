@@ -140,7 +140,7 @@
 
 #### 玉兔公共库
 此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
--DRabbitCommon_DIR=[RabbitCommon 安装目录]
+-DRabbitCommon_ROOT=[RabbitCommon 安装目录]
 
     git clone https://github.com/KangLin/RabbitCommon.git
 
@@ -153,7 +153,7 @@
 - CMake 参数
   - QT_ROOT: Qt 安装位置
   - Qt6_DIR: 与 QT_ROOT 相同
-  - RabbitCommon_DIR：RabbitCommon 源码位置
+  - RabbitCommon_ROOT：RabbitCommon 源码位置
   - BUILD_CLIENT: 编译客户端。默认为 ON
   - BUILD_SERVICE: 编译服务器端。默认依赖是否有 QtService
   - BUILD_PLUGINS: 编译插件。默认为 ON

@@ -53,7 +53,7 @@ install:
   - git submodule update --init --recursive
   - cd %APPVEYOR_BUILD_FOLDER%
   - git clone https://github.com/KangLin/RabbitCommon.git
-  - set RabbitCommon_DIR=%APPVEYOR_BUILD_FOLDER%/RabbitCommon
+  - set RabbitCommon_ROOT=%APPVEYOR_BUILD_FOLDER%/RabbitCommon
 
   - set OTHER_SOURCE=%APPVEYOR_BUILD_FOLDER%\..\other_source
   - set INSTALL_DIR=%OTHER_SOURCE%\install_dir
