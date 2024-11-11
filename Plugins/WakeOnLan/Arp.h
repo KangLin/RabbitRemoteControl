@@ -54,9 +54,11 @@ public:
 #endif
 
     int WakeOnLan(QSharedPointer<CParameterWakeOnLan> para);
-    int GetMac(QSharedPointer<CParameterWakeOnLan> para,
-               QSharedPointer<ArpRequest> aq = QSharedPointer<ArpRequest>());
-
+    int GetMac(QSharedPointer<CParameterWakeOnLan> para
+               #ifdef HAVE_PCAPPLUSPLUS
+               , QSharedPointer<ArpRequest> aq = QSharedPointer<ArpRequest>()
+               #endif
+               );
 private:
     void ListInterfaces();
 

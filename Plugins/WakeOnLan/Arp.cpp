@@ -31,24 +31,29 @@ CArp::CArp(QObject *parent) : QObject(parent)
 CArp::~CArp()
 {
     qDebug(log) << __FUNCTION__;
+#ifdef HAVE_PCAPPLUSPLUS
     m_Mutex.lock();
     foreach(auto a,  m_ArpRequest)
     {
         StopCapture(a->device, !a->bOpen);
     }
     m_Mutex.unlock();
+#endif
 }
 
 int CArp::WakeOnLan(QSharedPointer<CParameterWakeOnLan> para)
 {
     int nRet = 0;
 
+    if(!para)
+        return -1;
+
     if(para->GetMac().isEmpty())
     {
         qCritical(log) << "The mac address is empty";
-        return -1;
+        return -2;
     }
-
+#ifdef HAVE_PCAPPLUSPLUS
     auto it = m_ArpRequest.find(para->m_Net.GetHost());
     if(it != m_ArpRequest.end())
     {
@@ -68,11 +73,14 @@ int CArp::WakeOnLan(QSharedPointer<CParameterWakeOnLan> para)
     QSharedPointer<ArpRequest> aq(new ArpRequest());
     if(!aq) {
         qCritical(log) << "new ArpRequest fail";
-        return -2;
+        return -3;
     }
     aq->bWakeOnLan = true;
     aq->nRepeat = para->GetRepeat();
     nRet = GetMac(para, aq);
+#else
+    qDebug(log) << "There is not pcapplusplus";
+#endif
     return nRet;
 }
 
@@ -151,8 +159,11 @@ static void cbArpPacketReceived(pcpp::RawPacket* rawPacket,
 }
 #endif
 
-int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para,
-                 QSharedPointer<ArpRequest> aq)
+int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
+                 #ifdef HAVE_PCAPPLUSPLUS
+                 , QSharedPointer<ArpRequest> aq
+                 #endif
+                 )
 {
     qDebug(log) << __FUNCTION__ << para;
 
@@ -243,6 +254,8 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para,
     } catch(...) {
         qDebug(log) << "Exception";
     }
+#else
+    qDebug(log) << "There is not pcapplusplus";
 #endif
     return 0;
 }

@@ -144,14 +144,14 @@ jobs:
           gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes-file ${{github.workspace}}/Note.md
           gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json
 
-      - name: Upload To Github Release
+      - name: clean test tag
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         continue-on-error: true
         run: |
           gh release delete test_${{ github.ref_name }} -y --cleanup-tag
 
-      - name: Upload To Github Release
+      - name: Upload test tag To Github Release
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         run: |
-          gh release create test_${{ github.ref_name }} --latest=false --title "Recently developed build - ${{ github.ref_name }}" --notes-file ${{github.workspace}}/Note.md
+          gh release create test_${{ github.ref_name }} --prerelease --latest=false --title "Recently developed build - ${{ github.ref_name }}" --notes-file ${{github.workspace}}/Note.md
           gh release upload test_${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json --clobber

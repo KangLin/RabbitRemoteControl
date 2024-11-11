@@ -4,6 +4,22 @@ project(WakeOnLan
     DESCRIPTION "Wake on lan plugin"
     )
 
+find_package(PcapPlusPlus)
+if(PcapPlusPlus_FOUND)
+    if(PcapPlusPlus_VERSION VERSION_LESS 24.09)
+        message("Found PcapPlusPlus ${PcapPlusPlus_VERSION} less 24.09. Please version >=24.09 . "
+        "Please build and install from git clone https://github.com/seladb/PcapPlusPlus.git . ")
+    endif()
+    #message(STATUS "Using Pcap++ ${PcapPlusPlus_VERSION}")
+    #message(STATUS "Include dir: ${PcapPlusPlus_INCLUDE_DIR}")
+    list(APPEND CLIENT_DEFINITIONS HAVE_PCAPPLUSPLUS)
+    list(APPEND CLIENT_LIBS PcapPlusPlus::Pcap++)
+else()
+    message("Don't PcapPlusPlus. "
+        "Please build and install from git clone https://github.com/seladb/PcapPlusPlus.git . "
+        "And set PcapPlusPlus_ROOT to install root directory")
+endif()
+
 SET(WakeOnLan_LIBS Client)
 
 SET(WakeOnLan_SOURCE_FILES
