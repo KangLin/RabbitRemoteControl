@@ -431,12 +431,13 @@
   - 迭代构建: https://snapcraft.io/docs/iterating-over-a-build
     通过以下命令，您可以单步执行此封装环境：
     - --shell：将快照构建到指定之前的生命周期步骤，并在环境中打开一个 shell
-      例如，运行 snapcraft prime --shell 将运行到暂存步骤并打开一个 shell）。
+      例如，运行 snapcraft prime [<part-name>] --shell 将运行到暂存步骤并打开一个 shell）。
     - --shell-after：构建对指定生命周期步骤的快照，并在环境中打开 shell。
-     （例如，运行 snapcraft prime --shell-after 将运行到 prime 步骤，然后进入 shell）。
+     （例如，运行 snapcraft prime [<part-name>] --shell-after 将运行到 prime 步骤，然后进入 shell）。
     - --debug 在发生错误后在环境中打开一个 shell。
 
-          $ snapcraft prime --shell -v --debug
+          $ # 例如 prime freerdp
+          $ snapcraft prime freerdp --shell-after -v --debug
 
   - 清理编译
   

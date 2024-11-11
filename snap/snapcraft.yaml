@@ -70,7 +70,6 @@ parts:
       - libcjson-dev
       - libkrb5-dev
       - libicu-dev
-      - libpkcs11-helper1-dev
       # ffmpeg development headers and libraries
       - libavcodec-dev
       - libavformat-dev
@@ -85,7 +84,6 @@ parts:
       - libutf8proc2
       - libusb-1.0-0
       - libcjson1
-      - libkrb5-3
       - icu-devtools
       - libcups2
       - libcupsimage2
@@ -95,13 +93,10 @@ parts:
       - libkadm5clnt-mit12
       - libjs-jquery
       - libswscale5
-      - x11-utils
       - libkrb5-3
-      - libpkcs11-helper1
       - libpulse0 # PulseAudio client runtime libraries
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
-      - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
       - -DWITH_CLIENT=OFF
       - -DWITH_PLATFORM_SERVER=OFF
@@ -111,16 +106,19 @@ parts:
       - -DWITH_CLIENT_SDL=OFF
       - -DWITH_PROXY_MODULES=OFF
       - -DWITH_KRB5=OFF
-    prime:
+    stage:
+      - -usr/share
+      - -usr/bin
+      - -usr/sbin
       - -usr/include
-      - -usr/lib/cmake
-      - -usr/lib/pkgconfig
-      - -usr/lib/*/pkgconfig
-      - -usr/lib/*.a
-      - -usr/lib/**/*.a
-      - -usr/share/doc
-      - -usr/share/doc-base
-      - -usr/share/pkgconfig
+      - -etc
+    prime:
+      - -usr/local/include
+      - -usr/local/bin
+      - -usr/local/lib/cmake
+      - -usr/local/lib/pkgconfig
+      - -usr/local/lib/*.a
+      - -usr/local/lib/**/*.a
 
   tigervnc:
     plugin: cmake
@@ -156,10 +154,32 @@ parts:
       - -DBUILD_TESTS=OFF
       - -DBUILD_VIEWER=OFF
     stage:
-      - usr/local/include
-      - usr/local/lib
+      - -usr/share
     prime:
-      - -*
+      - -usr/local
+
+  pcapplusplus:
+    # see: https://snapcraft.io/docs/supported-plugins
+    # See 'snapcraft plugins'
+    plugin: cmake
+    source: https://github.com/seladb/PcapPlusPlus.git
+    source-type: git
+    source-tag: v24.09
+    source-depth: 1
+    build-packages:
+      - libpcap-dev
+    stage-packages:
+      - libpcap0.8
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DPCAPPP_BUILD_EXAMPLES=OFF
+      - -DPCAPPP_BUILD_TESTS=OFF
+      - -DPCAPPP_BUILD_TUTORIALS=OFF
+      - -DPCAPPP_INSTALL=ON
+    stage:
+      - -usr/share
+    prime:
+      - -usr/local
 
   # qt:
   #   plugin: nil # See: https://snapcraft.io/docs/nil-plugin
@@ -204,6 +224,7 @@ parts:
       - tigervnc
       - rabbitcommon
       - freerdp
+      - pcapplusplus
  #     - qt
     build-packages:
       - libcmark-dev
@@ -249,18 +270,19 @@ parts:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DRabbitCommon_ROOT=$CRAFT_STAGE/RabbitCommon/
-      - -DQT_ROOT=$CRAFT_STAGE/qt
-      - -DQT_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
-      - -DQt6_ROOT=$CRAFT_STAGE/qt
-      - -DQt6_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
-      - -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
+#      - -DQT_ROOT=$CRAFT_STAGE/qt
+#      - -DQT_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
+#      - -DQt6_ROOT=$CRAFT_STAGE/qt
+#      - -DQt6_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
+#      - -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
       - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
       - -Dtigervnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
-#      - -DFreeRDP-Client_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Client3
-#      - -DFreeRDP_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP3
-#      - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
-#      - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
-#      - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
+      - -DPcapPlusPlus_ROOT=$CRAFT_STAGE/usr/local
+      - -DFreeRDP-Client_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Client3
+      - -DFreeRDP_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP3
+      - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
+      - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
+      - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
     override-build: |
       export LD_LIBRARY_PATH=$CRAFT_STAGE/qt/lib:$LD_LIBRARY_PATH
       export CMAKE_PREFIX_PATH="$CRAFT_STAGE/qt;$CRAFT_STAGE;/usr"
@@ -290,7 +312,7 @@ apps:
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
    environment:
-     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/qt/lib
+     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/local/lib:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/qt/lib
      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
    # List extensions, run `snapcraft extensions`
    extensions:
