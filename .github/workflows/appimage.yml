@@ -20,7 +20,7 @@ jobs:
 
     # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     env:
       BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
@@ -226,6 +226,7 @@ jobs:
               export BUILD_VIEWER_TERMINAL=OFF
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           fi
+          export LD_LIBRARY_PATH=${{env.INSTALL_DIR}}/lib:$LD_LIBRARY_PATH
           cmake ${{github.workspace}} \
             -DCMAKE_INSTALL_PREFIX=/usr \
             -DCMARK_SHARED=OFF \
