@@ -364,7 +364,7 @@ int CConnectFreeRDP::OnProcess()
             qCritical(log) << szErr;
             emit sigError(err, szErr);
 
-            // Reconnect
+            /*/ Reconnect
             freerdp *instance = pRdpContext->instance;
             if (client_auto_reconnect(instance))
             {
@@ -382,7 +382,7 @@ int CConnectFreeRDP::OnProcess()
             szErr += ":";
             szErr += freerdp_get_last_error_string(err);
             qCritical(log) << szErr;
-            emit sigError(err, szErr);
+            emit sigError(err, szErr);//*/
         }
 
 #if FreeRDP_VERSION_MAJOR >= 3
