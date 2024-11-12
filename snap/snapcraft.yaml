@@ -182,39 +182,38 @@ parts:
     prime:
       - -usr/local
 
-  # qt:
-  #   plugin: nil # See: https://snapcraft.io/docs/nil-plugin
-  #   stage-packages:
-  #     - python3-pip
-  #     - python3-pip-whl
-  #     - python3-pipdeptree
-  #     - cpio
-  #   override-stage: |
-  #     pip install -U pip
-  #     pip install aqtinstall
-  #     # See: https://ddalcino.github.io/aqt-list-server/
-  #     if [ "`uname -m`" == "x86_64" ]; then
-  #         aqt install-qt linux desktop 6.8.0 linux_gcc_64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
-  #         ./6.8.0/gcc_64/bin/qmake -query
-  #         ln -s 6.8.0/gcc_64 qt
-  #     elif [ "`uname -m`" == "aarch64" ]; then
-  #         aqt install-qt linux_arm64 desktop 6.8.0 linux_gcc_arm64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
-  #         ln -s 6.8.0/arm64 qt
-  #     fi
-  #     snapcraftctl stage
-  #   override-prime: |
-  #     echo "override-prime"
-  #     snapcraftctl prime
-  #     echo "`pwd`"
-  #     mkdir -p qt
-  #     cp -r $CRAFT_STAGE/qt/translations qt
-  #     find $CRAFT_STAGE/qt/ -name 'qt.conf' | cpio -pdm .
-  #     find $CRAFT_STAGE/qt/ -name '*.so*' | cpio -pdm .
-  #     cp -r root/stage/qt .
-  #     if [ -d qt/qml ]; then
-  #         rm -fr qt/qml
-  #     fi
-  #     rm -fr root
+  qt:
+    plugin: nil # See: https://snapcraft.io/docs/nil-plugin
+    build-packages:
+      - python3-pip
+      - python3-pip-whl
+      - python3-pipdeptree
+      - cpio
+    override-pull: |
+      echo "override-pull ......"
+    override-build: |
+      echo "override-build ......"
+      cd $SNAPCRAFT_PART_INSTALL
+      if [ ! -d qt ]; then
+          #pip install -U pip
+          pip install aqtinstall
+          echo "Download qt ..."
+          export QTVERSION=6.8.0
+          # See: https://ddalcino.github.io/aqt-list-server/
+          if [ "`uname -m`" == "x86_64" ]; then
+              aqt install-qt linux desktop ${QTVERSION} linux_gcc_64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
+              mv ${QTVERSION}/gcc_64 qt
+          elif [ "`uname -m`" == "aarch64" ]; then
+              aqt install-qt linux_arm64 desktop ${QTVERSION} linux_gcc_arm64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
+              mv ${QTVERSION}/arm64 qt
+          fi
+      fi
+    stage:
+      - qt
+    prime:
+      - qt/lib/**/*.so*
+      - qt/translations
+      - qt/plugins/**/*.so*
 
   rabbitremotecontrol:
     # See 'snapcraft plugins'
@@ -226,7 +225,7 @@ parts:
       - rabbitcommon
       - freerdp
       - pcapplusplus
- #     - qt
+      - qt
     build-packages:
       - libcmark-dev
       - cmark
@@ -271,11 +270,11 @@ parts:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
       - -DRabbitCommon_ROOT=$CRAFT_STAGE/RabbitCommon/
-#      - -DQT_ROOT=$CRAFT_STAGE/qt
-#      - -DQT_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
-#      - -DQt6_ROOT=$CRAFT_STAGE/qt
-#      - -DQt6_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
-#      - -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
+      - -DQT_ROOT=$CRAFT_STAGE/qt
+      - -DQT_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
+      - -DQt6_ROOT=$CRAFT_STAGE/qt
+      - -DQt6_DIR=$CRAFT_STAGE/qt/lib/cmake/Qt6
+      - -DCMAKE_MODULE_PATH=$CRAFT_STAGE/qt/lib/cmake
       - -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl
       - -Dtigervnc_DIR=$CRAFT_STAGE/usr/local/lib/cmake/tigervnc
       - -DPcapPlusPlus_ROOT=$CRAFT_STAGE/usr/local
@@ -284,20 +283,21 @@ parts:
       - -DWinPR_DIR=$CRAFT_STAGE/usr/local/lib/cmake/WinPR3
       - -DFreeRDP-Shadow_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Shadow3
       - -DFreeRDP-Server_DIR=$CRAFT_STAGE/usr/local/lib/cmake/FreeRDP-Server3
-    override-build: |
-      export LD_LIBRARY_PATH=$CRAFT_STAGE/qt/lib:$LD_LIBRARY_PATH
-      export CMAKE_PREFIX_PATH="$CRAFT_STAGE/qt;$CRAFT_STAGE;/usr"
-      export CMAKE_FIND_ROOT_PATH="$CRAFT_STAGE;/usr"
-      snapcraftctl build
+    build-environment:
+      - LD_LIBRARY_PATH: $CRAFT_STAGE/qt/lib
+      - CMAKE_FIND_ROOT_PATH: "$CRAFT_STAGE/qt;$CRAFT_STAGE/usr/local/lib;$CMAKE_FIND_ROOT_PATH"
+      - PATH: "$CRAFT_STAGE/qt/bin:$PATH"
     override-stage: |
       cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
       sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
-      # cat << EOF > "qt.conf"
-      # [Paths]
-      # Libraries=../../../qt/lib
-      # Plugins=../../../qt/plugins
-      # Translations=../../../qt/translations
-      # EOF
+      sed -i 's|Path=/opt/RabbitRemoteControl/bin|Path=\$\{SNAP\}/opt/RabbitRemoteControl/bin|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+      cat > "qt.conf" << EOF
+      [Paths]
+      Prefix=../../..
+      Libraries=../../../qt/lib
+      Plugins=../../../qt/plugins
+      Translations=../../../qt/translations
+      EOF
       snapcraftctl stage
     prime:
       - -usr/bin/cmark
@@ -313,7 +313,7 @@ apps:
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
    environment:
-     LD_LIBRARY_PATH: $LD_LIBRARY_PATH:$SNAP/usr/local/lib:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$SNAP/qt/lib
+     LD_LIBRARY_PATH: $SNAP/qt/lib:$SNAP/usr/local/lib:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH
      PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
    # List extensions, run `snapcraft extensions`
    extensions:
