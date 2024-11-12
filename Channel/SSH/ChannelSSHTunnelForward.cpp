@@ -361,7 +361,7 @@ int CChannelSSHTunnelForward::SSHReadyRead()
 int CChannelSSHTunnelForward::Process()
 {
     int nRet = 0;
-    
+
     if(!m_Session || !m_Channel || !ssh_channel_is_open(m_Channel)
         || ssh_channel_is_eof(m_Channel)) {
         QString szErr = "The channel is not open";
@@ -369,12 +369,12 @@ int CChannelSSHTunnelForward::Process()
         setErrorString(szErr);
         return -1;
     }
-        
+
     struct timeval timeout = {0, 50000};
     ssh_channel channels[2], channel_out[2];
     channels[0] = m_Channel;
     channels[1] = nullptr;
-    
+
     fd_set set;
     FD_ZERO(&set);
     socket_t fd = SSH_INVALID_SOCKET;
@@ -393,7 +393,7 @@ int CChannelSSHTunnelForward::Process()
         {
             FD_SET(fdSSH, &set);
             fd = std::max(fd, fdSSH);
-        }        
+        }
         nRet = ssh_select(channels, channel_out, fd + 1, &set, &timeout);
     }
     //qDebug(log) << "ssh_select end:" << nRet;
@@ -406,7 +406,7 @@ int CChannelSSHTunnelForward::Process()
         setErrorString(szErr);
         return nRet;
     }
-    
+
     //qDebug(log) << "recv socket" << m_Server << m_Connector;
     if(SSH_INVALID_SOCKET != m_Listen && FD_ISSET(m_Listen, &set)) {
         nRet = AcceptConnect();
@@ -416,17 +416,17 @@ int CChannelSSHTunnelForward::Process()
         if(nRet) return nRet;
     }
 
-    if(!channels[0]){
+    if(!channels[0]) {
         qDebug(log) << "There is not channel";
         return 0;
     }
-    
+
     if(ssh_channel_is_eof(m_Channel)) {
         qWarning(log) << "Channel is eof";
         setErrorString(tr("The channel is eof"));
         return -1;
     }
-    
+
     nRet = ssh_channel_poll(m_Channel, 0);
     //qDebug(log) << "ssh_channel_poll:" << nRet;
     if(nRet < 0) {
@@ -442,6 +442,6 @@ int CChannelSSHTunnelForward::Process()
         //qDebug(log) << "There is not data in channel";
         return 0;
     }
-    
+
     return SSHReadyRead();
 }

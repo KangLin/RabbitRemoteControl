@@ -64,7 +64,8 @@ jobs:
               libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
               libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
               libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev  \
-              libxcb-* \
+              libxcb-* libxcb-cursor0 \
+              libwayland-dev libxkbcommon-dev mesa-common-dev \
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse-dev libfuse3-dev libusb-1.0-0-dev libpcap-dev libcups2-dev \
               libavcodec-dev libavformat-dev libresample1-dev libswscale-dev \
@@ -244,7 +245,7 @@ jobs:
           cmake --install . --config Release --component Plugin --prefix AppDir/usr
           # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
           export QMAKE=$Qt6_DIR/bin/qmake
-          export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
+          export EXTRA_PLATFORM_PLUGINS="libqwayland-generic.so"
           ${{env.TOOSL_DIR}}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
               --deploy-deps-only=AppDir/usr/plugins/Client \
               --deploy-deps-only=AppDir/usr/lib/`uname -m`-linux-gnu \
@@ -263,13 +264,15 @@ jobs:
           export DISPLAY=:99.0
           echo "Update update_linux.json ......"
           export QT_XCB_GL_INTEGRATION=none
+          export QT_DEBUG_PLUGINS=1
+          export QT_QPA_PLATFORM=wayland
           ARCH=`uname -m`
           MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage.md5sum|awk '{print $1}'`
           echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage: ${MD5SUM}"
-          echo "Enable core dump ......"
-          ulimit -c unlimited
-          echo "# sudo sysctl -w kernel.core_pattern=core"
-          sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
+          #echo "Enable core dump ......"
+          #ulimit -c unlimited
+          #echo "# sudo sysctl -w kernel.core_pattern=core"
+          #sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
           echo "Generate update configure file ......"
           ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
             -f "${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \

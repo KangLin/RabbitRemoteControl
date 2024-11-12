@@ -333,6 +333,16 @@
   你可以把依赖库的目录加入到环境变量 PKG_CONFIG_PATH 中。
   你也可以把依赖库的目录加入到 /etc/ld.so.conf 文件中，然后运行 ldconfig 把依赖库加入到系统中。
 
+- Qt 变量
+  - QT_DEBUG_PLUGINS: 调试插件
+
+    `export QT_DEBUG_PLUGINS=1`
+
+  - QT_QPA_PLATFORM: 加载指定的平台。例如使用
+    [vnc](https://github.com/qt-rick/qtbase-vnc-platform-plug)
+
+        export QT_QPA_PLATFORM=vnc
+
 ### 编译
 
 #### Ubuntu
@@ -408,8 +418,8 @@
 
 参见：[编译集成](../../.github/workflows/ubuntu.yml)
 
-#### snap
-- 编译: 
+##### snap
+- 编译:
   - Parts 生命周期: https://snapcraft.io/docs/parts-lifecycle
   - https://snapcraft.io/docs/how-snapcraft-builds
         
