@@ -168,6 +168,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
     qDebug(log) << __FUNCTION__ << para;
 
 #ifdef HAVE_PCAPPLUSPLUS
+    ListInterfaces();
     using namespace pcpp;
     std::string szSourceIp = para->GetNetworkInterface().toStdString();
     std::string szTargetIp = para->m_Net.GetHost().toStdString();
@@ -182,7 +183,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
         }
 
         device = pcpp::PcapLiveDeviceList::getInstance()
-                     .getPcapLiveDeviceByIp(sourceIP);
+                     .getPcapLiveDeviceByIpOrName(szSourceIp);
         if (device == nullptr) {
             qCritical(log)
                 << "Couldn't find interface by provided IP address or name"
