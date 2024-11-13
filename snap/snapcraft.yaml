@@ -205,7 +205,7 @@ parts:
               mv ${QTVERSION}/gcc_64 qt
           elif [ "`uname -m`" == "aarch64" ]; then
               aqt install-qt linux_arm64 desktop ${QTVERSION} linux_gcc_arm64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
-              mv ${QTVERSION}/arm64 qt
+              mv ${QTVERSION}/gcc_arm64 qt
           fi
       fi
     stage:
@@ -289,6 +289,7 @@ parts:
       - PATH: "$CRAFT_STAGE/qt/bin:$PATH"
     override-stage: |
       cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
+      cp $SNAPCRAFT_PART_SRC/snap/local/start.sh .
       sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
       sed -i 's|Path=/opt/RabbitRemoteControl/bin|Path=\$\{SNAP\}/opt/RabbitRemoteControl/bin|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
       cat > "qt.conf" << EOF
@@ -309,12 +310,13 @@ parts:
 
 apps:
  rabbitremotecontrol:
-   command: opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
+   command: opt/RabbitRemoteControl/bin/start.sh
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
    desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
-   environment:
-     LD_LIBRARY_PATH: $SNAP/qt/lib:$SNAP/usr/local/lib:$SNAP/opt/RabbitRemoteControl/lib/$SNAPCRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH
-     PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
+   #environment:
+   #  LD_LIBRARY_PATH: ${SNAP}/qt/lib:${SNAP}/usr/local/lib:${SNAP}/opt/RabbitRemoteControl/lib/:${SNAP}/lib/${SNAPCRAFT_ARCH_TRIPLET}:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}
+   #  PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH
+   #  QT_DEBUG_PLUGINS: 1
    # List extensions, run `snapcraft extensions`
    extensions:
      - kde-neon-6

@@ -166,6 +166,7 @@ jobs:
 
       - name: build libdatachannel
         working-directory: ${{env.SOURCE_DIR}}
+        if: false
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibDataChannel ]; then
             git clone -b v0.17.8 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
@@ -179,6 +180,7 @@ jobs:
           fi
 
       - name: build QtService
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/QtService ]; then
