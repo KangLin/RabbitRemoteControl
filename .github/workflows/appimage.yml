@@ -65,7 +65,8 @@ jobs:
               libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
               libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev  \
               libxcb-* libxcb-cursor0 \
-              libwayland-dev libxkbcommon-dev mesa-common-dev \
+              libwayland-dev libwayland-egl-backend-dev waylandpp-dev \
+              libxkbcommon-dev mesa-common-dev \
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse-dev libfuse3-dev libusb-1.0-0-dev libpcap-dev libcups2-dev \
               libavcodec-dev libavformat-dev libresample1-dev libswscale-dev \
@@ -247,7 +248,7 @@ jobs:
           cmake --install . --config Release --component Plugin --prefix AppDir/usr
           # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
           export QMAKE=$Qt6_DIR/bin/qmake
-          export EXTRA_PLATFORM_PLUGINS="libqwayland-generic.so"
+          export EXTRA_PLATFORM_PLUGINS="libqwayland-generic.so;libqxcb.so;libqwayland-egl.so"
           ${{env.TOOSL_DIR}}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
               --deploy-deps-only=AppDir/usr/plugins/Client \
               --deploy-deps-only=AppDir/usr/lib/`uname -m`-linux-gnu \
@@ -267,7 +268,6 @@ jobs:
           echo "Update update_linux.json ......"
           export QT_XCB_GL_INTEGRATION=none
           export QT_DEBUG_PLUGINS=1
-          export QT_QPA_PLATFORM=wayland
           ARCH=`uname -m`
           MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage.md5sum|awk '{print $1}'`
           echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage: ${MD5SUM}"
