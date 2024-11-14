@@ -1,6 +1,8 @@
+#include <QLoggingCategory>
+#include <QMessageBox>
+
 #include "FrmWakeOnLan.h"
 #include "ui_FrmWakeOnLan.h"
-#include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.CFrmWakeOnLan")
 CFrmWakeOnLan::CFrmWakeOnLan(CWakeOnLanModel *pModel, QWidget *parent)
@@ -62,7 +64,14 @@ void CFrmWakeOnLan::slotRemoveRow()
 {
     QModelIndex index = ui->tableView->currentIndex();
     if(!index.isValid())
+    {
+        QMessageBox::information(
+            nullptr,
+            tr("Information"),
+            tr("Please select a item"));
         return;
+    }
+
     ui->tableView->model()->removeRow(index.row());
 }
 

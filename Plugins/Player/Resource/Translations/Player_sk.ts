@@ -2,14 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sk_SK">
 <context>
-    <name>CConnectPlayer</name>
-    <message>
-        <location filename="../../ConnectPlayer.cpp" line="444"/>
-        <source>Progress: </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CConnecterPlayer</name>
     <message>
         <location filename="../../ConnecterPlayer.cpp" line="77"/>
@@ -183,26 +175,31 @@
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="27"/>
-        <source>Player: play media files. play or record camera, network media stream.</source>
+        <source>Player: play media files or camera.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginPlayer.cpp" line="51"/>
-        <source>Qt version:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../PluginPlayer.cpp" line="52"/>
-        <source>Compile version: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../PluginPlayer.cpp" line="53"/>
-        <source>Runtime version: </source>
+        <location filename="../../PluginPlayer.cpp" line="29"/>
+        <source> Record camera or media stream.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="55"/>
+        <source>Qt version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="56"/>
+        <source>Compile version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="57"/>
+        <source>Runtime version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../PluginPlayer.cpp" line="59"/>
         <source>Use QVideoWidget</source>
         <translation type="unfinished"></translation>
     </message>

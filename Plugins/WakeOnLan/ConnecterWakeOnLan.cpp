@@ -6,7 +6,7 @@
 #include <QRegularExpression>
 #include <QPushButton>
 #include <QtGlobal>
-
+#include <QCoreApplication>
 #include "RabbitCommonTools.h"
 #include "PluginClient.h"
 
@@ -51,8 +51,45 @@ int CConnecterWakeOnLan::OnInitial()
     Q_ASSERT(check);
     m_Menu.addAction(QIcon::fromTheme("list-add"), tr("Add"),
                      this, SLOT(slotAdd()));
+    m_Menu.addAction(QIcon::fromTheme("document-edit"), tr("Edit"),
+                     this, [&](){
+                         QSharedPointer<CParameterWakeOnLan> para
+                             = m_pModel->GetData(m_pView->GetCurrentIndex());
+                         if(!para) {
+                             QMessageBox::information(
+                                 nullptr,
+                                 tr("Information"),
+                                 tr("Please select a item"));
+                             return;
+                         }
+                         CParameterWakeOnLanUI dlg;
+                         dlg.SetParameter(para.data());
+                         RC_SHOW_WINDOW(&dlg);
+                     });
     m_Menu.addAction(QIcon::fromTheme("list-remove"), tr("Remove"),
                      m_pView, SLOT(slotRemoveRow()));
+#if defined(Q_OS_UNIX)
+    if(RabbitCommon::CTools::HasAdministratorPrivilege())
+    {
+        m_Menu.addAction(
+            QIcon::fromTheme("mac"), tr("Get mac address"),
+            this, [&](){
+                if(!m_pModel || !m_pView)
+                    return;
+                QSharedPointer<CParameterWakeOnLan> p
+                    = m_pModel->GetData(m_pView->GetCurrentIndex());
+                if(!p) {
+                    QMessageBox::information(
+                        nullptr,
+                        tr("Information"),
+                        tr("Please select a item"));
+                    return;
+                }
+                if(m_Arp.GetMac(p))
+                    p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
+            });
+    }
+#else
     m_Menu.addAction(
         QIcon::fromTheme("mac"), tr("Get mac address"),
         this, [&](){
@@ -60,9 +97,17 @@ int CConnecterWakeOnLan::OnInitial()
                 return;
             QSharedPointer<CParameterWakeOnLan> p
                 = m_pModel->GetData(m_pView->GetCurrentIndex());
+            if(!p) {
+                QMessageBox::information(
+                    nullptr,
+                    tr("Information"),
+                    tr("Please select a item"));
+                return;
+            }
             if(m_Arp.GetMac(p))
                 p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
         });
+#endif
     m_Menu.addAction(
         QIcon::fromTheme("lan"), tr("Wake on lan"),
         this, [&](){
@@ -70,18 +115,17 @@ int CConnecterWakeOnLan::OnInitial()
                 return;
             QSharedPointer<CParameterWakeOnLan> p
                 = m_pModel->GetData(m_pView->GetCurrentIndex());
+            if(!p) {
+                QMessageBox::information(
+                    nullptr,
+                    tr("Information"),
+                    tr("Please select a item"));
+                return;
+            }
             if(!m_Arp.WakeOnLan(p))
                 p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
         });
-    m_Menu.addAction(QIcon::fromTheme("system-settings"), tr("Settings"),
-                     this, [&](){
-                         QSharedPointer<CParameterWakeOnLan> para
-                             = m_pModel->GetData(m_pView->GetCurrentIndex());
-                         if(!para) return;
-                         CParameterWakeOnLanUI dlg;
-                         dlg.SetParameter(para.data());
-                         int nRet = RC_SHOW_WINDOW(&dlg);
-                     });
+
     return 0;
 }
 
@@ -123,6 +167,27 @@ const QString CConnecterWakeOnLan::Name()
 
 int CConnecterWakeOnLan::Connect()
 {
+#if defined(Q_OS_UNIX)
+    if(!RabbitCommon::CTools::HasAdministratorPrivilege())
+    {
+        static bool bShow = false;
+        if(!bShow) {
+            bShow = true;
+            int nRet = QMessageBox::warning(
+                nullptr, tr("Warning"),
+                tr("There are no administrator privileges, "
+                   "and some functions(Get mac address) are restricted. "
+                   "Please restart the program with administrative privileges."),
+                QMessageBox::Yes | QMessageBox::No);
+            if(QMessageBox::Yes == nRet) {
+                bool bRet = RabbitCommon::CTools::executeByRoot(
+                    QCoreApplication::applicationFilePath());
+                if(bRet)
+                    QCoreApplication::quit();
+            }
+        }
+    }
+#endif
     emit sigConnected();
     return 0;
 }

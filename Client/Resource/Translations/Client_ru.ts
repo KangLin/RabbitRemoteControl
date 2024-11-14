@@ -4,12 +4,12 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="124"/>
+        <location filename="../../Client.cpp" line="103"/>
         <source>### Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="210"/>
+        <location filename="../../Client.cpp" line="189"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -17,33 +17,51 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="39"/>
+        <location filename="../../Connecter.cpp" line="37"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="100"/>
+        <location filename="../../Connecter.cpp" line="60"/>
         <source>Name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="101"/>
+        <location filename="../../Connecter.cpp" line="61"/>
         <source>Protocol: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="106"/>
-        <source>Server name: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Connecter.cpp" line="107"/>
+        <location filename="../../Connecter.cpp" line="66"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="175"/>
+        <location filename="../../Connecter.cpp" line="104"/>
         <source>Set </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CConnecterConnect</name>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="67"/>
+        <source>Name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="68"/>
+        <source>Protocol: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="73"/>
+        <source>Server name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="74"/>
+        <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -677,112 +695,6 @@
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="240"/>
         <source>Open X509 Certificate Revocation List file</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CParameterWakeOnLanUI</name>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="14"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="26"/>
-        <source>Wake on lan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="43"/>
-        <source>Mac:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="61"/>
-        <source>Network Interface:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="82"/>
-        <source>Broadcast address:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="92"/>
-        <source>Port:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="119"/>
-        <source>Password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="129"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="189"/>
-        <source>A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="136"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="139"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="142"/>
-        <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="158"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="161"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="164"/>
-        <source>Menu: Tools→Settings→Client→Password→Enable Save password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="190"/>
-        <source>Repeat:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="200"/>
-        <source>Interval:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="220"/>
-        <source>ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="233"/>
-        <source>Delay:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="247"/>
-        <source>s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="118"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="128"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="139"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="119"/>
-        <source>The broadcast address is error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="129"/>
-        <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="140"/>
-        <source>The mac address is error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="195"/>
-        <source>Please checked save password to enable</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

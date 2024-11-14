@@ -15,6 +15,8 @@
     #endif
 #endif
 
+#include "RabbitCommonTools.h"
+
 #include "Arp.h"
 
 static Q_LOGGING_CATEGORY(log, "WOL")
@@ -70,14 +72,20 @@ int CArp::WakeOnLan(QSharedPointer<CParameterWakeOnLan> para)
     else
         m_Wol.SendSecureMagicPacket(para->GetMac(), para->GetPassword());
 
-    QSharedPointer<ArpRequest> aq(new ArpRequest());
-    if(!aq) {
-        qCritical(log) << "new ArpRequest fail";
-        return -3;
+#if defined(Q_OS_UNIX)
+    if(RabbitCommon::CTools::HasAdministratorPrivilege())
+    {
+        QSharedPointer<ArpRequest> aq(new ArpRequest());
+        if(!aq) {
+            qCritical(log) << "new ArpRequest fail";
+            return -3;
+        }
+        aq->bWakeOnLan = true;
+        aq->nRepeat = para->GetRepeat();
+        nRet = GetMac(para, aq);
     }
-    aq->bWakeOnLan = true;
-    aq->nRepeat = para->GetRepeat();
-    nRet = GetMac(para, aq);
+#endif
+
 #else
     qDebug(log) << "There is not pcapplusplus";
 #endif
@@ -166,17 +174,22 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
                  )
 {
     qDebug(log) << __FUNCTION__ << para;
+    if(!para) return -1;
 
 #ifdef HAVE_PCAPPLUSPLUS
-    ListInterfaces();
     using namespace pcpp;
-    std::string szSourceIp = para->GetNetworkInterface().toStdString();
-    std::string szTargetIp = para->m_Net.GetHost().toStdString();
+    std::string szSourceIp;
+    if(!para->GetNetworkInterface().isEmpty())
+        szSourceIp = para->GetNetworkInterface().toStdString();
+    std::string szTargetIp;
+    if(!para->m_Net.GetHost().isEmpty())
+        szTargetIp = para->m_Net.GetHost().toStdString();
     pcpp::MacAddress sourceMac;
     pcpp::IPv4Address sourceIP(szSourceIp);
     pcpp::IPv4Address targetIP(szTargetIp);
     pcpp::PcapLiveDevice* device = nullptr;
     try{
+        //ListInterfaces();
         if(!pcpp::IPv4Address::isValidIPv4Address(szTargetIp)) {
             qCritical(log) << "Target ip is invalid:" << szTargetIp.c_str();
             return -1;
@@ -271,9 +284,9 @@ void CArp::ListInterfaces()
     qDebug(log) << "Network interfaces:";
     for (const auto& dev : devList)
     {
-        qDebug(log) << "    -> Name: '"
-                    << dev->getName().c_str() << "'   IP address: "
-                    << dev->getIPv4Address().toString().c_str();
+        qDebug(log) << "  -> Name:" << dev->getName().c_str();
+        for(auto addr: dev->getIPAddresses())
+            qDebug(log) << "    " << addr.toString().c_str();
     }
 #endif
     return;

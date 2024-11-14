@@ -50,13 +50,12 @@ CParameterWakeOnLanUI::CParameterWakeOnLanUI(QWidget *parent)
 #endif
 
     foreach(auto iface, QNetworkInterface::allInterfaces()) {
-        //qDebug(log) << iface;
+        qDebug(log) << iface;
         auto entry = iface.addressEntries();
         if(iface.flags() & QNetworkInterface::IsLoopBack)
             continue;
         if(!(iface.flags() & QNetworkInterface::CanBroadcast))
             continue;
-        QString szBroadcast;
         foreach(auto e, entry) {
             if(!e.broadcast().isNull()) {
                 ui->cbNetworkInterface->addItem(
@@ -75,14 +74,19 @@ CParameterWakeOnLanUI::~CParameterWakeOnLanUI()
 
 int CParameterWakeOnLanUI::SetParameter(CParameter *pParameter)
 {
+    qDebug(log) << __FUNCTION__;
     m_pWakeOnLan = qobject_cast<CParameterWakeOnLan*>(pParameter);
     if(!m_pWakeOnLan) return -1;
 
     ui->leIP->setText(m_pWakeOnLan->m_Net.GetHost());
     ui->gbWakeOnLan->setChecked(m_pWakeOnLan->GetEnable());
     ui->leMac->setText(m_pWakeOnLan->GetMac());
-    ui->cbNetworkInterface->setCurrentText(m_pWakeOnLan->GetNetworkInterface());
     ui->leBroadcastAddress->setText(m_pWakeOnLan->GetBroadcastAddress());
+    ui->cbNetworkInterface->setCurrentText(m_pWakeOnLan->GetNetworkInterface());
+    if(m_pWakeOnLan->GetBroadcastAddress().isEmpty()
+        && ui->cbNetworkInterface->count() > 0)
+        on_cbNetworkInterface_currentIndexChanged(
+            ui->cbNetworkInterface->currentIndex());
     ui->sbPort->setValue(m_pWakeOnLan->GetPort());
     ui->lePassword->setText(m_pWakeOnLan->GetPassword());
     ui->pbSave->setChecked(m_pWakeOnLan->GetSavePassword());
@@ -215,6 +219,7 @@ void CParameterWakeOnLanUI::on_pbSave_clicked()
 
 void CParameterWakeOnLanUI::on_cbNetworkInterface_currentIndexChanged(int index)
 {
+    qDebug(log) << __FUNCTION__ << index;
     ui->leBroadcastAddress->setText(ui->cbNetworkInterface->itemData(index).toStringList().at(0));
 }
 

@@ -4,12 +4,12 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="124"/>
+        <location filename="../../Client.cpp" line="103"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="210"/>
+        <location filename="../../Client.cpp" line="189"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
@@ -17,34 +17,56 @@
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="39"/>
+        <location filename="../../Connecter.cpp" line="37"/>
         <source>Settings</source>
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="100"/>
+        <location filename="../../Connecter.cpp" line="60"/>
         <source>Name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="101"/>
+        <location filename="../../Connecter.cpp" line="61"/>
         <source>Protocol: </source>
         <translation>協議：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="106"/>
         <source>Server name: </source>
-        <translation>服務名：</translation>
+        <translation type="vanished">服務名：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="107"/>
+        <location filename="../../Connecter.cpp" line="66"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="175"/>
+        <location filename="../../Connecter.cpp" line="104"/>
         <source>Set </source>
         <translation>設置 </translation>
+    </message>
+</context>
+<context>
+    <name>CConnecterConnect</name>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="67"/>
+        <source>Name: </source>
+        <translation type="unfinished">名稱：</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="68"/>
+        <source>Protocol: </source>
+        <translation type="unfinished">協議：</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="73"/>
+        <source>Server name: </source>
+        <translation type="unfinished">服務名：</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterConnect.cpp" line="74"/>
+        <source>Description: </source>
+        <translation type="unfinished">描述：</translation>
     </message>
 </context>
 <context>
@@ -683,107 +705,76 @@
 <context>
     <name>CParameterWakeOnLanUI</name>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="14"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="26"/>
         <source>Wake on lan</source>
-        <translation>局域網喚醒</translation>
+        <translation type="vanished">局域網喚醒</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="43"/>
-        <source>Mac:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="61"/>
         <source>Network Interface:</source>
-        <translation>網絡接口：</translation>
+        <translation type="vanished">網絡接口：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="82"/>
         <source>Broadcast address:</source>
-        <translation>廣播地址：</translation>
+        <translation type="vanished">廣播地址：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="92"/>
         <source>Port:</source>
-        <translation>端口：</translation>
+        <translation type="vanished">端口：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="119"/>
         <source>Password:</source>
-        <translation>密碼：</translation>
+        <translation type="vanished">密碼：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="129"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="189"/>
         <source>A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation>長度為 6 的密碼或六字節十六進製</translation>
+        <translation type="vanished">長度為 6 的密碼或六字節十六進製</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="136"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="139"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="142"/>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
-        <translation>菜單: 工具→設置→客戶端→密碼→允許查看密碼</translation>
+        <translation type="vanished">菜單: 工具→設置→客戶端→密碼→允許查看密碼</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="158"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="161"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="164"/>
         <source>Menu: Tools→Settings→Client→Password→Enable Save password</source>
-        <translation>菜單：工具→設置→客戶端→密碼→允許保存密碼</translation>
+        <translation type="vanished">菜單：工具→設置→客戶端→密碼→允許保存密碼</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="190"/>
         <source>Repeat:</source>
-        <translation>重復：</translation>
+        <translation type="vanished">重復：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="200"/>
         <source>Interval:</source>
-        <translation>間隔：</translation>
+        <translation type="vanished">間隔：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="220"/>
         <source>ms</source>
-        <translation>毫秒</translation>
+        <translation type="vanished">毫秒</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="233"/>
         <source>Delay:</source>
-        <translation>延遲：</translation>
+        <translation type="vanished">延遲：</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.ui" line="247"/>
         <source>s</source>
-        <translation>秒</translation>
+        <translation type="vanished">秒</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="118"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="128"/>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="139"/>
         <source>Error</source>
-        <translation>錯誤</translation>
+        <translation type="vanished">錯誤</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="119"/>
         <source>The broadcast address is error</source>
-        <translation>廣播地址錯誤</translation>
+        <translation type="vanished">廣播地址錯誤</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="129"/>
         <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation>密碼錯誤。長度為 6 的密碼或六字節十六進製</translation>
+        <translation type="vanished">密碼錯誤。長度為 6 的密碼或六字節十六進製</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="140"/>
         <source>The mac address is error</source>
-        <translation>MAC 地址錯誤</translation>
+        <translation type="vanished">MAC 地址錯誤</translation>
     </message>
     <message>
-        <location filename="../../WakeOnLan/ParameterWakeOnLanUI.cpp" line="195"/>
         <source>Please checked save password to enable</source>
-        <translation>請選中保存密碼按鈕</translation>
+        <translation type="vanished">請選中保存密碼按鈕</translation>
     </message>
 </context>
 </TS>
