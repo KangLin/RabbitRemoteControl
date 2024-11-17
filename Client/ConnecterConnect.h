@@ -7,6 +7,7 @@
 
 #include "Connecter.h"
 #include "Connect.h"
+#include "ParameterBase.h"
 
 /*!
  * \~chinese 插件的连接者接口，此接口仅由插件使用。
@@ -101,12 +102,6 @@ Q_SIGNALS:
 
 protected:
     /*!
-     * \brief Initial
-     * \~
-     * \see CClient::CreateConnecter
-     */
-    Q_INVOKABLE virtual int Initial(CParameterClient *pPara) override;
-    /*!
      * \~chinese
      * \brief 当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口
      * \return 返回服务名
@@ -126,7 +121,7 @@ private:
      *       please overload this function.
      * \see CClient::CreateConnecter CParameterConnecter CParameterClient
      */
-    virtual int SetParameterClient(CParameterClient* pPara);
+    virtual int SetParameterClient(CParameterClient* pPara) override;
 
 private Q_SLOTS:
     //! \~chinese \note 仅由 CConnectDesktop::SetConnecter() 使用

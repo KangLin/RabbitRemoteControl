@@ -96,7 +96,7 @@ private:
      * \return 返回 CConnecter 指针, 它的所有者是调用者。
      * \note 此函数新建一个堆栈对象指针，
      *       <b>调用者必须负责在用完后释放指针</b>。
-     * \param szProtocol 连接协议
+     * \param szId 连接 ID
      * 
      * \~english
      * \brief New CConnecter instance. Only is called by CClient
@@ -104,7 +104,7 @@ private:
      * \return Return CConnecter pointer, the owner is caller
      * \note The function new object pointer,
      *       <b>the caller must delete it when don't use it</b>.
-     * \param szProtocol
+     * \param szId
      * 
      * \~
      * \see CClient::CreateConnecter CClient::LoadConnecter

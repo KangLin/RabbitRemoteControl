@@ -29,18 +29,22 @@ qint16 CConnecterFreeRDP::Version()
     return 0;
 }
 
-int CConnecterFreeRDP::OnInitial()
+int CConnecterFreeRDP::Initial()
 {
     qDebug(log) << __FUNCTION__;
-    // Set the parameter pointer
-    SetParameter(&m_ParameterFreeRdp);
-    return 0;
+    int nRet = 0;
+    nRet = CConnecterThread::Initial();
+    if(nRet) return nRet;
+    nRet = SetParameter(&m_ParameterFreeRdp);
+    return nRet;
 }
 
-int CConnecterFreeRDP::OnClean()
+int CConnecterFreeRDP::Clean()
 {
     qDebug(log) << __FUNCTION__;
-    return 0;
+    int nRet = 0;
+    nRet = CConnecterThread::Clean();
+    return nRet;
 }
 
 QDialog* CConnecterFreeRDP::OnOpenDialogSettings(QWidget *parent)

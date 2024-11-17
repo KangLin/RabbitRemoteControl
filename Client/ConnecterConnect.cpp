@@ -126,9 +126,10 @@ int CConnecterConnect::SetParameterClient(CParameterClient* pPara)
         }
         return 0;
     } else {
-        QString szMsg = "The CConnecter is not parameters! please create parameters. "
-                        "and call SetParameter in the ";
+        QString szMsg = "The CConnecter is not parameters! please first create parameters, "
+                        "then call SetParameter in the ";
         szMsg += metaObject()->className() + QString("::") + metaObject()->className();
+        szMsg += QString(" or ") + metaObject()->className() + QString("::") + "Initial()";
         szMsg += " to set the parameters pointer. "
                  "Default set CParameterClient for the parameters of connecter (CParameterConnecter or its derived classes) "
                  "See: CClient::CreateConnecter. "
@@ -139,16 +140,6 @@ int CConnecterConnect::SetParameterClient(CParameterClient* pPara)
         Q_ASSERT(false);
     }
     return -1;
-}
-
-int CConnecterConnect::Initial(CParameterClient* pPara)
-{
-    qDebug(log) << __FUNCTION__;
-    int nRet = 0;
-    nRet = CConnecter::Initial(pPara);
-    if(nRet) return nRet;
-    nRet = SetParameterClient(pPara);
-    return nRet;
 }
 
 int CConnecterConnect::Connect()

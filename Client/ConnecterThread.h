@@ -61,7 +61,7 @@ public:
     explicit CConnecterThread(CPluginClient *plugin);
     virtual ~CConnecterThread();
 
-    virtual int Initial(CParameterClient *pPara) override;
+    virtual int Initial() override;
     virtual int Clean() override;
     virtual QWidget* GetViewer() override;
 

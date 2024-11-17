@@ -33,7 +33,7 @@ qint16 CConnecterWakeOnLan::Version()
     return 0;
 }
 
-int CConnecterWakeOnLan::OnInitial()
+int CConnecterWakeOnLan::Initial()
 {
     qDebug(log) << __FUNCTION__;
     bool check = false;
@@ -129,7 +129,7 @@ int CConnecterWakeOnLan::OnInitial()
     return 0;
 }
 
-int CConnecterWakeOnLan::OnClean()
+int CConnecterWakeOnLan::Clean()
 {
     qDebug(log) << __FUNCTION__;
     if(m_pView)

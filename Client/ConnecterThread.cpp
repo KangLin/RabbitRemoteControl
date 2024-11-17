@@ -28,7 +28,7 @@ CConnecterThread::~CConnecterThread()
     qDebug(log) << __FUNCTION__;
 }
 
-int CConnecterThread::Initial(CParameterClient *pPara)
+int CConnecterThread::Initial()
 {
     qDebug(log) << __FUNCTION__;
     int nRet = 0;
@@ -138,7 +138,6 @@ int CConnecterThread::Initial(CParameterClient *pPara)
     m_Menu.addSeparator();
     m_Menu.addAction(m_pSettings);
 
-    nRet = CConnecterConnect::Initial(pPara);
     return nRet;
 }
 
@@ -146,7 +145,6 @@ int CConnecterThread::Clean()
 {
     qDebug(log) << __FUNCTION__;
     int nRet = 0;
-    nRet = CConnecter::Clean();
     if(m_pScroll)
     {
         delete m_pScroll;

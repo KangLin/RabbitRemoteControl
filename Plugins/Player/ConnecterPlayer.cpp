@@ -24,11 +24,16 @@ qint16 CConnecterPlayer::Version()
     return 0;
 }
 
-int CConnecterPlayer::OnInitial()
+int CConnecterPlayer::Initial()
 {
     qDebug(log) << __FUNCTION__;
     bool check = false;
-    SetParameter(&m_Parameters);
+    int nRet = 0;
+    nRet = CConnecterThread::Initial();
+    if(nRet) return nRet;
+
+    nRet = SetParameter(&m_Parameters);
+    if(nRet) return nRet;
 
     m_Menu.clear();
 #ifdef HAVE_QVideoWidget
@@ -125,13 +130,15 @@ int CConnecterPlayer::OnInitial()
     m_Menu.addSeparator();
     m_Menu.addAction(m_pSettings);
 #endif
-    return 0;
+    return nRet;
 }
 
-int CConnecterPlayer::OnClean()
+int CConnecterPlayer::Clean()
 {
     qDebug(log) << __FUNCTION__;
-    return 0;
+    int nRet = 0;
+    nRet = CConnecterThread::Clean();
+    return nRet;
 }
 
 QDialog *CConnecterPlayer::OnOpenDialogSettings(QWidget *parent)

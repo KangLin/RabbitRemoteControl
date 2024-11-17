@@ -17,7 +17,7 @@
 #include <QMenu>
 
 #include "client_export.h"
-#include "ParameterBase.h"
+#include "ParameterClient.h"
 
 class CPluginClient;
 
@@ -255,33 +255,26 @@ Q_SIGNALS:
     void sigShowMessageBox(const QString& title, const QString& message,
                         const QMessageBox::Icon& icon = QMessageBox::Information);
 
-protected:
+private:
     /*!
      * \brief Initial parameters and resource
      * \~
-     * \see CClient::CreateConnecter OnInitial
+     * \see CClient::CreateConnecter
      */
-    Q_INVOKABLE virtual int Initial(CParameterClient *pPara);
+    Q_INVOKABLE virtual int Initial() = 0;
     /*!
      * \brief Clean parameters and resource
-     * \see CClient::DeleteConnecter OnClean
+     * \see CClient::DeleteConnecter
      */
-    Q_INVOKABLE virtual int Clean();
+    Q_INVOKABLE virtual int Clean() = 0;
     /*!
-     * \~chinese
-     *   插件实现。在派生类中调用　SetParameter()　设置参数指针，和其它需要的初始化工作。
-     * \~english
-     * \brief It is implemented by plugins.
-     *   Call SetParameter() to initial resource in the function.
-     * \~
-     * \see Initial
+     * \brief Set CParameterClient
+     * \note If CParameterConnecter isn't need CParameterClient.
+     *       please overload this function.
+     * \see CClient::CreateConnecter CParameterConnecter CParameterClient
      */
-    virtual int OnInitial() = 0;
-    /*!
-     * \brief Clean parameters and resource
-     * \see Clean
-     */
-    virtual int OnClean() = 0;
+    Q_INVOKABLE virtual int SetParameterClient(CParameterClient* pPara);
+protected:
     /*!
      * \~chinese 设置参数
      * \note 在派生类的构造函数（或者　OnInitial()　）中先实例化参数，

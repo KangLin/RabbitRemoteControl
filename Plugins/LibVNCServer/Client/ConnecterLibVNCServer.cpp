@@ -21,17 +21,22 @@ qint16 CConnecterLibVNCServer::Version()
     return 0;
 }
 
-int CConnecterLibVNCServer::OnInitial()
+int CConnecterLibVNCServer::Initial()
 {
     qDebug(log) << __FUNCTION__;
-    SetParameter(&m_Para);
-    return 0;
+    int nRet = 0;
+    nRet = CConnecterThread::Initial();
+    if(nRet) return nRet;
+    nRet = SetParameter(&m_Para);
+    return nRet;
 }
 
-int CConnecterLibVNCServer::OnClean()
+int CConnecterLibVNCServer::Clean()
 {
     qDebug(log) << __FUNCTION__;
-    return 0;
+    int nRet = 0;
+    nRet = CConnecterThread::Clean();
+    return nRet;
 }
 
 QDialog *CConnecterLibVNCServer::OnOpenDialogSettings(QWidget *parent)

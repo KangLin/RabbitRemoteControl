@@ -26,12 +26,13 @@ qint16 CScreenCapture::Version()
     return 0;
 }
 
-int CScreenCapture::OnInitial()
+int CScreenCapture::Initial()
 {
     qDebug(log) << __FUNCTION__;
     Q_ASSERT(!m_pWidget);
     m_pWidget = new QVideoWidget();
-    SetParameter(&m_Parameter);
+    int nRet = SetParameter(&m_Parameter);
+    if(nRet) return nRet;
     bool check = false;
 
     CPluginClient* plugin = GetPlugClient();
@@ -143,7 +144,7 @@ int CScreenCapture::OnInitial()
     return 0;
 }
 
-int CScreenCapture::OnClean()
+int CScreenCapture::Clean()
 {
     if(m_pWidget)
         delete m_pWidget;

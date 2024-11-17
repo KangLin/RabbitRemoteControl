@@ -220,10 +220,20 @@ CConnecter* CClient::CreateConnecter(const QString& id)
                 p,
                 "Initial",
                 Qt::DirectConnection,
+                Q_RETURN_ARG(int, val));
+            if(!bRet|| val) {
+                qCritical(log) << "Connecter initial fail" << bRet << val;
+                DeleteConnecter(p);
+                return nullptr;
+            }
+            bRet = QMetaObject::invokeMethod(
+                p,
+                "SetParameterClient",
+                Qt::DirectConnection,
                 Q_RETURN_ARG(int, val),
                 Q_ARG(CParameterClient*, m_pParameterClient));
             if(!bRet|| val) {
-                qCritical(log) << "Connecter initial fail" << bRet << val;
+                qCritical(log) << "SetParameterClient fail" << bRet << val;
                 DeleteConnecter(p);
                 return nullptr;
             }

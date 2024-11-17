@@ -75,15 +75,20 @@ CConnect *CConnecterVnc::InstanceConnect()
     return p;
 }
 
-int CConnecterVnc::OnInitial()
+int CConnecterVnc::Initial()
 {
     qDebug(log) << __FUNCTION__;
-    SetParameter(&m_Para);
-    return 0;
+    int nRet = 0;
+    nRet = CConnecterThread::Initial();
+    if(nRet) return nRet;
+    nRet = SetParameter(&m_Para);
+    return nRet;
 }
 
-int CConnecterVnc::OnClean()
+int CConnecterVnc::Clean()
 {
     qDebug(log) << __FUNCTION__;
-    return 0;
+    int nRet = 0;
+    nRet = CConnecterThread::Clean();
+    return nRet;
 }

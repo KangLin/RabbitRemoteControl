@@ -160,19 +160,24 @@ int CConnecter::Save(QSettings &set)
     return nRet;
 }
 
-int CConnecter::Initial(CParameterClient* pPara)
+int CConnecter::SetParameterClient(CParameterClient* pPara)
 {
-    Q_UNUSED(pPara);
-    qDebug(log) << __FUNCTION__;
-    return OnInitial();
-}
-
-int CConnecter::Clean()
-{
-    qDebug(log) << __FUNCTION__;
-    int nRet = 0;
-    nRet = OnClean();
-    return nRet;
+    if(!GetParameter())
+    {
+        QString szMsg = "The CConnecter is not parameters! please first create parameters, "
+                        "then call SetParameter in the ";
+        szMsg += metaObject()->className() + QString("::") + metaObject()->className();
+        szMsg += QString(" or ") + metaObject()->className() + QString("::") + "Initial()";
+        szMsg += " to set the parameters pointer. "
+                 "Default set CParameterClient for the parameters of connecter (CParameterConnecter or its derived classes) "
+                 "See: CClient::CreateConnecter. "
+                 "If you are sure the parameter of connecter does not need CParameterClient. "
+                 "Please overload the SetParameterClient in the ";
+        szMsg += QString(metaObject()->className()) + " . don't set it";
+        qCritical(log) << szMsg.toStdString().c_str();
+        Q_ASSERT(false);
+    }
+    return 0;
 }
 
 int CConnecter::SetParameter(CParameter *p)
