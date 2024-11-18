@@ -364,13 +364,14 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_pFullScreenToolBar = new CFrmFullScreenToolBar(this);
     QScreen* pScreen = qApp->primaryScreen();
     if(pScreen) {
+        QPoint pos(pScreen->geometry().left()
+                       + (pScreen->geometry().width()
+                          - m_pFullScreenToolBar->frameGeometry().width()) / 2,
+                   pScreen->geometry().top());
         qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
-                    << "availableGeometry:" << pScreen->availableGeometry();
-        m_pFullScreenToolBar->move(
-            pScreen->geometry().left()
-                + (pScreen->geometry().width()
-                   - m_pFullScreenToolBar->frameGeometry().width()) / 2,
-            pScreen->geometry().top());
+                    << "availableGeometry:" << pScreen->availableGeometry()
+                    << pos << mapToGlobal(pos);
+        m_pFullScreenToolBar->move(pos);
     }
     bool check = connect(m_pFullScreenToolBar, SIGNAL(sigExitFullScreen()),
                          this, SLOT(on_actionFull_screen_F_triggered()));
