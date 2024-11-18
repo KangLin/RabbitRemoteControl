@@ -1,18 +1,19 @@
 // Author: Kang Lin <kl222@126.com>
 #include <QLoggingCategory>
+#include <QMutexLocker>
 
 #ifdef HAVE_PCAPPLUSPLUS
-    #include <Packet.h>
-    #include <EthLayer.h>
-    #include <ArpLayer.h>
-    #include <PcapLiveDeviceList.h>
-    #include <PcapFilter.h>
-    #ifdef _MSC_VER
-        #include <SystemUtils.h>
-        #include <winsock.h>
-    #else
-        #include <arpa/inet.h>
-    #endif
+#include <Packet.h>
+#include <EthLayer.h>
+#include <ArpLayer.h>
+#include <PcapLiveDeviceList.h>
+#include <PcapFilter.h>
+#ifdef _MSC_VER
+#include <SystemUtils.h>
+#include <winsock.h>
+#else
+#include <arpa/inet.h>
+#endif
 #endif
 
 #include "RabbitCommonTools.h"
@@ -34,12 +35,7 @@ CArp::~CArp()
 {
     qDebug(log) << __FUNCTION__;
 #ifdef HAVE_PCAPPLUSPLUS
-    m_Mutex.lock();
-    foreach(auto a,  m_ArpRequest)
-    {
-        StopCapture(a->device, !a->bOpen);
-    }
-    m_Mutex.unlock();
+    StopCapture();
 #endif
 }
 
@@ -56,8 +52,8 @@ int CArp::WakeOnLan(QSharedPointer<CParameterWakeOnLan> para)
         return -2;
     }
 #ifdef HAVE_PCAPPLUSPLUS
-    auto it = m_ArpRequest.find(para->m_Net.GetHost());
-    if(it != m_ArpRequest.end())
+    auto it = m_Para.find(para->m_Net.GetHost().toStdString());
+    if(it != m_Para.end())
     {
         if((*it)->bWakeOnLan) {
             qDebug(log) << "The wake on lan is existed"
@@ -75,13 +71,12 @@ int CArp::WakeOnLan(QSharedPointer<CParameterWakeOnLan> para)
 #if defined(Q_OS_UNIX)
     if(RabbitCommon::CTools::HasAdministratorPrivilege())
     {
-        QSharedPointer<ArpRequest> aq(new ArpRequest());
+        QSharedPointer<ArpRequest> aq(new ArpRequest(para));
         if(!aq) {
             qCritical(log) << "new ArpRequest fail";
             return -3;
         }
         aq->bWakeOnLan = true;
-        aq->nRepeat = para->GetRepeat();
         nRet = GetMac(para, aq);
     }
 #endif
@@ -93,30 +88,57 @@ int CArp::WakeOnLan(QSharedPointer<CParameterWakeOnLan> para)
 }
 
 #ifdef HAVE_PCAPPLUSPLUS
-int CArp::StopCapture(pcpp::PcapLiveDevice *device, bool bClose)
+int CArp::StopCapture()
 {
-    // stop the capturing thread
-    device->stopCapture();
-    if(bClose)
-        device->close();
+    const std::vector<pcpp::PcapLiveDevice*>& devList =
+        pcpp::PcapLiveDeviceList::getInstance().getPcapLiveDevicesList();
+
+    qDebug(log) << __FUNCTION__;
+    for (const auto& dev : devList)
+    {
+        if(dev->captureActive())
+            dev->stopCapture();
+        if(dev->isOpened())
+            dev->close();
+    }
     return 0;
 }
 
-class ArpingReceivedData : QObject
+int CArp::SendArpPackage(pcpp::PcapLiveDevice* device,
+                         std::string szSourceIp, std::string szTargetIp)
 {
-public:
-    ArpingReceivedData(CArp* p, QSharedPointer<CArp::ArpRequest> a)
+    pcpp::MacAddress sourceMac;
+    pcpp::IPv4Address sourceIP(szSourceIp);
+    pcpp::IPv4Address targetIP(szTargetIp);
+
+    if(!device || szSourceIp.empty() || szTargetIp.empty())
+        return -1;
+    if(!pcpp::IPv4Address::isValidIPv4Address(szSourceIp))
+        sourceIP = device->getIPv4Address();
+    sourceMac = device->getMacAddress();
+
+    // create an ARP request from sourceMac and sourceIP and ask for target IP
+    pcpp::Packet arpRequest(100);
+    pcpp::MacAddress destMac(0xff, 0xff, 0xff, 0xff, 0xff, 0xff);
+    pcpp::EthLayer ethLayer(sourceMac, destMac);
+    pcpp::ArpLayer arpLayer(pcpp::ARP_REQUEST,
+                            sourceMac, destMac, sourceIP, targetIP);
+    if (!arpRequest.addLayer(&ethLayer))
     {
-        pThis = p;
-        aq = a;
+        qCritical(log) << "Couldn't build Eth layer for ARP request";
+        return -2;
     }
-    ~ArpingReceivedData()
+    if (!arpRequest.addLayer(&arpLayer))
     {
-        qDebug(log) << __FUNCTION__;
+        qCritical(log) << "Couldn't build ARP layer for ARP request";
+        return -3;
     }
-    CArp* pThis;
-    QSharedPointer<CArp::ArpRequest> aq;
-};
+    arpRequest.computeCalculateFields();
+    // send the ARP request
+    bool bRet = device->sendPacket(&arpRequest);
+    if(bRet) return 0;
+    return -4;
+}
 
 static void cbArpPacketReceived(pcpp::RawPacket* rawPacket,
                                 pcpp::PcapLiveDevice*, void* userCookie)
@@ -142,52 +164,62 @@ static void cbArpPacketReceived(pcpp::RawPacket* rawPacket,
         return;
 
     // get the data from the main thread
-    ArpingReceivedData* pData = reinterpret_cast<ArpingReceivedData*>(userCookie);
-    if(!pData || !pData->aq || !pData->pThis || !pData->aq->para)
+    CArp* pThis = reinterpret_cast<CArp*>(userCookie);
+    if(!pThis)
     {
         qDebug(log) << "The use data is nullptr";
         return;
     }
-    QSharedPointer<CParameterWakeOnLan> para = pData->aq->para;
 
     // verify the ARP response is the response for out request
     // (and not some arbitrary ARP response)
-    if (arpReplyLayer->getSenderIpAddr().toString()
-        != para->m_Net.GetHost().toStdString())
+    std::string szTarget = arpReplyLayer->getSenderIpAddr().toString();
+    QMutexLocker lock(&pThis->m_Mutex);
+    auto it = pThis->m_Para.find(szTarget);
+    if(pThis->m_Para.end() == it)
         return;
 
+    auto para = it.value()->para;
     para->SetMac(arpReplyLayer->getSenderMacAddress().toString().c_str());
     para->SetHostState(CParameterWakeOnLan::HostState::Online);
-
-    pData->pThis->m_Mutex.lock();
-    // See: CArp::slotProcess()
-    pData->aq->nTimeout = 0;
-    pData->pThis->m_Mutex.unlock();
-    delete pData;
+    it.value()->nTimeout = 0;
 }
-#endif
+
+void CArp::ListInterfaces()
+{
+    const std::vector<pcpp::PcapLiveDevice*>& devList =
+        pcpp::PcapLiveDeviceList::getInstance().getPcapLiveDevicesList();
+
+    qDebug(log) << "Network interfaces:";
+    for (const auto& dev : devList)
+    {
+        qDebug(log) << "  -> Name:" << dev->getName().c_str();
+        for(auto addr: dev->getIPAddresses())
+            qDebug(log) << "    " << addr.toString().c_str();
+    }
+    return;
+}
+#endif //#ifdef HAVE_PCAPPLUSPLUS
 
 int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
-                 #ifdef HAVE_PCAPPLUSPLUS
-                 , QSharedPointer<ArpRequest> aq
-                 #endif
+#ifdef HAVE_PCAPPLUSPLUS
+                 , QSharedPointer<ArpRequest> ar
+#endif
                  )
 {
     qDebug(log) << __FUNCTION__ << para;
+    int nRet = 0;
     if(!para) return -1;
-
 #ifdef HAVE_PCAPPLUSPLUS
-    using namespace pcpp;
     std::string szSourceIp;
     if(!para->GetNetworkInterface().isEmpty())
         szSourceIp = para->GetNetworkInterface().toStdString();
     std::string szTargetIp;
     if(!para->m_Net.GetHost().isEmpty())
         szTargetIp = para->m_Net.GetHost().toStdString();
-    pcpp::MacAddress sourceMac;
-    pcpp::IPv4Address sourceIP(szSourceIp);
-    pcpp::IPv4Address targetIP(szTargetIp);
+
     pcpp::PcapLiveDevice* device = nullptr;
+
     try{
         //ListInterfaces();
         if(!pcpp::IPv4Address::isValidIPv4Address(szTargetIp)) {
@@ -199,17 +231,10 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
                      .getPcapLiveDeviceByIpOrName(szSourceIp);
         if (device == nullptr) {
             qCritical(log)
-                << "Couldn't find interface by provided IP address or name"
-                << szSourceIp.c_str();
+            << "Couldn't find interface by provided IP address or name"
+            << szSourceIp.c_str();
             return -2;
         }
-
-        if(!aq)
-            aq = QSharedPointer<ArpRequest>(new ArpRequest());
-        aq->bOpen = device->isOpened();
-        aq->device = device;
-        aq->para = para;
-        aq->nTimeout = para->GetTimeOut();
 
         if(!device->isOpened())
             if(!device->open()) {
@@ -217,118 +242,92 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
                 return -3;
             }
 
-        if(!pcpp::IPv4Address::isValidIPv4Address(szSourceIp))
-            sourceIP = device->getIPv4Address();
-        sourceMac = device->getMacAddress();
-
-        // create an ARP request from sourceMac and sourceIP and ask for target IP
-        Packet arpRequest(100);
-        MacAddress destMac(0xff, 0xff, 0xff, 0xff, 0xff, 0xff);
-        EthLayer ethLayer(sourceMac, destMac);
-        ArpLayer arpLayer(ARP_REQUEST, sourceMac, destMac, sourceIP, targetIP);
-        if (!arpRequest.addLayer(&ethLayer))
-        {
-            qCritical(log) << "Couldn't build Eth layer for ARP request";
-            return -4;
-        }
-        if (!arpRequest.addLayer(&arpLayer))
-        {
-            qCritical(log) << "Couldn't build ARP layer for ARP request";
-            return -5;
-        }
-        arpRequest.computeCalculateFields();
-
-        // set a filter for the interface to intercept only ARP response packets
-        ArpFilter arpFilter(ARP_REPLY);
-        if (!device->setFilter(arpFilter))
-        {
-            qCritical(log) << "Couldn't set ARP filter for device";
-            return -6;
+        if(!device->captureActive()) {
+            // set a filter for the interface to intercept only ARP response packets
+            pcpp::ArpFilter arpFilter(pcpp::ARP_REPLY);
+            if (!device->setFilter(arpFilter))
+            {
+                qCritical(log) << "Couldn't set ARP filter for device";
+                return -6;
+            }
+            // start capturing. The capture is done on another thread,
+            // hence "arpPacketReceived" is running on that thread
+            device->startCapture(cbArpPacketReceived, this);
         }
 
-        aq->tmStart = QTime::currentTime();
-        m_Mutex.lock();
-        m_ArpRequest.insert(szTargetIp.c_str(), aq);
-        m_Mutex.unlock();
-
-        ArpingReceivedData* data = new ArpingReceivedData(this, aq);
-
-        // start capturing. The capture is done on another thread,
-        // hence "arpPacketReceived" is running on that thread
-        device->startCapture(cbArpPacketReceived, data);
-
-        // send the ARP request
-        device->sendPacket(&arpRequest);
-
+        if(m_Para.end() == m_Para.find(szTargetIp)) {
+            m_Mutex.lock();
+            auto ar = QSharedPointer<ArpRequest>(new ArpRequest(para));
+            m_Para.insert(szTargetIp, ar);
+            m_Mutex.unlock();
+        }
+        nRet = SendArpPackage(device, szSourceIp, szTargetIp);
+#else
+    qDebug(log) << "There is not pcapplusplus";
+#endif //   #ifdef HAVE_PCAPPLUSPLUS
         if(!m_Timer.isActive())
             m_Timer.start();
 
-        return 0;
+        return nRet;
     } catch(std::exception e) {
         qDebug(log) << "std::exception" << e.what();
     } catch(...) {
         qDebug(log) << "Exception";
     }
-#else
-    qDebug(log) << "There is not pcapplusplus";
-#endif
+
     return -10;
-}
-
-void CArp::ListInterfaces()
-{
-#ifdef HAVE_PCAPPLUSPLUS
-    const std::vector<pcpp::PcapLiveDevice*>& devList =
-        pcpp::PcapLiveDeviceList::getInstance().getPcapLiveDevicesList();
-
-    qDebug(log) << "Network interfaces:";
-    for (const auto& dev : devList)
-    {
-        qDebug(log) << "  -> Name:" << dev->getName().c_str();
-        for(auto addr: dev->getIPAddresses())
-            qDebug(log) << "    " << addr.toString().c_str();
-    }
-#endif
-    return;
 }
 
 void CArp::slotProcess()
 {
+    qDebug(log) << __FUNCTION__;
 #ifdef HAVE_PCAPPLUSPLUS
     m_Mutex.lock();
-    for(auto it = m_ArpRequest.begin(); it != m_ArpRequest.end();)
+    for(auto it = m_Para.begin(); it != m_Para.end();)
     {
-        auto a = *it;
+        auto a = it.value();
         auto para = a->para;
 
+        // Get mac address fail
+        if(a->tmStart.msecsTo(QTime::currentTime()) > a->nTimeout) {
+            qDebug(log) << "Get mac address fail" << para->m_Net.GetHost()
+                        << a->nRepeat;
+            m_Para.erase(it);
+            it = m_Para.begin();
+            if(a->nTimeout)
+                para->SetHostState(CParameterWakeOnLan::HostState::Offline);
+            continue;
+        }
+
         // Wake on lan
-        if(a->bWakeOnLan && a->nRepeat
+        if(a->bWakeOnLan && a->nRepeat > 0
             && a->tmRepeat.msecsTo(QTime::currentTime()) > para->GetInterval())
         {
+            qDebug(log) << "Repeat wake on lan" << para->m_Net.GetHost()
+                        << a->nRepeat;
             m_Wol.SetBroadcastAddress(para->GetBroadcastAddress());
             if(para->GetPassword().isEmpty())
                 m_Wol.SendMagicPacket(para->GetMac());
             else
                 m_Wol.SendSecureMagicPacket(para->GetMac(), para->GetPassword());
-
-            a->tmRepeat = QTime::currentTime();
-            a->nRepeat--;
         }
 
-        // Get mac address fail
-        if(a->tmStart.msecsTo(QTime::currentTime()) > a->nTimeout) {
-            StopCapture(a->device, !a->bOpen);
-            QString szTargetIp = a->para->m_Net.GetHost();
-            m_ArpRequest.remove(szTargetIp);
-            it = m_ArpRequest.begin();
-            // See: cbArpPacketReceived
-            if(a->nTimeout)
-                para->SetHostState(CParameterWakeOnLan::HostState::Offline);
-        } else
-            it++;
+        if(a->nRepeat > 0
+            && a->tmRepeat.msecsTo(QTime::currentTime()) > para->GetInterval())
+        {
+            qDebug(log) << "Repeat get mac address" << para->m_Net.GetHost()
+                        << a->nRepeat;
+            GetMac(para);
+        }
+
+        a->tmRepeat = QTime::currentTime();
+        a->nRepeat--;
+        it++;
     }
     m_Mutex.unlock();
-    if(m_ArpRequest.isEmpty())
+    if(m_Para.isEmpty()) {
         m_Timer.stop();
+        StopCapture();
+    }
 #endif
 }

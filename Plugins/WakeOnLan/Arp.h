@@ -24,43 +24,43 @@ public:
     explicit CArp(QObject *parent = nullptr);
     virtual ~CArp();
 
+    int WakeOnLan(QSharedPointer<CParameterWakeOnLan> para);
+
 #ifdef HAVE_PCAPPLUSPLUS
-    class ArpRequest {
+    class ArpRequest
+    {
     public:
-        ArpRequest() {
-            bWakeOnLan = false;
-            device = nullptr;
-            bOpen = false;
-            tmStart = QTime::currentTime();
-            nTimeout = 0;
+        ArpRequest(QSharedPointer<CParameterWakeOnLan> p) {
+            para = p;
+            if(!para) return;
+            nRepeat = p->GetRepeat();
+            nTimeout = p->GetTimeOut();
             tmRepeat = QTime::currentTime();
-            nRepeat = 0;
-        }
-        ~ArpRequest() {
-            qDebug() << __FUNCTION__;
+            bWakeOnLan = false;
+            tmStart = QTime::currentTime();
         }
         QSharedPointer<CParameterWakeOnLan> para;
-        bool bWakeOnLan;
-        pcpp::PcapLiveDevice* device;
-        bool bOpen;
-        QTime tmStart;
-        int nTimeout;
         QTime tmRepeat;
         int nRepeat;
+        int nTimeout;
+        bool bWakeOnLan;
+        QTime tmStart;
     };
     QMutex m_Mutex;
-    QMap<QString, QSharedPointer<ArpRequest> > m_ArpRequest;
-    int StopCapture(pcpp::PcapLiveDevice* device, bool close);
-#endif
-
-    int WakeOnLan(QSharedPointer<CParameterWakeOnLan> para);
-    int GetMac(QSharedPointer<CParameterWakeOnLan> para
-               #ifdef HAVE_PCAPPLUSPLUS
-               , QSharedPointer<ArpRequest> aq = QSharedPointer<ArpRequest>()
-               #endif
-               );
+    QMap<std::string, QSharedPointer<ArpRequest> > m_Para;
 private:
     void ListInterfaces();
+    int StopCapture();
+    int SendArpPackage(pcpp::PcapLiveDevice* device,
+                       std::string szSourceIp, std::string szTargetIp);
+#endif
+
+public:
+    int GetMac(QSharedPointer<CParameterWakeOnLan> para
+#ifdef HAVE_PCAPPLUSPLUS
+               ,QSharedPointer<ArpRequest> ar = QSharedPointer<ArpRequest>()
+#endif
+               );
 
 private Q_SLOTS:
     void slotProcess();
