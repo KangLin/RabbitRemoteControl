@@ -36,7 +36,7 @@ CConnectThread::~CConnectThread()
  */
 void CConnectThread::run()
 {
-    qDebug(log) << "CConnectThread::run() start";
+    qDebug(log) << __FUNCTION__ << "start";
 
     Q_ASSERT(m_pConnecter);
     int nRet = 0;
@@ -49,8 +49,11 @@ void CConnectThread::run()
 
     if(pConnect) {
         nRet = pConnect->Connect();
-        if(nRet)
-            emit pConnect->sigDisconnect();
+        if(nRet) {
+            pConnect->deleteLater();
+            pConnect = nullptr;
+            emit m_pConnecter->sigDisconnect();
+        }
     }
 
     exec();
@@ -62,5 +65,5 @@ void CConnectThread::run()
 
     emit m_pConnecter->sigDisconnected();
 
-    qDebug(log) << "CConnectThread::run() end";
+    qDebug(log) << __FUNCTION__ << "end";
 }

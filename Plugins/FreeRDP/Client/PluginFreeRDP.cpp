@@ -17,6 +17,7 @@ static Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
     : CPluginClient(parent)
 {
+    qDebug(log) << __FUNCTION__;
     qInfo(log) << "FreeRDP version:" << freerdp_get_version_string()
                         << "revision:" << freerdp_get_build_revision();
 
@@ -59,7 +60,7 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
 //! [Clean resource]
 CPluginFreeRDP::~CPluginFreeRDP()
 {
-    qDebug(log) << "CPluginFreeRDP::~CPluginFreeRDP()";
+    qDebug(log) << __FUNCTION__;
 }
 //! [Clean resource]
 

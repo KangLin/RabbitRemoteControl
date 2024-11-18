@@ -365,7 +365,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
     QScreen* pScreen = qApp->primaryScreen();
     if(pScreen) {
         qDebug(log) << "Primary screen geometry:" << pScreen->geometry()
-        << "availableGeometry:" << pScreen->availableGeometry();
+                    << "availableGeometry:" << pScreen->availableGeometry();
         m_pFullScreenToolBar->move(
             pScreen->geometry().left()
                 + (pScreen->geometry().width()

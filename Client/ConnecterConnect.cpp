@@ -27,7 +27,7 @@ const QString CConnecterConnect::Id()
             szId += "_" + GetParameter()->m_Net.GetHost()
                     + "_" + QString::number(GetParameter()->m_Net.GetPort());
     }
-    QRegularExpression exp("[-@:/#%!^&* \\.]");
+    static QRegularExpression exp("[-@:/#%!^&* \\.]");
     szId = szId.replace(exp, "_");
     return szId;
 }
@@ -102,8 +102,10 @@ int CConnecterConnect::SetParameter(CParameterBase *p)
             check = connect(GetParameter(), SIGNAL(sigZoomFactorChanged(double)),
                             pViewer, SLOT(slotSetZoomFactor(double)));
             Q_ASSERT(check);
-            check = connect(GetParameter(), SIGNAL(sigAdaptWindowsChanged(CFrmViewer::ADAPT_WINDOWS)),
-                            pViewer, SLOT(slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS)));
+            check = connect(
+                GetParameter(),
+                SIGNAL(sigAdaptWindowsChanged(CFrmViewer::ADAPT_WINDOWS)),
+                pViewer, SLOT(slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS)));
             Q_ASSERT(check);
         }
     }
@@ -126,14 +128,19 @@ int CConnecterConnect::SetParameterClient(CParameterClient* pPara)
         }
         return 0;
     } else {
-        QString szMsg = "The CConnecter is not parameters! please first create parameters, "
+        QString szMsg = "The CConnecter is not parameters! "
+                        "please first create parameters, "
                         "then call SetParameter in the ";
-        szMsg += metaObject()->className() + QString("::") + metaObject()->className();
-        szMsg += QString(" or ") + metaObject()->className() + QString("::") + "Initial()";
+        szMsg += metaObject()->className() + QString("::")
+                 + metaObject()->className();
+        szMsg += QString(" or ") + metaObject()->className()
+                 + QString("::") + "Initial()";
         szMsg += " to set the parameters pointer. "
-                 "Default set CParameterClient for the parameters of connecter (CParameterConnecter or its derived classes) "
+                 "Default set CParameterClient for the parameters of connecter "
+                 "(CParameterConnecter or its derived classes) "
                  "See: CClient::CreateConnecter. "
-                 "If you are sure the parameter of connecter does not need CParameterClient. "
+                 "If you are sure the parameter of connecter "
+                 "does not need CParameterClient. "
                  "Please overload the SetParameterClient in the ";
         szMsg += QString(metaObject()->className()) + " . don't set it";
         qCritical(log) << szMsg.toStdString().c_str();

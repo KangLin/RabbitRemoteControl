@@ -14,7 +14,6 @@
 #include "FrmParameterClient.h"
 #include "FrmViewer.h"
 #include "Channel.h"
-#include "ParameterRecord.h"
 #include "ParameterRecordUI.h"
 
 static Q_LOGGING_CATEGORY(log, "Client")
@@ -184,6 +183,11 @@ int CClient::AppendPlugin(CPluginClient *p)
         "InitTranslator",
         Qt::DirectConnection,
         Q_RETURN_ARG(int, val));
+    if(!bRet || val)
+    {
+        qCritical(log) << "The plugin" <<  p->Name()
+                       << "initial translator fail" << bRet << val;
+    }
 
     m_szDetails += "#### " + p->DisplayName() + "\n"
               + tr("Version:") + " " + p->Version() + "  \n"
@@ -212,27 +216,32 @@ CConnecter* CClient::CreateConnecter(const QString& id)
                 Qt::DirectConnection,
                 Q_RETURN_ARG(CConnecter*, p),
                 Q_ARG(QString, id));
+            if(!bRet) {
+                qCritical(log) << "Create CConnecter fail.";
+                return nullptr;
+            }
         }
         if(p) {
             int val = 0;
-            //p->Initial(m_ParameterClient);
+            //p->Initial();
             bRet = QMetaObject::invokeMethod(
                 p,
                 "Initial",
                 Qt::DirectConnection,
                 Q_RETURN_ARG(int, val));
-            if(!bRet|| val) {
+            if(!bRet || val) {
                 qCritical(log) << "Connecter initial fail" << bRet << val;
                 DeleteConnecter(p);
                 return nullptr;
             }
+            //p->SetParameterClient(m_ParameterClient)
             bRet = QMetaObject::invokeMethod(
                 p,
                 "SetParameterClient",
                 Qt::DirectConnection,
                 Q_RETURN_ARG(int, val),
                 Q_ARG(CParameterClient*, m_pParameterClient));
-            if(!bRet|| val) {
+            if(!bRet || val) {
                 qCritical(log) << "SetParameterClient fail" << bRet << val;
                 DeleteConnecter(p);
                 return nullptr;
@@ -273,7 +282,7 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
     QString name = set.value("Plugin/Name").toString();
     Q_UNUSED(name);
     qDebug(log) << "LoadConnecter protocol:" << protocol
-                  << "name:" << name << "id:" << id;
+                << "name:" << name << "id:" << id;
     pConnecter = CreateConnecter(id);
     if(pConnecter) {
         //pConnecter->Load(szFile);

@@ -56,15 +56,15 @@ public:
     /*!
      * \~chinese
      * \brief 新建 CConnecter 指针，所有者是调用者。
-     *        <b>当不在使用时，调用者必调用　DeteleConnecter()　须释放指针</b>。
-     *        调用者必须连接信号 CConnecter::sigDisconnected 。
-     *        释放指针 ( DeleteConnecter() )
+     *    <b>当不在使用时，调用者必调用　DeteleConnecter()　须释放指针</b>。
+     *       调用者必须连接信号 CConnecter::sigDisconnected 。
+     *       释放指针 (使用 DeleteConnecter() )
      * \param id 插件 ID
      * \~english New CConnecter pointer, the owner is caller.
-     *           <b>The caller must be call CConnecter::sigDisconnected() to delete it,
-     *              when isn't need it</b>.
-     *           The caller must connect CConnecter::sigDisconnected,
-     *           then delete it( DeleteConnecter() )
+     *    <b>The caller must be call CConnecter::sigDisconnected() to delete it,
+     *       when it isn't need</b>.
+     *       The caller must connect CConnecter::sigDisconnected,
+     *       then delete it(Use DeleteConnecter() )
      * \param id Plugin ID
      * \~
      * \callgraph
@@ -77,13 +77,14 @@ public:
     virtual int DeleteConnecter(CConnecter* p);
 
     /*! \~chinese 从文件中新建 CConnecter 指针，所有者是调用者。
-     *          <b>当不再使用时，调用者必须负责调用　DeleteConnecter() 删除此指针</b>。
-     *          调用者必须连接信号 CConnecter::sigDisconnected 。
-     *          释放指针( DeleteConnecter() )
+     *     <b>当不再使用时，调用者必须负责调用　DeleteConnecter() 删除此指针</b>。
+     *        调用者必须连接信号 CConnecter::sigDisconnected 。
+     *        释放指针(使用 DeleteConnecter() )
      * \~english New CConnecter pointer from file, the owner is caller.
-     *          <b>The caller must delete it(call DeleteConnecter()), when isn't need it</b>.
-     *          The caller must connect CConnecter::sigDisconnected,
-     *          then delete it ( DeleteConnecter() )
+     *     <b>The caller must delete it(call DeleteConnecter()),
+     *        when it isn't need</b>.
+     *        The caller must connect CConnecter::sigDisconnected,
+     *        then delete it (Use DeleteConnecter() )
      * \~
      * \callgraph
      * \see DeleteConnecter
@@ -100,9 +101,8 @@ public:
     /*!
      * \~chinese 得到设置参数窗口
      * \return 设置参数窗口。此窗口的所有者为调用者。
-     * \note 此窗口必须有定义槽 \b slotAccept 。用于接受设置。
-     *       例如: CFrmParameterClient::slotAccept
-     * \snippet Client/FrmParameterClient.h Accept parameters
+     * \note 此窗口必须从 CParameterUI 派生。
+     *       例如: CFrmParameterClient
      * 用法示例：
      * \snippet App/Client/mainwindow.cpp Get the widget that settings client parameters
      * 
@@ -111,8 +111,8 @@ public:
      * 
      * \~english Get parameter settings widget
      * \return Parameter widget. The QWidget owner is caller.
-     * \note the widget must has slot \b slotAccept . Used to accept settings.
-     *         Eg: CFrmParameterClient::slotAccept
+     * \note The widget must be a derivative of CParameterUI.
+     *         Eg: CFrmParameterClient
      *
      * \snippet Client/FrmParameterClient.h Accept parameters
      * Usage:
