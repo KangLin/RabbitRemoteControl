@@ -49,6 +49,7 @@ int CConnecterWakeOnLan::Initial()
                         m_Menu.exec(m_pView->mapToGlobal(pos));
                     });
     Q_ASSERT(check);
+
     m_Menu.addAction(QIcon::fromTheme("list-add"), tr("Add"),
                      this, SLOT(slotAdd()));
     m_Menu.addAction(QIcon::fromTheme("document-edit"), tr("Edit"),
@@ -71,6 +72,13 @@ int CConnecterWakeOnLan::Initial()
 #if defined(Q_OS_UNIX)
     if(RabbitCommon::CTools::HasAdministratorPrivilege())
     {
+        m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+                         this, [&](){
+            foreach(auto p, m_pModel->m_Data)
+            {
+                m_Arp.GetMac(p);
+            }
+        });
         m_Menu.addAction(
             QIcon::fromTheme("mac"), tr("Get mac address"),
             this, [&](){
@@ -90,6 +98,13 @@ int CConnecterWakeOnLan::Initial()
             });
     }
 #else
+    m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+                     this, [&](){
+                         foreach(auto p, m_pModel->m_Data)
+                         {
+                             m_Arp.GetMac(p);
+                         }
+                     });
     m_Menu.addAction(
         QIcon::fromTheme("mac"), tr("Get mac address"),
         this, [&](){
