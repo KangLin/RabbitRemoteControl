@@ -79,3 +79,8 @@ QModelIndex CFrmWakeOnLan::GetCurrentIndex()
 {
     return ui->tableView->currentIndex();
 }
+
+QModelIndexList CFrmWakeOnLan::GetSelect()
+{
+    return ui->tableView->selectionModel()->selectedRows();
+}

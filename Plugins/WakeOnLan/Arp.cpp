@@ -79,6 +79,14 @@ int CArp::WakeOnLan(QSharedPointer<CParameterWakeOnLan> para)
         aq->bWakeOnLan = true;
         nRet = GetMac(para, aq);
     }
+#else
+    QSharedPointer<ArpRequest> aq(new ArpRequest(para));
+    if(!aq) {
+        qCritical(log) << "new ArpRequest fail";
+        return -3;
+    }
+    aq->bWakeOnLan = true;
+    nRet = GetMac(para, aq);
 #endif
 
 #else

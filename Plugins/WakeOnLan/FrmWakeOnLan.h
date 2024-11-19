@@ -18,6 +18,7 @@ public:
                            QWidget *parent = nullptr);
     ~CFrmWakeOnLan();
     QModelIndex GetCurrentIndex();
+    QModelIndexList GetSelect();
 public Q_SLOTS:
     void slotRemoveRow();
 private:

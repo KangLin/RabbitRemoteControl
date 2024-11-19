@@ -74,53 +74,40 @@ int CConnecterWakeOnLan::Initial()
     {
         m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
                          this, [&](){
-            foreach(auto p, m_pModel->m_Data)
-            {
-                m_Arp.GetMac(p);
-            }
-        });
+                             foreach(auto p, m_pModel->m_Data)
+                             m_Arp.GetMac(p);
+                         });
         m_Menu.addAction(
             QIcon::fromTheme("mac"), tr("Get mac address"),
             this, [&](){
                 if(!m_pModel || !m_pView)
                     return;
-                QSharedPointer<CParameterWakeOnLan> p
-                    = m_pModel->GetData(m_pView->GetCurrentIndex());
-                if(!p) {
-                    QMessageBox::information(
-                        nullptr,
-                        tr("Information"),
-                        tr("Please select a item"));
-                    return;
+                foreach(auto index, m_pView->GetSelect()) {
+                    QSharedPointer<CParameterWakeOnLan> p
+                        = m_pModel->GetData(index);
+                    if(!p) continue;
+                    if(m_Arp.GetMac(p))
+                        p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
                 }
-                if(m_Arp.GetMac(p))
-                    p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
             });
     }
 #else
     m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
                      this, [&](){
                          foreach(auto p, m_pModel->m_Data)
-                         {
                              m_Arp.GetMac(p);
-                         }
                      });
     m_Menu.addAction(
         QIcon::fromTheme("mac"), tr("Get mac address"),
         this, [&](){
             if(!m_pModel || !m_pView)
                 return;
-            QSharedPointer<CParameterWakeOnLan> p
-                = m_pModel->GetData(m_pView->GetCurrentIndex());
-            if(!p) {
-                QMessageBox::information(
-                    nullptr,
-                    tr("Information"),
-                    tr("Please select a item"));
-                return;
+            foreach(auto index, m_pView->GetSelect()) {
+                QSharedPointer<CParameterWakeOnLan> p = m_pModel->GetData(index);
+                if(!p) continue;
+                if(m_Arp.GetMac(p))
+                    p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
             }
-            if(m_Arp.GetMac(p))
-                p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
         });
 #endif
     m_Menu.addAction(
@@ -128,17 +115,12 @@ int CConnecterWakeOnLan::Initial()
         this, [&](){
             if(!m_pModel || !m_pView)
                 return;
-            QSharedPointer<CParameterWakeOnLan> p
-                = m_pModel->GetData(m_pView->GetCurrentIndex());
-            if(!p) {
-                QMessageBox::information(
-                    nullptr,
-                    tr("Information"),
-                    tr("Please select a item"));
-                return;
+            foreach(auto index, m_pView->GetSelect()) {
+                QSharedPointer<CParameterWakeOnLan> p = m_pModel->GetData(index);
+                if(!p) continue;
+                if(!m_Arp.WakeOnLan(p))
+                    p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
             }
-            if(!m_Arp.WakeOnLan(p))
-                p->SetHostState(CParameterWakeOnLan::HostState::WakeOnLan);
         });
 
     return 0;
