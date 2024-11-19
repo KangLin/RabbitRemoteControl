@@ -537,32 +537,32 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>CPluginFreeRDP</name>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="73"/>
+        <location filename="../../PluginFreeRDP.cpp" line="74"/>
         <source>Free remote desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="78"/>
+        <location filename="../../PluginFreeRDP.cpp" line="79"/>
         <source>RDP(Windows remote desktop Protocol): Access remote desktops such as windows.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="102"/>
+        <location filename="../../PluginFreeRDP.cpp" line="103"/>
         <source>FreeRDP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="104"/>
+        <location filename="../../PluginFreeRDP.cpp" line="105"/>
         <source>version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="107"/>
+        <location filename="../../PluginFreeRDP.cpp" line="108"/>
         <source>Build version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="113"/>
+        <location filename="../../PluginFreeRDP.cpp" line="114"/>
         <source>Build date: </source>
         <translation type="unfinished"></translation>
     </message>

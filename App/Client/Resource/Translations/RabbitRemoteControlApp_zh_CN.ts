@@ -81,50 +81,6 @@
         <translation>钉住</translation>
     </message>
     <message>
-        <source>Full</source>
-        <translation type="vanished">关闭全屏</translation>
-    </message>
-    <message>
-        <source>Zoom to windows</source>
-        <translation type="vanished">远程桌面缩放到客户端窗口大小</translation>
-    </message>
-    <message>
-        <source>Keep aspect ration zoom to window</source>
-        <translation type="vanished">远程桌面保持纵横比缩放到窗口大小</translation>
-    </message>
-    <message>
-        <source>Origin</source>
-        <translation type="vanished">远程桌面还原到原始大小</translation>
-    </message>
-    <message>
-        <source>Zoom In</source>
-        <translation type="vanished">放大</translation>
-    </message>
-    <message>
-        <source>Zoom Out</source>
-        <translation type="vanished">缩小</translation>
-    </message>
-    <message>
-        <source>ScreenShot</source>
-        <translation type="vanished">截屏</translation>
-    </message>
-    <message>
-        <source>Record video</source>
-        <translation type="vanished">录制视频</translation>
-    </message>
-    <message>
-        <source>Add to favorite</source>
-        <translation type="vanished">增加到收藏夹</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="vanished">退出</translation>
-    </message>
-    <message>
-        <source>Disconnect</source>
-        <translation type="vanished">关闭连接</translation>
-    </message>
-    <message>
         <location filename="../../FrmFullScreenToolBar.cpp" line="58"/>
         <source>TabBar</source>
         <translation>标签条</translation>
@@ -268,22 +224,6 @@
         <translation>普通</translation>
     </message>
     <message>
-        <source>Shot screen</source>
-        <translation type="vanished">截屏</translation>
-    </message>
-    <message>
-        <source>No action</source>
-        <translation type="vanished">无动作</translation>
-    </message>
-    <message>
-        <source>Open folder</source>
-        <translation type="vanished">打开文件夹</translation>
-    </message>
-    <message>
-        <source>Open file</source>
-        <translation type="vanished">打开文件</translation>
-    </message>
-    <message>
         <location filename="../../ParameterDlgSettings.ui" line="79"/>
         <source>Recent open file max count:</source>
         <translation>最近打开文件最大数：</translation>
@@ -307,10 +247,6 @@
         <location filename="../../ParameterDlgSettings.ui" line="252"/>
         <source>Main window receiver short cut key</source>
         <translation>主窗口接收快捷键</translation>
-    </message>
-    <message>
-        <source>Browser(&amp;B)</source>
-        <translation type="vanished">浏览(&amp;B)</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="266"/>
@@ -343,10 +279,6 @@
         <translation>右</translation>
     </message>
     <message>
-        <source>Save Path:</source>
-        <translation type="vanished">保存文件夹：</translation>
-    </message>
-    <message>
         <location filename="../../ParameterDlgSettings.ui" line="202"/>
         <source>System tray icon context menu</source>
         <translation>系统托盘图标右键菜单</translation>
@@ -365,10 +297,6 @@
         <location filename="../../ParameterDlgSettings.ui" line="229"/>
         <source>Recent open</source>
         <translation>最近打开菜单</translation>
-    </message>
-    <message>
-        <source>Select shot remote desktop, otherwise shot window</source>
-        <translation type="vanished">选择截取远程桌面，否则截取窗口</translation>
     </message>
     <message>
         <location filename="../../ParameterDlgSettings.ui" line="70"/>
@@ -410,10 +338,6 @@
         <source>No(&amp;N)</source>
         <translation>取消(&amp;N)</translation>
     </message>
-    <message>
-        <source>Open shot screen path</source>
-        <translation type="vanished">打开截屏文件夹</translation>
-    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -431,10 +355,6 @@
         <location filename="../../mainwindow.ui" line="38"/>
         <source>View(&amp;V)</source>
         <translation>视图(&amp;V)</translation>
-    </message>
-    <message>
-        <source>Zoom</source>
-        <translation type="vanished">缩放</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="49"/>
@@ -473,14 +393,6 @@
         <translation>全屏(&amp;F)</translation>
     </message>
     <message>
-        <source>Zoom to window(&amp;Z)</source>
-        <translation type="vanished">远程桌面缩放到窗口大小(&amp;Z)</translation>
-    </message>
-    <message>
-        <source>Zoom to window</source>
-        <translation type="vanished">远程桌面缩放到窗口大小</translation>
-    </message>
-    <message>
         <location filename="../../mainwindow.ui" line="203"/>
         <location filename="../../mainwindow.ui" line="206"/>
         <location filename="../../mainwindow.ui" line="209"/>
@@ -513,14 +425,6 @@
         <location filename="../../mainwindow.ui" line="283"/>
         <source>TabBar</source>
         <translation>标签条</translation>
-    </message>
-    <message>
-        <source>Zoom In</source>
-        <translation type="vanished">放大</translation>
-    </message>
-    <message>
-        <source>Zoom Out</source>
-        <translation type="vanished">缩小</translation>
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="305"/>
@@ -632,22 +536,6 @@
         <translation>工具条</translation>
     </message>
     <message>
-        <source>Original size(&amp;O)</source>
-        <translation type="vanished">远程桌面还原到原始大小(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Original size</source>
-        <translation type="vanished">原始大小</translation>
-    </message>
-    <message>
-        <source>Keep aspect ration zoom to window(&amp;K)</source>
-        <translation type="vanished">远程桌面保持纵横比缩放到窗口大小(&amp;K)</translation>
-    </message>
-    <message>
-        <source>Keep aspect ration zoom to window</source>
-        <translation type="vanished">远程桌面保持纵横比缩放到窗口大小</translation>
-    </message>
-    <message>
         <location filename="../../mainwindow.ui" line="200"/>
         <source>Exit(&amp;E)</source>
         <translation>退出(&amp;E)</translation>
@@ -712,8 +600,8 @@
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="521"/>
-        <location filename="../../mainwindow.cpp" line="539"/>
+        <location filename="../../mainwindow.cpp" line="522"/>
+        <location filename="../../mainwindow.cpp" line="540"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
@@ -721,7 +609,7 @@
         <location filename="../../mainwindow.ui" line="246"/>
         <location filename="../../mainwindow.ui" line="249"/>
         <location filename="../../mainwindow.ui" line="252"/>
-        <location filename="../../mainwindow.cpp" line="531"/>
+        <location filename="../../mainwindow.cpp" line="532"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
@@ -735,68 +623,52 @@
         <translation type="vanished">### 插件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="533"/>
+        <location filename="../../mainwindow.cpp" line="534"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="629"/>
+        <location filename="../../mainwindow.cpp" line="630"/>
         <source>Connecting to </source>
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="670"/>
+        <location filename="../../mainwindow.cpp" line="671"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="728"/>
+        <location filename="../../mainwindow.cpp" line="729"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令状态：连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="737"/>
+        <location filename="../../mainwindow.cpp" line="738"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="776"/>
+        <location filename="../../mainwindow.cpp" line="777"/>
         <source>Use message box to display information</source>
         <translation>使用消息框显示信息</translation>
     </message>
     <message>
-        <source>Save ScreenShot to </source>
-        <translation type="vanished">保存截屏到 </translation>
-    </message>
-    <message>
-        <source>Stop record video</source>
-        <translation type="obsolete">停止录制视频</translation>
-    </message>
-    <message>
-        <source>Start record video</source>
-        <translation type="obsolete">开始录制视频</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="vanished">错误</translation>
-    </message>
-    <message>
-        <location filename="../../mainwindow.cpp" line="918"/>
+        <location filename="../../mainwindow.cpp" line="919"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="919"/>
+        <location filename="../../mainwindow.cpp" line="920"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="947"/>
+        <location filename="../../mainwindow.cpp" line="948"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="948"/>
+        <location filename="../../mainwindow.cpp" line="949"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>

@@ -4,12 +4,12 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="103"/>
+        <location filename="../../Client.cpp" line="102"/>
         <source>### Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="189"/>
+        <location filename="../../Client.cpp" line="193"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -113,12 +113,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="249"/>
+        <location filename="../../ConnecterThread.cpp" line="247"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="253"/>
+        <location filename="../../ConnecterThread.cpp" line="251"/>
         <source>Start record</source>
         <translation type="unfinished"></translation>
     </message>

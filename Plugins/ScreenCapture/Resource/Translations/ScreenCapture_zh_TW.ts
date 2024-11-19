@@ -7,48 +7,48 @@
         <location filename="../../DlgCapture.ui" line="20"/>
         <location filename="../../DlgCapture.cpp" line="17"/>
         <source>Screen capture</source>
-        <translation type="unfinished"></translation>
+        <translation>截屏</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="30"/>
         <location filename="../../DlgCapture.ui" line="65"/>
         <source>Target</source>
-        <translation type="unfinished"></translation>
+        <translation>目標</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="36"/>
         <source>Operate</source>
-        <translation type="unfinished"></translation>
+        <translation>操作</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="42"/>
         <source>Shot</source>
-        <translation type="unfinished"></translation>
+        <translation>截屏</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="49"/>
         <source>Record</source>
-        <translation type="unfinished"></translation>
+        <translation>錄製</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="73"/>
         <source>Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>屏幕</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="100"/>
         <source>Window</source>
-        <translation type="unfinished"></translation>
+        <translation>窗口</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="119"/>
         <source>Custom rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義矩形</translation>
     </message>
     <message>
         <location filename="../../DlgCapture.ui" line="126"/>
         <source>Customize</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義</translation>
     </message>
 </context>
 <context>
@@ -61,24 +61,24 @@
     <message>
         <location filename="../../PluginScreenCapture.cpp" line="28"/>
         <source>Capture or record screen and window. This is a sample example.</source>
-        <translation type="unfinished"></translation>
+        <translation>捕獲或錄製屏幕和窗口。這是一個簡單的示例。</translation>
     </message>
     <message>
         <source>Capture or recored screen and window</source>
-        <translation type="vanished">捕獲或錄製屏幕和窗口</translation>
+        <translation>捕獲或錄製屏幕和窗口</translation>
     </message>
 </context>
 <context>
     <name>CScreenCapture</name>
     <message>
-        <location filename="../../ScreenCapture.cpp" line="45"/>
+        <location filename="../../ScreenCapture.cpp" line="46"/>
         <source>Start</source>
-        <translation type="unfinished"></translation>
+        <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../ScreenCapture.cpp" line="49"/>
+        <location filename="../../ScreenCapture.cpp" line="50"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>停止</translation>
     </message>
 </context>
 </TS>

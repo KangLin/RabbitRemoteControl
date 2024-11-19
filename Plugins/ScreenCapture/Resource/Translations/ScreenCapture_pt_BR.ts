@@ -67,12 +67,12 @@
 <context>
     <name>CScreenCapture</name>
     <message>
-        <location filename="../../ScreenCapture.cpp" line="45"/>
+        <location filename="../../ScreenCapture.cpp" line="46"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ScreenCapture.cpp" line="49"/>
+        <location filename="../../ScreenCapture.cpp" line="50"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>

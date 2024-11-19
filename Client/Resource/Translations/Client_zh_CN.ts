@@ -4,12 +4,12 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="103"/>
+        <location filename="../../Client.cpp" line="102"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="189"/>
+        <location filename="../../Client.cpp" line="193"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
@@ -117,12 +117,12 @@
         <translation>暂停录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="249"/>
+        <location filename="../../ConnecterThread.cpp" line="247"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="253"/>
+        <location filename="../../ConnecterThread.cpp" line="251"/>
         <source>Start record</source>
         <translation>开始录制</translation>
     </message>

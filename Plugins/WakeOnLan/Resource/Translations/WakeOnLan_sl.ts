@@ -4,54 +4,54 @@
 <context>
     <name>CConnecterWakeOnLan</name>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="52"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="53"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="54"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="55"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="61"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="84"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="103"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="121"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="62"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="62"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="85"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="104"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="122"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="63"/>
         <source>Please select a item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="69"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="70"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../ConnecterWakeOnLan.cpp" line="75"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="94"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="95"/>
+        <source>Refresh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="81"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="101"/>
         <source>Get mac address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="112"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="114"/>
         <source>Wake on lan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="177"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="174"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="178"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="175"/>
         <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -60,17 +60,17 @@
     <name>CFrmWakeOnLan</name>
     <message>
         <location filename="../../FrmWakeOnLan.ui" line="14"/>
-        <location filename="../../FrmWakeOnLan.cpp" line="20"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="23"/>
         <source>Wake on lan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWakeOnLan.cpp" line="70"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="75"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmWakeOnLan.cpp" line="71"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="76"/>
         <source>Please select a item</source>
         <translation type="unfinished"></translation>
     </message>
@@ -160,7 +160,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ParameterWakeOnLanUI.ui" line="295"/>
+        <location filename="../../ParameterWakeOnLanUI.ui" line="298"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>

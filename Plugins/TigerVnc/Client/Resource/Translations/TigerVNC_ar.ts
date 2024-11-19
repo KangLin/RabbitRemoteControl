@@ -267,8 +267,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.cpp" line="30"/>
+        <location filename="../../DlgSettingsVnc.cpp" line="29"/>
         <source>Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.cpp" line="33"/>
+        <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -267,9 +267,14 @@
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../DlgSettingsVnc.cpp" line="30"/>
+        <location filename="../../DlgSettingsVnc.cpp" line="29"/>
         <source>Proxy</source>
         <translation>代理</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSettingsVnc.cpp" line="33"/>
+        <source>Record</source>
+        <translation>录制</translation>
     </message>
 </context>
 <context>

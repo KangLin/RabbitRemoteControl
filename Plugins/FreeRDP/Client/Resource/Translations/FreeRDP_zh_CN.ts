@@ -486,7 +486,7 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="49"/>
         <source>Record</source>
-        <translation type="unfinished"></translation>
+        <translation>录制</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="72"/>
@@ -541,32 +541,32 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 <context>
     <name>CPluginFreeRDP</name>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="73"/>
+        <location filename="../../PluginFreeRDP.cpp" line="74"/>
         <source>Free remote desktop</source>
         <translation>自由远程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="78"/>
+        <location filename="../../PluginFreeRDP.cpp" line="79"/>
         <source>RDP(Windows remote desktop Protocol): Access remote desktops such as windows.</source>
         <translation>RDP（ Windows 远程桌面协议）：访问 Windows 远程桌面</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="102"/>
+        <location filename="../../PluginFreeRDP.cpp" line="103"/>
         <source>FreeRDP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="104"/>
+        <location filename="../../PluginFreeRDP.cpp" line="105"/>
         <source>version: </source>
         <translation>版本号：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="107"/>
+        <location filename="../../PluginFreeRDP.cpp" line="108"/>
         <source>Build version: </source>
         <translation>编译版本号：</translation>
     </message>
     <message>
-        <location filename="../../PluginFreeRDP.cpp" line="113"/>
+        <location filename="../../PluginFreeRDP.cpp" line="114"/>
         <source>Build date: </source>
         <translation>编译日期：</translation>
     </message>

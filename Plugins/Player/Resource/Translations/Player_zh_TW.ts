@@ -5,41 +5,26 @@
     <name>CConnectPlayer</name>
     <message>
         <source>Position: </source>
-        <translation type="vanished">位置：</translation>
+        <translation>位置：</translation>
     </message>
 </context>
 <context>
     <name>CConnecterPlayer</name>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="77"/>
-        <location filename="../../ConnecterPlayer.cpp" line="100"/>
+        <location filename="../../ConnecterPlayer.cpp" line="82"/>
+        <location filename="../../ConnecterPlayer.cpp" line="105"/>
         <source>Start</source>
-        <translation type="unfinished">開始</translation>
+        <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="88"/>
+        <location filename="../../ConnecterPlayer.cpp" line="93"/>
         <source>Stop</source>
-        <translation type="unfinished">停止</translation>
+        <translation>停止</translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="115"/>
+        <location filename="../../ConnecterPlayer.cpp" line="120"/>
         <source>pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CConneterPlayer</name>
-    <message>
-        <source>Start</source>
-        <translation type="vanished">開始</translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="vanished">停止</translation>
-    </message>
-    <message>
-        <source>Capture</source>
-        <translation type="vanished">捕獲</translation>
+        <translation>暫停</translation>
     </message>
 </context>
 <context>
@@ -68,11 +53,11 @@
     <message>
         <location filename="../../DlgPlayer.ui" line="75"/>
         <source>Audio input</source>
-        <translation type="unfinished"></translation>
+        <translation>音頻輸入</translation>
     </message>
     <message>
         <source>AudioInput</source>
-        <translation type="vanished">音頻輸入</translation>
+        <translation>音頻輸入</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.ui" line="89"/>
@@ -156,12 +141,12 @@
     <message>
         <location filename="../../DlgPlayer.cpp" line="95"/>
         <source>The url is empty. please set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Url 是空，請設置!</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.cpp" line="96"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.cpp" line="115"/>
@@ -190,58 +175,58 @@
         <location filename="../../FrmPlayer.cpp" line="37"/>
         <location filename="../../FrmPlayer.cpp" line="234"/>
         <source>Start</source>
-        <translation type="unfinished">開始</translation>
+        <translation>開始</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="44"/>
         <source>pause</source>
-        <translation type="unfinished"></translation>
+        <translation>暫停</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="49"/>
         <source>Backward</source>
-        <translation type="unfinished"></translation>
+        <translation>向後</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="71"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>向前</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="84"/>
         <source>ScreenShot</source>
-        <translation type="unfinished"></translation>
+        <translation>截圖</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="99"/>
         <source>Record pause</source>
-        <translation type="unfinished"></translation>
+        <translation>錄製暫停</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="89"/>
         <source>Record</source>
-        <translation type="unfinished">錄製</translation>
+        <translation>錄製</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="105"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>設置</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="108"/>
         <location filename="../../FrmPlayer.cpp" line="155"/>
         <source>Audio</source>
-        <translation type="unfinished">音頻</translation>
+        <translation>音頻</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="152"/>
         <source>Muted</source>
-        <translation type="unfinished">靜音</translation>
+        <translation>靜音</translation>
     </message>
     <message>
         <location filename="../../FrmPlayer.cpp" line="222"/>
         <source>Stop</source>
-        <translation type="unfinished">停止</translation>
+        <translation>停止</translation>
     </message>
 </context>
 <context>
@@ -254,36 +239,36 @@
     <message>
         <location filename="../../PluginPlayer.cpp" line="27"/>
         <source>Player: play media files or camera.</source>
-        <translation type="unfinished"></translation>
+        <translation>播放器：播放多媒體或攝像頭。</translation>
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="29"/>
         <source> Record camera or media stream.</source>
-        <translation type="unfinished"></translation>
+        <translation> 錄製攝像頭或多媒體流。</translation>
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="55"/>
         <source>Qt version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt 版本：</translation>
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="56"/>
         <source>Compile version: </source>
-        <translation type="unfinished"></translation>
+        <translation>編譯版本：</translation>
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="57"/>
         <source>Runtime version: </source>
-        <translation type="unfinished"></translation>
+        <translation>運行版本：</translation>
     </message>
     <message>
         <location filename="../../PluginPlayer.cpp" line="59"/>
         <source>Use QVideoWidget</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 QVideoWidget</translation>
     </message>
     <message>
         <source>Player: play media files. play and recored camera, network media stream.</source>
-        <translation type="vanished">播放器：播放多媒體文件。播放和錄製攝像頭、網絡媒體流。</translation>
+        <translation>播放器：播放多媒體文件。播放和錄製攝像頭、網絡媒體流。</translation>
     </message>
 </context>
 </TS>

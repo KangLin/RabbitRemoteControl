@@ -46,7 +46,7 @@
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="548"/>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="563"/>
         <source>Error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="328"/>

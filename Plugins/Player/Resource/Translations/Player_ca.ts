@@ -4,18 +4,18 @@
 <context>
     <name>CConnecterPlayer</name>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="77"/>
-        <location filename="../../ConnecterPlayer.cpp" line="100"/>
+        <location filename="../../ConnecterPlayer.cpp" line="82"/>
+        <location filename="../../ConnecterPlayer.cpp" line="105"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="88"/>
+        <location filename="../../ConnecterPlayer.cpp" line="93"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="115"/>
+        <location filename="../../ConnecterPlayer.cpp" line="120"/>
         <source>pause</source>
         <translation type="unfinished"></translation>
     </message>
