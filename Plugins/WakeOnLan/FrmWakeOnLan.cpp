@@ -17,6 +17,9 @@ CFrmWakeOnLan::CFrmWakeOnLan(CWakeOnLanModel *pModel, QWidget *parent)
                     SIGNAL(customContextMenuRequested(const QPoint&)),
                     this, SIGNAL(customContextMenuRequested(const QPoint&)));
     Q_ASSERT(check);
+    check = connect(pModel, SIGNAL(modelReset()),
+                    ui->tableView, SLOT(resizeColumnsToContents()));
+    Q_ASSERT(check);
     setWindowTitle(tr("Wake on lan"));
     setWindowIcon(QIcon::fromTheme("lan"));
 
