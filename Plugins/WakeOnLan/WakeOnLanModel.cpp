@@ -221,34 +221,45 @@ bool CWakeOnLanModel::removeRows(int row, int count, const QModelIndex &parent)
 class CSortIp
 {
 public:
-    CSortIp(Qt::SortOrder order)
+    CSortIp(Qt::SortOrder order, int column)
     {
         m_Order = order;
+        m_column = column;
     }
 
     bool operator()(const QSharedPointer<CParameterWakeOnLan>& k1,
                     const QSharedPointer<CParameterWakeOnLan>& k2)
     {
-        if(m_Order == Qt::AscendingOrder)
-            return k1->m_Net.GetHost() < k2->m_Net.GetHost();
-        else
-            return k1->m_Net.GetHost() > k2->m_Net.GetHost();
+        if(0 == m_column) {
+            if(m_Order == Qt::AscendingOrder)
+                return k1->GetHostState() < k2->GetHostState();
+            else
+                return k1->GetHostState() > k2->GetHostState();
+        }
+        if(1 == m_column) {
+            if(m_Order == Qt::AscendingOrder)
+                return k1->m_Net.GetHost() < k2->m_Net.GetHost();
+            else
+                return k1->m_Net.GetHost() > k2->m_Net.GetHost();
+        }
+        return false;
     }
 private:
     Qt::SortOrder m_Order;
+    int m_column;
 };
 
 void CWakeOnLanModel::sort(int column, Qt::SortOrder order)
 {
     qDebug(log) << __FUNCTION__ << column << order;
-    if(1 != column)
+    if(1 != column && 0 != column)
         return;
     if(m_Sort.find(column) != m_Sort.end())
         if(m_Sort[column] == order)
             return;
     m_Sort[column] = order;
     beginResetModel();
-    CSortIp cmp(order);
+    CSortIp cmp(order, column);
     std::sort(m_Data.begin(), m_Data.end(), cmp);
     endResetModel();
 }

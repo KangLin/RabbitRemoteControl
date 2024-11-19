@@ -20,11 +20,12 @@ CFrmWakeOnLan::CFrmWakeOnLan(CWakeOnLanModel *pModel, QWidget *parent)
     setWindowTitle(tr("Wake on lan"));
     setWindowIcon(QIcon::fromTheme("lan"));
 
+    // Sort
     check = connect(
         ui->tableView->horizontalHeader(),
         &QHeaderView::sectionClicked,
         this, [&](int c){
-            if(1 == c) {
+            if(0 == c || 1 == c) {
                 ui->tableView->horizontalHeader()->setSortIndicatorShown(true);
             }
             else {
@@ -35,10 +36,11 @@ CFrmWakeOnLan::CFrmWakeOnLan(CWakeOnLanModel *pModel, QWidget *parent)
     check = connect(ui->tableView->horizontalHeader(),
                     &QHeaderView::sortIndicatorChanged,
                     this, [&](int logicalIndex, Qt::SortOrder order){
-                        if(1 == logicalIndex)
-                            ui->tableView->model()->sort(1, order);
+                        if(0 == logicalIndex || 1 == logicalIndex)
+                            ui->tableView->model()->sort(logicalIndex, order);
                     });
     Q_ASSERT(check);
+
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     //必须在 setModel 后,才能应用
     /*第二个参数可以为：
