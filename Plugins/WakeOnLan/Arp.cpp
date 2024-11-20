@@ -270,9 +270,6 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
             m_Mutex.unlock();
         }
         nRet = SendArpPackage(device, szSourceIp, szTargetIp);
-#else
-    qDebug(log) << "There is not pcapplusplus";
-#endif //   #ifdef HAVE_PCAPPLUSPLUS
         if(!m_Timer.isActive())
             m_Timer.start();
 
@@ -282,7 +279,9 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
     } catch(...) {
         qDebug(log) << "Exception";
     }
-
+#else
+    qDebug(log) << "There is not pcapplusplus";
+#endif //   #ifdef HAVE_PCAPPLUSPLUS
     return -10;
 }
 

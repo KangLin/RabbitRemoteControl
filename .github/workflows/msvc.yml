@@ -103,10 +103,10 @@ jobs:
           IF NOT EXIST ${{env.INSTALL_DIR}}\npcap (
               C:\msys64\usr\bin\pacman.exe -S --noconfirm unzip
               C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-sdk-1.13.zip
-              C:\msys64\usr\bin\unzip -d ${{env.INSTALL_DIR}} npcap-sdk-1.13.zip
+              C:\msys64\usr\bin\unzip -d ${{env.INSTALL_DIR}}\npcap npcap-sdk-1.13.zip
           )
 
-      - name: build pcapplusplus
+      - name: build PcapPlusPlus
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\pcapplusplus (
@@ -116,7 +116,7 @@ jobs:
               cd build
               cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
-                  -DPCAP_ROOT=${{env.INSTALL_DIR}}
+                  -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap
               cmake --build . --config ${{matrix.BUILD_TYPE}}
               cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -356,6 +356,8 @@ jobs:
             -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DPcapPlusPlus_DIR=${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus ^
+            -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^
+            -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap ^
             -DBUILD_FREERDP=ON
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
@@ -383,6 +385,8 @@ jobs:
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
           copy /Y vcpkg_installed\${{matrix.VCPKG_TARGET_TRIPLET}}\bin\*.dll install\bin
           7z a RabbitRemoteControl_windows_${{env.RabbitRemoteControl_VERSION}}.zip .\install\*
+          C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-1.80.exe
+          copy npcap-1.80.exe install\bin
           makensis Install.nsi
           copy /Y RabbitRemoteControl_Setup_${{env.RabbitRemoteControl_VERSION}}.exe RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${{matrix.qt_arch}}_qt${{matrix.qt_version}}_Setup.exe
 

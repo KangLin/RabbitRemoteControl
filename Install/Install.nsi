@@ -123,6 +123,19 @@ Function InstallRuntime
     call InstallVC
 FunctionEnd
 
+Function InstallNpcap
+    IfFileExists "$INSTDIR\bin\npcap-1.80.exe" ExecNpcap
+    NSISdl::download "https://npcap.com/dist/npcap-1.80.exe" "$INSTDIR\bin\npcap-1.80.exe"
+    Pop $R0 ;Get the return value
+      StrCmp $R0 "success" ExecNpcap
+        ExecShell "open" "https://npcap.com/#download"
+        MessageBox MB_OK "Download npcap-1.80.exe failed: $R0. Please install npcap manually from https://npcap.com/#download"
+        Goto ExitNpcap
+ExecNpcap:
+    ExecShell "" '"$INSTDIR\bin\npcap-1.80.exe"' "/winpcap_mode=enforced /dot11_support=yes /loopback_support=no /admin_only=no" SW_SHOWMAXIMIZED
+ExitNpcap:
+FunctionEnd
+
 Function DirectoryPermissionErrorBox
  StrCpy $1 "${LANG_DIRECTORY_PERMISSION}"
      MessageBox MB_ICONSTOP $1 
@@ -157,6 +170,7 @@ Section "${PRODUCT_NAME}" SEC01
   
   ;SetShellVarContext current
   call InstallRuntime
+  call InstallNpcap
 SectionEnd
 
 Section -AdditionalIcons
