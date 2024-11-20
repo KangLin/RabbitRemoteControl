@@ -49,7 +49,7 @@ jobs:
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       VCPKG_OVERLAY_PORTS: "${{github.workspace}}/${{matrix.VCPKG_OVERLAY_PORTS}}"
-      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc"
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: ${{matrix.qt_modules}}
@@ -96,6 +96,30 @@ jobs:
         working-directory: ${{github.workspace}}
         run: |
           vcpkg install --triplet ${{matrix.VCPKG_TARGET_TRIPLET}} --x-feature=vnc
+
+      - name: build npcap
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          IF NOT EXIST ${{env.INSTALL_DIR}}\npcap (
+              C:\msys64\usr\bin\pacman.exe -S --noconfirm unzip
+              C:\msys64\usr\bin\wget https://npcap.com/dist/npcap-sdk-1.13.zip
+              C:\msys64\usr\bin\unzip -d ${{env.INSTALL_DIR}} npcap-sdk-1.13.zip
+          )
+
+      - name: build pcapplusplus
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+          IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\pcapplusplus (
+              git clone -b v24.09 https://github.com/seladb/PcapPlusPlus.git
+              cd PcapPlusPlus
+              cmake -E make_directory build
+              cd build
+              cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                  -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
+                  -DPCAP_ROOT=${{env.INSTALL_DIR}}
+              cmake --build . --config ${{matrix.BUILD_TYPE}}
+              cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+          )
 
 #    - name: build libdatachannel
 #      working-directory: ${{env.SOURCE_DIR}}
@@ -331,6 +355,7 @@ jobs:
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^
             -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
+            -DPcapPlusPlus_DIR=${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus ^
             -DBUILD_FREERDP=ON
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (

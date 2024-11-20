@@ -13,8 +13,7 @@
 
   "default-features": [
     "freerdp",
-    "vnc",
-    "wol"
+    "vnc"
   ],
 
   "features": {
