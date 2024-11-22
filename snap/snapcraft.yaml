@@ -334,7 +334,6 @@ apps:
      - network-manager
      - opengl
      - cups
-     - cups-control
      - serial-port
      - alsa
      - audio-playback
