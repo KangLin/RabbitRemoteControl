@@ -1,12 +1,13 @@
 ## Change Log
 
+### v0.0.29
+
 ### v0.0.28
 - Client parameters
   - Added the ability to automatically use the system username as the username
   - Add zoom viewer
 - App: remove border when full screen
 - Client:
-  - Add wake on lan
   - Add CConnectDesktop
   - Add CClient::Details()
   - Add CParameterUI
@@ -19,6 +20,7 @@
 - Plugin
   - Add player. need Qt >= 6.6.0 , record need Qt >= 6.8.0 .
   - Add capture screen or window. need Qt >= 6.6.0 , record need Qt >= 6.8.0 .
+  - Add wake on lan
 - Package
   - Add snap
   - Add AppImage
