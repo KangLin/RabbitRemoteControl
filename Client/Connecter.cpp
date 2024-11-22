@@ -277,14 +277,14 @@ void CConnecter::slotBlockShowWidget(const QString& className, int &nRet, void* 
         check = connect(this, SIGNAL(sigDisconnected()),
                         pDlg, SLOT(reject()));
         Q_ASSERT(check);
-        RC_SHOW_WINDOW(pDlg);
+        nRet = RC_SHOW_WINDOW(pDlg);
     } else if(obj->inherits("QWidget")) {
         QWidget* pWdg = qobject_cast<QWidget*>(obj);
         pWdg->setAttribute(Qt::WA_DeleteOnClose);
         check = connect(this, SIGNAL(sigDisconnected()),
                         pWdg, SLOT(close()));
         Q_ASSERT(check);
-        RC_SHOW_WINDOW(pWdg);
+        nRet = RC_SHOW_WINDOW(pWdg);
     }
 }
 

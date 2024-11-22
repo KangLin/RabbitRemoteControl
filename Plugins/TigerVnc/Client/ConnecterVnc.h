@@ -18,13 +18,15 @@ public:
 
     virtual const QString Id() override;
     virtual qint16 Version() override;
-    virtual int Initial() override;
-    virtual int Clean() override;
 
 protected:
     virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) override;
     virtual CConnect* InstanceConnect() override;
     virtual QString ServerName() override;
+
+private:
+    virtual int Initial() override;
+    virtual int Clean() override;
 
 private:
     CParameterVnc m_Para;
