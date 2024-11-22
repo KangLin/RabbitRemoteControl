@@ -4,12 +4,12 @@
 set -e
 
 SOURCE_DIR=`pwd`
-PRE_TAG=`git tag --sort=-creatordate | head -n 1`
+PRE_TAG=`git tag --sort=-creatordate -l "v*" | head -n 1`
 
 if [ -n "$1" ]; then
-    VERSION=`git describe --tags`
+    VERSION=`git describe --tags --match "v*"`
     if [ -z "$VERSION" ]; then
-        VERSION=`git rev-parse HEAD`
+        VERSION=`git rev-parse --short HEAD`
     fi
 
     if [ -n "$2" ]; then
@@ -18,7 +18,7 @@ if [ -n "$1" ]; then
         MESSAGE="Release $1"
     fi
 
-    PRE_TAG=`git tag --sort=-taggerdate | head -n 1`
+    PRE_TAG=`git tag --sort=-creatordate -l "v*" | head -n 1`
     echo "Current version: $VERSION, current tag: $PRE_TAG. The version to will be set tag version: $1 message: $MESSAGE"
     echo "Please check the follow list:"
     echo "    - Test is ok ?"
@@ -38,7 +38,7 @@ else
 fi
 
 # Modify the version number in the version-related files
-VERSION=`git describe --tags`
+VERSION=`git describe --tags --match "v*"`
 if [ -z "$VERSION" ]; then
     VERSION=`git rev-parse --short HEAD`
 fi
@@ -84,14 +84,14 @@ echo " -- `git log --pretty=format:'%an <%ae>' HEAD^..HEAD`  `date --rfc-email`"
 #    mv ${CHANGLOG_TMP} ${CHANGLOG_FILE}
 #fi
 
-sed -i "s/android:versionName=\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/android:versionName=\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
+sed -i "s/android:versionName=\"[0-9]\+\.[0-9]\+\.[0-9]\+\"/android:versionName=\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/App/Client/android/AndroidManifest.xml
 sed -i "s/RabbitRemoteControl_VERSION:.*/RabbitRemoteControl_VERSION: ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/.github/workflows/ubuntu.yml
 if [ -f ${SOURCE_DIR}/vcpkg.json ]; then
     sed -i "s/  \"version-string\":.*\"[0-9]\+\.[0-9]\+\.[0-9]\+\",/  \"version-string\": \"${DEBIAN_VERSION}\",/g" ${SOURCE_DIR}/vcpkg.json
 fi
 
 MAJOR_VERSION=`echo ${DEBIAN_VERSION}|cut -d "." -f 1`
-sed -i "s/android:versionCode=.*android/android:versionCode=\"${MAJOR_VERSION}\" android/g" ${SOURCE_DIR}/App/android/AndroidManifest.xml
+sed -i "s/android:versionCode=.*android/android:versionCode=\"${MAJOR_VERSION}\" android/g" ${SOURCE_DIR}/App/Client/android/AndroidManifest.xml
 
 
 #echo "# $VERSION " > ChangeLogDetail.tmp

@@ -189,7 +189,7 @@ Legend:
 ### Full Documentation
 
 - Development documentation online
-  - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.27/English/html/index.html)
+  - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.28/English/html/index.html)
   - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 - [Compilation documentation](#Compilation)
 
@@ -333,34 +333,41 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
   - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
   - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
   
-+ Current version: v0.0.27
++ Current version: v0.0.28
   - Windows: Supported WINDOWS 7 and later version
     + Win64
-      + Install package: RabbitRemoteControl_v0.0.27_qt6.5.2_win64_msvc2019_64_Setup.exe
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/RabbitRemoteControl_v0.0.27_win64_msvc2019_64_qt6.6.3_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/RabbitRemoteControl_v0.0.27_win64_msvc2019_64_qt6.6.3_Setup.exe/download)
-      + MD5SUM file: RabbitRemoteControl_v0.0.27_qt6.5.2_win64_msvc2019_64_Setup.exe.md5sum
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/RabbitRemoteControl_v0.0.27_win64_msvc2019_64_qt6.6.3_Setup.exe.md5sum)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/RabbitRemoteControl_v0.0.27_win64_msvc2019_64_qt6.6.3_Setup.exe.md5sum/download)
+      - Install package: RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe/download)
+      - MD5SUM file: RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe.md5sum/download)
+    + Win32
+      - Install package: RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe/download)
+      - MD5SUM file: RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
   - Ubuntu:
-    + rabbitremotecontrol_0.0.27_amd64.deb
+    + rabbitremotecontrol_0.0.28_amd64.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.27_amd64.deb
+          sudo apt install ./rabbitremotecontrol_0.0.28_amd64.deb
           
           # If you're on an older ubuntu distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.27_amd64.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.28_amd64.deb
           # sudo apt-get install -f # Install dependencies
 
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb/download)
-    + MD5SUM file: rabbitremotecontrol_0.0.27_amd64.deb.md5sum
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.27/rabbitremotecontrol_0.0.27_amd64.deb.md5sum/download)
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/rabbitremotecontrol_0.0.28_amd64.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/rabbitremotecontrol_0.0.28_amd64.deb/download)
+    + MD5SUM file: rabbitremotecontrol_0.0.28_amd64.deb.md5sum
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/rabbitremotecontrol_0.0.28_amd64.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/rabbitremotecontrol_0.0.28_amd64.deb.md5sum/download)
 
 ## [Development](docs/Doxygen/Develop.md)
 
 ### Development documentation online
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.27/English/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.28/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation

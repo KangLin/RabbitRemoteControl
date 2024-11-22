@@ -1,218 +1,169 @@
-rabbitremotecontrol (0.0.27) unstable; urgency=medium
+rabbitremotecontrol (0.0.28) unstable; urgency=medium
 
-    * Modify deploy.sh
-    * FrmViewer: modify led state
+    * Client: fix return value bug
+    * WakeOnLan: install npcap in Install.nsi
+    * CI: modify msvc.yml for PcapPlusPlus
     * Modify translations
-    * TigerVNC: add x509 authentication
-    * TigerVNC: modify CConnectVnc interface
-    * Add comment
-    * Modify translations
-    * Parameter: move led state and desktop size to base
-    * CI: modify mingw.yml
-    * Modify translations
-    * Channel: fix CSSHTunnelThread bug
-    * Channel: Use heap memory to improve performance
-    * FreeRDP: add proxy - ssh tunnel
-    * Channel: add NOMINMAX in MSVC
-    * Channel: fix select timeout bug
-    * LibVNCServer: fix FD_ISSET invalid socket core dump bug
-    * CMake: add INSTALL_RPATH
-    * Parameter: Move proxy to Base
-    * LibVNCServer: The synchronization keyboard and mouse event is sent in the background thread.
-    * Channel: add CEvent
-    * Client: Modify ssh tunnel
-    * Modify log configure file
-    * Channel: modify read in SSH tunnel
-    * Client: fix msvc build error
-    * TigerVNC: add WakeUp()
-    * Fix qt6 compile error
-    * FreeRDP: The synchronization keyboard and mouse event is sent in the background thread. Fix: 10. in #20
-    * Client: modify key event to synchronization
-    * Channel: remove synchronization
-    * Client: modify mouse event to add write synchronization
-    * Client: modify CParameterUser to add Q_ENUM
-    * Modify translations
-    * Client: modify CParameterUser
-    * TigerVNC: add fence and set secType
-    * Client: modify user parameter
-    * TigerVNC: modify resizeFramebuffer
-    * TigerVnc: modify input
-    * TigerVnc: add ConnectInformation
-    * TigerVnc: modify paraemters
-    * TigerVnc: remove count
-    * Client: modify Client/Connecter.h
-    * Client: rename GetDialogSettings to OnOpenDialogSettings
-    * Channel: modify write data
-    * FreeRDP: fix 1c23d3c14795e9cff124934ce0a84dfc5fd98dcc bug
-    * vcpkg: modify vcpkg.json for libvncserver
-    * FreeRDP: remove CConnecterFreeRDP* m_pConnecter
-    * VNC: modify CMakeLists.txt
-    * VNC: modify TigerVnc and RabbitVNC
-    * Client: modify CConnecter::slotBlockShowWidget
-    * LibVNCServer: modify log
-    * Channel: fix build error in windows
-    * Client: modify build error
-    * Client: modify comments
-    * Client: use QMetaObject::invokeMethod access the private member of class replace friend. Keep the class encapsulated
-    * VNC: remove dataRect
-    * VNC: modify vnc log
-    * Client: add CConnecter::SetParameter comments
-    * Modify translations
-    * Rafactor: RabbitVnc use a same code with TigerVnc
-    * Rafactor: rename TigerVnc to Vnc
-    * Modify ci
-    * RabbitVNC: update RabbitVNC to tigervnc v1.13.90
-    * TigerVNC: Update tigervnc to v1.13.90
-    * Channel: modify channel
-    * FreeRDP: add write event
-    * Modify translations
-    * Channel: modify ssh tunnel channel
-    * Modify log
-    * Channel: Fix QSocket isn't called in the different thread
-    * Modify translations
-    * SSH tunnel: add wake up
-    * SSH tunnel: Each background thread processes one connection
-    * SSH: add pcap file
-    * SSH tunnel: add registerSocketNotifier
-    * Refactor parameter: fix check validity on slotAccept()
-    * SSH: modify authentication
-    * Refactor parameter: Fix password bug
-    * Channel: modify CChannelSSHTunnel::verifyKnownhost
-    * Client: rename sigBlockShowMessage to sigBlockShowMessageBox
-    * Doc: Modify android.md
-    * Refactor parameter: modify proxy and user parameter
-    * Modify translations
-    * Refactor parameters: modify tigervnc parameters
-    * Refactor parameters: modify libvncserver parameters
-    * Refactor parameters: modify RabbitVNC parameters
-    * FreeRDP: fix desktop size parameter bug
-    * Refactor parameter: Add CParameterProxy and CParameterProxyUI in LibVNCServer
-    * FreeRDP: Fix mult screens
-    * Refactor parameter: check parameter validity
-    * File format from Dos to unix
-    * Modify translations
-    * Refactor parameter: Add CParameterUserUI and CParameterNetUI, refactor the parameters of FreeRDP
-    * Refactor parameters: modify documents
-    * FreeRDP: modify parameters
-    * Modify translations
-    * Modify documents
-    * CI: modify ci
-    * FreeRDP: fix authenticate bug
-    * FreeRDP: fix compile bug freerdp3
-    * Refactor parameter: rename functions
-    * Refactor parameter: modify freerdp parameters
-    * Refactor parameter: modify base parameters
-    * Refactor parameter: add check validity in CParameter
-    * Refactor parameter: modify CParameterBase
-    * Refactor: modify CParameterBase
-    * Fix typo
-    * Refactor parameter: fix use the value of CParameterClient as initial value of CParameterConnecter
-    * Refactor parameter: Use QMetaObject::invokeMethod replace friend in CClient
-    * Refactor parameter: add CParameterBase
-    * Refactor parameter: add CParameterUser
-    *  Reface parameter: modify documents
-    * Reface parameter: Add CParameterSSH in Client. rename CParameterSSH to CParameterChannelSSH in Channel
-    * SSH: add export
-    * Remove std++20 format
-    * VCPKG: Add VCPKG_MANIFEST_FEATURES: freerdp;vnc
-    * Refactor parameter: Modify CParameter to the object, or its derivative, is a member of another instance of this diagonal, and its Load and Save are automatically called
-    * Refactor parameter: add CParameterNet
-    * Modify parameter
-    * Modify client to add prompt information
-    * Add thread for ssh tunnel
-    * Add ssh tunnel
-    * Modify debian package files
-    * Modify share/org.Rabbit.SerialPortAssistant.desktop to Categories
-    * Modify version
-    * CI: update libdatachannel version to v0.21.1 in mingw.yml
-    * Rename icon theme rabbit-*
-    * Modify control
-    * Modify etc/RabbitRemoteControl_logqt.ini
-    * CI: update vcpkg version to 007aaced1a9d3245e28a2ba9395dca88ea890db1
-    * Modify documents
-    * Add update.json
-    * FreeRDP: add cb_keyboard_set_indicators
-    * Client: modify log
-    * Modify CMakePresets.json
-    * FreeRDP: add freerdp_client_OnChannelConnectedEventHandler, in order to fix 2. in #20
-    * Modify compile documents
-    * CI: modify ci
-    * CMakePresets.json: add android
-    * Add https://bitbucket.org/kl222/rabbitremotecontrol
-    * Modify log
-    * CI: modify ci
-    * Modify Change log
-    * debian/postinst: remove /bin/log
-    * debian/rules: don't install Development
-    * CI: fetch all
-    * Add INSTALL_RPATH
-    * CI: update vcpkg to 995451296a8237ff0ea4213b9deda73bb3f5229a
-    * Use RabbitCommon::CTools::Instance()->InstallTranslator
-    * Modify debian/rules
-    * Add CMakePresets.json
-    * CI: vcpkg version update to cf4ebef2294e164875ce17d7937f44d3e3ea156e
-    * Modify License.md etc files position
-    * Doc: modify compile documents
-    * FreeRDP: fix compile error with freerdp 3.3.0
-    * Modify log
-    * Modify deploy.sh
-    * CI: copy vcpkg dll to install\bin
-    * CI: modify doxygen
-    * FIX: copy dll to install\bin in msvc.yml
-    * Debian: Modify control file
-    * Modify vcpkg.json
-    * CI: modify ci
-    * Android: set QT_ANDROID_EXTRA_PLUGINS to install plugins
-    * FreeRDP: modify compile in macos
-    * CI: modify android.yml
-    * Android: modify AndroidManifest.xml
-    * CI: modify android.yml
-    * Use defined (Q_OS_WINDOWS) || defined(Q_OS_WIN)
-    * CI: modify ci
-    * Modify App/Client/android/AndroidManifest.xml
-    * CI: modify ci to macos and android
-    * CI: modify install cache key
-    * Client: modify load plugin
-    * CI: modify appveyor.yml
-    * CI: modify ci to update json
-    * Modify generate update json
-    * Add github issue custom.md template
-    * Modify github issue template
-    * CI: modify vcpkg version in appveyor.yml
-    * Fix typo
-    * CI: rename triplet to VCPKG_TARGET_TRIPLET
-    * CI: remove .gitlab-ci.yml
-    *  -d, --no-check-builddeps    do not check build dependencies and conflicts.       --ignore-builtin-builddeps                               do not check builtin build dependencies.
-    * CI: add qtwebview in android.yml
-    * CI: update vcpkg version to a1a1cbc975abf909a6c8985a6a2b8fe20bbd9bd6
-    *  Fix: Standards-version bug in deploy.sh     the standards version is the Debian packaging standards version, as in compliance with how Debian need a package to be constructed and method.
-    * debian: modify section: net
-    * Fix: Standards-version bug     the standards version is the Debian packaging standards version, as in compliance with how Debian need a package to be constructed and method.
-    * Modify comments
-    * CMake: fix findpacage(RabbitCommon) bug
-    * Debian: modify debian package
-    * Modify ci
-    * FIX: Update CFrmStyle to RabbitCommon v2
-    * CI: update vcpkg version
-    * Fix typo
-    * CI: modify ci
-    * Modify etc/RabbitRemoteControl_logqt.ini
-    * Fix typo
-    * docs: move Doxyfile.in to docs/Doxygen/Doxyfile.in
-    * Modify READM to add https://invent.kde.org/kanglin/RabbitRemoteControl
-    * FreeRDP: modify drive parameter
-    * CI: sign for android package
-    * CI: modify android.yml
-    * Fix ClientConfig.cmake.in
-    * docs: modify Linux.md
-    * Client: add OnInitReturnValue in CConnect
-    * CI: modify msvc.yml
-    * Modify README
-    * Update English.h
-    * Update msvc.yml. in order to update win32
-    * Add comments
-    * FreeRDP: rename call back function
-    * Modify screenshot
+    * WakeOnLan: resize columns to contents
+    * WakeOnLan: add sort state
+    * WakeOnLan: Multiple choices
+    * WakeOnLan: add refresh all
+    * WakeOnLan: modify CArp
+    * Modify debug information
+    * Client: modify documents
+    * Client: Refactor initial
+    * WakeOnLan: add to use administrator privileges
+    * Snap: modify confinement
+    * Snap: modify qt6.8.0 environment variable
+    * Snap: use qt6.8.0
+    * CMake: fix build fail
+    * CI: modify appimage.yml
+    * Snap: add libxkbfile1
+    * CI: modify appimage.yml
+    * Modify snap
+    * FreeRDP: disable reconnect
+    * debian: modify freerdp2-dev to freerdp3-dev
+    * CMakeLists: Rename RabbitCommon_Dir to RabbitCommon_ROOT
+    * WakeOnLan: modify build fail
+    * WakeOnLan: use htons
+    * WakeOnLan: automation network interfacee
+    * WakeOnLan: - add settings menu - modify wake on lan - modify get mac address
+    * App: modify about
+    * CI: modify appimage.yml
+    * vcpkg: add cmark in vcpkg.json
+    * WakeOnLan: modify WakeOnLan
+    * Clien: modify CConnecter
+    * Update ConnectFreeRDP.cpp
+    * Update PluginPlayer.cpp
+    * Update PluginPlayer.cpp
+    * Client: remove CConnectMulti
+    * Modify record
+    * Connecter: add Initial() and Clean()
+    * CI: modify appimage
+    * Player: add setting button
+    * Snap: remove qt6.8.0
+    * Player: add screen shot
+    * App: modify full screen toolbar
+    * App: add custom context menu
+    * Player: modify record
+    * Client: add pause record in CConnecter
+    * Player: add emit sigServerName
     * CI: modify build.yml
+    * CConnecter: modify menu
+    * Player: modify menu
+    * Client: modify record parameter
+    * Client: modify zoom
+    * TigerVNC: add record parameters
+    * App: modify slotLoadConnecterMenu
+    * Client: add CFrmScroll
+    * Client: modify record to add end action
+    * CI: modify appimage.yml
+    * CI: add build AppImage
+    * Snap: qt6.8.0 in kde-neon
+    * Modify debian
+    * Snap: modify snap
+    * Record: add after the end of the action
+    * debian: add /usr/bin/rabbitremotecontrol link
+    * Player: add CFrmPlayer::AdjustCompone
+    * Player: add full screen
+    * Player: add player control bar
+    * CI: modify android.yml
+    * Modify documents
+    * Modify log configure file
+    * remove webengine
+    * CMake: remove AndroidExtras
+    * Modify documents for android
+    * Record: fix bug
+    * Client: add record parameter
+    * Modify build_debpackage.sh
+    * Plugin: add sceen capture
+    * Player: modify sigSetDesktopSize
+    * Player: add capture window
+    * Player: add capture screen
+    * Player: modify audio input parameters
+    *  Player: fix out of range
+    * CI: update qt verstion to 6.8.0
+    * Rename slotLoadPluginMenu to slotLoadConnecterMenu
+    * App: fix load plugin menu
+    * Player: modify icon
+    * Client: Add Recored video
+    * Client: Add CConnect::GetMenu
+    * Plugin: add player
+    * CI: enable core dump
+    * Modify etc/RabbitRemoteControl_logqt.ini
+    * App: modify full screen toolbar
+    * App: add etc/RabbitRemoteControl_logqt_debug.ini
+    * Client: add record video
+    * App: fix install log configure file
+    * Dump core to log file in windows
+    * Modify build_debpackage.sh
+    * Client: add Detail()
+    * FreeRDP: prepare default settings
+    * CI: updae vcpkg to 9558037875497b9db8cf38fcd7db68ec661bffe7
+    * Modify doxygen documents
+    * CMake: add version information in windows
+    * FreeRDP: use freerdp image buffer
+    * FreeRDP: modify QImage::Format_RGB32 to QImage::Format_ARGB32
+    * FreeRDP: Fix images are not updated synchronously
+    * Modify etc/RabbitRemoteControl_logqt.ini
+    * Plugin: add wake on lan
+    * Client: add CParameterUI
+    * Client: Rename CConnecterDesktopThread to CConnecterThread
+    * Client: Add CConnectDesktop
+    * Client: add wake on lan
+    * CI: add full chanage
+    * Android: use QDialog::showMaximized
+    * Doc: modify docs/Compile/Android.md
+    * CI: modify android.yml
+    * CI: update actions/download-artifact to 4
+    * CI: modify qt version
+    * Modify snap/snapcraft.yaml
+    * Modify snap/snapcraft.yaml
+    * CI: modify msvc.yml
+    * CI: modify actions/download-artifact@v3 to actions/download-artifact@v4
+    * Modify snap/snapcraft.yaml
+    * CI: update vcpkg to 4e08971f3ddc13018ca858a692efe92d3b6b9fce
+    * Modify README
+    * App: remove border when full screen
+    * App: modify view comments
+    * Modify translations
+    * Channel: add CDlgUserPassword
+    * Modify translations
+    * Client: add enable use system user to user in client parameters
+    * Client: add zoom viewer in client parameter
+    * Channel: fix load translations
+    * Modify translations
+    * Channel: ssh tunnel add ignore button in verifyKnownhost
+    * CI: disable libvncserver in android.yml
+    * TigerVNC: Fix compile warn
+    * FreeRDP: fix memory leek
+    * Modify documents
+    * CI: modify ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/26.3.11579264
+    * vcpkg: modify VCPKG_MANIFEST_FEATURES. if it is used in CMakeLists, must place before the first project()
+    * Modify translations
+    * Add details
+    * Remove unused header file
+    * CI: vcpkg update to 3508985146f1b1d248c67ead13f8f54be5b4f5da
+    * Modify README for screen shot
+    * Modify snap/snapcraft.yaml
+    * Modify README for snapcraft.io
+    * snap: add snap/snapcraft.yaml
+    * TigerVnc: create vnc config path
+    * Channel: modify CChannelSSHTunnelForward
+    * Channel: modify sigServer
+    * Channel: use CEvent pointer in CChannelSSHTunnel
+    * CEvent: use qintptr replace SOCKET
+    * CMake: Add check_struct_has_member to check unix domain socket
+    * LibVNCServer: add unix domain socket
+    * Channel: add unix domain socket in ssh tunnel
+    * Plugins: modify FreeRDP in CMakeLists.txt
+    * Channel: add unix domain socket in CEvent for windows
+    * CI: update vcpkg to 73964f854d0d6424f335e9515b61b3a2dad5e15b
+    * Channel: add unix domain socket
+    * CI: update vcpkg to 7aa68ace49af87a85954b5d2d5229fc17fac43c6
+    * CI: modify android.yml
+    * Client: add CFrmViewer::slotConnected()
+    * CI: modify android.yml and mingw.yml
+    * Modify documents
 
- -- Kang Lin <kl222@126.com>  Thu, 15 Aug 2024 08:36:40 +0800
+ -- Kang Lin <kl222@126.com>  Fri, 22 Nov 2024 13:36:16 +0800
