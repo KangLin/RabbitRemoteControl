@@ -11,12 +11,12 @@ static Q_LOGGING_CATEGORY(log, "Player.Connecter")
 CConnecterPlayer::CConnecterPlayer(CPluginClient *plugin)
     : CConnecterThread(plugin)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CConnecterPlayer::~CConnecterPlayer()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 qint16 CConnecterPlayer::Version()
@@ -26,7 +26,7 @@ qint16 CConnecterPlayer::Version()
 
 int CConnecterPlayer::Initial()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     bool check = false;
     int nRet = 0;
     nRet = CConnecterThread::Initial();
@@ -135,7 +135,7 @@ int CConnecterPlayer::Initial()
 
 int CConnecterPlayer::Clean()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     nRet = CConnecterThread::Clean();
     return nRet;

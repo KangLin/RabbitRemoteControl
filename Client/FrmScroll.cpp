@@ -8,7 +8,7 @@
 static Q_LOGGING_CATEGORY(log, "Client.FrmScroll")
 CFrmScroll::CFrmScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     setFocusPolicy(Qt::NoFocus);
     if(pView)
     {
@@ -28,7 +28,7 @@ CFrmScroll::CFrmScroll(CFrmViewer *pView, QWidget *parent) : QScrollArea(parent)
 
 CFrmScroll::~CFrmScroll()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 void CFrmScroll::slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw)

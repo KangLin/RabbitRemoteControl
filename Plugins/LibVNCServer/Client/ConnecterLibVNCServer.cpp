@@ -8,12 +8,12 @@ static Q_LOGGING_CATEGORY(log, "LibVNCServer.Connecter")
 CConnecterLibVNCServer::CConnecterLibVNCServer(CPluginClient *plugin)
     : CConnecterThread(plugin)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CConnecterLibVNCServer::~CConnecterLibVNCServer()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 qint16 CConnecterLibVNCServer::Version()
@@ -23,7 +23,7 @@ qint16 CConnecterLibVNCServer::Version()
 
 int CConnecterLibVNCServer::Initial()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     nRet = CConnecterThread::Initial();
     if(nRet) return nRet;
@@ -33,7 +33,7 @@ int CConnecterLibVNCServer::Initial()
 
 int CConnecterLibVNCServer::Clean()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     nRet = CConnecterThread::Clean();
     return nRet;

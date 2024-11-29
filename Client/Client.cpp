@@ -255,7 +255,7 @@ CConnecter* CClient::CreateConnecter(const QString& id)
 
 int CClient::DeleteConnecter(CConnecter *p)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     if(!p) return 0;
     int val = 0;
     bool bRet = QMetaObject::invokeMethod(

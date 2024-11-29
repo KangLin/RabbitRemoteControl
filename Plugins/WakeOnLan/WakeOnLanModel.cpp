@@ -13,7 +13,7 @@ CWakeOnLanModel::CWakeOnLanModel(QObject *parent)
 
 CWakeOnLanModel::~CWakeOnLanModel()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 int CWakeOnLanModel::rowCount(const QModelIndex &parent) const
@@ -138,7 +138,7 @@ QVariant CWakeOnLanModel::data(const QModelIndex &index, int role) const
 
 bool CWakeOnLanModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    qDebug(log) << __FUNCTION__ << index << value << role;
+    qDebug(log) << Q_FUNC_INFO << index << value << role;
     if(!index.isValid()) {
         return false;
     }
@@ -211,7 +211,7 @@ int CWakeOnLanModel::AddItem(QSharedPointer<CParameterWakeOnLan> para)
 
 bool CWakeOnLanModel::removeRows(int row, int count, const QModelIndex &parent)
 {
-    qDebug(log) << __FUNCTION__ << row << count << parent;
+    qDebug(log) << Q_FUNC_INFO << row << count << parent;
     beginResetModel();
     m_Data.erase(m_Data.begin() + row);
     endResetModel();
@@ -251,7 +251,7 @@ private:
 
 void CWakeOnLanModel::sort(int column, Qt::SortOrder order)
 {
-    qDebug(log) << __FUNCTION__ << column << order;
+    qDebug(log) << Q_FUNC_INFO << column << order;
     if(1 != column && 0 != column)
         return;
     if(m_Sort.find(column) != m_Sort.end())

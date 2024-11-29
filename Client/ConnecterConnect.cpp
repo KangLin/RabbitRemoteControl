@@ -8,12 +8,12 @@ CConnecterConnect::CConnecterConnect(CPluginClient *plugin)
     : CConnecter(plugin)
     , m_pConnect(nullptr)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CConnecterConnect::~CConnecterConnect()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 const QString CConnecterConnect::Id()
@@ -151,7 +151,7 @@ int CConnecterConnect::SetParameterClient(CParameterClient* pPara)
 
 int CConnecterConnect::Connect()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     CPluginClientThread* pPlug
         = qobject_cast<CPluginClientThread*>(GetPlugClient());
     if(pPlug)
@@ -169,7 +169,7 @@ int CConnecterConnect::Connect()
 
 int CConnecterConnect::DisConnect()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     CPluginClientThread* pPlug
         = qobject_cast<CPluginClientThread*>(GetPlugClient());
     if(pPlug)

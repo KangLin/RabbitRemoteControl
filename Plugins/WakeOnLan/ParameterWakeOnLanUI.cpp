@@ -74,7 +74,7 @@ CParameterWakeOnLanUI::~CParameterWakeOnLanUI()
 
 int CParameterWakeOnLanUI::SetParameter(CParameter *pParameter)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     m_pWakeOnLan = qobject_cast<CParameterWakeOnLan*>(pParameter);
     if(!m_pWakeOnLan) return -1;
 
@@ -219,7 +219,7 @@ void CParameterWakeOnLanUI::on_pbSave_clicked()
 
 void CParameterWakeOnLanUI::on_cbNetworkInterface_currentIndexChanged(int index)
 {
-    qDebug(log) << __FUNCTION__ << index;
+    qDebug(log) << Q_FUNC_INFO << index;
     ui->leBroadcastAddress->setText(ui->cbNetworkInterface->itemData(index).toStringList().at(0));
 }
 

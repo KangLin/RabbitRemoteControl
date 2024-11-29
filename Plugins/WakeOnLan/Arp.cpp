@@ -23,7 +23,7 @@
 static Q_LOGGING_CATEGORY(log, "WOL")
 CArp::CArp(QObject *parent) : QObject(parent)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 
     m_Timer.setInterval(1000);
     bool check = connect(&m_Timer, SIGNAL(timeout()),
@@ -33,7 +33,7 @@ CArp::CArp(QObject *parent) : QObject(parent)
 
 CArp::~CArp()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 #ifdef HAVE_PCAPPLUSPLUS
     StopCapture();
 #endif
@@ -101,7 +101,7 @@ int CArp::StopCapture()
     const std::vector<pcpp::PcapLiveDevice*>& devList =
         pcpp::PcapLiveDeviceList::getInstance().getPcapLiveDevicesList();
 
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     for (const auto& dev : devList)
     {
         if(dev->captureActive())
@@ -215,7 +215,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
 #endif
                  )
 {
-    qDebug(log) << __FUNCTION__ << para;
+    qDebug(log) << Q_FUNC_INFO << para;
     int nRet = 0;
     if(!para) return -1;
 #ifdef HAVE_PCAPPLUSPLUS
@@ -287,7 +287,7 @@ int CArp::GetMac(QSharedPointer<CParameterWakeOnLan> para
 
 void CArp::slotProcess()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 #ifdef HAVE_PCAPPLUSPLUS
     m_Mutex.lock();
     for(auto it = m_Para.begin(); it != m_Para.end();)

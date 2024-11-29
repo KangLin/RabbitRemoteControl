@@ -26,7 +26,7 @@ CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
     , m_bRecordVideo(false)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     setAttribute(Qt::WA_DeleteOnClose);
     //qDebug(log) << "autoFillBackground:" << autoFillBackground();
     //setAutoFillBackground(true);
@@ -48,7 +48,7 @@ CFrmViewer::CFrmViewer(QWidget *parent)
 
 CFrmViewer::~CFrmViewer()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 QRectF CFrmViewer::GetAspectRationRect()

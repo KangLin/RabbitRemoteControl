@@ -55,14 +55,14 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     ,m_pThread(nullptr)
 #endif
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     m_pParameter = qobject_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParameter);
 }
 
 CConnectFreeRDP::~CConnectFreeRDP()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 /*
@@ -73,7 +73,7 @@ CConnectFreeRDP::~CConnectFreeRDP()
  */
 CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     
     m_writeEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
@@ -258,7 +258,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
 
 int CConnectFreeRDP::OnClean()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
 
 #ifdef HAVE_LIBSSH
@@ -303,7 +303,7 @@ int CConnectFreeRDP::OnClean()
  */
 int CConnectFreeRDP::OnProcess()
 {
-    //qDebug(log) << __FUNCTION__;
+    //qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     HANDLE handles[64];
     rdpContext* pRdpContext = (rdpContext*)m_pContext;
@@ -401,7 +401,7 @@ int CConnectFreeRDP::OnProcess()
 
 void CConnectFreeRDP::slotClipBoardChanged()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     if(m_pParameter->GetClipboard())
         m_ClipBoard.slotClipBoardChanged();
@@ -409,18 +409,18 @@ void CConnectFreeRDP::slotClipBoardChanged()
 
 BOOL CConnectFreeRDP::cbGlobalInit()
 {
-	qDebug(log) << __FUNCTION__;
+	qDebug(log) << Q_FUNC_INFO;
 	return TRUE;
 }
 
 void CConnectFreeRDP::cbGlobalUninit()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     instance->PreConnect = cb_pre_connect;
 	instance->PostConnect = cb_post_connect;
 	instance->PostDisconnect = cb_post_disconnect;
@@ -445,12 +445,12 @@ BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
 
 void CConnectFreeRDP::cbClientFree(freerdp *instance, rdpContext *context)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 int CConnectFreeRDP::cbClientStart(rdpContext *context)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     
     if (!context || !context->settings)
@@ -555,7 +555,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
 int CConnectFreeRDP::cbClientStop(rdpContext *context)
 {
     int nRet = 0;
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 #if FreeRDP_VERSION_MAJOR >= 3
     nRet = freerdp_client_common_stop(context);
 #else
@@ -588,7 +588,7 @@ int CConnectFreeRDP::cbClientStop(rdpContext *context)
  */
 BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 	rdpChannels* channels = nullptr;
 	rdpSettings* settings = nullptr;
 	rdpContext* context = instance->context;
@@ -752,7 +752,7 @@ const char* CConnectFreeRDP::GetTitle(freerdp* instance)
  */
 BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 	
 	rdpContext* context = instance->context;
 	rdpSettings* settings = instance->context->settings;
@@ -808,7 +808,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 
 void CConnectFreeRDP::cb_post_disconnect(freerdp* instance)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 	rdpContext* context = nullptr;
 
 	if (!instance || !instance->context)
@@ -959,7 +959,7 @@ BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
                                char** username, char** password,
                                char** domain, rdp_auth_reason reason)
 {
-    qDebug(log) << __FUNCTION__ << "reason:" << reason;
+    qDebug(log) << Q_FUNC_INFO << "reason:" << reason;
     if(!instance)
         return FALSE;
 
@@ -1152,7 +1152,7 @@ BOOL CConnectFreeRDP::cb_choose_smartcard(freerdp* instance,
 BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
                                       char** password, char** domain)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 	if(!instance)
 		return FALSE;
     rdpContext* pContext = (rdpContext*)instance->context;
@@ -1183,7 +1183,7 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
 BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
                                 char **username, char **password, char **domain)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 	if(!instance)
 		return FALSE;
 
@@ -1215,7 +1215,7 @@ int CConnectFreeRDP::cb_verify_x509_certificate(freerdp* instance,
                                                const BYTE* data, size_t length,
                                  const char* hostname, UINT16 port, DWORD flags)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     rdpContext* pContext = (rdpContext*)instance->context;
 
     QSslCertificate cert(QByteArray((const char*)data, length));
@@ -1251,7 +1251,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
                        const char *common_name, const char *subject,
                        const char *issuer, const char *fingerprint, DWORD flags)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 
     rdpContext* pContext = (rdpContext*)instance->context;
     Q_ASSERT(pContext);
@@ -1350,7 +1350,7 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
                       const char *old_subject, const char *old_issuer,
                       const char *old_fingerprint, DWORD flags)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     rdpContext* pContext = (rdpContext*)instance->context;
     CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
     if(common_name)
@@ -1419,7 +1419,7 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
         freerdp* instance, UINT32 type, BOOL isDisplayMandatory,
         BOOL isConsentMandatory, size_t length, const WCHAR* message)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 
     if (!isDisplayMandatory && !isConsentMandatory)
         return TRUE;
@@ -1502,7 +1502,7 @@ BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
 
 BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 {
-    //qDebug(log) << __FUNCTION__;
+    //qDebug(log) << Q_FUNC_INFO;
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
     INT32 ninvalid;
@@ -1566,7 +1566,7 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 
 BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
     rdpSettings* settings;
@@ -1588,7 +1588,7 @@ BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 
 BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_UPDATE *play_sound)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
 	WINPR_UNUSED(play_sound);
@@ -1611,7 +1611,7 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
 /* This function is called to update the keyboard indicator LED */
 BOOL CConnectFreeRDP::cb_keyboard_set_indicators(rdpContext *context, UINT16 led_flags)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     ClientContext* pContext = (ClientContext*)context;
     CConnectFreeRDP* pThis = pContext->pThis;
     
@@ -1645,7 +1645,7 @@ BOOL CConnectFreeRDP::cb_keyboard_set_ime_status(
 
 int CConnectFreeRDP::WakeUp()
 {
-    //qDebug(log) << __FUNCTION__;
+    //qDebug(log) << Q_FUNC_INFO;
     SetEvent(m_writeEvent);
     return 0;
 }
@@ -1673,7 +1673,7 @@ bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended)
 
 void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
 {
-    //qDebug(log) << __FUNCTION__ << event;
+    //qDebug(log) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
@@ -1716,7 +1716,7 @@ void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
 void CConnectFreeRDP::mouseMoveEvent(QMouseEvent *event)
 {
-    //qDebug(log) << __FUNCTION__ << event << event->buttons() << event->button();
+    //qDebug(log) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
@@ -1725,7 +1725,7 @@ void CConnectFreeRDP::mouseMoveEvent(QMouseEvent *event)
 
 void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
 {
-    //qDebug(log) << __FUNCTION__ << event << event->buttons() << event->button();
+    //qDebug(log) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
 
@@ -1762,7 +1762,7 @@ void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
 
 void CConnectFreeRDP::mouseReleaseEvent(QMouseEvent *event)
 {
-    //qDebug(log) << __FUNCTION__ << event << event->buttons() << event->button();
+    //qDebug(log) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
 
@@ -1799,7 +1799,7 @@ void CConnectFreeRDP::mouseReleaseEvent(QMouseEvent *event)
 
 void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
 {
-    //qDebug(log) << __FUNCTION__ << event;
+    //qDebug(log) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
@@ -1816,7 +1816,7 @@ void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
 
 void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
 {
-    //qDebug(log) << __FUNCTION__ << event;
+    //qDebug(log) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());

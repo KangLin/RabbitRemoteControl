@@ -20,17 +20,17 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     , m_pScroll(nullptr)
     , m_psbZoomFactor(nullptr)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CConnecterThread::~CConnecterThread()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 int CConnecterThread::Initial()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     bool check = false;
 
@@ -143,7 +143,7 @@ int CConnecterThread::Initial()
 
 int CConnecterThread::Clean()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     if(m_pScroll)
     {
@@ -160,7 +160,7 @@ QWidget *CConnecterThread::GetViewer()
 
 int CConnecterThread::Connect()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     m_pThread = new CConnectThread(this);
     if(!m_pThread) {
@@ -175,7 +175,7 @@ int CConnecterThread::Connect()
 
 int CConnecterThread::DisConnect()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     if(m_pThread)
     {
@@ -238,7 +238,7 @@ int CConnecterThread::Save(QSettings &set)
 #if HAVE_QT6_RECORD
 void CConnecterThread::slotRecord(bool checked)
 {
-    qDebug(log) << __FUNCTION__ << checked;
+    qDebug(log) << Q_FUNC_INFO << checked;
     QAction* pRecord = qobject_cast<QAction*>(sender());
     if(pRecord)
     {

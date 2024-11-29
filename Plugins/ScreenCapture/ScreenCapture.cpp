@@ -13,12 +13,12 @@ CScreenCapture::CScreenCapture(CPluginClient *plugin)
     : CConnecter(plugin)
     , m_pWidget(nullptr)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CScreenCapture::~CScreenCapture()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 qint16 CScreenCapture::Version()
@@ -28,7 +28,7 @@ qint16 CScreenCapture::Version()
 
 int CScreenCapture::Initial()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     Q_ASSERT(!m_pWidget);
     m_pWidget = new QVideoWidget();
     int nRet = SetParameter(&m_Parameter);

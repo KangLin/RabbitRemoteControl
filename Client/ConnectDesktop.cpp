@@ -371,7 +371,7 @@ bool CConnectDesktop::event(QEvent *event)
 #if HAVE_QT6_RECORD
 void CConnectDesktop::slotRecord(bool bRecord)
 {
-    qDebug(log) << __FUNCTION__ << bRecord;
+    qDebug(log) << Q_FUNC_INFO << bRecord;
     if(bRecord) {
         if(QMediaRecorder::RecordingState == m_Recorder.recorderState())
             return;
@@ -390,7 +390,7 @@ void CConnectDesktop::slotRecord(bool bRecord)
 
 void CConnectDesktop::slotRecordPause(bool bPause)
 {
-    qDebug(log) << __FUNCTION__ << bPause;
+    qDebug(log) << Q_FUNC_INFO << bPause;
     if(bPause) {
         if(m_Recorder.recorderState() == QMediaRecorder::RecordingState)
             m_Recorder.pause();

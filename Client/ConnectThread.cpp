@@ -36,7 +36,7 @@ CConnectThread::~CConnectThread()
  */
 void CConnectThread::run()
 {
-    qDebug(log) << __FUNCTION__ << "start";
+    qDebug(log) << Q_FUNC_INFO << "start";
 
     Q_ASSERT(m_pConnecter);
     int nRet = 0;
@@ -65,5 +65,5 @@ void CConnectThread::run()
 
     emit m_pConnecter->sigDisconnected();
 
-    qDebug(log) << __FUNCTION__ << "end";
+    qDebug(log) << Q_FUNC_INFO << "end";
 }

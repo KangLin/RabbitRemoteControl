@@ -11,7 +11,7 @@ static Q_LOGGING_CATEGORY(log, "FreeRDP.Connecter")
 CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *plugin)
     : CConnecterThread(plugin)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     //WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);
 
     // 在 freerdp_client_context_free 中释放
@@ -21,7 +21,7 @@ CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *plugin)
 
 CConnecterFreeRDP::~CConnecterFreeRDP()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 qint16 CConnecterFreeRDP::Version()
@@ -31,7 +31,7 @@ qint16 CConnecterFreeRDP::Version()
 
 int CConnecterFreeRDP::Initial()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     nRet = CConnecterThread::Initial();
     if(nRet) return nRet;
@@ -41,7 +41,7 @@ int CConnecterFreeRDP::Initial()
 
 int CConnecterFreeRDP::Clean()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     nRet = CConnecterThread::Clean();
     return nRet;
@@ -58,7 +58,7 @@ CConnect* CConnecterFreeRDP::InstanceConnect()
         CConnectFreeRDP* p = new CConnectFreeRDP(this);
         return p;
     } catch(...) {
-        qDebug(log) << __FUNCTION__ << "exception";
+        qDebug(log) << Q_FUNC_INFO << "exception";
         return nullptr;
     }
 }

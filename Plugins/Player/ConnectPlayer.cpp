@@ -18,7 +18,7 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
     , m_nDuration(0)
 {
     bool check = false;
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 
     m_pParameters = qobject_cast<CParameterPlayer*>(pConnecter->GetParameter());
 
@@ -143,7 +143,7 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
 
 CConnectPlayer::~CConnectPlayer()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CConnect::OnInitReturnValue CConnectPlayer::OnInit()
@@ -163,7 +163,7 @@ int CConnectPlayer::OnClean()
 
 void CConnectPlayer::slotStart()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     slotEnableAudioInput(m_pParameters->GetEnableAudioInput());
     slotEnableAudioOutput(m_pParameters->GetEnableAudioOutput());
 
@@ -210,7 +210,7 @@ void CConnectPlayer::slotStart()
 
 void CConnectPlayer::slotStop()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     switch (m_pParameters->GetType()) {
     case CParameterPlayer::TYPE::Camera:
         if(m_pCamera)
@@ -238,7 +238,7 @@ void CConnectPlayer::slotStop()
 #if HAVE_QT6_RECORD
 void CConnectPlayer::slotRecord(bool bRecord)
 {
-    qDebug(log) << __FUNCTION__ << bRecord;
+    qDebug(log) << Q_FUNC_INFO << bRecord;
 
     if(bRecord) {
         if(QMediaRecorder::StoppedState != m_Recorder.recorderState()) {

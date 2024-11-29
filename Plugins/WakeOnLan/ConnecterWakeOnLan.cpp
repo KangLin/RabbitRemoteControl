@@ -20,12 +20,12 @@ CConnecterWakeOnLan::CConnecterWakeOnLan(CPluginClient *plugin)
     , m_pModel(nullptr)
     , m_pParameterClient(nullptr)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 CConnecterWakeOnLan::~CConnecterWakeOnLan()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 qint16 CConnecterWakeOnLan::Version()
@@ -35,7 +35,7 @@ qint16 CConnecterWakeOnLan::Version()
 
 int CConnecterWakeOnLan::Initial()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     bool check = false;
     CPluginClient* plugin = GetPlugClient();
     m_pModel = new CWakeOnLanModel(this);
@@ -128,7 +128,7 @@ int CConnecterWakeOnLan::Initial()
 
 int CConnecterWakeOnLan::Clean()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     if(m_pView)
         delete m_pView;
     if(m_pModel)

@@ -399,7 +399,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
 
 void MainWindow::slotCurrentViewChanged(const QWidget* pView)
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
     if(m_pView && pView) {
         EnableMenu(true);
     } else
@@ -408,7 +408,7 @@ void MainWindow::slotCurrentViewChanged(const QWidget* pView)
 
 void MainWindow::EnableMenu(bool bEnable)
 {
-    qDebug(log) << __FUNCTION__ << bEnable;
+    qDebug(log) << Q_FUNC_INFO << bEnable;
     ui->actionClone->setEnabled(bEnable);
     ui->actionAdd_to_favorite->setEnabled(bEnable);
     ui->actionCurrent_connect_parameters->setEnabled(bEnable);
@@ -418,7 +418,7 @@ void MainWindow::EnableMenu(bool bEnable)
 
 void MainWindow::slotLoadConnecterMenu()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 
     if(m_pActionConnecterMenu) {
         ui->menuTools->removeAction(m_pActionConnecterMenu);

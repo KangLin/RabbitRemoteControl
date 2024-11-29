@@ -29,7 +29,7 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 {
     bool check = false;
 
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 
     m_VideoWidget.installEventFilter(this);
 
@@ -122,7 +122,7 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 
 CFrmPlayer::~CFrmPlayer()
 {
-    qDebug(log) << __FUNCTION__;
+    qDebug(log) << Q_FUNC_INFO;
 }
 
 QVideoSink *CFrmPlayer::videoSink()
@@ -246,7 +246,7 @@ void CFrmPlayer::slotStart(bool bStart)
 
 bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
 {
-    //qDebug(log) << __FUNCTION__ << event;
+    //qDebug(log) << Q_FUNC_INFO << event;
     if(&m_VideoWidget == watched)
     {
         switch(event->type()){
