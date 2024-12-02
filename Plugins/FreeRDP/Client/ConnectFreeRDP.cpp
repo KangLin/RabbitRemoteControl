@@ -1658,17 +1658,15 @@ bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended)
 
 #if FreeRDP_VERSION_MAJOR >= 3
     if(isExtended)
-        freerdp_client_send_extended_button_event(&m_pContext->Context, FALSE, flags,
-                                                  pos.x(), pos.y());
+        freerdp_client_send_extended_button_event(
+            &m_pContext->Context, FALSE, flags, pos.x(), pos.y());
     else
-        freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
-                                         pos.x(), pos.y());
+        freerdp_client_send_button_event(
+            &m_pContext->Context, FALSE, flags, pos.x(), pos.y());
 #else
     if(!m_pContext->Context.input) return false;
-    return freerdp_input_send_mouse_event(m_pContext->Context.input,
-                                   flags,
-                                   pos.x(),
-                                   pos.y());
+    return freerdp_input_send_mouse_event(
+        m_pContext->Context.input, flags, pos.x(), pos.y());
 #endif
     return true;
 }
@@ -1707,13 +1705,11 @@ void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
 #if FreeRDP_VERSION_MAJOR >= 3
     freerdp_client_send_wheel_event(&m_pContext->Context, flags);
     /*
-    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
-                                     pos.x(), pos.y());//*/
+    freerdp_client_send_button_event(
+        &m_pContext->Context, FALSE, flags, pos.x(), pos.y());//*/
 #else
-    freerdp_input_send_mouse_event(m_pContext->Context.input,
-                                   flags,
-                                   pos.x(),
-                                   pos.y());
+    freerdp_input_send_mouse_event(
+        m_pContext->Context.input, flags, pos.x(), pos.y());
 #endif
 }
 
@@ -1724,7 +1720,7 @@ void CConnectFreeRDP::mouseMoveEvent(QMouseEvent *event)
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
-    SendMouseEvent(flags, event->pos(),false);
+    SendMouseEvent(flags, event->pos(), false);
 }
 
 void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
@@ -1735,25 +1731,25 @@ void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
 
     UINT16 flags = 0;
     bool isExtended = false;
-    Qt::MouseButton buttons = event->button();
-    if (buttons & Qt::MouseButton::LeftButton)
+    Qt::MouseButton button = event->button();
+    if (button & Qt::MouseButton::LeftButton)
     {
         flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1;
     }
-    else if (buttons & Qt::MouseButton::RightButton)
+    else if (button & Qt::MouseButton::RightButton)
     {
         flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2;
     }
-    else if (buttons & Qt::MouseButton::MiddleButton)
+    else if (button & Qt::MouseButton::MiddleButton)
     {
         flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON3;
     }
-    else if (buttons & Qt::MouseButton::ForwardButton)
+    else if (button & Qt::MouseButton::ForwardButton)
     {
         flags = PTR_XFLAGS_DOWN | PTR_XFLAGS_BUTTON2;
         isExtended = true;
     }
-    else if (buttons & Qt::MouseButton::BackButton)
+    else if (button & Qt::MouseButton::BackButton)
     {
         flags = PTR_XFLAGS_DOWN | PTR_XFLAGS_BUTTON1;
         isExtended = true;
@@ -1810,9 +1806,11 @@ void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
     if(RDP_SCANCODE_UNKNOWN != k)
 #if FreeRDP_VERSION_MAJOR >= 3
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.context.input, true, true, k);
+        freerdp_input_send_keyboard_event_ex(
+            m_pContext->Context.context.input, true, true, k);
 #else
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, true, k);
+        freerdp_input_send_keyboard_event_ex(
+            m_pContext->Context.input, true, k);
 #endif
 }
 
@@ -1824,9 +1822,11 @@ void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
     if(RDP_SCANCODE_UNKNOWN != k)
 #if FreeRDP_VERSION_MAJOR >= 3
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.context.input, false, false, k);
+        freerdp_input_send_keyboard_event_ex(
+            m_pContext->Context.context.input, false, false, k);
 #else
-        freerdp_input_send_keyboard_event_ex(m_pContext->Context.input, false, k);
+        freerdp_input_send_keyboard_event_ex(
+            m_pContext->Context.input, false, k);
 #endif
 }
 
