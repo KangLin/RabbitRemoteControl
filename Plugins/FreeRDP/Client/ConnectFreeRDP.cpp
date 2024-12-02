@@ -1651,14 +1651,18 @@ int CConnectFreeRDP::WakeUp()
 }
 
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
-bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos)
+bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended)
 {
     if(m_pParameter && m_pParameter->GetOnlyView()) return true;
     if(!m_pContext) return false;
 
 #if FreeRDP_VERSION_MAJOR >= 3
-    freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
-                                     pos.x(), pos.y());
+    if(isExtended)
+        freerdp_client_send_extended_button_event(&m_pContext->Context, FALSE, flags,
+                                                  pos.x(), pos.y());
+    else
+        freerdp_client_send_button_event(&m_pContext->Context, FALSE, flags,
+                                         pos.x(), pos.y());
 #else
     if(!m_pContext->Context.input) return false;
     return freerdp_input_send_mouse_event(m_pContext->Context.input,
@@ -1720,7 +1724,7 @@ void CConnectFreeRDP::mouseMoveEvent(QMouseEvent *event)
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
-    SendMouseEvent(flags, event->pos());
+    SendMouseEvent(flags, event->pos(),false);
 }
 
 void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
@@ -1728,18 +1732,36 @@ void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
     //qDebug(log) << __FUNCTION__ << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
-    UINT16 flags = PTR_FLAGS_DOWN;
-    if(event->button() & Qt::MouseButton::LeftButton)
+
+    UINT16 flags = 0;
+    bool isExtended = false;
+    Qt::MouseButton buttons = event->button();
+    if (buttons & Qt::MouseButton::LeftButton)
     {
-        flags |= PTR_FLAGS_BUTTON1;
-    } else if(event->button() & Qt::MouseButton::RightButton)
-    {   
-        flags |= PTR_FLAGS_BUTTON2;
-    } else if(event->button() & Qt::MouseButton::MiddleButton)
-    {
-        flags |= PTR_FLAGS_BUTTON3;
+        flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON1;
     }
-    SendMouseEvent(flags, event->pos());
+    else if (buttons & Qt::MouseButton::RightButton)
+    {
+        flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON2;
+    }
+    else if (buttons & Qt::MouseButton::MiddleButton)
+    {
+        flags = PTR_FLAGS_DOWN | PTR_FLAGS_BUTTON3;
+    }
+    else if (buttons & Qt::MouseButton::ForwardButton)
+    {
+        flags = PTR_XFLAGS_DOWN | PTR_XFLAGS_BUTTON2;
+        isExtended = true;
+    }
+    else if (buttons & Qt::MouseButton::BackButton)
+    {
+        flags = PTR_XFLAGS_DOWN | PTR_XFLAGS_BUTTON1;
+        isExtended = true;
+    }
+    if (flags != 0)
+    {
+        SendMouseEvent(flags, event->pos(), isExtended);
+    }
 }
 
 void CConnectFreeRDP::mouseReleaseEvent(QMouseEvent *event)
@@ -1747,18 +1769,36 @@ void CConnectFreeRDP::mouseReleaseEvent(QMouseEvent *event)
     //qDebug(log) << __FUNCTION__ << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
+
     UINT16 flags = 0;
-    if(event->button() & Qt::MouseButton::LeftButton)
+    bool isExtended = false;
+    Qt::MouseButton button = event->button();
+    if (button & Qt::MouseButton::LeftButton)
     {
-        flags |= PTR_FLAGS_BUTTON1;
-    } else if(event->button() & Qt::MouseButton::MiddleButton)
-    {
-        flags |= PTR_FLAGS_BUTTON3;
-    } else if(event->button() & Qt::MouseButton::RightButton)
-    {
-        flags |= PTR_FLAGS_BUTTON2;
+        flags = PTR_FLAGS_BUTTON1;
     }
-    SendMouseEvent(flags, event->pos());
+    else if (button & Qt::MouseButton::MiddleButton)
+    {
+        flags = PTR_FLAGS_BUTTON3;
+    }
+    else if (button & Qt::MouseButton::RightButton)
+    {
+        flags = PTR_FLAGS_BUTTON2;
+    }
+    else if (button & Qt::MouseButton::ForwardButton)
+    {
+        flags = PTR_XFLAGS_BUTTON2;
+        isExtended = true;
+    }
+    else if (button & Qt::MouseButton::BackButton)
+    {
+        flags = PTR_XFLAGS_BUTTON1;
+        isExtended = true;
+    }
+    if (flags != 0)
+    {
+        SendMouseEvent(flags, event->pos(), isExtended);
+    }
 }
 
 void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)

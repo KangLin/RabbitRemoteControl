@@ -127,7 +127,7 @@ private:
     int RedirectionPrinter();
     int RedirectionSerial();
 
-    bool SendMouseEvent(UINT16 flags, QPoint pos);
+    bool SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended);
 
     // CConnectDesktop interface
 public Q_SLOTS:

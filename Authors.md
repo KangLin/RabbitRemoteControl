@@ -4,6 +4,7 @@
 
 ## Contributors
 - Allan Nordhøy <epost@anotheragency.no>
+- zgml <942vip@gmail.com>
 
 See: https://github.com/KangLin/RabbitRemoteControl/graphs/contributors
 
