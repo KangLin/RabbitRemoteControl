@@ -16,7 +16,7 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.8.1, 6.6.3]
+        qt_version: [6.8.1]
         include:
           - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
@@ -45,7 +45,6 @@ jobs:
       ANDROID_PLATFORM: android-34
       ANDROID_NATIVE_API_LEVEL: 34
       ANDROID_ABI: ${{matrix.ANDROID_ABI}}
-      STOREPASS:   ${{secrets.STOREPASS}}
       qt_modules: 'qtimageformats qtmultimedia qtscxml qtserialport qt5compat qtgraphs'
 
     # Map the job outputs to step outputs
