@@ -336,12 +336,12 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
 + Current version: v0.0.28
   - Windows: Supported WINDOWS 7 and later version
     + Win64
-      - Install package: RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe/download)
-      - MD5SUM file: RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe.md5sum
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe.md5sum)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.0_Setup.exe.md5sum/download)
+      - Install package: RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe/download)
+      - MD5SUM file: RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum/download)
     + Win32
       - Install package: RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe
         - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe)

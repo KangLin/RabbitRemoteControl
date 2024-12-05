@@ -358,7 +358,7 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
             numFormats++;
         }
     }
-    /*
+    //*
     QString szFormats;
     for(int i = 0; i < numFormats; i++)
     {
@@ -369,8 +369,9 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
             szFormats += pFormats[i].formatName;
             szFormats += ");";
         }
+        szFormats += "\n";
     }
-    qDebug(logClipboard, "SendClientFormatList formats: %d:%s",
+    qDebug(log, "SendClientFormatList formats: %d:%s",
                     numFormats,
                     szFormats.toStdString().c_str());//*/
 #if FreeRDP_VERSION_MAJOR >= 3
@@ -393,7 +394,7 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
     for(UINT32 i = 0; i < numFormats; i++)
         if(pFormats[i].formatName)
         {
-            //qDebug() << pFormats[i].formatName;
+            //qDebug(log) << pFormats[i].formatName;
             free(pFormats[i].formatName);
         }
     delete []pFormats;
@@ -403,8 +404,8 @@ UINT CClipboardFreeRDP::SendClientFormatList(CliprdrClientContext *context)
 ///////// Send format data from client to server ///////////
 
 UINT CClipboardFreeRDP::cb_cliprdr_server_format_data_request(
-        CliprdrClientContext* context,
-        const CLIPRDR_FORMAT_DATA_REQUEST* formatDataRequest)
+    CliprdrClientContext* context,
+    const CLIPRDR_FORMAT_DATA_REQUEST* formatDataRequest)
 {
     qDebug(log)
             << "CClipboardFreeRdp::cb_cliprdr_server_format_data_request";

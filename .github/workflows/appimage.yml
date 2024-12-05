@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release]
-        qt_version: [6.8.0]
+        qt_version: [6.8.1]
         qt_arch: [linux_gcc_64]
 
     # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners

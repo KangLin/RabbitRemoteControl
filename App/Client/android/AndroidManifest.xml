@@ -35,7 +35,6 @@
         
         <activity android:name="org.qtproject.qt.android.bindings.QtActivity"
             android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
-            android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="unspecified"
             android:exported="true">
@@ -45,8 +44,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-            <meta-data android:name="android.app.lib_name" android:value="RabbitRemoteControlApp"/>
-            <meta-data android:name="android.app.arguments" android:value=""/>
+            <meta-data android:name="android.app.lib_name"
+                android:value="RabbitRemoteControlApp"/>
+            <meta-data android:name="android.app.arguments"
+                android:value=""/>
             <!-- extract android style -->
             <!-- available android:values :
                 * default - In most cases this will be the same as "full", but it can also be something else if needed, e.g., for compatibility reasons
@@ -54,7 +55,8 @@
                 * minimal - useful for Quick Controls 2 apps, it is much faster than "full"
                 * none - useful for apps that don't use any of the above Qt modules
                 -->
-            <meta-data android:name="android.app.extract_android_style" android:value="minimal"/>
+            <meta-data android:name="android.app.extract_android_style"
+                android:value="minimal"/>
         </activity>
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
     </application>
