@@ -76,7 +76,7 @@ int CClipboardFreeRDP::Init(CliprdrClientContext *context, bool bEnable)
     context->ServerFormatDataRequest = cb_cliprdr_server_format_data_request;
     context->ServerFormatDataResponse = cb_cliprdr_server_format_data_response;
     context->ServerFileContentsRequest = cb_cliprdr_server_file_contents_request;
-    context->ServerFileContentsResponse = cb_cliprdr_server_file_contents_response;
+    //context->ServerFileContentsResponse = cb_cliprdr_server_file_contents_response;
     return 0;
 }
 
@@ -825,7 +825,7 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_format_list_response(
         pformatListResponse->msgFlags
 #endif
         != CB_RESPONSE_OK)
-        qCritical(log) << "The server is not support the format";
+        qDebug(log) << "The server is not support the format";
     return CHANNEL_RC_OK;
 }
 
@@ -883,7 +883,12 @@ UINT CClipboardFreeRDP::cb_cliprdr_server_file_contents_response(
         fileContentsResponse->msgFlags
 #endif
         != CB_RESPONSE_OK)
-        return E_FAIL;
+    {
+        qDebug(log)
+            << "File contents response error";
+
+        return nRet;
+    }
 
     CClipboardFreeRDP* pThis = (CClipboardFreeRDP*)context->custom;
     if(0 == fileContentsResponse->cbRequested)

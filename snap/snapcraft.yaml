@@ -3,7 +3,7 @@
 # Snapcraft.yaml schema: https://snapcraft.io/docs/snapcraft-yaml-schema
 name: rabbitremotecontrol
 base: core22 # the base snap is the execution environment for this snap
-version: '0.0.28'
+version: '0.0.29'
 type: app
 license: GPL-3.0+
 contact: kl222@126.com
