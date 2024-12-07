@@ -187,7 +187,7 @@
 ### 详尽文档
 
 - 在线开发文档
-  - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.28/Chinese/html/index.html)
+  - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.29/Chinese/html/index.html)
   - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 - [编译文档](#编译)
 
@@ -319,42 +319,42 @@
   - [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
   - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
-  - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
-+ 当前版本：v0.0.28
+    [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
++ 当前版本：v0.0.29
   - Windows: 支持 WINDOWS 7 及以后版本
     + Win64
-      + 安装包: RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe/download)
-      + MD5SUM 文件: RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum/download)
+      + 安装包: RabbitRemoteControl_v0.0.29_win64_msvc2022_64_qt6.8.1_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.29/RabbitRemoteControl_v0.0.29_win64_msvc2022_64_qt6.8.1_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.29/RabbitRemoteControl_v0.0.29_win64_msvc2022_64_qt6.8.1_Setup.exe/download)
+      + MD5SUM 文件: RabbitRemoteControl_v0.0.29_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.29/RabbitRemoteControl_v0.0.29_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.29/RabbitRemoteControl_v0.0.29_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum/download)
     + Win32
-      - Install package: RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe/download)
-      - MD5SUM file: RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/RabbitRemoteControl_v0.0.28_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
+      - Install package: RabbitRemoteControl_v0.0.29_win32_msvc2017_qt5.12.12_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.29/RabbitRemoteControl_v0.0.29_win32_msvc2017_qt5.12.12_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.29/RabbitRemoteControl_v0.0.29_win32_msvc2017_qt5.12.12_Setup.exe/download)
+      - MD5SUM file: RabbitRemoteControl_v0.0.29_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.29/RabbitRemoteControl_v0.0.29_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.29/RabbitRemoteControl_v0.0.29_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
   - Ubuntu:
-    + rabbitremotecontrol_0.0.28_amd64.deb
+    + rabbitremotecontrol_0.0.29_amd64.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.28_amd64.deb
+          sudo apt install ./rabbitremotecontrol_0.0.29_amd64.deb
           
           # 如要你是在老的 ubuntu 发行版本上，你需要用下列命令替换：
-          # sudo dpkg -i rabbitremotecontrol_0.0.28_amd64.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.29_amd64.deb
           # sudo apt-get install -f # 安装依赖
 
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/rabbitremotecontrol_0.0.28_amd64.deb)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/rabbitremotecontrol_0.0.28_amd64.deb/download)
-    + md5 校验文件: rabbitremotecontrol_0.0.28_amd64.deb.md5sum
-      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.28/rabbitremotecontrol_0.0.28_amd64.deb.md5sum)
-      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.28/rabbitremotecontrol_0.0.28_amd64.deb.md5sum/download)
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.29/rabbitremotecontrol_0.0.29_amd64.deb)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.29/rabbitremotecontrol_0.0.29_amd64.deb/download)
+    + md5 校验文件: rabbitremotecontrol_0.0.29_amd64.deb.md5sum
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.29/rabbitremotecontrol_0.0.29_amd64.deb.md5sum)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.29/rabbitremotecontrol_0.0.29_amd64.deb.md5sum/download)
 
 ## [开发](docs/Doxygen/Develop_zh_CN.md)
 
 ### 在线开发文档
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.28/Chinese/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.29/Chinese/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
 ### 编译

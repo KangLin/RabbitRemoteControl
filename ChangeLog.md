@@ -1,6 +1,9 @@
 ## Change Log
 
 ### v0.0.29
+- FreeRDP
+  - fix server unsupported clipborad format bug #31
+  - Fixed crashes caused by mouse side buttons
 
 ### v0.0.28
 - Client parameters
