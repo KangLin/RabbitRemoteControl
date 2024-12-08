@@ -74,12 +74,11 @@ It include remote desktop, remote terminal, player etc remote control functions.
 - [x] Unix/Linux
 - [x] [Android](https://doc.qt.io/qt-6/android.html)
 - [x] mac os
-- [ ] IPHONE
-- [ ] WINCE
 
-See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html), [Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
+See: [Qt5](https://doc.qt.io/qt-5/supported-platforms.html),
+[Qt6](https://doc.qt.io/qt-6/supported-platforms.html)
 
-I have no devices so I did not compile and test. Please test by yourself if you have devices.
+I have no the mac devices so I did not compile and test. Please test by yourself if you have devices.
 Interested and capable friends are welcome to participate in the development of the project.
 
 If you want to donate the developed devices for me, please contact: (email: kl222@126.com)
@@ -233,11 +232,20 @@ Legend:
 
 If this software is useful to you, or you like it, please donate and support the author. Thank you!
 
-[![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation") 
+[![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute_en.png "donation")](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute_en.png "donation") 
 
 If it cannot be displayed, please open:
-- https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
-- https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute.png
+- https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_en.png
+- https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute_en.png
+
+Bitcoin:
+
+- Address: bc1qgdsc88m33f84fppy2ey0hfntrzqumke8wtkzr5
+- [![bitcoin](docs/Image/Screenshot/bitcoin.png "bitcoin")](docs/Image/Screenshot/bitcoin.png "bitcoin")
+
+Contact me:
+- <kl222@126.com>
+- [jami](https://jami.net): eddacfd6c7b70b258e511e812ffab7d3490396fa
 
 ## Contribution
 
@@ -247,7 +255,8 @@ If it cannot be displayed, please open:
 - [Issues](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [![Join the chat at https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 - [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
-- [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): Thank [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+- [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors):
+  Thank [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
 If you're wondering how could you help, fear not, there are plenty of ways:
 

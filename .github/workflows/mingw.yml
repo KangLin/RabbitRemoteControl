@@ -211,7 +211,7 @@ jobs:
           cmake --build . --config ${{ matrix.BUILD_TYPE }}
 
       - name: Package
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: false # ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{github.workspace}}/build
         run: |
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install

@@ -107,7 +107,8 @@ jobs:
               libfuse3-dev libusb-1.0-0-dev \
               libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev \
               libpcap-dev libcups2-dev \
-              libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
+              libavcodec-dev libavformat-dev libresample1-dev libswscale-dev \
+              libcmark-dev cmark
 
       - name: Cache installed
         uses: actions/cache@v3

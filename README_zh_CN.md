@@ -73,12 +73,11 @@
 - [x] Unix/Linux
 - [x] [Android](https://doc.qt.io/qt-6/android.html)
 - [x] mac os
-- [ ] IPHONE
-- [ ] WINCE
 
-详见：[Qt5 支持平台](https://doc.qt.io/qt-5/supported-platforms.html)、[Qt6 支持平台](https://doc.qt.io/qt-6/supported-platforms.html)。
+详见：[Qt5 支持平台](https://doc.qt.io/qt-5/supported-platforms.html)、
+[Qt6 支持平台](https://doc.qt.io/qt-6/supported-platforms.html)。
 
-未选中的操作系统是因为本人没有设备，所以没有做编译与测试。请有设备的朋友自行测试。
+因为本人没有 mac 设备，所以没有做编译与测试。请有设备的朋友自行测试。
 欢迎有兴趣，有能力的朋友参与项目的开发。
 
 如果你想为本人捐赠开发设备，请联系：kl222@126.com
@@ -232,11 +231,20 @@
 
 本软件如果对你有用，或者你喜欢它，请你捐赠，支持作者。谢谢！
 
-[![捐赠](https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png "捐赠")](https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png "捐赠")
+[![捐赠](https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_zh_CN.png "捐赠")](https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_zh_CN.png "捐赠")
 
 如果不能显示，请打开：
-- https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
-- https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute.png
+- https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_zh_CN.png
+- https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute_zh_CN.png
+
+比特币:
+
+- 地址: bc1qgdsc88m33f84fppy2ey0hfntrzqumke8wtkzr5
+- [![bitcoin](docs/Image/Screenshot/bitcoin.png "bitcoin")](docs/Image/Screenshot/bitcoin.png "bitcoin")
+
+联系：
+- <kl222@126.com>
+- [jami](https://jami.net): eddacfd6c7b70b258e511e812ffab7d3490396fa
 
 ## 贡献
 
@@ -246,7 +254,8 @@
 - [问题](https://github.com/KangLin/RabbitRemoteControl/issues)
 - [![加入聊天 https://gitter.im/RabbitRemoteControl/community](https://badges.gitter.im/RabbitRemoteControl/community.svg)](https://gitter.im/RabbitRemoteControl/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 - [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
-- [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors): 感谢[贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+- [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors):
+  感谢[贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 
 如果您想知道如何提供帮助，不要害怕，有很多方法：
 
