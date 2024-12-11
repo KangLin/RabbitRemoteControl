@@ -20,7 +20,7 @@ CParameterWakeOnLan::CParameterWakeOnLan(QObject *parent)
     , m_bSavePassword(false)
     , m_nRepeat(3)
     , m_nInterval(500)
-    , m_nTimeOut(1000)
+    , m_nTimeOut(5000)
 {}
 
 int CParameterWakeOnLan::OnLoad(QSettings &set)
