@@ -55,19 +55,30 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
                           this, SLOT(slotCopy()));
     m_pCopy->setStatusTip(tr("Copy"));
     m_pCopy->setToolTip(tr("Copy"));
-    m_pDelete = m_pToolBar->addAction(QIcon::fromTheme("edit-delete"), tr("Delete"),
-                          this, SLOT(slotDelete()));
+    m_pDelete = m_pToolBar->addAction(
+        QIcon::fromTheme("edit-delete"), tr("Delete"),
+        this, SLOT(slotDelete()));
     m_pDelete->setToolTip(tr("Delete"));
     m_pDelete->setStatusTip(tr("Delete"));
+    m_pDetail = m_pToolBar->addAction(
+        QIcon::fromTheme("dialog-information"), tr("Detail"),
+        this, SLOT(slotDetail()));
+    m_pDetail->setCheckable(true);
+    m_pDetail->setChecked(false);
+    m_pDetail->setToolTip(tr("Detail"));
+    m_pDetail->setStatusTip(tr("Detail"));
     m_pToolBar->addSeparator();
     if(m_bDock) {
-        m_pRefresh = m_pToolBar->addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
-                                                  this, SLOT(slotLoadFiles()));
+        m_pRefresh = m_pToolBar->addAction(
+            QIcon::fromTheme("view-refresh"),
+            tr("Refresh"),
+            this, SLOT(slotLoadFiles()));
         m_pRefresh->setToolTip(tr("Refresh"));
         m_pRefresh->setStatusTip(tr("Refresh"));
     } else {
-        QAction* pClose = m_pToolBar->addAction(QIcon::fromTheme("window-close"), tr("Close"),
-                                                this, SLOT(close()));
+        QAction* pClose = m_pToolBar->addAction(
+            QIcon::fromTheme("window-close"), tr("Close"),
+            this, SLOT(close()));
         pClose->setStatusTip(tr("Close"));
         pClose->setToolTip(tr("Close"));
     }
@@ -92,6 +103,7 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
         pMenu->addAction(m_pEdit);
         pMenu->addAction(m_pCopy);
         pMenu->addAction(m_pDelete);
+        pMenu->addAction(m_pDetail);
         pMenu->addAction(m_pRefresh);
     }
 
@@ -119,10 +131,10 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
     m_pModel->setHorizontalHeaderItem(3, new QStandardItem(tr("ID")));
     m_nFileRow = 4;
     m_pModel->setHorizontalHeaderItem(m_nFileRow, new QStandardItem(tr("File")));
-#ifndef DEBUG
-    m_pTableView->hideColumn(3);
-    m_pTableView->hideColumn(m_nFileRow);
-#endif
+    if(!m_pDetail->isChecked()) {
+        m_pTableView->hideColumn(3);
+        m_pTableView->hideColumn(m_nFileRow);
+    }
     
     slotLoadFiles();
 
@@ -405,6 +417,17 @@ void CFrmListConnects::slotConnect()
         emit sigConnect(szFile);
     }
     if(!m_bDock) close();
+}
+
+void CFrmListConnects::slotDetail()
+{
+    if(m_pDetail->isChecked()) {
+        m_pTableView->showColumn(3);
+        m_pTableView->showColumn(m_nFileRow);
+    } else {
+        m_pTableView->hideColumn(3);
+        m_pTableView->hideColumn(m_nFileRow);
+    }
 }
 
 void CFrmListConnects::slotCustomContextMenu(const QPoint &pos)

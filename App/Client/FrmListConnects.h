@@ -38,6 +38,7 @@ private slots:
     void slotEdit();
     void slotCopy();
     void slotDelete();
+    void slotDetail();
     void slotConnect();
     void slotCustomContextMenu(const QPoint &pos);
     void slotDoubleClicked(const QModelIndex& index);
@@ -55,6 +56,7 @@ private:
     QAction* m_pEdit;
     QAction* m_pCopy;
     QAction* m_pDelete;
+    QAction* m_pDetail;
     QAction* m_pRefresh;
 
     QTableView* m_pTableView;
