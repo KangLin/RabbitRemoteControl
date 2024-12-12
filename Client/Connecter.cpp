@@ -34,7 +34,7 @@ CConnecter::CConnecter(CPluginClient *plugin) : QObject(plugin),
     m_Menu.setStatusTip(plugin->DisplayName());
 
     m_pSettings = new QAction(QIcon::fromTheme("system-settings"),
-                              tr("Settings"), this);
+                              tr("Settings"), &m_Menu);
     check = connect(m_pSettings, SIGNAL(triggered()), this, SLOT(slotSettings()));
     Q_ASSERT(check);
 }

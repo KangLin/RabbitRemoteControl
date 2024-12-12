@@ -1,5 +1,12 @@
 ## Change Log
 
+### v0.0.30
+- Client: fix CFrmParameterClient don't save parameters
+- App: fix core when the application exit.
+  Because the background thread does not exit when the application exiting,
+  the resource is not released correctly.
+  For the time being, wait 1 second to solve the problem
+
 ### v0.0.29
 - FreeRDP
   - fix server unsupported clipborad format bug #31

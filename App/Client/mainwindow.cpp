@@ -40,6 +40,7 @@
 #include <QDateTime>
 #include <QFileDialog>
 #include <QLoggingCategory>
+#include <QThread>
 
 static Q_LOGGING_CATEGORY(log, "App.MainWindow")
 static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
@@ -853,6 +854,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
         set.remove("MainWindow/Status/State");
     }
     QMainWindow::closeEvent(event);
+
+    //TODO: Wait for the background thread to exit
+    QThread::sleep(1);
 }
 
 int MainWindow::LoadConnectLasterClose()

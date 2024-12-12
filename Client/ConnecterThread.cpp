@@ -136,7 +136,8 @@ int CConnecterThread::Initial()
 #endif
 
     m_Menu.addSeparator();
-    m_Menu.addAction(m_pSettings);
+    if(m_pSettings)
+        m_Menu.addAction(m_pSettings);
 
     return nRet;
 }
