@@ -6,6 +6,7 @@
 #include "ConnectDesktop.h"
 #include "freerdp/freerdp.h"
 #include "ClipboardFreeRDP.h"
+#include "Rail.h"
 #include "ConnecterFreeRDP.h"
 #include "CursorFreeRDP.h"
 #include <QSharedPointer>
@@ -150,11 +151,7 @@ private:
     
 private:
     struct ClientContext{
-        #if FreeRDP_VERSION_MAJOR >= 3
-            rdpClientContext Context;
-        #else
-            rdpContext Context;
-        #endif
+        rdpClientContext clientContext;
         CConnectFreeRDP* pThis;
     };
     ClientContext* m_pContext;
@@ -163,11 +160,15 @@ private:
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
 
     QImage m_Image;
-
-    CClipboardFreeRDP m_ClipBoard;
     CCursorFreeRDP m_Cursor;
     friend class CCursorFreeRDP;
-    
+
+    CClipboardFreeRDP m_ClipBoard;
+
+    CRail* m_pRail;
+    friend class CRail;
+    int InitRemoteApp();
+
     HANDLE m_writeEvent;
     
 #ifdef HAVE_LIBSSH

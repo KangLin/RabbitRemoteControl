@@ -70,6 +70,23 @@ public:
     
     CParameterProxy m_Proxy;
 
+    bool GetRemoteApplicationMode() const;
+    void SetRemoteApplicationMode(bool newRemoteApplicationMode);
+    QString GetRemoteApplicationProgram() const;
+    void SetRemoteApplicationProgram(const QString &newRemoteApplicationProgram);
+    QString GetRemoteApplicationName() const;
+    void SetRemoteApplicationName(const QString &newRemoteApplicationName);
+    QString GetRemoteApplicationIcon() const;
+    void SetRemoteApplicationIcon(const QString &newRemoteApplicationIcon);
+    QString GetRemoteApplicationFile() const;
+    void SetRemoteApplicationFile(const QString &newRemoteApplicationFile);
+    QString GetRemoteApplicationGuid() const;
+    void SetRemoteApplicationGuid(const QString &newRemoteApplicationGuid);
+    QString GetRemoteApplicationCmdLine() const;
+    void SetRemoteApplicationCmdLine(const QString &newRemoteApplicationCmdLine);
+    QString GetRemoteApplicationWorkingDir() const;
+    void SetRemoteApplicationWorkingDir(const QString &newRemoteApplicationWorkingDir);
+
 signals:
     void sigReconnectIntervalChanged();
     
@@ -99,7 +116,16 @@ private:
     QString m_szRedirectionMicrophoneParameters;
     QStringList m_lstRedirectionDrives;
     Q_PROPERTY(QString RedirectionMicrophoneParameters READ GetRedirectionMicrophoneParameters WRITE SetRedirectionMicrophoneParameters NOTIFY sigRedirectionMicrophoneParametersChanged)
-    
+
+    bool m_RemoteApplicationMode;
+    QString m_RemoteApplicationProgram;
+    QString m_RemoteApplicationName;
+    QString m_RemoteApplicationIcon;
+    QString m_RemoteApplicationFile;
+    QString m_RemoteApplicationGuid;
+    QString m_RemoteApplicationCmdLine;
+    QString m_RemoteApplicationWorkingDir;
+
 };
 
 #endif // CPARAMETERFREERDP_H

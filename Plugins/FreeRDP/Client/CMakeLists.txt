@@ -18,6 +18,7 @@ SET(FreeRDP_SOURCE_FILES
     ClipboardMimeData.cpp
     DlgGetUserPasswordFreeRDP.cpp
     DlgDesktopSize.cpp
+    Rail.cpp
     )
 
 SET(FreeRDP_HEADER_FILES
@@ -32,6 +33,7 @@ SET(FreeRDP_HEADER_FILES
     ClipboardMimeData.h
     DlgGetUserPasswordFreeRDP.h
     DlgDesktopSize.h
+    Rail.h
     )
 
 SET(FreeRDP_UI_FILES
@@ -71,4 +73,3 @@ ADD_PLUGIN_TARGET(NAME PluginClient${PROJECT_NAME}
     INSTALL_RPATH ${INSTALL_RPATH}
     VERSION ${RabbitRemoteControl_VERSION}
     )
-

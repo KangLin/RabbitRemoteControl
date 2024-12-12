@@ -48,6 +48,12 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     m_pRecordUI->SetParameter(&m_pSettings->m_Record);
     ui->tabWidget->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), tr("Record"));
 
+    // Remote application
+    ui->gbRemoteApplication->setChecked(m_pSettings->GetRemoteApplicationMode());
+    ui->leProgram->setText(m_pSettings->GetRemoteApplicationProgram());
+    ui->leCmdLine->setText(m_pSettings->GetRemoteApplicationCmdLine());
+    ui->leWorkingDir->setText(m_pSettings->GetRemoteApplicationWorkingDir());
+
     // Display
     // It has to be the first. GetScreenGeometry depends on it
     ui->cbAllMonitor->setChecked(m_pSettings->GetUseMultimon());
@@ -194,6 +200,12 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
     m_pSettings->SetShowServerName(ui->cbShowServerName->isChecked());
     
+    // Remote application
+    m_pSettings->SetRemoteApplicationMode(ui->gbRemoteApplication->isChecked());
+    m_pSettings->SetRemoteApplicationProgram(ui->leProgram->text());
+    m_pSettings->SetRemoteApplicationCmdLine(ui->leCmdLine->text());
+    m_pSettings->SetRemoteApplicationWorkingDir(ui->leWorkingDir->text());
+
     // Display
     m_pSettings->SetUseMultimon(ui->cbAllMonitor->isChecked());
     QString szSize = ui->cbDesktopSize->currentText();

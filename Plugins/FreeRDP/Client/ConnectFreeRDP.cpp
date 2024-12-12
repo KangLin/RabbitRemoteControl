@@ -49,6 +49,7 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     m_pContext(nullptr),
     m_pParameter(nullptr),
     m_ClipBoard(this),
+    m_pRail(nullptr),
     m_Cursor(this),
     m_writeEvent(nullptr)
 #ifdef HAVE_LIBSSH
@@ -63,6 +64,10 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
 CConnectFreeRDP::~CConnectFreeRDP()
 {
     qDebug(log) << Q_FUNC_INFO;
+    if(m_pRail) {
+        delete m_pRail;
+        m_pRail = nullptr;
+    }
 }
 
 /*
@@ -164,6 +169,10 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     else
         freerdp_settings_set_bool(
             settings, FreeRDP_AutoReconnectionEnabled, false);
+
+    nRet = InitRemoteApp();
+    if(nRet)
+        return OnInitReturnValue::Fail;
     
     //Load channel
     RedirectionSound();
@@ -851,6 +860,13 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParameter->GetClipboard());
     }
+    else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
+    {
+        if(!pThis->m_pRail)
+            pThis->m_pRail = new CRail(pThis);
+        if(pThis->m_pRail)
+            pThis->m_pRail->Init((RailClientContext*)e->pInterface);
+    }
 #if FreeRDP_VERSION_MAJOR >= 3
     else
         freerdp_client_OnChannelConnectedEventHandler(pContext, e);
@@ -888,9 +904,17 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
     
     if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
 		qDebug(log) << "channel" << e->name << "disconnected";
-        pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
+        pThis->m_ClipBoard.Clean((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParameter->GetClipboard());
 	}
+    else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
+    {
+        if(pThis->m_pRail) {
+            pThis->m_pRail->Clean((RailClientContext*)e->pInterface);
+            delete pThis->m_pRail;
+            pThis->m_pRail = nullptr;
+        }
+    }
 #if FreeRDP_VERSION_MAJOR >= 3
     else
         freerdp_client_OnChannelDisconnectedEventHandler(pContext, e);
@@ -1657,16 +1681,18 @@ bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended)
     if(!m_pContext) return false;
 
 #if FreeRDP_VERSION_MAJOR >= 3
+    rdpClientContext* pClientContext = (rdpClientContext*)m_pContext;
     if(isExtended)
         freerdp_client_send_extended_button_event(
-            &m_pContext->Context, FALSE, flags, pos.x(), pos.y());
+            pClientContext, FALSE, flags, pos.x(), pos.y());
     else
         freerdp_client_send_button_event(
-            &m_pContext->Context, FALSE, flags, pos.x(), pos.y());
+            pClientContext, FALSE, flags, pos.x(), pos.y());
 #else
-    if(!m_pContext->Context.input) return false;
+    rdpContext* pContext = (rdpContext*)m_pContext;
+    if(!pContext->input) return false;
     return freerdp_input_send_mouse_event(
-        m_pContext->Context.input, flags, pos.x(), pos.y());
+        pContext->input, flags, pos.x(), pos.y());
 #endif
     return true;
 }
@@ -1703,13 +1729,15 @@ void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
         flags |= PTR_FLAGS_HWHEEL | p.x();
     }
 #if FreeRDP_VERSION_MAJOR >= 3
-    freerdp_client_send_wheel_event(&m_pContext->Context, flags);
+    rdpClientContext* pClientContext = (rdpClientContext*)m_pContext;
+    freerdp_client_send_wheel_event(pClientContext, flags);
     /*
     freerdp_client_send_button_event(
         &m_pContext->Context, FALSE, flags, pos.x(), pos.y());//*/
 #else
+    rdpContext* pContext = (rdpContext*)m_pContext;
     freerdp_input_send_mouse_event(
-        m_pContext->Context.input, flags, pos.x(), pos.y());
+        pContext->input, flags, pos.x(), pos.y());
 #endif
 }
 
@@ -1804,14 +1832,16 @@ void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
-    if(RDP_SCANCODE_UNKNOWN != k)
+    if(RDP_SCANCODE_UNKNOWN != k) {
+        rdpContext* pContext = (rdpContext*)m_pContext;
 #if FreeRDP_VERSION_MAJOR >= 3
         freerdp_input_send_keyboard_event_ex(
-            m_pContext->Context.context.input, true, true, k);
+            pContext->input, true, true, k);
 #else
         freerdp_input_send_keyboard_event_ex(
-            m_pContext->Context.input, true, k);
+            pContext->input, true, k);
 #endif
+    }
 }
 
 void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
@@ -1820,14 +1850,16 @@ void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
-    if(RDP_SCANCODE_UNKNOWN != k)
+    if(RDP_SCANCODE_UNKNOWN != k) {
+        rdpContext* pContext = (rdpContext*)m_pContext;
 #if FreeRDP_VERSION_MAJOR >= 3
         freerdp_input_send_keyboard_event_ex(
-            m_pContext->Context.context.input, false, false, k);
+            pContext->input, false, false, k);
 #else
         freerdp_input_send_keyboard_event_ex(
-            m_pContext->Context.input, false, k);
+            pContext->input, false, k);
 #endif
+    }
 }
 
 int CConnectFreeRDP::RedirectionSound()
@@ -2070,4 +2102,57 @@ void CConnectFreeRDP::slotConnectProxyServer(QString szHost, quint16 nPort)
         qCritical(log) << "freerdp_client_start fail";
     }
     qDebug(log) << "CConnectFreeRDP::slotConnectProxyServer end";
+}
+
+int CConnectFreeRDP::InitRemoteApp()
+{
+    int nRet = 0;
+
+    if(!m_pParameter || !m_pParameter->GetRemoteApplicationMode()
+        || m_pParameter->GetRemoteApplicationProgram().isEmpty())
+        return nRet;
+
+    rdpContext* pContext = (rdpContext*)m_pContext;
+    rdpSettings* settings = pContext->settings;
+#if FreeRDP_VERSION_MAJOR >= 3
+    const FreeRDP_Settings_Keys_Bool ids[] =
+#else
+    const size_t ids[] =
+#endif
+        {
+         FreeRDP_RemoteApplicationMode,
+         FreeRDP_RemoteAppLanguageBarSupported,
+         FreeRDP_Workarea,
+         FreeRDP_DisableWallpaper,
+         FreeRDP_DisableFullWindowDrag };
+
+    if (!freerdp_settings_set_string(
+            settings,
+            FreeRDP_RemoteApplicationProgram,
+            m_pParameter->GetRemoteApplicationProgram().toStdString().c_str()))
+        return -1;
+
+    for (size_t y = 0; y < ARRAYSIZE(ids); y++)
+    {
+        if (!freerdp_settings_set_bool(settings, ids[y], TRUE))
+            return -2;
+    }
+
+    if (!freerdp_settings_set_string(
+            settings,
+            FreeRDP_RemoteApplicationWorkingDir,
+            m_pParameter->GetRemoteApplicationWorkingDir().toStdString().c_str()))
+        return -3;
+
+    if (!freerdp_settings_set_string(
+            settings,
+            FreeRDP_RemoteApplicationCmdLine,
+            m_pParameter->GetRemoteApplicationCmdLine().toStdString().c_str()))
+        return -4;
+
+    qDebug(log) << "Remote app:" << m_pParameter->GetRemoteApplicationProgram()
+                << m_pParameter->GetRemoteApplicationCmdLine()
+                << "Working dir:"
+                << m_pParameter->GetRemoteApplicationWorkingDir();
+    return nRet;
 }
