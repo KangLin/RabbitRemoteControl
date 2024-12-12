@@ -3,7 +3,8 @@
 
 CFrmParameterClient::CFrmParameterClient(QWidget *parent) :
     CParameterUI(parent),
-    ui(new Ui::CFrmParameterClient)
+    ui(new Ui::CFrmParameterClient),
+    m_pPara(nullptr)
 {
     ui->setupUi(this);
 }
@@ -15,7 +16,7 @@ CFrmParameterClient::~CFrmParameterClient()
 
 int CFrmParameterClient::Accept()
 {
-    if(m_pPara)
+    if(!m_pPara)
         return -1;
     m_pPara->SetHookKeyboard(ui->cbHookKeyboard->isChecked());
     m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
@@ -60,7 +61,7 @@ void CFrmParameterClient::on_pbEncryptKey_clicked()
 int CFrmParameterClient::SetParameter(CParameter *pParameter)
 {
     m_pPara = qobject_cast<CParameterClient*>(pParameter);
-    if(m_pPara)
+    if(!m_pPara)
         return -1;
     ui->cbHookKeyboard->setChecked(m_pPara->GetHookKeyboard());
     ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());

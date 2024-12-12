@@ -362,10 +362,10 @@ QList<QWidget*> CClient::GetSettingsWidgets(QWidget* parent)
 {
     QList<QWidget*> lstWidget;
 
-    CFrmParameterClient* p = new CFrmParameterClient(parent);
-    if(p) {
-        p->SetParameter(m_pParameterClient);
-        lstWidget.push_back(p);
+    CFrmParameterClient* pClient = new CFrmParameterClient(parent);
+    if(pClient) {
+        pClient->SetParameter(m_pParameterClient);
+        lstWidget.push_back(pClient);
     }
 
     CParameterRecordUI* pRecord = new CParameterRecordUI(parent);

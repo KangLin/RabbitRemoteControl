@@ -13,6 +13,7 @@ static Q_LOGGING_CATEGORY(log, "Parameter.Record.UI")
 CParameterRecordUI::CParameterRecordUI(QWidget *parent)
     : CParameterUI(parent)
     , ui(new Ui::CParameterRecordUI)
+    , m_pParameters(nullptr)
 {
     ui->setupUi(this);
     setWindowTitle(tr("Record"));
