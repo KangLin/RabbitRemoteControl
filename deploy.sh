@@ -19,12 +19,12 @@ if [ -n "$1" ]; then
     fi
 
     PRE_TAG=`git tag --sort=-creatordate -l "v*" | head -n 1`
-    echo "Current version: $VERSION, current tag: $PRE_TAG. The version to will be set tag version: $1 message: $MESSAGE"
+    echo "Current version: $VERSION, current tag: $PRE_TAG. The version to will be set tag version: $1. message: $MESSAGE"
     echo "Please check the follow list:"
     echo "    - Test is ok ?"
     echo "    - Translation is ok ?"
     echo "    - Setup file is ok ?"
-    echo "    - Update_*.xml is ok ?"
+    echo "    - Update*.json is ok ?"
     
     read -t 30 -p "Be sure to input Y, not input N: " INPUT
     if [ "$INPUT" != "Y" -a "$INPUT" != "y" ]; then
