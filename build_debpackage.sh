@@ -1,36 +1,43 @@
 #!/bin/bash
 
-if [ -f "/usr/lib/`uname -a`-linux-gnu/cmake/Qt6" -a -z "$QT_ROOT" ]; then
-    QT_ROOT=/usr/lib/`uname -a`-linux-gnu/cmake/Qt6
+if [ -n "$1" -a -z "$QT_ROOT" ]; then
+	QT_ROOT=$1
 fi
 
-if [ -n "$1" -a -z "$QT_ROOT" ]; then
-	export QT_ROOT=$1
+if [ -d "/usr/lib/`uname -m`-linux-gnu" -a -z "$QT_ROOT" ]; then
+    QT_ROOT="/usr/lib/`uname -m`-linux-gnu"
 fi
+
 if [ -z "$QT_ROOT" ]; then
+    echo "QT_ROOT=$QT_ROOT"
 	echo "$0 QT_ROOT RabbitCommon_ROOT"
     exit -1
 fi
 
 if [ -n "$2" -a -z "$RabbitCommon_ROOT" ]; then
-	export RabbitCommon_ROOT=$2
+	RabbitCommon_ROOT=$2
 fi
 
 if [ -z "$RabbitCommon_ROOT" ]; then
-	export RabbitCommon_ROOT=`pwd`/../RabbitCommon
+	RabbitCommon_ROOT=`pwd`/../RabbitCommon
+    echo "RabbitCommon_ROOT=$RabbitCommon_ROOT"
 fi
 
 if [ ! -d "$RabbitCommon_ROOT" ]; then
+    echo "QT_ROOT=$QT_ROOT"
+    echo "RabbitCommon_ROOT=$RabbitCommon_ROOT"
 	echo "$0 QT_ROOT RabbitCommon_ROOT"
+    exit -1
 fi
+
+export QT_ROOT=$QT_ROOT
+export RabbitCommon_ROOT=$RabbitCommon_ROOT
 
 if [ -z "$BUILD_TYPE" ]; then
     export BUILD_TYPE=Release
 fi
 
 export PATH=$QT_ROOT/bin:$PATH
-export LD_LIBRARY_PATH=$QT_ROOT/lib:$LD_LIBRARY_PATH
-export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:$PKG_CONFIG_PATH
 
 #fakeroot debian/rules binary
 
