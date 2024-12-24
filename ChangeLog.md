@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.31
+- Use [RabbitCommon v2.3.2](https://github.com/KangLin/RabbitCommon/releases/tag/v2.3.2)
+
 ### v0.0.30
 - Client: fix CFrmParameterClient don't save parameters
 - App: fix core when the application exit.

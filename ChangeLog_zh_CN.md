@@ -1,5 +1,8 @@
 ## 修改日志
 
+### v0.0.31
+- 使用 [RabbitCommon v2.3.2](https://github.com/KangLin/RabbitCommon/releases/tag/v2.3.2)
+
 ### v0.0.30
 - 客户端: 修复 CFrmParameterClient 不保存参数错误
 - 应用程序：修复当应用程序退出时程序崩溃的错误。

@@ -196,7 +196,7 @@ jobs:
             git submodule update --init --recursive
             cmake -E make_directory build
             cd build
-            export Qt6_DIR=/usr/lib/`uname -a`-linux-gnu/cmake/Qt6
+            export Qt6_DIR=/usr/lib/`uname -m`-linux-gnu/cmake/Qt6
             cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
                 -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
             cmake --build . --parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
@@ -240,7 +240,7 @@ jobs:
               export BUILD_VIEWER_TERMINAL=OFF
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           fi
-          export QT_ROOT=/usr/lib/`uname -a`-linux-gnu/cmake/Qt6
+          export QT_ROOT=/usr/lib/`uname -m`-linux-gnu/cmake/Qt6
           ./build_debpackage.sh
           cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb
           md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum
