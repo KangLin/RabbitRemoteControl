@@ -7,6 +7,7 @@
 #include <QLoggingCategory>
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connecter")
+
 //! [Set the parameter]
 CConnecterFreeRDP::CConnecterFreeRDP(CPluginClient *plugin)
     : CConnecterThread(plugin)
@@ -44,6 +45,7 @@ int CConnecterFreeRDP::Clean()
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
     nRet = CConnecterThread::Clean();
+    m_RailManageWindows.Clean();
     return nRet;
 }
 

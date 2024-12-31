@@ -7,6 +7,8 @@
   由于没有坐标系统，导致无边框窗体无法拖动和定位（即 QWidge::move 失效）。
  （Qt6 开始强制默认优先用 wayland ，Qt5 默认有 xcb 则优先用 xcb），
   所以需要在 main 函数最前面加一行 `qputenv("QT_QPA_PLATFORM", "xcb")`;
+- FreeRDP
+  - 增加远程应用
 
 ### v0.0.30
 - 客户端: 修复 CFrmParameterClient 不保存参数错误

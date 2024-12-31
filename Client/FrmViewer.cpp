@@ -42,8 +42,10 @@ CFrmViewer::CFrmViewer(QWidget *parent)
     setFocus();
 
     // When the connecter is not connected, don't accept keyboard and mouse event
-    // When the CConnecter::sigConnected() set true. accept keyboard and mouse event
-    // \see CConnecter::sigConnected()
+    // When the CConnect::sigConnected() set true. accept keyboard and mouse event
+    // \see CConnect::sigConnected()
+    //      CConnectDesktop::SetViewer
+    //      CFrmViewer::slotConnected()
     setEnabled(false);
 }
 

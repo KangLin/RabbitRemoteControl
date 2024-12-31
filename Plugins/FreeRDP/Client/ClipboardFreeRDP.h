@@ -20,7 +20,7 @@ public:
     virtual ~CClipboardFreeRDP();
 
     int Init(CliprdrClientContext *context, bool bEnable);
-    int UnInit(CliprdrClientContext* context, bool bEnable);
+    int Clean(CliprdrClientContext* context, bool bEnable);
 
     static UINT cb_cliprdr_server_capabilities(CliprdrClientContext* context,
                                       const CLIPRDR_CAPABILITIES* capabilities);

@@ -8,6 +8,8 @@
   qt6 use wayland by default. qt5 use xcb default.
   So that prefix 'qputenv("QT_QPA_PLATFORM", "xcb")'
   at the beginning of the main function.
+- FreeRDP
+  - Add remote application
 
 ### v0.0.30
 - Client: fix CFrmParameterClient don't save parameters
