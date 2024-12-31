@@ -43,6 +43,8 @@
 #endif
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
+static Q_LOGGING_CATEGORY(logKey, "FreeRDP.Connect.Key")
+static Q_LOGGING_CATEGORY(logMouse, "FreeRDP.Connect.Mouse")
     
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     : CConnectDesktop(pConnecter),
@@ -1673,7 +1675,7 @@ bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended)
 
 void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
 {
-    //qDebug(log) << Q_FUNC_INFO << event;
+    qDebug(logMouse) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
    
@@ -1716,7 +1718,7 @@ void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
 // https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
 void CConnectFreeRDP::mouseMoveEvent(QMouseEvent *event)
 {
-    //qDebug(log) << Q_FUNC_INFO << event << event->buttons() << event->button();
+    qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT16 flags = PTR_FLAGS_MOVE;
@@ -1725,7 +1727,7 @@ void CConnectFreeRDP::mouseMoveEvent(QMouseEvent *event)
 
 void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
 {
-    //qDebug(log) << Q_FUNC_INFO << event << event->buttons() << event->button();
+    qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
 
@@ -1762,7 +1764,7 @@ void CConnectFreeRDP::mousePressEvent(QMouseEvent *event)
 
 void CConnectFreeRDP::mouseReleaseEvent(QMouseEvent *event)
 {
-    //qDebug(log) << Q_FUNC_INFO << event << event->buttons() << event->button();
+    qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
 
@@ -1799,7 +1801,7 @@ void CConnectFreeRDP::mouseReleaseEvent(QMouseEvent *event)
 
 void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
 {
-    //qDebug(log) << Q_FUNC_INFO << event;
+    qDebug(logKey) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
@@ -1816,7 +1818,7 @@ void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
 
 void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
 {
-    //qDebug(log) << Q_FUNC_INFO << event;
+    qDebug(logKey) << Q_FUNC_INFO << event;
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());

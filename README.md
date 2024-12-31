@@ -37,7 +37,7 @@ Author: Kang Lin <kl222@126.com>
 
 ## Introduction
 
-Rabbit Remote Control is a open-source, cross-platform, multi-protocol remote control software.
+**Rabbit Remote Control** is a open-source, cross-platform, multi-protocol remote control software.
 
 **Allows you to use any device and system in anywhere and remotely manage any device and system in any way**. 
 
@@ -85,27 +85,27 @@ If you want to donate the developed devices for me, please contact: (email: kl22
 
 - Remote desktop
 
-|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
-|--------|:-----:|:--------:|:-----:|:-:|:----:|:---:|
-|vnc     |✓      |✓         |✓      |✓  |      |     |
-|RDP     |✓      |✓         |……     |✓  |      |     |
-|Spice   |       |          |       |   |      |     |
-|Scrcpy  |       |          |       |   |      |     |
+|        |Windows|Unix/linux|Android|MAC|
+|--------|:-----:|:--------:|:-----:|:-:|
+|vnc     |✓      |✓         |✓      |✓  |
+|RDP     |✓      |✓         |……     |✓  |
+|Spice   |       |          |       |   |
+|Scrcpy  |       |          |       |   |
 
 - Terminal
 
-|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
-|--------|-------|----------|-------|---|------|-----|
-|Terminal|       |✓         |       |   |      |     |
-|SSH     |       |✓         |       |   |      |     |
-|TELNET  |       |✓         |       |   |      |     |
+|        |Windows|Unix/linux|Android|MAC|
+|--------|-------|----------|-------|---|
+|Terminal|       |✓         |       |   |
+|SSH     |       |✓         |       |   |
+|TELNET  |       |✓         |       |   |
 
 - File Transfer
 
-|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
-|--------|-------|----------|-------|---|------|-----|
-|FTP     |       |          |       |   |      |     |
-|SFTP    |       |          |       |   |      |     |
+|        |Windows|Unix/linux|Android|MAC|
+|--------|-------|----------|-------|---|
+|FTP     |       |          |       |   |
+|SFTP    |       |          |       |   |
 
 - Tool
 
@@ -184,6 +184,8 @@ Legend:
   - [RabbitVNC](Plugins/RabbitVNC/README.md)
   - [TigerVnc](Plugins/TigerVnc/README.md)
   - [LibVNCServer](Plugins/LibVNCServer/README.md)
+- [Wake on lan](Plugins/WakeOnLan/README.md)
+- [Player](Plugins/Player/README.md)
 
 ### Full Documentation
 
@@ -358,7 +360,7 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
       - MD5SUM file: RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
         - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
         - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
-  - Ubuntu:
+  - Ubuntu, Debian:
     + rabbitremotecontrol_0.0.30_amd64.deb
       
           sudo apt install ./rabbitremotecontrol_0.0.30_amd64.deb
@@ -372,6 +374,9 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
     + MD5SUM file: rabbitremotecontrol_0.0.30_amd64.deb.md5sum
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/rabbitremotecontrol_0.0.30_amd64.deb.md5sum)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/rabbitremotecontrol_0.0.30_amd64.deb.md5sum/download)
+  - Snap:
+    [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
+    [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
 
 ## [Development](docs/Doxygen/Develop.md)
 

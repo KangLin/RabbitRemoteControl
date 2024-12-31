@@ -36,7 +36,7 @@
 -----------------------------------------------------------------------
 ## 简介
 
-玉兔远程控制是一个开源、跨平台、支持多协议的远程控制软件。
+**玉兔远程控制**是一个开源、跨平台、支持多协议的远程控制软件。
 
 能让你在**任何地方**使用**任何设备和系统**通过**任意方式**远程管理**任意设备和系统**。
 
@@ -84,27 +84,27 @@
 
 - 远程桌面
 
-|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
-|--------|-------|----------|-------|---|------|-----|
-|vnc     |✓      |✓         |✓      |✓  |      |     |
-|RDP     |✓      |✓         | ……    |✓  |      |     |
-|Spice   |       |          |       |   |      |     |
-|Scrcpy  |       |          |       |   |      |     |
+|        |Windows|Unix/linux|Android|MAC|
+|--------|-------|----------|-------|---|
+|vnc     |✓      |✓         |✓      |✓  |
+|RDP     |✓      |✓         | ……    |✓  |
+|Spice   |       |          |       |   |
+|Scrcpy  |       |          |       |   |
 
 - 终端
 
-|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
-|--------|-------|----------|-------|---|------|-----|
-|终端     |       |✓         |       |   |      |     |
-|SSH     |       |✓         |       |   |      |     |
-|TELNET  |       |✓         |       |   |      |     |
+|        |Windows|Unix/linux|Android|MAC|
+|--------|-------|----------|-------|---|
+|终端     |       |✓         |       |   |
+|SSH     |       |✓         |       |   |
+|TELNET  |       |✓         |       |   |
 
 - 文件传输
 
-|        |Windows|Unix/linux|Android|MAC|IPHONE|WINCE|
-|--------|-------|----------|-------|---|------|-----|
-|FTP     |       |          |       |   |      |     |
-|SFTP    |       |          |       |   |      |     |
+|        |Windows|Unix/linux|Android|MAC|
+|--------|-------|----------|-------|---|
+|FTP     |       |          |       |   |
+|SFTP    |       |          |       |   |
 
 - 工具
 
@@ -179,9 +179,11 @@
 
 - [FreeRDP](Plugins/FreeRDP/README_zh_CN.md)
 - VNC
-  - [RabbitVNC](Plugins/RabbitVNC/README.md)
-  - [TigerVnc](Plugins/TigerVnc/README.md)
-  - [LibVNCServer](Plugins/LibVNCServer/README.md)
+  - [RabbitVNC](Plugins/RabbitVNC/README_zh_CN.md)
+  - [TigerVnc](Plugins/TigerVnc/README_zh_CN.md)
+  - [LibVNCServer](Plugins/LibVNCServer/README_zh_CN.md)
+- [局域网唤醒](Plugins/WakeOnLan/README_zh_CN.md)
+- [播放器](Plugins/Player/README_zh_CN.md)
 
 ### 详尽文档
 
@@ -345,7 +347,7 @@
       - MD5SUM file: RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
         - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
         - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
-  - Ubuntu:
+  - Ubuntu、Debian:
     + rabbitremotecontrol_0.0.30_amd64.deb
       
           sudo apt install ./rabbitremotecontrol_0.0.30_amd64.deb
@@ -359,6 +361,9 @@
     + md5 校验文件: rabbitremotecontrol_0.0.30_amd64.deb.md5sum
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/rabbitremotecontrol_0.0.30_amd64.deb.md5sum)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/rabbitremotecontrol_0.0.30_amd64.deb.md5sum/download)
+  - Snap:
+    [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
+    [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
 
 ## [开发](docs/Doxygen/Develop_zh_CN.md)
 

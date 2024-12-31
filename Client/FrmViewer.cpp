@@ -20,7 +20,8 @@
 #undef KeyPress
 
 static Q_LOGGING_CATEGORY(log, "Client.FrmViewer")
-static Q_LOGGING_CATEGORY(logRecord, "Client.FrmViewer.Record")
+static Q_LOGGING_CATEGORY(logKey, "Client.FrmViewer.Key")
+static Q_LOGGING_CATEGORY(logMouse, "Client.FrmViewer.Mouse")
 
 CFrmViewer::CFrmViewer(QWidget *parent)
     : QWidget(parent)
@@ -133,7 +134,7 @@ void CFrmViewer::paintEvent(QPaintEvent *event)
 
 int CFrmViewer::TranslationMousePoint(QPointF inPos, QPointF &outPos)
 {
-    //qDebug(log) << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
+    qDebug(logMouse) << "TranslationPoint x:" << inPos.x() << ";y:" << inPos.y();
 
     switch (m_AdaptWindows) {
     case ADAPT_WINDOWS::Auto:
@@ -180,7 +181,8 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
     if(TranslationMousePoint(pos, pos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
-    //qDebug(log) << "CFrmViewer::mousePressEvent" << event << event->button() << event->buttons() << pos;
+    qDebug(logMouse) << "CFrmViewer::mousePressEvent"
+                     << event << event->button() << event->buttons() << pos;
     emit sigMousePressEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -196,7 +198,8 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
     if(TranslationMousePoint(pos, pos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
-    //qDebug(log) << "CFrmViewer::mouseReleaseEvent" << event << event->button() << event->buttons() << pos;
+    qDebug(logMouse) << "CFrmViewer::mouseReleaseEvent"
+                     << event << event->button() << event->buttons() << pos;
     emit sigMouseReleaseEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -212,7 +215,8 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
     if(TranslationMousePoint(pos, pos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
-    //qDebug(log) << "CFrmViewer::mouseMoveEvent" << event->button() << event->buttons() << pos;
+    qDebug(logMouse) << "CFrmViewer::mouseMoveEvent"
+                     << event->button() << event->buttons() << pos;
     emit sigMouseMoveEvent(event, QPoint(pos.x(), pos.y()));
     emit sigMouseMoveEvent(event);
     event->accept();
@@ -227,21 +231,22 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
         event->pos();
 #endif
     if(TranslationMousePoint(pos, pos)) return;
-    //qDebug(log) << "CFrmViewer::wheelEvent" << event->buttons() << event->angleDelta() << pos;
+    qDebug(logMouse) << "CFrmViewer::wheelEvent"
+                     << event->buttons() << event->angleDelta() << pos;
     emit sigWheelEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
-    //qDebug(log) << "CFrmViewer::keyPressEvent" << event;
+    qDebug(logKey) << "CFrmViewer::keyPressEvent" << event;
     emit sigKeyPressEvent(event);
     event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
-    //qDebug(log) << "CFrmViewer::keyReleaseEvent" << event;
+    qDebug(logKey) << "CFrmViewer::keyReleaseEvent" << event;
     emit sigKeyReleaseEvent(event);
     event->accept();
 }

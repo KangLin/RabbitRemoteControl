@@ -50,10 +50,15 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
             CFrmViewer* pView = pScroll->GetViewer();
             if(pView)
                 SetViewer(pView, bDirectConnection);
+            else {
+                QString szErr = pConnecter->metaObject()->className();
+                szErr += "::GetViewer() is not CFrmViewer";
+                qWarning(log) << szErr.toStdString().c_str();
+            }
         } else {
             QString szErr = pConnecter->metaObject()->className();
-            szErr += "::GetViewer() is not CFrmView";
-            qDebug(log) << szErr.toStdString().c_str();
+            szErr += "::GetViewer() is not CFrmScroll";
+            qWarning(log) << szErr.toStdString().c_str();
         }
         SetConnecter(pConnecter);
     }
