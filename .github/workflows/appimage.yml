@@ -248,7 +248,7 @@ jobs:
           cmake --install . --config Release --component Plugin --prefix AppDir/usr
           # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
           export QMAKE=$Qt6_DIR/bin/qmake
-          export EXTRA_PLATFORM_PLUGINS="libqwayland-generic.so;libqxcb.so;libqwayland-egl.so"
+          export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
           ${{env.TOOSL_DIR}}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
               --deploy-deps-only=AppDir/usr/plugins/Client \
               --deploy-deps-only=AppDir/usr/lib/`uname -m`-linux-gnu \

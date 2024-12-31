@@ -2,6 +2,11 @@
 
 ### v0.0.31
 - 使用 [RabbitCommon v2.3.2](https://github.com/KangLin/RabbitCommon/releases/tag/v2.3.2)
+- 修复使用 Qt6 时，最大化时，工具栏位置错误。
+  现在很多 linux 用 wayland 作为桌面显示，这样会出现一个问题，
+  由于没有坐标系统，导致无边框窗体无法拖动和定位（即 QWidge::move 失效）。
+ （Qt6 开始强制默认优先用 wayland ，Qt5 默认有 xcb 则优先用 xcb），
+  所以需要在 main 函数最前面加一行 `qputenv("QT_QPA_PLATFORM", "xcb")`;
 
 ### v0.0.30
 - 客户端: 修复 CFrmParameterClient 不保存参数错误

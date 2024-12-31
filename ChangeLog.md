@@ -2,6 +2,12 @@
 
 ### v0.0.31
 - Use [RabbitCommon v2.3.2](https://github.com/KangLin/RabbitCommon/releases/tag/v2.3.2)
+- Fix full screen bar position bug in Qt6.
+  Because wayland is no coordinate system,
+  borderless forms cannot be dragged and positioned.
+  qt6 use wayland by default. qt5 use xcb default.
+  So that prefix 'qputenv("QT_QPA_PLATFORM", "xcb")'
+  at the beginning of the main function.
 
 ### v0.0.30
 - Client: fix CFrmParameterClient don't save parameters
