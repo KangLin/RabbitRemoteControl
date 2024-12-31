@@ -13,8 +13,10 @@
 #include "ConnectFreeRDP.h"
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Rail")
+static Q_LOGGING_CATEGORY(logWin, "FreeRDP.Rail.ManageWindows.Window")
 static Q_LOGGING_CATEGORY(logInfoWin, "FreeRDP.Rail.Info.Window")
 static Q_LOGGING_CATEGORY(logIconInfo, "FreeRDP.Rail.Info.Icon")
+static Q_LOGGING_CATEGORY(logUpdate, "FreeRDP.Rail.Update.Window")
 
 int g_CRailInfo = qRegisterMetaType<CRailInfo>("CRailInfo");
 int g_QSharedPointer_CRailInfo = qRegisterMetaType<QSharedPointer<CRailInfo> >("QSharedPointer<CRailInfo>");
@@ -318,7 +320,13 @@ CRailInfo::CRailInfo(const WINDOW_ORDER_INFO *orderInfo,
     }
     if ((orderInfo->fieldFlags & WINDOW_ORDER_FIELD_WND_OFFSET)
         || (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_WND_SIZE)) {
-        qDebug(log) << "CRailInfo: windowOffsetX:" << windowState->windowOffsetX
+        QString szMsg;
+        if (orderInfo->fieldFlags & WINDOW_ORDER_STATE_NEW)
+            szMsg = "new:";
+        else
+            szMsg = "update:";
+        qDebug(logWin) << szMsg << WINDOW_ID(orderInfo->windowId)
+                    << "windowOffsetX:" << windowState->windowOffsetX
                     << "windowOffsetY:" << windowState->windowOffsetY
                     << "width:" << windowState->windowWidth
                     << "height:" << windowState->windowHeight
@@ -337,7 +345,10 @@ CRailInfo::CRailInfo(const WINDOW_ORDER_INFO *orderInfo,
             r.setHeight(p->bottom - p->top);
             m_Update = m_Update.united(r);
         }
-        qDebug(log) << "CRailInfo: refresh rects:" << m_Update;
+        if (orderInfo->fieldFlags & WINDOW_ORDER_STATE_NEW)
+            qDebug(logUpdate) << "new:" << WINDOW_ID(orderInfo->windowId) << m_Update;
+        else
+            qDebug(logUpdate) << "update:" << WINDOW_ID(orderInfo->windowId) << m_Update;
     }
 
     if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_VISIBILITY) {
@@ -350,7 +361,10 @@ CRailInfo::CRailInfo(const WINDOW_ORDER_INFO *orderInfo,
             r.setHeight(p->bottom - p->top);
             m_Visibility = m_Visibility.united(r);
         }
-        qDebug(log) << "CRailInfo: visibilty rects:" << m_Update;
+        if (orderInfo->fieldFlags & WINDOW_ORDER_STATE_NEW)
+            qDebug(logUpdate) << "new:" << WINDOW_ID(orderInfo->windowId) << "visiblity" << m_Update;
+        else
+            qDebug(logUpdate) << "update:" << WINDOW_ID(orderInfo->windowId) << "visiblity" << m_Update;
     }
 }
 
@@ -583,7 +597,7 @@ UINT CRail::cbServerMinMaxInfo(
                 << minMaxInfo->maxPosX << minMaxInfo->maxPosY
                 << minMaxInfo->maxWidth << minMaxInfo->maxHeight
                 << minMaxInfo->maxTrackWidth << minMaxInfo->maxTrackHeight
-        << "min:" << minMaxInfo->minTrackWidth << minMaxInfo->minTrackHeight;
+                << "min:" << minMaxInfo->minTrackWidth << minMaxInfo->minTrackHeight;
     return CHANNEL_RC_OK;
 }
 

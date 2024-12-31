@@ -34,12 +34,14 @@ CRailWindow::CRailWindow(QWidget *parent)
     //qDebug(log) << "CRailWindow initial flags:" << windowFlags();
     slotSetAdaptWindows(ADAPT_WINDOWS::Original);
     setEnabled(true);
-    qDebug(log) << "minimumSize:" << minimumSize()
+    qDebug(log) << WINDOW_ID(m_Info.m_OrderInfo.windowId)
+                << "minimumSize:" << minimumSize()
                 << "maximumSize:" << maximumSize();
 }
 
 int CRailWindow::Show(UINT32 state)
 {
+    qDebug(log) << WINDOW_ID(m_Info.m_OrderInfo.windowId) << "Show" << state;
     switch(state){
     case SW_HIDE:
         hide();
@@ -53,7 +55,7 @@ int CRailWindow::Show(UINT32 state)
         setFocus();
         break;
     case SW_SHOWMAXIMIZED:
-        showMaximized();
+        showNormal();
         setFocus();
         break;
     case SW_SHOWNOACTIVATE:

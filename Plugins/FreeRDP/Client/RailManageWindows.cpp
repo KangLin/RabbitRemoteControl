@@ -7,6 +7,8 @@
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Rail.ManageWindows")
 static Q_LOGGING_CATEGORY(logWin, "FreeRDP.Rail.ManageWindows.Window")
+static Q_LOGGING_CATEGORY(logUpdate, "FreeRDP.Rail.Update.Window")
+static Q_LOGGING_CATEGORY(logInvalid, "FreeRDP.Rail.Update.Invalid")
 
 CRailManageWindows::CRailManageWindows(QObject *parent)
     : QObject{parent}
@@ -38,6 +40,9 @@ int CRailManageWindows::Connect(CRail *pRail)
     Q_ASSERT(check);
     check = connect(m_pConnect, &CConnectFreeRDP::sigRailInvalidateRect,
                     this, &CRailManageWindows::slotInvalidateRect);
+    Q_ASSERT(check);
+    check = connect(m_pConnect, &CConnectFreeRDP::sigSetDesktopSize,
+                    this, &CRailManageWindows::slotSetDesktopSize);
     Q_ASSERT(check);
     return 0;
 }
@@ -208,24 +213,23 @@ void CRailManageWindows::WindowDelete(UINT32 windowId)
 
 int CRailManageWindows::UpdateWindow(CRailWindow *pWin, CRailInfo *info)
 {
-    UINT32 index;
     QRect rect;
     if (!info->m_Update.isValid()) {
-        qDebug(log) << "UpdateWindow: the update rects is empty";
+        qDebug(logUpdate) << "UpdateWindow: the update rects is empty";
         return 0;
     }
-
     rect = info->m_Update;
-
     QRect rw = pWin->m_Info.m_rectWindow;
-    QRect rImg(rect.left() + rw.left(), rect.top() + rw.top(),
-               rect.width(), rect.height());
+    QRect rImg(rect.x() + rw.x(), rect.y() + rw.y(), rect.width(), rect.height());
+    rImg = rImg.intersected(QRect(m_Desktop));
+    rect = QRect(rImg.x() - rw.x(), rImg.y() - rw.y(), rImg.width(), rImg.height());
     QImage img = m_pConnect->GetImage(rImg);
-
-    qDebug(log) << "UpdateWindow" << WINDOW_ID(info->m_OrderInfo.windowId)
-                << rect << rImg << img.rect();
+    qDebug(logUpdate) << "UpdateWindow" << WINDOW_ID(info->m_OrderInfo.windowId)
+                      << pWin->m_Info.m_rectWindow
+                      << "window update:" << rect << info->m_Update
+                      << "update:" << rImg
+                      << "Image:" << img.rect();
     pWin->slotUpdateRect(rect, img);
-
     return 0;
 }
 
@@ -234,15 +238,25 @@ void CRailManageWindows::slotInvalidateRect(QRect rect)
     foreach(auto pWin, m_Windows) {
         if(!pWin)
             continue;
-        QRect r, rw;
-        rw = pWin->m_Info.m_rectWindow;
-        rw = QRect(qMax(rw.x(), 0), qMax(rw.y(), 0),
-                   qMax(rw.x() + rw.width(), 0), qMax(rw.y() + rw.height(), 0));
-        r = rw.intersected(rect);
-        if(r.isValid()) {
-            QImage img = m_pConnect->GetImage(r);
-            QRect rImg(r.x() - rw.x(), r.y() - rw.y(), r.width(), r.height());
+        if(!pWin->m_Info.m_ShowStatus)
+            continue;
+        QRect ri;
+        const QRect rw = pWin->m_Info.m_rectWindow;
+        ri = rw.intersected(m_Desktop);
+        ri = ri.intersected(rect);
+        if(ri.isValid()) {
+            qDebug(logInvalid) << WINDOW_ID(pWin->m_Info.m_OrderInfo.windowId)
+            << pWin->m_Info.m_rectWindow
+            << "update:" << ri;
+            QImage img = m_pConnect->GetImage(ri);
+            QRect rImg(ri.x() - rw.x(), ri.y() - rw.y(), ri.width(), ri.height());
             pWin->slotUpdateRect(rImg, img);
         }
     }
+}
+
+int CRailManageWindows::slotSetDesktopSize(int width, int height)
+{
+    m_Desktop = QRect(0, 0, width, height);
+    return 0;
 }

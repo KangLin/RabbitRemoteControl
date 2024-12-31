@@ -26,6 +26,7 @@ public Q_SLOTS:
     void slotWindow(QSharedPointer<CRailInfo> info);
     void slotWindowDelete(QSharedPointer<CRailInfo> info);
     void slotInvalidateRect(QRect rect);
+    int slotSetDesktopSize(int width, int height);
 
 private:
     void WindowDelete(UINT32 windowId);
@@ -33,6 +34,7 @@ private:
 
 private:
     QMap<UINT32, CRailWindow*> m_Windows;
+    QRect m_Desktop;
 };
 
 #endif // RAILMANAGEWINDOWS_H

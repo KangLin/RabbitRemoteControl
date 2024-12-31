@@ -891,6 +891,10 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
         {
             pThis->m_pRail = new CRail(pThis);
             pThis->m_pRailManageWindows->Connect(pThis->m_pRail);
+            auto settings = pContext->settings;
+            int width = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
+            int height = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
+            pThis->m_pRailManageWindows->slotSetDesktopSize(width, height);
         }
         if(pThis->m_pRail)
             pThis->m_pRail->Init((RailClientContext*)e->pInterface);
