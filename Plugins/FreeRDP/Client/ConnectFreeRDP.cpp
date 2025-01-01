@@ -45,7 +45,7 @@
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
 static Q_LOGGING_CATEGORY(logKey, "FreeRDP.Connect.Key")
 static Q_LOGGING_CATEGORY(logMouse, "FreeRDP.Connect.Mouse")
-    
+
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     : CConnectDesktop(pConnecter),
     m_pContext(nullptr),
