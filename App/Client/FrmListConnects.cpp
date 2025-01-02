@@ -24,12 +24,14 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
     setWindowTitle(tr("List connections"));
 
     m_pToolBar = new QToolBar(this);
-    m_pConnect = m_pToolBar->addAction(QIcon::fromTheme("network-wired"), tr("Connect"),
-                          this, SLOT(slotConnect()));
+    m_pConnect = m_pToolBar->addAction(
+        QIcon::fromTheme("network-wired"), tr("Connect"),
+        this, SLOT(slotConnect()));
     m_pConnect->setStatusTip(tr("Connect"));
     m_pConnect->setToolTip(tr("Connect"));
-    m_pEditConnect = m_pToolBar->addAction(/*QIcon::fromTheme("network-wired"), */tr("Edit and Connect"),
-                          this, SLOT(slotEditConnect()));
+    m_pEditConnect = m_pToolBar->addAction(
+        QIcon::fromTheme("edit-connect"), tr("Edit and Connect"),
+        this, SLOT(slotEditConnect()));
     m_pEditConnect->setStatusTip(tr("Edit and Connect"));
     m_pEditConnect->setToolTip(tr("Edit and Connect"));
     m_pToolBar->addSeparator();
@@ -48,11 +50,11 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
     m_pToolBar->addWidget(m_ptbConnect);
     m_pClient->EnumPlugins(this);
     m_pEdit = m_pToolBar->addAction(QIcon::fromTheme("edit"), tr("Edit"),
-                          this, SLOT(slotEdit()));
+                                    this, SLOT(slotEdit()));
     m_pEdit->setStatusTip(tr("Edit"));
     m_pEdit->setToolTip(tr("Edit"));
     m_pCopy = m_pToolBar->addAction(QIcon::fromTheme("edit-copy"), tr("Copy"),
-                          this, SLOT(slotCopy()));
+                                    this, SLOT(slotCopy()));
     m_pCopy->setStatusTip(tr("Copy"));
     m_pCopy->setToolTip(tr("Copy"));
     m_pDelete = m_pToolBar->addAction(
@@ -146,10 +148,10 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
     QHeaderView::ResizeToContents：3 根据内容改变列宽，用户与程序不能改变列宽
     */
     m_pTableView->horizontalHeader()->setSectionResizeMode(
-            #if defined(DEBUG) && !defined(Q_OS_ANDROID)
-                0,
-            #endif
-                QHeaderView::ResizeToContents);
+#if defined(DEBUG) && !defined(Q_OS_ANDROID)
+        0,
+#endif
+        QHeaderView::ResizeToContents);
     //以下设置列宽函数必须要数据加载完成后使用,才能应用
     //See: https://blog.csdn.net/qq_40450386/article/details/86083759
     //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
@@ -242,8 +244,8 @@ int CFrmListConnects::onProcess(const QString &id, CPluginClient *pPlug)
 {
     // Connect menu and toolbar
     QAction* pAction = m_pMenuNew->addAction(pPlug->Protocol()
-                                       + ": " + pPlug->DisplayName(),
-                                       this, SLOT(slotNew()));
+                                                 + ": " + pPlug->DisplayName(),
+                                             this, SLOT(slotNew()));
     pAction->setToolTip(pPlug->Description());
     pAction->setStatusTip(pPlug->Description());
     pAction->setData(id);
@@ -265,16 +267,17 @@ void CFrmListConnects::slotNew()
     case QDialog::Accepted:
     {
         QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                + QDir::separator()
-                + c->Id()
-                + ".rrc";
+        + QDir::separator()
+            + c->Id()
+            + ".rrc";
         QDir d;
         if(d.exists(szFile)) {
             QMessageBox::StandardButton r
-                    = QMessageBox::warning(this, tr("Warning"),
-              tr("File of connecter is exists. whether to overwrite it? File: %1").arg(szFile),
-              QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No,
-                                               QMessageBox::StandardButton::No);
+                = QMessageBox::warning(
+                    this, tr("Warning"),
+                    tr("File of connecter is exists. whether to overwrite it? File: %1").arg(szFile),
+                    QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No,
+                    QMessageBox::StandardButton::No);
             if(QMessageBox::StandardButton::Ok == r)
             {
                 d.remove(szFile);
@@ -359,17 +362,21 @@ void CFrmListConnects::slotCopy()
             case QDialog::Accepted:
             {
                 szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                        + QDir::separator()
-                        + c->Id()
-                        + ".rrc";
+                + QDir::separator()
+                    + c->Id()
+                    + ".rrc";
                 QDir d(szFile);
                 if(d.exists(szFile)) {
-                    QMessageBox::StandardButton r = QMessageBox::warning(this,
-                        tr("Warning"),
-                        tr("File of connecter is exists. whether to overwrite it? "
-                        "If select No, please modify the name of connecter"), 
-                        QMessageBox::StandardButton::Ok | QMessageBox::StandardButton::No | QMessageBox::StandardButton::Cancel,
-                        QMessageBox::StandardButton::No);
+                    QMessageBox::StandardButton r
+                        = QMessageBox::warning(
+                            this,
+                            tr("Warning"),
+                            tr("File of connecter is exists. whether to overwrite it? "
+                               "If select No, please modify the name of connecter"),
+                            QMessageBox::StandardButton::Ok
+                                | QMessageBox::StandardButton::No
+                                | QMessageBox::StandardButton::Cancel,
+                            QMessageBox::StandardButton::No);
                     if(QMessageBox::StandardButton::No == r)
                     {
                         bExit = false;
@@ -434,15 +441,19 @@ void CFrmListConnects::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
     
-    menu.addAction(QIcon::fromTheme("network-wired"), tr("Connect"), this, SLOT(slotConnect()));
+    menu.addAction(QIcon::fromTheme("network-wired"),
+                   tr("Connect"), this, SLOT(slotConnect()));
     menu.addAction(tr("Edit and Connect"), this, SLOT(slotEditConnect()));
     menu.addSeparator();
     menu.addMenu(m_pMenuNew);
     menu.addAction(tr("Edit"), this, SLOT(slotEdit()));
-    menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy"), this, SLOT(slotCopy()));
-    menu.addAction(QIcon::fromTheme("edit-delete"), tr("Delete"), this, SLOT(slotDelete()));
+    menu.addAction(QIcon::fromTheme("edit-copy"), tr("Copy"),
+                   this, SLOT(slotCopy()));
+    menu.addAction(QIcon::fromTheme("edit-delete"), tr("Delete"),
+                   this, SLOT(slotDelete()));
     menu.addSeparator();
-    menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"), this, SLOT(slotLoadFiles()));
+    menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
+                   this, SLOT(slotLoadFiles()));
 
     menu.exec(mapToGlobal(pos));
 }
