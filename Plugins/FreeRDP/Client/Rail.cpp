@@ -362,9 +362,9 @@ CRailInfo::CRailInfo(const WINDOW_ORDER_INFO *orderInfo,
             m_Visibility = m_Visibility.united(r);
         }
         if (orderInfo->fieldFlags & WINDOW_ORDER_STATE_NEW)
-            qDebug(logUpdate) << "new:" << WINDOW_ID(orderInfo->windowId) << "visiblity" << m_Update;
+            qDebug(logUpdate) << "new:" << WINDOW_ID(orderInfo->windowId) << "visibility" << m_Update;
         else
-            qDebug(logUpdate) << "update:" << WINDOW_ID(orderInfo->windowId) << "visiblity" << m_Update;
+            qDebug(logUpdate) << "update:" << WINDOW_ID(orderInfo->windowId) << "visibility" << m_Update;
     }
 }
 
