@@ -48,6 +48,14 @@
 |--|--|--|--|
 |![主窗口](docs/Image/Screenshot/MainWindows.png)|![最近列表窗口](docs/Image/Screenshot/RecentMenu.png)|![连接窗口](docs/Image/Screenshot/Connect.png)|![Work](docs/Image/Screenshot/Work.png)|
 
+### 视频
+
+<video width="320" height="240"  autoplay="true" controls="controls">
+    <source src="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/2025-01-03.09-57-27.mp4" type="video/mp4">
+</video>
+
+  https://github.com/user-attachments/assets/28c2b412-f9d6-43c6-bc40-bc814031751d
+
 #### 多样式
 
 |默认样式|黑绿样式|黑色样式|白色样式|

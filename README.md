@@ -55,6 +55,14 @@ It include remote desktop, remote terminal, player etc remote control functions.
 |:-------:|:------:|:-------:|:------:|
 |![Default style](docs/Image/Screenshot/DefaultStyle.png)|![Black-Green style](docs/Image/Screenshot/Green.png)|![Black](docs/Image/Screenshot/black.png)|![White](docs/Image/Screenshot/white.png)|
 
+### Video
+
+<video width="320" height="240"  autoplay="true" controls="controls">
+    <source src="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/2025-01-03.09-57-27.mp4" type="video/mp4">
+</video>
+
+  https://github.com/user-attachments/assets/28c2b412-f9d6-43c6-bc40-bc814031751d
+
 ### Project repository position
 
 - Main repository: https://github.com/KangLin/RabbitRemoteControl
