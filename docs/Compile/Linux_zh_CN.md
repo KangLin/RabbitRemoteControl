@@ -418,6 +418,67 @@
 
 参见：[编译集成](../../.github/workflows/ubuntu.yml)
 
+##### [AppImage](https://github.com/linuxdeploy/linuxdeploy)
+
+- 编译
+
+      ~/RabbitRemoteControl/build$ cmake .. \
+          -DCMAKE_INSTALL_PREFIX=/usr \
+          -DCMARK_SHARED=OFF \
+          -DCMARK_TESTS=OFF \
+          -DCMARK_STATIC=ON \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=/usr \
+          -DBUILD_QUIWidget=OFF \
+          -DBUILD_APP=ON \
+          -DBUILD_FREERDP=ON
+      cmake --build . --parallel $(nproc)
+      cmake --install . --config Release --component DependLibraries --prefix AppDir/usr
+      cmake --install . --config Release --component Runtime --prefix AppDir/usr
+      cmake --install . --config Release --component Application --prefix AppDir/usr
+      cmake --install . --config Release --component Plugin --prefix AppDir/usr
+
+- 建立
+
+      # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
+      #export QMAKE=${QT_ROOT}/bin/qmake
+      export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
+      # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
+      export EXTRA_QT_MODULES="svg"
+      ./linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
+          --deploy-deps-only=AppDir/usr/plugins/Client \
+          --deploy-deps-only=AppDir/usr/lib/`uname -m`-linux-gnu \
+          --plugin qt \
+          --output appimage
+
+- 运行
+
+      sudo chmod u+x ./Rabbit_Remote_Control-`uname -m`.AppImage
+      ./Rabbit_Remote_Control-`uname -m`.AppImage
+
+- 其它
+  - 解压 AppImage
+
+        ./Rabbit_Remote_Control-`uname -m`.AppImage --appimage-extract # 解压 AppImage 文件
+
+  - FUSE 问题
+
+    第一次执行AppImage文件的时候可能会碰到 PUSE 相关的问题，报错如下：
+
+    ```
+    dlopen(): error loading libfuse.so.2
+
+    AppImages require FUSE to run.
+    You might still be able to extract the contents of this AppImage
+    if you run it with the --appimage-extract option.
+    See https://github.com/AppImage/AppImageKit/wiki/FUSE
+
+    for more information
+    ```
+
+    解决方案：
+        安装fuse2 `sudo apt install fuse`
+
 ##### snap
 - 编译:
   - Parts 生命周期: https://snapcraft.io/docs/parts-lifecycle

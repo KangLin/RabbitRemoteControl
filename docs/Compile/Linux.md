@@ -1,4 +1,5 @@
 ## Compiling for Linux
+
 Author: Kang Lin <kl222@126.com>  
 Translator: Allan Nordhøy <epost@anotheragency.no>
 
@@ -24,6 +25,7 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
       Codename:	bookworm
 
 #### Qt Creator
+
 Version: v12.0.2  
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
@@ -108,6 +110,7 @@ Prior versions don't have CMake support.
 - [OPTIONAL] [FFMPEG:](https://ffmpeg.org/) Multimedia capabilities required
 
 #### RabbitCommon
+
 This library is placed in the same directory level as the project by default.
 If not, you must specify the CMake parameters:
 -DRabbitCommon_ROOT=[RabbitCommon installation path]
@@ -115,6 +118,7 @@ If not, you must specify the CMake parameters:
     ~$ git clone https://github.com/KangLin/RabbitCommon.git
 
 #### FreeRDP
+
 - Use the system-packaged development library
 
       ~$ sudo apt install freerdp2-dev
@@ -149,6 +153,7 @@ If not, you must specify the CMake parameters:
     - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR2
   
 #### LibVNCServer
+
 - Use the system-packaged development library
 
       ~$ sudo apt install libvncserver-dev
@@ -159,6 +164,7 @@ If not, you must specify the CMake parameters:
   + Specify CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
 
 #### RabbitVNC
+
 - Compile from source code
 Source-code location: https://github.com/KangLin/RabbitVNC  
 
@@ -172,6 +178,7 @@ Source-code location: https://github.com/KangLin/RabbitVNC
 - Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
 
 #### TigerVNC
+
 - Compile from source code
 
 The official program does not support libraries.
@@ -189,6 +196,7 @@ Source-code location: https://github.com/KangLin/tigervnc
 - Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 
 #### libdatachannel
+
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
 
@@ -214,6 +222,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + Specify the CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
 
 #### QXmpp
+
 - Compile from source code
   + Source-code location: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
   
@@ -227,6 +236,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + Specify the CMake parameters: -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
 
 #### QTermWidget
+
 - Use the system-packaged development library
 
       ~$ sudo apt install libqtermwidget5-0-dev
@@ -236,6 +246,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + Specify the CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
 #### libssh
+
 - Use the system-packaged development library
 
       ~$ sudo apt install libssh-dev 
@@ -255,6 +266,7 @@ Source-code location: https://github.com/KangLin/tigervnc
   + Specify the CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 
 #### QtService
+
 - Compile from source code
   + Source-code location: https://github.com/KangLin/qt-solutions/
   
@@ -293,6 +305,7 @@ It is depended by PcapPlusPlus
 - Sourc-code location: https://github.com/the-tcpdump-group/libpcap
 
 ### Compile this project
+
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - Download the source code:
 
@@ -375,7 +388,7 @@ and then run ldconfig to add the dependent library to the system.
 
 ### Compilation
 
-- Ubuntu
+#### Ubuntu
 
     ```bash
     #Install the development tools package
@@ -448,50 +461,116 @@ and then run ldconfig to add the dependent library to the system.
 
 See: [Compile integration](../../.github/workflows/ubuntu.yml)
 
-- snap
-  - build
-    - Parts lifecycle: https://snapcraft.io/docs/parts-lifecycle
-    - https://snapcraft.io/docs/how-snapcraft-builds  
-     Each of these lifecycle steps can be run from the command line,
-     and the command can be part specific or apply to all parts in a project.
+##### [AppImage](https://github.com/linuxdeploy/linuxdeploy)
 
-          snapcraft pull [<part-name>]
-          snapcraft build [<part-name>]
-          snapcraft stage [<part-name>]
-          snapcraft prime [<part-name>]
-          snapcraft pack or snapcraft
+- Compile
+
+      ~/RabbitRemoteControl/build$ cmake .. \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMARK_SHARED=OFF \
+        -DCMARK_TESTS=OFF \
+        -DCMARK_STATIC=ON \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DBUILD_QUIWidget=OFF \
+        -DBUILD_APP=ON \
+        -DBUILD_FREERDP=ON
+      cmake --build . --parallel $(nproc)
+      cmake --install . --config Release --component DependLibraries --prefix AppDir/usr
+      cmake --install . --config Release --component Runtime --prefix AppDir/usr
+      cmake --install . --config Release --component Application --prefix AppDir/usr
+      cmake --install . --config Release --component Plugin --prefix AppDir/usr
+
+- Build AppImage
+
+      # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
+      #export QMAKE=${QT_ROOT}/bin/qmake
+      export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
+      # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
+      export EXTRA_QT_MODULES="svg"
+      ./linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
+          --deploy-deps-only=AppDir/usr/plugins/Client \
+          --deploy-deps-only=AppDir/usr/lib/`uname -m`-linux-gnu \
+          --plugin qt \
+          --output appimage
+  
+- Run AppImage
+
+      sudo chmod u+x ./Rabbit_Remote_Control-`uname -m`.AppImage
+      ./Rabbit_Remote_Control-`uname -m`.AppImage
+
+- Other
+  - Extract AppImage
+  
+        ./Rabbit_Remote_Control-`uname -m`.AppImage --appimage-extract
+
+  - FUSE issuse
+  
+    When you run the AppImage file for the first time,
+    you may encounter PUSE-related issues,
+    and the following error message is displayed:
+    
+    ```
+    dlopen(): error loading libfuse.so.2
+
+    AppImages require FUSE to run.
+    You might still be able to extract the contents of this AppImage
+    if you run it with the --appimage-extract option.
+    See https://github.com/AppImage/AppImageKit/wiki/FUSE
+
+    for more information
+    ```
+
+    Solution:
+        Install fuse2
         
-    - Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
-      The following commands enable you to step into this encapsulated environment:
-      - --shell: builds your snap to the lifecycle step prior to that specified and opens a shell into the environment (e.g. running snapcraft prime --shell will run up to the stage step and open a shell).
-      - --shell-after: builds your snap to the lifecycle step specified and opens a shell into the environment. (eg. running snapcraft prime --shell-after will run up to the prime step and then drop into a shell).
-      - --debug, opens a shell inside the environment after an error occurs.  
-        For example, to open a shell just before the prime phase, use the following command:
-    
-            $ snapcraft prime -v --debug --shell
-            Using 'snap/snapcraft.yaml': Project assets will be searched for from
-            the 'snap' directory.
-            Launching a VM.
-            Launched: snapcraft-test
-            [...]
-            Pulling part-test
-            Building part-test
-            Staging part-test
-            snapcraft-test #
-    
-    - build clean
-    
-          snapcraft clean
+        `sudo apt install fuse`
+
+##### snap
+
+- build
+  - Parts lifecycle: https://snapcraft.io/docs/parts-lifecycle
+  - https://snapcraft.io/docs/how-snapcraft-builds  
+    Each of these lifecycle steps can be run from the command line,
+    and the command can be part specific or apply to all parts in a project.
+
+        snapcraft pull [<part-name>]
+        snapcraft build [<part-name>]
+        snapcraft stage [<part-name>]
+        snapcraft prime [<part-name>]
+        snapcraft pack or snapcraft
         
-  - Test
-    - Use --devmode
+  - Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
+    The following commands enable you to step into this encapsulated environment:
+    - --shell: builds your snap to the lifecycle step prior to that specified and opens a shell into the environment (e.g. running snapcraft prime --shell will run up to the stage step and open a shell).
+    - --shell-after: builds your snap to the lifecycle step specified and opens a shell into the environment. (eg. running snapcraft prime --shell-after will run up to the prime step and then drop into a shell).
+    - --debug, opens a shell inside the environment after an error occurs.  
+      For example, to open a shell just before the prime phase, use the following command:
+    
+          $ snapcraft prime -v --debug --shell
+          Using 'snap/snapcraft.yaml': Project assets will be searched for from
+          the 'snap' directory.
+          Launching a VM.
+          Launched: snapcraft-test
+          [...]
+          Pulling part-test
+          Building part-test
+          Staging part-test
+          snapcraft-test #
 
-          snap install ./rabbitremotecontrol_0.0.27_amd64.snap --devmode
+  - build clean
+    
+        snapcraft clean
+        
+- Test
+  - Use --devmode
+
+        snap install ./rabbitremotecontrol_0.0.27_amd64.snap --devmode
  
-    - Run
+  - Run
  
-          rabbitremotecontrol
+        rabbitremotecontrol
 
-    - Remove
+  - Remove
 
-          snap remove rabbitremotecontrol
+        snap remove rabbitremotecontrol

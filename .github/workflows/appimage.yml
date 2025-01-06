@@ -116,7 +116,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
-            git clone -b 3.9.0 https://github.com/FreeRDP/FreeRDP.git
+            git clone -b 3.10.3 https://github.com/FreeRDP/FreeRDP.git
             # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
             git submodule update --init --recursive
@@ -201,11 +201,11 @@ jobs:
         run: |
             cd ${{env.TOOSL_DIR}}
             if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
-                wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20240109-1/linuxdeploy-`uname -m`.AppImage
+                wget https://github.com/linuxdeploy/linuxdeploy/releases/download/2.0.0-alpha-1-20241106/linuxdeploy-`uname -m`.AppImage
                 chmod u+x linuxdeploy-`uname -m`.AppImage
             fi
             if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
-                wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20240109-1/linuxdeploy-plugin-qt-`uname -m`.AppImage
+                wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/2.0.0-alpha-1-20241106/linuxdeploy-plugin-qt-`uname -m`.AppImage
                 chmod u+x linuxdeploy-plugin-qt-`uname -m`.AppImage
             fi
 
@@ -249,12 +249,15 @@ jobs:
           # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
           export QMAKE=$Qt6_DIR/bin/qmake
           export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
+          # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
+          export EXTRA_QT_MODULES="svg"
           ${{env.TOOSL_DIR}}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
               --deploy-deps-only=AppDir/usr/plugins/Client \
               --deploy-deps-only=AppDir/usr/lib/`uname -m`-linux-gnu \
               --plugin qt \
               --output appimage
           mv Rabbit_Remote_Control-`uname -m`.AppImage ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage
+          chmod a+x ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage
           md5sum ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage > ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage.md5sum
 
       - name: update configure file
@@ -283,14 +286,6 @@ jobs:
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage" \
             --md5 "${MD5SUM}" \
             -m "v${{env.RabbitRemoteControl_VERSION}}"
-
-      - name: Debug core dump
-        if: false
-        continue-on-error: true
-        working-directory: ${{github.workspace}}
-        run: |
-          sudo apt install gdb -y -qq
-          gdb /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp core
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}

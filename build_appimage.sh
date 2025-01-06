@@ -41,6 +41,7 @@ cmake "$REPO_ROOT" \
   -DCMARK_SHARED=OFF \
   -DCMARK_TESTS=OFF \
   -DCMARK_STATIC=ON \
+  -DQT_DEBUG_FIND_PACKAGE=ON \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX=/usr \
   -DBUILD_QUIWidget=OFF \
@@ -53,18 +54,19 @@ cmake --install . --config Release --component Application --prefix ${INSTALL_DI
 cmake --install . --config Release --component Plugin --prefix ${INSTALL_DIR}
 
 if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
-	wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20240109-1/linuxdeploy-`uname -m`.AppImage
+	wget https://github.com/linuxdeploy/linuxdeploy/releases/download/2.0.0-alpha-1-20241106/linuxdeploy-`uname -m`.AppImage
 	chmod u+x linuxdeploy-`uname -m`.AppImage
 fi
 if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
-    wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20240109-1/linuxdeploy-plugin-qt-`uname -m`.AppImage
+    wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/2.0.0-alpha-1-20241106/linuxdeploy-plugin-qt-`uname -m`.AppImage
     chmod u+x linuxdeploy-plugin-qt-`uname -m`.AppImage
 fi
 
 # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
-#export QMAKE=qmake6
+export QMAKE=${QT_ROOT}/bin/qmake
 export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
-
+# Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
+export EXTRA_QT_MODULES="svg"
 ./linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
     --deploy-deps-only=${INSTALL_DIR}/plugins/Client \
     --deploy-deps-only=${INSTALL_DIR}/lib/`uname -m`-linux-gnu \
