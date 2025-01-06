@@ -1,0 +1,835 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CParameter类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.31</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#properties">属性</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCParameter-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CParameter类 参考<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__CLIENT__PARAMETER.html">参数接口</a> &#124; <a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__CLIENT__PLUGIN__API.html">客户端插件接口</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>参数接口  
+ <a href="classCParameter.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Parameter_8h_source.html">Parameter.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CParameter 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classCParameter.png" usemap="#CParameter_map" alt=""/>
+  <map id="CParameter_map" name="CParameter_map">
+<area href="classCParameterClient.html" title="客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。" alt="CParameterClient" shape="rect" coords="0,112,165,136"/>
+<area href="classCParameterConnecter.html" title="连接参数接口。仅在插件内有效。" alt="CParameterConnecter" shape="rect" coords="831,112,996,136"/>
+<area href="classCParameterRecord.html" alt="CParameterRecord" shape="rect" coords="1006,112,1171,136"/>
+<area href="classCParameterBase.html" title="连接基础参数接口。包括基本参数（网络参数等）。 所有插件的连接参数都应从此类派生。" alt="CParameterBase" shape="rect" coords="350,168,515,192"/>
+<area href="classCParameterNet.html" title="网络连接参数接口。此类仅在插件内有效。 其界面为 CParameterNetUI" alt="CParameterNet" shape="rect" coords="525,168,690,192"/>
+<area href="classCParameterProxy.html" title="The proxy parameters." alt="CParameterProxy" shape="rect" coords="700,168,865,192"/>
+<area href="classCParameterTerminal.html" alt="CParameterTerminal" shape="rect" coords="962,168,1127,192"/>
+<area href="classCParameterUser.html" title="用户名与验证方式。此类仅在插件内有效。它的界面是 CParameterUserUI" alt="CParameterUser" shape="rect" coords="1137,168,1302,192"/>
+<area href="classCParameterWakeOnLan.html" title="The wake on lan parameters." alt="CParameterWakeOnLan" shape="rect" coords="1312,168,1477,192"/>
+<area href="classCParameterFreeRDP.html" title="[Declare CParameterFreeRDP]" alt="CParameterFreeRDP" shape="rect" coords="0,224,165,248"/>
+<area href="classCParameterLibVNCServer.html" alt="CParameterLibVNCServer" shape="rect" coords="175,224,340,248"/>
+<area href="classCParameterPlayer.html" alt="CParameterPlayer" shape="rect" coords="350,224,515,248"/>
+<area href="classCParameterScreenCapture.html" alt="CParameterScreenCapture" shape="rect" coords="525,224,690,248"/>
+<area href="classCParameterVnc.html" alt="CParameterVnc" shape="rect" coords="700,224,865,248"/>
+<area href="classCParameterSSH.html" alt="CParameterSSH" shape="rect" coords="875,224,1040,248"/>
+<area href="classCParameterTelnet.html" alt="CParameterTelnet" shape="rect" coords="1050,224,1215,248"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+信号</h2></td></tr>
+<tr class="memitem:ab5124167d19d94b4e068b6462eefcebb" id="r_ab5124167d19d94b4e068b6462eefcebb"><td class="memItemLeft" align="right" valign="top"><a id="ab5124167d19d94b4e068b6462eefcebb" name="ab5124167d19d94b4e068b6462eefcebb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>sigChanged</b> ()</td></tr>
+<tr class="memdesc:ab5124167d19d94b4e068b6462eefcebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">当参数改变时，触发 通常如果需要，则相应的参数会对应一个改变事件。 <br /></td></tr>
+<tr class="separator:ab5124167d19d94b4e068b6462eefcebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:af01ed678eb8a06464823ded27b39c734" id="r_af01ed678eb8a06464823ded27b39c734"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#af01ed678eb8a06464823ded27b39c734">CParameter</a> (QObject *parent=nullptr, const QString &amp;szPrefix=QString())</td></tr>
+<tr class="separator:af01ed678eb8a06464823ded27b39c734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7a5d82c3fe1fb0e1fe74f41405ea7ac" id="r_ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">Load</a> (QString szFile=QString())</td></tr>
+<tr class="memdesc:ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from file  <br /></td></tr>
+<tr class="separator:ae7a5d82c3fe1fb0e1fe74f41405ea7ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b057f5f3873a1d0ee546e466205982" id="r_aa1b057f5f3873a1d0ee546e466205982"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982">Save</a> (QString szFile=QString(), bool bForce=true)</td></tr>
+<tr class="memdesc:aa1b057f5f3873a1d0ee546e466205982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to file  <br /></td></tr>
+<tr class="separator:aa1b057f5f3873a1d0ee546e466205982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9cff95142b4c89701d9fe7d2c4227d" id="r_a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d">Load</a> (QSettings &amp;set)</td></tr>
+<tr class="memdesc:a8e9cff95142b4c89701d9fe7d2c4227d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load from storage  <br /></td></tr>
+<tr class="separator:a8e9cff95142b4c89701d9fe7d2c4227d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87e7f732bf74f3d00b9dcc2dc677baee" id="r_a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a87e7f732bf74f3d00b9dcc2dc677baee">Save</a> (QSettings &amp;set, bool bForce=true)</td></tr>
+<tr class="memdesc:a87e7f732bf74f3d00b9dcc2dc677baee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save to storage  <br /></td></tr>
+<tr class="separator:a87e7f732bf74f3d00b9dcc2dc677baee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5744cebce5aa518a7d1d086b05001943" id="r_a5744cebce5aa518a7d1d086b05001943"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943">CheckValidity</a> ()</td></tr>
+<tr class="memdesc:a5744cebce5aa518a7d1d086b05001943"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。  <br /></td></tr>
+<tr class="separator:a5744cebce5aa518a7d1d086b05001943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ae86203bea544d72237a0fd4764268c5a" id="r_ae86203bea544d72237a0fd4764268c5a"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#ae86203bea544d72237a0fd4764268c5a">OnLoad</a> (QSettings &amp;set)=0</td></tr>
+<tr class="separator:ae86203bea544d72237a0fd4764268c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a6831c3938f05bf43e8d87439d23d6" id="r_a77a6831c3938f05bf43e8d87439d23d6"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a77a6831c3938f05bf43e8d87439d23d6">OnSave</a> (QSettings &amp;set)=0</td></tr>
+<tr class="separator:a77a6831c3938f05bf43e8d87439d23d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc56ccd893dad6261f13d54b1cdd26b3" id="r_acc56ccd893dad6261f13d54b1cdd26b3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3">OnCheckValidity</a> ()</td></tr>
+<tr class="memdesc:acc56ccd893dad6261f13d54b1cdd26b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查参数是否有效  <br /></td></tr>
+<tr class="separator:acc56ccd893dad6261f13d54b1cdd26b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bbee80e1e896d59752ed0dd25e9686" id="r_a35bbee80e1e896d59752ed0dd25e9686"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a35bbee80e1e896d59752ed0dd25e9686">SetModified</a> (bool bModified=true)</td></tr>
+<tr class="memdesc:a35bbee80e1e896d59752ed0dd25e9686"><td class="mdescLeft">&#160;</td><td class="mdescRight">在设置参数时，如果有修改，则调用。  <br /></td></tr>
+<tr class="separator:a35bbee80e1e896d59752ed0dd25e9686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8032b3b13982776a6ef29bf24c127ca" id="r_aa8032b3b13982776a6ef29bf24c127ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#aa8032b3b13982776a6ef29bf24c127ca">GetModified</a> ()</td></tr>
+<tr class="memdesc:aa8032b3b13982776a6ef29bf24c127ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">参数是否有修改  <br /></td></tr>
+<tr class="separator:aa8032b3b13982776a6ef29bf24c127ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+属性</h2></td></tr>
+<tr class="memitem:a18e28d135b68b2aea1156c0f9bba22e7" id="r_a18e28d135b68b2aea1156c0f9bba22e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a18e28d135b68b2aea1156c0f9bba22e7">Modified</a></td></tr>
+<tr class="separator:a18e28d135b68b2aea1156c0f9bba22e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a7ff3a152c3fbfddb9dd91c6f80e962a7" id="r_a7ff3a152c3fbfddb9dd91c6f80e962a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a7ff3a152c3fbfddb9dd91c6f80e962a7">AddCategory</a> (<a class="el" href="classCParameter.html">CParameter</a> *p)</td></tr>
+<tr class="memdesc:a7ff3a152c3fbfddb9dd91c6f80e962a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">此类及其派生类的实例做为实例的成员  <br /></td></tr>
+<tr class="separator:a7ff3a152c3fbfddb9dd91c6f80e962a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a418379d607ccb0cce68fcd0b85c11af4" id="r_a418379d607ccb0cce68fcd0b85c11af4"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a418379d607ccb0cce68fcd0b85c11af4">GetPrefix</a> () const</td></tr>
+<tr class="separator:a418379d607ccb0cce68fcd0b85c11af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973a1968c9a4dd7597c56ba2121d08b8" id="r_a973a1968c9a4dd7597c56ba2121d08b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a973a1968c9a4dd7597c56ba2121d08b8">SetPrefix</a> (const QString &amp;szPrefix)</td></tr>
+<tr class="separator:a973a1968c9a4dd7597c56ba2121d08b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a00b4a07809df190a0cb0875f33c9d00c" id="r_a00b4a07809df190a0cb0875f33c9d00c"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a00b4a07809df190a0cb0875f33c9d00c">m_szPrefix</a></td></tr>
+<tr class="separator:a00b4a07809df190a0cb0875f33c9d00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44555773ac03d468f3db15c64c8fbeff" id="r_a44555773ac03d468f3db15c64c8fbeff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a44555773ac03d468f3db15c64c8fbeff">m_bModified</a></td></tr>
+<tr class="memdesc:a44555773ac03d468f3db15c64c8fbeff"><td class="mdescLeft">&#160;</td><td class="mdescRight">标识参数是否有修改。如果 false，则保存文件时，不保存  <br /></td></tr>
+<tr class="separator:a44555773ac03d468f3db15c64c8fbeff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a185ca5b039c6d0a7ff4788dabe05b03c" id="r_a185ca5b039c6d0a7ff4788dabe05b03c"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="classCParameter.html">CParameter</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCParameter.html#a185ca5b039c6d0a7ff4788dabe05b03c">m_Category</a></td></tr>
+<tr class="memdesc:a185ca5b039c6d0a7ff4788dabe05b03c"><td class="mdescLeft">&#160;</td><td class="mdescRight">类别  <br /></td></tr>
+<tr class="separator:a185ca5b039c6d0a7ff4788dabe05b03c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>参数接口 </p>
+<h1><a class="anchor" id="sub_CParameter_CATEGORY_USAGE"></a>
+参数分类使用</h1>
+<p>因为可能会有很多参数，所以需要按参数类型分类来管理。每个分类可以从此类派生出一个单独的类。 然后每个分类再做为参数的成员变量。</p>
+<p>例如：<br  />
+ 连接参数包括以下几种类型：</p><ul>
+<li>视频参数 <div class="fragment"><div class="line"><span class="keyword">class </span>CParameterVideo : <span class="keyword">public</span> <a class="code hl_class" href="classCParameter.html">CParameter</a></div>
+<div class="ttc" id="aclassCParameter_html"><div class="ttname"><a href="classCParameter.html">CParameter</a></div><div class="ttdoc">参数接口</div><div class="ttdef"><b>Definition</b> <a href="Parameter_8h_source.html#l00168">Parameter.h:169</a></div></div>
+</div><!-- fragment --></li>
+<li>音频参数 <div class="fragment"><div class="line"><span class="keyword">class </span>CParameterAudio : <span class="keyword">public</span> <a class="code hl_class" href="classCParameter.html">CParameter</a></div>
+</div><!-- fragment --></li>
+</ul>
+<p>那么连接参数可以是以上类型的集合：</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>CParameterConnect : <span class="keyword">public</span> <a class="code hl_class" href="classCParameter.html">CParameter</a></div>
+<div class="line">{</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keyword">explicit</span> CParameterConnect(<a class="code hl_class" href="classCParameter.html">CParameter</a> *parent = <span class="keyword">nullptr</span>);</div>
+<div class="line"> </div>
+<div class="line">    CParameterVideo m_Video;</div>
+<div class="line">    CParameterAudio m_Audio;</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line">CParameterConnect::CParameterConnect(<a class="code hl_class" href="classCParameter.html">CParameter</a> *parent = <span class="keyword">nullptr</span>)</div>
+<div class="line"> : <a class="code hl_class" href="classCParameter.html">CParameter</a>(parent),</div>
+<div class="line">   m_Video(this),</div>
+<div class="line">   m_Audio(this)</div>
+<div class="line">{}</div>
+</div><!-- fragment --><dl class="section note"><dt>注解</dt><dd>当成员实例化时，必须设置构造函数的参数 parent 为 this</dd></dl>
+<h1><a class="anchor" id="CParameter_Functions"></a>
+CParameter 接口功能</h1>
+<ul>
+<li>从存储中加载和保存参数<ul>
+<li>如果要自动嵌套调用 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 类型成员的 OnXXX 函数（例如: OnLoad)， 在成员实例化时，设置构造函数的 parent 为 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a>(一般用this） 类型实例。</li>
+<li>如果要自己控制 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 类型成员的 OnXXX 函数（例如: OnLoad)， 在成员实例化时，设置构造函数的 parent 为空或者设置为非 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 类型实例。</li>
+</ul>
+</li>
+<li>当派生类设置参数时，需要调用 SetModified 。标志参数已改变。</li>
+<li>检查参数的有效性。调用 <a class="el" href="classCParameter.html#a5744cebce5aa518a7d1d086b05001943" title="检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 OnCheckValidity() ，用于检查参数。">CheckValidity()</a> </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00168">168</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="af01ed678eb8a06464823ded27b39c734" name="af01ed678eb8a06464823ded27b39c734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af01ed678eb8a06464823ded27b39c734">&#9670;&#160;</a></span>CParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameter::CParameter </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPrefix</em> = <code>QString()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td><ul>
+<li>为 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 实例，则自动调用 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 类型成员的 OnXXX 函数。</li>
+<li>为空或者非 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 实例，则不调用 <a class="el" href="classCParameter.html" title="参数接口">CParameter</a> 类型成员的 OnXXX 函数 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCParameter.html#a8e9cff95142b4c89701d9fe7d2c4227d" title="Load from storage">Load(QSettings &amp;set)</a> <a class="el" href="classCParameter.html#aa1b057f5f3873a1d0ee546e466205982" title="Save to file">Save</a>(QSettings &amp;set, bool bForce = true) </dd></dl>
+
+</div>
+</div>
+<a id="ac3dd8d91ae58920b723034c357ff6659" name="ac3dd8d91ae58920b723034c357ff6659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3dd8d91ae58920b723034c357ff6659">&#9670;&#160;</a></span>~CParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CParameter::~CParameter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a7ff3a152c3fbfddb9dd91c6f80e962a7" name="a7ff3a152c3fbfddb9dd91c6f80e962a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ff3a152c3fbfddb9dd91c6f80e962a7">&#9670;&#160;</a></span>AddCategory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameter::AddCategory </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCParameter.html">CParameter</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>此类及其派生类的实例做为实例的成员 </p>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00130">130</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5744cebce5aa518a7d1d086b05001943" name="a5744cebce5aa518a7d1d086b05001943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5744cebce5aa518a7d1d086b05001943">&#9670;&#160;</a></span>CheckValidity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameter::CheckValidity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查参数是否有效，以决定是否使用或者保存参数。 派生类一般只要重载 <a class="el" href="classCParameter.html#acc56ccd893dad6261f13d54b1cdd26b3" title="检查参数是否有效">OnCheckValidity()</a> ，用于检查参数。 </p>
+<p>例如：用于在参数设置对话框时，需要先检查参数是否完成或者有效，才能确定保存。</p>
+<div class="fragment"></div><!-- fragment --> 
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa8032b3b13982776a6ef29bf24c127ca" name="aa8032b3b13982776a6ef29bf24c127ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8032b3b13982776a6ef29bf24c127ca">&#9670;&#160;</a></span>GetModified()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameter::GetModified </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>参数是否有修改 </p>
+<p>GetModified </p><dl class="section return"><dt>返回</dt><dd><ul>
+<li>true: modified</li>
+<li>false: no modified </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00117">117</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a418379d607ccb0cce68fcd0b85c11af4" name="a418379d607ccb0cce68fcd0b85c11af4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a418379d607ccb0cce68fcd0b85c11af4">&#9670;&#160;</a></span>GetPrefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameter::GetPrefix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00022">22</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8e9cff95142b4c89701d9fe7d2c4227d" name="a8e9cff95142b4c89701d9fe7d2c4227d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e9cff95142b4c89701d9fe7d2c4227d">&#9670;&#160;</a></span>Load() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameter::Load </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Load from storage </p>
+
+<p>被 <a class="el" href="classCParameterTerminal.html#afbdd370b893af1c42d184de3c6a3eab7">CParameterTerminal</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae7a5d82c3fe1fb0e1fe74f41405ea7ac" name="ae7a5d82c3fe1fb0e1fe74f41405ea7ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7a5d82c3fe1fb0e1fe74f41405ea7ac">&#9670;&#160;</a></span>Load() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameter::Load </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>szFile</em> = <code>QString()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Load from file </p>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acc56ccd893dad6261f13d54b1cdd26b3" name="acc56ccd893dad6261f13d54b1cdd26b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc56ccd893dad6261f13d54b1cdd26b3">&#9670;&#160;</a></span>OnCheckValidity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameter::OnCheckValidity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查参数是否有效 </p>
+<dl class="section return"><dt>返回</dt><dd><ul>
+<li>true: 有效</li>
+<li>false: 无效 </li>
+</ul>
+</dd></dl>
+
+<p>被 <a class="el" href="classCParameterVnc.html#a3487773b88a76bb40e24d69c8323a381">CParameterVnc</a> , 以及 <a class="el" href="classCParameterWakeOnLan.html#ab2fc66765d4d40aad47898c8cd1f750d">CParameterWakeOnLan</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae86203bea544d72237a0fd4764268c5a" name="ae86203bea544d72237a0fd4764268c5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae86203bea544d72237a0fd4764268c5a">&#9670;&#160;</a></span>OnLoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CParameter::OnLoad </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在 <a class="el" href="classCParameterClient.html#a7355c527730dd1835a1720c80fa52c6e">CParameterClient</a>, <a class="el" href="classCParameterNet.html#aeff5049c4a8c47664527a110875c0c05">CParameterNet</a> , 以及 <a class="el" href="classCParameterWakeOnLan.html#a03acf1a34ac8c10cc9c8dc3a90af9a52">CParameterWakeOnLan</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a77a6831c3938f05bf43e8d87439d23d6" name="a77a6831c3938f05bf43e8d87439d23d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a6831c3938f05bf43e8d87439d23d6">&#9670;&#160;</a></span>OnSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int CParameter::OnSave </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在 <a class="el" href="classCParameterClient.html#a988a0231d16a66b0ed43cfc4ce1a85ea">CParameterClient</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a87e7f732bf74f3d00b9dcc2dc677baee" name="a87e7f732bf74f3d00b9dcc2dc677baee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87e7f732bf74f3d00b9dcc2dc677baee">&#9670;&#160;</a></span>Save() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameter::Save </td>
+          <td>(</td>
+          <td class="paramtype">QSettings &amp;&#160;</td>
+          <td class="paramname"><em>set</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bForce</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Save to storage </p>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1b057f5f3873a1d0ee546e466205982" name="aa1b057f5f3873a1d0ee546e466205982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1b057f5f3873a1d0ee546e466205982">&#9670;&#160;</a></span>Save() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameter::Save </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>szFile</em> = <code>QString()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bForce</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Save to file </p>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a35bbee80e1e896d59752ed0dd25e9686" name="a35bbee80e1e896d59752ed0dd25e9686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35bbee80e1e896d59752ed0dd25e9686">&#9670;&#160;</a></span>SetModified()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameter::SetModified </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bModified</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在设置参数时，如果有修改，则调用。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bModified</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00122">122</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a973a1968c9a4dd7597c56ba2121d08b8" name="a973a1968c9a4dd7597c56ba2121d08b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a973a1968c9a4dd7597c56ba2121d08b8">&#9670;&#160;</a></span>SetPrefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CParameter::SetPrefix </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szPrefix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a> 第 <a class="el" href="Parameter_8cpp_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a44555773ac03d468f3db15c64c8fbeff" name="a44555773ac03d468f3db15c64c8fbeff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44555773ac03d468f3db15c64c8fbeff">&#9670;&#160;</a></span>m_bModified</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameter::m_bModified</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>标识参数是否有修改。如果 false，则保存文件时，不保存 </p>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00296">296</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a185ca5b039c6d0a7ff4788dabe05b03c" name="a185ca5b039c6d0a7ff4788dabe05b03c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a185ca5b039c6d0a7ff4788dabe05b03c">&#9670;&#160;</a></span>m_Category</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt;<a class="el" href="classCParameter.html">CParameter</a>*&gt; CParameter::m_Category</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>类别 </p>
+
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00302">302</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a00b4a07809df190a0cb0875f33c9d00c" name="a00b4a07809df190a0cb0875f33c9d00c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00b4a07809df190a0cb0875f33c9d00c">&#9670;&#160;</a></span>m_szPrefix</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString CParameter::m_szPrefix</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00288">288</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">属性说明</h2>
+<a id="a18e28d135b68b2aea1156c0f9bba22e7" name="a18e28d135b68b2aea1156c0f9bba22e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18e28d135b68b2aea1156c0f9bba22e7">&#9670;&#160;</a></span>Modified</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CParameter::Modified</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Parameter_8h_source.html">Parameter.h</a> 第 <a class="el" href="Parameter_8h_source.html#l00171">171</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="Parameter_8h_source.html">Parameter.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="Parameter_8cpp_source.html">Parameter.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>
