@@ -58,7 +58,7 @@ It include remote desktop, remote terminal, player etc remote control functions.
 ### Video
 
 <video width="320" height="240"  autoplay="true" controls="controls">
-    <source src="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/2025-01-03.09-57-27.mp4" type="video/mp4">
+    <source src="https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/2025-01-03.09-57-27.mp4" type="video/mp4">
 </video>
 
   https://github.com/user-attachments/assets/28c2b412-f9d6-43c6-bc40-bc814031751d
@@ -198,7 +198,7 @@ Legend:
 ### Full Documentation
 
 - Development documentation online
-  - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.30/English/html/index.html)
+  - [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.31/English/html/index.html)
   - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 - [Compilation documentation](#Compilation)
 
@@ -352,44 +352,50 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
   - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
   
-+ Current version: v0.0.30
++ Current version: v0.0.31
   - Windows: Supported WINDOWS 7 and later version
     + Win64
-      - Install package: RabbitRemoteControl_v0.0.30_win64_msvc2022_64_qt6.8.1_Setup.exe
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_win64_msvc2022_64_qt6.8.1_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/RabbitRemoteControl_v0.0.30_win64_msvc2022_64_qt6.8.1_Setup.exe/download)
-      - MD5SUM file: RabbitRemoteControl_v0.0.30_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/RabbitRemoteControl_v0.0.30_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum/download)
+      - Install package: RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe/download)
+      - MD5SUM file: RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum/download)
     + Win32
-      - Install package: RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe/download)
-      - MD5SUM file: RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/RabbitRemoteControl_v0.0.30_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
+      - Install package: RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe/download)
+      - MD5SUM file: RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
+        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
   - Ubuntu, Debian:
-    + rabbitremotecontrol_0.0.30_amd64.deb
+    + rabbitremotecontrol_0.0.31_amd64.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.30_amd64.deb
+          sudo apt install ./rabbitremotecontrol_0.0.31_amd64.deb
           
           # If you're on an older ubuntu distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.30_amd64.deb
+          # sudo dpkg -i rabbitremotecontrol_0.0.31_amd64.deb
           # sudo apt-get install -f # Install dependencies
 
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/rabbitremotecontrol_0.0.30_amd64.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/rabbitremotecontrol_0.0.30_amd64.deb/download)
-    + MD5SUM file: rabbitremotecontrol_0.0.30_amd64.deb.md5sum
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/rabbitremotecontrol_0.0.30_amd64.deb.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/rabbitremotecontrol_0.0.30_amd64.deb.md5sum/download)
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/rabbitremotecontrol_0.0.31_amd64.deb)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/rabbitremotecontrol_0.0.31_amd64.deb/download)
+    + MD5SUM file: rabbitremotecontrol_0.0.31_amd64.deb.md5sum
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/rabbitremotecontrol_0.0.31_amd64.deb.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/rabbitremotecontrol_0.0.31_amd64.deb.md5sum/download)
   - Snap:
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
+  - AppImage:
+    - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_x86_64.AppImage)
+    - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.30_x86_64.AppImage/download)
+  - Other:
+    - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.30)
+    - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/)
 
 ## [Development](docs/Doxygen/Develop.md)
 
 ### Development documentation online
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.30/English/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.31/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation

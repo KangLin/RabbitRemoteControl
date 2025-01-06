@@ -27,7 +27,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
-      RabbitRemoteControl_VERSION: v0.0.30
+      RabbitRemoteControl_VERSION: v0.0.31
       artifact_name: build_appimage
 
     # Map the job outputs to step outputs

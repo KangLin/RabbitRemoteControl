@@ -5,8 +5,8 @@ name: build
 env:
   artifact_path: artifact_path
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  RabbitRemoteControl_VERSION: v0.0.30
-  RabbitRemoteControl_VERSION_PRE: v0.0.29
+  RabbitRemoteControl_VERSION: v0.0.31
+  RabbitRemoteControl_VERSION_PRE: v0.0.30
 
 on:
   push:

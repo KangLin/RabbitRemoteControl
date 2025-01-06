@@ -504,7 +504,7 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
   
         ./Rabbit_Remote_Control-`uname -m`.AppImage --appimage-extract
 
-  - FUSE issuse
+  - FUSE issue
   
     When you run the AppImage file for the first time,
     you may encounter PUSE-related issues,
