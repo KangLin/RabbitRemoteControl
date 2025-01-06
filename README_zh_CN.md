@@ -373,11 +373,11 @@
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
   - AppImage:
-    - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_x86_64.AppImage)
-    - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.30_x86_64.AppImage/download)
+    - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage)
+    - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage/download)
   - 其它:
-    - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.30)
-    - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/)
+    - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.31)
+    - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/)
 
 ## [开发](docs/Doxygen/Develop_zh_CN.md)
 

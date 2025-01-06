@@ -386,11 +386,11 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
   - AppImage:
-    - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.30/RabbitRemoteControl_v0.0.30_x86_64.AppImage)
-    - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.30_x86_64.AppImage/download)
+    - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage)
+    - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage/download)
   - Other:
-    - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.30)
-    - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.30/)
+    - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.31)
+    - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/)
 
 ## [Development](docs/Doxygen/Develop.md)
 
