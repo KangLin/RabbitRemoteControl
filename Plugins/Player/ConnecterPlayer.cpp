@@ -174,6 +174,13 @@ void CConnecterPlayer::slotPositionChanged(qint64 pos, qint64 duration)
     m_Player.slotPositionChanged(pos, duration);
 }
 
+void CConnecterPlayer::slotPlaybackError(
+    QMediaPlayer::Error error, const QString &errorString)
+{
+    if(m_Player.m_paStart->isChecked())
+        m_Player.m_paStart->setChecked(false);
+}
+
 void CConnecterPlayer::slotPlaybackStateChanged(QMediaPlayer::PlaybackState state)
 {
     if(QMediaPlayer::StoppedState == state
@@ -184,7 +191,6 @@ void CConnecterPlayer::slotPlaybackStateChanged(QMediaPlayer::PlaybackState stat
 #if HAVE_QT6_RECORD
 void CConnecterPlayer::slotRecordStateChanged(QMediaRecorder::RecorderState state)
 {
-
     if(QMediaRecorder::StoppedState == state
         && m_Player.m_paRecord->isCheckable())
         m_Player.m_paRecord->setChecked(false);

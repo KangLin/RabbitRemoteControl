@@ -120,6 +120,9 @@ CConnectPlayer::CConnectPlayer(CConnecterPlayer* pConnecter)
                     });
     Q_ASSERT(check);
 #if HAVE_QVideoWidget
+    check = connect(&m_Player, &QMediaPlayer::errorOccurred,
+                    pConnecter, &CConnecterPlayer::slotPlaybackError);
+    Q_ASSERT(check);
     check = connect(&m_Player, &QMediaPlayer::playbackStateChanged,
                     pConnecter, &CConnecterPlayer::slotPlaybackStateChanged);
     Q_ASSERT(check);

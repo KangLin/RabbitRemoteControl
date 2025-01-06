@@ -55,6 +55,7 @@ public:
 public Q_SLOTS:
     void slotPositionChanged(qint64 pos, qint64 duration);
     void slotPlaybackStateChanged(QMediaPlayer::PlaybackState state);
+    void slotPlaybackError(QMediaPlayer::Error error, const QString &errorString);
 #if HAVE_QT6_RECORD
     void slotRecordStateChanged(QMediaRecorder::RecorderState state);
 #endif
