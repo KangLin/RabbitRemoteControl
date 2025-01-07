@@ -5,13 +5,13 @@ on:
     outputs:
       name:
         description: "The artifact name"
-        value: ${{ jobs.build_ubuntu.outputs.name }}
+        value: ${{ jobs.build_appimage.outputs.name }}
 
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 jobs:
-  build_ubuntu:
+  build_appimage:
     strategy:
       matrix:
         BUILD_TYPE: [Release]
@@ -70,7 +70,7 @@ jobs:
               libpixman-1-dev libpam0g-dev libutf8proc-dev \
               libfuse-dev libfuse3-dev libusb-1.0-0-dev libpcap-dev libcups2-dev \
               libavcodec-dev libavformat-dev libresample1-dev libswscale-dev \
-              libvncserver-dev libssh-dev libtelnet-dev
+              libvncserver-dev libssh-dev libtelnet-dev libcmark-dev cmark
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
@@ -232,7 +232,6 @@ jobs:
           fi
           export LD_LIBRARY_PATH=${{env.INSTALL_DIR}}/lib:$LD_LIBRARY_PATH
           cmake ${{github.workspace}} \
-            -DCMAKE_INSTALL_PREFIX=/usr \
             -DCMARK_SHARED=OFF \
             -DCMARK_TESTS=OFF \
             -DCMARK_STATIC=ON \

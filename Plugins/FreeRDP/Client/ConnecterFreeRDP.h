@@ -6,6 +6,8 @@
 #include "ConnecterThread.h"
 #include "ParameterFreeRDP.h"
 
+#include "RAILManageWindows.h"
+
 class CConnecterFreeRDP : public CConnecterThread
 {
     Q_OBJECT
@@ -13,11 +15,13 @@ public:
     explicit CConnecterFreeRDP(CPluginClient *plugin);
     virtual ~CConnecterFreeRDP() override;
 
+    CRAILManageWindows m_RailManageWindows;
+
 public:
     virtual qint16 Version() override;
     virtual int Initial() override;
     virtual int Clean() override;
-    
+
 protected:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
 

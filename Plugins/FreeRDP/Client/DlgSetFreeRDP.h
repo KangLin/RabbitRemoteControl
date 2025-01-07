@@ -18,30 +18,34 @@ class CDlgSetFreeRDP;
 class CDlgSetFreeRDP : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit CDlgSetFreeRDP(CParameterFreeRDP* pSettings, QWidget *parent = nullptr);
     ~CDlgSetFreeRDP();
-    
+
 private slots:
     void on_pbOk_clicked();
     void on_pbCancel_clicked();
     void on_rbLocalScreen_clicked(bool checked);
+    void on_rbLocalScreen_toggled(bool checked);
 
     void on_rbAudioDisable_toggled(bool checked);
     void on_rbAudioLocal_toggled(bool checked);
     void on_rbAudioRemote_toggled(bool checked);
-    
+
     void on_pbSizeEdit_clicked();
-    
+
     void on_pbDriveClearAll_clicked();
     void slotSelectionChanged(const QItemSelection &selected,
                               const QItemSelection &deselected);
-    
+
     void on_cbAllMonitor_stateChanged(int arg1);
-    
+
+    void on_gbRemoteApplication_clicked(bool checked);
+
 private:
     QRect GetScreenGeometry();
+    int EnableDesktopSize(bool bEnable);
     int UpdateDesktopSize();
     int InsertDesktopSize(QString szSize);
     int InsertDesktopSize(int width, int height);

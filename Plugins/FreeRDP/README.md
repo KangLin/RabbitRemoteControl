@@ -23,3 +23,4 @@ protocol using [FreeRDP](https://github.com/FreeRDP/FreeRDP).
     - [x] Picture
     - [ ] File
   - [ ] Serial
+- [x] Remote application
