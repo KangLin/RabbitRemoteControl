@@ -12,6 +12,8 @@
 
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Plugin")
 static Q_LOGGING_CATEGORY(LoggerFreeRDP, "FreeRDP.Log")
+static Q_LOGGING_CATEGORY(LoggerFreeRDPTrace, "FreeRDP.Log.Trace")
+static Q_LOGGING_CATEGORY(LoggerFreeRDPFatal, "FreeRDP.Log.Fatal")
 
 //! [Initialize resource]
 CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
@@ -30,6 +32,7 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
             switch(msg->Level)
             {
             case WLOG_TRACE:
+                qDebug(LoggerFreeRDPTrace) /*<< msg->PrefixString */ << msg->TextString;
                 break;
             case WLOG_DEBUG:
                 qDebug(LoggerFreeRDP) /*<< msg->PrefixString */ << msg->TextString;
@@ -44,7 +47,7 @@ CPluginFreeRDP::CPluginFreeRDP(QObject *parent)
                 break;
             case WLOG_FATAL:
             case WLOG_OFF:
-                qFatal(msg->FormatString, msg->TextString);
+                qCritical(LoggerFreeRDPFatal) /*<< msg->PrefixString*/ << msg->TextString;
                 break;
             default:
                 break;
