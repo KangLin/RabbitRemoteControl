@@ -71,7 +71,6 @@ It include remote desktop, remote terminal, player etc remote control functions.
   - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
   - launchpad: https://launchpad.net/rabbitremotecontrol
   - gitee: https://gitee.com/kl222/RabbitRemoteControl
-  - kde: https://invent.kde.org/kanglin/RabbitRemoteControl
   - bitbucket: https://bitbucket.org/kl222/rabbitremotecontrol
 
 ## Functions
