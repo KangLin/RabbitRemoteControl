@@ -70,7 +70,6 @@
   - sourceforge: https://sourceforge.net/projects/rabbitremotecontrol
   - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
   - launchpad: https://launchpad.net/rabbitremotecontrol
-  - kde: https://invent.kde.org/kanglin/RabbitRemoteControl
   - bitbucket: https://bitbucket.org/kl222/rabbitremotecontrol
 
 ## 功能
@@ -336,30 +335,30 @@
 + 最后发行版本：
   - [![Github 最后发行版本](https://img.shields.io/github/release/KangLin/RabbitRemoteControl?label=Github%20最后发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
   - [![Github 发行版本](https://img.shields.io/github/release-pre/KangLin/RabbitRemoteControl?label=Github%20发行版本)](https://github.com/KangLin/RabbitRemoteControl/releases)
-  - [![Download from sourceforge](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
+  - [![从 sourceforge 下载](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
   - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
 + 当前版本：v0.0.31
   - Windows: 支持 WINDOWS 7 及以后版本
     + Win64
       + 安装包: RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe/download)
+        - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe)
+        - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe/download)
       + MD5SUM 文件: RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum/download)
+        - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum)
+        - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win64_msvc2022_64_qt6.8.1_Setup.exe.md5sum/download)
     + Win32
       - Install package: RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe/download)
+        - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe)
+        - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe/download)
       - MD5SUM file: RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
-        - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
-        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
+        - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
+        - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
   - Ubuntu、Debian:
     + rabbitremotecontrol_0.0.31_amd64.deb
-      
+
           sudo apt install ./rabbitremotecontrol_0.0.31_amd64.deb
-          
+
           # 如要你是在老的 ubuntu 发行版本上，你需要用下列命令替换：
           # sudo dpkg -i rabbitremotecontrol_0.0.31_amd64.deb
           # sudo apt-get install -f # 安装依赖
@@ -373,8 +372,9 @@
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
   - AppImage:
-    - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage)
-    - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage/download)
+    - RabbitRemoteControl_v0.0.31_x86_64.AppImage
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage/download)
   - 其它:
     - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.31)
     - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/)

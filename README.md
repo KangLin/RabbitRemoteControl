@@ -71,7 +71,6 @@ It include remote desktop, remote terminal, player etc remote control functions.
   - gitlab: https://gitlab.com/kl222/RabbitRemoteControl
   - launchpad: https://launchpad.net/rabbitremotecontrol
   - gitee: https://gitee.com/kl222/RabbitRemoteControl
-  - kde: https://invent.kde.org/kanglin/RabbitRemoteControl
   - bitbucket: https://bitbucket.org/kl222/rabbitremotecontrol
 
 ## Functions
@@ -386,8 +385,9 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
   - AppImage:
-    - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage)
-    - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage/download)
+    - RabbitRemoteControl_v0.0.31_x86_64.AppImage
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage/download)
   - Other:
     - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.31)
     - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/)
