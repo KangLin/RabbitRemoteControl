@@ -204,6 +204,9 @@ private:
 private:
     CConnectFreeRDP* m_pConnect;
     RailClientContext* m_pContext;
+    int m_nMaxIconCache;
+    int m_nMaxIconCacheEntry;
+    QVector<QVector<QImage> > m_IconCacheEntry;
 
 public:
     virtual bool event(QEvent *event) override;

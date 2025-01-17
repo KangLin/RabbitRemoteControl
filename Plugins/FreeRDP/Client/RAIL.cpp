@@ -418,6 +418,8 @@ CRAIL::CRAIL(CConnectFreeRDP* pConnect, QObject *parent)
     : QObject{parent}
     , m_pConnect(pConnect)
     , m_pContext(nullptr)
+    , m_nMaxIconCache(0)
+    , m_nMaxIconCacheEntry(0)
 {
     qDebug(log) << "CRail::CRail()";
 }
@@ -449,6 +451,20 @@ int CRAIL::Init(RailClientContext *pContext)
     Q_ASSERT(m_pConnect && m_pConnect->m_pContext);
     rdpContext* p = (rdpContext*)m_pConnect->m_pContext;
     RegisterUpdateCallbacks(p->update);
+    auto settings = p->settings;
+    m_nMaxIconCache = freerdp_settings_get_uint32(
+        settings, FreeRDP_RemoteAppNumIconCaches);
+    m_nMaxIconCacheEntry =
+        freerdp_settings_get_uint32(settings,
+                                    FreeRDP_RemoteAppNumIconCacheEntries);
+    for(int i = 0; i < m_nMaxIconCacheEntry; i++) {
+        QVector<QImage> image;
+        for(int j = 0; j < m_nMaxIconCache; j++) {
+            image.push_back(QImage());
+        }
+        m_IconCacheEntry.push_back(image);
+    }
+
     return 0;
 }
 
@@ -456,6 +472,7 @@ int CRAIL::Clean(RailClientContext *pContext)
 {
     qDebug(log) << "CRail::Clean()";
     disconnect(m_pConnect);
+    m_IconCacheEntry.clear();
     return 0;
 }
 
@@ -757,8 +774,12 @@ BOOL CRAIL::cbWindowIcon(rdpContext *context,
     if(!pRail) return TRUE;
     QSharedPointer<CRAILInfo> info(new CRAILInfo(orderInfo));
     QImage img = pRail->ConvertIcon(windowIcon->iconInfo);
-    if(!img.isNull())
+    if(!img.isNull()) {
+        if(windowIcon->iconInfo->cacheId < pRail->m_nMaxIconCache
+            && windowIcon->iconInfo->cacheEntry < pRail->m_nMaxIconCacheEntry)
+            pRail->m_IconCacheEntry[windowIcon->iconInfo->cacheEntry][windowIcon->iconInfo->cacheId] = img;
         emit pRail->sigWindowIcon(info, img);
+    }
     return TRUE;
 }
 
@@ -768,6 +789,20 @@ BOOL CRAIL::cbWindowCachedIcon(
     const WINDOW_CACHED_ICON_ORDER *windowCachedIcon)
 {
     qDebug(log) << Q_FUNC_INFO;
+    CRAIL* pRail = GetRail(context);
+    if(!pRail) return TRUE;
+    QSharedPointer<CRAILInfo> info(new CRAILInfo(orderInfo));
+    CACHED_ICON_INFO icon = windowCachedIcon->cachedIcon;
+    if(icon.cacheId < pRail->m_nMaxIconCache
+        && icon.cacheEntry < pRail->m_nMaxIconCacheEntry) {
+        QImage img = pRail->m_IconCacheEntry[icon.cacheEntry][icon.cacheId];
+        if(!img.isNull())
+            emit pRail->sigWindowIcon(info, img);
+    } else {
+        qCritical(log) << "The icon is in cache:"
+                       << icon.cacheEntry << icon.cacheId
+                       << pRail->m_IconCacheEntry << pRail->m_nMaxIconCache;
+    }
 
     return TRUE;
 }
