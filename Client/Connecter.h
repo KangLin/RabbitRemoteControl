@@ -255,26 +255,26 @@ Q_SIGNALS:
     void sigShowMessageBox(const QString& title, const QString& message,
                         const QMessageBox::Icon& icon = QMessageBox::Information);
 
-private:
+protected:
     /*!
      * \brief Initial parameters and resource
      * \~
      * \see CClient::CreateConnecter
      */
-    Q_INVOKABLE virtual int Initial() = 0;
+    virtual int Initial() = 0;
     /*!
      * \brief Clean parameters and resource
      * \see CClient::DeleteConnecter
      */
-    Q_INVOKABLE virtual int Clean() = 0;
+    virtual int Clean() = 0;
     /*!
      * \brief Set CParameterClient
      * \note If CParameterConnecter isn't need CParameterClient.
      *       please overload this function.
      * \see CClient::CreateConnecter CParameterConnecter CParameterClient
      */
-    Q_INVOKABLE virtual int SetParameterClient(CParameterClient* pPara);
-protected:
+    virtual int SetParameterClient(CParameterClient* pPara);
+
     /*!
      * \~chinese 设置参数
      * \note 在派生类的构造函数（或者　OnInitial()　）中先实例化参数，
@@ -332,7 +332,7 @@ protected:
      * \~
      * \see CClient::LoadConnecter
      */
-    Q_INVOKABLE virtual int Load(QString szFile = QString());
+    virtual int Load(QString szFile = QString());
     /*!
      * \~chinese \brief 保存参数到文件中
      * \param szFile: 文件名。
@@ -341,7 +341,7 @@ protected:
      * \~
      * \see CClient::SaveConnecter
      */
-    Q_INVOKABLE virtual int Save(QString szFile = QString());
+    virtual int Save(QString szFile = QString());
 
 private Q_SLOTS:
     void slotShowServerName();
@@ -411,6 +411,8 @@ private:
 
     // The owner is a derived class of this class
     CParameter* m_pParameter;
+
+    friend class CClient;
 };
 
 #endif // CCONNECTER_H

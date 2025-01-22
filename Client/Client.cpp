@@ -33,8 +33,6 @@ CClient::CClient(QObject *parent) : QObject(parent),
     
     CChannel::InitTranslation();
 
-    LoadPlugins();
-
     m_pParameterClient = new CParameterClient();
     if(m_pParameterClient) {
         check = connect(m_pParameterClient, SIGNAL(sigHookKeyboardChanged()),
@@ -47,6 +45,8 @@ CClient::CClient(QObject *parent) : QObject(parent),
         qCritical(log) << "new CParameterClient() fail";
         Q_ASSERT(m_pParameterClient);
     }
+
+    LoadPlugins();
 }
 
 CClient::~CClient()
@@ -222,27 +222,16 @@ CConnecter* CClient::CreateConnecter(const QString& id)
             }
         }
         if(p) {
-            int val = 0;
-            //p->Initial();
-            bRet = QMetaObject::invokeMethod(
-                p,
-                "Initial",
-                Qt::DirectConnection,
-                Q_RETURN_ARG(int, val));
-            if(!bRet || val) {
-                qCritical(log) << "Connecter initial fail" << bRet << val;
+            int nRet = 0;
+            nRet = p->Initial();
+            if(nRet) {
+                qCritical(log) << "Connecter initial fail" << nRet;
                 DeleteConnecter(p);
                 return nullptr;
             }
-            //p->SetParameterClient(m_ParameterClient)
-            bRet = QMetaObject::invokeMethod(
-                p,
-                "SetParameterClient",
-                Qt::DirectConnection,
-                Q_RETURN_ARG(int, val),
-                Q_ARG(CParameterClient*, m_pParameterClient));
-            if(!bRet || val) {
-                qCritical(log) << "SetParameterClient fail" << bRet << val;
+            nRet = p->SetParameterClient(m_pParameterClient);
+            if(nRet) {
+                qCritical(log) << "SetParameterClient fail" << nRet;
                 DeleteConnecter(p);
                 return nullptr;
             }
@@ -257,15 +246,10 @@ int CClient::DeleteConnecter(CConnecter *p)
 {
     qDebug(log) << Q_FUNC_INFO;
     if(!p) return 0;
-    int val = 0;
-    bool bRet = QMetaObject::invokeMethod(
-        p,
-        "Clean",
-        Qt::DirectConnection,
-        Q_RETURN_ARG(int, val)
-        );
-    if(!bRet|| val)
-        qWarning(log) << "Connecter clean fail" << bRet << val;
+    int nRet = 0;
+    nRet = p->Clean();
+    if(nRet)
+        qWarning(log) << "Connecter clean fail" << nRet;
     p->deleteLater();
     return 0;
 }
@@ -285,16 +269,9 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
                 << "name:" << name << "id:" << id;
     pConnecter = CreateConnecter(id);
     if(pConnecter) {
-        //pConnecter->Load(szFile);
-        int val = 0;
-        bool bRet = QMetaObject::invokeMethod(
-            pConnecter,
-            "Load",
-            Qt::DirectConnection,
-            Q_RETURN_ARG(int, val),
-            Q_ARG(QString, szFile));
-        if(!bRet|| val) {
-            qCritical(log) << "Load parameter fail" << bRet << val;
+        int nRet = pConnecter->Load(szFile);
+        if(nRet) {
+            qCritical(log) << "Load parameter fail" << nRet;
             DeleteConnecter(pConnecter);
             return nullptr;
         }
@@ -333,16 +310,9 @@ int CClient::SaveConnecter(QString szFile, CConnecter *pConnecter)
     set.setValue("Plugin/ID", pPluginClient->Id());
     set.setValue("Plugin/Protocol", pPluginClient->Protocol());
     set.setValue("Plugin/Name", pPluginClient->Name());
-    //pConnecter->Save(szFile);
-    int val = 0;
-    bRet = QMetaObject::invokeMethod(
-        pConnecter,
-        "Save",
-        Qt::DirectConnection,
-        Q_RETURN_ARG(int, val),
-        Q_ARG(QString, szFile));
-    if(!bRet|| val) {
-        qCritical(log) << "Save parameter fail" << bRet << val;
+    int nRet = pConnecter->Save(szFile);
+    if(nRet) {
+        qCritical(log) << "Save parameter fail" << nRet;
         return -2;
     }
     return 0;
