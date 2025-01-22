@@ -23,6 +23,8 @@ public:
     virtual const QString Name() override;
     virtual qint16 Version() override;
     virtual QWidget *GetViewer() override;
+
+protected:
     virtual int Initial() override;
     virtual int Clean() override;
 

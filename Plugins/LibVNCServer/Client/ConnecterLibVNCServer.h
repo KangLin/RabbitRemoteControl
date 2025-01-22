@@ -17,13 +17,13 @@ public:
 
 public:
     virtual qint16 Version() override;
-    virtual int Initial() override;
-    virtual int Clean() override;
 
 protected:
     virtual QDialog *OnOpenDialogSettings(QWidget *parent) override;
     virtual CConnect *InstanceConnect() override;
-    
+    virtual int Initial() override;
+    virtual int Clean() override;
+
 private:
     CParameterLibVNCServer m_Para;
 };

@@ -61,8 +61,6 @@ public:
     explicit CConnecterThread(CPluginClient *plugin);
     virtual ~CConnecterThread();
 
-    virtual int Initial() override;
-    virtual int Clean() override;
     virtual QWidget* GetViewer() override;
 
 public Q_SLOTS:
@@ -88,8 +86,8 @@ private Q_SLOTS:
 
 protected:
     virtual QString ServerName() override;
-
-private:
+    virtual int Initial() override;
+    virtual int Clean() override;
     /*!
      * \~chinese \brief 加载参数
      * \~english \brief Load parameters

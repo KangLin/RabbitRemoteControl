@@ -26,6 +26,8 @@ public:
     // CConnecter interface
 public:
     virtual qint16 Version() override;
+
+protected:
     // CConnecterConnect interface
     virtual CConnect *InstanceConnect() override;
     virtual int Initial() override;

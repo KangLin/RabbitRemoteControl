@@ -27,6 +27,7 @@ public:
 public:
     virtual qint16 Version() override;
     virtual QWidget *GetViewer() override;
+protected:
     virtual int Initial() override;
     virtual int Clean() override;
 
