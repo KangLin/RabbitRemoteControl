@@ -178,8 +178,13 @@ int CParameterPlayer::SetAudioOutputVolume(float fVolume)
     emit sigAudioOutputVolume(m_fAudioOutputVolume);
     return 0;
 }
+
 int CParameterPlayer::OnLoad(QSettings &set)
 {
+    SetName(set.value("Name", GetName()).toString());
+    SetServerName(set.value("ServerName", GetServerName()).toString());
+    SetShowServerName(set.value("ShowServerName", GetShowServerName()).toBool());
+
     set.beginGroup("Player");
     SetType((TYPE)set.value("Type", (int)GetType()).toInt());
     SetUrl(set.value("Url", GetUrl()).toString());
@@ -205,6 +210,10 @@ int CParameterPlayer::OnLoad(QSettings &set)
 
 int CParameterPlayer::OnSave(QSettings &set)
 {
+    set.setValue("Name", GetName());
+    set.setValue("ServerName", GetServerName());
+    set.setValue("ShowServerName", GetShowServerName());
+
     set.beginGroup("Player");
     set.setValue("Type", (int)GetType());
     set.setValue("Url", GetUrl());

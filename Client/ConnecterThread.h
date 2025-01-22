@@ -99,6 +99,8 @@ protected:
      */
     virtual int Save(QSettings &set) override;
 
+    virtual int InitialMenu();
+
 private:
     CConnectThread* m_pThread;
     CFrmViewer *m_pFrmViewer;

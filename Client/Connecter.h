@@ -261,12 +261,12 @@ protected:
      * \~
      * \see CClient::CreateConnecter
      */
-    virtual int Initial() = 0;
+    virtual int Initial();
     /*!
      * \brief Clean parameters and resource
      * \see CClient::DeleteConnecter
      */
-    virtual int Clean() = 0;
+    virtual int Clean();
     /*!
      * \brief Set CParameterClient
      * \note If CParameterConnecter isn't need CParameterClient.

@@ -17,6 +17,7 @@ static Q_LOGGING_CATEGORY(log, "Client.Connecter")
     
 CConnecter::CConnecter(CPluginClient *plugin) : QObject(plugin),
     m_pPluginClient(plugin),
+    m_pSettings(nullptr),
     m_pParameter(nullptr)
 {
     bool check = false;
@@ -27,16 +28,6 @@ CConnecter::CConnecter(CPluginClient *plugin) : QObject(plugin),
                         this, SIGNAL(sigClipBoardChanged()));
         Q_ASSERT(check);
     }
-
-    m_Menu.setIcon(plugin->Icon());
-    m_Menu.setTitle(plugin->DisplayName());
-    m_Menu.setToolTip(plugin->DisplayName());
-    m_Menu.setStatusTip(plugin->DisplayName());
-
-    m_pSettings = new QAction(QIcon::fromTheme("system-settings"),
-                              tr("Settings"), &m_Menu);
-    check = connect(m_pSettings, SIGNAL(triggered()), this, SLOT(slotSettings()));
-    Q_ASSERT(check);
 }
 
 CConnecter::~CConnecter()
@@ -158,6 +149,27 @@ int CConnecter::Save(QSettings &set)
         m_pParameter->Save(set);
     }
     return nRet;
+}
+
+int CConnecter::Initial()
+{
+    m_Menu.setIcon(m_pPluginClient->Icon());
+    m_Menu.setTitle(m_pPluginClient->DisplayName());
+    m_Menu.setToolTip(m_pPluginClient->DisplayName());
+    m_Menu.setStatusTip(m_pPluginClient->DisplayName());
+
+    m_pSettings = new QAction(QIcon::fromTheme("system-settings"),
+                              tr("Settings"), &m_Menu);
+    if(m_pSettings) {
+        bool check = connect(m_pSettings, SIGNAL(triggered()), this, SLOT(slotSettings()));
+        Q_ASSERT(check);
+    }
+    return 0;
+}
+
+int CConnecter::Clean()
+{
+    return 0;
 }
 
 int CConnecter::SetParameterClient(CParameterClient* pPara)

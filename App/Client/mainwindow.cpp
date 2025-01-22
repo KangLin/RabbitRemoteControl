@@ -401,9 +401,9 @@ void MainWindow::on_actionFull_screen_F_triggered()
 void MainWindow::slotCurrentViewChanged(const QWidget* pView)
 {
     qDebug(log) << Q_FUNC_INFO;
-    if(m_pView && pView) {
+    if(m_pView && pView)
         EnableMenu(true);
-    } else
+    else
         EnableMenu(false);
 }
 
@@ -412,7 +412,6 @@ void MainWindow::EnableMenu(bool bEnable)
     qDebug(log) << Q_FUNC_INFO << bEnable;
     ui->actionClone->setEnabled(bEnable);
     ui->actionAdd_to_favorite->setEnabled(bEnable);
-    ui->actionCurrent_connect_parameters->setEnabled(bEnable);
     ui->actionDisconnect_D->setEnabled(bEnable);
     slotLoadConnecterMenu();
 }
@@ -999,24 +998,6 @@ void MainWindow::slotShortCut()
         setFocusPolicy(Qt::NoFocus);
         ui->actionFull_screen_F->setShortcut(QKeySequence());
         ui->actionScreenshot->setShortcut(QKeySequence());
-    }
-}
-
-void MainWindow::on_actionCurrent_connect_parameters_triggered()
-{
-    if(!m_pView) return;
-    QWidget* p = m_pView->GetCurrentView();
-    foreach(auto c, m_Connecters)
-    {
-        if(c->GetViewer() == p)
-        {
-            int nRet = c->OpenDialogSettings(this);
-            if(QDialog::Accepted == nRet)
-            {
-                emit c->sigUpdateParameters(c);
-                return;
-            }
-        }
     }
 }
 

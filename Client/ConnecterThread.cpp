@@ -18,7 +18,17 @@ CConnecterThread::CConnecterThread(CPluginClient *plugin)
     , m_pThread(nullptr)
     , m_pFrmViewer(nullptr)
     , m_pScroll(nullptr)
+    , m_pZoomToWindow(nullptr)
+    , m_pZoomAspectRatio(nullptr)
+    , m_pZoomOriginal(nullptr)
+    , m_pZoomIn(nullptr)
+    , m_pZoomOut(nullptr)
     , m_psbZoomFactor(nullptr)
+    , m_pScreenShot(nullptr)
+#if HAVE_QT6_RECORD
+    , m_pRecord(nullptr)
+    , m_pRecordPause(nullptr)
+#endif
 {
     qDebug(log) << Q_FUNC_INFO;
 }
@@ -32,11 +42,37 @@ int CConnecterThread::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
-    bool check = false;
+
+    nRet = CConnecterConnect::Initial();
+    if(nRet)
+        return nRet;
 
     Q_ASSERT(!(m_pFrmViewer && m_pScroll));
     m_pFrmViewer = new CFrmViewer();
     m_pScroll = new CFrmScroll(m_pFrmViewer);
+
+    nRet = InitialMenu();
+    return nRet;
+}
+
+int CConnecterThread::Clean()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    int nRet = 0;
+    if(m_pScroll)
+    {
+        delete m_pScroll;
+        m_pScroll = nullptr;
+    }
+
+    nRet = CConnecterConnect::Clean();
+    return nRet;
+}
+
+int CConnecterThread::InitialMenu()
+{
+    int nRet = 0;
+    bool check = false;
 
     QMenu* pMenuZoom = new QMenu(&m_Menu);
     pMenuZoom->setTitle(tr("Zoom"));
@@ -113,20 +149,21 @@ int CConnecterThread::Initial()
 
     m_Menu.addSeparator();
     m_pScreenShot = new QAction(QIcon::fromTheme("camera-photo"),
-                                tr("ScreenShot"));
+                                tr("ScreenShot"), &m_Menu);
     check = connect(m_pScreenShot, SIGNAL(triggered()),
                     this, SLOT(slotScreenShot()));
     Q_ASSERT(check);
     m_Menu.addAction(m_pScreenShot);
 #if HAVE_QT6_RECORD
-    m_pRecord = new QAction(QIcon::fromTheme("media-record"), tr("Record"), this);
+    m_pRecord = new QAction(
+        QIcon::fromTheme("media-record"), tr("Record"), &m_Menu);
     m_pRecord->setCheckable(true);
     check = connect(m_pRecord, SIGNAL(toggled(bool)),
                     this, SLOT(slotRecord(bool)));
     Q_ASSERT(check);
     m_Menu.addAction(m_pRecord);
-    m_pRecordPause = new QAction(QIcon::fromTheme("media-playback-pause"),
-                                 tr("Record pause"), this);
+    m_pRecordPause = new QAction(
+        QIcon::fromTheme("media-playback-pause"), tr("Record pause"), &m_Menu);
     m_pRecordPause->setCheckable(true);
     m_pRecordPause->setEnabled(false);
     check = connect(m_pRecordPause, SIGNAL(toggled(bool)),
@@ -139,18 +176,6 @@ int CConnecterThread::Initial()
     if(m_pSettings)
         m_Menu.addAction(m_pSettings);
 
-    return nRet;
-}
-
-int CConnecterThread::Clean()
-{
-    qDebug(log) << Q_FUNC_INFO;
-    int nRet = 0;
-    if(m_pScroll)
-    {
-        delete m_pScroll;
-        m_pScroll = nullptr;
-    }
     return nRet;
 }
 
@@ -211,14 +236,19 @@ int CConnecterThread::Load(QSettings &set)
         if(m_psbZoomFactor)
             m_psbZoomFactor->setValue(m_pFrmViewer->GetZoomFactor() * 100);
         CFrmViewer::ADAPT_WINDOWS aw = GetParameter()->GetAdaptWindows();
-        if(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow == aw)
-            m_pZoomToWindow->setChecked(true);
-        else if(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow == aw)
-            m_pZoomAspectRatio->setChecked(true);
-        else if(CFrmViewer::ADAPT_WINDOWS::Original == aw)
-            m_pZoomOriginal->setChecked(true);
-        else if(CFrmViewer::ADAPT_WINDOWS::Zoom == aw)
-            m_pZoomIn->setChecked(true);
+        if(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow == aw) {
+            if(m_pZoomToWindow)
+                m_pZoomToWindow->setChecked(true);
+        } else if(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow == aw) {
+            if(m_pZoomAspectRatio)
+                m_pZoomAspectRatio->setChecked(true);
+        } else if(CFrmViewer::ADAPT_WINDOWS::Original == aw) {
+            if(m_pZoomOriginal)
+                m_pZoomOriginal->setChecked(true);
+        } else if(CFrmViewer::ADAPT_WINDOWS::Zoom == aw) {
+            if(m_pZoomIn)
+                m_pZoomIn->setChecked(true);
+        }
     }
     return nRet;
 }

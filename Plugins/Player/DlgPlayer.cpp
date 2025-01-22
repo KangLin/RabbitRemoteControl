@@ -24,6 +24,9 @@ CDlgPlayer::CDlgPlayer(CParameterPlayer *pPara, QWidget *parent)
 {
     ui->setupUi(this);
 
+    if(!m_pParameters->GetName().isEmpty())
+        ui->leName->setText(m_pParameters->GetName());
+
     foreach(auto ai, QMediaDevices::audioInputs())
     {
         ui->cmbAudioInput->addItem(ai.description());
@@ -88,6 +91,8 @@ void CDlgPlayer::accept()
 {
     int nRet = 0;
 
+    if(!ui->leName->text().isEmpty())
+        m_pParameters->SetName(ui->leName->text());
     if((ui->cmbType->currentData().value<CParameterPlayer::TYPE>()
          == CParameterPlayer::TYPE::Url) && ui->leUrl->text().isEmpty()) {
         ui->leUrl->setFocus();
@@ -111,14 +116,16 @@ void CDlgPlayer::accept()
     case CParameterPlayer::TYPE::Camera: {
         int nIndex = m_pParameters->GetCamera();
         if(-1 < nIndex && nIndex < QMediaDevices::videoInputs().size())
-            m_pParameters->SetName(
-                tr("Camera: ")
-                + QMediaDevices::videoInputs().at(nIndex).description());
+            if(ui->leName->text().isEmpty())
+                m_pParameters->SetName(
+                    tr("Camera: ")
+                    + QMediaDevices::videoInputs().at(nIndex).description());
         break;
     }
     case CParameterPlayer::TYPE::Url:
         QFileInfo fi(m_pParameters->GetUrl());
-        m_pParameters->SetName(tr("Url: ") + fi.fileName());
+        if(ui->leName->text().isEmpty())
+            m_pParameters->SetName(tr("Url: ") + fi.fileName());
         break;
     }
 

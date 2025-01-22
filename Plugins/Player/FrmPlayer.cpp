@@ -85,20 +85,20 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
     m_paScreenShot->setEnabled(false);
 
 #if HAVE_QT6_RECORD
+    m_paRecordPause = m_ToolBar.addAction(
+        QIcon::fromTheme("media-playback-pause"), tr("Record pause"));
+    m_paRecordPause->setCheckable(true);
+    m_paRecordPause->setEnabled(false);
+
     m_paRecord = m_ToolBar.addAction(
         QIcon::fromTheme("media-record"), tr("Record"));
     m_paRecord->setCheckable(true);
     m_paRecord->setEnabled(false);
     check = connect(m_paRecord, &QAction::toggled, this, [&](bool checked){
         m_paRecordPause->setEnabled(checked);
-        if(checked)
-            m_paRecordPause->setChecked(false);
+        m_paRecordPause->setChecked(false);
     });
     Q_ASSERT(check);
-    m_paRecordPause = m_ToolBar.addAction(
-        QIcon::fromTheme("media-playback-pause"), tr("Record pause"));
-    m_paRecordPause->setCheckable(true);
-    m_paRecordPause->setEnabled(false);
 #endif
 
     m_paSettings = m_ToolBar.addAction(

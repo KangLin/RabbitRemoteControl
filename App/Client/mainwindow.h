@@ -107,7 +107,6 @@ private Q_SLOTS:
     void slotUpdateName();
 
     void on_actionSettings_triggered();
-    void on_actionCurrent_connect_parameters_triggered();
     void slotShortCut();
 
     ///////// ICE signal /////////

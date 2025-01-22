@@ -1,5 +1,9 @@
 ## 修改日志
 
+### v0.0.32
+- 修复播放器菜单错误
+- 修复播放器名称错误
+
 ### v0.0.31
 - 使用 [RabbitCommon v2.3.2](https://github.com/KangLin/RabbitCommon/releases/tag/v2.3.2)
 - 修复使用 Qt6 时，最大化时，工具栏位置错误。

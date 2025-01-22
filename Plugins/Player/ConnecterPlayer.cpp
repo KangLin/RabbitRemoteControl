@@ -27,48 +27,80 @@ qint16 CConnecterPlayer::Version()
 int CConnecterPlayer::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
-    bool check = false;
     int nRet = 0;
-    nRet = CConnecterThread::Initial();
-    if(nRet) return nRet;
 
     nRet = SetParameter(&m_Parameters);
     if(nRet) return nRet;
+    nRet = CConnecterThread::Initial();
+    return nRet;
+}
 
-    m_Menu.clear();
+int CConnecterPlayer::InitialMenu()
+{
+    bool check = false;
+    int nRet = 0;
+
+#if HAVE_QT6_RECORD
+    m_pRecord = new QAction(
+        QIcon::fromTheme("media-record"), tr("Record"), &m_Menu);
+    m_pRecord->setCheckable(true);
+    check = connect(m_pRecord, SIGNAL(toggled(bool)),
+                    this, SLOT(slotRecord(bool)));
+    Q_ASSERT(check);
+
+    m_pRecordPause = new QAction(
+        QIcon::fromTheme("media-playback-pause"), tr("Record pause"), &m_Menu);
+    m_pRecordPause->setCheckable(true);
+    m_pRecordPause->setEnabled(false);
+    check = connect(m_pRecordPause, SIGNAL(toggled(bool)),
+                    this, SIGNAL(sigRecordPause(bool)));
+    Q_ASSERT(check);
+#endif
+
+    m_pScreenShot = new QAction(QIcon::fromTheme("camera-photo"),
+                                tr("ScreenShot"), &m_Menu);
+    check = connect(m_pScreenShot, SIGNAL(triggered()),
+                    this, SLOT(slotScreenShot()));
+    Q_ASSERT(check);
+
 #ifdef HAVE_QVideoWidget
     m_Menu.addAction(m_Player.m_paStart);
-    m_Menu.addAction(m_Player.m_paPause);
-#if HAVE_QT6_RECORD
-    m_Menu.addAction(m_Player.m_paRecord);
-    m_Menu.addAction(m_Player.m_paRecordPause);
-#endif
-    m_Menu.addAction(m_Player.m_paScreenShot);
-    m_Menu.addSeparator();
-    m_Menu.addAction(m_Player.m_paSettings);
     check = connect(this, &CConnecterPlayer::sigConnected,
                     m_Player.m_paStart, &QAction::toggle);
     Q_ASSERT(check);
     check = connect(m_Player.m_paStart, SIGNAL(toggled(bool)),
                     this, SIGNAL(sigStart(bool)));
     Q_ASSERT(check);
+
+    m_Menu.addAction(m_Player.m_paPause);
     check = connect(m_Player.m_paPause, SIGNAL(toggled(bool)),
                     this, SIGNAL(sigPause(bool)));
     Q_ASSERT(check);
+
 #if HAVE_QT6_RECORD
+    m_Menu.addAction(m_Player.m_paRecord);
     check = connect(m_Player.m_paRecord, SIGNAL(toggled(bool)),
                     m_pRecord ,SIGNAL(toggled(bool)));
     Q_ASSERT(check);
+
+    m_Menu.addAction(m_Player.m_paRecordPause);
     check = connect(m_Player.m_paRecordPause, SIGNAL(toggled(bool)),
                     m_pRecordPause, SIGNAL(toggled(bool)));
     Q_ASSERT(check);
 #endif
+
+    m_Menu.addAction(m_Player.m_paScreenShot);
     check = connect(m_Player.m_paScreenShot, &QAction::triggered,
                     m_pScreenShot, &QAction::triggered);
     Q_ASSERT(check);
+
+    m_Menu.addSeparator();
+
+    m_Menu.addAction(m_Player.m_paSettings);
     check = connect(m_Player.m_paSettings, &QAction::triggered,
                     m_pSettings, &QAction::triggered);
     Q_ASSERT(check);
+
     check = connect(this, &CConnecterPlayer::sigConnected,
                     this, [&](){
                         m_Player.SetParameter(&m_Parameters);

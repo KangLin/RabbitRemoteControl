@@ -32,6 +32,7 @@ protected:
     virtual CConnect *InstanceConnect() override;
     virtual int Initial() override;
     virtual int Clean() override;
+    virtual int InitialMenu() override;
 
 Q_SIGNALS:
     void sigStart(bool bStart);
@@ -61,9 +62,9 @@ public Q_SLOTS:
 #if HAVE_QT6_RECORD
     void slotRecordStateChanged(QMediaRecorder::RecorderState state);
 #endif
-#else
+#else // #if HAVE_QVideoWidget
     QAction* m_pPause;
-#endif
+#endif // #if HAVE_QVideoWidget
 
 };
 

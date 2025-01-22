@@ -64,8 +64,6 @@
     <addaction name="separator"/>
     <addaction name="actionAdd_to_favorite"/>
     <addaction name="separator"/>
-    <addaction name="actionCurrent_connect_parameters"/>
-    <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
    <widget class="QMenu" name="menuTools">
@@ -101,7 +99,6 @@
    <addaction name="actionFull_screen_F"/>
    <addaction name="actionTabBar_B"/>
    <addaction name="separator"/>
-   <addaction name="actionCurrent_connect_parameters"/>
    <addaction name="actionSettings"/>
    <addaction name="separator"/>
    <addaction name="actionExit_E"/>
@@ -326,23 +323,6 @@
    </property>
    <property name="whatsThis">
     <string>Settings</string>
-   </property>
-  </action>
-  <action name="actionCurrent_connect_parameters">
-   <property name="icon">
-    <iconset theme="system-settings"/>
-   </property>
-   <property name="text">
-    <string>Current connect parameters</string>
-   </property>
-   <property name="toolTip">
-    <string>Current connect parameters</string>
-   </property>
-   <property name="statusTip">
-    <string>Current connect parameters</string>
-   </property>
-   <property name="whatsThis">
-    <string>Current connect parameters</string>
    </property>
   </action>
   <action name="actionClone">
