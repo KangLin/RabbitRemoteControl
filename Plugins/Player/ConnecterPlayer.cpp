@@ -67,7 +67,7 @@ int CConnecterPlayer::Initial()
                     m_pScreenShot, &QAction::triggered);
     Q_ASSERT(check);
     check = connect(m_Player.m_paSettings, &QAction::triggered,
-                    m_pSettings, &QAction::trigger);
+                    m_pSettings, &QAction::triggered);
     Q_ASSERT(check);
     check = connect(this, &CConnecterPlayer::sigConnected,
                     this, [&](){
