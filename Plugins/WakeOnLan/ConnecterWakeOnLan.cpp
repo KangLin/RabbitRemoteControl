@@ -179,8 +179,10 @@ int CConnecterWakeOnLan::Connect()
             if(QMessageBox::Yes == nRet) {
                 bool bRet = RabbitCommon::CTools::executeByRoot(
                     QCoreApplication::applicationFilePath());
-                if(bRet)
+                qDebug(log) << "Execute:" << bRet << QCoreApplication::applicationFilePath();
+                if(bRet) {
                     QCoreApplication::quit();
+                }
             }
         }
     }
