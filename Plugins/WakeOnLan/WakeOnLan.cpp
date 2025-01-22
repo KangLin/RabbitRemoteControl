@@ -149,8 +149,8 @@ void CWakeOnLan::GenerateMagicPacket(uint8_t*& pMagicPacket,
 	memset(pMagicPacket, 0xFF, 6);
 
 	for (uint8_t i = 0; i < 16; i++) {
-		uint8_t indx = (i + 1) * sizeOfMacAddress;
-		memcpy(&pMagicPacket[indx], &macAddress, sizeOfMacAddress);
+		uint8_t index = (i + 1) * sizeOfMacAddress;
+		memcpy(&pMagicPacket[index], &macAddress, sizeOfMacAddress);
 	}
 }
 
@@ -169,8 +169,8 @@ void CWakeOnLan::GenerateSecureMagicPacket(uint8_t*& pMagicPacket,
 	memset(pMagicPacket, 0xFF, 6);
 
 	for (uint8_t i = 0; i < 16; i++) {
-		uint8_t indx = (i + 1) * sizeOfMacAddress;
-		memcpy(&pMagicPacket[indx], &macAddress, sizeOfMacAddress);
+		uint8_t index = (i + 1) * sizeOfMacAddress;
+		memcpy(&pMagicPacket[index], &macAddress, sizeOfMacAddress);
 	}
 
 	memcpy(&pMagicPacket[17 * sizeOfSecureOn], &secureOn, sizeOfSecureOn);
