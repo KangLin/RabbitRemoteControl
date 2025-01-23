@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QRegularExpression>
 #include <QPushButton>
+#include <QCheckBox>
 #include <QtGlobal>
 #include <QCoreApplication>
 #include "RabbitCommonTools.h"
@@ -35,6 +36,8 @@ qint16 CConnecterWakeOnLan::Version()
 
 int CConnecterWakeOnLan::Initial()
 {
+    int nRet = CConnecter::Initial();
+    if(nRet) return nRet;
     qDebug(log) << Q_FUNC_INFO;
     bool check = false;
     CPluginClient* plugin = GetPlugClient();
@@ -170,17 +173,21 @@ int CConnecterWakeOnLan::Connect()
         static bool bShow = false;
         if(!bShow) {
             bShow = true;
-            int nRet = QMessageBox::warning(
-                nullptr, tr("Warning"),
+            int nRet = 0;
+            QMessageBox msg(
+                QMessageBox::Warning, tr("Warning"),
                 tr("There are no administrator privileges, "
                    "and some functions(Get mac address) are restricted. "
                    "Please restart the program with administrative privileges."),
                 QMessageBox::Yes | QMessageBox::No);
+            msg.setCheckBox(new QCheckBox(tr("Exit the program"), &msg));
+            msg.checkBox()->setCheckable(true);
+            nRet = msg.exec();
             if(QMessageBox::Yes == nRet) {
                 bool bRet = RabbitCommon::CTools::executeByRoot(
                     QCoreApplication::applicationFilePath());
                 qDebug(log) << "Execute:" << bRet << QCoreApplication::applicationFilePath();
-                if(bRet) {
+                if(bRet && msg.checkBox()->isChecked()) {
                     QCoreApplication::quit();
                 }
             }

@@ -3,6 +3,7 @@
 ### v0.0.32
 - 修复播放器菜单错误
 - 修复播放器名称错误
+- 修复局域网唤醒错误
 
 ### v0.0.31
 - 使用 [RabbitCommon v2.3.2](https://github.com/KangLin/RabbitCommon/releases/tag/v2.3.2)

@@ -375,6 +375,13 @@
     - RabbitRemoteControl_v0.0.31_x86_64.AppImage
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage/download)
+
+            chmod u+x RabbitRemoteControl_v0.0.31_x86_64.AppImage
+            ./RabbitRemoteControl_v0.0.31_x86_64.AppImage
+
+    - md5 校验文件: RabbitRemoteControl_v0.0.31_x86_64.AppImage.md5sum
+      - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage.md5sum)
+      - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage.md5sum/download)
   - 其它:
     - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.31)
     - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/)

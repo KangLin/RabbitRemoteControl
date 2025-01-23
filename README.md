@@ -388,6 +388,13 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
     - RabbitRemoteControl_v0.0.31_x86_64.AppImage
       - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage)
       - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage/download)
+
+            chmod u+x RabbitRemoteControl_v0.0.31_x86_64.AppImage
+            ./RabbitRemoteControl_v0.0.31_x86_64.AppImage
+
+    - md5sum file: RabbitRemoteControl_v0.0.31_x86_64.AppImage.md5sum
+      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage.md5sum)
+      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/RabbitRemoteControl_v0.0.31_x86_64.AppImage.md5sum/download)
   - Other:
     - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.31)
     - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.31/)
