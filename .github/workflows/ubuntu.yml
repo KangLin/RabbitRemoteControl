@@ -25,7 +25,7 @@ jobs:
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOSL_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
-      RabbitRemoteControl_VERSION: 0.0.31
+      RabbitRemoteControl_VERSION: 0.0.32
       artifact_name: build_ubuntu
 
     # Map the job outputs to step outputs

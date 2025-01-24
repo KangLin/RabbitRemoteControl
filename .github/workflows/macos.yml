@@ -42,7 +42,7 @@ jobs:
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
       artifact_name: build_macos
-      RabbitRemoteControl_VERSION: v0.0.31
+      RabbitRemoteControl_VERSION: v0.0.32
 
     # Map the job outputs to step outputs
     outputs:

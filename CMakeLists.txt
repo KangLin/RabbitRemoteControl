@@ -134,7 +134,7 @@ endif()
 GET_VERSION(OUT_VERSION RabbitRemoteControl_VERSION
     OUT_REVISION RabbitRemoteControl_REVISION)
 IF(NOT RabbitRemoteControl_VERSION)
-    SET(RabbitRemoteControl_VERSION "0.0.31")
+    SET(RabbitRemoteControl_VERSION "0.0.32")
 ENDIF()
 message("RabbitRemoteControl_VERSION:${RabbitRemoteControl_VERSION};Revision:${RabbitRemoteControl_REVISION}")
 set(VERSION ${RabbitRemoteControl_VERSION})
