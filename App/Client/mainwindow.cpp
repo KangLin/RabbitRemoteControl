@@ -1106,7 +1106,8 @@ void MainWindow::slotSystemTrayIconTypeChanged()
     if(m_TrayIcon)
         m_TrayIcon.reset();
 
-    m_TrayIcon = QSharedPointer<QSystemTrayIcon>(new QSystemTrayIcon(this));
+    m_TrayIcon = QSharedPointer<QSystemTrayIcon>(
+        new QSystemTrayIcon(this->windowIcon(), this));
     if(QSystemTrayIcon::isSystemTrayAvailable())
     {
         bool check = connect(

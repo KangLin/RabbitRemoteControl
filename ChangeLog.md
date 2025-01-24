@@ -1,5 +1,9 @@
 ## Change Log
 
+### v0.0.33
+- FreeRDP
+  - Add remote application
+
 ### v0.0.32
 - Fix player menu bug
 - Fix player name

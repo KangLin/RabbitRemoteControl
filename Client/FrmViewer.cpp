@@ -42,8 +42,10 @@ CFrmViewer::CFrmViewer(QWidget *parent)
     setFocus();
 
     // When the connecter is not connected, don't accept keyboard and mouse event
-    // When the CConnecter::sigConnected() set true. accept keyboard and mouse event
-    // \see CConnecter::sigConnected()
+    // When the CConnect::sigConnected() set true. accept keyboard and mouse event
+    // \see CConnect::sigConnected()
+    //      CConnectDesktop::SetViewer
+    //      CFrmViewer::slotConnected()
     setEnabled(false);
 }
 
@@ -181,8 +183,9 @@ void CFrmViewer::mousePressEvent(QMouseEvent *event)
     if(TranslationMousePoint(pos, pos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
+    /*
     qDebug(logMouse) << "CFrmViewer::mousePressEvent"
-                     << event << event->button() << event->buttons() << pos;
+                     << event << event->button() << event->buttons() << pos;//*/
     emit sigMousePressEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -198,8 +201,9 @@ void CFrmViewer::mouseReleaseEvent(QMouseEvent *event)
     if(TranslationMousePoint(pos, pos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
+    /*
     qDebug(logMouse) << "CFrmViewer::mouseReleaseEvent"
-                     << event << event->button() << event->buttons() << pos;
+                     << event << event->button() << event->buttons() << pos;//*/
     emit sigMouseReleaseEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
@@ -215,8 +219,9 @@ void CFrmViewer::mouseMoveEvent(QMouseEvent *event)
     if(TranslationMousePoint(pos, pos)) return;
     // event->buttons() 产生事件时，按键的状态
     // event->button() 触发当前事件的按键
+    /*
     qDebug(logMouse) << "CFrmViewer::mouseMoveEvent"
-                     << event->button() << event->buttons() << pos;
+                     << event->button() << event->buttons() << pos;//*/
     emit sigMouseMoveEvent(event, QPoint(pos.x(), pos.y()));
     emit sigMouseMoveEvent(event);
     event->accept();
@@ -231,22 +236,23 @@ void CFrmViewer::wheelEvent(QWheelEvent *event)
         event->pos();
 #endif
     if(TranslationMousePoint(pos, pos)) return;
+    /*
     qDebug(logMouse) << "CFrmViewer::wheelEvent"
-                     << event->buttons() << event->angleDelta() << pos;
+                     << event->buttons() << event->angleDelta() << pos;//*/
     emit sigWheelEvent(event, QPoint(pos.x(), pos.y()));
     event->accept();
 }
 
 void CFrmViewer::keyPressEvent(QKeyEvent *event)
 {
-    qDebug(logKey) << "CFrmViewer::keyPressEvent" << event;
+    //qDebug(logKey) << "CFrmViewer::keyPressEvent" << event;
     emit sigKeyPressEvent(event);
     event->accept();
 }
 
 void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 {
-    qDebug(logKey) << "CFrmViewer::keyReleaseEvent" << event;
+    //qDebug(logKey) << "CFrmViewer::keyReleaseEvent" << event;
     emit sigKeyReleaseEvent(event);
     event->accept();
 }

@@ -48,6 +48,12 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     m_pRecordUI->SetParameter(&m_pSettings->m_Record);
     ui->tabWidget->addTab(m_pRecordUI, m_pRecordUI->windowIcon(), tr("Record"));
 
+    // Remote application
+    ui->gbRemoteApplication->setChecked(m_pSettings->GetRemoteApplicationMode());
+    ui->leProgram->setText(m_pSettings->GetRemoteApplicationProgram());
+    ui->leCmdLine->setText(m_pSettings->GetRemoteApplicationCmdLine());
+    ui->leWorkingDir->setText(m_pSettings->GetRemoteApplicationWorkingDir());
+
     // Display
     // It has to be the first. GetScreenGeometry depends on it
     ui->cbAllMonitor->setChecked(m_pSettings->GetUseMultimon());
@@ -194,16 +200,30 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
     m_pSettings->SetClipboard(ui->cbClipboard->isChecked());
     m_pSettings->SetShowServerName(ui->cbShowServerName->isChecked());
     
+    // Remote application
+    m_pSettings->SetRemoteApplicationMode(ui->gbRemoteApplication->isChecked());
+    m_pSettings->SetRemoteApplicationProgram(ui->leProgram->text());
+    m_pSettings->SetRemoteApplicationCmdLine(ui->leCmdLine->text());
+    m_pSettings->SetRemoteApplicationWorkingDir(ui->leWorkingDir->text());
+
     // Display
     m_pSettings->SetUseMultimon(ui->cbAllMonitor->isChecked());
-    QString szSize = ui->cbDesktopSize->currentText();
-    int index = szSize.indexOf("×");
-    if(-1 < index)
+    if(ui->rbLocalScreen->isChecked())
     {
-        UINT32 width = szSize.left(index).toInt();
-        UINT32 height = szSize.right(szSize.length() - index - 1).toInt();
+        int width = GetScreenGeometry().width();
+        int height = GetScreenGeometry().height();
         m_pSettings->SetDesktopWidth(width);
         m_pSettings->SetDesktopHeight(height);
+    } else {
+        QString szSize = ui->cbDesktopSize->currentText();
+        int index = szSize.indexOf("×");
+        if(-1 < index)
+        {
+            UINT32 width = szSize.left(index).toInt();
+            UINT32 height = szSize.right(szSize.length() - index - 1).toInt();
+            m_pSettings->SetDesktopWidth(width);
+            m_pSettings->SetDesktopHeight(height);
+        }
     }
     m_pSettings->SetColorDepth(ui->cbColorDepth->currentData().toInt());
     m_pSettings->SetReconnectInterval(ui->sbReconnect->value());
@@ -252,6 +272,11 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 void CDlgSetFreeRDP::on_pbCancel_clicked()
 {
     reject();
+}
+
+void CDlgSetFreeRDP::on_rbLocalScreen_toggled(bool checked)
+{
+    on_rbLocalScreen_clicked(checked);
 }
 
 void CDlgSetFreeRDP::on_rbLocalScreen_clicked(bool checked)
@@ -404,7 +429,6 @@ int CDlgSetFreeRDP::InsertDesktopSize(int width, int height)
     return 0;
 }
 
-
 void CDlgSetFreeRDP::on_rbAudioDisable_toggled(bool checked)
 {
     ui->leRdpSnd->setEnabled(!checked);
@@ -481,4 +505,19 @@ int CDlgSetFreeRDP::ShowDriveSelected(int counts)
 void CDlgSetFreeRDP::on_cbAllMonitor_stateChanged(int arg1)
 {
     on_rbLocalScreen_clicked(true);
+}
+
+void CDlgSetFreeRDP::on_gbRemoteApplication_clicked(bool checked)
+{
+    if(checked)
+        ui->rbLocalScreen->setChecked(true);
+    EnableDesktopSize(!checked);
+}
+
+int CDlgSetFreeRDP::EnableDesktopSize(bool bEnable)
+{
+    ui->rbSelect->setEnabled(bEnable);
+    ui->cbDesktopSize->setEnabled(bEnable);
+    ui->pbSizeEdit->setEnabled(bEnable);
+    return 0;
 }
