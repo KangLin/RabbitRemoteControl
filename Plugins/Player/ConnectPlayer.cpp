@@ -388,7 +388,7 @@ void CConnectPlayer::slotEnableAudioInput(bool bEnable)
 
 void CConnectPlayer::slotEnableAudioOutput(bool bEnable)
 {
-    if(bEnable &&  (-1 < m_pParameters->GetAudioOutput()
+    if(bEnable && (-1 < m_pParameters->GetAudioOutput()
                     && m_pParameters->GetAudioOutput()
                            < QMediaDevices::audioInputs().size()))
     {

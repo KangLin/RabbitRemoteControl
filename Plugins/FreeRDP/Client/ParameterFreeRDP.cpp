@@ -1,21 +1,28 @@
 #include "ParameterFreeRDP.h"
 #include <QSettings>
+#include <QApplication>
+#include <QScreen>
 
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
-    : CParameterBase(parent),
-    m_nWidth(1024),
-    m_nHeight(768),
-    m_nColorDepth(32),
-    m_bUseMultimon(false),
-    m_nReconnectInterval(0),
-    m_bShowVerifyDiaglog(true),
-    m_bRedirectionPrinter(false),
-    m_nRedirectionSound(RedirecionSoundType::Disable),
-    m_bRedirectionMicrophone(false),
-    m_Proxy(this)
+    : CParameterBase(parent)
+    , m_nWidth(1024)
+    , m_nHeight(768)
+    , m_nColorDepth(32)
+    , m_bUseMultimon(false)
+    , m_nReconnectInterval(0)
+    , m_bShowVerifyDiaglog(true)
+    , m_bRedirectionPrinter(false)
+    , m_nRedirectionSound(RedirecionSoundType::Disable)
+    , m_bRedirectionMicrophone(false)
+    , m_RemoteApplicationMode(false)
+    , m_Proxy(this)
 {
     m_Net.SetPort(3389);
     
+    QScreen* screen = QApplication::primaryScreen();
+    m_nWidth = screen->virtualGeometry().width();
+    m_nHeight = screen->virtualGeometry().height();
+
     m_Proxy.SetType(
         QList<CParameterProxy::TYPE>() << CParameterProxy::TYPE::None
                                        << CParameterProxy::TYPE::SSHTunnel);
@@ -61,6 +68,18 @@ int CParameterFreeRDP::OnLoad(QSettings &set)
     SetRedirectionMicrophoneParameters(set.value("Redirection/Microphone/Parameters",
                                    GetRedirectionMicrophoneParameters()).toString());
     SetRedirectionDrives(set.value("Redirection/Drive").toStringList());
+
+    set.beginGroup("RemoteApplication");
+    SetRemoteApplicationMode(set.value("Mode", GetRemoteApplicationMode()).toBool());
+    SetRemoteApplicationProgram(set.value("Program", GetRemoteApplicationProgram()).toString());
+    SetRemoteApplicationName(set.value("Name", GetRemoteApplicationName()).toString());
+    SetRemoteApplicationIcon(set.value("Icon", GetRemoteApplicationIcon()).toString());
+    SetRemoteApplicationFile(set.value("File", GetRemoteApplicationFile()).toString());
+    SetRemoteApplicationGuid(set.value("Guid", GetRemoteApplicationGuid()).toString());
+    SetRemoteApplicationCmdLine(set.value("CmdLine", GetRemoteApplicationCmdLine()).toString());
+    SetRemoteApplicationWorkingDir(set.value("WorkDir", GetRemoteApplicationWorkingDir()).toString());
+    set.endGroup();
+
     set.endGroup();
     
     return 0;
@@ -86,6 +105,18 @@ int CParameterFreeRDP::OnSave(QSettings &set)
     set.setValue("Redirection/Microphone", GetRedirectionMicrophone());
     set.setValue("Redirection/Microphone/Parameters", GetRedirectionMicrophoneParameters());
     set.setValue("Redirection/Drive", GetRedirectionDrives());
+
+    set.beginGroup("RemoteApplication");
+    set.setValue("Mode", GetRemoteApplicationMode());
+    set.setValue("Program", GetRemoteApplicationProgram());
+    set.setValue("Name", GetRemoteApplicationName());
+    set.setValue("Icon", GetRemoteApplicationIcon());
+    set.setValue("File", GetRemoteApplicationFile());
+    set.setValue("Guid", GetRemoteApplicationGuid());
+    set.setValue("CmdLine", GetRemoteApplicationCmdLine());
+    set.setValue("WorkDir", GetRemoteApplicationWorkingDir());
+    set.endGroup();
+
     set.endGroup();
     
     return 0;
@@ -257,6 +288,86 @@ void CParameterFreeRDP::SetRedirectionMicrophoneParameters(const QString &newRed
     m_szRedirectionMicrophoneParameters = newRedirectionMicrophoneParameters;
     SetModified(true);
     emit sigRedirectionMicrophoneParametersChanged();
+}
+
+bool CParameterFreeRDP::GetRemoteApplicationMode() const
+{
+    return m_RemoteApplicationMode;
+}
+
+void CParameterFreeRDP::SetRemoteApplicationMode(bool newRemoteApplicationMode)
+{
+    m_RemoteApplicationMode = newRemoteApplicationMode;
+}
+
+QString CParameterFreeRDP::GetRemoteApplicationProgram() const
+{
+    return m_RemoteApplicationProgram;
+}
+
+void CParameterFreeRDP::SetRemoteApplicationProgram(const QString &newRemoteApplicationProgram)
+{
+    m_RemoteApplicationProgram = newRemoteApplicationProgram;
+}
+
+QString CParameterFreeRDP::GetRemoteApplicationName() const
+{
+    return m_RemoteApplicationName;
+}
+
+void CParameterFreeRDP::SetRemoteApplicationName(const QString &newRemoteApplicationName)
+{
+    m_RemoteApplicationName = newRemoteApplicationName;
+}
+
+QString CParameterFreeRDP::GetRemoteApplicationIcon() const
+{
+    return m_RemoteApplicationIcon;
+}
+
+void CParameterFreeRDP::SetRemoteApplicationIcon(const QString &newRemoteApplicationIcon)
+{
+    m_RemoteApplicationIcon = newRemoteApplicationIcon;
+}
+
+QString CParameterFreeRDP::GetRemoteApplicationFile() const
+{
+    return m_RemoteApplicationFile;
+}
+
+void CParameterFreeRDP::SetRemoteApplicationFile(const QString &newRemoteApplicationFile)
+{
+    m_RemoteApplicationFile = newRemoteApplicationFile;
+}
+
+QString CParameterFreeRDP::GetRemoteApplicationGuid() const
+{
+    return m_RemoteApplicationGuid;
+}
+
+void CParameterFreeRDP::SetRemoteApplicationGuid(const QString &newRemoteApplicationGuid)
+{
+    m_RemoteApplicationGuid = newRemoteApplicationGuid;
+}
+
+QString CParameterFreeRDP::GetRemoteApplicationCmdLine() const
+{
+    return m_RemoteApplicationCmdLine;
+}
+
+void CParameterFreeRDP::SetRemoteApplicationCmdLine(const QString &newRemoteApplicationCmdLine)
+{
+    m_RemoteApplicationCmdLine = newRemoteApplicationCmdLine;
+}
+
+QString CParameterFreeRDP::GetRemoteApplicationWorkingDir() const
+{
+    return m_RemoteApplicationWorkingDir;
+}
+
+void CParameterFreeRDP::SetRemoteApplicationWorkingDir(const QString &newRemoteApplicationWorkingDir)
+{
+    m_RemoteApplicationWorkingDir = newRemoteApplicationWorkingDir;
 }
 
 void CParameterFreeRDP::SetDomain(const QString& szDomain)

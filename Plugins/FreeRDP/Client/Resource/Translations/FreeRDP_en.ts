@@ -4,243 +4,243 @@
 <context>
     <name>CConnectFreeRDP</name>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="487"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="495"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="520"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="528"/>
         <source>Connect to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="510"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="518"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="526"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="534"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="543"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="551"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="559"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="567"/>
         <source>Logon to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="511"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="544"/>
         <source> fail. Please check that the username and password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="189"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="512"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="520"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="528"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="540"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="546"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="203"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="545"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="553"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="561"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="573"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="579"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="527"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="560"/>
         <source> authentication fail. please add a CA certificate to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="537"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="570"/>
         <source>1. Check for any network related issues</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="831"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="865"/>
         <source>FreeRDP logon info: [</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1278"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1330"/>
         <source>Verify certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1281"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1373"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1333"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1424"/>
         <source>: %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1282"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1374"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1334"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1425"/>
         <source>Common name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1272"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1365"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1324"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1416"/>
         <source>RDP-Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="519"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="552"/>
         <source> fail. Please check password are correct.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="535"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="568"/>
         <source> connect transport layer fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="536"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="569"/>
         <source>Please:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="538"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="571"/>
         <source>2. Check you have proper security settings (&apos;NLA&apos; enabled is required for most connections nowadays)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="539"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="572"/>
         <source>3. Check the certificate is proper (and guacd properly checks that)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="495"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="528"/>
         <source> fail.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="187"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="201"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1135"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1190"/>
         <source>Choose</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1135"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1190"/>
         <source>Please choose smartcard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1274"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1367"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1326"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1418"/>
         <source>RDP-Gateway</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1276"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1369"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1328"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1420"/>
         <source>RDP-Redirect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1283"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1335"/>
         <source>Subject: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1284"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1336"/>
         <source>Issuer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1285"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1337"/>
         <source>Fingerprint: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1382"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1433"/>
         <source>The above X.509 certificate could not be verified, possibly because you do not have the CA certificate in your certificate store, or the certificate has expired. Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1302"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1389"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1354"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1440"/>
         <source>Yes - trusted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="693"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="727"/>
         <source>Invalid dimensions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1288"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1340"/>
         <source>The above X.509 certificate is changed.
 It is possible that the server has changed its certificate, or Maybe it was attacked.Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1294"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1346"/>
         <source>The above X.509 certificate could not be verified.
 Possibly because you do not have the CA certificate in your certificate store, or the certificate has expired.
 Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1303"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1390"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1355"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1441"/>
         <source>Ignore - temporary trusted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1304"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1391"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1356"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1442"/>
         <source>No - no trusted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1310"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1397"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1362"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1448"/>
         <source>Don&apos;t show again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1371"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1422"/>
         <source>Verify changed certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1375"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1426"/>
         <source>New subject: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1376"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1427"/>
         <source>New issuer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1377"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1428"/>
         <source>New fingerprint: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1378"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1429"/>
         <source>Old subject: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1379"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1430"/>
         <source>Old issuer: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1380"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1431"/>
         <source>Old fingerprint: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1431"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1482"/>
         <source>Consent message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1431"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1482"/>
         <source>Service message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1443"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1494"/>
         <source>I understand and agree to the terms of this policy (Y/N)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1449"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1500"/>
         <source>Gateway message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -309,170 +309,190 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="39"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="496"/>
         <source>OK(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="46"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="503"/>
         <source>Cancel(&amp;C)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="62"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="31"/>
         <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="119"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="87"/>
         <source>Only View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="130"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="63"/>
         <source>Domain:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="76"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="104"/>
         <source>Reconnect count:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="89"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="95"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="117"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;0: don&apos;t reconnect&lt;/p&gt;&lt;p&gt;&amp;gt;0: reconnect count&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="92"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="120"/>
         <source>Reconnect count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="194"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="263"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="323"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="135"/>
+        <source>Remote application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="149"/>
+        <source>Program:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="163"/>
+        <source>Parameters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="177"/>
+        <source>Working directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="220"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="275"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="335"/>
         <source>Local screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="231"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="257"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="281"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="307"/>
         <source>Local resource</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="352"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="426"/>
         <source>Selected:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="359"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="433"/>
         <source>Clear all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="371"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="329"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="377"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="335"/>
         <source>Play remote audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="383"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="341"/>
         <source>On this computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="393"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="351"/>
         <source>On remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="403"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="361"/>
         <source>Disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="416"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="374"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="287"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="290"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="293"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="296"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="445"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="448"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="451"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="454"/>
         <source>Printer: Redirection the local printers to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="306"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="309"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="312"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="315"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="313"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="316"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="319"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="322"/>
         <source>Clipboard: Redirection the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="322"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="325"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="328"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="396"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="399"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="402"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="331"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="405"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="144"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="39"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="151"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="154"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="157"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="46"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="49"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="52"/>
         <source>Connecter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="112"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="80"/>
         <source>Show server name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="180"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="206"/>
         <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="186"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="212"/>
         <source>Remote desktop size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="205"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="231"/>
         <source>Select size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="240"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="266"/>
         <source>Use all local monitors for remote sessions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="252"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="278"/>
         <source>Remote color depth:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -487,27 +507,27 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="72"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="78"/>
         <source>8 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="73"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="79"/>
         <source>16 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="74"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="80"/>
         <source>24 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="75"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="81"/>
         <source>32 bits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="95"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="101"/>
         <source>- [sys:&lt;sys&gt;,][dev:&lt;dev&gt;,][format:&lt;format&gt;,][rate:&lt;rate&gt;,][channel:&lt;channel&gt;]
 - sys:winmm- sys:ios
 - sys:mac- sys:opensles- sys:alsa
@@ -517,19 +537,19 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="110"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="116"/>
         <source>Options for redirection of audio output:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="117"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="123"/>
         <source>Options for redirection of audio input:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="477"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="489"/>
         <source>Selected counts: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -564,6 +584,15 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../PluginFreeRDP.cpp" line="114"/>
         <source>Build date: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CRail</name>
+    <message>
+        <location filename="../../Rail.cpp" line="438"/>
+        <location filename="../../Rail.cpp" line="451"/>
+        <source>Exec remote application fail</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

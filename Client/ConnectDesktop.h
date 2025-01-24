@@ -70,7 +70,7 @@ public Q_SLOTS:
      */
     virtual void slotClipBoardChanged() = 0;
 
-private:
+protected:
     int SetConnecter(CConnecter* pConnecter);
     int SetViewer(CFrmViewer* pView, bool bDirectConnection);
 

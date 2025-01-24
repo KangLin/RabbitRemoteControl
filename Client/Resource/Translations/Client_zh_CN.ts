@@ -117,12 +117,12 @@
         <translation>暂停录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="247"/>
+        <location filename="../../ConnecterThread.cpp" line="248"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="251"/>
+        <location filename="../../ConnecterThread.cpp" line="252"/>
         <source>Start record</source>
         <translation>开始录制</translation>
     </message>
@@ -255,22 +255,22 @@
         <translation>提示类型</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="69"/>
+        <location filename="../../FrmParameterClient.cpp" line="70"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="73"/>
+        <location filename="../../FrmParameterClient.cpp" line="74"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="76"/>
+        <location filename="../../FrmParameterClient.cpp" line="77"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="79"/>
+        <location filename="../../FrmParameterClient.cpp" line="80"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation>保持桌面的高宽比缩放到窗口大小</translation>
     </message>
@@ -278,7 +278,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="511"/>
+        <location filename="../../FrmViewer.cpp" line="518"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新键盘 LED 状态失败</translation>
     </message>
@@ -404,7 +404,7 @@
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="14"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="19"/>
         <source>Record</source>
         <translation>录制</translation>
     </message>
@@ -495,7 +495,7 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="147"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="148"/>
         <source>Open path</source>
         <translation>打开文件夹</translation>
     </message>

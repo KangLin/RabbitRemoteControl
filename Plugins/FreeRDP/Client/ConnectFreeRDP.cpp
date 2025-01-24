@@ -1,7 +1,13 @@
 // Author: Kang Lin <kl222@126.com>
-// https://learn.microsoft.com/zh-cn/windows-server/remote/remote-desktop-services/welcome-to-rds
-// X.509 Public Key Certificates: https://learn.microsoft.com/zh-cn/windows/win32/seccertenroll/about-x-509-public-key-certificates
-// Cryptography: https://learn.microsoft.com/zh-cn/windows/win32/seccrypto/cryptography-portal
+
+/*!
+ * - [Technical Documents](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-winprotlp/e36c976a-6263-42a8-b119-7a3cc41ddd2a)
+ * - [[MS-RDPBCGR]: Remote Desktop Protocol: Basic Connectivity and Graphics Remoting](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c)
+ *
+ * - https://learn.microsoft.com/zh-cn/windows-server/remote/remote-desktop-services/welcome-to-rds
+ * - X.509 Public Key Certificates: https://learn.microsoft.com/zh-cn/windows/win32/seccertenroll/about-x-509-public-key-certificates
+ * - Cryptography: https://learn.microsoft.com/zh-cn/windows/win32/seccrypto/cryptography-portal
+*/
 
 #include "ConnectFreeRDP.h"
 
@@ -45,12 +51,13 @@
 static Q_LOGGING_CATEGORY(log, "FreeRDP.Connect")
 static Q_LOGGING_CATEGORY(logKey, "FreeRDP.Connect.Key")
 static Q_LOGGING_CATEGORY(logMouse, "FreeRDP.Connect.Mouse")
-    
+
 CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     : CConnectDesktop(pConnecter),
     m_pContext(nullptr),
     m_pParameter(nullptr),
     m_ClipBoard(this),
+    m_pRail(nullptr),
     m_Cursor(this),
     m_writeEvent(nullptr)
 #ifdef HAVE_LIBSSH
@@ -60,11 +67,18 @@ CConnectFreeRDP::CConnectFreeRDP(CConnecterFreeRDP *pConnecter)
     qDebug(log) << Q_FUNC_INFO;
     m_pParameter = qobject_cast<CParameterFreeRDP*>(pConnecter->GetParameter());
     Q_ASSERT(m_pParameter);
+
+    m_pRailManageWindows = &pConnecter->m_RailManageWindows;
+    pConnecter->m_RailManageWindows.m_pConnect = this;
 }
 
 CConnectFreeRDP::~CConnectFreeRDP()
 {
     qDebug(log) << Q_FUNC_INFO;
+    if(m_pRail) {
+        delete m_pRail;
+        m_pRail = nullptr;
+    }
 }
 
 /*
@@ -166,6 +180,10 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     else
         freerdp_settings_set_bool(
             settings, FreeRDP_AutoReconnectionEnabled, false);
+
+    nRet = InitRAIL();
+    if(nRet)
+        return OnInitReturnValue::Fail;
 
     //*Load channel
     RedirectionSound();
@@ -410,6 +428,25 @@ void CConnectFreeRDP::slotClipBoardChanged()
         m_ClipBoard.slotClipBoardChanged();
 }
 
+rdpContext* CConnectFreeRDP::GetContext()
+{
+    return (rdpContext*)m_pContext;
+}
+
+rdpSettings* CConnectFreeRDP::GetSettings()
+{
+    if(GetContext())
+        return GetContext()->settings;
+    return nullptr;
+}
+
+CConnectFreeRDP* CConnectFreeRDP::GetConnectFreeRDP(rdpContext* context)
+{
+    if(context)
+        return ((ClientContext*)context)->pThis;
+    return nullptr;
+}
+
 BOOL CConnectFreeRDP::cbGlobalInit()
 {
 	qDebug(log) << Q_FUNC_INFO;
@@ -421,6 +458,7 @@ void CConnectFreeRDP::cbGlobalUninit()
     qDebug(log) << Q_FUNC_INFO;
 }
 
+//! [[MS-RDPBCGR] 1.3.1.1 Connection Sequence](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/023f1e69-cfe8-4ee6-9ee0-7e759fb4e4ee)
 BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -461,7 +499,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
     freerdp* instance = freerdp_client_get_instance(context);
     if(!instance)
         return -2;
-    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(context);
     auto settings = context->settings;
     
     QString szHost;
@@ -594,14 +632,15 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     qDebug(log) << Q_FUNC_INFO;
 	rdpChannels* channels = nullptr;
 	rdpSettings* settings = nullptr;
-	rdpContext* context = instance->context;
+	rdpContext* context = nullptr;
 
     if (!instance || !instance->context || !instance->context->settings)
     {
         return FALSE;
     }
 
-    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+    context = instance->context;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(context);
     if(!pThis) return FALSE;
     settings = instance->context->settings;
 	channels = context->channels;
@@ -718,7 +757,7 @@ const char* CConnectFreeRDP::GetTitle(freerdp* instance)
     BOOL addPort;
     const char* name = nullptr;
 
-    CConnectFreeRDP* pThis = ((ClientContext*)instance->context)->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(instance->context);
     rdpSettings* settings = instance->context->settings;
 
     if (!settings)
@@ -760,7 +799,7 @@ BOOL CConnectFreeRDP::cb_post_connect(freerdp* instance)
 	rdpContext* context = instance->context;
 	rdpSettings* settings = instance->context->settings;
     rdpUpdate* update = instance->context->update;
-    CConnectFreeRDP* pThis = ((ClientContext*)instance->context)->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(instance->context);
     
     const char* pWindowTitle = GetTitle(instance);
     if(pWindowTitle)
@@ -848,11 +887,25 @@ void CConnectFreeRDP::OnChannelConnectedEventHandler(void *context,
                                                      ChannelConnectedEventArgs *e)
 {
     rdpContext* pContext = (rdpContext*)context;
-    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(pContext);
     if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
         qDebug(log) << "channel" << e->name << "connected";
         pThis->m_ClipBoard.Init((CliprdrClientContext*)e->pInterface,
                                 pThis->m_pParameter->GetClipboard());
+    }
+    else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
+    {
+        if(!pThis->m_pRail)
+        {
+            pThis->m_pRail = new CRAIL(pThis);
+            pThis->m_pRailManageWindows->Connect(pThis->m_pRail);
+            auto settings = pContext->settings;
+            int width = freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth);
+            int height = freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight);
+            pThis->m_pRailManageWindows->slotSetDesktopSize(width, height);
+        }
+        if(pThis->m_pRail)
+            pThis->m_pRail->Init((RailClientContext*)e->pInterface);
     }
 #if FreeRDP_VERSION_MAJOR >= 3
     else
@@ -887,13 +940,21 @@ void CConnectFreeRDP::OnChannelDisconnectedEventHandler(void *context,
                                                         ChannelDisconnectedEventArgs *e)
 {
     rdpContext* pContext = (rdpContext*)context;
-    CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(pContext);
     
     if (strcmp(e->name, CLIPRDR_SVC_CHANNEL_NAME) == 0) {
 		qDebug(log) << "channel" << e->name << "disconnected";
-        pThis->m_ClipBoard.UnInit((CliprdrClientContext*)e->pInterface,
+        pThis->m_ClipBoard.Clean((CliprdrClientContext*)e->pInterface,
                                   pThis->m_pParameter->GetClipboard());
 	}
+    else if (strcmp(e->name, RAIL_SVC_CHANNEL_NAME) == 0)
+    {
+        if(pThis->m_pRail) {
+            pThis->m_pRail->Clean((RailClientContext*)e->pInterface);
+            delete pThis->m_pRail;
+            pThis->m_pRail = nullptr;
+        }
+    }
 #if FreeRDP_VERSION_MAJOR >= 3
     else
         freerdp_client_OnChannelDisconnectedEventHandler(pContext, e);
@@ -942,8 +1003,7 @@ UINT32 CConnectFreeRDP::GetImageFormat()
 BOOL CConnectFreeRDP::CreateImage(rdpContext *context)
 {
     Q_ASSERT(context);
-    ClientContext* pContext = (ClientContext*)context;
-    CConnectFreeRDP* pThis = pContext->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(context);
     rdpGdi* gdi = context->gdi;
     Q_ASSERT(pThis && gdi);
     pThis->m_Image = QImage(gdi->primary_buffer,
@@ -1158,8 +1218,8 @@ BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
     qDebug(log) << Q_FUNC_INFO;
 	if(!instance)
 		return FALSE;
-    rdpContext* pContext = (rdpContext*)instance->context;
-    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(instance->context);
     if(!username || !password || !domain) return FALSE;
     if(*username && *password ) return TRUE;
 
@@ -1190,8 +1250,7 @@ BOOL CConnectFreeRDP::cb_GatewayAuthenticate(freerdp *instance,
 	if(!instance)
 		return FALSE;
 
-    rdpContext* pContext = (rdpContext*)instance->context;
-    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(instance->context);
     if(!username || !password || !domain) return FALSE;
     if(*username && *password ) return TRUE;
     
@@ -1256,9 +1315,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
 {
     qDebug(log) << Q_FUNC_INFO;
 
-    rdpContext* pContext = (rdpContext*)instance->context;
-    Q_ASSERT(pContext);
-    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(instance->context);
     Q_ASSERT(pThis);
     if(common_name)
     {
@@ -1354,8 +1411,7 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
                       const char *old_fingerprint, DWORD flags)
 {
     qDebug(log) << Q_FUNC_INFO;
-    rdpContext* pContext = (rdpContext*)instance->context;
-    CConnectFreeRDP* pThis = ((ClientContext*)pContext)->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(instance->context);
     if(common_name)
         emit pThis->sigServerName(common_name);
 
@@ -1486,28 +1542,30 @@ BOOL CConnectFreeRDP::cb_begin_paint(rdpContext *context)
 	return TRUE;
 }
 
-BOOL CConnectFreeRDP::UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h)
+BOOL CConnectFreeRDP::UpdateBuffer(QRect rect)
 {
-    if(x > m_Image.width() || y > m_Image.height()) {
-        qCritical(log) << "The width and height out of range."
-                       << "Image width:" << m_Image.width()
-                       << "Image height:" << m_Image.height()
-                       << "w:" << w << "h:" << h;
-        return FALSE;
-    }
-
-    QRect rect(x, y, w, h);
-    QImage img = m_Image.copy(rect);
-    //qDebug(log) << "Image:" << rect << img.rect() << img;
+    QImage img = GetImage(rect);
     emit sigUpdateRect(rect, img);
     return TRUE;
+}
+
+QImage CConnectFreeRDP::GetImage(QRect r)
+{
+    QImage img;
+    if(!m_Image.rect().contains(r)) {
+        qCritical(log) << "The width and height out of range."
+                       << "Image:" << m_Image.rect()
+                       << r;
+        return img;
+    }
+
+    return m_Image.copy(r);
 }
 
 BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 {
     //qDebug(log) << Q_FUNC_INFO;
-    ClientContext* pContext = (ClientContext*)context;
-    CConnectFreeRDP* pThis = pContext->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(context);
     INT32 ninvalid;
     HGDI_RGN cinvalid;
     REGION16 invalidRegion;
@@ -1556,10 +1614,11 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 	{
 		extents = region16_extents(&invalidRegion);
         //qDebug(log) << extents->left << extents->top << extents->right << extents->bottom;
-        pThis->UpdateBuffer(extents->left,
-                            extents->top,
-                            extents->right - extents->left,
-                            extents->bottom - extents->top);
+        QRect rect(extents->left,
+                   extents->top,
+                   extents->right - extents->left,
+                   extents->bottom - extents->top);
+        pThis->UpdateBuffer(rect);
     }
 
 	region16_uninit(&invalidRegion);
@@ -1570,8 +1629,7 @@ BOOL CConnectFreeRDP::cb_end_paint(rdpContext *context)
 BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
 {
     qDebug(log) << Q_FUNC_INFO;
-    ClientContext* pContext = (ClientContext*)context;
-    CConnectFreeRDP* pThis = pContext->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(context);
     rdpSettings* settings;
     if (!context || !context->settings)
 		return FALSE;
@@ -1585,15 +1643,13 @@ BOOL CConnectFreeRDP::cb_desktop_resize(rdpContext* context)
         return FALSE;
 
     emit pThis->sigSetDesktopSize(desktopWidth, desktopHeight);
-    pThis->UpdateBuffer(0, 0, desktopWidth, desktopHeight);
+    pThis->UpdateBuffer(QRect(0, 0, desktopWidth, desktopHeight));
     return TRUE;
 }
 
 BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_UPDATE *play_sound)
 {
     qDebug(log) << Q_FUNC_INFO;
-    ClientContext* pContext = (ClientContext*)context;
-    CConnectFreeRDP* pThis = pContext->pThis;
 	WINPR_UNUSED(play_sound);
     QApplication::beep();
     return TRUE;
@@ -1615,8 +1671,7 @@ BOOL CConnectFreeRDP::cb_play_bell_sound(rdpContext *context, const PLAY_SOUND_U
 BOOL CConnectFreeRDP::cb_keyboard_set_indicators(rdpContext *context, UINT16 led_flags)
 {
     qDebug(log) << Q_FUNC_INFO;
-    ClientContext* pContext = (ClientContext*)context;
-    CConnectFreeRDP* pThis = pContext->pThis;
+    CConnectFreeRDP* pThis = GetConnectFreeRDP(context);
     
     int state = CFrmViewer::LED_STATE::Unknown;
 
@@ -1653,23 +1708,26 @@ int CConnectFreeRDP::WakeUp()
     return 0;
 }
 
-// https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
+// [[MS-RDPBCGR]: Remote Desktop Protocol: Basic Connectivity and Graphics Remoting](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c)
+// [2.2.8.1.1.3.1.1.3 Mouse Event (TS_POINTER_EVENT)](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17)
 bool CConnectFreeRDP::SendMouseEvent(UINT16 flags, QPoint pos, bool isExtended)
 {
     if(m_pParameter && m_pParameter->GetOnlyView()) return true;
     if(!m_pContext) return false;
 
 #if FreeRDP_VERSION_MAJOR >= 3
+    rdpClientContext* pClientContext = (rdpClientContext*)m_pContext;
     if(isExtended)
         freerdp_client_send_extended_button_event(
-            &m_pContext->Context, FALSE, flags, pos.x(), pos.y());
+            pClientContext, FALSE, flags, pos.x(), pos.y());
     else
         freerdp_client_send_button_event(
-            &m_pContext->Context, FALSE, flags, pos.x(), pos.y());
+            pClientContext, FALSE, flags, pos.x(), pos.y());
 #else
-    if(!m_pContext->Context.input) return false;
+    rdpContext* pContext = (rdpContext*)m_pContext;
+    if(!pContext->input) return false;
     return freerdp_input_send_mouse_event(
-        m_pContext->Context.input, flags, pos.x(), pos.y());
+        pContext->input, flags, pos.x(), pos.y());
 #endif
     return true;
 }
@@ -1706,17 +1764,19 @@ void CConnectFreeRDP::wheelEvent(QWheelEvent *event)
         flags |= PTR_FLAGS_HWHEEL | p.x();
     }
 #if FreeRDP_VERSION_MAJOR >= 3
-    freerdp_client_send_wheel_event(&m_pContext->Context, flags);
+    rdpClientContext* pClientContext = (rdpClientContext*)m_pContext;
+    freerdp_client_send_wheel_event(pClientContext, flags);
     /*
     freerdp_client_send_button_event(
         &m_pContext->Context, FALSE, flags, pos.x(), pos.y());//*/
 #else
+    rdpContext* pContext = (rdpContext*)m_pContext;
     freerdp_input_send_mouse_event(
-        m_pContext->Context.input, flags, pos.x(), pos.y());
+        pContext->input, flags, pos.x(), pos.y());
 #endif
 }
 
-// https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17
+// [2.2.8.1.1.3.1.1.3 Mouse Event (TS_POINTER_EVENT)](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/2c1ced34-340a-46cd-be6e-fc8cab7c3b17)
 void CConnectFreeRDP::mouseMoveEvent(QMouseEvent *event)
 {
     qDebug(logMouse) << Q_FUNC_INFO << event << event->buttons() << event->button();
@@ -1807,14 +1867,16 @@ void CConnectFreeRDP::keyPressEvent(QKeyEvent *event)
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     // Convert to rdp scan code freerdp/scancode.h
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
-    if(RDP_SCANCODE_UNKNOWN != k)
+    if(RDP_SCANCODE_UNKNOWN != k) {
+        rdpContext* pContext = (rdpContext*)m_pContext;
 #if FreeRDP_VERSION_MAJOR >= 3
         freerdp_input_send_keyboard_event_ex(
-            m_pContext->Context.context.input, true, true, k);
+            pContext->input, true, true, k);
 #else
         freerdp_input_send_keyboard_event_ex(
-            m_pContext->Context.input, true, k);
+            pContext->input, true, k);
 #endif
+    }
 }
 
 void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
@@ -1823,14 +1885,16 @@ void CConnectFreeRDP::keyReleaseEvent(QKeyEvent *event)
     if(!m_pContext) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     UINT32 k = CConvertKeyCode::QtToScanCode(event->key(), event->modifiers());
-    if(RDP_SCANCODE_UNKNOWN != k)
+    if(RDP_SCANCODE_UNKNOWN != k) {
+        rdpContext* pContext = (rdpContext*)m_pContext;
 #if FreeRDP_VERSION_MAJOR >= 3
         freerdp_input_send_keyboard_event_ex(
-            m_pContext->Context.context.input, false, false, k);
+            pContext->input, false, false, k);
 #else
         freerdp_input_send_keyboard_event_ex(
-            m_pContext->Context.input, false, k);
+            pContext->input, false, k);
 #endif
+    }
 }
 
 int CConnectFreeRDP::RedirectionSound()
@@ -2073,4 +2137,69 @@ void CConnectFreeRDP::slotConnectProxyServer(QString szHost, quint16 nPort)
         qCritical(log) << "freerdp_client_start fail";
     }
     qDebug(log) << "CConnectFreeRDP::slotConnectProxyServer end";
+}
+
+int CConnectFreeRDP::InitRAIL()
+{
+    int nRet = 0;
+
+    if(!m_pParameter || !m_pParameter->GetRemoteApplicationMode()
+        || m_pParameter->GetRemoteApplicationProgram().isEmpty())
+        return nRet;
+
+    rdpContext* pContext = (rdpContext*)m_pContext;
+    rdpSettings* settings = pContext->settings;
+#if FreeRDP_VERSION_MAJOR >= 3
+    const FreeRDP_Settings_Keys_Bool ids[] =
+#else
+    const size_t ids[] =
+#endif
+        {
+         FreeRDP_RemoteApplicationMode,
+         FreeRDP_RemoteAppLanguageBarSupported,
+         FreeRDP_Workarea,
+         FreeRDP_DisableWallpaper,
+         FreeRDP_DisableFullWindowDrag };
+
+    if (!freerdp_settings_set_string(
+            settings,
+            FreeRDP_RemoteApplicationProgram,
+            m_pParameter->GetRemoteApplicationProgram().toStdString().c_str()))
+        return -1;
+
+    for (size_t y = 0; y < ARRAYSIZE(ids); y++)
+    {
+        if (!freerdp_settings_set_bool(settings, ids[y], TRUE))
+            return -2;
+    }
+
+    if (!freerdp_settings_set_string(
+            settings,
+            FreeRDP_RemoteApplicationWorkingDir,
+            m_pParameter->GetRemoteApplicationWorkingDir().toStdString().c_str()))
+        return -3;
+
+    if (!freerdp_settings_set_string(
+            settings,
+            FreeRDP_RemoteApplicationCmdLine,
+            m_pParameter->GetRemoteApplicationCmdLine().toStdString().c_str()))
+        return -4;
+
+    qDebug(log) << "Remote app:" << m_pParameter->GetRemoteApplicationProgram()
+                << m_pParameter->GetRemoteApplicationCmdLine()
+                << "Working dir:"
+                << m_pParameter->GetRemoteApplicationWorkingDir();
+    return nRet;
+}
+
+int CConnectFreeRDP::SetRAILViewer(CFrmViewer *pView)
+{
+    int nRet = CConnectDesktop::SetViewer(pView, true);
+    bool check = disconnect(this, SIGNAL(sigUpdateRect(QRect,QImage)),
+                            pView, SLOT(slotUpdateRect(QRect,QImage)));
+    Q_ASSERT(check);
+    check = disconnect(this, SIGNAL(sigUpdateRect(QImage)),
+                       pView, SLOT(slotUpdateRect(QImage)));
+    Q_ASSERT(check);
+    return nRet;
 }

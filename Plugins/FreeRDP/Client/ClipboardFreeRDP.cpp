@@ -80,7 +80,7 @@ int CClipboardFreeRDP::Init(CliprdrClientContext *context, bool bEnable)
     return 0;
 }
 
-int CClipboardFreeRDP::UnInit(CliprdrClientContext *context, bool bEnable)
+int CClipboardFreeRDP::Clean(CliprdrClientContext *context, bool bEnable)
 {
     context->custom = nullptr;
     m_pCliprdrClientContext = nullptr;

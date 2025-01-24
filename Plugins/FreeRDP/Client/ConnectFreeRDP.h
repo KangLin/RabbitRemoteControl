@@ -6,6 +6,7 @@
 #include "ConnectDesktop.h"
 #include "freerdp/freerdp.h"
 #include "ClipboardFreeRDP.h"
+#include "RAIL.h"
 #include "ConnecterFreeRDP.h"
 #include "CursorFreeRDP.h"
 #include <QSharedPointer>
@@ -119,7 +120,8 @@ public:
 private:
     UINT32 GetImageFormat();
     BOOL CreateImage(rdpContext* context);
-    BOOL UpdateBuffer(INT32 x, INT32 y, INT32 w, INT32 h);
+    BOOL UpdateBuffer(QRect rect);
+    QImage GetImage(QRect r);
 
     int RedirectionSound();
     int RedirectionMicrophone();
@@ -150,24 +152,26 @@ private:
     
 private:
     struct ClientContext{
-        #if FreeRDP_VERSION_MAJOR >= 3
-            rdpClientContext Context;
-        #else
-            rdpContext Context;
-        #endif
+        rdpClientContext clientContext;
         CConnectFreeRDP* pThis;
     };
     ClientContext* m_pContext;
+public:
+    rdpContext* GetContext();
+    rdpSettings* GetSettings();
+    static CConnectFreeRDP* GetConnectFreeRDP(rdpContext *context);
+
+private:
     CParameterFreeRDP* m_pParameter;
 
 	RDP_CLIENT_ENTRY_POINTS m_ClientEntryPoints;
 
     QImage m_Image;
-
-    CClipboardFreeRDP m_ClipBoard;
     CCursorFreeRDP m_Cursor;
     friend class CCursorFreeRDP;
-    
+
+    CClipboardFreeRDP m_ClipBoard;
+
     HANDLE m_writeEvent;
     
 #ifdef HAVE_LIBSSH
@@ -175,6 +179,14 @@ private:
 #endif
 private Q_SLOTS:
     void slotConnectProxyServer(QString szHost, quint16 nPort);
+
+private:
+    CRAIL* m_pRail;
+    CRAILManageWindows* m_pRailManageWindows;
+    friend class CRAIL;
+    friend class CRAILManageWindows;
+    int InitRAIL();
+    int SetRAILViewer(CFrmViewer* pView);
 };
 
 #endif // CCONNECTFREERDP_H

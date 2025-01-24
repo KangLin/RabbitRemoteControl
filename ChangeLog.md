@@ -1,5 +1,9 @@
 ## Change Log
 
+### v0.0.34
+- FreeRDP
+  - Add remote application
+
 ### v0.0.33
 - Remove donate bitcoin
 - VNC: modify mouse. add back button

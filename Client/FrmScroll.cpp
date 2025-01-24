@@ -60,6 +60,7 @@ CFrmViewer* CFrmScroll::GetViewer()
     return qobject_cast<CFrmViewer*>(widget());
 }
 
+//! When the mouse is moved to the edge, scroll the scrollbar
 void CFrmScroll::slotMouseMoveEvent(QMouseEvent *event)
 {
     int area = 10;

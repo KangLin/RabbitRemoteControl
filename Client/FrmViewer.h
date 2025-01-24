@@ -96,7 +96,8 @@ public:
     Q_ENUM(LED_STATE)
 
 public Q_SLOTS:
-    void slotSetAdaptWindows(CFrmViewer::ADAPT_WINDOWS aw = ADAPT_WINDOWS::Original);
+    void slotSetAdaptWindows(
+        CFrmViewer::ADAPT_WINDOWS aw = ADAPT_WINDOWS::Original);
     int slotSetZoomFactor(double newZoomFactor);
     
     /*================== Internal calls ==================*/
@@ -137,6 +138,7 @@ Q_SIGNALS:
     void sigMousePressEvent(QMouseEvent* event, QPoint pos);
     void sigMouseReleaseEvent(QMouseEvent* event, QPoint pos);
     void sigMouseMoveEvent(QMouseEvent* event, QPoint pos);
+    //! \see CFrmScroll::CFrmScroll
     void sigMouseMoveEvent(QMouseEvent* event);
     void sigWheelEvent(QWheelEvent *event, QPoint pos);
     void sigKeyPressEvent(QKeyEvent *event);
@@ -165,7 +167,7 @@ private:
 
     int ReSize(int width, int height);
     void paintDesktop();
-    int TranslationMousePoint(QPointF inPos, QPointF &outPos);
+    virtual int TranslationMousePoint(QPointF inPos, QPointF &outPos);
     QRectF GetAspectRationRect();
 
 public:
