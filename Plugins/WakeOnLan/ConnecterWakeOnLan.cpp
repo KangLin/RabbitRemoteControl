@@ -184,8 +184,11 @@ int CConnecterWakeOnLan::Connect()
             msg.checkBox()->setCheckable(true);
             nRet = msg.exec();
             if(QMessageBox::Yes == nRet) {
-                bool bRet = RabbitCommon::CTools::executeByRoot(
-                    QCoreApplication::applicationFilePath());
+                QString szExec = QCoreApplication::applicationFilePath();
+                QString szAppImage = QString::fromLocal8Bit(qgetenv("APPIMAGE"));
+                if(!szAppImage.isEmpty())
+                    szExec = szAppImage;
+                bool bRet = RabbitCommon::CTools::executeByRoot(szExec);
                 qDebug(log) << "Execute:" << bRet << QCoreApplication::applicationFilePath();
                 if(bRet && msg.checkBox()->isChecked()) {
                     QCoreApplication::quit();
