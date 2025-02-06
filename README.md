@@ -202,6 +202,7 @@ Legend:
 - [Compilation documentation](#Compilation)
 
 ## Status
+
 [![Documentation](https://img.shields.io/badge/documentation-online-blue)](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 [![GitHub stars](https://img.shields.io/github/stars/KangLin/RabbitRemoteControl?label=Github%20stars)](https://star-history.com/#KangLin/RabbitRemoteControl&Date)
@@ -246,11 +247,6 @@ If this software is useful to you, or you like it, please donate and support the
 If it cannot be displayed, please open:
 - https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_en.png
 - https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute_en.png
-
-Bitcoin:
-
-- Address: bc1qgdsc88m33f84fppy2ey0hfntrzqumke8wtkzr5
-- [![bitcoin](docs/Image/Screenshot/bitcoin.png "bitcoin")](docs/Image/Screenshot/bitcoin.png "bitcoin")
 
 Contact me:
 - <kl222@126.com>

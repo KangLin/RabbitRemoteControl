@@ -246,11 +246,6 @@
 - https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute_zh_CN.png
 - https://sourceforge.net/p/rabbitcommon/code/ci/master/tree/Src/Resource/image/Contribute_zh_CN.png
 
-比特币:
-
-- 地址: bc1qgdsc88m33f84fppy2ey0hfntrzqumke8wtkzr5
-- [![bitcoin](docs/Image/Screenshot/bitcoin.png "bitcoin")](docs/Image/Screenshot/bitcoin.png "bitcoin")
-
 联系：
 - <kl222@126.com>
 - [jami](https://jami.net): eddacfd6c7b70b258e511e812ffab7d3490396fa

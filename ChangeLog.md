@@ -1,4 +1,6 @@
 ## Change Log
+### v0.0.33
+- Remove donate bitcoin
 
 ### v0.0.32
 - Fix player menu bug
