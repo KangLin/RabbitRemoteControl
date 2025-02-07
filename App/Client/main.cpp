@@ -46,7 +46,9 @@ int main(int argc, char *argv[])
       （Qt6 开始强制默认优先用 wayland ，Qt5 默认有 xcb 则优先用 xcb），
        所以需要在 main 函数最前面加一行 `qputenv("QT_QPA_PLATFORM", "xcb")`;
     */
-    qputenv("QT_QPA_PLATFORM", "xcb");
+    QString szPlatform = QString::fromLocal8Bit(qgetenv("QT_QPA_PLATFORM"));
+    if(szPlatform.isEmpty() || "wayland" == szPlatform)
+        qputenv("QT_QPA_PLATFORM", "xcb");
 #endif
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
