@@ -1,6 +1,7 @@
 ## Change Log
 ### v0.0.33
 - Remove donate bitcoin
+- VNC: modify mouse. add back button
 
 ### v0.0.32
 - Fix player menu bug

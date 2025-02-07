@@ -55,7 +55,9 @@
 
 static Q_LOGGING_CATEGORY(log, "VNC.Connect")
 static Q_LOGGING_CATEGORY(logVNC, "VNC.Log")
-    
+static Q_LOGGING_CATEGORY(logKey, "VNC.Connect.Key")
+static Q_LOGGING_CATEGORY(logMouse, "VNC.Connect.Mouse")
+
 class VncLogger: public rfb::Logger
 {
 public:
@@ -799,20 +801,21 @@ void CConnectVnc::mousePressEvent(QMouseEvent *event)
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
     
-    unsigned char mask = 0;
+    uint8_t mask = 0;
     if(event->button() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
     if(event->button() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
     if(event->button() & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    
+    if(event->button() & Qt::MouseButton::BackButton)
+        mask |= 0x80;
+
     QPoint pos = event->pos();
     rfb::Point p(pos.x(), pos.y());
 
-    /*
-    qDebug(log) << "CConnectVnc::slotMousePressEvent buttons:"
-                << event->buttons() << event->button() << pos << mask;//*/
+    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+
     try{
         writer()->writePointerEvent(p, mask);
     } catch (rdr::Exception& e) {
@@ -824,12 +827,10 @@ void CConnectVnc::mouseReleaseEvent(QMouseEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
-    int mask = 0;
+    uint8_t mask = 0;
     QPoint pos = event->pos();
     rfb::Point p(pos.x(), pos.y());
-    /*
-    qDebug(log) << "CConnectVnc::slotMouseReleaseEvent buttons:"
-                << event->buttons() << event->button() << pos << mask;//*/
+    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
     try{
         writer()->writePointerEvent(p, mask);
     } catch (rdr::Exception& e) {
@@ -841,18 +842,21 @@ void CConnectVnc::mouseMoveEvent(QMouseEvent *event)
 {
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
-    int mask = 0;
+
     QPoint pos = event->pos();
     rfb::Point p(pos.x(), pos.y());
+    uint8_t mask = 0;
     if(event->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
     if(event->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
     if(event->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    /*
-    qDebug(log) << "CConnectVnc::slotMouseMoveEvent buttons:"
-                << event->buttons() << event->button() << pos << mask;//*/
+    if(event->buttons() & Qt::MouseButton::BackButton)
+        mask |= 0x80;
+
+    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+
     try{
         writer()->writePointerEvent(p, mask);
     } catch (rdr::Exception& e) {
@@ -863,19 +867,17 @@ void CConnectVnc::mouseMoveEvent(QMouseEvent *event)
 // https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#pointerevent
 void CConnectVnc::wheelEvent(QWheelEvent *event)
 {
-    /*
-    qDebug(log) << "CConnectVnc::slotWheelEvent buttons:"
-                << event->buttons() << event->angleDelta() << pos;//*/
     if(!writer()) return;
     if(m_pPara && m_pPara->GetOnlyView()) return;
-    int mask = 0;
-
+    uint8_t mask = 0;
     if(event->buttons() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
     if(event->buttons() & Qt::MouseButton::MiddleButton)
         mask |= 0x2;
     if(event->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
+    if(event->buttons() & Qt::MouseButton::BackButton)
+        mask |= 0x80;
 
     QPoint d = event->angleDelta();
     if(d.y() > 0)
@@ -895,6 +897,12 @@ void CConnectVnc::wheelEvent(QWheelEvent *event)
 #endif
 
     rfb::Point p(pos.x(), pos.y());
+    //*
+    qDebug(logMouse) << Q_FUNC_INFO << event->buttons()
+#if QT_VERSION > QT_VERSION_CHECK(6, 0, 0)
+                     << event->button()
+#endif
+                     << pos << mask; //*/
 
     try{
         writer()->writePointerEvent(p, mask);
@@ -910,15 +918,15 @@ void CConnectVnc::keyPressEvent(QKeyEvent *event)
     bool modifier = false;
     if (event->modifiers() & Qt::ShiftModifier)
         modifier = true;
-    //qDebug(log) << "slotKeyPressEvent key:" << key << modifiers;
+
     uint32_t k = TranslateRfbKey(event->key(), modifier);
-    
+    qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
+
     try{
         writer()->writeKeyEvent(k, 0, true);
     } catch (rdr::Exception& e) {
         emit sigError(-1, e.str());
     }
-    
 }
 
 void CConnectVnc::keyReleaseEvent(QKeyEvent *event)
@@ -928,15 +936,15 @@ void CConnectVnc::keyReleaseEvent(QKeyEvent *event)
     bool modifier = false;
     if (event->modifiers() & Qt::ShiftModifier)
         modifier = true;
-    //qDebug(log) << "slotKeyReleaseEvent key:" << key << modifiers;
+
     uint32_t k = TranslateRfbKey(event->key(), modifier);
-    
+    qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
+
     try{
         writer()->writeKeyEvent(k, 0, false);
     } catch (rdr::Exception& e) {
         emit sigError(-1, e.str());
     }
-    
 }
 
 QString CConnectVnc::ConnectInformation()

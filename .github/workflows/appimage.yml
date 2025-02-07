@@ -116,7 +116,7 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
-            git clone -b 3.10.3 https://github.com/FreeRDP/FreeRDP.git
+            git clone -b 3.11.0 https://github.com/FreeRDP/FreeRDP.git
             # git clone https://github.com/KangLin/FreeRDP.git
             cd FreeRDP
             git submodule update --init --recursive

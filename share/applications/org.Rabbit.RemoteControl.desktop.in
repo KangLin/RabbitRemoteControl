@@ -10,7 +10,7 @@ Terminal=false
 StartupNotify=true
 
 # https://specifications.freedesktop.org/menu-spec/latest/apa.html
-Categories=Network;Utility;P2P;Qt;RemoteAccess
+Categories=Network;Utility;P2P;Qt;RemoteAccess;AudioVideo;Video;Audio;Player;Recorder
 
 # https://www.freedesktop.org/wiki/Specifications/mime-apps-spec/
 # https://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec/

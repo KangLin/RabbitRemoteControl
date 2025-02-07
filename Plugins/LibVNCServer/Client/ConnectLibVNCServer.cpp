@@ -10,6 +10,8 @@
 
 static Q_LOGGING_CATEGORY(log, "LibVNCServer.Connect")
 static Q_LOGGING_CATEGORY(logger, "LibVNCServer.Connect.log")
+static Q_LOGGING_CATEGORY(logKey, "LibVNCServer.Connect.Key")
+static Q_LOGGING_CATEGORY(logMouse, "LibVNCServer.Connect.Mouse")
 
 const char* gThis = "This pointer";
 #define LOG_BUFFER_LENGTH 1024
@@ -572,7 +574,7 @@ void CConnectLibVNCServer::mousePressEvent(QMouseEvent *event)
 {
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
-    //qDebug(log) << "CConnectLibVnc::slotMousePressEvent" << e->button() << e->buttons();
+
     unsigned char mask = 0;
     if(event->button() & Qt::MouseButton::LeftButton)
         mask |= 0x1;
@@ -580,8 +582,12 @@ void CConnectLibVNCServer::mousePressEvent(QMouseEvent *event)
         mask |= 0x2;
     if(event->button() & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    
+    if(event->button() & Qt::MouseButton::BackButton)
+        mask |= 0x80;
     QPoint pos = event->pos();
+
+    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
+
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
@@ -591,12 +597,12 @@ void CConnectLibVNCServer::mouseReleaseEvent(QMouseEvent *event)
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     int mask = 0;
     QPoint pos = event->pos();
+    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
 void CConnectLibVNCServer::mouseMoveEvent(QMouseEvent *event)
 {
-    //qDebug(log) << "CConnectLibVnc::slotMouseMoveEvent" << buttons << pos;
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     int mask = 0;
@@ -606,13 +612,16 @@ void CConnectLibVNCServer::mouseMoveEvent(QMouseEvent *event)
         mask |= 0x2;
     if(event->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
+    if(event->buttons() & Qt::MouseButton::BackButton)
+        mask |= 0x80;
     QPoint pos = event->pos();
+    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->button() << pos << mask;
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
+// https://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst#pointerevent
 void CConnectLibVNCServer::wheelEvent(QWheelEvent *event)
 {
-    //qDebug(log) << "CConnectLibVnc::slotWheelEvent" << buttons << pos << angleDelta;
     if(!m_pClient) return;
     if(m_pParameter && m_pParameter->GetOnlyView()) return;
     int mask = 0;
@@ -622,7 +631,9 @@ void CConnectLibVNCServer::wheelEvent(QWheelEvent *event)
         mask |= 0x2;
     if(event->buttons() & Qt::MouseButton::RightButton)
         mask |= 0x4;
-    
+    if(event->buttons() & Qt::MouseButton::BackButton)
+        mask |= 0x80;
+
     QPoint d = event->angleDelta();
     if(d.y() > 0)
         mask |= 0x8;
@@ -640,6 +651,8 @@ void CConnectLibVNCServer::wheelEvent(QWheelEvent *event)
     pos = event->pos();
 #endif
     
+    qDebug(logMouse) << Q_FUNC_INFO << event->buttons() << event->angleDelta() << pos;
+
     SendPointerEvent(m_pClient, pos.x(), pos.y(), mask);
 }
 
@@ -914,6 +927,7 @@ void CConnectLibVNCServer::keyPressEvent(QKeyEvent *event)
     if (event->modifiers() & Qt::ShiftModifier)
         modifier = true;
     uint32_t k = TranslateRfbKey(event->key(), modifier);
+    qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
     SendKeyEvent(m_pClient, k, TRUE);
 }
 
@@ -925,6 +939,7 @@ void CConnectLibVNCServer::keyReleaseEvent(QKeyEvent *event)
     if (event->modifiers() & Qt::ShiftModifier)
         modifier = true;
     uint32_t k = TranslateRfbKey(event->key(), modifier);
+    qDebug(logKey) << Q_FUNC_INFO << event << k << modifier;
     SendKeyEvent(m_pClient, k, FALSE);
 }
 
