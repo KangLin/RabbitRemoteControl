@@ -18,7 +18,7 @@ jobs:
     env:
       BUILD_TYPE:  Release
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
-      TOOSL_DIR:   ${{github.workspace}}/.cache/tools
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install_ubuntu
       DOXYGEN_VERSION: 1.9.8
       artifact_name: build_doxygen
@@ -36,7 +36,7 @@ jobs:
     - name: make_directory
       run: |
         cmake -E make_directory ${{env.SOURCE_DIR}}
-        cmake -E make_directory ${{env.TOOSL_DIR}}
+        cmake -E make_directory ${{env.TOOLS_DIR}}
         cmake -E make_directory ${{env.INSTALL_DIR}}
         cmake -E make_directory ${{github.workspace}}/build
 
@@ -45,7 +45,7 @@ jobs:
       id: cache-installed
       with:
         path: |
-          ${{env.TOOSL_DIR}}
+          ${{env.TOOLS_DIR}}
         key: install-doxygen
 
     - name: git clone RabbitCommon
@@ -61,12 +61,12 @@ jobs:
 
     - name: Download doxygen
       run: |
-        if [ ! -d ${{env.TOOSL_DIR}}/doxygen-${{env.DOXYGEN_VERSION}} ]; then
-            cd ${{env.TOOSL_DIR}}
+        if [ ! -d ${{env.TOOLS_DIR}}/doxygen-${{env.DOXYGEN_VERSION}} ]; then
+            cd ${{env.TOOLS_DIR}}
             wget https://www.doxygen.nl/files/doxygen-${{env.DOXYGEN_VERSION}}.linux.bin.tar.gz
             tar xzf doxygen-${{env.DOXYGEN_VERSION}}.linux.bin.tar.gz
         fi
-        sudo cp ${{env.TOOSL_DIR}}/doxygen-${{env.DOXYGEN_VERSION}}/bin/doxygen /usr/bin/doxygen
+        sudo cp ${{env.TOOLS_DIR}}/doxygen-${{env.DOXYGEN_VERSION}}/bin/doxygen /usr/bin/doxygen
 
     - name: build doxygen
       working-directory: ${{github.workspace}}

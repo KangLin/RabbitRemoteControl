@@ -1,3 +1,11 @@
+#!/bin/bash
+# Author: Kang Lin <kl222@126.com>
+
+#See: https://blog.csdn.net/alwaysbefine/article/details/114187380
+set -x
+set -e
+#set -v
+
 if [ $# -lt 3 ]; then
     echo "Input parameters[$#] is fail. "
     echo "Please using:"

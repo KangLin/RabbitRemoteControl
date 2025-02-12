@@ -36,13 +36,15 @@ jobs:
             VCPKG_PLATFORM_TOOLSET: v143
             VCPKG_OVERLAY_PORTS: "vcpkg/ports"
 
-    # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
     runs-on: windows-latest
 
     env:
+      BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
-      TOOSL_DIR:   ${{github.workspace}}\.cache\tools
+      TOOLS_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
       VCPKGGITCOMMITID: 9f5925e81bbcd9c8c34cc7a8bd25e3c557b582b2
       VCPKG_TARGET_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
@@ -72,9 +74,9 @@ jobs:
 
       - name: Make directories
         run: |
-          cmake -E make_directory ${{github.workspace}}/build
+          cmake -E make_directory ${{env.BUILD_DIR}}
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
           
       - name: Cache installed
@@ -82,8 +84,8 @@ jobs:
         id: cache-installed
         with:
           path: |
-            ${{env.INSTALL_DIR}}
-          key: install_msvc_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
+            ${{env.INSTALL_DIR}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
+          key: install_msvc
         
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
@@ -249,9 +251,9 @@ jobs:
           )
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
-          dir: '${{env.TOOSL_DIR}}/qt' # optional
+          dir: '${{env.TOOLS_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}' # optional, default is 5.15.2
           arch: '${{matrix.qt_arch}}' # optional
           modules: '${{env.qt_modules}}' # optional.  see: https://ddalcino.github.io/aqt-list-server/
@@ -331,7 +333,7 @@ jobs:
               echo "Build Debug ......"
               set BUILD_SERVICE=ON
           )
-          cd ${{github.workspace}}/build
+          cd ${{env.BUILD_DIR}}
           cmake ${{github.workspace}} ^
             -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
             -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
@@ -339,7 +341,7 @@ jobs:
             -DCMARK_TESTS=OFF ^
             -DCMARK_STATIC=ON ^
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-            -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
+            -DCMAKE_INSTALL_PREFIX=${{env.BUILD_DIR}}/install ^
             -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
             -DVCPKG_VERBOSE=ON ^
             -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}} ^

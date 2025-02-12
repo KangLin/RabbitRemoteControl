@@ -16,7 +16,7 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_arch: [android_arm64_v8a, android_x86_64]
-        qt_version: [6.8.1]
+        qt_version: [6.8.2]
         include:
           - qt_arch: android_arm64_v8a
             VCPKG_TARGET_TRIPLET: arm64-android
@@ -26,7 +26,8 @@ jobs:
             VCPKG_TARGET_TRIPLET: x64-android
             ANDROID_ABI: x86_64
 
-    # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
     runs-on: ubuntu-24.04
 
@@ -37,15 +38,16 @@ jobs:
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_DEFAULT_HOST_TRIPLET: x64-linux
       VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
+      BUILD_DIR:     ${{github.workspace}}/build
       SOURCE_DIR:    ${{github.workspace}}/.cache/source
-      TOOSL_DIR:     ${{github.workspace}}/.cache/tools
+      TOOLS_DIR:     ${{github.workspace}}/.cache/tools
       INSTALL_DIR:   ${{github.workspace}}/.cache/install
       artifact_name: build_android
       ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/26.3.11579264
       ANDROID_PLATFORM: android-34
       ANDROID_NATIVE_API_LEVEL: 34
       ANDROID_ABI: ${{matrix.ANDROID_ABI}}
-      qt_modules: 'qtimageformats qtmultimedia qtscxml qtserialport qt5compat qtgraphs'
+      qt_modules: 'qtimageformats qtmultimedia qtscxml qtserialport qt5compat'
 
     # Map the job outputs to step outputs
     outputs:
@@ -61,14 +63,14 @@ jobs:
         run: |
           cmake --version
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-          cmake -E make_directory ${{github.workspace}}/build
+          cmake -E make_directory ${{env.BUILD_DIR}}
 
       - name: Install apt packages
         run: |
-          sudo apt-get update -y
-          sudo apt-get upgrade -y
+          #sudo apt-get update -y
+          #sudo apt-get upgrade -y
           sudo apt install -y -q ninja-build nasm
 
       - name: Cache installed
@@ -92,10 +94,10 @@ jobs:
           vcpkg install --triplet ${{matrix.VCPKG_TARGET_TRIPLET}} --x-feature=vnc
 
       - name: Install Qt of linux_gcc_64
-        uses: jurplel/install-qt-action@v3
-        if: ${{ matrix.qt_version == '6.8.1' }}
+        uses: jurplel/install-qt-action@v4
+        if: ${{ matrix.qt_version == '6.8.2' }}
         with:
-          dir: '${{env.TOOSL_DIR}}/qt' # optional
+          dir: '${{env.TOOLS_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
           #host: 'linux'
           target: 'desktop'
@@ -104,11 +106,11 @@ jobs:
           cache: true
           cache-key-prefix: cached_qt
 
-      - name: Install Qt of linux_gcc_64
-        uses: jurplel/install-qt-action@v3
+      - name: Install Qt of gcc_64
+        uses: jurplel/install-qt-action@v4
         if: ${{  matrix.qt_version == '6.6.3' }}
         with:
-          dir: '${{env.TOOSL_DIR}}/qt' # optional
+          dir: '${{env.TOOLS_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}'
           #host: 'linux'
           target: 'desktop'
@@ -121,7 +123,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           # Directory to install Qt
-          dir: '${{env.TOOSL_DIR}}/qt' # optional
+          dir: '${{env.TOOLS_DIR}}/qt' # optional
           # Version of Qt to install
           version: '${{matrix.qt_version}}'
           # Host platform
@@ -294,7 +296,7 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: build RabbitRemoteControl
-        working-directory: ${{github.workspace}}/build
+        working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
           QT_ANDROID_KEYSTORE_PATH: ${{env.SOURCE_DIR}}/RabbitCommon/RabbitCommon.keystore

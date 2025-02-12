@@ -15,12 +15,19 @@ on:
 jobs:
   ubuntu:
     uses: ./.github/workflows/ubuntu.yml
+    secrets: inherit
+
+  aarch64:
+    uses: ./.github/workflows/aarch64.yml
+    secrets: inherit
 
   appimage:
     uses: ./.github/workflows/appimage.yml
+    secrets: inherit
 
   msvc:
     uses: ./.github/workflows/msvc.yml
+    secrets: inherit
 
   mingw:
     if: true
@@ -28,6 +35,7 @@ jobs:
 
   macos:
     uses: ./.github/workflows/macos.yml
+    secrets: inherit
 
   android:
     uses: ./.github/workflows/android.yml
@@ -97,6 +105,12 @@ jobs:
           path: ${{ env.artifact_path }}
           merge-multiple: true
 
+      - name: clean test tag
+        if: ${{ startsWith(github.ref, 'refs/heads/master') }}
+        continue-on-error: true
+        run: |
+          gh release delete test_${{ github.ref_name }} -y --cleanup-tag
+
       - name: Process configure file
         run: |
           git clone https://github.com/KangLin/RabbitCommon.git
@@ -145,12 +159,6 @@ jobs:
         run: |
           gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes-file ${{github.workspace}}/Note.md
           gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json
-
-      - name: clean test tag
-        if: ${{ startsWith(github.ref, 'refs/heads/master') }}
-        continue-on-error: true
-        run: |
-          gh release delete test_${{ github.ref_name }} -y --cleanup-tag
 
       - name: Upload test tag To Github Release
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}

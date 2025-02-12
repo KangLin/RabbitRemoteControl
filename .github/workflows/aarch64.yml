@@ -1,0 +1,166 @@
+# Author: Kang Lin <kl222@126.com>
+
+name: aarch64
+
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_arch.outputs.name }}
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+  build_arch:
+    if: false
+    strategy:
+      matrix:
+        compile_name: [deb, AppImage]
+        include:
+          - arch: aarch64
+            distro: ubuntu22.04
+
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
+    runs-on: ubuntu-24.04
+
+    env:
+      BUILD_DIR:  ${{github.workspace}}/build
+      SOURCE_DIR:  ${{github.workspace}}/.cache/source
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install
+      RabbitRemoteControl_VERSION: v0.0.32
+      artifact_name: build_aarch64
+
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Make directories
+        run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
+          cmake -E make_directory ${{env.SOURCE_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
+          cmake -E make_directory ${{env.INSTALL_DIR}}
+
+      - name: Cache installed
+        uses: actions/cache@v3
+        id: cache-installed
+        with:
+          path: |
+            ${{env.INSTALL_DIR}}
+          key: install_aarcch64
+
+      - name: git clone RabbitCommon
+        working-directory: ${{env.SOURCE_DIR}}
+        run: |
+            git clone https://github.com/KangLin/RabbitCommon.git
+
+      - uses: uraimo/run-on-arch-action@v2
+        name: Build deb package
+        id: build_deb
+        if: ${{matrix.compile_name == 'deb'}}
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+
+          # Not required, but speeds up builds
+          githubToken: ${{secrets.GITHUB_TOKEN}}
+
+          #setup: |
+
+          # Mount the ${{github.workspace}} directory as ${{github.workspace}} in the container
+          dockerRunArgs: |
+            --volume "${{github.workspace}}:${{github.workspace}}"
+
+          # Pass some environment variables to the container
+          env: | # YAML, but pipe character is necessary
+            RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
+
+          # The shell to run commands with in the container
+          shell: /bin/bash
+
+          # Install some dependencies in the container. This speeds up builds if
+          # you are also using githubToken. Any dependencies installed here will
+          # be part of the container image that gets cached, so subsequent
+          # builds don't have to re-install them. The image layer is cached
+          # publicly in your project's package repository, so it is vital that
+          # no secrets are present in the container state or logs.
+          # install: |
+          #   case "${{ matrix.distro }}" in
+          #       ubuntu*|jessie|stretch|buster|bullseye)
+          #           ;;
+          #       fedora*)
+          #           #dnf -y update
+          #           ;;
+          #       alpine*)
+          #           #apk update
+          #           ;;
+          #   esac
+
+          # Produce a binary artifact and place it in the mounted volume
+          run: |
+            ${{github.workspace}}/Script/build_depend.sh \
+                --apt_update --base --default \
+                --tigervnc --pcapplusplus
+                --install ${{env.INSTALL_DIR}} \
+                --source ${{env.SOURCE_DIR}} \
+                --tools ${{env.TOOLS_DIR}} \
+                --build ${{env.BUILD_DIR}}
+
+            export PcapPlusPlus_DIR=${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
+            export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
+
+            ${{github.workspace}}/Script/build_debpackage.sh
+
+      - uses: uraimo/run-on-arch-action@v2
+        name: Build AppImag
+        id: build_AppImag
+        if: ${{matrix.compile_name == 'AppImage'}}
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+
+          # Not required, but speeds up builds
+          githubToken: ${{secrets.GITHUB_TOKEN}}
+
+          # Mount the ${{github.workspace}} directory as ${{github.workspace}} in the container
+          dockerRunArgs: |
+            --volume "${{github.workspace}}:${{github.workspace}}"
+
+          # The shell to run commands with in the container
+          shell: /bin/bash
+
+          # Pass some environment variables to the container
+          env: | # YAML, but pipe character is necessary
+            RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
+
+          # Produce a binary artifact and place it in the mounted volume
+          run: |
+            ${{github.workspace}}/Script/build_depend.sh \
+                --apt_update --base --qt \
+                --tigervnc --freerdp --pcapplusplus \
+                --install ${{env.INSTALL_DIR}} \
+                --source ${{env.SOURCE_DIR}} \
+                --tools ${{env.TOOLS_DIR}} \
+                --build ${{env.BUILD_DIR}}
+
+            export PcapPlusPlus_DIR=${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
+            export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
+            export FreeRDP_DIR=${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
+            export WinPR_DIR=${{ env.INSTALL_DIR }}/lib/cmake/WinPR3
+            export FreeRDP-Client_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
+            export FreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
+            export FreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
+            export BUILD_FREERDP=ON
+
+            ${{github.workspace}}/Script/build_appimage.sh

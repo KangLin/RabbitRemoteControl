@@ -1,4 +1,16 @@
 #!/bin/bash
+# Author: Kang Lin <kl222@126.com>
+
+#See: https://blog.csdn.net/alwaysbefine/article/details/114187380
+set -x
+set -e
+#set -v
+
+# store repo root as variable
+REPO_ROOT=$(readlink -f $(dirname $(dirname $(readlink -f $0))))
+OLD_CWD=$(readlink -f .)
+
+pushd "$REPO_ROOT"
 
 if [ -n "$1" -a -z "$QT_ROOT" ]; then
 	QT_ROOT=$1
@@ -81,3 +93,5 @@ dpkg-buildpackage -us -uc -b -d
 #dpkg-buildpackage -us -uc 
 
 #dpkg-buildpackage -b
+
+popd

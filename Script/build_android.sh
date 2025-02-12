@@ -1,4 +1,10 @@
 #!/bin/bash
+# Author: Kang Lin <kl222@126.com>
+
+#See: https://blog.csdn.net/alwaysbefine/article/details/114187380
+set -x
+set -e
+#set -v
 
 # modify follow value
 Qt6_DIR=/opt/Qt/6.6.3/android_x86_64

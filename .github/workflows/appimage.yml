@@ -1,3 +1,5 @@
+# Author: Kang Lin <kl222@126.com>
+
 name: appimage
 
 on:
@@ -11,24 +13,34 @@ env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 jobs:
-  build_ubuntu:
+  build_appimage:
     strategy:
       matrix:
         BUILD_TYPE: [Release]
-        qt_version: [6.8.1]
-        qt_arch: [linux_gcc_64]
+        qt_version: [6.8.2]
+        os: [ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04-arm]
+        include:
+          - os: ubuntu-24.04
+            qt_arch: "linux_gcc_64"
+          - os: ubuntu-24.04-arm
+            qt_arch: "linux_gcc_arm64"
+          - os: ubuntu-22.04-arm
+            qt_arch: "linux_gcc_arm64"
 
-    # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-24.04
+    runs-on: ${{matrix.os}}
 
     env:
       BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
+      BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
-      TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
       RabbitRemoteControl_VERSION: v0.0.32
-      artifact_name: build_appimage
+      artifact_name: build_appimage_${{matrix.os}}
+      qt_modules: 'qtscxml qtmultimedia qtimageformats qtserialport qt5compat'
 
     # Map the job outputs to step outputs
     outputs:
@@ -38,53 +50,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          submodules: true
+          submodules: recursive
 
       - name: Make directories
         run: |
-          cmake -E make_directory ${{github.workspace}}/build
+          cmake -E make_directory ${{env.BUILD_DIR}}
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-
-      - name: git clone RabbitCommon
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-            git clone https://github.com/KangLin/RabbitCommon.git
-
-      - name: Install apt packages
-        run: |
-          sudo apt-get update -y
-          sudo apt-get upgrade -y
-          sudo apt install -y -q cmake build-essential xvfb xpra \
-              libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev \
-              cmake debhelper fakeroot graphviz \
-              libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
-              libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
-              libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
-              libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
-              libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev  \
-              libxcb-* libxcb-cursor0 \
-              libwayland-dev libwayland-egl-backend-dev waylandpp-dev \
-              libxkbcommon-dev mesa-common-dev \
-              libpixman-1-dev libpam0g-dev libutf8proc-dev \
-              libfuse-dev libfuse3-dev libusb-1.0-0-dev libpcap-dev libcups2-dev \
-              libavcodec-dev libavformat-dev libresample1-dev libswscale-dev \
-              libvncserver-dev libssh-dev libtelnet-dev
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          dir: '${{env.TOOSL_DIR}}/qt'
-          aqtversion: '==3.1.*'
-          version: ${{matrix.qt_version}}
-          host: 'linux'
-          target: 'desktop'
-          arch: ${{matrix.qt_arch}}
-          # See: https://ddalcino.github.io/aqt-list-server/
-          modules: 'qtscxml qtmultimedia qtimageformats qtserialport qt5compat'
-          cache: true
-          cache-key-prefix: cached-qt
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -92,125 +65,40 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-            ${{env.TOOSL_DIR}}
-          key: install_ubuntu_${{matrix.BUILD_TYPE}}
+            ${{env.TOOLS_DIR}}/linuxdeploy-*
+          key: install_ubuntu
 
-      - name: pcapplusplus
+      - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus ]; then
-            git clone -b v24.09 --depth=1 https://github.com/seladb/PcapPlusPlus.git
-            cd PcapPlusPlus
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DPCAPPP_BUILD_EXAMPLES=OFF \
-                -DPCAPPP_BUILD_TESTS=OFF \
-                -DPCAPPP_BUILD_TUTORIALS=OFF
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            git clone https://github.com/KangLin/RabbitCommon.git
+
+      - name: Install dependency libraries
+        run: |
+          sudo ./Script/build_depend.sh --apt_update --base \
+              --tigervnc --freerdp --pcapplusplus \
+              --install ${{env.INSTALL_DIR}} \
+              --source ${{env.SOURCE_DIR}} \
+              --tools ${{env.TOOLS_DIR}} \
+              --build ${{env.BUILD_DIR}}
+          if [ "ubuntu-22.04-arm" != ${{matrix.os}} ]; then
+              sudo apt install -y -q qt6-5compat-dev
           fi
 
-      - name: build FreeRDP
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
-            git clone -b 3.11.0 https://github.com/FreeRDP/FreeRDP.git
-            # git clone https://github.com/KangLin/FreeRDP.git
-            cd FreeRDP
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-                -DWITH_SERVER=ON \
-                -DWITH_CLIENT_SDL=OFF \
-                -DWITH_KRB5=OFF \
-                -DWITH_MANPAGES=OFF
-            cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-          fi
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          dir: '${{env.TOOLS_DIR}}/qt'
+          version: ${{matrix.qt_version}}
+          target: 'desktop'
+          arch: ${{matrix.qt_arch}}
+          # See: https://ddalcino.github.io/aqt-list-server/
+          modules: ${{env.qt_modules}}
+          cache: true
+          cache-key-prefix: cached-qt_${{matrix.qt_arch}}
 
-      - name: build RabbitVNC
-        if: false
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ]; then
-            git clone --depth=1 https://github.com/KangLin/RabbitVNC.git
-            cd ${{env.SOURCE_DIR}}/RabbitVNC
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          fi
-
-      - name: build tigervnc
-        #if: ${{ matrix.BUILD_TYPE == 'Debug'}}
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
-            git clone --depth=1 https://github.com/KangLin/tigervnc.git
-            cd ${{env.SOURCE_DIR}}/tigervnc
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
-          fi
-
-      - name: build libdatachannel
-        working-directory: ${{env.SOURCE_DIR}}
-        if: false
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibDataChannel ]; then
-            git clone -b v0.17.8 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
-            cd libdatachannel
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
-          fi
-
-      - name: build QtService
-        if: false
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/QtService ]; then
-            git clone --depth=1 https://github.com/KangLin/qt-solutions.git
-            cd qt-solutions/qtservice
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            export Qt6_DIR=/usr/lib/`uname -a`-linux-gnu/cmake/Qt6
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install/strip
-          fi
-
-      - name: linuxdeploy
-        run: |
-            cd ${{env.TOOSL_DIR}}
-            if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
-                wget https://github.com/linuxdeploy/linuxdeploy/releases/download/2.0.0-alpha-1-20241106/linuxdeploy-`uname -m`.AppImage
-                chmod u+x linuxdeploy-`uname -m`.AppImage
-            fi
-            if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
-                wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/2.0.0-alpha-1-20241106/linuxdeploy-plugin-qt-`uname -m`.AppImage
-                chmod u+x linuxdeploy-plugin-qt-`uname -m`.AppImage
-            fi
 
       - name: build appimage
-        working-directory: ${{github.workspace}}/build
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
           RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
@@ -222,62 +110,25 @@ jobs:
           FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
           FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
           FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
-          PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
           BUILD_FREERDP: ON
+          PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
         run: |
-          if [ '${{matrix.BUILD_TYPE}}' == 'Release' ]; then
-              echo "Build Release ......"
-              export BUILD_VIEWER_TERMINAL=OFF
-              export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
-          fi
-          export LD_LIBRARY_PATH=${{env.INSTALL_DIR}}/lib:$LD_LIBRARY_PATH
-          cmake ${{github.workspace}} \
-            -DCMAKE_INSTALL_PREFIX=/usr \
-            -DCMARK_SHARED=OFF \
-            -DCMARK_TESTS=OFF \
-            -DCMARK_STATIC=ON \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_INSTALL_PREFIX=/usr \
-            -DBUILD_QUIWidget=OFF \
-            -DBUILD_APP=ON \
-            -DBUILD_FREERDP=ON
-          cmake --build . --parallel $(nproc)
-          cmake --install . --config Release --component DependLibraries --prefix AppDir/usr
-          cmake --install . --config Release --component Runtime --prefix AppDir/usr
-          cmake --install . --config Release --component Application --prefix AppDir/usr
-          cmake --install . --config Release --component Plugin --prefix AppDir/usr
-          # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
-          export QMAKE=$Qt6_DIR/bin/qmake
-          export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
-          # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
-          export EXTRA_QT_MODULES="svg"
-          ${{env.TOOSL_DIR}}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
-              --deploy-deps-only=AppDir/usr/plugins/Client \
-              --deploy-deps-only=AppDir/usr/lib/`uname -m`-linux-gnu \
-              --plugin qt \
-              --output appimage
-          mv Rabbit_Remote_Control-`uname -m`.AppImage ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage
-          chmod a+x ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage
-          md5sum ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage > ../RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage.md5sum
+          export QMAKE=$QT_ROOT_DIR/bin/qmake6
+          ${{github.workspace}}/Script/build_appimage.sh
+          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage.md5sum
 
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
         #continue-on-error: true
         run: |
-          #sudo apt update -y -qq
-          #sudo apt-get install -y -qq xvfb xpra
-          sudo Xvfb :99 -ac &
-          export DISPLAY=:99.0
+          sudo Xvfb :91.0 -ac -screen 0 1200x900x24 &
+          export DISPLAY=:91.0
           echo "Update update_linux.json ......"
           export QT_XCB_GL_INTEGRATION=none
-          export QT_DEBUG_PLUGINS=1
+          #export QT_DEBUG_PLUGINS=1
           ARCH=`uname -m`
           MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage.md5sum|awk '{print $1}'`
           echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage: ${MD5SUM}"
-          #echo "Enable core dump ......"
-          #ulimit -c unlimited
-          #echo "# sudo sysctl -w kernel.core_pattern=core"
-          #sudo sysctl -w kernel.core_pattern=${{github.workspace}}/core
           echo "Generate update configure file ......"
           ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
             -f "${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \

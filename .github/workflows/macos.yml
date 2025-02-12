@@ -1,3 +1,5 @@
+# Author: Kang Lin <kl222@126.com>
+
 name: macos
 
 on:
@@ -16,25 +18,27 @@ jobs:
       matrix:
         # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
         BUILD_TYPE: [Release, Debug]
-        qt_version: [6.8.1, 5.15.2, 5.12.12]
+        qt_version: [6.8.2, 5.15.2, 5.12.12]
         qt_arch: [clang_64]
         VCPKG_TARGET_TRIPLET: [x64-osx]
         include:
-          - qt_version: 6.8.1
+          - qt_version: 6.8.2
             qt_modules: qtscxml qtmultimedia qtserialport qt5compat
 
           - qt_version: 5.15.2
 
           - qt_version: 5.12.12
 
-    # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
-    # See: https://github.com/actions/runner-images/tree/main
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
     runs-on: macos-13
 
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
-      TOOSL_DIR:   ${{github.workspace}}/.cache/tools
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
       INSTALL_DIR: ${{github.workspace}}/.cache/install
       qt_modules: ${{matrix.qt_modules}}
       VCPKGGITCOMMITID: 9f5925e81bbcd9c8c34cc7a8bd25e3c557b582b2
@@ -57,10 +61,10 @@ jobs:
     
       - name: Make directories
         run: |
-          cmake -E make_directory ${{github.workspace}}/build
+          cmake -E make_directory ${{env.BUILD_DIR}}
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
-          cmake -E make_directory ${{env.INSTALL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
+          cmake -E make_directory ${{env.INSTALL_DIR}}_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -68,7 +72,7 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: install_macos_qt${{matrix.qt_version}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
+          key: install_macos
 
       - name: run-vcpkg
         uses: lukka/run-vcpkg@v11
@@ -194,10 +198,10 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          dir: '${{env.TOOSL_DIR}}/qt' # optional
+          dir: '${{env.TOOLS_DIR}}/qt' # optional
           version: '${{matrix.qt_version}}' # optional, default is 5.15.2
           arch: '${{matrix.qt_arch}}' # optional
-          modules: '${{env.qt_modules}}' # optional
+          modules: '${{env.qt_modules}}' # optional. See: https://ddalcino.github.io/aqt-list-server/
           cache: true
           cache-key-prefix: cached_qt
 
@@ -251,7 +255,7 @@ jobs:
         run: git clone https://github.com/KangLin/RabbitCommon.git
 
       - name: Build RabbitRemoteControl
-        working-directory: ${{github.workspace}}/build
+        working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
         run: |
@@ -287,7 +291,7 @@ jobs:
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
 
       - name: Update configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.8.1' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.8.2' }}
         working-directory: ${{github.workspace}}/build
         run: |
           ${{env.SOURCE_DIR}}/RabbitCommon/Install/GenerateJsonFile.sh \
@@ -297,7 +301,7 @@ jobs:
                "https://github.com/KangLin/RabbitRemoteControl/releases/download/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip;https://sourceforge.net/projects/rabbitRabbitRemoteControl/files/v${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip"
 
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.8.1' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.qt_version == '6.8.2' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}_${{matrix.qt_version}}_${{matrix.qt_arch}}

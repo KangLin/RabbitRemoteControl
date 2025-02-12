@@ -1,4 +1,10 @@
 #!/bin/bash
+# Author: Kang Lin <kl222@126.com>
+
+#See: https://blog.csdn.net/alwaysbefine/article/details/114187380
+set -x
+set -e
+#set -v
 
 EXIT_CODE=0
 PROJECT_NAME="RabbitRemoteControl"

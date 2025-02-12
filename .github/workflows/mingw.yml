@@ -1,3 +1,5 @@
+# Author: Kang Lin <kl222@126.com>
+
 name: mingw
 
 on:
@@ -18,14 +20,16 @@ jobs:
       run:
         shell: cmd
         
-    # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
     runs-on: windows-latest
 
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
+      BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}\.cache\source
-      TOOSL_DIR:   ${{github.workspace}}\.cache\tools
+      TOOLS_DIR:   ${{github.workspace}}\.cache\tools
       INSTALL_DIR: ${{github.workspace}}\.cache\install
       RabbitRemoteControl_VERSION: v0.0.32
       artifact_name: build_mingw
@@ -67,8 +71,9 @@ jobs:
 
       - name: make_directory
         run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
     
       - name: Cache installed
@@ -185,20 +190,18 @@ jobs:
           )
 
       - name: build RabbitRemoteControl
-        working-directory: ${{github.workspace}}
+        working-directory: ${{env.BUILD_DIR}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
           MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
         run: |
-          cmake -E make_directory build
-          cd build
           cmake .. -G"MinGW Makefiles" ^
             -DCMARK_SHARED=OFF ^
             -DCMARK_TESTS=OFF ^
             -DCMARK_STATIC=ON ^
             -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
-            -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/install ^
+            -DCMAKE_INSTALL_PREFIX=${{env.BUILD_DIR}}/install ^
             -DBUILD_FREERDP=ON ^
             -DBUILD_LibVNCServer=ON ^
             -DBUILD_RABBITVNC=OFF ^
@@ -212,7 +215,7 @@ jobs:
 
       - name: Package
         if: false # ${{ matrix.BUILD_TYPE == 'Release' }}
-        working-directory: ${{github.workspace}}/build
+        working-directory: ${{env.BUILD_DIR}}
         run: |
           cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
           move /Y install\plugins\*crypto*.dll install\bin
@@ -220,7 +223,7 @@ jobs:
           copy /Y C:\msys64\mingw64\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
-          makensis ${{github.workspace}}/build/Install.nsi
+          makensis ${{env.BUILD_DIR}}/Install.nsi
           md5sum RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe > RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5
 
 #      - name: Update artifact

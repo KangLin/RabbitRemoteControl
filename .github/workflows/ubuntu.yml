@@ -1,3 +1,5 @@
+# Author: Kang Lin <kl222@126.com>
+
 name: ubuntu
 
 on:
@@ -15,18 +17,21 @@ jobs:
     strategy:
       matrix:
         BUILD_TYPE: [Release, Debug]
+        os: [ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04-arm]
 
-    # See: https://docs.github.com/zh/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
 
     env:
       BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
+      BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
-      TOOSL_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.BUILD_TYPE}}
       RabbitRemoteControl_VERSION: 0.0.32
-      artifact_name: build_ubuntu
+      artifact_name: build_${{matrix.os}}
 
     # Map the job outputs to step outputs
     outputs:
@@ -78,37 +83,10 @@ jobs:
 
       - name: Make directories
         run: |
-          cmake -E make_directory ${{github.workspace}}/build
+          cmake -E make_directory ${{env.BUILD_DIR}}
           cmake -E make_directory ${{env.SOURCE_DIR}}
-          cmake -E make_directory ${{env.TOOSL_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
           cmake -E make_directory ${{env.INSTALL_DIR}}
-
-      - name: git clone RabbitCommon
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-            git clone https://github.com/KangLin/RabbitCommon.git
-
-      - name: Install apt packages
-        run: |
-          sudo apt-get update -y
-          sudo apt-get upgrade -y
-          sudo apt install -y -q cmake build-essential xvfb xpra \
-              libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev \
-              cmake debhelper fakeroot graphviz \
-              qmake6 qt6-tools-dev qt6-tools-dev-tools \
-              qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
-              libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
-              qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev \
-              libxkbcommon-dev libxkbcommon-x11-dev xorg-dev libx11-xcb-dev \
-              libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev libxcb-cursor0 \
-              libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
-              libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
-              libpixman-1-dev libpam0g-dev libutf8proc-dev \
-              libfuse3-dev libusb-1.0-0-dev \
-              libvncserver-dev libssh-dev libtelnet-dev freerdp2-dev \
-              libpcap-dev libcups2-dev \
-              libavcodec-dev libavformat-dev libresample1-dev libswscale-dev \
-              libcmark-dev cmark
 
       - name: Cache installed
         uses: actions/cache@v3
@@ -116,108 +94,23 @@ jobs:
         with:
           path: |
             ${{env.INSTALL_DIR}}
-          key: install_ubuntu_${{matrix.BUILD_TYPE}}
-          
-      - name: build FreeRDP
-        if: false
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP3 ]; then
-            git clone -b 3.8.0 --depth=1 https://github.com/FreeRDP/FreeRDP.git
-            # git clone https://github.com/KangLin/FreeRDP.git
-            cd FreeRDP
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. \
-                -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} \
-                -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" \
-                -DWITH_SERVER=ON \
-                -DWITH_CLIENT_SDL=OFF \
-                -DWITH_KRB5=OFF \
-                -DWITH_MANPAGES=OFF
-            cmake --build . --parallel $(nproc) --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
-          fi
+          key: install_ubuntu
 
-      - name: build RabbitVNC
-        if: false
+      - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
         run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ]; then
-            git clone --depth=1 https://github.com/KangLin/RabbitVNC.git
-            cd ${{env.SOURCE_DIR}}/RabbitVNC
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-            cmake --build . --parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          fi
+            git clone https://github.com/KangLin/RabbitCommon.git
 
-      - name: build tigervnc
-        #if: ${{ matrix.BUILD_TYPE == 'Debug'}}
-        working-directory: ${{env.SOURCE_DIR}}
+      - name: Install dependency libraries
         run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/tigervnc ]; then
-            git clone --depth=1 https://github.com/KangLin/tigervnc.git
-            cd ${{env.SOURCE_DIR}}/tigervnc
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
-            cmake --build . --parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          fi
-
-      - name: build libdatachannel
-        working-directory: ${{env.SOURCE_DIR}}
-        if: false
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/LibDataChannel ]; then
-            git clone -b v0.22.2 --depth=1 https://github.com/paullouisageneau/libdatachannel.git
-            cd libdatachannel
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
-            cmake --build . --parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          fi
-
-      - name: build QtService
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/QtService ]; then
-            git clone --depth=1 https://github.com/KangLin/qt-solutions.git
-            cd qt-solutions/qtservice
-            git submodule update --init --recursive
-            cmake -E make_directory build
-            cd build
-            export Qt6_DIR=/usr/lib/`uname -m`-linux-gnu/cmake/Qt6
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }}
-            cmake --build . --parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
-          fi
-
-      - name: pcapplusplus
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-          if [ ! -d ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus ]; then
-            git clone -b v24.09 --depth=1 https://github.com/seladb/PcapPlusPlus.git
-            cd PcapPlusPlus
-            cmake -E make_directory build
-            cd build
-            cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.BUILD_TYPE }} \
-                -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} \
-                -DPCAPPP_BUILD_EXAMPLES=OFF \
-                -DPCAPPP_BUILD_TESTS=OFF \
-                -DPCAPPP_BUILD_TUTORIALS=OFF
-            cmake --build . --parallel $(nproc) --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+          sudo ./Script/build_depend.sh --apt_update --base --default \
+              --tigervnc --pcapplusplus --QtService \
+              --install ${{env.INSTALL_DIR}} \
+              --source ${{env.SOURCE_DIR}} \
+              --tools ${{env.TOOLS_DIR}} \
+              --build ${{env.BUILD_DIR}}
+          if [ "ubuntu-22.04-arm" != ${{matrix.os}} ]; then
+               sudo apt install -y -q qt6-5compat-dev
           fi
 
       - name: build_debpackage.sh
@@ -240,10 +133,7 @@ jobs:
               export BUILD_VIEWER_TERMINAL=OFF
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           fi
-          export QT_ROOT=/usr/lib/`uname -m`-linux-gnu/cmake/Qt6
-          ./build_debpackage.sh
-          cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb
-          md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum
+          ./Script/build_debpackage.sh
 
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
@@ -252,16 +142,20 @@ jobs:
         run: |
           #sudo apt update -y -qq
           #sudo apt-get install -y -qq xvfb xpra
-          sudo Xvfb :99 -ac &
-          export DISPLAY=:99.0
+          sudo Xvfb :92 -ac -screen 0 1200x900x24 &
+          export DISPLAY=:92.0
+          ls
+          ARCH=`dpkg --print-architecture`
+          cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.deb .
+          md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.deb.md5sum
           echo "Install rabbit remote control ......"
-          sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb
+          sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.deb
           #echo "ls -l /opt/RabbitRemoteControl/bin/"
           #ls -l /opt/RabbitRemoteControl/bin/
           echo "Update update_linux.json ......"
           export QT_XCB_GL_INTEGRATION=none
-          MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb.md5sum|awk '{print $1}'`
-          echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb: ${MD5SUM}"
+          MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.deb.md5sum|awk '{print $1}'`
+          echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.deb: ${MD5SUM}"
           #echo "Enable core dump ......"
           #ulimit -c unlimited
           #echo "# sudo sysctl -w kernel.core_pattern=core"
@@ -270,7 +164,7 @@ jobs:
           /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
             -f "${{github.workspace}}/update_ubuntu.json" \
             --foc 1 \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_amd64.deb" \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_`dpkg --print-architecture`.deb;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_`dpkg --print-architecture`.deb" \
             --md5 "${MD5SUM}" \
             -m "v${{env.RabbitRemoteControl_VERSION}}"
           mv "${{github.workspace}}/update_ubuntu.json.xml" update_linux.xml
@@ -280,8 +174,8 @@ jobs:
         working-directory: ${{github.workspace}}
         #continue-on-error: true
         run: |
-          sudo Xvfb :99 -ac &
-          export DISPLAY=:99.0
+          sudo Xvfb :90 -ac &
+          export DISPLAY=:90.0
           /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
                -f "${{github.workspace}}/version.json" \
                --foc 0 \
