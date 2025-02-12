@@ -11,9 +11,9 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
       ~$ lsb_release -a
       No LSB modules are available.
       Distributor ID:	Ubuntu
-      Description:	Ubuntu 22.04.3 LTS
-      Release:	22.04
-      Codename:	jammy
+      Description:	Ubuntu 24.04.1 LTS
+      Release:	24.04
+      Codename:	noble     
 
 - Debian
 
@@ -26,13 +26,13 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
 
 #### Qt Creator
 
-Version: v12.0.2  
+Version: v15.0.0 
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
 ### Tools
 
-- Install the development tools package
+#### Install the development tools package
 
       ~$ sudo apt install build-essential
 
@@ -46,42 +46,117 @@ Prior versions don't have CMake support.
 
             ~$ sudo apt install automake autoconf make fakeroot
 
-- Git: [https://www.git-scm.com](https://www.git-scm.com/)
+#### Git: [https://www.git-scm.com](https://www.git-scm.com/)
 
       ~$ sudo apt install git
         
-- CMake: [https://cmake.org](https://cmake.org/)
+#### CMake: [https://cmake.org](https://cmake.org/)
 
-  Version: 3.27.0
+  Version: Greater than 3.27.0
 
       ~$ sudo apt install cmake
 
-- Package tools: debhelper
+#### Package tools: debhelper
 
       ~$ sudo apt install debhelper
 
-- Qt
-  + Qt (official release): https://download.qt.io/official_releases/qt/
-  + Qt5: Current version: 5.12.12
-    + System build-in:
+#### Qt
+  - Qt (official release): https://download.qt.io/official_releases/qt/
+    - Set environment variable or cmake parameters:
+      - QT_ROOT
+      - Qt6: Qt6_ROOT or Qt6_DIR .
+        See: https://doc.qt.io/qt-6/cmake-get-started.html
+      - Qt5: Qt5_ROOT or Qt5_DIR .
+        See: https://doc.qt.io/qt-5/cmake-get-started.html
+      - Environment variable
+
+            export QT_ROOT=Qt install root
+            # Needed by complied AppImage
+            export QMAKE=$QT_ROOT/bin/qmake
+
+            # When Qt6
+            export Qt6_ROOT=$QT_ROOT
+            # When Qt5
+            export Qt5_ROOT=$QT_ROOT
+
+            # Or
+
+            # When Qt6
+            export Qt6_DIR=$QT_ROOT/lib/cmake/Qt6
+            # When Qt5
+            export Qt5_DIR=$QT_ROOT/lib/cmake/Qt5
+
+      - CMAKE parameters
+
+            # Qt6
+            cmake -DQT_ROOT=[Qt install root] -DQt6_DIR=[Qt install root]/lib/cmake/Qt6 ......
+            # Qt5 
+            cmake -DQT_ROOT=[Qt install root] -DQt5_DIR=[Qt install root]/lib/cmake/Qt5 ......
+            # Needed by complied AppImage
+            export QMAKE=$QT_ROOT/bin/qmake
+
+  - System build-in:  
+    - Qt5:
 
           ~$ sudo apt install qttools5-dev qttools5-dev-tools qtbase5-dev qtbase5-dev-tools qtmultimedia5-dev qtlocation5-dev libqt5svg5-dev libqtermwidget5-0-dev
 
-  + Qt6: Current version: 6.4.2
-    + System build-in:
+    - Qt6: See: [Script/build_depend.sh](../../Script/build_depend.sh)
 
-          ~$ sudo apt install qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev qt6-webengine-dev qt6-webengine-dev-tools
+          ~$ sudo apt install qmake6 qt6-tools-dev qt6-tools-dev-tools qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
 
-- [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
+    - When multiple distributions of Qt are installed on the system.
+      For example: Install Qt5 and Qt6 at the same time.
+      The system uses the qtchooser tool to select the current Qt version.
+  
+          l@l:/home/RabbitRemoteControl$ qtchooser 
+          Usage:
+            qtchooser { -l | -list-versions | -print-env }
+            qtchooser -install [-f] [-local] <name> <path-to-qmake>
+            qtchooser -run-tool=<tool name> [-qt=<Qt version>] [program arguments]
+            <executable name> [-qt=<Qt version>] [program arguments]
+
+          Environment variables accepted:
+           QTCHOOSER_RUNTOOL  name of the tool to be run (same as the -run-tool argument)
+           QT_SELECT          version of Qt to be run (same as the -qt argument)
+  
+      - List which version of Qt is currently installed on your system
+
+            l@l:/home/RabbitRemoteControl$ qtchooser -l
+            4
+            5
+            default
+            qt4-x86_64-linux-gnu
+            qt4
+            qt5-x86_64-linux-gnu
+            qt5
+            qt6
+
+            # View the Qt version of your current environment
+            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+            QT_SELECT="default"
+            QTTOOLDIR="[Paths]"
+            QTLIBDIR="Prefix=/usr"
+    
+      - Set the Qt version of your current environment
+
+            export QT_SELECT=qt6  # Set the Qt6 version of your current environment
+
+            # View the Qt version of your current environment
+            l@l:/home/RabbitRemoteControl$ qtchooser --print-env
+            QT_SELECT="qt6"
+            QTTOOLDIR="/usr/lib/qt6/bin"
+            QTLIBDIR="/usr/lib/aarch64-linux-gnu"
+
+#### [OPTIONAL] IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
   Prior versions don't have CMake support.
 
       ~$ sudo apt install qtcreator
 
-- OpenGL: Required to run Qt.
+#### OpenGL: Required to run Qt.
 
       ~$ sudo apt install libglu1-mesa-dev
       
-- Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
+#### Doxygen: [http://www.doxygen.nl/](http://www.doxygen.nl/)
 
       ~$ sudo apt install doxygen
 
@@ -91,7 +166,7 @@ Prior versions don't have CMake support.
 - [MUST] [Openssl:](https://github.com/openssl/openssl) Required to run Qt.
 - [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
 - [OPTIONAL] RFB
-  + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
+  + [OPTIONAL] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [OPTIONAL] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
 - [OPTIONAL] QTermWidget: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
@@ -106,22 +181,32 @@ Prior versions don't have CMake support.
 - [OPTIONAL] libdatachannel: [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
 - [OPTIONAL] QXmpp: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
 - [OPTIONAL] QtService: [https://github.com/KangLin/qt-solutions](https://github.com/KangLin/qt-solutions)
-- [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus)
-- [OPTIONAL] [FFMPEG:](https://ffmpeg.org/) Multimedia capabilities required
+- [OPTIONAL] PcapPlusPlus: [https://github.com/seladb/PcapPlusPlus](https://github.com/seladb/PcapPlusPlus).
+  The WakeOnLan plugin required.
+- [OPTIONAL] FFMPEG: [https://ffmpeg.org/](https://ffmpeg.org/).
+  QtMultimedia required.
 
 #### RabbitCommon
 
-This library is placed in the same directory level as the project by default.
-If not, you must specify the CMake parameters:
--DRabbitCommon_ROOT=[RabbitCommon installation path]
+- This library is placed in the same directory level as the project by default.
 
-    ~$ git clone https://github.com/KangLin/RabbitCommon.git
+      ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+      ~$ git clone https://github.com/KangLin/RabbitCommon.git
+
+- If not, you must specify the CMake parameters or environment variable:
+
+      ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+      # Set environment variable
+      ~$ export RabbitCommon_ROOT=[RabbitCommon install root]
+      ~$ cd RabbitRemoteControl
+      # Or set CMake parameters
+      ~/RabbitRemoteControl$ cmake -DRabbitCommon_ROOT=[RabbitCommon installation path] ......
 
 #### FreeRDP
 
 - Use the system-packaged development library
 
-      ~$ sudo apt install freerdp2-dev
+      ~$ sudo apt install freerdp3-dev
     
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
@@ -143,15 +228,19 @@ If not, you must specify the CMake parameters:
           ~$ git clone https://github.com/FreeRDP/FreeRDP.git
           ~$ cd FreeRDP
           ~/FreeRDP$ mkdir build
-          ~/FreeRDP/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install -DWITH_SERVER=ON
+          ~/FreeRDP/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+              -DCMAKE_INSTALL_PREFIX=`pwd`/install -DWITH_SERVER=ON
           ~/FreeRDP/build$ cmake --build . --config Release --target install
           
-  + Specify the CMake parameters:
-    - -DBUILD_FREERDP=ON
-    - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client2
-    - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP2
-    - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR2
-  
+- When FreeRDP is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  - -DBUILD_FREERDP=ON
+  - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client3
+  - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP3
+  - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR3
+  - -DFreeRDP-Shadow_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Shadow3
+  - -DFreeRDP-Server_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Server3
+
 #### LibVNCServer
 
 - Use the system-packaged development library
@@ -161,7 +250,10 @@ If not, you must specify the CMake parameters:
 - Compile from source code
   + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
-  + Specify CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
+- When LibVNCServer is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
 
 #### RabbitVNC
 
@@ -175,7 +267,10 @@ Source-code location: https://github.com/KangLin/RabbitVNC
       ~/RabbitVNC$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
       ~/RabbitVNC$ cmake --build . --config Release --target install
     
-- Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
+- When RabbitVNC is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
 
 #### TigerVNC
 
@@ -193,7 +288,10 @@ Source-code location: https://github.com/KangLin/tigervnc
     ~/tigervnc$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
     ~/tigervnc$ cmake --build . --config Release --target install
     
-- Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
+- When TigerVNC is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 
 #### libdatachannel
 
@@ -219,9 +317,16 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~/libdatachannel/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
         ~/libdatachannel/build$ cmake --build . --config Release --target install
 
-  + Specify the CMake parameters: -DLibDataChannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
+- When libdatachannel is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -DLibDataChannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
 
 #### QXmpp
+
+- Use the system-packaged development library
+
+      ~$ sudo apt install libqxmpp-dev
 
 - Compile from source code
   + Source-code location: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
@@ -233,7 +338,10 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~/qxmpp/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
         ~/qxmpp/build$ cmake --build . --config Release --target install
 
-  + Specify the CMake parameters: -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
+- When QXmpp is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -DQXmpp_DIR=[libdatachannel installation path]/lib/cmake/qxmpp
 
 #### QTermWidget
 
@@ -243,7 +351,10 @@ Source-code location: https://github.com/KangLin/tigervnc
       
 - Compile from source code
   + Source-code location: [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
-  + Specify the CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
+- When QTermWidget is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
 #### libssh
 
@@ -263,7 +374,10 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 - Compile from source code
   + Source-code location: [https://www.libssh.org](https://www.libssh.org)
-  + Specify the CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
+- When libssh is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  
+      -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 
 #### QtService
 
@@ -277,13 +391,15 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~/qt-solutions/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install
         ~/qt-solutions/build$ cmake --build . --config Release --target install
   
-  + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
+- When QtService is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
 
 ### PcapPlusPlus
 
 - Compile from source code
   + Source-code location: https://github.com/seladb/PcapPlusPlus
-  + Specify the CMake parameters: -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
 
         ~$ git clone https://github.com/seladb/PcapPlusPlus.git
 
@@ -293,6 +409,11 @@ Source-code location: https://github.com/KangLin/tigervnc
         ~$ git clone https://github.com/microsoft/vcpkg.git
         ~$ cd vcpkg
         ~/vcpkg$ ./vcpkg install pcapplusplus
+
+- When PcapPlusPlus is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
 
 #### libpcap
 
@@ -306,12 +427,24 @@ It is depended by PcapPlusPlus
 
 ### Compile this project
 
+#### Source code
+
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - Download the source code:
 
       ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
 
-- The CMake parameters:
+#### CMake parameters or environment variable
+
+- CMake parameters or environment variable
+  + [Qt](#Qt)
+    + QT_ROOT: Qt install root
+    + Qt6: See: https://doc.qt.io/qt-6/cmake-get-started.html
+      + Qt6_ROOT: Is same QT_ROOT
+      + Qt6_DIR: $QT_ROOT/lib/cmake/Qt6
+    + Qt5: See: https://doc.qt.io/qt-5/cmake-get-started.html
+      + Qt5_ROOT: Is same QT_ROOT
+      + Qt5_DIR: $QT_ROOT/lib/cmake/Qt5
   + RabbitCommon_ROOT: RabbitCommon source code location
   + BUILD_CLIENT: Compile client. the default is ON
   + BUILD_SERVICE: Compile service. the default dependency is whether there is a QtService
@@ -319,10 +452,10 @@ It is depended by PcapPlusPlus
   + BUILD_APP: Compile applaction. the default is ON
   + BUILD_DOCS: Build docmenets. the default is OFF
   + BUILD_SHARED_LIBS: Compile shared libraries. the default is ON
-  + BUILD_FREERDP：If compile FreeRDP. the default is OFF
-  + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR2
-  + FreeRDP_DIR: [freerdp installation path]/lib/cmake/FreeRDP2
-  + FreeRDP-Client_DIR: [freerdp installation path]/lib/cmake/FreeRDP-Client2
+  + BUILD_FREERDP: If compile FreeRDP. the default is OFF
+  + WinPR_DIR: [freerdp installation path]/lib/cmake/WinPR3
+  + FreeRDP_DIR: [freerdp installation path]/lib/cmake/FreeRDP3
+  + FreeRDP-Client_DIR: [freerdp installation path]/lib/cmake/FreeRDP-Client3
   + BUILD_RABBITVNC: Compile RabbitVNC. the default is ON
   + RabbitVNC_DIR: [RabbitVNC installation path]/lib/cmake/RabbitVNC
   + BUILD_TigerVNC: Compile TigerVNC. the default is ON
@@ -335,60 +468,69 @@ It is depended by PcapPlusPlus
   + libssh_DIR: [libssh installation path]/lib/cmake/libssh
   + QtService_DIR: [QtService installation path]/lib/cmake/QtService
   + PcapPlusPlus_DIR: [PcapPlusPlus install path]/lib/cmake/pcapplusplus
-
 - If using vcpkg, please set the CMake parameters:
   + CMAKE_TOOLCHAIN_FILE: [vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 
-- Compilation
-  + Compile from the command-line
-    - Not using vcpkg
+#### Compilation
 
-          ~$ cd RabbitRemoteControl
-          ~/RabbitRemoteControl$ mkdir build
-          ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install [...]
-          ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
+- Compile from the command-line
+  - Not using vcpkg
 
-    -  If using vcpkg
-
-           ~$ cd RabbitRemoteControl
-           ~/RabbitRemoteControl$ mkdir build
-           ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/install [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-           ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
-
-  + Using an IDE (Qt Creator)
-    - Open project: Menu→ File→ Open File or project, Select the CMakeLists.txt of the project
-    - Configure: Click Project→ "Build & Run" in the toolbar on the left to configure CMake parameters
-    - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
-      - If need install: select install in target
-    - If using vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
-
-
-  + Use script build_debpackage.sh
-    - Set [Compile this project](#Compile-this-project) → The CMake parameters as environment variable. eg:
-  
-          export RabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/RabbitVNC
-          export tigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
-        
-    - Use build_debpackage.sh
-
-          ./build_debpackage.sh $QT_ROOT $RabbitCommon_ROOT
-
-- Run
-  + The application is installed in install/bin
-  
         ~$ cd RabbitRemoteControl
-        ~/RabbitRemoteControl$ cd build/install/bin
-        ~/RabbitRemoteControl$ ./RabbitRemoteControl.sh
+        ~/RabbitRemoteControl$ mkdir build
+        ~/RabbitRemoteControl/build$ cmake .. \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=`pwd`/install [...]
+        ~/RabbitRemoteControl/build$ cmake --build . \
+            --config Release --target install
 
+  - If using vcpkg
+
+        ~$ cd RabbitRemoteControl
+        ~/RabbitRemoteControl$ mkdir build
+        ~/RabbitRemoteControl/build$ cmake .. -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX=`pwd`/install \
+            -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake \
+            [options libraries]
+        ~/RabbitRemoteControl/build$ cmake --build . \
+            --config Release --target install
+
+- Using an IDE (Qt Creator)
+  - Open project: Menu→ File→ Open File or project, Select the CMakeLists.txt of the project
+  - Configure: Click Project→ "Build & Run" in the toolbar on the left to configure CMake parameters
+  - Compile and run: Click "Start Debugging of startup project" in the left toolbar, or press the shortcut key (F5)
+    - If need install: select install in target
+  - If using vcpkg: Menu→ Options→ Kits→ Cmake Configureration: add CMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
+
+- Use script [build_debpackage.sh](../../Script/build_debpackage.sh)
+  - Set [CMake parameters or environment variable](#CMake-parameters-or-environment-variable) as environment variable. eg:
+
+        export RabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/RabbitVNC
+        export tigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
+
+  - Use [build_debpackage.sh](../../Script/build_debpackage.sh)
+
+        ./Script/build_debpackage.sh $QT_ROOT $RabbitCommon_ROOT
+
+#### Run
+
+- The application is installed in install/bin
+
+      ~$ cd RabbitRemoteControl
+      ~/RabbitRemoteControl$ cd build/install/bin
+      ~/RabbitRemoteControl$ ./RabbitRemoteControl.sh
+      # Or
+      ~/RabbitRemoteControl$ ./RabbitRemoteControlApp
+      
 **Note:** If the plugin does not load.
 It may be that the plugin's dependencies are not installed on the system.
-You can add the path of the dependent library to the environment variable PKG_CONFIG_PATH.
-You can also add the path of the dependent library to the /etc/ld.so.conf file,
-and then run ldconfig to add the dependent library to the system.
+You can add the path of the dependency libraries to the environment variable LD_LIBRARY_PATH.
+You can also add the path of the dependency libraries to the /etc/ld.so.conf file,
+and then run ldconfig to add the dependency libraries to the system.
 
-### Compilation
+#### Compilation example
 
-#### Ubuntu
+##### Ubuntu
 
     ```bash
     #Install the development tools package
@@ -407,7 +549,7 @@ and then run ldconfig to add the dependent library to the system.
         libx11-dev libxfixes-dev
     ~$ sudo apt install libutf8proc-dev libpam0g-dev # Need by compile qtermwidget
     # Install libpixman, RabbitVNC and TigerVNC need it.
-    ~$ sudo apt install libpixman-1-dev
+    ~$ sudo apt install libpixman-1-dev libjpeg-dev
     # Compile RabbitVNC
     ~$ git clone https://github.com/KangLin/RabbitVNC.git
     ~$ cd RabbitVNC
@@ -521,10 +663,9 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
     for more information
     ```
 
-    Solution:
-        Install fuse2
+    Solution: Install fuse2
         
-        `sudo apt install fuse`
+        sudo apt install fuse
 
 ##### snap
 
@@ -574,3 +715,49 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
   - Remove
 
         snap remove rabbitremotecontrol
+
+### Script
+
+- Script
+  - [build_depend.sh](../../Script/build_depend.sh): Build, Install the dependency libraries
+  - [build_debpackage.sh](../../Script/build_debpackage.sh): Build deb package.
+    Before executing, set environment variables.
+    See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)
+  - [build_appimage.sh](../../Script/build_appimage.sh): Build AppImage package.
+    Before executing, set environment variables.
+    See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)
+  - example
+
+        # If use Qt be installed from [Qt](download.qt.io)
+        export QT_ROOT=
+        export Qt6_ROOT=$QT_ROOT
+        export QMAKE=$QT_ROOT/bin/qmake
+        # If use the system-packaged Qt
+        export QT_SELECT=qt6
+
+        # Note:  The following environment variables must be absolute path
+        export BUILD_DIR=`pwd`/build
+        export INSTALL_DIR=$BUILD_DIR/install
+        export SOURCE_DIR=$BUILD_DIR/source
+        export TOOLS_DIR=$BUILD_DIR/tools
+
+        # Install dependency libraries
+        sudo ./Script/build_depend.sh --apt_update --base --default --rabbitcommon \
+            --tigervnc --pcapplusplus \
+            --install ${INSTALL_DIR} \
+            --source ${SOURCE_DIR} \
+            --tools ${TOOLS_DIR} \
+            --build ${BUILD_DIR}
+
+        # Set dependency libraries environment variable
+        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+        export tigervnc_DIR=${INSTALL_DIR}/lib/cmake/tigervnc
+        export PcapPlusPlus_DIR=${INSTALL_DIR}/lib/cmake/pcapplusplus
+
+        # Compile deb package
+        ./Script/build_debpackage.sh
+
+        # Compile AppImage
+        ./Script/build_appimage.sh
+
+- [deploy.sh](../../deploy.sh): Deploy. Only used by administarotr

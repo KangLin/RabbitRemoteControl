@@ -22,10 +22,10 @@
   - [Java](https://www.java.com/zh-CN/)
 - Qt
   - Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
-    当前使用版本：Qt 6.8.0
+    当前使用版本：Qt 6.8.2
     详见： https://doc.qt.io/qt-6/android.html
   - IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
-    当前使用版本：13.0.0
+    当前使用版本：14.0.2
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
 - CMake: [https://www.cmake.org/](https://cmake.org/)
@@ -139,12 +139,23 @@
       cmake --install .
 
 #### 玉兔公共库
-此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
--DRabbitCommon_ROOT=[RabbitCommon 安装目录]
 
-    git clone https://github.com/KangLin/RabbitCommon.git
+- 此库默认放在与本项目同级目录下
+
+      ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+      ~$ git clone https://github.com/KangLin/RabbitCommon.git
+
+- 如果没有在同级目录下，则必须指定 CMake 参数或者环境变量:
+
+      ~$ git clone https://github.com/KangLin/RabbitRemoteControl.git
+      # 设置环境变量
+      ~$ export RabbitCommon_ROOT=[RabbitCommon 安装目录]
+      ~$ cd RabbitRemoteControl
+      # 或者设置 CMake 参数
+      ~/RabbitRemoteControl$ cmake -DRabbitCommon_ROOT=[RabbitCommon 安装目录] ......
 
 #### 编译本项目
+
 - 项目位置：[https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - 下载源码
 
@@ -189,6 +200,8 @@
       - ubuntu
 
             export JAVA_HOME=
+            export QT_ROOT=
+            export Qt6_DIR=
             export ANDROID_SDK_ROOT=
             export ANDROID_NDK_ROOT=
             export ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
@@ -202,6 +215,8 @@
       - windows
 
             set JAVA_HOME=
+            set QT_ROOT=
+            set Qt6_DIR=
             set ANDROID_SDK_ROOT=
             set ANDROID_NDK_ROOT=
             set ANDROID_NDK_HOME=%ANDROID_NDK_ROOT%
@@ -254,6 +269,7 @@
             set PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
             set VCPKG_ROOT=
             set QT_ROOT=
+            set Qt6_DIR=
           
       - ubuntu
 
@@ -266,6 +282,7 @@
             export PATH=%CMAKE_ROOT%/bin;%NINJA_ROOT%;%JAVA_HOME%/bin;%PATH%
             export VCPKG_ROOT=
             export QT_ROOT=
+            export Qt6_DIR=
 
     - 编译
 

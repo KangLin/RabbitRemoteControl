@@ -1,4 +1,5 @@
 ## 为 Windows 编译
+
 作者：康林 <kl222@126.com>
 
 ### 环境
@@ -8,7 +9,7 @@
 
 #### Qt Creator
 
-版本：v11.0.0 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+版本：v14.0.2 。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
 
 ### 工具
 
@@ -32,10 +33,26 @@
 - DirectX: https://support.microsoft.com/zh-cn/topic/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84-directx-d1f5ffa5-dae2-246c-91b1-ee1e973ed8c2  
   运行 Qt 需要
 - Qt
-  + Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
-    当前使用版本：Qt 6.7.0
-  + IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
-    当前使用版本：12.0.2
+  - Qt 官方发行版本：https://download.qt.io/official_releases/qt/  
+    当前使用版本：Qt 6.8.2
+    - 则需要设置环境变量（或者 CMAKE 参数）： QT_ROOT、Qt6_DIR 或者 Qt6_DIR
+      - 环境变量
+
+            export QT_ROOT=Qt 安装位置
+            #当使用 Qt6 时
+            export Qt6_DIR=$QT_ROOT
+            #当使用 Qt5 时
+            export Qt5_DIR=$QT_ROOT
+
+      - CMAKE 参数
+
+            #当使用 Qt6 时
+            cmake -DQT_ROOT=[Qt 安装位置] -DQt6_DIR=[Qt 安装位置] ......
+            #当使用 Qt5 时
+            cmake -DQT_ROOT=[Qt 安装位置] -DQt5_DIR=[Qt 安装位置] ......
+    
+  - IDE：Qt Creator。建议使用 v5.0.2 及以后版本，以前版本对 CMake 支持不够。
+    当前使用版本：14.0.2
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
   [Git 设置](http://blog.csdn.net/kl222/article/details/32903495)
 - CMake: [https://www.cmake.org/](https://cmake.org/)
@@ -73,12 +90,23 @@
 - [可选] [FFMPEG:](https://ffmpeg.org/) 多媒体功能需要
 
 #### 玉兔公共库
-此库默认放在与本项目同级目录下，如果没有在同级目录下，则必须指定 CMake 参数:
--DRabbitCommon_ROOT=[RabbitCommon 安装目录]
 
-    git clone https://github.com/KangLin/RabbitCommon.git
+- 此库默认放在与本项目同级目录下
 
-#### FreeRDP   
+      git clone https://github.com/KangLin/RabbitRemoteControl.git
+      git clone https://github.com/KangLin/RabbitCommon.git
+
+- 如果没有在同级目录下，则必须指定 CMake 参数或者环境变量:
+
+      git clone https://github.com/KangLin/RabbitRemoteControl.git
+      ; 设置环境变量
+      set RabbitCommon_ROOT=[RabbitCommon 安装目录]
+      cd RabbitRemoteControl
+      ; 或者设置 CMake 参数
+      cmake -DRabbitCommon_ROOT=[RabbitCommon 安装目录] ......
+
+#### FreeRDP
+
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
   
@@ -99,13 +127,16 @@
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DWITH_SERVER=ON
           cmake --build . --config Release --target install
           
-  + 指定 CMake 参数：
-    - -DBUILD_FREERDP=ON
-    - -DWinPR_DIR=[freerdp 安装目录]/lib/cmake/WinPR2
-    - -DFreeRDP_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP2
-    - -DFreeRDP-Client_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP-Client2
-  
+- 当 FreeRDP 从源码编译时，编译本项需要指定的 CMake 参数：
+  - -DBUILD_FREERDP=ON
+  - -DWinPR_DIR=[freerdp 安装目录]/lib/cmake/WinPR3
+  - -DFreeRDP_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP3
+  - -DFreeRDP-Client_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP-Client3
+  - -DFreeRDP-Shadow_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP-Shadow3
+  - -DFreeRDP-Server_DIR=[freerdp 安装目录]/lib/cmake/FreeRDP-Server3
+
 #### LibVNCServer
+
 - 从源码编译
   + 源码位置：[https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   建议使用补丁: https://github.com/KangLin/libvncserver
@@ -118,23 +149,29 @@
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config Release --target install
   
-  + 指定 CMake 参数：-DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
+- 当 LibVNCServer 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -DLibVNCServer_DIR=[LibVNCServer 安装目录]/lib/cmake/LibVNCServer
   
 #### RabbitVNC
+
 - 从源码编译
-源码位置: https://github.com/KangLin/RabbitVNC  
+  - 源码位置: https://github.com/KangLin/RabbitVNC  
 
-      cd vcpkg
-      vcpkg install zlib openssl libjpeg-turbo pixman
-      git clone https://github.com/KangLin/RabbitVNC.git
-      cd RabbitVNC
-      mkdir build
-      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-      cmake --build . --config Release --target install
+        cd vcpkg
+        vcpkg install zlib openssl libjpeg-turbo pixman
+        git clone https://github.com/KangLin/RabbitVNC.git
+        cd RabbitVNC
+        mkdir build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --config Release --target install
 
-- 指定 CMake 参数：-DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
+- 当 RabbitVNC 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -DRabbitVNC_DIR=[RabbitVNC 安装目录]/lib/cmake/RabbitVNC
 
 #### TigerVNC
+
 - 从源码编译
 
 官方只是个应用程序，不支持库。详见：https://github.com/TigerVNC/tigervnc/issues/1123  
@@ -148,16 +185,18 @@
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --config Release --target install
     
-- 指定 CMake 参数：-Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
+- 当 TigerVNC 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -Dtigervnc_DIR=[TigerVNC 安装目录]/lib/cmake/tigervnc
   
 #### libdatachannel
+
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
   
         cd vcpkg
         vcpkg install libdatachannel
-        
-  + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+
 - 从源码编译
   + 源码位置： [https://github.com/paullouisageneau/libdatachannel](https://github.com/paullouisageneau/libdatachannel)
   + 编译详见： [https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md](https://github.com/paullouisageneau/libdatachannel/blob/master/BUILDING.md)
@@ -171,8 +210,12 @@
         cmake --build . --config Release --target install
 
   + 指定 CMake 参数: -Dlibdatachannel_DIR=[libdatachannel 安装目录]/lib/cmake/LibDataChannel
+- 当 libdatachannel 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 
 #### QXmpp
+
 - 从源码编译
   + 源码位置： [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
   
@@ -183,14 +226,20 @@
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DQt5_DIR=[Qt 安装目录]/lib/cmake/Qt5
         cmake --build . --config Release --target install
 
-  + 指定 CMake 参数: -DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
+- 当 QXmpp 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -DQXmpp_DIR=[QXmpp 安装目录]/lib/cmake/qxmpp
   
-#### QTermWidget (暂不支持 Windows）     
+#### QTermWidget (暂不支持 Windows）
+
 - 从源码编译
   + 源码位置： [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
-  + 指定 CMake 参数：-Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
+- 当 QTermWidget 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -Dqtermwidget5_DIR=[qtermwidget 安装目录]/lib/cmake/qtermwidget5
 
 #### libssh
+
 - 使用 vcpkg
   + 源码位置: https://github.com/microsoft/vcpkg/
   
@@ -200,9 +249,11 @@
   + 指定 CMake 参数：-DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
 - 从源码编译
   + 源码位置：[https://www.libssh.org](https://www.libssh.org)
-  + 指定 CMake 参数：-Dlibssh_DIR=[libssh 安装目录]/lib/cmake/libssh
+- 当 libssh 从源码编译时，编译本项需要指定的 CMake 参数：
+  -Dlibssh_DIR=[libssh 安装目录]/lib/cmake/libssh
 
 #### QtService
+
 - 从源码编译
   + 源码位置：: https://github.com/KangLin/qt-solutions/
   
@@ -213,14 +264,15 @@
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         cmake --build . --config Release --target install
         
-  + 指定 CMake 参数: -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
+- 当 QtService 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -DQtService_DIR=[QtService 安装目录]/lib/cmake/QtService
 
 ### PcapPlusPlus
 
 - 从源码编译
   + 源码位置： https://github.com/seladb/PcapPlusPlus
-  + 指定 CMake 参数: -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
-
+  
         git clone https://github.com/seladb/PcapPlusPlus.git
 
 - 使用 vcpkg
@@ -230,13 +282,20 @@
         cd vcpkg
         vcpkg install pcapplusplus
 
+- 当 PcapPlusPlus 从源码编译时，编译本项需要指定的 CMake 参数：
+
+      -DPcapPlusPlus_DIR=[PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
+
 ### 编译本项目
+
 - 项目位置：[https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - 下载源码
 
       git clone https://github.com/KangLin/RabbitRemoteControl.git
 
-- CMake 参数
+- CMake 参数或者环境变量
+  + QT_ROOT: Qt 安装位置
+  + Qt6_DIR 或者 Qt5_DRI: 与 QT_ROOT 相同
   + RabbitCommon_ROOT：RabbitCommon 源码位置
   + BUILD_CLIENT: 编译客户端。默认为 ON
   + BUILD_SERVICE: 编译服务器端。默认依赖是否有 QtService
@@ -272,7 +331,11 @@
   
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [可选依赖库] -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+          cmake .. -DCMAKE_BUILD_TYPE=Release ^
+              -DCMAKE_INSTALL_PREFIX=%CD%/install ^
+              -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake ^
+              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+              -DBUILD_FREERDP=ON [可选依赖库]
           cmake --build . --config Release --target
 
           ; 打包

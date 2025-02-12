@@ -359,34 +359,35 @@ See requirements for details: https://github.com/KangLin/RabbitRemoteControl/iss
       - MD5SUM file: RabbitRemoteControl_v0.0.32_win32_msvc2017_qt5.12.12_Setup.exe.md5sum
         - [Download from Github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_win32_msvc2017_qt5.12.12_Setup.exe.md5sum)
         - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
-  - Ubuntu, Debian:
-    + rabbitremotecontrol_0.0.32_amd64.deb
+  - Linux
+    - Ubuntu, Debian:
+      + rabbitremotecontrol_0.0.32_amd64.deb
       
-          sudo apt install ./rabbitremotecontrol_0.0.32_amd64.deb
+            sudo apt install ./rabbitremotecontrol_0.0.32_amd64.deb
           
-          # If you're on an older ubuntu distribution, you will need to run this instead:
-          # sudo dpkg -i rabbitremotecontrol_0.0.32_amd64.deb
-          # sudo apt-get install -f # Install dependencies
+            # If you're on an older ubuntu distribution, you will need to run this instead:
+            # sudo dpkg -i rabbitremotecontrol_0.0.32_amd64.deb
+            # sudo apt-get install -f # Install dependencies
 
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb/download)
-    + MD5SUM file: rabbitremotecontrol_0.0.32_amd64.deb.md5sum
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb.md5sum/download)
-  - Snap:
-    [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
-    [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
-  - AppImage:
-    - RabbitRemoteControl_v0.0.32_x86_64.AppImage
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage/download)
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb/download)
+      + MD5SUM file: rabbitremotecontrol_0.0.32_amd64.deb.md5sum
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb.md5sum/download)
+    - Snap:
+      [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
+      [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
+    - AppImage:
+      - RabbitRemoteControl_v0.0.32_x86_64.AppImage
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage/download)
 
-            chmod u+x RabbitRemoteControl_v0.0.32_x86_64.AppImage
-            ./RabbitRemoteControl_v0.0.32_x86_64.AppImage
+              chmod u+x RabbitRemoteControl_v0.0.32_x86_64.AppImage
+              ./RabbitRemoteControl_v0.0.32_x86_64.AppImage
 
-    - md5sum file: RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum
-      - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum)
-      - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum/download)
+      - md5sum file: RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum
+        - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum)
+        - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum/download)
   - Other:
     - [Download from github](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.32)
     - [Download from sourceforge](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/)

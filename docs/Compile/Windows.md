@@ -1,4 +1,5 @@
 ## Compiling for Windows
+
 Author: Kang Lin <kl222@126.com>  
 Translator: Allan Nordhøy <epost@anotheragency.no>
 
@@ -8,7 +9,8 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
     Windows 10, version 20H2 (19042.985)
 
 #### QtCreator
-Version: v11.0.0 .  
+
+Version: v14.0.2
 It is recommended to use version v5.0.2 or later.  
 Prior versions don't have CMake support.
 
@@ -34,10 +36,26 @@ Prior versions don't have CMake support.
 - DirectX: https://support.microsoft.com/zh-cn/topic/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84-directx-d1f5ffa5-dae2-246c-91b1-ee1e973ed8c2  
   Required to run Qt.
 - Qt
-  + Qt (official release): https://download.qt.io/official_releases/qt/  
-    Current version: Qt 6.7.0
-  + IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
-    Current version: 12.0.2
+  - Qt (official release): https://download.qt.io/official_releases/qt/  
+    Current version: Qt 6.8.2
+    - Set environment variable or cmake parameters: QT_ROOT, Qt6_DIR or Qt6_DIR
+      - Environment variable
+
+            export QT_ROOT=Qt install root
+            # When Qt6
+            export Qt6_DIR=$QT_ROOT
+            # When Qt5
+            export Qt5_DIR=$QT_ROOT
+
+      - CMAKE parameters
+
+            # Qt6
+            cmake -DQT_ROOT=[Qt install root] -DQt6_DIR=[Qt install root] ......
+            # Qt5 
+            cmake -DQT_ROOT=[Qt install root] -DQt5_DIR=[Qt install root] ......
+    
+  - IDE: Qt Creator. It is recommended to use version v5.0.2 or later.  
+    Current version: 14.0.2
   Prior versions don't have CMake support.
 - Git: [https://www.git-scm.com/](https://www.git-scm.com/)  
 - CMake: [https://www.cmake.org/](https://cmake.org/)
@@ -55,7 +73,7 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [MUST] RabbitCommon: [https://github.com/KangLin/RabbitCommon](https://github.com/KangLin/RabbitCommon)
 - [MUST] [Openssl:](https://github.com/openssl/openssl) Required to run Qt.
 - [OPTIONAL] RFB
-  + [Optional] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
+  + [OPTIONAL] RabbitVNC: [https://github.com/KangLin/RabbitVNC](https://github.com/KangLin/RabbitVNC)
   + [OPTIONAL] LibVNCServer: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)
   + [OPTIONAL] TigerVNC: [https://github.com/KangLin/tigervnc](https://github.com/KangLin/tigervnc)
 - [OPTIONAL] FreeRDP: [https://github.com/FreeRDP/FreeRDP](https://github.com/FreeRDP/FreeRDP)
@@ -75,13 +93,23 @@ See: [Compile integration](../../.github/workflows/msvc.yml)
 - [OPTIONAL] [FFMPEG:](https://ffmpeg.org/) Multimedia capabilities required
 
 #### RabbitCommon
-This library is placed in the same directory level as the project by default.
-If not, you must specify the CMake parameters:
--DRabbitCommon_ROOT=[RabbitCommon installation path]
 
-    git clone https://github.com/KangLin/RabbitCommon.git
+- This library is placed in the same directory level as the project by default.
+
+      git clone https://github.com/KangLin/RabbitRemoteControl.git
+      git clone https://github.com/KangLin/RabbitCommon.git
+
+- If not, you must specify the CMake parameters or environment variable:
+
+      git clone https://github.com/KangLin/RabbitRemoteControl.git
+      ; Set environment variable
+      set RabbitCommon_ROOT=[RabbitCommon install root]
+      cd RabbitRemoteControl
+      ; Or set CMake parameters
+      cmake -DRabbitCommon_ROOT=[RabbitCommon installation path] ......
 
 #### FreeRDP
+
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
   
@@ -103,13 +131,17 @@ If not, you must specify the CMake parameters:
           cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DWITH_SERVER=ON
           cmake --build . --config Release --target install
 
-  + Specify the CMake parameters: 
-    - -DBUILD_FREERDP=ON
-    - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client2
-    - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP2
-    - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR2
-  
+- When FreeRDP is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+  - -DBUILD_FREERDP=ON
+  - -DFreeRDP-Client_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Client3
+  - -DFreeRDP_DIR=[freerdp installation path]/lib/cmake/FreeRDP3
+  - -DWinPR_DIR=[freerdp installation path]/lib/cmake/WinPR3
+  - -DFreeRDP-Shadow_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Shadow3
+  - -DFreeRDP-Server_DIR=[freerdp installation path]/lib/cmake/FreeRDP-Server3
+
 #### LibVNCServer
+
 - Compile from source code
   + Source-code location: [https://github.com/LibVNC/libvncserver](https://github.com/LibVNC/libvncserver)  
   It is recommended to use the patches from: https://github.com/KangLin/libvncserver
@@ -122,23 +154,31 @@ If not, you must specify the CMake parameters:
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
         cmake --build . --config Release --target install
 
-  + Specify the CMake parameters: -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
+- When LibVNCServer is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DLibVNCServer_DIR=[LibVNCServer installation path]/lib/cmake/LibVNCServer
   
 #### RabbitVNC
-- Compile from source code
-Source-code location: https://github.com/KangLin/RabbitVNC  
 
-      cd vcpkg
-      vcpkg install zlib openssl libjpeg-turbo pixman
-      git clone https://github.com/KangLin/RabbitVNC.git
-      cd RabbitVNC
-      mkdir build
-      cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
-      cmake --build . --config Release --target install
+- Compile from source code
+  - Source-code location: https://github.com/KangLin/RabbitVNC  
+
+        cd vcpkg
+        vcpkg install zlib openssl libjpeg-turbo pixman
+        git clone https://github.com/KangLin/RabbitVNC.git
+        cd RabbitVNC
+        mkdir build
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg 安装目录]/scripts/buildsystems/vcpkg.cmake
+        cmake --build . --config Release --target install
     
-- Specify the CMake parameters: -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
+- When RabbitVNC is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DRabbitVNC_DIR=[RabbitVNC installation path]/lib/cmake/tigervnc
 
 #### TigerVNC
+
 - Compile from source code
 
 The official program does not support libraries.  
@@ -154,9 +194,13 @@ Source-code location: https://github.com/KangLin/tigervnc
     cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
     cmake --build . --config Release --target install
 
-- Specify the CMake parameters: -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
+- When TigerVNC is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -Dtigervnc_DIR=[TigerVNC installation path]/lib/cmake/tigervnc
 
 #### libdatachannel
+
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
   
@@ -177,9 +221,13 @@ Source-code location: https://github.com/KangLin/tigervnc
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         cmake --build . --config Release --target install
 
-  + Specify the CMake parameters: -Dlibdatachannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
+- When libdatachannel is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DLibDataChannel_DIR=[libdatachannel installation path]/lib/cmake/LibDataChannel
 
 #### QXmpp
+
 - Compile from source code
   + Source-code location: [https://github.com/qxmpp-project/qxmpp](https://github.com/qxmpp-project/qxmpp)
   
@@ -190,14 +238,21 @@ Source-code location: https://github.com/KangLin/tigervnc
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DQt5_DIR=[Qt install path]/lib/cmake/Qt5
         cmake --build . --config Release --target install
 
-  + Specify the CMake parameters: -DQXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
+- When QXmpp is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DQXmpp_DIR=[QXmpp installation path]/lib/cmake/qxmpp
   
 #### QTermWidget (Not currently supported on Windows)
 - Compile from source code
   + Source-code location:  [https://github.com/lxqt/qtermwidget](https://github.com/lxqt/qtermwidget)
-  + Specify the CMake parameters: -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
+- When QTermWidget is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -Dqtermwidget5_DIR=[qtermwidget installation path]/lib/cmake/qtermwidget5
 
 #### libssh
+
 - Use vcpkg
   + Source-code location: https://github.com/microsoft/vcpkg/
   
@@ -207,9 +262,13 @@ Source-code location: https://github.com/KangLin/tigervnc
   + Specify the CMake parameters: -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake
 - Compile from source code
   + Source code location:  [https://www.libssh.org](https://www.libssh.org)
-  + Specify the CMake parameters: -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
+- When libssh is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -Dlibssh_DIR=[libssh installation path]/lib/cmake/libssh
 
 #### QtService
+
 - Compile from source code
   + Source-code location: https://github.com/KangLin/qt-solutions/
   
@@ -220,13 +279,15 @@ Source-code location: https://github.com/KangLin/tigervnc
         cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install
         cmake --build . --config Release --target install
         
-  + Specify the CMake parameters: -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
+- When QtService is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DQtService_DIR=[QtService installation path]/lib/cmake/QtService
 
 ### PcapPlusPlus
 
 - Compile from source code
   + Source-code location: https://github.com/seladb/PcapPlusPlus
-  + Specify the CMake parameters: -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
 
         git clone https://github.com/seladb/PcapPlusPlus.git
 
@@ -237,13 +298,21 @@ Source-code location: https://github.com/KangLin/tigervnc
         cd vcpkg
         vcpkg install pcapplusplus
 
+- When PcapPlusPlus is compiled from source,
+  the CMake parameter needs to be specified to compile this project:
+
+      -DPcapPlusPlus_DIR=[PcapPlusPlus install path]/lib/cmake/pcapplusplus
+
 ### Compile this project
+
 - Project location: [https://github.com/KangLin/RabbitRemoteControl](https://github.com/KangLin/RabbitRemoteControl)
 - Download the source code:
 
       git clone https://github.com/KangLin/RabbitRemoteControl.git
 
 - The CMake parameters:
+  + QT_ROOT: Qt install root
+  + Qt6_DIR or Qt5_DIR: Is same QT_ROOT
   + RabbitCommon_ROOT: RabbitCommon source-code location
   + BUILD_CLIENT: Compile client. the default is ON
   + BUILD_SERVICE: Compile service. the default dependency is whether there is a QtService
@@ -279,7 +348,11 @@ Source-code location: https://github.com/KangLin/tigervnc
 
           cd RabbitRemoteControl
           mkdir build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=%CD%/install -DBUILD_FREERDP=ON [options libraries] -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON
+          cmake .. -DCMAKE_BUILD_TYPE=Release ^
+              -DCMAKE_INSTALL_PREFIX=%CD%/install ^
+              -DCMAKE_TOOLCHAIN_FILE=[vcpkg installation path]/scripts/buildsystems/vcpkg.cmake ^
+              -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
+              -DBUILD_FREERDP=ON [options libraries]
           cmake --build . --config Release --target install
 
           ; Package
@@ -300,6 +373,6 @@ Source-code location: https://github.com/KangLin/tigervnc
 
 **Note:** If the plugin does not load.
 It may be that the plugin's dependencies are not installed on the system.
-You can copy the dependent library into the application's bin directory.
+You can copy the dependency libraries into the application's bin directory.
 
 See: [Compile integration](../../.github/workflows/msvc.yml)
