@@ -30,6 +30,10 @@ description: |
   .
   https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png
 
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+
 # - devel
 # - stable
 grade: stable # must be 'stable' to release into candidate/stable channels
@@ -71,15 +75,19 @@ parts:
       - libfuse3-dev
       - libpam0g-dev
       - libutf8proc-dev
+      - libx11-dev
+      - libxkbfile-dev
       - libusb-1.0-0-dev
       - libcjson-dev
       - libkrb5-dev
       - libicu-dev
+      - libffi-dev
       # ffmpeg development headers and libraries
       - libavcodec-dev
       - libavformat-dev
       - libresample1-dev
       - libswscale-dev
+      - libavutil-dev
       # PulseAudio client development headers and libraries
       - libpulse-dev
       - libcups2-dev # print development headers and libraries
@@ -101,6 +109,9 @@ parts:
       - libkrb5-3
       - libxkbfile1
       - libpulse0 # PulseAudio client runtime libraries
+      - libffi7
+      - libzvbi0
+      - x11-utils
     cmake-parameters:
       # See: https://snapcraft.io/docs/parts-environment-variables
       - -DCMAKE_BUILD_TYPE=Release
@@ -334,6 +345,7 @@ apps:
      - network-manager
      - opengl
      - cups
+     - cups-control
      - serial-port
      - alsa
      - audio-playback
