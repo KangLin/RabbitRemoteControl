@@ -165,8 +165,7 @@ jobs:
             -f "${{github.workspace}}/update_ubuntu.json" \
             --foc 1 \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_`dpkg --print-architecture`.deb;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_`dpkg --print-architecture`.deb" \
-            --md5 "${MD5SUM}" \
-            -m "v${{env.RabbitRemoteControl_VERSION}}"
+            --md5 "${MD5SUM}"
           mv "${{github.workspace}}/update_ubuntu.json.xml" update_linux.xml
 
       - name: Update version configure file

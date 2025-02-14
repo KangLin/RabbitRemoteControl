@@ -86,7 +86,7 @@ jobs:
           fi
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v4
+        uses: jurplel/install-qt-action@v3
         with:
           dir: '${{env.TOOLS_DIR}}/qt'
           version: ${{matrix.qt_version}}
@@ -113,7 +113,8 @@ jobs:
           BUILD_FREERDP: ON
           PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
         run: |
-          export QMAKE=$QT_ROOT_DIR/bin/qmake6
+          #export QMAKE=$QT_ROOT_DIR/bin/qmake6
+          export QMAKE=$Qt6_DIR/bin/qmake6
           ${{github.workspace}}/Script/build_appimage.sh
           md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage.md5sum
 
@@ -135,8 +136,7 @@ jobs:
             --foc 1 \
             --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage" \
-            --md5 "${MD5SUM}" \
-            -m "v${{env.RabbitRemoteControl_VERSION}}"
+            --md5 "${MD5SUM}"
 
       - name: Update artifact
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
