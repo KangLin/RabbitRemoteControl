@@ -5,6 +5,13 @@
 - VNC: 修改鼠标，增加后退按钮
 - 增加 build_depend.sh
 - 自动化集成: 增加 arm64(aarch64) 架构发行版本
+- Client: 修改接口
+  - CPluginClient
+    - 增加 CPluginClient::OnCreateConnecter
+    - 修改 CPlginClient::CreateConnecter
+  - CClient
+    - 修改 CClient::CreateConnecter
+    - 修改 CClient::DeleteConnecter
 
 ### v0.0.32
 - 修复播放器菜单错误

@@ -5,6 +5,13 @@
 - VNC: modify mouse. add back button
 - Add build_depend.sh
 - CI: add arm64(aarch64) release
+- Client: modify interfaces
+  - CPluginClient
+    - Add CPluginClient::OnCreateConnecter
+    - Modify CPlginClient::CreateConnecter
+  - CClient
+    - Modify CClient::CreateConnecter
+    - Modify CClient::DeleteConnecter
 
 ### v0.0.32
 - Fix player menu bug

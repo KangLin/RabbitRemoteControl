@@ -88,7 +88,7 @@ public:
      */
     virtual const QString Details() const;
 
-private:
+protected:
     /*!
      * \~chinese
      * \brief 新建 CConnecter 实例。仅由 CClient 调用
@@ -110,7 +110,12 @@ private:
      * \see CClient::CreateConnecter CClient::LoadConnecter
      * 
      */
-    Q_INVOKABLE virtual CConnecter* CreateConnecter(const QString& szId) = 0;
+    Q_INVOKABLE virtual CConnecter* CreateConnecter(const QString& szId, CParameterClient* para);
+    virtual CConnecter* OnCreateConnecter(const QString& szId) = 0;
+    /*!
+     * Delete CConnecter
+     */
+    Q_INVOKABLE virtual int DeleteConnecter(CConnecter* p);
 
 private:
     QSharedPointer<QTranslator> m_Translator;

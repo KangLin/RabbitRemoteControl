@@ -28,7 +28,7 @@ public:
     virtual const QIcon Icon() const override;
 
 private:
-    virtual CConnecter *CreateConnecter(const QString &szId) override;
+    virtual CConnecter* OnCreateConnecter(const QString &szId) override;
 };
 
 #endif // PLUGINSCREENCAPTURE_H

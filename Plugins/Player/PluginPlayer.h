@@ -30,7 +30,7 @@ public:
     virtual const QString Details() const override;
 
 private:
-    virtual CConnecter *CreateConnecter(const QString &szId) override;
+    virtual CConnecter *OnCreateConnecter(const QString &szId) override;
 
 };
 

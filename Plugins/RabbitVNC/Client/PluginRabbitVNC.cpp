@@ -58,7 +58,7 @@ const QString CPluginRabbitVNC::Version() const
     return PluginRabbitVNC_VERSION;
 }
 
-CConnecter *CPluginRabbitVNC::CreateConnecter(const QString &szID)
+CConnecter* CPluginRabbitVNC::OnCreateConnecter(const QString &szID)
 {
     if(Id() == szID)
     {

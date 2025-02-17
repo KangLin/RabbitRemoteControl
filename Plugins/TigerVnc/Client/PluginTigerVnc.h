@@ -29,10 +29,10 @@ public:
     virtual const QString Protocol() const override;
     virtual const QIcon Icon() const override;
     virtual const QString Details() const override;
-    virtual const QString Version() const;
+    virtual const QString Version() const override;
 
 private:
-    virtual CConnecter *CreateConnecter(const QString& szID) override;
+    virtual CConnecter* OnCreateConnecter(const QString& szID) override;
 };
 
 #endif // CPLUGINTIGERVNC_H_KL_2021_07_23

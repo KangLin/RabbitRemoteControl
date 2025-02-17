@@ -27,11 +27,28 @@ CPluginClientThread::~CPluginClientThread()
                            // because of it is connected finished signal
 }
 
-CConnecter *CPluginClientThread::CreateConnecter(const QString &szProtocol)
+CConnecter *CPluginClientThread::CreateConnecter(
+    const QString &szProtocol, CParameterClient *para)
 {
     qDebug(log) << "CPluginClientThread::CreateConnecter()" << szProtocol;
-    CConnecterConnect* pConnecter = OnCreateConnecter(szProtocol);
-    if(!pConnecter) return nullptr;
+    CConnecter* p = CPluginClient::CreateConnecter(szProtocol, para);
+    if(!p) return nullptr;
+    CConnecterConnect* pConnecter = qobject_cast<CConnecterConnect*>(p);
+    if(!pConnecter) {
+        QString szMsg = "Must be derived from CConnecterConnect*, Current is ";
+        szMsg += p->metaObject()->className();
+        szMsg += ";\nThe super class:\n";
+        auto super = p->metaObject()->superClass();
+        int n = 1;
+        while(super){
+            szMsg += QString(2 * n++, ' ') + "- ";
+            szMsg += super->className();
+            super = super->superClass();
+        }
+        qCritical(log) << szMsg;
+        Q_ASSERT(false);
+        return nullptr;
+    }
     
     if(nullptr == m_pThread)
     {

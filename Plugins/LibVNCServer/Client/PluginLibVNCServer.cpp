@@ -61,7 +61,7 @@ const QString CPluginLibVNCServer::Details() const
     return szDetails;
 }
 
-CConnecter *CPluginLibVNCServer::CreateConnecter(const QString &szID)
+CConnecter* CPluginLibVNCServer::OnCreateConnecter(const QString &szID)
 {
     if(Id() == szID)
     {   

@@ -36,7 +36,7 @@ const QString CPluginPlayer::Version() const
     return PLayer_VERSION;
 }
 
-CConnecter *CPluginPlayer::CreateConnecter(const QString &szId)
+CConnecter *CPluginPlayer::OnCreateConnecter(const QString &szId)
 {
     CConnecter* p = nullptr;
     if(this->Id() == szId)

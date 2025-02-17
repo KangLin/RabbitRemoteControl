@@ -637,7 +637,11 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
         //qDebug(log) << "View:" << p->GetViewer();
     }
 
-    m_Connecters.push_back(p);//*/
+    if(-1 < m_Connecters.indexOf(p))
+        return 0;
+
+    m_Connecters.push_back(p);
+    //*/
 
     p->Connect();
 
@@ -664,7 +668,9 @@ void MainWindow::slotConnected()
         m_pView->AddView(p->GetViewer());
         m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
     }
-    m_Connecters.push_back(p);//*/
+    if(-1 == m_Connecters.indexOf(p))
+        m_Connecters.push_back(p);
+    //*/
 
     slotLoadConnecterMenu();
 

@@ -200,7 +200,7 @@ void CFrmListConnects::slotLoadFiles()
         lstItem << pFile;
         m_pModel->appendRow(lstItem);
 
-        c->deleteLater();
+        m_pClient->DeleteConnecter(c);
     }
 
     if(m_pModel->rowCount() > 0)
@@ -243,9 +243,9 @@ int CFrmListConnects::InsertItem(CConnecter *c, QString& szFile)
 int CFrmListConnects::onProcess(const QString &id, CPluginClient *pPlug)
 {
     // Connect menu and toolbar
-    QAction* pAction = m_pMenuNew->addAction(pPlug->Protocol()
-                                                 + ": " + pPlug->DisplayName(),
-                                             this, SLOT(slotNew()));
+    QAction* pAction = m_pMenuNew->addAction(
+        pPlug->Protocol() + ": " + pPlug->DisplayName(),
+        this, SLOT(slotNew()));
     pAction->setToolTip(pPlug->Description());
     pAction->setStatusTip(pPlug->Description());
     pAction->setData(id);
@@ -294,7 +294,7 @@ void CFrmListConnects::slotNew()
     }
     }
 
-    c->deleteLater();
+    m_pClient->DeleteConnecter(c);
 }
 
 void CFrmListConnects::slotEdit()
@@ -314,7 +314,7 @@ void CFrmListConnects::slotEdit()
             m_pClient->SaveConnecter(szFile, c);
             break;
         }
-        c->deleteLater();
+        m_pClient->DeleteConnecter(c);
     }
 }
 
@@ -336,7 +336,7 @@ void CFrmListConnects::slotEditConnect()
             emit sigConnect(szFile);
             break;
         }
-        c->deleteLater();
+        m_pClient->DeleteConnecter(c);
     }
     if(!m_bDock)
         close();
@@ -397,7 +397,7 @@ void CFrmListConnects::slotCopy()
                 break;
         } while(1);
 
-        c->deleteLater();
+        m_pClient->DeleteConnecter(c);
     }
 }
 

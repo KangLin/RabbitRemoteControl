@@ -130,7 +130,7 @@ const QString CPluginFreeRDP::Details() const
     return szDetails;
 }
 
-CConnecter* CPluginFreeRDP::CreateConnecter(const QString &szId)
+CConnecter* CPluginFreeRDP::OnCreateConnecter(const QString &szId)
 {
     if(Id() == szId)
     {   

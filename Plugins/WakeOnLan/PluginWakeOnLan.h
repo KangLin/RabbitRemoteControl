@@ -32,8 +32,11 @@ public:
     virtual const QString Version() const override;
 
 private:
-    virtual CConnecter *CreateConnecter(const QString &szId) override;
+    virtual CConnecter* CreateConnecter(const QString& szId, CParameterClient* para) override;
+    virtual CConnecter* OnCreateConnecter(const QString &szId) override;
+    virtual int DeleteConnecter(CConnecter* p) override;
 
+    CConnecter* m_pConnecter;
 };
 
 #endif // __PLUGINWAKEONLAN_H_KL_2024_10_02__

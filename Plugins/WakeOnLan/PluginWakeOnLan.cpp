@@ -33,6 +33,7 @@
 static Q_LOGGING_CATEGORY(log, "WakeOnLan.Plugin")
 CPluginWakeOnLan::CPluginWakeOnLan(QObject *parent)
     : CPluginClient{parent}
+    , m_pConnecter(nullptr)
 {
 #ifdef HAVE_PCAPPLUSPLUS
     pcpp::Logger::getInstance().setLogPrinter(Pcpp_Logger);
@@ -95,11 +96,27 @@ const QString CPluginWakeOnLan::Details() const
     return szDetails;
 }
 
-CConnecter *CPluginWakeOnLan::CreateConnecter(const QString &szId)
+CConnecter* CPluginWakeOnLan::CreateConnecter(const QString& szId, CParameterClient* para)
 {
+    if(!m_pConnecter)
+        m_pConnecter = CPluginClient::CreateConnecter(szId, para);
+    return m_pConnecter;
+}
+
+CConnecter* CPluginWakeOnLan::OnCreateConnecter(const QString &szId)
+{
+    qDebug(log) << Q_FUNC_INFO;
     if(Id() == szId)
     {
         return new CConnecterWakeOnLan(this);
     }
     return nullptr;
+}
+
+int CPluginWakeOnLan::DeleteConnecter(CConnecter* p)
+{
+    qDebug(log) << Q_FUNC_INFO;
+    Q_ASSERT(m_pConnecter == p);
+    m_pConnecter = nullptr;
+    return CPluginClient::DeleteConnecter(p);
 }

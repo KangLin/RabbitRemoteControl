@@ -31,14 +31,8 @@ public:
     virtual ~CPluginClientThread();
 
 private:
-    virtual CConnecter* CreateConnecter(const QString &szProtocol) override;
-
-    /*!
-     * \brief Create Connecter
-     * \param szProtocol
-     * \return CConnecterConnect*
-     */
-    virtual CConnecterConnect* OnCreateConnecter(const QString &szProtocol) = 0;
+    virtual CConnecter* CreateConnecter(
+        const QString &szProtocol, CParameterClient* para) override;
 
 private:
     CPluginThread* m_pThread;

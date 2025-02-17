@@ -53,3 +53,66 @@ const QString CPluginClient::Details() const
 {
     return QString();
 }
+
+CConnecter* CPluginClient::CreateConnecter(
+    const QString &szId, CParameterClient* para)
+{
+    CConnecter* p = OnCreateConnecter(szId);
+    if(p) {
+        int nRet = 0;
+        //nRet = p->Initial();
+        bool bRet = QMetaObject::invokeMethod(
+            p,
+            "Initial",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(int, nRet));
+        if(!bRet) {
+            qCritical(log) << "Call p->Initial() fail.";
+            return nullptr;
+        }
+        if(nRet) {
+            qCritical(log) << "Connecter initial fail" << nRet;
+            DeleteConnecter(p);
+            return nullptr;
+        }
+        //nRet = p->SetParameterClient(para);
+        bRet = QMetaObject::invokeMethod(
+            p,
+            "SetParameterClient",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(int, nRet),
+            Q_ARG(CParameterClient*, para));
+        if(!bRet) {
+            qCritical(log) << "Call p->SetParameterClient(para) fail.";
+            return nullptr;
+        }
+        if(nRet) {
+            qCritical(log) << "SetParameterClient fail" << nRet;
+            DeleteConnecter(p);
+            return nullptr;
+        }
+    }
+    return p;
+}
+
+int CPluginClient::DeleteConnecter(CConnecter *p)
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(!p) return 0;
+    int nRet = 0;
+    bool bRet = false;
+    //nRet = p->Clean();
+    bRet = QMetaObject::invokeMethod(
+        p,
+        "Clean",
+        Qt::DirectConnection,
+        Q_RETURN_ARG(int, nRet));
+    if(!bRet) {
+        qCritical(log) << "Call p->Clean() fail.";
+        return -1;
+    }
+    if(nRet)
+        qWarning(log) << "Connecter clean fail" << nRet;
+    p->deleteLater();
+    return 0;
+}

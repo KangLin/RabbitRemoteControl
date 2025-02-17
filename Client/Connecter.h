@@ -67,8 +67,8 @@ public:
      * \~chinese
      * \param plugin: 此指针必须是相应的 CPluginClient 派生类的实例指针
      * \note 如果参数( CParameterConnecter 或其派生类）需要 CParameterClient 。
-     *       请在其派生类的构造函数（或者　OnInitial()　）中实例化参数，
-     *       并在　OnInitial()　调用 CConnecter::SetParameter 设置参数指针。
+     *       请在其派生类的构造函数（或者　Initial()　）中实例化参数，
+     *       并在　Initial()　调用 CConnecter::SetParameter 设置参数指针。
      *       如果参数不需要 CParameterClient ，
      *       那请在其派生类重载 CConnecter::SetParameterClient 。
      *
@@ -77,7 +77,7 @@ public:
      *        the corresponding CPluginClient derived class
      * \note If the parameters( CParameterConnecter or its derived class) requires a CParameterClient .
      *       Please instantiate the parameters and call CConnecter::SetParameter
-     *       in the derived class( or OnInitial() ) to set the parameters pointer.
+     *       in the derived class( or Initial() ) to set the parameters pointer.
      *       If you are sure the parameter does not need CParameterClient.
      *       please overload the CConnecter::SetParameterClient in the derived class. don't set it.
      * \~
@@ -261,28 +261,28 @@ protected:
      * \~
      * \see CClient::CreateConnecter
      */
-    virtual int Initial();
+    Q_INVOKABLE virtual int Initial();
     /*!
      * \brief Clean parameters and resource
      * \see CClient::DeleteConnecter
      */
-    virtual int Clean();
+    Q_INVOKABLE virtual int Clean();
     /*!
      * \brief Set CParameterClient
      * \note If CParameterConnecter isn't need CParameterClient.
      *       please overload this function.
      * \see CClient::CreateConnecter CParameterConnecter CParameterClient
      */
-    virtual int SetParameterClient(CParameterClient* pPara);
+    Q_INVOKABLE virtual int SetParameterClient(CParameterClient* pPara);
 
     /*!
      * \~chinese 设置参数
-     * \note 在派生类的构造函数（或者　OnInitial()　）中先实例化参数，
-     *       然后在　OnInitial()　中调用此函数设置参数。
+     * \note 在派生类的构造函数（或者　Initial()　）中先实例化参数，
+     *       然后在　Initial()　中调用此函数设置参数。
      *
      * \~english Set parameters
      * \note  Instantiate a parameter in a derived class constructor,
-     *      and then call this function in its OnInitial() to set the parameter.
+     *      and then call this function in its Initial() to set the parameter.
      *
      * \~
      * \see \ref section_Use_CParameterBase
@@ -332,7 +332,7 @@ protected:
      * \~
      * \see CClient::LoadConnecter
      */
-    virtual int Load(QString szFile = QString());
+    Q_INVOKABLE virtual int Load(QString szFile = QString());
     /*!
      * \~chinese \brief 保存参数到文件中
      * \param szFile: 文件名。
@@ -341,7 +341,7 @@ protected:
      * \~
      * \see CClient::SaveConnecter
      */
-    virtual int Save(QString szFile = QString());
+    Q_INVOKABLE virtual int Save(QString szFile = QString());
 
 private Q_SLOTS:
     void slotShowServerName();
@@ -411,8 +411,6 @@ private:
 
     // The owner is a derived class of this class
     CParameter* m_pParameter;
-
-    friend class CClient;
 };
 
 #endif // CCONNECTER_H

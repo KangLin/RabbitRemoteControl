@@ -201,44 +201,29 @@ int CClient::AppendPlugin(CPluginClient *p)
 //! [CClient CreateConnecter]
 CConnecter* CClient::CreateConnecter(const QString& id)
 {
+    CConnecter* pConnecter = nullptr;
     auto it = m_Plugins.find(id);
     if(m_Plugins.end() != it)
     {
         bool bRet = 0;
         qDebug(log) << "CreateConnecter id:" << id;
         auto plugin = it.value();
-        CConnecter* p = nullptr;
         if(plugin) {
             //p = plugin->CreateConnecter(id);
             bRet = QMetaObject::invokeMethod(
                 plugin,
                 "CreateConnecter",
                 Qt::DirectConnection,
-                Q_RETURN_ARG(CConnecter*, p),
-                Q_ARG(QString, id));
+                Q_RETURN_ARG(CConnecter*, pConnecter),
+                Q_ARG(QString, id),
+                Q_ARG(CParameterClient*, m_pParameterClient));
             if(!bRet) {
                 qCritical(log) << "Create CConnecter fail.";
                 return nullptr;
             }
         }
-        if(p) {
-            int nRet = 0;
-            nRet = p->Initial();
-            if(nRet) {
-                qCritical(log) << "Connecter initial fail" << nRet;
-                DeleteConnecter(p);
-                return nullptr;
-            }
-            nRet = p->SetParameterClient(m_pParameterClient);
-            if(nRet) {
-                qCritical(log) << "SetParameterClient fail" << nRet;
-                DeleteConnecter(p);
-                return nullptr;
-            }
-        }
-        return p;
     }
-    return nullptr;
+    return pConnecter;
 }
 //! [CClient CreateConnecter]
 
@@ -246,12 +231,33 @@ int CClient::DeleteConnecter(CConnecter *p)
 {
     qDebug(log) << Q_FUNC_INFO;
     if(!p) return 0;
-    int nRet = 0;
-    nRet = p->Clean();
-    if(nRet)
-        qWarning(log) << "Connecter clean fail" << nRet;
-    p->deleteLater();
-    return 0;
+
+    CPluginClient* pPluginClient = nullptr;
+    //pPluginClient->GetPlugClient();
+    bool bRet = QMetaObject::invokeMethod(
+        p,
+        "GetPlugClient",
+        Qt::DirectConnection,
+        Q_RETURN_ARG(CPluginClient*, pPluginClient));
+
+    if(bRet && pPluginClient) {
+        int nRet = 0;
+        //pPluginClient->DeleteConnecter(p);
+        bRet = QMetaObject::invokeMethod(
+            pPluginClient,
+            "DeleteConnecter",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(int, nRet),
+            Q_ARG(CConnecter*, p));
+        if(!bRet) {
+            nRet = -1;
+            qCritical(log) << "Call pPluginClient->DeleteConnecter(p) fail";
+        }
+        return nRet;
+    }
+
+    qCritical(log) << "Get CClient fail.";
+    return -1;
 }
 
 CConnecter* CClient::LoadConnecter(const QString &szFile)
@@ -269,7 +275,18 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
                 << "name:" << name << "id:" << id;
     pConnecter = CreateConnecter(id);
     if(pConnecter) {
-        int nRet = pConnecter->Load(szFile);
+        int nRet = false;
+        //bRet = pConnecter->Load(szFile);
+        bool bRet = QMetaObject::invokeMethod(
+            pConnecter,
+            "Load",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(int, nRet),
+            Q_ARG(QString, szFile));
+        if(!bRet) {
+            qCritical(log) << "Call pConnecter->Load(szFile) fail.";
+            return nullptr;
+        }
         if(nRet) {
             qCritical(log) << "Load parameter fail" << nRet;
             DeleteConnecter(pConnecter);
@@ -310,7 +327,18 @@ int CClient::SaveConnecter(QString szFile, CConnecter *pConnecter)
     set.setValue("Plugin/ID", pPluginClient->Id());
     set.setValue("Plugin/Protocol", pPluginClient->Protocol());
     set.setValue("Plugin/Name", pPluginClient->Name());
-    int nRet = pConnecter->Save(szFile);
+    int nRet = 0;
+    //nRet = pConnecter->Save(szFile);
+    bRet = QMetaObject::invokeMethod(
+        pConnecter,
+        "Save",
+        Qt::DirectConnection,
+        Q_RETURN_ARG(int, nRet),
+        Q_ARG(QString, szFile));
+    if(!bRet) {
+        qCritical(log) << "Call pConnecter->Save(szFile) fail.";
+        return -1;
+    }
     if(nRet) {
         qCritical(log) << "Save parameter fail" << nRet;
         return -2;

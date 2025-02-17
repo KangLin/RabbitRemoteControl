@@ -38,7 +38,7 @@ const QIcon CPluginScreenCapture::Icon() const
     return QIcon::fromTheme("camera-photo");
 }
 
-CConnecter *CPluginScreenCapture::CreateConnecter(const QString &szId)
+CConnecter* CPluginScreenCapture::OnCreateConnecter(const QString &szId)
 {
     CConnecter* p = new CScreenCapture(this);
     return p;

@@ -65,7 +65,7 @@ const QString CPluginTigerVnc::Details() const
     return szDetails;
 }
 
-CConnecter *CPluginTigerVnc::CreateConnecter(const QString &szID)
+CConnecter *CPluginTigerVnc::OnCreateConnecter(const QString &szID)
 {
     if(Id() == szID)
     {

@@ -193,6 +193,7 @@ int CConnecter::SetParameterClient(CParameterClient* pPara)
         szMsg += QString(metaObject()->className()) + " . don't set it";
         qCritical(log) << szMsg.toStdString().c_str();
         Q_ASSERT(false);
+        return -1;
     }
     return 0;
 }
