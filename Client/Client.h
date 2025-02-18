@@ -96,7 +96,7 @@ public:
      * \~
      * \callgraph
      */
-    virtual int SaveConnecter(QString szFile, CConnecter* pConnecter);
+    virtual int SaveConnecter(CConnecter* pConnecter);
 
     /*!
      * \~chinese 得到设置参数窗口

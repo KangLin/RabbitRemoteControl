@@ -12,6 +12,9 @@
   - CClient
     - 修改 CClient::CreateConnecter
     - 修改 CClient::DeleteConnecter
+  - CConnecter
+    - 增加 CConnecter::GetSettingsFile
+    - 增加 CConnecter::SetSettingsFile
 
 ### v0.0.32
 - 修复播放器菜单错误

@@ -62,7 +62,6 @@ public:
     virtual int onProcess(const QString &id, CPluginClient *pPlug) override;
 private:
     CClient m_Client;
-    QMap<CConnecter*, QString> m_ConfigureFiles;
     QVector<CConnecter*> m_Connecters;
     QAction* m_pActionConnect;
 

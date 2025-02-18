@@ -292,6 +292,7 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
             DeleteConnecter(pConnecter);
             return nullptr;
         }
+        pConnecter->SetSettingsFile(szFile);
     }
     else
         qCritical(log) << "Don't create connecter:" << protocol;
@@ -299,10 +300,11 @@ CConnecter* CClient::LoadConnecter(const QString &szFile)
     return pConnecter;
 }
 
-int CClient::SaveConnecter(QString szFile, CConnecter *pConnecter)
+int CClient::SaveConnecter(CConnecter *pConnecter)
 {
     if(!pConnecter) return -1;
 
+    QString szFile = pConnecter->GetSettingsFile();
     if(szFile.isEmpty())
         szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
                 + QDir::separator()

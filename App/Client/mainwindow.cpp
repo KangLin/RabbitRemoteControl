@@ -487,10 +487,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 
 void MainWindow::slotUpdateParameters(CConnecter* pConnecter)
 {
-    auto it = m_ConfigureFiles.find(pConnecter);
-    if(m_ConfigureFiles.end() == it)
-        return;
-    m_Client.SaveConnecter(it.value(), pConnecter);
+    m_Client.SaveConnecter(pConnecter);
 }
 
 void MainWindow::on_actionClone_triggered()
@@ -501,10 +498,7 @@ void MainWindow::on_actionClone_triggered()
     {
         if(c->GetViewer() == p)
         {
-            auto it = m_ConfigureFiles.find(c);
-            if(m_ConfigureFiles.end() == it)
-                return;
-            QString szFile = it.value();
+            QString szFile = c->GetSettingsFile();
             auto pConnecter = m_Client.LoadConnecter(szFile);
             if(!pConnecter) return;
             Connect(pConnecter, false, szFile);
@@ -614,15 +608,13 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     }
 
     if(szFile.isEmpty())
-        szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                 + QDir::separator()
-                 + p->Id()
-                 + ".rrc";
-    m_ConfigureFiles[p] = szFile;
+        szFile = p->GetSettingsFile();
+    else
+        p->SetSettingsFile(szFile);
 
     int nRet = 0;
     if(bSave)
-        nRet = m_Client.SaveConnecter(szFile, p);
+        nRet = m_Client.SaveConnecter(p);
     if(0 == nRet)
         m_pRecentMenu->addRecentFile(szFile, p->Name());
 
@@ -723,7 +715,6 @@ void MainWindow::slotDisconnected()
         {
             m_pView->RemoveView(c->GetViewer());
             m_Connecters.removeAll(c);
-            m_ConfigureFiles.remove(c);
             m_Client.DeleteConnecter(c);
             return;
         }
@@ -894,9 +885,9 @@ int MainWindow::SaveConnectLasterClose()
     if(m_Parameter.GetOpenLasterClose())
     {
         QDataStream d(&f);
-        foreach(auto it, m_ConfigureFiles)
+        foreach(auto it, m_Connecters)
         {
-            d << it;
+            d << it->GetSettingsFile();
         }
     }
     f.close();
@@ -1035,10 +1026,7 @@ void MainWindow::on_actionAdd_to_favorite_triggered()
     {
         if(c->GetViewer() == p)
         {
-            auto it = m_ConfigureFiles.find(c);
-            if(m_ConfigureFiles.end() == it)
-                return;
-            m_pFavoriteView->AddFavorite(c->Name(), it.value());
+            m_pFavoriteView->AddFavorite(c->Name(), c->GetSettingsFile());
         }
     }
 }

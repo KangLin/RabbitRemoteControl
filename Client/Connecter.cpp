@@ -12,6 +12,7 @@
 #include "Connecter.h"
 #include "PluginClient.h"
 #include "RabbitCommonTools.h"
+#include "RabbitCommonDir.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Connecter")
     
@@ -106,6 +107,24 @@ QMenu* CConnecter::GetMenu(QWidget* parent)
     if(m_Menu.actions().isEmpty())
         return nullptr;
     return &m_Menu;
+}
+
+QString CConnecter::GetSettingsFile()
+{
+    if(m_szSettings.isEmpty())
+    {
+        m_szSettings = RabbitCommon::CDir::Instance()->GetDirUserData()
+            + QDir::separator()
+            + Id()
+            + ".rrc";
+    }
+    return m_szSettings;
+}
+
+int CConnecter::SetSettingsFile(const QString &szFile)
+{
+    m_szSettings = szFile;
+    return 0;
 }
 
 int CConnecter::Load(QString szFile)

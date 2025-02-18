@@ -315,6 +315,11 @@ private:
      */
     virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) = 0;
 
+public:
+    virtual QString GetSettingsFile();
+    virtual int SetSettingsFile(const QString &szFile);
+private:
+    QString m_szSettings;
 protected:
     /*!
      * \~chinese \brief 加载参数

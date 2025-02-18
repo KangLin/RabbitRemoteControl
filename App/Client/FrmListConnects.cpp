@@ -266,10 +266,7 @@ void CFrmListConnects::slotNew()
         break;
     case QDialog::Accepted:
     {
-        QString szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-        + QDir::separator()
-            + c->Id()
-            + ".rrc";
+        QString szFile = c->GetSettingsFile();
         QDir d;
         if(d.exists(szFile)) {
             QMessageBox::StandardButton r
@@ -281,12 +278,12 @@ void CFrmListConnects::slotNew()
             if(QMessageBox::StandardButton::Ok == r)
             {
                 d.remove(szFile);
-                m_pClient->SaveConnecter(szFile, c);
+                m_pClient->SaveConnecter(c);
             }
             break;
         }
 
-        m_pClient->SaveConnecter(szFile, c);
+        m_pClient->SaveConnecter(c);
         
         InsertItem(c, szFile);
 
@@ -311,7 +308,7 @@ void CFrmListConnects::slotEdit()
         case QDialog::Rejected:
             break;
         case QDialog::Accepted:
-            m_pClient->SaveConnecter(szFile, c);
+            m_pClient->SaveConnecter(c);
             break;
         }
         m_pClient->DeleteConnecter(c);
@@ -332,7 +329,7 @@ void CFrmListConnects::slotEditConnect()
         case QDialog::Rejected:
             break;
         case QDialog::Accepted:
-            m_pClient->SaveConnecter(szFile, c);
+            m_pClient->SaveConnecter(c);
             emit sigConnect(szFile);
             break;
         }
@@ -361,10 +358,7 @@ void CFrmListConnects::slotCopy()
                 break;
             case QDialog::Accepted:
             {
-                szFile = RabbitCommon::CDir::Instance()->GetDirUserData()
-                + QDir::separator()
-                    + c->Id()
-                    + ".rrc";
+                szFile = c->GetSettingsFile();
                 QDir d(szFile);
                 if(d.exists(szFile)) {
                     QMessageBox::StandardButton r
@@ -386,7 +380,7 @@ void CFrmListConnects::slotCopy()
                         break;
                     bInsert = false;
                 }
-                m_pClient->SaveConnecter(szFile, c);
+                m_pClient->SaveConnecter(c);
                 if(bInsert)
                     InsertItem(c, szFile);
                 break;

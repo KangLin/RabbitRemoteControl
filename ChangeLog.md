@@ -12,6 +12,9 @@
   - CClient
     - Modify CClient::CreateConnecter
     - Modify CClient::DeleteConnecter
+  - CConnecter
+    - Add CConnecter::GetSettingsFile
+    - Add CConnecter::SetSettingsFile
 
 ### v0.0.32
 - Fix player menu bug
