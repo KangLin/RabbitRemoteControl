@@ -11,6 +11,7 @@ APT_UPDATE=0
 BASE_LIBS=0
 DEFAULT_LIBS=0
 QT=0
+QT_VERSION=6.8.2
 FREERDP=0
 TIGERVNC=0
 PCAPPLUSPLUS=0
@@ -19,7 +20,7 @@ libdatachannel=0
 QtService=0
 
 usage_long() {
-    echo "$0 [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "$0 [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
     echo "Directory:"
     echo "  --install: Set install directory"
     echo "  --source: Set source directory"
@@ -137,8 +138,12 @@ if command -V getopt >/dev/null; then
             case $2 in
                 "")
                     QT=1;;
+                1 | 0)
+                    QT=$2
+                    ;;
                 *)
-                    QT=$2;;
+                    QT=1
+                    QT_VERSION=$2;;
             esac
             shift 2
             ;;
@@ -293,12 +298,12 @@ if [ $BASE_LIBS -eq 1 ]; then
     echo "Install base libraries ......"
     apt install -y -q build-essential \
         git cmake gcc g++ debhelper fakeroot graphviz gettext
-    # Needed by QtMultimedia
-    apt install -y -q pipewire
     # OpenGL
     apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
     # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
-    apt install -y -q xvfb xpra
+    if [ -z "$RabbitRemoteControl_VERSION" ]; then
+        apt install -y -q xvfb xpra
+    fi
     # X11
     apt install -y -q xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
         libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
@@ -318,10 +323,14 @@ if [ $BASE_LIBS -eq 1 ]; then
         libkrb5-dev libpulse-dev libcups2-dev libpam0g-dev libutf8proc-dev
     # PcapPlusPlus dependency
     apt install -y -q libpcap-dev
-    # FFmpeg
+    # FFmpeg needed by QtMultimedia and freerdp
     apt install -y -q libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
+    # Needed by QtMultimedia
+    #apt install -y -q pipewire
+    # Needed by QtMultimedia
+    #apt install -y -q libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
     # AppImage
-    apt install -y -q fuse
+    #apt install -y -q libfuse-dev libfuse3-dev
     # Other
     apt install -y -q libvncserver-dev
 fi
@@ -339,17 +348,18 @@ fi
 if [ $QT -eq 1 ]; then
     echo "Install qt ......"
     pushd "$TOOLS_DIR"
-    # See: https://ddalcino.github.io/aqt-list-server/
-    apt install -y -q python3-pip python3-pip-whl python3-pipdeptree cpio
-    #pip install -U pip
-    pip install aqtinstall
-    export QTVERSION=6.8.2
-    if [ "`uname -m`" == "x86_64" ]; then
-        aqt install-qt linux desktop ${QTVERSION} linux_gcc_64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
-        mv ${QTVERSION}/gcc_64 qt
-    elif [ "`uname -m`" == "aarch64" ]; then
-        aqt install-qt linux_arm64 desktop ${QTVERSION} linux_gcc_arm64 -m qt5compat qtgraphs qtimageformats qtmultimedia qtscxml qtserialport
-        mv ${QTVERSION}/gcc_arm64 qt
+    if [ ! -d qt_`uname -m` ]; then
+        # See: https://ddalcino.github.io/aqt-list-server/
+        apt install -y -q python3-pip python3-pip-whl python3-pipdeptree cpio
+        #pip install -U pip
+        pip install aqtinstall
+        if [ "`uname -m`" == "x86_64" ]; then
+            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            mv ${QT_VERSION}/gcc_64 qt_`uname -m`
+         elif [ "`uname -m`" == "aarch64" ]; then
+            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            mv ${QT_VERSION}/gcc_arm64 qt_`uname -m`
+        fi
     fi
     popd
 fi
@@ -366,7 +376,7 @@ if [ $FREERDP -eq 1 ]; then
     echo "Install FreeRDP ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
-        git clone -b 3.11.1 https://github.com/FreeRDP/FreeRDP.git
+        git clone -b 3.12.0 https://github.com/FreeRDP/FreeRDP.git
         cd FreeRDP
         git submodule update --init --recursive
         cmake -E make_directory build

@@ -67,7 +67,7 @@ parts:
     plugin: cmake
     source: https://github.com/FreeRDP/FreeRDP.git
     source-type: git
-    source-tag: 3.11.1
+    source-tag: 3.12.0
     source-depth: 1
     build-packages:
       - libssl-dev

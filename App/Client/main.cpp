@@ -67,34 +67,45 @@ int main(int argc, char *argv[])
     QApplication::setDesktopFileName(QLatin1String("RabbitRemoteControl.desktop"));
 #endif
 
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
     RabbitCommon::CTools::Instance()->Init();
 
-    qInfo(log) << a.applicationName() + " " + a.applicationVersion() + " " + QObject::tr("Start");
+    qInfo(log) << app.applicationName() + " " + app.applicationVersion()
+                      + " " + QObject::tr("Start") + " ......"
+               << "\n" << app.arguments();
 
     QSharedPointer<QTranslator> tApp =
         RabbitCommon::CTools::Instance()->InstallTranslator("RabbitRemoteControlApp");
 
-    a.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
-    a.setOrganizationName(QObject::tr("Kang Lin Studio"));
+    app.setApplicationDisplayName(QObject::tr("Rabbit Remote Control"));
+    app.setOrganizationName(QObject::tr("Kang Lin Studio"));
 
 #ifdef HAVE_UPDATE
     // Check update version
     QSharedPointer<CFrmUpdater> pUpdate(new CFrmUpdater());
-    QIcon icon = QIcon::fromTheme("app");
-    if(!icon.isNull())
-    {
-        auto sizeList = icon.availableSizes();
-        if(!sizeList.isEmpty()){
-            QPixmap p = icon.pixmap(*sizeList.begin());
-            pUpdate->SetTitle(p.toImage());
+    if(pUpdate) {
+        QIcon icon = QIcon::fromTheme("app");
+        if(!icon.isNull())
+        {
+            auto sizeList = icon.availableSizes();
+            if(!sizeList.isEmpty()){
+                QPixmap p = icon.pixmap(*sizeList.begin());
+                pUpdate->SetTitle(p.toImage());
+            }
         }
-    }
-    if(a.arguments().length() > 1) {
-        pUpdate->GenerateUpdateJson();
-        pUpdate->GenerateUpdateXml();
-        return 0;
+        if(app.arguments().length() > 1) {
+            try{
+                pUpdate->GenerateUpdateJson();
+                pUpdate->GenerateUpdateXml();
+            } catch(...) {
+                qCritical(log) << "Generate update fail";
+            }
+
+            qInfo(log) << app.applicationName() + " " + app.applicationVersion()
+                              + " " + QObject::tr("Generate update json file End");
+            return 0;
+        }
     }
 #endif
 
@@ -119,7 +130,7 @@ int main(int argc, char *argv[])
         w->show();
 #endif
 
-        nRet = a.exec();
+        nRet = app.exec();
     } catch (std::exception &e) {
         qCritical(log) << "exception:" << e.what();
     } catch(...) {
@@ -137,6 +148,6 @@ int main(int argc, char *argv[])
 //    Q_CLEANUP_RESOURCE(translations_RabbitRemoteControlApp);
 //#endif
     
-    qInfo(log) << a.applicationName() + " " + a.applicationVersion() + " " + QObject::tr("End");
+    qInfo(log) << app.applicationName() + " " + app.applicationVersion() + " " + QObject::tr("End");
     return nRet;
 }

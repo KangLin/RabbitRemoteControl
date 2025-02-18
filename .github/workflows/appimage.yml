@@ -18,13 +18,11 @@ jobs:
       matrix:
         BUILD_TYPE: [Release]
         qt_version: [6.8.2]
-        os: [ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04-arm]
+        os: [ubuntu-24.04, ubuntu-24.04-arm]
         include:
           - os: ubuntu-24.04
             qt_arch: "linux_gcc_64"
           - os: ubuntu-24.04-arm
-            qt_arch: "linux_gcc_arm64"
-          - os: ubuntu-22.04-arm
             qt_arch: "linux_gcc_arm64"
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
@@ -37,9 +35,9 @@ jobs:
       BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
       RabbitRemoteControl_VERSION: v0.0.32
-      artifact_name: build_appimage_${{matrix.os}}
+      artifact_name: build_appimage
       qt_modules: 'qtscxml qtmultimedia qtimageformats qtserialport qt5compat'
 
     # Map the job outputs to step outputs
@@ -60,13 +58,14 @@ jobs:
           cmake -E make_directory ${{env.INSTALL_DIR}}
 
       - name: Cache installed
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         id: cache-installed
         with:
           path: |
             ${{env.INSTALL_DIR}}
             ${{env.TOOLS_DIR}}/linuxdeploy-*
-          key: install_ubuntu
+            ${{env.TOOLS_DIR}}/qt_*
+          key: install_appimage
 
       - name: git clone RabbitCommon
         working-directory: ${{env.SOURCE_DIR}}
@@ -75,18 +74,16 @@ jobs:
 
       - name: Install dependency libraries
         run: |
-          sudo ./Script/build_depend.sh --apt_update --base \
+          sudo ./Script/build_depend.sh --apt_update --base --qt ${{matrix.qt_version}} \
               --tigervnc --freerdp --pcapplusplus \
               --install ${{env.INSTALL_DIR}} \
               --source ${{env.SOURCE_DIR}} \
               --tools ${{env.TOOLS_DIR}} \
               --build ${{env.BUILD_DIR}}
-          if [ "ubuntu-22.04-arm" != ${{matrix.os}} ]; then
-              sudo apt install -y -q qt6-5compat-dev
-          fi
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
+        if: false
         with:
           dir: '${{env.TOOLS_DIR}}/qt'
           version: ${{matrix.qt_version}}
@@ -96,7 +93,6 @@ jobs:
           modules: ${{env.qt_modules}}
           cache: true
           cache-key-prefix: cached-qt_${{matrix.qt_arch}}
-
 
       - name: build appimage
         env:
@@ -114,7 +110,11 @@ jobs:
           PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
         run: |
           #export QMAKE=$QT_ROOT_DIR/bin/qmake6
-          export QMAKE=$Qt6_DIR/bin/qmake6
+          export QT_ROOT=${{env.TOOLS_DIR}}/qt_`uname -m`
+          export Qt6_DIR=$QT_ROOT
+          export QMAKE=$QT_ROOT/bin/qmake
+          export LD_LIBRARY_PATH=$QT_ROOT/lib
+          export QT_PLUGIN_PATH=$QT_ROOT/plugins
           ${{github.workspace}}/Script/build_appimage.sh
           md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage.md5sum
 
@@ -142,7 +142,7 @@ jobs:
         if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.artifact_name }}
+          name: ${{ env.artifact_name }}_${{matrix.os}}
           path: |
             ${{github.workspace}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_*.AppImage
             ${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json

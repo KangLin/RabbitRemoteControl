@@ -69,7 +69,7 @@ fi
 pushd "${TOOLS_DIR}"
 if [ ! -f linuxdeploy-`uname -m`.AppImage ]; then
     wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-`uname -m`.AppImage
-	chmod u+x linuxdeploy-`uname -m`.AppImage
+    chmod u+x linuxdeploy-`uname -m`.AppImage
 fi
 if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
     wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-`uname -m`.AppImage
@@ -77,6 +77,7 @@ if [ ! -f linuxdeploy-plugin-qt-`uname -m`.AppImage ]; then
 fi
 popd
 
+echo "Compile RabbitRemoteControl ......"
 INSTALL_APP_DIR=AppDir/usr
 cmake "$REPO_ROOT" \
   -DCMAKE_INSTALL_PREFIX=/usr \
@@ -94,14 +95,25 @@ cmake --install . --config Release --component Runtime --prefix ${INSTALL_APP_DI
 cmake --install . --config Release --component Application --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --component Plugin --prefix ${INSTALL_APP_DIR}
 
+echo "Build AppImage ......"
 # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
 #export QMAKE=$Qt6_DIR/bin/qmake6
 export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
 export EXTRA_QT_MODULES="svg"
-${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir -v0 \
+echo "QT_ROOT: $QT_ROOT"
+echo "Qt6_DIR: $Qt6_DIR"
+echo "QMAKE: $QMAKE"
+echo "EXTRA_PLATFORM_PLUGINS: $EXTRA_PLATFORM_PLUGINS"
+echo "EXTRA_QT_MODULES: $EXTRA_QT_MODULES"
+echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+echo "QT_PLUGIN_PATH: $QT_PLUGIN_PATH"
+echo "PATH: $PATH"
+$QMAKE --version
+${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
     --plugin qt \
-    --output appimage
+    --output appimage \
+    --deploy-deps-only=${INSTALL_APP_DIR}/plugins/Client
 
 chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
 
