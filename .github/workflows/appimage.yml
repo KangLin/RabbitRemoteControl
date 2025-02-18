@@ -116,7 +116,7 @@ jobs:
           #export QMAKE=$QT_ROOT_DIR/bin/qmake6
           export QMAKE=$Qt6_DIR/bin/qmake6
           ${{github.workspace}}/Script/build_appimage.sh
-          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_`uname -m`.AppImage.md5sum
+          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage.md5sum
 
       - name: update configure file
         if: ${{ matrix.BUILD_TYPE == 'Release'}}
@@ -128,14 +128,14 @@ jobs:
           export QT_XCB_GL_INTEGRATION=none
           #export QT_DEBUG_PLUGINS=1
           ARCH=`uname -m`
-          MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage.md5sum|awk '{print $1}'`
-          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage: ${MD5SUM}"
+          MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage.md5sum|awk '{print $1}'`
+          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage: ${MD5SUM}"
           echo "Generate update configure file ......"
-          ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
+          ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage \
             -f "${{github.workspace}}/update_appimage_${{matrix.qt_arch}}_qt${{matrix.qt_version}}.json" \
             --foc 1 \
-            --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_$ARCH.AppImage \
-            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.AppImage" \
+            --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage" \
             --md5 "${MD5SUM}"
 
       - name: Update artifact

@@ -108,7 +108,7 @@ chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
 if [ -z "$RabbitRemoteControl_VERSION" ]; then
     cp Rabbit_Remote_Control-`uname -m`.AppImage $REPO_ROOT
 else
-    mv Rabbit_Remote_Control-`uname -m`.AppImage ../RabbitRemoteControl_${RabbitRemoteControl_VERSION}_`uname -m`.AppImage
+    mv Rabbit_Remote_Control-`uname -m`.AppImage ../RabbitRemoteControl_${RabbitRemoteControl_VERSION}_Linux_`uname -m`.AppImage
 fi
 
 popd
