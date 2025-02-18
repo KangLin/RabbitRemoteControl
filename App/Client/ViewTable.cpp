@@ -97,7 +97,9 @@ int CViewTable::AddView(QWidget *pView)
         return -1;
     }
     //qDebug(log) << "CViewTable::AddView: Window title:" << pView->windowTitle();
-    nIndex = m_pTab->addTab(pView, pView->windowTitle());
+    nIndex = m_pTab->indexOf(pView);
+    if(-1 == nIndex)
+        nIndex = m_pTab->addTab(pView, pView->windowTitle());
     m_pTab->setCurrentIndex(nIndex);
 
     return 0;
@@ -181,6 +183,16 @@ QWidget* CViewTable::GetCurrentView()
     QWidget* pView = m_pTab->currentWidget();
     if(!pView) return pView;
     return pView;
+}
+
+int CViewTable::SetCurrentView(QWidget* pView)
+{
+    int nIndex = m_pTab->indexOf(pView);
+    if(-1 != nIndex) {
+        m_pTab->setCurrentIndex(nIndex);
+        return 0;
+    }
+    return -1;
 }
 
 void CViewTable::resizeEvent(QResizeEvent *event)

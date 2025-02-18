@@ -622,16 +622,16 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
         slotInformation(tr("Connecting to ") + p->Name());
 
     //* Show view. \see: slotConnected()
+    if(-1 < m_Connecters.indexOf(p)) {
+        m_pView->SetCurrentView(p->GetViewer());
+        return 0;
+    }
     if(m_pView)
     {
         m_pView->AddView(p->GetViewer());
         m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
         //qDebug(log) << "View:" << p->GetViewer();
     }
-
-    if(-1 < m_Connecters.indexOf(p))
-        return 0;
-
     m_Connecters.push_back(p);
     //*/
 
@@ -654,14 +654,16 @@ void MainWindow::slotConnected()
        See: Connect(CConnecter *p, bool set, QString szFile)
      */
     /*
-    if(m_pView)
-    {
-        m_pView->SetAdaptWindows(CFrmViewer::Auto, p->GetViewer());
-        m_pView->AddView(p->GetViewer());
-        m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
-    }
-    if(-1 == m_Connecters.indexOf(p))
+    if(-1 == m_Connecters.indexOf(p)) {
         m_Connecters.push_back(p);
+        if(m_pView)
+        {
+            m_pView->AddView(p->GetViewer());
+            m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
+        }
+    } else {
+        m_pView->SetCurrentView(p->GetViewer());
+    }
     //*/
 
     slotLoadConnecterMenu();

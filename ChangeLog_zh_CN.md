@@ -16,6 +16,9 @@
     - 增加 CConnecter::GetSettingsFile
     - 增加 CConnecter::SetSettingsFile
 - WakeOnLan: 单个实例
+- 应用: 修改接口
+  - CView
+    - 增加 CView::SetCurrentView
 
 ### v0.0.32
 - 修复播放器菜单错误
