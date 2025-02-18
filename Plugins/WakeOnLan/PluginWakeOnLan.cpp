@@ -98,8 +98,31 @@ const QString CPluginWakeOnLan::Details() const
 
 CConnecter* CPluginWakeOnLan::CreateConnecter(const QString& szId, CParameterClient* para)
 {
-    if(!m_pConnecter)
+    if(!m_pConnecter) {
         m_pConnecter = CPluginClient::CreateConnecter(szId, para);
+        if(!m_pConnecter) return m_pConnecter;
+
+        QString szFile = m_pConnecter->GetSettingsFile();
+        QDir d(szFile);
+        if(!d.exists(szFile)) return m_pConnecter;
+        int nRet = false;
+        //bRet = m_pConnecter->Load(szFile);
+        bool bRet = QMetaObject::invokeMethod(
+            m_pConnecter,
+            "Load",
+            Qt::DirectConnection,
+            Q_RETURN_ARG(int, nRet),
+            Q_ARG(QString, szFile));
+        if(!bRet) {
+            qCritical(log) << "Call m_pConnecter->Load(szFile) fail.";
+            return nullptr;
+        }
+        if(nRet) {
+            qCritical(log) << "Load parameter fail" << nRet;
+            DeleteConnecter(m_pConnecter);
+            return nullptr;
+        }
+    }
     return m_pConnecter;
 }
 

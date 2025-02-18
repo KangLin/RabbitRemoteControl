@@ -15,6 +15,7 @@
   - CConnecter
     - Add CConnecter::GetSettingsFile
     - Add CConnecter::SetSettingsFile
+- WakeOnLan: make singleton
 
 ### v0.0.32
 - Fix player menu bug

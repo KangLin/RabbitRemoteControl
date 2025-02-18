@@ -15,6 +15,7 @@
   - CConnecter
     - 增加 CConnecter::GetSettingsFile
     - 增加 CConnecter::SetSettingsFile
+- WakeOnLan: 单个实例
 
 ### v0.0.32
 - 修复播放器菜单错误
