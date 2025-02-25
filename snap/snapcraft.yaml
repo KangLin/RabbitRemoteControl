@@ -88,6 +88,8 @@ parts:
       - libresample1-dev
       - libswscale-dev
       - libavutil-dev
+      - libx264-dev
+      - libx265-dev
       # PulseAudio client development headers and libraries
       - libpulse-dev
       - libcups2-dev # print development headers and libraries
@@ -106,6 +108,8 @@ parts:
       - libkadm5clnt-mit12
       - libjs-jquery
       - libswscale5
+      - x264
+      - x265
       - libkrb5-3
       - libxkbfile1
       - libpulse0 # PulseAudio client runtime libraries

@@ -319,18 +319,19 @@ if [ $BASE_LIBS -eq 1 ]; then
     # VNC dependency
     apt install -y -q libpixman-1-dev libjpeg-dev
     # FreeRDP dependency
-    apt install -y -q libcjson-dev libfuse-dev libfuse3-dev libusb-1.0-0-dev \
+    apt install -y -q libcjson-dev libusb-1.0-0-dev \
         libkrb5-dev libpulse-dev libcups2-dev libpam0g-dev libutf8proc-dev
     # PcapPlusPlus dependency
     apt install -y -q libpcap-dev
     # FFmpeg needed by QtMultimedia and freerdp
     apt install -y -q libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
+    apt install -y -q libx264-dev libx265-dev
     # Needed by QtMultimedia
-    #apt install -y -q pipewire
+    apt install -y -q pipewire
     # Needed by QtMultimedia
-    #apt install -y -q libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
-    # AppImage
-    #apt install -y -q libfuse-dev libfuse3-dev
+    apt install -y -q libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
+    # Needed by AppImage and FreeRDP
+    apt install -y -q libfuse-dev libfuse3-dev
     # Other
     apt install -y -q libvncserver-dev
 fi
