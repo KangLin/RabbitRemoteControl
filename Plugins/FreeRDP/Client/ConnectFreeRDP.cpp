@@ -166,14 +166,15 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     else
         freerdp_settings_set_bool(
             settings, FreeRDP_AutoReconnectionEnabled, false);
-    
-    //Load channel
+
+    //*Load channel
     RedirectionSound();
     RedirectionMicrophone();
     RedirectionDriver();
     RedirectionPrinter();
     RedirectionSerial();
-    
+    //*/
+
     // Set proxy
     switch(m_pParameter->m_Proxy.GetUsedType())
     {

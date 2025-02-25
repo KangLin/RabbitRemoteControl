@@ -106,6 +106,8 @@ int main(int argc, char *argv[])
                               + " " + QObject::tr("Generate update json file End");
             return 0;
         }
+    } else {
+        qCritical(log) << "new CFrmUpdater() fail";
     }
 #endif
 
