@@ -180,7 +180,8 @@ int CConnecter::Initial()
     m_pSettings = new QAction(QIcon::fromTheme("system-settings"),
                               tr("Settings"), &m_Menu);
     if(m_pSettings) {
-        bool check = connect(m_pSettings, SIGNAL(triggered()), this, SLOT(slotSettings()));
+        bool check = connect(m_pSettings, SIGNAL(triggered()),
+                             this, SLOT(slotSettings()));
         Q_ASSERT(check);
     }
     return 0;

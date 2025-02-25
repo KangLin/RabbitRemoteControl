@@ -52,6 +52,7 @@ int CConnecterThread::Initial()
     m_pScroll = new CFrmScroll(m_pFrmViewer);
 
     nRet = InitialMenu();
+
     return nRet;
 }
 
@@ -156,7 +157,7 @@ int CConnecterThread::InitialMenu()
     m_Menu.addAction(m_pScreenShot);
 #if HAVE_QT6_RECORD
     m_pRecord = new QAction(
-        QIcon::fromTheme("media-record"), tr("Record"), &m_Menu);
+        QIcon::fromTheme("media-record"), tr("Start record"), &m_Menu);
     m_pRecord->setCheckable(true);
     check = connect(m_pRecord, SIGNAL(toggled(bool)),
                     this, SLOT(slotRecord(bool)));
@@ -274,11 +275,10 @@ void CConnecterThread::slotRecord(bool checked)
     if(pRecord)
     {
         if(checked) {
-            pRecord->setIcon(QIcon::fromTheme("media-playback-stop"));
+            //pRecord->setIcon(QIcon::fromTheme("media-playback-stop"));
             pRecord->setText(tr("Stop record"));
-        }
-        else {
-            pRecord->setIcon(QIcon::fromTheme("media-playback-start"));
+        } else {
+            //pRecord->setIcon(QIcon::fromTheme("media-playback-start"));
             pRecord->setText(tr("Start record"));
         }
         m_pRecordPause->setEnabled(checked);
@@ -289,9 +289,10 @@ void CConnecterThread::slotRecord(bool checked)
 void CConnecterThread::slotRecorderStateChanged(
     QMediaRecorder::RecorderState state)
 {
+    qDebug(log) << Q_FUNC_INFO << state;
     if(QMediaRecorder::StoppedState == state)
     {
-        slotRecord(false);
+        m_pRecord->setChecked(false);
         m_pRecordPause->setChecked(false);
     }
 }
