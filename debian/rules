@@ -115,8 +115,8 @@ override_dh_auto_configure:
             ${PARAS}
 
 override_dh_auto_build:
-#	dh_auto_build --parallel -B$(BUILD_DIR)
-	cmake  --build $(BUILD_DIR) --config Release --parallel $(nproc)
+#	dh_auto_build --parallel $(nproc) -B$(BUILD_DIR)
+	cmake --build $(BUILD_DIR) --config Release --parallel $(nproc)
 
 override_dh_auto_install:
 	cmake --install $(BUILD_DIR) --config Release \

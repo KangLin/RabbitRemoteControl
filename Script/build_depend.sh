@@ -11,7 +11,7 @@ APT_UPDATE=0
 BASE_LIBS=0
 DEFAULT_LIBS=0
 QT=0
-QT_VERSION=6.8.2
+QT_VERSION=6.9.0
 FREERDP=0
 TIGERVNC=0
 PCAPPLUSPLUS=0
@@ -355,10 +355,10 @@ if [ $QT -eq 1 ]; then
         #pip install -U pip
         pip install aqtinstall
         if [ "`uname -m`" == "x86_64" ]; then
-            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qt5compat qtscxml qtmultimedia qtimageformats qtserialport
             mv ${QT_VERSION}/gcc_64 qt_`uname -m`
          elif [ "`uname -m`" == "aarch64" ]; then
-            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qt5compat qtscxml qtmultimedia qtimageformats qtserialport
             mv ${QT_VERSION}/gcc_arm64 qt_`uname -m`
         fi
     fi

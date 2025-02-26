@@ -84,12 +84,11 @@ cmake "$REPO_ROOT" \
   -DCMARK_SHARED=OFF \
   -DCMARK_TESTS=OFF \
   -DCMARK_STATIC=ON \
-  -DQT_DEBUG_FIND_PACKAGE=ON \
   -DCMAKE_BUILD_TYPE=Release \
   -DBUILD_QUIWidget=OFF \
   -DBUILD_APP=ON \
   -DBUILD_FREERDP=ON
-cmake --build . --parallel $(nproc)
+cmake --build . --config Release --verbose --parallel $(nproc)
 cmake --install . --config Release --component DependLibraries --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --component Runtime --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --component Application --prefix ${INSTALL_APP_DIR}
