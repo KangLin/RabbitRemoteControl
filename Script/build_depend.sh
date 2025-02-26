@@ -11,7 +11,7 @@ APT_UPDATE=0
 BASE_LIBS=0
 DEFAULT_LIBS=0
 QT=0
-QT_VERSION=6.8.2
+QT_VERSION=6.9.0
 FREERDP=0
 TIGERVNC=0
 PCAPPLUSPLUS=0
@@ -20,7 +20,8 @@ libdatachannel=0
 QtService=0
 
 usage_long() {
-    echo "$0 [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "$0 [[-h|--help] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "-h|--help: show help"
     echo "Directory:"
     echo "  --install: Set install directory"
     echo "  --source: Set source directory"
@@ -355,10 +356,10 @@ if [ $QT -eq 1 ]; then
         #pip install -U pip
         pip install aqtinstall
         if [ "`uname -m`" == "x86_64" ]; then
-            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qt5compat qtscxml qtmultimedia qtimageformats qtserialport
             mv ${QT_VERSION}/gcc_64 qt_`uname -m`
          elif [ "`uname -m`" == "aarch64" ]; then
-            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qtscxml qtmultimedia qtimageformats qtserialport qt5compat
+            aqt install-qt linux_arm64 desktop ${QT_VERSION} linux_gcc_arm64 -m qt5compat qtscxml qtmultimedia qtimageformats qtserialport
             mv ${QT_VERSION}/gcc_arm64 qt_`uname -m`
         fi
     fi

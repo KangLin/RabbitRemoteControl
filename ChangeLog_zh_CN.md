@@ -3,7 +3,9 @@
 ### v0.0.33
 - 移除捐赠比特币
 - VNC: 修改鼠标，增加后退按钮
-- 增加 build_depend.sh
+- 增加脚本
+  - build_depend.sh
+  - build_appimage.sh
 - 自动化集成: 增加 arm64(aarch64) 架构发行版本
 - Client: 修改接口
   - CPluginClient

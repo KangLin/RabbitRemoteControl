@@ -348,7 +348,6 @@ apps:
      - network-bind
      - network-manager
      - opengl
-     - cups
      - cups-control
      - serial-port
      - alsa

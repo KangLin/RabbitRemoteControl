@@ -3,7 +3,9 @@
 ### v0.0.33
 - Remove donate bitcoin
 - VNC: modify mouse. add back button
-- Add build_depend.sh
+- Add script
+  - build_depend.sh
+  - build_appimage.sh
 - CI: add arm64(aarch64) release
 - Client: modify interfaces
   - CPluginClient
