@@ -20,7 +20,8 @@ libdatachannel=0
 QtService=0
 
 usage_long() {
-    echo "$0 [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "$0 [[-h|--help] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "-h|--help: show help"
     echo "Directory:"
     echo "  --install: Set install directory"
     echo "  --source: Set source directory"
