@@ -6,6 +6,7 @@
 - 增加脚本
   - build_depend.sh
   - build_appimage.sh
+  - build_docker.sh
 - 自动化集成: 增加 arm64(aarch64) 架构发行版本
 - Client: 修改接口
   - CPluginClient

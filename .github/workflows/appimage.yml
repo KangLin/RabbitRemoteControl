@@ -19,11 +19,6 @@ jobs:
         BUILD_TYPE: [Release]
         qt_version: [6.9.0]
         os: [ubuntu-24.04, ubuntu-24.04-arm]
-        include:
-          - os: ubuntu-24.04
-            qt_arch: "linux_gcc_64"
-          - os: ubuntu-24.04-arm
-            qt_arch: "linux_gcc_arm64"
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
@@ -35,7 +30,7 @@ jobs:
       BUILD_DIR:   ${{github.workspace}}/build
       SOURCE_DIR:  ${{github.workspace}}/.cache/source
       TOOLS_DIR:   ${{github.workspace}}/.cache/tools
-      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.qt_arch}}_${{matrix.BUILD_TYPE}}
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.BUILD_TYPE}}
       RabbitRemoteControl_VERSION: v0.0.32
       artifact_name: build_appimage
       qt_modules: 'qtscxml qtmultimedia qtimageformats qtserialport qt5compat'
@@ -67,64 +62,11 @@ jobs:
             ${{env.TOOLS_DIR}}/qt_*
           key: install_appimage
 
-      - name: git clone RabbitCommon
-        working-directory: ${{env.SOURCE_DIR}}
-        run: |
-            if [ -d RabbitCommon ]; then
-                cd RabbitCommon
-                git pull
-            else
-                git clone https://github.com/KangLin/RabbitCommon.git
-            fi
-
-      - name: Install dependency libraries
-        run: |
-          sudo ./Script/build_depend.sh --apt_update --base \
-              --tigervnc --freerdp --pcapplusplus \
-              --install ${{env.INSTALL_DIR}} \
-              --source ${{env.SOURCE_DIR}} \
-              --tools ${{env.TOOLS_DIR}} \
-              --build ${{env.BUILD_DIR}} \
-              --qt ${{matrix.qt_version}}
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        if: false
-        with:
-          dir: '${{env.TOOLS_DIR}}/qt'
-          version: ${{matrix.qt_version}}
-          target: 'desktop'
-          arch: ${{matrix.qt_arch}}
-          # See: https://ddalcino.github.io/aqt-list-server/
-          modules: ${{env.qt_modules}}
-          cache: true
-          cache-key-prefix: cached-qt_${{matrix.qt_arch}}
-
       - name: build appimage
-        env:
-          RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-          RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
-          tigervnc_DIR: ${{env.INSTALL_DIR}}/lib/cmake/tigervnc
-          # LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
-          QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
-          FreeRDP_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
-          WinPR_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/WinPR3
-          FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
-          FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
-          FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
-          BUILD_FREERDP: ON
-          PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
+        continue-on-error: true
         run: |
-          export QT_ROOT=${{env.TOOLS_DIR}}/qt_`uname -m`
-          export Qt6_DIR=$QT_ROOT
-          export QMAKE=$QT_ROOT/bin/qmake
-          export PATH=$QT_ROOT/libexec:$PATH
-          export PKG_CONFIG_PATH=$QT_ROOT/lib/pkgconfig:${{env.INSTALL_DIR}}/lib/pkgconfig:$PKG_CONFIG_PATH
-          export LD_LIBRARY_PATH=$QT_ROOT/lib:${{env.INSTALL_DIR}}/lib:$LD_LIBRARY_PATH
-          export QT_PLUGIN_PATH=$QT_ROOT/plugins
-          export CMAKE_PREFIX_PATH=$QT_ROOT
-          #export QMAKE=$Qt6_DIR/bin/qmake6
-          ${{github.workspace}}/Script/build_appimage.sh
+          sudo ./Script/build_linux.sh --appimage --install ${{env.INSTALL_DIR}}
+          mv RabbitRemoteControl_`uname -m`.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage
           md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage.md5sum
 
       - name: update configure file

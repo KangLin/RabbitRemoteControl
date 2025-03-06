@@ -7,7 +7,13 @@
   "dependencies": [
     "openssl",
     "zlib",
-    "ffmpeg",
+    {
+        "name": "ffmpeg",
+        "features": [
+            "x264",
+            "x265"
+        ]
+    },
     "cmark"
   ],
 

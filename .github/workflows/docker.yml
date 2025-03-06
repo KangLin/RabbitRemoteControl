@@ -1,0 +1,44 @@
+# Author: Kang Lin <kl222@126.com>
+
+name: docker
+
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_docker.outputs.name }}
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+  build_docker:
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
+    runs-on: ubuntu-latest
+
+    env:
+      RabbitRemoteControl_VERSION: 0.0.32
+      artifact_name: build_docker
+
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: run docker
+        run: ./Script/build_linux.sh --docker --deb
+      - name: Update artifact
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact_name }}
+          path: |
+            ${{github.workspace}}/build/rabbitremotecontrol_*.deb
+            ${{github.workspace}}/build/RabbitRemoteControl/RabbitRemoteControl_*.AppImage

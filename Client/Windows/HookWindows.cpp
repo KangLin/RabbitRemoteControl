@@ -104,6 +104,16 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
                 qDebug(log) << "process vkCode:" << hook->vkCode
                                           << "scanCode:" << hook->scanCode
                                           << "flags:" << hook->flags;//*/
+                /* the hook procedure did not process the message,
+                 * it is highly recommended that you call CallNextHookEx
+                 * and return the value it returns; otherwise,
+                 * other applications that have installed WH_KEYBOARD_LL hooks
+                 * will not receive hook notifications and may behave incorrectly
+                 * as a result. If the hook procedure processed the message,
+                 * it may return a nonzero value to prevent the system 
+                 * from passing the message to the rest of the hook chain
+                 * or the target window procedure.
+                 */
                 return 0;
             }
         }

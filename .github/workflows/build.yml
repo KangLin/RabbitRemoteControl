@@ -17,12 +17,20 @@ jobs:
     uses: ./.github/workflows/ubuntu.yml
     secrets: inherit
 
+  linux:
+      uses: ./.github/workflows/linux.yml
+      secrets: inherit
+
   aarch64:
     uses: ./.github/workflows/aarch64.yml
     secrets: inherit
 
   appimage:
     uses: ./.github/workflows/appimage.yml
+    secrets: inherit
+
+  docker:
+    uses: ./.github/workflows/docker.yml
     secrets: inherit
 
   msvc:

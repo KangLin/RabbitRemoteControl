@@ -3,8 +3,17 @@
 Author: Kang Lin <kl222@126.com>  
 Translator: Allan Nordhøy <epost@anotheragency.no>
 
+### Quickly started
+
+    # Only build AppImage
+    ./Script/build_linux.sh --appimage
+    # Only build deb package
+    ./Script/build_linux.sh --deb
+
+See: [Script](#Script)
+
 ### Environment
-#### Operating system 
+#### Operating system
 
 - Ubuntu
 
@@ -13,7 +22,7 @@ Translator: Allan Nordhøy <epost@anotheragency.no>
       Distributor ID:	Ubuntu
       Description:	Ubuntu 24.04.1 LTS
       Release:	24.04
-      Codename:	noble     
+      Codename:	noble
 
 - Debian
 
@@ -601,7 +610,7 @@ and then run ldconfig to add the dependency libraries to the system.
     ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
     ```
 
-See: [Compile integration](../../.github/workflows/ubuntu.yml)
+See: [Script](#Script)
 
 ##### [AppImage](https://github.com/linuxdeploy/linuxdeploy)
 
@@ -718,7 +727,7 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
 
 ### Script
 
-- Script
+- Build script
   - [build_depend.sh](../../Script/build_depend.sh): Build, Install the dependency libraries
   - [build_debpackage.sh](../../Script/build_debpackage.sh): Build deb package.
     Before executing, set environment variables.
@@ -726,38 +735,49 @@ See: [Compile integration](../../.github/workflows/ubuntu.yml)
   - [build_appimage.sh](../../Script/build_appimage.sh): Build AppImage package.
     Before executing, set environment variables.
     See: [CMake parameters or environment variable](#CMake-parameters-or-environment-variable)
+  - [build_linux.sh](../../Script/build_linux.sh): Build for linux.
   - example
+    - Use build_linux.sh
+    
+          # Only build AppImage
+          ./Script/build_linux.sh --appimage
+          # Only build deb package
+          ./Script/build_linux.sh --deb
+          # Build deb package and AppImage with docker
+          ./Script/build_linux.sh --docker --deb --appimage
 
-        # If use Qt be installed from [Qt](download.qt.io)
-        export QT_ROOT=
-        export Qt6_ROOT=$QT_ROOT
-        export QMAKE=$QT_ROOT/bin/qmake
-        # If use the system-packaged Qt
-        export QT_SELECT=qt6
+    - Compiled separately
 
-        # Note:  The following environment variables must be absolute path
-        export BUILD_DIR=`pwd`/build
-        export INSTALL_DIR=$BUILD_DIR/install
-        export SOURCE_DIR=$BUILD_DIR/source
-        export TOOLS_DIR=$BUILD_DIR/tools
+          # If use Qt be installed from [Qt](download.qt.io)
+          export QT_ROOT=
+          export Qt6_ROOT=$QT_ROOT
+          export QMAKE=$QT_ROOT/bin/qmake
+          # If use the system-packaged Qt
+          export QT_SELECT=qt6
 
-        # Install dependency libraries
-        sudo ./Script/build_depend.sh --apt_update --base --default --rabbitcommon \
-            --tigervnc --pcapplusplus \
-            --install ${INSTALL_DIR} \
-            --source ${SOURCE_DIR} \
-            --tools ${TOOLS_DIR} \
-            --build ${BUILD_DIR}
+          # Note:  The following environment variables must be absolute path
+          export BUILD_DIR=`pwd`/build
+          export INSTALL_DIR=$BUILD_DIR/install
+          export SOURCE_DIR=$BUILD_DIR/source
+          export TOOLS_DIR=$BUILD_DIR/tools
 
-        # Set dependency libraries environment variable
-        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-        export tigervnc_DIR=${INSTALL_DIR}/lib/cmake/tigervnc
-        export PcapPlusPlus_DIR=${INSTALL_DIR}/lib/cmake/pcapplusplus
+          # Install dependency libraries
+          sudo ./Script/build_depend.sh --apt_update --base --default --rabbitcommon \
+              --tigervnc --pcapplusplus \
+              --install ${INSTALL_DIR} \
+              --source ${SOURCE_DIR} \
+              --tools ${TOOLS_DIR} \
+              --build ${BUILD_DIR}
 
-        # Compile deb package
-        ./Script/build_debpackage.sh
+          # Set dependency libraries environment variable
+          export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+          export tigervnc_DIR=${INSTALL_DIR}/lib/cmake/tigervnc
+          export PcapPlusPlus_DIR=${INSTALL_DIR}/lib/cmake/pcapplusplus
 
-        # Compile AppImage
-        ./Script/build_appimage.sh
+          # Compile deb package
+          ./Script/build_debpackage.sh
+
+          # Compile AppImage
+          ./Script/build_appimage.sh
 
 - [deploy.sh](../../deploy.sh): Deploy. Only used by administarotr

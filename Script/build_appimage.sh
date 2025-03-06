@@ -9,9 +9,14 @@
 set -e
 #set -v
 
+if [ -z "$BUILD_VERBOSE" ]; then
+    BUILD_VERBOSE=OFF
+fi
+
 usage_long() {
-    echo "$0 [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-h|--help]"
+    echo "$0 [--install=<install directory>] [ [-h|--help] [-v|--verbose[=0|1]] --source=<source directory>] [--tools=<tools directory>] [--build=<build directory>]"
     echo "  --help|-h: Show help"
+    echo "  -v|--verbose: Show build verbose"
     echo "Directory:"
     echo "  --install: Set install directory"
     echo "  --source: Set source directory"
@@ -29,8 +34,8 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:
-    ARGS=`getopt -o h -l $OPTS -n $(basename $0) -- "$@"`
+    OPTS=help,verbose::,install:,source:,tools:,build:
+    ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
         exit 1
@@ -45,6 +50,15 @@ if command -V getopt >/dev/null; then
         #echo "\$1: $1"
         #echo "\$2: $2"
         case $1 in
+        -v |--verbose)
+            case $2 in
+                "")
+                    BUILD_VERBOSE=ON;;
+                *)
+                    BUILD_VERBOSE=$2;;
+            esac
+            shift 2
+            ;;
         --install)
             INSTALL_DIR=$2
             shift 2
@@ -58,7 +72,7 @@ if command -V getopt >/dev/null; then
             shift 2
             ;;
         --build)
-            BUILD_DIR=$2
+            BUILD_APPIMAGE_DIR=$2
             shift 2
             ;;
         --) # 当解析到“选项和参数“与“non-option parameters“的分隔符时终止
@@ -84,7 +98,7 @@ fi
 #else
 #    TEMP_BASE=/tmp
 #fi
-#BUILD_DIR=$(mktemp -d -p "$TEMP_BASE" rabbitremotecontrol-appimage-build-XXXXXX)
+#BUILD_APPIMAGE_DIR=$(mktemp -d -p "$TEMP_BASE" rabbitremotecontrol-appimage-build-XXXXXX)
 ## make sure to clean up build dir, even if errors occur
 
 # store repo root as variable
@@ -93,12 +107,12 @@ OLD_CWD=$(readlink -f .)
 
 pushd "$REPO_ROOT"
 
-if [ -z "$BUILD_DIR" ]; then
-    BUILD_DIR=build_appimage
+if [ -z "$BUILD_APPIMAGE_DIR" ]; then
+    BUILD_APPIMAGE_DIR=build_appimage
 fi
-BUILD_DIR=$(readlink -f ${BUILD_DIR})
-mkdir -p $BUILD_DIR
-pushd "$BUILD_DIR"
+BUILD_APPIMAGE_DIR=$(readlink -f ${BUILD_APPIMAGE_DIR})
+mkdir -p $BUILD_APPIMAGE_DIR
+pushd "$BUILD_APPIMAGE_DIR"
 
 if [ -z "$TOOLS_DIR" ]; then
     TOOLS_DIR=Tools
@@ -120,14 +134,14 @@ mkdir -p $INSTALL_DIR
 echo "Repo folder: $REPO_ROOT"
 echo "Old folder: $OLD_CWD"
 echo "Current folder: `pwd`"
-echo "BUILD_DIR: $BUILD_DIR"
+echo "BUILD_APPIMAGE_DIR: $BUILD_APPIMAGE_DIR"
 echo "TOOLS_DIR: $TOOLS_DIR"
 echo "SOURCE_DIR: $SOURCE_DIR"
 echo "INSTALL_DIR: $INSTALL_DIR"
 
 cleanup () {
-    if [ -d "${BUILD_DIR}" ]; then
-        rm -rf "${BUILD_DIR}"
+    if [ -d "${BUILD_APPIMAGE_DIR}" ]; then
+        rm -rf "${BUILD_APPIMAGE_DIR}"
     fi
 }
 if [ "$CI" != "" ]; then
@@ -147,8 +161,12 @@ popd
 
 echo "Compile RabbitRemoteControl ......"
 INSTALL_APP_DIR=AppDir/usr
+if [ -n "${INSTALL_DIR}" ]; then
+    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+fi
 cmake "$REPO_ROOT" \
   -DCMAKE_INSTALL_PREFIX=/usr \
+  -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
   -DCMARK_SHARED=OFF \
   -DCMARK_TESTS=OFF \
   -DCMARK_STATIC=ON \
@@ -156,7 +174,7 @@ cmake "$REPO_ROOT" \
   -DBUILD_QUIWidget=OFF \
   -DBUILD_APP=ON \
   -DBUILD_FREERDP=ON
-cmake --build . --config Release --verbose --parallel $(nproc)
+cmake --build . --config Release --parallel $(nproc)
 cmake --install . --config Release --component DependLibraries --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --component Runtime --prefix ${INSTALL_APP_DIR}
 cmake --install . --config Release --component Application --prefix ${INSTALL_APP_DIR}
@@ -169,15 +187,20 @@ echo "Build AppImage ......"
 export EXTRA_PLATFORM_PLUGINS="libqxcb.so"
 # Icons from theme are not displayed in QtWidgets Application: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/issues/17
 export EXTRA_QT_MODULES="svg"
-echo "QT_ROOT: $QT_ROOT"
-echo "Qt6_DIR: $Qt6_DIR"
-echo "QMAKE: $QMAKE"
-echo "EXTRA_PLATFORM_PLUGINS: $EXTRA_PLATFORM_PLUGINS"
-echo "EXTRA_QT_MODULES: $EXTRA_QT_MODULES"
-echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-echo "QT_PLUGIN_PATH: $QT_PLUGIN_PATH"
-echo "PATH: $PATH"
-$QMAKE --version
+export PATH=$PATH:${TOOLS_DIR}
+
+if [ "${BUILD_VERBOSE}" = "ON" ]; then
+    echo "QT_ROOT: $QT_ROOT"
+    echo "Qt6_DIR: $Qt6_DIR"
+    echo "QMAKE: $QMAKE"
+    echo "EXTRA_PLATFORM_PLUGINS: $EXTRA_PLATFORM_PLUGINS"
+    echo "EXTRA_QT_MODULES: $EXTRA_QT_MODULES"
+    echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+    echo "QT_PLUGIN_PATH: $QT_PLUGIN_PATH"
+    echo "PATH: $PATH"
+    $QMAKE --version
+fi
+
 ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
     --plugin qt \
     --output appimage \
@@ -185,11 +208,8 @@ ${TOOLS_DIR}/linuxdeploy-`uname -m`.AppImage --appdir=AppDir \
 
 chmod a+x Rabbit_Remote_Control-`uname -m`.AppImage
 
-if [ -z "$RabbitRemoteControl_VERSION" ]; then
-    cp Rabbit_Remote_Control-`uname -m`.AppImage $REPO_ROOT
-else
-    mv Rabbit_Remote_Control-`uname -m`.AppImage ../RabbitRemoteControl_${RabbitRemoteControl_VERSION}_Linux_`uname -m`.AppImage
-fi
+cp Rabbit_Remote_Control-`uname -m`.AppImage $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage
+echo "Generated AppImage: $REPO_ROOT/RabbitRemoteControl_`uname -m`.AppImage"
 
 popd
 popd

@@ -6,6 +6,7 @@
 - Add script
   - build_depend.sh
   - build_appimage.sh
+  - build_docker.sh
 - CI: add arm64(aarch64) release
 - Client: modify interfaces
   - CPluginClient

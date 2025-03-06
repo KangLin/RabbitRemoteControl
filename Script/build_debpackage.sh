@@ -2,7 +2,7 @@
 # Author: Kang Lin <kl222@126.com>
 
 #See: https://blog.csdn.net/alwaysbefine/article/details/114187380
-set -x
+#set -x
 set -e
 #set -v
 
@@ -23,7 +23,7 @@ fi
 if [ -z "$QT_ROOT" ]; then
     echo "QT_ROOT=$QT_ROOT"
 	echo "$0 QT_ROOT RabbitCommon_ROOT"
-    exit -1
+    exit 1
 fi
 
 if [ -n "$2" -a -z "$RabbitCommon_ROOT" ]; then
@@ -39,7 +39,7 @@ if [ ! -d "$RabbitCommon_ROOT" ]; then
     echo "QT_ROOT=$QT_ROOT"
     echo "RabbitCommon_ROOT=$RabbitCommon_ROOT"
 	echo "$0 QT_ROOT RabbitCommon_ROOT"
-    exit -1
+    exit 2
 fi
 
 export QT_ROOT=$QT_ROOT

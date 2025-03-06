@@ -2,6 +2,15 @@
 
 作者：康林 <kl222@126.com>
 
+### 快速开始
+
+    # 仅编译 AppImage
+    ./Script/build_linux.sh --appimage
+    # 仅编译 deb 包
+    ./Script/build_linux.sh --deb
+
+详见：[脚本](#脚本)
+
 ### 环境
 #### 操作系统
 
@@ -12,7 +21,7 @@
       Distributor ID:	Ubuntu
       Description:	Ubuntu 24.04.1 LTS
       Release:	24.04
-      Codename:	noble     
+      Codename:	noble
 
 - Debian
 
@@ -580,7 +589,7 @@ PcapPlusPlus 依赖此库。
     ~/RabbitRemoteControl/build$ cmake --build . --config Release --target install
     ```
 
-参见：[编译集成](../../.github/workflows/ubuntu.yml)
+详见：[脚本](#脚本)
 
 ### [AppImage](https://github.com/linuxdeploy/linuxdeploy)
 
@@ -697,44 +706,54 @@ PcapPlusPlus 依赖此库。
 
 ### 脚本
 
-- Script
+- 编译脚本
   - [build_depend.sh](../../Script/build_depend.sh): 编译、安装依赖库。
   - [build_debpackage.sh](../../Script/build_debpackage.sh): 编译 deb 安装包。
     执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
   - [build_appimage.sh](../../Script/build_appimage.sh): 编译 AppImage 包。
     执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
   - 示例
+    - 使用 build_linux.sh
 
-        # 如果是从 [Qt官网](download.qt.io) 安装的 Qt
-        export QT_ROOT=
-        export Qt6_ROOT=$QT_ROOT
-        export QMAKE=$QT_ROOT/bin/qmake
-        # 如果是系统自带的 Qt
-        export QT_SELECT=qt6
+          # 仅编译 AppImage
+          ./Script/build_linux.sh --appimage
+          # 仅编译 deb 包
+          ./Script/build_linux.sh --deb
+          # 如果同时编译 deb 包和 AppImage，请用 docker 。否则 qt 可能会产生污染。
+          ./Script/build_linux.sh --docker --deb --appimage
 
-        # 注意：下面环境变量一定要使用绝对路径
-        export BUILD_DIR=`pwd`/build
-        export INSTALL_DIR=$BUILD_DIR/install
-        export SOURCE_DIR=$BUILD_DIR/source
-        export TOOLS_DIR=$BUILD_DIR/tools
+    - 分步编译         
 
-        # 安装依赖库
-        sudo ./Script/build_depend.sh --apt_update --base --default --rabbitcommon \
-            --tigervnc --pcapplusplus \
-            --install ${INSTALL_DIR} \
-            --source ${SOURCE_DIR} \
-            --tools ${TOOLS_DIR} \
-            --build ${BUILD_DIR}
+          # 如果是从 [Qt官网](download.qt.io) 安装的 Qt
+          export QT_ROOT=
+          export Qt6_ROOT=$QT_ROOT
+          export QMAKE=$QT_ROOT/bin/qmake
+          # 如果是系统自带的 Qt
+          export QT_SELECT=qt6
 
-        # 设置环境变量
-        export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-        export tigervnc_DIR=${INSTALL_DIR}/lib/cmake/tigervnc
-        export PcapPlusPlus_DIR=${INSTALL_DIR}/lib/cmake/pcapplusplus
+          # 注意：下面环境变量一定要使用绝对路径
+          export BUILD_DIR=`pwd`/build
+          export INSTALL_DIR=$BUILD_DIR/install
+          export SOURCE_DIR=$BUILD_DIR/source
+          export TOOLS_DIR=$BUILD_DIR/tools
 
-        # 编译 deb 包
-        ./Script/build_debpackage.sh
+          # 安装依赖库
+          sudo ./Script/build_depend.sh --apt_update --base --default --rabbitcommon \
+              --tigervnc --pcapplusplus \
+              --install ${INSTALL_DIR} \
+              --source ${SOURCE_DIR} \
+              --tools ${TOOLS_DIR} \
+              --build ${BUILD_DIR}
 
-        # 编译 AppImage
-        ./Script/build_appimage.sh
+          # 设置环境变量
+          export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+          export tigervnc_DIR=${INSTALL_DIR}/lib/cmake/tigervnc
+          export PcapPlusPlus_DIR=${INSTALL_DIR}/lib/cmake/pcapplusplus
 
+          # 编译 deb 包
+          ./Script/build_debpackage.sh
+
+          # 编译 AppImage
+          ./Script/build_appimage.sh
+ 
 - [deploy.sh](../../deploy.sh): 分发版本。仅由管理员使用。

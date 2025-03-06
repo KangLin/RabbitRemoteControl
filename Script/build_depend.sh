@@ -6,12 +6,17 @@
 set -e
 #set -v
 
+if [ -z "$BUILD_VERBOSE" ]; then
+    BUILD_VERBOSE=OFF
+fi
 APT=
 APT_UPDATE=0
 BASE_LIBS=0
 DEFAULT_LIBS=0
 QT=0
-QT_VERSION=6.9.0
+if [ -z "$QT_VERSION" ]; then
+    QT_VERSION=6.9.0
+fi
 FREERDP=0
 TIGERVNC=0
 PCAPPLUSPLUS=0
@@ -20,8 +25,9 @@ libdatachannel=0
 QtService=0
 
 usage_long() {
-    echo "$0 [[-h|--help] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
-    echo "-h|--help: show help"
+    echo "$0 [[-h|--help] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "  -h|--help: show help"
+    echo "  -v|--verbose: Show verbose"
     echo "Directory:"
     echo "  --install: Set install directory"
     echo "  --source: Set source directory"
@@ -41,27 +47,6 @@ usage_long() {
     echo "  --QtService: Install QtService"
 }
 
-usage() {
-    echo "$0 [-i <install directory>] [-s <source directory>] [-t <tools directory>] [-b <build directory>] [-a <'lib1 lib2 ...'>] [apt_update] [base] [default] [qt] [rabbitcommon] [freerdp] [tigervnc] [pcapplusplus] [libdatachannel] [QtService]"
-    echo "Directory:"
-    echo "  -i: Set install directory"
-    echo "  -s: Set source directory"
-    echo "  -t: Set tools directory"
-    echo "  -b: set build directory"
-    echo "Depend:"
-    echo "  base: Install then base libraries with apt"
-    echo "  default: Install the default dependency libraries that comes with the system"
-    echo "  apt_update: Update system"
-    echo "  -a: Install package with apt"
-    echo "  qt: Install QT"
-    echo "  rabbitcommon: Install RabbitCommon"
-    echo "  freerdp: Install FreeRDP"
-    echo "  tigervnc: Install TigerVNC"
-    echo "  pcapplusplus: Install PcapPlusPlus"
-    echo "  libdatachannel: Install libdatachannel"
-    echo "  QtService: Install QtService"
-}
-
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
 # [【Linux】Shell命令 getopts/getopt用法详解](https://blog.csdn.net/arpospf/article/details/103381621)
 if command -V getopt >/dev/null; then
@@ -72,8 +57,8 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,apt:,apt_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::
-    ARGS=`getopt -o h -l $OPTS -n $(basename $0) -- "$@"`
+    OPTS=help,install:,source:,tools:,build:,verbose::,apt:,apt_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::
+    ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
         exit 1
@@ -101,11 +86,20 @@ if command -V getopt >/dev/null; then
             shift 2
             ;;
         --build)
-            BUILD_DIR=$2
+            BUILD_DEPEND_DIR=$2
             shift 2
             ;;
         --apt)
             APT=$2
+            shift 2
+            ;;
+        -v | --verbose)
+            case $2 in
+                "")
+                    BUILD_VERBOSE=ON;;
+                *)
+                    BUILD_VERBOSE=$2;;
+            esac
             shift 2
             ;;
         --apt_update)
@@ -216,35 +210,6 @@ if command -V getopt >/dev/null; then
             ;;
         esac
     done
-else
-    echo "getopt is not exits"
-    if [ $# -eq 0 ]; then
-        usage
-    else
-        for i in "$@"; do
-            case "$i" in
-                "apt_update") APT_UPDATE=1;;
-                "base") BASE_LIBS=1;;
-                "default") DEFAULT_LIBS=1;;
-                "qt") QT=1;;
-                "freerdp") FREERDP=1;;
-                "tigervnc") TIGERVNC=1;;
-                "pcapplusplus") PCAPPLUSPLUS=1;;
-                "rabbitcommon") RabbitCommon=1;;
-                "libdatachannel") libdatachannel=1;;
-                "QtService") QtService==1;;
-            esac
-        done
-        while getopts :i:s:t: opt; do
-            case $opt in
-                i) INSTALL_DIR=$OPTARG ;;
-                s) SOURCE_DIR=$OPTARG ;;
-                t) TOOLS_DIR=$OPTARG ;;
-                b) BUILD_DIR=$OPTARG ;;
-                a) APT=$OPTARG ;;
-            esac
-        done
-    fi
 fi
 
 # store repo root as variable
@@ -253,12 +218,12 @@ OLD_CWD=$(readlink -f .)
 
 pushd "$REPO_ROOT"
 
-if [ -z "$BUILD_DIR" ]; then
-    BUILD_DIR=build_depend
+if [ -z "$BUILD_DEPEND_DIR" ]; then
+    BUILD_DEPEND_DIR=build_depend
 fi
-BUILD_DIR=$(readlink -f ${BUILD_DIR})
-mkdir -p $BUILD_DIR
-pushd "$BUILD_DIR"
+BUILD_DEPEND_DIR=$(readlink -f ${BUILD_DEPEND_DIR})
+mkdir -p $BUILD_DEPEND_DIR
+pushd "$BUILD_DEPEND_DIR"
 
 if [ -z "$TOOLS_DIR" ]; then
     TOOLS_DIR=Tools
@@ -280,7 +245,7 @@ mkdir -p $INSTALL_DIR
 echo "Repo folder: $REPO_ROOT"
 echo "Old folder: $OLD_CWD"
 echo "Current folder: `pwd`"
-echo "BUILD_DIR: $BUILD_DIR"
+echo "BUILD_DEPEND_DIR: $BUILD_DEPEND_DIR"
 echo "TOOLS_DIR: $TOOLS_DIR"
 echo "SOURCE_DIR: $SOURCE_DIR"
 echo "INSTALL_DIR: $INSTALL_DIR"
@@ -288,7 +253,7 @@ echo "INSTALL_DIR: $INSTALL_DIR"
 if [ $APT_UPDATE -eq 1 ]; then
     echo "apt update ......"
     apt-get update -y
-    apt-get upgrade -y
+    #apt-get upgrade -y
 fi
 
 if [ -n "$APT" ]; then
@@ -297,8 +262,8 @@ fi
 
 if [ $BASE_LIBS -eq 1 ]; then
     echo "Install base libraries ......"
-    apt install -y -q build-essential \
-        git cmake gcc g++ debhelper fakeroot graphviz gettext
+    apt install -y -q build-essential packaging-dev equivs debhelper \
+        fakeroot graphviz gettext wget curl
     # OpenGL
     apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
     # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
@@ -348,13 +313,17 @@ if [ $DEFAULT_LIBS -eq 1 ]; then
 fi
 
 if [ $QT -eq 1 ]; then
-    echo "Install qt ......"
+    echo "Install qt ${QT_VERSION} ......"
     pushd "$TOOLS_DIR"
     if [ ! -d qt_`uname -m` ]; then
         # See: https://ddalcino.github.io/aqt-list-server/
+        #      https://www.cnblogs.com/clark1990/p/17942952
         apt install -y -q python3-pip python3-pip-whl python3-pipdeptree cpio
+        
         #pip install -U pip
         pip install aqtinstall
+
+        echo "PATH: $PATH"
         if [ "`uname -m`" == "x86_64" ]; then
             aqt install-qt linux desktop ${QT_VERSION} linux_gcc_64 -m qt5compat qtscxml qtmultimedia qtimageformats qtserialport
             mv ${QT_VERSION}/gcc_64 qt_`uname -m`
@@ -385,6 +354,7 @@ if [ $FREERDP -eq 1 ]; then
         cd build
         cmake .. \
           -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}" \
           -DWITH_SERVER=ON \
           -DWITH_CLIENT_SDL=OFF \
@@ -406,6 +376,7 @@ if [ $TIGERVNC -eq 1 ]; then
       cd build
       cmake .. -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+          -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF -DENABLE_NLS=OFF
       cmake --build . --config Release --parallel $(nproc)
       cmake --build . --config Release --target install
@@ -422,6 +393,7 @@ if [ $PCAPPLUSPLUS -eq 1 ]; then
         cmake -E make_directory build
         cd build
         cmake .. -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
             -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
             -DPCAPPP_BUILD_EXAMPLES=OFF \
             -DPCAPPP_BUILD_TESTS=OFF \
@@ -442,6 +414,7 @@ if [ $libdatachannel -eq 1 ]; then
       cmake -E make_directory build
       cd build
       cmake .. -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE} \
           -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}
       cmake --build . --config Release --parallel $(nproc)
       cmake --build . --config Release --target install
@@ -459,7 +432,8 @@ if [ $QtService -eq 1 ]; then
       cmake -E make_directory build
       cd build
       cmake .. -DCMAKE_BUILD_TYPE=Release \
-          -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}
+          -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
+          -DCMAKE_VERBOSE_MAKEFILE=${BUILD_VERBOSE}
       cmake --build . --config Release --parallel $(nproc)
       cmake --build . --config Release --target install
     fi

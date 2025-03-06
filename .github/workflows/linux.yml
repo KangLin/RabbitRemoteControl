@@ -1,0 +1,140 @@
+# Author: Kang Lin <kl222@126.com>
+
+name: linux
+
+on:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_ubuntu.outputs.name }}
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+jobs:
+  build_linux:
+    strategy:
+      matrix:
+        BUILD_TYPE: [Release]
+        qt_version: [6.9.0]
+        os: [ubuntu-24.04, ubuntu-24.04-arm]
+        PACKAGE: [deb, appimage]
+
+    # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
+    # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+    # See: https://github.com/actions/runner-images/
+    runs-on: ${{matrix.os}}
+
+    env:
+      BUILD_TYPE:  ${{matrix.BUILD_TYPE}}
+      BUILD_DIR:   ${{github.workspace}}/build
+      SOURCE_DIR:  ${{github.workspace}}/.cache/source
+      TOOLS_DIR:   ${{github.workspace}}/.cache/tools
+      INSTALL_DIR: ${{github.workspace}}/.cache/install_${{matrix.os}}_${{matrix.BUILD_TYPE}}
+      RabbitRemoteControl_VERSION: 0.0.32
+      artifact_name: build_linux
+
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Make directories
+        run: |
+          cmake -E make_directory ${{env.BUILD_DIR}}
+          cmake -E make_directory ${{env.SOURCE_DIR}}
+          cmake -E make_directory ${{env.TOOLS_DIR}}
+          cmake -E make_directory ${{env.INSTALL_DIR}}
+
+      - name: Cache installed
+        uses: actions/cache@v4
+        id: cache-installed
+        with:
+          path: |
+            ${{env.INSTALL_DIR}}
+            ${{env.TOOLS_DIR}}/linuxdeploy-*
+            ${{env.TOOLS_DIR}}/qt_*
+          key: install_linux
+
+      - name: build linux
+        continue-on-error: true
+        run: |
+          sudo ./Script/build_linux.sh --${{matrix.PACKAGE}} --install ${{env.INSTALL_DIR}}
+
+      - name: Deb update configure file
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.PACKAGE == 'deb' }}
+        working-directory: ${{github.workspace}}
+        #continue-on-error: true
+        run: |
+          #sudo apt update -y -qq
+          #sudo apt-get install -y -qq xvfb xpra
+          sudo Xvfb :92 -ac -screen 0 1200x900x24 &
+          export DISPLAY=:92.0
+          ARCH=`dpkg --print-architecture`
+          cp ../rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${ARCH}.deb rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_${ARCH}.deb
+          md5sum rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_${ARCH}.deb > rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_${ARCH}.deb.md5sum
+          echo "Install rabbit remote control ......"
+          sudo apt install ./rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_${ARCH}.deb
+          echo "Update update_linux.json ......"
+          export QT_XCB_GL_INTEGRATION=none
+          MD5SUM=`cat rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_${ARCH}.deb.md5sum|awk '{print $1}'`
+          echo "MD5SUM rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_${ARCH}.deb: ${MD5SUM}"
+          echo "Generate update configure file ......"
+          /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
+            -f "${{github.workspace}}/update_ubuntu.json" \
+            --foc 1 \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_`dpkg --print-architecture`.deb;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/rabbitremotecontrol_${{env.RabbitRemoteControl_VERSION}}_${{matrix.os}}_`dpkg --print-architecture`.deb" \
+            --md5 "${MD5SUM}"
+          mv "${{github.workspace}}/update_ubuntu.json.xml" update_linux.xml
+
+      - name: Deb update version configure file
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.PACKAGE == 'deb' }}
+        working-directory: ${{github.workspace}}
+        #continue-on-error: true
+        run: |
+          sudo Xvfb :90 -ac &
+          export DISPLAY=:90.0
+          /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
+               -f "${{github.workspace}}/version.json" \
+               --foc 0 \
+               --pv ${{env.RabbitRemoteControl_VERSION}}
+
+      - name: AppIagme update configure file
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.PACKAGE == 'appimage' }}
+        #continue-on-error: true
+        run: |
+          sudo Xvfb :91.0 -ac -screen 0 1200x900x24 &
+          export DISPLAY=:91.0
+          echo "Update update_linux.json ......"
+          export QT_XCB_GL_INTEGRATION=none
+          #export QT_DEBUG_PLUGINS=1
+          ARCH=`uname -m`
+          mv RabbitRemoteControl_$ARCH.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage
+          md5sum RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage > RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage.md5sum
+          MD5SUM=`cat RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage.md5sum|awk '{print $1}'`
+          echo "MD5SUM RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage: ${MD5SUM}"
+          echo "Generate update configure file ......"
+          ./RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage \
+            -f "${{github.workspace}}/update_appimage_${{matrix.os}}_qt${{matrix.qt_version}}.json" \
+            --foc 1 \
+            --file-name RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_$ARCH.AppImage \
+            -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage" \
+            --md5 "${MD5SUM}"
+
+      - name: Deb update artifact
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact_name }}_${{matrix.os}}_${{matrix.PACKAGE}}
+          path: |
+            ${{github.workspace}}/RabbitRemoteControl_*.AppImage
+            ${{github.workspace}}/rabbitremotecontrol_*.deb
+            ${{github.workspace}}/update_*.json
+            ${{github.workspace}}/version.json
+            ${{github.workspace}}/update_linux.xml

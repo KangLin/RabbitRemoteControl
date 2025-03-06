@@ -117,22 +117,13 @@ jobs:
         working-directory: ${{github.workspace}}
         env:
           RabbitCommon_ROOT: ${{env.SOURCE_DIR}}/RabbitCommon
-          RabbitVNC_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/RabbitVNC
-          tigervnc_DIR: ${{env.INSTALL_DIR}}/lib/cmake/tigervnc
-          #LibDataChannel_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/LibDataChannel
-          QtService_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/QtService
-          #FreeRDP_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/FreeRDP3
-          #WinPR_DIR: ${{ env.INSTALL_DIR }}/lib/cmake/WinPR3
-          #FreeRDP-Client_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Client3
-          #FreeRDP-Shadow_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow3
-          #FreeRDP-Server_DIR: ${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server3
-          PcapPlusPlus_DIR: ${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus
         run: |
           if [ '${{matrix.BUILD_TYPE}}' == 'Release' ]; then
               echo "Build Release ......"
               export BUILD_VIEWER_TERMINAL=OFF
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           fi
+          export CMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
           ./Script/build_debpackage.sh
 
       - name: update configure file
