@@ -38,6 +38,9 @@ static Q_LOGGING_CATEGORY(log, "App.Main")
 int main(int argc, char *argv[])
 {
     int nRet = 0;
+
+    //qputenv("QT_MEDIA_BACKEND", "ffmpeg");
+
 #if (defined(Q_OS_LINUX) && !defined(Q_OA_ANDROID) \
     && (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)))
     /* 修复使用 Qt6 时，最大化时，工具栏位置错误。
