@@ -653,6 +653,12 @@ PcapPlusPlus 依赖此库。
     
         sudo apt install fuse
 
+  - 在 docker 中运行时出现 FUSE 错误
+    
+    在创建容器的时候加上参数: --privileged 
+    
+        docker run --privileged --interactive ubuntu
+    
 - 脚本：[build_appimage.sh](../../Script/build_appimage.sh)
 
 ### snap

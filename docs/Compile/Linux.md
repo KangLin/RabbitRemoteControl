@@ -676,6 +676,12 @@ See: [Script](#Script)
         
         sudo apt install fuse
 
+  - Fuse issue in docker
+  
+    When creating a container, add the parameter: --privileged
+    
+        docker run --privileged --interactive ubuntu
+
 ##### snap
 
 - build
