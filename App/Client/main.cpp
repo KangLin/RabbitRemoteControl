@@ -52,6 +52,10 @@ int main(int argc, char *argv[])
     QString szPlatform = QString::fromLocal8Bit(qgetenv("QT_QPA_PLATFORM"));
     if(szPlatform.isEmpty() || "wayland" == szPlatform)
         qputenv("QT_QPA_PLATFORM", "xcb");
+    qInfo(log) << "Current Qt Platform is:"
+               << QString::fromLocal8Bit(qgetenv("QT_QPA_PLATFORM"))
+               << "; This can be modified with the environment variables QT_QPA_PLATFORM:\n"
+               << "export QT_QPA_PLATFORM=xcb\n Optional: xcb; vnc";
 #endif
 #if (QT_VERSION > QT_VERSION_CHECK(5,6,0)) && (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);

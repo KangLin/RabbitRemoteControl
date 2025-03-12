@@ -188,10 +188,12 @@ int CConnecterWakeOnLan::Connect()
                 QString szAppImage = QString::fromLocal8Bit(qgetenv("APPIMAGE"));
                 if(!szAppImage.isEmpty())
                     szExec = szAppImage;
-                bool bRet = RabbitCommon::CTools::executeByRoot(szExec);
-                qDebug(log) << "Execute:" << bRet << QCoreApplication::applicationFilePath();
-                if(bRet && msg.checkBox()->isChecked()) {
-                    QCoreApplication::quit();
+                if(!szExec.isEmpty()) {
+                    bool bRet = RabbitCommon::CTools::executeByRoot(szExec);
+                    qDebug(log) << "Execute:" << bRet << QCoreApplication::applicationFilePath();
+                    if(bRet && msg.checkBox()->isChecked()) {
+                        QCoreApplication::quit();
+                    }
                 }
             }
         }
