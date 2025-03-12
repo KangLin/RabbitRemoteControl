@@ -143,7 +143,7 @@ build_script:
   - echo "xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin"
   - xcopy /Y %VCPKG_DIR%\installed\%BUILD_ARCH%-windows\bin\*.dll install\bin
   - xcopy /Y %INSTALL_DIR%\bin\*.dll install\bin
-  - call "C:\Program Files (x86)\NSIS\makensis.exe" Install.nsi
+  - call "C:\Program Files (x86)\NSIS\makensis.exe" Windows.nsi
   - rename RabbitRemoteControl_setup_%RabbitRemoteControlVersion%.exe ^
         RabbitRemoteControl_%RabbitRemoteControlVersion%_windows_xp_%BUILD_ARCH%_setup.exe
 

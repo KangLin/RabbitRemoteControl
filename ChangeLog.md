@@ -22,6 +22,11 @@
 - Applation: modify interfaces
   - CView
     - add CView::SetCurrentView
+- Package:
+  - Add flatpak manifests
+  - rename Install.nsi to Windows.nsi
+  - Debian: modify control
+- Rename org.Rabbit.RemoteControl.desktop to io.github.KangLin.RabbitRemoteControl.desktop
 
 ### v0.0.32
 - Fix player menu bug

@@ -678,13 +678,13 @@ See: [Script](#Script)
 
   - Fuse issue in docker
   
-    When creating a container, add the parameter: --privileged
+    When creating a container, add the parameter: `--privileged`
     
         docker run --privileged --interactive ubuntu
 
 ##### snap
 
-- build
+- Build
   - Parts lifecycle: https://snapcraft.io/docs/parts-lifecycle
   - https://snapcraft.io/docs/how-snapcraft-builds  
     Each of these lifecycle steps can be run from the command line,
@@ -714,10 +714,10 @@ See: [Script](#Script)
           Staging part-test
           snapcraft-test #
 
-  - build clean
-    
+  - Build clean
+
         snapcraft clean
-        
+
 - Test
   - Use --devmode
 
@@ -730,6 +730,65 @@ See: [Script](#Script)
   - Remove
 
         snap remove rabbitremotecontrol
+
+### Flatpak
+
+- Install the software you need to build and run Flatpak: flatpak and flatpak-builder
+  - Fedora:
+
+        $ sudo dnf install flatpak flatpak-builder
+
+  - Debian/Ubuntu:
+
+        $ sudo apt-get update && sudo apt-get install flatpak flatpak-builder
+
+  - Archlinux
+
+        $ sudo pacman -Sy flatpak flatpak-builder
+
+- Add [Flathub](https://flathub.org/) repositories:
+
+      $ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+  - Show details
+
+        $ flatpak remotes --show-details
+
+- Build
+
+      $ flatpak-builder build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.json
+      ** (flatpak-builder:37): WARNING **: 03:05:45.408: Unknown property branch for type BuilderSourceDir
+      error: org.kde.Sdk/x86_64/6.8 not installed
+      Failed to init: Unable to find sdk org.kde.Sdk version 6.8
+
+Install sdk and runtime:
+
+      $ flatpak install org.kde.Sdk//6.8 org.kde.Platform//6.8
+
+After install sdk and runtime, Run again:
+
+      $ flatpak-builder --force-clean build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.json
+      # or user
+      $ flatpak-builder --user --force-clean --install build-dir /home/RabbitRemoteControl/Package/io.github.KangLin.RabbitRemoteControl.json 
+
+- Install
+
+      $ flatpak-builder --user --force-clean --install build-dir RabbitRemoteControl/io.github.KangLin.RabbitRemoteControl.json
+
+- Run
+
+      $ flatpak run io.github.KangLin.RabbitRemoteControl
+
+- Issue
+  - Fuse issue in docker
+
+    When creating a container, add the parameter: `--privileged`
+
+        docker run --privileged -v /home/RabbitRemoteControl:/home/RabbitRemoteControl -it ubuntu
+
+- Documents
+  - [flatpak manifest](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
+  - [Submission](https://docs.flathub.org/docs/for-app-authors/submission)
 
 ### Script
 

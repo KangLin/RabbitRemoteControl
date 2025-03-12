@@ -593,7 +593,7 @@ PcapPlusPlus 依赖此库。
 
 ### [AppImage](https://github.com/linuxdeploy/linuxdeploy)
 
-- 编译
+- 构建
 
       ~/RabbitRemoteControl/build$ cmake .. \
           -DCMAKE_INSTALL_PREFIX=/usr \
@@ -611,7 +611,7 @@ PcapPlusPlus 依赖此库。
       cmake --install . --config Release --component Application --prefix AppDir/usr
       cmake --install . --config Release --component Plugin --prefix AppDir/usr
 
-- 建立
+- 建立 AppImage
 
       # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt
       #export QMAKE=${QT_ROOT}/bin/qmake
@@ -655,7 +655,7 @@ PcapPlusPlus 依赖此库。
 
   - 在 docker 中运行时出现 FUSE 错误
     
-    在创建容器的时候加上参数: --privileged 
+    在创建容器的时候加上参数: `--privileged`
     
         docker run --privileged --interactive ubuntu
     
@@ -663,7 +663,7 @@ PcapPlusPlus 依赖此库。
 
 ### snap
 
-- 编译:
+- 构建:
   - Parts 生命周期: https://snapcraft.io/docs/parts-lifecycle
   - https://snapcraft.io/docs/how-snapcraft-builds
         
@@ -693,14 +693,14 @@ PcapPlusPlus 依赖此库。
           $ # 例如 prime freerdp
           $ snapcraft prime freerdp --shell-after -v --debug
 
-  - 清理编译
+  - 清理
   
         snapcraft clean
-    
+
 - 调试
   - 开发模式安装 （--devmode）。未签名的。
 
-        snap install ./rabbitremotecontrol_0.0.27_amd64.snap --devmode 
+        snap install ./rabbitremotecontrol_0.0.27_amd64.snap --devmode
 
   - 运行
 
@@ -710,25 +710,115 @@ PcapPlusPlus 依赖此库。
 
         snap remove rabbitremotecontrol
 
+### Flatpak
+
+- 安装构建和运行 flatpak 所需的软件：flatpak 和 flatpak-builder
+  - 在 Fedora 上我们必须运行：
+
+        $ sudo dnf install flatpak flatpak-builder
+        # 其它工具
+        $ sudo dnf install autogen git cmake gcc autoconf
+
+  - 在 Debian/Ubuntu 或基于它的众多发行版之一上，相反：
+
+        $ sudo apt-get update && sudo apt-get install flatpak flatpak-builder
+
+  - 在 Archlinux 上我们可以使用 pacman 来执行相同的操作：
+
+        $ sudo pacman -Sy flatpak flatpak-builder
+
+- 添加 [Flathub](https://flathub.org/) 仓库：
+
+      $ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+  - 查看flatpak仓库的详细信息
+
+        $ flatpak remotes --show-details
+
+- 构建
+
+      $ flatpak-builder build-dir io.github.KangLin.RabbitRemoteControl.json
+      ** (flatpak-builder:37): WARNING **: 03:05:45.408: Unknown property branch for type BuilderSourceDir
+      error: org.kde.Sdk/x86_64/6.8 not installed
+      Failed to init: Unable to find sdk org.kde.Sdk version 6.8
+
+提示 sdk 没有安装。指定的运行时和 sdk 不会自动安装，我们必须手动安装。
+要仅为我们的用户从 flathub 存储库安装它们，我们使用以下命令：
+
+      $ flatpak install org.kde.Sdk//6.8 org.kde.Platform//6.8
+
+安装完所有的 sdk 和运行库后，再构建：
+
+      $ flatpak-builder --force-clean build-dir io.github.KangLin.RabbitRemoteControl.json
+      # 或者 用户模式
+      $ flatpak-builder --user --force-clean --install build-dir io.github.KangLin.RabbitRemoteControl.json 
+
+- 安装
+
+应用程序构建完成，我们就可以安装它。我们所要做的就是运行以下命令：
+
+      $ flatpak-builder --user --force-clean --install build-dir io.github.KangLin.RabbitRemoteControl.json
+
+- 运行
+
+      $ flatpak run io.github.KangLin.RabbitRemoteControl
+
+- 创建存储库
+
+如果到目前为止一切都按预期工作，我们可以继续将我们的应用程序放入存储库中。
+在这里，我们将创建自己的存储库，但如果您想将应用程序上线，
+则需要按照要上传到的网站（例如 FlatHub）的提交说明进行操作。
+我们将再次构建应用程序，但这次添加 --repo 选项。我们将我们的存储库称为“Rabbit”。
+
+
+    $ flatpak-builder --repo=Rabbit --force-clean build-dir io.github.KangLin.RabbitRemoteControl.json
+
+- 添加到 Flatpak
+
+接下来，我们可以将新存储库添加到 Flatpak，然后从存储库安装我们的应用程序。
+
+
+    $ flatpak --user remote-add --no-gpg-verify Rabbit Rabbit
+    $ flatpak --user install Rabbit io.github.KangLin.RabbitRemoteControl
+
+请注意，我们在此处使用 --user 选项以避免安装应用程序以供系统范围使用。如果您愿意，可以忽略此选项。
+
+- 问题
+  - 在 docker 中运行时出现 FUSE 错误
+  
+        Initializing build dir
+        Committing stage init to cache
+        Starting build of io.github.KangLin.RabbitRemoteControl
+        fuse: device not found, try 'modprobe fuse' first
+        Error: Failure spawning rofiles-fuse, exit_status: 1024
+
+    在创建容器的时候加上参数: `--privileged`
+
+        docker run --privileged --interactive ubuntu
+
+- 文档
+  - [flatpak 清单文件](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
+  - [提交到 Flathub](https://docs.flathub.org/docs/for-app-authors/submission)
+
 ### 脚本
 
-- 编译脚本
-  - [build_depend.sh](../../Script/build_depend.sh): 编译、安装依赖库。
-  - [build_debpackage.sh](../../Script/build_debpackage.sh): 编译 deb 安装包。
+- 构建脚本
+  - [build_depend.sh](../../Script/build_depend.sh): 构建、安装依赖库。
+  - [build_debpackage.sh](../../Script/build_debpackage.sh): 构建 deb 安装包。
     执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
-  - [build_appimage.sh](../../Script/build_appimage.sh): 编译 AppImage 包。
+  - [build_appimage.sh](../../Script/build_appimage.sh): 构建 AppImage 包。
     执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
   - 示例
     - 使用 build_linux.sh
 
-          # 仅编译 AppImage
+          # 仅构建 AppImage
           ./Script/build_linux.sh --appimage
-          # 仅编译 deb 包
+          # 仅构建 deb 包
           ./Script/build_linux.sh --deb
-          # 如果同时编译 deb 包和 AppImage，请用 docker 。否则 qt 可能会产生污染。
+          # 如果同时构建 deb 包和 AppImage，请用 docker 。否则 qt 可能会产生污染。
           ./Script/build_linux.sh --docker --deb --appimage
 
-    - 分步编译         
+    - 分步构建
 
           # 如果是从 [Qt官网](download.qt.io) 安装的 Qt
           export QT_ROOT=
@@ -756,10 +846,10 @@ PcapPlusPlus 依赖此库。
           export tigervnc_DIR=${INSTALL_DIR}/lib/cmake/tigervnc
           export PcapPlusPlus_DIR=${INSTALL_DIR}/lib/cmake/pcapplusplus
 
-          # 编译 deb 包
+          # 构建 deb 包
           ./Script/build_debpackage.sh
 
-          # 编译 AppImage
+          # 构建 AppImage
           ./Script/build_appimage.sh
- 
+
 - [deploy.sh](../../deploy.sh): 分发版本。仅由管理员使用。

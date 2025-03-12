@@ -23,32 +23,32 @@ case "$1" in
         mkdir -p $INSTALL_ROOT/log
         chmod 777 $INSTALL_ROOT/log
 
-        if [ ! -f /usr/share/applications/org.Rabbit.RemoteControl.desktop ]; then
-            if [ -f $INSTALL_ROOT/share/applications/org.Rabbit.RemoteControl.desktop ]; then
-                ln -s $INSTALL_ROOT/share/applications/org.Rabbit.RemoteControl.desktop /usr/share/applications/org.Rabbit.RemoteControl.desktop
+        if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
+            if [ -f $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
+                ln -s $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
             fi
         fi
-        if [ ! -f /usr/share/pixmaps/org.Rabbit.RemoteControl.svg ]; then
-            if [ -f $INSTALL_ROOT/share/pixmaps/org.Rabbit.RemoteControl.svg ]; then
+        if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
+            if [ -f $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
                 if [ ! -d /usr/share/pixmaps ]; then
                     mkdir -p /usr/share/pixmaps
                 fi
-                ln -s $INSTALL_ROOT/share/pixmaps/org.Rabbit.RemoteControl.svg /usr/share/pixmaps/org.Rabbit.RemoteControl.svg
+                ln -s $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
             fi
         fi
         
-        if [ ! -f /usr/share/applications/org.Rabbit.RemoteControl.Service.Configure.desktop ]; then
-            if [ -f $INSTALL_ROOT/share/applications/org.Rabbit.RemoteControl.Service.Configure.desktop ]; then
-                ln -s $INSTALL_ROOT/share/applications/org.Rabbit.RemoteControl.Service.Configure.desktop /usr/share/applications/org.Rabbit.RemoteControl.Service.Configure.desktop
+        if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop ]; then
+            if [ -f $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop ]; then
+                ln -s $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop
             fi
         fi
 
-        if [ ! -f /usr/share/pixmaps/org.Rabbit.RemoteControl.Service.Configure.svg ]; then
-            if [ -f $INSTALL_ROOT/share/pixmaps/org.Rabbit.RemoteControl.Service.Configure.svg ]; then
+        if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg ]; then
+            if [ -f $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg ]; then
                 if [ ! -d /usr/share/pixmaps ]; then
                     mkdir -p /usr/share/pixmaps
                 fi
-                ln -s $INSTALL_ROOT/share/pixmaps/org.Rabbit.RemoteControl.Service.Configure.svg /usr/share/pixmaps/org.Rabbit.RemoteControl.Service.Configure.svg
+                ln -s $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
             fi
         fi
         
@@ -72,10 +72,10 @@ case "$1" in
     abort-upgrade|abort-remove|abort-deconfigure)
         rm -fr $INSTALL_ROOT/log
         #rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
-        rm -fr /usr/share/applications/org.Rabbit.RemoteControl.desktop
-        rm -fr /usr/share/pixmaps/org.Rabbit.RemoteControl.svg
-        rm -fr /usr/share/applications/org.Rabbit.RemoteControl.Service.Configure.desktop
-        rm -fr /usr/share/pixmaps/org.Rabbit.RemoteControl.Service.Configure.svg
+        rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+        rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+        rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop
+        rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
         ldconfig
     ;;
 

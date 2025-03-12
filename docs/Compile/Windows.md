@@ -360,7 +360,7 @@ Source-code location: https://github.com/KangLin/tigervnc
           cmake --install . --config Release --component Application --strip
           cmake --install . --config Release --component Plugin --strip
           cmake --install . --config Release --component DependLibraries --strip
-          makensis Install.nsi
+          makensis Windows.nsi
 
   + Using an IDE (Qt Creator)
     - Set vcpkg: Menu→Edit→Preferences→Kits→Cmake Configuration:

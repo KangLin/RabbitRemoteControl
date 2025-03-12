@@ -67,7 +67,7 @@ parts:
     plugin: cmake
     source: https://github.com/FreeRDP/FreeRDP.git
     source-type: git
-    source-tag: 3.12.0
+    source-tag: 3.14.0
     source-depth: 1
     build-packages:
       - libssl-dev
@@ -310,8 +310,8 @@ parts:
     override-stage: |
       cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
       # cp $SNAPCRAFT_PART_SRC/snap/local/start.sh .
-      sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
-      sed -i 's|Path=/opt/RabbitRemoteControl/bin|Path=\$\{SNAP\}/opt/RabbitRemoteControl/bin|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+      sed -i 's|Icon=org\.Rabbit\.RemoteControl|Icon=/opt/RabbitRemoteControl/share/pixmaps/org\.Rabbit\.RemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+      sed -i 's|Path=/opt/RabbitRemoteControl/bin|Path=\$\{SNAP\}/opt/RabbitRemoteControl/bin|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
       # cat > "qt.conf" << EOF
       # [Paths]
       # Prefix=../../..
@@ -333,7 +333,7 @@ apps:
    #command: opt/RabbitRemoteControl/bin/start.sh
    command: opt/RabbitRemoteControl/bin/RabbitRemoteControlApp
    # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
-   desktop: opt/RabbitRemoteControl/share/applications/org.Rabbit.RemoteControl.desktop
+   desktop: opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
    environment:
       LD_LIBRARY_PATH: ${SNAP}/usr/local/lib:${SNAP}/opt/RabbitRemoteControl/lib/:${LD_LIBRARY_PATH}
       PATH: $SNAP/opt/RabbitRemoteControl/bin:$PATH

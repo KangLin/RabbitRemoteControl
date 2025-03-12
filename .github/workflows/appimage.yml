@@ -63,7 +63,7 @@ jobs:
           key: install_appimage
 
       - name: build appimage
-        continue-on-error: true
+        #continue-on-error: true
         run: |
           sudo ./Script/build_linux.sh --appimage --install ${{env.INSTALL_DIR}}
           mv RabbitRemoteControl_`uname -m`.AppImage RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_`uname -m`.AppImage
@@ -74,6 +74,7 @@ jobs:
         #continue-on-error: true
         run: |
           sudo Xvfb :91.0 -ac -screen 0 1200x900x24 &
+          sleep 1
           export DISPLAY=:91.0
           echo "Update update_linux.json ......"
           export QT_XCB_GL_INTEGRATION=none

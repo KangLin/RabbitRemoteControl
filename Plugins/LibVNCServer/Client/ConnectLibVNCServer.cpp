@@ -274,7 +274,7 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
         
         return OnInitReturnValue::UseOnProcess;
     }
-#endif
+#endif // #ifdef HAVE_LIBSSH
     //! [Use SSH Tunnel]
     default:
         break;
@@ -286,11 +286,13 @@ CConnect::OnInitReturnValue CConnectLibVNCServer::OnInit()
 int CConnectLibVNCServer::OnClean()
 {
     qDebug(log) << "CConnectLibVNCServer::OnClean()";
+#ifdef HAVE_LIBSSH
     if(m_pThread)
     {
         m_pThread->Exit();
         m_pThread = nullptr;
     }
+#endif
     if(m_pClient)
     {
         m_tcpSocket.close();

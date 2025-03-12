@@ -223,7 +223,7 @@ jobs:
           copy /Y C:\msys64\mingw64\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\bin\*.dll install\bin
           copy /Y ${{env.INSTALL_DIR}}\lib\*.dll install\bin
-          makensis ${{env.BUILD_DIR}}/Install.nsi
+          makensis ${{env.BUILD_DIR}}/Windows.nsi
           md5sum RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe > RabbitRemoteControl_setup_${{env.RabbitRemoteControl_VERSION}}.exe.md5
 
 #      - name: Update artifact

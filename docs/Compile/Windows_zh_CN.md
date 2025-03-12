@@ -343,7 +343,7 @@
           cmake --install . --config Release --component Application --strip
           cmake --install . --config Release --component Plugin --strip
           cmake --install . --config Release --component DependLibraries --strip
-          makensis Install.nsi  ;打包
+          makensis Windows.nsi  ;打包
 
   + IDE (Qt Creator) 编译
     - 设置 vcpkg: 编辑→Preferences(Options)→构建套件(Kits)→Cmake Configureration:

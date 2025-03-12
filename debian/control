@@ -20,7 +20,8 @@ Package: rabbitremotecontrol
 Section: net
 Architecture: any
 #Pre-Depends: ${misc:Pre-Depends}
-Depends: libqt6svg6, ${shlibs:Depends}, ${misc:Depends}
+Suggests: libqt6svg6
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: rabbitcommon (>=2.3.2)
 Description: Rabbit Remote Control
  Rabbit remote control is  is a cross-platform,

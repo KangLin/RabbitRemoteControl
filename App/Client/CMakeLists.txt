@@ -112,10 +112,10 @@ if(WIN32)
             COMPONENT Application)
 endif()
 if(UNIX AND NOT ANDROID)
-    set(APP_ICON_NAME org.Rabbit.RemoteControl)
-    configure_file(${CMAKE_SOURCE_DIR}/share/applications/org.Rabbit.RemoteControl.desktop.in
-        ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.desktop)
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/org.Rabbit.RemoteControl.desktop
+    set(APP_ID io.github.KangLin.RabbitRemoteControl)
+    configure_file(${CMAKE_SOURCE_DIR}/share/applications/${APP_ID}.desktop.in
+        ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
+    INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
         DESTINATION share/applications
             COMPONENT Application)
     INSTALL(PROGRAMS ${CMAKE_SOURCE_DIR}/share/applications/RabbitRemoteControl.sh
@@ -124,7 +124,11 @@ if(UNIX AND NOT ANDROID)
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
         DESTINATION share/pixmaps
             COMPONENT Application
-        RENAME ${APP_ICON_NAME}.svg)
+        RENAME ${APP_ID}.svg)
+    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
+        DESTINATION share/icons/hicolor/200x200/apps
+            COMPONENT Application
+        RENAME ${APP_ID}.svg)
 endif()
 
 # Install QIcon theme

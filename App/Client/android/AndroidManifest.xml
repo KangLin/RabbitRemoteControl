@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.KangLinStudio.RabbitRemoteControl"
+    package="io.github.KangLin.RabbitRemoteControl"
     android:versionName="0.0.32"
     android:versionCode="0"
     android:installLocation="auto">

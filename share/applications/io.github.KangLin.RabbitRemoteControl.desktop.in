@@ -2,19 +2,23 @@
 
 [Desktop Entry]
 Type=Application
-Icon=@APP_ICON_NAME@
+Icon=@APP_ID@
 TryExec=RabbitRemoteControlApp
 Exec=RabbitRemoteControlApp
 Path=@CMAKE_INSTALL_PREFIX@/bin
 Terminal=false
 StartupNotify=true
+StartupWMClass="@APP_ID@"
+X-Flatpak=@APP_ID@
 
 # https://specifications.freedesktop.org/menu-spec/latest/apa.html
-Categories=Network;Utility;P2P;Qt;RemoteAccess;AudioVideo;Video;Audio;Player;Recorder
+Categories=Network;Utility;P2P;Qt;RemoteAccess;AudioVideo;Video;Audio;Player
 
 # https://www.freedesktop.org/wiki/Specifications/mime-apps-spec/
 # https://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec/
 MimeType=application/rrc
+
+Keywords=remote desktop;remote control;rdp;vnc;ssh;player
 
 Name=Rabbit Remote Control
 GenericName=Rabbit Remote Control
