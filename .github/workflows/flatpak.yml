@@ -7,23 +7,33 @@ on:
 
 jobs:
   build_flatpak:
+    strategy:
+      matrix:
+        variant:
+          - arch: x86_64
+            runner: ubuntu-24.04
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.variant.runner }}
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-44
+      options: --privileged
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Flatpak build
-        run: |
-          sudo apt-get update -y -q
-          sudo apt-get install -y -q flatpak flatpak-builder
-          sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          sudo flatpak install -y org.kde.Sdk//6.8 org.kde.Platform//6.8
-          flatpak-builder --user --force-clean --install build Package/io.github.KangLin.RabbitRemoteControl.json
-
+        uses: flathub-infra/flatpak-github-actions/flatpak-builder@master
+        with:
+          bundle: RabbitRemoteControl.flatpak
+          manifest-path: Package/io.github.KangLin.RabbitRemoteControl.json
+          cache-key: flatpak-builder-${{ github.sha }}
+          arch: ${{ matrix.variant.arch }}
+          verbose: false

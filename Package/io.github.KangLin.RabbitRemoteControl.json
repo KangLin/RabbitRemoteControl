@@ -21,8 +21,7 @@
         "--socket=pulseaudio",
         "--socket=pcsc",
         "--socket=ssh-auth",
-        "--socket=fallback-x11",
-        "--socket=wayland",
+        "--socket=x11",
         "--device=all",
         "--filesystem=~/Documents",
         "--talk-name=org.freedesktop.Notifications",
@@ -165,6 +164,8 @@
                 "-DWITH_SAMPLE:BOOL=OFF",
                 "-DWITH_OSS:BOOL=OFF",
                 "-DCHANNEL_URBDRC:BOOL=OFF",
+                "-DWITH_CLIENT_SDL=OFF",
+                "-DWITH_CLIENT=OFF",
                 "-DWITH_KRB5=ON"
             ],
             "cleanup": [
