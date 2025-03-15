@@ -1,15 +1,12 @@
-// See: https://docs.flatpak.org/en/latest/manifests.html
-// See: https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest
 {
     "id": "io.github.KangLin.RabbitRemoteControl",
-    /*See: https://invent.kde.org/packaging/flatpak-kde-runtime*/
     "runtime": "org.kde.Platform",
     "runtime-version": "6.8",
     "sdk": "org.kde.Sdk",
     "command": "RabbitRemoteControlApp",
     "build-options": {
         "env": {
-            /*"V": "1"*/
+            "V": "1"
         }
     },
     "cleanup": [
@@ -20,27 +17,17 @@
         "/lib/pkgconfig"
     ],
     "finish-args": [
-        /* Needs to talk to the network */
         "--share=network",
-        /* Play sounds redirected from guests */
         "--socket=pulseaudio",
         "--socket=pcsc",
         "--socket=ssh-auth",
-        /* X11 + XShm access */
         "--socket=fallback-x11",
-        /* force use X11 */
-        /*"--env=QT_QPA_PLATFORM=xcb",*/
         "--socket=wayland",
         "--device=all",
-        /* File transfer (although limited to ~/Documents directory) */
         "--filesystem=~/Documents",
-        /* Desktop notifications */
         "--talk-name=org.freedesktop.Notifications",
-        /* Needed to save login credentials */
         "--talk-name=org.freedesktop.secrets",
-        /* Appindicator */
         "--talk-name=org.kde.StatusNotifierWatcher",
-        /* Local network host discovery */
         "--system-talk-name=org.freedesktop.Avahi"
     ],
     "cleanup-commands": [
@@ -49,8 +36,6 @@
     "cleanup-platform-commands": [
     ],
     "modules": [
-        /*See: https://github.com/flathub/shared-modules*/
-        /*"shared-modules/libusb/libusb.json",*/
         {
             "name": "xprop",
             "disabled": false,
