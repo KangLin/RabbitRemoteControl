@@ -252,7 +252,10 @@
             "build-options": {
                 "env": {
                 }
-            }
+            },
+            "post-install": [
+                "sed -i 's|Path=/app/bin|Path=/bin|' /app/share/applications/io.github.KangLin.RabbitRemoteControl.desktop"
+            ]
         }
     ]
 }
