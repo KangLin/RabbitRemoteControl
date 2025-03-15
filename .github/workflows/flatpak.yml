@@ -36,4 +36,4 @@ jobs:
           manifest-path: Package/io.github.KangLin.RabbitRemoteControl.json
           cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.variant.arch }}
-          verbose: false
+          verbose: true

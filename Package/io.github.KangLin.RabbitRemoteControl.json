@@ -244,7 +244,10 @@
             "builddir": true,
             "config-opts": [
                 "-DRabbitCommon_ROOT=/var/tmp/RabbitCommon",
-                "-DCMAKE_BUILD_TYPE:STRING=Release"
+                "-DCMAKE_BUILD_TYPE:STRING=Release",
+                "-DCMARK_SHARED=OFF",
+                "-DCMARK_TESTS=OFF",
+                "-DCMARK_STATIC=ON"
             ],
             "build-options": {
                 "env": {
