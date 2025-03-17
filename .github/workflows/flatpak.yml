@@ -43,7 +43,7 @@ jobs:
       - name: Flatpak build
         uses: flathub-infra/flatpak-github-actions/flatpak-builder@master
         with:
-          bundle: RabbitRemoteControl.flatpak
+          bundle: RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${{ matrix.variant.arch }}.flatpak
           manifest-path: Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
           cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.variant.arch }}
