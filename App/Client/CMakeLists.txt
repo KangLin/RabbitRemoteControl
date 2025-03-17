@@ -122,10 +122,6 @@ if(UNIX AND NOT ANDROID)
             DESTINATION ${CMAKE_INSTALL_BINDIR}
                 COMPONENT Application)
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
-        DESTINATION share/pixmaps
-            COMPONENT Application
-        RENAME ${APP_ID}.svg)
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
         DESTINATION share/icons/hicolor/scalable/apps
             COMPONENT Application
         RENAME ${APP_ID}.svg)

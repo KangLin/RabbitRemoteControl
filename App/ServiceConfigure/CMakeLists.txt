@@ -49,17 +49,17 @@ ADD_TARGET(NAME ${PROJECT_NAME}
 
 if(UNIX AND NOT ANDROID)
     # Install .desktop file
-    set(APP_ICON_NAME io.github.KangLin.RabbitRemoteControl.Service.Configure)
-    configure_file(${CMAKE_SOURCE_DIR}/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop.in
-        ${CMAKE_BINARY_DIR}/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop)
-    INSTALL(FILES ${CMAKE_BINARY_DIR}/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop
+    set(APP_ID io.github.KangLin.RabbitRemoteControl.Service.Configure)
+    configure_file(${CMAKE_SOURCE_DIR}/share/applications/${APP_ID}.desktop.in
+        ${CMAKE_BINARY_DIR}/${APP_ID}.desktop)
+    INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.desktop
         DESTINATION share/applications
             COMPONENT Runtime)
     # Install icon of .desktop
     INSTALL(FILES ${CMAKE_SOURCE_DIR}/App/Client/Resource/Image/system-settings.svg
-        DESTINATION share/pixmaps
+        DESTINATION share/icons/hicolor/scalable/apps
             COMPONENT Runtime
-        RENAME ${APP_ICON_NAME}.svg)
+        RENAME ${APP_ID}.svg)
 endif()
 
 if(Log4Qt_FOUND)

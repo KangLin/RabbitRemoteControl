@@ -2,10 +2,10 @@
 
 [Desktop Entry]
 Type=Application
-Icon=@APP_ICON_NAME@
-TryExec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlServiceConfigure
-Exec=/opt/RabbitRemoteControl/bin/RabbitRemoteControlServiceConfigure
-Path=/opt/RabbitRemoteControl
+Icon=@APP_ID@
+TryExec=RabbitRemoteControlServiceConfigure
+Exec=RabbitRemoteControlServiceConfigure
+Path=@CMAKE_INSTALL_PREFIX@/bin
 Terminal=false
 StartupNotify=true
 

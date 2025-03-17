@@ -197,7 +197,7 @@ if [ $DEB -eq 1 ]; then
 
     export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
     export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
-
+    export INSTALL_DIR=${INSTALL_DIR}
     ./build_debpackage.sh
 fi
 

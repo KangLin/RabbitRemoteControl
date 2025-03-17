@@ -28,12 +28,12 @@ case "$1" in
                 ln -s $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
             fi
         fi
-        if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
-            if [ -f $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
-                if [ ! -d /usr/share/pixmaps ]; then
-                    mkdir -p /usr/share/pixmaps
+        if [ ! -f /usr/share/icons/io.github.KangLin.RabbitRemoteControl.svg ]; then
+            if [ -f $INSTALL_ROOT/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg ]; then
+                if [ ! -d /usr/share/icons ]; then
+                    mkdir -p /usr/share/icons
                 fi
-                ln -s $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+                ln -s $INSTALL_ROOT/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg /usr/share/icons/io.github.KangLin.RabbitRemoteControl.svg
             fi
         fi
         
@@ -43,12 +43,12 @@ case "$1" in
             fi
         fi
 
-        if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg ]; then
-            if [ -f $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg ]; then
-                if [ ! -d /usr/share/pixmaps ]; then
-                    mkdir -p /usr/share/pixmaps
+        if [ ! -f /usr/share/icons/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg ]; then
+            if [ -f $INSTALL_ROOT/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg ]; then
+                if [ ! -d /usr/share/icons ]; then
+                    mkdir -p /usr/share/icons
                 fi
-                ln -s $INSTALL_ROOT/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
+                ln -s $INSTALL_ROOT/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg /usr/share/icons/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
             fi
         fi
         
@@ -73,9 +73,9 @@ case "$1" in
         rm -fr $INSTALL_ROOT/log
         #rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
-        rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+        rm -fr /usr/share/icons/io.github.KangLin.RabbitRemoteControl.svg
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.Service.Configure.desktop
-        rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
+        rm -fr /usr/share/icons/io.github.KangLin.RabbitRemoteControl.Service.Configure.svg
         ldconfig
     ;;
 
