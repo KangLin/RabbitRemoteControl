@@ -2,8 +2,11 @@
 name: flatpak
 
 on:
-  push:
-  pull_request:
+  workflow_call:
+    outputs:
+      name:
+        description: "The artifact name"
+        value: ${{ jobs.build_android.outputs.name }}
 
 jobs:
   build_flatpak:
@@ -11,18 +14,26 @@ jobs:
       matrix:
         variant:
           - arch: x86_64
-            runner: ubuntu-24.04
+            os: ubuntu-24.04
           - arch: aarch64
-            runner: ubuntu-24.04-arm
+            os: ubuntu-24.04-arm
+
+    env:
+      artifact_name: RabbitRemoteControl
+      RabbitRemoteControl_VERSION: v0.0.32
 
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: ${{ matrix.variant.runner }}
+    runs-on: ${{ matrix.variant.os }}
     container:
       image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-44
       options: --privileged
 
+    # Map the job outputs to step outputs
+    outputs:
+      name: ${{ env.artifact_name }}
+  
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -33,7 +44,7 @@ jobs:
         uses: flathub-infra/flatpak-github-actions/flatpak-builder@master
         with:
           bundle: RabbitRemoteControl.flatpak
-          manifest-path: Package/io.github.KangLin.RabbitRemoteControl.json
+          manifest-path: Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
           cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.variant.arch }}
-          verbose: true
+          verbose: true      

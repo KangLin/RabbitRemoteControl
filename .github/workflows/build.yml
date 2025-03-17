@@ -18,8 +18,12 @@ jobs:
     secrets: inherit
 
   linux:
-      uses: ./.github/workflows/linux.yml
-      secrets: inherit
+    uses: ./.github/workflows/linux.yml
+    secrets: inherit
+
+  flatpak:
+    uses: ./.github/workflows/flatpak.yml
+    secrets: inherit
 
   aarch64:
     uses: ./.github/workflows/aarch64.yml
@@ -80,6 +84,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           pattern: ${{ needs.appimage.outputs.name }}*
+          path: ${{ env.artifact_path }}
+          merge-multiple: true
+
+      - name: Download flatpak
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ needs.flatpak.outputs.name }}*
           path: ${{ env.artifact_path }}
           merge-multiple: true
 

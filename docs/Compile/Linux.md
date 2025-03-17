@@ -788,6 +788,7 @@ After install sdk and runtime, Run again:
 
 - Documents
   - [flatpak manifest](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
+  - [Sandbox Permissions](https://docs.flatpak.org/en/latest/sandbox-permissions.html)
   - [Submission](https://docs.flathub.org/docs/for-app-authors/submission)
 
 ### Script

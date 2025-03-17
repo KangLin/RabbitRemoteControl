@@ -11,12 +11,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          submodules: true
 
       - uses: codespell-project/actions-codespell@master
         with:
           check_filenames: true
           path: ${{github.workspace}}
-          skip: "*.lua,*.ts,codespell.yml,vcpkg/,vcpkg/*.*,vcpkg/*,*.svg,debian/changelog"
+          skip: "*.lua,*.ts,codespell.yml,vcpkg/,vcpkg/*.*,vcpkg/*,*.svg,debian/changelog,Package/Flatpak/shared-modules/*,Package/Flatpak/shared-modules/*.*"
           ignore_words_list: "spPort,build-in,pIce,splitted,Fo,pAdd"

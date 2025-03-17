@@ -9,32 +9,6 @@
             "V": "1"
         }
     },
-    "cleanup": [
-        "*.la",
-        "*.a",
-        "/include",
-        "/lib/cmake",
-        "/lib/pkgconfig"
-    ],
-    "finish-args": [
-        "--share=network",
-        "--socket=pulseaudio",
-        "--socket=pcsc",
-        "--socket=ssh-auth",
-        "--socket=x11",
-        "--device=all",
-        "--filesystem=~/Documents",
-        "--filesystem=xdg-documents",
-        "--talk-name=org.freedesktop.Notifications",
-        "--talk-name=org.freedesktop.secrets",
-        "--talk-name=org.kde.StatusNotifierWatcher",
-        "--system-talk-name=org.freedesktop.Avahi"
-    ],
-    "cleanup-commands": [
-        "rm -fr /var/tmp/*"
-    ],
-    "cleanup-platform-commands": [
-    ],
     "modules": [
         {
             "name": "xprop",
@@ -114,7 +88,7 @@
                     "sha256": "14b7dcc72e91e08151c58b981a7b570ab2663f630e7d2837645d5a9c612c1b79"
                 }
             ],
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
                 "-DWITH_EXAMPLES=OFF"
@@ -142,6 +116,7 @@
             "cleanup": [
             ]
         },
+        "shared-modules/libusb/libusb.json",
         {
             "name": "FreeRDP",
             "disabled": false,
@@ -152,7 +127,7 @@
                     "sha256": "a7a979382703c2bc18aa9b22cfa12d7a441b6927ab45ac62ef8353786bc92241"
                 }
             ],
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
                 "-DCMAKE_VERBOSE_MAKEFILE=OFF",
@@ -164,9 +139,9 @@
                 "-DWITH_GSSAPI:BOOL=OFF",
                 "-DWITH_SAMPLE:BOOL=OFF",
                 "-DWITH_OSS:BOOL=OFF",
-                "-DCHANNEL_URBDRC:BOOL=OFF",
                 "-DWITH_CLIENT_SDL=OFF",
                 "-DWITH_CLIENT=OFF",
+                "-DCHANNEL_URBDRC:BOOL=ON",
                 "-DWITH_KRB5=ON"
             ],
             "cleanup": [
@@ -184,7 +159,7 @@
                     "sha256": "62352c7795e231dfce044beb96156065a05a05c974e5de9e023d688d8ff675d7"
                 }
             ],
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
                 "-DWITH_OPENSSL=ON",
@@ -207,7 +182,7 @@
                     "sha256": "3da93db5469c30588cfeb283d9d62edfc6ded9eb0edc10a4f5bbfb7d722ea802"
                 }
             ],
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
                 "-DBUILD_TESTING=OFF"
@@ -225,31 +200,11 @@
                     "branch": "master"
                 }
             ],
-            "buildsystem": "simple",
-            "build-commands": [
-                "cp -R /run/build/RabbitCommon /var/tmp/"
-            ]
-        },
-        {
-            "name": "RabbitRemoteControl-Flathub",
-            "disabled": true,
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://github.com/KangLin/RabbitRemoteControl.git",
-                    "branch": "master"
-                }
-            ],
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
-                "-DRabbitCommon_ROOT=/var/tmp/RabbitCommon",
-                "-DCMAKE_BUILD_TYPE:STRING=Release"
-            ],
-            "build-options": {
-                "env": {
-                }
-            }
+                "-DCMAKE_BUILD_TYPE=Release"
+            ]
         },
         {
             "name": "RabbitRemoteControl",
@@ -257,14 +212,13 @@
             "sources": [
                 {
                     "type": "dir",
-                    "path": ".."
+                    "path": "../.."
                 }
             ],
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
-                "-DRabbitCommon_ROOT=/var/tmp/RabbitCommon",
-                "-DCMAKE_BUILD_TYPE:STRING=Release",
+                "-DCMAKE_BUILD_TYPE=Release",
                 "-DCMARK_SHARED=OFF",
                 "-DCMARK_TESTS=OFF",
                 "-DCMARK_STATIC=ON"
@@ -275,7 +229,32 @@
             },
             "post-install": [
                 "sed -i 's|Path=/app/bin|Path=/bin|' /app/share/applications/io.github.KangLin.RabbitRemoteControl.desktop"
+            ],
+            "cleanup": [
             ]
         }
+    ],
+    "cleanup": [
+        "*.la",
+        "*.a",
+        "/include",
+        "/lib/cmake",
+        "/lib/pkgconfig"
+    ],
+    "cleanup-commands": [
+    ],
+    "finish-args": [
+        "--share=ipc",
+        "--share=network",
+        "--socket=pulseaudio",
+        "--socket=pcsc",
+        "--socket=ssh-auth",
+        "--socket=x11",
+        "--device=all",
+        "--filesystem=xdg-documents",
+        "--talk-name=org.freedesktop.Notifications",
+        "--talk-name=org.freedesktop.secrets",
+        "--talk-name=org.kde.StatusNotifierWatcher",
+        "--system-talk-name=org.freedesktop.Avahi"
     ]
 }

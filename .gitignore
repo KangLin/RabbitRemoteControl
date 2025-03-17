@@ -8,6 +8,8 @@ debian/files
 debian/rabbitremotecontrol
 debian/.debhelper/
 *.snap
+.flatpak-builder/
+
 # C++ objects and libs
 *.slo
 *.lo
