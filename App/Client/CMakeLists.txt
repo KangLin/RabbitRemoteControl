@@ -127,10 +127,11 @@ if(UNIX AND NOT ANDROID)
     #    $HOME/.icons (for backwards compatibility)
     #    $XDG_DATA_DIRS/icons
     #    /usr/share/pixmaps
-    INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
-        DESTINATION share/pixmaps
-            COMPONENT Application
-        RENAME ${APP_ID}.svg)
+    #INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
+    #    DESTINATION share/pixmaps
+    #        COMPONENT Application
+    #    RENAME ${APP_ID}.svg)
+    
     # Flatpak: https://docs.flatpak.org/en/latest/conventions.html#application-icons
     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/Resource/icons/rabbit-green/svg/app.svg
         DESTINATION share/icons/hicolor/scalable/apps

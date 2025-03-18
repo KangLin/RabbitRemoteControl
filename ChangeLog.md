@@ -26,7 +26,7 @@
   - Add flatpak manifests
   - rename Install.nsi to Windows.nsi
   - Debian: modify control
-- Rename org.Rabbit.RemoteControl.desktop to io.github.KangLin.RabbitRemoteControl.desktop
+- Rename org.Rabbit.RemoteControl to io.github.KangLin.RabbitRemoteControl
 
 ### v0.0.32
 - Fix player menu bug

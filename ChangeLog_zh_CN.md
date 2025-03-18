@@ -26,7 +26,7 @@
   - 增加 flatpak manifests
   - 重命名 Install.nsi 为 Windows.nsi
   - Debian: modify control
-- 重命名 org.Rabbit.RemoteControl.desktop 为 io.github.KangLin.RabbitRemoteControl.desktop
+- 重命名 org.Rabbit.RemoteControl 为 io.github.KangLin.RabbitRemoteControl
 
 ### v0.0.32
 - 修复播放器菜单错误

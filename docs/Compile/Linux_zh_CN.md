@@ -778,11 +778,14 @@ PcapPlusPlus 依赖此库。
 
 接下来，我们可以将新存储库添加到 Flatpak，然后从存储库安装我们的应用程序。
 
-
     $ flatpak --user remote-add --no-gpg-verify Rabbit Rabbit
     $ flatpak --user install Rabbit io.github.KangLin.RabbitRemoteControl
 
 请注意，我们在此处使用 --user 选项以避免安装应用程序以供系统范围使用。如果您愿意，可以忽略此选项。
+
+- 另外，如果生成 .flatpak 文件。则可以直接安装 .flatpak 文件
+
+      $ flatpak --user install RabbitRemoteControl_v0.0.32_Linux_x86_64.flatpak
 
 - 问题
   - 在 docker 中运行时出现 FUSE 错误
@@ -797,6 +800,26 @@ PcapPlusPlus 依赖此库。
 
         docker run --privileged --interactive ubuntu
 
+  - 在 docker 中，出现下面错误：
+  
+        [root@de5245ca3cfc Download]# flatpak run io.github.KangLin.RabbitRemoteControl
+        App.Main: QT_QPA_PLATFORM: "" 
+        Current Qt Platform is: "xcb" ; This can be modified with the environment variables QT_QPA_PLATFORM:
+         export QT_QPA_PLATFORM=xcb
+         Optional: xcb; vnc
+        qt.qpa.xcb: could not connect to display 
+        qt.qpa.plugin: From 6.5.0, xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin.
+        qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
+        This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+        
+        Available platform plugins are: offscreen, vnc, xcb, wayland, minimal, wayland-egl, eglfs, minimalegl, linuxfb, vkkhrdisplay.
+        
+    原因是由于没有安装桌面系统。所以安装 xvfb
+    
+        sudo dnf install xvfb
+        sudo Xvfb :92 -ac -screen 0 1200x900x24 &
+        export DISPLAY=:92.0
+    
 - 文档
   - [flatpak 清单文件](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
   - [提交到 Flathub](https://docs.flathub.org/docs/for-app-authors/submission)

@@ -347,33 +347,46 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
         - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_win32_msvc2017_qt5.12.12_Setup.exe.md5sum/download)
   - Linux
     - Ubuntu、Debian:
-      + rabbitremotecontrol_0.0.32_amd64.deb
+      + x86_64
+        + rabbitremotecontrol_0.0.32_amd64.deb
 
-            sudo apt install ./rabbitremotecontrol_0.0.32_amd64.deb
+              sudo apt install ./rabbitremotecontrol_0.0.32_amd64.deb
 
-            # 如要你是在老的 ubuntu 发行版本上，你需要用下列命令替换：
-            # sudo dpkg -i rabbitremotecontrol_0.0.32_amd64.deb
-            # sudo apt-get install -f # 安装依赖
+              # 如要你是在老的 ubuntu 发行版本上，你需要用下列命令替换：
+              # sudo dpkg -i rabbitremotecontrol_0.0.32_amd64.deb
+              # sudo apt-get install -f # 安装依赖
 
-        - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb)
-        - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb/download)
-      + md5 校验文件: rabbitremotecontrol_0.0.32_amd64.deb.md5sum
-        - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb.md5sum)
-        - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb.md5sum/download)
+          - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb)
+          - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb/download)
+        + md5 校验文件: rabbitremotecontrol_0.0.32_amd64.deb.md5sum
+          - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb.md5sum)
+          - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_amd64.deb.md5sum/download)
+      + aarch64
+        - rabbitremotecontrol_0.0.32_ubuntu-24.04-arm_arm64.deb 
+          - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/rabbitremotecontrol_0.0.32_ubuntu-24.04-arm_arm64.deb)
+          - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/rabbitremotecontrol_0.0.32_ubuntu-24.04-arm_arm64.deb/download)
     - Snap:
       [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
       [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
     - AppImage:
-      - RabbitRemoteControl_v0.0.32_x86_64.AppImage
-        - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage)
-        - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage/download)
+      - x86_64
+        - RabbitRemoteControl_v0.0.32_x86_64.AppImage
+          - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage)
+          - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage/download)
 
-              chmod u+x RabbitRemoteControl_v0.0.32_x86_64.AppImage
-              ./RabbitRemoteControl_v0.0.32_x86_64.AppImage
+                chmod u+x RabbitRemoteControl_v0.0.32_x86_64.AppImage
+                ./RabbitRemoteControl_v0.0.32_x86_64.AppImage
+        - md5 校验文件: RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum
+          - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum)
+          - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum/download)
+      - aarch64
+        - RabbitRemoteControl_v0.0.32_Linux_aarch64.AppImage
+          - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_aarch64.AppImage)
+          - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_aarch64.AppImage/download)
 
-      - md5 校验文件: RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum
-        - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/download/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum)
-        - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/RabbitRemoteControl_v0.0.32_x86_64.AppImage.md5sum/download)
+                chmod u+x RabbitRemoteControl_v0.0.32_aarch64.AppImage
+                ./RabbitRemoteControl_v0.0.32_aarch64.AppImage
+
     - 其它:
       - [从 github 下载](https://github.com/KangLin/RabbitRemoteControl/releases/tag/v0.0.32)
       - [从 sourceforge 下载](https://sourceforge.net/projects/rabbitremotecontrol/files/v0.0.32/)
