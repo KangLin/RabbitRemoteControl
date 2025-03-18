@@ -816,13 +816,48 @@ PcapPlusPlus 依赖此库。
         
     原因是由于没有安装桌面系统。所以安装 xvfb
     
-        sudo dnf install xvfb
-        sudo Xvfb :92 -ac -screen 0 1200x900x24 &
-        export DISPLAY=:92.0
+        sudo dnf install xorg-x11-server-Xvfb
+        sudo Xvfb :99 -ac -screen 0 1200x900x24 &
+        export DISPLAY=:99.0
     
 - 文档
   - [flatpak 清单文件](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
+  - [Sandbox 权限](https://docs.flatpak.org/en/latest/sandbox-permissions.html)
   - [提交到 Flathub](https://docs.flathub.org/docs/for-app-authors/submission)
+
+### rpm 包
+
+- 安装rpm-build的相关rpm包
+
+      dnf -y install rpm-build rpmdevtools
+
+- 生成打包目录结构
+
+      [root@111c5317c4e6 /]# rpmdev-setuptree
+      [root@111c5317c4e6 ~]# ls -a
+      .   .bash_logout   .bashrc  .cshrc  .rpmmacros  .tcshrc   rpmbuild
+      ..  .bash_profile  .cache   .local  .ssh        .viminfo
+      [root@111c5317c4e6 /]# cd /root/rpmbuild/
+      [root@111c5317c4e6 rpmbuild]# ls
+      BUILD  RPMS  SOURCES  SPECS  SRPMS
+
+  - 目录解释：
+    - BUILD：源码解压后存放的目录
+    - RPMS：制作完成后的RPM存放目录
+    - SOURCES：存放源文件，配置文件，补丁文件等放置的目录
+    - SPECS：存放SPEC文件，制作RPM包的目录
+    - SRPMS：src格式的RPM包目录
+
+- 可以通过如下的命令查看工作目录的路径：
+      
+        [root@111c5317c4e6 ~]# rpmbuild --showrc | grep topdir
+        -13: _builddir	%{_topdir}/BUILD
+        -13: _rpmdir	%{_topdir}/RPMS
+        -13: _sourcedir	%{_topdir}/SOURCES
+        -13: _specdir	%{_topdir}/SPECS
+        -13: _srcrpmdir	%{_topdir}/SRPMS
+        -13: _topdir	%(echo $HOME)/rpmbuild
+      
 
 ### 脚本
 

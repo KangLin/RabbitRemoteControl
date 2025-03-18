@@ -9,7 +9,8 @@ set -e
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
-APT=
+PACKAGE_TOOL=apt
+PACKAGE=
 APT_UPDATE=0
 BASE_LIBS=0
 DEFAULT_LIBS=0
@@ -25,7 +26,7 @@ libdatachannel=0
 QtService=0
 
 usage_long() {
-    echo "$0 [[-h|--help] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--apt=<'lib1 lib2 ...'>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "$0 [[-h|--help] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
     echo "  -h|--help: show help"
     echo "  -v|--verbose: Show verbose"
     echo "Directory:"
@@ -34,10 +35,11 @@ usage_long() {
     echo "  --tools: Set tools directory"
     echo "  --build: set build directory"
     echo "Depend:"
-    echo "  --base: Install the base libraries with apt"
+    echo "  --base: Install the base libraries"
     echo "  --default: Install the default dependency libraries that comes with the system"
     echo "  --apt_update: Update system"
-    echo "  --apt: Install package with apt"
+    echo "  --package-tool: Package install tool, apk or dnf"
+    echo "  --package: Install package"
     echo "  --qt: Install QT"
     echo "  --rabbitcommon: Install RabbitCommon"
     echo "  --freerdp: Install FreeRDP"
@@ -57,7 +59,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,verbose::,apt:,apt_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,apt_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -89,8 +91,12 @@ if command -V getopt >/dev/null; then
             BUILD_DEPEND_DIR=$2
             shift 2
             ;;
-        --apt)
-            APT=$2
+        --package)
+            PACKAGE=$2
+            shift 2
+            ;;
+        --package-tool)
+            PACKAGE_TOOL=$2
             shift 2
             ;;
         -v | --verbose)
@@ -256,60 +262,91 @@ if [ $APT_UPDATE -eq 1 ]; then
     #apt-get upgrade -y
 fi
 
-if [ -n "$APT" ]; then
-    apt install -y -q $APT
+if [ -n "$PACKAGE" ]; then
+    ${PACKAGE_TOOL} install -y -q $PACKAGE
 fi
 
 if [ $BASE_LIBS -eq 1 ]; then
     echo "Install base libraries ......"
-    apt install -y -q build-essential packaging-dev equivs debhelper \
-        fakeroot graphviz gettext wget curl
-    # OpenGL
-    apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
-    # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
-    if [ -z "$RabbitRemoteControl_VERSION" ]; then
-        apt install -y -q xvfb xpra
+    if [ "$PACKAGE_TOOL" = "apt" ]; then
+        apt install -y -q build-essential packaging-dev equivs debhelper \
+            fakeroot graphviz gettext wget curl
+        # OpenGL
+        apt install -y -q libgl1-mesa-dev libglx-dev libglu1-mesa-dev libvulkan-dev mesa-common-dev
+        # Virtual desktop (virtual framebuffer X server for X Version 11). Needed by CI
+        if [ -z "$RabbitRemoteControl_VERSION" ]; then
+            apt install -y -q xvfb xpra
+        fi
+        # X11
+        apt install -y -q xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
+            libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
+            libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
+            libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
+            libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev \
+            libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
+            libxkbcommon-dev
+        # Base dependency
+        apt install -y -q liblzo2-dev libssl-dev libcrypt-dev libicu-dev zlib1g-dev libssh-dev libtelnet-dev
+        # RabbitCommon dependency
+        apt install -y -q libcmark-dev cmark
+        # VNC dependency
+        apt install -y -q libpixman-1-dev libjpeg-dev
+        # FreeRDP dependency
+        apt install -y -q libcjson-dev libusb-1.0-0-dev \
+            libkrb5-dev libpulse-dev libcups2-dev libpam0g-dev libutf8proc-dev
+        # PcapPlusPlus dependency
+        apt install -y -q libpcap-dev
+        # FFmpeg needed by QtMultimedia and freerdp
+        apt install -y -q libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
+        apt install -y -q libx264-dev libx265-dev
+        # Needed by QtMultimedia
+        apt install -y -q pipewire
+        # Needed by QtMultimedia
+        apt install -y -q libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
+        # Needed by AppImage and FreeRDP
+        apt install -y -q libfuse-dev libfuse3-dev
+        # Other
+        apt install -y -q libvncserver-dev
     fi
-    # X11
-    apt install -y -q xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
-        libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
-        libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
-        libxinerama-dev libxcb1-dev libx11-xcb-dev libxcb-xfixes0-dev \
-        libxcb-cursor-dev libxcb-xkb-dev libxcb-keysyms1-dev \
-        libxcb-* libxcb-cursor0 xserver-xorg-input-mouse xserver-xorg-input-kbd \
-        libxkbcommon-dev
-    # Base dependency
-    apt install -y -q libssl-dev libcrypt-dev libicu-dev zlib1g-dev libssh-dev libtelnet-dev
-    # RabbitCommon dependency
-    apt install -y -q libcmark-dev cmark
-    # VNC dependency
-    apt install -y -q libpixman-1-dev libjpeg-dev
-    # FreeRDP dependency
-    apt install -y -q libcjson-dev libusb-1.0-0-dev \
-        libkrb5-dev libpulse-dev libcups2-dev libpam0g-dev libutf8proc-dev
-    # PcapPlusPlus dependency
-    apt install -y -q libpcap-dev
-    # FFmpeg needed by QtMultimedia and freerdp
-    apt install -y -q libavcodec-dev libavformat-dev libresample1-dev libswscale-dev
-    apt install -y -q libx264-dev libx265-dev
-    # Needed by QtMultimedia
-    apt install -y -q pipewire
-    # Needed by QtMultimedia
-    apt install -y -q libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer*-dev
-    # Needed by AppImage and FreeRDP
-    apt install -y -q libfuse-dev libfuse3-dev
-    # Other
-    apt install -y -q libvncserver-dev
+
+    if [ "$PACKAGE_TOOL" = "dnf" ]; then
+        dnf install -y make git rpm-build rpmdevtools gcc-c++ util-linux \
+           automake autoconf libtool gettext gettext-autopoint \
+           cmake desktop-file-utils appstream curl wget
+        # X11
+        dnf install -y xorg-x11-server-source \
+            libXext-devel libX11-devel libXi-devel libXfixes-devel \
+            libXdamage-devel libXrandr-devel libXt-devel libXdmcp-devel \
+            libXinerama-devel mesa-libGL-devel libxshmfence-devel \
+            libdrm-devel mesa-libgbm-devel \
+            xorg-x11-util-macros xorg-x11-xtrans-devel libXtst-devel \
+            xorg-x11-font-utils \
+            libxkbfile-devel libXfont2-devel
+
+        # TigerVNC
+        dnf install -y zlib-devel openssl-devel libpng-devel \
+            libjpeg-turbo-devel ffmpeg-free-devel \
+            pixman-devel gnutls-devel nettle-devel gmp-devel \
+            libpciaccess-devel freetype-devel pam-devel
+    fi
 fi
 
 if [ $DEFAULT_LIBS -eq 1 ]; then
     echo "Install default dependency libraries ......"
-    # Qt6
-    apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
-        qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
-        libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
-        qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
-    apt-get install -y -q freerdp2-dev
+    if [ "$PACKAGE_TOOL" = "apt" ]; then
+        # Qt6
+        apt-get install -y -q qmake6 qt6-tools-dev qt6-tools-dev-tools \
+            qt6-base-dev qt6-base-dev-tools qt6-qpa-plugins \
+            libqt6svg6-dev qt6-l10n-tools qt6-translations-l10n \
+            qt6-scxml-dev qt6-multimedia-dev libqt6serialport6-dev
+        apt-get install -y -q freerdp2-dev
+    fi
+    
+    if [ "$PACKAGE_TOOL" = "dnf" ]; then
+        dnf install -y qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel \
+            qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel \
+            qt6-qtserialport-devel qt6-qtsvg-devel
+    fi
 fi
 
 if [ $QT -eq 1 ]; then
@@ -318,8 +355,10 @@ if [ $QT -eq 1 ]; then
     if [ ! -d qt_`uname -m` ]; then
         # See: https://ddalcino.github.io/aqt-list-server/
         #      https://www.cnblogs.com/clark1990/p/17942952
-        apt install -y -q python3-pip python3-pip-whl python3-pipdeptree cpio
-        
+        if [ "$PACKAGE_TOOL" = "apt" ]; then
+            apt install -y -q python3-pip python3-pip-whl python3-pipdeptree cpio
+        fi
+
         #pip install -U pip
         pip install aqtinstall
 
@@ -339,6 +378,10 @@ if [ $RabbitCommon -eq 1 ]; then
     pushd "$SOURCE_DIR"
     if [ ! -d RabbitCommon ]; then
         git clone https://github.com/KangLin/RabbitCommon.git
+    else
+        cd RabbitCommon
+        git pull
+        cd ..
     fi
     popd
 fi

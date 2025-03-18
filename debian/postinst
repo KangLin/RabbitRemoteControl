@@ -20,8 +20,6 @@ set -e
 INSTALL_ROOT=/opt/RabbitRemoteControl
 case "$1" in
     configure)
-        mkdir -p $INSTALL_ROOT/log
-        chmod 777 $INSTALL_ROOT/log
 
         if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
             if [ -f $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
@@ -59,9 +57,6 @@ case "$1" in
         if [ -d $INSTALL_ROOT/etc ]; then
             chmod -R a+rw $INSTALL_ROOT/etc
         fi
-        if [ -d $INSTALL_ROOT/log ]; then
-            chmod -R a+rw $INSTALL_ROOT/log
-        fi
 
         #echo "$INSTALL_ROOT/lib" > /etc/ld.so.conf.d/RabbitRemoteControl.conf
         #echo "$INSTALL_ROOT/lib/`uname -m`-linux-gnu" >> /etc/ld.so.conf.d/RabbitRemoteControl.conf
@@ -74,7 +69,6 @@ case "$1" in
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
-        rm -fr $INSTALL_ROOT/log
         #rm -fr /etc/ld.so.conf.d/RabbitRemoteControl.conf
         rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
         rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg

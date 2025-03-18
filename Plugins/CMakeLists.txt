@@ -4,14 +4,14 @@
 if(APPLE)
     if(PARA_ISEXE)
         SET(INSTALL_RPATH
-            "@executable_path:@executable_path/../../lib:@executable_path/../../lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+            "@executable_path:@executable_path/../../${CMAKE_INSTALL_LIBDIR}")
     else()
         SET(INSTALL_RPATH
-            "@loader_path:@loader_path/../../lib:@loader_path/../../lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+            "@loader_path:@loader_path/../../${CMAKE_INSTALL_LIBDIR}")
     endif()
 else()
     SET(INSTALL_RPATH
-        "$ORIGIN:$ORIGIN/../../lib:$ORIGIN/../../lib/${CMAKE_LIBRARY_ARCHITECTURE}")
+        "$ORIGIN:$ORIGIN/../../${CMAKE_INSTALL_LIBDIR}")
 endif()
 
 ## Desktop

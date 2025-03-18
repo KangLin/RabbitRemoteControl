@@ -73,7 +73,9 @@ int CConnecterWakeOnLan::Initial()
     m_Menu.addAction(QIcon::fromTheme("list-remove"), tr("Remove"),
                      m_pView, SLOT(slotRemoveRow()));
 #if defined(Q_OS_UNIX)
-    if(RabbitCommon::CTools::HasAdministratorPrivilege())
+    QString szFlatpak_ID = qgetenv("FLATPAK_ID");
+    if(RabbitCommon::CTools::HasAdministratorPrivilege()
+        || "io.github.KangLin.RabbitRemoteControl" == szFlatpak_ID)
     {
         m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
                          this, [&](){
