@@ -128,8 +128,8 @@ jobs:
             -u "https://github.com/KangLin/RabbitRemoteControl/releases/download/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage;https://sourceforge.net/projects/rabbitremotecontrol/files/${{env.RabbitRemoteControl_VERSION}}/RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_Linux_${ARCH}.AppImage" \
             --md5 "${MD5SUM}"
 
-      - name: Deb update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+      - name: Update artifact
+        if: false #${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}_${{matrix.os}}_${{matrix.PACKAGE}}

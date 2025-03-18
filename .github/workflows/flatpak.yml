@@ -32,7 +32,7 @@ jobs:
 
     # Map the job outputs to step outputs
     outputs:
-      name: ${{ env.artifact_name }}
+      name: ${{ env.artifact_name }}_${{env.RabbitRemoteControl_VERSION}}
   
     steps:
       - name: Checkout Repository

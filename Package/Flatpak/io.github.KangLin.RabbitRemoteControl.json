@@ -73,8 +73,6 @@
             "cleanup": [
                 "/sbin",
                 "/bin",
-                "/share/man",
-                "/share/et",
                 "/share"
             ]
         },
@@ -146,7 +144,8 @@
             ],
             "cleanup": [
                 "/bin",
-                "/share"
+                "/share",
+                "/share/licenses"
             ]
         },
         {
@@ -168,7 +167,7 @@
                 "-DWITH_TESTS=OFF"
             ],
             "cleanup": [
-                "/bin/*",
+                "/bin",
                 "/lib/libvncserver.so*"
             ]
         },
@@ -188,7 +187,8 @@
                 "-DBUILD_TESTING=OFF"
             ],
             "cleanup": [
-                "/bin/*"
+                "/bin",
+                "/share/man"
             ]
         },
         {
@@ -204,6 +204,12 @@
             "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release"
+            ],
+            "cleanup": [
+                "/bin",
+                "/etc",
+                "/share/applications",
+                "/share/doc"
             ]
         },
         {
@@ -218,17 +224,14 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=Release",
-                "-DCMARK_SHARED=OFF",
-                "-DCMARK_TESTS=OFF",
-                "-DCMARK_STATIC=ON"
+                "-DCMAKE_BUILD_TYPE=Release"
             ],
             "build-options": {
                 "env": {
                 }
             },
             "post-install": [
-                "sed -i 's|Path=/app/bin|Path=/bin|' /app/share/applications/io.github.KangLin.RabbitRemoteControl.desktop"
+                "desktop-file-edit --set-key=Path --set-value=/bin io.github.KangLin.RabbitRemoteControl.desktop"
             ],
             "cleanup": [
             ]
@@ -239,7 +242,8 @@
         "*.a",
         "/include",
         "/lib/cmake",
-        "/lib/pkgconfig"
+        "/lib/pkgconfig",
+        "/share/licenses"
     ],
     "cleanup-commands": [
     ],
