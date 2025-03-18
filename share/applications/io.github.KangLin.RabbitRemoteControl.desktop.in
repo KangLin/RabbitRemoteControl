@@ -2,6 +2,12 @@
 
 [Desktop Entry]
 Type=Application
+# Icon path
+# The freedesktop.org standard specifies in which order and directories programs should look for icons:
+#
+#    $HOME/.icons (for backwards compatibility)
+#    $XDG_DATA_DIRS/icons
+#    /usr/share/pixmaps
 Icon=@APP_ID@
 TryExec=RabbitRemoteControlApp
 Exec=RabbitRemoteControlApp

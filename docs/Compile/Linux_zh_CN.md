@@ -664,6 +664,7 @@ PcapPlusPlus 依赖此库。
 ### snap
 
 - 构建:
+  - [建立新的 snap](https://snapcraft.io/docs/create-a-new-snap)
   - Parts 生命周期: https://snapcraft.io/docs/parts-lifecycle
   - https://snapcraft.io/docs/how-snapcraft-builds
         
