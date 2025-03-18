@@ -26,6 +26,7 @@
   - 增加 flatpak manifests
   - 重命名 Install.nsi 为 Windows.nsi
   - Debian: modify control
+  - 增加 rpm 包
 - 重命名 org.Rabbit.RemoteControl 为 io.github.KangLin.RabbitRemoteControl
 
 ### v0.0.32

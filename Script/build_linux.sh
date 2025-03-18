@@ -5,6 +5,7 @@ set -e
 
 DOCKER=0
 DEB=0
+RPM=0
 APPIMAGE=0
 if [ -z "$OS" ]; then
     OS=ubuntu
@@ -14,11 +15,12 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 
 usage_long() {
-    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker] [--deb] [--appimage] [--os=Operate system] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
+    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker] [--deb] [--rpm] [--appimage] [--os=Operate system] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
     echo "  --help|-h: Show help"
     echo "  -v|--verbose: Show build verbose"
     echo "  --docker: run docket for build"
     echo "  --deb: build deb package"
+    echo "  --rpm: build rpm package"
     echo "  --appimage: build AppImage"
     echo "  --os: Operate system name"
     echo "Directory:"
@@ -27,8 +29,8 @@ usage_long() {
     echo "  --tools: Set tools directory"
 }
 
-# [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
-# [【Linux】Shell命令 getopts/getopt用法详解](https://blog.csdn.net/arpospf/article/details/103381621)
+# [如何使用 getopt 和 getopts 命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
+# [【Linux】Shell 命令 getopts/getopt 用法详解](https://blog.csdn.net/arpospf/article/details/103381621)
 if command -V getopt >/dev/null; then
     echo "getopt is exits"
     #echo "original parameters=[$@]"
@@ -37,7 +39,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,docker::,deb::,appimage::,os::,install:,source:,tools:
+    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,os::,install:,source:,tools:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -89,6 +91,15 @@ if command -V getopt >/dev/null; then
                     DEB=1;;
                 *)
                     DEB=$2;;
+            esac
+            shift 2
+            ;;
+        --rpm)
+            case $2 in
+                "")
+                    RPM=1;;
+                *)
+                    RPM=$2;;
             esac
             shift 2
             ;;
@@ -156,19 +167,19 @@ if [ $DOCKER -eq 1 ]; then
     ## Copy the source code to build directory
     pushd ${REPO_ROOT}
     # Generated source archive
-    git archive -o RabbitRemoteControl.tar --prefix RabbitRemoteControl/ HEAD
+    git archive  --format=tar.gz -o RabbitRemoteControl.tar.gz --prefix RabbitRemoteControl/ HEAD
     if [ -d ${BUILD_LINUX_DIR} ]; then
         rm -fr ${BUILD_LINUX_DIR}
     fi
     mkdir -p ${BUILD_LINUX_DIR}
-    mv RabbitRemoteControl.tar ${BUILD_LINUX_DIR}/
-    chmod a+rw ${BUILD_LINUX_DIR}/RabbitRemoteControl.tar
+    mv RabbitRemoteControl.tar.gz ${BUILD_LINUX_DIR}/
+    chmod a+rw ${BUILD_LINUX_DIR}/RabbitRemoteControl.tar.gz
     popd
 
     if [ $DEB -eq 1 ]; then
        docker run --volume ${BUILD_LINUX_DIR}:/home/deb/build --interactive --rm RabbitRemoteControl/${OS} \
            bash -e -x -c "
-           tar -C ~ -xf /home/deb/build/RabbitRemoteControl.tar
+           tar -C ~ -xf /home/deb/build/RabbitRemoteControl.tar.gz
            sudo ~/RabbitRemoteControl/Script/build_linux.sh --os=${OS} --deb --verbose ${BUILD_VERBOSE}
            cp ~/rabbitremotecontrol*.deb /home/deb/build/
            "
@@ -176,9 +187,21 @@ if [ $DOCKER -eq 1 ]; then
     if [ $APPIMAGE -eq 1 ]; then
         docker run --volume ${BUILD_LINUX_DIR}:/home/deb/build --privileged --interactive --rm RabbitRemoteControl/${OS} \
             bash -e -x -c "
-            tar -C ~ -xf /home/deb/build/RabbitRemoteControl.tar
+            tar -C ~ -xf /home/deb/build/RabbitRemoteControl.tar.gz
             sudo ~/RabbitRemoteControl/Script/build_linux.sh --os=${OS} --appimage --verbose ${BUILD_VERBOSE}
             cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage /home/deb/build/
+            "
+    fi
+    if [ $RPM -eq 1 ]; then
+        docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm fedora \
+            bash -e -x -c "
+            mkdir -p ~/rpmbuild/SOURCES/
+            cp /home/build/RabbitRemoteControl.tar.gz ~/rpmbuild/SOURCES/
+            tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
+            # Install getopt
+            dnf install -y util-linux
+            ~/RabbitRemoteControl/Script/build_linux.sh --rpm --verbose ${BUILD_VERBOSE}
+            cp ~/rpmbuild/RPMS/`uname -m`/rabbitremotecontrol*.rpm /home/build/
             "
     fi
     exit 0
@@ -223,6 +246,21 @@ if [ $APPIMAGE -eq 1 ]; then
     export BUILD_FREERDP=ON
     apt install -y -q fuse3
     ./build_appimage.sh --install ${INSTALL_DIR} --verbose ${BUILD_VERBOSE}
+fi
+
+if [ $RPM -eq 1 ]; then
+    ./build_depend.sh --base --default --package-tool=dnf \
+        --rabbitcommon \
+        --install ${INSTALL_DIR} \
+        --source ${SOURCE_DIR} \
+        --tools ${TOOLS_DIR} \
+        --verbose ${BUILD_VERBOSE}
+    dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
+    ./build_rpm_package.sh \
+        --install ${INSTALL_DIR} \
+        --source ${SOURCE_DIR} \
+        --tools ${TOOLS_DIR} \
+        --verbose ${BUILD_VERBOSE}
 fi
 
 popd

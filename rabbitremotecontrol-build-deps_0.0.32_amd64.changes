@@ -1,0 +1,26 @@
+Format: 1.8
+Date: Thu, 20 Mar 2025 15:46:39 +0800
+Source: rabbitremotecontrol-build-deps
+Binary: rabbitremotecontrol-build-deps
+Built-For-Profiles: noudeb
+Architecture: all
+Version: 0.0.32
+Distribution: unstable
+Urgency: low
+Maintainer: Equivs Dummy Package Generator <root@l>
+Changed-By: Equivs Dummy Package Generator <root@l>
+Description:
+ rabbitremotecontrol-build-deps - build-dependencies for rabbitremotecontrol
+Changes:
+ rabbitremotecontrol-build-deps (0.0.32) unstable; urgency=low
+ .
+   * First version
+Checksums-Sha1:
+ a88025e4e71cf50520b158d9eaae5fdc9b9fbd86 2278 rabbitremotecontrol-build-deps_0.0.32_all.deb
+ c2d7c060111c044a7c869a750a498c13bb941750 5925 rabbitremotecontrol-build-deps_0.0.32_amd64.buildinfo
+Checksums-Sha256:
+ 566147e7532b84e10199fd78b1810074732fb00df5e9468a98e5ca43e5683463 2278 rabbitremotecontrol-build-deps_0.0.32_all.deb
+ 6afc5390af287dfc93544931522a45fc474906ad96bb29a81b4e5cad9e0acb12 5925 rabbitremotecontrol-build-deps_0.0.32_amd64.buildinfo
+Files:
+ b2e30b6919015cf2268a7fd38b66a27f 2278 devel optional rabbitremotecontrol-build-deps_0.0.32_all.deb
+ 2ec58d3ac386833182e832382d7932ce 5925 devel optional rabbitremotecontrol-build-deps_0.0.32_amd64.buildinfo

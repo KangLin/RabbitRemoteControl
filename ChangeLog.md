@@ -24,8 +24,9 @@
     - add CView::SetCurrentView
 - Package:
   - Add flatpak manifests
-  - rename Install.nsi to Windows.nsi
+  - Rename Install.nsi to Windows.nsi
   - Debian: modify control
+  - Add rpm package
 - Rename org.Rabbit.RemoteControl to io.github.KangLin.RabbitRemoteControl
 
 ### v0.0.32

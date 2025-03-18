@@ -14,6 +14,10 @@ env:
 
 jobs:
   build_docker:
+    strategy:
+      matrix:
+        PACKAGE: [deb, rpm]
+  
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
@@ -33,12 +37,12 @@ jobs:
         with:
           submodules: true
       - name: run docker
-        run: ./Script/build_linux.sh --docker --deb
+        run: |
+          ./Script/build_linux.sh --docker --${{matrix.PACKAGE}}
       - name: Update artifact
-        if: ${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{matrix.PACKAGE == 'rpm'}}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.artifact_name }}
+          name: ${{ env.artifact_name }}_${{matrix.PACKAGE}}
           path: |
-            ${{github.workspace}}/build/rabbitremotecontrol_*.deb
-            ${{github.workspace}}/build/RabbitRemoteControl/RabbitRemoteControl_*.AppImage
+            ${{github.workspace}}/build_linux/rabbitremotecontrol*.rpm
