@@ -310,6 +310,7 @@ parts:
     override-stage: |
       cd $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/bin
       # cp $SNAPCRAFT_PART_SRC/snap/local/start.sh .
+      # See: https://snapcraft.io/docs/desktop-menu-support#heading--desktop-key
       sed -i 's|Icon=io\.github\.KangLin\.RabbitRemoteControl|Icon=/opt/RabbitRemoteControl/share/icons/hicolor/scalable/apps/io\.github\.KangLin\.RabbitRemoteControl\.svg|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
       sed -i 's|Path=/opt/RabbitRemoteControl/bin|Path=\$\{SNAP\}/opt/RabbitRemoteControl/bin|' $CRAFT_PART_INSTALL/opt/RabbitRemoteControl/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
       # cat > "qt.conf" << EOF
