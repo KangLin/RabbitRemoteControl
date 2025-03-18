@@ -56,8 +56,12 @@ case "$1" in
             ln -s $INSTALL_ROOT/bin/RabbitRemoteControlApp /usr/bin/rabbitremotecontrol
         fi
 
-        chmod -R a+rw $INSTALL_ROOT/etc
-        chmod -R a+rw $INSTALL_ROOT/log
+        if [ -d $INSTALL_ROOT/etc ]; then
+            chmod -R a+rw $INSTALL_ROOT/etc
+        fi
+        if [ -d $INSTALL_ROOT/log ]; then
+            chmod -R a+rw $INSTALL_ROOT/log
+        fi
 
         #echo "$INSTALL_ROOT/lib" > /etc/ld.so.conf.d/RabbitRemoteControl.conf
         #echo "$INSTALL_ROOT/lib/`uname -m`-linux-gnu" >> /etc/ld.so.conf.d/RabbitRemoteControl.conf
