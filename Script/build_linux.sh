@@ -248,13 +248,14 @@ if [ $APPIMAGE -eq 1 ]; then
 fi
 
 if [ $RPM -eq 1 ]; then
+    dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
     ./build_depend.sh --base --default --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus \
         --install ${INSTALL_DIR} \
         --source ${SOURCE_DIR} \
         --tools ${TOOLS_DIR} \
         --verbose ${BUILD_VERBOSE}
-    dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
+    
     ./build_rpm_package.sh \
         --install ${INSTALL_DIR} \
         --source ${SOURCE_DIR} \
