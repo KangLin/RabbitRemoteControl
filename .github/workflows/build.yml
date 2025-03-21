@@ -156,7 +156,6 @@ jobs:
           echo "Commit: [${{github.sha}}](https://github.com/KangLin/RabbitRemoteControl/commit/${{github.sha}})" >> ${{github.workspace}}/Note.md
           echo "" >> ${{github.workspace}}/Note.md
           echo "[Instructions for installing the package](README.md#Instructions-for-installing-the-package)" >> ${{github.workspace}}/Note.md
-          echo "[安装包说明](README_zh_CN.md#安装包说明)" >> ${{github.workspace}}/Note.md
 
       - name: Add artifact md5sum in Note.md file
         run: |

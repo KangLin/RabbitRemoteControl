@@ -100,6 +100,13 @@ cmake --install $RPM_BUILD_DIR --config Release \
     --component Plugin \
     --prefix ${RPM_BUILD_ROOT}/opt/RabbitRemoteControl
 
+if [ -n "${INSTALL_DIR}" ]; then
+    SOURCE_DIR=${INSTALL_DIR}%{_libdir}
+    DEST_DIR=${RPM_BUILD_ROOT}/opt/RabbitRemoteControl%{_libdir}
+    # 复制 .so 库文件及其符号链接
+    find $SOURCE_DIR -name "*.so*" -exec cp -d {} $DEST_DIR \;
+fi
+
 # 安装前需要做的任务，如：创建用户
 %pre
 

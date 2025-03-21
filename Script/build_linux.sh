@@ -249,7 +249,7 @@ fi
 
 if [ $RPM -eq 1 ]; then
     ./build_depend.sh --base --default --package-tool=dnf \
-        --rabbitcommon \
+        --rabbitcommon --tigervnc --pcapplusplus \
         --install ${INSTALL_DIR} \
         --source ${SOURCE_DIR} \
         --tools ${TOOLS_DIR} \
