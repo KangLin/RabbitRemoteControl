@@ -64,6 +64,7 @@ sed -i "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"
 sed -i "s/<VERSION>.*</<VERSION>${DEBIAN_VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/          \"version\":[[:blank:]]*\"v\?[0-9]\+\.[0-9]\+\.[0-9]\+\"/          \"version\":\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
 sed -i "s/version:.*'[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
+sed -i "s/Version:.*'[0-9]\+\.[0-9]\+\.[0-9]\+'/Version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
 
 CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
 CHANGLOG_FILE=${SOURCE_DIR}/debian/changelog
