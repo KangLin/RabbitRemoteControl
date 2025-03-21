@@ -49,10 +49,17 @@
   <url type="help">https://github.com/KangLin/SerialPortAssistant/discussions</url>
   <screenshots>
     <screenshot type="default">
-      <image>https://github.com/KangLin/SerialPortAssistant/blob/master/Docs/ui-en.jpg?raw=true</image>
+      <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work_en.png</image>
+      <caption xml:lang="zh_CN">英语工作界面</caption>
+      <caption>English work Interface</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
+      <caption xml:lang="zh_CN">中文工作界面</caption>
+      <caption>Chinese work Interface</caption>
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.5.30" date="2025-03-20"/>
+    <release version="@SerialPortAssistant_VERSION@" date="@BUILD_DATE@"/>
   </releases>
 </component>
