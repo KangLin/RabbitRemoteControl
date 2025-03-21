@@ -7,22 +7,22 @@ DOCKER=0
 DEB=0
 RPM=0
 APPIMAGE=0
-if [ -z "$OS" ]; then
-    OS=ubuntu
+if [ -z "$DOCKERT_IMAGE" ]; then
+    DOCKERT_IMAGE=ubuntu
 fi
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
 usage_long() {
-    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker] [--deb] [--rpm] [--appimage] [--os=Operate system] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
+    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--docker] [--deb] [--rpm] [--appimage] [--docker-image=<docker image>] --install=<install directory>] [--source=<source directory>] [--tools=<tools directory>]"
     echo "  --help|-h: Show help"
     echo "  -v|--verbose: Show build verbose"
     echo "  --docker: run docket for build"
     echo "  --deb: build deb package"
     echo "  --rpm: build rpm package"
     echo "  --appimage: build AppImage"
-    echo "  --os: Operate system name"
+    echo "  --docker-image: The name of docker image"
     echo "Directory:"
     echo "  --install: Set install directory"
     echo "  --source: Set source directory"
@@ -39,7 +39,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,os::,install:,source:,tools:
+    OPTS=help,verbose::,docker::,deb::,rpm::,appimage::,docker-image::,install:,source:,tools:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -112,12 +112,12 @@ if command -V getopt >/dev/null; then
             esac
             shift 2
             ;;
-        --os)
+        --docker-image)
             case $2 in
                 "")
-                    OS=1;;
+                    DOCKERT_IMAGE=1;;
                 *)
-                    OS=$2;;
+                    DOCKERT_IMAGE=$2;;
             esac
             shift 2
             ;;
@@ -162,7 +162,6 @@ mkdir -p $TOOLS_DIR
 mkdir -p $INSTALL_DIR
 
 if [ $DOCKER -eq 1 ]; then
-    docker build -t RabbitRemoteControl/${OS} $CURDIR/docker
 
     ## Copy the source code to build directory
     pushd ${REPO_ROOT}
@@ -177,23 +176,23 @@ if [ $DOCKER -eq 1 ]; then
     popd
 
     if [ $DEB -eq 1 ]; then
-       docker run --volume ${BUILD_LINUX_DIR}:/home/deb/build --interactive --rm RabbitRemoteControl/${OS} \
+       docker run --volume ${BUILD_LINUX_DIR}:/home/build  --privileged --interactive --rm ${DOCKERT_IMAGE} \
            bash -e -x -c "
-           tar -C ~ -xf /home/deb/build/RabbitRemoteControl.tar.gz
-           sudo ~/RabbitRemoteControl/Script/build_linux.sh --os=${OS} --deb --verbose ${BUILD_VERBOSE}
-           cp ~/rabbitremotecontrol*.deb /home/deb/build/
+           tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
+           ~/RabbitRemoteControl/Script/build_linux.sh --deb --verbose ${BUILD_VERBOSE}
+           cp ~/rabbitremotecontrol*.deb /home/build/
            "
     fi
     if [ $APPIMAGE -eq 1 ]; then
-        docker run --volume ${BUILD_LINUX_DIR}:/home/deb/build --privileged --interactive --rm RabbitRemoteControl/${OS} \
+        docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm ${DOCKERT_IMAGE} \
             bash -e -x -c "
-            tar -C ~ -xf /home/deb/build/RabbitRemoteControl.tar.gz
-            sudo ~/RabbitRemoteControl/Script/build_linux.sh --os=${OS} --appimage --verbose ${BUILD_VERBOSE}
-            cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage /home/deb/build/
+            tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
+            ~/RabbitRemoteControl/Script/build_linux.sh --appimage --verbose ${BUILD_VERBOSE}
+            cp ~/RabbitRemoteControl/RabbitRemoteControl_`uname -m`.AppImage /home/build/
             "
     fi
     if [ $RPM -eq 1 ]; then
-        docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm fedora \
+        docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm ${DOCKERT_IMAGE} \
             bash -e -x -c "
             mkdir -p ~/rpmbuild/SOURCES/
             cp /home/build/RabbitRemoteControl.tar.gz ~/rpmbuild/SOURCES/
