@@ -137,6 +137,12 @@ if(UNIX AND NOT ANDROID)
         DESTINATION share/icons/hicolor/scalable/apps
             COMPONENT Application
         RENAME ${APP_ID}.svg)
+    string(TIMESTAMP BUILD_DATE "%Y-%m-%d")
+    configure_file(${CMAKE_SOURCE_DIR}/share/metainfo/${APP_ID}.metainfo.xml.in
+        ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml @ONLY)
+    INSTALL(FILES ${CMAKE_BINARY_DIR}/${APP_ID}.metainfo.xml
+        DESTINATION "${CMAKE_INSTALL_DATADIR}/metainfo"
+            COMPONENT Application)
 endif()
 
 # Install QIcon theme
