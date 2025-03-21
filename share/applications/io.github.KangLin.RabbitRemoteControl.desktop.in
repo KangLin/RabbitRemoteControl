@@ -28,12 +28,13 @@ Keywords=remote desktop;remote control;rdp;vnc;ssh;player
 
 Name=Rabbit Remote Control
 GenericName=Rabbit Remote Control
-Comment=Rabbit Remote Control
+Comment=Rabbit remote control is is a cross-platform, multi-protocol remote control software
 
 Name[zh_CN]=玉兔远程控制
 GenericName[zh_CN]=玉兔远程控制
-Comment[zh_CN]=玉兔远程控制
+Comment[zh_CN]=玉兔远程控制是一个跨平台、多协议的远程控制软件
 
 Name[zh_TW]=玉兔遠程控製
 GenericName[zh_TW]=玉兔遠程控製
-Comment[zh_TW]=玉兔遠程控製
+Comment[zh_TW]=玉兔遠程控製是一個跨平臺、多協議的遠程控製軟件
+

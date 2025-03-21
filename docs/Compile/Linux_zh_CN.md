@@ -738,7 +738,8 @@ PcapPlusPlus 依赖此库。
 
 - 构建
 
-      $ flatpak-builder build-dir io.github.KangLin.RabbitRemoteControl.json
+      $ cd RabbitRemoteControl
+      $ flatpak-builder build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
       ** (flatpak-builder:37): WARNING **: 03:05:45.408: Unknown property branch for type BuilderSourceDir
       error: org.kde.Sdk/x86_64/6.8 not installed
       Failed to init: Unable to find sdk org.kde.Sdk version 6.8
@@ -750,15 +751,23 @@ PcapPlusPlus 依赖此库。
 
 安装完所有的 sdk 和运行库后，再构建：
 
-      $ flatpak-builder --force-clean build-dir io.github.KangLin.RabbitRemoteControl.json
+      $ flatpak-builder --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
       # 或者 用户模式
-      $ flatpak-builder --user --force-clean --install build-dir io.github.KangLin.RabbitRemoteControl.json 
+      $ flatpak-builder --user --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
+
+**请注意**，我们在此处使用 --user 选项以避免安装应用程序以供系统范围使用。如果您愿意，可以忽略此选项。
+
+  - 进入构建沙盒环境
+
+        $ flatpak-builder --run build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json bash
 
 - 安装
 
 应用程序构建完成，我们就可以安装它。我们所要做的就是运行以下命令：
 
-      $ flatpak-builder --user --force-clean --install build-dir io.github.KangLin.RabbitRemoteControl.json
+    $ flatpak-builder --force-clean --install build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
+    # 或者 用户模式
+    $ flatpak-builder --user --force-clean --install build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
 
 - 运行
 
@@ -771,8 +780,7 @@ PcapPlusPlus 依赖此库。
 则需要按照要上传到的网站（例如 FlatHub）的提交说明进行操作。
 我们将再次构建应用程序，但这次添加 --repo 选项。我们将我们的存储库称为“Rabbit”。
 
-
-    $ flatpak-builder --repo=Rabbit --force-clean build-dir io.github.KangLin.RabbitRemoteControl.json
+    $ flatpak-builder --user --repo=Rabbit --force-clean build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json
 
 - 添加到 Flatpak
 
@@ -781,15 +789,41 @@ PcapPlusPlus 依赖此库。
     $ flatpak --user remote-add --no-gpg-verify Rabbit Rabbit
     $ flatpak --user install Rabbit io.github.KangLin.RabbitRemoteControl
 
-请注意，我们在此处使用 --user 选项以避免安装应用程序以供系统范围使用。如果您愿意，可以忽略此选项。
+**请注意**，我们在此处使用 --user 选项以避免安装应用程序以供系统范围使用。如果您愿意，可以忽略此选项。
 
 - 另外，如果生成 .flatpak 文件。则可以直接安装 .flatpak 文件
 
       $ flatpak --user install RabbitRemoteControl_v0.0.32_Linux_x86_64.flatpak
 
+- 添加元信息
+  - 文件名：`<app-id>.metainfo.xml`
+  
+        io.github.KangLin.RabbitRemoteControl.metainfo.xml
+        
+  - 文件位置：
+  
+        /app/share/metainfo
+
+  - 验证 XML 语法：
+  
+        # 安装验证工具
+        sudo apt install appstream-util  # Debian/Ubuntu
+        sudo dnf install appstream-util  # Fedora
+        # 验证 XML 语法
+        appstream-util validate-relax io.github.KangLin.RabbitRemoteControl.metainfo.xml
+
+  - 验证元数据文件
+    构建后检查文件是否被正确安装：
+
+        # 进入构建沙盒环境
+        flatpak-builder --run build-dir Package/Flatpak/io.github.KangLin.RabbitRemoteControl.json bash
+        
+        # 在沙盒中检查路径
+        ls -l /app/share/metainfo/io.github.KangLin.RabbitRemoteControl.metainfo.xml
+
 - 问题
   - 在 docker 中运行时出现 FUSE 错误
-  
+
         Initializing build dir
         Committing stage init to cache
         Starting build of io.github.KangLin.RabbitRemoteControl
@@ -801,25 +835,25 @@ PcapPlusPlus 依赖此库。
         docker run --privileged --interactive ubuntu
 
   - 在 docker 中，出现下面错误：
-  
+
         [root@de5245ca3cfc Download]# flatpak run io.github.KangLin.RabbitRemoteControl
-        App.Main: QT_QPA_PLATFORM: "" 
+        App.Main: QT_QPA_PLATFORM: ""
         Current Qt Platform is: "xcb" ; This can be modified with the environment variables QT_QPA_PLATFORM:
          export QT_QPA_PLATFORM=xcb
          Optional: xcb; vnc
-        qt.qpa.xcb: could not connect to display 
+        qt.qpa.xcb: could not connect to display
         qt.qpa.plugin: From 6.5.0, xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin.
         qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
         This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
-        
+
         Available platform plugins are: offscreen, vnc, xcb, wayland, minimal, wayland-egl, eglfs, minimalegl, linuxfb, vkkhrdisplay.
-        
+
     原因是由于没有安装桌面系统。所以安装 xvfb
-    
+
         sudo dnf install xorg-x11-server-Xvfb
         sudo Xvfb :99 -ac -screen 0 1200x900x24 &
         export DISPLAY=:99.0
-    
+
 - 文档
   - [flatpak 清单文件](https://docs.flatpak.org/en/latest/flatpak-builder-command-reference.html#flatpak-manifest)
   - [Sandbox 权限](https://docs.flatpak.org/en/latest/sandbox-permissions.html)

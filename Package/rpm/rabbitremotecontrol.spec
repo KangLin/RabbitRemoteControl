@@ -3,7 +3,7 @@
 Name:           rabbitremotecontrol
 Version:        0.0.32
 Release:        1%{?dist}
-Summary:        Rabbit remote control is  is a cross-platform, multi-protocol remote control software.
+Summary:        Rabbit remote control is is a cross-platform, multi-protocol remote control software.
 
 License:        GPL-3.0
 URL:            https://github.com/KangLin/RabbitRemoteControl
@@ -19,7 +19,7 @@ BuildRequires: curl wget
 BuildRequires: libssh-devel libicu-devel lzo-devel libgcrypt-devel
 
 # Qt6
-BuildRequires: qt6-qttools-devel qt6-qtbase-devel qt6-qtmultimedia-devel
+BuildRequires: qt6-qttools-devel qt6-qtbase-devel
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
 BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel
 

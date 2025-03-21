@@ -312,7 +312,7 @@ if [ $BASE_LIBS -eq 1 ]; then
     if [ "$PACKAGE_TOOL" = "dnf" ]; then
         dnf install -y make git rpm-build rpmdevtools gcc-c++ util-linux \
            automake autoconf libtool gettext gettext-autopoint \
-           cmake desktop-file-utils appstream curl wget
+           cmake desktop-file-utils appstream appstream-util curl wget
         # X11
         dnf install -y xorg-x11-server-source \
             libXext-devel libX11-devel libXi-devel libXfixes-devel \
