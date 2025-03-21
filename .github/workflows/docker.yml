@@ -16,12 +16,24 @@ jobs:
   build_docker:
     strategy:
       matrix:
-        PACKAGE: [deb, rpm]
+        variant:
+          - PACKAGE: deb
+            image: ubuntu
+            os: ubuntu-24.04
+          - PACKAGE: deb
+            image: ubuntu
+            os: ubuntu-24.04-arm
+          - PACKAGE: rpm
+            image: fedora
+            os: ubuntu-24.04
+          - PACKAGE: rpm
+            image: "fedora"
+            os: ubuntu-24.04-arm
   
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.variant.os}}
 
     env:
       RabbitRemoteControl_VERSION: 0.0.32
@@ -38,11 +50,11 @@ jobs:
           submodules: true
       - name: run docker
         run: |
-          ./Script/build_linux.sh --docker --${{matrix.PACKAGE}}
+          ./Script/build_linux.sh --docker --docker-image="${{matrix.variant.image}}" --${{matrix.variant.PACKAGE}}
       - name: Update artifact
-        if: ${{matrix.PACKAGE == 'rpm'}}
+        if: ${{matrix.variant.PACKAGE == 'rpm'}}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.artifact_name }}_${{matrix.PACKAGE}}
+          name: ${{ env.artifact_name }}_${{matrix.variant.PACKAGE}}_${{matrix.variant.image}}_${{matrix.variant.os}}
           path: |
             ${{github.workspace}}/build_linux/rabbitremotecontrol*.rpm
