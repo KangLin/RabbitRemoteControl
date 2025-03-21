@@ -1,52 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
   <id>io.github.KangLin.RabbitRemoteControl</id>
+  
   <name>Rabbit remote control</name>
   <developer_name>KangLin</developer_name>
-  <summary>Rabbit remote control is is a cross-platform, multi-protocol remote control software.</summary>
+  <summary>Rabbit remote control is a open-source, cross-platform, multi-protocol remote control software.</summary>
   <description>
-    <p>Rabbit remote control is  is a cross-platform, multi-protocol remote control software.</p>
+    <p>Rabbit remote control is a open-source, cross-platform, multi-protocol remote control software.</p>
     <p><b>Allows you to use any device and system in anywhere and remotely manage any device and system in any way. </b></p>
-    <p>It include remote desktop, remote terminal etc remote control functions.</p>
-    <p>Author: Kang Lin <kl222@126.com></p>
+    <p>It include remote desktop, remote control, remote terminal etc functions.</p>
     <p>Donation:
       <url type="Donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
       <url type="Donation">https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
       <url type="Donation">https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png</url>
     </p>
   </description>
+  
   <name xml:lang="zh_CN">玉兔远程控制</name>
   <developer_name xml:lang="zh_CN">康林</developer_name>
-  <summary xml:lang="zh_CN">玉兔远程控制是一个跨平台、多协议的远程控制软件</summary>
+  <summary xml:lang="zh_CN">玉兔远程控制是一个开源、跨平台、多协议的远程控制软件</summary>
   <description xml:lang="zh_CN">
-    <p>玉兔远程控制是一个跨平台、多协议的远程控制软件。</p>
+    <p>玉兔远程控制是一个开源、跨平台、多协议的远程控制软件。</p>
     <p>能让你在<b>任何地方</b>使用<b>任何设备和系统</b>通过<b>任意方式</b>远程管理任意<b>设备和系统</b>。</p>
-    <p>它包括远程桌面、远程终端、播放器等远程控制功能。</p>
+    <p>它包括远程桌面、远程控制、远程终端、播放器等功能。</p>
     <p>捐赠:
       <url type="Donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
       <url type="Donation">https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
       <url type="Donation">https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png</url>
     </p>
   </description>
+  
   <name xml:lang="zh_TW">玉兔遠程控製</name>
   <developer_name xml:lang="zh_TW">康林</developer_name>
-  <summary xml:lang="zh_TW">玉兔遠程控製是一個跨平臺、多協議的遠程控製軟件</summary>
+  <summary xml:lang="zh_TW">玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件</summary>
   <description xml:lang="zh_TW">
-    <p>玉兔遠程控製是一個跨平臺、多協議的遠程控製軟件。</p>
+    <p>玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件。</p>
     <p>能讓你在<b>任何地方</b>使用<b>任何設備和系統</b>通過<b>任意方式</b>遠程管理任意<b>設備和系統</b>。</p>
-    <p>它包括遠程桌面、遠程終端、播放器等遠程控製功能。</p>
+    <p>它包括遠程桌面、遠程控製、遠程終端、播放器等功能。</p>
     <p>捐贈:
       <url type="Donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
       <url type="Donation">https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
       <url type="Donation">https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png</url>
     </p>
   </description>
+  
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0</project_license>
   
   <url type="homepage">https://github.com/KangLin/SerialPortAssistant</url>
   <url type="bugtracker">https://github.com/KangLin/SerialPortAssistant/issues</url>
   <url type="help">https://github.com/KangLin/SerialPortAssistant/discussions</url>
+  
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work_en.png</image>
@@ -59,7 +63,9 @@
       <caption>Chinese work Interface</caption>
     </screenshot>
   </screenshots>
+  
   <releases>
     <release version="@SerialPortAssistant_VERSION@" date="@BUILD_DATE@"/>
   </releases>
+  
 </component>
