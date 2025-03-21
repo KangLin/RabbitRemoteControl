@@ -125,6 +125,8 @@ if [ ! -f ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz ]; then
     git archive --format=tar.gz --prefix=RabbitRemoteControl/ -o ~/rpmbuild/SOURCES/RabbitRemoteControl.tar.gz HEAD
 fi
 export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
+export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
+export INSTALL_DIR=${INSTALL_DIR}
 rpmbuild --nodebuginfo -bb Package/rpm/rabbitremotecontrol.spec
 
 popd

@@ -271,7 +271,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
   - Flatpak 包：用于所有支持 Flatpak 的 Linux 系统。Fedora 默认使用此安装包。
 - Android: 扩展名为 .apk
 - 苹果操作系统: RabbitRemoteControl_v0.0.32_macos.zip 。
-  由于没有相关设置，所以没有进行测试。希望有兴趣的朋友参与开发和测试。
+  由于没有相关设备，所以没有进行测试。希望有兴趣的朋友参与开发和测试。
 - 开发文档：RabbitRemoteControl_v0.0.32_document.zip
 
 ## [开发](docs/Doxygen/Develop_zh_CN.md)

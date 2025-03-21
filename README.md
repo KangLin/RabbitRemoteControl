@@ -275,7 +275,7 @@ Contact me:
   Fedora uses this installation package by default.
 - Android: The extension is .apk
 - Apple OS: RabbitRemoteControl_v0.0.32_macos.zip.
-  Since there are no settings, no testing was conducted.
+  No tests were carried out as there was no relevant equipment.
   We hope that interested friends will participate in the development and testing.
 - Development documentation: RabbitRemoteControl_v0.0.32_document.zip
 
