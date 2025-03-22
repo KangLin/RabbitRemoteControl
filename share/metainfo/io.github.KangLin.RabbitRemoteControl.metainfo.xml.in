@@ -1,71 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
   <id>io.github.KangLin.RabbitRemoteControl</id>
-  
+  <launchable type="desktop-id">io.github.KangLin.RabbitRemoteControl.desktop</launchable>
+
   <name>Rabbit remote control</name>
-  <developer_name>KangLin</developer_name>
+  <name xml:lang="zh_CN">玉兔远程控制</name>
+  <name xml:lang="zh_TW">玉兔遠程控製</name>
+
   <summary>Rabbit remote control is a open-source, cross-platform, multi-protocol remote control software.</summary>
+  <summary xml:lang="zh_CN">玉兔远程控制是一个开源、跨平台、多协议的远程控制软件</summary>
+  <summary xml:lang="zh_TW">玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件</summary>
+
   <description>
     <p>Rabbit remote control is a open-source, cross-platform, multi-protocol remote control software.</p>
     <p><b>Allows you to use any device and system in anywhere and remotely manage any device and system in any way. </b></p>
     <p>It include remote desktop, remote control, remote terminal etc functions.</p>
-    <p>Donation:
-      <url type="Donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
-      <url type="Donation">https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
-      <url type="Donation">https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png</url>
-    </p>
   </description>
-  
-  <name xml:lang="zh_CN">玉兔远程控制</name>
-  <developer_name xml:lang="zh_CN">康林</developer_name>
-  <summary xml:lang="zh_CN">玉兔远程控制是一个开源、跨平台、多协议的远程控制软件</summary>
   <description xml:lang="zh_CN">
     <p>玉兔远程控制是一个开源、跨平台、多协议的远程控制软件。</p>
     <p>能让你在<b>任何地方</b>使用<b>任何设备和系统</b>通过<b>任意方式</b>远程管理任意<b>设备和系统</b>。</p>
     <p>它包括远程桌面、远程控制、远程终端、播放器等功能。</p>
-    <p>捐赠:
-      <url type="Donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
-      <url type="Donation">https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
-      <url type="Donation">https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png</url>
-    </p>
   </description>
-  
-  <name xml:lang="zh_TW">玉兔遠程控製</name>
-  <developer_name xml:lang="zh_TW">康林</developer_name>
-  <summary xml:lang="zh_TW">玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件</summary>
   <description xml:lang="zh_TW">
     <p>玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件。</p>
     <p>能讓你在<b>任何地方</b>使用<b>任何設備和系統</b>通過<b>任意方式</b>遠程管理任意<b>設備和系統</b>。</p>
     <p>它包括遠程桌面、遠程控製、遠程終端、播放器等功能。</p>
-    <p>捐贈:
-      <url type="Donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
-      <url type="Donation">https://gitee.com/kl222/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
-      <url type="Donation">https://gitlab.com/kl222/RabbitCommon/-/raw/master/Src/Resource/image/Contribute.png</url>
-    </p>
   </description>
   
+  <developer id="io.github.KangLin">
+    <name>KangLin</name>
+    <name xml:lang="zh_CN">康林</name>
+    <name xml:lang="zh_TW">康林</name>
+  </developer>
+
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0</project_license>
-  
-  <url type="homepage">https://github.com/KangLin/SerialPortAssistant</url>
-  <url type="bugtracker">https://github.com/KangLin/SerialPortAssistant/issues</url>
-  <url type="help">https://github.com/KangLin/SerialPortAssistant/discussions</url>
-  
+  <content_rating type="oars-1.1" />
+
+  <url type="homepage">https://github.com/KangLin/RabbitRemoteControl</url>
+  <url type="bugtracker">https://github.com/KangLin/RabbitRemoteControl/issues</url>
+  <url type="help">https://github.com/KangLin/RabbitRemoteControl/discussions</url>
+  <url type="vcs-browser">https://github.com/KangLin/RabbitRemoteControl</url>
+  <url type="Donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
+
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work_en.png</image>
-      <caption xml:lang="zh_CN">英语工作界面</caption>
-      <caption>English work Interface</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
-      <caption xml:lang="zh_CN">中文工作界面</caption>
-      <caption>Chinese work Interface</caption>
+      <caption>Work Interface</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
+      <caption xml:lang="zh_CN">工作界面</caption>
+      <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
+      <caption xml:lang="zh_TW">工作界面</caption>
     </screenshot>
   </screenshots>
   
   <releases>
-    <release version="@SerialPortAssistant_VERSION@" date="@BUILD_DATE@"/>
+    <release version="@RabbitRemoteControl_VERSION@" date="@BUILD_DATE@"/>
   </releases>
   
 </component>
