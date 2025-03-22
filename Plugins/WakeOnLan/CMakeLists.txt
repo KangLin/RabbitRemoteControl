@@ -19,6 +19,7 @@ else()
         "Please build and install from "
         "'git clone https://github.com/seladb/PcapPlusPlus.git ${CMAKE_SOURCE_DIR}/../PcapPlusPlus' "
         "And set PcapPlusPlus_ROOT to install root directory")
+    return()
 endif()
 
 list(APPEND WakeOnLan_LIBS Client)
