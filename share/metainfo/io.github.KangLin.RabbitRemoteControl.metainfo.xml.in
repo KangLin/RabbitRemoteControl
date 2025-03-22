@@ -13,20 +13,18 @@
 
   <description>
     <p>Rabbit remote control is a open-source, cross-platform, multi-protocol remote control software.</p>
-    <p><b>Allows you to use any device and system in anywhere and remotely manage any device and system in any way. </b></p>
+    <p><em>Allows you to use any device and system in anywhere and remotely manage any device and system in any way. </em></p>
     <p>It include remote desktop, remote control, remote terminal etc functions.</p>
+
+    <p xml:lang="zh_CN">玉兔远程控制是一个开源、跨平台、多协议的远程控制软件。</p>
+    <p xml:lang="zh_CN">能让你在<em>任何地方</em>使用<em>任何设备和系统</em>通过<em>任意方式</em>远程管理任意<em>设备和系统</em>。</p>
+    <p xml:lang="zh_CN">它包括远程桌面、远程控制、远程终端、播放器等功能。</p>
+
+    <p xml:lang="zh_TW">玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件。</p>
+    <p xml:lang="zh_TW">能讓你在<em>任何地方</em>使用<em>任何設備和系統</em>通過<em>任意方式</em>遠程管理任意<em>設備和系統</em>。</p>
+    <p xml:lang="zh_TW">它包括遠程桌面、遠程控製、遠程終端、播放器等功能。</p>
   </description>
-  <description xml:lang="zh_CN">
-    <p>玉兔远程控制是一个开源、跨平台、多协议的远程控制软件。</p>
-    <p>能让你在<b>任何地方</b>使用<b>任何设备和系统</b>通过<b>任意方式</b>远程管理任意<b>设备和系统</b>。</p>
-    <p>它包括远程桌面、远程控制、远程终端、播放器等功能。</p>
-  </description>
-  <description xml:lang="zh_TW">
-    <p>玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件。</p>
-    <p>能讓你在<b>任何地方</b>使用<b>任何設備和系統</b>通過<b>任意方式</b>遠程管理任意<b>設備和系統</b>。</p>
-    <p>它包括遠程桌面、遠程控製、遠程終端、播放器等功能。</p>
-  </description>
-  
+
   <developer id="io.github.KangLin">
     <name>KangLin</name>
     <name xml:lang="zh_CN">康林</name>
@@ -41,7 +39,7 @@
   <url type="bugtracker">https://github.com/KangLin/RabbitRemoteControl/issues</url>
   <url type="help">https://github.com/KangLin/RabbitRemoteControl/discussions</url>
   <url type="vcs-browser">https://github.com/KangLin/RabbitRemoteControl</url>
-  <url type="Donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
+  <url type="donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
 
   <screenshots>
     <screenshot type="default">
