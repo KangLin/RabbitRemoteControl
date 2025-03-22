@@ -23,7 +23,7 @@ BuildRequires: qt6-qttools-devel qt6-qtbase-devel
 BuildRequires: qt6-qt5compat-devel qt6-qtmultimedia-devel qt6-qtscxml-devel
 BuildRequires: qt6-qtserialport-devel qt6-qtsvg-devel
 
-BuildRequires: openssl-devel libpng-devel libjpeg-turbo-devel pixman-devel ffmpeg-free-devel
+BuildRequires: openssl-devel libpng-devel libjpeg-turbo-devel pixman-devel openh264-devel ffmpeg-free-devel
 BuildRequires: libvncserver-devel cmark-devel libpcap-devel
 BuildRequires: libwinpr-devel freerdp-devel freerdp fuse3-devel
 # TigerVNC
@@ -37,7 +37,7 @@ BuildRequires: libXinerama-devel mesa-libGL-devel libxshmfence-devel
 BuildRequires: libdrm-devel mesa-libgbm-devel
 BuildRequires: libxkbfile-devel libXfont2-devel
 
-Requires: openssl libpng libjpeg-turbo pixman ffmpeg-free libssh libicu lzo libgcrypt
+Requires: openssl libpng libjpeg-turbo pixman openh264 ffmpeg-free libssh libicu lzo libgcrypt
 Requires: libvncserver libwinpr freerdp fuse3 cmark libpcap
 Requires: zlib gnutls nettle gmp pam 
 Requires: qt6-qtbase qt6-qtmultimedia qt6-qt5compat qt6-qtmultimedia qt6-qtscxml
