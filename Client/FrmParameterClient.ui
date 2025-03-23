@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>388</height>
+    <width>482</width>
+    <height>393</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,72 +17,34 @@
    <item row="0" column="0">
     <widget class="QCheckBox" name="cbHookKeyboard">
      <property name="text">
-      <string>Hook: capture system key</string>
+      <string>Hook: capture system key(System shortcuts is need administrator privilege)</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Viewer zoom:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cbViewZoom">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="cbEnableUserName">
-     <property name="text">
-      <string>Enable use the system user as the user</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QGroupBox" name="groupBox">
+   <item row="6" column="0">
+    <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
-      <string>Password</string>
+      <string>Connecter name</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
+     <layout class="QGridLayout" name="gridLayout_4">
       <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
-        <item>
-         <widget class="QCheckBox" name="cbSavePassword">
-          <property name="text">
-           <string>Save password</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="cbEnableViewPassword">
-          <property name="text">
-           <string>Enable view password</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QCheckBox" name="cbShowPrefix">
+        <property name="text">
+         <string>Show protocol prefix in name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="cbShowIPPort">
+        <property name="text">
+         <string>Only show ip:port in name</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="5" column="0">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
       <string>Key used to encrypt saved password:</string>
@@ -109,7 +71,7 @@
            <string/>
           </property>
           <property name="echoMode">
-           <enum>QLineEdit::Password</enum>
+           <enum>QLineEdit::EchoMode::Password</enum>
           </property>
          </widget>
         </item>
@@ -178,27 +140,72 @@
      </layout>
     </widget>
    </item>
-   <item row="5" column="0">
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Connecter name</string>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Viewer zoom:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cbViewZoom">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0">
+    <widget class="QCheckBox" name="cbEnableUserName">
+     <property name="text">
+      <string>Enable use the system user as the user</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_4">
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Password</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
-       <widget class="QCheckBox" name="cbShowPrefix">
-        <property name="text">
-         <string>Show protocol prefix in name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="cbShowIPPort">
-        <property name="text">
-         <string>Only show ip:port in name</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QCheckBox" name="cbSavePassword">
+          <property name="text">
+           <string>Save password</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cbEnableViewPassword">
+          <property name="text">
+           <string>Enable view password</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="cbShowHookAdminPrivilege">
+     <property name="text">
+      <string>Show hook restart programe with administrator privilege</string>
+     </property>
     </widget>
    </item>
   </layout>

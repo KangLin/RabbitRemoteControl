@@ -65,7 +65,7 @@
     </message>
     <message>
         <source>Capture or recored screen and window</source>
-        <translation>捕獲或錄製屏幕和窗口</translation>
+        <translation type="vanished">捕獲或錄製屏幕和窗口</translation>
     </message>
 </context>
 <context>

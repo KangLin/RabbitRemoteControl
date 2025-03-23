@@ -4,30 +4,48 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="102"/>
+        <location filename="../../Client.cpp" line="101"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="193"/>
+        <location filename="../../Client.cpp" line="192"/>
         <source>Version:</source>
         <translation>版本：</translation>
+    </message>
+    <message>
+        <location filename="../../Client.cpp" line="421"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../../Client.cpp" line="422"/>
+        <source>The programe is not administrator privilege.
+Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
+Restart program by administrator?</source>
+        <translation>捕获系统快捷键需要管理员权限。
+需要以管理员权限重启程序吗？</translation>
+    </message>
+    <message>
+        <location filename="../../Client.cpp" line="426"/>
+        <source>Exit the program</source>
+        <translation>退出程序</translation>
     </message>
 </context>
 <context>
     <name>CConnecter</name>
     <message>
-        <location filename="../../Connecter.cpp" line="37"/>
+        <location filename="../../Connecter.cpp" line="181"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="60"/>
+        <location filename="../../Connecter.cpp" line="52"/>
         <source>Name: </source>
         <translation>名称：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="61"/>
+        <location filename="../../Connecter.cpp" line="53"/>
         <source>Protocol: </source>
         <translation>协议：</translation>
     </message>
@@ -36,12 +54,12 @@
         <translation type="vanished">服务名：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="66"/>
+        <location filename="../../Connecter.cpp" line="58"/>
         <source>Description: </source>
         <translation>描述：</translation>
     </message>
     <message>
-        <location filename="../../Connecter.cpp" line="104"/>
+        <location filename="../../Connecter.cpp" line="96"/>
         <source>Set </source>
         <translation>设置 </translation>
     </message>
@@ -51,78 +69,78 @@
     <message>
         <location filename="../../ConnecterConnect.cpp" line="67"/>
         <source>Name: </source>
-        <translation type="unfinished">名称：</translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <location filename="../../ConnecterConnect.cpp" line="68"/>
         <source>Protocol: </source>
-        <translation type="unfinished">协议：</translation>
+        <translation>协议：</translation>
     </message>
     <message>
         <location filename="../../ConnecterConnect.cpp" line="73"/>
         <source>Server name: </source>
-        <translation type="unfinished">服务名：</translation>
+        <translation>服务名：</translation>
     </message>
     <message>
         <location filename="../../ConnecterConnect.cpp" line="74"/>
         <source>Description: </source>
-        <translation type="unfinished">描述：</translation>
+        <translation>描述：</translation>
     </message>
 </context>
 <context>
     <name>CConnecterThread</name>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="42"/>
+        <location filename="../../ConnecterThread.cpp" line="79"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="46"/>
+        <location filename="../../ConnecterThread.cpp" line="83"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="56"/>
+        <location filename="../../ConnecterThread.cpp" line="93"/>
         <source>Keep aspect ration to windows</source>
         <translation>保持高宽比缩放</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="65"/>
+        <location filename="../../ConnecterThread.cpp" line="102"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="73"/>
+        <location filename="../../ConnecterThread.cpp" line="110"/>
         <source>Zoom in</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="83"/>
+        <location filename="../../ConnecterThread.cpp" line="120"/>
         <source>Zoom out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="116"/>
+        <location filename="../../ConnecterThread.cpp" line="153"/>
         <source>ScreenShot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="122"/>
         <source>Record</source>
-        <translation>录制</translation>
+        <translation type="vanished">录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="129"/>
+        <location filename="../../ConnecterThread.cpp" line="167"/>
         <source>Record pause</source>
         <translation>暂停录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="247"/>
+        <location filename="../../ConnecterThread.cpp" line="279"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="251"/>
+        <location filename="../../ConnecterThread.cpp" line="160"/>
+        <location filename="../../ConnecterThread.cpp" line="282"/>
         <source>Start record</source>
         <translation>开始录制</translation>
     </message>
@@ -180,97 +198,113 @@
         <translation>客户端</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="184"/>
+        <location filename="../../FrmParameterClient.ui" line="27"/>
         <source>Connecter name</source>
         <translation>连接名</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="190"/>
+        <location filename="../../FrmParameterClient.ui" line="33"/>
         <source>Show protocol prefix in name</source>
         <translation>在连接名中显示协议前缀</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="197"/>
+        <location filename="../../FrmParameterClient.ui" line="40"/>
         <source>Only show ip:port in name</source>
         <translation>在连接名中仅显示 IP:PORT</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
-        <source>Hook: capture system key</source>
-        <translation>挂钩：捕获系统键</translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterClient.ui" line="61"/>
+        <location filename="../../FrmParameterClient.ui" line="180"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="69"/>
+        <location filename="../../FrmParameterClient.ui" line="188"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="76"/>
+        <location filename="../../FrmParameterClient.ui" line="195"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="54"/>
+        <location filename="../../FrmParameterClient.ui" line="207"/>
+        <source>Show hook restart programe with administrator privilege</source>
+        <translation>提示管理员权限</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="173"/>
         <source>Enable use the system user as the user</source>
         <translation>允许使用系统用户作为用户</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="35"/>
+        <location filename="../../FrmParameterClient.ui" line="20"/>
+        <location filename="../../FrmParameterClient.cpp" line="18"/>
+        <source>Hook: capture system key(System shortcuts is need administrator privilege)</source>
+        <translation>挂钩：捕获系统键(系统快捷键需要管理员权限)</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="154"/>
         <source>Viewer zoom:</source>
         <translation>缩放视图：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="88"/>
+        <location filename="../../FrmParameterClient.ui" line="50"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密键用于加密码保存的密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="102"/>
+        <location filename="../../FrmParameterClient.ui" line="64"/>
         <source>Encrypt key:</source>
         <translation>加密键</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="146"/>
+        <location filename="../../FrmParameterClient.ui" line="108"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="159"/>
+        <location filename="../../FrmParameterClient.ui" line="121"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="172"/>
+        <location filename="../../FrmParameterClient.ui" line="134"/>
         <source>Always</source>
         <translation>总是</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="133"/>
+        <location filename="../../FrmParameterClient.ui" line="95"/>
         <source>Prompt type:</source>
         <translation>提示类型</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="69"/>
+        <location filename="../../FrmParameterClient.cpp" line="13"/>
+        <source>Hook: capture system key</source>
+        <translation>挂钩：捕获系统键</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="20"/>
+        <source>Hook: show restart program with administrator privilege</source>
+        <translation>挂钩：显示需要管理员权限</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.cpp" line="85"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="73"/>
+        <location filename="../../FrmParameterClient.cpp" line="89"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="76"/>
+        <location filename="../../FrmParameterClient.cpp" line="92"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="79"/>
+        <location filename="../../FrmParameterClient.cpp" line="95"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation>保持桌面的高宽比缩放到窗口大小</translation>
     </message>
@@ -278,7 +312,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="511"/>
+        <location filename="../../FrmViewer.cpp" line="516"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新键盘 LED 状态失败</translation>
     </message>
@@ -404,7 +438,7 @@
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="14"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="18"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="19"/>
         <source>Record</source>
         <translation>录制</translation>
     </message>
@@ -495,7 +529,7 @@
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="147"/>
+        <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="148"/>
         <source>Open path</source>
         <translation>打开文件夹</translation>
     </message>

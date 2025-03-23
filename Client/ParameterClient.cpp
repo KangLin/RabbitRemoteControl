@@ -2,7 +2,8 @@
 
 CParameterClient::CParameterClient(QObject *parent)
     : CParameter(parent)
-    , m_bHookKeyboard(true)
+    , m_bHookKeyboard(false)
+    , m_bShowHookAdministratorPrivilege(true)
     , m_bEnableSystemUserToUser(true)
     , m_bSavePassword(false)
     , m_PromptType(PromptType::No)
@@ -19,6 +20,10 @@ CParameterClient::~CParameterClient()
 
 int CParameterClient::OnLoad(QSettings &set)
 {
+    // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
+    SetShowHookAdministratorPrivilege(
+        set.value("Client/ShowHookAdministratorPrivilege",
+                  GetShowHookAdministratorPrivilege()).toBool());
     SetHookKeyboard(set.value("Client/Hook/Keyboard",
                               GetHookKeyboard()).toBool());
     SetEnableSystemUserToUser(set.value("Client/UserName/Enable",
@@ -39,6 +44,7 @@ int CParameterClient::OnLoad(QSettings &set)
 int CParameterClient::OnSave(QSettings& set)
 {
     set.setValue("Client/Hook/Keyboard", GetHookKeyboard());
+    set.setValue("Client/ShowHookAdministratorPrivilege", GetShowHookAdministratorPrivilege());
     set.setValue("Client/UserName/Enable", GetEnableSystemUserToUser());
     set.setValue("Client/Password/Prompty/Type",
                  static_cast<int>(GetPromptType()));
@@ -64,6 +70,19 @@ void CParameterClient::SetHookKeyboard(bool newHookKeyboard)
     emit sigHookKeyboardChanged();
 }
 
+bool CParameterClient::GetShowHookAdministratorPrivilege()
+{
+    return m_bShowHookAdministratorPrivilege;
+}
+
+void CParameterClient::SetShowHookAdministratorPrivilege(bool bShow)
+{
+    if(bShow == m_bShowHookAdministratorPrivilege)
+        return;
+    SetModified(true);
+    m_bShowHookAdministratorPrivilege = bShow;
+}
+
 bool CParameterClient::GetEnableSystemUserToUser() const
 {
     return m_bEnableSystemUserToUser;
@@ -87,6 +106,7 @@ void CParameterClient::SetEncryptKey(const QString &newPassword)
     if (m_szEncryptKey == newPassword)
         return;
     m_szEncryptKey = newPassword;
+    SetModified(true);
     emit sigEncryptKeyChanged();
 }
 
@@ -128,6 +148,7 @@ void CParameterClient::SetPromptCount(int NewPromptCount)
     if (m_nPromptCount == NewPromptCount)
         return;
     m_nPromptCount = NewPromptCount;
+    SetModified(true);
     emit sigPromptCountChanged(m_nPromptCount);
 }
 

@@ -7,6 +7,8 @@
 #include <QApplication>
 #include <QSettings>
 #include <QLoggingCategory>
+#include <QMessageBox>
+#include <QCheckBox>
 
 #include "Client.h"
 #include "RabbitCommonDir.h"
@@ -38,9 +40,6 @@ CClient::CClient(QObject *parent) : QObject(parent),
         check = connect(m_pParameterClient, SIGNAL(sigHookKeyboardChanged()),
                         this, SLOT(slotHookKeyboardChanged()));
         Q_ASSERT(check);
-        // TODO: Disable it ?
-        if(m_pParameterClient->GetHookKeyboard())
-            m_Hook = QSharedPointer<CHook>(CHook::GetHook());
     } else {
         qCritical(log) << "new CParameterClient() fail";
         Q_ASSERT(m_pParameterClient);
@@ -414,6 +413,24 @@ void CClient::slotHookKeyboardChanged()
 {
     if(m_pParameterClient->GetHookKeyboard())
     {
+        if(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
+            && m_pParameterClient->GetShowHookAdministratorPrivilege())
+        {
+            int nRet = 0;
+            QMessageBox msg(
+                QMessageBox::Warning, tr("Warning"),
+                tr("The programe is not administrator privilege.\n"
+                   "Don't disable system shortcuts(eg: Ctrl+Alt+del).\n"
+                   "Restart program by administrator?"),
+                QMessageBox::Yes | QMessageBox::No);
+            msg.setCheckBox(new QCheckBox(tr("Exit the program"), &msg));
+            msg.checkBox()->setCheckable(true);
+            nRet = msg.exec();
+            if(QMessageBox::Yes == nRet) {
+                RabbitCommon::CTools::Instance()->StartByRoot(
+                    msg.checkBox()->isChecked());
+            }
+        }
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());
     } else {
         if(m_Hook)

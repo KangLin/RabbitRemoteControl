@@ -2,9 +2,7 @@
 #define CHOOKWINDOWS_H
 
 #include "Hook.h"
-#if defined(Q_OS_WIN)
-    #include "Windows.h"
-#endif
+#include "Windows.h"
 
 class CHookWindows : public CHook
 {
@@ -20,6 +18,8 @@ public:
 private:
     static LRESULT CALLBACK keyboardHookProc(INT code, WPARAM wparam, LPARAM lparam);
     HHOOK m_hKeyboard;
+
+    void DisableTaskManager(bool flag);
 };
 
 #endif // CHOOKWINDOWS_H

@@ -1,5 +1,6 @@
 #include "FrmParameterClient.h"
 #include "ui_FrmParameterClient.h"
+#include <RabbitCommonTools.h>
 
 CFrmParameterClient::CFrmParameterClient(QWidget *parent) :
     CParameterUI(parent),
@@ -7,6 +8,18 @@ CFrmParameterClient::CFrmParameterClient(QWidget *parent) :
     m_pPara(nullptr)
 {
     ui->setupUi(this);
+    if(RabbitCommon::CTools::HasAdministratorPrivilege()) {
+        ui->cbHookKeyboard->setText(
+            tr("Hook: capture system key"));
+        ui->cbShowHookAdminPrivilege->setText("");
+        ui->cbShowHookAdminPrivilege->hide();
+    } else {
+        ui->cbHookKeyboard->setText(
+            tr("Hook: capture system key(System shortcuts is need administrator privilege)"));
+        ui->cbShowHookAdminPrivilege->setText(
+            tr("Hook: show restart program with administrator privilege"));
+        ui->cbShowHookAdminPrivilege->show();
+    }
 }
 
 CFrmParameterClient::~CFrmParameterClient()
@@ -19,6 +32,7 @@ int CFrmParameterClient::Accept()
     if(!m_pPara)
         return -1;
     m_pPara->SetHookKeyboard(ui->cbHookKeyboard->isChecked());
+    m_pPara->SetShowHookAdministratorPrivilege(ui->cbShowHookAdminPrivilege->isChecked());
     m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
     m_pPara->SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
     
@@ -64,6 +78,7 @@ int CFrmParameterClient::SetParameter(CParameter *pParameter)
     if(!m_pPara)
         return -1;
     ui->cbHookKeyboard->setChecked(m_pPara->GetHookKeyboard());
+    ui->cbShowHookAdminPrivilege->setChecked(m_pPara->GetShowHookAdministratorPrivilege());
     ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());
 
     ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-original"),
