@@ -24,7 +24,7 @@ Categories=Network;Utility;P2P;Qt;RemoteAccess;AudioVideo;Video;Audio;Player
 # https://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec/
 MimeType=application/rrc
 
-Keywords=remote desktop;remote control;rdp;vnc;ssh;player
+Keywords=remote desktop;remote control;rdp;vnc;ssh;player;远程桌面;远程控制;播放器
 
 Name=Rabbit Remote Control
 GenericName=Rabbit Remote Control

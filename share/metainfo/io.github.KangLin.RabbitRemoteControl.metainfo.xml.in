@@ -7,9 +7,9 @@
   <name xml:lang="zh_CN">玉兔远程控制</name>
   <name xml:lang="zh_TW">玉兔遠程控製</name>
 
-  <summary>Rabbit remote control is a open-source, cross-platform, multi-protocol remote control software.</summary>
-  <summary xml:lang="zh_CN">玉兔远程控制是一个开源、跨平台、多协议的远程控制软件</summary>
-  <summary xml:lang="zh_TW">玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件</summary>
+  <summary>Remote control software</summary>
+  <summary xml:lang="zh_CN">远程控制软件</summary>
+  <summary xml:lang="zh_TW">遠程控製軟件</summary>
 
   <description>
     <p>Rabbit remote control is a open-source, cross-platform, multi-protocol remote control software.</p>
@@ -37,12 +37,26 @@
 
   <url type="homepage">https://github.com/KangLin/RabbitRemoteControl</url>
   <url type="bugtracker">https://github.com/KangLin/RabbitRemoteControl/issues</url>
+  <url type="contribute">https://github.com/KangLin/RabbitRemoteControl/pull</url>
   <url type="help">https://github.com/KangLin/RabbitRemoteControl/discussions</url>
   <url type="vcs-browser">https://github.com/KangLin/RabbitRemoteControl</url>
   <url type="donation">https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png</url>
 
+  <branding>
+    <color type="primary" scheme_preference="light">#99c1f1</color>
+    <color type="primary" scheme_preference="dark">#a599a5</color>
+  </branding>
+
   <screenshots>
     <screenshot type="default">
+      <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/MainWindows_en.png</image>
+      <caption>Main Interface</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/MainWindows.png</image>
+      <caption xml:lang="zh_CN">主界面</caption>
+      <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/MainWindows.png</image>
+      <caption xml:lang="zh_TW">主界面</caption>
+    </screenshot>
+    <screenshot>
       <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work_en.png</image>
       <caption>Work Interface</caption>
       <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
@@ -50,10 +64,28 @@
       <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
       <caption xml:lang="zh_TW">工作界面</caption>
     </screenshot>
+    <screenshot>  
+      <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Connect_en.png</image>
+      <caption>Connect</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Connect.png</image>
+      <caption xml:lang="zh_CN">连接</caption>
+      <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Connect.png</image>
+      <caption xml:lang="zh_TW">連接</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/RecentMenu_en.png</image>
+      <caption>Recent connect menu</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/RecentMenu.png</image>
+      <caption xml:lang="zh_CN">最近连接</caption>
+      <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/RecentMenu.png</image>
+      <caption xml:lang="zh_TW">最近連接</caption>
+    </screenshot>
   </screenshots>
-  
+
   <releases>
-    <release version="@RabbitRemoteControl_VERSION@" date="@BUILD_DATE@"/>
+    <release version="@RabbitRemoteControl_VERSION@" date="@BUILD_DATE@">
+        <url type="details">https://github.com/KangLin/RabbitRemoteControl/blob/v@RabbitRemoteControlTag@/ChangeLog.md</url>
+    </release>
   </releases>
-  
+
 </component>

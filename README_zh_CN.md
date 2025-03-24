@@ -259,7 +259,8 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
   - [![从 sourceforge 下载](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/rabbitremotecontrol/files/latest/download)
   - [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)
     [![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)
-    
+  - [![从 Flathub 下载](https://flathub.org/api/badge?locale=zh-Hans)](https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl)
+
 ### 安装包说明
 
 - Windows: 扩展名为 .exe

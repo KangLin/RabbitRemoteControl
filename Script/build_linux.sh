@@ -162,6 +162,7 @@ mkdir -p $TOOLS_DIR
 mkdir -p $INSTALL_DIR
 
 if [ $DOCKER -eq 1 ]; then
+    echo "Start docker ${DOCKERT_IMAGE} ......"
 
     ## Copy the source code to build directory
     pushd ${REPO_ROOT}
