@@ -191,7 +191,7 @@ jobs:
       - name: Add snap donwload in Note.md file
         run: |
           echo "" >> ${{github.workspace}}/Note.md
-                    echo "[![Download from Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl)" >> ${{github.workspace}}/Release.md
+          echo "[![Download from Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl)" >> ${{github.workspace}}/Note.md
           echo "[![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)" >> ${{github.workspace}}/Note.md
           echo "[![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)" >> ${{github.workspace}}/Note.md
 
