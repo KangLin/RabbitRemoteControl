@@ -94,7 +94,7 @@ jobs:
           mv "${{github.workspace}}/update_ubuntu.json.xml" update_linux.xml
 
       - name: Deb update version configure file
-        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.PACKAGE == 'deb' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' && matrix.PACKAGE == 'deb' && 'ubuntu-24.04' == matrix.os}}
         working-directory: ${{github.workspace}}
         #continue-on-error: true
         run: |
