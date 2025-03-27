@@ -100,7 +100,7 @@ jobs:
         run: |
           sudo Xvfb :90 -ac &
           export DISPLAY=:90.0
-          /opt/RabbitRemoteControl/bin/RabbitRemoteControl.sh \
+          /opt/RabbitRemoteControl/bin/RabbitRemoteControlApp \
                -f "${{github.workspace}}/version.json" \
                --foc 0 \
                --pv ${{env.RabbitRemoteControl_VERSION}}
@@ -129,7 +129,7 @@ jobs:
             --md5 "${MD5SUM}"
 
       - name: Update artifact
-        if: false #${{ matrix.BUILD_TYPE == 'Release' }}
+        if: ${{ matrix.BUILD_TYPE == 'Release' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}_${{matrix.os}}_${{matrix.PACKAGE}}

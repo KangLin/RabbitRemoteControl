@@ -6,16 +6,16 @@
 set -e
 #set -v
 
-
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
 
 usage_long() {
-    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>]"
+    echo "$0 [-h|--help] [-v|--verbose[=0|1]] [--install=<install directory>] [--rabbitcommon<RabbitCommon directory>"
     echo "  --help|-h: Show help"
     echo "  -v|--verbose: Show build verbose"
     echo "  --install: Set depend libraries install directory"
+    echo "  --rabbitcommon: Install RabbitCommon"
 }
 
 # [如何使用getopt和getopts命令解析命令行选项和参数](https://zhuanlan.zhihu.com/p/673908518)
@@ -28,7 +28,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,verbose::,install:
+    OPTS=help,verbose::,install:,rabbitcommon:
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -46,6 +46,10 @@ if command -V getopt >/dev/null; then
         case $1 in
         --install)
             INSTALL_DIR=$2
+            shift 2
+            ;;
+        --rabbitcommon)
+            RabbitCommon_ROOT=$2
             shift 2
             ;;
         -v |--verbose)
@@ -79,47 +83,36 @@ OLD_CWD=$(readlink -f .)
 
 pushd "$REPO_ROOT"
 
-if [ -n "$1" -a -z "$QT_ROOT" ]; then
-	QT_ROOT=$1
+if [ -n "$RabbitCommon_ROOT" ]; then
+    export RabbitCommon_ROOT=$RabbitCommon_ROOT
 fi
-
-if [ -d "/usr/lib/`uname -m`-linux-gnu" -a -z "$QT_ROOT" ]; then
-    QT_ROOT="/usr/lib/`uname -m`-linux-gnu"
-fi
-
-if [ -z "$QT_ROOT" ]; then
-    echo "QT_ROOT=$QT_ROOT"
-	echo "$0 QT_ROOT RabbitCommon_ROOT"
-    exit 1
-fi
-
-if [ -n "$2" -a -z "$RabbitCommon_ROOT" ]; then
-	RabbitCommon_ROOT=$2
-fi
-
-if [ -z "$RabbitCommon_ROOT" ]; then
-	RabbitCommon_ROOT=`pwd`/../RabbitCommon
-    echo "RabbitCommon_ROOT=$RabbitCommon_ROOT"
-fi
-
-if [ ! -d "$RabbitCommon_ROOT" ]; then
-    echo "QT_ROOT=$QT_ROOT"
-    echo "RabbitCommon_ROOT=$RabbitCommon_ROOT"
-	echo "$0 QT_ROOT RabbitCommon_ROOT"
-    exit 2
-fi
-
-export QT_ROOT=$QT_ROOT
-export RabbitCommon_ROOT=$RabbitCommon_ROOT
 
 if [ -z "$BUILD_TYPE" ]; then
     export BUILD_TYPE=Release
 fi
 
-export PATH=$QT_ROOT/bin:$PATH
 if [ -n "$INSTALL_DIR" ]; then
     export INSTALL_DIR=$INSTALL_DIR
+    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
 fi
+
+BUILD_DEPS=$(/usr/bin/which dpkg-checkbuilddeps)
+BUILD_PKG=$(/usr/bin/which dpkg-buildpackage)
+
+if [ -z "$BUILD_DEPS" ] || [ -z "$BUILD_PKG" ]; then
+  echo "dpkg-buildpackage [$BUILD_PKG] and dpkg-checkbuilddeps [$BUILD_DEPS] required"
+  echo "Install with 'sudo apt install dpkg-dev'"
+  exit 1
+fi
+
+if [ ! -d debian ]; then
+    ln -s $REPO_ROOT/Package/debian $REPO_ROOT/debian
+fi
+
+# Check all dependencies are installed
+$BUILD_DEPS "debian/control"
+
+# And finally build the package
 
 #fakeroot debian/rules binary
 
@@ -152,16 +145,16 @@ fi
 #                              do not check builtin build dependencies.
 
 #The -us -uc tell it there is no need to GPG sign the package. the -b is build binary
-dpkg-buildpackage -us -uc -b -d
+$BUILD_PKG -us -uc -b -d
 
 #The -us -uc tell it there is no need to GPG sign the package. the -S is build source package
-#dpkg-buildpackage -us -uc -S
+#$BUILD_PKG -us -uc -S
 
-#dpkg-buildpackage -S
+#$BUILD_PKG -S
 
 # build source and binary package
-#dpkg-buildpackage -us -uc 
+#$BUILD_PKG -us -uc 
 
-#dpkg-buildpackage -b
+#$BUILD_PKG -b
 
 popd

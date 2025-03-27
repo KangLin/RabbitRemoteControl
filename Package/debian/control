@@ -5,7 +5,7 @@ Section: main
 Priority: optional
 Maintainer: Kang Lin <kl222@126.com>
 Build-Depends: debhelper(>=13), debhelper-compat(=13), fakeroot, cmake(>=3.21),
- libssl-dev, libcrypt-dev, libcmark-dev, rabbitcommon-dev(>=2.3.2),
+ libssl-dev, libcrypt-dev, libcmark-dev,
  qt6-tools-dev, qt6-tools-dev-tools, qt6-base-dev, qt6-base-dev-tools,
  qt6-qpa-plugins, libqt6svg6-dev, qt6-l10n-tools, qt6-translations-l10n,
  qt6-scxml-dev, qt6-multimedia-dev,
@@ -30,7 +30,7 @@ Description: Rabbit Remote Control
  Allows you to use any device and system in anywhere and remotely manage
  any device and system in any way. 
  .
- It include remote desktop, remote terminal etc remote control functions.
+ It include remote desktop, remote control, remote terminal, player, network tools etc functions.
  .
  Author: Kang Lin <kl222@126.com>
  .

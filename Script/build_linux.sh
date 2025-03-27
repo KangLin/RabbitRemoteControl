@@ -218,10 +218,8 @@ if [ $DEB -eq 1 ]; then
         --tools ${TOOLS_DIR} \
         --verbose ${BUILD_VERBOSE}
 
-    export RabbitCommon_ROOT=${SOURCE_DIR}/RabbitCommon
-    export CMAKE_PREFIX_PATH=${INSTALL_DIR}:${CMAKE_PREFIX_PATH}
-    export INSTALL_DIR=${INSTALL_DIR}
-    ./build_debpackage.sh
+    ./build_debpackage.sh --install=${INSTALL_DIR} \
+        --rabbitcommon=${SOURCE_DIR}/RabbitCommon
 fi
 
 if [ $APPIMAGE -eq 1 ]; then

@@ -124,6 +124,8 @@ jobs:
               export tigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc
           fi
           export CMAKE_PREFIX_PATH=${{env.INSTALL_DIR}}
+          #apt install devscripts
+          #mk-build-deps -i
           ./Script/build_debpackage.sh
 
       - name: update configure file

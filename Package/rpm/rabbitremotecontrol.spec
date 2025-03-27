@@ -1,5 +1,7 @@
 # See: https://rpm-software-management.github.io/rpm/manual/spec.html
 
+%define   INSTALL_PREFIX /opt/RabbitRemoteControl
+
 Name:           rabbitremotecontrol
 Version:        0.0.32
 Release:        1%{?dist}
@@ -56,7 +58,7 @@ multi-protocol remote control software.
 Allows you to use any device and system in anywhere and remotely manage
 any device and system in any way. 
 
-It include remote desktop, remote terminal etc remote control functions.
+It include remote desktop, remote control, remote terminal, player, network tools etc functions.
 
 Author: Kang Lin <kl222@126.com>
 
@@ -82,27 +84,27 @@ echo "-- RPM_SPECPARTS_DIR: $RPM_SPECPARTS_DIR"
 echo "-- pwd: `pwd`"
 
 cmake . -B $RPM_BUILD_DIR  \
-    -DCMAKE_INSTALL_PREFIX=/opt/RabbitRemoteControl -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=%{INSTALL_PREFIX} -DCMAKE_BUILD_TYPE=Release \
     -DRabbitCommon_ROOT=${RabbitCommon_ROOT}
 cmake --build $RPM_BUILD_DIR --config Release --parallel $(nproc)
 
 %install
 cmake --install $RPM_BUILD_DIR --config Release \
     --component DependLibraries \
-    --prefix ${RPM_BUILD_ROOT}/opt/RabbitRemoteControl
+    --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 cmake --install $RPM_BUILD_DIR --config Release \
     --component Runtime \
-    --prefix ${RPM_BUILD_ROOT}/opt/RabbitRemoteControl
+    --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 cmake --install $RPM_BUILD_DIR --config Release \
     --component Application \
-    --prefix ${RPM_BUILD_ROOT}/opt/RabbitRemoteControl
+    --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 cmake --install $RPM_BUILD_DIR --config Release \
     --component Plugin \
-    --prefix ${RPM_BUILD_ROOT}/opt/RabbitRemoteControl
+    --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 
 #if [ -n "${INSTALL_DIR}" ]; then
 #    SOURCE_DIR=${INSTALL_DIR}%{_libdir}
-#    DEST_DIR=${RPM_BUILD_ROOT}/opt/RabbitRemoteControl%{_libdir}
+#    DEST_DIR=${RPM_BUILD_ROOT}%{INSTALL_PREFIX}%{_libdir}
 #    # 复制 .so 库文件及其符号链接
 #    find $SOURCE_DIR -name "*.so*" -exec cp -d {} $DEST_DIR \;
 #fi
@@ -112,31 +114,29 @@ cmake --install $RPM_BUILD_DIR --config Release \
 
 # 安装后需要做的任务 如：自动启动的任务
 %post
-INSTALL_ROOT=/opt/RabbitRemoteControl
 if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
-    if [ -f $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
-        ln -s $INSTALL_ROOT/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
+    if [ -f $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
+        ln -s $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
     fi
 fi
 if [ ! -f /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg ]; then
-    if [ -f $INSTALL_ROOT/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg ]; then
+    if [ -f $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg ]; then
         if [ ! -d /usr/share/pixmaps ]; then
             mkdir -p /usr/share/pixmaps
         fi
-        ln -s $INSTALL_ROOT/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
+        ln -s $INSTALL_PREFIX/share/icons/hicolor/scalable/apps/io.github.KangLin.RabbitRemoteControl.svg /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
     fi
 fi
 if [ ! -f /usr/bin/rabbitremotecontrol ]; then
-    ln -s $INSTALL_ROOT/bin/RabbitRemoteControlApp /usr/bin/rabbitremotecontrol
+    ln -s $INSTALL_PREFIX/bin/RabbitRemoteControlApp /usr/bin/rabbitremotecontrol
 fi
 
-if [ -d $INSTALL_ROOT/etc ]; then
-    chmod -R a+rw $INSTALL_ROOT/etc
+if [ -d $INSTALL_PREFIX/etc ]; then
+    chmod -R a+rw $INSTALL_PREFIX/etc
 fi
 
 # 卸载前需要做的任务 如：停止任务
 %preun
-INSTALL_ROOT=/opt/RabbitRemoteControl
 rm -fr /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
 rm -fr /usr/share/pixmaps/io.github.KangLin.RabbitRemoteControl.svg
 rm -fr /usr/bin/rabbitremotecontrol
@@ -149,9 +149,11 @@ rm -fr /usr/bin/rabbitremotecontrol
 
 # 设置文件属性，包含编译文件需要生成的目录、文件以及分配所对应的权限
 %files
-/opt/RabbitRemoteControl/*
+%dir %{INSTALL_PREFIX}
+
+%{INSTALL_PREFIX}/*
 
 # 修改历史
 %changelog
-* Fri Jan 01 2025 Kang Lin <kl222@126.com> - 0.0.32-1
+* $RPM_BUILD_TIME Kang Lin <kl222@126.com> - %{version}
 - Initial RPM package

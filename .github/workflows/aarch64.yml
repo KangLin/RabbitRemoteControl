@@ -14,7 +14,7 @@ env:
 
 jobs:
   build_arch:
-    if: false
+    #if: false
     strategy:
       matrix:
         compile_name: [deb, AppImage]

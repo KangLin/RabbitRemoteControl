@@ -375,6 +375,7 @@ if [ $QT -eq 1 ]; then
 fi
 
 if [ $RabbitCommon -eq 1 ]; then
+    echo "Install RabbitCommon ......"
     pushd "$SOURCE_DIR"
     if [ ! -d RabbitCommon ]; then
         git clone https://github.com/KangLin/RabbitCommon.git
