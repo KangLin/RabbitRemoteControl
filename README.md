@@ -269,10 +269,10 @@ Contact me:
 - Linux:
   - deb package: for Debian, Ubuntu, etc
   - rpm package: for RedHat, Fedora, CentOS, etc
-- AppImage package: for all Linux systems
-- Snap Package: Used on all Linux systems that support Snap.
+  - AppImage package: for all Linux systems
+  - Snap Package: Used on all Linux systems that support Snap.
   Ubuntu uses this installation package by default.
-- Flatpak Package: For all Linux systems that support Flatpak.
+  - Flatpak Package: For all Linux systems that support Flatpak.
   Fedora uses this installation package by default.
 - Android: The extension is .apk
 - Apple OS: RabbitRemoteControl_v0.0.32_macos.zip.
