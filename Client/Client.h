@@ -50,7 +50,7 @@ class CLIENT_EXPORT CClient : public QObject
     Q_OBJECT
 
 public:
-    explicit CClient(QObject *parent = nullptr);
+    explicit CClient(QObject *parent = nullptr, QString szFile = QString());
     virtual ~CClient();
 
     /*!
@@ -131,7 +131,7 @@ public:
      * \~english Load Client parameters from file.
      * \param szFile: file name
      */
-    virtual int LoadSettings(QString szFile = QString());
+    virtual int LoadSettings(const QString szFile = QString());
     /*!
      * \~chinese
      * \brief 保存客户端参数到文件
@@ -139,7 +139,7 @@ public:
      * \~english Save Client parameters to file
      * \param szFile: file name
      */
-    virtual int SaveSettings(QString szFile = QString());
+    virtual int SaveSettings(const QString szFile = QString());
 
     /**
      * \~chinese
@@ -187,6 +187,7 @@ private Q_SLOTS:
     void slotHookKeyboardChanged();
 
 private:
+    QString m_szSettingsFile;
     QMap<QString, CPluginClient*> m_Plugins;
     qint8 m_FileVersion;
     QSharedPointer<QTranslator> m_Translator;

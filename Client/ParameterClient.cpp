@@ -3,7 +3,7 @@
 CParameterClient::CParameterClient(QObject *parent)
     : CParameter(parent)
     , m_bHookKeyboard(false)
-    , m_bShowHookAdministratorPrivilege(true)
+    , m_bHookShowAdministratorPrivilege(true)
     , m_bEnableSystemUserToUser(true)
     , m_bSavePassword(false)
     , m_PromptType(PromptType::No)
@@ -21,9 +21,9 @@ CParameterClient::~CParameterClient()
 int CParameterClient::OnLoad(QSettings &set)
 {
     // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
-    SetShowHookAdministratorPrivilege(
-        set.value("Client/ShowHookAdministratorPrivilege",
-                  GetShowHookAdministratorPrivilege()).toBool());
+    SetHookShowAdministratorPrivilege(
+        set.value("Client/Hook/ShowAdministratorPrivilege",
+                  GetHookShowAdministratorPrivilege()).toBool());
     SetHookKeyboard(set.value("Client/Hook/Keyboard",
                               GetHookKeyboard()).toBool());
     SetEnableSystemUserToUser(set.value("Client/UserName/Enable",
@@ -44,7 +44,7 @@ int CParameterClient::OnLoad(QSettings &set)
 int CParameterClient::OnSave(QSettings& set)
 {
     set.setValue("Client/Hook/Keyboard", GetHookKeyboard());
-    set.setValue("Client/ShowHookAdministratorPrivilege", GetShowHookAdministratorPrivilege());
+    set.setValue("Client/Hook/ShowAdministratorPrivilege", GetHookShowAdministratorPrivilege());
     set.setValue("Client/UserName/Enable", GetEnableSystemUserToUser());
     set.setValue("Client/Password/Prompty/Type",
                  static_cast<int>(GetPromptType()));
@@ -70,17 +70,18 @@ void CParameterClient::SetHookKeyboard(bool newHookKeyboard)
     emit sigHookKeyboardChanged();
 }
 
-bool CParameterClient::GetShowHookAdministratorPrivilege()
+bool CParameterClient::GetHookShowAdministratorPrivilege()
 {
-    return m_bShowHookAdministratorPrivilege;
+    return m_bHookShowAdministratorPrivilege;
 }
 
-void CParameterClient::SetShowHookAdministratorPrivilege(bool bShow)
+void CParameterClient::SetHookShowAdministratorPrivilege(bool bShow)
 {
-    if(bShow == m_bShowHookAdministratorPrivilege)
+    if(bShow == m_bHookShowAdministratorPrivilege)
         return;
     SetModified(true);
-    m_bShowHookAdministratorPrivilege = bShow;
+    m_bHookShowAdministratorPrivilege = bShow;
+    emit sigHookShowAdministratorPrivilege();
 }
 
 bool CParameterClient::GetEnableSystemUserToUser() const

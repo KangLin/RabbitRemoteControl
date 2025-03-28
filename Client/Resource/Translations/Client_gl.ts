@@ -4,30 +4,30 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="101"/>
+        <location filename="../../Client.cpp" line="103"/>
         <source>### Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="192"/>
+        <location filename="../../Client.cpp" line="194"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="421"/>
+        <location filename="../../Client.cpp" line="441"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="422"/>
+        <location filename="../../Client.cpp" line="442"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="426"/>
-        <source>Exit the program</source>
+        <location filename="../../Client.cpp" line="446"/>
+        <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -276,7 +276,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../FrmParameterClient.cpp" line="20"/>
-        <source>Hook: show restart program with administrator privilege)</source>
+        <source>Hook: show restart program with administrator privilege</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

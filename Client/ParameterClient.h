@@ -59,12 +59,14 @@ private:
     bool m_bHookKeyboard;
     Q_PROPERTY(bool HookKeyboard READ GetHookKeyboard WRITE SetHookKeyboard
                NOTIFY sigHookKeyboardChanged)
-    
+
 public:
-    bool GetShowHookAdministratorPrivilege();
-    void SetShowHookAdministratorPrivilege(bool bShow);
+    bool GetHookShowAdministratorPrivilege();
+    void SetHookShowAdministratorPrivilege(bool bShow);
+Q_SIGNALS:
+    void sigHookShowAdministratorPrivilege();
 private:
-    bool m_bShowHookAdministratorPrivilege;
+    bool m_bHookShowAdministratorPrivilege;
 
     // Enable use the system user as the user
 public:

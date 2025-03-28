@@ -20,7 +20,7 @@
 
 static Q_LOGGING_CATEGORY(log, "Client")
 
-CClient::CClient(QObject *parent) : QObject(parent),
+CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
     m_FileVersion(1)  //TODO: update version it if update data
 {
     bool check = false;
@@ -34,12 +34,14 @@ CClient::CClient(QObject *parent) : QObject(parent),
         "Client", RabbitCommon::CTools::TranslationType::Library);
     
     CChannel::InitTranslation();
-
+    m_szSettingsFile = szFile;
     m_pParameterClient = new CParameterClient();
     if(m_pParameterClient) {
+        LoadSettings(m_szSettingsFile);
         check = connect(m_pParameterClient, SIGNAL(sigHookKeyboardChanged()),
                         this, SLOT(slotHookKeyboardChanged()));
         Q_ASSERT(check);
+        slotHookKeyboardChanged();
     } else {
         qCritical(log) << "new CParameterClient() fail";
         Q_ASSERT(m_pParameterClient);
@@ -347,14 +349,32 @@ int CClient::SaveConnecter(CConnecter *pConnecter)
     return 0;
 }
 
-int CClient::LoadSettings(QString szFile)
+int CClient::LoadSettings(const QString szFile)
 {
-    return m_pParameterClient->CParameter::Load(szFile);
+    if(!m_pParameterClient) {
+        qCritical(log) << "The m_pParameterClient is nullptr";
+        Q_ASSERT_X(m_pParameterClient, "CClient", "The m_pParameterClient is nullptr");
+        return -1;
+    }
+
+    QString s = szFile;
+    if(s.isEmpty())
+        s = m_szSettingsFile;
+    return m_pParameterClient->CParameter::Load(s);
 }
 
-int CClient::SaveSettings(QString szFile)
+int CClient::SaveSettings(const QString szFile)
 {
-    return m_pParameterClient->CParameter::Save(szFile);
+    if(!m_pParameterClient) {
+        qCritical(log) << "The m_pParameterClient is nullptr";
+        Q_ASSERT_X(m_pParameterClient, "CClient", "The m_pParameterClient is nullptr");
+        return -1;
+    }
+
+    QString s = szFile;
+    if(s.isEmpty())
+        s = m_szSettingsFile;
+    return m_pParameterClient->CParameter::Save(s);
 }
 
 QList<QWidget*> CClient::GetSettingsWidgets(QWidget* parent)
@@ -414,7 +434,7 @@ void CClient::slotHookKeyboardChanged()
     if(m_pParameterClient->GetHookKeyboard())
     {
         if(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
-            && m_pParameterClient->GetShowHookAdministratorPrivilege())
+            && m_pParameterClient->GetHookShowAdministratorPrivilege())
         {
             int nRet = 0;
             QMessageBox msg(
@@ -423,12 +443,19 @@ void CClient::slotHookKeyboardChanged()
                    "Don't disable system shortcuts(eg: Ctrl+Alt+del).\n"
                    "Restart program by administrator?"),
                 QMessageBox::Yes | QMessageBox::No);
-            msg.setCheckBox(new QCheckBox(tr("Exit the program"), &msg));
+            msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
             msg.checkBox()->setCheckable(true);
+            msg.checkBox()->setChecked(
+                m_pParameterClient->GetHookShowAdministratorPrivilege());
             nRet = msg.exec();
             if(QMessageBox::Yes == nRet) {
-                RabbitCommon::CTools::Instance()->StartByRoot(
+                RabbitCommon::CTools::Instance()->StartByRoot(true);
+            }
+            if(m_pParameterClient->GetHookShowAdministratorPrivilege()
+                != msg.checkBox()->isChecked()) {
+                m_pParameterClient->SetHookShowAdministratorPrivilege(
                     msg.checkBox()->isChecked());
+                SaveSettings();
             }
         }
         m_Hook = QSharedPointer<CHook>(CHook::GetHook());

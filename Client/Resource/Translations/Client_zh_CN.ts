@@ -4,22 +4,22 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="101"/>
+        <location filename="../../Client.cpp" line="103"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="192"/>
+        <location filename="../../Client.cpp" line="194"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="421"/>
+        <location filename="../../Client.cpp" line="441"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="422"/>
+        <location filename="../../Client.cpp" line="442"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
@@ -27,9 +27,9 @@ Restart program by administrator?</source>
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="426"/>
-        <source>Exit the program</source>
-        <translation>退出程序</translation>
+        <location filename="../../Client.cpp" line="446"/>
+        <source>Always shown</source>
+        <translation>总是显示</translation>
     </message>
 </context>
 <context>

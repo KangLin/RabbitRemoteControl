@@ -162,7 +162,6 @@ MainWindow::MainWindow(QWidget *parent)
         check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
                         this, SLOT(slotCloseView(const QWidget*)));
         Q_ASSERT(check);
-
         check = connect(m_pView, SIGNAL(sigCurrentChanged(const QWidget*)),
                         this, SLOT(slotCurrentViewChanged(const QWidget*)));
         Q_ASSERT(check);
@@ -173,7 +172,6 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     m_Client.EnumPlugins(this);
-    m_Client.LoadSettings();
 
     check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
                     this, SLOT(slotShortCut()));

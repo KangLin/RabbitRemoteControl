@@ -4,44 +4,44 @@
 <context>
     <name>CConnectLibVNCServer</name>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="158"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="160"/>
         <source>The server is empty, please input it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="80"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="160"/>
-        <location filename="../../ConnectLibVNCServer.cpp" line="173"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="82"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="162"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="175"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="79"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="81"/>
         <source>Protocol version error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="939"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="956"/>
         <source>Connect to local socket server %1:%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="945"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="962"/>
         <source> fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="967"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
         <source>Connect to local socket server </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="971"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="988"/>
         <source>fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnectLibVNCServer.cpp" line="170"/>
+        <location filename="../../ConnectLibVNCServer.cpp" line="172"/>
         <source>Connect to %1:%2 fail</source>
         <translation type="unfinished"></translation>
     </message>
