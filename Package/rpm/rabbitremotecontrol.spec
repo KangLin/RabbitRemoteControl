@@ -114,6 +114,7 @@ cmake --install $RPM_BUILD_DIR --config Release \
 
 # 安装后需要做的任务 如：自动启动的任务
 %post
+INSTALL_PREFIX=/opt/RabbitRemoteControl
 if [ ! -f /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
     if [ -f $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop ]; then
         ln -s $INSTALL_PREFIX/share/applications/io.github.KangLin.RabbitRemoteControl.desktop /usr/share/applications/io.github.KangLin.RabbitRemoteControl.desktop
