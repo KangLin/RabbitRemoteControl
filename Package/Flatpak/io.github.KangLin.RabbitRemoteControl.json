@@ -120,9 +120,9 @@
             "disabled": false,
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/FreeRDP/FreeRDP/archive/refs/tags/3.14.0.tar.gz",
-                    "sha256": "a7a979382703c2bc18aa9b22cfa12d7a441b6927ab45ac62ef8353786bc92241"
+                    "type": "git",
+                    "url": "https://github.com/FreeRDP/FreeRDP.git",
+                    "tag": "3.14.1"
                 }
             ],
             "buildsystem": "cmake-ninja",

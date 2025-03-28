@@ -391,7 +391,7 @@ if [ $FREERDP -eq 1 ]; then
     echo "Install FreeRDP ......"
     pushd "$SOURCE_DIR"
     if [ ! -d ${INSTALL_DIR}/lib/cmake/FreeRDP3 ]; then
-        git clone -b 3.14.0 https://github.com/FreeRDP/FreeRDP.git
+        git clone -b 3.14.1 https://github.com/FreeRDP/FreeRDP.git
         cd FreeRDP
         git submodule update --init --recursive
         cmake -E make_directory build
