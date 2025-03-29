@@ -449,7 +449,7 @@ void CClient::slotHookKeyboardChanged()
                 m_pParameterClient->GetHookShowAdministratorPrivilege());
             nRet = msg.exec();
             if(QMessageBox::Yes == nRet) {
-                RabbitCommon::CTools::Instance()->StartByRoot(true);
+                RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
             }
             if(m_pParameterClient->GetHookShowAdministratorPrivilege()
                 != msg.checkBox()->isChecked()) {
