@@ -28,6 +28,7 @@
   - Debian: modify control
   - 增加 rpm 包
 - 重命名 org.Rabbit.RemoteControl 为 io.github.KangLin.RabbitRemoteControl
+- 应用程序：重命名 CFrmListConnects 为 CFrmListRecnetConnects
 
 ### v0.0.32
 - 修复播放器菜单错误

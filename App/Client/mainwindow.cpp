@@ -18,7 +18,7 @@
 #include "Connecter.h"
 #include "FrmFullScreenToolBar.h"
 #include "ParameterDlgSettings.h"
-#include "FrmListConnects.h"
+#include "FrmListRecentConnects.h"
 
 #ifdef HAVE_ICE
 #include "Ice.h"
@@ -94,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_pDockListConnects = new QDockWidget(this);
     if(m_pDockListConnects)
     {
-        CFrmListConnects* pListConnects = new CFrmListConnects(&m_Client, true, m_pDockListConnects);
+        CFrmListRecentConnects* pListConnects = new CFrmListRecentConnects(&m_Client, true, m_pDockListConnects);
         if(pListConnects) {
             if(pListConnects->m_pDockTitleBar)
                 m_pDockListConnects->setTitleBarWidget(pListConnects->m_pDockTitleBar);
@@ -105,7 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
             m_pDockListConnects->setWindowTitle(pListConnects->windowTitle());
         }
         // Must set ObjectName then restore it. See: saveState help document
-        m_pDockListConnects->setObjectName("dockListConnects");
+        m_pDockListConnects->setObjectName("dockListRecentConnects");
         //m_pDockListConnects->hide();
         ui->menuView->addAction(m_pDockListConnects->toggleViewAction());
         tabifyDockWidget(m_pDockFavorite, m_pDockListConnects);
@@ -124,7 +124,7 @@ MainWindow::MainWindow(QWidget *parent)
                     m_pRecentMenu, SLOT(setMaxCount(int)));
     Q_ASSERT(check);
     QAction* pRecentAction = ui->menuRemote->insertMenu(
-        ui->actionOpenListConnections, m_pRecentMenu);
+        ui->actionOpenListRecentConnections, m_pRecentMenu);
     pRecentAction->setStatusTip(pRecentAction->text());
     QToolButton* tbRecent = new QToolButton(ui->toolBar);
     tbRecent->setFocusPolicy(Qt::NoFocus);
@@ -134,7 +134,7 @@ MainWindow::MainWindow(QWidget *parent)
     tbRecent->setText(pRecentAction->text());
     tbRecent->setToolTip(pRecentAction->toolTip());
     tbRecent->setStatusTip(pRecentAction->statusTip());
-    ui->toolBar->insertWidget(ui->actionOpenListConnections, tbRecent);
+    ui->toolBar->insertWidget(ui->actionOpenListRecentConnections, tbRecent);
 
 #ifdef HAVE_UPDATE
     CFrmUpdater updater;
@@ -999,9 +999,9 @@ void MainWindow::slotShortCut()
     }
 }
 
-void MainWindow::on_actionOpenListConnections_triggered()
+void MainWindow::on_actionOpenListRecentConnections_triggered()
 {
-    CFrmListConnects* p = new CFrmListConnects(&m_Client, false);
+    CFrmListRecentConnects* p = new CFrmListRecentConnects(&m_Client, false);
     if(!p) return;
     bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
                          this, SLOT(slotOpenFile(const QString&, bool)));

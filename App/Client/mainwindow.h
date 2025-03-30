@@ -160,7 +160,7 @@ private:
 private:
     QDockWidget* m_pDockListConnects;
 private Q_SLOTS:
-    void on_actionOpenListConnections_triggered();
+    void on_actionOpenListRecentConnections_triggered();
 
     ///////// Favorite //////////
 private:

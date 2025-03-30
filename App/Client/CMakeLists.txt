@@ -15,7 +15,7 @@ set(SOURCE_FILES
     ParameterDlgSettings.cpp
     FavoriteView.cpp
     FavoriteMimeData.cpp
-    FrmListConnects.cpp
+    FrmListRecentConnects.cpp
     )
 
 set(HEADER_FILES
@@ -27,7 +27,7 @@ set(HEADER_FILES
     ParameterDlgSettings.h
     FavoriteView.h
     FavoriteMimeData.h
-    FrmListConnects.h
+    FrmListRecentConnects.h
     )
 
 set(SOURCE_UI_FILES

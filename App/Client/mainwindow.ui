@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -58,7 +58,7 @@
     </widget>
     <addaction name="menuConnect_C"/>
     <addaction name="actionDisconnect_D"/>
-    <addaction name="actionOpenListConnections"/>
+    <addaction name="actionOpenListRecentConnections"/>
     <addaction name="actionOpenRRCFile"/>
     <addaction name="actionClone"/>
     <addaction name="separator"/>
@@ -90,7 +90,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionOpenListConnections"/>
+   <addaction name="actionOpenListRecentConnections"/>
    <addaction name="separator"/>
    <addaction name="actionAdd_to_favorite"/>
    <addaction name="separator"/>
@@ -356,24 +356,24 @@
     <string>Add to favorite</string>
    </property>
   </action>
-  <action name="actionOpenListConnections">
+  <action name="actionOpenListRecentConnections">
    <property name="icon">
     <iconset theme="folder-open"/>
    </property>
    <property name="text">
-    <string>Open the list of connections(&amp;O)</string>
+    <string>Open the list of recent connections(&amp;O)</string>
    </property>
    <property name="iconText">
-    <string>Open the list of connections(&amp;O)</string>
+    <string>Open the list of recent connections(&amp;O)</string>
    </property>
    <property name="toolTip">
-    <string>Open the list of connections(&amp;O)</string>
+    <string>Open the list of recent connections(&amp;O)</string>
    </property>
    <property name="statusTip">
-    <string>Open the list of connections(&amp;O)</string>
+    <string>Open the list of recent connections(&amp;O)</string>
    </property>
    <property name="whatsThis">
-    <string>Open the list of connections(&amp;O)</string>
+    <string>Open the list of recent connections(&amp;O)</string>
    </property>
   </action>
   <action name="actionMain_menu_bar_M">

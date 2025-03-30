@@ -14,15 +14,15 @@
  *
  * \~english List the connect of be existed
  */
-class CFrmListConnects : public QWidget, CClient::Handle
+class CFrmListRecentConnects : public QWidget, CClient::Handle
 {
     Q_OBJECT
     
 public:
-    explicit CFrmListConnects(CClient* pClient,
+    explicit CFrmListRecentConnects(CClient* pClient,
                               bool bDock = false,
                               QWidget *parent = nullptr);
-    virtual ~CFrmListConnects();
+    virtual ~CFrmListRecentConnects();
 
 public:
     virtual int onProcess(const QString &id, CPluginClient *pPlug) override;

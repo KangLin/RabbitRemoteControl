@@ -1,4 +1,4 @@
-#include "FrmListConnects.h"
+#include "FrmListRecentConnects.h"
 #include "RabbitCommonDir.h"
 #include <QGridLayout>
 #include <QDateTime>
@@ -7,7 +7,7 @@
 #include <QHeaderView>
 #include <QMenu>
 
-CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent) :
+CFrmListRecentConnects::CFrmListRecentConnects(CClient* pClient, bool bDock, QWidget *parent) :
     QWidget(parent),
     m_pToolBar(nullptr),
     m_ptbConnect(nullptr),
@@ -21,7 +21,7 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
     setFocusPolicy(Qt::NoFocus);
     setAttribute(Qt::WA_DeleteOnClose);
     setLayout(new QGridLayout(this));
-    setWindowTitle(tr("List connections"));
+    setWindowTitle(tr("List recent connections"));
 
     m_pToolBar = new QToolBar(this);
     m_pConnect = m_pToolBar->addAction(
@@ -169,11 +169,11 @@ CFrmListConnects::CFrmListConnects(CClient* pClient, bool bDock, QWidget *parent
 
 }
 
-CFrmListConnects::~CFrmListConnects()
+CFrmListRecentConnects::~CFrmListRecentConnects()
 {
 }
 
-void CFrmListConnects::slotLoadFiles()
+void CFrmListRecentConnects::slotLoadFiles()
 {
     m_pModel->removeRows(0, m_pModel->rowCount());
     QString szPath = RabbitCommon::CDir::Instance()->GetDirUserData();
@@ -221,7 +221,7 @@ void CFrmListConnects::slotLoadFiles()
     return;
 }
 
-int CFrmListConnects::InsertItem(CConnecter *c, QString& szFile)
+int CFrmListRecentConnects::InsertItem(CConnecter *c, QString& szFile)
 {
     QList<QStandardItem*> lstItem;
     QStandardItem* pName = new QStandardItem(c->Icon(), c->Name());
@@ -240,7 +240,7 @@ int CFrmListConnects::InsertItem(CConnecter *c, QString& szFile)
     return 0;
 }
 
-int CFrmListConnects::onProcess(const QString &id, CPluginClient *pPlug)
+int CFrmListRecentConnects::onProcess(const QString &id, CPluginClient *pPlug)
 {
     // Connect menu and toolbar
     QAction* pAction = m_pMenuNew->addAction(
@@ -253,7 +253,7 @@ int CFrmListConnects::onProcess(const QString &id, CPluginClient *pPlug)
     return 0;
 }
 
-void CFrmListConnects::slotNew()
+void CFrmListRecentConnects::slotNew()
 {
     QAction* pAction = dynamic_cast<QAction*>(this->sender());    
     CConnecter* c = m_pClient->CreateConnecter(pAction->data().toString());
@@ -294,7 +294,7 @@ void CFrmListConnects::slotNew()
     m_pClient->DeleteConnecter(c);
 }
 
-void CFrmListConnects::slotEdit()
+void CFrmListRecentConnects::slotEdit()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -315,7 +315,7 @@ void CFrmListConnects::slotEdit()
     }
 }
 
-void CFrmListConnects::slotEditConnect()
+void CFrmListRecentConnects::slotEditConnect()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -339,7 +339,7 @@ void CFrmListConnects::slotEditConnect()
         close();
 }
 
-void CFrmListConnects::slotCopy()
+void CFrmListRecentConnects::slotCopy()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -395,7 +395,7 @@ void CFrmListConnects::slotCopy()
     }
 }
 
-void CFrmListConnects::slotDelete()
+void CFrmListRecentConnects::slotDelete()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -408,7 +408,7 @@ void CFrmListConnects::slotDelete()
     }
 }
 
-void CFrmListConnects::slotConnect()
+void CFrmListRecentConnects::slotConnect()
 {
     QItemSelectionModel* pSelect = m_pTableView->selectionModel();
     QModelIndexList lstIndex = pSelect->selectedRows();
@@ -420,7 +420,7 @@ void CFrmListConnects::slotConnect()
     if(!m_bDock) close();
 }
 
-void CFrmListConnects::slotDetail()
+void CFrmListRecentConnects::slotDetail()
 {
     if(m_pDetail->isChecked()) {
         m_pTableView->showColumn(3);
@@ -431,7 +431,7 @@ void CFrmListConnects::slotDetail()
     }
 }
 
-void CFrmListConnects::slotCustomContextMenu(const QPoint &pos)
+void CFrmListRecentConnects::slotCustomContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
     
@@ -452,7 +452,7 @@ void CFrmListConnects::slotCustomContextMenu(const QPoint &pos)
     menu.exec(mapToGlobal(pos));
 }
 
-void CFrmListConnects::slotDoubleClicked(const QModelIndex& index)
+void CFrmListRecentConnects::slotDoubleClicked(const QModelIndex& index)
 {
     QString szFile = m_pModel->item(index.row(), m_nFileRow)->text();
     emit sigConnect(szFile);

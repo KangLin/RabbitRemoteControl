@@ -28,6 +28,7 @@
   - Debian: modify control
   - Add rpm package
 - Rename org.Rabbit.RemoteControl to io.github.KangLin.RabbitRemoteControl
+- Application: Rename CFrmListConnects to CFrmListRecnetConnects
 
 ### v0.0.32
 - Fix player menu bug

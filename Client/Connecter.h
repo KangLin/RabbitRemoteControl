@@ -316,7 +316,13 @@ private:
     virtual QDialog* OnOpenDialogSettings(QWidget* parent = nullptr) = 0;
 
 public:
+    /* \~chinese 得到配置文件名
+     * \~english Get settings file name
+     */
     virtual QString GetSettingsFile();
+    /* \~chinese 设置配置文件名
+     * \~english Set settings file name
+     */
     virtual int SetSettingsFile(const QString &szFile);
 private:
     QString m_szSettings;
