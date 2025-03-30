@@ -191,7 +191,7 @@ int CConnecterWakeOnLan::Connect()
                 if(!szAppImage.isEmpty())
                     szExec = szAppImage;
                 if(!szExec.isEmpty()) {
-                    bool bRet = RabbitCommon::CTools::executeByRoot(szExec);
+                    bool bRet = RabbitCommon::CTools::ExecuteWithAdministratorPrivilege(szExec);
                     qDebug(log) << "Execute:" << bRet << QCoreApplication::applicationFilePath();
                     if(bRet && msg.checkBox()->isChecked()) {
                         QCoreApplication::quit();
