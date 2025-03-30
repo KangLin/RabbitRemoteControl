@@ -4,56 +4,61 @@
 <context>
     <name>CConnecterWakeOnLan</name>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="53"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="56"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="55"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="58"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="62"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="65"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="63"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="66"/>
         <source>Please select a item</source>
         <translation>请选择一个项目</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="70"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="73"/>
         <source>Remove</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="75"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="95"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="80"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="100"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="81"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="101"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="86"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="106"/>
         <source>Get mac address</source>
         <translation>得到 MAC 地址</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="114"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="119"/>
         <source>Wake on lan</source>
         <translation>局域网唤醒</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="174"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="180"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="175"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="181"/>
         <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
         <translation>没有管理员权限，一些功能(得到 MAC 地址)受限。请用管理员权限重启程序。</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="185"/>
+        <source>Exit the program</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -201,18 +206,18 @@
 <context>
     <name>CPluginWakeOnLan</name>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="65"/>
-        <location filename="../../PluginWakeOnLan.cpp" line="70"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="66"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="71"/>
         <source>Wake on lan</source>
         <translation>局域网唤醒</translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="89"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="90"/>
         <source>version: </source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="92"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="93"/>
         <source>Pcap lib version info: </source>
         <translation>Pcap 库版本信息:</translation>
     </message>

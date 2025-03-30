@@ -4,55 +4,60 @@
 <context>
     <name>CConnecterWakeOnLan</name>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="53"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="56"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="55"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="58"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="62"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="65"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="63"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="66"/>
         <source>Please select a item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="70"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="73"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="75"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="95"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="80"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="100"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="81"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="101"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="86"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="106"/>
         <source>Get mac address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="114"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="119"/>
         <source>Wake on lan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="174"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="180"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="175"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="181"/>
         <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="185"/>
+        <source>Exit the program</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -201,18 +206,18 @@
 <context>
     <name>CPluginWakeOnLan</name>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="65"/>
-        <location filename="../../PluginWakeOnLan.cpp" line="70"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="66"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="71"/>
         <source>Wake on lan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="89"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="90"/>
         <source>version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../PluginWakeOnLan.cpp" line="92"/>
+        <location filename="../../PluginWakeOnLan.cpp" line="93"/>
         <source>Pcap lib version info: </source>
         <translation type="unfinished"></translation>
     </message>
