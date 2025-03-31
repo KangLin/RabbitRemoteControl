@@ -12,7 +12,7 @@
 #include <QDockWidget>
 #include <QSystemTrayIcon>
 
-#include "ViewTable.h"
+#include "View.h"
 #include "Client.h"
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
@@ -152,8 +152,9 @@ private Q_SLOTS:
 
 private Q_SLOTS:
     void slotCurrentViewChanged(const QWidget* pView);
-
     void slotViewerFocusIn(QWidget* pView);
+    void on_actionViewTab_triggered();
+    void on_actionViewSplitter_triggered();
 private:
     void SetView(CView* pView);
 

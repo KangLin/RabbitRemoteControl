@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.34
+- App: add splitter view
+
 ### v0.0.33
 - Remove donate bitcoin
 - VNC: modify mouse. add back button

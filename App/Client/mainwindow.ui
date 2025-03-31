@@ -37,7 +37,15 @@
     <property name="title">
      <string>View(&amp;V)</string>
     </property>
+    <widget class="QMenu" name="menuView_2">
+     <property name="title">
+      <string>Type</string>
+     </property>
+     <addaction name="actionViewTab"/>
+     <addaction name="actionViewSplitter"/>
+    </widget>
     <addaction name="actionFull_screen_F"/>
+    <addaction name="menuView_2"/>
     <addaction name="actionTabBar_B"/>
     <addaction name="actionToolBar_T"/>
     <addaction name="actionStatus_bar_S"/>
@@ -428,6 +436,22 @@
    </property>
    <property name="text">
     <string>Record video</string>
+   </property>
+  </action>
+  <action name="actionViewTab">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Tab</string>
+   </property>
+  </action>
+  <action name="actionViewSplitter">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Splitter</string>
    </property>
   </action>
  </widget>

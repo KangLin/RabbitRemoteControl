@@ -9,8 +9,9 @@ set(SOURCE_FILES
     main.cpp
     mainwindow.cpp
     FrmFullScreenToolBar.cpp
-    ViewTable.cpp
     View.cpp
+    ViewTable.cpp
+    ViewSplitter.cpp
     ParameterApp.cpp
     ParameterDlgSettings.cpp
     FavoriteView.cpp
@@ -21,8 +22,9 @@ set(SOURCE_FILES
 set(HEADER_FILES
     mainwindow.h
     FrmFullScreenToolBar.h
-    ViewTable.h
     View.h
+    ViewTable.h
+    ViewSplitter.h
     ParameterApp.h
     ParameterDlgSettings.h
     FavoriteView.h

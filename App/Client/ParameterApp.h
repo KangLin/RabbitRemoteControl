@@ -33,13 +33,27 @@ Q_SIGNALS:
 private:
     bool m_bSaveMainWindowStatus;
     Q_PROPERTY(bool SaveMainWindowStatus READ GetSaveMainWindowStatus WRITE SetSaveMainWindowStatus NOTIFY sigSaveMainWindowStatusChanged)
-    
+
+public:
+    enum class ViewType
+    {
+        Tab,
+        Splitter
+    };
+    Q_ENUM(ViewType)
+    ViewType GetViewType();
+    int SetViewType(ViewType type);
+Q_SIGNALS:
+    void sigViewTypeChanged();
+private:
+    ViewType m_ViewType;
+
 public:
     const QTabWidget::TabPosition &GetTabPosition() const;
     void SetTabPosition(const QTabWidget::TabPosition &newTabPosition);
 Q_SIGNALS:
     void sigTabPositionChanged();
-private:    
+private:
     QTabWidget::TabPosition m_TabPosition;
     Q_PROPERTY(QTabWidget::TabPosition TabPosition READ GetTabPosition WRITE SetTabPosition NOTIFY sigTabPositionChanged)
 

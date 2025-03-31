@@ -8,6 +8,7 @@ CView::CView(QWidget *parent) : QWidget(parent)
 {
     qDebug(log) << Q_FUNC_INFO;
     setFocusPolicy(Qt::NoFocus);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
 CView::~CView()

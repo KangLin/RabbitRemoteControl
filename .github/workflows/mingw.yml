@@ -23,7 +23,7 @@ jobs:
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     env:
       BUILD_TYPE:  ${{ matrix.BUILD_TYPE }}
@@ -135,6 +135,7 @@ jobs:
         
       - name: build tigervnc
         working-directory: ${{env.SOURCE_DIR}}
+        if: true
         env:
           MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
@@ -146,7 +147,8 @@ jobs:
             cd build
             cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
-                  -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
+                  -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
+                  -DCMAKE_POLICY_VERSION_MINIMUM=3.5
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )

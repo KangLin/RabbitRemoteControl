@@ -20,6 +20,9 @@
 #include "ParameterDlgSettings.h"
 #include "FrmListRecentConnects.h"
 
+#include "ViewTable.h"
+#include "ViewSplitter.h"
+
 #ifdef HAVE_ICE
 #include "Ice.h"
 #endif
@@ -114,9 +117,10 @@ MainWindow::MainWindow(QWidget *parent)
     RabbitCommon::CTools::AddStyleMenu(ui->menuTools);
     ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
 
-    m_pRecentMenu = new RabbitCommon::CRecentMenu(tr("Recently connected"),
-                                                  QIcon::fromTheme("document-open-recent"),
-                                                  this);
+    m_pRecentMenu = new RabbitCommon::CRecentMenu(
+        tr("Recently connected"),
+        QIcon::fromTheme("document-open-recent"),
+        this);
     check = connect(m_pRecentMenu, SIGNAL(recentFileTriggered(const QString&)),
                     this, SLOT(slotOpenFile(const QString&)));
     Q_ASSERT(check);
@@ -153,23 +157,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_pActionConnect = ui->toolBar->insertWidget(ui->actionDisconnect_D, tbConnect);
 
     EnableMenu(false);
-
-    //TODO: Change view
-    m_pView = new CViewTable(this);
-    if(m_pView)
-    {
-        m_pView->setFocusPolicy(Qt::NoFocus);
-        check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
-                        this, SLOT(slotCloseView(const QWidget*)));
-        Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(sigCurrentChanged(const QWidget*)),
-                        this, SLOT(slotCurrentViewChanged(const QWidget*)));
-        Q_ASSERT(check);
-        check = connect(m_pView, SIGNAL(customContextMenuRequested(const QPoint&)),
-                        this, SLOT(slotCustomContextMenuRequested(const QPoint&)));
-        Q_ASSERT(check);
-        this->setCentralWidget(m_pView);
-    }
 
     m_Client.EnumPlugins(this);
 
@@ -227,7 +214,7 @@ MainWindow::MainWindow(QWidget *parent)
         QByteArray state = set.value("MainWindow/Status/State").toByteArray();
         if(!state.isEmpty())
             restoreState(state);
-        
+
         ui->actionStatus_bar_S->setChecked(m_Parameter.GetStatusBar());
         statusBar()->setVisible(m_Parameter.GetStatusBar());
         ui->actionTabBar_B->setChecked(m_Parameter.GetTabBar());
@@ -236,6 +223,26 @@ MainWindow::MainWindow(QWidget *parent)
         ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
     }
 
+    QActionGroup* pGBView = new QActionGroup(this);
+    if(pGBView) {
+        pGBView->addAction(ui->actionViewTab);
+        pGBView->addAction(ui->actionViewSplitter);
+    }
+    qDebug(log) << "View type:" << m_Parameter.GetViewType();
+    if(CParameterApp::ViewType::Tab == m_Parameter.GetViewType()) {
+        ui->actionViewTab->setChecked(true);
+        on_actionViewTab_triggered();
+    }
+    if(CParameterApp::ViewType::Splitter == m_Parameter.GetViewType()) {
+        ui->actionViewSplitter->setChecked(true);
+        on_actionViewSplitter_triggered();
+    }
+    check = connect(&m_Parameter, &CParameterApp::sigViewTypeChanged,
+                    this, [&](){
+                        m_Parameter.Save();
+                    });
+    Q_ASSERT(check);
+    
     slotEnableSystemTrayIcon();
 
     LoadConnectLasterClose();
@@ -285,6 +292,22 @@ void MainWindow::SetView(CView* pView)
         m_pView->SetWidowsTitle(
             c->GetViewer(), c->Name(), c->Icon(), c->Description());
     }
+}
+
+void MainWindow::on_actionViewTab_triggered()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(!ui->actionViewTab->isChecked()) return;
+    SetView(new CViewTable(this));
+    m_Parameter.SetViewType(CParameterApp::ViewType::Tab);
+}
+
+void MainWindow::on_actionViewSplitter_triggered()
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(!ui->actionViewSplitter->isChecked()) return;
+    SetView(new CViewSplitter(this));
+    m_Parameter.SetViewType(CParameterApp::ViewType::Splitter);
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -760,9 +783,15 @@ void MainWindow::slotDisconnected()
             m_pView->RemoveView(c->GetViewer());
             m_Connecters.removeAll(c);
             m_Client.DeleteConnecter(c);
-            return;
+            break;
         }
     }
+    if(m_Connecters.isEmpty())
+        if(m_pActionConnecterMenu) {
+            ui->menuTools->removeAction(m_pActionConnecterMenu);
+            ui->toolBar->removeAction(m_pActionConnecterMenu);
+            m_pActionConnecterMenu = nullptr;
+        }
 }
 
 void MainWindow::slotSignalConnected()

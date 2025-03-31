@@ -17,7 +17,7 @@ static Q_LOGGING_CATEGORY(logRecord, "App.View.Table.Record")
 CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab(nullptr)
 {
-    qDebug(log) << Q_FUNC_INFO;
+    qDebug(log) << Q_FUNC_INFO << this;
     bool check = false;
     setFocusPolicy(Qt::NoFocus);
 
@@ -54,9 +54,11 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
 
 CViewTable::~CViewTable()
 {
-    qDebug(log) << Q_FUNC_INFO;
-    if(m_pTab)
+    qDebug(log) << Q_FUNC_INFO << this;
+    if(m_pTab) {
+        m_pTab->clear();
         delete m_pTab;
+    }
 }
 
 void CViewTable::slotCurrentChanged(int index)

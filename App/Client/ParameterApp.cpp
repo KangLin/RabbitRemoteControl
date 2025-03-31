@@ -9,6 +9,7 @@
 CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
+    m_ViewType(ViewType::Tab),
     m_TabPosition(QTabWidget::North),
     m_bEnableTabToolTip(true),
     m_bEnableTabIcon(true),
@@ -46,6 +47,8 @@ int CParameterApp::Load()
                                  GetReceiveShortCut()).toBool());
     SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable",
                                       GetSaveMainWindowStatus()).toBool());
+    int viewType = set.value("MainWindow/View/Type").toInt();
+    SetViewType((ViewType)viewType);
     SetTabPosition(static_cast<QTabWidget::TabPosition>(
                        set.value("MainWindow/View/TabView/Tab/Position",
                                  GetTabPosition()).toInt()));
@@ -95,6 +98,7 @@ int CParameterApp::Save()
 
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
+    set.setValue("MainWindow/View/Type", (int)GetViewType());
     set.setValue("MainWindow/View/TabView/Tab/Position", GetTabPosition());
     set.setValue("MainWindow/View/TabView/Tab/Enable/ToolTip", GetEnableTabToolTip());
     set.setValue("MainWindow/View/TabView/Tab/Enable/Icon", GetEnableTabIcon());
@@ -136,6 +140,20 @@ void CParameterApp::SetSaveMainWindowStatus(bool newSaveMainWindowStatus)
         return;
     m_bSaveMainWindowStatus = newSaveMainWindowStatus;
     emit sigSaveMainWindowStatusChanged();
+}
+
+CParameterApp::ViewType CParameterApp::GetViewType()
+{
+    return m_ViewType;
+}
+
+int CParameterApp::SetViewType(ViewType type)
+{
+    if(m_ViewType == type)
+        return 0;
+    m_ViewType = type;
+    emit sigViewTypeChanged();
+    return 0;
 }
 
 const QTabWidget::TabPosition &CParameterApp::GetTabPosition() const

@@ -39,7 +39,7 @@ jobs:
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     env:
       BUILD_DIR:   ${{github.workspace}}/build
@@ -112,13 +112,17 @@ jobs:
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\pcapplusplus (
-              git clone -b v24.09 https://github.com/seladb/PcapPlusPlus.git
+              git clone --recursive https://github.com/seladb/PcapPlusPlus.git
               cd PcapPlusPlus
+              git checkout -b v24.09 v24.09
               cmake -E make_directory build
               cd build
               cmake .. -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
+                  -A ${{matrix.CMAKE_GENERATOR_PLATFORM}} ^
+                  -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
                   -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
-                  -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap
+                  -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^
+                  -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
               cmake --build . --config ${{matrix.BUILD_TYPE}}
               cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )

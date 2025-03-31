@@ -4,7 +4,6 @@
 #define CVIEW_H
 
 #include <QWidget>
-#include "Connecter.h"
 
 /** 
  *  \~english \defgroup ViewApi The view API
@@ -35,7 +34,8 @@ public:
     //! \note The return QWidget* must is same as CConnecter::GetViewer()
     virtual QWidget* GetCurrentView() = 0;
     virtual int SetCurrentView(QWidget* pView) = 0;
-    virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle, const QIcon& icon, const QString& szToolTip) = 0;
+    virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle,
+                                const QIcon& icon, const QString& szToolTip) = 0;
     virtual int SetFullScreen(bool bFull) = 0;
     virtual QSize GetDesktopSize() = 0;
 
