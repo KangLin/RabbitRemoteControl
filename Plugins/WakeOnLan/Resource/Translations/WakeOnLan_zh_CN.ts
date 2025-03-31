@@ -58,7 +58,7 @@
     <message>
         <location filename="../../ConnecterWakeOnLan.cpp" line="185"/>
         <source>Exit the program</source>
-        <translation type="unfinished"></translation>
+        <translation>退出程序</translation>
     </message>
 </context>
 <context>
