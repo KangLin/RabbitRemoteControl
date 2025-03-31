@@ -267,23 +267,49 @@ Contact me:
 
 - Windows: The extension is .exe
 - Linux:
-  - deb package: for Debian, Ubuntu, etc
-  - rpm package: for RedHat, Fedora, CentOS, etc
-  - AppImage package: for all Linux systems
+  - deb package: The extension is .deb , for Debian, Ubuntu, etc
+
+        # Install package
+        sudo apt install ./rabbitremotecontrol_0.0.33_ubuntu-24.04_amd64.deb
+        # Run
+        rabbitremotecontrol
+        # Or click the desktop icon to run
+
+  - rpm package: The extension is .rpm , for RedHat, Fedora, CentOS, etc
+
+        # Install package
+        dnf install rabbitremotecontrol-0.0.32-1.fc41.aarch64.rpm
+        # Run
+        rabbitremotecontrol
+        # Or click the desktop icon to run
+
+  - AppImage package: The extension is .AppImage , for all Linux systems
+
+        # Set execution permissions
+        chmod a+x RabbitRemoteControl_0.0.33_Linux_x86_64.AppImage
+        # Run
+        ./RabbitRemoteControl_0.0.33_Linux_x86_64.AppImage
+
   - Snap Package: Used on all Linux systems that support Snap.
   Ubuntu uses this installation package by default.
-  - Flatpak Package: For all Linux systems that support Flatpak.
+  - Flatpak Package: The extension is .flatpak , For all Linux systems that support Flatpak.
   Fedora uses this installation package by default.
+
+        # Install package
+        flatpak --user install RabbitRemoteControl_v0.0.33_Linux_x86_64.flatpak
+        # Run
+        flatpak run io.github.KangLin.RabbitRemoteControl
+
 - Android: The extension is .apk
-- Apple OS: RabbitRemoteControl_v0.0.32_macos.zip.
+- Apple OS: RabbitRemoteControl_v0.0.33_macos.zip.
   No tests were carried out as there was no relevant equipment.
   We hope that interested friends will participate in the development and testing.
-- Development documentation: RabbitRemoteControl_v0.0.32_document.zip
+- Development documentation: RabbitRemoteControl_v0.0.33_document.zip
 
 ## [Development](docs/Doxygen/Develop.md)
 
 ### Development documentation online
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.32/English/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.33/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation

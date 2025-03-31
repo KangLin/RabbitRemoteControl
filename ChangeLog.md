@@ -28,6 +28,7 @@
   - Debian: modify control
   - Add rpm package
 - Rename org.Rabbit.RemoteControl to io.github.KangLin.RabbitRemoteControl
+  - Modify .desktop file, icon file name and install script
 - Application: Rename CFrmListConnects to CFrmListRecnetConnects
 
 ### v0.0.32

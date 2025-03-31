@@ -60,15 +60,16 @@ sed -i "s/v[0-9]\+\.[0-9]\+\.[0-9]\+/${VERSION}/g" ${SOURCE_DIR}/README*.md
 
 DEBIAN_VERSION=`echo ${VERSION}|cut -d "v" -f 2`
 sed -i "s/rabbitremotecontrol_[0-9]\+\.[0-9]\+\.[0-9]\+/rabbitremotecontrol_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
+sed -i "s/RabbitRemoteControl_[0-9]\+\.[0-9]\+\.[0-9]\+/RabbitRemoteControl_${DEBIAN_VERSION}/g" ${SOURCE_DIR}/README*.md
 sed -i "s/SET(RabbitRemoteControl_VERSION .*)/SET(RabbitRemoteControl_VERSION \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/SET(RabbitRemoteControlTag .*)/SET(RabbitRemoteControlTag \"${DEBIAN_VERSION}\")/g" ${SOURCE_DIR}/CMakeLists.txt
 sed -i "s/<VERSION>.*</<VERSION>${DEBIAN_VERSION}</g" ${SOURCE_DIR}/Update/update.xml
 sed -i "s/          \"version\":[[:blank:]]*\"v\?[0-9]\+\.[0-9]\+\.[0-9]\+\"/          \"version\":\"${DEBIAN_VERSION}\"/g" ${SOURCE_DIR}/Update/update.json
 sed -i "s/version:.*'[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/snap/snapcraft.yaml
-sed -i "s/Version:.*'[0-9]\+\.[0-9]\+\.[0-9]\+'/Version: '${DEBIAN_VERSION}'/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
+sed -i "s/Version:.*[0-9]\+\.[0-9]\+\.[0-9]\+/Version:        ${DEBIAN_VERSION}/g" ${SOURCE_DIR}/Package/rpm/rabbitremotecontrol.spec
 
-CHANGLOG_TMP=${SOURCE_DIR}/debian/changelog.tmp
-CHANGLOG_FILE=${SOURCE_DIR}/debian/changelog
+CHANGLOG_TMP=${SOURCE_DIR}/Package/debian/changelog.tmp
+CHANGLOG_FILE=${SOURCE_DIR}/Package/debian/changelog
 echo "rabbitremotecontrol (${DEBIAN_VERSION}) unstable; urgency=medium" > ${CHANGLOG_FILE}
 echo "" >> ${CHANGLOG_FILE}
 echo "    * Full Changelog: [${PRE_TAG}..${VERSION}](https://github.com/KangLin/RabbitRemoteControl/compare/${PRE_TAG}..${VERSION})" >> ${CHANGLOG_FILE}

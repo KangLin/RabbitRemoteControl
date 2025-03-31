@@ -51,12 +51,12 @@ jobs:
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       VCPKG_OVERLAY_PORTS: "${{github.workspace}}/${{matrix.VCPKG_OVERLAY_PORTS}}"
-      VCPKG_MANIFEST_FEATURES: "freerdp;vnc"
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: ${{matrix.qt_modules}}
       artifact_name: build_msvc
-      RabbitRemoteControl_VERSION: v0.0.32
+      RabbitRemoteControl_VERSION: v0.0.33
 
     # Map the job outputs to step outputs
     outputs:
