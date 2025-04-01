@@ -250,6 +250,17 @@ Contact me:
 - [Discussions](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors):
   Thank [Contributors](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
+- Maintenance package
+  - Linux
+    - Debian: Need to maintain official packages
+    - rpm: Need to maintain official packages
+    - [x] AppImage
+    - [x] Snap
+    - [x] Flatpak: https://github.com/flathub/io.github.KangLin.RabbitRemoteControl
+  - Windows
+    - Windows store
+  - Macos
+  - Android
 
 ## Download
 

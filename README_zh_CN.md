@@ -38,7 +38,7 @@
 
 能让你在**任何地方**使用**任何设备和系统**通过**任意方式**远程管理**任意设备和系统**。
 
-它包括远程桌面、远程控制、远程终端、播放器等功能。
+它包括远程桌面、远程控制、远程终端、播放器、网络工具等功能。
 
 ### 截屏
 
@@ -248,7 +248,18 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 - [讨论](https://github.com/KangLin/RabbitRemoteControl/discussions)
 - [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors):
   感谢[贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
-
+- 维护打包
+  - Linux
+    - Debian: 需要维护官方包
+    - rpm: 需要维护官方包
+    - [x] AppImage
+    - [x] Snap
+    - [x] Flatpak: https://github.com/flathub/io.github.KangLin.RabbitRemoteControl
+  - Windows
+    - Windows 应用商店
+  - Macos
+  - Android
+  
 ## 下载
 
 - [修改日志](ChangeLog_zh_CN.md)
