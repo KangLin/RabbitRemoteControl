@@ -55,7 +55,7 @@ private Q_SLOTS:
     void slotConnect();
     void slotConnected();
 private:
-    int Connect(CConnecter* p, bool set, QString szFile = QString());
+    int Connect(CConnecter* c, bool set, QString szFile = QString());
     int LoadConnectLasterClose();
     int SaveConnectLasterClose();
 public:
@@ -152,6 +152,11 @@ private Q_SLOTS:
 
 private Q_SLOTS:
     void slotCurrentViewChanged(const QWidget* pView);
+
+    void slotViewerFocusIn(QWidget* pView);
+private:
+    void SetView(CView* pView);
+
     ///////// Recent open ///////// 
 private:
     RabbitCommon::CRecentMenu* m_pRecentMenu;

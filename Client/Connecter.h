@@ -203,6 +203,12 @@ Q_SIGNALS:
      */
     void sigDisconnected();
     /*!
+     * \~chinese 视图获得焦点
+     * \~english The view is focus
+     * \param pView
+     */
+    void sigViewerFocusIn(QWidget* pView);
+    /*!
      * \~chinese \note 名称更新。此信号仅由本类触发
      * \~english \note The name is changed. This signal is only triggered by this class
      */

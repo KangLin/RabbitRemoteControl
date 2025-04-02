@@ -145,9 +145,19 @@ Q_SIGNALS:
     // Please use CConnecter::sigServerName
     void sigServerName(const QString &szName);
 
+    /*!
+     * \~chinese 视图获得焦点
+     * \~english The view is focus
+     * \param pView
+     */
+    void sigViewerFocusIn(QWidget* pView);
+
     // QWidget interface
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
+
+    virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
 
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;

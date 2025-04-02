@@ -248,6 +248,45 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::slotViewerFocusIn(QWidget *pView)
+{
+    CConnecter* c = (CConnecter*)sender();
+    qDebug(log) << "Focus:" << sender() << pView;
+    if(c && m_pView) {
+        m_pView->SetCurrentView(c->GetViewer());
+    }
+}
+
+void MainWindow::SetView(CView* pView)
+{
+    qDebug(log) << Q_FUNC_INFO;
+    if(!pView)
+        return;
+    if(m_pView)
+        m_pView->disconnect();
+
+    m_pView = pView;
+    setCentralWidget(m_pView);
+
+    bool check = false;
+    m_pView->setFocusPolicy(Qt::NoFocus);
+    check = connect(m_pView, SIGNAL(sigCloseView(const QWidget*)),
+                    this, SLOT(slotCloseView(const QWidget*)));
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(sigCurrentChanged(const QWidget*)),
+                    this, SLOT(slotCurrentViewChanged(const QWidget*)));
+    Q_ASSERT(check);
+    check = connect(m_pView, SIGNAL(customContextMenuRequested(const QPoint&)),
+                    this, SLOT(slotCustomContextMenuRequested(const QPoint&)));
+    Q_ASSERT(check);
+
+    foreach (auto c, m_Connecters) {
+        m_pView->AddView(c->GetViewer());
+        m_pView->SetWidowsTitle(
+            c->GetViewer(), c->Name(), c->Icon(), c->Description());
+    }
+}
+
 void MainWindow::on_actionAbout_triggered()
 {
 #ifdef HAVE_ABOUT
@@ -560,45 +599,45 @@ void MainWindow::slotConnect()
  *            if is empty. the use default configure file.
  * \return 
  */
-int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
+int MainWindow::Connect(CConnecter *c, bool set, QString szFile)
 {
     qDebug(log) << "MainWindow::Connect: set:" << set << "; File:" << szFile;
     bool bSave = false; //whether is save configure file
-    Q_ASSERT(p);
-    bool check = connect(p, SIGNAL(sigConnected()),
+    Q_ASSERT(c);
+    bool check = connect(c, SIGNAL(sigConnected()),
                          this, SLOT(slotConnected()));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigDisconnect()),
+    check = connect(c, SIGNAL(sigDisconnect()),
                     this, SLOT(slotDisconnect()));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigDisconnected()),
+    check = connect(c, SIGNAL(sigDisconnected()),
                     this, SLOT(slotDisconnected()));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigError(const int, const QString &)),
+    check = connect(c, SIGNAL(sigError(const int, const QString &)),
                     this, SLOT(slotError(const int, const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigShowMessageBox(const QString&, const QString&,
+    check = connect(c, SIGNAL(sigShowMessageBox(const QString&, const QString&,
                                                 const QMessageBox::Icon&)),
                     this, SLOT(slotShowMessageBox(const QString&, const QString&,
                                             const QMessageBox::Icon&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigInformation(const QString&)),
+    check = connect(c, SIGNAL(sigInformation(const QString&)),
                     this, SLOT(slotInformation(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigUpdateName(const QString&)),
+    check = connect(c, SIGNAL(sigUpdateName(const QString&)),
                     this, SLOT(slotUpdateName(const QString&)));
     Q_ASSERT(check);
-    check = connect(p, SIGNAL(sigUpdateParameters(CConnecter*)),
+    check = connect(c, SIGNAL(sigUpdateParameters(CConnecter*)),
                     this, SLOT(slotUpdateParameters(CConnecter*)));
     Q_ASSERT(check);
 
     if(set)
     {
-        int nRet = p->OpenDialogSettings(this);
+        int nRet = c->OpenDialogSettings(this);
         switch(nRet)
         {
         case QDialog::Rejected:
-            m_Client.DeleteConnecter(p);
+            m_Client.DeleteConnecter(c);
             return 0;
         case QDialog::Accepted:
             bSave = true;
@@ -607,34 +646,38 @@ int MainWindow::Connect(CConnecter *p, bool set, QString szFile)
     }
 
     if(szFile.isEmpty())
-        szFile = p->GetSettingsFile();
+        szFile = c->GetSettingsFile();
     else
-        p->SetSettingsFile(szFile);
+        c->SetSettingsFile(szFile);
 
     int nRet = 0;
     if(bSave)
-        nRet = m_Client.SaveConnecter(p);
+        nRet = m_Client.SaveConnecter(c);
     if(0 == nRet)
-        m_pRecentMenu->addRecentFile(szFile, p->Name());
+        m_pRecentMenu->addRecentFile(szFile, c->Name());
 
-    if(!p->Name().isEmpty())
-        slotInformation(tr("Connecting to ") + p->Name());
+    if(!c->Name().isEmpty())
+        slotInformation(tr("Connecting to ") + c->Name());
 
     //* Show view. \see: slotConnected()
-    if(-1 < m_Connecters.indexOf(p)) {
-        m_pView->SetCurrentView(p->GetViewer());
+    if(-1 < m_Connecters.indexOf(c)) {
+        if(m_pView)
+            m_pView->SetCurrentView(c->GetViewer());
         return 0;
     }
     if(m_pView)
     {
-        m_pView->AddView(p->GetViewer());
-        m_pView->SetWidowsTitle(p->GetViewer(), p->Name(), p->Icon(), p->Description());
+        m_pView->AddView(c->GetViewer());
+        m_pView->SetWidowsTitle(c->GetViewer(), c->Name(), c->Icon(), c->Description());
         //qDebug(log) << "View:" << p->GetViewer();
+        check = connect(c, SIGNAL(sigViewerFocusIn(QWidget*)),
+                        this, SLOT(slotViewerFocusIn(QWidget*)));
+        Q_ASSERT(check);
     }
-    m_Connecters.push_back(p);
+    m_Connecters.push_back(c);
     //*/
 
-    p->Connect();
+    c->Connect();
 
     return 0;
 }

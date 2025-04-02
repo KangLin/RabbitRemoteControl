@@ -49,7 +49,7 @@ CConnectDesktop::CConnectDesktop(CConnecter *pConnecter, bool bDirectConnection)
         if(pScroll) {
             CFrmViewer* pView = pScroll->GetViewer();
             if(pView)
-                SetViewer(pView, bDirectConnection);
+                SetViewer(pView, pConnecter, bDirectConnection);
             else {
                 QString szErr = pConnecter->metaObject()->className();
                 szErr += "::GetViewer() is not CFrmViewer";
@@ -151,7 +151,8 @@ int CConnectDesktop::SetConnecter(CConnecter* pConnecter)
     return 0;
 }
 
-int CConnectDesktop::SetViewer(CFrmViewer *pView, bool bDirectConnection)
+int CConnectDesktop::SetViewer(CFrmViewer *pView,
+                               CConnecter* pConnecter, bool bDirectConnection)
 {
     Q_ASSERT(pView);
     if(!pView) return -1;
@@ -181,6 +182,7 @@ int CConnectDesktop::SetViewer(CFrmViewer *pView, bool bDirectConnection)
     check = connect(this, SIGNAL(sigUpdateLedState(unsigned int)),
                     pView, SLOT(slotUpdateLedState(unsigned int)));
     Q_ASSERT(check);
+    
 #if HAVE_QT6_RECORD
     check = connect(this, SIGNAL(sigRecordVideo(bool)),
                     pView, SLOT(slotRecordVideo(bool)));

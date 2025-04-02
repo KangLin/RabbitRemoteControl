@@ -533,3 +533,14 @@ void CFrmViewer::slotRecordVideo(bool bRecord)
 {
     m_bRecordVideo = bRecord;
 }
+
+void CFrmViewer::focusInEvent(QFocusEvent *event)
+{
+    qDebug(log) << Q_FUNC_INFO << event << this;
+    emit sigViewerFocusIn(this);
+}
+
+void CFrmViewer::focusOutEvent(QFocusEvent *event)
+{
+    qDebug(log) << Q_FUNC_INFO << event << this;
+}

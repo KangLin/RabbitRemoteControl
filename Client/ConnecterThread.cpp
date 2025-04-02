@@ -42,6 +42,7 @@ int CConnecterThread::Initial()
 {
     qDebug(log) << Q_FUNC_INFO;
     int nRet = 0;
+    bool check = false;
 
     nRet = CConnecterConnect::Initial();
     if(nRet)
@@ -50,6 +51,10 @@ int CConnecterThread::Initial()
     Q_ASSERT(!(m_pFrmViewer && m_pScroll));
     m_pFrmViewer = new CFrmViewer();
     m_pScroll = new CFrmScroll(m_pFrmViewer);
+
+    check = connect(m_pFrmViewer, SIGNAL(sigViewerFocusIn(QWidget*)),
+                    this, SIGNAL(sigViewerFocusIn(QWidget*)));
+    Q_ASSERT(check);
 
     nRet = InitialMenu();
 
