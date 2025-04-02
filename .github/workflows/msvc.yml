@@ -39,7 +39,7 @@ jobs:
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
     # See: [Choosing the runner for a job](https://docs.github.com/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     # See: https://github.com/actions/runner-images/
-    runs-on: windows-2022
+    runs-on: windows-latest
 
     env:
       BUILD_DIR:   ${{github.workspace}}/build
@@ -122,7 +122,8 @@ jobs:
                   -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
                   -DCMAKE_INSTALL_PREFIX="${{env.INSTALL_DIR}}" ^
                   -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^
-                  -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
+                  -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" ^
+                  -DCMAKE_POLICY_VERSION_MINIMUM=3.5
               cmake --build . --config ${{matrix.BUILD_TYPE}}
               cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -193,7 +194,8 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/RabbitVNC/vcpkg_installed ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON ^
                 -DBUILD_VIEWER=OFF ^
-                -DBUILD_TESTS=OFF
+                -DBUILD_TESTS=OFF ^
+                -DCMAKE_POLICY_VERSION_MINIMUM=3.5
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -221,7 +223,8 @@ jobs:
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON ^
                 -DBUILD_VIEWER=OFF ^
-                -DBUILD_TESTS=OFF
+                -DBUILD_TESTS=OFF ^
+                -DCMAKE_POLICY_VERSION_MINIMUM=3.5
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )
@@ -249,7 +252,8 @@ jobs:
                 -DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON ^
                 -DWITH_EXAMPLES=OFF ^
-                -DWITH_TESTS=OFF
+                -DWITH_TESTS=OFF ^
+                -DCMAKE_POLICY_VERSION_MINIMUM=3.5
             cmake --build . --config ${{matrix.BUILD_TYPE}}
             cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
           )

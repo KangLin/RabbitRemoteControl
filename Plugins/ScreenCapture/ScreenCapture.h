@@ -51,6 +51,9 @@ private:
     QImageCapture m_ImageCapture;
     QString m_szRecordFile;
 
+    // QObject interface
+public:
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif // SCREENCAPTURE_H

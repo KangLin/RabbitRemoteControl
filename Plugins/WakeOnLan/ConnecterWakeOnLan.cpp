@@ -47,6 +47,9 @@ int CConnecterWakeOnLan::Initial()
     m_pView = new CFrmWakeOnLan(m_pModel);
     if(!m_pView) return -2;
     m_pView->setWindowTitle(plugin->Name());
+    check = connect(m_pView, SIGNAL(sigViewerFocusIn(QWidget*)),
+                    this, SIGNAL(sigViewerFocusIn(QWidget*)));
+    Q_ASSERT(check);
     check = connect(m_pView, &CFrmWakeOnLan::customContextMenuRequested,
                     this, [&](const QPoint &pos){
                         m_Menu.exec(m_pView->mapToGlobal(pos));

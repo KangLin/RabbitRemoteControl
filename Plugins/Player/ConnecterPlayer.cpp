@@ -31,7 +31,15 @@ int CConnecterPlayer::Initial()
 
     nRet = SetParameter(&m_Parameters);
     if(nRet) return nRet;
+
+    bool check = false;
+#if HAVE_QVideoWidget
+    check = connect(&m_Player, SIGNAL(sigViewerFocusIn(QWidget*)),
+                    this, SIGNAL(sigViewerFocusIn(QWidget*)));
+    Q_ASSERT(check);
+#endif
     nRet = CConnecterThread::Initial();
+
     return nRet;
 }
 

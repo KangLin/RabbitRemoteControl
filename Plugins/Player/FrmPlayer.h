@@ -39,9 +39,17 @@ public Q_SLOTS:
     void slotPositionChanged(qint64 pos, qint64 duration);
 Q_SIGNALS:
     void sigChangePosition(qint64 pos);
+    /*!
+     * \~chinese 视图获得焦点
+     * \~english The view is focus
+     * \param pView
+     */
+    void sigViewerFocusIn(QWidget* pView);
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
 
 private Q_SLOTS:
     void slotAudioMuted(bool bMuted);

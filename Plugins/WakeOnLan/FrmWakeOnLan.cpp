@@ -13,6 +13,7 @@ CFrmWakeOnLan::CFrmWakeOnLan(CWakeOnLanModel *pModel, QWidget *parent)
     ui->setupUi(this);
     ui->tableView->setModel(pModel);
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
+    ui->tableView->installEventFilter(this);
     check = connect(ui->tableView,
                     SIGNAL(customContextMenuRequested(const QPoint&)),
                     this, SIGNAL(customContextMenuRequested(const QPoint&)));
@@ -88,4 +89,22 @@ QModelIndex CFrmWakeOnLan::GetCurrentIndex()
 QModelIndexList CFrmWakeOnLan::GetSelect()
 {
     return ui->tableView->selectionModel()->selectedRows();
+}
+
+bool CFrmWakeOnLan::eventFilter(QObject *watched, QEvent *event)
+{
+    if(ui->tableView == watched)
+    {
+        switch(event->type()){
+        case QEvent::FocusIn:
+        {
+            //qDebug(log) << Q_FUNC_INFO << event;
+            emit sigViewerFocusIn(this);
+            return false;
+        }
+        default:
+            return false;
+        }
+    }
+    return false;
 }

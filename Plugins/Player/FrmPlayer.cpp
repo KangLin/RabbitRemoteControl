@@ -31,6 +31,8 @@ CFrmPlayer::CFrmPlayer(QWidget *parent) : QWidget(parent)
 
     qDebug(log) << Q_FUNC_INFO;
 
+    setFocusPolicy(Qt::WheelFocus);
+    m_VideoWidget.setFocusPolicy(Qt::WheelFocus);
     m_VideoWidget.installEventFilter(this);
 
     m_paStart = m_ToolBar.addAction(
@@ -201,6 +203,17 @@ void CFrmPlayer::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
 }
 
+void CFrmPlayer::focusInEvent(QFocusEvent *event)
+{
+    qDebug(log) << Q_FUNC_INFO << event << this;
+    emit sigViewerFocusIn(this);
+}
+
+void CFrmPlayer::focusOutEvent(QFocusEvent *event)
+{
+    qDebug(log) << Q_FUNC_INFO << event << this;
+}
+
 int CFrmPlayer::AdjustCompone(const QSize &s)
 {
     m_VideoWidget.move(0, 0);
@@ -284,6 +297,12 @@ bool CFrmPlayer::eventFilter(QObject *watched, QEvent *event)
                 break;
             }
             break;
+        }
+        case QEvent::FocusIn:
+        {
+            //qDebug(log) << Q_FUNC_INFO << event;
+            emit sigViewerFocusIn(this);
+            return false;
         }
         default:
             return false;

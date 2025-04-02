@@ -28,12 +28,19 @@ qint16 CScreenCapture::Version()
 
 int CScreenCapture::Initial()
 {
+    bool check = false;
     qDebug(log) << Q_FUNC_INFO;
     Q_ASSERT(!m_pWidget);
     m_pWidget = new QVideoWidget();
+    if(!m_pWidget) {
+        qCritical(log) << "new QVideoWidget() fail";
+        return -1;
+    }
+    m_pWidget->setFocusPolicy(Qt::WheelFocus);
+    m_pWidget->installEventFilter(this);
+
     int nRet = SetParameter(&m_Parameter);
     if(nRet) return nRet;
-    bool check = false;
 
     CPluginClient* plugin = GetPlugClient();
     QString szTitle(plugin->DisplayName());
@@ -235,4 +242,23 @@ int CScreenCapture::slotStop()
         m_Recorder.stop();
 
     return 0;
+}
+
+bool CScreenCapture::eventFilter(QObject *watched, QEvent *event)
+{
+    //qDebug(log) << Q_FUNC_INFO << event;
+    if(m_pWidget == watched)
+    {
+        switch(event->type()){
+        case QEvent::FocusIn:
+        {
+            qDebug(log) << Q_FUNC_INFO << event;
+            emit sigViewerFocusIn(m_pWidget);
+            break;
+        }
+        default:
+            break;
+        }
+    }
+    return false;
 }
