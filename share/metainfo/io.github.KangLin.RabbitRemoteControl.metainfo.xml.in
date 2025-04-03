@@ -4,31 +4,31 @@
   <launchable type="desktop-id">io.github.KangLin.RabbitRemoteControl.desktop</launchable>
 
   <name>Rabbit remote control</name>
-  <name xml:lang="zh-Hans">玉兔远程控制</name>
-  <name xml:lang="zh-Hant">玉兔遠程控製</name>
+  <name xml:lang="zh_CN">玉兔远程控制</name>
+  <name xml:lang="zh_TW">玉兔遠程控製</name>
 
   <summary>Remote control software</summary>
-  <summary xml:lang="zh-Hans">远程控制软件</summary>
-  <summary xml:lang="zh-Hant">遠程控製軟件</summary>
+  <summary xml:lang="zh_CN">远程控制软件</summary>
+  <summary xml:lang="zh_TW">遠程控製軟件</summary>
 
   <description>
     <p>Rabbit remote control is a open-source, cross-platform, multi-protocol remote control software.</p>
     <p><em>Allows you to use any device and system in anywhere and remotely manage any device and system in any way. </em></p>
     <p>It include remote desktop, remote control, remote terminal, player, network tools etc functions.</p>
 
-    <p xml:lang="zh-Hans">玉兔远程控制是一个开源、跨平台、多协议的远程控制软件。</p>
-    <p xml:lang="zh-Hans">能让你在<em>任何地方</em>使用<em>任何设备和系统</em>通过<em>任意方式</em>远程管理任意<em>设备和系统</em>。</p>
-    <p xml:lang="zh-Hans">它包括远程桌面、远程控制、远程终端、播放器、网络工具等功能。</p>
+    <p xml:lang="zh_CN">玉兔远程控制是一个开源、跨平台、多协议的远程控制软件。</p>
+    <p xml:lang="zh_CN">能让你在<em>任何地方</em>使用<em>任何设备和系统</em>通过<em>任意方式</em>远程管理任意<em>设备和系统</em>。</p>
+    <p xml:lang="zh_CN">它包括远程桌面、远程控制、远程终端、播放器、网络工具等功能。</p>
 
-    <p xml:lang="zh-Hant">玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件。</p>
-    <p xml:lang="zh-Hant">能讓你在<em>任何地方</em>使用<em>任何設備和系統</em>通過<em>任意方式</em>遠程管理任意<em>設備和系統</em>。</p>
-    <p xml:lang="zh-Hant">它包括遠程桌面、遠程控製、遠程終端、播放器、網絡工具等功能。</p>
+    <p xml:lang="zh_TW">玉兔遠程控製是一個開源、跨平臺、多協議的遠程控製軟件。</p>
+    <p xml:lang="zh_TW">能讓你在<em>任何地方</em>使用<em>任何設備和系統</em>通過<em>任意方式</em>遠程管理任意<em>設備和系統</em>。</p>
+    <p xml:lang="zh_TW">它包括遠程桌面、遠程控製、遠程終端、播放器、網絡工具等功能。</p>
   </description>
 
   <developer id="io.github.KangLin">
     <name>KangLin</name>
-    <name xml:lang="zh-Hans">康林</name>
-    <name xml:lang="zh-Hant">康林</name>
+    <name xml:lang="zh_CN">康林</name>
+    <name xml:lang="zh_TW">康林</name>
   </developer>
 
   <metadata_license>CC0-1.0</metadata_license>
@@ -51,34 +51,34 @@
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/MainWindows_en.png</image>
       <caption>Main Interface</caption>
-      <image xml:lang="zh-Hans">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/MainWindows.png</image>
-      <caption xml:lang="zh-Hans">主界面</caption>
-      <image xml:lang="zh-Hant">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/MainWindows.png</image>
-      <caption xml:lang="zh-Hant">主界面</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/MainWindows.png</image>
+      <caption xml:lang="zh_CN">主界面</caption>
+      <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/MainWindows.png</image>
+      <caption xml:lang="zh_TW">主界面</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work_en.png</image>
       <caption>Work Interface</caption>
-      <image xml:lang="zh-Hans">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
-      <caption xml:lang="zh-Hans">工作界面</caption>
-      <image xml:lang="zh-Hant">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
-      <caption xml:lang="zh-Hant">工作界面</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
+      <caption xml:lang="zh_CN">工作界面</caption>
+      <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Work.png</image>
+      <caption xml:lang="zh_TW">工作界面</caption>
     </screenshot>
     <screenshot>  
       <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Connect_en.png</image>
       <caption>Connect</caption>
-      <image xml:lang="zh-Hans">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Connect.png</image>
-      <caption xml:lang="zh-Hans">连接</caption>
-      <image xml:lang="zh-Hant">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Connect.png</image>
-      <caption xml:lang="zh-Hant">連接</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Connect.png</image>
+      <caption xml:lang="zh_CN">连接</caption>
+      <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/Connect.png</image>
+      <caption xml:lang="zh_TW">連接</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/RecentMenu_en.png</image>
       <caption>Recent connect menu</caption>
-      <image xml:lang="zh-Hans">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/RecentMenu.png</image>
-      <caption xml:lang="zh-Hans">最近连接</caption>
-      <image xml:lang="zh-Hant">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/RecentMenu.png</image>
-      <caption xml:lang="zh-Hant">最近連接</caption>
+      <image xml:lang="zh_CN">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/RecentMenu.png</image>
+      <caption xml:lang="zh_CN">最近连接</caption>
+      <image xml:lang="zh_TW">https://raw.githubusercontent.com/KangLin/RabbitRemoteControl/refs/heads/master/docs/Image/Screenshot/RecentMenu.png</image>
+      <caption xml:lang="zh_TW">最近連接</caption>
     </screenshot>
   </screenshots>
 
