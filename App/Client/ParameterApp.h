@@ -152,6 +152,18 @@ public:
 private:
     bool m_bMessageBoxDisplayInfomation;
     Q_PROPERTY(bool MessageBoxDisplyInformtion READ GetMessageBoxDisplayInformation WRITE SetMessageBoxDisplayInformation)
+
+public:
+    const bool GetDockListConnectersShowToolBar() const;
+    void SetDockListConnectersShowToolBar(bool bEnable);
+private:
+    bool m_bDockListConnectersShowToolBar;
+
+public:
+    const bool GetDockListRecentShowToolBar() const;
+    void SetDockListRecentShowToolBar(bool bEnable);
+private:
+    bool m_bDockListRecentShowToolBar;
 };
 
 #endif // CPARAMETERAPP_H

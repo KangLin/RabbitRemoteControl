@@ -1,14 +1,17 @@
 #include "FrmListRecentConnects.h"
 #include "RabbitCommonDir.h"
-#include <QGridLayout>
+#include <QVBoxLayout>
 #include <QDateTime>
 #include <QStandardItem>
 #include <QDir>
 #include <QHeaderView>
 #include <QMenu>
 
-CFrmListRecentConnects::CFrmListRecentConnects(CClient* pClient, bool bDock, QWidget *parent) :
+CFrmListRecentConnects::CFrmListRecentConnects(
+    CClient* pClient,
+    CParameterApp &parameterApp, bool bDock, QWidget *parent) :
     QWidget(parent),
+    m_ParameterApp(parameterApp),
     m_pToolBar(nullptr),
     m_ptbConnect(nullptr),
     m_pMenuNew(nullptr),
@@ -20,10 +23,11 @@ CFrmListRecentConnects::CFrmListRecentConnects(CClient* pClient, bool bDock, QWi
 {
     setFocusPolicy(Qt::NoFocus);
     setAttribute(Qt::WA_DeleteOnClose);
-    setLayout(new QGridLayout(this));
+    setLayout(new QVBoxLayout(this));
     setWindowTitle(tr("List recent connections"));
 
     m_pToolBar = new QToolBar(this);
+    m_pToolBar->setVisible(m_ParameterApp.GetDockListRecentShowToolBar());
     m_pConnect = m_pToolBar->addAction(
         QIcon::fromTheme("network-wired"), tr("Connect"),
         this, SLOT(slotConnect()));
@@ -107,6 +111,17 @@ CFrmListRecentConnects::CFrmListRecentConnects(CClient* pClient, bool bDock, QWi
         pMenu->addAction(m_pDelete);
         pMenu->addAction(m_pDetail);
         pMenu->addAction(m_pRefresh);
+        pMenu->addSeparator();
+        auto pShowToolBar = pMenu->addAction(tr("Show tool bar"), this, [&](){
+            QAction* a = (QAction*)sender();
+            if(a) {
+                m_pToolBar->setVisible(a->isChecked());
+                m_ParameterApp.SetDockListRecentShowToolBar(a->isChecked());
+                m_ParameterApp.Save();
+            }
+        });
+        pShowToolBar->setCheckable(true);
+        pShowToolBar->setChecked(m_ParameterApp.GetDockListRecentShowToolBar());
     }
 
     Q_ASSERT(m_pClient);
@@ -119,7 +134,7 @@ CFrmListRecentConnects::CFrmListRecentConnects(CClient* pClient, bool bDock, QWi
     check = connect(m_pTableView, SIGNAL(doubleClicked(const QModelIndex &)),
                     this, SLOT(slotDoubleClicked(const QModelIndex&)));
     Q_ASSERT(check);
-    layout()->addWidget(m_pTableView);;
+    layout()->addWidget(m_pTableView);
 
     m_pModel = new QStandardItemModel(m_pTableView);
     m_pTableView->setModel(m_pModel);

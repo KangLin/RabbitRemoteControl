@@ -17,6 +17,7 @@
 #include "RabbitRecentMenu.h"
 #include "ParameterApp.h"
 #include "FavoriteView.h"
+#include "FrmConnecters.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -121,7 +122,7 @@ protected:
     virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
 
-    ///////// UI ///////// 
+    ///////// UI /////////
 private:
     Ui::MainWindow *ui;
     CView* m_pView;
@@ -134,12 +135,13 @@ private Q_SLOTS:
     void on_actionToolBar_T_toggled(bool checked);
     void on_actionStatus_bar_S_toggled(bool checked);
 
-    ///////// Full screen ///////// 
+    ///////// Full screen /////////
 private:
     struct _FullState {
         bool statusbar;
         bool toolBar;
         bool menubar;
+        bool dockListRecentConnects;
         bool dockListConnects;
         bool dockFavorite;
         bool dockDebugLog;
@@ -150,23 +152,29 @@ private:
 private Q_SLOTS:
     void on_actionFull_screen_F_triggered();
 
+    ///////// View /////////
 private Q_SLOTS:
     void slotCurrentViewChanged(const QWidget* pView);
     void slotViewerFocusIn(QWidget* pView);
+    void slotConnecterChanged(CConnecter* c);
     void on_actionViewTab_triggered();
     void on_actionViewSplitter_triggered();
 private:
     void SetView(CView* pView);
 
-    ///////// Recent open ///////// 
+    ///////// Recent open /////////
 private:
     RabbitCommon::CRecentMenu* m_pRecentMenu;
 
     ///////// List connects /////////
 private:
-    QDockWidget* m_pDockListConnects;
+    QDockWidget* m_pDockListRecentConnects;
 private Q_SLOTS:
     void on_actionOpenListRecentConnections_triggered();
+    
+private:
+    QDockWidget* m_pDockListConnecters;
+    CFrmConnecters* m_pFrmConnecters;
 
     ///////// Favorite //////////
 private:

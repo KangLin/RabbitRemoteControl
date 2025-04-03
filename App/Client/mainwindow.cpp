@@ -51,7 +51,9 @@ static Q_LOGGING_CATEGORY(logRecord, "App.MainWindow.Record")
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
     m_pActionConnecterMenu(nullptr),
-    m_pDockListConnects(nullptr),
+    m_pDockListRecentConnects(nullptr),
+    m_pDockListConnecters(nullptr),
+    m_pFrmConnecters(nullptr),
     m_pSignalStatus(nullptr),
     ui(new Ui::MainWindow),
     m_pView(nullptr),
@@ -67,52 +69,6 @@ MainWindow::MainWindow(QWidget *parent)
     setFocusPolicy(Qt::NoFocus);
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     setAcceptDrops(true);
-
-    m_pDockFavorite = new QDockWidget(this);
-    if(m_pDockFavorite)
-    {
-        m_pFavoriteView = new CFavoriteView(m_pDockFavorite);
-        if(m_pFavoriteView)
-        {
-            m_pDockFavorite->setTitleBarWidget(m_pFavoriteView->m_pDockTitleBar);
-            check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
-                            this, SLOT(slotOpenFile(const QString&, bool)));
-            Q_ASSERT(check);
-            check = connect(m_pFavoriteView, SIGNAL(sigFavorite()),
-                            this, SLOT(on_actionAdd_to_favorite_triggered()));
-            Q_ASSERT(check);
-            check = connect(&m_Parameter, SIGNAL(sigFavoriteEditChanged(bool)),
-                            m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
-            Q_ASSERT(check);
-            m_pDockFavorite->setWidget(m_pFavoriteView);
-            m_pDockFavorite->setWindowTitle(m_pFavoriteView->windowTitle());
-        }
-        // Must set ObjectName then restore it. See: saveState help document
-        m_pDockFavorite->setObjectName("dockFavorite");
-        //m_pDockFavorite->hide();
-        ui->menuView->addAction(m_pDockFavorite->toggleViewAction());
-        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockFavorite);
-    }
-
-    m_pDockListConnects = new QDockWidget(this);
-    if(m_pDockListConnects)
-    {
-        CFrmListRecentConnects* pListConnects = new CFrmListRecentConnects(&m_Client, true, m_pDockListConnects);
-        if(pListConnects) {
-            if(pListConnects->m_pDockTitleBar)
-                m_pDockListConnects->setTitleBarWidget(pListConnects->m_pDockTitleBar);
-            check = connect(pListConnects, SIGNAL(sigConnect(const QString&, bool)),
-                            this, SLOT(slotOpenFile(const QString&, bool)));
-            Q_ASSERT(check);
-            m_pDockListConnects->setWidget(pListConnects);
-            m_pDockListConnects->setWindowTitle(pListConnects->windowTitle());
-        }
-        // Must set ObjectName then restore it. See: saveState help document
-        m_pDockListConnects->setObjectName("dockListRecentConnects");
-        //m_pDockListConnects->hide();
-        ui->menuView->addAction(m_pDockListConnects->toggleViewAction());
-        tabifyDockWidget(m_pDockFavorite, m_pDockListConnects);
-    }
 
     RabbitCommon::CTools::AddStyleMenu(ui->menuTools);
     ui->menuTools->addMenu(RabbitCommon::CTools::GetLogMenu(this));
@@ -177,6 +133,81 @@ MainWindow::MainWindow(QWidget *parent)
                     this, SLOT(slotUpdateName()));
     Q_ASSERT(check);
     m_Parameter.Load();
+
+    m_pDockFavorite = new QDockWidget(this);
+    if(m_pDockFavorite)
+    {
+        m_pFavoriteView = new CFavoriteView(m_pDockFavorite);
+        if(m_pFavoriteView)
+        {
+            m_pDockFavorite->setTitleBarWidget(m_pFavoriteView->m_pDockTitleBar);
+            check = connect(m_pFavoriteView, SIGNAL(sigConnect(const QString&, bool)),
+                            this, SLOT(slotOpenFile(const QString&, bool)));
+            Q_ASSERT(check);
+            check = connect(m_pFavoriteView, SIGNAL(sigFavorite()),
+                            this, SLOT(on_actionAdd_to_favorite_triggered()));
+            Q_ASSERT(check);
+            check = connect(&m_Parameter, SIGNAL(sigFavoriteEditChanged(bool)),
+                            m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
+            Q_ASSERT(check);
+            m_pDockFavorite->setWidget(m_pFavoriteView);
+            m_pDockFavorite->setWindowTitle(m_pFavoriteView->windowTitle());
+        }
+        // Must set ObjectName then restore it. See: saveState help document
+        m_pDockFavorite->setObjectName("dockFavorite");
+        //m_pDockFavorite->hide();
+        ui->menuView->addAction(m_pDockFavorite->toggleViewAction());
+        addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockFavorite);
+    }
+
+    m_pDockListRecentConnects = new QDockWidget(this);
+    if(m_pDockListRecentConnects)
+    {
+        CFrmListRecentConnects* pListRecentConnects
+            = new CFrmListRecentConnects(
+                &m_Client, m_Parameter, true, m_pDockListRecentConnects);
+        if(pListRecentConnects) {
+            if(pListRecentConnects->m_pDockTitleBar)
+                m_pDockListRecentConnects->setTitleBarWidget(
+                    pListRecentConnects->m_pDockTitleBar);
+            check = connect(pListRecentConnects,
+                            SIGNAL(sigConnect(const QString&, bool)),
+                            this, SLOT(slotOpenFile(const QString&, bool)));
+            Q_ASSERT(check);
+            m_pDockListRecentConnects->setWidget(pListRecentConnects);
+            m_pDockListRecentConnects->setWindowTitle(
+                pListRecentConnects->windowTitle());
+        }
+        // Must set ObjectName then restore it. See: saveState help document
+        m_pDockListRecentConnects->setObjectName("dockListRecentConnects");
+        m_pDockListRecentConnects->hide();
+        ui->menuView->addAction(m_pDockListRecentConnects->toggleViewAction());
+        tabifyDockWidget(m_pDockFavorite, m_pDockListRecentConnects);
+    }
+
+    m_pDockListConnecters = new QDockWidget(this);
+    if(m_pDockListConnecters)
+    {
+        m_pFrmConnecters = new CFrmConnecters(
+            m_Connecters, m_Parameter,
+            ui->menuConnect_C, ui->actionDisconnect_D,
+            m_pRecentMenu, m_pDockListConnecters);
+        if(m_pFrmConnecters) {
+            m_pDockListConnecters->setWidget(m_pFrmConnecters);
+            if(m_pFrmConnecters->m_pDockTitleBar)
+                m_pDockListConnecters->setTitleBarWidget(
+                    m_pFrmConnecters->m_pDockTitleBar);
+            m_pDockListConnecters->setWindowTitle(m_pFrmConnecters->windowTitle());
+            check = connect(m_pFrmConnecters, SIGNAL(sigConnecterChanged(CConnecter*)),
+                            this, SLOT(slotConnecterChanged(CConnecter*)));
+            Q_ASSERT(check);
+        }
+        m_pDockListConnecters->setObjectName("dockListConnects");
+        //m_pDockListConnecters->hide();
+        ui->menuView->addAction(m_pDockListConnecters->toggleViewAction());
+        tabifyDockWidget(m_pDockFavorite, m_pDockListConnecters);
+    }
+
     slotShortCut();
 #ifdef HAVE_ICE
     if(CICE::Instance()->GetSignal())
@@ -255,15 +286,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::slotViewerFocusIn(QWidget *pView)
-{
-    CConnecter* c = (CConnecter*)sender();
-    qDebug(log) << "Focus:" << sender() << pView;
-    if(c && m_pView) {
-        m_pView->SetCurrentView(c->GetViewer());
-    }
-}
-
 void MainWindow::SetView(CView* pView)
 {
     qDebug(log) << Q_FUNC_INFO;
@@ -283,6 +305,11 @@ void MainWindow::SetView(CView* pView)
     check = connect(m_pView, SIGNAL(sigCurrentChanged(const QWidget*)),
                     this, SLOT(slotCurrentViewChanged(const QWidget*)));
     Q_ASSERT(check);
+    if(m_pFrmConnecters) {
+        check = connect(m_pView, SIGNAL(sigCurrentChanged(const QWidget*)),
+                        m_pFrmConnecters, SLOT(slotViewChanged(const QWidget*)));
+        Q_ASSERT(check);
+    }
     check = connect(m_pView, SIGNAL(customContextMenuRequested(const QPoint&)),
                     this, SLOT(slotCustomContextMenuRequested(const QPoint&)));
     Q_ASSERT(check);
@@ -367,9 +394,10 @@ void MainWindow::on_actionFull_screen_F_triggered()
         ui->statusbar->setVisible(m_FullState.statusbar);
         ui->menubar->setVisible(m_FullState.menubar);
 
-        m_pDockListConnects->setVisible(m_FullState.dockListConnects);
+        m_pDockListConnecters->setVisible(m_FullState.dockListConnects);
+        m_pDockListRecentConnects->setVisible(m_FullState.dockListRecentConnects);
         m_pDockFavorite->setVisible(m_FullState.dockFavorite);
-        // This is hade code. it is in RabbitCommon
+        // TODO: This is hade code. it is in RabbitCommon
         QDockWidget* pDockDebugLog = findChild<QDockWidget*>("dockDebugLog");
         if(pDockDebugLog)
         {
@@ -408,8 +436,10 @@ void MainWindow::on_actionFull_screen_F_triggered()
     m_FullState.menubar = ui->menubar->isVisible();
     ui->menubar->setVisible(false);
 
-    m_FullState.dockListConnects = m_pDockListConnects->isVisible();
-    m_pDockListConnects->setVisible(false);
+    m_FullState.dockListConnects = m_pDockListConnecters->isVisible();
+    m_pDockListConnecters->setVisible(false);
+    m_FullState.dockListRecentConnects = m_pDockListRecentConnects->isVisible();
+    m_pDockListRecentConnects->setVisible(false);
     m_FullState.dockFavorite = m_pDockFavorite->isVisible();
     m_pDockFavorite->setVisible(false);
     // This is hade code. it is in RabbitCommon
@@ -456,6 +486,22 @@ void MainWindow::on_actionFull_screen_F_triggered()
     }
 
     m_pFullScreenToolBar->show();
+}
+
+void MainWindow::slotViewerFocusIn(QWidget *pView)
+{
+    CConnecter* c = (CConnecter*)sender();
+    qDebug(log) << "Focus:" << sender() << pView;
+    if(c && m_pView) {
+        m_pView->SetCurrentView(c->GetViewer());
+    }
+}
+
+void MainWindow::slotConnecterChanged(CConnecter *c)
+{
+    if(c && m_pView) {
+        m_pView->SetCurrentView(c->GetViewer());
+    }
 }
 
 void MainWindow::slotCurrentViewChanged(const QWidget* pView)
@@ -698,6 +744,8 @@ int MainWindow::Connect(CConnecter *c, bool set, QString szFile)
         Q_ASSERT(check);
     }
     m_Connecters.push_back(c);
+    m_pFrmConnecters->slotLoadConnecters();
+    m_pFrmConnecters->slotViewChanged(m_pView->GetCurrentView());
     //*/
 
     c->Connect();
@@ -783,6 +831,8 @@ void MainWindow::slotDisconnected()
             m_pView->RemoveView(c->GetViewer());
             m_Connecters.removeAll(c);
             m_Client.DeleteConnecter(c);
+            m_pFrmConnecters->slotLoadConnecters();
+            m_pFrmConnecters->slotViewChanged(m_pView->GetCurrentView());
             break;
         }
     }
@@ -980,6 +1030,9 @@ void MainWindow::on_actionTabBar_B_toggled(bool bShow)
     {
         p->ShowTabBar(bShow);
         m_Parameter.SetTabBar(bShow);
+    } else {
+        if(m_pDockListConnecters)
+            m_pDockListConnecters->setVisible(bShow);
     }
 }
 
@@ -1073,7 +1126,8 @@ void MainWindow::slotShortCut()
 
 void MainWindow::on_actionOpenListRecentConnections_triggered()
 {
-    CFrmListRecentConnects* p = new CFrmListRecentConnects(&m_Client, false);
+    CFrmListRecentConnects* p = new CFrmListRecentConnects(
+        &m_Client, m_Parameter, false);
     if(!p) return;
     bool check = connect(p, SIGNAL(sigConnect(const QString&, bool)),
                          this, SLOT(slotOpenFile(const QString&, bool)));

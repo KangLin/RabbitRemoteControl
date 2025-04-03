@@ -21,7 +21,9 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
     m_bStatusBar(true),
     m_bTabBar(true),
     m_bMenuBar(true),
-    m_bMessageBoxDisplayInfomation(true)
+    m_bMessageBoxDisplayInfomation(true),
+    m_bDockListConnectersShowToolBar(true),
+    m_bDockListRecentShowToolBar(true)
 {
 }
 
@@ -85,6 +87,14 @@ int CParameterApp::Load()
         set.value("MainWindow/MessageBoxDisplayInformation",
                   GetMessageBoxDisplayInformation()).toBool());
 
+    SetDockListConnectersShowToolBar(
+        set.value("MainWindow/Dock/ListConnecters/ToolBar/Show",
+                  GetDockListConnectersShowToolBar()).toBool());
+
+    SetDockListRecentShowToolBar(
+        set.value("MainWindow/Dock/Recent/ToolBar/Show",
+                  GetDockListRecentShowToolBar()).toBool());
+
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Load(set);
 #endif
@@ -108,7 +118,12 @@ int CParameterApp::Save()
                  static_cast<int>(GetSystemTrayIconMenuType()));
     set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
     set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
-    set.setValue("MainWindow/MessageBoxDisplayInformation", GetMessageBoxDisplayInformation());
+    set.setValue("MainWindow/MessageBoxDisplayInformation",
+                 GetMessageBoxDisplayInformation());
+    set.setValue("MainWindow/Dock/ListConnecters/ToolBar/Show",
+                 GetDockListConnectersShowToolBar());
+    set.setValue("MainWindow/Dock/Recent/ToolBar/Show",
+                 GetDockListRecentShowToolBar());
 
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Save(set);
@@ -299,4 +314,28 @@ void CParameterApp::SetMessageBoxDisplayInformation(bool bEnable)
     if(m_bMessageBoxDisplayInfomation == bEnable)
         return;
     m_bMessageBoxDisplayInfomation = bEnable;
+}
+
+const bool CParameterApp::GetDockListConnectersShowToolBar() const
+{
+    return m_bDockListConnectersShowToolBar;
+}
+
+void CParameterApp::SetDockListConnectersShowToolBar(bool bEnable)
+{
+    if(m_bDockListConnectersShowToolBar == bEnable)
+        return;
+    m_bDockListConnectersShowToolBar = bEnable;
+}
+
+const bool CParameterApp::GetDockListRecentShowToolBar() const
+{
+    return m_bDockListRecentShowToolBar;
+}
+
+void CParameterApp::SetDockListRecentShowToolBar(bool bEnable)
+{
+    if(m_bDockListRecentShowToolBar == bEnable)
+        return;
+    m_bDockListRecentShowToolBar = bEnable;
 }

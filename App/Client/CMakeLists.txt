@@ -17,6 +17,7 @@ set(SOURCE_FILES
     FavoriteView.cpp
     FavoriteMimeData.cpp
     FrmListRecentConnects.cpp
+    FrmConnecters.cpp
     )
 
 set(HEADER_FILES
@@ -30,6 +31,7 @@ set(HEADER_FILES
     FavoriteView.h
     FavoriteMimeData.h
     FrmListRecentConnects.h
+    FrmConnecters.h
     )
 
 set(SOURCE_UI_FILES

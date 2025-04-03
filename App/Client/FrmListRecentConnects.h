@@ -8,6 +8,7 @@
 #include <QToolButton>
 #include "Client.h"
 #include "TitleBar.h"
+#include "ParameterApp.h"
 
 /*!
  * \~chinese 列出存在的连接配置
@@ -20,8 +21,9 @@ class CFrmListRecentConnects : public QWidget, CClient::Handle
     
 public:
     explicit CFrmListRecentConnects(CClient* pClient,
-                              bool bDock = false,
-                              QWidget *parent = nullptr);
+                                    CParameterApp &parameterApp,
+                                    bool bDock = false,
+                                    QWidget *parent = nullptr);
     virtual ~CFrmListRecentConnects();
 
 public:
@@ -48,6 +50,7 @@ private:
     int InsertItem(CConnecter* c, QString &szFile);
 
 private:
+    CParameterApp &m_ParameterApp;
     QToolBar* m_pToolBar;
     QToolButton* m_ptbConnect;
     QMenu* m_pMenuNew;
