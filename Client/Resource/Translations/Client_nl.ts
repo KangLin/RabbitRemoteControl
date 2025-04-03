@@ -85,53 +85,53 @@ Restart program by administrator?</source>
 <context>
     <name>CConnecterThread</name>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="79"/>
+        <location filename="../../ConnecterThread.cpp" line="84"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="83"/>
+        <location filename="../../ConnecterThread.cpp" line="88"/>
         <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="93"/>
+        <location filename="../../ConnecterThread.cpp" line="98"/>
         <source>Keep aspect ration to windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="102"/>
+        <location filename="../../ConnecterThread.cpp" line="107"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="110"/>
+        <location filename="../../ConnecterThread.cpp" line="115"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="120"/>
+        <location filename="../../ConnecterThread.cpp" line="125"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="153"/>
+        <location filename="../../ConnecterThread.cpp" line="158"/>
         <source>ScreenShot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="167"/>
+        <location filename="../../ConnecterThread.cpp" line="172"/>
         <source>Record pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="279"/>
+        <location filename="../../ConnecterThread.cpp" line="284"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="160"/>
-        <location filename="../../ConnecterThread.cpp" line="282"/>
+        <location filename="../../ConnecterThread.cpp" line="165"/>
+        <location filename="../../ConnecterThread.cpp" line="287"/>
         <source>Start record</source>
         <translation type="unfinished"></translation>
     </message>

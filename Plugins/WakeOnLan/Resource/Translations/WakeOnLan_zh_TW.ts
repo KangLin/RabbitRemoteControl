@@ -4,59 +4,59 @@
 <context>
     <name>CConnecterWakeOnLan</name>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="56"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="59"/>
         <source>Add</source>
         <translation>增加</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="58"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="61"/>
         <source>Edit</source>
         <translation>編輯</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="65"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="68"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="66"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="69"/>
         <source>Please select a item</source>
         <translation>請選擇一個項目</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="73"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="76"/>
         <source>Remove</source>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="80"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="100"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="83"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="103"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="86"/>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="106"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="89"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="109"/>
         <source>Get mac address</source>
         <translation>得到 MAC 地址</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="119"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="122"/>
         <source>Wake on lan</source>
         <translation>局域網喚醒</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="180"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="183"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="181"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="184"/>
         <source>There are no administrator privileges, and some functions(Get mac address) are restricted. Please restart the program with administrative privileges.</source>
         <translation>沒有管理員權限，一些功能(得到 MAC 地址)受限。請用管理員權限重啟程序。</translation>
     </message>
     <message>
-        <location filename="../../ConnecterWakeOnLan.cpp" line="185"/>
+        <location filename="../../ConnecterWakeOnLan.cpp" line="188"/>
         <source>Exit the program</source>
         <translation type="unfinished"></translation>
     </message>
@@ -65,17 +65,17 @@
     <name>CFrmWakeOnLan</name>
     <message>
         <location filename="../../FrmWakeOnLan.ui" line="14"/>
-        <location filename="../../FrmWakeOnLan.cpp" line="23"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="24"/>
         <source>Wake on lan</source>
         <translation>局域網喚醒</translation>
     </message>
     <message>
-        <location filename="../../FrmWakeOnLan.cpp" line="75"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="76"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../FrmWakeOnLan.cpp" line="76"/>
+        <location filename="../../FrmWakeOnLan.cpp" line="77"/>
         <source>Please select a item</source>
         <translation>請選擇一個項目</translation>
     </message>

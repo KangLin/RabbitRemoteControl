@@ -4,33 +4,33 @@
 <context>
     <name>CConnecterPlayer</name>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="45"/>
+        <location filename="../../ConnecterPlayer.cpp" line="53"/>
         <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="52"/>
+        <location filename="../../ConnecterPlayer.cpp" line="60"/>
         <source>Record pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="61"/>
+        <location filename="../../ConnecterPlayer.cpp" line="69"/>
         <source>ScreenShot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="114"/>
-        <location filename="../../ConnecterPlayer.cpp" line="137"/>
+        <location filename="../../ConnecterPlayer.cpp" line="122"/>
+        <location filename="../../ConnecterPlayer.cpp" line="145"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="125"/>
+        <location filename="../../ConnecterPlayer.cpp" line="133"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterPlayer.cpp" line="152"/>
+        <location filename="../../ConnecterPlayer.cpp" line="160"/>
         <source>pause</source>
         <translation type="unfinished"></translation>
     </message>
@@ -129,59 +129,59 @@
 <context>
     <name>CFrmPlayer</name>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="37"/>
-        <location filename="../../FrmPlayer.cpp" line="234"/>
+        <location filename="../../FrmPlayer.cpp" line="39"/>
+        <location filename="../../FrmPlayer.cpp" line="247"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="44"/>
+        <location filename="../../FrmPlayer.cpp" line="46"/>
         <source>pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="49"/>
+        <location filename="../../FrmPlayer.cpp" line="51"/>
         <source>Backward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="71"/>
+        <location filename="../../FrmPlayer.cpp" line="73"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="84"/>
+        <location filename="../../FrmPlayer.cpp" line="86"/>
         <source>ScreenShot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="89"/>
+        <location filename="../../FrmPlayer.cpp" line="91"/>
         <source>Record pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="94"/>
+        <location filename="../../FrmPlayer.cpp" line="96"/>
         <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="105"/>
+        <location filename="../../FrmPlayer.cpp" line="107"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="108"/>
-        <location filename="../../FrmPlayer.cpp" line="155"/>
+        <location filename="../../FrmPlayer.cpp" line="110"/>
+        <location filename="../../FrmPlayer.cpp" line="157"/>
         <source>Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="152"/>
+        <location filename="../../FrmPlayer.cpp" line="154"/>
         <source>Muted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmPlayer.cpp" line="222"/>
+        <location filename="../../FrmPlayer.cpp" line="235"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
