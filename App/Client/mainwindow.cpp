@@ -279,7 +279,7 @@ MainWindow::MainWindow(QWidget *parent)
             ui->toolBar->insertAction(ui->actionTabBar_B,
                                       ui->actionMain_menu_bar_M);
     }
-    
+
     slotEnableSystemTrayIcon();
 
     LoadConnectLasterClose();

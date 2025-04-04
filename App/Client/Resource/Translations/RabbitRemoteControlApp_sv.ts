@@ -70,7 +70,7 @@
     <name>CFrmConnecters</name>
     <message>
         <location filename="../../FrmConnecters.cpp" line="32"/>
-        <source>List connections</source>
+        <source>List active connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -527,7 +527,13 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="454"/>
-        <source>Splitter</source>
+        <source>Split</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.ui" line="457"/>
+        <location filename="../../mainwindow.ui" line="460"/>
+        <source>Split view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -552,7 +558,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="182"/>
-        <location filename="../../mainwindow.cpp" line="388"/>
+        <location filename="../../mainwindow.cpp" line="394"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -561,9 +567,9 @@
         <location filename="../../mainwindow.ui" line="188"/>
         <location filename="../../mainwindow.ui" line="191"/>
         <location filename="../../mainwindow.ui" line="194"/>
-        <location filename="../../mainwindow.cpp" line="389"/>
-        <location filename="../../mainwindow.cpp" line="390"/>
-        <location filename="../../mainwindow.cpp" line="391"/>
+        <location filename="../../mainwindow.cpp" line="395"/>
+        <location filename="../../mainwindow.cpp" line="396"/>
+        <location filename="../../mainwindow.cpp" line="397"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -637,20 +643,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="427"/>
+        <location filename="../../mainwindow.cpp" line="433"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="428"/>
-        <location filename="../../mainwindow.cpp" line="429"/>
-        <location filename="../../mainwindow.cpp" line="430"/>
+        <location filename="../../mainwindow.cpp" line="434"/>
+        <location filename="../../mainwindow.cpp" line="435"/>
+        <location filename="../../mainwindow.cpp" line="436"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="622"/>
-        <location filename="../../mainwindow.cpp" line="641"/>
+        <location filename="../../mainwindow.cpp" line="628"/>
+        <location filename="../../mainwindow.cpp" line="647"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -658,62 +664,62 @@
         <location filename="../../mainwindow.ui" line="251"/>
         <location filename="../../mainwindow.ui" line="254"/>
         <location filename="../../mainwindow.ui" line="257"/>
-        <location filename="../../mainwindow.cpp" line="633"/>
+        <location filename="../../mainwindow.cpp" line="639"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="230"/>
+        <location filename="../../mainwindow.cpp" line="251"/>
         <source>ICE signal status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="635"/>
+        <location filename="../../mainwindow.cpp" line="641"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="729"/>
+        <location filename="../../mainwindow.cpp" line="735"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="784"/>
+        <location filename="../../mainwindow.cpp" line="790"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="849"/>
+        <location filename="../../mainwindow.cpp" line="855"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="858"/>
+        <location filename="../../mainwindow.cpp" line="864"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="897"/>
+        <location filename="../../mainwindow.cpp" line="903"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1045"/>
+        <location filename="../../mainwindow.cpp" line="1057"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1046"/>
+        <location filename="../../mainwindow.cpp" line="1058"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1074"/>
+        <location filename="../../mainwindow.cpp" line="1088"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1075"/>
+        <location filename="../../mainwindow.cpp" line="1089"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
