@@ -158,7 +158,7 @@ private Q_SLOTS:
     void slotViewerFocusIn(QWidget* pView);
     void slotConnecterChanged(CConnecter* c);
     void on_actionViewTab_triggered();
-    void on_actionViewSplitter_triggered();
+    void on_actionViewSplit_triggered();
 private:
     void SetView(CView* pView);
 

@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
     bool check = false;
 
     ui->setupUi(this);
-    
+
     setFocusPolicy(Qt::NoFocus);
     //addToolBar(Qt::LeftToolBarArea, ui->toolBar);
     setAcceptDrops(true);
@@ -115,10 +115,12 @@ MainWindow::MainWindow(QWidget *parent)
     EnableMenu(false);
 
     m_Client.EnumPlugins(this);
+    m_Parameter.Load();
 
     check = connect(&m_Parameter, SIGNAL(sigReceiveShortCutChanged()),
                     this, SLOT(slotShortCut()));
     Q_ASSERT(check);
+    slotSystemTrayIconTypeChanged();
     check = connect(&m_Parameter, SIGNAL(sigSystemTrayIconTypeChanged()),
                     this,
                     SLOT(slotSystemTrayIconTypeChanged()));
@@ -132,7 +134,6 @@ MainWindow::MainWindow(QWidget *parent)
     check = connect(&m_Parameter, SIGNAL(sigEnableTabIconChanged()),
                     this, SLOT(slotUpdateName()));
     Q_ASSERT(check);
-    m_Parameter.Load();
 
     m_pDockFavorite = new QDockWidget(this);
     if(m_pDockFavorite)
@@ -208,6 +209,26 @@ MainWindow::MainWindow(QWidget *parent)
         tabifyDockWidget(m_pDockFavorite, m_pDockListConnecters);
     }
 
+    QActionGroup* pGBView = new QActionGroup(this);
+    if(pGBView) {
+        pGBView->addAction(ui->actionViewTab);
+        pGBView->addAction(ui->actionViewSplit);
+    }
+    qDebug(log) << "View type:" << m_Parameter.GetViewType();
+    if(CParameterApp::ViewType::Tab == m_Parameter.GetViewType()) {
+        ui->actionViewTab->setChecked(true);
+        on_actionViewTab_triggered();
+    }
+    if(CParameterApp::ViewType::Splitter == m_Parameter.GetViewType()) {
+        ui->actionViewSplit->setChecked(true);
+        on_actionViewSplit_triggered();
+    }
+    check = connect(&m_Parameter, &CParameterApp::sigViewTypeChanged,
+                    this, [&](){
+                        m_Parameter.Save();
+                    });
+    Q_ASSERT(check);
+
     slotShortCut();
 #ifdef HAVE_ICE
     if(CICE::Instance()->GetSignal())
@@ -242,37 +263,22 @@ MainWindow::MainWindow(QWidget *parent)
             = set.value("MainWindow/Status/Geometry").toByteArray();
         if(!geometry.isEmpty())
             restoreGeometry(geometry);
+        // Restores the state of this mainwindow's toolbars and dockwidgets
         QByteArray state = set.value("MainWindow/Status/State").toByteArray();
         if(!state.isEmpty())
             restoreState(state);
 
+        ui->actionTabBar_B->setChecked(m_Parameter.GetTabBar());
+        on_actionTabBar_B_toggled(m_Parameter.GetTabBar());
         ui->actionStatus_bar_S->setChecked(m_Parameter.GetStatusBar());
         statusBar()->setVisible(m_Parameter.GetStatusBar());
-        ui->actionTabBar_B->setChecked(m_Parameter.GetTabBar());
-        on_actionMain_menu_bar_M_toggled(m_Parameter.GetMenuBar());
         ui->actionMain_menu_bar_M->setChecked(m_Parameter.GetMenuBar());
+        menuBar()->setVisible(m_Parameter.GetMenuBar());
         ui->actionToolBar_T->setChecked(!ui->toolBar->isHidden());
+        if(!m_Parameter.GetMenuBar())
+            ui->toolBar->insertAction(ui->actionTabBar_B,
+                                      ui->actionMain_menu_bar_M);
     }
-
-    QActionGroup* pGBView = new QActionGroup(this);
-    if(pGBView) {
-        pGBView->addAction(ui->actionViewTab);
-        pGBView->addAction(ui->actionViewSplitter);
-    }
-    qDebug(log) << "View type:" << m_Parameter.GetViewType();
-    if(CParameterApp::ViewType::Tab == m_Parameter.GetViewType()) {
-        ui->actionViewTab->setChecked(true);
-        on_actionViewTab_triggered();
-    }
-    if(CParameterApp::ViewType::Splitter == m_Parameter.GetViewType()) {
-        ui->actionViewSplitter->setChecked(true);
-        on_actionViewSplitter_triggered();
-    }
-    check = connect(&m_Parameter, &CParameterApp::sigViewTypeChanged,
-                    this, [&](){
-                        m_Parameter.Save();
-                    });
-    Q_ASSERT(check);
     
     slotEnableSystemTrayIcon();
 
@@ -329,10 +335,10 @@ void MainWindow::on_actionViewTab_triggered()
     m_Parameter.SetViewType(CParameterApp::ViewType::Tab);
 }
 
-void MainWindow::on_actionViewSplitter_triggered()
+void MainWindow::on_actionViewSplit_triggered()
 {
     qDebug(log) << Q_FUNC_INFO;
-    if(!ui->actionViewSplitter->isChecked()) return;
+    if(!ui->actionViewSplit->isChecked()) return;
     SetView(new CViewSplitter(this));
     m_Parameter.SetViewType(CParameterApp::ViewType::Splitter);
 }
@@ -967,11 +973,17 @@ void MainWindow::closeEvent(QCloseEvent *event)
     {
         set.setValue("MainWindow/Status/Geometry", saveGeometry());
         set.setValue("MainWindow/Status/State", saveState());
-        // Other parameters of main windows is saved CParameterApp::~CParameterApp()
+
+        m_Parameter.SetTabBar(ui->actionTabBar_B->isChecked());
+        m_Parameter.SetMenuBar(menuBar()->isVisible());
+        m_Parameter.SetStatusBar(statusBar()->isVisible());
     } else {
         set.remove("MainWindow/Status/Geometry");
         set.remove("MainWindow/Status/State");
     }
+
+    m_Parameter.Save();
+
     QMainWindow::closeEvent(event);
 
     //TODO: Wait for the background thread to exit
@@ -1038,7 +1050,7 @@ void MainWindow::on_actionTabBar_B_toggled(bool bShow)
 
 void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
 {
-    qDebug(log) << "MainWindow::on_actionMain_menu_bar_M_triggered:" << checked;
+    qDebug(log) << Q_FUNC_INFO << checked;
     if(ui->toolBar->isHidden() && !checked)
     {
         if( QMessageBox::StandardButton::Yes
@@ -1048,8 +1060,10 @@ void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
                                             | QMessageBox::StandardButton::No))
         {
             ui->actionToolBar_T->setChecked(true);
-        } else
+        } else {
+            ui->actionMain_menu_bar_M->setChecked(true);
             return;
+        }
     }
     
     menuBar()->setVisible(checked);
@@ -1067,7 +1081,7 @@ void MainWindow::on_actionMain_menu_bar_M_toggled(bool checked)
 
 void MainWindow::on_actionToolBar_T_toggled(bool checked)
 {
-    qDebug(log) << "MainWindow::on_actionToolBar_T_triggered:" << checked;
+    qDebug(log) << Q_FUNC_INFO << checked;
     if(menuBar()->isHidden() && !checked)
     {
         if( QMessageBox::StandardButton::Yes
@@ -1077,8 +1091,10 @@ void MainWindow::on_actionToolBar_T_toggled(bool checked)
                                             | QMessageBox::StandardButton::No))
         {
             ui->actionMain_menu_bar_M->setChecked(true);
-        } else
+        } else {
+            ui->actionToolBar_T->setChecked(true);
             return;
+        }
     }
     ui->toolBar->setVisible(checked);
 }

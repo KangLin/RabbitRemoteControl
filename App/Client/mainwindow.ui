@@ -42,7 +42,7 @@
       <string>Type</string>
      </property>
      <addaction name="actionViewTab"/>
-     <addaction name="actionViewSplitter"/>
+     <addaction name="actionViewSplit"/>
     </widget>
     <addaction name="actionFull_screen_F"/>
     <addaction name="menuView_2"/>
@@ -446,12 +446,18 @@
     <string>Tab</string>
    </property>
   </action>
-  <action name="actionViewSplitter">
+  <action name="actionViewSplit">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Splitter</string>
+    <string>Split</string>
+   </property>
+   <property name="toolTip">
+    <string>Split view</string>
+   </property>
+   <property name="statusTip">
+    <string>Split view</string>
    </property>
   </action>
  </widget>

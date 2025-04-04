@@ -29,15 +29,6 @@ CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
 
 CParameterApp::~CParameterApp()
 {
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
-                  QSettings::IniFormat);
-    if(GetSaveMainWindowStatus())
-    {
-        set.setValue("MainWindow/Status/Bar", GetStatusBar());
-        set.setValue("MainWindow/TabBar", GetTabBar());
-        set.setValue("MainWindow/MenuBar", GetMenuBar());
-        // Geometry and status is saved MainWindow::closeEvent()
-    }
 }
 
 int CParameterApp::Load()
@@ -49,6 +40,17 @@ int CParameterApp::Load()
                                  GetReceiveShortCut()).toBool());
     SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable",
                                       GetSaveMainWindowStatus()).toBool());
+    if(GetSaveMainWindowStatus()) {
+        SetStatusBar(set.value("MainWindow/Status/StatusBar",
+                               GetStatusBar()).toBool());
+
+        SetTabBar(set.value("MainWindow/Status/TabBar",
+                            GetTabBar()).toBool());
+
+        SetMenuBar(set.value("MainWindow/Status/MenuBar",
+                             GetMenuBar()).toBool());
+    }
+
     int viewType = set.value("MainWindow/View/Type").toInt();
     SetViewType((ViewType)viewType);
     SetTabPosition(static_cast<QTabWidget::TabPosition>(
@@ -73,15 +75,6 @@ int CParameterApp::Load()
                                   GetOpenLasterClose()).toBool());
     SetFavoriteEdit(set.value("MainWindow/Favorite/Double/Edit",
                               GetFavoriteEdit()).toBool());
-
-    SetStatusBar(set.value("MainWindow/Status/Bar",
-                           GetStatusBar()).toBool());
-
-    SetTabBar(set.value("MainWindow/TabBar",
-                           GetTabBar()).toBool());
-
-    SetMenuBar(set.value("MainWindow/MenuBar",
-                        GetMenuBar()).toBool());
 
     SetMessageBoxDisplayInformation(
         set.value("MainWindow/MessageBoxDisplayInformation",
@@ -108,6 +101,13 @@ int CParameterApp::Save()
 
     set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
     set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
+    if(GetSaveMainWindowStatus())
+    {
+        set.setValue("MainWindow/Status/StatusBar", GetStatusBar());
+        set.setValue("MainWindow/Status/TabBar", GetTabBar());
+        set.setValue("MainWindow/Status/MenuBar", GetMenuBar());
+        // Geometry and status is saved MainWindow::closeEvent()
+    }
     set.setValue("MainWindow/View/Type", (int)GetViewType());
     set.setValue("MainWindow/View/TabView/Tab/Position", GetTabPosition());
     set.setValue("MainWindow/View/TabView/Tab/Enable/ToolTip", GetEnableTabToolTip());

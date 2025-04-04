@@ -29,7 +29,7 @@ CFrmConnecters::CFrmConnecters(QVector<CConnecter*> &Connecters,
     bool check = false;
     setFocusPolicy(Qt::NoFocus);
     //setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(tr("List connections"));
+    setWindowTitle(tr("List active connections"));
 
     QVBoxLayout* pLayout = new QVBoxLayout(this);
     if(!pLayout) {

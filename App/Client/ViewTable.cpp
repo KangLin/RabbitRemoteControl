@@ -204,8 +204,3 @@ void CViewTable::resizeEvent(QResizeEvent *event)
     m_pTab->move(0, 0);
     m_pTab->resize(event->size());
 }
-
-QSize CViewTable::GetDesktopSize()
-{
-    return frameSize();
-}

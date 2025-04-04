@@ -37,7 +37,6 @@ public:
     virtual void SetWidowsTitle(QWidget* pView, const QString& szTitle,
                                 const QIcon& icon, const QString& szToolTip) = 0;
     virtual int SetFullScreen(bool bFull) = 0;
-    virtual QSize GetDesktopSize() = 0;
 
 public Q_SLOTS:
     virtual void slotSystemCombination() = 0;

@@ -5,7 +5,10 @@
 
 #include "View.h"
 #include <QSplitter>
-
+/*!
+ * \brief The split view class
+ * \ingroup ViewApi
+ */
 class CViewSplitter : public CView
 {
     Q_OBJECT
@@ -24,7 +27,6 @@ public:
         QWidget *pView, const QString &szTitle,
         const QIcon &icon, const QString &szToolTip) override;
     virtual int SetFullScreen(bool bFull) override;
-    virtual QSize GetDesktopSize() override;
 
 public slots:
     virtual void slotSystemCombination() override;

@@ -228,11 +228,6 @@ int CViewSplitter::SetFullScreen(bool bFull)
     return nRet;
 }
 
-QSize CViewSplitter::GetDesktopSize()
-{
-     return frameSize();
-}
-
 void CViewSplitter::slotSystemCombination()
 {
 }
