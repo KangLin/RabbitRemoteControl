@@ -276,7 +276,11 @@ void CFavoriteView::slotConnect()
     auto lstIndex = selectionModel()->selectedIndexes();
     foreach(auto index, lstIndex)
     {
-        slotFavortiedoubleClicked(index);
+        auto item = m_pModel->itemFromIndex(index);
+        if(!item) return;
+        QString szFile = item->data().toString();
+        if(!szFile.isEmpty())
+            emit sigConnect(szFile, false);
     }
 }
 

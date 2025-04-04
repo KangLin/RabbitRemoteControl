@@ -151,6 +151,7 @@ MainWindow::MainWindow(QWidget *parent)
             check = connect(&m_Parameter, SIGNAL(sigFavoriteEditChanged(bool)),
                             m_pFavoriteView, SLOT(slotDoubleEditNode(bool)));
             Q_ASSERT(check);
+            emit m_Parameter.sigFavoriteEditChanged(m_Parameter.GetFavoriteEdit());
             m_pDockFavorite->setWidget(m_pFavoriteView);
             m_pDockFavorite->setWindowTitle(m_pFavoriteView->windowTitle());
         }
