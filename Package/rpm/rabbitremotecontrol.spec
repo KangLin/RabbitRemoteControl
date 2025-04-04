@@ -89,16 +89,16 @@ cmake . -B $RPM_BUILD_DIR  \
 cmake --build $RPM_BUILD_DIR --config Release --parallel $(nproc)
 
 %install
-cmake --install $RPM_BUILD_DIR --config Release \
+cmake --install $RPM_BUILD_DIR --config Release --strip \
     --component DependLibraries \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
-cmake --install $RPM_BUILD_DIR --config Release \
+cmake --install $RPM_BUILD_DIR --config Release --strip \
     --component Runtime \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
-cmake --install $RPM_BUILD_DIR --config Release \
+cmake --install $RPM_BUILD_DIR --config Release --strip \
     --component Application \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
-cmake --install $RPM_BUILD_DIR --config Release \
+cmake --install $RPM_BUILD_DIR --config Release --strip \
     --component Plugin \
     --prefix ${RPM_BUILD_ROOT}%{INSTALL_PREFIX}
 

@@ -175,10 +175,10 @@ cmake "$REPO_ROOT" \
   -DBUILD_APP=ON \
   -DBUILD_FREERDP=ON
 cmake --build . --config Release --parallel $(nproc)
-cmake --install . --config Release --component DependLibraries --prefix ${INSTALL_APP_DIR}
-cmake --install . --config Release --component Runtime --prefix ${INSTALL_APP_DIR}
-cmake --install . --config Release --component Application --prefix ${INSTALL_APP_DIR}
-cmake --install . --config Release --component Plugin --prefix ${INSTALL_APP_DIR}
+cmake --install . --config Release --strip --component DependLibraries --prefix ${INSTALL_APP_DIR}
+cmake --install . --config Release --strip --component Runtime --prefix ${INSTALL_APP_DIR}
+cmake --install . --config Release --strip --component Application --prefix ${INSTALL_APP_DIR}
+cmake --install . --config Release --strip --component Plugin --prefix ${INSTALL_APP_DIR}
 
 echo "Build AppImage ......"
 # See: https://github.com/linuxdeploy/linuxdeploy-plugin-qt

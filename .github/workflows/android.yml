@@ -167,7 +167,7 @@ jobs:
                 -DBUILD_TESTS=OFF \
                 -DBUILD_VIEWER=OFF
             cmake --build . --parallel $(nproc) --verbose --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
       - name: Build libvncserver
@@ -200,7 +200,7 @@ jobs:
                 -DWITH_EXAMPLES=OFF \
                 -DWITH_TESTS=OFF
             cmake --build . --parallel $(nproc) --verbose --config ${{ matrix.BUILD_TYPE }}
-            cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
 #    - name: build FreeRDP
@@ -228,7 +228,7 @@ jobs:
 #                -DANDROID_ABI=${{matrix.ANDROID_ABI}} \
 #                -DANDROID_PLATFORM=${{env.ANDROID_PLATFORM}}
 #            cmake --build . --parallel $(nproc) --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
 #        fi
 
       - name: build tigervnc
@@ -257,7 +257,7 @@ jobs:
                   -DBUILD_TESTS=OFF \
                   -DBUILD_VIEWER=OFF
               cmake --build . --parallel $(nproc) --verbose --config ${{ matrix.BUILD_TYPE }}
-              cmake --build . --verbose --config ${{ matrix.BUILD_TYPE }} --target install
+              cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
       - name: build qxmpp
@@ -288,7 +288,7 @@ jobs:
                 -DBUILD_EXAMPLES=OFF \
                 -DBUILD_TESTS=OFF
             cmake --build . --parallel $(nproc) --verbose --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --verbose --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
       - name: git clone RabbitCommon

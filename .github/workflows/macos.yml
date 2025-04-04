@@ -125,7 +125,7 @@ jobs:
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
       - name: build tigervnc
@@ -146,7 +146,7 @@ jobs:
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}               
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
       - name: Build libvncserver
@@ -172,7 +172,7 @@ jobs:
                 -DWITH_EXAMPLES=OFF \
                 -DWITH_TESTS=OFF
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
 #      - name: build libdatachannel
@@ -224,7 +224,7 @@ jobs:
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}                
             cmake --build . --config ${{matrix.BUILD_TYPE}} --parallel $(nproc)
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
       - name: build QtService
@@ -248,7 +248,7 @@ jobs:
                 -DVCPKG_VERBOSE=ON \
                 -DVCPKG_TARGET_TRIPLET=${{matrix.VCPKG_TARGET_TRIPLET}}                
             cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
-            cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           fi
 
       - name: git clone RabbitCommon
@@ -288,7 +288,8 @@ jobs:
               -DWinPR_DIR=${{env.INSTALL_DIR}}/lib/cmake/WinPR2 \
               -DFreeRDP-Shadow_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Shadow2 \
               -DFreeRDP-Server_DIR=${{env.INSTALL_DIR}}/lib/cmake/FreeRDP-Server2
-          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install --parallel $(nproc)
+          cmake --build . --config ${{ matrix.BUILD_TYPE }} --parallel $(nproc)
+          cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           7z a RabbitRemoteControl_${{env.RabbitRemoteControl_VERSION}}_macos.zip ./install/*
 
       - name: Update configure file

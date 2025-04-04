@@ -130,7 +130,7 @@ jobs:
                   -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                   -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
         
       - name: build tigervnc
@@ -150,7 +150,7 @@ jobs:
                   -DBUILD_TESTS=OFF -DBUILD_VIEWER=OFF ^
                   -DCMAKE_POLICY_VERSION_MINIMUM=3.5
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
       - name: build libdatachannel
@@ -170,7 +170,7 @@ jobs:
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DNO_EXAMPLES=ON -DNO_TESTS=ON -DNO_WEBSOCKET=ON
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
         
       - name: build QtService
@@ -188,7 +188,7 @@ jobs:
             cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}}
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
       - name: build RabbitRemoteControl
@@ -219,7 +219,7 @@ jobs:
         if: false # ${{ matrix.BUILD_TYPE == 'Release' }}
         working-directory: ${{env.BUILD_DIR}}
         run: |
-          cmake --build . --config ${{ matrix.BUILD_TYPE }} --target install
+          cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           move /Y install\plugins\*crypto*.dll install\bin
           move /Y install\plugins\*ssl*.dll install\bin
           copy /Y C:\msys64\mingw64\bin\*.dll install\bin

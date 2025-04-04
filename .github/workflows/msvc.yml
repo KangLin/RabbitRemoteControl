@@ -127,7 +127,7 @@ jobs:
                   -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake" ^
                   -DCMAKE_POLICY_VERSION_MINIMUM=3.5
               cmake --build . --config ${{matrix.BUILD_TYPE}}
-              cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+              cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
 #    - name: build libdatachannel
@@ -146,7 +146,7 @@ jobs:
 #            -DCMAKE_INSTALL_PREFIX=${{ env.INSTALL_DIR }} ^
 #            -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #          cmake --build . --config ${{matrix.BUILD_TYPE}}
-#          cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#          cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
 #        )
 
 #      - name: Build FreeRDP
@@ -171,7 +171,7 @@ jobs:
 #                -DWITH_MANPAGES=OFF ^
 #                -DCMAKE_TOOLCHAIN_FILE="${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake"
 #            cmake --build . --config ${{matrix.BUILD_TYPE}}
-#            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+#            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
 #          )
 
       - name: build RabbitVNC
@@ -199,7 +199,7 @@ jobs:
                 -DBUILD_TESTS=OFF ^
                 -DCMAKE_POLICY_VERSION_MINIMUM=3.5
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
       - name: build tigervnc
@@ -228,7 +228,7 @@ jobs:
                 -DBUILD_TESTS=OFF ^
                 -DCMAKE_POLICY_VERSION_MINIMUM=3.5
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
       - name: Build libvncserver
@@ -257,7 +257,7 @@ jobs:
                 -DWITH_TESTS=OFF ^
                 -DCMAKE_POLICY_VERSION_MINIMUM=3.5
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
       - name: Install Qt
@@ -291,7 +291,7 @@ jobs:
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/qxmpp/vcpkg_installed ^
                 -DVCPKG_TRACE_FIND_PACKAGE=ON 
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
       - name: build QtService
@@ -315,7 +315,7 @@ jobs:
                 -DVCPKG_TRACE_FIND_PACKAGE=ON
                 -DVCPKG_INSTALLED_DIR=${{env.INSTALL_DIR}}/QtService/vcpkg_installed
             cmake --build . --config ${{matrix.BUILD_TYPE}}
-            cmake --build . --config ${{matrix.BUILD_TYPE}} --target install
+            cmake --install . --config ${{matrix.BUILD_TYPE}} --strip
           )
 
       - name: git clone RabbitCommon
