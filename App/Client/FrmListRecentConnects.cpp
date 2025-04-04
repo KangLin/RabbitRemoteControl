@@ -166,7 +166,7 @@ CFrmListRecentConnects::CFrmListRecentConnects(
 #if defined(DEBUG) && !defined(Q_OS_ANDROID)
         0,
 #endif
-        QHeaderView::ResizeToContents);
+        QHeaderView::Interactive);
     //以下设置列宽函数必须要数据加载完成后使用,才能应用
     //See: https://blog.csdn.net/qq_40450386/article/details/86083759
     //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
@@ -233,6 +233,12 @@ void CFrmListRecentConnects::slotLoadFiles()
         m_pDelete->setEnabled(false);
     }
 
+    //以下设置列宽函数必须要数据加载完成后使用,才能应用
+    //See: https://blog.csdn.net/qq_40450386/article/details/86083759
+    //m_pTableView->resizeColumnsToContents(); //设置所有列宽度自适应内容
+    m_pTableView->resizeColumnToContents(0); //设置第0列宽度自适应内容
+    m_pTableView->resizeColumnToContents(1); //设置第1列宽度自适应内容
+    m_pTableView->resizeColumnToContents(2); //设置第1列宽度自适应内容
     return;
 }
 
