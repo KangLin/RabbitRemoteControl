@@ -20,8 +20,7 @@
 
   "default-features": [
     "freerdp",
-    "vnc",
-    "wol"
+    "vnc"
   ],
 
   "features": {
@@ -57,7 +56,7 @@
     },
 
     "wol" : {
-        "description": "Wake on lan",
+        "description": "Wake on lan. Note: the PcapPlusPlus in vcpkg relies on WinPcap, but WinPcap does not work in Windows 10. So compile from source, relying on the npcap library.",
         "dependencies": [
             "pcapplusplus"
         ]

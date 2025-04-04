@@ -51,7 +51,7 @@ jobs:
       VCPKG_DEFAULT_TRIPLET: ${{matrix.VCPKG_TARGET_TRIPLET}}
       VCPKG_PLATFORM_TOOLSET: ${{matrix.VCPKG_PLATFORM_TOOLSET}}
       VCPKG_OVERLAY_PORTS: "${{github.workspace}}/${{matrix.VCPKG_OVERLAY_PORTS}}"
-      VCPKG_MANIFEST_FEATURES: "freerdp;vnc;wol"
+      VCPKG_MANIFEST_FEATURES: "freerdp;vnc"
       CMAKE_GENERATOR: "Visual Studio 17 2022"
       CMAKE_GENERATOR_PLATFORM: ${{matrix.CMAKE_GENERATOR_PLATFORM}}
       qt_modules: ${{matrix.qt_modules}}
@@ -108,6 +108,8 @@ jobs:
               C:\msys64\usr\bin\unzip -d ${{env.INSTALL_DIR}}\npcap npcap-sdk-1.13.zip
           )
 
+      # 因为 vcpkg 中 PcapPlusPlus 依赖 winpcap , winpcap 不能在 windows 10 上工作，
+      # 所以编译依赖于 npcap
       - name: build PcapPlusPlus
         working-directory: ${{env.SOURCE_DIR}}
         run: |
@@ -361,15 +363,16 @@ jobs:
             -DRABBIT_ENABLE_INSTALL_DEPENDENT=OFF ^
             -DRABBIT_ENABLE_INSTALL_QT=ON ^
             -DRABBIT_ENABLE_INSTALL_TO_BUILD_PATH=OFF ^
+            -DBUILD_FREERDP=ON ^
             -DLibVNCServer_DIR="${{env.INSTALL_DIR}}/lib/cmake/LibVNCServer" ^
             -DRabbitVNC_DIR=${{env.INSTALL_DIR}}/lib/cmake/RabbitVNC ^
             -Dtigervnc_DIR=${{env.INSTALL_DIR}}/lib/cmake/tigervnc ^
             -DQXmpp_DIR=${{env.INSTALL_DIR}}/lib/cmake/qxmpp ^
             -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
+            -DQtService_DIR=${{env.INSTALL_DIR}}/lib/cmake/QtService ^
             -DPcapPlusPlus_DIR=${{env.INSTALL_DIR}}/lib/cmake/pcapplusplus ^
             -DPCAP_ROOT=${{env.INSTALL_DIR}}/npcap ^
-            -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap ^
-            -DBUILD_FREERDP=ON
+            -DPacket_ROOT=${{env.INSTALL_DIR}}/npcap
           cmake --build . --config ${{matrix.BUILD_TYPE}}
           IF "${{matrix.BUILD_TYPE}}" == "Release" (
             echo "cmake install config: ${{matrix.BUILD_TYPE}} component: DependLibraries"

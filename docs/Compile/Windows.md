@@ -298,6 +298,10 @@ Source-code location: https://github.com/KangLin/tigervnc
         cd vcpkg
         vcpkg install pcapplusplus
 
+**Note**: PcapPlusPlus in vcpkg relies on WinPcap,
+but WinPcap does not work in Windows 10.
+So compile from source, relying on the npcap library.
+
 - When PcapPlusPlus is compiled from source,
   the CMake parameter needs to be specified to compile this project:
 

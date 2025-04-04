@@ -282,6 +282,9 @@
         cd vcpkg
         vcpkg install pcapplusplus
 
+**注意**： vcpkg 中 PcapPlusPlus 依赖 WinPcap，但 WinPcap 不能在 Windows 10 工作。
+所以从源码编译，依赖 npcap 库。
+
 - 当 PcapPlusPlus 从源码编译时，编译本项需要指定的 CMake 参数：
 
       -DPcapPlusPlus_DIR=[PcapPlusPlus 安装目录]/lib/cmake/pcapplusplus
