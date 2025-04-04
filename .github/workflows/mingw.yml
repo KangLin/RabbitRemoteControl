@@ -135,7 +135,7 @@ jobs:
         
       - name: build tigervnc
         working-directory: ${{env.SOURCE_DIR}}
-        if: true
+        if: false
         env:
           MSYSTEM: MINGW64
           PATH: C:\msys64\mingw64\bin;C:\msys64\usr\bin
