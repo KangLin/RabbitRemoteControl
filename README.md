@@ -281,28 +281,6 @@ Contact me:
     - win32
     - win64
 - Linux:
-  - deb package: The extension is .deb , for Debian, Ubuntu, etc
-    - Architecture:
-      - amd64
-      - arm64
-
-            # Install package
-            sudo apt install ./rabbitremotecontrol_0.0.34_ubuntu-24.04_amd64.deb
-            # Run
-            rabbitremotecontrol
-            # Or click the desktop icon to run
-
-  - rpm package: The extension is .rpm , for RedHat, Fedora, CentOS, etc
-    - Architecture:
-      - x86_64
-      - aarch64
-
-            # Install package
-            dnf install rabbitremotecontrol-0.0.33-1.fc41.x86_64.rpm
-            # Run
-            rabbitremotecontrol
-            # Or click the desktop icon to run
-
   - AppImage package: The extension is .AppImage , for all Linux systems
     - Architecture:
       - x86_64
@@ -325,6 +303,28 @@ Contact me:
             flatpak --user install RabbitRemoteControl_v0.0.34_Linux_x86_64.flatpak
             # Run
             flatpak run io.github.KangLin.RabbitRemoteControl
+            # Or click the desktop icon to run
+
+  - deb package: The extension is .deb , for Debian, Ubuntu, etc
+    - Architecture:
+      - amd64
+      - arm64
+
+            # Install package
+            sudo apt install ./rabbitremotecontrol_0.0.34_ubuntu-24.04_amd64.deb
+            # Run
+            rabbitremotecontrol
+            # Or click the desktop icon to run
+
+  - rpm package: The extension is .rpm , for RedHat, Fedora, CentOS, etc
+    - Architecture:
+      - x86_64
+      - aarch64
+
+            # Install package
+            dnf install rabbitremotecontrol-0.0.33-1.fc41.x86_64.rpm
+            # Run
+            rabbitremotecontrol
             # Or click the desktop icon to run
 
 - Android: The extension is .apk

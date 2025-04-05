@@ -279,28 +279,6 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
     - win32
     - win64
 - Linux:
-  - deb 包：扩展名为 .deb ，用于 Debian、Ubuntu 等
-    - 架构:
-      - amd64
-      - arm64
-
-            # 安装包
-            sudo apt install ./rabbitremotecontrol_0.0.34_ubuntu-24.04_amd64.deb
-            # 运行
-            rabbitremotecontrol
-            # 或者点击桌面图标运行
-
-  - rpm 包：扩展名为 .rpm ，用于 RedHat、Fedora、CentOs 等
-    - 架构:
-      - x86_64
-      - aarch64
-
-            # 安装包
-            dnf install rabbitremotecontrol-0.0.33-1.fc41.x86_64.rpm
-            # 运行
-            rabbitremotecontrol
-            # 或者点击桌面图标运行
-
   - AppImage 包：扩展名为 .AppImage ，用于所有 Linux 系统
     - 架构:
       - x86_64
@@ -321,6 +299,28 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
             flatpak --user install RabbitRemoteControl_v0.0.34_Linux_x86_64.flatpak
             # 运行
             flatpak run io.github.KangLin.RabbitRemoteControl
+            # 或者点击桌面图标运行
+
+  - deb 包：扩展名为 .deb ，用于 Debian、Ubuntu 等
+    - 架构:
+      - amd64
+      - arm64
+
+            # 安装包
+            sudo apt install ./rabbitremotecontrol_0.0.34_ubuntu-24.04_amd64.deb
+            # 运行
+            rabbitremotecontrol
+            # 或者点击桌面图标运行
+
+  - rpm 包：扩展名为 .rpm ，用于 RedHat、Fedora、CentOs 等
+    - 架构:
+      - x86_64
+      - aarch64
+
+            # 安装包
+            dnf install rabbitremotecontrol-0.0.33-1.fc41.x86_64.rpm
+            # 运行
+            rabbitremotecontrol
             # 或者点击桌面图标运行
 
 - Android: 扩展名为 .apk
