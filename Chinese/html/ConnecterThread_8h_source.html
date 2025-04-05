@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: /home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/ConnecterThread.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.34</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_922c588100a187620fdc1533bc178f73.html">Client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">ConnecterThread.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Author: Kang Lin &lt;kl222@126.com&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef CCONNECTERBACKTHREAD_H</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define CCONNECTERBACKTHREAD_H</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;QSpinBox&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;ConnecterConnect.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;FrmScroll.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">class </span><a class="code hl_class" href="classCConnectThread.html">CConnectThread</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classCConnecterThread.html">   56</a></span><span class="keyword">class </span>CLIENT_EXPORT <a class="code hl_class" href="classCConnecterThread.html">CConnecterThread</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCConnecterConnect.html">CConnecterConnect</a></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>{</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    Q_OBJECT</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">explicit</span> <a class="code hl_class" href="classCConnecterThread.html">CConnecterThread</a>(<a class="code hl_class" href="classCPluginClient.html">CPluginClient</a> *plugin);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classCConnecterThread.html">~CConnecterThread</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">virtual</span> QWidget* <a class="code hl_function" href="classCConnecter.html#a7c0ed151c37e50f082150b5c0497d37a">GetViewer</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">public</span> Q_SLOTS:</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_slot" href="classCConnecterConnect.html#a58dee7fa09505898625f45ba34af512b">Connect</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_slot" href="classCConnecterConnect.html#a0f109db147c71b54f7b81750b1f940d8">DisConnect</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> slotScreenShot();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">private</span> Q_SLOTS:</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> slotValueChanged(<span class="keywordtype">int</span> v);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">virtual</span> QString <a class="code hl_function" href="classCConnecterConnect.html#aebd8c03e340085b1bb49d1c74a580f7d">ServerName</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCConnecter.html#ae10d1b4d16e193775af5de7160943d34">Initial</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCConnecter.html#a65475a81bc69e33c93d0a92bcfece93a">Clean</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCConnecter.html#a6476a0f03c9e3a8bf6a318a82ceb3639">Load</a>(QSettings &amp;set) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classCConnecter.html#aa3c6cc809f2082f3f4e84153adf83025">Save</a>(QSettings &amp;set) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> InitialMenu();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <a class="code hl_class" href="classCConnectThread.html">CConnectThread</a>* m_pThread;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <a class="code hl_class" href="classCFrmViewer.html">CFrmViewer</a> *m_pFrmViewer;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_class" href="classCFrmScroll.html">CFrmScroll</a>* m_pScroll;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    QAction* m_pMenuZoom;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    QAction* m_pZoomToWindow;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    QAction* m_pZoomAspectRatio;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    QAction* m_pZoomOriginal;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    QAction* m_pZoomIn;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    QAction* m_pZoomOut;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    QSpinBox* m_psbZoomFactor;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    QAction* m_pScreenShot;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#if HAVE_QT6_RECORD</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    QAction* m_pRecord;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    QAction* m_pRecordPause;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="keyword">public</span> Q_SLOTS:</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span> slotRecorderStateChanged(QMediaRecorder::RecorderState state);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>Q_SIGNALS:</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordtype">void</span> sigRecord(<span class="keywordtype">bool</span> bRecord);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span> sigRecordPause(<span class="keywordtype">bool</span> bPause);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">private</span> Q_SLOTS:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> slotRecord(<span class="keywordtype">bool</span> checked);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>};</div>
+</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">#endif </span><span class="comment">// CCONNECTERBACKTHREAD_H</span></div>
+<div class="ttc" id="aclassCConnectThread_html"><div class="ttname"><a href="classCConnectThread.html">CConnectThread</a></div><div class="ttdoc">此类仅用于 CConnecterThread 。 一个线程只处理一个连接</div><div class="ttdef"><b>Definition</b> <a href="ConnectThread_8h_source.html#l00022">ConnectThread.h:23</a></div></div>
+<div class="ttc" id="aclassCConnecterConnect_html"><div class="ttname"><a href="classCConnecterConnect.html">CConnecterConnect</a></div><div class="ttdoc">插件的连接者接口，此接口仅由插件使用。 所有的需要 CConnect 的插件连接者均需要从此接口派生。</div><div class="ttdef"><b>Definition</b> <a href="ConnecterConnect_8h_source.html#l00034">ConnecterConnect.h:35</a></div></div>
+<div class="ttc" id="aclassCConnecterConnect_html_a0f109db147c71b54f7b81750b1f940d8"><div class="ttname"><a href="classCConnecterConnect.html#a0f109db147c71b54f7b81750b1f940d8">CConnecterConnect::DisConnect</a></div><div class="ttdeci">virtual int DisConnect() override</div><div class="ttdoc">在此函数中触发 sigDisconnected()</div><div class="ttdef"><b>Definition</b> <a href="ConnecterConnect_8cpp_source.html#l00170">ConnecterConnect.cpp:170</a></div></div>
+<div class="ttc" id="aclassCConnecterConnect_html_a58dee7fa09505898625f45ba34af512b"><div class="ttname"><a href="classCConnecterConnect.html#a58dee7fa09505898625f45ba34af512b">CConnecterConnect::Connect</a></div><div class="ttdeci">virtual int Connect() override</div><div class="ttdef"><b>Definition</b> <a href="ConnecterConnect_8cpp_source.html#l00152">ConnecterConnect.cpp:152</a></div></div>
+<div class="ttc" id="aclassCConnecterConnect_html_aebd8c03e340085b1bb49d1c74a580f7d"><div class="ttname"><a href="classCConnecterConnect.html#aebd8c03e340085b1bb49d1c74a580f7d">CConnecterConnect::ServerName</a></div><div class="ttdeci">virtual QString ServerName()</div><div class="ttdoc">当前连接名（远程桌面的名称，如果没有，则是 IP:端口）。例如：服务名或 IP:端口</div><div class="ttdef"><b>Definition</b> <a href="ConnecterConnect_8cpp_source.html#l00188">ConnecterConnect.cpp:188</a></div></div>
+<div class="ttc" id="aclassCConnecterThread_html"><div class="ttname"><a href="classCConnecterThread.html">CConnecterThread</a></div><div class="ttdoc">默认启动一个后台线程。实现一个后台线程处理一个连接。 可与插件接口从 CPluginClient 派生的插件一起使用，用于连接是阻塞模型的。</div><div class="ttdef"><b>Definition</b> <a href="ConnecterThread_8h_source.html#l00056">ConnecterThread.h:57</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_a6476a0f03c9e3a8bf6a318a82ceb3639"><div class="ttname"><a href="classCConnecter.html#a6476a0f03c9e3a8bf6a318a82ceb3639">CConnecter::Load</a></div><div class="ttdeci">virtual int Load(QSettings &amp;set)</div><div class="ttdoc">加载参数</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8cpp_source.html#l00154">Connecter.cpp:154</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_a65475a81bc69e33c93d0a92bcfece93a"><div class="ttname"><a href="classCConnecter.html#a65475a81bc69e33c93d0a92bcfece93a">CConnecter::Clean</a></div><div class="ttdeci">virtual Q_INVOKABLE int Clean()</div><div class="ttdoc">Clean parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8cpp_source.html#l00190">Connecter.cpp:190</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_a7c0ed151c37e50f082150b5c0497d37a"><div class="ttname"><a href="classCConnecter.html#a7c0ed151c37e50f082150b5c0497d37a">CConnecter::GetViewer</a></div><div class="ttdeci">virtual QWidget * GetViewer()=0</div><div class="ttdoc">得到显示视图</div></div>
+<div class="ttc" id="aclassCConnecter_html_aa3c6cc809f2082f3f4e84153adf83025"><div class="ttname"><a href="classCConnecter.html#aa3c6cc809f2082f3f4e84153adf83025">CConnecter::Save</a></div><div class="ttdeci">virtual int Save(QSettings &amp;set)</div><div class="ttdoc">保存参数</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8cpp_source.html#l00163">Connecter.cpp:163</a></div></div>
+<div class="ttc" id="aclassCConnecter_html_ae10d1b4d16e193775af5de7160943d34"><div class="ttname"><a href="classCConnecter.html#ae10d1b4d16e193775af5de7160943d34">CConnecter::Initial</a></div><div class="ttdeci">virtual Q_INVOKABLE int Initial()</div><div class="ttdoc">Initial parameters and resource</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8cpp_source.html#l00173">Connecter.cpp:173</a></div></div>
+<div class="ttc" id="aclassCFrmScroll_html"><div class="ttname"><a href="classCFrmScroll.html">CFrmScroll</a></div><div class="ttdoc">The scroll form class</div><div class="ttdef"><b>Definition</b> <a href="FrmScroll_8h_source.html#l00016">FrmScroll.h:17</a></div></div>
+<div class="ttc" id="aclassCFrmViewer_html"><div class="ttname"><a href="classCFrmViewer.html">CFrmViewer</a></div><div class="ttdoc">用于显示从 CConnectDesktop 输出的图像，和向 CConnectDesktop 发送键盘、鼠标事件。</div><div class="ttdef"><b>Definition</b> <a href="FrmViewer_8h_source.html#l00048">FrmViewer.h:49</a></div></div>
+<div class="ttc" id="aclassCPluginClient_html"><div class="ttname"><a href="classCPluginClient.html">CPluginClient</a></div><div class="ttdoc">客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。</div><div class="ttdef"><b>Definition</b> <a href="PluginClient_8h_source.html#l00032">PluginClient.h:33</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>

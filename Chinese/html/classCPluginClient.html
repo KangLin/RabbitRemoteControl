@@ -1,0 +1,693 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>玉兔远程控制: CPluginClient类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="app.ico"/></td>
+  <td id="projectalign">
+   <div id="projectname">玉兔远程控制<span id="projectnumber">&#160;0.0.34</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="classCPluginClient-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CPluginClient类 参考<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__LIBAPI.html">库</a> &raquo; <a class="el" href="group__LIBAPI__CLIENT.html">客户端库</a> &raquo; <a class="el" href="group__CLIENT__PLUGIN__API.html">客户端插件接口</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>客户端插件接口。用于建立 <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> 实例，它由协议插件实现。  
+ <a href="classCPluginClient.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="PluginClient_8h_source.html">PluginClient.h</a>&gt;</code></p>
+<div class="dynheader">
+类 CPluginClient 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classCPluginClient.png" usemap="#CPluginClient_map" alt=""/>
+  <map id="CPluginClient_map" name="CPluginClient_map">
+<area href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。" alt="CPluginClientThread" shape="rect" coords="152,112,294,136"/>
+<area href="classCPluginFreeRDP.html" alt="CPluginFreeRDP" shape="rect" coords="152,168,294,192"/>
+<area href="classCPluginLibSSH.html" alt="CPluginLibSSH" shape="rect" coords="152,224,294,248"/>
+<area href="classCPluginLibVNCServer.html" alt="CPluginLibVNCServer" shape="rect" coords="152,280,294,304"/>
+<area href="classCPluginPlayer.html" alt="CPluginPlayer" shape="rect" coords="152,336,294,360"/>
+<area href="classCPluginRabbitVNC.html" alt="CPluginRabbitVNC" shape="rect" coords="152,392,294,416"/>
+<area href="classCPluginScreenCapture.html" alt="CPluginScreenCapture" shape="rect" coords="152,448,294,472"/>
+<area href="classCPluginTelnet.html" alt="CPluginTelnet" shape="rect" coords="152,504,294,528"/>
+<area href="classCPluginTerminal.html" alt="CPluginTerminal" shape="rect" coords="152,560,294,584"/>
+<area href="classCPluginTigerVnc.html" alt="CPluginTigerVnc" shape="rect" coords="152,616,294,640"/>
+<area href="classCPluginWakeOnLan.html" alt="CPluginWakeOnLan" shape="rect" coords="152,672,294,696"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae0646989bbd8183af945557b9016ce2e" id="r_ae0646989bbd8183af945557b9016ce2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#ae0646989bbd8183af945557b9016ce2e">CPluginClient</a> (QObject *parent=nullptr)</td></tr>
+<tr class="memdesc:ae0646989bbd8183af945557b9016ce2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化操作。例如：派生类实现它，初始化插件全局资源等，例如：  <br /></td></tr>
+<tr class="separator:ae0646989bbd8183af945557b9016ce2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac20a71597521801c707fbd28f2882af3" id="r_ac20a71597521801c707fbd28f2882af3"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#ac20a71597521801c707fbd28f2882af3">~CPluginClient</a> ()</td></tr>
+<tr class="memdesc:ac20a71597521801c707fbd28f2882af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">派生类实现它，用于释放资源。例如：  <br /></td></tr>
+<tr class="separator:ac20a71597521801c707fbd28f2882af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d235f502024a800f2fb12a65487f7c" id="r_a33d235f502024a800f2fb12a65487f7c"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a33d235f502024a800f2fb12a65487f7c">Id</a> () const</td></tr>
+<tr class="memdesc:a33d235f502024a800f2fb12a65487f7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">标识。默认： <a class="el" href="classCPluginClient.html#a88e3f97b27a5863fad0b50455bf343dd" title="协议">Protocol()</a> + ":" + <a class="el" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a>  <br /></td></tr>
+<tr class="separator:a33d235f502024a800f2fb12a65487f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88e3f97b27a5863fad0b50455bf343dd" id="r_a88e3f97b27a5863fad0b50455bf343dd"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a88e3f97b27a5863fad0b50455bf343dd">Protocol</a> () const =0</td></tr>
+<tr class="memdesc:a88e3f97b27a5863fad0b50455bf343dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">协议  <br /></td></tr>
+<tr class="separator:a88e3f97b27a5863fad0b50455bf343dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a6cce0f9e8302f093b122e55ce6e256" id="r_a5a6cce0f9e8302f093b122e55ce6e256"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256">Name</a> () const =0</td></tr>
+<tr class="memdesc:a5a6cce0f9e8302f093b122e55ce6e256"><td class="mdescLeft">&#160;</td><td class="mdescRight">插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。  <br /></td></tr>
+<tr class="separator:a5a6cce0f9e8302f093b122e55ce6e256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a371798270a0cb15a9072386c0db65a65" id="r_a371798270a0cb15a9072386c0db65a65"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a371798270a0cb15a9072386c0db65a65">DisplayName</a> () const</td></tr>
+<tr class="memdesc:a371798270a0cb15a9072386c0db65a65"><td class="mdescLeft">&#160;</td><td class="mdescRight">在界面上显示的名称  <br /></td></tr>
+<tr class="separator:a371798270a0cb15a9072386c0db65a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44d5e732c7155e384114b066f668b0bb" id="r_a44d5e732c7155e384114b066f668b0bb"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a44d5e732c7155e384114b066f668b0bb">Description</a> () const =0</td></tr>
+<tr class="memdesc:a44d5e732c7155e384114b066f668b0bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">描述  <br /></td></tr>
+<tr class="separator:a44d5e732c7155e384114b066f668b0bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a52bc2fca449ddd78829da815e90b1" id="r_a48a52bc2fca449ddd78829da815e90b1"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a48a52bc2fca449ddd78829da815e90b1">Version</a> () const =0</td></tr>
+<tr class="memdesc:a48a52bc2fca449ddd78829da815e90b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Version  <br /></td></tr>
+<tr class="separator:a48a52bc2fca449ddd78829da815e90b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef61de2d5db307e713e7a6c6d255b333" id="r_aef61de2d5db307e713e7a6c6d255b333"><td class="memItemLeft" align="right" valign="top">virtual const QIcon&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#aef61de2d5db307e713e7a6c6d255b333">Icon</a> () const</td></tr>
+<tr class="separator:aef61de2d5db307e713e7a6c6d255b333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc828bd2d9f691514015f8dad125aa4" id="r_a2dc828bd2d9f691514015f8dad125aa4"><td class="memItemLeft" align="right" valign="top">virtual const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a2dc828bd2d9f691514015f8dad125aa4">Details</a> () const</td></tr>
+<tr class="memdesc:a2dc828bd2d9f691514015f8dad125aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">显示更多细节。 例如： 在关于对话框或日志中显示。 包括插件的依赖库的版本信息和描述  <br /></td></tr>
+<tr class="separator:a2dc828bd2d9f691514015f8dad125aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a70718085a80fa2dae9eee8eacad54a24" id="r_a70718085a80fa2dae9eee8eacad54a24"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a70718085a80fa2dae9eee8eacad54a24">CreateConnecter</a> (const QString &amp;szId, <a class="el" href="classCParameterClient.html">CParameterClient</a> *para)</td></tr>
+<tr class="memdesc:a70718085a80fa2dae9eee8eacad54a24"><td class="mdescLeft">&#160;</td><td class="mdescRight">新建 <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> 实例。仅由 <a class="el" href="classCClient.html" title="管理插件和连接者">CClient</a> 调用  <br /></td></tr>
+<tr class="separator:a70718085a80fa2dae9eee8eacad54a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99baf7a7bf0e04cbec1873e1eec81a2c" id="r_a99baf7a7bf0e04cbec1873e1eec81a2c"><td class="memItemLeft" align="right" valign="top"><a id="a99baf7a7bf0e04cbec1873e1eec81a2c" name="a99baf7a7bf0e04cbec1873e1eec81a2c"></a>
+virtual <a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>OnCreateConnecter</b> (const QString &amp;szId)=0</td></tr>
+<tr class="separator:a99baf7a7bf0e04cbec1873e1eec81a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af31634217cb2656de81dea61c1522ebd" id="r_af31634217cb2656de81dea61c1522ebd"><td class="memItemLeft" align="right" valign="top">virtual Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#af31634217cb2656de81dea61c1522ebd">DeleteConnecter</a> (<a class="el" href="classCConnecter.html">CConnecter</a> *p)</td></tr>
+<tr class="memdesc:af31634217cb2656de81dea61c1522ebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a>  <br /></td></tr>
+<tr class="separator:af31634217cb2656de81dea61c1522ebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a85373932cae5f981bd78f87b08eb7f12" id="r_a85373932cae5f981bd78f87b08eb7f12"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a85373932cae5f981bd78f87b08eb7f12">InitTranslator</a> ()</td></tr>
+<tr class="memdesc:a85373932cae5f981bd78f87b08eb7f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化翻译资源，仅由 <a class="el" href="classCClient.html" title="管理插件和连接者">CClient</a> 调用。 因为它调用了 <a class="el" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a> ，所以不能在此类的构造函数中直接调用。  <br /></td></tr>
+<tr class="separator:a85373932cae5f981bd78f87b08eb7f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a001443b08d2aa24c91edc10b5d08fd6a" id="r_a001443b08d2aa24c91edc10b5d08fd6a"><td class="memItemLeft" align="right" valign="top">QSharedPointer&lt; QTranslator &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCPluginClient.html#a001443b08d2aa24c91edc10b5d08fd6a">m_Translator</a></td></tr>
+<tr class="separator:a001443b08d2aa24c91edc10b5d08fd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>客户端插件接口。用于建立 <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> 实例，它由协议插件实现。 </p>
+<ul>
+<li>阻塞模型： <a class="el" href="classCPluginClient.html" title="客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。">CPluginClient</a> 与 <a class="el" href="classCConnecterThread.html" title="默认启动一个后台线程。实现一个后台线程处理一个连接。 可与插件接口从 CPluginClient 派生的插件一起使用，用于连接是阻塞模型的。">CConnecterThread</a> 一起使用，用于连接是阻塞模型的。</li>
+<li>非阻塞模型：CPluginClientThread 与 <a class="el" href="classCConnecterConnect.html" title="插件的连接者接口，此接口仅由插件使用。 所有的需要 CConnect 的插件连接者均需要从此接口派生。">CConnecterConnect</a> 一起可实现一个后台线程处理多个远程桌面连接。(暂时未使用)</li>
+</ul>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCClient.html" title="管理插件和连接者">CClient</a> <a class="el" href="classCConnecterThread.html" title="默认启动一个后台线程。实现一个后台线程处理一个连接。 可与插件接口从 CPluginClient 派生的插件一起使用，用于连接是阻塞模型的。">CConnecterThread</a> <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> <a class="el" href="classCPluginClientThread.html" title="它默认启动一个后台线程。 它与 CConnecterConnect 一起可实现一个后台线程处理多个远程桌面连接。">CPluginClientThread</a> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8h_source.html">PluginClient.h</a> 第 <a class="el" href="PluginClient_8h_source.html#l00032">32</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ae0646989bbd8183af945557b9016ce2e" name="ae0646989bbd8183af945557b9016ce2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0646989bbd8183af945557b9016ce2e">&#9670;&#160;</a></span>CPluginClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginClient::CPluginClient </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化操作。例如：派生类实现它，初始化插件全局资源等，例如： </p>
+<div class="fragment"><div class="line"><a class="code hl_function" href="classCPluginFreeRDP.html#a1a57743b0c84a7a4a8c0b97bd8954b66">CPluginFreeRDP::CPluginFreeRDP</a>(QObject *parent)</div>
+<div class="line">    : <a class="code hl_class" href="classCPluginClient.html">CPluginClient</a>(parent)</div>
+<div class="line">{</div>
+<div class="line">    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line">    qInfo(log) &lt;&lt; <span class="stringliteral">&quot;FreeRDP version:&quot;</span> &lt;&lt; freerdp_get_version_string()</div>
+<div class="line">                        &lt;&lt; <span class="stringliteral">&quot;revision:&quot;</span> &lt;&lt; freerdp_get_build_revision();</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">static</span> wLogCallbacks* pCbLog = <span class="keyword">new</span> wLogCallbacks;</div>
+<div class="line">    BOOL bRet = WLog_SetLogAppenderType(WLog_GetRoot(), WLOG_APPENDER_CALLBACK);</div>
+<div class="line">    <span class="keywordflow">if</span>(bRet &amp;&amp; pCbLog)</div>
+<div class="line">    {</div>
+<div class="line">        memset(pCbLog, 0, <span class="keyword">sizeof</span>(wLogCallbacks));</div>
+<div class="line">        pCbLog-&gt;message = [](<span class="keyword">const</span> wLogMessage* msg)-&gt;BOOL{</div>
+<div class="line">            <span class="keywordflow">switch</span>(msg-&gt;Level)</div>
+<div class="line">            {</div>
+<div class="line">            <span class="keywordflow">case</span> WLOG_TRACE:</div>
+<div class="line">                qDebug(LoggerFreeRDPTrace) <span class="comment">/*&lt;&lt; msg-&gt;PrefixString */</span> &lt;&lt; msg-&gt;TextString;</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            <span class="keywordflow">case</span> WLOG_DEBUG:</div>
+<div class="line">                qDebug(LoggerFreeRDP) <span class="comment">/*&lt;&lt; msg-&gt;PrefixString */</span> &lt;&lt; msg-&gt;TextString;</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            <span class="keywordflow">case</span> WLOG_INFO:</div>
+<div class="line">                qInfo(LoggerFreeRDP) <span class="comment">/*&lt;&lt; msg-&gt;PrefixString*/</span> &lt;&lt; msg-&gt;TextString;</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            <span class="keywordflow">case</span> WLOG_WARN:</div>
+<div class="line">                qWarning(LoggerFreeRDP) <span class="comment">/*&lt;&lt; msg-&gt;PrefixString */</span>&lt;&lt; msg-&gt;TextString;</div>
+<div class="line">            <span class="keywordflow">case</span> WLOG_ERROR:</div>
+<div class="line">                qCritical(LoggerFreeRDP) <span class="comment">/*&lt;&lt; msg-&gt;PrefixString*/</span> &lt;&lt; msg-&gt;TextString;</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            <span class="keywordflow">case</span> WLOG_FATAL:</div>
+<div class="line">            <span class="keywordflow">case</span> WLOG_OFF:</div>
+<div class="line">                qCritical(LoggerFreeRDPFatal) <span class="comment">/*&lt;&lt; msg-&gt;PrefixString*/</span> &lt;&lt; msg-&gt;TextString;</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            <span class="keywordflow">default</span>:</div>
+<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">return</span> TRUE;</div>
+<div class="line">        };</div>
+<div class="line">        WLog_ConfigureAppender(WLog_GetLogAppender(WLog_GetRoot()), <span class="stringliteral">&quot;callbacks&quot;</span>, pCbLog);</div>
+<div class="line">    }</div>
+<div class="line">    WLog_SetLogLevel(WLog_GetRoot(), WLOG_TRACE);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassCPluginClient_html"><div class="ttname"><a href="classCPluginClient.html">CPluginClient</a></div><div class="ttdoc">客户端插件接口。用于建立 CConnecter 实例，它由协议插件实现。</div><div class="ttdef"><b>Definition</b> <a href="PluginClient_8h_source.html#l00032">PluginClient.h:33</a></div></div>
+<div class="ttc" id="aclassCPluginFreeRDP_html_a1a57743b0c84a7a4a8c0b97bd8954b66"><div class="ttname"><a href="classCPluginFreeRDP.html#a1a57743b0c84a7a4a8c0b97bd8954b66">CPluginFreeRDP::CPluginFreeRDP</a></div><div class="ttdeci">CPluginFreeRDP(QObject *parent=nullptr)</div><div class="ttdoc">[Initialize resource]</div><div class="ttdef"><b>Definition</b> <a href="PluginFreeRDP_8cpp_source.html#l00019">PluginFreeRDP.cpp:19</a></div></div>
+</div><!-- fragment --> 
+</div>
+</div>
+<a id="ac20a71597521801c707fbd28f2882af3" name="ac20a71597521801c707fbd28f2882af3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac20a71597521801c707fbd28f2882af3">&#9670;&#160;</a></span>~CPluginClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPluginClient::~CPluginClient </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>派生类实现它，用于释放资源。例如： </p>
+<div class="fragment"><div class="line"><a class="code hl_function" href="classCPluginFreeRDP.html#afdf18d3418108c68a434cdc96c92f2bb">CPluginFreeRDP::~CPluginFreeRDP</a>()</div>
+<div class="line">{</div>
+<div class="line">    qDebug(log) &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassCPluginFreeRDP_html_afdf18d3418108c68a434cdc96c92f2bb"><div class="ttname"><a href="classCPluginFreeRDP.html#afdf18d3418108c68a434cdc96c92f2bb">CPluginFreeRDP::~CPluginFreeRDP</a></div><div class="ttdeci">virtual ~CPluginFreeRDP() override</div><div class="ttdoc">[Initialize resource]</div><div class="ttdef"><b>Definition</b> <a href="PluginFreeRDP_8cpp_source.html#l00064">PluginFreeRDP.cpp:64</a></div></div>
+</div><!-- fragment --> 
+<p class="definition">在文件 <a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a> 第 <a class="el" href="PluginClient_8cpp_source.html#l00017">17</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a70718085a80fa2dae9eee8eacad54a24" name="a70718085a80fa2dae9eee8eacad54a24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70718085a80fa2dae9eee8eacad54a24">&#9670;&#160;</a></span>CreateConnecter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCConnecter.html">CConnecter</a> * CPluginClient::CreateConnecter </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>szId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classCParameterClient.html">CParameterClient</a> *&#160;</td>
+          <td class="paramname"><em>para</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>新建 <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> 实例。仅由 <a class="el" href="classCClient.html" title="管理插件和连接者">CClient</a> 调用 </p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classCConnecter.html">CConnecter</a>* <a class="code hl_function" href="classCClient.html#a3cc3b315e8244e7283e3ba2b760df1d0">CClient::CreateConnecter</a>(<span class="keyword">const</span> QString&amp; <span class="keywordtype">id</span>)</div>
+<div class="line">{</div>
+<div class="line">    <a class="code hl_class" href="classCConnecter.html">CConnecter</a>* pConnecter = <span class="keyword">nullptr</span>;</div>
+<div class="line">    <span class="keyword">auto</span> it = m_Plugins.find(<span class="keywordtype">id</span>);</div>
+<div class="line">    <span class="keywordflow">if</span>(m_Plugins.end() != it)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordtype">bool</span> bRet = 0;</div>
+<div class="line">        qDebug(log) &lt;&lt; <span class="stringliteral">&quot;CreateConnecter id:&quot;</span> &lt;&lt; id;</div>
+<div class="line">        <span class="keyword">auto</span> plugin = it.value();</div>
+<div class="line">        <span class="keywordflow">if</span>(plugin) {</div>
+<div class="line">            <span class="comment">//p = plugin-&gt;CreateConnecter(id);</span></div>
+<div class="line">            bRet = QMetaObject::invokeMethod(</div>
+<div class="line">                plugin,</div>
+<div class="line">                <span class="stringliteral">&quot;CreateConnecter&quot;</span>,</div>
+<div class="line">                Qt::DirectConnection,</div>
+<div class="line">                Q_RETURN_ARG(<a class="code hl_class" href="classCConnecter.html">CConnecter</a>*, pConnecter),</div>
+<div class="line">                Q_ARG(QString, <span class="keywordtype">id</span>),</div>
+<div class="line">                Q_ARG(<a class="code hl_class" href="classCParameterClient.html">CParameterClient</a>*, m_pParameterClient));</div>
+<div class="line">            <span class="keywordflow">if</span>(!bRet) {</div>
+<div class="line">                qCritical(log) &lt;&lt; <span class="stringliteral">&quot;Create CConnecter fail.&quot;</span>;</div>
+<div class="line">                <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> pConnecter;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassCClient_html_a3cc3b315e8244e7283e3ba2b760df1d0"><div class="ttname"><a href="classCClient.html#a3cc3b315e8244e7283e3ba2b760df1d0">CClient::CreateConnecter</a></div><div class="ttdeci">virtual CConnecter * CreateConnecter(const QString &amp;id)</div><div class="ttdoc">新建 CConnecter 指针，所有者是调用者。 当不在使用时，调用者必调用　DeteleConnecter()　须释放指针。 调用者必须连接信号 CConnecter::sigDisconnecte...</div><div class="ttdef"><b>Definition</b> <a href="Client_8cpp_source.html#l00203">Client.cpp:203</a></div></div>
+<div class="ttc" id="aclassCConnecter_html"><div class="ttname"><a href="classCConnecter.html">CConnecter</a></div><div class="ttdoc">连接者应用接口。</div><div class="ttdef"><b>Definition</b> <a href="Connecter_8h_source.html#l00061">Connecter.h:62</a></div></div>
+<div class="ttc" id="aclassCParameterClient_html"><div class="ttname"><a href="classCParameterClient.html">CParameterClient</a></div><div class="ttdoc">客户端库 (CClient) 参数。仅在客户端库 (CClient) 和插件中使用。</div><div class="ttdef"><b>Definition</b> <a href="ParameterClient_8h_source.html#l00035">ParameterClient.h:36</a></div></div>
+</div><!-- fragment --> <dl class="section return"><dt>返回</dt><dd>返回 <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> 指针, 它的所有者是调用者。 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd>此函数新建一个堆栈对象指针， <b>调用者必须负责在用完后释放指针</b>。 </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">szId</td><td>连接 ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCClient.html#a3cc3b315e8244e7283e3ba2b760df1d0" title="新建 CConnecter 指针，所有者是调用者。 当不在使用时，调用者必调用　DeteleConnecter()　须释放指针。 调用者必须连接信号 CConnecter::sigDisconnecte...">CClient::CreateConnecter</a> <a class="el" href="classCClient.html#a352d711270b70b1c7f517b79a95af179" title="从文件中新建 CConnecter 指针，所有者是调用者。 当不再使用时，调用者必须负责调用　DeleteConnecter() 删除此指针。 调用者必须连接信号 CConnecter::sigDisc...">CClient::LoadConnecter</a> </dd></dl>
+
+<p>被 <a class="el" href="classCPluginWakeOnLan.html#a1057089c5c3c81d58660d3ec233487a9">CPluginWakeOnLan</a> , 以及 <a class="el" href="classCPluginClientThread.html#a09cac33af903272ccb5970090fbbb970">CPluginClientThread</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a> 第 <a class="el" href="PluginClient_8cpp_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af31634217cb2656de81dea61c1522ebd" name="af31634217cb2656de81dea61c1522ebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af31634217cb2656de81dea61c1522ebd">&#9670;&#160;</a></span>DeleteConnecter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CPluginClient::DeleteConnecter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classCConnecter.html">CConnecter</a> *&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Delete <a class="el" href="classCConnecter.html" title="连接者应用接口。">CConnecter</a> </p>
+
+<p>被 <a class="el" href="classCPluginWakeOnLan.html#ac5ec2c87775cb95dc156eeca6dd0d029">CPluginWakeOnLan</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a> 第 <a class="el" href="PluginClient_8cpp_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a44d5e732c7155e384114b066f668b0bb" name="a44d5e732c7155e384114b066f668b0bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44d5e732c7155e384114b066f668b0bb">&#9670;&#160;</a></span>Description()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const QString CPluginClient::Description </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描述 </p>
+
+<p>在 <a class="el" href="classCPluginFreeRDP.html#abe5e7e5308d6426c453e1c6276feeb49">CPluginFreeRDP</a>, <a class="el" href="classCPluginLibSSH.html#ad311c8909a3813656d90357546b0856b">CPluginLibSSH</a>, <a class="el" href="classCPluginLibVNCServer.html#ab2a58f362a8e016af712c8e4843adaf4">CPluginLibVNCServer</a>, <a class="el" href="classCPluginPlayer.html#a143ebaf6ec5e0d30ae8df5451907cf01">CPluginPlayer</a>, <a class="el" href="classCPluginRabbitVNC.html#af7954a71a66e79a86e8a45b56de6ea1e">CPluginRabbitVNC</a>, <a class="el" href="classCPluginScreenCapture.html#ab7300b0d75a299314c2f12ae187dd074">CPluginScreenCapture</a>, <a class="el" href="classCPluginTelnet.html#abdd061b80255cb5bdde2eaeeb8af9864">CPluginTelnet</a>, <a class="el" href="classCPluginTerminal.html#a8b0172d68e62a1121c8ca5f591752c28">CPluginTerminal</a>, <a class="el" href="classCPluginTigerVnc.html#adef553f7c5fe64104af720a26fdd4bb6">CPluginTigerVnc</a> , 以及 <a class="el" href="classCPluginWakeOnLan.html#abd6f4bc380dc9817f2db2ee77afdfe5e">CPluginWakeOnLan</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a2dc828bd2d9f691514015f8dad125aa4" name="a2dc828bd2d9f691514015f8dad125aa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dc828bd2d9f691514015f8dad125aa4">&#9670;&#160;</a></span>Details()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginClient::Details </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>显示更多细节。 例如： 在关于对话框或日志中显示。 包括插件的依赖库的版本信息和描述 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classCPluginFreeRDP.html#ad380980f75232976c82aa1013e768986" title="Show the plugin depends on the freerdp version">CPluginFreeRDP::Details()</a> </dd></dl>
+
+<p>被 <a class="el" href="classCPluginFreeRDP.html#ad380980f75232976c82aa1013e768986">CPluginFreeRDP</a>, <a class="el" href="classCPluginLibVNCServer.html#ad676bf242e4c8bf4b0425e9df679c1ee">CPluginLibVNCServer</a>, <a class="el" href="classCPluginPlayer.html#a1f26606c8405c9a501014349aecb46d3">CPluginPlayer</a>, <a class="el" href="classCPluginTigerVnc.html#af34f893cc6d31443e1b274665e0cc9ce">CPluginTigerVnc</a> , 以及 <a class="el" href="classCPluginWakeOnLan.html#a0cae270c4aef5b4a3b344454260f5e38">CPluginWakeOnLan</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a> 第 <a class="el" href="PluginClient_8cpp_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a371798270a0cb15a9072386c0db65a65" name="a371798270a0cb15a9072386c0db65a65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a371798270a0cb15a9072386c0db65a65">&#9670;&#160;</a></span>DisplayName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginClient::DisplayName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在界面上显示的名称 </p>
+
+<p>被 <a class="el" href="classCPluginFreeRDP.html#a52fe101cacf00bf7ae21f82d6938d0f7">CPluginFreeRDP</a>, <a class="el" href="classCPluginLibVNCServer.html#a2ba3363486ed520564f73909cfa6aa0f">CPluginLibVNCServer</a>, <a class="el" href="classCPluginPlayer.html#aba689df506bef9464f853796d43ce691">CPluginPlayer</a>, <a class="el" href="classCPluginRabbitVNC.html#a45531739a9e243a6e43f751a24583f1b">CPluginRabbitVNC</a>, <a class="el" href="classCPluginScreenCapture.html#a070ad2925585cd9b4b72062d76e27ef9">CPluginScreenCapture</a>, <a class="el" href="classCPluginTerminal.html#a8d380ab8ba7dccadcdc8cc3340e2ffa6">CPluginTerminal</a>, <a class="el" href="classCPluginTigerVnc.html#a48b93baf949fa9c852897d1a796f5573">CPluginTigerVnc</a> , 以及 <a class="el" href="classCPluginWakeOnLan.html#a60125791db3a7f755b6a7f70b850567a">CPluginWakeOnLan</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a> 第 <a class="el" href="PluginClient_8cpp_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aef61de2d5db307e713e7a6c6d255b333" name="aef61de2d5db307e713e7a6c6d255b333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef61de2d5db307e713e7a6c6d255b333">&#9670;&#160;</a></span>Icon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QIcon CPluginClient::Icon </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a> 第 <a class="el" href="PluginClient_8cpp_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a33d235f502024a800f2fb12a65487f7c" name="a33d235f502024a800f2fb12a65487f7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33d235f502024a800f2fb12a65487f7c">&#9670;&#160;</a></span>Id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString CPluginClient::Id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>标识。默认： <a class="el" href="classCPluginClient.html#a88e3f97b27a5863fad0b50455bf343dd" title="协议">Protocol()</a> + ":" + <a class="el" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a> </p>
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a> 第 <a class="el" href="PluginClient_8cpp_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a85373932cae5f981bd78f87b08eb7f12" name="a85373932cae5f981bd78f87b08eb7f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85373932cae5f981bd78f87b08eb7f12">&#9670;&#160;</a></span>InitTranslator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CPluginClient::InitTranslator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化翻译资源，仅由 <a class="el" href="classCClient.html" title="管理插件和连接者">CClient</a> 调用。 因为它调用了 <a class="el" href="classCPluginClient.html#a5a6cce0f9e8302f093b122e55ce6e256" title="插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。">Name()</a> ，所以不能在此类的构造函数中直接调用。 </p>
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a> 第 <a class="el" href="PluginClient_8cpp_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5a6cce0f9e8302f093b122e55ce6e256" name="a5a6cce0f9e8302f093b122e55ce6e256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a6cce0f9e8302f093b122e55ce6e256">&#9670;&#160;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const QString CPluginClient::Name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>插件名，这个名一定要与工程名(${PROJECT_NAME})相同。 翻译文件(${PROJECT_NAME}_*.ts)）名与其相关。 </p>
+
+<p>在 <a class="el" href="classCPluginFreeRDP.html#ab01d6296978fe8bcfcc9c656b521156e">CPluginFreeRDP</a>, <a class="el" href="classCPluginLibSSH.html#afa86ffed5e243a292eae4fc8bd1a3143">CPluginLibSSH</a>, <a class="el" href="classCPluginLibVNCServer.html#ab9e627247bcca0852d83dc9b0e3e4deb">CPluginLibVNCServer</a>, <a class="el" href="classCPluginPlayer.html#a2113fccca3eb364de74eda21af206609">CPluginPlayer</a>, <a class="el" href="classCPluginRabbitVNC.html#ab3617eca6762278680cd039f66a47a60">CPluginRabbitVNC</a>, <a class="el" href="classCPluginScreenCapture.html#af1d3404d4d367999379d503581d240a7">CPluginScreenCapture</a>, <a class="el" href="classCPluginTelnet.html#aee990c8fa965e1cde71971611b22abac">CPluginTelnet</a>, <a class="el" href="classCPluginTerminal.html#a77b381c3bbebf0f3bfc3a429f77caa6f">CPluginTerminal</a>, <a class="el" href="classCPluginTigerVnc.html#a26f3af3302b3b057088ff24729d99753">CPluginTigerVnc</a> , 以及 <a class="el" href="classCPluginWakeOnLan.html#aa29c23e7e5419e8ca9c03f00766bbd58">CPluginWakeOnLan</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a88e3f97b27a5863fad0b50455bf343dd" name="a88e3f97b27a5863fad0b50455bf343dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88e3f97b27a5863fad0b50455bf343dd">&#9670;&#160;</a></span>Protocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const QString CPluginClient::Protocol </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>协议 </p>
+
+<p>在 <a class="el" href="classCPluginFreeRDP.html#adc8f72efbc4b1281e02c1662de6f35d5">CPluginFreeRDP</a>, <a class="el" href="classCPluginLibSSH.html#a25ceb9ead8dcec858982a8ad87ed8b21">CPluginLibSSH</a>, <a class="el" href="classCPluginLibVNCServer.html#af6a746c59499cc7bb544f22132f09e0b">CPluginLibVNCServer</a>, <a class="el" href="classCPluginPlayer.html#ae934864d43324fc716b90c5667b7304e">CPluginPlayer</a>, <a class="el" href="classCPluginRabbitVNC.html#a9ffd446dd0c7ca602df588aea438840e">CPluginRabbitVNC</a>, <a class="el" href="classCPluginScreenCapture.html#a870a1d6232cfb13137b40a26236ac409">CPluginScreenCapture</a>, <a class="el" href="classCPluginTelnet.html#a487eb3bbe26507702a6766ed84363978">CPluginTelnet</a>, <a class="el" href="classCPluginTerminal.html#a47ed0f4d3394b96c8c15aa8839ea2c9d">CPluginTerminal</a>, <a class="el" href="classCPluginTigerVnc.html#a19ccf11a1f33937283fb7b7f0be782d1">CPluginTigerVnc</a> , 以及 <a class="el" href="classCPluginWakeOnLan.html#a3696f73ef009d48efc1d7fc82ca70feb">CPluginWakeOnLan</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a48a52bc2fca449ddd78829da815e90b1" name="a48a52bc2fca449ddd78829da815e90b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48a52bc2fca449ddd78829da815e90b1">&#9670;&#160;</a></span>Version()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const QString CPluginClient::Version </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Version </p>
+
+<p>在 <a class="el" href="classCPluginFreeRDP.html#aa047e1eb39bac10525aac05f09d72895">CPluginFreeRDP</a>, <a class="el" href="classCPluginLibVNCServer.html#a399b6fe8eec7968423c05534ed5c0318">CPluginLibVNCServer</a>, <a class="el" href="classCPluginPlayer.html#aed7458a5bee0668932e7acfb51359ab7">CPluginPlayer</a>, <a class="el" href="classCPluginRabbitVNC.html#aedf3de56da64d9086909459634246c14">CPluginRabbitVNC</a>, <a class="el" href="classCPluginScreenCapture.html#a43192d10634b9613832178f24dbb2f22">CPluginScreenCapture</a>, <a class="el" href="classCPluginTigerVnc.html#a715989e6f36d763ff5be2bc2f5bff3fd">CPluginTigerVnc</a> , 以及 <a class="el" href="classCPluginWakeOnLan.html#aaac628007daf1b5396e279b3fd3545c5">CPluginWakeOnLan</a> 内被实现.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a001443b08d2aa24c91edc10b5d08fd6a" name="a001443b08d2aa24c91edc10b5d08fd6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a001443b08d2aa24c91edc10b5d08fd6a">&#9670;&#160;</a></span>m_Translator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSharedPointer&lt;QTranslator&gt; CPluginClient::m_Translator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="PluginClient_8h_source.html">PluginClient.h</a> 第 <a class="el" href="PluginClient_8h_source.html#l00121">121</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="PluginClient_8h_source.html">PluginClient.h</a></li>
+<li>/home/runner/work/RabbitRemoteControl/RabbitRemoteControl/Client/<a class="el" href="PluginClient_8cpp_source.html">PluginClient.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.16-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer">
+<a href="mailto:kl222@126.com" >作者：康林 (kl222@126.com) </a>
+<p/>
+<a href="https://github.com/KangLin/LunarCalendar">版权所有(c) 康林工作室 保留所有权力</a>
+</address>
+</body>
+</html>
