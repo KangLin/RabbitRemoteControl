@@ -287,7 +287,7 @@ Contact me:
       - arm64
 
             # Install package
-            sudo apt install ./rabbitremotecontrol_0.0.33_ubuntu-24.04_amd64.deb
+            sudo apt install ./rabbitremotecontrol_0.0.34_ubuntu-24.04_amd64.deb
             # Run
             rabbitremotecontrol
             # Or click the desktop icon to run
@@ -309,9 +309,9 @@ Contact me:
       - aarch64
 
             # Set execution permissions
-            chmod a+x RabbitRemoteControl_0.0.33_Linux_x86_64.AppImage
+            chmod a+x RabbitRemoteControl_0.0.34_Linux_x86_64.AppImage
             # Run
-            ./RabbitRemoteControl_0.0.33_Linux_x86_64.AppImage
+            ./RabbitRemoteControl_0.0.34_Linux_x86_64.AppImage
 
   - Snap Package: Used on all Linux systems that support Snap.
   Ubuntu uses this installation package by default.
@@ -322,7 +322,7 @@ Contact me:
       - aarch64
 
             # Install package
-            flatpak --user install RabbitRemoteControl_v0.0.33_Linux_x86_64.flatpak
+            flatpak --user install RabbitRemoteControl_v0.0.34_Linux_x86_64.flatpak
             # Run
             flatpak run io.github.KangLin.RabbitRemoteControl
             # Or click the desktop icon to run
@@ -331,15 +331,15 @@ Contact me:
   - Architecture:
     - x86_64
     - arm64_v8a
-- Apple OS: RabbitRemoteControl_v0.0.33_macos.zip.
+- Apple OS: RabbitRemoteControl_v0.0.34_macos.zip.
   No tests were carried out as there was no relevant equipment.
   We hope that interested friends will participate in the development and testing.
-- Development documentation: RabbitRemoteControl_v0.0.33_document.zip
+- Development documentation: RabbitRemoteControl_v0.0.34_document.zip
 
 ## [Development](docs/Doxygen/Develop.md)
 
 ### Development documentation online
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.33/English/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.34/English/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/English/html/index.html)
 
 ### Compilation

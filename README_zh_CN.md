@@ -285,7 +285,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
       - arm64
 
             # 安装包
-            sudo apt install ./rabbitremotecontrol_0.0.33_ubuntu-24.04_amd64.deb
+            sudo apt install ./rabbitremotecontrol_0.0.34_ubuntu-24.04_amd64.deb
             # 运行
             rabbitremotecontrol
             # 或者点击桌面图标运行
@@ -307,9 +307,9 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
       - aarch64
     
             # 设置执行权限
-            chmod a+x RabbitRemoteControl_0.0.33_Linux_x86_64.AppImage
+            chmod a+x RabbitRemoteControl_0.0.34_Linux_x86_64.AppImage
             # 运行
-            ./RabbitRemoteControl_0.0.33_Linux_x86_64.AppImage
+            ./RabbitRemoteControl_0.0.34_Linux_x86_64.AppImage
 
   - Snap 包: 用于所有支持 Snap 的 Linux 系统。Ubuntu 默认使用此安装包。
   - Flatpak 包：扩展名为 .flatpak ，用于所有支持 Flatpak 的 Linux 系统。Fedora 默认使用此安装包。
@@ -318,7 +318,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
       - aarch64
 
             # 安装包
-            flatpak --user install RabbitRemoteControl_v0.0.33_Linux_x86_64.flatpak
+            flatpak --user install RabbitRemoteControl_v0.0.34_Linux_x86_64.flatpak
             # 运行
             flatpak run io.github.KangLin.RabbitRemoteControl
             # 或者点击桌面图标运行
@@ -327,14 +327,14 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
   - 架构:
     - x86_64
     - arm64_v8a
-- 苹果操作系统: RabbitRemoteControl_v0.0.33_macos.zip 。
+- 苹果操作系统: RabbitRemoteControl_v0.0.34_macos.zip 。
   由于没有相关设备，所以没有进行测试。希望有兴趣的朋友参与开发和测试。
-- 开发文档：RabbitRemoteControl_v0.0.33_document.zip
+- 开发文档：RabbitRemoteControl_v0.0.34_document.zip
 
 ## [开发](docs/Doxygen/Develop_zh_CN.md)
 
 ### 在线开发文档
-- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.33/Chinese/html/index.html)
+- [sourceforge](https://rabbitremotecontrol.sourceforge.io/v0.0.34/Chinese/html/index.html)
 - [github.io](https://kanglin.github.io/RabbitRemoteControl/Chinese/html/index.html)
 
 ### 编译

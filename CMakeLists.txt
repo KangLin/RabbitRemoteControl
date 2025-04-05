@@ -135,10 +135,10 @@ GET_VERSION(OUT_VERSION RabbitRemoteControl_VERSION
     OUT_REVISION RabbitRemoteControl_REVISION
     OUT_TAG RabbitRemoteControlTag)
 IF(NOT RabbitRemoteControl_VERSION)
-    SET(RabbitRemoteControl_VERSION "0.0.33")
+    SET(RabbitRemoteControl_VERSION "0.0.34")
 ENDIF()
 IF(NOT RabbitRemoteControlTag)
-    SET(RabbitRemoteControlTag "0.0.33")
+    SET(RabbitRemoteControlTag "0.0.34")
 ENDIF()
 message("RabbitRemoteControl_VERSION:${RabbitRemoteControl_VERSION};Revision:${RabbitRemoteControl_REVISION};Tag:${RabbitRemoteControlTag}")
 set(VERSION ${RabbitRemoteControl_VERSION})
