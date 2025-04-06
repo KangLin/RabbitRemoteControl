@@ -157,35 +157,35 @@ jobs:
               "${{ env.artifact_path }}" "${{ env.artifact_path }}/version.json"
           rm ${{ env.artifact_path }}/*.json
 
-      - name: Add change log file in Note.md file
+      - name: Add change log file in Release.md file
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           # 因为其它网站也可能需要，所以用完整的 URL
-          echo "|:us: English|:cn: 中文|" >> ${{github.workspace}}/Note.md
-          echo "| :-    |:- |" >> ${{github.workspace}}/Note.md
-          echo "|[Change log](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/ChangeLog.md)|[修改日志](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/ChangeLog_zh_CN.md)|" >> ${{github.workspace}}/Note.md
-          echo "|Full Change: [${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}})|全部修改: [${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}})|" >> ${{github.workspace}}/Note.md
-          echo "|[Instructions for installing the package](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/README.md#Instructions-for-installing-the-package)|[安装包说明](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/README_zh_CN.md#安装包说明)|" >> ${{github.workspace}}/Note.md
-          echo "" >> ${{github.workspace}}/Note.md
+          echo "|:us: English|:cn: 中文|" >> ${{github.workspace}}/Release.md
+          echo "| :-    |:- |" >> ${{github.workspace}}/Release.md
+          echo "|[Change log](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/ChangeLog.md)|[修改日志](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/ChangeLog_zh_CN.md)|" >> ${{github.workspace}}/Release.md
+          echo "|Full Change: [${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}})|全部修改: [${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}})|" >> ${{github.workspace}}/Release.md
+          echo "|[Instructions for installing the package](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/README.md#Instructions-for-installing-the-package)|[安装包说明](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/README_zh_CN.md#安装包说明)|" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
 
-      - name: Add test comment in Note.md file
+      - name: Add test comment in Release.md file
         if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         run: |
-          echo "**This release is for development and testing purposes only!**" >> ${{github.workspace}}/Note.md
-          echo "" >> ${{github.workspace}}/Note.md
-          echo "Commit: [${{github.sha}}](https://github.com/KangLin/RabbitRemoteControl/commit/${{github.sha}})" >> ${{github.workspace}}/Note.md
-          echo "" >> ${{github.workspace}}/Note.md
-          echo "[:us: Change log](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/ChangeLog.md)" > ${{github.workspace}}/Note.md
-          echo "" >> ${{github.workspace}}/Note.md
-          echo "[Instructions for installing the package](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/README.md#Instructions-for-installing-the-package)" >> ${{github.workspace}}/Note.md
+          echo "**This release is for development and testing purposes only!**" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "Commit: [${{github.sha}}](https://github.com/KangLin/RabbitRemoteControl/commit/${{github.sha}})" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "[:us: Change log](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/ChangeLog.md)" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "[Instructions for installing the package](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/README.md#Instructions-for-installing-the-package)" >> ${{github.workspace}}/Release.md
 
-      - name: Add artifact md5sum in Note.md file
+      - name: Add artifact md5sum in Release.md file
         run: |
-          echo "" >> ${{github.workspace}}/Note.md
-          echo "File checksum:" >> ${{github.workspace}}/Note.md
-          echo "" >> ${{github.workspace}}/Note.md
-          echo "|File|Checksum(md5)|" >> ${{github.workspace}}/Note.md
-          echo "| :- |    :-       |" >> ${{github.workspace}}/Note.md
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "File checksum:" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "|File|Checksum(md5)|" >> ${{github.workspace}}/Release.md
+          echo "| :- |    :-       |" >> ${{github.workspace}}/Release.md
           cd ${{ env.artifact_path }}
           for file in *
           do
@@ -193,36 +193,36 @@ jobs:
               if [ -f $file ]; then
                   if [ "${file##*.}" != "xml" ] && [ "${file##*.}" != "json" ]; then
                       md5sum $file > ${file}.md5sum
-                      awk '{print  "|", $2, "|", $1, "|"}' ${file}.md5sum >> ${{github.workspace}}/Note.md
+                      awk '{print  "|", $2, "|", $1, "|"}' ${file}.md5sum >> ${{github.workspace}}/Release.md
                   fi
               else
                  rm -fr $file
               fi
           done
-          echo "" >> ${{github.workspace}}/Note.md
+          echo "" >> ${{github.workspace}}/Release.md
 
-      - name: Add snap donwload in Note.md file
+      - name: Add snap donwload in Release.md file
         run: |
-          echo "" >> ${{github.workspace}}/Note.md
-          echo "[![Download from Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl)" >> ${{github.workspace}}/Note.md
-          echo "" >> ${{github.workspace}}/Note.md
-          echo "[![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)" >> ${{github.workspace}}/Note.md
-          echo "[![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)" >> ${{github.workspace}}/Note.md
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "[![Download from Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/apps/io.github.KangLin.RabbitRemoteControl)" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "[![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/badge.svg)](https://snapcraft.io/rabbitremotecontrol)" >> ${{github.workspace}}/Release.md
+          echo "[![rabbitremotecontrol](https://snapcraft.io/rabbitremotecontrol/trending.svg?name=0)](https://snapcraft.io/rabbitremotecontrol)" >> ${{github.workspace}}/Release.md
 
       # See: [访问有关工作流运行的上下文信息](https://docs.github.com/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#github-context)
       - name: Create Github Release
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         continue-on-error: true
         run: |
-          gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes-file ${{github.workspace}}/Note.md
+          gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --notes-file ${{github.workspace}}/Release.md
 
       - name: Upload To Github Release
         if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
-          gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json
+          gh release upload ${{ github.ref_name }} ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Release.md ${{github.workspace}}/update.json
 
       - name: Upload test tag To Github Release
         if: ${{ startsWith(github.ref, 'refs/heads/master') }}
         run: |
-          gh release create test_${{ github.ref_name }} --prerelease --latest=false --title "Recently developed build - ${{ github.ref_name }}" --notes-file ${{github.workspace}}/Note.md
-          gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Note.md ${{github.workspace}}/update.json --clobber
+          gh release create test_${{ github.ref_name }} --prerelease --latest=false --title "Recently developed build - ${{ github.ref_name }}" --notes-file ${{github.workspace}}/Release.md
+          gh release upload test_${{ github.ref_name }} --clobber ${{github.workspace}}/${{ env.artifact_path }}/* ${{github.workspace}}/Release.md ${{github.workspace}}/update.json --clobber

@@ -251,7 +251,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../FrmParameterClient.ui" line="50"/>
         <source>Key used to encrypt saved password:</source>
-        <translation>加密键用于加密码保存的密码</translation>
+        <translation>加密键用于加密保存的密码</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="64"/>
