@@ -84,7 +84,7 @@
 
   <releases>
     <release version="@RabbitRemoteControl_VERSION@" date="@BUILD_DATE@">
-        <url type="details">https://github.com/KangLin/RabbitRemoteControl/blob/v@RabbitRemoteControlTag@/ChangeLog.md#v@RabbitRemoteControlTag@</url>
+        <url type="details">https://github.com/KangLin/RabbitRemoteControl/blob/@RabbitRemoteControl_REVISION@/ChangeLog.md</url>
     </release>
   </releases>
 

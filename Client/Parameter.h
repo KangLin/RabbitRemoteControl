@@ -209,8 +209,6 @@ public:
      *
      *  例如：用于在参数设置对话框时，需要先检查参数是否完成或者有效，才能确定保存。
      *
-     *  \snippet Client/WakeOnLan/ConnectWakeOnLan.cpp Check parameters is validity
-     *
      * \~english
      *  Check whether the parameter is valid to
      *  decide whether to use or save the parameter.\n
@@ -221,7 +219,7 @@ public:
      *  you need to check whether the parameters are complete
      *  or valid before you can save them.
      *
-     *  \snippet Client/WakeOnLan/ConnectWakeOnLan.cpp Check parameters is validity
+     * \~ \see CParameterUI::CheckValidity
      */
     virtual bool CheckValidity();
     

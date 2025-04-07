@@ -6,7 +6,7 @@
     #include "Ice.h"
 #endif
 
-CParameterApp::CParameterApp(QObject *parent) : QObject(parent),
+CParameterApp::CParameterApp(QObject *parent) : CParameter(parent, "MainWindow"),
     m_bReceiveShortCut(false),
     m_bSaveMainWindowStatus(true),
     m_ViewType(ViewType::Tab),
@@ -31,62 +31,66 @@ CParameterApp::~CParameterApp()
 {
 }
 
-int CParameterApp::Load()
+int CParameterApp::OnLoad(QSettings &set)
 {
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
-                  QSettings::IniFormat);
-
-    SetReceiveShortCut(set.value("MainWindow/ReceiveShortCurt",
+    SetReceiveShortCut(set.value("ReceiveShortCurt",
                                  GetReceiveShortCut()).toBool());
-    SetSaveMainWindowStatus(set.value("MainWindow/Status/Enable",
+    
+    set.beginGroup("Status");
+    SetSaveMainWindowStatus(set.value("Enable",
                                       GetSaveMainWindowStatus()).toBool());
     if(GetSaveMainWindowStatus()) {
-        SetStatusBar(set.value("MainWindow/Status/StatusBar",
+        SetStatusBar(set.value("StatusBar",
                                GetStatusBar()).toBool());
-
-        SetTabBar(set.value("MainWindow/Status/TabBar",
+        SetTabBar(set.value("TabBar",
                             GetTabBar()).toBool());
-
-        SetMenuBar(set.value("MainWindow/Status/MenuBar",
+        SetMenuBar(set.value("MenuBar",
                              GetMenuBar()).toBool());
     }
-
-    int viewType = set.value("MainWindow/View/Type").toInt();
+    set.endGroup();
+    
+    set.beginGroup("View");
+    int viewType = set.value("Type").toInt();
     SetViewType((ViewType)viewType);
     SetTabPosition(static_cast<QTabWidget::TabPosition>(
-                       set.value("MainWindow/View/TabView/Tab/Position",
+                       set.value("TabView/Tab/Position",
                                  GetTabPosition()).toInt()));
-    SetEnableTabToolTip(set.value("MainWindow/View/TabView/Tab/Enable/ToolTip",
+    SetEnableTabToolTip(set.value("TabView/Tab/Enable/ToolTip",
                                   GetEnableTabToolTip()).toBool());
-    SetEnableTabIcon(set.value("MainWindow/View/TabView/Tab/Enable/Icon",
+    SetEnableTabIcon(set.value("TabView/Tab/Enable/Icon",
                                GetEnableTabIcon()).toBool());
+    set.endGroup();
 
-    SetRecentMenuMaxCount(set.value("MainWindow/Recent/Max",
+    SetRecentMenuMaxCount(set.value("Recent/Max",
                                     GetRecentMenuMaxCount()).toInt());
-    
+
+    set.beginGroup("SystemTrayIcon");
     //NOTE: The order cannot be changed
-    SetEnableSystemTrayIcon(set.value("MainWindow/SystemTrayIcon/Enable",
+    SetEnableSystemTrayIcon(set.value("Enable",
                                       GetEnableSystemTrayIcon()).toBool());
     SetSystemTrayIconMenuType(static_cast<SystemTrayIconMenuType>(
-                              set.value("MainWindow/SystemTrayIcon/MenuType",
+                              set.value("MenuType",
                        static_cast<int>(GetSystemTrayIconMenuType())).toInt()));
+    set.endGroup();
 
-    SetOpenLasterClose(set.value("MainWindow/OpenLasterClose",
+    SetOpenLasterClose(set.value("OpenLasterClose",
                                   GetOpenLasterClose()).toBool());
-    SetFavoriteEdit(set.value("MainWindow/Favorite/Double/Edit",
+    SetFavoriteEdit(set.value("Favorite/Double/Edit",
                               GetFavoriteEdit()).toBool());
 
     SetMessageBoxDisplayInformation(
-        set.value("MainWindow/MessageBoxDisplayInformation",
+        set.value("MessageBoxDisplayInformation",
                   GetMessageBoxDisplayInformation()).toBool());
 
+    set.beginGroup("Dock");
     SetDockListConnectersShowToolBar(
-        set.value("MainWindow/Dock/ListConnecters/ToolBar/Show",
+        set.value("ListConnecters/ToolBar/Show",
                   GetDockListConnectersShowToolBar()).toBool());
 
     SetDockListRecentShowToolBar(
-        set.value("MainWindow/Dock/Recent/ToolBar/Show",
+        set.value("Recent/ToolBar/Show",
                   GetDockListRecentShowToolBar()).toBool());
+    set.endGroup();
 
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Load(set);
@@ -94,36 +98,47 @@ int CParameterApp::Load()
     return 0;
 }
 
-int CParameterApp::Save()
+int CParameterApp::OnSave(QSettings &set)
 {
-    QSettings set(RabbitCommon::CDir::Instance()->GetFileUserConfigure(),
-                  QSettings::IniFormat);
+    set.setValue("ReceiveShortCurt", GetReceiveShortCut());
 
-    set.setValue("MainWindow/ReceiveShortCurt", GetReceiveShortCut());
-    set.setValue("MainWindow/Status/Enable", GetSaveMainWindowStatus());
+    set.beginGroup("Status");
+    set.setValue("Enable", GetSaveMainWindowStatus());
     if(GetSaveMainWindowStatus())
     {
-        set.setValue("MainWindow/Status/StatusBar", GetStatusBar());
-        set.setValue("MainWindow/Status/TabBar", GetTabBar());
-        set.setValue("MainWindow/Status/MenuBar", GetMenuBar());
+        set.setValue("StatusBar", GetStatusBar());
+        set.setValue("TabBar", GetTabBar());
+        set.setValue("MenuBar", GetMenuBar());
         // Geometry and status is saved MainWindow::closeEvent()
     }
-    set.setValue("MainWindow/View/Type", (int)GetViewType());
-    set.setValue("MainWindow/View/TabView/Tab/Position", GetTabPosition());
-    set.setValue("MainWindow/View/TabView/Tab/Enable/ToolTip", GetEnableTabToolTip());
-    set.setValue("MainWindow/View/TabView/Tab/Enable/Icon", GetEnableTabIcon());
-    set.setValue("MainWindow/Recent/Max", GetRecentMenuMaxCount());
-    set.setValue("MainWindow/SystemTrayIcon/Enable", GetEnableSystemTrayIcon());
-    set.setValue("MainWindow/SystemTrayIcon/MenuType",
+    set.endGroup();
+
+    set.beginGroup("View");
+    set.setValue("Type", (int)GetViewType());
+    set.setValue("TabView/Tab/Position", GetTabPosition());
+    set.setValue("TabView/Tab/Enable/ToolTip", GetEnableTabToolTip());
+    set.setValue("TabView/Tab/Enable/Icon", GetEnableTabIcon());
+    set.endGroup();
+
+    set.setValue("Recent/Max", GetRecentMenuMaxCount());
+
+    set.beginGroup("SystemTrayIcon");
+    set.setValue("Enable", GetEnableSystemTrayIcon());
+    set.setValue("MenuType",
                  static_cast<int>(GetSystemTrayIconMenuType()));
-    set.setValue("MainWindow/OpenLasterClose", GetOpenLasterClose());
-    set.setValue("MainWindow/Favorite/Double/Edit", GetFavoriteEdit());
-    set.setValue("MainWindow/MessageBoxDisplayInformation",
+    set.endGroup();
+
+    set.setValue("OpenLasterClose", GetOpenLasterClose());
+    set.setValue("Favorite/Double/Edit", GetFavoriteEdit());
+    set.setValue("MessageBoxDisplayInformation",
                  GetMessageBoxDisplayInformation());
-    set.setValue("MainWindow/Dock/ListConnecters/ToolBar/Show",
+
+    set.beginGroup("Dock");
+    set.setValue("ListConnecters/ToolBar/Show",
                  GetDockListConnectersShowToolBar());
-    set.setValue("MainWindow/Dock/Recent/ToolBar/Show",
+    set.setValue("Recent/ToolBar/Show",
                  GetDockListRecentShowToolBar());
+    set.endGroup();
 
 #ifdef HAVE_ICE
     return CICE::Instance()->GetParameter()->Save(set);
@@ -141,6 +156,7 @@ void CParameterApp::SetReceiveShortCut(bool newReceiveShortCut)
     if (m_bReceiveShortCut == newReceiveShortCut)
         return;
     m_bReceiveShortCut = newReceiveShortCut;
+    SetModified(true);
     emit sigReceiveShortCutChanged();
 }
 
@@ -154,6 +170,7 @@ void CParameterApp::SetSaveMainWindowStatus(bool newSaveMainWindowStatus)
     if (m_bSaveMainWindowStatus == newSaveMainWindowStatus)
         return;
     m_bSaveMainWindowStatus = newSaveMainWindowStatus;
+    SetModified(true);
     emit sigSaveMainWindowStatusChanged();
 }
 
@@ -167,6 +184,7 @@ int CParameterApp::SetViewType(ViewType type)
     if(m_ViewType == type)
         return 0;
     m_ViewType = type;
+    SetModified(true);
     emit sigViewTypeChanged();
     return 0;
 }
@@ -181,6 +199,7 @@ void CParameterApp::SetTabPosition(const QTabWidget::TabPosition &newTabPosition
     if (m_TabPosition == newTabPosition)
         return;
     m_TabPosition = newTabPosition;
+    SetModified(true);
     emit sigTabPositionChanged();
 }
 
@@ -194,6 +213,7 @@ void CParameterApp::SetEnableTabToolTip(bool bEnable)
     if(m_bEnableTabToolTip == bEnable)
         return;
     m_bEnableTabToolTip = bEnable;
+    SetModified(true);
     emit sigEnableTabToolTipChanged();
 }
 
@@ -207,6 +227,7 @@ void CParameterApp::SetEnableTabIcon(bool bEnable)
     if(m_bEnableTabIcon == bEnable)
         return;
     m_bEnableTabIcon = bEnable;
+    SetModified(true);
     emit sigEnableTabIconChanged();
 }
 
@@ -220,6 +241,7 @@ void CParameterApp::SetRecentMenuMaxCount(int newRecentMenuMaxCount)
     if (m_nRecentMenuMaxCount == newRecentMenuMaxCount)
         return;
     m_nRecentMenuMaxCount = newRecentMenuMaxCount;
+    SetModified(true);
     emit sigRecentMenuMaxCountChanged(m_nRecentMenuMaxCount);
 }
 
@@ -233,6 +255,7 @@ void CParameterApp::SetSystemTrayIconMenuType(SystemTrayIconMenuType newSystemTr
     if(m_SystemTrayIconType == newSystemTrayIconType)
         return;
     m_SystemTrayIconType = newSystemTrayIconType;
+    SetModified(true);
     emit sigSystemTrayIconTypeChanged();
 }
 
@@ -246,6 +269,7 @@ int CParameterApp::SetEnableSystemTrayIcon(bool bShow)
     if(m_bEnableSystemTrayIcon == bShow)
         return 0;
     m_bEnableSystemTrayIcon = bShow;
+    SetModified(true);
     emit sigEnableSystemTrayIcon();
     return 0;
 }
@@ -260,6 +284,7 @@ void CParameterApp::SetOpenLasterClose(bool newOpenLasterClose)
     if (m_bOpenLasterClose == newOpenLasterClose)
         return;
     m_bOpenLasterClose = newOpenLasterClose;
+    SetModified(true);
     emit sigOpenLasterCloseChanged(m_bOpenLasterClose);
 }
 
@@ -270,7 +295,10 @@ bool CParameterApp::GetFavoriteEdit() const
 
 void CParameterApp::SetFavoriteEdit(bool newFavoriteEdit)
 {
+    if(m_bFavoriteEdit == newFavoriteEdit)
+        return;
     m_bFavoriteEdit = newFavoriteEdit;
+    SetModified(true);
     emit sigFavoriteEditChanged(m_bFavoriteEdit);
 }
 
@@ -281,7 +309,10 @@ bool CParameterApp::GetStatusBar() const
 
 void CParameterApp::SetStatusBar(bool checked)
 {
+    if(m_bStatusBar == checked)
+        return;
     m_bStatusBar = checked;
+    SetModified(true);
 }
 
 bool CParameterApp::GetTabBar() const
@@ -291,7 +322,10 @@ bool CParameterApp::GetTabBar() const
 
 void CParameterApp::SetTabBar(bool checked)
 {
+    if(m_bTabBar == checked)
+        return;
     m_bTabBar = checked;
+    SetModified(true);
 }
 
 bool CParameterApp::GetMenuBar() const
@@ -301,7 +335,10 @@ bool CParameterApp::GetMenuBar() const
 
 void CParameterApp::SetMenuBar(bool checked)
 {
+    if(m_bMenuBar == checked)
+        return;
     m_bMenuBar = checked;
+    SetModified(true);
 }
 
 const bool CParameterApp::GetMessageBoxDisplayInformation() const
@@ -314,6 +351,7 @@ void CParameterApp::SetMessageBoxDisplayInformation(bool bEnable)
     if(m_bMessageBoxDisplayInfomation == bEnable)
         return;
     m_bMessageBoxDisplayInfomation = bEnable;
+    SetModified(true);
 }
 
 const bool CParameterApp::GetDockListConnectersShowToolBar() const
@@ -326,6 +364,7 @@ void CParameterApp::SetDockListConnectersShowToolBar(bool bEnable)
     if(m_bDockListConnectersShowToolBar == bEnable)
         return;
     m_bDockListConnectersShowToolBar = bEnable;
+    SetModified(true);
 }
 
 const bool CParameterApp::GetDockListRecentShowToolBar() const
@@ -338,4 +377,5 @@ void CParameterApp::SetDockListRecentShowToolBar(bool bEnable)
     if(m_bDockListRecentShowToolBar == bEnable)
         return;
     m_bDockListRecentShowToolBar = bEnable;
+    SetModified(true);
 }

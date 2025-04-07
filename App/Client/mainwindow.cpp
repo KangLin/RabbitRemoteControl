@@ -983,6 +983,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         set.remove("MainWindow/Status/State");
     }
 
+    m_Client.SaveSettings();
     m_Parameter.Save();
 
     QMainWindow::closeEvent(event);

@@ -1,5 +1,8 @@
 ## Change Log
 
+### v0.0.35
+- App: modify parameter
+
 ### v0.0.34
 - App: add splitter view
 

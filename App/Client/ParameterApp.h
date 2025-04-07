@@ -1,10 +1,10 @@
 #ifndef CPARAMETERAPP_H
 #define CPARAMETERAPP_H
 
-#include <QObject>
 #include <QTabWidget>
+#include "Parameter.h"
 
-class CParameterApp : public QObject
+class CParameterApp : public CParameter
 {
     Q_OBJECT
 
@@ -12,9 +12,9 @@ public:
     explicit CParameterApp(QObject *parent = nullptr);
     virtual ~CParameterApp();
 
-public Q_SLOTS:
-    virtual int Load();
-    virtual int Save();
+protected:
+    virtual int OnLoad(QSettings &set);
+    virtual int OnSave(QSettings &set);
 
 public:    
     bool GetReceiveShortCut() const;
