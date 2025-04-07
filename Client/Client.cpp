@@ -434,7 +434,7 @@ void CClient::slotHookKeyboardChanged()
     if(m_pParameterClient->GetHookKeyboard())
     {
         if(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
-            && m_pParameterClient->GetHookShowAdministratorPrivilege())
+            && m_pParameterClient->GetPromptAdministratorPrivilege())
         {
             int nRet = 0;
             QMessageBox msg(
@@ -446,14 +446,14 @@ void CClient::slotHookKeyboardChanged()
             msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
             msg.checkBox()->setCheckable(true);
             msg.checkBox()->setChecked(
-                m_pParameterClient->GetHookShowAdministratorPrivilege());
+                m_pParameterClient->GetPromptAdministratorPrivilege());
             nRet = msg.exec();
             if(QMessageBox::Yes == nRet) {
                 RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
             }
-            if(m_pParameterClient->GetHookShowAdministratorPrivilege()
+            if(m_pParameterClient->GetPromptAdministratorPrivilege()
                 != msg.checkBox()->isChecked()) {
-                m_pParameterClient->SetHookShowAdministratorPrivilege(
+                m_pParameterClient->SetPromptAdministratorPrivilege(
                     msg.checkBox()->isChecked());
                 SaveSettings();
             }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>482</width>
-    <height>393</height>
+    <width>546</width>
+    <height>429</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -202,9 +202,9 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QCheckBox" name="cbShowHookAdminPrivilege">
+    <widget class="QCheckBox" name="cbPromptAdminPrivilege">
      <property name="text">
-      <string>Show hook restart programe with administrator privilege</string>
+      <string>Prompt administrator privilege</string>
      </property>
     </widget>
    </item>

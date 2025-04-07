@@ -61,12 +61,12 @@ private:
                NOTIFY sigHookKeyboardChanged)
 
 public:
-    bool GetHookShowAdministratorPrivilege();
-    void SetHookShowAdministratorPrivilege(bool bShow);
+    bool GetPromptAdministratorPrivilege();
+    void SetPromptAdministratorPrivilege(bool bShow);
 Q_SIGNALS:
-    void sigHookShowAdministratorPrivilege();
+    void sigPromptAdministratorPrivilege();
 private:
-    bool m_bHookShowAdministratorPrivilege;
+    bool m_bPromptAdministratorPrivilege;
 
     // Enable use the system user as the user
 public:

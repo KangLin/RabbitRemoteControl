@@ -75,31 +75,7 @@ int CConnecterWakeOnLan::Initial()
                      });
     m_Menu.addAction(QIcon::fromTheme("list-remove"), tr("Remove"),
                      m_pView, SLOT(slotRemoveRow()));
-#if defined(Q_OS_UNIX)
-    QString szFlatpak_ID = qgetenv("FLATPAK_ID");
-    if(RabbitCommon::CTools::HasAdministratorPrivilege()
-        || "io.github.KangLin.RabbitRemoteControl" == szFlatpak_ID)
-    {
-        m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
-                         this, [&](){
-                             foreach(auto p, m_pModel->m_Data)
-                             m_Arp.GetMac(p);
-                         });
-        m_Menu.addAction(
-            QIcon::fromTheme("mac"), tr("Get mac address"),
-            this, [&](){
-                if(!m_pModel || !m_pView)
-                    return;
-                foreach(auto index, m_pView->GetSelect()) {
-                    QSharedPointer<CParameterWakeOnLan> p
-                        = m_pModel->GetData(index);
-                    if(!p) continue;
-                    if(m_Arp.GetMac(p))
-                        p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
-                }
-            });
-    }
-#else
+
     m_Menu.addAction(QIcon::fromTheme("view-refresh"), tr("Refresh"),
                      this, [&](){
                          foreach(auto p, m_pModel->m_Data)
@@ -117,7 +93,7 @@ int CConnecterWakeOnLan::Initial()
                     p->SetHostState(CParameterWakeOnLan::HostState::GetMac);
             }
         });
-#endif
+
     m_Menu.addAction(
         QIcon::fromTheme("lan"), tr("Wake on lan"),
         this, [&](){
@@ -173,7 +149,8 @@ const QString CConnecterWakeOnLan::Name()
 int CConnecterWakeOnLan::Connect()
 {
 #if defined(Q_OS_UNIX)
-    if(!RabbitCommon::CTools::HasAdministratorPrivilege())
+    if(!RabbitCommon::CTools::HasAdministratorPrivilege()
+        && m_pParameterClient->GetPromptAdministratorPrivilege())
     {
         static bool bShow = false;
         if(!bShow) {
@@ -185,21 +162,20 @@ int CConnecterWakeOnLan::Connect()
                    "and some functions(Get mac address) are restricted. "
                    "Please restart the program with administrative privileges."),
                 QMessageBox::Yes | QMessageBox::No);
-            msg.setCheckBox(new QCheckBox(tr("Exit the program"), &msg));
+            msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
             msg.checkBox()->setCheckable(true);
             nRet = msg.exec();
+            msg.checkBox()->setChecked(
+                m_pParameterClient->GetPromptAdministratorPrivilege());
             if(QMessageBox::Yes == nRet) {
-                QString szExec = QCoreApplication::applicationFilePath();
-                QString szAppImage = QString::fromLocal8Bit(qgetenv("APPIMAGE"));
-                if(!szAppImage.isEmpty())
-                    szExec = szAppImage;
-                if(!szExec.isEmpty()) {
-                    bool bRet = RabbitCommon::CTools::ExecuteWithAdministratorPrivilege(szExec);
-                    qDebug(log) << "Execute:" << bRet << QCoreApplication::applicationFilePath();
-                    if(bRet && msg.checkBox()->isChecked()) {
-                        QCoreApplication::quit();
-                    }
-                }
+                RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
+            }
+            if(m_pParameterClient->GetPromptAdministratorPrivilege()
+                != msg.checkBox()->isChecked()) {
+                m_pParameterClient->SetPromptAdministratorPrivilege(
+                    msg.checkBox()->isChecked());
+                // TODO: save settings
+                //SaveSettings();
             }
         }
     }
