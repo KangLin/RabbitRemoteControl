@@ -437,8 +437,8 @@ BOOL CConnectFreeRDP::cbClientNew(freerdp *instance, rdpContext *context)
     instance->ChooseSmartcard = cb_choose_smartcard;
 #endif
     instance->VerifyX509Certificate = cb_verify_x509_certificate;
-    /*instance->VerifyCertificateEx = cb_verify_certificate_ex;
-	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;//*/
+    instance->VerifyCertificateEx = cb_verify_certificate_ex;
+	instance->VerifyChangedCertificateEx = cb_verify_changed_certificate_ex;
 	instance->PresentGatewayMessage = cb_present_gateway_message;
 
 	instance->LogonErrorInfo = cb_logon_error_info;
@@ -643,8 +643,13 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 #if FreeRDP_VERSION_MAJOR < 3
 	if (!freerdp_client_load_addins(channels, instance->context->settings))
 		return FALSE;
+#else
+    #if defined(Q_OS_LINUX) || (defined(Q_OS_WIN) && defined(WITH_WINDOWS_CERT_STORE))
+        if (!freerdp_settings_set_bool(settings, FreeRDP_CertificateCallbackPreferPEM, TRUE))
+            return FALSE;
+    #endif
 #endif
-        
+
     // Check authentication parameters
     if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
     {
@@ -674,7 +679,6 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         if (!freerdp_settings_set_bool(settings, FreeRDP_DeactivateClientDecoding, TRUE))
             return FALSE;
 #endif
-        qInfo(log) << "Authentication only. Don't connect to X.";
     } else if(freerdp_settings_get_bool(settings, FreeRDP_CredentialsFromStdin)){
         // Because the pragram is GUI. so don't process it.
     } else if(freerdp_settings_get_bool(settings, FreeRDP_SmartcardLogon)) {
@@ -702,12 +706,12 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     } else {
         qInfo(log) << "Init desktop size " <<  width << "*" << height;
     }
-    
+
     qDebug(log)
         << "width:" << freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth)
         << "height:" << freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight)
         << "ColorDepth:" << freerdp_settings_get_uint32(settings, FreeRDP_ColorDepth);
-    
+
 	return TRUE;
 }
 
@@ -958,6 +962,7 @@ BOOL CConnectFreeRDP::CreateImage(rdpContext *context)
 static CREDUI_INFOW wfUiInfo = { sizeof(CREDUI_INFOW), NULL, L"Enter your credentials",
                                 L"Remote Desktop Security", NULL };
 #endif
+
 BOOL CConnectFreeRDP::cb_authenticate_ex(freerdp* instance,
                                char** username, char** password,
                                char** domain, rdp_auth_reason reason)
@@ -1150,6 +1155,207 @@ BOOL CConnectFreeRDP::cb_choose_smartcard(freerdp* instance,
     return FALSE;
 }
 
+#ifdef WITH_WINDOWS_CERT_STORE
+/* https://stackoverflow.com/questions/1231178/load-an-pem-encoded-x-509-certificate-into-windows-cryptoapi/3803333#3803333
+ */
+/* https://github.com/microsoft/Windows-classic-samples/blob/main/Samples/Win7Samples/security/cryptoapi/peertrust/cpp/peertrust.cpp
+ */
+/* https://stackoverflow.com/questions/7340504/whats-the-correct-way-to-verify-an-ssl-certificate-in-win32
+ */
+
+static void wf_report_error(char* wszMessage, DWORD dwErrCode)
+{
+    LPSTR pwszMsgBuf = NULL;
+    
+    if (NULL != wszMessage && 0 != *wszMessage)
+    {
+        WLog_ERR(TAG, "%s", wszMessage);
+    }
+    
+    FormatMessageA(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+                   NULL,                                      // Location of message
+                   //  definition ignored
+                   dwErrCode,                                 // Message identifier for
+                   //  the requested message
+                   MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Language identifier for
+                   //  the requested message
+                   (LPSTR)&pwszMsgBuf,                        // Buffer that receives
+                   //  the formatted message
+                   0,                                         // Size of output buffer
+                   //  not needed as allocate
+                   //  buffer flag is set
+                   NULL                                       // Array of insert values
+                   );
+    
+    if (NULL != pwszMsgBuf)
+    {
+        WLog_ERR(TAG, "Error: 0x%08x (%d) %s", dwErrCode, dwErrCode, pwszMsgBuf);
+        LocalFree(pwszMsgBuf);
+    }
+    else
+    {
+        WLog_ERR(TAG, "Error: 0x%08x (%d)", dwErrCode, dwErrCode);
+    }
+}
+
+static DWORD wf_is_x509_certificate_trusted(const char* common_name, const char* subject,
+                                            const char* issuer, const char* fingerprint)
+{
+    HRESULT hr = CRYPT_E_NOT_FOUND;
+    
+    DWORD dwChainFlags = CERT_CHAIN_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT;
+    PCCERT_CONTEXT pCert = NULL;
+    HCERTCHAINENGINE hChainEngine = NULL;
+    PCCERT_CHAIN_CONTEXT pChainContext = NULL;
+    
+    CERT_ENHKEY_USAGE EnhkeyUsage = { 0 };
+    CERT_USAGE_MATCH CertUsage = { 0 };
+    CERT_CHAIN_PARA ChainPara = { 0 };
+    CERT_CHAIN_POLICY_PARA ChainPolicy = { 0 };
+    CERT_CHAIN_POLICY_STATUS PolicyStatus = { 0 };
+    CERT_CHAIN_ENGINE_CONFIG EngineConfig = { 0 };
+    
+    DWORD derPubKeyLen = WINPR_ASSERTING_INT_CAST(uint32_t, strlen(fingerprint));
+    char* derPubKey = calloc(derPubKeyLen, sizeof(char));
+    if (NULL == derPubKey)
+    {
+        WLog_ERR(TAG, "Could not allocate derPubKey");
+        goto CleanUp;
+    }
+    
+    /*
+	 * Convert from PEM format to DER format - removes header and footer and decodes from base64
+	 */
+    if (!CryptStringToBinaryA(fingerprint, 0, CRYPT_STRING_BASE64HEADER, derPubKey, &derPubKeyLen,
+                              NULL, NULL))
+    {
+        WLog_ERR(TAG, "CryptStringToBinary failed. Err: %d", GetLastError());
+        goto CleanUp;
+    }
+    
+    //---------------------------------------------------------
+    // Initialize data structures for chain building.
+    
+    EnhkeyUsage.cUsageIdentifier = 0;
+    EnhkeyUsage.rgpszUsageIdentifier = NULL;
+    
+    CertUsage.dwType = USAGE_MATCH_TYPE_AND;
+    CertUsage.Usage = EnhkeyUsage;
+    
+    ChainPara.cbSize = sizeof(ChainPara);
+    ChainPara.RequestedUsage = CertUsage;
+    
+    ChainPolicy.cbSize = sizeof(ChainPolicy);
+    
+    PolicyStatus.cbSize = sizeof(PolicyStatus);
+    
+    EngineConfig.cbSize = sizeof(EngineConfig);
+    EngineConfig.dwUrlRetrievalTimeout = 0;
+    
+    pCert = CertCreateCertificateContext(X509_ASN_ENCODING, derPubKey, derPubKeyLen);
+    if (NULL == pCert)
+    {
+        WLog_ERR(TAG, "FAILED: Certificate could not be parsed.");
+        goto CleanUp;
+    }
+    
+    dwChainFlags |= CERT_CHAIN_ENABLE_PEER_TRUST;
+    
+    // When this flag is set, end entity certificates in the
+    // Trusted People store are trusted without doing any chain building
+    // This optimizes the chain building process.
+    
+    //---------------------------------------------------------
+    // Create chain engine.
+    
+    if (!CertCreateCertificateChainEngine(&EngineConfig, &hChainEngine))
+    {
+        hr = HRESULT_FROM_WIN32(GetLastError());
+        goto CleanUp;
+    }
+    
+    //-------------------------------------------------------------------
+    // Build a chain using CertGetCertificateChain
+    
+    if (!CertGetCertificateChain(hChainEngine, // use the default chain engine
+                                 pCert,        // pointer to the end certificate
+                                 NULL,         // use the default time
+                                 NULL,         // search no additional stores
+                                 &ChainPara,   // use AND logic and enhanced key usage
+                                 //  as indicated in the ChainPara
+                                 //  data structure
+                                 dwChainFlags,
+                                 NULL,            // currently reserved
+                                 &pChainContext)) // return a pointer to the chain created
+    {
+        hr = HRESULT_FROM_WIN32(GetLastError());
+        goto CleanUp;
+    }
+    
+    //---------------------------------------------------------------
+    // Verify that the chain complies with policy
+    
+    if (!CertVerifyCertificateChainPolicy(CERT_CHAIN_POLICY_BASE, // use the base policy
+                                          pChainContext,          // pointer to the chain
+                                          &ChainPolicy,
+                                          &PolicyStatus)) // return a pointer to the policy status
+    {
+        hr = HRESULT_FROM_WIN32(GetLastError());
+        goto CleanUp;
+    }
+    
+    if (PolicyStatus.dwError != S_OK)
+    {
+        wf_report_error("CertVerifyCertificateChainPolicy: Chain Status", PolicyStatus.dwError);
+        hr = PolicyStatus.dwError;
+        // Instruction: If the PolicyStatus.dwError is CRYPT_E_NO_REVOCATION_CHECK or
+        // CRYPT_E_REVOCATION_OFFLINE, it indicates errors in obtaining
+        //				revocation information. These can be ignored since the retrieval of
+        // revocation information depends on network availability
+        
+        if (PolicyStatus.dwError == CRYPT_E_NO_REVOCATION_CHECK ||
+            PolicyStatus.dwError == CRYPT_E_REVOCATION_OFFLINE)
+        {
+            hr = S_OK;
+        }
+        
+        goto CleanUp;
+    }
+    
+    WLog_INFO(TAG, "CertVerifyCertificateChainPolicy succeeded for %s (%s) issued by %s",
+              common_name, subject, issuer);
+    
+    hr = S_OK;
+CleanUp:
+    
+    if (FAILED(hr))
+    {
+        WLog_INFO(TAG, "CertVerifyCertificateChainPolicy failed for %s (%s) issued by %s",
+                  common_name, subject, issuer);
+        wf_report_error(NULL, hr);
+    }
+    
+    free(derPubKey);
+    
+    if (NULL != pChainContext)
+    {
+        CertFreeCertificateChain(pChainContext);
+    }
+    
+    if (NULL != hChainEngine)
+    {
+        CertFreeCertificateChainEngine(hChainEngine);
+    }
+    
+    if (NULL != pCert)
+    {
+        CertFreeCertificateContext(pCert);
+    }
+    
+    return (DWORD)hr;
+}
+#endif
+
 #endif //#if FreeRDP_VERSION_MAJOR >= 3
 
 BOOL CConnectFreeRDP::cb_authenticate(freerdp* instance, char** username,
@@ -1220,9 +1426,21 @@ int CConnectFreeRDP::cb_verify_x509_certificate(freerdp* instance,
 {
     qDebug(log) << Q_FUNC_INFO;
     rdpContext* pContext = (rdpContext*)instance->context;
-
     QSslCertificate cert(QByteArray((const char*)data, length));
-    
+#if FreeRDP_VERSION_MAJOR >= 3
+    /* Newer versions of FreeRDP allow exposing the whole PEM by setting
+	 * FreeRDP_CertificateCallbackPreferPEM to TRUE
+	 */
+    if (flags & VERIFY_CERT_FLAG_FP_IS_PEM) {
+        return cb_verify_certificate_ex(
+            instance, hostname, port,
+            cert.issuerDisplayName().toStdString().c_str(),
+            cert.subjectDisplayName().toStdString().c_str(),
+            cert.issuerDisplayName().toStdString().c_str(),
+            (const char*)data,
+            flags);
+    } else
+#endif
     return cb_verify_certificate_ex(
         instance, hostname, port,
         cert.issuerDisplayName().toStdString().c_str(),
@@ -1230,8 +1448,37 @@ int CConnectFreeRDP::cb_verify_x509_certificate(freerdp* instance,
         cert.issuerDisplayName().toStdString().c_str(),
         cert.serialNumber().toStdString().c_str(),
         flags);
-    
-    return 0;
+}
+
+static QString pem_cert_fingerprint(const char* pem, DWORD flags)
+{
+    QString szFingerPrint;
+#if FreeRDP_VERSION_MAJOR >= 3
+    /* Newer versions of FreeRDP allow exposing the whole PEM by setting
+	 * FreeRDP_CertificateCallbackPreferPEM to TRUE
+	 */
+    if (flags & VERIFY_CERT_FLAG_FP_IS_PEM)
+    {        
+        rdpCertificate* cert = freerdp_certificate_new_from_pem(pem);
+        if (!cert)
+            return NULL;
+        
+        char* fp = freerdp_certificate_get_fingerprint(cert);
+        char* start = freerdp_certificate_get_validity(cert, TRUE);
+        char* end = freerdp_certificate_get_validity(cert, FALSE);
+        freerdp_certificate_free(cert);
+        
+        szFingerPrint = "Valid from: " + QString(start) + "\n";
+        szFingerPrint += "Valid to: " + QString(end) + "\n";
+        szFingerPrint += "Fingerprint: " + QString(fp) + "\n";
+        
+        free(fp);
+        free(start);
+        free(end);
+    } else
+#endif
+    szFingerPrint = "Fingerprint: " + QString(pem) + "\n";
+    return szFingerPrint;
 }
 
 /** Callback set in the rdp_freerdp structure, and used to make a certificate validation
@@ -1272,6 +1519,18 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
         return 2;
     }
 
+#if FreeRDP_VERSION_MAJOR >= 3
+#ifdef defined(Q_OS_WIN) && WITH_WINDOWS_CERT_STORE
+    if (flags & VERIFY_CERT_FLAG_FP_IS_PEM && !(flags & VERIFY_CERT_FLAG_MISMATCH))
+    {
+        if (wf_is_x509_certificate_trusted(common_name, subject, issuer, fingerprint) == S_OK)
+        {
+            return 2;
+        }
+    }
+#endif
+#endif
+
     QString szType = tr("RDP-Server");
     if (flags & VERIFY_CERT_FLAG_GATEWAY)
         szType = tr("RDP-Gateway");
@@ -1280,12 +1539,12 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
 
     QString title(tr("Verify certificate"));
     QString message;
-    
+
     message += szType + tr(": %1:%2").arg(host, QString::number(port)) + "\n";
     message += tr("Common name: ") + common_name + "\n";
     message += tr("Subject: ") + subject + "\n";
     message += tr("Issuer: ") + issuer + "\n";
-    message += tr("Fingerprint: ") + fingerprint + "\n";
+    message += pem_cert_fingerprint(fingerprint, flags);
     message += "\n";
     if(VERIFY_CERT_FLAG_CHANGED & flags) {
         message += tr("The above X.509 certificate is changed.\n"
@@ -1364,23 +1623,25 @@ DWORD CConnectFreeRDP::cb_verify_changed_certificate_ex(freerdp *instance,
          * a certificate only for this session, 0 otherwise */
         return 2;
     }
-    
+
     QString szType = tr("RDP-Server");
     if (flags & VERIFY_CERT_FLAG_GATEWAY)
         szType = tr("RDP-Gateway");
     if (flags & VERIFY_CERT_FLAG_REDIRECT)
         szType = tr("RDP-Redirect");
-    
+
     QString title(tr("Verify changed certificate"));
     QString message;
     message += szType + tr(": %1:%2").arg(host, QString::number(port)) + "\n";
-    message += tr("Common name: ") + common_name + "\n";
-    message += tr("New subject: ") + subject + "\n";
-    message += tr("New issuer: ") + issuer + "\n";
-    message += tr("New fingerprint: ") + fingerprint + "\n";
-    message += tr("Old subject: ") + old_subject + "\n";
-    message += tr("Old issuer: ") + old_issuer + "\n";
-    message += tr("Old fingerprint: ") + old_fingerprint + "\n";
+    message += tr("New Certificate details:") + "\n";
+    message += "  " + tr("name: ") + common_name + "\n";
+    message += "  " + tr("subject: ") + subject + "\n";
+    message += "  " + tr("issuer: ") + issuer + "\n";
+    message += "  " + pem_cert_fingerprint(fingerprint, flags) + "\n";
+    message += tr("Old Certificate details:") + "\n";
+    message += "  " + tr("subject: ") + old_subject + "\n";
+    message += "  " + tr("issuer: ") + old_issuer + "\n";
+    message += "  " + pem_cert_fingerprint(old_fingerprint, flags) + "\n";
     message += "\n";
     message += tr("The above X.509 certificate could not be verified, "
                   "possibly because you do not have the CA certificate "
