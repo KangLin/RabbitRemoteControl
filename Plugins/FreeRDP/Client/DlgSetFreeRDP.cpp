@@ -1,5 +1,9 @@
 // Author: Kang Lin <kl222@126.com>
 
+#if HAVE_OPENSSL
+#include <openssl/tls1.h>
+#endif
+
 #include "DlgSetFreeRDP.h"
 #include "ui_DlgSetFreeRDP.h"
 #include "ParameterNetUI.h"
@@ -7,6 +11,7 @@
 #include <QApplication>
 #include <QScreen>
 #include <QFileSystemModel>
+#include <QButtonGroup>
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     #include <QMediaDevices>
@@ -26,6 +31,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     , m_pFileModel(nullptr)
     , m_pProxyUI(nullptr)
     , m_pRecordUI(nullptr)
+    , m_pButtonGroup(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
@@ -153,6 +159,46 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
         }
     }
     ShowDriveSelected(lstDrives.size());
+    
+    // Security
+    ui->cbSecurityEnable->setChecked(m_pSettings->GetNegotiateSecurityLayer());
+    on_cbSecurityEnable_checkStateChanged(ui->cbSecurityEnable->checkState());
+    CParameterFreeRDP::Security security = m_pSettings->GetSecurity();
+    if(CParameterFreeRDP::Security::RDP & (uint)security)
+        ui->cbSecurityRDP->setChecked(true);
+    if(CParameterFreeRDP::Security::TLS & (uint)security)
+        ui->cbSecurityTls->setChecked(true);
+    if(CParameterFreeRDP::Security::NLA & (uint)security)
+        ui->cbSecurityNLA->setChecked(true);
+    if(CParameterFreeRDP::Security::NLA_Ext & (uint)security)
+        ui->cbSecurityNlaExt->setChecked(true);
+    if(CParameterFreeRDP::Security::RDSAAD & (uint)security)
+        ui->cbSecurityRDSAAD->setChecked(true);
+    if(CParameterFreeRDP::Security::RDSTLS & (uint)security)
+        ui->cbSecurityRDSTLS->setChecked(true);
+#if FreeRDP_VERSION_MAJOR >= 3
+    ui->cbSecurityRDSAAD->setVisible(true);
+    ui->cbSecurityRDSTLS->setVisible(true);
+#else
+    ui->cbSecurityRDSAAD->setVisible(false);
+    ui->cbSecurityRDSTLS->setVisible(false);
+#endif
+    // Tls version
+    switch(m_pSettings->GetTlsVersion())
+    {
+    case TLS1_VERSION:
+        ui->rbTls1_0->setChecked(true);
+        break;
+    case TLS1_1_VERSION:
+        ui->rbTls1_1->setChecked(true);
+        break;
+    case TLS1_2_VERSION:
+        ui->rbTls1_2->setChecked(true);
+        break;
+    case TLS1_3_VERSION:
+        ui->rbTls1_3->setChecked(true);
+        break;
+    }
 }
 
 CDlgSetFreeRDP::~CDlgSetFreeRDP()
@@ -245,6 +291,33 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
             lstDrives.append(szPath);
     }
     m_pSettings->SetRedirectionDrives(lstDrives);
+    
+    // Security
+    m_pSettings->SetNegotiateSecurityLayer(ui->cbSecurityEnable->isChecked());
+    uint security = 0;
+    if(ui->cbSecurityRDP->isChecked())
+        security |= CParameterFreeRDP::Security::RDP;
+    if(ui->cbSecurityTls->isChecked())
+        security |= CParameterFreeRDP::Security::TLS;
+    if(ui->cbSecurityNLA->isChecked())
+        security |= CParameterFreeRDP::Security::NLA;
+    if(ui->cbSecurityNlaExt->isChecked())
+        security |= CParameterFreeRDP::Security::NLA_Ext;
+    if(ui->cbSecurityRDSTLS->isChecked())
+        security |= CParameterFreeRDP::Security::RDSTLS;
+    if(ui->cbSecurityRDSAAD->isChecked())
+        security |= CParameterFreeRDP::Security::RDSAAD;
+    m_pSettings->SetSecurity((CParameterFreeRDP::Security)security);
+
+    // Tls version
+    if(ui->rbTls1_0->isChecked())
+        m_pSettings->SetTlsVersion(TLS1_VERSION);
+    else if(ui->rbTls1_1->isChecked())
+        m_pSettings->SetTlsVersion(TLS1_1_VERSION);
+    else if(ui->rbTls1_2->isChecked())
+        m_pSettings->SetTlsVersion(TLS1_2_VERSION);
+    else if(ui->rbTls1_3->isChecked())
+        m_pSettings->SetTlsVersion(TLS1_3_VERSION);
 
     accept();
 }
@@ -481,4 +554,21 @@ int CDlgSetFreeRDP::ShowDriveSelected(int counts)
 void CDlgSetFreeRDP::on_cbAllMonitor_stateChanged(int arg1)
 {
     on_rbLocalScreen_clicked(true);
+}
+
+void CDlgSetFreeRDP::on_cbSecurityEnable_checkStateChanged(const Qt::CheckState &arg1)
+{
+    if(m_pButtonGroup) {
+        m_pButtonGroup->deleteLater();
+        m_pButtonGroup = nullptr;
+    }
+    if(!ui->cbSecurityEnable->isChecked()) {
+        m_pButtonGroup = new QButtonGroup(this);
+        m_pButtonGroup->addButton(ui->cbSecurityRDP);
+        m_pButtonGroup->addButton(ui->cbSecurityTls);
+        m_pButtonGroup->addButton(ui->cbSecurityNLA);
+        m_pButtonGroup->addButton(ui->cbSecurityNlaExt);
+        m_pButtonGroup->addButton(ui->cbSecurityRDSAAD);
+        m_pButtonGroup->addButton(ui->cbSecurityRDSTLS);
+    }
 }

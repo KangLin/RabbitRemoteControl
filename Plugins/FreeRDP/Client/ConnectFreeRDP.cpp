@@ -510,48 +510,55 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
         case FREERDP_ERROR_CONNECT_LOGON_FAILURE:
         {
             nRet = -3;
-            QString szErr = tr("Logon to ") + szServer;
+            szErr = tr("Logon to ") + szServer;
             szErr += tr(" fail. Please check that the username and password are correct.") + "\n";
-            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_CONNECT_WRONG_PASSWORD:
         {
             nRet = -4;
-            QString szErr = tr("Logon to ") + szServer;
+            szErr = tr("Logon to ") + szServer;
             szErr += tr(" fail. Please check password are correct.") + "\n";
-            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_AUTHENTICATION_FAILED:
         {
             nRet = -5;
-            QString szErr = tr("Logon to ") + szServer;
+            szErr = tr("Logon to ") + szServer;
             szErr += tr(" authentication fail. please add a CA certificate to the store.") + "\n";
-            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_CONNECT_TRANSPORT_FAILED:
         {
             nRet = -6;
-            QString szErr = tr("Logon to ") + szServer;
+            szErr = tr("Logon to ") + szServer;
             szErr += tr(" connect transport layer fail.") + "\n\n";
             szErr += tr("Please:") + "\n";
             szErr += tr("1. Check for any network related issues") + "\n";
             szErr += tr("2. Check you have proper security settings ('NLA' enabled is required for most connections nowadays)") + "\n";
+            szErr += "    " + tr("If you do not know the server security settings, contact your server administrator.") + "\n";
             szErr += tr("3. Check the certificate is proper (and guacd properly checks that)") + "\n";
-            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
             break;
         }
         case FREERDP_ERROR_SECURITY_NEGO_CONNECT_FAILED:
-        default:
             nRet = -7;
-            emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
+            szErr += "\n\n";
+            szErr += tr("Please check you have proper security settings.") + "\n";
+            szErr += tr("If you do not know the server security settings, contact your server administrator.");
+            break;
+        case FREERDP_ERROR_CONNECT_CANCELLED:
+            nRet = -8;
+            szErr = tr("User cancel the connect.") + "\n\n" + szErr;
+            break;
+        default:
+            nRet = -9;
         }
 
+        emit pThis->sigShowMessageBox(tr("Error"), szErr, QMessageBox::Critical);
         qCritical(log) << szErr;
         emit pThis->sigError(nRet, szErr.toStdString().c_str());
     }
+
     return nRet;
 }
 
@@ -597,40 +604,51 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
 	rdpContext* context = instance->context;
 
     if (!instance || !instance->context || !instance->context->settings)
-    {
         return FALSE;
-    }
 
     CConnectFreeRDP* pThis = ((ClientContext*)context)->pThis;
     if(!pThis) return FALSE;
     settings = instance->context->settings;
 	channels = context->channels;
+    CParameterFreeRDP* pParameter = pThis->m_pParameter;
+    if(!channels || !pParameter)
+        return FALSE;
 
     /* Optional OS identifier sent to server */
 #if defined (Q_OS_WIN)
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_WINDOWS))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMajorType, OSMAJORTYPE_WINDOWS))
         return FALSE;
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_WINDOWS_NT))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMinorType, OSMINORTYPE_WINDOWS_NT))
         return FALSE;
 #elif defined(Q_OS_ANDROID)
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_ANDROID))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMajorType, OSMAJORTYPE_ANDROID))
         return FALSE;
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
         return FALSE;
 #elif defined(Q_OS_IOS)
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_IOS))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMajorType, OSMAJORTYPE_IOS))
         return FALSE;
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
         return FALSE;
 #elif defined (Q_OS_UNIX)
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_UNIX))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMajorType, OSMAJORTYPE_UNIX))
         return FALSE;
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_NATIVE_XSERVER))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMinorType, OSMINORTYPE_NATIVE_XSERVER))
         return FALSE;
 #else
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMajorType, OSMAJORTYPE_UNSPECIFIED))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMajorType, OSMAJORTYPE_UNSPECIFIED))
         return FALSE;
-    if (!freerdp_settings_set_uint32(settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
+    if (!freerdp_settings_set_uint32(
+            settings, FreeRDP_OsMinorType, OSMINORTYPE_UNSPECIFIED))
         return FALSE;
 #endif
 
@@ -649,12 +667,53 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
             return FALSE;
     #endif
 #endif
+    
+    if(!freerdp_settings_set_bool(
+            settings, FreeRDP_NegotiateSecurityLayer,
+            pParameter->GetNegotiateSecurityLayer()))
+        return FALSE;
+    CParameterFreeRDP::Security security = pParameter->GetSecurity();
+    // [5.3 Standard RDP Security](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/8e8b2cca-c1fa-456c-8ecb-a82fc60b2322)
+    if(!freerdp_settings_set_bool(
+            settings, FreeRDP_RdpSecurity,
+            CParameterFreeRDP::Security::RDP & security))
+        return FALSE;
+    if (!freerdp_settings_set_bool(
+            settings, FreeRDP_UseRdpSecurityLayer,
+            CParameterFreeRDP::Security::RDP & security))
+        return FALSE;
+    // [5.4 Enhanced RDP Security](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/592a0337-dc91-4de3-a901-e1829665291d)
+    if(!freerdp_settings_set_bool(
+            settings, FreeRDP_TlsSecurity,
+            CParameterFreeRDP::Security::TLS & security))
+        return FALSE;
+    if(!freerdp_settings_set_bool(
+            settings, FreeRDP_NlaSecurity,
+            CParameterFreeRDP::Security::NLA & security))
+        return FALSE;
+    if(!freerdp_settings_set_bool(
+            settings, FreeRDP_ExtSecurity,
+            CParameterFreeRDP::Security::NLA_Ext & security))
+        return FALSE;
+#if FreeRDP_VERSION_MAJOR >= 3
+    if(!freerdp_settings_set_bool(
+            settings, FreeRDP_AadSecurity,
+            CParameterFreeRDP::Security::RDSAAD & security))
+        return FALSE;
+    if(!freerdp_settings_set_bool(
+            settings, FreeRDP_RdstlsSecurity,
+            CParameterFreeRDP::Security::RDSTLS & security))
+        return FALSE;
+#endif
+
+    freerdp_settings_set_uint16(settings, FreeRDP_TLSMinVersion,
+                                pParameter->GetTlsVersion());
 
     // Check authentication parameters
     if (freerdp_settings_get_bool(settings, FreeRDP_AuthenticationOnly))
     {
         /* Check +auth-only has a username and password. */
-        auto &user = pThis->m_pParameter->m_Net.m_User;
+        auto &user = pParameter->m_Net.m_User;
         if(!freerdp_settings_get_string(settings, FreeRDP_Username)) {
             if(user.GetUser().isEmpty()) {
                 if(user.GetUser().isEmpty()) {
@@ -692,8 +751,8 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
     //*/
     
     // Check desktop size, it is set in parameter
-    UINT32 width = pThis->m_pParameter->GetDesktopWidth();
-    UINT32 height = pThis->m_pParameter->GetDesktopHeight();
+    UINT32 width = pParameter->GetDesktopWidth();
+    UINT32 height = pParameter->GetDesktopHeight();
     if ((width < 64) || (height < 64) ||
             (width > 4096) || (height > 4096))
     {
@@ -1520,7 +1579,7 @@ DWORD CConnectFreeRDP::cb_verify_certificate_ex(freerdp *instance,
     }
 
 #if FreeRDP_VERSION_MAJOR >= 3
-#ifdef defined(Q_OS_WIN) && WITH_WINDOWS_CERT_STORE
+#if defined(Q_OS_WIN) && defined(WITH_WINDOWS_CERT_STORE)
     if (flags & VERIFY_CERT_FLAG_FP_IS_PEM && !(flags & VERIFY_CERT_FLAG_MISMATCH))
     {
         if (wf_is_x509_certificate_trusted(common_name, subject, issuer, fingerprint) == S_OK)

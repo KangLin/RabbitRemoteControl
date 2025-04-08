@@ -43,32 +43,50 @@ public:
 
     UINT GetReconnectInterval() const;
     void SetReconnectInterval(UINT newReconnectInterval);
-    
+
     bool GetShowVerifyDiaglog() const;
     void SetShowVerifyDiaglog(bool bShow);
-    
+
     enum class RedirecionSoundType {
         Disable,
         Local,
         Remote
     };
+    Q_ENUM(RedirecionSoundType)
     RedirecionSoundType GetRedirectionSound() const;
     void SetRedirectionSound(RedirecionSoundType newRedirectionSound);
     bool GetRedirectionMicrophone() const;
     void SetRedirectionMicrophone(bool newRedirectionMicrophone);
     QStringList GetRedirectionDrives() const;
     void SetRedirectionDrives(const QStringList &newRedirectionDrive);
-    
+
     bool GetRedirectionPrinter() const;
     void SetRedirectionPrinter(bool newRedirectionPrinter);
-    
+
     const QString &GetRedirectionSoundParameters() const;
     void SetRedirectionSoundParameters(const QString &newRedirectionSoundParameters);
-    
+
     const QString &GetRedirectionMicrophoneParameters() const;
     void SetRedirectionMicrophoneParameters(const QString &newRedirectionMicrophoneParameters);
-    
+
     CParameterProxy m_Proxy;
+
+    bool GetNegotiateSecurityLayer() const;
+    void SetNegotiateSecurityLayer(bool newNegotiateSecurityLayer);
+    enum Security{
+        RDP = 0x01,     /* Standard RDP */
+        TLS = 0x02,     /* TLS */
+        NLA = 0x04,     /* NLA */
+        NLA_Ext = 0x08, /* NLA Extended */
+        RDSAAD = 0x10,  /* RDSAAD */
+        RDSTLS = 0x20   /* RDSTLS */
+    };
+    Q_ENUM(Security)
+    Security GetSecurity() const;
+    void SetSecurity(Security newSecurity);
+
+    UINT16 GetTlsVersion() const;
+    void SetTlsVersion(UINT16 newTlsVersion);
 
 signals:
     void sigReconnectIntervalChanged();
@@ -100,6 +118,9 @@ private:
     QStringList m_lstRedirectionDrives;
     Q_PROPERTY(QString RedirectionMicrophoneParameters READ GetRedirectionMicrophoneParameters WRITE SetRedirectionMicrophoneParameters NOTIFY sigRedirectionMicrophoneParametersChanged)
     
+    bool m_bNegotiateSecurityLayer;
+    Security m_Security;
+    UINT16 m_tlsVersion;
 };
 
 #endif // CPARAMETERFREERDP_H

@@ -1,6 +1,10 @@
 #include "ParameterFreeRDP.h"
 #include <QSettings>
 
+#if HAVE_OPENSSL
+#include <openssl/tls1.h>
+#endif
+
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     : CParameterBase(parent),
     m_nWidth(1024),
@@ -12,7 +16,10 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     m_bRedirectionPrinter(false),
     m_nRedirectionSound(RedirecionSoundType::Disable),
     m_bRedirectionMicrophone(false),
-    m_Proxy(this)
+    m_Proxy(this),
+    m_bNegotiateSecurityLayer(true),
+    m_Security((Security)(Security::RDP|Security::TLS|Security::NLA)),
+    m_tlsVersion(TLS1_VERSION)
 {
     m_Net.SetPort(3389);
     
@@ -61,8 +68,13 @@ int CParameterFreeRDP::OnLoad(QSettings &set)
     SetRedirectionMicrophoneParameters(set.value("Redirection/Microphone/Parameters",
                                    GetRedirectionMicrophoneParameters()).toString());
     SetRedirectionDrives(set.value("Redirection/Drive").toStringList());
-    set.endGroup();
     
+    SetNegotiateSecurityLayer(set.value("Security/Enable", GetNegotiateSecurityLayer()).toBool());
+    SetSecurity((Security)set.value("Security/Type", GetSecurity()).toUInt());
+    SetTlsVersion(set.value("Security/Tls/Version", GetTlsVersion()).toUInt());
+
+    set.endGroup();
+
     return 0;
 }
 
@@ -86,6 +98,11 @@ int CParameterFreeRDP::OnSave(QSettings &set)
     set.setValue("Redirection/Microphone", GetRedirectionMicrophone());
     set.setValue("Redirection/Microphone/Parameters", GetRedirectionMicrophoneParameters());
     set.setValue("Redirection/Drive", GetRedirectionDrives());
+    
+    set.setValue("Security/Enable", GetNegotiateSecurityLayer());
+    set.setValue("Security/Type", (uint)GetSecurity());
+    set.setValue("Security/Tls/Version", GetTlsVersion());
+
     set.endGroup();
     
     return 0;
@@ -257,6 +274,45 @@ void CParameterFreeRDP::SetRedirectionMicrophoneParameters(const QString &newRed
     m_szRedirectionMicrophoneParameters = newRedirectionMicrophoneParameters;
     SetModified(true);
     emit sigRedirectionMicrophoneParametersChanged();
+}
+
+UINT16 CParameterFreeRDP::GetTlsVersion() const
+{
+    return m_tlsVersion;
+}
+
+void CParameterFreeRDP::SetTlsVersion(UINT16 newTlsVersion)
+{
+    if(m_tlsVersion == newTlsVersion)
+        return;
+    m_tlsVersion = newTlsVersion;
+    SetModified(true);
+}
+
+bool CParameterFreeRDP::GetNegotiateSecurityLayer() const
+{
+    return m_bNegotiateSecurityLayer;
+}
+
+void CParameterFreeRDP::SetNegotiateSecurityLayer(bool newNegotiateSecurityLayer)
+{
+    if(m_bNegotiateSecurityLayer == newNegotiateSecurityLayer)
+        return;
+    m_bNegotiateSecurityLayer = newNegotiateSecurityLayer;
+    SetModified(true);
+}
+
+CParameterFreeRDP::Security CParameterFreeRDP::GetSecurity() const
+{
+    return m_Security;
+}
+
+void CParameterFreeRDP::SetSecurity(Security newSecurity)
+{
+    if(m_Security == newSecurity)
+        return;
+    m_Security = newSecurity;
+    SetModified(true);
 }
 
 void CParameterFreeRDP::SetDomain(const QString& szDomain)

@@ -6,6 +6,7 @@
 #include <QFileSystemModel>
 #include <QItemSelection>
 #include <QDialog>
+#include <QButtonGroup>
 #include "freerdp/freerdp.h"
 #include "ConnecterFreeRDP.h"
 #include "ParameterProxyUI.h"
@@ -31,15 +32,17 @@ private slots:
     void on_rbAudioDisable_toggled(bool checked);
     void on_rbAudioLocal_toggled(bool checked);
     void on_rbAudioRemote_toggled(bool checked);
-    
+
     void on_pbSizeEdit_clicked();
-    
+
     void on_pbDriveClearAll_clicked();
     void slotSelectionChanged(const QItemSelection &selected,
                               const QItemSelection &deselected);
-    
+
     void on_cbAllMonitor_stateChanged(int arg1);
-    
+
+    void on_cbSecurityEnable_checkStateChanged(const Qt::CheckState &arg1);
+
 private:
     QRect GetScreenGeometry();
     int UpdateDesktopSize();
@@ -53,9 +56,11 @@ private:
     Ui::CDlgSetFreeRDP *ui;
     CParameterFreeRDP* m_pSettings;
     QFileSystemModel* m_pFileModel;
-    
+
     CParameterProxyUI* m_pProxyUI;
     CParameterRecordUI* m_pRecordUI;
+
+    QButtonGroup* m_pButtonGroup;
 };
 
 #endif // DLGSETFREERDP_H
