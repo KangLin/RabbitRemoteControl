@@ -548,7 +548,7 @@ int CConnectFreeRDP::cbClientStart(rdpContext *context)
             break;
         case FREERDP_ERROR_CONNECT_CANCELLED:
             nRet = -8;
-            szErr = tr("User cancel the connect.") + "\n\n" + szErr;
+            szErr = tr("The connect was canceled.") + "\n\n" + szErr;
             break;
         default:
             nRet = -9;

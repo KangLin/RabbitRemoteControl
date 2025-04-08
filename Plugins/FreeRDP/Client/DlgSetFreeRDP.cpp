@@ -291,7 +291,7 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
             lstDrives.append(szPath);
     }
     m_pSettings->SetRedirectionDrives(lstDrives);
-    
+
     // Security
     m_pSettings->SetNegotiateSecurityLayer(ui->cbSecurityEnable->isChecked());
     uint security = 0;

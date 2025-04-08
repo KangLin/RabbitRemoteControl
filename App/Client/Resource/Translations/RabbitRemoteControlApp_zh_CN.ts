@@ -46,22 +46,22 @@
         <translation>增加到收藏夹</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="304"/>
+        <location filename="../../FavoriteView.cpp" line="308"/>
         <source>Input</source>
         <translation>输入</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="304"/>
+        <location filename="../../FavoriteView.cpp" line="308"/>
         <source>Input group name</source>
         <translation>输入组名</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="309"/>
+        <location filename="../../FavoriteView.cpp" line="313"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../../FavoriteView.cpp" line="309"/>
+        <location filename="../../FavoriteView.cpp" line="313"/>
         <source>The group [%1] is existed</source>
         <translation>组 [%1] 已经存在</translation>
     </message>
@@ -137,7 +137,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="32"/>
         <location filename="../../FrmListRecentConnects.cpp" line="34"/>
         <location filename="../../FrmListRecentConnects.cpp" line="35"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="454"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="460"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
@@ -145,7 +145,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="37"/>
         <location filename="../../FrmListRecentConnects.cpp" line="39"/>
         <location filename="../../FrmListRecentConnects.cpp" line="40"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="455"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="461"/>
         <source>Edit and Connect</source>
         <translation>编辑并连接</translation>
     </message>
@@ -161,7 +161,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="56"/>
         <location filename="../../FrmListRecentConnects.cpp" line="58"/>
         <location filename="../../FrmListRecentConnects.cpp" line="59"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="458"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="464"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
@@ -169,7 +169,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="60"/>
         <location filename="../../FrmListRecentConnects.cpp" line="62"/>
         <location filename="../../FrmListRecentConnects.cpp" line="63"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="459"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="465"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
@@ -177,7 +177,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="65"/>
         <location filename="../../FrmListRecentConnects.cpp" line="67"/>
         <location filename="../../FrmListRecentConnects.cpp" line="68"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="461"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="467"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -192,7 +192,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="80"/>
         <location filename="../../FrmListRecentConnects.cpp" line="82"/>
         <location filename="../../FrmListRecentConnects.cpp" line="83"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="464"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="470"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
@@ -240,18 +240,18 @@
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="289"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="382"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="295"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="388"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="290"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="296"/>
         <source>File of connecter is exists. whether to overwrite it? File: %1</source>
         <translation>此连接文件已存在,是否覆盖它？文件: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="383"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="389"/>
         <source>File of connecter is exists. whether to overwrite it? If select No, please modify the name of connecter</source>
         <translation>此连接文件已存在,是否覆盖它？如果选择否，请修改连接的名称。</translation>
     </message>
@@ -434,7 +434,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="182"/>
-        <location filename="../../mainwindow.cpp" line="394"/>
+        <location filename="../../mainwindow.cpp" line="395"/>
         <source>Full screen(&amp;F)</source>
         <translation>全屏(&amp;F)</translation>
     </message>
@@ -640,9 +640,9 @@
         <location filename="../../mainwindow.ui" line="188"/>
         <location filename="../../mainwindow.ui" line="191"/>
         <location filename="../../mainwindow.ui" line="194"/>
-        <location filename="../../mainwindow.cpp" line="395"/>
         <location filename="../../mainwindow.cpp" line="396"/>
         <location filename="../../mainwindow.cpp" line="397"/>
+        <location filename="../../mainwindow.cpp" line="398"/>
         <source>Full screen</source>
         <translation>全屏</translation>
     </message>
@@ -651,20 +651,20 @@
         <translation type="vanished">ICE 信令状态</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="433"/>
+        <location filename="../../mainwindow.cpp" line="434"/>
         <source>Exit full screen(&amp;E)</source>
         <translation>退出全屏(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="434"/>
         <location filename="../../mainwindow.cpp" line="435"/>
         <location filename="../../mainwindow.cpp" line="436"/>
+        <location filename="../../mainwindow.cpp" line="437"/>
         <source>Exit full screen</source>
         <translation>退出全屏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="628"/>
-        <location filename="../../mainwindow.cpp" line="647"/>
+        <location filename="../../mainwindow.cpp" line="629"/>
+        <location filename="../../mainwindow.cpp" line="648"/>
         <source>Load file fail: </source>
         <translation>加载文件失败：</translation>
     </message>
@@ -672,12 +672,12 @@
         <location filename="../../mainwindow.ui" line="251"/>
         <location filename="../../mainwindow.ui" line="254"/>
         <location filename="../../mainwindow.ui" line="257"/>
-        <location filename="../../mainwindow.cpp" line="639"/>
+        <location filename="../../mainwindow.cpp" line="640"/>
         <source>Open rabbit remote control file</source>
         <translation>打开玉兔远程控制文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="251"/>
+        <location filename="../../mainwindow.cpp" line="252"/>
         <source>ICE signal status</source>
         <translation>ICE 信令状态</translation>
     </message>
@@ -686,52 +686,52 @@
         <translation type="vanished">### 插件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="641"/>
+        <location filename="../../mainwindow.cpp" line="642"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation>玉兔远程控制文件(*.rrc);;所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="735"/>
+        <location filename="../../mainwindow.cpp" line="736"/>
         <source>Connecting to </source>
         <translation>正在连接 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="790"/>
+        <location filename="../../mainwindow.cpp" line="791"/>
         <source>Connected to </source>
         <translation>连接到 </translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="855"/>
+        <location filename="../../mainwindow.cpp" line="856"/>
         <source>ICE signal status: Connected</source>
         <translation>ICE 信令状态：连接</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="864"/>
+        <location filename="../../mainwindow.cpp" line="865"/>
         <source>ICE signal status: Disconnected</source>
         <translation>ICE 信令状态：断开</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="903"/>
+        <location filename="../../mainwindow.cpp" line="904"/>
         <source>Use message box to display information</source>
         <translation>使用消息框显示信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1057"/>
+        <location filename="../../mainwindow.cpp" line="1059"/>
         <source>Hide menu bar</source>
         <translation>隐藏菜单栏</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1058"/>
+        <location filename="../../mainwindow.cpp" line="1060"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation>将隐藏菜单栏，必须显示工具条。</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1088"/>
+        <location filename="../../mainwindow.cpp" line="1090"/>
         <source>Hide tool bar</source>
         <translation>隐藏工具条</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1089"/>
+        <location filename="../../mainwindow.cpp" line="1091"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation>将隐藏工具条，必须显示菜单栏。</translation>
     </message>

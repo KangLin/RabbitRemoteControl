@@ -266,17 +266,13 @@ Restart program by administrator?</source>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="207"/>
-        <source>Show hook restart programe with administrator privilege</source>
+        <location filename="../../FrmParameterClient.cpp" line="20"/>
+        <source>Prompt administrator privilege</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="95"/>
         <source>Prompt type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterClient.cpp" line="20"/>
-        <source>Hook: show restart program with administrator privilege</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
