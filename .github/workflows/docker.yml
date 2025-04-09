@@ -48,6 +48,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+          fetch-depth: 0
       - name: run docker
         run: |
           ./Script/build_linux.sh --docker --docker-image="${{matrix.variant.image}}" --${{matrix.variant.PACKAGE}}
