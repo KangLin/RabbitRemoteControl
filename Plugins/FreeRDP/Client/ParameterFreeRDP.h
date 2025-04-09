@@ -87,7 +87,13 @@ public:
 
     UINT16 GetTlsVersion() const;
     void SetTlsVersion(UINT16 newTlsVersion);
-
+    
+    UINT32 GetConnectType() const;
+    void SetConnectType(UINT32 newConnectType);
+    
+    UINT32 GetPerformanceFlags() const;
+    void SetPerformanceFlags(UINT32 newPerformanceFlags);
+    
 signals:
     void sigReconnectIntervalChanged();
     
@@ -121,6 +127,9 @@ private:
     bool m_bNegotiateSecurityLayer;
     Security m_Security;
     UINT16 m_tlsVersion;
+    
+    UINT32 m_ConnectType;
+    UINT32 m_PerformanceFlags;
 };
 
 #endif // CPARAMETERFREERDP_H

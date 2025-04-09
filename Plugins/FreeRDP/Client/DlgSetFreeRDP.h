@@ -19,11 +19,11 @@ class CDlgSetFreeRDP;
 class CDlgSetFreeRDP : public QDialog
 {
     Q_OBJECT
-    
+
 public:
     explicit CDlgSetFreeRDP(CParameterFreeRDP* pSettings, QWidget *parent = nullptr);
     ~CDlgSetFreeRDP();
-    
+
 private slots:
     void on_pbOk_clicked();
     void on_pbCancel_clicked();
@@ -43,6 +43,8 @@ private slots:
 
     void on_cbSecurityEnable_checkStateChanged(const Qt::CheckState &arg1);
 
+    void on_cbConnectType_currentIndexChanged(int index);
+
 private:
     QRect GetScreenGeometry();
     int UpdateDesktopSize();
@@ -61,6 +63,8 @@ private:
     CParameterRecordUI* m_pRecordUI;
 
     QButtonGroup* m_pButtonGroup;
+
+    UINT32 m_vPerformanceFlags[CONNECTION_TYPE_AUTODETECT];
 };
 
 #endif // DLGSETFREERDP_H

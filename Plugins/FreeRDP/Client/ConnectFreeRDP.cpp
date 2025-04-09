@@ -110,6 +110,16 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
         return OnInitReturnValue::Fail;
     }
 
+    //*
+    // Initial FreeRDP default parameters.
+    // See: https://github.com/KangLin/RabbitRemoteControl/issues/27
+    // Set default parameters: FreeRDP_SupportGraphicsPipeline and FreeRDP_RemoteFxCodec
+    // See:
+    //   - [[MS-RDPBCGR]: Remote Desktop Protocol: Basic Connectivity and Graphics Remoting](https://learn.microsoft.com/zh-cn/openspecs/windows_protocols/ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c)
+    //   - [[MS-RDPRFX]: Remote Desktop Protocol: RemoteFX Codec Extension](https://learn.microsoft.com/zh-cn/openspecs/windows_protocols/ms-rdprfx/62495a4a-a495-46ea-b459-5cde04c44549)
+    //   - [[MS-RDPEGFX]: Remote Desktop Protocol: Graphics Pipeline Extension](https://learn.microsoft.com/zh-cn/openspecs/windows_protocols/ms-rdpegfx/da5c75f9-cd99-450c-98c4-014a496942b0)
+    //      https://www.cswamp.com/post/37
+    // Set connection parameters. See: FREERDP_API BOOL freerdp_set_connection_type(rdpSettings* settings, UINT32 type);
     char* argv[]= {(char*)QApplication::applicationFilePath().toStdString().c_str()};
     int argc = sizeof(argv) / sizeof(char*);
     nRet = freerdp_client_settings_parse_command_line(settings, argc, argv, TRUE);
@@ -117,7 +127,7 @@ CConnect::OnInitReturnValue CConnectFreeRDP::OnInit()
     {
         nRet = freerdp_client_settings_command_line_status_print(settings, nRet, argc, argv);
         return OnInitReturnValue::Fail;
-    }
+    } //*/
 
 #if FreeRDP_VERSION_MAJOR >= 3
     if (!stream_dump_register_handlers(pRdpContext,
@@ -770,6 +780,21 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         << "width:" << freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth)
         << "height:" << freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight)
         << "ColorDepth:" << freerdp_settings_get_uint32(settings, FreeRDP_ColorDepth);
+    
+    // Initial FreeRDP graph codec
+    // See: https://github.com/KangLin/RabbitRemoteControl/issues/27
+    // Set default parameters FreeRDP_SupportGraphicsPipeline and FreeRDP_RemoteFxCodec in auto detec connect type
+    // See:
+    //   - [[MS-RDPBCGR]: Remote Desktop Protocol: Basic Connectivity and Graphics Remoting](https://learn.microsoft.com/zh-cn/openspecs/windows_protocols/ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c)
+    //   - [[MS-RDPRFX]: Remote Desktop Protocol: RemoteFX Codec Extension](https://learn.microsoft.com/zh-cn/openspecs/windows_protocols/ms-rdprfx/62495a4a-a495-46ea-b459-5cde04c44549)
+    //   - [[MS-RDPEGFX]: Remote Desktop Protocol: Graphics Pipeline Extension](https://learn.microsoft.com/zh-cn/openspecs/windows_protocols/ms-rdpegfx/da5c75f9-cd99-450c-98c4-014a496942b0)
+    //      https://www.cswamp.com/post/37
+    //   - [Remote Desktop Protocol (RDP) 10 AVC/H.264 improvements in Windows 10 and Windows Server 2016 Technical Preview](https://techcommunity.microsoft.com/blog/microsoft-security-blog/remote-desktop-protocol-rdp-10-avch-264-improvements-in-windows-10-and-windows-s/249588)
+    if(!freerdp_set_connection_type(settings, pParameter->GetConnectType()))
+        return FALSE;
+    freerdp_settings_set_uint32(
+        settings, FreeRDP_PerformanceFlags, pParameter->GetPerformanceFlags());
+    freerdp_performance_flags_split(settings);
 
 	return TRUE;
 }

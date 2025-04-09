@@ -1,9 +1,11 @@
 #include "ParameterFreeRDP.h"
-#include <QSettings>
 
 #if HAVE_OPENSSL
 #include <openssl/tls1.h>
 #endif
+#include <freerdp/settings_types.h>
+
+#include <QSettings>
 
 CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     : CParameterBase(parent),
@@ -19,7 +21,9 @@ CParameterFreeRDP::CParameterFreeRDP(QObject *parent)
     m_Proxy(this),
     m_bNegotiateSecurityLayer(true),
     m_Security((Security)(Security::RDP|Security::TLS|Security::NLA)),
-    m_tlsVersion(TLS1_VERSION)
+    m_tlsVersion(TLS1_VERSION),
+    m_ConnectType(CONNECTION_TYPE_AUTODETECT),
+    m_PerformanceFlags(PERF_FLAG_NONE)
 {
     m_Net.SetPort(3389);
     
@@ -73,6 +77,11 @@ int CParameterFreeRDP::OnLoad(QSettings &set)
     SetSecurity((Security)set.value("Security/Type", GetSecurity()).toUInt());
     SetTlsVersion(set.value("Security/Tls/Version", GetTlsVersion()).toUInt());
 
+    set.beginGroup("Performance");
+    SetConnectType(set.value("Connect/Type", GetConnectType()).toUInt());
+    SetPerformanceFlags(set.value("Flags", GetPerformanceFlags()).toUInt());
+    set.endGroup();
+
     set.endGroup();
 
     return 0;
@@ -81,14 +90,14 @@ int CParameterFreeRDP::OnLoad(QSettings &set)
 int CParameterFreeRDP::OnSave(QSettings &set)
 {
     CParameterBase::OnSave(set);
-    
+
     set.beginGroup("FreeRDP");
     set.setValue("Domain", GetDomain());
     set.setValue("Width", GetDesktopWidth());
     set.setValue("Height", GetDesktopHeight());
     set.setValue("ColorDepth", GetColorDepth());
     set.setValue("UseMultimon", GetUseMultimon());
-    
+
     set.setValue("ReconnectionInterval", GetReconnectInterval());
     set.setValue("ShowVerifyDiaglog", GetShowVerifyDiaglog());
 
@@ -98,13 +107,18 @@ int CParameterFreeRDP::OnSave(QSettings &set)
     set.setValue("Redirection/Microphone", GetRedirectionMicrophone());
     set.setValue("Redirection/Microphone/Parameters", GetRedirectionMicrophoneParameters());
     set.setValue("Redirection/Drive", GetRedirectionDrives());
-    
+
     set.setValue("Security/Enable", GetNegotiateSecurityLayer());
     set.setValue("Security/Type", (uint)GetSecurity());
     set.setValue("Security/Tls/Version", GetTlsVersion());
 
+    set.beginGroup("Performance");
+    set.setValue("Connect/Type", GetConnectType());
+    set.setValue("Flags", GetPerformanceFlags());
     set.endGroup();
-    
+
+    set.endGroup();
+
     return 0;
 }
 
@@ -286,6 +300,32 @@ void CParameterFreeRDP::SetTlsVersion(UINT16 newTlsVersion)
     if(m_tlsVersion == newTlsVersion)
         return;
     m_tlsVersion = newTlsVersion;
+    SetModified(true);
+}
+
+UINT32 CParameterFreeRDP::GetConnectType() const
+{
+    return m_ConnectType;
+}
+
+void CParameterFreeRDP::SetConnectType(UINT32 newConnectType)
+{
+    if(m_ConnectType == newConnectType)
+        return;
+    m_ConnectType = newConnectType;
+    SetModified(true);
+}
+
+UINT32 CParameterFreeRDP::GetPerformanceFlags() const
+{
+    return m_PerformanceFlags;
+}
+
+void CParameterFreeRDP::SetPerformanceFlags(UINT32 newPerformanceFlags)
+{
+    if(m_PerformanceFlags == newPerformanceFlags)
+        return;
+    m_PerformanceFlags = newPerformanceFlags;
     SetModified(true);
 }
 

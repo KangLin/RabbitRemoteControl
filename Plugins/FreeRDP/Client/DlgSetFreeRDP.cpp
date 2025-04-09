@@ -199,6 +199,28 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
         ui->rbTls1_3->setChecked(true);
         break;
     }
+
+    // Initial defalut performance flags
+    m_vPerformanceFlags[CONNECTION_TYPE_MODEM - 1] = PERF_DISABLE_WALLPAPER | PERF_DISABLE_FULLWINDOWDRAG | PERF_DISABLE_MENUANIMATIONS | PERF_DISABLE_THEMING;
+    m_vPerformanceFlags[CONNECTION_TYPE_BROADBAND_LOW - 1] = PERF_DISABLE_WALLPAPER | PERF_DISABLE_FULLWINDOWDRAG | PERF_DISABLE_MENUANIMATIONS;
+    m_vPerformanceFlags[CONNECTION_TYPE_SATELLITE - 1] = PERF_DISABLE_WALLPAPER | PERF_ENABLE_DESKTOP_COMPOSITION | PERF_DISABLE_FULLWINDOWDRAG | PERF_DISABLE_MENUANIMATIONS;
+    m_vPerformanceFlags[CONNECTION_TYPE_BROADBAND_HIGH - 1] = PERF_DISABLE_WALLPAPER | PERF_ENABLE_DESKTOP_COMPOSITION | PERF_DISABLE_FULLWINDOWDRAG | PERF_DISABLE_MENUANIMATIONS;
+    m_vPerformanceFlags[CONNECTION_TYPE_WAN - 1] = PERF_ENABLE_FONT_SMOOTHING | PERF_ENABLE_DESKTOP_COMPOSITION;
+    m_vPerformanceFlags[CONNECTION_TYPE_LAN - 1] = PERF_ENABLE_FONT_SMOOTHING | PERF_ENABLE_DESKTOP_COMPOSITION;
+    m_vPerformanceFlags[CONNECTION_TYPE_AUTODETECT - 1] = PERF_ENABLE_FONT_SMOOTHING | PERF_ENABLE_DESKTOP_COMPOSITION;
+    // Load performance flags
+    if(m_pSettings->GetConnectType() > 0 && m_pSettings->GetPerformanceFlags() > 0)
+        m_vPerformanceFlags[m_pSettings->GetConnectType() - 1] = m_pSettings->GetPerformanceFlags();
+    // Connect type
+    ui->cbConnectType->addItem(tr("Modem(56 kpbs)"), CONNECTION_TYPE_MODEM);
+    ui->cbConnectType->addItem(tr("Broadband low(256 kbps - 2 Mbps)"), CONNECTION_TYPE_BROADBAND_LOW);
+    ui->cbConnectType->addItem(tr("Satellite(2 Mbps - 16 Mbps, High latency)"), CONNECTION_TYPE_SATELLITE);
+    ui->cbConnectType->addItem(tr("Broadband high(2 Mbps - 10 Mbps)"), CONNECTION_TYPE_BROADBAND_HIGH);
+    ui->cbConnectType->addItem(tr("Wan(10 Mbps or higher speed, High latency)"), CONNECTION_TYPE_WAN);
+    ui->cbConnectType->addItem(tr("Lan(10 Mbps or higher speed)"), CONNECTION_TYPE_LAN);
+    ui->cbConnectType->addItem(tr("Automatically detect"), CONNECTION_TYPE_AUTODETECT);
+    ui->cbConnectType->setCurrentIndex(ui->cbConnectType->findData(m_pSettings->GetConnectType()));
+
 }
 
 CDlgSetFreeRDP::~CDlgSetFreeRDP()
@@ -318,6 +340,24 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
         m_pSettings->SetTlsVersion(TLS1_2_VERSION);
     else if(ui->rbTls1_3->isChecked())
         m_pSettings->SetTlsVersion(TLS1_3_VERSION);
+
+    // Connect type
+    m_pSettings->SetConnectType(ui->cbConnectType->currentData().toUInt());
+    // Perfomance flags
+    UINT32 performanceFlags = 0;
+    if(!ui->cbDesktopBackground->isChecked())
+        performanceFlags |= PERF_DISABLE_WALLPAPER;
+    if(!ui->cbWindowDrag->isChecked())
+        performanceFlags |= PERF_DISABLE_FULLWINDOWDRAG;
+    if(!ui->cbMenuAnims->isChecked())
+        performanceFlags |= PERF_DISABLE_MENUANIMATIONS;
+    if(!ui->cbThemes->isChecked())
+        performanceFlags |= PERF_DISABLE_THEMING;
+    if(ui->cbFontSmoothing->isChecked())
+        performanceFlags |= PERF_ENABLE_FONT_SMOOTHING;
+    if(ui->cbDesktopCompositing->isChecked())
+        performanceFlags |= PERF_ENABLE_DESKTOP_COMPOSITION;
+    m_pSettings->SetPerformanceFlags(performanceFlags);
 
     accept();
 }
@@ -571,4 +611,31 @@ void CDlgSetFreeRDP::on_cbSecurityEnable_checkStateChanged(const Qt::CheckState 
         m_pButtonGroup->addButton(ui->cbSecurityRDSAAD);
         m_pButtonGroup->addButton(ui->cbSecurityRDSTLS);
     }
+}
+
+void CDlgSetFreeRDP::on_cbConnectType_currentIndexChanged(int index)
+{
+    UINT32 type = ui->cbConnectType->itemData(index).toUInt();
+    if(0 >= type || CONNECTION_TYPE_AUTODETECT < type)
+        return;
+
+    UINT32 performanceFlags = m_vPerformanceFlags[type - 1];
+    if(CONNECTION_TYPE_AUTODETECT == type)
+    {
+        performanceFlags = PERF_ENABLE_FONT_SMOOTHING | PERF_ENABLE_DESKTOP_COMPOSITION;
+    }
+
+    ui->cbDesktopBackground->setChecked(!(PERF_DISABLE_WALLPAPER & performanceFlags));
+    ui->cbWindowDrag->setChecked(!(PERF_DISABLE_FULLWINDOWDRAG & performanceFlags));
+    ui->cbMenuAnims->setChecked(!(PERF_DISABLE_MENUANIMATIONS & performanceFlags));
+    ui->cbThemes->setChecked(!(PERF_DISABLE_THEMING & performanceFlags));
+    ui->cbFontSmoothing->setChecked(PERF_ENABLE_FONT_SMOOTHING & performanceFlags);
+    ui->cbDesktopCompositing->setChecked(PERF_ENABLE_DESKTOP_COMPOSITION & performanceFlags);
+
+    ui->cbDesktopBackground->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
+    ui->cbWindowDrag->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
+    ui->cbMenuAnims->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
+    ui->cbThemes->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
+    ui->cbFontSmoothing->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
+    ui->cbDesktopCompositing->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
 }
