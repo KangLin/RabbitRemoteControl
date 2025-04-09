@@ -27,7 +27,7 @@ CFrmListRecentConnects::CFrmListRecentConnects(
     setWindowTitle(tr("List recent connections"));
 
     m_pToolBar = new QToolBar(this);
-    m_pToolBar->setVisible(m_ParameterApp.GetDockListRecentShowToolBar());
+
     m_pConnect = m_pToolBar->addAction(
         QIcon::fromTheme("network-wired"), tr("Connect"),
         this, SLOT(slotConnect()));
@@ -122,6 +122,7 @@ CFrmListRecentConnects::CFrmListRecentConnects(
         });
         pShowToolBar->setCheckable(true);
         pShowToolBar->setChecked(m_ParameterApp.GetDockListRecentShowToolBar());
+        m_pToolBar->setVisible(m_ParameterApp.GetDockListRecentShowToolBar());
     }
 
     Q_ASSERT(m_pClient);
