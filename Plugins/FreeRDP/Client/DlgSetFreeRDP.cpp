@@ -200,7 +200,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
         break;
     }
 
-    // Initial defalut performance flags
+    // Initial default performance flags
     m_vPerformanceFlags[CONNECTION_TYPE_MODEM - 1] = PERF_DISABLE_WALLPAPER | PERF_DISABLE_FULLWINDOWDRAG | PERF_DISABLE_MENUANIMATIONS | PERF_DISABLE_THEMING;
     m_vPerformanceFlags[CONNECTION_TYPE_BROADBAND_LOW - 1] = PERF_DISABLE_WALLPAPER | PERF_DISABLE_FULLWINDOWDRAG | PERF_DISABLE_MENUANIMATIONS;
     m_vPerformanceFlags[CONNECTION_TYPE_SATELLITE - 1] = PERF_DISABLE_WALLPAPER | PERF_ENABLE_DESKTOP_COMPOSITION | PERF_DISABLE_FULLWINDOWDRAG | PERF_DISABLE_MENUANIMATIONS;
@@ -343,7 +343,7 @@ void CDlgSetFreeRDP::on_pbOk_clicked()
 
     // Connect type
     m_pSettings->SetConnectType(ui->cbConnectType->currentData().toUInt());
-    // Perfomance flags
+    // Performance flags
     UINT32 performanceFlags = 0;
     if(!ui->cbDesktopBackground->isChecked())
         performanceFlags |= PERF_DISABLE_WALLPAPER;

@@ -137,7 +137,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="32"/>
         <location filename="../../FrmListRecentConnects.cpp" line="34"/>
         <location filename="../../FrmListRecentConnects.cpp" line="35"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="460"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="461"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
@@ -145,7 +145,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="37"/>
         <location filename="../../FrmListRecentConnects.cpp" line="39"/>
         <location filename="../../FrmListRecentConnects.cpp" line="40"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="461"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="462"/>
         <source>Edit and Connect</source>
         <translation>编辑并连接</translation>
     </message>
@@ -161,7 +161,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="56"/>
         <location filename="../../FrmListRecentConnects.cpp" line="58"/>
         <location filename="../../FrmListRecentConnects.cpp" line="59"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="464"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="465"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
@@ -169,7 +169,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="60"/>
         <location filename="../../FrmListRecentConnects.cpp" line="62"/>
         <location filename="../../FrmListRecentConnects.cpp" line="63"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="465"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="466"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
@@ -177,7 +177,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="65"/>
         <location filename="../../FrmListRecentConnects.cpp" line="67"/>
         <location filename="../../FrmListRecentConnects.cpp" line="68"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="467"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="468"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
@@ -192,7 +192,7 @@
         <location filename="../../FrmListRecentConnects.cpp" line="80"/>
         <location filename="../../FrmListRecentConnects.cpp" line="82"/>
         <location filename="../../FrmListRecentConnects.cpp" line="83"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="470"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="471"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
@@ -215,43 +215,43 @@
         <translation>显示工具条</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="145"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="146"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="146"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="147"/>
         <source>Protocol</source>
         <translation>协议</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="147"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="148"/>
         <source>Date</source>
         <translation>日期</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="148"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="149"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="150"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="151"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="295"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="388"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="296"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="389"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="296"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="297"/>
         <source>File of connecter is exists. whether to overwrite it? File: %1</source>
         <translation>此连接文件已存在,是否覆盖它？文件: %1</translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="389"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="390"/>
         <source>File of connecter is exists. whether to overwrite it? If select No, please modify the name of connecter</source>
         <translation>此连接文件已存在,是否覆盖它？如果选择否，请修改连接的名称。</translation>
     </message>

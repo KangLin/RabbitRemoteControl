@@ -87,35 +87,35 @@ public:
 
     UINT16 GetTlsVersion() const;
     void SetTlsVersion(UINT16 newTlsVersion);
-    
+
     UINT32 GetConnectType() const;
     void SetConnectType(UINT32 newConnectType);
-    
+
     UINT32 GetPerformanceFlags() const;
     void SetPerformanceFlags(UINT32 newPerformanceFlags);
-    
+
 signals:
     void sigReconnectIntervalChanged();
-    
+
     void sigRedirectionSoundChanged(RedirecionSoundType RedirectionSound);
     void sigRedirectionSoundParametersChanged();
     void sigRedirectionMicrophoneChanged(bool RedirectionMicrophone);
     void sigRedirectionMicrophoneParametersChanged();
     void sigRedirectionDrivesChanged(QStringList RedirectionDrive);
     void sigRedirectionPrinterChanged(bool RedirectionPrinter);
-    
+
 private:
     QString m_szDomain;
-    
+
     UINT32 m_nWidth;
     UINT32 m_nHeight;
-    
+
     UINT32 m_nColorDepth;
     bool m_bUseMultimon;
-    
+
     UINT32 m_nReconnectInterval; // Unit: second
     bool m_bShowVerifyDiaglog;
-    
+
     bool m_bRedirectionPrinter;
     RedirecionSoundType m_nRedirectionSound;
     QString m_szRedirectionSoundParameters;
@@ -123,11 +123,11 @@ private:
     QString m_szRedirectionMicrophoneParameters;
     QStringList m_lstRedirectionDrives;
     Q_PROPERTY(QString RedirectionMicrophoneParameters READ GetRedirectionMicrophoneParameters WRITE SetRedirectionMicrophoneParameters NOTIFY sigRedirectionMicrophoneParametersChanged)
-    
+
     bool m_bNegotiateSecurityLayer;
     Security m_Security;
     UINT16 m_tlsVersion;
-    
+
     UINT32 m_ConnectType;
     UINT32 m_PerformanceFlags;
 };

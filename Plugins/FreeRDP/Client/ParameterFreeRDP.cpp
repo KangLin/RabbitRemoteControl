@@ -3,7 +3,6 @@
 #if HAVE_OPENSSL
 #include <openssl/tls1.h>
 #endif
-#include <freerdp/settings_types.h>
 
 #include <QSettings>
 

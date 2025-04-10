@@ -780,7 +780,7 @@ BOOL CConnectFreeRDP::cb_pre_connect(freerdp* instance)
         << "width:" << freerdp_settings_get_uint32(settings, FreeRDP_DesktopWidth)
         << "height:" << freerdp_settings_get_uint32(settings, FreeRDP_DesktopHeight)
         << "ColorDepth:" << freerdp_settings_get_uint32(settings, FreeRDP_ColorDepth);
-    
+
     // Initial FreeRDP graph codec
     // See: https://github.com/KangLin/RabbitRemoteControl/issues/27
     // Set default parameters FreeRDP_SupportGraphicsPipeline and FreeRDP_RemoteFxCodec in auto detec connect type
@@ -811,7 +811,7 @@ const char* CConnectFreeRDP::GetTitle(freerdp* instance)
 
     if (!settings)
         return nullptr;
-    
+
     windowTitle = freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
     if (windowTitle)
         return windowTitle;
@@ -822,16 +822,16 @@ const char* CConnectFreeRDP::GetTitle(freerdp* instance)
     name = pThis->m_pParameter->m_Net.GetHost().toStdString().c_str();
 #endif
     port = freerdp_settings_get_uint32(settings, FreeRDP_ServerPort);
-    
+
     addPort = (port != 3389);
-    
+
     char buffer[MAX_PATH + 64] = { 0 };
-    
+
     if (!addPort)
         sprintf_s(buffer, sizeof(buffer), "%s", name);
     else
         sprintf_s(buffer, sizeof(buffer), "%s:%" PRIu32, name, port);
-    
+
     freerdp_settings_set_string(settings, FreeRDP_WindowTitle, buffer);
     return freerdp_settings_get_string(settings, FreeRDP_WindowTitle);
 }

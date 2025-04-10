@@ -4,248 +4,248 @@
 <context>
     <name>CConnectFreeRDP</name>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="490"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="498"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="500"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="508"/>
         <source>Connect to </source>
         <translation>連接到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="513"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="520"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="527"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="534"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="523"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="530"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="537"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="544"/>
         <source>Logon to </source>
         <translation>登錄到 </translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="514"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="524"/>
         <source> fail. Please check that the username and password are correct.</source>
-        <translation> 失敗。請檢查用戶名和密碼是否正確。</translation>
+        <translation> 失敗。請檢查用户名和密碼是否正確。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="192"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="557"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="202"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="567"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="537"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="547"/>
         <source>1. Check for any network related issues</source>
         <translation>1. 檢查是否存在任何與網絡相關的問題</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="897"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="922"/>
         <source>FreeRDP logon info: [</source>
         <translation>FreeRDP 登錄信息：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1599"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1624"/>
         <source>Verify certificate</source>
         <translation>驗證證書</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1603"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1628"/>
         <source>Common name: </source>
         <translation>公共名稱：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1593"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1686"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1618"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1711"/>
         <source>RDP-Server</source>
         <translation>RDP-服務器</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="521"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="531"/>
         <source> fail. Please check password are correct.</source>
         <translation> 失敗。請檢查密碼是否正確。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="528"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="538"/>
         <source> authentication fail. please add a CA certificate to the store.</source>
         <translation>驗證失敗。請在證書存儲中加上 CA 證書。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="535"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="545"/>
         <source> connect transport layer fail.</source>
         <translation> 連接傳輸層失敗。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="536"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="546"/>
         <source>Please:</source>
         <translation>請：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="538"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="548"/>
         <source>2. Check you have proper security settings (&apos;NLA&apos; enabled is required for most connections nowadays)</source>
-        <translation>2. 檢查您是否具有正確的安全設置（現在大多數連接都需要啟用 &apos;NLA&apos; ）</translation>
+        <translation>2. 檢查您是否具有正確的安全設置（現在大多數連接都需要啓用 &apos;NLA&apos; ）</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="540"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="550"/>
         <source>3. Check the certificate is proper (and guacd properly checks that)</source>
         <translation>3. 檢查證書是否正確（並正確檢查）</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="498"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="508"/>
         <source> fail.</source>
         <translation> 失敗。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="190"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="200"/>
         <source>The server is empty, please input it</source>
         <translation>服務器為空，請輸入</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="539"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="547"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="549"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="557"/>
         <source>If you do not know the server security settings, contact your server administrator.</source>
-        <translation>如果你不知道服務器安全設置，請聯系服務器管理員。</translation>
+        <translation>如果你不知道服務器安全設置，請聯繫服務器管理員。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="546"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="556"/>
         <source>Please check you have proper security settings.</source>
         <translation>請檢查是否設置了正確的安全設置。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="551"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="561"/>
         <source>The connect was canceled.</source>
         <translation>連接取消了。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1202"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1227"/>
         <source>Choose</source>
         <translation>選擇</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1202"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1227"/>
         <source>Please choose smartcard</source>
         <translation>請選擇智能卡</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1595"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1688"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1620"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1713"/>
         <source>RDP-Gateway</source>
         <translation>RDP-網關</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1597"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1690"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1622"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1715"/>
         <source>RDP-Redirect</source>
         <translation>RDP-重定向</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1602"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1694"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1627"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1719"/>
         <source>: %1:%2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1604"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1629"/>
         <source>Subject: </source>
         <translation>主題：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1605"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1630"/>
         <source>Issuer: </source>
         <translation>頒發者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1695"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1720"/>
         <source>New Certificate details:</source>
         <translation>新證書細節：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1696"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1721"/>
         <source>name: </source>
         <translation>名稱：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1697"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1701"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1722"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1726"/>
         <source>subject: </source>
         <translation>主題：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1698"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1702"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1723"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1727"/>
         <source>issuer: </source>
         <translation>發行者：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1700"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1725"/>
         <source>Old Certificate details:</source>
         <translation>老證書細節：</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1705"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1730"/>
         <source>The above X.509 certificate could not be verified, possibly because you do not have the CA certificate in your certificate store, or the certificate has expired. Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation>無法驗證上述 X.509 證書，可能是因為 CA 證書未存儲在您的證書存儲中，或者證書已過期。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
+        <translation>無法驗證上述 X.509 證書，可能是因為 CA 證書未存儲在您的證書存儲中，或者證書已過期。請查看 OpenSSL 文檔，瞭解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1623"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1712"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1648"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1737"/>
         <source>Yes - trusted</source>
         <translation>是 - 信任</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="759"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="769"/>
         <source>Invalid dimensions:</source>
         <translation>無效尺寸</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1609"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1634"/>
         <source>The above X.509 certificate is changed.
 It is possible that the server has changed its certificate, or Maybe it was attacked.Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>上面 X.509 證書已改變。
-可能服務器更換了證書，也可能受到了攻擊。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
+可能服務器更換了證書，也可能受到了攻擊。請查看 OpenSSL 文檔，瞭解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1615"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1640"/>
         <source>The above X.509 certificate could not be verified.
 Possibly because you do not have the CA certificate in your certificate store, or the certificate has expired.
 Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>上面 X.509 證書無效。
-可能是在你的證書庫中沒有，或者證書過期。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
+可能是在你的證書庫中沒有，或者證書過期。請查看 OpenSSL 文檔，瞭解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1624"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1713"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1649"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1738"/>
         <source>Ignore - temporary trusted</source>
         <translation>忽略 - 臨時信任</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1625"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1714"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1650"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1739"/>
         <source>No - no trusted</source>
         <translation>否 - 不信任</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1631"/>
-        <location filename="../../ConnectFreeRDP.cpp" line="1720"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1656"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1745"/>
         <source>Don&apos;t show again</source>
         <translation>不再顯示</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1692"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1717"/>
         <source>Verify changed certificate</source>
         <translation>驗證證書改變</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1754"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1779"/>
         <source>Consent message</source>
         <translation>同意消息</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1754"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1779"/>
         <source>Service message</source>
         <translation>服務留言</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1766"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1791"/>
         <source>I understand and agree to the terms of this policy (Y/N)</source>
         <translation>我理解並同意本政策的條款（是/否）</translation>
     </message>
     <message>
-        <location filename="../../ConnectFreeRDP.cpp" line="1772"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1797"/>
         <source>Gateway message</source>
         <translation>網關消息</translation>
     </message>
@@ -314,12 +314,12 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>設置 FreeRdp</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="532"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="608"/>
         <source>OK(&amp;O)</source>
         <translation>確定(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="539"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="615"/>
         <source>Cancel(&amp;C)</source>
         <translation>取消(&amp;C)</translation>
     </message>
@@ -410,87 +410,132 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="269"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="336"/>
-        <location filename="../../DlgSetFreeRDP.cpp" line="396"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="299"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="376"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="436"/>
         <source>Local screen</source>
         <translation>本地屏幕</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="306"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="336"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="356"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="355"/>
+        <source>Performance</source>
+        <translation>性能</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="361"/>
+        <source>Choose your connection speed to optimize performance</source>
+        <translation>選擇連接速度來優化性能</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="371"/>
+        <source>Features related to connection quality:</source>
+        <translation>與連接質量相關的功能：</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="380"/>
+        <source>Desktop background</source>
+        <translation>桌面背景</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="387"/>
+        <source>Font smoothing</source>
+        <translation>字體平滑</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="398"/>
+        <source>Desktop compositing</source>
+        <translation>桌面合成</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="405"/>
+        <source>Menus and window animations</source>
+        <translation>菜單和窗口動畫</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="414"/>
+        <source>Displays the contents of the window when dragging</source>
+        <translation>拖動時顯示窗口內容</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="421"/>
+        <source>Visual theme</source>
+        <translation>視覺樣式</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.ui" line="432"/>
         <source>Local resource</source>
         <translation>本地資源</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="427"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="503"/>
         <source>Selected:</source>
         <translation>選擇的：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="434"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="510"/>
         <source>Clear all</source>
         <translation>清除全部</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="446"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="522"/>
         <source>Audio</source>
         <translation>音頻</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="452"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="528"/>
         <source>Play remote audio</source>
         <translation>播放音頻</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="458"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="534"/>
         <source>On this computer</source>
         <translation>在此計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="468"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="544"/>
         <source>On remote computer</source>
         <translation>在遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="478"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="554"/>
         <source>Disable</source>
         <translation>禁止</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="491"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="567"/>
         <source>Use this computer&apos;s microphone on the remote computer</source>
         <translation>在遠程計算機上使用本計算機的麥克風</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="362"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="365"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="368"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="371"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="438"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="441"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="444"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="447"/>
         <source>Printer: Redirection the local printers to the remote computer</source>
         <translation>打印機：重定向本地打印機到遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="381"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="384"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="387"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="390"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="457"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="460"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="463"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="466"/>
         <source>Clipboard: Redirection the clipboard</source>
         <translation>剪切板：重定向剪切板</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="397"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="400"/>
-        <location filename="../../DlgSetFreeRDP.ui" line="403"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="473"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="476"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="479"/>
         <source>Redirect the following selected drives to the remote computer</source>
         <translation>重定向下列選中的驅動器到遠程計算機上</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="406"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="482"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
         <translation>驅動器：重定向下列選中的驅動器到遠程計算機上</translation>
     </message>
@@ -527,22 +572,22 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>顯示</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="261"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="291"/>
         <source>Remote desktop size:</source>
         <translation>遠程桌面尺寸：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="280"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="310"/>
         <source>Select size:</source>
         <translation>選擇尺寸：</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="315"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="345"/>
         <source>Use all local monitors for remote sessions</source>
         <translation>將本地所有監視器用於遠程會話</translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.ui" line="327"/>
+        <location filename="../../DlgSetFreeRDP.ui" line="263"/>
         <source>Remote color depth:</source>
         <translation>遠程顏色深度：</translation>
     </message>
@@ -601,7 +646,42 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
 </translation>
     </message>
     <message>
-        <location filename="../../DlgSetFreeRDP.cpp" line="550"/>
+        <location filename="../../DlgSetFreeRDP.cpp" line="215"/>
+        <source>Modem(56 kpbs)</source>
+        <translation>調制解調器(56 kbps)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="216"/>
+        <source>Broadband low(256 kbps - 2 Mbps)</source>
+        <translation>低速寬帶(256 kbps - 2 Mbps)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="217"/>
+        <source>Satellite(2 Mbps - 16 Mbps, High latency)</source>
+        <translation>衞星(2 Mbps - 16 Mbps, 高延遲)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="218"/>
+        <source>Broadband high(2 Mbps - 10 Mbps)</source>
+        <translation>高速寬帶(2 Mbps - 10 Mbps)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="219"/>
+        <source>Wan(10 Mbps or higher speed, High latency)</source>
+        <translation>廣域網(10 Mbps 或更高速度, 高延遲)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="220"/>
+        <source>Lan(10 Mbps or higher speed)</source>
+        <translation>局域網(10 Mbps 或更高速度)</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="221"/>
+        <source>Automatically detect</source>
+        <translation>自動檢測連接質量</translation>
+    </message>
+    <message>
+        <location filename="../../DlgSetFreeRDP.cpp" line="590"/>
         <source>Selected counts: </source>
         <translation>選擇數： </translation>
     </message>
