@@ -249,17 +249,17 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
 - [贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors):
   感谢[贡献者](https://github.com/KangLin/RabbitRemoteControl/graphs/contributors)
 - 维护打包
-  - Linux
-    - Debian: 需要维护官方包
-    - rpm: 需要维护官方包
+  - [ ] Linux
+    - [ ] Debian: 需要维护官方包
+    - [ ] rpm: 需要维护官方包
     - [x] AppImage
     - [x] Snap
     - [x] Flatpak: https://github.com/flathub/io.github.KangLin.RabbitRemoteControl
-  - Windows
-    - Windows 应用商店
-  - Macos
-  - Android
-  
+  - [ ] Windows
+    - [ ] Windows 应用商店
+  - [ ] Macos
+  - [ ] Android
+
 ## 下载
 
 - [修改日志](ChangeLog_zh_CN.md)
@@ -283,7 +283,7 @@ https://github.com/user-attachments/assets/06165fd8-ae12-4565-b3ee-2cfb7a80bc78
     - 架构:
       - x86_64
       - aarch64
-    
+
             # 设置执行权限
             chmod a+x RabbitRemoteControl_0.0.34_Linux_x86_64.AppImage
             # 运行
