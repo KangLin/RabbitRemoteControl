@@ -4,6 +4,7 @@
 - App: modify parameter
 - FreeRDP:
   - Add security parameter settings
+  - Add connect type settings
 
 ### v0.0.34
 - App: add splitter view
