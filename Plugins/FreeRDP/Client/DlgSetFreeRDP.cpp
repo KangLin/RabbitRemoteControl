@@ -162,7 +162,7 @@ CDlgSetFreeRDP::CDlgSetFreeRDP(CParameterFreeRDP *pSettings, QWidget *parent) :
     
     // Security
     ui->cbSecurityEnable->setChecked(m_pSettings->GetNegotiateSecurityLayer());
-    on_cbSecurityEnable_checkStateChanged(ui->cbSecurityEnable->checkState());
+    on_cbSecurityEnable_stateChanged(ui->cbSecurityEnable->checkState());
     CParameterFreeRDP::Security security = m_pSettings->GetSecurity();
     if(CParameterFreeRDP::Security::RDP & (uint)security)
         ui->cbSecurityRDP->setChecked(true);
@@ -596,7 +596,7 @@ void CDlgSetFreeRDP::on_cbAllMonitor_stateChanged(int arg1)
     on_rbLocalScreen_clicked(true);
 }
 
-void CDlgSetFreeRDP::on_cbSecurityEnable_checkStateChanged(const Qt::CheckState &arg1)
+void CDlgSetFreeRDP::on_cbSecurityEnable_stateChanged(int arg1)
 {
     if(m_pButtonGroup) {
         m_pButtonGroup->deleteLater();
@@ -639,3 +639,4 @@ void CDlgSetFreeRDP::on_cbConnectType_currentIndexChanged(int index)
     ui->cbFontSmoothing->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
     ui->cbDesktopCompositing->setEnabled(!(CONNECTION_TYPE_AUTODETECT == type));
 }
+

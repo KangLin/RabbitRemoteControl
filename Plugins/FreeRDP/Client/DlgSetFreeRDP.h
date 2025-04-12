@@ -41,9 +41,9 @@ private slots:
 
     void on_cbAllMonitor_stateChanged(int arg1);
 
-    void on_cbSecurityEnable_checkStateChanged(const Qt::CheckState &arg1);
-
     void on_cbConnectType_currentIndexChanged(int index);
+
+    void on_cbSecurityEnable_stateChanged(int arg1);
 
 private:
     QRect GetScreenGeometry();
