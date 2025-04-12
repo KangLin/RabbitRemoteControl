@@ -24,7 +24,7 @@
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
         <translation>捕獲系統快捷鍵需要管理員權限。
-需要以管理員權限重啟程序嗎？</translation>
+需要以管理員權限重啓程序嗎？</translation>
     </message>
     <message>
         <location filename="../../Client.cpp" line="446"/>
@@ -126,23 +126,23 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>Record</source>
-        <translation type="vanished">錄製</translation>
+        <translation type="vanished">錄制</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="172"/>
         <source>Record pause</source>
-        <translation>暫停錄製</translation>
+        <translation>暫停錄制</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="284"/>
         <source>Stop record</source>
-        <translation>停止錄製</translation>
+        <translation>停止錄制</translation>
     </message>
     <message>
         <location filename="../../ConnecterThread.cpp" line="165"/>
         <location filename="../../ConnecterThread.cpp" line="287"/>
         <source>Start record</source>
-        <translation>開始錄製</translation>
+        <translation>開始錄制</translation>
     </message>
 </context>
 <context>
@@ -156,7 +156,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../DlgInputPassword.ui" line="39"/>
         <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input password.</source>
-        <translation>加密密鑰用於加密保存到文件中的密碼。 如果您忘記了加密密鑰，請使用輸入密碼。</translation>
+        <translation>加密密鑰用于加密保存到文件中的密碼。 如果您忘記了加密密鑰，請使用輸入密碼。</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="54"/>
@@ -177,7 +177,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../DlgInputPassword.cpp" line="14"/>
         <source>The encryption key is used to encrypt the password that is saved to the file.</source>
-        <translation>加密密鑰用於加密保存到文件中的密碼。</translation>
+        <translation>加密密鑰用于加密保存到文件中的密碼。</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.cpp" line="16"/>
@@ -231,22 +231,18 @@ Restart program by administrator?</source>
         <location filename="../../FrmParameterClient.ui" line="207"/>
         <location filename="../../FrmParameterClient.cpp" line="20"/>
         <source>Prompt administrator privilege</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show hook restart programe with administrator privilege</source>
-        <translation type="vanished">提示管理員權限</translation>
+        <translation>提示管理員權限</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="173"/>
         <source>Enable use the system user as the user</source>
-        <translation>允許使用系統用戶作為用戶</translation>
+        <translation>允許使用系統用戶作爲用戶</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="20"/>
         <location filename="../../FrmParameterClient.cpp" line="18"/>
         <source>Hook: capture system key(System shortcuts is need administrator privilege)</source>
-        <translation>掛鉤：捕獲系統鍵(系統快捷鍵需要管理員權限)</translation>
+        <translation>挂鈎：捕獲系統鍵(系統快捷鍵需要管理員權限)</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="154"/>
@@ -256,7 +252,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../FrmParameterClient.ui" line="50"/>
         <source>Key used to encrypt saved password:</source>
-        <translation>加密鍵用於加密保存的密碼</translation>
+        <translation>加密鍵用于加密保存的密碼</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="64"/>
@@ -286,11 +282,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../FrmParameterClient.cpp" line="13"/>
         <source>Hook: capture system key</source>
-        <translation>掛鉤：捕獲系統鍵</translation>
-    </message>
-    <message>
-        <source>Hook: show restart program with administrator privilege</source>
-        <translation type="vanished">掛鉤：顯示需要管理員權限</translation>
+        <translation>挂鈎：捕獲系統鍵</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.cpp" line="85"/>
@@ -382,12 +374,12 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="21"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
-        <translation>在&quot;代理-&gt;SockesV5&quot;中主機為空。請設置。</translation>
+        <translation>在&quot;代理-&gt;SockesV5&quot;中主機爲空。請設置。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="28"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
-        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機為空。請設置。</translation>
+        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機爲空。請設置。</translation>
     </message>
 </context>
 <context>
@@ -424,12 +416,12 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="29"/>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="39"/>
         <source>RabbitRemoteControl</source>
-        <translation>玉兔遠程控製</translation>
+        <translation>玉兔遠程控制</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="30"/>
         <source>Record</source>
-        <translation>錄製</translation>
+        <translation>錄制</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="40"/>
@@ -444,17 +436,17 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="19"/>
         <source>Record</source>
-        <translation>錄製</translation>
+        <translation>錄制</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="31"/>
         <source>Folder:</source>
-        <translation>錄製</translation>
+        <translation>錄制</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="41"/>
         <source>Browse</source>
-        <translation>瀏覽</translation>
+        <translation>浏覽</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="52"/>
@@ -490,7 +482,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="154"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
-        <translation>值為 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
+        <translation>值爲 0 表示錄制器應根據視頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="166"/>
@@ -505,7 +497,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="205"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
-        <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限製做出最佳選擇。</translation>
+        <translation>值爲 -1 表示錄制器應根據音頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="218"/>
@@ -658,7 +650,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
-        <translation>公鑰和私鑰文件都為空，用系統公鑰和私鑰文件。</translation>
+        <translation>公鑰和私鑰文件都爲空，用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
@@ -686,7 +678,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="318"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="339"/>
         <source>Browse</source>
-        <translation>瀏覽</translation>
+        <translation>浏覽</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="175"/>
@@ -764,7 +756,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">長度為 6 的密碼或六字節十六進製</translation>
+        <translation type="vanished">長度爲 6 的密碼或六字節十六進制</translation>
     </message>
     <message>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
@@ -776,7 +768,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>Repeat:</source>
-        <translation type="vanished">重復：</translation>
+        <translation type="vanished">重複：</translation>
     </message>
     <message>
         <source>Interval:</source>
@@ -804,7 +796,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">密碼錯誤。長度為 6 的密碼或六字節十六進製</translation>
+        <translation type="vanished">密碼錯誤。長度爲 6 的密碼或六字節十六進制</translation>
     </message>
     <message>
         <source>The mac address is error</source>

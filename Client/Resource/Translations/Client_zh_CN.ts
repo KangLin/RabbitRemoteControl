@@ -231,11 +231,7 @@ Restart program by administrator?</source>
         <location filename="../../FrmParameterClient.ui" line="207"/>
         <location filename="../../FrmParameterClient.cpp" line="20"/>
         <source>Prompt administrator privilege</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show hook restart programe with administrator privilege</source>
-        <translation type="vanished">提示管理员权限</translation>
+        <translation>提示管理员权限</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="173"/>
@@ -287,10 +283,6 @@ Restart program by administrator?</source>
         <location filename="../../FrmParameterClient.cpp" line="13"/>
         <source>Hook: capture system key</source>
         <translation>挂钩：捕获系统键</translation>
-    </message>
-    <message>
-        <source>Hook: show restart program with administrator privilege</source>
-        <translation type="vanished">挂钩：显示需要管理员权限</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.cpp" line="85"/>
