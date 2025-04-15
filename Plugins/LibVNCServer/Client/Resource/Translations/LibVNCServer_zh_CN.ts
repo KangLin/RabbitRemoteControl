@@ -33,12 +33,12 @@
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
         <source>Connect to local socket server </source>
-        <translation type="unfinished"></translation>
+        <translation>连接到本地　socket 服务</translation>
     </message>
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="988"/>
         <source>fail</source>
-        <translation type="unfinished"></translation>
+        <translation>失败</translation>
     </message>
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="172"/>

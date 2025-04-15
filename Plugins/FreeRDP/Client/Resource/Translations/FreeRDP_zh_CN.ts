@@ -719,4 +719,23 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <translation>编译日期：</translation>
     </message>
 </context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="1555"/>
+        <source>Valid from: </source>
+        <translation>有效期从:</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="1556"/>
+        <source>Valid to: </source>
+        <translation>有效期到:</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="1557"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1564"/>
+        <source>Fingerprint: </source>
+        <translation>指纹</translation>
+    </message>
+</context>
 </TS>

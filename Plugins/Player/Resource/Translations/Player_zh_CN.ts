@@ -13,17 +13,17 @@
     <message>
         <location filename="../../ConnecterPlayer.cpp" line="53"/>
         <source>Record</source>
-        <translation type="unfinished">录制</translation>
+        <translation>录制</translation>
     </message>
     <message>
         <location filename="../../ConnecterPlayer.cpp" line="60"/>
         <source>Record pause</source>
-        <translation type="unfinished">录制暂停</translation>
+        <translation>录制暂停</translation>
     </message>
     <message>
         <location filename="../../ConnecterPlayer.cpp" line="69"/>
         <source>ScreenShot</source>
-        <translation type="unfinished">截图</translation>
+        <translation>截图</translation>
     </message>
     <message>
         <location filename="../../ConnecterPlayer.cpp" line="122"/>
@@ -63,7 +63,7 @@
     <message>
         <location filename="../../DlgPlayer.ui" line="48"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>名称：</translation>
     </message>
     <message>
         <location filename="../../DlgPlayer.ui" line="78"/>

@@ -33,12 +33,12 @@
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="984"/>
         <source>Connect to local socket server </source>
-        <translation type="unfinished"></translation>
+        <translation>連接到本地　socket 服務</translation>
     </message>
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="988"/>
         <source>fail</source>
-        <translation type="unfinished"></translation>
+        <translation>失敗</translation>
     </message>
     <message>
         <location filename="../../ConnectLibVNCServer.cpp" line="172"/>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="118"/>
         <source>Enable clipboard</source>
-        <translation>允許剪切板</translation>
+        <translation>允許剪切闆</translation>
     </message>
     <message>
         <location filename="../../DlgSettingsLibVnc.ui" line="127"/>
@@ -174,7 +174,7 @@
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="33"/>
         <source>VNC(Virtual Network Console): Access remote desktops such as unix/linux, windows, etc.</source>
-        <translation>VNC（虛擬網絡控製臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
+        <translation>VNC（虛擬網絡控制臺）：訪問遠程桌面，例如： unix/linux、 windows 等</translation>
     </message>
     <message>
         <location filename="../../PluginLibVNCServer.cpp" line="34"/>

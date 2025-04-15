@@ -70,23 +70,16 @@
     </message>
 </context>
 <context>
-    <name>CPluginFactoryLibSSH</name>
-    <message>
-        <source>SSH: you can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...</source>
-        <translation type="vanished">SSH： 你能用安全傳輸隧道遠程執行程序、傳輸文件；管理公共鍵等……</translation>
-    </message>
-</context>
-<context>
     <name>CPluginLibSSH</name>
     <message>
         <location filename="../../PluginLibSSH.cpp" line="24"/>
         <source>LibSSH</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../PluginLibSSH.cpp" line="29"/>
         <source>SSH: you can remotely execute programs, transfer files, use a secure and transparent tunnel, manage public keys and much more ...</source>
-        <translation type="unfinished">SSH： 你能用安全傳輸隧道遠程執行程序、傳輸文件；管理公共鍵等……</translation>
+        <translation>SSH： 你能用安全傳輸隧道遠程執行程序、傳輸文件；管理公共鍵等……</translation>
     </message>
 </context>
 </TS>

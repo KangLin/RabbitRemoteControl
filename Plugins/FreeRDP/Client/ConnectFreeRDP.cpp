@@ -1546,22 +1546,22 @@ static QString pem_cert_fingerprint(const char* pem, DWORD flags)
         rdpCertificate* cert = freerdp_certificate_new_from_pem(pem);
         if (!cert)
             return NULL;
-        
+
         char* fp = freerdp_certificate_get_fingerprint(cert);
         char* start = freerdp_certificate_get_validity(cert, TRUE);
         char* end = freerdp_certificate_get_validity(cert, FALSE);
         freerdp_certificate_free(cert);
-        
-        szFingerPrint = "Valid from: " + QString(start) + "\n";
-        szFingerPrint += "Valid to: " + QString(end) + "\n";
-        szFingerPrint += "Fingerprint: " + QString(fp) + "\n";
-        
+
+        szFingerPrint = QObject::tr("Valid from: ") + QString(start) + "\n";
+        szFingerPrint += QObject::tr("Valid to: ") + QString(end) + "\n";
+        szFingerPrint += QObject::tr("Fingerprint: ") + QString(fp) + "\n";
+
         free(fp);
         free(start);
         free(end);
     } else
 #endif
-    szFingerPrint = "Fingerprint: " + QString(pem) + "\n";
+        szFingerPrint = QObject::tr("Fingerprint: ") + QString(pem) + "\n";
     return szFingerPrint;
 }
 
@@ -1809,7 +1809,7 @@ BOOL CConnectFreeRDP::cb_present_gateway_message(
         return client_cli_present_gateway_message(
             instance, type, isDisplayMandatory,
             isConsentMandatory, length, message);
-    
+
     return TRUE;
 }
 

@@ -37,7 +37,7 @@
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="308"/>
         <source>The proxy server is empty, please input it</source>
-        <translation type="unfinished">代理服务器为空，请输入</translation>
+        <translation>代理服务器为空，请输入</translation>
     </message>
     <message>
         <location filename="../../../../TigerVnc/Client/ConnectVnc.cpp" line="310"/>

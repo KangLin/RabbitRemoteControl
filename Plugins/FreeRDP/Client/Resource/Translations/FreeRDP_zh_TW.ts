@@ -20,7 +20,7 @@
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="524"/>
         <source> fail. Please check that the username and password are correct.</source>
-        <translation> 失敗。請檢查用户名和密碼是否正確。</translation>
+        <translation> 失敗。請檢查用戶名和密碼是否正確。</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="202"/>
@@ -77,12 +77,12 @@
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="548"/>
         <source>2. Check you have proper security settings (&apos;NLA&apos; enabled is required for most connections nowadays)</source>
-        <translation>2. 檢查您是否具有正確的安全設置（現在大多數連接都需要啓用 &apos;NLA&apos; ）</translation>
+        <translation>2. 檢查您是否具有正確的安全設置（現在大多數連接都需要啟用 &apos;NLA&apos; ）</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="550"/>
         <source>3. Check the certificate is proper (and guacd properly checks that)</source>
-        <translation>3. 檢查證書是否正確（並正確檢查）</translation>
+        <translation>3. 檢查證書是否正確（併正確檢查）</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="508"/>
@@ -98,7 +98,7 @@
         <location filename="../../ConnectFreeRDP.cpp" line="549"/>
         <location filename="../../ConnectFreeRDP.cpp" line="557"/>
         <source>If you do not know the server security settings, contact your server administrator.</source>
-        <translation>如果你不知道服務器安全設置，請聯繫服務器管理員。</translation>
+        <translation>如果妳不知道服務器安全設置，請聯繫服務器管理員。</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="556"/>
@@ -130,7 +130,7 @@
         <location filename="../../ConnectFreeRDP.cpp" line="1622"/>
         <location filename="../../ConnectFreeRDP.cpp" line="1715"/>
         <source>RDP-Redirect</source>
-        <translation>RDP-重定向</translation>
+        <translation>RDP-重定嚮</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="1627"/>
@@ -178,7 +178,7 @@
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="1730"/>
         <source>The above X.509 certificate could not be verified, possibly because you do not have the CA certificate in your certificate store, or the certificate has expired. Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
-        <translation>無法驗證上述 X.509 證書，可能是因為 CA 證書未存儲在您的證書存儲中，或者證書已過期。請查看 OpenSSL 文檔，瞭解如何將私有 CA 添加到存儲區。</translation>
+        <translation>無法驗證上述 X.509 證書，可能是因為 CA 證書未存儲在您的證書存儲中，或者證書已過期。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="1648"/>
@@ -196,7 +196,7 @@
         <source>The above X.509 certificate is changed.
 It is possible that the server has changed its certificate, or Maybe it was attacked.Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>上面 X.509 證書已改變。
-可能服務器更換了證書，也可能受到了攻擊。請查看 OpenSSL 文檔，瞭解如何將私有 CA 添加到存儲區。</translation>
+可能服務器更換了證書，也可能受到了攻擊。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="1640"/>
@@ -204,7 +204,7 @@ It is possible that the server has changed its certificate, or Maybe it was atta
 Possibly because you do not have the CA certificate in your certificate store, or the certificate has expired.
 Please look at the OpenSSL documentation on how to add a private CA to the store.</source>
         <translation>上面 X.509 證書無效。
-可能是在你的證書庫中沒有，或者證書過期。請查看 OpenSSL 文檔，瞭解如何將私有 CA 添加到存儲區。</translation>
+可能是在妳的證書庫中沒有，或者證書過期。請查看 OpenSSL 文檔，了解如何將私有 CA 添加到存儲區。</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="1649"/>
@@ -242,7 +242,7 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="1791"/>
         <source>I understand and agree to the terms of this policy (Y/N)</source>
-        <translation>我理解並同意本政策的條款（是/否）</translation>
+        <translation>我理解併同意本政策的條款（是/否）</translation>
     </message>
     <message>
         <location filename="../../ConnectFreeRDP.cpp" line="1797"/>
@@ -517,7 +517,7 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <location filename="../../DlgSetFreeRDP.ui" line="444"/>
         <location filename="../../DlgSetFreeRDP.ui" line="447"/>
         <source>Printer: Redirection the local printers to the remote computer</source>
-        <translation>打印機：重定向本地打印機到遠程計算機上</translation>
+        <translation>打印機：重定嚮本地打印機到遠程計算機上</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="457"/>
@@ -525,19 +525,19 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <location filename="../../DlgSetFreeRDP.ui" line="463"/>
         <location filename="../../DlgSetFreeRDP.ui" line="466"/>
         <source>Clipboard: Redirection the clipboard</source>
-        <translation>剪切板：重定向剪切板</translation>
+        <translation>剪切闆：重定嚮剪切闆</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="473"/>
         <location filename="../../DlgSetFreeRDP.ui" line="476"/>
         <location filename="../../DlgSetFreeRDP.ui" line="479"/>
         <source>Redirect the following selected drives to the remote computer</source>
-        <translation>重定向下列選中的驅動器到遠程計算機上</translation>
+        <translation>重定嚮下列選中的驅動器到遠程計算機上</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="482"/>
         <source>Drive: Redirect the following selected drives to the remote computer</source>
-        <translation>驅動器：重定向下列選中的驅動器到遠程計算機上</translation>
+        <translation>驅動器：重定嚮下列選中的驅動器到遠程計算機上</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.ui" line="39"/>
@@ -599,7 +599,7 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="55"/>
         <source>Record</source>
-        <translation>錄製</translation>
+        <translation>錄制</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="78"/>
@@ -635,14 +635,14 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <location filename="../../DlgSetFreeRDP.cpp" line="116"/>
         <source>Options for redirection of audio output:
 </source>
-        <translation>重定向音頻輸出的選項:
+        <translation>重定嚮音頻輸出的選項:
 </translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="123"/>
         <source>Options for redirection of audio input:
 </source>
-        <translation>重定向音頻輸入的選項:
+        <translation>重定嚮音頻輸入的選項:
 </translation>
     </message>
     <message>
@@ -658,7 +658,7 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="217"/>
         <source>Satellite(2 Mbps - 16 Mbps, High latency)</source>
-        <translation>衞星(2 Mbps - 16 Mbps, 高延遲)</translation>
+        <translation>衛星(2 Mbps - 16 Mbps, 高延遲)</translation>
     </message>
     <message>
         <location filename="../../DlgSetFreeRDP.cpp" line="218"/>
@@ -717,6 +717,25 @@ Please look at the OpenSSL documentation on how to add a private CA to the store
         <location filename="../../PluginFreeRDP.cpp" line="117"/>
         <source>Build date: </source>
         <translation>編譯日期：</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="1555"/>
+        <source>Valid from: </source>
+        <translation>有效期從:</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="1556"/>
+        <source>Valid to: </source>
+        <translation>有效期到:</translation>
+    </message>
+    <message>
+        <location filename="../../ConnectFreeRDP.cpp" line="1557"/>
+        <location filename="../../ConnectFreeRDP.cpp" line="1564"/>
+        <source>Fingerprint: </source>
+        <translation>指紋</translation>
     </message>
 </context>
 </TS>
