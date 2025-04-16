@@ -4,22 +4,22 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="103"/>
+        <location filename="../../Client.cpp" line="111"/>
         <source>### Plugins</source>
         <translation>### 插件</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="194"/>
+        <location filename="../../Client.cpp" line="202"/>
         <source>Version:</source>
         <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="441"/>
+        <location filename="../../Client.cpp" line="449"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="442"/>
+        <location filename="../../Client.cpp" line="450"/>
         <source>The programe is not administrator privilege.
 Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
 Restart program by administrator?</source>
@@ -27,7 +27,7 @@ Restart program by administrator?</source>
 需要以管理员权限重启程序吗？</translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="446"/>
+        <location filename="../../Client.cpp" line="454"/>
         <source>Always shown</source>
         <translation>总是显示</translation>
     </message>
@@ -120,7 +120,7 @@ Restart program by administrator?</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="158"/>
+        <location filename="../../ConnecterThread.cpp" line="157"/>
         <source>ScreenShot</source>
         <translation>截图</translation>
     </message>
@@ -129,18 +129,18 @@ Restart program by administrator?</source>
         <translation type="vanished">录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="172"/>
+        <location filename="../../ConnecterThread.cpp" line="171"/>
         <source>Record pause</source>
         <translation>暂停录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="284"/>
+        <location filename="../../ConnecterThread.cpp" line="283"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="165"/>
-        <location filename="../../ConnecterThread.cpp" line="287"/>
+        <location filename="../../ConnecterThread.cpp" line="164"/>
+        <location filename="../../ConnecterThread.cpp" line="286"/>
         <source>Start record</source>
         <translation>开始录制</translation>
     </message>
@@ -198,84 +198,89 @@ Restart program by administrator?</source>
         <translation>客户端</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="27"/>
+        <location filename="../../FrmParameterClient.ui" line="191"/>
         <source>Connecter name</source>
         <translation>连接名</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="33"/>
+        <location filename="../../FrmParameterClient.ui" line="197"/>
         <source>Show protocol prefix in name</source>
         <translation>在连接名中显示协议前缀</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="40"/>
+        <location filename="../../FrmParameterClient.ui" line="204"/>
         <source>Only show ip:port in name</source>
         <translation>在连接名中仅显示 IP:PORT</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="180"/>
+        <location filename="../../FrmParameterClient.ui" line="116"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="188"/>
+        <location filename="../../FrmParameterClient.ui" line="124"/>
         <source>Save password</source>
         <translation>保存密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="195"/>
+        <location filename="../../FrmParameterClient.ui" line="131"/>
         <source>Enable view password</source>
         <translation>允许查看密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="207"/>
+        <location filename="../../FrmParameterClient.ui" line="184"/>
         <location filename="../../FrmParameterClient.cpp" line="20"/>
         <source>Prompt administrator privilege</source>
         <translation>提示管理员权限</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="173"/>
+        <location filename="../../FrmParameterClient.ui" line="143"/>
         <source>Enable use the system user as the user</source>
         <translation>允许使用系统用户作为用户</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
+        <location filename="../../FrmParameterClient.ui" line="150"/>
         <location filename="../../FrmParameterClient.cpp" line="18"/>
         <source>Hook: capture system key(System shortcuts is need administrator privilege)</source>
         <translation>挂钩：捕获系统键(系统快捷键需要管理员权限)</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="154"/>
+        <location filename="../../FrmParameterClient.ui" line="165"/>
         <source>Viewer zoom:</source>
         <translation>缩放视图：</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="50"/>
+        <location filename="../../FrmParameterClient.ui" line="20"/>
         <source>Key used to encrypt saved password:</source>
         <translation>加密键用于加密保存的密码</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="64"/>
+        <location filename="../../FrmParameterClient.ui" line="34"/>
         <source>Encrypt key:</source>
         <translation>加密键</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="108"/>
+        <location filename="../../FrmParameterClient.ui" line="78"/>
         <source>No</source>
         <translation>不</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="121"/>
+        <location filename="../../FrmParameterClient.ui" line="91"/>
         <source>First</source>
         <translation>第一次</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="134"/>
+        <location filename="../../FrmParameterClient.ui" line="104"/>
         <source>Always</source>
         <translation>总是</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="95"/>
+        <location filename="../../FrmParameterClient.ui" line="214"/>
+        <source>Enable native window receive keyboard event(shortcut key)</source>
+        <translation>允许本地窗口接收键盘事件（快捷键）</translation>
+    </message>
+    <message>
+        <location filename="../../FrmParameterClient.ui" line="65"/>
         <source>Prompt type:</source>
         <translation>提示类型</translation>
     </message>
@@ -285,22 +290,22 @@ Restart program by administrator?</source>
         <translation>挂钩：捕获系统键</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="85"/>
+        <location filename="../../FrmParameterClient.cpp" line="92"/>
         <source>Original</source>
         <translation>原始</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="89"/>
+        <location filename="../../FrmParameterClient.cpp" line="96"/>
         <source>Zoom</source>
         <translation>缩放</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="92"/>
+        <location filename="../../FrmParameterClient.cpp" line="99"/>
         <source>Zoom to window</source>
         <translation>缩放到窗口大小</translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="95"/>
+        <location filename="../../FrmParameterClient.cpp" line="102"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation>保持桌面的高宽比缩放到窗口大小</translation>
     </message>

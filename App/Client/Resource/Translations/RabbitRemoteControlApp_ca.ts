@@ -74,28 +74,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="71"/>
-        <location filename="../../FrmConnecters.cpp" line="77"/>
+        <location filename="../../FrmConnecters.cpp" line="69"/>
+        <location filename="../../FrmConnecters.cpp" line="75"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="81"/>
+        <location filename="../../FrmConnecters.cpp" line="79"/>
         <source>Show tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="117"/>
+        <location filename="../../FrmConnecters.cpp" line="115"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="118"/>
+        <location filename="../../FrmConnecters.cpp" line="116"/>
         <source>Protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmConnecters.cpp" line="119"/>
+        <location filename="../../FrmConnecters.cpp" line="117"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -108,20 +108,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="43"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="47"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="48"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="41"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="45"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="46"/>
         <source>Nail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="58"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="56"/>
         <source>TabBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="61"/>
-        <location filename="../../FrmFullScreenToolBar.cpp" line="62"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="59"/>
+        <location filename="../../FrmFullScreenToolBar.cpp" line="60"/>
         <source>Tab bar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -129,129 +129,129 @@
 <context>
     <name>CFrmListRecentConnects</name>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="27"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="26"/>
         <source>List recent connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="32"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="31"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="33"/>
         <location filename="../../FrmListRecentConnects.cpp" line="34"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="35"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="461"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="459"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="37"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="36"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="38"/>
         <location filename="../../FrmListRecentConnects.cpp" line="39"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="40"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="462"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="460"/>
         <source>Edit and Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="47"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="45"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="49"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="50"/>
         <location filename="../../FrmListRecentConnects.cpp" line="51"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="52"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="53"/>
         <source>New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecentConnects.cpp" line="54"/>
         <location filename="../../FrmListRecentConnects.cpp" line="56"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="58"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="59"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="465"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="57"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="463"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecentConnects.cpp" line="58"/>
         <location filename="../../FrmListRecentConnects.cpp" line="60"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="62"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="63"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="466"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="61"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="464"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecentConnects.cpp" line="63"/>
         <location filename="../../FrmListRecentConnects.cpp" line="65"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="67"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="68"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="468"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="66"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="466"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="70"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="74"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="75"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="68"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="72"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="73"/>
         <source>Detail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecentConnects.cpp" line="78"/>
         <location filename="../../FrmListRecentConnects.cpp" line="80"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="82"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="83"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="471"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="81"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="469"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../FrmListRecentConnects.cpp" line="84"/>
         <location filename="../../FrmListRecentConnects.cpp" line="86"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="88"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="89"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="87"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="97"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="100"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="95"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="98"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="115"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="113"/>
         <source>Show tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="146"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="144"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="147"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="145"/>
         <source>Protocol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="148"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="146"/>
         <source>Date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="149"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="147"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="151"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="149"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="296"/>
-        <location filename="../../FrmListRecentConnects.cpp" line="389"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="294"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="387"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="297"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="295"/>
         <source>File of connecter is exists. whether to overwrite it? File: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmListRecentConnects.cpp" line="390"/>
+        <location filename="../../FrmListRecentConnects.cpp" line="388"/>
         <source>File of connecter is exists. whether to overwrite it? If select No, please modify the name of connecter</source>
         <translation type="unfinished"></translation>
     </message>
@@ -558,7 +558,7 @@
     </message>
     <message>
         <location filename="../../mainwindow.ui" line="182"/>
-        <location filename="../../mainwindow.cpp" line="395"/>
+        <location filename="../../mainwindow.cpp" line="391"/>
         <source>Full screen(&amp;F)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -567,9 +567,9 @@
         <location filename="../../mainwindow.ui" line="188"/>
         <location filename="../../mainwindow.ui" line="191"/>
         <location filename="../../mainwindow.ui" line="194"/>
-        <location filename="../../mainwindow.cpp" line="396"/>
-        <location filename="../../mainwindow.cpp" line="397"/>
-        <location filename="../../mainwindow.cpp" line="398"/>
+        <location filename="../../mainwindow.cpp" line="392"/>
+        <location filename="../../mainwindow.cpp" line="393"/>
+        <location filename="../../mainwindow.cpp" line="394"/>
         <source>Full screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -579,7 +579,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="77"/>
+        <location filename="../../mainwindow.cpp" line="76"/>
         <source>Recently connected</source>
         <translation type="unfinished"></translation>
     </message>
@@ -636,27 +636,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="110"/>
-        <location filename="../../mainwindow.cpp" line="111"/>
-        <location filename="../../mainwindow.cpp" line="112"/>
+        <location filename="../../mainwindow.cpp" line="107"/>
+        <location filename="../../mainwindow.cpp" line="108"/>
+        <location filename="../../mainwindow.cpp" line="109"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="434"/>
+        <location filename="../../mainwindow.cpp" line="430"/>
         <source>Exit full screen(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="435"/>
-        <location filename="../../mainwindow.cpp" line="436"/>
-        <location filename="../../mainwindow.cpp" line="437"/>
+        <location filename="../../mainwindow.cpp" line="431"/>
+        <location filename="../../mainwindow.cpp" line="432"/>
+        <location filename="../../mainwindow.cpp" line="433"/>
         <source>Exit full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="629"/>
-        <location filename="../../mainwindow.cpp" line="648"/>
+        <location filename="../../mainwindow.cpp" line="625"/>
+        <location filename="../../mainwindow.cpp" line="644"/>
         <source>Load file fail: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -664,62 +664,62 @@
         <location filename="../../mainwindow.ui" line="251"/>
         <location filename="../../mainwindow.ui" line="254"/>
         <location filename="../../mainwindow.ui" line="257"/>
-        <location filename="../../mainwindow.cpp" line="640"/>
+        <location filename="../../mainwindow.cpp" line="636"/>
         <source>Open rabbit remote control file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="252"/>
+        <location filename="../../mainwindow.cpp" line="249"/>
         <source>ICE signal status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="642"/>
+        <location filename="../../mainwindow.cpp" line="638"/>
         <source>Rabbit remote control Files (*.rrc);;All files(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="736"/>
+        <location filename="../../mainwindow.cpp" line="732"/>
         <source>Connecting to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="791"/>
+        <location filename="../../mainwindow.cpp" line="787"/>
         <source>Connected to </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="856"/>
+        <location filename="../../mainwindow.cpp" line="852"/>
         <source>ICE signal status: Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="865"/>
+        <location filename="../../mainwindow.cpp" line="861"/>
         <source>ICE signal status: Disconnected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="904"/>
+        <location filename="../../mainwindow.cpp" line="900"/>
         <source>Use message box to display information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1059"/>
+        <location filename="../../mainwindow.cpp" line="1055"/>
         <source>Hide menu bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1060"/>
+        <location filename="../../mainwindow.cpp" line="1056"/>
         <source>The menu bar will be hidden, the tool bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1090"/>
+        <location filename="../../mainwindow.cpp" line="1086"/>
         <source>Hide tool bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="1091"/>
+        <location filename="../../mainwindow.cpp" line="1087"/>
         <source>The tool bar will be hidden, the menu bar must be showed.</source>
         <translation type="unfinished"></translation>
     </message>
