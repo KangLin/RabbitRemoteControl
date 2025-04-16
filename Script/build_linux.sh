@@ -211,7 +211,7 @@ pushd $REPO_ROOT/Script
 
 if [ $DEB -eq 1 ]; then
     echo "build deb package ......"
-    ./build_depend.sh --apt_update --base --default  \
+    ./build_depend.sh --system_update --base --default  \
         --rabbitcommon --tigervnc --pcapplusplus \
         --install ${INSTALL_DIR} \
         --source ${SOURCE_DIR} \
@@ -224,7 +224,7 @@ fi
 
 if [ $APPIMAGE -eq 1 ]; then
     echo "build AppImage ......"
-    ./build_depend.sh --apt_update --base --rabbitcommon\
+    ./build_depend.sh --system_update --base --rabbitcommon\
         --tigervnc --freerdp --pcapplusplus \
         --install ${INSTALL_DIR} \
         --source ${SOURCE_DIR} \
@@ -248,7 +248,7 @@ fi
 
 if [ $RPM -eq 1 ]; then
     dnf builddep -y ${REPO_ROOT}/Package/rpm/rabbitremotecontrol.spec
-    ./build_depend.sh --base --default --package-tool=dnf \
+    ./build_depend.sh --system_update --base --default --package-tool=dnf \
         --rabbitcommon --tigervnc --pcapplusplus \
         --install ${INSTALL_DIR} \
         --source ${SOURCE_DIR} \

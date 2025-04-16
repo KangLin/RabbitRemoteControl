@@ -104,7 +104,7 @@ jobs:
 
       - name: Install dependency libraries
         run: |
-          sudo ./Script/build_depend.sh --apt_update --base --default \
+          sudo ./Script/build_depend.sh --system_update --base --default \
               --tigervnc --pcapplusplus --QtService \
               --install ${{env.INSTALL_DIR}} \
               --source ${{env.SOURCE_DIR}} \

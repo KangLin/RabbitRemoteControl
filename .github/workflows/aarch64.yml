@@ -111,7 +111,7 @@ jobs:
           # Produce a binary artifact and place it in the mounted volume
           run: |
             ${{github.workspace}}/Script/build_depend.sh \
-                --apt_update --base --default \
+                --system_update --base --default \
                 --tigervnc --pcapplusplus
                 --install ${{env.INSTALL_DIR}} \
                 --source ${{env.SOURCE_DIR}} \
@@ -148,7 +148,7 @@ jobs:
           # Produce a binary artifact and place it in the mounted volume
           run: |
             ${{github.workspace}}/Script/build_depend.sh \
-                --apt_update --base --qt \
+                --system_update --base --qt \
                 --tigervnc --freerdp --pcapplusplus \
                 --install ${{env.INSTALL_DIR}} \
                 --source ${{env.SOURCE_DIR}} \

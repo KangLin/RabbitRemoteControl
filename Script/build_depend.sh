@@ -11,7 +11,7 @@ if [ -z "$BUILD_VERBOSE" ]; then
 fi
 PACKAGE_TOOL=apt
 PACKAGE=
-APT_UPDATE=0
+SYSTEM_UPDATE=0
 BASE_LIBS=0
 DEFAULT_LIBS=0
 QT=0
@@ -26,7 +26,7 @@ libdatachannel=0
 QtService=0
 
 usage_long() {
-    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--apt_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
+    echo "$0 [-h|--help] [--install=<install directory>] [--source=<source directory>] [--tools=<tools directory>] [--build=<build directory>] [-v|--verbose[=0|1]] [--package=<'package1 package2 ...'>] [--package-tool=<apt|dnf>] [--system_update=[0|1]] [--base[=0|1]] [--default[=0|1]] [--qt[=0|1|version]] [--rabbitcommon[=0|1]] [--freerdp[=0|1]] [--tigervnc[=0|1]] [--pcapplusplus[=0|1]] [--libdatachannel=[0|1]] [--QtService[0|1]]"
     echo "  -h|--help: show help"
     echo "  -v|--verbose: Show verbose"
     echo "Directory:"
@@ -37,7 +37,7 @@ usage_long() {
     echo "Depend:"
     echo "  --base: Install the base libraries"
     echo "  --default: Install the default dependency libraries that comes with the system"
-    echo "  --apt_update: Update system"
+    echo "  --system_update: Update system"
     echo "  --package-tool: Package install tool, apk or dnf"
     echo "  --package: Install package"
     echo "  --qt: Install QT"
@@ -59,7 +59,7 @@ if command -V getopt >/dev/null; then
     # 后面没有冒号表示没有参数。后跟有一个冒号表示有参数。跟两个冒号表示有可选参数。
     # -l 或 --long 选项后面是可接受的长选项，用逗号分开，冒号的意义同短选项。
     # -n 选项后接选项解析错误时提示的脚本名字
-    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,apt_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::
+    OPTS=help,install:,source:,tools:,build:,verbose::,package:,package-tool:,system_update::,base::,default::,qt::,rabbitcommon::,freerdp::,tigervnc::,pcapplusplus::,libdatachannel::,QtService::
     ARGS=`getopt -o h,v:: -l $OPTS -n $(basename $0) -- "$@"`
     if [ $? != 0 ]; then
         echo "exec getopt fail: $?"
@@ -108,12 +108,12 @@ if command -V getopt >/dev/null; then
             esac
             shift 2
             ;;
-        --apt_update)
+        --system_update)
             case $2 in
                 "")
-                    APT_UPDATE=1;;
+                    SYSTEM_UPDATE=1;;
                 *)
-                    APT_UPDATE=$2;;
+                    SYSTEM_UPDATE=$2;;
             esac
             shift 2
             ;;
@@ -256,10 +256,9 @@ echo "TOOLS_DIR: $TOOLS_DIR"
 echo "SOURCE_DIR: $SOURCE_DIR"
 echo "INSTALL_DIR: $INSTALL_DIR"
 
-if [ $APT_UPDATE -eq 1 ]; then
-    echo "apt update ......"
-    apt-get update -y
-    #apt-get upgrade -y
+if [ $SYSTEM_UPDATE -eq 1 ]; then
+    echo "System update ......"
+    $PACKAGE_TOOL update -y
 fi
 
 if [ -n "$PACKAGE" ]; then
