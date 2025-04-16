@@ -22,6 +22,11 @@ public:
     {
         m_Image = img;
     }
+    ~QRecordVideoEvent()
+    {
+        qDebug(log) << Q_FUNC_INFO;
+    }
+
     QImage GetImage()
     {
         return m_Image;

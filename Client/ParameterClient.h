@@ -59,6 +59,13 @@ private:
     bool m_bHookKeyboard;
     Q_PROPERTY(bool HookKeyboard READ GetHookKeyboard WRITE SetHookKeyboard
                NOTIFY sigHookKeyboardChanged)
+public:
+    bool GetNativeWindowReceiveKeyboard() const;
+    void SetNativeWindowReceiveKeyboard(bool newNativeWindowRecieveKeyboard);
+Q_SIGNALS:
+    void sigNativeWindowRecieveKeyboard();
+private:
+    bool m_bNativeWindowReceiveKeyboard;
 
 public:
     bool GetPromptAdministratorPrivilege();

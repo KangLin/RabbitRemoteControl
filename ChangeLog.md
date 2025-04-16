@@ -5,6 +5,8 @@
 - FreeRDP:
   - Add security parameter settings
   - Add connect type settings
+- Client:
+  - modify key board event
 
 ### v0.0.34
 - App: add splitter view

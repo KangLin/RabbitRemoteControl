@@ -41,7 +41,6 @@ UINT32 CConvertKeyCode::QtToScanCode(int key, Qt::KeyboardModifiers modifiers)
     case Qt::Key_PageDown: return RDP_SCANCODE_NEXT;
     case Qt::Key_Shift: return RDP_SCANCODE_LSHIFT;
     case Qt::Key_Control: return RDP_SCANCODE_LCONTROL;
-        //case Qt::Key_Meta: return RDP_SCANCODE_UNKNOWN;
     case Qt::Key_Alt: return RDP_SCANCODE_LMENU;
     case Qt::Key_AltGr: return RDP_SCANCODE_RMENU;
     case Qt::Key_CapsLock: return RDP_SCANCODE_CAPSLOCK;
@@ -84,6 +83,7 @@ UINT32 CConvertKeyCode::QtToScanCode(int key, Qt::KeyboardModifiers modifiers)
         Qt::Key_F34
         Qt::Key_F35
         */
+    case Qt::Key_Meta: return RDP_SCANCODE_LWIN;
     case Qt::Key_Super_L: return RDP_SCANCODE_LWIN;
     case Qt::Key_Super_R: return RDP_SCANCODE_RWIN;
     case Qt::Key_Menu: return RDP_SCANCODE_LMENU;

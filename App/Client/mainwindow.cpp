@@ -498,7 +498,7 @@ void MainWindow::on_actionFull_screen_F_triggered()
 void MainWindow::slotViewerFocusIn(QWidget *pView)
 {
     CConnecter* c = (CConnecter*)sender();
-    qDebug(log) << "Focus:" << sender() << pView;
+    qDebug(log) << Q_FUNC_INFO << "Focus:" << sender() << pView;
     if(c && m_pView) {
         m_pView->SetCurrentView(c->GetViewer());
     }

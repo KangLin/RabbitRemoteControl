@@ -2,6 +2,7 @@
 
 CParameterClient::CParameterClient(QObject *parent)
     : CParameter(parent)
+    , m_bNativeWindowReceiveKeyboard(false)
     , m_bHookKeyboard(false)
     , m_bPromptAdministratorPrivilege(true)
     , m_bEnableSystemUserToUser(true)
@@ -20,39 +21,48 @@ CParameterClient::~CParameterClient()
 
 int CParameterClient::OnLoad(QSettings &set)
 {
+    set.beginGroup("Client");
+    SetNativeWindowReceiveKeyboard(
+        set.value("NativeWindowRecieveKeyboard",
+                  GetNativeWindowReceiveKeyboard()).toBool());
     // Note: SetShowHookAdministratorPrivilege must precede SetHookKeyboard
     SetPromptAdministratorPrivilege(
-        set.value("Client/AdministratorPrivilege/Prompt",
+        set.value("AdministratorPrivilege/Prompt",
                   GetPromptAdministratorPrivilege()).toBool());
-    SetHookKeyboard(set.value("Client/Hook/Keyboard",
+    SetHookKeyboard(set.value("Hook/Keyboard",
                               GetHookKeyboard()).toBool());
-    SetEnableSystemUserToUser(set.value("Client/UserName/Enable",
+    SetEnableSystemUserToUser(set.value("UserName/Enable",
                                 GetEnableSystemUserToUser()).toBool());
     SetPromptType(static_cast<PromptType>(
-                    set.value("Client/Password/Prompty/Type",
+                    set.value("Password/Prompty/Type",
                               static_cast<int>(GetPromptType())).toInt()
                               ));
-    SetSavePassword(set.value("Client/Password/Save", GetSavePassword()).toBool());
-    SetViewPassowrd(set.value("Client/Password/View", GetViewPassowrd()).toBool());
-    SetShowProtocolPrefix(set.value("Client/Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
-    SetShowIpPortInName(set.value("Client/Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
-    SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Client/Viewer/AdaptWindows",
+    SetSavePassword(set.value("Password/Save", GetSavePassword()).toBool());
+    SetViewPassowrd(set.value("Password/View", GetViewPassowrd()).toBool());
+    SetShowProtocolPrefix(set.value("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix()).toBool());
+    SetShowIpPortInName(set.value("Connecter/Name/ShowIpPort", GetShowIpPortInName()).toBool());
+    SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)set.value("Viewer/AdaptWindows",
                                          (int)GetAdaptWindows()).toInt());
+    set.endGroup();
     return 0;
 }
 
 int CParameterClient::OnSave(QSettings& set)
 {
-    set.setValue("Client/Hook/Keyboard", GetHookKeyboard());
-    set.setValue("Client/AdministratorPrivilege/Prompt", GetPromptAdministratorPrivilege());
-    set.setValue("Client/UserName/Enable", GetEnableSystemUserToUser());
-    set.setValue("Client/Password/Prompty/Type",
+    set.beginGroup("Client");
+    set.setValue("NativeWindowRecieveKeyboard",
+                 GetNativeWindowReceiveKeyboard());
+    set.setValue("Hook/Keyboard", GetHookKeyboard());
+    set.setValue("AdministratorPrivilege/Prompt", GetPromptAdministratorPrivilege());
+    set.setValue("UserName/Enable", GetEnableSystemUserToUser());
+    set.setValue("Password/Prompty/Type",
                  static_cast<int>(GetPromptType()));
-    set.setValue("Client/Password/Save", GetSavePassword());
-    set.setValue("Client/Password/View", GetViewPassowrd());
-    set.setValue("Client/Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
-    set.setValue("Client/Connecter/Name/ShowIpPort", GetShowIpPortInName());
-    set.setValue("Client/Viewer/AdaptWindows", (int)GetAdaptWindows());
+    set.setValue("Password/Save", GetSavePassword());
+    set.setValue("Password/View", GetViewPassowrd());
+    set.setValue("Connecter/Name/ShowProtocolPrefix", GetShowProtocolPrefix());
+    set.setValue("Connecter/Name/ShowIpPort", GetShowIpPortInName());
+    set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
+    set.endGroup();
     return 0;
 }
 
@@ -68,6 +78,20 @@ void CParameterClient::SetHookKeyboard(bool newHookKeyboard)
     SetModified(true);
     m_bHookKeyboard = newHookKeyboard;
     emit sigHookKeyboardChanged();
+}
+
+bool CParameterClient::GetNativeWindowReceiveKeyboard() const
+{
+    return m_bNativeWindowReceiveKeyboard;
+}
+
+void CParameterClient::SetNativeWindowReceiveKeyboard(bool newNativeWindowRecieveKeyboard)
+{
+    if(m_bNativeWindowReceiveKeyboard == newNativeWindowRecieveKeyboard)
+        return;
+    m_bNativeWindowReceiveKeyboard = newNativeWindowRecieveKeyboard;
+    SetModified(true);
+    emit sigNativeWindowRecieveKeyboard();
 }
 
 bool CParameterClient::GetPromptAdministratorPrivilege()

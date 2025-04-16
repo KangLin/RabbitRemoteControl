@@ -31,11 +31,15 @@ int CFrmParameterClient::Accept()
 {
     if(!m_pPara)
         return -1;
+    m_pPara->SetNativeWindowReceiveKeyboard(
+        ui->cbNativeWindowReceiveKeyboard->isChecked());
     m_pPara->SetHookKeyboard(ui->cbHookKeyboard->isChecked());
-    m_pPara->SetPromptAdministratorPrivilege(ui->cbPromptAdminPrivilege->isChecked());
+    m_pPara->SetPromptAdministratorPrivilege(
+        ui->cbPromptAdminPrivilege->isChecked());
     m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
-    m_pPara->SetAdaptWindows((CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
-    
+    m_pPara->SetAdaptWindows(
+        (CFrmViewer::ADAPT_WINDOWS)ui->cbViewZoom->currentData().toInt());
+
     m_pPara->SetEncryptKey(ui->leEncryptKey->text());
     m_pPara->SetSavePassword(ui->cbSavePassword->isChecked());
     m_pPara->SetViewPassowrd(ui->cbEnableViewPassword->isChecked());
@@ -77,8 +81,11 @@ int CFrmParameterClient::SetParameter(CParameter *pParameter)
     m_pPara = qobject_cast<CParameterClient*>(pParameter);
     if(!m_pPara)
         return -1;
+    ui->cbNativeWindowReceiveKeyboard->setChecked(
+        m_pPara->GetNativeWindowReceiveKeyboard());
     ui->cbHookKeyboard->setChecked(m_pPara->GetHookKeyboard());
-    ui->cbPromptAdminPrivilege->setChecked(m_pPara->GetPromptAdministratorPrivilege());
+    ui->cbPromptAdminPrivilege->setChecked(
+        m_pPara->GetPromptAdministratorPrivilege());
     ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());
 
     ui->cbViewZoom->addItem(QIcon::fromTheme("zoom-original"),
