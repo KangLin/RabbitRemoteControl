@@ -276,7 +276,7 @@ if [ $BASE_LIBS -eq 1 ]; then
         if [ -z "$RabbitRemoteControl_VERSION" ]; then
             apt install -y -q xvfb xpra
         fi
-        # X11
+        # X11 and xcb
         apt install -y -q xorg-dev x11-xkb-utils libxkbcommon-dev libxkbcommon-x11-dev libx11-xcb-dev \
             libx11-dev libxfixes-dev libxcb-randr0-dev libxcb-shm0-dev \
             libxcb-xinerama0-dev libxcb-composite0-dev libxcomposite-dev \
@@ -312,7 +312,7 @@ if [ $BASE_LIBS -eq 1 ]; then
         dnf install -y make git rpm-build rpmdevtools gcc-c++ util-linux \
            automake autoconf libtool gettext gettext-autopoint \
            cmake desktop-file-utils appstream appstream-util curl wget
-        # X11
+        # X11 and xcb
         dnf install -y xorg-x11-server-source \
             libXext-devel libX11-devel libXi-devel libXfixes-devel \
             libXdamage-devel libXrandr-devel libXt-devel libXdmcp-devel \
@@ -320,7 +320,7 @@ if [ $BASE_LIBS -eq 1 ]; then
             libdrm-devel mesa-libgbm-devel \
             xorg-x11-util-macros xorg-x11-xtrans-devel libXtst-devel \
             xorg-x11-font-utils \
-            libxkbfile-devel libXfont2-devel
+            libxkbfile-devel libXfont2-devel xcb-util-keysyms-devel
 
         # TigerVNC
         dnf install -y zlib-devel openssl-devel libpng-devel \

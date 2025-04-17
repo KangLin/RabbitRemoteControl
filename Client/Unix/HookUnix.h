@@ -2,7 +2,6 @@
 #define CHOOKUNIX_H
 
 #include "Hook.h"
-#include "HookUnixNativeEventFilter.h"
 
 class CHookUnix : public CHook
 {
@@ -14,9 +13,6 @@ public:
 public:
     virtual int RegisterKeyboard() override;
     virtual int UnRegisterKeyboard() override;
-    
-private:
-    CHookUnixNativeEventFilter* m_pNativeEventFilter;
 };
 
 #endif // CHOOKUNIX_H

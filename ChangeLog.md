@@ -7,6 +7,7 @@
   - Add connect type settings
 - Client:
   - modify key board event
+  - Fix alt, tab receive in native windows bug
 
 ### v0.0.34
 - App: add splitter view

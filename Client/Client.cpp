@@ -18,7 +18,11 @@
 #include "Channel.h"
 #include "ParameterRecordUI.h"
 
+#include "NativeEventFilter.h"
+
 static Q_LOGGING_CATEGORY(log, "Client")
+
+CNativeEventFilter* g_pNativeEventFilter = nullptr;
 
 CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
     m_FileVersion(1)  //TODO: update version it if update data
@@ -55,6 +59,11 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
         Q_ASSERT(m_pParameterClient);
     }
 
+    if(!g_pNativeEventFilter)
+        g_pNativeEventFilter = new CNativeEventFilter(m_pParameterClient);
+    if(g_pNativeEventFilter)
+        qApp->installNativeEventFilter(g_pNativeEventFilter);
+
     LoadPlugins();
 }
 
@@ -65,13 +74,19 @@ CClient::~CClient()
     if(m_pParameterClient)
         delete m_pParameterClient;
 
-    qApp->installEventFilter(nullptr);
+    qApp->removeEventFilter(this);
+
+    if(g_pNativeEventFilter) {
+        qApp->removeNativeEventFilter(g_pNativeEventFilter);
+        delete g_pNativeEventFilter;
+        g_pNativeEventFilter = nullptr;
+    }
 
     if(m_Translator)
         RabbitCommon::CTools::Instance()->RemoveTranslator(m_Translator);
-    
+
     CChannel::RemoveTranslation();
-    
+
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
 //    Q_CLEANUP_RESOURCE(translations_Client);
 //#endif
@@ -125,7 +140,7 @@ int CClient::FindPlugins(QDir dir, QStringList filters)
         filters << "*PluginClient*.so";
 #endif
     }
-    
+
     QString szCurrentPath = QDir::currentPath();
     QStringList files = dir.entryList(filters, QDir::Files | QDir::NoDotAndDotDot);
     if(!files.isEmpty())

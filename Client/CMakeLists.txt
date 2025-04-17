@@ -56,6 +56,7 @@ list(APPEND CLIENT_HEADER_FILES
     ManageConnect.h
     DlgInputPassword.h
     Hook.h
+    NativeEventFilter.h
     FrmParameterClient.h
     )
 
@@ -88,6 +89,7 @@ list(APPEND CLIENT_SOURCE_FILES
     ParameterCompone/ParameterRecordUI.cpp
     DlgInputPassword.cpp
     Hook.cpp
+    NativeEventFilter.cpp
     )
 
 set(CLIENT_UI_FILES
@@ -109,10 +111,12 @@ if(UNIX)
     find_package(X11)
     if(X11_FOUND)
         list(APPEND CLIENT_LIBS X11::xcb)
-        list(APPEND CLIENT_HEADER_FILES Unix/HookUnix.h
-            Unix/HookUnixNativeEventFilter.h)
-        list(APPEND CLIENT_SOURCE_FILES Unix/HookUnix.cpp
-            Unix/HookUnixNativeEventFilter.cpp)
+        list(APPEND CLIENT_HEADER_FILES Unix/HookUnix.h)
+        list(APPEND CLIENT_SOURCE_FILES Unix/HookUnix.cpp)
+    endif()
+    find_package(XCB COMPONENTS KEYSYMS)
+    if(XCB_FOUND)
+        list(APPEND CLIENT_LIBS XCB::KEYSYMS)
     endif()
 endif()
 
