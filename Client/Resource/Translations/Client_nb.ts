@@ -4,30 +4,13 @@
 <context>
     <name>CClient</name>
     <message>
-        <location filename="../../Client.cpp" line="111"/>
+        <location filename="../../Client.cpp" line="123"/>
         <source>### Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Client.cpp" line="202"/>
+        <location filename="../../Client.cpp" line="214"/>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Client.cpp" line="449"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Client.cpp" line="450"/>
-        <source>The programe is not administrator privilege.
-Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
-Restart program by administrator?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Client.cpp" line="454"/>
-        <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -115,23 +98,23 @@ Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="157"/>
+        <location filename="../../ConnecterThread.cpp" line="158"/>
         <source>ScreenShot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="171"/>
+        <location filename="../../ConnecterThread.cpp" line="172"/>
         <source>Record pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="283"/>
+        <location filename="../../ConnecterThread.cpp" line="284"/>
         <source>Stop record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="164"/>
-        <location filename="../../ConnecterThread.cpp" line="286"/>
+        <location filename="../../ConnecterThread.cpp" line="165"/>
+        <location filename="../../ConnecterThread.cpp" line="287"/>
         <source>Start record</source>
         <translation type="unfinished"></translation>
     </message>
@@ -189,114 +172,103 @@ Restart program by administrator?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="191"/>
+        <location filename="../../FrmParameterClient.ui" line="68"/>
         <source>Connecter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="197"/>
+        <location filename="../../FrmParameterClient.ui" line="74"/>
         <source>Show protocol prefix in name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="204"/>
+        <location filename="../../FrmParameterClient.ui" line="81"/>
         <source>Only show ip:port in name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="13"/>
-        <source>Hook: capture system key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterClient.ui" line="116"/>
+        <location filename="../../FrmParameterClient.ui" line="187"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="124"/>
+        <location filename="../../FrmParameterClient.ui" line="195"/>
         <source>Save password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="131"/>
+        <location filename="../../FrmParameterClient.ui" line="202"/>
         <source>Enable view password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="143"/>
+        <location filename="../../FrmParameterClient.ui" line="27"/>
         <source>Enable use the system user as the user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="150"/>
-        <location filename="../../FrmParameterClient.cpp" line="18"/>
-        <source>Hook: capture system key(System shortcuts is need administrator privilege)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../FrmParameterClient.ui" line="165"/>
+        <location filename="../../FrmParameterClient.ui" line="42"/>
         <source>Viewer zoom:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="214"/>
+        <location filename="../../FrmParameterClient.ui" line="20"/>
         <source>Enable native window receive keyboard event(shortcut key)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="20"/>
+        <location filename="../../FrmParameterClient.ui" line="91"/>
         <source>Key used to encrypt saved password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="34"/>
+        <location filename="../../FrmParameterClient.ui" line="105"/>
         <source>Encrypt key:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="78"/>
+        <location filename="../../FrmParameterClient.ui" line="149"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="91"/>
+        <location filename="../../FrmParameterClient.ui" line="162"/>
         <source>First</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="104"/>
+        <location filename="../../FrmParameterClient.ui" line="175"/>
         <source>Always</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="184"/>
-        <location filename="../../FrmParameterClient.cpp" line="20"/>
+        <location filename="../../FrmParameterClient.ui" line="61"/>
+        <location filename="../../FrmParameterClient.cpp" line="16"/>
         <source>Prompt administrator privilege</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.ui" line="65"/>
+        <location filename="../../FrmParameterClient.ui" line="136"/>
         <source>Prompt type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="92"/>
+        <location filename="../../FrmParameterClient.cpp" line="86"/>
         <source>Original</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="96"/>
+        <location filename="../../FrmParameterClient.cpp" line="90"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="99"/>
+        <location filename="../../FrmParameterClient.cpp" line="93"/>
         <source>Zoom to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../FrmParameterClient.cpp" line="102"/>
+        <location filename="../../FrmParameterClient.cpp" line="96"/>
         <source>Keep desktop aspectration adapt to windows</source>
         <translation type="unfinished"></translation>
     </message>
@@ -304,8 +276,28 @@ Restart program by administrator?</source>
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="516"/>
+        <location filename="../../FrmViewer.cpp" line="517"/>
         <source>Failed to update keyboard LED state</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CHookWindows</name>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="130"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="131"/>
+        <source>The programe is not administrator privilege.
+Don&apos;t disable system shortcuts(eg: Ctrl+Alt+del).
+Restart program by administrator?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Windows/HookWindows.cpp" line="135"/>
+        <source>Always shown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
