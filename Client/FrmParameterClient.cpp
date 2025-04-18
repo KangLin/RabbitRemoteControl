@@ -9,13 +9,9 @@ CFrmParameterClient::CFrmParameterClient(QWidget *parent) :
 {
     ui->setupUi(this);
     if(RabbitCommon::CTools::HasAdministratorPrivilege()) {
-        ui->cbHookKeyboard->setText(
-            tr("Hook: capture system key"));
         ui->cbPromptAdminPrivilege->setText("");
         ui->cbPromptAdminPrivilege->hide();
     } else {
-        ui->cbHookKeyboard->setText(
-            tr("Hook: capture system key(System shortcuts is need administrator privilege)"));
         ui->cbPromptAdminPrivilege->setText(
             tr("Prompt administrator privilege"));
         ui->cbPromptAdminPrivilege->show();
@@ -33,7 +29,6 @@ int CFrmParameterClient::Accept()
         return -1;
     m_pPara->SetNativeWindowReceiveKeyboard(
         ui->cbNativeWindowReceiveKeyboard->isChecked());
-    m_pPara->SetHookKeyboard(ui->cbHookKeyboard->isChecked());
     m_pPara->SetPromptAdministratorPrivilege(
         ui->cbPromptAdminPrivilege->isChecked());
     m_pPara->SetEnableSystemUserToUser(ui->cbEnableUserName->isChecked());
@@ -83,7 +78,6 @@ int CFrmParameterClient::SetParameter(CParameter *pParameter)
         return -1;
     ui->cbNativeWindowReceiveKeyboard->setChecked(
         m_pPara->GetNativeWindowReceiveKeyboard());
-    ui->cbHookKeyboard->setChecked(m_pPara->GetHookKeyboard());
     ui->cbPromptAdminPrivilege->setChecked(
         m_pPara->GetPromptAdministratorPrivilege());
     ui->cbEnableUserName->setChecked(m_pPara->GetEnableSystemUserToUser());

@@ -6,7 +6,7 @@
 class CHookUnix : public CHook
 {
 public:
-    explicit CHookUnix(QObject *parent = nullptr);
+    explicit CHookUnix(CParameterClient* pParaClient, QObject *parent = nullptr);
     virtual ~CHookUnix();
 
     // CHook interface

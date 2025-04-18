@@ -22,10 +22,9 @@
 
 static Q_LOGGING_CATEGORY(log, "Client")
 
-CNativeEventFilter* g_pNativeEventFilter = nullptr;
-
-CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
-    m_FileVersion(1)  //TODO: update version it if update data
+CClient::CClient(QObject *parent, QString szFile) : QObject(parent)
+    , m_FileVersion(1)  //TODO: update version it if update data
+    , m_pHook(nullptr)
 {
     bool check = false;
 //#if defined (_DEBUG) || !defined(BUILD_SHARED_LIBS)
@@ -40,10 +39,6 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
     m_pParameterClient = new CParameterClient();
     if(m_pParameterClient) {
         LoadSettings(m_szSettingsFile);
-        check = connect(m_pParameterClient, SIGNAL(sigHookKeyboardChanged()),
-                        this, SLOT(slotHookKeyboardChanged()));
-        Q_ASSERT(check);
-        slotHookKeyboardChanged();
         /* Replace this with CNativeEventFilter
         check = connect(m_pParameterClient,
                         &CParameterClient::sigNativeWindowRecieveKeyboard,
@@ -56,15 +51,13 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
         if(!m_pParameterClient->GetNativeWindowReceiveKeyboard())
             qApp->installEventFilter(this);
         //*/
+        m_pHook = CHook::GetHook(m_pParameterClient, this);
+        if(m_pHook)
+            m_pHook->RegisterKeyboard();
     } else {
         qCritical(log) << "new CParameterClient() fail";
         Q_ASSERT(m_pParameterClient);
     }
-
-    if(!g_pNativeEventFilter)
-        g_pNativeEventFilter = new CNativeEventFilter(m_pParameterClient);
-    if(g_pNativeEventFilter)
-        qApp->installNativeEventFilter(g_pNativeEventFilter);
 
     LoadPlugins();
 }
@@ -72,16 +65,18 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
 CClient::~CClient()
 {
     qDebug(log) << "CClient::~CClient()";
-
-    if(m_pParameterClient)
-        delete m_pParameterClient;
-
+    
     qApp->removeEventFilter(this);
+    
+    if(m_pHook) {
+        m_pHook->UnRegisterKeyboard();
+        m_pHook->deleteLater();
+        m_pHook = nullptr;
+    }
 
-    if(g_pNativeEventFilter) {
-        qApp->removeNativeEventFilter(g_pNativeEventFilter);
-        delete g_pNativeEventFilter;
-        g_pNativeEventFilter = nullptr;
+    if(m_pParameterClient) {
+        m_pParameterClient->deleteLater();
+        m_pParameterClient = nullptr;
     }
 
     if(m_Translator)
@@ -453,7 +448,7 @@ const QString CClient::Details() const
 {
     return m_szDetails;
 }
-
+/*
 void CClient::slotHookKeyboardChanged()
 {
     if(m_pParameterClient->GetHookKeyboard())
@@ -483,13 +478,15 @@ void CClient::slotHookKeyboardChanged()
                 SaveSettings();
             }
         }
-        m_Hook = QSharedPointer<CHook>(CHook::GetHook());
+        m_pHook = CHook::GetHook(m_pParameterClient);
     } else {
-        if(m_Hook)
-            m_Hook.reset();
+        if(m_pHook) {
+            m_pHook->deleteLater();
+            m_pHook = nullptr;
+        }
     }
 }
-
+*/
 bool CClient::eventFilter(QObject *watched, QEvent *event)
 {
     if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())

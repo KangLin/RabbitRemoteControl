@@ -183,15 +183,12 @@ private:
     int FindPlugins(QDir dir, QStringList filters);
     int AppendPlugin(CPluginClient* plugin);
 
-private Q_SLOTS:
-    void slotHookKeyboardChanged();
-
 private:
     QString m_szSettingsFile;
     QMap<QString, CPluginClient*> m_Plugins;
     qint8 m_FileVersion;
     QSharedPointer<QTranslator> m_Translator;
-    QSharedPointer<CHook> m_Hook;
+    CHook* m_pHook;
     CParameterClient* m_pParameterClient;
     QString m_szDetails;
 

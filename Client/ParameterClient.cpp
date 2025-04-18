@@ -3,7 +3,6 @@
 CParameterClient::CParameterClient(QObject *parent)
     : CParameter(parent)
     , m_bNativeWindowReceiveKeyboard(false)
-    , m_bHookKeyboard(false)
     , m_bPromptAdministratorPrivilege(true)
     , m_bEnableSystemUserToUser(true)
     , m_bSavePassword(false)
@@ -29,8 +28,6 @@ int CParameterClient::OnLoad(QSettings &set)
     SetPromptAdministratorPrivilege(
         set.value("AdministratorPrivilege/Prompt",
                   GetPromptAdministratorPrivilege()).toBool());
-    SetHookKeyboard(set.value("Hook/Keyboard",
-                              GetHookKeyboard()).toBool());
     SetEnableSystemUserToUser(set.value("UserName/Enable",
                                 GetEnableSystemUserToUser()).toBool());
     SetPromptType(static_cast<PromptType>(
@@ -52,7 +49,6 @@ int CParameterClient::OnSave(QSettings& set)
     set.beginGroup("Client");
     set.setValue("NativeWindowRecieveKeyboard",
                  GetNativeWindowReceiveKeyboard());
-    set.setValue("Hook/Keyboard", GetHookKeyboard());
     set.setValue("AdministratorPrivilege/Prompt", GetPromptAdministratorPrivilege());
     set.setValue("UserName/Enable", GetEnableSystemUserToUser());
     set.setValue("Password/Prompty/Type",
@@ -64,20 +60,6 @@ int CParameterClient::OnSave(QSettings& set)
     set.setValue("Viewer/AdaptWindows", (int)GetAdaptWindows());
     set.endGroup();
     return 0;
-}
-
-bool CParameterClient::GetHookKeyboard() const
-{
-    return m_bHookKeyboard;
-}
-
-void CParameterClient::SetHookKeyboard(bool newHookKeyboard)
-{
-    if (m_bHookKeyboard == newHookKeyboard)
-        return;
-    SetModified(true);
-    m_bHookKeyboard = newHookKeyboard;
-    emit sigHookKeyboardChanged();
 }
 
 bool CParameterClient::GetNativeWindowReceiveKeyboard() const

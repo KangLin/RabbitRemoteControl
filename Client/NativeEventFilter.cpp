@@ -147,7 +147,7 @@ bool CNativeEventFilter::HandleEvent(xcb_generic_event_t* event)
         if(nRet)
             break;
         /*
-        qDebug(log) << "Press Key:" << ke->detail << keysym << "pressed in window " << ke->event
+        qDebug(log) << "Press Key:" << ke->detail << keysym << GetModifiers(ke->state) << "pressed in window " << ke->event
                     << "root:" << ke->root;//*/
         bRet = HandleKey(keysym, QEvent::KeyPress, GetModifiers(ke->state));
         break;
@@ -161,7 +161,7 @@ bool CNativeEventFilter::HandleEvent(xcb_generic_event_t* event)
         if(nRet)
             break;
         /*
-        qDebug(log) << "Release Key:" << ke->detail << keysym << "pressed in window " << ke->event
+        qDebug(log) << "Release Key:" << ke->detail << keysym << GetModifiers(ke->state) << "pressed in window " << ke->event
                     << "root:" << ke->root;//*/
         bRet = HandleKey(keysym, QEvent::KeyRelease, GetModifiers(ke->state));
         break;

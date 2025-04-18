@@ -4,6 +4,7 @@
 #define CHOOK_H
 
 #include <QObject>
+#include "ParameterClient.h"
 
 /*!
  * \brief The class is the HOOK abstract class.
@@ -12,15 +13,18 @@
  */
 class CHook : public QObject
 {
-    
 public:
-    explicit CHook(QObject *parent = nullptr);
+    static CHook* GetHook(CParameterClient* pParaClient, QObject *parent = nullptr);
+
+    virtual int RegisterKeyboard();
+    virtual int UnRegisterKeyboard();
+
+protected:
+    CParameterClient* m_pParameterClient;
+
+protected:
+    explicit CHook(CParameterClient* pParaClient, QObject *parent = nullptr);
     virtual ~CHook();
-
-    static CHook* GetHook(QObject *parent = nullptr);
-
-    virtual int RegisterKeyboard() = 0;
-    virtual int UnRegisterKeyboard() = 0;   
 };
 
 #endif // CHOOK_H

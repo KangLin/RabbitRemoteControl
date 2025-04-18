@@ -51,15 +51,6 @@ protected:
     virtual int OnSave(QSettings &set) override;
 
 public:
-    bool GetHookKeyboard() const;
-    void SetHookKeyboard(bool newHookKeyboard);
-Q_SIGNALS:
-    void sigHookKeyboardChanged();
-private:
-    bool m_bHookKeyboard;
-    Q_PROPERTY(bool HookKeyboard READ GetHookKeyboard WRITE SetHookKeyboard
-               NOTIFY sigHookKeyboardChanged)
-public:
     bool GetNativeWindowReceiveKeyboard() const;
     void SetNativeWindowReceiveKeyboard(bool newNativeWindowRecieveKeyboard);
 Q_SIGNALS:

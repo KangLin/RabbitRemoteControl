@@ -6,24 +6,13 @@
 #include <QAbstractEventDispatcher>
 #include <QLoggingCategory>
 
-CHook* CHook::GetHook(QObject *parent)
+CHookUnix::CHookUnix(CParameterClient *pParaClient, QObject *parent)
+    : CHook(pParaClient, parent)
 {
-    CHookUnix* p = nullptr;
-    if(!p)
-        p = new CHookUnix(parent);
-    return p;
-}
-
-CHookUnix::CHookUnix(QObject *parent)
-    : CHook(parent)
-{
-    //TODO:
-    //RegisterKeyboard();
 }
 
 CHookUnix::~CHookUnix()
 {
-    UnRegisterKeyboard();
 }
 
 int CHookUnix::RegisterKeyboard()

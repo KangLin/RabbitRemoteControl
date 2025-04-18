@@ -8,26 +8,16 @@
 #include <QCheckBox>
 
 static Q_LOGGING_CATEGORY(log, "Client.Hook.Windows")
-    
-CHook* CHook::GetHook(QObject *parent)
-{
-    CHookWindows* p = nullptr;
-    if(!p)
-        p = new CHookWindows(parent);
-    return p;
-}
 
-CHookWindows::CHookWindows(QObject *parent)
-    : CHook(parent),
-      m_hKeyboard(nullptr)
+CHookWindows::CHookWindows(CParameterClient *pParaClient, QObject *parent)
+    : CHook(pParaClient, parent),
+    m_hKeyboard(nullptr)
 {
-    RegisterKeyboard();
 }
 
 CHookWindows::~CHookWindows()
 {
     qDebug(log) << "CHookWindows::~CHookWindows()";
-    UnRegisterKeyboard();
 }
 
 // See: https://docs.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ms644985(v=vs.85)
@@ -35,6 +25,10 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
 {
     if (code == HC_ACTION)
     {
+        if(!m_pParameterClient
+            || m_pParameterClient->GetNativeWindowReceiveKeyboard())
+            return CallNextHookEx(nullptr, code, wparam, lparam);
+
         KBDLLHOOKSTRUCT* hook = reinterpret_cast<KBDLLHOOKSTRUCT*>(lparam);
         /*
         qDebug(log) << "process vkCode:" << hook->vkCode
