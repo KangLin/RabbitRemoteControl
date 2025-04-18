@@ -107,7 +107,7 @@ if(WIN32)
 endif()
 
 list(APPEND CLIENT_LIBS Channel)
-if(UNIX)
+if(UNIX AND NOT(ANDROID OR Darwin))
     find_package(X11)
     if(X11_FOUND)
         list(APPEND CLIENT_LIBS X11::X11 X11::xcb X11::xcb_keysyms)

@@ -39,18 +39,6 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent)
     m_pParameterClient = new CParameterClient();
     if(m_pParameterClient) {
         LoadSettings(m_szSettingsFile);
-        /* Replace this with CNativeEventFilter
-        check = connect(m_pParameterClient,
-                        &CParameterClient::sigNativeWindowRecieveKeyboard,
-                        this, [&](){
-                            if(m_pParameterClient->GetNativeWindowReceiveKeyboard())
-                                qApp->removeEventFilter(this);
-                            else
-                                qApp->installEventFilter(this);
-                        });
-        if(!m_pParameterClient->GetNativeWindowReceiveKeyboard())
-            qApp->installEventFilter(this);
-        //*/
         m_pHook = CHook::GetHook(m_pParameterClient, this);
         if(m_pHook)
             m_pHook->RegisterKeyboard();
@@ -487,56 +475,3 @@ void CClient::slotHookKeyboardChanged()
     }
 }
 */
-bool CClient::eventFilter(QObject *watched, QEvent *event)
-{
-    if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())
-    {
-        if(!m_pParameterClient->GetNativeWindowReceiveKeyboard()) {
-
-            bool bProcess = false;
-            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
-            int key = keyEvent->key();
-            switch (key) {
-            case Qt::Key_Meta:
-            case Qt::Key_Alt:
-                bProcess = true;
-                break;
-            default:
-                bProcess = false;
-                break;
-            }
-
-            CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
-            qDebug(log) << "eventFilter:" << keyEvent
-                        << watched << focus << bProcess;
-            if(focus) {
-                if(focus == watched) {
-                    if(bProcess)
-                        return true;
-                    return false;
-                }
-
-                /*
-                QKeyEvent* ke = new QKeyEvent(
-                    keyEvent->type(), keyEvent->key(),
-                    keyEvent->modifiers(), keyEvent->text());
-                QApplication::postEvent(focus, ke);
-                return true;//*/
-                switch(keyEvent->type())
-                {
-                case QKeyEvent::KeyPress:
-                    emit focus->sigKeyPressEvent(keyEvent);
-                    break;
-                case QKeyEvent::KeyRelease:
-                    emit focus->sigKeyReleaseEvent(keyEvent);
-                    break;
-                }
-                return true;
-            }
-
-            if(bProcess)
-                return true;
-        }
-    }
-    return false;
-}

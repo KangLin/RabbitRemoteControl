@@ -2,9 +2,10 @@
 
 #include <QLoggingCategory>
 #include <QApplication>
+#include <QKeyEvent>
 #include "Hook.h"
 #if defined(Q_OS_WIN)
-    #include "HookWindows.h"
+    #include "Windows/HookWindows.h"
 #endif
 #include "NativeEventFilter.h"
 
@@ -26,7 +27,7 @@ CHook* CHook::GetHook(CParameterClient *pParaClient, QObject *parent)
     CHook* p = nullptr;
 #if defined(Q_OS_WIN)
     p = new CHookWindows(pParaClient, parent);
-#else
+#elif defined(Q_OS_LINUX)
     p = new CHook(pParaClient, parent);
 #endif
     return p;
@@ -35,10 +36,15 @@ CHook* CHook::GetHook(CParameterClient *pParaClient, QObject *parent)
 int CHook::RegisterKeyboard()
 {
     int nRet = 0;
+
+#if defined(Q_OS_LINUX)
     if(!g_pNativeEventFilter)
         g_pNativeEventFilter = new CNativeEventFilter(m_pParameterClient);
     if(g_pNativeEventFilter)
         qApp->installNativeEventFilter(g_pNativeEventFilter);
+#elif defined(Q_OS_MACOS)
+    qApp->installEventFilter(this);
+#endif
     return nRet;
 }
 
@@ -49,6 +55,64 @@ int CHook::UnRegisterKeyboard()
         qApp->removeNativeEventFilter(g_pNativeEventFilter);
         delete g_pNativeEventFilter;
         g_pNativeEventFilter = nullptr;
-    }   
+    }
+
+    if(m_pParameterClient)
+        qApp->removeEventFilter(this);
+
     return nRet;
+}
+
+bool CHook::eventFilter(QObject *watched, QEvent *event)
+{
+    if(QEvent::KeyPress == event->type() || QEvent::KeyRelease == event->type())
+    {
+        if(!m_pParameterClient->GetNativeWindowReceiveKeyboard()) {
+            
+            bool bProcess = false;
+            QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+            int key = keyEvent->key();
+            switch (key) {
+            case Qt::Key_Meta:
+            case Qt::Key_Alt:
+                bProcess = true;
+                break;
+            default:
+                bProcess = false;
+                break;
+            }
+            
+            CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
+            qDebug(log) << "eventFilter:" << keyEvent
+                        << watched << focus << bProcess;
+            if(focus) {
+                if(focus == watched) {
+                    if(bProcess)
+                        return true;
+                    return false;
+                }
+                
+                /*
+                QKeyEvent* ke = new QKeyEvent(
+                    keyEvent->type(), keyEvent->key(),
+                    keyEvent->modifiers(), keyEvent->text());
+                QApplication::postEvent(focus, ke);
+                return true;//*/
+                switch(keyEvent->type())
+                {
+                case QKeyEvent::KeyPress:
+                    emit focus->sigKeyPressEvent(keyEvent);
+                    break;
+                case QKeyEvent::KeyRelease:
+                    emit focus->sigKeyReleaseEvent(keyEvent);
+                    break;
+                }
+                return true;
+            }
+            
+            if(bProcess)
+                return true;
+        }
+    }
+    return false;
 }

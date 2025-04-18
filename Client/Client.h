@@ -191,10 +191,6 @@ private:
     CHook* m_pHook;
     CParameterClient* m_pParameterClient;
     QString m_szDetails;
-
-public:
-    // QObject interface
-    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 };
 
 #endif // CMANAGECONNECTER_H

@@ -18,6 +18,10 @@ public:
 
     virtual int RegisterKeyboard();
     virtual int UnRegisterKeyboard();
+    
+public:
+    // QObject interface
+    virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 protected:
     CParameterClient* m_pParameterClient;
