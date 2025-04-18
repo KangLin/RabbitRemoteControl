@@ -285,7 +285,7 @@ jobs:
                 -T ${{matrix.VCPKG_PLATFORM_TOOLSET}} ^
                 -DCMAKE_BUILD_TYPE=${{matrix.BUILD_TYPE}} ^
                 -DBUILD_EXAMPLES=OFF -DBUILD_TESTS=OFF ^
-                -DBUILD_DOCUMENTATION ^
+                -DBUILD_DOCUMENTATION=OFF ^
                 -DCMAKE_INSTALL_PREFIX=${{env.INSTALL_DIR}} ^
                 -DCMAKE_TOOLCHAIN_FILE=${{env.VCPKG_ROOT}}/scripts/buildsystems/vcpkg.cmake ^
                 -DVCPKG_VERBOSE=ON ^

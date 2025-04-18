@@ -18,8 +18,6 @@
 #include "Channel.h"
 #include "ParameterRecordUI.h"
 
-#include "NativeEventFilter.h"
-
 static Q_LOGGING_CATEGORY(log, "Client")
 
 CClient::CClient(QObject *parent, QString szFile) : QObject(parent)

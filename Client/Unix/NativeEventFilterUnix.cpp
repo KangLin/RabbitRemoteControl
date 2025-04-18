@@ -1,4 +1,4 @@
-#include "NativeEventFilter.h"
+#include "NativeEventFilterUnix.h"
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
@@ -10,7 +10,6 @@
 
 static Q_LOGGING_CATEGORY(log, "Client.NativeEventFilter")
 
-#if defined(Q_OS_LINUX)
 #include <xcb/xcb.h>
 #include <xcb/xcb_keysyms.h>
 #define XK_MISCELLANY
@@ -72,7 +71,7 @@ Qt::KeyboardModifiers GetModifiers(uint32_t mask)
     return modifiers;
 }
 
-bool CNativeEventFilter::HandleKey(
+bool CNativeEventFilterUnix::HandleKey(
     xcb_keysym_t keysym, QEvent::Type type, Qt::KeyboardModifiers modifiers)
 {
     int bRet = false;
@@ -133,7 +132,7 @@ bool CNativeEventFilter::HandleKey(
     return bRet;
 }
 
-bool CNativeEventFilter::HandleEvent(xcb_generic_event_t* event)
+bool CNativeEventFilterUnix::HandleEvent(xcb_generic_event_t* event)
 {
     bool bRet = false;
     
@@ -173,7 +172,7 @@ bool CNativeEventFilter::HandleEvent(xcb_generic_event_t* event)
     return bRet;
 }
 
-int CNativeEventFilter::GetKeySym(xcb_key_press_event_t *event, xcb_keysym_t &keysym)
+int CNativeEventFilterUnix::GetKeySym(xcb_key_press_event_t *event, xcb_keysym_t &keysym)
 {
     int nRet = 0;
     // 将 keycode 转换为 keysym
@@ -185,12 +184,10 @@ int CNativeEventFilter::GetKeySym(xcb_key_press_event_t *event, xcb_keysym_t &ke
     qDebug(log) << "keycode:" << event->detail << "keySym:" << keysym;
     return nRet;
 }
-#endif
 
-CNativeEventFilter::CNativeEventFilter(CParameterClient *pParaClient)
+CNativeEventFilterUnix::CNativeEventFilterUnix(CParameterClient *pParaClient)
     : m_pParameterClient(pParaClient)
 {
-#if defined(Q_OS_LINUX)
     m_pConnect = xcb_connect(NULL, NULL);
     // 连接到 X server
     if (xcb_connection_has_error(m_pConnect)) {
@@ -204,33 +201,28 @@ CNativeEventFilter::CNativeEventFilter(CParameterClient *pParaClient)
         qCritical(log) << "无法分配键符表";
         return;
     }
-#endif
 }
 
-CNativeEventFilter::~CNativeEventFilter()
+CNativeEventFilterUnix::~CNativeEventFilterUnix()
 {
-#if defined(Q_OS_LINUX)
     // 清理
     if(m_pKeySymbols)
         xcb_key_symbols_free(m_pKeySymbols);
     xcb_disconnect(m_pConnect);
-#endif
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-bool CNativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *message, qintptr *result)
+bool CNativeEventFilterUnix::nativeEventFilter(const QByteArray &eventType, void *message, qintptr *result)
 #else
-bool CNativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
+bool CNativeEventFilterUnix::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
 #endif
 {
     //qDebug(log) << "eventType:" << eventType;
-#if defined(Q_OS_LINUX)
+
     if (eventType == "xcb_generic_event_t") {
         xcb_generic_event_t* e = static_cast<xcb_generic_event_t *>(message);
         return HandleEvent(e);
     }
-#endif
-
 #if defined(Q_OS_WIN)
     if (eventType == "windows_generic_MSG" || eventType == "windows_dispatcher_MSG")
     {

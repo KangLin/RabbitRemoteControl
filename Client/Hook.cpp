@@ -6,10 +6,13 @@
 #include "Hook.h"
 #if defined(Q_OS_WIN)
     #include "Windows/HookWindows.h"
+#elif defined(Q_OS_ANDROID)
+#elif defined(Q_OS_MACOS)
+#elif defined(Q_OS_LINUX)
+    #include "Unix/NativeEventFilterUnix.h"
 #endif
-#include "NativeEventFilter.h"
 
-CNativeEventFilter* g_pNativeEventFilter = nullptr;
+QAbstractNativeEventFilter* g_pNativeEventFilter = nullptr;
 static Q_LOGGING_CATEGORY(log, "Client.Hook")
 
 CHook::CHook(CParameterClient *pParaClient, QObject *parent)
@@ -38,13 +41,14 @@ CHook* CHook::GetHook(CParameterClient *pParaClient, QObject *parent)
 int CHook::RegisterKeyboard()
 {
     int nRet = 0;
-
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_MACOS) || defined(Q_OS_ANDROID) || defined(Q_OS_MACOS)
+    qApp->installEventFilter(this);
+#elif defined(Q_OS_LINUX)
     if(!g_pNativeEventFilter)
-        g_pNativeEventFilter = new CNativeEventFilter(m_pParameterClient);
+        g_pNativeEventFilter = new CNativeEventFilterUnix(m_pParameterClient);
     if(g_pNativeEventFilter)
         qApp->installNativeEventFilter(g_pNativeEventFilter);
-#elif defined(Q_OS_MACOS)
+#else
     qApp->installEventFilter(this);
 #endif
     return nRet;
