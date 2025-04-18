@@ -183,7 +183,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
         // Must set ObjectName then restore it. See: saveState help document
         m_pDockListRecentConnects->setObjectName("dockListRecentConnects");
-        m_pDockListRecentConnects->hide();
+        //m_pDockListRecentConnects->hide();
         ui->menuView->addAction(m_pDockListRecentConnects->toggleViewAction());
         m_pDockListRecentConnects->toggleViewAction()->setIcon(QIcon::fromTheme("document-open-recent"));
         tabifyDockWidget(m_pDockFavorite, m_pDockListRecentConnects);
