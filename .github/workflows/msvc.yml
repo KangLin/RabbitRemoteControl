@@ -272,6 +272,7 @@ jobs:
           cache-key-prefix: cached-qt
 
       - name: build qxmpp
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\qxmpp (
@@ -298,6 +299,7 @@ jobs:
           )
 
       - name: build QtService
+        if: false
         working-directory: ${{env.SOURCE_DIR}}
         run: |
           IF NOT EXIST ${{env.INSTALL_DIR}}\lib\cmake\QtService (
