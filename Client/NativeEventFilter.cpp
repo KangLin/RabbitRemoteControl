@@ -13,8 +13,8 @@ static Q_LOGGING_CATEGORY(log, "Client.NativeEventFilter")
 #if defined(Q_OS_LINUX)
 #include <xcb/xcb.h>
 #include <xcb/xcb_keysyms.h>
-// the X11 headers on some systems
 #define XK_MISCELLANY
+// the X11 headers on some systems. See: [Xlib 键符号](https://www.x.org/releases/X11R7.7/doc/libX11/XKB/xkblib.html)
 #include <X11/keysymdef.h>
 
 /*

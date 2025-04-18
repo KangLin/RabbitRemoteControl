@@ -44,6 +44,7 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
                         this, SLOT(slotHookKeyboardChanged()));
         Q_ASSERT(check);
         slotHookKeyboardChanged();
+        /* Replace this with CNativeEventFilter
         check = connect(m_pParameterClient,
                         &CParameterClient::sigNativeWindowRecieveKeyboard,
                         this, [&](){
@@ -54,6 +55,7 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent),
                         });
         if(!m_pParameterClient->GetNativeWindowReceiveKeyboard())
             qApp->installEventFilter(this);
+        //*/
     } else {
         qCritical(log) << "new CParameterClient() fail";
         Q_ASSERT(m_pParameterClient);

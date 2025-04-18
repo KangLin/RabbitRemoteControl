@@ -110,13 +110,9 @@ list(APPEND CLIENT_LIBS Channel)
 if(UNIX)
     find_package(X11)
     if(X11_FOUND)
-        list(APPEND CLIENT_LIBS X11::xcb)
+        list(APPEND CLIENT_LIBS X11::X11 X11::xcb X11::xcb_keysyms)
         list(APPEND CLIENT_HEADER_FILES Unix/HookUnix.h)
         list(APPEND CLIENT_SOURCE_FILES Unix/HookUnix.cpp)
-    endif()
-    find_package(XCB COMPONENTS KEYSYMS)
-    if(XCB_FOUND)
-        list(APPEND CLIENT_LIBS XCB::KEYSYMS)
     endif()
 endif()
 
@@ -149,6 +145,7 @@ ADD_TARGET(NAME ${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> # See: http://www.it1352.com/478094.html
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/ParameterCompone
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+        ${CLIENT_INCLUDE_DIRS}
     INSTALL_HEADER_FILES ${CLIENT_INSTALL_HEADER_FILES}
     PRIVATE_LIBS ${CLIENT_PRIVATE_LIBS}
     LIBS ${CLIENT_LIBS}
