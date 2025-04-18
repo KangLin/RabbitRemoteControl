@@ -1,11 +1,13 @@
-#include "HookWindows.h"
-#include "FrmViewer.h"
 #include <QApplication>
 #include <QKeyEvent>
 #include <QLoggingCategory>
 #include <RabbitCommonTools.h>
 #include <QMessageBox>
 #include <QCheckBox>
+
+#include "FrmViewer.h"
+#include "HookWindows.h"
+#include "RabbitCommonTools.h"
 
 static Q_LOGGING_CATEGORY(log, "Client.Hook.Windows")
 
@@ -120,6 +122,31 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
 // See: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw
 int CHookWindows::RegisterKeyboard()
 {
+    if(!RabbitCommon::CTools::Instance()->HasAdministratorPrivilege()
+        && m_pParameterClient->GetPromptAdministratorPrivilege())
+    {
+        int nRet = 0;
+        QMessageBox msg(
+            QMessageBox::Warning, tr("Warning"),
+            tr("The programe is not administrator privilege.\n"
+               "Don't disable system shortcuts(eg: Ctrl+Alt+del).\n"
+               "Restart program by administrator?"),
+            QMessageBox::Yes | QMessageBox::No);
+        msg.setCheckBox(new QCheckBox(tr("Always shown"), &msg));
+        msg.checkBox()->setCheckable(true);
+        msg.checkBox()->setChecked(
+            m_pParameterClient->GetPromptAdministratorPrivilege());
+        nRet = msg.exec();
+        if(QMessageBox::Yes == nRet) {
+            RabbitCommon::CTools::Instance()->StartWithAdministratorPrivilege(true);
+        }
+        if(m_pParameterClient->GetPromptAdministratorPrivilege()
+            != msg.checkBox()->isChecked()) {
+            m_pParameterClient->SetPromptAdministratorPrivilege(
+                msg.checkBox()->isChecked());
+        }
+    }
+
     if(m_hKeyboard)
         UnRegisterKeyboard();
     DisableTaskManager(true);
