@@ -122,7 +122,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/FreeRDP/FreeRDP.git",
-                    "tag": "3.14.1"
+                    "tag": "3.15.0"
                 }
             ],
             "buildsystem": "cmake-ninja",
