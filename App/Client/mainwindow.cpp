@@ -159,6 +159,7 @@ MainWindow::MainWindow(QWidget *parent)
         m_pDockFavorite->setObjectName("dockFavorite");
         //m_pDockFavorite->hide();
         ui->menuView->addAction(m_pDockFavorite->toggleViewAction());
+        m_pDockFavorite->toggleViewAction()->setIcon(QIcon::fromTheme("emblem-favorite"));
         addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, m_pDockFavorite);
     }
 
@@ -184,6 +185,7 @@ MainWindow::MainWindow(QWidget *parent)
         m_pDockListRecentConnects->setObjectName("dockListRecentConnects");
         m_pDockListRecentConnects->hide();
         ui->menuView->addAction(m_pDockListRecentConnects->toggleViewAction());
+        m_pDockListRecentConnects->toggleViewAction()->setIcon(QIcon::fromTheme("document-open-recent"));
         tabifyDockWidget(m_pDockFavorite, m_pDockListRecentConnects);
     }
 
@@ -207,6 +209,7 @@ MainWindow::MainWindow(QWidget *parent)
         m_pDockListConnecters->setObjectName("dockListConnects");
         //m_pDockListConnecters->hide();
         ui->menuView->addAction(m_pDockListConnecters->toggleViewAction());
+        m_pDockListConnecters->toggleViewAction()->setIcon(QIcon::fromTheme("network-wired"));
         tabifyDockWidget(m_pDockFavorite, m_pDockListConnecters);
     }
 
