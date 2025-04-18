@@ -81,15 +81,6 @@ void CViewTable::slotTabPositionChanged()
     m_pTab->setTabPosition(p->m_Parameter.GetTabPosition());
 }
 
-void CViewTable::slotSystemCombination()
-{
-    QWidget* pView = GetCurrentView();
-    if(!pView) return;
-    CFrmViewer* pFrmViewer = qobject_cast<CFrmViewer*>(pView);
-    if(pFrmViewer)
-        pFrmViewer->slotSystemCombination();
-}
-
 int CViewTable::AddView(QWidget *pView)
 {
     int nIndex = -1;

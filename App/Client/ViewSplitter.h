@@ -28,9 +28,6 @@ public:
         const QIcon &icon, const QString &szToolTip) override;
     virtual int SetFullScreen(bool bFull) override;
 
-public slots:
-    virtual void slotSystemCombination() override;
-
 private:
     int m_nRow;
     int m_nCount;

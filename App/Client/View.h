@@ -38,9 +38,6 @@ public:
                                 const QIcon& icon, const QString& szToolTip) = 0;
     virtual int SetFullScreen(bool bFull) = 0;
 
-public Q_SLOTS:
-    virtual void slotSystemCombination() = 0;
-
 Q_SIGNALS:
     //! \note The QWidget* pView must is same as CConnecter::GetViewer()
     void sigCloseView(const QWidget* pView);

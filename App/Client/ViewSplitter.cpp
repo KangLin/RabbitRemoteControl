@@ -228,10 +228,6 @@ int CViewSplitter::SetFullScreen(bool bFull)
     return nRet;
 }
 
-void CViewSplitter::slotSystemCombination()
-{
-}
-
 int CViewSplitter::GetIndex(QWidget* pView, int &nRow, int &nCol)
 {
     if(!pView)

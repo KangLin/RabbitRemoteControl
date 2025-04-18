@@ -253,13 +253,14 @@ void CFrmViewer::keyReleaseEvent(QKeyEvent *event)
 
 void CFrmViewer::slotSystemCombination()
 {
+    qDebug(log) << Q_FUNC_INFO;
     // Send ctl+alt+del
-    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::NoModifier));
-    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::NoModifier));
-    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier));
-    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::NoModifier));
-    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::NoModifier));
-    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::NoModifier));    
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::ControlModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::AltModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::ControlModifier | Qt::AltModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::ControlModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::AltModifier));
+    emit sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::ControlModifier | Qt::AltModifier));
 }
 
 QSize CFrmViewer::GetDesktopSize()

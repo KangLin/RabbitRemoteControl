@@ -1033,8 +1033,9 @@ int MainWindow::SaveConnectLasterClose()
 
 void MainWindow::on_actionSend_ctl_alt_del_triggered()
 {
-    if(m_pView)
-        m_pView->slotSystemCombination();
+    CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
+    if(focus)
+        focus->slotSystemCombination();
 }
 
 void MainWindow::on_actionTabBar_B_toggled(bool bShow)

@@ -35,8 +35,6 @@ private Q_SLOTS:
     
     void slotTabPositionChanged();
 
-    virtual void slotSystemCombination() override;
-
 private:
     QTabWidget* m_pTab;
     QString m_szStyleSheet;
