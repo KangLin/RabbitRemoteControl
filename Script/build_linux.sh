@@ -7,9 +7,6 @@ DOCKER=0
 DEB=0
 RPM=0
 APPIMAGE=0
-if [ -z "$DOCKERT_IMAGE" ]; then
-    DOCKERT_IMAGE=ubuntu
-fi
 if [ -z "$BUILD_VERBOSE" ]; then
     BUILD_VERBOSE=OFF
 fi
@@ -177,6 +174,9 @@ if [ $DOCKER -eq 1 ]; then
     popd
 
     if [ $DEB -eq 1 ]; then
+        if [ -z "$DOCKERT_IMAGE" ]; then
+            DOCKERT_IMAGE=ubuntu
+        fi
        docker run --volume ${BUILD_LINUX_DIR}:/home/build  --privileged --interactive --rm ${DOCKERT_IMAGE} \
            bash -e -x -c "
            tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
@@ -185,6 +185,9 @@ if [ $DOCKER -eq 1 ]; then
            "
     fi
     if [ $APPIMAGE -eq 1 ]; then
+        if [ -z "$DOCKERT_IMAGE" ]; then
+            DOCKERT_IMAGE=ubuntu
+        fi
         docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm ${DOCKERT_IMAGE} \
             bash -e -x -c "
             tar -C ~ -xf /home/build/RabbitRemoteControl.tar.gz
@@ -193,6 +196,9 @@ if [ $DOCKER -eq 1 ]; then
             "
     fi
     if [ $RPM -eq 1 ]; then
+        if [ -z "$DOCKERT_IMAGE" ]; then
+            DOCKERT_IMAGE=fedora
+        fi
         docker run --volume ${BUILD_LINUX_DIR}:/home/build --privileged --interactive --rm ${DOCKERT_IMAGE} \
             bash -e -x -c "
             mkdir -p ~/rpmbuild/SOURCES/

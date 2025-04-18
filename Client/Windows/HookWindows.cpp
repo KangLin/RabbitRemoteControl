@@ -25,10 +25,6 @@ LRESULT CALLBACK CHookWindows::keyboardHookProc(INT code, WPARAM wparam, LPARAM 
 {
     if (code == HC_ACTION)
     {
-        if(!m_pParameterClient
-            || m_pParameterClient->GetNativeWindowReceiveKeyboard())
-            return CallNextHookEx(nullptr, code, wparam, lparam);
-
         KBDLLHOOKSTRUCT* hook = reinterpret_cast<KBDLLHOOKSTRUCT*>(lparam);
         /*
         qDebug(log) << "process vkCode:" << hook->vkCode

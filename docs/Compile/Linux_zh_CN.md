@@ -8,6 +8,8 @@
     ./Script/build_linux.sh --appimage
     # 仅编译 deb 包
     ./Script/build_linux.sh --deb
+    # 仅编译 rpm 包
+    ./Script/build_linux.sh --rpm
 
 详见：[脚本](#脚本)
 
@@ -891,13 +893,14 @@ PcapPlusPlus 依赖此库。
         -13: _specdir	%{_topdir}/SPECS
         -13: _srcrpmdir	%{_topdir}/SRPMS
         -13: _topdir	%(echo $HOME)/rpmbuild
-      
 
 ### 脚本
 
 - 构建脚本
   - [build_depend.sh](../../Script/build_depend.sh): 构建、安装依赖库。
   - [build_debpackage.sh](../../Script/build_debpackage.sh): 构建 deb 安装包。
+    执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
+　- [build_rpm_package.sh](../../Script/build_rpm_package.sh): 构建 deb 安装包。
     执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
   - [build_appimage.sh](../../Script/build_appimage.sh): 构建 AppImage 包。
     执行前，请设置环境变量。参见：[CMake 参数或者环境变量](#CMake-参数或者环境变量)
@@ -908,8 +911,10 @@ PcapPlusPlus 依赖此库。
           ./Script/build_linux.sh --appimage
           # 仅构建 deb 包
           ./Script/build_linux.sh --deb
-          # 如果同时构建 deb 包和 AppImage，请用 docker 。否则 qt 可能会产生污染。
-          ./Script/build_linux.sh --docker --deb --appimage
+          # 仅编译 rpm 包
+          ./Script/build_linux.sh --rpm
+          # 如果同时构建 deb、rpm 包和 AppImage，请用 docker 。否则 qt 可能会产生污染。
+          ./Script/build_linux.sh --docker --deb --appimage --rpm
 
     - 分步构建
 

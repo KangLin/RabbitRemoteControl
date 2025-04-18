@@ -15,7 +15,9 @@ static Q_LOGGING_CATEGORY(log, "Client.Hook")
 CHook::CHook(CParameterClient *pParaClient, QObject *parent)
     : QObject(parent)
     , m_pParameterClient(pParaClient)
-{}
+{
+    qDebug(log) << "CHook::~CHook()";
+}
 
 CHook::~CHook()
 {

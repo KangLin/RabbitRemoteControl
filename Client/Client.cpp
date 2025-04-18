@@ -39,6 +39,20 @@ CClient::CClient(QObject *parent, QString szFile) : QObject(parent)
     m_pParameterClient = new CParameterClient();
     if(m_pParameterClient) {
         LoadSettings(m_szSettingsFile);
+        check = connect(m_pParameterClient, &CParameterClient::sigNativeWindowRecieveKeyboard,
+                        this, [&](){
+            if(m_pParameterClient->GetNativeWindowReceiveKeyboard()) {
+                if(m_pHook) {
+                    m_pHook->UnRegisterKeyboard();
+                    m_pHook->deleteLater();
+                    m_pHook = nullptr;
+                }
+            } else {
+                m_pHook = CHook::GetHook(m_pParameterClient, this);
+                if(m_pHook)
+                    m_pHook->RegisterKeyboard();
+            }
+        });
         m_pHook = CHook::GetHook(m_pParameterClient, this);
         if(m_pHook)
             m_pHook->RegisterKeyboard();

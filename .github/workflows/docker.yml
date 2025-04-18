@@ -19,15 +19,19 @@ jobs:
         variant:
           - PACKAGE: deb
             image: ubuntu
+            lable: ":24.04"
             os: ubuntu-24.04
           - PACKAGE: deb
             image: ubuntu
+            lable: ":24.04"
             os: ubuntu-24.04-arm
           - PACKAGE: rpm
             image: fedora
+            lable: ":41"
             os: ubuntu-24.04
           - PACKAGE: rpm
-            image: "fedora"
+            image: fedora
+            lable: ":41"
             os: ubuntu-24.04-arm
   
     # See: [About GitHub-hosted runners](https://docs.github.com/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners)
@@ -51,7 +55,7 @@ jobs:
           fetch-depth: 0
       - name: run docker
         run: |
-          ./Script/build_linux.sh --docker --docker-image="${{matrix.variant.image}}" --${{matrix.variant.PACKAGE}}
+          ./Script/build_linux.sh --docker --docker-image="${{matrix.variant.image}}${{matrix.variant.lable}}" --${{matrix.variant.PACKAGE}}
       - name: Update artifact
         if: ${{matrix.variant.PACKAGE == 'rpm'}}
         uses: actions/upload-artifact@v4
