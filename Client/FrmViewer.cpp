@@ -10,7 +10,7 @@
 
 #if defined(Q_OS_WIN)
     #include <Windows.h>
-#elif ! (defined(Q_OS_ANDROID) || defined(Q_OS_WIN) || defined(Q_OS_APPLE))
+#elif ! (defined(Q_OS_ANDROID) || defined(Q_OS_WIN) || defined(Q_OS_APPLE) || defined(Q_OS_MACOS))
     #include <X11/Xlib.h>
     #include <X11/XKBlib.h>
     #define XK_MISCELLANY
@@ -388,7 +388,7 @@ void CFrmViewer::slotUpdateCursorPosition(const QPoint& pos)
     cursor().setPos(pos);
 }
 
-#if ! (defined(Q_OS_WIN) || defined(Q_OS_APPLE) || defined(Q_OS_ANDROID) || defined(__APPLE__))
+#if ! (defined(Q_OS_WIN) || defined(Q_OS_APPLE) || defined(Q_OS_ANDROID) || defined(Q_OS_APPLE) || defined(Q_OS_MACOS))
 unsigned int getModifierMask(unsigned int keysym)
 {
     XkbDescPtr xkb;
