@@ -665,6 +665,40 @@ PcapPlusPlus 依赖此库。
 
 ### snap
 
+- 安装 snapcraft
+
+      sudo snap install snapcraft --classic
+
+  - 通过检查版本号来验证 Snapcraft 是否已安装。
+
+        snapcraft --version
+
+  - 把当前用户加入 lxd 组
+
+        sudo usermod -aG lxd $USER
+
+  - 如果系统已安装了 docker, 则用下列方法设置：
+    - 允许 ipv4 转发
+
+          echo "net.ipv4.conf.all.forwarding=1" > /etc/sysctl.d/99-forwarding.conf
+          systemctl restart systemd-sysctl
+
+    - 允许出口网络流量
+
+          iptables  -I DOCKER-USER -i <network_bridge> -j ACCEPT
+          ip6tables -I DOCKER-USER -i <network_bridge> -j ACCEPT
+          iptables  -I DOCKER-USER -o <network_bridge> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+          ip6tables -I DOCKER-USER -o <network_bridge> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+          # 如果 lxd 接口名为 lxdbr0
+
+          iptables  -I DOCKER-USER -i lxdbr0 -j ACCEPT
+          ip6tables -I DOCKER-USER -i lxdbr0 -j ACCEPT
+          iptables  -I DOCKER-USER -o lxdbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+          ip6tables -I DOCKER-USER -o lxdbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+   - 参考: https://documentation.ubuntu.com/lxd/en/latest/howto/network_bridge_firewalld/#prevent-connectivity-issues-with-lxd-and-docker
+
 - 构建:
   - [建立新的 snap](https://snapcraft.io/docs/create-a-new-snap)
   - Parts 生命周期: https://snapcraft.io/docs/parts-lifecycle
@@ -692,12 +726,13 @@ PcapPlusPlus 依赖此库。
     - --shell-after：构建对指定生命周期步骤的快照，并在环境中打开 shell。
      （例如，运行 snapcraft prime [<part-name>] --shell-after 将运行到 prime 步骤，然后进入 shell）。
     - --debug 在发生错误后在环境中打开一个 shell。
+    - -v: 显示构建动作
 
           $ # 例如 prime freerdp
           $ snapcraft prime freerdp --shell-after -v --debug
 
   - 清理
-  
+
         snapcraft clean
 
 - 调试
@@ -712,6 +747,9 @@ PcapPlusPlus 依赖此库。
   - 卸载
 
         snap remove rabbitremotecontrol
+
+- 参考：
+  - [如何在 Linux 上安装和使用 Snapcraft](https://cn.linux-terminal.com/?p=1776)
 
 ### Flatpak
 

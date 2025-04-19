@@ -203,7 +203,7 @@ jobs:
           arch: '${{matrix.qt_arch}}' # optional
           modules: '${{env.qt_modules}}' # optional. See: https://ddalcino.github.io/aqt-list-server/
           cache: true
-          cache-key-prefix: cached_qt
+          cache-key-prefix: cached_qt_${{matrix.qt_version}}_macos
 
       - name: build qxmpp
         working-directory: ${{env.SOURCE_DIR}}

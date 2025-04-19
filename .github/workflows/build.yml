@@ -165,6 +165,8 @@ jobs:
           echo "| :-    |:- |" >> ${{github.workspace}}/Release.md
           echo "|[Change log](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/ChangeLog.md)|[修改日志](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/ChangeLog_zh_CN.md)|" >> ${{github.workspace}}/Release.md
           echo "|Full Change: [${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}})|全部修改: [${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}}](https://github.com/KangLin/RabbitRemoteControl/compare/${{env.RabbitRemoteControl_VERSION_PRE}}...${{env.RabbitRemoteControl_VERSION}})|" >> ${{github.workspace}}/Release.md
+          BUILD_TIME=`date --rfc-3339=second`
+          echo "|Build time: $BUILD_TIME|构建时间：$BUILD_TIME|" >> ${{github.workspace}}/Release.md
           echo "|[Instructions for installing the package](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/README.md#Instructions-for-installing-the-package)|[安装包说明](https://github.com/KangLin/RabbitRemoteControl/blob/${{env.RabbitRemoteControl_VERSION}}/README_zh_CN.md#安装包说明)|" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
 
@@ -174,6 +176,8 @@ jobs:
           echo "**This release is for development and testing purposes only!**" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
           echo "Commit: [${{github.sha}}](https://github.com/KangLin/RabbitRemoteControl/commit/${{github.sha}})" >> ${{github.workspace}}/Release.md
+          echo "" >> ${{github.workspace}}/Release.md
+          echo "Build time: `date --rfc-3339=second`" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
           echo "[:us: Change log](https://github.com/KangLin/RabbitRemoteControl/blob/test_${{ github.ref_name }}/ChangeLog.md)" >> ${{github.workspace}}/Release.md
           echo "" >> ${{github.workspace}}/Release.md
