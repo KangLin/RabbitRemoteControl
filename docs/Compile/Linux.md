@@ -684,6 +684,10 @@ See: [Script](#Script)
 
 ##### snap
 
+- Install snapcraft
+
+      sudo snap install snapcraft --classic
+
 - Build
   - Parts lifecycle: https://snapcraft.io/docs/parts-lifecycle
   - https://snapcraft.io/docs/how-snapcraft-builds  
@@ -702,7 +706,8 @@ See: [Script](#Script)
     - --shell-after: builds your snap to the lifecycle step specified and opens a shell into the environment. (eg. running snapcraft prime --shell-after will run up to the prime step and then drop into a shell).
     - --debug, opens a shell inside the environment after an error occurs.  
       For example, to open a shell just before the prime phase, use the following command:
-    
+    - -v: show build verbose
+
           $ snapcraft prime -v --debug --shell
           Using 'snap/snapcraft.yaml': Project assets will be searched for from
           the 'snap' directory.

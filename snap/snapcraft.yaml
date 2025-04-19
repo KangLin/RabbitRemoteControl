@@ -249,6 +249,7 @@ parts:
     build-packages:
       - libcmark-dev
       - cmark
+      - libx11-dev
       # opengl development headers and libraries
       - libglx-dev
       - libgl1-mesa-dev
@@ -323,6 +324,7 @@ parts:
       snapcraftctl stage
     prime:
       - -usr/bin/cmark
+      - -usr/share
       - -opt/RabbitRemoteControl/bin/cmark
       - -opt/RabbitRemoteControl/include
       - -opt/RabbitRemoteControl/lib/cmake
