@@ -130,7 +130,6 @@ public Q_SLOTS:
      */
     void slotUpdateCursorPosition(const QPoint& pos);
     void slotUpdateLedState(unsigned int state);
-    void slotSystemCombination();
     void slotConnected();
 
 Q_SIGNALS:

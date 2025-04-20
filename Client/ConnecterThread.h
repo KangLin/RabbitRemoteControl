@@ -83,6 +83,8 @@ public Q_SLOTS:
 private Q_SLOTS:
     //! emit by zoom menu in the class
     void slotValueChanged(int v);
+    void slotShortcutCtlAltDel();
+    void slotShortcutLock();
 
 protected:
     virtual QString ServerName() override;

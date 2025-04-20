@@ -23,7 +23,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHelp">
@@ -81,7 +81,6 @@
     <property name="title">
      <string>Tools(&amp;T)</string>
     </property>
-    <addaction name="actionSend_ctl_alt_del"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
    </widget>
@@ -258,11 +257,6 @@
    </property>
    <property name="whatsThis">
     <string>Open rabbit remote control file</string>
-   </property>
-  </action>
-  <action name="actionSend_ctl_alt_del">
-   <property name="text">
-    <string>Send Ctl+Alt+Del</string>
    </property>
   </action>
   <action name="actionTabBar_B">

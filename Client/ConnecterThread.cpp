@@ -153,6 +153,14 @@ int CConnecterThread::InitialMenu()
     pFactor->setDefaultWidget(m_psbZoomFactor);
     pMenuZoom->insertAction(m_pZoomOut, pFactor);
 
+    QMenu* pMenuShortCut = new QMenu(&m_Menu);
+    pMenuShortCut->setTitle(tr("Send shortcut key"));
+    m_Menu.addMenu(pMenuShortCut);
+    pMenuShortCut->addAction(
+        tr("Send Ctl+Alt+Del"), this, SLOT(slotShortcutCtlAltDel()));
+    pMenuShortCut->addAction(
+        tr("Send lock screen(Win+L)"), this, SLOT(slotShortcutLock()));
+
     m_Menu.addSeparator();
     m_pScreenShot = new QAction(QIcon::fromTheme("camera-photo"),
                                 tr("ScreenShot"), &m_Menu);
@@ -323,4 +331,30 @@ void CConnecterThread::slotScreenShot()
         qCritical(log) << "Fail: save screenshot to" << szFile;
     if(record.GetEndAction() != CParameterRecord::ENDACTION::No)
         QDesktopServices::openUrl(QUrl::fromLocalFile(szFile));
+}
+
+void CConnecterThread::slotShortcutCtlAltDel()
+{
+    if(!m_pFrmViewer)
+        return;
+
+    // Send ctl+alt+del
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Control, Qt::ControlModifier));
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Alt, Qt::AltModifier));
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Delete, Qt::ControlModifier | Qt::AltModifier));
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Control, Qt::ControlModifier));
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Alt, Qt::AltModifier));
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Delete, Qt::ControlModifier | Qt::AltModifier));
+}
+
+void CConnecterThread::slotShortcutLock()
+{
+    if(!m_pFrmViewer)
+        return;
+
+    // Send ctl+alt+del
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_Super_L, Qt::NoModifier));
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyPress, Qt::Key_L, Qt::NoModifier));
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_Super_L, Qt::NoModifier));
+    emit m_pFrmViewer->sigKeyPressEvent(new QKeyEvent(QKeyEvent::KeyRelease, Qt::Key_L, Qt::NoModifier));
 }

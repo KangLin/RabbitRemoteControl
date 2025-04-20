@@ -46,8 +46,6 @@ private Q_SLOTS:
     void on_actionAbout_triggered();
     void on_actionUpdate_triggered();
 
-    void on_actionSend_ctl_alt_del_triggered();
-
     ///////// Connect ///////// 
     void slotUpdateParameters(CConnecter* pConnecter);
     void on_actionClone_triggered();

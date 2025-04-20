@@ -1034,13 +1034,6 @@ int MainWindow::SaveConnectLasterClose()
     return 0;
 }
 
-void MainWindow::on_actionSend_ctl_alt_del_triggered()
-{
-    CFrmViewer* focus = qobject_cast<CFrmViewer*>(QApplication::focusWidget());
-    if(focus)
-        focus->slotSystemCombination();
-}
-
 void MainWindow::on_actionTabBar_B_toggled(bool bShow)
 {
     CViewTable* p = dynamic_cast<CViewTable*>(m_pView);
