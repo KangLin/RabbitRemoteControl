@@ -102,29 +102,44 @@
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="158"/>
+        <location filename="../../ConnecterThread.cpp" line="157"/>
+        <source>Send shortcut key</source>
+        <translation>發送快捷鍵</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="160"/>
+        <source>Send Ctl+Alt+Del</source>
+        <translation>發送 Ctl+Alt+Del</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="162"/>
+        <source>Send lock screen (Win+L)</source>
+        <translation>發送鎖屏快捷鍵 (Win+L)</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="166"/>
         <source>ScreenShot</source>
         <translation>截圖</translation>
     </message>
     <message>
         <source>Record</source>
-        <translation type="vanished">錄製</translation>
+        <translation type="vanished">錄制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="172"/>
+        <location filename="../../ConnecterThread.cpp" line="180"/>
         <source>Record pause</source>
-        <translation>暫停錄製</translation>
+        <translation>暫停錄制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="284"/>
+        <location filename="../../ConnecterThread.cpp" line="292"/>
         <source>Stop record</source>
-        <translation>停止錄製</translation>
+        <translation>停止錄制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="165"/>
-        <location filename="../../ConnecterThread.cpp" line="287"/>
+        <location filename="../../ConnecterThread.cpp" line="173"/>
+        <location filename="../../ConnecterThread.cpp" line="295"/>
         <source>Start record</source>
-        <translation>開始錄製</translation>
+        <translation>開始錄制</translation>
     </message>
 </context>
 <context>
@@ -138,7 +153,7 @@
     <message>
         <location filename="../../DlgInputPassword.ui" line="39"/>
         <source>The encryption key is used to encrypt the password that is saved to the file. If you forget the encryption key, please use input password.</source>
-        <translation>加密密鑰用於加密保存到文件中的密碼。 如果您忘記了加密密鑰，請使用輸入密碼。</translation>
+        <translation>加密密鑰用于加密保存到文件中的密碼。 如果您忘記了加密密鑰，請使用輸入密碼。</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.ui" line="54"/>
@@ -159,7 +174,7 @@
     <message>
         <location filename="../../DlgInputPassword.cpp" line="14"/>
         <source>The encryption key is used to encrypt the password that is saved to the file.</source>
-        <translation>加密密鑰用於加密保存到文件中的密碼。</translation>
+        <translation>加密密鑰用于加密保存到文件中的密碼。</translation>
     </message>
     <message>
         <location filename="../../DlgInputPassword.cpp" line="16"/>
@@ -177,7 +192,7 @@
     <message>
         <location filename="../../FrmParameterClient.ui" line="14"/>
         <source>Client</source>
-        <translation>客户端</translation>
+        <translation>客戶端</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="68"/>
@@ -218,7 +233,7 @@
     <message>
         <location filename="../../FrmParameterClient.ui" line="27"/>
         <source>Enable use the system user as the user</source>
-        <translation>允許使用系統用户作為用户</translation>
+        <translation>允許使用系統用戶作爲用戶</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="42"/>
@@ -228,7 +243,7 @@
     <message>
         <location filename="../../FrmParameterClient.ui" line="91"/>
         <source>Key used to encrypt saved password:</source>
-        <translation>加密鍵用於加密保存的密碼</translation>
+        <translation>加密鍵用于加密保存的密碼</translation>
     </message>
     <message>
         <location filename="../../FrmParameterClient.ui" line="105"/>
@@ -284,7 +299,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="517"/>
+        <location filename="../../FrmViewer.cpp" line="505"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新鍵盤 LED 狀態失敗</translation>
     </message>
@@ -371,12 +386,12 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="21"/>
         <source>The host is empty in &quot;Proxy-&gt;SockesV5&quot;. please set it</source>
-        <translation>在&quot;代理-&gt;SockesV5&quot;中主機為空。請設置。</translation>
+        <translation>在&quot;代理-&gt;SockesV5&quot;中主機爲空。請設置。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterProxy.cpp" line="28"/>
         <source>The host is empty in &quot;Proxy-&gt;SSH tunnel&quot;. please set it</source>
-        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機為空。請設置。</translation>
+        <translation>在&quot;代理-&gt;SSH 隧道&quot;中主機爲空。請設置。</translation>
     </message>
 </context>
 <context>
@@ -418,7 +433,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="30"/>
         <source>Record</source>
-        <translation>錄製</translation>
+        <translation>錄制</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecord.cpp" line="40"/>
@@ -433,17 +448,17 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="20"/>
         <location filename="../../ParameterCompone/ParameterRecordUI.cpp" line="19"/>
         <source>Record</source>
-        <translation>錄製</translation>
+        <translation>錄制</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="31"/>
         <source>Folder:</source>
-        <translation>錄製</translation>
+        <translation>錄制</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="41"/>
         <source>Browse</source>
-        <translation>瀏覽</translation>
+        <translation>浏覽</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="52"/>
@@ -479,7 +494,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="154"/>
         <source>A value of 0 indicates the recorder should make an optimal choice based on what is available from the video source and the limitations of the codec.</source>
-        <translation>值為 0 表示錄製器應根據視頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
+        <translation>值爲 0 表示錄制器應根據視頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="166"/>
@@ -489,12 +504,12 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="198"/>
         <source>Sample rate:</source>
-        <translation>採樣率：</translation>
+        <translation>采樣率：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="205"/>
         <source>A value of -1 indicates the recorder should make an optimal choice based on what is available from the audio source, and the limitations of the codec.</source>
-        <translation>值為 -1 表示錄製器應根據音頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
+        <translation>值爲 -1 表示錄制器應根據音頻源中可用的內容和編解碼器的限制做出最佳選擇。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterRecordUI.ui" line="218"/>
@@ -543,7 +558,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="17"/>
         <source>Username and password</source>
-        <translation>用户名和密碼</translation>
+        <translation>用戶名和密碼</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="18"/>
@@ -563,12 +578,12 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="21"/>
         <source>Username and password with X509 none</source>
-        <translation>用户名和密碼（使用 X509 匿名認證加密）</translation>
+        <translation>用戶名和密碼（使用 X509 匿名認證加密）</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="22"/>
         <source>Username and password with X509</source>
-        <translation>用户名和密碼（使用 X509 認證加密）</translation>
+        <translation>用戶名和密碼（使用 X509 認證加密）</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUser.cpp" line="64"/>
@@ -581,7 +596,7 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="20"/>
         <source>User</source>
-        <translation>用户</translation>
+        <translation>用戶</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="55"/>
@@ -602,13 +617,13 @@ Restart program by administrator?</source>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="76"/>
         <source>User:</source>
-        <translation>用户：</translation>
+        <translation>用戶：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="83"/>
         <location filename="../../ParameterCompone/ParameterUserUI.cpp" line="14"/>
         <source>Input user name</source>
-        <translation>輸入用户名：</translation>
+        <translation>輸入用戶名：</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="94"/>
@@ -647,7 +662,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="222"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="225"/>
         <source>The public and private file is empty, then be use system public and private file.</source>
-        <translation>公鑰和私鑰文件都為空，用系統公鑰和私鑰文件。</translation>
+        <translation>公鑰和私鑰文件都爲空，用系統公鑰和私鑰文件。</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="111"/>
@@ -657,7 +672,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="263"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="266"/>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
-        <translation>菜單: 工具→設置→客户端→密碼→允許查看密碼</translation>
+        <translation>菜單: 工具→設置→客戶端→密碼→允許查看密碼</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="136"/>
@@ -667,7 +682,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="285"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="288"/>
         <source>Menu: Tools→Settings→Client→Password→Enable Save password</source>
-        <translation>菜單：工具→設置→客户端→密碼→允許保存密碼</translation>
+        <translation>菜單：工具→設置→客戶端→密碼→允許保存密碼</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="198"/>
@@ -675,7 +690,7 @@ Restart program by administrator?</source>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="318"/>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="339"/>
         <source>Browse</source>
-        <translation>瀏覽</translation>
+        <translation>浏覽</translation>
     </message>
     <message>
         <location filename="../../ParameterCompone/ParameterUserUI.ui" line="175"/>
@@ -753,15 +768,15 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">長度為 6 的密碼或六字節十六進制</translation>
+        <translation type="vanished">長度爲 6 的密碼或六字節十六進制</translation>
     </message>
     <message>
         <source>Menu: Tools→Settings→Client→Password→Enable view password</source>
-        <translation type="vanished">菜單: 工具→設置→客户端→密碼→允許查看密碼</translation>
+        <translation type="vanished">菜單: 工具→設置→客戶端→密碼→允許查看密碼</translation>
     </message>
     <message>
         <source>Menu: Tools→Settings→Client→Password→Enable Save password</source>
-        <translation type="vanished">菜單：工具→設置→客户端→密碼→允許保存密碼</translation>
+        <translation type="vanished">菜單：工具→設置→客戶端→密碼→允許保存密碼</translation>
     </message>
     <message>
         <source>Repeat:</source>
@@ -793,7 +808,7 @@ Restart program by administrator?</source>
     </message>
     <message>
         <source>The password is error. A password string of length 6. or Hexadecimal representation of 6 bytes</source>
-        <translation type="vanished">密碼錯誤。長度為 6 的密碼或六字節十六進制</translation>
+        <translation type="vanished">密碼錯誤。長度爲 6 的密碼或六字節十六進制</translation>
     </message>
     <message>
         <source>The mac address is error</source>

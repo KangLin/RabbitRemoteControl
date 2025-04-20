@@ -102,7 +102,22 @@
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="158"/>
+        <location filename="../../ConnecterThread.cpp" line="157"/>
+        <source>Send shortcut key</source>
+        <translation>发送快捷键</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="160"/>
+        <source>Send Ctl+Alt+Del</source>
+        <translation>发送 Ctl+Alt+Del</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="162"/>
+        <source>Send lock screen (Win+L)</source>
+        <translation>发送锁屏快捷键 (Win+L)</translation>
+    </message>
+    <message>
+        <location filename="../../ConnecterThread.cpp" line="166"/>
         <source>ScreenShot</source>
         <translation>截图</translation>
     </message>
@@ -111,18 +126,18 @@
         <translation type="vanished">录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="172"/>
+        <location filename="../../ConnecterThread.cpp" line="180"/>
         <source>Record pause</source>
         <translation>暂停录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="284"/>
+        <location filename="../../ConnecterThread.cpp" line="292"/>
         <source>Stop record</source>
         <translation>停止录制</translation>
     </message>
     <message>
-        <location filename="../../ConnecterThread.cpp" line="165"/>
-        <location filename="../../ConnecterThread.cpp" line="287"/>
+        <location filename="../../ConnecterThread.cpp" line="173"/>
+        <location filename="../../ConnecterThread.cpp" line="295"/>
         <source>Start record</source>
         <translation>开始录制</translation>
     </message>
@@ -284,7 +299,7 @@
 <context>
     <name>CFrmViewer</name>
     <message>
-        <location filename="../../FrmViewer.cpp" line="517"/>
+        <location filename="../../FrmViewer.cpp" line="505"/>
         <source>Failed to update keyboard LED state</source>
         <translation>更新键盘 LED 状态失败</translation>
     </message>

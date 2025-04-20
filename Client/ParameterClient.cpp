@@ -11,7 +11,7 @@ CParameterClient::CParameterClient(QObject *parent)
     , m_bViewPassowrd(false)
     , m_bShowProtocolPrefix(false)
     , m_bShowIpPortInName(false)
-    , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::ZoomToWindow)
+    , m_AdaptWindows(CFrmViewer::ADAPT_WINDOWS::KeepAspectRationToWindow)
     , m_Record(this)
 {}
 

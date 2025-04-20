@@ -159,7 +159,7 @@ int CConnecterThread::InitialMenu()
     pMenuShortCut->addAction(
         tr("Send Ctl+Alt+Del"), this, SLOT(slotShortcutCtlAltDel()));
     pMenuShortCut->addAction(
-        tr("Send lock screen(Win+L)"), this, SLOT(slotShortcutLock()));
+        tr("Send lock screen (Win+L)"), this, SLOT(slotShortcutLock()));
 
     m_Menu.addSeparator();
     m_pScreenShot = new QAction(QIcon::fromTheme("camera-photo"),
