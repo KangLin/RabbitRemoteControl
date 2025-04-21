@@ -680,22 +680,22 @@ PcapPlusPlus 依赖此库。
   - 如果系统已安装了 docker, 则用下列方法设置：
     - 允许 ipv4 转发
 
-          echo "net.ipv4.conf.all.forwarding=1" > /etc/sysctl.d/99-forwarding.conf
-          systemctl restart systemd-sysctl
+          sudo echo "net.ipv4.conf.all.forwarding=1" > /etc/sysctl.d/99-forwarding.conf
+          sudo systemctl restart systemd-sysctl
 
     - 允许出口网络流量
 
-          iptables  -I DOCKER-USER -i <network_bridge> -j ACCEPT
-          ip6tables -I DOCKER-USER -i <network_bridge> -j ACCEPT
-          iptables  -I DOCKER-USER -o <network_bridge> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-          ip6tables -I DOCKER-USER -o <network_bridge> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+          sudo iptables  -I DOCKER-USER -i <network_bridge> -j ACCEPT
+          sudo ip6tables -I DOCKER-USER -i <network_bridge> -j ACCEPT
+          sudo iptables  -I DOCKER-USER -o <network_bridge> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+          sudo ip6tables -I DOCKER-USER -o <network_bridge> -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
           # 如果 lxd 接口名为 lxdbr0
 
-          iptables  -I DOCKER-USER -i lxdbr0 -j ACCEPT
-          ip6tables -I DOCKER-USER -i lxdbr0 -j ACCEPT
-          iptables  -I DOCKER-USER -o lxdbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-          ip6tables -I DOCKER-USER -o lxdbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+          sudo iptables  -I DOCKER-USER -i lxdbr0 -j ACCEPT
+          sudo ip6tables -I DOCKER-USER -i lxdbr0 -j ACCEPT
+          sudo iptables  -I DOCKER-USER -o lxdbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+          sudo ip6tables -I DOCKER-USER -o lxdbr0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
    - 参考: https://documentation.ubuntu.com/lxd/en/latest/howto/network_bridge_firewalld/#prevent-connectivity-issues-with-lxd-and-docker
 
