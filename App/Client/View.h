@@ -4,6 +4,7 @@
 #define CVIEW_H
 
 #include <QWidget>
+#include <ParameterApp.h>
 
 /** 
  *  \~english \defgroup ViewApi The view API
@@ -24,7 +25,7 @@ class CView : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CView(QWidget *parent = nullptr);
+    explicit CView(CParameterApp* pPara, QWidget *parent = nullptr);
     virtual ~CView();
 
     //! \note QWidget* pView must is same as CConnecter::GetViewer()
@@ -42,6 +43,9 @@ Q_SIGNALS:
     //! \note The QWidget* pView must is same as CConnecter::GetViewer()
     void sigCloseView(const QWidget* pView);
     void sigCurrentChanged(const QWidget* pView);
+    
+protected:
+    CParameterApp* m_pParameterApp;
 };
 
 #endif // CVIEW_H

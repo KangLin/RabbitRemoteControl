@@ -12,6 +12,7 @@ set(SOURCE_FILES
     View.cpp
     ViewTable.cpp
     ViewSplitter.cpp
+    ViewSplitterContainer.cpp
     ParameterApp.cpp
     ParameterDlgSettings.cpp
     FavoriteView.cpp
@@ -26,6 +27,7 @@ set(HEADER_FILES
     View.h
     ViewTable.h
     ViewSplitter.h
+    ViewSplitterContainer.h
     ParameterApp.h
     ParameterDlgSettings.h
     FavoriteView.h

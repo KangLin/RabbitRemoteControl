@@ -335,7 +335,7 @@ void MainWindow::on_actionViewTab_triggered()
 {
     qDebug(log) << Q_FUNC_INFO;
     if(!ui->actionViewTab->isChecked()) return;
-    SetView(new CViewTable(this));
+    SetView(new CViewTable(&m_Parameter, this));
     m_Parameter.SetViewType(CParameterApp::ViewType::Tab);
 }
 
@@ -343,7 +343,7 @@ void MainWindow::on_actionViewSplit_triggered()
 {
     qDebug(log) << Q_FUNC_INFO;
     if(!ui->actionViewSplit->isChecked()) return;
-    SetView(new CViewSplitter(this));
+    SetView(new CViewSplitter(&m_Parameter, this));
     m_Parameter.SetViewType(CParameterApp::ViewType::Splitter);
 }
 

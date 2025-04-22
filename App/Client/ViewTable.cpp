@@ -14,7 +14,8 @@
 static Q_LOGGING_CATEGORY(log, "App.View.Table")
 static Q_LOGGING_CATEGORY(logRecord, "App.View.Table.Record")
 
-CViewTable::CViewTable(QWidget *parent) : CView(parent),
+CViewTable::CViewTable(CParameterApp *pPara, QWidget *parent)
+    : CView(pPara, parent),
     m_pTab(nullptr)
 {
     qDebug(log) << Q_FUNC_INFO << this;
@@ -27,19 +28,15 @@ CViewTable::CViewTable(QWidget *parent) : CView(parent),
     m_pTab->setMovable(true);
     m_pTab->setFocusPolicy(Qt::NoFocus);
     m_pTab->tabBar()->setContextMenuPolicy(Qt::CustomContextMenu);
-    if(this->parent())
+
+    if(m_pParameterApp)
     {
-        MainWindow* p = dynamic_cast<MainWindow*>(this->parent());
-        if(p)
-        {
-            m_pMainWindow = p;
-            m_pTab->setTabPosition(p->m_Parameter.GetTabPosition());
-            check = connect(&p->m_Parameter, SIGNAL(sigTabPositionChanged()),
-                            this, SLOT(slotTabPositionChanged()));
-            Q_ASSERT(check);
-        }
+        m_pTab->setTabPosition(m_pParameterApp->GetTabPosition());
+        check = connect(m_pParameterApp, SIGNAL(sigTabPositionChanged()),
+                        this, SLOT(slotTabPositionChanged()));
+        Q_ASSERT(check);
     }
-    
+
     check = connect(m_pTab, SIGNAL(tabCloseRequested(int)),
                     this, SLOT(slotTabCloseRequested(int)));
     Q_ASSERT(check);
@@ -76,9 +73,9 @@ void CViewTable::slotTabCloseRequested(int index)
 
 void CViewTable::slotTabPositionChanged()
 {
-    MainWindow* p = dynamic_cast<MainWindow*>(parent());
-    if(!p || !m_pTab) return;
-    m_pTab->setTabPosition(p->m_Parameter.GetTabPosition());
+    if(!m_pParameterApp)
+        return;
+    m_pTab->setTabPosition(m_pParameterApp->GetTabPosition());
 }
 
 int CViewTable::AddView(QWidget *pView)
@@ -91,8 +88,9 @@ int CViewTable::AddView(QWidget *pView)
     }
     //qDebug(log) << "CViewTable::AddView: Window title:" << pView->windowTitle();
     nIndex = m_pTab->indexOf(pView);
-    if(-1 == nIndex)
+    if(-1 == nIndex) {
         nIndex = m_pTab->addTab(pView, pView->windowTitle());
+    }
     m_pTab->setCurrentIndex(nIndex);
 
     return 0;
@@ -118,11 +116,11 @@ void CViewTable::SetWidowsTitle(QWidget* pView, const QString& szTitle,
     pView->setWindowTitle(szTitle);
     int nIndex = GetViewIndex(pView);
     m_pTab->setTabText(nIndex, szTitle);
-    if(m_pMainWindow->m_Parameter.GetEnableTabToolTip())
+    if(m_pParameterApp->GetEnableTabToolTip())
         m_pTab->setTabToolTip(nIndex, szToolTip);
     else
         m_pTab->setTabToolTip(nIndex, "");
-    if(m_pMainWindow->m_Parameter.GetEnableTabIcon())
+    if(m_pParameterApp->GetEnableTabIcon())
         m_pTab->setTabIcon(nIndex, icon);
     else
         m_pTab->setTabIcon(nIndex, QIcon());

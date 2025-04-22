@@ -4,11 +4,12 @@
 #include <QVBoxLayout>
 #include <QLoggingCategory>
 #include <QEvent>
+#include "ViewSplitterContainer.h"
 
 static Q_LOGGING_CATEGORY(log, "App.View.Splitter")
 
-CViewSplitter::CViewSplitter(QWidget *parent)
-    : CView(parent)
+CViewSplitter::CViewSplitter(CParameterApp *pPara, QWidget *parent)
+    : CView(pPara, parent)
     , m_nRow(0)
     , m_nCount(0)
     , m_nIdxRow(-1)
@@ -58,6 +59,8 @@ int CViewSplitter::AddView(QWidget *pView)
         Q_ASSERT(pView);
         return -1;
     }
+    
+    //TODO: 增加检查 pView 是否已存在?
 
     // 是否需要新增加一行
     if(m_nCount + 1 > m_nRow * m_nRow) {
@@ -79,13 +82,30 @@ int CViewSplitter::AddView(QWidget *pView)
     }
     if(!sp)
         return nRet;
-    // 设置当前视频索引
-    m_nIdxRow = i;
-    m_nIdxCol = sp->count();
-    sp->addWidget(pView);
-    pView->show();
+
+    auto pContainer = new CViewSplitterContainer(pView, m_pParameterApp);
+    if(pContainer) {
+        // 设置当前视频索引
+        m_nIdxRow = i;
+        m_nIdxCol = sp->count();
+        sp->addWidget(pContainer);
+        pContainer->show();
+        m_Container.insert(pView, pContainer);
+        if(m_pParameterApp)
+        {
+            bool check = connect(m_pParameterApp, SIGNAL(sigTabPositionChanged()),
+                            pContainer, SLOT(slotTabPositionChanged()));
+            Q_ASSERT(check);
+            check = connect(pContainer, SIGNAL(sigCloseView(const QWidget*)),
+                            this, SIGNAL(sigCloseView(const QWidget*)));
+            Q_ASSERT(check);
+        }
+        m_nCount++;
+    } else
+        return -1;
+
     //sp->setStretchFactor(sp->count() - 1, 1);
-    m_nCount++;
+
     qDebug(log) << Q_FUNC_INFO << "Row:" << m_nRow << "Count:" << m_nCount
                 << "Current row:" << m_nIdxRow << "Current col:" << m_nIdxCol
                 << "Current count:" << sp->count();
@@ -98,44 +118,57 @@ int CViewSplitter::RemoveView(QWidget *pView)
     int nRet = 0;
     if(!pView)
         return -1;
+
     // Get view position
     int nRow = -1;
     int nCol = -1;
     nRet = GetIndex(pView, nRow, nCol);
     if(nRet)
         return nRet;
-    QWidget* pCurView = GetCurrentView();
+
+    CViewSplitterContainer* pContainerNext = nullptr;
+    QWidget* pCurView = GetCurrentView();   
     if(pView == pCurView)
     {
-        pCurView = nullptr;
+        // Get next
         if(m_Row[nRow]->count() > nCol + 1)
-            pCurView = GetView(nRow, nCol + 1);
+            pContainerNext = GetContainer(nRow, nCol + 1);
         else if(m_Row[nRow]->count() - 1 == nCol && 0 != nCol)
-            pCurView = GetView(nRow, nCol -1);
+            pContainerNext = GetContainer(nRow, nCol -1);
         else if(0 == nCol && nRow + 1 < m_nRow) {
             for(int i = nRow + 1; i < m_nRow; i++) {
                 if(m_Row[i]->count() > 0) {
-                    pCurView = GetView(nRow + 1, 0);
+                    pContainerNext = GetContainer(nRow + 1, 0);
                     break;
                 }
             }
         }
-        if(!pCurView) {
+        if(!pContainerNext) {
             for(int i = nRow - 1; i >= 0; i--) {
                 if(m_Row[i]->count() > 0) {
-                    pCurView = GetView(i, m_Row[i]->count() - 1);
+                    pContainerNext = GetContainer(i, m_Row[i]->count() - 1);
                     break;
                 }
             }
         }
     }
+
     // Delete view
     pView->setParent(nullptr);
+    auto pContainer = GetContainer(pView);
+    if(pContainer) {
+        m_Container.remove(pView);
+        delete pContainer;
+    }
     qDebug(log) << "Row:" << nRow << "remain:" << m_Row[nRow]->count();
     m_nCount--;
 
     qDebug(log) << "Row:" << m_nRow << "Count:" << m_nCount
                 << "Current row:" << m_nIdxRow << "Current col:" << m_nIdxCol;
+    
+    if(pContainerNext)
+        pCurView = pContainerNext->GetView();
+    
     if(pCurView)
         pCurView->setFocus();
 
@@ -144,7 +177,10 @@ int CViewSplitter::RemoveView(QWidget *pView)
 
 QWidget *CViewSplitter::GetCurrentView()
 {
-    return GetView(m_nIdxRow, m_nIdxCol);
+    auto p = GetContainer(m_nIdxRow, m_nIdxCol);
+    if(p)
+        return p->GetView();
+    return nullptr;
 }
 
 int CViewSplitter::SetCurrentView(QWidget *pView)
@@ -174,9 +210,18 @@ void CViewSplitter::SetWidowsTitle(
 {
     if(!pView)
         return;
-    // pView->setWindowTitle(szTitle);
-    // pView->setWindowIcon(icon);
-    // pView->setToolTip(szToolTip);
+    auto pContainer = GetContainer(pView);
+    if(!pContainer)
+        return;
+    pContainer->setWindowTitle(szTitle);
+    if(m_pParameterApp->GetEnableTabIcon())
+        pContainer->setWindowIcon(icon);
+    else
+        pContainer->setWindowIcon(QIcon());
+    if(m_pParameterApp->GetEnableTabToolTip())
+        pContainer->SetPrompt(szToolTip);
+    else
+        pContainer->SetPrompt(QString());
 }
 
 int CViewSplitter::SetFullScreen(bool bFull)
@@ -234,12 +279,13 @@ int CViewSplitter::GetIndex(QWidget* pView, int &nRow, int &nCol)
         return -1;
 
     nCol = -1;
-
+    
+    auto pContainer = m_Container[pView];
     for(nRow = 0; nRow < m_nRow; nRow++)
     {
         auto sp = m_Row[nRow];
         if(!sp) continue;
-        nCol = sp->indexOf(pView);
+        nCol = sp->indexOf(pContainer);
         if(-1 < nCol)
             return 0;
     }
@@ -247,16 +293,24 @@ int CViewSplitter::GetIndex(QWidget* pView, int &nRow, int &nCol)
     return -1;
 }
 
-QWidget* CViewSplitter::GetView(const int &nRow, const int &nCol)
+CViewSplitterContainer* CViewSplitter::GetContainer(const int &nRow, const int &nCol)
 {
-    QWidget* p = nullptr;
+    QWidget* pContainer = nullptr;
     QSplitter* sp = nullptr;
     if(-1 < nRow && nRow < m_nRow)
         sp = m_Row[nRow];
     if(sp && -1 < nCol && nCol < sp->count())
-        p = sp->widget(nCol);
-    qDebug(log) << "GetView()" << "Row number:" << m_nRow << m_Row.size()
+        pContainer = sp->widget(nCol);
+    qDebug(log) << "Container" << "Row number:" << m_nRow << m_Row.size()
                 << "Count:" << m_nCount
                 << "row:" << m_nIdxRow << "col:" << m_nIdxCol;
-    return p;
+    return qobject_cast<CViewSplitterContainer*>(pContainer);
+}
+
+CViewSplitterContainer* CViewSplitter::GetContainer(QWidget *pView)
+{
+    auto it = m_Container.find(pView);
+    if(m_Container.end() == it)
+        return nullptr;
+    return *it;
 }

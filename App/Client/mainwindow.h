@@ -181,7 +181,7 @@ private:
 private Q_SLOTS:
     void on_actionAdd_to_favorite_triggered();
 
-public:
+private:
     CParameterApp m_Parameter;
 
     ///////// Drop //////////

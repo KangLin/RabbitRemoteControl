@@ -1,7 +1,9 @@
 ## Change Log
 
 ### v0.0.35
-- App: modify parameter
+- App:
+  - modify parameter
+  - Spiltter view: add tab
 - FreeRDP:
   - Add security parameter settings
   - Add connect type settings

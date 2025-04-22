@@ -4,7 +4,8 @@
 #include "View.h"
 
 static Q_LOGGING_CATEGORY(log, "App.View")
-CView::CView(QWidget *parent) : QWidget(parent)
+CView::CView(CParameterApp *pPara, QWidget *parent) : QWidget(parent)
+    , m_pParameterApp(pPara)
 {
     qDebug(log) << Q_FUNC_INFO;
     setFocusPolicy(Qt::NoFocus);

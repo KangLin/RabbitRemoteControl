@@ -17,7 +17,7 @@ class CViewTable : public CView
     Q_OBJECT
     
 public:
-    explicit CViewTable(QWidget *parent = nullptr);
+    explicit CViewTable(CParameterApp* pPara, QWidget *parent = nullptr);
     virtual ~CViewTable();
     
     // CView interface
@@ -38,7 +38,6 @@ private Q_SLOTS:
 private:
     QTabWidget* m_pTab;
     QString m_szStyleSheet;
-    MainWindow* m_pMainWindow;
 
     QWidget* GetViewer(int index);
     int GetViewIndex(QWidget* pView);
