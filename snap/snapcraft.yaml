@@ -49,7 +49,7 @@ grade: stable # must be 'stable' to release into candidate/stable channels
 # - devmode
 # - strict
 # - classic
-confinement: strict # devmode # use 'strict' once you have the right plugs and slots
+confinement: classic # devmode # use 'strict' once you have the right plugs and slots
 
 # lifecycle: https://snapcraft.io/docs/parts-lifecycle
 # Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
@@ -316,13 +316,24 @@ apps:
      - network-control
      - network-bind
      - network-manager
+     - network-manager-observe
+     - network-observe
+     - network-setup-control
+     - network-setup-observe
+     - avahi-observe
+     - avahi-control
+     - cifs-mount
+     - nfs-mount
+     - openvswitch
+     - openvswitch-support
+     - ppp
+     
      - opengl
      - cups-control
      - serial-port
      - alsa
      - audio-playback
      - audio-record
-     - avahi-observe
      - browser-support
      - home
      - media-hub
@@ -335,3 +346,8 @@ apps:
      - screen-inhibit-control
      - ssh-keys
      - ssh-public-keys
+     - pkcs11
+     - appstream-metadata
+     - hardware-observe
+     - block-devices
+     - multipass-support
