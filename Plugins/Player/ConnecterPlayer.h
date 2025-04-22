@@ -15,6 +15,11 @@
 #include "ConnecterThread.h"
 #include "ParameterPlayer.h"
 
+/*!
+ * \see
+ *   - https://doc.qt.io/qt-6/qtmultimedia-index.html
+ *   - https://doc.qt.io/qt-6/advanced-ffmpeg-configuration.html
+ */
 class CConnecterPlayer : public CConnecterThread
 {
     Q_OBJECT
