@@ -49,7 +49,7 @@ grade: stable # must be 'stable' to release into candidate/stable channels
 # - devmode
 # - strict
 # - classic
-confinement: classic # devmode # use 'strict' once you have the right plugs and slots
+confinement: strict # devmode # use 'strict' once you have the right plugs and slots
 
 # lifecycle: https://snapcraft.io/docs/parts-lifecycle
 # Iterating over a build: https://snapcraft.io/docs/iterating-over-a-build
